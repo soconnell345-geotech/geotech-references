@@ -5,183 +5,831 @@
   "chapter_title": "Identification and Classification of Soil and Rock",
   "sections": [
     {
-      "section_id": "4.1-4.10",
-      "title": "Soil Index Properties",
-      "summary": "Key soil index properties: grain-size distribution (Cu = D60/D10, Cc = D30²/(D10×D60); percent fines = % passing #200 sieve); water content (wn 0–20% for sands, 10–40%+ for clays/silts); unit weight (γt, γd, γsat); Atterberg limits (LL, PL, PI = LL-PL, LI = (wn-PL)/PI, Activity = PI/CF). Organic content: high water retention, high compressibility, possible high corrosion. Carbonate: may act as cementing agent. Clay mineralogy influences: SSA, surface charge, and cation exchange capacity; Activity 0.4 (kaolinite) to 8+ (montmorillonite).",
-      "body": "Grain-size distribution: Measured by sieve analysis (coarse-grained) and hydrometer (fine-grained per ASTM D7928/formerly D422). Coefficient of uniformity Cu = D60/D10; coefficient of curvature Cc = D30²/(D10 × D60). Well-graded soils have Cu ≥ 4 (gravels) or ≥ 6 (sands) and 1 ≤ Cc ≤ 3. Percent fines = % passing #200 sieve.\n\nWater content: wn = mw/ms. Sands: 0–20%; silts and inorganic clays: 10–40%; soft and sensitive clays, organic soils: wn can exceed 100%.\n\nUnit weight: γt = Wt/V; γd = Ws/V; γt = γd(1+wn). Specific gravity Gs for most soils is 2.6–2.8 (AASHTO T100, ASTM D854).\n\nAtterberg limits: LL per AASHTO T89/ASTM D4318 (Casagrande cup: water content at 25 blows) or fall cone (British standard; 20 mm penetration at LL). PL per AASHTO T90/ASTM D4318 (thread method: crumbles at 3.2 mm diameter). PI = LL - PL (Eq 4.12). LI = (wn - PL)/PI (Eq 4.13).\n\nActivity (Eq 4.16): A = PI/CF where CF = clay-size fraction (% < 0.002 mm). Activity ranges: 0.4 (kaolinite), 0.9 (illite), 7–8+ (montmorillonite). High activity = high swelling potential.\n\nClay mineralogy characterization: X-ray diffraction (XRD) identifies minerals from interatomic plane spacing. Specific surface area (SSA) distinguishes clay mineral types; SSA ranges: kaolinite 5–50 m²/g; illite 50–200 m²/g; montmorillonite 200–800 m²/g.\n\nCarbonate content: Calcium and calcium-magnesium carbonates can act as cementing agents. High carbonate soils or rocks may dissolve and create voids (karst hazard). Organic content: Organic soils have high water content, primary and secondary compressibility, and corrosion potential.",
+      "section_id": "4.1",
+      "title": "Objectives for Identification and Classification of Soil and Rock",
+      "summary": "Classifications from index properties indicate anticipated behavior (high plasticity clay suggests low strength, low hydraulic conductivity and high swell potential, to be confirmed by performance tests), help select samples for testing and group samples into stratigraphic units: they are screening tests.",
+      "body": "Formal soil and rock classifications from laboratory and field index property measurements indicate anticipated engineering behavior and general characteristics; e.g., high plasticity clay identified from Atterberg limits may, as a first approximation, indicate potential for low strength, low hydraulic conductivity and high swell potential, to be confirmed by more rigorous \"performance\" tests if it may substantially affect a project. Classification also helps select samples for engineering property testing and assess variability among samples, presuming samples with similar classification behave similarly, so it can establish whether samples from different borings belong to a single stratigraphic unit. Index properties and classifications are \"screening\" tests that motivate further investigation and facilitate grouping samples for design. (p. 4-1)",
       "key_points": [
-        "Cu = D60/D10; Cc = D30²/(D10×D60); well-graded: Cu ≥ 4 (gravel) or ≥ 6 (sand), 1 ≤ Cc ≤ 3",
-        "PI = LL - PL; LI = (wn - PL)/PI; Activity = PI/CF (clay fraction < 0.002 mm)",
-        "Activity: 0.4 kaolinite → 0.9 illite → 7-8+ montmorillonite — indicator of swelling potential",
-        "SSA for clay mineral identification: kaolinite 5–50 m²/g; illite 50–200; montmorillonite 200–800",
-        "Organic soils: high wn (>100% possible), high compressibility, potential corrosion risk"
+        "Index properties indicate anticipated behavior, confirmed by performance tests (p. 4-1).",
+        "Classification groups samples into stratigraphic units (p. 4-1).",
+        "Index tests are screening tests (p. 4-1)."
       ],
-      "equations": [
-        {
-          "equation_id": "4-Cu",
-          "description": "Coefficient of uniformity for grain-size distribution",
-          "latex": "C_u = \\frac{D_{60}}{D_{10}}",
-          "variables": {
-            "C_u": "coefficient of uniformity",
-            "D_60": "grain size at 60% finer by mass",
-            "D_10": "grain size at 10% finer by mass (effective grain size)"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-Cc",
-          "description": "Coefficient of curvature for grain-size distribution",
-          "latex": "C_c = \\frac{D_{30}^2}{D_{10} \\cdot D_{60}}",
-          "variables": {
-            "C_c": "coefficient of curvature",
-            "D_30": "grain size at 30% finer by mass",
-            "D_10": "grain size at 10% finer",
-            "D_60": "grain size at 60% finer"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-12",
-          "description": "Plasticity index",
-          "latex": "PI = LL - PL",
-          "variables": {
-            "PI": "plasticity index",
-            "LL": "liquid limit",
-            "PL": "plastic limit"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-13",
-          "description": "Liquidity index",
-          "latex": "LI = \\frac{w_n - PL}{PI}",
-          "variables": {
-            "LI": "liquidity index (LI < 0: overconsolidated; LI ≈ 1: soft/normally consolidated; LI > 1: sensitivity concern)",
-            "w_n": "in situ water content",
-            "PL": "plastic limit",
-            "PI": "plasticity index"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-16",
-          "description": "Activity of clay soil",
-          "latex": "A = \\frac{PI}{CF}",
-          "variables": {
-            "A": "activity (0.4 = kaolinite; 0.9 = illite; 7-8+ = montmorillonite)",
-            "PI": "plasticity index",
-            "CF": "clay fraction — percent of particles finer than 0.002 mm by dry mass"
-          },
-          "implemented_in": null
-        }
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.2",
+      "title": "Boring and Sampling Requirements for Index Testing",
+      "summary": "Most index measurements are insensitive to sample quality and can use bulk or disturbed samples; exceptions: prevent wetting or drying of water content samples, use relatively undisturbed samples for unit weight, and avoid artificially breaking rock core.",
+      "body": "Most index property measurements are insensitive to sample quality, so special boring and sampling procedures are seldom required (p. 4-2). Some tests need care: prevent wetting or drying of samples for water content; samples for unit weight should be relatively undisturbed; rock core must be cored and handled without artificial breaks, which bias rock index measurements. Most index tests can be performed on \"bulk\" or disturbed samples. (pp. 4-1 to 4-2)",
+      "key_points": [
+        "Index tests mostly insensitive to sample quality (p. 4-1).",
+        "Care for water content, unit weight and rock core samples (p. 4-2)."
       ],
-      "figures": [
-        "Figure 4-1: Grain-size distribution curves",
-        "Figure 4-5: Casagrande cup device for liquid limit",
-        "Figure 4-7: Fall cone device for liquid limit (British standard)"
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.3",
+      "title": "Fundamental Concepts for Identification and Classification",
+      "summary": "Coarse-grained soils behave as particulate assemblages governed by grain size, distribution, shape and hardness, packing and confinement; fine-grained soils by clay mineralogy, surface area and charge, with confining stress and stress history strongly influential (Table 4-1).",
+      "body": "Identification and classification group soils expected to behave similarly; coarse-grained and fine-grained soils behave differently under different controlling factors (Table 4-1). Coarse-grained soils (sands, gravels) are particle assemblages whose behavior depends on confinement, stress conditions, cementation and packing; the most important characteristics are mean grain size, grain-size distribution, grain shape and grain hardness, with stress history less influential than for fine-grained soils. Fine-grained soils are small particles with large surface area (p. 4-3): silt particles are electrochemically neutral (\"surface dead\"); clay particles are often \"platy\" with unbalanced charges giving affinity for water and other particles, and the proportion and type of clay minerals control surface area, surface charge and cation exchange capacity; confining stress and stress history also strongly influence behavior. Coarse particles are visible to the naked eye or a lens, fine particles only with a microscope. (pp. 4-2 to 4-3)",
+      "key_points": [
+        "Coarse-grained: grain size, distribution, shape, hardness, packing (p. 4-2).",
+        "Fine-grained: clay mineralogy, surface area, charge, cation exchange (p. 4-3).",
+        "Table 4-1: composition and state variables for each (p. 4-2)."
       ],
+      "equations": [],
+      "figures": [],
       "tables": [
-        "Table 4-10: Field evaluation of rock hardness descriptions"
+        "Table 4-1: Soil characteristics affecting behavior of coarse- and fine-grained soils - coarse-grained soils: composition (mean grain size, grain-size distribution, grain mineralogy, grain shape/angularity, other constituents such as carbonates), state (void ratio/relative density, confining stress, stress history); fine-grained soils: composition (clay size fraction, clay mineralogy, specific surface area, cation exchange, other constituents), state (water content, void ratio, confining stress, stress history)"
       ],
       "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
     },
     {
-      "section_id": "4.16-4.17",
-      "title": "Soil Classification Systems and In Situ Identification",
-      "summary": "USCS (ASTM D2487): primary designation G/S/M/C/O/Pt; based on >50% #200 (fine-grained) or <50% (coarse); secondary from Cu, Cc (coarse) or Casagrande plasticity chart (fine). AASHTO (ASTM D3282): A-1 to A-8; Group Index from gradation and Atterberg limits. CPT soil behavior type (SBT): original Robertson et al. (1986) chart uses qc and friction ratio Rf = fs/qc × 100%; normalized SBTn uses Q and F. Ic-RW = √[(3.47-logQ)² + (logF+1.22)²] (Eq 4.28); Ic > 2.6 indicates fine-grained. DMT material index ID = (p1-p0)/(p0-u0) distinguishes soft cohesive to dense sand.",
-      "body": "USCS classification: Based on grain-size analysis and Atterberg limits. Primary symbol based on >50% passing #200 (fine-grained) or <50% (coarse). For coarse-grained soils, secondary designation from Cu and Cc (W = well-graded, P = poorly graded). For fine-grained soils, secondary designation from Casagrande Plasticity Chart: L or H plasticity, C (clay) or M (silt) based on position relative to A-line.\n\nAASHTO classification (ASTM D3282): Groups A-1 through A-8. Group Index (Eq 4.22): GI = (F-35)[0.2+0.005(LL-40)] + 0.01(F-15)(PI-10), where F = percent passing #200. GI ranges from 0 (good subgrade) to 20+ (very poor).\n\nTable 4-14: Approximate comparison between USCS and AASHTO systems.\n\nCPT soil behavior type (SBT): Robertson et al. (1986) chart uses qc (tip resistance) and Rf = fs/qc × 100% (friction ratio) — Eq 4.24. Updated Robertson (2010) uses normalized qt and F. Soil behavior type index (Robertson and Wride 1998, Eq 4.28): Ic-RW = √[(3.47-logQ)² + (logF+1.22)²] where Q = (qt-σvo)/σ'vo and F = fs/(qt-σvo)×100%. Ic > 2.6 generally indicates fine-grained behavior; Ic < 2.6 indicates coarse-grained. Extended per Robertson (2010) as Ic-JB for normalized CPTU.\n\nCPT corrected cone resistance: qt = qc + u2(1-a) (Eq 4.23) where a = net area ratio from calibration.\n\nDMT material index: ID = (p1-p0)/(p0-u0). ID < 0.1 = soft clay; 0.1–0.35 = clay; 0.35–0.9 = silty clay/clayey silt; 0.9–1.8 = silt; 1.8–3.3 = sandy silt/silty sand; >3.3 = sand.",
+      "section_id": "4.4",
+      "title": "Grain-Size Distribution",
+      "summary": "Grain-size distribution (proportion by dry mass) from sieves and hydrometer separates fine from coarse soils (Table 4-2 terms). USCS: coarse-grained if more than 50 percent is retained on the No. 200 sieve; AASHTO: coarse-grained if less than 35 percent passes the No. 200 sieve.",
+      "body": "Grain-size distribution is the proportion (by dry mass) of particles of different sizes, measured with mechanical sieves and/or hydrometer tests, used to distinguish fine- and coarse-grained soils and classify coarse-grained soils; Table 4-2 gives particle size ranges and descriptive terms. The distinction is generally the proportion retained on the No. 200 sieve (opening printed in the text as 0.074 mm): for the USCS (section 4.16.1), soils with more than 50 percent retained are coarse-grained and soils with more than 50 percent passing are fine-grained; for the AASHTO system (section 4.16.2), coarse-grained soils have less than 35 percent passing the #200 sieve. (p. 4-3)",
       "key_points": [
-        "USCS (ASTM D2487): G/S (coarse, >50% retained #200); M/C (fine, >50% passing #200); W/P from Cu/Cc",
-        "AASHTO Group Index: GI from F (% passing #200), LL, PI; higher GI = worse subgrade material",
-        "CPT friction ratio: Rf = fs/qc × 100%; lower Rf = granular; higher Rf = cohesive",
-        "Ic-RW = √[(3.47-logQ)² + (logF+1.22)²]; Ic > 2.6 = fine-grained; Ic < 2.6 = coarse-grained",
-        "DMT material index ID: < 0.35 = clay; 0.35–1.8 = silt/mixed; > 1.8 = sand"
+        "Table 4-2: particle size ranges and terms (p. 4-3).",
+        "USCS: coarse-grained if > 50 percent retained on No. 200 (p. 4-3).",
+        "AASHTO: coarse-grained if < 35 percent passing No. 200 (p. 4-3)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-2: Descriptive terms for soil particle size ranges - boulders > 12 in. (305 mm); cobbles 3 to 12 in. (75 to 305 mm); coarse gravel 3/4 to 3 in. (19 to 75 mm); fine gravel No. 4 sieve to 3/4 in. (4.75 to 19 mm); coarse sand No. 10 to No. 4 sieve (2.00 to 4.75 mm); medium sand No. 40 to No. 10 sieve (printed 0.0425 to 2.00 mm); fine sand No. 200 to No. 40 sieve (printed 0.075 to 0.0425 mm); silt 0.075 to 0.002 mm; clay < 0.002 mm"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.4.1",
+      "title": "Coarse-Grained Soils",
+      "summary": "Sieve analysis gives the grain-size curve; D50 locates it, and CU = D60/D10 (Eq. 4.1) and CC = (D30)^2/(D10 x D60) (Eq. 4.2) describe dispersion. USCS well-graded: sand CU >= 6, gravel CU >= 4, both with 1 <= CC <= 3 (Table 4-3); otherwise poorly graded.",
+      "body": "Mechanical sieve analysis (AASHTO T88, ASTM D422, ASTM D6913) gives a cumulative grain-size distribution curve (Figure 4-1, p. 4-4); curves to the right are coarser. The mean particle size D50 (50 percent finer) locates the curve; the coefficient of uniformity CU (Eq. 4.1) and coefficient of curvature CC (Eq. 4.2) measure the dispersion of sizes; \"percent fines\" is the percentage passing the No. 200 sieve (silt and clay). \"Well-graded\" soils span a wide range of sizes, \"poorly graded\" soils a narrow range; Table 4-3 (p. 4-5) gives the USCS criteria, soils not meeting both being poorly graded, and Table 4-4 the measures for the two sands of Figure 4-1. Well-graded soils are generally easier to compact, stronger and less compressible, smaller grains filling the voids between larger ones. (pp. 4-3 to 4-5)",
+      "key_points": [
+        "CU = D60/D10 (Eq. 4.1) (p. 4-4).",
+        "CC = (D30)^2/(D10 x D60) (Eq. 4.2) (p. 4-4).",
+        "Well-graded sand: CU >= 6 and 1 <= CC <= 3; gravel: CU >= 4 and 1 <= CC <= 3 (Table 4-3) (p. 4-5).",
+        "Percent fines = percent passing No. 200 (p. 4-5)."
       ],
       "equations": [
-        {
-          "equation_id": "4-23",
-          "description": "CPT corrected total cone tip resistance accounting for unequal end areas",
-          "latex": "q_t = q_c + u_2(1 - a)",
-          "variables": {
-            "q_t": "corrected total cone tip resistance",
-            "q_c": "measured cone tip resistance",
-            "u_2": "pore water pressure measured at the shoulder (u2 position)",
-            "a": "net area ratio from calibration"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-24",
-          "description": "CPT friction ratio for soil behavior type identification",
-          "latex": "R_f = \\frac{f_s}{q_c} \\times 100\\%",
-          "variables": {
-            "R_f": "friction ratio (%); low Rf (< 1%) = granular; high Rf (> 3%) = cohesive",
-            "f_s": "sleeve friction resistance",
-            "q_c": "cone tip resistance"
-          },
-          "implemented_in": null
-        },
-        {
-          "equation_id": "4-28",
-          "description": "CPT soil behavior type index (Robertson and Wride 1998)",
-          "latex": "I_{c-RW} = \\sqrt{(3.47 - \\log Q)^2 + (\\log F + 1.22)^2}",
-          "variables": {
-            "I_c_RW": "soil behavior type index; Ic > 2.6 = fine-grained; Ic < 2.6 = coarse-grained",
-            "Q": "normalized tip resistance = (qt - σvo) / σ'vo",
-            "F": "normalized friction ratio = fs / (qt - σvo) × 100%"
-          },
-          "implemented_in": null
-        }
+        "Eq. 4.1: CU = D60 / D10; D60 and D10 = grain sizes for which 60 and 10 percent of particles are finer (p. 4-4)",
+        "Eq. 4.2: CC = (D30)^2 / (D10 x D60); D30 = grain size for which 30 percent of particles are finer (p. 4-4)"
       ],
       "figures": [
-        "Figure 4-9: Flow chart for soil classification tasks",
-        "Figure 4-11: Casagrande Plasticity Chart for USCS fine-grained soil classification",
-        "Figure 4-12: AASHTO soil classifications for fine-grained soils",
-        "Figure 4-13: Subsurface profile from CPT measurements",
-        "Figure 4-14: SBT charts for CPT: original Robertson et al. (1986) and updated Robertson (2010)",
-        "Figure 4-16: Normalized SBTn charts from Robertson (1990)",
-        "Figure 4-18: Use of SCPT to distinguish sand from clay",
-        "Figure 4-19: Approximate relationship between CPT Ic-RW and DMT ID"
+        "Figure 4-1: Grain-size distribution curves for two coarse-grained soils"
       ],
       "tables": [
-        "Table 4-13: AASHTO soil classification system (from ASTM D3282 2015)",
-        "Table 4-14: Approximate comparison between USCS and AASHTO systems (Handy and Spangler 2007)",
-        "Table 4-15: Soil behavioral type designations for Robertson et al. (1986) chart",
-        "Table 4-16: Soil behavioral type designations for updated Robertson (2010) chart"
+        "Table 4-3: USCS criteria for well-graded coarse-grained soils - well-graded sand: CU >= 6 and 1 <= CC <= 3; well-graded gravel: CU >= 4 and 1 <= CC <= 3",
+        "Table 4-4: Grain-size characteristics for the two sands in Figure 4-1 - FHWA Sand: D50 0.31 mm, CU 2.06, CC 1.14, fines 2.5 %, poorly graded; DOE Sand: D50 0.85 mm, CU 6.47, CC 0.86, fines 2.7 %, poorly graded"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.4.2",
+      "title": "Fine-Grained Soils",
+      "summary": "Fine-grained gradation comes from the hydrometer test (sedimentation): silt 0.075 to 0.002 mm, clay < 0.002 mm, coarse silt 0.075 to 0.020 mm, fine silt 0.020 to 0.002 mm, fine clay (colloids) < 0.001 mm. ASTM D422 was withdrawn in January 2016 but remains useful.",
+      "body": "Sieves cannot separate fine particles, so grain-size distributions of fine-grained soils are generally from the hydrometer test (AASHTO T88; ASTM D422), a sedimentation procedure separating silt- and clay-size fractions. Useful fractions: total silt (0.075 to 0.002 mm), clay (< 0.002 mm), coarse silt (0.075 to 0.020 mm), fine silt (0.020 to 0.002 mm) and fine clay (< 0.001 mm, \"colloids\"). ASTM D422 was formally withdrawn in January 2016 (p. 4-6) but its procedures remain useful. (pp. 4-5 to 4-6)",
+      "key_points": [
+        "Hydrometer test for fine-grained soils (p. 4-5).",
+        "Silt 0.075 to 0.002 mm; clay < 0.002 mm; colloids < 0.001 mm (p. 4-5).",
+        "ASTM D422 withdrawn January 2016, still useful (pp. 4-5 to 4-6)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.5",
+      "title": "Grain Shape - Coarse-Grained Soils",
+      "summary": "Particle shape of coarse-grained soils, from angular to well-rounded (Figure 4-2, Mitchell and Soga, 2005), matters: angular particles interlock and give higher shear strength than rounded ones at the same packing. Shape is irrelevant for fine-grained soils.",
+      "body": "Particle shape strongly influences coarse-grained soil behavior; it is characterized as angular, subangular, subrounded, rounded or well-rounded (Figure 4-2, from Mitchell and Soga, 2005). Angular particles interlock more, tending to higher shear strength than rounded particles at the same packing. Grain shape is not relevant for fine-grained soils, whose particles cannot be distinguished with the naked eye. (p. 4-6)",
+      "key_points": [
+        "Shapes: angular, subangular, subrounded, rounded, well-rounded (Figure 4-2) (p. 4-6).",
+        "Angular particles give higher shear strength (p. 4-6)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-2: Particle shapes for coarse-grained soils (from Mitchell and Soga, 2005)"
+      ],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.6",
+      "title": "Water Content",
+      "summary": "Water content w = mw/ms x 100 % (Eq. 4.3). Sands 0 to 20 percent; inorganic insensitive silts and clays 10 to 40; soft, sensitive or organic clays 40 to 300 or more. Oven drying (AASHTO T265, ASTM D2216) is the reference; seal samples and test promptly.",
+      "body": "Water content helps interpret unit weight, relative consistency, stress history and groundwater levels; it is the mass of water over the mass of soil solids, as a percentage (Eq. 4.3, p. 4-6). Natural water contents wn: sands typically 0 to 20 percent (p. 4-7); inorganic insensitive silts and clays 10 to 40 percent; above 100 percent is possible; soft highly compressible, sensitive, quick or organic clays 40 to 300 percent or more. Methods: drying oven (AASHTO T265; ASTM D2216), microwave (ASTM D4643), field stove or blowtorch (ASTM D4959), calcium carbide gas pressure tester (AASHTO T217; ASTM D4944), nuclear (AASHTO T310; ASTM D3017, D6031). The drying oven is universally the most accurate; microwave and field stove results need confirmation by AASHTO T265, and nuclear results (potentially erroneous in micaceous soils) need calibration by oven drying. Sampling, handling and storage may alter water content: do not use material from near the top of samplers, seal samples, and test as soon as practical. (pp. 4-6 to 4-7)",
+      "key_points": [
+        "w = mw/ms x 100 % (Eq. 4.3) (p. 4-6).",
+        "Sands 0 to 20 percent; silts and clays 10 to 40; soft or organic clays 40 to 300+ (p. 4-7).",
+        "Drying oven (AASHTO T265, ASTM D2216) most accurate (p. 4-7).",
+        "Avoid material from the top of samplers; seal; test promptly (p. 4-7)."
+      ],
+      "equations": [
+        "Eq. 4.3: w = mw / ms = (mass of water / mass of soil solids) x 100% (p. 4-6)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.7",
+      "title": "Unit Weight and Specific Gravity",
+      "summary": "Mass densities rho_t = mt/Vt and rho_d = ms/Vt, unit weights gamma_t = Wt/Vt and gamma_d = Ws/Vt, related by rho_d = rho_t/(1 + wn) and gamma_d = gamma_t/(1 + wn); Gs = ms/(Vs x gamma_w), typically 2.7 +/- 0.1 (Table 4-5) except organics, ores and tailings, and high carbonate soils.",
+      "body": "Moist (total) mass density (Eq. 4.4, p. 4-7) and dry mass density (Eq. 4.5); moist and dry unit weight (Eqs. 4.6, 4.7, p. 4-8), related through the natural water content (Eqs. 4.8, 4.9). Density implies mass measurements and unit weight weight measurements; where the distinction does not matter the manual writes \"density (unit weight)\". Field measurements are generally restricted to shallow samples, usually compacted fill: drive tubes (ASTM D2937), sand cone (AASHTO T191; ASTM D1556), rubber balloon (ASTM D2167), nuclear gauges (AASHTO T310; ASTM D6938); at depth, laboratory measurements on high quality thin-walled tube samples, or relatively expensive gamma ray techniques (ASTM D5195). Unit weights from highly disturbed coarse-grained samples (thick-walled samplers) are approximate. Specific gravity Gs of solids (Eq. 4.10) is measured by AASHTO T100, ASTM D854 or ASTM D5550, but is commonly estimated since it varies little (p. 4-9): typically Gs = 2.7 +/- 0.1 (Table 4-5), with exceptions for appreciable organics (peat), ores and mine tailings, and high calcium carbonate content. (pp. 4-7 to 4-9)",
+      "key_points": [
+        "rho_d = rho_t/(1 + wn); gamma_d = gamma_t/(1 + wn) (Eqs. 4.8, 4.9) (p. 4-8).",
+        "Gs = ms/(Vs x gamma_w) (Eq. 4.10) (p. 4-8).",
+        "Typical Gs = 2.7 +/- 0.1 (Table 4-5) (p. 4-9).",
+        "Unit weights from thick-walled samplers approximate (p. 4-8)."
+      ],
+      "equations": [
+        "Eq. 4.4: rho_t = mt / Vt; rho_t = moist (total) mass density, mt = total mass, Vt = total volume (p. 4-7)",
+        "Eq. 4.5: rho_d = ms / Vt; rho_d = dry mass density, ms = dry mass (p. 4-7)",
+        "Eq. 4.6: gamma_t = Wt / Vt; gamma_t = moist (total) unit weight, Wt = total weight (p. 4-8)",
+        "Eq. 4.7: gamma_d = Ws / Vt; gamma_d = dry unit weight, Ws = dry weight (p. 4-8)",
+        "Eq. 4.8: rho_d = rho_t / (1 + wn); wn = natural water content (p. 4-8)",
+        "Eq. 4.9: gamma_d = gamma_t / (1 + wn) (p. 4-8)",
+        "Eq. 4.10: Gs = ms / (Vs x gamma_w); ms = mass of solids, Vs = volume of solids, gamma_w = unit weight of water (as printed) (p. 4-8)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-5: Typical values of specific gravity for several natural soils - Kaolinite 2.61; Omaha Lake Clay 2.65; Boston Blue Clay 2.71; Platte River Sand 2.65; Iowa Loess 2.70"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.8",
+      "title": "Atterberg Limits",
+      "summary": "Atterberg limits mark phase changes with water content: liquid limit LL (liquid to plastic), plastic limit PL (plastic to semisolid), shrinkage limit SL (semisolid to solid, volume constant below). Standardized (ASTM D4318, AASHTO T89, T90), they indicate behavior and are the basis for fine-grained classification.",
+      "body": "A disturbed soil-water mixture passes from viscous liquid to plastic, semisolid and solid as water content falls (Figure 4-3); the transition water contents are the Atterberg limits: liquid limit LL or wL (liquid to plastic), plastic limit PL or wP (plastic to semisolid), shrinkage limit SL (semisolid to solid). Volume decreases conceptually linearly from LL through PL to SL and is constant below SL (Figure 4-4). LL and PL tests are standardized (ASTM D4318; AASHTO T89, T90) and are true index tests valued because they are standardized (p. 4-10). Soils with similar limits share characteristics and often similar strength, permeability, compressibility and shrink/swell potential; water content near LL suggests soft soil, near PL much stiffer; the limits are the primary basis for classifying fine-grained soils (section 4.16). (pp. 4-9 to 4-10)",
+      "key_points": [
+        "LL, PL, SL: phase transitions with water content (Figure 4-3) (p. 4-9).",
+        "Volume constant below SL (Figure 4-4) (p. 4-9).",
+        "Water content near LL soft, near PL stiff (p. 4-10).",
+        "Primary basis for fine-grained classification (p. 4-10)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-3: Conceptual model of Atterberg limits (from Coduto, 2001)",
+        "Figure 4-4: Idealized relation between volume and water content of soil including Atterberg limits"
+      ],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.8.1",
+      "title": "Determining the Liquid Limit",
+      "summary": "LL by Casagrande cup (AASHTO T89, ASTM D4318): water content at which a standard groove closes 1/2 inch at 25 blows. The fall cone (BS1377: 30 degree, 80 g cone, LL at 20 mm penetration) gives practically identical values for LL below about 120.",
+      "body": "In the U.S. the liquid limit is most often found with the Casagrande cup (AASHTO T89; ASTM D4318; Figure 4-5): the water content at which a standard groove in a remolded sample closes over 1/2 inch at 25 blows. Because the cup depends on operator experience, the fall cone test (Figure 4-6) has gained popularity: the cone tip touches the paste, is released, penetration is measured after 5 seconds and plotted against water content. It is not standardized by AASHTO or ASTM (an ISO Reference Test Method, ISO/TS 17892-12; ASTM D18 ballot pending); British Standard BS1377 \"Liquid Limit - Cone Penetrometer Method\" uses a 30 degree, 80 gm cone, the water content at 20 mm penetration being the liquid limit (Figure 4-7, p. 4-12). Fall cone and Casagrande values are practically identical for liquid limits less than about 120 (Ozer, 2009; Budhu, 1985; Matteo, 2012). (pp. 4-11 to 4-12)",
+      "key_points": [
+        "Casagrande cup: groove closes 1/2 inch at 25 blows (p. 4-11).",
+        "Fall cone (BS1377): 30 degree, 80 gm cone; LL at 20 mm penetration (Figure 4-7) (pp. 4-11 to 4-12).",
+        "Fall cone and cup agree for LL < about 120 (p. 4-12)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-5: Equipment used for determining liquid limit by Casagrande cup method",
+        "Figure 4-6: Fall Cone equipment used for determining liquid limit",
+        "Figure 4-7: Determination of liquid limit from Fall Cone test according to British Standard BS1377 (adapted from Azadi and Monfared, 2012)"
+      ],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.8.2",
+      "title": "Determining the Plastic Limit",
+      "summary": "PL by the thread method (AASHTO T90, ASTM D4318): water content at which a thread just crumbles when rolled to 1/8 inch (3.2 mm). An alternative definition is a 100-fold increase in undrained strength over that at the liquid limit (about 160 kPa).",
+      "body": "The plastic limit is most often determined by the thread method (AASHTO T90; ASTM D4318): a thread rolled on a glass plate; the plastic limit is the water content at which it just crumbles at 1/8 inch (3.2 mm) diameter; crumbling earlier means water content below PL, holding shape means above. The test is somewhat arbitrary but has proven consistent for 50 years. Some suggest redefining PL as the water content giving a 100-fold increase in undrained shear strength over the fall cone value at LL (about 160 kPa), which needs a heavier cone and smaller penetration. (p. 4-13)",
+      "key_points": [
+        "Thread crumbles at 1/8 inch (3.2 mm) diameter (p. 4-13).",
+        "Alternative: 100-fold strength increase over LL, about 160 kPa (p. 4-13)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.8.3",
+      "title": "Determining the Shrinkage Limit",
+      "summary": "Shrinkage limit (ASTM D4943) from a wet soil pat near the liquid limit, dried and volumed by wax coating: SL = w - [(V - Vd) rho_w / ms] x 100 % (Eq. 4.11). Measured less often, for highly expansive clays or soils near or below the plastic limit.",
+      "body": "The shrinkage limit is the water content below which further drying produces no further volume decrease. ASTM D4943: a wet soil pat of known volume at about the liquid limit is air and oven dried, its dry volume found by wax coating and submerging, and SL computed by Eq. 4.11. Not required for classification, it is measured less often, generally for volume change of highly expansive clays, and is equally important in fine-grained soils with natural water content near or below the plastic limit. (p. 4-13)",
+      "key_points": [
+        "SL = w - [(V - Vd) rho_w / ms] x 100 % (Eq. 4.11) (p. 4-13).",
+        "Measured for expansive clays (p. 4-13)."
+      ],
+      "equations": [
+        "Eq. 4.11: SL = w - [(V - Vd) rho_w / ms] x 100%; w = water content of the wet soil pat, V = initial pat volume, Vd = dry pat volume, ms = mass of the dry pat, rho_w = mass density of water (1.00 g/cm3) (p. 4-13)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.8.4",
+      "title": "Derived Indices from Atterberg Limits",
+      "summary": "PI = LL - PL (Eq. 4.12); LI = (wn - PL)/PI (Eq. 4.13): LI <= 0 likely heavily overconsolidated or highly expansive, > about 0.7 soft and compressible, > 1 often sensitive. Also SI = LL - SL (Eq. 4.14) and CI = (LL - wn)/PI (Eq. 4.15).",
+      "body": "Indices from Atterberg limits: plasticity index PI (Eq. 4.12), used with the Casagrande Plasticity Chart (section 4.16), and liquidity index LI (Eq. 4.13), where wn is the in situ water content. LI = 1 when wn = LL and 0 when wn = PL; soils with LI <= 0 are likely heavily overconsolidated or highly expansive, LI > about 0.7 relatively soft and compressible, LI > 1 often sensitive. Less often: shrinkage index SI (Eq. 4.14), indicating potential volume change with wetting and drying, and consistency index CI (Eq. 4.15), used like LI. (p. 4-14)",
+      "key_points": [
+        "PI = LL - PL (Eq. 4.12) (p. 4-14).",
+        "LI = (wn - PL)/(LL - PL) (Eq. 4.13) (p. 4-14).",
+        "LI <= 0 overconsolidated or expansive; > 0.7 soft; > 1 often sensitive (p. 4-14).",
+        "SI = LL - SL; CI = (LL - wn)/PI (Eqs. 4.14, 4.15) (p. 4-14)."
+      ],
+      "equations": [
+        "Eq. 4.12: PI = LL - PL (p. 4-14)",
+        "Eq. 4.13: LI = (wn - PL) / (LL - PL) = (wn - PL) / PI; wn = in situ water content (p. 4-14)",
+        "Eq. 4.14: SI = LL - SL; SI = shrinkage index (p. 4-14)",
+        "Eq. 4.15: CI = (LL - wn) / (LL - PL) = (LL - wn) / PI; CI = consistency index (p. 4-14)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.9",
+      "title": "Activity",
+      "summary": "Activity A = PI/CF (Eq. 4.16, Skempton, 1953), CF = percent finer than 0.002 mm, indicates clay mineralogy and expansive clays: about 0.4 for kaolinite to about 8.0 for montmorillonite; most natural soils 0.4 to 2.5 (Table 4-6).",
+      "body": "Skempton (1953) combined the Atterberg limits and the clay-size fraction CF (percent by dry mass smaller than 0.002 mm) in the activity A (Eq. 4.16, p. 4-15), a general indication of clay mineralogy and of expansive clays (Chapter 5). Activity ranges from about 0.4 for kaolinite to about 8.0 for montmorillonite; most natural soils 0.4 to 2.5; Table 4-6 gives typical values. (pp. 4-14 to 4-15)",
+      "key_points": [
+        "A = PI/CF (Eq. 4.16) (p. 4-15).",
+        "Kaolinite about 0.4; montmorillonite about 8.0; most soils 0.4 to 2.5 (p. 4-15)."
+      ],
+      "equations": [
+        "Eq. 4.16: A = PI / CF; A = activity, CF = percentage of particles (by dry mass) smaller than 0.002 mm (p. 4-15)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-6: Typical values of activity for several different soils - PI, clay fraction (% < 0.002 mm), activity: Peerless Clay (Kaolin) 28, 76.0, 0.37; Theile Clay 27, 36.2, 0.75; Texas Calcium Montmorillonite 98, 73.3, 1.34; Wyoming Bentonite (Sodium Montmorillonite) 484, 60.4, 8.01"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10",
+      "title": "Soil Composition",
+      "summary": "Mineralogy controls particle size, shape and properties; clay-size mineralogy strongly influences behavior. Composition tests (X-ray diffraction, specific surface area, cation exchange capacity, carbonate and organic content) can inform judgment beyond Atterberg limits (Mitchell and Soga, 2005).",
+      "body": "Mineralogy generally controls the size, shape and properties of particles and so physical properties (Mitchell and Soga, 2005). Coarse and most silt particles are practically inert, behavior dominated by physical interaction, but clay-size mineralogy strongly influences interparticle interaction. Atterberg limits indicate composition indirectly; explicit identification can meaningfully inform judgment about behavior and problem conditions, using X-ray diffraction and tests for specific surface area, cation exchange capacity, carbonate content and organic content; Mitchell and Soga (2005) cover mineralogy more fully. (p. 4-15)",
+      "key_points": [
+        "Clay-size mineralogy controls interparticle interaction (p. 4-15).",
+        "XRD, SSA, CEC, carbonate and organic content tests (p. 4-15)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10.1",
+      "title": "X-Ray Diffraction",
+      "summary": "X-ray diffraction is the most useful means of identifying fine-grained mineralogy (interatomic spacing by Bragg's law), semi-quantitative by peak size; usually on the clay-size fraction. Figure 4-8 shows smectite predominant in a high plasticity clay, with limits tracking mineral abundance.",
+      "body": "XRD measures diffraction of X-rays by soil particles to find the spacing of interatomic planes (Bragg's law), unique to each mineral; relative peak sizes give semi-quantitative abundance. Bulk powders give clay and non-clay abundance; more commonly only the clay-size fraction is tested to identify kaolinite, smectite, illite and chlorite (p. 4-16). Figure 4-8 shows XRD on a high plasticity clay with Atterberg limits: the predominant clay mineral is smectite (montmorillonite), highly expansive, and Atterberg limits change with depth with the relative abundance of clay minerals and quartz. (pp. 4-15 to 4-16)",
+      "key_points": [
+        "XRD most useful for fine-grained mineralogy (p. 4-15).",
+        "Usually on the clay-size fraction (p. 4-16).",
+        "Figure 4-8: limits track mineral abundance with depth (p. 4-16)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-8: Mineralogical characterization of a natural clay: (a) natural water content and Atterberg limits, (b) relative abundance of minerals from bulk sample, and (c) relative abundance of minerals from clay-size fraction"
+      ],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10.2",
+      "title": "Specific Surface Area",
+      "summary": "Specific surface area SSA (m2/g), usually by the EGME method (16 to 24 hours), falls in distinct ranges by clay mineral and correlates with liquid limit, swelling and frost heave: large SSA means high LL, high swell, possibly low strength. Table 4-7 gives SSA and CEC values.",
+      "body": "Specific surface area SSA is particle surface area per unit mass, usually in m2/g, most commonly measured by the ethylene glycol monoethyl ether (EGME) method (Carter, et al., 1965; Cerato and Lutenegger, 2002), taking about 16 to 24 hours (p. 4-17). SSA ranges for clay minerals are largely distinct, helping judge the predominant mineral, and SSA correlates with liquid limit (Farrar and Coleman, 1967; Locat et al., 1984; and others), swelling potential (Low, 1980; and others) and frost heave (Anderson and Tice, 1972; and others). Large SSA generally means high liquid limit, high swell potential and potentially low strength. Table 4-7 lists typical SSA for clay minerals and fine-grained soils. (pp. 4-16 to 4-17)",
+      "key_points": [
+        "SSA by EGME, 16 to 24 hours (pp. 4-16 to 4-17).",
+        "SSA correlates with LL, swell, frost heave (p. 4-17).",
+        "Table 4-7: SSA and CEC (p. 4-17)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-7: Typical values of SSA and CEC for several clay minerals and fine-grained soils - SSA (m2/gm), CEC (meq./100 gm): Peerless Clay (Kaolinite) 23, 1; Theile Kaolin 38, 2; Texas Calcium Montmorillonite 534, 84; Wyoming Bentonite 637, 76; Boston Blue Clay 85, 15; Leda Clay 42, 18; Houston Clay 153, 29; Nebraska Lake Clay 217, 39; Salt Lake City Clay 48, 20; Omaha Loess 136, 17; San Francisco Bay Mud 135, 22; Buckshot Clay 245, 30"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10.3",
+      "title": "Cation Exchange Capacity",
+      "summary": "Cation exchange capacity CEC (milliequivalents per 100 g dry soil, ASTM D7503) measures the clay particles' charge deficiency; like SSA it indicates the clay minerals present and the potential for swelling and low shear strength (Table 4-7).",
+      "body": "Clay particles are often negatively charged by isomorphous substitution and lattice imperfections, and attract cations to become neutral; different minerals have different deficiencies. CEC measures this charge deficiency, generally in milliequivalents per 100 grams of dry soil, by ASTM D7503; typical values are in Table 4-7 (p. 4-17). Like SSA, CEC indicates the clay minerals present and the potential for swelling and low shear strength (p. 4-18). (pp. 4-17 to 4-18)",
+      "key_points": [
+        "CEC in meq per 100 g dry soil, ASTM D7503 (p. 4-17).",
+        "Indicates clay minerals, swelling and low strength potential (p. 4-18)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10.4",
+      "title": "Carbonate Content",
+      "summary": "Carbonates cement particles, alter plasticity and apparent preconsolidation stress, give high strength and stiffness but possible sensitivity if disturbed. Detect with dilute HCl in the field; quantify gasometrically (ASTM D4373). Table 4-8 gives ranges by deposit.",
+      "body": "Carbonate minerals (calcium carbonate and calcium-magnesium carbonate) can cement particles or clusters, altering plasticity and apparent preconsolidation stress (Boone and Lutenegger, 1997). High carbonate soils often have high strength and stiffness, but the cementation may be a source of sensitivity (Mitchell and Soga, 2005) if disturbed during characterization or construction. Amount and type depend on geologic origin and alteration (leaching, precipitation); Table 4-8 gives typical ranges. In the field, a few drops of dilute hydrochloric acid show carbonates by the speed and vigor of reaction (depending on water content and other minerals), to be recorded on logs and in descriptions. Quantitative determination is typically gasometric, digesting dry soil in dilute HCl in a closed vessel (ASTM D4373; Dreimanis, 1968); alternatives are differential thermal analysis, XRD and chemical analyses. (p. 4-18)",
+      "key_points": [
+        "Carbonate cementation: strength and stiffness, possible sensitivity (p. 4-18).",
+        "Field: dilute HCl reaction recorded on logs (p. 4-18).",
+        "Laboratory: gasometric, ASTM D4373 (p. 4-18).",
+        "Table 4-8: carbonate ranges by deposit (p. 4-18)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-8: Typical ranges of total carbonate content for different soils - range of total carbonates (%): Boston Blue Clay (Boston, Massachusetts) 2.8-16.1; Leda Clay (Massena, New York) 10.4-21.0; Connecticut Valley Varved Clay (Amherst, Massachusetts) 2.0-6.6; Glacial Lake Clay (Albany, New York) 14.4-27.1; Chicago Clay (Evanston, Illinois) 22.2-31.8; Loess (Clinton County, Iowa) 2.9-21.8; Glacial Till (Ames, Iowa) 5.5-16.5; Glacial Clay and Till (Centralia, Missouri) 2.1-8.8; Beaumont & Montgomery Clay (Houston, Texas) 2.1-25.2; Lacustrine Clay (Salt Lake City, Utah) 13.6-34.4; San Francisco Bay Mud (Treasure Island, California) 2.8-4.3"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.10.5",
+      "title": "Organic Content",
+      "summary": "Organic soils retain water: high water content, high primary and secondary compressibility, possibly high corrosion potential. Visual identification is subjective; organic content by AASHTO T267 or ASTM D2974 (burning at 440 C, may overestimate), classified by Huang et al. (2009) (Table 4-9).",
+      "body": "Substantial organic content gives high water content, high primary and secondary compressibility and potentially high corrosion potential; organic soils may or may not be weak, and fibrous peats can be surprisingly strong despite high compressibility. Identification by odor, dark gray to black color and fibers is subjective and may mislead. Organic content is most commonly measured by AASHTO T267 or ASTM D2974, heating an oven-dried sample to 440C to burn off organic matter; Huang et al. (2009) note it can overestimate the true organic content, describe alternatives and propose the criteria in Table 4-9. (p. 4-19)",
+      "key_points": [
+        "High water content and compressibility; corrosion potential (p. 4-19).",
+        "AASHTO T267 or ASTM D2974 at 440C; may overestimate (Huang et al., 2009) (p. 4-19).",
+        "Table 4-9: 0-3 % mineral, 3-15 % with organic matter, 15-30 % organic, > 30 % peat (p. 4-19)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-9: Classification of organic content proposed by Huang, et al. (2009) - 0 to 3 % mineral soil; 3 to 15 % mineral soil with organic matter; 15 to 30 % organic soil; > 30 % highly organic soil (peat)"
+      ],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.11",
+      "title": "Electro-Chemical Classification Tests",
+      "summary": "Electro-chemical tests (pH, resistivity, sulfate ion content, chloride ion content) quantify soil aggressiveness and the potential deterioration of buried materials, identifying corrosive soils by the criteria of Chapter 5, important for buried metallic elements.",
+      "body": "Electro-chemical classification tests give quantitative information on the aggressiveness of soil conditions and potential deterioration of buried materials. Common tests: (1) pH; (2) resistivity; (3) sulfate ion content; (4) chloride ion content. Results help identify potentially corrosive soils by the criteria in Chapter 5, important for designs with buried metallic elements. (p. 4-19)",
+      "key_points": [
+        "pH, resistivity, sulfate and chloride ion content (p. 4-19).",
+        "Corrosive soil criteria in Chapter 5 (p. 4-19)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Index property measurement and interpretation for soil classification and preliminary design parameter estimation"
+    },
+    {
+      "section_id": "4.12",
+      "title": "Rock Hardness",
+      "summary": "Rock hardness separates rock types and weak zones; as a behavior it depends on the test: indentation, rebound (Schmidt hammer, ASTM D5873) or scratch tests, or the field descriptions of Table 4-10 from soft to very hard.",
+      "body": "Rock hardness helps separate rock types and differentiate weak zones. Hardness is a behavior rather than an absolute property, so measures depend on the test: indentation, rebound or scratch tests; rebound tests such as the Schmidt rebound hammer (ASTM D5873) and scratch tests are simple, portable and more common (p. 4-20); indentation tests less common. The field guidelines of Table 4-10 may be used. (pp. 4-19 to 4-20)",
+      "key_points": [
+        "Hardness depends on the test (p. 4-19).",
+        "Schmidt hammer (ASTM D5873) and scratch tests common (p. 4-20).",
+        "Table 4-10: field hardness descriptions (p. 4-20)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-10: Descriptions for field evaluation of rock hardness - soft: very weak plastic material; friable: easily crumbled by hand, pulverized or reduced to powder, too soft to be cut by a pocket knife; low hardness: can be gouged deeply or carved with a pocket knife; moderately hard: readily scratched by a pocket knife, heavy trace of dust, scratch readily visible after the powder is blown away; hard: scratched by a pocket knife with difficulty, little powder, only faintly visible; very hard: cannot be scratched with a pocket knife, leaves knife steel marks"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.13",
+      "title": "Rock Abrasion",
+      "summary": "Abrasion, resistance to wear against metal or between rocks, governs tooling and costs for tunneling; no universally adopted direct test exists (Gharahbagh, et al., 2011); the Los Angeles Abrasion Test (ASTM C131, C535) measures aggregate durability, not abrasivity.",
+      "body": "Abrasion is the resistance of rock to wear in contact with metal or other rock, important for constructability as it affects tooling and equipment selection and costs for tunneling and underground construction. No universally adopted test directly evaluates abrasivity (Gharahbagh, et al., 2011); rock type, weathering, minerals and grain bond strength affect it as they affect hardness. The Los Angeles Abrasion Test (ASTM C131 and C535) measures attrition between rock pieces and steel spheres, appropriate for aggregate durability but not a direct measure of abrasivity for geotechnical construction and tooling. (p. 4-20)",
+      "key_points": [
+        "Abrasivity affects tunneling tooling and costs (p. 4-20).",
+        "No universally adopted abrasivity test (p. 4-20).",
+        "LA Abrasion (ASTM C131, C535) is aggregate durability, not abrasivity (p. 4-20)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.14",
+      "title": "Rock Durability",
+      "summary": "Clay-rich sedimentary rocks may degrade with wetting and drying: the slake durability index Id(2) (ASTM D4644), with variants for scour or polymer slurry, or the qualitative jar slake index IJ from 1 (degrades to flakes or mud) to 6 (little or no change) (Table 4-11).",
+      "body": "Many sedimentary rocks, especially clay-rich ones, weaken or disintegrate with short-term weathering such as wetting and drying. The slake durability test (ASTM D4644) tumbles rock pieces in mesh drums partly submerged in water; the slake durability index Id(2) reflects material lost through the drums and indicates tendency to degrade. Variants: Keaton et al. (2012) recommend the Dickenson and Baillie (1999) modification omitting oven drying for scour susceptibility (p. 4-21); Likos et al. (2005) use polymer slurry for shales in drilled shafts; others in Santi (1998) and Bryson et al. (2012). The \"jar slake\" test (Santi, 1998) immerses an oven-dried rock sample in distilled water and observes it for 24 hours, assigning a jar slake index Ij (Table 4-11); largely qualitative, it is used by many state agencies to identify degradable rock. (pp. 4-20 to 4-21)",
+      "key_points": [
+        "Slake durability index Id(2), ASTM D4644 (p. 4-20).",
+        "Omit oven drying for scour susceptibility (Keaton et al., 2012) (pp. 4-20 to 4-21).",
+        "Jar slake index 1 to 6 over 24 hours (Table 4-11) (p. 4-21)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-11: Jar slake index descriptions - 1 degrades rapidly into a pile of flakes or mud; 2 breaks readily and/or forms many chips; 3 breaks slowly and/or forms few chips; 4 breaks rapidly and/or develops several fractures; 5 breaks slowly and/or develops few fractures; 6 very little or no change"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.15",
+      "title": "Rock Core Measurements",
+      "summary": "Core recovery, rock quality designation and fracture frequency are routinely measured on rock core: they assess rock mass condition qualitatively and feed the rock mass classifications of Chapter 9.",
+      "body": "Discontinuities strongly influence rock mass behavior (Chapter 9). Rock core measurements commonly collected include core recovery, rock quality designation and fracture frequency, which qualitatively assess rock mass condition and are a basis for quantitative rock mass classification (Chapter 9). (p. 4-21)",
+      "key_points": [
+        "CR, RQD and FF from rock core (p. 4-21).",
+        "Basis for rock mass classification in Chapter 9 (p. 4-21)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.15.1",
+      "title": "Rock Core Recovery",
+      "summary": "Core recovery CR = total length of core recovered / total length of core run x 100 % (Eq. 4.17) indicates the rock's ability to withstand coring and flushing, and weathering and decomposition.",
+      "body": "Core recovery CR is the ratio of the cumulative length of core recovered in a core run to the length of the run, usually a percentage (Eq. 4.17). It indicates the ability of the rock to withstand coring and flushing by drilling fluid, and rock weathering and decomposition. (p. 4-21)",
+      "key_points": [
+        "CR = core recovered / core run x 100 % (Eq. 4.17) (p. 4-21)."
+      ],
+      "equations": [
+        "Eq. 4.17: CR = (total length of core recovered / total length of core run) x 100% (p. 4-21)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.15.2",
+      "title": "Rock Quality Designation (RQD)",
+      "summary": "RQD = sum of lengths of sound pieces > 4 inches / total core run length x 100 % (Eq. 4.18; Deere, et al., 1967), preferably on NX core, ignoring mechanical breaks; 0-25 very poor to 90-100 excellent (Table 4-12). Report the number of pieces too.",
+      "body": "Rock quality designation RQD, a modified core recovery serving as a simple measure of rock mass quality (Deere and Deere, 1988), is computed per ASTM 6032 (as printed) as the summed length of sound intact pieces longer than 4 in. (100 mm) over the total core run length (Eq. 4.18; Deere, et al., 1967). NX-size (2.16-in diameter) core is preferred; other sizes are acceptable with drilling that prevents excessive breakage or poor recovery. Mechanical breaks from drilling or handling are excluded. Table 4-12 gives rock mass quality terms. Note the number of pieces on the log: a 5-foot run of four 1.25-foot pieces gives the same RQD as a single 5-foot piece. (p. 4-22)",
+      "key_points": [
+        "RQD = sum of sound pieces > 4 in. / core run x 100 % (Eq. 4.18) (p. 4-22).",
+        "NX core preferred; exclude mechanical breaks (p. 4-22).",
+        "Table 4-12: very poor 0-25 to excellent 90-100 (p. 4-22).",
+        "Log the number of pieces as well (p. 4-22)."
+      ],
+      "equations": [
+        "Eq. 4.18: RQD = (sum of lengths of sound pieces > 4 inches / total length of core run) x 100% (p. 4-22)"
+      ],
+      "figures": [],
+      "tables": [
+        "Table 4-12: Rock quality based on RQD (from Deere and Deere, 1988) - RQD 0-25 very poor; 25-50 poor; 50-75 fair; 75-90 good; 90-100 excellent"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.15.3",
+      "title": "Rock Fracture Frequency (FF)",
+      "summary": "Fracture frequency FF = number of natural fractures / total length of core recovered (Eq. 4.19), for a whole run or a segment, excluding artificial fractures from drilling or handling.",
+      "body": "Fracture frequency FF is the number of natural fractures per unit length of core recovered (Eq. 4.19), for the entire core run or a smaller segment; as with RQD, artificial fractures from drilling or handling are neglected. (p. 4-22)",
+      "key_points": [
+        "FF = natural fractures / length of core recovered (Eq. 4.19) (p. 4-22).",
+        "Exclude drilling and handling fractures (p. 4-22)."
+      ],
+      "equations": [
+        "Eq. 4.19: FF = number of natural fractures / total length of core recovered (p. 4-22)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.16",
+      "title": "Classification of Soil Using Laboratory Test Measurements",
+      "summary": "Field descriptions (ASTM D2488) are qualitative and should be revised by formal classification from standardized laboratory index tests (Figure 4-9); the two common systems are the USCS (ASTM D2487) and the AASHTO system (AASHTO M145, ASTM D3282).",
+      "body": "Figure 4-9 shows the general sequence of site characterization. Initial field identification and description, usually per ASTM D2488, informs later testing and documents features labs may miss, but is largely qualitative and somewhat subjective and should be modified by formal classification from standardized laboratory index tests. Soils of similar classification are expected to respond similarly, allowing objective grouping and use of experience. The two most common systems are the Unified Soil Classification System (USCS, ASTM D2487) and the AASHTO system (AASHTO M145; ASTM D3282). (p. 4-23)",
+      "key_points": [
+        "Field descriptions (ASTM D2488) revised by lab classification (p. 4-23).",
+        "USCS (ASTM D2487) and AASHTO (M145, ASTM D3282) (p. 4-23)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-9: General sequence for site characterization"
+      ],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.16.1",
+      "title": "Unified Soil Classification System (USCS)",
+      "summary": "USCS: coarse-grained (G, S) if less than 50 percent passes No. 200, fine-grained (M, C) otherwise; fines by the Plasticity Chart: L or H by liquid limit, clay above A-line PI = 0.73(LL - 20) (Eq. 4.20), U-line PI = 0.9(LL - 8) (Eq. 4.21) the upper limit; W or P by Table 4-3; organic if oven-dried LL < 75 percent of LL.",
+      "body": "The USCS gives fifteen primary two-letter types plus combined designations (Figure 4-10, from Holtz, et al., 2011). Soils with less than 50 percent passing the #200 sieve (p. 4-24) are coarse-grained, \"G\" gravel or \"S\" sand by particle size; more than 50 percent passing are fine-grained, \"M\" silt or \"C\" clay by Atterberg limits; organic soils \"O\", highly organic \"Pt\". For fine-grained soils the second letter is \"L\" (low) or \"H\" (high plasticity), giving ML, MH, CL, CH, from LL and PI on the Casagrande Plasticity Chart (Figure 4-11, ASTM D2487, p. 4-25): low and high plasticity by liquid limit; clay or silt above or below the A-line (Eq. 4.20); the U-line (Eq. 4.21) is generally the upper limit for natural soils, results above it to be scrutinized and probably repeated. For coarse-grained soils the second letter is \"W\" (well-graded) or \"P\" (poorly graded) by Table 4-3: GP, GW, SP, SW; with appreciable fines GM, GC, SM, SC (p. 4-26), and dual classifications such as GW-GC or SP-SM. Organic soils: repeat the liquid limit on an oven-dried specimen; if it is less than 75 percent of the non-oven-dried value the soil is \"O\", the second letter from the Plasticity Chart; dark-brown to black fibrous organic soils with organic odor are peat, \"Pt\". (pp. 4-23 to 4-26)",
+      "key_points": [
+        "Coarse-grained if < 50 percent passes No. 200 (pp. 4-23 to 4-24).",
+        "A-line PI = 0.73(LL - 20) (Eq. 4.20) (p. 4-25).",
+        "U-line PI = 0.9(LL - 8): upper limit of natural soils (Eq. 4.21) (p. 4-25).",
+        "W or P by Table 4-3; GM, GC, SM, SC with fines (pp. 4-25 to 4-26).",
+        "Organic if oven-dried LL < 75 percent of natural LL (p. 4-26)."
+      ],
+      "equations": [
+        "Eq. 4.20: PI = 0.73(LL - 20); A-line of the Casagrande Plasticity Chart (clays above, silts below) (p. 4-25)",
+        "Eq. 4.21: PI = 0.9(LL - 8); U-line, generally the upper limit for natural soils (p. 4-25)"
+      ],
+      "figures": [
+        "Figure 4-10: Summary of major soil types identified by USCS (from Holtz, et al., 2011)",
+        "Figure 4-11: Casagrande Plasticity Chart for classification of fine-grained soils (from ASTM D2487, 2011)"
+      ],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.16.2",
+      "title": "AASHTO System",
+      "summary": "AASHTO groups A-1 to A-8 by suitability as subgrade (Table 4-13): A-1 to A-3 granular (35 percent or less passing No. 200), A-4 to A-7 silt-clay split by LL 40/41 and PI 10/11 (Figure 4-12, A-7-5/A-7-6 at PI = LL - 30), A-8 peat; Group Index (Eq. 4.22).",
+      "body": "The AASHTO system uses similar tests but groups soils by expected suitability for highway use, mainly pavement subgrade (Table 4-13, from ASTM D3282, 2015, p. 4-27): eight groups A-1 to A-8 with subgroups. A-1 to A-3 are coarse-grained with less than 35 percent fines, excellent to good subgrade: A-1 well-graded gravel, coarse sand and stone without binder; A-2 silty or clayey sands and gravels; A-3 fine sands without silty or clayey fines or with a little nonplastic silt. A-4 to A-7 have more than 35 percent fines and are separated by Atterberg limits (Figure 4-12, where the line PI = LL - 30 separates A-7-6 above from A-7-5): A-4 nonplastic or moderately plastic silty soils, A-5 similar with higher liquid limits, A-6 and A-7 clayey soils of low and high plasticity; A-8 highly organic soils (peat and muck). The Group Index (Eq. 4.22) further classifies soils from F (percent passing #200), LL and PI. (pp. 4-26 to 4-27)",
+      "key_points": [
+        "Groups A-1 to A-8 for subgrade suitability (Table 4-13) (p. 4-26).",
+        "Granular: 35 percent or less passing No. 200 (p. 4-27).",
+        "Figure 4-12: PI = LL - 30 separates A-7-6 from A-7-5 (p. 4-27).",
+        "Group Index = (F - 35)[0.2 + 0.005(LL - 40)] + [0.01(F - 15)(PI - 10)] (Eq. 4.22) (p. 4-27)."
+      ],
+      "equations": [
+        "Eq. 4.22: Group Index = (F - 35)[0.2 + 0.005(LL - 40)] + [0.01(F - 15)(PI - 10)]; F = percent passing the #200 sieve, LL = liquid limit, PI = plasticity index (p. 4-27)"
+      ],
+      "figures": [
+        "Figure 4-12: AASHTO soil classifications for fine-grained soils (from ASTM D3282, 2015)"
+      ],
+      "tables": [
+        "Table 4-13: AASHTO soil classification system (from ASTM D3282, 2015) - granular materials (35 % or less passing 75 um, No. 200), excellent to good subgrade: A-1-a passing No. 10 50 max, No. 40 30 max, No. 200 15 max, PI 6 max; A-1-b No. 40 50 max, No. 200 25 max, PI 6 max (stone fragments, gravel and sand); A-3 No. 40 51 min, No. 200 10 max, N.P. (fine sand); A-2-4 No. 200 35 max, LL 40 max, PI 10 max; A-2-5 35 max, LL 41 min, PI 10 max; A-2-6 35 max, LL 40 max, PI 11 min; A-2-7 35 max, LL 41 min, PI 11 min (silty or clayey gravel and sand). Silt-clay materials (more than 35 % passing No. 200), fair to poor subgrade: A-4 No. 200 36 min, LL 40 max, PI 10 max; A-5 36 min, LL 41 min, PI 10 max (silty soils); A-6 36 min, LL 40 max, PI 11 min; A-7 (A-7-5, A-7-6) 36 min, LL 41 min, PI 11 min, with a footnote mark not explained on the page (clayey soils)"
       ],
       "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
     },
     {
-      "section_id": "4.15-4.19",
-      "title": "Rock Identification and Classification",
-      "summary": "RQD (ASTM D6032) = sum of pieces >100 mm / total core length × 100%; RQD 0–25 = very poor, 25–50 = poor, 50–75 = fair, 75–90 = good, 90–100 = excellent. Intact rock classified by type (igneous, sedimentary, metamorphic), mineralogy, texture (grain size), and relative strength (R0 extremely weak ~35–150 psi to R6 extremely strong >30,000 psi). Rock mass classification via RMR and GSI systems (Chapter 9). Automated drilling parameters (feed rate, penetration rate, thrust, torque, rotation speed) provide supplemental characterization but are not yet standard practice.",
-      "body": "Rock quality designation (RQD): Developed by Deere and Deere (1988). RQD = (Σ lengths of intact core pieces >100 mm) / total core length × 100% (ASTM D6032). RQD ratings: 0–25 Very Poor; 25–50 Poor; 50–75 Fair; 75–90 Good; 90–100 Excellent. RQD reflects degree of natural fracturing in rock mass.\n\nRock type classification: Three main types: (1) igneous — formed by solidification of molten material; classified by mineral composition and texture (intrusive vs. extrusive). Examples: granite/rhyolite; gabbro/basalt. (2) Sedimentary — deposited and lithified sediments; examples: sandstone, shale, limestone. (3) Metamorphic — formed by transformation under heat and pressure; examples: schist, gneiss, marble. Rock type tables: Table 4-19 (NRCS classification), Table 4-20 (igneous), Tables for sedimentary and metamorphic.\n\nGrain size descriptions: Very fine-grained (<0.075 mm), fine-grained (0.075–0.425 mm), medium-grained (0.425–2 mm), coarse-grained (2–10 mm), very coarse-grained (>10 mm) per Table 4-23.\n\nRelative strength: R0 Extremely Weak (35–150 psi, indented by thumbnail) through R6 Extremely Strong (>30,000 psi). Table 4-25. More detailed measurement by point load index or UCS tests in Chapter 9.\n\nDrilling parameters: Automated recording of fluid pressure, feed rate, penetration rate, thrust, torque, rotation speed as function of depth. Provides supplemental characterization not yet standard practice.",
+      "section_id": "4.16.3",
+      "title": "Comparison Between USCS and AASHTO Soil Classification Systems",
+      "summary": "USCS and AASHTO use the same tests and generally overlap, though no comparison works for all soils; Handy and Spangler (2007) (Table 4-14): A-1-a GW, A-1-b SW, A-2 SM or SC, A-3 SP, A-4 ML, A-5 MH, A-6 CL, A-7-5 most MH, A-7-6 CH, A-8 Pt.",
+      "body": "No direct comparison between the systems works exactly for all soils, but since both use the same laboratory measurements the classifications generally overlap (p. 4-28); Table 4-14 gives the approximate comparison of Handy and Spangler (2007). (pp. 4-27 to 4-28)",
       "key_points": [
-        "RQD = (Σ pieces > 100 mm) / total core length × 100%; 0–25 very poor to 90–100 excellent",
-        "Rock types: igneous (solidified melt), sedimentary (deposited/lithified), metamorphic (transformed)",
-        "Relative strength R0 (35–150 psi, thumbnail) through R6 (>30,000 psi) — Table 4-25",
-        "Automated drilling parameters provide supplemental characterization but not yet standard practice"
+        "No exact USCS-AASHTO correspondence (p. 4-27).",
+        "Table 4-14: approximate comparison (Handy and Spangler, 2007) (p. 4-28)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-14: Approximate comparison between USCS and AASHTO soil classifications (Handy and Spangler, 2007) - AASHTO to USCS: A-1-a GW; A-1-b SW; A-2 SM or SC; A-3 SP; A-4 ML; A-5 MH; A-6 CL; A-7-5 most MH; A-7-6 CH; A-8 Pt"
+      ],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17",
+      "title": "Soil Identification Using In Situ Test Measurements",
+      "summary": "CPT, CPTU and DMT efficiently identify soil type and stratigraphy (Figure 4-13), but give soil behavior type (SBT) from mechanical response, not formal classification (Robertson, 2010). CPTU tip resistance is corrected: qt = qc + u2(1 - a) (Eq. 4.23).",
+      "body": "In situ tests can identify soil type as an alternative or supplement to formal USCS or AASHTO classification; CPT, CPTU and DMT efficiently show soil type and stratigraphic changes (Figure 4-13, from Mayne, 2007, p. 4-29). They measure mechanical response, not classification criteria (Robertson, 2010), so their result is the \"soil behavior type\" SBT; both contribute, but they are not the same. CPT (ASTM D5778) advances a cone at constant rate measuring tip resistance qc and sleeve friction fs; CPTU adds pore water pressure on the face (u1), just above the cone (u2) and/or behind the sleeve (u3). With u2 measured, the corrected tip resistance qt is computed by Eq. 4.23, a being the net area ratio from calibration; a corrected sleeve friction ft needs both u2 and u3 and is generally small and seldom applied. The DMT is pushed to depth and its membrane pressurized to give the \"A\" lift-off pressure and the \"B\" pressure for 1.1 mm displacement, corrected by calibration to po and p1, sometimes with a closing \"C\" pressure. (pp. 4-28 to 4-29)",
+      "key_points": [
+        "SBT from mechanical response, not formal classification (Robertson, 2010) (p. 4-28).",
+        "qt = qc + u2(1 - a) (Eq. 4.23) (p. 4-29).",
+        "DMT A and B pressures corrected to po and p1 (p. 4-29)."
       ],
       "equations": [
-        {
-          "equation_id": "4-RQD",
-          "description": "Rock Quality Designation (RQD) from core drilling (ASTM D6032)",
-          "latex": "RQD = \\frac{\\sum (\\text{lengths of intact core} > 100\\text{ mm})}{\\text{total core length}} \\times 100\\%",
-          "variables": {
-            "RQD": "Rock Quality Designation (%); 0–25 very poor; 25–50 poor; 50–75 fair; 75–90 good; 90–100 excellent",
-            "lengths of intact core > 100 mm": "sum of lengths of sound pieces of intact core greater than 100 mm"
-          },
-          "implemented_in": null
-        }
+        "Eq. 4.23: qt = qc + u2(1 - a); qt = corrected tip resistance, qc = measured tip resistance, u2 = pore pressure just above the cone, a = net area ratio from calibration (p. 4-29)"
       ],
       "figures": [
-        "Figure 4-18: Use of SCPT to distinguish sand from clay (additional characterization from CPT)"
+        "Figure 4-13: Subsurface profile derived from CPT measurements (from Mayne, 2007)"
+      ],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.1",
+      "title": "Identification from CPT and CPTU Measurements",
+      "summary": "Friction ratio Rf = fs/qc x 100 % (Eq. 4.24): Begemann (1965) Rf < about 2.5 percent sand, > 3.5 percent clay. SBT charts: Robertson et al. (1986) with twelve zones (Table 4-15), Robertson (2010) with nine (Table 4-16, Figure 4-14); CPTU chart with Bq = (u2 - u0)/(qt - sigma_vo) (Eq. 4.25, Figure 4-15).",
+      "body": "SBT from CPT uses the tip resistance (qc or qt) and the friction ratio Rf (FR) (Eq. 4.24), sometimes computed with qt; the difference is usually small except in soft fine-grained soils, and Robertson (2010) and Tumay and Hatipkarasulu (2011) report little effect on SBT. Begemann (1965): Rf less than about 2.5 percent indicates sand, greater than 3.5 percent clays, and between 2 and 4 percent mixed soils (ranges as printed). Charts followed (Douglas and Olsen, 1981; Robertson, et al., 1986); Figure 4-14 (p. 4-31) shows the Robertson et al. (1986) chart with twelve SBT zones (Table 4-15) and its Robertson (2010) update with nine zones (Table 4-16, p. 4-32), consistent with the normalized charts. CPTU charts (Jones and Rust, 1982; Senneset and Janbu, 1985) include the most common Robertson et al. (1986) chart (Figure 4-15) using the normalized pore pressure parameter Bq (Eq. 4.25), particularly useful for soft saturated fine-grained soils with large excess pore pressures (Robertson and Cabal, 2015). (pp. 4-30 to 4-32)",
+      "key_points": [
+        "Rf = fs/qc x 100 % (Eq. 4.24) (p. 4-30).",
+        "Begemann (1965): Rf < 2.5 percent sand, > 3.5 percent clay (p. 4-30).",
+        "Robertson et al. (1986): twelve zones (Table 4-15); Robertson (2010): nine (Table 4-16) (pp. 4-31 to 4-32).",
+        "Bq = (u2 - u0)/(qt - sigma_vo) (Eq. 4.25) (p. 4-30)."
+      ],
+      "equations": [
+        "Eq. 4.24: Rf = FR = (fs / qc) x 100%; fs = sleeve friction, qc = tip resistance (p. 4-30)",
+        "Eq. 4.25: Bq = (u2 - u0) / (qt - sigma_vo); u2 = pore pressure just above the cone shoulder, u0 = estimated in situ pore pressure, qt = corrected tip resistance, sigma_vo = total vertical overburden stress (p. 4-30)"
+      ],
+      "figures": [
+        "Figure 4-14: Soil behavior type (SBT) charts for CPT measurements: (a) original chart from Robertson, et al. (1986), and (b) updated chart from Robertson (2010)",
+        "Figure 4-15: Soil behavior type (SBT) chart for CPTU measurements (from Robertson and Cabal, 2015)"
       ],
       "tables": [
-        "Table 4-19: Rock type classification (from NRCS 2012)",
-        "Table 4-20: Characteristics of common igneous rock",
-        "Table 4-23: Criteria for defining rock grain size",
-        "Table 4-25: Criteria and descriptions for relative rock strength (R0-R6)"
+        "Table 4-15: Soil behavioral type designations for original chart by Robertson, et al. (1986) - zones of the Robertson, et al. (1986) chart: 1 sensitive fine-grained; 2 organic material; 3 clay; 4 silty clay to clay; 5 clayey silt to silty clay; 6 sandy silt to clayey silt; 7 silty sand to sandy silt; 8 sand to silty sand; 9 sand; 10 gravelly sand to sand; 11 very stiff fine-grained (overconsolidated or cemented); 12 sand to clayey sand (overconsolidated or cemented)",
+        "Table 4-16: Soil behavioral type designations for updated Robertson (2010) chart (after Mayne, et al., 2009) - SBTn zone, soil behavior type, Ic-RW (Robertson and Wride, 1998), Ic-JB (Jefferies and Been, 2006): 1 sensitive fine-grained, N/A, N/A; 2 clay - organic soil, Ic-RW > 3.60, Ic-JB > 3.22; 3 clays: clay to silty clay, 2.95 to 3.60, 2.76 to 3.22; 4 silt mixtures: clayey silt and silty clay, 2.60 to 2.95, 2.40 to 2.76; 5 sand mixtures: silty sand to sandy silt, 2.05 to 2.60, 1.80 to 2.40; 6 sands: clean sands to silty sands, 1.31 to 2.05, 1.25 to 1.80; 7 dense sand to gravelly sand, Ic-RW < 1.31, Ic-JB < 1.25; 8 stiff sand to clayey sand (overconsolidated or cemented), N/A; 9 stiff fine-grained (overconsolidated or cemented), N/A"
+      ],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.2",
+      "title": "Identification from Normalized CPT and CPTU Measurements",
+      "summary": "Normalized Qt = (qt - sigma_vo)/sigma'vo (Eq. 4.26) and Fr = fs/(qt - sigma_vo) x 100 % (Eq. 4.27) give SBTn (Robertson, 1990, Figure 4-16), generally more reliable but needing unit weight and pore pressure; differences are small between 20 and 60 feet depth.",
+      "body": "Tip and sleeve resistance increase with depth from confinement regardless of soil type, so they are normalized by overburden: Qt (Eq. 4.26, p. 4-32) and Fr (Eq. 4.27, p. 4-33), sigma'vo being the estimated in situ effective vertical stress. The resulting type is SBTn; Figure 4-16 shows the Robertson (1990) charts, zones as in Table 4-16. Normalized types are generally more reliable (Robertson, 2010) but need unit weight and in situ pore pressure, not generally available during testing, whereas non-normalized measurements identify SBT immediately. Differences are relatively small between 20 and 60 feet depth but can be substantial shallower and deeper. (pp. 4-32 to 4-33)",
+      "key_points": [
+        "Qt = (qt - sigma_vo)/sigma'vo (Eq. 4.26) (p. 4-32).",
+        "Fr = fs/(qt - sigma_vo) x 100 % (Eq. 4.27) (p. 4-33).",
+        "SBTn chart (Robertson, 1990; Figure 4-16) (p. 4-33).",
+        "Normalized and non-normalized agree between 20 and 60 ft (p. 4-33)."
+      ],
+      "equations": [
+        "Eq. 4.26: Qt = (qt - sigma_vo) / sigma'vo; sigma'vo = estimated in situ effective vertical stress (p. 4-32)",
+        "Eq. 4.27: Fr = [fs / (qt - sigma_vo)] x 100% (p. 4-33)"
+      ],
+      "figures": [
+        "Figure 4-16: Soil behavior type (SBTn) chart for normalized CPT and CPTU measurements (from Robertson and Cabal, 2015)"
+      ],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.3",
+      "title": "Identification from Soil Behavior Type Index",
+      "summary": "Soil behavior type indices: Ic-RW = sqrt{[3.47 - log(Qt)]^2 + [1.22 + log(Fr)]^2} (Eq. 4.28, Robertson and Wride, 1998) for CPT; Ic-JB = sqrt{[3 - log(Qt(1 - Bq) + 1)]^2 + [1.5 + 1.3 log(Fr)]^2} (Eq. 4.29, Jefferies and Been, 2006) for CPTU; ranges in Table 4-16, contours in Figure 4-17.",
+      "body": "Instead of the charts (Figures 4-14 and 4-16), soil behavior type indices Ic combine normalized tip and sleeve resistance and possibly Bq (p. 4-34). For CPT without pore pressures, Robertson and Wride (1998) defined Ic-RW (Eq. 4.28); for CPTU, Jefferies and Been (2006) recommend Ic-JB (Eq. 4.29). Ranges for SBT are in Table 4-16; Figure 4-17 shows the Robertson (2010) chart with Ic-RW contours. Indices are easier to implement in spreadsheets. (pp. 4-33 to 4-34)",
+      "key_points": [
+        "Ic-RW (Eq. 4.28) for CPT (p. 4-34).",
+        "Ic-JB (Eq. 4.29) for CPTU (p. 4-34).",
+        "Ranges in Table 4-16; contours in Figure 4-17 (p. 4-34)."
+      ],
+      "equations": [
+        "Eq. 4.28: Ic-RW = sqrt({3.47 - log(Qt)}^2 + {1.22 + log(Fr)}^2); Robertson and Wride (1998) (p. 4-34)",
+        "Eq. 4.29: Ic-JB = sqrt([3 - log(Qt x (1 - Bq) + 1)]^2 + [1.5 + 1.3 log(Fr)]^2); Jefferies and Been (2006) (p. 4-34)"
+      ],
+      "figures": [
+        "Figure 4-17: Soil behavior type chart from Robertson (2010) with contours of Ic-RW (from Robertson, 2010)"
+      ],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.4",
+      "title": "Additional Characterization Using CPT and CPTU Tests",
+      "summary": "CPT can infer more: Rf correlates with D50 in some studies, fines content inconsistently; percent fines from Ic-JB (Table 4-17, Mayne, et al., 2009): 0 below 1.26, 1.75 Ic-JB^3.25 - 3.7 between 1.26 and 3.50, 100 above 3.50.",
+      "body": "Friction ratio has been correlated with mean grain size D50 (Muromachi, 1981; Zervogiannis and Kalteziotis, 1988) and in some deposits with fines content (Suzuki et al., 1995), though other studies show large scatter and no apparent correlation with fines (Arango, 1997). Percent fines can be estimated from Ic-JB by Table 4-17. (p. 4-35)",
+      "key_points": [
+        "Rf correlated with D50 in some studies (p. 4-35).",
+        "Rf-fines correlation scattered (Arango, 1997) (p. 4-35).",
+        "% fines = 1.75 Ic-JB^3.25 - 3.7 for 1.26 < Ic-JB < 3.50 (Table 4-17) (p. 4-35)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-17: Fines content from CPT index Ic-JB (after Mayne, et al., 2009) - Ic-JB < 1.26: 0 % fines; 1.26 < Ic-JB < 3.50: % fines = 1.75 Ic-JB^3.25 - 3.7; Ic-JB > 3.50: 100 % fines"
+      ],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.5",
+      "title": "Identifying Cemented or Unusual Soils from Seismic Cone Penetrometer (SCPT) and Seismic Piezocone (SCPTU)",
+      "summary": "Seismic CPT combines Gmax (Go) from shear wave velocity with normalized tip resistance to spot cemented sands or fissured clays (Schnaid, 2009; Figure 4-18): uncemented Bx 110 to 280, cemented 280 to 800; Schneider and Moss (2011): KG 330 to 1100 aged, cemented, calcareous sands, 110 to 330 Holocene sands.",
+      "body": "The SCPT helps identify unusual conditions such as cemented sands or fissured clays by combining the maximum shear modulus Gmax or Go from shear wave velocity with normalized cone tip resistance. Schnaid (2009) separates cemented from uncemented soils (Figure 4-18): uncemented soils generally have Bx between a lower bound of 110 and an upper bound of 280, cemented soils 280 to 800. Schneider and Moss (2011) use KG in place of Bx: aged, cemented and calcareous sands about 330 to 1100, Holocene (recent) sands about 110 to 330. (p. 4-35)",
+      "key_points": [
+        "SCPT: Gmax with normalized tip resistance (p. 4-35).",
+        "Uncemented Bx 110 to 280; cemented 280 to 800 (Schnaid, 2009) (p. 4-35).",
+        "KG 330 to 1100 aged or cemented sands; 110 to 330 Holocene (Schneider and Moss, 2011) (p. 4-35)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.17.6",
+      "title": "Soil Identification from Dilatometer (DMT)",
+      "summary": "DMT material index ID = (p1 - po)/(po - uo) (Eq. 4.30, Marchetti, 1975) identifies soil type (Table 4-18), from peat or sensitive clay below 0.10 to sand at 3.3; Robertson (2009): ID = 10^(1.67 - 0.67 Ic-RW) (Eq. 4.31), or Ic-RW = 2.5 - 1.5 log(ID) (Eq. 4.32).",
+      "body": "Marchetti (1975) proposed soil type from the DMT material index ID (Eq. 4.30; Table 4-18), po being the corrected lift-off pressure, p1 the corrected 1.1-mm expansion pressure and uo the in situ pore pressure; ID measures the relative change from po to p1 (p. 4-36), and as it increases soil type changes from very soft cohesive to very stiff granular. Marchetti et al. (2001) suggest finer detail for mixed soils may be possible. Robertson (2009) related Ic-RW and ID approximately (Figure 4-19, p. 4-37) by Eq. 4.31, \"or, equivalently\", Eq. 4.32. (pp. 4-35 to 4-37)",
+      "key_points": [
+        "ID = (p1 - po)/(po - uo) (Eq. 4.30) (p. 4-35).",
+        "Table 4-18: peat or sensitive clay < 0.10 to sand 3.3 (p. 4-36).",
+        "ID = 10^(1.67 - 0.67 Ic-RW) (Eq. 4.31) (p. 4-36).",
+        "Ic-RW = 2.5 - 1.5 log(ID) (Eq. 4.32) (p. 4-36)."
+      ],
+      "equations": [
+        "Eq. 4.30: ID = (p1 - po) / (po - uo); po = corrected lift-off pressure, p1 = corrected 1.1-mm expansion pressure, uo = in situ pore water pressure (p. 4-35)",
+        "Eq. 4.31: ID = 10^(1.67 - 0.67 x Ic-RW); Robertson (2009) (p. 4-36)",
+        "Eq. 4.32: Ic-RW = 2.5 - 1.5 log(ID) (p. 4-36)"
+      ],
+      "figures": [
+        "Figure 4-18: Use of SCPT to distinguish cemented soils (from Mayne, et al., 2009)",
+        "Figure 4-19: Approximate relationship between CPT Ic-RW and DMT ID (from Robertson, 2009)"
+      ],
+      "tables": [
+        "Table 4-18: Soil identification using DMT Material Index, ID (from Marchetti, 1975) - DMT ID by soil type as printed: peat or sensitive clay < 0.10; clay 0.10; silt clay 0.35; clayey silt 0.60; silt 0.90; sandy silt 1.2; silty sand 1.8; sand 3.3"
+      ],
+      "applicability": "Soil classification from laboratory tests and in situ tests (CPT, DMT) for site characterization"
+    },
+    {
+      "section_id": "4.18",
+      "title": "Classification of Intact Rock",
+      "summary": "Rock is classified at two levels: intact rock by qualitative observations and simple measurements (rock type, grain size, weathering, relative strength, color), left as descriptions rather than explicit designations; rock masses by the classification systems of Chapter 9.",
+      "body": "Rock mass performance depends on the intact rock and the discontinuities, so rock is classified at two levels: intact rock from qualitative observations and simple measurements, and rock masses by rock mass classification systems (Chapter 9). Intact rock classification is used like soil classification to distinguish rock types of similar behavior, but is not reduced to a small number of explicit designations; it remains qualitative description. (p. 4-37)",
+      "key_points": [
+        "Two levels: intact rock and rock mass (p. 4-37).",
+        "Intact rock left as qualitative descriptions (p. 4-37)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.18.1",
+      "title": "Rock Type",
+      "summary": "Rock type is the primary basis: igneous (by mineralogy or color, texture, intrusive or extrusive), sedimentary (clastic or chemical/organic) or metamorphic (foliated or massive), then mineralogy and texture; Tables 4-19 to 4-22 assist.",
+      "body": "Rock type can come from petrographic analysis, but practice establishes it from physical characteristics: first igneous, sedimentary or metamorphic origin, then mineralogy and texture (p. 4-38). Igneous rock solidified from molten material, characterized by mineralogical composition (generally color), texture and placement (intrusive or extrusive); sedimentary rock from deposition and lithification of sediments, chemical precipitation or organisms, characterized as clastic or chemical/organic; metamorphic rock changed by temperature and/or pressure, characterized as foliated or non-foliated (\"massive\"). Table 4-19 summarizes rock type; Tables 4-20 to 4-22 give characteristics of common igneous, sedimentary and metamorphic rocks. Grain size or texture, weathering, relative strength or hardness and color complete the classification; color and grain size help identify type, strength, hardness and weathering indicate quality. (pp. 4-37 to 4-38)",
+      "key_points": [
+        "Igneous, sedimentary or metamorphic first (p. 4-37).",
+        "Tables 4-19 to 4-22 assist identification (p. 4-38).",
+        "Also grain size, weathering, strength, color (p. 4-38)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.18.2",
+      "title": "Grain Size",
+      "summary": "Rock grain size is judged visually; no universal criteria exist; Table 4-23 gives one used in U.S. practice, from very fine-grained (< 0.075 mm, invisible to the unaided eye) to very coarse-grained (> 4.75 mm).",
+      "body": "Grain size is the size of the particles or crystals of intact rock, characterized visually rather than by sieves. No universally established criteria exist and agencies use alternatives; Table 4-23 gives one commonly used in U.S. practice. (p. 4-38)",
+      "key_points": [
+        "Rock grain size judged visually (p. 4-38).",
+        "Table 4-23: one U.S. criterion (p. 4-38)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.18.3",
+      "title": "Weathering State",
+      "summary": "Weathering degrades strength, stiffness and quality; classify by the ISRM grades (Table 4-24): I fresh, II slightly, III moderately (less than half decomposed), IV highly (more than half), V completely weathered, VI residual soil. Tables 4-19 to 4-23 are printed here.",
+      "body": "Weathering is mechanical and/or chemical breakdown of rock by rain, groundwater, temperature changes and the like; it generally degrades strength, stiffness and quality and is therefore important for engineering classification. Degree of weathering should follow the International Society of Rock Mechanics (ISRM) grades of Table 4-24 (p. 4-41). Tables 4-19 (rock type, from NRCS, 2012, p. 4-39) to 4-23 (rock grain size, p. 4-41), cited in sections 4.18.1 and 4.18.2, are printed within this section. (pp. 4-38 to 4-41)",
+      "key_points": [
+        "Weathering degrades strength, stiffness and quality (p. 4-38).",
+        "ISRM grades I to VI (Table 4-24) (p. 4-41)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-19: Rock type classification (from NRCS, 2012) - rock names by genetic group (detrital sedimentary, chemical/organic, metamorphic foliated and massive, pyroclastic) and predominant grain size (very coarse to very fine, glassy), e.g., conglomerate, breccia, sandstone, arkose, graywacke, siltstone, claystone, mudstone, shale, limestone, dolomite, gneiss, schist, phyllite, slate, marble, quartzite, hornfels, tuff, pumice, each with a number",
+        "Table 4-20: Characteristics of common igneous rock - intrusive, extrusive, primary minerals, common secondary minerals: granite, rhyolite, quartz and K-feldspar, plagioclase, mica, amphibole, pyroxene; quartz diorite, dacite, quartz and plagioclase, hornblende, pyroxene, mica; diorite, andesite, plagioclase, mica, amphibole, pyroxene; gabbro, basalt, plagioclase and pyroxene, amphibole, olivine",
+        "Table 4-21: Characteristics of common sedimentary rocks - clastic (rock type, original sediment): conglomerate (sand, gravel, cobbles), sandstone (sand), siltstone (silt), claystone (clay), shale (laminated clay and silt); non-clastic (rock type, primary mineral, HCl reaction): limestone (calcite, strong), dolomite (dolomite, weak), chert (quartz, none)",
+        "Table 4-22: Characteristics of common metamorphic rocks - foliated: slate (platy, fine-grained, from shale or claystone; quartz, mica), phyllite (platy, fine-grained, silky sheen; quartz, mica), schist (medium grained, irregular layers, from sedimentary and igneous rocks; mica, quartz, feldspar, amphibole), gneiss (layered, medium to coarse grained; mica, quartz, feldspar, amphibole); non-foliated, crystalline: greenstone (intermediate volcanics and mafic igneous; mica, hornblende, epidote), marble (limestone and dolomite; calcite and dolomite), quartzite (sandstone and chert; quartz), amphibolite (printed \"Amphibole\"; mafic igneous and calcium-iron bearing sediments; hornblende and plagioclase)",
+        "Table 4-23: Criteria for defining rock grain size - as printed: < 0.003 in. (< 0.075 mm) very fine-grained, grains not distinguishable by unaided eye, few or none visible with a hand lens; 0.003 - 0.02 in. (0.075 - 0.425 mm) fine-grained; 0.02 - 0.8 in. (0.425 - 2 mm) medium-grained, most crystal boundaries visible; 0.8 - 2 in. (2 - 4.75 mm) coarse-grained, grains distinguishable with naked eye; 2 in. (> 4.75 mm) very coarse-grained, crystal boundaries clearly visible",
+        "Table 4-24: Descriptive terms for weathering state of rock - grade I fresh (F): no visible weathering, slight discoloration on major discontinuities possible; II slightly weathered (WS): discoloration of rock material and discontinuity surfaces; III moderately weathered (WM): less than half decomposed and/or disintegrated to soil, fresh or discolored rock as framework or corestones, a minimum 2 in. diameter sample cannot be broken readily by hand; IV highly weathered (WH): more than half decomposed, a 2 in. sample can be broken readily by hand; V completely weathered (WC): all decomposed to soil, original mass structure largely intact, can be granulated by hand; VI residual soil (RS): all converted to soil, easily broken apart by hand"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.18.4",
+      "title": "Relative Rock Strength",
+      "summary": "Relative rock strength by simple field tests per ISRM grades (Table 4-25): R0 extremely weak (indented by thumbnail, 35-150 psi) to R6 extremely strong (only chipped by hammer, > 36,250 psi); Schmidt hammer and point load tests (Chapter 9) also help.",
+      "body": "Rock strength depends on cementation, mineral type, weathering and other factors; relative strength can be estimated by simple field tests, refined by laboratory tests. ISRM grades with qualitative field identification are in Table 4-25 (p. 4-42); Schmidt Hammer and Point Load Index tests (Chapter 9) can also evaluate intact rock strength for classification. (pp. 4-41 to 4-42)",
+      "key_points": [
+        "ISRM strength grades R0 to R6 (Table 4-25) (p. 4-42).",
+        "Schmidt hammer and point load index help (p. 4-41)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-25: Criteria and descriptions for relative rock strength - grade, description, field identification, approximate compressive strength (psi): R0 extremely weak, indented by thumbnail, 35-150; R1 very weak, crumbles under sharp blow of geological hammer point, peeled with pocket knife, 150-725; R2 weak, shallow cuts or scrapes with pocket knife, firm hammer blow makes shallow indents, 725-3500; R3 medium strong, cannot be scraped or cut with pocket knife, fractured by a single firm blow of hammer point, 3500-7250; R4 strong, more than one firm blow to fracture, 7250-14,500; R5 very strong, many firm blows of hammer end to fracture, 14,500-36,250; R6 extremely strong, only chipped with firm blows of hammer end, > 36,250"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.18.5",
+      "title": "Rock Color",
+      "summary": "Color is not an engineering property but helps distinguish units and identify alteration or weathering; use a consistent system such as the 1977 Geological Society of London Rock Color Chart (Table 4-26), up to three descriptors (e.g., Light Greyish Green).",
+      "body": "Color is not an engineering property but helps distinguish rock units or identify alteration or weathering. It is somewhat subjective, so a consistent system should be used, such as the 1977 Rock Color Chart from the Geological Society of London (Table 4-26): up to three descriptors, only those needed (e.g., Light Greyish Green; Dark Brown). (p. 4-42)",
+      "key_points": [
+        "Use the Geological Society of London chart (Table 4-26) (p. 4-42).",
+        "Up to three descriptors (p. 4-42)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 4-26: Rock color descriptors (after Geological Society of London, 1977) - 1st descriptor light, dark; 2nd descriptor yellowish, buff, orangish, brownish, pinkish, reddish, bluish, purplish, greenish, greyish; 3rd descriptor white, yellow, buff, orange, brown, pink, red, blue, purple, green, olive, grey, black (also orange and olive in the 2nd column as printed)"
+      ],
+      "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
+    },
+    {
+      "section_id": "4.19",
+      "title": "Characterization of soil and Rock Using Drilling Parameters",
+      "summary": "Automated recording of drilling parameters (thrust or crowd, penetration, time, fluid pressure, torque; Table 4-27, Figure 4-20) can show rock uniformity and soil to weathered to unweathered rock transitions (Figure 4-21); far from standard practice but growing.",
+      "body": "Automated recording of drilling parameters is a growing global trend, far from standard practice but likely to contribute soon, similar to monitoring of auger cast piles (ACIP and ACIPD). Figure 4-20 shows an instrumented track-mounted rig. Parameters can be recorded in destructive drilling (mud rotary) and coring and typically include downward thrust (\"crowd\"), penetration distance, time, drilling fluid pressure and torque (Table 4-27, Gui, et al., 2002, p. 4-44), combined into penetration rate and energy. They have been used to evaluate rock uniformity and transitions from soil to weathered rock to unweathered rock or between rock units (Figure 4-21), and sometimes correlated with properties such as uniaxial compressive strength. (pp. 4-43 to 4-44)",
+      "key_points": [
+        "Thrust, penetration, time, fluid pressure, torque recorded (p. 4-43).",
+        "Show soil to rock transitions and uniformity (Figure 4-21) (p. 4-43).",
+        "Table 4-27: parameters and tolerances (Gui, et al., 2002) (p. 4-44)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-20: Instrumented drill rig to measure drilling parameters",
+        "Figure 4-21: Typical final logs of drilling parameters"
+      ],
+      "tables": [
+        "Table 4-27: Important drilling parameters (from Gui, et al., 2002) - parameter, method, tolerance: fluid pressure, transducer (0-35 bars), +/-3 %, measured near the pump; torque, transducer (0-250 bars), +/-3 %, at constant rotation speed; thrust on bit, transducer (0-250 bars), +/-3 %, drilling speed roughly proportional to it, keep constant; hold-back, transducer (0-35 bars), +/-3 %, subtracted from thrust for net weight on bit W'; time, internal clock (sec/5 mm), 122 usec, recorded at 5 mm intervals; drilling speed, 1/time, < 3 %, related to hardness at constant thrust; rotation speed, electro-magnetic proximity sensor, +/-3 %, keep constant"
       ],
       "applicability": "Rock type identification, RQD calculation, and relative strength assessment from core drilling"
     }
