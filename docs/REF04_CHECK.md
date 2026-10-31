@@ -102,6 +102,7 @@ rendered from the PDF, tables and figures with printed pages.
 | GEC-7 ch 4 Information Required for Design | 63-95 | 96df21a | 31 | Boring spacing and depth (4.3), creep criteria (4.6) and aggressive-ground limits (4.7) differ from the print. |
 | GEC-7 ch 5 Resisting Mechanisms and Limit States | 97-142 | 7de8a5d | 36 | Bodies not from the page; Eqs 5.1-5.31 now read off the rendered pages. |
 | GEC-12 ch 7 top-level 7.1-7.10 | 211-398 | f71bb95 | 10 | Setup "2-5x", group settlement "1.5-3x", angular distortion "0.004-0.008", "minimum 10 ft into the bearing stratum", phi "0.25-0.50" and "0.65-0.80", Rndr "< Rn with setup", "flange width" for H-pile impedance; none printed in ch 7. Wrong objects: 7.1 held misnumbered Eq 7-1 to 7-5, Figures 7-1 to 7-3, Tables 7-1/7-2; 7.5, 7.6 and 7.7 cited Figures 7-66 to 7-71, which are p-y and wedge figures in 7.3.7. 7.6 now holds Eqs 7-85/7-86 and Table 7-32 as printed (Rn = 200/0.65 = 308 kips; Rndr = 308 + 50 + 100/0.65 = 512 kips). Eq 7-87 and Figure 7-81 moved to 7.10.3, Eqs 7-88 to 7-90 to 7.10.7. |
+| GEC-12 7.2.1.3.1-7.2.1.3.7 static methods in soil | 232-268 | b469bd9, dbb836c | 7 | Nordlund listed Figures 7-4 to 7-8 and Tables 7-3/7-4 (printed Figures 7-8 to 7-16, Tables 7-6/7-7); alpha Figures 7-9 to 7-11 (printed 7-17, 7-18) and Eqs 7-10/7-11 as total resistances (printed unit fs = Ca = alpha su, qp = Nc su); Eqs 7-6 to 7-33 shuffled (Eq 7-12 held the cohesionless shaft formula; printed fs = alpha su); resistance factors API 0.25, beta 0.25, Brown 0.30, Eslami-Fellenius 0.50 (Table 7-1: not in AASHTO). |
 
 Figure catalogs: the text-enriched figure descriptions (titles, applicability
 and key points of the sections citing a figure) were refreshed for gec_7 and
@@ -141,6 +142,10 @@ GEC-12 ch 7 subsections (from `check_section_numbers.py gec_12`, unchecked):
   "Extreme Event Scour During Check Flood").
 - 7.3.1 lists Table 7-18 as "Tolerable movement criteria for highway bridges
   and structures"; printed "Tolerable Movement Criteria for Bridges".
+- 7.2.2 lists Figures 7-17 to 7-19 (block failure, Converse-Labarre) and
+  Table 7-12 (group resistance factors), and 7.2.4 Figure 7-21 (relaxation);
+  those numbers are the alpha-method and CPT figures and the CPT Cf table in
+  7.2.1.3. Their own figure and table lists need the check against the print.
 
 ## Chapters from the original build (8d48ece) or the same kind of build (unchecked)
 
@@ -223,6 +228,9 @@ reworked part of the chapter from the print, not that it was rebuilt whole.
 - GEC-12 7.6 cites "Equation 7-85" for the Rndr example (it is Eq 7-86) and
   a stray "Table" opens the sentence after Eq 7-86; 7.9's heading is printed
   "DETERIORATON" and its text "marine bores".
+- GEC-12 7.2.1.3.7: under Eq 7-29 (p. 263) Ks comes "from Figure 7-20" (the
+  clay curve); Step 2a and Eq 7-32 (p. 267) take it from Figure 7-19, the
+  sand curves. 7.2.1.3.3's heading is printed "P2A Method".
 
 ## Gates
 
