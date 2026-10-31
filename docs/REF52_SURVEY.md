@@ -2,7 +2,8 @@
 
 Survey only (2026-10-31): no heading was added and no text file changed.
 `scripts/check_section_numbers.py --detail` was run over every reference whose
-PDF is in `docs/`, on main 1c9a642. Every missing heading was then listed with
+PDF is in `docs/`, on main 1c9a642 (gec_7 re-run on dd09a27, after
+REF-46). Every missing heading was then listed with
 its page, and 3 to 7 per reference (about 110 in all) were looked at in the
 checker's own text lines around the heading, and on the page where that was
 unclear, to class each one as a real gap or a checker misread.
@@ -70,8 +71,9 @@ unclear, to class each one as a real gap or a checker misread.
 | **Total** | | **7,908** | **4,963** | **507** | **10** | **2,428** | **~2,370** | **~57** | |
 
 Notes on the totals:
-- gec_7 is main's state. REF-46 (branch `fix/ref46`, in review) adds all 66,
-  so about 2,300 real gaps remain open.
+- The gec_7 row is main at 1c9a642. REF-46 (merged, dd09a27) adds all 66:
+  the checker now reads gec_7 as 235 printed, 235 matched, 0 missing. So
+  about 2,300 real gaps remain open.
 - The checker's raw total is 2,585. The difference is ufc_stabilization: the
   checker reports 280, of which 157 are double counts (see "Checker quirks").
 - "None seen" means the 4 to 7 opened from that list were all real. The real
