@@ -12,8 +12,10 @@ the package and exposes three tools optimized for LLM agent use:
 
 The database is built lazily into a per-user temp directory at first
 call and rebuilt automatically if any source JSON has been touched
-since the build. The DB is *not* committed; it is regenerated on
-demand.
+since the build. Its file name is keyed to this copy of the package
+(:func:`keyed_db_path`), so another checkout or environment sharing the
+temp directory keeps its own. The DB is *not* committed; it is
+regenerated on demand.
 
 Coverage caveat (2026-10-21)
 ----------------------------
@@ -41,6 +43,8 @@ older layout is rebuilt on first use.
 
 from __future__ import annotations
 
+import functools
+import hashlib
 import json
 import os
 import re
@@ -94,8 +98,33 @@ _FORBIDDEN_RE = re.compile(
 # DB build
 # ---------------------------------------------------------------------------
 
+@functools.lru_cache(maxsize=None)
+def _copy_key(package_dir: str) -> str:
+    """Short hash of one copy of the package: its resolved folder plus the
+    installed version (blank when no install metadata is found)."""
+    try:
+        from importlib.metadata import version
+        installed = version("geotech-references")
+    except Exception:
+        installed = ""
+    folder = os.path.normcase(str(Path(package_dir).resolve()))
+    return hashlib.sha1(f"{folder}|{installed}".encode()).hexdigest()[:12]
+
+
+def keyed_db_path(name: str, package_dir: Path = _PACKAGE_DIR) -> Path:
+    """The temp-folder database for this copy of the package (REF-55).
+
+    The file name carries :func:`_copy_key`, so two checkouts, or two
+    environments sharing one temp folder, never serve each other's text.
+    A database left under the old fixed name is not read or deleted.
+    """
+    stem, suffix = os.path.splitext(name)
+    return (Path(tempfile.gettempdir())
+            / f"{stem}_{_copy_key(str(package_dir))}{suffix}")
+
+
 def _db_path() -> Path:
-    return Path(tempfile.gettempdir()) / _DB_NAME
+    return keyed_db_path(_DB_NAME)
 
 
 def _iter_text_jsons() -> list[tuple[str, Path]]:

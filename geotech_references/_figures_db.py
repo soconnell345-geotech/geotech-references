@@ -12,7 +12,8 @@ meaning and resolving it to a renderable PDF page:
 - ``list_indexed_figures()`` — inventory of indexed references.
 
 The DB is built lazily into a per-user temp directory on first call and rebuilt
-automatically when any catalog JSON changes. It is *not* committed.
+automatically when any catalog JSON changes. Its file name is keyed to this copy
+of the package, as the text DB's is. It is *not* committed.
 
 The retrieved page is a chart the caller can render and read off with a vision
 model (see ``read_reference_figure`` in ``funhouse_agent``). The figure page
@@ -26,13 +27,12 @@ import json
 import os
 import re
 import sqlite3
-import tempfile
 from pathlib import Path
 from typing import Any
 
 from . import _query_expansion as _qe
 from ._retrieval import fit_hits, fit_record
-from ._retrieval_db import plain_terms, search_fts_safely
+from ._retrieval_db import keyed_db_path, plain_terms, search_fts_safely
 
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
 
@@ -50,7 +50,7 @@ _MAX_OFFSET = 500  # deepest page figure_search reaches
 # ---------------------------------------------------------------------------
 
 def _db_path() -> Path:
-    return Path(tempfile.gettempdir()) / _DB_NAME
+    return keyed_db_path(_DB_NAME, _PACKAGE_DIR)
 
 
 def _iter_catalogs() -> list[Path]:
