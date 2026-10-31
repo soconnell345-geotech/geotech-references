@@ -5,73 +5,577 @@
   "chapter_title": "Development of Design Models and Selection of Design Parameters",
   "sections": [
     {
-      "section_id": "11.1-11.5",
-      "title": "Design Model Development and Variability Quantification",
-      "summary": "Site characterization culminates in developing a design model and selecting reliable design parameters. AASHTO LRFD requires mean values; designs using mean values with COV_total ≤ 0.3 practically achieve target reliability. Total variability: σ_total² = σ_meas² + σ_model²; COV_total = σ_total/mean. σ_meas = scatter around the mean; σ_model = σ_meas/√n = uncertainty in estimating the mean from limited data. Combining direct and indirect measurements reduces total uncertainty. Historical data may supplement if method and conditions are comparable.",
-      "body": "Design model development: A design model represents site conditions as a simplified stratigraphy with properties assigned to each stratum or design domain. More than one model may be developed (short-term vs. long-term; multiple strata alternatives). Parameters are established to represent conditions in a given volume or stratum. Multiple equally valid interpretations of the same data may exist; engineering judgment integrates available evidence.\n\nLRFD requirements: AASHTO LRFD designs require use of mean values (expected values) for design parameters. Using mean values with COV_total ≤ 0.3 produces designs that practically achieve the target probability of failure. Using mean values with COV_total > 0.3 typically produces under-reliable designs. Using conservative (less-than-mean) values increases reliability but also increases cost, violating the spirit of LRFD.\n\nVariability and uncertainty quantification: Three components: (1) Measurement variability σ_meas = standard deviation of measurements about the estimated mean; represents natural variability and measurement error. (2) Model uncertainty σ_model represents uncertainty in estimating the true mean from limited data; for uniform stratum with n direct measurements: σ_model ≈ σ_meas/√n. (3) Total: σ_total = √(σ_meas² + σ_model²); COV_total = σ_total/ŷd.\n\nFor indirect measurements: Variability of transformed measurements + transformation uncertainty contribute to σ_total. Combining direct (σ_d) and indirect (σ_s) measurements: weighted mean reduces total uncertainty; weights inversely proportional to variances. Historical measurements: verify they are representative (same test type, relevant stress conditions, appropriate time period) before combining with new measurements.",
+      "section_id": "11.1",
+      "title": "Objectives for Interpretation of Design Parameters",
+      "summary": "Interpretation aims at a rational, defensible design model (design cross-sections or profiles, Figures 11-1 and 11-2) with values, spatial trends, variability and uncertainty for each parameter. Models are non-unique; judge them on five criteria. Lesser variability about the interpreted values marks a better interpretation (Figure 11-3), and different uses of one site may warrant different, compatible models.",
+      "body": "The fundamental objective is an appropriate, rational and defensible site 'model' for analysis and design. Sites are three-dimensional but are commonly simplified to two-dimensional 'design cross-sections' (Figure 11-1) or effectively one-dimensional 'design profiles' (Figure 11-2), collectively 'design models'. Design models include values for parameters, their variation with depth, elevation or lateral position, represent a specific time or time period, and should characterize variability and uncertainty. The process is inherently non-unique (p. 11-2): there is no single 'correct' interpretation, but appropriateness is judged by five criteria: consistency with site measurements (with due consideration for bias and property changes), with the geologic setting, practicality for the intended use, compatibility with the design and analysis methods, and consistency with previous experience and performance nearby (p. 11-3). Alternatives satisfying these give practically consistent results given sufficient measurements (Chapter 3); Figure 11-3 shows two models for the same Cc measurements, and Appendix 2 has more. Computing variability about the interpreted values (section 11.5) informs judgment: lesser variability is superior (COVCc-meas favors two constant layers over a linear trend), without being taken to the extreme of many thin layers. Different interpretations may suit different applications, e.g., su for short-term stability varying with depth while effective stress parameters for the same clay are uniform (p. 11-4); they should be consistent and compatible but need not be identical. (pp. 11-1 to 11-4)",
       "key_points": [
-        "LRFD requires mean design parameters; COV_total ≤ 0.3 practically achieves target reliability",
-        "σ_total² = σ_meas² + σ_model²; σ_model ≈ σ_meas/√n for uniform stratum",
-        "Combining direct and indirect measurements via weighted average reduces σ_total",
-        "Historical data: verify same test method and relevant conditions before combining",
-        "Multiple valid interpretations of the same data are acceptable and appropriate"
+        "Design models: design cross-sections, design profiles or complete three-dimensional models (p. 11-1).",
+        "Interpretation is inherently non-unique; no single 'correct' interpretation (p. 11-2).",
+        "Five criteria: measurements, geology, practicality, design method compatibility, experience (p. 11-3).",
+        "Interpretations with lesser variability can be considered superior (p. 11-3).",
+        "Different applications may use different but compatible interpretations (p. 11-4)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-1: Design cross-section illustrating conceptual stratigraphy adopted for design",
+        "Figure 11-2: Design profile showing constant or linearly varying qu for individual strata",
+        "Figure 11-3: Alternative interpretations of Cc measurements"
+      ],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.2",
+      "title": "Process for Interpretation of Design Parameters",
+      "summary": "Developing design models is iterative: preliminary stratigraphy from logs, CPT, CPTU or DMT, index tests and geology; design domains; plotting measurements against depth per domain; checking consistency; preliminary design values; and refinement until practical and consistent. Plan verification during construction (proof rolling, pilot borings, instrumentation); design-build models are finalized after award.",
+      "body": "No single procedure always gives rational and reliable design models; significant judgment, soil and rock mechanics, understanding of the intended use and knowledge of the geologic setting are needed. Common steps: (1) preliminary cross-sections or profiles of general stratigraphy, often from field logs or CPT, CPTU or DMT soil behavior types with index tests and geology; (2) preliminary 'design domains' over which conditions are practically consistent; (3) collecting field and laboratory measurements per domain and plotting them against depth or elevation; (4) evaluating whether the measurements are consistent with the preliminary stratigraphy; (5) preliminary design values per parameter; (6) repeating and refining until practical, consistent and compatible with the intended use (p. 11-5). Steps 1 and 2 are in section 11.3, steps 3 to 6 in sections 11.4 to 11.7; the process is iterative. A final step is to establish methods for verifying and modifying design models during construction: verifying materials or bearing conditions, proof rolling, compaction quality assurance, pilot borings, or instrumentation with the observational method (section 11.7). Design-build teams develop tentative models before bidding and confirm or modify them after contract award (p. 11-6). (pp. 11-4 to 11-6)",
+      "key_points": [
+        "Six common steps from preliminary stratigraphy to refined design model (p. 11-5).",
+        "The process is iterative, not sequential (p. 11-5).",
+        "Establish methods for verifying design models during construction (p. 11-5).",
+        "Design-build: final design models only after contract award (p. 11-5)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.3",
+      "title": "Interpretation of Subsurface Stratigraphy",
+      "summary": "Identify and model all important strata within practical limits; within a stratum a parameter is generally constant or linear with depth. Field logs show more layers than matter for design, but thin permeable layers may govern excavations or tunnels. Geophysics averages over volumes; CPT, CPTU and DMT detect thin strata. Choose design domains deliberately, not 'lumping' a site for convenience.",
+      "body": "Failure to identify important stratigraphic features can cause construction problems, poor long-term performance or failure (e.g., Hendron and Patton, 1985), yet some simplification is necessary. Within a stratum a parameter is generally assumed constant or linearly varying with depth or elevation (Figures 11-2 and 11-3). Stratigraphy is interpreted progressively from boring and sampling observations, in situ tests, geophysics, index properties and design properties, initial interpretations from logs and geology being checked against laboratory measurements relevant to the application (p. 11-7). Logs and soundings often show more 'material boundaries' than matter; layers can often be combined (a thick clay with sand lenses as one clay layer), but a thin permeable sand layer could be major for an excavation support system or tunnel. Geophysics helps find interfaces between strongly dissimilar materials (depth to bedrock), interpolate between borings and find anomalies, but averages response over a volume; conventional sampling also misses features because continuous sampling is seldom done; CPT, CPTU and DMT suit identification of abrupt or subtle changes. Design domains are a matter of judgment: one domain for uniform sites, many for variable sites; 'lumping' a site into one domain for convenience can have dramatic consequences when unsupported by evidence (Graham, et al, 2013) (p. 11-8). (pp. 11-6 to 11-8)",
+      "key_points": [
+        "Parameter within a stratum generally constant or linear with depth or elevation (p. 11-6).",
+        "A thin permeable sand layer within clay could be major for excavation support or tunnels (p. 11-7).",
+        "Geophysical measurements average over a tested volume (p. 11-7).",
+        "CPT, CPTU and DMT well suited to identifying abrupt or subtle changes (p. 11-7).",
+        "'Lumping' a site into one design domain can have dramatic consequences (p. 11-8)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.4",
+      "title": "Interpretation of Design Parameters From Available Measurements",
+      "summary": "Values exceeding actual properties raise risk; values well below them raise cost. Plot measurements separately per stratum and design domain, with different symbols for different borings or test types and without connecting lines (Figure 11-4); collective plots may prompt revision of cross-sections or domains. Direct, indirect and historical measurements each need special consideration.",
+      "body": "Selecting values exceeding those that exist increases risk of unacceptable performance; values substantially less increase construction cost, so selection warrants deliberate effort. Plot available measurements separately for each stratum and design domain, measurements from different borings or test locations with different symbols (Figure 11-4), and measurements of one parameter from different test types (su from UU, unconfined compression and field vane tests) with different symbols to identify biases. Plot discrete symbols without connecting lines, which may suggest unjustified relationships. Observations may motivate revision of design cross-sections, profiles or domains (p. 11-9). Values come from direct and indirect measurements, often with historical measurements, each with special considerations (sections 11.4.1 to 11.4.3). (pp. 11-8 to 11-9)",
+      "key_points": [
+        "Values above actual increase risk; substantially below increase cost (p. 11-8).",
+        "Different symbols for different borings and test types (p. 11-8).",
+        "Plot discrete symbols without connecting lines (p. 11-8)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-4: Direct measurements of qu from uniaxial (UCS) and confined compression tests (CCS) from four borings plotted using different symbols: (a) full scale and (b) expanded scale"
+      ],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.4.1",
+      "title": "Selection of Design Parameters from Direct Measurements",
+      "summary": "Traditional selection below the mean trend is subjective and inconsistent with LRFD, which relies on mean values. Use regression (mean, Eq. 11.1; OLS line, Eq. 11.2) to inform judgment, a hybrid approach, aiming for COVmodel <= 0.3. Select values in the spirit of the design method (Eurocode characteristic values, USACE 2/3 rule), and consider known bias and whether averages or lower bounds control.",
+      "body": "Direct measurements need no transformation. Traditionally designers select a value from plotted measurements, often slightly less than the mean, substantially less for few, variable or questionable measurements or critical features (p. 11-9); this is highly subjective, varies between designers, and is inconsistent with LRFD, which predominates U.S. transportation practice and relies on mean values (p. 11-10). Regression is more objective: for a constant stratum the arithmetic mean (Eq. 11.1), for a linearly varying one Ordinary Least Squares (Eq. 11.2). Regression gives consistency and mean trends suited to AASHTO LRFD, but OLS is notoriously sensitive to outliers, especially with few measurements, and may limit careful thought (p. 11-11). A hybrid approach is recommended: regression informs and supports judgment on geology, mechanics, use and consequences (Figure 11-5, means per stratum). Rather than a minimum number for regression, seek enough measurements for acceptable model uncertainty: designs with mean values and COVmodel <= 0.3 practically meet or exceed AASHTO target reliability (Chapter 3) (p. 11-12); otherwise collect more or select conservative values. Values below the mean with LRFD give greater reliability and cost, violating its intent (p. 11-13). Methods not calibrated to means need consistent values: Eurocode 'characteristic values' with partial factors; some USACE methods' '2/3 rule' (2/3 of measurements above the design value). Judgment may depart from measurements with known bias (Ladd and Foott, 1974), e.g., su changing during staged construction. Axial pile capacity depends on average strength along the foundation, while slopes may be controlled by lower-bound strengths of a persistent weak seam; see section 11.6 (p. 11-14). (pp. 11-9 to 11-14)",
+      "key_points": [
+        "Traditional selection is highly subjective and inconsistent with LRFD (p. 11-10).",
+        "OLS regression is notoriously sensitive to outliers (p. 11-11).",
+        "A hybrid approach (regression informing judgment) is recommended (p. 11-11).",
+        "Mean values with COVmodel <= 0.3 practically meet AASHTO LRFD target reliability (p. 11-12).",
+        "Values below the mean with LRFD violate its intent and spirit (p. 11-13).",
+        "Eurocode characteristic values; USACE '2/3 rule' (p. 11-13).",
+        "Axial capacity follows average strength; slopes may follow a weak seam's lower bound (p. 11-13)."
       ],
       "equations": [
-        {
-          "equation_id": "11-sigma-total",
-          "description": "Total variability and uncertainty of design parameter estimate",
-          "latex": "\\sigma_{total} = \\sqrt{\\sigma_{meas}^2 + \\sigma_{model}^2}",
-          "variables": {
-            "sigma_total": "total standard deviation of design parameter estimate",
-            "sigma_meas": "measurement variability — standard deviation of measurements about estimated mean",
-            "sigma_model": "model uncertainty — uncertainty in estimating the mean (≈ σ_meas/√n for uniform stratum)"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11.1: ybar_d = sum(i=1..nd) yi / nd; yi = direct measurements, nd = number of direct measurements, ybar_d = mean value (subscript d: from direct measurements) (p. 11-10)",
+        "Eq. 11.2: ybar_d(z) = beta0 + beta1 z; beta0, beta1 = regression intercept and slope, z = regression parameter (often depth or elevation), ybar_d = mean value of the design parameter at z (p. 11-10)"
       ],
       "figures": [
-        "Figure 11-3: Alternative interpretations of Cc measurements",
-        "Figure 11-8: Measured values of qu showing three measures of variability and uncertainty"
+        "Figure 11-5: Interpretation of stratigraphy and qu from direct measurements: (a) full scale and (b) expanded scale"
+      ],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.4.2",
+      "title": "Estimation of Design Parameters from Indirect Measurements",
+      "summary": "Indirect measurements add a transformation. Either transform each measurement, ys-i = f(xi) (Eq. 11.3), then interpret, or interpret the indirect measurements and transform the model value, yhat_s = f(xhat) (Eq. 11.4), xhat the mean (Eq. 11.5) or a regression. For linear transforms (qu = k Is) both agree (Figure 11-6). Empirical correlations are indirect measurements; many can greatly overestimate; site-specific transformations help.",
+      "body": "As in Chapter 3, indirect measurements need a transformation to the property of interest, so all considerations for direct measurements apply plus the transformation. Two approaches: (1) transform each indirect measurement (Eq. 11.3, f the transformation, xi an indirect measurement) and interpret the transformed values; (2) interpret the indirect measurements as xhat and transform it (Eq. 11.4), xhat being the mean for a uniform stratum (Eq. 11.5) or from regression for a linearly varying one. Neither is clearly superior; the first lets one judge values in design terms, the second treats variability of the indirect measurements and transformation uncertainty more explicitly (section 11.5) (p. 11-15). Figure 11-6 applies both to point load index Is from three borings in shale over limestone; with a linear transformation, qu = k Is, they are identical. Empirical correlations with index properties are fundamentally indirect measurements; some common transformations may dramatically exceed actual properties, so quantify uncertainty; site-specific transformations can be substantially more reliable. (pp. 11-14 to 11-16)",
+      "key_points": [
+        "Two approaches: transform then interpret, or interpret then transform (p. 11-14).",
+        "Linear transformation (qu = k Is) gives identical results (p. 11-15).",
+        "Empirical correlations are fundamentally indirect measurements (p. 11-15).",
+        "Some common transformations may dramatically exceed actual properties (p. 11-15)."
+      ],
+      "equations": [
+        "Eq. 11.3: ys-i = f(xi); ys-i = transformed measure of the design property from indirect ('surrogate') measurements, f = transformation, xi = individual indirect measurement (p. 11-14)",
+        "Eq. 11.4: yhat_s = f(xhat); yhat_s = estimate of the design parameter from indirect measurements, xhat = interpreted value of the indirect measurement in the stratum (p. 11-14)",
+        "Eq. 11.5: xhat = xbar = sum(i=1..nx) xi / nx; xbar = mean of the indirect measurements, nx = number of indirect measurements (p. 11-15)"
+      ],
+      "figures": [
+        "Figure 11-6: Alternative approaches for interpreting indirect measurements: (a) interpretation of Is prior to transformation and (b) transformation of Is prior to interpretation"
+      ],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.4.3",
+      "title": "Use of Historical Data for Establishing Design Parameters",
+      "summary": "Historical measurements can add data and show property changes, but check that they represent current conditions and equipment: older SPT hammers were less efficient and rarely measured, so old N-values are systematically greater and unsuitable to supplement N60. Compare with enough current measurements (Figure 11-7: 1978 vs. 1999 N-values).",
+      "body": "Historical measurements from previous investigations add measurements and may show whether properties changed over time, and can often be treated like recent ones, but consider whether they represent current conditions and whether equipment and procedures changed. Older SPT hammers were often substantially less efficient and energy was seldom measured, so N-values from decades ago are often substantially and systematically greater than today's (p. 11-16); since current procedures need N60 corrected for hammer efficiency, historical SPT values are not appropriate to supplement current N60 values; estimating efficiency from hammer type adds substantial uncertainty. Changes in effective stress (e.g., excavation) can also change conditions (p. 11-17). A common approach is enough current measurements to evaluate the historical ones: Figure 11-7 compares SPT N-values over 21 years with different equipment; the 1978 values tend to be lower than the 1999 values here, so use them with caution. (pp. 11-16 to 11-17)",
+      "key_points": [
+        "Historical measurements can often be treated like recent measurements, with checks (p. 11-16).",
+        "Historical SPT values not appropriate to supplement current N60 values (p. 11-17).",
+        "Figure 11-7: SPT N-values over 21 years, 1978 lower than 1999 (p. 11-17)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.5",
+      "title": "Calculation of Variability and Uncertainty for Design Parameters",
+      "summary": "Uncertainty in selected parameters directly affects design reliability (Chapter 3), yet is usually judged subjectively. Quantify it to reduce the chance of under-reliable designs and to compare sites and scope future investigations.",
+      "body": "Selecting nominal values is usually the primary objective since they visibly influence designs (lesser strength gives larger or costlier foundations), but the uncertainty of selected parameters directly influences reliability; this is often subjective and underappreciated. As shown in Chapter 3, achieving target reliability is tied to site variability and the quantity and quality of measurements, so uncertainty should be quantified to reduce the likelihood of under-reliable designs; explicit evaluation also allows comparison of sites and investigations to improve scoping (p. 11-17). Figure 11-7 is printed here. (pp. 11-17 to 11-18)",
+      "key_points": [
+        "Quantify uncertainty to reduce the likelihood of under-reliable designs (p. 11-17)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-7: Comparison of SPT N-values measured at similar location in 1978 and 1999"
+      ],
+      "tables": [],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.5.1",
+      "title": "Calculation of Variability and Uncertainty for Direct Measurements",
+      "summary": "For a uniform stratum: MSEd (Eq. 11.6) equals the variance about an unbiased mean (Eq. 11.7); sigma_d-meas (Eq. 11.8) is measurement variability; sigma_d-model = sqrt(MSEd/nd) (Eqs. 11.9, 11.10) the uncertainty of the estimate, generally used for design; sigma_d-total (Eqs. 11.11, 11.12) predicts a new measurement. COVs (Eqs. 11.13 to 11.15). Tables 11-1 and 11-2 give the qu example; COVmodel above 0.3 calls for more tests or a conservative value.",
+      "body": "Variability (consistency of properties or measurements within a stratum) and uncertainty (level of knowledge) are quantified with mean squared error, variance, standard deviation and COV (p. 11-18). For a uniform stratum: MSEd (Eq. 11.6), scatter about the estimate including variability and bias; for an unbiased estimate (yhat_d = ybar_d) the variance equals MSEd (Eq. 11.7) and sigma_d-meas (Eq. 11.8) is the familiar standard deviation (p. 11-19). The variance of the estimated value, the confidence in it (Eq. 11.9), gives the 'model' standard deviation (Eq. 11.10); the total variance (Eq. 11.11) and total standard deviation (Eq. 11.12) combine both. Figure 11-8 shows all three for the qu interpretation of Figure 11-5: sigma_total is greatest and suits predicting a new (eleventh) measurement; sigma_model is smallest and, reflecting confidence in the estimated design value, should be adopted for most design analyses (p. 11-20). With fewer measurements (Figure 11-9, one boring) sigma_model grows while sigma_meas and sigma_total may change slightly either way; Table 11-1 (p. 11-22). COVs normalize by the mean (Eqs. 11.13 to 11.15); Table 11-2 (p. 11-23): with four borings all COVqu-model are well below 0.3; with one boring Maquoketa Shale B (three measurements, high variability) does not meet it. Whether to test more or use a conservative value (say 4 or 5 ksf for deep foundations in the limestone) follows the value proposition of Chapter 1. Linearly varying strata need Appendix 3 computations (Figure 11-10: sigma_model and sigma_total vary with depth, least mid-stratum, largest near boundaries or where measurements are sparse; COVd-meas constant unless weighted least squares is used) (p. 11-24); regression on ln su (Figure 11-11) treats variability as lognormal and avoids negative su. (pp. 11-18 to 11-25)",
+      "key_points": [
+        "Model standard deviation is generally the measure to adopt for most design analyses (p. 11-20).",
+        "Total standard deviation suits predicting a new measurement (p. 11-20).",
+        "Table 11-1: Kimmswick Limestone qu 923, sigma_meas 354, sigma_model 94, sigma_total 366 (4 borings) (p. 11-22).",
+        "Table 11-2: COVqu-model 0.06 to 0.15 with 4 borings; 0.39 for Shale B from 1 boring (p. 11-23).",
+        "Additional tests vs. conservative values follows the value proposition of Chapter 1 (p. 11-23).",
+        "Linear strata: sigma_model least near the middle of the stratum (Appendix 3) (p. 11-24).",
+        "Lognormal regression avoids implying negative su (p. 11-24)."
+      ],
+      "equations": [
+        "Eq. 11.6: MSEd = sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1); yi = ith measurement of y, yhat_d = estimated value of y, nd = number of direct measurements (p. 11-18)",
+        "Eq. 11.7: Var(y) = sigma_d-meas^2(y) = MSEd = sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1); for an unbiased estimate (yhat_d = ybar_d) (p. 11-19)",
+        "Eq. 11.8: sigma_d-meas = sqrt(Var(y)) = sqrt(MSEd) = sqrt(sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)); standard deviation of the measurements (p. 11-19)",
+        "Eq. 11.9: sigma_d-model^2 = MSEd / nd = (1/nd) x sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1); variance of the estimated value (p. 11-19)",
+        "Eq. 11.10: sigma_d-model = sqrt(MSEd / nd) = sqrt((1/nd) x sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)); 'model' standard deviation (p. 11-19)",
+        "Eq. 11.11: sigma_d-total^2 = sigma_d-meas^2 + sigma_d-model^2 = (sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)) (1 + 1/nd) (p. 11-20)",
+        "Eq. 11.12: sigma_d-total = sqrt(sigma_d-meas^2 + sigma_d-model^2) = sqrt((sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)) (1 + 1/nd)) (p. 11-20)",
+        "Eq. 11.13: COVd-meas = sigma_d-meas / ybar_d = sqrt(sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)) / ybar_d (p. 11-22)",
+        "Eq. 11.14: COVd-model = sigma_d-model / ybar_d = sqrt((1/nd) x sum(i=1..nd) (yi - yhat_d)^2 / (nd - 1)) / ybar_d (p. 11-22)",
+        "Eq. 11.15: COVd-total = sigma_d-total / ybar_d = sqrt(sigma_d-meas^2 + sigma_d-model^2) / ybar_d (p. 11-22)"
+      ],
+      "figures": [
+        "Figure 11-8: Measured values of qu showing three measures of variability and uncertainty",
+        "Figure 11-9: Measured values of qu showing variability and uncertainty for fewer measurements",
+        "Figure 11-10: Interpretation of su assuming linear variation depth",
+        "Figure 11-11: Interpretation of su presuming measurements are lognormally distributed"
       ],
       "tables": [
-        "Table 11-1: Measures of variability and uncertainty for qu",
-        "Table 11-2: Coefficients of variation for direct measurements of qu"
+        "Table 11-1: Measures of variability and uncertainty for qu from Figures 11-8 and 11-9 - qu, 4 borings / 1 boring: Maquoketa Shale A mu 3.3/3.1, sigma_meas 0.55/0.72, sigma_model 0.20/0.29, sigma_total 0.59/0.78; Maquoketa Shale B 10.4/6.6, 7.3/6.4, 1.6/2.6, 7.4/6.9; Maquoketa Shale C 66.2/71.0, 14.0/12.1, 2.2/3.3, 14.2/12.6; Kimmswick Limestone 923/821, 354/316, 94/109, 366/334",
+        "Table 11-2: Coefficients of variation for direct measurements of qu from Figures 11-8 and 11-9 - 4 borings / 1 boring: Maquoketa Shale A mu 3.3/3.1, COV_meas 0.17/0.23, COV_model 0.06/0.09, COV_total 0.18/0.25; Maquoketa Shale B 10.4/6.6, 0.70/0.97, 0.15/0.39, 0.72/1.05; Maquoketa Shale C 66.2/71.0, 0.21/0.17, 0.03/0.05, 0.22/0.18; Kimmswick Limestone 923/821, 0.38/0.38, 0.10/0.13, 0.40/0.41"
       ],
       "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
     },
     {
-      "section_id": "11.8-11.13",
-      "title": "Specific Design Parameter Interpretation",
-      "summary": "In situ stress: σvo = Σ(γi × Δzi); σ'vo = σvo - u; σ'p from consolidation tests; Ko = 1-sinφ' (NC soils) or from DMT/PMT/SBPMT. Undrained shear strength: CIUC tests to field σ'vc; SHANSEP su/σ'vc = S × OCR^m; field vane corrected by μ(PI). Effective stress: c' and φ' from regression; c' = 0 for stiff fissured OC clays. Consolidation: Cc and Cr per stratum; lab cv typically underestimates field rate (no macrofabric). Ko assessment needed for anchored walls and tunnels.",
-      "body": "Stress parameters: Total vertical stress σvo = Σ(γi × Δzi) from surface to depth z. Effective vertical stress σ'vo = σvo - u where u = pore water pressure. Preconsolidation stress σ'p from consolidation tests (Chapter 6 methods); OCR = σ'p/σ'vo. Ko for NC soils: Ko = 1-sinφ' (Jaky formula). Ko for OC soils: Ko,OC = Ko,NC × OCR^0.5 (Mayne and Kulhawy 1982). In situ Ko from self-boring PMT, SBPMT, or DMT; large scatter in correlations.\n\nUndrained shear strength for design: CIUC tests reconsolidated to field consolidation stresses; su established from compression loading path. For soft clays: interpret su as function of depth or OCR profile. SHANSEP: su = σ'vc × S × OCR^m (from CKoUC tests); reduces uncertainty by normalizing out stress level effects. FVT su: apply Chandler (1988) correction factor μ(PI). For stiff clays: use CIU-bar tests.\n\nEffective stress parameters: Fit linear Mohr-Coulomb envelope s = c' + σ'tanφ' to collection of strength tests using ordinary least squares or weighted least squares regression. Present as scatter plot with regression line and confidence interval. Stiff fissured OC clays: c' = 0 with fully softened φ' for long-term design (Section 7.6).\n\nConsolidation parameters: Cc and Cr interpreted separately for each stratum. cv from lab typically underestimates field rate because macro-scale features (sand and silt seams, varves) are not captured in small specimens; field cv often 2–10× lab cv.\n\nGroundwater conditions: Artesian pressure (u > γw × depth below GWT) requires piezometers; may change with season or construction dewatering. Design for most critical (highest) pore pressure conditions for stability analyses.",
+      "section_id": "11.5.2",
+      "title": "Calculation of Variability and Uncertainty for Indirect Measurements",
+      "summary": "Indirect measurements add transformation uncertainty. Compute sigma_x-meas, -model, -total of the indirect measurements (Eqs. 11.16 to 11.18); for a linear transformation yhat_s = beta0 + beta1 xhat (Eq. 11.19) the design-parameter sigmas follow Eqs. 11.20 to 11.22 with MSEr, xbar_r, beta1, m and sxx (Eq. 11.23) from the regression. Site-specific Is-qu example: Figure 11-12, Table 11-3; model uncertainty much larger than direct.",
+      "body": "Indirect measurements carry variability of the measurements and the soil plus uncertainty in the transformation; good correlations may match or beat direct measurements, poor ones give much greater uncertainty (p. 11-25). First compute variability and uncertainty of the indirect measurements as for direct ones (Eqs. 11.16 to 11.18; MSEx, nx, xhat). For linear transformations (Eq. 11.19), the design parameter's standard deviations follow Eqs. 11.20 to 11.22 (p. 11-26), where MSEr is the mean squared error of the transformation regression, xbar_r the mean of its indirect measurements, beta1 its slope, m its number of measurements and sxx from Eq. 11.23 (p. 11-27); only xhat and the relevant sigma_x need computing per site once the transformation terms are known. Figure 11-12 gives a site-specific OLS transformation from paired Is and qu in the same three boreholes with the needed regression quantities; Figure 11-13 the Is interpretation (p. 11-28). Table 11-3 and Figure 11-14 (p. 11-29) show model uncertainty in qu substantially greater from point load index than from direct compression tests (Table 11-1, Figure 11-8), from transformation uncertainty; the indirect estimates of qu are also substantially greater than the direct ones, which suggests the greater uncertainty is appropriate. (pp. 11-25 to 11-29)",
       "key_points": [
-        "σ'vo = σvo - u; OCR = σ'p/σ'vo; Ko = 1-sinφ' for NC soils (Jaky formula)",
-        "SHANSEP reduces Su uncertainty by normalizing for consolidation stress and OCR",
-        "Effective stress c', φ' from regression of strength test results; c' = 0 recommended for fissured OC clays",
-        "Lab cv typically underestimates field rate by 2–10× due to macrofabric not captured in specimens",
-        "Design for most critical groundwater conditions; artesian pressure requires piezometers"
+        "Indirect measurements add transformation uncertainty (p. 11-25).",
+        "Transformation terms MSEr, xbar_r, beta1, m, sxx are fixed once the regression exists (p. 11-27).",
+        "Table 11-3: Kimmswick Limestone nx 35, xhat 115, sigma_s-model 223, sigma_s-total 382 (p. 11-29).",
+        "Model uncertainty for qu substantially greater from Is than from direct tests (p. 11-29)."
       ],
       "equations": [
-        {
-          "equation_id": "11-sigvo",
-          "description": "Total vertical stress at depth z",
-          "latex": "\\sigma_{vo} = \\sum_i \\gamma_i \\cdot \\Delta z_i",
-          "variables": {
-            "sigma_vo": "total vertical stress at depth z",
-            "gamma_i": "total unit weight of layer i",
-            "Delta_z_i": "thickness of layer i"
-          },
-          "implemented_in": null
-        }
+        "Eq. 11.16: sigma_x-meas = sqrt(Var(x)) = sqrt(MSEx) = sqrt(sum(i=1..nx) (xi - xhat)^2 / (nx - 1)) (p. 11-26)",
+        "Eq. 11.17: sigma_x-model = sqrt(MSEx / nx) = sqrt((1/nx) x sum(i=1..nx) (xi - xhat)^2 / (nx - 1)) (p. 11-26)",
+        "Eq. 11.18: sigma_x-total = sqrt(sigma_x-meas^2 + sigma_x-model^2) = sqrt((sum(i=1..nx) (xi - xhat)^2 / (nx - 1)) (1 + 1/nx)) (p. 11-26)",
+        "Eq. 11.19: yhat_s = beta0 + beta1 xhat; beta0, beta1 = regression coefficients of the transformation (p. 11-26)",
+        "Eq. 11.20: sigma_s-meas = sqrt(MSEr [1 + 1/m + ((xhat - xbar_r)^2 + sigma_x-meas^2)/sxx] + beta1^2 sigma_x-meas^2) (p. 11-26)",
+        "Eq. 11.21: sigma_s-model = sqrt(MSEr [1 + 1/m + ((xhat - xbar_r)^2 + sigma_x-model^2)/sxx] + beta1^2 sigma_x-model^2) (p. 11-26)",
+        "Eq. 11.22: sigma_s-total = sqrt(MSEr [1 + 1/m + ((xhat - xbar_r)^2 + sigma_x-total^2)/sxx] + beta1^2 sigma_x-total^2); MSEr = mean squared error of the transformation regression, xbar_r = mean of its indirect measurements, beta1 = its slope, m = number of measurements in it (p. 11-27)",
+        "Eq. 11.23: sxx = sum(i=1..m) (xr-i - xbar_r)^2; xr-i = individual indirect measurements in the regression data set (p. 11-27)"
       ],
       "figures": [
-        "Figure 11-19: Measured values of Ko as function of φ' for NC soils and as function of OCR for OC soils",
-        "Figure 11-21: Interpretation of su from CIUC tests",
-        "Figure 11-24: Effective stress failure envelope",
-        "Figure 11-25: Effective stress failure envelope from weighted least squares regression"
+        "Figure 11-12: Empirical transformation from Is to qu using site-specific measurements from Figures 11-5 and 11-6",
+        "Figure 11-13: Interpretation of Is measurements and associated measures of variability and uncertainty",
+        "Figure 11-14: Measures of variability and uncertainty for qu when established from Is measurements"
+      ],
+      "tables": [
+        "Table 11-3: Calculation of variability and uncertainty in qu from Is - Is (ksf) nx, xhat, sigma_x-meas, sigma_x-model, sigma_x-total; qu (ksf) sigma_s-meas, sigma_s-model, sigma_s-total: Maquoketa Shale B 13, 8.7, 4.9, 1.3, 5.0; 218, 215, 306. Maquoketa Shale C 77, 12.5, 4.4, 0.5, 4.4; 217, 215, 305. Kimmswick Limestone 35, 115, 31.1, 5.3, 31.5; 311, 223, 382"
+      ],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.5.3",
+      "title": "Calculation of Variability & Uncertainty for Combined Direct & Indirect Measurements",
+      "summary": "Combine direct and indirect estimates by inverse-variance weighting: ybar = (ybar_d sigma_s^2 + ybar_s sigma_d^2)/(sigma_d^2 + sigma_s^2) (Eq. 11.24), usually with model sigmas, and Eq. 11.25 (sigma_y printed equal to sigma_d^2 sigma_s^2/(sigma_d^2 + sigma_s^2)). Table 11-4: little gain for the shales, lower sigma for the limestone. Reduce model uncertainty by more tests, site-specific transformations or subdividing strata.",
+      "body": "With both direct and indirect measurements, weighted averages give the estimate (Eq. 11.24), with any of the three sigma measures but most commonly the model uncertainty, and the standard deviation (Eq. 11.25, as printed, with sigma_y the model or total value depending on the sigmas used) (p. 11-30). Table 11-4 and Figure 11-15 use the Table 11-1 and 11-3 values (sigma_meas not reported, not generally meaningful for design estimates): for the Maquoketa Shale strata the combined results are practically identical to the direct ones (many direct measurements; uncertain transformation at low Is); for the Kimmswick Limestone the combined qu falls between, closer to the direct value, and both combined sigmas are below either alone. Gains depend on numbers of direct and indirect measurements, transformation uncertainty and stratum variability; largest when direct measurements are few. Model uncertainty can be reduced by more measurements (direct ones more per test), better or site-specific transformations (p. 11-31), or subdividing domains or strata, not to an extreme (p. 11-32). (pp. 11-29 to 11-32)",
+      "key_points": [
+        "Weighted averages, most commonly with the model uncertainty (p. 11-30).",
+        "Table 11-4: Kimmswick Limestone combined qu 897, sigma_c-model 87, sigma_c-total 265 (p. 11-31).",
+        "Eq. 11.25 printed as sigma_y = sigma_d^2 sigma_s^2/(sigma_d^2 + sigma_s^2) (p. 11-30).",
+        "Combined measurements help most when direct measurements are few (p. 11-31).",
+        "Site-specific transformations commonly more effective than broad research (p. 11-31)."
+      ],
+      "equations": [
+        "Eq. 11.24: ybar = (ybar_d/sigma_d^2 + ybar_s/sigma_s^2) / (1/sigma_d^2 + 1/sigma_s^2) = (ybar_d sigma_s^2 + ybar_s sigma_d^2) / (sigma_d^2 + sigma_s^2); ybar_d, ybar_s = means from direct and indirect measurements, sigma_d, sigma_s = their standard deviations (p. 11-30)",
+        "Eq. 11.25: sigma_y = sigma_d^2 sigma_s^2 / (sigma_d^2 + sigma_s^2) (as printed); sigma_y = model or total standard deviation depending on the sigma_d and sigma_s used (p. 11-30)"
+      ],
+      "figures": [
+        "Figure 11-15: Interpretation of qu established from combined direct and indirect measurements"
+      ],
+      "tables": [
+        "Table 11-4: Summary of variability and uncertainty in qu from direct measurements, indirect measurements, and combined direct and indirect measurements - Shale A, Shale B, Shale C, Kimmswick Limestone. Direct: nd 6, 20, 41, 13; qu 3.3, 10.4, 66.2, 923; sigma_d-model 0.2, 1.6, 2.2, 94; sigma_d-total 0.6, 7.4, 14.2, 366. Indirect: ns 0, 13, 77, 35; qu --, 57, 82, 751; sigma_s-model --, 215, 215, 223; sigma_s-total --, 306, 305, 382. Combined: qu 3.3, 10.4, 66.2, 897; sigma_c-model 0.2, 1.6, 2.2, 87; sigma_c-total 0.6, 7.4, 14.2, 265"
+      ],
+      "applicability": "Design model development and variability quantification for LRFD-compatible parameter selection"
+    },
+    {
+      "section_id": "11.6",
+      "title": "Identifying Outliers and Resolving Inconsistencies",
+      "summary": "Measurements are samples of a distribution; consider all valid ones and discard only those truly erroneous, judged mainly from the individual test (stress-strain, stress paths, pore pressures). Without clear evidence keep the measurement or weight it. Discarding unconservative values is easier; discarding conservative ones needs care, and discarding outliers understates variability.",
+      "body": "Distinguishing whether extreme measurements represent actual conditions or sampling and testing errors needs careful judgment. Measurements are statistical 'samples' from a larger population (Chapter 3), not deterministic values. As a rule all valid measurements should be considered; truly erroneous ones (equipment malfunction, testing or recording errors, extreme disturbance, unrepresentative samples, preparation problems) should be disregarded, judged primarily from the individual test (stress-strain response, stress paths, pore pressure response); comparison with other or typical measurements risks bias toward what one believes. Without clear and convincing evidence of error, include the measurement, or weight questionable ones (p. 11-33). Discarding substantially unconservative measurements (greater strength, lesser compressibility, lesser hydraulic conductivity) is easier and more rational; discarding conservative ones needs thoughtful care, though truly erroneous ones must be disregarded. Disregarding outliers, even advantageous ones, tends to underestimate variability and uncertainty, which is unconservative. (pp. 11-32 to 11-33)",
+      "key_points": [
+        "Measurements are statistical 'samples' from a larger population (p. 11-32).",
+        "Judge errors primarily from the individual test results (p. 11-33).",
+        "Without clear and convincing evidence of error, include the measurement (p. 11-33).",
+        "Disregarding outliers tends to underestimate variability and uncertainty (p. 11-33)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Treatment of outliers and inconsistent measurements when interpreting design parameters"
+    },
+    {
+      "section_id": "11.7",
+      "title": "Use of Observational Method",
+      "summary": "The observational method (Peck, 1969): predict field response with design values, monitor performance, and back calculate apparent parameters; effective for complex ground (piezometers and settlement plates for embankments, inclinometers and strain gages for excavations), improving staged construction decisions.",
+      "body": "A final step on some projects validates and improves selected values: (1) predict field response with the established values, (2) systematically monitor performance and compare, (3) 'back calculate' apparent parameters producing the observed response. This is the observational method (Peck, 1969), often effective for complex ground conditions (e.g., Castelli, et al., 2015) (p. 11-34). Common uses: piezometers and settlement plates for pore pressure dissipation and settlement of embankment fills; inclinometers and strain gages for lateral displacements and support loads of deep excavations. Calibrated models improve estimates of settlement or excavation support loads and decisions on staged construction or other features; knowing performance will be monitored also gives designers comfort. (pp. 11-33 to 11-34)",
+      "key_points": [
+        "Predict, monitor, back calculate (Peck, 1969) (p. 11-34).",
+        "Piezometers and settlement plates for embankments; inclinometers and strain gages for excavations (p. 11-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Observational method to verify and refine design parameters during construction"
+    },
+    {
+      "section_id": "11.8",
+      "title": "Interpretation of In situ Stress State for Design",
+      "summary": "In situ stresses serve settlement calculations, SHANSEP-type su, earth retaining structures, liquefaction, tunnels and numerical models; characterize total vertical stress, pore water pressure, vertical effective stress and preconsolidation stress, and sometimes horizontal stresses.",
+      "body": "In situ stress state is most commonly used for settlement of embankments and shallow foundations, and also for undrained shear strength (SHANSEP or similar), earth retaining structures, liquefaction, tunnels and other underground structures, and numerical modeling. Routine characterization needs total vertical stress, pore water pressure, vertical effective stress and preconsolidation stress; some applications also need horizontal total or effective stress. (p. 11-34)",
+      "key_points": [
+        "Routine: total vertical stress, pore pressure, vertical effective stress, preconsolidation stress (p. 11-34)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.8.1",
+      "title": "Total Vertical Stress",
+      "summary": "Total vertical stress is calculated, not measured: the integral of unit weight to depth z (Eq. 11.26), usually the sum of gamma_i x delta z_i over layers (Eq. 11.27). It increases continuously with depth (no jumps), its slope changing with unit weight at strata changes and near the water table (Figure 11-16).",
+      "body": "sigma_vo is seldom measured but routinely and reliably calculated from measured unit weights: strictly the integral of unit weight from the surface to depth z (Eq. 11.26), commonly approximated by summation over layers or sublayers (Eq. 11.27) (p. 11-35). Figure 11-16 (p. 11-35) shows a typical profile: sigma_vo increases continuously with depth (no discrete jumps); its slope is proportional to unit weight and changes with total unit weight, most commonly at changes in stratigraphy and near the water table. (pp. 11-34 to 11-35)",
+      "key_points": [
+        "Total vertical stress is seldom directly measured (p. 11-34).",
+        "No discrete jumps in total vertical stress (p. 11-35)."
+      ],
+      "equations": [
+        "Eq. 11.26: sigma_vo = integral(z=0..z) gamma dz; gamma = total unit weight of soil or rock above depth z (p. 11-34)",
+        "Eq. 11.27: sigma_vo = sum(i=1..n) gamma_i x delta z_i; gamma_i, delta z_i = unit weight and thickness of layer or sublayer i above depth z (p. 11-35)"
+      ],
+      "figures": [
+        "Figure 11-16: Generalized profile, moisture content, total unit weight, and in situ stress profile"
       ],
       "tables": [],
       "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.8.2",
+      "title": "Pore Water Pressure",
+      "summary": "Hydrostatic pore pressure u(z) = gamma_w zw (Eq. 11.28; gamma_w = 62.4 pcf) applies only without flow; otherwise use piezometers, CPTU or seepage analyses, stratum by stratum. Pore pressures are transient and construction may change them, so design pore pressures represent worst-case conditions over the design life.",
+      "body": "Pore water pressure is commonly estimated from groundwater levels; for hydrostatic conditions Eq. 11.28 with gamma_w the unit weight of water (= 62.4 pcf for fresh water) and zw the depth below the water table. These calculations presume hydrostatic (no flow) conditions; otherwise errors propagate to effective stress, strength and stability. For non-hydrostatic conditions measure with piezometers (Chapter 10) or CPTU, or predict with steady state seepage analyses; strata may differ, some hydrostatic and others not (p. 11-36). Pore pressures are commonly transient; consider changes over time (from piezometer monitoring, borings or soundings at different times, or groundwater models) and changes induced by construction, temporary (dewatering) or permanent (cut slopes creating a drainage boundary). Design pore pressures may not reflect measurements, appropriately representing worst-case pore pressures over the design life. (pp. 11-35 to 11-36)",
+      "key_points": [
+        "Eq. 11.28 presumes hydrostatic (no flow) conditions (p. 11-36).",
+        "gamma_w = 62.4 pcf for fresh water (p. 11-36).",
+        "Design for worst-case pore pressures over the design life (p. 11-36)."
+      ],
+      "equations": [
+        "Eq. 11.28: u(z) = gamma_w x zw; gamma_w = unit weight of water (= 62.4 pcf for fresh water), zw = depth below the water table (p. 11-36)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.8.3",
+      "title": "Vertical Effective Stress",
+      "summary": "Vertical effective stress cannot be measured; it is calculated as sigma'_vo = sigma_vo - u (Eq. 11.29), valid for hydrostatic or more complex seepage conditions (Figure 11-16).",
+      "body": "sigma'_vo cannot be directly measured and is calculated from total vertical stress and pore water pressure at the same depth (Eq. 11.29); Figure 11-16 shows it for the example. Eq. 11.29 is valid whether pore pressures come from hydrostatic conditions or more complex seepage. (p. 11-37)",
+      "key_points": [
+        "Eq. 11.29 valid for hydrostatic or complex seepage pore pressures (p. 11-37)."
+      ],
+      "equations": [
+        "Eq. 11.29: sigma'_vo = sigma_vo - u (p. 11-37)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.8.4",
+      "title": "Preconsolidation Stress and Overconsolidation Ratio (OCR)",
+      "summary": "Preconsolidation stress is interpreted mainly for saturated clays and silts from consolidation tests on high quality samples (Chapter 6), with OCR by Eq. 6.5. Soft clay sites show a desiccated crust and u-shaped sigma'_p with OCR near 1.0 at depth; stiff clays are more uniform (Figure 11-17). Measurements scatter; test a hypothesized profile rather than fit blindly.",
+      "body": "sigma'_p is most commonly measured for saturated clayey and silty soils, influenced by stress history; for coarse-grained soils or rock seldom, except when at-rest earth pressure coefficients need OCR (section 11.8.5). It is estimated from 1-D consolidation tests on high quality undisturbed specimens or indirect measurements (Chapter 6), interpreted collectively; OCR as defined in Equation 6.5. Variation with depth follows geologic history; 'typical' distributions (Figure 11-17, p. 11-38) are a first approximation to confirm by measurement: a soft clay site with a desiccated crust ('dessicated', as printed, p. 11-37) gives a 'u-shaped' sigma'_p, high OCR near the surface decreasing toward 1.0 (normal consolidation) at depth; stiff clay sites show more uniform sigma'_p; intermediate and mixed cases are common. Measured sigma'_p depends on specimen quality, test details and interpretation method and is commonly more scattered than other properties (e.g., Duncan, 2000); hypothesize an anticipated behavior and test it against measurements, especially with few measurements. (pp. 11-37 to 11-38)",
+      "key_points": [
+        "sigma'_p seldom measured in coarse-grained soils or rock (p. 11-37).",
+        "Soft clay sites: desiccated crust, u-shaped sigma'_p, OCR approaching 1.0 at depth (p. 11-37).",
+        "Stiff clay sites: more uniform sigma'_p with depth (p. 11-38).",
+        "Measured sigma'_p commonly more scattered than many other properties (p. 11-38)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-17: Typical profiles of σp′ and OCR for: (a) soft clay site, (b) stiff clay site"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.8.5",
+      "title": "Horizontal Stresses",
+      "summary": "Horizontal stresses, seldom needed routinely, are expressed by K = sigma'_h/sigma'_v (Eq. 11.30), at rest Ko. Measure with DMT, PMT, CPT or geophysics (Figure 11-18) or estimate Ko = (1 - sin phi')OCR^(sin phi') (Eq. 11.31, Kulhawy and Mayne, 1990). Ko is notoriously variable (Figure 11-19) and tectonic stresses can defeat correlations.",
+      "body": "In situ horizontal stresses are not commonly required for routine design, but may be for underground structures or numerical analyses. They are normalized by an earth pressure coefficient K (Eq. 11.30), with Ko, the coefficient of lateral earth pressure at rest, for the in situ state. Measurement is challenging but possible with DMT, PMT, and indirectly CPT and geophysics, interpreted as in this chapter (Figure 11-18, Benoit and Lutenegger, 1992, p. 11-40). More commonly Ko is estimated from correlations (Kulhawy and Mayne, 1990), most commonly Eq. 11.31 with phi' the effective friction angle. Like sigma'_p and more so, measurements and estimates of Ko are notoriously variable (Figure 11-19, p. 11-40). Ko depends largely on stress history and frictional strength, but regional tectonic stresses and time also affect horizontal stress (Mitchell and Soga, 2005), where correlations may fail and measurements are needed (p. 11-39). (pp. 11-39 to 11-40)",
+      "key_points": [
+        "Horizontal stresses not commonly required for routine design (p. 11-39).",
+        "Measured by DMT, PMT, or indirectly CPT and geophysics (p. 11-39).",
+        "Ko = (1 - sin phi')OCR^(sin phi') most commonly used (Kulhawy and Mayne, 1990) (p. 11-39).",
+        "Tectonic stresses can make correlations unreasonable (p. 11-39)."
+      ],
+      "equations": [
+        "Eq. 11.30: K = sigma'_h / sigma'_v; sigma'_h = horizontal effective stress, sigma'_v = vertical effective stress (p. 11-39)",
+        "Eq. 11.31: Ko = (1 - sin phi') OCR^(sin phi'); phi' = effective stress friction angle (p. 11-39)"
+      ],
+      "figures": [
+        "Figure 11-18: In situ horizontal stress from laboratory and in situ tests (from Benoit and Lutenegger, 1992)",
+        "Figure 11-19: Measured values of Ko: (a) as function of φ′ for normally consolidated soils, and (b) as function of OCR (from Kulhawy and Mayne, 1990)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.9",
+      "title": "Interpretation of Undrained Shear Strength for Design",
+      "summary": "su (or qu) depends on in situ effective stress, stress history, mode and rate of loading, and disturbance, so measurements are not equivalent. Hypothesize su from stress history (soft clays increasing with depth below a crust, stiff clays more uniform, Figure 11-20) and revise with measurements; methods differ by test type.",
+      "body": "Undrained shear strength (or unconfined compressive strength qu) is used for shallow and deep foundations, short-term stability of cut slopes and embankments on soft foundations, and excavation support in soils undrained during construction; seldom for freely draining soils, but small clay or silt contents can make a coarse soil behave as fine-grained, so su is needed for clays, many silts, sandy clays and silts, and silty or clayey sands. su depends on (1) in situ effective stress, (2) stress history, (3) method of loading, (4) rate of loading, and for some tests disturbance; all measurements of su are not equivalent (p. 11-41). Hypothesizing su from stress history helps: soft clay sites (normally or slightly overconsolidated) have su increasing with depth, often greater near a desiccated surface; stiff clays are more uniform (Figure 11-20, p. 11-42). This is facilitating interpretation, not assuming su. Since su is measured by many laboratory and in situ tests (Chapter 7), recommendations follow by test type. (pp. 11-41 to 11-42)",
+      "key_points": [
+        "su depends on effective stress, stress history, method and rate of loading (p. 11-41).",
+        "All measurements of su are not equivalent (p. 11-41).",
+        "Soft clay su increases with depth; stiff clays more uniform (Figure 11-20) (p. 11-41)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-20: Undrained strength measurements from: (a) soft clay site and (b) stiff clay site"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.9.1",
+      "title": "Interpretation of su from UU Triaxial Tests and Unconfined Compression Tests",
+      "summary": "UU triaxial (compression; extension gives lower su) and unconfined compression tests (more variable) are total stress tests sensitive to disturbance, often conservatively biased but partly compensated by rate and stress path effects (Ladd, 1991). They give su at a point, time and loading mode, assuming field stresses at construction match those at sampling.",
+      "body": "The most direct and common means is UU triaxial compression at confining stress near in situ; UU extension is less common and su in compression is significantly greater than in extension. Since su is theoretically independent of confining stress for saturated soils, unconfined compression (UC) tests also apply, though more variable (Chapter 7). All are interpreted in total stresses only. Measurements are often sensitive to disturbance, an unknown variable bias, often conservative but partly compensated by strain rate and stress path effects (Ladd, 1991); the net effect 'generally works' with traditional investigations, more pronounced for soft to medium clays (p. 11-43). UU and UC su represent a specific point in space and time and a specific loading mode; changes in effective stress between sampling and construction cannot be accounted for, so in situ stresses at construction are assumed similar to those at sampling. (pp. 11-42 to 11-43)",
+      "key_points": [
+        "su in triaxial compression significantly greater than in extension (p. 11-43).",
+        "UU, UC and extension tests interpreted only in total stresses (p. 11-43).",
+        "Disturbance effects more pronounced for soft to medium clays (p. 11-43).",
+        "Cannot account for effective stress changes before construction (p. 11-43)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.9.2",
+      "title": "Interpretation of su from Consolidated-Undrained Tests",
+      "summary": "CU triaxial or DSS tests consolidated to known stresses give su/sigma'_vc versus OCR (S and m of Eq. 7.6), so su follows from sigma'_vo and OCR (Figure 11-21 with S = 0.25, m = 0.77, Figure 11-22). The approach suits staged construction, is less disturbance-sensitive (especially SHANSEP), and CU results are not 'point' tests; more elaborate but often more accurate overall.",
+      "body": "Specimens consolidated to known effective stress and sheared undrained (CU triaxial compression or extension, CU direct simple shear) relate su to effective consolidation stress: the 'c/p ratio', su/sigma'_vc, depends mainly on OCR and loading mode (Figures 7-14, 7-24, 7-33), often as S and m of Equation 7.6; su then follows from sigma'_vo, OCR and anticipated loading. sigma'_vo comes from unit weight and pore pressure (section 11.8), OCR from sigma'_p (consolidation tests). Figure 11-21 shows su from interpreted sigma'_p with S = 0.25 and m = 0.77 'determined from CUIC tests' (as printed; the Figure 11-21 caption says CIUC) as in Figure 11-22, with variability and uncertainty by section 11.5.2, sigma'_p as the indirect measurement and the su/sigma'_vc relation as the transformation (p. 11-44). Advantages: su for current, staged construction or other effective stress conditions; less sensitivity to disturbance, especially with SHANSEP (Chapter 7); tests at one depth serve other depths with similar OCR and composition; CU results are not 'point' tests (p. 11-45). Disadvantage: more elaborate testing, yet su from CU tests is commonly substantially more accurate than from UU or UC tests given accurate OCR, often with fewer tests and smaller cost differences than per-test costs suggest (p. 11-46). (pp. 11-43 to 11-46)",
+      "key_points": [
+        "su/sigma'_vc depends mainly on OCR and method of loading (p. 11-44).",
+        "Example S = 0.25, m = 0.77 (Figure 11-22) (p. 11-44).",
+        "Less sensitive to sample disturbance, particularly with SHANSEP (p. 11-44).",
+        "CU results should not be considered 'point' tests (p. 11-45).",
+        "Commonly substantially more accurate than UU or UC su given accurate OCR (p. 11-46)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-21: Interpretation of su from CIUC tests: (a) σp′ , and (b) su",
+        "Figure 11-22: suσvc ′ ⁄ versus OCR relation used to establish su shown in Figure 11-21"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.9.3",
+      "title": "Interpretation of Undrained Shear Strength from Indirect Laboratory and Field Tests",
+      "summary": "su estimated from CPT, CPTU, FVT, DMT, PMT and SPT, pocket penetrometer, Torvane, fall cone and laboratory vane tests are indirect measurements, interpreted by sections 11.4.2 and 11.5.2.",
+      "body": "su of fine-grained soils can be estimated from in situ tests (CPT, CPTU, FVT, DMT, PMT, SPT; Chapter 7) and from pocket penetrometer, Torvane, fall cone and laboratory vane tests. All are indirect tests, so collections of them should be interpreted following sections 11.4.2 and 11.5.2. (p. 11-46)",
+      "key_points": [
+        "All are indirect tests: use sections 11.4.2 and 11.5.2 (p. 11-46)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.10",
+      "title": "Interpretation of Total Stress Strength Parameters for Design in Unsaturated Soils",
+      "summary": "For unsaturated soils (compacted embankments and fills) the phi = 0 condition fails; use total stress c and phi from UU triaxial tests only, grouping specimens of similar effective stress (similar depth, or similar compactive effort and moisture). Fit linear envelopes to curved data only over the relevant confining stress range (Figure 11-23).",
+      "body": "su use assumes saturated or nearly saturated soil (phi = 0, su independent of confining stress), not universally satisfied; compacted embankments and fills are common unsaturated cases, where undrained strengths should be represented by total stress parameters c and phi, established only from UU triaxial tests (p. 11-46). The total stress envelope depends on effective stress, so interpret only measurements on specimens of practically similar effective stress (approximately the same depth; compacted specimens with similar compactive effort and moisture); combining substantially different depths into one envelope is inappropriate. Curved envelopes are common; limit equilibrium can use piecewise linear envelopes, but other methods need a linear Mohr-Coulomb fit over confining stresses appropriate to the problem; fitting over an inappropriate range overestimates strengths and may be unconservative (Figure 11-23, p. 11-47). (pp. 11-46 to 11-47)",
+      "key_points": [
+        "Total stress envelope only from UU triaxial tests (p. 11-46).",
+        "Do not combine substantially different depths into one total stress envelope (p. 11-46).",
+        "Fit linear envelopes over the problem's confining stress range (p. 11-47)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-23: Mohr-Coulomb diagram showing linear approximation of curved failure envelope"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.11",
+      "title": "Interpretation of Effective Stress Strength Parameters for Design",
+      "summary": "The effective stress envelope (c', phi') is the fundamental strength envelope, needed for practically all soils; called 'drained' parameters but applicable to drained, undrained and partially drained loading with excess pore pressures considered; from laboratory and in situ tests.",
+      "body": "The effective stress failure envelope truly represents the fundamental strength envelope (Chapter 7). c' and phi' are required in practically all soil types, used for long-term drained stability and thus called 'drained' parameters, though the envelope applies to drained, undrained and partially drained loading if excess pore pressures are considered (p. 11-48). It is determined from laboratory and in situ tests. (pp. 11-47 to 11-48)",
+      "key_points": [
+        "Effective stress envelope applies to drained, undrained and partially drained loading (p. 11-48)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.11.1",
+      "title": "Interpretation of Effective Stress Strength Parameters from Laboratory Tests",
+      "summary": "CD and CU triaxial (with pore pressures) and CD direct shear tests give similar envelopes, less variable than su. Combine all tests in a stratum from different depths and borings into one envelope (Figure 11-24) rather than averaging 'point' parameters. Regress against effective confining stress; average COVd-model over the relevant range against 0.3; weighted least squares where scatter grows with stress (Figure 11-25).",
+      "body": "Most commonly CD triaxial, CU triaxial with pore pressure measurements, or CD direct shear; envelopes from different tests are often practically similar, with less variability than su and total stress envelopes, which depend on effective stress (p. 11-48). Plot all tests in a stratum collectively (Figure 11-24); combining similar soils from different depths and borings is acceptable and desirable, far preferable to averaging 'point' parameter values, and gives a basis to quantify uncertainty; likewise for direct shear. Variability and uncertainty of linear envelopes follow section 11.5 and Appendix 3, with effective confining stress as the regression parameter (p. 11-49); COVd-model is least near the average test stress, so compare an average over the problem's stress range with the 0.3 threshold. Where scatter increases with confining stress (direct shear, Figure 11-25, p. 11-50), OLS may misstate variability and weighted least squares may fit better. (pp. 11-48 to 11-50)",
+      "key_points": [
+        "Envelopes from different test types often practically similar (p. 11-48).",
+        "Combine tests from different depths and borings into one envelope (p. 11-48).",
+        "Compare average COVd-model over the relevant stress range with 0.3 (p. 11-49).",
+        "Weighted least squares where scatter increases with confining stress (p. 11-49)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-24: Effective stress failure envelope from CU type triaxial compression tests",
+        "Figure 11-25: Effective stress failure envelope interpreted using weighted least squares regression"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.11.2",
+      "title": "Interpretation of Effective Stress Friction Angle from In Situ Tests",
+      "summary": "phi' can be estimated from CPT, SPT and DMT (indirect; vital in clean coarse soils that are hard to sample), measured by borehole shear tests, or approximated from Atterberg limits; interpret as indirect measurements (sections 11.4, 11.5).",
+      "body": "phi' can be estimated indirectly from in situ tests and empirical correlations (Chapter 7); in situ tests are particularly important in clean coarse-grained soils difficult to sample, where they are often more reliable than laboratory tests. Parameters are commonly estimated from CPT, SPT and DMT, measured directly with borehole shear tests, and approximated from Atterberg limits and index properties; interpretation follows that for indirect measurements (sections 11.4 and 11.5). (p. 11-50)",
+      "key_points": [
+        "In situ tests particularly important in clean coarse-grained soils (p. 11-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.12",
+      "title": "Interpretation of Consolidation Parameters for Design",
+      "summary": "Consolidation parameters are interpreted like other parameters; Figure 11-26 (p. 11-51) interprets 1-D consolidation tests on high quality fixed-piston samples from a soft clay site.",
+      "body": "Interpretation follows the procedures of this chapter; Figure 11-26 shows an example from laboratory 1-D consolidation tests on high quality fixed-piston samples for a soft clay site. (p. 11-50)",
+      "key_points": [
+        "Example from high quality fixed-piston samples of a soft clay (p. 11-50)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.12.1",
+      "title": "Compressibility Parameters",
+      "summary": "Assign compression and recompression indices to each behaviorally different stratum, generally from 1-D consolidation tests on high quality samples; in situ estimates may do where settlement does not control.",
+      "body": "Compression and recompression indices should be interpreted from a rational assessment of measurements, assigning a value to each behaviorally different stratum, generally from laboratory 1-D consolidation tests on high quality samples, though in situ estimates may be acceptable where settlement is not expected to control design. (p. 11-51)",
+      "key_points": [
+        "In situ estimates acceptable where settlement is not expected to control (p. 11-51)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.12.2",
+      "title": "Coefficient of Consolidation",
+      "summary": "cv depends on load level: below about 80 percent of sigma'_p average cv for stresses under 0.8 sigma'_p (Figure 11-26); above sigma'_p average cv from sigma'_p to the final stress. Field settlement is often faster than laboratory cv predicts (thin pervious lenses); CPTU or DMT ch helps, and the observational method is advised.",
+      "body": "cv is interpreted like the compressibility indices but depends on load level: if anticipated stresses are below about 80 percent of sigma'_p, average cv for stresses below 0.8 sigma'_p (Figure 11-26); if they exceed sigma'_p, average cv from sigma'_p to the final vertical effective stress (p. 11-52). Observed settlement rates often exceed predictions from laboratory cv, mainly because thin lenses with greater cv or k shorten drainage; CPTU or DMT dissipation tests for ch may help; for significant projects use the observational method (section 11.7). (pp. 11-51 to 11-52)",
+      "key_points": [
+        "Below about 80 percent of sigma'_p: average cv for stresses below 0.8 sigma'_p (p. 11-51).",
+        "Actual settlement rates often exceed predictions from laboratory cv (p. 11-52).",
+        "Observational method for significant projects (p. 11-52)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-26: Interpretation of consolidation parameters (modified after Ding, et al., 2014)"
+      ],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.12.3",
+      "title": "Coefficient of Secondary Compression",
+      "summary": "Calpha is greatest beyond sigma'_p: if final stress is below about 0.8 sigma'_p use the average overconsolidated value; if above sigma'_p, conservatively use values at 1 to 2 times sigma'_p. Disturbed samples understate Calpha, important for organic clays and peats.",
+      "body": "Calpha (or Calpha-epsilon) is interpreted by these methods but varies with stress history, maximum beyond sigma'_p (virgin compression). Evaluate the final effective stress after primary consolidation: below about 0.8 sigma'_p use the average overconsolidated-range value; above sigma'_p it is conservative to select values at 1 to 2 times sigma'_p. Laboratory Calpha from disturbed samples is often less than appropriate in the field for normally consolidated loading; assess disturbance carefully, especially for organic clays and peats. (p. 11-52)",
+      "key_points": [
+        "Final stress above sigma'_p: Calpha at 1 to 2 times sigma'_p is conservative (p. 11-52).",
+        "Disturbed samples often understate Calpha (p. 11-52)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of in situ stress, undrained strength, effective stress strength, and consolidation parameters for LRFD design"
+    },
+    {
+      "section_id": "11.13",
+      "title": "Evaluation of Groundwater Conditions for Design",
+      "summary": "Groundwater for design may be a water table (hydrostatic) or a pore pressure field (flow, artesian, partial consolidation). The greatest challenge is that design needs worst-case conditions during construction or operation, unlikely to be observed during site characterization, so they are inferred with judgment, aided by measurements.",
+      "body": "If conditions are hydrostatic in all relevant strata, interpretation sets a groundwater table elevation; with significant flow, artesian conditions or partially consolidated soils, pore pressures throughout the model domain may be needed. The most significant challenge is that design should consider the 'worst case' conditions that may rationally arise during construction or operation, unlikely to be present during site characterization (p. 11-53); they must be inferred with judgment, knowledge of the groundwater regime and boundary conditions; field measurements reduce uncertainty, but extremes are unlikely to be observed. (pp. 11-52 to 11-53)",
+      "key_points": [
+        "Design for 'worst case' groundwater conditions (p. 11-53).",
+        "Extreme conditions unlikely to be observed during site characterization (p. 11-53)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Interpretation of design groundwater levels and pore pressures, including worst-case conditions"
     }
   ]
 }
