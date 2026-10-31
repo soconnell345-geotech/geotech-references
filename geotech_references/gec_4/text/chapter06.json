@@ -5,14 +5,13 @@
   "chapter_title": "Corrosion Considerations in Design",
   "sections": [
     {
-      "section_id": "6.1-6.2",
-      "title": "Introduction and Corrosion Mechanisms",
-      "summary": "Corrosion protection is required to ensure long-term durability of prestressed ground anchor tendons. Four main corrosion types for prestressing steel: general corrosion (uniform rust — generally minor if limited exposure); pitting corrosion (localized attack, can cause stress concentrations); hydrogen embrittlement (from hydrogen absorption in electrochemical reactions, catastrophic risk); and stress corrosion cracking (cracks develop under sustained stress with corrosive environments, catastrophic risk). Hydrogen embrittlement and stress corrosion cracking are the most critical failure modes for prestressing steel.",
-      "body": "Protecting metallic components of the tendon against corrosion is necessary to assure adequate long-term durability. Corrosion protection includes physical barrier layers: anchorage covers, corrosion-inhibiting compounds, grout (primary protection for bond length), sheaths and encapsulations (unbonded length), and trumpets.\n\nCorrosion types for prestressing steel: (1) General corrosion — thin uniform rust layer, negligible if limited exposure, not typically considered detrimental for light surface rust. (2) Pitting corrosion — localized, creates stress concentration points; more serious than general corrosion. (3) Hydrogen embrittlement — hydrogen atoms from electrochemical reactions diffuse into the metal lattice, causing internal fracture with little deformation; catastrophic failure mode for high-strength steel. (4) Stress corrosion cracking — develops under sustained stress with corrosive environment; also potentially catastrophic.\n\nAnchors are most vulnerable to corrosion in highly aggressive soils, near stray electrical current sources, at anchorage transitions, and when corrosion protection barriers are incomplete or damaged.",
+      "section_id": "6.1",
+      "title": "Introduction",
+      "summary": "Tendon corrosion protection uses one or more physical barriers (covers, inhibiting compounds, sheaths, encapsulations, epoxy, grout), chosen by service life, ground aggressivity, consequences of failure and the cost of more protection.",
+      "body": "Protecting the tendon's metallic components against corrosion is necessary for long-term durability. Protection consists of one or more physical barrier layers: anchorage covers, corrosion inhibiting compounds, sheaths, encapsulations, epoxy coatings and grouts. The barrier is selected by the design life (temporary or permanent), the aggressivity of the ground, the consequences of failure of the anchored system and the added cost of a higher level of protection. (p. 124)",
       "key_points": [
-        "Hydrogen embrittlement and stress corrosion cracking are catastrophic failure modes for prestressing steel",
-        "Pitting corrosion creates stress concentrations — more critical than uniform general corrosion",
-        "Light surface rust is not detrimental; heavily pitted bars must be rejected even if grout-tendon bond appears adequate"
+        "Barrier layers: covers, compounds, sheaths, encapsulations, epoxy, grout (p. 124).",
+        "Selection by service life, aggressivity, consequences, cost (p. 124)."
       ],
       "equations": [],
       "figures": [],
@@ -20,25 +19,314 @@
       "applicability": "Corrosion identification and risk assessment for prestressed ground anchor tendons"
     },
     {
-      "section_id": "6.3-6.4",
-      "title": "Corrosion Protection Systems and Level Selection",
-      "summary": "Two corrosion protection classes per PTI (1996): Class I (encapsulated tendon) — all three zones protected by physical encapsulation plus grout; Class II (grout only) — grout is the primary barrier with no encapsulation. Selection by decision tree (Figure 63): permanent anchors in aggressive or unknown ground → Class I; permanent anchors in non-aggressive ground → Class II if consequences are not serious and higher protection cost is significant; otherwise Class I. SOE temporary anchors in non-aggressive ground → no protection required. Aggressivity assessed by pH, resistivity, chloride, and sulfate content testing.",
-      "body": "Protection classes (Table 20, after PTI 1996):\n- Class I (Encapsulated Tendon): Anchorage — trumpet + cover; Unbonded length — encapsulated individual grease-filled strand sheaths with common smooth sheath (or grout-filled smooth sheath); Bond length — corrugated or smooth high-density polyethylene (HDPE) or polypropylene sheath (encapsulation); provides a fully redundant double barrier against corrosion throughout anchor length.\n- Class II (Grout Protected): Anchorage — trumpet + cover; Unbonded length — smooth sheath filled with grout; Bond length — grout provides the primary and only barrier; not encapsulated.\n\nSelection by Figure 63 decision tree:\n1. Permanent anchor: If ground is aggressive or aggressivity not known → Class I. If non-aggressive:\n   - If consequences of failure are serious → Class I.\n   - If consequences not serious: If cost for Class I is small → Class I; if cost significant → Class II.\n2. Temporary SOE anchor: If ground is aggressive or unknown → Class II. If non-aggressive → no protection required.\n\nAggressivity of ground: Evaluate by pH, resistivity, chloride content, and sulfate content (chapter 3). Aggressive conditions include: pH ≤ 4 or pH ≥ 12; chloride > 100 ppm; sulfate > 200 ppm; resistivity < 2,000 ohm-cm. Areas near mining operations, chemical plants, or chemical storage may also be aggressive.\n\nCorrosion of structural steel soldier beams: Corrosion protection typically by painting or other coatings. The use of weathering steel may be considered.",
+      "section_id": "6.2",
+      "title": "Corrosion and Effects on Ground Anchors",
+      "summary": "Heading for corrosion and effects on ground anchors: mechanism of metallic corrosion (6.2.1) and types of corrosion for prestressing steel (6.2.2).",
+      "body": "Heading for corrosion and effects on ground anchors: mechanism of metallic corrosion (6.2.1) and types of corrosion for prestressing steel (6.2.2); it has no text of its own. (p. 124)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion identification and risk assessment for prestressed ground anchor tendons"
+    },
+    {
+      "section_id": "6.2.1",
+      "title": "Mechanism of Metallic Corrosion",
+      "summary": "Corrosion is electrochemical, most common on tendons stored improperly; galvanic corrosion arises from current between locations on the steel, nearby metal or aerated and nonaerated soils. Risk is high near the water table, at low pH, with chlorides or sulfides, and with stray currents.",
+      "body": "Corrosion is an electrochemical reaction of a base metal, oxygen and water returning the metal to its oxidized state; for ground anchors it is most common on steel tendons improperly stored on site. Less common is galvanic corrosion in an electrolytic ground environment, metal lost with current flowing between (1) nearby locations on the prestressing steel, (2) the steel and a nearby metal object, (3) steel in aerated soils (above the water table, fill, sands) and nonaerated soils (below the water table, clays). Significant variations along the anchor, particularly in pH and resistivity, promote corrosion. Potential for excessive metal loss is high (1) near the groundwater table, (2) in low pH soil, (3) in soils with high chlorides or sulfides, (4) where stray currents are present. (p. 124)",
       "key_points": [
-        "Class I (encapsulated): double barrier — encapsulation + grout; Class II: grout only",
-        "Decision tree: aggressive/unknown ground → Class I for permanent; non-aggressive + serious consequences → Class I",
-        "SOE anchors in non-aggressive ground: no corrosion protection required",
-        "Aggressivity criteria: pH ≤ 4 or ≥ 12; Cl > 100 ppm; SO4 > 200 ppm; resistivity < 2,000 ohm-cm"
+        "Most common on improperly stored tendons (p. 124).",
+        "Galvanic corrosion with pH and resistivity variations along the anchor (p. 124).",
+        "High risk: water table, low pH, chlorides or sulfides, stray currents (p. 124)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion identification and risk assessment for prestressed ground anchor tendons"
+    },
+    {
+      "section_id": "6.2.2",
+      "title": "Types of Corrosion for Prestressing Steel",
+      "summary": "Six types: general, localized, stress corrosion/hydrogen embrittlement, fatigue, stray current and bacterial. Light rust is acceptable; pits or cracks reject a tendon. Encapsulate in aggressive soils; stray currents from sources beyond 30 to 60 m are believed insignificant.",
+      "body": "Six major types: (1) general, (2) localized, (3) stress corrosion/hydrogen embrittlement, (4) fatigue, (5) stray current, (6) bacterial attack. Corrosion of unprotected steel usually begins in storage as general corrosion, with insignificant metal loss, but it may lead to localized or stress corrosion/hydrogen embrittlement, the major causes of documented failures (FIP, 1986); the last three need consideration only under special loading or ground. General corrosion (p. 125) is a thin uniform rust layer; a light coating is not detrimental, the inspector wiping a short section to check for pits or cracks, and lightly rusted tendons may be installed without rust removal. Localized corrosion is pitting or crevices; in very aggressive ground bare steel may pit severely in a few weeks, so complete encapsulation is required in aggressive soils. Stress corrosion/hydrogen embrittlement forms cracks at pits in high strength steel, concentrating stress until the element ruptures; pits or cracks are adequate reason to reject a tendon. Fatigue corrosion under cyclic loading is uncommon for ground anchors. Stray current corrosion pits steel exposed to direct current from electric rail, transmission systems and welding, especially in marine environments; sources beyond 30 to 60 m are believed not to cause significant corrosion (FHWA-SA-96-072, 1995); protection is complete electrical isolation by a nonconducting barrier such as plastic. Bacterial attack pits steel in marshy ground and sulfate bearing clays below the water table, ground considered aggressive, so encapsulated tendons should be used (sulfate and sulfide tests, section 3.4.5). See FHWA-RD-82-047 (1982). (pp. 124 to 125)",
+      "key_points": [
+        "Six corrosion types; localized and stress corrosion cause most failures (FIP 1986) (p. 124).",
+        "Light surface rust acceptable; pits or cracks reject the tendon (p. 125).",
+        "Complete encapsulation in aggressive soils (p. 125).",
+        "Stray current sources beyond 30 to 60 m believed insignificant (p. 125).",
+        "Bacterial attack: marshy ground, sulfate clays below the water table (p. 125)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion identification and risk assessment for prestressed ground anchor tendons"
+    },
+    {
+      "section_id": "6.3",
+      "title": "Corrosion Protection of Ground Anchors",
+      "summary": "Heading for corrosion protection of ground anchors: requirements of protection systems (6.3.1) and design of corrosion protection systems (6.3.2).",
+      "body": "Heading for corrosion protection of ground anchors: requirements of corrosion protection systems (6.3.1) and design of corrosion protection systems (6.3.2); it has no text of its own. (p. 126)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.1",
+      "title": "Requirements of Corrosion Protection Systems",
+      "summary": "Protection systems give impervious barriers that must last the anchored system's service life, not harm the environment or capacity, let the unbonded tendon move freely, be chemically stable, need no maintenance, take stressing deformations and survive handling.",
+      "body": "Corrosion protection systems provide one or more impervious physical barriers around the tendon and should: ensure the anchor's corrosion service life at least equals the anticipated service life of the anchored system; produce no adverse environmental impact or capacity loss; allow unrestricted movement of the tendon along the unbonded length so all load reaches the bond length; use chemically stable materials nonreactive with adjacent materials; require no maintenance or replacement (with few exceptions) during service; be strong and flexible enough for stressing deformations; and be durable enough for handling during manufacture, transport, storage and installation. NCHRP Project 24-13, \"Evaluation of Metal Tensioned Systems in Geotechnical Applications\", expected complete in 2001, was to give methods for ground aggressivity, remaining service life and design life (printed \"agressivity\"). (p. 126)",
+      "key_points": [
+        "Service life of protection at least that of the anchored system (p. 126).",
+        "Unrestricted unbonded tendon movement (p. 126).",
+        "No maintenance; survives stressing and handling (p. 126)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2",
+      "title": "Design of Corrosion Protection Systems",
+      "summary": "Heading for design of corrosion protection systems: general, anchorage, unbonded length, bond length, stray currents and anchors for hydrostatic uplift (6.3.2.1 to 6.3.2.6).",
+      "body": "Heading for design of corrosion protection systems: general (6.3.2.1), anchorage protection (6.3.2.2), unbonded tendon length protection (6.3.2.3), tendon bond length protection (6.3.2.4), protection against stray currents (6.3.2.5) and corrosion protection of anchors for structures subject to hydrostatic uplift (6.3.2.6); it has no text of its own. (p. 126)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.1",
+      "title": "General",
+      "summary": "Protection forms an unbroken barrier over anchorage, unbonded length and bond length (Figures 60 to 62). Class I (encapsulated) and Class II (grout protected) both give multiple barriers at anchorage and unbonded length; in the bond length Class I gives multiple, Class II one (Table 20). No protection only for temporary anchors in nonaggressive ground.",
+      "body": "The tendon's three parts, (1) anchorage, (2) unbonded length, (3) bond length, each need an unbroken barrier, including transitions. Steel components are the anchor head, bearing plate, trumpet, prestressing steel and couplers. Protection components: anchorage, a cover or concrete embedment, a trumpet and corrosion inhibiting compounds or grout; unbonded length, grout and a sheath filled with compound or grout; bond length, grout and encapsulations with centralizers and/or epoxy coatings (Figures 60 to 62, pp. 128 to 130). Components (p. 127): anchorage covers (steel or plastic) protect the head and exposed steel; the trumpet (steel or PVC) protects the back of the bearing plate and the transition; corrosion inhibiting compounds are nonhardening greases and waxes; grout, cement-based or polyester resin, protects the unbonded and bond lengths (polyester resin generally not counted as a protection layer, gaps leaving steel bare) and fills sheaths, encapsulations, covers and trumpets; sheaths (smooth or corrugated plastic tube, smooth pipe, extruded tubing) protect the unbonded length, individual strand sheaths holding compound, a tendon sheath usually grout-filled; smooth sheaths act as bondbreakers, corrugated ones need a separate bondbreaker; heat shrinkable sleeves protect bar couplers and serve as bar sheaths; encapsulations (corrugated or deformed pipe or tube) protect the bond length; centralizers (steel or plastic) give minimum grout cover. U.S. practice specifies, in descending protection, Class I, Class II and no protection (Table 20, p. 131, modified after PTI, 1996). For anchorage and unbonded length both classes assume aggressive ground with multiple barriers; for the bond length Class I gives multiple barriers and Class II one. Class I tendons are encapsulated and Class II grout protected. Table 20: Class I, anchorage trumpet and cover if exposed; unbonded length (1) individual grease filled extruded strand sheaths in a common smooth sheath, (2) individual grease filled strand sheaths in a grout filled smooth sheath, or (3) a smooth bondbreaker over a grout filled bar sheath; bond length (1) grout-filled encapsulation or (2) fusion-bonded epoxy; Class II, trumpet and cover if exposed; unbonded length grease-filled sheath or heat shrink sleeve; bond length grout. No protection is required for temporary support of excavation anchors in ground known to be nonaggressive (effects of aggressive ground: FHWA-SA-96-072, 1996); selection is in section 6.4. (pp. 126 to 131)",
+      "key_points": [
+        "Unbroken barrier over anchorage, unbonded length, bond length (Figures 60 to 62) (p. 126).",
+        "Polyester resin grout not generally a protection layer (p. 127).",
+        "Class I encapsulated; Class II grout protected (p. 127).",
+        "Table 20: protection requirements by class and tendon part (p. 131).",
+        "No protection only for temporary anchors in nonaggressive ground (p. 127)."
       ],
       "equations": [],
       "figures": [
-        "Figures 60-62: Examples of corrosion protection classes I and II for strand and bar tendons",
-        "Figure 63: Decision tree for selection of corrosion protection level (modified after PTI 1996)"
+        "Figure 60: Examples of corrosion protection for anchorages",
+        "Figure 61: Examples of corrosion protection classes I and II for strand tendons",
+        "Figure 62: Examples of corrosion protection classes I and II for bar tendons"
       ],
       "tables": [
-        "Table 20: Corrosion protection requirements (modified after PTI 1996) — Class I and Class II for anchorage, unbonded length, and bond length"
+        "Table 20: Corrosion protection requirements (modified after PTI, 1996)"
       ],
       "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.2",
+      "title": "Anchorage Protection",
+      "summary": "Most corrosion failures occur within 2 m of the anchorage. Weld the trumpet watertight, overlap the unbonded protection by 100 mm and fill with grout after lock-off (300 mm tight fit or a seal to retain it); corrosion-inhibitor for restressable anchors; cover or 50 mm concrete over the head.",
+      "body": "Few corrosion failures of the prestressing steel or anchorage are reported, but most failures occurred within 2 m of the anchorage, so installation there needs care. The trumpet should be attached watertight to the bearing plate, usually by welding, overlap the unbonded length protection by at least 100 mm and be completely grout-filled after lock-off unless restressing is anticipated. To keep grout from escaping into the unbonded length, provide a seal at the trumpet bottom functioning at least until the grout sets, or a tight fit over the unbonded protection for at least 300 mm; expansive admixtures or multiple groutings may be needed. Restressable anchors (special heads allowing lift-off measurement through the service life) use a corrosion-inhibiting compound in the trumpet with a permanent, leak-free bottom seal. The bearing plate may be painted both sides with bitumastic or other compatible coating, or fully embedded in cast-in-place facing. The anchor head and bare steel are protected by a grout-filled plastic or steel cover (compound-filled for restressable anchorages) or at least 50 mm of concrete in the facing, the cover completely filled. (p. 131)",
+      "key_points": [
+        "Most failures within 2 m of the anchorage (p. 131).",
+        "Trumpet welded watertight; overlap unbonded protection by at least 100 mm (p. 131).",
+        "Grout retained by a seal or 300 mm tight fit (p. 131).",
+        "Restressable anchors: corrosion-inhibitor and permanent seal (p. 131).",
+        "Head: filled cover or at least 50 mm concrete (p. 131)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.3",
+      "title": "Unbonded Tendon Length Protection",
+      "summary": "The unbonded length is next most vulnerable: sheaths extend into the trumpet without touching plate or head and are filled without voids; Class I strand uses a common smooth sheath over extruded or grout-filled strand sheaths; corrugated pipe needs a bondbreaker; Class I bar couplers protected.",
+      "body": "Next to the anchorage, the unbonded length steel is most vulnerable. Sheaths should extend into the trumpet but not contact the bearing plate or anchor head during stressing, and be filled with corrosion-inhibiting compound or grout without voids; strands should be individually coated without voids between wires. For Class I strand tendons, use a common smooth sheath encapsulation over extruded grease filled strand sheaths, or a grout filled common smooth sheath over individual grease filled strand sheaths. Where corrugated pipe is the sheath a bondbreaker must be present: a smooth sheath letting the steel elongate freely in testing and stressing and stay unbonded after lock-off. For Class I bar tendons, couplers are protected by corrosion proof compound or wax impregnated cloth tape and a smooth plastic tube. (p. 132)",
+      "key_points": [
+        "Sheaths into the trumpet, clear of plate and head, filled without voids (p. 132).",
+        "Class I strand: common smooth sheath encapsulation (p. 132).",
+        "Corrugated sheath needs a bondbreaker (p. 132).",
+        "Class I bar couplers protected (p. 132)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.4",
+      "title": "Tendon Bond Length Protection",
+      "summary": "Properly centralized void-free grout has given no bond length corrosion failures. In rock with seepage, a watertightness test may call for consolidation grout redrilled after about 18 hours. Class I uses encapsulations, with centralizers inside and 12 mm minimum grout cover outside.",
+      "body": "No corrosion failures have been reported where the tendon was properly grouted (centralized, no voids). In rock with significant seepage around the tendon, drill hole waterproofing may be needed to keep grout in place; a watertightness test (section 7.4 of PTI, 1996) shows the need, and if indicated consolidation grout is commonly placed and redrilled about 18 hours later. Encapsulations, pregrouted or grouted on site before or after insertion without voids, give Class I bond length protection; centralizers inside ensure grout cover of the steel and outside give a minimum 12 mm grout cover over the encapsulation. (p. 132)",
+      "key_points": [
+        "No failures with properly centralized void-free grout (p. 132).",
+        "Rock seepage: watertightness test; consolidation grout redrilled about 18 hours later (p. 132).",
+        "Class I: encapsulation; 12 mm minimum grout cover outside (p. 132)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.5",
+      "title": "Protection Against Stray Currents",
+      "summary": "With stray currents tendons must be electrically isolated: nonconductive encapsulation over bond and unbonded lengths, or insulated anchorage for grout or epoxy protected tendons; tiedown anchorages isolated from slab steel; verify by field testing before grouting.",
+      "body": "Where stray currents are present, tendons should be electrically isolated from the ground. Tendons encapsulated by a nonconductive (usually plastic) sheath over the bond and unbonded lengths are considered isolated; for grout or epoxy protected tendons, the bearing plate, anchor head and trumpet should be insulated from the wall elements. For tiedowns, the anchorage should be isolated from the uplift slab reinforcement. Isolation may be verified by field testing after tendon installation and before grouting (Draft European Standard, 1994). (p. 132)",
+      "key_points": [
+        "Electrical isolation where stray currents exist (p. 132).",
+        "Insulate anchorage of grout or epoxy protected tendons (p. 132).",
+        "Field test isolation before grouting (p. 132)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.3.2.6",
+      "title": "Corrosion Protection of Anchors for Structures Subject to Hydrostatic Uplift",
+      "summary": "Anchors resisting hydrostatic uplift always need Class I protection, voids filled with corrosion-inhibiting compound, and anchor head seals that stay watertight through elongation; watertight seals where the tendon penetrates the structure, possibly tested beforehand.",
+      "body": "Water entering through a breach migrates up the tendon to the anchorage between the barrier and the steel, so anchors resisting hydrostatic uplift always require a Class I system. Voids between elements and between strand wires must be completely filled with corrosion-inhibiting compound, with seals at the anchor head that remain watertight after elongation in testing or from increased uplift after lock-off. A watertight seal is often needed where the tendon penetrates the structure, as leakage accelerates anchorage corrosion; seals are more leak-prone under high water pressure, where watertightness testing before construction may be considered. (p. 133)",
+      "key_points": [
+        "Class I always required for hydrostatic uplift anchors (p. 133).",
+        "Fill all voids with compound; head seals watertight through elongation (p. 133).",
+        "Watertight seal at structure penetration; consider testing (p. 133)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4",
+      "title": "Selection of Corrosion Protection Level",
+      "summary": "Heading for selection of corrosion protection level: general, service life, ground aggressivity, consequences of failure and cost (6.4.1 to 6.4.5).",
+      "body": "Heading for selection of corrosion protection level: general (6.4.1), service life of the anchored structure (6.4.2), aggressivity of the ground environment (6.4.3), consequences of failure (6.4.4) and cost for a higher level of protection (6.4.5); it has no text of its own. (p. 133)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4.1",
+      "title": "General",
+      "summary": "Select the minimum protection level by service life, ground aggressivity, consequences of failure and cost of more protection, following the decision tree of Figure 63 (p. 134, in section 6.4.3).",
+      "body": "The minimum corrosion protection level is selected considering the service life of the anchored system, the aggressivity of the ground, the consequences of failure and the cost of a higher level. The selection flowchart is Figure 63 (p. 134), printed within section 6.4.3. (p. 133)",
+      "key_points": [
+        "Criteria: service life, aggressivity, consequences, cost (p. 133).",
+        "Figure 63 decision tree (p. 134)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4.2",
+      "title": "Service Life of the Anchored Structure",
+      "summary": "Service life separates temporary support of excavation from permanent anchors (section 1.2); if a temporary anchor's life may be extended by delays, consider more protection, particularly in aggressive ground.",
+      "body": "Service life distinguishes temporary support of excavation from permanent anchors (section 1.2). If a temporary anchor's service life is likely to be extended by construction delays, evaluate whether to add corrosion protection, particularly in aggressive ground. (p. 133)",
+      "key_points": [
+        "Service life separates temporary from permanent anchors (section 1.2) (p. 133).",
+        "Delayed temporary anchors: consider more protection (p. 133)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4.3",
+      "title": "Aggressivity of the Ground Environment",
+      "summary": "Aggressive or unknown ground needs the highest class for the service life: Class II temporary, Class I permanent. Aggressive if pH < 4.5, resistivity < 2000 ohm-cm, sulfides, stray currents or corroded buried concrete nearby; assume aggressive if untested; some ground (salt water, cinders, peat, acid drainage) always.",
+      "body": "Ground classified aggressive or of unknown aggressivity requires the highest class for each service life: Class II for temporary support of excavation and Class I for permanent anchors, classified by tests and/or field observation. Figure 63 (p. 134, modified after PTI, 1996) is the decision tree: temporary support of excavation anchors need no protection in nonaggressive ground and Class II in aggressive or unknown ground; permanent anchors need Class I in aggressive or unknown ground; in nonaggressive ground, Class I where consequences of failure are serious, otherwise Class I where the cost of increasing protection is small and Class II where it is significant. Ground is generally aggressive if any of these is or may be present during service (PTI, 1996) (p. 134): (1) soil or groundwater pH less than 4.5; (2) resistivity less than 2000 ohm-cm; (3) sulfides; (4) stray currents; (5) adjacent buried concrete that has suffered corrosion or direct chemical (acid) attack. Tests for pH, resistivity and sulfides are in chapter 3; nearby-site tests may be used if ground conditions are shown similar; without aggressivity tests, assume aggressive. Always aggressive: (1) low pH soil or groundwater, (2) salt water or tidal marshes, (3) cinder, ash or slag fills, (4) organic fills with humic acid, (5) peat bogs, (6) acid mine drainage or industrial waste. Consider changes during service that may make ground aggressive (p. 135), e.g., near mining, chemical plants or chemical storage. (pp. 133 to 135)",
+      "key_points": [
+        "Aggressive or unknown: Class II temporary, Class I permanent (p. 133).",
+        "Aggressive: pH < 4.5, resistivity < 2000 ohm-cm, sulfides, stray currents, corroded concrete (p. 134).",
+        "Untested ground assumed aggressive (p. 134).",
+        "Always aggressive: salt water, cinder fills, humic fills, peat, acid drainage (p. 134).",
+        "Consider future changes near mining or chemical sites (p. 135).",
+        "Figure 63: decision tree for the protection level (PTI 1996) (p. 134)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 63: Decision tree for selection of corrosion protection level (modified after PTI, 1996)"
+      ],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4.4",
+      "title": "Consequences of Failure of the Anchored System",
+      "summary": "Permanent anchors whose failure could cost life or significant money need at least Class I: urban walls with structures behind, highway walls where closing one or two lanes disrupts traffic, and landslide walls on slopes with past movement.",
+      "body": "For permanent anchors, if failure could have serious consequences such as loss of life or significant financial loss, a minimum of Class I protection is required. Consequences are serious for (1) urban anchored systems with nearby structures behind the wall, (2) highway retaining walls where closing one or two lanes would majorly disrupt traffic, (3) landslide stabilization walls where the retained slope has moved in the past. (p. 135)",
+      "key_points": [
+        "Serious consequences: minimum Class I (p. 135).",
+        "Urban walls, lane-closure-critical highway walls, moving landslides (p. 135)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.4.5",
+      "title": "Cost for a Higher Level of Protection",
+      "summary": "The last criterion is the cost of going from Class II to Class I: encapsulation enlarges the drill hole, cheap in uncased holes, costlier in cased holes or rock, and may enlarge bearing plates, trumpets and the soldier beam opening.",
+      "body": "The final criterion is the increased cost of changing from Class II to Class I. For the same tendon, Class I needs a larger drill hole, which may raise installation cost: in an uncased hole the extra drilling cost can be small and the owner may elect Class I; in a cased hole or rock it can be higher and the owner decides whether the benefit is worth it. A larger hole may also require larger bearing plates, trumpet diameter and soldier beam opening for the tendon. (p. 135)",
+      "key_points": [
+        "Class I needs a larger drill hole (p. 135).",
+        "Small extra cost in uncased holes; higher in cased holes or rock (p. 135)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Selection and design of corrosion protection systems for permanent and temporary ground anchors"
+    },
+    {
+      "section_id": "6.5",
+      "title": "Corrosion of Structural Steel, Cement Grout, and Concrete",
+      "summary": "Heading for corrosion of structural steel, cement grout and concrete: soldier beams and sheet piles (6.5.1) and grout and concrete (6.5.2).",
+      "body": "Heading for corrosion of structural steel, cement grout, and concrete: corrosion and protection of steel soldier beams and sheet piles (6.5.1) and degradation and protection of cement grout and concrete (6.5.2); it has no text of its own. (p. 135)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion protection of soldier beams and sheet piles and sulfate-resistant cement for grout and concrete"
+    },
+    {
+      "section_id": "6.5.1",
+      "title": "Corrosion and Protection of Steel Soldier Beams and Sheet Piles",
+      "summary": "Soldier beams and sheet piles are less corrosion-prone than prestressing steel; drilled-in beams below subgrade are protected by concrete. Driven elements may be coated, thickened or upgraded in strength (FHWA-HI-97-013; AASHTO PP36-97 for service life).",
+      "body": "Structural steels in anchored walls (soldier beams, sheet piles) are less susceptible to corrosion failure than high strength prestressing steel; in most ground a small thickness loss does not significantly reduce strength, but in very aggressive ground the loss can be significant and the steel must be protected. Below subgrade, drilled-in beams surrounded by lean-mix or structural concrete are not considered susceptible; driven beams and sheet piles in direct contact with the ground are more susceptible and may be protected by (1) coatings, durable enough to survive driving (coal-tar epoxy and fusion-bonded epoxy may decrease pile capacity), (2) increased steel thickness (FHWA-HI-97-013, 1998), (3) higher strength steel in place of lower strength. AASHTO Provisional Standard PP36-97 estimates the service life of soldier beams and sheet piling for non-marine applications. (p. 135)",
+      "key_points": [
+        "Structural steel less susceptible than prestressing steel (p. 135).",
+        "Drilled-in beams in concrete not considered susceptible (p. 135).",
+        "Driven elements: coatings, extra thickness, higher strength steel (p. 135).",
+        "AASHTO PP36-97 service life estimate (p. 135)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion protection of soldier beams and sheet piles and sulfate-resistant cement for grout and concrete"
+    },
+    {
+      "section_id": "6.5.2",
+      "title": "Degradation and Protection of Cement Grout and Concrete",
+      "summary": "Sulfate attack degrades grout and concrete; select cement by soluble sulfate (AASHTO T-290): Type II for 0.1 to 0.2 percent, Type V for 0.2 to 2 percent, Type V plus pozzolan above 2.0 percent, with dense low-permeability grout.",
+      "body": "No anchor failures have been recorded from chemical attack of grout or concrete, but deteriorated grout leaves the steel vulnerable. The primary mechanism is chemical attack in high sulfate environments (marshy areas, sulfate bearing clays). Cement type is selected by the soluble sulfate ion (SO4) content, estimated by AASHTO T-290: Type II portland cement for 0.1 to 0.2 percent, Type V for 0.2 to 2 percent, Type V plus a pozzolan above 2.0 percent. Dense, low permeability grout or concrete significantly reduces sulfate and chloride attack; grout density is controlled by placement method and water/cement ratio. (p. 136)",
+      "key_points": [
+        "Sulfate attack is the primary degradation mechanism (p. 136).",
+        "Type II (0.1 to 0.2 percent), Type V (0.2 to 2), Type V plus pozzolan (> 2.0) (p. 136).",
+        "Dense low-permeability grout reduces attack (p. 136)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Corrosion protection of soldier beams and sheet piles and sulfate-resistant cement for grout and concrete"
     }
   ]
 }
