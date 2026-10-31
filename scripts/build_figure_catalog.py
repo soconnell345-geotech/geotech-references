@@ -492,21 +492,109 @@ def _repo_relative_pdf_path(manifest: dict) -> str:
         return abs_pdf.as_posix()
 
 
+#: Lines a caption printed under a figure may run to (GEC-6 Figure 5-11's
+#: takes three).
+CAPTION_BLOCK_LINES = 5
+
+
+def _block_rows(block: dict) -> list[str]:
+    """A PyMuPDF ``dict`` text block as the rows it prints, left to right.
+
+    Some text layers put each word on a line of its own (FHWA-NHI-05-037's
+    "Figure " "6-18. " "Example " ...); lines whose bottoms are within 3 pt
+    are one printed row.
+    """
+    rows: list[list] = []
+    for line in block.get("lines", []):
+        text = "".join(s["text"] for s in line["spans"])
+        x, bottom = line["bbox"][0], line["bbox"][3]
+        if rows and abs(rows[-1][0] - bottom) < 3:
+            rows[-1][1].append((x, text))
+        else:
+            rows.append([bottom, [(x, text)]])
+    return [" ".join(t for _, t in sorted(parts)) for _, parts in rows]
+
+
+def _block_caption(block_text: str, marker) -> "tuple[str, str] | None":
+    """``(figure_number, caption)`` when a text block opens with a figure's
+    label and a caption, the way a caption printed under a figure does.
+
+    None for a paragraph that only mentions a figure ("Figure 5-6 shows ...",
+    "Figure 5-6(a) presents ..."), an entry with a dotted leader (a list of
+    figures), a "(continued)" label or a label with no caption. A caption may
+    open with its first part ("(a) Chart ..."). The caption is the block's
+    lines after the label, up to the one that ends with a period, a blank
+    line or the next label, at most :data:`CAPTION_BLOCK_LINES`.
+    """
+    text = block_text.translate(_SMART).lstrip()
+    m = marker.match(text)
+    if not m:
+        return None
+    lines: list[str] = []
+    for line in re.sub(r"^[\s:.\-]+", "", text[m.end():]).split("\n"):
+        line = line.strip()
+        if not line:
+            if lines:            # a blank line ends the caption
+                break
+            continue
+        if marker.match(line):
+            break
+        lines.append(line)
+        if line.endswith(".") or len(lines) == CAPTION_BLOCK_LINES:
+            break
+    # a word broken over two lines keeps its hyphen ("load-" "settlement")
+    cap = re.sub(r"\s+", " ", re.sub(r"(?<=[A-Za-z])-\n", "-", "\n".join(lines)))
+    if re.search(r"\.{3,}|\.{2,}\s*[\w-]*\d\s*$", cap):
+        return None
+    cap = cap.strip(" .-:")
+    # "Figure 5-11: (a) Chart ..." is a caption; "Figure 10-6(a) presents ..."
+    # and "Figure 4-2 (continued)" are not
+    words = re.sub(r"^(?:\([a-z0-9]{1,3}\)[.:,]?\s*)+", "", cap)
+    if len(cap) < 8 or not words[:1].isupper() \
+            or re.match(r"(?i)cont(?:inued|'?d\b|\.)", words):
+        return None
+    return _fig_id(m.group(1)), cap
+
+
 def _figs_from_body(doc, marker=None) -> list[dict]:
     """Extract figures by scanning the body for labeled captions — used when a
     reference has no parseable List of Figures (e.g. GEC-6, GEC-14). A figure's
-    caption appears on its own page, so the page where ``Figure X-Y`` is followed
-    by a substantial capitalized caption is taken as that figure's page. ``marker``
-    defaults to the dash/dot id pattern; pass ``_SEQ_MARKER`` for sequential refs.
+    caption appears on its own page. The first text block that opens with the
+    figure's label and a caption (see :func:`_block_caption`) gives the page and
+    the caption, passing over a contents page where the figure's block also
+    appears later; a figure with no such block takes the first page where
+    ``Figure X-Y`` is followed by a substantial capitalized caption on the same
+    or the next line. A sentence that mentions a figure as a line ends ("...
+    as shown in Figure 5-12.  This is much simpler ...") is not a caption, so
+    the block comes first. ``marker`` defaults to the dash/dot id pattern; pass
+    ``_SEQ_MARKER`` for sequential refs.
     """
     marker = marker or _FIG_MARKER
-    figs: list[dict] = []
-    seen: set[str] = set()
+    blocks: dict[str, list[dict]] = {}
+    labels_on_page: dict[int, set] = {}
+    by_text: dict[str, dict] = {}
+    order = 0
     for i in range(doc.page_count):
-        text = doc[i].get_text()
+        page = doc[i]
+        for block in page.get_text("dict")["blocks"]:
+            if "lines" not in block:                        # an image block
+                continue
+            rows = _block_rows(block)
+            for row in rows:
+                lm = marker.match(row.translate(_SMART).lstrip())
+                if lm:
+                    labels_on_page.setdefault(i, set()).add(_fig_id(lm.group(1)))
+            hit = _block_caption("\n".join(rows), marker)
+            if hit:
+                order += 1
+                blocks.setdefault(hit[0], []).append(
+                    {"figure_number": hit[0], "caption": hit[1],
+                     "printed_page": None, "pdf_page_index": i,
+                     "page_estimated": False, "_order": order})
+        text = page.get_text()
         for m in marker.finditer(text):
             num = _fig_id(m.group(1))
-            if num in seen:
+            if num in by_text:
                 continue
             tail = re.sub(r"^[\s:.\-]+", "", text[m.end():m.end() + 220])
             cap = re.split(r"[\r\n]", tail, maxsplit=1)[0]
@@ -516,10 +604,21 @@ def _figs_from_body(doc, marker=None) -> list[dict]:
             # ("...in Figure X-Y") leave little/no caption after the marker.
             if len(cap) < 8 or not cap[:1].isupper():
                 continue
-            seen.add(num)
-            figs.append({"figure_number": num, "caption": cap[:200],
-                         "printed_page": None, "pdf_page_index": i,
-                         "page_estimated": False})
+            order += 1
+            by_text[num] = {"figure_number": num, "caption": cap[:200],
+                            "printed_page": None, "pdf_page_index": i,
+                            "page_estimated": False, "_order": order}
+    # A contents page looks like a page of captions; a figure whose caption
+    # block sits on a page where three or more labels open lines, and on
+    # another page too, takes the other page (GEC-14 B-1).
+    by_block = {}
+    for num, hits in blocks.items():
+        own = [h for h in hits if len(labels_on_page[h["pdf_page_index"]]) < 3]
+        by_block[num] = (own or hits)[0]
+    figs = [by_block.get(num) or by_text[num] for num in {**by_text, **by_block}]
+    figs.sort(key=lambda f: (f["pdf_page_index"], f["_order"]))
+    for f in figs:
+        del f["_order"]
     return figs
 
 

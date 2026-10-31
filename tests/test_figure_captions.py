@@ -46,11 +46,35 @@ def test_the_filed_captions():
         ("gec_12", "3-6"): "Nominal shaft resistance and pile support cost",
         ("gec_12", "D-125"): "Inspectors Chart for ICE I-36 V2 at the South Abutment",
         ("micropile", "8-8"): "Baroid Mud Balance Test",
+        # REF-50: captions under the figure, not the sentence that cites it
+        ("gec_6", "5-12"): ("Distribution of Vertical Stress by the 2:1 Method "
+                            "(Chen and McCarron, 1991)"),
+        ("gec_6", "4-3"): "Phase Relation Block Diagram",
+        ("gec_6", "2-3"): "Spread Footing with Cantilever Stemwall at Bridge Abutment",
+        ("gec_6", "2-13"): "Elevation of Mt. Rose Interchange Bridge, I-580, Nevada",
+        ("gec_4", "31"): "Flow net for a retaining wall (after CIRIA, 1984)",
+        ("gec_14", "B-1"): ("QA of GRDs for Alternative Delivery Methods - DBB, "
+                            "CM/GC and Preliminary DB (ACMs)"),
     }
     for (ref, number), caption in want.items():
         figs = _load(ROOT / "geotech_references" / ref / "figures_catalog.json")
         got = [f["caption"] for f in figs["figures"] if f["figure_number"] == number]
         assert got == [caption], (ref, number, got)
+
+
+def test_gec6_figures_sit_on_their_caption_pages():
+    """REF-50: each figure on the page that prints its caption (PDF page index
+    = printed page + 5), not the page of a sentence citing it; Figure 5-11,
+    whose caption opens "(a)", is catalogued."""
+    printed = {"2-8": 12, "2-9": 13, "2-10": 15, "5-1": 48, "5-6": 55,
+               "5-11": 77, "5-12": 79, "5-13": 80, "5-17": 87, "5-21": 92,
+               "5-22": 101, "8-3": 130, "8-4": 131}
+    figs = _load(ROOT / "geotech_references" / "gec_6" / "figures_catalog.json")
+    pages = {f["figure_number"]: f["pdf_page_index"] for f in figs["figures"]}
+    assert {n: pages.get(n) for n in printed} == {n: p + 5 for n, p in printed.items()}
+    five_11 = [f["caption"] for f in figs["figures"] if f["figure_number"] == "5-11"]
+    assert five_11[0].startswith("(a) Chart for Use in Determining Vertical Stresses")
+    assert figs["figure_count"] == len(figs["figures"]) == 57
 
 
 def test_micropile_lists_every_printed_figure_once():
@@ -104,6 +128,66 @@ def test_the_caption_printed_on_a_figure_page():
     assert bfc._page_caption("Figure 7-21 Illustration of the\nprocedure "
                              "(FHWA-TS-78-209).\nNext paragraph.", "7-21") == \
         "Illustration of the procedure (FHWA-TS-78-209)"
+
+
+def test_a_caption_block_under_a_figure():
+    cap = lambda text: bfc._block_caption(text, bfc._FIG_MARKER)
+    # a caption over two lines, a word broken at the line end keeps its hyphen
+    assert cap("Figure 4-7: Typical Load-\nSettlement Curves for a Test\n"
+               "Footing on Sand\n") == (
+        "4-7", "Typical Load-Settlement Curves for a Test Footing on Sand")
+    # a caption that opens with its first part
+    assert cap("Figure 3-2:  (a) Plan View (b) Section A-A") == (
+        "3-2", "(a) Plan View (b) Section A-A")
+    assert cap("Figure 6-1. Contact Pressure Under a Rigid Plate.\nNext line") == (
+        "6-1", "Contact Pressure Under a Rigid Plate")
+    # a blank line ends the caption
+    assert cap("Figure 2-4. Site Plan\n \nThe borings were drilled in 1990.")[1] == \
+        "Site Plan"
+
+
+def test_a_block_that_is_not_a_caption():
+    cap = lambda text: bfc._block_caption(text, bfc._FIG_MARKER)
+    assert cap("the stress is shown in Figure 5-9. This is simpler to use") is None
+    assert cap("Figure 5-9 shows the stress beneath the footing") is None
+    assert cap("Figure 5-9(a) presents the active case") is None
+    assert cap("Figure 5-9 (continued)") is None
+    assert cap("Figure 5-9. Continued") is None
+    assert cap("Figure 5-9  Gradation Chart ........................ 8") is None
+    assert cap("Figure 5-9:") is None
+
+
+def test_rows_join_words_set_on_lines_of_their_own():
+    line = lambda text, x, bottom: {"bbox": (x, bottom - 10, x + 40, bottom),
+                                    "spans": [{"text": text}]}
+    block = {"lines": [line("Figure ", 90, 340), line("6-1. ", 136, 340),
+                       line("Example ", 189, 340.5), line("costs", 240, 340),
+                       line("second row", 90, 356)]}
+    assert bfc._block_rows(block) == ["Figure  6-1.  Example  costs",
+                                      "second row"]
+
+
+def test_a_contents_page_does_not_place_a_figure(tmp_path):
+    """The first caption block on a page that is not a list of entries wins:
+    a contents page's block, an in-text mention and a "(continued)" label do
+    not place the figure."""
+    fitz = pytest.importorskip("fitz")
+    doc = fitz.open()
+    contents = doc.new_page()
+    for k, y in enumerate((72, 200, 330)):
+        contents.insert_text((72, y), f"Figure 9-{k + 1}: Entry Number {k + 1}")
+    mention = doc.new_page()
+    mention.insert_text((72, 72), "The wall moves as shown in Figure 9-1.")
+    mention.insert_text((72, 86), "This is a reasonable approximation.")
+    figure = doc.new_page()
+    figure.insert_text((72, 400), "Figure 9-1: Wall Movement Versus Depth")
+    later = doc.new_page()
+    later.insert_text((72, 400), "Figure 9-1 (continued)")
+    figs = {f["figure_number"]: f for f in bfc._figs_from_body(doc)}
+    assert figs["9-1"]["pdf_page_index"] == 2
+    assert figs["9-1"]["caption"] == "Wall Movement Versus Depth"
+    # figures with no other caption stay on the page that lists them
+    assert figs["9-2"]["pdf_page_index"] == 0
 
 
 def test_a_run_on_caption_is_flagged():
