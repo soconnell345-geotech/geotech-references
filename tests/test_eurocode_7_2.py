@@ -598,8 +598,20 @@ class TestBurlandBurbridge:
             equation_burland_burbridge_shape_factor(0.5)
 
     def test_settlement_normally_consolidated(self):
-        si = equation_burland_burbridge_settlement(2, 0.05, 200, 50)
+        si = equation_burland_burbridge_settlement(
+            2, 0.05, 200, 50, normally_consolidated=True)
         assert si == pytest.approx((200 - 50) * 2 ** 0.7 * 0.05)
+
+    def test_settlement_normally_consolidated_below_sigma_p_refused(self):
+        with pytest.raises(ValueError):
+            equation_burland_burbridge_settlement(
+                2, 0.05, 40, 50, normally_consolidated=True)
+
+    def test_settlement_over_consolidated_above_sigma_p(self):
+        # F.3(2), p. 126: sigma'p B^0.7 Icc/3 + (q' - sigma'p) B^0.7 Icc
+        si = equation_burland_burbridge_settlement(2, 0.05, 200, 50)
+        assert si == pytest.approx(50 * 2 ** 0.7 * 0.05 / 3
+                                   + (200 - 50) * 2 ** 0.7 * 0.05)
 
     def test_settlement_over_consolidated(self):
         si = equation_burland_burbridge_settlement(2, 0.05, 40, 50)
@@ -621,7 +633,8 @@ class TestAnnexGEquations:
 
     def test_g1_well_graded_above_dph(self):
         id_ = equation_g1_density_index_from_dp(10, "well_graded", "above", "dph")
-        assert id_ == pytest.approx(0.14 + 0.550 * math.log10(10))
+        # p. 129: ID = -0,14 + 0,550 lg N10H
+        assert id_ == pytest.approx(-0.14 + 0.550 * math.log10(10))
 
     def test_g1_invalid_combination(self):
         with pytest.raises(ValueError):

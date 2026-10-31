@@ -1323,20 +1323,28 @@ Smaller typos are not listed.
 ### Code that differs from the print
 
 The app reads `eurocode_7_2.equations` through its EC7-2 adapter, so
-these two change what a live run returns:
+these two changed what a live run returned. The review fixed both
+(fix/ref52-ec72b):
 - `equation_g1_density_index_from_dp`, for well-graded sand-gravel above
-  groundwater with the DPH, uses ID = 0,14 + 0,550 lg N10H. G.1 prints
-  -0,14 (p. 129). tests/test_eurocode_7_2.py pins the + sign.
-- `equation_burland_burbridge_settlement` returns (q' - σ'p) × B^0,7 ×
-  Icc for q' > σ'p, the normally consolidated form. F.3 (2) gives σ'p ×
+  groundwater with the DPH, used ID = 0,14 + 0,550 lg N10H, and
+  tests/test_eurocode_7_2.py pinned the + sign. G.1 prints -0,14
+  (p. 129); the code and the test now use -0,14.
+- `equation_burland_burbridge_settlement` returned (q' - σ'p) × B^0,7 ×
+  Icc for q' > σ'p, the normally consolidated form, so the result
+  dropped by σ'p × B^0,7 × Icc/3 as q' passed σ'p. F.3 (2) gives σ'p ×
   B^0,7 × Icc/3 + (q' - σ'p) × B^0,7 × Icc for over-consolidated sand
-  with q' ≥ σ'p (p. 126). The result drops by σ'p × B^0,7 × Icc/3 as q'
-  passes σ'p. Its q' ≤ σ'p branch follows the print (p. 127).
+  with q' ≥ σ'p (p. 126). That is now the default, with σ'p × B^0,7 ×
+  Icc/3 for q' ≤ σ'p as printed (p. 127). `normally_consolidated=True`
+  gives (q' - σ'p) × B^0,7 × Icc (p. 127) and refuses q' < σ'p.
 
-Noted, not fixed, because no live result changes:
-- The `equation_g3_stiffness_coefficient_from_dp` docstring gives the
+Fixed with them, though no live result changed:
+- The `equation_g3_stiffness_coefficient_from_dp` docstring gave the
   DPH range for sands as 3 ≤ N10H ≤ 30; G.3 prints ≤ 10 (p. 130). The
   code checks no range.
+- The D.5 and G.3 docstrings wrote Eoed = w1 (σ'v/pa)^w2. Both print
+  Eoed = w1 pa ((σ'v + 0,5 Δσ'v)/pa)^w2 (pp. 114, 130).
+
+Noted, not fixed, because no live result changes:
 - `equation_i5_fvt_correction_factor` takes wL in percent and divides by
   100. I.5 prints no unit (pp. 136 to 137); the docstring gives the
   reason.
