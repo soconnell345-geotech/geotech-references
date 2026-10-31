@@ -8,16 +8,14 @@
     {
       "section_id": "17.1",
       "title": "Development of the Pile Driving Criteria",
-      "summary": "A driving criterion equates blow count and hammer stroke to nominal resistance, from one or two of: static load test, dynamic testing with signal matching, rapid load test, wave equation or dynamic formula; a minimum penetration may be added. Changing the verification method changes the required nominal resistance: dynamic testing (0.65) to Gates (0.40) raises it 63%. With setup, piles may be driven to Rn divided by the setup factor if restrikes confirm it; with relaxation, drive harder.",
-      "body": "Chapter introduction (p. 433): piles meet resistance requirements, penetration requirements, or both; a minimum penetration may be added for scour, settlement, uplift or lateral demands; the correlation comes from one or a combination of two of the static load test (Ch 9), dynamic testing with signal matching (Ch 10), rapid load testing (Ch 11), wave equation (Ch 12) or dynamic formulas (Ch 13). 17.1 (pp. 433-435): the designer specifies the method and construction staff must understand it. NCHRP Synthesis 418 (Brown and Thompson 2011, 42 agencies) lists, from most to least frequent: blow count from another pile dynamically tested; from a dynamic formula; from a wave equation analysis; practical refusal; a specified tip elevation; blow count from a statically load tested pile. Each method has its own AASHTO (2014) resistance factor, so changing method changes the required nominal resistance: dynamic testing with signal matching (0.65) to the FHWA modified Gates formula (0.40) gives a 63% increase, which the driving system may not handle; Gates (0.40) to a static load test (0.75) or 100% dynamic testing is printed as an 87% reduction (by the factors, the requirement falls to 0.40/0.75 = 53% of the Gates value), which may allow a smaller hammer or a higher, safer termination above a boulder layer. With setup, end of driving resistance below the requirement may be acceptable when later restrikes confirm setup; with relaxation it should be higher. Restrikes wait for the expected change (Section 7.2.4; waiting periods Section 14.5.2.1). Example: a 50% setup gain lets piles be driven to the required nominal resistance divided by 1.5. Restrike a representative percentage of production piles and have a contingency (a longer term restrike or deeper driving).",
+      "summary": "Driving criteria equate blow count and stroke to nominal resistance, sometimes with a minimum penetration, set by static load test, dynamic testing, rapid load test, wave equation or dynamic formula; agencies most often use dynamic testing (NCHRP Synthesis 418). Changing method changes the required resistance (0.65 to 0.40 is a 63% increase). With setup, drive to the required resistance divided by the setup factor and confirm by restrikes.",
+      "body": "17.1 Development of the Pile Driving Criteria (pp. 433 to 435). Chapter intro: piles must meet compression, tension, lateral and serviceability requirements; blow count observations indicate nominal resistance, and criteria equate blow count and hammer stroke to it, with a minimum penetration where scour, settlement, uplift or lateral loads matter; the correlation comes from one or two of static load test (Chapter 9), dynamic testing with signal matching (10), rapid load testing (11), wave equation (12) or dynamic formulas (13). The designer should specify the method and construction staff understand it. Brown and Thompson (2011, NCHRP Synthesis 418; 42 agencies) found, most to least frequent: blow count from a dynamically tested pile; from a dynamic formula; from a wave equation; practical refusal; specified tip elevation; from a statically load tested pile. Each method has its own AASHTO (2014) resistance factor, so switching methods during construction changes the required nominal resistance: dynamic testing (0.65) to Gates (0.40) is a 63% increase, possibly beyond the driving system; Gates (0.40) to a static load test (0.75) or 100% dynamic testing is printed as an 87% reduction, which may allow a smaller hammer or a higher, safer termination above a damaging boulder layer. Consider time effects: with setup, end of driving penetration resistance below that for the required resistance may be acceptable once restrikes confirm it; with relaxation it should be higher. Restrikes confirm expected or unexpected changes after an appropriate wait (Section 7.2.4; waiting periods cited to 'Section 14.5.2.1' as printed; restrike delays are tabulated in Table 14-4). E.g., a 50% setup gain allows driving to the required resistance divided by 1.5, with restrikes on a representative percentage of piles and a contingency (longer restrike or deeper driving) if they fall short.",
       "key_points": [
-        "Criterion correlates blow count and stroke to nominal resistance from one or two verification methods",
-        "NCHRP Synthesis 418: most frequent is a blow count from another dynamically tested pile",
-        "Changing method changes the required Rn: dynamic testing (0.65) to modified Gates (0.40) = 63% increase",
-        "Gates (0.40) to static load test (0.75): printed as an 87% reduction; by the factors Rn falls to 53% (47% lower)",
-        "Setup: drive to required Rn divided by the setup factor (e.g. 1.5) when restrikes confirm setup",
-        "Relaxation: end of driving resistance must exceed the requirement",
-        "Restrike a representative percentage of production piles; keep a contingency plan"
+        "Criterion equates blow count and stroke to nominal resistance (plus minimum penetration if needed)",
+        "Most common agency basis: blow count from a dynamically tested pile (NCHRP Synthesis 418)",
+        "Changing verification method changes required Rn: 0.65 to 0.40 gives a 63% increase",
+        "With setup, drive to required Rn / setup factor; confirm by restrikes",
+        "With relaxation, end of driving resistance must exceed the required resistance"
       ],
       "equations": [],
       "figures": [],
@@ -27,16 +25,14 @@
     {
       "section_id": "17.2",
       "title": "Practical and Absolute Refusal",
-      "summary": "Refusal definitions assume an approved hammer at its maximum fuel or stroke setting, unless approval was at a reduced setting. Practical refusal is 10 blows per inch for at most 3 consecutive inches; absolute refusal is 20 blows for 1 in. or less. Driving stops at either. Over 10 blows per inch needs care for concrete piles and should be avoided for timber. On hard rock, 5 blows per 1/4 in. or 10 per 1/2 in. may be preferred. If penetration cannot be reached, consider predrilling, jetting or spudding.",
-      "body": "17.2 (pp. 435-436): practical and absolute refusal assume an approved hammer working properly at maximum fuel or stroke, unless hammer approval was at a reduced setting; refusal with suspect hammer performance calls for evaluating energy transfer and the cause. Practical refusal is 10 blows per inch for a maximum of 3 consecutive inches, often used for piles driven to a consistent hard layer; more than 10 blows per inch should be used with care for concrete piles and avoided for timber piles. Absolute refusal is 20 blows for one inch or less. Driving should stop immediately once either is reached with a properly sized and working hammer; the criteria avoid extended driving at unreasonable blow counts. Seating on hard rock, an absolute refusal of 5 blows per 1/4 in. or 10 blows per 1/2 in. may be preferred to 20 blows per inch to reduce toe or equipment damage. If required penetration cannot be reached without exceeding refusal, evaluate predrilling, jetting or spudding (Chapter 15).",
+      "summary": "Practical refusal: 10 blows per inch for at most 3 consecutive inches; absolute refusal: 20 blows for 1 in. or less; based on a properly working hammer at maximum fuel or stroke; above 10 blows per inch use care for concrete piles and avoid for timber; on hard rock 5 blows per 1/4 in. or 10 blows per 1/2 in. may be preferred; otherwise consider penetration aids.",
+      "body": "17.2 Practical and Absolute Refusal (pp. 435 to 436). Agencies sometimes use practical refusal as a criterion. Refusal definitions assume an approved hammer operating properly at maximum fuel or stroke, unless approval was at a reduced setting; refusal with suspect hammer performance calls for evaluating energy transfer. Practical refusal is 10 blows per inch for a maximum of 3 consecutive inches, often used for piles to a consistent hard bearing layer; above 10 blows per inch use care for concrete piles and avoid for timber piles. Absolute refusal is 20 blows for one inch or less. Driving should stop immediately at either with a properly sized and working hammer, avoiding extended driving at unreasonable blow counts. Seating on hard rock, an absolute refusal of 5 blows per 1/4 in. or 10 blows per 1/2 in. may be preferred to 20 blows per inch to reduce toe or equipment damage. If required penetration cannot be reached without exceeding refusal, evaluate predrilling, jetting or spudding (Chapter 15).",
       "key_points": [
-        "Practical refusal: 10 blows per inch for a maximum of 3 consecutive inches",
-        "Absolute refusal: 20 blows for 1 in. or less of penetration",
-        "Definitions assume an approved hammer at maximum fuel or stroke unless approved at a reduced setting",
-        "Stop driving immediately once either criterion is reached with a properly working hammer",
-        "Over 10 blows per inch: care for concrete piles; avoid for timber piles",
-        "Hard rock seating: 5 blows per 1/4 in. or 10 blows per 1/2 in. may be preferred",
-        "Penetration not reachable within refusal: evaluate predrilling, jetting or spudding"
+        "Practical refusal: 10 blows/in. for at most 3 consecutive inches",
+        "Absolute refusal: 20 blows for 1 in. or less",
+        "Above 10 blows/in.: care for concrete piles, avoid for timber piles",
+        "Hard rock seating: 5 blows per 1/4 in. or 10 blows per 1/2 in.",
+        "Refusal assumes a properly working hammer at maximum fuel or stroke"
       ],
       "equations": [],
       "figures": [],
@@ -46,19 +42,17 @@
     {
       "section_id": "17.3",
       "title": "Practical Issues and Considerations",
-      "summary": "Common problems: incomplete acceptance criteria, unclear authority to stop driving, no stated time (end of driving or restrike), unclear coverage of substructure units, minimum penetration misused for axial resistance, Rndr confused with Rn, unreasonable refusal, rock termination, dynamic methods overpredicting below 24 bl/ft and underpredicting above 120 bl/ft, methods differing on one pile, restrike interpretation, slow acceptance decisions, and open sections behaving differently under static and dynamic load.",
-      "body": "17.3 (pp. 436-441): specifications should state acceptance requirements (compression or uplift resistance, any minimum penetration for lateral or serviceability needs, to avoid premature acceptance over compressible layers or from obstructions or poor hammer performance) and the verification method. Contract documents should say who and what method ends test pile driving; keep a detailed manually recorded log; in production the inspector is often the agency's lone representative. Criteria must say when they apply (end of initial driving or beginning of restrike) and give the restrike window; restrikes too early or too late may invalidate the correlation, and limited drivability piles may need a window to avoid refusal on restrike. Identify test pile locations and the substructure units they cover; extrapolate by refined then modified wave equation. Minimum penetration serves scour, compressibility, liquefaction, lateral or uplift, not axial compression alone; the estimated toe elevation sets bid lengths, the minimum toe elevation performance. Rndr can be much greater than Rn with scourable, liquefiable or compressible layers or relaxation, and less with setup. Avoid unreasonable refusal; predrill where hard rock penetration is required. Soft rock can be driven a long way with gradual buildup; on hard rock stop quickly. Below 24 bl/ft dynamic methods tend to overpredict (reduce stroke or fuel); above 120 bl/ft they give lower bounds (larger stroke, more fuel, bigger hammer or variable stroke drop hammer). Static, dynamic, wave equation and formula results differ; use the most reliable checked method; a static test correlates only depth, end of driving blow count and stroke, so refined wave equation and static analysis extend it (Sections 12.6.9, 17.4). Restrike stroke should give 2 to 3 to 10 blows per inch; analyze an early high energy blow; record the blow count over the whole restrike; near or below 24 bl/ft pick a lower energy blow; superpose shaft resistances from several blows when movement is limited, using end of drive toe resistance only if relaxation is not a concern. Decide acceptance promptly to avoid delay claims. Undersized hammers give conservative results; open end pipes or H-piles not on rock may slip internally under dynamic load but plug statically (Section 7.10.7).",
+      "summary": "Common issues: unclear acceptance criteria; who terminates driving; when the criterion applies (EOD or restrike window); applicability to substructures; purpose of minimum penetration (not for compression alone); estimated vs. minimum toe elevation; Rndr vs. Rn; unreasonable refusal; rock termination; dynamic methods overpredict below 24 blows/ft and underpredict above 120; methods differ; restrike evaluation; timely acceptance; open sections plugging.",
+      "body": "17.3 Practical Issues and Considerations (pp. 436 to 441). Issues to settle before driving: (1) incomplete or conflicting acceptance criteria: specify resistance in compression or uplift, minimum penetration (lateral, serviceability, avoiding acceptance in competent layers over compressible ones or on obstructions or poor hammer performance) and the verification method. (2) Who decides termination on test piles (inspector, agency engineer, dynamic tester, foreman), set in the contract and revisited; keep a detailed manual log; in production the inspector is often the agency's lone representative. (3) Time: state whether the criterion applies at end of initial driving or beginning of restrike, and the restrike window; restrikes too early or late may invalidate a time-dependent correlation, and piles with limited drivability under setup may need a window to avoid refusal. (4) Applicability: identify test piles and the substructures they cover; extrapolate to other resistances, lengths, batters or stratigraphy by refined then modified wave equation. (5) Minimum penetration for scour, compressible or liquefiable layers, lateral or uplift demands; generally not only for axial compression. (6) Estimated toe elevation gives bid lengths; minimum toe elevation meets performance. (7) Rndr, overcome at driving to give Rn, can exceed Rn (unsuitable layers, toe relaxation) or be less (setup). (8) Unreasonable refusal or hard to reach penetration; predrill into very hard materials. (9) Soft rock often allows gradual buildup; terminate quickly on hard rock. (10) Below 24 blows/ft dynamic tests and wave equation tend to overpredict (hard to separate static and dynamic resistance; use reduced stroke or fuel), above 120 blows/ft underpredict (resistance not fully activated; use larger stroke, fuel, hammer or a variable stroke drop hammer). (11) Static, dynamic, wave equation and formula results differ (different resistance factors); use the most reliable method checked for reasonableness; a static test gives only depth, EOD blow count and stroke, so other combinations come from refined wave equation (Section 12.6.9) and other locations from subsurface review and static analysis (Section 17.4). (12) Restrikes: choose stroke for 2 to 3 to 10 blows per inch at beginning of restrike and analyze an early high energy blow; record blow count throughout; near or below 24 blows/ft analyze a lower energy blow; with limited movement superpose shaft resistances from several blows and EOD toe resistance, only where bearing layer relaxation is not a concern. (13) Decide on production piles promptly to avoid delay claims. (14) Dynamic methods can be conservative: undersized hammers do not mobilize full resistance; open pipes and H-piles not on rock may slip dynamically but plug statically (Section 7.10.7).",
       "key_points": [
-        "Specifications state acceptance requirements and the verification method; who ends test driving is set beforehand",
-        "Keep a detailed manually recorded driving log for test piles",
-        "Criteria state when they apply (end of driving or beginning of restrike) and the restrike window",
-        "Minimum penetration is for scour, compressibility, liquefaction, lateral or uplift, not axial compression alone",
-        "Rndr exceeds Rn for unsuitable layers or relaxation; can be less than Rn with setup",
-        "Dynamic methods tend to overpredict below 24 bl/ft and underpredict above 120 bl/ft",
-        "Low blow counts: reduce stroke or fuel; high blow counts: more stroke, more energy or variable stroke drop hammer",
-        "Restrike blow count ideally 2 to 3 to 10 blows per inch; analyze an early, high energy blow",
-        "Near or below 24 bl/ft on restrike, analyze a lower energy blow",
-        "Open end pipes and H-piles not on rock may plug statically but slip under dynamic loading"
+        "Contracts must define acceptance criteria, verification method and who terminates driving",
+        "State whether the criterion applies at EOD or restrike, and the restrike time window",
+        "Minimum penetration generally not specified only for axial compression",
+        "Rndr can exceed Rn (unsuitable layers, relaxation) or be less (setup)",
+        "Dynamic methods overpredict below 24 blows/ft and underpredict above 120 blows/ft",
+        "Restrike: aim for 2-3 to 10 blows/in.; analyze an early high energy blow",
+        "Superpose restrike shaft and EOD toe resistance only if relaxation is not a concern",
+        "Open sections may slip dynamically but plug statically: dynamic results can be conservative"
       ],
       "equations": [],
       "figures": [],
@@ -68,16 +62,28 @@
     {
       "section_id": "17.4",
       "title": "Examples for Establishing Driving Criteria",
-      "summary": "Example 1 (2% dynamic testing, 0.65): five test piles; average setup 1.15 at abutments and 1.19 at piers; production piles may reach 10% less than required at end of driving, giving 36 bl/ft (164 kips) and 43 bl/ft (209 kips) by refined wave equation. Example 2 (static test plus 2% dynamic, 0.80): static 260 kips (Davisson), restrike 290 kips, correlation factor 0.9, site setup factor 1.2; end of driving targets 167 and 212 kips set the blow count at each unit.",
-      "body": "17.4 (pp. 441-442): other approaches include a refined bearing graph, or restriking after all piles are driven to a wave equation blow count, which risks redriving, added piles or 100% testing if resistance falls short. 17.4.1 (pp. 442-443): under 100 piles, sandy soils, three piers and two abutments; factored loads 117 and 150 kips give required nominal resistances of 180 and 230 kips with 0.65; one test pile per unit (five, above the two required), tested at end of driving and restrike next day (Table 17-1). Abutments: averages 187 and 215 kips, setup 1.15, end of driving 40 to 42 bl/ft; allowing 10% less than 180 kips at end of driving, refined wave equation gave 36 bl/ft (164 kips). Piers: 240 and 285 kips, setup 1.19, 47 to 50 bl/ft; 43 bl/ft (209 kips). Test piles exceeded the requirement and became production piles. 17.4.2 (pp. 443-444): under 120 piles, medium dense fine sands, 0.80; factored loads 144 and 184 kips give 180 and 230 kips; load frame for 230 kips, capacity 350 kips; reaction piles driven to static analysis depth for uplift (350 kips per number of reaction piles) and a wave equation resistance; test pile driven to the static analysis depth for 230 kips, reached at 60 bl/ft; static test one week later, then restrikes. End of driving signal matching 220 kips, static 260 kips (Davisson), restrike 290 kips; the 30 kip difference was likely from preloading but treated as systematic, so a correlation factor 260/290 = 0.9 applies to all dynamic results; end of driving 198 kips gives setup 1.31, but a conservative 1.2 was used: 180/(1.2 x 0.9) = 167 kips and 230/(1.2 x 0.9) = 212 kips. One production pile per unit was tested; its blow count at the target became that unit's criterion.",
+      "summary": "Simplified examples of economical and safe criteria for 2% dynamic testing (Example 1) or one static test plus 2% dynamic testing (Example 2); alternatives include a refined wave equation bearing graph, or restrike testing after installation to a wave equation blow count, which risks redriving, added piles or 100% testing.",
+      "body": "17.4 Examples for Establishing Driving Criteria (pp. 441 to 442). The examples illustrate considerations for economical and safe criteria (a) with 2% dynamic testing and (b) with one static test plus 2% dynamic testing. Other approaches: a refined wave equation bearing graph from initial testing giving blow counts for different resistances; or restrike dynamic testing after all piles are driven to a wave equation blow count, satisfactory for a well documented competent bearing layer, but insufficient restrike results would require redriving deeper, more piles, or 100% testing (allowing a higher resistance factor so reduced resistances may become acceptable).",
       "key_points": [
-        "Example 1: 2% dynamic testing (0.65); required Rn 180 kips (abutments) and 230 kips (piers)",
-        "Example 1: average setup factors 1.15 (abutments) and 1.19 (piers) from end of driving and restrike signal matching",
-        "Example 1: end of driving allowed 10% below required; refined wave equation gave 36 bl/ft and 43 bl/ft",
-        "Example 2: static load test plus 2% dynamic testing (0.80); static 260 kips by Davisson, restrike 290 kips",
-        "Example 2: correlation factor 0.9 on all dynamic results; site setup factor 1.2 (test pile showed 1.31)",
-        "Example 2: end of driving targets 167 kips (abutments) and 212 kips (piers)",
-        "Example 2: one dynamically tested production pile per unit sets that unit's blow count criterion"
+        "Example 1: 2% dynamic testing; Example 2: one static load test plus 2% dynamic testing",
+        "Alternative: refined wave equation bearing graph from initial test results",
+        "Testing only after installation risks redriving, added piles or 100% testing"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked examples turning test pile results into production driving criteria with setup."
+    },
+    {
+      "section_id": "17.4.1",
+      "title": "Driving Criterion - Example 1",
+      "summary": "Small bridge, under 100 piles, sands, 2% dynamic testing (phi 0.65): required Rn 180 kips (abutments, 117 kip factored load) and 230 kips (piers, 150 kips); five test piles (Table 17-1) gave setup factors 1.15 and 1.19; EOD resistance allowed 10% below required, giving criteria of 36 blows/ft (164 kips EOD) at abutments and 43 blows/ft (209 kips) at piers by refined wave equation.",
+      "body": "17.4.1 Driving Criterion - Example 1 (pp. 442 to 443). For a small bridge with fewer than 100 piles at three piers and two abutments in relatively uniform sands, dynamic testing with signal matching on 2% of piles (phi_dyn 0.65) was specified; one pile per substructure was tested before production driving (five, above the minimum of two). Factored loads 117 kips (abutments) and 150 kips (piers) give required nominal resistances of 180 and 230 kips. Piles were tested at initial driving and restrike the next day. Table 17-1 (location: factored load, required Rn, blow count bl/ft, signal matching EOD, BOR kips, setup factor): N Abut. 117, 180, 40, 185, 215, 1.16; Pier 1 150, 230, 47, 235, 275, 1.17; Pier 2 150, 230, 49, 240, 290, 1.21; Pier 3 150, 230, 50, 245, 290, 1.18; S Abut. 117, 180, 42, 188, 215, 1.14. Abutments: average EOD 187 and BOR 215 kips, setup 1.15, EOD 40 to 42 blows/ft; conservatively allowing EOD resistance 10% below 180 kips, refined wave equation gave a criterion of 36 blows/ft (164 kips at EOD, reaching 180 kips with setup). Piers: averages 240 and 285 kips, setup 1.19, 47 to 50 blows/ft; criterion 43 blows/ft (209 kips at EOD, 230 kips with setup). The test piles exceeded the required resistances and were accepted as production piles.",
+      "key_points": [
+        "2% dynamic testing with signal matching, phi_dyn = 0.65",
+        "Required Rn = factored load / 0.65: 180 kips abutments, 230 kips piers",
+        "Measured setup factors: 1.15 (abutments), 1.19 (piers)",
+        "EOD resistance allowed 10% below required; criteria 36 and 43 blows/ft by refined wave equation"
       ],
       "equations": [],
       "figures": [],
@@ -89,7 +95,23 @@
           "page": 442
         }
       ],
-      "applicability": "Worked examples turning test pile results into production driving criteria with setup."
+      "applicability": "Worked example of driving criteria from 2% dynamic testing with setup."
+    },
+    {
+      "section_id": "17.4.2",
+      "title": "Driving Criterion - Example 2",
+      "summary": "Static load test plus 2% dynamic testing (phi 0.80): required 180 and 230 kips; load test pile at 60 blows/ft gave EOD signal matching 220 kips, Davisson failure 260 kips, restrike 290 kips; correlation factor 260/290 = 0.9, EOD 198 kips, setup 1.31, design setup 1.2; drive to EOD signal matching resistances of 167 kips (abutments) and 212 kips (piers).",
+      "body": "17.4.2 Driving Criterion - Example 2 (pp. 443 to 444). A relatively small bridge with two abutments, three piers and fewer than 120 piles in medium dense fine sands used a static load test at one pier plus dynamic testing of 2% of piles (phi_dyn 0.80). Factored loads 144 and 184 kips gave required resistances of 180 and 230 kips. The load frame targeted 230 kips with 350 kips capability. Reaction piles (depth by static analysis for 350 kips / number of reaction piles uplift, blow count by wave equation) and the test pile were dynamically monitored; the test pile reached its static analysis depth for 230 kips at 60 blows/ft. The static test one week later failed by the Davisson criterion at 260 kips; EOD signal matching gave 220 kips and restrike signal matching (after the static test) 290 kips. The 30 kip difference was likely due to preloading of the granular soils by the static test, but was treated as systematic: a correlation factor of 260/290, or 0.9, applies to all dynamic results. The agreed EOD resistance was 0.9 x 220 = 198 kips, a setup factor of 260/198 = 1.31; a conservative site setup factor of 1.2 was adopted, so piles are driven to EOD signal matching resistances of 180/(1.2 x 0.9) = 167 kips at abutments and 230/(1.2 x 0.9) = 212 kips (as printed) at piers. One production pile per substructure was tested this way, and the blow count at the required EOD resistance became the criterion for the rest there.",
+      "key_points": [
+        "Static load test plus 2% dynamic testing, phi_dyn = 0.80",
+        "Davisson failure 260 kips vs. restrike signal matching 290 kips: correlation factor 0.9",
+        "EOD 0.9 x 220 = 198 kips; setup 1.31 measured, 1.2 adopted",
+        "Drive to EOD signal matching resistance = required Rn / (1.2 x 0.9): 167 and 212 kips"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked example of driving criteria from a static load test plus dynamic testing."
     }
   ]
 }

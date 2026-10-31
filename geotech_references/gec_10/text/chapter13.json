@@ -7,70 +7,768 @@
     {
       "section_id": "13.1",
       "title": "General",
-      "body": "Drilled shaft behavior is highly dependent on local geology and construction procedure details, making accurate performance prediction from standardized methods difficult. Site-specific load tests performed under realistic conditions improve accuracy and reliability. Because load tests reduce prediction variability, larger resistance factors are justified when tests are performed. Two general purposes: (1) load transfer tests — obtain detailed information on side and base resistance distribution to allow improved design; best performed on test shafts constructed in advance of production installation; (2) proof tests — verify that test shaft can sustain a given load, thus verifying strength/serviceability requirements. Benefits of load testing: direct measure of resistance in project-specific geology and with project construction methods; improved reliability allows higher resistance factors; potential reduction in shaft length or rock excavation. Limitations: limited benefit in highly variable geology from single test; substantial time and money investment; may not recover cost for projects with few shafts; design may not be controlled by geotechnical strength (e.g., scour or lateral loading governs).",
+      "body": "[pp. 13-1 to 13-2] Drilled shaft behavior depends strongly on local geology and construction details, so standardized design methods such as this manual's predict strength and serviceability limits only approximately; site-specific field load tests under realistic, representative conditions improve the accuracy of predicted performance and the reliability of the foundations, and because they reduce some of the variability, larger resistance factors are justified when load tests are performed at the project site. Tests on high capacity shafts were rare because of the loads needed to mobilize resistance (Figure 13-1), but newer methods allow cost-effective testing to loads not possible before. Load tests are performed for two reasons: to obtain detailed load transfer information in side and base resistance (or lateral soil resistance) for an improved design ('load transfer test'), or to prove that the shaft as constructed can sustain a given load, verifying strength and/or serviceability requirements ('proof test'). A load transfer test tries to fully mobilize the resistance, often with instrumentation to find the distribution of side and base resistance, and is most useful on test shafts built in advance of production so results and lessons can be incorporated into the design; the preferred approach is non-production test shafts, and where tests are at production locations there is a risk that an unexpected low result requires mitigation of a production foundation. Proof tests verify that shafts as designed and constructed meet the strength and/or serviceability requirements, in advance of production or on production shafts; they can improve reliability and may justify larger resistance factors, although there are at present no established procedures for performing proof tests nor AASHTO specifications addressing resistance factors for drilled shafts with proof tests. Unscheduled proof tests can be performed on production shafts when construction records indicate the geotechnical resistance may be questionable.",
       "key_points": [
-        "Load transfer test: detailed side/base resistance distribution for improved design",
-        "Proof test: verify shaft can sustain required load — strength/serviceability verification",
-        "Load tests justify larger resistance factors — directly reduces uncertainty",
-        "Preferred: load tests on non-production test shafts in advance of production installation",
-        "Minimum recommendation: number of load tests ≥2% of total production drilled shafts"
+        "Site-specific load tests reduce variability and justify larger resistance factors",
+        "Load transfer test: mobilize and measure side and base resistance distribution for an improved design",
+        "Proof test: verify the shaft as constructed sustains a given load",
+        "Preferred: non-production test shafts built before production",
+        "No established proof test procedures or AASHTO resistance factors for proof-tested drilled shafts"
       ],
       "equations": [],
       "figures": [
-        "Figure 13-1: Kentledge static load tests compared with bi-directional and rapid load tests",
-        "Figure 13-2: Proof tests on production shafts — dynamic and rapid load tests"
+        "Figure 13-1: Kentledge Static Load Tests Compared with (a) Bi-directional Load Test; (b) Force Pulse (Rapid) Load Test (photos courtesy Loadtest, Inc. and Applied Foundation Testing)"
       ],
-      "tables": [
-        "Table 13-1: Benefits and limitations of design-phase field load tests",
-        "Table 13-2: Benefits and limitations of field load tests at start of construction",
-        "Table 13-3: Benefits and limitations of proof tests on production shafts"
-      ],
+      "tables": [],
       "applicability": "Load test program planning; resistance factor selection; quality assurance"
     },
     {
-      "section_id": "13.1.2",
-      "title": "Load Test Timing Options",
-      "body": "Design-phase tests: greatest benefit — results can be incorporated to optimize design and constructability; comparative testing of alternatives (drilled shafts vs. driven piles); reduces constructability risks for bidders; allows construction to proceed immediately to production; requires separate contract with drawings, specifications, permits. Start of construction tests: design benefits from higher resistance factors; incorporated into project contract; can include adjustments to shaft tip elevation; limited opportunity for major design changes; contractor must bid on worst-case conditions. Proof tests on production shafts: quality assurance and verification; minimal schedule impact; no separate contract; test on questionable shaft possible; AASHTO lacks established procedure/resistance factors for proof tests; unfavorable result requires expensive remediation. Multiple test locations required for large sites: when geologic character differs; when average calibrated resistance varies by factor of 2 or more from test location; when location is far from test shaft; for large number of shafts (≥2% load tests of total production shafts).",
+      "section_id": "13.1.1",
+      "title": "Benefits and Limitations of Field Load Testing",
+      "body": "[pp. 13-2 to 13-3] Benefits and limitations depend on project size and scope, construction difficulty, schedule, site access, geology, local experience and the design's sensitivity to geotechnical parameters; sensitivity analyses during design (Chapter 8) help evaluate the range of behaviors and the cost and schedule impact. Benefits for projects of significant size: (a) direct measure of resistance in the founding formation; (b) direct measure of performance with the actual construction means and methods; (c) refinement of the design method in local geology; (d) improved overall reliability through site-specific verification; (e) higher resistance factors for design when load testing is included, improving economy even if tip elevations are not changed after testing; (f) improved economy if refinements are incorporated from the results; (g) possible reductions in shaft length or rock excavation, reducing construction risks to cost and schedule; (h) benefit to future projects. Limitations: (a) a single or few tests in highly variable geology may be of limited benefit in evaluating variations in production shaft performance; (b) tests require substantial resources and time, and on an accelerated critical-path schedule the delay may cost more than the extra embedment of a conservative design with lower resistance factors; (c) projects with few shafts may not recover the cost; (d) the design may not be controlled by geotechnical strength, e.g., scour and lateral loading may require founding in hard rock with more than sufficient axial resistance even with a very conservative approach and a low resistance factor, in which case axial load tests may not be prudent. Careful planning and creative use of the testing technologies can enhance the benefits and overcome some limitations.",
       "key_points": [
-        "Design-phase: greatest benefit; requires separate contract; best for schedule optimization",
-        "Start of construction: most common; incorporated in project contract; limited design flexibility",
-        "Proof tests on production shafts: QA only; AASHTO lacks established resistance factors for proof tests",
-        "Multiple tests: needed when geologic character differs or calibrated resistance varies 2× or more"
+        "Weigh benefits against project size, schedule, geology and design sensitivity (Chapter 8 sensitivity analyses)",
+        "Benefits: direct site- and method-specific resistance, refined design method, higher resistance factors, possible shorter shafts",
+        "Limitations: variable geology, cost and schedule delay, few shafts, designs not controlled by axial strength (scour, lateral)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Load test program timing and scope decisions"
+      "applicability": "Deciding whether a field load test program is worthwhile"
+    },
+    {
+      "section_id": "13.1.2",
+      "title": "Design-Phase Load Testing Program",
+      "body": "[pp. 13-3 to 13-4] The greatest benefit can almost always be derived from field load testing during the design phase. Design-build teams, under accelerated schedules and incentives for economy, may execute load tests while design is completed so the results achieve maximum economy. In conventional projects a design-phase program generally requires a separate contract with drawings, specifications and permits so the work is executed and implemented during final design. Table 13-1 benefits: results readily implemented and the design optimized for economy and constructability; comparative tests of alternative systems (e.g., drilled shafts vs. driven piles); field work before bidding reduces constructability issues for bidders; mitigated constructability problems reduce contingency in bids and the risk of claims; construction may proceed straight into production, reducing construction time (if similar methods are used). Limitations: time and effort to prepare documents for a separate contract; the testing time can be a problem on a 'fast-track' project; separate mobilization and permits can be costly, especially over water, near structures or with traffic or permit issues; contractors may have little interest in a small contract or may wish to keep their techniques confidential; test shaft performance may differ from production shafts if construction methods differ.",
+      "key_points": [
+        "Design-phase testing almost always gives the greatest benefit",
+        "Conventional projects need a separate test contract (drawings, specifications, permits)",
+        "Table 13-1: optimized design, comparative systems, fewer bid contingencies vs. contract effort, schedule and mobilization cost"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 13-1: Summary of Benefits and Limitations of Design-Phase Field Load Tests - benefits: results readily implemented and design optimized; comparative tests of alternative foundation systems; field work before bidding reduces constructability issues; lower contingency and claims risk; production may start immediately on notice to proceed. Limitations: separate contract documents; time on fast-track projects; separate mobilization and permit costs; little contractor interest in small contracts; test shafts may differ from production shafts if built differently"
+      ],
+      "applicability": "Planning design-phase field load test programs"
+    },
+    {
+      "section_id": "13.1.3",
+      "title": "Field Load Testing Program at the Start of Construction",
+      "body": "[pp. 13-3 to 13-4] Most field load tests are conducted during construction, after final design but before production shaft installation; the higher resistance factor associated with load testing can still be used since the design is completed knowing tests will be performed, and some changes such as tip elevation adjustments are usually possible (an add/deduct price can be included for length adjustments). The owner derives less economy from length reductions than with a design-phase program, since the contractor sizes equipment for the maximum anticipated length and size and may carry contingency in the bid. Table 13-2 benefits: higher resistance factors because tests will be performed; no separate mobilization or contract; avoids added design time to procure, conduct, report and assess tests; evaluates the project's construction method; results can adjust shaft length. Limitations: major design changes not practical; no alternative systems tested; smaller savings from length reductions; testing time may impact the schedule, especially when accelerated; little time to evaluate results before production; the contractor must bid, size equipment and carry contingency for the least favorable anticipated conditions.",
+      "key_points": [
+        "Most common timing: after final design, before production shafts",
+        "Higher resistance factors usable; tip elevation adjustments possible (add/deduct price for length)",
+        "Less economy than design-phase testing; contractor bids for worst-case conditions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 13-2: Summary of Benefits and Limitations of Field Load Tests at the Start of Construction - benefits: higher resistance factors; no separate mobilization or contract; no added design time; evaluates the project construction method; results adjust shaft length. Limitations: major design changes not practical; no alternative systems tested; smaller savings from length reductions; schedule impact; little time to evaluate results; contractor bids and sizes equipment for least favorable conditions"
+      ],
+      "applicability": "Planning field load tests at the start of construction"
+    },
+    {
+      "section_id": "13.1.4",
+      "title": "Proof Tests on Production Shafts",
+      "body": "[pp. 13-5 to 13-6] The preferred method is load tests on shafts built in advance of production, but proof tests on production shafts, with or without earlier tests, provide quality assurance and improved reliability: results cannot readily change the design, but they verify performance including the project's construction means and methods with minimal schedule impact. Because an unfavorable result on a built foundation leads to inefficient mitigation, designers must include contingency (a more conservative design) when verification comes only on production shafts, a hidden cost compared with advance tests. Some technologies may be limited or impractical on production shafts: a lateral test to large loads can produce non-reversible displacement and flexural damage; a bi-directional cell creates a discontinuity in the flexural reinforcement at the cell; an uplift load producing large upward displacement (more than about 1/2 inch) may adversely affect the maximum side resistance under a later downward load; a full size production shaft may be impractical to load. Proof tests may also complement pre-production tests to evaluate variability in site conditions or construction methods, and shafts with apparent deficiencies can sometimes be evaluated by proof tests in lieu of expensive mitigation. Figure 13-2: (a) a dynamic load test on a shaft after the pier was built; (b) a rapid load test on a production shaft. Table 13-3 benefits: may justify higher resistance factors; no separate mobilization or contract; evaluates the construction methodology; little or no schedule impact; a questionable shaft can be tested. Limitations: test procedures and design resistance factors not currently addressed in AASHTO LRFD; design changes not practical after installation; the cost of an unfavorable result requires a more conservative design; remediation may be required; effects of testing on production shaft performance must be considered; full size tests may be impractical.",
+      "key_points": [
+        "Proof tests on production shafts give QA and reliability with minimal schedule impact",
+        "Hidden cost: contingency in design for a possible unfavorable result",
+        "Cautions: large lateral loads, bi-directional cell discontinuity, uplift over about 1/2 in. can reduce later side resistance",
+        "Table 13-3: AASHTO LRFD does not address proof test procedures or resistance factors"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-2: Proof Tests on Production Shafts can Verify Axial Resistance"
+      ],
+      "tables": [
+        "Table 13-3: Summary of Benefits and Limitations of Proof Tests on Production Shafts - benefits: may justify higher resistance factors; no separate mobilization or contract; evaluates construction methodology; little or no schedule impact; questionable shaft can be verified. Limitations: procedures and resistance factors not addressed in AASHTO LRFD; design changes not practical after installation; unfavorable-result costs force a more conservative design; remediation may be required; testing effects on the production shaft; full size tests may be impractical"
+      ],
+      "applicability": "Proof testing of production drilled shafts"
+    },
+    {
+      "section_id": "13.1.5",
+      "title": "Field Load Testing for Research",
+      "body": "[pp. 13-5 to 13-6] Field load tests at representative locations in a geologic area can give an agency lasting benefits through improved design methods and more reliable parameters, and research-quality tests can involve local universities and extensive instrumentation. Challenges: (a) the geological setting must represent conditions anticipated on future projects; site selection may be the most challenging and most important aspect; (b) construction procedures must be representative of future projects; (c) funding from a usually small research budget is difficult, but incorporating the tests into an upcoming construction project lets the construction work bear much of the field cost, with research funds extending the benefit, an effective way to involve university faculty and students.",
+      "key_points": [
+        "Research tests improve agency design methods and parameters",
+        "Site must represent future projects; construction procedures typical",
+        "Fund field work through an upcoming construction project"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Research-quality field load test programs"
     },
     {
       "section_id": "13.2",
       "title": "Load Tests to Measure Axial Resistance",
-      "body": "Planning objectives: identify most critical resistance components (base vs. side; specific stratum); assess effect of construction method (slurry type, exposure time, base cleanliness, grouting); measure load-displacement relationships; verify design assumptions. Test shaft location: match geology of production shafts; consider number needed for variable sites. Test shaft construction: match production shaft diameter, length, construction method, and installation procedures as closely as possible. Test methods: (1) conventional top-loading with kentledge (dead weight) or reaction frame — practical for lower capacity shafts; very large loads impractical for high capacity shafts; (2) bi-directional load cell (O-cell) — hydraulic jack embedded in shaft; loads shaft upward and downward simultaneously; can test very high capacity shafts economically; Osterberg cell and similar devices; converts separate upward and downward test results to equivalent top-load curve; ASTM D8169/D8169M; most common method for high-capacity drilled shafts; (3) rapid compression force pulse (Statnamic) — combustion gas or drop mass applies compressive force pulse at top; ASTM D7383 Procedure A (gas) or B (drop mass); (4) high strain dynamic testing — drop weight delivers blow to top of shaft; ASTM D4945; signal matching analysis. Instrumentation: vibrating wire or resistive strain gauges on reinforcing bars at multiple elevations to determine load distribution between strata and between side and base resistance; telltales (rods) measure displacement at tip and selected elevations; accelerometers and force transducers for dynamic tests. Interpretation: strain gauge data used to construct load-transfer curves; equivalent top-load vs. displacement from O-cell test; Davisson criterion or other method for failure load from conventional test.",
+      "body": "[p. 13-7] Overview of the most important considerations in planning axial load tests, the methods for performing them, instrumentation for measuring shaft performance, and methods for interpreting the results (13.2.1 to 13.2.4).",
       "key_points": [
-        "Bi-directional (O-cell) method: most common for high-capacity drilled shafts; ASTM D8169/D8169M",
-        "Rapid compression force pulse (Statnamic): ASTM D7383; applicable for medium-high capacity shafts",
-        "High-strain dynamic testing: ASTM D4945; requires signal matching analysis",
-        "Instrumentation: strain gauges at multiple elevations to separate side and base resistance",
-        "O-cell converts upward/downward test results to equivalent top-load displacement curve",
-        "Load test justifies resistance factors up to φ = 0.65-0.75 vs. φ = 0.50-0.55 without testing"
+        "Subsections: planning, test methods, instrumentation, interpretation for design"
       ],
       "equations": [],
-      "figures": [
-        "Figure 13-3: Schematic of ground conditions for Goethals Bridge Project"
-      ],
+      "figures": [],
       "tables": [],
       "applicability": "Axial load test planning, execution, and interpretation"
     },
     {
+      "section_id": "13.2.1",
+      "title": "General Considerations in Planning Axial Load Tests",
+      "body": "[p. 13-7] Axial load tests require substantial time and money and must be planned carefully, with the overall objectives established and details defined considering the production shafts the test is to model (13.2.1.1 to 13.2.1.7).",
+      "key_points": [
+        "Plan carefully against the production shafts the test models"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning axial load tests on drilled shafts"
+    },
+    {
+      "section_id": "13.2.1.1",
+      "title": "Overall Objectives",
+      "body": "[pp. 13-7 to 13-8] First define the most important objectives, usually measurement or verification of the design parameters most critical to performance, identified during design (Chapter 8) by sensitivity studies if not obvious: if 95% of the resistance is from a rock socket, focus on the rock formation; if most is end bearing on rock, the rock below the base compared with production locations and the cleanliness of the bearing surface matter, embedment into rock being secondary; if most is side shear, installation methods, drilling fluid and exposure time may be primary, and an instrumentation plan may be important to refine the design. Possible objectives (not exhaustive): base resistance at a representative location, or with a specific construction method and bottom cleanliness; rock socket side resistance at a representative location; side resistance with a specific method and drilling fluid; side resistance after the maximum allowed exposure to drilling fluid, or of an open hole in rock prone to weathering; benefit of sidewall grooving; distribution of side resistance among strata; side resistance at large displacement to verify no strain softening or brittle behavior; side resistance within permanent casing; axial resistance below the scour zone by separating resistance above the design scour elevation; effect of base grouting; load-displacement relations for side and base. Secondary objectives may include constructability, installation methods, effects on or of nearby structures and concrete mix performance. The primary objectives should be identified in the contract documents so the constructor, inspectors, testing specialists and resident engineer are aware and contribute.",
+      "key_points": [
+        "Objectives target the design parameters most critical to performance (sensitivity studies, Chapter 8)",
+        "Focus follows the resistance source: rock socket, end bearing (cleanliness), or side shear (fluid, exposure time)",
+        "List includes base and side resistance, grooving, strata distribution, casing, scour, base grouting",
+        "State primary objectives in the contract documents"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defining objectives of an axial load test program"
+    },
+    {
+      "section_id": "13.2.1.2",
+      "title": "Location and Number of Test Shafts",
+      "body": "[pp. 13-8 to 13-12] The current (2017) AASHTO guidelines increase resistance factors based on the number of load tests per site and the site variability; a 'site' may be all or part of the area of a structure or structures, and understanding geology and stratigraphy is critical to the number of tests and the delineation of sites. Results are related to untested production shafts by calibrating the static resistance prediction (Chapter 10 or local procedures) to the test, using the geomaterial properties at the test location, then applying the calibrated method at geologically similar locations to set tip elevations. If variation is too large to extrapolate, multiple tests should be considered, interpreted either by delineating more than one site or as one site with multiple tests capturing a range of properties; this requires judgment. Consider multiple tests if: the predominant bearing formation differs (e.g., sandstone vs. shale, sand vs. clay); the average calibrated resistance in the zone providing most resistance varies from the test location by a factor of two or more; the location is so far from the test that the bearing materials may differ; or the project has many shafts, with test shafts recommended at least 2% of the total production shafts for the structure (excluding lightly loaded miscellaneous units). Examples (design-build, validating design method and construction): Goethals Bridge, NJ-NY (Figure 13-3; Dapp et al. 2016, Turner et al. 2016), about 200 shafts 4.5 to 10 ft socketed into the Passaic Formation siltstone through soft alluvium with permanent casing; four bi-directional tests, 5.5-ft and 9.5-ft sockets at a test site on each side of the main span, plus lateral tests; nearly two miles treated as one site. Lee Roy Selmon Expressway widening, Tampa (Graham et al., 2013), 237 shafts 3.5 to 4 ft in Tampa limestone (100 to 500 psi where cores can be retrieved) with solution cavities and soft infill; each shaft designed from a pilot hole boring on its footprint, the SPT-based method confirmed by five rapid load tests (Figure 13-4) covering weathering and construction variations (backfilling cavities with low strength concrete and re-drilling, one shaft with bentonite instead of water). Honolulu rail, Phase I, about 6-1/2 miles, single 7 to 8-ft shafts under 150-ft spans: nine tests, three in the western 2-1/2 miles of old alluvium (very stiff to hard desiccated clays, shafts under 50 ft, dry auger) and six in the remaining 4 miles in the wet (Figure 13-5), three bearing in basalt with oscillator-installed temporary segmental casing and rock auger, three in alluvium to 120 ft with water and full-length segmental casing, base grouted.",
+      "key_points": [
+        "AASHTO (2017) resistance factors depend on number of load tests per site and site variability",
+        "Calibrate the static method at the test location, then apply at geologically similar locations",
+        "Multiple tests if formation differs, calibrated resistance differs by a factor of 2 or more, location distant, or many shafts",
+        "Test shafts at least 2% of total production shafts for the structure",
+        "Case examples: Goethals Bridge, Selmon Expressway, Honolulu rail"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-3: Schematic of Ground Conditions for the Goethals Bridge Project (Turner et al., 2016)",
+        "Figure 13-4: Summary of Load Test Results from the Selmon Widening Project (Graham et al., 2013)",
+        "Figure 13-5: Schematic Illustration of Varying Ground Conditions for Honolulu Rail Project"
+      ],
+      "tables": [],
+      "applicability": "Number and location of axial load tests and site delineation"
+    },
+    {
+      "section_id": "13.2.1.3",
+      "title": "Geo-Material Properties at Test Location",
+      "body": "[pp. 13-12 to 13-13] Interpreting a test and calibrating it to the static method requires geomaterial properties at the test location known with high confidence, from borings or soundings and careful observation of the test shaft excavation. A boring at the test location is necessary, the excavation should be logged against it, and a comprehensive in-situ and laboratory program is required, rock core tests and detailed visual classification being particularly important. Boulders, irregular rock surface, cemented, soft or weathered layers may be seen more readily during excavation than in the investigation; in weathered rock, logging drilling rates can delineate weak and strong rock and help correlate results with production shafts through inspection. Figure 13-6 shows material removed from a coring bucket for visual examination.",
+      "key_points": [
+        "Boring at the test location plus logged excavation and comprehensive testing",
+        "Rock core strength tests and classification particularly important",
+        "Log drilling rates in weathered rock to delineate weak and strong zones"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-6: Observation of Test Shaft Excavation Helps Define Geologic Conditions"
+      ],
+      "tables": [],
+      "applicability": "Characterizing ground at an axial load test shaft"
+    },
+    {
+      "section_id": "13.2.1.4",
+      "title": "Scour or Changes in Overburden Stress Conditions",
+      "body": "[p. 13-13] Stratigraphy and overburden stress can differ between the test shaft and production shafts because of grade changes or scour, removing contributing layers and changing confining stress in bearing zones, so tests at or near final grade are desirable. With future scour or tests before mass grading, accommodation is required: resistance in scourable overburden can often be separated by an isolation casing or strain gauges, and effects of stress changes in the bearing strata must be rationally assessed in interpretation (13.2.4).",
+      "key_points": [
+        "Test at or near final grade if possible",
+        "Separate scourable overburden resistance by isolation casing or strain gauges",
+        "Account for stress changes in bearing strata in interpretation"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Accounting for scour or grade changes in axial load tests"
+    },
+    {
+      "section_id": "13.2.1.5",
+      "title": "Construction of Test Shaft",
+      "body": "[pp. 13-13 to 13-15] The test shaft must be built as production shafts will be, and a test installation ('technique shaft' or 'demonstration shaft') before the load test shaft is advisable to resolve installation questions. Important factors: drilling fluids (bentonite, polymer or water can give different side resistance, Chapter 5); casing, especially advanced ahead of the excavation, affecting roughness and lateral stress (type, advancement, cutting teeth); drilling tools (auger or bucket vs. core barrel roughness); bottom conditions, cleaned consistent with, but not superior to, production, with downhole cameras to verify and 'calibrate' sounding; time the excavation is open, e.g., if production allows up to 2 days from starting a shale socket to concrete, the test shaft should match. Inspection documents the geology (13.2.1.3). As-built dimensions matter for interpretation and strain calibration; concrete volume versus height (Chapter 15) gives average area but is not very precise, and borehole caliper measurements, mechanical arms or sonic probe (Figure 13-7), are recommended for test shafts.",
+      "key_points": [
+        "Build the test shaft as production shafts; a technique shaft first is advisable",
+        "Match drilling fluid, casing, tools, base cleaning (not superior) and open-hole time",
+        "Borehole caliper (mechanical or sonic) recommended for as-built test shaft dimensions"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-7: Example Borehole Calipers & Logs; Mechanical (top, photo courtesy Applied Foundation Testing) and Sonic (bottom, graphic image courtesy Loadtest, Inc.)"
+      ],
+      "tables": [],
+      "applicability": "Constructing axial load test shafts representative of production"
+    },
+    {
+      "section_id": "13.2.1.6",
+      "title": "Use of Prototype Shafts",
+      "body": "[pp. 13-16 to 13-19] When production-size tests are impractical, prototype shafts should be at least 1/2 the production diameter and not less than 30 inches, built with similar tools and techniques (13.2.1.5) replicating exposure time, with displacements mobilizing unit side and base resistance interpreted relative to diameter (Chapter 10). Prototypes add uncertainty; tests should be on production sizes whenever practical, and for much smaller test shafts the higher resistance factors of full size tests may not be justified. Verification tests justifying higher resistance factors should be on full production size shafts in representative ground built like production, targeting the more challenging diameters and depths. Size effects: a smaller base has a smaller zone of influence below it; very small diameters (micropiles) may have much greater unit side resistance (Lizzi 1983; O'Neill et al. 1996), the diameter effect being more significant in rock than soil, attributed to roughness and dilatancy, but small for large diameters: Baycan's analysis (Miller 2003; Figure 13-8, qu = 450 psi) shows little difference between 4.9-ft (1500 mm) and 6.6-ft (2000 mm) sockets. Load tests on various sizes show unit side resistance relatively independent of diameter for similar excavation (Castelli 2004, 5 to 8 ft, Cooper Marl, Charleston; Castelli and Fan 2002, 3 to 5 ft, Fuller Warren Bridge; Goethals 5.5 and 9.5 ft, Turner et al. 2016, though nominal resistance was not fully mobilized). Chapter 10 methods do not account for diameter, but Horvath et al. (1983) proposed for artificially roughened rock sockets f_max = 0.8 [(Delta r/r)(L'/L)]^0.45 q_u (Eq. 13-1), Delta r asperity or groove height, r shaft radius, L' distance along the socket surface, L socket length; for a given roughness this gives the prototype-to-production ratio of Figure 13-9, agreeing well with Baycan's data (plotted relative to a '6.28-ft (2,000-mm)' socket, as printed) for 1 to 6-ft diameters; the data apply to rough, dilatant sockets up to 6.3 ft, and for smoother sockets or soil the trend may be an upper bound. Since side area grows with diameter and base area with its square, a smaller test shaft can balance side and base resistance for a bi-directional test (13.2.2.2); alternatively the 'Chicago method' (Figure 13-10) pushes a smaller base (36-inch bearing seat, 34-in. cell) against the side shear of a 48-inch, 15-ft socket, the base load-displacement then adjusted to the production diameter (13.2.4).",
+      "key_points": [
+        "Prototype at least 1/2 production diameter and not less than 30 in.; same tools, exposure time",
+        "Much smaller test shafts may not justify full-size load test resistance factors",
+        "Unit side resistance largely independent of diameter for large shafts (Baycan; Castelli; Goethals)",
+        "Horvath et al. (1983): f_max = 0.8 [(Delta r/r)(L'/L)]^0.45 q_u (Eq. 13-1); upper-bound size trend (Figure 13-9)",
+        "'Chicago method': smaller base pushed against full-size socket side shear (Figure 13-10)"
+      ],
+      "equations": [
+        "Eq. 13-1: f_max = 0.8 [ (Delta r / r) (L' / L) ]^0.45 q_u - Horvath et al. (1983) maximum unit side shear for artificially roughened rock sockets; Delta r height of asperities or grooves, r shaft radius, L' distance along surface of socket, L socket length, q_u rock compressive strength"
+      ],
+      "figures": [
+        "Figure 13-8: Unit Side Shear vs Displacement for Drilled Shaft Sockets in Rock of Moderate Roughness with qu = 450 psi (Miller, 2003; Baycan, 1996); 1 inch = 25.4 mm, 1 MPa = 147 psi (approx.)",
+        "Figure 13-9: Computed Relationship Between Shaft Diameter and Maximum Unit Side Shear Resistance for Rock Sockets using Horvath Equation (13-1)",
+        "Figure 13-10: 'Chicago Method' Load Test using Bi-directional Cell"
+      ],
+      "tables": [],
+      "applicability": "Using reduced-size prototype shafts for axial load tests"
+    },
+    {
+      "section_id": "13.2.1.7",
+      "title": "Group Considerations",
+      "body": "[p. 13-19] Production shafts in groups may behave differently from an isolated test shaft; group tests are rare because of the loads and cost (sometimes small-diameter research tests), so adjust single-shaft load-displacement behavior for groups following Chapter 11.",
+      "key_points": [
+        "Group tests rare; adjust single-shaft results for group effects per Chapter 11"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group effects in interpreting single-shaft axial load tests"
+    },
+    {
+      "section_id": "13.2.2",
+      "title": "Test Methods",
+      "body": "[p. 13-19] The predominant methods are conventional top-down static load tests with a hydraulic jack and reaction system, bi-directional testing with an embedded jack, top-down rapid load testing (combustion gas pressure or a cushioned drop mass) and high strain dynamic load testing with a drop weight impact; each has advantages and limitations in certain circumstances.",
+      "key_points": [
+        "Methods: top-down static, bi-directional, rapid (gas pressure or cushioned drop mass), high strain dynamic"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing an axial load test method for drilled shafts"
+    },
+    {
+      "section_id": "13.2.2.1",
+      "title": "Conventional Top-Down Load Test",
+      "body": "[p. 13-20] The most reliable measure of axial performance is static load applied downward on the shaft top as the structure will load it. Static testing is described in FHWA-SA-91-042 (Kyfor et al., 1992) and should generally follow ASTM D1143. For small (3 to 4-ft) shafts in soil, tests to up to 1,200 tons are reasonably economical, and tests to up to 4,000 tons have been performed on occasion, but the high capacity and large diameter of many shafts limit conventional tests because of the demands on the reaction system.",
+      "key_points": [
+        "Most reliable axial test: static top-down load per ASTM D1143",
+        "Economical to about 1,200 tons for 3 to 4-ft shafts in soil; up to 4,000 tons on occasion"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Conventional top-down static axial load tests"
+    },
+    {
+      "section_id": "13.2.2.1.1",
+      "title": "Reaction System",
+      "body": "[pp. 13-20 to 13-22] The most common reaction system is a reaction beam with anchorage (Figure 13-11, a 1,200 ton test); the beam, anchorage and jack govern capacity, and the whole system should be designed by a professional engineer experienced with load testing. Anchors may be drilled shafts (threaded rods as longitudinal reinforcing), micropiles, grouted anchors or salvageable driven piles such as H piles, or dead weight ('Kentledge', Figure 13-1). Anchors must not affect the test shaft: driven or vibrated piles below the base can fracture the bearing stratum or cause subsidence of granular soils, and grouted anchors below the base superimpose stress on the bearing formation. ASTM D-1143 requires a clear distance of at least five times the maximum diameter of the test or anchor pile, impractical for large shafts; 3.5 diameters is recommended as a more feasible alternative provided those adverse effects are avoided. Beam bending stresses increase dramatically with span; large loads may use four or more reaction shafts with a multiple beam frame (Caltrans 4,000-ton system, Figure 13-12); the largest known static test is 5,700 tons in Taiwan (Figure 13-13). The system must avoid twist or eccentric loading, easier if anchors allow horizontal adjustment to center and level the beam over the shaft; eccentric forces can damage the jack and load cell, give inaccurate and unconservative measurements, and are very dangerous, plates possibly ejecting explosively from stored strain energy.",
+      "key_points": [
+        "Reaction beam and anchorage designed by an experienced professional engineer",
+        "Anchors must not disturb the test shaft base (driven piles, grouted anchors below the base)",
+        "ASTM D1143: 5 diameters clear; 3.5 diameters recommended as feasible alternative",
+        "Avoid twist and eccentricity: inaccurate, unconservative and dangerous"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-11: Conventional Static Load Test on a Drilled Shaft (photo courtesy Bill Isenhower)",
+        "Figure 13-12: 4,000-ton Capacity Reaction System (photo courtesy of Caltrans)",
+        "Figure 13-13: 5,700-ton Capacity Load Test in Taiwan (photo courtesy Prof. San-Shyan \"Sonny\" Lin)"
+      ],
+      "tables": [],
+      "applicability": "Reaction systems for conventional static load tests"
+    },
+    {
+      "section_id": "13.2.2.1.2",
+      "title": "Loading Procedures",
+      "body": "[p. 13-22] The recommended procedure is ASTM D1143 'Procedure A: Quick Test': increments of 5% of the 'anticipated failure load' (interpreted as the nominal axial resistance), each held at least 4 minutes but not more than 15 minutes, the same interval for all, then unloading in 5 to 10 equal decrements at similar intervals; maintained loading, constant rate of penetration and others are optional. Record load, displacement, strain and other measurements at 0.5, 1, 2 and 4 minutes, and at 8 and 15 minutes for longer intervals, and periodically monitor reaction system movement to detect pending failure of anchors or other components (instrumentation, 13.2.3).",
+      "key_points": [
+        "ASTM D1143 Procedure A Quick Test: 5% increments of nominal resistance held 4 to 15 min",
+        "Unload in 5 to 10 equal decrements",
+        "Readings at 0.5, 1, 2, 4 (8, 15) min; monitor the reaction system"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Loading procedure for conventional static axial load tests"
+    },
+    {
+      "section_id": "13.2.2.2",
+      "title": "Bi-Directional Load Testing",
+      "body": "[pp. 13-22 to 13-26] The bi-directional test applies load with an expendable jack (or jacks) between upper and lower load plates cast in the shaft, the upper portion reacting against the base and lower portion (Figure 13-14). Early tests: Gibson and Devenney (1972), Horvath and Kenney (1979); Osterberg's system (1992, 1994) led to widespread use; ASTM D8169-18 now covers it. After concrete gains strength, the cells are pressurized to break the tack welds and 'crack' the shaft, then loaded incrementally, each section reacting against the other; there cannot be continuous reinforcement across the cell. The maximum load is limited by the resistance above or below the cell, cell capacity, or cell expansion (typically 6 inches), so the cell should be where resistance above and below are about equal; if side exceeds base, where base plus side below equals side above; if base exceeds side, the base resistance mobilized is limited (Figure 13-15), mitigated in some cases by the 'Chicago Method' (Figure 13-10). Success depends on the designer's placement. In Louisiana, base resistance (about 3,000 tons) exceeded side (about 2,000 tons), and a 1,000-ton reaction frame with a top jack (Figure 13-16) was loaded together with the cells to mobilize the base. Multi-level cells (Figure 13-17) measure segments separately, overcoming the 'weakest link'. Use in production shafts is limited unless the cell is near the bottom, since moments cannot pass below the uppermost cell, and large upward displacement may reduce later downward resistance in some cohesive soils or rock: load reversal between multi-level cells suggests non-recoverable side resistance loss with full cyclic reversal beyond about 1/2 inch, likely remolding of cemented materials, not reported in uncemented granular soils. Dedicated test shafts are preferred; on production shafts limit upward movement to about 1/2 inch in cemented or cohesive soils or rock.",
+      "key_points": [
+        "Embedded jack loads the upper shaft against the lower; ASTM D8169-18",
+        "Locate the cell where resistance above and below are about equal; travel typically 6 in.",
+        "Base-dominated shafts: Chicago Method or added top reaction frame; multi-level cells overcome the weakest link",
+        "Cyclic reversal beyond about 1/2 in. can permanently reduce side resistance in cemented materials",
+        "Prefer dedicated test shafts; on production shafts limit upward movement to about 1/2 in."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-14: Bi-Directional Testing Schematic",
+        "Figure 13-15: Example Test Result from Bi-Directional Test",
+        "Figure 13-16: Bi-Directional Load Test with Added Reaction System",
+        "Figure 13-17: Multiple-Level Arrangement for Bi-directional Load Cells (O'Neill et al., 1997)"
+      ],
+      "tables": [],
+      "applicability": "Bi-directional (embedded cell) axial load tests"
+    },
+    {
+      "section_id": "13.2.2.2.1",
+      "title": "Loading Apparatus and Procedure",
+      "body": "[pp. 13-26 to 13-27] Cells come in a range of sizes and capacities and are often grouped at one level for very high forces (St. Louis, Axtell and Brown 2011: 11-ft shaft in limestone, over 36,000 kips from the cells, over 72,000 kips total resistance), limited by cross-sectional space and maximum hydraulic pressure; with multiple cells use a minimum of three per level against eccentricity and flexure damage, and the tremie can pass through the center (Figure 13-18). Cells have about 6 inches of travel before losing their seal, affected by eccentricity. Plates are typically around 2 inches thick with cutouts for concrete flow, sized to fit inside the vertical bars. No reinforcing may cross the break plane once the cage is placed; temporary bars or welded steel across it for lifting are removed once the cage is vertical. CSL tubes crossing cell levels are typically scored to rupture. Load is usually from pump pressure with cells calibrated beforehand; since cells are 30 ft to over 200 ft deep, the pressure at the cell is the measured pressure plus the fluid head to the cell middle, a correction conservative if ignored. Segment displacements are measured separately: expendable displacement transducers between the plates measure cell separation; 'telltales' (sleeved, unstrained rods to the top) give cell movement relative to the shaft top, which is measured against a stable reference, the top of cell movement being top movement plus shaft compression; deep sections may use embedded telltales with sacrificial transducers, and strain gages at selected elevations give load transfer (13.2.3).",
+      "key_points": [
+        "Multiple cells per level for high loads; at least three per level",
+        "Cell travel about 6 in.; plates about 2 in. thick fitting inside the cage",
+        "No reinforcement across the break plane after the cage is placed",
+        "Correct gauge pressure for fluid head to the cell (conservative if ignored)",
+        "Separate displacement measurement of segments: transducers, telltales, top reference, strain gages"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-18: Single and Multiple Load Cell Assembly"
+      ],
+      "tables": [],
+      "applicability": "Bi-directional load cell apparatus and measurement"
+    },
+    {
+      "section_id": "13.2.2.2.2",
+      "title": "Derivation of Static Axial Resistance",
+      "body": "[pp. 13-27 to 13-33] Each segment is loaded in static compression, at least one upward, typically in intervals of 5% to 10% of the anticipated nominal resistance of the segments held 4 to 8 minutes with readings at 1, 2, 4 and 8 minutes. Downward segments are interpreted like any static test; for upward segments the segment dead weight is subtracted from the cell load; strain gauges give the distribution (13.2.3). In short rock sockets the load is typically assumed uniform over the side interface: f_s = Q_OC / (pi B D) (Eq. 13-2), Q_OC the bi-directional test load, B socket diameter, D socket length above the cell base; its validity for head-loaded sockets depends on similarity of side load transfer, and stratigraphy must be known. The equivalent top-loaded settlement curve (Figure 13-19) adds the upward and downward loads at equal displacement (points '4' at 0.4 inches) up to the lesser of the two maximum displacements, then uses the measured curve of the more displaced section plus an extrapolation of the other; elastic compression above the test segments may be added. For design with AASHTO's higher load test resistance factors, extrapolated side resistance beyond the maximum confirmed values is not appropriate; with ductile, non-softening side shear the limit is the maximum achieved (point 5, extrapolation vertical), and where the upper portion limits the test (Figure 13-15) the test verifies the mobilized resistance. Strain softening is unusual because of dilatancy, but if suspected, extrapolation may be unconservative and data at large side displacement are needed. Paikowsky et al. (2004): most DOTs accept bi-directional results as indicative of top-down performance; in soil there is little evidence of a direction effect (Singapore sandy clay, Figure 13-20, Molnit and Lee 1998). In shallow rock sockets bottom-up loading can cause 'cone breakout', and a smaller socket below a cased shoulder (Crapps and Schmertmann 2002) bears in top-down loading but lifts off in bottom-up loading (Figure 13-21). In rock, top loading puts load decreasing with depth with outward Poisson strain, while the cell's load decreases upward (Figure 13-22), so interface normal stress may be less in the bi-directional test; FEM (McVay et al. 1994, Figure 13-23; Shi 2003, Figure 13-24, calibrated to Wilsonville AL shale and Denver claystone tests, Abu-Hejleh et al. 2003) shows end bearing similar but side shear dependent on rock mass modulus E_M and interface friction angle, the derived top-load curve being conservative. Guidelines: in soil, measured base and side resistance equal top-down; in rock, end bearing similar, side shear on average may be conservative, and its distribution may be biased to higher values low in the socket (be cautious extrapolating lowermost strain-gauge values to longer sockets; averages may be more representative); include elastic compression in the equivalent curve; a careful interpretation is equivalent to a static load test, so static load test resistance factors apply.",
+      "key_points": [
+        "Upward segment: subtract segment weight; average rock socket side resistance f_s = Q_OC/(pi B D) (Eq. 13-2)",
+        "Equivalent top-loaded curve: add up and down loads at equal displacement, then extrapolate (Figure 13-19)",
+        "Do not use extrapolated side resistance beyond confirmed values with load test resistance factors",
+        "Soil: direction of loading immaterial; rock: side shear from bi-directional tests likely conservative",
+        "Watch for cone breakout and socket shoulders in rock",
+        "Carefully interpreted bi-directional test = static load test for resistance factors"
+      ],
+      "equations": [
+        "Eq. 13-2: f_s = Q_OC / (pi B D) - average unit side resistance from a bi-directional test in a short rock socket; Q_OC bi-directional test load, B socket diameter, D socket length above the load cell base"
+      ],
+      "figures": [
+        "Figure 13-19: Construction of Equivalent Top-Loaded Settlement Curve from Bi-directional Load Test Results (Figures courtesy Loadtest, Inc.)",
+        "Figure 13-20: Top Down and Bi-directional Load Test at a Soil Site in Singapore (1 inch = 25.4 mm; 1MN = 112 tons)",
+        "Figure 13-21: Effect of 'Shoulder' at Top of Rock: a) Top-Down Loading; b) Bottom-Up Loading",
+        "Figure 13-22: Average Compressive Load in Shaft During Top Down and Bi-directional Loading",
+        "Figure 13-23: Analytical Model Results for O-Cell Loading in a Rock Socket (McVay et al, 1994)",
+        "Figure 13-24: Analytical Model Results for Bi-directional Loading in a Rock Socket (Shi, 2003)"
+      ],
+      "tables": [],
+      "applicability": "Interpreting bi-directional load tests for static axial resistance"
+    },
+    {
+      "section_id": "13.2.2.2.3",
+      "title": "Advantages and Limitations of Bi-Directional Load Testing",
+      "body": "[p. 13-33] Advantages: larger loads than any other method, especially important for rock sockets; production-size shafts can be tested in most cases; base and side resistance isolated with multiple cells or instrumentation; static loading that can be held to observe creep. Limitations: the shaft must be chosen beforehand (no testing of existing shafts without cells); each device tests to failure of one part of the shaft unless multi-level cells are used; top-down performance must be computed, sometimes by extrapolation; limitations on using a test shaft as a production shaft; the effect of upward versus top-down loading in rock sockets is not completely understood, current side resistance estimates likely conservative. It is a practical, cost-effective tool for high capacity shafts, in many cases the only practical one.",
+      "key_points": [
+        "Advantages: highest loads, production-size shafts, isolated side and base, creep observable",
+        "Limitations: pre-installed cells, one failure per level, computed top-down curve, rock direction effect"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Advantages and limitations of bi-directional load tests"
+    },
+    {
+      "section_id": "13.2.2.3",
+      "title": "Rapid Load Test",
+      "body": "[pp. 13-34 to 13-35] Rapid loading is fast enough that inertia and damping matter but long enough that wave propagation is minimal: a 'push' rather than a blow (Figure 13-25), the shaft top and base moving nearly as a rigid body; a hammer impact sends a short stress wave down and back (high strain dynamic loading, 13.2.2.3.4). A dynamic blow decelerates a ram weighing about 1% of the test load; a rapid pulse uses a mass of about 5% to 10%. ASTM D-7383 covers two methods: a heavy mass dropped on a soft cushion (e.g., springs), reportedly to forces of up to 500 tons on drilled shafts, and, more commonly, a mass accelerated upward by combustion gas pressure, F = m a, so 20 g of thrust applies a downward force of 20 times the mass weight (Figure 13-26). The Statnamic device (Berminghammer, Bermingham and Janes 1989) was supported by FHWA. Systems apply up to 5,000 tons without a reaction system, launching the masses about 8 to 10 ft; the 2,000-ton device uses a 'catch' frame (Figure 13-27) and the 5,000-ton device a gravel containment, the present (2018) upper limit. The rest of the section covers the combustion gas device, the more common North American application.",
+      "key_points": [
+        "Rapid load: inertia and damping matter, wave effects minimal; near rigid-body motion",
+        "Mass about 5% to 10% of test load (vs. about 1% for a dynamic blow)",
+        "ASTM D7383: cushioned drop mass (to about 500 tons) or combustion gas pressure",
+        "Up to 5,000 tons (2018) without a reaction system"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-25: Comparison of Rapid Loading and Dynamic Loading",
+        "Figure 13-26: Conceptual Sketch of the Rapid Load Test using Combustion Gas Pressure",
+        "Figure 13-27: Rapid Load Testing Device (2000 Ton Capacity)"
+      ],
+      "tables": [],
+      "applicability": "Rapid (force pulse) axial load tests"
+    },
+    {
+      "section_id": "13.2.2.3.1",
+      "title": "Loading Apparatus and Procedure",
+      "body": "[pp. 13-36 to 13-37] Combustion of pelletized fuel (similar to automobile air bags) pressurizes a piston to accelerate the reaction mass upward; the downward force passes through a calibrated load cell (force versus time), and servo-accelerometers on the shaft top give acceleration and, by integration, displacement. In Figure 13-28 the inertial force (acceleration times shaft weight) acts counter to the load cell force, the soil resisting the difference; most of the 2+ inches of movement was permanent. Figure 13-29: a 40-ft shaft socketed into limestone between elevations +26 and +16 ft, load cell at +56 ft; strain data show rigid-body behavior, the roughly 0.003-second wave travel time being small relative to the pulse.",
+      "key_points": [
+        "Load cell measures force; servo-accelerometers give acceleration and displacement",
+        "Soil force = load cell force minus shaft inertia",
+        "Pulse long relative to wave travel time, so near rigid-body response"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-28: Measurements of Force and Displacement During Rapid Loading",
+        "Figure 13-29: Force-Time Measurements for a Drilled Shaft"
+      ],
+      "tables": [],
+      "applicability": "Rapid load test apparatus and measurements"
+    },
+    {
+      "section_id": "13.2.2.3.2",
+      "title": "Derivation of Static Axial Resistance",
+      "body": "[pp. 13-37 to 13-40] The 'unloading point method' (UPM) treats the shaft as a rigid body; Brown (1994) showed this is not appropriate for 'long' shafts (generally more than about 80 to 100 ft), for which the 'segmental unloading point method' (SUPM, Mullins et al. 2002) applies. Forces: measured applied load F_stn, shaft inertia F_a (mass times measured acceleration), static soil resistance F_u and rate-dependent dynamic resistance F_v modeled as a viscous damper proportional to velocity (Figure 13-30): F_stn(t) = F_a(t) + F_u(t) + F_v(t) (Eq. 13-3), or F_u(t) = F_stn(t) - F_a(t) - F_v(t) (Eq. 13-4). F_v is zero at zero velocity, the 'unloading point' (point 2, Figure 13-31), where Eq. 13-4 gives F_u. The maximum static resistance is assumed constant between peak applied force (point 1) and the unloading point, giving the damping coefficient c(t) = [F_stn(t) - F_a(t) - F_u max] / v(t) (Eq. 13-5) at each point; a best-estimate average c (Figure 13-32) then gives the rest of the static curve by Eq. 13-4; computed or measured average acceleration may replace rigid body motion. For long shafts the segmental method (Figure 13-33) uses internal instrumentation for forces between segments. A rate-of-loading effect remains, so the derived static resistance is multiplied by empirical rate factors from Mullins (2002) (Table 13-4): rock 0.96, sand 0.91, silt 0.69, clay 0.65. McVay et al. (2003) compared rapid and static tests in Florida (Figure 13-34); Florida DOT recommends resistance factors of 0.70 for redundant and 0.60 for non-redundant shafts calibrated to rapid tests (vs. 0.75 and 0.65 for static tests). AASHTO 10.5.5.2.4 allows a maximum 0.70 for shafts calibrated to site-specific static load tests, reduced 20% for non-redundant foundations such as a single shaft under a single column. Recommendation: for design calibrated to site-specific rapid tests use 0.05 less than the AASHTO static load test factors, a maximum of 0.65, with lesser values for non-calibrated rapid tests, non-redundant foundations or high site variability.",
+      "key_points": [
+        "UPM: rigid body; not for shafts longer than about 80 to 100 ft (use segmental UPM)",
+        "F_stn = F_a + F_u + F_v (Eq. 13-3); F_u = F_stn - F_a - F_v (Eq. 13-4); damping c from Eq. 13-5",
+        "Rate factors (Table 13-4): rock 0.96, sand 0.91, silt 0.69, clay 0.65",
+        "Resistance factor 0.05 below AASHTO static load test values: maximum 0.65 for calibrated rapid tests",
+        "AASHTO 10.5.5.2.4: maximum 0.70 with static load tests; 20% reduction for non-redundant shafts"
+      ],
+      "equations": [
+        "Eq. 13-3: F_stn(t) = F_a(t) + F_u(t) + F_v(t) - rapid load test force equilibrium; F_stn applied force, F_a shaft inertia force (m a), F_u static soil resistance, F_v dynamic soil resistance (c v)",
+        "Eq. 13-4: F_u(t) = F_stn(t) - F_a(t) - F_v(t) - static soil resistance; at the unloading point (zero velocity) F_v = 0",
+        "Eq. 13-5: c(t) = [F_stn(t) - F_a(t) - F_u max] / v(t) - damping coefficient between peak applied force and the unloading point"
+      ],
+      "figures": [
+        "Figure 13-30: Single Degree of Freedom Model of a Rapid Load Test",
+        "Figure 13-31: Rapid Test Load versus Displacement",
+        "Figure 13-32: Computed Damping Coefficient, c",
+        "Figure 13-33: Segmental Unloading Point Method",
+        "Figure 13-34: Comparative Static (SLT) and Rapid (SLD) Load Tests for Drilled Shafts (from McVay et al., 2003)"
+      ],
+      "tables": [
+        "Table 13-4: Rate Factors for Different Soil Types - rock 0.96; sand 0.91; silt 0.69; clay 0.65"
+      ],
+      "applicability": "Interpreting rapid load tests for static axial resistance and resistance factors"
+    },
+    {
+      "section_id": "13.2.2.3.3",
+      "title": "Advantages and Limitations of Rapid Load Testing",
+      "body": "[p. 13-41] Loads up to 5,000 tons can be applied at the shaft top without a reaction system or special construction preparation, making the test cost effective for proof tests on production shafts, multiple tests, and verification when questions arise, though capacity remains below the bi-directional test and rate effects must be considered. Advantages: large top load; existing or production shafts; economies of scale; amenable to verification testing; no reaction system. Limitations: maximum load limited compared with bi-directional tests; rate effects; creep cannot be assessed; mobilization costs for reaction weights.",
+      "key_points": [
+        "Advantages: top-applied load to 5,000 tons, production shafts, no reaction system",
+        "Limitations: below bi-directional capacity, rate effects, no creep, reaction weight mobilization"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Advantages and limitations of rapid load tests"
+    },
+    {
+      "section_id": "13.2.2.3.4",
+      "title": "High Strain Dynamic Load Test",
+      "body": "[p. 13-41] High strain dynamic testing is mature for driven piles: transducers on the pile measure the hammer blow and response, and a computer model is calibrated by signal matching (e.g., 'CAPWAP'); the same technology applies to drilled shafts with consideration of their different nature (Robinsons et al., 2002, as printed). The heading is numbered under 13.2.2.3 Rapid Load Test as printed.",
+      "key_points": [
+        "Hammer blow measured by pile-mounted transducers; signal matching (CAPWAP) calibrates a model",
+        "Applicable to drilled shafts with adjustments"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "High strain dynamic load tests on drilled shafts"
+    },
+    {
+      "section_id": "13.2.2.3.5",
+      "title": "Loading Apparatus and Procedure",
+      "body": "[pp. 13-41 to 13-44] ASTM D 4945-00 describes the test: a falling mass of about 1% to 2% of the desired test load, by a drop weight apparatus or a large pile hammer (Figure 13-35; about 4,000 tons mobilized on a 6-ft shaft). Model the setup beforehand with a wave equation analysis for the shaft size and resistance (Hussein et al., 1996); cushion the blow (e.g., plywood) against high compression and tension, or use a drop weight nearer 5% of the test load with a softer cushion, giving an impulse similar to a rapid test. Force and velocity at the top, typically by a Pile Driving Analyzer (PDA): from strain F_eps = eps E A (Eq. 13-6) and from integrated acceleration F_v = v E A / c (Eq. 13-7), c the compression wave speed; the two should be proportional, and transducers on opposite sides similar for a centered blow. An instrumented heavy pipe extension or an accelerometer on the drop weight (F = m a) can measure force, but signal matching needs measurements on the shaft itself. Mount gauges at four points 90 deg apart; ASTM requires at least 1.5 diameters below the top, but one diameter may suffice with four sets (Figure 13-36). A cast concrete 'drive head' above the shaft, removed afterward, gives known uniform section, good concrete cast in the dry, no excavation, and incorporates projecting reinforcement. Gauges on permanent casing need composite action without slip (more than one diameter of bond may be needed) or a window cut to mount on concrete. Displacement is by double integration, permanent set checked by survey; two to ten blows are typical, the first often too small to mobilize the base.",
+      "key_points": [
+        "ASTM D4945: drop mass about 1% to 2% of test load (about 5% with a softer cushion)",
+        "Wave equation model beforehand; cushion to limit driving stresses",
+        "F_eps = eps E A (Eq. 13-6); F_v = v E A / c (Eq. 13-7)",
+        "Four gauge sets 90 deg apart, at least 1 to 1.5 diameters below the top; a drive head casting helps",
+        "Two to ten blows; first blow often insufficient for base"
+      ],
+      "equations": [
+        "Eq. 13-6: F_eps = eps E A - force from the strain transducer; eps measured strain, E elastic modulus, A cross sectional area of the shaft",
+        "Eq. 13-7: F_v = v E A / c - force proportional to particle velocity; v measured particle velocity, c compression wave speed in the shaft"
+      ],
+      "figures": [
+        "Figure 13-35: Dynamic Load Test of Drilled Shafts using Drop Weight (left) and Pile Hammer (right). [Photos courtesy of Pile Dynamics, Inc. (left) and Ross McGillivray (right)]",
+        "Figure 13-36: Transducers for Measurement of Force and Acceleration (Photos courtesy of Pile Dynamics, Inc.)"
+      ],
+      "tables": [],
+      "applicability": "High strain dynamic test apparatus and measurements on drilled shafts"
+    },
+    {
+      "section_id": "13.2.2.3.6",
+      "title": "Derivation of Static Axial Resistance",
+      "body": "[pp. 13-44 to 13-48] Evaluation rests on one-dimensional wave propagation, described in the FHWA Driven Pile Manual (Hannigan et al., 2016); closed-form 'Case Method' estimates exist, but a more rigorous method is recommended for drilled shafts: signal matching (Figure 13-37), in which a segmented shaft model with soil springs and dampers (Figure 13-38) is analyzed in the time domain and soil resistance and damping adjusted until computed and measured responses agree; CAPWAP (FHWA-sponsored, now proprietary from Pile Dynamics) is the most widely used. The matched distribution is not unique but reasonably reliable (Figure 13-39, time in L/C, toe reflection at 2L/C). The analysis is most sensitive to total resistance, so underestimated damping overestimates static resistance; soil conditions from borings and shaft logs must check damping values. Impedance (EA/c) changes along the shaft reflect at the top (Figure 13-40), so the shaft profile and soil resistance must be considered together, the profile estimated e.g. by sonic echo (Chapter 16). Permanent set per blow should not exceed about 1/3 inch (3 blows or more per inch), about 0.7% to 0.4% of a 4 to 7-ft diameter; 3% to 5% of diameter needs 1.5 to 4 inches, or 5 to 12 blows, so early blows may not show base resistance, while many blows may reduce side shear; the optimum blow is often the one giving the greatest derived static resistance. Rausche et al. (2008) recommend matching several successive blows: a 6-ft by 65-ft shaft (Figure 13-41), four blows, just over 1/2 inch cumulative; side shear peaked at the second blow and then diminished while end bearing increased. A test with insufficient force indicates only the mobilized resistance. AASHTO does not address drilled shafts designed from dynamic tests (0.65 for driven piles driven to consistent resistance with at least one test per pier); with AASHTO 10.5.5.2.4's maximum 0.70 for static load tests (20% less for non-redundant), it is preliminarily recommended to use 0.10 less for design calibrated to site-specific dynamic tests, a maximum of 0.60 when dynamic tests are calibrated to site-specific static load tests, lesser for non-calibrated tests, non-redundant foundations or high variability; conservative since full end bearing is likely not mobilized.",
+      "key_points": [
+        "Signal matching (CAPWAP) recommended over Case Method closed forms",
+        "Damping and impedance (EA/c) profile must be checked against borings, logs and sonic echo",
+        "Set per blow at most about 1/3 in.; 5 to 12 blows to reach 3% to 5% of diameter; side shear may drop with many blows",
+        "Match several blows (Rausche et al., 2008); use the blow with greatest derived static resistance",
+        "Resistance factor 0.10 below AASHTO static load test values: maximum 0.60 when calibrated to static tests"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-37: Signal Matching Concept",
+        "Figure 13-38: Computational Model of Shaft/Soil System",
+        "Figure 13-39: Factors Most Influencing CAPWAP Force Matching (after Hannigan, 1990)",
+        "Figure 13-40: Impedance Profile of the Drilled Shaft",
+        "Figure 13-41: Calculated Load Cycles from Signal Matching Analyses for Four Blows on a 6-ft Diameter Shaft; 1 kip = 4.45 kN; 1 inch = 25.4 mm (after Rausche et al, 2008)"
+      ],
+      "tables": [],
+      "applicability": "Interpreting high strain dynamic tests on drilled shafts"
+    },
+    {
+      "section_id": "13.2.2.3.7",
+      "title": "Advantages and Limitations of High Strain Dynamic Load Testing",
+      "body": "[pp. 13-48 to 13-49] Loads up to 4,000 tons (or more with a very large drop hammer) at the top without a reaction system and with modest preparation make dynamic testing cost effective for proof tests and multiple tests, though capacity is below the bi-directional test and damping is an additional variable. Advantages: large top load; existing or production shafts; economies of scale; low cost; verification testing; no reaction system. Limitations: capacity limited compared with bi-directional tests; dynamic effects need signal matching; interpretation affected by modulus, area and uniformity in the top 1 to 1.5 diameters; must avoid driving stress damage; no creep; mobilization of a large hammer or drop weight; shaft shape must be known or derived; displacement likely insufficient to mobilize the base, complicated by side resistance loss after multiple blows.",
+      "key_points": [
+        "Advantages: up to about 4,000 tons, low cost, production shafts, no reaction system",
+        "Limitations: signal matching, top 1 to 1.5 diameters uniformity, driving stresses, base not fully mobilized"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Advantages and limitations of high strain dynamic tests on drilled shafts"
+    },
+    {
+      "section_id": "13.2.2.3.8",
+      "title": "Uplift Test",
+      "body": "[pp. 13-49 to 13-50] Uplift tests should be considered where shafts carry substantial uplift (seismic or wind overturning, anchorages of permanent cantilevers), but may not be needed where penetration and side resistance are governed by compression. ASTM D 3689-07 covers static axial tensile tests. In the conventional arrangement (Figure 13-42, Sacre 1977) full-length longitudinal bars, possibly high-strength and threaded, extend above the head to a jack and reaction beams on compression shafts or surface mats; bi-directional tests can also measure upward resistance (other types, e.g., Johnston et al. 1980). Special considerations: the reaction may need to be far away, and the shaft may be in tension (load at top) or compression (load at base). For shafts anchored in fractured or seamed rock, the 'cone breakout' zone may be large and reactions, especially surface mats, must be outside it (Figure 13-43); reaction shafts may avoid surface stresses. Pulling top reinforcement puts a production shaft in tension, while sleeved bars to a base plate (or a base cell) put it in compression; Poisson's effect reduces interface lateral stress in tension and increases it in compression (Figure 13-44), so the test should replicate the production condition. The page prints the heading as 'Uplifting Test'.",
+      "key_points": [
+        "Consider uplift tests for substantial uplift demands; ASTM D3689-07",
+        "Extended full-length bars to a top jack, or bi-directional cell",
+        "Keep reactions outside the rock cone breakout zone",
+        "Tension vs. compression loading changes side shear (Poisson effect); replicate production condition"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-42: Arrangement for Testing a Drilled Shaft under Uplift Loading",
+        "Figure 13-43: Location of Reaction Mats Relative to Uplift Shaft in Rock",
+        "Figure 13-44: Uplift Shafts in Tension versus Compression"
+      ],
+      "tables": [],
+      "applicability": "Uplift load tests on drilled shafts"
+    },
+    {
+      "section_id": "13.2.3",
+      "title": "Instrumentation",
+      "body": "[p. 13-51] Instrumentation is a critical part of the load test system and must be robust, reliable and accurate. Besides load and displacement at the top, strain along the shaft gives the distribution of load transfer in side shear and end bearing. This section covers instruments measuring loads and displacements on and within the test shaft.",
+      "key_points": [
+        "Instrumentation must be robust, reliable and accurate; strain gives load transfer distribution"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Instrumentation for axial load tests"
+    },
+    {
+      "section_id": "13.2.3.1",
+      "title": "Application and Measurement of Load",
+      "body": "[p. 13-51] Load is measured from jack hydraulic pressure and electronic load cells; in top-down static tests both are desirable for redundancy, the calibrated load cell being more accurate as it is not subject to stiction, though both suffer from misalignment and eccentricity. Rapid load tests include a calibrated load cell; bi-directional jacks rely on a load-pressure calibration; high strain dynamic tests infer load from strain and acceleration. Provide redundancy: jack pressure backs up a load cell, and if only pressure is measured, use two independent pressure measurements.",
+      "key_points": [
+        "Use both load cell and jack pressure in static tests; load cell more accurate (no stiction)",
+        "Only pressure measured: two independent pressure measurements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Measuring applied load in axial load tests"
+    },
+    {
+      "section_id": "13.2.3.1.1",
+      "title": "Hydraulic Jack",
+      "body": "[pp. 13-51 to 13-52] Hydraulic jacks apply load through pump pressure; capacity depends on ram size and pressure; electric or hand pumps; multiple jacks in parallel for large loads (Figure 13-45); jack travel matters for large displacements. Bi-directional cells are simple embedded hydraulic jacks (the text cites Figure 13-19, as printed). Calibrate the jack to load; read pressure by analog gauge or in-line transducers logged electronically, most reliably near the jack rather than at the pump. The major error source besides pressure is stiction, varying with rate and direction and increased by misalignment and eccentric loading, which also changes the pressure-load relation; the reaction beam must not twist, and a hemispherical bearing or swivel head accommodates small angular differences. The page prints the heading as 'Hydraulie Jack'.",
+      "key_points": [
+        "Calibrate the jack; read pressure near the jack",
+        "Stiction is the main error, worsened by eccentricity; use a hemispherical bearing or swivel head"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-45: Hydraulic Jack with Load Cell (left) and Multiple Jacks in Parallel (right)"
+      ],
+      "tables": [],
+      "applicability": "Hydraulic jacks for load application and measurement"
+    },
+    {
+      "section_id": "13.2.3.3.2",
+      "title": "Load Cell",
+      "body": "[p. 13-52] A load cell is a passive elastic steel element with strain gauges calibrated to load (Figure 13-45, left; the text also cites Figure 13-30 for the rapid load test cell, as printed). It is more reliable than a jack because it has no stiction, though misalignment and eccentricity can still cause significant errors; gauge requirements depend on loading rate (the text cites Section 13.2.3.5 for strain gauges, as printed). The page numbers this heading 13.2.3.3.2; the PDF outline numbers it 13.2.3.1.2.",
+      "key_points": [
+        "Load cell: calibrated passive steel element, no stiction; still sensitive to eccentricity"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load cells in axial load tests"
+    },
+    {
+      "section_id": "13.2.3.4",
+      "title": "Measurement of Shaft Displacement",
+      "body": "[p. 13-52] Shaft displacement at the top or point of load application should include redundant measurements. (PDF outline number: 13.2.3.2.)",
+      "key_points": [
+        "Redundant displacement measurements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Measuring shaft displacement in axial load tests"
+    },
+    {
+      "section_id": "13.2.3.4.1",
+      "title": "Shaft Top",
+      "body": "[pp. 13-52 to 13-53] For static tests, dial gauges or displacement transducers (LVDTs, linear potentiometers) on a reference system at several symmetric points give an average; 0.01 inches accuracy is generally adequate; analog dials are easily misread (Figure 13-46). The greatest error source is reference system stability: support it well away from the test and reaction foundations, free from temperature distortion, wind or waves (timber, orthogonal to the reaction system, shaded; the text cites Figure 13-9, as printed); over water support it on an isolated pile. Backups: piano wire with scale and mirror, and a surveyor's level (not precise enough as primary, but useful for reaction movements). Optical systems (Figure 13-47) are now commonly primary, monitored remotely and logged. In high strain dynamic and rapid tests displacement comes from double integration of acceleration, permanent set checked against a reference after each blow or loading.",
+      "key_points": [
+        "Several symmetric gauges on a stable reference; 0.01 in. accuracy adequate",
+        "Reference stability is the greatest error source (temperature, wind, waves)",
+        "Backups: piano wire and mirror, level; optical systems now common primary",
+        "Dynamic and rapid tests: double-integrated acceleration plus set check"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-46: Dial Gauges: What Do You See? (answer: 0.623, 0.797, 0.804)",
+        "Figure 13-47: Measurement of Displacement on the Test Shaft"
+      ],
+      "tables": [],
+      "applicability": "Measuring shaft top displacement"
+    },
+    {
+      "section_id": "13.2.3.4.2",
+      "title": "Below Grade",
+      "body": "[pp. 13-53 to 13-54] Telltales, unstrained rods in vertical tubes to points below grade (Figure 13-48), carry dial gauges or transducers to measure displacement below the top (Figure 13-47); they are often used with bi-directional tests above and below the cells.",
+      "key_points": [
+        "Telltales measure displacement below grade; common with bi-directional tests"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-48: Telltale Rod for Measurement of Displacement Below the Top of the Test Shaft"
+      ],
+      "tables": [],
+      "applicability": "Measuring displacement below the shaft top"
+    },
+    {
+      "section_id": "13.2.3.4.3",
+      "title": "Measurement of Strain",
+      "body": "[p. 13-54] Strain measurements give the distribution of load transfer; the measurement may be excellent but the interpretation is less reliable because of the shaft's physical characteristics. Most gauges are on 'sister bars' (Figures 13-49, 13-50), typically a #4 bar about 4-ft long with the gauge near the middle, bonded so the bar strain reflects the average shaft strain there.",
+      "key_points": [
+        "Sister bars: #4 bar about 4 ft long, gauge at mid-length",
+        "Strain measurement precise; load interpretation less so"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-49: Sister-bar Mounted Strain Gauges",
+        "Figure 13-50: Sister-bar Mounted Strain Gauges Placed in Drilled Shaft Reinforcement"
+      ],
+      "tables": [],
+      "applicability": "Strain measurement in load test shafts"
+    },
+    {
+      "section_id": "13.2.3.4.4",
+      "title": "Resistance-type Strain Gauges",
+      "body": "[pp. 13-55 to 13-56] Resistance-type gauges are foil gauges bonded to the sister bar whose resistance varies with strain, now lower voltage and very reliable; typically 1/4 to 1/2 inch long, sealed after bonding (Figure 13-51). In a Wheatstone 'quarter bridge' the active gauge and three dummy gauges at the data logger form the circuit, the voltage change calibrated to strain; half or full bridges add resolution, but the quarter bridge, with typical precision of +/- 1 microstrain, usually suffices. They are inexpensive and reliable if waterproofed and can be sampled thousands of times per second, ideal for dynamic measurements (also used in the external sensor of Figure 13-36).",
+      "key_points": [
+        "Foil gauges in a Wheatstone quarter bridge; +/- 1 microstrain typical",
+        "Fast sampling: ideal for rapid and dynamic tests"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-51: Resistance Type Strain Gauge"
+      ],
+      "tables": [],
+      "applicability": "Resistance strain gauges for load tests"
+    },
+    {
+      "section_id": "13.2.3.4.5",
+      "title": "Vibrating Wire Strain Gauges",
+      "body": "[p. 13-57] Vibrating wire gauges, on sister bars (Figure 13-52), relate strain to the harmonic frequency of a tensioned wire 'plucked' electronically; the preset frequency can bias the range toward compression or tension at manufacture; frequency depends on temperature, so a thermocouple is always included. Each reading takes under a second, fine for static tests but precluding rapid or dynamic tests.",
+      "key_points": [
+        "Frequency of a tensioned wire; always with a thermocouple",
+        "Static tests only (too slow for rapid or dynamic tests)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-52: Vibrating Wire Type Strain Gauge"
+      ],
+      "tables": [],
+      "applicability": "Vibrating wire strain gauges for load tests"
+    },
+    {
+      "section_id": "13.2.3.4.6",
+      "title": "Fiber Optic Strain Sensors",
+      "body": "[pp. 13-57 to 13-58] Gratings on fiber-optic tubes reflect laser light at wavelengths depending on strain (Figure 13-53); fibers can be mounted on sister bars to extend the gauge length. Less common at present but suited to strain distributions in load tests, especially long duration, being very stable, multiplexed and inexpensive per sensing point; disadvantages are the need for expert interpretation and expensive (reusable) acquisition equipment. They may suit long-term monitoring of shafts in service (overview: Merzbacher et al., 1996).",
+      "key_points": [
+        "Bragg gratings: stable, multiplexed, many points cheaply",
+        "Expert interpretation and costly acquisition equipment; candidates for long-term monitoring"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-53: Fiber Optic Strain Gauge with Bragg Grating (Schultz, et al., 2001)"
+      ],
+      "tables": [],
+      "applicability": "Fiber optic strain sensors in drilled shafts"
+    },
+    {
+      "section_id": "13.2.3.4.7",
+      "title": "Extensometers",
+      "body": "[p. 13-58] Extensometers measure strain as relative displacement over a gauge length; telltales are usually too crude with too long a gauge length, but LVDTs anchored at multiple points in a borehole or tube give accurate relative displacement and can be recoverable, though less precise than embedment gauges and still relatively expensive.",
+      "key_points": [
+        "Multi-point LVDT extensometers: recoverable, less precise than embedment gauges"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Extensometers for strain in load test shafts"
+    },
+    {
+      "section_id": "13.2.3.4.8",
+      "title": "Interpretation of Strain Data",
+      "body": "[pp. 13-58 to 13-62] Strain is converted to axial force to get load transfer between gauges; average two or more gauges per level (two or four cancel bending and add redundancy). F = eps (A E) (Eq. 13-8), eps measured average axial strain, A cross-section area, E shaft modulus. Even with precise strain, force depends on the area (improved by caliper, 13.2.1.5) and the composite steel-concrete modulus at test age; 'a cast-in-place reinforced concrete drilled shaft does not make a very accurate load cell'. A force versus elevation plot (Figure 13-54) gives segment load transfer: at 1 inch top displacement, 1,164 kips at elevation 150 ft and 912 kips at 140 ft, 252 kips in side resistance; with a 4-ft diameter the area is 4 x pi x 10 = 126 ft^2 and unit load transfer 252/126 = 2.0 ksf (the text cites Figure 13-56 for this shaft, as printed). Segment displacement = measured displacement less elastic shortening, giving unit load transfer curves (Figure 13-55). Figure 13-56: 4-ft, about 52-ft shaft through sand into weak limestone, Tampa, three gauge levels, rapid test; rock side shear mostly mobilized under 1/2 inch and ductile, strain-hardening to over 1.5 inches; base soft for the first 1/2 inch (possibly incomplete cleaning) then nearly linear to 1.5 inches (about 3% of diameter), so ultimate resistance was not reached. Guidelines: four gauges at 90 deg give the most reliable average (two at 180 deg miss orthogonal eccentricity); at least two diameters between gauge levels; avoid uncertain zones (bulges below casing, diameter change at top of rock, end of permanent casing); at least two diameters between gauges and jacks, especially embedded cells; thin layers (order of a diameter) cannot be distinguished, needing geologic judgment (caliche in clay, alternating hard and weathered limestone, sand and clay); insufficient displacement needs judgment on nominal strength; residual stresses (base grouting, shrinkage, nearby piling) can influence resistance.",
+      "key_points": [
+        "F = eps (A E) (Eq. 13-8); average 2 to 4 gauges per level",
+        "Area and composite modulus limit accuracy: the shaft is not an accurate load cell",
+        "Segment load difference / segment area = unit load transfer (e.g., 252 kips / 126 ft^2 = 2.0 ksf)",
+        "Gauge levels at least 2 diameters apart and 2 diameters from jacks; avoid casing ends and diameter changes",
+        "Thin layers cannot be resolved; residual stresses affect results"
+      ],
+      "equations": [
+        "Eq. 13-8: F = eps (A E) - axial force from measured average axial strain; A area of cross section, E modulus of elasticity of the drilled shaft"
+      ],
+      "figures": [
+        "Figure 13-54: Example Plot of Force versus Elevation for a Top-Down Load Test",
+        "Figure 13-55: Example Plot of Unit Load Transfer Curves",
+        "Figure 13-56: Data from an Instrumented Field Load Test"
+      ],
+      "tables": [],
+      "applicability": "Converting strain gauge data to load transfer"
+    },
+    {
+      "section_id": "13.2.3.5",
+      "title": "Other Instrumentation",
+      "body": "[p. 13-62] Accelerometers on or in the shaft for rapid or dynamic tests (high frequency for impact, lower for rapid) give inertial resistance and, by integration, velocity (used in signal matching) and displacement, useful only for short-duration changes referenced to a known displacement; they cannot measure static displacement. Earth pressure cells, rarely used (usually research) at the base, have limited usefulness because the base pressure distribution is unknown and variable. (PDF outline number: 13.2.3.3.)",
+      "key_points": [
+        "Accelerometers: inertia, velocity, short-term displacement only",
+        "Base pressure cells of limited use"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Accelerometers and pressure cells in load tests"
+    },
+    {
+      "section_id": "13.2.4",
+      "title": "Interpretation of Axial Test Results for Design",
+      "body": "[pp. 13-62 to 13-63] Test results must be evaluated to estimate design parameters, considering variations in properties and production shaft behavior across the site and differences between design load cases and tested conditions. Compare unit side and base resistance with the geomaterial properties at the test location using a design method (Chapter 10 or local practice), consider adjusting empirical parameters, and use the 'calibrated' correlation for production shafts in similar conditions, with judgment on geology and variability. Where scour, grade changes or groundwater fluctuation change stratigraphy and effective stress, judgment is needed since some empirical correlations do not account for (post-construction) stress changes. Even in cohesionless soil, scour does not reduce horizontal stress proportionally: Delta sigma_h = K (Delta sigma_v) (Eq. 13-9), K the earth pressure coefficient for unloading, leaving a higher OCR and sigma_h greater in proportion to sigma_v than before scour. Intact rock is unlikely to be much affected by short term confinement changes (cementation or bond), but decomposed rock or frictional joints may be sensitive to long term effective stress reduction, to be evaluated from geology and rock mass behavior.",
+      "key_points": [
+        "Calibrate the design method to the test location, then apply to similar locations",
+        "Account for scour, grade or groundwater changes with judgment",
+        "Delta sigma_h = K Delta sigma_v (Eq. 13-9): unloading leaves higher OCR",
+        "Intact rock little affected; decomposed rock or joints may be sensitive"
+      ],
+      "equations": [
+        "Eq. 13-9: Delta sigma_h = K (Delta sigma_v) - change in horizontal stress at the shaft/soil interface for a change in vertical stress on unloading (scour); K earth pressure coefficient for unloading"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using axial load test results in design"
+    },
+    {
       "section_id": "13.3",
       "title": "Load Tests to Measure Lateral Resistance",
-      "body": "Lateral load tests directly measure load-displacement response under lateral and moment loading. Most often performed as conventional lateral load test at top of shaft using a hydraulic jack reacting against an adjacent shaft or a reaction wall. Test measures lateral deflection and rotation at top. Instrumented shafts include inclinometers or slope indicators for deflection profile vs. depth; strain gauges for moment distribution. Results used to calibrate p-y curves for the site-specific soil conditions. Bi-directional lateral tests possible but less common. Important distinction: lateral tests to large displacements (>1/2 in.) can produce non-reversible structural damage to production shafts — lateral tests generally should be performed on test shafts rather than production shafts. Seismic load testing considerations: cyclic lateral load tests can simulate earthquake loading effects on p-y curves; cyclic softening of cohesive soils affects lateral resistance.",
+      "body": "[p. 13-63] Drilled shafts are often chosen for their flexural strength and lateral resistance; where lateral loading dominates design, lateral load tests may validate or improve the design models. Overview of planning, methods, instrumentation and interpretation (13.3.1 to 13.3.4).",
       "key_points": [
-        "Lateral test: hydraulic jack between test shaft and reaction shaft/wall; measure force and deflection",
-        "Inclinometers provide deflection profile vs. depth; strain gauges provide moment profile",
-        "Results calibrate p-y curves for site-specific conditions",
-        "Large lateral displacements (>1/2 in.) can damage production shafts — test on test shafts only",
-        "Cyclic lateral tests simulate seismic loading effects"
+        "Lateral load tests validate or improve lateral design models where lateral loading dominates"
       ],
       "equations": [],
       "figures": [],
@@ -78,10 +776,252 @@
       "applicability": "Lateral load test planning and p-y curve calibration"
     },
     {
+      "section_id": "13.3.1",
+      "title": "General Considerations in Planning Lateral Load Tests",
+      "body": "[p. 13-63] As with axial testing, establish objectives and define the program considering the production shafts the test models. The page numbers the subheadings 13.3.1.3 to 13.3.1.9; the PDF outline numbers them 13.3.1.1 to 13.3.1.7.",
+      "key_points": [
+        "Objectives and details defined against the production shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning lateral load tests on drilled shafts"
+    },
+    {
+      "section_id": "13.3.1.3",
+      "title": "Overall Objectives",
+      "body": "[pp. 13-63 to 13-64] Lateral test objectives usually concern the design soil models most critical to performance, identified in design (Block 10, Chapter 8) by sensitivity studies; most lateral resistance comes from shallow strata, but if the governing case includes scour the test must evaluate deeper strata. Measuring response along the shaft may be very important to find the distribution of soil resistance. Model the test shaft response so the test evaluates the soil resistance relevant to production; top load, moment and rotational restraint are generally not important, as the objective is the soil model and parameters, and the test shaft may be stronger than production shafts to mobilize more resistance.",
+      "key_points": [
+        "Objective: verify the lateral soil model and parameters, usually shallow strata (deeper with scour)",
+        "Measure response along the shaft; head conditions need not match production",
+        "Test shaft may be structurally stronger than production shafts"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Defining lateral load test objectives"
+    },
+    {
+      "section_id": "13.3.1.4",
+      "title": "Location and Number of Test Shafts",
+      "body": "[p. 13-64] Location and number considerations are similar to axial tests; large projects may test several representative 'sites', and an axial test shaft can be laterally tested after its axial test, generally economically.",
+      "key_points": [
+        "Like axial tests; reuse axial test shafts for lateral tests economically"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Locating lateral load test shafts"
+    },
+    {
+      "section_id": "13.3.1.5",
+      "title": "GeoMaterial Properties at Test Location",
+      "body": "[p. 13-64] Determine the properties of the geomaterials most influencing lateral response, identified by a pre-test model, so their strength and stiffness can be correlated with measured resistance; these layers may differ from those governing axial resistance.",
+      "key_points": [
+        "Pre-test model identifies the strata governing lateral response; investigate them"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Characterizing ground for lateral load tests"
+    },
+    {
+      "section_id": "13.3.1.6",
+      "title": "Scour or Changes in Overburden Stress Conditions",
+      "body": "[pp. 13-64 to 13-65] Scour and stratigraphy or stress changes affect lateral resistance even more than axial. With deep scour, a test in an unscoured profile may only test scourable strata and be of little use; a test in a large excavated cofferdam (Figure 13-57, right) can be representative, but an isolation casing (left) is not, since overburden confines the soil and prevents a passive wedge, and the casing and intervening soil resistance are hard to isolate. Lateral tests may not be practical, economical or useful where deep scour is anticipated unless similar soils are found near the surface; otherwise conservative parameters may be appropriate.",
+      "key_points": [
+        "Scour affects lateral resistance more than axial",
+        "Isolation casing does not represent scour; a large cofferdam may",
+        "Where impractical, use conservative design parameters"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-57: Schematic Diagram of Lateral Test where Scourable Overburden is Present"
+      ],
+      "tables": [],
+      "applicability": "Scour effects on lateral load test planning"
+    },
+    {
+      "section_id": "13.3.1.7",
+      "title": "Construction of Test Shaft",
+      "body": "[p. 13-65] Oversized temporary casing and the resulting shaft-soil contact in shallow strata matter little axially but greatly laterally: a gap around a casing left in an oversized hole should be grouted as in production, and casing left in place adds flexural stiffness that must be modeled.",
+      "key_points": [
+        "Shallow contact governs lateral response: grout gaps as in production",
+        "Model any casing left in place in the stiffness"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Constructing lateral load test shafts"
+    },
+    {
+      "section_id": "13.3.1.8",
+      "title": "Use of Prototype Shafts",
+      "body": "[p. 13-65] Smaller-diameter prototypes are generally not recommended for lateral tests: they are influenced by shallower soils, and flexural stiffness varies with the 4th power of diameter, so they cannot transfer stress to the depths a larger production shaft influences.",
+      "key_points": [
+        "Prototype (smaller) shafts not recommended for lateral tests; stiffness ~ D^4"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Prototype shafts in lateral load tests"
+    },
+    {
+      "section_id": "13.3.1.9",
+      "title": "Group Considerations",
+      "body": "[p. 13-65] Group effects on lateral response (Chapter 11) typically modify p-y curves for overlapping passive zones; since tests are usually on isolated shafts, the derived model must be modified for groups, whose shafts transfer more load to deeper strata.",
+      "key_points": [
+        "Modify the single-shaft lateral model for group effects (Chapter 11)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group effects in interpreting lateral load tests"
+    },
+    {
+      "section_id": "13.3.2",
+      "title": "Test Methods and Procedures",
+      "body": "[p. 13-66] Most lateral tests are conventional static tests jacking the shaft with a hydraulic cylinder, but rapid and bi-directional methods have advantages in some circumstances. The page numbers the subheadings 13.3.2.3 to 13.3.2.5; the PDF outline numbers them 13.3.2.1 to 13.3.2.3.",
+      "key_points": [
+        "Conventional static, bi-directional and rapid lateral tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral load test methods"
+    },
+    {
+      "section_id": "13.3.2.3",
+      "title": "Conventional Static Lateral Load Test",
+      "body": "[pp. 13-66 to 13-68] The shaft is pushed away from, or pulled toward, one or more reaction shafts or piles (ASTM D 3966-07), load measured by a load cell beside the jack; jacking two shafts apart measures both. Figure 13-58: a 30-inch shaft jacked from a beam spanning two reaction shafts, pushed about 3 inches by about 50 tons in stiff clay. Rotation at the shaft tops changes alignment, so a bearing or clevis bracket must avoid eccentricity and the risk of plates popping out; pulled shafts must be far enough apart that passive zones do not overlap. Figure 13-59: clevis bracket and load cell (Kansas DOT shaft with a rectangular extension and steel plate). Figure 13-60: two-way cyclic loading with a programmed double-acting ram following a deflection-time curve, pinned connections, one shaft with a permanent steel liner, relevant for seismic or extreme events (Brown et al., 2002); casing eases welded connections and adds stiffness.",
+      "key_points": [
+        "Push or pull against reaction shafts per ASTM D3966-07; load cell at the jack",
+        "Clevis bracket or bearing accommodates head rotation safely",
+        "Keep pulled shafts far enough apart to avoid overlapping passive zones",
+        "Cyclic two-way tests for seismic or extreme event cases"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-58: Conventional Static Lateral Load Test Setup",
+        "Figure 13-59: Clevis Bracket and Load Cell Mount for Lateral Loading",
+        "Figure 13-60: Cyclic Lateral Load Test Setup"
+      ],
+      "tables": [],
+      "applicability": "Conventional static lateral load tests"
+    },
+    {
+      "section_id": "13.3.2.4",
+      "title": "Bi-Directional Testing",
+      "body": "[pp. 13-68 to 13-69] A load cell inserted vertically in a rock socket and cast in concrete jacks the two socket halves apart (O'Neill et al., 1997); load per unit length = cell load / test socket length (about the length of the steel plates). Figure 13-61: a 6-ft socket in sandstone about 100 ft deep, and paired cells in an 8-ft, 15-ft long socket in chalk about 60 ft deep, jacked independently for equal displacement; sacrificial LVDTs measure plate opening. It is not a flexural test but an in-situ test of a formation's lateral resistance at shaft scale, useful for deep strata loaded by groups or exposed by scour, with interpretation accounting for overburden removal.",
+      "key_points": [
+        "Vertical cell splits a rock socket: in-situ lateral resistance of a deep formation",
+        "Load per unit length = cell load / socket length",
+        "Account for overburden removal or scour in interpretation"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-61: Bi-directional Lateral Testing Apparatus"
+      ],
+      "tables": [],
+      "applicability": "Bi-directional lateral tests in rock sockets"
+    },
+    {
+      "section_id": "13.3.2.5",
+      "title": "Rapid Load Test",
+      "body": "[p. 13-69] A rapid load device on skids beside the shaft applies a ground-level shear pulse (O'Neill et al. 1997; Rollins et al. 1997), avoiding a reaction system, with lateral loads in excess of 1,000 tons for full size large shafts (Figure 13-62); it may suit rapid or impact design loads (seismic, vessel, ice). Brown (2007) describes an analysis accounting for inertia and rate effects.",
+      "key_points": [
+        "Rapid lateral pulse over 1,000 tons without a reaction system",
+        "Suited to rapid or impact design loads; analysis per Brown (2007)"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-62: Rapid Lateral Load Test"
+      ],
+      "tables": [],
+      "applicability": "Rapid lateral load tests"
+    },
+    {
+      "section_id": "13.3.3",
+      "title": "Instrumentation",
+      "body": "[p. 13-70] Lateral test instrumentation is largely as for axial tests; aspects specific to lateral testing follow. The page numbers the subheadings 13.3.3.3 to 13.3.3.5; the PDF outline numbers them 13.3.3.1 to 13.3.3.3.",
+      "key_points": [
+        "Mostly as for axial tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Instrumentation for lateral load tests"
+    },
+    {
+      "section_id": "13.3.3.3",
+      "title": "Measurement of Load",
+      "body": "[p. 13-70] Jacks and load cells as in axial tests, but the jack must work horizontally without leaks and the connection must accommodate significant rotation (the text cites Section 13.3.2.1, as printed); loads are often smaller but displacements much larger. Load cells are preferred, backed by jack pressure; the rapid device includes a load cell, and bi-directional cell pressure is calibrated to load.",
+      "key_points": [
+        "Horizontal jack, rotation-tolerant connection; load cell preferred with pressure backup"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Measuring load in lateral load tests"
+    },
+    {
+      "section_id": "13.3.3.4",
+      "title": "Measurement of Shaft Displacement",
+      "body": "[pp. 13-70 to 13-72] Top displacement by dial gauges or LVDTs on a reference beam, possibly long-travel (Figure 13-63) or wire-type linear potentiometers extending several feet; horizontal accelerometers in rapid tests. Displacement along the shaft is important and inexpensive: a grooved inclinometer casing in the cage, with a pre-test baseline profile, gives displacement relative to the bottom (Figure 13-64a); for short shafts the base may move, so adjust to a known point above grade; align one groove pair with loading and place the casing at the neutral axis. Inclinometer profiling needs the load held 20 to 30 minutes; shape accelerometer arrays (MEMS, Rollins et al. 2009; Figure 13-64b) monitor the displaced shape continuously; down-hole accelerometers in the casing measure motion in rapid tests (Figure 13-65).",
+      "key_points": [
+        "Long-travel LVDTs or wire potentiometers at the top",
+        "Inclinometer casing in the cage: baseline, groove aligned with load, at neutral axis; hold load 20 to 30 min",
+        "Shape accelerometer arrays give continuous profiles; down-hole accelerometers for rapid tests"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 13-63: Long Travel Displacement Transducer and Inclinometer Casing",
+        "Figure 13-64: Measurements of Lateral Displacement in a Lateral Test Shaft below Grade (a) Inclinometer Profiling (b) Shape Accelerometer Array",
+        "Figure 13-65: Down-hole Accelerometer for Displacement Measurement During Rapid Lateral Load Test"
+      ],
+      "tables": [],
+      "applicability": "Measuring lateral displacement profiles in load tests"
+    },
+    {
+      "section_id": "13.3.3.5",
+      "title": "Measurement and Interpretation of Strain",
+      "body": "[pp. 13-72 to 13-73] Sister-bar gauges (the text cites Section 13.2.3.3, as printed) on the near and far sides measure tension and compression to estimate bending moment (Figure 13-66): for an elastic beam M = eps E I / c (Eq. 13-10), c the distance from the neutral axis to the gauge. A reinforced concrete shaft cracks in tension, shifting the neutral axis and changing EI dramatically (Chapters 9 and 12, whose methods are generally conservative on stiffness). Actual EI depends on as-built (in-situ cured, often higher) concrete strength, actual cracking stress, actual modulus, as-built diameter, soil or rock confinement, cage position, actual steel strength (usually above minimum) and any casing left in place. Bending strain-to-moment correlation is therefore unreliable, but strains identify the onset of cracking (tension strains jump) and the location of maximum moment and flexural yielding.",
+      "key_points": [
+        "M = eps E I / c (Eq. 13-10) for an elastic beam only",
+        "Cracking shifts the neutral axis; actual EI often above design estimates",
+        "Strains reliably show cracking onset and location of maximum moment"
+      ],
+      "equations": [
+        "Eq. 13-10: M = eps E I / c - bending moment from measured strain for a simple elastic beam; E elastic modulus, I moment of inertia, c distance from neutral axis to the point of strain measurement"
+      ],
+      "figures": [
+        "Figure 13-66: Strain Gauges to Measure Bending Moments"
+      ],
+      "tables": [],
+      "applicability": "Interpreting bending strains in lateral load tests"
+    },
+    {
+      "section_id": "13.3.4",
+      "title": "Interpretation of Lateral Test Data",
+      "body": "[pp. 13-73 to 13-74] Interpretation uses a computational model (Chapter 9) with the known head conditions (typically zero moment and known shear) and best estimates of diameter and nonlinear EI, often somewhat higher than computed by Chapter 9 methods. Compute top load-deflection and deflection and moment versus depth for measured loads, and adjust the p-y soil or rock model until agreement is reasonable; overestimated displacement means a conservative model, and good top agreement with a wrong profile means the resistance distribution is wrong. Underestimating shaft EI overestimates soil strength and stiffness, so model EI appropriately. Then apply the model with production boundary conditions (Chapter 9) and site stratigraphy. Lateral tests should be performed during design; construction-phase programs leave little time to change the design, so the design should then be reasonably conservative in lateral soil properties.",
+      "key_points": [
+        "Back-analyze with the Chapter 9 p-y model, known head conditions and realistic (often higher) EI",
+        "Match both top deflection and deflection profile",
+        "Underestimated EI inflates soil strength and stiffness",
+        "Perform lateral tests during design; otherwise design conservatively"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Calibrating p-y models from lateral load tests"
+    },
+    {
       "section_id": "13.4",
       "title": "Summary",
-      "body": "Chapter described field load testing methods, planning considerations, and interpretation for axial and lateral loading. Load tests reduce uncertainty and justify higher resistance factors in design. Bi-directional (O-cell) testing is the most practical and economical method for high-capacity drilled shafts. Design-phase testing provides the greatest benefit; proof testing on production shafts provides minimum quality assurance. Instrumentation is essential to maximize information from test programs.",
-      "key_points": [],
+      "body": "[p. 13-74] The chapter gave an overview of load testing techniques, measurements and interpretation strategies for design; with the great recent advances in testing technologies, field load tests offer an opportunity for improved economy and reliability of drilled shaft foundations if used effectively and interpreted appropriately.",
+      "key_points": [
+        "Field load tests improve economy and reliability when used effectively and interpreted appropriately"
+      ],
       "equations": [],
       "figures": [],
       "tables": [],

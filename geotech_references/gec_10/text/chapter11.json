@@ -7,39 +7,44 @@
     {
       "section_id": "11.1",
       "title": "Introduction",
-      "body": "Groups of drilled shafts may be required when axial or lateral loads are too large for a single shaft, when a pile cap foundation is used, or when redundancy is desired. Group behavior differs from single shaft behavior due to interaction effects — overlapping stress zones reduce individual shaft capacity and increase settlement. Design of groups involves: geotechnical strength limit state (group capacity vs. individual capacity); service limit state (group settlement and lateral deflection); structural design of cap.",
+      "body": "[p. 11-1] Although a single shaft under a single column gives drilled shafts a small footprint, groups (Figure 11-1) are often used. Their design is not substantially different from other deep foundation groups, except that battered shafts are relatively rare, there are considerations unique to drilled shaft construction, drilled shafts tend to be larger in diameter and stronger in flexure, and they can sometimes be used at closer spacing where a site requires it. The chapter covers designing groups from the single-shaft methods of earlier chapters, group effects in axial and lateral loading, and the distribution of combined axial, shear and overturning loads to individual shafts.",
       "key_points": [
-        "Groups used when single shaft insufficient for load or when cap foundation preferred",
-        "Group interaction: overlapping stress zones reduce capacity and increase settlement vs. individual shaft",
-        "Design checks: group geotechnical strength, group settlement, group lateral deflection, cap structural design"
+        "Group design follows other deep foundation groups; battered shafts relatively rare",
+        "Drilled shafts are larger and stronger in flexure and can sometimes be closer spaced",
+        "Covers axial and lateral group effects and load distribution to individual shafts"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 11-1: Group of Drilled Shafts During Construction of the Benetia-Martinez Bridge near San Francisco"
+      ],
       "tables": [],
       "applicability": "Groups of two or more drilled shafts; pile cap foundations"
     },
     {
       "section_id": "11.2",
       "title": "Group Versus Single Shaft Foundation",
-      "body": "Single shaft (monoshaft) advantages: no pile cap needed; smaller footprint; no cap excavation; lower cost when axial loads moderate and lateral capacity sufficient. Multiple shaft groups with cap advantages: greater capacity for large loads; rotational stiffness from cap; redundancy; better for large lateral loads where single shaft diameter would be impractical. Selection criteria: cost (foundation + cap); schedule; constructability; redundancy requirements; site constraints.",
+      "body": "[p. 11-2] Groups should be considered where loads make single shafts unusually large and costly. Large overturning moments are most effectively resisted by groups through the axial resistance of widely spaced shafts (Figure 11-2), and because single shafts larger than 8 ft in diameter need large, heavy equipment, groups of smaller shafts may be more cost effective. Groups are less advantageous where the pile cap is costly or difficult, where a limited footprint around existing structures creates access problems, and over water, where a cap is a major expense and time; scour may also be less severe around a single shaft's smaller footprint. Where the choice is not obvious, prepare preliminary or conceptual designs of both for costs, risks and schedule; local contractor trade associations, with which many state DOTs meet regularly, can advise on constructability and cost.",
       "key_points": [
-        "Single shaft: no cap, smaller footprint, lower cost for moderate loads",
-        "Group with cap: greater capacity, rotational stiffness, redundancy for large loads",
-        "Evaluation criteria: cost including cap, schedule, constructability, redundancy"
+        "Groups resist large overturning moments efficiently by axial couples (Figure 11-2)",
+        "Single shafts over 8 ft diameter need large equipment; smaller-shaft groups may be cheaper",
+        "Caps are costly over water and in tight footprints; scour may be less around a single shaft",
+        "Where unclear, compare conceptual designs of both"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 11-2: Group Versus Single Shaft"
+      ],
       "tables": [],
       "applicability": "Foundation type selection; monoshaft vs. group decision"
     },
     {
       "section_id": "11.3",
       "title": "Considerations for Spacing",
-      "body": "Minimum center-to-center spacing per AASHTO: 2.5B for compression groups (where B = shaft diameter); 3.0B for uplift groups to reduce interaction effects. Practical minimum: 3D (3× diameter) provides significantly better efficiency than 2.5D for most soils. Effects of closer spacing: reduced group efficiency (lower total capacity); increased group settlement; more difficult concrete placement between shafts; reduced effectiveness of integrity testing. Closer spacing may be acceptable if: group efficiency is verified by load testing; the reduced capacity is compensated by additional shaft length; construction is carefully sequenced to avoid interference.",
+      "body": "[pp. 11-2 to 11-3] A minimum center-to-center spacing of 3 diameters (2 diameters clear) is typical of routine practice; 2.5 diameters (1.5 clear) can sometimes be advantageous, though group efficiency against overturning falls as spacing falls. At close spacing, construction sequencing must avoid communication between shafts during excavation and concreting, and drilling within 3 diameters of an existing shaft can reduce lateral stress or loosen the ground around it in some materials; advancing casing ahead of the excavation is one mitigation. Group effects must be considered at center-to-center spacing of less than 4 diameters for axial resistance and less than 5 diameters for lateral resistance.",
       "key_points": [
-        "AASHTO minimum spacing: 2.5B (compression groups); 3.0B (uplift groups)",
-        "Practical minimum: 3B provides significantly better efficiency than 2.5B",
-        "Closer spacing: reduced efficiency, increased settlement, construction difficulty"
+        "Typical minimum spacing 3 diameters center to center (2 clear); 2.5 diameters sometimes advantageous",
+        "Close spacing: sequence construction; drilling within 3 diameters may loosen soil around existing shafts",
+        "Consider group effects below 4 diameters (axial) and 5 diameters (lateral)"
       ],
       "equations": [],
       "figures": [],
@@ -49,52 +54,265 @@
     {
       "section_id": "11.4",
       "title": "Group Effects on Axial Resistance",
-      "body": "Group efficiency η = (group capacity)/(n × individual shaft capacity). Two failure modes: (1) individual shaft failure — each shaft fails separately; capacity = η × sum of individual shaft capacities; efficiency factor <1 typically in cohesive soils, may be >1 in cohesionless soils due to densification during installation; AASHTO: η = 0.65 for 3B spacing in cohesive soils, 1.0 in cohesionless soils for typical spacing; (2) block failure — shafts and enclosed soil fail as a unit; block capacity = perimeter shear × depth + base area × net bearing pressure; governs for closely spaced groups in cohesive soils. Design uses lesser of (1) or (2) — block failure typically governs for close spacing in clay. Group settlement: elastic compression (self-weight of cap and shafts); consolidation settlement of compressible soils below pile tips; secondary compression. Group settlement analysis: equivalent footing method — distribute load over equivalent area at 2/3 of embedded depth; use Terzaghi-Meyerhof-DeBeer correction for shape and depth. AASHTO: settlement under service load ≤ tolerable differential settlement (structure-dependent).",
+      "body": "[p. 11-3] Group axial resistance is not necessarily the sum of the individual resistances: zones of influence of individual shafts may intersect (Figure 11-3). Strength evaluation should also consider block failure of the group and possible cap bearing (a piled raft), and group settlement may often exceed single-shaft predictions. Construction also affects the ground: excavated elements (drilled shafts, continuous flight auger piles) generally decrease the surrounding effective stress or at best keep the at-rest Ko condition, more so in cohesionless soils; poorly controlled construction can loosen soil and reduce lateral stress around installed shafts, while casing driven ahead of the excavation may densify; driven displacement piles tend to increase density and effective stress. Effects are less in stable formations (rock, cemented sands, stiff clays, marl, shale), but discontinuities such as uncemented sand layers, weathered seams, water-bearing fractures and solution cavities can cause communication between closely spaced shafts and need careful control of construction and sequencing.",
       "key_points": [
-        "Two failure modes: individual shaft failure (with efficiency η) or block failure",
-        "AASHTO efficiency factor η: 0.65 for 3B spacing in cohesive soils; 1.0 in cohesionless soils",
-        "Block failure governs for closely spaced groups in clay",
-        "Group settlement: elastic + consolidation + secondary; analyzed via equivalent footing method",
-        "Service limit: settlement ≤ tolerable differential settlement for the structure"
+        "Group resistance is not simply the sum of individual resistances (overlapping zones, Figure 11-3)",
+        "Check block failure and cap contribution; group settlement often exceeds single-shaft estimates",
+        "Excavated shafts lower or at best keep at-rest stress, especially in cohesionless soils",
+        "Discontinuities in rock or stiff soils can let closely spaced shafts communicate"
       ],
-      "equations": [
-        "Group capacity by individual failure: Qgroup = η × Σ(individual shaft capacities)",
-        "Block failure: Qblock = (perimeter × average su × depth) + (base area × Nc*su)"
+      "equations": [],
+      "figures": [
+        "Figure 11-3: Overlapping Zones of Influence in a Frictional Pile Group (after Bowles, 1988)"
       ],
-      "figures": [],
       "tables": [],
       "applicability": "Axial capacity and settlement of drilled shaft groups in all geomaterial types"
     },
     {
-      "section_id": "11.5",
-      "title": "Group Effects in Lateral Loading",
-      "body": "When laterally loaded drilled shafts are used in closely spaced groups, a shaft deflects further under a given load, and its bending stresses are larger, than if its neighbors were absent; group effects should be considered when shaft spacing is less than about six diameters in any direction. P-multiplier (Pm) concept (Brown et al. 1987): the p-y curves of a shaft in the group are scaled, p_group shaft = Pm x p_single shaft (Eq 11-14). Shafts in the leading row push into soil that is little affected by the group and need only a minor reduction; shafts in the trailing rows react against soil disturbed by the shafts ahead of them, so their soil resistance is reduced more, and the mass movement of the soil around the group reduces p for all shafts. Trends from field, centrifuge and finite element studies: the greatest reduction is between the first row and the trailing rows (differences among trailing rows are small); soil type has a relatively minor effect; installation of driven displacement piles can raise Pm in trailing rows in sand, which is not expected for drilled shafts; the effects are less pronounced, and Pm closer to 1, at lateral displacements under about one inch. Recommended design values, Table 11-1 (Pm by row position and center-to-center spacing 3D / 4D / 5D / >= 6D): lead row 0.7 / 0.85 / 1.0 / 1.0; 2nd row 0.5 / 0.65 / 0.85 / 1.0; 3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0. Restrained shaft heads develop moments that rotate the cap and induce push-pull axial loads in the shafts (11.5.2). Computer codes FB-MultiPier and GROUP take row-specific p-multipliers; DFSAP (strain wedge method) represents group effects with overlapping passive wedges and applies no external multipliers; finite element analysis (e.g. ABAQUS) may be justified for unusual soil, geometry or loading. Alternatively, separate single-shaft analyses by row position can be combined to obtain the group response (Brown and Bollmann 1993).",
+      "section_id": "11.4.1",
+      "title": "Group Effects on Strength (Geotechnical Strength Limit State)",
+      "body": "[pp. 11-3 to 11-4] Group effects on the geotechnical strength limit state apply to load cases loading all shafts simultaneously to large factored axial forces; the maximum individual shaft load is likely controlled by overturning cases with a much higher force on a corner shaft, and a quick check of the maximum overall group load case often confirms that overturning (11.6) controls. Group efficiency is often defined as eta_g = R_ng / Sum(R_n,i) (Eq. 11-1), R_ng the nominal resistance of the group and R_n,i that of single shaft i of n. Overlapping zones and cap bearing (if in contact) tend to make shafts, cap and soil act as a unit, so a block failure mode should be checked; it generally controls only for groups in soft cohesive soils or cohesionless soils over a weak cohesive layer, and closer spacing increases its likelihood.",
       "key_points": [
-        "P-multiplier (Pm): p_group shaft = Pm x p_single shaft (Eq 11-14); consider group effects at spacing < about 6 diameters",
-        "Table 11-1 at 3D spacing: lead row Pm = 0.7, 2nd row 0.5, 3rd and higher rows 0.35",
-        "Pm = 1.0 for all rows at spacing >= 6D (lead row from 5D)",
-        "Computer programs: FB-MultiPier, GROUP (row-specific Pm); DFSAP strain wedge applies no external multipliers",
-        "Group lateral resistance < n x single shaft resistance due to shadow effects"
+        "Group strength effects matter for cases loading all shafts heavily; corner shafts under overturning often govern",
+        "eta_g = R_ng / Sum(R_n,i) (Eq. 11-1)",
+        "Check block failure: generally controls only in soft clay or sand over a weak cohesive layer"
+      ],
+      "equations": [
+        "Eq. 11-1: eta_g = R_ng / Sum[i=1..n](R_n,i) - group efficiency; R_ng = nominal resistance of the group, R_n,i = nominal resistance of single shaft i"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group efficiency and block failure checks for drilled shaft groups in axial compression"
+    },
+    {
+      "section_id": "11.4.1.1",
+      "title": "Cohesive Geomaterials",
+      "body": "[p. 11-5] Where installation does not significantly affect the in-situ soil and stress state, the strength resistance is the lesser of block failure and the sum of individual resistances, so efficiency cannot exceed 1.0: eta_g = R_Block / Sum(R_n,i) <= 1 (Eq. 11-2), R_n,i from Chapter 10. The block resistance (Figure 11-4) is the side shear on the block periphery plus bearing on its footprint, R_Block = f_max [2 D (Z + B)] + q_max (Z B) (Eq. 11-3), with D, Z and B the block depth, length and width; f_max is conservatively computed as if the periphery were a drilled shaft, and q_max by the Chapter 10 cohesive base procedure, but for a zone of influence below the block of about 2 to 3 times the smaller of Z and B.",
+      "key_points": [
+        "Efficiency in cohesive soil is the lesser of block and sum of individual resistances, at most 1.0 (Eq. 11-2)",
+        "R_Block = f_max [2 D (Z + B)] + q_max (Z B) (Eq. 11-3)",
+        "q_max over a zone 2 to 3 times the smaller block dimension below the block"
+      ],
+      "equations": [
+        "Eq. 11-2: eta_g = R_Block / Sum[i=1..n](R_n,i) <= 1 - cohesive geomaterials",
+        "Eq. 11-3: R_Block = f_max [2 D (Z + B)] + q_max (Z B) - D, Z, B = block depth, length and width; f_max unit side resistance of the block periphery, q_max unit base resistance"
+      ],
+      "figures": [
+        "Figure 11-4: Block Type Failure Mode (after Tomlinson, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Block failure resistance of shaft groups in cohesive soils"
+    },
+    {
+      "section_id": "11.4.1.2",
+      "title": "Cohesionless Soils",
+      "body": "[pp. 11-6 to 11-7] AASHTO 10.8.3.6.3 (2017a) gives group efficiencies for drilled shafts in cohesionless soil with the cap not in contact with the ground: eta = 0.65 at 2.5 diameters center to center, 0.80 at 3 diameters and 1.0 at 4 diameters or more, interpolated linearly; no reduction if the cap stays in contact (not typical for bridges), pressure grouting of sides and base is cited as mitigation, and the AASHTO 10.8.3.6.1 commentary waives the reduction if casing is advanced ahead of the excavation. The factor applies to the overall (average) group resistance under the total (average) load, not to the maximum shaft load from overturning (11.4.1). The reductions reflect possible loosening and stress relaxation; Chapter 5 shows stability can be kept by various techniques and loosening can occur even with casing advanced, the key being maintained stability, since instability can reduce resistance more than these values. The AASHTO values are likely conservative where the soil is not loosened, but are prudent where means and methods and quality are uncertain. Small-scale field tests on bored piles 5 to 13 inches in diameter, 8 to 24 diameters long, all in dry sand or sand with fines above the water table (Garg, 1979; Liu et al., 1985; Senna et al., 1993; Ismael, 2001), suggest efficiency of 1.0 or more at 3 to 4 diameters (AASHTO gives 0.80 at 3); clean sands below the water table may be lower. Finite element studies (Drucker-Prager c-phi material; Katzenbach and Moormann, 1997) show piles at 3D spacing exceeding single-pile resistance at relatively large displacement (Figure 11-5: model 1 at 3D, model 2 at 6D), but mobilizing less at small displacement, so serviceability differs from strength. Post-construction SPT or CPT within the group and verification tests of an interior shaft can show installation effects; a well-conceived testing program showing smaller negative effects can justify a project-specific alternative.",
+      "key_points": [
+        "AASHTO 10.8.3.6.3: eta = 0.65 at 2.5D, 0.80 at 3D, 1.0 at 4D or more (cap not in contact), interpolate",
+        "No reduction with cap in contact; grouting and advanced casing cited as mitigation",
+        "Apply to average group resistance, not the maximum overturning shaft load",
+        "Stability during construction is the key; AASHTO values prudent where methods and quality are uncertain",
+        "Small bored pile tests in dry sand: efficiency 1.0 or more at 3 to 4 diameters",
+        "Interior shaft tests and in-group SPT/CPT can justify a project-specific alternative"
       ],
       "equations": [],
       "figures": [
-        "Figure 11-10",
-        "Figure 11-11"
+        "Figure 11-5: Axial Resistance from FE Model Results of Bored Pile Groups (Katzenbach and Moormann, 1997). 1 MN ~ 225 kips; 2.54 cm ~ 1 inch."
+      ],
+      "tables": [],
+      "applicability": "Group efficiency of drilled shafts in cohesionless soils"
+    },
+    {
+      "section_id": "11.4.1.3",
+      "title": "Drilled Shaft Group in a Strong Layer with a Weak Underlying Layer",
+      "body": "[pp. 11-7 to 11-8] With a weak formation below the foundation layer, check whether efficiency below 1 is warranted by the 11.4.1.1 method with R_n,i from Chapter 10 and the block extending to the weak layer. A weak underlying layer will usually be a significant group settlement consideration (cited as 'Section 11.6', as printed), which may require shafts to penetrate below the compressible layer.",
+      "key_points": [
+        "Check block efficiency with the block extended to the weak layer",
+        "A weak underlying layer usually governs group settlement; shafts may need to pass below it"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Shaft groups bearing in a strong layer over a weak layer"
+    },
+    {
+      "section_id": "11.4.2",
+      "title": "Settlement of Shaft Groups (Serviceability Limit)",
+      "body": "[p. 11-8] Under significant vertical load a group is likely to settle significantly more than a single shaft at the same average load, especially over compressible soils, because of its deeper zone of influence (Figure 11-6). Group settlement combines elastic compression of the shafts with settlement of the surrounding soils: nearly instantaneous compression in cohesionless soils and time-dependent consolidation in cohesive soils, layered profiles having both. The magnitude and timing of loads matter: settlement from the dead load of column, pier cap and other parts may be complete before settlement-sensitive connections are made, so perhaps only loads after the girder bearing plates are set have significant consequences. The simplified methods that follow were formulated for driven pile groups and are considered generally applicable to drilled shafts, the deeper zone of influence being little affected by element type.",
+      "key_points": [
+        "Group settlement exceeds single-shaft settlement at the same average load (deeper zone, Figure 11-6)",
+        "Elastic shaft compression + immediate compression (sand) + consolidation (clay)",
+        "Only loads applied after settlement-sensitive connections may matter",
+        "Driven pile group methods apply to drilled shaft groups"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-6: Deeper Zone of Influence for End Bearing Shaft Group (after Tomlinson, 1994)"
+      ],
+      "tables": [],
+      "applicability": "Settlement of drilled shaft groups at the service limit state"
+    },
+    {
+      "section_id": "11.4.2.1",
+      "title": "Elastic Compression of the Shaft",
+      "body": "[pp. 11-9 to 11-10] Elastic compression depends on load, shaft stiffness and load transfer. A shaft may be considered rigid if SR = (L/B)(E_soil/E_pile) <= 0.010 (Eq. 11-4; L embedment depth, B diameter, E_soil average soil modulus, E_pile shaft modulus), its shortening then very small compared with soil settlement; otherwise estimate it, include it in settlement and subtract it from shaft displacement when finding mobilized side or base resistance. Compression is the sum over n segments, Delta = Sum Q_i L_i / (A_i E_i) (Eq. 11-5), with segment length, average area, composite modulus and average axial load, the load falling from the total at the top to the mobilized end bearing (downdrag or uplift per Chapter 10); for a piled raft with eccentric loading this becomes complex, but dividing the group load by the number of shafts may suffice. With uniform side shear and all load in side friction (triangular load distribution), Delta = (1/2) Q_max L_shaft / (A_shaft E_shaft) (Eq. 11-6); a free-standing column in end bearing gives the upper bound Delta_max = Q_max L_shaft / (A_shaft E_shaft) (Eq. 11-7), downdrag or swell possibly giving larger loads (Chapter 10). Eqs. 11-6 and 11-7 quickly show whether a fuller load distribution analysis is justified.",
+      "key_points": [
+        "Rigid if SR = (L/B)(E_soil/E_pile) <= 0.010 (Eq. 11-4)",
+        "Delta = Sum Q_i L_i / (A_i E_i) over segments (Eq. 11-5)",
+        "Side friction only: Delta = (1/2) Q_max L / (A E) (Eq. 11-6); end bearing upper bound Delta_max = Q_max L / (A E) (Eq. 11-7)"
+      ],
+      "equations": [
+        "Eq. 11-4: SR = (L/B) (E_soil/E_pile) <= 0.010 - stiffness ratio below which a shaft may be considered rigid; L embedment depth, B diameter",
+        "Eq. 11-5: Delta = Sum[i=1..n] (Q_i L_i) / (A_i E_i) - elastic compression of n shaft segments",
+        "Eq. 11-6: Delta = (1/2) (Q_max L_shaft) / (A_shaft E_shaft) - uniform side load transfer, no end bearing",
+        "Eq. 11-7: Delta_max = (Q_max L_shaft) / (A_shaft E_shaft) - upper bound, load carried in end bearing"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Elastic shortening of shafts in group settlement"
+    },
+    {
+      "section_id": "11.4.2.2",
+      "title": "Compression Settlement in Cohesionless Soils",
+      "body": "[pp. 11-10 to 11-11] Meyerhof (1976) estimated group compression settlement in a homogeneous sand (not over more compressible soil, otherwise add consolidation per 11.4.2.3) conservatively from SPT or CPT; his method does not distinguish 60 percent hammer efficiency, but the correction is recommended. Sands: S_group = 4 p_f I_f sqrt(B) / N'60 (Eq. 11-8); silty sands: S_group = 8 p_f I_f sqrt(B) / N'60 (Eq. 11-9); CPT in saturated cohesionless soils: S_group = p_f I_f B / (2 q_c) (Eq. 11-10). S_group = total settlement (inches); p_f = group load divided by group plan area (ksf); B = group width (ft); D = embedment depth below grade (ft); I_f = 1 - [D/(8B)] >= 0.5; N'60 = average corrected SPT N-value (bpf) and q_c = average cone tip resistance (ksf), both within a depth B below the shaft tip.",
+      "key_points": [
+        "Meyerhof (1976) for groups in homogeneous sand; apply the 60 percent hammer correction",
+        "Sands 4 p_f I_f sqrt(B) / N'60; silty sands 8 p_f I_f sqrt(B) / N'60; CPT p_f I_f B / (2 q_c) (inches)",
+        "I_f = 1 - D/(8B) >= 0.5; N'60 and q_c averaged over depth B below the tips"
+      ],
+      "equations": [
+        "Eq. 11-8: S_group = 4 p_f I_f sqrt(B) / N'60 - sands; S_group in inches, p_f in ksf, B in ft; I_f = 1 - [D/(8B)] >= 0.5; N'60 average corrected SPT N within depth B below the tips",
+        "Eq. 11-9: S_group = 8 p_f I_f sqrt(B) / N'60 - silty sands",
+        "Eq. 11-10: S_group = p_f I_f B / (2 q_c) - CPT, cohesionless saturated soils; q_c average cone tip resistance (ksf) within depth B below the tips"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Meyerhof group settlement in sands from SPT or CPT"
+    },
+    {
+      "section_id": "11.4.2.3",
+      "title": "Consolidation Settlement in Cohesive Soils",
+      "body": "[pp. 11-11 to 11-15] Consolidation settlement accompanies sustained loads as excess pore pressure dissipates; time rate is not addressed here (see texts and Cheney and Chassie, 2002, FHWA HI-88-009). Designing for the full sustained dead load is conservative; part of the dead load may consolidate before settlement-sensitive parts are built, and a time-rate evaluation may be prudent if settlement significantly affects design. Stress distribution depends on stratigraphy, relative stiffness, load transfer, cap rigidity and cap-shaft load sharing, but the equivalent footing method is usually sufficient: Terzaghi and Peck (1967) place an equivalent footing of group width B by length Z at 1/3 of the embedment depth D above the toe, the load spreading at 1H:2V with depth (Figure 11-7); its depth may be adjusted for stratigraphy and load transfer (Figure 11-8). Cohesive soils below are divided into layers, possibly with several laboratory curves (Figure 11-9), and settlements summed: overconsolidated with p_o + Delta p > p_c, S_i = H [C_cr/(1 + e_0) log(p_c/p_0)] + H [C_c/(1 + e_0) log((p_0 + Delta p)/p_c)] (Eq. 11-11); overconsolidated with p_o + Delta p < p_c, S_i = H [C_cr/(1 + e_0) log((p_0 + Delta p)/p_0)] (Eq. 11-12); normally consolidated (p_o = p_c), S_i = H [C_c/(1 + e_0) log((p_0 + Delta p)/p_0)] (Eq. 11-13); H layer thickness, C_c compression index, C_r recompression index (C_cr in the equations, as printed), e_0 initial void ratio, p_o effective overburden at mid-layer, p_c preconsolidation pressure, Delta p average pressure change. Underconsolidated soil (p_o > p_c), e.g., from substantial fill, is still consolidating and adds downdrag (Chapter 10).",
+      "key_points": [
+        "Full sustained dead load is conservative; time rate may matter for construction loads",
+        "Equivalent footing B x Z at D/3 above the toe, spread 1H:2V (Terzaghi and Peck, 1967; Figure 11-7); adjust per Figure 11-8",
+        "Layer settlements by Eqs. 11-11 to 11-13 from e-log p curves (Figure 11-9)",
+        "Underconsolidated soil adds downdrag (Chapter 10)"
+      ],
+      "equations": [
+        "Eq. 11-11: S_i = H [C_cr/(1 + e_0) log(p_c/p_0)] + H [C_c/(1 + e_0) log((p_0 + Delta p)/p_c)] - overconsolidated layer, p_o + Delta p > p_c",
+        "Eq. 11-12: S_i = H [C_cr/(1 + e_0) log((p_0 + Delta p)/p_0)] - overconsolidated layer, p_o + Delta p < p_c",
+        "Eq. 11-13: S_i = H [C_c/(1 + e_0) log((p_0 + Delta p)/p_0)] - normally consolidated layer (p_o = p_c); H thickness, C_c compression index, C_cr recompression index (listed as C_r), e_0 initial void ratio"
+      ],
+      "figures": [
+        "Figure 11-7: Equivalent Footing Concept for Pile Groups (after Terzaghi and Peck, 1967)",
+        "Figure 11-8: Pressure Distribution Below Equivalent Footing for Pile Group (adapted from Cheney and Chassie, 2002).",
+        "Figure 11-9: Typical e versus Log p Curve from Laboratory Consolidation Testing."
+      ],
+      "tables": [],
+      "applicability": "Equivalent footing consolidation settlement of shaft groups in clay"
+    },
+    {
+      "section_id": "11.4.3",
+      "title": "Group Effects in Rock and Cemented Soils",
+      "body": "[p. 11-15] Because individual shafts in rock, cemented materials and strong cohesive soils have great axial resistance, large groups are seldom needed for typical transportation structures there. Where used, the cohesive soil strength methods may be used, but since the rock strength usually exceeds that at the shaft-rock interface, group effects rarely control. Stress superposition may increase group deformation, but settlements on rock and strong cohesive soils are usually very small and group effects usually insignificant for transportation structures.",
+      "key_points": [
+        "Large groups rarely needed in rock or strong soils",
+        "Cohesive-soil methods may be used; group effects rarely control strength",
+        "Settlements usually very small; group effects usually insignificant"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group effects for shafts in rock and cemented soils"
+    },
+    {
+      "section_id": "11.5",
+      "title": "Group Effects in Lateral Loading",
+      "body": "[p. 11-15] In closely spaced groups a laterally loaded shaft deflects further under a given load, and its bending stresses are larger, than if its neighbors were absent, so group effects should be considered when shaft spacing is less than about six diameters in any direction. Subsections: 11.5.1 the p-multiplier concept, with the recommended design values of Table 11-1 (Pm by row position at center-to-center spacing 3D / 4D / 5D / >= 6D: lead row 0.7 / 0.85 / 1.0 / 1.0; 2nd row 0.5 / 0.65 / 0.85 / 1.0; 3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0); 11.5.2 use of p-multipliers in computer codes (11.5.2.1 group codes, 11.5.2.2 single-shaft analyses for a group model).",
+      "key_points": [
+        "Consider lateral group effects at spacing less than about six diameters in any direction",
+        "Table 11-1 at 3D spacing: lead row Pm = 0.7, 2nd row 0.5, 3rd and higher rows 0.35 (11.5.1)",
+        "Pm = 1.0 for all rows at spacing >= 6D (lead row from 5D)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral capacity of drilled shaft groups; p-multiplier method"
+    },
+    {
+      "section_id": "11.5.1",
+      "title": "P-multiplier Concept",
+      "body": "[pp. 11-15 to 11-17] Brown et al. (1987) showed that a pile in a 3 x 3 free-headed group at 3-diameter spacing could be modeled with single-pile software if the p-y curves are scaled by a p-multiplier Pm < 1 depending on the shaft's position and the spacing (Figure 11-10): p_group shaft = Pm p_single shaft all along the curve (Eq. 11-14). Leading-row shafts push into soil little affected by the group and need only a minor adjustment; trailing rows get resistance from soil pushed into the voids left by the shafts ahead, reducing p at any deflection; and mass movement of the soil around the group reduces p for all shafts. Later field tests, centrifuge tests and finite element studies (Brown et al., 1988; Brown and Shie, 1991; McVay et al., 1995; Pinto et al., 1997; Ruesta et al., 1997; Rollins et al., 1998; Ashford and Rollins, 1999; Brown et al., 2001) confirm behavior dominated by row position, with trends: the greatest reduction is between the first and trailing rows, differences between trailing rows being small; soil type has relatively minor effect (row effects somewhat more pronounced in sands than clays, but less than installation effects and spatial variability); driven displacement piles may densify sand and raise trailing-row Pm, not expected for drilled shafts; research has focused on the large displacements of extreme events, and at displacements under one inch effects are less pronounced and Pm closer to unity; limited rapid-loading data (seismic, vessel impact) give Pm similar to static loading at similar displacement. For general design, Table 11-1: Pm by row position at center-to-center spacing 3D / 4D / 5D / >= 6D: lead row 0.7 / 0.85 / 1.0 / 1.0; 2nd row 0.5 / 0.65 / 0.85 / 1.0; 3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0.",
+      "key_points": [
+        "p_group shaft = Pm p_single shaft (Eq. 11-14; Brown et al., 1987)",
+        "Leading row little affected; trailing rows reduced by soil pushed from shafts ahead",
+        "Largest reduction from first to trailing rows; soil type a minor effect",
+        "At displacements under one inch Pm closer to 1; rapid loading similar to static",
+        "Table 11-1: lead 0.7 / 0.85 / 1.0 / 1.0; 2nd 0.5 / 0.65 / 0.85 / 1.0; 3rd+ 0.35 / 0.5 / 0.7 / 1.0 at 3D / 4D / 5D / >= 6D"
+      ],
+      "equations": [
+        "Eq. 11-14: p_group shaft = P_m p_single shaft - p-multiplier applied all along the p-y curve (Brown et al., 1987)"
+      ],
+      "figures": [
+        "Figure 11-10: The P-Multiplier Concept (Brown et al., 1987)"
       ],
       "tables": [
-        "Table 11-1"
+        "Table 11-1: Recommended P-Multiplier, Pm, Values for Design by Row Position - pile spacing (c-c) 3D / 4D / 5D / >= 6D: lead row 0.7 / 0.85 / 1.0 / 1.0; 2nd row 0.5 / 0.65 / 0.85 / 1.0; 3rd and higher rows 0.35 / 0.5 / 0.7 / 1.0"
       ],
-      "applicability": "Lateral capacity of drilled shaft groups; p-multiplier method"
+      "applicability": "P-multipliers by row position for laterally loaded shaft groups"
+    },
+    {
+      "section_id": "11.5.2",
+      "title": "Use of P-multiplier in Computer Codes",
+      "body": "[p. 11-17] If shaft heads are restrained, head moments rotate the cap and induce compression and tension in the shafts, the sum of head moments being resisted by push-pull couples and possibly soil resistance against the cap, the cap rotation relieving the head moments somewhat; the engineer can ignore this and design from single-shaft solutions or use a code that considers all interactions. The p-multiplier approach is empirical, calibrated to experiments thought to represent typical problems; for very complex soil-structure interaction, nonlinear finite element analysis (e.g., ABAQUS, Hibbett et al., 1996) may be justified when soil or rock conditions, geometry or loading are unusual.",
+      "key_points": [
+        "Restrained heads: cap rotation and push-pull axial couples resist head moments",
+        "Single-shaft solutions or full group codes may be used",
+        "p-multipliers are empirical; finite element analysis for unusual conditions"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Group interaction effects in computer analysis of shaft groups"
+    },
+    {
+      "section_id": "11.5.2.1",
+      "title": "Computer Codes for Analysis of Groups of Shafts",
+      "body": "[pp. 11-17 to 11-18] FBPIER, now FBMultipier (Hoit et al., 1997), models coupled shaft and cap effects, complex three-dimensional group configurations and loading, cap flexibility and soil resistance against the cap; Ensoft's GROUP performs similar two- or three-dimensional calculations. Both allow lateral group action through p-multipliers, so Table 11-1 values can be input for row-specific p-y modification. DFSAP (Washington State DOT) uses the strain wedge method, estimating group effects by overlapping passive wedges, so external scaling is not applied.",
+      "key_points": [
+        "FBMultipier and GROUP accept row-specific Table 11-1 p-multipliers",
+        "DFSAP (strain wedge) models overlap of passive wedges; no external p-multipliers"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Software for lateral analysis of shaft groups"
+    },
+    {
+      "section_id": "11.5.2.2",
+      "title": "Analyses of Single Shafts for Group Model",
+      "body": "[pp. 11-18 to 11-19] Alternatively (Brown and Bollmann, 1993), separate single-shaft analyses by row give load-deflection responses (Figure 11-11), and the group lateral resistance at a deflection is the sum of the individual resistances at that deflection; load varies less between shafts than the p-multipliers do between rows. A simpler approach analyzes all shafts with a weighted-average Pm from Table 11-1, which (Brown et al., 2001) captures overall group stiffness with sufficient accuracy, allows multi-directional loading in one model, and covers moment variation by an overstress allowance: maximum moment in any shaft no greater than the average-shaft maximum times 1.2 at 3D, 1.15 at 4D and 1.05 at 5D center to center. For simplicity all shafts in a group are generally given the same reinforcement, consistent with practice and avoiding the risk of installing the wrong cage.",
+      "key_points": [
+        "Sum single-shaft responses by row at a common deflection (Brown and Bollmann, 1993; Figure 11-11)",
+        "Or use a weighted-average Pm from Table 11-1 for all shafts (Brown et al., 2001)",
+        "Moment overstress: 1.2 x Mmax,average at 3D, 1.15 at 4D, 1.05 at 5D",
+        "Same reinforcement in all shafts of a group"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 11-11: Example Plots of Lateral Load Response by Row Position. 25.4 min = 1 inch; 1 kN-m = 0.738 ft-kips"
+      ],
+      "tables": [],
+      "applicability": "Single-shaft analyses and average p-multipliers for group lateral design"
     },
     {
       "section_id": "11.6",
       "title": "Combined Loading and Computation of Load Distribution to Group",
-      "body": "Methods for distributing combined column loads (axial, shear, moment) to individual shafts in a group: (1) Simple static equilibrium — rigid cap assumption; load distribution based on statics; applicable for small groups with simple loading; (2) Simple elastic solution — cap assumed rigid; shaft load proportional to distance from centroid for eccentric axial load; lateral loads distributed equally; moments distributed in proportion to shaft stiffness; (3) Nonlinear computer solution — model individual shafts with p-y curves and t-z curves; cap modeled as rigid or flexible element; iterative solution for load distribution; most rigorous. AASHTO: use method appropriate for load complexity and group size. For large groups with eccentric loading or combined loading, nonlinear computer analysis recommended.",
+      "body": "[p. 11-19] Efficient group design requires analysis of the distribution of combined loads so that all shafts are used for the most critical conditions. For combined axial, lateral and overturning forces, in order of complexity: simple static equilibrium (if the group is a determinate frame); elastic solution (shafts as springs, cap as a rigid body); nonlinear solution (a code such as GROUP or FBPIER). The simple solutions suit routine design but may overestimate load concentrations in some shafts for extreme events with large deflections, where a nonlinear solution better represents vertical, transverse and rotational group stiffness near the geotechnical strength limit.",
       "key_points": [
-        "Simple static equilibrium: rigid cap, statics only; for small groups simple loading",
-        "Simple elastic solution: rigid cap, load proportional to distance from centroid",
-        "Nonlinear computer solution: most rigorous; required for large groups or complex combined loading",
-        "Computer programs: FB-Multipier, GROUP, OpenSees for nonlinear group analysis"
+        "Static equilibrium, elastic spring solution, or nonlinear computer solution",
+        "Simple solutions suit routine design; nonlinear for extreme events with large deflections"
       ],
       "equations": [],
       "figures": [],
@@ -102,10 +320,85 @@
       "applicability": "Load distribution to individual shafts in groups under combined loading"
     },
     {
+      "section_id": "11.6.1",
+      "title": "Simple Static Equilibrium",
+      "body": "[pp. 11-20 to 11-22] For very simple groups, statics give the shaft loads, assuming a weighted-average p-multiplier (11.5.2.2), ignoring shaft-head rotational restraint (which would make the problem indeterminate) so the cap moment is resisted by axial forces alone, and equal axial stiffness. For a 2 x 2 group (Figure 11-12) at s = 3D, cap thickness t and weight W_c, lateral load Q_x, vertical Q_z and moment M_xz, with equal horizontal resistances R_x and head moments ignored: Q_x = Sum R_x (Eq. 11-15), so R_x = Q_x/4 (Eq. 11-16); Q_z + W_c = Sum R_zi = 2(R_z1) + 2(R_z2) (Eq. 11-17), R_z1 = (Q_z + W_c)/2 - R_z2 (Eq. 11-18); moments about the top of row 1, M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t) = 2(R_z2)(3D) (Eq. 11-19), so R_z2 = [M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t)]/6D (Eq. 11-20) and R_z1 = (Q_z + W_c)/2 - [M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t)]/6D (Eq. 11-21). Example: 4-ft shafts, s = 12 ft, cap 20 ft by 20 ft by 4 ft, W_c = (20)(20)(4)(0.15) = 240 kips, Q_z = 1500 kips, Q_x = 120 kips, M_xz = 1800 kip-ft: R_z2 = [1800 + (1740)(6) + (120)(4)]/24 = 530 k/shaft, R_z1 = 870 - 530 = 340 k/shaft, R_x = 30 k/shaft. Design shafts for 530 kips axial and 30 kips lateral, with average Pm = [2(0.7) + 2(0.5)]/4 = 0.6 and the single-shaft maximum moment multiplied by 1.2 for 3D spacing.",
+      "key_points": [
+        "Assumes rigid statics: cap moment carried by shaft axial forces, equal axial stiffness, average Pm",
+        "R_x = Q_x/4; R_z2 = [M_xz + (Q_z + W_c)(1.5D) + Q_x t]/6D; R_z1 = (Q_z + W_c)/2 - R_z2 (Eqs. 11-15 to 11-21)",
+        "Example: 530 k and 340 k per shaft axial, 30 k lateral; Pm = 0.6; moments x 1.2"
+      ],
+      "equations": [
+        "Eq. 11-15: Q_x = Sum R_x - horizontal equilibrium, 2 x 2 group",
+        "Eq. 11-16: R_x = Q_x/4",
+        "Eq. 11-17: Q_z + W_c = Sum R_zi = 2(R_z1) + 2(R_z2)",
+        "Eq. 11-18: R_z1 = (Q_z + W_c)/2 - R_z2",
+        "Eq. 11-19: M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t) = 2(R_z2)(3D) - moments about the top of row 1",
+        "Eq. 11-20: R_z2 = [M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t)]/6D",
+        "Eq. 11-21: R_z1 = (Q_z + W_c)/2 - [M_xz + (Q_z + W_c)(1.5D) + (Q_x)(t)]/6D"
+      ],
+      "figures": [
+        "Figure 11-12: Simple Static Analysis of a 2 x 2 Group"
+      ],
+      "tables": [],
+      "applicability": "Hand statics for load distribution in a 2 x 2 shaft group"
+    },
+    {
+      "section_id": "11.6.2",
+      "title": "Simple Elastic Solution",
+      "body": "[pp. 11-22 to 11-26] Most groups can be solved by hand with each shaft's axial, transverse and rotational stiffness as elastic springs and a rigid cap, with individual or weighted-average lateral stiffness (11.5.2.2); head rotational restraint may be included, though typically much smaller than the axial force couples. For a 2 x 3 group (Figure 11-13) at s = 3D: R_xi = k_xi Delta_xi (Eq. 11-22), R_zi = k_zi Delta_zi (Eq. 11-23), R_Psi_i = k_Psi_i Psi_i (Eq. 11-24); about the bottom center of the cap, for vertical shafts (battered shafts, rarely used and not recommended, need axis transformation), R_Gx = Sum k_xi Delta_xi (Eq. 11-25), R_Gz = Sum k_zi Delta_zi (Eq. 11-26), R_GPsi = Sum k_Psi_i Psi_i + Sum k_zi Delta_zi x_i (Eq. 11-27), cross-coupling terms of individual shafts being ignored as insignificant; Delta_xi = Delta_Gx (Eq. 11-28), Delta_zi = Delta_Gz + Psi_G x_i (Eq. 11-29), Psi_i = Psi_G (Eq. 11-30); substituting gives Eqs. 11-31 to 11-33 and the matrix form Eq. 11-34 / 11-35, the first row uncoupled without batter shafts. Example: 4-ft shafts, s = 12 ft, cap 20 ft by 32 ft by 5 ft, W_c = 480 kips, Q_z = 2500 kips, Q_x = 180 kips, M_xz = 1800 kip-ft; LPILE with a full moment connection and average Pm = [2(0.7) + 2(0.5) + 2(0.35)]/6 = 0.52 gives 0.25 inches at 30 kips fixed head, k_xi = 120 kips per inch, K_X = 720 kips per inch; 0.002 in/in rotation at 100 kip-ft, k_Psi_i = 50,000 kip-ft per inch/inch; Chapter 10 axial analysis 0.125 inches at 400 kips, k_zi = 3200 kips per inch, K_Z = 19,200 kips per inch, K_ZPsi = 0 (x_i = -24 and +24 ft), K_Psi = 300,000 + 3,686,400 + 3,686,400 = 7,672,800 k-ft/(in/in), the head rotational part more than an order of magnitude below the axial couples. Forces 180 kips, 2980 kips and 1800 + 180(5) = 2700 kip-ft give Delta_GX = 0.25 inches, Delta_GZ = 0.155 inches, Psi_G = 0.000352 inch/inch; Delta_z1 = 0.155 + 0.000352(-24 ft)(12 in/ft) = 0.054 in, Delta_z2 = 0.155 in, Delta_z3 = 0.256 in; R_xi = 30 kips; R_z1 = 173, R_z2 = 496 and R_z3 = 819 kips/shaft, all as printed (moment equilibrium does not hold with these values, 2 x 24 ft x (819 - 173) = 31,008 kip-ft against 2,700 kip-ft applied: K_Psi carries x_i in feet while Delta_z multiplies Psi_G by x_i in inches). The printed design: maximum axial 819 kips; lateral design with 30 kips and 0.000352 head rotation, Pm = 0.52, and the maximum moment multiplied by 1.2.",
+      "key_points": [
+        "Shafts as axial, lateral and rotational springs under a rigid cap (Eqs. 11-22 to 11-30)",
+        "Group stiffness matrix Eq. 11-34 / 11-35; first row uncoupled without batter shafts",
+        "Example stiffness: k_x = 120 k/in, k_Psi = 50,000 kip-ft per in/in, k_z = 3200 k/in; Pm = 0.52",
+        "Printed result 173 / 496 / 819 kips per shaft by row; the printed values do not satisfy moment equilibrium (unit mix)",
+        "Head rotational stiffness is an order of magnitude below the axial couples"
+      ],
+      "equations": [
+        "Eq. 11-22: R_xi = k_xi Delta_xi - lateral shaft spring",
+        "Eq. 11-23: R_zi = k_zi Delta_zi - axial shaft spring",
+        "Eq. 11-24: R_Psi_i = k_Psi_i Psi_i - shaft head moment from cap rotation",
+        "Eq. 11-25: R_Gx = Sum k_xi Delta_xi",
+        "Eq. 11-26: R_Gz = Sum k_zi Delta_zi",
+        "Eq. 11-27: R_GPsi = Sum k_Psi_i Psi_i + Sum k_zi Delta_zi x_i - x_i = x-coordinate of the shaft top (Figure 11-13)",
+        "Eq. 11-28: Delta_xi = Delta_Gx",
+        "Eq. 11-29: Delta_zi = Delta_Gz + Psi_G x_i",
+        "Eq. 11-30: Psi_i = Psi_G",
+        "Eq. 11-31: R_Gx = [Sum k_xi] Delta_GX",
+        "Eq. 11-32: R_Gz = [Sum k_zi]{Delta_GZ + Psi_G x_i} = [Sum k_zi]{Delta_GZ} + [Sum k_zi x_i]{Psi_G}",
+        "Eq. 11-33: R_GPsi = Sum k_Psi_i Psi_G + Sum k_zi (Delta_GZ + Psi_G x_i) x_i = [Sum k_zi x_i](Delta_GZ) + [Sum k_Psi_i + Sum k_zi (x_i)^2] Psi_G",
+        "Eq. 11-34: [[Sum k_xi, 0, 0], [0, Sum k_zi, Sum k_zi x_i], [0, Sum k_zi x_i, Sum k_Psi_i + Sum k_zi (x_i)^2]] {Delta_GX, Delta_GZ, Psi_G} = {F_Gx, F_Gz, M_G}",
+        "Eq. 11-35: [[K_X, 0, 0], [0, K_Z, K_ZPsi], [0, K_PsiZ, K_Psi]] {Delta_GX, Delta_GZ, Psi_G} = {F_Gx, F_Gz, M_G}"
+      ],
+      "figures": [
+        "Figure 11-13: Simple Elastic Solution of a 2 x 3 Group"
+      ],
+      "tables": [],
+      "applicability": "Elastic spring solution for load distribution in shaft groups"
+    },
+    {
+      "section_id": "11.6.3",
+      "title": "Nonlinear Computer Solution",
+      "body": "[pp. 11-26 to 11-27] For three-dimensional loading a computer code is very useful for the lengthy computations and lets the designer quickly optimize the layout. Codes such as those of 11.5.2.1 account for nonlinear axial and lateral soil resistance, nonlinear flexure of the shafts and lateral group effects, some including an embedded cap's lateral resistance, but many axial group issues of 11.4, particularly settlement, are not addressed in typical structural codes; 3-D nonlinear geotechnical finite element codes may be useful for group settlement but are not common practice for bridges, where settlement does not often control. General structural codes increasingly include nonlinear foundations; models with multiple piers and foundations help for extreme events such as vessel impact or train derailment, since part of a transient load on one foundation is redistributed through the structure, often giving a more efficient design. Refer to each code's documentation for its features.",
+      "key_points": [
+        "Computer codes for 3-D loads and layout optimization",
+        "Typical codes ignore axial group settlement effects of 11.4",
+        "Whole-bridge nonlinear models redistribute extreme event loads between foundations"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Nonlinear computer analysis of shaft groups"
+    },
+    {
       "section_id": "11.7",
       "title": "Summary",
-      "body": "Chapter provided guidance on design of groups of drilled shafts for axial and lateral loading including group efficiency, block failure, group settlement, p-multipliers for lateral loading, and methods for load distribution to individual shafts. Use n × individual shaft capacity with efficiency factor or block failure (whichever governs) for axial group strength limit state. Apply p-multipliers for lateral group effects. Nonlinear computer analysis recommended for large or complex groups.",
-      "key_points": [],
+      "body": "[p. 11-27] Single shafts at each column avoid a cap, but the very large diameters some single-shaft foundations need may be uneconomical, inefficient or carry unacceptable construction risk. Groups support much larger loads, particularly large overturning moments, and often reduce displacement and rotation through stiffer response. The chapter describes spacing and group dimension effects on axial and lateral soil resistance, analysis methods incorporating group effects, and methods to distribute loads to the shafts and design the layout. The large controlling load cases that may require a group often come from extreme events (Chapters 9 and 10).",
+      "key_points": [
+        "Groups carry larger loads, especially overturning, and are stiffer than very large single shafts",
+        "Group effects on axial and lateral resistance and load distribution methods",
+        "Controlling cases often from extreme events (Chapters 9 and 10)"
+      ],
       "equations": [],
       "figures": [],
       "tables": [],

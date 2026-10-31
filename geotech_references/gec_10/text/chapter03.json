@@ -89,19 +89,41 @@
       "applicability": "Below-water-table construction in cohesionless soils, caving conditions, artesian conditions"
     },
     {
-      "section_id": "3.6",
-      "title": "Post-Grouting and Special Techniques",
-      "body": "Post-grouting at the base of drilled shafts can improve base resistance in granular soils by compacting and strengthening the bearing zone. Grouting is performed through grout pipes incorporated into the rebar cage or attached to the base plate. Sleeve-port tube grouting along shaft sides is rarely used in US practice. Permeation or compaction grouting of unstable strata before excavation has been used successfully in some urban projects.",
+      "section_id": "3.5",
+      "title": "The Role of Arching in Excavation Stability",
+      "body": "[pp. 3-14 to 3-16] Arching is an important concept for understanding how casing and drilling fluids can be effectively employed for drilled shaft excavation and stability. When a circular vertical hole is excavated into the soil, arching allows the in-situ lateral stresses in the ground to be transferred around the opening so that the opening can be maintained (Figure 3-15a). Even with casing or drilling fluids for support, most of the lateral stresses in the ground must transfer around the hole via arching. As the excavation is advanced, the soil around the hole moves inward slightly, allowing lateral stress to be transferred around the hole; this transfer of radial stress to tangential stress allows a small amount of fluid pressure to stabilize the excavation, and arching can also effectively reduce the external earth pressure acting on casing. The movement needed to mobilize arching compares with a retaining wall moving toward the excavation, where the lateral earth pressure reduces from at-rest to active as the soil strength is mobilized; the reduction in radial stress due to arching around a vertical hole is far more pronounced than for a two dimensional retaining structure, and a vertical cut can be sustained only in soil with sufficient cohesion that the active earth pressure force goes to zero. Terzaghi's trap door experiment (Figure 3-15b) measured the force needed to support a trap door in the bottom of a sand-filled box: the force was greatly diminished as the door moved down, which he attributed to arching as the interlocking particles redistribute stresses around the opening; the force diminished to a much smaller magnitude for dense sand than for loose sand, and arching developed at smaller displacements in the stronger soil (consistent with the smaller wall movement needed to develop active pressure in dense soils); as the door moved further the arching collapsed and the force returned to near the original values. Similar principles are at work in drilled shaft construction: the stabilizing radial stress from 10 ft of excess fluid head (about 650 psf) is relatively low compared with in-situ lateral earth pressures but is observed to be quite effective at maintaining stability. A cutting shoe at the bottom of the casing reduces friction on its outer face, and the small overcut also allows some stress relief on the casing; without this allowance for inward movement the lateral stress on the casing would be high and the casing can become stuck. Digging a relief hole ahead of the casing accomplishes a similar stress relief. Factors affecting the arching stress reduction: the depth of the overburden soil; the diameter of the hole; the friction angle of the granular soils; the relative inward displacement around the hole. Denser soil (higher friction angle) is more easily stabilized than loose soil, and looser soils need greater inward displacement to develop arching; a small diameter hole is more forgiving than a larger one. As in the trap door experiment, if the radial support is insufficient or too much inward movement occurs, the soil collapses and the radial stress on the support casing increases. The science of arching is well established in other fields (culvert design, masonry arches), but its application to drilled shaft construction remains largely an art, due to the many variables and unknowns of soil conditions and the dynamics of the drilling process.",
       "key_points": [
-        "Post-grouting at base improves base resistance in granular soils",
-        "Grout pipes incorporated into rebar cage or attached to base plate",
-        "Side grouting through sleeve-port tubes is rare in US practice",
-        "Detailed guidance on post-grouted drilled shafts in Appendix H"
+        "Arching transfers in-situ lateral stress around the hole; most lateral stress goes around the hole even with casing or fluid",
+        "Radial stress turns to tangential stress, so a small fluid pressure stabilizes the hole: 10 ft of excess head is about 650 psf",
+        "Terzaghi's trap door: much smaller force and smaller displacement to mobilize arching in dense sand than loose sand; arching collapses with further movement",
+        "A casing cutting shoe or a relief hole allows inward movement and stress relief; without it casing can become stuck",
+        "Factors: overburden depth, hole diameter, friction angle, relative inward displacement",
+        "Dense soil and small diameters are more easily stabilized; too much inward movement causes collapse"
       ],
       "equations": [],
-      "figures": [],
+      "figures": [
+        "Figure 3-15: a) arching around a hole (plan view) b) schematic of Terzaghi's trap door experiment"
+      ],
       "tables": [],
-      "applicability": "Granular soils; when high base resistance is required; urban projects with unstable strata"
+      "applicability": "Understanding excavation stability, fluid head and casing loads in granular soils during drilled shaft construction"
+    },
+    {
+      "section_id": "3.6",
+      "title": "Post-Grouted Drilled Shafts",
+      "body": "[p. 3-16] For some projects, drilled shafts may be post-grouted to produce improved performance compared to a similar ungrouted shaft (FHWA-HIF-17-024, Loehr et al., 2017). Post grouting generally entails attaching a grout delivery device to the bottom of the reinforcing cage (Figure 3-16) so that it rests on the bottom of the excavation before concrete is placed. After concrete placement, and once the concrete has gained sufficient strength, grout is injected through the device at relatively large pressure using a simple pump; the grout most commonly used is a neat cement grout of water and cement. The degree of improvement varies with the grout pressure applied, which commonly ranges from 100 psi to over 900 psi and is typically limited by either the capability of the pumping equipment or the effective overburden pressure in the soil at the depth of the shaft. Post grouting is a subject of ongoing research; more information is in FHWA-HIF-17-024, and preliminary guidance for post grouting of drilled shafts is in Appendix F. Grouting is also sometimes done after the fact by coring to the tip and stem grouting; this is fundamentally different from post grouting, being generally a remedial measure to repair shafts with concrete defects. It is a viable remediation technique but costly and difficult, particularly for deep shafts, and should not be considered as post grouting.",
+      "key_points": [
+        "Grout delivery device (flat-jack or tube-a-manchette) attached to the bottom of the cage, Figure 3-16",
+        "Neat cement grout injected after the concrete gains strength",
+        "Grout pressure commonly 100 psi to over 900 psi, limited by the pump or the effective overburden pressure",
+        "More information in FHWA-HIF-17-024 (Loehr et al., 2017); preliminary guidance in Appendix F",
+        "Coring and stem grouting is a remedial repair, not post grouting"
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 3-16: Post Grouting Devices Attached to Reinforcing Cage: Flat-jack device (left) and Tube-a manchette device (right)"
+      ],
+      "tables": [],
+      "applicability": "Post grouting the base of drilled shafts to improve performance; distinguishing it from remedial grouting"
     },
     {
       "section_id": "3.7",

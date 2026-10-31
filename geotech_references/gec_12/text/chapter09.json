@@ -8,17 +8,136 @@
     {
       "section_id": "9.1",
       "title": "General",
-      "summary": "Static load testing is the most accurate method of determining pile capacity, in design or construction. Reasons: design or construction verification from load-deflection or load-transfer data; confirming the ground's nominal resistance; calibrating resistance factors; p-y response of lateral piles. Prerequisites: subsurface exploration (a load test is no substitute), stratigraphy, static analyses. Jack and load cell 120-150% of the maximum load. AASHTO factors assume one test per site condition: 0.80 with dynamic testing, 0.75 without, 0.60 tension (Table 9-1).",
-      "body": "9.1 General (pp. 1-7). Static load testing is the most accurate method of determining load capacity; tests may be in the design or construction stage; types are axial compression, axial tension and lateral. Further detail: current ASTM standards and the NYSDOT Static Pile Load Test Manual GCP-18 (2007). 9.1.1 Reasons: (1) design verification or refinement and construction verification or procedure modification from measured load-deflection or load-transfer data; (2) confirm the ground provides the nominal geotechnical resistance; (3) determine or calibrate resistance factors for new static design methods, local or regional geology, or dynamic or rapid load test methods; (4) determine p-y response of laterally loaded piles. Program development and oversight by an experienced foundation engineer; poorly performed tests can give unsafe or grossly uneconomical foundations. Prerequisites: a detailed subsurface exploration at the test location (a load test is not a substitute), defined stratigraphy with engineering parameters and groundwater, and static analyses to select pile types, lengths and test locations. 9.1.2 Program: goals set first, level of effort differs for confirming resistance versus load-transfer data. Loading apparatus should be able to reach geotechnical failure (one sized only to the anticipated nominal resistance is usually insufficient); jack and load cell capacity 120% to 150% of the anticipated maximum load; load cell, spherical bearing plate, and LVDTs or dial gages with enough travel (shimming and resetting prohibited); toe and intermediate measurements where possible; supervision by an experienced foundation engineer; a full test pile installation record (hammer stroke, fuel/energy setting, cushions, final set, installation aids, times and stops); dynamic monitoring of the test pile recommended. 9.1.3 When and where: at a representative location; number and location by site variability; the AASHTO resistance factor assumes one load test per site condition (Section 5.5.3). Effective uses (after Kyfor et al. 1992): substantial savings; uncertain resistance; zoned variable conditions; higher than typical resistance; setup or relaxation; tension or lateral needs; new design or testing methods; new pile types, large open-end pipe piles or procedures; reuse of existing piles; dynamic and static estimates differing significantly (H-piles that 'run'); local LRFD calibration. 9.1.4 Design-stage tests allow comparing pile types, confirm drivability, set preliminary driving criteria, reduce bid contingency and disputes; construction-stage tests confirm design loads, set production lengths and minimum penetrations. Load test databases (Paikowsky 2004; Abu-Hejleh 2015): an Oregon DOT study (Smith et al. 2011) recommended 0.55 for wave equation at initial driving and 0.40 at restrike; AASHTO (2010) changed phi_dyn for wave equation from 0.40 to 0.50; the FHWA DFLTD holds about 1300 tests (1985-2003). 9.1.5 Resistance factors in Table 9-1; none for lateral load tests, which are governed by service limit deformation criteria.",
+      "summary": "Static load testing is the most accurate method of determining pile load capacity; tests may be done in the design or construction stage, and the conventional types are axial compression, axial tension and lateral.",
+      "body": "9.1 General (p. 1). Static load testing of piles is the most accurate method of determining load capacity. Depending on project size and other variables, static load tests may be performed in the design stage or construction stage. Conventional types are axial compression, axial tension and lateral load tests. The chapter gives an overview of static testing, its importance, and the basic test methods and interpretation; for more detail see the publications at the end of the chapter, including the most recent ASTM standards and the NYSDOT Static Pile Load Test Manual, GCP-18 (2007).",
       "key_points": [
-        "Static load test: most accurate method of determining pile capacity; design or construction stage",
-        "Reasons include confirming nominal resistance, calibrating resistance factors, and p-y response",
+        "Static load test: the most accurate method of determining pile load capacity",
+        "Design-stage or construction-stage tests; axial compression, axial tension and lateral types",
+        "Details: current ASTM standards and NYSDOT Static Pile Load Test Manual GCP-18 (2007)"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning a driven pile static load test program and its LRFD resistance factors."
+    },
+    {
+      "section_id": "9.1.1",
+      "title": "Reasons and Prerequisites for a Static Load Test Program",
+      "summary": "Reasons for static load tests (design and construction verification, confirming nominal resistance, calibrating resistance factors, p-y response) and prerequisites (subsurface exploration, stratigraphy, static analyses).",
+      "body": "9.1.1 Reasons and Prerequisites for a Static Load Test Program (pp. 1 to 2). Static load testing gives design verification information on nominal resistance and deformation response of test or production piles. Reasons: (1) design verification or refinement and construction verification or procedure modification from measured load-deflection or load-transfer data; (2) confirm the subsurface materials provide the nominal geotechnical resistance; (3) determine or calibrate resistance factors for new static design methods, local or regional geologic conditions, or dynamic or rapid load test analysis methods; (4) determine p-y response of laterally loaded piles. Program development and oversight should be by an experienced foundation engineer; static tests are often a comparison baseline, and quality is of utmost importance for research or updating LRFD resistance factors, since poorly performed tests can give unsafe or grossly uneconomical foundations. Before planning, obtain: (1) a detailed subsurface exploration at the test location (a load test is not a substitute for it); (2) well defined stratigraphy with engineering parameters and groundwater conditions; (3) static analyses to select pile type(s), length(s) and test location(s).",
+      "key_points": [
+        "Reasons: design/construction verification, confirm nominal resistance, calibrate resistance factors, p-y response",
+        "An experienced foundation engineer should develop and oversee the program",
         "A load test is not a substitute for a subsurface exploration program",
+        "Prerequisites: exploration at the test location, stratigraphy and groundwater, static analyses"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Deciding why and when a driven pile static load test program is needed and what must precede it."
+    },
+    {
+      "section_id": "9.1.2",
+      "title": "Developing a Static Load Test Program",
+      "summary": "Planning items for a static load test program: loading apparatus able to reach geotechnical failure (jack and load cell 120% to 150% of the maximum load), load cell and spherical bearing plate, gages with enough travel, experienced supervision, a full installation record and dynamic monitoring.",
+      "body": "9.1.2 Developing a Static Load Test Program (pp. 2 to 3). Set the goal and objectives first; confirming nominal resistance needs far less effort and instrumentation than detailed load transfer for final design. Items: (1) loading apparatus (reaction system and jack) able to load the pile to geotechnical nominal resistance; one sized only for the anticipated nominal resistance usually cannot reach geotechnical failure, so the full benefit is lost; jack capacity 120% to 150% of the anticipated maximum load. (2) Specify a load cell and spherical bearing plate and LVDTs or dial gages with sufficient travel (prohibit gages that must be shimmed and reset); where possible measure movement at the toe and intermediate points; load cell capacity 120% to 150% of the maximum load. (3) Supervision by an experienced foundation engineer. (4) A full test pile installation record: hammer stroke (especially at final driving), fuel/energy setting, hammer cushion and pile cushion materials and thickness (new and replaced), accurately determined final set, installation aids such as predrilling and depths, start and end times, stopping depths and durations for splicing or maintenance. (5) Dynamic monitoring of the test pile for nominal resistance at driving with soil resistance distribution, drive system performance, driving stresses and wave equation input refinement.",
+      "key_points": [
+        "Loading apparatus must be able to reach geotechnical failure, not just the anticipated nominal resistance",
         "Jack and load cell capacity 120% to 150% of the anticipated maximum test load",
-        "Dynamic monitoring of the static test pile recommended",
-        "AASHTO resistance factor assumes one load test per site condition",
-        "Table 9-1: phi_dyn 0.80 (static + dynamic testing), 0.75 (static only); phi_up 0.60 (tension)",
-        "No resistance factor for lateral load tests: governed by service limit deformation"
+        "Load cell, spherical bearing plate, and gages with enough travel (no shimming and resetting)",
+        "Record full installation details, not only hammer model and driving resistance",
+        "Dynamic monitoring of the load test pile recommended"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Planning the equipment, supervision and records of a driven pile static load test."
+    },
+    {
+      "section_id": "9.1.3",
+      "title": "When and Where to Load Test",
+      "summary": "Number and location of load tests follow site variability; AASHTO's static load test resistance factor assumes one test per site condition. Kyfor et al. (1992) list eleven conditions in which static load testing is effective.",
+      "body": "9.1.3 When and Where to Load Test (pp. 3 to 4). Tests in either phase should achieve a set goal, usually nominal resistance or load transfer at a representative location; number and location follow site variability (Section 5.5.3, AASHTO 2014), and the AASHTO resistance factor for static load testing is based on one test per site condition. Conditions for effective use (adapted from FHWA-SA-91-042, Kyfor et al. 1992): (1) substantial cost savings, often on large projects with friction piles (shorter lengths) or end bearing piles (higher nominal resistance); (2) nominal resistance uncertain from limited experience or unusual conditions; (3) variable conditions that can be zoned, tested in representative areas; (4) significantly higher nominal resistance than typical practice; (5) significant setup or relaxation expected; (6) reliable tension or lateral deflection assessment important; (7) verifying new design or testing methods; (8) new pile types, large diameter open end pipe piles, or new installation procedures; (9) reusing existing piles for heavier loads; (10) dynamic estimates during construction differing significantly from static analysis, e.g., H-piles that 'run' in loose to medium dense sands and gravels; (11) developing local or regional LRFD calibration.",
+      "key_points": [
+        "Number and location of tests follow site variability; AASHTO factor assumes one test per site condition",
+        "Effective when savings are substantial or nominal resistance is uncertain or unusually high",
+        "Also for setup or relaxation, tension or lateral needs, new methods, new pile types, reused piles",
+        "Also when dynamic and static estimates differ significantly, or for local LRFD calibration"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Choosing whether, how many and where to perform static pile load tests."
+    },
+    {
+      "section_id": "9.1.4",
+      "title": "Effective Use of Load Test Information",
+      "summary": "Load test information can be used effectively in the design stage, the construction stage and in load test databases (Sections 9.1.4.1 to 9.1.4.3).",
+      "body": "9.1.4 Effective Use of Load Test Information (p. 5). The heading introduces the design stage (9.1.4.1), construction stage (9.1.4.2) and load test database (9.1.4.3) uses of load test information; it carries no text of its own.",
+      "key_points": [
+        "Uses: design stage, construction stage, load test databases"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Overview of how static load test results are used in design, construction and databases."
+    },
+    {
+      "section_id": "9.1.4.1",
+      "title": "Design Stage",
+      "summary": "A design-phase load test program gives the best design information; its advantages include comparing pile types, confirming drivability, preliminary driving criteria, lower bid contingency and fewer disputes.",
+      "body": "9.1.4.1 Design Stage (p. 5). A design-phase load testing program gives the best information for pile foundation design. The number of tests, pile types, driving method and test loads are selected cooperatively by the geotechnical and structural engineers. Advantages: (a) testing several pile types, sections and lengths to select the most economical foundation; (b) confirming drivability to minimum penetration and nominal resistance at estimated penetration depths; (c) preliminary driving criteria for production piles; (d) driving information for bidders should reduce bid 'contingency'; (e) fewer contract disputes over driving problems; (f) results reflected in the final design and specifications.",
+      "key_points": [
+        "Design-stage tests give the best design information; geotechnical and structural engineers select them together",
+        "Allow comparing pile types, sections and lengths for the most economical foundation",
+        "Confirm drivability and set preliminary driving criteria; reduce bid contingency and disputes"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Benefits of static load testing during the design phase."
+    },
+    {
+      "section_id": "9.1.4.2",
+      "title": "Construction Stage",
+      "summary": "Construction-stage static load tests confirm design loads, set final production pile lengths and installation procedures, and refine plan lengths and minimum penetration.",
+      "body": "9.1.4.2 Construction Stage (p. 5). Testing at the start of construction may be the only practical time on projects that cannot justify a design stage program. Construction stage tests confirm the design loads are appropriate, establish final design lengths for production piles, and assure the installation procedure is satisfactory; perhaps most importantly they refine the estimated pile lengths on the plans and establish minimum penetration requirements.",
+      "key_points": [
+        "Construction-stage tests may be the only practical option on some projects",
+        "Confirm design loads, final production lengths and installation procedure",
+        "Refine plan pile lengths and minimum penetration requirements"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Benefits of static load testing at the start of construction."
+    },
+    {
+      "section_id": "9.1.4.3",
+      "title": "Load Test Databases",
+      "summary": "Load test databases support resistance factor calibration (e.g., Oregon DOT wave equation study: phi_dyn 0.55 initial driving, 0.40 restrike; AASHTO 2010 raised wave equation phi_dyn from 0.40 to 0.50); FHWA DFLTD holds about 1300 tests (1985-2003); results should be stored with full site and installation details.",
+      "body": "9.1.4.3 Load Test Databases (p. 6). Load test databases (Paikowsky 2004; Abu-Hejleh 2015) are needed for design method reliability calibration and better production design; complete databases allow comparing design and construction verification methods with full scale results, possibly raising a method's resistance factor or showing preferable alternatives. Oregon DOT (2010; Smith et al. 2011) evaluated wave equation resistance factors: the AASHTO phi_dyn of 0.40 then raised costs, and the study recommended 0.55 for initial driving and 0.40 for restrikes; from this and other work AASHTO (2010) changed the wave equation phi_dyn from 0.40 to 0.50. The FHWA Deep Foundation Load Test Database (DFLTD), no longer updated but available on request, holds about 1300 load tests from 1985 to 2003; several state agencies have their own. Store results with geotechnical and installation information, using the report section of the ASTM standard for each test type as the list of details to keep.",
+      "key_points": [
+        "Databases support reliability calibration of design and construction control methods",
+        "Oregon DOT: wave equation phi_dyn 0.55 initial driving, 0.40 restrike; AASHTO (2010) changed 0.40 to 0.50",
+        "FHWA DFLTD: about 1300 load tests, 1985 to 2003, available on request",
+        "Store results with full site, installation and test details per the ASTM report sections"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Using and maintaining pile load test databases for calibration."
+    },
+    {
+      "section_id": "9.1.5",
+      "title": "Resistance Factors for Static Load Testing",
+      "summary": "Table 9-1: resistance factors for nominal axial resistance from static load tests: compression phi_dyn 0.80 with dynamic testing, 0.75 without; tension phi_up 0.60. No factor for lateral tests (service limit deformation governs).",
+      "body": "9.1.5 Resistance Factors for Static Load Testing (p. 7). Resistance factors for the nominal axial geotechnical resistance from a static load test are in Table 9-1; they depend on compression or tension and on whether dynamic testing is performed. No resistance factor is given for lateral load testing, which is generally controlled by service limit state deformation criteria rather than strength. Table 9-1 (modified from AASHTO 2014): nominal axial compression resistance of a single pile, phi_dyn: driving criteria established by a successful static load test of at least one pile per site condition and dynamic testing of at least two piles per site condition, but no less than 2% of production piles, 0.80; static load test of at least one pile per site condition without dynamic testing, 0.75; nominal axial tension resistance of a single pile, phi_up: static load test, 0.60.",
+      "key_points": [
+        "phi_dyn 0.80: static load test plus dynamic testing of at least 2 piles per site condition (>= 2% of production piles)",
+        "phi_dyn 0.75: static load test without dynamic testing",
+        "phi_up 0.60: static tension load test",
+        "No resistance factor for lateral load tests: service limit deformation governs"
       ],
       "equations": [],
       "figures": [],
@@ -30,23 +149,113 @@
           "page": 7
         }
       ],
-      "applicability": "Planning a driven pile static load test program and its LRFD resistance factors."
+      "applicability": "Selecting LRFD resistance factors when a static load test establishes the driving criteria."
     },
     {
       "section_id": "9.2",
       "title": "Axial Compression Load Test",
-      "summary": "ASTM D1143 load is applied by jacking against an anchored beam or a weighted platform; a calibrated load cell is primary, jack pressure secondary, with a spherical bearing plate. AASHTO's quick test: 5% increments of the anticipated nominal resistance, each held 4 to 15 minutes, to nominal resistance or jack capacity. Davisson offset: sf = Delta + (0.15 + b/120) for b <= 24 in.; sf = Delta + b/30 for b > 36 in.; interpolate between. Factored resistance 0.75 to 0.80 of the failure load.",
-      "body": "9.2 (pp. 8-19). Piles are most often tested in axial compression: incremental or constant-rate loading at the head, recording time, load and head movement, with optional telltales or strain gages for load transfer (Figure 9-1). 9.2.2 Equipment (ASTM D1143-07, re-approved 2013): jacking against a beam anchored by piles or ground anchors, or a weighted platform; a calibrated load cell is the primary load measure and calibrated jack pressure the secondary; a spherical bearing plate limits eccentricity. Head movement by LVDTs or dial gages on an independent reference beam: ASTM requires 2 in. travel and 0.01 in. precision; 4 in. travel and 0.001 in. are highly recommended; at least two gages diametrically opposite (four often advantageous); a backup scale, mirror and wire (0.01 in.) and a survey level. Reference beam and wire supports, and reaction piles, at least 5 pile diameters and not less than 8 ft clear from the test pile; weighted-platform cribbing more than 5 ft clear. Steel bearing plates between jack, load cell and spherical plate; remote recording recommended. 9.2.3 Loading: AASHTO (2014) recommends the ASTM D1143 quick test (2 to 4 hours): increments of 5% of the anticipated nominal geotechnical resistance (about 20 points), each held no more than 15 and no less than 4 minutes (same interval throughout), readings at 0.5, 1, 2, 4 (and 8, 15) minutes, until nominal resistance or jack capacity within safe structural limits; if plunging, lock off the pump; unload in 5 to 10 equal decrements held 4 to 15 minutes. 9.2.4 Interpretation: methods based on gross movement without elastic deformation are not recommended (overestimate short piles, underestimate long piles). Plot so the elastic line is about 20 degrees from the load axis; Eq 9-1. AASHTO Article 10.7.3.8.2 uses the Davisson (1972) offset limit: the failure load is where the curve meets the offset line (Figure 9-8); no intersection means resistance exceeds the maximum test load. Eq 9-2 for b <= 24 in.; Eq 9-3 for b > 36 in.; interpolate for 24 to 36 in. For H-piles use the flange width as b. Davisson applies to tests with holds of not more than 1 hour; longer holds underestimate resistance. Load cell and jack readings are compared throughout; large discrepancies: unload, resolve, restart. Factored compression resistance is 0.75 (static test only) to 0.80 (with dynamic testing and signal matching) of the failure load. Pile head results alone give no load-transfer detail. 9.2.5 Limitations: cannot account for long-term settlement, downdrag or group action; cost, time, little information on driving stresses or damage; can mislead on highly variable sites. (The print has no heading 9.2.1, though 9.2.4 cites it.)",
+      "summary": "Axial compression is the most common pile test: incremental or constant-rate loading at the head, readings of time, load and head movement, a load-movement curve, nominal resistance by an interpretation method; telltales and strain gages give load transfer.",
+      "body": "9.2 Axial Compression Load Test (pp. 8 to 9). Piles are most frequently tested in axial compression (also in tension and laterally). Figure 9-1 shows the mechanism: (1) the pile is loaded incrementally from the head on a predetermined sequence or at a continuous, constant rate; (2) time, load and head movement are recorded, with strain measurements along the shaft for load transfer and unit shaft resistance; (3) a load-movement curve is plotted; (4) nominal resistance and the movement at it are determined by an interpretation method; (5) movement is usually measured at the head only, but telltales (solid rods in protective tubes, Figure 9-1) give movement anywhere along the pile; (6) telltales give strain between telltale points and strain gages at discrete points, both used to estimate load transfer.",
       "key_points": [
-        "ASTM D1143: jack against anchored reaction beam or weighted platform",
-        "Calibrated load cell primary, jack pressure secondary; spherical bearing plate",
-        "Gages: ASTM 2 in. travel, 0.01 in.; 4 in. and 0.001 in. highly recommended",
-        "Supports and reaction piles >= 5 diameters and >= 8 ft clear of the test pile",
-        "Quick test: 5% increments of anticipated nominal resistance, holds 4-15 min, to resistance or jack capacity",
-        "Eq 9-1: Delta = QL/(AE)",
-        "Eq 9-2: sf = Delta + (0.15 + b/120), b <= 24 in.; Eq 9-3: sf = Delta + b/30, b > 36 in.; interpolate between",
-        "H-piles: use flange width for b; Davisson valid for holds not over 1 hour",
-        "Factored compression resistance 0.75 (static only) to 0.80 (with dynamic testing) of failure load"
+        "Loading: incremental from the head, or continuous constant rate",
+        "Record time, load and head movement; plot the load-movement curve",
+        "Telltales and strain gages give movement and load transfer along the pile"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "9-1",
+          "title": "Axial compression static load test diagram",
+          "description": "",
+          "page": 9
+        }
+      ],
+      "tables": [],
+      "applicability": "Axial compression static load tests on driven piles: equipment, quick test, Davisson interpretation."
+    },
+    {
+      "section_id": "9.2.2",
+      "title": "Compression Load Test Equipment",
+      "summary": "ASTM D1143 compression test equipment: jacking against an anchored beam or weighted platform; load cell primary, jack pressure secondary; spherical bearing plate; at least two gages (2 in. travel, 0.01 in. precision; 4 in. and 0.001 in. preferred); wire backup and survey level; 5 diameters and 8 ft clear distances.",
+      "body": "9.2.2 Compression Load Test Equipment (pp. 9 to 14). ASTM D1143-07 (re-approved 2013) gives alternative systems for applying load and measuring movement. Loads are most often applied by jacking against a beam anchored by piles or ground anchors, or against a weighted platform. The primary load measurement should be a calibrated load cell, with jack pressure from a calibrated gage recorded as a secondary means; include a spherical bearing plate to minimize eccentricity. Head movement: LVDTs or dial gages between the pile head and an independently supported reference beam; ASTM requires at least 2 inches of travel and 0.01 inch precision, but at least 4 inches travel (especially for long piles with large elastic deformation) and 0.001 inch precision are highly recommended; at least two gages equidistant and diametrically opposite, four in opposite pairs often advantageous. Provide a redundant scale, mirror and wire system (0.01 inch precision) on two opposite faces, reference beams and wire independently supported at least 5 pile diameters and not less than 8 feet from the test and reaction piles, and a survey level as remote backup (also monitoring reaction piles). ASTM D1143: test-to-reaction pile clear distance at least 5 times the larger maximum diameter but not less than 8 feet; with a weighted platform, cribbing more than 5 feet from the test pile. Figure 9-2 is a typical setup schematic and Figures 9-3 and 9-4 show load application and movement monitoring; steel bearing plates should sit between the jack ram and load cell and between the load cell and spherical bearing plate (as in Figure 9-5; Section 9.6). Figure 9-5: MnDOT mobile load frame on reaction piles in a heated winter enclosure with wood reference beams to limit temperature effects. Figures 9-6 (reaction piles) and 9-7 (weighted platform) show typical arrangements. Record load and movement remotely so personnel are well away from the loading system.",
+      "key_points": [
+        "Load cell is the primary load measurement; jack pressure gage is secondary; include a spherical bearing plate",
+        "Gages: ASTM minimum 2 in. travel, 0.01 in. precision; 4 in. travel and 0.001 in. precision recommended",
+        "Wire-mirror-scale backup and survey level; reference supports >= 5 diameters and >= 8 ft from piles",
+        "Test-to-reaction pile clear distance >= 5 diameters, not less than 8 ft; platform cribbing > 5 ft away",
+        "Bearing plates between jack ram, load cell and spherical plate; record readings remotely"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "9-2",
+          "title": "Static load test setup diagram",
+          "description": "",
+          "page": 11
+        },
+        {
+          "figure_id": "9-3",
+          "title": "Load test application and monitoring system",
+          "description": "",
+          "page": 12
+        },
+        {
+          "figure_id": "9-4",
+          "title": "Load test movement monitoring components",
+          "description": "",
+          "page": 13
+        },
+        {
+          "figure_id": "9-5",
+          "title": "MnDOT reaction beam and load test setup",
+          "description": "Courtesy MnDOT.",
+          "page": 13
+        }
+      ],
+      "tables": [],
+      "applicability": "Specifying equipment for an axial compression pile load test."
+    },
+    {
+      "section_id": "9.2.3",
+      "title": "Recommended Axial Compression Test Loading Method",
+      "summary": "Quick load test (AASHTO 2014, ASTM D1143): 5% increments of anticipated nominal resistance (about 20 points), holds of 4 to 15 minutes, readings at 0.5, 1, 2, 4 (8, 15) minutes; unload in 5 to 10 decrements.",
+      "body": "9.2.3 Recommended Axial Compression Test Loading Method (pp. 14 to 15). Standardized procedures must be followed; ASTM D1143 details several. AASHTO (2014) recommends the quick load test, which typically takes 2 to 4 hours, reducing delay and cost. Load increments are 5% of the anticipated nominal geotechnical resistance, giving on the order of 20 data points before nominal resistance. Each increment is held no more than 15 and no less than 4 minutes, the same interval for all; load and gross movement are read at 0.5, 1, 2 and 4 minutes, with 8 and 15 minute readings for longer holds. Continue to nominal resistance or jack capacity within safe structural limits of pile and reaction. ASTM D1143 allows a longer hold at nominal resistance to assess creep, not feasible after plunging; if plunging occurs, lock off the pump and let the system reach equilibrium under the maximum resisted load. Then unload in 5 to 10 equal decrements, each held 4 to 15 minutes, read at 0.5, 1, 2 and 4 (and 8 and 15) minutes, including zero load, which may be held longer for rebound. Figures 9-6 (4000-ton Caltrans mobile load frame) and 9-7 (weighted platform), referred to in 9.2.2, are printed in this section's pages.",
+      "key_points": [
+        "Quick test (AASHTO 2014): typically 2 to 4 hours",
+        "Increments of 5% of anticipated nominal resistance, about 20 points to failure",
+        "Hold each increment 4 to 15 minutes; read at 0.5, 1, 2, 4 (8, 15) minutes",
+        "If plunging, lock off the pump; unload in 5 to 10 equal decrements"
+      ],
+      "equations": [],
+      "figures": [
+        {
+          "figure_id": "9-6",
+          "title": "4000-Ton mobile load test frame",
+          "description": "Courtesy Caltrans.",
+          "page": 15
+        },
+        {
+          "figure_id": "9-7",
+          "title": "Static load test setup using weighted platform",
+          "description": "",
+          "page": 15
+        }
+      ],
+      "tables": [],
+      "applicability": "Loading procedure for an axial compression pile load test."
+    },
+    {
+      "section_id": "9.2.4",
+      "title": "Presentation and Interpretation of Axial Compression Test Results",
+      "summary": "Davisson offset limit interpretation (AASHTO 2014 Article 10.7.3.8.2): elastic line Delta = QL/AE (Eq. 9-1); failure at s_f = Delta + (0.15 + b/120) for b <= 24 in. (Eq. 9-2), Delta + b/30 for b > 36 in. (Eq. 9-3), interpolated between; for holds of 1 hour or less; factored resistance 0.75 to 0.80 of nominal.",
+      "body": "9.2.4 Presentation and Interpretation of Axial Compression Test Results (pp. 16 to 19). Report per ASTM D1143 and plot a load-movement curve (Figure 9-8). Methods based on maximum allowable gross movement that ignore elastic deformation are not recommended (they overestimate short-pile and underestimate long-pile resistance); failure-criterion methods that include elastic deformation are better. AASHTO (2014) Article 10.7.3.8.2 gives three criteria by pile size, all including elastic deformation; scales are chosen so the elastic line is inclined about 20 degrees from the load axis. Elastic deformation of a uniform pile: Delta = QL/AE (Eq. 9-1). The methods are Davisson (1972) offset limits: the intersection of the load-movement curve with an offset line parallel to the elastic line is the nominal resistance (failure load), a limiting deformation criterion; if not intersected, nominal resistance exceeds the maximum test load. For piles 24 inches or less: s_f = Delta + (0.15 + b/120) (Eq. 9-2); larger than 36 inches (more toe movement needed): s_f = Delta + b/30 (Eq. 9-3); between, interpolate linearly. b is the diameter or side width; for H-piles use the flange width. Davisson applies to increments held not more than 1 hour; long holds underestimate resistance. Compare primary (load cell) and back-up (jack pressure) loads throughout (the text cites 'Section 9.2.1', which is not printed; the systems are in 9.2.2); for large early discrepancies stop, find the cause (above-ground strain gages can show which is right), unload, correct and restart, since using the lower value risks overloading the jack, pile or reaction and the higher may end the test early or understate resistance. Factored compression resistance is 0.75 (static test only) to 0.80 (with dynamic testing and signal matching) of nominal. Head load-movement alone gives no load transfer; see Section 9.5.",
+      "key_points": [
+        "Do not use gross-movement criteria that ignore elastic deformation",
+        "Elastic deformation Delta = QL/AE (Eq. 9-1); elastic line plotted about 20 degrees from the load axis",
+        "b <= 24 in.: s_f = Delta + (0.15 + b/120) (Eq. 9-2); b > 36 in.: s_f = Delta + b/30 (Eq. 9-3); interpolate between",
+        "H-piles: use flange width for b; Davisson valid for load holds not over 1 hour",
+        "Resolve load cell vs. jack pressure discrepancies before continuing",
+        "Factored compression resistance 0.75 to 0.80 of the failure load"
       ],
       "equations": [
         {
@@ -90,48 +299,6 @@
       ],
       "figures": [
         {
-          "figure_id": "9-1",
-          "title": "Axial compression static load test diagram",
-          "description": "",
-          "page": 9
-        },
-        {
-          "figure_id": "9-2",
-          "title": "Static load test setup diagram",
-          "description": "",
-          "page": 11
-        },
-        {
-          "figure_id": "9-3",
-          "title": "Load test application and monitoring system",
-          "description": "",
-          "page": 12
-        },
-        {
-          "figure_id": "9-4",
-          "title": "Load test movement monitoring components",
-          "description": "",
-          "page": 13
-        },
-        {
-          "figure_id": "9-5",
-          "title": "MnDOT reaction beam and load test setup",
-          "description": "Courtesy MnDOT.",
-          "page": 13
-        },
-        {
-          "figure_id": "9-6",
-          "title": "4000-Ton mobile load test frame",
-          "description": "Courtesy Caltrans.",
-          "page": 15
-        },
-        {
-          "figure_id": "9-7",
-          "title": "Static load test setup using weighted platform",
-          "description": "",
-          "page": 15
-        },
-        {
           "figure_id": "9-8",
           "title": "Typical load-movement curve for axial compression load test",
           "description": "",
@@ -139,21 +306,61 @@
         }
       ],
       "tables": [],
-      "applicability": "Axial compression static load tests on driven piles: equipment, quick test, Davisson interpretation."
+      "applicability": "Interpreting axial compression load tests by the AASHTO (Davisson) offset limit criteria."
+    },
+    {
+      "section_id": "9.2.5",
+      "title": "Limitations of Axial Compression Tests",
+      "summary": "Compression tests do not capture long-term settlement, downdrag or group action; other shortcomings are cost, time, little driving stress or damage information, misleading results in variable soils, and cost of load transfer gages.",
+      "body": "9.2.5 Limitations of Axial Compression Tests (p. 19). Compression tests are the most accurate way to determine nominal resistance, but cannot account for long-term settlement, downdrag from consolidating soils, or pile group action. Other shortcomings: test cost, setup and test time, minimal information on driving stresses or damage, misleading results on highly variable sites, and significant added cost of strain gage instrumentation for load transfer.",
+      "key_points": [
+        "Do not represent long-term settlement, downdrag or group action",
+        "Cost, time, little driving stress or damage information; misleading on highly variable sites"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Limitations of axial compression static pile load tests."
     },
     {
       "section_id": "9.3",
       "title": "Tension Load Test",
-      "summary": "Tension tests (ASTM D3689) give uplift resistance, often governing minimum penetration for groups with large uplift (cofferdam seals, segmental construction, seismic, vessel impact, debris). Load is applied by a jack on reaction beams over reaction piles or crane mats, through a center-hole rod or a yoke. The quick test (5% increments, 4-15 min holds) is recommended. AASHTO: modified Davisson, elastic lengthening plus 0.15 in.; factored tension resistance 0.60 of the failure load.",
-      "body": "9.3 (pp. 20-23). Tension tests determine axial uplift resistance, often a significant factor in minimum penetration for groups with large uplift demand (cofferdam seals with large buoyancy, cantilever segmental construction, seismic, vessel impact or debris loading); often economical by jacking against a beam on crane mats. 9.3.1 Equipment (ASTM D3689-07, re-approved 2013): a jack centered on reaction beams supported by reaction piles or by mats and cribbing; a center-hole jack with a rod embedded in the pile (common for concrete piles with low tension loads) or a yoke with rods either side of the beam (common for steel piles); load cell primary, jack pressure backup, spherical bearing plate. Gages: ASTM requires 2 in. travel and 0.01 in. precision, 4 in. recommended; at least two diametrically opposite; backup scale, mirror and wire; supports at least 5 diameters and 8 ft clear; survey level backup (Figures 9-9, 9-10). 9.3.2 Loading: the quick test with increments of 5% of the anticipated nominal tension resistance (about 20 points), equal holds of 4 to 15 minutes, readings at 0.5, 1, 2, 4 (8, 15) minutes, to nominal resistance or jack capacity, then unloading in 5 to 10 decrements. Testing to pullout is desirable, especially in design-stage programs; production piles tested in tension during construction should be redriven to the original toe elevation and driving resistance. 9.3.3 Interpretation: no widely accepted method has been published (Fuller 1983 lists gross or net movement limits, curve slope, or offset methods). AASHTO (2014) recommends a modified Davisson method: the failure load is where the curve meets the elastic lengthening plus 0.15 in.; factored tension resistance is 0.60 of it (Figure 9-11).",
+      "summary": "Tension tests determine uplift resistance, often governing minimum penetration for groups with large uplift (cofferdam seal buoyancy, cantilever segmental construction, seismic, vessel impact, debris); often economical with crane mat reactions.",
+      "body": "9.3 Tension Load Test (p. 20). Tension load tests determine axial tension (uplift) resistance, often significant for minimum penetration of groups with large uplift demand, including cofferdam seals with large buoyancy, cantilever segmental bridge construction, and seismic, vessel impact or debris loading. Mechanics are similar to compression tests with tension loading; tests are often economical, jacking against a reaction beam on crane mats rather than reaction piles.",
       "key_points": [
-        "ASTM D3689; uplift often governs minimum penetration for groups with large uplift demand",
-        "Jack on reaction beams over reaction piles or crane mats and cribbing",
-        "Center-hole rod connection common for concrete piles; yoke common for steel piles",
-        "Quick test: 5% increments of anticipated nominal tension resistance, equal holds of 4-15 min",
-        "Production piles tested in tension are redriven to the original toe elevation and driving resistance",
-        "AASHTO modified Davisson: elastic lengthening plus 0.15 in. defines the failure load",
-        "Factored tension resistance = 0.60 x nominal tension resistance"
+        "Tension tests determine uplift resistance, often governing minimum penetration",
+        "Often economical: reaction beam on crane mats instead of reaction piles"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Static tension (uplift) load tests on driven piles."
+    },
+    {
+      "section_id": "9.3.1",
+      "title": "Tension Load Test Equipment",
+      "summary": "ASTM D3689 tension test equipment: jack on reaction beams over piles or mats; center hole jack with rod (concrete piles) or yoke (steel piles); load cell primary; spherical bearing plate; two gages (2 in. travel required, 4 in. recommended); wire backup and survey level; 5 diameters and 8 ft clearances.",
+      "body": "9.3.1 Tension Load Test Equipment (pp. 20 to 21). ASTM D3689-07 (re-approved 2013) covers static axial tensile tests. Loads are most often applied by a hydraulic jack centered on reaction beams supported by reaction piles or by mats and cribbing on the ground. A center hole jack with a rod embedded in the pile passing between the beams and through the jack is common for concrete piles with low tension loads; a yoke with rods on either side of the beam(s) connected to the pile and a beam on the jack is common for steel piles. Load cell primary, calibrated jack pressure backup, spherical bearing plate. Movement by dial gages or LVDTs to an independent reference beam: ASTM requires at least 2 inches travel and 0.01 inch precision; 4 inches recommended; at least two gages equidistant and diametrically opposite; scale-mirror-wire backup (0.01 inch) on two opposite faces; supports at least 5 pile diameters and not less than 8 feet clear; survey level remote backup. Figure 9-9 shows a nearshore test with reaction beam and piles, Figure 9-10 a land test with beam on crane mats and timber cribbing.",
+      "key_points": [
+        "Jack on reaction beams supported by piles or by mats and cribbing",
+        "Center hole jack with embedded rod (concrete piles) or yoke with rods (steel piles)",
+        "Gages: 2 in. travel and 0.01 in. precision required, 4 in. recommended; two opposite gages",
+        "Reference supports >= 5 diameters and >= 8 ft clear; wire backup and survey level"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Specifying equipment for a pile tension (uplift) load test."
+    },
+    {
+      "section_id": "9.3.2",
+      "title": "Tension Test Loading Methods",
+      "summary": "Quick test for tension (ASTM D3689): 5% increments (about 20 points), equal holds of 4 to 15 minutes, readings at 0.5, 1, 2, 4 (8, 15) minutes, unload in 5 to 10 decrements; test to pullout failure where possible; redrive tested production piles.",
+      "body": "9.3.2 Tension Test Loading Methods (pp. 21 to 22). ASTM D3689 details several procedures; the Quick Test with increments of 5% of the anticipated nominal tension resistance (about 20 data points) is recommended, all increments held the same interval of 4 to 15 minutes. Read load and gross movement at 0.5, 1, 2 and 4 minutes (8 and 15 for longer holds), continuing to nominal resistance or jack capacity within safe structural limits; after holding the maximum or reaching pullout failure, unload in 5 to 10 equal decrements held 4 to 15 minutes with the same readings, including zero load. Testing to geotechnical pullout failure is generally desirable, particularly in design stage programs; production piles tested in construction should be redriven to the original toe elevation and previous driving resistance. Figures 9-9 (pipe pile with reaction piles, Besix) and 9-10 (H-pile with mats and cribbing, WKG2) are printed in this section's pages.",
+      "key_points": [
+        "Quick test: 5% increments of anticipated nominal tension resistance, equal holds of 4 to 15 minutes",
+        "Unload in 5 to 10 equal decrements, including a zero load reading",
+        "Test to pullout failure where possible; redrive tested production piles to original toe and resistance"
       ],
       "equations": [],
       "figures": [
@@ -168,7 +375,23 @@
           "title": "Tension test on H-pile using mats and cribbing",
           "description": "Courtesy of WKG2.",
           "page": 22
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Loading procedure for a pile tension load test."
+    },
+    {
+      "section_id": "9.3.3",
+      "title": "Presentation and Interpretation of Tension Test Results",
+      "summary": "Tension test interpretation: no widely accepted method; AASHTO (2014) uses a modified Davisson criterion, elastic lengthening plus a 0.15 inch offset; factored tension resistance 0.60 of the failure load.",
+      "body": "9.3.3 Presentation and Interpretation of Tension Test Results (p. 23). Report per ASTM D3689 with a load-movement curve (Figure 9-11). No widely accepted method for nominal tension resistance has been published; Fuller (1983) reported criteria limiting gross or net upward movement, the curve's slope, or an offset limit with elastic lengthening plus an offset. AASHTO (2014) recommends a modified Davisson method: the load where the curve intersects elastic lengthening plus 0.15 inches is the nominal tension resistance (failure load); factored tension resistance is 0.60 of it.",
+      "key_points": [
+        "No widely accepted tension failure criterion (Fuller 1983 lists several)",
+        "AASHTO (2014): elastic lengthening plus 0.15 in. offset defines the failure load",
+        "Factored tension resistance = 0.60 x failure load"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "9-11",
           "title": "Typical tension load test load-movement curve",
@@ -177,22 +400,34 @@
         }
       ],
       "tables": [],
-      "applicability": "Static tension (uplift) load tests on driven piles."
+      "applicability": "Interpreting pile tension load tests by the AASHTO modified Davisson criterion."
     },
     {
       "section_id": "9.4",
       "title": "Lateral Load Test",
-      "summary": "Lateral tests (ASTM D3966) have grown with seismic and vessel impact design, noise walls and large signs. Most test a single free-head pile while service piles are fixed-head groups, so the main purpose is to determine or verify p-y curves. Jacking or pulling between two piles is economical; pulling is preferred (two-force member) with at least 20 ft or 20 diameters clear. Deflection versus depth (inclinometer or shape accel array) is strongly recommended. ASTM standard loading reaches 200% of the lateral design load (Table 9-2).",
-      "body": "9.4 (pp. 24-31). Lateral tests are run where piles carry significant lateral loads; their importance has grown with extreme event limit states (seismic, vessel impact) and with noise walls and large overhead signs. Most tests are on a single free-head pile, whereas most service piles are fixed-head groups, so results may not apply directly; the primary purpose is to determine the p-y curves for design or verify those used. Jacking or pulling between two piles is often economical, and in design-stage tests the two piles can be different types. 9.4.1 Equipment (ASTM D3966-07, re-approved 2013): a jack against a reaction (piles, deadman, weighted platform) or between two piles; pulling the piles together is preferred, as a two-force member keeps alignment, but ASTM then requires a clear distance of not less than 20 ft or 20 pile diameters. Load cell primary, jack pressure backup; spherical bearing plate(s) unless loading by pulling. Gages on a reference beam perpendicular to movement: ASTM requires 3 in. travel and 0.01 in. precision; backup scale, mirror and wire. Deflection versus depth is strongly recommended, by inclinometer casing read after load holds of 30 minutes or longer, or by a Shape Accel Array (Rollins et al. 2009; triaxial accelerometers in 1 in. PVC casing, 12 in. segments, reusable, static and dynamic); tests measuring only head deflection are seldom justifiable (Kyfor et al. 1992). Otherwise measure head rotation (deflection at two elevations, or a tiltmeter) to assess p-y modelling (Figures 9-12 to 9-16). 9.4.2 Loading: the ASTM D3966 Standard Loading procedure applies 200% of the proposed lateral design load in decreasing increments, holds rising from 10 minutes to 60 minutes at the maximum, then four 50% unloading decrements (Table 9-2); readings before and after each change and at 5 minute intervals, and at 15 and 30 minutes after removal. 9.4.3 Interpretation is more complicated than axial tests: report head load-deflection (Figure 9-17) and deflection versus depth (Figure 9-18) and compare with p-y software predictions (Figure 9-19) to select or validate p-y curves; see Reese (1984) and Kyfor et al. (1992).",
+      "summary": "Lateral tests are usually on single free-head piles while service piles are fixed-head groups, so their main purpose is to determine or verify p-y curves; often economical by jacking or pulling between two piles, possibly of different types.",
+      "body": "9.4 Lateral Load Test (p. 24). Lateral load tests are performed where piles carry significant lateral loads; their importance has grown with extreme event limit states (seismic, vessel impact) and greater use of noise walls and large overhead signs. Most tests are on a single free-head pile while service piles are mostly fixed-head groups, so results may not apply directly; the primary purpose is to determine design p-y curves or verify those used. Tests are often economical by jacking or pulling between two piles, which in design stage tests may be different types or sections, assessing two in one test.",
       "key_points": [
-        "ASTM D3966; growing use for seismic, vessel impact, noise walls and large overhead signs",
-        "Single free-head test piles versus fixed-head groups in service: results may not apply directly",
-        "Primary purpose: determine p-y curves for design or verify those used",
-        "Pulling two piles together preferred (two-force member); >= 20 ft or 20 diameters clear",
-        "Gages: ASTM requires 3 in. travel and 0.01 in. precision",
-        "Deflection versus depth strongly recommended: inclinometer or Shape Accel Array",
-        "Standard loading: 200% of lateral design load, holds 10 to 60 min (Table 9-2)",
-        "Compare measured deflection versus depth with p-y analysis"
+        "Single free-head test results may not apply directly to fixed-head groups",
+        "Primary purpose: determine or verify design p-y curves",
+        "Jacking or pulling between two piles is economical; they may be two pile types"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Lateral load tests on driven piles and their use to select or verify p-y curves."
+    },
+    {
+      "section_id": "9.4.1",
+      "title": "Lateral Load Test Equipment",
+      "summary": "ASTM D3966 lateral test equipment: jack against a reaction or between two piles (pulling preferred, piles at least 20 ft or 20 diameters apart); load cell primary; spherical bearing plate unless pulling; gages with 3 in. travel; deflection versus depth by inclinometer or Shape Accel Array strongly recommended; else head rotation.",
+      "body": "9.4.1 Lateral Load Test Equipment (pp. 24 to 28). ASTM D3966-07 (re-approved 2013) covers lateral tests. Loads are most often applied by a jack against a reaction (piles, deadman, weighted platform) or between two piles; pulling the piles together is preferred (a two-force member keeps alignment), but ASTM then requires a clear distance of not less than 20 feet or 20 pile diameters. Load cell primary, jack pressure backup; a spherical bearing plate is required unless loading by pulling. Head movement by gages to a reference beam perpendicular to the movement: ASTM requires at least 3 inches travel and 0.01 inch precision; for a single pile one gage opposite the load point, with a scale-mirror-wire backup (0.01 inch) on the pile top or a bracket on the load line. Deflection versus depth is strongly recommended: inclinometer casing to below any lateral movement, read immediately after applying or removing an increment held 30 minutes or longer, or a Shape Accel Array (SSA); Kyfor et al. (1992) note head-only tests are seldom justifiable (see also ASTM D3966, FHWA-SA-91-042). Figure 9-12: 14 and 16 inch O.D. concrete filled pipe piles pushed apart, jack at the right pile and load cell with spherical bearing plate at the left (Figures 9-13, 9-14), each with in-place inclinometer strings (Figure 9-15). SSAs (Rollins et al. 2009): triaxial accelerometers in 1 inch PVC casing, recoverable, static and dynamic displacements, 12 inch segments giving more detail than inclinometers (Figure 9-16). If deflection versus depth is not feasible, measure head rotation (deflection at two elevations above the load point, or an inclinometer probe or tiltmeter) to assess p-y modelling.",
+      "key_points": [
+        "Jack against a reaction or between two piles; pulling preferred, then >= 20 ft or 20 diameters apart",
+        "Load cell primary; spherical bearing plate unless loading by pulling",
+        "Head gages: ASTM minimum 3 in. travel, 0.01 in. precision",
+        "Measure deflection versus depth (inclinometer or Shape Accel Array); head-only tests seldom justifiable",
+        "If depth profile not feasible, measure pile head rotation"
       ],
       "equations": [],
       "figures": [
@@ -225,7 +460,46 @@
           "title": "Typical Shape Accel Array (SSA)",
           "description": "Courtesy of Measurand.",
           "page": 28
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Specifying equipment and instrumentation for a lateral pile load test."
+    },
+    {
+      "section_id": "9.4.2",
+      "title": "Lateral Test Loading Methods",
+      "summary": "ASTM D3966 Standard Loading: total 200% of the lateral design load in decreasing increments, holds from 10 to 60 minutes, unload in four decrements with 10 minute holds (Table 9-2: 50% of design load each); readings before and after each change and every 5 minutes; 15 and 30 minutes after removal.",
+      "body": "9.4.2 Lateral Test Loading Methods (pp. 28 to 29). ASTM D3966 details several procedures. The Standard Loading procedure takes the total test load to 200% of the proposed lateral design load, with increments decreasing as load increases and holds increasing from 10 minutes early to 60 minutes at maximum; unloading is in four decrements equal to 50% of the maximum (as printed) with 10 minute holds. Table 9-2 (after ASTM D3966), percent of design load and duration in minutes: 0 (-), 25 (10), 50 (10), 75 (15), 100 (20), 125 (20), 150 (20), 170 (20), 180 (20), 190 (20), 200 (60), 150 (10), 100 (10), 50 (10), 0 (30). Read load and gross movement immediately before and after each change and at 5 minute intervals; after removal at 15 and 30 minutes.",
+      "key_points": [
+        "Standard Loading: total test load 200% of the proposed lateral design load",
+        "Holds 10 minutes early to 60 minutes at 200%; unloading with 10 minute holds",
+        "Table 9-2: 25, 50, 75, 100, 125, 150, 170, 180, 190, 200% then 150, 100, 50, 0%",
+        "Read before and after each change, every 5 minutes, and 15 and 30 minutes after removal"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        {
+          "table_id": "9-2",
+          "title": "Standard Loading Schedule",
+          "description": "After ASTM D3966. Percent of lateral design load / load duration (min): 0/-, 25/10, 50/10, 75/15, 100/20, 125/20, 150/20, 170/20, 180/20, 190/20, 200/60, then 150/10, 100/10, 50/10, 0/30.",
+          "page": 29
+        }
+      ],
+      "applicability": "Loading schedule for a lateral pile load test."
+    },
+    {
+      "section_id": "9.4.3",
+      "title": "Presentation and Interpretation of Lateral Test Results",
+      "summary": "Lateral test interpretation is more complex: report head load-deflection (Figure 9-17) and deflection versus depth (Figure 9-18), compare with p-y software predictions (Figure 9-19) to set or verify design p-y curves.",
+      "body": "9.4.3 Presentation and Interpretation of Lateral Test Results (pp. 29 to 31). Report per ASTM D3966; interpretation is much more complicated than for axial tests. Figure 9-17 shows a typical head load-deflection curve; with depth measurements, report deflection versus depth (Figure 9-18) and compare with p-y software predictions (Figure 9-19, measured vs. COM624P, after Kyfor et al. 1992). The comparison sets the p-y curves for design (design stage) or checks those used (construction stage). See FHWA IP 84 11 (Reese 1984) and FHWA-SA-91-042 (Kyfor et al. 1992).",
+      "key_points": [
+        "Report head load-deflection and deflection versus depth",
+        "Compare measured and p-y predicted behavior to set or verify design p-y curves",
+        "References: FHWA IP 84 11 (Reese 1984); FHWA-SA-91-042 (Kyfor et al. 1992)"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "9-17",
           "title": "Typical lateral load test, pile head load-deflection curve",
@@ -245,30 +519,32 @@
           "page": 31
         }
       ],
-      "tables": [
-        {
-          "table_id": "9-2",
-          "title": "Standard Loading Schedule",
-          "description": "After ASTM D3966. Percent of lateral design load / load duration (min): 0/-, 25/10, 50/10, 75/15, 100/20, 125/20, 150/20, 170/20, 180/20, 190/20, 200/60, then 150/10, 100/10, 50/10, 0/30.",
-          "page": 29
-        }
-      ],
-      "applicability": "Lateral load tests on driven piles and their use to select or verify p-y curves."
+      "tables": [],
+      "applicability": "Interpreting lateral pile load tests against p-y analyses."
     },
     {
       "section_id": "9.5",
       "title": "Load Transfer Evaluations",
-      "summary": "Shaft and toe resistance come from telltales or strain gages. Two telltales give Qavg = AE(R1 - R2)/L (Eq 9-4); with head and toe readings, toe resistance is Rp = 2Qavg - Q for uniform shaft resistance (Eq 9-5) or Rp = 3Qavg - 2Q for triangular (Eq 9-6). Strain gages give F = eps E A (Eq 9-7), with a composite modulus for concrete-filled pipe (Eq 9-8) and the tangent modulus method for concrete (Eqs 9-9 to 9-12). Residual load from driving alters the computed shaft and toe split, not the total nominal resistance.",
-      "body": "9.5 (pp. 32-46). 9.5.1 Telltales: thin steel rods in slightly larger tubes from the head to selected points (Figure 9-20; NYSDOT GCP-18 details); gages on the rods measure relative movement; average load between two points by Eq 9-4 (Kyfor et al. 1992). If R1 and R2 are at head and toe, toe resistance for a uniform resistance distribution (Fellenius 1990) is Eq 9-5, with Q as close to the failure load as possible, or for a linearly increasing (triangular) distribution Eq 9-6; shaft resistance = head load minus toe resistance. 9.5.2 Strain gages: telltales alone are insufficient for detailed load transfer because of residual load; Dunnicliff (1988) suggests weldable vibrating wire gages on steel piles and vibrating wire sister bars in concrete piles; resistance gages serve static and dynamic measurements; an instrumentation specialist should select gages, redundancy and data acquisition. Moisture is a leading cause of resistance gage failure. Gages at pre-selected strata; the uppermost below the head where no shaft resistance acts (Dunnicliff: three undamaged diameters above ground; at least two diameters below the head) for modulus determination, with gage pairs against bending (Figure 9-25); Komurka (2015) adds a level two diameters above the toe; toe sister bars hung from the head in concrete-filled pipe. Force by Eq 9-7; composite modulus by Eq 9-8; concrete modulus falls with strain, so Fellenius (2001) recommends the tangent modulus method: plot tangent modulus versus strain, fit slope A and intercept B (Figure 9-26), Eqs 9-9 to 9-12. Example (Figure 9-27): 14 in. concrete-filled pipe, 53.9 - 37.6 = 16.3 tons over 12.3 ft x 3.67 ft = 45.1 ft2 gives 0.36 tsf, ignoring residual load. 9.5.3 Residual load: locked in when the pile does not fully rebound, especially flexible piles, large shaft resistance or large toe quake; it gives negative shaft resistance in the upper pile, can double the apparent shaft resistance and underestimates toe resistance (Figures 9-28 to 9-30, Fellenius 2014); the nominal resistance is unaffected but the shaft and toe split changes, which matters for uplift from compression tests. Take zero readings before installation; the strain change between just before the test and true no-load is a lower bound (Fellenius et al. 2003). Fellenius (2002b) method (Figure 9-31): true resistance follows half the measured shaft resistance to the inflection, then is extrapolated; judgment is needed.",
+      "summary": "Shaft and toe resistances and unit shaft resistances come from instrumented static load tests using telltale rods (extensometers) or surface mounted or embedded strain gages.",
+      "body": "9.5 Load Transfer Evaluations (p. 32). The magnitude of shaft and toe resistances or unit shaft resistances can be determined from instrumented static load tests, using telltale rods (extensometers) or surface mounted or embedded strain gages, discussed in the following sections.",
       "key_points": [
-        "Telltales: Eq 9-4 Qavg = AE(R1 - R2)/L (Kyfor et al. 1992)",
-        "Eq 9-5: Rp = 2Qavg - Q (uniform); Eq 9-6: Rp = 3Qavg - 2Q (triangular)",
-        "Telltales alone are insufficient for detailed load transfer because of residual load",
-        "Weldable vibrating wire gages on steel piles; vibrating wire sister bars in concrete piles (Dunnicliff 1988)",
-        "Top gage level at least two diameters below the head, where no shaft resistance acts",
-        "Eq 9-7: F = eps E A; Eq 9-8: composite modulus of concrete-filled steel piles",
-        "Tangent modulus method (Fellenius 2001), Eqs 9-9 to 9-12: Esm = 0.5 A eps + B",
-        "Residual load leaves nominal resistance unchanged but understates toe and overstates shaft resistance"
+        "Load transfer from telltales (extensometers) or strain gages in instrumented static tests"
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Load transfer from instrumented static load tests: telltales, strain gages, residual load."
+    },
+    {
+      "section_id": "9.5.1",
+      "title": "Use of Telltales",
+      "summary": "Telltales: Q_avg = AE (R1 - R2)/L (Eq. 9-4); with head and toe readings, toe resistance R_p = 2Q_avg - Q for uniform shaft resistance (Eq. 9-5) or 3Q_avg - 2Q for triangular (Eq. 9-6); shaft resistance = Q - R_p.",
+      "body": "9.5.1 Use of Telltales (pp. 32 to 34). Telltales are thin steel rods from the pile head to a selected point, encased in a slightly larger tube (Figure 9-20); NYSDOT GCP-18 (2007) gives details for pipe, H and timber piles. Gages on the rod tops measure movement relative to the reference beam or pile head; differences between rod attachment points give load transfer. Kyfor et al. (1992): average load between two points Q_avg = AE (R1 - R2)/L (Eq. 9-4), with R1 and R2 the upper and lower readings and L the length between points under no load. With R1 at the head and R2 at the toe, Fellenius (1990): for uniform shaft resistance, toe resistance R_p = 2Q_avg - Q (Eq. 9-5); for linearly increasing (triangular) resistance, R_p = 3Q_avg - 2Q (Eq. 9-6); Q is the head test load chosen as close to the failure load as possible. Shaft resistance = head load minus toe resistance.",
+      "key_points": [
+        "Telltale rods in tubes measure movement at selected points (NYSDOT GCP-18 details)",
+        "Q_avg = AE (R1 - R2)/L between two measuring points (Eq. 9-4)",
+        "Toe resistance: R_p = 2Q_avg - Q uniform (Eq. 9-5); R_p = 3Q_avg - 2Q triangular (Eq. 9-6)",
+        "Use the head load closest to the failure load; shaft resistance = Q - R_p"
       ],
       "equations": [
         {
@@ -309,7 +585,33 @@
           },
           "notes": "p. 33",
           "implemented_in": null
-        },
+        }
+      ],
+      "figures": [
+        {
+          "figure_id": "9-20",
+          "title": "Diagram of telltale rods installed on pile",
+          "description": "Modified from Kyfor et al. 1992.",
+          "page": 33
+        }
+      ],
+      "tables": [],
+      "applicability": "Load transfer from telltale measurements in pile load tests."
+    },
+    {
+      "section_id": "9.5.2",
+      "title": "Use of Strain Gages",
+      "summary": "Strain gages for detailed load transfer: vibrating wire gages (welded on steel, sister bars in concrete) or resistance gages; top gages at least two diameters below the head in a resistance-free zone; F = eps E A (Eq. 9-7); composite E (Eq. 9-8); tangent modulus method for concrete (Eqs. 9-9 to 9-12).",
+      "body": "9.5.2 Use of Strain Gages (pp. 34 to 41). Telltales alone miss residual load, so detailed load transfer needs strain gages. Dunnicliff (1988): weldable vibrating wire gages on steel piles and sister bars with vibrating wire gages in concrete piles; other types if static and dynamic measurements are wanted; an instrumentation specialist should select gages that survive handling and driving, redundancy and data acquisition. Figures 9-21 (sister bars, tied to rebar or to a centralized bar in pipe piles), 9-22 (arc-weldable gage between welded blocks on an H-pile), 9-23 (bolt-on waterproof foil gage under a steel channel on a pipe pile), 9-24 (resistance gages on sister bars with an accelerometer, in a casting bed). Moisture is a leading cause of resistance gage failure: check and seal lead wires; a multichannel data acquisition system is needed. Locate gages by the nearest boring to get unit shaft resistance in chosen strata, plus extra for redundancy. The top gage should be in a zone without shaft resistance: Dunnicliff recommends three undamaged diameters above ground; at minimum two diameters below the head for full load development, where modulus can be found and internal versus external readings show composite action of concrete filled pipe (Sellers 1995; Komurka 2015); use gage pairs or centralizers against bending (Figure 9-25). Komurka (2015) also recommends gages two diameters above the toe to extrapolate toe resistance; sister bars near the toe of pipe piles should hang from the head during curing, not rest on the toe. Force F = eps E A (Eq. 9-7); for concrete filled steel, E = (E_st A_st + E_c A_c)/(A_st + A_c) (Eq. 9-8). Concrete modulus falls with strain, so Fellenius (2001) recommends the Tangent Modulus Method: plot tangent modulus versus microstrain for all gages and increments, fit M_t = Delta_sigma/Delta_eps = A eps + B (Eq. 9-9, Figure 9-26), integrate to sigma = (A/2) eps^2 + B eps (Eq. 9-10); with sigma = E_sm eps (Eq. 9-11), E_sm = 0.5 A eps + B (Eq. 9-12). Example (Figure 9-27, seven gages, 14 inch concrete filled pipe): 53.9 - 37.6 = 16.3 tons between EL 549.7 and EL 537.4, 12.3 ft apart, 3.67 ft circumference: 16.3/45.1 ft2 = 0.36 tsf, ignoring residual load (Section 9.5.3). Unit shaft resistances can assess similar piles (e.g., 12 or 16 inch) or refine penetration depth.",
+      "key_points": [
+        "Strain gages needed for detailed load transfer (telltales miss residual load)",
+        "Vibrating wire: welded on steel piles, sister bars in concrete; resistance gages also for dynamic data",
+        "Top gages at least 2 diameters below the head in a resistance-free zone; paired against bending",
+        "Gages 2 diameters above the toe to extrapolate toe resistance (Komurka 2015)",
+        "F = eps E A (Eq. 9-7); composite modulus (Eq. 9-8); tangent modulus method (Eqs. 9-9 to 9-12)",
+        "Example: 16.3 tons over 45.1 ft2 = 0.36 tsf unit shaft resistance"
+      ],
+      "equations": [
         {
           "eq_id": "9-7",
           "description": "Axial force in the plane of a strain gage",
@@ -393,12 +695,6 @@
       ],
       "figures": [
         {
-          "figure_id": "9-20",
-          "title": "Diagram of telltale rods installed on pile",
-          "description": "Modified from Kyfor et al. 1992.",
-          "page": 33
-        },
-        {
           "figure_id": "9-21",
           "title": "Vibrating wire strain gage sister bars for concrete embedment",
           "description": "",
@@ -439,7 +735,25 @@
           "title": "Plot of axial load versus strain gage elevation for load transfer assessment",
           "description": "",
           "page": 41
-        },
+        }
+      ],
+      "tables": [],
+      "applicability": "Strain gage instrumentation and data reduction for pile load transfer."
+    },
+    {
+      "section_id": "9.5.3",
+      "title": "Determination of Residual Load",
+      "summary": "Residual load locked in during driving makes shaft resistance appear too large (up to twice) and toe resistance too small; total nominal resistance is unaffected. Zero gages before installation; Fellenius (2002b) method to estimate the true resistance distribution.",
+      "body": "9.5.3 Determination of Residual Load (pp. 41 to 46). Residual loads remain in piles that do not fully rebound after a blow, especially flexible piles and piles with large shaft resistance or toe quake. Telltale evaluations assume none, so the load distribution 'calculated from Eq. 9-5 to 9-7' (as printed) excludes it, and with R1 and R2 at head and toe the average load includes it, giving a lower toe resistance than actual (Figure 9-28). With residual load, negative shaft resistance acts on the upper pile and must be overcome first. Fellenius (2014), Figure 9-29: without residual load shaft resistance follows O-B-C; with it the pile is first loaded along D-A and the test follows A-O-B-C, so ignoring it (A-B-C) measures shaft resistance twice the true value. Toe (Figure 9-30): O-B-C without, A-D-B-C with residual load, so toe resistance develops before the test; unloading follows B-D'-A; residual load leads to underestimating toe resistance. Geotechnical nominal resistance is unaffected but shaft and toe values change, which matters for uplift taken from compression test shaft resistance or unit values used in design. Zero readings must be taken before installation (factory readings for sister bars). Fellenius et al. (2003): the strain difference just before the test and at true no load is a lower bound, possibly an underestimate with thermal strains in hydrating concrete. Fellenius (2002b) case (Figure 9-31, prestressed pile driven 48 ft in loose to medium dense uniform sand; Altaee et al. 1992): the measured load curve inflects near 23 ft, implying smaller unit shaft resistance in the bottom third, so residual load is likely. Plot measured shaft resistance divided by 2 versus depth; the True Resistance follows it to the inflection and is extrapolated below assuming the same unit resistance; residual load = True Resistance minus Measured Load. Judgment and careful interpretation are needed.",
+      "key_points": [
+        "Residual load from driving: common in flexible piles and those with large shaft resistance or toe quake",
+        "Ignoring it can double the apparent shaft resistance and understate toe resistance",
+        "Nominal (total) resistance unaffected; shaft/toe split and unit values are",
+        "Zero gage readings before installation (factory readings for sister bars)",
+        "Fellenius (2002b): measured shaft resistance / 2 to the inflection, extrapolate below"
+      ],
+      "equations": [],
+      "figures": [
         {
           "figure_id": "9-28",
           "title": "Example of residual load effects on load transfer evaluation",
@@ -466,20 +780,18 @@
         }
       ],
       "tables": [],
-      "applicability": "Load transfer from instrumented static load tests: telltales, strain gages, residual load."
+      "applicability": "Accounting for residual load in instrumented pile load tests."
     },
     {
       "section_id": "9.6",
       "title": "Practical Issues and Considerations",
-      "summary": "Static load tests are the most reliable and most expensive method; cost alone should not decide. Delays come from adding tests late: decide early in design; in construction, specify the number and locations of tests and the engineer's review time, and require the test before pile lengths are ordered or production driving starts. Load cell and jack readings that disagree must be resolved (jack exceeded load cell by 10-20% in one case). Size load cells and jacks to match.",
-      "body": "9.6 (pp. 46-48). Static load tests are the most reliable and most expensive method for nominal geotechnical resistance or lateral deformation; while their economics should be considered, cost alone should not decide; load transfer and deflected-shape data are extremely valuable when evaluated by knowledgeable instrumentation specialists, who should be involved in program development. Delays usually occur when tests are added late: in design, decide early whether to test; in construction, clearly specify the number and locations of tests and the engineer's review time, and state that the test must be performed before ordering pile lengths or starting production driving, so the contractor can schedule. Fellenius (1984): after a questionable first test, a rerun with a new load cell and recalibrated system still showed the jack pressure load exceeding the load cell by 10 to 20% in loading and under it by 5% in unloading (Figure 9-32); discrepancies must be found and the test rerun if needed. Load cells and jacks should be properly sized: Geokon (2013) found load cell error when the cell and jack piston diameters differ, compounded by thin bearing plates (Figure 9-33: one 4 in. I.D., 5-3/4 in. O.D., 300 kip load cell with three jack sizes).",
+      "summary": "Static load tests are the most reliable and most expensive method; avoid delays by deciding early and specifying tests before ordering lengths; resolve load cell versus jack pressure discrepancies (10% to 20% in Fellenius 1984); match jack and load cell sizes and use thick bearing plates (Geokon 2013).",
+      "body": "9.6 Practical Issues and Considerations (pp. 46 to 48). Static load tests are the most reliable and most expensive method for nominal resistance or lateral deformation; cost alone should not decide, and instrumentation specialists should be involved. Delays usually come from adding tests late: decide early in design; in construction specify the number and locations of tests and the engineer's review time, and require tests before ordering pile lengths or production driving. Fellenius (1984): in a retest after replacing the load cell and recalibrating, jack pressure exceeded the load cell by 10% to 20% in loading and underestimated by 5% in unloading (Figure 9-32); find the cause of disagreement and rerun if needed. Size load cells and jacks to reduce error: Geokon (2013) found error when load cell and jack piston diameters differ, compounded by thin bearing plates; a 4 inch I.D., 5-3/4 inch O.D., 300 kip load cell was used with jacks of 2 x 4, 4 x 5-3/4 and 6 x 8 inch I.D. x O.D. (Figure 9-33).",
       "key_points": [
-        "Most reliable and most expensive method; cost alone should not be the deciding factor",
-        "Decide early in design whether to test; late additions cause delays",
-        "Construction stage: specify number and locations of tests and engineer review time",
-        "Test before ordering pile lengths or starting production driving",
-        "Load cell and jack pressure disagreements must be resolved; rerun if needed",
-        "Match load cell and jack piston diameters; use sufficiently thick bearing plates"
+        "Most reliable and most expensive method; cost alone should not decide",
+        "Specify number, location and review time; test before ordering lengths or production driving",
+        "Jack pressure differed from load cell by 10% to 20% loading, 5% unloading (Fellenius 1984)",
+        "Match jack piston and load cell diameters; use bearing plates thick enough to limit bending"
       ],
       "equations": [],
       "figures": [
@@ -502,15 +814,13 @@
     {
       "section_id": "9.7",
       "title": "Advantages, Disadvantages, and Limitations",
-      "summary": "Advantages: a more rational design, considerably more reliable than static analyses or dynamic formulas; possible shorter piles or higher factored loads; resistance factors of 0.75 to 0.80 versus 0.40 for the Modified Gates formula; confirmation at the planned penetration. Disadvantages: cost, setup and interpretation time, little information on driving stresses or damage; misleading on highly variable sites. Limitations: no account of long-term settlement, downdrag or group action.",
-      "body": "9.7 (pp. 48-49). Advantages: (1) a more rational design, as confirmation of resistance by static load testing is considerably more reliable than static analyses and dynamic formulas; (2) improved knowledge of pile-soil behavior may allow shorter piles or higher factored loads; (3) a higher resistance factor, 0.75 to 0.80 when static load tests are used compared with 0.40 for the Modified Gates dynamic formula; (4) confirmation that the factored load is supported at the planned penetration. Disadvantages: test cost, time to set up and perform, time for complete interpretation (especially load transfer data), and minimal information on driving stresses or pile damage; results can mislead on highly variable sites, so site size and variability should be considered when relying on a single test pile. Limitations: results cannot account for long-term settlement, downdrag from consolidating and settling soils, or group action.",
+      "summary": "Advantages: more rational design, possible shorter piles or higher loads, resistance factors 0.75 to 0.80 versus 0.40 for Modified Gates, confirmation at planned penetration. Disadvantages: cost, time, little stress or damage data, misleading in variable soils. Limitations: no long-term settlement, downdrag or group action.",
+      "body": "9.7 Advantages, Disadvantages, and Limitations (pp. 48 to 49). Advantages: (1) more rational design; static tests are considerably more reliable than static analyses and dynamic formulas; (2) better knowledge of pile-soil behavior may allow shorter piles or higher factored loads; (3) a higher resistance factor, 0.75 to 0.80 with static load tests versus 0.40 for the Modified Gates dynamic formula; (4) confirmation that the factored load is supported at the planned penetration. Disadvantages: test cost, setup and test time, interpretation time (especially with load transfer data), minimal information on driving stresses or damage, and misleading results on highly variable sites, so consider site size and variability before relying on one test pile. Limitations: results cannot account for long-term settlement, downdrag from consolidating soils, or group action.",
       "key_points": [
-        "Considerably more reliable than static analyses and dynamic formulas",
-        "May allow shorter piles or higher factored loads",
-        "Resistance factors 0.75-0.80 versus 0.40 for the Modified Gates dynamic formula",
-        "Disadvantages: cost, time, little information on driving stresses or damage",
-        "Highly variable sites: consider site size and variability before relying on one test pile",
-        "Cannot account for long-term settlement, downdrag or pile group action"
+        "Static tests are considerably more reliable than static analyses and dynamic formulas",
+        "Resistance factor 0.75 to 0.80 with static tests vs. 0.40 for Modified Gates",
+        "Disadvantages: cost, time, little driving stress or damage data, misleading in variable soils",
+        "Cannot account for long-term settlement, downdrag or group action"
       ],
       "equations": [],
       "figures": [],
