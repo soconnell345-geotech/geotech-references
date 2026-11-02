@@ -298,7 +298,8 @@ def equation_d3_settlement_coefficients(sigma_v0_eff_kpa: float, q_kpa: float,
 
 # ============================================================================
 # Annex D.5: stiffness coefficient w1 from CPT cone resistance, for the
-# stress-dependent oedometer modulus Eoed = w1 * (sigma'v/pa)^w2
+# stress-dependent oedometer modulus
+# Eoed = w1 * pa * ((sigma'v + 0.5*delta_sigma'v)/pa)^w2
 # (printed p.114-115; Stenzel et al. 1978, Biedermann 1984, DIN 4094-1)
 # ============================================================================
 
@@ -310,8 +311,8 @@ def equation_d5_stiffness_coefficient_from_qc(soil_type: str, qc_mpa: float) -> 
     w1 = 15.2*qc + 50       low-plasticity clays (0.75<=Ic<=1.30) above GW,
                             0.6<=qc<=3.5 MPa
 
-    Used in Eoed = w1 * (sigma'v / pa)^w2 (w2 = 0.5 for Cu<=3 sands, 0.6 for
-    low-plasticity clays).
+    Used in Eoed = w1 * pa * ((sigma'v + 0.5*delta_sigma'v) / pa)^w2
+    (w2 = 0.5 for Cu<=3 sands, 0.6 for low-plasticity clays) (p.114).
 
     Parameters
     ----------
@@ -411,15 +412,21 @@ def equation_burland_burbridge_shape_factor(l_over_b: float) -> float:
 
 
 def equation_burland_burbridge_settlement(b_m: float, icc: float, q_kpa: float,
-                                           sigma_p_kpa: float) -> float:
+                                           sigma_p_kpa: float,
+                                           normally_consolidated: bool = False
+                                           ) -> float:
     """Immediate settlement of a square footing on sand (Burland & Burbridge, F.3).
 
-    For q' >= sigma'p (over-consolidated sand, effective foundation
-    pressure at/above the maximum previous overburden pressure):
-        si = sigma'p * B^0.7 * Icc / 3          if q' <= sigma'p
-        si = (q' - sigma'p) * B^0.7 * Icc       for normally consolidated sand
+    F.3(2), printed pp. 126-127; "the settlement for stresses below the
+    over consolidation pressure is assumed to be 1/3 of that corresponding
+    to the normally consolidated sand":
 
-    This function selects the applicable branch from q_kpa vs sigma_p_kpa.
+    Over-consolidated sand, q' >= sigma'p:
+        si = sigma'p * B^0.7 * Icc / 3 + (q' - sigma'p) * B^0.7 * Icc
+    Over-consolidated sand, q' <= sigma'p:
+        si = sigma'p * B^0.7 * Icc / 3          (sigma'p, as printed)
+    Normally consolidated sand:
+        si = (q' - sigma'p) * B^0.7 * Icc
 
     Parameters
     ----------
@@ -432,6 +439,11 @@ def equation_burland_burbridge_settlement(b_m: float, icc: float, q_kpa: float,
         Average effective foundation pressure q', in kPa.
     sigma_p_kpa : float
         Maximum previous overburden pressure sigma'p, in kPa.
+    normally_consolidated : bool
+        True for a normally consolidated sand (the third equation; q' must
+        be at least sigma'p). False (default) for an over-consolidated sand,
+        the first two equations by q' against sigma'p; above sigma'p it
+        gives the larger settlement of the two readings.
 
     Returns
     -------
@@ -441,14 +453,21 @@ def equation_burland_burbridge_settlement(b_m: float, icc: float, q_kpa: float,
     Raises
     ------
     ValueError
-        If b_m <= 0.
+        If b_m <= 0, or a normally consolidated sand has q' < sigma'p.
     """
     if b_m <= 0:
         raise ValueError(f"b_m must be > 0, got {b_m}")
     b07 = b_m ** 0.7
+    if normally_consolidated:
+        if q_kpa < sigma_p_kpa:
+            raise ValueError(
+                f"normally consolidated sand: q' ({q_kpa}) is below sigma'p "
+                f"({sigma_p_kpa}), so (q' - sigma'p) x B^0.7 x Icc is "
+                f"negative; F.3(2) gives no settlement for it")
+        return (q_kpa - sigma_p_kpa) * b07 * icc
     if q_kpa <= sigma_p_kpa:
         return sigma_p_kpa * b07 * icc / 3
-    return (q_kpa - sigma_p_kpa) * b07 * icc
+    return sigma_p_kpa * b07 * icc / 3 + (q_kpa - sigma_p_kpa) * b07 * icc
 
 
 # ============================================================================
@@ -461,7 +480,7 @@ _DP_ID_FORMULAS = {
     ("poorly_graded", "above", "dph"): (0.10, 0.435),
     ("poorly_graded", "below", "dpl"): (0.21, 0.230),
     ("poorly_graded", "below", "dph"): (0.23, 0.380),
-    ("well_graded", "above", "dph"): (0.14, 0.550),
+    ("well_graded", "above", "dph"): (-0.14, 0.550),
 }
 
 
@@ -527,12 +546,12 @@ def equation_g3_stiffness_coefficient_from_dp(n10: float, soil_type: str,
                                                probe_type: str) -> float:
     """Stiffness coefficient w1 from dynamic probing (DP) blow count (Annex G.3).
 
-    Used in Eoed = w1 * (sigma'v/pa)^w2 (w2=0.5 for Cu<=3 sands, w2=0.6 for
-    low-plasticity clays).
+    Used in Eoed = w1 * pa * ((sigma'v + 0.5*delta_sigma'v)/pa)^w2 (w2=0.5
+    for Cu<=3 sands, w2=0.6 for low-plasticity clays) (p.130).
 
     Poorly-graded sands (Cu<=3) above groundwater:
         w1 = 214*lg(N10L) + 71  (DPL; 4<=N10L<=50)
-        w1 = 249*lg(N10H) + 161 (DPH; 3<=N10H<=30)
+        w1 = 249*lg(N10H) + 161 (DPH; 3<=N10H<=10)
     Low-plasticity clays (0.75<=Ic<=1.30) above groundwater:
         w1 = 4*N10L + 30  (DPL; 6<=N10L<=19)
         w1 = 6*N10H + 50  (DPH; 3<=N10H<=13)

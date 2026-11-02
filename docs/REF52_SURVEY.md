@@ -216,7 +216,7 @@ stop at ch 6, so there is no retrievable text behind those functions.
 | ufc_structural | App A-I | 193 |
 | fema_p2082 | ch 1, 2, 12-15, 18 | 157 |
 | ufc_collapse | App B-G | 126 |
-| eurocode_7_2 | Annexes L-X | 111 (the annex files exist but are not keyed to annex letters) |
+| eurocode_7_2 | Annexes L-X | 111 (all matched now that the annex files are keyed to annex letters; see "EN 1997-2 written from the print") |
 | ufc_concrete_practice | App A-F | 105 |
 | gec_12 | App D | 75 |
 | ufc_pavement | App B-H | 75 |
@@ -1173,3 +1173,212 @@ No reading was chosen. Page numbers are printed page numbers (PDF page
     has "40 m3 (about 50 yd3)" (p. 180).
 
 Smaller typos are not listed.
+
+## EN 1997-2 written from the print
+
+EN 1997-2:2007 (the BS EN copy, with the AC1 corrigendum marked) was
+rewritten from the print on fix/ref52: one commit per section (1 to 6,
+with Tables 2.1 to 2.3 in a commit of their own), reviewed and merged to
+refs main as 158e408 with the review fixes 74cf1b2, then one for
+Annexes A to X (f153df5, with a page fix in 4fe7bc4). The text layer
+is OCR ("requirenlents", "Salnpling"), so every heading, symbol,
+number, equation and table value was read off rendered pages. The standard's
+text is CEN copyright: bodies are paraphrased, and numbers, equations,
+symbols and table values are as printed. Page numbers below are printed
+page numbers (PDF page 3 is p. 1).
+
+The June 2026 files held 88 sections. Every printed heading now has its
+own section, 479 in all:
+- Sections 1 to 6: 47 to 273 (s1 13, s2 22, s3 17, s4 62, s5 155, s6 4).
+- Annexes: 41 to 206 (A to K 41, L to S 77, T to X 88). The three annex
+  files keep their names and chapter numbers (annex_field_tests 7,
+  annex_lab_tests 8, annex_rock_tests 9), so the figure catalog's
+  chapter 7 still holds. Their old sections were keyed 7.1 to 7.11.4,
+  8.1 to 8.8 and 9.1 to 9.5. They are now keyed as printed: the letter
+  alone for an annex heading, or for a whole annex with no numbered
+  clauses (A, C, H, J, O, T), and D.1, N.4.2, X.4.11.2 for the clauses.
+  The audit's section-id pattern now accepts that form.
+
+Each table and figure sits in the section whose page prints it. The
+section 4 and 5 files held copies of the Annex D to W tables and figures
+and the Annex N equations; those now live only in the annexes. Section 4
+keeps Eqs. 4.1 to 4.5 with their links, and Table 4.1 sits in 4.4.3.
+Section 5 prints no equation, table or figure. Tables 2.1 to 2.3 and 3.1
+carry every cell as printed. The annexes hold 53 tables and figures (A
+to K 38, L to S 13, T to X 2) and 30 equations. The annexes print their
+equations without numbers, so the old ids (Annex D.2, F.3, G.1 ...) keep
+their implemented_in links. Links were added for the D.3 settlement
+coefficients and the F.3 Icc and fs functions. Annex X (pp. 180 to 196)
+lists its documents clause by clause.
+
+`check_section_numbers.py eurocode_7_2` now reads 370 printed and 370
+matched, with 0 ranges and 0 missing. It was 259 printed, 45 matched and
+214 missing. The 111 Annex L to X headings it reads now count, because
+the annex files carry their letters.
+- 106 sections show as extra. All are printed headings, read off their
+  pages:
+  - 1.7 (p. 15), 3.4.1 (p. 33), 4.10.4 (p. 57, OCR'd "4. t 0.4") and ten
+    section 5 headings (5.5, 5.5.4.1, 5.5.5.1, 5.5.8, 5.5.8.2, 5.6.1.2,
+    5.6.2.2, 5.6.5, 5.7.3, 5.13.5), whose OCR'd lines are damaged or
+    missed;
+  - the 24 annex letters A to X;
+  - the 30 numbered clauses of Annexes A to K, where the checker finds
+    no printed headings at all;
+  - 39 numbered clauses of Annexes L to X whose OCR'd heading lines it
+    misses (X.4.1.5 and X.4.8, for example).
+- 3 misnumber flags are held, none applied, and all are false:
+  - 5.2.1 General requirements to 5.2: p. 60 and the Table of Contents
+    print 5.2.1.
+  - N.5.2 to N.4.2: N.4 (p. 159) and N.5 (p. 160) each print an
+    "Evaluation of test results" clause.
+  - X.4.1.4 Particle density determination to X.4.1.3: both print on
+    p. 186, each with its own list.
+- 19 rows are ambiguous: repeated titles in sections 4 and 5
+  ("Requirements", "Specific requirements"). Each says matched by page
+  heading.
+
+One retrieval gold entry named an old annex key and now names the
+printed clause: dr-n160 7.6.1 to F.1. No query was reworded. No old
+annex id appears in the app. The review of sections 1 to 6 (74cf1b2)
+moved pmt-def's gold from 4.9, the field vane test, to 4.4 and 4.4.1,
+and let cpt-def's gold accept 4.3.1. In the same way spt-def's gold
+now also accepts 4.6.1 Objectives (p. 49) and dmt-def's 4.10.1
+Objectives (p. 56), beside the headings 4.6 and 4.10, which carry no
+text of their own. No rank moved: the headings still score first
+(spt-def 6 in fill, auto and rerank; dmt-def 4 in auto, 3 in rerank).
+4.6.1 is not in the top 50 for "SPT procedure and hammer energy", and
+4.10.1 ranks 43 for "dilatometer test".
+
+Ranks moved as follows from refs main 158e408 (sections 1 to 6 merged,
+with the review fixes) to after the annexes (rerank, unless a mode is
+named):
+- dr-n160 1 to 3 (fill 1 to 3; auto stays 1). The old key 7.6.1 was the
+  whole of Annex F.1. F.1 now ranks under dm7_1 2-7.1.1 and eurocode_7_2
+  4.6.4.2 (bearing resistance of spread foundations in sands).
+- n160-phi 3 to 2 (fill and auto 4 to 3).
+- cpt-def stays 1; off and fill 7 to 8.
+- stone-col-capacity 7 to 5 and ec7-compaction 10 to 9. Neither gold is
+  in EC7-2.
+
+Rerank R@5 went from 35 to 36 of 54 and MRR@10 from 0.523 to 0.515; R@3
+(32) and R@10 (40) are unchanged. test_query_expansion and the
+eurocode_7_2 tests passed after every commit, and the audit ends at 0
+errors.
+
+### What the old files held that the print does not
+
+- Annex keys that are not the print's: 7.1 to 7.11.4, 8.1 to 8.8 and 9.1
+  to 9.5. "Annex G.4-G.5" (7.7.4) and "Annex I.1-I.4" (7.9.1) were
+  ranges. Annexes L to X had one summary each, so their 152 numbered
+  clauses had no section.
+- Copies of annex objects in sections 4 and 5, among them "Table
+  D.3/D.4" and "Table D.5/D.6" as single entries, and a placeholder
+  "Figure F..." in 4.6.
+- Figure 1.2 twice, in 1.6 and 1.7; it prints in 1.7.
+- Table 2.1's key without R3 (low applicability in rock).
+- Captions not the print's. Old Figure B.7 "piles" is printed "Pile
+  groups" (p. 108). Old Table E.2 named λc and λl; the print has λc and
+  λd (p. 122).
+- Figures B.4 Tunnels and caverns (p. 106), B.5 Excavations (p. 107) and
+  C.1 Measured and predicted groundwater levels (p. 110) were missing.
+
+### Print inconsistencies, kept as printed
+
+No reading was chosen. Page numbers are printed page numbers.
+- 2.4.1.1 (4) has the NOTE "See also 13.2." (p. 24); EN 1997-2 has no
+  13.2. The file leaves the note out.
+- Table A.1 lists "chlorite content (CCl)" among the laboratory results
+  (p. 99).
+- D.3 gives C2 = 1,2 + 0,2 lg t and does not define t (p. 112).
+- Table D.2 prints "1.0" with a point (p. 114), and Table E.2 prints
+  "2.65" and "1.4" (p. 122); their other values use commas.
+- The E.2 settlement equation, marked AC1, prints (λd B/B0) with no
+  exponent (p. 122).
+- F.2's NOTE sends the reader to "X.3.3. 3", and Table F.3's caption
+  writes the density index as "(Id)" (p. 126).
+- F.3 (2) says settlement below the over-consolidation pressure is one
+  third of the normally consolidated value, and gives si = σ'p × B^0,7 ×
+  Icc/3 + (q' - σ'p) × B^0,7 × Icc for over-consolidated sand with q' ≥
+  σ'p (p. 126). For q' ≤ σ'p it gives si = σ'p × B^0,7 × Icc/3, which
+  does not change with q'. For normally consolidated sands it gives si =
+  (q' - σ'p) × B^0,7 × Icc (p. 127).
+- Table H.1 gives dense as 40 to 90 and very dense as > 80 (p. 132).
+- M.5 (3) calibrates other methods "against the methods in (2)"
+  (p. 153); sieving and sedimentation are in (1).
+- Table P.1 prints its middle row as "0,95 << r ≤ 0,98" (p. 163).
+- R.3's NOTE sends compaction procedures to X.4.2 (p. 167), the
+  chemical testing list; X.4.6 lists the compaction documents.
+- V.3 is the radially confined swelling test, but its NOTE names a test
+  on an unconfined specimen and points to X.4.10.2 (p. 174), the
+  radially confined method. V.4 repeats the unconfined wording.
+- X.3.2 lists EN ISO 22476-7, the borehole jack test, among the
+  pressuremeter documents (p. 182).
+- X.4.1.4 repeats SN 670 335:1960, a sand replacement method for bulk
+  density, among the particle density documents (p. 186).
+- X.4.2.6 lists BS 812-118:1988, with its sulfate title, under chloride
+  content (p. 189).
+
+Smaller typos are not listed.
+
+### Code that differs from the print
+
+The app reads `eurocode_7_2.equations` through its EC7-2 adapter, so
+these two changed what a live run returned. The review fixed both
+(fix/ref52-ec72b):
+- `equation_g1_density_index_from_dp`, for well-graded sand-gravel above
+  groundwater with the DPH, used ID = 0,14 + 0,550 lg N10H, and
+  tests/test_eurocode_7_2.py pinned the + sign. G.1 prints -0,14
+  (p. 129); the code and the test now use -0,14.
+- `equation_burland_burbridge_settlement` returned (q' - σ'p) × B^0,7 ×
+  Icc for q' > σ'p, the normally consolidated form, so the result
+  dropped by σ'p × B^0,7 × Icc/3 as q' passed σ'p. F.3 (2) gives σ'p ×
+  B^0,7 × Icc/3 + (q' - σ'p) × B^0,7 × Icc for over-consolidated sand
+  with q' ≥ σ'p (p. 126). That is now the default, with σ'p × B^0,7 ×
+  Icc/3 for q' ≤ σ'p as printed (p. 127). `normally_consolidated=True`
+  gives (q' - σ'p) × B^0,7 × Icc (p. 127) and refuses q' < σ'p.
+
+The adapter returns `eurocode_7_2.tables` too. REF-52 did not touch that
+file, but the review checked its lookups against the printed tables and
+fixed these, each of which changed a return:
+- Table D.2 (p. 114) prints very plastic clay and very plastic silt in
+  one cell beside both qc rows. The code gave the clay only qc < 2 MPa
+  and the silt only qc > 2 MPa, so the other half raised an error. Both
+  soils now take both rows.
+- Table E.4 (p. 123): marl (A and B: k = 1,8 bored, 2,6 full
+  displacement) was missing. Weathered rock prints no k; footnote a says
+  to take the closest soil category, and the code now says so when asked.
+- Table F.3 (p. 126): coarse sand at ID = 40 % read 41 (uniform) and 43
+  (well-graded); the print gives 38 and 41.
+- Table L.1 (p. 144): particle density (10 g) and consistency limits
+  (300 g) are printed across sand and gravelly soil too, not clay and
+  silt only; the gravelly water-content cell gives MMS for D = 2 mm to
+  10 mm.
+- Table L.2 (p. 145): the kg column was misaligned (16 mm gave 0,6 kg,
+  31,5 mm 15 kg, 37,5 mm 25 kg; the print gives 1,5, 10 and 15) and
+  omitted 22,4 mm (4 kg). Every printed row is now in the lookup, the
+  gram rows down to D ≤ 2 mm (100 g) included.
+- Table M.1 (p. 150): loss on ignition prints 3-5 (no comparable
+  experience) and 1-3 (with). The code returned 3 and 1; like the other
+  rows it now returns the upper ends, 5 and 3, and gives the printed
+  range beside them.
+- Table V.1 (p. 173): every minimum thickness is "15 mm and/or 10 times
+  max particle size", and test (3)'s minimum diameter is the same. The
+  code gave the thickness as 15 mm alone and test (3)'s diameter without
+  the 15 mm.
+- Table 2.1 (p. 25): CPT's R3 for rock type carries footnote e, "soft
+  rock only"; the code had "R3c". Page comments for Q.1, S.1 and W.1
+  now give pp. 165, 168 and 176.
+
+Fixed with them, though no live result changed:
+- The `equation_g3_stiffness_coefficient_from_dp` docstring gave the
+  DPH range for sands as 3 ≤ N10H ≤ 30; G.3 prints ≤ 10 (p. 130). The
+  code checks no range.
+- The D.5 and G.3 docstrings wrote Eoed = w1 (σ'v/pa)^w2. Both print
+  Eoed = w1 pa ((σ'v + 0,5 Δσ'v)/pa)^w2 (pp. 114, 130).
+
+Noted, not fixed, because no live result changes:
+- `equation_i5_fvt_correction_factor` takes wL in percent and divides by
+  100. I.5 prints no unit (pp. 136 to 137); the docstring gives the
+  reason.
+- figures_catalog.json has no Figures B.4, B.5 or C.1. Their captions
+  and contents are in B.3 and C.
