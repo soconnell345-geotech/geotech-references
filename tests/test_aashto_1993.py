@@ -590,9 +590,9 @@ class TestEffectiveRoadbedResilientModulus:
     """Guide's fully worked 12-month example (Figure 2.4, pdf_page 104,
     printed II-15): monthly MR = [20000,20000,2500,4000,4000,7000,7000,
     7000,7000,7000,4000,20000] psi -> sum(uf)=3.72, avg uf=0.31, effective
-    MR=5,000 psi. The printed table is itself a nomograph (hand-plotted)
-    read-off, so allow realistic tolerance vs. the direct equation
-    evaluation used here."""
+    MR=5,000 psi, with each uf read off the Figure 2.3 scale (0.01 / 1.51 /
+    0.51 / 0.13). The printed equation uf = 1.18e8 * MR^-2.32 gives 3.846,
+    0.3205 and 4,923 psi, 1.5 % below the example."""
 
     MONTHLY_MR = [20000, 20000, 2500, 4000, 4000, 7000, 7000, 7000, 7000,
                  7000, 4000, 20000]
@@ -605,6 +605,12 @@ class TestEffectiveRoadbedResilientModulus:
     def test_uf_sum_matches_guide_example(self):
         r = eq.effective_roadbed_resilient_modulus(self.MONTHLY_MR)
         assert r["uf_sum"] == pytest.approx(3.72, rel=0.10)
+
+    def test_printed_equation_values(self):
+        r = eq.effective_roadbed_resilient_modulus(self.MONTHLY_MR)
+        assert r["uf_sum"] == pytest.approx(3.846, abs=0.002)
+        assert r["uf_avg"] == pytest.approx(0.3205, abs=0.0002)
+        assert r["effective_mr_psi"] == pytest.approx(4923, abs=2)
 
     def test_uf_avg_matches_guide_example(self):
         r = eq.effective_roadbed_resilient_modulus(self.MONTHLY_MR)

@@ -86,7 +86,7 @@
       "pdf_page_index": 104,
       "printed_page": "II-15",
       "page_estimated": false,
-      "description": "Fully worked 12-month example: monthly MR values (20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000 psi), sum(uf)=3.72, avg uf=0.31 -> effective MR=5,000 psi. Validation anchor for equations.effective_roadbed_resilient_modulus."
+      "description": "Fully worked 12-month example: monthly MR values (20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000 psi), sum(uf)=3.72, avg uf=0.31 -> effective MR=5,000 psi, with uf read off the Figure 2.3 scale. equations.effective_roadbed_resilient_modulus follows the printed equation: sum 3.846, avg 0.3205, MR 4,923 psi."
     },
     {
       "figure_number": "2.5",
@@ -167,7 +167,7 @@
       "pdf_page_index": 129,
       "printed_page": "II-40",
       "page_estimated": false,
-      "description": "Rigid-foundation (bedrock within 10 ft) correction to the composite k: roadbed MR + subgrade depth to rigid foundation DSG -> modified k. Digitized in composite_k.k_rigid_foundation_correction (chart-read)."
+      "description": "Rigid-foundation (bedrock within 10 ft) correction to the composite k: roadbed MR + subgrade depth to rigid foundation DSG -> modified k. Digitized in composite_k.k_rigid_foundation_correction: the three Dsg curves traced and the twelve k_inf lines fitted (GM-303), worked by the chart's own construction; the example (MR 4,000, Dsg 5, k_inf 230 -> 300) reads 303."
     },
     {
       "figure_number": "3.5",

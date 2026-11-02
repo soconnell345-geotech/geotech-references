@@ -34,10 +34,8 @@ anchors) -- with any smoothing formula required to reproduce every read
 point to a stated, tested tolerance (asserted in
 ``tests/test_aashto_1993_composite_k.py``). Figure 3.3 is read at every
 printed curve and Dsb gridline and worked by its own construction (REF-58);
-Figure 3.4's rigid-foundation-depth dependence has NO printed numeric
-anchor away from its one reference value and relies on lower-confidence
-direct chart reads instead (flagged, with a wider stated tolerance, in its
-own section docstring) rather than an unanchored fitted exponent.
+Figure 3.4 is read along its three Dsg curves and twelve k_inf lines and
+worked by its own construction too (GM-303).
 
 Chained end-to-end, this module reproduces the guide's own Table 3.3
 worked example (composite k -> rigid-foundation correction -> relative
@@ -312,79 +310,98 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
 # ============================================================================
 # Figure 3.4: Chart to Modify Modulus of Subgrade Reaction to Consider
 # Effects of Rigid Foundation Near Surface (within 10 feet)
-# (pdf_page 129, printed II-40). CHART READ-OFF.
+# (pdf_page 129, printed II-40). CHART READ off the print.
 #
-#   k = k_inf * [1 + (mult_at_dsg5(MR) - 1) * dsg_ratio(Dsg)],  Dsg < 10 ft
-#   k = k_inf,                                                  Dsg >= 10 ft
+# The chart's construction: up from MR to the Dsg curve (2, 5 and 10 ft are
+# drawn), across to the k_inf line (50 to 1,400 pci are drawn), down to k.
+# Example on the chart: MR 4,000, Dsg 5, k_inf 230 -> 300.
 #
-# The guide's own text (Section 3.2.1 step 5, pdf_page 126, printed II-37)
-# instructs disregarding this correction entirely when the depth to a
-# rigid foundation Dsg >= 10 ft; implemented here as a hard cutoff (see
-# Notes -- this is a deliberate, explicit modeling choice, not an artifact).
+# How it was read (GM-303, 2026-11-02; replaces a multiplier per MR, exact
+# at the four Table 3.3 rows, scaled by a three-point depth guess, which
+# left out the chart's dependence on k_inf and was 12-36 % below the chart
+# at Dsg 2-3 ft or at twice the MR/19.4 k_inf, and up to 26 % above it at
+# Dsg 7-9 ft): the page at the scan's resolution (about 305 dpi). The three
+# Dsg curves were traced on the ink and thinned to within 0.5 px at the
+# 95th percentile (1.8 px at worst); the twelve k_inf lines were fitted as
+# straight lines (median offset 0.5-1.4 px); the axes come from their
+# gridlines, and the example's own arrows (MR 4,000) confirm the MR scale.
+# Between curves k is linear in Dsg; between lines, linear in k_inf.
 #
-# mult_at_dsg5(MR) is a DENSITY READ GRID of 4 EXACT printed anchors, not a
-# fitted exponent. The guide's Table 3.3 worked example (pdf_page 132,
-# printed II-43) holds Dsg=5 ft fixed for all 12 seasonal rows while MR
-# varies across 4 distinct values, and prints BOTH the composite k (Figure
-# 3.3 column) and the rigid-foundation-corrected k (Figure 3.4 column) for
-# each -- giving 4 EXACT (MR, mult=k_rigid/k_inf) pairs at Dsg=5 ft, far
-# stronger than a single-point anchor:
-#   MR= 2,500 psi -> k_inf=  160, k=  230 pci -> mult=1.4375  (Mar row)
-#   MR= 4,000 psi -> k_inf=  230, k=  300 pci -> mult=1.3043  (Apr/May/Nov)
-#   MR= 7,000 psi -> k_inf=  410, k=  540 pci -> mult=1.3170  (June-Oct)
-#   MR=20,000 psi -> k_inf=1,100, k=1,350 pci -> mult=1.2270  (Jan/Feb/Dec)
-# Interpolated log-log (via ``_linterp`` in log-MR/log-mult space) between
-# these 4 exact points -- reproduces all four exactly at Dsg=5 ft by
-# construction. Note the trend is NOT perfectly monotonic (MR=4,000 dips
-# slightly below MR=7,000); this is accepted as-is since both are exact
-# printed values, not smoothed away.
+# Checked against the example (read 303) and Table 3.3 (pdf_page 132,
+# printed II-43; all at Dsg 5 ft): k_inf 1,100 / 160 / 230 / 410 ->
+# printed 1,350 / 230 / 300 / 540, read 1,378 / 222 / 303 / 539 (-3.5 to
+# +2.1 %).
 #
-# dsg_ratio(Dsg) scales that Dsg=5 ft relationship to other Dsg values; NO
-# printed anchor exists at Dsg != 5 ft (Table 3.3 only varies MR). This
-# is a direct visual chart read (pdf_page 129), not a formula: at a fixed
-# MR=4,000 psi reference column, the Dsg=2/5/10 ft curve heights were read
-# and ratioed to the Dsg=5 ft height:
-#   Dsg= 2 ft -> ratio = 1.406  (chart read, relative to Dsg=5)
-#   Dsg= 5 ft -> ratio = 1.000  (reference)
-#   Dsg=10 ft -> ratio = 0.691  (chart read; not applied -- see hard cutoff)
-# Linearly interpolated between Dsg=2/5/10 (clamped outside). Confidence
-# here is lower than the MR read grid (~+/-15-20%, single reference column,
-# no independent printed check) -- this is the main accuracy limitation of
-# this function.
+# II-37, step (4): the correction applies when bedrock lies "within 10 feet
+# of the surface of the subgrade"; at 10 ft or more none is applied.
 # ============================================================================
 
-_RIGIDCORR_MR_ANCHORS = [2500.0, 4000.0, 7000.0, 20000.0]
-_RIGIDCORR_MULT_AT_DSG5 = [1.4375, 1.3043, 1.3170, 1.2270]
+_FIG34_REF = "AASHTO 1993 Guide, Figure 3.4 (pdf_page 129, printed II-40)"
 
-_RIGIDCORR_DSG_VALUES = [2.0, 5.0, 10.0]
-_RIGIDCORR_ROW_AT_MR4000 = [2.32, 1.65, 1.14]  # chart read, MR=4,000 psi column
-_RIGIDCORR_ROW_REF = 1.65  # = row at (Dsg=5, MR=4,000): dsg_ratio(5) = 1 exactly
-
+# Left half: the three Dsg curves as (MR psi, height in scan pixels,
+# downward), thinned to within 0.5 px of the traced ink. The frame runs
+# from 1910.5 (bottom) to 464.5 (top).
+_FIG34_DSG_CURVES = {
+    2: ((20007, 1782.2), (19142, 1773.9), (17570, 1755.8), (17354, 1754.3),
+        (16450, 1742.1), (15723, 1730.8), (15566, 1729.5), (15035, 1721.3),
+        (14466, 1711.5), (13110, 1685.3), (13012, 1684.2), (12265, 1667.9),
+        (10968, 1637.9), (9868, 1607.5), (9200, 1587.4), (8433, 1561.9),
+        (7883, 1540.7), (7137, 1508.9), (6567, 1482.2), (6210, 1462.1),
+        (5661, 1427.0), (4979, 1376.0), (4696, 1352.0), (4377, 1322.0),
+        (3850, 1265.0), (3796, 1261.0), (3609, 1239.0), (3340, 1201.0),
+        (3208, 1178.0), (3077, 1149.0), (3011, 1139.0), (2649, 1038.0),
+        (2590, 1028.0), (2519, 1009.0), (2247, 925.0), (2176, 909.0),
+        (1852, 795.0), (1698, 728.0), (1634, 693.0), (1557, 671.0),
+        (1553, 663.0), (1391, 581.8), (1326, 560.0), (1169, 471.0)),
+    5: ((20007, 1861.5), (18828, 1852.2), (17590, 1841.2), (17492, 1841.4),
+        (16548, 1833.0), (15664, 1823.6), (15566, 1823.9), (15428, 1822.5),
+        (14643, 1813.4), (13110, 1792.9), (12992, 1792.3), (12245, 1780.9),
+        (11184, 1762.8), (10968, 1760.0), (8964, 1721.2), (8650, 1713.8),
+        (8473, 1710.5), (7785, 1692.9), (7431, 1682.4), (6410, 1649.4),
+        (5899, 1629.6), (5408, 1608.5), (4877, 1583.7), (4531, 1563.9),
+        (3932, 1524.0), (3506, 1491.0), (3345, 1477.0), (3026, 1444.0),
+        (2533, 1382.0), (2438, 1372.0), (2168, 1332.0), (1840, 1268.0),
+        (1785, 1261.0), (1708, 1245.0), (1474, 1183.0), (1377, 1150.0),
+        (1340, 1145.0), (1239, 1107.0), (1181, 1074.0), (1146, 1064.0),
+        (1143, 1057.0), (1104, 1043.0), (1099, 1034.0), (1073, 1028.0)),
+    10: ((20007, 1906.1), (19083, 1904.6), (18238, 1901.1), (17727, 1898.1),
+         (17590, 1897.6), (17472, 1898.0), (16725, 1893.9), (15664, 1886.8),
+         (15487, 1887.0), (14760, 1880.9), (13601, 1869.9), (13110, 1864.2),
+         (12953, 1863.7), (10575, 1835.1), (9180, 1813.3), (8198, 1796.0),
+         (7490, 1781.2), (6724, 1763.6), (6488, 1759.1), (5702, 1738.6),
+         (5290, 1725.9), (4897, 1711.7), (4366, 1689.3), (3855, 1663.5),
+         (3437, 1638.0), (3040, 1610.0), (2762, 1587.0), (2534, 1566.0),
+         (2301, 1542.0), (1809, 1482.0), (1582, 1445.0), (1455, 1421.0),
+         (1281, 1383.0), (1206, 1371.0), (1083, 1338.0)),
+}
+# Right half: each drawn k_inf line by the k it reads at the frame's bottom
+# and at its top (pci on the k scale; the lines that leave through the
+# right side extended to the top).
+_FIG34_K_INF = (50, 100, 200, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400)
+_FIG34_K_BOTTOM = (17.6, 40.4, 108.6, 199.0, 296.7, 407.9, 514.6, 636.4,
+                   772.0, 1053.0, 1355.7, 1666.2)
+_FIG34_K_TOP = (76.1, 228.1, 620.9, 1115.2, 1629.0, 2215.4, 2838.8, 3512.0,
+                4173.0, 5710.2, 6959.2, 8321.8)
+_FIG34_Y = (1910.5, 464.5)
+_FIG34_MR_RANGE = (1169.0, 20_000.0)  # where all three curves are drawn
+_FIG34_K_MAX = 2000.0                 # the k scale's right end
 _RIGIDCORR_DSG_LIMIT = 10.0
 
 
-def _loglog_interp(x, xp, fp):
-    """Piecewise-linear interpolation in log10-log10 space (clamped)."""
-    log_x = math.log10(x)
-    log_xp = [math.log10(v) for v in xp]
-    log_fp = [math.log10(v) for v in fp]
-    return 10 ** _linterp(log_x, log_xp, log_fp)
-
-
 def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
-    """Corrected k for a rigid foundation (bedrock) within 10 ft (Figure 3.4).
+    """k on a rigid foundation (bedrock) within 10 ft, from Figure 3.4 as
+    printed (see the section note above): up from MR to the Dsg curve,
+    across to the k_inf line, down to k.
 
-        k = k_inf * [1 + (mult_at_dsg5(MR) - 1) * dsg_ratio(Dsg)],  Dsg<10 ft
-        k = k_inf,                                                  Dsg>=10 ft
+    Dsg of 10 ft or more: no correction (II-37, step (4)). Outside the
+    drawn curves, the nearest curve or none, with a note; each choice
+    understates k:
 
-    mult_at_dsg5(MR) is a 4-point EXACT read grid (log-log interpolated)
-    from the guide's own Table 3.3 worked example, all at Dsg=5 ft; see
-    section docstring above. dsg_ratio(Dsg) is a lower-confidence 3-point
-    chart read (Dsg=2/5/10 ft) scaling that relationship to other depths.
-
-    Verified against the guide's Table 3.3 rows (all Dsg=5 ft, exact by
-    construction): MR=2,500/4,000/7,000/20,000 psi reproduce k=230/300/
-    540/1,350 pci exactly from their printed k_inf values.
+    - Dsg below 2 ft uses the 2-ft curve;
+    - MR above 20,000 psi or below 1,169 psi (where the 2-ft curve leaves
+      the top) uses the curve's end;
+    - k_inf outside the drawn lines (50-1,400 pci) applies no correction;
+    - a k past the scale's 2,000 pci end is held at 2,000.
 
     Parameters
     ----------
@@ -402,7 +419,7 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     Returns
     -------
     dict
-        {'mr_psi', 'dsg_ft', 'k_inf_pci', 'k_pci', 'chart_read', 'equation',
+        {'mr_psi', 'dsg_ft', 'k_inf_pci', 'k_pci', 'chart_read', 'method',
         'reference', 'note'?}.
 
     Raises
@@ -410,32 +427,55 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     ValueError
         If mr_psi, dsg_ft, or k_inf_pci <= 0.
     """
-    if mr_psi <= 0:
-        raise ValueError(f"mr_psi must be > 0, got {mr_psi}")
-    if dsg_ft <= 0:
-        raise ValueError(f"dsg_ft must be > 0, got {dsg_ft}")
-    if k_inf_pci <= 0:
-        raise ValueError(f"k_inf_pci must be > 0, got {k_inf_pci}")
-
-    out = {
-        "mr_psi": mr_psi, "dsg_ft": dsg_ft, "k_inf_pci": k_inf_pci,
-        "chart_read": True,
-        "reference": "AASHTO 1993 Guide, Figure 3.4 (pdf_page 129, printed II-40)",
-    }
+    for name, val in (("mr_psi", mr_psi), ("dsg_ft", dsg_ft),
+                      ("k_inf_pci", k_inf_pci)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
+    out = {"mr_psi": mr_psi, "dsg_ft": dsg_ft, "k_inf_pci": k_inf_pci,
+           "chart_read": True, "reference": _FIG34_REF,
+           "method": ("Figure 3.4 read off the printed chart (the Dsg curves "
+                      "traced, the k_inf lines fitted; the chart's own "
+                      "construction)")}
     if dsg_ft >= _RIGIDCORR_DSG_LIMIT:
         out["k_pci"] = round(k_inf_pci, 1)
-        out["equation"] = "k = k_inf  (Dsg >= 10 ft: guide instructs disregarding this correction)"
-        out["note"] = "Depth to rigid foundation >= 10 ft; no correction applied, per the guide."
+        out["note"] = ("Depth to the rigid foundation is 10 ft or more; no "
+                       "correction (II-37, step (4)).")
         return out
+    if not _FIG34_K_INF[0] <= k_inf_pci <= _FIG34_K_INF[-1]:
+        out["k_pci"] = round(k_inf_pci, 1)
+        out["note"] = (f"k_inf {k_inf_pci:,.0f} pci is outside Figure 3.4's "
+                       "drawn lines (50-1,400 pci); no correction applied "
+                       "(understates k).")
+        return out
+    notes = []
+    dsg = dsg_ft
+    if dsg < 2:
+        dsg = 2.0
+        notes.append(f"Dsg {dsg_ft} ft is shallower than the 2-ft curve, "
+                     "the shallowest drawn; the 2-ft curve was used "
+                     "(understates k).")
+    mr = mr_psi
+    if not _FIG34_MR_RANGE[0] <= mr <= _FIG34_MR_RANGE[1]:
+        mr = min(max(mr, _FIG34_MR_RANGE[0]), _FIG34_MR_RANGE[1])
+        notes.append(f"MR {mr_psi:,.0f} psi is past the drawn curves; read "
+                     f"at {mr:,.0f} psi (understates k).")
 
-    mult_dsg5 = _loglog_interp(mr_psi, _RIGIDCORR_MR_ANCHORS, _RIGIDCORR_MULT_AT_DSG5)
-    dsg_ratio = (_linterp(dsg_ft, _RIGIDCORR_DSG_VALUES, _RIGIDCORR_ROW_AT_MR4000)
-                / _RIGIDCORR_ROW_REF)
-    mult = 1 + (mult_dsg5 - 1) * dsg_ratio
-    out["k_pci"] = round(k_inf_pci * mult, 1)
-    out["equation"] = ("k = k_inf*[1 + (mult_at_dsg5(MR)-1)*dsg_ratio(Dsg)]; "
-                       "mult_at_dsg5: 4 exact Table 3.3 anchors; "
-                       "dsg_ratio: chart read, Dsg=2/5/10ft -> 1.406/1.000/0.691")
+    def height(d):
+        pts = _FIG34_DSG_CURVES[d][::-1]          # MR ascending
+        return _linterp(mr, [p[0] for p in pts], [p[1] for p in pts])
+    lo, hi = (2, 5) if dsg <= 5 else (5, 10)
+    y = height(lo) + (height(hi) - height(lo)) * (dsg - lo) / (hi - lo)
+    frac = (_FIG34_Y[0] - y) / (_FIG34_Y[0] - _FIG34_Y[1])
+    k_lines = [b + (t - b) * frac for b, t in zip(_FIG34_K_BOTTOM,
+                                                  _FIG34_K_TOP)]
+    k = _linterp(k_inf_pci, list(_FIG34_K_INF), k_lines)
+    if k > _FIG34_K_MAX:
+        k = _FIG34_K_MAX
+        notes.append("The construction lands past the k scale's 2,000 pci "
+                     "end; k held at 2,000 pci.")
+    out["k_pci"] = round(k, 1)
+    if notes:
+        out["note"] = " ".join(notes)
     return out
 
 
@@ -657,12 +697,12 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     ``tests/test_aashto_1993_composite_k.py`` for the exact figures). Most
     of the remaining error traces to ``composite_k_subbase`` (Figure 3.3
     read off the chart, within 5% of the guide's own printed reads, which
-    themselves differ by 2.5% for one point); the Figure 3.4
-    rigid-foundation step is exact at Dsg=5 ft (the depth used
-    throughout Table 3.3) since it is anchored to 4 real printed
-    (MR, k_inf, k) triples, not a single point. A Figure 3.3 note (an
-    input above the printed curves) is carried on the period's row and in
-    ``notes``; an input below them raises ValueError.
+    themselves differ by 2.5% for one point) and to
+    ``k_rigid_foundation_correction`` (Figure 3.4 read off the chart,
+    within -3.5 to +2.1% of the guide's reads at Dsg=5 ft), the two
+    chart reads stacking in each row. A Figure 3.3 or 3.4 note (an input
+    outside the printed curves) is carried on the period's row and in
+    ``notes``; a Figure 3.3 input below its curves raises ValueError.
 
     Parameters
     ----------
@@ -745,6 +785,11 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
             rf = k_rigid_foundation_correction(mr, dsg_ft, k_composite)
             k_for_ur = rf["k_pci"]
             row["k_rigid_foundation_pci"] = k_for_ur
+            if "note" in rf:
+                row["note"] = (row["note"] + " " + rf["note"]
+                               if "note" in row else rf["note"])
+                if rf["note"] not in notes:
+                    notes.append(rf["note"])
         else:
             k_for_ur = k_composite
 
@@ -782,7 +827,8 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
         "dsg_ft": dsg_ft,
         "equation": ("Table 3.2 worksheet: per-period composite k (Fig. 3.3 "
                     "read off the printed chart, or MR/19.4 with no subbase) "
-                    "-> rigid-foundation correction (Fig. 3.4, if dsg_ft<10) "
+                    "-> rigid-foundation correction (Fig. 3.4 read off the "
+                    "printed chart, if dsg_ft<10) "
                     "-> relative damage u_r (Fig. 3.5) -> average u_r -> "
                     "back-solved effective k -> loss-of-support correction "
                     "(Fig. 3.6)"),
