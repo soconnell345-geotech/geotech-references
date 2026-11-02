@@ -928,12 +928,15 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
 #       project/traffic-growth-rate specific, no printed universal formula
 #       -- caller-supplied ``time_from_w18_fn(w18)``)
 #
-# CONVERGENCE RULE (reverse-engineered from the guide's own printed 3-row
-# example, reproduced exactly below): the next trial period is the average
-# of the current trial and the current column-6 result, iterated until
-# they coincide within tolerance:
+# CONVERGENCE RULE (Step 7, printed II-35): if the trial and calculated
+# periods differ by more than 1 year, their average is the next trial; "If
+# the difference is less than 1 year, convergence is reached and the
+# average is said to be the predicted performance period". The printed
+# 3-row example, reproduced below:
 #   trial_1=13.0 -> col6=6.3;  trial_2=(13.0+6.3)/2=9.65~9.7 -> col6=7.2;
-#   trial_3=(9.7+7.2)/2=8.45~8.5 -> col6=8.2 (converging toward ~8.3 yr).
+#   trial_3=(9.7+7.2)/2=8.45~8.5 -> col6=8.2; 8.5 and 8.2 agree within 1
+#   year, "about 8 years". Table H.2 (printed H-7) converges after one
+#   iteration: 13 and 13.2, "about 13 years".
 #
 # NOTE (transparency): the guide's OWN prose around Table 3.1 (pdf_page
 # 123-124, printed II-33/34) describes a companion worked example (R=95%,
@@ -955,7 +958,7 @@ def performance_period_iteration(
     delta_psi_design, w18_fn, time_from_w18_fn,
     initial_trial_yr=None, max_performance_period_yr=None,
     swelling=None, frost=None, env_loss_fn=None,
-    max_iter=10, tol=0.1,
+    max_iter=10, tol=1.0,
 ) -> dict:
     """Iterative performance-period worksheet with swelling/frost heave (Table 3.1).
 
@@ -966,11 +969,12 @@ def performance_period_iteration(
     18-kip ESAL traffic, which is in turn converted (via the caller's
     traffic-growth relationship) to the calendar year that traffic level is
     reached. The next trial period is the average of the current trial and
-    that result; iteration stops when they agree within ``tol`` (or
-    ``max_iter`` is reached). See section docstring above for the exact
-    convergence rule (reverse-engineered from, and verified against, the
-    guide's own printed 3-row example) and an important transparency note
-    on what could and could not be independently reconciled from the guide.
+    that result; iteration stops when they agree within ``tol`` (1 year,
+    Step 7, printed II-35), and their average is the predicted performance
+    period (or ``max_iter`` is reached, and the last calculated period is
+    reported). See section docstring above for the convergence rule and an
+    important transparency note on what could and could not be
+    independently reconciled from the guide.
 
     Parameters
     ----------
@@ -1008,7 +1012,7 @@ def performance_period_iteration(
         Maximum iterations, default 10.
     tol : float, optional
         Convergence tolerance on |trial_period - corresponding_period|,
-        years, default 0.1.
+        years, default 1.0 (Step 7: "less than 1 year").
 
     Returns
     -------
@@ -1016,8 +1020,9 @@ def performance_period_iteration(
         {'rows': [{'iteration', 'trial_period_yr', 'delta_psi_env',
          'delta_psi_traffic', 'w18_cumulative', 'corresponding_period_yr'},
          ...], 'converged', 'n_iterations', 'performance_period_yr'
-         (the final corresponding_period_yr), 'delta_psi_design',
-         'reference'}.
+         (converged: the average of the last trial and corresponding
+         periods, Step 7; otherwise the last corresponding period),
+         'delta_psi_design', 'note', 'reference'}.
 
     Raises
     ------
@@ -1073,9 +1078,22 @@ def performance_period_iteration(
             break
         trial = 0.5 * (trial + corresponding)
 
+    last = rows[-1]
+    if converged:
+        period = 0.5 * (trial + corresponding)
+        note = (f"Step 7 (II-35): the trial period {last['trial_period_yr']} "
+                f"yr and the calculated period "
+                f"{last['corresponding_period_yr']} yr agree within {tol:g} yr; "
+                "the predicted performance period is their average.")
+    else:
+        period = corresponding
+        note = (f"Not converged in {n} iterations (Step 7 asks the trial and "
+                f"calculated periods to agree within {tol:g} yr); the last "
+                "calculated period is reported.")
     return {
         "rows": rows, "converged": converged, "n_iterations": n,
-        "performance_period_yr": round(corresponding, 2),
+        "performance_period_yr": round(period, 2),
         "delta_psi_design": delta_psi_design,
+        "note": note,
         "reference": "AASHTO 1993 Guide, Table 3.1 (pdf_page 123, printed II-34)",
     }

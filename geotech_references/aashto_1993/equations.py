@@ -623,10 +623,13 @@ def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
     procedure). Applies only to flexible pavements designed using the
     serviceability criteria (per the guide's own caveat).
 
-    Verified against the guide's printed worked example (Figure 2.4,
+    Checked against the guide's printed worked example (Figure 2.4,
     pdf_page 104, printed II-15): monthly MR (psi) =
-    [20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000] ->
-    sum(uf)=3.72, avg uf=0.31, effective MR = 5,000 psi (printed solution).
+    [20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000]. The
+    printed equation gives uf 0.0124 / 1.544 / 0.519 / 0.142, sum 3.846,
+    average 0.3205, effective MR 4,923 psi; the example reads uf off the
+    Figure 2.3 scale (0.01 / 1.51 / 0.51 / 0.13), sum 3.72, average 0.31,
+    MR 5,000 psi, 1.5% higher from those rounded reads.
 
     Parameters
     ----------

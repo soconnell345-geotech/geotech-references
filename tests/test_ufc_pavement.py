@@ -770,35 +770,67 @@ class TestFrostSupportIndex:
 
 
 class TestFigure19_5:
-    def test_r2_exact(self):
-        # Figure's own printed worked example: c=32, r=2.0 -> b=21, s=5.2
+    def test_figure_example(self):
+        # The figure's own example: c = 32 in, r = 2.0 -> "B = 21", "S = 5.2".
         r = figure_19_5_design_base_thickness(32, 2.0)
         assert r["b_in"] == pytest.approx(21.0, abs=0.2)
-        assert r["s_in"] == pytest.approx(5.2, abs=0.2)
+        assert r["s_in"] == pytest.approx(5.2, abs=0.15)
+        assert "pdf_page 98, printed 79" in r["reference"]
 
-    def test_r3_matches_g89(self):
-        # Appendix G, G-8.9: c=42, r=3 -> b=26 (within read-off tolerance)
-        r = figure_19_5_design_base_thickness(42, 3.0)
-        assert r["b_in"] == pytest.approx(26, abs=3)
-
-    def test_r3_matches_g811(self):
-        # Appendix G, G-8.11: c=38.5, r=3 -> b=22
+    def test_g811(self):
+        # G-8.11 (printed 267): r = 3, c = 38.5 -> b = 22 in, "about 5.5 in"
+        # of frost penetration into the subgrade.
         r = figure_19_5_design_base_thickness(38.5, 3.0)
-        assert r["b_in"] == pytest.approx(22, abs=3)
+        assert r["b_in"] == pytest.approx(22, abs=0.3)
+        assert r["s_in"] == pytest.approx(5.5, abs=0.15)
 
-    def test_undigitized_r_raises(self):
-        with pytest.raises(ValueError, match="not digitized"):
-            figure_19_5_design_base_thickness(30, 1.0)
+    def test_g89_r_above_3(self):
+        # G-8.9 (printed 267): r = 20/5 = 4, "the maximum allowable r of 3
+        # is used", c = 42. The print says b = 26 in with "about 6 in" into
+        # the subgrade; the drawn r = 3.0 line gives 23.8 in and s 5.9 in
+        # (26 in would give 6.5 in), so 26 is not on the line.
+        r = figure_19_5_design_base_thickness(42, 4.0)
+        assert r["r_used"] == 3.0
+        assert "greater than 3.0" in r["note"]
+        assert r["b_in"] == pytest.approx(23.8, abs=0.2)
+        assert r["s_in"] == pytest.approx(6.0, abs=0.15)
+
+    def test_every_drawn_line_and_between(self):
+        bs = [figure_19_5_design_base_thickness(50, r)["b_in"]
+              for r in (0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.5, 3.0)]
+        assert bs == sorted(bs, reverse=True)
+        mid = figure_19_5_design_base_thickness(50, 2.25)["b_in"]
+        assert bs[-3] > mid > bs[-2]
+
+    def test_outside_the_chart_raises(self):
+        with pytest.raises(ValueError, match="lowest drawn line"):
+            figure_19_5_design_base_thickness(30, 0.5)
+        with pytest.raises(ValueError, match="c axis"):
+            figure_19_5_design_base_thickness(81, 2.0)
+        with pytest.raises(ValueError):
+            figure_19_5_design_base_thickness(0, 2.0)
 
 
 class TestFigure19_6:
-    def test_verified_anchor(self):
+    def test_g812(self):
+        # G-8.12 (printed 268): F3 and F4 under 8 in of base -> 50 psi/in.
         r = figure_19_6_frost_area_index_of_reaction(8, "F3_F4")
-        assert r["index_of_reaction_psi_in"] == 50.0
+        assert r["index_of_reaction_psi_in"] == pytest.approx(50, abs=0.6)
+        assert "pdf_page 101, printed 82" in r["reference"]
 
-    def test_other_input_raises(self):
-        with pytest.raises(ValueError, match="Only the verified"):
-            figure_19_6_frost_area_index_of_reaction(12, "F3_F4")
+    def test_the_three_lines(self):
+        # Made-up thickness; the lines as drawn, at 20 in of base.
+        reads = [figure_19_6_frost_area_index_of_reaction(20, g)
+                 ["index_of_reaction_psi_in"] for g in ("F1", "S2", "F3_F4")]
+        assert reads == pytest.approx([221, 162, 120], abs=1.5)
+
+    def test_outside_the_chart_raises(self):
+        with pytest.raises(ValueError, match="4 in minimum"):
+            figure_19_6_frost_area_index_of_reaction(3, "F3_F4")
+        with pytest.raises(ValueError, match="leaves the chart"):
+            figure_19_6_frost_area_index_of_reaction(40, "F1_S1")
+        with pytest.raises(ValueError, match="Unknown frost_group"):
+            figure_19_6_frost_area_index_of_reaction(10, "NFS")
 
 
 class TestPermeabilityTable:
@@ -985,7 +1017,9 @@ class TestFigureF1:
 
 # ============================================================================
 # Appendix E vehicle curves (E-2..E-31): figure_e_vehicle_thickness /
-# figure_e_vehicle_allowable_passes over the 30-vehicle registry.
+# figure_e_vehicle_allowable_passes, every printed curve traced (GM-303).
+# Anchors: Appendix G Table G-1 (pdf_page 276, printed 257) at CBR 3; the
+# other values are made up and test the reading rules only.
 # ============================================================================
 
 _ALL_E_VEHICLES = [
@@ -1002,33 +1036,36 @@ _ALL_E_VEHICLES = [
 ]
 
 
-class TestFigureEVehicleThicknessAnchors:
-    """The three hard Appendix G Table G-1/G-2 "Mixed Traffic Calculation"
-    worked-example anchors (CBR=3, Subgrade Category D)."""
+class TestFigureEVehicleTableG1:
+    """Table G-1 prints PCASE solutions, which "differ slightly from the
+    solutions determined through the use of the pavement design charts"
+    (printed 256)."""
 
-    def test_passenger_car_g1_anchor(self):
-        # Table G-1: Passenger Car, 20,000,000 passes -> 6.1 in (extrapolated
-        # past the chart's own charted max of 10,000,000 passes).
-        r = figure_e_vehicle_thickness("passenger_car", cbr=3, passes=20_000_000)
-        assert r["thickness_in"] == pytest.approx(6.1, abs=0.2)
+    def test_truck_5_axle(self):
+        r = figure_e_vehicle_thickness("truck_5_axle", cbr=3, passes=100_000)
+        assert r["thickness_in"] == pytest.approx(15.8, abs=0.25)
 
-    def test_truck_3_axle_g1_anchor(self):
-        # Table G-1: 3-Axle Truck, 500,000 passes -> 12.8 in.
+    def test_truck_3_axle(self):
         r = figure_e_vehicle_thickness("truck_3_axle", cbr=3, passes=500_000)
-        assert r["thickness_in"] == pytest.approx(12.8, abs=0.2)
+        assert r["thickness_in"] == pytest.approx(12.8, abs=0.15)
 
-    def test_truck_5_axle_g1_anchor(self):
-        # Table G-1: 5-Axle Truck, 100,000 passes -> 15.8 in.
-        r = figure_e_vehicle_thickness("truck_5_axle", cbr=3, passes=100_000)
-        assert r["thickness_in"] == pytest.approx(15.8, abs=0.2)
+    def test_passenger_car_extrapolated(self):
+        # 20,000,000 passes is past E-2's highest curve (10,000,000); Table
+        # G-1 reads 6.1 in by going on past it.
+        r = figure_e_vehicle_thickness("passenger_car", cbr=3, passes=20_000_000)
+        assert r["thickness_in"] == pytest.approx(6.1, abs=0.05)
+        assert "extrapolated" in r["note"]
+        assert r["reference"] == \
+            "UFC 3-250-01, Figure E-2 (pdf_page 212, printed 193)"
 
-    def test_verified_vehicles_tolerance_note(self):
-        r = figure_e_vehicle_thickness("truck_5_axle", cbr=3, passes=100_000)
-        assert "verified within ~1%" in r["tolerance"]
-
-    def test_unverified_vehicle_tolerance_note(self):
-        r = figure_e_vehicle_thickness("m1a1_main_tank", cbr=5, passes=100_000)
-        assert "chart_read digitization" in r["tolerance"]
+    def test_truck_5_axle_allowable_at_16_4_in(self):
+        # Printed 252,915 (PCASE); the curves give 312,351-365,297 for
+        # 16.35-16.45 in. The grids replaced in GM-303 stopped at the first
+        # bisection midpoint, 10**5.5 = 316,228.
+        r = figure_e_vehicle_allowable_passes(
+            "truck_5_axle", cbr=3, thickness_in=16.4)
+        assert r["allowable_passes"] == pytest.approx(337_788, rel=0.001)
+        assert "clamped" not in r
 
 
 class TestFigureEVehicleLookup:
@@ -1038,36 +1075,74 @@ class TestFigureEVehicleLookup:
         assert by_slug["thickness_in"] == by_figure["thickness_in"]
         assert by_figure["vehicle"] == "passenger_car"
 
-    def test_figure_number_lowercase_no_dash(self):
-        r = figure_e_vehicle_thickness("e26", cbr=5, passes=100_000)
-        assert r["vehicle"] == "truck_3_axle"
+    @pytest.mark.parametrize("name", ["E-28", "e28", "Figure E-28",
+                                      "truck_5_axle", "Truck 5 Axle"])
+    def test_names(self, name):
+        assert figure_e_vehicle_thickness(name, 5, 1e4)["figure"] == "E-28"
 
     def test_unknown_vehicle_raises_with_valid_list(self):
         with pytest.raises(ValueError, match="Unknown vehicle"):
             figure_e_vehicle_thickness("not_a_real_vehicle", cbr=5, passes=1000)
+        with pytest.raises(ValueError, match="Unknown vehicle"):
+            figure_e_vehicle_thickness("E-1", cbr=5, passes=1000)
 
     def test_result_shape(self):
         r = figure_e_vehicle_thickness("truck_3_axle", cbr=5, passes=100_000)
         assert r["chart_read"] is True
         assert "Figure E-26" in r["reference"]
-        assert "tolerance" in r
+        assert "traced" in r["tolerance"]
         assert r["vehicle"] == "truck_3_axle"
 
 
-class TestFigureEVehicleAllRegistered:
-    """Shape/monotonicity sanity across every one of the 30 registered
-    vehicles: thickness must (a) decrease as CBR increases at fixed passes,
-    and (b) increase (or hold, at the clamped end) as passes increase at
-    fixed CBR -- the curve family never crosses."""
+class TestFigureEVehicleCurves:
+    def test_legends_and_frames_as_printed(self):
+        from geotech_references.ufc_pavement.tables import _FIGURES_E
+        assert len(_FIGURES_E) == 30
+        assert sorted(d["key"] for d in _FIGURES_E.values()) == \
+            sorted(_ALL_E_VEHICLES)
+        for fig, data in _FIGURES_E.items():
+            levels = sorted(data["curves"])
+            if fig == "E-2":
+                assert levels == [10_000, 100_000, 1_000_000, 10_000_000]
+            elif fig in ("E-3", "E-12", "E-15"):
+                assert levels == [1_000, 10_000, 100_000, 1_000_000,
+                                  5_000_000]
+            elif fig == "E-31":
+                assert levels == [100, 1_000, 10_000, 100_000, 500_000]
+            else:
+                assert levels == [1_000, 10_000, 100_000, 1_000_000,
+                                  10_000_000]
+        # E-15's frame top is 15 in; the 14 in gridline sits below it.
+        assert _FIGURES_E["E-15"]["y_max_in"] == 15
+
+    def test_curves_never_cross_or_rise(self):
+        from geotech_references.ufc_pavement.tables import _FIGURES_E
+        for fig, data in _FIGURES_E.items():
+            levels = sorted(data["curves"])
+            for i in range(60):
+                cbr = 10 ** (2 * i / 59)
+                last = -1.0
+                for p in levels:
+                    try:
+                        t = figure_e_vehicle_thickness(fig, cbr, p)["thickness_in"]
+                    except ValueError:
+                        continue
+                    assert t >= last - 1e-9, (fig, cbr, p)
+                    last = t
+            for p, pts in data["curves"].items():
+                assert all(b[0] > a[0] and b[1] <= a[1]
+                           for a, b in zip(pts, pts[1:])), (fig, p)
+
+    def test_between_curves_log_passes(self):
+        lo = figure_e_vehicle_thickness("E-27", 6, 1e4)["thickness_in"]
+        hi = figure_e_vehicle_thickness("E-27", 6, 1e5)["thickness_in"]
+        mid = figure_e_vehicle_thickness("E-27", 6, 10 ** 4.5)["thickness_in"]
+        assert mid == pytest.approx((lo + hi) / 2, abs=0.06)
 
     @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
     def test_thickness_decreases_with_cbr(self, vehicle):
-        # cbr=3/10 chosen so even the lightest vehicles (passenger_car,
-        # pickups, LSV, HMMWV) still require nonzero cover at 100,000
-        # passes -- a genuinely zero requirement is a valid answer for this
-        # module (matching the Figure E-1 precedent) but isn't what this
-        # monotonicity check is probing.
-        r_low = figure_e_vehicle_thickness(vehicle, cbr=4, passes=100_000)
+        # CBR 5: the TYC-850L's 100,000 curve is above its chart at CBR 4.
+        r_low = figure_e_vehicle_thickness(vehicle, cbr=5, passes=100_000)
         r_high = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
         assert r_high["thickness_in"] <= r_low["thickness_in"]
 
@@ -1080,12 +1155,13 @@ class TestFigureEVehicleAllRegistered:
     @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
     def test_result_has_expected_fields(self, vehicle):
         r = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
-        assert set(r) == {"vehicle", "cbr", "passes", "thickness_in",
-                          "chart_read", "tolerance", "reference"}
+        assert set(r) == {"vehicle", "figure", "caption", "cbr", "passes",
+                          "thickness_in", "chart_read", "tolerance",
+                          "reference"}
         assert r["thickness_in"] > 0
 
 
-class TestFigureEVehicleErrorHandling:
+class TestFigureEVehicleOffTheChart:
     def test_negative_cbr_raises(self):
         with pytest.raises(ValueError):
             figure_e_vehicle_thickness("passenger_car", -1, 1000)
@@ -1094,18 +1170,33 @@ class TestFigureEVehicleErrorHandling:
         with pytest.raises(ValueError):
             figure_e_vehicle_thickness("passenger_car", 10, 0)
 
-    def test_off_chart_low_cbr_heavy_vehicle_raises(self):
-        # TYC-850L container truck (217,200 lb, Y_MAX=50in) needs more than
-        # 50in of cover even at its lowest printed passes level when CBR=1 --
-        # off the top of the chart.
-        with pytest.raises(ValueError, match="off-chart"):
-            figure_e_vehicle_thickness("tyc850l_container_truck", cbr=1, passes=1000)
+    def test_below_the_cbr_axis(self):
+        with pytest.raises(ValueError, match="below Figure E-28's CBR axis"):
+            figure_e_vehicle_thickness("E-28", 0.9, 1e4)
 
-    def test_very_high_cbr_zero_or_near_zero(self):
-        # At CBR=100 even the highest-passes curve should have negligible
-        # (near-zero) required cover for a light vehicle.
+    def test_above_the_chart(self):
+        # The TYC-850L needs more than its 50 in at CBR 1 even at its
+        # lowest curve; E-16's curves enter at the top frame at CBR 2+.
+        with pytest.raises(ValueError, match="above the chart"):
+            figure_e_vehicle_thickness("tyc850l_container_truck", cbr=1, passes=1000)
+        with pytest.raises(ValueError, match="above the chart"):
+            figure_e_vehicle_thickness("E-16", 1.5, 1e3)
+
+    def test_curve_stops_above_the_axis(self):
+        # E-30's curves stop 2 in above the axis.
+        with pytest.raises(ValueError, match="ends at CBR"):
+            figure_e_vehicle_thickness("E-30", 95, 1e3)
+
+    def test_past_the_axis_no_cover(self):
+        assert figure_e_vehicle_thickness("E-28", 80, 1e3)["thickness_in"] == 0.0
         r = figure_e_vehicle_thickness("passenger_car", cbr=100, passes=10_000_000)
-        assert r["thickness_in"] < 0.5
+        assert r["thickness_in"] == 0.0
+
+    def test_below_the_lowest_curve(self):
+        few = figure_e_vehicle_thickness("E-28", 5, 500)
+        assert few["thickness_in"] == \
+            figure_e_vehicle_thickness("E-28", 5, 1e3)["thickness_in"]
+        assert "below" in few["note"]
 
 
 class TestFigureEVehicleAllowablePasses:
@@ -1116,20 +1207,32 @@ class TestFigureEVehicleAllowablePasses:
         # within ~15% given the 0.1in rounding on the forward call
         assert inv["allowable_passes"] == pytest.approx(250_000, rel=0.15)
 
+    def test_reverses_the_unrounded_read(self):
+        import math
+        from geotech_references.ufc_pavement.tables import _fig_e_thickness
+        t, _note = _fig_e_thickness("E-27", 5, 3e4)
+        r = figure_e_vehicle_allowable_passes("E-27", 5, t)
+        assert math.log10(r["allowable_passes"]) == pytest.approx(
+            math.log10(3e4), abs=0.001)
+
     def test_clamped_below_min_curve(self):
-        # cbr=7 keeps the min-passes curve comfortably above zero (2.03in,
-        # even after 0.1in rounding) so the requested 0.01in is clearly
-        # below it, triggering the clamp rather than a bisection search.
         r = figure_e_vehicle_allowable_passes(
             "passenger_car", cbr=7, thickness_in=0.01)
         assert r["clamped"] == "below_min_passes_curve"
         assert r["allowable_passes"] == 10_000  # passenger_car's min printed level
+        # Every E-16 curve is above the chart at CBR 1.5.
+        assert figure_e_vehicle_allowable_passes(
+            "E-16", 1.5, 45)["clamped"] == "below_min_passes_curve"
 
     def test_clamped_above_max_curve(self):
         r = figure_e_vehicle_allowable_passes(
-            "passenger_car", cbr=1, thickness_in=100.0)
+            "passenger_car", cbr=3, thickness_in=9.0)
         assert r["clamped"] == "above_max_passes_curve"
         assert r["allowable_passes"] == 10_000_000  # passenger_car's max printed level
+
+    def test_above_the_chart_top_raises(self):
+        with pytest.raises(ValueError, match="above Figure E-16's"):
+            figure_e_vehicle_allowable_passes("E-16", 1.5, 60)
 
     def test_more_thickness_allows_more_passes(self):
         r_thin = figure_e_vehicle_allowable_passes(

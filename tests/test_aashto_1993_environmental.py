@@ -438,6 +438,24 @@ class TestPerformancePeriodIteration:
         assert rows[2]["corresponding_period_yr"] == pytest.approx(8.2)
 
         assert result["performance_period_yr"] == pytest.approx(8.2)
+        assert result["converged"] is False
+
+    def test_step_7_one_year_and_average(self):
+        # Step 7 (printed II-35): within 1 year "convergence is reached and
+        # the average is said to be the predicted performance period"; the
+        # printed rows stop at 8.5 and 8.2, "about 8 years".
+        result = env.performance_period_iteration(
+            delta_psi_design=1.9,
+            w18_fn=self._w18_fn,
+            time_from_w18_fn=self._time_fn,
+            initial_trial_yr=13.0,
+            env_loss_fn=self._env_loss_fn,
+        )
+        assert result["converged"] is True
+        assert result["n_iterations"] == 3
+        assert result["performance_period_yr"] == pytest.approx(
+            0.5 * (8.425 + 8.2), abs=0.01)
+        assert "Step 7" in result["note"]
 
     def test_converges_when_trial_meets_corresponding(self):
         env_loss = {10.0: 0.5, 8.0: 0.4}

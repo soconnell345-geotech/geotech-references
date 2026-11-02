@@ -160,29 +160,43 @@ class TestCompositeKSubbase:
 # ============================================================================
 
 class TestKRigidFoundationCorrection:
-    """The mult_at_dsg5(MR) read grid is now anchored to FOUR exact
-    (MR, k_inf, k) triples recovered from Table 3.3 (all at Dsg=5ft, the
-    depth used throughout that example) -- not a single-point fit."""
+    """Figure 3.4 read off the chart (GM-303): the three Dsg curves traced,
+    the twelve k_inf lines fitted, worked by the chart's construction."""
 
     def test_printed_worked_example(self):
         # MR=4,000psi, Dsg=5ft, k_inf=230pci -> printed k=300 pci
         r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=230)
-        assert r["k_pci"] == pytest.approx(300, rel=1e-3)
+        assert r["k_pci"] == pytest.approx(300, rel=0.02)
+        assert "note" not in r
 
-    def test_table_3_3_mar_row_exact(self):
-        # MR=2,500psi, Dsg=5ft, k_inf=160 -> printed k=230 pci
-        r = ck.k_rigid_foundation_correction(mr_psi=2500, dsg_ft=5.0, k_inf_pci=160)
-        assert r["k_pci"] == pytest.approx(230, rel=1e-3)
+    @pytest.mark.parametrize("mr,k_inf,k", [(20000, 1100, 1350),
+                                            (2500, 160, 230),
+                                            (4000, 230, 300),
+                                            (7000, 410, 540)])
+    def test_table_3_3_rows(self, mr, k_inf, k):
+        # Table 3.3 (printed II-43), all at Dsg 5 ft: the guide's own reads
+        # of Figure 3.4, within 4 % of the chart read.
+        r = ck.k_rigid_foundation_correction(mr_psi=mr, dsg_ft=5.0, k_inf_pci=k_inf)
+        assert r["k_pci"] == pytest.approx(k, rel=0.04)
 
-    def test_table_3_3_june_row_exact(self):
-        # MR=7,000psi, Dsg=5ft, k_inf=410 -> printed k=540 pci
-        r = ck.k_rigid_foundation_correction(mr_psi=7000, dsg_ft=5.0, k_inf_pci=410)
-        assert r["k_pci"] == pytest.approx(540, rel=1e-3)
+    def test_k_inf_lines_fan_out(self):
+        # Made-up inputs: the correction grows with k_inf (the lines fan
+        # out), which a multiplier per MR cannot show.
+        lo = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=3.0, k_inf_pci=100)["k_pci"]
+        hi = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=3.0, k_inf_pci=800)["k_pci"]
+        assert hi / 800 > lo / 100 > 1
 
-    def test_table_3_3_jan_row_exact(self):
-        # MR=20,000psi, Dsg=5ft, k_inf=1,100 -> printed k=1,350 pci
-        r = ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=5.0, k_inf_pci=1100)
-        assert r["k_pci"] == pytest.approx(1350, rel=1e-3)
+    def test_outside_the_drawn_curves(self):
+        r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=1.0, k_inf_pci=230)
+        assert r["k_pci"] == ck.k_rigid_foundation_correction(
+            mr_psi=4000, dsg_ft=2.0, k_inf_pci=230)["k_pci"]
+        assert "2-ft curve" in r["note"]
+        r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=1500)
+        assert r["k_pci"] == 1500 and "no correction" in r["note"]
+        r = ck.k_rigid_foundation_correction(mr_psi=25000, dsg_ft=5.0, k_inf_pci=1000)
+        assert "past the drawn curves" in r["note"]
+        r = ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=2.0, k_inf_pci=1400)
+        assert r["k_pci"] == 2000 and "2,000 pci" in r["note"]
 
     def test_dsg_at_or_beyond_10ft_disregards_correction(self):
         r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=10.0, k_inf_pci=230)
@@ -382,20 +396,19 @@ class TestEffectiveModulusSubgradeReaction:
         assert r["effective_k_pci"] == pytest.approx(540, rel=0.05)
         assert r["k_corrected_for_loss_of_support_pci"] == pytest.approx(170, rel=0.05)
 
-    def test_rigid_foundation_rows_match_table_3_3_exactly(self):
-        # With Fig 3.4 anchored to the 4 exact Table 3.3 (MR,k_inf,k)
-        # triples, every row's k_rigid_foundation_pci should reproduce the
-        # printed Table 3.3 column 5 exactly (composite k itself still
-        # carries composite_k_subbase's ~5% own tolerance).
+    def test_rigid_foundation_rows_match_table_3_3(self):
+        # Each row stacks two chart reads: Figure 3.3 (composite k, within
+        # 5 % of the guide's reads) then Figure 3.4 (within 4 %), so the
+        # rows land within 10 % of the printed Table 3.3 column (March 210
+        # for 230 from composite k 154 for 160; June 504 for 540 from 391
+        # for 410).
         r = ck.effective_modulus_subgrade_reaction(
             seasonal=self.SEASONAL, slab_d_in=9.0, dsb_in=6.0,
             dsg_ft=5.0, ls=1.0,
         )
         expected_rigid = [1350, 1350, 230, 300, 300, 540, 540, 540, 540, 540, 300, 1350]
         for row, exp in zip(r["rows"], expected_rigid):
-            # rigid = comp_k * mult(MR); comp_k itself has ~5% tolerance vs
-            # its own Table 3.3 anchor, so allow that same margin here.
-            assert row["k_rigid_foundation_pci"] == pytest.approx(exp, rel=0.06)
+            assert row["k_rigid_foundation_pci"] == pytest.approx(exp, rel=0.10)
 
     def test_rows_are_returned_for_auditability(self):
         r = ck.effective_modulus_subgrade_reaction(
