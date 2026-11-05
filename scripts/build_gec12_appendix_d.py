@@ -23,10 +23,13 @@ OFF=34
 secs=g12x.build(35,299)
 # intro section "D" (p. 1): text before D.1 on PDF 35
 intro_lines=[(35,l) for l in g12x.page_lines(34)]
-FIX=[("WBBBBB","WBlock"),("Ruu","Rug"),("Mrr","Mrx"),("Vuu","Vuy"),("σ′vv","σ′vo"),("Muu","Mux"),("Rnnn","Rndr"),("Qmmm","Qmax"),("Dmmm−ttttttt","Dmin−tension"),("γ′ssss","γ′soil"),("D(iiiiiiiiii)","D(individual)"),("φssss","φstat"),("φddd","φdyn"),("σdd","σdr"),(",φ-dyn.=","φdyn="),(",φ-stat.=","φstat="),(", ,φ-","φ"),("bridges will be approximately 200 feet long with a higher approach embankment required on the south side.5.","bridges will be approximately 200 feet long with a higher approach embankment required on the south side. 5.")]
+FIX=[("WBBBBB","WBlock"),("Ruu","Rug"),("Mrr","Mrx"),("Vuu","Vuy"),("σ′vv","σ′vo"),("Muu","Mux"),("Rnnn","Rndr"),("Qmmm","Qmax"),("Dmmm−ttttttt","Dmin−tension"),("γ′ssss","γ′soil"),("D(iiiiiiiiii)","D(individual)"),("φssss","φstat"),("φddd","φdyn"),("σdd","σdr"),("ΔΔ′v","Δσ′v"),(",φ-dyn.=","φdyn="),(",φ-stat.=","φstat="),(", ,φ-","φ"),("bridges will be approximately 200 feet long with a higher approach embankment required on the south side.5.","bridges will be approximately 200 feet long with a higher approach embankment required on the south side. 5.")]
 def fix(t):
     t=g12x.demath(t) if any('\U0001D400'<=c<='\U0001D7FF' for c in t) else t
     for a,b in FIX: t=t.replace(a,b)
+    # "Muu"/"Mrr" map to the x subscript above; the y-axis ones print as Muy, Mry
+    t=re.sub(r'Mux(?= = factored moment about (?:the )?y)','Muy',t)
+    t=re.sub(r'Mrx(?= = factored flexural resistance about y)','Mry',t)
     t=re.sub(r'φ-(dyn|stat|c\(min\))\.',r'φ\1',t); t=t.replace(",φ","φ")
     return t
 EQM="[equation shown on the page]"
@@ -70,7 +73,9 @@ def table_entry(tid,title,cells,pages):
         desc=("Depth (feet) / Nominal Shaft Resistance (kips) / Nominal Toe Resistance (kips) / Nominal Geotechnical Resistance (kips), every row as printed ("+pr+"): "
               +"; ".join(" / ".join(r) for r in rows)+".")
     else:
-        desc="Cells as printed, read across each row ("+pr+"): "+" | ".join(fix(c) for c in cells)
+        cl=[fix(c) for c in cells]
+        if tid=="D-60": cl=[{"Muxy":"Mux y","Muxx":"Muy x","Puu":"Pui"}.get(c,c) for c in cl]
+        desc="Cells as printed, read across each row ("+pr+"): "+" | ".join(cl)
     return {"table_id":tid,"title":fix(title),"description":desc,"page":pg}
 TITLES={"D.15":"Block 15: North Abutment – Establish Pile Penetration Depths that Satisfy Tolerable Deformations; Estimate Group Settlement over the Minimum and Maximum Range of Pile Penetration Depths From Blocks 12 through 14 and Identify All Pile Toe Elevations Which Result in Intolerable Deformations; If Conditions Warrant, Modify Design and Return to Block 10",
 "D.27":"Block 15: Pier 2 – Establish Pile Penetration Depths that Satisfy Tolerable Deformations. Estimate Group Settlement over the Minimum and Maximum Range of Pile Penetration Depths From Blocks 12 to 14 and Identify All Pile Toe Elevations Which Result in Intolerable Deformations. If Conditions Warrant, Modify Design and Return to Block 10",
@@ -109,7 +114,7 @@ for n,s in enumerate(secs):
         if e in EQS and HOME[e]==s['sid']:
             d,f,v=EQS[e]; eql.append({"eq_id":e,"description":d,"formula":f,"variables":v,"notes":f"p. {EQ_PAGE[e]}","implemented_in":None})
     body=collapse_pages(fix(txt))
-    if s['sid']=='D.19': body=body.replace("Puu","Pui")
+    if s['sid'] in ('D.19','D.31','D.43'): body=body.replace("Puu","Pui")
     if s['sid']=='D.23': body=body.replace("Puu","Puz")
     title=fix(s['title'])
     if s['sid'] in TITLES:
