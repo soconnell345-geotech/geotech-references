@@ -123,7 +123,7 @@ class TestFigure55:
 
     def test_cites_eq_5_4_not_figure_5_5_or_priebe(self):
         """REF-44: Figure 5-5 is a vibrator cross-section; the relation is
-        Eq. 5-4 (p. 5-32), the stress-ratio method, not Priebe's curve."""
+        Eq. 5-4 (p. 5-32), the stress reduction method, not Priebe's curve."""
         desc = figure_5_5_settlement_improvement(0.2, 3.0)["description"]
         assert "Eq. 5-4" in desc
         assert "Priebe" not in desc

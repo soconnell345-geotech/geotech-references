@@ -13,8 +13,8 @@ gec_13 : FHWA-NHI-16-027 — Ground Modification Methods
 micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
 ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils
-ufc_pavement : UFC 3-250-01 (2016) — Pavement Design for Roads, Streets,
-             Walks, and Storage Areas (REBUILT 2026-07 from the actual document: mixed-traffic
+ufc_pavement : UFC 3-250-01 (2016) — Pavement Design for Roads and
+             Parking Areas (REBUILT 2026-07 from the actual document: mixed-traffic
              equivalent ESALs, CBR flexible design curve E-1, rigid Eq 13-1
              + reinforced design, overlays Ch 15, joints/dowels, frost Ch 19,
              subsurface drainage Ch 20; US customary)

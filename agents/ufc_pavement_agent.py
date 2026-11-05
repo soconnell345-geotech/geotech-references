@@ -2,8 +2,8 @@
 UFC Pavement Agent — Foundry-style wrapper for UFC 3-250-01 lookups.
 
 Wraps pavement design equations and tables from UFC 3-250-01 (2016),
-Pavement Design for Roads and Parking Areas.  Covers roads, streets,
-walks, and open storage areas — NOT airfields (airfields = UFC 3-260-02).
+Pavement Design for Roads and Parking Areas.  Covers roads and parking
+areas — NOT airfields (airfields = UFC 3-260-02).
 
 Three entry-point functions:
   1. ufc_pavement_agent           - Run a UFC 3-250-01 function

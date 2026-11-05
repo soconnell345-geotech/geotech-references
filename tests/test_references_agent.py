@@ -2,7 +2,7 @@
 
 The catalog was a hand-kept dict of 12 references that had drifted from the
 package (GEC-10 cited by the 2010 edition, GEC-11 and UFC 3-250-01 marked
-as having no text, UFC 3-250-01 under a title its cover does not print). It
+as having no text). It
 is now read from the installed package; these tests hold it there.
 """
 

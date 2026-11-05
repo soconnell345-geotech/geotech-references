@@ -14,7 +14,7 @@ SRF = 1 / (1 + a_s(n - 1)) and called it "GEC-13 Figure 5-5" and "Priebe
 - `gec_13/text/chapter05.json` 5.4.1.2.4 "Stress Ratio" (printed 4.1.2.4)
   gives Eq. 5-4, sigma_soil = q / [1 + (n - 1) alpha_sc], p. 5-32. SRF =
   sigma_soil / q is that relation, so the source is **Eq. 5-4, p. 5-32**, the
-  stress-ratio (equal strain) method. I also read it on the PDF page
+  stress reduction method (GEC-13 4.1.2.6, p. 5-36). I also read it on the PDF page
   (`docs/GEC 13 Vol 1.pdf`, printed p. 5-32: Eqs. 5-2 to 5-5).
 - Figure 5-5 is "Typical vibrator cross-section" (5.3.1.1.3 Equipment, p. 5-14).
 - The Priebe method is a curve (Figure 5-21, applied with Figure 5-27).
@@ -24,7 +24,7 @@ SRF = 1 / (1 + a_s(n - 1)) and called it "GEC-13 Figure 5-5" and "Priebe
 
 **Changed.**
 - The docstring, section comment and result `description` now cite GEC-13
-  Eq. 5-4, p. 5-32, and the stress-ratio method. They no longer mention
+  Eq. 5-4, p. 5-32, and the stress reduction method. They no longer mention
   Figure 5-5 or Priebe.
 - The function **name stays** `figure_5_5_settlement_improvement`, because the
   app's alias table (`funhouse_agent/adapters/_reference_common.py`) calls it
@@ -93,7 +93,8 @@ retrieval dev guide describes it. The hand-written `_REFERENCE_CATALOG` listed
 - GEC-10 was cited by the 2010 edition (FHWA-NHI-10-016), but the package is
   the 2018 edition.
 - GEC-11 and UFC 3-250-01 were marked as having no text.
-- UFC 3-250-01 carried a title its cover does not print.
+- (The old catalog already gave UFC 3-250-01 its printed title; what changed
+  is that the catalog is now read from the package, so it cannot drift.)
 
 **Changed.** `_REFERENCE_CATALOG` is now built at import from the installed
 package:
@@ -170,6 +171,14 @@ REF-56's build-then-`os.replace` is what fixed it.
 - New `tests/test_shared_db_hygiene.py` fails if any test module except
   `test_atomic_db_build.py` calls `rebuild_db()` / `_build_db()` on the shared
   database again.
+- New `tests/conftest.py` `pytest_configure` (review finding 4): calls
+  `rebuild_db()` for the text and figure databases once per run, in the
+  controlling process only (not in xdist workers, which have `workerinput`),
+  so every session starts on databases built by the current indexing code.
+  Staleness is otherwise detected only by a missing file, an older mtime, or a
+  text-database schema mismatch, so an indexing-code change without a schema
+  bump would be served from the old file. Cost: about 0.75 s per run (0.65 s
+  text, 0.10 s figures).
 
 ## Test results (final tree, judged by pytest's exit code)
 

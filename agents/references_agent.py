@@ -34,12 +34,24 @@ except ImportError:
 # of its chapter files, or the first line of its docstring when it has none.
 # (The hand-kept catalog this replaces listed 12 of the package's 33
 # references and had drifted: GEC-10's edition, GEC-11's and UFC 3-250-01's
-# text, UFC 3-250-01's title.)
+# text. It is now read from the package, so it cannot drift.)
 
 
 def _strip_volume(title: str) -> str:
     import re
     return re.split(r"\s+[\u2013\u2014-]\s+Volume\b", title, maxsplit=1)[0]
+
+
+def _base_title(title: str) -> str:
+    return title.split(" (", 1)[0]
+
+
+def _shares_name(reference_id: str, title: str) -> bool:
+    """True when reference_id and the title share a run of 2+ words."""
+    a = reference_id.lower().split()
+    b = _base_title(title).lower().split()
+    runs = {tuple(a[i:i + 2]) for i in range(len(a) - 1)}
+    return any(tuple(b[i:i + 2]) in runs for i in range(len(b) - 1))
 
 
 def _citation(reference_id: str, title: str) -> str:
@@ -48,6 +60,11 @@ def _citation(reference_id: str, title: str) -> str:
         return title
     if title.startswith(reference_id):
         title = title[len(reference_id):].lstrip(" ,:-\u2013\u2014")
+    elif _shares_name(reference_id, title):
+        # reference_id already carries the name: keep only the title's
+        # parenthetical (edition, date), so the name prints once.
+        title = title[len(_base_title(title)):].strip()
+        return f"{reference_id} {title}" if title else reference_id
     return f"{reference_id} \u2014 {title}" if title else reference_id
 
 

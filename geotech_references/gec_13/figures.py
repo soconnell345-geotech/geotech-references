@@ -148,7 +148,7 @@ def figure_5_2_area_replacement_ratio(column_diameter_m: float,
 # SRF = sigma_soil / q = 1 / (1 + a_sc*(n-1))
 # The function keeps its old name (figure_5_5_...) because callers use it;
 # GEC-13 Figure 5-5 is "Typical vibrator cross-section" (p. 5-14), not this
-# relation, and the relation is the stress-ratio (equal strain) method, not
+# relation, and the relation is the stress reduction method (GEC-13 4.1.2.6), not
 # Priebe's (the Priebe curve is read from Figures 5-21 and 5-27).
 # ============================================================================
 
@@ -156,7 +156,7 @@ def figure_5_5_settlement_improvement(area_replacement_ratio: float,
                                        stress_concentration_ratio: float = 3.0) -> dict:
     """Settlement improvement factor for stone columns (GEC-13 Eq. 5-4, p. 5-32).
 
-    From the stress-ratio (equal strain) unit-cell relation, GEC-13 printed
+    From the stress reduction method (GEC-13 4.1.2.6, after Han 2015), GEC-13 printed
     Section 4.1.2.4 "Stress Ratio", Eq. 5-4:
     sigma_soil = q / [1 + (n - 1) as], so
 
