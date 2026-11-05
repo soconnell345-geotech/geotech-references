@@ -150,7 +150,7 @@ def ufc_pavement_agent(method: str, parameters_json: str) -> str:
     minimum pavement thickness (Table 7-2), stabilized material equivalency
     factors (Table 9-1), modulus of subgrade reaction k (Table 10-1),
     frost soil classification (Table 19-2), and frost soil support index
-    (Table 19-3). Covers roads, streets, walks, and open storage areas.
+    (Table 19-3). Covers roads and parking areas.
 
     Parameters:
         method: The function name. Use ufc_pavement_list_methods() to browse.

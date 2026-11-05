@@ -1,6 +1,6 @@
 """UFC 3-250-01 pavement design lookup tables and design-curve read-offs.
 
-Pavement Design for Roads, Streets, Walks, and Storage Areas (14 November
+Pavement Design for Roads and Parking Areas (14 November
 2016). Tables are transcribed as printed (English units stored directly;
 SI conversions given where the guide itself prints one:
 mm = 25.4 x in, kPa/mm = psi/in / 0.271).
