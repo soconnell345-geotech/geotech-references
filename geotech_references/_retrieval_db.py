@@ -390,6 +390,11 @@ def _subtree(conn: sqlite3.Connection, rowid: int,
 #: their BM25 order, so every page of a search is cut from the same order.
 _BEST_MATCH_POOL = _MAX_LIMIT
 
+#: How many hits of the literal and of the literal-OR-synonyms query ``auto``
+#: fuses (REF-54). Fixed, not the page size, so a page is cut from the same
+#: order whatever ``limit`` asked for.
+_FUSION_POOL = _MAX_LIMIT
+
 
 def _by_concepts_held(conn: sqlite3.Connection, rows: list,
                       concepts: list[str]) -> list:
@@ -514,10 +519,12 @@ def reference_search(
                 # "shotgun": one combined query, BM25 ranks literal+synonym union.
                 rows = run(_qe.combined_query(q))
             elif strategy == "auto":
-                # Rerank the literal+synonym union (recall), but PIN the literal
-                # top-N (EXPANSION_PIN, default 1) so an already-good query keeps its best hit (precision).
-                literal = run(q)
+                # Fuse the literal hits with the literal+synonym union
+                # (recall), PINNING the literal top-N (EXPANSION_PIN, default
+                # 1) so an already-good query keeps its best hit (precision).
                 combined = _qe.combined_query(q)
+                pool = max(want, _FUSION_POOL)
+                literal = run(q) if combined == q else run(q, pool=pool)
                 if combined == q:
                     rows = literal            # no synonyms to add
                 elif not literal:
@@ -528,9 +535,14 @@ def reference_search(
                         key=lambda r: (r["reference"], r["section_id"]),
                         run_or=best_match(_qe.query_concepts(q)))
                 else:
-                    rows = _qe.merge_hits(
-                        literal[:_qe.EXPANSION_PIN], run(combined), want,
+                    # REF-54: the literal hits keep their places by
+                    # reciprocal-rank fusion with the combined query, so the
+                    # synonyms add hits without pushing out what the literal
+                    # search ranked well (top EXPANSION_PIN pinned)
+                    rows = _qe.fuse_hits(
+                        literal, run(combined, pool=pool), want,
                         key=lambda r: (r["reference"], r["section_id"]),
+                        pin=_qe.EXPANSION_PIN,
                     )
             else:
                 rows = run(q)

@@ -153,6 +153,18 @@ try:
 except ValueError:
     EXPANSION_PIN = 1
 
+# The rank constant of ``auto``'s reciprocal-rank fusion (:func:`fuse_hits`,
+# REF-54; env GEOTECH_RETRIEVAL_FUSION_K). Measured on the gold set with
+# scripts/eval_retrieval_gold.py --fusion-k.
+try:
+    FUSION_K = max(0, int(os.environ.get("GEOTECH_RETRIEVAL_FUSION_K", "3")))
+except ValueError:
+    FUSION_K = 3
+
+# How many of the literal hits ``auto`` is sure to keep, the one at rank r
+# no lower than 2r (REF-54): 5 keeps the literal top 5 in a top 10.
+FUSION_KEEP = 5
+
 
 def combined_query(query: str) -> str:
     """Build the single 'rerank' MATCH: the literal AND-group OR the synonyms.
@@ -319,6 +331,60 @@ def or_fallback(query: str) -> str | None:
     if len(toks) < 2:
         return None
     return " OR ".join(toks)
+
+
+def fuse_hits(literal: list, combined: list, limit: int, key,
+              pin: int = 1, k: int | None = None,
+              keep: int | None = None) -> list:
+    """``auto``'s merge of the literal hits with the literal-OR-synonyms hits
+    (REF-54): the literal top ``pin`` stay in place, and the rest are ranked
+    by reciprocal-rank fusion, ``1/(k + literal rank) + 1/(k + combined
+    rank)``, so a section the literal search ranked well keeps a place even
+    when the synonym query ranks it low or not at all.
+
+    Before REF-54 only the literal top-1 was kept and the synonym query
+    filled the other places, which dropped sections the literal search
+    ranked 3rd and 5th out of the top 10 ("PVD spacing design").
+
+    The fusion alone keeps nearly every literal hit near the top, but a
+    section the synonym query also ranks just below it can still pass it,
+    so the literal hit at rank r (r <= ``keep``) is in any case placed no
+    lower than 2r: the literal top 5 always stays in the top 10. Ties keep
+    the literal order first.
+    """
+    k = FUSION_K if k is None else k
+    keep = FUSION_KEEP if keep is None else keep
+    pin = max(0, pin)
+    out = list(literal[:pin])
+    seen = {key(h) for h in out}
+    score: dict = {}
+    first: dict = {}
+    order: dict = {}
+    for lst in (literal, combined):
+        for r, h in enumerate(lst, 1):
+            kk = key(h)
+            if kk in seen:
+                continue
+            first.setdefault(kk, h)
+            order.setdefault(kk, len(order))
+            score[kk] = score.get(kk, 0.0) + 1.0 / (k + r)
+    ranked = sorted(score, key=lambda kk: (-score[kk], order[kk]))
+    # the guarantee: the literal hit at rank r <= keep is placed no lower
+    # than 2r, whatever the fusion scores say
+    due = [(2 * r, key(h)) for r, h in enumerate(literal[:keep], 1)
+           if key(h) not in seen]
+    for kk in ranked:
+        while due and due[0][1] in seen:
+            due.pop(0)
+        while due and due[0][0] <= len(out) + 1:
+            out.append(first[due[0][1]])
+            seen.add(due.pop(0)[1])
+            while due and due[0][1] in seen:
+                due.pop(0)
+        if kk not in seen:
+            out.append(first[kk])
+            seen.add(kk)
+    return out[:limit]
 
 
 def merge_hits(literal: list, extra: list, limit: int, key) -> list:

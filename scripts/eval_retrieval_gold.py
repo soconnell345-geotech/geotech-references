@@ -5,11 +5,14 @@ the sections a good search must return (any one of them counts as a hit).
 The script reports recall@k for k = 3, 5, 10 under each expansion strategy,
 the mean reciprocal rank, and how often each strategy changes the literal
 top-1. ``--pins`` also measures ``auto`` with the literal top-N kept in place
-(``_query_expansion.EXPANSION_PIN``).
+(``_query_expansion.EXPANSION_PIN``), and ``--fusion-k`` with other rank
+constants for its reciprocal-rank fusion (``_query_expansion.FUSION_K``,
+REF-54).
 
 Run:
     python scripts/eval_retrieval_gold.py
     python scripts/eval_retrieval_gold.py --pins 1 2 3 --per-case
+    python scripts/eval_retrieval_gold.py --fusion-k 0 3 10
     python scripts/eval_retrieval_gold.py --json out.json
 """
 
@@ -87,6 +90,7 @@ def evaluate(cases: list[dict], arms: list[tuple[str, int]]) -> dict:
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--pins", type=int, nargs="*", default=[1])
+    ap.add_argument("--fusion-k", type=int, nargs="*", default=[])
     ap.add_argument("--per-case", action="store_true")
     ap.add_argument("--json")
     a = ap.parse_args(argv)
@@ -94,6 +98,11 @@ def main(argv=None):
     cases = load_cases()
     arms = [("off", 1), ("fill", 1)] + [("auto", p) for p in a.pins] + [("rerank", 1)]
     res = evaluate(cases, arms)
+    default_k = _qe.FUSION_K
+    for k in a.fusion_k:
+        _qe.FUSION_K = k
+        res[f"auto/k{k}"] = evaluate(cases, [("auto", 1)])["auto"]
+    _qe.FUSION_K = default_k
     n = len(cases)
     print("('off' is the pure literal query: no synonyms and no OR-of-terms\n"
           " fallback for a query that matches nothing; the other modes have both)")

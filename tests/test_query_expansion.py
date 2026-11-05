@@ -374,6 +374,68 @@ def test_auto_pin_n_keeps_the_literal_top_n():
 
 
 # ---------------------------------------------------------------------------
+# REF-54: auto fuses the literal and the combined hits, keeping the literal
+# hits the literal search ranked well
+# ---------------------------------------------------------------------------
+
+def test_fuse_hits_pins_and_fuses():
+    from geotech_references._query_expansion import fuse_hits
+    lit = [{"id": i} for i in ("a", "b", "c")]
+    comb = [{"id": i} for i in ("x", "c", "a", "y", "b")]
+    out = [h["id"] for h in fuse_hits(lit, comb, limit=5,
+                                      key=lambda h: h["id"], pin=1, k=0)]
+    assert out[0] == "a"                  # the literal top-1 pinned
+    assert sorted(out) == ["a", "b", "c", "x", "y"]   # each once
+    assert out.index("c") < out.index("y")  # in both lists, so ahead
+
+
+def test_fuse_hits_keeps_literal_rank_r_within_2r():
+    from geotech_references._query_expansion import fuse_hits
+    # the combined list ranks ten synonym-only hits first, then the literal
+    # hits deep down: the literal top 5 must still sit at or above 2r
+    lit = [{"id": f"l{i}"} for i in range(1, 8)]
+    comb = ([{"id": f"s{i}"} for i in range(1, 11)]
+            + [{"id": f"l{i}"} for i in range(7, 0, -1)])
+    out = [h["id"] for h in fuse_hits(lit, comb, limit=10,
+                                      key=lambda h: h["id"], pin=1)]
+    for r in range(1, 6):
+        assert f"l{r}" in out[:2 * r], (r, out)
+
+
+@pytest.mark.parametrize("query", [
+    "PVD spacing design",
+    "relative compaction requirement for fill",
+    "friction angle from CPT",
+    "MSE pullout internal stability check",
+    "undrained shear strength of clay",
+])
+def test_auto_keeps_the_literal_top_five_in_the_top_ten(query):
+    key = lambda h: (h["reference"], h["section_id"])
+    off = [key(h) for h in _literal(_retrieval_db.reference_search, query,
+                                    limit=10)]
+    auto = [key(h) for h in _with_strategy("auto", _retrieval_db.reference_search,
+                                           query, limit=10)]
+    for r, k in enumerate(off[:5], 1):
+        assert k in auto[:2 * r], (query, r, k, auto)
+
+
+def test_auto_pages_are_cut_from_one_order():
+    import geotech_references._query_expansion as qe
+    q = "PVD spacing design"
+    saved = qe.EXPANSION_STRATEGY
+    try:
+        qe.EXPANSION_STRATEGY = "auto"
+        plain = _retrieval_db.reference_search(q, limit=10)
+        p1 = _retrieval_db.reference_search(q, limit=5, max_chars=50_000)["hits"]
+        p2 = _retrieval_db.reference_search(q, limit=5, offset=5,
+                                            max_chars=50_000)["hits"]
+    finally:
+        qe.EXPANSION_STRATEGY = saved
+    key = lambda h: (h["reference"], h["section_id"])
+    assert [key(h) for h in p1 + p2] == [key(h) for h in plain]
+
+
+# ---------------------------------------------------------------------------
 # REF-48: an OR-ed query ranks the sections holding more of its words first
 # ---------------------------------------------------------------------------
 
