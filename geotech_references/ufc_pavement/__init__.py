@@ -1,4 +1,4 @@
-"""UFC 3-250-01 -- Pavement Design for Roads, Streets, Walks, and Storage Areas.
+"""UFC 3-250-01 -- Pavement Design for Roads and Parking Areas.
 
 Pavement design for roads and parking areas (14 November 2016) -- NOT
 airfields (airfields are UFC 3-260-02, a separate DoD manual). Covers

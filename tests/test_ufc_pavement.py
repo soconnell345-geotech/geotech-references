@@ -1,6 +1,6 @@
 """Tests for geotech_references.ufc_pavement (UFC 3-250-01).
 
-Pavement Design for Roads, Streets, Walks, and Storage Areas
+Pavement Design for Roads and Parking Areas
 (14 November 2016). NOT for airfields (airfields = UFC 3-260-02).
 
 Where the guide prints a worked example (Appendix G), that example is
@@ -1248,3 +1248,41 @@ class TestFigureEVehicleAllowablePasses:
     def test_zero_thickness_raises(self):
         with pytest.raises(ValueError):
             figure_e_vehicle_allowable_passes("passenger_car", 10, 0)
+
+
+# ---------------------------------------------------------------------------
+# DOC-09: the title is the one printed on the cover
+# ---------------------------------------------------------------------------
+
+PRINTED_TITLE = "Pavement Design for Roads and Parking Areas"
+
+
+def test_data_files_use_the_printed_title():
+    """Manifest, figure catalog and every chapter file carry the cover's
+    title (the cover and revision summary sheet print "PAVEMENT DESIGN FOR
+    ROADS AND PARKING AREAS"; "Roads, Streets, Walks, and Storage Areas" is
+    printed nowhere in this UFC)."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    pkg = root / "geotech_references" / "ufc_pavement"
+    files = [root / "scripts" / "manifests" / "ufc_pavement.json",
+             pkg / "figures_catalog.json", *sorted(pkg.glob("text/*.json"))]
+    assert len(files) > 2
+    for f in files:
+        data = json.loads(f.read_text(encoding="utf-8"))
+        assert data["reference_title"] == PRINTED_TITLE, f.name
+        assert "Streets, Walks" not in f.read_text(encoding="utf-8"), f.name
+
+
+def test_printed_title_is_on_the_cover():
+    fitz = pytest.importorskip("fitz")
+    from pathlib import Path
+
+    pdf = Path(__file__).resolve().parents[1] / "docs" / "ufc_3_250_01_2016.pdf"
+    if not pdf.exists():
+        pytest.skip("ufc_3_250_01_2016.pdf not checked out")
+    with fitz.open(str(pdf)) as doc:
+        cover = " ".join(doc[0].get_text().split()).lower()
+    assert PRINTED_TITLE.lower() in cover

@@ -1,17 +1,16 @@
 """
 Unified References Agent — single Foundry dispatcher for all geotech-references.
 
-Replaces the per-reference agents (dm7, gec6, gec7, gec10, gec11, gec12, gec13,
-micropile, ufc_backfill, ufc_expansive, ufc_pavement) with three Foundry
-functions:
+Replaces the per-reference agents with three Foundry functions:
 
   1. lookup_reference          - Run a reference function (table/figure/equation/text)
   2. list_reference_methods    - Browse available functions for a given reference
   3. describe_reference_method - Get detailed parameter docs for a specific function
 
-The `reference` parameter selects which reference library to query, e.g.:
-  "dm7_1", "dm7_2", "gec_6", "gec_7", "gec_10", "gec_11", "gec_12", "gec_13",
-  "micropile", "ufc_backfill", "ufc_expansive", "ufc_pavement"
+The `reference` parameter selects which reference library to query: any
+subpackage of geotech_references, e.g. "dm7_1", "dm7_2", "gec_6", "gec_12",
+"micropile", "ufc_pavement", "eurocode_7_1". list_reference_methods('') lists
+them all with their citations; the catalog is read from the installed package.
 """
 
 import json
@@ -26,73 +25,84 @@ except ImportError:
 
 
 # ---------------------------------------------------------------------------
-# Reference catalog — describes each reference's modules and capabilities
+# Reference catalog — read from the installed package, not kept by hand
 # ---------------------------------------------------------------------------
-# Each entry: (submodules to scan, has_text_retrieval, citation)
-_REFERENCE_CATALOG = {
-    "dm7_1": {
-        "submodules": ["chapter1", "chapter2", "chapter3", "chapter4",
-                       "chapter5", "chapter6", "chapter7", "chapter8"],
-        "has_text": True,
-        "citation": "UFS 3-220-10 — Soil Mechanics (DM 7.1), 16 January 2026",
-    },
-    "dm7_2": {
-        "submodules": ["prologue", "chapter2", "chapter3", "chapter4",
-                       "chapter5", "chapter6", "chapter7"],
-        "has_text": True,
-        "citation": "UFC 3-220-20 — Foundations and Earth Structures (2025)",
-    },
-    "gec_6": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-SA-02-054 (GEC-6) — Shallow Foundations",
-    },
-    "gec_7": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-NHI-14-007 (GEC-7) — Soil Nail Walls",
-    },
-    "gec_10": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-NHI-10-016 (GEC-10) — Drilled Shafts",
-    },
-    "gec_11": {
-        "submodules": ["tables", "figures"],
-        "has_text": False,
-        "citation": "FHWA-NHI-10-024 (GEC-11) — MSE Walls & Slopes",
-    },
-    "gec_12": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-NHI-16-009 (GEC-12) — Driven Piles",
-    },
-    "gec_13": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-NHI-16-027 (GEC-13) — Ground Modification Methods",
-    },
-    "micropile": {
-        "submodules": ["tables", "figures"],
-        "has_text": True,
-        "citation": "FHWA-NHI-05-039 — Micropile Design & Construction",
-    },
-    "ufc_backfill": {
-        "submodules": ["equations", "tables"],
-        "has_text": False,
-        "citation": "UFC 3-220-04N — Backfill for Subsurface Structures",
-    },
-    "ufc_expansive": {
-        "submodules": ["equations", "tables"],
-        "has_text": False,
-        "citation": "UFC 3-220-07 — Foundations in Expansive Soils",
-    },
-    "ufc_pavement": {
-        "submodules": ["equations", "tables"],
-        "has_text": False,
-        "citation": "UFC 3-250-01 — Pavement Design for Roads and Parking Areas (14 November 2016)",
-    },
-}
+# Each entry: {"submodules": [...], "has_text": bool, "citation": str}.
+# A reference is any subpackage of geotech_references; its submodules are its
+# public modules (tables, figures, equations, chapterN, ...); it has text when
+# it ships text/*.json; its citation is the reference_id and reference_title
+# of its chapter files, or the first line of its docstring when it has none.
+# (The hand-kept catalog this replaces listed 12 of the package's 33
+# references and had drifted: GEC-10's edition, GEC-11's and UFC 3-250-01's
+# text. It is now read from the package, so it cannot drift.)
+
+
+def _strip_volume(title: str) -> str:
+    import re
+    return re.split(r"\s+[\u2013\u2014-]\s+Volume\b", title, maxsplit=1)[0]
+
+
+def _base_title(title: str) -> str:
+    return title.split(" (", 1)[0]
+
+
+def _shares_name(reference_id: str, title: str) -> bool:
+    """True when reference_id and the title share a run of 2+ words."""
+    a = reference_id.lower().split()
+    b = _base_title(title).lower().split()
+    runs = {tuple(a[i:i + 2]) for i in range(len(a) - 1)}
+    return any(tuple(b[i:i + 2]) in runs for i in range(len(b) - 1))
+
+
+def _citation(reference_id: str, title: str) -> str:
+    title = _strip_volume(title.strip())
+    if not reference_id:
+        return title
+    if title.startswith(reference_id):
+        title = title[len(reference_id):].lstrip(" ,:-\u2013\u2014")
+    elif _shares_name(reference_id, title):
+        # reference_id already carries the name: keep only the title's
+        # parenthetical (edition, date), so the name prints once.
+        title = title[len(_base_title(title)):].strip()
+        return f"{reference_id} {title}" if title else reference_id
+    return f"{reference_id} \u2014 {title}" if title else reference_id
+
+
+def _build_catalog() -> dict:
+    import importlib
+    import pkgutil
+    from pathlib import Path
+
+    import geotech_references
+
+    catalog = {}
+    for sub in sorted(pkgutil.iter_modules(geotech_references.__path__),
+                      key=lambda m: m.name):
+        if not sub.ispkg or sub.name.startswith("_"):
+            continue
+        pkg = importlib.import_module(f"geotech_references.{sub.name}")
+        pkg_dir = Path(pkg.__file__).parent
+        submodules = sorted(m.name for m in pkgutil.iter_modules(pkg.__path__)
+                            if not m.ispkg and not m.name.startswith("_"))
+        texts = sorted((pkg_dir / "text").glob("*.json"))
+        citation = ""
+        if texts:
+            with open(texts[0], encoding="utf-8") as f:
+                head = json.load(f)
+            citation = _citation(head.get("reference_id") or "",
+                                 head.get("reference_title") or "")
+        if not citation:
+            doc = (pkg.__doc__ or "").strip().splitlines()
+            citation = doc[0].strip().rstrip(".") if doc else sub.name
+        catalog[sub.name] = {
+            "submodules": submodules,
+            "has_text": bool(texts),
+            "citation": citation,
+        }
+    return catalog
+
+
+_REFERENCE_CATALOG = _build_catalog()
 
 # Per-reference lazy cache: { ref_name: (METHOD_REGISTRY, METHOD_INFO) }
 _LOADED = {}
@@ -291,18 +301,18 @@ def _load_reference(reference: str):
 def lookup_reference(reference: str, method: str, parameters_json: str) -> str:
     """
     Unified geotechnical reference lookup — tables, figures, equations, and text
-    from NAVFAC DM7, FHWA GEC-6/7/10/11/12/13, FHWA Micropile, and UFC standards
-    (backfill, expansive, pavement).
+    from every reference in geotech-references (DM 7.1/7.2, the GEC series,
+    micropiles, the UFC pavement and foundation criteria, Eurocode 7, and the
+    others listed by list_reference_methods('')).
 
     Use this for any numeric value from a reference table or figure, or to
     retrieve structured reference text. Prefer this over searching uploaded PDFs
     when the value comes from a table/figure that has been digitized.
 
     Parameters:
-        reference: Which reference to query. One of:
-            'dm7_1', 'dm7_2', 'gec_6', 'gec_7', 'gec_10', 'gec_11', 'gec_12',
-            'gec_13', 'micropile', 'ufc_backfill', 'ufc_expansive',
-            'ufc_pavement'
+        reference: Which reference to query, e.g. 'dm7_1', 'dm7_2', 'gec_6',
+            'gec_12', 'micropile', 'ufc_pavement', 'eurocode_7_1'. Call
+            list_reference_methods('') for the full list.
         method: The function name within that reference (e.g.
             'table_4_4a_bond_strength_coarse', 'figure_4_3_friction_angle_spt',
             'retrieve_section', 'search_sections'). Use list_reference_methods
@@ -351,10 +361,9 @@ def list_reference_methods(reference: str, category: str = "") -> str:
     Lists available functions for a given reference, organized by category.
 
     Parameters:
-        reference: Which reference to list. One of: 'dm7_1', 'dm7_2', 'gec_6',
-            'gec_7', 'gec_10', 'gec_11', 'gec_12', 'gec_13', 'micropile',
-            'ufc_backfill', 'ufc_expansive', 'ufc_pavement'.
-            Pass '' (empty) to list all available references and their citations.
+        reference: Which reference to list, e.g. 'dm7_1', 'gec_12',
+            'ufc_pavement'. Pass '' (empty) to list all available references
+            and their citations.
         category: Optional partial-match filter on category, method name, or
             brief description (e.g. 'bond', 'bearing', 'seismic', 'figures').
 

@@ -107,11 +107,27 @@ class TestFigure52:
 
 
 # ============================================================================
-# Figure 5-5: Settlement Improvement Factor
+# Settlement Improvement Factor (GEC-13 Eq. 5-4; the name says Figure 5-5)
 # ============================================================================
 
 class TestFigure55:
     """Tests for figure_5_5_settlement_improvement()."""
+
+    def test_matches_eq_5_4_soil_stress(self):
+        """Eq. 5-4: sigma_soil = q / [1 + (n-1) a_sc]; SRF = sigma_soil / q."""
+        q, a_sc, n = 100.0, 0.25, 2.5
+        sigma_soil = q / (1.0 + (n - 1.0) * a_sc)
+        result = figure_5_5_settlement_improvement(a_sc, n)
+        assert result["settlement_reduction_factor"] == pytest.approx(
+            sigma_soil / q, abs=1e-4)
+
+    def test_cites_eq_5_4_not_figure_5_5_or_priebe(self):
+        """REF-44: Figure 5-5 is a vibrator cross-section; the relation is
+        Eq. 5-4 (p. 5-32), the stress reduction method, not Priebe's curve."""
+        desc = figure_5_5_settlement_improvement(0.2, 3.0)["description"]
+        assert "Eq. 5-4" in desc
+        assert "Priebe" not in desc
+        assert "Figure 5-5" not in desc
 
     def test_typical_values(self):
         """as=0.20, n=3 -> SRF = 1/(1+0.2*2) = 1/1.4 = 0.714."""

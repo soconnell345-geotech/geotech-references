@@ -255,7 +255,7 @@ def gec13_agent(method: str, parameters_json: str) -> str:
     - DDC depth of influence (Lukas 1995, Figure 4-1)
     - Vibro-compaction suitability number (Brown 1977, Figure 4-3)
     - Aggregate column area replacement ratio (Figure 5-2)
-    - Stone column settlement improvement factor (Figure 5-5)
+    - Stone column settlement improvement factor (stress ratio, Eq. 5-4)
 
     Parameters:
         method: The function name. Use gec13_list_methods() to browse.

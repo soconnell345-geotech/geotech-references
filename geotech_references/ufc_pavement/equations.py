@@ -1,7 +1,7 @@
 """UFC 3-250-01 pavement design equations.
 
-Pavement Design for Roads, Streets, Walks, and Storage Areas (14 November
-2016). Covers roads, streets, walks, and open storage areas -- NOT airfields
+Pavement Design for Roads and Parking Areas (14 November
+2016). Covers roads and parking areas -- NOT airfields
 (airfields are UFC 3-260-02; a separate, distinct DoD manual). All numbers
 below are traced to a rendered page of ``docs/ufc_3_250_01_2016.pdf`` (0-based
 fitz page index cited in each docstring as ``pdf_page``; the printed page is
