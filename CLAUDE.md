@@ -23,6 +23,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use; fit_hits() / fit_record() shape a result to a caller's max_chars. See "Section levels" and "Results that fit a size limit" below.
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
+  _atomic_db.py                # Both search databases are built under a temporary name beside the real one and moved in with os.replace, so no process reads a half-built file; concurrent first calls each build their own copy (REF-56)
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto), EXPANSION_PIN (env GEOTECH_RETRIEVAL_PIN, default 1). See "Lexical Query Expansion" below.
   dm7_1/                       # UFS 3-220-10 Soil Mechanics (DM 7.1), 16 Jan 2026 (8 chapters)
     chapter1.py ... chapter8.py

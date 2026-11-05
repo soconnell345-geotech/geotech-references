@@ -30,6 +30,7 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from . import _atomic_db
 from . import _query_expansion as _qe
 from ._retrieval import fit_hits, fit_record
 from ._retrieval_db import keyed_db_path, plain_terms, search_fts_safely
@@ -75,95 +76,97 @@ def _needs_rebuild(db_path: Path) -> bool:
     return db_path.stat().st_mtime < _newest_source_mtime()
 
 
-def _build_db(db_path: Path) -> None:
-    if db_path.exists():
-        db_path.unlink()
-    conn = sqlite3.connect(str(db_path))
-    try:
-        cur = conn.cursor()
-        cur.execute(
-            """
-            CREATE TABLE figures (
-                rowid INTEGER PRIMARY KEY AUTOINCREMENT,
-                reference TEXT NOT NULL,
-                reference_id TEXT,
-                reference_title TEXT,
-                volume INTEGER,
-                figure_number TEXT,
-                caption TEXT,
-                description TEXT,
-                chapter INTEGER,
-                pdf_path TEXT,
-                pdf_page_index INTEGER,
-                printed_page INTEGER,
-                page_estimated INTEGER
-            )
-            """
-        )
-        cur.execute(
-            """
-            CREATE VIRTUAL TABLE figures_fts USING fts5(
-                figure_number, caption, description,
-                content='figures',
-                content_rowid='rowid',
-                tokenize='porter unicode61'
-            )
-            """
-        )
-        cur.execute("CREATE INDEX idx_fig_ref ON figures(reference)")
-        cur.execute("CREATE INDEX idx_fig_ref_chap ON figures(reference, chapter)")
-        cur.execute("CREATE INDEX idx_fig_ref_num ON figures(reference, figure_number)")
+def _build_db(db_path: Path) -> Path:
+    """Build the database and move it into place at ``db_path`` (REF-56).
 
-        for cat_path in _iter_catalogs():
-            try:
-                data = json.loads(cat_path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
+    Built under a temporary name beside it and moved in with
+    ``os.replace``, so another process never opens a half-built file
+    (:mod:`geotech_references._atomic_db`). Returns the path to read.
+    """
+    return _atomic_db.build_atomically(
+        db_path, _fill_db, is_current=lambda p: not _needs_rebuild(p))
+
+
+def _fill_db(conn: sqlite3.Connection) -> None:
+    """Create the tables and index every source file into ``conn``."""
+    cur = conn.cursor()
+    cur.execute(
+        """
+        CREATE TABLE figures (
+            rowid INTEGER PRIMARY KEY AUTOINCREMENT,
+            reference TEXT NOT NULL,
+            reference_id TEXT,
+            reference_title TEXT,
+            volume INTEGER,
+            figure_number TEXT,
+            caption TEXT,
+            description TEXT,
+            chapter INTEGER,
+            pdf_path TEXT,
+            pdf_page_index INTEGER,
+            printed_page INTEGER,
+            page_estimated INTEGER
+        )
+        """
+    )
+    cur.execute(
+        """
+        CREATE VIRTUAL TABLE figures_fts USING fts5(
+            figure_number, caption, description,
+            content='figures',
+            content_rowid='rowid',
+            tokenize='porter unicode61'
+        )
+        """
+    )
+    cur.execute("CREATE INDEX idx_fig_ref ON figures(reference)")
+    cur.execute("CREATE INDEX idx_fig_ref_chap ON figures(reference, chapter)")
+    cur.execute("CREATE INDEX idx_fig_ref_num ON figures(reference, figure_number)")
+
+    for cat_path in _iter_catalogs():
+        try:
+            data = json.loads(cat_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        reference = data.get("package", cat_path.parent.name)
+        ref_id = data.get("reference_id", "")
+        ref_title = data.get("reference_title", "")
+        volume = data.get("volume")
+        pdf_path = data.get("pdf_path", "")
+        for fig in data.get("figures", []):
+            if not isinstance(fig, dict):
                 continue
-            reference = data.get("package", cat_path.parent.name)
-            ref_id = data.get("reference_id", "")
-            ref_title = data.get("reference_title", "")
-            volume = data.get("volume")
-            pdf_path = data.get("pdf_path", "")
-            for fig in data.get("figures", []):
-                if not isinstance(fig, dict):
-                    continue
-                cur.execute(
-                    """
-                    INSERT INTO figures (
-                        reference, reference_id, reference_title, volume,
-                        figure_number, caption, description, chapter,
-                        pdf_path, pdf_page_index, printed_page, page_estimated
-                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-                    """,
-                    (
-                        reference, ref_id, ref_title, volume,
-                        fig.get("figure_number", ""),
-                        fig.get("caption", ""),
-                        fig.get("description", "") or "",
-                        fig.get("chapter"),
-                        fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
-                        fig.get("pdf_page_index"),
-                        fig.get("printed_page"),
-                        1 if fig.get("page_estimated") else 0,
-                    ),
-                )
+            cur.execute(
+                """
+                INSERT INTO figures (
+                    reference, reference_id, reference_title, volume,
+                    figure_number, caption, description, chapter,
+                    pdf_path, pdf_page_index, printed_page, page_estimated
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (
+                    reference, ref_id, ref_title, volume,
+                    fig.get("figure_number", ""),
+                    fig.get("caption", ""),
+                    fig.get("description", "") or "",
+                    fig.get("chapter"),
+                    fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
+                    fig.get("pdf_page_index"),
+                    fig.get("printed_page"),
+                    1 if fig.get("page_estimated") else 0,
+                ),
+            )
 
-        cur.execute(
-            """
-            INSERT INTO figures_fts(rowid, figure_number, caption, description)
-            SELECT rowid, figure_number, caption, description FROM figures
-            """
-        )
-        conn.commit()
-    finally:
-        conn.close()
+    cur.execute(
+        """
+        INSERT INTO figures_fts(rowid, figure_number, caption, description)
+        SELECT rowid, figure_number, caption, description FROM figures
+        """
+    )
 
 
 def _ensure_db() -> Path:
-    db = _db_path()
-    if _needs_rebuild(db):
-        _build_db(db)
-    return db
+    return _atomic_db.ensure_built(_db_path(), _needs_rebuild, _fill_db)
 
 
 def _ro_connect() -> sqlite3.Connection:

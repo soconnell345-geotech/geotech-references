@@ -53,6 +53,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from . import _atomic_db
 from . import _query_expansion as _qe
 from . import _retrieval
 
@@ -181,135 +182,137 @@ def _needs_rebuild(db_path: Path) -> bool:
     return _schema_version(db_path) != _SCHEMA_VERSION
 
 
-def _build_db(db_path: Path) -> None:
-    if db_path.exists():
-        db_path.unlink()
-    conn = sqlite3.connect(str(db_path))
-    try:
-        cur = conn.cursor()
-        cur.execute(
-            """
-            CREATE TABLE sections (
-                rowid INTEGER PRIMARY KEY AUTOINCREMENT,
-                reference TEXT NOT NULL,
-                reference_title TEXT,
-                chapter INTEGER,
-                chapter_title TEXT,
-                section_id TEXT,
-                title TEXT,
-                summary TEXT,
-                body TEXT,
-                key_points TEXT,
-                applicability TEXT,
-                equations_json TEXT,
-                figures_json TEXT,
-                tables_json TEXT,
-                parent_rowid INTEGER,
-                depth INTEGER,
-                parents_json TEXT
-            )
-            """
-        )
-        cur.execute(
-            """
-            CREATE VIRTUAL TABLE sections_fts USING fts5(
-                title, summary, body, key_points, applicability,
-                content='sections',
-                content_rowid='rowid',
-                tokenize='porter unicode61'
-            )
-            """
-        )
-        cur.execute(
-            "CREATE INDEX idx_sections_ref ON sections(reference)"
-        )
-        cur.execute(
-            "CREATE INDEX idx_sections_ref_chap ON sections(reference, chapter)"
-        )
-        cur.execute(
-            "CREATE INDEX idx_sections_ref_sid ON sections(reference, section_id)"
-        )
-        cur.execute(
-            "CREATE INDEX idx_sections_parent ON sections(parent_rowid)"
-        )
+def _build_db(db_path: Path) -> Path:
+    """Build the database and move it into place at ``db_path`` (REF-56).
 
-        for reference, jf in _iter_text_jsons():
-            try:
-                data = json.loads(jf.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                continue
-            ref_title = data.get("reference_title", "")
-            ch_num = data.get("chapter", 0)
-            ch_title = data.get("chapter_title", "")
-            entries = _retrieval.section_entries(data)
-            rowids: list[int] = []
-            for i, entry in enumerate(entries):
-                sec = entry["section"]
-                chain = [entries[j]["section"]
-                         for j in _retrieval.entry_chain(entries, i)]
-                kps = sec.get("key_points", [])
-                if isinstance(kps, list):
-                    key_points_text = "\n".join(
-                        str(p) for p in kps if isinstance(p, (str, int, float))
-                    )
-                else:
-                    key_points_text = str(kps)
-                cur.execute(
-                    """
-                    INSERT INTO sections (
-                        reference, reference_title, chapter, chapter_title,
-                        section_id, title, summary, body, key_points,
-                        applicability, equations_json, figures_json,
-                        tables_json, depth, parents_json
-                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                    """,
-                    (
-                        reference,
-                        ref_title,
-                        ch_num,
-                        ch_title,
-                        sec.get("section_id", ""),
-                        sec.get("title", ""),
-                        sec.get("summary", ""),
-                        sec.get("body", ""),
-                        key_points_text,
-                        sec.get("applicability", ""),
-                        json.dumps(sec.get("equations", []), ensure_ascii=False),
-                        json.dumps(sec.get("figures", []), ensure_ascii=False),
-                        json.dumps(sec.get("tables", []), ensure_ascii=False),
-                        len(chain),
-                        json.dumps([[s.get("section_id", ""), s.get("title", "")]
-                                    for s in chain], ensure_ascii=False),
-                    ),
+    Built under a temporary name beside it and moved in with
+    ``os.replace``, so another process never opens a half-built file
+    (:mod:`geotech_references._atomic_db`). Returns the path to read.
+    """
+    return _atomic_db.build_atomically(
+        db_path, _fill_db, is_current=lambda p: not _needs_rebuild(p))
+
+
+def _fill_db(conn: sqlite3.Connection) -> None:
+    """Create the tables and index every source file into ``conn``."""
+    cur = conn.cursor()
+    cur.execute(
+        """
+        CREATE TABLE sections (
+            rowid INTEGER PRIMARY KEY AUTOINCREMENT,
+            reference TEXT NOT NULL,
+            reference_title TEXT,
+            chapter INTEGER,
+            chapter_title TEXT,
+            section_id TEXT,
+            title TEXT,
+            summary TEXT,
+            body TEXT,
+            key_points TEXT,
+            applicability TEXT,
+            equations_json TEXT,
+            figures_json TEXT,
+            tables_json TEXT,
+            parent_rowid INTEGER,
+            depth INTEGER,
+            parents_json TEXT
+        )
+        """
+    )
+    cur.execute(
+        """
+        CREATE VIRTUAL TABLE sections_fts USING fts5(
+            title, summary, body, key_points, applicability,
+            content='sections',
+            content_rowid='rowid',
+            tokenize='porter unicode61'
+        )
+        """
+    )
+    cur.execute(
+        "CREATE INDEX idx_sections_ref ON sections(reference)"
+    )
+    cur.execute(
+        "CREATE INDEX idx_sections_ref_chap ON sections(reference, chapter)"
+    )
+    cur.execute(
+        "CREATE INDEX idx_sections_ref_sid ON sections(reference, section_id)"
+    )
+    cur.execute(
+        "CREATE INDEX idx_sections_parent ON sections(parent_rowid)"
+    )
+
+    for reference, jf in _iter_text_jsons():
+        try:
+            data = json.loads(jf.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        ref_title = data.get("reference_title", "")
+        ch_num = data.get("chapter", 0)
+        ch_title = data.get("chapter_title", "")
+        entries = _retrieval.section_entries(data)
+        rowids: list[int] = []
+        for i, entry in enumerate(entries):
+            sec = entry["section"]
+            chain = [entries[j]["section"]
+                     for j in _retrieval.entry_chain(entries, i)]
+            kps = sec.get("key_points", [])
+            if isinstance(kps, list):
+                key_points_text = "\n".join(
+                    str(p) for p in kps if isinstance(p, (str, int, float))
                 )
-                rowids.append(cur.lastrowid)
-            # a flat-listed section's parent may come later in its file, so
-            # parents are linked once the whole file is in
-            cur.executemany(
-                "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
-                [(rowids[e["parent"]], rowids[i])
-                 for i, e in enumerate(entries) if e["parent"] is not None],
+            else:
+                key_points_text = str(kps)
+            cur.execute(
+                """
+                INSERT INTO sections (
+                    reference, reference_title, chapter, chapter_title,
+                    section_id, title, summary, body, key_points,
+                    applicability, equations_json, figures_json,
+                    tables_json, depth, parents_json
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (
+                    reference,
+                    ref_title,
+                    ch_num,
+                    ch_title,
+                    sec.get("section_id", ""),
+                    sec.get("title", ""),
+                    sec.get("summary", ""),
+                    sec.get("body", ""),
+                    key_points_text,
+                    sec.get("applicability", ""),
+                    json.dumps(sec.get("equations", []), ensure_ascii=False),
+                    json.dumps(sec.get("figures", []), ensure_ascii=False),
+                    json.dumps(sec.get("tables", []), ensure_ascii=False),
+                    len(chain),
+                    json.dumps([[s.get("section_id", ""), s.get("title", "")]
+                                for s in chain], ensure_ascii=False),
+                ),
             )
-
-        cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
-        cur.execute(
-            """
-            INSERT INTO sections_fts(rowid, title, summary, body,
-                                     key_points, applicability)
-            SELECT rowid, title, summary, body, key_points, applicability
-            FROM sections
-            """
+            rowids.append(cur.lastrowid)
+        # a flat-listed section's parent may come later in its file, so
+        # parents are linked once the whole file is in
+        cur.executemany(
+            "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
+            [(rowids[e["parent"]], rowids[i])
+             for i, e in enumerate(entries) if e["parent"] is not None],
         )
-        conn.commit()
-    finally:
-        conn.close()
+
+    cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
+    cur.execute(
+        """
+        INSERT INTO sections_fts(rowid, title, summary, body,
+                                 key_points, applicability)
+        SELECT rowid, title, summary, body, key_points, applicability
+        FROM sections
+        """
+    )
 
 
 def _ensure_db() -> Path:
-    db = _db_path()
-    if _needs_rebuild(db):
-        _build_db(db)
-    return db
+    return _atomic_db.ensure_built(_db_path(), _needs_rebuild, _fill_db)
 
 
 def _ro_connect() -> sqlite3.Connection:
