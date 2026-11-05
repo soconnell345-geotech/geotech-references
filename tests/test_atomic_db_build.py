@@ -119,6 +119,12 @@ def private_db(tmp_path, monkeypatch):
     return db
 
 
+@pytest.mark.skipif(os.name != "posix", reason="POSIX file modes")
+def test_other_users_can_read_the_database(private_db):
+    _retrieval_db._ensure_db()
+    assert private_db.stat().st_mode & 0o044 == 0o044
+
+
 def _search(q="settlement"):
     return [(h["reference"], h["section_id"])
             for h in _retrieval_db.reference_search(q, limit=10)]

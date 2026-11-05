@@ -148,6 +148,13 @@ def build_atomically(db_path: Path,
                                 prefix=f".{db_path.name}.",
                                 suffix=BUILDING_SUFFIX)
     os.close(fd)
+    # mkstemp makes the file private (0600); give it the mode sqlite3 gives
+    # a new database (0644), so other users sharing the temp folder can
+    # still read it
+    try:
+        os.chmod(name, 0o644)
+    except OSError:
+        pass
     tmp = Path(name)
     try:
         conn = sqlite3.connect(str(tmp))
