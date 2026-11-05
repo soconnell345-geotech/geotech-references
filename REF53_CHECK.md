@@ -132,5 +132,7 @@ Without one of those, the rule as written keeps it out.
 
 ## Full suite
 
-`python -m pytest -q -p no:cacheprovider tests/`, serial, on the reverted
-branch: see the result line below.
+`python -m pytest -q -p no:cacheprovider tests/`, run serially on the
+reverted branch, exited with code 0: 6,434 passed, 37 skipped. All 37
+skips are tests that read the PDFs with PyMuPDF (`fitz`), which is not
+installed here. None of them is a retrieval test.
