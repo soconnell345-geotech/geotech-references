@@ -143,17 +143,28 @@ def figure_5_2_area_replacement_ratio(column_diameter_m: float,
 
 
 # ============================================================================
-# Figure 5-5: Settlement Improvement Factor for Stone Columns
-# n = stress concentration ratio (typically 2-5)
-# SRF = 1 / (1 + as*(n-1))
+# Eq. 5-4: Stress on the unimproved soil, stone column unit cell (p. 5-32)
+# sigma_soil = q / [1 + (n - 1) a_sc];  n = stress ratio (typically 2-5)
+# SRF = sigma_soil / q = 1 / (1 + a_sc*(n-1))
+# The function keeps its old name (figure_5_5_...) because callers use it;
+# GEC-13 Figure 5-5 is "Typical vibrator cross-section" (p. 5-14), not this
+# relation, and the relation is the stress-ratio (equal strain) method, not
+# Priebe's (the Priebe curve is read from Figures 5-21 and 5-27).
 # ============================================================================
 
 def figure_5_5_settlement_improvement(area_replacement_ratio: float,
                                        stress_concentration_ratio: float = 3.0) -> dict:
-    """Settlement improvement factor for stone columns (GEC-13 Figure 5-5).
+    """Settlement improvement factor for stone columns (GEC-13 Eq. 5-4, p. 5-32).
 
-    Settlement Reduction Factor (SRF) = 1 / (1 + as*(n-1))
+    From the stress-ratio (equal strain) unit-cell relation, GEC-13 printed
+    Section 4.1.2.4 "Stress Ratio", Eq. 5-4:
+    sigma_soil = q / [1 + (n - 1) as], so
+
+    Settlement Reduction Factor (SRF) = sigma_soil / q = 1 / (1 + as*(n-1))
     Settlement Improvement Factor = 1 / SRF = 1 + as*(n-1)
+
+    This is not GEC-13 Figure 5-5 (a vibrator cross-section) and not the
+    Priebe curve; the name is kept for existing callers.
 
     Parameters
     ----------
@@ -186,7 +197,7 @@ def figure_5_5_settlement_improvement(area_replacement_ratio: float,
         "settlement_improvement_factor": round(sif, 2),
         "area_replacement_ratio": area_replacement_ratio,
         "stress_concentration_ratio": stress_concentration_ratio,
-        "description": "Priebe (1995) settlement improvement for stone columns",
+        "description": "Stone column settlement improvement from the stress ratio, GEC-13 Eq. 5-4 (p. 5-32)",
     }
 
 
