@@ -351,7 +351,13 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
     the eval shows ~0 recall lift — the win comes from re-ranking, not filling).
   - `rerank` — BM25 over `(literal) OR synonyms` (best recall, but disturbs the
     top-1 of already-good queries).
-  - `auto` (**default**) — rerank the union BUT pin the literal top-1 (best of both).
+  - `auto` (**default**) — fuse the literal hits with the union by reciprocal
+    rank (`fuse_hits`, `FUSION_K` 3, env `GEOTECH_RETRIEVAL_FUSION_K`; the
+    literal top 3 vote, `FUSION_VOTES`), pin the literal top-1, and keep the
+    literal hit at rank r <= 5 no lower than 2r (REF-54, 2026-11-05: before,
+    only the top-1 was kept and the union filled the other nine places, so
+    "PVD spacing design" lost its literal ranks 3 and 5; gold set `auto` R@5
+    38 -> 41, R@10 43 -> 44; `eval_retrieval_recall.py` unchanged at 4/9).
 - **Eval** (`scripts/eval_retrieval_recall.py`, self-labeling gated ground truth):
   recall@5 — off/fill 11%, rerank/**auto 44%**; top-1 disturbance — off/fill/auto 0,
   rerank 5/10. So `auto` = rerank's recall at fill's precision.
@@ -387,6 +393,18 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
   the OR-of-words fallback ("DSM column layout for embankment support").
 - **`EXPANSION_PIN`** (env `GEOTECH_RETRIEVAL_PIN`, default 1): how many
   literal hits `auto` keeps in place. Pin 2 and 3 measured lower; 1 stays.
+- **REF-37 pruning (in REF-54, 2026-11-05):** removed `cohesion` from the su
+  group (drained c' is another quantity), `ultimate bearing` (allowable
+  bearing fired it), the settlement group (immediate settlement fired
+  consolidation settlement; GEC-6/GEC-8 print "compression settlement" for
+  sand), `load-transfer curve` from t-z (UFC 3-220-20 Sec. 6-5.8.4.2 uses it
+  for t-z and q-z) and `active resistance` (printed nowhere, not a term).
+  `tip resistance` stays in end bearing (FHWA-NHI-06-089 Sec. 9.1.2 and
+  GEC-10 Sec. 10.1 print it for the shaft or pile base); "cone tip
+  resistance" and "CPT tip resistance" are their own group, so the longest
+  match keeps the CPT qc from firing end bearing.
+  Unprinted forms an engineer types (`dsm`, `underseepage`, `pile freeze`,
+  `interface adhesion`) stay as triggers.
 - **Gold set** `scripts/retrieval_gold.json` (54 cases over 17 references;
   kinds method / table value / figure / definition / limit; each with the
   sections a good search returns, 69 of 85 located on their printed page) and

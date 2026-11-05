@@ -31,6 +31,11 @@ Design contract (so precision is preserved):
   its named terms swapped for their groups (:func:`substituted_query`), so the
   words the groups do not cover still have to match.
 
+A form the library never prints stays only as a word an engineer types
+that should fire its group ("dsm", "underseepage", "pile freeze",
+"interface adhesion"); a form that is neither printed nor a term in use is
+removed (REF-37: "active resistance").
+
 Keep entries DEFENSIBLE (true equivalences a geotechnical engineer would accept)
 and spelled as the manuals print them; check a new form against the chapter
 text before adding it. Measure with ``scripts/eval_retrieval_gold.py`` (the
@@ -48,14 +53,18 @@ SYNONYM_GROUPS: list[list[str]] = [
     # --- earth pressure -----------------------------------------------------
     ["wall friction", "interface friction", "interface adhesion", "wall adhesion"],
     ["passive earth pressure", "passive resistance", "passive coefficient", "kp"],
-    ["active earth pressure", "active resistance", "active coefficient", "ka"],
+    # (REF-37: "active resistance" removed: printed nowhere, and the active
+    # side is a pressure, not a resistance)
+    ["active earth pressure", "active coefficient", "ka"],
     ["at-rest earth pressure", "at rest earth pressure",
      "coefficient of earth pressure at rest", "ko"],
     ["lateral earth pressure", "earth pressure coefficient", "horizontal stress"],
     # --- strength / index ---------------------------------------------------
     # No bare "cu": it is also the coefficient of uniformity (UFS 3-220-10
     # Sec. 1-3.3.2, Cu = D60/D10) and the CU triaxial test (Sec. 3-2.4.1.3).
-    ["undrained shear strength", "undrained strength", "su", "cohesion"],
+    # No "cohesion" (REF-37): the drained cohesion c' is another quantity,
+    # and "drained cohesion" fired su.
+    ["undrained shear strength", "undrained strength", "su"],
     ["friction angle", "angle of internal friction", "effective friction angle",
      "phi"],
     ["relative density", "density index"],
@@ -79,8 +88,11 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["(n1)60", "n1(60)", "n160", "normalized blow count",
      "normalised blow count"],
     # --- foundations --------------------------------------------------------
-    ["bearing capacity", "ultimate bearing", "bearing resistance"],
-    ["settlement", "consolidation settlement", "compression settlement"],
+    # No "ultimate bearing" (REF-37): "allowable bearing capacity" fired it.
+    # No settlement group: "immediate settlement" fired consolidation
+    # settlement, and GEC-6 Sec. 5.2.3.8 and GEC-8 Sec. 5.5.3.2 print
+    # "compression settlement" for granular soil, not consolidation.
+    ["bearing capacity", "bearing resistance"],
     ["drilled shaft", "bored pile", "caisson"],
     ["driven pile", "displacement pile"],
     ["continuous flight auger", "cfa", "auger cast", "augered cast-in-place",
@@ -88,9 +100,19 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["pile setup", "soil setup", "pile freeze", "setup factor"],
     ["downdrag", "negative skin friction", "neutral plane"],
     ["side resistance", "skin friction", "shaft resistance", "unit side resistance"],
+    # "tip resistance" is printed for the drilled-shaft or pile base
+    # (FHWA-NHI-06-089 Sec. 9.1.2 "base or tip resistance for drilled
+    # shafts", Secs. 9.12.2 to 9.12.7.2; GEC-10 Sec. 10.1 "base (tip)
+    # resistance") and for the CPT qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3);
+    # the cone's forms are their own group, so the longest match keeps
+    # "CPT tip resistance" from firing end bearing (REF-37).
     ["end bearing", "toe resistance", "tip resistance", "base resistance"],
+    ["cone tip resistance", "cpt tip resistance"],
     ["p-y curve", "p-y"],
-    ["t-z curve", "t-z", "load-transfer curve"],
+    # No "load-transfer curve" (REF-37): UFC 3-220-20 Sec. 6-5.8.4.2 prints
+    # "load transfer-displacement relationships, i.e., t-z and q-z curves",
+    # so it names the base (q-z) curves too.
+    ["t-z curve", "t-z"],
     ["pullout resistance", "pullout capacity"],
     ["bond strength", "grout to ground bond", "bond stress"],
     # --- walls / reinforcement ---------------------------------------------
@@ -133,9 +155,12 @@ SYNONYM_GROUPS: list[list[str]] = [
 #              precision is preserved; helps most when literal recall is thin.
 #   "rerank" — "shotgun": run ONE combined query, "(literal) OR synonyms", and
 #              let BM25 rank the union. More recall, some precision risk.
-#   "auto"   — rerank the literal+synonym union for recall, but PIN the literal
-#              top-1 so an already-good query keeps its best hit. Targets
-#              rerank's recall with fill's precision on the top result.
+#   "auto"   — fuse the literal hits with the literal+synonym union by
+#              reciprocal rank (:func:`fuse_hits`, REF-54; the literal top 3
+#              vote), PIN the literal top-1, and keep the literal hit at rank r <= 5 no lower than
+#              2r, so expansion adds hits without pushing out what the
+#              literal search ranked well. (Before REF-54 only the top-1 was
+#              kept and the union filled the rest.)
 #   "off"    — pure literal, no expansion.
 #
 # Default is "auto" (best recall/precision trade in scripts/eval_retrieval_recall.py);
@@ -152,6 +177,22 @@ try:
     EXPANSION_PIN = max(1, int(os.environ.get("GEOTECH_RETRIEVAL_PIN", "1")))
 except ValueError:
     EXPANSION_PIN = 1
+
+# The rank constant of ``auto``'s reciprocal-rank fusion (:func:`fuse_hits`,
+# REF-54; env GEOTECH_RETRIEVAL_FUSION_K). Measured on the gold set with
+# scripts/eval_retrieval_gold.py --fusion-k.
+try:
+    FUSION_K = max(0, int(os.environ.get("GEOTECH_RETRIEVAL_FUSION_K", "3")))
+except ValueError:
+    FUSION_K = 3
+
+# How many of the literal hits vote in ``auto``'s fusion (REF-54); the rest
+# count only through the combined query, which holds them too.
+FUSION_VOTES = 3
+
+# How many of the literal hits ``auto`` is sure to keep, the one at rank r
+# no lower than 2r (REF-54): 5 keeps the literal top 5 in a top 10.
+FUSION_KEEP = 5
 
 
 def combined_query(query: str) -> str:
@@ -319,6 +360,63 @@ def or_fallback(query: str) -> str | None:
     if len(toks) < 2:
         return None
     return " OR ".join(toks)
+
+
+def fuse_hits(literal: list, combined: list, limit: int, key,
+              pin: int = 1, k: int | None = None,
+              keep: int | None = None, votes: int | None = None) -> list:
+    """``auto``'s merge of the literal hits with the literal-OR-synonyms hits
+    (REF-54): the literal top ``pin`` stay in place, and the rest are ranked
+    by reciprocal-rank fusion, ``1/(k + combined rank)`` plus, for the
+    literal top ``votes``, ``1/(k + literal rank)``, so a section the literal
+    search ranked well keeps a place even when the synonym query ranks it
+    lower.
+
+    Before REF-54 only the literal top-1 was kept and the synonym query
+    filled the other places, which dropped sections the literal search
+    ranked 3rd and 5th out of the top 10 ("PVD spacing design").
+
+    Only the literal top ``votes`` (3) vote: every literal hit is also a hit
+    of the combined query, so letting all of them vote ranked the literal
+    list ahead of every synonym-only hit and undid the expansion ("phreatic
+    surface" lost the "groundwater table" section; measured in CHECK.md).
+    And as a guarantee the literal hit at rank r (r <= ``keep``, 5) is
+    placed no lower than 2r: the literal top 5 always stays in the top 10.
+    """
+    k = FUSION_K if k is None else k
+    keep = FUSION_KEEP if keep is None else keep
+    votes = FUSION_VOTES if votes is None else votes
+    pin = max(0, pin)
+    out = list(literal[:pin])
+    seen = {key(h) for h in out}
+    score: dict = {}
+    first: dict = {}
+    order: dict = {}
+    for lst, n in ((literal, votes), (combined, len(combined))):
+        for r, h in enumerate(lst, 1):
+            kk = key(h)
+            if kk in seen:
+                continue
+            first.setdefault(kk, h)
+            order.setdefault(kk, len(order))
+            score[kk] = score.get(kk, 0.0) + (1.0 / (k + r) if r <= n else 0.0)
+    ranked = sorted(score, key=lambda kk: (-score[kk], order[kk]))
+    # the guarantee: the literal hit at rank r <= keep is placed no lower
+    # than 2r, whatever the fusion scores say
+    due = [(2 * r, key(h)) for r, h in enumerate(literal[:keep], 1)
+           if key(h) not in seen]
+    for kk in ranked:
+        while due and due[0][1] in seen:
+            due.pop(0)
+        while due and due[0][0] <= len(out) + 1:
+            out.append(first[due[0][1]])
+            seen.add(due.pop(0)[1])
+            while due and due[0][1] in seen:
+                due.pop(0)
+        if kk not in seen:
+            out.append(first[kk])
+            seen.add(kk)
+    return out[:limit]
 
 
 def merge_hits(literal: list, extra: list, limit: int, key) -> list:
