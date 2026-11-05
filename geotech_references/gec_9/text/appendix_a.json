@@ -1,0 +1,232 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "chapter": 14,
+  "chapter_title": "Appendix A: Example P-Y Curves and Parameters for Various Subsurface Conditions Based on Available Published Sources",
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Example P-Y Curves and Parameters for Various Subsurface Conditions Based on Available Published Sources",
+      "summary": "The appendix gives the most commonly used p-y curves in practice and the equations used to construct them (all included in LPILE, GROUP and FB-Multipier); it is not a comprehensive list.",
+      "body": "This appendix provides example p-y curves and parameters for various subsurface conditions, and is not intended to present a comprehensive list of all p-y curves available in literature. Instead, this appendix presents the most commonly used p-y curves in geotechnical practice, and discusses the equations that are used to construct such curves. The p-y curves presented in this appendix are also included in the computer programs LPILE, GROUP and FB-Multipier. With this appendix, the user should be able to understand the main parameters affecting the p-y curves construction, and how the p-y curves vary for different site conditions. The following p-y curves are presented: P-y Curve for Soft Clay with Free Water (Matlock 1970); P-y Curve for Stiff Clay with Free Water (Reese et al. 1975); P-y Curve for Stiff Clay with No Free Water (Reese and Welch 1975); P-y Curve for Sand (Reese et al. 1974); P-y Curve for Weak Rock (Reese 1997); P-y Curve for Liquefied Sands (Rollins et al. 2005); Sloping Ground. (p. 216)",
+      "key_points": [
+        "Most commonly used p-y curves and the equations to construct them; not a comprehensive list (p. 216).",
+        "The curves are also in LPILE, GROUP and FB-Multipier (p. 216)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to building p-y curves for lateral analysis of single piles and drilled shafts (LPILE, GROUP, FB-MultiPier) in the subsurface conditions each criterion was derived from."
+    },
+    {
+      "section_id": "A.1",
+      "title": "P-Y Curve for Soft Clay with Free Water (Matlock 1970)",
+      "summary": "Matlock (1970) soft clay (Su 250 to 500 psf) under water: pu the smaller of Eq. A-1 and A-2 (J = 0.5 soft, 0.25 medium clay), y50 = 2.5 eps50 D (Eq. A-3), p/pu = 0.5 (y/y50)^(1/3) to p = pu at y >= 8y50 (Eq. A-4). Cyclic: 0.72 pu for y/y50 = 3; below the critical depth zr (Eq. A-5) the cyclic and static curves coincide, above it p falls to 0.72 pu z/zr at y = 15 y50 (Eq. A-6).",
+      "body": "Matlock (1970) proposed a p-y criterion for soft clay under water based on results of pilot tests. Soft clays are those with undrained shear strength (Su) ranging from 250 to 500 psf. Figure A-1(a) shows the main characteristics of the static p-y curve for soft clay. In this relationship, the soil resistance (p) is normalized by the ultimate soil resistance (pu) and is expressed as a function of the lateral deflection (y), which is also normalized by the deflection that occurs at 50 percent of the ultimate resistance (y50). Under static loading conditions, the resistance of soft clay increases monotonically as a function of deflection until the ultimate resistance is reached. To reflect the strength degradation, a correction is applied to the p-y curve for short term, monotonic loading of Figure A-1(a). Under cyclic loading conditions, the resistance achieves a maximum value and then decreases as the normalized deflection increases. The curve for cyclic conditions also depends on the depth that is considered: for soils at a depth (z) greater than a critical depth (xr), it is considered that the clay flows around the pile and that p = 0.72 pu for y/y50 > 3; for x < xr, p decreases from 0.72 pu at y/y50 = 3, to a smaller value, 0.72 pu x/xr, at y/y50 = 15, as indicated in Figure A-1(b) and presented below. (p. 216) The required parameters to construct this p-y curve include: profiles of the undrained shear strength (labeled in various publications presenting p-y curves as cu or Su), unit weight (γ), and the axial strain (ε50), which occurs at 50 percent of the maximum principal stress difference as measured in a triaxial testing. The following steps can be used to construct the p-y curve for soft clay with free water (above water surface). (p. 217) Static Loading. 1. Obtain profiles with depth of undrained shear strength (Cu), effective unit weight (γ′), and strain at 50 percent of maximum deviatoric stress as measured in a triaxial test (ε50). Use recommendations made in Chapter 4. 2. Select pile/shaft diameter D. 3. Compute the ultimate resistance (pu) of soil per unit length of pile. Use the smaller of the following values calculated as: Equation A-1 and Equation A-2, where γ′ = average effective unit weight between the ground surface to the depth z under consideration, Cu = undrained shear strength at depth z, D = diameter or width of pile/shaft, and J is an experimental parameter that depends on the clay consistency. Matlock (1970) recommended to use J = 0.5 for soft clay and J = 0.25 for medium clay. 4. Compute the deflection, y50, that occurs at 50 percent of the ultimate soil resistance as follows: Equation A-3. 5. Construct the p-y curve using the following relationship: Equation A-4. This curve is delimited to p = pu for y ≥ 8y50. (p. 218) Cyclic Loading. For cyclic loading, follow the steps indicated below to construct the p-y curve shown in Figure A-1(b): 1. For p ≤ 0.72 pu (i.e., for y / y50 = 3) use Equation A-1 to construct the first part of the p-y curve for cyclic loading. 2. Find the critical depth zr. According to Matlock (1970), the critical depth zr represents what is in reality a rather indefinite point of transition from a condition of incomplete vertical restraint to one where plastic flow is confined to horizontal planes. If γ’ and Cu are homogeneous in the upper zone, zr can be calculated as: Equation A-5. If the γ’ and Cu profiles are non-homogeneous, calculate zr by solving simultaneously Equations A-1 and A-2 at depths where the p-y curve is applied and using the corresponding soil properties at these depths. 3. If a depth z at which the p-y curves is applied results z ≥ zr, then use p = 0.72 pu for deformations y ≥ 3y50. In this case, the p-y curves for cyclic and static conditions coincide. 4. If the depth z at which the p-y curves is applied results z < zr, then calculate p as a line decreasing from p = 0.72 pu at y = 3 y50 up to a value defined by: Equation A-6 at y = 15 y50. For y ≥ 15y50, p remains constant as given by Equation A-6. (pp. 218 to 219)",
+      "key_points": [
+        "Soft clays: Su from 250 to 500 psf (p. 216).",
+        "Static: pu = smaller of Eq. A-1 and Eq. A-2; J = 0.5 soft clay, 0.25 medium clay (p. 218).",
+        "y50 = 2.5 eps50 D (Eq. A-3); p/pu = 0.5 (y/y50)^(1/3), p = pu for y >= 8y50 (Eq. A-4) (p. 218).",
+        "Cyclic: below zr (Eq. A-5) p = 0.72 pu for y >= 3y50; above zr p falls to 0.72 pu z/zr at y = 15 y50 (Eq. A-6) (pp. 218 to 219)."
+      ],
+      "equations": [
+        "Eq. A-1: pu = (3 + (γ′/Cu) z + (J/D) z) Cu D; ultimate soil resistance per unit length of pile, γ′ = average effective unit weight between the ground surface and depth z, Cu = undrained shear strength at depth z, D = diameter or width of pile/shaft, J = experimental parameter (0.5 soft clay, 0.25 medium clay) (p. 218)",
+        "Eq. A-2: pu = 9 Cu D (p. 218)",
+        "Eq. A-3: y50 = 2.5 ε50 D; deflection at 50 percent of the ultimate soil resistance (p. 218)",
+        "Eq. A-4: p/pu = 0.5 (y/y50)^(1/3); delimited to p = pu for y ≥ 8y50 (p. 218)",
+        "Eq. A-5: zr = 6 Cu D / (γ′ D + J Cu); critical depth where γ′ and Cu are homogeneous in the upper zone (p. 218)",
+        "Eq. A-6: p = 0.72 pu z/zr; at y = 15 y50, and constant for y ≥ 15y50 (cyclic loading, z < zr) (p. 219)"
+      ],
+      "figures": [
+        "Figure A-1: P-y curves for soft clay with free water: (a) static loading and (b) cyclic loading (after Matlock 1970)."
+      ],
+      "tables": [],
+      "applicability": "Applies to building p-y curves for lateral analysis of single piles and drilled shafts (LPILE, GROUP, FB-MultiPier) in the subsurface conditions each criterion was derived from."
+    },
+    {
+      "section_id": "A.2",
+      "title": "P-Y Curve for Stiff Clay with Free Water (Reese et al. 1975)",
+      "summary": "Reese et al. (1975) stiff clay (Su 1,000 to 2,000 psf) with free water: strain-softening curves built from pct and pcd (Eqs. A-7, A-8), an initial line p = (kz)y (Eq. A-9, k from Table A-1), y50 = eps50 D (Eq. A-10, eps50 from Table A-2), and segments Eqs. A-11 to A-14 using As (Figure A-6); cyclic curve Eqs. A-15 to A-18 using Ac. Appropriate only where stiff clay is exposed to free water at or near the ground surface; otherwise use Welch and Reese.",
+      "body": "Reese et al. (1975) developed a criterion to be used for stiff clay with water based on field tests. Stiff clays are those with undrained shear strength (Su) ranging from 1,000 to 2,000 psf). Figures A-2 through A-5 show the main characteristics the original and modified p-y curves under static and cyclic loading conditions. It must be recognized that the presence of free water does not necessarily translate in conditions below the groundwater table. In fact, the presence of free water refers to the submerged conditions of the pile that was tested during the experimental studies to develop the p-y curves. The tests used to develop the criterion for stiff clay in the presence of free water were performed using cyclic loading at a site of stiff fissured clay in a submerged condition. During the application of the cyclic loading, an annular gap developed between the soil and the pile after deflections at the ground surface of about 0.4 inch. The soil response was observed to rapidly degrade with multiple cycles of load due to this localized scour adjacent to the pile, and the criterion developed for static loading also exhibits significant strain-softening behavior. This criterion will result in a substantial reduction in mobilized soil resistance compared to that of Welch and Reese (1972), which does not include such strain softening. This reduction is only appropriate for situations where stiff clay is exposed to free water at or near the ground surface, where degradation similar to that observed in the load test experiment can occur. In conditions where the groundwater surface is at depth and free water is not present at or near the ground surface, the Welch and Reese criterion is more appropriate, even below groundwater. Similarly, stiff clay strata at depth below a sand stratum would normally not be subject to degradation due to free water (unless scour removed the overlying sand). (p. 219) The following steps can be followed to construct the p-y curve in stiff clays with free water at depth z. Static Loading. For static loading, follow the steps indicated below to construct the p-y curve as shown in Figure A-2: 1. Obtain the profiles of undrained shear strength (Cu) and effective unit weight (γ′). 2. Select pile/shaft diameter D. (p. 221) 3. Compute the average undrained shear strength (Ca) over the depth z. 4. Compute the ultimate resistance (pu) of soil per unit length of pile. Depending on the type of failure mechanisms that is formed (near ground surface or well below ground surface), two values can be calculated for the ultimate resistance, pct and pcd, respectively. Use the smaller of these values, which are computed as: Equation A-7 and Equation A-8. 5. Construct the initial linear portion of the p-y curve as follows: Equation A-9, where k is a proportionality coefficient with units of F/L3. This coefficient can be assigned to be ks (static loading) or kc (cyclic loading). Values for ks or kc can be selected from the recommended values presented in Table A-1. 6. Calculate y50 as: Equation A-10. ε50 can be obtained from the results of lab tests or from Table A-2. 7. Construct the first portion of the non-linear part of the p-y curve using the following 2nd- degree equation: Equation A-11, where pc is the smaller value calculated from Equations A-7 and A-8. (p. 222) 8. Obtain factor As to be used in to construct the non-linear part of the p-y curve. Obtain As from Figure A-6 for the selected normalized depth z/D (note that in Figure A-6, the variable x coincides with depth z). 9. If the curves defined by Equations A-11 and A-9 intersect in the deformation range 0 ≤ y ≤ As y50, the straight line defined by Equation A-9 is maintained. If these curves do not intersect, Equation A-11 controls the p-y curve and the 2nd- degree equation is extended to y = 0, while the linear portion is discarded. 10. Establish the second portion of the non-linear part of the p-y curve as follows: Equation A-12. The equation above defines the portion of the p-y curve in the range As y50 ≤ y ≤ 6 As y50. 11. Establish the next straight line portion of the p-y curve as: Equation A-13. The equation above defines the portion of the p-y curve in the range 6As y50 ≤ y ≤ 18 Asy50. 12. Establish the final straight line portion of the p-y curve: Equation A-14. The equation above defines the portion of the p-y curve in the range 18 Asy50 ≤ y. Cyclic Loading. For cyclic loading, follow the steps indicated below to construct the p-y curve. 1. Follow Steps 1 - 6 for the p-y curve for static loading. 2. Obtain factor Ac to be used in to construct the non-linear part of the p-y curve. Obtain Ac from Figure A-6 for the selected normalized depth z/D (note that in Figure A-6, the variable x coincides with depth z). 3. Calculate: Equation A-15. 4. Construct the parabolic portion of the p-y curve as follows: Equation A-16. The equation above defines the portion of the p-y curve between the point of intersection of the initial straight line and the curve defined by Equation A-16 and y 0.6 yp. If there is no intersection. Equation A-16 controls. (p. 223) 5. Establish the next straight line portion of the p-y curve as follows: Equation A-17. The equation above defines the portion of the p-y curve in the range 0.6yp ≤ y ≤ 1.8yp. 6. Establish the final straight line portion of the p-y curve as follows: Equation A-18. The equation above defines the portion of the p-y curve in the range 1.8yp < y. (p. 224)",
+      "key_points": [
+        "Stiff clays: Su from 1,000 to 2,000 psf (p. 219).",
+        "Free water means the submerged condition of the tested pile, not conditions below the groundwater table; use Welch and Reese where free water is not at or near the ground surface, even below groundwater (p. 219).",
+        "pc = smaller of pct (Eq. A-7) and pcd (Eq. A-8) (p. 222).",
+        "Initial line p = (kz)y (Eq. A-9), ks or kc from Table A-1; y50 = eps50 D (Eq. A-10), eps50 from Table A-2 (p. 222).",
+        "Static segments Eqs. A-11 to A-14 with As from Figure A-6 (pp. 222 to 223).",
+        "Cyclic: yp = 4.1 As y50 (Eq. A-15); segments Eqs. A-16 to A-18 with Ac from Figure A-6 (pp. 223 to 224)."
+      ],
+      "equations": [
+        "Eq. A-7: pct = 2 Ca D + γ′ D z + 2.83 Ca z; ultimate resistance for the failure mechanism near the ground surface, Ca = average undrained shear strength over the depth z (p. 222)",
+        "Eq. A-8: pcd = 11 Cu D; ultimate resistance for the failure mechanism well below the ground surface (p. 222)",
+        "Eq. A-9: p = (kz)y; initial linear portion of the p-y curve, k = proportionality coefficient with units of F/L3, ks (static loading) or kc (cyclic loading), values from Table A-1 (p. 222)",
+        "Eq. A-10: y50 = ε50 D; ε50 from lab tests or Table A-2 (p. 222)",
+        "Eq. A-11: p = 0.5 pc (y/y50)^0.5; first portion of the non-linear part, pc = the smaller value from Equations A-7 and A-8 (p. 222)",
+        "Eq. A-12: p = pc [0.5 (y/y50)^0.5 − 0.055 ((y − As y50)/(As y50))^1.25]; for As y50 ≤ y ≤ 6 As y50, As from Figure A-6 (p. 223)",
+        "Eq. A-13: p = 0.5 pc √(6As) − 0.411 pc − (0.0625/y50) pc (y − 6 As y50); for 6As y50 ≤ y ≤ 18 As y50 (p. 223)",
+        "Eq. A-14: p = 0.5 pc √(6As) − 0.411 pc − 0.75 pc As; for 18 As y50 ≤ y (p. 223)",
+        "Eq. A-15: yp = 4.1 As y50 (cyclic loading) (p. 223)",
+        "Eq. A-16: p = Ac pc [1 − |(y − 0.45 yp)/(0.45 yp)|^2.5]; parabolic portion of the cyclic curve, Ac from Figure A-6, from the intersection with the initial straight line to y = 0.6 yp (p. 223)",
+        "Eq. A-17: p = 0.936 Ac pc − (0.085/y50) pc (y − 0.6 yp); for 0.6yp ≤ y ≤ 1.8yp (p. 224)",
+        "Eq. A-18: p = 0.936 Ac pc − (0.102/y50) pc yp; for 1.8yp < y (p. 224)"
+      ],
+      "figures": [
+        "Figure A-2: P-y curve in stiff clay with free water - static loading (after Reese et al. 1975).",
+        "Figure A-3: P-y curve in stiff clay with free water - cyclic loads (after Reese et al. 1975).",
+        "Figure A-4: Normalized p-y curve for stiff clay with free water – static loads (after Dunnavant and O’Neill 1989).",
+        "Figure A-5: Normalized p-y curve for stiff clay with free water – cyclic loads (after Dunnavant and O’Neill 1989).",
+        "Figure A-6: Values of As and Ac (after Reese et al. 1975)."
+      ],
+      "tables": [
+        "Table A-1: Representative values of k for stiff clays (Reese et al. 1975). Coefficient ks or kc (pci) by average undrained shear strength, Ca (ton/ft2), 0.5 - 1 / 1 - 2 / 2 - 4: Static 500 / 1,000 / 2,000; Cyclic 200 / 400 / 800 (p. 222)",
+        "Table A-2: Representative values of ε50 for stiff clays (Reese et al. 1975). ε50 (-) by average undrained shear strength, Ca (ton/ft2), 0.5 - 1 / 1 - 2 / 2 - 4: 0.007 / 0.005 / 0.004 (p. 222)"
+      ],
+      "applicability": "Applies to building p-y curves for lateral analysis of single piles and drilled shafts (LPILE, GROUP, FB-MultiPier) in the subsurface conditions each criterion was derived from."
+    },
+    {
+      "section_id": "A.3",
+      "title": "P-Y Curve for Stiff Clay with No Free Water (Reese and Welch 1975)",
+      "summary": "Welch and Reese (1972) / Reese and Welch (1975) stiff clay with no free water: pu the smaller of Eqs. A-1 and A-2 (J = 0.5), y50 from Eq. A-3, p/pu = 0.5 (y/y50)^(1/4) (Eq. A-19) to p = pu at y >= 16y50. Cyclic: C = 9.6 (p/pu)^4 (Eq. A-20) and yc = ys + y50 C log N (Eq. A-21).",
+      "body": "Welch and Reese (1972) and Reese and Welch (1975) presented a p-y criterion for stiff clay with no water based on results of field tests. Figure A-7 and Figure A-8 show the main features of the p-y curves for static loads and cyclic loads, respectively. For a given p under static loads, the deflection under cyclic loads (yc) is modified to account for the load cycles (N) and load magnitude (p). The ultimate pressure, pu, depends on the undrained shear strength (Su). (p. 224) Static Loading. For static loading, the following procedure can be used to construct the p-y curve for stiff clay with no free water (below water surface) as shown in Figure A-7: 1. Obtain input parameters, including the undrained shear strength Cu, effective unit weight γ′ with depth, and pile diameter D. Obtain the value of ε50 from stress-stain curves or from Table A-2. 2. Calculate the ultimate soil resistance per unit length of pile (pu) as the smaller value calculated from Equations A-1 and A-2. When using Equation A-2, the average shear strength from the surface to the depth under consideration should be used. Take J = 0.5. (p. 225) 3. Calculate y50 using Equation A-3. 4. Construct the p-y curve using the following equation: Equation A-19. 5. For y ≥ 16y50, p is equal to pu for all values of y. Cyclic Loading. For cyclic loading, the following procedure can be used to construct the p-y curve for stiff clay with no free water as shown in Figure A-8: 1. Construct the p-y curve for short-term static loading using the previously described procedure. 2. Determine the number of cycles of load application, N. 3. For several values of p/pu, obtain the parameter C, which characterizes the effect of repeated loading on deformation. Welch and Reese (1972) developed the following relationship from laboratory tests that should be used, in the absence of additional information, to estimate the parameter C as: Equation A-20. 4. For the same p values used to calculate p/pu in Step 3, compute the deflection yc for cyclic loading conditions with the following expression: Equation A-21, where yc is the deflection after N load cycles; ys is the deflection upon initial loading; and C and N as defined previously. 5. Obtain the p-y curve the soil response after N cycles of load. (p. 226)",
+      "key_points": [
+        "pu = smaller of Eqs. A-1 and A-2 with J = 0.5; average shear strength to the depth in Eq. A-2 (p. 225).",
+        "eps50 from stress-strain curves or Table A-2; y50 from Eq. A-3 (pp. 225 to 226).",
+        "p/pu = 0.5 (y/y50)^(1/4) (Eq. A-19); p = pu for y >= 16y50 (p. 226).",
+        "Cyclic: C = 9.6 (p/pu)^4 (Eq. A-20); yc = ys + y50 C log N (Eq. A-21) (p. 226)."
+      ],
+      "equations": [
+        "Eq. A-19: p/pu = 0.5 (y/y50)^(1/4); for y ≥ 16y50, p = pu (p. 226)",
+        "Eq. A-20: C = 9.6 (p/pu)^4; parameter characterizing the effect of repeated loading on deformation (Welch and Reese 1972) (p. 226)",
+        "Eq. A-21: yc = ys + y50 C log N; yc = deflection after N load cycles, ys = deflection upon initial loading, C from Eq. A-20, N = number of cycles of load application (p. 226)"
+      ],
+      "figures": [
+        "Figure A-7: P-y curve in stiff clay with no free water – static loading (after Welch and Reese 1972).",
+        "Figure A-8: P-y curve in stiff clay with no free water – cyclic loading (after Welch and Reese 1972)."
+      ],
+      "tables": [],
+      "applicability": "Applies to building p-y curves for lateral analysis of single piles and drilled shafts (LPILE, GROUP, FB-MultiPier) in the subsurface conditions each criterion was derived from."
+    },
+    {
+      "section_id": "A.4",
+      "title": "P-Y Curve for Sands (Reese et al. 1974)",
+      "summary": "Reese et al. (1974) sand, four segments (initial line to k, parabola k to m, line m to u, constant): ps the smaller of pst (Eq. A-23) and psd (Eq. A-24), pu = As ps at yu = 3D/80 (Eq. A-25, Figure A-10), pm = Bs ps at ym = D/60 (Eq. A-26, Figure A-11), initial line p = (kz)y (Eq. A-27) with k from Table A-3, parabola Eqs. A-28 to A-32.",
+      "body": "Reese et al. (1974) developed a p-y criterion for sand based on results of field tests, as described by Cox et al. (1984). These p-y curves are based on the power functions and are widely used in various computer programs, including FBMultipier and LPILE. Figure A-9 shows the characteristic shape of the p-y curves for short-term static loading. The p-y curve shows four segments: (i) an initial, elastic segment (up to point “k”); (ii) a non-linear transition (from point “k” to point “m”); (iii) a linear part (from point “m” to point “u”); and (iv) an ultimate, constant part. (p. 226) The p-y curve for sand shown in Figure A-9 can be obtained using the following procedure: 1. Establish the soil friction angle φ, soil unit weight γ, and pile diameter D. 2. Calculate the following parameters for subsequent calculation as follows: Equation A-22. 3. Calculate the ultimate resistance per unit length of pile/shaft using the smaller of the values given by the following equations: Equation A-23 and Equation A-24. For sand below the water table, the submerged unit weight (γ’) should be used. 4. In Step 3, find the depth zt where there is an intersection of Equations A-23 and A-24. 5. Select a depth at which a p-y curve is desired. 6. Establish yu as 3D/80. Compute pu as follows: Equation A-25. Use appropriate values for Ās or Āc from Figure A-10, for the particular non-dimensional depth, and the static or cyclic case. 7. Establish ym as D/60. Calculate pm as follows: Equation A-26. (p. 227) Use appropriate values for Bs or Bc from Figure A-11, for the particular non-dimensional depth, and for the static or cyclic case. 8. Establish the initial straight line portion of the p-y curve: Equation A-27. Use the appropriate value of k from Table A-3. 9. Establish the parabolic section of the p-y curve as follows: Equation A-28, where: Equation A-29, Equation A-30, Equation A-31. Point “k” in Figure A-9 signals the end of the linear segment of the p-y curve. Its y-coordinate is determined as follows: Equation A-32. 10. For y>= 3D/80, p is equal to the ultimate resistance per unit length of pile/shaft calculated in Step 3. If Equations A-27 and A-28 have no intersection, Equation A-27 defines the p-y curve until there is an intersection with the p-y curve branch defined in Step 10. (p. 228)",
+      "key_points": [
+        "Four segments: initial elastic (to k), non-linear transition (k to m), linear (m to u), ultimate constant (Figure A-9) (p. 226).",
+        "alpha = phi/2, beta = 45 + phi/2, K0 = 0.4, Ka = tan^2(45 - phi/2) (Eq. A-22) (p. 227).",
+        "ps = smaller of pst (Eq. A-23) and psd (Eq. A-24); submerged unit weight below the water table (p. 227).",
+        "yu = 3D/80, pu = As ps or Ac ps (Eq. A-25, Figure A-10); ym = D/60, pm = Bs ps or Bc ps (Eq. A-26, Figure A-11) (pp. 227 to 228).",
+        "Initial line p = (kz)y (Eq. A-27), k from Table A-3: submerged 20/60/125 pci, above water 25/90/225 pci (loose/medium/dense) (p. 228).",
+        "Parabola p = C y^(1/n) (Eqs. A-28 to A-31); end of the line at yk (Eq. A-32) (p. 228)."
+      ],
+      "equations": [
+        "Eq. A-22: α = φ/2; β = 45 + φ/2; K0 = 0.4; and Ka = tan²(45 − φ/2) (p. 227)",
+        "Eq. A-23: pst = γz [K0 z tan φ sin β / (tan(β − φ) cos α) + (tan β / tan(β − φ)) (D + z tan β tan α) + K0 tan β (tan φ sin β − tan α) − Ka D] (p. 227)",
+        "Eq. A-24: psd = Ka D γ z (tan⁸β − 1) + K0 D γ z tan φ tan⁴β (p. 227)",
+        "Eq. A-25: pu = Ās ps or pu = Āc ps; Ās or Āc from Figure A-10, at yu = 3D/80 (p. 227)",
+        "Eq. A-26: pm = Bs ps or pm = Bc ps; Bs or Bc from Figure A-11, at ym = D/60 (pp. 227 to 228)",
+        "Eq. A-27: p = (kz)y; initial straight line portion, k from Table A-3 (p. 228)",
+        "Eq. A-28: p = C̄ y^(1/n); parabolic section (p. 228)",
+        "Eq. A-29: C̄ = pm / ym^(1/n) (p. 228)",
+        "Eq. A-30: n = pm / (m ym) (p. 228)",
+        "Eq. A-31: m = (pu − pm) / (yu − ym) (p. 228)",
+        "Eq. A-32: yk = (C̄ / (kz))^(n/(n−1)); y-coordinate of point k, the end of the linear segment (p. 228)"
+      ],
+      "figures": [
+        "Figure A-9: P-y curve for static and cyclic loading in sand (after Reese et al. 1974).",
+        "Figure A-10: Values of coefficients Ās and Āc (after Reese et al. 1974).",
+        "Figure A-11: Values of coefficients B for soil resistance vs. depth (after Reese et al. 1974)."
+      ],
+      "tables": [
+        "Table A-3: Representative values of k for sand under static and cyclic loading. k (pci) by relative density, Loose / Medium / Dense: Submerged 20 / 60 / 125; Above Water 25 / 90 / 225 (p. 228)"
+      ],
+      "applicability": "Applies to building p-y curves for lateral analysis of single piles and drilled shafts (LPILE, GROUP, FB-MultiPier) in the subsurface conditions each criterion was derived from."
+    },
+    {
+      "section_id": "A.5",
+      "title": "P-Y Curves for Weak Rock (Reese 1997)",
+      "summary": "Reese (1997) weak rock (0.5 MPa <= qu <= 5 MPa): pu = alpha_r sigma_ci D (1 + 1.4 zr/D) to 3D, 5.2 alpha_r sigma_ci D below (Eqs. A-33, A-34), alpha_r 0.33 at RQD 100 % rising linearly to 1.0 at RQD 0; initial slope Kir = kir Em (Eqs. A-35 to A-37); three segments Eqs. A-38 to A-42 with krm 0.0005 to 0.00005.",
+      "body": "Reese (1997) proposed a p-y criterion for drilled shafts socketed in weak rock, defined as having an unconfined compressive strength 0.5 MPa ≤ qu ≤ 5 MPa (5.2 tsf ≤ qu ≤ 52 tsf). In this criterion, the ultimate resistance of the weak rock is a function of the uniaxial unconfined compressive strength of intact rock, the drilled shaft diameter, rock quality designation (RQD), and depth. (p. 230) The shape of the Reese (1997) p-y curve is shown in Figure A-12. The ultimate reaction, pu (F/L), of rock was given by: Equation A-33 and Equation A-34, where σci is the uniaxial unconfined compressive strength of intact rock; αr is the strength reduction factor, which is used to account for fracturing of rock mass; D is the diameter of the drilled shaft; and zr is the depth below rock surface. αr is assumed to be 0.33 for RQD = 100 percent and to increase linearly up to 1.0 for RQD = 0. The slope of the initial portion of the p-y curve was given by: Equation A-35, where Kir = initial tangent to p-y curve; Em = deformation modulus of rock masses, which could be obtained from a pressuremeter or dilatometer test; and kir = dimensionless constant. The expressions for kir, derived by correlation with experimental data, are as follows: Equation A-36 and Equation A-37. A complete description of the interim p-y criteria may be summarized as follows: (p. 231) First segment: Equation A-38. Second segment: Equation A-39. Third segment: Equation A-40. Where: Equation A-41 and Equation A-42, in which, krm is the strain at 50 percent of the ultimate load, which ranges from 0.0005 to 0.00005. (p. 232)",
+      "key_points": [
+        "Weak rock: 0.5 MPa <= qu <= 5 MPa (5.2 tsf <= qu <= 52 tsf) (p. 230).",
+        "pu by Eqs. A-33 (0 <= zr <= 3D) and A-34 (zr >= 3D); alpha_r 0.33 at RQD = 100 percent, rising linearly to 1.0 at RQD = 0 (p. 231).",
+        "Kir = kir Em (Eq. A-35); kir = 100 + 400 zr/(3D) to 3D, 500 below (Eqs. A-36, A-37) (p. 231).",
+        "Three segments Eqs. A-38 to A-40; yrm = krm D, krm 0.0005 to 0.00005 (Eqs. A-41, A-42) (p. 232)."
+      ],
+      "equations": [
+        "Eq. A-33: pu = αr σci D (1 + 1.4 zr/D) for 0 ≤ zr ≤ 3D; σci = uniaxial unconfined compressive strength of intact rock, αr = strength reduction factor (0.33 for RQD = 100 percent, increasing linearly to 1.0 for RQD = 0), D = diameter of the drilled shaft, zr = depth below rock surface (p. 231)",
+        "Eq. A-34: pu = 5.2 αr σci D for zr ≥ 3D (p. 231)",
+        "Eq. A-35: Kir = kir Em; Kir = initial tangent to p-y curve, Em = deformation modulus of rock masses (pressuremeter or dilatometer test), kir = dimensionless constant (p. 231)",
+        "Eq. A-36: kir = (100 + 400 zr/(3D)) for 0 ≤ zr ≤ 3D (p. 231)",
+        "Eq. A-37: kir = 500 (p. 231)",
+        "Eq. A-38: p = kir y; y ≤ yA (first segment) (as printed; Kir = kir Em is the initial tangent, Eq. A-35) (p. 232)",
+        "Eq. A-39: p = (pu/2) (y/yrm)^0.25; y ≥ yA and p ≤ pu (second segment) (p. 232)",
+        "Eq. A-40: p = pu; p ≥ pu (third segment) (p. 232)",
+        "Eq. A-41: ym = krm D; krm = strain at 50 percent of the ultimate load, ranging from 0.0005 to 0.00005 (as printed; the neighbouring equations use yrm) (p. 232)",
+        "Eq. A-42: yA = [pu / (2 (yrm)^0.25 Kir)]^1.333 (p. 232)"
+      ],
+      "figures": [
+        "Figure A-12: Basic shape of p-y curve for weak rock (Reese 1997)."
+      ],
+      "tables": [],
+      "applicability": "Drilled shafts socketed in weak rock with 0.5 MPa <= qu <= 5 MPa (interim criteria, Reese 1997)."
+    },
+    {
+      "section_id": "A.6",
+      "title": "P-Y Curves for Liquefied Sands (Rollins et al. 2005)",
+      "summary": "Rollins et al. (2005) concave curve for liquefied sand, p = A (B y)^C (Eq. A-43, p in kN/m, y in mm, z in m), limited to p of about 85 lb/in. or less, deflections of 6 in. or less, depth of 20 ft or less and initial relative densities of about 50 percent; valid for D = 324 mm, other diameters scaled by Pd = 3.81 ln D + 5.6 (Eq. A-44, D in m, about 0.3 to 1 m).",
+      "body": "Based on experiments, Rollins et al. (2005) developed a concave p-y criterion that increases the stiffness as pile deflection increases, as shown in Figure A-13, for liquefied sand. The proposed p-y curve is only a function of depth and the unit weight of the sand. The p-y criterion for liquefied sand proposed by Rollins et al., 2005 is given by: Equation A-43, where A, B, and C are coefficients defined below; p is the soil resistance (in kN/m); y is the lateral deflection of the pile/shaft (in mm); and z is the depth (in m). The coefficients are defined as: A = 3 (10-7) (z + 1)6.05; B = 2.80 (z + 1)0.11; and C = 2.85 (z + 1)-0.41. The use of Equation A-43 should generally be limited to conditions comparable to those from which it was derived, specifically for soil resistance p of approximately 85 lb/in. or less, pile deflections of 6 in. or less, depth of 20 ft or less, and sands with initial relative densities of about 50 percent. The equation above was developed from a site where the groundwater was near the ground surface. For cases with different subsurface conditions, the depth (z) may be selected so as to obtain initial vertical effective stresses that are consistent with those of the study by Rollins et al. (2005), for which the effective unit weight of the sand was approximately 61.8 pcf. (p. 232) Note that Equation A-43 is valid only for a pile diameter D = 324 mm (12 in.). For other pile diameters, the p values should be corrected. The effect of diameter on the p-y curves developed by Rollins et al. (2005) was studied by Weaver et al. (2001) who proposed a modification factor for correcting Equation A-43 as follows: Equation A-44, where D is the diameter of the pile in meters. The value of p calculated using Equation A-43 is multiplied by Pd to obtain p-y curves of piles for diameters other than the reference value. However, Equation A-44 may not be appropriate for piles/shafts with diameters significantly smaller than approximately 0.3 m (12 in.) or larger than 1 m (39 in.). (p. 233)",
+      "key_points": [
+        "Concave curve, a function of depth and sand unit weight only (p. 232).",
+        "p = A (B y)^C, A = 3 (10^-7) (z + 1)^6.05, B = 2.80 (z + 1)^0.11, C = 2.85 (z + 1)^-0.41; p in kN/m, y in mm, z in m (Eq. A-43) (p. 232).",
+        "Limits: p of about 85 lb/in. or less, deflection 6 in. or less, depth 20 ft or less, initial relative density about 50 percent; effective unit weight about 61.8 pcf in the study (p. 232).",
+        "Valid for D = 324 mm (12 in.); other diameters multiply p by Pd = 3.81 ln D + 5.6 (Eq. A-44, D in m), not for D well below 0.3 m or above 1 m (p. 233)."
+      ],
+      "equations": [
+        "Eq. A-43: p = A (B y)^C; A = 3 (10^-7) (z + 1)^6.05, B = 2.80 (z + 1)^0.11, C = 2.85 (z + 1)^-0.41; p = soil resistance (kN/m), y = lateral deflection of the pile/shaft (mm), z = depth (m) (p. 232)",
+        "Eq. A-44: Pd = 3.81 ln D + 5.6; modification factor for pile diameter (Weaver et al. 2001), D = diameter of the pile (m); p from Equation A-43 is multiplied by Pd (p. 233)"
+      ],
+      "figures": [
+        "Figure A-13: Example p-y curve for liquefied sand (after Rollins et al. 2005)."
+      ],
+      "tables": [],
+      "applicability": "Liquefied sand comparable to the Rollins et al. (2005) tests: p about 85 lb/in. or less, deflection 6 in. or less, depth 20 ft or less, initial Dr about 50 percent."
+    },
+    {
+      "section_id": "A.7",
+      "title": "Sloping Ground",
+      "summary": "Ultimate soil resistance near the surface in sloping ground: Reese (1958) for clay (Eqs. A-45, A-46) and Reese et al. (2005) for sand (Eqs. A-47 to A-53).",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Piles and shafts near the surface of sloping ground."
+    },
+    {
+      "section_id": "A.7.1",
+      "title": "Ultimate Soil Resistance",
+      "summary": "Clay (Reese 1958): pu at the front of the pile (Eq. A-45) and at the back (Eq. A-46) from ca, gamma, H and the slope angle theta. Sand (Reese et al. 2005): pu at the front (Eq. A-47, with D1, D2 and KA, Eqs. A-48 to A-50) and at the back (Eq. A-51, with D3 and D4, Eqs. A-52, A-53).",
+      "body": "Reese (1958) developed the following equations to estimate the soil ultimate resistance near the surface in sloping ground in clay: for soil at the front of the pile, Equation A-45; for soil at the back of the pile, Equation A-46, (p. 233) where ca is the average undrained shear strength, θ is the angle of the slope measured from the horizontal, and H = depth from ground surface to where the soil resistance is calculated. For sand, the following equations presented by Reese et al. (2005) can be used to modify pu of soil near surface except that the horizontal surface needs to be adjusted as a slope. The soil resistance at the front of the pile is: Equation A-47, where: Equation A-48, Equation A-49, Equation A-50. The soil resistance at the back of the pile is: Equation A-51, where: Equation A-52, Equation A-53. (p. 234)",
+      "key_points": [
+        "Clay, front of the pile: Eq. A-45; back of the pile: Eq. A-46 (Reese 1958) (p. 233).",
+        "ca = average undrained shear strength, theta = slope angle from the horizontal, H = depth to where the resistance is calculated (p. 234).",
+        "Sand, front: Eq. A-47 with Eqs. A-48 to A-50; back: Eq. A-51 with Eqs. A-52 and A-53 (Reese et al. 2005) (p. 234)."
+      ],
+      "equations": [
+        "Eq. A-45: pu = (2 ca D + γ D H + 2.83 ca H) × 1/(1 + tan θ); clay, soil at the front of the pile, ca = average undrained shear strength, θ = angle of the slope from the horizontal, H = depth from ground surface to where the soil resistance is calculated (p. 233)",
+        "Eq. A-46: pu = (2 ca D + γ D H + 2.83 ca H) × cos θ / [√2 cos(45 + θ)]; clay, soil at the back of the pile (p. 233)",
+        "Eq. A-47: pu = γz [K0 tan φ sin β / (tan(β − φ) cos α) (4D1³ − 3D1² + 1) + tan β / tan(β − φ) (D D2 + z tan β tan α D2²) + K0 z tan β (tan φ sin β − tan α)(4D1³ − 3D1² + 1) − KA D]; sand, soil at the front of the pile (as printed) (p. 234)",
+        "Eq. A-48: D1 = tan β tan θ / (tan β tan θ + 1) (p. 234)",
+        "Eq. A-49: D2 = 1 − D1 (p. 234)",
+        "Eq. A-50: KA = cos θ (cos θ − √(cos²θ − cos²φ)) / (cos θ + √(cos²θ − cos²φ)) (p. 234)",
+        "Eq. A-51: pu = γz [K0 z tan φ sin β / (tan(β − φ) cos α) (4D3³ − 3D2² + 1) + tan β / tan(β − φ) (D D4 + z tan β tan α D4²) + K0 z tan β (tan φ sin β − tan α)(4D3³ − 3D3² + 1) − KA D]; sand, soil at the back of the pile (as printed, D2² in the first bracket) (p. 234)",
+        "Eq. A-52: D3 = tan β tan θ / (1 − tan β tan θ) (p. 234)",
+        "Eq. A-53: D4 = 1 + D3 (p. 234)"
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Piles and shafts near the surface of sloping ground, clay (Reese 1958) and sand (Reese et al. 2005)."
+    }
+  ]
+}

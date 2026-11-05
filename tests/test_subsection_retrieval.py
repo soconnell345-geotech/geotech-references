@@ -223,8 +223,12 @@ def test_search_finds_the_subsection_and_says_where_it_sits(auto_expansion):
 
 
 #: GEC-12 sections with subsections, found by their own title in the top
-#: five with those subsections indexed beside them: short subsections do
-#: not crowd out their parent.
+#: five of their chapter with those subsections indexed beside them: short
+#: subsections do not crowd out their parent. The search is scoped to the
+#: chapter since REF-52 added Vol III Appendix D, whose worked-example
+#: sections print the same phrases at length ("Geotechnical Resistance in
+#: Axial Tension") and outrank 7.2.1, 7.2.2, 7.2.3 and 7.2.3.2 library-wide
+#: (ranks 10, 9, 9 and 6 there; docs/ref52_gaps_CHECK.md).
 GEC12_PARENTS = ["7.2.1", "7.2.2", "7.2.3", "7.2.3.2", "7.2.4", "7.2.8",
                  "7.3.5", "7.3.6", "7.3.7", "7.4", "7.7", "7.10", "7.10.1"]
 
@@ -234,6 +238,7 @@ def test_a_parent_is_still_found_by_its_title(sid, auto_expansion):
     sec = _retrieval_db.reference_get("gec_12", sid)
     assert sec["children"]
     hits = _retrieval_db.reference_search(sec["title"], reference="gec_12",
+                                          chapter=int(sid.split(".")[0]),
                                           limit=5)
     assert sid in [h["section_id"] for h in hits]
 
