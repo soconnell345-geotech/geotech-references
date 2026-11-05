@@ -167,8 +167,9 @@ def _is_container(sid: str, sections: list, index: int) -> bool:
 #: lettered level GEC-11 prints ('3.5.2.a', '4.4.7.k'), and a Eurocode
 #: annex or appendix as printed: its letter alone for its own text ('A'), with
 #: its clause numbers ('D.3', 'X.4.11.2'), or in the UFC hyphen form
-#: ('B-3.4', UFC 3-220-20 Appendix B).
-SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]([-.][0-9]+)*)$")
+#: ('B-3.4', UFC 3-220-20 Appendix B); a lettered part of a section split
+#: to fit the reference tools ('D.15.a', GEC-12 Appendix D).
+SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]([-.][0-9]+)*(\.[a-z])?)$")
 
 #: Fields every section carries. ``summary`` is not among them: it is the
 #: short text a ``reference_search`` hit shows, written for DM7 and some
