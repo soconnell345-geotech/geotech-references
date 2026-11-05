@@ -95,7 +95,7 @@ agents/
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
-tests/                         # 6,256 tests collected (`pytest --collect-only -q`, 2026-10-21)
+tests/                         # 6,540 tests collected (`pytest --collect-only -q`, 2026-11-05)
 docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
 references/                    # (legacy) source PDFs (git-ignored)
 ```
@@ -132,23 +132,25 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 ## GEC Module Inventory
 
+Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `tests/test_ufc_backfill.py`, `tests/test_aashto_1993*.py` and so on), counted by running them (`pytest -q`, 2026-11-05, all passing; the fhwa_soils_foundations count includes 3 tests that skip without PyMuPDF and the PDFs). Functions are not re-counted here.
+
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30) |
-| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 195 | All 18 chapters complete (ch 1-18) |
-| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 130 | All 11 chapters complete (ch 1-11) |
-| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 147 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
-| gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 168 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
+| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 247 | All 18 chapters complete (ch 1-18) |
+| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 135 | All 11 chapters complete (ch 1-11) |
+| gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
+| gec_13 | FHWA-NHI-16-027 Ground Modification | 18 | 197 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
-| fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 12 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
-| ufc_backfill | UFC 3-220-04N Backfill | 8 | 87 | - |
-| ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 55 | - |
-| ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | - | 21 chapters |
+| fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
+| ufc_backfill | UFC 3-220-04N Backfill | 8 | 75 | - |
+| ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 63 | - |
+| ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | 339 | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
-| eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 133 | 9 chapters (body + all annexes) |
-| aashto_1993 | AASHTO 1993 Pavement Design Guide (flexible SN / rigid D equations, layer coefficients, reliability; FULL Appendix D LEF tables D.1-D.18 in lef.py — closed-form equations are in Volume 2 Appendix MM, NOT in this scan; Section 3.2 composite-k worksheet in composite_k.py, chart-read; Appendix G swell/frost-heave loss + Table 3.1 performance-period iteration in environmental.py; scanned source read visually; US units) | ~45 | 308+ | 11 chapters (Part I-II full, III/IV stubs) |
-| em_2104 | EM 1110-2-2104 Strength Design for Reinforced Concrete Hydraulic Structures (1 Nov 2023 ed., published 8 Jan 2025) — load inventory + full Table 3-2 load-factor table + LRFD/earthquake load combinations (loads.py); serviceability service-stress/single-load-factor/reinforcement-limit provisions (serviceability.py); Chapter 2 detailing incl. temp/shrinkage steel (reinforcement.py); the complete Appendix B flexure+axial INVESTIGATION equations for singly/doubly reinforced, tension+flexure, and pure-flexure members incl. numerically-solved cubics (flexure_axial.py); the complementary Appendix D-2 DESIGN equations (design.py); Chapter 5 shear incl. the pre-ACI-318-19 equation deliberately retained for RCHS per Appendix G commentary (shear.py); US units | ~50 | 190+ | 5 chapters (1-5) full; Appendix B-G implemented as Python lookups, not re-narrated text |
+| eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes) |
+| aashto_1993 | AASHTO 1993 Pavement Design Guide (flexible SN / rigid D equations, layer coefficients, reliability; FULL Appendix D LEF tables D.1-D.18 in lef.py — closed-form equations are in Volume 2 Appendix MM, NOT in this scan; Section 3.2 composite-k worksheet in composite_k.py, chart-read; Appendix G swell/frost-heave loss + Table 3.1 performance-period iteration in environmental.py; scanned source read visually; US units) | ~45 | 425 | 11 chapters (Part I-II full, III/IV stubs) |
+| em_2104 | EM 1110-2-2104 Strength Design for Reinforced Concrete Hydraulic Structures (1 Nov 2023 ed., published 8 Jan 2025) — load inventory + full Table 3-2 load-factor table + LRFD/earthquake load combinations (loads.py); serviceability service-stress/single-load-factor/reinforcement-limit provisions (serviceability.py); Chapter 2 detailing incl. temp/shrinkage steel (reinforcement.py); the complete Appendix B flexure+axial INVESTIGATION equations for singly/doubly reinforced, tension+flexure, and pure-flexure members incl. numerically-solved cubics (flexure_axial.py); the complementary Appendix D-2 DESIGN equations (design.py); Chapter 5 shear incl. the pre-ACI-318-19 equation deliberately retained for RCHS per Appendix G commentary (shear.py); US units | ~50 | 111 | 5 chapters (1-5) full; Appendix B-G implemented as Python lookups, not re-narrated text |
 | em_2107 | EM 1110-2-2107 Design of Hydraulic Steel Structures (1 Aug 2022 ed.) — does NOT reprint AISC 360 member-capacity equations (member design is by direct AISC 360 reference); LRFD loads/full Table 4.1 load-factor table/load combinations + earthquake combinations (loads.py); HSS-support seismic-acceleration amplification incl. the full Appendix D pseudo-dynamic (Chopra & Tan 1989) derivation, validated against its own 2-variant worked example (seismic_amplification.py); Table 3.1 target reliability + usual/unusual/extreme load categories (design_basis.py); fatigue screening + fracture-critical redundancy check (fatigue_fracture.py); bolt/weld/faying-surface selection rules (connections.py); Chapter 10 + Appendix F Tainter-gate load equations — side-seal friction, wire-rope loads, hydrostatic load by integration + simplified projection, trunnion friction, full Eq 10.2-10.14 load-combination table, anchorage shear-friction (tainter_gate_loads.py), fully validated against Appendix F's own worked example (2 source-document sign/citation errors found and resolved by cross-verification); US units | 49 | 103 | 6 chapters (1-6) full; Chapters 9-16/Appendices B/C gate-geometry content intentionally thin per scope (closed-form Appendix D/E/F content fully covered instead) |
 | ufc_structural | UFC 3-301-01 Structural Engineering (DoD, 11 Apr 2023, thru Change 4 3 Jun 2025) — DoD modifications ONLY (adopts 2024 IBC/ASCE 7-22 baseline, does not reprint civilian-code content this UFC doesn't itself modify); risk category Table 2-2 (adds DoD Risk Category V + Sea Level Rise column, REPLACES IBC Table 1604.5/ASCE 7-22 Tables 1.5-1/1.5-2) + wind deflection Table 2-1 + wind-speed conversion Eq 16-18a/b (risk_category_and_loads.py); the FULL Table 3-1 seismic-system replacement for ASCE 7-22 Table 12.2-1 (92 systems, categories A-H) + Table 7-1 critical-healthcare permitted-systems subset + Table B-1 Risk-Category-IV alternate-design permitted-systems table (seismic_force_resisting_systems.py); additional vertical-ground-motion seismic load combinations (Eq under 2.3.6/2.4.5), Appendix B RC IV combinations (Eq B-1/B-2), coupling-beam capacity-design shear check, healthcare structural-separation Eq 12.12-1 (seismic_load_combinations.py); Chapter 4 Table 4-1(a)/(b) performance-objective lookups (Table 4-1(a)'s RC I/II and III cells preserved as literal printed text — genuine cell-merge/footnote ambiguity in the source, documented) + trigger cost thresholds + IEBC high-wind roof-diaphragm trigger (evaluation_retrofit.py); Chapters 6/7 healthcare Table 6-1 masonry thickness + structural-configuration/elevator criteria (healthcare_modifications.py); Chapter 5 nonbuilding-structure standard pointers (nonbuilding_structures.py); Appendix C rigid-pipe span Tables C-1/C-2/C-3 + Eq C-1 + elevator/partition/certification criteria (nonstructural_seismic.py); Appendix G GFRP Table G-1 + DoD-specific seismic/fire/durability limits (gfrp.py); Appendix A best-practice guidance + embedded numeric criteria (best_practices.py); Chapter 1 legend/progressive-collapse/RC-V pointers (general_provisions.py). Table 4-2 (benchmark-building code-vintage cross-reference) and Appendices F/H/I NOT digitized (administrative/narrow-scope, no design equations — see package docstring); US units | 66 | 200 | 7 chapters (1-7) full; Appendices A-D/G implemented as Python lookups, not re-narrated text |
 
@@ -158,7 +160,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Figure Functions** (2): Friction angle vs SPT N60 (Fig 4.3), basal heave Nc (Fig 5.11)
 
-### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (12 functions, 195 tests)
+### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (12 functions, 247 tests)
 
 **Figure/Equation Functions** (5): Alpha adhesion factor for cohesive side resistance (Fig 10-6, Chen 2011 formula α=0.30+0.17/(su/pa)); UU→CIUC and UC→CIUC strength conversion (Eq 10-16/17, Chen & Kulhawy 1993); rock socket side resistance for normal sockets (Eq 10-21, C=1.0 normalized); rock socket side resistance for caving/fractured rock (Eq 10-22 + Table 10-3 αE reduction factors by RQD and joint condition)
 
@@ -172,7 +174,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Figure Functions** (1): Limiting lateral modulus for buckling (Fig 5-23)
 
-### GEC-12: Driven Piles (16 functions, 147 tests)
+### GEC-12: Driven Piles (16 functions, 231 tests)
 
 **Figure Functions** (8): Nordlund Kd, CF correction factor, limiting toe resistance, alpha_t coefficient, N'q bearing capacity, delta/phi ratio, adhesion Ca, adhesion factor alpha
 
@@ -182,7 +184,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Structured Text**: 8 chapters (Ch 1-8 of Vol I), 109 top-level sections plus 76 nested in `subsections` (chapter 7: the static methods, group efficiency, uplift, setup, settlement, p-y), with title, body, key_points, equations, figures, tables, and applicability fields
 
-### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 (17 functions, 130 tests)
+### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 (17 functions, 135 tests)
 
 **Table Functions** (16): Minimum reinforcement length and embedment depth (Tables 2-1/2-2); select fill gradation (Table 3-1); electrochemical limits for steel and geosynthetics (Tables 3-3/3-4); pullout parameters Ci and F* (Table 3-6); galvanization thickness and corrosion rates (Tables 3-7/3-8); installation damage reduction factors (Table 3-9); PET durability (Table 3-11); LRFD load combinations and permanent load factors (Tables 4-1/4-2); traffic surcharge (Table 4-4); external resistance factors (Table 4-5); bearing capacity factors (Table 4-6); internal resistance factors (Table 4-7)
 
@@ -190,7 +192,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 **Text**: All 11 chapters (Vol I ch 1-6: overview through design of MSE walls; Vol II ch 1-5: RSS design, construction, and inspection)
 
-### GEC-13: Ground Modification Methods — FHWA-NHI-16-027 (18 functions, 168 tests)
+### GEC-13: Ground Modification Methods — FHWA-NHI-16-027 (18 functions, 197 tests)
 
 **Table Functions** (12): Technology applicability by category/soil (Table 1-2); technologies by function (Table 1-3); comparative unit costs (Table 1-6, 2016 $); PVD transportation applications (Table 2-1); lightweight fill material properties (Table 3-1); DDC design parameters (Table 4-1); deep mixing typical qu by soil/method (Table 7-2); jet grouting system comparison (Table 8-2); soil nail bond strength by soil type (Table 9-2); micropile bond zone unit resistance Types A/B/C-D (Table 10-1); geosynthetic reduction factors RF_ID/RF_CR/RF_CBD by polymer (Table 11-1)
 
@@ -480,4 +482,4 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (6,256 tests collected on 2026-10-21 by `pytest --collect-only -q`)
+- Tests: `pytest tests/ -q` (6,540 tests collected on 2026-11-05 by `pytest --collect-only -q`)
