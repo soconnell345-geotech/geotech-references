@@ -289,7 +289,7 @@ def test_liquefaction_demand_and_capacity_stay_apart():
     ("(N1)60 to phi", "n160"),
     ("N160 to phi", '"n1 60"'),
     ("p-y method", '"p y curve"'),
-    ("t-z curves", '"load transfer curve"'),
+    ("t-z method", '"t z curve"'),
     ("CPT", "cone penetration test"),
     ("SPT", "standard penetration test"),
     ("DMT", "dilatometer"),
@@ -371,6 +371,20 @@ def test_auto_pin_n_keeps_the_literal_top_n():
             assert [key(h) for h in auto[:pin]] == [key(h) for h in off[:pin]]
     finally:
         qe.EXPANSION_PIN = saved
+
+
+# REF-37 (in REF-54): a near-miss that changes the quantity does not fire
+@pytest.mark.parametrize("query, absent", [
+    ("allowable bearing capacity", "ultimate bearing"),
+    ("drained cohesion of the clay", "undrained"),
+    ("CPT tip resistance", "toe resistance"),
+    ("CPT tip resistance", "end bearing"),
+    ("immediate settlement of sand", "consolidation settlement"),
+    ("t-z curves", "load transfer"),
+    ("active earth pressure", "active resistance"),
+])
+def test_wrong_quantity_near_misses_do_not_fire(query, absent):
+    assert absent not in expand_query(query)
 
 
 # ---------------------------------------------------------------------------

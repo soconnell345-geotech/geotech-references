@@ -31,6 +31,11 @@ Design contract (so precision is preserved):
   its named terms swapped for their groups (:func:`substituted_query`), so the
   words the groups do not cover still have to match.
 
+A form the library never prints stays only as a word an engineer types
+that should fire its group ("dsm", "underseepage", "pile freeze",
+"interface adhesion"); a form that is neither printed nor a term in use is
+removed (REF-37: "active resistance").
+
 Keep entries DEFENSIBLE (true equivalences a geotechnical engineer would accept)
 and spelled as the manuals print them; check a new form against the chapter
 text before adding it. Measure with ``scripts/eval_retrieval_gold.py`` (the
@@ -48,14 +53,18 @@ SYNONYM_GROUPS: list[list[str]] = [
     # --- earth pressure -----------------------------------------------------
     ["wall friction", "interface friction", "interface adhesion", "wall adhesion"],
     ["passive earth pressure", "passive resistance", "passive coefficient", "kp"],
-    ["active earth pressure", "active resistance", "active coefficient", "ka"],
+    # (REF-37: "active resistance" removed: printed nowhere, and the active
+    # side is a pressure, not a resistance)
+    ["active earth pressure", "active coefficient", "ka"],
     ["at-rest earth pressure", "at rest earth pressure",
      "coefficient of earth pressure at rest", "ko"],
     ["lateral earth pressure", "earth pressure coefficient", "horizontal stress"],
     # --- strength / index ---------------------------------------------------
     # No bare "cu": it is also the coefficient of uniformity (UFS 3-220-10
     # Sec. 1-3.3.2, Cu = D60/D10) and the CU triaxial test (Sec. 3-2.4.1.3).
-    ["undrained shear strength", "undrained strength", "su", "cohesion"],
+    # No "cohesion" (REF-37): the drained cohesion c' is another quantity,
+    # and "drained cohesion" fired su.
+    ["undrained shear strength", "undrained strength", "su"],
     ["friction angle", "angle of internal friction", "effective friction angle",
      "phi"],
     ["relative density", "density index"],
@@ -79,8 +88,11 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["(n1)60", "n1(60)", "n160", "normalized blow count",
      "normalised blow count"],
     # --- foundations --------------------------------------------------------
-    ["bearing capacity", "ultimate bearing", "bearing resistance"],
-    ["settlement", "consolidation settlement", "compression settlement"],
+    # No "ultimate bearing" (REF-37): "allowable bearing capacity" fired it.
+    # No settlement group: "immediate settlement" fired consolidation
+    # settlement, and GEC-6 Sec. 5.2.3.8 and GEC-8 Sec. 5.5.3.2 print
+    # "compression settlement" for granular soil, not consolidation.
+    ["bearing capacity", "bearing resistance"],
     ["drilled shaft", "bored pile", "caisson"],
     ["driven pile", "displacement pile"],
     ["continuous flight auger", "cfa", "auger cast", "augered cast-in-place",
@@ -88,9 +100,14 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["pile setup", "soil setup", "pile freeze", "setup factor"],
     ["downdrag", "negative skin friction", "neutral plane"],
     ["side resistance", "skin friction", "shaft resistance", "unit side resistance"],
-    ["end bearing", "toe resistance", "tip resistance", "base resistance"],
+    # No "tip resistance" (REF-37): the manuals print it for the CPT cone
+    # tip resistance qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3), not pile toes.
+    ["end bearing", "toe resistance", "base resistance"],
     ["p-y curve", "p-y"],
-    ["t-z curve", "t-z", "load-transfer curve"],
+    # No "load-transfer curve" (REF-37): UFC 3-220-20 Sec. 6-5.8.4.2 prints
+    # "load transfer-displacement relationships, i.e., t-z and q-z curves",
+    # so it names the base (q-z) curves too.
+    ["t-z curve", "t-z"],
     ["pullout resistance", "pullout capacity"],
     ["bond strength", "grout to ground bond", "bond stress"],
     # --- walls / reinforcement ---------------------------------------------
@@ -133,9 +150,12 @@ SYNONYM_GROUPS: list[list[str]] = [
 #              precision is preserved; helps most when literal recall is thin.
 #   "rerank" — "shotgun": run ONE combined query, "(literal) OR synonyms", and
 #              let BM25 rank the union. More recall, some precision risk.
-#   "auto"   — rerank the literal+synonym union for recall, but PIN the literal
-#              top-1 so an already-good query keeps its best hit. Targets
-#              rerank's recall with fill's precision on the top result.
+#   "auto"   — fuse the literal hits with the literal+synonym union by
+#              reciprocal rank (:func:`fuse_hits`, REF-54), PIN the literal
+#              top-1, and keep the literal hit at rank r <= 5 no lower than
+#              2r, so expansion adds hits without pushing out what the
+#              literal search ranked well. (Before REF-54 only the top-1 was
+#              kept and the union filled the rest.)
 #   "off"    — pure literal, no expansion.
 #
 # Default is "auto" (best recall/precision trade in scripts/eval_retrieval_recall.py);
