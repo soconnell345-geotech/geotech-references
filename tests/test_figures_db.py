@@ -18,7 +18,10 @@ _PKG_DIR = Path(_figures_db.__file__).parent
 
 @pytest.fixture(scope="module", autouse=True)
 def _ensure_db():
-    _figures_db.rebuild_db()
+    # INF-55: build only when missing or stale. A forced rebuild here made
+    # every pytest-xdist worker rewrite the one shared temp-folder database
+    # in every module (before REF-56, deleting it under the others).
+    _figures_db._ensure_db()
     yield
 
 

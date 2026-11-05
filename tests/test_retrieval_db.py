@@ -9,7 +9,10 @@ from geotech_references import _retrieval_db
 
 @pytest.fixture(scope="module", autouse=True)
 def _ensure_db():
-    _retrieval_db.rebuild_db()
+    # INF-55: build only when missing or stale. A forced rebuild here made
+    # every pytest-xdist worker rewrite the one shared temp-folder database
+    # in every module (before REF-56, deleting it under the others).
+    _retrieval_db._ensure_db()
     yield
 
 

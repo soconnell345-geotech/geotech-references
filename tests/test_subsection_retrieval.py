@@ -83,7 +83,9 @@ def test_question_reaches_its_section(q, auto_expansion):
 # ---------------------------------------------------------------------------
 
 def _all_ids():
-    conn = sqlite3.connect(str(_retrieval_db._ensure_db()))
+    # read-only: the database is shared by every pytest-xdist worker
+    conn = sqlite3.connect(f"file:{_retrieval_db._ensure_db()}?mode=ro",
+                           uri=True)
     try:
         return conn.execute(
             "SELECT reference, section_id, MIN(rowid), parent_rowid IS NOT NULL "
