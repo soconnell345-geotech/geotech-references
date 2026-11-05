@@ -100,9 +100,14 @@ SYNONYM_GROUPS: list[list[str]] = [
     ["pile setup", "soil setup", "pile freeze", "setup factor"],
     ["downdrag", "negative skin friction", "neutral plane"],
     ["side resistance", "skin friction", "shaft resistance", "unit side resistance"],
-    # No "tip resistance" (REF-37): the manuals print it for the CPT cone
-    # tip resistance qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3), not pile toes.
-    ["end bearing", "toe resistance", "base resistance"],
+    # "tip resistance" is printed for the drilled-shaft or pile base
+    # (FHWA-NHI-06-089 Sec. 9.1.2 "base or tip resistance for drilled
+    # shafts", Secs. 9.12.2 to 9.12.7.2; GEC-10 Sec. 10.1 "base (tip)
+    # resistance") and for the CPT qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3);
+    # the cone's forms are their own group, so the longest match keeps
+    # "CPT tip resistance" from firing end bearing (REF-37).
+    ["end bearing", "toe resistance", "tip resistance", "base resistance"],
+    ["cone tip resistance", "cpt tip resistance"],
     ["p-y curve", "p-y"],
     # No "load-transfer curve" (REF-37): UFC 3-220-20 Sec. 6-5.8.4.2 prints
     # "load transfer-displacement relationships, i.e., t-z and q-z curves",

@@ -290,6 +290,8 @@ def test_liquefaction_demand_and_capacity_stay_apart():
     ("N160 to phi", '"n1 60"'),
     ("p-y method", '"p y curve"'),
     ("t-z method", '"t z curve"'),
+    ("drilled shaft tip resistance", '"base resistance"'),
+    ("cone tip resistance", '"cpt tip resistance"'),
     ("CPT", "cone penetration test"),
     ("SPT", "standard penetration test"),
     ("DMT", "dilatometer"),

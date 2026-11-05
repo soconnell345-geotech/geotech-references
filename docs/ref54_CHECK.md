@@ -28,10 +28,12 @@ literal top-5 hit from the top 10, and 218 lost a literal top-3 hit.
 Three of the item's examples have another cause, and this branch does not
 change them (see "Noted, not fixed"):
 
-- **liq-screen** fires no synonym group;
-- **auger-cast** and **spt-def** have no literal hits at all. Their AND form
-  matches nothing, so they take the zero-literal path
-  (`substituted_query`, then the OR of their words).
+- **liq-screen** fires no synonym group, and its AND form matches nothing;
+- **auger-cast** (1 literal hit, gec_13 6.2.2.1) and **spt-def** (5 literal
+  hits, none of them gold) take the fusion path like any other query; the
+  literal hits, pinned or kept by the guarantee, rank ahead of the gold
+  section, as they did on main. (Corrected in review: the first version of
+  this note said they had no literal hits.)
 
 ## What changed
 
@@ -105,7 +107,7 @@ Every gold case that moved (rank of the first relevant hit, main -> branch):
 | auto | neutral-plane | 2 | 4 | fusion: literal top-3 hits voted ahead (target literal 4) |
 | auto | cpt-def | 2 | 3 | fusion: a literal top-3 hit voted ahead (literal 8) |
 | auto | dmt-def | 4 | 6 | fusion: literal top-3 hits voted ahead (literal 12); **leaves the top 5** |
-| rerank | cfa-piles | 2 | 3 | pruning (rerank is the union alone) |
+| rerank | cfa-piles | 2 | 3 | pruning of `tip resistance` (rerank is the union alone); back to 2 after the review fix |
 
 mse-pullout (literal 5) stays at 7 under auto. Literal rank 5 is past the
 three that vote, so the fusion does not lift it; the guarantee only keeps it
@@ -131,7 +133,7 @@ cross-reference eval, so these numbers flatter the choice.
 |---|---|---|
 | `cohesion` | undrained shear strength / su | the drained cohesion c' is another quantity; "drained cohesion" fired su |
 | `ultimate bearing` | bearing capacity | "allowable bearing capacity" fired ultimate bearing |
-| `tip resistance` | end bearing | the manuals print it for the CPT cone tip resistance qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3); 51 sections, nearly all CPT |
+| ~~`tip resistance`~~ (restored in review) | end bearing | not removed after all: of the 51 sections that print it, 15 mean the shaft or pile base (FHWA-NHI-06-089 Sec. 9.1.2 "base or tip resistance for drilled shafts" and the 9.12.2 to 9.12.7.2 headings; GEC-10 Sec. 10.1 "base (tip) resistance"; GEC-8 Sec. 5.2), and 36 the CPT qc (UFS 3-220-10 Sec. 2-7.2.1, 8-3.3). The near-miss is the CPT phrase only, so "cone tip resistance" and "CPT tip resistance" are a group of their own, and the longest match keeps them from firing end bearing |
 | whole group `settlement` / `consolidation settlement` / `compression settlement` | settlement | "immediate settlement" fired consolidation settlement; GEC-6 Sec. 5.2.3.8 and GEC-8 Sec. 5.5.3.2 print "compression settlement" for granular soil, and DM 7.1 for secondary compression |
 | `load-transfer curve` | t-z | UFC 3-220-20 Sec. 6-5.8.4.2 prints "load transfer-displacement relationships, i.e., t-z and q-z curves", so the term covers q-z too; its one other use (GEC-10 13.2.3.4.8) is measured side load transfer |
 | `active resistance` | active earth pressure | dead: printed nowhere in the library, and not a term (the active side is a pressure) |
@@ -172,12 +174,14 @@ for the optional-dependency tests.
   no group fires and the literal AND form matches nothing, so this is the
   OR-of-words ranking (REF-48's concept count). GEC-5 5.6.1 is at rank 16
   on main and on the branch.
-- **auger-cast**: the literal form matches nothing, so `substituted_query`
-  and the OR fallback rank it. dm7_2 6-4.3 (gold) is at 4 on both; GEC-8
-  3.2 and its subsections stay outside the top 10.
-- **spt-def**: the literal form matches nothing. The top hits are SPT
-  sections in GEC-12, the soils manual and EN 1997-2 (eurocode_7_2 4.6, gold,
-  at 6 on both).
+- **auger-cast**: one literal hit (gec_13 6.2.2.1), pinned; the fusion
+  ranks the rest. dm7_2 6-4.3 (gold) is at 4 on both; GEC-8 3.2 and its
+  subsections stay outside the top 10.
+- **spt-def**: five literal hits (gec_12 5.1.1, fhwa_soils_foundations
+  3.7.4 and 3.7, gec_5 11.4.3, gec_7 4.3.4), none of them gold, rank ahead
+  of eurocode_7_2 4.6 (gold), which is at 6 on both. The cause is the
+  text, not the search: the old EN 1997-2 summary held hammer words the
+  print never uses (BACKLOG REF-54).
 - **dmt-def** leaves the top 5 (4 -> 6), and neutral-plane drops 2 -> 4:
   literal top-3 hits that are not the gold sections now vote ahead of the
   combined query's pick.
@@ -187,3 +191,39 @@ for the optional-dependency tests.
 - `pseudostatic` is printed once (the print has "pseudo-static", which
   tokenizes as two words), and `normalized blow count`, `vibro-flotation` and
   `dmm` once each. They are not dead, so they were left.
+
+## Review fixes (2026-11-04)
+
+An independent review reproduced every number above, then asked for two
+fixes:
+
+1. **`tip resistance` was restored to the end-bearing group.** The
+   manuals print it for the shaft or pile base as well as for the CPT qc
+   (table above). The CPT phrases "cone tip resistance" and "CPT tip
+   resistance" are now a group of their own. By the longest-match rule, a
+   query naming either one no longer fires end bearing, so the REF-37
+   near-miss stays fixed (`test_wrong_quantity_near_misses_do_not_fire`).
+   `test_added_groups_fire` gains "drilled shaft tip resistance" ->
+   "base resistance" and "cone tip resistance" -> "cpt tip resistance".
+2. **auger-cast and spt-def take the fusion path.** The "Cause" and "Noted"
+   text above is corrected: they have 1 and 5 literal hits.
+
+Recall on the gold set after the fixes
+(`python scripts/eval_retrieval_gold.py --per-case`):
+
+| mode | R@3 | R@5 | R@10 | MRR@10 | top-1 changed |
+|---|---|---|---|---|---|
+| off | 30 | 32 | 33 | .477 | 0 |
+| fill | 34 | 37 | 39 | .525 | 8 |
+| auto | 37 | 41 | 44 | .570 | 8 |
+| rerank | 32 | 36 | 40 | .515 | 23 |
+
+- **auto:** as before the fixes.
+- **rerank:** now matches main in every column, because cfa-piles is back to 2.
+- **Cases that moved against main:** only the eight auto cases in the table
+  above.
+- **`scripts/eval_retrieval_recall.py`:** output identical to main (auto
+  4/9).
+- **`scripts/eval_subsection_retrieval.py --titles --compare`** against main:
+  first hit changed for 0 of 7,357; recall@5 15/15.
+- **`tests/test_query_expansion.py`:** 87 passed.

@@ -395,11 +395,14 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
   literal hits `auto` keeps in place. Pin 2 and 3 measured lower; 1 stays.
 - **REF-37 pruning (in REF-54, 2026-11-05):** removed `cohesion` from the su
   group (drained c' is another quantity), `ultimate bearing` (allowable
-  bearing fired it), `tip resistance` from end bearing (the manuals print it
-  for the CPT qc), the settlement group (immediate settlement fired
+  bearing fired it), the settlement group (immediate settlement fired
   consolidation settlement; GEC-6/GEC-8 print "compression settlement" for
   sand), `load-transfer curve` from t-z (UFC 3-220-20 Sec. 6-5.8.4.2 uses it
   for t-z and q-z) and `active resistance` (printed nowhere, not a term).
+  `tip resistance` stays in end bearing (FHWA-NHI-06-089 Sec. 9.1.2 and
+  GEC-10 Sec. 10.1 print it for the shaft or pile base); "cone tip
+  resistance" and "CPT tip resistance" are their own group, so the longest
+  match keeps the CPT qc from firing end bearing.
   Unprinted forms an engineer types (`dsm`, `underseepage`, `pile freeze`,
   `interface adhesion`) stay as triggers.
 - **Gold set** `scripts/retrieval_gold.json` (54 cases over 17 references;
