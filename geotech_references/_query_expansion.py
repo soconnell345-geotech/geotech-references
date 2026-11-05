@@ -151,8 +151,8 @@ SYNONYM_GROUPS: list[list[str]] = [
 #   "rerank" — "shotgun": run ONE combined query, "(literal) OR synonyms", and
 #              let BM25 rank the union. More recall, some precision risk.
 #   "auto"   — fuse the literal hits with the literal+synonym union by
-#              reciprocal rank (:func:`fuse_hits`, REF-54), PIN the literal
-#              top-1, and keep the literal hit at rank r <= 5 no lower than
+#              reciprocal rank (:func:`fuse_hits`, REF-54; the literal top 3
+#              vote), PIN the literal top-1, and keep the literal hit at rank r <= 5 no lower than
 #              2r, so expansion adds hits without pushing out what the
 #              literal search ranked well. (Before REF-54 only the top-1 was
 #              kept and the union filled the rest.)
@@ -180,6 +180,10 @@ try:
     FUSION_K = max(0, int(os.environ.get("GEOTECH_RETRIEVAL_FUSION_K", "3")))
 except ValueError:
     FUSION_K = 3
+
+# How many of the literal hits vote in ``auto``'s fusion (REF-54); the rest
+# count only through the combined query, which holds them too.
+FUSION_VOTES = 3
 
 # How many of the literal hits ``auto`` is sure to keep, the one at rank r
 # no lower than 2r (REF-54): 5 keeps the literal top 5 in a top 10.
@@ -355,39 +359,42 @@ def or_fallback(query: str) -> str | None:
 
 def fuse_hits(literal: list, combined: list, limit: int, key,
               pin: int = 1, k: int | None = None,
-              keep: int | None = None) -> list:
+              keep: int | None = None, votes: int | None = None) -> list:
     """``auto``'s merge of the literal hits with the literal-OR-synonyms hits
     (REF-54): the literal top ``pin`` stay in place, and the rest are ranked
-    by reciprocal-rank fusion, ``1/(k + literal rank) + 1/(k + combined
-    rank)``, so a section the literal search ranked well keeps a place even
-    when the synonym query ranks it low or not at all.
+    by reciprocal-rank fusion, ``1/(k + combined rank)`` plus, for the
+    literal top ``votes``, ``1/(k + literal rank)``, so a section the literal
+    search ranked well keeps a place even when the synonym query ranks it
+    lower.
 
     Before REF-54 only the literal top-1 was kept and the synonym query
     filled the other places, which dropped sections the literal search
     ranked 3rd and 5th out of the top 10 ("PVD spacing design").
 
-    The fusion alone keeps nearly every literal hit near the top, but a
-    section the synonym query also ranks just below it can still pass it,
-    so the literal hit at rank r (r <= ``keep``) is in any case placed no
-    lower than 2r: the literal top 5 always stays in the top 10. Ties keep
-    the literal order first.
+    Only the literal top ``votes`` (3) vote: every literal hit is also a hit
+    of the combined query, so letting all of them vote ranked the literal
+    list ahead of every synonym-only hit and undid the expansion ("phreatic
+    surface" lost the "groundwater table" section; measured in CHECK.md).
+    And as a guarantee the literal hit at rank r (r <= ``keep``, 5) is
+    placed no lower than 2r: the literal top 5 always stays in the top 10.
     """
     k = FUSION_K if k is None else k
     keep = FUSION_KEEP if keep is None else keep
+    votes = FUSION_VOTES if votes is None else votes
     pin = max(0, pin)
     out = list(literal[:pin])
     seen = {key(h) for h in out}
     score: dict = {}
     first: dict = {}
     order: dict = {}
-    for lst in (literal, combined):
+    for lst, n in ((literal, votes), (combined, len(combined))):
         for r, h in enumerate(lst, 1):
             kk = key(h)
             if kk in seen:
                 continue
             first.setdefault(kk, h)
             order.setdefault(kk, len(order))
-            score[kk] = score.get(kk, 0.0) + 1.0 / (k + r)
+            score[kk] = score.get(kk, 0.0) + (1.0 / (k + r) if r <= n else 0.0)
     ranked = sorted(score, key=lambda kk: (-score[kk], order[kk]))
     # the guarantee: the literal hit at rank r <= keep is placed no lower
     # than 2r, whatever the fusion scores say

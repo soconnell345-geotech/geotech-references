@@ -352,11 +352,12 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
   - `rerank` — BM25 over `(literal) OR synonyms` (best recall, but disturbs the
     top-1 of already-good queries).
   - `auto` (**default**) — fuse the literal hits with the union by reciprocal
-    rank (`fuse_hits`, `FUSION_K` 3, env `GEOTECH_RETRIEVAL_FUSION_K`), pin the
-    literal top-1, and keep the literal hit at rank r <= 5 no lower than 2r
-    (REF-54, 2026-11-05: before, only the top-1 was kept and the union filled
-    the other nine places, so "PVD spacing design" lost its literal ranks 3
-    and 5; gold set `auto` R@5 38 -> 42, R@10 43 -> 44).
+    rank (`fuse_hits`, `FUSION_K` 3, env `GEOTECH_RETRIEVAL_FUSION_K`; the
+    literal top 3 vote, `FUSION_VOTES`), pin the literal top-1, and keep the
+    literal hit at rank r <= 5 no lower than 2r (REF-54, 2026-11-05: before,
+    only the top-1 was kept and the union filled the other nine places, so
+    "PVD spacing design" lost its literal ranks 3 and 5; gold set `auto` R@5
+    38 -> 41, R@10 43 -> 44; `eval_retrieval_recall.py` unchanged at 4/9).
 - **Eval** (`scripts/eval_retrieval_recall.py`, self-labeling gated ground truth):
   recall@5 — off/fill 11%, rerank/**auto 44%**; top-1 disturbance — off/fill/auto 0,
   rerank 5/10. So `auto` = rerank's recall at fill's precision.

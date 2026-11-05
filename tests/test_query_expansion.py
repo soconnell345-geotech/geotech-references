@@ -416,6 +416,18 @@ def test_fuse_hits_keeps_literal_rank_r_within_2r():
         assert f"l{r}" in out[:2 * r], (r, out)
 
 
+def test_fuse_hits_literal_below_the_votes_does_not_crowd_out_synonyms():
+    from geotech_references._query_expansion import fuse_hits
+    # every literal hit is also a combined hit; literal ranks past the votes
+    # count only through the combined list, so a synonym-only hit the
+    # combined query ranks 2nd comes ahead of literal rank 9
+    lit = [{"id": f"l{i}"} for i in range(1, 11)]
+    comb = [{"id": "l1"}, {"id": "s1"}] + [{"id": f"l{i}"} for i in range(2, 11)]
+    out = [h["id"] for h in fuse_hits(lit, comb, limit=10,
+                                      key=lambda h: h["id"], pin=1, votes=3)]
+    assert out.index("s1") < out.index("l9"), out
+
+
 @pytest.mark.parametrize("query", [
     "PVD spacing design",
     "relative compaction requirement for fill",
