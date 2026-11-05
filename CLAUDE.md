@@ -432,7 +432,7 @@ The per-reference agents follow the 3-function Foundry pattern:
 {name}_describe_method(method: str) -> str
 ```
 
-DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. UFC agents wrap table/equation lookup functions (no text retrieval).
+`agents/references_agent.py` is the one dispatcher for every reference: its catalog (`_REFERENCE_CATALOG`) is built at import from the installed package (each subpackage, its public modules, whether it ships `text/*.json`, and the citation from its chapter files or docstring), so a new package needs no edit there (DOC-09; `tests/test_references_agent.py`). DM7 agent auto-discovers 340+ functions via `inspect.getmembers()`. GEC/micropile agents wrap text retrieval + figure/table lookup functions. UFC agents wrap table/equation lookup functions (no text retrieval).
 
 ## Weekend QC Agent (scheduled remote routine)
 

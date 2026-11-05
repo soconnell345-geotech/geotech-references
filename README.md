@@ -93,7 +93,7 @@ for section in results:
 
 ## Agents
 
-Pre-built Foundry-style agent wrappers are included in the `agents/` directory: 19 per-reference wrappers (`dm7_agent` covers both DM 7 volumes) and a generic `references_agent`. The remaining packages have no wrapper. These are standalone files for Palantir Foundry AIP Agent Studio — they are **not** part of the pip-installable `geotech-references` package. Copy them into your Foundry function repository as needed.
+Pre-built Foundry-style agent wrappers are included in the `agents/` directory: 19 per-reference wrappers (`dm7_agent` covers both DM 7 volumes) and a generic `references_agent`, which serves every package: its catalog is read from the installed package (`list_reference_methods('')` lists it). The other packages have no per-reference wrapper. These are standalone files for Palantir Foundry AIP Agent Studio — they are **not** part of the pip-installable `geotech-references` package. Copy them into your Foundry function repository as needed.
 
 ```python
 from agents.dm7_agent import dm7_agent, dm7_list_methods

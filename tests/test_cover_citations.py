@@ -71,8 +71,8 @@ COVERS = [
     pytest.param(
         "gec_10", None, "FHWA-NHI-18-024", None, False,
         marks=pytest.mark.xfail(strict=True, reason=(
-            "manifest, catalog and agents/references_agent.py cite "
-            "FHWA-NHI-10-016 (the 2010 GEC 10); the PDF is FHWA-NHI-18-024, "
+            "the manifest and figure catalog cite FHWA-NHI-10-016 (the 2010 "
+            "GEC 10); the PDF is FHWA-NHI-18-024, "
             "September 2018")), id="gec_10"),
     pytest.param(
         "ufc_backfill", None, "UFC 3-220-04FA", "16 January 2004", False,
@@ -125,13 +125,11 @@ def _cited_ids(pkg):
         data = json.loads(f.read_text(encoding="utf-8"))
         out.append((f"{pkg}/{f.relative_to(PKG / pkg)}",
                     data.get("reference_id")))
-    agent = (ROOT / "agents" / "references_agent.py").read_text(
-        encoding="utf-8")
-    m = re.search(r'"%s":\s*\{.*?"citation":\s*"([^"]+)"' % re.escape(pkg),
-                  agent, re.S)
-    if m:
+    from agents.references_agent import _REFERENCE_CATALOG
+    entry = _REFERENCE_CATALOG.get(pkg)
+    if entry:
         out.append(("agents/references_agent.py",
-                    re.split(r"\s+[(—]", m.group(1), maxsplit=1)[0]))
+                    re.split(r"\s+[(—]", entry["citation"], maxsplit=1)[0]))
     return out
 
 
