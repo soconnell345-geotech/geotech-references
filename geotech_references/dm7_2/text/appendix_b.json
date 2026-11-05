@@ -1,0 +1,145 @@
+{
+  "reference_id": "UFC 3-220-20",
+  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "volume": 2,
+  "chapter": 9,
+  "chapter_title": "Appendix B: Example Problems (Example 3 – Bearing Capacity of Shallow Foundations)",
+  "sections": [
+    {
+      "section_id": "B-3",
+      "title": "EXAMPLE 3 – BEARING CAPACITY OF SHALLOW FOUNDATIONS.",
+      "summary": "Example 3: three footings on overconsolidated clay (one far from, one near the top of, and one on a 2H:1V slope) sized for FBC of at least 2.5 by Meyerhof, Brinch Hansen and Leshchinsky and Xie (B-3.1 to B-3.7).",
+      "body": "Example 3 sizes three footings for bearing capacity: B-3.1 Description of the Problem; B-3.2 Goals and Limitations of the Analysis; B-3.3 Bearing Capacity Equations; B-3.4 Footing 1 – Located Far from the Top of the Slope; B-3.5 Footing 2 – Located Close to the Top of the Slope; B-3.6 Footing 3 – Located on the Slope; B-3.7 Conclusions from the Analysis. (pp. 618 to 626)",
+      "key_points": [
+        "Three isolated footings; FBC >= 2.5 short term and long term (p. 618)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.1",
+      "title": "Description of the Problem.",
+      "summary": "Three rows of footings on medium to stiff overconsolidated clay, bearing grade Df = 3 ft (frost and shrink/swell); clay gamma = 115 pcf, su = 1000 psf (phi = 0) short term, phi' = 30 deg, c' = 0 long term (Table B-14).",
+      "body": "Three rows of footings are proposed for construction of a building on a site with medium to stiff consistency overconsolidated clay. The footings will be designed for the vertical loads indicated in Figure B-13. The design properties of the clay are provided in Table B-14. The depth to the bearing grade of the footings, Df, is equal to 3 ft below the final ground surface for frost and shrink/swell considerations. (p. 618)",
+      "key_points": [
+        "Df = 3 ft below final grade (p. 618).",
+        "Clay: gamma = 115 pcf; undrained su = 1000 psf; drained phi' = 30 deg, c' = 0 (Table B-14) (p. 618)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-13. Three Rows of Footings – Example 3"
+      ],
+      "tables": [
+        "Table B-14 Design Properties of Overconsolidated Clay — Condition / Unit weight, γ (pcf) / Shear Strength Parameters: Short term (undrained) / 115 / φ = 0 deg, su = 1000 psf; Long Term (drained) / 115 / φʹ = 30 deg, cʹ = 0 psf (p. 618)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.2",
+      "title": "Goals and Limitations of the Analysis.",
+      "summary": "Meyerhof (1957, 1963) and Hansen (1970) methods to size the footings for FBC of at least 2.5 short and long term; clay saturated undrained short term and drained long term, no water table correction, isolated footings; settlement and structural design not considered. Global stability of the slope likely controls (infinite slope Fglobal = tan 30 / 0.5 = 1.15).",
+      "body": "Where applicable, the Meyerhof (1957, 1963) and Hansen (1970) methods will be used to evaluate the unknown dimensions of the three footings in order to have a factor of safety against bearing capacity failure, FBC, of at least 2.5 for short-term and long-term conditions. It is assumed that the clay can be modeled as a saturated undrained soil in the short term and a drained soil in the long term that does not require correction for the presence of the water table. It is further assumed that the footings are spaced far enough away from each other that they can be treated as isolated footings. This example does not consider geotechnical design for settlement and structural design. Because the Footings 2 and 3 are on or near the 2H:1V slope, global stability analysis should also be performed as part of the overall footing design. For example, treating the slope in a long-term drained case as an infinite slope reveals that the slope is only marginally stable using the design strength parameter values (p. 618): Fglobal = tan 30° / 0.5 = 1.15. The remainder of this example will consider the effects of the slope on bearing capacity. However, the controlling factor for this design is more likely the global stability of the slope itself. (p. 619)",
+      "key_points": [
+        "FBC >= 2.5 for short-term and long-term conditions (p. 618).",
+        "Footings treated as isolated; settlement and structural design not considered (p. 618).",
+        "Infinite slope, drained: Fglobal = tan 30°/0.5 = 1.15, marginally stable; global stability likely controls (p. 619)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.3",
+      "title": "Bearing Capacity Equations.",
+      "summary": "Gross qult = c Nc psi_c + sigma_zD Nq psi_q + 0.5 B gamma N_gamma psi_gamma; qnet,all = qult/FBC - sigma_zD. Factors from Figure 5-5 (Table B-15). Undrained: qall,net = 2056 psi_c + 138 psi_q - 345; drained: 2539 psi_q + 360 B psi_gamma - 345 (Meyerhof, N_gamma 15.67) or 2539 psi_q + 347 B psi_gamma - 345 (Brinch Hansen, 15.07), psf.",
+      "body": "The generalized gross bearing capacity equation expressed using the notation found in Chapter 5 is as follows: qult = c·Nc·ψc + σzD·Nq·ψq + 0.5·B·γ·Nγ·ψγ, where Nc, Nq, Nγ = bearing capacity factors that are a function of friction angle, c = the effective stess cohesion for drained conditions or su for undrained conditions, σzD is the effective or total vertical stress at the bearing grade, B = footing width, γ = representative unit weight, and ψc, ψq, ψγ = correction factors for the combined effect of complicating conditions. Applying the desired minimum factor of safety and removing the self weight of the footing and overlying soil, ignoring the difference between the unit weight of concrete and soil, yields the allowable net bearing capacity qnet,all = qult/FBC − σzD. Table B-15 presents the bearing capacity factors according to Meyerhof (1951) and Brinch Hansen (1970) as calculated from Figure 5-5 for short and long-term conditions. (p. 619) Because Nq equals 1.0 and Nγ equals zero for the undrained case, the net allowable bearing capacity equation reduces to qall,net = su Nc ψc / FBC + σzD (ψq/FBC − 1), where su is the undrained strength. Because the shear strength of the clay in the drained condition is represented by a purely frictional material, i.e. c′ = 0, the net allowable bearing capacity equation for drained conditions reduces to: qall,net = σzD (Nq ψq/FBC − 1) + B·γ·Nγ·ψγ/(2 FBC). When conditions do not match the assumptions used for the theoretical development of the bearing capacity equation, Meyerhof (1951) and Brinch Hansen (1970) use correction factors applied to the bearing capacity factors. In the current example, the relevant corrections are for footing shape, si, and depth, di, and ground inclination gi, where the subscript i is assigned characters c, q, or γ to denote which bearing capacity factor the correction is applied to. Recall from Section 5-3.3 that the correction factors are usually multiplied with the exception of the undrained case for Brinch Hansen’s method. The evaluation of the correction factors for each footing is presented in the subsections that follow. In the case of Footing 2, which is located close to the top of the slope, a special form of the bearing capacity equation presented in chart form by Meyerhof (1957) will be applied to account for the effects of the slope. Applying known parameter values, the net allowable bearing pressure for undrained conditions for both Meyerhof and Brinch Hansen theories yields: qall,net = (1000 psf)(5.14)ψc/2.5 + (3 ft)(115 pcf)(ψq/2.5 − 1) = 2056ψc + 138ψq − 345. Applying known parameter values and a value of Nγ equal to 15.67, the net allowable bearing pressure for drained conditions according to Meyerhof (1951) yields: qall,net = (3 ft)(115 pcf)(18.4ψq/2.5 − 1) + B(115 pcf)(15.67)·ψγ/(2(2.5)) = 2539ψq + 360B·ψγ − 345. (p. 620) Using a value of Nγ equal to 15.07 according to Brinch Hansen (1970) gives: qall,net = (3 ft)(115 pcf)(18.4ψq/2.5 − 1) + B(115 pcf)(15.07)·ψγ/(2(2.5)) = 2539ψq + 347B·ψγ − 345. These equations provide the basis for sizing footings 1, 2, and 3 with respect to bearing capacity. The design of Footing 1 is presented in Section B-3.4, the design of Footing 2 is presented in Section B-3.5, and the design of Footing 3 is presented in Section B-3.6. To illustrate a range of design approaches, the dimensions of Footing 1 will be determined by directly solving for B, while Footings 2 and 3 will use an iterative approach. (p. 621)",
+      "key_points": [
+        "qult = c Nc psi_c + sigma_zD Nq psi_q + 0.5 B gamma N_gamma psi_gamma; qnet,all = qult/FBC - sigma_zD (p. 619).",
+        "Corrections for shape si, depth di and ground inclination gi; multiplied, except the undrained case for Brinch Hansen (p. 620).",
+        "Undrained: qall,net = 2056 psi_c + 138 psi_q - 345 (p. 620).",
+        "Drained: 2539 psi_q + 360 B psi_gamma - 345 (Meyerhof); 2539 psi_q + 347 B psi_gamma - 345 (Brinch Hansen) (pp. 620 to 621)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-15 Bearing Capacity Factors for the Example 3 — Condition / Theory / Nc / Nq / Nγ: Short term (undrained) φ = 0°: Meyerhof 5.14 / 1.00 / 0; Brinch Hansen 5.14 / 1.00 / 0. Long term (drained) φʹ = 30°: Meyerhof 30.14 / 18.40 / 15.67; Brinch Hansen 30.14 / 18.40 / 15.07 (p. 619)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.4",
+      "title": "Footing 1 – Located Far from the Top of the Slope.",
+      "summary": "Footing 1: Q = 150 kips, B = 6 ft, 40 ft (6.7 B) behind the crest, so the slope is ignored. Meyerhof corrections (Table B-16): undrained L >= 10.84 ft (2.31 ksf), drained L >= 3.32 ft; Brinch Hansen corrections (Table B-17): undrained L >= 9.97 ft (2.51 ksf), drained L >= 4.58 ft. Size 6 ft x 11 ft (Meyerhof undrained controls).",
+      "body": "Footing 1 imposes a vertical design load, Q, equal to 150 kips that is distributed over the bearing area to produce the design bearing pressure, qnet = Q/(B·L) = 150,000 lb/(6 ft·L) = 25000/L (psf). The design bearing pressure must not exceed the allowable bearing capacity, qnet ≤ qall,net. According to Meyerhof (1957), the bearing capacity of a footing is not affected by the inclination of the slope when it is located behind the top of the slope a distance of at least 2 to 6 times the width of the footing, depending on the inclination of the slope, the shear strength of the soil, and the embedment depth of the footing. Since Footing 1 is 6 ft wide and is located 40 ft from the top of the slope, which is 6.7 times the width of the footing, it can be assumed that the bearing capacity evaluation of Footing 1 does not need to consider the slope and the applicable bearing capacity corrections are limited to footing shape and depth. Table B-16 presents Meyerhof’s (1951) corrections for shape and depth. (p. 621) Applying Meyerhof’s corrections for footing shape and depth for undrained conditions results in: qall,net = 2056ψc + 138ψq − 345 = 2056(1 + 1.2/L)(1 + 0.6/L) + 138(1) − 345. Setting the net bearing pressure equal to the net allowable and solving for L results in: qnet ≤ qall,net; 25000/L ≤ 2056(1 + 1.2/L)(1 + 0.6/L) − 207; L ≥ 10.84 ft. This footing length produces a net bearing pressure of 2.31 ksf. Applying Meyerhof’s corrections for footing shape and depth for drained conditions results in: qall,net = 2539ψq + 360B·ψγ − 345; qall,net = 2539(1 + 1.8/L)(1.087) + 360(6 ft)(1 + 1.8/L)(1.087) − 345; qall,net = 5108(1 + 1.8/L) − 345 (psf). Equating the net and net allowable bearing pressures: 25000/L ≤ 5108(1 + 1.8/L) − 345 → L ≥ 3.32 ft. This footing length produces a bearing pressure of 7.53 ksf. Since the required length is less than the width, the width of Footing 1 is oversized with respect to drained bearing capacity according to Meyerhof. If this case controlled the size of the footing, the calculations would need to be repeated with the lesser footing dimension assigned as the width. Table B-17 presents Brinch Hansen’s (1970) corrections for shape and depth. (p. 622) Applying Brinch Hansen’s corrections for footing shape and depth for undrained conditions results in: qall,net = 2056ψc + 138ψq − 345 = 2056(1 + 2.4/L) + 138(1) − 345 = 1849 + 4934/L. Setting the net bearing pressure equal to the net allowable and solving for L results in: 25000/L ≤ 1849 + 4934/L; L ≥ 9.97 ft. This footing length produces a bearing pressure of 2.51 ksf. Applying Brinch Hansen’s corrections for footing shape and depth for drained conditions results in: qall,net = 2539ψq + 347B·ψγ − 345 = 2539(1.144 + 3.43/L) + 347(6 ft)(1 − 2.4/L) − 345; qall,net = 4642 − 3712/L. Equating the net and net allowable bearing pressures: 25000/L ≤ 4642 − 3712/L → L ≥ 4.58 ft. The minimum footing length required to support the design load produces a bearing pressure of 5.46 ksf. As with the analysis using Meyerhof’s bearing capacity theory, the required footing length is less than the width in this case, which indicates that the footing width is oversized with respect to drained bearing capacity. If this case controlled the sizing of the footing, the calculations would need to be repeated with the lesser footing dimension assigned as the width. In summary, the minimum footing length is equal to 10.84 ft to achieve an FBC of at least 2.5 as determined according to Meyerhof (1951) for the undrained case. For design with respect to bearing capacity, the footing should be sized with B equal to 6 ft and L equal to 11 ft. (p. 623)",
+      "key_points": [
+        "qnet = 150,000 lb/(6 ft L) = 25000/L psf (p. 621).",
+        "Slope ignored: footing 40 ft (6.7 B) behind the crest, beyond 2 to 6 B (Meyerhof 1957) (p. 621).",
+        "Meyerhof: undrained L >= 10.84 ft (2.31 ksf); drained L >= 3.32 ft (7.53 ksf) (p. 622).",
+        "Brinch Hansen: undrained L >= 9.97 ft (2.51 ksf); drained L >= 4.58 ft (5.46 ksf) (p. 623).",
+        "Design: B = 6 ft, L = 11 ft (p. 623)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-16. Meyerhof Corrections for Footing Shape and Depth — Shape: undrained, φ = 0: sc = 1 + 0.2(B/L) = 1 + 0.2(6 ft)/L=1+1.2/L; sq = 1; drained, φʹ = 30°, KP = 3: sq = sγ = 1 + 0.1(B/L)KP; sq = sγ = 1 + 0.1(6 ft/L)(3) = 1 +1.8/L. Depth: undrained: dc = 1+ 0.2(Df/B) = 1+ 0.2(3 ft)/L=1+0.6/L; dq = 1; drained: dq = dγ = 1 + 0.1(Df/B)(KP)^0.5; dq = dγ = 1 + 0.1(3ft/6 ft)(3)^0.5 = 1.087. Combined: undrained: ψc = [1 + 0.2(B/L)][1 + 0.2(Df/B)]; ψc = [1+1.2/L][1+0.6/L]; ψq = 1; drained: ψq = ψγ = [1 + 0.1(B/L)KP][1 + 0.1(Df/B)(KP)^0.5]; ψq = ψγ = [1 +1.8/L][1.087] (p. 621)",
+        "Table B-17. Brinch Hansen Corrections for Footing Shape and Depth — Shape: undrained, φ = 0: sc = 1 + 0.2(B/L); sc = 1 + 0.2(6 ft)/L=1+1.2/L; drained, φʹ = 30°, KP = 3: sq = 1 + sin(φʹ)(B/L) = 1+sin(30)(6 ft/L) = 1+3/L; sγ = 1 – 0.4(B/L) = 1 – 0.4(6 ft/L) = 1 – 2.4/L. Depth: undrained: dc = 0.4(Df/B) = 0.4(3 ft)/L=1.2/L; drained: dq = 1+2·tan(φʹ)(1-sin(φʹ))^2·(Df/B); dq = 1+2·tan(30)(1-sin(30))^2·(3 ft/6 ft)=1.144; dγ = 1. Combined: undrained: ψc = [1 + 0.2(B/L)]+0.4(Df/B); ψc = (1+1.2/L) + 1.2/L = 1+2.4/L; drained: ψq = [1 + sin(φʹ)(B/L)][ 1+2·tan(φʹ)(1-sin(φʹ))^2·(Df/B)]; ψq = (1+3/L)(1.144) = 1.144 + 3.43/L; ψγ = [1 – 0.4(B/L)][1] = 1 – 2.4/L (p. 622)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.5",
+      "title": "Footing 2 – Located Close to the Top of the Slope.",
+      "summary": "Footing 2 (Q = 100 kips, B = 6 ft, b = 10 ft from the crest of a 15 ft slope): Brinch Hansen has no correction for a footing near a crest. Undrained by Leshchinsky and Xie (2017): gamma H/su = 1.725, B/H = 0.4, b/B = 1.7, RCslope = 0.981 (Table B-18 from Table 5-9), qult = 5042 psf, qall,net = 2017 psf, L >= 8.26 ft, use 8.5 ft. Drained by Meyerhof (1957) chart (Figure 5-8): N_gamma,slope = 31.4, qult = 10833 psf, qall,net = 3988 psf; undrained controls.",
+      "body": "Footing 2 is near the top of the slope and the effects on bearing capacity must be considered. Brinch Hansen’s theory does not include a correction for a footing near the top of a slope. The method by Leshchinsky and Xie will be used. Leshchinsky and Xie (2017) provided bearing capacity reduction factors for saturated undrained conditions. Their method requires that the following ratios be calculated: γH/su = (115 pcf)(15 ft)/1000 psf = 1.725, B/H = 6 ft/15 ft = 0.4, b/B = 10 ft/6 ft = 1.7. (p. 623) Interpolation is required by selecting values from Table 5-9 as shown in Table B-18. The boldface values are interpolated. Further interpolating for γH/su = 1.725 from Table B-18 yields RCslope = 0.981. The ultimate and allowable bearing capacity are found as: qult = 5.14·su·RCslope = 5.14(1000 pcf)(0.981) = 5042 psf; qall,net = 5042 psf/2.5 = 2017 psf. The allowable bearing pressure can be considered a net value because the Nq term was neglected when qult was calculated. The required value of L can be found as: qnet,all ≥ qnet; 2017 psf ≥ 100000 lb/((6 ft) L); L ≥ 8.26 ft. For undrained conditions, the footing should be sized with a length of 8.5 ft. For drained conditions with c′ = 0, the chart solution by Meyerhof (1957) must be used. The following ratios are required: b/B = 1.7; Df/B = 3 ft/6 ft = 0.5. Values from Figure 5-8 are summarized in Table B-18. Interpolation for the 2H1V slope and embedment results in the boldface values in the table and Nγ,slope = 31.4. (p. 624) The ultimate and allowable bearing capacities for drained conditions are found as: qult = 0.5·γ·B·Nγ,slope = 0.5(115 pcf)(6 ft)(31.4) = 10833 psf; qall,net = 10833 psf/2.5 − (3 ft)(115 pcf) = 3988 psf. As for Footing 1, the net allowable bearing pressure for drained conditions is higher than for undrained. Thus, the length of 8.5 ft obtained for undrained conditions should be used. (p. 625)",
+      "key_points": [
+        "Brinch Hansen has no correction for a footing near the top of a slope; Leshchinsky and Xie (2017) used (p. 623).",
+        "gamma H/su = 1.725, B/H = 0.4, b/B = 1.7; RCslope = 0.981 (pp. 623 to 624).",
+        "Undrained: qult = 5042 psf, qall,net = 2017 psf, L >= 8.26 ft, use 8.5 ft (p. 624).",
+        "Drained (Meyerhof 1957 chart, Figure 5-8): N_gamma,slope = 31.4, qult = 10833 psf, qall,net = 3988 psf (pp. 624 to 625)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-18 Interpolation of Bearing Capacity Factors for Sloping Conditions — Bearing Capacity Reduction Factor, RCslope, by b/B, for γH/su = 0 (β = 0° / 26° / 30°) and γH/su = 2 (β = 0° / 26° / 30°): 1.25: 1 / --- / 0.94 and 1 / --- / 0.92; 1.7: 1 / 0.985 / 0.983 and 1 / 0.98 / 0.977 (interpolated); 1.88: 1 / --- / 1 and 1 / --- / 1. Meyerhof Bearing Capacity Factor, Nγslope, by β (deg), for Df / B = 0 / 0.5 / 1: 0: 15 / --- / 60; 26: 14.1 / 31.4 / 48.7 (interpolated); 30: 14 / --- / 47. The boldface values are interpolated. (p. 624)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.6",
+      "title": "Footing 3 – Located on the Slope.",
+      "summary": "Footing 3, square, Q = 30 kips, on the 2H:1V slope, by Brinch Hansen (1970) with ground inclination corrections (Table B-19), sized iteratively from an initial 2 ksf guess (B = 4 ft): undrained qall,net = 2505 psf, drained 2734 psf; B = 3.5 ft gives 2.45 ksf and is acceptable, 3.25 ft is not (Table B-20).",
+      "body": "Footing 3 will be designed as a square footing for a bearing pressure equal to qnet = Q/B^2 = 30000 lb/B^2 (psf). Footing 3 is located on the 2H:1V slope. Brinch Hansen (1970) provides correction for the effect of the slope on bearing capacity, which are implemented using simple equations. Footing 3 will be designed by selecting both B and iteratively changing B until the net bearing pressure is less than the allowable value. An initial guess of 2 ksf was selected to size Footing 3, which yields dimensions of: B^2 ≥ 30000 lb/2000 psf = 15 → B = 4 ft. Table B-19 presents Brinch Hansen’s (1970) correction factors for both undrained and drained conditions. Applying Brinch Hansen’s corrections for footing shape, depth, and ground inclination for undrained conditions and B = 4 ft results in: qall,net = (5.14su·ψc + σzD Nq)/FBC − σzD = 5.14(1000 psf)(1.319)/2.5 + (345 psf)(1/2.5 − 1) = 2505 psf. (p. 625) The allowable net bearing pressure is greater than the net bearing pressure for B = 4 ft. A smaller size could be tried; however, drained conditions will be evaluated first. Applying Brinch Hansen’s corrections for footing shape, depth, and ground inclinations for drained conditions and B = 4 ft results in: qall,net = (σzD Nq ψq + 0.5B·γ·Nγ ψγ)/FBC − σzD; qall,net = [(345)(18.4)(1.028) + 0.5(4 ft)(115 pcf)(15.07)(0.338)]/2.5 − (345 psf) = 2734 psf. The footing size of B = 4 ft is also acceptable for drained conditions, and a smaller size can be attempted. Table B-20 summarizes some of the calculations for other footing sizes. Footing 3 can be sized for B = 3.5 ft, which produces a bearing pressure of 2.45 ksf. This is higher than the bearing pressure for Footing 3 because the Leshchinsky and Xie method conservatively ignores shape factors and depth factors. (p. 626)",
+      "key_points": [
+        "qnet = 30000 lb/B^2; initial 2 ksf gives B = 4 ft (p. 625).",
+        "B = 4 ft: undrained qall,net = 2505 psf (psi_c = 1.319), drained 2734 psf (p. 625 to 626).",
+        "B = 3.5 ft acceptable (2.45 ksf); 3.25 ft not (Table B-20) (p. 626)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-19 Corrections for Footing Shape, Depth, and Ground Inclination (Brinch Hansen 1970) — Shape: undrained, φ = 0: sc = 1 + 0.2(B/L); sc = 1 + 0.2(1) =1.2; drained, φʹ = 30°, KP = 3: sq = 1 + sin(φʹ)(B/L) = 1+sin(30)(1) = 1.5; sγ = 1 – 0.4(B/L) = 1 – 0.4(1) = 0.6. Depth: undrained: dc = 0.4(Df/B) = 0.4(3 ft)/4=0.3; drained: dq = 1+2·tan(φʹ)(1-sin(φʹ))^2·(Df/B); dq = 1+2·tan(30)(1-sin(30))^2·(3 ft/4 ft)=1.217; dγ = 1. Ground: undrained: gc = β / 147 = 26.6/147 = 0.181; drained: gq = gγ = [1-0.5tan(β)]^2 = [1-0.5tan(26.6)]^2 = 0.563. Combined: undrained: ψc = 1.2 + 0.3 - 0.181 = 1.319; drained: ψq = (1.5)(1.217)(0.563) = 1.028; ψγ = (0.6)(1)(0.563) = 0.338 (p. 625)",
+        "Table B-20 Iterative Sizing of Footing 3 — B (ft) / qnet (psf) / undrained ψc / undrained qall,net (psf) / drained ψq / drained ψγ / drained qall,net (psf) / Acceptable?: 4 / 1875 / 1.319 / 2505 / 1.026 / 0.338 / 2729 / Y; 3.75 / 2133 / 1.339 / 2546 / 1.039 / 0.338 / 2731 / Y; 3.5 / 2449 / 1.362 / 2593 / 1.053 / 0.338 / 2737 / Y; 3.25 / 2840 / 1.388 / 2647 / 1.069 / 0.338 / 2749 / N (p. 626)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-3.7",
+      "title": "Conclusions from the Analysis.",
+      "summary": "Footings 1 and 2 are controlled by the short-term undrained case; for Footing 3 undrained and drained are about equal. Design: Footing 1 6 ft x 11 ft (2.27 ksf), Footing 2 6 ft x 8.5 ft (1.96 ksf), Footing 3 3.5 ft x 3.5 ft (2.45 ksf) (Table B-21).",
+      "body": "Table B-21 summarizes the bearing capacity analyses presented in this example. The sizing of Footings 1 and 2 with respect to bearing capacity was controlled by the short-term undrained case, which is expected for soil which gains strength by consolidation as drainage occurs. For Footing 3, the net allowable bearing pressure was approximately equivalent for both undrained and drained conditions. (p. 626)",
+      "key_points": [
+        "Footings 1 and 2 controlled by the short-term undrained case (p. 626).",
+        "Design sizes: 6 ft x 11 ft, 6 ft x 8.5 ft, 3.5 ft x 3.5 ft (Table B-21) (p. 626)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-21 Summary of Bearing Capacity Analyses – Example 3 — Analysis / Footing 1 Far from Slope (Q=150 kips) / Footing 2 Near Top of Slope (Q=100 kips) / Footing 3 On Slope (Q=30 kips): Short term, Meyerhof: 6 ft × 11 ft, 2.27 ksf / – / –; Short term, Brinch Hansen: 6 ft × 10 ft, 2.50 ksf / – / 3.5 ft × 3.5 ft, 2.45 ksf; Short term, Leshchinsky & Xie: – / 6 ft × 8.5 ft, 1.96 ksf / –; Long term, Meyerhof: 6 ft × 3.5 ft, 7.14 ksf / 6 ft × 4.25 ft, 3.92 ksf / –; Long term, Brinch Hansen: 6 ft × 4.75 ft, 5.26 ksf / – / 3.5 ft × 3.5 ft, 2.45 ksf; Design: 6 ft × 11 ft, 2.27 ksf / 6 ft × 8.5 ft, 1.96 ksf / 3.5 ft × 3.5 ft, 2.45 ksf (p. 626)"
+      ],
+      "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    }
+  ]
+}
