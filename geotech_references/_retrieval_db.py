@@ -388,6 +388,19 @@ def _subtree(conn: sqlite3.Connection, rowid: int,
     return out
 
 
+#: BM25 weight of the ``title`` column against 1 for every other column of
+#: ``sections_fts`` (title, summary, body, key_points, applicability): a
+#: section whose title holds the query's words ranks above one that only
+#: mentions them in its text (REF-53, measured in ``REF53_CHECK.md``).
+_TITLE_WEIGHT = 2.0
+
+
+def _bm25_order() -> str:
+    """The ORDER BY expression of a section search: BM25 with the title
+    column weighted :data:`_TITLE_WEIGHT`."""
+    return f"bm25(sections_fts, {float(_TITLE_WEIGHT)!r}, 1.0, 1.0, 1.0, 1.0)"
+
+
 #: How many of an OR-ed query's best BM25 hits are re-ordered by the
 #: concepts they hold (REF-48): the most one page shows. Hits past it keep
 #: their BM25 order, so every page of a search is cut from the same order.
@@ -499,7 +512,7 @@ def reference_search(
             if chapter is not None:
                 sql += " AND s.chapter = ?"
                 params.append(int(chapter))
-            sql += " ORDER BY bm25(sections_fts) LIMIT ?"
+            sql += f" ORDER BY {_bm25_order()} LIMIT ?"
             params.append(pool or want)
             return conn.execute(sql, params).fetchall()
 
