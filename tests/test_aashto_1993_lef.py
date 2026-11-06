@@ -162,9 +162,10 @@ def test_flagged_scan_defect_cell_documented():
 
 
 # ============================================================================
-# 2. Cross-check against the pre-existing tables.py digitized subset
-# (SN=5, pt=2.5 flexible; D=9in, pt=2.5 rigid) at 10 loads each, including
-# off-grid (interpolated) loads.
+# 2. The tables.py esal_* lookups read this module since REF-12, so these
+# checks now confirm the wrapper passes lef's value through (SN=5, pt=2.5
+# flexible; D=9in, pt=2.5 rigid) at 10 loads each; the former independent
+# curves are pinned value by value in tests/test_aashto_1993_esal.py.
 # ============================================================================
 
 FLEX_SINGLE_LOADS = [3, 7, 9, 15, 21, 25, 33, 41, 47, 49]

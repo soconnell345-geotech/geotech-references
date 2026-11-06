@@ -1,9 +1,9 @@
 """AASHTO Guide for Design of Pavement Structures (1993) - table lookups.
 
 Digitized tables and chart-based (nomograph) read-offs from Part I
-(Reliability) and Part II (Design Requirements / Structural Design), plus a
-representative subset of the Appendix D axle-load equivalency factor (ESAL)
-tables. Units follow the guide (US customary): psi, pci, inches, kips.
+(Reliability) and Part II (Design Requirements / Structural Design), plus
+the single- and tandem-axle Appendix D load equivalency factor (ESAL)
+lookups, which read the full printed tables through ``lef.py``. Units follow the guide (US customary): psi, pci, inches, kips.
 
 PDF pages cited below are 0-based fitz page indices into
 ``docs/aashto1993.pdf``; the printed guide page (e.g. "II-20") is also given.
@@ -768,190 +768,179 @@ def minimum_layer_thickness(esal) -> dict:
 
 
 # ============================================================================
-# Appendix D: Axle Load Equivalency Factors (ESAL), representative subset.
+# Appendix D: Axle Load Equivalency Factors (ESAL), single and tandem axles.
 #
-# The full Appendix D spans Tables D.1-D.18 (single/tandem/triple axles x
-# pt=2.0/2.5/3.0 x flexible SN=1-6 or rigid D=6-14) -- far too large to
-# fully digitize. Per the build brief, this module carries the single most
-# commonly used design point: SN=5 (flexible) and D=9 in (rigid), both at
-# pt=2.5 (Tables D.4/D.5 flexible, D.13/D.14 rigid; pdf_page 365-366 and
-# 374-375, printed D-6/D-7 and D-15/D-16). For other SN/D or pt combinations,
-# consult the full printed Appendix D tables (D.1-D.18, pdf_page 363-...).
+# These four lookups are kept for callers that name them; since REF-12 each
+# one reads the full printed Appendix D grid through
+# ``lef.load_equivalency_factor`` (Tables D.1-D.18: flexible SN = 1-6, rigid
+# D = 6-14 in, each at pt = 2.0, 2.5 and 3.0; table layout and transcription
+# notes in lef.py's module docstring). Before REF-12 they held only the
+# SN = 5 / D = 9 in, pt = 2.5 columns (Tables D.4, D.5, D.13, D.14) and
+# refused anything else; those columns are the same numbers lef.py holds, so
+# the SN = 5 / D = 9 in, pt = 2.5 answers are unchanged to the digit
+# (tests/test_aashto_1993_esal.py pins them). Triple axles: call
+# ``lef.load_equivalency_factor(..., axle_config="triple")``.
 # ============================================================================
 
-_ESAL_AXLE_FLEX_SINGLE = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28,
-                          30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
-_ESAL_D4_SN5_SINGLE = [0.0002, 0.002, 0.010, 0.034, 0.088, 0.189, 0.360,
-                       0.623, 1.00, 1.51, 2.18, 3.03, 4.09, 5.39, 7.0, 8.9,
-                       11.2, 13.9, 17.2, 21.1, 25.6, 31.0, 37.2, 44.5, 53]
 
-_ESAL_AXLE_FLEX_TANDEM = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28,
-                          30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54,
-                          56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80,
-                          82, 84, 86, 88, 90]
-_ESAL_D5_SN5_TANDEM = [0.0000, 0.0003, 0.001, 0.003, 0.007, 0.014, 0.027,
-                       0.047, 0.077, 0.121, 0.180, 0.260, 0.364, 0.495,
-                       0.658, 0.857, 1.09, 1.38, 1.70, 2.08, 2.51, 3.00,
-                       3.55, 4.17, 4.86, 5.63, 6.47, 7.4, 8.4, 9.6, 10.8,
-                       12.2, 13.7, 15.4, 17.2, 19.2, 21.3, 23.7, 26.2, 29.0,
-                       32.0, 35.3, 38.8, 42.6, 46.8]
+def _esal_from_lef(pavement_type, axle_config, axle_load_kips, sn, d_in, pt,
+                   column_key):
+    """Read Appendix D through lef.py and return this module's keys.
 
-_ESAL_AXLE_RIGID_SINGLE = _ESAL_AXLE_FLEX_SINGLE
-_ESAL_D13_D9_SINGLE = [0.0002, 0.002, 0.010, 0.032, 0.082, 0.176, 0.341,
-                       0.604, 1.00, 1.57, 2.34, 3.36, 4.67, 6.29, 8.28, 10.7,
-                       13.6, 17.1, 21.3, 26.3, 32.2, 39.2, 47.3, 56.8, 67.8]
-
-_ESAL_AXLE_RIGID_TANDEM = _ESAL_AXLE_FLEX_TANDEM
-_ESAL_D14_D9_TANDEM = [0.0001, 0.0005, 0.002, 0.005, 0.013, 0.026, 0.048,
-                       0.082, 0.133, 0.206, 0.308, 0.444, 0.622, 0.850, 1.14,
-                       1.49, 1.92, 2.43, 3.03, 3.74, 4.55, 5.48, 6.53, 7.73,
-                       9.07, 10.6, 12.3, 14.2, 16.3, 18.7, 21.4, 24.4, 27.6,
-                       31.3, 35.3, 39.8, 44.7, 50.1, 56.1, 62.5, 69.6, 77.3,
-                       86, 95, 105]
+    lef.py's ValueError (pt not 2.0/2.5/3.0, a load or SN/D <= 0) passes
+    through unchanged.
+    """
+    from geotech_references.aashto_1993.lef import load_equivalency_factor
+    kw = {"sn": sn} if pavement_type == "flexible" else {"d_in": d_in}
+    r = load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
+                                pt=pt, **kw)
+    out = {
+        "axle_load_kips": axle_load_kips,
+        column_key: r[column_key],
+        "pt": r["pt"],
+        "lef": r["lef"],
+        "table": r["table"],
+        "reference": r["reference"],
+    }
+    if "note" in r:
+        out["note"] = r["note"]
+    return out
 
 
 def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
-    """Load equivalency factor, flexible pavement, single axle (Table D.4, SN=5, pt=2.5).
+    """Load equivalency factor, flexible pavement, single axle (Tables D.1, D.4, D.7).
 
-    Interpolated over the digitized SN=5, pt=2.5 curve (Table D.4, pdf_page
-    365, printed D-6). Values are clamped at the table's endpoints (2 and
-    50 kips) for out-of-range axle loads.
+    Bilinear interpolation over the printed Appendix D table for the given
+    pt: Table D.1 (pt = 2.0, pdf_page 362, printed D-3), D.4 (pt = 2.5,
+    pdf_page 365, printed D-6) or D.7 (pt = 3.0, pdf_page 368, printed D-9);
+    see ``lef.load_equivalency_factor``.
 
     Parameters
     ----------
     axle_load_kips : float
-        Single axle load, kips.
+        Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
+        outside them is clamped to the nearest row (see 'note').
     sn : float, optional
-        Pavement structural number. Only SN=5.0 is digitized; other values
-        raise NotImplementedError (see Table D.1-D.6 in the full guide,
-        pdf_page 363+, for SN=1-6 at pt=2.0/2.5/3.0).
+        Pavement structural number, > 0. Printed columns are SN = 1-6,
+        interpolated linearly between them; outside 1-6 it is clamped to
+        the nearest column (see 'note'). Default 5.0.
     pt : float, optional
-        Terminal serviceability. Only pt=2.5 is digitized; other values
-        raise NotImplementedError.
+        Terminal serviceability: exactly 2.0, 2.5 or 3.0, the values
+        Appendix D prints. Default 2.5.
 
     Returns
     -------
     dict
-        {'axle_load_kips', 'sn', 'pt', 'lef', 'reference'}.
+        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference',
+         'note'?}. 'table' is the printed table number (e.g. 'Table D.4');
+        'note' is present only when a load or SN was clamped.
 
     Raises
     ------
-    NotImplementedError
-        If sn != 5.0 or pt != 2.5 (not digitized in this module).
+    ValueError
+        As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
+        or SN <= 0.
     """
-    if abs(sn - 5.0) > 1e-9 or abs(pt - 2.5) > 1e-9:
-        raise NotImplementedError(
-            "Only SN=5.0, pt=2.5 is digitized (Table D.4). See the full "
-            "printed Appendix D (Tables D.1-D.6) for other SN/pt."
-        )
-    lef = _linterp(axle_load_kips, _ESAL_AXLE_FLEX_SINGLE, _ESAL_D4_SN5_SINGLE)
-    return {
-        "axle_load_kips": axle_load_kips, "sn": sn, "pt": pt,
-        "lef": round(lef, 4),
-        "reference": "AASHTO 1993 Guide, Table D.4 (pdf_page 365, printed D-6)",
-    }
+    return _esal_from_lef("flexible", "single", axle_load_kips, sn, None,
+                          pt, "sn")
 
 
 def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
-    """Load equivalency factor, flexible pavement, tandem axle (Table D.5, SN=5, pt=2.5).
+    """Load equivalency factor, flexible pavement, tandem axle (Tables D.2, D.5, D.8).
 
-    See ``esal_flexible_single_axle`` for coverage notes.
+    Table D.2 (pt = 2.0, pdf_page 363, printed D-4), D.5 (pt = 2.5,
+    pdf_page 366, printed D-7) or D.8 (pt = 3.0, pdf_page 369, printed
+    D-10); see ``esal_flexible_single_axle``.
 
     Parameters
     ----------
     axle_load_kips : float
-        Tandem axle group load, kips.
-    sn, pt : float, optional
-        Only SN=5.0, pt=2.5 digitized.
+        Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
+        load outside them is clamped (see 'note').
+    sn : float, optional
+        Pavement structural number; printed SN = 1-6, interpolated, clamped
+        outside. Default 5.0.
+    pt : float, optional
+        Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
     Returns
     -------
     dict
-        {'axle_load_kips', 'sn', 'pt', 'lef', 'reference'}.
+        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference',
+         'note'?}.
 
     Raises
     ------
-    NotImplementedError
-        If sn != 5.0 or pt != 2.5.
+    ValueError
+        As ``lef.load_equivalency_factor``.
     """
-    if abs(sn - 5.0) > 1e-9 or abs(pt - 2.5) > 1e-9:
-        raise NotImplementedError(
-            "Only SN=5.0, pt=2.5 is digitized (Table D.5). See the full "
-            "printed Appendix D (Tables D.1-D.6) for other SN/pt."
-        )
-    lef = _linterp(axle_load_kips, _ESAL_AXLE_FLEX_TANDEM, _ESAL_D5_SN5_TANDEM)
-    return {
-        "axle_load_kips": axle_load_kips, "sn": sn, "pt": pt,
-        "lef": round(lef, 4),
-        "reference": "AASHTO 1993 Guide, Table D.5 (pdf_page 366, printed D-7)",
-    }
+    return _esal_from_lef("flexible", "tandem", axle_load_kips, sn, None,
+                          pt, "sn")
 
 
 def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
-    """Load equivalency factor, rigid pavement, single axle (Table D.13, D=9in, pt=2.5).
+    """Load equivalency factor, rigid pavement, single axle (Tables D.10, D.13, D.16).
+
+    Table D.10 (pt = 2.0, pdf_page 371, printed D-12), D.13 (pt = 2.5,
+    pdf_page 374, printed D-15) or D.16 (pt = 3.0, pdf_page 377, printed
+    D-18); see ``lef.load_equivalency_factor``.
 
     Parameters
     ----------
     axle_load_kips : float
-        Single axle load, kips.
+        Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
+        outside them is clamped (see 'note').
     d_in : float, optional
-        Slab thickness, inches. Only D=9.0 is digitized; other values
-        raise NotImplementedError (see Tables D.7-D.18 in the full guide
-        for D=6-14 at pt=2.0/2.5/3.0).
+        Slab thickness, inches, > 0. Printed columns are D = 6-14 in,
+        interpolated linearly between them; outside 6-14 it is clamped
+        (see 'note'). Default 9.0.
     pt : float, optional
-        Only pt=2.5 is digitized.
+        Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
     Returns
     -------
     dict
-        {'axle_load_kips', 'd_in', 'pt', 'lef', 'reference'}.
+        {'axle_load_kips', 'd_in', 'pt', 'lef', 'table', 'reference',
+         'note'?}.
 
     Raises
     ------
-    NotImplementedError
-        If d_in != 9.0 or pt != 2.5.
+    ValueError
+        As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
+        or D <= 0.
     """
-    if abs(d_in - 9.0) > 1e-9 or abs(pt - 2.5) > 1e-9:
-        raise NotImplementedError(
-            "Only D=9.0 in, pt=2.5 is digitized (Table D.13). See the full "
-            "printed Appendix D (Tables D.7-D.18) for other D/pt."
-        )
-    lef = _linterp(axle_load_kips, _ESAL_AXLE_RIGID_SINGLE, _ESAL_D13_D9_SINGLE)
-    return {
-        "axle_load_kips": axle_load_kips, "d_in": d_in, "pt": pt,
-        "lef": round(lef, 4),
-        "reference": "AASHTO 1993 Guide, Table D.13 (pdf_page 374, printed D-15)",
-    }
+    return _esal_from_lef("rigid", "single", axle_load_kips, None, d_in,
+                          pt, "d_in")
 
 
 def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
-    """Load equivalency factor, rigid pavement, tandem axle (Table D.14, D=9in, pt=2.5).
+    """Load equivalency factor, rigid pavement, tandem axle (Tables D.11, D.14, D.17).
+
+    Table D.11 (pt = 2.0, pdf_page 372, printed D-13), D.14 (pt = 2.5,
+    pdf_page 375, printed D-16) or D.17 (pt = 3.0, pdf_page 378, printed
+    D-19); see ``esal_rigid_single_axle``.
 
     Parameters
     ----------
     axle_load_kips : float
-        Tandem axle group load, kips.
-    d_in, pt : float, optional
-        Only D=9.0 in, pt=2.5 digitized.
+        Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
+        load outside them is clamped (see 'note').
+    d_in : float, optional
+        Slab thickness, inches; printed D = 6-14 in, interpolated, clamped
+        outside. Default 9.0.
+    pt : float, optional
+        Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
     Returns
     -------
     dict
-        {'axle_load_kips', 'd_in', 'pt', 'lef', 'reference'}.
+        {'axle_load_kips', 'd_in', 'pt', 'lef', 'table', 'reference',
+         'note'?}.
 
     Raises
     ------
-    NotImplementedError
-        If d_in != 9.0 or pt != 2.5.
+    ValueError
+        As ``lef.load_equivalency_factor``.
     """
-    if abs(d_in - 9.0) > 1e-9 or abs(pt - 2.5) > 1e-9:
-        raise NotImplementedError(
-            "Only D=9.0 in, pt=2.5 is digitized (Table D.14). See the full "
-            "printed Appendix D (Tables D.7-D.18) for other D/pt."
-        )
-    lef = _linterp(axle_load_kips, _ESAL_AXLE_RIGID_TANDEM, _ESAL_D14_D9_TANDEM)
-    return {
-        "axle_load_kips": axle_load_kips, "d_in": d_in, "pt": pt,
-        "lef": round(lef, 4),
-        "reference": "AASHTO 1993 Guide, Table D.14 (pdf_page 375, printed D-16)",
-    }
+    return _esal_from_lef("rigid", "tandem", axle_load_kips, None, d_in,
+                          pt, "d_in")
