@@ -99,6 +99,13 @@
     {
      "id": "Eq. 10-1",
      "description": "Equation 10-1, introduced by: \"Each of these earth pressure conditions can be expressed in general form by:\" (p. 10-10).",
+     "formula": "ph = Kpo",
+     "variables": {
+      "ph": "lateral earth pressure at a given depth behind the wall",
+      "po": "vertical stress at the same depth",
+      "K": "earth pressure coefficient: at-rest (Ko), active (Ka) or passive (Kp)"
+     },
+     "source": "Typed in from p. 10-10.",
      "implemented_in": null
     }
    ],
@@ -117,11 +124,25 @@
     {
      "id": "Eq. 10-2",
      "description": "Equation 10-2, introduced by: \"For cut walls constructed in near normally consolidated soils, the at- rest earth pressure coefficient, Ko, can be approximated by the equation (Jaky, 1944):\" (p. 10-10).",
+     "formula": "Ko = 1 – sin φ′",
+     "variables": {
+      "Ko": "at-rest earth pressure coefficient, for cut walls in near normally consolidated soils (Jaky, 1944)",
+      "φ′": "effective (drained) friction angle of the soil"
+     },
+     "source": "Typed in from p. 10-10.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-3",
      "description": "Equation 10-3, introduced by: \"In overconsolidated soils, Ko can be estimated as (Schmidt, 1966):\" (p. 10-11).",
+     "formula": "Ko = (1 – sin φ′)(OCR)^Ω",
+     "variables": {
+      "Ko": "at-rest earth pressure coefficient in overconsolidated soils (Schmidt, 1966)",
+      "φ′": "effective (drained) friction angle of the soil",
+      "OCR": "overconsolidation ratio",
+      "Ω": "dimensionless coefficient, which for most soils can be taken as sin φ′ (Mayne and Kulhawy, 1982)"
+     },
+     "source": "Typed in from p. 10-11.",
      "implemented_in": null
     }
    ],
@@ -138,21 +159,51 @@
     {
      "id": "Eq. 10-4",
      "description": "Equation 10-4, introduced by: \"For such simplified cases, Ka and Kp can be expressed by Equations 10-4 and 10-5, respectively:\" (p. 10-12).",
+     "formula": "Ka = (1 – sin φ′) / (1 + sin φ′) = tan²(45 – φ′/2)",
+     "variables": {
+      "Ka": "active earth pressure coefficient for a vertical wall, level ground, no wall friction and no groundwater (Coulomb with δ = θ = β = 0; Rankine)",
+      "φ′": "effective friction angle"
+     },
+     "source": "Typed in from p. 10-12.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-5",
      "description": "Equation 10-5, introduced by: \"For such simplified cases, Ka and Kp can be expressed by Equations 10-4 and 10-5, respectively:\" (p. 10-12).",
+     "formula": "Kp = (1 + sin φ′) / (1 – sin φ′) = tan²(45 + φ′/2)",
+     "variables": {
+      "Kp": "passive earth pressure coefficient for a vertical wall, level ground, no wall friction and no groundwater (Coulomb with δ = θ = β = 0; Rankine)",
+      "φ′": "effective friction angle"
+     },
+     "source": "Typed in from p. 10-12.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-6",
      "description": "Equation 10-6, introduced by: \"nless soil with a groundwater table, the effective lateral earth pressure acting on the wall at any depth, z, below the surface is a function of the pore water pressure u as follows, pa′ = Ka (γz - u)\" (p. 10-14).",
+     "formula": "pa′ = Ka (γz - u)",
+     "variables": {
+      "pa′": "effective active lateral earth pressure on the wall at depth z, cohesionless soil with a groundwater table",
+      "Ka": "active earth pressure coefficient",
+      "γ": "unit weight of soil",
+      "z": "depth below the surface",
+      "u": "pore water pressure"
+     },
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-7",
      "description": "Equation 10-7, introduced by: \"groundwater table, the effective lateral earth pressure acting on the wall at any depth, z, below the surface is a function of the pore water pressure u as follows, pa′ = Ka (γz - u) pp′ = Kp (γz - u)\" (p. 10-14).",
+     "formula": "pp′ = Kp (γz - u)",
+     "variables": {
+      "pp′": "effective passive lateral earth pressure at depth z, cohesionless soil with a groundwater table",
+      "Kp": "passive earth pressure coefficient",
+      "γ": "unit weight of soil",
+      "z": "depth below the surface",
+      "u": "pore water pressure"
+     },
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     }
    ],
@@ -171,21 +222,59 @@
     {
      "id": "Eq. 10-8",
      "description": "Equation 10-8, introduced by: \"For a cohesive soil defined by effective stress strength parameters φ′ and c′, the active and passive earth pressure coefficients are:\" (p. 10-14).",
+     "formula": "Ka = tan²(45 – φ′/2) – (2c′/p′o) tan²(45 – φ′/2)",
+     "variables": {
+      "Ka": "active earth pressure coefficient for a cohesive soil with effective stress strength parameters φ′ and c′",
+      "φ′": "effective friction angle",
+      "c′": "effective cohesion",
+      "p′o": "effective vertical stress"
+     },
+     "notes": "Typed as printed: the second term carries tan², where Equation 10-10 on the same page uses 2c′√Ka.",
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-9",
      "description": "Equation 10-9, introduced by: \"For a cohesive soil defined by effective stress strength parameters φ′ and c′, the active and passive earth pressure coefficients are:\" (p. 10-14).",
+     "formula": "Kp = tan²(45 + φ′/2) + (2c′/p′o) tan²(45 + φ′/2)",
+     "variables": {
+      "Kp": "passive earth pressure coefficient for a cohesive soil with effective stress strength parameters φ′ and c′",
+      "φ′": "effective friction angle",
+      "c′": "effective cohesion",
+      "p′o": "effective vertical stress"
+     },
+     "notes": "Typed as printed: the second term carries tan², where Equation 10-11 on the same page uses 2c′√Kp.",
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-10",
      "description": "Equation 10-10, introduced by: \"For a c'-φ' soil with a groundwater table, the effective lateral earth pressure acting on the wall at any depth, z, below the surface is, pa′ = Ka (γz - u) - 2c′ a K\" (p. 10-14).",
+     "formula": "pa′ = Ka (γz - u) - 2c′ √Ka",
+     "variables": {
+      "pa′": "effective active lateral earth pressure on the wall at depth z, c′-φ′ soil with a groundwater table",
+      "Ka": "active earth pressure coefficient",
+      "γ": "unit weight of soil",
+      "z": "depth below the surface",
+      "u": "pore water pressure",
+      "c′": "effective cohesion"
+     },
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     },
     {
      "id": "Eq. 10-11",
      "description": "Equation 10-11, introduced by: \"For a c'-φ' soil with a groundwater table, the effective lateral earth pressure acting on the wall at any depth, z, below the surface is, pa′ = Ka (γz - u) - 2c′ a K pp′ = Kp (γz - u) + 2c′ p K\" (p. 10-14).",
+     "formula": "pp′ = Kp (γz - u) + 2c′ √Kp",
+     "variables": {
+      "pp′": "effective passive lateral earth pressure at depth z, c′-φ′ soil with a groundwater table",
+      "Kp": "passive earth pressure coefficient",
+      "γ": "unit weight of soil",
+      "z": "depth below the surface",
+      "u": "pore water pressure",
+      "c′": "effective cohesion"
+     },
+     "source": "Typed in from p. 10-14.",
      "implemented_in": null
     }
    ],

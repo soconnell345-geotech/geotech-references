@@ -505,9 +505,25 @@
   {
    "section_id": "9.6.2.2",
    "title": "Settlement of Pile Groups in Cohesionless Soils",
-   "body": "[p. 9-83]\n\nMeyerhof (1976) recommended the settlement of a pile group in a homogeneous sand deposit not underlain by a compressible soil be conservatively estimated by the following expressions in U.S. units:\n\nFor silty sand, use:\n\n9-21\n\nwhere: s = estimated total settlement in inches\n\npf = design foundation pressure in ksf = group design load divided by group area\n\nB = width of pile group in ft\n\n' N = average corrected SPT N160 value within a depth B below pile toe If = influence factor for group embedment = [ - 1 ≥\n\nD = pile embedment depth in ft\n\nN' I B\n\np 8 = s",
+   "body": "[p. 9-83]\n\nMeyerhof (1976) recommended the settlement of a pile group in a homogeneous sand deposit not underlain by a compressible soil be conservatively estimated by the following expressions in U.S. units:\n\ns = 4 pf √B If / N'      For silty sand, use: s = 8 pf √B If / N' [Eq. 9-21]\n\nwhere: s = estimated total settlement in inches\n\npf = design foundation pressure in ksf = group design load divided by group area\n\nB = width of pile group in ft\n\nN' = average corrected SPT N160 value within a depth B below pile toe\n\nIf = influence factor for group embedment = 1 - [D / 8B] ≥ 0.5\n\nD = pile embedment depth in ft",
    "key_points": [],
-   "equations": [],
+   "equations": [
+    {
+     "id": "Eq. 9-21",
+     "description": "Equation 9-21 as printed (p. 9-83).",
+     "formula": "s = 4 pf √B If / N'      For silty sand, use: s = 8 pf √B If / N'",
+     "variables": {
+      "s": "estimated total settlement in inches (Meyerhof, 1976; pile group in a homogeneous sand deposit not underlain by a compressible soil; U.S. units)",
+      "pf": "design foundation pressure in ksf = group design load divided by group area",
+      "B": "width of pile group in ft",
+      "N'": "average corrected SPT N160 value within a depth B below pile toe (printed with an overbar)",
+      "If": "influence factor for group embedment = 1 - [D / 8B] ≥ 0.5",
+      "D": "pile embedment depth in ft"
+     },
+     "source": "Typed in from p. 9-83.",
+     "implemented_in": null
+    }
+   ],
    "figures": [],
    "tables": [],
    "applicability": "FHWA-NHI-06-089, Chapter 9 (Deep Foundations), printed p. 9-83."
@@ -853,12 +869,32 @@
   {
    "section_id": "9.12",
    "title": "Estimating Axial Capacity of Drilled Shafts",
-   "body": "[p. 9-127]\n\nThe procedures for estimation of drilled shaft capacity have improved significantly over the past decade. The major reason for this improvement is a database that has been developed on load transfer in skin friction and in end bearing based on load tests in a broad range of geomaterials. It is now well established that drilled shafts can carry a substantial portion of applied loads in skin friction. As with pile foundations, the ultimate skin friction is mobilized at a relatively small downward movement of the shaft relative to the soil. End bearing resistance is developed in relation to the amount of deflection at the tip.\n\nSeparate analyses are required to determine skin friction and end bearing contributions in different soil types and rock. Details of these analyses can be found in FHWA (1999). The basic formulation for drilled shaft capacity in soils and rocks, excerpted from FHWA (1999), is presented herein. The discussions in this manual regarding drilled shaft axial capacity are limited to drilled shafts of uniform cross-section, with vertical alignment, concentric axial loading, and a relatively horizontal ground surface. The reader is referred to FHWA (1999) for procedures to incorporate the effects of enlarged base, group action, and sloping ground.\n\nThe ultimate axial capacity (Qult) of the drilled shaft is determined as follows for compression and uplift loading, respectively:\n\n[p. 9-128] Qu = Qs + Qt – W\n\nQu ≤ 0.7Qs + W [Eq. 9-34a]\n\n9-34b\n\nwhere: Qu = total ultimate axial capacity of the foundation\n\nQs = ultimate skin (side) capacity\n\nQt = ultimate tip (base or end) capacity\n\nW = weight of the shaft.\n\nNote that in contra-distinction to the ultimate capacity equation for driven piles (see Equation 9- 1), the weight term is included for the drilled shaft since the weight of a shaft is usually much larger than that of a pile. The shaft weight can therefore act as a load in the downward direction or act as a resistance in uplift.\n\nSimilar to the driven piles, the allowable geotechnical soil resistance, Qa, is determined as follows:\n\n[Eq. 9-35]\n\nwhere FS = factor of safety which typically varies between 2 to 3. If load tests are not performed then the shaft should be designed for a minimum factor of safety of 2.5 (AASHTO, 2002). This minimum recommended factor of safety is based on an assumed normal level of field quality control during shaft construction as per the requirements of FHWA (2002d). If a normal level of field quality control as required by FHWA (2002d) cannot be assured, larger minimum factors of safety such as 3.0 are recommended. If a site-specific load test is performed, consideration may be given to reducing the factor of safety from 2.5 to 2.0.\n\nShafts in cohesive soils may be designed by total and effective stress methods of analysis, for undrained and drained conditions, respectively. Shafts in cohesionless soils should be designed by effective stress methods of analysis for drained loading conditions. Formulations for both cohesive and cohesionless soils using allowable stress design (ASD) are presented herein based FHWA (1999) and AASHTO (2002). For LRFD based formulations the reader is referred to AASHTO (2004 with 2006 Interims).",
+   "body": "[p. 9-127]\n\nThe procedures for estimation of drilled shaft capacity have improved significantly over the past decade. The major reason for this improvement is a database that has been developed on load transfer in skin friction and in end bearing based on load tests in a broad range of geomaterials. It is now well established that drilled shafts can carry a substantial portion of applied loads in skin friction. As with pile foundations, the ultimate skin friction is mobilized at a relatively small downward movement of the shaft relative to the soil. End bearing resistance is developed in relation to the amount of deflection at the tip.\n\nSeparate analyses are required to determine skin friction and end bearing contributions in different soil types and rock. Details of these analyses can be found in FHWA (1999). The basic formulation for drilled shaft capacity in soils and rocks, excerpted from FHWA (1999), is presented herein. The discussions in this manual regarding drilled shaft axial capacity are limited to drilled shafts of uniform cross-section, with vertical alignment, concentric axial loading, and a relatively horizontal ground surface. The reader is referred to FHWA (1999) for procedures to incorporate the effects of enlarged base, group action, and sloping ground.\n\nThe ultimate axial capacity (Qult) of the drilled shaft is determined as follows for compression and uplift loading, respectively:\n\n[p. 9-128] Qu = Qs + Qt – W [Eq. 9-34a]\n\nQu ≤ 0.7Qs + W [Eq. 9-34b]\n\nwhere: Qu = total ultimate axial capacity of the foundation\n\nQs = ultimate skin (side) capacity\n\nQt = ultimate tip (base or end) capacity\n\nW = weight of the shaft.\n\nNote that in contra-distinction to the ultimate capacity equation for driven piles (see Equation 9- 1), the weight term is included for the drilled shaft since the weight of a shaft is usually much larger than that of a pile. The shaft weight can therefore act as a load in the downward direction or act as a resistance in uplift.\n\nSimilar to the driven piles, the allowable geotechnical soil resistance, Qa, is determined as follows:\n\n[Eq. 9-35]\n\nwhere FS = factor of safety which typically varies between 2 to 3. If load tests are not performed then the shaft should be designed for a minimum factor of safety of 2.5 (AASHTO, 2002). This minimum recommended factor of safety is based on an assumed normal level of field quality control during shaft construction as per the requirements of FHWA (2002d). If a normal level of field quality control as required by FHWA (2002d) cannot be assured, larger minimum factors of safety such as 3.0 are recommended. If a site-specific load test is performed, consideration may be given to reducing the factor of safety from 2.5 to 2.0.\n\nShafts in cohesive soils may be designed by total and effective stress methods of analysis, for undrained and drained conditions, respectively. Shafts in cohesionless soils should be designed by effective stress methods of analysis for drained loading conditions. Formulations for both cohesive and cohesionless soils using allowable stress design (ASD) are presented herein based FHWA (1999) and AASHTO (2002). For LRFD based formulations the reader is referred to AASHTO (2004 with 2006 Interims).",
    "key_points": [],
    "equations": [
     {
      "id": "Eq. 9-34a",
      "description": "Equation 9-34a as printed (p. 9-128).",
+     "formula": "Qu = Qs + Qt – W",
+     "variables": {
+      "Qu": "total ultimate axial capacity of the foundation (compression)",
+      "Qs": "ultimate skin (side) capacity",
+      "Qt": "ultimate tip (base or end) capacity",
+      "W": "weight of the shaft"
+     },
+     "source": "Typed in from p. 9-128.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 9-34b",
+     "description": "Equation 9-34b as printed (p. 9-128).",
+     "formula": "Qu ≤ 0.7Qs + W",
+     "variables": {
+      "Qu": "total ultimate axial capacity of the foundation (uplift)",
+      "Qs": "ultimate skin (side) capacity",
+      "W": "weight of the shaft"
+     },
+     "source": "Typed in from p. 9-128.",
      "implemented_in": null
     },
     {
@@ -880,21 +916,52 @@
     {
      "id": "Eq. 9-36",
      "description": "Equation 9-36, introduced by: \"For cylindrical shafts in cohesive soils loaded under undrained loading conditions, the ultimate side resistance may be estimated by using the following expression:\" (p. 9-129).",
+     "formula": "Qs = πD Σ(i=1 to N) αi sui Δzi",
+     "variables": {
+      "Qs": "ultimate side resistance of a cylindrical shaft in cohesive soil under undrained loading",
+      "D": "diameter of the shaft",
+      "αi": "adhesion factor in layer i (Equations 9-37a, 9-37b)",
+      "sui": "undrained shear strength in layer i",
+      "Δzi": "thickness of layer i",
+      "N": "number of layers"
+     },
+     "source": "Typed in from p. 9-129.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-37a",
      "description": "Equation 9-37a, introduced by: \"lowing expression: Where, D is the diameter of the shaft and αi and sui are the adhesion factor and undrained shear strength, respectively, in a layer ∆zi. The adhesion factor, α, is given as follows.\" (p. 9-129).",
+     "formula": "α = 0.55   for su/pa ≤ 1.5",
+     "variables": {
+      "α": "adhesion factor",
+      "su": "undrained shear strength",
+      "pa": "atmospheric pressure (= 1.06 tsf = 2.12 ksf = 14.7 psi = 101 kPa); the units of sui and pa should be dimensionally consistent"
+     },
+     "source": "Typed in from p. 9-129.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-37b",
      "description": "Equation 9-37b, introduced by: \"lowing expression: Where, D is the diameter of the shaft and αi and sui are the adhesion factor and undrained shear strength, respectively, in a layer ∆zi. The adhesion factor, α, is given as follows.\" (p. 9-129).",
+     "formula": "α = 0.55 – 0.1(su/pa – 1.5)   for 1.5 < su/pa ≤ 2.5",
+     "variables": {
+      "α": "adhesion factor",
+      "su": "undrained shear strength",
+      "pa": "atmospheric pressure (= 1.06 tsf = 2.12 ksf = 14.7 psi = 101 kPa); the units of sui and pa should be dimensionally consistent"
+     },
+     "source": "Typed in from p. 9-129.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-38",
      "description": "Equation 9-38, introduced by: \"The ultimate unit load transfer in side resistance at any depth fsi is given as follows: fsi = αi sui\" (p. 9-129).",
+     "formula": "fsi = αi sui",
+     "variables": {
+      "fsi": "ultimate unit load transfer in side resistance at any depth",
+      "αi": "adhesion factor (Equations 9-37a, 9-37b)",
+      "sui": "undrained shear strength"
+     },
+     "source": "Typed in from p. 9-129.",
      "implemented_in": null
     }
    ],
@@ -925,11 +992,27 @@
     {
      "id": "Eq. 9-39",
      "description": "Equation 9-39, introduced by: \"ially loaded shafts in cohesive soil subjected to undrained loading conditions, the ultimate tip resistance of drilled shafts may be estimated by using the following relationship: Qt = qt At = NcsutAt\" (p. 9-131).",
+     "formula": "Qt = qt At = Nc sut At",
+     "variables": {
+      "Qt": "ultimate tip resistance of a drilled shaft in cohesive soil under undrained loading",
+      "qt": "unit tip resistance; its limiting value (qt = Nc sut) is 80 ksf",
+      "Nc": "bearing capacity factor (Equation 9-40)",
+      "sut": "undrained shear strength of the soil at the tip of the shaft, from tests within 2.0 diameters below the tip",
+      "At": "tip area of the shaft"
+     },
+     "source": "Typed in from p. 9-131.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-40",
      "description": "Equation 9-40 as printed (p. 9-131).",
+     "formula": "Nc = 6.0[1+0.2(z/D)];   Nc ≤ 9",
+     "variables": {
+      "Nc": "bearing capacity factor; multiplied by 0.67 if the soil within 2.0 diameters of the tip has sut < 0.5 ksf",
+      "z": "depth of the penetration of the shaft",
+      "D": "diameter of the shaft (units of z and D consistent)"
+     },
+     "source": "Typed in from p. 9-131.",
      "implemented_in": null
     }
    ],
@@ -958,16 +1041,39 @@
     {
      "id": "Eq. 9-41",
      "description": "Equation 9-41, introduced by: \"tress analysis of cylindrical shafts in cohesive soils under drained loading conditions, the ultimate side resistance of axially loaded drilled shafts may be estimated by using the following equation:\" (p. 9-132).",
+     "formula": "Qs = πD Σ(i=1 to N) βi po Δzi",
+     "variables": {
+      "Qs": "ultimate side resistance of a cylindrical shaft in cohesionless soil (or effective stress analysis in cohesive soil under drained loading)",
+      "D": "shaft diameter",
+      "N": "number of layers used in the analysis",
+      "βi": "Equation 9-42",
+      "po": "effective overburden pressure at the center of the ith layer",
+      "Δzi": "thickness of the ith layer"
+     },
+     "source": "Typed in from p. 9-132.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-42",
      "description": "Equation 9-42, introduced by: \"is of cylindrical shafts in cohesive soils under drained loading conditions, the ultimate side resistance of axially loaded drilled shafts may be estimated by using the following equation: where: with\" (p. 9-132).",
+     "formula": "βi = 1.5 – 0.135 √zi   with 1.2 > βi > 0.25",
+     "variables": {
+      "βi": "side resistance coefficient of the ith layer",
+      "zi": "the depth in feet to the center of the ith layer"
+     },
+     "source": "Typed in from p. 9-132.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-43",
      "description": "Equation 9-43, introduced by: \"The ultimate unit load transfer in side resistance at any depth fsi is given as follows: fsi = βi po\" (p. 9-133).",
+     "formula": "fsi = βi po",
+     "variables": {
+      "fsi": "ultimate unit load transfer in side resistance at any depth; its limiting value for shafts in cohesionless soils is 4 ksf (191 kPa)",
+      "βi": "Equation 9-42",
+      "po": "effective overburden pressure at the center of the ith layer"
+     },
+     "source": "Typed in from p. 9-133.",
      "implemented_in": null
     }
    ],
@@ -994,16 +1100,35 @@
     {
      "id": "Eq. 9-44",
      "description": "Equation 9-44, introduced by: \"afts in cohesionless soils or for effective stress analysis of axially loaded drilled shafts in cohesive soils, the ultimate tip resistance may be estimated by using the following equation: Qt = qt At\" (p. 9-133).",
+     "formula": "Qt = qt At",
+     "variables": {
+      "Qt": "ultimate tip resistance of a drilled shaft in cohesionless soil (or effective stress analysis in cohesive soil)",
+      "qt": "unit tip resistance (Equations 9-45a, 9-45b)",
+      "At": "tip area of the shaft"
+     },
+     "source": "Typed in from p. 9-133.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-45a",
      "description": "Equation 9-45a, introduced by: \"2N60 in ksf For N60 > 75: qt = 90 ksf\" (p. 9-133).",
+     "formula": "For N60 ≤ 75:   qt = 1.2N60   in ksf",
+     "variables": {
+      "qt": "unit tip resistance (ksf)",
+      "N60": "SPT blow count within a depth of 2B below the tip of the shaft"
+     },
+     "source": "Typed in from p. 9-133.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-45b",
      "description": "Equation 9-45b, introduced by: \"2N60 in ksf For N60 > 75: qt = 90 ksf\" (p. 9-133).",
+     "formula": "For N60 > 75:   qt = 90 ksf",
+     "variables": {
+      "qt": "unit tip resistance (ksf)",
+      "N60": "SPT blow count within a depth of 2B below the tip of the shaft"
+     },
+     "source": "Typed in from p. 9-133.",
      "implemented_in": null
     }
    ],
@@ -1064,11 +1189,28 @@
     {
      "id": "Eq. 9-46",
      "description": "Equation 9-46, introduced by: \"For drilled shafts socketed into rock, shaft resistance may be evaluated as follows (Horvath and Kenney, 1979):\" (p. 9-140).",
+     "formula": "Qsr = π Dr Lr qsr",
+     "variables": {
+      "Qsr": "ultimate side resistance of a shaft socketed into rock (Horvath and Kenney, 1979); for a smooth socket or rock drilled with slurry, and for intact rock only",
+      "Dr": "diameter of rock socket (ft)",
+      "Lr": "length of rock socket (ft)",
+      "qsr": "unit skin resistance of rock (tsf), Equation 9-47"
+     },
+     "source": "Typed in from p. 9-140.",
      "implemented_in": null
     },
     {
      "id": "Eq. 9-47",
      "description": "Equation 9-47, introduced by: \"For drilled shafts socketed into rock, shaft resistance may be evaluated as follows (Horvath and Kenney, 1979):\" (p. 9-140).",
+     "formula": "qsr = 0.65(αE)(pa)(qu/pa)^0.5 < 0.65(pa)(f'c/pa)^0.5",
+     "variables": {
+      "qsr": "unit skin resistance of rock (tsf)",
+      "αE": "EM/Ei = reduction factor to account for jointing in rock (Table 5-23 in Chapter 5); EM elastic modulus of the rock mass, Ei elastic modulus of intact rock (p. 9-141)",
+      "pa": "atmospheric pressure = 1.06 tsf",
+      "qu": "uniaxial compressive strength of rock (tsf)",
+      "f'c": "28-day compressive strength of concrete (tsf)"
+     },
+     "source": "Typed in from p. 9-140.",
      "implemented_in": null
     }
    ],
@@ -1201,9 +1343,22 @@
   {
    "section_id": "9.15.3",
    "title": "When to Load Test",
-   "body": "[p. 9-154]\n\nThe following criteria, adapted and modified from FHWA (1992c), summarize conditions when pile load testing can be effectively utilized:\n\n1. When substantial cost savings can be realized. This is often the case on large projects involving either friction piles to prove that lengths can be reduced or end bearing piles to prove that the design load can be increased. Testing can also be justified if the savings obtained by using a lower factor of safety equals or exceeds the testing cost.\n\n[p. 9-155] 2. When a safe design load is uncertain due to limitations of an engineer's experience base or due to unusual site or project conditions.\n\n3. When subsurface conditions vary considerably across the project, but can be delineated into zones of similar conditions. Static tests can then be performed in representative areas to delineate foundation variation.\n\n4. When a significantly greater load is contemplated relative to typical design loads and practice.\n\n5. When time dependent changes in deep foundation capacity are anticipated as a result of soil setup or relaxation.\n\n6. Verification of new design or testing methods.\n\n7. When new, unproven deep foundation types and/or pile installation procedures are utilized.\n\n8. When existing deep foundations will be reused to support a new structure with heavier design loads.\n\n9. When a reliable assessment of uplift capacity or lateral behavior is important.\n\n10. When, during construction, the estimated ultimate capacity determined by using dynamic formulas or dynamic analysis methods differs from the estimated capacity at that depth determined by static analysis. For example, H-piles that \"run\" when driven into loose to medium dense sands and gravels.\n\n11. Calibrations of new design procedures such as the Load and Resistance Factor Design (LRFD).\n\nExperience has also shown that load tests will typically confirm that pile lengths can be reduced at least 15 percent versus the lengths that would be required by the Engineering News (EN) formula on projects where piles are supported predominantly by shaft resistance. This 15 percent pile length reduction was used to establish the following “rule of thumb” formula to compute the total estimated pile length that the project must have to make the load test cost effective based purely on material savings alone.\n\n[p. 9-156] Total estimated pile length in feet on project pile)\n\nof\n\nft (cost /\n\n(0.15) test load\n\nof cost\n\n≥\n\n9-50\n\nThe above formula may not be valid for drilled shafts since the EN formula is not applicable.",
+   "body": "[p. 9-154]\n\nThe following criteria, adapted and modified from FHWA (1992c), summarize conditions when pile load testing can be effectively utilized:\n\n1. When substantial cost savings can be realized. This is often the case on large projects involving either friction piles to prove that lengths can be reduced or end bearing piles to prove that the design load can be increased. Testing can also be justified if the savings obtained by using a lower factor of safety equals or exceeds the testing cost.\n\n[p. 9-155] 2. When a safe design load is uncertain due to limitations of an engineer's experience base or due to unusual site or project conditions.\n\n3. When subsurface conditions vary considerably across the project, but can be delineated into zones of similar conditions. Static tests can then be performed in representative areas to delineate foundation variation.\n\n4. When a significantly greater load is contemplated relative to typical design loads and practice.\n\n5. When time dependent changes in deep foundation capacity are anticipated as a result of soil setup or relaxation.\n\n6. Verification of new design or testing methods.\n\n7. When new, unproven deep foundation types and/or pile installation procedures are utilized.\n\n8. When existing deep foundations will be reused to support a new structure with heavier design loads.\n\n9. When a reliable assessment of uplift capacity or lateral behavior is important.\n\n10. When, during construction, the estimated ultimate capacity determined by using dynamic formulas or dynamic analysis methods differs from the estimated capacity at that depth determined by static analysis. For example, H-piles that \"run\" when driven into loose to medium dense sands and gravels.\n\n11. Calibrations of new design procedures such as the Load and Resistance Factor Design (LRFD).\n\nExperience has also shown that load tests will typically confirm that pile lengths can be reduced at least 15 percent versus the lengths that would be required by the Engineering News (EN) formula on projects where piles are supported predominantly by shaft resistance. This 15 percent pile length reduction was used to establish the following “rule of thumb” formula to compute the total estimated pile length that the project must have to make the load test cost effective based purely on material savings alone.\n\n[p. 9-156] Total estimated pile length in feet on project ≥ cost of load test / [(0.15) (cost / ft of pile)] [Eq. 9-50]\n\nThe above formula may not be valid for drilled shafts since the EN formula is not applicable.",
    "key_points": [],
-   "equations": [],
+   "equations": [
+    {
+     "id": "Eq. 9-50",
+     "description": "Equation 9-50 as printed (p. 9-156).",
+     "formula": "Total estimated pile length in feet on project ≥ cost of load test / [(0.15) (cost / ft of pile)]",
+     "variables": {
+      "cost of load test": "cost of the load test",
+      "cost / ft of pile": "cost per foot of pile; 0.15 is the 15 percent pile length reduction against the Engineering News formula"
+     },
+     "notes": "A rule of thumb for when a load test is cost effective on material savings alone; the print says it may not be valid for drilled shafts.",
+     "source": "Typed in from p. 9-156.",
+     "implemented_in": null
+    }
+   ],
    "figures": [],
    "tables": [],
    "applicability": "FHWA-NHI-06-089, Chapter 9 (Deep Foundations), printed pp. 9-154 to 9-156."

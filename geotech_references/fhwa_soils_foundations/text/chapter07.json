@@ -260,6 +260,14 @@
     {
      "id": "Eq. 7-8",
      "description": "Equation 7-8, introduced by: \"Table 7-4 shows the average degree of consolidation (U) corresponding to a normalized time expressed in terms of a time factor, Tv, where: , which can be written as\" (p. 7-31).",
+     "formula": "Tv = cv t / Hd², which can be written as t = Tv Hd² / cv",
+     "variables": {
+      "Tv": "time factor (dimensionless; Table 7-4 gives it against the average degree of consolidation U)",
+      "cv": "coefficient of consolidation (ft²/day) (m²/day)",
+      "Hd": "the longest distance to a drainage boundary (ft) (m)",
+      "t": "time (day)"
+     },
+     "source": "Typed in from p. 7-31.",
      "implemented_in": null
     }
    ],
@@ -298,6 +306,16 @@
     {
      "id": "Eq. 7-10",
      "description": "Equation 7-10, introduced by: \"m one-dimensional consolidometer test for determination of secondary compression (USACE, 1994). (1 in = 25.4 mm) The settlement due to secondary compression (Ss) is then determined from Equation 7-10.\" (p. 7-39).",
+     "formula": "Ss = [Cα / (1 + eo)] Hc log10(t2 / t1)",
+     "variables": {
+      "Ss": "settlement due to secondary compression",
+      "Cα": "coefficient of secondary compression (Equation 7-9)",
+      "eo": "initial void ratio",
+      "Hc": "thickness of the clay layer (the symbol is not defined on p. 7-39)",
+      "t1": "time when approximately 90 percent of primary compression has occurred for the actual clay layer being considered, from Equation 7-8",
+      "t2": "the service life of the structure or any other time of interest"
+     },
+     "source": "Typed in from p. 7-39.",
      "implemented_in": null
     }
    ],
@@ -323,9 +341,22 @@
   {
    "section_id": "7.6.1",
    "title": "Threshold Condition for Lateral Squeeze",
-   "body": "[p. 7-41]\n\nExperience has shown that lateral squeeze of the foundation soil can occur and abutment tilting may result if the surface load applied by the weight of the fill exceeds 3 times the undrained shear strength, su, of the soft foundation soil, i.e.,\n\nwhere, γ is the unit weigh of the fill and H is the height of the fill. The possibility of abutment tilting can be evaluated in design by using the above relationship. Whether the lateral squeeze will be short-term or long-term can be determined by evaluating the consolidation rate of settlement with respect to the rate of application of the load. For practical purposes, the unit weight of an embankment fill can be assumed to be approximately 125 pcf (19.7 kN/m3). The undrained shear strength, su, of the foundation soil can be determined either from in-situ field vane shear tests or from laboratory triaxial tests on high quality undisturbed Shelby tube samples.",
+   "body": "[p. 7-41]\n\nExperience has shown that lateral squeeze of the foundation soil can occur and abutment tilting may result if the surface load applied by the weight of the fill exceeds 3 times the undrained shear strength, su, of the soft foundation soil, i.e.,\n\n(γ)(H) > 3su [Eq. 7-11]\n\nwhere, γ is the unit weigh of the fill and H is the height of the fill. The possibility of abutment tilting can be evaluated in design by using the above relationship. Whether the lateral squeeze will be short-term or long-term can be determined by evaluating the consolidation rate of settlement with respect to the rate of application of the load. For practical purposes, the unit weight of an embankment fill can be assumed to be approximately 125 pcf (19.7 kN/m3). The undrained shear strength, su, of the foundation soil can be determined either from in-situ field vane shear tests or from laboratory triaxial tests on high quality undisturbed Shelby tube samples.",
    "key_points": [],
-   "equations": [],
+   "equations": [
+    {
+     "id": "Eq. 7-11",
+     "description": "Equation 7-11 as printed (p. 7-41).",
+     "formula": "(γ)(H) > 3su",
+     "variables": {
+      "γ": "unit weight of the fill (approximately 125 pcf (19.7 kN/m3) for an embankment fill)",
+      "H": "height of the fill",
+      "su": "undrained shear strength of the soft foundation soil"
+     },
+     "source": "Typed in from p. 7-41.",
+     "implemented_in": null
+    }
+   ],
    "figures": [],
    "tables": [],
    "applicability": "FHWA-NHI-06-088, Chapter 7 (Approach Roadway Deformations), printed p. 7-41."

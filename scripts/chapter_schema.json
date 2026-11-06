@@ -75,6 +75,23 @@
                     "description": {
                       "type": "string"
                     },
+                    "formula": {
+                      "type": "string",
+                      "description": "Optional: the equation as printed, typed in by hand from the printed page in plain text (Unicode symbols, ^ for a power, √ for a root), e.g. 'βi = 1.5 – 0.135 √zi   with 1.2 > βi > 0.25'. A misprint is typed as printed and said in notes."
+                    },
+                    "variables": {
+                      "type": "object",
+                      "additionalProperties": {"type": "string"},
+                      "description": "Optional: each symbol of formula with its meaning and units as the page defines it."
+                    },
+                    "notes": {
+                      "type": "string",
+                      "description": "Optional remarks on the equation as printed (a misprint kept as printed, a symbol the page does not define)."
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "Optional: where formula was typed in from, e.g. 'Typed in from p. 9-132.'"
+                    },
                     "implemented_in": {
                       "type": ["string", "null"],
                       "description": "Dotted path to the digitized Python function (e.g., 'dm7_1.chapter5.primary_consolidation_settlement_nc'), or null if not yet digitized."

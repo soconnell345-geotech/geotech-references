@@ -67,11 +67,26 @@
     {
      "id": "Eq. 2-4",
      "description": "Equation 2-4, introduced by: \"a measure of the void space in a soil mass occupied by water can be obtained through an index property known as the gravimetric water or moisture content, w, expressed as a percentage as follows: x100\" (p. 2-5).",
+     "formula": "w = (Ww / Ws) x100",
+     "variables": {
+      "w": "water content (percent)",
+      "Ww": "weight of water",
+      "Ws": "weight of solids"
+     },
+     "source": "Typed in from p. 2-5.",
      "implemented_in": null
     },
     {
      "id": "Eq. 2-4a",
      "description": "Equation 2-4a, introduced by: \"The water content, w, can be determined as follows since Wa = 0: x100\" (p. 2-5).",
+     "formula": "w = (W – Ws) / Ws = (Ww / Ws) x100",
+     "variables": {
+      "w": "water content (percent)",
+      "W": "total weight of soil, W = Ws + Ww (since Wa = 0)",
+      "Ws": "weight of solids",
+      "Ww": "weight of water"
+     },
+     "source": "Typed in from p. 2-5.",
      "implemented_in": null
     }
    ],
@@ -88,26 +103,63 @@
     {
      "id": "Eq. 2-5",
      "description": "Equation 2-5, introduced by: \"The simplest relationship between the weight and volume of a soil mass (refer to Figure 2- 1b) is known as the total unit weight, γt, and is expressed as follows:\" (p. 2-5).",
+     "formula": "γt = W / V = (Ww + Ws) / V",
+     "variables": {
+      "γt": "total unit weight",
+      "W": "total weight of soil",
+      "V": "total volume",
+      "Ww": "weight of water",
+      "Ws": "weight of solids"
+     },
+     "source": "Typed in from p. 2-5.",
      "implemented_in": null
     },
     {
      "id": "Eq. 2-6",
      "description": "Equation 2-6, introduced by: \"In terms of the basic quantities shown in Figure 2-1b and with reference to Equation 2-5, when Ww = 0 the dry unit weight, γd, can be expressed as follows:\" (p. 2-6).",
+     "formula": "γd = Ws / V",
+     "variables": {
+      "γd": "dry unit weight",
+      "Ws": "weight of solids",
+      "V": "total volume"
+     },
+     "source": "Typed in from p. 2-6.",
      "implemented_in": null
     },
     {
      "id": "Eq. 2-7",
      "description": "Equation 2-7, introduced by: \"h reference to Equation 2-5, when Ww = 0 the dry unit weight, γd, can be expressed as follows: For computations involving soils below the water table, the buoyant unit weight is frequently used where:\" (p. 2-6).",
+     "formula": "γb = γsat – γw",
+     "variables": {
+      "γb": "buoyant unit weight (also effective unit weight γ' or submerged unit weight γsub)",
+      "γsat": "saturated unit weight",
+      "γw": "unit weight of water (62.4 lb/ft3, 9.81 kN/m3)"
+     },
+     "source": "Typed in from p. 2-6.",
      "implemented_in": null
     },
     {
      "id": "Eq. 2-8",
      "description": "Equation 2-8, introduced by: \" be expressed as follows: For computations involving soils below the water table, the buoyant unit weight is frequently used where: where, γw equals the unit weight of water and is defined as follows:\" (p. 2-6).",
+     "formula": "γw = Ww / Vw",
+     "variables": {
+      "γw": "unit weight of water (62.4 lb/ft3, 9.81 kN/m3)",
+      "Ww": "weight of water",
+      "Vw": "volume of water"
+     },
+     "source": "Typed in from p. 2-6.",
      "implemented_in": null
     },
     {
      "id": "Eq. 2-9",
      "description": "Equation 2-9, introduced by: \"A ratio of Ws to Vs, is known as the unit weight of the solid phase, γs, and is expressed as follows:\" (p. 2-6).",
+     "formula": "γs = Ws / Vs",
+     "variables": {
+      "γs": "unit weight of the solid phase",
+      "Ws": "weight of solids",
+      "Vs": "volume of solids"
+     },
+     "source": "Typed in from p. 2-6.",
      "implemented_in": null
     },
     {
