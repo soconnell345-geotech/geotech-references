@@ -2,7 +2,8 @@
 
 Digitized tables from GEC-13, Ground Modification Methods Reference
 Manual: FHWA-NHI-16-027 (Volume I, chapters 1-5) and FHWA-NHI-16-028
-(Volume II, chapters 6-10; the Table 8-1 and 8-6 lookups). Follows the DM7
+(Volume II, chapters 6-10; the Table 8-1 and 8-6 lookups), and the deep
+dynamic compaction depth, Eq. 4-1 (``equation_4_1_ddc_depth``). Follows the DM7
 pattern: private data with ``_TABLE_*`` prefix, public lookup functions,
 case-insensitive keys.
 """
@@ -806,76 +807,147 @@ def table_4_3_applied_energy(soil_type: str = "") -> list:
 
 
 # ============================================================================
-# Deep Dynamic Compaction — Depth of Influence
-# D_max = n * sqrt(W * H) (Lukas 1995)
-# n = empirical coefficient depending on soil type
+# Deep Dynamic Compaction — Depth of Improvement, Eq. 4-1
+# FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Sec. 2.3.3.1, Eq. 4-1, p. 4-40;
+# the range of n from Figure 4-21 (Mayne et al. 1984), p. 4-41.
+# (REF-63: this replaces figure_4_1_ddc_depth's four soil types, n 0.35 to
+# 0.6 after Lukas 1995, which GEC-13 does not print; GEC-13 Figure 4-1,
+# p. 4-2, is a schematic illustration of deep dynamic compaction.)
 # ============================================================================
 
-_DDC_N_COEFFICIENTS = {
-    "pervious_coarse": {"n_low": 0.5, "n_high": 0.6,
-                        "description": "Clean sands and gravels"},
-    "semi_pervious": {"n_low": 0.35, "n_high": 0.5,
-                      "description": "Silty sands, sandy silts"},
-    "impervious": {"n_low": 0.35, "n_high": 0.40,
-                   "description": "Clays and silts (limited effectiveness)"},
-    "waste_fills": {"n_low": 0.35, "n_high": 0.5,
-                    "description": "Landfills, demolition debris, mine spoils"},
+_EQ_4_1_REFERENCE = (
+    "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Eq. 4-1, p. 4-40; "
+    "range of n from Figure 4-21 (Mayne et al. 1984), p. 4-41"
+)
+
+# n as p. 4-40 prints it: "approximately 0.5 for most soils ... A value of
+# 0.4 is typically used for landfills."
+_EQ_4_1_N = {
+    "most_soils": (0.5, "approximately 0.5 for most soils "
+                        "(GEC-13 Eq. 4-1, p. 4-40)"),
+    "landfill": (0.4, "0.4, typically used for landfills "
+                      "(GEC-13 Eq. 4-1, p. 4-40)"),
 }
 
+# "As shown in Figure 4-21, n varies between 0.3 and 0.8." (p. 4-40)
+_EQ_4_1_N_RANGE = (0.3, 0.8)
 
-def figure_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
-                         soil_type: str = "pervious_coarse") -> dict:
-    """Estimate depth of influence for deep dynamic compaction.
+_OLD_SOIL_TYPES = ("pervious_coarse", "semi_pervious", "impervious",
+                   "waste_fills")
 
-    Uses the Lukas (1995) empirical relationship:
-        D_max = n * sqrt(W * H)
-    where W = weight in tonnes, H = drop height in meters.
+
+def equation_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
+                           deposit: str = "most_soils",
+                           n: float = None) -> dict:
+    """Depth of improvement by deep dynamic compaction, GEC-13 Eq. 4-1.
+
+    FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Sec. 2.3.3.1, Eq. 4-1, p. 4-40:
+
+        D = n (W H)^(1/2)
+
+    D = depth of improvement in meters; W = mass of tamper in megagrams
+    (metric tonnes = 1.10 US ton); H = drop height in meters (1 meter =
+    3.28 feet). n is "an empirical coefficient that is approximately 0.5
+    for most soils. As shown in Figure 4-21, n varies between 0.3 and 0.8.
+    A value of 0.4 is typically used for landfills." GEC-13 prints no
+    table of n by soil type.
 
     Parameters
     ----------
     weight_tonnes : float
-        Drop weight in metric tonnes (typically 5-30 tonnes).
+        Tamper mass W in megagrams (metric tonnes).
     drop_height_m : float
-        Drop height in meters (typically 10-25 m).
-    soil_type : str
-        Soil classification: 'pervious_coarse', 'semi_pervious',
-        'impervious', or 'waste_fills'.
+        Drop height H in meters.
+    deposit : str
+        'most_soils' (n = 0.5, the default) or 'landfill' (n = 0.4), as
+        p. 4-40 prints them.
+    n : float, optional
+        A chosen n within Figure 4-21's range, 0.3 to 0.8 (p. 4-40); it
+        replaces the deposit's n. A value outside the range is refused.
 
     Returns
     -------
     dict
-        depth_low_m, depth_high_m, n_low, n_high, soil_type, description.
+        depth_m (at the n used), n, n_basis, deposit, depth_low_m and
+        depth_high_m (at n = 0.3 and 0.8, Figure 4-21's range), n_low,
+        n_high, range_basis, weight_tonnes, drop_height_m, reference,
+        choices.
 
     Raises
     ------
     ValueError
-        If weight or height is non-positive, or soil_type is unknown.
+        If W or H is not positive, the deposit is not one p. 4-40 names,
+        or n is outside 0.3 to 0.8.
     """
     if weight_tonnes <= 0:
         raise ValueError("weight_tonnes must be > 0")
     if drop_height_m <= 0:
         raise ValueError("drop_height_m must be > 0")
 
-    key = soil_type.lower().strip()
-    if key not in _DDC_N_COEFFICIENTS:
-        valid = ", ".join(_DDC_N_COEFFICIENTS.keys())
-        raise ValueError(f"Unknown soil_type '{soil_type}'. Valid: {valid}")
+    key = str(deposit).lower().strip()
+    if key not in _EQ_4_1_N:
+        valid = ", ".join(_EQ_4_1_N)
+        hint = ""
+        if key in _OLD_SOIL_TYPES:
+            hint = (" GEC-13 prints no table of n by soil type (Eq. 4-1, "
+                    "p. 4-40): n is about 0.5 for most soils and 0.4 for "
+                    "landfills, and varies between 0.3 and 0.8 (Figure "
+                    "4-21); give n to choose a value in that range.")
+        raise ValueError(f"Unknown deposit '{deposit}'. Valid: {valid}.{hint}")
 
-    data = _DDC_N_COEFFICIENTS[key]
+    n_low, n_high = _EQ_4_1_N_RANGE
+    if n is None:
+        n_used, n_basis = _EQ_4_1_N[key]
+        n_given = False
+    else:
+        n_used = float(n)
+        if not n_low <= n_used <= n_high:
+            raise ValueError(
+                f"n = {n} is outside 0.3 to 0.8, the range GEC-13 p. 4-40 "
+                f"gives from Figure 4-21")
+        n_basis = ("given; within 0.3 to 0.8, the range of Figure 4-21 "
+                   "(GEC-13 p. 4-40)")
+        n_given = True
+
     sqrt_wh = (weight_tonnes * drop_height_m) ** 0.5
-    d_low = data["n_low"] * sqrt_wh
-    d_high = data["n_high"] * sqrt_wh
 
     return {
-        "depth_low_m": round(d_low, 2),
-        "depth_high_m": round(d_high, 2),
-        "n_low": data["n_low"],
-        "n_high": data["n_high"],
+        "depth_m": round(n_used * sqrt_wh, 2),
+        "n": n_used,
+        "n_basis": n_basis,
+        "deposit": key,
+        "depth_low_m": round(n_low * sqrt_wh, 2),
+        "depth_high_m": round(n_high * sqrt_wh, 2),
+        "n_low": n_low,
+        "n_high": n_high,
+        "range_basis": ("n varies between 0.3 and 0.8, as shown in "
+                        "Figure 4-21 (GEC-13 p. 4-40)"),
         "weight_tonnes": weight_tonnes,
         "drop_height_m": drop_height_m,
-        "soil_type": key,
-        "description": data["description"],
+        "reference": _EQ_4_1_REFERENCE,
+        "choices": {
+            "n": {
+                "value": n_used,
+                "given": n_given,
+                "basis": n_basis,
+                "alternatives": ("0.5 most soils; 0.4 landfills; any value "
+                                 "0.3 to 0.8 (Figure 4-21)"),
+            },
+        },
     }
+
+
+def figure_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
+                         deposit: str = "most_soils",
+                         n: float = None) -> dict:
+    """Alias of equation_4_1_ddc_depth (GEC-13 Eq. 4-1, p. 4-40).
+
+    Kept under its old name, which cited a figure (REF-63); it returns
+    exactly what equation_4_1_ddc_depth returns. The old soil types are
+    refused: GEC-13 prints no table of n by soil type.
+    """
+    return equation_4_1_ddc_depth(weight_tonnes, drop_height_m,
+                                  deposit=deposit, n=n)
 
 
 # ============================================================================

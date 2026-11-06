@@ -9,6 +9,7 @@ from geotech_references.gec_13.tables import (
     table_2_1_pvd_applications,
     table_3_1_lightweight_fill,
     table_4_3_applied_energy,
+    equation_4_1_ddc_depth,
     figure_4_1_ddc_depth,
     table_8_1_jet_grouting_systems,
     table_8_6_soilcrete_strength,
@@ -323,47 +324,104 @@ class TestTable43:
 
 
 # ============================================================================
-# Figure 4-1: DDC Depth of Influence
+# Eq. 4-1: DDC Depth of Improvement (REF-63)
 # ============================================================================
 
-class TestFigure41:
-    """Tests for figure_4_1_ddc_depth()."""
+class TestEquation41DdcDepth:
+    """equation_4_1_ddc_depth(): D = n (W H)^0.5, GEC-13 Eq. 4-1, p. 4-40.
 
-    def test_pervious_typical(self):
-        """20-tonne weight dropped 20 m in clean sand."""
-        result = figure_4_1_ddc_depth(20.0, 20.0, "pervious_coarse")
-        assert result["depth_low_m"] == pytest.approx(10.0, abs=0.5)
-        assert result["depth_high_m"] == pytest.approx(12.0, abs=0.5)
+    W and H below are made-up values, not from any project.
+    """
 
-    def test_semi_pervious(self):
-        result = figure_4_1_ddc_depth(15.0, 15.0, "semi_pervious")
-        assert result["depth_low_m"] < result["depth_high_m"]
-        assert result["depth_low_m"] > 0
+    W, H = 12.0, 18.0          # made-up tamper mass (Mg) and drop (m)
 
-    def test_impervious(self):
-        result = figure_4_1_ddc_depth(10.0, 10.0, "impervious")
-        assert result["depth_low_m"] < result["depth_high_m"]
+    def _hand(self, n):
+        return n * (self.W * self.H) ** 0.5
+
+    def test_default_is_most_soils_n_05(self):
+        r = equation_4_1_ddc_depth(self.W, self.H)
+        assert r["n"] == 0.5
+        assert r["deposit"] == "most_soils"
+        assert r["depth_m"] == pytest.approx(self._hand(0.5), abs=0.005)
+        assert r["choices"]["n"]["given"] is False
+
+    def test_landfill_n_04(self):
+        r = equation_4_1_ddc_depth(self.W, self.H, "landfill")
+        assert r["n"] == 0.4
+        assert r["depth_m"] == pytest.approx(self._hand(0.4), abs=0.005)
+        assert "landfills" in r["n_basis"]
+
+    @pytest.mark.parametrize("n", [0.3, 0.4, 0.5, 0.65, 0.8])
+    def test_given_n_in_range(self, n):
+        r = equation_4_1_ddc_depth(self.W, self.H, n=n)
+        assert r["n"] == n
+        assert r["depth_m"] == pytest.approx(self._hand(n), abs=0.005)
+        assert r["choices"]["n"]["given"] is True
+        assert "Figure 4-21" in r["n_basis"]
+
+    def test_range_bounds_at_03_and_08(self):
+        r = equation_4_1_ddc_depth(self.W, self.H)
+        assert (r["n_low"], r["n_high"]) == (0.3, 0.8)
+        assert r["depth_low_m"] == pytest.approx(self._hand(0.3), abs=0.005)
+        assert r["depth_high_m"] == pytest.approx(self._hand(0.8), abs=0.005)
+        assert "Figure 4-21" in r["range_basis"]
+
+    def test_round_numbers(self):
+        # made-up: W H = 100 Mg-m, so (W H)^0.5 = 10 m
+        r = equation_4_1_ddc_depth(10.0, 10.0)
+        assert r["depth_m"] == 5.0
+        assert r["depth_low_m"] == 3.0
+        assert r["depth_high_m"] == 8.0
+        assert equation_4_1_ddc_depth(10.0, 10.0, "landfill")["depth_m"] == 4.0
+
+    @pytest.mark.parametrize("n", [0.29, 0.81, 1.0, 0.0])
+    def test_n_outside_range_refused(self, n):
+        with pytest.raises(ValueError, match="0.3 to 0.8"):
+            equation_4_1_ddc_depth(self.W, self.H, n=n)
+
+    @pytest.mark.parametrize("old", ["pervious_coarse", "semi_pervious",
+                                     "impervious", "waste_fills"])
+    def test_old_soil_types_refused(self, old):
+        with pytest.raises(ValueError, match="prints no table of n"):
+            equation_4_1_ddc_depth(self.W, self.H, old)
+
+    def test_unknown_deposit_refused(self):
+        with pytest.raises(ValueError, match="Unknown deposit"):
+            equation_4_1_ddc_depth(self.W, self.H, "peat")
 
     def test_zero_weight_raises(self):
         with pytest.raises(ValueError, match="must be > 0"):
-            figure_4_1_ddc_depth(0, 20.0)
+            equation_4_1_ddc_depth(0, 20.0)
 
     def test_negative_height_raises(self):
         with pytest.raises(ValueError, match="must be > 0"):
-            figure_4_1_ddc_depth(20.0, -5.0)
+            equation_4_1_ddc_depth(20.0, -5.0)
 
-    def test_unknown_soil_raises(self):
-        with pytest.raises(ValueError, match="Unknown soil_type"):
-            figure_4_1_ddc_depth(20.0, 20.0, "unknown_type")
+    def test_citation(self):
+        ref = equation_4_1_ddc_depth(self.W, self.H)["reference"]
+        assert "Eq. 4-1, p. 4-40" in ref
+        assert "Figure 4-21" in ref
+        assert "FHWA-NHI-16-027" in ref
+        assert "Lukas" not in ref
+        doc = equation_4_1_ddc_depth.__doc__
+        assert "Eq. 4-1, p. 4-40" in doc
 
-    def test_result_has_all_keys(self):
-        result = figure_4_1_ddc_depth(20.0, 15.0)
-        assert "depth_low_m" in result
-        assert "depth_high_m" in result
-        assert "n_low" in result
-        assert "n_high" in result
-        assert "soil_type" in result
-        assert "description" in result
+    def test_old_name_is_alias(self):
+        for args, kw in [((self.W, self.H), {}),
+                         ((self.W, self.H, "landfill"), {}),
+                         ((self.W, self.H), {"n": 0.7})]:
+            assert figure_4_1_ddc_depth(*args, **kw) == \
+                equation_4_1_ddc_depth(*args, **kw)
+        assert "Alias of equation_4_1_ddc_depth" in figure_4_1_ddc_depth.__doc__
+        with pytest.raises(ValueError, match="prints no table of n"):
+            figure_4_1_ddc_depth(self.W, self.H, "pervious_coarse")
+
+    def test_agent_source_labels(self):
+        from agents.gec13_agent import gec13_describe_method
+        import json
+        for name in ("equation_4_1_ddc_depth", "figure_4_1_ddc_depth"):
+            info = json.loads(gec13_describe_method(name))
+            assert "Eq. 4-1, p. 4-40" in info["reference"], info
 
 
 # ============================================================================

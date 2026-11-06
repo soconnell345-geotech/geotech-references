@@ -10,7 +10,7 @@ pip install geotech-references
 
 ## Overview
 
-This package provides 1,230 digitized functions from 33 reference packages, turning published figures, tables, and equations into callable Python code. 31 of the 33 packages also carry structured chapter text (see Text Retrieval below).
+This package provides 1,231 digitized functions from 33 reference packages, turning published figures, tables, and equations into callable Python code. 31 of the 33 packages also carry structured chapter text (see Text Retrieval below).
 
 ```python
 from geotech_references.dm7_1.chapter1 import table_1_4_uscs_classification
@@ -33,7 +33,7 @@ Function counts are the public functions defined in each package's modules (coun
 | `dm7_1` | UFS 3-220-10 Soil Mechanics (DM 7.1), 16 January 2026 | 147 |
 | `dm7_2` | UFC 3-220-20 Foundations and Earth Structures (DM 7.2) | 246 |
 
-### FHWA geotechnical manuals and micropiles (143 functions)
+### FHWA geotechnical manuals and micropiles (144 functions)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
@@ -46,7 +46,7 @@ Function counts are the public functions defined in each package's modules (coun
 | `gec_10` | Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024, 2018) | 12 |
 | `gec_11` | MSE Walls and Reinforced Soil Slopes (FHWA-NHI-10-024, -025) | 17 |
 | `gec_12` | Design and Construction of Driven Pile Foundations (FHWA-NHI-16-009) | 16 |
-| `gec_13` | Ground Modification Methods (FHWA-NHI-16-027 / -028, Vols I / II) | 15 |
+| `gec_13` | Ground Modification Methods (FHWA-NHI-16-027 / -028, Vols I / II) | 16 |
 | `gec_14` | Assuring Quality in Geotechnical Reporting Documents (FHWA-HIF-17-016) | - |
 | `micropile` | Micropile Design and Construction (FHWA-NHI-05-039) | 14 |
 | `fhwa_soils_foundations` | Soils and Foundations Reference Manual, Volumes I and II (FHWA-NHI-06-088, -089) | - |

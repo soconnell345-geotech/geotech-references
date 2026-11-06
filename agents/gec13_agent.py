@@ -215,6 +215,12 @@ def _load_registry():
     # two chapter 8 tables are Vol II (FHWA-NHI-16-028), not the tables
     # label's chapters 1-5 (REF-62 review).
     _FUNCTION_REFS = {
+        "equation_4_1_ddc_depth":
+            "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Eq. 4-1, p. 4-40; "
+            "range of n from Figure 4-21, p. 4-41",
+        "figure_4_1_ddc_depth":
+            "Alias of equation_4_1_ddc_depth: FHWA-NHI-16-027 (GEC-13) "
+            "Vol I, Ch. 4, Eq. 4-1, p. 4-40",
         "figure_4_3_suitability_number":
             "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Eq. 4-3 and Table 4-7, p. 4-73",
         "figure_5_2_area_replacement_ratio":
@@ -278,7 +284,7 @@ def gec13_agent(method: str, parameters_json: str) -> str:
     - PVD application matrix (Table 2-1)
     - Lightweight fill material properties (Table 3-1)
     - Deep dynamic compaction applied energy (Table 4-3)
-    - DDC depth of influence (Lukas 1995, Figure 4-1)
+    - DDC depth of improvement (Eq. 4-1, p. 4-40)
     - Vibro-compaction backfill suitability number (Brown 1977, Eq. 4-3)
     - Aggregate column area replacement ratio (Eq. 5-1)
     - Stone column settlement improvement factor (stress ratio, Eq. 5-4)
