@@ -355,11 +355,20 @@ class TestTable311:
         results = table_3_11_pet_durability()
         assert len(results) == 2
 
+    def test_rows_as_printed(self):
+        """GEC-11 Vol I Table 3-11, p. 3-36: both rows, labels and values."""
+        rows = [(r["product"], r["pH_5_to_8"], r["pH_3_to_5_or_8_to_9"])
+                for r in table_3_11_pet_durability()]
+        assert rows == [
+            ("Geotextiles (Mn < 20,000, 40 < CEG < 50)", 1.6, 2.0),
+            ("Coated geogrids, Geotextiles (Mn > 25,000, CEG < 30)", 1.15, 1.3),
+        ]
+
     def test_geotextile(self):
+        """The print lists geotextiles in both rows (by Mn and CEG)."""
         results = table_3_11_pet_durability("geotextile")
-        assert len(results) == 1
-        assert results[0]["pH_5_to_8"] == 1.6
-        assert results[0]["pH_3_to_5_or_8_to_9"] == 2.0
+        assert [(r["pH_5_to_8"], r["pH_3_to_5_or_8_to_9"])
+                for r in results] == [(1.6, 2.0), (1.15, 1.3)]
 
     def test_geogrid(self):
         results = table_3_11_pet_durability("geogrid")

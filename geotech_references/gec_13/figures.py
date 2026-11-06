@@ -405,11 +405,17 @@ def equation_11_1_ltds(t_ult_kn_m: float,
     t_ult_kn_m : float
         Ultimate tensile strength from index test (kN/m).
     rf_id : float
-        Installation damage reduction factor (typically 1.05–3.0).
+        Installation damage reduction factor. GEC-11 Vol I Table 3-9
+        (p. 3-32) prints 1.10 to 3.00 across its seven geosynthetics and
+        two backfill types.
     rf_cr : float
-        Creep reduction factor (typically 1.5–5.0 by polymer type).
+        Creep reduction factor. GEC-11 Vol I p. 3-33 prints typical ranges
+        by polymer: PET 2.5 to 1.6, PP 5 to 4.0, HDPE 5 to 2.6.
     rf_cbd : float
-        Chemical and biological degradation factor (typically 1.05–1.6).
+        Durability reduction factor (GEC-11's RF_D). GEC-11 Vol I p. 3-33:
+        it "can vary typically from 1.1 to 2.0". For PET, Table 3-11
+        (p. 3-36) prints 1.15 to 2.0; p. 3-36 allows a default of 1.3 when
+        the Table 3-12 index criteria are met.
     fs : float
         Overall factor of safety (default 1.0; AASHTO LRFD typically uses
         FS=1.0 with RF terms covering all uncertainty).

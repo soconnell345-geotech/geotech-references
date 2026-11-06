@@ -95,7 +95,7 @@ agents/
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
-tests/                         # 6,540 tests collected (`pytest --collect-only -q`, 2026-11-06)
+tests/                         # 6,541 tests collected (`pytest --collect-only -q`, 2026-11-06)
 docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
 references/                    # (legacy) source PDFs (git-ignored)
 ```
@@ -139,7 +139,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 247 | All 18 chapters complete (ch 1-18) |
-| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 135 | All 11 chapters complete (ch 1-11) |
+| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
 | gec_13 | FHWA-NHI-16-027 Ground Modification | 15 | 197 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
@@ -482,4 +482,4 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (6,540 tests collected on 2026-11-06 by `pytest --collect-only -q`)
+- Tests: `pytest tests/ -q` (6,541 tests collected on 2026-11-06 by `pytest --collect-only -q`)
