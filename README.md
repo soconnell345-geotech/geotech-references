@@ -43,10 +43,10 @@ Function counts are the public functions defined in each package's modules (coun
 | `gec_7` | Soil Nail Walls (FHWA-NHI-14-007) | 15 |
 | `gec_8` | Design and Construction of Continuous Flight Auger Piles (FHWA-HIF-07-03) | 5 |
 | `gec_9` | Laterally Loaded Deep Foundations (FHWA-HIF-18-031) | 5 |
-| `gec_10` | Drilled Shafts: Construction Procedures and LRFD Design Methods (FHWA-NHI-18-024, 2018) | 12 |
+| `gec_10` | Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024, 2018) | 12 |
 | `gec_11` | MSE Walls and Reinforced Soil Slopes (FHWA-NHI-10-024, -025) | 17 |
 | `gec_12` | Design and Construction of Driven Pile Foundations (FHWA-NHI-16-009) | 16 |
-| `gec_13` | Ground Modification Methods (FHWA-NHI-16-027) | 15 |
+| `gec_13` | Ground Modification Methods (FHWA-NHI-16-027 / -028, Vols I / II) | 15 |
 | `gec_14` | Assuring Quality in Geotechnical Reporting Documents (FHWA-HIF-17-016) | - |
 | `micropile` | Micropile Design and Construction (FHWA-NHI-05-039) | 14 |
 | `fhwa_soils_foundations` | Soils and Foundations Reference Manual, Volumes I and II (FHWA-NHI-06-088, -089) | - |
