@@ -8,10 +8,10 @@ from geotech_references.gec_13.tables import (
     table_1_6_unit_cost,
     table_2_1_pvd_applications,
     table_3_1_lightweight_fill,
-    table_4_1_ddc_parameters,
+    table_4_3_applied_energy,
     figure_4_1_ddc_depth,
-    table_7_2_deep_mixing_strength,
-    table_8_2_jet_grouting_systems,
+    table_8_1_jet_grouting_systems,
+    table_8_6_soilcrete_strength,
 )
 
 
@@ -276,29 +276,50 @@ class TestTable31:
 
 
 # ============================================================================
-# Table 4-1: DDC Design Parameters
+# Table 4-3: DDC Applied Energy Guidelines (REF-62)
 # ============================================================================
 
-class TestTable41:
-    """Tests for table_4_1_ddc_parameters()."""
+class TestTable43:
+    """table_4_3_applied_energy() against GEC-13 Vol I Table 4-3, p. 4-46."""
 
-    def test_all_entries(self):
-        results = table_4_1_ddc_parameters()
-        assert len(results) == 3
+    def test_all_rows(self):
+        assert [r["key"] for r in table_4_3_applied_energy()] == [
+            "pervious_coarse", "semi_pervious", "landfills"]
 
-    def test_pervious(self):
-        results = table_4_1_ddc_parameters("pervious")
-        assert len(results) >= 1
-        assert results[0]["max_depth_ft"] == 36
+    @pytest.mark.parametrize("key,ft,kj,pct", [
+        ("pervious_coarse", (4100, 5200), (200, 250), (33, 41)),
+        ("semi_pervious", (5200, 7200), (250, 350), (41, 60)),
+        ("landfills", (12400, 22700), (600, 1100), (100, 180)),
+    ])
+    def test_as_printed(self, key, ft, kj, pct):
+        (r,) = [x for x in table_4_3_applied_energy() if x["key"] == key]
+        assert (r["unit_applied_energy_ft_lbf_per_ft3_low"],
+                r["unit_applied_energy_ft_lbf_per_ft3_high"]) == ft
+        assert (r["unit_applied_energy_kj_per_m3_low"],
+                r["unit_applied_energy_kj_per_m3_high"]) == kj
+        assert (r["percent_standard_proctor_energy_low"],
+                r["percent_standard_proctor_energy_high"]) == pct
+        assert "Table 4-3" in r["reference"] and "p. 4-46" in r["reference"]
 
-    def test_impervious(self):
-        results = table_4_1_ddc_parameters("impervious")
-        assert len(results) == 1
-        assert results[0]["max_depth_ft"] == 20
+    def test_zone_filter(self):
+        (r,) = table_4_3_applied_energy("zone 1")
+        assert r["key"] == "pervious_coarse"
+
+    def test_units_agree_as_printed(self):
+        """The two printed unit columns agree: 1 kJ/m3 = 20.885 ft-lbf/ft3
+        (within the print's rounding), and the note's standard Proctor
+        12,400 ft-lbf/ft3 is 100 % on the landfill row."""
+        for r in table_4_3_applied_energy():
+            for end in ("low", "high"):
+                ft = r[f"unit_applied_energy_ft_lbf_per_ft3_{end}"]
+                kj = r[f"unit_applied_energy_kj_per_m3_{end}"]
+                assert ft == pytest.approx(kj * 20.885, rel=0.06)
+        (land,) = table_4_3_applied_energy("landfill")
+        assert land["unit_applied_energy_ft_lbf_per_ft3_low"] == 12400
+        assert land["percent_standard_proctor_energy_low"] == 100
 
     def test_no_match(self):
-        results = table_4_1_ddc_parameters("nonexistent")
-        assert results == []
+        assert table_4_3_applied_energy("nonexistent") == []
 
 
 # ============================================================================
@@ -346,97 +367,136 @@ class TestFigure41:
 
 
 # ============================================================================
-# Table 7-2: Deep Mixing Strength
+# Table 8-1: Jet Grouting Systems (REF-62)
 # ============================================================================
 
-class TestTable72:
-    """Tests for table_7_2_deep_mixing_strength()."""
-
-    def test_all_entries(self):
-        results = table_7_2_deep_mixing_strength()
-        assert len(results) == 7
-
-    def test_filter_clay(self):
-        results = table_7_2_deep_mixing_strength(soil_type="clay")
-        assert len(results) >= 2
-        assert all("clay" in r["soil_type"].lower() for r in results)
-
-    def test_filter_ddm(self):
-        results = table_7_2_deep_mixing_strength(method="DDM")
-        assert len(results) >= 3
-        assert all("DDM" in r["method"] or "dry" in r["method"].lower()
-                   for r in results)
-
-    def test_filter_wdm(self):
-        results = table_7_2_deep_mixing_strength(method="WDM")
-        assert len(results) >= 3
-
-    def test_sand_wdm_highest_strength(self):
-        """Sand WDM has the highest qu range."""
-        sand = table_7_2_deep_mixing_strength(soil_type="sand", method="WDM")
-        assert len(sand) == 1
-        assert sand[0]["qu_high_kpa"] == 4000
-
-    def test_organic_peat_lower_than_clay(self):
-        """Organic/peat has lower strength than mineral clay for same method."""
-        clay = table_7_2_deep_mixing_strength(soil_type="soft_clay", method="DDM")
-        peat = table_7_2_deep_mixing_strength(soil_type="organic", method="DDM")
-        assert clay[0]["qu_low_kpa"] > peat[0]["qu_low_kpa"]
-
-    def test_entries_have_required_fields(self):
-        results = table_7_2_deep_mixing_strength()
-        for entry in results:
-            assert "soil_type" in entry
-            assert "method" in entry
-            assert "qu_low_kpa" in entry
-            assert "qu_high_kpa" in entry
-            assert entry["qu_low_kpa"] < entry["qu_high_kpa"]
-
-    def test_no_match(self):
-        results = table_7_2_deep_mixing_strength(soil_type="nonexistent_xyz")
-        assert results == []
-
-
-# ============================================================================
-# Table 8-2: Jet Grouting Systems
-# ============================================================================
-
-class TestTable82:
-    """Tests for table_8_2_jet_grouting_systems()."""
+class TestTable81:
+    """table_8_1_jet_grouting_systems() against GEC-13 Vol II Table 8-1,
+    p. 8-26."""
 
     def test_all_systems(self):
-        results = table_8_2_jet_grouting_systems()
-        assert len(results) == 3
+        assert [r["system"] for r in table_8_1_jet_grouting_systems()] == [
+            "Single Fluid", "Double Fluid", "Triple Fluid",
+            "SuperJet/MegaJet/UltraJet/STRAJet", "X-Jet"]
 
-    def test_single_fluid(self):
-        results = table_8_2_jet_grouting_systems("single")
-        assert len(results) == 1
-        assert results[0]["column_diameter_mm_high"] <= 600
+    def test_single_fluid_as_printed(self):
+        (r,) = table_8_1_jet_grouting_systems("single")
+        assert r["advantages"] == [
+            "Simple system for equipment and tooling",
+            "Good for sealing vertical joints",
+            "Good in cohesionless soils"]
+        assert r["disadvantages"] == [
+            "Smallest geometry created", "Hardest to control heave",
+            "Difficult to control quality in cohesive soils"]
+        assert "Table 8-1" in r["reference"] and "p. 8-26" in r["reference"]
 
-    def test_triple_fluid_largest(self):
-        results = table_8_2_jet_grouting_systems("triple")
-        assert len(results) == 1
-        assert results[0]["column_diameter_mm_high"] == 2000
+    def test_triple_fluid_as_printed(self):
+        (r,) = table_8_1_jet_grouting_systems("triple")
+        assert "Best underpinning system" in r["advantages"]
+        assert r["disadvantages"] == [
+            "Most complex system due to equipment and tooling",
+            "Requires significant experience"]
 
-    def test_diameter_increases_with_system(self):
-        single = table_8_2_jet_grouting_systems("single")[0]
-        double = table_8_2_jet_grouting_systems("double")[0]
-        triple = table_8_2_jet_grouting_systems("triple")[0]
-        assert single["column_diameter_mm_high"] <= double["column_diameter_mm_high"]
-        assert double["column_diameter_mm_high"] <= triple["column_diameter_mm_high"]
-
-    def test_entries_have_required_fields(self):
-        results = table_8_2_jet_grouting_systems()
-        for entry in results:
-            assert "system" in entry
-            assert "column_diameter_mm_low" in entry
-            assert "column_diameter_mm_high" in entry
-            assert "strength_mpa_low" in entry
-            assert "strength_mpa_high" in entry
+    def test_no_invented_numbers(self):
+        """GEC-13 prints no diameter or strength per system."""
+        for r in table_8_1_jet_grouting_systems():
+            assert not any(k.startswith(("column_diameter", "strength"))
+                           for k in r)
+        assert "2.5 to 15 ft" in r["note"]
 
     def test_no_match(self):
-        results = table_8_2_jet_grouting_systems("quadruple")
-        assert results == []
+        assert table_8_1_jet_grouting_systems("quadruple") == []
+
+
+# ============================================================================
+# Table 8-6: Single-Fluid Soilcrete Strengths (REF-62)
+# ============================================================================
+
+class TestTable86:
+    """table_8_6_soilcrete_strength() against GEC-13 Vol II Table 8-6,
+    p. 8-71."""
+
+    @pytest.mark.parametrize("soil,low,high", [
+        ("sands and gravel", 750, 1250),
+        ("silty sands", 500, 750),
+        ("clays", 250, 500),
+        ("peat", None, 250),
+    ])
+    def test_as_printed(self, soil, low, high):
+        (r,) = table_8_6_soilcrete_strength(soil)
+        assert (r["ucs_psi_low"], r["ucs_psi_high"]) == (low, high)
+        assert "Table 8-6" in r["reference"] and "p. 8-71" in r["reference"]
+
+    def test_kpa_conversion(self):
+        (r,) = table_8_6_soilcrete_strength("clays")
+        assert (r["ucs_kpa_low"], r["ucs_kpa_high"]) == (1724, 3447)
+
+    def test_all_rows(self):
+        assert len(table_8_6_soilcrete_strength()) == 4
+
+    def test_no_match(self):
+        assert table_8_6_soilcrete_strength("nonexistent") == []
+
+
+# ============================================================================
+# REF-62: lookups whose values GEC-13 does not print are gone
+# ============================================================================
+
+class TestRef62Removed:
+    """GEC-13 Table 4-1 (p. 4-34) is tamper equipment, Table 8-2 (p. 8-38)
+    permeation grout components, and chapter 7 numbers no tables; the DDC,
+    deep mixing and jet grouting values that cited them match no held
+    manual."""
+
+    @pytest.mark.parametrize("name", [
+        "table_4_1_ddc_parameters",
+        "table_7_2_deep_mixing_strength",
+        "table_8_2_jet_grouting_systems",
+    ])
+    def test_not_in_gec13(self, name):
+        import geotech_references.gec_13.tables as t
+        assert not hasattr(t, name)
+
+
+class TestRef62Vol2Citations:
+    """GEC-13 Vol II's cover prints FHWA-NHI-16-028 (Vol I's prints -027):
+    the chapter 8 tables and the agent's Vol II labels cite -028 (REF-62
+    review)."""
+
+    @pytest.mark.parametrize("func", [
+        table_8_1_jet_grouting_systems,
+        table_8_6_soilcrete_strength,
+    ])
+    def test_vol2_tables_cite_16_028(self, func):
+        for r in func():
+            assert "FHWA-NHI-16-028" in r["reference"], r["key"]
+            assert "Vol II" in r["reference"], r["key"]
+            assert "16-027" not in r["reference"], r["key"]
+        assert "FHWA-NHI-16-028" in func.__doc__
+        assert "16-027" not in func.__doc__
+
+    def test_table_4_3_stays_vol1(self):
+        for r in table_4_3_applied_energy():
+            assert "FHWA-NHI-16-027" in r["reference"]
+            assert "Vol I," in r["reference"]
+
+    def test_agent_labels_vol2_as_16_028(self):
+        from agents import gec13_agent
+        _, info = gec13_agent._load_registry()
+        for name in ("table_8_1_jet_grouting_systems",
+                     "table_8_6_soilcrete_strength",
+                     "equation_7_4_composite_modulus",
+                     "equation_8_1_groutability_ratio"):
+            ref = info[name]["reference"]
+            assert "FHWA-NHI-16-028" in ref and "Vol II" in ref, name
+            assert "16-027" not in ref and "Chapters 1-5" not in ref, name
+        assert "Table 8-1, p. 8-26" in (
+            info["table_8_1_jet_grouting_systems"]["reference"])
+        assert "Table 8-6, p. 8-71" in (
+            info["table_8_6_soilcrete_strength"]["reference"])
+        for name, entry in info.items():
+            ref = entry.get("reference", "")
+            assert not ("16-027" in ref and "Vol II" in ref), name
 
 
 # ============================================================================

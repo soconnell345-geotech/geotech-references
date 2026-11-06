@@ -211,7 +211,9 @@ def _load_registry():
         (tables, "tables", "FHWA-NHI-16-027, Chapters 1-5 Tables"),
     ]
     # Each figure/equation function's own printed source, as its docstring
-    # cites it; one module label named GEC-13 ch. 4-5 for all of them.
+    # cites it; one module label named GEC-13 ch. 4-5 for all of them. The
+    # two chapter 8 tables are Vol II (FHWA-NHI-16-028), not the tables
+    # label's chapters 1-5 (REF-62 review).
     _FUNCTION_REFS = {
         "figure_4_3_suitability_number":
             "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Eq. 4-3 and Table 4-7, p. 4-73",
@@ -220,10 +222,15 @@ def _load_registry():
         "figure_5_5_settlement_improvement":
             "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 5, Eq. 5-4, p. 5-32",
         "equation_7_4_composite_modulus":
-            "Not printed in FHWA-NHI-16-027 (GEC-13); Vol II Ch. 7, p. 7-16 "
-            "names a composite without an equation",
+            "Not printed in GEC-13; FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 7, "
+            "p. 7-16 names a composite without an equation",
         "equation_8_1_groutability_ratio":
-            "FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Eq. 8-2, p. 8-29",
+            "FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Eq. 8-2, p. 8-29",
+        "table_8_1_jet_grouting_systems":
+            "FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Table 8-1, p. 8-26",
+        "table_8_6_soilcrete_strength":
+            "FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Table 8-6, p. 8-71 "
+            "(Burke 2004)",
         "equation_11_1_ltds":
             "FHWA-NHI-10-024 (GEC-11) Vol I, Eq. 3-12, p. 3-28; "
             "GEC-13 Vol II Ch. 6, p. 6-37 refers to it",
@@ -270,11 +277,13 @@ def gec13_agent(method: str, parameters_json: str) -> str:
     - Comparative unit costs (Table 1-6, Nov 2016 dollars)
     - PVD application matrix (Table 2-1)
     - Lightweight fill material properties (Table 3-1)
-    - Deep dynamic compaction parameters (Table 4-1)
+    - Deep dynamic compaction applied energy (Table 4-3)
     - DDC depth of influence (Lukas 1995, Figure 4-1)
     - Vibro-compaction backfill suitability number (Brown 1977, Eq. 4-3)
     - Aggregate column area replacement ratio (Eq. 5-1)
     - Stone column settlement improvement factor (stress ratio, Eq. 5-4)
+    - Jet grouting systems compared (Table 8-1)
+    - Single-fluid jet grout soilcrete strengths (Table 8-6)
 
     Parameters:
         method: The function name. Use gec13_list_methods() to browse.
