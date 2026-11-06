@@ -207,9 +207,27 @@ def _load_registry():
 
     # --- Figure and table lookup functions ---
     _LOOKUP_MODULES = [
-        (figures, "figures", "FHWA-NHI-16-027, Chapters 4-5 Figures"),
+        (figures, "figures", "FHWA-NHI-16-027 (GEC-13)"),
         (tables, "tables", "FHWA-NHI-16-027, Chapters 1-5 Tables"),
     ]
+    # Each figure/equation function's own printed source, as its docstring
+    # cites it; one module label named GEC-13 ch. 4-5 for all of them.
+    _FUNCTION_REFS = {
+        "figure_4_3_suitability_number":
+            "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Eq. 4-3 and Table 4-7, p. 4-73",
+        "figure_5_2_area_replacement_ratio":
+            "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 5, Eq. 5-1, p. 5-31",
+        "figure_5_5_settlement_improvement":
+            "FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 5, Eq. 5-4, p. 5-32",
+        "equation_7_4_composite_modulus":
+            "Not printed in FHWA-NHI-16-027 (GEC-13); Vol II Ch. 7, p. 7-16 "
+            "names a composite without an equation",
+        "equation_8_1_groutability_ratio":
+            "FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Eq. 8-2, p. 8-29",
+        "equation_11_1_ltds":
+            "FHWA-NHI-10-024 (GEC-11) Vol I, Eq. 3-12, p. 3-28; "
+            "GEC-13 Vol II Ch. 6, p. 6-37 refers to it",
+    }
 
     for _mod, _category_prefix, _ref in _LOOKUP_MODULES:
         for _name, _func in inspect.getmembers(_mod, inspect.isfunction):
@@ -228,7 +246,8 @@ def _load_registry():
             if _name.startswith("_"):
                 continue
             cat = f"GEC-13 {_category_prefix.title()}"
-            _METHOD_INFO[_name] = _extract_info(_func, cat, _ref)
+            _METHOD_INFO[_name] = _extract_info(
+                _func, cat, _FUNCTION_REFS.get(_name, _ref))
 
     return _METHOD_REGISTRY, _METHOD_INFO
 

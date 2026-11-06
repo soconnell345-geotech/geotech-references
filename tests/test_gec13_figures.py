@@ -31,11 +31,11 @@ class TestFigure43:
         result = figure_4_3_suitability_number(0.2, 0.08, 0.04)
         assert result["suitability_number"] > 20
 
-    def test_silt_not_suitable(self):
-        """Silt: D50=0.03, D20=0.01, D10=0.005."""
+    def test_silt_unsuitable(self):
+        """Silt: D50=0.03, D20=0.01, D10=0.005. Table 4-7 prints ">50 Unsuitable"."""
         result = figure_4_3_suitability_number(0.03, 0.01, 0.005)
         assert result["suitability_number"] > 50
-        assert result["rating"] == "Not suitable"
+        assert result["rating"] == "Unsuitable"
 
     def test_coarse_sand_excellent(self):
         """Coarse sand: D50=2.0, D20=0.8, D10=0.4."""
@@ -348,6 +348,46 @@ class TestRef60Citations:
         # 1.7 * sqrt(3 + 4 + 4) = 5.638 -> 5.6
         assert b == pytest.approx(5.6, abs=1e-9)
         assert a != b
+
+    @pytest.mark.parametrize("d50, d20, d10, sn, rating", [
+        # Made-up sizes (mm), each worked by hand from Eq. 4-3 and rated by
+        # Table 4-7 (p. 4-73): 0-10 Excellent, 10-20 Good, 20-30 Fair,
+        # 30-40 Poor, >50 Unsuitable; no row for 40 to 50.
+        # 12 + 16 + 64 = 92; 1.7 * sqrt(92) = 1.7 * 9.5917 = 16.306
+        (0.5, 0.25, 0.125, 16.3, "Good"),
+        # 18.75 + 25 + 100 = 143.75; 1.7 * 11.9896 = 20.382
+        (0.4, 0.2, 0.1, 20.4, "Fair"),
+        # 48 + 64 + 256 = 368; 1.7 * 19.1833 = 32.612
+        (0.25, 0.125, 0.0625, 32.6, "Poor"),
+        # 48 + 100 + 625 = 773; 1.7 * 27.8029 = 47.265: Table 4-7 has no row
+        (0.25, 0.1, 0.04, 47.3, None),
+        # 300 + 400 + 1600 = 2300; 1.7 * 47.9583 = 81.529
+        (0.1, 0.05, 0.025, 81.5, "Unsuitable"),
+    ])
+    def test_suitability_rating_as_table_4_7_prints(self, d50, d20, d10, sn, rating):
+        r = figure_4_3_suitability_number(d50, d20, d10)
+        assert r["suitability_number"] == pytest.approx(sn, abs=1e-9)
+        assert r["rating"] == rating
+        if rating is None:
+            assert "Table 4-7" in r["note"] and "40 and 50" in r["note"]
+        else:
+            assert "note" not in r
+
+    def test_agent_labels_each_function_by_its_own_source(self):
+        """The refs agent names each figure/equation function's own printed
+        source, not one "Chapters 4-5 Figures" label for all."""
+        import inspect
+        from agents import gec13_agent
+        from geotech_references.gec_13 import figures
+        _, info = gec13_agent._load_registry()
+        for name, _f in inspect.getmembers(figures, inspect.isfunction):
+            if not name.startswith("_"):
+                assert "Chapters 4-5" not in info[name]["reference"], name
+        assert "Eq. 4-3" in info["figure_4_3_suitability_number"]["reference"]
+        assert "Eq. 8-2" in info["equation_8_1_groutability_ratio"]["reference"]
+        assert "Not printed" in info["equation_7_4_composite_modulus"]["reference"]
+        ltds = info["equation_11_1_ltds"]["reference"]
+        assert "FHWA-NHI-10-024" in ltds and "Eq. 3-12" in ltds
 
     def test_suitability_cites_eq_4_3(self):
         d = figure_4_3_suitability_number(1.0, 0.5, 0.25)["description"]

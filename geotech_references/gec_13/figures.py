@@ -30,14 +30,15 @@ def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
     the in situ soil. This is not GEC-13 Figure 4-3 (the SPT liquefaction
     chart); the function keeps its name because callers use it.
 
-    Rating (GEC-13 Table 4-7, p. 4-73, Brown 1977):
+    Rating, as printed in GEC-13 Table 4-7 "Backfill Evaluation Criteria",
+    p. 4-73 (Brown 1977):
         SN 0-10:  Excellent
         SN 10-20: Good
         SN 20-30: Fair
         SN 30-40: Poor
         SN > 50:  Unsuitable
-    Table 4-7 prints no row for 40 to 50; this function calls 30-50 "Poor"
-    and above 50 "Not suitable".
+    Table 4-7 prints no row for 40 to 50, so for 40 < SN <= 50 the rating
+    is None and the result carries a ``note`` saying the table gives none.
 
     Parameters
     ----------
@@ -51,7 +52,8 @@ def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
     Returns
     -------
     dict
-        suitability_number, rating, d50_mm, d20_mm, d10_mm.
+        suitability_number, rating (None for 40 < SN <= 50), d50_mm,
+        d20_mm, d10_mm, description; ``note`` when the rating is None.
 
     Raises
     ------
@@ -65,25 +67,35 @@ def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
 
     sn = 1.7 * (3.0 / d50_mm**2 + 1.0 / d20_mm**2 + 1.0 / d10_mm**2) ** 0.5
 
+    # Table 4-7 (p. 4-73) bands, in its own words; it has no 40 to 50 row.
+    note = None
     if sn <= 10:
         rating = "Excellent"
     elif sn <= 20:
         rating = "Good"
     elif sn <= 30:
         rating = "Fair"
-    elif sn <= 50:
+    elif sn <= 40:
         rating = "Poor"
+    elif sn <= 50:
+        rating = None
+        note = ("No rating: GEC-13 Table 4-7 (p. 4-73) prints no band for a "
+                "suitability number between 40 and 50 (its rows end at "
+                "'30 to 40 Poor' and resume at '>50 Unsuitable').")
     else:
-        rating = "Not suitable"
+        rating = "Unsuitable"
 
-    return {
+    result = {
         "suitability_number": round(sn, 1),
         "rating": rating,
         "d50_mm": d50_mm,
         "d20_mm": d20_mm,
         "d10_mm": d10_mm,
-        "description": "Backfill suitability number for vibro-compaction, GEC-13 Eq. 4-3 (Brown 1977), p. 4-73",
+        "description": "Backfill suitability number for vibro-compaction, GEC-13 Eq. 4-3 (Brown 1977), p. 4-73, rated by Table 4-7",
     }
+    if note:
+        result["note"] = note
+    return result
 
 
 # ============================================================================

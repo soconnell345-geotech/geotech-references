@@ -76,6 +76,7 @@ fingerprints pass, so no re-record. No app branch.
 
 - Table 4-7 prints 30-40 Poor and >50 Unsuitable with no row for 40-50;
   the function calls 30-50 "Poor" and >50 "Not suitable" (docstring says so).
+  Fixed in review: see "Review and fixes" below.
 - Eq. 8-3 (NC = D10_soil/D95_grout, same page) is not computed.
 - `equation_7_4_composite_modulus` returns `stress_concentration_ratio`
   = E_col/E_soil, which is a modular ratio, not a stress ratio.
@@ -92,4 +93,80 @@ number is Eq. 4-3, the area replacement ratio Eq. 5-1, the groutability
 ratio Eq. 8-2, the long-term geosynthetic strength GEC-11 Eq. 3-12, and the
 deep-mixing composite modulus is marked as not printed in GEC-13. One
 answer moves: a groutability ratio between 24 and 25 now reads "Feasible",
-as GEC-13 p. 8-29 prints (N > 24). No other value changes.
+as GEC-13 p. 8-29 prints (N > 24). The backfill suitability number itself
+does not change; its rating now uses Table 4-7's own words (above 50 is
+"Unsuitable", was "Not suitable"), and between 40 and 50, where Table 4-7
+prints no band, it gives no rating and a note saying so (was "Poor").
+No other value changes.
+
+## Review and fixes (2026-11-06)
+
+**What the review checked.** An independent read of the branch diff
+(`912a99d...e87a779`) checked each changed citation against its printed
+page, from the PyMuPDF text and the rendered page where the content is an
+image: Eq. 4-3 and Table 4-7 (GEC-13 Vol I p. 4-73), Fig. 4-3 (p. 4-9),
+Eq. 5-1 (p. 5-31), the unit cell (pp. 5-29, 5-30), Fig. 5-2 (p. 5-12),
+Eq. 8-2 and its limits (Vol II p. 8-29), Eq. 8-1 (p. 8-17), every page of
+chapter 7 for a numbered equation (none), pp. 7-16 and 7-32, GEC-13
+p. 6-37 and GEC-11 Vol I Eq. 3-12 (p. 3-28). All matched. It also checked
+the callers in refs and the app: no signature changed, nothing calls the
+functions by name, and the page fingerprints did not move. Verdict:
+merge-ready, four low findings.
+
+**The four findings and what was done.**
+
+1. **Stale reference label in `agents/gec13_agent.py`.** Every
+   `figures.py` function was labelled "FHWA-NHI-16-027, Chapters 4-5
+   Figures", wrong for the ch. 7, ch. 8 and GEC-11 functions. Fixed: a
+   small map gives each function its own source as its docstring cites
+   it. Examples: "FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Eq. 8-2,
+   p. 8-29"; "FHWA-NHI-10-024 (GEC-11) Vol I, Eq. 3-12, p. 3-28; GEC-13
+   Vol II Ch. 6, p. 6-37 refers to it"; "Not printed in FHWA-NHI-16-027
+   (GEC-13); Vol II Ch. 7, p. 7-16 names a composite without an
+   equation". The module fallback label is now "FHWA-NHI-16-027 (GEC-13)".
+   A new test holds this.
+2. **The suitability rating was not in Table 4-7's words, and 40-50 had
+   no printed row.** Re-read Table 4-7 "Backfill Evaluation Criteria"
+   from the rendered page (p. 4-73): 0 to 10 Excellent, 10 to 20 Good,
+   20 to 30 Fair, 30 to 40 Poor, >50 Unsuitable, Source: Brown 1977.
+   There is no row for 40 to 50. Fixed in
+   `geotech_references/gec_13/figures.py`:
+   - above 50 now reads "Unsuitable" (was "Not suitable");
+   - 30-40 is "Poor";
+   - for 40 < SN <= 50 the rating is `None`, and the result carries a
+     `note`: "No rating: GEC-13 Table 4-7 (p. 4-73) prints no band for a
+     suitability number between 40 and 50 ..." (was "Poor");
+   - the result's description now says "rated by Table 4-7".
+   The suitability number itself is unchanged. The tests: the silt case
+   now expects "Unsuitable", and a new test works one made-up gradation
+   per band by hand from Eq. 4-3 (16.3 Good, 20.4 Fair, 32.6 Poor,
+   47.3 no rating with the note, 81.5 Unsuitable).
+3. **This note's location.** Left at the refs root as asked; the lead
+   moves it to the app's `module_work/ref60/CHECK.md` at merge. Its
+   "Noted, not fixed" list goes to BACKLOG then. The `tables.py` item
+   (three REF-25 leftovers citing the wrong tables) is the lead's new
+   backlog item; `tables.py` was not touched here.
+4. **Refs `CLAUDE.md` test counts.** Recounted by `pytest --collect-only
+   -q` after the test changes: `tests/test_gec13*.py` 212 (was 197;
+   the builder's 9 new tests plus the 6 here), `tests` 6,555 (was 6,540).
+   Updated at all four places.
+
+**The answers that move.**
+- Groutability: a ratio N between 24 and 25 now reads "Feasible" (was
+  "Uncertain"), because p. 8-29 prints "N > 24". This was the builder's
+  change; the review confirmed it.
+- Suitability: the NUMBER is unchanged (the D10 term was always there).
+  Only its rating words move: above 50 "Unsuitable" (was "Not suitable"),
+  and 40 < SN <= 50 gets no rating plus a note (was "Poor"), because
+  Table 4-7 prints no band there.
+- Nothing else changes. The new reference labels only show in the refs
+  agent's describe result.
+
+**Tests after the fixes** (logs in `C:/dev/tmp/ref60_fix/`, judged by exit
+code; the import was checked to be the worktree's package):
+- refs `test_gec13_figures.py`, `test_gec13_tables.py`,
+  `test_cover_citations.py`, `test_figure_captions.py`,
+  `test_references_agent.py`: exit 0, 264 passed, 2 xfailed.
+- app `webapp/tests/test_page_fingerprints.py` +
+  `funhouse_agent/tests/test_reference_adapters.py` with these refs on
+  PYTHONPATH: exit 0, 319 passed. No fingerprint moved.
