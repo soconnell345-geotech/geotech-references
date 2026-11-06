@@ -394,8 +394,11 @@ def equation_11_1_ltds(t_ult_kn_m: float,
     function's extra divisor, and its default 1.0 gives the printed
     equation. The function keeps its name because callers use it.
 
-    table_11_1_geosynthetic_reduction_factors() gives RF values by polymer
-    (that table's own citation is not checked here).
+    GEC-11 prints the reduction factors themselves: RF_ID in Vol I
+    Table 3-9 (p. 3-32; ``gec_11.tables.table_3_9_installation_damage``),
+    typical RF_CR ranges by polymer in an unnumbered list on p. 3-33, and
+    RF_D for PET in Table 3-11 (p. 3-36; ``gec_11.tables.table_3_11_pet_durability``).
+    GEC-13 prints no reduction-factor table.
 
     Parameters
     ----------
