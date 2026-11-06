@@ -14,7 +14,13 @@ off the print instead of being written by hand:
 3. an equation the PDF holds as an equation object (its glyphs come out one
    or two to a line) is replaced by ``[Eq. 9-5]`` and listed in the
    section's ``equations`` with the words that introduce it; the equation
-   itself is read on the printed page;
+   itself is read on the printed page, and the manifest's
+   ``printed_equations`` (``number``, ``page``, ``formula``, ``variables``,
+   optional ``notes``) give each listed equation its formula and symbols as
+   typed in by hand from the printed page (see ``add_printed_equations``);
+   an entry's ``fix`` (``{"find", "replace"}``, or a list of them) mends the
+   body text where the text layer lost or misplaced an equation, so its
+   number is marked there too;
 4. a table's cells, which come out the same way, are kept as a line of
    text ("0 5.14 1.0 0.0 23 18.1 ...") on a page that prints a table
    caption, and on a page with no caption when they are numbers but not a
@@ -44,6 +50,7 @@ Usage::
 
     python scripts/build_printed_text.py fhwa_soils_foundations
     python scripts/build_printed_text.py fhwa_soils_foundations --report
+    python scripts/build_printed_text.py fhwa_soils_foundations --text-only
 
 Requires PyMuPDF.
 """
@@ -575,6 +582,54 @@ def add_printed_tables(body: str, printed: list[dict]) -> str:
     return body
 
 
+def fix_printed_equations(body: str, printed: list[dict], applied: set) -> str:
+    """The body with each manifest ``fix`` applied: where the text layer
+    lost an equation (its glyphs taken for figure lettering) or put its
+    number by the wrong line, the entry's ``find`` text, as this builder
+    writes it, is replaced by ``replace``, read off the printed page. Each
+    fix applied is added to ``applied`` as (number, index)."""
+    for e in printed:
+        fixes = e.get("fix") or []
+        if isinstance(fixes, dict):
+            fixes = [fixes]
+        for k, f in enumerate(fixes):
+            if f["find"] in body:
+                body = body.replace(f["find"], f["replace"], 1)
+                applied.add((e["number"], k))
+    return body
+
+
+def add_printed_equations(body: str, equations: list[dict], printed: list[dict],
+                          attached: set) -> list[dict]:
+    """A section's ``equations`` in the order their ``[Eq. N]`` markers stand
+    in ``body`` (a marker a fix put there gets an entry saying the equation
+    is printed on the entry's page), each with the formula, the symbols and
+    any notes the manifest's ``printed_equations`` type in for it. Numbers
+    given a formula are added to ``attached``."""
+    by_num = {e["number"]: e for e in printed}
+    have = {e["id"][4:]: e for e in equations}
+    out = []
+    for num in dict.fromkeys(re.findall(r"\[Eq\. ([^\]]+)\]", body)):
+        eq = have.get(num)
+        if eq is None:
+            page = by_num.get(num, {}).get("page")
+            where = f" (p. {page})" if page else ""
+            eq = {"id": f"Eq. {num}", "description": f"Equation {num} as printed{where}.",
+                  "implemented_in": None}
+        p = by_num.get(num)
+        if p and p.get("formula"):
+            typed = {"id": eq["id"], "description": eq["description"],
+                     "formula": p["formula"], "variables": p.get("variables", {})}
+            if p.get("notes"):
+                typed["notes"] = p["notes"]
+            typed["source"] = f"Typed in from p. {p['page']}."
+            typed["implemented_in"] = eq.get("implemented_in")
+            eq = typed
+            attached.add(num)
+        out.append(eq)
+    return out
+
+
 def _eq_description(words: str, eq: str, label: str | None) -> str:
     words = _clean_ws(re.sub(r"\[[^\]]*\]", " ", words))
     m = re.search(r"([^.]*?[A-Za-z][^.]*)$", words)
@@ -608,6 +663,9 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     tables_on_page = {pages[i]["label"] for (kind, _), idx in printed_at.items()
                       if kind == "Table" for i in idx}
 
+    printed_eqs = vol.get("printed_equations", [])
+    fixes_applied: set = set()
+    eqs_attached: set = set()
     chapters, catalog = {}, []
     for ch in vol["chapters"]:
         n = ch["number"]
@@ -647,6 +705,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                                chapter=str(n), figs=figs,
                                tables_on_page=tables_on_page)
             body = add_printed_tables(body, vol.get("printed_tables", []))
+            body = fix_printed_equations(body, printed_eqs, fixes_applied)
             # the printed pages the section runs over (a chapter's last,
             # blank page prints no number)
             labels = [pages[stream[q][0]]["label"] for q in range(s, t)
@@ -672,10 +731,10 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 "title": title,
                 "body": body,
                 "key_points": [],
-                "equations": [
+                "equations": add_printed_equations(body, [
                     {"id": f"Eq. {eq}", "description": _eq_description(w, eq, lab),
                      "implemented_in": None}
-                    for eq, w, lab in _unique_eqs(eq_ids)],
+                    for eq, w, lab in _unique_eqs(eq_ids)], printed_eqs, eqs_attached),
                 "figures": sec_figs,
                 "tables": sec_tabs,
                 "applicability": (f"{vol['volume_id']}, Chapter {n} "
@@ -690,6 +749,19 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
             "sections": sections,
             "_missing": missing,
         }
+    built = {ch["number"] for ch in vol["chapters"] if ch["number"] not in skip}
+    problems = []
+    for e in printed_eqs:
+        if int(e["number"].split("-")[0]) not in built:
+            continue
+        fixes = e.get("fix") or []
+        for k in range(len([fixes] if isinstance(fixes, dict) else fixes)):
+            if (e["number"], k) not in fixes_applied:
+                problems.append(f"Eq. {e['number']}: fix {k} found no text to mend")
+        if e.get("formula") and e["number"] not in eqs_attached:
+            problems.append(f"Eq. {e['number']}: no section marks it, so its formula is unused")
+    if problems:
+        raise ValueError(f"{vol['volume_id']} printed_equations: " + "; ".join(problems))
     for num, f in figs.items():
         idx = printed_at.get(("Figure", num), [])
         target = None
@@ -769,27 +841,44 @@ def describe_figures(text_dir: Path, figs: list[dict], max_chars: int = 600) -> 
     return n
 
 
-def build(package: str, report: bool = False) -> int:
+def chapter_json(data: dict) -> str:
+    """A chapter file's text, as ``build`` writes it."""
+    return json.dumps(data, indent=1, ensure_ascii=False) + "\n"
+
+
+def build_chapters(package: str) -> tuple[dict, list]:
+    """Every chapter (number -> chapter dict, with ``_missing``) and the
+    figure-catalog entries, built from the manifest without writing
+    anything; the check that a rebuild reproduces the committed files."""
     mf = SCRIPTS / "manifests" / f"{package}.json"
     manifest = json.loads(mf.read_text(encoding="utf-8"))
     skip = set(manifest.get("skip_chapters", []))
+    chapters, all_figs = {}, []
+    for vol in manifest["volumes"]:
+        chs, catalog = build_volume(vol, mf.parent, skip)
+        chapters.update(chs)
+        all_figs.extend(catalog)
+    return chapters, all_figs
+
+
+def build(package: str, report: bool = False, catalog_too: bool = True) -> int:
+    mf = SCRIPTS / "manifests" / f"{package}.json"
+    manifest = json.loads(mf.read_text(encoding="utf-8"))
     text_dir = PKG / package / "text"
     text_dir.mkdir(parents=True, exist_ok=True)
-    all_figs = []
-    for vol in manifest["volumes"]:
-        chapters, catalog = build_volume(vol, mf.parent, skip)
-        all_figs.extend(catalog)
-        for n, data in chapters.items():
-            missing = data.pop("_missing")
-            (text_dir / f"chapter{n:02d}.json").write_text(
-                json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-            sizes = [len(s["body"]) for s in data["sections"]]
-            print(f"[{package}] ch {n}: {len(data['sections'])} sections, "
-                  f"largest body {max(sizes) if sizes else 0}, "
-                  f"headings not found: {missing or 'none'}")
+    chapters, all_figs = build_chapters(package)
+    for n, data in chapters.items():
+        missing = data.pop("_missing")
+        (text_dir / f"chapter{n:02d}.json").write_text(chapter_json(data), encoding="utf-8")
+        sizes = [len(s["body"]) for s in data["sections"]]
+        print(f"[{package}] ch {n}: {len(data['sections'])} sections, "
+              f"largest body {max(sizes) if sizes else 0}, "
+              f"headings not found: {missing or 'none'}")
     all_figs.sort(key=lambda f: (f["volume"], f["chapter"],
                                  int(re.match(r"\d+-(\d+)", f["figure_number"]).group(1)),
                                  f["figure_number"]))
+    if not catalog_too:
+        return 0
     catalog = {
         "reference_id": manifest["reference_id"],
         "reference_title": manifest["reference_title"],
@@ -817,9 +906,13 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("packages", nargs="+")
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--text-only", action="store_true",
+                    help="write the chapter text only, leaving figures_catalog.json "
+                         "as it is (fhwa_soils_foundations: its catalog was checked "
+                         "against the print after the build, REF-51)")
     args = ap.parse_args(argv)
     for p in args.packages:
-        build(p, args.report)
+        build(p, args.report, catalog_too=not args.text_only)
     return 0
 
 

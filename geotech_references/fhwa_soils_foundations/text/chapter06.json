@@ -143,9 +143,23 @@
   {
    "section_id": "6.4",
    "title": "Circular Arc Failure",
-   "body": "[p. 6-9]\n\nExperience and observations of failures of embankments constructed over relatively deep deposits of soft soils have shown that when failure occurs, the embankment sinks down, the adjacent ground rises and the failure surface follows a circular arc as illustrated in Figure 6-5.\n\nFigure 6-5. Typical circular arc failure mechanism.\n\nAt failure the driving and resistance forces act as follows:\n\n• The force driving movement consists of the embankment weight. The driving moment is the product of the weight of the embankment acting through its center of gravity times the horizontal distance from the center of gravity to the center of rotation (LW).\n\n• The resisting force against movement is the total shear strength acting along the failure arc. The resisting moment is the product of the resisting force times the radius of the circle (LS).\n\nThe factor of safety against slope instability is equal to the ratio of the resisting moment to driving moment.\n\nW S L Force Weight L Strength Shear Total Safety of Factor Moment riving D Moment Resisting\n\nFailure takes place when the factor of safety is less than 1, i.e., the driving moment > resisting moment. Fill Surface After Failure Fill Weight Force Failure Case LW Center LS Failure Movement Direction of Soft Clay Resistance Force Sum of Shear Strength Along Arc Fill",
+   "body": "[p. 6-9]\n\nExperience and observations of failures of embankments constructed over relatively deep deposits of soft soils have shown that when failure occurs, the embankment sinks down, the adjacent ground rises and the failure surface follows a circular arc as illustrated in Figure 6-5.\n\nFigure 6-5. Typical circular arc failure mechanism.\n\nAt failure the driving and resistance forces act as follows:\n\n• The force driving movement consists of the embankment weight. The driving moment is the product of the weight of the embankment acting through its center of gravity times the horizontal distance from the center of gravity to the center of rotation (LW).\n\n• The resisting force against movement is the total shear strength acting along the failure arc. The resisting moment is the product of the resisting force times the radius of the circle (LS).\n\nThe factor of safety against slope instability is equal to the ratio of the resisting moment to driving moment.\n\nFactor of Safety = (Total Shear Strength × LS) / (Weight Force × LW) = Resisting Moment / Driving Moment [Eq. 6-12]\n\nFailure takes place when the factor of safety is less than 1, i.e., the driving moment > resisting moment. Fill Surface After Failure Fill Weight Force Failure Case LW Center LS Failure Movement Direction of Soft Clay Resistance Force Sum of Shear Strength Along Arc Fill",
    "key_points": [],
-   "equations": [],
+   "equations": [
+    {
+     "id": "Eq. 6-12",
+     "description": "Equation 6-12 as printed (p. 6-9).",
+     "formula": "Factor of Safety = (Total Shear Strength × LS) / (Weight Force × LW) = Resisting Moment / Driving Moment",
+     "variables": {
+      "Total Shear Strength": "the resisting force, the total shear strength acting along the failure arc",
+      "LS": "radius of the circle",
+      "Weight Force": "the embankment weight acting through its center of gravity",
+      "LW": "horizontal distance from the center of gravity to the center of rotation"
+     },
+     "source": "Typed in from p. 6-9.",
+     "implemented_in": null
+    }
+   ],
    "figures": [
     "Figure 6-5: Typical circular arc failure mechanism"
    ],
@@ -207,6 +221,14 @@
     {
      "id": "Eq. 6-16",
      "description": "Equation 6-16, introduced by: \"When the water table is sloping, use Equation 6-16 to calculate the water pressure on the base of the slice: u = hw γw cos2 αw\" (p. 6-14).",
+     "formula": "u = hw γw cos² αw",
+     "variables": {
+      "u": "water pressure on the base of the slice",
+      "hw": "depth from ground water surface to the centroid point on the circle",
+      "γw": "unit weight of water",
+      "αw": "slope of water table from horizontal in degrees"
+     },
+     "source": "Typed in from p. 6-14.",
      "implemented_in": null
     },
     {

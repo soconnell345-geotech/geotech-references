@@ -237,26 +237,62 @@
     {
      "id": "Eq. 8-1",
      "description": "Equation 8-1, introduced by: \"trip footing with a rough base on a level homogeneous foundation material without the presence of water, the gross ultimate bearing capacity, qult, is expressed as follows (after Terzaghi, 1943): qult\" (p. 8-18).",
+     "formula": "qult = c (Nc) + q (Nq) + 0.5 (γ)(Bf)(Nγ)  [“Cohesion” term + “Surcharge” term + Foundation soil “Weight” term]",
+     "variables": {
+      "qult": "gross ultimate bearing capacity of a concentrically loaded rigid strip footing with a rough base on a level homogeneous foundation material without water (after Terzaghi, 1943)",
+      "c": "cohesion of the soil (ksf) (kPa)",
+      "q": "total surcharge at the base of the footing = qappl + γa Df (ksf) (kPa); qappl = applied surcharge (ksf) (kPa); γa = unit weight of the overburden material above the base of the footing causing the surcharge pressure (kcf) (kN/m3)",
+      "Df": "depth of embedment (ft) (m) (Figure 8-1)",
+      "γ": "unit weight of the soil under the footing (kcf) (kN/m3)",
+      "Bf": "footing width, i.e., least lateral dimension of the footing (ft) (m) (Figure 8-1)",
+      "Nc, Nq, Nγ": "bearing capacity factors (dimensionless), Equations 8-2 to 8-5"
+     },
+     "source": "Typed in from p. 8-18.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-2",
      "description": "Equation 8-2, introduced by: \", least lateral dimension of the footing (ft) (m) (Figure 8-1) Nq = bearing capacity factor for the “surcharge” term (dimensionless)\" (p. 8-19).",
+     "formula": "Nq = e^(π tanφ) tan²(45° + φ/2)",
+     "variables": {
+      "Nq": "bearing capacity factor for the “surcharge” term (dimensionless)",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. 8-19.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-3",
      "description": "Equation 8-3, introduced by: \", least lateral dimension of the footing (ft) (m) (Figure 8-1) Nq = bearing capacity factor for the “surcharge” term (dimensionless) = bearing capacity factor for the “cohesion” term (dimensionless)\" (p. 8-19).",
+     "formula": "Nc = (Nq - 1) cotφ   for φ > 0°",
+     "variables": {
+      "Nc": "bearing capacity factor for the “cohesion” term (dimensionless)",
+      "Nq": "Equation 8-2",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. 8-19.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-4",
      "description": "Equation 8-4, introduced by: \", least lateral dimension of the footing (ft) (m) (Figure 8-1) Nq = bearing capacity factor for the “surcharge” term (dimensionless) = bearing capacity factor for the “cohesion” term (dimensionless)\" (p. 8-19).",
+     "formula": "Nc = 2 + π = 5.14   for φ = 0°",
+     "variables": {
+      "Nc": "bearing capacity factor for the “cohesion” term (dimensionless)"
+     },
+     "source": "Typed in from p. 8-19.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-5",
      "description": "Equation 8-5, introduced by: \"y factor for the “surcharge” term (dimensionless) = bearing capacity factor for the “cohesion” term (dimensionless) = bearing capacity factor for the “weight” term (dimensionless) = 2 (Nq + 1) tan( φ)\" (p. 8-19).",
+     "formula": "Nγ = 2 (Nq + 1) tan(φ)",
+     "variables": {
+      "Nγ": "bearing capacity factor for the “weight” term (dimensionless)",
+      "Nq": "Equation 8-2",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. 8-19.",
      "implemented_in": null
     }
    ],
@@ -567,16 +603,42 @@
     {
      "id": "Eq. 8-16",
      "description": "Equation 8-16 as printed (p. 8-45).",
+     "formula": "Si = C1 C2 Δp Σ(i=1 to n) ΔHi   where   ΔHi = Hc (Iz / XE)",
+     "variables": {
+      "Si": "immediate settlement of a spread footing (Schmertmann et al., 1978)",
+      "C1": "correction factor for strain relief due to embedment, Equation 8-17",
+      "C2": "correction factor for time-dependent (creep) increase in settlement, Equation 8-18",
+      "Δp": "net uniform applied stress (load intensity) at the foundation depth (Figure 8-21b)",
+      "n": "number of soil layers within the zone of strain influence (strain influence diagram)",
+      "Hc": "thickness of layer i (the symbol is not defined on p. 8-45)",
+      "Iz": "strain influence factor from Figure 8-21a (Bf is the least lateral effective footing dimension)",
+      "X": "factor used to determine the value of elastic modulus: with E from N160 or qc correlations of Table 5-16, X = 1.25 for the axisymmetric case (Lf/Bf = 1) and 1.75 for the plane strain case (Lf/Bf ≥ 10), interpolated for 1 < Lf/Bf ≤ 10; X = 1.0 if E is estimated from the range of elastic moduli in Table 5-16 or other sources",
+      "E": "elastic modulus of layer i (Table 5-16 in Chapter 5)"
+     },
+     "source": "Typed in from p. 8-45.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-17",
      "description": "Equation 8-17, introduced by: \"etric case) Bf (for plane strain case) Bf (width of footing) Depth to Peak Strain Influence Factor, Izp Bf/2 C1 = a correction factor to incorporate the effect of strain relief due to embedment where:\" (p. 8-47).",
+     "formula": "C1 = 1 – 0.5 (po / Δp) ≥ 0.5",
+     "variables": {
+      "C1": "correction factor to incorporate the effect of strain relief due to embedment",
+      "po": "effective in-situ overburden stress at the foundation depth",
+      "Δp": "net foundation pressure (Figure 8-21b)"
+     },
+     "source": "Typed in from p. 8-47.",
      "implemented_in": null
     },
     {
      "id": "Eq. 8-18",
      "description": "Equation 8-18, introduced by: \"depth and ∆p is the net foundation pressure as shown in Figure 8-21b C2 = a correction factor to incorporate time-dependent (creep) increase in settlement for t (years) after construction where: years\" (p. 8-47).",
+     "formula": "C2 = 1 + 0.2 log10 (t(years) / 0.1)",
+     "variables": {
+      "C2": "correction factor to incorporate time-dependent (creep) increase in settlement",
+      "t": "time after construction (years); 0.1 years gives the settlement immediately after construction (C2 = 1)"
+     },
+     "source": "Typed in from p. 8-47.",
      "implemented_in": null
     }
    ],
@@ -659,6 +721,16 @@
     {
      "id": "Eq. 8-19",
      "description": "Equation 8-19, introduced by: \"rock based on Young’s modulus of the intact rock. In this equation, the stress applied at the top of the rock surface can be calculated by using the stress distribution methods presented in Chapter 2.\" (p. 8-58).",
+     "formula": "δv = Cd Δp Bf (1 – ν²) / Em",
+     "variables": {
+      "δv": "vertical settlement at surface",
+      "Cd": "shape and rigidity factors (Table 8-13)",
+      "Δp": "change in stress at top of rock surface due to applied footing load",
+      "Bf": "footing width or diameter",
+      "ν": "Poisson’s ratio (Table 5-22 in Chapter 5)",
+      "Em": "Young’s modulus of rock mass (Section 5.12.1 in Chapter 5)"
+     },
+     "source": "Typed in from p. 8-58.",
      "implemented_in": null
     }
    ],

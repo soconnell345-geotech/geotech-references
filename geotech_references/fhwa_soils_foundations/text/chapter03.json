@@ -408,6 +408,13 @@
     {
      "id": "Eq. 3-2",
      "description": "Equation 3-2, introduced by: \"If energy efficiency (Ef) is measured, then the energy-corrected SPT N-value adjusted to 60% efficiency (N60) is given by: N60 = (Ef/60) Nmeas\" (p. 3-55).",
+     "formula": "N60 = (Ef/60) Nmeas",
+     "variables": {
+      "N60": "energy-corrected SPT N-value adjusted to 60% efficiency",
+      "Ef": "measured energy efficiency (percent); in absence of data AASHTO recommends Ef = 60 for rope and cathead systems and Ef = 80 for automatic hammer systems",
+      "Nmeas": "N-value measured in the field during the test"
+     },
+     "source": "Typed in from p. 3-55.",
      "implemented_in": null
     }
    ],
@@ -427,6 +434,14 @@
     {
      "id": "Eq. 3-3",
      "description": "Equation 3-3, introduced by: \"The energy- corrected blow count normalized for overburden is referred to as N160, and is equal to: N160=CN N60\" (p. 3-56).",
+     "formula": "N160 = CN N60, with CN = [0.77 log10 (20/po)], and CN < 2.0",
+     "variables": {
+      "N160": "energy-corrected blow count normalized for overburden (to 1 tsf)",
+      "CN": "overburden correction factor (Peck et al., 1974); the constants are unit dependent",
+      "po": "vertical effective pressure at the depth where the SPT test is performed (tsf)",
+      "N60": "SPT blow count corrected for hammer efficiency (blows/ft), Equation 3-2"
+     },
+     "source": "Typed in from p. 3-56.",
      "implemented_in": null
     }
    ],

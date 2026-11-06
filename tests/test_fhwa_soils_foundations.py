@@ -172,3 +172,106 @@ def test_volume_cover_designation(vol):
     for c in _chapters():
         if c["chapter"] in chapters:
             assert c["reference_id"] == rid
+
+
+# --- REF-38: the equations as printed -----------------------------------
+
+#: Equations the GeotechStaffEngineer app cites by number (its modules,
+#: adapters, calc packages, worked examples and backlog, 2026-11-06), plus
+#: the rest of the drilled-shaft set 9-36 to 9-47 they sit in. The app's own
+#: ``funhouse_agent/tests/test_nhi_cited_equations.py`` finds its citations
+#: by scanning its code, so a new one is caught there.
+CITED = (
+    "2-4", "2-7", "3-2", "3-3", "6-16", "7-8", "7-10",
+    "8-1", "8-16", "8-17", "8-18", "8-19",
+    "9-36", "9-37a", "9-37b", "9-38", "9-39", "9-40", "9-41", "9-42", "9-43",
+    "9-44", "9-45a", "9-45b", "9-46", "9-47",
+    "10-2", "10-3", "10-4", "10-5", "10-10", "10-11",
+)
+
+
+def _equations():
+    out = {}
+    for c in _chapters():
+        for s in c["sections"]:
+            for e in s["equations"]:
+                out.setdefault(e["id"][4:], (s["section_id"], e))
+    return out
+
+
+def test_every_cited_equation_has_its_printed_formula():
+    eqs = _equations()
+    for num in CITED:
+        assert num in eqs, num
+        sid, e = eqs[num]
+        assert e.get("formula"), num
+        assert e.get("variables"), num
+        assert e["source"].startswith("Typed in from p. "), num
+
+
+def test_formulas_as_printed():
+    # spot checks against the printed pages
+    eqs = _equations()
+    assert eqs["9-42"][1]["formula"] == "βi = 1.5 – 0.135 √zi   with 1.2 > βi > 0.25"
+    assert "feet" in eqs["9-42"][1]["variables"]["zi"]
+    assert eqs["9-37b"][1]["formula"] == "α = 0.55 – 0.1(su/pa – 1.5)   for 1.5 < su/pa ≤ 2.5"
+    assert eqs["9-40"][1]["formula"] == "Nc = 6.0[1+0.2(z/D)];   Nc ≤ 9"
+    assert eqs["9-45a"][1]["formula"] == "For N60 ≤ 75:   qt = 1.2N60   in ksf"
+    assert eqs["3-3"][1]["formula"] == "N160 = CN N60, with CN = [0.77 log10 (20/po)], and CN < 2.0"
+    assert "tsf" in eqs["3-3"][1]["variables"]["po"]
+    assert eqs["10-10"][1]["formula"] == "pa′ = Ka (γz - u) - 2c′ √Ka"
+    assert eqs["8-17"][1]["formula"] == "C1 = 1 – 0.5 (po / Δp) ≥ 0.5"
+    # a misprint is typed as printed and said
+    assert "as printed" in eqs["10-8"][1]["notes"]
+
+
+def test_equation_numbers_the_text_layer_lost_are_marked():
+    # Eqs. 6-12 and 7-11 were dropped as figure lettering, 9-21 and 9-50 came
+    # out as scattered glyphs, and 9-34a's number was set by 9-34b's line
+    eqs = _equations()
+    for num, sid in (("6-12", "6.4"), ("7-11", "7.6.1"), ("9-21", "9.6.2.2"),
+                     ("9-34a", "9.12"), ("9-34b", "9.12"), ("9-50", "9.15.3")):
+        assert num in eqs and eqs[num][0] == sid, num
+        assert eqs[num][1].get("formula"), num
+    body = _retrieval.retrieve_section(REF, "9.12")["body"]
+    assert "Qu = Qs + Qt – W [Eq. 9-34a]\n\nQu ≤ 0.7Qs + W [Eq. 9-34b]" in body
+    body = _retrieval.retrieve_section(REF, "7.6.1")["body"]
+    assert "(γ)(H) > 3su [Eq. 7-11]" in body
+    # numbers the print skips are not invented
+    for num in ("5-11", "5-12", "5-13", "9-14", "9-27", "9-33"):
+        assert num not in eqs
+
+
+def test_rebuild_reproduces_the_committed_text():
+    # the formulas live in the manifest (printed_equations), so a rebuild
+    # keeps them; the figure catalog is left out (REF-51 edited it after the
+    # build, and --text-only leaves it alone)
+    pytest.importorskip("fitz")
+    for _, pdf, _ in VOLUMES.values():
+        if not (DOCS / pdf).exists():
+            pytest.skip("PDF not checked out")
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import build_printed_text as builder
+    finally:
+        sys.path.remove(str(ROOT / "scripts"))
+    chapters, _ = builder.build_chapters(REF)
+    assert sorted(chapters) == list(range(1, 13))
+    for n, data in chapters.items():
+        data.pop("_missing")
+        committed = (PKG / "text" / f"chapter{n:02d}.json").read_text(encoding="utf-8")
+        assert builder.chapter_json(data) == committed, f"chapter {n}"
+
+
+def test_manifest_formulas_match_the_text():
+    manifest = json.loads((ROOT / "scripts" / "manifests" / f"{REF}.json")
+                          .read_text(encoding="utf-8"))
+    eqs = _equations()
+    n = 0
+    for vol in manifest["volumes"]:
+        for p in vol.get("printed_equations", []):
+            if p.get("formula"):
+                assert eqs[p["number"]][1]["formula"] == p["formula"], p["number"]
+                n += 1
+    assert n >= len(CITED)
