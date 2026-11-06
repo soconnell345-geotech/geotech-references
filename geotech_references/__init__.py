@@ -9,7 +9,7 @@ gec_7 : FHWA-NHI-14-007 — Soil Nail Walls
 gec_10 : FHWA-NHI-18-024 — Drilled Shafts (2018 edition)
 gec_11 : FHWA-NHI-10-024 — MSE Walls & Slopes
 gec_12 : FHWA-NHI-16-009 — Driven Pile Foundations
-gec_13 : FHWA-NHI-16-027 — Ground Modification Methods
+gec_13 : FHWA-NHI-16-027 / -028 (Vols I / II) — Ground Modification Methods
 micropile : FHWA-NHI-05-039 — Micropile Design & Construction
 ufc_backfill : UFC 3-220-04N — Backfill for Subsurface Structures
 ufc_expansive : UFC 3-220-07 — Foundations in Expansive Soils

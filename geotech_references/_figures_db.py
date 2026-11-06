@@ -145,7 +145,10 @@ def _fill_db(conn: sqlite3.Connection) -> None:
                 ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
                 (
-                    reference, ref_id, ref_title, volume,
+                    # A volume printed under its own number (GEC-13 Vol II,
+                    # FHWA-NHI-16-028) carries it per figure; it wins (REF-31).
+                    reference, fig.get("reference_id") or ref_id, ref_title,
+                    fig.get("volume", volume),
                     fig.get("figure_number", ""),
                     fig.get("caption", ""),
                     fig.get("description", "") or "",

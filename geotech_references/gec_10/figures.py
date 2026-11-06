@@ -1,7 +1,7 @@
 """GEC-10 figure and equation lookup functions.
 
 Equations and figure correlations from FHWA-NHI-18-024 (GEC-10, 2018 edition),
-Drilled Shafts: Construction Procedures and LRFD Design Methods.
+Drilled Shafts: Construction Procedures and Design Methods.
 
 Note: Several charts from the 2010 edition (e.g., beta vs. depth for sand) were
 replaced in the 2018 edition with rational analytical formulas or tables.  Those

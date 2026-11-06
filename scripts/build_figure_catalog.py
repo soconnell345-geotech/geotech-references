@@ -777,7 +777,9 @@ def build_catalog(package: str) -> dict:
 
     Single-volume manifests carry a ``pdf_path``. Multi-volume manifests carry a
     ``volumes`` list of ``{pdf_path, volume}``; each figure is tagged with its own
-    volume's ``pdf_path`` so read-off resolves to the right PDF.
+    volume's ``pdf_path`` so read-off resolves to the right PDF, and with the
+    volume's ``reference_id`` where the volume carries its own publication
+    number (GEC-13 Vol II is FHWA-NHI-16-028; REF-31).
     """
     manifest = _load_manifest(package)
     volumes = manifest.get("volumes")
@@ -793,6 +795,8 @@ def build_catalog(package: str) -> dict:
             for f in vfigs:
                 f["pdf_path"] = vrel            # per-figure source PDF
                 f["volume"] = vol.get("volume")
+                if vol.get("reference_id"):     # a volume with its own number
+                    f["reference_id"] = vol["reference_id"]
             figs.extend(vfigs)
         if not figs:
             raise ValueError(f"No figures parsed from any volume of '{package}'")
@@ -824,6 +828,8 @@ def build_catalog(package: str) -> dict:
             rec["pdf_path"] = f["pdf_path"]
         if f.get("volume") is not None:
             rec["volume"] = f["volume"]
+        if f.get("reference_id"):          # volume printed under its own number
+            rec["reference_id"] = f["reference_id"]
         out_figs.append(rec)
 
     resolved = sum(1 for f in out_figs if not f["page_estimated"])

@@ -310,7 +310,7 @@ def equation_8_1_groutability_ratio(d15_soil_mm: float,
                                      d85_grout_mm: float) -> dict:
     """Groutability ratio for particulate permeation grouting (GEC-13 Eq. 8-2, p. 8-29).
 
-    GEC-13 (FHWA-NHI-16-027) Vol II, Ch. 8, Section 2.3.2.1, Eq. 8-2
+    GEC-13 Vol II (FHWA-NHI-16-028), Ch. 8, Section 2.3.2.1, Eq. 8-2
     (King and Bush 1963), printed p. 8-29:
 
         N = (D15)SOIL / (D85)GROUT

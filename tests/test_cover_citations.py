@@ -14,9 +14,16 @@ designation and date the library cites it by:
 * no citation in the package's own files names the manual with another
   series prefix (UFC for a UFS, or the reverse).
 
-The table is the place to add a manual. Rows marked ``xfail`` are known
-mismatches still to be corrected (strict, so fixing one fails the test until
-its mark is removed). Skips when the PDFs are not checked out.
+The table is the place to add a manual. A manual whose volumes are printed
+under their own numbers is checked one volume at a time (``"gec_13/2"``: the
+volume's manifest entry, its chapter files and its figures). Rows marked
+``xfail`` are known mismatches still to be corrected (strict, so fixing one
+fails the test until its mark is removed). Skips when the PDFs are not checked
+out.
+
+REF-31 (2026-11-06): GEC-10 is cited as FHWA-NHI-18-024 (its data is the
+2018 edition) and GEC-13 Vol II as FHWA-NHI-16-028; ufc_backfill's tables
+and equations are not in the held UFC 3-220-04FA, so it stays marked.
 """
 
 import json
@@ -49,7 +56,8 @@ COVERS = [
     ("ufc_structural", None, "UFC 3-301-01", "11 April 2023", False),
     ("em_2104", None, "EM 1110-2-2104", "1 November 2023", False),
     ("gec_12", None, "FHWA-NHI-16-009", None, False),
-    ("gec_13", None, "FHWA-NHI-16-027", None, False),
+    ("gec_13/1", None, "FHWA-NHI-16-027", None, False),
+    ("gec_13/2", None, "FHWA-NHI-16-028", None, False),
     ("gec_7", None, "FHWA-NHI-14-007", None, False),
     ("gec_4", None, "FHWA-IF-99-015", None, False),
     ("gec_5", None, "FHWA-NHI-16-072", None, False),
@@ -68,17 +76,18 @@ COVERS = [
     # gsa_collapse and california_trenching cite a title, not a designation;
     # aashto_1993 is a scan with no text layer; the wood_handbook PDF is not
     # in docs/.
-    pytest.param(
-        "gec_10", None, "FHWA-NHI-18-024", None, False,
-        marks=pytest.mark.xfail(strict=True, reason=(
-            "the manifest and figure catalog cite FHWA-NHI-10-016 (the 2010 "
-            "GEC 10); the PDF is FHWA-NHI-18-024, "
-            "September 2018")), id="gec_10"),
+    ("gec_10", None, "FHWA-NHI-18-024", None, False),
+    # REF-31: the package's tables and equations are not the held 04FA's
+    # (it prints CE 55 / MIL-STD-621 densities and Table 5-1, no ASTM D698
+    # table, no Broms equation, no filter ratios), so its citation is left
+    # as it is until the edition it came from is found.
     pytest.param(
         "ufc_backfill", None, "UFC 3-220-04FA", "16 January 2004", False,
         marks=pytest.mark.xfail(strict=True, reason=(
             "the data cites UFC 3-220-04N; the cover reads "
-            "UFC 3-220-04FA, 16 January 2004")), id="ufc_backfill"),
+            "UFC 3-220-04FA, 16 January 2004, and the data's tables and "
+            "equations are not in it (edition gap, REF-31)")),
+        id="ufc_backfill"),
 ]
 
 
@@ -101,11 +110,28 @@ def _manifest(pkg):
     return None, None
 
 
+def _split(pkg):
+    """``"gec_13/2"`` -> ``("gec_13", 2)``; ``"gec_10"`` -> ``("gec_10", None)``."""
+    name, _, vol = pkg.partition("/")
+    return name, int(vol) if vol else None
+
+
+def _volume_entry(man, volume):
+    for v in man.get("volumes") or []:
+        if v.get("volume") == volume:
+            return v
+    raise KeyError(f"no volume {volume} in the manifest")
+
+
 def _pdf(pkg, pdf):
     if pdf:
         return DOCS / pdf
+    pkg, volume = _split(pkg)
     path, man = _manifest(pkg)
-    rel = man.get("pdf_path") or man["volumes"][0]["pdf_path"]
+    if volume is not None:
+        rel = _volume_entry(man, volume)["pdf_path"]
+    else:
+        rel = man.get("pdf_path") or man["volumes"][0]["pdf_path"]
     return (path.parent / rel).resolve()
 
 
@@ -115,19 +141,38 @@ def _cover_text(path):
 
 
 def _cited_ids(pkg):
-    """(where, reference_id) of every data file of the package."""
+    """(where, reference_id) of every data file of the package (or volume)."""
+    pkg, volume = _split(pkg)
     out = []
     path, man = _manifest(pkg)
     if man:
-        out.append((path.name, man.get("reference_id")))
-    for f in sorted((PKG / pkg).glob("figures_catalog.json")) + sorted(
-            (PKG / pkg).glob("text/*.json")):
+        if volume is None:
+            out.append((path.name, man.get("reference_id")))
+        else:
+            out.append((f"{path.name} volume {volume}",
+                        _volume_entry(man, volume).get("reference_id")
+                        or man.get("reference_id")))
+    for f in sorted((PKG / pkg).glob("figures_catalog.json")):
         data = json.loads(f.read_text(encoding="utf-8"))
+        where = f"{pkg}/{f.name}"
+        if volume is None or volume == 1:
+            out.append((where, data.get("reference_id")))
+        for fig in data.get("figures", []):
+            if volume is not None and fig.get("volume") != volume:
+                continue
+            if volume is not None or fig.get("reference_id"):
+                out.append((f"{where} figure {fig.get('figure_number')}",
+                            fig.get("reference_id")
+                            or data.get("reference_id")))
+    for f in sorted((PKG / pkg).glob("text/*.json")):
+        data = json.loads(f.read_text(encoding="utf-8"))
+        if volume is not None and data.get("volume") != volume:
+            continue
         out.append((f"{pkg}/{f.relative_to(PKG / pkg)}",
                     data.get("reference_id")))
     from agents.references_agent import _REFERENCE_CATALOG
     entry = _REFERENCE_CATALOG.get(pkg)
-    if entry:
+    if entry and volume in (None, 1):
         out.append(("agents/references_agent.py",
                     re.split(r"\s+[(—]", entry["citation"], maxsplit=1)[0]))
     return out
@@ -161,7 +206,7 @@ def test_cited_designation_and_date_on_cover(pkg, pdf, designation, date,
         pat = re.compile(r"\b([A-Z]{2,5})\s+" + re.escape(number) +
                          r",[^\n]*?(\d{1,2}\s+[A-Z][a-z]{2,8}\.?\s+\d{4})")
         seen = 0
-        for f in sorted((PKG / pkg).glob("*.py")):
+        for f in sorted((PKG / _split(pkg)[0]).glob("*.py")):
             for m in pat.finditer(f.read_text(encoding="utf-8")):
                 seen += 1
                 assert f"{m.group(1)} {number}" == designation, (
