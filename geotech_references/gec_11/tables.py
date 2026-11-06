@@ -561,13 +561,13 @@ def table_3_9_installation_damage(geosynthetic: str = "") -> list:
 
 _TABLE_3_11 = [
     {
-        "product": "Geotextiles (Mn < 20,000, CEG 40-50)",
+        "product": "Geotextiles (Mn < 20,000, 40 < CEG < 50)",
         "pH_5_to_8": 1.6,
         "pH_3_to_5_or_8_to_9": 2.0,
         "notes": "Lower molecular weight PET; more susceptible to hydrolysis",
     },
     {
-        "product": "Coated geogrids (Mn > 25,000, CEG < 30)",
+        "product": "Coated geogrids, Geotextiles (Mn > 25,000, CEG < 30)",
         "pH_5_to_8": 1.15,
         "pH_3_to_5_or_8_to_9": 1.3,
         "notes": "Higher molecular weight PET; better durability",
@@ -577,6 +577,10 @@ _TABLE_3_11 = [
 
 def table_3_11_pet_durability(product: str = "") -> list:
     """Look up PET durability reduction factors from GEC-11 Table 3-11.
+
+    GEC-11 Vol I Table 3-11 (p. 3-36) lists geotextiles in both rows; the
+    row depends on Mn and CEG. So 'geotextile' returns both rows, and
+    'geogrid' or 'coated' returns only the Mn > 25,000, CEG < 30 row.
 
     Parameters
     ----------
