@@ -244,11 +244,18 @@ class TestEquation81:
         assert result["groutability_ratio"] < 11
         assert result["feasibility"] == "Not feasible"
 
-    def test_boundary_exactly_25(self):
-        """N exactly 25 → Uncertain (threshold is N > 25 for Feasible)."""
+    def test_boundary_exactly_24(self):
+        """N exactly 24 → Uncertain: p. 8-29 prints "possible ... if N > 24"."""
+        result = equation_8_1_groutability_ratio(0.24, 0.01)
+        assert result["groutability_ratio"] == pytest.approx(24.0, abs=0.01)
+        assert result["feasibility"] == "Uncertain"
+
+    def test_n_25_feasible_as_printed(self):
+        """N = 25 is past the printed limit of 24 → Feasible (REF-60; was
+        Uncertain under the old threshold of 25)."""
         result = equation_8_1_groutability_ratio(0.25, 0.01)
         assert result["groutability_ratio"] == pytest.approx(25.0, abs=0.01)
-        assert result["feasibility"] == "Uncertain"
+        assert result["feasibility"] == "Feasible"
 
     def test_boundary_exactly_11(self):
         """N exactly 11 → Uncertain."""
@@ -316,3 +323,61 @@ class TestEquation111:
         for key in ("ltds_kn_m", "combined_reduction_factor",
                     "t_ult_kn_m", "rf_id", "rf_cr", "rf_cbd", "fs"):
             assert key in result
+
+
+# ============================================================================
+# REF-60: citations checked against the GEC-13 / GEC-11 print
+# ============================================================================
+
+class TestRef60Citations:
+    """Each function cites the printed equation, not a figure or a missing one."""
+
+    def test_suitability_number_hand_worked_eq_4_3(self):
+        """Eq. 4-3 (p. 4-73) by hand, made-up D50 = 1.0, D20 = 0.5, D10 = 0.25 mm:
+        3/1.0^2 + 1/0.5^2 + 1/0.25^2 = 3 + 4 + 16 = 23;
+        1.7 * sqrt(23) = 1.7 * 4.79583 = 8.1529 -> 8.2, Excellent.
+        Without the 1/(D10)^2 term it would be 1.7 * sqrt(7) = 4.50."""
+        r = figure_4_3_suitability_number(1.0, 0.5, 0.25)
+        assert r["suitability_number"] == pytest.approx(8.2, abs=1e-9)
+        assert r["rating"] == "Excellent"
+        assert r["suitability_number"] != pytest.approx(4.5, abs=0.05)
+
+    def test_suitability_number_d10_changes_answer(self):
+        a = figure_4_3_suitability_number(1.0, 0.5, 0.25)["suitability_number"]
+        b = figure_4_3_suitability_number(1.0, 0.5, 0.5)["suitability_number"]
+        # 1.7 * sqrt(3 + 4 + 4) = 5.638 -> 5.6
+        assert b == pytest.approx(5.6, abs=1e-9)
+        assert a != b
+
+    def test_suitability_cites_eq_4_3(self):
+        d = figure_4_3_suitability_number(1.0, 0.5, 0.25)["description"]
+        doc = figure_4_3_suitability_number.__doc__
+        assert "Eq. 4-3" in d and "p. 4-73" in d
+        assert "Eq. 4-3" in doc and "Figure 4-3 (" not in doc.split("This is not")[0]
+
+    def test_area_ratio_cites_eq_5_1(self):
+        d = figure_5_2_area_replacement_ratio(0.9, 2.4)["description"]
+        assert "Eq. 5-1" in d and "p. 5-31" in d
+        assert "Eq. 5-1" in figure_5_2_area_replacement_ratio.__doc__.splitlines()[0]
+
+    def test_groutability_cites_eq_8_2(self):
+        d = equation_8_1_groutability_ratio(0.5, 0.015)["description"]
+        assert "Eq. 8-2" in d and "p. 8-29" in d and "Eq. 8-1" not in d
+        assert "Eq. 8-2" in equation_8_1_groutability_ratio.__doc__.splitlines()[0]
+
+    def test_composite_modulus_says_not_printed(self):
+        d = equation_7_4_composite_modulus(50000, 1000, 0.2)["description"]
+        assert "not printed in GEC-13" in d and "Eq 7-4" not in d
+        first = equation_7_4_composite_modulus.__doc__.splitlines()[0]
+        assert "not printed in GEC-13" in first
+
+    def test_ltds_cites_gec11_eq_3_12(self):
+        d = equation_11_1_ltds(200.0, 1.3, 1.8, 1.3)["description"]
+        assert "GEC-11 Eq. 3-12" in d and "p. 3-28" in d and "11-1" not in d
+        first = equation_11_1_ltds.__doc__.splitlines()[0]
+        assert "GEC-11 Eq. 3-12" in first and "11-1" not in first
+
+    def test_ltds_default_is_printed_equation(self):
+        """GEC-11 Eq. 3-12: T_al = T_ult / (RF_ID * RF_CR * RF_D); made-up
+        T_ult = 100 kN/m, RFs 1.25, 2.0, 1.6 -> 100 / 4.0 = 25.0 kN/m."""
+        assert equation_11_1_ltds(100.0, 1.25, 2.0, 1.6)["ltds_kn_m"] == 25.0

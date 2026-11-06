@@ -253,8 +253,8 @@ def gec13_agent(method: str, parameters_json: str) -> str:
     - Lightweight fill material properties (Table 3-1)
     - Deep dynamic compaction parameters (Table 4-1)
     - DDC depth of influence (Lukas 1995, Figure 4-1)
-    - Vibro-compaction suitability number (Brown 1977, Figure 4-3)
-    - Aggregate column area replacement ratio (Figure 5-2)
+    - Vibro-compaction backfill suitability number (Brown 1977, Eq. 4-3)
+    - Aggregate column area replacement ratio (Eq. 5-1)
     - Stone column settlement improvement factor (stress ratio, Eq. 5-4)
 
     Parameters:
