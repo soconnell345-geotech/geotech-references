@@ -31,11 +31,11 @@ class TestFigure43:
         result = figure_4_3_suitability_number(0.2, 0.08, 0.04)
         assert result["suitability_number"] > 20
 
-    def test_silt_not_suitable(self):
-        """Silt: D50=0.03, D20=0.01, D10=0.005."""
+    def test_silt_unsuitable(self):
+        """Silt: D50=0.03, D20=0.01, D10=0.005. Table 4-7 prints ">50 Unsuitable"."""
         result = figure_4_3_suitability_number(0.03, 0.01, 0.005)
         assert result["suitability_number"] > 50
-        assert result["rating"] == "Not suitable"
+        assert result["rating"] == "Unsuitable"
 
     def test_coarse_sand_excellent(self):
         """Coarse sand: D50=2.0, D20=0.8, D10=0.4."""
@@ -244,11 +244,18 @@ class TestEquation81:
         assert result["groutability_ratio"] < 11
         assert result["feasibility"] == "Not feasible"
 
-    def test_boundary_exactly_25(self):
-        """N exactly 25 → Uncertain (threshold is N > 25 for Feasible)."""
+    def test_boundary_exactly_24(self):
+        """N exactly 24 → Uncertain: p. 8-29 prints "possible ... if N > 24"."""
+        result = equation_8_1_groutability_ratio(0.24, 0.01)
+        assert result["groutability_ratio"] == pytest.approx(24.0, abs=0.01)
+        assert result["feasibility"] == "Uncertain"
+
+    def test_n_25_feasible_as_printed(self):
+        """N = 25 is past the printed limit of 24 → Feasible (REF-60; was
+        Uncertain under the old threshold of 25)."""
         result = equation_8_1_groutability_ratio(0.25, 0.01)
         assert result["groutability_ratio"] == pytest.approx(25.0, abs=0.01)
-        assert result["feasibility"] == "Uncertain"
+        assert result["feasibility"] == "Feasible"
 
     def test_boundary_exactly_11(self):
         """N exactly 11 → Uncertain."""
@@ -316,3 +323,101 @@ class TestEquation111:
         for key in ("ltds_kn_m", "combined_reduction_factor",
                     "t_ult_kn_m", "rf_id", "rf_cr", "rf_cbd", "fs"):
             assert key in result
+
+
+# ============================================================================
+# REF-60: citations checked against the GEC-13 / GEC-11 print
+# ============================================================================
+
+class TestRef60Citations:
+    """Each function cites the printed equation, not a figure or a missing one."""
+
+    def test_suitability_number_hand_worked_eq_4_3(self):
+        """Eq. 4-3 (p. 4-73) by hand, made-up D50 = 1.0, D20 = 0.5, D10 = 0.25 mm:
+        3/1.0^2 + 1/0.5^2 + 1/0.25^2 = 3 + 4 + 16 = 23;
+        1.7 * sqrt(23) = 1.7 * 4.79583 = 8.1529 -> 8.2, Excellent.
+        Without the 1/(D10)^2 term it would be 1.7 * sqrt(7) = 4.50."""
+        r = figure_4_3_suitability_number(1.0, 0.5, 0.25)
+        assert r["suitability_number"] == pytest.approx(8.2, abs=1e-9)
+        assert r["rating"] == "Excellent"
+        assert r["suitability_number"] != pytest.approx(4.5, abs=0.05)
+
+    def test_suitability_number_d10_changes_answer(self):
+        a = figure_4_3_suitability_number(1.0, 0.5, 0.25)["suitability_number"]
+        b = figure_4_3_suitability_number(1.0, 0.5, 0.5)["suitability_number"]
+        # 1.7 * sqrt(3 + 4 + 4) = 5.638 -> 5.6
+        assert b == pytest.approx(5.6, abs=1e-9)
+        assert a != b
+
+    @pytest.mark.parametrize("d50, d20, d10, sn, rating", [
+        # Made-up sizes (mm), each worked by hand from Eq. 4-3 and rated by
+        # Table 4-7 (p. 4-73): 0-10 Excellent, 10-20 Good, 20-30 Fair,
+        # 30-40 Poor, >50 Unsuitable; no row for 40 to 50.
+        # 12 + 16 + 64 = 92; 1.7 * sqrt(92) = 1.7 * 9.5917 = 16.306
+        (0.5, 0.25, 0.125, 16.3, "Good"),
+        # 18.75 + 25 + 100 = 143.75; 1.7 * 11.9896 = 20.382
+        (0.4, 0.2, 0.1, 20.4, "Fair"),
+        # 48 + 64 + 256 = 368; 1.7 * 19.1833 = 32.612
+        (0.25, 0.125, 0.0625, 32.6, "Poor"),
+        # 48 + 100 + 625 = 773; 1.7 * 27.8029 = 47.265: Table 4-7 has no row
+        (0.25, 0.1, 0.04, 47.3, None),
+        # 300 + 400 + 1600 = 2300; 1.7 * 47.9583 = 81.529
+        (0.1, 0.05, 0.025, 81.5, "Unsuitable"),
+    ])
+    def test_suitability_rating_as_table_4_7_prints(self, d50, d20, d10, sn, rating):
+        r = figure_4_3_suitability_number(d50, d20, d10)
+        assert r["suitability_number"] == pytest.approx(sn, abs=1e-9)
+        assert r["rating"] == rating
+        if rating is None:
+            assert "Table 4-7" in r["note"] and "40 and 50" in r["note"]
+        else:
+            assert "note" not in r
+
+    def test_agent_labels_each_function_by_its_own_source(self):
+        """The refs agent names each figure/equation function's own printed
+        source, not one "Chapters 4-5 Figures" label for all."""
+        import inspect
+        from agents import gec13_agent
+        from geotech_references.gec_13 import figures
+        _, info = gec13_agent._load_registry()
+        for name, _f in inspect.getmembers(figures, inspect.isfunction):
+            if not name.startswith("_"):
+                assert "Chapters 4-5" not in info[name]["reference"], name
+        assert "Eq. 4-3" in info["figure_4_3_suitability_number"]["reference"]
+        assert "Eq. 8-2" in info["equation_8_1_groutability_ratio"]["reference"]
+        assert "Not printed" in info["equation_7_4_composite_modulus"]["reference"]
+        ltds = info["equation_11_1_ltds"]["reference"]
+        assert "FHWA-NHI-10-024" in ltds and "Eq. 3-12" in ltds
+
+    def test_suitability_cites_eq_4_3(self):
+        d = figure_4_3_suitability_number(1.0, 0.5, 0.25)["description"]
+        doc = figure_4_3_suitability_number.__doc__
+        assert "Eq. 4-3" in d and "p. 4-73" in d
+        assert "Eq. 4-3" in doc and "Figure 4-3 (" not in doc.split("This is not")[0]
+
+    def test_area_ratio_cites_eq_5_1(self):
+        d = figure_5_2_area_replacement_ratio(0.9, 2.4)["description"]
+        assert "Eq. 5-1" in d and "p. 5-31" in d
+        assert "Eq. 5-1" in figure_5_2_area_replacement_ratio.__doc__.splitlines()[0]
+
+    def test_groutability_cites_eq_8_2(self):
+        d = equation_8_1_groutability_ratio(0.5, 0.015)["description"]
+        assert "Eq. 8-2" in d and "p. 8-29" in d and "Eq. 8-1" not in d
+        assert "Eq. 8-2" in equation_8_1_groutability_ratio.__doc__.splitlines()[0]
+
+    def test_composite_modulus_says_not_printed(self):
+        d = equation_7_4_composite_modulus(50000, 1000, 0.2)["description"]
+        assert "not printed in GEC-13" in d and "Eq 7-4" not in d
+        first = equation_7_4_composite_modulus.__doc__.splitlines()[0]
+        assert "not printed in GEC-13" in first
+
+    def test_ltds_cites_gec11_eq_3_12(self):
+        d = equation_11_1_ltds(200.0, 1.3, 1.8, 1.3)["description"]
+        assert "GEC-11 Eq. 3-12" in d and "p. 3-28" in d and "11-1" not in d
+        first = equation_11_1_ltds.__doc__.splitlines()[0]
+        assert "GEC-11 Eq. 3-12" in first and "11-1" not in first
+
+    def test_ltds_default_is_printed_equation(self):
+        """GEC-11 Eq. 3-12: T_al = T_ult / (RF_ID * RF_CR * RF_D); made-up
+        T_ult = 100 kN/m, RFs 1.25, 2.0, 1.6 -> 100 / 4.0 = 25.0 kN/m."""
+        assert equation_11_1_ltds(100.0, 1.25, 2.0, 1.6)["ltds_kn_m"] == 25.0

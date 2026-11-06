@@ -10,23 +10,35 @@ from geotech_references._interpolation import _linterp
 
 
 # ============================================================================
-# Figure 4-3: Vibro-Compaction — Suitability by Grain Size
-# Soil suitability number SN (Brown 1977)
-# SN = 1.7 * sqrt(3/D50^2 + 1/D20^2 + 1/D10^2)
+# Eq. 4-3: Vibro-compaction backfill suitability number (Brown 1977), p. 4-73
+# SN = 1.7 * sqrt(3/D50^2 + 1/D20^2 + 1/D10^2), D in mm
+# The function keeps its old name (figure_4_3_...) because callers use it;
+# GEC-13 Figure 4-3 is "SPT liquefaction chart", not this relation.
 # ============================================================================
 
 def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
                                    d10_mm: float) -> dict:
-    """Soil suitability number for vibro-compaction (Brown 1977).
+    """Backfill suitability number for vibro-compaction (GEC-13 Eq. 4-3, p. 4-73).
 
-    SN = 1.7 * sqrt(3/D50^2 + 1/D20^2 + 1/D10^2)
+    GEC-13 (FHWA-NHI-16-027) Vol I, Ch. 4, Section 3.2.2 "Materials",
+    Eq. 4-3 (Brown 1977), printed p. 4-73:
 
-    Rating:
+        Suitability No. = 1.7 * sqrt(3/(D50)^2 + 1/(D20)^2 + 1/(D10)^2)
+
+    where D50, D20 and D10 are the grain sizes, in millimeters, at 50, 20
+    and 10 percent passing. It rates the BACKFILL fed to the vibrator, not
+    the in situ soil. This is not GEC-13 Figure 4-3 (the SPT liquefaction
+    chart); the function keeps its name because callers use it.
+
+    Rating, as printed in GEC-13 Table 4-7 "Backfill Evaluation Criteria",
+    p. 4-73 (Brown 1977):
         SN 0-10:  Excellent
         SN 10-20: Good
         SN 20-30: Fair
-        SN 30-50: Poor (may not be suitable)
-        SN > 50:  Not suitable
+        SN 30-40: Poor
+        SN > 50:  Unsuitable
+    Table 4-7 prints no row for 40 to 50, so for 40 < SN <= 50 the rating
+    is None and the result carries a ``note`` saying the table gives none.
 
     Parameters
     ----------
@@ -40,7 +52,8 @@ def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
     Returns
     -------
     dict
-        suitability_number, rating, d50_mm, d20_mm, d10_mm.
+        suitability_number, rating (None for 40 < SN <= 50), d50_mm,
+        d20_mm, d10_mm, description; ``note`` when the rating is None.
 
     Raises
     ------
@@ -54,41 +67,59 @@ def figure_4_3_suitability_number(d50_mm: float, d20_mm: float,
 
     sn = 1.7 * (3.0 / d50_mm**2 + 1.0 / d20_mm**2 + 1.0 / d10_mm**2) ** 0.5
 
+    # Table 4-7 (p. 4-73) bands, in its own words; it has no 40 to 50 row.
+    note = None
     if sn <= 10:
         rating = "Excellent"
     elif sn <= 20:
         rating = "Good"
     elif sn <= 30:
         rating = "Fair"
-    elif sn <= 50:
+    elif sn <= 40:
         rating = "Poor"
+    elif sn <= 50:
+        rating = None
+        note = ("No rating: GEC-13 Table 4-7 (p. 4-73) prints no band for a "
+                "suitability number between 40 and 50 (its rows end at "
+                "'30 to 40 Poor' and resume at '>50 Unsuitable').")
     else:
-        rating = "Not suitable"
+        rating = "Unsuitable"
 
-    return {
+    result = {
         "suitability_number": round(sn, 1),
         "rating": rating,
         "d50_mm": d50_mm,
         "d20_mm": d20_mm,
         "d10_mm": d10_mm,
-        "description": "Brown (1977) soil suitability number for vibro-compaction",
+        "description": "Backfill suitability number for vibro-compaction, GEC-13 Eq. 4-3 (Brown 1977), p. 4-73, rated by Table 4-7",
     }
+    if note:
+        result["note"] = note
+    return result
 
 
 # ============================================================================
-# Figure 5-2: Area Replacement Ratio for Aggregate Columns
-# as = (pi/4 * d^2) / A_tributary
-# A_tributary depends on pattern: triangular or square
+# Eq. 5-1: Area Replacement Ratio for Aggregate Columns (p. 5-31)
+# alpha_sc = A_sc / A;  A = tributary (unit cell) area, by pattern
+# The function keeps its old name (figure_5_2_...) because callers use it;
+# GEC-13 Figure 5-2 is "Top feed vibro-replacement", not this relation.
 # ============================================================================
 
 def figure_5_2_area_replacement_ratio(column_diameter_m: float,
                                        spacing_m: float,
                                        pattern: str = "triangular") -> dict:
-    """Area replacement ratio for aggregate columns (GEC-13 Figure 5-2).
+    """Area replacement ratio for aggregate columns (GEC-13 Eq. 5-1, p. 5-31).
 
-    as = Ac / At where Ac = pi/4 * d^2, and At depends on pattern:
-      - Triangular: At = 0.866 * s^2
-      - Square: At = s^2
+    GEC-13 (FHWA-NHI-16-027) Vol I, Ch. 5, Section 4.1.2.2, Eq. 5-1:
+    alpha_sc = A_sc / A, where A_sc is the area of the stone column after
+    compaction and A the total area within the unit cell; typical ratios
+    0.10 to 0.30 (p. 5-31). The unit cell is the tributary area about one
+    column (p. 5-30, Figure 5-17: a regular hexagon for a triangular
+    pattern). This function takes A_sc = pi/4 * d^2 and:
+      - Triangular: A = 0.866 * s^2 (the hexagon's area, sqrt(3)/2 * s^2)
+      - Square: A = s^2
+    This is not GEC-13 Figure 5-2 (top feed vibro-replacement); the
+    function keeps its name because callers use it.
 
     Parameters
     ----------
@@ -138,7 +169,7 @@ def figure_5_2_area_replacement_ratio(column_diameter_m: float,
         "column_diameter_m": column_diameter_m,
         "spacing_m": spacing_m,
         "pattern": pat,
-        "description": "Area replacement ratio for aggregate column design",
+        "description": "Area replacement ratio alpha_sc = A_sc / A for aggregate columns, GEC-13 Eq. 5-1 (p. 5-31)",
     }
 
 
@@ -202,18 +233,30 @@ def figure_5_5_settlement_improvement(area_replacement_ratio: float,
 
 
 # ============================================================================
-# Equation 7-4: Deep Mixing Composite Modulus
+# Deep mixing composite modulus (parallel, area-weighted model)
 # E_comp = a_s * E_col + (1 - a_s) * E_soil
+# NOT printed in GEC-13: chapter 7 numbers no equations and has no Eq. 7-4.
+# The function keeps its old name (equation_7_4_...) because callers use it.
 # ============================================================================
 
 def equation_7_4_composite_modulus(e_col_kpa: float,
                                     e_soil_kpa: float,
                                     area_replacement_ratio: float) -> dict:
-    """Composite modulus of a deep mixed treatment zone (GEC-13 Eq 7-4).
+    """Composite modulus of a deep mixed treatment zone (parallel model; not printed in GEC-13).
 
     E_comp = a_s * E_col + (1 - a_s) * E_soil
 
-    Typical column modulus: E_col = 50–200 * qu (E in kPa, qu in kPa).
+    GEC-13 does not print this equation. Its chapter 7 (Deep Mixing, Vol II)
+    numbers no equations, so there is no "Eq. 7-4". Step 5 of the design
+    procedure (Section 2.3.2.5, p. 7-16) says only that the treated zone
+    "is treated as a composite of the soil-cement elements and the
+    untreated zone", and the chapter defers to the FHWA (2013) deep mixing
+    manual, which is not in this library. The area-weighted (parallel,
+    equal-strain) form here is this library's own; it is not a printed
+    GEC-13 method. The function keeps its name because callers use it.
+
+    Column modulus: GEC-13's worked example takes E50 = 150 * qu from the
+    FHWA (2013) deep mixing manual (Section 3.3.3.2, p. 7-32).
 
     Parameters
     ----------
@@ -252,25 +295,34 @@ def equation_7_4_composite_modulus(e_col_kpa: float,
         "e_soil_kpa": e_soil_kpa,
         "area_replacement_ratio": a_s,
         "stress_concentration_ratio": round(n, 2),
-        "description": "Composite modulus of deep mixed treatment zone (parallel model)",
+        "description": "Composite modulus of a deep mixed zone, parallel area-weighted model (not printed in GEC-13; ch. 7 p. 7-16 names a composite without an equation)",
     }
 
 
 # ============================================================================
-# Equation 8-1: Groutability Ratio for Permeation Grouting
-# N = D15_soil / D85_grout
+# Eq. 8-2: Groutability Ratio for Permeation Grouting (p. 8-29)
+# N = (D15)SOIL / (D85)GROUT
+# The function keeps its old name (equation_8_1_...) because callers use it;
+# GEC-13 Eq. 8-1 is Darcy's law.
 # ============================================================================
 
 def equation_8_1_groutability_ratio(d15_soil_mm: float,
                                      d85_grout_mm: float) -> dict:
-    """Groutability ratio for particulate permeation grouting (GEC-13 Eq 8-1).
+    """Groutability ratio for particulate permeation grouting (GEC-13 Eq. 8-2, p. 8-29).
 
-    N = D15_soil / D85_grout
+    GEC-13 (FHWA-NHI-16-027) Vol II, Ch. 8, Section 2.3.2.1, Eq. 8-2
+    (King and Bush 1963), printed p. 8-29:
 
-    Interpretation:
-      N > 25:   Grouting feasible
-      11–25:    Grouting uncertain
+        N = (D15)SOIL / (D85)GROUT
+
+    Interpretation (p. 8-29): "Grouting is consistently possible in soils
+    if N > 24 or NC > 11, and is not possible when N < 11 or NC < 6."
+      N > 24:   Grouting feasible
+      11-24:    Grouting uncertain (between the printed limits)
       N < 11:   Grouting not feasible
+    NC (Eq. 8-3, (D10)SOIL / (D95)GROUT) is not computed here. This is not
+    GEC-13 Eq. 8-1 (Darcy's law); the function keeps its name because
+    callers use it.
 
     Parameters
     ----------
@@ -296,7 +348,7 @@ def equation_8_1_groutability_ratio(d15_soil_mm: float,
 
     n = d15_soil_mm / d85_grout_mm
 
-    if n > 25:
+    if n > 24:
         feasibility = "Feasible"
     elif n >= 11:
         feasibility = "Uncertain"
@@ -308,13 +360,16 @@ def equation_8_1_groutability_ratio(d15_soil_mm: float,
         "feasibility": feasibility,
         "d15_soil_mm": d15_soil_mm,
         "d85_grout_mm": d85_grout_mm,
-        "description": "Groutability ratio N = D15_soil / D85_grout for particulate permeation grouting",
+        "description": "Groutability ratio N = D15_soil / D85_grout for particulate permeation grouting, GEC-13 Eq. 8-2 (p. 8-29)",
     }
 
 
 # ============================================================================
-# Equation 11-1: Long-Term Design Strength (LTDS) for Geosynthetics
-# LTDS = T_ult / (RF_ID * RF_CR * RF_CBD * FS)
+# Long-Term Design Strength for Geosynthetics: GEC-11 Eq. 3-12 (p. 3-28)
+# T_al = T_ult / (RF_ID * RF_CR * RF_D)   (FS is this function's extra divisor)
+# GEC-13 has 10 chapters and no Eq. 11-1; it states the relation in words
+# (Vol II p. 6-37) and refers to GEC-11 Chapter 3. The function keeps its
+# old name (equation_11_1_...) because callers use it.
 # ============================================================================
 
 def equation_11_1_ltds(t_ult_kn_m: float,
@@ -322,11 +377,25 @@ def equation_11_1_ltds(t_ult_kn_m: float,
                         rf_cr: float,
                         rf_cbd: float,
                         fs: float = 1.0) -> dict:
-    """Long-term design strength for geosynthetic reinforcement (GEC-13 Eq 11-1).
+    """Long-term design strength of geosynthetic reinforcement (GEC-11 Eq. 3-12, p. 3-28).
 
     LTDS = T_ult / (RF_ID * RF_CR * RF_CBD * FS)
 
-    Use table_11_1_geosynthetic_reduction_factors() for RF values by polymer.
+    GEC-13 prints no equation for this: the manual has ten chapters, so
+    there is no "Eq. 11-1". GEC-13 Vol II Ch. 6, Section 4.6 (p. 6-37)
+    states it in words ("the quotient of the quick (or short-term) tensile
+    testing ... and the product of creep, installation damage, and
+    durability reduction factors") and refers to Chapter 3 of GEC 11. The
+    printed equation is GEC-11 (FHWA-NHI-10-024) Vol I Eq. 3-12, p. 3-28:
+
+        T_al = T_ult / RF = T_ult / (RF_ID * RF_CR * RF_D)
+
+    rf_cbd here is GEC-11's RF_D. ``fs`` is not in Eq. 3-12: it is this
+    function's extra divisor, and its default 1.0 gives the printed
+    equation. The function keeps its name because callers use it.
+
+    table_11_1_geosynthetic_reduction_factors() gives RF values by polymer
+    (that table's own citation is not checked here).
 
     Parameters
     ----------
@@ -369,5 +438,5 @@ def equation_11_1_ltds(t_ult_kn_m: float,
         "rf_cr": rf_cr,
         "rf_cbd": rf_cbd,
         "fs": fs,
-        "description": "Long-term design strength (LTDS) for geosynthetic reinforcement",
+        "description": "Long-term design strength of geosynthetic reinforcement, GEC-11 Eq. 3-12 (p. 3-28); GEC-13 p. 6-37 refers to it",
     }
