@@ -1,8 +1,10 @@
 """GEC-13 table lookup functions.
 
-Digitized tables from FHWA-NHI-16-027 (GEC-13), Ground Modification
-Methods Reference Manual, Volume I. Follows the DM7 pattern: private
-data with ``_TABLE_*`` prefix, public lookup functions, case-insensitive keys.
+Digitized tables from GEC-13, Ground Modification Methods Reference
+Manual: FHWA-NHI-16-027 (Volume I, chapters 1-5) and FHWA-NHI-16-028
+(Volume II, chapters 6-10; the Table 8-1 and 8-6 lookups). Follows the DM7
+pattern: private data with ``_TABLE_*`` prefix, public lookup functions,
+case-insensitive keys.
 """
 
 from geotech_references._interpolation import _linterp
@@ -878,7 +880,7 @@ def figure_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
 
 # ============================================================================
 # Table 8-1: Advantages and Disadvantages of Jet Grouting Systems
-# FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Sec. 2.2.2, p. 8-26.
+# FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Sec. 2.2.2, p. 8-26.
 # (REF-62: this replaces table_8_2_jet_grouting_systems, whose column
 # diameters and strengths by system no held manual prints; GEC-13 Table 8-2,
 # p. 8-38, is the permeation grouts of a case history.)
@@ -955,7 +957,7 @@ _TABLE_8_1 = {
     },
 }
 
-_TABLE_8_1_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Table 8-1 "
+_TABLE_8_1_REFERENCE = ("FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Table 8-1 "
                         "Advantages and Disadvantages of Jet Grouting "
                         "Systems, p. 8-26")
 _TABLE_8_1_NOTE = (
@@ -975,7 +977,7 @@ def table_8_1_jet_grouting_systems(system: str = "") -> list:
 
     The advantages and disadvantages of the single, double and triple fluid
     systems, SuperJet/MegaJet/UltraJet/STRAJet and X-Jet, as printed in
-    FHWA-NHI-16-027 (GEC-13) Vol II, Table 8-1, p. 8-26. GEC-13 gives no
+    FHWA-NHI-16-028 (GEC-13) Vol II, Table 8-1, p. 8-26. GEC-13 gives no
     column diameter or strength for each system: columns range from 2.5 to
     15 ft in diameter depending on the method (p. 8-71), and single-fluid
     soilcrete strengths by soil type are Table 8-6
@@ -1012,7 +1014,7 @@ def table_8_1_jet_grouting_systems(system: str = "") -> list:
 
 # ============================================================================
 # Table 8-6: Range of Typical Soilcrete Strengths - Single-Fluid System
-# FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Sec. 2.7.3, p. 8-71 (Burke 2004).
+# FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Sec. 2.7.3, p. 8-71 (Burke 2004).
 # ============================================================================
 
 _PSI_TO_KPA = 6.894757
@@ -1025,7 +1027,7 @@ _TABLE_8_6 = {
     "organic_silts_and_peats": ("Organic silts and peats", None, 250),
 }
 
-_TABLE_8_6_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Table 8-6 "
+_TABLE_8_6_REFERENCE = ("FHWA-NHI-16-028 (GEC-13) Vol II, Ch. 8, Table 8-6 "
                         "Range of Typical Soilcrete Strengths - Single-Fluid "
                         "System, p. 8-71 (Burke 2004)")
 _TABLE_8_6_NOTE = (
@@ -1043,7 +1045,7 @@ def table_8_6_soilcrete_strength(soil_type: str = "") -> list:
     """Typical single-fluid jet grout soilcrete strengths (GEC-13 Table 8-6).
 
     Soilcrete unconfined compressive strength by soil type, as printed in
-    FHWA-NHI-16-027 (GEC-13) Vol II, Table 8-6, p. 8-71 (Burke 2004): clean
+    FHWA-NHI-16-028 (GEC-13) Vol II, Table 8-6, p. 8-71 (Burke 2004): clean
     sands and gravel 750 to 1,250 psi; silts and silty sands 500 to 750;
     clays 250 to 500; organic silts and peats less than 250. The single-fluid
     system only; design values at most 50 % of the ultimate strength

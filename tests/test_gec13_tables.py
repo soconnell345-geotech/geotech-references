@@ -458,6 +458,47 @@ class TestRef62Removed:
         assert not hasattr(t, name)
 
 
+class TestRef62Vol2Citations:
+    """GEC-13 Vol II's cover prints FHWA-NHI-16-028 (Vol I's prints -027):
+    the chapter 8 tables and the agent's Vol II labels cite -028 (REF-62
+    review)."""
+
+    @pytest.mark.parametrize("func", [
+        table_8_1_jet_grouting_systems,
+        table_8_6_soilcrete_strength,
+    ])
+    def test_vol2_tables_cite_16_028(self, func):
+        for r in func():
+            assert "FHWA-NHI-16-028" in r["reference"], r["key"]
+            assert "Vol II" in r["reference"], r["key"]
+            assert "16-027" not in r["reference"], r["key"]
+        assert "FHWA-NHI-16-028" in func.__doc__
+        assert "16-027" not in func.__doc__
+
+    def test_table_4_3_stays_vol1(self):
+        for r in table_4_3_applied_energy():
+            assert "FHWA-NHI-16-027" in r["reference"]
+            assert "Vol I," in r["reference"]
+
+    def test_agent_labels_vol2_as_16_028(self):
+        from agents import gec13_agent
+        _, info = gec13_agent._load_registry()
+        for name in ("table_8_1_jet_grouting_systems",
+                     "table_8_6_soilcrete_strength",
+                     "equation_7_4_composite_modulus",
+                     "equation_8_1_groutability_ratio"):
+            ref = info[name]["reference"]
+            assert "FHWA-NHI-16-028" in ref and "Vol II" in ref, name
+            assert "16-027" not in ref and "Chapters 1-5" not in ref, name
+        assert "Table 8-1, p. 8-26" in (
+            info["table_8_1_jet_grouting_systems"]["reference"])
+        assert "Table 8-6, p. 8-71" in (
+            info["table_8_6_soilcrete_strength"]["reference"])
+        for name, entry in info.items():
+            ref = entry.get("reference", "")
+            assert not ("16-027" in ref and "Vol II" in ref), name
+
+
 # ============================================================================
 # REF-61: lookups GEC-13 does not print are gone
 # ============================================================================
