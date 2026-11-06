@@ -1,4 +1,4 @@
-"""GEC-10: Drilled Shafts — Construction Procedures and LRFD Design Methods.
+"""GEC-10: Drilled Shafts — Construction Procedures and Design Methods.
 
 FHWA-NHI-18-024, September 2018 (2nd edition; supersedes FHWA-NHI-10-016).
 

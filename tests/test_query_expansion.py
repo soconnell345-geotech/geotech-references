@@ -352,7 +352,7 @@ def test_auto_zero_literal_a_fired_group_keeps_the_query_words():
     # Neither the literal nor the substituted AND query matches; the slots
     # are filled by the query's words OR-ed with the synonyms, not by the
     # synonyms alone, so "layout" and "embankment" still rank the hits
-    # (FHWA-NHI-16-027 Ch. 7, deep mixing for embankment support).
+    # (FHWA-NHI-16-028 Ch. 7, deep mixing for embankment support).
     from geotech_references._query_expansion import or_fallback
     q = "DSM column layout for embankment support"
     assert _literal(_retrieval_db.reference_search, q, limit=5) == []

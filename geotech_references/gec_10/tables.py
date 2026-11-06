@@ -1,7 +1,7 @@
 """GEC-10 table lookup functions.
 
 Tables from FHWA-NHI-18-024 (GEC-10, 2018 edition), Drilled Shafts:
-Construction Procedures and LRFD Design Methods.  Resistance factors are
+Construction Procedures and Design Methods.  Resistance factors are
 consistent with AASHTO LRFD Bridge Design Specifications (2017a) except for
 lateral resistance, where this manual recommends 0.67/0.80 rather than the
 AASHTO default of 1.0 (see Section 8.1 and Table 9-1).

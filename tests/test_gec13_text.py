@@ -29,7 +29,9 @@ class TestLoadChapter:
         """Each chapter has required top-level fields."""
         data = load_chapter("gec_13", chapter)
         assert "reference_id" in data
-        assert data["reference_id"] == "FHWA-NHI-16-027"
+        # Each volume is printed under its own number (REF-31).
+        assert data["reference_id"] == (
+            "FHWA-NHI-16-027" if chapter <= 5 else "FHWA-NHI-16-028")
         assert "chapter_title" in data
         assert "sections" in data
         assert isinstance(data["sections"], list)
@@ -55,6 +57,19 @@ class TestLoadChapter:
         """Volume II chapters (6-10) carry volume=2."""
         data = load_chapter("gec_13", chapter)
         assert data.get("volume") == 2
+
+    def test_vol2_figures_cite_vol2_number(self):
+        """Vol II figures carry FHWA-NHI-16-028, the Vol II cover's number."""
+        import json
+        from pathlib import Path
+        cat = json.loads((Path(__file__).resolve().parents[1]
+                          / "geotech_references" / "gec_13"
+                          / "figures_catalog.json").read_text(encoding="utf-8"))
+        vol2 = [f for f in cat["figures"] if f.get("volume") == 2]
+        assert vol2
+        assert all(f.get("reference_id") == "FHWA-NHI-16-028" for f in vol2)
+        assert all("reference_id" not in f for f in cat["figures"]
+                   if f.get("volume") == 1)
 
     def test_chapter1_reference_id(self):
         """Chapter 1 has correct reference ID."""
