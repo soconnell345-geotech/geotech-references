@@ -35,7 +35,9 @@ slab thickness D = 6..14 inches. Single/flexible-pt2.5 (Table D.4) and
 single/tandem-rigid-pt2.5 (Tables D.13/D.14) were cross-validated to exact
 agreement against the independently-digitized SN=5 / D=9 curves already in
 ``tables.py`` (``esal_flexible_single_axle``/``esal_flexible_tandem_axle``/
-``esal_rigid_single_axle``/``esal_rigid_tandem_axle``), which gives high
+``esal_rigid_single_axle``/``esal_rigid_tandem_axle``; since REF-12 those
+functions read this module, and their former curves are pinned value by value
+in ``tests/test_aashto_1993_esal.py``), which gives high
 confidence in the decimal-placement convention used throughout (the printed
 tables give 3 significant figures with the decimal point rendered as a small
 gap in the scan, sometimes visible as an actual "." character; magnitude

@@ -337,13 +337,20 @@ class TestEsalFlexibleSingleAxle:
             assert lef > prev
             prev = lef
 
-    def test_unsupported_sn_raises(self):
-        with pytest.raises(NotImplementedError):
-            tb.esal_flexible_single_axle(18.0, sn=3.0)
+    def test_other_sn_reads_appendix_d(self):
+        # Table D.4 (pt = 2.5, printed D-6): SN = 3 at 24 kips prints 3.09
+        r = tb.esal_flexible_single_axle(24.0, sn=3.0)
+        assert r["lef"] == 3.09
+        assert r["table"] == "Table D.4"
 
-    def test_unsupported_pt_raises(self):
-        with pytest.raises(NotImplementedError):
-            tb.esal_flexible_single_axle(18.0, pt=2.0)
+    def test_other_pt_reads_its_table(self):
+        r = tb.esal_flexible_single_axle(18.0, pt=2.0)
+        assert r["lef"] == 1.0
+        assert r["table"] == "Table D.1"
+
+    def test_off_grid_pt_refused_with_lef_message(self):
+        with pytest.raises(ValueError, match="exactly one of 2.0, 2.5, 3.0"):
+            tb.esal_flexible_single_axle(18.0, pt=2.2)
 
 
 class TestEsalFlexibleTandemAxle:
@@ -368,9 +375,11 @@ class TestEsalRigidSingleAxle:
         r = tb.esal_rigid_single_axle(50.0)
         assert r["lef"] == pytest.approx(67.8, rel=0.02)
 
-    def test_unsupported_d_raises(self):
-        with pytest.raises(NotImplementedError):
-            tb.esal_rigid_single_axle(18.0, d_in=10.0)
+    def test_other_d_reads_appendix_d(self):
+        r = tb.esal_rigid_single_axle(18.0, d_in=10.0)
+        assert r["lef"] == 1.0
+        assert r["table"] == "Table D.13"
+        assert r["d_in"] == 10.0
 
 
 class TestEsalRigidTandemAxle:
