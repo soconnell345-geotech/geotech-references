@@ -705,63 +705,101 @@ def table_3_1_lightweight_fill(material: str = "") -> list:
 
 
 # ============================================================================
-# Table 4-1: Deep Dynamic Compaction — Typical Design Parameters
+# Table 4-3: Applied Energy Guidelines (deep dynamic compaction)
+# FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Sec. 2.3.3.2, p. 4-46.
+# (REF-62: this replaces table_4_1_ddc_parameters, whose energies, passes,
+# waiting times and depths no held manual prints; GEC-13 Table 4-1, p. 4-34,
+# is the crane and cable sizes for tampers.)
 # ============================================================================
 
-_TABLE_4_1 = {
+_TABLE_4_3 = {
     "pervious_coarse": {
-        "soil_type": "Pervious coarse-grained soils (Zone 1)",
-        "energy_per_pass_ft_lbs_per_ft2": (5000, 8000),
-        "number_of_passes": (5, 10),
-        "time_between_passes_weeks": 1,
-        "max_depth_ft": 36,
-        "notes": "Clean sands and gravels; most effective for DDC",
+        "type_of_deposit": "Pervious coarse-grained soil (Zone 1 of Figure 4-5)",
+        "unit_applied_energy_ft_lbf_per_ft3": (4100, 5200),
+        "unit_applied_energy_kj_per_m3": (200, 250),
+        "percent_standard_proctor_energy": (33, 41),
     },
     "semi_pervious": {
-        "soil_type": "Semi-pervious soils (Zone 2)",
-        "energy_per_pass_ft_lbs_per_ft2": (5000, 10000),
-        "number_of_passes": (7, 14),
-        "time_between_passes_weeks": (1, 4),
-        "max_depth_ft": 30,
-        "notes": "Silty sands, sandy silts; requires pore pressure dissipation",
+        "type_of_deposit": "Semipervious fine-grained soils (Zone 2 and clay "
+                           "fills above the water table and Zone 3 of Figure 4-5)",
+        "unit_applied_energy_ft_lbf_per_ft3": (5200, 7200),
+        "unit_applied_energy_kj_per_m3": (250, 350),
+        "percent_standard_proctor_energy": (41, 60),
     },
-    "impervious": {
-        "soil_type": "Impervious fine-grained soils (Zone 3)",
-        "energy_per_pass_ft_lbs_per_ft2": (8000, 12000),
-        "number_of_passes": (10, 15),
-        "time_between_passes_weeks": (2, 6),
-        "max_depth_ft": 20,
-        "notes": "Clays and silts; limited effectiveness; not recommended for "
-                 "saturated clays",
+    "landfills": {
+        "type_of_deposit": "Landfills",
+        "unit_applied_energy_ft_lbf_per_ft3": (12400, 22700),
+        "unit_applied_energy_kj_per_m3": (600, 1100),
+        "percent_standard_proctor_energy": (100, 180),
     },
 }
 
+_TABLE_4_3_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol I, Ch. 4, Table 4-3 "
+                        "Applied Energy Guidelines, p. 4-46")
+_TABLE_4_3_NOTE = (
+    "Standard Proctor energy equals 12,400 ft-lbf/ft3 (table note). The "
+    "energy is per unit volume of the deposit: the average energy applied "
+    "at the surface is the unit applied energy times the deposit thickness. "
+    "Loose deposits take the higher value of the range, denser deposits the "
+    "lower (p. 4-46). Zones are those of Figure 4-5; saturated Zone 3 clays "
+    "are not recommended for deep dynamic compaction (p. 4-21)."
+)
 
-def table_4_1_ddc_parameters(soil_type: str = "") -> list:
-    """Deep Dynamic Compaction design parameters from GEC-13 Chapter 4.
+
+def table_4_3_applied_energy(soil_type: str = "") -> list:
+    """Deep dynamic compaction applied energy guidelines (GEC-13 Table 4-3).
+
+    The unit applied energy, per unit volume of the deposit, by type of
+    deposit, as printed in FHWA-NHI-16-027 (GEC-13) Vol I, Table 4-3,
+    p. 4-46: pervious coarse-grained soil (Zone 1 of Figure 4-5) 4,100 to
+    5,200 ft-lbf/ft3 (200 to 250 kJ/m3), 33 to 41 % of standard Proctor
+    energy; semipervious fine-grained soils (Zone 2, and clay fills above
+    the water table and Zone 3) 5,200 to 7,200 (250 to 350), 41 to 60 %;
+    landfills 12,400 to 22,700 (600 to 1100), 100 to 180 %. Multiply by the
+    deposit thickness for the average energy at the surface (p. 4-46).
+
+    The worked example on p. 4-46 multiplies 5,200 by a 26 ft deposit and
+    prints 41,000 ft-lbf/ft2; 5,200 x 26 is 135,200 ft-lbf/ft2 (41,000 is
+    that divided by 3.28). The table's two unit columns agree with each
+    other (250 kJ/m3 = 5,221 ft-lbf/ft3), so the table is used as printed.
 
     Parameters
     ----------
     soil_type : str
-        Filter by soil type (partial match, case-insensitive).
-        E.g., 'pervious', 'semi', 'impervious', 'sand', 'clay'.
+        Filter by type of deposit (partial match, case-insensitive).
+        E.g., 'pervious', 'semi', 'landfill', 'zone 1', 'clay'.
 
     Returns
     -------
     list of dict
-        Each dict has soil_type, energy range, number_of_passes range,
-        time_between_passes, max_depth_ft, and notes.
+        Each dict has key, type_of_deposit, the unit applied energy in
+        ft-lbf/ft3 and kJ/m3 (low, high), percent of standard Proctor
+        energy (low, high), reference and note.
     """
     st_lower = soil_type.lower().strip()
     results = []
-    for key, data in _TABLE_4_1.items():
+    for key, data in _TABLE_4_3.items():
         if st_lower and (st_lower not in key.lower() and
-                         st_lower not in data["soil_type"].lower()):
+                         st_lower not in data["type_of_deposit"].lower()):
             continue
-        entry = {"key": key}
-        for k, v in data.items():
-            entry[k] = v
-        results.append(entry)
+        results.append({
+            "key": key,
+            "type_of_deposit": data["type_of_deposit"],
+            "unit_applied_energy_ft_lbf_per_ft3_low":
+                data["unit_applied_energy_ft_lbf_per_ft3"][0],
+            "unit_applied_energy_ft_lbf_per_ft3_high":
+                data["unit_applied_energy_ft_lbf_per_ft3"][1],
+            "unit_applied_energy_kj_per_m3_low":
+                data["unit_applied_energy_kj_per_m3"][0],
+            "unit_applied_energy_kj_per_m3_high":
+                data["unit_applied_energy_kj_per_m3"][1],
+            "percent_standard_proctor_energy_low":
+                data["percent_standard_proctor_energy"][0],
+            "percent_standard_proctor_energy_high":
+                data["percent_standard_proctor_energy"][1],
+            "reference": _TABLE_4_3_REFERENCE,
+            "note": _TABLE_4_3_NOTE,
+        })
     return results
 
 
@@ -839,164 +877,206 @@ def figure_4_1_ddc_depth(weight_tonnes: float, drop_height_m: float,
 
 
 # ============================================================================
-# Table 7-2: Deep Mixing — Typical Unconfined Compressive Strength (qu)
-# (qu in kPa at 28 days)
+# Table 8-1: Advantages and Disadvantages of Jet Grouting Systems
+# FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Sec. 2.2.2, p. 8-26.
+# (REF-62: this replaces table_8_2_jet_grouting_systems, whose column
+# diameters and strengths by system no held manual prints; GEC-13 Table 8-2,
+# p. 8-38, is the permeation grouts of a case history.)
 # ============================================================================
 
-_TABLE_7_2 = {
-    "soft_clay_ddm": {
-        "soil_type": "Soft clay",
-        "method": "Dry deep mixing (DDM)",
-        "binder": "Lime-cement blend",
-        "qu_low_kpa": 200,
-        "qu_high_kpa": 500,
-        "notes": "Scandinavian practice; lower end for high water content soils",
-    },
-    "soft_clay_wdm": {
-        "soil_type": "Soft clay",
-        "method": "Wet deep mixing (WDM)",
-        "binder": "Portland cement slurry",
-        "qu_low_kpa": 500,
-        "qu_high_kpa": 2000,
-        "notes": "Higher binder content achievable with wet mixing",
-    },
-    "organic_peat_ddm": {
-        "soil_type": "Organic clay / peat",
-        "method": "Dry deep mixing (DDM)",
-        "binder": "Lime-cement blend",
-        "qu_low_kpa": 100,
-        "qu_high_kpa": 400,
-        "notes": "Organic content > 6% may inhibit hydration; treatability testing required",
-    },
-    "organic_peat_wdm": {
-        "soil_type": "Organic clay / peat",
-        "method": "Wet deep mixing (WDM)",
-        "binder": "Portland cement slurry",
-        "qu_low_kpa": 200,
-        "qu_high_kpa": 800,
-        "notes": "Lower strength than mineral clays; higher w/c ratio may be needed",
-    },
-    "silt_ddm": {
-        "soil_type": "Silt",
-        "method": "Dry deep mixing (DDM)",
-        "binder": "Lime-cement blend",
-        "qu_low_kpa": 300,
-        "qu_high_kpa": 800,
-        "notes": "Effective when water content is high",
-    },
-    "silt_wdm": {
-        "soil_type": "Silt",
-        "method": "Wet deep mixing (WDM)",
-        "binder": "Portland cement slurry",
-        "qu_low_kpa": 500,
-        "qu_high_kpa": 2000,
-        "notes": "Consistent with soft clay WDM performance",
-    },
-    "loose_sand_wdm": {
-        "soil_type": "Loose to medium sand",
-        "method": "Wet deep mixing (WDM)",
-        "binder": "Portland cement slurry",
-        "qu_low_kpa": 1000,
-        "qu_high_kpa": 4000,
-        "notes": "Granular soils respond well to cement; higher strength than cohesive soils",
-    },
-}
-
-
-def table_7_2_deep_mixing_strength(soil_type: str = "", method: str = "") -> list:
-    """Typical unconfined compressive strength (qu) for deep mixed soil (Table 7-2).
-
-    Parameters
-    ----------
-    soil_type : str
-        Filter by soil type (partial match, case-insensitive).
-        E.g., 'clay', 'peat', 'silt', 'sand', 'organic'.
-    method : str
-        Filter by mixing method (partial match, case-insensitive).
-        E.g., 'dry', 'wet', 'DDM', 'WDM'.
-
-    Returns
-    -------
-    list of dict
-        Each dict has soil_type, method, binder, qu_low_kpa,
-        qu_high_kpa, and notes.
-    """
-    st_lower = soil_type.lower().strip()
-    meth_lower = method.lower().strip()
-    results = []
-    for key, data in _TABLE_7_2.items():
-        if st_lower and (st_lower not in key.lower() and
-                         st_lower not in data["soil_type"].lower()):
-            continue
-        if meth_lower and (meth_lower not in key.lower() and
-                           meth_lower not in data["method"].lower()):
-            continue
-        entry = {"key": key}
-        entry.update(data)
-        results.append(entry)
-    return results
-
-
-# ============================================================================
-# Table 8-2: Jet Grouting System Comparison
-# ============================================================================
-
-_TABLE_8_2 = {
+_TABLE_8_1 = {
     "single_fluid": {
-        "system": "Single-fluid",
-        "fluids": "Grout jet only",
-        "column_diameter_mm_low": 300,
-        "column_diameter_mm_high": 600,
-        "typical_soils": "Soft clays, silts, loose sands",
-        "strength_mpa_low": 1,
-        "strength_mpa_high": 5,
-        "notes": "Simplest system; smallest column diameter; most economical in soft soils",
+        "system": "Single Fluid",
+        "advantages": [
+            "Simple system for equipment and tooling",
+            "Good for sealing vertical joints",
+            "Good in cohesionless soils",
+        ],
+        "disadvantages": [
+            "Smallest geometry created",
+            "Hardest to control heave",
+            "Difficult to control quality in cohesive soils",
+        ],
     },
     "double_fluid": {
-        "system": "Double-fluid",
-        "fluids": "Grout jet with air shroud",
-        "column_diameter_mm_low": 600,
-        "column_diameter_mm_high": 1000,
-        "typical_soils": "Clays, silts, loose to medium sands",
-        "strength_mpa_low": 1,
-        "strength_mpa_high": 7,
-        "notes": "Air shroud increases cutting energy and column diameter",
+        "system": "Double Fluid",
+        "advantages": [
+            "Most utilized system",
+            "Availability of equipment and tools",
+            "High energy, good geometry achieved",
+            "Most experience",
+            "Often most economical",
+        ],
+        "disadvantages": [
+            "Very difficult to control heave in cohesive soils",
+            "Spoil handling can be difficult depending on fluid flows",
+            "Not usually considered for underpinning",
+        ],
     },
     "triple_fluid": {
-        "system": "Triple-fluid",
-        "fluids": "Separate water jet, air shroud, and grout injection",
-        "column_diameter_mm_low": 600,
-        "column_diameter_mm_high": 2000,
-        "typical_soils": "Wide range: silts, clays, sands, gravels",
-        "strength_mpa_low": 1,
-        "strength_mpa_high": 10,
-        "notes": "Largest columns; highest cost; most versatile soil range",
+        "system": "Triple Fluid",
+        "advantages": [
+            "Most controllable system",
+            "Highest final quality in difficult soils (peat, soft clay)",
+            "Best underpinning system",
+            "Easiest to control spoil and heave",
+        ],
+        "disadvantages": [
+            "Most complex system due to equipment and tooling",
+            "Requires significant experience",
+        ],
+    },
+    "superjet": {
+        "system": "SuperJet/MegaJet/UltraJet/STRAJet",
+        "advantages": [
+            "Lowest cost per volume treated",
+            "Best mixing achieved",
+            "Largest column diameters",
+        ],
+        "disadvantages": [
+            "Requires special equipment and tooling",
+            "Difficult to control heave in cohesive soils",
+            "Spoil handling may be difficult due to high flows used",
+            "Cannot work near surface without support",
+            "Highest logistical problems",
+        ],
+    },
+    "x_jet": {
+        "system": "X-Jet",
+        "advantages": [
+            "Confidence of geometry",
+            "Controllable material costs",
+            "Best for soft, cohesive soils",
+        ],
+        "disadvantages": [
+            "Very specialized equipment that requires daily calibration",
+            "Limited experience available",
+        ],
     },
 }
 
+_TABLE_8_1_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Table 8-1 "
+                        "Advantages and Disadvantages of Jet Grouting "
+                        "Systems, p. 8-26")
+_TABLE_8_1_NOTE = (
+    "GEC-13 prints no column diameter or strength for each system. Jet "
+    "grouted columns range from 2.5 to 15 ft in diameter depending on the "
+    "method, and 3 to 5 ft columns are typical for underpinning and "
+    "excavation support (p. 8-71). Soilcrete strength is a function of the "
+    "cement content whatever the system; single-fluid strengths by soil are "
+    "Table 8-6 (table_8_6_soilcrete_strength, p. 8-71). All systems have "
+    "problems in very loose soils where the cement travels long distances, "
+    "especially below the water table (p. 8-25)."
+)
 
-def table_8_2_jet_grouting_systems(system: str = "") -> list:
-    """Jet grouting system comparison — diameter, soils, and strength (Table 8-2).
+
+def table_8_1_jet_grouting_systems(system: str = "") -> list:
+    """Jet grouting systems compared (GEC-13 Table 8-1, p. 8-26).
+
+    The advantages and disadvantages of the single, double and triple fluid
+    systems, SuperJet/MegaJet/UltraJet/STRAJet and X-Jet, as printed in
+    FHWA-NHI-16-027 (GEC-13) Vol II, Table 8-1, p. 8-26. GEC-13 gives no
+    column diameter or strength for each system: columns range from 2.5 to
+    15 ft in diameter depending on the method (p. 8-71), and single-fluid
+    soilcrete strengths by soil type are Table 8-6
+    (``table_8_6_soilcrete_strength``).
 
     Parameters
     ----------
     system : str
         Filter by system name (partial match, case-insensitive).
-        E.g., 'single', 'double', 'triple'.
+        E.g., 'single', 'double', 'triple', 'superjet', 'x-jet'.
 
     Returns
     -------
     list of dict
-        Each dict has system, fluids, column_diameter_mm (low/high),
-        typical_soils, strength_mpa (low/high), and notes.
+        Each dict has key, system, advantages (list), disadvantages (list),
+        reference and note.
     """
     sys_lower = system.lower().strip()
     results = []
-    for key, data in _TABLE_8_2.items():
+    for key, data in _TABLE_8_1.items():
         if sys_lower and (sys_lower not in key.lower() and
                           sys_lower not in data["system"].lower()):
             continue
-        entry = {"key": key}
-        entry.update(data)
-        results.append(entry)
+        results.append({
+            "key": key,
+            "system": data["system"],
+            "advantages": list(data["advantages"]),
+            "disadvantages": list(data["disadvantages"]),
+            "reference": _TABLE_8_1_REFERENCE,
+            "note": _TABLE_8_1_NOTE,
+        })
+    return results
+
+
+# ============================================================================
+# Table 8-6: Range of Typical Soilcrete Strengths - Single-Fluid System
+# FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Sec. 2.7.3, p. 8-71 (Burke 2004).
+# ============================================================================
+
+_PSI_TO_KPA = 6.894757
+
+# (low psi, high psi); None = not printed ("less than 250").
+_TABLE_8_6 = {
+    "clean_sands_and_gravel": ("Clean sands and gravel", 750, 1250),
+    "silts_and_silty_sands": ("Silts and Silty sands", 500, 750),
+    "clays": ("Clays", 250, 500),
+    "organic_silts_and_peats": ("Organic silts and peats", None, 250),
+}
+
+_TABLE_8_6_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol II, Ch. 8, Table 8-6 "
+                        "Range of Typical Soilcrete Strengths - Single-Fluid "
+                        "System, p. 8-71 (Burke 2004)")
+_TABLE_8_6_NOTE = (
+    "Soilcrete unconfined compressive strength for the single-fluid system, "
+    "printed in psi (kPa converted at 1 psi = 6.894757 kPa). Whatever the "
+    "system, strength is a function of the cement content: the triple fluid "
+    "system typically has more replacement and higher strength, and "
+    "double-fluid strengths may occasionally be lower from air entrainment. "
+    "Design values should be restricted to 50 % or less of the ultimate "
+    "strength, and a production field test is essential (p. 8-71)."
+)
+
+
+def table_8_6_soilcrete_strength(soil_type: str = "") -> list:
+    """Typical single-fluid jet grout soilcrete strengths (GEC-13 Table 8-6).
+
+    Soilcrete unconfined compressive strength by soil type, as printed in
+    FHWA-NHI-16-027 (GEC-13) Vol II, Table 8-6, p. 8-71 (Burke 2004): clean
+    sands and gravel 750 to 1,250 psi; silts and silty sands 500 to 750;
+    clays 250 to 500; organic silts and peats less than 250. The single-fluid
+    system only; design values at most 50 % of the ultimate strength
+    (p. 8-71).
+
+    Parameters
+    ----------
+    soil_type : str
+        Filter by soil type (partial match, case-insensitive).
+        E.g., 'sand', 'silt', 'clay', 'peat', 'organic'.
+
+    Returns
+    -------
+    list of dict
+        Each dict has key, soil_type, ucs_psi_low (None where the print
+        says "less than"), ucs_psi_high, ucs_kpa_low, ucs_kpa_high,
+        system, reference and note.
+    """
+    st_lower = soil_type.lower().strip()
+    results = []
+    for key, (label, low, high) in _TABLE_8_6.items():
+        if st_lower and (st_lower not in key.lower() and
+                         st_lower not in label.lower()):
+            continue
+        results.append({
+            "key": key,
+            "soil_type": label,
+            "ucs_psi_low": low,
+            "ucs_psi_high": high,
+            "ucs_kpa_low": None if low is None else round(low * _PSI_TO_KPA),
+            "ucs_kpa_high": round(high * _PSI_TO_KPA),
+            "system": "Single fluid",
+            "reference": _TABLE_8_6_REFERENCE,
+            "note": _TABLE_8_6_NOTE,
+        })
     return results

@@ -270,11 +270,13 @@ def gec13_agent(method: str, parameters_json: str) -> str:
     - Comparative unit costs (Table 1-6, Nov 2016 dollars)
     - PVD application matrix (Table 2-1)
     - Lightweight fill material properties (Table 3-1)
-    - Deep dynamic compaction parameters (Table 4-1)
+    - Deep dynamic compaction applied energy (Table 4-3)
     - DDC depth of influence (Lukas 1995, Figure 4-1)
     - Vibro-compaction backfill suitability number (Brown 1977, Eq. 4-3)
     - Aggregate column area replacement ratio (Eq. 5-1)
     - Stone column settlement improvement factor (stress ratio, Eq. 5-4)
+    - Jet grouting systems compared (Table 8-1)
+    - Single-fluid jet grout soilcrete strengths (Table 8-6)
 
     Parameters:
         method: The function name. Use gec13_list_methods() to browse.
