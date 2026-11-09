@@ -98,7 +98,7 @@ agents/
   ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
-tests/                         # 6,691 tests collected (`pytest --collect-only -q`, 2026-11-06)
+tests/                         # 6,755 tests collected (`pytest --collect-only -q`, 2026-11-09)
 docs/                          # Source PDFs (UFC/GEC/micropile/pavement) — used by build_figure_catalog.py and figure read-off
 references/                    # (legacy) source PDFs (git-ignored)
 ```
@@ -485,4 +485,4 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 - Python 3.10+ (developed on 3.14.3)
 - No required dependencies (numpy/scipy/matplotlib are optional, used by some functions)
-- Tests: `pytest tests/ -q` (6,691 tests collected on 2026-11-06 by `pytest --collect-only -q`)
+- Tests: `pytest tests/ -q` (6,755 tests collected on 2026-11-09 by `pytest --collect-only -q`)

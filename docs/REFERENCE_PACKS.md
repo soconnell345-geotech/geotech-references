@@ -13,7 +13,7 @@ outside any git work tree of the public repositories; `check` refuses a
 pack in either place. Never commit a pack, its text or its PDF to a public
 repository.
 
-(BACKLOG REF-64; for release in geotech-references 1.6.0.)
+(BACKLOG REF-64; new in geotech-references 1.6.0.)
 
 ## The format
 
