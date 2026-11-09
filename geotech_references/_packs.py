@@ -178,3 +178,32 @@ def key_part() -> str:
             path = os.path.normcase(str(f.resolve()))
             h.update(f"{path}|{st.st_size}|{st.st_mtime_ns}\0".encode())
     return h.hexdigest()[:12]
+
+
+def pack_records() -> list[dict]:
+    """One record per valid pack for an app's build record (REF-64):
+    ``{"id", "title", "reference_id", "edition", "files", "sha"}``, where
+    ``files`` are the indexed files' paths inside the pack and ``sha`` is a
+    sha256 over their contents, so a reviewer can tell which edition of a
+    pack was in force. Empty when there is no valid pack."""
+    out = []
+    for pid, folder in packs():
+        try:
+            meta = read_pack_json(folder)
+        except (OSError, ValueError):
+            meta = {}
+        h = hashlib.sha256()
+        files = []
+        for f in indexed_files(folder):
+            rel = f.relative_to(folder).as_posix()
+            try:
+                data = f.read_bytes()
+            except OSError:
+                continue
+            files.append(rel)
+            h.update(rel.encode() + b"\0" + data + b"\0")
+        out.append({"id": pid, "title": meta.get("reference_title", ""),
+                    "reference_id": meta.get("reference_id", ""),
+                    "edition": meta.get("edition") or meta.get("date") or "",
+                    "files": files, "sha": h.hexdigest()})
+    return out

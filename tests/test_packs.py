@@ -551,3 +551,18 @@ def test_no_pack_is_tracked_in_this_repo():
         pytest.skip("not a git checkout")
     tracked = [f for f in out.splitlines() if Path(f).name == "pack.json"]
     assert tracked == []
+
+
+def test_pack_records_and_feature_flag(tmp_path, monkeypatch):
+    assert _retrieval_db.pack_dirs is _packs.pack_dirs
+    monkeypatch.delenv(_packs.PACKS_ENV, raising=False)
+    assert _packs.pack_records() == []
+    folder = make_pack(tmp_path, pdf=False)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path))
+    (rec,) = _packs.pack_records()
+    assert rec["id"] == PID and rec["title"] == TITLE
+    assert rec["reference_id"] == REF_ID and rec["edition"]
+    assert rec["files"] == ["pack.json", "text/chapter01.json",
+                            "figures_catalog.json"]
+    _write_json(folder / "text" / "chapter01.json", _chapter(chapter=2))
+    assert _packs.pack_records()[0]["sha"] != rec["sha"]

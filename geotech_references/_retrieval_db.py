@@ -138,6 +138,12 @@ def _db_path() -> Path:
     return keyed_db_path(_DB_NAME)
 
 
+#: The folders of the local reference packs indexed beside the built-ins
+#: (REF-64); an app tests ``hasattr(_retrieval_db, "pack_dirs")`` to know
+#: this version reads packs.
+pack_dirs = _packs.pack_dirs
+
+
 def _iter_text_jsons() -> list[tuple[str, Path]]:
     """Yield (reference, json_path) for every text JSON in the package,
     then every local reference pack's (REF-64; none when unset)."""
