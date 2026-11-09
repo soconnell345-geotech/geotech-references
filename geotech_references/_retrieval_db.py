@@ -1,7 +1,7 @@
 """SQLite FTS5 retrieval layer for structured chapter text.
 
 Builds a single FTS5 index over every `<reference>/text/*.json` file in
-the package and exposes three tools optimized for LLM agent use:
+the package (and in any local reference pack, :mod:`._packs`) and exposes three tools optimized for LLM agent use:
 
 - ``reference_search(query, reference=None, chapter=None, limit=5)`` —
   ranked BM25 hits returning *summary only* (the noise-reduction lever).
@@ -54,6 +54,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _atomic_db
+from . import _packs
 from . import _query_expansion as _qe
 from . import _retrieval
 
@@ -118,10 +119,19 @@ def keyed_db_path(name: str, package_dir: Path = _PACKAGE_DIR) -> Path:
     The file name carries :func:`_copy_key`, so two checkouts, or two
     environments sharing one temp folder, never serve each other's text.
     A database left under the old fixed name is not read or deleted.
+
+    With local reference packs set (``GEOTECH_REFERENCES_PACKS``, REF-64)
+    the key also covers the pack set -- each indexed pack file's path, size
+    and modification time (:func:`._packs.key_part`) -- so a pack edit gets
+    a database of its own. With none set the key is unchanged, and the
+    databases already built stay valid.
     """
     stem, suffix = os.path.splitext(name)
-    return (Path(tempfile.gettempdir())
-            / f"{stem}_{_copy_key(str(package_dir))}{suffix}")
+    key = _copy_key(str(package_dir))
+    packs = _packs.key_part()
+    if packs:
+        key = hashlib.sha1(f"{key}|packs|{packs}".encode()).hexdigest()[:12]
+    return Path(tempfile.gettempdir()) / f"{stem}_{key}{suffix}"
 
 
 def _db_path() -> Path:
@@ -129,7 +139,8 @@ def _db_path() -> Path:
 
 
 def _iter_text_jsons() -> list[tuple[str, Path]]:
-    """Yield (reference, json_path) for every text JSON in the package."""
+    """Yield (reference, json_path) for every text JSON in the package,
+    then every local reference pack's (REF-64; none when unset)."""
     out: list[tuple[str, Path]] = []
     for ref_dir in sorted(_PACKAGE_DIR.iterdir()):
         if not ref_dir.is_dir():
@@ -139,6 +150,7 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
             continue
         for jf in sorted(text_dir.glob("*.json")):
             out.append((ref_dir.name, jf))
+    out.extend(_packs.text_jsons())
     return out
 
 

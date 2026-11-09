@@ -230,8 +230,14 @@ def fit_record(record: dict, max_chars: int, text_fields=None):
 
 
 def _reference_dir(reference: str) -> Path:
-    """Return the package directory for a reference (e.g., 'gec_12')."""
+    """Return the package directory for a reference (e.g., 'gec_12'), or
+    a local reference pack's text folder (REF-64)."""
     ref_dir = _PACKAGE_DIR / reference / "text"
+    if not ref_dir.is_dir() and str(reference).startswith("local_"):
+        from . import _packs
+        folder = _packs.pack_dir(reference)
+        if folder is not None:
+            ref_dir = folder / "text"
     if not ref_dir.is_dir():
         raise FileNotFoundError(
             f"Reference '{reference}' not found. "
