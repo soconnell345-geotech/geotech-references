@@ -681,6 +681,54 @@ def test_module_runs_as_a_script(tmp_path):
 
 
 # ---------------------------------------------------------------------------
+# what a host with only the wheel needs
+# ---------------------------------------------------------------------------
+
+DOC = Path(__file__).resolve().parent.parent / "docs" / "REFERENCE_PACKS.md"
+
+
+def test_schema_prints_the_shipped_schema(capsys):
+    assert packs.main(["schema"]) == 0
+    schema = json.loads(capsys.readouterr().out)
+    assert schema == json.loads(packs.SCHEMA_FILE.read_text("utf-8"))
+    assert schema["title"] == "Geotech Reference Chapter"
+    done = subprocess.run(
+        [sys.executable, "-m", "geotech_references.packs", "schema"],
+        capture_output=True)
+    assert done.returncode == 0
+    assert done.stdout == packs.SCHEMA_FILE.read_bytes()  # byte for byte
+
+
+def test_schema_is_package_data():
+    tomllib = pytest.importorskip("tomllib")  # Python 3.11+
+    pyproject = DOC.parent.parent / "pyproject.toml"
+    data = tomllib.loads(pyproject.read_text("utf-8"))
+    shipped = data["tool"]["setuptools"]["package-data"]["geotech_references"]
+    assert "chapter_schema.json" in shipped
+    assert packs.SCHEMA_FILE.parent == Path(packs.__file__).parent
+
+
+def test_the_docs_chapter_example_passes_check(tmp_path):
+    text = DOC.read_text("utf-8")
+    block = text.split("A minimal chapter file", 1)[1]
+    block = block.split("```json", 1)[1].split("```", 1)[0]
+    chapter = json.loads(block)
+    folder = make_pack(tmp_path, pdf=False)
+    _write_json(folder / "pack.json", dict(
+        _pack_json(), reference_id="EX-01", reference_title="Example Manual"))
+    _write_json(folder / "text" / "chapter01.json", chapter)
+    (folder / "figures_catalog.json").unlink()
+    report = packs.check_pack(folder, smoke=False)
+    assert report["errors"] == [] and report["warnings"] == []
+    assert report["found"] == {"chapters": 1, "sections": 2, "figures": 0}
+
+
+def test_the_readme_links_the_doc_absolutely():
+    readme = (DOC.parent.parent / "README.md").read_text("utf-8")
+    assert "](" + packs.DOC_URL + ")" in readme
+
+
+# ---------------------------------------------------------------------------
 # one schema validator
 # ---------------------------------------------------------------------------
 

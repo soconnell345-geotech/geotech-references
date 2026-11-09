@@ -93,7 +93,7 @@ for section in results:
 
 ### Local reference packs
 
-A deployment can add its own references in the library's structured format, kept outside this package and its public repository. Point `GEOTECH_REFERENCES_PACKS` at a pack folder (or a folder of packs) and text search, section fetches and figure lookup cover it beside the built-in references. Make and check a pack with `python -m geotech_references.packs new|check|list|index`. The format, the print-fidelity rules and where packs live on each host are in [`docs/REFERENCE_PACKS.md`](docs/REFERENCE_PACKS.md).
+A deployment can add its own references in the library's structured format, kept outside this package and its public repository. Point `GEOTECH_REFERENCES_PACKS` at a pack folder (or a folder of packs) and text search, section fetches and figure lookup cover it beside the built-in references. Make and check a pack with `python -m geotech_references.packs new|check|list|index`; `python -m geotech_references.packs schema` prints the chapter-file schema. The format, the print-fidelity rules and where packs live on each host are in [`docs/REFERENCE_PACKS.md`](https://github.com/soconnell345-geotech/geotech-references/blob/main/docs/REFERENCE_PACKS.md).
 
 ## Agents
 

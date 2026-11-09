@@ -5,7 +5,7 @@ public repository, in the library's own layout minus the Python::
 
     <pack folder>/               # folder name = pack id, e.g. local_agency_gdm
       pack.json                  # id, reference_id, reference_title, edition, ...
-      text/chapterNN.json        # scripts/chapter_schema.json, unchanged
+      text/chapterNN.json        # chapter_schema.json (this package), unchanged
       figures_catalog.json       # optional; pdf_path is a file name only
       <the PDF>                  # optional here; else found as built-ins are
 

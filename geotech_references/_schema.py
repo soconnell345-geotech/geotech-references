@@ -5,7 +5,8 @@ Moved here from ``scripts/audit_chapter_text.py`` (which imports it back),
 so the built-in references and a deployment's local packs
 (``python -m geotech_references.packs check``) are held to one validator.
 :func:`validate_schema` checks one chapter file's structure against
-``scripts/chapter_schema.json``'s rules; the audit script's other checks
+``chapter_schema.json``'s rules (beside this module, shipped in the wheel);
+the audit script's other checks
 (equation coverage, ``implemented_in`` paths) import a reference's Python
 modules and stay in the script.
 """

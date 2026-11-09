@@ -23,7 +23,7 @@ Python:
 ```
 local_example_manual/          # the pack; the folder name is the pack id
   pack.json                    # who, what, which edition, which PDF
-  text/chapter01.json ...      # one file per chapter, scripts/chapter_schema.json
+  text/chapter01.json ...      # one file per chapter, to the chapter schema
   figures_catalog.json         # optional: the figures, for search and read-off
   Example Manual 2026.pdf      # optional here; else found by name (below)
 ```
@@ -47,13 +47,51 @@ stay in the public library.
 
 ### Chapter files (`text/chapterNN.json`)
 
-The schema is `scripts/chapter_schema.json`, the one every built-in
-reference uses: top-level `reference_id`, `reference_title`, `volume`,
-`chapter`, `chapter_title`, `sections`; each section `section_id`, `title`,
-`body`, `key_points`, `equations`, `figures`, `tables`, `applicability`,
-optionally `summary` and nested `subsections`. A file may list every level
-as its own entry (`4`, `4.3`, `4.3.1`) or nest subsections; both are read
-into one section tree.
+The schema is the one every built-in reference uses. It ships in the wheel;
+`python -m geotech_references.packs schema > chapter_schema.json` saves a
+copy. Top-level `reference_id`, `reference_title`, `volume`, `chapter`,
+`chapter_title`, `sections`; each section `section_id`, `title`, `body`,
+`key_points`, `equations`, `figures`, `tables`, `applicability`, optionally
+`summary` and nested `subsections`. A file may list every level as its own
+entry (`4`, `4.3`, `4.3.1`) or nest subsections; both are read into one
+section tree.
+
+A minimal chapter file (made up, as every example here is):
+
+```json
+{
+  "reference_id": "EX-01",
+  "reference_title": "Example Manual",
+  "volume": null,
+  "chapter": 4,
+  "chapter_title": "Settlement of Made-up Fill",
+  "sections": [
+    {
+      "section_id": "4.1",
+      "title": "Scope",
+      "body": "[p. 4-1] This chapter covers embankments built of a made-up fill.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Embankments of the made-up fill."
+    },
+    {
+      "section_id": "4.2",
+      "title": "Settlement",
+      "body": "[p. 4-2] The fill settles by a fixed share of its height, Equation 4-1. Figure 4-2 shows the settlement against the height.",
+      "key_points": [],
+      "equations": [
+        {"id": "Eq. 4-1", "description": "settlement of the made-up fill",
+         "formula": "s = 0.01 H", "source": "p. 4-2", "implemented_in": null}
+      ],
+      "figures": ["Figure 4-2 Settlement of a made-up fill"],
+      "tables": [],
+      "applicability": "Embankments of the made-up fill, any height."
+    }
+  ]
+}
+```
 
 ### Figure catalog (`figures_catalog.json`)
 
@@ -118,8 +156,7 @@ care.
 1. **Skeleton.**
 
    ```
-   python -m geotech_references.packs new <packs folder>/local_example_manual \
-       --title "Example Manual" --reference-id "EX-01" --pdf "Example Manual 2026.pdf"
+   python -m geotech_references.packs new <packs folder>/local_example_manual --title "Example Manual" --reference-id "EX-01" --pdf "Example Manual 2026.pdf"
    ```
 
    This writes `pack.json` and an empty `text/`. Fill in the rest of
@@ -186,6 +223,8 @@ Also:
   what the app will see.
 - `python -m geotech_references.packs index --rebuild` rebuilds the search
   indexes.
+- `python -m geotech_references.packs schema` prints the chapter-file
+  schema (above).
 
 ## Where packs live, and how they are found
 

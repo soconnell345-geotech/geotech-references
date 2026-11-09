@@ -20,7 +20,7 @@ automatically.
 |---|---|
 | `build_chapter_text.py` | Generic PDF → chapter JSON pipeline (LLM-assisted) |
 | `audit_chapter_text.py` | Validate generated JSON against schema and equation index |
-| `chapter_schema.json` | JSON schema codifying the chapter file format |
+| `../geotech_references/chapter_schema.json` | JSON schema codifying the chapter file format (shipped in the wheel since 1.6.0; `python -m geotech_references.packs schema` prints it) |
 | `manifests/` | Per-reference manifest files (chapter page ranges + PDF paths) |
 
 ---
@@ -137,7 +137,7 @@ are listed there with their own counts. Deleted modules (`fema_p2192`,
 
 ## Schema reference
 
-Every `text/chapterNN.json` conforms to `chapter_schema.json`:
+Every `text/chapterNN.json` conforms to `geotech_references/chapter_schema.json`:
 
 ```json
 {

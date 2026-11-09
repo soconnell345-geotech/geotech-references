@@ -5,9 +5,11 @@
     python -m geotech_references.packs check <dir>
     python -m geotech_references.packs list
     python -m geotech_references.packs index [--rebuild]
+    python -m geotech_references.packs schema > chapter_schema.json
 
 A pack is a deployment's own reference in the library's layout (see
-:mod:`geotech_references._packs` and ``docs/REFERENCE_PACKS.md``). ``check``
+:mod:`geotech_references._packs` and :data:`DOC_URL`). ``schema`` prints the
+JSON schema every chapter file follows, shipped in the wheel. ``check``
 exits 0 when the pack can be used and 1 when it cannot; it prints every
 error, every warning and what it found. It never writes into the pack.
 
@@ -43,6 +45,11 @@ RECOMMENDED_PACK_KEYS = ("pdf_files", "prepared_by", "prepared_on", "method",
                          "distribution")
 METHODS = ("printed", "model", "hand")
 _PAGE_MARK = re.compile(r"[\[(]p+\.\s*[A-Za-z0-9]")
+#: The chapter-file schema, shipped as package data.
+SCHEMA_FILE = Path(__file__).with_name("chapter_schema.json")
+#: The pack format, the print-fidelity rules and where packs live.
+DOC_URL = ("https://github.com/soconnell345-geotech/geotech-references/"
+           "blob/main/docs/REFERENCE_PACKS.md")
 
 
 # ---------------------------------------------------------------------------
@@ -621,7 +628,8 @@ def _print_report(report: dict) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="python -m geotech_references.packs",
-        description="Make, check and list local reference packs.")
+        description="Make, check and list local reference packs.",
+        epilog=f"The pack format and its rules: {DOC_URL}")
     sub = parser.add_subparsers(dest="command", required=True)
     p_new = sub.add_parser("new", help="write a pack skeleton")
     p_new.add_argument("dir")
@@ -644,7 +652,16 @@ def main(argv: list[str] | None = None) -> int:
     p_index = sub.add_parser("index", help="build the search indexes")
     p_index.add_argument("--rebuild", action="store_true",
                          help="rebuild even when they are current")
+    sub.add_parser("schema", help="print the JSON schema every chapter file "
+                                  "follows")
     args = parser.parse_args(argv)
+
+    if args.command == "schema":
+        # the file's own bytes (UTF-8), so a redirect saves it unchanged
+        sys.stdout.flush()
+        sys.stdout.buffer.write(SCHEMA_FILE.read_bytes())
+        sys.stdout.buffer.flush()
+        return 0
 
     if args.command == "new":
         try:

@@ -24,6 +24,10 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   _atomic_db.py                # Both search databases are built under a temporary name beside the real one and moved in with os.replace, so no process reads a half-built file; concurrent first calls each build their own copy (REF-56)
+  _packs.py                    # Local reference packs (REF-64): GEOTECH_REFERENCES_PACKS folders indexed beside the built-ins; ids local_*; PDFs by bare file name only; a pack file the indexes cannot take is skipped (SAVEPOINT per file) and named in problems()
+  packs.py                     # python -m geotech_references.packs new | check | list | index | schema; the format is docs/REFERENCE_PACKS.md
+  _schema.py                   # validate_schema(): the chapter-file check shared by scripts/audit_chapter_text.py and packs check
+  chapter_schema.json          # JSON schema for chapter files (package data since 1.6.0; `packs schema` prints it)
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto), EXPANSION_PIN (env GEOTECH_RETRIEVAL_PIN, default 1). See "Lexical Query Expansion" below.
   dm7_1/                       # UFS 3-220-10 Soil Mechanics (DM 7.1), 16 Jan 2026 (8 chapters)
     chapter1.py ... chapter8.py
@@ -77,7 +81,6 @@ scripts/                       # Content generation tools (NOT installed with th
   check_section_numbers.py     # Chapter JSON section numbers vs the printed PDF (outline + page headings; no API). --detail lists what needs a reader, --apply writes only definite renumberings (section_id values only). Test: tests/test_section_numbers.py (skips without the PDFs). REF-23
   eval_retrieval_gold.py       # recall@3/5/10 per expansion strategy on the hand-curated gold set retrieval_gold.json (54 cases, 17 references). REF-07
   eval_subsection_retrieval.py # 14 questions answered in a subsection (8 references): replays search -> fetch, reports recall@5 and characters read; --titles --save/--compare = the ranking guard (top-level sections found by their own title). Test: tests/test_subsection_retrieval.py. REF-24
-  chapter_schema.json          # JSON schema for chapter files
   manifests/                   # Per-reference manifest files (chapter page ranges + PDF paths)
     dm7_1.json, dm7_2.json     # DM7 — page ranges pre-filled
     gec_6.json, gec_7.json, gec_10.json, gec_11.json  # GECs — page ranges pre-filled

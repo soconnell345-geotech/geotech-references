@@ -40,7 +40,8 @@ include = ["geotech_references*"]
 exclude = ["agents*"]
 
 [tool.setuptools.package-data]
-geotech_references = ["*/text/*.json", "*/figures_catalog.json"]
+geotech_references = ["*/text/*.json", "*/figures_catalog.json",
+                      "chapter_schema.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
