@@ -505,3 +505,37 @@ def test_validator_passes_every_builtin_chapter():
         if errs:
             bad[str(jf)] = errs
     assert bad == {}
+
+
+@pytest.mark.skipif(pymupdf is None, reason="PyMuPDF not installed")
+def test_build_figure_catalog_for_a_pack(tmp_path):
+    """scripts/build_figure_catalog.py --pack reads a made-up List of
+    Figures, finds each caption's page, writes the file name only and keeps
+    a figure's bbox / read_notes."""
+    folder = make_pack(tmp_path, pdf=False)
+    doc = pymupdf.open()
+    page = doc.new_page()
+    page.insert_text((72, 72), "LIST OF FIGURES")
+    page.insert_text((72, 100), "Figure 1-1 Zorblite settlement chart ...... 2")
+    page.insert_text((72, 120), "Figure 1-2 Wet zorblite settlement ...... 3")
+    doc.new_page().insert_text((72, 72), "CHAPTER 1")
+    for text, num in (("Figure 1-1 Zorblite settlement chart", "2"),
+                      ("Figure 1-2 Wet zorblite settlement", "3")):
+        page = doc.new_page()
+        page.insert_text((72, 400), text)
+        page.insert_text((300, 770), num)
+    doc.save(str(folder / PDF_NAME))
+    doc.close()
+    script = Path(__file__).resolve().parents[1] / "scripts" / \
+        "build_figure_catalog.py"
+    done = subprocess.run([sys.executable, str(script), "--pack", str(folder)],
+                          capture_output=True, text=True)
+    assert done.returncode == 0, done.stdout + done.stderr
+    cat = json.loads((folder / "figures_catalog.json").read_text())
+    assert cat["pdf_path"] == PDF_NAME and cat["package"] == PID
+    figs = {f["figure_number"]: f for f in cat["figures"]}
+    assert figs["1-1"]["pdf_page_index"] == 2
+    assert figs["1-2"]["pdf_page_index"] == 3
+    assert figs["1-1"]["read_notes"] == "The x axis is logarithmic."
+    assert "bbox" not in figs["1-2"]
+    assert not packs.check_pack(folder, smoke=False)["errors"]
