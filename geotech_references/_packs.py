@@ -21,6 +21,12 @@ reference's name, or an earlier pack has the same id. Unset (or with no
 valid pack), every function here returns nothing and the library behaves
 exactly as it did before packs existed.
 
+A pack names its PDFs by bare file name only (``pdf_files``, a catalog's
+``pdf_path``), so no path read from a pack leads outside it: a catalog
+that gives a folder, ``..`` or a drive is skipped by the figure index and
+named in :func:`problems`, and a pack's PDF is looked for only in the
+pack's folder and in ``GEOTECH_REFERENCES_DOCS``.
+
 ``docs/REFERENCE_PACKS.md`` describes the format and how to check a pack
 (``python -m geotech_references.packs check <dir>``).
 """
@@ -41,6 +47,15 @@ PACKS_ENV = "GEOTECH_REFERENCES_PACKS"
 PACK_PREFIX = "local_"
 PACK_FILE = "pack.json"
 CATALOG_NAME = "figures_catalog.json"
+
+
+def bare_file_name(value) -> bool:
+    """True for a file name with no folder part: no separator, no drive,
+    not ``.`` or ``..``. Pack PDFs are named this way, so a name read from a
+    pack can only lead to a file in a folder the library chose."""
+    return (isinstance(value, str) and value.strip() != ""
+            and value not in (".", "..")
+            and not any(c in value for c in "/\\:"))
 
 
 def builtin_ids() -> set[str]:
@@ -106,6 +121,12 @@ def scan() -> tuple[list[tuple[str, Path]], list[str]]:
                 problems.append(f"{folder}: id '{pid}' repeats the pack at "
                                 f"{seen[pid]}; skipped")
                 continue
+            pdfs = data.get("pdf_files") or []
+            bad = ([p for p in pdfs if not bare_file_name(p)]
+                   if isinstance(pdfs, list) else [pdfs])
+            if bad:
+                problems.append(f"{folder}: pack.json pdf_files {bad!r}: not "
+                                "bare file names; ignored")
             seen[pid] = folder
             packs.append((pid, folder))
     return packs, problems
@@ -130,8 +151,38 @@ def pack_dir(pack_id: str) -> Path | None:
 
 
 def problems() -> list[str]:
-    """What the current setting names that is not a usable pack, and why."""
-    return scan()[1]
+    """What the current setting names that is not a usable pack, or a pack
+    file the search indexes skip, and why."""
+    return scan()[1] + file_problems()
+
+
+def catalog_problem(data) -> str | None:
+    """Why the figure index skips a pack's catalog, or None."""
+    if not isinstance(data, dict):
+        return "not a JSON object"
+    figures = data.get("figures")
+    names = [data.get("pdf_path")] + [
+        f.get("pdf_path") for f in (figures if isinstance(figures, list)
+                                    else []) if isinstance(f, dict)]
+    for name in names:
+        if name not in (None, "") and not bare_file_name(name):
+            return f"pdf_path {name!r} is not a bare file name"
+    return None
+
+
+def file_problems() -> list[str]:
+    """Each pack file the search indexes skip, and why."""
+    out: list[str] = []
+    for _, cat in catalogs():
+        try:
+            data = json.loads(cat.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:
+            out.append(f"{cat}: not readable JSON ({e}); skipped")
+            continue
+        why = catalog_problem(data)
+        if why:
+            out.append(f"{cat}: {why}; skipped")
+    return out
 
 
 def text_jsons() -> list[tuple[str, Path]]:

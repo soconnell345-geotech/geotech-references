@@ -272,6 +272,76 @@ def test_resolve_pdf_falls_back_to_docs(tmp_path, monkeypatch):
     assert path == (docs / PDF_NAME).resolve()
 
 
+def _private_db(monkeypatch, tmp_path):
+    (tmp_path / "db").mkdir(exist_ok=True)
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path / "db"))
+
+
+@pytest.mark.parametrize("where", ["catalog", "figure"])
+@pytest.mark.parametrize("bad", ["../../outside.pdf", "absolute"])
+def test_a_pdf_path_cannot_lead_outside_the_pack(tmp_path, monkeypatch,
+                                                 where, bad):
+    """A catalog naming its PDF by a path ('..', a drive or a folder) is
+    skipped and named; the repo-relative step that would have reached the
+    file is never taken for a pack; a good pack beside it still resolves."""
+    outside = tmp_path / "outside.pdf"
+    _write_pdf(outside)
+    # the repo-relative step would reach `outside` through either path
+    monkeypatch.setattr(_figures_db, "_REPO_ROOT", tmp_path / "a" / "b")
+    if bad == "absolute":
+        bad = str(outside)
+    root = tmp_path / "packs"
+    escaping = make_pack(root, "local_escaping", pdf=False)
+    good = make_pack(root, "local_good")
+    cat = _catalog()
+    if where == "catalog":
+        cat["pdf_path"] = bad
+    else:
+        cat["figures"][0]["pdf_path"] = bad
+    _write_json(escaping / "figures_catalog.json", cat)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(root))
+    monkeypatch.delenv("GEOTECH_REFERENCES_DOCS", raising=False)
+    _private_db(monkeypatch, tmp_path)
+    assert any("local_escaping" in p and "is not a bare file name; skipped"
+               in p for p in _packs.problems())
+    with pytest.raises(KeyError):
+        _figures_db.resolve_pdf("local_escaping", "1-1")
+    assert "local_escaping" not in {
+        r["reference"] for r in _figures_db.list_indexed_figures()}
+    assert "pdf_path must be a file name only" in _errors(escaping)
+    path, _ = _figures_db.resolve_pdf("local_good", "1-1")
+    assert path == (good / PDF_NAME).resolve()
+    assert _figures_db.figure_get("local_good", "1-1")["pdf_path"] == PDF_NAME
+
+
+def test_a_pack_pdf_is_never_found_relative_to_the_repo(tmp_path,
+                                                        monkeypatch):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _write_pdf(repo / PDF_NAME)
+    monkeypatch.setattr(_figures_db, "_REPO_ROOT", repo)
+    root = tmp_path / "packs"
+    make_pack(root, pdf=False)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(root))
+    monkeypatch.delenv("GEOTECH_REFERENCES_DOCS", raising=False)
+    _private_db(monkeypatch, tmp_path)
+    with pytest.raises(FileNotFoundError) as e:
+        _figures_db.resolve_pdf(PID, "1-1")
+    assert f"'{PDF_NAME}' is not in the pack's folder or in " \
+           "GEOTECH_REFERENCES_DOCS" in str(e.value)
+    assert str(tmp_path) not in str(e.value)  # no host path in the message
+
+
+@pytest.mark.parametrize("bad", ["../x.pdf", "sub/x.pdf", "C:\\x.pdf", ".."])
+def test_pdf_files_take_bare_names_only(tmp_path, monkeypatch, bad):
+    folder = make_pack(tmp_path, pdf=False)
+    _write_json(folder / "pack.json", dict(_pack_json(), pdf_files=[bad]))
+    assert "'pdf_files' must be a list of file names" in _errors(folder)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path))
+    assert [p for p, _ in _packs.packs()] == [PID]  # used, the entry ignored
+    assert any("pdf_files" in p and "ignored" in p for p in _packs.problems())
+
+
 # ---------------------------------------------------------------------------
 # the key and the problems
 # ---------------------------------------------------------------------------

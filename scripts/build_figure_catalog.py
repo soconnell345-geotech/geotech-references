@@ -876,13 +876,23 @@ def build_pack_catalog(pack_dir, pdf: "str | None" = None,
     (REF-64). ``pdf_path`` is the PDF's file name only, so no host path
     reaches the model; ``bbox`` and ``read_notes`` an existing catalog gives
     a figure are kept."""
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
+    from geotech_references._packs import bare_file_name
+
     pack_dir = Path(pack_dir)
     meta = json.loads((pack_dir / "pack.json").read_text(encoding="utf-8"))
     pid = meta.get("id") or pack_dir.name
-    name = pdf or (meta.get("pdf_files") or [None])[0]
-    if not name:
-        raise ValueError("give --pdf or list the PDF in pack.json pdf_files")
-    pdf_abs = Path(name) if Path(name).is_file() else pack_dir / Path(name).name
+    if pdf:  # a path given on the command line
+        pdf_abs = Path(pdf) if Path(pdf).is_file() else pack_dir / Path(pdf).name
+    else:  # pack.json names its PDFs by bare file name, in the pack folder
+        listed = meta.get("pdf_files")
+        name = next((p for p in (listed if isinstance(listed, list) else [])
+                     if bare_file_name(p)), None)
+        if not name:
+            raise ValueError("give --pdf or list the PDF's file name in "
+                             "pack.json pdf_files")
+        pdf_abs = pack_dir / name
     if not pdf_abs.is_file():
         raise FileNotFoundError(f"PDF not found: {pdf_abs}")
     figs = _figs_from_pdf(pdf_abs, seq=sequential)

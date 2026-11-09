@@ -131,9 +131,9 @@ def _norm_number(n) -> str:
     return _norm_fig_number(str(n))
 
 
-def _is_file_name(value) -> bool:
-    return (isinstance(value, str) and value != ""
-            and Path(value).name == value and "\\" not in value)
+_is_file_name = _packs.bare_file_name
+#: How a PDF must be named in a pack (pack.json, the catalog).
+_BARE = "a bare file name: no folder, '..' or drive"
 
 
 def _find_pdf(folder: Path, name: str) -> Path | None:
@@ -174,7 +174,8 @@ def _check_pack_json(folder: Path, report: dict) -> dict | None:
              f"{', '.join(METHODS)}")
     pdfs = meta.get("pdf_files") or []
     if not isinstance(pdfs, list) or not all(_is_file_name(p) for p in pdfs):
-        err("pack.json: 'pdf_files' must be a list of file names (no folders)")
+        err(f"pack.json: 'pdf_files' must be a list of file names, each "
+            f"{_BARE}")
     return meta
 
 
@@ -253,8 +254,8 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
         err("figures_catalog.json: needs a 'figures' list")
         return []
     if cat.get("pdf_path") and not _is_file_name(cat["pdf_path"]):
-        err("figures_catalog.json: pdf_path must be a file name only, "
-            f"not '{cat['pdf_path']}'")
+        err(f"figures_catalog.json: pdf_path must be a file name only "
+            f"({_BARE}), not '{cat['pdf_path']}'")
     try:
         import pymupdf
     except ImportError:
@@ -299,7 +300,8 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
             bbox = None
         pdf_name = fig.get("pdf_path") or cat.get("pdf_path")
         if fig.get("pdf_path") and not _is_file_name(fig["pdf_path"]):
-            err(f"{where}: pdf_path must be a file name only")
+            err(f"{where}: pdf_path must be a file name only ({_BARE}), "
+                f"not '{fig['pdf_path']}'")
             pdf_name = None
         good.append(fig)
         if pymupdf is None or page is None or not _is_file_name(pdf_name):

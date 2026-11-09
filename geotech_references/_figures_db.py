@@ -135,6 +135,8 @@ def _fill_db(conn: sqlite3.Connection) -> None:
             data = json.loads(cat_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
+        if cat_path in pack_of and _packs.catalog_problem(data):
+            continue  # a PDF named by a path, not a bare file name: problems()
         reference = pack_of.get(cat_path) or data.get(
             "package", cat_path.parent.name)
         ref_id = data.get("reference_id", "")
@@ -582,11 +584,14 @@ _DOCS_ENV = "GEOTECH_REFERENCES_DOCS"
 def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     """Resolve a figure to its absolute source PDF path and 0-based page index.
 
-    A local reference pack's PDF (REF-64) is looked for first in the pack's
-    own folder, by file name. Otherwise, and for every built-in reference,
-    the PDF is located via the ``GEOTECH_REFERENCES_DOCS`` folder when that env
-    var is set (needed when the package is installed and the repo's ``docs/`` is
-    absent), otherwise relative to the repo root.
+    A built-in reference's PDF is located via the ``GEOTECH_REFERENCES_DOCS``
+    folder when that env var is set (needed when the package is installed and
+    the repo's ``docs/`` is absent), otherwise relative to the repo root.
+
+    A local reference pack's PDF (REF-64) is looked for by its bare file name
+    in the pack's own folder, then in ``GEOTECH_REFERENCES_DOCS``, and nowhere
+    else: never relative to the repo root, so a pack cannot lead outside
+    those two folders.
 
     Raises
     ------
@@ -598,10 +603,17 @@ def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     rec = figure_get(reference, figure_number)
     pdf_rel = rec["pdf_path"]
     folder = _packs.pack_dir(rec["reference"])
-    if folder is not None and pdf_rel:
-        in_pack = (folder / Path(pdf_rel).name).resolve()
-        if in_pack.is_file():
-            return in_pack, int(rec["pdf_page_index"])
+    if folder is not None:
+        docs = os.environ.get(_DOCS_ENV)
+        if _packs.bare_file_name(pdf_rel):
+            for base in (folder, Path(docs) if docs else None):
+                if base is not None and (base / pdf_rel).is_file():
+                    return ((base / pdf_rel).resolve(),
+                            int(rec["pdf_page_index"]))
+        raise FileNotFoundError(
+            f"source PDF for {reference} {figure_number} not found: "
+            f"'{pdf_rel}' is not in the pack's folder or in {_DOCS_ENV}."
+        )
     docs_override = os.environ.get(_DOCS_ENV)
     if docs_override:
         # PDFs live flat in the docs folder; resolve by filename.
