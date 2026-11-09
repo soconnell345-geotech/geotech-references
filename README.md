@@ -91,6 +91,10 @@ for section in results:
     print(section["title"], "-", section["body"][:100])
 ```
 
+### Local reference packs
+
+A deployment can add its own references in the library's structured format, kept outside this package and its public repository. Point `GEOTECH_REFERENCES_PACKS` at a pack folder (or a folder of packs) and text search, section fetches and figure lookup cover it beside the built-in references. Make and check a pack with `python -m geotech_references.packs new|check|list|index`; `python -m geotech_references.packs schema` prints the chapter-file schema. The format, the print-fidelity rules and where packs live on each host are in [`docs/REFERENCE_PACKS.md`](https://github.com/soconnell345-geotech/geotech-references/blob/main/docs/REFERENCE_PACKS.md).
+
 ## Agents
 
 Pre-built Foundry-style agent wrappers are included in the `agents/` directory: 19 per-reference wrappers (`dm7_agent` covers both DM 7 volumes) and a generic `references_agent`, which serves every package: its catalog is read from the installed package (`list_reference_methods('')` lists it). The other packages have no per-reference wrapper. These are standalone files for Palantir Foundry AIP Agent Studio — they are **not** part of the pip-installable `geotech-references` package. Copy them into your Foundry function repository as needed.

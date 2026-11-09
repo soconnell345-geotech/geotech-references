@@ -28,6 +28,16 @@ Usage
     python scripts/build_figure_catalog.py dm7_2
     python scripts/build_figure_catalog.py dm7_1 dm7_2
     python scripts/build_figure_catalog.py all
+    python scripts/build_figure_catalog.py --pack <pack dir> [--pdf FILE]
+                                           [--sequential]
+
+``--pack`` builds a local reference pack's catalog (BACKLOG REF-64; see
+``docs/REFERENCE_PACKS.md``): the PDF is ``--pdf`` or the first of
+``pack.json``'s ``pdf_files``, looked for in the pack folder; descriptions are
+enriched from the pack's own ``text/``; the catalog goes to
+``<pack dir>/figures_catalog.json`` with ``pdf_path`` as the file name only,
+keeping any ``bbox`` / ``read_notes`` an earlier catalog gave a figure. Check
+the result with ``python -m geotech_references.packs check <pack dir>``.
 
 Requires: PyMuPDF (``pip install PyMuPDF``).
 """
@@ -291,7 +301,8 @@ def _norm_fig_ref(s) -> str:
     return s.upper()
 
 
-def _enrich_from_text(package: str, figs: list[dict], max_chars: int = 800) -> int:
+def _enrich_from_text(package: str, figs: list[dict], max_chars: int = 800,
+                      text_dir: "Path | None" = None) -> int:
     """Fold concept vocabulary from the chapter text into figure descriptions.
 
     Figure captions use notation (``KA``/``KP``) while engineers query by
@@ -303,7 +314,8 @@ def _enrich_from_text(package: str, figs: list[dict], max_chars: int = 800) -> i
 
     Returns the number of figures enriched.
     """
-    text_dir = _PACKAGE_DIR / package / "text"
+    if text_dir is None:
+        text_dir = _PACKAGE_DIR / package / "text"
     if not text_dir.is_dir():
         return 0
 
@@ -858,6 +870,79 @@ def build_catalog(package: str) -> dict:
     return catalog
 
 
+def build_pack_catalog(pack_dir, pdf: "str | None" = None,
+                       sequential: bool = False) -> dict:
+    """Build and write a local reference pack's ``figures_catalog.json``
+    (REF-64). ``pdf_path`` is the PDF's file name only, so no host path
+    reaches the model; ``bbox`` and ``read_notes`` an existing catalog gives
+    a figure are kept."""
+    if str(_REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(_REPO_ROOT))
+    from geotech_references._packs import bare_file_name
+
+    pack_dir = Path(pack_dir)
+    meta = json.loads((pack_dir / "pack.json").read_text(encoding="utf-8"))
+    pid = meta.get("id") or pack_dir.name
+    if pdf:  # a path given on the command line
+        pdf_abs = Path(pdf) if Path(pdf).is_file() else pack_dir / Path(pdf).name
+    else:  # pack.json names its PDFs by bare file name, in the pack folder
+        listed = meta.get("pdf_files")
+        name = next((p for p in (listed if isinstance(listed, list) else [])
+                     if bare_file_name(p)), None)
+        if not name:
+            raise ValueError("give --pdf or list the PDF's file name in "
+                             "pack.json pdf_files")
+        pdf_abs = pack_dir / name
+    if not pdf_abs.is_file():
+        raise FileNotFoundError(f"PDF not found: {pdf_abs}")
+    figs = _figs_from_pdf(pdf_abs, seq=sequential)
+    if not figs:
+        raise ValueError(f"No figures parsed from {pdf_abs}")
+    enriched = _enrich_from_text(pid, figs, text_dir=pack_dir / "text")
+    out_path = pack_dir / "figures_catalog.json"
+    kept: dict[str, dict] = {}
+    if out_path.is_file():
+        try:
+            for f in json.loads(out_path.read_text(encoding="utf-8")).get(
+                    "figures", []):
+                extra = {k: f[k] for k in ("bbox", "read_notes") if k in f}
+                if extra:
+                    kept[str(f.get("figure_number", "")).upper()] = extra
+        except (OSError, json.JSONDecodeError, AttributeError):
+            pass
+    out_figs = []
+    for f in figs:
+        rec = {
+            "figure_number": f["figure_number"],
+            "caption": f["caption"],
+            "chapter": _chapter_of(f["figure_number"]),
+            "pdf_page_index": f["pdf_page_index"],
+            "printed_page": f["printed_page"],
+            "page_estimated": bool(f.get("page_estimated", False)),
+            "description": f.get("description", ""),
+        }
+        rec.update(kept.get(f["figure_number"].upper(), {}))
+        out_figs.append(rec)
+    catalog = {
+        "reference_id": meta.get("reference_id", ""),
+        "reference_title": meta.get("reference_title", ""),
+        "package": pid,
+        "volume": meta.get("volume"),
+        "pdf_path": pdf_abs.name,
+        "figure_count": len(out_figs),
+        "figures": out_figs,
+    }
+    for problem in caption_problems(catalog):
+        print(f"[{pid}] caption check: {problem}")
+    out_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False),
+                        encoding="utf-8")
+    resolved = sum(1 for f in out_figs if not f["page_estimated"])
+    print(f"[{pid}] {len(out_figs)} figures (caption-resolved {resolved}, "
+          f"estimated {len(out_figs) - resolved}; text-enriched {enriched}) "
+          f"-> {out_path}")
+    return catalog
+
+
 def caption_problems(catalog: dict) -> list[str]:
     """Captions that ran on into the page text (BACKLOG REF-27): longer than
     :data:`MAX_CAPTION_CHARS`, or carrying another figure's entry, a list
@@ -889,6 +974,20 @@ def _packages_with_pdf() -> list[str]:
 
 
 def main(argv: list[str]) -> int:
+    if argv and argv[0] == "--pack":
+        import argparse
+        ap = argparse.ArgumentParser(prog="build_figure_catalog.py --pack")
+        ap.add_argument("--pack", required=True)
+        ap.add_argument("--pdf")
+        ap.add_argument("--sequential", action="store_true",
+                        help='figures numbered "Figure 1", "Figure 2"')
+        args = ap.parse_args(argv)
+        try:
+            build_pack_catalog(args.pack, args.pdf, args.sequential)
+        except Exception as e:  # noqa: BLE001
+            print(f"[{args.pack}] FAILED: {type(e).__name__}: {e}")
+            return 1
+        return 0
     if not argv:
         print(__doc__)
         print("Packages with a manifest pdf_path:", ", ".join(_packages_with_pdf()))

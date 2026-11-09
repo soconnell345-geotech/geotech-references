@@ -31,6 +31,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _atomic_db
+from . import _packs
 from . import _query_expansion as _qe
 from ._retrieval import fit_hits, fit_record
 from ._retrieval_db import keyed_db_path, plain_terms, search_fts_safely
@@ -55,7 +56,8 @@ def _db_path() -> Path:
 
 
 def _iter_catalogs() -> list[Path]:
-    """Yield every ``<reference>/figures_catalog.json`` in the package."""
+    """Yield every ``<reference>/figures_catalog.json`` in the package, then
+    every local reference pack's (REF-64; none when unset)."""
     out: list[Path] = []
     for ref_dir in sorted(_PACKAGE_DIR.iterdir()):
         if not ref_dir.is_dir():
@@ -63,6 +65,7 @@ def _iter_catalogs() -> list[Path]:
         cat = ref_dir / _CATALOG_NAME
         if cat.is_file():
             out.append(cat)
+    out.extend(cat for _, cat in _packs.catalogs())
     return out
 
 
@@ -105,7 +108,9 @@ def _fill_db(conn: sqlite3.Connection) -> None:
             pdf_path TEXT,
             pdf_page_index INTEGER,
             printed_page INTEGER,
-            page_estimated INTEGER
+            page_estimated INTEGER,
+            bbox TEXT,
+            read_notes TEXT
         )
         """
     )
@@ -123,42 +128,23 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     cur.execute("CREATE INDEX idx_fig_ref_chap ON figures(reference, chapter)")
     cur.execute("CREATE INDEX idx_fig_ref_num ON figures(reference, figure_number)")
 
+    # a local pack's figures are filed under its pack id (REF-64)
+    pack_of = {cat: pid for pid, cat in _packs.catalogs()}
     for cat_path in _iter_catalogs():
         try:
             data = json.loads(cat_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        reference = data.get("package", cat_path.parent.name)
-        ref_id = data.get("reference_id", "")
-        ref_title = data.get("reference_title", "")
-        volume = data.get("volume")
-        pdf_path = data.get("pdf_path", "")
-        for fig in data.get("figures", []):
-            if not isinstance(fig, dict):
-                continue
-            cur.execute(
-                """
-                INSERT INTO figures (
-                    reference, reference_id, reference_title, volume,
-                    figure_number, caption, description, chapter,
-                    pdf_path, pdf_page_index, printed_page, page_estimated
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    # A volume printed under its own number (GEC-13 Vol II,
-                    # FHWA-NHI-16-028) carries it per figure; it wins (REF-31).
-                    reference, fig.get("reference_id") or ref_id, ref_title,
-                    fig.get("volume", volume),
-                    fig.get("figure_number", ""),
-                    fig.get("caption", ""),
-                    fig.get("description", "") or "",
-                    fig.get("chapter"),
-                    fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
-                    fig.get("pdf_page_index"),
-                    fig.get("printed_page"),
-                    1 if fig.get("page_estimated") else 0,
-                ),
-            )
+        if cat_path not in pack_of:
+            _index_catalog(cur, data.get("package", cat_path.parent.name),
+                           data)
+        # a local pack's catalog the index cannot take (a PDF named by a
+        # path, a field of the wrong kind) is skipped and named in
+        # _packs.problems(); one that still fails is rolled back (REF-64)
+        elif _packs.catalog_problem(data) is None:
+            _packs.index_pack_file(
+                cur, cat_path,
+                lambda: _index_catalog(cur, pack_of[cat_path], data))
 
     cur.execute(
         """
@@ -166,6 +152,47 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         SELECT rowid, figure_number, caption, description FROM figures
         """
     )
+
+
+def _index_catalog(cur: sqlite3.Cursor, reference: str, data: dict) -> None:
+    """Insert one figure catalog's figures into ``figures``."""
+    ref_id = data.get("reference_id", "")
+    ref_title = data.get("reference_title", "")
+    volume = data.get("volume")
+    pdf_path = data.get("pdf_path", "")
+    for fig in data.get("figures", []):
+        if not isinstance(fig, dict):
+            continue
+        cur.execute(
+            """
+            INSERT INTO figures (
+                reference, reference_id, reference_title, volume,
+                figure_number, caption, description, chapter,
+                pdf_path, pdf_page_index, printed_page, page_estimated,
+                bbox, read_notes
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            """,
+            (
+                # A volume printed under its own number (GEC-13 Vol II,
+                # FHWA-NHI-16-028) carries it per figure; it wins (REF-31).
+                reference, fig.get("reference_id") or ref_id, ref_title,
+                fig.get("volume", volume),
+                fig.get("figure_number", ""),
+                fig.get("caption", ""),
+                fig.get("description", "") or "",
+                fig.get("chapter"),
+                fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
+                fig.get("pdf_page_index"),
+                fig.get("printed_page"),
+                1 if fig.get("page_estimated") else 0,
+                # two optional fields a catalog may give any figure
+                # (REF-64): a crop for the vision read and notes on
+                # reading it; carried to figure_get as given
+                (json.dumps(fig["bbox"]) if fig.get("bbox") is not None
+                 else None),
+                fig.get("read_notes") or None,
+            ),
+        )
 
 
 def _ensure_db() -> Path:
@@ -311,6 +338,13 @@ def _row_to_full(row: sqlite3.Row) -> dict[str, Any]:
         "pdf_path": row["pdf_path"],
         "page_estimated": bool(row["page_estimated"]),
     })
+    # Only a figure whose catalog gives them carries these (REF-64); a
+    # database built before they existed has no such columns.
+    keys = row.keys()
+    if "bbox" in keys and row["bbox"] is not None:
+        out["bbox"] = json.loads(row["bbox"])
+    if "read_notes" in keys and row["read_notes"]:
+        out["read_notes"] = row["read_notes"]
     return out
 
 
@@ -486,7 +520,10 @@ def figure_get(reference: str, figure_number: str,
     -------
     dict
         Full row incl. ``caption``, ``description``, ``chapter``, ``pdf_path``,
-        ``pdf_page_index`` (0-based), ``printed_page``, ``page_estimated``.
+        ``pdf_page_index`` (0-based), ``printed_page``, ``page_estimated``;
+        plus ``bbox`` (``[x0, y0, x1, y1]``, PDF points, top-left origin: the
+        chart's box on the page) and ``read_notes`` (how to read the chart)
+        only where the catalog gives them (local packs, REF-64).
 
     Raises
     ------
@@ -557,9 +594,14 @@ _DOCS_ENV = "GEOTECH_REFERENCES_DOCS"
 def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     """Resolve a figure to its absolute source PDF path and 0-based page index.
 
-    The PDF is located via the ``GEOTECH_REFERENCES_DOCS`` folder when that env
-    var is set (needed when the package is installed and the repo's ``docs/`` is
-    absent), otherwise relative to the repo root.
+    A built-in reference's PDF is located via the ``GEOTECH_REFERENCES_DOCS``
+    folder when that env var is set (needed when the package is installed and
+    the repo's ``docs/`` is absent), otherwise relative to the repo root.
+
+    A local reference pack's PDF (REF-64) is looked for by its bare file name
+    in the pack's own folder, then in ``GEOTECH_REFERENCES_DOCS``, and nowhere
+    else: never relative to the repo root, so a pack cannot lead outside
+    those two folders.
 
     Raises
     ------
@@ -570,6 +612,18 @@ def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     """
     rec = figure_get(reference, figure_number)
     pdf_rel = rec["pdf_path"]
+    folder = _packs.pack_dir(rec["reference"])
+    if folder is not None:
+        docs = os.environ.get(_DOCS_ENV)
+        if _packs.bare_file_name(pdf_rel):
+            for base in (folder, Path(docs) if docs else None):
+                if base is not None and (base / pdf_rel).is_file():
+                    return ((base / pdf_rel).resolve(),
+                            int(rec["pdf_page_index"]))
+        raise FileNotFoundError(
+            f"source PDF for {reference} {figure_number} not found: "
+            f"'{pdf_rel}' is not in the pack's folder or in {_DOCS_ENV}."
+        )
     docs_override = os.environ.get(_DOCS_ENV)
     if docs_override:
         # PDFs live flat in the docs folder; resolve by filename.

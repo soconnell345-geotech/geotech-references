@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "geotech-references"
-version = "1.5.0"
+version = "1.6.0"
 description = "Digitized geotechnical reference library: 33 packages of callable functions and structured text, including DM 7.1/7.2, FHWA GEC-4 to GEC-14, the FHWA Soils and Foundations and Pavements manuals, micropiles, the UFC pavement and structural criteria, AASHTO 1993, Eurocode 7, EM 1110-2-2104/2107, FEMA P-2082, wood handbook and the Caltrans Trenching and Shoring Manual"
 readme = "README.md"
 license = "MIT"
@@ -40,7 +40,8 @@ include = ["geotech_references*"]
 exclude = ["agents*"]
 
 [tool.setuptools.package-data]
-geotech_references = ["*/text/*.json", "*/figures_catalog.json"]
+geotech_references = ["*/text/*.json", "*/figures_catalog.json",
+                      "chapter_schema.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

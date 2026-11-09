@@ -1,7 +1,7 @@
 """SQLite FTS5 retrieval layer for structured chapter text.
 
 Builds a single FTS5 index over every `<reference>/text/*.json` file in
-the package and exposes three tools optimized for LLM agent use:
+the package (and in any local reference pack, :mod:`._packs`) and exposes three tools optimized for LLM agent use:
 
 - ``reference_search(query, reference=None, chapter=None, limit=5)`` —
   ranked BM25 hits returning *summary only* (the noise-reduction lever).
@@ -54,6 +54,7 @@ from pathlib import Path
 from typing import Any
 
 from . import _atomic_db
+from . import _packs
 from . import _query_expansion as _qe
 from . import _retrieval
 
@@ -118,18 +119,34 @@ def keyed_db_path(name: str, package_dir: Path = _PACKAGE_DIR) -> Path:
     The file name carries :func:`_copy_key`, so two checkouts, or two
     environments sharing one temp folder, never serve each other's text.
     A database left under the old fixed name is not read or deleted.
+
+    With local reference packs set (``GEOTECH_REFERENCES_PACKS``, REF-64)
+    the key also covers the pack set -- each indexed pack file's path, size
+    and modification time (:func:`._packs.key_part`) -- so a pack edit gets
+    a database of its own. With none set the key is unchanged, and the
+    databases already built stay valid.
     """
     stem, suffix = os.path.splitext(name)
-    return (Path(tempfile.gettempdir())
-            / f"{stem}_{_copy_key(str(package_dir))}{suffix}")
+    key = _copy_key(str(package_dir))
+    packs = _packs.key_part()
+    if packs:
+        key = hashlib.sha1(f"{key}|packs|{packs}".encode()).hexdigest()[:12]
+    return Path(tempfile.gettempdir()) / f"{stem}_{key}{suffix}"
 
 
 def _db_path() -> Path:
     return keyed_db_path(_DB_NAME)
 
 
+#: The folders of the local reference packs indexed beside the built-ins
+#: (REF-64); an app tests ``hasattr(_retrieval_db, "pack_dirs")`` to know
+#: this version reads packs.
+pack_dirs = _packs.pack_dirs
+
+
 def _iter_text_jsons() -> list[tuple[str, Path]]:
-    """Yield (reference, json_path) for every text JSON in the package."""
+    """Yield (reference, json_path) for every text JSON in the package,
+    then every local reference pack's (REF-64; none when unset)."""
     out: list[tuple[str, Path]] = []
     for ref_dir in sorted(_PACKAGE_DIR.iterdir()):
         if not ref_dir.is_dir():
@@ -139,6 +156,7 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
             continue
         for jf in sorted(text_dir.glob("*.json")):
             out.append((ref_dir.name, jf))
+    out.extend(_packs.text_jsons())
     return out
 
 
@@ -242,63 +260,19 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         "CREATE INDEX idx_sections_parent ON sections(parent_rowid)"
     )
 
+    pack_files = {jf for _, jf in _packs.text_jsons()}
     for reference, jf in _iter_text_jsons():
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        ref_title = data.get("reference_title", "")
-        ch_num = data.get("chapter", 0)
-        ch_title = data.get("chapter_title", "")
-        entries = _retrieval.section_entries(data)
-        rowids: list[int] = []
-        for i, entry in enumerate(entries):
-            sec = entry["section"]
-            chain = [entries[j]["section"]
-                     for j in _retrieval.entry_chain(entries, i)]
-            kps = sec.get("key_points", [])
-            if isinstance(kps, list):
-                key_points_text = "\n".join(
-                    str(p) for p in kps if isinstance(p, (str, int, float))
-                )
-            else:
-                key_points_text = str(kps)
-            cur.execute(
-                """
-                INSERT INTO sections (
-                    reference, reference_title, chapter, chapter_title,
-                    section_id, title, summary, body, key_points,
-                    applicability, equations_json, figures_json,
-                    tables_json, depth, parents_json
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    reference,
-                    ref_title,
-                    ch_num,
-                    ch_title,
-                    sec.get("section_id", ""),
-                    sec.get("title", ""),
-                    sec.get("summary", ""),
-                    sec.get("body", ""),
-                    key_points_text,
-                    sec.get("applicability", ""),
-                    json.dumps(sec.get("equations", []), ensure_ascii=False),
-                    json.dumps(sec.get("figures", []), ensure_ascii=False),
-                    json.dumps(sec.get("tables", []), ensure_ascii=False),
-                    len(chain),
-                    json.dumps([[s.get("section_id", ""), s.get("title", "")]
-                                for s in chain], ensure_ascii=False),
-                ),
-            )
-            rowids.append(cur.lastrowid)
-        # a flat-listed section's parent may come later in its file, so
-        # parents are linked once the whole file is in
-        cur.executemany(
-            "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
-            [(rowids[e["parent"]], rowids[i])
-             for i, e in enumerate(entries) if e["parent"] is not None],
-        )
+        if jf not in pack_files:
+            _index_chapter(cur, reference, data)
+        # a local pack's file the index cannot take is skipped and named in
+        # _packs.problems(); one that still fails is rolled back (REF-64)
+        elif _packs.chapter_problem(data) is None:
+            _packs.index_pack_file(
+                cur, jf, lambda: _index_chapter(cur, reference, data))
 
     cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
     cur.execute(
@@ -308,6 +282,62 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         SELECT rowid, title, summary, body, key_points, applicability
         FROM sections
         """
+    )
+
+
+def _index_chapter(cur: sqlite3.Cursor, reference: str, data: dict) -> None:
+    """Insert one chapter file's sections, every level, into ``sections``."""
+    ref_title = data.get("reference_title", "")
+    ch_num = data.get("chapter", 0)
+    ch_title = data.get("chapter_title", "")
+    entries = _retrieval.section_entries(data)
+    rowids: list[int] = []
+    for i, entry in enumerate(entries):
+        sec = entry["section"]
+        chain = [entries[j]["section"]
+                 for j in _retrieval.entry_chain(entries, i)]
+        kps = sec.get("key_points", [])
+        if isinstance(kps, list):
+            key_points_text = "\n".join(
+                str(p) for p in kps if isinstance(p, (str, int, float))
+            )
+        else:
+            key_points_text = str(kps)
+        cur.execute(
+            """
+            INSERT INTO sections (
+                reference, reference_title, chapter, chapter_title,
+                section_id, title, summary, body, key_points,
+                applicability, equations_json, figures_json,
+                tables_json, depth, parents_json
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            """,
+            (
+                reference,
+                ref_title,
+                ch_num,
+                ch_title,
+                sec.get("section_id", ""),
+                sec.get("title", ""),
+                sec.get("summary", ""),
+                sec.get("body", ""),
+                key_points_text,
+                sec.get("applicability", ""),
+                json.dumps(sec.get("equations", []), ensure_ascii=False),
+                json.dumps(sec.get("figures", []), ensure_ascii=False),
+                json.dumps(sec.get("tables", []), ensure_ascii=False),
+                len(chain),
+                json.dumps([[s.get("section_id", ""), s.get("title", "")]
+                            for s in chain], ensure_ascii=False),
+            ),
+        )
+        rowids.append(cur.lastrowid)
+    # a flat-listed section's parent may come later in its file, so
+    # parents are linked once the whole file is in
+    cur.executemany(
+        "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
+        [(rowids[e["parent"]], rowids[i])
+         for i, e in enumerate(entries) if e["parent"] is not None],
     )
 
 
