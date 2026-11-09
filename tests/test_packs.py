@@ -539,3 +539,15 @@ def test_build_figure_catalog_for_a_pack(tmp_path):
     assert figs["1-1"]["read_notes"] == "The x axis is logarithmic."
     assert "bbox" not in figs["1-2"]
     assert not packs.check_pack(folder, smoke=False)["errors"]
+
+
+def test_no_pack_is_tracked_in_this_repo():
+    """A pack is private deployment data: no pack.json in the public repo."""
+    root = Path(__file__).resolve().parents[1]
+    try:
+        out = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True,
+                             text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        pytest.skip("not a git checkout")
+    tracked = [f for f in out.splitlines() if Path(f).name == "pack.json"]
+    assert tracked == []
