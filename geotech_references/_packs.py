@@ -27,6 +27,12 @@ that gives a folder, ``..`` or a drive is skipped by the figure index and
 named in :func:`problems`, and a pack's PDF is looked for only in the
 pack's folder and in ``GEOTECH_REFERENCES_DOCS``.
 
+A pack file cannot break the search indexes: one the indexes cannot take
+(unreadable JSON, a list or an object where text belongs) is skipped and
+named in :func:`problems`, and each pack file is indexed under its own
+SAVEPOINT, so one that fails anyway is rolled back and named while the
+built-ins and the other packs still index.
+
 ``docs/REFERENCE_PACKS.md`` describes the format and how to check a pack
 (``python -m geotech_references.packs check <dir>``).
 """
@@ -36,6 +42,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sqlite3
 from pathlib import Path
 
 _PACKAGE_DIR = Path(__file__).parent
@@ -156,32 +163,102 @@ def problems() -> list[str]:
     return scan()[1] + file_problems()
 
 
+#: What SQLite stores as given. Anything else (a list, an object) in a field
+#: the search indexes store would fail the whole build, built-ins included.
+_SCALARS = (str, int, float, type(None))
+#: What indexing one pack file can raise; the file is then rolled back.
+PACK_FILE_ERRORS = (sqlite3.Error, TypeError, ValueError, AttributeError,
+                    KeyError, IndexError)
+#: Pack files this process could not index, by path (see index_pack_file).
+_INDEX_FAILURES: dict[str, str] = {}
+
+
+def _kind(value) -> str:
+    return {list: "a list", dict: "an object"}.get(type(value),
+                                                   type(value).__name__)
+
+
+def chapter_problem(data) -> str | None:
+    """Why the text index skips a pack's chapter file, or None."""
+    if not isinstance(data, dict):
+        return "not a JSON object"
+    for key in ("reference_title", "chapter", "chapter_title"):
+        if not isinstance(data.get(key), _SCALARS):
+            return f"'{key}' is {_kind(data[key])}, not text"
+    from . import _retrieval
+    try:
+        entries = _retrieval.section_entries(data)
+    except PACK_FILE_ERRORS as e:
+        return f"its sections cannot be read ({type(e).__name__}: {e})"
+    for entry in entries:
+        sec = entry["section"]
+        for key in ("section_id", "title", "summary", "body", "applicability"):
+            if not isinstance(sec.get(key), _SCALARS):
+                return (f"section {sec.get('section_id')!r}: '{key}' is "
+                        f"{_kind(sec[key])}, not text")
+        for key in ("equations", "figures", "tables"):  # read back as lists
+            if not isinstance(sec.get(key), (list, type(None))):
+                return (f"section {sec.get('section_id')!r}: '{key}' is "
+                        f"{_kind(sec[key])}, not a list")
+    return None
+
+
 def catalog_problem(data) -> str | None:
     """Why the figure index skips a pack's catalog, or None."""
     if not isinstance(data, dict):
         return "not a JSON object"
-    figures = data.get("figures")
-    names = [data.get("pdf_path")] + [
-        f.get("pdf_path") for f in (figures if isinstance(figures, list)
-                                    else []) if isinstance(f, dict)]
-    for name in names:
+    figures = data.get("figures", [])
+    if not isinstance(figures, list):
+        return f"'figures' is {_kind(figures)}, not a list"
+    figures = [f for f in figures if isinstance(f, dict)]
+    for name in [data.get("pdf_path")] + [f.get("pdf_path") for f in figures]:
         if name not in (None, "") and not bare_file_name(name):
             return f"pdf_path {name!r} is not a bare file name"
+    for key in ("reference_id", "reference_title", "volume"):
+        if not isinstance(data.get(key), _SCALARS):
+            return f"'{key}' is {_kind(data[key])}, not text"
+    for fig in figures:
+        for key in ("figure_number", "caption", "description", "chapter",
+                    "reference_id", "volume", "pdf_page_index",
+                    "printed_page", "read_notes"):
+            if not isinstance(fig.get(key), _SCALARS):
+                return (f"figure {fig.get('figure_number')!r}: '{key}' is "
+                        f"{_kind(fig[key])}, not text or a number")
     return None
 
 
+def index_pack_file(cur, path: Path, index) -> None:
+    """Run ``index()``, the INSERTs of one pack file, under a SAVEPOINT on
+    cursor ``cur``. A file that fails anyway is rolled back and named in
+    :func:`problems`, and the built-ins and the other packs still index."""
+    cur.execute("SAVEPOINT pack_file")
+    try:
+        index()
+    except PACK_FILE_ERRORS as e:
+        cur.execute("ROLLBACK TO pack_file")
+        _INDEX_FAILURES[str(path)] = f"{type(e).__name__}: {e}"
+    else:
+        _INDEX_FAILURES.pop(str(path), None)
+    cur.execute("RELEASE pack_file")
+
+
 def file_problems() -> list[str]:
-    """Each pack file the search indexes skip, and why."""
+    """Each pack file the search indexes skip, and why: the same checks the
+    indexes run, so every process names the same files."""
     out: list[str] = []
-    for _, cat in catalogs():
+    files = [(jf, chapter_problem) for _, jf in text_jsons()]
+    files += [(cat, catalog_problem) for _, cat in catalogs()]
+    for path, problem in files:
         try:
-            data = json.loads(cat.read_text(encoding="utf-8"))
+            data = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError) as e:
-            out.append(f"{cat}: not readable JSON ({e}); skipped")
+            out.append(f"{path}: not readable JSON ({e}); skipped")
             continue
-        why = catalog_problem(data)
+        why = problem(data)
+        if why is None and str(path) in _INDEX_FAILURES:
+            why = f"could not be indexed ({_INDEX_FAILURES[str(path)]})"
         if why:
-            out.append(f"{cat}: {why}; skipped")
+            out.append(f"{path}: {why}; skipped")
     return out
 
 

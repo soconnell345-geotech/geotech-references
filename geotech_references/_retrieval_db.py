@@ -260,63 +260,19 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         "CREATE INDEX idx_sections_parent ON sections(parent_rowid)"
     )
 
+    pack_files = {jf for _, jf in _packs.text_jsons()}
     for reference, jf in _iter_text_jsons():
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        ref_title = data.get("reference_title", "")
-        ch_num = data.get("chapter", 0)
-        ch_title = data.get("chapter_title", "")
-        entries = _retrieval.section_entries(data)
-        rowids: list[int] = []
-        for i, entry in enumerate(entries):
-            sec = entry["section"]
-            chain = [entries[j]["section"]
-                     for j in _retrieval.entry_chain(entries, i)]
-            kps = sec.get("key_points", [])
-            if isinstance(kps, list):
-                key_points_text = "\n".join(
-                    str(p) for p in kps if isinstance(p, (str, int, float))
-                )
-            else:
-                key_points_text = str(kps)
-            cur.execute(
-                """
-                INSERT INTO sections (
-                    reference, reference_title, chapter, chapter_title,
-                    section_id, title, summary, body, key_points,
-                    applicability, equations_json, figures_json,
-                    tables_json, depth, parents_json
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    reference,
-                    ref_title,
-                    ch_num,
-                    ch_title,
-                    sec.get("section_id", ""),
-                    sec.get("title", ""),
-                    sec.get("summary", ""),
-                    sec.get("body", ""),
-                    key_points_text,
-                    sec.get("applicability", ""),
-                    json.dumps(sec.get("equations", []), ensure_ascii=False),
-                    json.dumps(sec.get("figures", []), ensure_ascii=False),
-                    json.dumps(sec.get("tables", []), ensure_ascii=False),
-                    len(chain),
-                    json.dumps([[s.get("section_id", ""), s.get("title", "")]
-                                for s in chain], ensure_ascii=False),
-                ),
-            )
-            rowids.append(cur.lastrowid)
-        # a flat-listed section's parent may come later in its file, so
-        # parents are linked once the whole file is in
-        cur.executemany(
-            "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
-            [(rowids[e["parent"]], rowids[i])
-             for i, e in enumerate(entries) if e["parent"] is not None],
-        )
+        if jf not in pack_files:
+            _index_chapter(cur, reference, data)
+        # a local pack's file the index cannot take is skipped and named in
+        # _packs.problems(); one that still fails is rolled back (REF-64)
+        elif _packs.chapter_problem(data) is None:
+            _packs.index_pack_file(
+                cur, jf, lambda: _index_chapter(cur, reference, data))
 
     cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
     cur.execute(
@@ -326,6 +282,62 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         SELECT rowid, title, summary, body, key_points, applicability
         FROM sections
         """
+    )
+
+
+def _index_chapter(cur: sqlite3.Cursor, reference: str, data: dict) -> None:
+    """Insert one chapter file's sections, every level, into ``sections``."""
+    ref_title = data.get("reference_title", "")
+    ch_num = data.get("chapter", 0)
+    ch_title = data.get("chapter_title", "")
+    entries = _retrieval.section_entries(data)
+    rowids: list[int] = []
+    for i, entry in enumerate(entries):
+        sec = entry["section"]
+        chain = [entries[j]["section"]
+                 for j in _retrieval.entry_chain(entries, i)]
+        kps = sec.get("key_points", [])
+        if isinstance(kps, list):
+            key_points_text = "\n".join(
+                str(p) for p in kps if isinstance(p, (str, int, float))
+            )
+        else:
+            key_points_text = str(kps)
+        cur.execute(
+            """
+            INSERT INTO sections (
+                reference, reference_title, chapter, chapter_title,
+                section_id, title, summary, body, key_points,
+                applicability, equations_json, figures_json,
+                tables_json, depth, parents_json
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            """,
+            (
+                reference,
+                ref_title,
+                ch_num,
+                ch_title,
+                sec.get("section_id", ""),
+                sec.get("title", ""),
+                sec.get("summary", ""),
+                sec.get("body", ""),
+                key_points_text,
+                sec.get("applicability", ""),
+                json.dumps(sec.get("equations", []), ensure_ascii=False),
+                json.dumps(sec.get("figures", []), ensure_ascii=False),
+                json.dumps(sec.get("tables", []), ensure_ascii=False),
+                len(chain),
+                json.dumps([[s.get("section_id", ""), s.get("title", "")]
+                            for s in chain], ensure_ascii=False),
+            ),
+        )
+        rowids.append(cur.lastrowid)
+    # a flat-listed section's parent may come later in its file, so
+    # parents are linked once the whole file is in
+    cur.executemany(
+        "UPDATE sections SET parent_rowid = ? WHERE rowid = ?",
+        [(rowids[e["parent"]], rowids[i])
+         for i, e in enumerate(entries) if e["parent"] is not None],
     )
 
 

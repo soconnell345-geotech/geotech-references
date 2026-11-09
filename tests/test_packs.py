@@ -395,6 +395,72 @@ def test_bad_packs_are_skipped_and_named(tmp_path, monkeypatch):
             if r.startswith("local_")] == ["local_good"]
 
 
+def _bad_and_good_packs(tmp_path, monkeypatch, kind):
+    """local_good, and local_bad with a list where text belongs in its
+    chapter file (kind 'text') or its catalog (kind 'catalog')."""
+    root = tmp_path / "packs"
+    make_pack(root, "local_good", pdf=False)
+    bad = make_pack(root, "local_bad", pdf=False)
+    if kind == "text":
+        data = _chapter()
+        data["sections"][1]["applicability"] = ["made-up", "list"]
+        _write_json(bad / "text" / "chapter01.json", data)
+    else:
+        cat = _catalog()
+        cat["figures"][1]["description"] = ["made-up", "list"]
+        _write_json(bad / "figures_catalog.json", cat)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(root))
+    _private_db(monkeypatch, tmp_path)
+    monkeypatch.setattr(_packs, "_INDEX_FAILURES", {})
+    return bad
+
+
+def _builtin_search_works():
+    hits = _retrieval_db.reference_search("bearing capacity", limit=5)
+    assert hits and not hits[0]["reference"].startswith("local_")
+    figs = _figures_db.figure_search("bearing capacity", limit=5)
+    assert figs and not figs[0]["reference"].startswith("local_")
+
+
+@pytest.mark.parametrize("kind", ["text", "catalog"])
+def test_a_bad_pack_file_is_skipped_and_named(tmp_path, monkeypatch, kind):
+    _bad_and_good_packs(tmp_path, monkeypatch, kind)
+    _builtin_search_works()
+    refs = {r["reference"] for r in _retrieval_db.list_indexed_references()}
+    figs = {r["reference"] for r in _figures_db.list_indexed_figures()}
+    assert "local_good" in refs and "local_good" in figs
+    # the bad file alone is left out; the pack's other file still indexes
+    assert ("local_bad" in refs) == (kind == "catalog")
+    assert ("local_bad" in figs) == (kind == "text")
+    named = [p for p in _packs.problems() if "local_bad" in p]
+    what = ("'applicability' is a list, not text" if kind == "text"
+            else "'description' is a list, not text or a number")
+    assert len(named) == 1 and what in named[0] and named[0].endswith(
+        "; skipped")
+
+
+@pytest.mark.parametrize("kind", ["text", "catalog"])
+def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
+                                                      kind):
+    """The SAVEPOINT backstop: a file the checks let through that still fails
+    to index leaves no rows, is named, and the rest still indexes."""
+    _bad_and_good_packs(tmp_path, monkeypatch, kind)
+    monkeypatch.setattr(_packs, "chapter_problem", lambda data: None)
+    monkeypatch.setattr(_packs, "catalog_problem", lambda data: None)
+    _builtin_search_works()
+    if kind == "text":  # section 1.1 went in before 1.2 failed
+        refs = {r["reference"] for r in
+                _retrieval_db.list_indexed_references()}
+        assert "local_good" in refs and "local_bad" not in refs
+    else:  # figure 1-1 went in before 1-2 failed
+        assert _figures_db.figure_get("local_good", "1-2")
+        with pytest.raises(KeyError):
+            _figures_db.figure_get("local_bad", "1-1")
+    named = [p for p in _packs.problems() if "local_bad" in p]
+    assert len(named) == 1 and "could not be indexed (ProgrammingError" \
+        in named[0]
+
+
 # ---------------------------------------------------------------------------
 # the checker
 # ---------------------------------------------------------------------------
@@ -440,6 +506,66 @@ def test_check_catches_text_errors(tmp_path):
     assert "chapter 1 repeats" in _errors(folder)
     shutil.rmtree(folder / "text")
     assert "no chapter files" in _errors(folder)
+
+
+def _set_chapter(path, value, *keys):
+    data = _chapter()
+    target = data
+    for k in keys[:-1]:
+        target = target[k]
+    target[keys[-1]] = value
+    _write_json(path, data)
+
+
+@pytest.mark.parametrize("keys, value, message", [
+    (("sections", 1, "applicability"), ["a"],
+     "sections[1] (1.2): 'applicability' must be text, not a list"),
+    (("chapter_title",), ["a"], "'chapter_title' must be text, not a list"),
+    (("chapter",), [1], "'chapter' must be a number or text, not a list"),
+    (("sections", 0, "summary"), ["a"], "'summary' must be text, not a list"),
+    (("sections", 0, "body"), {"a": 1}, "'body' must be text, not an object"),
+    (("sections", 0, "title"), {"a": 1}, "'title' must be text, not an object"),
+    (("sections", 0, "section_id"), [1],
+     "'section_id' must be text, not a list"),
+    (("sections", 0, "key_points"), "a", "'key_points' must be a list, not text"),
+    (("sections", 0, "equations"), "a", "'equations' must be a list, not text"),
+    (("sections",), {"a": 1}, "'sections' must be a list, not an object"),
+])
+def test_check_reports_a_wrong_type_in_a_chapter(tmp_path, capsys, keys,
+                                                 value, message):
+    folder = make_pack(tmp_path, pdf=False)
+    _set_chapter(folder / "text" / "chapter01.json", value, *keys)
+    assert packs.main(["check", str(folder)]) == 1
+    out = capsys.readouterr().out
+    line = next(ln for ln in out.splitlines() if message in ln)
+    assert line.startswith("ERROR    text/chapter01.json: ")
+    assert "Traceback" not in out and "FAILED" in out
+
+
+@pytest.mark.parametrize("where, key, value, message", [
+    ("figure", "description", ["a"], "'description' must be text, not a list"),
+    ("figure", "caption", ["a"], "caption must be text, not a list"),
+    ("figure", "figure_number", [1], "figure_number must be text, not a list"),
+    ("figure", "chapter", {"a": 1}, "'chapter' must be a number or text, not "
+                                    "an object"),
+    ("figure", "page_estimated", "yes", "'page_estimated' must be true or "
+                                        "false, not text"),
+    ("catalog", "reference_title", ["a"], "'reference_title' must be text, "
+                                          "not a list"),
+    ("pack", "edition", ["a"], "pack.json: 'edition' must be text, not a list"),
+])
+def test_check_reports_a_wrong_type_in_a_catalog_or_pack_json(
+        tmp_path, capsys, where, key, value, message):
+    folder = make_pack(tmp_path, pdf=False)
+    if where == "pack":
+        _write_json(folder / "pack.json", dict(_pack_json(), **{key: value}))
+    else:
+        cat = _catalog()
+        (cat["figures"][0] if where == "figure" else cat)[key] = value
+        _write_json(folder / "figures_catalog.json", cat)
+    assert packs.main(["check", str(folder)]) == 1
+    out = capsys.readouterr().out
+    assert message in out and "ERROR" in out and "Traceback" not in out
 
 
 def test_check_warns_on_print_fidelity(tmp_path):

@@ -120,10 +120,66 @@ def _packs_setting(value: str):
 
 
 def _walk_sections(sections):
-    for sec in sections or []:
+    for sec in sections if isinstance(sections, list) else []:
         if isinstance(sec, dict):
             yield sec
             yield from _walk_sections(sec.get("subsections"))
+
+
+#: Section fields that hold text, and those that hold lists.
+_TEXT_FIELDS = ("section_id", "title", "body", "summary", "applicability")
+_LIST_FIELDS = ("key_points", "equations", "figures", "tables", "subsections")
+
+
+def _kind(value) -> str:
+    """A JSON value's kind, as the messages name it."""
+    if isinstance(value, bool):
+        return "true/false"
+    return {str: "text", int: "a number", float: "a number", list: "a list",
+            dict: "an object"}.get(type(value), type(value).__name__)
+
+
+def _not(value, *kinds) -> bool:
+    """True when ``value`` is given (not null) and none of ``kinds``."""
+    return value is not None and (isinstance(value, bool)
+                                  or not isinstance(value, kinds))
+
+
+def _chapter_type_errors(data: dict) -> list[str]:
+    """Text where text belongs and lists where lists belong, at every level
+    of one chapter file."""
+    out: list[str] = []
+    for k in ("reference_id", "reference_title", "chapter_title"):
+        if _not(data.get(k), str):
+            out.append(f"'{k}' must be text, not {_kind(data[k])}")
+    for k in ("chapter", "volume"):
+        if _not(data.get(k), int, str):
+            out.append(f"'{k}' must be a number or text, not {_kind(data[k])}")
+    if _not(data.get("sections"), list):
+        out.append(f"'sections' must be a list, not {_kind(data['sections'])}")
+        return out
+
+    def walk(secs, where):
+        for i, sec in enumerate(secs):
+            loc = f"{where}[{i}]"
+            if not isinstance(sec, dict):
+                out.append(f"{loc}: must be an object, not {_kind(sec)}")
+                continue
+            sid = sec.get("section_id")
+            loc = f"{loc} ({sid})" if isinstance(sid, str) and sid else loc
+            for k in _TEXT_FIELDS:
+                if _not(sec.get(k), str):
+                    out.append(f"{loc}: '{k}' must be text, not "
+                               f"{_kind(sec[k])}")
+            for k in _LIST_FIELDS:
+                if _not(sec.get(k), list):
+                    out.append(f"{loc}: '{k}' must be a list, not "
+                               f"{_kind(sec[k])}")
+            if isinstance(sec.get("subsections"), list):
+                walk(sec["subsections"], f"{loc}.subsections")
+
+    walk(data.get("sections") or [], "sections")
+    return out
 
 
 def _norm_number(n) -> str:
@@ -169,7 +225,11 @@ def _check_pack_json(folder: Path, report: dict) -> dict | None:
     for k in RECOMMENDED_PACK_KEYS:
         if not meta.get(k):
             warn(f"pack.json: '{k}' is not given")
-    if meta.get("method") and meta["method"] not in METHODS:
+    for k in ("edition", "date", "prepared_by", "prepared_on", "method",
+              "distribution"):
+        if _not(meta.get(k), str):
+            err(f"pack.json: '{k}' must be text, not {_kind(meta[k])}")
+    if isinstance(meta.get("method"), str) and meta["method"] not in METHODS:
         warn(f"pack.json: method '{meta['method']}' is not one of "
              f"{', '.join(METHODS)}")
     pdfs = meta.get("pdf_files") or []
@@ -198,7 +258,17 @@ def _check_text(folder: Path, meta: dict, report: dict) -> list[dict]:
         if not isinstance(data, dict):
             err(f"{name}: not a JSON object")
             continue
-        for e in validate_schema(data):
+        type_errors = _chapter_type_errors(data)
+        for e in type_errors:
+            err(f"{name}: {e}")
+        if type_errors:
+            continue  # the other checks need the right kinds of value
+        try:
+            schema_errors = validate_schema(data)
+        except (TypeError, ValueError, AttributeError, KeyError) as e:
+            schema_errors = [f"the schema check stopped "
+                             f"({type(e).__name__}: {e})"]
+        for e in schema_errors:
             err(f"{name}: {e}")
         for k in ("reference_id", "reference_title"):
             if k in data and meta.get(k) and data[k] != meta[k]:
@@ -256,6 +326,13 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
     if cat.get("pdf_path") and not _is_file_name(cat["pdf_path"]):
         err(f"figures_catalog.json: pdf_path must be a file name only "
             f"({_BARE}), not '{cat['pdf_path']}'")
+    for k in ("reference_id", "reference_title"):
+        if _not(cat.get(k), str):
+            err(f"figures_catalog.json: '{k}' must be text, not "
+                f"{_kind(cat[k])}")
+    if _not(cat.get("volume"), int, str):
+        err(f"figures_catalog.json: 'volume' must be a number or text, not "
+            f"{_kind(cat['volume'])}")
     try:
         import pymupdf
     except ImportError:
@@ -275,7 +352,10 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
             err(f"{where}: not an object")
             continue
         num = fig.get("figure_number")
-        if not num or not isinstance(num, str):
+        if _not(num, str):
+            err(f"{where}: figure_number must be text, not {_kind(num)}")
+            continue
+        if not num:
             err(f"{where}: figure_number is missing")
             continue
         where = f"figures_catalog.json figure {num}"
@@ -283,8 +363,22 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
         if key in numbers:
             err(f"{where}: number repeats figures[{numbers[key]}]")
         numbers.setdefault(key, i)
-        if not isinstance(fig.get("caption"), str) or not fig["caption"]:
+        if _not(fig.get("caption"), str):
+            err(f"{where}: caption must be text, not {_kind(fig['caption'])}")
+        elif not fig.get("caption"):
             err(f"{where}: caption is missing")
+        typed = [(k, (str,), "text") for k in
+                 ("description", "reference_id")]
+        typed += [(k, (int, str), "a number or text") for k in
+                  ("chapter", "volume")]
+        typed += [("printed_page", (int, str), "a number or text")]
+        for k, kinds, what in typed:
+            if _not(fig.get(k), *kinds):
+                err(f"{where}: '{k}' must be {what}, not {_kind(fig[k])}")
+        if fig.get("page_estimated") is not None and \
+                not isinstance(fig["page_estimated"], bool):
+            err(f"{where}: 'page_estimated' must be true or false, not "
+                f"{_kind(fig['page_estimated'])}")
         page = fig.get("pdf_page_index")
         if not isinstance(page, int) or isinstance(page, bool) or page < 0:
             err(f"{where}: pdf_page_index must be an integer 0 or more")
@@ -308,11 +402,16 @@ def _check_catalog(folder: Path, meta: dict, report: dict) -> list[dict]:
             continue
         if pdf_name not in docs:
             path = _find_pdf(folder, pdf_name)
-            docs[pdf_name] = pymupdf.open(str(path)) if path else None
+            docs[pdf_name] = None
             if path is None:
                 report["info"].append(
                     f"{pdf_name}: not in the pack folder or "
                     "GEOTECH_REFERENCES_DOCS; pages not checked")
+            else:
+                try:
+                    docs[pdf_name] = pymupdf.open(str(path))
+                except Exception as e:  # PyMuPDF's own error types vary
+                    err(f"{pdf_name}: the PDF cannot be opened ({e})")
         doc = docs[pdf_name]
         if doc is None:
             continue
@@ -348,51 +447,62 @@ def _smoke(folder: Path, pid: str, chapters: list[dict], figures: list[dict],
            report: dict) -> None:
     """Index the built-ins plus this pack and look things up through the
     same calls the librarian makes."""
+    err = report["errors"].append
+    with _packs_setting(str(folder)):
+        try:
+            _smoke_lookups(folder, pid, chapters, figures, report)
+        except (OSError, *_packs.PACK_FILE_ERRORS) as e:
+            err(f"smoke test stopped ({type(e).__name__}: {e})")
+
+
+def _smoke_lookups(folder: Path, pid: str, chapters: list[dict],
+                   figures: list[dict], report: dict) -> None:
     from . import _figures_db, _retrieval_db
     err, info = report["errors"].append, report["info"].append
-    with _packs_setting(str(folder)):
-        if _packs.pack_dir(pid) is None:
-            err("smoke test: the pack is not picked up: "
-                + "; ".join(_packs.problems()))
+    if _packs.pack_dir(pid) is None:
+        err("smoke test: the pack is not picked up: "
+            + "; ".join(_packs.problems()))
+        return
+    listed = {r["reference"]: r for r in
+              _retrieval_db.list_indexed_references()}
+    _figures_db.list_indexed_figures()  # build the figure index too
+    for p in _packs.problems():  # a file the indexes skipped or rolled back
+        err(f"smoke test: {p}")
+    if pid not in listed:
+        err("smoke test: the pack is not in list_indexed_references")
+        return
+    info(f"indexed: {listed[pid]['n_chapters']} chapters, "
+         f"{listed[pid]['n_sections']} sections")
+    for ch in chapters:
+        title = str(ch.get("chapter_title") or "").strip()
+        if not title:
+            continue
+        hits = _retrieval_db.reference_search(title, reference=pid, limit=5)
+        if not any(isinstance(h, dict) and h.get("reference") == pid
+                   for h in hits):
+            err(f"smoke test: a search for chapter {ch.get('chapter')}'s "
+                f"title '{title}' finds nothing in the pack")
+            continue
+        wide = _retrieval_db.reference_search(title, limit=50)
+        ranks = [i + 1 for i, h in enumerate(wide)
+                 if isinstance(h, dict) and h.get("reference") == pid]
+        info(f"chapter {ch.get('chapter')} '{title}': found; across the "
+             "whole library its first hit ranks "
+             + (str(ranks[0]) if ranks else "below 50"))
+    if figures:
+        num = figures[0]["figure_number"]
+        try:
+            rec = _figures_db.figure_get(pid, num)
+            info(f"figure_get {num}: page index {rec['pdf_page_index']}")
+        except KeyError as e:
+            err(f"smoke test: figure_get {num} failed ({e})")
             return
-        listed = {r["reference"]: r for r in
-                  _retrieval_db.list_indexed_references()}
-        if pid not in listed:
-            err("smoke test: the pack is not in list_indexed_references")
-            return
-        info(f"indexed: {listed[pid]['n_chapters']} chapters, "
-             f"{listed[pid]['n_sections']} sections")
-        for ch in chapters:
-            title = str(ch.get("chapter_title") or "").strip()
-            if not title:
-                continue
-            hits = _retrieval_db.reference_search(title, reference=pid,
-                                                  limit=5)
-            if not any(isinstance(h, dict) and h.get("reference") == pid
-                       for h in hits):
-                err(f"smoke test: a search for chapter {ch.get('chapter')}'s "
-                    f"title '{title}' finds nothing in the pack")
-                continue
-            wide = _retrieval_db.reference_search(title, limit=50)
-            ranks = [i + 1 for i, h in enumerate(wide)
-                     if isinstance(h, dict) and h.get("reference") == pid]
-            info(f"chapter {ch.get('chapter')} '{title}': found; across the "
-                 "whole library its first hit ranks "
-                 + (str(ranks[0]) if ranks else "below 50"))
-        if figures:
-            num = figures[0]["figure_number"]
-            try:
-                rec = _figures_db.figure_get(pid, num)
-                info(f"figure_get {num}: page index {rec['pdf_page_index']}")
-            except KeyError as e:
-                err(f"smoke test: figure_get {num} failed ({e})")
-                return
-            try:
-                path, _ = _figures_db.resolve_pdf(pid, num)
-                info(f"resolve_pdf {num}: {path.name}")
-            except FileNotFoundError:
-                info(f"resolve_pdf {num}: PDF not found here (the app asks "
-                     "its fetcher by file name)")
+        try:
+            path, _ = _figures_db.resolve_pdf(pid, num)
+            info(f"resolve_pdf {num}: {path.name}")
+        except FileNotFoundError:
+            info(f"resolve_pdf {num}: PDF not found here (the app asks "
+                 "its fetcher by file name)")
 
 
 def check_pack(folder: str | Path, smoke: bool = True) -> dict:
@@ -475,6 +585,8 @@ def list_packs() -> dict:
                 data = json.loads(jf.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
+            if not isinstance(data, dict):
+                continue
             chapters += 1
             n_sections += len(list(_walk_sections(data.get("sections"))))
         n_figures = 0
@@ -483,7 +595,7 @@ def list_packs() -> dict:
             try:
                 n_figures = len(json.loads(cat.read_text(
                     encoding="utf-8")).get("figures", []))
-            except (OSError, ValueError, AttributeError):
+            except (OSError, ValueError, AttributeError, TypeError):
                 pass
         rows.append({"id": pid, "title": meta.get("reference_title", ""),
                      "folder": str(folder), "chapters": chapters,

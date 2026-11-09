@@ -135,47 +135,16 @@ def _fill_db(conn: sqlite3.Connection) -> None:
             data = json.loads(cat_path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             continue
-        if cat_path in pack_of and _packs.catalog_problem(data):
-            continue  # a PDF named by a path, not a bare file name: problems()
-        reference = pack_of.get(cat_path) or data.get(
-            "package", cat_path.parent.name)
-        ref_id = data.get("reference_id", "")
-        ref_title = data.get("reference_title", "")
-        volume = data.get("volume")
-        pdf_path = data.get("pdf_path", "")
-        for fig in data.get("figures", []):
-            if not isinstance(fig, dict):
-                continue
-            cur.execute(
-                """
-                INSERT INTO figures (
-                    reference, reference_id, reference_title, volume,
-                    figure_number, caption, description, chapter,
-                    pdf_path, pdf_page_index, printed_page, page_estimated,
-                    bbox, read_notes
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-                """,
-                (
-                    # A volume printed under its own number (GEC-13 Vol II,
-                    # FHWA-NHI-16-028) carries it per figure; it wins (REF-31).
-                    reference, fig.get("reference_id") or ref_id, ref_title,
-                    fig.get("volume", volume),
-                    fig.get("figure_number", ""),
-                    fig.get("caption", ""),
-                    fig.get("description", "") or "",
-                    fig.get("chapter"),
-                    fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
-                    fig.get("pdf_page_index"),
-                    fig.get("printed_page"),
-                    1 if fig.get("page_estimated") else 0,
-                    # two optional fields a catalog may give any figure
-                    # (REF-64): a crop for the vision read and notes on
-                    # reading it; carried to figure_get as given
-                    (json.dumps(fig["bbox"]) if fig.get("bbox") is not None
-                     else None),
-                    fig.get("read_notes") or None,
-                ),
-            )
+        if cat_path not in pack_of:
+            _index_catalog(cur, data.get("package", cat_path.parent.name),
+                           data)
+        # a local pack's catalog the index cannot take (a PDF named by a
+        # path, a field of the wrong kind) is skipped and named in
+        # _packs.problems(); one that still fails is rolled back (REF-64)
+        elif _packs.catalog_problem(data) is None:
+            _packs.index_pack_file(
+                cur, cat_path,
+                lambda: _index_catalog(cur, pack_of[cat_path], data))
 
     cur.execute(
         """
@@ -183,6 +152,47 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         SELECT rowid, figure_number, caption, description FROM figures
         """
     )
+
+
+def _index_catalog(cur: sqlite3.Cursor, reference: str, data: dict) -> None:
+    """Insert one figure catalog's figures into ``figures``."""
+    ref_id = data.get("reference_id", "")
+    ref_title = data.get("reference_title", "")
+    volume = data.get("volume")
+    pdf_path = data.get("pdf_path", "")
+    for fig in data.get("figures", []):
+        if not isinstance(fig, dict):
+            continue
+        cur.execute(
+            """
+            INSERT INTO figures (
+                reference, reference_id, reference_title, volume,
+                figure_number, caption, description, chapter,
+                pdf_path, pdf_page_index, printed_page, page_estimated,
+                bbox, read_notes
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            """,
+            (
+                # A volume printed under its own number (GEC-13 Vol II,
+                # FHWA-NHI-16-028) carries it per figure; it wins (REF-31).
+                reference, fig.get("reference_id") or ref_id, ref_title,
+                fig.get("volume", volume),
+                fig.get("figure_number", ""),
+                fig.get("caption", ""),
+                fig.get("description", "") or "",
+                fig.get("chapter"),
+                fig.get("pdf_path") or pdf_path,  # per-figure (multi-volume) wins
+                fig.get("pdf_page_index"),
+                fig.get("printed_page"),
+                1 if fig.get("page_estimated") else 0,
+                # two optional fields a catalog may give any figure
+                # (REF-64): a crop for the vision read and notes on
+                # reading it; carried to figure_get as given
+                (json.dumps(fig["bbox"]) if fig.get("bbox") is not None
+                 else None),
+                fig.get("read_notes") or None,
+            ),
+        )
 
 
 def _ensure_db() -> Path:

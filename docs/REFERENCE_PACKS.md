@@ -40,7 +40,7 @@ stay in the public library.
 | `reference_id` | yes | The designation as printed on the cover (the chapter files carry the same). |
 | `reference_title` | yes | The title as printed (the chapter files carry the same). |
 | `edition` or `date` | recommended | As printed. |
-| `pdf_files` | recommended | The PDF file names (names only, no folders). |
+| `pdf_files` | recommended | The PDF file names: bare names only, with no folder, `..` or drive. |
 | `prepared_by`, `prepared_on` | recommended | Who built the pack, and when. |
 | `method` | recommended | `printed` (read off the print), `model` (written by a model to the schema) or `hand`. |
 | `distribution` | recommended | A free-text note, for example "agency internal; not for the public repos". |
@@ -74,8 +74,10 @@ into one section tree.
 }
 ```
 
-- `pdf_path` (catalog or figure) is a **file name only**, so no host path
-  reaches the model.
+- `pdf_path` (catalog or figure) is a **bare file name only**, with no
+  folder, `..` or drive, so no host path reaches the model and no pack
+  leads outside its folder. A catalog that gives a path is refused by
+  `check` and left out of the figure index.
 - `pdf_page_index` is 0-based; `printed_page` is the number printed on the
   page. Set `page_estimated: true` where the page is a best estimate.
 - Two **optional** fields give control over each figure's vision read
@@ -154,22 +156,28 @@ It exits 0 when the pack can be used and 1 when it cannot, and prints
 every error, warning and finding:
 
 1. `pack.json`: the required keys, the `local_` prefix, the id equal to the
-   folder name, no built-in id; the folder outside the installed package
-   and outside any git work tree of the public repositories.
-2. Every chapter file: the library's own schema check (the one
-   `scripts/audit_chapter_text.py` runs on the built-ins), `reference_id`
-   and `reference_title` matching `pack.json`, unique chapter numbers.
-3. The catalog: required fields, unique numbers, a page index of 0 or more,
-   `pdf_path` a file name, `read_notes` of at most 500 characters, a
-   well-formed `bbox`. With PyMuPDF installed and the PDF found (in the pack
+   folder name, no built-in id, text where text belongs, `pdf_files` bare
+   file names; the folder outside the installed package and outside any
+   git work tree of the public repositories.
+2. Every chapter file: each field of the right kind (text where text
+   belongs, lists where lists belong, at every level), then the library's
+   own schema check (the one `scripts/audit_chapter_text.py` runs on the
+   built-ins), `reference_id` and `reference_title` matching `pack.json`,
+   unique chapter numbers.
+3. The catalog: required fields, each field of the right kind, unique
+   numbers, a page index of 0 or more, `pdf_path` a bare file name,
+   `read_notes` of at most 500 characters, a well-formed `bbox`. With
+   PyMuPDF installed and the PDF found (in the pack
    folder or `GEOTECH_REFERENCES_DOCS`): the page index within the PDF, the
    figure's number printed on that page (a warning, unless
    `page_estimated` is set) and the `bbox` inside the page.
 4. Print-fidelity warnings (not errors).
-5. A smoke test: it indexes the built-ins plus this pack, searches for each
-   chapter's title in the pack (and reports where its first hit ranks
-   across the whole library), runs `figure_get` on the first figure and
-   `resolve_pdf` on it.
+5. A smoke test: it indexes the built-ins plus this pack (an error for any
+   pack file the indexes leave out), searches for each chapter's title in
+   the pack (and reports where its first hit ranks across the whole
+   library), runs `figure_get` on the first figure and `resolve_pdf` on it.
+
+A wrong value is reported as an `ERROR` line, never as a traceback.
 
 Also:
 
@@ -190,13 +198,22 @@ A pack is skipped, and named by `list` (and `_packs.problems()`), when its
 `pack.json` cannot be read, its id is a built-in reference's name or lacks
 the `local_` prefix, or an earlier pack has the same id.
 
+A bad pack file cannot break search. A chapter file or catalog that is not
+readable JSON, has a list or an object where text belongs, or (a catalog)
+names its PDF by a path is left out of the search indexes and named the
+same way; the built-ins, the pack's other files and the other packs still
+index. Each pack file is indexed under its own SQLite savepoint, so one
+that fails anyway is rolled back and named.
+
 The search indexes are built in the local temp folder, keyed by the pack
 set (each indexed file's path, size and modification time), so a read-only
 pack folder is fine and an edited pack gets a fresh index. With the setting
 unset the library is exactly as it was before packs.
 
-A figure's PDF is looked for in the pack's own folder first, then by file
-name in `GEOTECH_REFERENCES_DOCS`. Where neither has it, an app that has a
+A pack figure's PDF is looked for by its file name in the pack's own
+folder, then in `GEOTECH_REFERENCES_DOCS`, and nowhere else (never relative
+to this repository, as a built-in's is in a source checkout). Where neither
+has it, `resolve_pdf` raises `FileNotFoundError`, and an app that has a
 fetcher for reference PDFs asks it by file name, so a pack's PDF can go
 wherever the deployment's built-in PDFs go.
 
