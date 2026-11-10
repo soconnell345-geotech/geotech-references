@@ -886,91 +886,203 @@ def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
 # Figure 15-1: Factor for Projecting Cracking in a Flexible Pavement
 # (Chapter 15, pdf_page 69, printed 50)
 #
-# CHART READ digitization: F (0.4-1.0, y-axis) vs. log10(passes of an 18-kip
-# ESAL) (100-10,000,000), a family of curves parameterized by the existing
-# rigid pavement's k value (psi/in: 25, 50, 100, 150, 200, 250, 300, 350,
-# 400, 450, 500). Anchored at k=100, passes=2e7 -> F=0.93 (Appendix G, G-7,
-# pdf_page 283, printed 264 -- the ONLY input the worked example gives
-# explicitly); intermediate points are visual read-offs of the rendered
-# chart. Treat as approximate (~+/-0.05 on F); prefer
-# ``read_reference_figure`` on the source figure for final design.
+# CHART READ along each printed curve (pave-01, 2026-11-10). The chart is a
+# 594 x 648 px image embedded in the PDF (1-based PDF page 70); each of the
+# eleven k curves (25 to 500 psi/in) was traced column by column from that
+# image, calibrated on its own gridlines (F 0.4-1.0 every 0.1; passes 100 to
+# 10,000,000 on the printed log grid), and F read every 0.1 in
+# log10(passes). Measured: trace scatter at most 0.001 on F (0.9 px; 1 px =
+# 0.0011 F); where a curve passes under its label box (13 of the 0.2-decade
+# points, e.g. k = 200 at 6,300 passes) it is bridged by a quadratic through
+# the traced points on both sides, which erred by at most 0.005 on F when
+# 32 px gaps were cut out of traced stretches and bridged the same way;
+# linear interpolation between the tabulated points stays within 0.0034 of
+# the trace. Stated tolerance: 0.005 on F. Checks: k = 100 at 10,000,000
+# passes reads 0.930, and Appendix G G-7 (pdf_page 283, printed 264) reads
+# 0.93 for k = 100 at 20 million passes.
 # ============================================================================
 
-_FIG_15_1_LOG_PASSES = [2, 3, 4, 5, 6, 7]  # log10(passes): 100 .. 1e7
+_FIG_15_1_LOG_PASSES = [round(2.0 + 0.1 * i, 1) for i in range(51)]  # 100 .. 1e7
+# Where each curve begins (log10 passes, F): at the chart's left edge (100
+# passes) for k = 25, 50 and 100, else at its printed lower end.
+_FIG_15_1_START = {
+    25: (2.0, 0.812),
+    50: (2.0, 0.652),
+    100: (2.0, 0.408),
+    150: (2.161, 0.401),
+    200: (2.467, 0.443),
+    250: (2.467, 0.401),
+    300: (2.941, 0.465),
+    350: (2.963, 0.405),
+    400: (3.156, 0.401),
+    450: (3.446, 0.409),
+    500: (3.934, 0.46),
+}
 _FIG_15_1_CURVES = {
-    25: [0.82, 0.90, 0.955, 0.97, 0.975, 0.98],
-    50: [0.66, 0.83, 0.90, 0.94, 0.955, 0.96],
-    100: [0.46, 0.72, 0.85, 0.90, 0.92, 0.93],
-    150: [None, 0.55, 0.77, 0.85, 0.885, 0.90],
-    200: [None, 0.40, 0.68, 0.80, 0.85, 0.875],
-    250: [None, None, 0.58, 0.75, 0.815, 0.85],
-    300: [None, None, 0.47, 0.69, 0.78, 0.82],
-    350: [None, None, None, 0.62, 0.74, 0.79],
-    400: [None, None, None, 0.53, 0.69, 0.76],
-    450: [None, None, None, 0.42, 0.63, 0.72],
-    500: [None, None, None, None, 0.57, 0.68],
+    25: [
+        0.812, 0.824, 0.836, 0.848, 0.859, 0.870, 0.880, 0.889, 0.898,
+        0.908, 0.915, 0.923, 0.930, 0.936, 0.941, 0.945, 0.949, 0.953,
+        0.957, 0.960, 0.963, 0.966, 0.967, 0.969, 0.970, 0.971, 0.972,
+        0.973, 0.973, 0.976, 0.976, 0.977, 0.977, 0.978, 0.978, 0.978,
+        0.978, 0.978, 0.979, 0.979, 0.979, 0.980, 0.980, 0.980, 0.980,
+        0.980, 0.980, 0.980, 0.980, 0.980, 0.980
+    ],
+    50: [
+        0.652, 0.676, 0.696, 0.717, 0.737, 0.756, 0.775, 0.791, 0.809,
+        0.827, 0.843, 0.859, 0.873, 0.882, 0.891, 0.899, 0.904, 0.911,
+        0.918, 0.924, 0.929, 0.932, 0.936, 0.941, 0.943, 0.945, 0.947,
+        0.949, 0.951, 0.952, 0.954, 0.955, 0.956, 0.957, 0.958, 0.958,
+        0.959, 0.959, 0.959, 0.960, 0.960, 0.960, 0.960, 0.961, 0.961,
+        0.961, 0.961, 0.961, 0.961, 0.961, 0.961
+    ],
+    100: [
+        0.408, 0.451, 0.485, 0.518, 0.550, 0.583, 0.612, 0.639, 0.668,
+        0.699, 0.726, 0.748, 0.770, 0.788, 0.804, 0.818, 0.830, 0.842,
+        0.854, 0.864, 0.874, 0.880, 0.886, 0.893, 0.897, 0.902, 0.905,
+        0.908, 0.910, 0.914, 0.916, 0.918, 0.919, 0.921, 0.922, 0.923,
+        0.924, 0.925, 0.926, 0.927, 0.927, 0.928, 0.928, 0.929, 0.929,
+        0.929, 0.929, 0.929, 0.929, 0.929, 0.930
+    ],
+    150: [
+        None, None, 0.407, 0.430, 0.452, 0.479, 0.513, 0.545, 0.579,
+        0.616, 0.647, 0.675, 0.702, 0.725, 0.746, 0.764, 0.779, 0.794,
+        0.809, 0.821, 0.833, 0.841, 0.849, 0.858, 0.863, 0.868, 0.873,
+        0.877, 0.881, 0.885, 0.888, 0.890, 0.892, 0.895, 0.896, 0.897,
+        0.898, 0.899, 0.899, 0.902, 0.902, 0.904, 0.904, 0.905, 0.905,
+        0.905, 0.905, 0.905, 0.905, 0.905, 0.906
+    ],
+    200: [
+        None, None, None, None, None, 0.452, 0.483, 0.514, 0.545, 0.580,
+        0.608, 0.637, 0.664, 0.690, 0.712, 0.731, 0.747, 0.763, 0.779,
+        0.794, 0.807, 0.817, 0.825, 0.835, 0.841, 0.847, 0.853, 0.858,
+        0.863, 0.866, 0.870, 0.872, 0.873, 0.877, 0.879, 0.880, 0.881,
+        0.883, 0.883, 0.885, 0.885, 0.886, 0.886, 0.888, 0.889, 0.889,
+        0.889, 0.889, 0.889, 0.889, 0.890
+    ],
+    250: [
+        None, None, None, None, None, 0.408, 0.435, 0.461, 0.488, 0.518,
+        0.545, 0.577, 0.608, 0.636, 0.661, 0.684, 0.704, 0.722, 0.741,
+        0.758, 0.775, 0.787, 0.798, 0.809, 0.818, 0.824, 0.831, 0.838,
+        0.843, 0.849, 0.853, 0.858, 0.860, 0.864, 0.865, 0.867, 0.869,
+        0.870, 0.871, 0.872, 0.874, 0.876, 0.876, 0.877, 0.878, 0.878,
+        0.878, 0.879, 0.879, 0.879, 0.879
+    ],
+    300: [
+        None, None, None, None, None, None, None, None, None, None,
+        0.482, 0.513, 0.546, 0.576, 0.604, 0.628, 0.650, 0.672, 0.694,
+        0.715, 0.734, 0.749, 0.761, 0.774, 0.785, 0.794, 0.801, 0.809,
+        0.816, 0.822, 0.828, 0.831, 0.835, 0.840, 0.842, 0.844, 0.846,
+        0.848, 0.849, 0.852, 0.853, 0.855, 0.855, 0.856, 0.857, 0.857,
+        0.857, 0.858, 0.858, 0.859, 0.859
+    ],
+    350: [
+        None, None, None, None, None, None, None, None, None, None,
+        0.418, 0.447, 0.480, 0.511, 0.540, 0.567, 0.590, 0.614, 0.638,
+        0.662, 0.683, 0.701, 0.715, 0.730, 0.744, 0.754, 0.762, 0.771,
+        0.779, 0.787, 0.793, 0.798, 0.802, 0.806, 0.809, 0.812, 0.814,
+        0.816, 0.818, 0.820, 0.822, 0.823, 0.824, 0.826, 0.827, 0.827,
+        0.827, 0.828, 0.828, 0.829, 0.829
+    ],
+    400: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, 0.412, 0.441, 0.471, 0.497, 0.521, 0.548, 0.574, 0.599,
+        0.623, 0.644, 0.662, 0.677, 0.691, 0.704, 0.713, 0.725, 0.733,
+        0.742, 0.749, 0.754, 0.758, 0.764, 0.767, 0.769, 0.773, 0.775,
+        0.778, 0.780, 0.782, 0.783, 0.784, 0.784, 0.785, 0.786, 0.786,
+        0.788, 0.788, 0.789, 0.789
+    ],
+    450: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, 0.421, 0.445, 0.472, 0.501, 0.529, 0.555,
+        0.575, 0.594, 0.613, 0.629, 0.643, 0.654, 0.666, 0.676, 0.686,
+        0.694, 0.701, 0.706, 0.712, 0.716, 0.718, 0.722, 0.724, 0.727,
+        0.729, 0.731, 0.732, 0.734, 0.735, 0.735, 0.736, 0.736, 0.738,
+        0.738, 0.739, 0.739
+    ],
+    500: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, None, None, None, None, None, 0.477,
+        0.499, 0.520, 0.541, 0.559, 0.574, 0.587, 0.600, 0.610, 0.620,
+        0.629, 0.636, 0.643, 0.649, 0.654, 0.658, 0.661, 0.663, 0.666,
+        0.668, 0.671, 0.672, 0.674, 0.675, 0.675, 0.676, 0.677, 0.677,
+        0.677, 0.678, 0.678
+    ],
 }
 
 
 def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
-    """Factor F for projecting cracking in a flexible overlay of a rigid
-    base pavement (Figure 15-1, Chapter 15; pdf_page 69, printed 50).
-    CHART READ, approximate (see module note).
+    """Factor F for projecting cracking in a flexible pavement, UFC 3-250-01
+    Figure 15-1 (pdf_page 69, printed 50); returns F (dimensionless, 0.4-1.0).
 
-    Verified anchor: k=100 psi/in, passes=20,000,000 -> F=0.93 (Appendix G,
-    G-7, matches this digitization's k=100 curve at log10(passes)=7.3,
-    interpolated between the 0.92 @ 1e6 and 0.93 @ 1e7 tabulated points).
+    F projects the cracking expected in the existing rigid (base) pavement
+    during the design life of a flexible overlay; it enters the overlay
+    equation 15-4 (printed 49). Read off the printed curves (see the section
+    note above; tolerance 0.005 on F), linear in log10(passes) along a curve
+    and linear in k between curves.
 
     Parameters
     ----------
     passes : float
-        Design traffic, passes of an 18-kip (8,164-kg) ESAL. Must be >= 100.
+        Design traffic, passes of an 8,164-kg (18-kip) ESAL. Must be at least
+        each curve's printed start: 100 for k = 25-100 psi/in, rising to
+        about 8,600 for k = 500. Above 10,000,000 (the chart's right edge)
+        F is held at its 10,000,000 value, with a note.
     k_existing_psi_in : float
-        Modulus of subgrade reaction k of the existing rigid pavement's
-        foundation, psi/in. Interpolated within the tabulated 25-500 psi/in
-        range; a curve is undefined (raises) below its own printed starting
-        passes level.
+        k-value of the existing rigid pavement, psi/in. Must be within the
+        printed curves, 25-500 psi/in.
 
     Returns
     -------
     dict
         {'passes', 'k_existing_psi_in', 'f', 'chart_read', 'tolerance',
-         'reference'}.
+         'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If passes < 100, or k_existing_psi_in is outside 25-500 psi/in.
+        If k_existing_psi_in is outside 25-500 psi/in, or passes is below
+        where the printed curve (or either curve bracketing k) begins.
     """
-    if passes < 100:
-        raise ValueError(f"passes must be >= 100, got {passes}")
     if not (25 <= k_existing_psi_in <= 500):
         raise ValueError(
-            f"k_existing_psi_in must be in [25, 500], got {k_existing_psi_in}"
+            f"k_existing_psi_in must be in [25, 500] psi/in (Figure 15-1's "
+            f"curves), got {k_existing_psi_in}"
         )
-    log_passes = min(max(math.log10(passes), 2), 7)
+    if passes is None or passes <= 0:
+        raise ValueError(f"passes must be > 0, got {passes}")
+    log_p = math.log10(passes)
+    note = None
+    if log_p > 7.0:
+        note = (f"{passes:,.0f} passes is beyond Figure 15-1's right edge "
+                "(10,000,000); F is held at its 10,000,000-pass value, where "
+                "the curves are flat (Appendix G G-7 reads 0.93 for k = 100 "
+                "at 20 million passes).")
+        log_p = 7.0
 
     ks = sorted(_FIG_15_1_CURVES)
     lower_k = max(k for k in ks if k <= k_existing_psi_in)
     upper_k = min(k for k in ks if k >= k_existing_psi_in)
 
-    def _interp_curve(k):
-        xs, ys = [], []
+    def _on_curve(k):
+        start_lp, start_f = _FIG_15_1_START[k]
+        if log_p < start_lp - 1e-9:
+            return None
+        xs, ys = [start_lp], [start_f]
         for x, y in zip(_FIG_15_1_LOG_PASSES, _FIG_15_1_CURVES[k]):
-            if y is not None:
+            if y is not None and x > start_lp + 1e-9:
                 xs.append(x)
                 ys.append(y)
-        if not xs or log_passes < xs[0]:
-            return None
-        return _linterp(log_passes, xs, ys)
+        return _linterp(log_p, xs, ys)
 
-    f_lower = _interp_curve(lower_k)
-    f_upper = _interp_curve(upper_k) if upper_k != lower_k else f_lower
+    f_lower = _on_curve(lower_k)
+    f_upper = _on_curve(upper_k) if upper_k != lower_k else f_lower
     if f_lower is None or f_upper is None:
+        k_short = lower_k if f_lower is None else upper_k
+        start = 10 ** _FIG_15_1_START[k_short][0]
         raise ValueError(
-            f"passes={passes:g} is below the plotted range for k="
-            f"{k_existing_psi_in} psi/in on Figure 15-1 (curve starts at "
-            "higher passes for stiffer foundations)."
+            f"passes={passes:g} is below where Figure 15-1's k={k_short} "
+            f"curve begins (about {start:,.0f} passes, F "
+            f"{_FIG_15_1_START[k_short][1]:.2f}); the chart gives no F there."
         )
     if upper_k == lower_k:
         f = f_lower
@@ -978,12 +1090,18 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
         frac = (k_existing_psi_in - lower_k) / (upper_k - lower_k)
         f = f_lower + frac * (f_upper - f_lower)
 
-    return {
+    out = {
         "passes": passes, "k_existing_psi_in": k_existing_psi_in,
         "f": round(f, 3), "chart_read": True,
-        "tolerance": "approximate, ~+/-0.05 on F; verified anchor k=100,passes=2e7->F=0.93",
+        "tolerance": (
+            "read along each printed curve, within 0.005 on F; k = 100 at "
+            "10,000,000 passes reads 0.930 (Appendix G G-7: 0.93 at 20 "
+            "million)"),
         "reference": "UFC 3-250-01, Figure 15-1 (pdf_page 69, printed 50)",
     }
+    if note:
+        out["note"] = note
+    return out
 
 
 # ============================================================================

@@ -610,18 +610,58 @@ class TestConditionFactor:
 
 
 class TestFigure15_1:
+    # Figure 15-1, UFC 3-250-01 PDF page 70 (pdf_page 69), printed 50: F
+    # read along each printed curve; measured tolerance 0.005 on F.
+    PRINT = {  # k psi/in: {passes: F read off the printed curve}
+        25: {100: 0.812, 10_000: 0.963, 10_000_000: 0.980},
+        100: {1_000: 0.726, 10_000: 0.874, 100_000: 0.916,
+              1_000_000: 0.927, 10_000_000: 0.930},
+        200: {1_000: 0.608, 10_000: 0.807, 100_000: 0.870,
+              1_000_000: 0.885, 10_000_000: 0.890},
+        300: {1_000: 0.482, 10_000: 0.734, 100_000: 0.828,
+              1_000_000: 0.853, 10_000_000: 0.859},
+        500: {10_000: 0.477, 100_000: 0.629, 1_000_000: 0.671,
+              10_000_000: 0.678},
+    }
+
+    def test_printed_curves(self):
+        for k, pts in self.PRINT.items():
+            for passes, f in pts.items():
+                r = figure_15_1_cracking_projection_factor(passes, k)
+                assert r["f"] == pytest.approx(f, abs=0.005), (k, passes)
+
     def test_verified_anchor(self):
-        # Appendix G, G-7: k=100, passes=20e6 -> F=0.93
+        # Appendix G, G-7 (PDF 284, printed 264): k=100, 20 million passes
+        # -> F = 0.93; beyond the chart's 10,000,000 edge F is held, noted.
         r = figure_15_1_cracking_projection_factor(20_000_000, 100)
-        assert r["f"] == pytest.approx(0.93, abs=0.03)
+        assert r["f"] == pytest.approx(0.93, abs=0.005)
+        assert "held" in r["note"]
+
+    def test_between_curves_linear_in_k(self):
+        r = figure_15_1_cracking_projection_factor(100_000, 250)
+        assert r["f"] == pytest.approx(0.853, abs=0.005)
+        r = figure_15_1_cracking_projection_factor(100_000, 225)
+        lo = figure_15_1_cracking_projection_factor(100_000, 200)["f"]
+        hi = figure_15_1_cracking_projection_factor(100_000, 250)["f"]
+        assert r["f"] == pytest.approx((lo + hi) / 2, abs=0.001)
 
     def test_higher_k_lower_f(self):
         r_soft = figure_15_1_cracking_projection_factor(1_000_000, 50)
         r_stiff = figure_15_1_cracking_projection_factor(1_000_000, 300)
         assert r_stiff["f"] < r_soft["f"]
 
+    def test_below_printed_curve_start_raises(self):
+        # The k = 500 curve begins at about 8,600 passes (F 0.46); k = 150
+        # at about 145 passes; k = 25-100 at the chart's 100-pass edge.
+        with pytest.raises(ValueError, match="k=500 curve begins"):
+            figure_15_1_cracking_projection_factor(5_000, 500)
+        assert figure_15_1_cracking_projection_factor(9_000, 500)["f"] == \
+            pytest.approx(0.46, abs=0.01)
+        with pytest.raises(ValueError, match="k=150 curve begins"):
+            figure_15_1_cracking_projection_factor(120, 150)
+
     def test_low_passes_raises(self):
-        with pytest.raises(ValueError, match="passes must be >= 100"):
+        with pytest.raises(ValueError, match="curve begins"):
             figure_15_1_cracking_projection_factor(10, 100)
 
     def test_k_out_of_range_raises(self):
