@@ -24,7 +24,7 @@ SHAPES = [{}, {"max_chars": 14000}]
 
 
 @pytest.mark.parametrize("kwargs", SHAPES)
-@pytest.mark.parametrize("reference", ["GEC-3", "gec12", "nope", "dm7"])
+@pytest.mark.parametrize("reference", ["GEC-3", "nope", "gec_1", "FHWA"])
 def test_text_search_of_an_unknown_reference_names_the_ids(reference, kwargs):
     err = _error(_retrieval_db.reference_search(
         "bearing capacity", reference=reference, **kwargs))
@@ -82,9 +82,12 @@ def test_a_loosely_spelled_reference_says_what_it_was_read_as():
                                     max_chars=14000)
     assert out["resolved_reference"] == "gec_10"
     assert out["hits"] and all(h["reference"] == "gec_10" for h in out["hits"])
-    both = _figures_db.figure_search("earth pressure", reference="dm7",
-                                     max_chars=14000)
-    assert both["resolved_reference"] == ["dm7_1", "dm7_2"]
     exact = _figures_db.figure_search("alpha adhesion", reference="gec_10",
                                       max_chars=14000)
     assert "resolved_reference" not in exact
+    # the text search reads the name the same way (2026-11-10 follow-up)
+    text = _retrieval_db.reference_search("alpha adhesion", reference="GEC-10",
+                                          max_chars=14000)
+    assert text["resolved_reference"] == "gec_10"
+    assert text["hits"] == _retrieval_db.reference_search(
+        "alpha adhesion", reference="gec_10", max_chars=14000)["hits"]
