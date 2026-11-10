@@ -415,7 +415,8 @@ def figure_search(
 
         def run(match_query: str) -> list[sqlite3.Row]:
             sql = (
-                "SELECT f.reference, f.reference_title, f.figure_number, "
+                "SELECT f.rowid AS rid, f.reference, f.reference_title, "
+                "f.figure_number, "
                 "f.caption, f.chapter, f.pdf_page_index, f.printed_page "
                 "FROM figures_fts x JOIN figures f ON f.rowid = x.rowid "
                 "WHERE figures_fts MATCH ?"
@@ -432,7 +433,9 @@ def figure_search(
             params.append(want)
             return conn.execute(sql, params).fetchall()
 
-        fig_key = lambda r: (r["reference"], r["figure_number"])
+        # by catalog row, not by number: a number two rows hold (a figure
+        # over several pages, a number printed twice) keeps both rows
+        fig_key = lambda r: r["rid"]
         strategy = _qe.EXPANSION_STRATEGY
 
         def search(q: str, relaxed: bool = False) -> list[sqlite3.Row]:
@@ -496,8 +499,17 @@ def figure_search(
         conn.close()
 
 
+def _page_label(row: sqlite3.Row) -> str:
+    """``'page index 263 (printed page 244) "caption"'`` for one row."""
+    printed = (f" (printed page {row['printed_page']})"
+               if row["printed_page"] not in (None, "") else "")
+    return (f"page index {row['pdf_page_index']}{printed} "
+            f"\"{str(row['caption'] or '')[:80]}\"")
+
+
 def figure_get(reference: str, figure_number: str,
-               max_chars: int | None = None) -> dict[str, Any]:
+               max_chars: int | None = None,
+               pdf_page_index: int | None = None) -> dict[str, Any]:
     """Fetch the full catalog row for one figure.
 
     Parameters
@@ -515,6 +527,11 @@ def figure_get(reference: str, figure_number: str,
         longer than that (a few catalog captions run on into the page
         text) comes back with its caption / description cut to fit and a
         ``note`` naming what was cut. Default None: the whole row.
+    pdf_page_index : int, optional
+        Which page, for a number the catalog holds more than once: a figure
+        that continues over several pages (GEC-12 Figure D-1, six pages)
+        or a number the print gives two figures (UFC 3-250-01 prints two
+        Figures F-21). A search hit carries each row's ``pdf_page_index``.
 
     Returns
     -------
@@ -529,17 +546,37 @@ def figure_get(reference: str, figure_number: str,
     ------
     KeyError
         If no such figure exists -- naming the valid catalog ids, or the
-        nearest figure numbers in the catalog.
+        nearest figure numbers in the catalog. Also if the catalog holds
+        the number more than once and ``pdf_page_index`` does not say
+        which (before, the first row came back, and a read-off went to
+        its page): the message names each row's page and caption.
     """
     num = _norm_fig_number(figure_number)
     ref = resolve_reference(reference, figure_number)
     conn = _ro_connect()
     try:
-        row = conn.execute(
+        rows = conn.execute(
             "SELECT * FROM figures WHERE reference = ? "
-            "AND UPPER(figure_number) = ? LIMIT 1",
+            "AND UPPER(figure_number) = ? ORDER BY rowid",
             (ref, num),
-        ).fetchone()
+        ).fetchall()
+        if rows and pdf_page_index is not None:
+            on_page = [r for r in rows
+                       if r["pdf_page_index"] == int(pdf_page_index)]
+            if not on_page:
+                raise KeyError(
+                    f"figure '{figure_number}' of '{ref}' is not on page "
+                    f"index {pdf_page_index}; the catalog has it on "
+                    + "; ".join(_page_label(r) for r in rows))
+            rows = on_page
+        if len(rows) > 1:
+            raise KeyError(
+                f"the catalog of '{ref}' holds figure '{figure_number}' "
+                f"{len(rows)} times (a figure that runs over several "
+                "pages, or a number the print uses twice): "
+                + "; ".join(_page_label(r) for r in rows)
+                + ". Say which with pdf_page_index=<its page index>")
+        row = rows[0] if rows else None
         if row is None:
             import difflib
             numbers = [r["figure_number"] for r in conn.execute(
@@ -591,8 +628,13 @@ def list_indexed_figures() -> list[dict[str, Any]]:
 _DOCS_ENV = "GEOTECH_REFERENCES_DOCS"
 
 
-def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
+def resolve_pdf(reference: str, figure_number: str,
+                pdf_page_index: int | None = None) -> tuple[Path, int]:
     """Resolve a figure to its absolute source PDF path and 0-based page index.
+
+    ``pdf_page_index`` says which page for a number the catalog holds more
+    than once (:func:`figure_get`); without it such a number raises
+    ``KeyError`` naming each page.
 
     A built-in reference's PDF is located via the ``GEOTECH_REFERENCES_DOCS``
     folder when that env var is set (needed when the package is installed and
@@ -610,7 +652,7 @@ def resolve_pdf(reference: str, figure_number: str) -> tuple[Path, int]:
     FileNotFoundError
         If the source PDF cannot be found on disk.
     """
-    rec = figure_get(reference, figure_number)
+    rec = figure_get(reference, figure_number, pdf_page_index=pdf_page_index)
     pdf_rel = rec["pdf_path"]
     folder = _packs.pack_dir(rec["reference"])
     if folder is not None:
