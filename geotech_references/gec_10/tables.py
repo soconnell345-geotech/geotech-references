@@ -505,40 +505,50 @@ def table_11_1_p_multiplier(row_position: str,
 
 
 # ============================================================================
-# AASHTO (2017a) Section 10.8.3.6.3 — Group Efficiency for Cohesionless Soils
-# Referenced in FHWA-NHI-18-024 Section 11.4.1.2
+# Group efficiency for drilled shafts in cohesionless soils
+# FHWA-NHI-18-024 Section 11.4.1.2 Cohesionless Soils, p. 11-6 (PDF page 340),
+# citing AASHTO (2017a) 10.8.3.6.3. GEC-10 prints the three values in the
+# text; it has no Table 11-2 (the function keeps its old name):
 #
-# Applicable when cap is NOT in contact with the ground.
-# η ≥ 1.0 is possible when casing is advanced ahead of the excavation and
-# ground is not loosened; AASHTO values are considered conservative in that case.
+#   "for cases in which the cap is not in contact with the ground:
+#    eta = 0.65 for a center-to-center spacing of 2.5 diameters
+#    eta = 0.80 for a center-to-center spacing of 3 diameters
+#    eta = 1.0 for a center-to-center spacing of 4 diameters or more
+#    The value of eta may be determined by linear interpolation for
+#    intermediate spacings. If the cap will be maintained in contact with
+#    the ground (which is not typically applicable to bridge foundations),
+#    then no reduction is applied."
 # ============================================================================
 
 _GROUP_EFF_SPACING = [2.5, 3.0, 4.0]
 _GROUP_EFF_ETA     = [0.65, 0.80, 1.00]
 
+_GROUP_EFF_REFERENCE = (
+    "FHWA-NHI-18-024 (GEC-10) Section 11.4.1.2 Cohesionless Soils, p. 11-6, "
+    "citing AASHTO (2017a) 10.8.3.6.3 (no Table 11-2 is printed)")
+
 
 def table_11_2_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
-    """Group axial efficiency factor for drilled shafts in cohesionless soil.
+    """Group efficiency eta for the axial resistance of drilled shafts in cohesionless soil with the cap not in contact with the ground, from GEC-10 Section 11.4.1.2 (FHWA-NHI-18-024, p. 11-6, citing AASHTO 10.8.3.6.3); GEC-10 has no Table 11-2, the name is kept.
 
-    Per AASHTO (2017a) Section 10.8.3.6.3, as cited in FHWA-NHI-18-024
-    Section 11.4.1.2.  Cap assumed not in contact with the ground.  Values
-    based on spacing between shaft centers divided by shaft diameter:
-
-        s/D = 2.5 → η = 0.65
-        s/D = 3.0 → η = 0.80
-        s/D ≥ 4.0 → η = 1.00
-
-    Linear interpolation for intermediate spacings.
+    As printed: eta = 0.65 at a center-to-center spacing of 2.5 diameters,
+    0.80 at 3 diameters and 1.0 at 4 diameters or more, by linear
+    interpolation for intermediate spacings. With the cap kept in contact
+    with the ground no reduction is applied; the AASHTO commentary cited
+    there says the reduction need not be made if casing is advanced in
+    front of the excavation (p. 11-6 discusses both).
 
     Parameters
     ----------
     spacing_over_d : float
-        Center-to-center shaft spacing ÷ shaft diameter.  Must be ≥ 2.5.
+        Center-to-center shaft spacing / shaft diameter. Must be >= 2.5
+        (the smallest spacing printed).
 
     Returns
     -------
     dict
-        {'spacing_over_d': float, 'eta': float, 'note': str}
+        {'spacing_over_d': float, 'eta': float, 'note': str,
+         'reference': str}
 
     Raises
     ------
@@ -547,74 +557,24 @@ def table_11_2_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
     """
     if spacing_over_d < _GROUP_EFF_SPACING[0]:
         raise ValueError(
-            f"spacing_over_d={spacing_over_d} is below the AASHTO minimum of 2.5D."
+            f"spacing_over_d={spacing_over_d} is below the minimum of 2.5D, "
+            "the smallest spacing printed (GEC-10 Section 11.4.1.2, p. 11-6)."
         )
 
     if spacing_over_d >= _GROUP_EFF_SPACING[-1]:
         eta = 1.0
-        note = "spacing >= 4D; η = 1.0 (no group reduction)"
+        note = "spacing >= 4 diameters: eta = 1.0 (as printed)"
+    elif spacing_over_d in _GROUP_EFF_SPACING:
+        eta = _GROUP_EFF_ETA[_GROUP_EFF_SPACING.index(spacing_over_d)]
+        note = "printed value"
     else:
         eta = _linterp(spacing_over_d, _GROUP_EFF_SPACING, _GROUP_EFF_ETA)
-        note = "interpolated from AASHTO 10.8.3.6.3 via Table 11-2 range"
+        note = ("linear interpolation for intermediate spacings, as "
+                "Section 11.4.1.2 allows")
 
     return {
         "spacing_over_d": spacing_over_d,
         "eta": round(eta, 3),
         "note": note,
+        "reference": _GROUP_EFF_REFERENCE,
     }
-
-
-# ============================================================================
-# AASHTO reliability index vs. probability of failure
-# (Standard relationship used throughout LRFD calibration; cited in Ch. 8)
-# ============================================================================
-
-_BETA_LIST = [2.0, 2.33, 2.5, 3.0, 3.5, 4.0]
-_PF_LIST   = [2.28e-2, 1.0e-2, 6.2e-3, 1.35e-3, 2.33e-4, 3.17e-5]
-
-
-def aashto_reliability_index(beta: float = None, pf: float = None) -> dict:
-    """Reliability index β vs. probability of failure pF (LRFD calibration reference).
-
-    Standard AASHTO LRFD relationship used in resistance factor calibration
-    (referenced in FHWA-NHI-18-024 Section 8.2).  Provide either beta or pf;
-    the other is interpolated.
-
-    Parameters
-    ----------
-    beta : float, optional
-        Reliability index (2.0 to 4.0).
-    pf : float, optional
-        Probability of failure.
-
-    Returns
-    -------
-    dict
-        {'beta': float, 'pf': float}
-
-    Raises
-    ------
-    ValueError
-        If neither or both arguments are provided, or value is out of range.
-    """
-    if beta is not None and pf is not None:
-        raise ValueError("Provide either beta or pf, not both.")
-    if beta is None and pf is None:
-        raise ValueError("Provide either beta or pf.")
-
-    if beta is not None:
-        if beta < _BETA_LIST[0] or beta > _BETA_LIST[-1]:
-            raise ValueError(
-                f"beta must be {_BETA_LIST[0]}–{_BETA_LIST[-1]}, got {beta}"
-            )
-        pf_result = _linterp(beta, _BETA_LIST, _PF_LIST)
-        return {"beta": beta, "pf": pf_result}
-
-    if pf < _PF_LIST[-1] or pf > _PF_LIST[0]:
-        raise ValueError(
-            f"pf must be {_PF_LIST[-1]:.2e} to {_PF_LIST[0]:.2e}, got {pf}"
-        )
-    pf_rev   = list(reversed(_PF_LIST))
-    beta_rev = list(reversed(_BETA_LIST))
-    beta_result = _linterp(pf, pf_rev, beta_rev)
-    return {"beta": round(beta_result, 3), "pf": pf}

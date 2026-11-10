@@ -193,6 +193,15 @@ rows instead of being answered from the first row that contains the words.
     `table_9_1_lateral_resistance_factor` (Table 9-1, p. 9-22) no longer
     answers a name that holds a row's word ("group uplift" returned the
     group row's 0.8).
+  - `aashto_reliability_index` is removed: GEC-10 prints no table of the
+    reliability index against the probability of failure, and the
+    function interpolated pF linearly between six points, 27 to 37 % high
+    between them (gec-23, lead's ruling).
+  - `table_11_2_group_efficiency_cohesionless`: values unchanged (0.65 at
+    2.5 diameters, 0.80 at 3, 1.0 at 4 or more). GEC-10 prints them in the
+    text of Section 11.4.1.2 (p. 11-6), not in a Table 11-2; the result
+    cites that section and says when the value is interpolated. The name
+    is kept (gec-24, lead's ruling).
 
 ## 1.6.0
 

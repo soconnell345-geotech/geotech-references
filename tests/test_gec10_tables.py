@@ -9,7 +9,6 @@ from geotech_references.gec_10.tables import (
     table_10_2_nc_base_clay,
     table_11_1_p_multiplier,
     table_11_2_group_efficiency_cohesionless,
-    aashto_reliability_index,
 )
 
 
@@ -441,34 +440,26 @@ class TestTable112GroupEfficiency:
         result = table_11_2_group_efficiency_cohesionless(3.0)
         assert "note" in result
 
+    def test_cites_the_printed_section(self):
+        """The values are printed in the text of Section 11.4.1.2, p. 11-6
+        (PDF page 340); GEC-10 has no Table 11-2 (review finding gec-24)."""
+        result = table_11_2_group_efficiency_cohesionless(2.75)
+        assert "Section 11.4.1.2" in result["reference"]
+        assert "p. 11-6" in result["reference"]
+        assert "no Table 11-2" in result["reference"]
+        assert "interpolation" in result["note"]
+
 
 # ============================================================================
 # Reliability index ↔ probability of failure
 # ============================================================================
 
-class TestAashtoReliabilityIndex:
+class TestAashtoReliabilityIndexRemoved:
+    """aashto_reliability_index is removed (review finding gec-23, lead's
+    ruling): GEC-10 prints no table of the reliability index against the
+    probability of failure, and the function interpolated pF linearly
+    between six points (27 to 37 % high between them)."""
 
-    def test_beta_3(self):
-        result = aashto_reliability_index(beta=3.0)
-        assert result["beta"] == 3.0
-        assert abs(result["pf"] - 1.35e-3) < 1e-4
-
-    def test_beta_2(self):
-        result = aashto_reliability_index(beta=2.0)
-        assert abs(result["pf"] - 2.28e-2) < 1e-3
-
-    def test_pf_given(self):
-        result = aashto_reliability_index(pf=1.0e-2)
-        assert abs(result["beta"] - 2.33) < 0.01
-
-    def test_both_raises(self):
-        with pytest.raises(ValueError, match="not both"):
-            aashto_reliability_index(beta=3.0, pf=1e-3)
-
-    def test_neither_raises(self):
-        with pytest.raises(ValueError, match="either"):
-            aashto_reliability_index()
-
-    def test_beta_out_of_range(self):
-        with pytest.raises(ValueError):
-            aashto_reliability_index(beta=5.0)
+    def test_removed(self):
+        import geotech_references.gec_10.tables as tables
+        assert not hasattr(tables, "aashto_reliability_index")

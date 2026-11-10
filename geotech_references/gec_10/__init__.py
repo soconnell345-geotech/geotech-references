@@ -8,8 +8,8 @@ Provides:
     (Eq 10-16/17), rock socket side resistance (Eq 10-21/22), Table 10-3 αE factors
   - Table lookup functions (tables.py): resistance factors (Table 8-4), lateral
     resistance factors (Table 9-1), N*c for base in clay (Table 10-2),
-    p-multipliers (Table 11-1), group efficiency for cohesionless soils (AASHTO
-    10.8.3.6.3), and LRFD reliability index
+    p-multipliers (Table 11-1), and group efficiency for cohesionless soils
+    (Section 11.4.1.2, p. 11-6, after AASHTO 10.8.3.6.3)
   - Text retrieval via geotech_references._retrieval module
 
 Note: Core drilled shaft analysis (alpha, beta, rock socket, end bearing) is
