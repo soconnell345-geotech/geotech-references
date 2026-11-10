@@ -4,8 +4,9 @@ interaction of buckling modes; printed pp. 9-13 to 9-17).
 
 Provides:
   - Axial Compression: ``euler_critical_stress`` (Eq 9-25) with
-    ``radius_of_gyration`` (Eq 9-26); ``ylinen_critical_stress`` (Eq 9-27,
-    the FPL fourth-power parabolic form) and ``ylinen_buckling_stress``
+    ``radius_of_gyration`` (Eq 9-26); ``ylinen_critical_stress_fourth_power``
+    (Eq 9-27, the FPL fourth-power parabolic form of Newlin and Gahagan
+    1930; despite the function's name, not Ylinen's) and ``ylinen_buckling_stress``
     (Eq 9-29, the general Ylinen nonlinear-stress-strain form, with the
     printed c=0.957/0.8/0.9 guidance); ``built_up_column_capacity``
     (Eq 9-30); ``flange_instability_stress`` (Eq 9-31).

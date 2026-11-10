@@ -155,13 +155,14 @@ def beam_shear_stress(shear_force, area, shape="rectangular"):
 
 
 # ============================================================================
-# Eq 9-15, 9-16 -- Tapered beam stresses (printed p. 9-9, pdf_page 240)
+# Eq 9-15, 9-16 -- Tapered beam stresses (printed pp. 9-9 to 9-10,
+# pdf_page 240-241)
 # ============================================================================
 
 def tapered_beam_stresses(moment, b, h0, theta_rad):
     """Eq 9-16: combined stress state (bending fx, shear fxy, perpendicular
     tension/compression fy) at the tapered edge of a beam of constant
-    width b that tapers in depth at angle theta (printed p. 9-9, valid
+    width b that tapers in depth at angle theta (printed p. 9-10, valid
     for taper slopes < 25 degrees).
 
         fx = 3*M / (2*b*h0^2)
@@ -194,7 +195,7 @@ def tapered_beam_stresses(moment, b, h0, theta_rad):
     return {
         "moment": moment, "b": b, "h0": h0, "theta_rad": theta_rad,
         "fx": fx, "fxy": fxy, "fy": fy, "equation": "9-16",
-        "printed_page": "9-9", "pdf_page": 240,
+        "printed_page": "9-10", "pdf_page": 241,
     }
 
 
@@ -322,7 +323,9 @@ def size_effect_ratio_uniform_vs_concentrated(hu, lu, hc, lc, ac, m=18.0):
         as printed; the exponent 1/18 in the printed equation is not
         parameterized independently of m in the source, so m is exposed
         here only for consistency with Eq 9-17/9-18 -- leave at 18 unless
-        a source-documented alternative is available).
+        a source-documented alternative is available). A value other than
+        18 changes only the outer exponent 1/m; the 18 in (1 + 18*ac/Lc)
+        stays as printed.
 
     Returns
     -------
