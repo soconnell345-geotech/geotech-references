@@ -298,32 +298,46 @@ def test_equivalent_uniform_bearing_pressure_raises_negative_L():
 
 # ===========================================================================
 # circular_effective_length  (Equation 5-11)
-#   L' = 2 * sqrt( r^2 * acos(ex/r) - ex * sqrt(r^2 - ex^2) )
+#   L' = sqrt{ [2 r^2 acos(ex/r) - 2 ex sqrt(r^2 - ex^2)]
+#              * sqrt(r^2 - ex^2) / (r - ex) }
+#   UFC 3-220-20 Eq. 5-11, PDF p. 315 (printed p. 277).  The bracket is the
+#   lens-shaped "Equivalent area" A' of Figure 5-1(b), PDF p. 316 (printed
+#   p. 278), and L' B' = A' with B' from Eq. 5-12.
 # ===========================================================================
 
 
+def _figure_5_1b_equivalent_area(r, ex):
+    # A' = 2 r^2 acos(ex/r) - 2 ex sqrt(r^2 - ex^2), acos in radians
+    return 2.0 * r**2 * math.acos(ex / r) - 2.0 * ex * math.sqrt(r**2 - ex**2)
+
+
 def test_circular_effective_length_basic():
-    """Hand-calc: r=5, e_x=1
-    area = 25*acos(0.2) - 1*sqrt(25-1) = 25*1.369438... - 1*4.898979...
-         = 34.23596... - 4.89898... = 29.33698...
-    L' = 2*sqrt(29.33698...) = 2*5.41636... = 10.83272...
+    """Hand-calc from Eq. 5-11: r=5, e_x=1
+    A' = 2*25*acos(0.2) - 2*1*sqrt(24) = 68.47192 - 9.79796 = 58.67396
+    L' = sqrt(58.67396 * sqrt(24)/(5-1)) = sqrt(58.67396*1.224745) = 8.47702
     """
-    r, ex = 5.0, 1.0
-    area = r**2 * math.acos(ex / r) - ex * math.sqrt(r**2 - ex**2)
-    expected = 2.0 * math.sqrt(area)
     result = circular_effective_length(r=5.0, e_x=1.0)
-    assert result == pytest.approx(expected, rel=1e-4)
+    assert result == pytest.approx(8.47702, abs=1e-4)
 
 
 def test_circular_effective_length_zero_eccentricity():
-    """Edge: e_x=0 -> area = r^2 * acos(0) = r^2*pi/2
-    L' = 2*sqrt(r^2*pi/2) = 2*r*sqrt(pi/2)
-    For r=3: L' = 6*sqrt(pi/2) = 6*1.2533... = 7.5198...
+    """No eccentricity: the lens is the whole circle, A' = pi r^2, and the
+    equivalent rectangle is a square of side r*sqrt(pi).
+    For r=3: L' = 3*1.7724539 = 5.3173616
     """
-    r = 3.0
-    expected = 2.0 * r * math.sqrt(math.pi / 2.0)
     result = circular_effective_length(r=3.0, e_x=0.0)
-    assert result == pytest.approx(expected, rel=1e-4)
+    assert result == pytest.approx(3.0 * math.sqrt(math.pi), rel=1e-12)
+    assert result == pytest.approx(5.31736, abs=1e-5)
+
+
+@pytest.mark.parametrize("r, ex", [(1.5, 0.0), (1.5, 0.2), (1.5, 0.5), (5.0, 1.0), (4.0, 3.0)])
+def test_circular_equivalent_rectangle_has_the_lens_area(r, ex):
+    """L' (Eq. 5-11) times B' (Eq. 5-12) is the Equivalent area printed in
+    Figure 5-1(b); the old code returned half of it."""
+    L_prime = circular_effective_length(r, ex)
+    B_prime = circular_effective_width(r, ex, L_prime)
+    assert L_prime * B_prime == pytest.approx(_figure_5_1b_equivalent_area(r, ex), rel=1e-12)
+    assert B_prime <= L_prime
 
 
 def test_circular_effective_length_raises_nonpositive_r():
@@ -348,21 +362,24 @@ def test_circular_effective_length_raises_ex_exceeds_r():
 
 # ===========================================================================
 # circular_effective_width  (Equation 5-12)
-#   B' = area / L'
+#   B' = L' * (r - ex) / sqrt(r^2 - ex^2)
+#   UFC 3-220-20 Eq. 5-12, PDF p. 316 (printed p. 278).
 # ===========================================================================
 
 
 def test_circular_effective_width_basic():
-    """Hand-calc: r=5, ex=1, L'=circular_effective_length(5,1)
-    area = 25*acos(0.2) - 1*sqrt(24)
-    B' = area / L'
+    """Hand-calc from Eq. 5-12: r=5, ex=1, L'=8.47702 (Eq. 5-11)
+    B' = 8.47702 * (5-1)/sqrt(24) = 8.47702 * 0.816497 = 6.92146
     """
-    r, ex = 5.0, 1.0
-    area = r**2 * math.acos(ex / r) - ex * math.sqrt(r**2 - ex**2)
-    L_prime = 2.0 * math.sqrt(area)
-    expected = area / L_prime
-    result = circular_effective_width(r=5.0, e_x=1.0, L_prime=L_prime)
-    assert result == pytest.approx(expected, rel=1e-4)
+    result = circular_effective_width(r=5.0, e_x=1.0, L_prime=8.47702)
+    assert result == pytest.approx(6.92146, abs=1e-4)
+
+
+def test_circular_effective_width_zero_eccentricity_is_square():
+    """No eccentricity: B' = L' (aspect ratio 1), not L'/4 as the old code gave."""
+    L_prime = circular_effective_length(r=1.5, e_x=0.0)
+    assert circular_effective_width(r=1.5, e_x=0.0, L_prime=L_prime) == pytest.approx(L_prime, rel=1e-12)
+    assert L_prime == pytest.approx(2.6587, abs=1e-4)
 
 
 def test_circular_effective_width_raises_nonpositive_r():
@@ -726,34 +743,50 @@ def test_modified_Nc_rectangular_layered_clay_raises_B_gt_L():
 
 # ===========================================================================
 # second_layer_thickness  (Equation 5-26)
-#   H2 = (B/2 + H1*tan(phi1)) * c1 / (c2 * tan(phi2))
+#   H2 = (2B - H1) * (c1 + tan(phi1)) / (c2 + tan(phi2))
+#   UFC 3-220-20 Eq. 5-26, PDF p. 349 (printed p. 311), coded as printed
+#   (a cohesion added to a tangent).
 # ===========================================================================
+
+
+def test_second_layer_thickness_figure_5_20_example():
+    """The manual's example, Figure 5-20, PDF p. 350 (printed p. 312):
+    H1 = 7 ft, B = 8 ft, c1 = 200 psf, phi1 = 28, c2 = 400 psf, phi2 = 20:
+    H2 = (2(8 ft) - 7 ft) (200 psf + tan 28)/(400 psf + tan 20) = 4.5 ft
+    """
+    result = second_layer_thickness(B=8.0, H1=7.0, c1=200.0, c2=400.0,
+                                    phi1_deg=28.0, phi2_deg=20.0)
+    assert result == pytest.approx(4.5, abs=0.05)
 
 
 def test_second_layer_thickness_basic():
     """Hand-calc: B=4, H1=2, c1=100, c2=200, phi1=30, phi2=20
     tan(30)=0.57735, tan(20)=0.36397
-    num = (4/2 + 2*0.57735)*100 = (2 + 1.15470)*100 = 315.470
-    den = 200*0.36397 = 72.7944
-    H2 = 315.470 / 72.7944 = 4.33244...
+    H2 = (8 - 2) * 100.57735 / 200.36397 = 6 * 0.501973 = 3.01184
     """
-    expected = (4.0 / 2.0 + 2.0 * math.tan(math.radians(30.0))) * 100.0 / (
-        200.0 * math.tan(math.radians(20.0))
-    )
     result = second_layer_thickness(B=4.0, H1=2.0, c1=100.0, c2=200.0,
                                     phi1_deg=30.0, phi2_deg=20.0)
-    assert result == pytest.approx(expected, rel=1e-4)
+    assert result == pytest.approx(3.01184, abs=1e-4)
 
 
-def test_second_layer_thickness_raises_zero_c2():
+def test_second_layer_thickness_chain_matches_figure_5_20():
+    """Figure 5-20 goes on: c_ave = 278 psf and phi_ave = 25 deg."""
+    H2 = second_layer_thickness(8.0, 7.0, 200.0, 400.0, 28.0, 20.0)
+    assert average_cohesion_mixed_layers(7.0, 200.0, H2, 400.0) == pytest.approx(278.0, abs=1.0)
+    assert average_friction_angle_mixed_layers(7.0, 28.0, H2, 20.0) == pytest.approx(25.0, abs=0.5)
+
+
+def test_second_layer_thickness_zero_c2_allowed_with_friction():
+    """The printed denominator is c2 + tan(phi2): zero cohesion alone is not
+    a division by zero."""
+    result = second_layer_thickness(4.0, 2.0, 100.0, c2=0.0, phi1_deg=30.0, phi2_deg=20.0)
+    assert result == pytest.approx(6.0 * 100.57735 / 0.36397, rel=1e-4)
+
+
+def test_second_layer_thickness_raises_zero_denominator():
+    """c2 = 0 and phi2 = 0 -> c2 + tan(phi2) = 0 -> ValueError"""
     with pytest.raises(ValueError, match="non-zero"):
-        second_layer_thickness(4.0, 2.0, 100.0, c2=0.0, phi1_deg=30.0, phi2_deg=20.0)
-
-
-def test_second_layer_thickness_raises_zero_tan_phi2():
-    """phi2=0 -> tan(0)=0 -> ValueError"""
-    with pytest.raises(ValueError, match="non-zero"):
-        second_layer_thickness(4.0, 2.0, 100.0, 200.0, 30.0, phi2_deg=0.0)
+        second_layer_thickness(4.0, 2.0, 100.0, 0.0, 30.0, phi2_deg=0.0)
 
 
 # ===========================================================================
@@ -2037,60 +2070,243 @@ def test_hansen_k_raises_zero_B():
 
 
 # ===========================================================================
+# Table 5-6 rows, and Figure 5-18 rebuilt from the print
+# ===========================================================================
+
+class TestMeyerhofTable56Rows:
+    """UFC 3-220-20 Table 5-6, PDF p. 332 (printed p. 294): the shape and
+    depth factors have two rows, phi = 0 and phi' > 10 degrees."""
+
+    @pytest.mark.parametrize("phi", [0.5, 5.0, 10.0])
+    def test_no_row_between_0_and_10_degrees(self, phi):
+        with pytest.raises(ValueError, match="phi = 0 and for phi' > 10 degrees only"):
+            meyerhof_shape_factors(4.0, 8.0, phi)
+        with pytest.raises(ValueError, match="phi = 0 and for phi' > 10 degrees only"):
+            meyerhof_depth_factors(3.0, 6.0, phi)
+
+    def test_printed_rows_still_answer(self):
+        # phi = 0: sc = 1 + 0.2 (B/L), sq = s_gamma = 1
+        assert meyerhof_shape_factors(4.0, 8.0, 0.0) == pytest.approx((1.1, 1.0, 1.0))
+        # phi' = 30 (> 10): KP = 3; sc = 1 + 0.2 (0.5)(3) = 1.3,
+        # sq = s_gamma = 1 + 0.1 (0.5)(3) = 1.15
+        assert meyerhof_shape_factors(4.0, 8.0, 30.0) == pytest.approx((1.3, 1.15, 1.15))
+        # depth, k = 0.5: dc = 1 + 0.2 (0.5) sqrt(3) = 1.1732,
+        # dq = d_gamma = 1 + 0.1 (0.5) sqrt(3) = 1.0866
+        assert meyerhof_depth_factors(3.0, 6.0, 30.0) == pytest.approx((1.1732, 1.0866, 1.0866), abs=1e-4)
+        assert meyerhof_depth_factors(3.0, 6.0, 10.5)[1] > 1.0
+
+
+class TestFigure518Strip:
+    """UFC 3-220-20 Figure 5-18(a), PDF p. 348 (printed p. 310).
+
+    Top layer stiff, bottom layer soft: the equation printed in the figure,
+    N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14.  Top layer soft, bottom layer
+    stiff: curves for H/B = 0, 0.1, 0.2, 0.3 and 5.14 for H/B >= 0.7.
+    """
+
+    def test_figure_5_19_example(self):
+        # Figure 5-19, PDF p. 349 (printed p. 311): H1 = 4 ft, B = 4 ft,
+        # su2/su1 = 400/2000: 1.5 (4/4) + 5.14 (0.2) = 1.5 + 1.03 = 2.53.
+        res = figure_5_18a_Ncm_strip(400.0 / 2000.0, 4.0 / 4.0)
+        assert res["N_cm"] == pytest.approx(2.53, abs=0.005)
+        assert res["layering"] == "top layer stiff, bottom layer soft"
+
+    @pytest.mark.parametrize("ratio, hb, expected", [
+        (0.2, 0.5, 1.778), (0.2, 1.0, 2.528), (0.2, 1.5, 3.278), (0.2, 2.0, 4.028),
+        (0.4, 1.0, 3.556), (0.6, 1.0, 4.584), (0.6, 0.0, 3.084), (0.05, 1.0, 1.757),
+    ])
+    def test_printed_equation(self, ratio, hb, expected):
+        res = figure_5_18a_Ncm_strip(ratio, hb)
+        assert res["N_cm"] == pytest.approx(expected, abs=5e-4)
+        assert res["N_cm"] == pytest.approx(min(5.14, 1.5 * hb + 5.14 * ratio), rel=1e-12)
+
+    def test_printed_cap(self):
+        # 1.5 (2.5) + 5.14 (0.6) = 6.83 -> 5.14
+        assert figure_5_18a_Ncm_strip(0.6, 2.5)["N_cm"] == pytest.approx(5.14)
+
+    def test_lines_start_where_the_chart_draws_them(self):
+        # At su2/su1 -> 0 the H/B = 0.5, 1.0, 1.5, 2.0, 2.5 lines start at
+        # 0.75, 1.5, 2.25, 3.0 and 3.75 on the chart.
+        for hb, start in [(0.5, 0.75), (1.0, 1.5), (1.5, 2.25), (2.0, 3.0), (2.5, 3.75)]:
+            assert figure_5_18a_Ncm_strip(1e-9, hb)["N_cm"] == pytest.approx(start, abs=1e-6)
+
+    @pytest.mark.parametrize("ratio, hb, low, high", [
+        # Table 5-11 on the same page, stiff over soft: the printed equation
+        # is at or a little under the table's ranges (other sources).
+        (0.2, 0.125, 1.2, 1.4), (0.5, 0.125, 2.8, 2.9), (0.67, 0.125, 3.7, 3.8),
+        (0.2, 0.50, 1.8, 2.3), (0.5, 0.50, 3.5, 3.7), (0.67, 0.50, 4.3, 4.4),
+        (0.2, 0.75, 2.2, 2.8), (0.5, 0.75, 4.0, 4.2), (0.67, 0.75, 4.6, 4.9),
+        (0.2, 1.5, 3.4, 4.2),
+    ])
+    def test_never_above_table_5_11(self, ratio, hb, low, high):
+        value = figure_5_18a_Ncm_strip(ratio, hb)["N_cm"]
+        assert value <= high
+        assert value >= low - 0.35
+
+    def test_uniform(self):
+        res = figure_5_18a_Ncm_strip(1.0, 0.5)
+        assert res["N_cm"] == pytest.approx(5.14)
+        assert res["N_cm_reduced_10_percent"] is None
+
+    def test_ten_percent_reduction_is_stated_not_applied(self):
+        # Printed p. 309: "When 0.7 < su2/su1 < 1, it is prudent to reduce
+        # the values of N_c,m,s and N_c,m,c by 10 percent."
+        res = figure_5_18a_Ncm_strip(0.8, 0.25)
+        assert res["N_cm"] == pytest.approx(1.5 * 0.25 + 5.14 * 0.8, rel=1e-12)
+        assert res["N_cm_reduced_10_percent"] == pytest.approx(0.9 * res["N_cm"], rel=1e-12)
+        assert "10 percent" in res["note"]
+        for ratio in (0.7, 0.5, 1.0, 1.2):
+            other = figure_5_18a_Ncm_strip(ratio, 0.25)
+            assert other["N_cm_reduced_10_percent"] is None
+            assert other["note"] is None
+
+    def test_deeper_than_three_widths_has_no_effect(self):
+        # Printed p. 309: for H/B > 3 the deeper layer does not matter.
+        assert figure_5_18a_Ncm_strip(0.05, 3.2)["N_cm"] == pytest.approx(5.14)
+
+    @pytest.mark.parametrize("ratio, hb, expected", [
+        # read off the chart's curves (about +/- 0.05)
+        (1.5, 0.0, 7.59), (1.9, 0.0, 9.64),
+        (1.5, 0.1, 6.49), (2.0, 0.1, 7.15),
+        (1.5, 0.2, 5.91), (2.0, 0.2, 6.18),
+        (1.5, 0.3, 5.56), (2.0, 0.3, 5.72),
+        (1.6, 0.7, 5.14), (2.0, 2.0, 5.14),
+    ])
+    def test_soft_over_stiff_curves(self, ratio, hb, expected):
+        res = figure_5_18a_Ncm_strip(ratio, hb)
+        assert res["N_cm"] == pytest.approx(expected, abs=0.005)
+        assert res["layering"] == "top layer soft, bottom layer stiff"
+
+    def test_soft_over_stiff_against_table_5_11(self):
+        # Table 5-11, H/B = 0.125: 6.4 to 7.0 at su2/su1 = 1.5 and
+        # 6.9 to 8.6 at 2.0; the chart's curves sit at the low end.
+        assert figure_5_18a_Ncm_strip(1.5, 0.125)["N_cm"] == pytest.approx(6.4, abs=0.1)
+        assert 6.9 <= figure_5_18a_Ncm_strip(2.0, 0.125)["N_cm"] <= 8.6
+
+    def test_between_drawn_curves_is_linear(self):
+        mid = figure_5_18a_Ncm_strip(1.5, 0.15)["N_cm"]
+        assert mid == pytest.approx(0.5 * (6.49 + 5.91), abs=0.005)
+
+    def test_off_the_axis_is_refused(self):
+        # The old grid ran to su2/su1 = 5.0 (7.00 at H/B 0.75); the axis
+        # ends at 2.0.
+        with pytest.raises(ValueError, match="from 0 to 2.0"):
+            figure_5_18a_Ncm_strip(5.0, 0.75)
+        with pytest.raises(ValueError, match="from 0 to 2.0"):
+            figure_5_18a_Ncm_strip(2.01, 0.1)
+
+    def test_between_0_3_and_0_7_is_refused(self):
+        # No curve is drawn there; the old grid answered 5.70 at (1.5, 0.5),
+        # where Table 5-11 gives 5.2 to 5.3.
+        with pytest.raises(ValueError, match="draws nothing between 0.3 and 0.7"):
+            figure_5_18a_Ncm_strip(1.5, 0.5)
+
+    def test_curve_that_left_the_chart_is_refused(self):
+        with pytest.raises(ValueError, match="leaves the top of the chart"):
+            figure_5_18a_Ncm_strip(2.0, 0.05)
+
+    def test_invalid_inputs(self):
+        with pytest.raises(ValueError, match="must be positive"):
+            figure_5_18a_Ncm_strip(0.0, 0.5)
+        with pytest.raises(ValueError, match="non-negative"):
+            figure_5_18a_Ncm_strip(0.5, -0.1)
+
+
+class TestFigure518Circular:
+    """UFC 3-220-20 Figure 5-18(b), PDF p. 348 (printed p. 310).
+
+    Top layer stiff: N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05 (the curves
+    are labelled H/2R, the function's second argument).  Top layer soft:
+    curves for H/2R = 0, 0.1, 0.2, 0.3 and 6.05 for H/2R >= 0.4.
+    """
+
+    def test_figure_5_19_example(self):
+        # Figure 5-19, PDF p. 349 (printed p. 311), "Use 2R = B": H1 = 4 ft,
+        # 2R = 4 ft, so H/R = 2: 1.5 (2) + 6.05 (0.2) = 3 + 1.21 = 4.21.
+        res = figure_5_18b_Ncm_circular(400.0 / 2000.0, 4.0 / 4.0)
+        assert res["N_cm"] == pytest.approx(4.21, abs=0.005)
+
+    @pytest.mark.parametrize("ratio, h2r, expected", [
+        (0.2, 0.25, 1.96), (0.5, 0.25, 3.775), (0.5, 0.5, 4.525), (0.3, 1.0, 4.815),
+        (0.2, 1.5, 5.71), (0.6, 0.0, 3.63),
+    ])
+    def test_printed_equation(self, ratio, h2r, expected):
+        res = figure_5_18b_Ncm_circular(ratio, h2r)
+        assert res["N_cm"] == pytest.approx(expected, abs=5e-4)
+        # 1.5 H/R with H/R = 2 (H/2R)
+        assert res["N_cm"] == pytest.approx(min(6.05, 1.5 * 2.0 * h2r + 6.05 * ratio), rel=1e-12)
+
+    def test_lines_start_where_the_chart_draws_them(self):
+        # At su2/su1 -> 0 the H/2R = 0.25, 0.5, 1.0, 1.5 lines start at
+        # 0.75, 1.5, 3.0 and 4.5 on the chart.
+        for h2r, start in [(0.25, 0.75), (0.5, 1.5), (1.0, 3.0), (1.5, 4.5)]:
+            assert figure_5_18b_Ncm_circular(1e-9, h2r)["N_cm"] == pytest.approx(start, abs=1e-6)
+
+    def test_uniform_and_cap(self):
+        assert figure_5_18b_Ncm_circular(1.0, 0.3)["N_cm"] == pytest.approx(6.05)
+        assert figure_5_18b_Ncm_circular(0.9, 1.0)["N_cm"] == pytest.approx(6.05)
+
+    def test_ten_percent_reduction_is_stated_not_applied(self):
+        res = figure_5_18b_Ncm_circular(0.9, 0.1)
+        assert res["N_cm"] == pytest.approx(0.3 + 6.05 * 0.9, rel=1e-12)
+        assert res["N_cm_reduced_10_percent"] == pytest.approx(0.9 * res["N_cm"], rel=1e-12)
+        assert "10 percent" in res["note"]
+
+    @pytest.mark.parametrize("ratio, h2r, expected", [
+        # read off the chart's curves (about +/- 0.05)
+        (1.5, 0.0, 9.00), (1.2, 0.0, 7.22),
+        (1.5, 0.1, 7.29), (2.0, 0.1, 7.66),
+        (1.5, 0.2, 6.67), (2.0, 0.2, 6.75),
+        (1.5, 0.3, 6.25), (2.0, 0.3, 6.27),
+        (2.0, 0.4, 6.05), (1.3, 1.0, 6.05),
+    ])
+    def test_soft_over_stiff_curves(self, ratio, h2r, expected):
+        assert figure_5_18b_Ncm_circular(ratio, h2r)["N_cm"] == pytest.approx(expected, abs=0.005)
+
+    def test_refusals(self):
+        with pytest.raises(ValueError, match="from 0 to 2.0"):
+            figure_5_18b_Ncm_circular(3.0, 0.5)
+        with pytest.raises(ValueError, match="draws nothing between 0.3 and 0.4"):
+            figure_5_18b_Ncm_circular(1.5, 0.35)
+        with pytest.raises(ValueError, match="leaves the top of the chart"):
+            figure_5_18b_Ncm_circular(1.7, 0.05)
+
+
+# ===========================================================================
 # INTEGRATION: figure_5_18 + modified_Nc_rectangular_layered_clay
 # ===========================================================================
 
 class TestFigure518Integration:
-    """Chain figure_5_18a/b → modified_Nc_rectangular_layered_clay."""
+    """Chain figure_5_18a/b -> modified_Nc_rectangular_layered_clay."""
 
-    def test_strip_to_rect_interpolation(self):
-        # Get Nc for strip and circular, then compute rectangular
-        Nc_s = figure_5_18a_Ncm_strip(0.5, 0.5)
-        Nc_c = figure_5_18b_Ncm_circular(0.5, 0.5)
-        Nc_r = modified_Nc_rectangular_layered_clay(Nc_s, Nc_c, 2.0, 4.0)
-        # B/L = 0.5, so Nc_r = Nc_c + (1-0.5)*(Nc_s - Nc_c) = average
-        assert Nc_r == pytest.approx(Nc_c + 0.5 * (Nc_s - Nc_c), rel=1e-4)
+    def test_figure_5_19_example(self):
+        # Figure 5-19, PDF p. 349 (printed p. 311): 4 ft x 8 ft footing,
+        # N_c,m,r = 4.21 (4/8) + 2.53 (1 - 4/8) = 3.37;
+        # q_ult = (2000 psf)(3.37) + (500 psf)(1) = 7240 psf.
+        Nc_s = figure_5_18a_Ncm_strip(0.2, 1.0)["N_cm"]
+        Nc_c = figure_5_18b_Ncm_circular(0.2, 1.0)["N_cm"]
+        Nc_r = modified_Nc_rectangular_layered_clay(Nc_s, Nc_c, 4.0, 8.0)
+        assert Nc_r == pytest.approx(3.37, abs=0.005)
+        assert 2000.0 * Nc_r + 500.0 == pytest.approx(7240.0, abs=10.0)
 
     def test_square_equals_circular(self):
-        # For B/L = 1 (square), Nc_r should equal Nc_c
-        Nc_s = figure_5_18a_Ncm_strip(2.0, 1.0)
-        Nc_c = figure_5_18b_Ncm_circular(2.0, 1.0)
+        # For B/L = 1 (square), Nc_r equals Nc_c
+        Nc_s = figure_5_18a_Ncm_strip(0.5, 1.0)["N_cm"]
+        Nc_c = figure_5_18b_Ncm_circular(0.5, 1.0)["N_cm"]
         Nc_r = modified_Nc_rectangular_layered_clay(Nc_s, Nc_c, 3.0, 3.0)
-        assert Nc_r == pytest.approx(Nc_c, rel=1e-4)
-
-    def test_strip_limit(self):
-        # For B/L → 0 (very long strip), Nc_r → Nc_s
-        Nc_s = figure_5_18a_Ncm_strip(1.5, 0.75)
-        Nc_c = figure_5_18b_Ncm_circular(1.5, 0.75)
-        Nc_r = modified_Nc_rectangular_layered_clay(Nc_s, Nc_c, 1.0, 100.0)
-        assert Nc_r == pytest.approx(Nc_s, rel=0.02)
-
-    def test_uniform_soil_gives_standard_Nc(self):
-        # cu2/cu1 = 1.0 → uniform clay, Nc,m ≈ 5.14 (strip) or 6.05 (circular)
-        Nc_strip = figure_5_18a_Ncm_strip(1.0, 0.5)
-        Nc_circ = figure_5_18b_Ncm_circular(1.0, 0.5)
-        assert Nc_strip == pytest.approx(5.14, rel=0.02)
-        assert Nc_circ == pytest.approx(6.05, rel=0.02)
+        assert Nc_r == pytest.approx(Nc_c, rel=1e-12)
 
     def test_weaker_lower_layer_reduces_Nc(self):
-        # cu2/cu1 < 1 → weaker lower layer → Nc < standard
-        Nc_weak = figure_5_18a_Ncm_strip(0.4, 0.5)
-        Nc_uniform = figure_5_18a_Ncm_strip(1.0, 0.5)
-        assert Nc_weak < Nc_uniform
+        assert figure_5_18a_Ncm_strip(0.4, 0.5)["N_cm"] < 5.14
 
     def test_stronger_lower_layer_increases_Nc(self):
-        # cu2/cu1 > 1 → stronger lower layer → Nc > standard
-        Nc_strong = figure_5_18a_Ncm_strip(3.0, 0.5)
-        Nc_uniform = figure_5_18a_Ncm_strip(1.0, 0.5)
-        assert Nc_strong > Nc_uniform
+        assert figure_5_18a_Ncm_strip(1.8, 0.2)["N_cm"] > 5.14
 
     def test_deep_layer_converges_to_uniform(self):
-        # As H/B increases (upper layer very thick), Nc,m → standard Nc
-        Nc_shallow = figure_5_18a_Ncm_strip(0.4, 0.25)
-        Nc_deep = figure_5_18a_Ncm_strip(0.4, 2.0)
-        Nc_uniform = 5.14
-        # Deep: should be closer to 5.14 than shallow
-        assert abs(Nc_deep - Nc_uniform) < abs(Nc_shallow - Nc_uniform)
+        # As H/B increases (upper layer thicker), Nc,m -> 5.14
+        Nc_shallow = figure_5_18a_Ncm_strip(0.4, 0.25)["N_cm"]
+        Nc_deep = figure_5_18a_Ncm_strip(0.4, 2.0)["N_cm"]
+        assert abs(Nc_deep - 5.14) < abs(Nc_shallow - 5.14)
 
 
 # ===========================================================================
@@ -2108,6 +2324,8 @@ class TestPlotFigure518a:
     def test_no_query(self):
         ax = plot_figure_5_18a(show=False)
         assert isinstance(ax, matplotlib.axes.Axes)
+        # abscissa is su2/su1 from 0 to 2.0, as printed
+        assert ax.get_xlim() == pytest.approx((0.0, 2.0))
         _plt.close("all")
 
     def test_query_point(self):
@@ -2122,6 +2340,7 @@ class TestPlotFigure518b:
     def test_no_query(self):
         ax = plot_figure_5_18b(show=False)
         assert isinstance(ax, matplotlib.axes.Axes)
+        assert ax.get_xlim() == pytest.approx((0.0, 2.0))
         _plt.close("all")
 
     def test_query_point(self):
