@@ -127,8 +127,17 @@ class TestTableA3:
     def test_a2_variable_favourable(self):
         assert table_a_3_str_geo_actions("variable", "favourable", "A2") == 0.0
 
-    def test_default_set_a1(self):
-        assert table_a_3_str_geo_actions("permanent", "unfavourable") == 1.35
+    def test_the_set_is_required(self):
+        # Table A.3 (PDF p. 132, printed p. 130): A1 1,35, A2 1,0 for
+        # permanent unfavourable. The set used to default to A1.
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_3_str_geo_actions("permanent", "unfavourable")
+        assert table_a_3_str_geo_actions("permanent", "unfavourable", "A1") == 1.35
+        assert table_a_3_str_geo_actions("permanent", "unfavourable", "A2") == 1.0
+
+    def test_us_spelling_is_told_the_valid_conditions(self):
+        with pytest.raises(ValueError, match="unfavourable, favourable"):
+            table_a_3_str_geo_actions("permanent", "unfavorable", "A1")
 
     def test_invalid_set(self):
         with pytest.raises(ValueError):
@@ -575,6 +584,45 @@ class TestDesignApproachSets:
     def test_invalid(self):
         with pytest.raises(ValueError):
             design_approach_sets("DA4")
+
+
+class TestAnnexASelectorsAreRequired:
+    def test_no_lookup_answers_without_its_row_and_set(self):
+        # Every Annex A table has more than one row or set (Table A.4,
+        # printed p. 130: M1 all 1,0, M2 1,25 to 1,4). A call that left the
+        # selectors out used to get the first row of the set of ones
+        # (table_a_4_str_geo_soil_parameters() returned 1.0).
+        lookups = [
+            table_a_1_equ_actions, table_a_2_equ_soil_parameters,
+            table_a_3_str_geo_actions, table_a_4_str_geo_soil_parameters,
+            table_a_5_spread_foundation_resistance,
+            table_a_6_driven_pile_resistance, table_a_7_bored_pile_resistance,
+            table_a_8_cfa_pile_resistance,
+            table_a_9_correlation_static_load_test,
+            table_a_10_correlation_ground_test,
+            table_a_11_correlation_dynamic_impact_test,
+            table_a_12_anchorage_resistance,
+            table_a_13_retaining_structure_resistance,
+            table_a_14_slope_stability_resistance, table_a_15_upl_actions,
+            table_a_16_upl_soil_resistance, table_a_17_hyd_actions,
+            design_approach_sets,
+        ]
+        for lookup in lookups:
+            with pytest.raises(TypeError, match="missing"):
+                lookup()
+
+    def test_a_set_alone_is_not_enough(self):
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_4_str_geo_soil_parameters("phi")
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_7_bored_pile_resistance("base")
+        assert table_a_4_str_geo_soil_parameters("phi", "M2") == 1.25
+        assert table_a_7_bored_pile_resistance("base", "R4") == 1.6
+
+    def test_table_a_9_refuses_a_fractional_n_in_plain_words(self):
+        with pytest.raises(ValueError, match="whole number of piles"):
+            table_a_9_correlation_static_load_test("mean", 2.5)
+        assert table_a_9_correlation_static_load_test("mean", 7) == 1.00
 
 
 class TestBareCohesionIsRefused:
