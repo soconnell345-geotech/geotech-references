@@ -1565,7 +1565,7 @@ def subgrade_modulus_from_plate_load_test(
     """Modulus of subgrade reaction ks (in the unit of kp, force/length^3)
     for a footing from a plate load test, Equation 5-36 of UFC 3-220-20
     (Sowers 1977): ks = kp (Bp/B)^n with n = 0.5 to 0.7.  The manual
-    allows it only for a footing no wider than 5 ft (1.5 m) on uniform
+    allows it only for a footing no wider than 5 ft on uniform
     soil within the depth of influence, and says plate load test results
     cannot be scaled for larger footings and mats; the function does not
     know the unit of B and does not check this.

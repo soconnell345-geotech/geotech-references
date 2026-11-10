@@ -974,7 +974,7 @@ def Nc_star_FHWA_from_Ir(I_r: float) -> float:
     Equation 6-30 of UFC 3-220-20 (after FHWA 1999):
     N*c = 1.33 [ln(Ir) + 1], limited to 9 as printed.  The manual gives it
     for formed-in-place columns bearing on fine-grained soil with an
-    undrained shear strength below 2 ksf (96 kPa); otherwise N*c = 9
+    undrained shear strength below 2 ksf; otherwise N*c = 9
     (Brinch Hansen 1957, Z/b of at least 2.5).
 
     A value of exactly 9 is the printed limit, not the equation.  This is
@@ -1009,7 +1009,7 @@ def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
     undrained shear strength, Equation 6-31 of UFC 3-220-20 (after FHWA
     1999): N*c = 10.2 - 12.4 [0.1 / (0.1 + su/Pa)], limited to 9 as
     printed.  The manual gives it for formed-in-place columns bearing on
-    fine-grained soil with su below 2 ksf (96 kPa); the equation reaches
+    fine-grained soil with su below 2 ksf; the equation reaches
     the limit of 9 (Brinch Hansen 1957) at about that strength.
 
     A value of exactly 9 is the printed limit, not the equation.
