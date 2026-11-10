@@ -231,24 +231,61 @@ def _id_key(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(text or "").lower())
 
 
-def _catalog_refs(conn: sqlite3.Connection) -> list[tuple[str, str, str]]:
-    """``(reference, reference_title, reference_id)`` of every catalog."""
+def _catalog_refs(conn: sqlite3.Connection) -> list[tuple[str, str, tuple]]:
+    """``(reference, reference_title, report numbers)`` of every catalog,
+    each catalog once. A manual whose volumes are printed under their own
+    report numbers (GEC-13: FHWA-NHI-16-027 and -028) has several numbers;
+    it used to be listed once per number, so its own name ("GEC-13") was
+    refused as "in more than one catalog -- gec_13; gec_13"."""
     rows = conn.execute(
-        "SELECT DISTINCT reference, reference_title, reference_id FROM figures"
+        "SELECT DISTINCT reference, reference_title, reference_id "
+        "FROM figures ORDER BY rowid"
     ).fetchall()
-    return [(r["reference"], r["reference_title"] or "",
-             r["reference_id"] or "") for r in rows]
+    titles: dict[str, str] = {}
+    numbers: dict[str, list[str]] = {}
+    for r in rows:
+        titles.setdefault(r["reference"], r["reference_title"] or "")
+        held = numbers.setdefault(r["reference"], [])
+        if r["reference_id"] and r["reference_id"] not in held:
+            held.append(r["reference_id"])
+    return [(ref, titles[ref], tuple(numbers[ref])) for ref in titles]
+
+
+#: A name callers use for a manual that is two catalogs here: the app's
+#: module ``dm7`` covers UFS 3-220-10 (``dm7_1``) and UFC 3-220-20
+#: (``dm7_2``). The figure asked for says which (resolve_reference).
+_SHARED_NAMES = {"dm7": ("dm7_1", "dm7_2")}
+
+
+def _is_report_number(key: str, doc_key: str) -> bool:
+    """Whether ``key`` is the report number ``doc_key`` (both reduced by
+    :func:`_id_key`): the whole of it ('fhwanhi16009', 'ufc325001') or the
+    number without its agency ('nhi16009', '325001')."""
+    if not doc_key:
+        return False
+    return key == doc_key or (
+        len(key) >= 5 and any(c.isdigit() for c in key)
+        and doc_key.endswith(key))
 
 
 def _reference_candidates(conn: sqlite3.Connection,
                           reference: str) -> list[str]:
-    """The catalog ids a caller's ``reference`` can mean, best first.
+    """The catalog ids a caller's ``reference`` can mean.
 
     The catalog id itself; the same id spelled another way (``gec10``,
-    ``GEC-10`` for ``gec_10``); a module name that covers several catalogs
-    (``dm7`` -> ``dm7_1``, ``dm7_2``); or the document's own designation or
-    title (``UFC 3-250-01`` -> ``ufc_pavement``). GeotechStaffEngineer live
-    smoke wave 1, G4: 9 figure reads failed on exactly these spellings.
+    ``GEC-10`` for ``gec_10``); the app's module name for a manual in two
+    catalogs (``dm7`` -> ``dm7_1``, ``dm7_2``); or the document's own
+    report number, with or without its agency (``UFC 3-250-01`` ->
+    ``ufc_pavement``; ``NHI-16-028`` -> ``gec_13``). GeotechStaffEngineer
+    live smoke wave 1, G4: 9 figure reads failed on exactly these
+    spellings.
+
+    Nothing looser: until the 2026-11-10 review (core-09) a name also
+    matched any catalog id it began ("FHWA" -> two catalogs, "gec_1" ->
+    GEC-10 to GEC-14) and any title or report number that contained it
+    ("pile"), and the catalog that happened to hold the figure number
+    answered. Such a name now resolves to nothing, and the caller is given
+    the ids to choose from.
     """
     refs = _catalog_refs(conn)
     ids = [r[0] for r in refs]
@@ -260,14 +297,19 @@ def _reference_candidates(conn: sqlite3.Connection,
     exact = [r for r in ids if _id_key(r) == key]
     if exact:
         return exact
-    prefix = sorted(r for r in ids if _id_key(r).startswith(key)
-                    and len(key) >= 3)
-    if prefix:
-        return prefix
-    by_doc = [r for r, title, doc in refs
-              if len(key) >= 4 and (key in _id_key(doc) or
-                                    key in _id_key(title))]
-    return sorted(set(by_doc), key=by_doc.index)
+    shared = [r for r in _SHARED_NAMES.get(key, ()) if r in ids]
+    if shared:
+        return shared
+    return [r for r, _, numbers in refs
+            if any(_is_report_number(key, _id_key(n)) for n in numbers)]
+
+
+def _unknown_reference(conn: sqlite3.Connection, reference: str) -> str:
+    """What a lookup says for a ``reference`` that names no figure catalog."""
+    valid = sorted(r[0] for r in _catalog_refs(conn))
+    return (f"no figure catalog '{reference}'. Use a catalog id: "
+            f"{', '.join(valid)} (or figure_search with no reference to "
+            "find the figure)")
 
 
 def resolve_reference(reference: str, figure_number: str | None = None) -> str:
@@ -282,10 +324,7 @@ def resolve_reference(reference: str, figure_number: str | None = None) -> str:
         if len(cands) == 1:
             return cands[0]
         if not cands:
-            valid = sorted(r[0] for r in _catalog_refs(conn))
-            raise KeyError(
-                f"no figure catalog '{reference}'. Use a catalog id: "
-                f"{', '.join(valid)} (or figure_search to find the figure)")
+            raise KeyError(_unknown_reference(conn, reference))
         if figure_number:
             num = _norm_fig_number(figure_number)
             holding = [c for c in cands if conn.execute(
@@ -364,10 +403,15 @@ def figure_search(
         FTS5 MATCH query. Plain words are AND-matched with porter stemming;
         FTS5 operators (``"phrase"``, ``OR``, ``NEAR()``, ``col:term``) work.
     reference : str, optional
-        Restrict to one reference id (e.g. ``"dm7_2"``).
-    chapter : int, optional
-        Restrict to one chapter number (prologue figures are chapter 0;
-        appendix figures have no chapter).
+        Restrict to one reference id (e.g. ``"dm7_2"``); another spelling
+        of it, the app's module name ``dm7`` or the document's report
+        number resolve as in :func:`figure_get`. A name that means no
+        catalog is an error naming the catalog ids, not an empty result.
+    chapter : int or str, optional
+        Restrict to one chapter as the catalog files it (prologue figures
+        are chapter 0; the AASHTO 1993 Guide's are ``"II-2"``; appendix
+        figures have no chapter). A chapter with no figures in the scope
+        is an error naming the chapters that have some.
     limit : int, optional
         Max hits (capped at 50).
     offset : int, optional
@@ -391,7 +435,10 @@ def figure_search(
         ``figure_number``, ``caption``, ``chapter``, ``pdf_page_index``,
         ``printed_page``. Call :func:`figure_get` for the full row, or render
         the page for vision read-off. With ``max_chars``, the dict
-        described above.
+        described above, plus ``resolved_reference`` (the catalog id or
+        ids searched) when ``reference`` was not itself a catalog id. An
+        unknown ``reference`` or ``chapter`` is ``[{"error": ...}]``
+        (``{"error": ...}`` with ``max_chars``).
     """
     if not query or not query.strip():
         return [] if max_chars is None else {"hits": [], "shown": 0}
@@ -409,9 +456,34 @@ def figure_search(
         else offset + limit + 1
     conn = _ro_connect()
     try:
-        # 'gec10', 'dm7', 'UFC 3-250-01' filter the catalogs they mean (G4)
-        refs = ((_reference_candidates(conn, reference) or [reference])
-                if reference else [])
+        def refuse(message: str):
+            return ({"error": message} if max_chars is not None
+                    else [{"error": message}])
+
+        # 'gec10', 'dm7', 'UFC 3-250-01' filter the catalogs they mean (G4).
+        # A name that means no catalog, or a chapter with no figures, is an
+        # error naming the choices: it used to be an empty list, the same
+        # answer as "no figure shows this" (2026-11-10 review, core-06).
+        refs = _reference_candidates(conn, reference) if reference else []
+        if reference and not refs:
+            return refuse(_unknown_reference(conn, reference))
+        chapters: list = []
+        if chapter is not None:
+            in_refs = (" WHERE reference IN ("
+                       + ", ".join("?" for _ in refs) + ")") if refs else ""
+            have = [r[0] for r in conn.execute(
+                "SELECT DISTINCT chapter FROM figures" + in_refs, refs)
+                if r[0] is not None]
+            chapters = [c for c in have if str(c) == str(chapter).strip()]
+            if not chapters:
+                have.sort(key=lambda c: (isinstance(c, str), c))
+                where = (", ".join(refs) if refs else "any catalog")
+                return refuse(
+                    f"no figures filed under chapter {chapter!r} in {where}; "
+                    "chapters with figures there: "
+                    + ", ".join(str(c) for c in have[:40])
+                    + " (appendix figures may have no chapter: search "
+                    "without one)")
 
         def run(match_query: str) -> list[sqlite3.Row]:
             sql = (
@@ -426,9 +498,10 @@ def figure_search(
                 sql += (" AND f.reference IN ("
                         + ", ".join("?" for _ in refs) + ")")
                 params.extend(refs)
-            if chapter is not None:
-                sql += " AND f.chapter = ?"
-                params.append(int(chapter))
+            if chapters:
+                sql += (" AND f.chapter IN ("
+                        + ", ".join("?" for _ in chapters) + ")")
+                params.extend(chapters)
             sql += " ORDER BY bm25(figures_fts) LIMIT ?"
             params.append(want)
             return conn.execute(sql, params).fetchall()
@@ -490,11 +563,15 @@ def figure_search(
         hits = [_row_to_hit(r) for r in rows[offset:offset + limit]]
         if max_chars is None:
             return hits
-        return fit_hits(
+        out = fit_hits(
             hits, max_chars, text_fields=("caption",), offset=offset,
             more=more, max_offset=_MAX_OFFSET,
             narrow="narrow the query (more specific words, or a 'reference')",
             fetch="figure_get returns a figure's whole catalog row")
+        if reference and refs != [reference]:
+            # the catalog(s) a loosely spelled reference was read as
+            out["resolved_reference"] = refs[0] if len(refs) == 1 else refs
+        return out
     finally:
         conn.close()
 

@@ -473,10 +473,12 @@ def reference_search(
         of them come first. Use FTS5 operators (``"phrase"``, ``OR``,
         ``NEAR()``, ``col:term``) for advanced queries.
     reference : str, optional
-        Restrict to a single reference id (e.g. ``"dm7_1"``).
+        Restrict to a single reference id (e.g. ``"dm7_1"``). An id that
+        is not indexed is an error naming the ids, not an empty result.
     chapter : int, optional
         Restrict to a single chapter number (only meaningful with
-        ``reference``).
+        ``reference``). A chapter the reference does not have is an
+        error naming its chapters.
     limit : int, optional
         Max hits (capped at ``50``).
     offset : int, optional
@@ -514,6 +516,33 @@ def reference_search(
         else offset + limit + 1
     conn = _ro_connect()
     try:
+        def refuse(message: str):
+            return ({"error": message} if max_chars is not None
+                    else [{"error": message}])
+
+        # A reference that is not indexed, or a chapter it does not have, is
+        # an error naming the choices: it used to be an empty list, the
+        # same answer as "no section says this" (2026-11-10 review, core-06).
+        if reference and not _is_indexed(conn, reference):
+            return refuse(_unknown_reference(conn, reference))
+        chapter_no = None
+        if chapter is not None:
+            try:
+                chapter_no = int(chapter)
+            except (TypeError, ValueError):
+                chapter_no = None
+            have = sorted(r[0] for r in conn.execute(
+                "SELECT DISTINCT chapter FROM sections"
+                + (" WHERE reference = ?" if reference else ""),
+                (reference,) if reference else ()) if r[0] is not None)
+            if chapter_no not in have:
+                return refuse(
+                    f"no chapter {chapter!r} in "
+                    f"{reference or 'any reference'}; chapters there: "
+                    + ", ".join(str(c) for c in have)
+                    + " (list_chapters gives their titles; an appendix or "
+                    "a prologue is filed under a number of its own)")
+
         def run(match_query: str, pool: int | None = None) -> list[sqlite3.Row]:
             sql = (
                 "SELECT s.rowid AS rid, s.reference, s.reference_title, "
@@ -528,7 +557,7 @@ def reference_search(
                 params.append(reference)
             if chapter is not None:
                 sql += " AND s.chapter = ?"
-                params.append(int(chapter))
+                params.append(chapter_no)
             sql += " ORDER BY bm25(sections_fts) LIMIT ?"
             params.append(pool or want)
             return conn.execute(sql, params).fetchall()
@@ -625,6 +654,22 @@ def reference_search(
             fetch="reference_get returns a section's whole text")
     finally:
         conn.close()
+
+
+def _is_indexed(conn: sqlite3.Connection, reference: str) -> bool:
+    return conn.execute(
+        "SELECT 1 FROM sections WHERE reference = ? LIMIT 1",
+        (reference,)).fetchone() is not None
+
+
+def _unknown_reference(conn: sqlite3.Connection, reference: str) -> str:
+    """What a search or a fetch says for a ``reference`` that is not in
+    the text index."""
+    ids = [r[0] for r in conn.execute(
+        "SELECT DISTINCT reference FROM sections ORDER BY reference")]
+    return (f"no reference '{reference}' in the text index. Use one of: "
+            f"{', '.join(ids)} (or search with no reference to look in "
+            "all of them)")
 
 
 def _past_deepest_page(offset: int, max_chars):
@@ -758,6 +803,8 @@ def reference_get(reference: str, section_id: str,
             (reference, section_id),
         ).fetchall()
         if not rows:
+            if not _is_indexed(conn, reference):
+                raise KeyError(_unknown_reference(conn, reference))
             raise KeyError(
                 f"section_id '{section_id}' not found in reference "
                 f"'{reference}'" + _nearby(conn, reference, section_id)
