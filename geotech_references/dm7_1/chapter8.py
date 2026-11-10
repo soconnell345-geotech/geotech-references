@@ -1695,7 +1695,7 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
 
 
 def cbr_from_spt(n: float) -> float:
-    """California Bearing Ratio CBR (%) from the SPT blow count N, Equation 8-39 (Livneh 1989).
+    """California Bearing Ratio CBR (%) from the SPT blow count N (5 to 68), Equation 8-39 (Livneh 1989).
 
     Livneh (1989) correlation to estimate the California Bearing Ratio
     from SPT blow count.  As printed (the exponent -0.26 is on the
@@ -1707,14 +1707,14 @@ def cbr_from_spt(n: float) -> float:
         \\log CBR = -5.13 + 6.55
         \\left(\\log\\frac{300}{N}\\right)^{-0.26}
 
-    Figure 8-57 (p. 458) plots this curve with the data behind it for N
-    from about 5 to about 68.
+    Figure 8-57 (p. 458) draws this curve with the data behind it for N
+    from 5 (CBR 3.2) to 68 (CBR 163).
 
     Parameters
     ----------
     n : float
         SPT blow count (blows/ft).  Use N60 for modern hammers.
-        Must be > 0 and < 300.
+        From 5 to 68, the range over which Figure 8-57 draws the curve.
 
     Returns
     -------
@@ -1724,8 +1724,9 @@ def cbr_from_spt(n: float) -> float:
     Raises
     ------
     ValueError
-        If *n* is not positive, or is 300 or more (log(300/N) is then
-        not positive and the equation cannot be evaluated).
+        If *n* is not positive, or is outside 5 to 68 (the figure draws
+        no curve there; at 300 or more log(300/N) is not positive and the
+        equation cannot be evaluated at all).
 
     References
     ----------
@@ -1734,10 +1735,17 @@ def cbr_from_spt(n: float) -> float:
     """
     if n <= 0.0:
         raise ValueError("n must be positive.")
-    if n >= 300.0:
+    if n < 5.0 or n > 68.0:
+        note = ""
+        if n >= 300.0:
+            note = (
+                " At 300 or more the equation cannot be evaluated at all: "
+                "it raises log(300/N) to the power -0.26."
+            )
         raise ValueError(
-            "n must be less than 300: Equation 8-39 (UFS 3-220-10 p. 457) "
-            "raises log(300/N) to the power -0.26."
+            "n is outside 5 to 68, the range of N over which Figure 8-57 "
+            "(UFS 3-220-10 p. 458) draws the curve of Equation 8-39 "
+            "(p. 457) with the data behind it." + note
         )
     log_cbr = -5.13 + 6.55 * math.log10(300.0 / n) ** -0.26
     return 10.0 ** log_cbr

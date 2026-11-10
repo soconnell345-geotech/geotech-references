@@ -1177,8 +1177,27 @@ class TestCbrFromSpt:
             cbr_from_spt(-5.0)
 
     def test_n_300_or_more_raises(self):
-        with pytest.raises(ValueError, match="n must be less than 300"):
+        # Outside the curve of Figure 8-57, and log(300/N) is not positive.
+        with pytest.raises(ValueError, match="outside 5 to 68.*300 or more"):
             cbr_from_spt(300.0)
+
+    def test_range_of_figure_8_57(self):
+        # Figure 8-57, PDF p. 486 (printed p. 458), draws the curve from
+        # N 5 to N 68 (read off a 400 dpi render); outside it the function
+        # refuses.
+        # N=5:    log(60) = 1.778151;   ^-0.26 = 0.861010; log CBR = 0.509615
+        #         CBR = 3.233
+        # N=5.1:  log(58.824) = 1.769551; ^-0.26 = 0.862096; CBR = 3.287
+        # N=67.9: log(4.4183) = 0.645251; ^-0.26 = 1.120651; CBR = 162.28
+        # N=68:   log(4.4118) = 0.644612; ^-0.26 = 1.120940; CBR = 162.99
+        assert cbr_from_spt(5.0) == pytest.approx(3.233, abs=1e-3)
+        assert cbr_from_spt(5.1) == pytest.approx(3.287, abs=1e-3)
+        assert cbr_from_spt(67.9) == pytest.approx(162.28, abs=0.01)
+        assert cbr_from_spt(68.0) == pytest.approx(162.99, abs=0.01)
+        for n in (4.9, 68.1, 200.0):
+            # N 200 used to return 144,025
+            with pytest.raises(ValueError, match="outside 5 to 68"):
+                cbr_from_spt(n)
 
 
 # ============================================================================
