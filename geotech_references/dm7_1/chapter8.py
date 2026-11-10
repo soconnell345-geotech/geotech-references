@@ -1129,7 +1129,7 @@ def cpt_undrained_strength_nkt(
 
 
 def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
-    """Undrained shear strength su (kPa) of overconsolidated clay from SPT N and PI, Equation 8-26.
+    """Undrained shear strength su (kPa) of overconsolidated clay from SPT N and PI (15 to 62), Equation 8-26.
 
     Carter and Bentley (2016) approximation of the Stroud and Butler
     (1975) trendline (Figure 8-31) relating undrained shear strength of
@@ -1142,12 +1142,16 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
     .. math::
         \\frac{s_u}{N} = \\frac{8910}{PI^3} + 4.36
 
+    Figure 8-31 (p. 428) draws the trendline for PI from 15 (su/N 7.0)
+    to about 62 (su/N 4.40).
+
     Parameters
     ----------
     n : float
         SPT N value (blows/ft).
     pi : float
-        Plasticity index (%).  Must be > 0.
+        Plasticity index (%), from 15 to 62, the range over which
+        Figure 8-31 draws the trendline.
 
     Returns
     -------
@@ -1157,17 +1161,24 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
     Raises
     ------
     ValueError
-        If *n* is negative or *pi* is not positive.
+        If *n* is negative or *pi* is not positive, or if *pi* is
+        outside 15 to 62 (the figure draws no trendline there).
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-26, p. 428.
+    Chapter 8, Equation 8-26 and Figure 8-31, p. 428.
     """
     if n < 0.0:
         raise ValueError("n must be non-negative.")
     if pi <= 0.0:
         raise ValueError("pi must be positive.")
+    if pi < 15.0 or pi > 62.0:
+        raise ValueError(
+            "pi is outside 15 to 62, the range of plasticity index over which "
+            "Figure 8-31 (UFS 3-220-10 p. 428) draws the Stroud and Butler "
+            "(1975) trendline that Equation 8-26 approximates."
+        )
     return n * (8910.0 / pi ** 3 + 4.36)
 
 

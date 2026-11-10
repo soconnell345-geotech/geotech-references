@@ -763,6 +763,27 @@ class TestSptUndrainedStrengthStroudButler:
         with pytest.raises(ValueError, match="pi must be positive"):
             spt_undrained_strength_stroud_butler(20.0, -5.0)
 
+    def test_range_of_figure_8_31(self):
+        # Figure 8-31, PDF p. 456 (printed p. 428), draws the trendline from
+        # PI 15 (su/N 7.0) to about PI 62 (su/N 4.40); outside it the
+        # function refuses.
+        # N=20, PI=15:   20 * (8910/3375 + 4.36) = 20 * 7.00 = 140.00 kPa
+        # N=20, PI=15.1: 20 * (8910/3442.951 + 4.36) = 20 * 6.94790 = 138.96
+        # N=20, PI=61.9: 20 * (8910/237176.659 + 4.36) = 20 * 4.39757 = 87.95
+        # N=20, PI=62:   20 * (8910/238328 + 4.36) = 20 * 4.39739 = 87.95
+        assert spt_undrained_strength_stroud_butler(20.0, 15.0) == pytest.approx(
+            140.00, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 15.1) == pytest.approx(
+            138.96, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 61.9) == pytest.approx(
+            87.95, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 62.0) == pytest.approx(
+            87.95, abs=0.01)
+        for pi in (14.9, 62.1, 5.0):
+            # PI 5 used to return 1,513 kPa at N 20
+            with pytest.raises(ValueError, match="outside 15 to 62"):
+                spt_undrained_strength_stroud_butler(20.0, pi)
+
 
 # ============================================================================
 # Eq 8-27: intrinsic_compression_index
