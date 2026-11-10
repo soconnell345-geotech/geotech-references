@@ -1487,34 +1487,44 @@ class TestShearWaveVelocitySpt:
 
 
 class TestTable86StarkHussain:
-    """Tests for Table 8-6: Stark & Hussain coefficients."""
+    """Tests for Table 8-6: Coefficients for Stark and Hussain (2013)
+    Residual Friction Angle Correlation."""
 
-    def test_lt_20_50kpa(self):
-        # lt_20, 50_kPa: c0=35.2
-        result = table_8_6_stark_hussain("lt_20", "50_kPa")
-        assert result["c0"] == pytest.approx(35.2, rel=1e-4)
+    # Table 8-6 as printed, PDF p. 445 (printed p. 417): all 16 rows
+    # (CF and LL range, effective normal stress, C0, C1, C2, C3).
+    PRINTED = [
+        ("lt_20", "50_kPa", 39.7, -0.29, 6.63e-04, 0.0),
+        ("lt_20", "100_kPa", 39.4, -0.298, 6.81e-04, 0.0),
+        ("lt_20", "400_kPa", 40.2, -0.375, 1.36e-03, 0.0),
+        ("lt_20", "700_kPa", 40.3, -0.412, 1.68e-03, 0.0),
+        ("25_to_45", "50_kPa", 31.4, -6.79e-03, -3.62e-03, 1.86e-05),
+        ("25_to_45", "100_kPa", 29.8, -3.63e-04, -3.58e-03, 1.85e-05),
+        ("25_to_45", "400_kPa", 28.4, -5.62e-02, -2.95e-03, 1.72e-05),
+        ("25_to_45", "700_kPa", 28.1, -0.2083, -8.18e-04, 9.37e-06),
+        ("gt_50_ll_lt_120", "50_kPa", 33.5, -0.31, 3.90e-04, 4.40e-06),
+        ("gt_50_ll_lt_120", "100_kPa", 30.7, -0.2504, -4.21e-04, 8.05e-06),
+        ("gt_50_ll_lt_120", "400_kPa", 29.4, -0.2621, -4.01e-04, 8.72e-06),
+        ("gt_50_ll_lt_120", "700_kPa", 27.7, -0.3233, 2.90e-04, 7.11e-06),
+        ("gt_50_ll_120_to_300", "50_kPa", 12.0, -0.0215, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "100_kPa", 10.9, -0.0183, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "400_kPa", 8.3, -0.0114, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "700_kPa", 5.8, -0.0049, 0.0, 0.0),
+    ]
 
-    def test_gt_50_400kpa(self):
-        # gt_50, 400_kPa: c0=44.1
-        result = table_8_6_stark_hussain("gt_50", "400_kPa")
-        assert result["c0"] == pytest.approx(44.1, rel=1e-4)
+    @pytest.mark.parametrize("cf_range, sigma, c0, c1, c2, c3", PRINTED)
+    def test_printed_row(self, cf_range, sigma, c0, c1, c2, c3):
+        result = table_8_6_stark_hussain(cf_range, sigma)
+        assert result == {"c0": c0, "c1": c1, "c2": c2, "c3": c3}
 
-    def test_20_to_50_100kpa(self):
-        # 20_to_50, 100_kPa: returns dict with 4 keys
-        result = table_8_6_stark_hussain("20_to_50", "100_kPa")
-        assert len(result) == 4
-        assert "c0" in result
-        assert "c1" in result
-        assert "c2" in result
-        assert "c3" in result
+    def test_sixteen_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_6_STARK_HUSSAIN) == 16
 
     def test_returns_copy(self):
         # Modifying returned dict doesn't affect source
         result1 = table_8_6_stark_hussain("lt_20", "50_kPa")
-        original_c0 = result1["c0"]
         result1["c0"] = 999.0
-        result2 = table_8_6_stark_hussain("lt_20", "50_kPa")
-        assert result2["c0"] == pytest.approx(original_c0, rel=1e-4)
+        assert table_8_6_stark_hussain("lt_20", "50_kPa")["c0"] == 39.7
 
     def test_unknown_cf_raises(self):
         with pytest.raises(ValueError, match="Unknown combination"):
@@ -1524,6 +1534,13 @@ class TestTable86StarkHussain:
         with pytest.raises(ValueError, match="Unknown combination"):
             table_8_6_stark_hussain("lt_20", "200_kPa")
 
+    def test_ranges_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table: the print has no 20-50% group and
+        # splits CF > 50% by liquid limit.
+        for cf_range in ["20_to_50", "gt_50"]:
+            with pytest.raises(ValueError, match="Unknown combination"):
+                table_8_6_stark_hussain(cf_range, "100_kPa")
+
 
 # ============================================================================
 # TABLE 8-9: table_8_9_shansep_m
@@ -1531,27 +1548,67 @@ class TestTable86StarkHussain:
 
 
 class TestTable89ShansepM:
-    """Tests for Table 8-9: SHANSEP exponent m."""
+    """Tests for Table 8-9: Typical Values of m."""
 
-    def test_dss(self):
-        # DSS: m=0.80
-        assert table_8_9_shansep_m("dss") == pytest.approx(0.80, rel=1e-4)
+    # Table 8-9 as printed, PDF p. 453 (printed p. 425): rows that print
+    # one number for m.
+    @pytest.mark.parametrize("soil, m, source", [
+        ("saturated_clay", 0.8, "Sabatini et al. (2002)"),
+        ("sensitive_cemented_marine_clay", 1.00, "Ladd and DeGroot (2004)"),
+        ("homogeneous_cl_ch_sedimentary_clay", 0.8, "Ladd and DeGroot (2004)"),
+        ("varved_clay_dss", 0.75, "Ladd and DeGroot (2004)"),
+        ("silt_organic_below_a_line", 0.8, "Ladd and DeGroot (2004)"),
+    ])
+    def test_printed_number(self, soil, m, source):
+        row = table_8_9_shansep_m(soil)
+        assert row["m"] == m
+        assert row["source"] == source
 
-    def test_ciuc(self):
-        # CIUC: m=0.85
-        assert table_8_9_shansep_m("ciuc") == pytest.approx(0.85, rel=1e-4)
+    def test_nominal_rows_carry_the_printed_expression(self):
+        # PDF p. 453 (printed p. 425): 0.88 (1 - Cr/Cc) +/- 0.06, Nominally 0.8
+        for soil in ["homogeneous_cl_ch_sedimentary_clay",
+                     "silt_organic_below_a_line"]:
+            row = table_8_9_shansep_m(soil)
+            assert row["m_as_printed"] == "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8"
 
-    def test_ck0ue(self):
-        # CK0UE: m=0.70
-        assert table_8_9_shansep_m("ck0ue") == pytest.approx(0.70, rel=1e-4)
+    def test_theoretical_row_has_no_number(self):
+        # Roscoe et al. (1958), Mitachi and Kitago (1976): m ~ 1 - Cr/Cc
+        row = table_8_9_shansep_m("theoretical")
+        assert row["m"] is None
+        assert "1 - Cr/Cc" in row["m_as_printed"]
+        assert row["soil_description"] == "Saturated clay (theoretical)"
+
+    def test_field_vane_row_is_a_range(self):
+        # Jamiolkowski et al. (1985), Chandler (1988): Range 0.8 to 1.35,
+        # High value 1.51, Mean (all) 1.03, Mean (discarding extreme
+        # values) 0.97
+        row = table_8_9_shansep_m("field_vane")
+        assert row["m"] is None
+        for text in ["0.8 to 1.35", "1.51", "1.03", "0.97"]:
+            assert text in row["m_as_printed"]
+        assert row["soil_description"] == "Field vane shear tests on clay"
+
+    def test_seven_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_9_SHANSEP_M) == 7
 
     def test_case_insensitive(self):
-        # "DSS" (uppercase) should work
-        assert table_8_9_shansep_m("DSS") == pytest.approx(0.80, rel=1e-4)
+        assert table_8_9_shansep_m(" Varved_Clay_DSS ")["m"] == 0.75
+
+    def test_returns_copy(self):
+        row = table_8_9_shansep_m("varved_clay_dss")
+        row["m"] = 9.0
+        assert table_8_9_shansep_m("varved_clay_dss")["m"] == 0.75
 
     def test_unknown_raises(self):
-        with pytest.raises(ValueError, match="Unknown test_type"):
+        with pytest.raises(ValueError, match="Unknown soil"):
             table_8_9_shansep_m("unknown_test")
+
+    def test_test_types_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table: Table 8-9 does not list m by test type.
+        for test_type in ["ciuc", "ck0uc", "dss", "ck0ue"]:
+            with pytest.raises(ValueError, match="not by test type"):
+                table_8_9_shansep_m(test_type)
 
 
 # ============================================================================
@@ -1657,60 +1714,61 @@ class TestFigure846F:
 class TestTable86Integration:
     """Chain table_8_6 → residual_friction_angle_stark_hussain."""
 
-    def test_lt20_50kpa_ll60(self):
-        # Clay fraction < 20%, sigma_n = 50 kPa, LL=60%
-        coeffs = table_8_6_stark_hussain("lt_20", "50_kPa")
-        phi_r = residual_friction_angle_stark_hussain(
-            60.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
+    # Table 8-6 and Eq. 8-17, PDF p. 445 (printed p. 417); the curves are
+    # drawn in Figure 8-22, PDF p. 444 (printed p. 416).
+
+    def _phi_r(self, cf_range, sigma, ll):
+        coeffs = table_8_6_stark_hussain(cf_range, sigma)
+        return residual_friction_angle_stark_hussain(
+            ll, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
         )
-        # phi_r should be a reasonable residual angle (5-35 degrees)
-        assert 5.0 < phi_r < 35.0
+
+    def test_lt20_50kpa_ll75(self):
+        # CF < 20%, 50 kPa, LL = 75:
+        # 39.7 - 0.29*75 + 6.63e-4*5625 = 39.7 - 21.75 + 3.729 = 21.68
+        # (Figure 8-22 shows about 21 at the end of that curve)
+        assert self._phi_r("lt_20", "50_kPa", 75.0) == pytest.approx(21.68, abs=0.01)
+
+    def test_25_to_45_100kpa_ll60(self):
+        # 25% < CF < 45%, 100 kPa, LL = 60:
+        # 29.8 - 3.63e-4*60 - 3.58e-3*3600 + 1.85e-5*216000
+        # = 29.8 - 0.022 - 12.888 + 3.996 = 20.89
+        assert self._phi_r("25_to_45", "100_kPa", 60.0) == pytest.approx(20.89, abs=0.01)
 
     def test_gt50_400kpa_ll80(self):
-        # High clay fraction, high stress, LL=80
-        coeffs = table_8_6_stark_hussain("gt_50", "400_kPa")
-        phi_r = residual_friction_angle_stark_hussain(
-            80.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        # Higher clay fraction + higher LL = lower residual angle
-        assert 3.0 < phi_r < 35.0
+        # CF > 50% and LL < 120, 400 kPa, LL = 80:
+        # 29.4 - 0.2621*80 - 4.01e-4*6400 + 8.72e-6*512000
+        # = 29.4 - 20.968 - 2.566 + 4.465 = 10.33
+        assert self._phi_r("gt_50_ll_lt_120", "400_kPa", 80.0) == pytest.approx(10.33, abs=0.01)
+
+    def test_gt50_high_ll_against_figure_8_22(self):
+        # CF > 50% and 120 < LL < 300, LL = 280: Figure 8-22 shows about
+        # 6 degrees at 50 kPa and about 4.5 degrees at 700 kPa.
+        # 12.0 - 0.0215*280 = 5.98;  5.8 - 0.0049*280 = 4.43
+        assert self._phi_r("gt_50_ll_120_to_300", "50_kPa", 280.0) == pytest.approx(5.98, abs=0.01)
+        assert self._phi_r("gt_50_ll_120_to_300", "700_kPa", 280.0) == pytest.approx(4.43, abs=0.01)
 
     def test_increasing_ll_decreases_phi_r(self):
-        # For same clay fraction/stress, increasing LL should decrease phi_r
-        coeffs = table_8_6_stark_hussain("20_to_50", "100_kPa")
-        phi_30 = residual_friction_angle_stark_hussain(
-            30.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        phi_80 = residual_friction_angle_stark_hussain(
-            80.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        assert phi_80 < phi_30
+        # For same clay fraction/stress, increasing LL decreases phi_r
+        assert self._phi_r("25_to_45", "100_kPa", 80.0) < self._phi_r("25_to_45", "100_kPa", 40.0)
 
 
 class TestTable89Integration:
     """Chain table_8_9 → undrained_strength_ratio_oc."""
 
-    def test_dss_ocr4(self):
-        # DSS test, OCR=4: su/sv_oc = 0.23 * 4^0.8
-        m = table_8_9_shansep_m("DSS")
-        su_ratio = undrained_strength_ratio_oc(0.23, 4.0, m)
-        # 0.23 * 4^0.8 = 0.23 * 3.031 = 0.697
-        assert su_ratio == pytest.approx(0.23 * 4.0 ** 0.8, rel=1e-4)
+    def test_nominal_m_ocr4(self):
+        # Table 8-9, PDF p. 453 (printed p. 425): nominally 0.8.
+        # (su/sv)NC = 0.22, OCR = 4: 0.22 * 4^0.8 = 0.22 * 3.0314 = 0.6669
+        m = table_8_9_shansep_m("homogeneous_cl_ch_sedimentary_clay")["m"]
+        su_ratio = undrained_strength_ratio_oc(0.22, 4.0, m)
+        assert su_ratio == pytest.approx(0.6669, abs=1e-4)
 
-    def test_ciuc_vs_dss(self):
-        # CIUC (m=0.85) should give higher ratio than DSS (m=0.80)
-        # for same su/sv_nc and OCR>1
-        m_ciuc = table_8_9_shansep_m("CIUC")
-        m_dss = table_8_9_shansep_m("DSS")
-        su_ciuc = undrained_strength_ratio_oc(0.23, 5.0, m_ciuc)
-        su_dss = undrained_strength_ratio_oc(0.23, 5.0, m_dss)
-        assert su_ciuc > su_dss  # higher m → higher ratio for OCR > 1
-
-    def test_published_m_values(self):
-        # Ladd & DeGroot (2004) published values
-        assert table_8_9_shansep_m("DSS") == pytest.approx(0.80, rel=1e-4)
-        assert table_8_9_shansep_m("CIUC") == pytest.approx(0.85, rel=1e-4)
-        assert table_8_9_shansep_m("CK0UE") == pytest.approx(0.70, rel=1e-4)
+    def test_varved_clay_ocr4(self):
+        # Northeastern U.S. varved clays, DSS: m = 0.75
+        # 0.22 * 4^0.75 = 0.22 * 2.8284 = 0.6223
+        m = table_8_9_shansep_m("varved_clay_dss")["m"]
+        su_ratio = undrained_strength_ratio_oc(0.22, 4.0, m)
+        assert su_ratio == pytest.approx(0.6223, abs=1e-4)
 
 
 class TestTable824Integration:

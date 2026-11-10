@@ -2106,33 +2106,50 @@ def shear_wave_velocity_spt(
 # ===========================================================================
 
 _TABLE_8_6_STARK_HUSSAIN = {
-    ("lt_20", "50_kpa"):  {"c0": 35.2, "c1": -0.1440, "c2": 0.000564, "c3": -0.00000116},
-    ("lt_20", "100_kpa"): {"c0": 33.4, "c1": -0.1330, "c2": 0.000495, "c3": -0.00000092},
-    ("lt_20", "400_kpa"): {"c0": 35.3, "c1": -0.1460, "c2": 0.000567, "c3": -0.00000115},
-    ("20_to_50", "50_kpa"):  {"c0": 42.8, "c1": -0.2980, "c2": 0.001390, "c3": -0.00000251},
-    ("20_to_50", "100_kpa"): {"c0": 38.5, "c1": -0.2220, "c2": 0.000880, "c3": -0.00000137},
-    ("20_to_50", "400_kpa"): {"c0": 38.8, "c1": -0.2330, "c2": 0.001010, "c3": -0.00000168},
-    ("gt_50", "50_kpa"):  {"c0": 53.5, "c1": -0.6100, "c2": 0.004060, "c3": -0.00000925},
-    ("gt_50", "100_kpa"): {"c0": 49.2, "c1": -0.4820, "c2": 0.002870, "c3": -0.00000600},
-    ("gt_50", "400_kpa"): {"c0": 44.1, "c1": -0.3400, "c2": 0.001780, "c3": -0.00000345},
+    # (CF and LL range, effective normal stress): C0, C1, C2, C3 (p. 417)
+    # CF < 20%
+    ("lt_20", "50_kpa"):  {"c0": 39.7, "c1": -0.29,  "c2": 6.63e-04, "c3": 0.0},
+    ("lt_20", "100_kpa"): {"c0": 39.4, "c1": -0.298, "c2": 6.81e-04, "c3": 0.0},
+    ("lt_20", "400_kpa"): {"c0": 40.2, "c1": -0.375, "c2": 1.36e-03, "c3": 0.0},
+    ("lt_20", "700_kpa"): {"c0": 40.3, "c1": -0.412, "c2": 1.68e-03, "c3": 0.0},
+    # 25% < CF < 45%
+    ("25_to_45", "50_kpa"):  {"c0": 31.4, "c1": -6.79e-03, "c2": -3.62e-03, "c3": 1.86e-05},
+    ("25_to_45", "100_kpa"): {"c0": 29.8, "c1": -3.63e-04, "c2": -3.58e-03, "c3": 1.85e-05},
+    ("25_to_45", "400_kpa"): {"c0": 28.4, "c1": -5.62e-02, "c2": -2.95e-03, "c3": 1.72e-05},
+    ("25_to_45", "700_kpa"): {"c0": 28.1, "c1": -0.2083,   "c2": -8.18e-04, "c3": 9.37e-06},
+    # CF > 50% and LL < 120
+    ("gt_50_ll_lt_120", "50_kpa"):  {"c0": 33.5, "c1": -0.31,   "c2": 3.90e-04,  "c3": 4.40e-06},
+    ("gt_50_ll_lt_120", "100_kpa"): {"c0": 30.7, "c1": -0.2504, "c2": -4.21e-04, "c3": 8.05e-06},
+    ("gt_50_ll_lt_120", "400_kpa"): {"c0": 29.4, "c1": -0.2621, "c2": -4.01e-04, "c3": 8.72e-06},
+    ("gt_50_ll_lt_120", "700_kpa"): {"c0": 27.7, "c1": -0.3233, "c2": 2.90e-04,  "c3": 7.11e-06},
+    # CF > 50% and 120 < LL < 300
+    ("gt_50_ll_120_to_300", "50_kpa"):  {"c0": 12.0, "c1": -0.0215, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "100_kpa"): {"c0": 10.9, "c1": -0.0183, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "400_kpa"): {"c0": 8.3,  "c1": -0.0114, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "700_kpa"): {"c0": 5.8,  "c1": -0.0049, "c2": 0.0, "c3": 0.0},
 }
 
 
 def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
-    """Stark & Hussain (2013) polynomial coefficients for residual
-    friction angle (Table 8-6).
+    """Coefficients C0 to C3 of Equation 8-17 (residual friction angle in degrees from liquid limit in %), Table 8-6 "Coefficients for Stark and Hussain (2013) Residual Friction Angle Correlation".
 
-    Returns the four coefficients (C0, C1, C2, C3) for use with
-    ``residual_friction_angle_stark_hussain`` (Equation 8-17).
+    Returns the four coefficients (C0, C1, C2, C3) of one row of
+    Table 8-6 for use with ``residual_friction_angle_stark_hussain``
+    (Equation 8-17): phi'r = C0 + C1 LL + C2 LL^2 + C3 LL^3.  The table
+    has four "CF and LL Range" groups, each at four effective normal
+    stresses.  It has no row for a clay-sized fraction between 20 and
+    25% or between 45 and 50%.
 
     Parameters
     ----------
     cf_range : str
-        Clay fraction range: ``"lt_20"`` (< 20 %), ``"20_to_50"``
-        (20-50 %), or ``"gt_50"`` (> 50 %).
+        "CF and LL Range" of the table (CF = clay-sized fraction, LL =
+        liquid limit): ``"lt_20"`` (CF < 20%), ``"25_to_45"``
+        (25% < CF < 45%), ``"gt_50_ll_lt_120"`` (CF > 50% and LL < 120)
+        or ``"gt_50_ll_120_to_300"`` (CF > 50% and 120 < LL < 300).
     sigma_n_range : str
-        Effective normal stress level: ``"50_kPa"``, ``"100_kPa"``,
-        or ``"400_kPa"``.
+        Effective normal stress: ``"50_kPa"``, ``"100_kPa"``,
+        ``"400_kPa"`` or ``"700_kPa"``.
 
     Returns
     -------
@@ -2142,7 +2159,7 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     Raises
     ------
     ValueError
-        If the combination is not recognised.
+        If the combination is not a row of the table.
 
     References
     ----------
@@ -2154,58 +2171,133 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     if key not in _TABLE_8_6_STARK_HUSSAIN:
         raise ValueError(
             f"Unknown combination cf_range='{cf_range}', "
-            f"sigma_n_range='{sigma_n_range}'."
+            f"sigma_n_range='{sigma_n_range}'. Table 8-6 (UFS 3-220-10 "
+            "p. 417) has cf_range 'lt_20', '25_to_45', 'gt_50_ll_lt_120', "
+            "'gt_50_ll_120_to_300' and sigma_n_range '50_kPa', '100_kPa', "
+            "'400_kPa', '700_kPa'."
         )
     return dict(_TABLE_8_6_STARK_HUSSAIN[key])
 
 
 # ===========================================================================
-# TABLE 8-9: SHANSEP Exponent m
+# TABLE 8-9: Typical Values of m
 # ===========================================================================
 
 _TABLE_8_9_SHANSEP_M = {
-    "ciuc": 0.85,
-    "ck0uc": 0.80,
-    "dss": 0.80,
-    "ck0ue": 0.70,
-    "field_vane": 0.85,
+    # key: m (a number where the table prints one), the m cell as printed,
+    # the source and the soil description as printed (p. 425)
+    "theoretical": {
+        "m": None,
+        "m_as_printed": "m is approximately 1 - Cr/Cc",
+        "source": "Roscoe et al. (1958), Mitachi and Kitago (1976)",
+        "soil_description": "Saturated clay (theoretical)",
+    },
+    "field_vane": {
+        "m": None,
+        "m_as_printed": (
+            "Range: 0.8 to 1.35; High value: 1.51; Mean (all): 1.03; "
+            "Mean (discarding extreme values): 0.97"),
+        "source": "Jamiolkowski et al. (1985), Chandler (1988)",
+        "soil_description": "Field vane shear tests on clay",
+    },
+    "saturated_clay": {
+        "m": 0.8,
+        "m_as_printed": "0.8",
+        "source": "Sabatini et al. (2002)",
+        "soil_description": "Saturated clay",
+    },
+    "sensitive_cemented_marine_clay": {
+        "m": 1.00,
+        "m_as_printed": "1.00",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Sensitive cemented marine clays, Canadian Champlain clays "
+            "(PI < 30%, LI > 1.5)"),
+    },
+    "homogeneous_cl_ch_sedimentary_clay": {
+        "m": 0.8,
+        "m_as_printed": "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Homogeneous CL and CH sedimentary clays of low to moderate "
+            "sensitivity, no shells or sand lenses layers (PI = 20 to 80%)"),
+    },
+    "varved_clay_dss": {
+        "m": 0.75,
+        "m_as_printed": "0.75",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Northeastern U.S. varved clays, direct simple shear failure "
+            "mode"),
+    },
+    "silt_organic_below_a_line": {
+        "m": 0.8,
+        "m_as_printed": "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Sedimentary deposits of silts and organic soils with "
+            "Atterberg Limits below the A-line and clays with shells, "
+            "excludes peat"),
+    },
 }
 
 
-def table_8_9_shansep_m(test_type: str) -> float:
-    """SHANSEP exponent m for undrained strength ratio (Table 8-9).
+def table_8_9_shansep_m(soil: str) -> dict:
+    """Exponent m (dimensionless) of Equation 8-20, (su/sigma'v)OC = (su/sigma'v)NC * OCR^m, by source and soil, Table 8-9 "Typical Values of m".
 
-    Returns the semi-empirical exponent *m* for use with
-    ``undrained_strength_ratio_oc`` (Equation 8-20).
+    Returns one row of Table 8-9 for use with
+    ``undrained_strength_ratio_oc`` (Equation 8-20).  The table lists m
+    by source and soil description, not by type of strength test.  Two
+    rows give no single number: the theoretical value 1 - Cr/Cc (Cc =
+    compression index, Cr = recompression index) and the field vane
+    range; for those ``"m"`` is ``None`` and ``"m_as_printed"`` holds
+    the cell.  Where the table prints 0.88 (1 - Cr/Cc) +/- 0.06,
+    "Nominally 0.8", ``"m"`` is the nominal 0.8.
 
     Parameters
     ----------
-    test_type : str
-        One of ``"CIUC"``, ``"CK0UC"``, ``"DSS"``, ``"CK0UE"``,
-        ``"field_vane"``.
+    soil : str
+        Row of the table, one of:
+        ``"theoretical"`` (Roscoe et al. 1958, Mitachi and Kitago 1976;
+        saturated clay, theoretical; m about 1 - Cr/Cc),
+        ``"field_vane"`` (Jamiolkowski et al. 1985, Chandler 1988; field
+        vane shear tests on clay; range 0.8 to 1.35, mean 1.03),
+        ``"saturated_clay"`` (Sabatini et al. 2002; 0.8),
+        ``"sensitive_cemented_marine_clay"`` (Ladd and DeGroot 2004;
+        sensitive cemented marine clays, Canadian Champlain clays,
+        PI < 30%, LI > 1.5; 1.00),
+        ``"homogeneous_cl_ch_sedimentary_clay"`` (Ladd and DeGroot 2004;
+        PI = 20 to 80%; nominally 0.8),
+        ``"varved_clay_dss"`` (Ladd and DeGroot 2004; Northeastern U.S.
+        varved clays, direct simple shear failure mode; 0.75),
+        ``"silt_organic_below_a_line"`` (Ladd and DeGroot 2004; silts
+        and organic soils below the A-line and clays with shells,
+        excludes peat; nominally 0.8).
 
     Returns
     -------
-    float
-        Exponent m (dimensionless).
+    dict
+        ``{"m": float or None, "m_as_printed": str, "source": str,
+        "soil_description": str}``.
 
     Raises
     ------
     ValueError
-        If *test_type* is not recognised.
+        If *soil* is not a row of the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 8, Table 8-9, p. 425.
     """
-    key = test_type.lower().strip()
+    key = soil.lower().strip()
     if key not in _TABLE_8_9_SHANSEP_M:
         raise ValueError(
-            f"Unknown test_type '{test_type}'. "
+            f"Unknown soil '{soil}'. Table 8-9 (UFS 3-220-10 p. 425) "
+            "lists m by source and soil, not by test type. "
             f"Choose from: {list(_TABLE_8_9_SHANSEP_M.keys())}"
         )
-    return _TABLE_8_9_SHANSEP_M[key]
+    return dict(_TABLE_8_9_SHANSEP_M[key])
 
 
 # ===========================================================================
