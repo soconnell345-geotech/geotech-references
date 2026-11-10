@@ -76,32 +76,73 @@ class TestTable21:
 class TestTable42:
     """Tests for table_4_2_rebar_properties()."""
 
+    # FHWA-NHI-05-039 Table 4-2, p. 4-27 (PDF page 83), every printed row:
+    # (grade, bar, size mm, area mm2, yield strength kN)
+    PRINTED = [
+        (420, "#6", 19, 284, 117),
+        (420, "#7", 22, 387, 160),
+        (420, "#8", 25, 510, 211),
+        (520, "#6", 19, 284, 147),
+        (520, "#7", 22, 387, 200),
+        (520, "#8", 25, 510, 264),
+        (520, "#9", 29, 645, 334),
+        (520, "#10", 32, 819, 424),
+        (520, "#11", 36, 1006, 520),
+        (520, "#14", 43, 1452, 751),
+        (520, "#18", 57, 2581, 1335),
+        (550, "2.5in", 63, 3168, 1747),
+    ]
+
+    @pytest.mark.parametrize("grade, bar, size, area, yield_kn", PRINTED)
+    def test_every_printed_row(self, grade, bar, size, area, yield_kn):
+        r = table_4_2_rebar_properties(bar, grade)
+        assert r["bar_size"] == bar
+        assert r["grade_mpa"] == grade
+        assert r["diameter_mm"] == size
+        assert r["area_mm2"] == area
+        assert r["yield_kn"] == yield_kn
+        assert "p. 4-27" in r["reference"]
+
     def test_grade_520_bar_14(self):
         r = table_4_2_rebar_properties("#14", 520)
         assert r["bar_size"] == "#14"
         assert r["grade_mpa"] == 520
         assert r["area_mm2"] == 1452
-        assert r["diameter_mm"] == 43.0
-        assert r["yield_kn"] == pytest.approx(755.0, abs=1)
+        assert r["diameter_mm"] == 43
+        assert r["yield_kn"] == 751      # printed; area x fy would be 755
 
     def test_grade_420_bar_8(self):
         r = table_4_2_rebar_properties("#8", 420)
         assert r["area_mm2"] == 510
-        assert r["yield_kn"] == pytest.approx(214.2, abs=1)
+        assert r["yield_kn"] == 211      # printed; area x fy would be 214.2
 
     def test_grade_520_bar_18(self):
         r = table_4_2_rebar_properties("#18", 520)
         assert r["area_mm2"] == 2581
-        assert r["yield_kn"] == pytest.approx(1342.1, abs=1)
+        assert r["yield_kn"] == 1335     # printed; area x fy would be 1342.1
+
+    def test_tensile_strength_from_the_notes(self):
+        """Notes (1)-(3): fu = 620, 690, 700 MPa for Grades 420, 520, 550."""
+        assert table_4_2_rebar_properties("#8", 420)["fu_mpa"] == 620
+        assert table_4_2_rebar_properties("#8", 520)["fu_mpa"] == 690
+        assert table_4_2_rebar_properties("2.5in", 550)["fu_mpa"] == 700
 
     def test_bar_size_without_hash(self):
         r = table_4_2_rebar_properties("10", 520)
         assert r["bar_size"] == "#10"
         assert r["area_mm2"] == 819
 
-    def test_grade_550_bar_14(self):
-        r = table_4_2_rebar_properties("#14", 550)
-        assert r["yield_kn"] == pytest.approx(798.6, abs=1)
+    def test_grade_550_is_the_63_mm_bar_only(self):
+        """Table 4-2 prints Grade 550 for one bar, 63 mm (2.5 in): 3168 mm2,
+        1747 kN. It prints no Grade 550 #14 or #18."""
+        r = table_4_2_rebar_properties("63 mm", 550)
+        assert r["bar_size"] == "2.5in"
+        assert r["yield_kn"] == 1747
+        for bar in ("#14", "#18"):
+            with pytest.raises(ValueError, match="not available in Grade 550"):
+                table_4_2_rebar_properties(bar, 550)
+        with pytest.raises(ValueError, match="not available in Grade 520"):
+            table_4_2_rebar_properties("2.5in")
 
     def test_invalid_bar_size(self):
         with pytest.raises(ValueError):
@@ -355,9 +396,23 @@ class TestTable58:
     def test_su_400(self):
         assert table_5_8_epsilon_50_stiff(400) == pytest.approx(0.004)
 
-    def test_interpolation(self):
-        eps = table_5_8_epsilon_50_stiff(75)
-        assert 0.005 < eps < 0.007
+    # FHWA-NHI-05-039 Table 5-8, p. 5-56 (PDF page 148): three ranges of
+    # su, one value each: 50-100 kPa 0.007; 100-200 kPa 0.005; 300-400 kPa
+    # 0.004. No row for 200-300 kPa.
+    @pytest.mark.parametrize("su, eps", [
+        (50, 0.007), (60, 0.007), (75, 0.007), (99, 0.007),
+        (100, 0.005), (150, 0.005), (200, 0.005),
+        (300, 0.004), (350, 0.004), (400, 0.004),
+    ])
+    def test_printed_range_value(self, su, eps):
+        """The value of the printed range, not an interpolation between
+        ranges (75 kPa gave 0.006 and 150 kPa 0.0045 before)."""
+        assert table_5_8_epsilon_50_stiff(su) == eps
+
+    @pytest.mark.parametrize("su", [201, 250, 299])
+    def test_no_row_between_200_and_300(self, su):
+        with pytest.raises(ValueError, match="no row between 200 and 300"):
+            table_5_8_epsilon_50_stiff(su)
 
     def test_decreasing_with_su(self):
         e1 = table_5_8_epsilon_50_stiff(60)
@@ -429,11 +484,23 @@ class TestTable510:
         k = table_5_10_soil_modulus_k_clay("very_stiff", "static")
         assert k == 271000
 
-    def test_soft_static_equals_cyclic(self):
-        """For soft and medium clay, static = cyclic."""
-        s = table_5_10_soil_modulus_k_clay("soft", "static")
-        c = table_5_10_soil_modulus_k_clay("soft", "cyclic")
-        assert s == c
+    # FHWA-NHI-05-039 Table 5-10, p. 5-56 (PDF page 148), kPa/m.
+    @pytest.mark.parametrize("consistency, loading, k", [
+        ("soft", "static", 8140), ("medium", "static", 27150),
+        ("stiff", "static", 136000), ("very_stiff", "static", 271000),
+        ("hard", "static", 543000),
+        ("stiff", "cyclic", 54300), ("very_stiff", "cyclic", 108500),
+        ("hard", "cyclic", 217000),
+    ])
+    def test_every_printed_value(self, consistency, loading, k):
+        assert table_5_10_soil_modulus_k_clay(consistency, loading) == k
+
+    @pytest.mark.parametrize("consistency", ["soft", "medium"])
+    def test_no_cyclic_k_for_soft_and_medium(self, consistency):
+        """The Cyclic columns print '-' for Soft and Medium clay; the static
+        value was returned for them before."""
+        with pytest.raises(ValueError, match="prints no cyclic k"):
+            table_5_10_soil_modulus_k_clay(consistency, "cyclic")
 
     def test_stiff_cyclic_less_than_static(self):
         """For stiff+ clay, cyclic loading gives lower k."""
@@ -469,6 +536,21 @@ class TestTable511:
     def test_fixed(self):
         r = table_5_11_fixity(100)
         assert r["embedment_mm"] == 600
+
+    def test_columns_as_printed(self):
+        """FHWA-NHI-05-039 Table 5-11, p. 5-58 (PDF page 150)."""
+        r0 = table_5_11_fixity(0)
+        assert r0["embedment_limit"] == "300 mm (12 in.) or less"
+        assert "Reinforcing bar embedment with or without bearing plate" \
+            in r0["description"]
+        r50 = table_5_11_fixity(50)
+        assert r50["embedment_limit"] == "450 mm (18 in.)"
+        assert "Shear connection between casing and existing footing" \
+            in r50["description"]
+        r100 = table_5_11_fixity(100)
+        assert r100["embedment_limit"] == "600 mm (24 in.) or more"
+        assert "additional detailing" not in r100["description"]
+        assert "only one row of piles in direction of loading" in r100["note"]
 
     def test_invalid_pct(self):
         with pytest.raises(ValueError):

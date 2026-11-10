@@ -2,6 +2,41 @@
 
 Releases before 1.6.0 are described in their release commits (`git log`).
 
+## Unreleased
+
+**FHWA lookups corrected against the print (review of 2026-11-10, findings
+gec-NN).** Each lookup below now returns what its cited page prints. A key
+that names no printed row, or more than one, is refused with the printed
+rows instead of being answered from the first row that contains the words.
+
+- **Micropile manual (FHWA-NHI-05-039).**
+  - `figure_5_23_limiting_lateral_modulus` (Figure 5-23, p. 5-70): three
+    bars were wrong. The 9.625"x0.47" 80 ksi casing is 71 psi (490 kPa; it
+    returned 1096 kPa, the 7"x0.73" casing's value); hollow bar 73/53 is
+    165 psi (1138 kPa; was 2414) and 103/51 is 350 psi (2413 kPa; was
+    1138). The 7"x0.73" casing and the #20 bar are added. The result now
+    carries the printed psi, the page and the rule of p. 5-68 (no further
+    buckling check when Es LIMIT is less than the soil's Es); the docstring
+    had the rule reversed. '5.5', '8', '10' and other partial keys are
+    refused (gec-03).
+  - `table_4_2_rebar_properties` (Table 4-2, p. 4-27): the yield strength
+    is the printed column (#18 Grade 520: 1335 kN, was 1342.1; #8 Grade
+    420: 211 kN, was 214.2) and the size is the printed 19 to 63 mm. Grade
+    550 is the one printed bar, 63 mm (2.5 in), 1747 kN; Grade 550 #14 and
+    #18, which the table does not print, are refused (gec-28).
+  - `table_5_8_epsilon_50_stiff` (Table 5-8, p. 5-56): the value of the
+    printed range, not an interpolation between ranges (su 75 kPa: 0.007,
+    was 0.006; 150 kPa: 0.005, was 0.0045; 200 kPa: 0.005, was 0.004). The
+    table has no row for 200 to 300 kPa; a strength there is refused
+    (gec-18).
+  - `table_5_10_soil_modulus_k_clay` (Table 5-10, p. 5-56): the cyclic k
+    of soft and medium clay, which the table leaves blank, is refused (it
+    returned the static 8140 and 27150 kPa/m) (gec-19).
+  - `table_5_11_fixity` (Table 5-11, p. 5-58): the three columns in the
+    print's words, with "300 mm or less" and "600 mm or more" and the
+    footnote; `table_5_12_elastic_modulus` says where its two sand rows
+    differ from the table's kPa column (gec-47).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
