@@ -120,6 +120,23 @@ class TestSiteClassFromVs30:
         with pytest.raises(ValueError):
             site_class_from_vs30(0)
 
+    def test_classes_for_an_estimated_velocity(self):
+        # Section 20.3 (PDF p. 126, printed p. 88): "site class based on
+        # estimated values of vs shall be derived using vs, vs/1.3, and
+        # 1.3 vs when correlation models are used". Table 20.2-1 (printed
+        # p. 86): D is >700 to 1,000 ft/s, DE >500 to 700, CD >1,000 to 1,450.
+        r = site_class_from_vs30(800, "ft/s")
+        assert r["site_class"] == "D"
+        # 800/1.3 = 615 ft/s -> DE; 800 x 1.3 = 1,040 ft/s -> CD
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
+        assert "vs/1.3 and 1.3 vs" in r["note"]
+        # 2,500 ft/s -> BC; /1.3 = 1,923 -> C; x1.3 = 3,250 -> B
+        r = site_class_from_vs30(2500, "ft/s")
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "C", "vs": "BC", "1.3vs": "B"}
+        # 850 ft/s: /1.3 = 654 -> DE; x1.3 = 1,105 -> CD
+        r = site_class_from_vs30(850, "ft/s")
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
+
 
 class TestSiteClassF:
     def test_four_triggers(self):
@@ -194,7 +211,7 @@ class TestSDCFromSD1:
 class TestCombinedSDC:
     def test_more_severe_governs(self):
         # SDS->C, SD1->D : SD1 governs
-        r = seismic_design_category(sds=0.40, sd1=0.25, risk_category="II")
+        r = seismic_design_category(sds=0.40, sd1=0.25, risk_category="II", s1=0.20)
         assert r["sdc_from_sds"] == "C"
         assert r["sdc_from_sd1"] == "D"
         assert r["sdc"] == "D"
@@ -202,9 +219,21 @@ class TestCombinedSDC:
 
     def test_sds_governs(self):
         # SDS->D, SD1->C : SDS governs
-        r = seismic_design_category(sds=0.55, sd1=0.15, risk_category="II")
+        r = seismic_design_category(sds=0.55, sd1=0.15, risk_category="II", s1=0.10)
         assert r["sdc"] == "D"
         assert "SDS" in r["governed_by"]
+
+    def test_s1_is_required(self):
+        # Section 11.6 (PDF p. 56, printed p. 18): Risk Category I, II or III
+        # with S1 >= 0.75 "shall be assigned to Seismic Design Category E",
+        # Risk Category IV to F; "all other structures" go by the tables.
+        # S1 used to default to 0.0, so SDS 1.2, SD1 0.9 came back as D with
+        # the rule never checked.
+        with pytest.raises(ValueError, match="S1 >= 0.75"):
+            seismic_design_category(sds=1.2, sd1=0.9)
+        assert seismic_design_category(sds=1.2, sd1=0.9, s1=0.6)["sdc"] == "D"
+        assert seismic_design_category(sds=1.2, sd1=0.9, s1=0.8)["sdc"] == "E"
+        assert seismic_design_category(sds=1.2, sd1=0.9, risk_category="IV", s1=0.8)["sdc"] == "F"
 
     def test_s1_override_rc_iii_gives_E(self):
         r = seismic_design_category(sds=0.1, sd1=0.05, risk_category="III", s1=0.80)
