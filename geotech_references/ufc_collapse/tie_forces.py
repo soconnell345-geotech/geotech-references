@@ -12,8 +12,10 @@ for reinforced-concrete rebar in tension per Section 4-3, over-strength
 1.25 per ASCE 41 Table 10-4).
 
 Validated against Appendix D's worked reinforced-concrete example (printed
-pp. 124-129): ``effective_floor_load_nonuniform`` reproduces wF = 214.5-psf
-(Table D-1); ``peripheral_tie_force_two_way`` reproduces Fp = 250.1-kip and
+pp. 124-129): ``effective_wf_for_nonuniform_load`` reproduces Table D-1's
+averaging check but returns wF = 212.4 psf, the print's own arithmetic on
+its printed inputs (the print states 214.5; see that function);
+``peripheral_tie_force_two_way`` reproduces Fp = 250.1-kip and
 ``required_tie_area`` reproduces As = 4.45-in2 (Table D-2, transverse/
 longitudinal peripheral tie).
 """
@@ -112,14 +114,16 @@ def effective_wf_for_nonuniform_load(bay_loads_and_areas):
     """Section 3-1.3.2.2: determines the effective wF for a floor with
     non-uniform bay loading (printed pp. 16-17).
 
-    If the difference between the minimum and maximum bay wF is <=25% of
-    the minimum wF, AND the area carrying the maximum wF is <=25% of the
-    total floor area, use the area-weighted average wF for the whole floor.
-    Otherwise (either threshold exceeded), this function reports that the
-    maximum wF must be used for the whole floor OR the floor must be split
-    into sub-areas (Section 3-1.3.2.2 item 2) -- the sub-area split itself
-    is a layout decision made by the designer (see Figure 3-2), not
-    computed here.
+    As printed (pdf 32 / printed 16), with the result's 'action' naming
+    the item that applies:
+      1a) difference between the minimum and maximum bay wF <= 25 % of the
+          minimum wF AND area carrying the maximum wF <= 25 % of the total:
+          use the area-weighted average wF for the whole floor;
+      1b) difference <= 25 % but that area > 25 %: use the MAXIMUM floor
+          load as the effective wF (sub-areas are not offered here);
+      2)  difference > 25 %: either use the maximum floor load, or divide
+          the floor into sub-areas -- the split is a layout decision made
+          by the designer (see Figure 3-2), not computed here.
 
     Reproduces the AVERAGING CRITERIA of the Appendix D worked example
     (Table D-1, printed p. 125) exactly: office/storage/corridor bay wF's
@@ -150,7 +154,8 @@ def effective_wf_for_nonuniform_load(bay_loads_and_areas):
         {'wf_min', 'wf_max', 'wf_difference', 'wf_difference_pct_of_min',
          'max_load_area', 'total_area', 'max_load_area_pct_of_total',
          'averaging_permitted' (bool), 'effective_wf' (area-weighted average
-         if averaging_permitted, else None -- use wf_max or sub-areas),
+         if averaging_permitted, else None -- see 'action'), 'case' ('1a',
+         '1b' or '2'), 'action' (the printed rule for that case),
          'paragraph': '3-1.3.2.2', 'printed_page': '16-17', 'pdf_page': '31-32'}
     """
     wfs = [wf for wf, _ in bay_loads_and_areas]
@@ -166,11 +171,20 @@ def effective_wf_for_nonuniform_load(bay_loads_and_areas):
         sum(wf * a for wf, a in bay_loads_and_areas) / total_area
         if averaging_permitted and total_area else None
     )
+    if diff_pct > 0.25:
+        case, action = "2", ("use the maximum floor load as the effective wF, or divide "
+                             "the floor plan into sub-areas (item 2)")
+    elif area_pct > 0.25:
+        case, action = "1b", ("use the maximum floor load as the effective wF (item 1b); "
+                              "sub-areas are not offered when the difference is <= 25 %")
+    else:
+        case, action = "1a", "use the area-weighted average wF (item 1a)"
     return {
         "wf_min": wf_min, "wf_max": wf_max, "wf_difference": diff,
         "wf_difference_pct_of_min": diff_pct, "max_load_area": max_load_area,
         "total_area": total_area, "max_load_area_pct_of_total": area_pct,
         "averaging_permitted": averaging_permitted, "effective_wf": effective_wf,
+        "case": case, "action": action,
         "paragraph": "3-1.3.2.2", "printed_page": "16-17", "pdf_page": "31-32",
     }
 

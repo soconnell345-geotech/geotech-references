@@ -297,7 +297,11 @@ def roof_diaphragm_high_wind_retrofit_trigger(basic_wind_speed_mph, cost_fractio
     repair triggers a mandatory roof-diaphragm wind-load evaluation in a
     high-wind region (printed pp. 83-84). High-wind region: basic wind
     speed for RC II structures > 130 mph, or a special wind region per this
-    UFC.
+    UFC. The normative text says "greater than 130 mph (58 m/s)"; the
+    commentary [C] 503.12 on the same page says the IEBC's high-wind
+    regions are where the speed "equals or exceeds 130 mph". This function
+    follows the normative text, so exactly 130 mph is not a high-wind
+    region here.
 
     The evaluation is triggered when the building is in a high-wind region
     AND at least one of the following applies: (1) alteration/repair cost

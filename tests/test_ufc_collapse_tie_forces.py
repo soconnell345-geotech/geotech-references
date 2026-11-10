@@ -90,6 +90,16 @@ class TestEffectiveWfNonuniform:
         r = effective_wf_for_nonuniform_load([(100, 50), (200, 60)])
         assert r["averaging_permitted"] is False
         assert r["effective_wf"] is None
+        assert r["case"] == "2"
+
+    def test_cases_follow_3_1_3_2_2(self):
+        # UFC_4-023-03.pdf pdf 32 / printed 16, para 3-1.3.2.2: difference
+        # <= 25 % with the max-load area > 25 % is item 1b, maximum wF only
+        # (sub-areas are item 2, difference > 25 %).
+        r = effective_wf_for_nonuniform_load([(100, 50), (120, 50)])
+        assert r["case"] == "1b"
+        assert "sub-areas are not offered" in r["action"]
+        assert effective_wf_for_nonuniform_load([(100, 90), (120, 10)])["case"] == "1a"
 
 
 class TestInternalTieForce:
