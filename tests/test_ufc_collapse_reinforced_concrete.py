@@ -78,6 +78,22 @@ class TestTable41BeamOther:
         assert r["a"] == pytest.approx(0.015)
         assert r["b"] == pytest.approx(0.03)
 
+    @pytest.mark.parametrize("condition,le_d2,primary,secondary", [
+        ("shear", True, 0.002, 0.01),
+        ("shear", False, 0.002, 0.005),
+        ("development", True, 0.002, 0.01),
+        ("development", False, 0.002, 0.005),
+        ("inadequate_embedment", True, 0.01, 0.02),
+    ])
+    def test_acceptance_criteria_as_printed(self, condition, le_d2, primary, secondary):
+        # UFC_4-023-03.pdf pdf 79 / printed 63, Table 4-1 rows ii-iv:
+        # the Acceptance Criteria columns print values that differ from
+        # a and b (e.g. shear, stirrups <= d/2: a 0.0030, b 0.02,
+        # acceptance primary 0.002, secondary 0.01).
+        r = table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=le_d2)
+        assert r["primary_acceptance"] == pytest.approx(primary)
+        assert r["secondary_acceptance"] == pytest.approx(secondary)
+
     def test_development_c_is_zero(self):
         # PRINTED TABLE: development/splicing conditions have c=0.0
         # (unlike shear/flexure/embedment which have c=0.2)

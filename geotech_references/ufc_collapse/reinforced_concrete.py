@@ -11,18 +11,13 @@ four ASCE 41 tables with this UFC's own Tables 4-1 through 4-4 (Section
 Table 4-3/4-4 for two-way slabs and slab-column connections (replacing
 ASCE 41 Tables 6-14/6-15).
 
-NOTE on table structure (flag for lead visual check): Tables 4-1 and 4-3
-print BOTH the nonlinear modeling parameters (a, b, c) and a set of
-"Acceptance Criteria" plastic-rotation values for Primary/Secondary
-components; as extracted, the acceptance-criteria values are IDENTICAL to
-modeling parameters a (primary) and b (secondary) in every row. This
-package transcribes the table literally as extracted (acceptance columns
-carry the same numeric values); it is plausible by design (this UFC's
-combined table serves both nonlinear modeling AND acceptance-criteria
-purposes for its single Life-Safety-equivalent performance target) but
-has not been independently confirmed against the printed page layout --
-verify against printed pp. 63, 65 if precise acceptance-criteria columns
-distinct from a/b are needed.
+Tables 4-1 and 4-3 print BOTH the nonlinear modeling parameters (a, b, c)
+and separate "Acceptance Criteria" plastic rotations for Primary and
+Secondary components. In Table 4-1 (printed p. 63) the acceptance values
+equal a and b for the flexure rows (i) only; rows ii-iv print smaller
+acceptance values (e.g. shear, stirrups <= d/2: a 0.0030, b 0.02,
+acceptance 0.002 / 0.01). Table 4-3 (printed p. 65) prints its own
+acceptance values in every row. Both are transcribed as printed.
 """
 
 from .._interpolation import _linterp
@@ -64,12 +59,15 @@ _TABLE_4_1_FLEXURE = {
     ("NC", 6): {"rho0": (0.025, 0.03, 0.2), "rho5": (0.013, 0.02, 0.2)},
 }
 
+# Rows ii-iv print acceptance criteria that DIFFER from a and b (rendered
+# page, pdf 79 / printed 63): primary 0.002 / secondary 0.01 or 0.005, and
+# 0.01 / 0.02 for inadequate embedment.
 _TABLE_4_1_OTHER = {
-    "shear_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.2},
-    "shear_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.2},
-    "development_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.0},
-    "development_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.0},
-    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2},
+    "shear_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.2, "primary": 0.002, "secondary": 0.01},
+    "shear_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.2, "primary": 0.002, "secondary": 0.005},
+    "development_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.0, "primary": 0.002, "secondary": 0.01},
+    "development_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.0, "primary": 0.002, "secondary": 0.005},
+    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2, "primary": 0.01, "secondary": 0.02},
 }
 
 
@@ -131,9 +129,15 @@ def table_4_1_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf,
 
 
 def table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
-    """Table 4-1(ii-iv): nonlinear modeling parameters for RC beams
-    controlled by SHEAR, inadequate development/splicing, or inadequate
-    embedment into the beam-column joint (printed p. 63).
+    """UFC 4-023-03 Table 4-1(ii-iv): nonlinear modeling parameters a, b
+    (plastic rotation, radians) and c (residual strength ratio) and the
+    acceptance-criteria plastic rotations (radians, primary and secondary)
+    for an RC beam controlled by SHEAR, inadequate development/splicing,
+    or inadequate embedment into the beam-column joint (printed p. 63).
+
+    For these rows the printed acceptance criteria are NOT a and b:
+    shear or development, stirrups <= d/2: primary 0.002, secondary 0.01;
+    stirrups > d/2: 0.002 and 0.005; inadequate embedment: 0.01 and 0.02.
 
     Parameters
     ----------
@@ -159,7 +163,7 @@ def table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
         raise ValueError("condition must be 'shear', 'development', or 'inadequate_embedment'")
     row = _TABLE_4_1_OTHER[key]
     return {"a": row["a"], "b": row["b"], "c": row["c"],
-            "primary_acceptance": row["a"], "secondary_acceptance": row["b"],
+            "primary_acceptance": row["primary"], "secondary_acceptance": row["secondary"],
             "table": "4-1", "printed_page": "63", "pdf_page": 78}
 
 
