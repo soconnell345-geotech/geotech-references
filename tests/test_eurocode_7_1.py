@@ -761,6 +761,41 @@ class TestUndrainedBearingResistance:
         r = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, L=4.0, shape="rectangular")
         assert r["sc"] == pytest.approx(1.0 + 0.2 * (2.0 / 4.0))
 
+    def test_strip_is_refused_not_computed_as_a_square(self):
+        # Annex D.3 (PDF p. 160, printed p. 158) prints sc for "a rectangular
+        # shape" and "a square or circular shape" only. shape="strip" with no
+        # L used to be computed with sc = 1,2 (a square): 328.5 kPa where a
+        # long rectangle gives 277 kPa.
+        with pytest.raises(ValueError, match="strip footing"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape="strip")
+        with pytest.raises(ValueError, match="strip footing"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=40.0, shape="strip")
+
+    def test_rectangular_without_length_is_refused(self):
+        with pytest.raises(ValueError, match="L .* is required"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape="rectangular")
+
+    def test_misspelt_shape_is_refused(self):
+        with pytest.raises(ValueError, match="Unknown shape"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=20.0, shape="sqaure")
+
+    def test_long_rectangle_shape_factor_as_printed(self):
+        # sc = 1 + 0,2 (B'/L') for a rectangular shape (printed p. 158):
+        # B' 2 m, L' 200 m -> sc = 1.002
+        r = undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=200.0)
+        assert r["shape"] == "rectangular"
+        assert r["sc"] == pytest.approx(1.002)
+        assert r["bearing_pressure_kpa"] == pytest.approx(
+            (math.pi + 2.0) * 50.0 * 1.002 + 20.0)
+
+    def test_result_names_the_shape_case_used(self):
+        # sc = 1,2 for a square or circular shape (printed p. 158)
+        for shape in ("square_circular", "square", "circular", "circle"):
+            r = undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape=shape)
+            assert r["shape"] == "square_circular"
+            assert r["sc"] == pytest.approx(1.2)
+        assert undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0)["shape"] == "square_circular"
+
     def test_base_inclination_reduces_bc(self):
         r0 = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, alpha_deg=0.0)
         r10 = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, alpha_deg=10.0)
@@ -794,6 +829,37 @@ class TestDrainedBearingResistance:
         phi_rad = math.radians(30.0)
         assert r["sq"] == pytest.approx(1.0 + (2.0 / 4.0) * math.sin(phi_rad))
         assert r["sgamma"] == pytest.approx(1.0 - 0.3 * (2.0 / 4.0))
+
+    def test_strip_is_refused_not_computed_as_a_square(self):
+        # Annex D.4 (PDF pp. 160-161, printed pp. 158-159) prints sq and
+        # sgamma for "a rectangular shape" and "a square or circular shape"
+        # only. shape="strip" with no L used to be computed with
+        # sq = 1 + sin(phi') and sgamma = 0,7 (a square).
+        with pytest.raises(ValueError, match="strip footing"):
+            drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="strip")
+        with pytest.raises(ValueError, match="L .* is required"):
+            drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="rectangular")
+
+    def test_long_rectangle_shape_factors_as_printed(self):
+        # sq = 1 + (B'/L') sin(phi'), sgamma = 1 - 0,3 (B'/L') (printed
+        # p. 158): B' 2 m, L' 200 m, phi' 30 deg -> sq 1.005, sgamma 0.997
+        r = drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, L=200.0)
+        assert r["shape"] == "rectangular"
+        assert r["sq"] == pytest.approx(1.005)
+        assert r["sgamma"] == pytest.approx(0.997)
+
+    def test_square_or_circular_shape_factors_as_printed(self):
+        # sq = 1 + sin(phi'), sgamma = 0,7 (printed p. 158);
+        # sc = (sq Nq - 1)/(Nq - 1) (printed p. 159)
+        r = drained_bearing_resistance(phi_deg=30.0, c=10.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="circular")
+        assert r["shape"] == "square_circular"
+        assert r["sq"] == pytest.approx(1.5)
+        assert r["sgamma"] == pytest.approx(0.7)
+        assert r["sc"] == pytest.approx((1.5 * r["Nq"] - 1.0) / (r["Nq"] - 1.0))
 
     def test_load_inclination_reduces_bearing(self):
         r0 = drained_bearing_resistance(phi_deg=30.0, c=0.0, q=50.0, gamma=18.0, B=2.0)

@@ -254,29 +254,80 @@ def weight_density_coefficient(K_n: float, beta_deg: float,
 # Annex D.3 (pdf idx 159): Undrained bearing resistance.
 # ============================================================================
 
+_ANNEX_D_SQUARE_OR_CIRCULAR = ("square_circular", "square", "circular", "circle")
+
+
+def _annex_d_shape(shape, B, L):
+    """Resolve the Annex D shape case and the length used.
+
+    Annex D (EN 1997-1:2004, printed pp. 158-159) prints shape factors for
+    "a rectangular shape" and for "a square or circular shape" and for no
+    other. Returns ('rectangular' | 'square_circular', L).
+    """
+    if shape is None:
+        shp = "square_circular" if L is None else "rectangular"
+    else:
+        shp = shape.strip().lower()
+        if shp in _ANNEX_D_SQUARE_OR_CIRCULAR:
+            shp = "square_circular"
+        elif shp != "rectangular":
+            raise ValueError(
+                f"Unknown shape '{shape}'. EN 1997-1:2004 Annex D (printed "
+                f"pp. 158-159) gives shape factors for 'rectangular' (give "
+                f"the length L) and 'square_circular' only. For a strip "
+                f"footing use shape='rectangular' and give its length L."
+            )
+    if shp == "rectangular" and L is None:
+        raise ValueError(
+            "L (effective foundation length L') is required for a "
+            "rectangular shape: the Annex D shape factors use B'/L' "
+            "(EN 1997-1:2004, printed p. 158). For a square or circular "
+            "base give shape='square_circular'."
+        )
+    if L is None:
+        L = B
+    return shp, L
+
+
 def undrained_bearing_resistance(cu: float, q: float, B: float,
-                                 L: float = None, shape: str = "rectangular",
+                                 L: float = None, shape: str = None,
                                  alpha_deg: float = 0.0, H: float = 0.0,
                                  A_prime: float = None) -> dict:
-    """Design bearing resistance in undrained conditions (Eq. D.1, Annex D.3).
+    """Design bearing resistance per unit effective area, R/A' in kPa, in
+    undrained conditions, with its factors bc, sc, ic and the shape case
+    used (EN 1997-1:2004 Annex D.3, Eq. D.1, printed p. 158).
 
-    R/A' = (pi + 2) * cu * bc * sc * ic + q
+    As printed:
+
+        R/A' = (pi + 2) * cu * bc * sc * ic + q
+
+        bc = 1 - 2*alpha / (pi + 2)                 (alpha in radians)
+        sc = 1 + 0,2 (B'/L')    for a rectangular shape
+        sc = 1,2                for a square or circular shape
+        ic = 1/2 * (1 + sqrt(1 - H / (A' cu)))      with H <= A' cu
+
+    Annex D prints no other shape case. For a strip footing give
+    ``shape='rectangular'`` and its length ``L``.
 
     Parameters
     ----------
     cu : float
         Design undrained shear strength [kPa].
     q : float
-        Design effective overburden pressure at the foundation base level
-        [kPa].
+        Overburden or surcharge pressure at the level of the foundation
+        base, q [kPa] (D.1, printed p. 157). Eq. D.1 is written with q;
+        the design effective overburden pressure q' is the one in the
+        drained Eq. D.2.
     B : float
         Effective foundation width B' [m].
     L : float, optional
-        Effective foundation length L' [m].  Omit (or set equal to B) for a
-        square or circular base (uses the sc=1.2 special case).
-    shape : str
-        'rectangular' or 'square_circular'.  If L is omitted, defaults to
-        'square_circular'.
+        Effective foundation length L' [m].  Required for a rectangular
+        shape.
+    shape : str, optional
+        'rectangular' or 'square_circular' ('square', 'circular' and
+        'circle' are read as 'square_circular'); any other value raises.
+        If left out: 'rectangular' when L is given, 'square_circular' when
+        L is left out. The result names the case used.
     alpha_deg : float
         Inclination of the foundation base to the horizontal, alpha
         [degrees].  Default 0 (horizontal base).
@@ -289,23 +340,23 @@ def undrained_bearing_resistance(cu: float, q: float, B: float,
     Returns
     -------
     dict
-        Keys: bearing_pressure_kpa (R/A'), bc, sc, ic, Nc (= pi + 2).
+        Keys: bearing_pressure_kpa (R/A' [kPa]), bc, sc, ic, Nc (= pi + 2),
+        shape ('rectangular' or 'square_circular', the case whose shape
+        factor was used).
 
     Raises
     ------
     ValueError
-        If H > A'*cu (inclination factor undefined).
+        If the shape is not one Annex D prints, if L is missing for a
+        rectangular shape, or if H > A'*cu (inclination factor undefined).
     """
-    shp = shape.strip().lower()
-    if L is None:
-        L = B
-        shp = "square_circular"
+    shp, L = _annex_d_shape(shape, B, L)
     A = A_prime if A_prime is not None else B * L
 
     alpha = math.radians(alpha_deg)
     b_c = 1.0 - 2.0 * alpha / (math.pi + 2.0)
 
-    if shp in ("square_circular", "square", "circular", "circle"):
+    if shp == "square_circular":
         s_c = 1.2
     else:
         s_c = 1.0 + 0.2 * (B / L)
@@ -326,6 +377,7 @@ def undrained_bearing_resistance(cu: float, q: float, B: float,
         "sc": s_c,
         "ic": i_c,
         "Nc": Nc,
+        "shape": shp,
     }
 
 
@@ -367,13 +419,27 @@ def bearing_capacity_factors(phi_deg: float) -> dict:
 
 def drained_bearing_resistance(phi_deg: float, c: float, q: float,
                                gamma: float, B: float, L: float = None,
-                               shape: str = "rectangular",
+                               shape: str = None,
                                alpha_deg: float = 0.0, H: float = 0.0,
                                V: float = None, load_direction: str = "B",
                                A_prime: float = None) -> dict:
-    """Design bearing resistance in drained conditions (Eq. D.2, Annex D.4).
+    """Design bearing resistance per unit effective area, R/A' in kPa, in
+    drained conditions, with its bearing, base, shape and load inclination
+    factors and the shape case used (EN 1997-1:2004 Annex D.4, Eq. D.2,
+    printed pp. 158-159).
 
-    R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0.5*gamma'*B'*Ngamma*bgamma*sgamma*igamma
+    As printed:
+
+        R/A' = c'*Nc*bc*sc*ic + q'*Nq*bq*sq*iq + 0,5*gamma'*B'*Ngamma*bgamma*sgamma*igamma
+
+        sq = 1 + (B'/L') sin(phi')   for a rectangular shape
+        sq = 1 + sin(phi')           for a square or circular shape
+        sgamma = 1 - 0,3 (B'/L')     for a rectangular shape
+        sgamma = 0,7                 for a square or circular shape
+        sc = (sq*Nq - 1)/(Nq - 1)    for rectangular, square or circular shape
+
+    Annex D prints no other shape case. For a strip footing give
+    ``shape='rectangular'`` and its length ``L``.
 
     Parameters
     ----------
@@ -390,11 +456,13 @@ def drained_bearing_resistance(phi_deg: float, c: float, q: float,
     B : float
         Effective foundation width B' [m].
     L : float, optional
-        Effective foundation length L' [m].  Omit for a square/circular
-        base.
-    shape : str
-        'rectangular' or 'square_circular'.  If L is omitted, defaults to
-        'square_circular'.
+        Effective foundation length L' [m].  Required for a rectangular
+        shape.
+    shape : str, optional
+        'rectangular' or 'square_circular' ('square', 'circular' and
+        'circle' are read as 'square_circular'); any other value raises.
+        If left out: 'rectangular' when L is given, 'square_circular' when
+        L is left out. The result names the case used.
     alpha_deg : float
         Inclination of the foundation base to the horizontal [degrees].
         Default 0.
@@ -414,20 +482,19 @@ def drained_bearing_resistance(phi_deg: float, c: float, q: float,
     Returns
     -------
     dict
-        Keys: bearing_pressure_kpa (R/A'), Nq, Nc, Ngamma, bq, bc, bgamma,
-        sq, sc, sgamma, iq, ic, igamma, m.
+        Keys: bearing_pressure_kpa (R/A' [kPa]), Nq, Nc, Ngamma, bq, bc,
+        bgamma, sq, sc, sgamma, iq, ic, igamma, m, shape ('rectangular' or
+        'square_circular', the case whose shape factors were used).
 
     Raises
     ------
     ValueError
-        If phi_deg <= 0, or H != 0 without V, or inclination factor base
-        (V + A'*c'*cot(phi')) <= 0.
+        If the shape is not one Annex D prints, if L is missing for a
+        rectangular shape, if phi_deg <= 0, or H != 0 without V, or
+        inclination factor base (V + A'*c'*cot(phi')) <= 0.
     """
-    shp = shape.strip().lower()
-    if L is None:
-        L = B
-        shp = "square_circular"
-    is_rect = shp not in ("square_circular", "square", "circular", "circle")
+    shp, L = _annex_d_shape(shape, B, L)
+    is_rect = shp == "rectangular"
     A = A_prime if A_prime is not None else B * L
 
     factors = bearing_capacity_factors(phi_deg)
@@ -485,6 +552,7 @@ def drained_bearing_resistance(phi_deg: float, c: float, q: float,
         "sq": s_q, "sc": s_c, "sgamma": s_gamma,
         "iq": i_q, "ic": i_c, "igamma": i_gamma,
         "m": m,
+        "shape": shp,
     }
 
 
