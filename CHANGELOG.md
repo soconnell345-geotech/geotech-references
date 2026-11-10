@@ -74,6 +74,32 @@ rows instead of being answered from the first row that contains the words.
     filter lookups (`table_1_2`, `1_3`, `1_6`, `2_1`, `3_1`, `4_3`, `8_1`,
     `8_6`) refuse a filter that matches no row, naming the printed rows,
     instead of returning an empty list (gec-37).
+- **GEC-6 shallow foundations (FHWA-SA-02-054).** The three chart lookups
+  are rebuilt from the rendered pages; the points read are in the comment
+  above each data block.
+  - `figure_5_19_hough_bearing_capacity_index` (Figure 5-19, p. 91): the six
+    curves under the chart's own names, clean uniform medium sand highest
+    and inorganic silt lowest. The old names of the four upper curves were
+    not the chart's and their values were other curves' or no curve's:
+    well graded silty sand and gravel at N' = 32 is 109 (the manual's own
+    example reads 110; it returned 97), clean uniform medium sand at N' =
+    40 is 176 (was 138), inorganic silt at N' = 50 is 84 (was 78). The
+    curves start at N' = 4 (N' = 0 returned C' = 0) and the three upper
+    ones leave the chart at N' = 56, 75 and 89; outside its curve a value
+    is refused. 'coarse_sand' and 'clean_fine_to_medium_sand', which are
+    not curves of the chart, and 'sand', 'gravel', 'silty sand' are
+    refused (gec-01).
+  - `figure_4_1_relative_density_spt` (Figure 4-1, p. 34): the 80 to 100 %
+    curves were far right of the print. N = 30 at 1 k/ft2 is on the 100 %
+    curve (it returned 87.5 %); N = 24 at 0.58 k/ft2 is 97 % (was 90). The
+    chart's whole stress range, 0.25 to 6 k/ft2 (12 to 287 kPa), is read. A
+    point left of the 15 % curve or right of the 100 % curve is refused; it
+    returned 15 or 100 (gec-10).
+  - `figure_4_2_friction_angle_from_density` (Figure 4-2, p. 35): the
+    printed mesh of relative density lines between the ML and GW lines. The
+    0 % line is 27.5 degrees at 17.3 kN/m3 (it returned 30.0). A dry unit
+    weight the chart does not plot at the given relative density (22.0
+    kN/m3 at 0 %, which returned 33 degrees) is refused (gec-13).
 
 ## 1.6.0
 
