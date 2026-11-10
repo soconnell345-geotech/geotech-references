@@ -109,6 +109,11 @@ class TestTable31:
         r = table_3_1_quality_class(3)
         assert r["sampling_categories"] == ["A", "B"]
 
+    def test_class_given_as_text_is_told_so(self):
+        # "1" used to be answered "quality_class must be 1-5, got 1".
+        with pytest.raises(ValueError, match="an integer, not text"):
+            table_3_1_quality_class("1")
+
     def test_invalid_class(self):
         with pytest.raises(ValueError):
             table_3_1_quality_class(6)

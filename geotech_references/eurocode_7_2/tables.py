@@ -226,7 +226,10 @@ def table_3_1_quality_class(quality_class: int) -> dict:
         If quality_class is not 1-5.
     """
     if quality_class not in _TABLE_3_1:
-        raise ValueError(f"quality_class must be 1-5, got {quality_class}")
+        raise ValueError(
+            f"quality_class must be one of the whole numbers 1, 2, 3, 4, 5 "
+            f"(an integer, not text), got {quality_class!r}"
+        )
     result = {"quality_class": quality_class}
     result.update({k: list(v) if isinstance(v, list) else v
                     for k, v in _TABLE_3_1[quality_class].items()})
