@@ -468,18 +468,37 @@ class TestTable61:
 # ============================================================================
 
 class TestTable62:
+    # Table 6-2, UFC 3-250-03 PDF 117 (pdf_page 116), printed 103.
     def test_cold_climate(self):
         r = table_6_2_cold_mix_asphalt_selection("cold")
         assert r["kerosene_l_per_metric_ton"] == 8.3
+        assert r["kerosene_gal_per_ton"] == 2.0
         assert r["cutback_range"] == "RC-70-RC-250"
 
     def test_hot_climate(self):
         r = table_6_2_cold_mix_asphalt_selection("hot")
         assert r["cutback_range"] == "RC-800-RC-3000"
 
-    def test_moderate_has_stockpile_emulsions(self):
+    def test_kerosene_for_stockpiled_mix(self):
+        # Printed "8.3 (18.8^1) (2.0 (4.5^1))" etc.; footnote 1: the amount
+        # in parentheses is added when the mixture is to be stockpiled.
+        expect = {"cold": (18.8, 4.5), "moderate": (15.4, 3.7),
+                  "hot": (12.5, 3.0)}
+        for climate, (l_t, gal) in expect.items():
+            r = table_6_2_cold_mix_asphalt_selection(climate)
+            assert r["kerosene_stockpile_l_per_metric_ton"] == l_t
+            assert r["kerosene_stockpile_gal_per_ton"] == gal
+        assert "stockpiled" in r["notes"]["footnote_1"]
+
+    def test_emulsified_asphalts_as_printed(self):
+        # One printed list per climate; footnote 2: emulsions specifically
+        # formulated for stockpile use are available.
+        assert table_6_2_cold_mix_asphalt_selection("cold")["emulsified_asphalts"] == ["MS-2h", "SS-1h"]
         r = table_6_2_cold_mix_asphalt_selection("moderate")
-        assert "MS-2h" in r["emulsion_stockpile"]
+        assert r["emulsified_asphalts"] == ["MS-2-MS-2h", "SS-1-SS-1h"]
+        assert table_6_2_cold_mix_asphalt_selection("hot")["emulsified_asphalts"] == ["MS-2", "SS-1"]
+        assert "emulsion_stockpile" not in r
+        assert "stockpile use" in r["notes"]["footnote_2"]
 
     def test_invalid_climate(self):
         with pytest.raises(ValueError):

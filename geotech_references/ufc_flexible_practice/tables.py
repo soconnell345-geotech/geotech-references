@@ -1220,35 +1220,55 @@ def table_6_1_cold_mix_gradation(mix_type, column, sieve_mm=None) -> dict:
 # (Section 6-5.1.2; pdf_page 116, printed p.103)
 # ============================================================================
 
+# As printed: kerosene for a mix used immediately, with the amount for a mix
+# to be stockpiled for future use in parentheses (footnote 1); one list of
+# emulsified asphalt grades per climate (footnote 2: emulsified asphalts are
+# available that are specifically formulated for stockpile use).
 _TABLE_6_2 = {
     "cold": {
         "kerosene_l_per_metric_ton": 8.3, "kerosene_gal_per_ton": 2.0,
+        "kerosene_stockpile_l_per_metric_ton": 18.8,
+        "kerosene_stockpile_gal_per_ton": 4.5,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-70-RC-250",
-        "emulsion_immediate_use": ["MS-2h", "SS-1h"],
-        "emulsion_stockpile": [],
+        "emulsified_asphalts": ["MS-2h", "SS-1h"],
     },
     "moderate": {
         "kerosene_l_per_metric_ton": 7.1, "kerosene_gal_per_ton": 1.7,
+        "kerosene_stockpile_l_per_metric_ton": 15.4,
+        "kerosene_stockpile_gal_per_ton": 3.7,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-250-RC-800",
-        "emulsion_immediate_use": ["MS-2", "SS-1"],
-        "emulsion_stockpile": ["MS-2h", "SS-1h"],
+        "emulsified_asphalts": ["MS-2-MS-2h", "SS-1-SS-1h"],
     },
     "hot": {
         "kerosene_l_per_metric_ton": 6.3, "kerosene_gal_per_ton": 1.5,
+        "kerosene_stockpile_l_per_metric_ton": 12.5,
+        "kerosene_stockpile_gal_per_ton": 3.0,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-800-RC-3000",
-        "emulsion_immediate_use": ["MS-2", "SS-1"],
-        "emulsion_stockpile": [],
+        "emulsified_asphalts": ["MS-2", "SS-1"],
     },
+}
+_TABLE_6_2_NOTES = {
+    "abbreviations": "RC = rapid curing; MS = medium set; SS = slow set.",
+    "footnote_1": ("Amount of kerosene to be added when mixture is to be "
+                   "stockpiled for future use (the kerosene_stockpile_* "
+                   "values)."),
+    "footnote_2": ("Emulsified asphalts are available that are specifically "
+                   "formulated for stockpile use."),
 }
 
 _TABLE_6_2_CLIMATE_BOUNDS = {"cold": (None, 16), "moderate": (16, 27), "hot": (27, None)}
 
 
 def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
-    """Asphalt type and grade selection for cold-mix asphalt by climate (Table 6-2).
+    """Selection of asphalt type and grade for cold-mix asphalt by climate,
+    UFC 3-250-03 Table 6-2 (pdf_page 116, printed p.103); returns the
+    kerosene to add to asphalt cement (liters/metric ton and gallons/ton of
+    mix; for a mix used immediately and, footnote 1, for one stockpiled for
+    future use), the cutback asphalt grades and the emulsified asphalt
+    grades.
 
     Parameters
     ----------
@@ -1260,12 +1280,14 @@ def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     -------
     dict
         {'climate', 'temp_c_range', 'kerosene_l_per_metric_ton',
-         'kerosene_gal_per_ton', 'kerosene_added_to', 'cutback_range',
-         'emulsion_immediate_use', 'emulsion_stockpile', 'reference'}.
-        ``emulsion_stockpile`` lists emulsions specifically formulated for
-        stockpiling (empty list where the source gives none for that
-        climate); ``kerosene_*`` applies when the mix is stockpiled for
-        future use.
+         'kerosene_gal_per_ton', 'kerosene_stockpile_l_per_metric_ton',
+         'kerosene_stockpile_gal_per_ton', 'kerosene_added_to',
+         'cutback_range', 'emulsified_asphalts', 'notes', 'reference'}.
+        ``kerosene_l_per_metric_ton`` / ``kerosene_gal_per_ton`` are the
+        printed amounts; ``kerosene_stockpile_*`` the amounts in
+        parentheses, for a mixture to be stockpiled (footnote 1).
+        ``emulsified_asphalts`` is the printed grade list; footnote 2 says
+        emulsions specifically formulated for stockpile use are available.
 
     Raises
     ------
@@ -1278,6 +1300,7 @@ def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     return {
         "climate": key, "temp_c_range": _TABLE_6_2_CLIMATE_BOUNDS[key],
         **_TABLE_6_2[key],
+        "notes": dict(_TABLE_6_2_NOTES),
         "reference": "UFC 3-250-03, Table 6-2 (pdf_page 116, printed p.103)",
     }
 
