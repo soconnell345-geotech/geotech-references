@@ -248,13 +248,51 @@ _TABLE_D1 = [
     ("very_dense", 20.0, None, 40, 42, 60, 90),
 ]
 
+# Notes a and b of Table D.1, as printed (p. 111).
+_TABLE_D1_NOTES = [
+    "a) Values given are valid for sands. For silty soil a reduction of "
+    "3 deg should be made. For gravels 2 deg should be added.",
+    "b) E' is an approximation to the stress and time dependent secant "
+    "modulus. Values given for the drained modulus correspond to "
+    "settlements for 10 years. They are obtained assuming that the "
+    "vertical stress distribution follows the 2:1 approximation. "
+    "Furthermore, some investigations indicate that these values can be "
+    "50 % lower in silty soil and 50 % higher in gravelly soil. In "
+    "over-consolidated coarse soils, the modulus can be considerably "
+    "higher. When calculating settlements for ground pressures greater "
+    "than 2/3 of the design bearing pressure in ultimate limit state, the "
+    "modulus should be set to half of the values given in this table.",
+]
+
+# What the E' columns of Tables D.1 and H.1 hold for each soil_type: the
+# printed note on E' in silty and gravelly soil reports what "some
+# investigations indicate" and is not applied to the tabulated values.
+_E_BASIS_BY_SOIL_TYPE = {
+    "sand": "E' as tabulated (sand)",
+    "silty": (
+        "E' as tabulated for sand, NOT reduced for silty soil: the table's "
+        "note says these values can be 50 % lower in silty soil"
+    ),
+    "gravelly": (
+        "E' as tabulated for sand, NOT increased for gravelly soil: the "
+        "table's note says these values can be 50 % higher in gravelly soil"
+    ),
+}
+
 
 def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
-    """Effective angle of shearing resistance and drained modulus from CPT (Table D.1).
+    """Range of the effective angle of shearing resistance phi' (degrees)
+    and of the drained (long term) Young's modulus E' (MPa) of quartz and
+    feldspar sands for a cone penetration resistance qc in MPa, with the
+    table's notes (EN 1997-2:2007 Annex D.1, Table D.1, printed p. 111).
 
-    Example correlation (quartz and feldspar sands) for deriving phi' and
-    the drained (long-term) Young's modulus E' from cone resistance qc, for
-    bearing resistance and settlement calculations of spread foundations.
+    Example correlation for bearing resistance and settlement calculations
+    of spread foundations, obtained by correlating the mean qc in a layer
+    to the mean phi' and E'. For silty or gravelly soil phi' is changed as
+    note a prints (minus 3 deg, plus 2 deg); E' is returned as tabulated
+    for sand, with note b (50 % lower in silty soil, 50 % higher in
+    gravelly soil; half the value above 2/3 of the design bearing
+    pressure) in the result.
 
     Parameters
     ----------
@@ -267,8 +305,9 @@ def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
     Returns
     -------
     dict
-        Keys: density_index, qc_mpa, phi_min_deg, phi_max_deg, e_min_mpa,
-        e_max_mpa, soil_type.
+        Keys: density_index, qc_mpa, phi_min_deg, phi_max_deg (degrees),
+        e_min_mpa, e_max_mpa (MPa), soil_type, e_basis (what the E' values
+        are for this soil_type), notes (notes a and b as printed).
 
     Raises
     ------
@@ -296,6 +335,8 @@ def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
                 "e_min_mpa": e_min,
                 "e_max_mpa": e_max,
                 "soil_type": st,
+                "e_basis": _E_BASIS_BY_SOIL_TYPE[st],
+                "notes": list(_TABLE_D1_NOTES),
             }
     # qc_mpa exceeds all ranges (shouldn't happen since very_dense has no upper bound)
     raise ValueError(f"No density category found for qc_mpa={qc_mpa}")  # pragma: no cover
@@ -505,12 +546,33 @@ _TABLE_D5 = {
 }
 
 
+# Notes a and b of Table D.5, as printed (p. 118). Note a is on the alpha_s
+# column; note b is on the flight auger alpha_s value 0,006.
+_TABLE_D5_NOTE_A = (
+    "a) Values valid for fine to coarse sands. For very coarse sands a "
+    "reduction factor of 0,75 is necessary; for gravel this reduction "
+    "factor is 0,5."
+)
+_TABLE_D5_NOTE_B = (
+    "b) This value is used in the case of applying the results of CPTs "
+    "which were carried out before pile installation. When CPTs are used "
+    "that have been carried out in the vicinity of the flight auger piles, "
+    "alpha_s may be raised to 0,01."
+)
+
+
 def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
-    """Maximum alpha_p, alpha_s for sands and gravelly sands (Table D.5).
+    """Maximum values of the pile factors alpha_p and alpha_s
+    (dimensionless) for sands and gravelly sands, by pile type, with the
+    table's notes on alpha_s (EN 1997-2:2007 Annex D.7, Table D.5, printed
+    p. 118).
 
     Used in the Dutch CPT pile method (Annex D.7) for maximum base
     resistance pmax;base = 0.5*alpha_p*beta*s*{...} and maximum shaft
-    resistance pmax;shaft;z = alpha_s * qc;z;a.
+    resistance pmax;shaft;z = alpha_s * qc;z;a. The alpha_s values are
+    for fine to coarse sands: note a prints a reduction factor of 0,75
+    for very coarse sands and 0,5 for gravel. It is returned in the
+    result and not applied.
 
     Parameters
     ----------
@@ -521,11 +583,10 @@ def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
     Returns
     -------
     dict
-        Keys: pile_type, description, alpha_p, alpha_s.  Note: values are
-        valid for fine to coarse sands; apply a reduction factor of 0.75
-        for very coarse sands, 0.5 for gravel.  alpha_s for flight_auger
-        may be raised to 0.01 if CPTs were carried out in the vicinity of
-        the flight auger piles (rather than before pile installation).
+        Keys: pile_type, description, alpha_p, alpha_s, alpha_s_notes (note
+        a as printed for every pile type; for 'flight_auger' also note b,
+        that alpha_s may be raised to 0,01 when the CPTs were carried out
+        in the vicinity of the piles).
 
     Raises
     ------
@@ -538,7 +599,10 @@ def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
             f"Unknown pile_type '{pile_type}'. "
             f"Valid: {', '.join(sorted(_TABLE_D5.keys()))}"
         )
-    return {"pile_type": key, **_TABLE_D5[key]}
+    notes = [_TABLE_D5_NOTE_A]
+    if key == "flight_auger":
+        notes.append(_TABLE_D5_NOTE_B)
+    return {"pile_type": key, **_TABLE_D5[key], "alpha_s_notes": notes}
 
 
 # ============================================================================
@@ -1083,13 +1147,47 @@ _TABLE_H1 = [
     ("very_dense", 80, None, 40, 42, 60, 90),
 ]
 
+# Notes a, b, c of Table H.1 and clauses (2) and (3) of Annex H, as printed
+# (p. 132).
+_TABLE_H1_NOTES = [
+    "a) Before determination of the relative density, the weight sounding "
+    "resistance in silty soil should be divided by a factor of 1,3.",
+    "b) Values given are valid for sands. For silty soil, a reduction of "
+    "3 deg should be made. For gravels, 2 deg may be added.",
+    "c) E' is an approximation to the stress and time-dependent secant "
+    "modulus. Values given for the drained modulus correspond to "
+    "settlements after 10 years. They are obtained assuming that the "
+    "vertical stress distribution follows the 2:1 approximation. "
+    "Furthermore, some investigations indicate that these values can be "
+    "50 % lower in silty soil and 50 % higher in gravelly soil. In "
+    "over-consolidated coarse soil, the modulus can be considerably "
+    "higher. When calculating settlements for ground pressure greater than "
+    "2/3 of the design pressure in ultimate limit state, the modulus "
+    "should be set to half the values given in this table.",
+    "(2) If only results of weight sounding tests are available, the lower "
+    "value in each interval for the angle of shearing resistance and "
+    "Young's modulus in Table H.1 should be selected.",
+    "(3) When evaluating weight sounding resistance diagrams for "
+    "application in Table H.1, peak values caused for example by stones or "
+    "pebbles should not be accounted for. Such peak values are common in "
+    "weight sounding tests in gravel.",
+]
+
 
 def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> dict:
-    """Effective angle of shearing resistance and drained modulus from WST (Table H.1).
+    """Range of the effective angle of shearing resistance phi' (degrees)
+    and of the drained Young's modulus E' (MPa) of naturally deposited
+    quartz and feldspar sands for a density category, with its weight
+    sounding resistance range (half-turns per 0,2 m) and the table's notes
+    (EN 1997-2:2007 Annex H, Table H.1, printed p. 132).
 
-    Example correlation for naturally deposited quartz and feldspar sands
-    (Swedish experience), keyed by qualitative density category since the
-    WST resistance ranges overlap between categories in the source table.
+    Example based on Swedish experience, keyed by density category since
+    the printed weight sounding resistance ranges overlap. For silty or
+    gravelly soil phi' is changed as note b prints (minus 3 deg, plus
+    2 deg); E' is returned as tabulated for sand, with note c (50 % lower
+    in silty soil, 50 % higher in gravelly soil; half the value above 2/3
+    of the design pressure) in the result. Note a (divide the resistance
+    in silty soil by 1,3 before choosing the category) is for the caller.
 
     Parameters
     ----------
@@ -1102,10 +1200,12 @@ def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> d
     Returns
     -------
     dict
-        Keys: density_category, wst_halfturns_range (per 0.2 m penetration),
-        phi_min_deg, phi_max_deg, e_min_mpa, e_max_mpa, soil_type.
-        Per the standard: if only WST results are available, use the lower
-        value of each interval (conservative).
+        Keys: density_category, wst_halfturns_min, wst_halfturns_max
+        (half-turns per 0,2 m penetration), phi_min_deg, phi_max_deg
+        (degrees), e_min_mpa, e_max_mpa (MPa), soil_type, e_basis (what
+        the E' values are for this soil_type), notes (notes a, b, c and
+        clauses (2) and (3) of Annex H as printed; (2) says to take the
+        lower value of each interval when only WST results are available).
 
     Raises
     ------
@@ -1131,6 +1231,8 @@ def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> d
                 "e_min_mpa": e_min,
                 "e_max_mpa": e_max,
                 "soil_type": st,
+                "e_basis": _E_BASIS_BY_SOIL_TYPE[st],
+                "notes": list(_TABLE_H1_NOTES),
             }
     raise ValueError(
         f"Unknown density_category '{density_category}'. "
@@ -1332,14 +1434,111 @@ _VARIABILITY_TEST_COUNTS = {
     },
 }
 
+# For each family: the printed table and page, the printed measure of
+# variability, the printed row label of each tier, what one counted test
+# is, and the footnote the print attaches to single cells.
+_VARIABILITY_TEST_INFO = {
+    "triaxial_phi": {
+        "table": "Table P.1", "printed_page": 163,
+        "measure": ("Variability in strength envelope: coefficient of "
+                    "correlation r on regression curve"),
+        "criteria": {"low": "r >= 0,98", "medium": "0,95 < r <= 0,98",
+                     "high": "r <= 0,95"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different cell pressures (note a)."),
+        "cell_notes": {},
+    },
+    "triaxial_su": {
+        "table": "Table P.1", "printed_page": 163,
+        "measure": ("Variability in undrained shear strength (for same "
+                    "consolidation stress): ratio max/min values"),
+        "criteria": {"low": "ratio max/min value <= 1,25",
+                     "medium": "1,25 < ratio max/min value <= 2",
+                     "high": "ratio max/min values > 2"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different cell pressures (note a)."),
+        "cell_notes": {},
+    },
+    "direct_shear": {
+        "table": "Table P.2", "printed_page": 164,
+        "measure": ("Variability in strength envelope: coefficient of "
+                    "correlation on regression curve"),
+        "criteria": {"low": "coefficient of correlation >= 0,98",
+                     "medium": "0,95 <= coefficient of correlation < 0,98",
+                     "high": "coefficient of correlation < 0,95"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different normal stresses (note a)."),
+        "cell_notes": {("low", "extensive"): (
+            "Note b: A single test and classification tests to verify "
+            "compatibility with comparable experience. If the test results "
+            "do not agree with the existing data, additional tests should "
+            "be run.")},
+    },
+    "oedometer": {
+        "table": "Table Q.1", "printed_page": 165,
+        "measure": ("Variability in oedometer modulus Eoed (in the relevant "
+                    "stress range): range of values of Eoed"),
+        "criteria": {"low": "range of values of Eoed < about 20 %",
+                     "medium": "about 20 % < range of values of Eoed < about 50 %",
+                     "high": "range of values of Eoed >= 50 %"},
+        "count_unit": "Incremental oedometer tests for one soil stratum.",
+        "cell_notes": {("low", "extensive"): (
+            "Note a: One oedometer test and classification tests to verify "
+            "compatibility with comparable knowledge (see Q.1 (2)).")},
+    },
+    "permeability": {
+        "table": "Table S.1", "printed_page": 168,
+        "measure": "Variability in measured coefficient of permeability (k)",
+        "criteria": {"low": "kmax/kmin <= 10",
+                     "medium": "10 < kmax/kmin <= 100",
+                     "high": "kmax/kmin > 100"},
+        "count_unit": "Soil specimens to be tested for one soil stratum.",
+        "cell_notes": {("low", "extensive"): (
+            "Note a: A single test and classification tests to verify "
+            "compatibility with existing knowledge.")},
+    },
+    "rock_uniaxial_compression": {
+        "table": "Table W.1", "printed_page": 176,
+        "measure": "Standard deviation of measured strength, s, in % of mean",
+        "criteria": {"low": "s < 20", "medium": "20 < s < 50", "high": "s > 50"},
+        "count_unit": ("Test specimens to be tested for one formation "
+                       "(uniaxial compression tests, Brazil tests and "
+                       "triaxial tests)."),
+        "cell_notes": {("low", "extensive"): (
+            "Note a: Only valid for very homogeneous rock types with "
+            "extensive experience from nearby locations.")},
+    },
+}
+
 
 def table_min_test_count(test_family: str, variability: str,
                           comparable_experience: str) -> dict:
-    """Recommended minimum number of tests for one stratum/formation.
+    """Recommended minimum number of laboratory tests (a count) for one soil
+    stratum or rock formation, by the variability of the results and the
+    comparable experience, with the printed criterion for the variability
+    tier and any footnote on the cell (EN 1997-2:2007 Tables P.1, P.2, Q.1,
+    S.1 and W.1, printed pp. 163, 164, 165, 168 and 176).
 
     Consolidates the "variability x comparable experience" minimum test
     count tables from Annexes P (triaxial, direct shear), Q (oedometer),
     S (permeability), and W (rock uniaxial compression/Brazil/triaxial).
+    The printed row for each variability tier:
+
+        triaxial_phi (Table P.1, coefficient of correlation r on the
+            regression curve): low r >= 0,98; medium 0,95 < r <= 0,98;
+            high r <= 0,95
+        triaxial_su (Table P.1, ratio max/min of undrained shear strength
+            for same consolidation stress): low <= 1,25; medium > 1,25 to
+            2; high > 2
+        direct_shear (Table P.2, coefficient of correlation): low >= 0,98;
+            medium 0,95 to < 0,98; high < 0,95
+        oedometer (Table Q.1, range of values of Eoed): low < about 20 %;
+            medium about 20 % to about 50 %; high >= 50 %
+        permeability (Table S.1, kmax/kmin): low <= 10; medium > 10 to
+            100; high > 100
+        rock_uniaxial_compression (Table W.1, standard deviation s of
+            measured strength, % of mean): low s < 20; medium 20 < s < 50;
+            high s > 50
 
     Parameters
     ----------
@@ -1352,17 +1551,20 @@ def table_min_test_count(test_family: str, variability: str,
         strength as % of mean; also governs Brazil and triaxial rock
         tests per the standard).
     variability : str
-        'low', 'medium', or 'high' (see each family's docstring criterion
-        above for the exact numeric boundary).
+        'low', 'medium', or 'high', by the printed criteria listed above
+        (the result repeats the one used).
     comparable_experience : str
         'none', 'medium', or 'extensive'.
 
     Returns
     -------
     dict
-        Keys: test_family, variability, comparable_experience, min_count.
-        Note: one recommended triaxial/direct-shear "test" = a set of
-        three individual specimens at different confining/normal stresses.
+        Keys: test_family, variability, comparable_experience, min_count,
+        table, printed_page, variability_criterion (the printed measure
+        and the row of this tier), count_unit (what one counted test is:
+        for triaxial and direct shear a set of three specimens), and
+        footnote when the print attaches one to the cell (the "0" of
+        Table W.1 and the "1" cells of Tables P.2, Q.1 and S.1).
 
     Raises
     ------
@@ -1385,12 +1587,21 @@ def table_min_test_count(test_family: str, variability: str,
             f"Unknown comparable_experience '{comparable_experience}'. "
             f"Use none, medium, or extensive"
         )
-    return {
+    info = _VARIABILITY_TEST_INFO[fam]
+    result = {
         "test_family": fam,
         "variability": var,
         "comparable_experience": exp,
         "min_count": table[var][exp],
+        "table": info["table"],
+        "printed_page": info["printed_page"],
+        "variability_criterion": f"{info['measure']}: {info['criteria'][var]}",
+        "count_unit": info["count_unit"],
     }
+    footnote = info["cell_notes"].get((var, exp))
+    if footnote:
+        result["footnote"] = footnote
+    return result
 
 
 # ============================================================================

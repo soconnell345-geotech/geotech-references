@@ -954,3 +954,144 @@ class TestAnnexN:
     def test_so4_negative_raises(self):
         with pytest.raises(ValueError):
             equation_n_so4_from_so3(-1)
+
+
+# ============================================================================
+# Printed notes and criteria that change the value reach the result
+# ============================================================================
+
+class TestPrintedNotesReachTheResult:
+    def test_table_d1_every_printed_row(self):
+        # Table D.1 (PDF p. 113, printed p. 111): qc range (MPa), phi' range
+        # (deg), E' range (MPa). "< 10" is held as 0 to 10.
+        printed = [
+            (1.0, "very_loose", (29, 32), (0, 10)),
+            (4.0, "loose", (32, 35), (10, 20)),
+            (8.0, "medium_dense", (35, 37), (20, 30)),
+            (15.0, "dense", (37, 40), (30, 60)),
+            (25.0, "very_dense", (40, 42), (60, 90)),
+        ]
+        for qc, density, phi, e in printed:
+            r = table_d1_phi_e_from_qc(qc)
+            assert r["density_index"] == density
+            assert (r["phi_min_deg"], r["phi_max_deg"]) == phi
+            assert (r["e_min_mpa"], r["e_max_mpa"]) == e
+
+    def test_table_d1_silty_says_e_is_not_reduced(self):
+        # Note a: "For silty soil a reduction of 3 deg should be made. For
+        # gravels 2 deg should be added." Note b: "these values can be 50 %
+        # lower in silty soil and 50 % higher in gravelly soil". The silty
+        # result used to return the sand E' with no word about note b.
+        r = table_d1_phi_e_from_qc(8.0, "silty")
+        assert (r["phi_min_deg"], r["phi_max_deg"]) == (32, 34)
+        assert (r["e_min_mpa"], r["e_max_mpa"]) == (20, 30)
+        assert "NOT reduced" in r["e_basis"] and "50 % lower in silty soil" in r["e_basis"]
+        g = table_d1_phi_e_from_qc(8.0, "gravelly")
+        assert (g["phi_min_deg"], g["phi_max_deg"]) == (37, 39)
+        assert "50 % higher in gravelly soil" in g["e_basis"]
+        assert table_d1_phi_e_from_qc(8.0)["e_basis"] == "E' as tabulated (sand)"
+
+    def test_table_d1_notes_as_printed(self):
+        notes = " ".join(table_d1_phi_e_from_qc(8.0)["notes"])
+        assert "For silty soil a reduction of 3 deg should be made" in notes
+        assert "greater than 2/3 of the design bearing pressure" in notes
+        assert "half of the values given in this table" in notes
+
+    def test_table_h1_notes_and_e_basis(self):
+        # Table H.1 (PDF p. 134, printed p. 132), notes a, b, c and clauses
+        # (2) and (3).
+        r = table_h1_phi_e_from_wst("dense", "silty")
+        assert (r["phi_min_deg"], r["phi_max_deg"]) == (34, 37)
+        assert (r["e_min_mpa"], r["e_max_mpa"]) == (30, 60)
+        assert "NOT reduced" in r["e_basis"]
+        notes = " ".join(r["notes"])
+        assert "should be divided by a factor of 1,3" in notes
+        assert "the lower value in each interval" in notes
+        assert "half the values given in this table" in notes
+
+    def test_table_h1_every_printed_row(self):
+        printed = {
+            "very_loose": ((0, 10), (29, 32), (None, 10)),
+            "loose": ((10, 30), (32, 35), (10, 20)),
+            "medium_dense": ((20, 50), (35, 37), (20, 30)),
+            "dense": ((40, 90), (37, 40), (30, 60)),
+            "very_dense": ((80, None), (40, 42), (60, 90)),
+        }
+        for category, (wst, phi, e) in printed.items():
+            r = table_h1_phi_e_from_wst(category)
+            assert (r["wst_halfturns_min"], r["wst_halfturns_max"]) == wst
+            assert (r["phi_min_deg"], r["phi_max_deg"]) == phi
+            assert (r["e_min_mpa"], r["e_max_mpa"]) == e
+
+    def test_table_d5_notes_on_alpha_s(self):
+        # Table D.5 (PDF p. 120, printed p. 118): note a on the alpha_s
+        # column (x 0,75 very coarse sands, x 0,5 gravel); note b on the
+        # flight auger value 0,006 (may be raised to 0,01).
+        printed = {
+            "driven_prefab": (1.0, 0.010),
+            "driven_cast_in_place_closed_tube": (1.0, 0.012),
+            "flight_auger": (0.8, 0.006),
+            "bored_with_mud": (0.6, 0.005),
+        }
+        for pile_type, (alpha_p, alpha_s) in printed.items():
+            r = table_d5_alpha_p_alpha_s_sand(pile_type)
+            assert (r["alpha_p"], r["alpha_s"]) == (alpha_p, alpha_s)
+            assert "reduction factor of 0,75 is necessary" in r["alpha_s_notes"][0]
+            assert "for gravel this reduction factor is 0,5" in r["alpha_s_notes"][0]
+        assert len(table_d5_alpha_p_alpha_s_sand("driven_prefab")["alpha_s_notes"]) == 1
+        auger = table_d5_alpha_p_alpha_s_sand("flight_auger")["alpha_s_notes"]
+        assert len(auger) == 2 and "may be raised to 0,01" in auger[1]
+
+    def test_min_test_count_every_printed_cell(self):
+        # Tables P.1 (printed p. 163), P.2 (p. 164), Q.1 (p. 165), S.1
+        # (p. 168), W.1 (p. 176). Rows high, medium, low; columns none,
+        # medium, extensive.
+        printed = {
+            "triaxial_phi": [(4, 3, 2), (3, 2, 1), (2, 1, 1)],
+            "triaxial_su": [(6, 4, 3), (4, 3, 2), (3, 2, 1)],
+            "direct_shear": [(4, 3, 2), (3, 2, 2), (2, 2, 1)],
+            "oedometer": [(4, 3, 2), (3, 2, 2), (2, 2, 1)],
+            "permeability": [(5, 4, 3), (5, 3, 2), (3, 2, 1)],
+            "rock_uniaxial_compression": [(6, 4, 2), (3, 2, 1), (2, 1, 0)],
+        }
+        for family, rows in printed.items():
+            for tier, row in zip(("high", "medium", "low"), rows):
+                for experience, count in zip(("none", "medium", "extensive"), row):
+                    r = table_min_test_count(family, tier, experience)
+                    assert r["min_count"] == count, (family, tier, experience)
+
+    def test_min_test_count_zero_carries_its_footnote(self):
+        # Table W.1 note a on the "0" cell (printed p. 176).
+        r = table_min_test_count("rock_uniaxial_compression", "low", "extensive")
+        assert r["min_count"] == 0
+        assert "Only valid for very homogeneous rock types" in r["footnote"]
+        assert r["table"] == "Table W.1" and r["printed_page"] == 176
+        assert "footnote" not in table_min_test_count(
+            "rock_uniaxial_compression", "medium", "extensive")
+
+    def test_min_test_count_single_test_cells_carry_their_footnotes(self):
+        # Notes on the "1" cells of Tables P.2 (b), Q.1 (a) and S.1 (a).
+        assert "additional tests should be run" in table_min_test_count(
+            "direct_shear", "low", "extensive")["footnote"]
+        assert "One oedometer test and classification tests" in table_min_test_count(
+            "oedometer", "low", "extensive")["footnote"]
+        assert "A single test and classification tests" in table_min_test_count(
+            "permeability", "low", "extensive")["footnote"]
+
+    def test_min_test_count_names_the_printed_criterion(self):
+        # The printed row of each variability tier.
+        cases = {
+            ("triaxial_phi", "low"): "r >= 0,98",
+            ("triaxial_phi", "high"): "r <= 0,95",
+            ("triaxial_su", "medium"): "1,25 < ratio max/min value <= 2",
+            ("direct_shear", "medium"): "0,95 <= coefficient of correlation < 0,98",
+            ("oedometer", "high"): "range of values of Eoed >= 50 %",
+            ("permeability", "medium"): "10 < kmax/kmin <= 100",
+            ("rock_uniaxial_compression", "low"): "s < 20",
+            ("rock_uniaxial_compression", "high"): "s > 50",
+        }
+        for (family, tier), criterion in cases.items():
+            r = table_min_test_count(family, tier, "none")
+            assert r["variability_criterion"].endswith(criterion)
+        r = table_min_test_count("direct_shear", "low", "none")
+        assert "set of three individual specimens tested at different normal stresses" in r["count_unit"]
