@@ -2,6 +2,95 @@
 
 Releases before 1.6.0 are described in their release commits (`git log`).
 
+## Unreleased
+
+**Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
+Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
+that returned a value the print does not support now return the printed
+value or refuse and say why.
+
+Values that change:
+
+- **EN 1997-1 Eqs. C.1 and C.2** (`active_earth_pressure`,
+  `passive_earth_pressure`): the pore water pressure is now inside the
+  bracket as printed, `K [gamma z + q - u] + u`. Nothing changes where
+  u = 0. Below the water table (Kp 3.0, gamma 20 kN/m3, z 5 m, u 49.05 kPa)
+  the passive pressure was 349.05 kPa and is 201.90 kPa; the active
+  pressure at Ka 0.333 was 82.35 kPa and is 66.02 kPa.
+- **EN 1997-1 Table A.11** (`table_a_11_correlation_dynamic_impact_test`):
+  the columns are printed ">= 2, >= 5, >= 10, >= 15, >= 20", so n between
+  two columns takes the lower column and is no longer interpolated. For
+  4 piles tested the factor on the minimum was 1.40 and is 1.50; on the
+  mean 1.533 and is 1.60.
+- **Caltrans anchor blocks** (`factor_of_safety_requirements`): the factor
+  of safety was 1.5 and is 2.0, as Section 10-2 prints.
+- **Caltrans Table 3-1, Very Loose sand** (`table_3_1_granular_properties`):
+  the unit weights were moist "none", submerged 60 to 100 pcf, and are moist
+  below 100 pcf, submerged below 60 pcf.
+- **Caltrans Rankine and tension-crack results**: the printed page cited for
+  Eq. 4-3-16 is 4-10, for Eq. 4-3-19 4-11, for Eq. 4-4-13 4-19, and for
+  Eq. 8-3-3 8-6.
+
+Lookups that now refuse where they used to answer:
+
+- **EN 1997-1 Table A.10** (`table_a_10_correlation_ground_test`): n = 6, 8,
+  9 and n above 10 are not printed and were interpolated or capped (n = 6
+  gave 1.135 on the minimum). They now raise, and the message gives the
+  printed neighbours (n = 5: 1.15, n = 7: 1.12).
+- **EN 1997-1 Annex D bearing resistance** (`undrained_bearing_resistance`,
+  `drained_bearing_resistance`): `shape="strip"` with no length was computed
+  as a square footing (undrained, cu 50 kPa, B 2 m: 328.5 kPa where a long
+  rectangle gives 277.1 kPa). Annex D prints a rectangular and a square or
+  circular case only. Any other shape raises, a rectangular shape needs L,
+  and the result names the shape case used. For a strip give
+  `shape="rectangular"` and its length.
+- **EN 1997-1 selectors**: `parameter="cohesion"` (Tables A.2, A.4, A.16)
+  and `resistance="shaft"` (Tables A.6 to A.8) picked one of two printed
+  rows (effective cohesion 1.25 not undrained shear strength 1.4; shaft in
+  compression 1.3 not shaft in tension 1.6). They now raise and name the
+  choices.
+- **EN 1997-2 Table D.3** (`table_d3_pile_base_resistance`): below the first
+  printed column, qc = 10 MPa (qc = 4 MPa gave 2.0 MPa at s/Db = 0.10).
+- **EN 1997-2 Table F.3** (`table_f3_phi_from_density_index`): below the
+  first printed row, ID = 40 % (ID = 10 % gave 34 degrees; a density index
+  passed as the fraction 0.5 gave 41 degrees).
+- **EN 1997-2 G.1 and G.3** (`equation_g1_density_index_from_dp`,
+  `equation_g3_stiffness_coefficient_from_dp`): outside the printed ranges
+  of validity (N10 = 200 gave a density index of 1.10).
+- **EN 1997-2 Eq. 4.5** (`equation_4_5_cu_from_dmt`): the material index
+  IDMT is now required, since the equation is printed for IDMT < 0.8.
+- **Caltrans Table 4-2** (`table_4_2_wall_friction`):
+  `interface_material="concrete"` picked mass concrete on foundation
+  materials (29 to 31 degrees on clean gravel) over formed or precast
+  concrete against soil (22 to 26 degrees). It now raises.
+- **Caltrans at-rest coefficient** (`at_rest_k0`): a backfill slope together
+  with OCR > 1, which Eq. 4-3-15 does not cover (the slope was ignored).
+- **Caltrans cohesive apparent earth pressure**
+  (`aep_cohesive_max_ordinate`): the 0.2 to 0.4 factor of Eq. 8-3-2 has no
+  default (it was 0.3, which the manual does not print), and for 4 < Ns < 6
+  Ka is required so the larger of the two envelopes can be taken.
+- **FEMA P-2082 Seismic Design Category** (`seismic_design_category`): S1 is
+  required, because Section 11.6 assigns E or F where S1 >= 0.75 (SDS 1.2,
+  SD1 0.9 with no S1 gave D).
+
+Results that now say more, with the same numbers:
+
+- `design_approach_sets("DA1")` returns both combinations of Design
+  Approach 1 (it returned Combination 1 alone), and each combination names
+  the other.
+- EN 1997-2 `table_d1_phi_e_from_qc`, `table_h1_phi_e_from_wst` and
+  `table_d5_alpha_p_alpha_s_sand` return the tables' printed notes; for
+  silty or gravelly soil the result says E' is the sand value, not adjusted.
+- `table_min_test_count` returns the printed criterion behind low, medium
+  and high variability, the table and page, and the footnote on a cell
+  (the 0 of Table W.1 is "only valid for very homogeneous rock types with
+  extensive experience from nearby locations").
+- `site_class_from_vs30` also returns the site classes at vs/1.3 and
+  1.3 vs, which Section 20.3 requires when the velocity is estimated from
+  correlations.
+- The chapter text of EN 1997-1 (Eqs. C.1, C.2, Kpc, Tables A.10 and A.11)
+  and of Caltrans Section 10-2 is corrected to the print.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
