@@ -85,6 +85,19 @@ class TestPondingAndLateralTorsionalBuckling:
         fixed = critical_ponding_spacing(10e9, 5e-5, 4.0, end_condition="fixed")["s_cr"]
         assert fixed > simple
 
+    def test_critical_ponding_spacing_uses_unit_weight_of_water(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-32 (FPL-GTR-282 pdf 247 /
+        # printed 9-15) defines rho as "density of water (1,000 kg m-3,
+        # 0.0361 lb in-3)"; the formula needs the unit weight, 9,810 N/m^3
+        # in SI. Same joist in SI and inch-pound gives the same spacing.
+        e_pa, i_m4, l_m = 12.0e9, 0.038 * 0.286 ** 3 / 12.0, 6.0
+        si = critical_ponding_spacing(e_pa, i_m4, l_m)
+        assert si["rho_water"] == 9810.0
+        assert si["s_cr"] == pytest.approx(math.pi ** 4 * e_pa * i_m4 / (9810.0 * l_m ** 4))
+        e_psi, i_in4, l_in = e_pa / 6894.757, i_m4 / 0.0254 ** 4, l_m / 0.0254
+        ip = critical_ponding_spacing(e_psi, i_in4, l_in, rho_water=0.0361)
+        assert ip["s_cr"] * 0.0254 == pytest.approx(si["s_cr"], rel=0.01)
+
     def test_lateral_torsional_buckling_formula(self):
         result = lateral_torsional_buckling_stress(10e9, alpha=20.0)
         assert result["fb_cr"] == pytest.approx(math.pi**2 * 10e9 / 20.0**2)
@@ -118,8 +131,16 @@ class TestInteractionOfBucklingModes:
         assert result["f_double_prime"] == pytest.approx(0.822 * 10e9 / (3.0 / 0.3) ** 2)
 
     def test_elastic_buckling_stress_edgewise_bending(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-41 (FPL-GTR-282 pdf 249 /
+        # printed 9-17) prints Fb1'' = (1.44 E/le)(d2/d1), which is not a
+        # stress; the form used is 1.44 E d2^2/(le d1).
         result = elastic_buckling_stress_edgewise_bending(10e9, le=3.0, d1=0.3, d2=0.05)
-        assert result["fb1_double_prime"] == pytest.approx(1.44 * 10e9 / 3.0 * 0.05 / 0.3)
+        assert result["fb1_double_prime"] == pytest.approx(1.44 * 10e9 * 0.05 ** 2 / (3.0 * 0.3))
+        assert result["form_used"] == "1.44*E*d2**2/(le*d1)"
+        # The same member in mm gives the same stress (the printed form
+        # changes by a factor of 1,000).
+        mm = elastic_buckling_stress_edgewise_bending(10e9, le=3000.0, d1=300.0, d2=50.0)
+        assert mm["fb1_double_prime"] == pytest.approx(result["fb1_double_prime"])
 
     def test_moment_magnification_edgewise_no_load_is_one(self):
         result = moment_magnification_edgewise(fc=0.0, fc1_double_prime=1e7, beam_spacing=0.0, s_cr=4.0)

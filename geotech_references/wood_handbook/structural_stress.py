@@ -629,23 +629,27 @@ def torsional_shear_stress_circular(torque, diameter):
 def _beta_rectangular_torsion(b_over_h):
     """Closed-form reproduction of Figure 9-15 (coefficient beta for
     maximum torsional shear stress in a rectangular member): the classical
-    Saint-Venant/Roark polynomial for the maximum-shear-stress coefficient
-    of a rectangular section, matching the printed curve's endpoints
-    (beta=3.0 at b/h=0, beta~4.8 at b/h=1, both read off Fig. 9-15).
+    Saint-Venant/Roark polynomial for the coefficient that MULTIPLIES
+    T/(h b^2), matching the printed curve's endpoints (beta=3.0 at b/h=0,
+    beta~4.8 at b/h=1, both read off Fig. 9-15).
     """
     x = b_over_h
     return 3.0 * (1.0 + 0.6095 * x + 0.8865 * x**2 - 1.8023 * x**3 + 0.9100 * x**4)
 
 
 def torsional_shear_stress_rectangular(torque, h, b):
-    """Eq 9-24: maximum shear stress induced by torsion on a rectangular
-    cross section (printed p. 9-12, Trayer and March 1930).
+    """Eq 9-24: maximum shear stress fs induced by torsion on a rectangular
+    cross section, in the unit of T / length^3 (printed p. 9-13, Trayer and
+    March 1930). JUDGMENT CALL: the print gives fs = T / (beta h b^2)
+    (FPL-GTR-282 pdf 245); this function uses fs = beta T / (h b^2),
+    because the print's own Figure 9-15 gives beta from 3 to 4.8, which is
+    the classical (Roark/Timoshenko) multiplier: dividing by it gives 9 to
+    23 times too little (100 x 100 mm, T = 1 kN m: 0.208 MPa as printed,
+    4.81 MPa as used). Ruled by the lead, 2026-11-10.
 
-        fs = T / (beta*h*b^2)
-
-    where h is the larger cross-section dimension, b the smaller, and beta
-    is read from Figure 9-15 as a function of b/h (reproduced here in
-    closed form -- see ``_beta_rectangular_torsion``).
+    h is the larger cross-section dimension, b the smaller, and beta is
+    read from Figure 9-15 as a function of b/h (reproduced here in closed
+    form -- see ``_beta_rectangular_torsion``).
 
     Parameters
     ----------
@@ -666,8 +670,10 @@ def torsional_shear_stress_rectangular(torque, h, b):
         raise ValueError("b must be <= h (b is the smaller cross-section dimension)")
     b_over_h = b / h
     beta = _beta_rectangular_torsion(b_over_h)
-    fs = torque / (beta * h * b**2)
+    fs = beta * torque / (h * b**2)
     return {
         "torque": torque, "h": h, "b": b, "b_over_h": b_over_h, "beta": beta,
-        "shear_stress": fs, "equation": "9-24", "printed_page": "9-12", "pdf_page": 243,
+        "shear_stress": fs, "form_used": "beta*T/(h*b**2)",
+        "printed_form": "T/(beta*h*b**2) (beta of Fig 9-15 is a multiplier)",
+        "equation": "9-24", "printed_page": "9-13", "pdf_page": 244,
     }

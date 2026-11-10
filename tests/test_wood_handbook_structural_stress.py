@@ -178,3 +178,13 @@ class TestTorsionalShearStress:
     def test_rectangular_square_section(self):
         result = torsional_shear_stress_rectangular(500.0, h=0.1, b=0.1)
         assert result["beta"] == pytest.approx(4.80, abs=0.05)
+
+    def test_rectangular_beta_multiplies(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-24 (FPL-GTR-282 pdf 245 /
+        # printed 9-13) prints fs = T/(beta h b^2), but Figure 9-15's beta
+        # (3 to 4.8) is the classical multiplier: fs = beta T/(h b^2).
+        # 100 x 100 mm, T = 1 kN m: 4.81 MPa (0.208 MPa as printed).
+        r = torsional_shear_stress_rectangular(1000.0, h=0.1, b=0.1)
+        assert r["shear_stress"] == pytest.approx(4.81e6, rel=0.01)
+        assert r["form_used"] == "beta*T/(h*b**2)"
+        assert r["printed_page"] == "9-13"
