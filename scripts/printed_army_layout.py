@@ -52,7 +52,7 @@ import json
 import re
 from collections import Counter
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 try:
     import pymupdf as fitz
@@ -989,25 +989,50 @@ class Grid:
         spans (a long one as a ditto mark)."""
         out: list[Line] = []
         m = len(self.xs) - 1
+        # a merged cell whose text stands on rows apart, with rows between
+        # that hold none of it (a procedure's step round a table set inside
+        # it: a line over the inner table, a total under it), sets each
+        # paragraph on the row it stands on; a merged cell's text on rows
+        # next to each other is one text (a source wrapped over two rows)
+        spread: dict = {}
+        for c in self.cells:
+            if c.i1 > c.i0 and c.paras:
+                rows: dict = {}
+                for p in c.paras:
+                    ym = p.y - 0.3 * p.size
+                    i = max(c.i0, min(c.i1, sum(1 for y in self.ys[1:] if y <= ym)))
+                    rows.setdefault(i, []).append(p)
+                if max(rows) - min(rows) + 1 > len(rows):
+                    spread[id(c)] = rows
+
+        def own_at(c, i):
+            if id(c) in spread:
+                return spread[id(c)].get(i, [])
+            return c.paras if c.i0 == i else []
+
         for i in range(len(self.ys) - 1):
             cells = []
             for j in range(m):
                 c = self.box[(i, j)]
                 if c not in cells and not (not c.paras and c.x1 - c.x0 < 6):
                     cells.append(c)
-            if not any(c.i0 == i and c.paras for c in cells):
+            if not any(own_at(c, i) for c in cells):
                 continue
             while cells and not cells[-1].paras:
                 cells.pop()
             parts = []
             for k, c in enumerate(cells):
                 last = k == len(cells) - 1
-                if c.i0 == i:
+                if id(c) in spread:
+                    mine = spread[id(c)].get(i)
+                    parts.append(replace(c, paras=mine).text(last) if mine else
+                                 _DITTO if i > min(spread[id(c)]) else "")
+                elif c.i0 == i:
                     parts.append(c.text(last))
                 else:
                     t = c.text(False)
                     parts.append(t if len(t) <= REPEAT_CHARS else _DITTO)
-            own = [p for c in cells if c.i0 == i for p in c.paras]
+            own = [p for c in cells for p in own_at(c, i)]
             figs = []
             for q in own:
                 cap = re.match(rf"^Figure ({NUM})\.\s*(.*)$", q.text)
@@ -1085,6 +1110,34 @@ class PageData:
     pictures: list = field(default_factory=list)
 
 
+def _figure_bands(chars: list[Ch], spaces, frame: list, pictures: list) -> list:
+    """The heights ``(y0, y1)`` of a page that hold a figure's own lettering:
+    in the space between two frame rules that holds pictures and, below
+    them, a bold caption ``Figure 4–7. ...``, the text set from the top of
+    the pictures to just above the caption. Text a picture's box does not
+    cover (a chart drawn in lines with its labels as text, the letters of a
+    figure's parts set between its pictures) is the figure's, not the
+    manual's running text."""
+    out = []
+    ys = sorted(h[0] for h in frame)
+    for a, b in zip(ys, ys[1:]):
+        pics = [r for r in pictures if a < (r.y0 + r.y1) / 2 < b]
+        inside = [c for c in chars if a < (c.top + c.bot) / 2 < b]
+        if not pics or not inside:
+            continue
+        rows = sorted(cluster_rows(inside, spaces), key=lambda r: r.y)
+        if any(r.bold and r.text.startswith("Table ") for r in rows):
+            continue
+        cap = next((r for r in rows if r.bold and re.match(r"^Figure \d", r.text)), None)
+        if cap is None:
+            continue
+        y0 = max(a, min(r.y0 for r in pics) - 6)
+        y1 = min(cap.top - 1, max(r.y1 for r in pics) + 6)
+        if y1 > y0:
+            out.append((y0, y1))
+    return out
+
+
 def read_page(page, index: int, book) -> PageData:
     chars, spaces = page_chars(page)
     thin, heavy, bars, vert = page_rules(page)
@@ -1094,20 +1147,22 @@ def read_page(page, index: int, book) -> PageData:
     foot_text = " ".join(r.text for r in cluster_rows(foot, spaces))
     label = foot_text.split()[-1] if foot_text.split() else ""
     pictures = [fitz.Rect(i["bbox"]) for i in page.get_image_info()]
-    kept, lettering = [], 0
-    for c in chars:
-        ym = (c.top + c.bot) / 2
-        if any(r.x0 - 1 <= c.xc <= r.x1 + 1 and r.y0 - 1 <= ym <= r.y1 + 1
-               and r.width > 40 and r.height > 40 for r in pictures):
-            lettering += 1
-        else:
-            kept.append(c)
-    book.page = label
     # a heavy rule drawn from just left of the margin to just right of it
     # frames a figure or stands over a table's caption, and separates two
     # tables on a page; one drawn cell by cell is a cell border (the rule
     # under a table's column headings)
     frame = [h for h in heavy if h[1] < MARGIN - 0.6]
+    drawn = _figure_bands(chars, spaces, frame, pictures)
+    kept, lettering = [], 0
+    for c in chars:
+        ym = (c.top + c.bot) / 2
+        if any(r.x0 - 1 <= c.xc <= r.x1 + 1 and r.y0 - 1 <= ym <= r.y1 + 1
+               and r.width > 40 and r.height > 40 for r in pictures) \
+                or any(y0 <= ym <= y1 for y0, y1 in drawn):
+            lettering += 1
+        else:
+            kept.append(c)
+    book.page = label
     grids, loose = find_grids(thin, vert, [h for h in heavy if h not in frame])
     bars = bars + loose
     grids = split_grids(grids, [h[0] for h in frame])
@@ -1199,6 +1254,7 @@ class Book:
         what is left for a reader: equations with no typed formula,
         mathematics the placement rules could not read, typed entries the
         build found no place for."""
+        typed_over: dict[str, list] = {}
         for k, f in enumerate(self.passages):
             hit = False
             if not f.get("differs_from_text_layer") \
@@ -1212,12 +1268,21 @@ class Book:
                     if (sid == f["section"] or sid.startswith(f["section"] + ".")) \
                             and f["find"] in sec["body"] and not hit:
                         sec["body"] = sec["body"].replace(f["find"], f["replace"], 1)
+                        typed_over.setdefault(sid.split(".")[0], []).append(f["replace"])
                         hit = True
             if not hit:
                 self.problems.append(f"printed_passages[{k}] ({f['section']}): its "
                                      "'find' text is not in that section's body")
-        bodies = "\n".join(sec["body"] for data in chapters.values()
-                           for sec in data["sections"])
+        # each section's text (its split parts together) without the passages
+        # typed in over it
+        left: dict[str, str] = {}
+        for data in chapters.values():
+            for sec in data["sections"]:
+                base = sec["section_id"].split(".")[0]
+                left[base] = left.get(base, "") + "\n" + sec["body"]
+        for base, typed in typed_over.items():
+            for t in typed:
+                left[base] = left[base].replace(t, "\n")
         for number, page in dict.fromkeys(self.untyped):
             self.problems.append(f"Eq. {number} (p. {page}): no formula typed in")
         for number in self.typed:
@@ -1228,7 +1293,10 @@ class Book:
             if number not in self.used_tables:
                 self.problems.append(f"printed_tables {number}: no such table found")
         for page, sid, text in dict.fromkeys(self.crowded):
-            if (page, text) in self.accepted or number_hyphens(text) not in bodies:
+            # still a problem while the stacked piece is in its section's text
+            # outside the passages typed in over it
+            if (page, text) in self.accepted \
+                    or number_hyphens(text) not in left.get(sid.split(".")[0], ""):
                 continue          # accepted as read, or typed over
             self.problems.append(f"p. {page} ({sid}): mathematics set in stacked "
                                  f"pieces, read as {text!r}; type the passage in "
@@ -1314,6 +1382,7 @@ _HEAD = re.compile(rf"^({NUM})\.\s*(.*)$")
 _MARKS = (re.compile(r"^([a-z]{1,2})\.(?:\s+|$)"), re.compile(r"^\((\d{1,2})\)\s*"),
           re.compile(r"^\(([a-z]{1,2})\)\s*"), re.compile(r"^(\d{1,2})\.(?:\s+|$)"))
 _ITEM = re.compile(r"^[^=]{1,30}\s=\s")
+_EXAMPLE = re.compile(r"^Example [A-Z][-–]\d+[a-z]?\s")
 _NOTE_START = re.compile(r"^(?:\[[\w,]+\]|Notes?[:.])(?:\s|$)")
 
 
@@ -1543,6 +1612,27 @@ class Flow:
                 self.book.note(f"{self.sid}: a line opens with {m.group(0).strip()!r}, "
                                f"out of sequence after {self.path}; read as text")
                 break
+        # an appendix's list of its examples: "Example B–3" at the margin, its
+        # description in a column set in from it, the description's further
+        # lines and its parts ("a. Solution for ...") in that column
+        examples = self.para is not None and self.para.kind == "list" \
+            and bool(_EXAMPLE.match(self.para.pieces[0][1]))
+        if row is not None and abs(ln.x0 - MARGIN) < 3 and _EXAMPLE.match(text):
+            if not examples:
+                self.para = self.add(Block("list", sep="\n", page=self.page))
+            self.para.pieces.append((self.page, text))
+            if ln.crowded:
+                self.para.crowded.append((self.page, ln.text))
+            return
+        if examples and row is not None and ln.x0 > MARGIN + 40:
+            if re.match(r"^[a-z]\.\s", text) or self.para.pieces[-1][0] != self.page:
+                self.para.pieces.append((self.page, text))
+            else:
+                page, last = self.para.pieces[-1]
+                self.para.pieces[-1] = (page, _join(last, text))
+            if ln.crowded:
+                self.para.crowded.append((self.page, ln.text))
+            return
         # a list (of symbols under "where:", of items) is set in from the
         # margin: past the indent of a subparagraph's first line, or anywhere
         # in from the margin while a list is being read
