@@ -290,8 +290,11 @@ class TestSprayApplicationRate:
         assert r["rate_gal_per_yd2"] == (0.05, 0.15)
 
     def test_fog_seal(self):
+        # Para 3-4.2, UFC 3-250-03 PDF 85 (pdf_page 84), printed 71.
         r = spray_application_rate("fog_seal")
         assert r["rate_gal_per_yd2"] == (0.03, 0.08)
+        assert r["rate_l_per_m2"] == (0.14, 0.36)
+        assert "printed p.71" in r["reference"]
 
     def test_rejuvenator_has_sand_cover(self):
         r = spray_application_rate("rejuvenator")
@@ -781,6 +784,9 @@ class TestSlurrySealSurfaceAreaMethod:
         sa = slurry_seal_surface_area(self.PCT_PASSING)["surface_area_m2_per_kg"]
         r = slurry_seal_corrected_surface_area(sa, 2.96)
         assert r["csa_m2_per_kg"] == pytest.approx(8.31, abs=0.1)
+        # CSA = SA x 2.65/ASG is printed in B-1.2.1, PDF 137 (pdf_page
+        # 136), printed 123.
+        assert "printed p.123" in r["reference"]
 
     def test_corrected_surface_area_invalid_asg(self):
         with pytest.raises(ValueError):

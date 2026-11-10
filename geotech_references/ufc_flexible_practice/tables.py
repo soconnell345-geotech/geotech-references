@@ -623,7 +623,7 @@ _SPRAY_RATES = {
     "fog_seal": {
         "rate_l_per_m2": (0.14, 0.36), "rate_gal_per_yd2": (0.03, 0.08),
         "basis": "residual asphalt",
-        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page 83, printed p.70)",
+        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page 84, printed p.71)",
     },
     "rejuvenator": {
         "rate_l_per_m2": (0.18, 0.9), "rate_gal_per_yd2": (0.04, 0.2),
