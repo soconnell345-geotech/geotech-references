@@ -32,8 +32,10 @@ def bolt_grade_check(grade, application="structural"):
     Parameters
     ----------
     grade : str
-        A bolt grade designation (matched case-insensitively against
-        ``STRUCTURAL_BOLT_GRADES``/``NONSTRUCTURAL_BOLT_GRADES``).
+        A bolt grade designation, one of ``STRUCTURAL_BOLT_GRADES`` or
+        ``NONSTRUCTURAL_BOLT_GRADES`` (matched case-insensitively); any
+        other string raises ValueError rather than reading as "not
+        permitted".
     application : str, optional
         'structural' (default) or 'nonstructural'.
 
@@ -46,6 +48,11 @@ def bolt_grade_check(grade, application="structural"):
     g = grade.strip().lower()
     structural_ok = any(g == s.lower() for s in STRUCTURAL_BOLT_GRADES)
     nonstructural_ok = structural_ok or any(g == s.lower() for s in NONSTRUCTURAL_BOLT_GRADES)
+    if not nonstructural_ok:
+        raise ValueError(
+            f"bolt grade {grade!r} is not one paragraph 6.1.3.4 names (printed p. 38): structural "
+            f"connections must use {STRUCTURAL_BOLT_GRADES}; {NONSTRUCTURAL_BOLT_GRADES} are for "
+            f"non-structural applications only. Give the grade as one of these.")
     if application == "structural":
         permitted, page = structural_ok, "38"
     elif application == "nonstructural":

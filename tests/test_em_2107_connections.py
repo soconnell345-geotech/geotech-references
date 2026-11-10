@@ -28,6 +28,15 @@ class TestBoltGradeCheck:
         with pytest.raises(ValueError):
             bolt_grade_check("ASTM A307", "bogus")
 
+    def test_unknown_grade_refused_not_answered(self):
+        # Paragraph 6.1.3.4 (EM 1110-2-2107_2022.pdf pdf 47 / printed 38)
+        # names the grades; "A325" alone or an unlisted grade used to come
+        # back permitted=False, a default answer for an unknown key.
+        with pytest.raises(ValueError, match="6.1.3.4"):
+            bolt_grade_check("A325", "structural")
+        with pytest.raises(ValueError, match="ASTM F3125 Grade A325"):
+            bolt_grade_check("ISO 898 class 8.8", "nonstructural")
+
 
 class TestWeldingCodeSelection:
     def test_cyclic_or_fcm_requires_d15(self):
