@@ -15,7 +15,9 @@ import math
 # ============================================================================
 
 def rankine_ka(phi_deg, beta_deg: float = 0.0) -> dict:
-    """Rankine active earth pressure coefficient Ka (Eq. 4-3-11 / 4-3-16).
+    """Rankine active earth pressure coefficient Ka, dimensionless (Caltrans
+    Trenching and Shoring Manual Eq. 4-3-11, printed p. 4-8, for level
+    backfill; Eq. 4-3-16, printed p. 4-10, for sloping backfill).
 
     For level backfill (beta = 0): Ka = tan^2(45 - phi/2). For a sloping
     cohesionless backfill at angle beta (<= phi), the Rankine sloped-backfill
@@ -53,21 +55,25 @@ def rankine_ka(phi_deg, beta_deg: float = 0.0) -> dict:
     if abs(beta_deg) < 1e-9:
         ka = math.tan(math.radians(45.0 - phi_deg / 2.0)) ** 2
         eq = "4-3-11"
+        pdf_page, printed_page = 58, "4-8"
     else:
         b = math.radians(beta_deg)
         root = math.sqrt(math.cos(b) ** 2 - math.cos(phi) ** 2)
         ka = math.cos(b) * (math.cos(b) - root) / (math.cos(b) + root)
         eq = "4-3-16"
+        pdf_page, printed_page = 60, "4-10"
     return {
         "phi_deg": phi_deg, "beta_deg": beta_deg, "ka": round(ka, 4),
         "equation": eq,
         "reference": "Caltrans T&S Manual Section 4-3 (Rankine)",
-        "pdf_page": 58, "printed_page": "4-8",
+        "pdf_page": pdf_page, "printed_page": printed_page,
     }
 
 
 def rankine_kp(phi_deg, beta_deg: float = 0.0) -> dict:
-    """Rankine passive earth pressure coefficient Kp (Eq. 4-3-12 / 4-3-19).
+    """Rankine passive earth pressure coefficient Kp, dimensionless (Caltrans
+    Trenching and Shoring Manual Eq. 4-3-12, printed p. 4-8, for level
+    backfill; Eq. 4-3-19, printed p. 4-11, for sloping backfill).
 
     For level backfill: Kp = tan^2(45 + phi/2). The manual warns NOT to use the
     Rankine passive form for a positive backfill slope (beta > 0) — it gives the
@@ -102,11 +108,13 @@ def rankine_kp(phi_deg, beta_deg: float = 0.0) -> dict:
     if abs(beta_deg) < 1e-9:
         kp = math.tan(math.radians(45.0 + phi_deg / 2.0)) ** 2
         eq = "4-3-12"
+        pdf_page, printed_page = 58, "4-8"
     else:
         b = math.radians(beta_deg)
         root = math.sqrt(math.cos(b) ** 2 - math.cos(phi) ** 2)
         kp = math.cos(b) * (math.cos(b) + root) / (math.cos(b) - root)
         eq = "4-3-19"
+        pdf_page, printed_page = 61, "4-11"
         warning = (
             "Rankine passive Kp should NOT be used for sloping backfill "
             "(beta != 0); it is identical for +beta and -beta. Use the "
@@ -116,7 +124,7 @@ def rankine_kp(phi_deg, beta_deg: float = 0.0) -> dict:
         "phi_deg": phi_deg, "beta_deg": beta_deg, "kp": round(kp, 4),
         "equation": eq,
         "reference": "Caltrans T&S Manual Section 4-3 (Rankine)",
-        "pdf_page": 58, "printed_page": "4-8",
+        "pdf_page": pdf_page, "printed_page": printed_page,
     }
     if warning:
         out["warning"] = warning
@@ -180,26 +188,31 @@ def coulomb_ka(phi_deg, delta_deg: float = 0.0, beta_deg: float = 0.0,
 
 
 def at_rest_k0(phi_deg, beta_deg: float = 0.0, ocr: float = 1.0) -> dict:
-    """At-rest earth pressure coefficient K0 (Eq. 4-3-14 / 4-3-15).
+    """At-rest lateral earth pressure coefficient K0, dimensionless, for a
+    vertical wall (Caltrans Trenching and Shoring Manual Section 4-3.01,
+    Eqs. 4-3-14 and 4-3-15, printed p. 4-9).
 
-    For normally consolidated soils with a vertical wall (Jaky form with the
-    manual's sloping-backfill modifier):
+    As printed, "for normally consolidated soils and vertical walls":
 
         K0 = (1 - sin(phi)) * (1 - sin(beta))     (Eq. 4-3-14)
 
-    For over-consolidated soils with level backfill and a vertical wall:
+    and "for over-consolidated soils, level backfill, and a vertical wall":
 
-        K0 = (1 - sin(phi)) * OCR^sin(phi)        (Eq. 4-3-15)
+        K0 = (1 - sin(phi)) * (OCR)^sin(phi)      (Eq. 4-3-15)
+
+    Eq. 4-3-15 is printed for level backfill only, so a backfill slope
+    together with OCR > 1 is refused.
 
     Parameters
     ----------
     phi_deg : float
         Effective soil friction angle phi (deg), > 0.
     beta_deg : float, optional
-        Backfill slope angle beta (deg). Default 0. Used only when ocr == 1.
+        Slope angle of the backfill surface behind the wall, beta (deg).
+        Default 0. Must be 0 when ocr > 1.
     ocr : float, optional
         Over-consolidation ratio. Default 1.0 (normally consolidated). If > 1,
-        the OCR form (Eq. 4-3-15) is used (level backfill assumed).
+        the OCR form (Eq. 4-3-15) is used, for level backfill.
 
     Returns
     -------
@@ -209,12 +222,19 @@ def at_rest_k0(phi_deg, beta_deg: float = 0.0, ocr: float = 1.0) -> dict:
     Raises
     ------
     ValueError
-        If phi_deg <= 0 or ocr < 1.
+        If phi_deg <= 0, ocr < 1, or beta_deg is not 0 with ocr > 1.
     """
     if phi_deg <= 0:
         raise ValueError(f"phi_deg must be > 0, got {phi_deg}")
     if ocr < 1.0:
         raise ValueError(f"ocr must be >= 1, got {ocr}")
+    if ocr > 1.0 and abs(beta_deg) > 1e-9:
+        raise ValueError(
+            f"beta_deg={beta_deg} with ocr={ocr}: Eq. 4-3-15 is printed for "
+            "over-consolidated soils, level backfill, and a vertical wall "
+            "(Caltrans T&S Manual p. 4-9); the form with the backfill slope, "
+            "Eq. 4-3-14, is printed for normally consolidated soils."
+        )
     phi = math.radians(phi_deg)
     if ocr > 1.0:
         k0 = (1 - math.sin(phi)) * (ocr ** math.sin(phi))
@@ -376,9 +396,13 @@ def apparent_active_coefficient(sigma_a_psf, gamma_pcf, height_ft) -> dict:
 
 
 def tension_crack_depth(cohesion_psf, gamma_pcf, ka) -> dict:
-    """Depth of the cohesive tension crack zone hcr (Eq. 4-4-13).
+    """Depth hcr, in ft, at which the active earth pressure in a cohesive
+    soil is zero (the tension crack zone) (Caltrans Trenching and Shoring
+    Manual Eq. 4-4-13, printed p. 4-19).
 
-        hcr = 2 c / (gamma * sqrt(Ka))
+    As printed, from sigma_a = gamma*h*Ka - 2c*sqrt(Ka) = 0 (Eq. 4-4-12):
+
+        h = hcr = 2c*sqrt(Ka) / (gamma*Ka)
 
     Parameters
     ----------
@@ -408,7 +432,7 @@ def tension_crack_depth(cohesion_psf, gamma_pcf, ka) -> dict:
         "cohesion_psf": cohesion_psf, "gamma_pcf": gamma_pcf, "ka": ka,
         "hcr_ft": round(hcr, 3), "equation": "4-4-13",
         "reference": "Caltrans T&S Manual Section 4-4 (Eq. 4-4-13)",
-        "pdf_page": 68, "printed_page": "4-18",
+        "pdf_page": 69, "printed_page": "4-19",
     }
 
 
@@ -897,17 +921,22 @@ def stability_number(gamma_pcf, height_ft, cu_psf) -> dict:
     }
 
 
-def aep_cohesive_max_ordinate(gamma_pcf, height_ft, ns, factor: float = 0.3,
+def aep_cohesive_max_ordinate(gamma_pcf, height_ft, ns, factor: float = None,
                               ka=None) -> dict:
-    """Trapezoidal AEP maximum ordinate for cohesive backfill (Eq. 8-3-2 / 8-3-3).
+    """Maximum ordinate sigma_a, in psf, of the trapezoidal apparent earth
+    pressure diagram for a braced or anchored wall in cohesive soil, by the
+    stability number Ns (Caltrans Trenching and Shoring Manual Section 8-3,
+    Eqs. 8-3-2 and 8-3-3, printed pp. 8-5 and 8-6).
 
-    Selects the cohesive AEP envelope from the stability number Ns:
-      - Ns <= 4 (stiff to hard): sigma_a = factor * gamma * H, factor in 0.2..0.4
-        (Eq. 8-3-2).
+    As printed:
+      - Ns <= 4 (stiff to hard): sigma_a = 0.2(gamma)(H) to 0.4(gamma)(H)
+        (Eq. 8-3-2). The manual gives the range only: "best engineering
+        judgment is needed to use the applicable factor between 0.2 and
+        0.4". The caller gives the factor.
       - Ns >= 6 (soft to medium stiff): sigma_a = Ka * gamma * H (Eq. 8-3-3),
-        with Ka per FHWA (>= 0.25).
-      - 4 < Ns < 6: caller should take the larger of the two; this returns the
-        Ns-regime result and notes the rule.
+        with Ka per Eq. 8-3-4 and not less than 0.25. The caller gives Ka.
+      - 4 < Ns < 6: "use the larger sigma_a from Equations 8-3-2 and 8-3-3",
+        so both the factor and Ka are needed.
 
     Parameters
     ----------
@@ -918,61 +947,84 @@ def aep_cohesive_max_ordinate(gamma_pcf, height_ft, ns, factor: float = 0.3,
     ns : float
         Stability number Ns (= gamma*H/cu); selects the envelope.
     factor : float, optional
-        The 0.2-0.4 coefficient for the stiff-hard envelope (Eq. 8-3-2).
-        Default 0.3. Best engineering judgment per field conditions.
+        The coefficient of Eq. 8-3-2, from 0.2 to 0.4, chosen by engineering
+        judgment of the field condition. Required when Ns < 6; there is no
+        default, because the manual prints none.
     ka : float, optional
         Active coefficient Ka for the soft-medium envelope (Eq. 8-3-3, >= 0.25).
-        Required when Ns >= 6.
+        Required when Ns > 4.
 
     Returns
     -------
     dict
-        {'sigma_a_psf', 'envelope', 'equation', 'reference', ...}
+        {'sigma_a_psf', 'envelope', 'equation', 'reference', ...}; for
+        4 < Ns < 6 also 'sigma_a_8_3_2_psf' and 'sigma_a_8_3_3_psf'.
 
     Raises
     ------
     ValueError
-        If inputs are invalid or Ka is missing when needed.
+        If inputs are invalid, or the factor or Ka the envelope needs is
+        missing.
     """
     if gamma_pcf <= 0:
         raise ValueError(f"gamma_pcf must be > 0, got {gamma_pcf}")
     if height_ft <= 0:
         raise ValueError(f"height_ft must be > 0, got {height_ft}")
-    if not (0.2 <= factor <= 0.4):
+    if factor is not None and not (0.2 <= factor <= 0.4):
         raise ValueError("factor (Eq. 8-3-2) must be between 0.2 and 0.4.")
+    if ka is not None and ka < 0.25:
+        raise ValueError("Ka must be >= 0.25 (FHWA floor) per Eq. 8-3-4.")
 
-    def stiff():
-        return factor * gamma_pcf * height_ft
+    gh = gamma_pcf * height_ft
 
-    def soft(k):
-        return k * gamma_pcf * height_ft
+    def need_factor():
+        if factor is None:
+            raise ValueError(
+                "factor is required (0.2 to 0.4): Eq. 8-3-2 gives sigma_a = "
+                f"0.2*gamma*H to 0.4*gamma*H, here {0.2 * gh:.1f} to "
+                f"{0.4 * gh:.1f} psf, and the manual leaves the factor to "
+                "best engineering judgment of the field condition (p. 8-5)."
+            )
 
+    extra = {}
     if ns <= 4:
-        sigma_a = stiff()
+        need_factor()
+        sigma_a = factor * gh
         envelope = f"stiff-hard (Ns<=4): sigma_a = {factor}*gamma*H (Eq. 8-3-2)"
         eq = "8-3-2"
+        pdf_page, printed_page = 155, "8-5"
     elif ns >= 6:
         if ka is None:
             raise ValueError("ka is required for the soft-medium envelope (Ns >= 6).")
-        if ka < 0.25:
-            raise ValueError("Ka must be >= 0.25 (FHWA floor) per Eq. 8-3-4.")
-        sigma_a = soft(ka)
+        sigma_a = ka * gh
         envelope = "soft-medium (Ns>=6): sigma_a = Ka*gamma*H (Eq. 8-3-3)"
         eq = "8-3-3"
+        pdf_page, printed_page = 156, "8-6"
     else:
-        s1 = stiff()
-        s2 = soft(ka) if ka is not None else None
-        sigma_a = max(s1, s2) if s2 is not None else s1
-        envelope = ("transition 4<Ns<6: take the LARGER of Eq. 8-3-2 and 8-3-3 "
-                    "(Ka required for the full comparison)")
+        need_factor()
+        if ka is None:
+            raise ValueError(
+                "ka is required for 4 < Ns < 6: the manual says to use the "
+                "larger sigma_a from Equations 8-3-2 and 8-3-3 (p. 8-6), and "
+                "Eq. 8-3-3 needs Ka."
+            )
+        s1 = factor * gh
+        s2 = ka * gh
+        sigma_a = max(s1, s2)
+        extra = {"sigma_a_8_3_2_psf": round(s1, 2),
+                 "sigma_a_8_3_3_psf": round(s2, 2)}
+        envelope = ("transition 4<Ns<6: the larger sigma_a from Eq. 8-3-2 "
+                    "and Eq. 8-3-3")
         eq = "8-3-2 / 8-3-3"
+        pdf_page, printed_page = 155, "8-5 and 8-6"
     return {
         "gamma_pcf": gamma_pcf, "height_ft": height_ft, "ns": ns,
         "factor": factor, "ka": ka,
         "sigma_a_psf": round(sigma_a, 2),
+        **extra,
         "envelope": envelope, "equation": eq,
         "reference": "Caltrans T&S Manual Section 8-3",
-        "pdf_page": 155, "printed_page": "8-5",
+        "pdf_page": pdf_page, "printed_page": printed_page,
     }
 
 

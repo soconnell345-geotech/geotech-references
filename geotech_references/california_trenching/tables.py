@@ -700,8 +700,12 @@ def table_4_2_wall_friction(interface_material: str = "") -> dict:
         If interface_material is unrecognized.
     """
     key = str(interface_material).strip().lower()
+    # "concrete" alone is not an alias: Table 4-2 prints two concrete
+    # groups, "Mass concrete on the following foundation materials" and
+    # "Formed or precast concrete or concrete sheet piling against the
+    # following soils", with different friction angles.
     aliases = {
-        "concrete": "mass concrete", "mass concrete": "mass concrete",
+        "mass concrete": "mass concrete",
         "steel": "steel sheet piles", "steel sheet piles": "steel sheet piles",
         "sheet pile": "steel sheet piles",
         "precast": "formed or precast concrete",
@@ -723,7 +727,9 @@ def table_4_2_wall_friction(interface_material: str = "") -> dict:
     if grp is None:
         raise ValueError(
             f"Unknown interface_material '{interface_material}'. Use 'mass "
-            "concrete', 'steel sheet piles', or 'formed or precast concrete'."
+            "concrete' (mass concrete on foundation materials), 'steel sheet "
+            "piles', or 'formed or precast concrete' (formed or precast "
+            "concrete or concrete sheet piling against soil)."
         )
     rows = [{"interface": i, "delta_min_deg": d0, "delta_max_deg": d1}
             for (i, d0, d1) in _TABLE_4_2[grp]]

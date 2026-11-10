@@ -13,6 +13,8 @@ against the source PDF (worked examples and printed tables):
 Units are the manual's native US customary units (psf, pcf, tsf, ft, deg).
 """
 
+import math
+
 import pytest
 
 from geotech_references.california_trenching.tables import (
@@ -526,3 +528,103 @@ class TestTextRetrieval:
         from geotech_references import _retrieval
         chs = {c["chapter"] for c in _retrieval.list_chapters("california_trenching")}
         assert {2, 3, 4, 6, 7, 8, 10}.issubset(chs)
+
+
+# ===================================================================
+# Review fixes of 2026-11-10 (ec7-11, ec7-16, ec7-18)
+# ===================================================================
+
+
+class TestWallFrictionConcreteGroups:
+    def test_bare_concrete_is_refused(self):
+        # Table 4-2 (PDF p. 66, printed p. 4-15) prints two concrete groups:
+        # "Mass concrete on the following foundation materials" and "Formed
+        # or precast concrete or concrete sheet piling against the following
+        # soils". "concrete" alone used to return the mass concrete group.
+        with pytest.raises(ValueError, match="formed or precast concrete"):
+            table_4_2_wall_friction("concrete")
+
+    def test_the_two_concrete_groups_as_printed(self):
+        mass = table_4_2_wall_friction("mass concrete")["rows"]
+        formed = table_4_2_wall_friction("formed or precast concrete")["rows"]
+        # Mass concrete: clean gravel, gravel-sand mixtures, coarse sand 29 to 31
+        gravel = [r for r in mass if r["interface"].startswith("Clean gravel")][0]
+        assert (gravel["delta_min_deg"], gravel["delta_max_deg"]) == (29, 31)
+        # Formed or precast concrete: clean gravel ... rock fill with spalls 22 to 26
+        gravel = [r for r in formed if r["interface"].startswith("Clean gravel")][0]
+        assert (gravel["delta_min_deg"], gravel["delta_max_deg"]) == (22, 26)
+        # Formed or precast concrete, the four printed rows: 22 to 26, 17 to 22, 17, 14
+        assert [(r["delta_min_deg"], r["delta_max_deg"]) for r in formed] == [
+            (22, 26), (17, 22), (17, 17), (14, 14)]
+
+
+class TestAtRestK0AsPrinted:
+    def test_normally_consolidated_sloping_backfill(self):
+        # Eq. 4-3-14 (PDF p. 60, printed p. 4-9): K0 = (1 - sin phi)(1 - sin beta)
+        r = at_rest_k0(30, beta_deg=20)
+        assert r["equation"] == "4-3-14"
+        assert r["k0"] == pytest.approx(0.5 * (1 - math.sin(math.radians(20))), abs=1e-4)
+
+    def test_over_consolidated_level_backfill(self):
+        # Eq. 4-3-15 (printed p. 4-9): K0 = (1 - sin phi)(OCR)^sin phi
+        r = at_rest_k0(30, ocr=2.0)
+        assert r["equation"] == "4-3-15"
+        assert r["k0"] == pytest.approx(0.5 * 2 ** 0.5, abs=1e-4)
+
+    def test_over_consolidated_with_a_slope_is_refused(self):
+        # Eq. 4-3-15 is printed "for over-consolidated soils, level backfill,
+        # and a vertical wall". beta 20 with OCR 2 used to return 0.7071
+        # with beta echoed and not used.
+        with pytest.raises(ValueError, match="level backfill"):
+            at_rest_k0(30, beta_deg=20, ocr=2.0)
+
+
+class TestCohesiveAepNeedsItsInputs:
+    def test_stiff_envelope_needs_the_factor(self):
+        # Eq. 8-3-2 (PDF p. 156, printed p. 8-5): sigma_a = 0.2(gamma)(H) to
+        # 0.4(gamma)(H), the factor by "best engineering judgment". The
+        # factor used to default to 0.3, which the manual does not print.
+        with pytest.raises(ValueError, match="480.0 to 960.0 psf"):
+            aep_cohesive_max_ordinate(120, 20, ns=3)
+        assert aep_cohesive_max_ordinate(120, 20, ns=3, factor=0.2)["sigma_a_psf"] == pytest.approx(480.0)
+        assert aep_cohesive_max_ordinate(120, 20, ns=3, factor=0.4)["sigma_a_psf"] == pytest.approx(960.0)
+
+    def test_transition_takes_the_larger_and_needs_both(self):
+        # Printed p. 8-6: "For soils with 4 < Ns < 6, use the larger sigma_a
+        # from Equations 8-3-2 and 8-3-3". Without Ka the stiff value alone
+        # used to be returned.
+        with pytest.raises(ValueError, match="larger sigma_a"):
+            aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.3)
+        with pytest.raises(ValueError, match="factor is required"):
+            aep_cohesive_max_ordinate(120, 20, ns=5, ka=0.5)
+        r = aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.3, ka=0.5)
+        assert r["sigma_a_8_3_2_psf"] == pytest.approx(720.0)
+        assert r["sigma_a_8_3_3_psf"] == pytest.approx(1200.0)
+        assert r["sigma_a_psf"] == pytest.approx(1200.0)
+        r = aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.4, ka=0.25)
+        assert r["sigma_a_psf"] == pytest.approx(960.0)
+
+    def test_soft_envelope_needs_no_factor(self):
+        # Eq. 8-3-3 (PDF p. 157, printed p. 8-6): sigma_a = Ka gamma H
+        r = aep_cohesive_max_ordinate(120, 20, ns=7, ka=0.4)
+        assert r["sigma_a_psf"] == pytest.approx(960.0)
+        assert r["printed_page"] == "8-6"
+
+
+class TestPrintedPagesOfEquations:
+    def test_rankine_pages(self):
+        # Eqs. 4-3-11 and 4-3-12 are on printed p. 4-8 (PDF p. 59), Eq. 4-3-16
+        # on p. 4-10 (PDF p. 61), Eq. 4-3-19 on p. 4-11 (PDF p. 62). pdf_page
+        # is the 0-based page index, as elsewhere in this package.
+        assert rankine_ka(30)["printed_page"] == "4-8"
+        sloping = rankine_ka(30, beta_deg=20)
+        assert (sloping["equation"], sloping["printed_page"], sloping["pdf_page"]) == ("4-3-16", "4-10", 60)
+        assert rankine_kp(30)["printed_page"] == "4-8"
+        sloping = rankine_kp(30, beta_deg=10)
+        assert (sloping["equation"], sloping["printed_page"], sloping["pdf_page"]) == ("4-3-19", "4-11", 61)
+
+    def test_tension_crack_page_and_equation(self):
+        # Eq. 4-4-13 (PDF p. 70, printed p. 4-19): hcr = 2c sqrt(Ka) / (gamma Ka)
+        r = tension_crack_depth(500, 120, 0.36)
+        assert r["hcr_ft"] == pytest.approx(2 * 500 * 0.6 / (120 * 0.36), abs=1e-3)
+        assert (r["printed_page"], r["pdf_page"]) == ("4-19", 69)
