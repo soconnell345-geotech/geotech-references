@@ -147,6 +147,12 @@ class TestTable42:
         assert r["potential_swell_pct"] == pytest.approx(16.21, abs=0.001)
         assert "16.426" in r["note"]
 
+    def test_johnson_print_note_states_the_reading(self):
+        # The PI <= 40 form's operators render as "="; read as minus.
+        r = table_4_2_swell_johnson(30, 5, 20)
+        assert "'='" in r["print_note"] and "minus" in r["print_note"]
+        assert "16.21" in r["print_note"] and "16.43" in r["print_note"]
+
 
 # ===================================================================
 # TABLE TESTS

@@ -186,7 +186,11 @@ def table_4_2_swell_mckeen_lytton(suction_compression_index,
 def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
     """Potential swell Sp (percent) by Johnson, UFC 3-220-07 Table 4-2
     (printed p. 4-3, PDF 33), for 1 psi surcharge pressure to saturation;
-    H is the depth of soil in feet.
+    H is the depth of soil in feet. In the PI <= 40 form the scan renders
+    the two operators before 0.0432PIwo and 0.01215PIH as "="; they are
+    read as minus signs (a judgment call, review pave-13), and the two
+    forms then nearly meet at PI 40 (H 10 ft, wo 20: 16.21 against 16.43).
+    The result's print_note says so.
 
     As printed::
 
@@ -195,10 +199,9 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
         PI <= 40  Sp = -9.18 + 1.5546PI + 0.08424H + 0.1wo
                        - 0.0432PIwo - 0.01215PIH
 
-    On the page the second form's continuation line is crossed by a scan
-    streak that makes its two operators look like "="; they are read as
-    minus signs (an "=" cannot stand there). Both forms are printed for
-    PI = 40; at exactly 40 the PI >= 40 form is returned and the other
+    An "=" cannot stand in either place; read as plus signs, the PI <= 40
+    form would give about 95.3 at PI 40 (H 10 ft, wo 20). Both forms are
+    printed for PI = 40; at exactly 40 the PI >= 40 form is returned and the other
     value is given in the note (the code's choice).
 
     Parameters
@@ -214,7 +217,7 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
     -------
     dict
         Keys: potential_swell_pct, form ('PI >= 40' or 'PI <= 40'),
-        condition, equation, note, reference, and the inputs.
+        condition, equation, note, print_note, reference, and the inputs.
 
     Raises
     ------
@@ -248,6 +251,11 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
         "condition": "for 1 psi surcharge pressure to saturation",
         "equation": eq,
         "note": note,
+        "print_note": ("In the PI <= 40 form the scan renders the two "
+                       "operators before 0.0432PIwo and 0.01215PIH as '='; "
+                       "they are read as minus signs, and the two forms then "
+                       "nearly meet at PI 40 (H 10 ft, wo 20: 16.21 against "
+                       "16.43)."),
         "reference": _T42,
     }
 

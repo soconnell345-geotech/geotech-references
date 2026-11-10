@@ -148,7 +148,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
 | ufc_backfill | UFC 3-220-04FA Backfill (rebuilt from the print 2026-11-10) | 7 | 49 | - |
-| ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10) | 9 | 55 | - |
+| ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10) | 9 | 56 | - |
 | ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | 339 | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
 | eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes) |
