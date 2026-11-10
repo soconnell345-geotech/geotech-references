@@ -1084,16 +1084,28 @@ class TestCbrFromDcpNazzal:
     """Tests for Equation 8-38."""
 
     def test_basic(self):
-        # DCP=20: CBR = 2559 / (20^1.84 + 7.35) - 1
-        # 20^1.84 = exp(1.84*ln(20)) = exp(1.84*2.99573) = exp(5.51214) = 247.66
-        # CBR = 2559 / (247.66 + 7.35) - 1 = 2559 / 255.01 - 1 = 10.035 - 1 = 9.035
-        expected = 2559.0 / (20.0 ** 1.84 + 7.35) - 1.0
-        assert cbr_from_dcp_nazzal(20.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-38 as printed, PDF p. 484 (printed p. 456):
+        # CBR = 2559 / (DCP^1.84 - 7.35) + 1
+        # DCP=20: 20^1.84 = 247.67; 2559/240.32 + 1 = 11.648
+        assert cbr_from_dcp_nazzal(20.0) == pytest.approx(11.648, abs=1e-3)
 
-    def test_small_dcp(self):
-        # DCP=6.3 (lower bound of valid range)
-        expected = 2559.0 / (6.3 ** 1.84 + 7.35) - 1.0
-        assert cbr_from_dcp_nazzal(6.3) == pytest.approx(expected, rel=1e-4)
+    def test_ends_of_stated_range(self):
+        # PDF p. 484 (printed p. 456): "DCP values between 6.3 and 67 mm/blow"
+        # DCP=6.3: 6.3^1.84 = 29.566; 2559/22.216 + 1 = 116.19
+        # DCP=67: 67^1.84 = 2290.7; 2559/2283.4 + 1 = 2.1207
+        assert cbr_from_dcp_nazzal(6.3) == pytest.approx(116.19, abs=0.01)
+        assert cbr_from_dcp_nazzal(67.0) == pytest.approx(2.1207, abs=1e-3)
+
+    def test_dcp_10(self):
+        # DCP=10: 10^1.84 = 69.183; 2559/61.833 + 1 = 42.386
+        assert cbr_from_dcp_nazzal(10.0) == pytest.approx(42.386, abs=1e-3)
+
+    def test_outside_stated_range_raises(self):
+        # The denominator passes through zero at DCP = 7.35^(1/1.84) = 2.96
+        with pytest.raises(ValueError, match="outside 6.3 to 67 mm/blow"):
+            cbr_from_dcp_nazzal(3.0)
+        with pytest.raises(ValueError, match="outside 6.3 to 67 mm/blow"):
+            cbr_from_dcp_nazzal(80.0)
 
     def test_dcp_not_positive_raises(self):
         with pytest.raises(ValueError, match="dcp must be positive"):
@@ -1113,15 +1125,18 @@ class TestCbrFromSpt:
     """Tests for Equation 8-39."""
 
     def test_basic(self):
-        # N=15: log(CBR) = -5.13 + 6.55*log10(300/15^0.26)
-        # 15^0.26 = exp(0.26*ln(15)) = exp(0.26*2.70805) = exp(0.70409) = 2.0221
-        # 300/2.0221 = 148.36
-        # log10(148.36) = 2.17130
-        # log(CBR) = -5.13 + 6.55*2.17130 = -5.13 + 14.222 = 9.092
-        # CBR = 10^9.092
-        log_cbr = -5.13 + 6.55 * math.log10(300.0 / 15.0 ** 0.26)
-        expected = 10.0 ** log_cbr
-        assert cbr_from_spt(15.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-39 as printed, PDF p. 485 (printed p. 457):
+        # log CBR = -5.13 + 6.55 [log(300/N)]^-0.26
+        # N=10: log(30) = 1.47712; 1.47712^-0.26 = 0.90355
+        # log CBR = -5.13 + 5.9183 = 0.7883; CBR = 6.141
+        assert cbr_from_spt(10.0) == pytest.approx(6.141, abs=1e-3)
+
+    def test_against_figure_8_57(self):
+        # Figure 8-57, PDF p. 486 (printed p. 458), plots the same curve:
+        # about 26 at N = 30 and about 160 at N = 68.
+        # N=30: log(10) = 1; log CBR = -5.13 + 6.55 = 1.42; CBR = 26.30
+        assert cbr_from_spt(30.0) == pytest.approx(26.30, abs=0.01)
+        assert cbr_from_spt(68.0) == pytest.approx(160.0, abs=5.0)
 
     def test_n_not_positive_raises(self):
         with pytest.raises(ValueError, match="n must be positive"):
@@ -1130,6 +1145,10 @@ class TestCbrFromSpt:
     def test_n_negative_raises(self):
         with pytest.raises(ValueError, match="n must be positive"):
             cbr_from_spt(-5.0)
+
+    def test_n_300_or_more_raises(self):
+        with pytest.raises(ValueError, match="n must be less than 300"):
+            cbr_from_spt(300.0)
 
 
 # ============================================================================
@@ -1520,31 +1539,60 @@ class TestTable89ShansepM:
 
 
 class TestTable824CbrDcp:
-    """Tests for Table 8-24: CBR-DCP correlation coefficients."""
+    """Tests for Table 8-24: CBR Correlations with DCP."""
 
-    def test_webster(self):
-        # webster_1992: a=292.0, x=-1.12
-        result = table_8_24_cbr_dcp("webster_1992")
-        assert result["a"] == pytest.approx(292.0, rel=1e-4)
-        assert result["x"] == pytest.approx(-1.12, rel=1e-4)
+    # Table 8-24 as printed, PDF p. 484 (printed p. 456): all 13 rows.
+    PRINTED = [
+        ("gabr_2000", 25.0, -0.55),
+        ("feleke_araya_2016_fine_a47", 47.0, -0.90),
+        ("george_2009", 47.0, -0.79),
+        ("white_2018_cl_cbr_lt_10", 59.0, -2.00),
+        ("feleke_araya_2016_coarse_a90", 90.0, -1.17),
+        ("feleke_araya_2016_fine_a104", 104.0, -0.91),
+        ("feleke_araya_2016_coarse_a157", 157.0, -0.85),
+        ("george_kumar_2018", 246.0, -1.35),
+        ("white_2018_all_except_cl_cbr_lt_10", 292.0, -1.12),
+        ("smith_pratt_1983", 363.0, -1.15),
+        ("harrison_1986_clay_dcp_lt_10", 501.0, -1.12),
+        ("harrison_1986_clay_dcp_gt_10", 363.0, -1.16),
+        ("kleyn_van_heerden_1983", 425.0, -1.27),
+    ]
 
-    def test_chua(self):
-        # chua_1988: a=3370.0, x=-1.51
-        result = table_8_24_cbr_dcp("chua_1988")
-        assert result["a"] == pytest.approx(3370.0, rel=1e-4)
-        assert result["x"] == pytest.approx(-1.51, rel=1e-4)
+    @pytest.mark.parametrize("source, a, x", PRINTED)
+    def test_printed_row(self, source, a, x):
+        result = table_8_24_cbr_dcp(source)
+        assert result["a"] == a
+        assert result["x"] == x
+
+    def test_thirteen_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_24_CBR_DCP) == 13
+        assert set(chapter8._TABLE_8_24_CBR_DCP) == {r[0] for r in self.PRINTED}
+
+    def test_reference_as_printed(self):
+        result = table_8_24_cbr_dcp("harrison_1986_clay_dcp_lt_10")
+        assert result["reference"] == (
+            "Harrison (1986), clay-like soils with DCP < 10 mm/blow")
+
+    def test_case_insensitive(self):
+        assert table_8_24_cbr_dcp(" Gabr_2000 ")["a"] == 25.0
 
     def test_returns_copy(self):
         # Modifying returned dict doesn't affect source
-        result1 = table_8_24_cbr_dcp("webster_1992")
-        original_a = result1["a"]
+        result1 = table_8_24_cbr_dcp("gabr_2000")
         result1["a"] = 999.0
-        result2 = table_8_24_cbr_dcp("webster_1992")
-        assert result2["a"] == pytest.approx(original_a, rel=1e-4)
+        assert table_8_24_cbr_dcp("gabr_2000")["a"] == 25.0
 
     def test_unknown_raises(self):
         with pytest.raises(ValueError, match="Unknown source"):
             table_8_24_cbr_dcp("unknown_source")
+
+    def test_rows_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table, none of which is a row of Table 8-24.
+        for source in ["webster_1992", "ese_2006", "livneh_2000",
+                       "harrison_1987", "chua_1988", "pen_2002"]:
+            with pytest.raises(ValueError, match="Unknown source"):
+                table_8_24_cbr_dcp(source)
 
 
 # ============================================================================
@@ -1647,31 +1695,25 @@ class TestTable89Integration:
 class TestTable824Integration:
     """Chain table_8_24 → cbr_from_dcp_power."""
 
-    def test_webster_dcp10(self):
-        # Webster (1992): CBR = 292 * DCP^(-1.12), DCP=10 mm/blow
-        coeffs = table_8_24_cbr_dcp("webster_1992")
-        cbr = cbr_from_dcp_power(coeffs["a"], 10.0, coeffs["x"])
-        # 292 * 10^(-1.12) = 292 / 13.18 = 22.15
-        expected = 292.0 * 10.0 ** (-1.12)
-        assert cbr == pytest.approx(expected, rel=1e-4)
+    def test_harrison_dcp8(self):
+        # Table 8-24, PDF p. 484 (printed p. 456): Harrison (1986), clay-like
+        # soils with DCP < 10 mm/blow: CBR = 501 * DCP^(-1.12)
+        # DCP=8: 8^1.12 = 10.267; 501/10.267 = 48.80
+        coeffs = table_8_24_cbr_dcp("harrison_1986_clay_dcp_lt_10")
+        cbr = cbr_from_dcp_power(coeffs["a"], 8.0, coeffs["x"])
+        assert cbr == pytest.approx(48.80, abs=0.01)
 
-    def test_webster_dcp25(self):
-        # DCP=25 mm/blow
-        coeffs = table_8_24_cbr_dcp("webster_1992")
+    def test_gabr_dcp25(self):
+        # Gabr et al. (2000): CBR = 25 * DCP^(-0.55)
+        # DCP=25: 25^0.55 = 5.8731; 25/5.8731 = 4.257
+        coeffs = table_8_24_cbr_dcp("gabr_2000")
         cbr = cbr_from_dcp_power(coeffs["a"], 25.0, coeffs["x"])
-        expected = 292.0 * 25.0 ** (-1.12)
-        assert cbr == pytest.approx(expected, rel=1e-4)
+        assert cbr == pytest.approx(4.257, abs=1e-3)
 
-    def test_published_webster_formula(self):
-        # Published: CBR = 292 * DCP^(-1.12)
-        coeffs = table_8_24_cbr_dcp("webster_1992")
-        assert coeffs["a"] == pytest.approx(292.0, rel=1e-4)
-        assert coeffs["x"] == pytest.approx(-1.12, rel=1e-4)
-
-    def test_all_sources_give_positive_cbr(self):
-        # For DCP=15 mm/blow, all sources should give positive CBR
-        for source in ["webster_1992", "ese_2006", "livneh_2000",
-                        "harrison_1987", "chua_1988", "pen_2002"]:
+    def test_all_rows_give_positive_cbr(self):
+        # For DCP=15 mm/blow, every row gives a positive CBR
+        from geotech_references.dm7_1 import chapter8
+        for source in chapter8._TABLE_8_24_CBR_DCP:
             coeffs = table_8_24_cbr_dcp(source)
             cbr = cbr_from_dcp_power(coeffs["a"], 15.0, coeffs["x"])
             assert cbr > 0.0, f"Negative CBR for {source}: {cbr}"

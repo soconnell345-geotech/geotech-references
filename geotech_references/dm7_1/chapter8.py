@@ -1590,58 +1590,21 @@ def cbr_from_dcp_power(a_coeff: float, dcp: float, x: float) -> float:
 
 
 def cbr_from_dcp_nazzal(dcp: float) -> float:
-    """CBR from DCP using Nazzal correlation (Equation 8-38).
+    """California Bearing Ratio CBR (%) from the DCP index in mm/blow, Equation 8-38 (Nazzal 2003).
 
     Nazzal (2003) correlation for soils with DCP values between 6.3
-    and 67 mm/blow.
+    and 67 mm/blow.  As printed::
+
+        CBR = 2559 / (DCP^1.84 - 7.35) + 1
 
     .. math::
-        CBR = \\frac{2559}{DCP^{1.84}} + \\frac{1}{7.35} - 1
-
-    Note: Reading the PDF carefully, the equation is:
-    CBR = 2559 / (DCP^1.84 + 7.35) - 1
-    Actually, re-reading: "CBR = 2559 / (DCP^1.84) + 1/7.35 - 1" ...
-    The extracted text reads: "2559 / (1 + 7.35)^1.84 ..." No. Let me
-    re-read the raw text:
-
-    1.84
-    2559
-    1
-    7.35
-    CBR
-    DCP
-    =
-    +
-    -
-
-    This is: CBR = 2559 / (DCP^1.84 + 7.35) - 1 ... No. Looking at the
-    layout more carefully: the fraction has 2559 on top and DCP^1.84 on
-    the bottom, then + 1/7.35 ... Actually from layout analysis:
-
-    CBR = 2559 / DCP^1.84 + 1/7.35
-
-    But that yields large CBR values. Checking Nazzal (2003), the
-    published form is: CBR = 1 / (0.002871 * DCP) ^ 2
-    or more commonly: log(CBR) = ... Let me use what the PDF says
-    most literally. The stacked fractions suggest:
-
-    CBR = 2559 / (DCP^1.84) - 1 + 1/7.35
-
-    The most standard Nazzal (2003) form found in literature is:
-    CBR = (292 / DCP)^1.12
-    But the UFC presents a different specific form. Reading the stacked
-    notation carefully: 2559/(DCP^1.84 + 7.35) - 1
-
-    After careful analysis of the PDF layout:
-
-    .. math::
-        CBR = \\frac{2559}{DCP^{1.84} + 7.35} - 1
+        CBR = \\frac{2559}{DCP^{1.84} - 7.35} + 1
 
     Parameters
     ----------
     dcp : float
-        Dynamic cone penetration index (mm/blow).  Valid range is
-        6.3 to 67 mm/blow.
+        Dynamic cone penetration index (mm/blow), between 6.3 and
+        67 mm/blow, the range the manual gives for this correlation.
 
     Returns
     -------
@@ -1651,7 +1614,9 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     Raises
     ------
     ValueError
-        If *dcp* is not positive.
+        If *dcp* is not positive, or is outside 6.3 to 67 mm/blow (the
+        denominator DCP^1.84 - 7.35 passes through zero near 3 mm/blow,
+        so the equation has no meaning below its stated range).
 
     References
     ----------
@@ -1660,30 +1625,35 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     """
     if dcp <= 0.0:
         raise ValueError("dcp must be positive.")
-    return 2559.0 / (dcp ** 1.84 + 7.35) - 1.0
+    if dcp < 6.3 or dcp > 67.0:
+        raise ValueError(
+            "dcp is outside 6.3 to 67 mm/blow, the range UFS 3-220-10 "
+            "p. 456 gives for Equation 8-38 (Nazzal 2003)."
+        )
+    return 2559.0 / (dcp ** 1.84 - 7.35) + 1.0
 
 
 def cbr_from_spt(n: float) -> float:
-    """CBR from SPT N value using Livneh (Equation 8-39).
+    """California Bearing Ratio CBR (%) from the SPT blow count N, Equation 8-39 (Livneh 1989).
 
     Livneh (1989) correlation to estimate the California Bearing Ratio
-    from SPT blow count.
+    from SPT blow count.  As printed (the exponent -0.26 is on the
+    logarithm)::
+
+        log10(CBR) = -5.13 + 6.55 * [log10(300 / N)]^(-0.26)
 
     .. math::
-        \\log(CBR) = -5.13 + 6.55 \\cdot \\log
-        \\left(\\frac{300}{N^{0.26}}\\right)
+        \\log CBR = -5.13 + 6.55
+        \\left(\\log\\frac{300}{N}\\right)^{-0.26}
 
-    Rearranged:
-
-    .. math::
-        CBR = 10^{\\left[-5.13 + 6.55 \\cdot
-        \\log_{10}\\!\\left(\\frac{300}{N^{0.26}}\\right)\\right]}
+    Figure 8-57 (p. 458) plots this curve with the data behind it for N
+    from about 5 to about 68.
 
     Parameters
     ----------
     n : float
         SPT blow count (blows/ft).  Use N60 for modern hammers.
-        Must be > 0.
+        Must be > 0 and < 300.
 
     Returns
     -------
@@ -1693,16 +1663,22 @@ def cbr_from_spt(n: float) -> float:
     Raises
     ------
     ValueError
-        If *n* is not positive.
+        If *n* is not positive, or is 300 or more (log(300/N) is then
+        not positive and the equation cannot be evaluated).
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-39, p. 457.
+    Chapter 8, Equation 8-39, p. 457; Figure 8-57, p. 458.
     """
     if n <= 0.0:
         raise ValueError("n must be positive.")
-    log_cbr = -5.13 + 6.55 * math.log10(300.0 / n ** 0.26)
+    if n >= 300.0:
+        raise ValueError(
+            "n must be less than 300: Equation 8-39 (UFS 3-220-10 p. 457) "
+            "raises log(300/N) to the power -0.26."
+        )
+    log_cbr = -5.13 + 6.55 * math.log10(300.0 / n) ** -0.26
     return 10.0 ** log_cbr
 
 
@@ -2267,37 +2243,86 @@ def table_8_9_shansep_m(test_type: str) -> float:
 # ===========================================================================
 
 _TABLE_8_24_CBR_DCP = {
-    "webster_1992":  {"a": 292.0, "x": -1.12},
-    "ese_2006":      {"a": 17.6, "x": -0.64},
-    "livneh_2000":   {"a": 327.0, "x": -0.78},
-    "harrison_1987": {"a": 1620.0, "x": -2.10},
-    "chua_1988":     {"a": 3370.0, "x": -1.51},
-    "pen_2002":      {"a": 146.0, "x": -0.70},
+    # key: A, x, and the row's "Reference / Comment" as printed (p. 456)
+    "gabr_2000": {
+        "a": 25.0, "x": -0.55,
+        "reference": "Gabr et al. (2000)"},
+    "feleke_araya_2016_fine_a47": {
+        "a": 47.0, "x": -0.90,
+        "reference": "Feleke and Araya (2016), fine-grained soils"},
+    "george_2009": {
+        "a": 47.0, "x": -0.79,
+        "reference": "George et al. (2009)"},
+    "white_2018_cl_cbr_lt_10": {
+        "a": 59.0, "x": -2.00,
+        "reference": "White et al. (2018), CL with CBR < 10"},
+    "feleke_araya_2016_coarse_a90": {
+        "a": 90.0, "x": -1.17,
+        "reference": "Feleke and Araya (2016), coarse-grained soils"},
+    "feleke_araya_2016_fine_a104": {
+        "a": 104.0, "x": -0.91,
+        "reference": "Feleke and Araya (2016), fine-grained soils"},
+    "feleke_araya_2016_coarse_a157": {
+        "a": 157.0, "x": -0.85,
+        "reference": "Feleke and Araya (2016), coarse-grained soils"},
+    "george_kumar_2018": {
+        "a": 246.0, "x": -1.35,
+        "reference": "George and Kumar (2018)"},
+    "white_2018_all_except_cl_cbr_lt_10": {
+        "a": 292.0, "x": -1.12,
+        "reference": "White et al. (2018), All soils except CL with CBR < 10"},
+    "smith_pratt_1983": {
+        "a": 363.0, "x": -1.15,
+        "reference": "Smith and Pratt (1983)"},
+    "harrison_1986_clay_dcp_lt_10": {
+        "a": 501.0, "x": -1.12,
+        "reference": "Harrison (1986), clay-like soils with DCP < 10 mm/blow"},
+    "harrison_1986_clay_dcp_gt_10": {
+        "a": 363.0, "x": -1.16,
+        "reference": "Harrison (1986), clay-like soils with DCP > 10 mm/blow"},
+    "kleyn_van_heerden_1983": {
+        "a": 425.0, "x": -1.27,
+        "reference": "Kleyn and Van Heerden (1983)"},
 }
 
 
 def table_8_24_cbr_dcp(source: str) -> dict:
-    """CBR-DCP power-law correlation coefficients (Table 8-24).
+    """Coefficient A and exponent x of CBR = A * DCP^x (DCP in mm/blow), Table 8-24 "CBR Correlations with DCP".
 
-    Returns the empirical coefficient *a* and exponent *x* for use
-    with ``cbr_from_dcp_power`` (Equation 8-37).
+    Returns one row of Table 8-24 for use with ``cbr_from_dcp_power``
+    (Equation 8-37): the empirical coefficient *a*, the exponent *x*
+    (both dimensionless) and the row's reference as printed.  The table
+    has thirteen rows; Feleke and Araya (2016) appear in four of them
+    (two for fine-grained and two for coarse-grained soils, told apart
+    here by their A value).
 
     Parameters
     ----------
     source : str
-        Correlation source name: ``"webster_1992"``, ``"ese_2006"``,
-        ``"livneh_2000"``, ``"harrison_1987"``, ``"chua_1988"``,
-        or ``"pen_2002"``.
+        Row of the table, one of:
+        ``"gabr_2000"`` (A 25, x -0.55),
+        ``"feleke_araya_2016_fine_a47"`` (47, -0.90),
+        ``"george_2009"`` (47, -0.79),
+        ``"white_2018_cl_cbr_lt_10"`` (59, -2.00),
+        ``"feleke_araya_2016_coarse_a90"`` (90, -1.17),
+        ``"feleke_araya_2016_fine_a104"`` (104, -0.91),
+        ``"feleke_araya_2016_coarse_a157"`` (157, -0.85),
+        ``"george_kumar_2018"`` (246, -1.35),
+        ``"white_2018_all_except_cl_cbr_lt_10"`` (292, -1.12),
+        ``"smith_pratt_1983"`` (363, -1.15),
+        ``"harrison_1986_clay_dcp_lt_10"`` (501, -1.12),
+        ``"harrison_1986_clay_dcp_gt_10"`` (363, -1.16),
+        ``"kleyn_van_heerden_1983"`` (425, -1.27).
 
     Returns
     -------
     dict
-        ``{"a": float, "x": float}``.
+        ``{"a": float, "x": float, "reference": str}``.
 
     Raises
     ------
     ValueError
-        If *source* is not recognised.
+        If *source* is not a row of the table.
 
     References
     ----------

@@ -907,7 +907,7 @@
       "section_id": "8-6.2",
       "title": "Correlations with Dynamic Cone Penetration",
       "summary": "Provides empirical power-law and alternative correlations between CBR and the Dynamic Cone Penetration (DCP) index. The general form CBR = A·DCP^x is tabulated for numerous researchers (Table 8-24) with varying A and x coefficients. A separate nonlinear correlation by Nazzal (2003) is given for DCP values between 6.3 and 67 mm/blow. Figure 8-56 shows the expected range of CBR predictions.",
-      "body": "Many correlations have been developed to estimate CBR from the results of dynamic cone penetration tests. Most of these correlations can take the form\n\nCBR = A · DCP^x  (8-37)\n\nwhere:\nCBR = California Bearing Ratio,\nA = empirical coefficient,\nDCP = dynamic cone penetration index (mm/blow), and\nx = empirical exponent.\n\nThe values of A and x found by various researchers are summarized in Table 8-24. The range of CBR values expected from these correlations is presented in Figure 8-56.\n\nNazzal (2003) developed a similar correlation to those in Table 8-24 for soils with DCP values between 6.3 and 67 mm/blow:\n\nCBR = 2559 / (1 + 7.35 · DCP^1.84) - 1  (8-38)\n\nwhere:\nCBR = California Bearing Ratio, and\nDCP = dynamic cone penetration index (mm/blow).",
+      "body": "Many correlations have been developed to estimate CBR from the results of dynamic cone penetration tests. Most of these correlations can take the form\n\nCBR = A · DCP^x  (8-37)\n\nwhere:\nCBR = California Bearing Ratio,\nA = empirical coefficient,\nDCP = dynamic cone penetration index (mm/blow), and\nx = empirical exponent.\n\nThe values of A and x found by various researchers are summarized in Table 8-24. The range of CBR values expected from these correlations is presented in Figure 8-56.\n\nNazzal (2003) developed a similar correlation to those in Table 8-24 for soils with DCP values between 6.3 and 67 mm/blow:\n\nCBR = 2559 / (DCP^1.84 − 7.35) + 1  (8-38)\n\nwhere:\nCBR = California Bearing Ratio, and\nDCP = dynamic cone penetration index (mm/blow).",
       "key_points": [
         "The general DCP-CBR relationship is a power law: CBR = A·DCP^x, where A and x are empirically determined coefficients (Eq. 8-37).",
         "Coefficients A and x vary widely by researcher and soil type; A ranges from 25 to 501 and x ranges from -0.55 to -2.00 (Table 8-24).",
@@ -923,7 +923,7 @@
         },
         {
           "id": "Eq. 8-38",
-          "description": "Nazzal (2003) nonlinear CBR–DCP correlation for DCP values between 6.3 and 67 mm/blow: CBR = 2559 / (1 + 7.35·DCP^1.84) − 1.",
+          "description": "Nazzal (2003) nonlinear CBR–DCP correlation for DCP values between 6.3 and 67 mm/blow: CBR = 2559 / (DCP^1.84 − 7.35) + 1.",
           "implemented_in": "geotech_references.dm7_1.chapter8.cbr_from_dcp_nazzal"
         }
       ],
@@ -939,7 +939,7 @@
       "section_id": "8-6.3",
       "title": "Correlations with Standard Penetration Test",
       "summary": "Presents a logarithmic correlation by Livneh (1989) for estimating CBR from SPT blow count (N), with supporting data in Figure 8-57. The equation relates log(CBR) to log(N60), and is applicable using N60 for modern hammers. Provides a direct link between the most commonly performed in-situ test and pavement subgrade capacity.",
-      "body": "Livneh (1989) found that the CBR could be estimated from the results of the Standard Penetration Test as shown below. The data used to obtain this correlation is presented in Figure 8-57.\n\nlog(CBR) = −0.26 + log[(300 · N − 5.13) / 6.55]  (8-39)\n\nwhere:\nCBR = California Bearing Ratio, and\nN = SPT blow count value (use N60 for modern hammers).",
+      "body": "Livneh (1989) found that the CBR could be estimated from the results of the Standard Penetration Test as shown below. The data used to obtain this correlation is presented in Figure 8-57.\n\nlog(CBR) = −5.13 + 6.55 · [log(300 / N)]^−0.26  (8-39)\n\nwhere:\nCBR = California Bearing Ratio, and\nN = SPT blow count value (use N60 for modern hammers).",
       "key_points": [
         "Livneh (1989) developed a log-log correlation between CBR and SPT blow count N (Eq. 8-39).",
         "N60 should be used for modern hammer systems to standardize energy input.",
@@ -949,7 +949,7 @@
       "equations": [
         {
           "id": "Eq. 8-39",
-          "description": "Livneh (1989) logarithmic correlation between CBR and SPT blow count: log(CBR) = −0.26 + log[(300·N − 5.13) / 6.55], where N = SPT blow count (N60 for modern hammers).",
+          "description": "Livneh (1989) logarithmic correlation between CBR and SPT blow count: log(CBR) = −5.13 + 6.55·[log(300/N)]^−0.26, where N = SPT blow count (N60 for modern hammers).",
           "implemented_in": "geotech_references.dm7_1.chapter8.cbr_from_spt"
         }
       ],
