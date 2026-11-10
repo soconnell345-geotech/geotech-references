@@ -386,6 +386,40 @@ def resolve_reference(reference: str, figure_number: str | None = None) -> str:
 # OR-of-terms recall fallback shared with reference_search.
 _or_fallback = _qe.or_fallback
 
+#: The sheet label a catalog caption carries after the figure's own caption
+#: when the figure runs over several pages: "Design process flow chart
+#: (continued)" (GEC-12 D-1), "Boring Log S-1, Page 2 of 3" (D-2 to D-4),
+#: "... Frost Penetration (Sheet 2 of 4)" (UFC 3-250-01 D-3).
+_SHEET_LABEL = re.compile(
+    r"\s*(?:,\s*|\(\s*)?(?:continued|cont'd|cont\.|"
+    r"(?:sheet|page)\s+\d+\s+of\s+\d+)\s*\)?\s*$", re.I)
+
+
+def _figure_key(reference: str, figure_number: str, caption: str) -> tuple:
+    """One figure, whichever of its pages: the rows of one catalog with the
+    same number and the same caption once a sheet label is set aside. Two
+    figures printed under one number with different captions (UFC 3-250-01
+    F-21's two trucks, GEC-13 6-14's two figures) stay two."""
+    return (reference, str(figure_number or "").upper(),
+            _SHEET_LABEL.sub("", str(caption or "")).strip().lower())
+
+
+def _sheets(conn: sqlite3.Connection, row) -> list[dict[str, Any]]:
+    """The pages of the figure ``row`` is one sheet of, in page order, or
+    ``[]`` for a figure on one page."""
+    key = _figure_key(row["reference"], row["figure_number"], row["caption"])
+    rows = conn.execute(
+        "SELECT pdf_page_index, printed_page, caption FROM figures "
+        "WHERE reference = ? AND UPPER(figure_number) = ? "
+        "ORDER BY pdf_page_index, rowid",
+        (row["reference"], key[1])).fetchall()
+    same = [r for r in rows if _figure_key(
+        row["reference"], row["figure_number"], r["caption"]) == key]
+    if len(same) < 2:
+        return []
+    return [{"pdf_page_index": r["pdf_page_index"],
+             "printed_page": r["printed_page"]} for r in same]
+
 
 def _row_to_hit(row: sqlite3.Row) -> dict[str, Any]:
     return {
@@ -481,7 +515,12 @@ def figure_search(
         Ranked hits, each with ``reference``, ``reference_title``,
         ``figure_number``, ``caption``, ``chapter``, ``pdf_page_index``,
         ``printed_page`` and ``reference_id`` (the report number of the
-        figure's volume); a hit that does not hold every word of the query
+        figure's volume). A figure printed over several pages (one number,
+        the same caption but for a sheet label: "(continued)", "Page 2 of
+        3", "Sheet 2 of 4") is one hit: its best-ranked sheet, with
+        ``pages`` listing every sheet's ``pdf_page_index`` and
+        ``printed_page`` (:func:`figure_get` takes the one wanted). A hit
+        that does not hold every word of the query
         also has ``match`` (``"synonyms"``, or ``"any word"`` with
         ``lacks``, the words it does not hold), worked out after the
         ranking (2026-11-10 review, core-05). Call :func:`figure_get` for
@@ -567,12 +606,32 @@ def figure_search(
                         + ", ".join("?" for _ in chapters) + ")")
                 params.extend(chapters)
             sql += " ORDER BY bm25(figures_fts) LIMIT ?"
-            params.append(want)
-            return conn.execute(sql, params).fetchall()
+            # one row per figure (fig_key), the best-ranked of its sheets;
+            # asked again for more rows when sheets took places, so the
+            # rows of a query no figure repeats are exactly as before
+            n = want
+            while True:
+                rows = conn.execute(sql, params + [n]).fetchall()
+                seen: set = set()
+                kept = []
+                for r in rows:
+                    if fig_key(r) not in seen:
+                        seen.add(fig_key(r))
+                        kept.append(r)
+                if len(kept) >= want or len(rows) < n:
+                    return kept[:want]
+                n += want - len(kept)
 
-        # by catalog row, not by number: a number two rows hold (a figure
-        # over several pages, a number printed twice) keeps both rows
-        fig_key = lambda r: r["rid"]
+        # One hit per figure: the rows of a figure printed over several
+        # pages (one number, the same caption but for its sheet label) are
+        # one hit listing their pages, so its continuation sheets do not
+        # take the places of other figures; two figures printed under one
+        # number stay two hits (2026-11-10 review follow-up; before core-02
+        # rows were merged by number alone, which hid the second of two
+        # figures, and core-02 kept every row, which let sheets crowd out
+        # other figures).
+        fig_key = lambda r: _figure_key(r["reference"], r["figure_number"],
+                                        r["caption"])
         strategy = _qe.EXPANSION_STRATEGY
         ran = {"q": query}  # the query as last run (re-quoted when it failed)
 
@@ -630,9 +689,16 @@ def figure_search(
         # how each hit matched, worked out after the ranking (core-05)
         marks, absent = match_marks(conn, "figures_fts",
                                     [r["rid"] for r in page], ran["q"])
+        repeated = {(ref, num) for ref, num in conn.execute(
+            "SELECT reference, UPPER(figure_number) FROM figures "
+            "GROUP BY reference, UPPER(figure_number) HAVING COUNT(*) > 1")}
         hits = []
         for r in page:
             hit = _row_to_hit(r)
+            if (r["reference"], str(r["figure_number"]).upper()) in repeated:
+                pages = _sheets(conn, r)
+                if pages:
+                    hit["pages"] = pages
             hit.update(marks.get(r["rid"], {}))
             hits.append(hit)
         if max_chars is None:

@@ -153,3 +153,73 @@ def test_search_lists_both_rows_of_a_number_with_their_pages():
     pages = sorted(h["pdf_page_index"] for h in hits
                    if h["figure_number"] == "F-21")
     assert pages == [263, 264]
+
+
+# A figure printed over several pages is one search hit (2026-11-10 review
+# follow-up): core-02 kept every row of a repeated number in figure_search,
+# so the continuation sheets of GEC-12 D-1 to D-4 and UFC 3-250-01 D-3 took
+# the places of other figures. The rows of one number whose captions differ
+# only by a sheet label are one hit listing their pages; two figures printed
+# under one number (F-21, GEC-13 6-14) stay two.
+
+SHEETS = {
+    ("gec_12", "D-1"): [35, 36, 37, 38, 39, 40],
+    ("gec_12", "D-2"): [44, 45, 46],
+    ("gec_12", "D-3"): [47, 48],
+    ("gec_12", "D-4"): [49, 50, 51],
+    ("ufc_pavement", "D-3"): [207, 208, 209, 210],
+}
+
+
+@pytest.mark.parametrize("kwargs", [{}, {"max_chars": 14000}])
+@pytest.mark.parametrize("query,reference", [
+    ("design process flow chart continued", "gec_12"),
+    ("Boring Log S-1, Page 2", "gec_12"),
+    ("boring log SPT", "gec_12"),
+    ("frost penetration insulation base", "ufc_pavement"),
+])
+def test_a_figure_over_several_pages_is_one_hit(query, reference, kwargs):
+    out = _figures_db.figure_search(query, reference=reference, limit=10,
+                                    **kwargs)
+    hits = out["hits"] if isinstance(out, dict) else out
+    seen = [(h["reference"], h["figure_number"]) for h in hits]
+    assert len(seen) == len(set(seen)), seen
+    sheeted = [h for h in hits if (h["reference"], h["figure_number"])
+               in SHEETS]
+    assert sheeted
+    for h in sheeted:
+        pages = SHEETS[(h["reference"], h["figure_number"])]
+        assert [p["pdf_page_index"] for p in h["pages"]] == pages
+        assert h["pdf_page_index"] in pages
+
+
+def test_the_best_ranked_sheet_is_the_hit_s_page():
+    hit = next(h for h in _figures_db.figure_search(
+        "Boring Log S-1, Page 2", reference="gec_12", limit=5)
+        if h["figure_number"] == "D-2")
+    assert (hit["pdf_page_index"], hit["caption"]) == (
+        45, "Boring Log S-1, Page 2 of 3")
+    assert hit["pages"][1] == {"pdf_page_index": 45, "printed_page": 12}
+
+
+def test_two_figures_under_one_number_stay_two_hits():
+    f21 = [h for h in _figures_db.figure_search(
+        "F-21", reference="ufc_pavement", limit=10)
+        if h["figure_number"] == "F-21"]
+    assert sorted(h["pdf_page_index"] for h in f21) == [263, 264]
+    assert not any("pages" in h for h in f21)
+    for query, page in (("triangular column arrangements biaxial", 51),
+                        ("beam method", 53)):
+        hit = next(h for h in _figures_db.figure_search(
+            query, reference="gec_13", limit=10)
+            if h["figure_number"] == "6-14")
+        assert hit["pdf_page_index"] == page and "pages" not in hit
+
+
+def test_sheets_no_longer_crowd_out_main_s_top_ten():
+    """'driven pile design process flow chart' in gec_12: main's tenth
+    figure (7-32) had been pushed out by D-1's second sheet."""
+    numbers = [h["figure_number"] for h in _figures_db.figure_search(
+        "driven pile design process flow chart", reference="gec_12",
+        limit=10)]
+    assert "7-32" in numbers and numbers.count("D-1") == 1
