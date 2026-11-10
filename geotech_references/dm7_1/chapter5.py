@@ -1610,11 +1610,13 @@ def figure_5_30_Tr(
     Ur: float, n: float, Fs: float = 0.0, Fr: float = 0.0,
     approximate: bool = True
 ) -> float:
-    """Radial time factor Tr from Figures 5-30 / 5-31.
+    """Radial time factor Tr (dimensionless) for a degree of radial consolidation Ur, by Equations 5-22 and 5-23, the relation plotted in Figure 5-30 "Degree of Radial Consolidation".
 
     Convenience wrapper that computes the drain spacing factor Fn
     (Equation 5-23), then evaluates the analytical expression for Tr
-    (Equation 5-22) in a single call.
+    (Equation 5-22) in a single call.  It does not read Figure 5-31
+    ("Radial Consolidation with Gradual Loading (after Olson 1977)"),
+    which is a different solution.
 
     Parameters
     ----------
@@ -1637,7 +1639,7 @@ def figure_5_30_Tr(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figures 5-30 / 5-31, pp. 269-270.
+    Chapter 5, Equations 5-22 and 5-23, pp. 266-267; Figure 5-30, p. 269.
     """
     Fn = drain_spacing_factor(n, approximate=approximate)
     return time_factor_radial(Ur, Fn, Fs, Fr)
