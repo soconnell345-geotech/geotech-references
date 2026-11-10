@@ -171,13 +171,14 @@ def table_4_2_scale_factor(height_to_width_category):
 
 # ============================================================================
 # Eq 4.6/D.8 -- HSS support acceleration, no-C closed form (printed p. 32 /
-# p. 400, pdf 40/408). VALIDATED against the Appendix D worked example.
+# p. 392, pdf 40/400). VALIDATED against the Appendix D worked example.
 # ============================================================================
 
 def hss_support_acceleration(sa, gamma_tilde, pga, z, hs):
     """Eq 4.6 (= Eq D.8): HSS support acceleration ac via the pseudo-dynamic
-    (Chopra & Tan 1989) amplification method (printed p. 32 / p. 400). This
-    is the validated closed form -- see module docstring item 2 for why the
+    (Chopra & Tan 1989) amplification method (printed p. 32 / p. 392; Eq
+    D.8 is printed as A(z) = ac/PGA, so ac = PGA * A(z)). This is the
+    validated closed form -- see module docstring item 2 for why the
     "C = 0.75" factor in Eq 4.4 is NOT applied here.
 
         ac = [SA(T1,zeta)*Gamma~ - PGA] * phi(z) + PGA
@@ -208,13 +209,13 @@ def hss_support_acceleration(sa, gamma_tilde, pga, z, hs):
     Returns
     -------
     dict
-        {'ac', 'phi_z', 'equation': '4.6/D.8', 'printed_page': '32/400',
-         'pdf_page': '40/408'}
+        {'ac', 'phi_z', 'equation': '4.6/D.8', 'printed_page': '32/392',
+         'pdf_page': '40/400'}
     """
     phi_z = mode_shape_phi(z, hs)["phi"]
     ac = (sa * gamma_tilde - pga) * phi_z + pga
     return {"ac": ac, "phi_z": phi_z, "equation": "4.6/D.8",
-            "printed_page": "32/400", "pdf_page": "40/408"}
+            "printed_page": "32/392", "pdf_page": "40/400"}
 
 
 def hss_support_acceleration_with_c_factor(sa, gamma_tilde, pga, z, hs, c=0.75):
@@ -245,15 +246,13 @@ def hss_support_acceleration_with_c_factor(sa, gamma_tilde, pga, z, hs, c=0.75):
 
 
 def amplification_factor(sa, gamma_tilde, pga, z, hs):
-    """Eq D.10: the amplification factor A(z) = ac / PGA, normalized form
-    (printed p. 399).
+    """Eq D.8: the amplification factor A(z) at any height (printed p. 392).
+    At the top of the structure (phi(z) = 1) it reduces to Eq D.10 (printed
+    p. 399); this function computes the general Eq D.8 for any z.
 
-        A(z) = {[Gamma~*SA(T,zeta) - PGA] + PGA} / PGA   (at the top of a
-                                                            structure, z=Hs
-                                                            i.e. phi(z)=1;
-                                                            general form
-                                                            below)
-        A(z) = ac(z) / PGA
+        A(z) = {[SA(T1,zeta)*Gamma~ - PGA]*phi(z) + PGA} / PGA   (Eq D.8)
+             = ac(z) / PGA
+        A(top) = {[Gamma~*SA(T,zeta) - PGA] + PGA} / PGA         (Eq D.10)
 
     Verified against the Appendix D worked example: A(z) = 1.6/0.325 = 4.9
     (peak-SA variant) and 1.3/0.325 = 4.0 (period-based variant).
@@ -261,11 +260,11 @@ def amplification_factor(sa, gamma_tilde, pga, z, hs):
     Returns
     -------
     dict
-        {'a_z', 'ac', 'equation': 'D.10', 'printed_page': '399', 'pdf_page': 407}
+        {'a_z', 'ac', 'equation': 'D.8', 'printed_page': '392', 'pdf_page': 400}
     """
     ac = hss_support_acceleration(sa, gamma_tilde, pga, z, hs)["ac"]
-    return {"a_z": ac / pga, "ac": ac, "equation": "D.10",
-            "printed_page": "399", "pdf_page": 407}
+    return {"a_z": ac / pga, "ac": ac, "equation": "D.8",
+            "printed_page": "392", "pdf_page": 400}
 
 
 # ============================================================================

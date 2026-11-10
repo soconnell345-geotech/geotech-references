@@ -184,6 +184,11 @@ class TestPureFlexureDoubly_AppendixC3:
         assert r["c"] == pytest.approx(10.14, abs=0.01)
         assert r["mn"] == pytest.approx(26515.2, rel=5e-4)
         assert r["compression_steel_yields"] is False
+        # Appendix C-3 (EM_1110-2-2104_2025.pdf pdf 62 / printed 56):
+        # fs' = 87 - 443.7/a = 35.5 ksi at a = 8.62; the print's "es' =
+        # 0.0148 > 0.0021" is worked from d - c, the tension-steel strain.
+        assert r["fs_prime"] == pytest.approx(87.0 - 443.7 / 8.62, abs=0.1)
+        assert 0.003 * (60.0 - r["c"]) / r["c"] == pytest.approx(0.0148, abs=0.0001)
 
 
 class TestTensionPlusFlexure:

@@ -12,13 +12,13 @@ members. Printed pages per the 1 Nov 2023 edition (pdf_page = printed_page+5).
 For the complementary DESIGN direction (given a required Mn/Pn, solve
 directly for As/As'), see ``design.py`` (Appendix D-2).
 
-Some of Appendix B's fully-expanded cubic equations (B-33 in particular)
-were corrupted by PDF text extraction on the printed page (a scrambled
-multi-line OCR block). Rather than transcribe a guess, this module uses the
-IDENTICAL cubic reproduced cleanly in Appendix D-4 Step 3(a) -- the manual's
-own worked example applies "equation B-33" and prints its fully-expanded
-form there -- and verifies it against that example's numbers (ku = 0.357,
-phi*Pn = 63 kips, phi*Mn = 2880 k-in; see tests/test_em_2104_flexure_axial.py).
+Equation B-33 (doubly reinforced, tension-controlled cubic) is typeset
+cleanly on the rendered page (printed p. 47, pdf 53); only the PDF's text
+layer scrambles it. The code's cubic is identical, term for term, to the
+rendered B-33 and to the form the manual's worked example prints in
+Appendix D-4 Step 3(a), and it is verified against that example's numbers
+(ku = 0.357, phi*Pn = 63 kips, phi*Mn = 2880 k-in; see
+tests/test_em_2104_flexure_axial.py).
 Equation B-39 (doubly reinforced, compression-controlled cubic) and B-21
 (singly reinforced, compression-controlled cubic) were legible on the
 printed page and are transcribed directly.
@@ -573,10 +573,10 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     (e'/d > eb'/d), from strengths in ksi and dimensions in inches (printed
     pp. 46-47).
 
-    The printed page's fully-expanded form of Eq B-33 was corrupted by PDF
-    text extraction; this is the identical cubic as re-derived and printed
-    cleanly in Appendix D-4 Step 3(a) (verified against that worked example,
-    ku = 0.357 -- see the module tests):
+    Eq B-33 as typeset on the rendered page (printed p. 47, pdf 53; the
+    PDF's text layer scrambles it, the page itself is clean), the same
+    cubic the worked example prints in Appendix D-4 Step 3(a) (verified
+    against that example, ku = 0.357 -- see the module tests):
 
         ku^3 + [2*(e'/d - 1) - beta1]*ku^2
              - {(fy/(0.425fc')) * [rho'*(e'/d + d'/d - 1) + rho*(e'/d)]
@@ -972,13 +972,20 @@ def pure_flexure_doubly(as_, as_prime, fc_prime, fy, b, d, dprime, beta1=None,
     -- reproducing the two-case procedure demonstrated in Appendix C-3.
 
         Cc = 0.85*fc'*b*a                         [Eq B-52]
-        Cs = As'*(fs' - 0.85*fc')                 [Eq B-53]
+        Cs = As'*(fs' - 0.85*fc')                 [Eq B-53, as C-3 uses it]
         Mn = Cc*(d - a/2) + Cs*(d - d')            [Eq B-51]
+
+    Eq B-53 is typeset "Cs = 0.85 fs' - 0.85 fc' A's" (printed p. 51, pdf
+    57), a misprint (not a force); the code uses As'*(fs' - 0.85*fc'),
+    which Appendix C-3 prints and uses (printed p. 56, pdf 62).
 
     Verified against Appendix C-3 / Table C-1 (As=8 sq in, As'=4 sq in,
     fc'=4 ksi, fy=60 ksi, b=12 in, d=60 in, d'=6 in): a = 8.62 in,
-    c = 10.14 in, Mn = 26,515.2 in-k (compression steel found to yield in
-    this case, es' = 0.0148 > ey).
+    c = 10.14 in, Mn = 26,515.2 in-k. The compression steel does NOT yield
+    in this case (es' = 0.003*(10.14 - 6)/10.14 = 0.0012 < ey, so fs' =
+    87 - 443.7/a = 35.5 ksi, from the quadratic a^2 - 3.57a - 43.5 = 0);
+    the print's check "es' = 0.0148 > 0.0021" is worked from d - c and is
+    the TENSION-steel strain, labelled es' in the print.
 
     Parameters
     ----------
