@@ -583,20 +583,24 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
 # Table 3-6: Swell Potential of Soils (printed p.30, pdf_page 37)
 # ============================================================================
 
-_TABLE_3_6_LL_BANDS = [(60, "high"), (50, "marginal"), (0, "low")]  # LL lower bound -> category (high first)
-_TABLE_3_6_PI_BANDS = [(35, "high"), (25, "marginal"), (0, "low")]
+# As printed (PDF 38, printed p.30): LL > 60 / PI > 35 High; LL 50-60 /
+# PI 25-35 Marginal; LL < 50 / PI < 25 Low. So 60 and 35 are Marginal.
+_TABLE_3_6_LL_BANDS = [(60, "high"), (50, "marginal")]  # (bound, category): high if > bound, marginal if >= bound
+_TABLE_3_6_PI_BANDS = [(35, "high"), (25, "marginal")]
 _TABLE_3_6_SEVERITY = {"low": 0, "marginal": 1, "high": 2}
 
 
 def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> dict:
-    """Swell potential of a soil from its Atterberg limits (Table 3-6).
+    """Swell potential of soils, UFC 3-250-11 Table 3-6 (printed p.30,
+    pdf_page 37); returns 'high', 'marginal' or 'low' from the liquid limit
+    and plasticity index (percent).
 
-    The source table lists LL and PI bands together (LL>60 & PI>35 -> High;
-    LL 50-60 & PI 25-35 -> Marginal; LL<50 & PI<25 -> Low) without stating
-    which criterion governs when they disagree. This function conservatively
-    reports the MORE SEVERE of the two single-criterion categories (a
-    standard interpretive convention for this kind of dual-criterion swell
-    chart), plus both individual categories for transparency.
+    The table prints LL and PI bands together (LL > 60 and PI > 35 High;
+    LL 50-60 and PI 25-35 Marginal; LL < 50 and PI < 25 Low; so LL 60 and
+    PI 35 are Marginal) without stating which criterion governs when they
+    disagree. This function reports the MORE SEVERE of the two
+    single-criterion categories (the code's choice; the table does not
+    say), plus both individual categories.
 
     Parameters
     ----------
@@ -611,11 +615,27 @@ def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> d
         {'liquid_limit', 'plasticity_index', 'll_category', 'pi_category',
          'potential_swell' (the more severe of the two), 'reference',
          'pdf_page'}.
+
+    Raises
+    ------
+    ValueError
+        If liquid_limit or plasticity_index is negative.
     """
-    # Bands are listed highest-severity-first, so the first band whose lower
-    # bound is met by the input is the governing category for that criterion.
-    ll_cat = next(cat for lo, cat in _TABLE_3_6_LL_BANDS if liquid_limit >= lo)
-    pi_cat = next(cat for lo, cat in _TABLE_3_6_PI_BANDS if plasticity_index >= lo)
+    if liquid_limit < 0 or plasticity_index < 0:
+        raise ValueError(
+            f"liquid_limit and plasticity_index must be >= 0, got "
+            f"{liquid_limit}, {plasticity_index}")
+
+    def _band(value, bands):
+        (hi_bound, hi_cat), (mid_bound, mid_cat) = bands
+        if value > hi_bound:
+            return hi_cat
+        if value >= mid_bound:
+            return mid_cat
+        return "low"
+
+    ll_cat = _band(liquid_limit, _TABLE_3_6_LL_BANDS)
+    pi_cat = _band(plasticity_index, _TABLE_3_6_PI_BANDS)
     governing = ll_cat if _TABLE_3_6_SEVERITY[ll_cat] >= _TABLE_3_6_SEVERITY[pi_cat] else pi_cat
     return {
         "liquid_limit": liquid_limit, "plasticity_index": plasticity_index,

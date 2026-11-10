@@ -264,6 +264,23 @@ class TestTable36:
         r = table_3_6_swell_potential(55, 28)
         assert r["potential_swell"] == "marginal"
 
+    def test_band_edges_as_printed(self):
+        # Table 3-6, UFC 3-250-11 PDF 38 (pdf_page 37), printed 30: LL > 60,
+        # PI > 35 High; LL 50-60, PI 25-35 Marginal; LL < 50, PI < 25 Low.
+        r = table_3_6_swell_potential(60, 35)
+        assert (r["ll_category"], r["pi_category"]) == ("marginal", "marginal")
+        assert r["potential_swell"] == "marginal"
+        r = table_3_6_swell_potential(50, 25)
+        assert r["potential_swell"] == "marginal"
+        r = table_3_6_swell_potential(60.5, 35.5)
+        assert r["potential_swell"] == "high"
+        r = table_3_6_swell_potential(49.9, 24.9)
+        assert r["potential_swell"] == "low"
+
+    def test_negative_input_raises_value_error(self):
+        with pytest.raises(ValueError):
+            table_3_6_swell_potential(-5, 10)
+
     def test_conservative_governs_on_disagreement(self):
         # High LL but low PI: the more severe category should govern.
         r = table_3_6_swell_potential(65, 10)
