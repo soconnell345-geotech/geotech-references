@@ -21,13 +21,17 @@ baseline).
 CROSS-DOCUMENT CONSISTENCY (verified against geotech_references.ufc_collapse
 in tests/test_gsa_collapse_reinforced_concrete.py, all confirmed by direct
 visual comparison against the rendered PDF pages of both documents):
-  - Table 6 (nonlinear RC beam modeling, replaces ASCE 41 Table 10-7) and
-    Table 7 (linear RC beam m-factors, replaces ASCE 41 Table 10-13) are
-    printed IDENTICALLY to UFC 4-023-03 Tables 4-1 and 4-2.
+  - Table 6 (nonlinear RC beam modeling, replaces ASCE 41 Table 10-7)
+    prints the same modeling parameters (a, b, c) as UFC 4-023-03 Table
+    4-1, but ONE acceptance column (equal to b in every row, printed
+    p. 39) where UFC prints separate primary and secondary columns.
+    Table 7 (linear RC beam m-factors, replaces ASCE 41 Table 10-13)
+    prints the same flexure rows as UFC Table 4-2.
   - Table 8 (nonlinear two-way slab modeling, replaces ASCE 41 Table
-    10-15) has ONE confirmed printed VALUE DIFFERENCE from UFC 4-023-03
-    Table 4-3: none found -- Table 8's modeling parameters (a, b, c) match
-    Table 4-3 exactly; see Table 9 below for the slab table that differs.
+    10-15) prints the same modeling parameters (a, b, c) as UFC 4-023-03
+    Table 4-3, but ONE acceptance column (0.100, 0.080, 0.020, 0.000;
+    0.02; 0.03, printed p. 41) where UFC prints two columns with other
+    values; see Table 9 below for the m-factor differences.
   - Table 9 (linear two-way slab m-factors, replaces ASCE 41 Table 10-16)
     has TWO confirmed printed VALUE DIFFERENCES from UFC 4-023-03 Table
     4-4 (both visually confirmed against the GSA source PDF, printed
@@ -114,9 +118,12 @@ _TABLE_6_OTHER = {
 
 
 def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ratio):
-    """Table 6(i): nonlinear modeling parameters (a, b, c) and acceptance-
-    criteria plastic rotations for a reinforced-concrete beam controlled
-    by FLEXURE (printed p. 39, replaces ASCE 41 Table 10-7). Linear
+    """GSA Table 6(i): nonlinear modeling parameters a, b (plastic
+    rotation, radians) and c (residual strength ratio) and the acceptance-
+    criteria plastic rotation (radians) for a reinforced-concrete beam
+    controlled by FLEXURE (printed p. 39, replaces ASCE 41 Table 10-7).
+    GSA prints a single acceptance column, which equals b in every row and
+    applies to primary and secondary components (footnote 2). Linear
     interpolation between the printed grid points is permitted (footnote
     1) and performed here over rho_diff_over_rho_bal in [0.0, 0.5] and
     vw_ratio in [3, 6].
@@ -139,9 +146,10 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     Returns
     -------
     dict
-        {'a', 'b', 'c' (residual strength ratio), 'primary_acceptance'
-        (=a per the as-extracted table), 'secondary_acceptance' (=b),
-        'table': '6', 'printed_page': '39', 'pdf_page': 51}
+        {'a', 'b', 'c' (residual strength ratio), 'acceptance' (the
+        single printed column, = b), 'primary_acceptance' and
+        'secondary_acceptance' (both = 'acceptance'), 'table': '6',
+        'printed_page': '39', 'pdf_page': 51}
     """
     key = transverse_reinf.upper().strip()
     if key not in ("C", "NC"):
@@ -162,14 +170,20 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     a = _linterp(vw, [3.0, 6.0], [a3, a6])
     b = _linterp(vw, [3.0, 6.0], [b3, b6])
     c = _linterp(vw, [3.0, 6.0], [c3, c6])
-    return {"a": a, "b": b, "c": c, "primary_acceptance": a, "secondary_acceptance": b,
+    # GSA prints ONE acceptance column (equal to b in every row, rendered
+    # pdf 52 / printed 39); footnote 2 applies it to primary and secondary
+    # components alike.
+    return {"a": a, "b": b, "c": c, "acceptance": b,
+            "primary_acceptance": b, "secondary_acceptance": b,
             "table": "6", "printed_page": "39", "pdf_page": 51}
 
 
 def table_6_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
-    """Table 6(ii-iv): nonlinear modeling parameters for RC beams
-    controlled by SHEAR, inadequate development/splicing, or inadequate
-    embedment into the beam-column joint (printed p. 39).
+    """GSA Table 6(ii-iv): nonlinear modeling parameters a, b (radians)
+    and c, and the single printed acceptance-criteria plastic rotation
+    (radians, = b, for primary and secondary components alike) for RC
+    beams controlled by SHEAR, inadequate development/splicing, or
+    inadequate embedment into the beam-column joint (printed p. 39).
 
     Parameters
     ----------
@@ -182,8 +196,9 @@ def table_6_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
     Returns
     -------
     dict
-        {'a', 'b', 'c', 'primary_acceptance', 'secondary_acceptance',
-         'table': '6', 'printed_page': '39', 'pdf_page': 51}
+        {'a', 'b', 'c', 'acceptance', 'primary_acceptance',
+         'secondary_acceptance' (both = 'acceptance'), 'table': '6',
+         'printed_page': '39', 'pdf_page': 51}
     """
     if condition == "shear":
         key = "shear_stirrup_le_d2" if stirrup_spacing_le_d2 else "shear_stirrup_gt_d2"
@@ -194,8 +209,10 @@ def table_6_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
     else:
         raise ValueError("condition must be 'shear', 'development', or 'inadequate_embedment'")
     row = _TABLE_6_OTHER[key]
-    return {"a": row["a"], "b": row["b"], "c": row["c"],
-            "primary_acceptance": row["a"], "secondary_acceptance": row["b"],
+    # One printed acceptance column, equal to b in rows ii-iv (pdf 52 /
+    # printed 39: 0.02, 0.01, 0.02, 0.01, 0.03).
+    return {"a": row["a"], "b": row["b"], "c": row["c"], "acceptance": row["b"],
+            "primary_acceptance": row["b"], "secondary_acceptance": row["b"],
             "table": "6", "printed_page": "39", "pdf_page": 51}
 
 
@@ -316,27 +333,29 @@ _TABLE_8_FLEXURE = {
     "yes": {"vg0.2": (0.05, 0.10, 0.2), "vg0.4": (0.0, 0.04, 0.2)},
     "no": {"vg0.2": (0.02, 0.02, None), "vg0.4": (0.0, 0.0, None)},
 }
-# Single printed "Acceptance Criteria" column value per row. As printed,
-# this equals 'b' (the secondary modeling parameter) for the "yes" rows
-# and equals 'a'=='b' (identical for "no" rows, so not distinguishable)
-# for the "no" rows -- transcribed here as (primary=a, secondary=b) to
-# match the ufc_collapse Table 4-3 convention and enable a direct
-# cross-check (see module docstring).
+# GSA prints ONE "Acceptance Criteria" column (plastic rotation, radians)
+# for primary and secondary components alike (footnote 2), rendered pdf 54
+# / printed 41: 0.100, 0.080, 0.020, 0.000; development 0.02; embedment
+# 0.03. (UFC 4-023-03 Table 4-3 prints two columns with other values.)
 _TABLE_8_ACCEPT = {
-    "yes": {"vg0.2": (0.05, 0.10), "vg0.4": (0.0, 0.08)},
-    "no": {"vg0.2": (0.015, 0.015), "vg0.4": (0.0, 0.0)},
+    "yes": {"vg0.2": 0.100, "vg0.4": 0.080},
+    "no": {"vg0.2": 0.020, "vg0.4": 0.000},
 }
 
 _TABLE_8_OTHER = {
-    "development": {"a": 0.0, "b": 0.02, "c": 0.0, "primary": 0.0, "secondary": 0.01},
-    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2, "primary": 0.01, "secondary": 0.02},
+    "development": {"a": 0.0, "b": 0.02, "c": 0.0, "acceptance": 0.02},
+    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2, "acceptance": 0.03},
 }
 
 
 def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
-    """Table 8(i): nonlinear modeling parameters and acceptance criteria
-    for a two-way slab or slab-column connection controlled by FLEXURE
-    (printed p. 41, replaces ASCE 41 Table 10-15). Interpolated over
+    """GSA Table 8(i): nonlinear modeling parameters a, b (plastic
+    rotation, radians) and c, and the single printed acceptance-criteria
+    plastic rotation (radians; primary and secondary alike, footnote 2:
+    0.100 / 0.080 with continuity reinforcement, 0.020 / 0.000 without,
+    at Vg/Vo <= 0.2 / >= 0.4) for a two-way slab or slab-column connection
+    controlled by FLEXURE (printed p. 41, replaces ASCE 41 Table 10-15).
+    Interpolated over
     Vg/Vo in [0.2, 0.4] (footnote 1); the residual strength ratio c is
     undefined ('-') when continuity_reinforcement=False, matching the
     printed table (no residual capacity without continuity reinforcement).
@@ -356,8 +375,9 @@ def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
     -------
     dict
         {'a', 'b', 'c' (residual strength ratio, or None if undefined),
-         'primary_acceptance', 'secondary_acceptance', 'table': '8',
-         'printed_page': '41', 'pdf_page': 53}
+         'acceptance', 'primary_acceptance', 'secondary_acceptance' (both
+         = 'acceptance'), 'table': '8', 'printed_page': '41',
+         'pdf_page': 53}
     """
     key = "yes" if continuity_reinforcement else "no"
     vg = max(0.2, min(0.4, vg_over_vo))
@@ -366,16 +386,19 @@ def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
     a = _linterp(vg, [0.2, 0.4], [row["vg0.2"][0], row["vg0.4"][0]])
     b = _linterp(vg, [0.2, 0.4], [row["vg0.2"][1], row["vg0.4"][1]])
     c = None if row["vg0.2"][2] is None else _linterp(vg, [0.2, 0.4], [row["vg0.2"][2], row["vg0.4"][2]])
-    pa = _linterp(vg, [0.2, 0.4], [accept["vg0.2"][0], accept["vg0.4"][0]])
-    sa = _linterp(vg, [0.2, 0.4], [accept["vg0.2"][1], accept["vg0.4"][1]])
-    return {"a": a, "b": b, "c": c, "primary_acceptance": pa, "secondary_acceptance": sa,
+    acc = _linterp(vg, [0.2, 0.4], [accept["vg0.2"], accept["vg0.4"]])
+    return {"a": a, "b": b, "c": c, "acceptance": acc,
+            "primary_acceptance": acc, "secondary_acceptance": acc,
             "table": "8", "printed_page": "41", "pdf_page": 53}
 
 
 def table_8_slab_other_modeling(condition):
-    """Table 8(ii-iii): nonlinear modeling parameters for a two-way slab
-    controlled by inadequate development/splicing, or inadequate
-    embedment into the slab-column joint (printed p. 41).
+    """GSA Table 8(ii-iii): nonlinear modeling parameters a, b (radians)
+    and c, and the single printed acceptance-criteria plastic rotation
+    (radians: 0.02 for development/splicing, 0.03 for embedment; primary
+    and secondary alike) for a two-way slab controlled by inadequate
+    development/splicing or inadequate embedment into the slab-column
+    joint (printed p. 41).
 
     Parameters
     ----------
@@ -385,14 +408,15 @@ def table_8_slab_other_modeling(condition):
     Returns
     -------
     dict
-        {'a', 'b', 'c', 'primary_acceptance', 'secondary_acceptance',
-         'table': '8', 'printed_page': '41', 'pdf_page': 53}
+        {'a', 'b', 'c', 'acceptance', 'primary_acceptance',
+         'secondary_acceptance' (both = 'acceptance'), 'table': '8',
+         'printed_page': '41', 'pdf_page': 53}
     """
     if condition not in _TABLE_8_OTHER:
         raise ValueError("condition must be 'development' or 'inadequate_embedment'")
     row = _TABLE_8_OTHER[condition]
-    return {"a": row["a"], "b": row["b"], "c": row["c"],
-            "primary_acceptance": row["primary"], "secondary_acceptance": row["secondary"],
+    return {"a": row["a"], "b": row["b"], "c": row["c"], "acceptance": row["acceptance"],
+            "primary_acceptance": row["acceptance"], "secondary_acceptance": row["acceptance"],
             "table": "8", "printed_page": "41", "pdf_page": 53}
 
 
