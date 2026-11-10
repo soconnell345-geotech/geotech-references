@@ -127,8 +127,17 @@ class TestTableA3:
     def test_a2_variable_favourable(self):
         assert table_a_3_str_geo_actions("variable", "favourable", "A2") == 0.0
 
-    def test_default_set_a1(self):
-        assert table_a_3_str_geo_actions("permanent", "unfavourable") == 1.35
+    def test_the_set_is_required(self):
+        # Table A.3 (PDF p. 132, printed p. 130): A1 1,35, A2 1,0 for
+        # permanent unfavourable. The set used to default to A1.
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_3_str_geo_actions("permanent", "unfavourable")
+        assert table_a_3_str_geo_actions("permanent", "unfavourable", "A1") == 1.35
+        assert table_a_3_str_geo_actions("permanent", "unfavourable", "A2") == 1.0
+
+    def test_us_spelling_is_told_the_valid_conditions(self):
+        with pytest.raises(ValueError, match="unfavourable, favourable"):
+            table_a_3_str_geo_actions("permanent", "unfavorable", "A1")
 
     def test_invalid_set(self):
         with pytest.raises(ValueError):
@@ -209,8 +218,20 @@ class TestTableA6DrivenPiles:
         assert table_a_6_driven_pile_resistance("shaft_tension", "R4") == 1.6
 
     def test_aliases(self):
-        assert table_a_6_driven_pile_resistance("shaft", "R1") == 1.0
+        assert table_a_6_driven_pile_resistance("shaft_comp", "R1") == 1.0
         assert table_a_6_driven_pile_resistance("tension", "R4") == 1.6
+
+    def test_bare_shaft_is_refused(self):
+        # Tables A.6, A.7, A.8 (PDF p. 134, printed p. 132) print two shaft
+        # rows: "Shaft (compression)" (R4 1,3) and "Shaft in tension" (R4
+        # 1,6). "shaft" alone used to return the compression row.
+        for lookup in (table_a_6_driven_pile_resistance,
+                       table_a_7_bored_pile_resistance,
+                       table_a_8_cfa_pile_resistance):
+            with pytest.raises(ValueError, match="shaft_compression.*shaft_tension"):
+                lookup("shaft", "R4")
+            assert lookup("shaft_compression", "R4") == 1.3
+            assert lookup("shaft_tension", "R4") == 1.6
 
     def test_invalid(self):
         with pytest.raises(ValueError):
@@ -310,12 +331,27 @@ class TestTableA10GroundTest:
         assert table_a_10_correlation_ground_test("min", 7) == 1.12
         assert table_a_10_correlation_ground_test("min", 10) == 1.08
 
-    def test_interpolation_between_points(self):
-        # n=6 halfway between n=5 (1.29) and n=7 (1.27) -> 1.28
-        assert table_a_10_correlation_ground_test("mean", 6) == pytest.approx(1.28)
+    def test_unprinted_n_is_refused_not_interpolated(self):
+        # Table A.10 (PDF p. 135, printed p. 133) prints n = 1, 2, 3, 4, 5,
+        # 7 and 10 only, with no ">=" and no interpolation rule. n = 6, 8, 9
+        # used to be interpolated (n = 6 -> 1.28 mean, 1.135 min).
+        for n in (6, 8, 9):
+            for factor in ("mean", "min"):
+                with pytest.raises(ValueError, match="Table A.10"):
+                    table_a_10_correlation_ground_test(factor, n)
 
-    def test_n_greater_than_10_caps_at_10(self):
-        assert table_a_10_correlation_ground_test("mean", 50) == 1.25
+    def test_unprinted_n_message_gives_the_printed_neighbours(self):
+        with pytest.raises(ValueError) as exc:
+            table_a_10_correlation_ground_test("min", 6)
+        msg = str(exc.value)
+        assert "n = 5: 1.15" in msg and "n = 7: 1.12" in msg
+        assert "printed p. 133" in msg
+
+    def test_n_greater_than_10_is_refused(self):
+        # The last printed column is "10", not ">= 10" (Table A.9 prints
+        # ">= 5" and Table A.11 ">= 20" where a column is open-ended).
+        with pytest.raises(ValueError, match="n = 10: 1.25"):
+            table_a_10_correlation_ground_test("mean", 50)
 
     def test_invalid_n(self):
         with pytest.raises(ValueError):
@@ -336,6 +372,26 @@ class TestTableA11DynamicImpactTest:
         assert table_a_11_correlation_dynamic_impact_test("min", 10) == 1.30
         assert table_a_11_correlation_dynamic_impact_test("min", 15) == 1.25
         assert table_a_11_correlation_dynamic_impact_test("min", 20) == 1.25
+
+    def test_columns_are_a_step_not_interpolated(self):
+        # Table A.11 (PDF p. 136, printed p. 134): the columns are headed
+        # ">= 2", ">= 5", ">= 10", ">= 15", ">= 20". n between two columns
+        # takes the lower column. These used to be interpolated
+        # (n = 4: 1.533 mean, 1.40 min).
+        assert table_a_11_correlation_dynamic_impact_test("mean", 3) == 1.60
+        assert table_a_11_correlation_dynamic_impact_test("mean", 4) == 1.60
+        assert table_a_11_correlation_dynamic_impact_test("min", 4) == 1.50
+        assert table_a_11_correlation_dynamic_impact_test("mean", 7) == 1.50
+        assert table_a_11_correlation_dynamic_impact_test("min", 9) == 1.35
+        assert table_a_11_correlation_dynamic_impact_test("mean", 12) == 1.45
+        assert table_a_11_correlation_dynamic_impact_test("min", 14) == 1.30
+        assert table_a_11_correlation_dynamic_impact_test("mean", 19) == 1.42
+        assert table_a_11_correlation_dynamic_impact_test("min", 19) == 1.25
+
+    def test_n_above_20_takes_the_last_column(self):
+        # The last column is printed ">= 20".
+        assert table_a_11_correlation_dynamic_impact_test("mean", 35) == 1.40
+        assert table_a_11_correlation_dynamic_impact_test("min", 35) == 1.25
 
     def test_model_factor_signal_matching(self):
         xi = table_a_11_correlation_dynamic_impact_test("mean", 2, "signal_matching")
@@ -501,12 +557,90 @@ class TestDesignApproachSets:
         assert r["material_set"] == "M2"
         assert r["resistance_set"] == "R3"
 
-    def test_da1_alias(self):
-        assert design_approach_sets("DA1") == design_approach_sets("DA1-C1")
+    def test_da1_returns_both_combinations(self):
+        # 2.4.7.3.4.2 (1)P (PDF p. 34, printed p. 32): Combination 1:
+        # A1 "+" M1 "+" R1; Combination 2: A2 "+" M2 "+" R1. (2)P (PDF
+        # p. 35, printed p. 33), axially loaded piles and anchors:
+        # Combination 2: A2 "+" (M1 or M2) "+" R4. "DA1" used to return
+        # Combination 1 alone.
+        r = design_approach_sets("DA1")
+        c1, c2 = r["combinations"]
+        assert (c1["action_set"], c1["material_set"], c1["resistance_set"]) == ("A1", "M1", "R1")
+        assert (c2["action_set"], c2["material_set"], c2["resistance_set"]) == ("A2", "M2", "R1")
+        assert c2["pile_anchor_material_set"] == "M1 or M2"
+        assert c2["pile_anchor_resistance_set"] == "R4"
+        assert "different combinations may be critical" in r["note"]
+
+    def test_each_da1_combination_points_to_the_other(self):
+        c1 = design_approach_sets("DA1-C1")
+        c2 = design_approach_sets("DA1-C2")
+        assert c1["other_combination"] == "DA1-C2"
+        assert c2["other_combination"] == "DA1-C1"
+        assert "both are verified" in c1["note"]
+        assert "both are verified" in c2["note"]
+        # 2.4.7.3.4.2 NOTE 2 (printed p. 33)
+        assert "set M1 is used for calculating resistances of piles or anchors" in c2["pile_anchor_note"]
 
     def test_invalid(self):
         with pytest.raises(ValueError):
             design_approach_sets("DA4")
+
+
+class TestAnnexASelectorsAreRequired:
+    def test_no_lookup_answers_without_its_row_and_set(self):
+        # Every Annex A table has more than one row or set (Table A.4,
+        # printed p. 130: M1 all 1,0, M2 1,25 to 1,4). A call that left the
+        # selectors out used to get the first row of the set of ones
+        # (table_a_4_str_geo_soil_parameters() returned 1.0).
+        lookups = [
+            table_a_1_equ_actions, table_a_2_equ_soil_parameters,
+            table_a_3_str_geo_actions, table_a_4_str_geo_soil_parameters,
+            table_a_5_spread_foundation_resistance,
+            table_a_6_driven_pile_resistance, table_a_7_bored_pile_resistance,
+            table_a_8_cfa_pile_resistance,
+            table_a_9_correlation_static_load_test,
+            table_a_10_correlation_ground_test,
+            table_a_11_correlation_dynamic_impact_test,
+            table_a_12_anchorage_resistance,
+            table_a_13_retaining_structure_resistance,
+            table_a_14_slope_stability_resistance, table_a_15_upl_actions,
+            table_a_16_upl_soil_resistance, table_a_17_hyd_actions,
+            design_approach_sets,
+        ]
+        for lookup in lookups:
+            with pytest.raises(TypeError, match="missing"):
+                lookup()
+
+    def test_a_set_alone_is_not_enough(self):
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_4_str_geo_soil_parameters("phi")
+        with pytest.raises(TypeError, match="factor_set"):
+            table_a_7_bored_pile_resistance("base")
+        assert table_a_4_str_geo_soil_parameters("phi", "M2") == 1.25
+        assert table_a_7_bored_pile_resistance("base", "R4") == 1.6
+
+    def test_table_a_9_refuses_a_fractional_n_in_plain_words(self):
+        with pytest.raises(ValueError, match="whole number of piles"):
+            table_a_9_correlation_static_load_test("mean", 2.5)
+        assert table_a_9_correlation_static_load_test("mean", 7) == 1.00
+
+
+class TestBareCohesionIsRefused:
+    def test_cohesion_alone_is_not_a_row(self):
+        # Table A.4 (PDF p. 132, printed p. 130) prints "Effective cohesion"
+        # (M2 1,25) and "Undrained shear strength" (M2 1,4); Tables A.2 and
+        # A.16 likewise. "cohesion" alone used to return the effective
+        # cohesion factor.
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_4_str_geo_soil_parameters("cohesion", "M2")
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_2_equ_soil_parameters("cohesion")
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_16_upl_soil_resistance("cohesion")
+        assert table_a_4_str_geo_soil_parameters("effective_cohesion", "M2") == 1.25
+        assert table_a_4_str_geo_soil_parameters("c", "M2") == 1.25
+        assert table_a_4_str_geo_soil_parameters("cu", "M2") == 1.4
+        assert table_a_4_str_geo_soil_parameters("undrained_shear_strength", "M2") == 1.4
 
 
 # ============================================================================
@@ -586,18 +720,68 @@ class TestAnnexCEarthPressure:
         assert val == pytest.approx(0.33 * (18.0 * 3.0 + 10.0))
 
     def test_active_earth_pressure_with_u_and_cohesion(self):
+        # Eq. C.1 as printed (PDF p. 143, printed p. 141):
+        # sigma_a(z) = Ka [ integral(gamma dz) + q - u ] + u - c Kac
         val = active_earth_pressure(K_a=0.33, gamma=18.0, depth=3.0, q=0.0,
                                     u=15.0, c=20.0, K_ac=1.15)
-        assert val == pytest.approx(0.33 * 18.0 * 3.0 + 15.0 - 20.0 * 1.15)
+        assert val == pytest.approx(0.33 * (18.0 * 3.0 - 15.0) + 15.0 - 20.0 * 1.15)
+
+    def test_active_earth_pressure_below_water_made_up_numbers(self):
+        # Eq. C.1 (PDF p. 143, printed p. 141), made-up values:
+        # 0.333 * (20*5 + 0 - 49.05) + 49.05 = 66.02 kPa
+        val = active_earth_pressure(K_a=0.333, gamma=20.0, depth=5.0, u=49.05)
+        assert val == pytest.approx(66.01635)
+        # and with a surcharge: 0.333 * (100 + 12 - 49.05) + 49.05
+        val = active_earth_pressure(K_a=0.333, gamma=20.0, depth=5.0, q=12.0, u=49.05)
+        assert val == pytest.approx(0.333 * 62.95 + 49.05)
+
+    def test_active_earth_pressure_undrained_pore_pressure_cancels(self):
+        # C.1 (2) (printed p. 141): "For undrained soil, Ka = Kp = 1 and
+        # c = cu". With Ka = 1 the printed Eq. C.1 gives gamma*z + q - cu*Kac
+        # whatever u is.
+        dry = active_earth_pressure(K_a=1.0, gamma=19.0, depth=4.0, q=10.0,
+                                    u=0.0, c=30.0, K_ac=2.0)
+        wet = active_earth_pressure(K_a=1.0, gamma=19.0, depth=4.0, q=10.0,
+                                    u=25.0, c=30.0, K_ac=2.0)
+        assert dry == pytest.approx(19.0 * 4.0 + 10.0 - 30.0 * 2.0)
+        assert wet == pytest.approx(dry)
 
     def test_passive_earth_pressure_no_cohesion(self):
         val = passive_earth_pressure(K_p=4.6, gamma=18.0, depth=2.0, q=5.0)
         assert val == pytest.approx(4.6 * (18.0 * 2.0 + 5.0))
 
     def test_passive_earth_pressure_with_cohesion(self):
+        # Eq. C.2 as printed (PDF p. 143, printed p. 141):
+        # sigma_p(z) = Kp [ integral(gamma dz) + q - u ] + u + c Kpc
         val = passive_earth_pressure(K_p=4.6, gamma=18.0, depth=2.0,
                                      u=8.0, c=25.0, K_pc=3.1)
-        assert val == pytest.approx(4.6 * 18.0 * 2.0 + 8.0 + 25.0 * 3.1)
+        assert val == pytest.approx(4.6 * (18.0 * 2.0 - 8.0) + 8.0 + 25.0 * 3.1)
+
+    def test_passive_earth_pressure_below_water_made_up_numbers(self):
+        # Eq. C.2 (PDF p. 143, printed p. 141), made-up values:
+        # 3.0 * (20*5 + 0 - 49.05) + 49.05 = 201.90 kPa
+        val = passive_earth_pressure(K_p=3.0, gamma=20.0, depth=5.0, u=49.05)
+        assert val == pytest.approx(201.90)
+        # the pore pressure is not multiplied by Kp
+        dry = passive_earth_pressure(K_p=3.0, gamma=20.0, depth=5.0)
+        assert dry - val == pytest.approx((3.0 - 1.0) * 49.05)
+
+    def test_passive_earth_pressure_undrained_pore_pressure_cancels(self):
+        # C.1 (2) (printed p. 141): undrained soil, Kp = 1 and c = cu.
+        dry = passive_earth_pressure(K_p=1.0, gamma=19.0, depth=4.0, c=30.0, K_pc=2.0)
+        wet = passive_earth_pressure(K_p=1.0, gamma=19.0, depth=4.0, u=25.0,
+                                     c=30.0, K_pc=2.0)
+        assert dry == pytest.approx(19.0 * 4.0 + 30.0 * 2.0)
+        assert wet == pytest.approx(dry)
+
+    def test_cohesion_coefficient_passive_form_as_printed(self):
+        # Printed under Eq. C.2 (PDF p. 143, printed p. 141):
+        # Kpc = 2 sqrt[Kp (1 + a/c)], limited to 2,56 sqrt(Kp)
+        Kp = 3.0
+        val = cohesion_earth_pressure_coefficient(Kp, adhesion=5.0, cohesion=20.0)
+        assert val == pytest.approx(2.0 * math.sqrt(3.0 * 1.25))
+        capped = cohesion_earth_pressure_coefficient(Kp, adhesion=20.0, cohesion=20.0)
+        assert capped == pytest.approx(2.56 * math.sqrt(3.0))
 
     def test_cohesion_coefficient_no_adhesion(self):
         # Kac = 2*sqrt(Ka), when a=0
@@ -676,6 +860,41 @@ class TestUndrainedBearingResistance:
         r = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, L=4.0, shape="rectangular")
         assert r["sc"] == pytest.approx(1.0 + 0.2 * (2.0 / 4.0))
 
+    def test_strip_is_refused_not_computed_as_a_square(self):
+        # Annex D.3 (PDF p. 160, printed p. 158) prints sc for "a rectangular
+        # shape" and "a square or circular shape" only. shape="strip" with no
+        # L used to be computed with sc = 1,2 (a square): 328.5 kPa where a
+        # long rectangle gives 277 kPa.
+        with pytest.raises(ValueError, match="strip footing"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape="strip")
+        with pytest.raises(ValueError, match="strip footing"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=40.0, shape="strip")
+
+    def test_rectangular_without_length_is_refused(self):
+        with pytest.raises(ValueError, match="L .* is required"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape="rectangular")
+
+    def test_misspelt_shape_is_refused(self):
+        with pytest.raises(ValueError, match="Unknown shape"):
+            undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=20.0, shape="sqaure")
+
+    def test_long_rectangle_shape_factor_as_printed(self):
+        # sc = 1 + 0,2 (B'/L') for a rectangular shape (printed p. 158):
+        # B' 2 m, L' 200 m -> sc = 1.002
+        r = undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, L=200.0)
+        assert r["shape"] == "rectangular"
+        assert r["sc"] == pytest.approx(1.002)
+        assert r["bearing_pressure_kpa"] == pytest.approx(
+            (math.pi + 2.0) * 50.0 * 1.002 + 20.0)
+
+    def test_result_names_the_shape_case_used(self):
+        # sc = 1,2 for a square or circular shape (printed p. 158)
+        for shape in ("square_circular", "square", "circular", "circle"):
+            r = undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0, shape=shape)
+            assert r["shape"] == "square_circular"
+            assert r["sc"] == pytest.approx(1.2)
+        assert undrained_bearing_resistance(cu=50.0, q=20.0, B=2.0)["shape"] == "square_circular"
+
     def test_base_inclination_reduces_bc(self):
         r0 = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, alpha_deg=0.0)
         r10 = undrained_bearing_resistance(cu=40.0, q=0.0, B=2.0, alpha_deg=10.0)
@@ -709,6 +928,37 @@ class TestDrainedBearingResistance:
         phi_rad = math.radians(30.0)
         assert r["sq"] == pytest.approx(1.0 + (2.0 / 4.0) * math.sin(phi_rad))
         assert r["sgamma"] == pytest.approx(1.0 - 0.3 * (2.0 / 4.0))
+
+    def test_strip_is_refused_not_computed_as_a_square(self):
+        # Annex D.4 (PDF pp. 160-161, printed pp. 158-159) prints sq and
+        # sgamma for "a rectangular shape" and "a square or circular shape"
+        # only. shape="strip" with no L used to be computed with
+        # sq = 1 + sin(phi') and sgamma = 0,7 (a square).
+        with pytest.raises(ValueError, match="strip footing"):
+            drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="strip")
+        with pytest.raises(ValueError, match="L .* is required"):
+            drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="rectangular")
+
+    def test_long_rectangle_shape_factors_as_printed(self):
+        # sq = 1 + (B'/L') sin(phi'), sgamma = 1 - 0,3 (B'/L') (printed
+        # p. 158): B' 2 m, L' 200 m, phi' 30 deg -> sq 1.005, sgamma 0.997
+        r = drained_bearing_resistance(phi_deg=30.0, c=0.0, q=20.0, gamma=18.0,
+                                       B=2.0, L=200.0)
+        assert r["shape"] == "rectangular"
+        assert r["sq"] == pytest.approx(1.005)
+        assert r["sgamma"] == pytest.approx(0.997)
+
+    def test_square_or_circular_shape_factors_as_printed(self):
+        # sq = 1 + sin(phi'), sgamma = 0,7 (printed p. 158);
+        # sc = (sq Nq - 1)/(Nq - 1) (printed p. 159)
+        r = drained_bearing_resistance(phi_deg=30.0, c=10.0, q=20.0, gamma=18.0,
+                                       B=2.0, shape="circular")
+        assert r["shape"] == "square_circular"
+        assert r["sq"] == pytest.approx(1.5)
+        assert r["sgamma"] == pytest.approx(0.7)
+        assert r["sc"] == pytest.approx((1.5 * r["Nq"] - 1.0) / (r["Nq"] - 1.0))
 
     def test_load_inclination_reduces_bearing(self):
         r0 = drained_bearing_resistance(phi_deg=30.0, c=0.0, q=50.0, gamma=18.0, B=2.0)
