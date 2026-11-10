@@ -34,7 +34,11 @@ from . import _atomic_db
 from . import _packs
 from . import _query_expansion as _qe
 from ._retrieval import fit_hits, fit_record
-from ._retrieval_db import keyed_db_path, plain_terms, search_fts_safely
+from ._retrieval_db import (TRIED_ALL, absent_words_note, db_meta,
+                            keyed_db_path, match_marks, match_summary,
+                            plain_terms, query_words, search_fts_safely,
+                            source_state, unreadable_source,
+                            with_match_summary, write_build_meta)
 
 # FTS5 operator words we must not inject as bare terms in the OR fallback.
 
@@ -69,14 +73,29 @@ def _iter_catalogs() -> list[Path]:
     return out
 
 
+#: Layout of the figures database, kept in ``PRAGMA user_version``.
+#: 1 = a ``build_meta`` table holding the signature of the catalogs it was
+#: built from (2026-11-10 review, core-11); 0 = a database built before.
+_SCHEMA_VERSION = 1
+
+
 def _newest_source_mtime() -> float:
-    return max((c.stat().st_mtime for c in _iter_catalogs()), default=0.0)
+    return source_state(_iter_catalogs())[0]
 
 
 def _needs_rebuild(db_path: Path) -> bool:
+    """Whether the figures database at ``db_path`` must be built (again):
+    it is not there, a catalog is newer than it, it was built before
+    databases kept their sources' signature, or the catalogs are not the
+    ones it was built from -- one deleted, added, or restored with an
+    older date, which the date rule alone missed (core-11)."""
     if not db_path.exists():
         return True
-    return db_path.stat().st_mtime < _newest_source_mtime()
+    newest, signature = source_state(_iter_catalogs())
+    if db_path.stat().st_mtime < newest:
+        return True
+    version, built_from = db_meta(db_path)
+    return version != _SCHEMA_VERSION or built_from != signature
 
 
 def _build_db(db_path: Path) -> Path:
@@ -130,11 +149,15 @@ def _fill_db(conn: sqlite3.Connection) -> None:
 
     # a local pack's figures are filed under its pack id (REF-64)
     pack_of = {cat: pid for pid, cat in _packs.catalogs()}
-    for cat_path in _iter_catalogs():
+    sources = _iter_catalogs()
+    write_build_meta(cur, source_state(sources)[1], _SCHEMA_VERSION)
+    for cat_path in sources:
         try:
             data = json.loads(cat_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
+        except (OSError, json.JSONDecodeError) as e:
+            if cat_path in pack_of:
+                continue  # named in _packs.problems()
+            raise unreadable_source(cat_path, e) from e
         if cat_path not in pack_of:
             _index_catalog(cur, data.get("package", cat_path.parent.name),
                            data)
@@ -307,7 +330,10 @@ def _reference_candidates(conn: sqlite3.Connection,
 def _unknown_reference(conn: sqlite3.Connection, reference: str) -> str:
     """What a lookup says for a ``reference`` that names no figure catalog."""
     valid = sorted(r[0] for r in _catalog_refs(conn))
-    return (f"no figure catalog '{reference}'. Use a catalog id: "
+    skipped = _packs.problems_by_pack().get(reference)
+    why = (" The reference packs setting names it, but the index skipped "
+           "it: " + "; ".join(skipped) + "." if skipped else "")
+    return (f"no figure catalog '{reference}'.{why} Use a catalog id: "
             f"{', '.join(valid)} (or figure_search with no reference to "
             "find the figure)")
 
@@ -400,8 +426,13 @@ def figure_search(
     Parameters
     ----------
     query : str
-        FTS5 MATCH query. Plain words are AND-matched with porter stemming;
-        FTS5 operators (``"phrase"``, ``OR``, ``NEAR()``, ``col:term``) work.
+        FTS5 MATCH query, words matched with porter stemming. The figures
+        whose caption or description holds every word come first; unless
+        the expansion strategy is ``"off"``, figures holding a synonym of a
+        named term are added; and the places left are filled by figures
+        holding any one of the words. A hit that does not hold every word
+        says so in ``match`` (below). FTS5 operators (``"phrase"``,
+        ``OR``, ``NEAR()``, ``col:term``) work.
     reference : str, optional
         Restrict to one reference id (e.g. ``"dm7_2"``); another spelling
         of it, the app's module name ``dm7`` or the document's report
@@ -425,15 +456,23 @@ def figure_search(
         characters). With it the result is a dict of the hits that fit
         (:func:`_retrieval.fit_hits`: captions cut to 300 characters
         first, then the lowest-ranked hits left out) with, when some are
-        not shown or more match, ``next_offset`` and a ``note``; an error
-        is ``{"error": ...}``.
+        not shown or more were found, ``next_offset`` and a ``note``. When
+        some hits do not hold every word it adds ``matched``,
+        ``words_not_found`` and a sentence on the note, and an empty
+        result names the scope and the words no figure there holds, as
+        :func:`_retrieval_db.reference_search` does. An error is
+        ``{"error": ...}``.
 
     Returns
     -------
     list of dict, or dict with ``max_chars``
         Ranked hits, each with ``reference``, ``reference_title``,
         ``figure_number``, ``caption``, ``chapter``, ``pdf_page_index``,
-        ``printed_page``. Call :func:`figure_get` for the full row, or render
+        ``printed_page``; a hit that does not hold every word of the query
+        also has ``match`` (``"synonyms"``, or ``"any word"`` with
+        ``lacks``, the words it does not hold), worked out after the
+        ranking (2026-11-10 review, core-05). Call :func:`figure_get` for
+        the full row, or render
         the page for vision read-off. With ``max_chars``, the dict
         described above, plus ``resolved_reference`` (the catalog id or
         ids searched) when ``reference`` was not itself a catalog id. An
@@ -510,8 +549,10 @@ def figure_search(
         # over several pages, a number printed twice) keeps both rows
         fig_key = lambda r: r["rid"]
         strategy = _qe.EXPANSION_STRATEGY
+        ran = {"q": query}  # the query as last run (re-quoted when it failed)
 
         def search(q: str, relaxed: bool = False) -> list[sqlite3.Row]:
+            ran["q"] = q
             if strategy == "rerank":
                 # "shotgun": BM25 ranks the literal+synonym union in one query.
                 rows = run(_qe.combined_query(q))
@@ -560,20 +601,69 @@ def figure_search(
                 return {"error": f"FTS query error: {e}"}
             return [{"error": f"FTS query error: {e}"}]
         more = len(rows) > offset + limit
-        hits = [_row_to_hit(r) for r in rows[offset:offset + limit]]
+        page = rows[offset:offset + limit]
+        # how each hit matched, worked out after the ranking (core-05)
+        marks, absent = match_marks(conn, "figures_fts",
+                                    [r["rid"] for r in page], ran["q"])
+        hits = []
+        for r in page:
+            hit = _row_to_hit(r)
+            hit.update(marks.get(r["rid"], {}))
+            hits.append(hit)
         if max_chars is None:
             return hits
-        out = fit_hits(
-            hits, max_chars, text_fields=("caption",), offset=offset,
-            more=more, max_offset=_MAX_OFFSET,
-            narrow="narrow the query (more specific words, or a 'reference')",
-            fetch="figure_get returns a figure's whole catalog row")
+        if not rows:
+            scope = ("the catalog of " + ", ".join(refs) if refs
+                     else "the figure catalogs")
+            if chapters:
+                scope += f", chapter {chapter}"
+            tried = TRIED_ALL if strategy != "off" else (
+                "every word, then any one of the words; synonyms are off: "
+                "GEOTECH_RETRIEVAL_EXPANSION=off")
+            out = dict({"hits": [], "shown": 0}, **absent_words_note(
+                _words_in_no_figure(conn, ran["q"], refs, chapters),
+                scope, tried, [p for r in refs
+                               for p in _packs.problems_by_pack().get(r, [])
+                               if r.startswith(_packs.PACK_PREFIX)]))
+        else:
+            out = with_match_summary(fit_hits(
+                hits, max_chars, text_fields=("caption",), offset=offset,
+                more=more, max_offset=_MAX_OFFSET,
+                narrow=("narrow the query (more specific words, or a "
+                        "'reference')"),
+                fetch="figure_get returns a figure's whole catalog row",
+                more_text="more match" if not marks else "more were found"),
+                match_summary(list(marks.values()), absent))
         if reference and refs != [reference]:
             # the catalog(s) a loosely spelled reference was read as
             out["resolved_reference"] = refs[0] if len(refs) == 1 else refs
         return out
     finally:
         conn.close()
+
+
+def _words_in_no_figure(conn: sqlite3.Connection, query: str, refs: list,
+                        chapters: list) -> list:
+    """The query's words that no catalog row in the scope holds."""
+    out = []
+    for w in query_words(query):
+        sql = ("SELECT 1 FROM figures_fts x JOIN figures f "
+               "ON f.rowid = x.rowid WHERE figures_fts MATCH ?")
+        params: list[Any] = [w]
+        if refs:
+            sql += (" AND f.reference IN ("
+                    + ", ".join("?" for _ in refs) + ")")
+            params.extend(refs)
+        if chapters:
+            sql += (" AND f.chapter IN ("
+                    + ", ".join("?" for _ in chapters) + ")")
+            params.extend(chapters)
+        try:
+            if conn.execute(sql + " LIMIT 1", params).fetchone() is None:
+                out.append(w)
+        except sqlite3.OperationalError:
+            continue
+    return out
 
 
 def _page_label(row: sqlite3.Row) -> str:

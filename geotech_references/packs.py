@@ -484,7 +484,9 @@ def _smoke_lookups(folder: Path, pid: str, chapters: list[dict],
     _figures_db.list_indexed_figures()  # build the figure index too
     for p in _packs.problems():  # a file the indexes skipped or rolled back
         err(f"smoke test: {p}")
-    if pid not in listed:
+    # a pack whose chapter files were all skipped is listed with no
+    # sections and its problems (core-10), which is not indexed either
+    if not listed.get(pid, {}).get("n_sections"):
         err("smoke test: the pack is not in list_indexed_references")
         return
     info(f"indexed: {listed[pid]['n_chapters']} chapters, "
@@ -708,6 +710,9 @@ def main(argv: list[str] | None = None) -> int:
         else:
             text_refs = _retrieval_db.list_indexed_references()
             fig_refs = _figures_db.list_indexed_figures()
+        # a skipped pack is listed with no sections (core-10); it is named
+        # under "skipped" below
+        text_refs = [r for r in text_refs if r["n_sections"]]
         print(f"text index: {len(text_refs)} references "
               f"({_retrieval_db._db_path()})")
         print(f"figure index: {len(fig_refs)} catalogs "

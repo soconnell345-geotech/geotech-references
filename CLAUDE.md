@@ -241,8 +241,11 @@ its own (`7.3.2.1` under `7.3` where there is no `7.3.2`) — and both layers us
   section (3,884 rows), each with its own body, never its subsections', so a
   search hit is the section that holds the words: "Nordlund" finds GEC-12
   7.2.1.3.1, not only 7.2. Rows carry `parent_rowid`, `depth`, `parents_json`;
-  `PRAGMA user_version` = `_SCHEMA_VERSION` (2), and a database built by an
-  older version is rebuilt on first use whatever its mtime.
+  `PRAGMA user_version` = `_SCHEMA_VERSION` (3), and a database built by an
+  older version is rebuilt on first use whatever its mtime. Both databases
+  keep a `build_meta` table with the signature of their source files (path,
+  size, mtime of each), so a chapter file or catalog deleted, added or
+  restored with an older date also rebuilds (2026-11-10 review, core-11).
 - **Results say where a section sits.** Search hits (both layers) carry
   `parent_id` and `under` (`"7.2 Strength Limit States > 7.2.1 Nominal Axial
   ..."`). `reference_get` / `retrieve_section` work on any number and add
@@ -309,7 +312,9 @@ returns exactly what it always did; the app passes 14,000.
   the plain call still returns whole sections (unchanged); with `max_chars`
   each hit is the section's number, title, chapter, `parent_id`, `under` and
   a 300-character `snippet` from where the words first appear, and the
-  result is `{"hits", "shown", "total_hits"}`.
+  result is `{"hits", "shown", "total_hits"}`. When no section holds every
+  word it returns the ranked search of that reference instead, each hit
+  marked `match` (2026-11-10 review, core-07; see "How a hit matched").
 - **`reference_search` / `figure_search` gain `offset` and `max_chars`**;
   with `max_chars` the result is the `fit_hits` dict. A plain call runs the
   same SQL as before; a paged or fitted one asks for `offset + limit + 1`
@@ -329,6 +334,13 @@ returns exactly what it always did; the app passes 14,000.
   fields to `HIT_TEXT_CHARS` 300 first, then leave out the lowest-ranked
   hits; `left_out`, `next_offset` and a `note` saying how to get the rest)
   and `fit_record` (cut a record's longest text fields, never below 200).
+- **How a hit matched** (2026-11-10 review, core-05): `reference_search`
+  and `figure_search` hits that do not hold every word carry `match`
+  (`"synonyms"`, or `"any word"` with `lacks`, the words they do not
+  hold), worked out after the ranking, so no hit moves; a hit that holds
+  every word has no mark. With `max_chars` the dict adds `matched`,
+  `words_not_found` and a sentence on the note, and an empty result names
+  the scope searched, what was tried and the words nothing there holds.
 - **Section fetches are not shaped**: the largest (`reference_get` dm7_1
   1-3.6, 13,783; `retrieve_section` gec_12 8.5.2, 13,074) fit by their data.
   The app's guard test walks every reference method and fails if that

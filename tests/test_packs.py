@@ -426,7 +426,9 @@ def _builtin_search_works():
 def test_a_bad_pack_file_is_skipped_and_named(tmp_path, monkeypatch, kind):
     _bad_and_good_packs(tmp_path, monkeypatch, kind)
     _builtin_search_works()
-    refs = {r["reference"] for r in _retrieval_db.list_indexed_references()}
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    refs = {k for k, r in listed.items() if r["n_sections"]}
     figs = {r["reference"] for r in _figures_db.list_indexed_figures()}
     assert "local_good" in refs and "local_good" in figs
     # the bad file alone is left out; the pack's other file still indexes
@@ -437,6 +439,9 @@ def test_a_bad_pack_file_is_skipped_and_named(tmp_path, monkeypatch, kind):
             else "'description' is a list, not text or a number")
     assert len(named) == 1 and what in named[0] and named[0].endswith(
         "; skipped")
+    # and the listing says so (2026-11-10 review, core-10)
+    assert listed["local_bad"]["problems"] == named
+    assert "problems" not in listed["local_good"]
 
 
 @pytest.mark.parametrize("kind", ["text", "catalog"])
@@ -450,7 +455,7 @@ def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
     _builtin_search_works()
     if kind == "text":  # section 1.1 went in before 1.2 failed
         refs = {r["reference"] for r in
-                _retrieval_db.list_indexed_references()}
+                _retrieval_db.list_indexed_references() if r["n_sections"]}
         assert "local_good" in refs and "local_bad" not in refs
     else:  # figure 1-1 went in before 1-2 failed
         assert _figures_db.figure_get("local_good", "1-2")
@@ -483,6 +488,30 @@ def test_a_number_two_sections_hold_is_refused_by_both_fetches(
         assert "chapter 2 'Zorblite Wall Drainage'" in msg
         # a number only one section holds still comes back
         assert fetch(PID, "1.1")["title"] == "Scope"
+
+
+def test_a_skipped_pack_is_listed_and_a_search_of_it_says_why(
+        tmp_path, monkeypatch):
+    """2026-11-10 review, core-10: a pack the index skipped was left out of
+    list_indexed_references without a word, and a search naming it was
+    told only that no such reference exists."""
+    make_pack(tmp_path / "packs", "local_good", pdf=False)
+    make_pack(tmp_path / "packs", "noprefix", pdf=False)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    skipped = listed["noprefix"]
+    assert skipped["n_sections"] == 0 and skipped["n_chapters"] == 0
+    assert len(skipped["problems"]) == 1
+    assert "'noprefix' does not start with 'local_'" in skipped["problems"][0]
+    assert "problems" not in listed["local_good"]
+    assert "problems" not in listed["gec_12"]
+    for search in (_retrieval_db.reference_search, _figures_db.figure_search):
+        out = search(TERM, reference="noprefix", max_chars=14_000)
+        assert "the index skipped it" in out["error"]
+        assert "does not start with 'local_'" in out["error"]
+    assert listed["local_good"]["n_sections"] == 3
 
 
 # ---------------------------------------------------------------------------

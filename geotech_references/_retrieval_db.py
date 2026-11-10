@@ -38,7 +38,10 @@ number. Each row knows the section above it (``parent_rowid``), its
 ``depth`` and the chain above it (``parents_json``); hits carry
 ``parent_id`` and ``under``, fetches add ``children``. The database's
 ``PRAGMA user_version`` is :data:`_SCHEMA_VERSION`; a database built to an
-older layout is rebuilt on first use.
+older layout is rebuilt on first use. Its ``build_meta`` table holds the
+signature of the chapter files it was built from (:func:`source_state`),
+and a database whose files have changed since -- one deleted, added, or
+restored with an older date -- is rebuilt too (2026-11-10 review, core-11).
 """
 
 from __future__ import annotations
@@ -63,7 +66,9 @@ _DB_NAME = "geotech_references_fts.sqlite"
 
 #: Layout of the ``sections`` table, kept in ``PRAGMA user_version``.
 #: 2 = every level indexed, with parent_rowid / depth / parents_json (REF-24).
-_SCHEMA_VERSION = 2
+#: 3 = a ``build_meta`` table holding the signature of the source files the
+#: database was built from (2026-11-10 review, core-11).
+_SCHEMA_VERSION = 3
 
 _INDEXED_COLUMNS = (
     "title",
@@ -161,43 +166,95 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
 
 
 def _newest_source_mtime() -> float:
-    return max(
-        (jf.stat().st_mtime for _, jf in _iter_text_jsons()),
-        default=0.0,
-    )
+    return source_state([jf for _, jf in _iter_text_jsons()])[0]
 
 
-#: ``PRAGMA user_version`` per (database path, file mtime), so a search
-#: does not open the database twice to learn its layout.
+#: ``(PRAGMA user_version, source signature)`` per (database path, file
+#: mtime), so a search does not open the database twice to learn them.
 _VERSION_SEEN: dict = {}
 
 
-def _schema_version(db_path: Path) -> int:
+def _source_label(path: Path) -> str:
+    """A source file as the signature names it: its path inside the
+    package, or a local pack's full path."""
+    try:
+        return path.relative_to(_PACKAGE_DIR).as_posix()
+    except ValueError:
+        return os.path.normcase(str(path))
+
+
+def source_state(paths) -> tuple[float, str]:
+    """``(newest modification time, signature)`` of the source files
+    ``paths``: the signature is a sha1 over each file's place, size and
+    modification time (ns), so a deleted, added, edited or restored file
+    changes it (2026-11-10 review, core-11)."""
+    h = hashlib.sha1()
+    newest = 0.0
+    for p in paths:
+        try:
+            st = p.stat()
+        except OSError:
+            h.update(f"{_source_label(p)}|gone\0".encode())
+            continue
+        newest = max(newest, st.st_mtime)
+        h.update(f"{_source_label(p)}|{st.st_size}|{st.st_mtime_ns}\0"
+                 .encode())
+    return newest, h.hexdigest()
+
+
+def write_build_meta(cur: sqlite3.Cursor, signature: str,
+                     version: int) -> None:
+    """Record in a database being built the signature of the sources it
+    is built from and its layout version (``PRAGMA user_version``)."""
+    cur.execute("CREATE TABLE build_meta (key TEXT PRIMARY KEY, value TEXT)")
+    cur.execute("INSERT INTO build_meta VALUES ('sources', ?)", (signature,))
+    cur.execute(f"PRAGMA user_version = {int(version)}")
+
+
+def db_meta(db_path: Path) -> tuple[int, str | None]:
+    """``(layout version, source signature)`` a database was built with;
+    ``(-1, None)`` when it cannot be read, and no signature for one built
+    before databases kept it."""
     try:
         key = (str(db_path), db_path.stat().st_mtime_ns)
     except OSError:
-        return -1
+        return -1, None
     if key not in _VERSION_SEEN:
         try:
             conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
             try:
                 version = int(conn.execute("PRAGMA user_version").fetchone()[0])
+                try:
+                    row = conn.execute("SELECT value FROM build_meta "
+                                       "WHERE key = 'sources'").fetchone()
+                except sqlite3.Error:
+                    row = None
             finally:
                 conn.close()
         except sqlite3.Error:
-            return -1
-        _VERSION_SEEN[key] = version
+            return -1, None
+        _VERSION_SEEN[key] = (version, row[0] if row else None)
     return _VERSION_SEEN[key]
 
 
+def _schema_version(db_path: Path) -> int:
+    return db_meta(db_path)[0]
+
+
 def _needs_rebuild(db_path: Path) -> bool:
+    """Whether the text database at ``db_path`` must be built (again): it
+    is not there, a source file is newer than it, it was built to an older
+    layout (one row per top-level section only, or no signature), or the
+    source files are not the ones it was built from -- a chapter file
+    deleted or added, or restored with an older date, which the date rule
+    alone missed (2026-11-10 review, core-11)."""
     if not db_path.exists():
         return True
-    if db_path.stat().st_mtime < _newest_source_mtime():
+    newest, signature = source_state([jf for _, jf in _iter_text_jsons()])
+    if db_path.stat().st_mtime < newest:
         return True
-    # a database an older version of this module built (one row per
-    # top-level section only) is rebuilt, however new its file is
-    return _schema_version(db_path) != _SCHEMA_VERSION
+    version, built_from = db_meta(db_path)
+    return version != _SCHEMA_VERSION or built_from != signature
 
 
 def _build_db(db_path: Path) -> Path:
@@ -261,11 +318,18 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     )
 
     pack_files = {jf for _, jf in _packs.text_jsons()}
-    for reference, jf in _iter_text_jsons():
+    sources = _iter_text_jsons()
+    # taken before the files are read: one changed during the build makes
+    # the next check build again
+    signature = source_state([jf for _, jf in sources])[1]
+    write_build_meta(cur, signature, _SCHEMA_VERSION)
+    for reference, jf in sources:
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
+        except (OSError, json.JSONDecodeError) as e:
+            if jf in pack_files:
+                continue  # named in _packs.problems()
+            raise unreadable_source(jf, e) from e
         if jf not in pack_files:
             _index_chapter(cur, reference, data)
         # a local pack's file the index cannot take is skipped and named in
@@ -274,7 +338,6 @@ def _fill_db(conn: sqlite3.Connection) -> None:
             _packs.index_pack_file(
                 cur, jf, lambda: _index_chapter(cur, reference, data))
 
-    cur.execute(f"PRAGMA user_version = {_SCHEMA_VERSION}")
     cur.execute(
         """
         INSERT INTO sections_fts(rowid, title, summary, body,
@@ -283,6 +346,19 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         FROM sections
         """
     )
+
+
+def unreadable_source(path: Path, error: Exception) -> RuntimeError:
+    """The error both search databases raise for a built-in source file
+    (a chapter file, a figure catalog) the build cannot read. It used to be
+    left out without a word, so its reference simply had less text or no
+    figures (2026-11-10 review, core-12); the database already built, if
+    any, is left as it was. A local pack's file is still skipped and named
+    in ``_packs.problems()``."""
+    return RuntimeError(
+        f"the search database was not built: the package file {path} cannot "
+        f"be read ({type(error).__name__}: {error}). Restore it from the "
+        "release (reinstall geotech-references) or fix the file.")
 
 
 def _index_chapter(cur: sqlite3.Cursor, reference: str, data: dict) -> None:
@@ -467,10 +543,14 @@ def reference_search(
     Parameters
     ----------
     query : str
-        FTS5 MATCH query. Plain words are AND-matched with porter
-        stemming; when they are OR-ed because no section holds them all
-        (any expansion strategy but ``"off"``), the sections holding more
-        of them come first. Use FTS5 operators (``"phrase"``, ``OR``,
+        FTS5 MATCH query, words matched with porter stemming. The sections
+        that hold every word come first. Unless the expansion strategy is
+        ``"off"``, sections holding a synonym of a named term are added
+        (``"auto"`` keeps the best of the every-word hits in place), and
+        when no section holds every word the search relaxes to the
+        synonyms, then to any one of the words, the sections holding more
+        of them first. A hit that does not hold every word says so in
+        ``match`` (below). Use FTS5 operators (``"phrase"``, ``OR``,
         ``NEAR()``, ``col:term``) for advanced queries.
     reference : str, optional
         Restrict to a single reference id (e.g. ``"dm7_1"``). An id that
@@ -491,8 +571,15 @@ def reference_search(
         hits run to about 36,000). With it the result is a dict of the
         hits that fit (:func:`_retrieval.fit_hits`: summaries cut to 300
         characters first, then the lowest-ranked hits left out) with, when
-        some are not shown or more match, ``next_offset`` and a ``note``;
-        an error is ``{"error": ...}``.
+        some are not shown or more were found, ``next_offset`` and a
+        ``note``. When some hits do not hold every word it adds
+        ``matched`` (``"synonyms"``, or ``"any word"`` when a hit holds
+        only some of the words), ``words_not_found`` (the query words no
+        hit holds) and a sentence on the ``note``. An empty result names
+        the scope searched and what was tried in a ``note``, with
+        ``words_not_found`` (the words no section there holds) and, for a
+        local pack, the files the index skipped. An error is
+        ``{"error": ...}``.
 
     Returns
     -------
@@ -501,7 +588,12 @@ def reference_search(
         ``chapter_title``, ``section_id``, ``title``, ``parent_id``,
         ``under`` (the sections above it, outermost first, e.g.
         ``"7.2 Strength Limit States > 7.2.1 Nominal Axial ..."``; ``""``
-        at the top level) and ``summary``. With ``max_chars``, the dict
+        at the top level) and ``summary``. A hit that does not hold every
+        word of the query also has ``match``: ``"synonyms"`` (every word,
+        a named term as one of its synonyms) or ``"any word"`` (only some
+        of the words, ``lacks`` naming the ones it does not hold). The
+        marks are worked out after the ranking and never move a hit
+        (2026-11-10 review, core-05). With ``max_chars``, the dict
         described above.
     """
     if not query or not query.strip():
@@ -575,8 +667,13 @@ def reference_search(
             return run_or
 
         strategy = _qe.EXPANSION_STRATEGY
+        # by row, not by number: a number two sections of a local pack hold
+        # keeps both rows (core-01; no built-in reference repeats one)
+        row_key = lambda r: r["rid"]
+        ran = {"q": query}  # the query as last run (re-quoted when it failed)
 
         def search(q: str, relaxed: bool = False) -> list[sqlite3.Row]:
+            ran["q"] = q
             if strategy == "rerank":
                 # "shotgun": one combined query, BM25 ranks literal+synonym union.
                 rows = run(_qe.combined_query(q))
@@ -593,8 +690,7 @@ def reference_search(
                     # nothing to pin: the query with its terms swapped for
                     # their synonyms, then its words OR-ed with the synonyms
                     rows = _qe.zero_literal_hits(
-                        q, run, want,
-                        key=lambda r: (r["reference"], r["section_id"]),
+                        q, run, want, key=row_key,
                         run_or=best_match(_qe.query_concepts(q)))
                 else:
                     # REF-54: the literal hits keep their places by
@@ -603,8 +699,7 @@ def reference_search(
                     # search ranked well (top EXPANSION_PIN pinned)
                     rows = _qe.fuse_hits(
                         literal, run(combined, pool=pool), want,
-                        key=lambda r: (r["reference"], r["section_id"]),
-                        pin=_qe.EXPANSION_PIN,
+                        key=row_key, pin=_qe.EXPANSION_PIN,
                     )
             else:
                 rows = run(q)
@@ -616,8 +711,7 @@ def reference_search(
                     expansion = _qe.expand_query(q)
                     if expansion:
                         rows = _qe.merge_hits(
-                            rows, run(expansion), want,
-                            key=lambda r: (r["reference"], r["section_id"]),
+                            rows, run(expansion), want, key=row_key,
                         )
             # Zero-hit recall fallback (mirrors figure_search): if the
             # AND-matched query (and any expansion) found nothing, retry as
@@ -643,17 +737,68 @@ def reference_search(
                 return {"error": f"FTS query error: {e}"}
             return [{"error": f"FTS query error: {e}"}]
         more = len(rows) > offset + limit
-        hits = [_row_to_summary(r) for r in rows[offset:offset + limit]]
+        page = rows[offset:offset + limit]
+        # how each hit matched, worked out after the ranking (core-05)
+        marks, absent = match_marks(conn, "sections_fts",
+                                    [r["rid"] for r in page], ran["q"])
+        hits = []
+        for r in page:
+            hit = _row_to_summary(r)
+            hit.update(marks.get(r["rid"], {}))
+            hits.append(hit)
         if max_chars is None:
             return hits
-        return _retrieval.fit_hits(
+        if not rows:
+            scope = (f"reference '{reference}'" if reference
+                     else "the text index")
+            if chapter is not None:
+                scope += f", chapter {chapter_no}"
+            tried = TRIED_ALL if strategy != "off" else (
+                "every word as typed; synonym and any-word matching are "
+                "off: GEOTECH_RETRIEVAL_EXPANSION=off")
+            return dict({"hits": [], "shown": 0}, **absent_words_note(
+                _words_in_no_section(conn, ran["q"], reference, chapter_no),
+                scope, tried, _pack_problems(reference)))
+        return with_match_summary(_retrieval.fit_hits(
             hits, max_chars, text_fields=("summary",), offset=offset,
             more=more, max_offset=_MAX_OFFSET,
             narrow=("narrow the query (more specific words, a 'reference' "
                     "or a 'chapter')"),
-            fetch="reference_get returns a section's whole text")
+            fetch="reference_get returns a section's whole text",
+            more_text="more match" if not marks else "more were found"),
+            match_summary(list(marks.values()), absent))
     finally:
         conn.close()
+
+
+def _words_in_no_section(conn: sqlite3.Connection, query: str,
+                         reference: str | None, chapter: int | None) -> list:
+    """The query's words that no section in the scope holds."""
+    out = []
+    for w in query_words(query):
+        sql = ("SELECT 1 FROM sections_fts f JOIN sections s "
+               "ON s.rowid = f.rowid WHERE sections_fts MATCH ?")
+        params: list[Any] = [w]
+        if reference:
+            sql += " AND s.reference = ?"
+            params.append(reference)
+        if chapter is not None:
+            sql += " AND s.chapter = ?"
+            params.append(chapter)
+        try:
+            if conn.execute(sql + " LIMIT 1", params).fetchone() is None:
+                out.append(w)
+        except sqlite3.OperationalError:
+            continue
+    return out
+
+
+def _pack_problems(reference: str | None) -> list[str]:
+    """What the index skipped of local pack ``reference`` (core-10); none
+    for a built-in reference or a search of everything."""
+    if not reference or not str(reference).startswith(_packs.PACK_PREFIX):
+        return []
+    return _packs.problems_by_pack().get(reference, [])
 
 
 def _is_indexed(conn: sqlite3.Connection, reference: str) -> bool:
@@ -667,8 +812,11 @@ def _unknown_reference(conn: sqlite3.Connection, reference: str) -> str:
     the text index."""
     ids = [r[0] for r in conn.execute(
         "SELECT DISTINCT reference FROM sections ORDER BY reference")]
-    return (f"no reference '{reference}' in the text index. Use one of: "
-            f"{', '.join(ids)} (or search with no reference to look in "
+    skipped = _packs.problems_by_pack().get(reference)
+    why = (" The reference packs setting names it, but the index skipped "
+           "it: " + "; ".join(skipped) + "." if skipped else "")
+    return (f"no reference '{reference}' in the text index.{why} Use one "
+            f"of: {', '.join(ids)} (or search with no reference to look in "
             "all of them)")
 
 
@@ -733,6 +881,147 @@ def fts_safe_query(query: str) -> str:
 def plain_terms(query: str) -> str:
     """The query's words alone (letters and digits), for the OR fallback."""
     return " ".join(re.findall(r"[A-Za-z0-9]+", str(query or "")))
+
+
+# ---------------------------------------------------------------------------
+# How each hit matched (2026-11-10 review, core-05)
+# ---------------------------------------------------------------------------
+# When no section holds every word, the search relaxes: to the query with a
+# named term swapped for its synonyms, then to any one of the words. Those
+# hits used to look exactly like the hits that hold every word, and the note
+# said "more match". Each hit that does not hold every word of the query (as
+# run) now says so; the marks are worked out AFTER the hits are ranked and
+# cut, so they can never move a hit.
+
+#: The ``match`` mark of a hit that holds every word of the query, as typed
+#: (given by ``search_sections``' fallback; a ``reference_search`` or
+#: ``figure_search`` hit without a ``match`` mark holds every word).
+MATCH_ALL_WORDS = "all words"
+#: ... of a hit that holds every word, a named term as one of its synonyms.
+MATCH_SYNONYMS = "synonyms"
+#: ... of a hit that holds only some of the words (``lacks`` names the rest).
+MATCH_ANY_WORD = "any word"
+
+
+def query_words(query: str) -> list[str]:
+    """The query's plain words (letters and digits), each once, as typed,
+    leaving out the FTS5 operator words the any-word search leaves out."""
+    seen: dict[str, str] = {}
+    for w in plain_terms(query).split():
+        if w.lower() not in _qe._FTS_OPS:
+            seen.setdefault(w.lower(), w)
+    return list(seen.values())
+
+
+def match_marks(conn: sqlite3.Connection, table: str, rids: list,
+                query: str) -> tuple[dict, list[str]]:
+    """How each hit ``rids`` (rowids of FTS5 table ``table``) of a search
+    for ``query``, as run, matched.
+
+    Returns ``({rid: mark}, words_not_found)``. A hit that holds every
+    word of the query gets no mark. Any other hit gets ``{"match":
+    "synonyms"}`` when it holds every word with a named term as one of its
+    synonyms (:func:`._query_expansion.substituted_query`), else ``{"match":
+    "any word", "lacks": [the query words it does not hold]}``.
+    ``words_not_found`` lists the query words no hit holds; it is empty
+    when every hit holds every word. Nothing is marked when the query
+    cannot be run as an FTS5 expression here (an OperationalError)."""
+    rids = [int(r) for r in rids]
+    if not rids:
+        return {}, []
+    in_page = ",".join(str(r) for r in rids)
+
+    def held(expr: str) -> set:
+        return {r for (r,) in conn.execute(
+            f"SELECT rowid FROM {table} WHERE {table} MATCH ? "
+            f"AND rowid IN ({in_page})", (expr,))}
+
+    try:
+        literal = held(query)
+        rest = [r for r in rids if r not in literal]
+        if not rest:
+            return {}, []
+        words = query_words(query)
+        has = {w: held(w) for w in words}
+        sub = _qe.substituted_query(query)
+        synonym = held(sub) if sub else set()
+    except sqlite3.OperationalError:
+        return {}, []
+    marks: dict = {}
+    for r in rest:
+        if r in synonym:
+            marks[r] = {"match": MATCH_SYNONYMS}
+        else:
+            marks[r] = {"match": MATCH_ANY_WORD,
+                        "lacks": [w for w in words if r not in has[w]]}
+    return marks, [w for w in words if not has[w]]
+
+
+def match_summary(marks: list[dict], words_not_found: list[str]) -> dict:
+    """The keys a size-fitted result adds when some of its hits do not hold
+    every word (``marks``, those hits' marks): ``matched`` ("synonyms", or
+    "any word" when any hit holds only some words), ``words_not_found``
+    when some query word is in no hit, and the sentence for the note.
+    Empty when every hit holds every word."""
+    if not marks:
+        return {}
+    kinds = {m["match"] for m in marks}
+    out: dict = {"matched": (MATCH_ANY_WORD if MATCH_ANY_WORD in kinds
+                             else MATCH_SYNONYMS)}
+    said = [f"{len(marks)} of these hits do not hold every word of the "
+            "query, and say so in 'match':"]
+    if MATCH_SYNONYMS in kinds:
+        said.append("'synonyms' holds every word with a named term as one "
+                    "of its synonyms;")
+    if MATCH_ANY_WORD in kinds:
+        said.append("'any word' holds only some of the words, and 'lacks' "
+                    "names the ones it does not hold;")
+    said[-1] = said[-1].rstrip(";") + "."
+    if words_not_found:
+        out["words_not_found"] = list(words_not_found)
+        said.append("No hit here holds "
+                    + ", ".join(f"'{w}'" for w in words_not_found) + ".")
+    out["sentence"] = " ".join(said)
+    return out
+
+
+def with_match_summary(out: dict, summary: dict) -> dict:
+    """``out`` (a :func:`_retrieval.fit_hits` dict) with ``summary``
+    (:func:`match_summary`) added: its keys, and its sentence on the
+    note."""
+    if not summary:
+        return out
+    sentence = summary.get("sentence", "")
+    out.update({k: v for k, v in summary.items() if k != "sentence"})
+    out["note"] = (out.get("note", "") + " " + sentence).strip()
+    return out
+
+
+#: What a search that relaxes tried before it gave up (absent_words_note).
+TRIED_ALL = ("every word, then the synonyms of a named term, then any one of "
+             "the words")
+
+
+def absent_words_note(words: list[str], scope: str, tried: str = TRIED_ALL,
+                      problems=()) -> dict:
+    """What a size-fitted search that found nothing in a scope that exists
+    adds: ``words_not_found`` (the query words no section or figure in the
+    scope holds) and a ``note`` naming the scope and what was ``tried``,
+    and any pack file of that scope the index skipped (core-10)."""
+    note = f"Nothing in {scope} matches this query (tried {tried})."
+    if words:
+        note += (" No entry there holds "
+                 + ", ".join(f"'{w}'" for w in words) + ".")
+    else:
+        note += (" Each word is in some entry there, but no entry holds "
+                 "them as the query asks.")
+    if problems:
+        note += (" Some of its files were skipped when the index was built: "
+                 + "; ".join(problems))
+    out: dict = {"note": note}
+    if words:
+        out["words_not_found"] = list(words)
+    return out
 
 
 def search_fts_safely(search, query: str, retry=None):
@@ -978,20 +1267,56 @@ def _fit_rows(rows: list[dict], max_chars: int) -> dict[str, Any]:
 def list_indexed_references() -> list[dict[str, Any]]:
     """Inventory of references currently indexed in the FTS DB.
 
-    Useful for agents to discover what's available before searching.
+    Useful for agents to discover what's available before searching. One
+    entry per reference: ``reference``, ``reference_title`` (its first
+    chapter file's), ``n_chapters``, ``n_sections``; a reference whose
+    files carry more than one title (a manual in volumes) also has
+    ``reference_titles``, each once, in file order. Before the 2026-11-10
+    review (core-13) such a reference was listed once per title, each
+    entry counting only that title's chapters. With local reference packs
+    set (REF-64), a pack whose
+    files the index skipped in part carries ``problems`` (what was skipped
+    and why), and a pack skipped whole, or none of whose chapter files
+    could be indexed, is listed too, with no sections and its ``problems``
+    (2026-11-10 review, core-10: they were left out without a word). A
+    folder the setting names that is not there is listed the same way,
+    under the folder as written.
     """
     conn = _ro_connect()
     try:
-        rows = conn.execute(
-            "SELECT reference, reference_title, "
+        # one entry per reference: a manual whose volumes' files carry
+        # titles of their own was listed once per title, each with a part
+        # of its chapters (2026-11-10 review, core-13)
+        rows = [dict(r) for r in conn.execute(
+            "SELECT reference, "
+            "(SELECT t.reference_title FROM sections t "
+            " WHERE t.reference = s.reference ORDER BY t.rowid LIMIT 1) "
+            "AS reference_title, "
             "COUNT(DISTINCT chapter) AS n_chapters, "
             "COUNT(*) AS n_sections "
-            "FROM sections GROUP BY reference, reference_title "
-            "ORDER BY reference"
-        ).fetchall()
-        return [dict(r) for r in rows]
+            "FROM sections s GROUP BY reference ORDER BY reference"
+        ).fetchall()]
+        titles: dict[str, list] = {}
+        for ref, title in conn.execute(
+                "SELECT reference, reference_title FROM sections "
+                "ORDER BY rowid"):
+            seen = titles.setdefault(ref, [])
+            if title not in seen:
+                seen.append(title)
     finally:
         conn.close()
+    for r in rows:
+        if len(titles.get(r["reference"], [])) > 1:
+            r["reference_titles"] = titles[r["reference"]]
+    listed = {r["reference"]: r for r in rows}
+    for key, problems in _packs.problems_by_pack().items():
+        if key in listed:
+            listed[key]["problems"] = problems
+        else:
+            rows.append({"reference": key, "reference_title": "",
+                         "n_chapters": 0, "n_sections": 0,
+                         "problems": problems})
+    return rows
 
 
 def rebuild_db() -> dict[str, Any]:

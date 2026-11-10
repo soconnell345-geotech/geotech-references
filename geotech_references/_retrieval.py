@@ -102,7 +102,8 @@ def _shortened(item: dict, fields, n: int) -> tuple[dict, bool]:
 def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
              more: bool = False, total=None,
              narrow: str = "narrow the query", fetch: str = "",
-             max_offset: int | None = None) -> dict:
+             max_offset: int | None = None,
+             more_text: str = "more match") -> dict:
     """Ranked ``hits`` cut down to fit ``max_chars`` JSON characters by
     their shape, never cut part-way (REF-26).
 
@@ -135,6 +136,11 @@ def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
         hits would start past it there is no ``next_offset``, and the note
         says the search goes no deeper (never offering a page it cannot
         give).
+    more_text : str
+        What the note says of the hits after these: "more match" for a
+        search whose hits hold every word; a search that relaxed to
+        synonyms or any one word says "more were found" (2026-11-10
+        review, core-05: "more match" called any-word hits matches).
 
     Returns
     -------
@@ -185,12 +191,12 @@ def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
                if left_out else "as many as asked for")
         if max_offset is not None and nxt > max_offset:
             notes.append(
-                f"Showing {shown}, best first ({why}); more match, but this "
+                f"Showing {shown}, best first ({why}); {more_text}, but this "
                 f"search pages no deeper than offset={max_offset}: {narrow}.")
         else:
             out["next_offset"] = nxt
             notes.append(
-                f"Showing {shown}, best first ({why}); more match. Call "
+                f"Showing {shown}, best first ({why}); {more_text}. Call "
                 f"again with offset={nxt} for the next ones, or {narrow}.")
     if shortened_to:
         fields = "/".join(f for f in text_fields)
@@ -697,10 +703,19 @@ def search_sections(reference: str, query: str, limit: int | None = None,
     reference : str
         Reference identifier (e.g., 'gec_12').
     query : str
-        Search query (case-insensitive). Multiple words are AND-matched.
+        Search query (case-insensitive). Multiple words are AND-matched,
+        each found anywhere in a section's text, inside a longer word too
+        ("Ka" in "shrinkage"). When no section holds every word, the
+        result is the ranked search of this reference instead
+        (:func:`_retrieval_db.reference_search`: words by their stem, then
+        synonyms, then any one word), each hit marked ``match`` ("all
+        words", "synonyms", or "any word" with ``lacks``, the words it
+        does not hold); before the 2026-11-10 review (core-07) it was an
+        empty list.
     limit : int, optional
         At most this many matches. Default None: every match ("pile" in
-        GEC-12 is over 300,000 characters of sections).
+        GEC-12 is over 300,000 characters of sections); the ranked
+        fallback gives :data:`FALLBACK_LIMIT` (10), at most 50.
     offset : int, optional
         Skip this many of the best matches first (the next page).
     max_chars : int, optional
@@ -710,7 +725,10 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         ``under`` and a ``snippet`` of its text around the first query
         word, never its whole text (:func:`retrieve_section` fetches that);
         as many as fit, best first, with ``total_hits`` and, when some are
-        not shown, ``next_offset`` and a ``note``.
+        not shown, ``next_offset`` and a ``note``. The ranked fallback's
+        dict has the hits' ``match`` / ``lacks``, ``matched`` and
+        ``words_not_found`` where some hit does not hold every word, a
+        ``note`` saying where the hits came from, and no ``total_hits``.
 
     Returns
     -------
@@ -724,6 +742,7 @@ def search_sections(reference: str, query: str, limit: int | None = None,
     query_lower = query.lower()
     query_words = query_lower.split()
     results = []
+    files = []
 
     for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
@@ -732,6 +751,7 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         ch_num = chapter_data.get("chapter", 0)
         ch_title = chapter_data.get("chapter_title", "")
         entries = section_entries(chapter_data)
+        files.append((ch_num, ch_title, entries))
 
         for i, entry in enumerate(entries):
             score = _score_section(entry["section"], query_words)
@@ -752,6 +772,11 @@ def search_sections(reference: str, query: str, limit: int | None = None,
 
     offset = max(0, int(offset or 0))
     total = len(results)
+    if total == 0 and query_words:
+        # no section holds every word: the ranked search of this reference,
+        # each hit saying how it matched (2026-11-10 review, core-07)
+        return _ranked_fallback(reference, query, query_words, files, limit,
+                                offset, max_chars)
     if limit is not None or offset:
         end = None if limit is None else offset + max(1, int(limit))
         results = results[offset:end]
@@ -763,6 +788,94 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         more=offset + len(hits) < total, total=total,
         narrow="narrow the query (more, or more specific, words)",
         fetch="retrieve_section(section_id) returns a section's whole text")
+
+
+#: How many hits :func:`search_sections`' ranked fallback gives when the
+#: call names no ``limit`` (an any-word search matches most of a
+#: reference, where "every match" of an every-word search is a few).
+FALLBACK_LIMIT = 10
+
+#: A size no ranked search reaches, to read its whole fitted dict.
+_NO_LIMIT_CHARS = 10 ** 9
+
+
+def _ranked_fallback(reference: str, query: str, query_words: list,
+                     files: list, limit, offset: int, max_chars):
+    """:func:`search_sections` when no section holds every word: the hits
+    of :func:`_retrieval_db.reference_search` for this reference, in its
+    order, each in ``search_sections``' own shape and marked ``match``
+    ("all words" -- every word by its stem, where the parts of words
+    ``search_sections`` matches failed --, "synonyms" or "any word" with
+    ``lacks``). With ``max_chars`` the dict also has ``matched``,
+    ``words_not_found`` and a ``note``, and no ``total_hits`` (an any-word
+    search does not count its matches). A reference the text index does
+    not hold gives what it gave before: ``[]``, or with ``max_chars`` no
+    hits and the index's reason in the ``note``."""
+    from . import _retrieval_db
+    n = FALLBACK_LIMIT if limit is None else max(1, int(limit))
+    ranked = _retrieval_db.reference_search(
+        query, reference=reference, limit=min(n, _retrieval_db._MAX_LIMIT),
+        offset=offset, max_chars=_NO_LIMIT_CHARS)
+    if "error" in ranked:
+        return [] if max_chars is None else {
+            "hits": [], "shown": 0, "total_hits": 0, "note": (
+                "No section holds every word, and the ranked search could "
+                f"not be run: {ranked['error']}")}
+    where = {}
+    for ch_num, ch_title, entries in files:
+        for i, e in enumerate(entries):
+            where.setdefault((str(ch_num), e["section"].get("section_id")),
+                             (ch_num, ch_title, entries, i))
+    sections, marks = [], []
+    for hit in ranked["hits"]:
+        place = where.get((str(hit.get("chapter")), hit.get("section_id")))
+        if place is None:
+            continue
+        ch_num, ch_title, entries, i = place
+        section = section_view(entries, i)
+        section.pop("children", None)
+        section["chapter"] = ch_num
+        section["chapter_title"] = ch_title
+        mark = {k: hit[k] for k in ("match", "lacks") if k in hit}
+        section["match"] = mark.get("match", _retrieval_db.MATCH_ALL_WORDS)
+        if "lacks" in mark:
+            section["lacks"] = mark["lacks"]
+        sections.append(section)
+        if "match" in mark:
+            marks.append(mark)
+    if max_chars is None:
+        return sections
+    if not ranked["hits"]:
+        out = {"hits": [], "shown": 0, "total_hits": 0}
+        out.update({k: ranked[k] for k in ("note", "words_not_found")
+                    if k in ranked})
+        return out
+    hits = []
+    for s in sections:
+        h = _search_hit(s, query_words)
+        h["match"] = s["match"]
+        if "lacks" in s:
+            h["lacks"] = s["lacks"]
+        hits.append(h)
+    # nothing of the ranked page was left out (no size limit), so it says
+    # more were found by offering the next page, or by saying it pages no
+    # deeper
+    more = ("next_offset" in ranked
+            or "pages no deeper" in ranked.get("note", ""))
+    out = fit_hits(
+        hits, max_chars, text_fields=("snippet",), offset=offset,
+        more=more, max_offset=_retrieval_db._MAX_OFFSET,
+        narrow="narrow the query (more, or more specific, words)",
+        fetch="retrieve_section(section_id) returns a section's whole text",
+        more_text="more were found")
+    lead = ("No section holds every word as typed (this search matches "
+            "parts of words), so these hits are from the ranked search of "
+            "the reference (reference_search), and each says how it "
+            "matched in 'match'.")
+    out["note"] = (lead + " " + out.get("note", "")).strip()
+    return _retrieval_db.with_match_summary(
+        out, _retrieval_db.match_summary(
+            marks, ranked.get("words_not_found", [])))
 
 
 def _search_hit(section: dict, query_words: list[str]) -> dict:
