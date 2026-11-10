@@ -5,7 +5,7 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 ## Unreleased
 
 **Structural lookups checked against the print (review of 2026-11-10,
-struct-01 to struct-11).** Values that change:
+struct-01 to struct-16).** Values that change:
 
 - UFC 4-023-03 Table 4-1, RC beams controlled by shear, development or
   embedment (`ufc_collapse.table_4_1_beam_other_modeling`): the
@@ -34,6 +34,18 @@ struct-01 to struct-11).** Values that change:
   m-factor between 0 and 1 is returned with a `note`.
 - EM 1110-2-2107 `bolt_grade_check` refuses a grade the manual does not
   name (it answered "not permitted", even for "A325").
+- UFC 3-301-01 Eq 16-18a/b (`ufc_structural.wind_speed_conversion_asd`,
+  `wind_speed_conversion_fastest_mile`): Vasd = sqrt(0.6) V and Vfm =
+  (sqrt(0.6) V - 10.5)/1.05, the radical over 0.6 only as typeset. The
+  code took the root of 0.6 V: at V = 150 mph it returned 9.49 and
+  -0.96 mph; now 116.2 and 100.7 mph (printed p. 19). The chapter 2 text
+  stated the same wrong form and is corrected.
+- UFC 3-301-01 Tables 3-1, 7-1 and B-1 (`ufc_structural.table_3_1_*`,
+  `table_7_1_*`, `table_b1_*`): height limits are returned as
+  `height_limits_ft` (was `height_limits`, no unit). Tables 3-1 and 7-1
+  add `height_limits_m` with footnote d's 30 m for 100 ft and 50 m for
+  160 ft, and None for heights the footnote does not convert; Table B-1
+  prints no metric values (printed pp. 57, 99, 124).
 
 Labels, units and citations (no value changes):
 
