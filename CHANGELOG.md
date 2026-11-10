@@ -39,8 +39,8 @@ Lookups that now refuse where they used to answer:
   printed neighbours (n = 5: 1.15, n = 7: 1.12).
 - **EN 1997-1 Annex D bearing resistance** (`undrained_bearing_resistance`,
   `drained_bearing_resistance`): `shape="strip"` with no length was computed
-  as a square footing (undrained, cu 50 kPa, B 2 m: 328.5 kPa where a long
-  rectangle gives 277.1 kPa). Annex D prints a rectangular and a square or
+  as a square footing (undrained, cu 50 kPa, q 20 kPa, B 2 m: 328.5 kPa
+  where a long rectangle gives 277.1 kPa). Annex D prints a rectangular and a square or
   circular case only. Any other shape raises, a rectangular shape needs L,
   and the result names the shape case used. For a strip give
   `shape="rectangular"` and its length.
@@ -78,11 +78,17 @@ Lookups that now refuse where they used to answer:
   required, because Section 11.6 assigns E or F where S1 >= 0.75 (SDS 1.2,
   SD1 0.9 with no S1 gave D).
 
-Results that now say more, with the same numbers:
+A result whose shape changed:
 
 - `design_approach_sets("DA1")` returns both combinations of Design
-  Approach 1 (it returned Combination 1 alone), and each combination names
-  the other.
+  Approach 1 as `{"description", "combinations": [Combination 1,
+  Combination 2], "note"}`. It used to return Combination 1 alone with its
+  sets at the top level, so `result["action_set"]` no longer exists for
+  "DA1": read `result["combinations"][0]["action_set"]`. "DA1-C1" and
+  "DA1-C2" keep their keys and each names the other combination.
+
+Results that now say more, with the same numbers:
+
 - EN 1997-2 `table_d1_phi_e_from_qc`, `table_h1_phi_e_from_wst` and
   `table_d5_alpha_p_alpha_s_sand` return the tables' printed notes; for
   silty or gravelly soil the result says E' is the sand value, not adjusted.
@@ -99,6 +105,16 @@ Results that now say more, with the same numbers:
   that the slope needs a slope stability analysis.
 - `heave_factor_of_safety` returns `fs: null` with a note where the driving
   force is zero or negative (it returned infinity, which is not valid JSON).
+  Adequacy is judged, as before, on the unrounded ratio QU/Q against 1.5: a
+  ratio of 1.4996 is reported as `fs` 1.5 and is not adequate.
+- `table_d3_pile_base_resistance` says in a note when qc is above the last
+  printed column (25 MPa) and that column was used, and
+  `table_f3_phi_from_density_index` says when it interpolated between
+  printed rows (the table prints no interpolation rule) or used the
+  ID = 100 % row for a higher ID.
+- `site_class_from_vs30` gives an estimated velocity no class in the Site
+  Class B or A range (Sections 20.2.4 and 20.2.5 require a measured
+  velocity for those classes) and says why.
 - Three error messages name what is wrong: Table A.3 for a misspelt
   condition, Table A.9 for a fractional n, and the EN 1997-2 quality class
   given as text.
