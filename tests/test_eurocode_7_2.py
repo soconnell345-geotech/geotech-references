@@ -221,6 +221,19 @@ class TestTableD3D4:
             for qc, pb in zip([10, 15, 20, 25], row):
                 assert table_d3_pile_base_resistance(ratio, qc)["pb_mpa"] == pytest.approx(pb)
 
+    def test_base_resistance_above_last_printed_column_says_so(self):
+        # Table D.3 (PDF p. 117, printed p. 115) prints the columns qc = 10,
+        # 15, 20, 25 MPa only. Above 25 the qc = 25 column is still returned
+        # (2,25 at s/Db 0,03; 4,00 at 0,10), now with a note.
+        r = table_d3_pile_base_resistance(0.03, 40)
+        assert r["pb_mpa"] == pytest.approx(2.25)
+        assert "qc = 25 column" in r["note"] and "printed p. 115" in r["note"]
+        r = table_d3_pile_base_resistance(0.10, 40)
+        assert r["pb_mpa"] == pytest.approx(4.00)
+        assert "note" in r
+        for qc in (10, 17.5, 25):
+            assert "note" not in table_d3_pile_base_resistance(0.10, qc)
+
     def test_base_resistance_below_first_printed_column_is_refused(self):
         # The first printed column is qc = 10 MPa. qc = 4 MPa used to return
         # the qc = 10 value (2.0 MPa at s/Db = 0,10: half of qc).
@@ -411,6 +424,19 @@ class TestTableF1F2F3:
             for id_pct, phi in zip([40, 60, 80, 100], column):
                 r = table_f3_phi_from_density_index(id_pct, grain, grading)
                 assert r["phi_deg"] == pytest.approx(phi)
+
+    def test_phi_from_id_says_when_it_interpolated_or_capped(self):
+        # Table F.3 (PDF p. 128, printed p. 126) prints the rows ID = 40, 60,
+        # 80, 100 % and no interpolation rule. The values are unchanged; the
+        # result now says what was done.
+        r = table_f3_phi_from_density_index(70, "medium", "uniform")
+        assert r["phi_deg"] == pytest.approx(39.5)     # between 38 and 41
+        assert "prints no interpolation rule" in r["note"]
+        r = table_f3_phi_from_density_index(120, "medium", "uniform")
+        assert r["phi_deg"] == pytest.approx(43)       # the ID = 100 % row
+        assert "ID = 100 % row was used" in r["note"]
+        for id_pct in (40, 60, 80, 100):
+            assert "note" not in table_f3_phi_from_density_index(id_pct, "medium", "uniform")
 
     def test_phi_from_id_below_first_printed_row_is_refused(self):
         # The first printed row is ID = 40 %. ID = 10 % used to return the

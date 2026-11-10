@@ -462,7 +462,7 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
     "Intermediate values may be interpolated linearly." pb is interpolated
     between those columns. Below qc = 10 MPa the table prints nothing and
     the lookup raises. Above 25 MPa the qc = 25 value is returned (the
-    table prints no column above 25).
+    table prints no column above 25), and the result says so in 'note'.
 
     Parameters
     ----------
@@ -480,7 +480,8 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
     Returns
     -------
     dict
-        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance, MPa).
+        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance, MPa),
+        and note when qc is above 25 MPa (the qc = 25 column was used).
 
     Raises
     ------
@@ -503,11 +504,19 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
     pb = _linterp(qc_mpa, _TABLE_D3_QC, _TABLE_D3[settlement_ratio])
     if enlarged_base:
         pb *= 0.75
-    return {
+    result = {
         "settlement_ratio": settlement_ratio,
         "qc_mpa": qc_mpa,
         "pb_mpa": round(pb, 4),
     }
+    if qc_mpa > _TABLE_D3_QC[-1]:
+        result["note"] = (
+            f"qc_mpa={qc_mpa} is above the last printed column of "
+            f"EN 1997-2:2007 Table D.3 (qc = 25 MPa, printed p. 115): the "
+            f"table prints no value above 25 MPa, and the qc = 25 column "
+            f"was used."
+        )
+    return result
 
 
 _TABLE_D4_QC = [0, 5, 10, 15]  # MPa (>15 clamped to 15's value)
@@ -1038,8 +1047,9 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     The table prints the rows ID = 40, 60, 80 and 100 % for fine, medium
     and coarse sand, each uniform or well-graded. Between two printed rows
     the value is interpolated linearly (the table itself prints no
-    interpolation rule). Below ID = 40 % the table prints nothing and the
-    lookup raises. ID is in percent: 60, not 0.6.
+    interpolation rule), and above ID = 100 % the 100 % row is used; the
+    result says which in 'note'. Below ID = 40 % the table prints nothing
+    and the lookup raises. ID is in percent: 60, not 0.6.
 
     Parameters
     ----------
@@ -1054,7 +1064,8 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     -------
     dict
         Keys: density_index_pct, grain_size, grading, phi_deg (degrees;
-        interpolated between printed rows).
+        interpolated between printed rows), and note when the value was
+        interpolated or the ID = 100 % row was used for a higher ID.
 
     Raises
     ------
@@ -1078,12 +1089,25 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
             f"percent (60, not 0.6)."
         )
     phi = _linterp(density_index_pct, _TABLE_F3_ID, _TABLE_F3[key])
-    return {
+    result = {
         "density_index_pct": density_index_pct,
         "grain_size": gs,
         "grading": gr,
         "phi_deg": round(phi, 2),
     }
+    if density_index_pct > _TABLE_F3_ID[-1]:
+        result["note"] = (
+            f"density_index_pct={density_index_pct} is above the last "
+            f"printed row of EN 1997-2:2007 Table F.3 (ID = 100 %, printed "
+            f"p. 126): the ID = 100 % row was used."
+        )
+    elif density_index_pct not in _TABLE_F3_ID:
+        result["note"] = (
+            f"Interpolated linearly between the printed rows of "
+            f"EN 1997-2:2007 Table F.3 (ID = 40, 60, 80 and 100 %, printed "
+            f"p. 126). The table prints no interpolation rule."
+        )
+    return result
 
 
 # ============================================================================
@@ -1441,6 +1465,8 @@ _VARIABILITY_TEST_COUNTS = {
 # variability, the printed row label of each tier, what one counted test
 # is, and the footnote the print attaches to single cells.
 _VARIABILITY_TEST_INFO = {
+    # Table P.1 prints its middle row as "0,95 << r <= 0,98" (a misprint of
+    # "<"); the criterion below holds "0,95 < r <= 0,98".
     "triaxial_phi": {
         "table": "Table P.1", "printed_page": 163,
         "measure": ("Variability in strength envelope: coefficient of "
