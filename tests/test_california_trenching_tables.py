@@ -471,6 +471,22 @@ class TestHeave:
         assert "has no value" in r["note"]
         assert "Infinity" not in json.dumps(r, allow_nan=False)
 
+    def test_adequacy_is_tested_on_the_unrounded_ratio(self):
+        # Eq. 10-3-5 (PDF p. 228, printed p. 10-19): FS = QU/Q >= 1.5.
+        # c 100 psf, Nc 7.5, H 10 ft, B 10 ft (0.7B = 7 ft): QU = 5,250 plf.
+        # gamma 64.299 pcf: Q = 64.299 x 10 x 7 - 100 x 10 = 3,500.93,
+        # QU/Q = 1.49960, which reports as 1.5 and is not adequate.
+        for gamma in (64.299, 64.29, 64.3):
+            r = heave_factor_of_safety(100, 7.5, gamma, 10, 10)
+            ratio = 5250.0 / (gamma * 10 * 7 - 1000.0)
+            assert 1.4995 < ratio < 1.5
+            assert r["fs"] == pytest.approx(1.5)
+            assert r["adequate"] is False
+        # just above: gamma 64.28 -> QU/Q = 1.50017
+        r = heave_factor_of_safety(100, 7.5, 64.28, 10, 10)
+        assert 5250.0 / (64.28 * 70 - 1000.0) > 1.5
+        assert r["adequate"] is True
+
     def test_factor_of_safety_from_the_printed_equations(self):
         # Eqs. 10-3-2, 10-3-3, 10-3-5 with made-up values: c 500 psf, Nc 7.6,
         # gamma 120 pcf, H 30 ft, B 15 ft, q 300 psf.

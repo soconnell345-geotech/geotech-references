@@ -1114,8 +1114,12 @@ def heave_factor_of_safety(cohesion_psf, nc, gamma_pcf, height_ft, width_ft,
             "null and there is no net driving force for heave. " + note
         )
     else:
-        fs = round(qu / q_drive, 3)
-        adequate = fs >= 1.5
+        # FS = QU/Q >= 1.5 (Eq. 10-3-5) is tested on the ratio itself; only
+        # the reported "fs" is rounded, so 1.4996 is not adequate although
+        # it prints as 1.5.
+        ratio = qu / q_drive
+        fs = round(ratio, 3)
+        adequate = ratio >= 1.5
     return {
         "cohesion_psf": cohesion_psf, "nc": nc, "gamma_pcf": gamma_pcf,
         "height_ft": height_ft, "width_ft": width_ft,
