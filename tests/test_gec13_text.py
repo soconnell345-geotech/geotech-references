@@ -134,7 +134,9 @@ class TestRetrieveSection:
 
     def test_retrieve_existing_section(self):
         """Can retrieve a section from an existing chapter."""
-        section = retrieve_section("gec_13", "1.0")
+        # chapter 1's printed "1.0 Description and History" (its ids carry
+        # the chapter, '1.<printed number>', as chapters 2-10 do)
+        section = retrieve_section("gec_13", "1.1.0")
         assert "title" in section
         assert "body" in section
 
@@ -146,7 +148,7 @@ class TestRetrieveSection:
 
     def test_section_has_key_points(self):
         """Retrieved sections include key_points."""
-        section = retrieve_section("gec_13", "1.0")
+        section = retrieve_section("gec_13", "1.1.0")
         assert "key_points" in section
         assert isinstance(section["key_points"], list)
 

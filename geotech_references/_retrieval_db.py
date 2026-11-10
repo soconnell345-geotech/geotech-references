@@ -740,20 +740,33 @@ def reference_get(reference: str, section_id: str,
     ------
     KeyError
         If no such section exists; the message names the nearest section
-        above that number and any sections numbered under it.
+        above that number, any sections numbered under it, and the
+        sections that carry it under a part or appendix letter ('2.3.5'
+        -> 'II-2.3.5'). Also if more than one section of the reference
+        holds that number: the message names each, and neither is
+        returned (before, the first one indexed was).
+    TypeError
+        If ``section_id`` is not text (a number loses its trailing zero:
+        7.10 arrives as 7.1, another section).
     """
+    _retrieval.require_text_id(section_id)
     conn = _ro_connect()
     try:
-        row = conn.execute(
+        rows = conn.execute(
             "SELECT * FROM sections WHERE reference = ? "
-            "AND section_id = ? ORDER BY rowid LIMIT 1",
+            "AND section_id = ? ORDER BY rowid LIMIT 9",
             (reference, section_id),
-        ).fetchone()
-        if row is None:
+        ).fetchall()
+        if not rows:
             raise KeyError(
                 f"section_id '{section_id}' not found in reference "
                 f"'{reference}'" + _nearby(conn, reference, section_id)
             )
+        if len(rows) > 1:
+            raise KeyError(_retrieval.held_twice_note(
+                reference, section_id,
+                [(r["chapter"], r["title"]) for r in rows]))
+        row = rows[0]
         out = _row_to_full(row)
         out["children"] = [
             {"section_id": c["section_id"], "title": c["title"]}
@@ -787,8 +800,15 @@ def _nearby(conn: sqlite3.Connection, reference: str,
         "LIMIT 8",
         (reference, f"{section_id}.%", f"{section_id}-%"),
     ).fetchall()
+    lettered = conn.execute(
+        "SELECT section_id, title FROM sections WHERE reference = ? "
+        "AND section_id LIKE ? ORDER BY rowid",
+        (reference, f"%-{section_id}"),
+    ).fetchall()
     return _retrieval.nearby_note(
-        above, [(r["section_id"], r["title"]) for r in below])
+        above, [(r["section_id"], r["title"]) for r in below],
+        _retrieval.lettered_matches(
+            section_id, [(r["section_id"], r["title"]) for r in lettered]))
 
 
 def reference_query(sql: str, limit: int = _MAX_LIMIT,

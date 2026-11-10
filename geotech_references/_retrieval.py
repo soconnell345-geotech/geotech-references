@@ -525,52 +525,103 @@ def retrieve_section(reference: str, section_id: str,
     ------
     KeyError
         If the section_id is not found in any chapter; the message names
-        the nearest section above that number and up to eight sections
-        numbered under it, as :func:`_retrieval_db.reference_get` does.
+        the nearest section above that number, up to eight sections
+        numbered under it, and the sections that carry it under a part or
+        appendix letter ('2.3.5' -> 'II-2.3.5'), as
+        :func:`_retrieval_db.reference_get` does. Also if more than one
+        section of the reference holds that number: the message names
+        each, and neither is returned.
+    TypeError
+        If ``section_id`` is not text (a number loses its trailing zero:
+        7.10 arrives as 7.1, another section).
     """
+    require_text_id(section_id)
     ref_dir = _reference_dir(reference)
 
-    # Determine which chapter to search based on the section_id prefix.
-    # Handles dot form ('5.3.2'), UFC hyphen-then-dot form ('4-2.1'), and
-    # prologue ('P-1' / 'P.1' → prologue.json).
-    head = section_id.split(".")[0].split("-")[0]
-    chapter_file = None
-    if head.upper() == "P":
-        cand = ref_dir / "prologue.json"
-        if cand.exists():
-            chapter_file = cand
-    else:
-        try:
-            chapter_num = int(head)
-            cand = ref_dir / f"chapter{chapter_num:02d}.json"
-            if cand.exists():
-                chapter_file = cand
-        except ValueError:
-            pass
-
-    def find(json_file):
-        with open(json_file, "r", encoding="utf-8") as f:
-            entries = section_entries(json.load(f))
-        for i, e in enumerate(entries):
-            if e["section"].get("section_id") == section_id:
-                return section_view(entries, i, include_subsections)
-        return None
-
-    if chapter_file is not None:
-        found = find(chapter_file)
-        if found is not None:
-            return found
-
-    # If not found in expected chapter, search all chapters (and prologue)
+    # Every chapter file is read, so a number two sections hold is seen
+    # (2026-11-10 review, core-01: the file was guessed from the number's
+    # first part, so '8.2.7' of GEC-13 came from chapter 8 here and from
+    # chapter 1 in reference_get).
+    held = []
     for json_file in sorted(ref_dir.glob("*.json")):
-        found = find(json_file)
-        if found is not None:
-            return found
+        with open(json_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        entries = section_entries(data)
+        held += [(data.get("chapter"), entries, i)
+                 for i, e in enumerate(entries)
+                 if e["section"].get("section_id") == section_id]
+    if len(held) > 1:
+        raise KeyError(held_twice_note(reference, section_id, [
+            (chapter, entries[i]["section"].get("title", ""))
+            for chapter, entries, i in held]))
+    if held:
+        _, entries, i = held[0]
+        return section_view(entries, i, include_subsections)
 
     raise KeyError(
         f"Section '{section_id}' not found in reference '{reference}'"
         + _nearby(ref_dir, section_id)
     )
+
+
+def require_text_id(section_id) -> None:
+    """Refuse a section number that is not text (both retrieval layers).
+
+    A number sent as a number loses what makes it a section number: 7.10
+    arrives as 7.1 and names another section (34 sections in 10 references
+    came back as their neighbour; 2026-11-10 review, core-08)."""
+    if not isinstance(section_id, str):
+        raise TypeError(
+            f"section_id must be text, not the {type(section_id).__name__} "
+            f"{section_id!r}: send it in quotes (\"7.10\", not 7.10). As a "
+            "number a section number loses its trailing zero (7.10 becomes "
+            "7.1) and names another section.")
+
+
+def held_twice_note(reference: str, section_id: str, places: list) -> str:
+    """What both retrieval layers say for a section number that more than
+    one section of a reference holds; ``places`` is ``(chapter, title)`` of
+    each. Neither is returned: which one was meant cannot be told."""
+    listed = "; ".join(f"chapter {chapter} '{title}'"
+                       for chapter, title in places)
+    return (f"section_id '{section_id}' is held by {len(places)} sections of "
+            f"reference '{reference}' ({listed}), so it does not say which "
+            "one is meant. Find the one you need with a search limited to "
+            "its chapter; the reference's files need distinct numbers "
+            "(packs check names the files).")
+
+
+def duplicate_section_ids(text_dir) -> dict[str, list[tuple]]:
+    """The section numbers more than one section of a reference holds:
+    ``{number: [(file name, chapter, title), ...]}`` over every chapter
+    file of ``text_dir``, at every level. Empty when every number is its
+    own, which the fetches rely on (they refuse a number held twice). A
+    file that cannot be read is left out; the index build names it."""
+    seen: dict[str, list[tuple]] = {}
+    for jf in sorted(Path(text_dir).glob("*.json")):
+        try:
+            data = json.loads(jf.read_text(encoding="utf-8"))
+            entries = section_entries(data)
+        except (OSError, ValueError, TypeError, AttributeError):
+            continue
+        for e in entries:
+            sec = e["section"]
+            seen.setdefault(str(sec.get("section_id", "")), []).append(
+                (jf.name, data.get("chapter"), sec.get("title", "")))
+    return {sid: places for sid, places in seen.items() if len(places) > 1}
+
+
+#: A section number carried under a lettered part or appendix
+#: ('II-2.3.5', 'A-1.2'), for a caller who asks by the bare number.
+_LETTERED_RE = r"^[A-Za-z]+-{}$"
+
+
+def lettered_matches(section_id: str, numbered) -> list[tuple[str, str]]:
+    """The ``(section_id, title)`` pairs of ``numbered`` whose number is
+    ``section_id`` under a lettered part or appendix: '2.3.5' ->
+    'II-2.3.5'; '1' -> 'A-1', 'B-1'. Up to eight."""
+    pat = re.compile(_LETTERED_RE.format(re.escape(str(section_id))))
+    return [(sid, title) for sid, title in numbered if pat.match(sid)][:8]
 
 
 def _nearby(ref_dir: Path, section_id: str) -> str:
@@ -590,15 +641,20 @@ def _nearby(ref_dir: Path, section_id: str) -> str:
     below = [(sid, title) for sid, title in numbered
              if sid.startswith(f"{section_id}.")
              or sid.startswith(f"{section_id}-")][:8]
-    return nearby_note(above, below)
+    return nearby_note(above, below, lettered_matches(section_id, numbered))
 
 
-def nearby_note(above, below) -> str:
+def nearby_note(above, below, lettered=()) -> str:
     """``'; nearest section above it: 7.2.1 Title; sections numbered under
     it: 7.2.1.3.1 Title; ...'`` from ``above`` (a ``(section_id, title)``
-    or None) and ``below`` (a list of them); ``''`` when both are empty.
-    The wording of a missing section number in both retrieval layers."""
+    or None) and ``below`` (a list of them); ``''`` when all are empty.
+    ``lettered`` (:func:`lettered_matches`) adds the sections that carry
+    the number under a lettered part or appendix. The wording of a missing
+    section number in both retrieval layers."""
     parts = []
+    if lettered:
+        parts.append("that number under a part or appendix letter: "
+                     + "; ".join(f"{sid} {title}" for sid, title in lettered))
     if above:
         parts.append(f"nearest section above it: {above[0]} {above[1]}")
     if below:

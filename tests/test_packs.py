@@ -461,6 +461,30 @@ def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
         in named[0]
 
 
+def test_a_number_two_sections_hold_is_refused_by_both_fetches(
+        tmp_path, monkeypatch):
+    """2026-11-10 review, core-01: the first one indexed used to come back.
+    Neither does now, and the message names both."""
+    folder = make_pack(tmp_path / "packs", pdf=False)
+    second = _chapter(chapter=2)
+    second["chapter_title"] = "Zorblite Walls"
+    second["sections"] = [_section(
+        "1.2", "Zorblite Wall Drainage",
+        "[p. 2-1] Made-up text: a zorblite wall drains through its face.")]
+    _write_json(folder / "text" / "chapter02.json", second)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    for fetch in (_retrieval_db.reference_get, _retrieval.retrieve_section):
+        with pytest.raises(KeyError) as e:
+            fetch(PID, "1.2")
+        msg = str(e.value)
+        assert "held by 2 sections" in msg
+        assert "chapter 1 'Zorblite Settlement'" in msg
+        assert "chapter 2 'Zorblite Wall Drainage'" in msg
+        # a number only one section holds still comes back
+        assert fetch(PID, "1.1")["title"] == "Scope"
+
+
 # ---------------------------------------------------------------------------
 # the checker
 # ---------------------------------------------------------------------------
@@ -504,6 +528,9 @@ def test_check_catches_text_errors(tmp_path):
     _write_json(folder / "text" / "chapter01.json", _chapter())
     _write_json(folder / "text" / "chapter02.json", _chapter())
     assert "chapter 1 repeats" in _errors(folder)
+    # the two files hold the same section numbers (2026-11-10 review, core-01)
+    assert ("section 1.1 is in text/chapter01.json and text/chapter02.json"
+            in _errors(folder))
     shutil.rmtree(folder / "text")
     assert "no chapter files" in _errors(folder)
 

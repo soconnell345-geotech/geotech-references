@@ -299,6 +299,15 @@ def _check_text(folder: Path, meta: dict, report: dict) -> list[dict]:
                     not _PAGE_MARK.search(body):
                 warn(f"{name} {sid}: body has no page marker ('[p. N]')")
         chapters.append(data)
+    # a number two files hold (one file's own repeats are a schema error
+    # above): reference_get and retrieve_section refuse such a number
+    from ._retrieval import duplicate_section_ids
+    for sid, places in duplicate_section_ids(folder / "text").items():
+        names = list(dict.fromkeys(f"text/{p[0]}" for p in places))
+        if len(names) > 1:
+            err(f"section {sid} is in {' and '.join(names)}: a section "
+                "number must be the only one in the pack (a fetch of a "
+                "number two sections hold is refused)")
     report["found"]["chapters"] = len(chapters)
     report["found"]["sections"] = sum(
         len(list(_walk_sections(c.get("sections")))) for c in chapters)
