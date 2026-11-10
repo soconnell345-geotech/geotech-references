@@ -38,6 +38,9 @@ PRINT_REPEATS = {
     ("gec_12", "D-2"): 3,
     ("gec_12", "D-3"): 2,
     ("gec_12", "D-4"): 3,
+    # "Figure D-3 ... (Sheet n of 4)", PDF pages 208-211 (printed 188-191);
+    # catalogued as "D-3 (Sheet n of 4)" before (2026-11-10 review)
+    ("ufc_pavement", "D-3"): 4,
 }
 
 

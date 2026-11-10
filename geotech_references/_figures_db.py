@@ -235,7 +235,10 @@ def _ro_connect() -> sqlite3.Connection:
 
 def _norm_fig_number(s: str) -> str:
     """Normalize a figure id for lookup ('Figure 4-12', 'Fig. 4-12',
-    ' 4-12 ' -> '4-12')."""
+    ' 4-12 ' -> '4-12'). A part letter printed in brackets is the
+    catalog's plain letter: 'Figure 9-37(a)' -> '9-37A', as the catalogs
+    file it ('9-37a'; 2026-11-10 review: the printed form was not
+    found)."""
     s = (str(s or "")).strip()
     low = s.lower()
     for prefix in ("figure", "fig."):
@@ -245,7 +248,9 @@ def _norm_fig_number(s: str) -> str:
     else:
         if low.startswith("fig "):
             s = s[3:].strip()
-    return s.strip(" .:").upper()
+    s = s.strip(" .:")
+    s = re.sub(r"\s*\(([A-Za-z])\)$", r"\1", s)
+    return s.upper()
 
 
 def _id_key(text: str) -> str:
