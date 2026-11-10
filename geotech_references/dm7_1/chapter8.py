@@ -71,7 +71,7 @@ def spt_n_correction_for_pore_pressure(n60: float) -> float:
 
 
 def spt_friction_angle_roads(n60: float) -> float:
-    """Effective stress friction angle from SPT N60 for roads and bridges (Equation 8-2).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from SPT N60 (0 to 50), for roads and bridges, Equation 8-2 (Shioi and Fukui 1982).
 
     Correlation by Shioi and Fukui (1982) relating the effective stress
     friction angle of coarse-grained soils to the SPT N value corrected
@@ -94,7 +94,8 @@ def spt_friction_angle_roads(n60: float) -> float:
     Raises
     ------
     ValueError
-        If *n60* is negative.
+        If *n60* is negative, or above 50, where the curve Figure 8-2
+        plots for this equation ends.
 
     References
     ----------
@@ -103,11 +104,16 @@ def spt_friction_angle_roads(n60: float) -> float:
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
+    if n60 > 50.0:
+        raise ValueError(
+            "n60 is above 50, the end of the curve Figure 8-2 (UFS 3-220-10 "
+            "p. 397) plots for Equation 8-2."
+        )
     return math.sqrt(15.0 * n60) + 15.0
 
 
 def spt_friction_angle_buildings(n60: float) -> float:
-    """Effective stress friction angle from SPT N60 for buildings (Equation 8-3).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from SPT N60 (0 to 50), for buildings, Equation 8-3 (Shioi and Fukui 1982).
 
     Correlation by Shioi and Fukui (1982) relating the effective stress
     friction angle of coarse-grained soils to the SPT N value corrected
@@ -130,7 +136,8 @@ def spt_friction_angle_buildings(n60: float) -> float:
     Raises
     ------
     ValueError
-        If *n60* is negative.
+        If *n60* is negative, or above 50, where the line Figure 8-2
+        plots for this equation ends.
 
     References
     ----------
@@ -139,13 +146,18 @@ def spt_friction_angle_buildings(n60: float) -> float:
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
+    if n60 > 50.0:
+        raise ValueError(
+            "n60 is above 50, the end of the line Figure 8-2 (UFS 3-220-10 "
+            "p. 397) plots for Equation 8-3."
+        )
     return 0.3 * n60 + 27.0
 
 
 def spt_friction_angle_kulhawy_mayne(
     n60: float, sigma_v_eff: float, pa: float
 ) -> float:
-    """Effective stress friction angle from SPT using Kulhawy and Mayne (Equation 8-4).
+    """Peak effective stress friction angle phi' (degrees) of sand from SPT N60 (0 to 60) and vertical effective stress (up to 3.0 kgf/cm2), Equation 8-4 (Kulhawy and Mayne 1990).
 
     Kulhawy and Mayne (1990) approximation of the Schmertmann (1975) and
     DeMello (1971) relationships between peak effective stress friction
@@ -174,7 +186,9 @@ def spt_friction_angle_kulhawy_mayne(
     ------
     ValueError
         If *n60* is negative, *sigma_v_eff* is negative, or *pa* is not
-        positive.
+        positive; or if *n60* is above 60 or *sigma_v_eff* above
+        3.0 kgf/cm2 (2.90 atmospheres), the ends of the axes of
+        Figure 8-3 (bottom), whose trends the equation approximates.
 
     References
     ----------
@@ -187,6 +201,18 @@ def spt_friction_angle_kulhawy_mayne(
         raise ValueError("sigma_v_eff must be non-negative.")
     if pa <= 0.0:
         raise ValueError("pa must be positive.")
+    if n60 > 60.0:
+        raise ValueError(
+            "n60 is above 60, the end of the N60 axis of Figure 8-3 (bottom) "
+            "(UFS 3-220-10 p. 398), whose trends Equation 8-4 approximates."
+        )
+    # 3.0 kgf/cm2 = 294.2 kPa = 2.9035 standard atmospheres
+    if sigma_v_eff / pa > 2.9035:
+        raise ValueError(
+            "sigma_v_eff is above 3.0 kgf/cm2 (2.90 atmospheres), the end of "
+            "the stress axis of Figure 8-3 (bottom) (UFS 3-220-10 p. 398), "
+            "whose trends Equation 8-4 approximates."
+        )
     ratio = n60 / (12.2 + 20.3 * (sigma_v_eff / pa))
     if ratio < 0.0:
         raise ValueError("Computed ratio is negative; check inputs.")
@@ -195,7 +221,7 @@ def spt_friction_angle_kulhawy_mayne(
 
 
 def spt_friction_angle_wolff(n1_60: float) -> float:
-    """Effective stress friction angle from N1,60 using Wolff (Equation 8-5).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from N1,60 (0 to 60), Equation 8-5 (Wolff 1989).
 
     Wolff (1989) approximation of the Peck et al. (1974) correlation
     between effective stress friction angle and SPT N value corrected for
@@ -218,7 +244,8 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     Raises
     ------
     ValueError
-        If *n1_60* is negative.
+        If *n1_60* is negative, or above 60, the end of the N1,60 axis
+        of Figure 8-4.
 
     References
     ----------
@@ -227,11 +254,16 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
+    if n1_60 > 60.0:
+        raise ValueError(
+            "n1_60 is above 60, the end of the N1,60 axis of Figure 8-4 "
+            "(UFS 3-220-10 p. 399), which plots this relationship."
+        )
     return 27.1 + 0.3 * n1_60 - 0.00054 * n1_60 ** 2
 
 
 def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
-    """Effective stress friction angle from N1,60 using Hatanaka and Uchida (Equation 8-6).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from N1,60 (0 to 60), Equation 8-6 (Hatanaka and Uchida 1996).
 
     Hatanaka and Uchida (1996) correlation for the effective stress friction
     angle of sands based on N1,60, developed from triaxial tests on
@@ -255,7 +287,8 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     Raises
     ------
     ValueError
-        If *n1_60* is negative.
+        If *n1_60* is negative, or above 60, the end of the N1,60 axis
+        of Figure 8-4.
 
     References
     ----------
@@ -264,6 +297,11 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
+    if n1_60 > 60.0:
+        raise ValueError(
+            "n1_60 is above 60, the end of the N1,60 axis of Figure 8-4 "
+            "(UFS 3-220-10 p. 399), which plots this relationship."
+        )
     return math.sqrt(15.4 * n1_60) + 20.0
 
 
@@ -570,7 +608,8 @@ def fully_softened_friction_angle(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or above 100, the end of the plasticity
+        index axis of Figure 8-13.
 
     References
     ----------
@@ -579,6 +618,11 @@ def fully_softened_friction_angle(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
+    if pi > 100.0:
+        raise ValueError(
+            "pi is above 100, the end of the plasticity index axis of Figure "
+            "8-13 (UFS 3-220-10 p. 408), which plots Equation 8-13."
+        )
     return 0.0058 * pi ** 1.73 - 0.32 * pi + 36.2
 
 
@@ -671,7 +715,7 @@ def power_function_shear_strength(
 
 
 def residual_friction_angle_gibson(pi: float) -> float:
-    """Residual friction angle from plasticity index (Equation 8-16).
+    """Residual friction angle phi'r (degrees) from plasticity index (0 to 100), Equation 8-16 (Gibson 1953, as approximated by Carter and Bentley 2016).
 
     Gibson (1953) relationship for the residual friction angle (phi'r),
     approximated by Carter and Bentley (2016).  The polynomial fit agrees
@@ -693,7 +737,8 @@ def residual_friction_angle_gibson(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or above 100, the end of the plasticity
+        index axis of Figure 8-13.
 
     References
     ----------
@@ -702,6 +747,11 @@ def residual_friction_angle_gibson(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
+    if pi > 100.0:
+        raise ValueError(
+            "pi is above 100, the end of the plasticity index axis of Figure "
+            "8-13 (UFS 3-220-10 p. 408), which plots Equation 8-16."
+        )
     return 0.084 * pi ** 1.4 - 0.75 * pi + 31.9
 
 
@@ -1688,7 +1738,7 @@ def cbr_from_spt(n: float) -> float:
 
 
 def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
-    """Hydraulic conductivity from Hazen equation (Equation 8-40).
+    """Hydraulic conductivity k (cm/s) of saturated clean sand (fines under 5%) from D10 in mm (0.1 to 3 mm), Equation 8-40 (Hazen 1911): k = C D10^2.
 
     Hazen (1911) correlation for saturated clean sands with fines
     content less than 5% and D10 values from 0.1 to 3 mm.
@@ -1713,7 +1763,9 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
     Raises
     ------
     ValueError
-        If *d10* is not positive or *c* is not positive.
+        If *d10* is not positive or *c* is not positive, or if *d10*
+        is outside 0.1 to 3 mm, the range the manual gives for the
+        correlation.
 
     References
     ----------
@@ -1724,6 +1776,12 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
         raise ValueError("d10 must be positive.")
     if c <= 0.0:
         raise ValueError("c must be positive.")
+    if d10 < 0.1 or d10 > 3.0:
+        raise ValueError(
+            "d10 is outside 0.1 to 3 mm, the range of D10 for which UFS "
+            "3-220-10 p. 458 gives Equation 8-40 (Hazen 1911; saturated clean "
+            "sands with a fines content less than 5%)."
+        )
     return c * d10 ** 2
 
 

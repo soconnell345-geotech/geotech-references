@@ -60,9 +60,18 @@ class TestSptFrictionAngleRoads:
         # N60 = 0: phi' = sqrt(0) + 15 = 15
         assert spt_friction_angle_roads(0.0) == pytest.approx(15.0, rel=1e-4)
 
-    def test_large_value(self):
-        # N60 = 60: phi' = sqrt(900) + 15 = 30 + 15 = 45
-        assert spt_friction_angle_roads(60.0) == pytest.approx(45.0, rel=1e-4)
+    def test_end_of_plotted_curve(self):
+        # Figure 8-2, PDF p. 425 (printed p. 397), plots Shioi and Fukui's
+        # two relationships for N60 from 0 to 50, ending near 42 degrees.
+        # N60 = 50: sqrt(750) + 15 = 42.39 (roads); 0.3*50 + 27 = 42.0
+        assert spt_friction_angle_roads(50.0) == pytest.approx(42.39, abs=0.01)
+        assert spt_friction_angle_buildings(50.0) == pytest.approx(42.0, abs=0.01)
+
+    def test_above_plotted_curve_raises(self):
+        with pytest.raises(ValueError, match="above 50"):
+            spt_friction_angle_roads(60.0)
+        with pytest.raises(ValueError, match="above 50"):
+            spt_friction_angle_buildings(60.0)
 
     def test_negative_raises(self):
         with pytest.raises(ValueError, match="n60 must be non-negative"):
@@ -1725,6 +1734,63 @@ class TestFigure846F:
     def test_negative_raises(self):
         with pytest.raises(ValueError, match="pi must be non-negative"):
             figure_8_46_f(-1.0)
+
+
+# ===========================================================================
+# Ranges the manual states or plots (dm71-25)
+# ============================================================================
+
+
+class TestPrintedRanges:
+    """A value outside the range the manual states or plots is refused."""
+
+    def test_kulhawy_mayne_axes_of_figure_8_3(self):
+        # Figure 8-3 (bottom), PDF p. 426 (printed p. 398): N60 0 to 60,
+        # sigma'v 0 to 3.0 kgf/cm2; Kulhawy and Mayne (1990) approximated
+        # its trends as Eq. 8-4. 3.0 kgf/cm2 = 294.2 kPa.
+        # N60=60, sigma'v=294 kPa, Pa=101.325: 60/(12.2 + 20.3*2.9015) =
+        # 0.84391; ^0.34 = 0.94394; atan = 43.35 deg (between the figure's
+        # 40 and 45 degree curves at that point)
+        assert spt_friction_angle_kulhawy_mayne(60.0, 294.0, 101.325) == pytest.approx(
+            43.35, abs=0.01)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_kulhawy_mayne(61.0, 100.0, 101.325)
+        with pytest.raises(ValueError, match="above 3.0 kgf/cm2"):
+            spt_friction_angle_kulhawy_mayne(20.0, 300.0, 101.325)
+
+    def test_wolff_and_hatanaka_uchida_axis_of_figure_8_4(self):
+        # Figure 8-4, PDF p. 427 (printed p. 399), plots both for N1,60
+        # from 0 to 60, ending near 43 and 50 degrees.
+        # Wolff: 27.1 + 0.3*60 - 0.00054*3600 = 43.16
+        # Hatanaka and Uchida: sqrt(15.4*60) + 20 = 50.40
+        assert spt_friction_angle_wolff(60.0) == pytest.approx(43.16, abs=0.01)
+        assert spt_friction_angle_hatanaka_uchida(60.0) == pytest.approx(50.40, abs=0.01)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_wolff(61.0)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_hatanaka_uchida(61.0)
+
+    def test_gibson_axis_of_figure_8_13(self):
+        # Figure 8-13, PDF p. 436 (printed p. 408), plots both Gibson
+        # equations for PI from 0 to 100; the residual curve ends just
+        # under 10 degrees.
+        # PI=100: 0.084*100^1.4 - 75 + 31.9 = 53.0 - 75 + 31.9 = 9.90
+        assert residual_friction_angle_gibson(100.0) == pytest.approx(9.90, abs=0.01)
+        with pytest.raises(ValueError, match="above 100"):
+            residual_friction_angle_gibson(101.0)
+        with pytest.raises(ValueError, match="above 100"):
+            fully_softened_friction_angle(101.0)
+
+    def test_hazen_stated_range(self):
+        # PDF p. 486 (printed p. 458): "developed for saturated clean sands
+        # with a fines content less than 5% and D10 values ranging from
+        # 0.1 mm to 3 mm". k = C D10^2: 0.01 cm/s at 0.1 mm, 9 cm/s at 3 mm
+        assert hydraulic_conductivity_hazen(0.1) == pytest.approx(0.01, abs=1e-9)
+        assert hydraulic_conductivity_hazen(3.0) == pytest.approx(9.0, abs=1e-9)
+        with pytest.raises(ValueError, match="outside 0.1 to 3 mm"):
+            hydraulic_conductivity_hazen(0.05)
+        with pytest.raises(ValueError, match="outside 0.1 to 3 mm"):
+            hydraulic_conductivity_hazen(5.0)
 
 
 # ===========================================================================

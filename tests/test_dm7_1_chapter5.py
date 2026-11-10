@@ -324,9 +324,18 @@ class TestSchmertmannTimeCorrection:
         # t=10 => log10(10/0.1) = log10(100) = 2 => C2 = 1 + 0.4 = 1.4
         assert schmertmann_time_correction(10.0) == pytest.approx(1.4, rel=1e-4)
 
-    def test_short_time(self):
-        # t=0.01 => log10(0.01/0.1) = log10(0.1) = -1 => C2 = 1 - 0.2 = 0.8
-        assert schmertmann_time_correction(0.01) == pytest.approx(0.8, rel=1e-4)
+    def test_thirty_years_against_figure_5_9(self):
+        # Figure 5-9, PDF p. 264 (printed p. 236), plots "Schmertmann C2
+        # correction" to 30 years, where it reads about 1.5.
+        # t=30 => 1 + 0.2*log10(300) = 1 + 0.2*2.4771 = 1.4954
+        assert schmertmann_time_correction(30.0) == pytest.approx(1.4954, abs=1e-4)
+
+    def test_below_reference_time_raises(self):
+        # Eq. 5-9, PDF p. 260 (printed p. 232): the reference time is
+        # 0.1 year; below it the equation gives a factor under 1.0, where
+        # Figure 5-9's axis starts.
+        with pytest.raises(ValueError, match="below 0.1 year"):
+            schmertmann_time_correction(0.01)
 
     def test_zero_raises(self):
         with pytest.raises(ValueError, match="t_years must be positive"):

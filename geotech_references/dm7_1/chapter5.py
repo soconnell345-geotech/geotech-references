@@ -450,8 +450,7 @@ def schmertmann_embedment_correction(
 # ---------------------------------------------------------------------------
 
 def schmertmann_time_correction(t_years: float) -> float:
-    """Time (creep) correction factor C2 for Schmertmann method
-    (Equation 5-9).
+    """Creep factor C2 (dimensionless, 1.0 or more) for settlement of coarse-grained soil at a time t of 0.1 year or more after loading, Equation 5-9: C2 = 1 + 0.2 log(t / 0.1 yr).
 
     Accounts for time-dependent (creep) settlement of coarse-grained
     soils.  The reference time is 0.1 year.
@@ -472,7 +471,9 @@ def schmertmann_time_correction(t_years: float) -> float:
     Raises
     ------
     ValueError
-        If *t_years* is zero or negative.
+        If *t_years* is zero or negative, or below 0.1 year, the
+        reference time of the equation (the factor would fall below
+        1.0, where Figure 5-9's axis starts).
 
     References
     ----------
@@ -481,6 +482,12 @@ def schmertmann_time_correction(t_years: float) -> float:
     """
     if t_years <= 0.0:
         raise ValueError("t_years must be positive.")
+    if t_years < 0.1:
+        raise ValueError(
+            "t_years is below 0.1 year, the reference time of Equation 5-9 "
+            "(UFS 3-220-10 p. 232); Figure 5-9 (p. 236) plots the factor "
+            "from 1.0 at that time."
+        )
     return 1.0 + 0.2 * math.log10(t_years / 0.1)
 
 
