@@ -310,12 +310,27 @@ class TestTableA10GroundTest:
         assert table_a_10_correlation_ground_test("min", 7) == 1.12
         assert table_a_10_correlation_ground_test("min", 10) == 1.08
 
-    def test_interpolation_between_points(self):
-        # n=6 halfway between n=5 (1.29) and n=7 (1.27) -> 1.28
-        assert table_a_10_correlation_ground_test("mean", 6) == pytest.approx(1.28)
+    def test_unprinted_n_is_refused_not_interpolated(self):
+        # Table A.10 (PDF p. 135, printed p. 133) prints n = 1, 2, 3, 4, 5,
+        # 7 and 10 only, with no ">=" and no interpolation rule. n = 6, 8, 9
+        # used to be interpolated (n = 6 -> 1.28 mean, 1.135 min).
+        for n in (6, 8, 9):
+            for factor in ("mean", "min"):
+                with pytest.raises(ValueError, match="Table A.10"):
+                    table_a_10_correlation_ground_test(factor, n)
 
-    def test_n_greater_than_10_caps_at_10(self):
-        assert table_a_10_correlation_ground_test("mean", 50) == 1.25
+    def test_unprinted_n_message_gives_the_printed_neighbours(self):
+        with pytest.raises(ValueError) as exc:
+            table_a_10_correlation_ground_test("min", 6)
+        msg = str(exc.value)
+        assert "n = 5: 1.15" in msg and "n = 7: 1.12" in msg
+        assert "printed p. 133" in msg
+
+    def test_n_greater_than_10_is_refused(self):
+        # The last printed column is "10", not ">= 10" (Table A.9 prints
+        # ">= 5" and Table A.11 ">= 20" where a column is open-ended).
+        with pytest.raises(ValueError, match="n = 10: 1.25"):
+            table_a_10_correlation_ground_test("mean", 50)
 
     def test_invalid_n(self):
         with pytest.raises(ValueError):
@@ -336,6 +351,26 @@ class TestTableA11DynamicImpactTest:
         assert table_a_11_correlation_dynamic_impact_test("min", 10) == 1.30
         assert table_a_11_correlation_dynamic_impact_test("min", 15) == 1.25
         assert table_a_11_correlation_dynamic_impact_test("min", 20) == 1.25
+
+    def test_columns_are_a_step_not_interpolated(self):
+        # Table A.11 (PDF p. 136, printed p. 134): the columns are headed
+        # ">= 2", ">= 5", ">= 10", ">= 15", ">= 20". n between two columns
+        # takes the lower column. These used to be interpolated
+        # (n = 4: 1.533 mean, 1.40 min).
+        assert table_a_11_correlation_dynamic_impact_test("mean", 3) == 1.60
+        assert table_a_11_correlation_dynamic_impact_test("mean", 4) == 1.60
+        assert table_a_11_correlation_dynamic_impact_test("min", 4) == 1.50
+        assert table_a_11_correlation_dynamic_impact_test("mean", 7) == 1.50
+        assert table_a_11_correlation_dynamic_impact_test("min", 9) == 1.35
+        assert table_a_11_correlation_dynamic_impact_test("mean", 12) == 1.45
+        assert table_a_11_correlation_dynamic_impact_test("min", 14) == 1.30
+        assert table_a_11_correlation_dynamic_impact_test("mean", 19) == 1.42
+        assert table_a_11_correlation_dynamic_impact_test("min", 19) == 1.25
+
+    def test_n_above_20_takes_the_last_column(self):
+        # The last column is printed ">= 20".
+        assert table_a_11_correlation_dynamic_impact_test("mean", 35) == 1.40
+        assert table_a_11_correlation_dynamic_impact_test("min", 35) == 1.25
 
     def test_model_factor_signal_matching(self):
         xi = table_a_11_correlation_dynamic_impact_test("mean", 2, "signal_matching")

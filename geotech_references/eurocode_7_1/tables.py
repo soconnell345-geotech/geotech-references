@@ -26,8 +26,6 @@ guess; where the OCR was ambiguous this is noted in the specific function's
 docstring.
 """
 
-from geotech_references._interpolation import _linterp
-
 
 # ============================================================================
 # Table A.1 (pdf p.130, idx 129): Partial factors on actions (gamma_F) for
@@ -433,33 +431,52 @@ _TABLE_A_10_MIN = [1.40, 1.27, 1.23, 1.20, 1.15, 1.12, 1.08]    # xi_4
 
 def table_a_10_correlation_ground_test(factor: str = "mean",
                                        n: int = 1) -> float:
-    """Correlation factors (xi) for characteristic resistance from ground test
-    profiles (Table A.10).
+    """Correlation factor xi_3 (on the mean) or xi_4 (on the minimum),
+    dimensionless, to derive the characteristic pile resistance from ground
+    test results for n profiles of tests (EN 1997-1:2004 Table A.10, printed
+    p. 133; recommended values, the National annex may give others).
+
+    The table prints n = 1, 2, 3, 4, 5, 7 and 10 only, with no ">=" on any
+    column and no interpolation rule. Any other n is refused, and the
+    message gives the printed neighbours.
 
     Parameters
     ----------
     factor : str
-        'mean' (xi_3) or 'min' (xi_4).
+        'mean' (xi_3, on the mean values of the calculated resistances from
+        ground test results) or 'min' (xi_4, on the minimum value).
     n : int
-        Number of ground test profiles, 1 to 10.  Intermediate n values
-        (e.g. 6, 8, 9) are linearly interpolated between the table's
-        tabulated points (1,2,3,4,5,7,10); n > 10 uses the n=10 value.
+        Number of profiles of tests: 1, 2, 3, 4, 5, 7 or 10.
 
     Returns
     -------
     float
-        Correlation factor xi.
+        Correlation factor xi, dimensionless.
+
+    Raises
+    ------
+    ValueError
+        If factor is unknown, or n is not one of the printed columns.
     """
     f = factor.strip().lower()
     if f not in ("mean", "min"):
         raise ValueError(f"Unknown factor '{factor}'. Valid: mean, min.")
     if n < 1:
         raise ValueError(f"n must be >= 1, got {n}")
-    n_eff = min(n, 10)
     series = _TABLE_A_10_MEAN if f == "mean" else _TABLE_A_10_MIN
-    if n_eff in _TABLE_A_10_N:
-        return series[_TABLE_A_10_N.index(n_eff)]
-    return _linterp(n_eff, _TABLE_A_10_N, series)
+    if n in _TABLE_A_10_N:
+        return series[_TABLE_A_10_N.index(n)]
+    symbol = "xi_3" if f == "mean" else "xi_4"
+    below = max(m for m in _TABLE_A_10_N if m < n)
+    neighbours = f"n = {below}: {series[_TABLE_A_10_N.index(below)]:.2f}"
+    above = [m for m in _TABLE_A_10_N if m > n]
+    if above:
+        neighbours += f"; n = {above[0]}: {series[_TABLE_A_10_N.index(above[0])]:.2f}"
+    raise ValueError(
+        f"EN 1997-1:2004 Table A.10 (printed p. 133) gives {symbol} for "
+        f"n = 1, 2, 3, 4, 5, 7 and 10 only; it prints no value and no "
+        f"interpolation rule for n = {n}. Printed {symbol} at {neighbours}."
+    )
 
 
 # ============================================================================
@@ -482,27 +499,37 @@ _TABLE_A_11_MODEL_FACTORS = {
 def table_a_11_correlation_dynamic_impact_test(factor: str = "mean",
                                                n: int = 2,
                                                model_factor: str = None) -> float:
-    """Correlation factors (xi) for dynamic impact pile tests (Table A.11).
+    """Correlation factor xi_5 (on the mean) or xi_6 (on the minimum),
+    dimensionless, to derive the characteristic pile resistance from dynamic
+    impact tests on n tested piles (EN 1997-1:2004 Table A.11, printed
+    p. 134; recommended values, the National annex may give others).
+
+    The printed columns are headed ">= 2", ">= 5", ">= 10", ">= 15" and
+    ">= 20", so the value is that of the highest column whose n is not
+    above the number of piles tested: n = 3 or 4 takes the ">= 2" column,
+    n = 12 the ">= 10" column. Nothing is interpolated.
 
     Parameters
     ----------
     factor : str
-        'mean' (xi_5) or 'min' (xi_6).
+        'mean' (xi_5, on the mean values of the measured resistances in
+        dynamic load tests) or 'min' (xi_6, on the minimum value).
     n : int
-        Number of piles tested, 2 to 20 (n < 2 raises; n > 20 uses n=20;
-        intermediate values are linearly interpolated between 2,5,10,15,20).
+        Number of tested piles, 2 or more (n < 2 raises).
     model_factor : str, optional
-        Additional model factor per the table footnotes: 'signal_matching'
-        (x0.85, for dynamic impact tests with signal matching),
-        'formula_with_measurement' (x1.10, pile driving formula with
-        measured quasi-elastic pile head displacement), or
-        'formula_without_measurement' (x1.20, pile driving formula without
-        that measurement).  If None (default), no model factor is applied.
+        Model factor from the table's footnotes: 'signal_matching' (x 0,85,
+        footnote b, dynamic impact tests with signal matching),
+        'formula_with_measurement' (x 1,10, footnote c, pile driving formula
+        with measurement of the quasi-elastic pile head displacement during
+        the impact), or 'formula_without_measurement' (x 1,20, footnote d,
+        pile driving formula without that measurement).  If None (default),
+        no model factor is applied.
 
     Returns
     -------
     float
-        Correlation factor xi, times the model factor if given.
+        Correlation factor xi, dimensionless, times the model factor if
+        given.
 
     Raises
     ------
@@ -514,12 +541,11 @@ def table_a_11_correlation_dynamic_impact_test(factor: str = "mean",
         raise ValueError(f"Unknown factor '{factor}'. Valid: mean, min.")
     if n < 2:
         raise ValueError(f"n must be >= 2, got {n}")
-    n_eff = min(n, 20)
     series = _TABLE_A_11_MEAN if f == "mean" else _TABLE_A_11_MIN
-    if n_eff in _TABLE_A_11_N:
-        xi = series[_TABLE_A_11_N.index(n_eff)]
-    else:
-        xi = _linterp(n_eff, _TABLE_A_11_N, series)
+    # The columns are printed ">= 2", ">= 5", ">= 10", ">= 15", ">= 20":
+    # a step, read at the highest column not above n.
+    column = max(m for m in _TABLE_A_11_N if m <= n)
+    xi = series[_TABLE_A_11_N.index(column)]
 
     if model_factor is not None:
         mf_key = model_factor.strip().lower()
