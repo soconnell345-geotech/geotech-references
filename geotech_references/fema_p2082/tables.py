@@ -122,12 +122,28 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     Section 20.3, as printed: "Due to the uncertainty inherent in such
     correlations, site class based on estimated values of vs shall be
     derived using vs, vs/1.3, and 1.3 vs when correlation models are used
-    to derive shear wave velocities. ... If the different average
-    velocities result in different site classes per Table 20.2-1, the most
-    critical of the site classes for ground motion analysis at each period
-    shall be determined by a geotechnical engineer, as described in Section
-    11.4.2." The result gives the three classes under
-    'estimated_vs_site_classes'; 'site_class' is the class at vs itself.
+    to derive shear wave velocities. Where correlations derived for
+    specific local regions can be demonstrated to have greater accuracy,
+    factors less than 1.3 can be used if approved by local building
+    officials. If the different average velocities result in different
+    site classes per Table 20.2-1, the most critical of the site classes
+    for ground motion analysis at each period shall be determined by a
+    geotechnical engineer, as described in Section 11.4.2." The result
+    gives the three classes under 'estimated_vs_site_classes';
+    'site_class' is the class at vs itself.
+
+    An estimated velocity cannot give Site Class B or A. Section 20.2.4
+    (printed p. 87): "Site Class B can only be assigned to a site on the
+    basis of shear wave velocity measured on site." Section 20.2.5
+    (printed p. 87): "The hard rock, Site Class A category shall be
+    supported by shear wave velocity measurement either on site or on
+    profiles of the same rock type in the same formation ...". Where
+    vs/1.3, vs or 1.3 vs falls in the B or A range of Table 20.2-1, its
+    entry in 'estimated_vs_site_classes' is None and
+    'estimated_vs_limits' says why. The Provisions do not print which
+    class a velocity estimated from correlations takes there; for a site
+    condition estimated as Site Class B or BC on the basis of site geology
+    Section 20.2.4 gives Site Class BC.
 
     Parameters
     ----------
@@ -141,8 +157,9 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     dict
         {'vs30': float, 'unit': str, 'vs30_ft_s': float, 'site_class': str,
          'description': str, 'boundary': str,
-         'estimated_vs_site_classes': {'vs/1.3': str, 'vs': str, '1.3vs': str},
-         'reference': str, 'note': str}
+         'estimated_vs_site_classes': {'vs/1.3': str or None, 'vs': str or
+         None, '1.3vs': str or None}, 'estimated_vs_limits': list of str
+         (only when an entry is None), 'reference': str, 'note': str}
 
     Raises
     ------
@@ -174,11 +191,35 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     sc, lo, hi, desc = matched
     # Section 20.3: classes at vs/1.3 and 1.3 vs, for a velocity estimated
     # from correlations.
-    estimated = {
-        "vs/1.3": row_for(vs_ft / 1.3)[0],
-        "vs": sc,
-        "1.3vs": row_for(vs_ft * 1.3)[0],
-    }
+    # Sections 20.2.4 and 20.2.5: Site Classes B and A need a measured
+    # velocity, so an estimated one is given no class there.
+    estimated = {}
+    estimated_limits = []
+    for label, v_ft in (("vs/1.3", vs_ft / 1.3), ("vs", vs_ft),
+                        ("1.3vs", vs_ft * 1.3)):
+        table_class = row_for(v_ft)[0]
+        if table_class == "B":
+            estimated[label] = None
+            estimated_limits.append(
+                f"{label} = {v_ft:,.0f} ft/s is in the Site Class B range of "
+                "Table 20.2-1, but 'Site Class B can only be assigned to a "
+                "site on the basis of shear wave velocity measured on site' "
+                "(Section 20.2.4, printed p. 87). Where the site condition is "
+                "estimated as Site Class B or BC on the basis of site geology "
+                "consisting of competent rock with moderate fracturing and "
+                "weathering, 'the site shall be classified as Site Class BC'."
+            )
+        elif table_class == "A":
+            estimated[label] = None
+            estimated_limits.append(
+                f"{label} = {v_ft:,.0f} ft/s is in the Site Class A range of "
+                "Table 20.2-1, but 'The hard rock, Site Class A category "
+                "shall be supported by shear wave velocity measurement either "
+                "on site or on profiles of the same rock type in the same "
+                "formation' (Section 20.2.5, printed p. 87)."
+            )
+        else:
+            estimated[label] = table_class
     if hi is None:
         boundary = f"vs > {lo:,.0f} ft/s"
     elif lo is None:
@@ -194,8 +235,10 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
         "description": desc,
         "boundary": boundary,
         "estimated_vs_site_classes": estimated,
+        **({"estimated_vs_limits": estimated_limits} if estimated_limits else {}),
         "reference": ("FEMA P-2082 (2020 NEHRP) Table 20.2-1 (Section 20.2, "
-                      "printed p. 86); Section 20.3 (printed p. 88)"),
+                      "printed p. 86); Sections 20.2.4 and 20.2.5 (printed "
+                      "p. 87); Section 20.3 (printed p. 88)"),
         "note": (
             "Velocity-based class only. Check Section 20.2.1 (Site Class F) and "
             "20.2.2 (Site Class E soft clay) overrides with additional soil data. "
@@ -206,7 +249,10 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
             "class to be derived using vs, vs/1.3 and 1.3 vs "
             "('estimated_vs_site_classes'); where these differ, the most "
             "critical of the site classes for ground motion analysis at each "
-            "period is determined by a geotechnical engineer (Section 11.4.2)."
+            "period is determined by a geotechnical engineer (Section 11.4.2). "
+            "An estimated velocity is given no class in the B or A range "
+            "(entry null, reason in 'estimated_vs_limits'): Sections 20.2.4 "
+            "and 20.2.5 require a measured velocity for those classes."
         ),
     }
 

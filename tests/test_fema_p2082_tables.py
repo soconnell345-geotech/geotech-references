@@ -130,12 +130,36 @@ class TestSiteClassFromVs30:
         # 800/1.3 = 615 ft/s -> DE; 800 x 1.3 = 1,040 ft/s -> CD
         assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
         assert "vs/1.3 and 1.3 vs" in r["note"]
-        # 2,500 ft/s -> BC; /1.3 = 1,923 -> C; x1.3 = 3,250 -> B
-        r = site_class_from_vs30(2500, "ft/s")
-        assert r["estimated_vs_site_classes"] == {"vs/1.3": "C", "vs": "BC", "1.3vs": "B"}
+        assert "estimated_vs_limits" not in r
         # 850 ft/s: /1.3 = 654 -> DE; x1.3 = 1,105 -> CD
         r = site_class_from_vs30(850, "ft/s")
         assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
+
+    def test_an_estimated_velocity_is_given_no_class_b_or_a(self):
+        # Section 20.2.4 (PDF p. 125, printed p. 87): "Site Class B can only
+        # be assigned to a site on the basis of shear wave velocity measured
+        # on site." Section 20.2.5 (same page): "The hard rock, Site Class A
+        # category shall be supported by shear wave velocity measurement
+        # either on site or on profiles of the same rock type in the same
+        # formation ...". The estimated classes used to include B and A.
+        # 2,500 ft/s -> BC; /1.3 = 1,923 -> C; x1.3 = 3,250 is in the B range
+        r = site_class_from_vs30(2500, "ft/s")
+        assert r["site_class"] == "BC"
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "C", "vs": "BC", "1.3vs": None}
+        assert len(r["estimated_vs_limits"]) == 1
+        assert "Section 20.2.4" in r["estimated_vs_limits"][0]
+        assert "measured on site" in r["estimated_vs_limits"][0]
+        assert "shall be classified as Site Class BC" in r["estimated_vs_limits"][0]
+        # 3,800 ft/s is in the B range; /1.3 = 2,923 -> BC; x1.3 = 4,940 is B
+        r = site_class_from_vs30(3800, "ft/s")
+        assert r["site_class"] == "B"     # the class for the velocity as given
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "BC", "vs": None, "1.3vs": None}
+        # 4,000 ft/s: /1.3 = 3,077 is B; x1.3 = 5,200 is in the A range
+        r = site_class_from_vs30(4000, "ft/s")
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": None, "vs": None, "1.3vs": None}
+        assert "Section 20.2.5" in r["estimated_vs_limits"][2]
+        assert "Site Class A" in r["estimated_vs_limits"][2]
+        assert "20.2.4 and 20.2.5" in r["note"]
 
 
 class TestSiteClassF:
