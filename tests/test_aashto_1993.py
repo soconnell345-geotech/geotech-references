@@ -150,6 +150,18 @@ class TestLayerCoefficientA1:
             assert a1 > prev
             prev = a1
 
+    def test_below_curve_start_refused(self):
+        # Figure 2.5, aashto1993.pdf PDF 108 (pdf_page 107), printed II-18:
+        # the curve begins at about EAC 100,000 psi, a1 0.20. Below it the
+        # chart gives nothing (was silently 0.20).
+        with pytest.raises(ValueError, match="curve begins"):
+            tb.layer_coefficient_a1_asphalt(80000)
+
+    def test_past_chart_edge_held_with_note(self):
+        r = tb.layer_coefficient_a1_asphalt(600000)
+        assert r["a1"] == tb.layer_coefficient_a1_asphalt(500000)["a1"]
+        assert "held" in r["note"]
+
 
 class TestLayerCoefficientA2Cement:
     """Figure 2.8 (pdf_page 112, printed II-23): a2 read straight across

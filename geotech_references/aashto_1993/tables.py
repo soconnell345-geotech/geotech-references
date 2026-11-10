@@ -282,7 +282,9 @@ _A1_VAL = [0.20, 0.26, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 
 
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
-    """Asphalt concrete surface course layer coefficient a1 (Figure 2.5, chart).
+    """Structural layer coefficient a1 of a dense-graded asphalt concrete
+    surface course from its elastic modulus EAC at 68 F, AASHTO 1993
+    Figure 2.5 (pdf_page 107, printed II-18); returns a1 (per inch).
 
     Chart-read-off (interpolated), NOT a printed closed-form equation.
     Digitized anchor points (EAC psi -> a1): 100000->0.20, 150000->0.26,
@@ -293,16 +295,26 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     Parameters
     ----------
     eac_psi : float
-        Asphalt concrete elastic (resilient) modulus at 68 F, psi.
-        Values below 100,000 psi are off the printed chart (clamped to the
-        chart's a1=0.20 floor by the interpolator); values above 450,000
-        psi are on the guide's own cautioned dashed-extrapolation segment.
+        Asphalt concrete elastic (resilient) modulus at 68 F, psi. The
+        printed curve begins at about 100,000 psi (a1 0.20): below that the
+        lookup refuses. Above 450,000 psi the curve is dashed (noted);
+        above 500,000 psi, the chart's edge, a1 is held at its 500,000 psi
+        value, with a note.
 
     Returns
     -------
     dict
         {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?}.
+
+    Raises
+    ------
+    ValueError
+        If eac_psi is below 100,000 psi, where Figure 2.5's curve begins.
     """
+    if eac_psi is None or eac_psi < _A1_EAC[0]:
+        raise ValueError(
+            f"EAC {eac_psi} psi is below where Figure 2.5's curve begins "
+            "(about 100,000 psi, a1 0.20); the chart gives no a1 there.")
     a1 = _linterp(eac_psi, _A1_EAC, _A1_VAL)
     out = {
         "eac_psi": eac_psi, "a1": round(a1, 3), "chart_read": True,
@@ -311,6 +323,9 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     if eac_psi > 450000:
         out["note"] = ("EAC > 450,000 psi: guide cautions this is beyond the "
                        "reliable chart range (dashed extrapolation).")
+    if eac_psi > _A1_EAC[-1]:
+        out["note"] += (" EAC is past the chart's 500,000 psi edge; a1 is "
+                        "held at its 500,000 psi value.")
     return out
 
 
