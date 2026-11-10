@@ -260,6 +260,18 @@ class TestDrainageEquations:
         r = effective_porosity(110, 2.68, 62.4, 0.05)
         assert 0 < r["effective_porosity"] < 0.35
 
+    def test_effective_porosity_eq_20_4_as_printed(self):
+        # Eq. 20-4, UFC 3-250-01 PDF 114 (printed 94):
+        # ne = 1 - gamma_d/(Gs*gamma_w) * (1 + Gs*We). Made-up inputs.
+        r = effective_porosity(110, 2.65, 62.4, 0.05)
+        expected = 1 - 110 / (2.65 * 62.4) * (1 + 2.65 * 0.05)
+        assert r["effective_porosity"] == pytest.approx(expected, abs=1e-4)
+        assert r["effective_porosity"] == pytest.approx(0.2466, abs=1e-4)
+        r2 = effective_porosity(100, 2.70, 62.4, 0.02)
+        assert r2["effective_porosity"] == pytest.approx(
+            1 - 100 / (2.70 * 62.4) * (1 + 2.70 * 0.02), abs=1e-4)
+        assert "printed 94" in r["reference"]
+
     def test_effective_horizontal_permeability_weighted_average(self):
         r = effective_horizontal_permeability([(100, 4), (10, 8)])
         expected = (100 * 4 + 10 * 8) / (4 + 8)
@@ -282,12 +294,18 @@ class TestDrainageEquations:
             drainage_layer_drainable_flow(2, 1000, 0.02, 4, 0)
 
     def test_time_for_50pct(self):
+        # Eq. 20-11, UFC 3-250-01 PDF 118 (printed 98): T50 = ne*D/(2*i*k).
         r = time_for_50pct_drainage(0.25, 50, 0.02, 1000)
-        assert r["t50"] == pytest.approx((0.25 * 50) / (0.02 * 1000))
+        assert r["t50"] == pytest.approx((0.25 * 50) / (2 * 0.02 * 1000))
+        r2 = time_for_50pct_drainage(0.30, 20, 0.015, 40)
+        assert r2["t50"] == pytest.approx((0.30 * 20) / (2 * 0.015 * 40))
 
     def test_time_for_85pct(self):
+        # Eq. 20-12, same page: T85 = ne*D/(i*k), twice T50 of Eq. 20-11.
         r = time_for_85pct_drainage(0.25, 50, 0.02, 1000)
-        assert r["t85"] > 0
+        assert r["t85"] == pytest.approx((0.25 * 50) / (0.02 * 1000))
+        t50 = time_for_50pct_drainage(0.25, 50, 0.02, 1000)["t50"]
+        assert r["t85"] == pytest.approx(2 * t50)
 
     def test_time_for_50pct_requires_positive(self):
         with pytest.raises(ValueError):
@@ -322,12 +340,26 @@ class TestDrainageEquations:
             granular_permeability_estimate(0.5, 0.35, 5, units="bogus")
 
     def test_drainage_layer_thickness_required_positive(self):
+        # Eq. 20-17, UFC 3-250-01 PDF 127 (printed 107):
+        # H = 2*F*R*L*t / [(1.7*ne*L) + (k*i*t)]. Made-up inputs.
         r = drainage_layer_thickness_required(0.5, 0.2, 50, 1, 0.25, 1000, 0.02)
-        assert r["h"] > 0
+        assert r["h"] == pytest.approx(
+            (2 * 0.5 * 0.2 * 50 * 1) / (1.7 * 0.25 * 50 + 1000 * 0.02 * 1))
+        r2 = drainage_layer_thickness_required(0.5, 0.1, 30, 1, 0.3, 50, 0.01)
+        assert r2["h"] == pytest.approx(
+            (2 * 0.5 * 0.1 * 30 * 1) / (1.7 * 0.3 * 30 + 50 * 0.01 * 1))
+        assert "printed 107" in r["reference"]
 
     def test_drainage_layer_thickness_simplified_positive(self):
+        # Eq. 20-18, same page: H = F*R*t / (0.85*ne).
         r = drainage_layer_thickness_simplified(0.5, 0.2, 1, 0.25)
-        assert r["h"] == pytest.approx((0.85 * 0.5 * 0.2 * 1) / 0.25)
+        assert r["h"] == pytest.approx((0.5 * 0.2 * 1) / (0.85 * 0.25))
+
+    def test_eq_20_18_is_eq_20_17_without_kit(self):
+        # Eq. 20-17 with k = 0 reduces to Eq. 20-18 (PDF 127, printed 107).
+        full = drainage_layer_thickness_required(0.5, 0.2, 50, 1, 0.25, 0, 0.02)
+        simple = drainage_layer_thickness_simplified(0.5, 0.2, 1, 0.25)
+        assert full["h"] == pytest.approx(simple["h"])
 
     def test_collector_drain_flow_ft_day(self):
         r = collector_drain_flow(0.33, 0.02, 1000, units="ft_day")
