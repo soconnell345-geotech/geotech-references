@@ -188,13 +188,19 @@ class TestCptFrictionAngleMayne:
     """Tests for Equation 8-7."""
 
     def test_basic(self):
-        # qt=5000, sigma_v_eff=100, pa=101.325
-        # phi' = 17.6 + 11 * log10((5000/101.325)/(100/101.325))
-        # = 17.6 + 11 * log10(5000/100) = 17.6 + 11 * log10(50)
-        # = 17.6 + 11 * 1.69897 = 17.6 + 18.6887 = 36.2887
-        expected = 17.6 + 11.0 * math.log10(5000.0 / 100.0)
-        assert cpt_friction_angle_mayne(5000.0, 100.0, 101.325) == pytest.approx(
-            expected, rel=1e-4
+        # Eq. 8-7 as printed, PDF p. 428 (printed p. 400):
+        # phi' = 17.6 + 11 log[(qt/Pa) / sqrt(sigma'v/Pa)]
+        # qt=10000, sigma'v=400, Pa=100: (100)/sqrt(4) = 50
+        # phi' = 17.6 + 11 * 1.69897 = 36.2887
+        assert cpt_friction_angle_mayne(10000.0, 400.0, 100.0) == pytest.approx(
+            36.2887, abs=1e-3
+        )
+
+    def test_vertical_stress_under_square_root(self):
+        # PDF p. 428 (printed p. 400). qt=20000, sigma'v=25, Pa=100:
+        # (200)/sqrt(0.25) = 400; phi' = 17.6 + 11 * 2.60206 = 46.2227
+        assert cpt_friction_angle_mayne(20000.0, 25.0, 100.0) == pytest.approx(
+            46.2227, abs=1e-3
         )
 
     def test_qt_not_positive_raises(self):
@@ -219,15 +225,22 @@ class TestCptFrictionAngleRobertsonCampanella:
     """Tests for Equation 8-8."""
 
     def test_basic(self):
-        # qc=5000, sigma_v_eff=100
-        # log10(5000/100) = log10(50) = 1.69897
-        # denom = 2.68 * (1.69897 + 0.29) = 2.68 * 1.98897 = 5.33044
-        # phi = degrees(atan(1/5.33044)) = degrees(atan(0.18760)) = 10.627 deg
-        log_ratio = math.log10(5000.0 / 100.0)
-        denom = 2.68 * (log_ratio + 0.29)
-        expected = math.degrees(math.atan(1.0 / denom))
+        # Eq. 8-8 as printed, PDF p. 430 (printed p. 402):
+        # tan(phi') = (1/2.68) [log(qc/sigma'v) + 0.29]
+        # qc/sigma'v = 100: tan(phi') = 2.29/2.68 = 0.85448, phi' = 40.513 deg
+        assert cpt_friction_angle_robertson_campanella(10000.0, 100.0) == pytest.approx(
+            40.513, abs=1e-3
+        )
+
+    def test_angle_rises_with_tip_resistance(self):
+        # PDF p. 430 (printed p. 402).
+        # qc/sigma'v = 50: tan(phi') = 1.98897/2.68 = 0.74215, phi' = 36.581 deg
+        # qc/sigma'v = 300: tan(phi') = 2.76712/2.68 = 1.03251, phi' = 45.916 deg
         assert cpt_friction_angle_robertson_campanella(5000.0, 100.0) == pytest.approx(
-            expected, rel=1e-4
+            36.581, abs=1e-3
+        )
+        assert cpt_friction_angle_robertson_campanella(30000.0, 100.0) == pytest.approx(
+            45.916, abs=1e-3
         )
 
     def test_qc_not_positive_raises(self):
@@ -238,12 +251,10 @@ class TestCptFrictionAngleRobertsonCampanella:
         with pytest.raises(ValueError, match="sigma_v_eff must be positive"):
             cpt_friction_angle_robertson_campanella(5000.0, 0.0)
 
-    def test_denominator_nonpositive_raises(self):
-        # Need log10(qc/sigma_v_eff) + 0.29 <= 0
-        # log10(qc/sigma_v_eff) <= -0.29 => qc/sigma_v_eff <= 10^(-0.29) = 0.5129
-        # e.g. qc=50, sigma_v_eff=100 => ratio=0.5, log10(0.5)=-0.3010
-        # denom = 2.68*(-0.3010 + 0.29) = 2.68*(-0.0110) = -0.02948 < 0
-        with pytest.raises(ValueError, match="Computed denominator is non-positive"):
+    def test_bracket_nonpositive_raises(self):
+        # log10(qc/sigma_v_eff) + 0.29 <= 0 gives no positive friction angle.
+        # qc=50, sigma_v_eff=100 => log10(0.5) = -0.3010; -0.3010 + 0.29 < 0
+        with pytest.raises(ValueError, match="is not positive"):
             cpt_friction_angle_robertson_campanella(50.0, 100.0)
 
 
@@ -359,11 +370,18 @@ class TestFullySoftenedFrictionAngle:
     """Tests for Equation 8-13."""
 
     def test_basic(self):
-        # PI=30: phi'FS = -0.0058*30^1.73 + 0.32*30 + 36.2
-        # 30^1.73 = exp(1.73*ln(30)) = exp(1.73*3.40120) = exp(5.88407) = 359.05
-        # = -0.0058*359.05 + 9.6 + 36.2 = -2.0825 + 9.6 + 36.2 = 43.7175
-        expected = -0.0058 * 30.0 ** 1.73 + 0.32 * 30.0 + 36.2
-        assert fully_softened_friction_angle(30.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-13 as printed, PDF p. 435 (printed p. 407):
+        # phi'FS = 0.0058 PI^1.73 - 0.32 PI + 36.2
+        # PI=40: 40^1.73 = 590.97; 3.4276 - 12.8 + 36.2 = 26.83
+        assert fully_softened_friction_angle(40.0) == pytest.approx(26.83, abs=0.01)
+
+    def test_angle_falls_with_plasticity(self):
+        # PDF p. 435 (printed p. 407); Figure 8-13, PDF p. 436 (printed
+        # p. 408), plots the angle falling from about 36 at PI 0 to about
+        # 21 at PI 100.
+        # PI=20: 1.0333 - 6.4 + 36.2 = 30.83; PI=100: 16.727 - 32 + 36.2 = 20.93
+        assert fully_softened_friction_angle(20.0) == pytest.approx(30.83, abs=0.01)
+        assert fully_softened_friction_angle(100.0) == pytest.approx(20.93, abs=0.01)
 
     def test_zero_pi(self):
         # PI=0: phi'FS = 0 + 0 + 36.2 = 36.2
@@ -705,11 +723,18 @@ class TestSptUndrainedStrengthStroudButler:
     """Tests for Equation 8-26."""
 
     def test_basic(self):
-        # N=20, PI=30: su = 20 / (4.36 + 8910/30^3) = 20 / (4.36 + 8910/27000)
-        # = 20 / (4.36 + 0.33) = 20 / 4.69 = 4.2644
-        expected = 20.0 / (4.36 + 8910.0 / 27000.0)
+        # Eq. 8-26 as printed, PDF p. 456 (printed p. 428):
+        # su/N = 8910/PI^3 + 4.36, su in kPa
+        # N=20, PI=30: su = 20 * (8910/27000 + 4.36) = 20 * 4.69 = 93.8 kPa
         assert spt_undrained_strength_stroud_butler(20.0, 30.0) == pytest.approx(
-            expected, rel=1e-4
+            93.8, abs=0.01
+        )
+
+    def test_low_plasticity(self):
+        # PDF p. 456 (printed p. 428).
+        # N=10, PI=15: su = 10 * (8910/3375 + 4.36) = 10 * 7.00 = 70.0 kPa
+        assert spt_undrained_strength_stroud_butler(10.0, 15.0) == pytest.approx(
+            70.0, abs=0.01
         )
 
     def test_zero_n(self):

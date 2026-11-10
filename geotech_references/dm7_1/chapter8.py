@@ -275,15 +275,18 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
 def cpt_friction_angle_mayne(
     qt: float, sigma_v_eff: float, pa: float
 ) -> float:
-    """Effective stress friction angle from CPT using Mayne (Equation 8-7).
+    """Drained friction angle phi' (degrees) of coarse-grained soil from CPT, Equation 8-7 (Mayne 2007).
 
     Mayne (2007) correlation using calibration chamber tests to estimate
     the effective stress friction angle of coarse-grained soils from CPT
-    corrected tip resistance.
+    corrected tip resistance.  As printed (the vertical stress term is
+    under a square root)::
+
+        phi' = 17.6 + 11 * log10[ (qt / Pa) / sqrt(sigma'v / Pa) ]
 
     .. math::
         \\phi' = 17.6 + 11 \\cdot \\log_{10}\\!
-        \\left(\\frac{q_t / P_a}{\\sigma'_v / P_a}\\right)
+        \\left(\\frac{q_t / P_a}{\\sqrt{\\sigma'_v / P_a}}\\right)
 
     Parameters
     ----------
@@ -316,53 +319,25 @@ def cpt_friction_angle_mayne(
         raise ValueError("sigma_v_eff must be positive.")
     if pa <= 0.0:
         raise ValueError("pa must be positive.")
-    return 17.6 + 11.0 * math.log10((qt / pa) / (sigma_v_eff / pa))
+    return 17.6 + 11.0 * math.log10((qt / pa) / math.sqrt(sigma_v_eff / pa))
 
 
 def cpt_friction_angle_robertson_campanella(
     qc: float, sigma_v_eff: float
 ) -> float:
-    """Effective stress friction angle from CPT using Robertson and Campanella (Equation 8-8).
+    """Drained friction angle phi' (degrees) of sand from CPT tip resistance, Equation 8-8.
 
     Robertson and Campanella (1983) correlation for the effective stress
     friction angle from electric cone CPT tip resistance tested in a
     calibration chamber on uncemented, unaged, moderately compressible
-    quartz sands.  Approximated by Robertson and Cabal (2014).
+    quartz sands (Figure 8-8(a)), approximated by Robertson and Cabal
+    (2014).  As printed::
+
+        tan(phi') = (1 / 2.68) * [ log10(qc / sigma'v) + 0.29 ]
 
     .. math::
-        \\phi' = \\tan^{-1}\\!\\left[
-        \\frac{1}{\\log_{10}\\!\\left(\\frac{q_c}{\\sigma'_v}\\right)
-        + 0.29} \\cdot 2.68 \\right]^{-1}
-
-    Note: The actual form from the text is:
-    tan(phi') = 1 / [log10(qc/sigma'v) + 0.29] / 2.68
-    which simplifies to phi' = arctan(log10(qc/sigma'v) + 0.29) ... after
-    rearranging from the PDF equation presented as:
-    phi' = arctan[1 / (log10(qc/sigma'v) + 0.29)] ... but the PDF shows:
-    tan^{-1}[log(qc/sigma'v) + 0.29] ... Reading the equation carefully:
-
-    .. math::
-        \\phi' = \\arctan\\!\\left[
-        \\frac{1}{\\log_{10}(q_c / \\sigma'_v) + 0.29}
-        \\right] \\div 2.68
-
-    Actually from the PDF text: 1 / [tan(phi') = log(qc/sv) + 0.29] / 2.68
-    The standard Robertson & Campanella (1983) form is:
-
-    .. math::
-        \\phi' = \\arctan\\!\\left[0.1 + 0.38 \\cdot \\log_{10}(q_c/\\sigma'_v)\\right]
-
-    From the PDF extracted text the equation reads:
-    tan^{-1}[1 / (log(qc/sigma'v) + 0.29)] = phi' ... no, reading again:
-    phi' = arctan[ 1 / ( log(qc/sigma'v) + 0.29 ) ] ... wait, let me
-    re-read: "1 / tan(phi') = log(qc/sigma'v) + 0.29" ... rearranged as
-    phi' = arctan(1 / (log10(qc/sigma'v) + 0.29))... but there is also
-    the 2.68 factor.
-
-    The standard published form (Robertson and Cabal 2014) is:
-    phi' = arctan[1 / (2.68 * (log10(qc/sigma'v) + 0.29))]
-
-    This is an inverse tangent equation.
+        \\tan\\phi' = \\frac{1}{2.68}\\left[
+        \\log_{10}\\!\\left(\\frac{q_c}{\\sigma'_v}\\right) + 0.29\\right]
 
     Parameters
     ----------
@@ -374,12 +349,14 @@ def cpt_friction_angle_robertson_campanella(
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Drained (effective stress) friction angle, phi' (degrees).
 
     Raises
     ------
     ValueError
-        If *qc* is not positive or *sigma_v_eff* is not positive.
+        If *qc* is not positive, *sigma_v_eff* is not positive, or
+        log10(qc/sigma'v) + 0.29 is not positive (the equation then gives
+        no positive friction angle).
 
     References
     ----------
@@ -391,15 +368,13 @@ def cpt_friction_angle_robertson_campanella(
         raise ValueError("qc must be positive.")
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
-    log_ratio = math.log10(qc / sigma_v_eff)
-    denominator = 2.68 * (log_ratio + 0.29)
-    if denominator <= 0.0:
+    bracket = math.log10(qc / sigma_v_eff) + 0.29
+    if bracket <= 0.0:
         raise ValueError(
-            "Computed denominator is non-positive; qc/sigma_v_eff ratio "
-            "may be too small for this correlation."
+            "log10(qc/sigma_v_eff) + 0.29 is not positive; qc/sigma_v_eff "
+            "is too small for Equation 8-8 (UFS 3-220-10 p. 402)."
         )
-    phi_rad = math.atan(1.0 / denominator)
-    return math.degrees(phi_rad)
+    return math.degrees(math.atan(bracket / 2.68))
 
 
 def cpt_oc_nc_resistance_ratio(ocr: float, beta: float) -> float:
@@ -569,15 +544,18 @@ def dmt_friction_angle_lower_bound(kd: float) -> float:
 
 
 def fully_softened_friction_angle(pi: float) -> float:
-    """Fully softened friction angle from plasticity index (Equation 8-13).
+    """Fully softened friction angle phi'FS (degrees) from plasticity index, Equation 8-13.
 
     Gibson (1953) relationship for the fully softened friction angle
-    (phi'FS), approximated by Carter and Bentley (2016).  The fully
-    softened friction angle is taken to be equal to the normally
-    consolidated peak value.
+    (phi'FS), the mean trend line of Figure 8-13 as approximated by
+    Carter and Bentley (2016).  The fully softened friction angle is
+    taken to be equal to the normally consolidated peak value.  As
+    printed (Figure 8-13 plots PI from 0 to 100)::
+
+        phi'FS = 0.0058 * PI^1.73 - 0.32 * PI + 36.2
 
     .. math::
-        \\phi'_{FS} = -0.0058 \\cdot PI^{1.73} + 0.32 \\cdot PI + 36.2
+        \\phi'_{FS} = 0.0058 \\cdot PI^{1.73} - 0.32 \\cdot PI + 36.2
 
     Parameters
     ----------
@@ -601,7 +579,7 @@ def fully_softened_friction_angle(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
-    return -0.0058 * pi ** 1.73 + 0.32 * pi + 36.2
+    return 0.0058 * pi ** 1.73 - 0.32 * pi + 36.2
 
 
 def secant_friction_angle_shear_strength(
@@ -1101,15 +1079,18 @@ def cpt_undrained_strength_nkt(
 
 
 def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
-    """Undrained shear strength from SPT for OC clays (Equation 8-26).
+    """Undrained shear strength su (kPa) of overconsolidated clay from SPT N and PI, Equation 8-26.
 
     Carter and Bentley (2016) approximation of the Stroud and Butler
-    (1975) trendline relating undrained shear strength of
+    (1975) trendline (Figure 8-31) relating undrained shear strength of
     overconsolidated clays to SPT N and plasticity index.  The
-    relationship exhibits significant scatter.
+    relationship exhibits significant scatter.  As printed, with su in
+    kPa::
+
+        su / N = 8910 / PI^3 + 4.36
 
     .. math::
-        s_u = \\frac{N}{4.36 + \\frac{8910}{PI^3}}
+        \\frac{s_u}{N} = \\frac{8910}{PI^3} + 4.36
 
     Parameters
     ----------
@@ -1137,7 +1118,7 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
         raise ValueError("n must be non-negative.")
     if pi <= 0.0:
         raise ValueError("pi must be positive.")
-    return n / (4.36 + 8910.0 / pi ** 3)
+    return n * (8910.0 / pi ** 3 + 4.36)
 
 
 # ============================================================================

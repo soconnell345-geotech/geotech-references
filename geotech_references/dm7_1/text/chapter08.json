@@ -139,7 +139,7 @@
       "body": "Two relationships between CPT results and effective stress friction angle were already presented in Table 8-3 and Table 8-4. Table 8-5 presents a similar relationship developed by Bergdahl et al. (1993).\n\nMayne (2007) used the results of calibration chamber tests to estimate the effective stress friction of coarse-grained soils for CPT results as Eq. 8-7.\n\nFigure 8-5 correlates the effective stress friction angle with CPT tip resistance as summarized by Meyerhof (1976). In cases where the tip resistance increases with depth, the method outlined in Figure 8-6 can be used to obtain the bearing capacity factor (Nq). The correlation presented in Figure 8-7 can be used to obtain the effective stress friction angle from Nq.\n\nRobertson and Campanella (1983) correlated the effective stress friction angle to the measured CPT tip resistance (electric cone) from tests performed in a calibration chamber. The correlation used drained triaxial tests on uncemented, unaged, moderately compressible quartz sands and considers the effect of overburden pressure as shown in Figure 8-8. The relationship presented in Figure 8-8(a) was approximated by Robertson and Cabal (2014) using Eq. 8-8.\n\nSchmertmann (1975) presented a correlation to determine the effective stress friction angle based on the CPT tip resistance. To use this correlation, the relative density first needs to be determined using Figure 8-9. Using the correlated value of relative density, the effective stress friction angle can be determined from Figure 8-10.\n\nFor this purpose, Schmertmann (1978) developed a correction factor (R) for overconsolidated sands such that the effect of overconsolidation on the measured tip resistance needs to be considered before using correlations proposed for normally consolidated sands, as given in Eq. 8-9. According to Lunne and Christoffersen (1985), β can be assumed as 0.45 for all practical purposes.",
       "key_points": [
         "Mayne (2007) Eq. 8-7 uses corrected tip resistance qt and σ′v/Pa ratio: φ′ = 17.6 + 11·log(qt/Pa / √(σ′v/Pa)).",
-        "Robertson and Campanella (1983) Eq. 8-8: φ′ = tan⁻¹[0.1 + 0.38·log(qc/σ′v)] + 0.29·log(qc/σ′v) + 2.68; valid for NC uncemented quartz sands.",
+        "Robertson and Campanella (1983) Eq. 8-8, as approximated by Robertson and Cabal (2014): tan φ′ = (1/2.68)·[log(qc/σ′v) + 0.29]; valid for NC uncemented quartz sands.",
         "Schmertmann two-step approach: first determine Dr from Fig. 8-9, then φ′ from Dr using Fig. 8-10 (North Sea sands).",
         "OC correction (Eq. 8-9): qc,OC/qc,NC = 1 + 0.75·(OCR^β − 1); β ≈ 0.45 per Lunne and Christoffersen (1985).",
         "Table 8-5 (Bergdahl et al. 1993) provides tabular qc vs. φ′ for relative density classes from very loose to very dense.",
@@ -153,7 +153,7 @@
         },
         {
           "id": "Eq. 8-8",
-          "description": "Robertson and Cabal (2014) approximation of Robertson and Campanella (1983): φ′ = tan⁻¹[0.1 + 0.38·log(qc/σ′v)].",
+          "description": "Robertson and Cabal (2014) approximation of Robertson and Campanella (1983): tan φ′ = (1/2.68)·[log(qc/σ′v) + 0.29].",
           "implemented_in": "geotech_references.dm7_1.chapter8.cpt_friction_angle_robertson_campanella"
         },
         {
@@ -233,7 +233,7 @@
       "summary": "Provides multiple correlations for the fully softened friction angle φ′FS of fine-grained soils using plasticity index and mineral composition. Covers Gibson (1953) with Eq. 8-13 polynomial fit, Ladd et al. (1977), Terzaghi et al. (1996), Tiwari and Ajmera (2011), and Castellanos et al. (2021) nonlinear power-function correlations (Eqs. 8-14, 8-15) for both linear and stress-dependent nonlinear failure envelopes.",
       "body": "Gibson (1953) presented a relationship for φ′FS, which is plotted in Figure 8-13. The standard deviation of the data about the trend is plotted as confidence limits. The mean trend line can be approximated by Eq. 8-13 according to Carter and Bentley (2016). According to Carter and Bentley (2016) the polynomial fit is in agreement with the original curve to within 1% for the fully softened condition.\n\nA similar correlation was presented by Ladd et al. (1977) based on triaxial tests on intact normally consolidated clays as shown in Figure 8-14.\n\nA similar relationship between φ′FS and PI was proposed by Terzaghi et al. (1996) as shown in Figure 8-15. This relationship was developed from the results of tests on normally consolidated specimens with most of them being remolded.\n\nTiwari and Ajmera (2011) presented the correlations shown in Figure 8-16 and Figure 8-17 for the fully softened friction angle. These correlations were based on direct shear tests performed on 36 artificially created soils made by mixing different proportions of quartz, kaolinite and montmorillonite.\n\nThe preceding relationships only consider linear failure envelopes (i.e., constant friction angle) while real soils often exhibit a nonlinear failure envelope. Nonlinear failure envelopes have been described by multiple mathematical forms, including normal stress dependent secant friction angle and two-parameter power function with parameters a and b. Shear strength is calculated using a secant friction angle as given by Eq. 8-14. The two-parameter power function describes shear strength nonlinearly as given by Eq. 8-15.\n\nCastellanos et al. (2021) presented the correlations for nonlinear fully softened shear strength parameters shown in Figure 8-18 and Figure 8-19. These correlations were developed based on over 400 direct shear tests on 97 soils. The equations and standard deviations provided on the plots allow uncertainty in the correlations to be explicitly considered. Castellanos et al. (2021) also provide statistical measures of the covariance of the correlations for aFS and bFS.",
       "key_points": [
-        "Gibson (1953) Eq. 8-13: φ′FS = −0.0058·PI^1.73 + 0.32·PI + 36.2; fits original curve to within 1%.",
+        "Gibson (1953) Eq. 8-13: φ′FS = 0.0058·PI^1.73 − 0.32·PI + 36.2; fits original curve to within 1%.",
         "Ladd et al. (1977) and Terzaghi et al. (1996) provide graphical PI-based correlations from NC clay triaxial and remolded test data.",
         "Tiwari and Ajmera (2011) correlations based on artificial soils with quartz, kaolinite, montmorillonite mixtures (Figs. 8-16, 8-17).",
         "Nonlinear failure envelope described by secant friction angle (Eq. 8-14) or power function s = a·Pa·(σ′ff/Pa)^b (Eq. 8-15).",
@@ -243,7 +243,7 @@
       "equations": [
         {
           "id": "Eq. 8-13",
-          "description": "Polynomial approximation of Gibson (1953) fully softened friction angle vs. PI: φ′FS = −0.0058·PI^1.73 + 0.32·PI + 36.2.",
+          "description": "Polynomial approximation of Gibson (1953) fully softened friction angle vs. PI: φ′FS = 0.0058·PI^1.73 − 0.32·PI + 36.2.",
           "implemented_in": "geotech_references.dm7_1.chapter8.fully_softened_friction_angle"
         },
         {
@@ -275,7 +275,7 @@
       "summary": "Presents correlations for residual friction angle φ′r of fine-grained soils using plasticity index, clay fraction, and liquid limit. Covers Gibson (1953) Eq. 8-16, Skempton (1964, 1985), Voight (1973), Bovis (1985), Stark and Hussain (2013) stress-dependent Eq. 8-17 with Table 8-6 coefficients, and Castellanos et al. (2021) power-function parameters from ring shear tests on 102 clays (Figs. 8-23, 8-24).",
       "body": "Gibson (1953) also presented a relationship for φ′r as plotted in Figure 8-13. The residual friction angle trend line can be approximated by Eq. 8-16 according to Carter and Bentley (2016). According to Carter and Bentley (2016) this polynomial fit agrees with the original curves to within 5% for the residual friction angle.\n\nSkempton (1964, 1985) related the residual friction angle to the clay-sized fraction as presented in Figure 8-20. The friction angles were measured using ring shear tests performed on normally consolidated and overconsolidated samples.\n\nUsing published results, Voight (1973) developed the correlation presented in Figure 8-21(top) to estimate the residual strength of clays based on the plasticity index. Voight's correlation was later supported by the residual strength measurements performed by Bovis (1985) whose results can be seen in Figure 8-21(bottom).\n\nStark and Hussain (2013) correlated the residual friction angle of clays to the liquid limit for various ranges of clay sized fraction as shown in Figure 8-22. This correlation needs to be used with care because of the methods that were used to process the soil samples for index property measurements were not consistent. For this correlation, the index properties of clay samples were obtained from specimens sieved through a No. 40 sieve without any other processing. On the other hand, shale samples were ball-milled and sieved through a No. 200 sieve. These differences in the procedures used to process samples for measuring the index properties should be considered when using the correlation.\n\nStark and Hussain (2013) correlation provides stress-dependent residual secant friction angles for four different values of effective normal stress ranging from 50 to 700 kPa, calculated as Eq. 8-17 with coefficients listed in Table 8-6.\n\nLaboratory testing at Virginia Tech has produced correlations for residual shear strength based on the results of torsional ring shear tests on 102 clays with plasticity indices between 6 and 112, liquid limits between 22 and 143, and clay fractions ranging from 13 to 90%. Figure 8-23 and Figure 8-24 present the relationship between power function parameters (see Equation 8-15), plasticity index, and clay fraction.",
       "key_points": [
-        "Gibson (1953) Eq. 8-16: φ′r = −0.084·PI^1.4 + 0.75·PI + 31.9; fits original curves to within 5%.",
+        "Gibson (1953) Eq. 8-16: φ′r = 0.084·PI^1.4 − 0.75·PI + 31.9; fits original curves to within 5%.",
         "Skempton (1964, 1985) relates φ′r to clay-sized fraction from ring shear tests on NC and OC samples (Fig. 8-20).",
         "Stark and Hussain (2013) Eq. 8-17 is stress-dependent (50–700 kPa σ′); coefficients (Table 8-6) vary with CF and LL ranges; sample processing inconsistency warrants caution.",
         "Stark and Hussain correlation differentiates CF < 20%, 25% < CF < 45%, CF > 50% (LL < 120), and CF > 50% (120 < LL < 300).",
@@ -285,7 +285,7 @@
       "equations": [
         {
           "id": "Eq. 8-16",
-          "description": "Polynomial approximation of Gibson (1953) residual friction angle vs. PI: φ′r = −0.084·PI^1.4 + 0.75·PI + 31.9.",
+          "description": "Polynomial approximation of Gibson (1953) residual friction angle vs. PI: φ′r = 0.084·PI^1.4 − 0.75·PI + 31.9.",
           "implemented_in": "geotech_references.dm7_1.chapter8.residual_friction_angle_gibson"
         },
         {
@@ -433,17 +433,17 @@
       "section_id": "8-3.4",
       "title": "Correlations with Standard Penetration Test",
       "summary": "Reviews correlations between SPT N values and undrained shear strength for cohesive soils. Table 8-10 provides su ranges by consistency class from three sources. Eq. 8-26 (Carter and Bentley 2016) quantifies su for overconsolidated clays as a function of N and PI. Figures 8-31 and 8-32 illustrate significant scatter in SPT-su relationships across different USCS classifications and reference sources.",
-      "body": "Various attempts have been made to correlate the undrained shear strength of clays to SPT N values. Observed ranges of undrained shear strength based on soil consistency and N are summarized in Table 8-10.\n\nStroud and Butler (1975) developed a correlation for the undrained shear strength of overconsolidated clays as a function of the SPT N value. As shown in Figure 8-31, the relationship exhibits significant scatter, which reduces the reliability of the correlation. Carter and Bentley (2016) approximated the trendline in Figure 8-31 as:\n\nsu = 8910·N / (PI + 4.36)  (Eq. 8-26)\n\nwhere su = undrained shear strength (in kPa), N = SPT-N value, and PI = plasticity index.\n\nSowers (1979) correlated undrained shear strength to SPT N for different USCS soil classifications as presented in Figure 8-32. Relationships proposed by Hara et al. (1974) and Terzaghi and Peck (1967) are also presented in Figure 8-32. Hara et al.'s correlation is based on undrained shear strengths from triaxial compression tests.",
+      "body": "Various attempts have been made to correlate the undrained shear strength of clays to SPT N values. Observed ranges of undrained shear strength based on soil consistency and N are summarized in Table 8-10.\n\nStroud and Butler (1975) developed a correlation for the undrained shear strength of overconsolidated clays as a function of the SPT N value. As shown in Figure 8-31, the relationship exhibits significant scatter, which reduces the reliability of the correlation. Carter and Bentley (2016) approximated the trendline in Figure 8-31 as:\n\nsu/N = 8910/PI³ + 4.36  (Eq. 8-26)\n\nwhere su = undrained shear strength (in kPa), N = SPT-N value, and PI = plasticity index.\n\nSowers (1979) correlated undrained shear strength to SPT N for different USCS soil classifications as presented in Figure 8-32. Relationships proposed by Hara et al. (1974) and Terzaghi and Peck (1967) are also presented in Figure 8-32. Hara et al.'s correlation is based on undrained shear strengths from triaxial compression tests.",
       "key_points": [
         "Table 8-10 provides su ranges (psf) by SPT N and consistency class (very soft to hard) from three independent sources.",
-        "Eq. 8-26: su = 8910·N / (PI + 4.36) for overconsolidated clays (Carter and Bentley 2016, after Stroud and Butler 1975); su in kPa.",
+        "Eq. 8-26: su/N = 8910/PI³ + 4.36 for overconsolidated clays (Carter and Bentley 2016, after Stroud and Butler 1975); su in kPa.",
         "SPT-su correlations show significant scatter, reducing reliability; site-specific calibration is recommended.",
         "Fig. 8-32 compares Sowers (1979), Hara et al. (1974), and Terzaghi and Peck (1967) correlations; Hara et al. based on triaxial compression tests."
       ],
       "equations": [
         {
           "id": "Eq. 8-26",
-          "description": "Undrained shear strength of overconsolidated clays from SPT N and PI: su = 8910·N / (PI + 4.36), su in kPa (Carter and Bentley 2016, after Stroud and Butler 1975)",
+          "description": "Undrained shear strength of overconsolidated clays from SPT N and PI: su/N = 8910/PI³ + 4.36, su in kPa (Carter and Bentley 2016, after Stroud and Butler 1975)",
           "implemented_in": "geotech_references.dm7_1.chapter8.spt_undrained_strength_stroud_butler"
         }
       ],
