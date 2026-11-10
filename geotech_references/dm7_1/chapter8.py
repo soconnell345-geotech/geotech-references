@@ -2404,21 +2404,40 @@ def table_8_24_cbr_dcp(source: str) -> dict:
 # FIGURE 8-46: Stroud (1974) f-coefficient for Constrained Modulus
 # ===========================================================================
 
-# Digitised from Figure 8-46 (f vs PI)
-_FIG_8_46_PI = [10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 80.0]
-_FIG_8_46_F  = [500.0, 450.0, 400.0, 350.0, 300.0, 250.0, 225.0, 200.0, 175.0]
+# Read off the curve of Figure 8-46 (f against plasticity index, p. 444).
+# The curve is drawn from PI 15 to PI 64.5; f is read to about +/-0.02.
+_FIG_8_46_PI = [
+    15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0,
+    25.0, 26.0, 27.0, 28.0, 30.0, 32.0, 34.0, 36.0, 38.0, 40.0,
+    42.0, 44.0, 46.0, 48.0, 50.0, 52.0, 54.0, 56.0, 58.0, 60.0,
+    62.0, 64.0, 64.5,
+]
+_FIG_8_46_F = [
+    6.75, 6.35, 6.10, 5.86, 5.66, 5.51, 5.39, 5.26, 5.15, 5.06,
+    4.98, 4.91, 4.85, 4.79, 4.70, 4.63, 4.56, 4.54, 4.51, 4.48,
+    4.44, 4.44, 4.42, 4.41, 4.39, 4.37, 4.35, 4.33, 4.31, 4.29,
+    4.27, 4.24, 4.24,
+]
 
 
 def figure_8_46_f(pi: float) -> float:
-    """Stroud (1974) f-coefficient from plasticity index (Figure 8-46).
+    """Empirical coefficient f (dimensionless) for the constrained modulus of clay from SPT, Mds = f N Pa, read from Figure 8-46 at a plasticity index.
 
-    Returns the empirical coefficient *f* for use with
-    ``constrained_modulus_spt`` (Equation 8-30).
+    Figure 8-46, "Variation of Empirical Coefficient f used for
+    Calculating Constrained Modulus with PI (after Stroud 1974)", plots
+    f against plasticity index for nine British clays, with one curve
+    drawn from PI 15 (f about 6.75) to PI 64.5 (f about 4.24).  This
+    function interpolates linearly between points read off that curve
+    (to about +/-0.02).  Use f with ``constrained_modulus_spt``
+    (Equation 8-33).  The data scatter widely about the curve (f from
+    about 3.5 to 8), and the manual notes that Kulhawy and Mayne (1990)
+    found the correlation not very reliable.
 
     Parameters
     ----------
     pi : float
-        Plasticity index (%).  Typically 10 to 80.
+        Plasticity index (%), from 15 to 64.5, the range over which the
+        curve is drawn.
 
     Returns
     -------
@@ -2428,7 +2447,8 @@ def figure_8_46_f(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or outside 15 to 64.5 (the figure draws no
+        curve there).
 
     References
     ----------
@@ -2438,6 +2458,11 @@ def figure_8_46_f(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
+    if pi < _FIG_8_46_PI[0] or pi > _FIG_8_46_PI[-1]:
+        raise ValueError(
+            "pi is outside 15 to 64.5, the range over which the curve of "
+            "Figure 8-46 (UFS 3-220-10 p. 444) is drawn."
+        )
     return _linterp(pi, _FIG_8_46_PI, _FIG_8_46_F)
 
 
@@ -2447,8 +2472,8 @@ def plot_figure_8_46(PI=None, ax=None, show=True, **kwargs):
     Parameters
     ----------
     PI : float, optional
-        Plasticity index query point.  If provided, highlights the
-        interpolated f value.
+        Plasticity index query point (15 to 64.5).  If provided,
+        highlights the interpolated f value.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -2463,23 +2488,20 @@ def plot_figure_8_46(PI=None, ax=None, show=True, **kwargs):
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 5))
 
-    # Smooth interpolated curve
-    pi_smooth = [i * 1.0 for i in range(5, 86)]
-    f_smooth = [figure_8_46_f(p) for p in pi_smooth]
-    ax.plot(pi_smooth, f_smooth, 'b-', linewidth=1.5, label='Stroud (1974)')
-
-    # Digitised data points
-    ax.plot(_FIG_8_46_PI, _FIG_8_46_F, 'ko', markersize=6,
-            label='Digitised points')
+    # The read-off curve, over the range the figure draws it
+    ax.plot(_FIG_8_46_PI, _FIG_8_46_F, 'b-', linewidth=1.5,
+            label='Curve of Figure 8-46 (after Stroud 1974)')
 
     # Query point
     if PI is not None:
         f_q = figure_8_46_f(PI)
         ax.plot(PI, f_q, 's', color='red', markersize=10, zorder=5,
-                label=f'PI={PI:.0f} → f={f_q:.0f}')
+                label=f'PI={PI:.0f} → f={f_q:.2f}')
         ax.axhline(f_q, color='red', linestyle=':', alpha=0.4)
         ax.axvline(PI, color='red', linestyle=':', alpha=0.4)
 
+    ax.set_xlim(10, 70)
+    ax.set_ylim(3, 8)
     ax.legend(fontsize=8)
     setup_engineering_plot(
         ax, 'Figure 8-46: Stroud f-Coefficient',

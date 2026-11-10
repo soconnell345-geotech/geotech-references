@@ -1679,28 +1679,48 @@ class TestTable824CbrDcp:
 
 
 class TestFigure846F:
-    """Tests for Figure 8-46: Stroud f-coefficient."""
+    """Tests for Figure 8-46: Variation of Empirical Coefficient f used
+    for Calculating Constrained Modulus with PI (after Stroud 1974)."""
 
-    def test_at_10(self):
-        # PI=10: f=500.0
-        assert figure_8_46_f(10.0) == pytest.approx(500.0, rel=1e-4)
+    # Read off the curve of Figure 8-46, PDF p. 472 (printed p. 444);
+    # axes PI 10 to 70 and f 3 to 8. Tolerance 0.05 = a tenth of a
+    # division of the f axis.
+    @pytest.mark.parametrize("pi, f", [
+        (15.0, 6.75),   # start of the curve
+        (17.0, 6.10),
+        (20.0, 5.51),
+        (25.0, 4.98),   # the curve crosses f = 5 just below PI 25
+        (30.0, 4.70),
+        (40.0, 4.48),
+        (50.0, 4.39),
+        (60.0, 4.29),
+        (64.5, 4.24),   # end of the curve
+    ])
+    def test_read_off_points(self, pi, f):
+        assert figure_8_46_f(pi) == pytest.approx(f, abs=0.05)
 
-    def test_at_80(self):
-        # PI=80: f=175.0
-        assert figure_8_46_f(80.0) == pytest.approx(175.0, rel=1e-4)
+    def test_between_points(self):
+        # PI=35 lies between the read-off points at 34 (4.56) and 36 (4.54)
+        assert figure_8_46_f(35.0) == pytest.approx(4.55, abs=0.05)
 
-    def test_interpolated_35(self):
-        # PI=35: midpoint between 30→300 and 40→250 = 275
-        # Linear interpolation: f = 300 + (35-30)/(40-30)*(250-300) = 300 - 25 = 275
-        assert figure_8_46_f(35.0) == pytest.approx(275.0, rel=1e-2)
+    def test_f_is_of_order_five_not_hundreds(self):
+        # The f axis of Figure 8-46 runs from 3 to 8.
+        for pi in [15.0, 20.0, 30.0, 45.0, 64.5]:
+            assert 3.0 < figure_8_46_f(pi) < 8.0
 
-    def test_clamped_low(self):
-        # PI=5 (below range): should clamp to f=500.0
-        assert figure_8_46_f(5.0) == pytest.approx(500.0, rel=1e-4)
+    def test_falls_with_plasticity(self):
+        values = [figure_8_46_f(p) for p in [15.0, 20.0, 30.0, 40.0, 50.0, 64.0]]
+        assert values == sorted(values, reverse=True)
 
-    def test_clamped_high(self):
-        # PI=100 (above range): should clamp to f=175.0
-        assert figure_8_46_f(100.0) == pytest.approx(175.0, rel=1e-4)
+    def test_below_curve_raises(self):
+        # The curve starts at PI 15
+        with pytest.raises(ValueError, match="outside 15 to 64.5"):
+            figure_8_46_f(10.0)
+
+    def test_above_curve_raises(self):
+        # The curve ends at PI 64.5
+        with pytest.raises(ValueError, match="outside 15 to 64.5"):
+            figure_8_46_f(80.0)
 
     def test_negative_raises(self):
         with pytest.raises(ValueError, match="pi must be non-negative"):
@@ -1802,12 +1822,12 @@ class TestFigure846Integration:
     """Chain figure_8_46_f → constrained_modulus_spt."""
 
     def test_pi20_n15(self):
-        # PI=20, N=15, Pa=101.3 kPa
+        # Figure 8-46, PDF p. 472 (printed p. 444): f = 5.51 at PI 20.
+        # Eq. 8-33, PDF p. 470 (printed p. 442): Mds = f N Pa
+        # N=15, Pa=100 kPa: Mds = 5.51 * 15 * 100 = 8265 kPa
         f = figure_8_46_f(20.0)
-        M_ds = constrained_modulus_spt(f, 15.0, 101.3)
-        # M = 400 * 15 * 101.3 = 607,800 kPa
-        assert M_ds == pytest.approx(f * 15.0 * 101.3, rel=1e-6)
-        assert M_ds > 0.0
+        M_ds = constrained_modulus_spt(f, 15.0, 100.0)
+        assert M_ds == pytest.approx(8265.0, rel=0.01)
 
     def test_higher_pi_lower_modulus(self):
         # Higher PI → lower f → lower constrained modulus
