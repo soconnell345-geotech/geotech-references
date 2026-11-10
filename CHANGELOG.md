@@ -141,6 +141,37 @@ rows instead of being answered from the first row that contains the words.
     0), 5.69 (0.5) and 6.19 (1) (it returned 5.14 for all three); a long
     excavation at H/Be = 1.6 is 6.76 (was 5.74) and at H/Be = 5 is 7.45
     (was 6.2, 17 % low) (gec-11).
+  - `table_4_2a_spt_soil_properties` (Table 4.2a, p. 78): the very loose
+    and very dense rows print phi "< 30" and "> 45 (3)"; they returned 25
+    to 30 and 45 to 50, bounds the table does not print, and now give no
+    lower and no upper bound respectively, with the printed text in
+    `phi_printed`. The result carries notes (1) to (3); note (3) holds
+    sands to 40 degrees and gravelly soils to 45 (gec-22).
+  - `table_4_3b_elastic_modulus_spt` (Table 4.3b, p. 82): "sand" returned
+    the silts row, 8 (N1)60 ksf (7,661 kPa at (N1)60 = 20, where clean fine
+    to medium sand is 13,406); it fits two rows and is refused. Each row
+    answers to its printed name (gec-17).
+  - `table_5_1_factors_of_safety` (Table 5.1, p. 108): short-term
+    excavation prints 1.25-1.33 (3); `fs_static_max` 1.33 is added beside
+    1.25. The Basal Heave row's seismic 2.3 carries note (5), long-term
+    conditions; the short-term row returned it and now gives none. Rows
+    with a note carry it ("basal heave" alone, which returned the
+    short-term row, is refused) (gec-41).
+  - A key names one printed row in `table_4_3a_elastic_properties`,
+    `table_4_4a_bond_strength_coarse`, `table_4_4b_bond_strength_fine`,
+    `table_4_5_bond_strength_rock`, `table_4_6_pullout_resistance`,
+    `table_5_1_factors_of_safety`, `table_5_3_load_factors_permanent`,
+    `table_5_resistance_factors` and `table_5_12_wall_displacement`. A word
+    found in several rows was answered from the first: "clay" returned
+    Table 4.3a's soft sensitive clay (2,394 to 14,364 kPa); rotary drilled
+    "sand" Table 4.4a's Sand/gravel (103 to 179 kPa) though Silty sand is
+    also printed; "shale" Weathered shale though Slate/Hard shale is
+    printed; "eh" the active row; "basal heave" the short-term resistance
+    factor 0.65 (long-term 0.50); "soil" the weathered rock and stiff soil
+    column (C = 0.8). Each is refused with the printed rows; printed names
+    and listed short names are taken. Table 4.3a's clay rows say their
+    Poisson's ratio is undrained, and Table 4.4a's high-overburden rows and
+    Table 4.6 carry their notes.
 
 ## 1.6.0
 
