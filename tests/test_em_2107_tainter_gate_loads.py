@@ -162,10 +162,35 @@ class TestTable10LoadCombinations:
                    "10.9", "10.10", "10.11", "10.12", "10.13", "10.14"]:
             assert eq in TABLE_10_LOAD_COMBINATIONS
 
-    def test_lookup_gate_jammed_combination(self):
+    def test_lookup_two_hoist_operating_combination(self):
+        # Eq 10.7 is Load Combination 3, "Gate Operated by Two Hoists"
+        # (EM 1110-2-2107_2022.pdf pdf 156 / printed 147), not the jammed gate.
         r = table_10_load_combination("10.7")
         assert "Fs" in r["formula"] and "Ft" in r["formula"]
         assert r["pdf_page"] == 8 + 147
+
+    @pytest.mark.parametrize("eq,heading", [
+        ("10.2", "Load Combination 1a"), ("10.4", "Load Combination 1c"),
+        ("10.5", "Gate Supported by Two Hoists"),
+        ("10.7", "Load Combination 3: Gate Operated by Two Hoists"),
+        ("10.8", "Load Combination 4: Gate Operating on One Hoist"),
+        ("10.9", "Load Combination 5: Gate Jammed"),
+        ("10.10", "Load Combination 6a"), ("10.11", "Load Combination 6b"),
+        ("10.12", "standard and site-specific OBE"),
+    ])
+    def test_descriptions_name_the_printed_load_combination(self, eq, heading):
+        # Headings as printed, pdf 155-157 / printed pp. 146-148.
+        assert heading in table_10_load_combination(eq)["description"]
+        if eq == "10.7":
+            assert "jammed" not in table_10_load_combination(eq)["description"].lower()
+
+    @pytest.mark.parametrize("eq", ["10.4", "10.9", "10.11"])
+    def test_maximum_operating_loads_are_extreme(self, eq):
+        # Paragraphs 10.3.1.3.2, 10.3.5.2 and 10.3.6.2.2 (printed pp. 147-148):
+        # an extreme load with gamma_pr = 1.3 unless site information.
+        d = table_10_load_combination(eq)["description"]
+        assert "gamma_pr = 1.3" in d
+        assert "(unusual)" not in d
 
     def test_unknown_equation(self):
         with pytest.raises(ValueError):
