@@ -144,11 +144,23 @@ def equation_cutback_asphalt_content_estimate(
 # ============================================================================
 
 def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
-    """PI limit of UFC 3-250-11 Table 2-3 footnote (c), printed p.13
-    (pdf_page 20); returns pi_limit (percent) = 20 + 50 - percent passing
-    No. 200, the right-hand side of the footnote as printed:
+    """Upper PI limit for portland cement stabilization of UFC 3-250-11
+    Table 2-3 footnote (c), printed p.13 (pdf_page 20); returns pi_limit
+    (percent) = 20 + (50 - percent passing No. 200)/4. The held 2020
+    edition prints the footnote with no divisor:
 
         "(c) PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve"
+
+    The form used is that of the edition the 2020 one replaced, UFC 3-250-11
+    of 16 January 2004 (the reproduced TM 5-822-14/AFJMAN 32-1019, 1994),
+    Table 2-1 footnote b (PDF 12, printed 2-3), cited by the portland cement
+    rows of areas 1C and 2C:
+
+        "PI <= 20 + (50 - percent passing No. 200 sieve) / 4"
+
+    (a judgment call settled from the predecessor's print, review pave-15;
+    the result's print_note says so). For 10 percent passing the two read
+    30 (used) and 60 (the 2020 text as printed).
 
     Table 2-3 ("Guide for Selecting a Stabilizing Additive") cites the
     footnote in its "RESTRICTION (% PASS NO. 200)" column heading; the
@@ -156,7 +168,8 @@ def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
     "2. (c)", and for area 1C item 2 it reads "2. (b)" as printed. The
     worked example (Sec 2-1.5.2, printed p.8-9, pdf_page 15-16: an SC soil,
     25 percent passing No. 200, PI 9) says only that "the PI is less than
-    the equation indicated in footnote b" and prints no number for it.
+    the equation indicated in footnote b" and prints no number for it
+    (26.25 by the form used).
 
     Parameters
     ----------
@@ -166,8 +179,8 @@ def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
     Returns
     -------
     dict
-        {'percent_passing_no200', 'pi_limit', 'equation', 'reference',
-         'pdf_page'}.
+        {'percent_passing_no200', 'pi_limit', 'equation', 'print_note',
+         'reference', 'pdf_page'}.
 
     Raises
     ------
@@ -177,13 +190,16 @@ def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
     p200 = percent_passing_no200
     if not (0 <= p200 <= 100):
         raise ValueError(f"percent_passing_no200 must be in [0,100], got {p200}")
-    pi_limit = 20 + 50 - p200
+    pi_limit = 20 + (50 - p200) / 4.0
     return {
         "percent_passing_no200": p200,
         "pi_limit": round(pi_limit, 3),
-        "equation": ("PI <= 20 + 50 - percent passing No. 200 (0.075 mm) "
-                     "sieve (Table 2-3 footnote (c), as printed)"),
-        "reference": "UFC 3-250-11, Table 2-3 footnote (c), printed p.13",
+        "equation": ("PI <= 20 + (50 - percent passing No. 200 sieve)/4 "
+                     "(UFC 3-250-11 of 2004, Table 2-1 footnote b)"),
+        "print_note": ("The held 2020 edition prints footnote (c) of Table 2-3 (printed 13) as 'PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve', with no divisor. The form used is that of the edition it replaced, UFC 3-250-11 of 16 January 2004 (TM 5-822-14, 1994), Table 2-1 footnote b (printed 2-3): PI <= 20 + (50 - percent passing No. 200 sieve)/4. For 10 percent passing the two read 30 (used) and 60 (2020 text as printed)."),
+        "reference": ("UFC 3-250-11, Table 2-3 footnote (c), printed p.13; "
+                      "form from UFC 3-250-11 (16 Jan 2004), Table 2-1 "
+                      "footnote b, printed p.2-3"),
         "pdf_page": 20,
     }
 

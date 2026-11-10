@@ -124,7 +124,9 @@ def table_2_2_durability_requirements(soil_type: str) -> dict:
 #   (b) Soil classification corresponds to ASTM D2487-17; LL/PI restriction
 #       per ASTM D4318-17e1.
 #   (c) PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve
-#       (see equations.equation_cement_pi_limit_table_2_3).
+#       (as printed; the 2004 edition's Table 2-1 footnote b divides
+#       (50 - percent passing) by 4, the form
+#       equations.equation_cement_pi_limit_table_2_3 uses, review pave-15).
 # ============================================================================
 
 _TABLE_2_3_FOOTNOTES = {
@@ -254,6 +256,7 @@ def table_2_3_additive_selection_guide(area: str) -> dict:
         "restriction_pass_200": row["restriction_pass_200"],
         "remark": row["remark"],
         "footnotes": dict(_TABLE_2_3_FOOTNOTES),
+        "footnote_c_note": ("The held 2020 edition prints footnote (c) of Table 2-3 (printed 13) as 'PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve', with no divisor. The form used is that of the edition it replaced, UFC 3-250-11 of 16 January 2004 (TM 5-822-14, 1994), Table 2-1 footnote b (printed 2-3): PI <= 20 + (50 - percent passing No. 200 sieve)/4. For 10 percent passing the two read 30 (used) and 60 (2020 text as printed). Use equations.equation_cement_pi_limit_table_2_3."),
         "reference": "UFC 3-250-11, Table 2-3, p.13",
         "pdf_page": 20,
     }

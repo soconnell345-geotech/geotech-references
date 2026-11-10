@@ -402,18 +402,29 @@ class TestEquationCutbackAsphaltContentEstimate:
 
 class TestEquationCementPiLimitTable23:
     def test_worked_narrative_example(self):
-        # Table 2-3 footnote (c), UFC 3-250-11 PDF 21 (pdf_page 20), printed
-        # 13: "PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve".
+        # Table 2-3 footnote (c), UFC 3-250-11 (2020) PDF 21 (pdf_page 20),
+        # printed 13, prints "PI <= 20 + 50 - percent passing No. 200";
+        # the form used is the 2004 edition's Table 2-1 footnote b, PDF 12,
+        # printed 2-3: PI <= 20 + (50 - percent passing No. 200 sieve)/4.
         # The Sec 2-1.5.2 example soil (25 percent passing, PI 9; printed
-        # p.8-9) prints no value for it; 20 + 50 - 25 = 45 is arithmetic.
+        # p.8-9) prints no value; it says only that PI 9 is under the limit.
         r = equation_cement_pi_limit_table_2_3(25)
-        assert r["pi_limit"] == 45
-        assert "20 + 50 - percent passing No. 200" in r["equation"]
+        assert r["pi_limit"] == pytest.approx(26.25)
+        assert 9 < r["pi_limit"]
+        assert "(50 - percent passing No. 200 sieve)/4" in r["equation"]
         assert "printed p.13" in r["reference"]
+        assert "2004" in r["reference"]
 
-    def test_zero_percent_passing(self):
-        r = equation_cement_pi_limit_table_2_3(0)
-        assert r["pi_limit"] == 70
+    def test_printed_form_at_more_points(self):
+        # 20 + (50 - P200)/4 at P200 0, 10 and 50 (2004 print, printed 2-3).
+        assert equation_cement_pi_limit_table_2_3(0)["pi_limit"] == pytest.approx(32.5)
+        assert equation_cement_pi_limit_table_2_3(10)["pi_limit"] == pytest.approx(30.0)
+        assert equation_cement_pi_limit_table_2_3(50)["pi_limit"] == pytest.approx(20.0)
+
+    def test_print_note_names_both_editions(self):
+        note = equation_cement_pi_limit_table_2_3(10)["print_note"]
+        assert "2020" in note and "2004" in note
+        assert "30" in note and "60" in note
 
     def test_invalid_range(self):
         with pytest.raises(ValueError):
