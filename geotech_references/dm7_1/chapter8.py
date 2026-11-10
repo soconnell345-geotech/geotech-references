@@ -271,7 +271,7 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
 
 
 def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
-    """Effective stress friction angle phi' (degrees) of coarse-grained soil from N1,60 (0 to 60), Equation 8-6 (Hatanaka and Uchida 1996).
+    """Effective stress friction angle phi' (degrees) of sands from N1,60 (0 to 60), Equation 8-6 (Hatanaka and Uchida 1996).
 
     Hatanaka and Uchida (1996) correlation for the effective stress friction
     angle of sands based on N1,60, developed from triaxial tests on
