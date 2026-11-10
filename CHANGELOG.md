@@ -2,6 +2,99 @@
 
 Releases before 1.6.0 are described in their release commits (`git log`).
 
+## Unreleased
+
+**UFS 3-220-10 (dm7_1) lookups corrected to the printed manual (review of
+2026-11-10).** A review of the `dm7_1` functions against the rendered pages
+found equations, tables and charts that did not match the print. Results
+from the functions below change; anything computed with them before should
+be re-run. Pages are printed page numbers.
+
+Equations re-coded as typeset:
+
+- `cpt_friction_angle_robertson_campanella` (Eq. 8-8, p. 402) returned the
+  reciprocal: 9.3 degrees where the manual gives 40.5 at qc/sigma'v = 100.
+- `cpt_friction_angle_mayne` (Eq. 8-7, p. 400): the vertical stress is
+  under a square root; 33.0 degrees became 36.3 at qt 10,000, sigma'v 400,
+  Pa 100.
+- `fully_softened_friction_angle` (Eq. 8-13, p. 407) had both signs
+  reversed: 45.6 degrees where the manual gives 26.8 at PI 40.
+- `spt_undrained_strength_stroud_butler` (Eq. 8-26, p. 428) divided where
+  the manual multiplies: 4.3 kPa where it gives 93.8 kPa at N 20, PI 30.
+- `cbr_from_dcp_nazzal` (Eq. 8-38, p. 456): 9.0 became 11.6 at 20 mm/blow;
+  a DCP outside the stated 6.3 to 67 mm/blow is refused.
+- `cbr_from_spt` (Eq. 8-39, p. 457) returned about 1e9; the manual gives
+  CBR 6.1 at N 10 and 26 at N 30.
+- `kozeny_carman_hydraulic_conductivity` (Eq. 6-13, p. 300) and
+  `hydraulic_conductivity_kozeny_carman` (Eq. 8-41, p. 462), printed
+  identically, returned 7e-8 cm/s and 7.7 cm/s for a sand the equation
+  gives 0.072 cm/s; both now return 0.072. Fractions may be decimals
+  adding up to 1 or percentages adding up to 100; any other total is
+  refused.
+- `hydraulic_conductivity_carrier_beckman` (Eq. 8-42, p. 462): 2.5e-4 m/s
+  became 3.5e-9 m/s at e 1.5, PL 25, PI 30.
+- `hydraulic_conductivity_benson_landfill` (Eq. 8-43, p. 463) raised an
+  overflow error at ordinary inputs; it now gives 3.6e-8 m/s for the
+  example in its tests.
+- `well_resistance_factor` (Eq. 5-26, p. 268) was zero at the far end of a
+  drain, where the manual's equation is largest: 0 became 1.26 at
+  z = Lm = 20, kh/qw = 0.001.
+- `drain_spacing_factor(approximate=False)` (Eq. 5-23, p. 267): 0.906
+  became 0.936 at n = 5. The default approximation is unchanged.
+
+Tables and charts rebuilt from the print:
+
+- `figure_8_46_f` (Figure 8-46, p. 444) returned 500 to 175; the figure's f
+  runs from 6.75 at PI 15 to 4.24 at PI 64.5, so the constrained modulus
+  Mds = f N Pa was about 70 times too stiff. PI outside 15 to 64.5 is
+  refused.
+- `figure_5_6_mu0` and `figure_5_6_mu1` (Figure 5-6, p. 230): mu0 is now
+  0.877 at D/B = 5 (was 0.78) and 0.859 at D/B = 20 (was 0.62); mu1 for a
+  square load is 0.645 at H/B = 5 (was 0.82, or 0.96 at the old default
+  Poisson's ratio of 0.3). The figure is for Poisson's ratio 0.5 only: any
+  other value is refused, and the default is now 0.5. `L_over_B` is 1 to
+  10 or "infinite".
+- `table_8_6_stark_hussain` (Table 8-6, p. 417) now holds the sixteen
+  printed rows; the residual friction angle for a clay fraction over 50%
+  at 400 kPa and LL 80 is 10.3 degrees (was 26.5). Keys: `lt_20`,
+  `25_to_45`, `gt_50_ll_lt_120`, `gt_50_ll_120_to_300`; `700_kPa` added.
+- `table_8_9_shansep_m` (Table 8-9, p. 425) lists m by source and soil, as
+  the table does, not by test type; it takes `soil` and returns the printed
+  row as a dict.
+- `table_8_24_cbr_dcp` (Table 8-24, p. 456) now holds the thirteen printed
+  rows; none of the six it held is in the table.
+- `table_4_3_trench_fill` (Table 4-3, pp. 195-196) returns the six printed
+  rows (unit weight in pcf, K, mu', K x mu'); for saturated clay K x mu' is
+  0.11 (was 0.029).
+- `table_4_9_tunnel_behavior` (Table 4-9, p. 205) returns the printed
+  ground behavior for the seven printed rows and takes the soil type as a
+  second argument.
+- `table_5_6_Calpha_Cc` (Table 5-6, p. 254) gains the shale and mudstone
+  row (0.03); the table's +/- 0.01 and its source are in the docstring.
+
+Refused or flagged, not changed:
+
+- `hydraulic_conductivity_benson_trast` (Eq. 8-44, p. 463) now refuses: the
+  manual gives the molding water content no unit, and k differs by a factor
+  of 200 to 5,000 between the two readings.
+- `trench_load_coefficient` (Eq. 4-7, p. 195) and
+  `flexible_pipe_trench_load` (Eq. 4-8, p. 197) evaluate a form that gives
+  a higher pipe load than the equation as typeset; their values are
+  unchanged and their docstrings now show both forms. A decision is open.
+- `relative_density_from_dry_density` (Eq. 3-2, p. 141) is unchanged: the
+  manual's density form has a misprint, and the docstring says so.
+
+Descriptions corrected, values unchanged: the angles of the Table 4-2
+strip-load functions (`boussinesq_semi_infinite_load`,
+`boussinesq_terrace_load`, `boussinesq_triangular_load`,
+`boussinesq_slope_load`) are now described as the table's diagrams draw
+them; `corrected_spt_silty_sand` no longer claims a limit of N' = 15 the
+manual does not print.
+
+Chapter text (`dm7_1/text/` chapters 3, 4, 5, 6 and 8) now states
+Eq. 4-7, 4-8, 5-23, 5-26, 6-13, 8-8, 8-13, 8-16, 8-26, 8-38, 8-39 and 8-41
+to 8-44 as printed.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
