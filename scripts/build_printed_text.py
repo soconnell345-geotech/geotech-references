@@ -879,6 +879,13 @@ def build(package: str, report: bool = False, catalog_too: bool = True) -> int:
                                  f["figure_number"]))
     if not catalog_too:
         return 0
+    # a volume printed under its own number carries it on each of its
+    # figures, as GEC-13 Vol II does (2026-11-10 review, core-13)
+    vol_ids = {v["volume"]: v["volume_id"] for v in manifest["volumes"]}
+    for f in all_figs:
+        if vol_ids.get(f["volume"], manifest["reference_id"]) \
+                != manifest["reference_id"]:
+            f["reference_id"] = vol_ids[f["volume"]]
     catalog = {
         "reference_id": manifest["reference_id"],
         "reference_title": manifest["reference_title"],
