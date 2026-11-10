@@ -711,10 +711,15 @@ class TestStageReliability:
 # ============================================================================
 
 class TestAggregateLossArmyCorps:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # the Brazil-study equation GL = (B/25.4)/(.0045LADT + 3380.6/R + .467G).
     def test_basic(self):
         r = eq.aggregate_loss_army_corps(bladings=6, ladt=200, radius_ft=1000,
                                          grade_pct=3)
-        assert r["gl_in"] > 0
+        assert r["gl_in"] == pytest.approx(
+            (6 / 25.4) / (0.0045 * 200 + 3380.6 / 1000 + 0.467 * 3), abs=1e-3)
+        assert "Brazil" in r["source"]
+        assert "printed II-12" in r["reference"]
 
     def test_invalid_radius_raises(self):
         with pytest.raises(ValueError):
@@ -723,11 +728,18 @@ class TestAggregateLossArmyCorps:
 
 
 class TestAnnualAggregateLossKenya:
+    # Same page: AGL = [T^2/(T^2+50)] x f(4.2 + .092T + 0.889R^2 + 1.88VC);
+    # the scan drops decimal points ("092T", f "037" = 0.37).
     def test_lateritic_default(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,
                                            grade_pct=5)
         assert r["f"] == 0.37
-        assert r["agl_in_per_year"] > 0
+        expected = (4 / 54) * 0.37 * (4.2 + 0.092 * 2 + 0.889 * 900 + 1.88 * 5)
+        assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
+        r = eq.annual_aggregate_loss_kenya(traffic_thousands=20, rainfall_in=2,
+                                           grade_pct=1)
+        expected = (400 / 450) * 0.37 * (4.2 + 0.092 * 20 + 0.889 * 4 + 1.88)
+        assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
 
     def test_coral(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,

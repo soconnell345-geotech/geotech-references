@@ -795,15 +795,25 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
 
 
 # ============================================================================
-# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page 102,
-# printed II-13) -- rutting/aggregate-loss models. Low-priority / secondary
+# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page 101,
+# printed II-12) -- rutting/aggregate-loss models. Low-priority / secondary
 # to the main SN/slab-thickness design (Part II Ch 4 low-volume roads).
 # ============================================================================
 
 def aggregate_loss_army_corps(bladings, ladt, radius_ft, grade_pct) -> dict:
-    """Aggregate loss for an aggregate-surfaced road (US Army/road-grading model).
+    """Aggregate loss GL of an aggregate-surfaced road from the Brazil study
+    equation, AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12);
+    returns gl_in, inches lost during the period considered.
 
         GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)
+
+    The Guide gives this as "a second equation, which was developed from a
+    recent study in Brazil on typical rural sections" (refs 15, 16); the
+    function's name is historical (it is not a US Army model). The page's
+    first equation, GL = 0.12 + 0.1223(LT) for sections with more than 50
+    percent truck traffic (LT = loaded trucks in thousands), is not
+    implemented here. The scan drops decimal points; read as typeset:
+    "( 0045LADT" is 0.0045*LADT.
 
     Parameters
     ----------
@@ -838,15 +848,22 @@ def aggregate_loss_army_corps(bladings, ladt, radius_ft, grade_pct) -> dict:
         "bladings": bladings, "ladt": ladt, "radius_ft": radius_ft,
         "grade_pct": grade_pct, "gl_in": round(gl, 3),
         "equation": "GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)",
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 102, printed II-13)",
+        "source": "Brazil study of typical rural sections (Guide refs 15, 16)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
     }
 
 
 def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
                                 gravel_type="lateritic") -> dict:
-    """Annual aggregate (gravel) loss, Kenya study model (low-truck-traffic roads).
+    """Annual aggregate loss AGL from the British study done in Kenya,
+    AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12); returns
+    agl_in_per_year, inches per year (multiply by the years of the
+    performance period for the total gravel loss).
 
-        AGL = [T^2/(T^2+50)] * f * (4.2 + 0.92*T + 0.889*R^2 + 1.88*VC)
+        AGL = [T^2/(T^2+50)] * f * (4.2 + 0.092*T + 0.889*R^2 + 1.88*VC)
+
+    The scan drops decimal points ("4 2 +  092T", f "037"): 092T is read as
+    0.092*T, as f's 037 is 0.37.
 
     Parameters
     ----------
@@ -883,12 +900,12 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
     t = traffic_thousands
     r = rainfall_in
     vc = grade_pct
-    agl = (t ** 2 / (t ** 2 + 50)) * f * (4.2 + 0.92 * t + 0.889 * r ** 2
+    agl = (t ** 2 / (t ** 2 + 50)) * f * (4.2 + 0.092 * t + 0.889 * r ** 2
                                           + 1.88 * vc)
     return {
         "traffic_thousands": t, "rainfall_in": r, "grade_pct": vc,
         "gravel_type": key, "f": f, "agl_in_per_year": round(agl, 3),
         "equation": ("AGL = [T^2/(T^2+50)] * f * "
-                     "(4.2+0.92T+0.889R^2+1.88VC)"),
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 102, printed II-13)",
+                     "(4.2+0.092T+0.889R^2+1.88VC)"),
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
     }

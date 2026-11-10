@@ -93,18 +93,18 @@
     {
       "section_id": "2.2.3",
       "title": "Performance Criteria -- Aggregate Loss",
-      "summary": "For aggregate-surfaced roads, reduces effective pavement thickness over time; two printed empirical models estimate aggregate/gravel loss: a US-study bladings-based model GL=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G), and a Kenya-study annual model AGL=[T^2/(T^2+50)]*f*(4.2+0.92T+0.889R^2+1.88VC) for low-truck-traffic gravel roads.",
-      "body": "Aggregate loss due to traffic and erosion thins the pavement structure over time, accelerating deterioration. Two models are provided: (1) a bladings-based US study model (limited data, >50% truck traffic sections) GL(in)=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) where B=bladings, LADT=design-lane ADT, R=curve radius (ft), G=grade (%); and (2) a Kenya-study annual model more applicable to low-truck-traffic (car-dominated) roads, AGL=[T^2/(T^2+50)]*f*(4.2+0.92T+0.889R^2+1.88VC), with gravel-type factor f (0.37 lateritic, 0.43 quartzitic, 0.28 volcanic, 0.59 coral). A third Brazil-study model, GL=0.12+0.1223(LT) (LT=thousands of loaded trucks), is also referenced. All have significant drawbacks; local aggregate-loss data should be used where possible.",
+      "summary": "For aggregate-surfaced roads, reduces effective pavement thickness over time; three printed empirical models estimate aggregate/gravel loss: GL=0.12+0.1223(LT) from limited data on sections with more than 50 percent truck traffic, a Brazil-study bladings-based model GL=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G), and a Kenya-study (British) annual model AGL=[T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC) for low-truck-traffic gravel roads.",
+      "body": "Aggregate loss due to traffic and erosion thins the pavement structure over time, accelerating deterioration. Three equations are printed: (1) GL=0.12+0.1223(LT) (GL total aggregate loss, in; LT=loaded trucks, thousands), developed with limited data on sections experiencing greater than 50 percent truck traffic (refs 15, 16); (2) a second equation from a recent study in Brazil on typical rural sections, GL(in)=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) where B=bladings, LADT=design-lane ADT, R=curve radius (ft), G=grade (%); and (3) a British study done in Kenya, more applicable to roads with very little truck activity, annual AGL=[T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC), with gravel-type factor f (0.37 lateritic, 0.43 quartzitic, 0.28 volcanic, 0.59 coral). The scan drops decimal points (read as typeset). All have significant drawbacks; local aggregate-loss data should be used where possible.",
       "key_points": [
-        "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) -- US bladings-based model",
-        "AGL = [T^2/(T^2+50)]*f*(4.2+0.92T+0.889R^2+1.88VC) -- Kenya study, low-truck-traffic gravel roads",
+        "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) -- Brazil study, bladings-based model",
+        "AGL = [T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC) -- Kenya study, low-truck-traffic gravel roads",
         "Gravel-type factor f: 0.37 lateritic, 0.43 quartzitic, 0.28 volcanic, 0.59 coral",
-        "GL=0.12+0.1223(LT) -- Brazil study (loaded trucks, thousands)",
+        "GL=0.12+0.1223(LT) -- sections with more than 50 percent truck traffic (loaded trucks, thousands)",
         "All models have serious drawbacks; local data preferred where available"
       ],
       "equations": [
-        {"id": "GL (US bladings model)", "description": "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G)", "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_army_corps"},
-        {"id": "AGL (Kenya model)", "description": "AGL = [T^2/(T^2+50)]*f*(4.2+0.92T+0.889R^2+1.88VC)", "implemented_in": "geotech_references.aashto_1993.equations.annual_aggregate_loss_kenya"}
+        {"id": "GL (Brazil bladings model)", "description": "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G)", "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_army_corps"},
+        {"id": "AGL (Kenya model)", "description": "AGL = [T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC)", "implemented_in": "geotech_references.aashto_1993.equations.annual_aggregate_loss_kenya"}
       ],
       "figures": [],
       "tables": [],
