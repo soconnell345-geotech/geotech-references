@@ -1947,7 +1947,7 @@ def hydraulic_conductivity_benson_landfill(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Hydraulic conductivity k (m/s) of a compacted clay liner, Equation 8-43 (Benson et al. 1994).
+    """Hydraulic conductivity k (m/s) of a compacted clay liner, Equation 8-43 (Benson et al. 1994), with the molding water content taken as a decimal: the page prints no unit for it.
 
     Benson et al. (1994) measured the hydraulic conductivity of intact
     specimens from compacted clay liners at 67 landfills in North
@@ -1962,12 +1962,6 @@ def hydraulic_conductivity_benson_landfill(
         \\ln k = -18.35 + \\frac{894}{W} - 0.08\\,PI
         - 2.87 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
         + 0.32 \\sqrt{GC} + 0.02\\,CF
-
-    The term in brackets is the degree of saturation at molding.  The
-    manual gives no unit for the molding water content *w*; this
-    function takes it as a decimal, which makes the bracket the degree
-    of saturation as a decimal (a percentage there would give k below
-    1e-100 m/s).
 
     Parameters
     ----------
@@ -1998,8 +1992,24 @@ def hydraulic_conductivity_benson_landfill(
     ------
     ValueError
         If *gamma_d*, *gamma_w*, *gs* or *w_compactor* is not positive,
-        *gc* is negative, or gamma_w/gamma_d - 1/Gs is not positive
-        (the dry unit weight is then above the zero-void-ratio value).
+        *gc* is negative, gamma_w/gamma_d - 1/Gs is not positive (the
+        dry unit weight is then above the zero-void-ratio value), or the
+        degree of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0
+        or is above 1.0.
+
+    Notes
+    -----
+    The term in brackets is the degree of saturation at molding.  The
+    page (PDF p. 491, printed p. 463) gives "w = molding water content"
+    with no unit.  It is taken as a decimal, which makes the bracket the
+    degree of saturation as a decimal: a percentage there would give k
+    below 1e-100 m/s.  A saturation above 1.0 is refused (a water
+    content given in percent would produce one).
+
+    The manual gives k "in m/s".  As printed, ordinary liner inputs give
+    about 3.6e-8 m/s (CF 30, GC 4, W 200 kN, PI 25, w 0.18, dry unit
+    weight 17 kN/m3, Gs 2.70).  Whether the source regression was in
+    another unit of k cannot be settled from the page.
 
     References
     ----------
@@ -2025,6 +2035,12 @@ def hydraulic_conductivity_benson_landfill(
             "non-positive); check gamma_d, gamma_w, gs."
         )
     saturation = w / denominator
+    if saturation <= 0.0 or saturation > 1.0:
+        raise ValueError(
+            "The degree of saturation w/(gamma_w/gamma_d - 1/gs) comes to "
+            f"{saturation:.4g}; it must be above 0 and not above 1.0. Give "
+            "w as a decimal (0.18 for 18 %)."
+        )
 
     ln_k = (-18.35 + 894.0 / w_compactor - 0.08 * pi - 2.87 * saturation
             + 0.32 * math.sqrt(gc) + 0.02 * cf)
@@ -2040,7 +2056,7 @@ def hydraulic_conductivity_benson_trast(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Not evaluated: Equation 8-44 (Benson and Trast 1995), hydraulic conductivity k (m/s) of compacted clay. Always raises ValueError, because the manual does not give the unit of the molding water content.
+    """Hydraulic conductivity k (m/s) of compacted clay, Equation 8-44 (Benson and Trast 1995), with the saturation term taken in percent: the page prints no unit for it, and percent is the reading of this library's review of 2026-11-10, not a printed statement.
 
     Benson and Trast (1995) tested 13 compacted clays used for
     compacted clay liners around the United States, prepared at
@@ -2054,16 +2070,9 @@ def hydraulic_conductivity_benson_trast(
         - 0.087 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
         - 0.054\\,PI + 0.022\\,CF + 0.91\\,E
 
-    where E is the compactive effort index, equal to -1, 0 and 1 for
-    modified, standard and reduced Proctor compactive effort.
-
-    The term in brackets is the degree of saturation at molding.  The
-    manual gives the molding water content *w* no unit, and here the
-    two readings both give a possible k: with *w* as a decimal the term
-    is about 0.6 to 1.0 and changes k by a few percent; with *w* in
-    percent it is about 60 to 100 and lowers k by a factor of about 200
-    to 5,000.  The page does not settle which is meant, so the function
-    refuses rather than return either.
+    The term in brackets is the initial degree of saturation.  This
+    function works it out from *w* given as a decimal and enters it in
+    the equation in percent (see Notes).
 
     Parameters
     ----------
@@ -2075,18 +2084,46 @@ def hydraulic_conductivity_benson_trast(
         Compactive effort index E: -1 for modified Proctor, 0 for
         standard Proctor, +1 for reduced Proctor.
     w : float
-        Molding water content (unit not given by the manual).
+        Molding water content as a decimal (0.18 for 18%), as in
+        Equation 8-43.
     gamma_w : float
-        Unit weight of water.
+        Unit weight of water (kN/m^3, e.g., 9.81).
     gamma_d : float
         Dry unit weight (same units as *gamma_w*).
     gs : float
         Specific gravity of the solids (dimensionless).
 
+    Returns
+    -------
+    float
+        Hydraulic conductivity, k (m/s), with the initial degree of
+        saturation entered in percent.
+
     Raises
     ------
     ValueError
-        Always.
+        If *gamma_d*, *gamma_w* or *gs* is not positive, if
+        gamma_w/gamma_d - 1/Gs is not positive, or if the initial degree
+        of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0 or is
+        above 100%.
+
+    Notes
+    -----
+    The page (PDF p. 491, printed p. 463) gives "w = molding water
+    content" with no unit, and no figure, table or worked example in the
+    manual uses the equation with numbers.  The reading in percent rests
+    on the page's own numbers.  In Equation 8-43 on the same page the
+    same term carries a coefficient of 2.87 and can only be a decimal (a
+    percentage gives k below 1e-100 m/s).  Here its coefficient is
+    0.087: as a decimal the term would change ln k by under 0.09 over
+    the whole range of saturation and would be idle, while in percent it
+    spans about what Equation 8-43's does (0.087 x 30 against
+    2.87 x 0.3).
+
+    The two readings at one made-up input (PI 25, CF 30, E 0, w 0.18,
+    gamma_w 9.81, gamma_d 17.0 kN/m3, Gs 2.70; saturation 87.09%):
+    in percent, as coded, ln k = -23.267 and k = 7.86e-11 m/s; as a
+    decimal, ln k = -15.766 and k = 1.42e-07 m/s.
 
     References
     ----------
@@ -2094,14 +2131,30 @@ def hydraulic_conductivity_benson_trast(
     Chapter 8, Equation 8-44, p. 463.
     Benson and Trast (1995).
     """
-    raise ValueError(
-        "Equation 8-44 (Benson and Trast 1995) is not evaluated: UFS "
-        "3-220-10 p. 463 prints ln k = -15 - 0.087 [w/(gamma_w/gamma_d - "
-        "1/Gs)] - 0.054 PI + 0.022 CF + 0.91 E (k in m/s) without the unit "
-        "of the molding water content w, and k differs by a factor of "
-        "about 200 to 5,000 (degree of saturation 60 to 100 %) between w "
-        "as a decimal and w in percent."
-    )
+    if gamma_d <= 0.0:
+        raise ValueError("gamma_d must be positive.")
+    if gamma_w <= 0.0:
+        raise ValueError("gamma_w must be positive.")
+    if gs <= 0.0:
+        raise ValueError("gs must be positive.")
+
+    denominator = gamma_w / gamma_d - 1.0 / gs
+    if denominator <= 0.0:
+        raise ValueError(
+            "gamma_w/gamma_d - 1/gs is not positive (the void ratio is "
+            "non-positive); check gamma_d, gamma_w, gs."
+        )
+    saturation_percent = 100.0 * w / denominator
+    if saturation_percent <= 0.0 or saturation_percent > 100.0:
+        raise ValueError(
+            "The initial degree of saturation w/(gamma_w/gamma_d - 1/gs) "
+            f"comes to {saturation_percent:.4g} %; it must be above 0 and "
+            "not above 100 %. Give w as a decimal (0.18 for 18 %)."
+        )
+
+    ln_k = (-15.0 - 0.087 * saturation_percent - 0.054 * pi + 0.022 * cf
+            + 0.91 * e_effort)
+    return math.exp(ln_k)
 
 
 # ============================================================================

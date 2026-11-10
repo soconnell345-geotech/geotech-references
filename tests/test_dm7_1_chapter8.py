@@ -1399,6 +1399,21 @@ class TestHydraulicConductivityBensonLandfill:
                 gamma_w=9.81, gamma_d=27.0, gs=2.70
             )
 
+    def test_w_given_in_percent_raises(self):
+        # The page gives w no unit; the function takes a decimal. w=18.0
+        # would make the bracket (the degree of saturation) 87.09 and k
+        # below 1e-100 m/s.
+        with pytest.raises(ValueError, match="not above 1.0"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=18.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_docstring_first_line_gives_the_unit_taken(self):
+        first = hydraulic_conductivity_benson_landfill.__doc__.strip().splitlines()[0]
+        assert "molding water content taken as a decimal" in first
+        assert "the page prints no unit for it" in first
+
 
 # ============================================================================
 # Eq 8-44: hydraulic_conductivity_benson_trast
@@ -1411,32 +1426,95 @@ class TestHydraulicConductivityBensonTrast:
     # Eq. 8-44 as printed, PDF p. 491 (printed p. 463), k in m/s:
     # ln k = -15 - 0.087 [w/(gamma_w/gamma_d - 1/Gs)] - 0.054 PI
     #        + 0.022 CF + 0.91 E
-    # The page gives no unit for the molding water content w. With w as a
-    # decimal the example below gives ln k = -15.766 (k = 1.42e-07 m/s);
-    # with w in percent, ln k = -23.267 (k = 7.86e-11 m/s). The function
-    # returns neither until the unit is settled.
+    # The page gives "w = molding water content" with no unit. The function
+    # takes w as a decimal, as in Eq. 8-43, and enters the bracket (the
+    # initial degree of saturation) in percent. That is the reading of the
+    # review of 2026-11-10, not a printed statement (the docstring's Notes
+    # give the reasons). These tests pin that reading and record the other.
 
-    def test_refuses_and_names_the_page(self):
-        with pytest.raises(ValueError, match="p. 463") as excinfo:
+    def test_basic_saturation_in_percent(self):
+        # PI=25, CF=30, E=0 (standard Proctor), w=0.18, gamma_w=9.81,
+        # gamma_d=17.0, Gs=2.70
+        # bracket = 0.18 / (9.81/17.0 - 1/2.70) = 0.870876, or 87.0876 %
+        # ln k = -15 - 0.087*87.0876 - 0.054*25 + 0.022*30 + 0.91*0
+        #      = -15 - 7.57662 - 1.35 + 0.66 = -23.26662;  k = 7.8602e-11 m/s
+        result = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result == pytest.approx(7.8602e-11, rel=1e-4, abs=0.0)
+
+    def test_decimal_reading_is_not_what_is_returned(self):
+        # With the bracket as a decimal: ln k = -15 - 0.087*0.870876 - 1.35
+        # + 0.66 = -15.76577;  k = 1.4224e-07 m/s, about 1,800 times the
+        # value returned (e^(0.087*(87.0876 - 0.870876)) = e^7.50085 = 1810).
+        result = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result != pytest.approx(1.4224e-07, rel=1e-2, abs=0.0)
+        assert 1.4224e-07 / result == pytest.approx(1810.0, rel=1e-2)
+
+    def test_compactive_effort_index(self):
+        # E = -1 modified, 0 standard, +1 reduced Proctor: each step in E
+        # multiplies k by e^0.91 = 2.4843
+        # modified: 7.8602e-11 / 2.4843 = 3.1639e-11
+        # reduced:  7.8602e-11 * 2.4843 = 1.9527e-10
+        modified = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=-1.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        reduced = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=1.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert modified == pytest.approx(3.1639e-11, rel=1e-4, abs=0.0)
+        assert reduced == pytest.approx(1.9527e-10, rel=1e-4, abs=0.0)
+
+    def test_w_given_in_percent_raises(self):
+        # w=18.0 would be a saturation of 8,709 %
+        with pytest.raises(ValueError, match="not above 100 %"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+                pi=25.0, cf=30.0, e_effort=0.0, w=18.0,
                 gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
-        message = str(excinfo.value)
-        assert "Equation 8-44" in message
-        assert "molding water content" in message
 
-    def test_refuses_with_w_in_percent_too(self):
-        with pytest.raises(ValueError, match="Equation 8-44"):
+    def test_saturation_above_100_percent_raises(self):
+        # w=0.30 at gamma_d=17.0: 0.30/0.206688 = 145.1 %
+        with pytest.raises(ValueError, match="145.1 %"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=30.0, e_effort=-1.0, w=18.0,
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.30,
                 gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_zero_water_content_raises(self):
+        with pytest.raises(ValueError, match="must be above 0"):
+            hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_void_ratio_nonpositive_raises(self):
+        # gamma_d = 27 is above Gs*gamma_w = 26.487
+        with pytest.raises(ValueError, match="void ratio is non-positive"):
+            hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+                gamma_w=9.81, gamma_d=27.0, gs=2.70
             )
 
     def test_docstring_gives_the_printed_equation(self):
         doc = hydraulic_conductivity_benson_trast.__doc__
         assert "ln k = -15 - 0.087 * [ w / (gamma_w / gamma_d - 1 / Gs) ]" in doc
         assert "- 0.054 PI + 0.022 CF + 0.91 E" in doc
+
+    def test_docstring_says_the_unit_is_a_reading_not_printed(self):
+        doc = hydraulic_conductivity_benson_trast.__doc__
+        first = doc.strip().splitlines()[0]
+        assert "saturation term taken in percent" in first
+        assert "not a printed statement" in first
+        # both readings at the example above
+        assert "k = 7.86e-11 m/s" in doc
+        assert "k = 1.42e-07 m/s" in doc
 
 
 # ============================================================================

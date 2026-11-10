@@ -1050,12 +1050,12 @@
         },
         {
           "id": "Eq. 8-43",
-          "description": "Benson et al. (1994) correlation: estimates ln(k) in m/s for compacted clay liners using PI, gravel content (GC), clay-sized fraction (CF), compactor weight (W), molding water content, dry unit weight, and specific gravity.",
+          "description": "Benson et al. (1994) correlation: estimates ln(k) in m/s for compacted clay liners using PI, gravel content (GC), clay-sized fraction (CF), compactor weight (W), molding water content, dry unit weight, and specific gravity. (The page prints no unit for the molding water content; the library function takes it as a decimal, see its docstring.)",
           "implemented_in": "geotech_references.dm7_1.chapter8.hydraulic_conductivity_benson_landfill"
         },
         {
           "id": "Eq. 8-44",
-          "description": "Benson and Trast (1995) correlation: estimates ln(k) in m/s for compacted clays using PI, clay-sized fraction (CF), compactive effort index (E), molding water content, dry unit weight, and specific gravity.",
+          "description": "Benson and Trast (1995) correlation: estimates ln(k) in m/s for compacted clays using PI, clay-sized fraction (CF), compactive effort index (E), molding water content, dry unit weight, and specific gravity. (The page prints no unit for the molding water content; the library function takes it as a decimal and enters the term w/(γw/γd − 1/Gs), the initial degree of saturation, in percent. That is the reading of the library's review of 2026-11-10, not a printed statement; see its docstring.)",
           "implemented_in": "geotech_references.dm7_1.chapter8.hydraulic_conductivity_benson_trast"
         }
       ],
