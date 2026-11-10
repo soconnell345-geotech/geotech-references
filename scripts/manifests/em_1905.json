@@ -243,6 +243,14 @@
         {"number": "9-3", "page": "223", "formula": "qu = (1/2)(1 − ru) γb · B′ · Nγ   (Strip Footings)", "variables": {"qu": "ultimate bearing capacity (psf)", "B′": "effective base width of footing (feet)", "ru": "residual excess pore pressure ratio (dimensionless), reference paragraph 9-9c", "γb": "buoyant or effective unit weight of soil within shear zone (pcf)", "Nγ": "bearing capacity factor for soil effective unit weight (dimensionless)"}},
         {"number": "9-4", "page": "223", "formula": "qu = 0.4 (1 − ru) γb · B′ · Nγ   (Spread Footings)", "variables": {"qu": "ultimate bearing capacity (psf)", "B′": "effective base width of footing (feet)", "ru": "residual excess pore pressure ratio (dimensionless), reference paragraph 9-9c", "γb": "buoyant or effective unit weight of soil within shear zone (pcf)", "Nγ": "bearing capacity factor for soil effective unit weight (dimensionless)"}},
         {"number": "9-5", "page": "226", "formula": "γeff (Geff/Gmax) = 0.65 rd (σv/Gmax)(amax/g)", "variables": {"γeff": "effective vertical stress (psf)", "Geff": "effective shear modulus at induced strain level (psf)", "Gmax": "shear modulus at low strain level (psf)", "σv": "total vertical stress (psf)", "amax": "peak ground acceleration (ft/s^2)", "g": "acceleration due to gravity (fps)"}}
+      ],
+      "printed_passages": [
+        {"section": "7-11c(2)", "page": "170", "find": "α = αC, αd, αL rheological factors per (E c)/p, (E d)/p, and (E L)/p, respectively (dimensionless)\nne ne ne", "replace": "α = αC, αd, αL rheological factors per Ec/pne, Ed/pne, and EL/pne, respectively (dimensionless)"},
+        {"section": "C-1b", "page": "341", "find": "1.76\nEq. 6-9: Iσ = 1 − (1/2)\n1 + (B/(2z))", "replace": "Eq. 6-9: Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76"},
+        {"section": "C-4b", "page": "363", "find": "1.76\nEq. 6-9: Iσ = 1 − (1/2)\n1+(B/(2z))", "replace": "Eq. 6-9: Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76"},
+        {"section": "C-5b", "page": "368", "find": "1.76\nEq. 6-9: Iσ = 1 − (1/2)\n1+(B/(2z))", "replace": "Eq. 6-9: Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76"},
+        {"section": "C-6b", "page": "372", "find": "1.76\nEq. 6-9: Iσ = 1 − (1/2)\n1+(B/(2z))", "replace": "Eq. 6-9: Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76"},
+        {"section": "C-7b", "page": "379", "find": "1.76\nEq. 6-9: Iσ = 1 − (1/2)\n1+(B/(2z))", "replace": "Eq. 6-9: Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76"}
       ]
     }
   ]

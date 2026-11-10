@@ -1201,6 +1201,11 @@ class Book:
         build found no place for."""
         for k, f in enumerate(self.passages):
             hit = False
+            if not f.get("differs_from_text_layer") \
+                    and _letters(f["find"]) != _letters(f["replace"]):
+                self.problems.append(f"printed_passages[{k}] ({f['section']}): the typed "
+                                     "passage and the text it replaces differ in their "
+                                     "letters and digits")
             for data in chapters.values():
                 for sec in data["sections"]:
                     sid = sec["section_id"]
