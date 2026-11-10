@@ -172,6 +172,15 @@ rows instead of being answered from the first row that contains the words.
     and listed short names are taken. Table 4.3a's clay rows say their
     Poisson's ratio is undrained, and Table 4.4a's high-overburden rows and
     Table 4.6 carry their notes.
+  - `table_4_9_site_coefficient_fpga` (Table 4.9, p. 94): GEC-7 heads its
+    columns PGA <= 0.25, 0.5, 0.75, 1.0, >= 1.25, the Ss values that head
+    the Fa table (GEC-12 Vol I Table 7-28); GEC-12 Table 7-27 (p. 380)
+    prints the same F_PGA values under PGA < 0.1, 0.2, 0.3, 0.4, > 0.5, and
+    the lookup now reads them there (lead's ruling). Site class D at PGA
+    0.30 is 1.2 (it returned 1.56); E at 0.35 is 1.05 (was 2.18). The result
+    is a dict with `F_pga`, a `print_note` naming both headings and the
+    reference (it was a bare number); site class F is refused with the
+    table's note (1), a site-specific analysis (gec-29).
 
 ## 1.6.0
 

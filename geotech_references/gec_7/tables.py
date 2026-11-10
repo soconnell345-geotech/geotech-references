@@ -782,11 +782,26 @@ def table_4_6_pullout_resistance(soil_type: str,
 
 
 # ============================================================================
-# Table 4.9: Site Coefficient F_PGA (AASHTO 2014, as cited in GEC-7)
-# Interpolates between PGA values for each site class.
+# Table 4.9: Site Coefficient F_PGA (Kavazanjian et al. 2011).
+# FHWA-NHI-14-007 (GEC-7), p. 94 (PDF page 134), read off the rendered page:
+#
+#   Site Class  PGA <= 0.25  PGA = 0.5  PGA = 0.75  PGA = 1.0  PGA >= 1.25
+#   A           0.8          0.8        0.8         0.8        0.8
+#   B           1.0          1.0        1.0         1.0        1.0
+#   C           1.2          1.2        1.1         1.0        1.0
+#   D           1.6          1.4        1.2         1.1        1.0
+#   E           2.5          1.7        1.2         0.9        0.9
+#   F           (1) A site-specific dynamic site response analysis must be
+#               performed in these cases.
+#
+# By the lead's ruling (RULINGS row 10, review finding gec-29) the values
+# are used under PGA 0.1, 0.2, 0.3, 0.4, 0.5: GEC-7's headings are the Ss
+# values of the Fa table, and GEC-12 Vol I Table 7-27 (p. 380, PDF page
+# 426) prints the same values under PGA < 0.1, 0.2, 0.3, 0.4, > 0.5, with
+# "Straight line interpolation ... for intermediate values" (p. 379).
 # ============================================================================
 
-_TABLE_4_9_PGA = [0.25, 0.50, 0.75, 1.00, 1.25]
+_TABLE_4_9_PGA = [0.1, 0.2, 0.3, 0.4, 0.5]
 
 _TABLE_4_9_FPGA = {
     "A": [0.8, 0.8, 0.8, 0.8, 0.8],
@@ -796,37 +811,63 @@ _TABLE_4_9_FPGA = {
     "E": [2.5, 1.7, 1.2, 0.9, 0.9],
 }
 
+_TABLE_4_9_NOTE = (
+    "GEC-7 Table 4.9 (p. 94) heads its columns PGA <= 0.25, 0.5, 0.75, 1.0, "
+    ">= 1.25; GEC-12 Vol I Table 7-27 (p. 380) prints the same values under "
+    "PGA < 0.1, 0.2, 0.3, 0.4, > 0.5, and those are used here (lead's "
+    "ruling). With GEC-7's headings, site class D at PGA 0.30 would read "
+    "1.56 instead of 1.2."
+)
+
 
 def table_4_9_site_coefficient_fpga(site_class: str,
-                                    pga: float) -> float:
-    """Site coefficient F_PGA from AASHTO 2014, as cited in GEC-7 Table 4.9.
+                                    pga: float) -> dict:
+    """Site coefficient F_PGA for site classes A to E, GEC-7 Table 4.9 (FHWA-NHI-14-007, p. 94), read under the PGA columns 0.1 to 0.5 of GEC-12 Vol I Table 7-27 (p. 380), which prints the same values; GEC-7 heads them PGA <= 0.25 to >= 1.25 (lead's ruling; print_note in the result).
+
+    Between columns F_PGA is interpolated on a straight line (GEC-12 p.
+    379); at PGA 0.1 or less the first column applies and at 0.5 or more
+    the last (Table 7-27 heads them "PGA < 0.1" and "PGA > 0.5"). Site
+    class F needs a site-specific dynamic site response analysis (note (1))
+    and is refused.
 
     Parameters
     ----------
     site_class : str
         AASHTO site class: 'A', 'B', 'C', 'D', or 'E'.
     pga : float
-        Peak ground acceleration coefficient (dimensionless, g units).
-        Values <= 0.25 use the first column; >= 1.25 use the last.
+        Peak ground acceleration coefficient (Site Class B, in g).
 
     Returns
     -------
-    float
-        Site coefficient F_PGA.
+    dict
+        site_class, pga, F_pga, print_note, reference.
 
     Raises
     ------
     ValueError
-        If site_class is not recognized.
+        If site_class is F or not a site class.
     """
     key = site_class.upper().strip()
+    if key == "F":
+        raise ValueError(
+            "GEC-7 Table 4.9 (p. 94), note (1): for site class F a "
+            "site-specific dynamic site response analysis must be performed.")
     if key not in _TABLE_4_9_FPGA:
         raise ValueError(
             f"Unknown site_class '{site_class}'. Options: A, B, C, D, E"
         )
 
-    pga_clamped = max(0.25, min(1.25, pga))
-    return _linterp(pga_clamped, _TABLE_4_9_PGA, _TABLE_4_9_FPGA[key])
+    pga_held = max(0.1, min(0.5, pga))
+    f_pga = _linterp(pga_held, _TABLE_4_9_PGA, _TABLE_4_9_FPGA[key])
+    return {
+        "site_class": key,
+        "pga": pga,
+        "F_pga": round(f_pga, 3),
+        "print_note": _TABLE_4_9_NOTE,
+        "reference": ("FHWA-NHI-14-007 (GEC-7), Table 4.9 Site Coefficient "
+                      "F_PGA, p. 94; columns of FHWA-NHI-16-009 (GEC-12) "
+                      "Vol I Table 7-27, p. 380"),
+    }
 
 
 # ============================================================================

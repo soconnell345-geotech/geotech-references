@@ -349,31 +349,51 @@ class TestTable46:
 # ============================================================================
 
 class TestTable49:
-    """Tests for table_4_9_site_coefficient_fpga()."""
+    """Tests for table_4_9_site_coefficient_fpga(). Values: GEC-7 Table 4.9,
+    p. 94 (PDF page 134), under the PGA columns 0.1 to 0.5 of GEC-12 Vol I
+    Table 7-27, p. 380 (PDF page 426), which prints the same values (lead's
+    ruling, RULINGS row 10, finding gec-29)."""
 
     def test_site_a(self):
-        assert table_4_9_site_coefficient_fpga("A", 0.5) == 0.8
+        assert table_4_9_site_coefficient_fpga("A", 0.5)["F_pga"] == 0.8
 
     def test_site_b(self):
-        assert table_4_9_site_coefficient_fpga("B", 0.5) == 1.0
+        assert table_4_9_site_coefficient_fpga("B", 0.5)["F_pga"] == 1.0
 
     def test_site_d_low_pga(self):
-        assert table_4_9_site_coefficient_fpga("D", 0.25) == 1.6
+        """PGA < 0.1 column: 1.6; at 0.25 the value is between the 0.2 and
+        0.3 columns, 1.3 (it returned 1.6, GEC-7's first column)."""
+        assert table_4_9_site_coefficient_fpga("D", 0.1)["F_pga"] == 1.6
+        assert table_4_9_site_coefficient_fpga("D", 0.05)["F_pga"] == 1.6
+        assert table_4_9_site_coefficient_fpga("D", 0.25)["F_pga"] == pytest.approx(1.3)
 
     def test_site_d_high_pga(self):
-        assert table_4_9_site_coefficient_fpga("D", 1.25) == 1.0
+        """PGA > 0.5 column: 1.0."""
+        assert table_4_9_site_coefficient_fpga("D", 0.5)["F_pga"] == 1.0
+        assert table_4_9_site_coefficient_fpga("D", 1.25)["F_pga"] == 1.0
+
+    def test_review_point(self):
+        """Site class D at PGA 0.30: 1.2 (was 1.56)."""
+        r = table_4_9_site_coefficient_fpga("D", 0.30)
+        assert r["F_pga"] == pytest.approx(1.2)
+        assert "PGA <= 0.25" in r["print_note"] and "Table 7-27" in r["print_note"]
 
     def test_interpolation(self):
-        """D at PGA=0.375 interpolates between 1.6 and 1.4."""
-        fpga = table_4_9_site_coefficient_fpga("D", 0.375)
-        assert 1.4 < fpga < 1.6
+        """Straight line between columns (GEC-12 p. 379): D at PGA 0.15
+        is halfway between 1.6 and 1.4; E at 0.35 between 1.2 and 0.9."""
+        assert table_4_9_site_coefficient_fpga("D", 0.15)["F_pga"] == pytest.approx(1.5)
+        assert table_4_9_site_coefficient_fpga("E", 0.35)["F_pga"] == pytest.approx(1.05)
 
     def test_site_e(self):
-        assert table_4_9_site_coefficient_fpga("E", 0.25) == 2.5
+        assert table_4_9_site_coefficient_fpga("E", 0.1)["F_pga"] == 2.5
+        assert table_4_9_site_coefficient_fpga("C", 0.3)["F_pga"] == 1.1
 
     def test_unknown_class_raises(self):
-        with pytest.raises(ValueError):
+        """Site class F: note (1), a site-specific analysis."""
+        with pytest.raises(ValueError, match="site-specific"):
             table_4_9_site_coefficient_fpga("F", 0.5)
+        with pytest.raises(ValueError):
+            table_4_9_site_coefficient_fpga("G", 0.5)
 
 
 # ============================================================================
