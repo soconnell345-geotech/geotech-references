@@ -458,10 +458,14 @@ def schmertmann_time_correction(t_years: float) -> float:
     .. math::
         C_2 = 1 + 0.2 \\, \\log_{10}\\!\\left(\\frac{t}{0.1}\\right)
 
+    Figure 5-9 (p. 236) plots this factor ("Schmertmann C2 correction")
+    to 30 years, where it is about 1.5.  The function also answers for
+    longer times, since the equation is given for any time after loading.
+
     Parameters
     ----------
     t_years : float
-        Time after initial loading (years).  Must be greater than zero.
+        Time after initial loading (years), 0.1 year or more.
 
     Returns
     -------
