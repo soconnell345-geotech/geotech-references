@@ -1306,51 +1306,69 @@ class TestCrossFunctionConsistency:
 # ===========================================================================
 
 class TestFigure436MomentReduction:
+    """UFC 3-220-20 Figure 4-36(a), PDF p. 274 (printed p. 236).
 
-    def test_dense_very_stiff(self):
-        # log_rho = -3.5, dense_sand => Md/Mmax = 1.00
-        result = figure_4_36_moment_reduction(-3.5, "dense_sand")
-        assert result == pytest.approx(1.00, rel=1e-2)
+    The figure prints each curve's equation on the flexibility number rho
+    (5 to 200 in^2/lb per running foot of wall):
+      very dense coarse-grained soils:              1.58/ln(rho) - 0.015
+      medium dense and dense coarse-grained soils:  2.03/ln(rho) - 0.076
+    """
 
-    def test_dense_flexible(self):
-        # log_rho = 0.0, dense_sand => Md/Mmax = 0.30
-        result = figure_4_36_moment_reduction(0.0, "dense_sand")
-        assert result == pytest.approx(0.30, rel=1e-2)
+    VERY_DENSE = "very_dense_coarse_grained"
+    MEDIUM = "medium_dense_and_dense_coarse_grained"
 
-    def test_medium_very_stiff(self):
-        # log_rho = -3.5, medium_sand => Md/Mmax = 1.00
-        result = figure_4_36_moment_reduction(-3.5, "medium_sand")
-        assert result == pytest.approx(1.00, rel=1e-2)
+    def test_printed_example_very_dense(self):
+        # Figure 4-36(b): rho = 9.5 in^2/lb, very dense sand,
+        # "From the chart: M_DESIGN/M_MAX = 0.68".
+        result = figure_4_36_moment_reduction(9.5, self.VERY_DENSE)
+        assert result == pytest.approx(0.68, abs=0.01)
 
-    def test_medium_flexible(self):
-        # log_rho = 0.0, medium_sand => Md/Mmax = 0.38
-        result = figure_4_36_moment_reduction(0.0, "medium_sand")
-        assert result == pytest.approx(0.38, rel=1e-2)
+    @pytest.mark.parametrize("rho, expected", [
+        (5.0, 0.967), (20.0, 0.512), (50.0, 0.389), (100.0, 0.328), (200.0, 0.283),
+    ])
+    def test_very_dense_curve(self, rho, expected):
+        # 1.58/ln(rho) - 0.015
+        assert figure_4_36_moment_reduction(rho, self.VERY_DENSE) == pytest.approx(expected, abs=5e-4)
+        assert figure_4_36_moment_reduction(rho, self.VERY_DENSE) == pytest.approx(
+            1.58 / math.log(rho) - 0.015, rel=1e-12)
 
-    def test_loose_flexible(self):
-        # log_rho = 0.0, loose_sand => Md/Mmax = 0.52
-        result = figure_4_36_moment_reduction(0.0, "loose_sand")
-        assert result == pytest.approx(0.52, rel=1e-2)
+    @pytest.mark.parametrize("rho, expected", [
+        (10.0, 0.806), (20.0, 0.602), (50.0, 0.443), (100.0, 0.365), (200.0, 0.307),
+    ])
+    def test_medium_dense_and_dense_curve(self, rho, expected):
+        # 2.03/ln(rho) - 0.076
+        assert figure_4_36_moment_reduction(rho, self.MEDIUM) == pytest.approx(expected, abs=5e-4)
+        assert figure_4_36_moment_reduction(rho, self.MEDIUM) == pytest.approx(
+            2.03 / math.log(rho) - 0.076, rel=1e-12)
 
-    def test_interpolated(self):
-        # log_rho = -1.5, dense_sand => interpolate between 1.00 and 0.30
-        # Expected value around 0.62
-        result = figure_4_36_moment_reduction(-1.5, "dense_sand")
-        assert result == pytest.approx(0.62, rel=1e-2)
+    def test_no_value_above_one(self):
+        # The medium dense and dense curve leaves the top of the chart (1.0)
+        # below rho of about 6.6: no reduction, never an increase.
+        assert figure_4_36_moment_reduction(5.0, self.MEDIUM) == 1.0
+        assert figure_4_36_moment_reduction(6.0, self.MEDIUM) == 1.0
+        assert figure_4_36_moment_reduction(7.0, self.MEDIUM) < 1.0
 
-    def test_clamped_low(self):
-        # log_rho = -5.0 (below min -3.5), any soil type => clamped to 1.00
-        result = figure_4_36_moment_reduction(-5.0, "medium_sand")
-        assert result == pytest.approx(1.00, rel=1e-2)
+    def test_chart_ends_as_drawn(self):
+        # At the right edge (rho = 200) the curves end at about 0.28 and 0.30.
+        assert figure_4_36_moment_reduction(200.0, self.VERY_DENSE) == pytest.approx(0.28, abs=0.01)
+        assert figure_4_36_moment_reduction(200.0, self.MEDIUM) == pytest.approx(0.31, abs=0.01)
 
-    def test_clamped_high(self):
-        # log_rho = 1.0 (above max 0.0), dense_sand => clamped to 0.30
-        result = figure_4_36_moment_reduction(1.0, "dense_sand")
-        assert result == pytest.approx(0.30, rel=1e-2)
+    def test_printed_wording_accepted(self):
+        a = figure_4_36_moment_reduction(20.0, "Very dense coarse-grained")
+        assert a == figure_4_36_moment_reduction(20.0, self.VERY_DENSE)
 
-    def test_unknown_soil_raises(self):
-        with pytest.raises(ValueError, match="Unknown soil_type"):
-            figure_4_36_moment_reduction(-1.0, "clay")
+    @pytest.mark.parametrize("rho", [4.9, 0.98, -2.0, 0.0, 201.0, 1000.0])
+    def test_outside_the_printed_range_is_refused(self, rho):
+        # Not clamped: the old function answered 0.30 for every real wall.
+        with pytest.raises(ValueError, match="5 to 200"):
+            figure_4_36_moment_reduction(rho, self.VERY_DENSE)
+
+    @pytest.mark.parametrize("soil", ["loose_sand", "clay", "fine_grained", "dense_sand", "medium_sand"])
+    def test_soils_without_a_curve_are_refused(self, soil):
+        # Note 2: "No reduction in M_MAX is permitted for walls in
+        # fine-grained soils, or very loose to loose coarse-grained soils."
+        with pytest.raises(ValueError, match="No reduction in M_MAX is permitted"):
+            figure_4_36_moment_reduction(20.0, soil)
 
 
 # ===========================================================================
@@ -1358,32 +1376,33 @@ class TestFigure436MomentReduction:
 # ===========================================================================
 
 class TestFigure436Integration:
-    """Chain relative_flexibility_anchored_bulkhead → figure_4_36."""
+    """Chain relative_flexibility_anchored_bulkhead -> figure_4_36."""
 
-    def test_steel_sheet_pile_dense_sand(self):
-        # Typical: H=15ft, D=10ft, E=29e6 psi, I=38.6 in^4/ft
-        rho = relative_flexibility_anchored_bulkhead(15.0, 10.0, 29e6, 38.6)
-        log_rho = math.log10(rho)
-        Md_ratio = figure_4_36_moment_reduction(log_rho, "dense_sand")
-        # Md/Mmax should be between 0 and 1
-        assert 0.0 < Md_ratio <= 1.0
+    def test_printed_example(self):
+        # Figure 4-36(b), PDF p. 274 (printed p. 236): H = 33 ft, D = 15 ft,
+        # E = 30,000,000 psi, PZ32 I = 385.7 in^4 -> rho = 9.5 in^2/lb;
+        # M_DESIGN = (0.68)(950,000 in-lb/ft) = 646,000 in-lb/ft.
+        rho = relative_flexibility_anchored_bulkhead(33.0 * 12.0, 15.0 * 12.0, 30.0e6, 385.7)
+        assert rho == pytest.approx(9.5, abs=0.05)
+        ratio = figure_4_36_moment_reduction(rho, "very_dense_coarse_grained")
+        assert ratio == pytest.approx(0.68, abs=0.01)
+        assert ratio * 950000.0 == pytest.approx(646000.0, rel=0.015)
 
     def test_flexible_wall_more_reduction(self):
-        # More flexible wall (lower EI) → higher rho → more moment reduction
-        rho_stiff = relative_flexibility_anchored_bulkhead(10.0, 8.0, 29e6, 100.0)
-        rho_flex = relative_flexibility_anchored_bulkhead(10.0, 8.0, 29e6, 10.0)
+        # More flexible wall (lower EI) -> higher rho -> more moment reduction
+        rho_stiff = relative_flexibility_anchored_bulkhead(396.0, 180.0, 30.0e6, 385.7)
+        rho_flex = relative_flexibility_anchored_bulkhead(396.0, 180.0, 30.0e6, 100.0)
         assert rho_flex > rho_stiff
-        ratio_stiff = figure_4_36_moment_reduction(math.log10(rho_stiff), "medium_sand")
-        ratio_flex = figure_4_36_moment_reduction(math.log10(rho_flex), "medium_sand")
-        # More flexible → lower ratio (more reduction)
-        assert ratio_flex <= ratio_stiff
+        ratio_stiff = figure_4_36_moment_reduction(rho_stiff, "medium_dense_and_dense_coarse_grained")
+        ratio_flex = figure_4_36_moment_reduction(rho_flex, "medium_dense_and_dense_coarse_grained")
+        assert ratio_flex < ratio_stiff
 
-    def test_dense_more_reduction_than_loose(self):
-        # Same rho: dense sand allows more reduction than loose
-        log_rho = -1.5
-        dense = figure_4_36_moment_reduction(log_rho, "dense_sand")
-        loose = figure_4_36_moment_reduction(log_rho, "loose_sand")
-        assert dense <= loose
+    def test_very_dense_more_reduction_than_medium_dense(self):
+        # Same rho: the very dense curve lies below the other over the chart.
+        for rho in (5.0, 9.5, 30.0, 200.0):
+            very_dense = figure_4_36_moment_reduction(rho, "very_dense_coarse_grained")
+            medium = figure_4_36_moment_reduction(rho, "medium_dense_and_dense_coarse_grained")
+            assert very_dense < medium
 
 
 # ===========================================================================
@@ -1401,9 +1420,19 @@ class TestPlotFigure436:
     def test_no_query(self):
         ax = plot_figure_4_36(show=False)
         assert isinstance(ax, matplotlib.axes.Axes)
+        # the two printed curves, on rho from 5 to 200
+        assert len(ax.get_lines()) == 2
+        xs = ax.get_lines()[0].get_xdata()
+        assert min(xs) == pytest.approx(5.0) and max(xs) == pytest.approx(200.0)
         _plt.close("all")
 
     def test_query_point(self):
-        ax = plot_figure_4_36(log_rho=-2.0, soil_type="medium_sand", show=False)
+        ax = plot_figure_4_36(rho=9.5, soil_type="very_dense_coarse_grained", show=False)
         assert isinstance(ax, matplotlib.axes.Axes)
+        _plt.close("all")
+
+    def test_old_log_rho_keyword_is_refused(self):
+        # It would otherwise fall into **kwargs and the query point be lost.
+        with pytest.raises(TypeError, match="not log_rho"):
+            plot_figure_4_36(log_rho=-2.0, soil_type="dense_sand", show=False)
         _plt.close("all")

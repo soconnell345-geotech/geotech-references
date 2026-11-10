@@ -15,8 +15,6 @@ Reference:
 
 import math
 
-from geotech_references._interpolation import _linterp
-
 
 # ===========================================================================
 # Equations 4-1 and 4-2: At-Rest Earth Pressure
@@ -1787,8 +1785,8 @@ def relative_flexibility_anchored_bulkhead(
     Returns
     -------
     float
-        Relative flexibility, rho (in^3/lb, dimensionless ratio when
-        consistent units are used).
+        Relative flexibility (flexibility number) rho, in in^2/lb per
+        running foot of wall, the abscissa of Figure 4-36.
 
     Raises
     ------
@@ -1815,81 +1813,110 @@ def relative_flexibility_anchored_bulkhead(
 # FIGURE 4-36: Rowe (1952) Moment Reduction for Anchored Bulkheads
 # ===========================================================================
 
-# Digitised from Figure 4-36.  x-axis = log10(rho), y-axis = Md/Mmax.
-# Three curves for different soil densities below dredge line.
+# Figure 4-36(a) prints its two curves with their equations, on the
+# flexibility number rho itself (5 to 200 in^2/lb per running foot of wall,
+# log scale):
+#   penetration in very dense coarse-grained soils:
+#       M_DESIGN / M_MAX = 1.58 / ln(rho) - 0.015
+#   penetration in medium dense and dense coarse-grained soils:
+#       M_DESIGN / M_MAX = 2.03 / ln(rho) - 0.076
+# Each entry is (numerator, constant, the print's label).
 
-_FIG_4_36_LOG_RHO = [-3.5, -3.0, -2.5, -2.0, -1.5, -1.0, -0.5, 0.0]
-
-_FIG_4_36_DENSE_SAND = [1.00, 1.00, 0.95, 0.82, 0.62, 0.46, 0.35, 0.30]
-_FIG_4_36_MEDIUM_SAND = [1.00, 1.00, 0.97, 0.88, 0.72, 0.56, 0.45, 0.38]
-_FIG_4_36_LOOSE_SAND = [1.00, 1.00, 1.00, 0.95, 0.85, 0.72, 0.60, 0.52]
+_FIG_4_36_RHO_MIN = 5.0
+_FIG_4_36_RHO_MAX = 200.0
 
 _FIG_4_36_CURVES = {
-    "dense_sand": _FIG_4_36_DENSE_SAND,
-    "medium_sand": _FIG_4_36_MEDIUM_SAND,
-    "loose_sand": _FIG_4_36_LOOSE_SAND,
+    "very_dense_coarse_grained": (
+        1.58, 0.015, "Penetration in very dense coarse-grained soils"),
+    "medium_dense_and_dense_coarse_grained": (
+        2.03, 0.076,
+        "Penetration in medium dense and dense coarse-grained soils"),
 }
 
+_FIG_4_36_NOTE_2 = (
+    "No reduction in M_MAX is permitted for walls in fine-grained soils, "
+    "or very loose to loose coarse-grained soils."
+)
 
-def figure_4_36_moment_reduction(log_rho: float, soil_type: str) -> float:
-    """Rowe (1952) moment reduction factor for anchored bulkheads
-    (Figure 4-36).
 
-    Returns the ratio of design moment to theoretical free-earth-support
-    moment (Md / Mmax) as a function of log10(rho), where rho is the
-    relative flexibility from ``relative_flexibility_anchored_bulkhead``
-    (Equation 4-31).
+def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
+    """Rowe's moment reduction factor M_DESIGN / M_MAX (dimensionless) for
+    a flexible anchored bulkhead, Figure 4-36 of UFC 3-220-20, from the
+    flexibility number rho in in^2/lb and the soil the wall penetrates.
 
-    Moment reduction applies ONLY for walls penetrating into sands of
-    medium density or better.  Do NOT apply for fine-grained soils or
-    loose sands (use loose_sand conservatively if needed).
+    The figure prints the equation of each curve: very dense
+    coarse-grained soils 1.58 / ln(rho) - 0.015; medium dense and dense
+    coarse-grained soils 2.03 / ln(rho) - 0.076.  It is drawn for rho
+    from 5 to 200 in^2/lb and its ordinate ends at 1.0, so a value above
+    1.0 (the medium dense and dense curve below rho of about 6.6) is
+    returned as 1.0, no reduction.  Note 2 of the figure: "No reduction in
+    M_MAX is permitted for walls in fine-grained soils, or very loose to
+    loose coarse-grained soils"; the function refuses those soils.  The
+    figure's example: rho = 9.5 in^2/lb in very dense sand reads 0.68.
 
     Parameters
     ----------
-    log_rho : float
-        Logarithm (base 10) of the relative flexibility rho.
-        Typical range: -3.5 to 0.0.
+    rho : float
+        Flexibility number rho = (H + D)^4 / (E I) in in^2/lb per running
+        foot of wall (H and D in inches, E in psi, I in in^4 per foot of
+        wall: Equation 4-31,
+        ``relative_flexibility_anchored_bulkhead``).  Not its logarithm.
+        The figure notes 1 in^2/lb = 6.94 ft^2/kip = 0.145 m^2/kN.  Must
+        be from 5 to 200, the range the figure is drawn for.
     soil_type : str
-        Soil below the dredge line: ``"dense_sand"``,
-        ``"medium_sand"``, or ``"loose_sand"``.
+        Soil the wall penetrates below the dredge line, in the figure's
+        words: ``"very_dense_coarse_grained"`` or
+        ``"medium_dense_and_dense_coarse_grained"``.
 
     Returns
     -------
     float
-        Moment reduction ratio Md/Mmax (dimensionless, 0 to 1).
+        M_DESIGN / M_MAX (dimensionless), where M_MAX is the maximum
+        positive moment in the sheeting from the free earth support
+        analysis and M_DESIGN the moment to design the sheeting for.
 
     Raises
     ------
     ValueError
-        If *soil_type* is not recognised.
+        If *rho* is outside 5 to 200 in^2/lb, or *soil_type* is not one
+        of the figure's two curves (the figure permits no reduction for
+        fine-grained soils or very loose to loose coarse-grained soils).
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Figure 4-36, p. 236.
-    Rowe, P.W. (1952).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Figure 4-36 (Rowe's Moment
+    Reduction Factors for Flexible Walls), PDF p. 274 (printed p. 236).
     """
-    key = soil_type.lower().strip()
+    key = soil_type.lower().strip().replace("-", "_").replace(" ", "_")
     if key not in _FIG_4_36_CURVES:
         raise ValueError(
-            f"Unknown soil_type '{soil_type}'. "
-            f"Choose from: {list(_FIG_4_36_CURVES.keys())}"
+            f"Figure 4-36 has no curve for soil_type '{soil_type}'. "
+            f"Choose from: {list(_FIG_4_36_CURVES.keys())}. "
+            f"Note 2 of the figure: \"{_FIG_4_36_NOTE_2}\""
         )
-    return _linterp(log_rho, _FIG_4_36_LOG_RHO, _FIG_4_36_CURVES[key])
+    if not (_FIG_4_36_RHO_MIN <= rho <= _FIG_4_36_RHO_MAX):
+        raise ValueError(
+            f"rho = {rho} is outside Figure 4-36, which is drawn for a "
+            "flexibility number from 5 to 200 in^2/lb per running foot of "
+            "wall (rho itself, not its logarithm)."
+        )
+    numerator, constant, _ = _FIG_4_36_CURVES[key]
+    return min(1.0, numerator / math.log(rho) - constant)
 
 
-def plot_figure_4_36(log_rho=None, soil_type=None, ax=None, show=True,
+def plot_figure_4_36(rho=None, soil_type=None, ax=None, show=True,
                       **kwargs):
-    """Reproduce UFC Figure 4-36: Rowe Moment Reduction Charts.
-
-    Plots the three Rowe (1952) moment reduction curves for dense,
-    medium, and loose sand.
+    """Draw the two curves of UFC 3-220-20 Figure 4-36(a), Rowe's moment
+    reduction factor M_DESIGN / M_MAX against the flexibility number rho
+    (5 to 200 in^2/lb, log scale), from the equations the figure prints.
 
     Parameters
     ----------
-    log_rho : float, optional
-        log10(rho) query point.
+    rho : float, optional
+        Flexibility number to mark (in^2/lb per running foot of wall).
     soil_type : str, optional
-        Which curve to mark: "dense_sand", "medium_sand", "loose_sand".
+        Which curve to mark: "very_dense_coarse_grained" or
+        "medium_dense_and_dense_coarse_grained".
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -1899,38 +1926,44 @@ def plot_figure_4_36(log_rho=None, soil_type=None, ax=None, show=True,
     -------
     matplotlib.axes.Axes
     """
+    if "log_rho" in kwargs:
+        raise TypeError(
+            "plot_figure_4_36 takes rho (the flexibility number itself, 5 "
+            "to 200 in^2/lb), not log_rho: Figure 4-36 is drawn on rho."
+        )
     from geotech_references._plotting import get_pyplot, setup_engineering_plot
     plt = get_pyplot()
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 6))
 
-    # Smooth interpolated curves
-    lr_smooth = [i * 0.05 - 4.0 for i in range(0, 101)]  # -4.0 to 1.0
-    colors = {'dense_sand': '#1f77b4', 'medium_sand': '#ff7f0e',
-              'loose_sand': '#2ca02c'}
-    labels = {'dense_sand': 'Dense Sand', 'medium_sand': 'Medium Sand',
-              'loose_sand': 'Loose Sand'}
+    n = 120
+    ratio = (_FIG_4_36_RHO_MAX / _FIG_4_36_RHO_MIN) ** (1.0 / n)
+    rhos = [_FIG_4_36_RHO_MIN * ratio ** i for i in range(n)]
+    rhos.append(_FIG_4_36_RHO_MAX)
+    colors = {'very_dense_coarse_grained': '#1f77b4',
+              'medium_dense_and_dense_coarse_grained': '#ff7f0e'}
 
-    for stype, curve_data in _FIG_4_36_CURVES.items():
-        vals = [figure_4_36_moment_reduction(lr, stype) for lr in lr_smooth]
-        ax.plot(lr_smooth, vals, '-', color=colors[stype], linewidth=1.5,
-                label=labels[stype])
-        ax.plot(_FIG_4_36_LOG_RHO, curve_data, 'o', color=colors[stype],
-                markersize=5)
+    for stype, (_, _, label) in _FIG_4_36_CURVES.items():
+        vals = [figure_4_36_moment_reduction(r, stype) for r in rhos]
+        ax.plot(rhos, vals, '-', color=colors[stype], linewidth=1.5,
+                label=label)
 
     # Query point
-    if log_rho is not None and soil_type is not None:
-        key = soil_type.lower().strip()
-        ratio_q = figure_4_36_moment_reduction(log_rho, key)
-        ax.plot(log_rho, ratio_q, 's', color='red', markersize=10, zorder=5,
-                label=f'log(ρ)={log_rho:.2f} → Md/Mmax={ratio_q:.3f}')
+    if rho is not None and soil_type is not None:
+        ratio_q = figure_4_36_moment_reduction(rho, soil_type)
+        ax.plot(rho, ratio_q, 's', color='red', markersize=10, zorder=5,
+                label=f'ρ={rho:.3g} → M_DESIGN/M_MAX={ratio_q:.3f}')
         ax.axhline(ratio_q, color='red', linestyle=':', alpha=0.4)
-        ax.axvline(log_rho, color='red', linestyle=':', alpha=0.4)
+        ax.axvline(rho, color='red', linestyle=':', alpha=0.4)
 
+    ax.set_xscale('log')
+    ax.set_xlim(_FIG_4_36_RHO_MIN, _FIG_4_36_RHO_MAX)
+    ax.set_ylim(0.2, 1.0)
     ax.legend(fontsize=8)
     setup_engineering_plot(
         ax, 'Figure 4-36: Rowe Moment Reduction',
-        'log₁₀(ρ)', 'Md / Mmax')
+        'ρ = (H + D)⁴ / (EI), in²/lb per running foot of wall',
+        'M_DESIGN / M_MAX')
     if show:
         plt.tight_layout()
         plt.show()

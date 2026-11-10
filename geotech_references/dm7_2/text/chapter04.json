@@ -989,8 +989,8 @@
       "equations": [
         {
           "id": "Eq. 4-31",
-          "description": "Relative flexibility of anchored bulkhead wall: ρ = (H + D)⁴ / EI, where H = exposed wall height (in), D = penetration depth below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft). Used with Figure 4-36 for Rowe's moment reduction.",
-          "implemented_in": "geotech_references.dm7_2.chapter4.figure_4_36_moment_reduction"
+          "description": "Relative flexibility of anchored bulkhead wall: ρ = (H + D)⁴ / EI, where H = exposed wall height (in), D = penetration depth below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft); ρ is in in²/lb per running foot of wall. Used with Figure 4-36 for Rowe's moment reduction (figure_4_36_moment_reduction), which prints its two curves on ρ from 5 to 200 in²/lb: very dense coarse-grained soils M_DESIGN/M_MAX = 1.58/ln ρ − 0.015; medium dense and dense coarse-grained soils 2.03/ln ρ − 0.076; no reduction for fine-grained soils or very loose to loose coarse-grained soils (note 2).",
+          "implemented_in": "geotech_references.dm7_2.chapter4.relative_flexibility_anchored_bulkhead"
         }
       ],
       "figures": [
