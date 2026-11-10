@@ -60,26 +60,51 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
 
 
 # ============================================================================
-# Equations 10-16 and 10-17 — UU / UC to CIUC conversion
-# (Chen and Kulhawy, 1993)
+# Equations 10-16 and 10-17 -- UC / UU to CIUC conversion (Chen and Kulhawy,
+# 1993), FHWA-NHI-18-024 p. 10-16 (PDF page 296), read off the page:
+#
+#   su(UC) / su(CIUC) = 0.893 + 0.513 log( su(UC) / sigma'vo )   (10-16)
+#   su(UU) / su(CIUC) = 0.911 + 0.499 log( su(UU) / sigma'vo )   (10-17)
+#
+# GEC-10 prints no range for either. The right-hand side falls to zero at
+# su/sigma'vo = 10**(-0.893/0.513) = 0.0182 (UC) and 10**(-0.911/0.499) =
+# 0.0149 (UU); below that the relation gives no strength (it returned a
+# negative one) and is refused.
 # ============================================================================
 
+def _ciuc_from(su_kpa, sigma_v0_kpa, a, b, eq, test):
+    if su_kpa <= 0:
+        raise ValueError(f"su_{test.lower()}_kpa must be positive, got {su_kpa}")
+    if sigma_v0_kpa <= 0:
+        raise ValueError(f"sigma_v0_kpa must be positive, got {sigma_v0_kpa}")
+    x = su_kpa / sigma_v0_kpa
+    ratio = a + b * math.log10(x)
+    if ratio <= 0:
+        x0 = 10 ** (-a / b)
+        raise ValueError(
+            f"Eq. {eq} (GEC-10 p. 10-16) gives su({test})/su(CIUC) = "
+            f"{ratio:.3f} at su({test})/sigma'vo = {x:.4g}: no strength. The "
+            f"relation reaches zero at su({test})/sigma'vo = {x0:.4f}; GEC-10 "
+            "prints no range for it.")
+    return su_kpa / ratio
+
+
 def su_uu_to_ciuc(su_uu_kpa: float, sigma_v0_kpa: float) -> float:
-    """Convert UU triaxial undrained strength to CIUC-equivalent (Equation 10-17).
+    """CIUC-equivalent undrained shear strength in kPa from a UU triaxial strength, GEC-10 Eq. 10-17 (FHWA-NHI-18-024, p. 10-16; Chen and Kulhawy 1993).
 
-    Chen and Kulhawy (1993):
+        su(UU) / su(CIUC) = 0.911 + 0.499 log10( su(UU) / sigma'vo )
 
-        su_UU / su_CIUC = 0.911 + 0.499 × log10(su_UU / σ'v0)
-
-    Used to convert routine UU test results before applying the alpha method
-    in Figure 10-6.
+    Used to convert UU test results before the alpha method (Eq. 10-18,
+    Figure 10-6). Illustrative Example 10-2 (p. 10-18): su(UU) 2,000 psf
+    at sigma'vo 3,697 psf gives su(CIUC) 2,571 psf.
 
     Parameters
     ----------
     su_uu_kpa : float
         UU test undrained shear strength in kPa.  Must be positive.
     sigma_v0_kpa : float
-        Effective vertical stress at layer mid-depth in kPa.  Must be positive.
+        Vertical effective stress (at layer mid-depth in Example 10-2) in
+        kPa.  Must be positive.
 
     Returns
     -------
@@ -89,29 +114,23 @@ def su_uu_to_ciuc(su_uu_kpa: float, sigma_v0_kpa: float) -> float:
     Raises
     ------
     ValueError
-        If inputs are not positive.
+        If inputs are not positive, or su(UU)/sigma'vo is 0.0149 or less,
+        where Eq. 10-17 gives a ratio of zero or less (no strength).
     """
-    if su_uu_kpa <= 0:
-        raise ValueError(f"su_uu_kpa must be positive, got {su_uu_kpa}")
-    if sigma_v0_kpa <= 0:
-        raise ValueError(f"sigma_v0_kpa must be positive, got {sigma_v0_kpa}")
-    denom = 0.911 + 0.499 * math.log10(su_uu_kpa / sigma_v0_kpa)
-    return su_uu_kpa / denom
+    return _ciuc_from(su_uu_kpa, sigma_v0_kpa, 0.911, 0.499, "10-17", "UU")
 
 
 def su_uc_to_ciuc(su_uc_kpa: float, sigma_v0_kpa: float) -> float:
-    """Convert UC (unconfined compression) strength to CIUC-equivalent (Equation 10-16).
+    """CIUC-equivalent undrained shear strength in kPa from an unconfined compression (UC) strength, GEC-10 Eq. 10-16 (FHWA-NHI-18-024, p. 10-16; Chen and Kulhawy 1993).
 
-    Chen and Kulhawy (1993):
-
-        su_UC / su_CIUC = 0.893 + 0.513 × log10(su_UC / σ'v0)
+        su(UC) / su(CIUC) = 0.893 + 0.513 log10( su(UC) / sigma'vo )
 
     Parameters
     ----------
     su_uc_kpa : float
         UC test undrained shear strength in kPa.  Must be positive.
     sigma_v0_kpa : float
-        Effective vertical stress at layer mid-depth in kPa.  Must be positive.
+        Vertical effective stress in kPa.  Must be positive.
 
     Returns
     -------
@@ -121,14 +140,10 @@ def su_uc_to_ciuc(su_uc_kpa: float, sigma_v0_kpa: float) -> float:
     Raises
     ------
     ValueError
-        If inputs are not positive.
+        If inputs are not positive, or su(UC)/sigma'vo is 0.0182 or less,
+        where Eq. 10-16 gives a ratio of zero or less (no strength).
     """
-    if su_uc_kpa <= 0:
-        raise ValueError(f"su_uc_kpa must be positive, got {su_uc_kpa}")
-    if sigma_v0_kpa <= 0:
-        raise ValueError(f"sigma_v0_kpa must be positive, got {sigma_v0_kpa}")
-    denom = 0.893 + 0.513 * math.log10(su_uc_kpa / sigma_v0_kpa)
-    return su_uc_kpa / denom
+    return _ciuc_from(su_uc_kpa, sigma_v0_kpa, 0.893, 0.513, "10-16", "UC")
 
 
 # ============================================================================

@@ -107,6 +107,18 @@ class TestSuUuToCiuc:
         with pytest.raises(ValueError):
             su_uu_to_ciuc(50, 0)
 
+    def test_no_strength_refused(self):
+        """FHWA-NHI-18-024 Eq. 10-17, p. 10-16 (PDF page 296): at su(UU) =
+        10 kPa and sigma'vo = 700 kPa the right-hand side is -0.010, and it
+        returned -1030 kPa (review finding gec-14). It is zero at
+        su/sigma'vo = 0.0149; at and below that the relation is refused."""
+        with pytest.raises(ValueError, match="no strength"):
+            su_uu_to_ciuc(10, 700)
+        with pytest.raises(ValueError, match="0.0149"):
+            su_uu_to_ciuc(1.0, 100.0)
+        # Just above the zero the relation still answers (made-up values).
+        assert su_uu_to_ciuc(2.0, 100.0) > 2.0
+
 
 class TestSuUcToCiuc:
     """Equation 10-16: su_UC / su_CIUC = 0.893 + 0.513 * log10(su_UC / σ'v0)."""
@@ -128,6 +140,14 @@ class TestSuUcToCiuc:
     def test_zero_sigma_raises(self):
         with pytest.raises(ValueError):
             su_uc_to_ciuc(50, 0)
+
+    def test_no_strength_refused(self):
+        """Eq. 10-16, p. 10-16: the right-hand side is zero at su(UC)/
+        sigma'vo = 0.0182; below it the relation gave a negative strength
+        and is refused (gec-14)."""
+        with pytest.raises(ValueError, match="0.0182"):
+            su_uc_to_ciuc(1.5, 100.0)
+        assert su_uc_to_ciuc(2.0, 100.0) > 2.0
 
 
 # ============================================================================

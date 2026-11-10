@@ -202,6 +202,13 @@ rows instead of being answered from the first row that contains the words.
     text of Section 11.4.1.2 (p. 11-6), not in a Table 11-2; the result
     cites that section and says when the value is interpolated. The name
     is kept (gec-24, lead's ruling).
+  - `su_uu_to_ciuc` and `su_uc_to_ciuc` (Eqs. 10-17 and 10-16, p. 10-16):
+    where the printed relation gives su/su(CIUC) of zero or less (su/
+    sigma'vo of 0.0149 or less for UU, 0.0182 or less for UC) it is
+    refused; su(UU) = 10 kPa at sigma'vo = 700 kPa returned -1,030 kPa.
+    GEC-10 prints no range for the relations; above those points the
+    answers are unchanged (Example 10-2: 2,000 psf at 3,697 psf gives
+    2,571 psf) (gec-14).
 
 ## 1.6.0
 
