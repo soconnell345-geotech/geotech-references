@@ -190,7 +190,7 @@ def _compaction_depth_lookup(passes, density_pct, soil_type, table,
 
 
 def table_5_1_compaction_depth(passes, density_pct, soil_type,
-                               pavement_type="flexible") -> dict:
+                               pavement_type) -> dict:
     """Depth of compaction for select materials and subgrades (CBR <= 20),
     UFC 3-250-01 Table 5-1 (pdf_page 33, printed 14); returns depth_in, the
     depth in inches from the pavement surface to which the given percent
@@ -200,7 +200,8 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type,
     pavements (passes of an 18,000-lb ESAL): flexible < 15,500, < 67,500,
     < 295,000, < 1.3 million ... >= 2,200 million; rigid < 1,300, < 1,500,
     < 34,000, < 343,000 ... >= 290 million. Each bound is printed "<", so a
-    value equal to a bound falls in the next row.
+    value equal to a bound falls in the next row. The table gives no
+    default column, so pavement_type is required.
 
     Parameters
     ----------
@@ -212,8 +213,9 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type,
         or 80.
     soil_type : str
         'cohesive' (PI > 5, LL > 25) or 'cohesionless' (PI <= 5, LL <= 25).
-    pavement_type : str, optional
-        'flexible' (default) or 'rigid': which printed traffic column to use.
+    pavement_type : str
+        'flexible' or 'rigid': which printed traffic column to use
+        (required; the table prints both and gives no default).
 
     Returns
     -------

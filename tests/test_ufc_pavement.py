@@ -415,21 +415,21 @@ class TestSubgradeCategory:
 
 class TestCompactionDepth:
     def test_table_5_1_basic(self):
-        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive")
+        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "flexible")
         assert r["depth_in"] > 0
 
     def test_table_5_1_cohesionless_deeper_than_cohesive(self):
-        r_cl = table_5_1_compaction_depth(1_000_000, 90, "cohesive")
-        r_cs = table_5_1_compaction_depth(1_000_000, 90, "cohesionless")
+        r_cl = table_5_1_compaction_depth(1_000_000, 90, "cohesive", "flexible")
+        r_cs = table_5_1_compaction_depth(1_000_000, 90, "cohesionless", "flexible")
         assert r_cs["depth_in"] > r_cl["depth_in"]
 
     def test_table_5_1_bad_soil_type_raises(self):
         with pytest.raises(ValueError, match="soil_type"):
-            table_5_1_compaction_depth(1_000_000, 95, "bogus")
+            table_5_1_compaction_depth(1_000_000, 95, "bogus", "flexible")
 
     def test_table_5_1_zero_passes_raises(self):
         with pytest.raises(ValueError, match="passes"):
-            table_5_1_compaction_depth(0, 95, "cohesive")
+            table_5_1_compaction_depth(0, 95, "cohesive", "flexible")
 
     def test_table_5_1_rigid_column(self):
         # Table 5-1, UFC 3-250-01 PDF 34 (pdf_page 33), printed 14: rigid
@@ -437,18 +437,21 @@ class TestCompactionDepth:
         r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "rigid")
         assert r["depth_in"] == 12      # < 2.1 million row (flexible 11)
         assert table_5_1_compaction_depth(
-            1_000_000, 95, "cohesive")["depth_in"] == 11   # < 1.3 million
+            1_000_000, 95, "cohesive", "flexible")["depth_in"] == 11   # < 1.3 million
         assert table_5_1_compaction_depth(
             300_000_000, 80, "cohesionless", "rigid")["depth_in"] == 77
         assert table_5_1_compaction_depth(
             1_400, 100, "cohesive", "rigid")["depth_in"] == 4
         with pytest.raises(ValueError, match="pavement_type"):
             table_5_1_compaction_depth(1_000, 95, "cohesive", "composite")
+        # The table prints both columns and no default: the type is required.
+        with pytest.raises(TypeError):
+            table_5_1_compaction_depth(1_000, 95, "cohesive")
 
     def test_table_5_1_bounds_are_strict(self):
         # Printed "< 15,500": 15,500 itself is in the "< 67,500" row.
-        assert table_5_1_compaction_depth(15_499, 100, "cohesive")["depth_in"] == 3
-        assert table_5_1_compaction_depth(15_500, 100, "cohesive")["depth_in"] == 4
+        assert table_5_1_compaction_depth(15_499, 100, "cohesive", "flexible")["depth_in"] == 3
+        assert table_5_1_compaction_depth(15_500, 100, "cohesive", "flexible")["depth_in"] == 4
         assert table_5_1_compaction_depth(
             1_300, 95, "cohesionless", "rigid")["depth_in"] == 15
 
