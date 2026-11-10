@@ -144,14 +144,19 @@ def equation_cutback_asphalt_content_estimate(
 # ============================================================================
 
 def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
-    """Maximum PI for portland cement in Table 2-3 areas 1C/2C (footnote c).
+    """PI limit of UFC 3-250-11 Table 2-3 footnote (c), printed p.13
+    (pdf_page 20); returns pi_limit (percent) = 20 + 50 - percent passing
+    No. 200, the right-hand side of the footnote as printed:
 
-        PI(limit) = 20 + 50 - percent_passing_No200
+        "(c) PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve"
 
-    Hand-verified against the narrative worked example (Sec 2-1.5.2, printed
-    p.9, pdf_page 16): a SC soil with 25% passing the No. 200 sieve and PI=9
-    -> PI(limit) = 20+50-25 = 45; since 9 < 45, portland cement is confirmed
-    a candidate stabilizer, matching the source's own conclusion.
+    Table 2-3 ("Guide for Selecting a Stabilizing Additive") cites the
+    footnote in its "RESTRICTION (% PASS NO. 200)" column heading; the
+    restriction for area 2C item 2 (portland cement and fiber) reads
+    "2. (c)", and for area 1C item 2 it reads "2. (b)" as printed. The
+    worked example (Sec 2-1.5.2, printed p.8-9, pdf_page 15-16: an SC soil,
+    25 percent passing No. 200, PI 9) says only that "the PI is less than
+    the equation indicated in footnote b" and prints no number for it.
 
     Parameters
     ----------
@@ -176,8 +181,9 @@ def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
     return {
         "percent_passing_no200": p200,
         "pi_limit": round(pi_limit, 3),
-        "equation": "PI(limit) = 20 + 50 - percent_passing_No200",
-        "reference": "UFC 3-250-11, Table 2-3 note (c), p.13",
+        "equation": ("PI <= 20 + 50 - percent passing No. 200 (0.075 mm) "
+                     "sieve (Table 2-3 footnote (c), as printed)"),
+        "reference": "UFC 3-250-11, Table 2-3 footnote (c), printed p.13",
         "pdf_page": 20,
     }
 

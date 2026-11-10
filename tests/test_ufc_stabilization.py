@@ -363,9 +363,14 @@ class TestEquationCutbackAsphaltContentEstimate:
 
 class TestEquationCementPiLimitTable23:
     def test_worked_narrative_example(self):
-        # Sec 2-1.5.2: 25% passing No.200 -> PI limit 45; PI=9 < 45 so cement qualifies.
+        # Table 2-3 footnote (c), UFC 3-250-11 PDF 21 (pdf_page 20), printed
+        # 13: "PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve".
+        # The Sec 2-1.5.2 example soil (25 percent passing, PI 9; printed
+        # p.8-9) prints no value for it; 20 + 50 - 25 = 45 is arithmetic.
         r = equation_cement_pi_limit_table_2_3(25)
         assert r["pi_limit"] == 45
+        assert "20 + 50 - percent passing No. 200" in r["equation"]
+        assert "printed p.13" in r["reference"]
 
     def test_zero_percent_passing(self):
         r = equation_cement_pi_limit_table_2_3(0)
