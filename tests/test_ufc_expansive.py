@@ -12,7 +12,13 @@ removed with their tests (not printed in this manual).
 
 import pytest
 
-from geotech_references.ufc_expansive.equations import heave_prediction_mm
+from geotech_references.ufc_expansive.equations import (
+    heave_prediction_mm,
+    table_4_2_swell_vijayvergiya_ghazzaly,
+    table_4_2_swell_schneider_poor,
+    table_4_2_swell_mckeen_lytton,
+    table_4_2_swell_johnson,
+)
 from geotech_references.ufc_expansive.tables import (
     table_swell_potential_classification,
     table_active_zone_depth,
@@ -90,6 +96,56 @@ class TestHeavePrediction:
     def test_negative_strain_raises(self):
         with pytest.raises(ValueError, match="swell_strain_pct"):
             heave_prediction_mm([{"thickness_m": 1.0, "swell_strain_pct": -1.0}])
+
+
+class TestTable42:
+    """Table 4-2 Other Empirical Methods for Prediction of Potential Heave,
+    PDF 33 (printed 4-3); expected values worked by hand from the printed
+    relations at made-up inputs."""
+
+    def test_vijayvergiya_ghazzaly(self):
+        # Log Sp = 1/12(0.44LL - wo + 5.5); 0.1-tsf surcharge
+        r = table_4_2_swell_vijayvergiya_ghazzaly(60, 20)
+        assert r["log_sp"] == pytest.approx(11.9 / 12, abs=1e-4)
+        assert r["potential_swell_pct"] == pytest.approx(9.810, abs=0.002)
+        assert table_4_2_swell_vijayvergiya_ghazzaly(50, 30)[
+            "potential_swell_pct"] == pytest.approx(0.619, abs=0.001)
+        assert "p. 4-3" in r["reference"] and "0.1-tsf" in r["condition"]
+
+    def test_schneider_poor(self):
+        # Log Sp = 0.9(PI/wo) - 1.19; no fill or weight
+        r = table_4_2_swell_schneider_poor(30, 20)
+        assert r["potential_swell_pct"] == pytest.approx(1.445, abs=0.001)
+        assert table_4_2_swell_schneider_poor(20, 25)[
+            "potential_swell_pct"] == pytest.approx(0.339, abs=0.001)
+        with pytest.raises(ValueError, match="initial_water_content"):
+            table_4_2_swell_schneider_poor(30, 0)
+
+    def test_mckeen_lytton(self):
+        # Sp = -100 gamma_h log10(tau_f/tau_o); tau = 0.5t1 + 0.3t2 + 0.2t3
+        assert table_4_2_swell_mckeen_lytton(0.1, 1.0, 10.0)[
+            "potential_swell_pct"] == pytest.approx(10.0)
+        r = table_4_2_swell_mckeen_lytton(0.1, [1, 1, 1], [12, 10, 5])
+        assert r["initial_weighted_suction"] == pytest.approx(10.0)
+        assert r["potential_swell_pct"] == pytest.approx(10.0)
+        assert table_4_2_swell_mckeen_lytton(0.05, 2.0, 8.0)[
+            "potential_swell_pct"] == pytest.approx(3.010, abs=0.001)
+        with pytest.raises(ValueError, match="3 suctions"):
+            table_4_2_swell_mckeen_lytton(0.1, [1, 1], 10.0)
+
+    def test_johnson(self):
+        # PI >= 40 and PI <= 40 forms; 1 psi surcharge; H in feet
+        r = table_4_2_swell_johnson(50, 5, 25)
+        assert r["form"] == "PI >= 40"
+        assert r["potential_swell_pct"] == pytest.approx(18.236, abs=0.001)
+        r = table_4_2_swell_johnson(30, 5, 20)
+        assert r["form"] == "PI <= 40"
+        assert r["potential_swell_pct"] == pytest.approx(12.137, abs=0.001)
+
+    def test_johnson_pi_40_both_forms(self):
+        r = table_4_2_swell_johnson(40, 10, 20)
+        assert r["potential_swell_pct"] == pytest.approx(16.21, abs=0.001)
+        assert "16.426" in r["note"]
 
 
 # ===================================================================

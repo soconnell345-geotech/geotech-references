@@ -2,9 +2,10 @@
 
 Table 4-1's WES classification of potential swell, paragraph 5-4c's depth
 of the active zone, Table 6-1's foundation systems, the grade-beam void
-space of paragraph 6-4 and Figure 5-4's total swell, each read off UFC
-3-220-07 (the reproduced TM 5-818-7) with its printed page in every
-result.
+space of paragraph 6-4, Figure 5-4's total swell and Table 4-2's four
+empirical swell relations (Vijayvergiya and Ghazzaly, Schneider and Poor,
+McKeen-Lytton, Johnson), each read off UFC 3-220-07 (the reproduced
+TM 5-818-7) with its printed page in every result.
 
 Usage::
 

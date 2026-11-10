@@ -3,8 +3,8 @@ UFC Expansive Soils Agent — Foundry-style wrapper for UFC 3-220-07 lookups.
 
 Wraps Table 4-1's classification of potential swell, paragraph 5-4c's
 active zone depth, Table 6-1's foundation systems, the grade-beam void
-space (para 6-4) and Figure 5-4's total swell, each read off the print
-with its page.
+space (para 6-4), Figure 5-4's total swell and Table 4-2's four
+empirical swell relations, each read off the print with its page.
 
 Three entry-point functions:
   1. ufc_expansive_agent           - Run a UFC 3-220-07 function
@@ -147,8 +147,8 @@ def ufc_expansive_agent(method: str, parameters_json: str) -> str:
 
     Provides Table 4-1's WES classification of potential swell, the
     active zone depth of paragraph 5-4c, Table 6-1's foundation systems,
-    the grade beam void space of paragraph 6-4 and total swell by
-    Figure 5-4, as printed.
+    the grade beam void space of paragraph 6-4, total swell by
+    Figure 5-4 and Table 4-2's empirical swell relations, as printed.
 
     Parameters:
         method: The function name. Use ufc_expansive_list_methods() to browse.
