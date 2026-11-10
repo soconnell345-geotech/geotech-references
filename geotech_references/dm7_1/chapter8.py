@@ -2566,15 +2566,16 @@ def table_8_24_cbr_dcp(source: str) -> dict:
 # ===========================================================================
 
 # Read off the curve of Figure 8-46 (f against plasticity index, p. 444).
-# The curve is drawn from PI 15 to PI 64.5; f is read to about +/-0.02.
+# The curve is drawn from PI 14.8 to PI 64.5; f is read to about +/-0.02
+# (the points at PI 14.8 to 17 off a 400 dpi render).
 _FIG_8_46_PI = [
-    15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0,
+    14.8, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0,
     25.0, 26.0, 27.0, 28.0, 30.0, 32.0, 34.0, 36.0, 38.0, 40.0,
     42.0, 44.0, 46.0, 48.0, 50.0, 52.0, 54.0, 56.0, 58.0, 60.0,
     62.0, 64.0, 64.5,
 ]
 _FIG_8_46_F = [
-    6.75, 6.35, 6.10, 5.86, 5.66, 5.51, 5.39, 5.26, 5.15, 5.06,
+    6.85, 6.78, 6.36, 6.10, 5.86, 5.66, 5.51, 5.39, 5.26, 5.15, 5.06,
     4.98, 4.91, 4.85, 4.79, 4.70, 4.63, 4.56, 4.54, 4.51, 4.48,
     4.44, 4.44, 4.42, 4.41, 4.39, 4.37, 4.35, 4.33, 4.31, 4.29,
     4.27, 4.24, 4.24,
@@ -2587,7 +2588,7 @@ def figure_8_46_f(pi: float) -> float:
     Figure 8-46, "Variation of Empirical Coefficient f used for
     Calculating Constrained Modulus with PI (after Stroud 1974)", plots
     f against plasticity index for nine British clays, with one curve
-    drawn from PI 15 (f about 6.75) to PI 64.5 (f about 4.24).  This
+    drawn from PI 14.8 (f about 6.85) to PI 64.5 (f about 4.24).  This
     function interpolates linearly between points read off that curve
     (to about +/-0.02).  Use f with ``constrained_modulus_spt``
     (Equation 8-33).  The data scatter widely about the curve (f from
@@ -2597,7 +2598,7 @@ def figure_8_46_f(pi: float) -> float:
     Parameters
     ----------
     pi : float
-        Plasticity index (%), from 15 to 64.5, the range over which the
+        Plasticity index (%), from 14.8 to 64.5, the range over which the
         curve is drawn.
 
     Returns
@@ -2608,8 +2609,8 @@ def figure_8_46_f(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative, or outside 15 to 64.5 (the figure draws no
-        curve there).
+        If *pi* is negative, or outside 14.8 to 64.5 (the figure draws
+        no curve there).
 
     References
     ----------
@@ -2621,7 +2622,7 @@ def figure_8_46_f(pi: float) -> float:
         raise ValueError("pi must be non-negative.")
     if pi < _FIG_8_46_PI[0] or pi > _FIG_8_46_PI[-1]:
         raise ValueError(
-            "pi is outside 15 to 64.5, the range over which the curve of "
+            "pi is outside 14.8 to 64.5, the range over which the curve of "
             "Figure 8-46 (UFS 3-220-10 p. 444) is drawn."
         )
     return _linterp(pi, _FIG_8_46_PI, _FIG_8_46_F)
@@ -2633,7 +2634,7 @@ def plot_figure_8_46(PI=None, ax=None, show=True, **kwargs):
     Parameters
     ----------
     PI : float, optional
-        Plasticity index query point (15 to 64.5).  If provided,
+        Plasticity index query point (14.8 to 64.5).  If provided,
         highlights the interpolated f value.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.

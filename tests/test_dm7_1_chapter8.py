@@ -1884,7 +1884,9 @@ class TestFigure846F:
     # axes PI 10 to 70 and f 3 to 8. Tolerance 0.05 = a tenth of a
     # division of the f axis.
     @pytest.mark.parametrize("pi, f", [
-        (15.0, 6.75),   # start of the curve
+        (14.8, 6.85),   # start of the curve
+        (15.0, 6.78),
+        (16.0, 6.36),
         (17.0, 6.10),
         (20.0, 5.51),
         (25.0, 4.98),   # the curve crosses f = 5 just below PI 25
@@ -1910,14 +1912,24 @@ class TestFigure846F:
         values = [figure_8_46_f(p) for p in [15.0, 20.0, 30.0, 40.0, 50.0, 64.0]]
         assert values == sorted(values, reverse=True)
 
+    def test_start_of_curve_off_400_dpi_render(self):
+        # The curve's left end and first points, read off a 400 dpi render
+        # of PDF p. 472 (printed p. 444) to about +/-0.02: it starts at
+        # PI 14.8, f 6.85; f = 6.78 at PI 15, 6.36 at 16, 6.10 at 17.
+        # PI 14.9 lies halfway between the first two points: 6.815.
+        for pi, f in ((14.8, 6.85), (14.9, 6.815), (15.0, 6.78),
+                      (16.0, 6.36), (17.0, 6.10)):
+            assert figure_8_46_f(pi) == pytest.approx(f, abs=0.02)
+
     def test_below_curve_raises(self):
-        # The curve starts at PI 15
-        with pytest.raises(ValueError, match="outside 15 to 64.5"):
-            figure_8_46_f(10.0)
+        # The curve starts at PI 14.8
+        for pi in (14.7, 10.0):
+            with pytest.raises(ValueError, match="outside 14.8 to 64.5"):
+                figure_8_46_f(pi)
 
     def test_above_curve_raises(self):
         # The curve ends at PI 64.5
-        with pytest.raises(ValueError, match="outside 15 to 64.5"):
+        with pytest.raises(ValueError, match="outside 14.8 to 64.5"):
             figure_8_46_f(80.0)
 
     def test_negative_raises(self):
