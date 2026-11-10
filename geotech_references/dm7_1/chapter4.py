@@ -998,47 +998,71 @@ def shaft_horizontal_pressure_clay(
 
 
 # ===========================================================================
-# TABLE 4-3: Trench Fill Properties (K and mu')
+# TABLE 4-3: Recommended Values for Trench Load Coefficient (after Moser 1990)
 # ===========================================================================
 
 _TABLE_4_3_TRENCH_FILL = {
-    "granular_no_cohesion": {"K": 0.165, "mu_prime": 0.700},
-    "sand_gravel": {"K": 0.150, "mu_prime": 0.500},
-    "saturated_topsoil": {"K": 0.150, "mu_prime": 0.400},
-    "ordinary_clay": {"K": 0.130, "mu_prime": 0.400},
-    "saturated_clay": {"K": 0.110, "mu_prime": 0.260},
+    # soil type: unit weight (pcf), K, mu', K x mu' as printed (pp. 195-196)
+    "partially_compacted_moist_topsoil": {
+        "soil_type": "Partially compacted moist topsoil",
+        "gamma_pcf": 90.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
+    "saturated_topsoil": {
+        "soil_type": "Saturated top soil",
+        "gamma_pcf": 110.0, "K": 0.37, "mu_prime": 0.4, "K_mu_prime": 0.15},
+    "partially_compacted_moist_clay": {
+        "soil_type": "Partially compacted moist clay",
+        "gamma_pcf": 100.0, "K": 0.33, "mu_prime": 0.4, "K_mu_prime": 0.13},
+    "saturated_clay": {
+        "soil_type": "Saturated clay",
+        "gamma_pcf": 120.0, "K": 0.37, "mu_prime": 0.3, "K_mu_prime": 0.11},
+    "dry_sand": {
+        "soil_type": "Dry sand",
+        "gamma_pcf": 100.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
+    "saturated_sand": {
+        "soil_type": "Saturated sand",
+        "gamma_pcf": 120.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
 }
 
 
 def table_4_3_trench_fill(fill_type: str) -> dict:
-    """Lateral earth pressure coefficient and friction for trench fill
-    (Table 4-3).
+    """Unit weight (pcf), lateral earth pressure coefficient K, coefficient of friction mu' and K x mu' (dimensionless) of a trench fill, Table 4-3 "Recommended Values for Trench Load Coefficient (after Moser 1990)".
 
-    Returns *K* (lateral earth pressure coefficient) and *mu_prime*
-    (coefficient of friction between fill and trench walls) for use
-    with Equation 4-7 (``trench_load_coefficient``).
+    Returns one row of Table 4-3 for use with Equation 4-7
+    (``trench_load_coefficient``) and Equation 4-6
+    (``rigid_pipe_trench_load``).  The six printed rows are
+    (unit weight in pcf, K, mu', K x mu'):
+    partially compacted moist topsoil 90, 0.33, 0.5, 0.17;
+    saturated top soil 110, 0.37, 0.4, 0.15;
+    partially compacted moist clay 100, 0.33, 0.4, 0.13;
+    saturated clay 120, 0.37, 0.3, 0.11;
+    dry sand 100, 0.33, 0.5, 0.17;
+    saturated sand 120, 0.33, 0.5, 0.17.
 
     Parameters
     ----------
     fill_type : str
-        One of ``"granular_no_cohesion"``, ``"sand_gravel"``,
-        ``"saturated_topsoil"``, ``"ordinary_clay"``,
-        ``"saturated_clay"``.
+        Soil type of the table, one of
+        ``"partially_compacted_moist_topsoil"``,
+        ``"saturated_topsoil"``, ``"partially_compacted_moist_clay"``,
+        ``"saturated_clay"``, ``"dry_sand"``, ``"saturated_sand"``.
 
     Returns
     -------
     dict
-        ``{"K": float, "mu_prime": float}``.
+        ``{"soil_type": str, "gamma_pcf": float, "K": float,
+        "mu_prime": float, "K_mu_prime": float}``: the soil type as
+        printed, the unit weight in pcf as printed, and the three
+        dimensionless values.
 
     Raises
     ------
     ValueError
-        If *fill_type* is not recognised.
+        If *fill_type* is not a row of the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-3, p. 195.
+    Chapter 4, Table 4-3, pp. 195-196 (after Moser 1990).
     """
     key = fill_type.lower().strip()
     if key not in _TABLE_4_3_TRENCH_FILL:
@@ -1050,53 +1074,84 @@ def table_4_3_trench_fill(fill_type: str) -> dict:
 
 
 # ===========================================================================
-# TABLE 4-9: Ground Behavior for Tunnels in Fine-Grained Soil
+# TABLE 4-9: Ground Behavior for Clayey Fine-Grained Soils and Silty Sand
+#            (after FHWA 2009)
 # ===========================================================================
 
 _TABLE_4_9_TUNNEL_BEHAVIOR = {
-    "1-2": "Stable; negligible ground movement.",
-    "2-3": "Stable; small creep movements.",
-    "3-4": "Significant creep; may require face support.",
-    "4-5": "Creep may become excessive; face support required.",
-    "5-6": "Ground squeeze; substantial support needed.",
-    "6-7": "Severe squeeze; heavy support or compressed air.",
-    ">7": "Very severe squeeze; special measures required.",
+    # soil type: {stability factor Ncrit as printed: ground behavior} (p. 205)
+    "clayey_fine_grained": {
+        "1": "Stable",
+        "2 to 3": "Small amount of creep",
+        "4 to 5": "Creeping, usually slow enough to permit tunneling",
+        "6": ("May experience general shear failure. Clay likely to invade "
+              "tail space too quickly to handle."),
+    },
+    "silty_sand_above_water_table": {
+        "0.25 to 0.33": "Firm",
+        "0.33 to 0.5": "Slow raveling",
+        "0.5 to 1": "Raveling",
+    },
 }
 
 
-def table_4_9_tunnel_behavior(N_crit_range: str) -> str:
-    """Ground behavior description from undrained stability factor
-    (Table 4-9).
+def _table_4_9_row_key(text: str) -> str:
+    """'2-3', '2 - 3' and '2 TO 3' all name the printed row '2 to 3'."""
+    key = text.lower().strip().replace("to", "-")
+    return " to ".join(part.strip() for part in key.split("-"))
 
-    Returns a qualitative description of expected tunnel ground behavior
-    based on the undrained stability factor range from
-    ``undrained_stability_factor`` (Equation 4-10).
+
+def table_4_9_tunnel_behavior(N_crit_range: str, soil_type: str) -> str:
+    """Ground behavior (text) for tunneling in clayey fine-grained soil or silty sand at a stability factor Ncrit, Table 4-9 "Ground Behavior for Clayey Fine-Grained Soils and Silty Sand (after FHWA 2009)".
+
+    Returns the "Ground Behavior" cell of one row of Table 4-9.  The
+    stability factor comes from ``undrained_stability_factor``
+    (Equation 4-10).  The printed rows are, for clayey fine-grained
+    soil: Ncrit 1 "Stable"; 2 to 3 "Small amount of creep"; 4 to 5
+    "Creeping, usually slow enough to permit tunneling"; 6 "May
+    experience general shear failure. Clay likely to invade tail space
+    too quickly to handle."  For silty sand above the water table:
+    0.25 to 0.33 "Firm"; 0.33 to 0.5 "Slow raveling"; 0.5 to 1
+    "Raveling".  The table prints no row between 1 and 2, 3 and 4, or
+    5 and 6, and none above 6.
 
     Parameters
     ----------
     N_crit_range : str
-        Stability factor range, one of ``"1-2"``, ``"2-3"``, ``"3-4"``,
-        ``"4-5"``, ``"5-6"``, ``"6-7"``, ``">7"``.
+        Stability factor as the table prints it: ``"1"``, ``"2 to 3"``,
+        ``"4 to 5"`` or ``"6"`` for clayey fine-grained soil;
+        ``"0.25 to 0.33"``, ``"0.33 to 0.5"`` or ``"0.5 to 1"`` for
+        silty sand above the water table.  ``"2-3"`` is read as
+        ``"2 to 3"``.
+    soil_type : str
+        ``"clayey_fine_grained"`` or ``"silty_sand_above_water_table"``.
 
     Returns
     -------
     str
-        Description of expected ground behavior.
+        The ground behavior as printed.
 
     Raises
     ------
     ValueError
-        If *N_crit_range* is not recognised.
+        If *soil_type* or *N_crit_range* is not in the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-9, p. 205.
+    Chapter 4, Table 4-9, p. 205 (after FHWA 2009).
     """
-    key = N_crit_range.strip()
-    if key not in _TABLE_4_9_TUNNEL_BEHAVIOR:
+    soil = soil_type.lower().strip()
+    if soil not in _TABLE_4_9_TUNNEL_BEHAVIOR:
         raise ValueError(
-            f"Unknown N_crit_range '{N_crit_range}'. "
+            f"Unknown soil_type '{soil_type}'. "
             f"Choose from: {list(_TABLE_4_9_TUNNEL_BEHAVIOR.keys())}"
         )
-    return _TABLE_4_9_TUNNEL_BEHAVIOR[key]
+    rows = _TABLE_4_9_TUNNEL_BEHAVIOR[soil]
+    key = _table_4_9_row_key(str(N_crit_range))
+    if key not in rows:
+        raise ValueError(
+            f"Unknown N_crit_range '{N_crit_range}' for {soil}. Table 4-9 "
+            f"(UFS 3-220-10 p. 205) prints: {list(rows.keys())}"
+        )
+    return rows[key]
