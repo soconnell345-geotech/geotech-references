@@ -49,9 +49,12 @@ Labels, units and citations (no value changes):
   functions has its own description with its unit (flexure and design in
   ksi and inches, shear in psi and lbs); `aci_beta1` says f'c is ksi or
   psi, not MPa.
-- Page citations: EM 1110-2-2104 Table 3-2 pp. 24-25 (was 23-24) and
-  Eq 4-3 p. 30 (was 29); UFC Eq 3-6 p. 24 (was 23); Wood Handbook
-  Table 5-3a pp. 5-4 to 5-8 (was 5-5 to 5-8).
+- Page citations: EM 1110-2-2104 Table 3-2 pp. 24-25 (was 23-24),
+  Eq 4-3 p. 30 (was 29) and Eq 4-1/4-2 pp. 29-30 (was 29); UFC Eq 3-6
+  p. 24 (was 23); Wood Handbook Table 5-3a pp. 5-4 to 5-8 (was 5-5 to
+  5-8).
+- GSA chapter 4 text no longer says Tables 6/7 are identical to UFC
+  Tables 4-1/4-2.
 
 ## 1.6.0
 
