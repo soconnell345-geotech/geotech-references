@@ -633,32 +633,42 @@ def dowel_bar_drilled_hole_oversize() -> dict:
 # ============================================================================
 
 _TABLE_9_1 = [
-    # (thickness_upper_bound_in or None, spacing_ft_min, spacing_ft_max,
-    #  spacing_ft_min_roads)
-    (9, 12.5, 15, 10),
-    (12, 15, 20, 15),
-    (None, 20, 20, 20),
+    # As printed: (slab thickness row, joint spacing ft (low, high),
+    # joint spacing m (low, high)). Rows "< 9", "9-12" (both ends included),
+    # "> 12". Footnote 1 on the < 9 in row: 10-15 ft (3.0-4.6 m) for roads
+    # and parking lots.
+    ("< 9", (12.5, 15), (3.8, 4.6)),
+    ("9-12", (15, 20), (4.6, 6)),
+    ("> 12", (20, 20), (6, 6)),
 ]
+_TABLE_9_1_ROADS = ((10, 15), (3.0, 4.6))
 
 
 def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield") -> dict:
-    """Maximum joint spacing by slab thickness (Table 9-1).
+    """Maximum joint spacing by slab thickness, UFC 3-250-04 Table 9-1
+    (pdf_page 121, printed p.104); returns the printed range of the MAXIMUM
+    joint spacing (max_joint_spacing_low_ft to max_joint_spacing_high_ft,
+    and in m as printed).
+
+    Rows as printed: < 9 in, 12.5-15 ft (3.8-4.6 m), footnote 1: 10-15 ft
+    (3.0-4.6 m) for roads and parking lots; 9-12 in, 15-20 ft (4.6-6 m);
+    > 12 in, 20 ft (6 m). A slab of exactly 12 in is in the 9-12 row.
 
     Parameters
     ----------
     slab_thickness_in : float
         Concrete slab thickness, inches.
     facility_type : str, optional
-        'airfield' (default) or 'road' (roads and parking lots use a
-        narrower minimum spacing, 10-15 ft, in the < 9 in. thickness
-        category only; the two categories are otherwise identical).
+        'airfield' (default) or 'road' (roads and parking lots: footnote 1,
+        10-15 ft, in the < 9 in row only; the other rows are the same).
 
     Returns
     -------
     dict
-        {'slab_thickness_in', 'facility_type', 'joint_spacing_min_ft',
-         'joint_spacing_max_ft', 'joint_spacing_min_m',
-         'joint_spacing_max_m', 'reference'}.
+        {'slab_thickness_in', 'facility_type', 'thickness_row',
+         'max_joint_spacing_low_ft', 'max_joint_spacing_high_ft',
+         'max_joint_spacing_low_m', 'max_joint_spacing_high_m',
+         'reference'}.
 
     Raises
     ------
@@ -670,17 +680,22 @@ def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield")
     ft = str(facility_type).strip().lower()
     if ft not in ("airfield", "road"):
         raise ValueError(f"facility_type must be 'airfield' or 'road', got '{facility_type}'")
-    for upper, lo, hi, lo_road in _TABLE_9_1:
-        if upper is None or slab_thickness_in < upper:
-            spacing_min = lo_road if (ft == "road" and upper == 9) else lo
-            return {
-                "slab_thickness_in": slab_thickness_in, "facility_type": ft,
-                "joint_spacing_min_ft": spacing_min, "joint_spacing_max_ft": hi,
-                "joint_spacing_min_m": round(spacing_min * 0.3048, 2),
-                "joint_spacing_max_m": round(hi * 0.3048, 2),
-                "reference": "UFC 3-250-04, Table 9-1 (pdf_page 121, printed p.104)",
-            }
-    raise AssertionError("unreachable")  # pragma: no cover
+    if slab_thickness_in < 9:
+        row = _TABLE_9_1[0]
+    elif slab_thickness_in <= 12:
+        row = _TABLE_9_1[1]
+    else:
+        row = _TABLE_9_1[2]
+    label, (lo_ft, hi_ft), (lo_m, hi_m) = row
+    if ft == "road" and label == "< 9":
+        (lo_ft, hi_ft), (lo_m, hi_m) = _TABLE_9_1_ROADS
+    return {
+        "slab_thickness_in": slab_thickness_in, "facility_type": ft,
+        "thickness_row": label,
+        "max_joint_spacing_low_ft": lo_ft, "max_joint_spacing_high_ft": hi_ft,
+        "max_joint_spacing_low_m": lo_m, "max_joint_spacing_high_m": hi_m,
+        "reference": "UFC 3-250-04, Table 9-1 (pdf_page 121, printed p.104)",
+    }
 
 
 # ============================================================================
