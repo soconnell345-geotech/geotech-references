@@ -124,6 +124,23 @@ rows instead of being answered from the first row that contains the words.
   - `table_5_12_shape_rigidity_factor`: values unchanged; the docstring
     says the linear interpolation between the printed length/width rows is
     not the table's (gec-33).
+- **GEC-7 soil nail walls (FHWA-NHI-14-007).**
+  - `figure_4_3_friction_angle_spt` (Figure 4.3, p. 79): the six curves
+    rebuilt from the rendered page; the points read are in the comment
+    above the data. They were 3 to 8 degrees low for N60 of 12 or more and
+    up to 4 degrees high at low N60 on the higher stress ratios. N60 = 22 at
+    sigma'vo/Pa = 2.0 is 37.0 degrees (it returned 33.6); N60 = 31 at 1.0 is
+    45.0 (was 38.2); N60 = 48 at 1.5 is 46.5 (was 40.6). A curve is read
+    only where it is drawn, from phi 25 to where it leaves the top of the
+    chart or ends: N60 = 50 at 0.5 (it returned 44; the curve reaches phi 50
+    at N60 38.25), N60 = 5 at 2.0 (it returned 29.0; the curve starts at
+    N60 6.1) and N60 = 0 are refused. Between curves the angle is linear in
+    sigma'vo/Pa at the same N60 (gec-02).
+  - `figure_5_11_basal_heave_nc` (Figure 5.11, p. 124): the three curves
+    rebuilt from the rendered page. At H/Be = 0 they start at 5.20 (Be/Le =
+    0), 5.69 (0.5) and 6.19 (1) (it returned 5.14 for all three); a long
+    excavation at H/Be = 1.6 is 6.76 (was 5.74) and at H/Be = 5 is 7.45
+    (was 6.2, 17 % low) (gec-11).
 
 ## 1.6.0
 
