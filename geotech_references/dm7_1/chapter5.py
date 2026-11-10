@@ -1648,27 +1648,36 @@ def figure_5_30_Tr(
 # ===========================================================================
 
 _TABLE_5_6_CALPHA_CC = {
-    "inorganic_clays_silts": 0.04,
-    "organic_clays_silts": 0.05,
-    "peat": 0.06,
-    "granular": 0.02,
+    # Soil type: Calpha / Cc; the table gives each value +/- 0.01 (p. 254)
+    "granular": 0.02,                # Granular soils including rockfill
+    "shale_mudstone": 0.03,          # Shale and mudstone
+    "inorganic_clays_silts": 0.04,   # Inorganic clays and silts
+    "organic_clays_silts": 0.05,     # Organic clays and silts
+    "peat": 0.06,                    # Peat and muskeg
 }
 
 
 def table_5_6_Calpha_Cc(soil_type: str) -> float:
-    """Typical ratio of secondary compression index to compression index
-    (Table 5-6).
+    """Typical ratio Calpha/Cc (dimensionless; the table gives each value +/- 0.01) of secondary compression index to compression index by soil type, Table 5-6 "Typical Values of Calpha / Cc (after Terzaghi et al. 1996)".
+
+    The five printed rows are: granular soils including rockfill
+    0.02 +/- 0.01; shale and mudstone 0.03 +/- 0.01; inorganic clays
+    and silts 0.04 +/- 0.01; organic clays and silts 0.05 +/- 0.01;
+    peat and muskeg 0.06 +/- 0.01.  The function returns the central
+    value.
 
     Parameters
     ----------
     soil_type : str
-        One of ``"inorganic_clays_silts"``, ``"organic_clays_silts"``,
-        ``"peat"``, or ``"granular"``.
+        One of ``"granular"`` (granular soils including rockfill),
+        ``"shale_mudstone"``, ``"inorganic_clays_silts"``,
+        ``"organic_clays_silts"`` or ``"peat"`` (peat and muskeg).
 
     Returns
     -------
     float
-        Typical Calpha / Cc ratio (dimensionless).
+        Typical Calpha / Cc ratio (dimensionless), the central value of
+        the printed "value +/- 0.01".
 
     Raises
     ------
@@ -1678,8 +1687,7 @@ def table_5_6_Calpha_Cc(soil_type: str) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Table 5-6, p. 254.
-    Mesri & Godlewski (1977).
+    Chapter 5, Table 5-6, p. 254 (after Terzaghi et al. 1996).
     """
     key = soil_type.lower().strip()
     if key not in _TABLE_5_6_CALPHA_CC:

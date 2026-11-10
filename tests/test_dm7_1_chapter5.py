@@ -1180,6 +1180,28 @@ class TestFigure530Tr:
 class TestTable56CalphaCc:
     """Tests for Table 5-6: C_alpha/Cc ratio by soil type."""
 
+    # Table 5-6 "Typical Values of Calpha / Cc (after Terzaghi et al.
+    # 1996)" as printed, PDF p. 282 (printed p. 254): all five rows, each
+    # given +/- 0.01.
+    @pytest.mark.parametrize("soil_type, ratio", [
+        ("granular", 0.02),               # Granular soils including rockfill
+        ("shale_mudstone", 0.03),         # Shale and mudstone
+        ("inorganic_clays_silts", 0.04),  # Inorganic clays and silts
+        ("organic_clays_silts", 0.05),    # Organic clays and silts
+        ("peat", 0.06),                   # Peat and muskeg
+    ])
+    def test_printed_row(self, soil_type, ratio):
+        assert table_5_6_Calpha_Cc(soil_type) == ratio
+
+    def test_five_rows(self):
+        from geotech_references.dm7_1 import chapter5
+        assert len(chapter5._TABLE_5_6_CALPHA_CC) == 5
+
+    def test_docstring_gives_the_printed_spread_and_source(self):
+        doc = table_5_6_Calpha_Cc.__doc__
+        assert "+/- 0.01" in doc
+        assert "Terzaghi et al. 1996" in doc
+
     def test_inorganic(self):
         assert table_5_6_Calpha_Cc("inorganic_clays_silts") == pytest.approx(0.04, rel=1e-4)
 
