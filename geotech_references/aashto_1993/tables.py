@@ -487,6 +487,7 @@ def unbound_k1_k2(layer, moisture_condition) -> dict:
 
 _SATURATION_COLS = ["<1%", "1-5%", "5-25%", ">25%"]
 
+# Each cell as printed, "high-low" (e.g. "1.40-1.35"): (high, low).
 _TABLE_2_4 = {
     "excellent": [(1.40, 1.35), (1.35, 1.30), (1.30, 1.20), (1.20, 1.20)],
     "good": [(1.35, 1.25), (1.25, 1.15), (1.15, 1.00), (1.00, 1.00)],
@@ -497,7 +498,10 @@ _TABLE_2_4 = {
 
 
 def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
-    """Drainage modifier mi for untreated base/subbase, flexible (Table 2.4).
+    """Recommended mi values for modifying the layer coefficients of
+    untreated base and subbase in flexible pavements, AASHTO 1993 Table 2.4
+    (pdf_page 114, printed II-25); returns the printed range as mi_min and
+    mi_max (dimensionless).
 
     Modifies the base/subbase layer coefficients in the SN equation
     (SN = a1*D1 + a2*D2*m2 + a3*D3*m3). AASHO Road Test conditions
@@ -533,7 +537,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_4[qk][idx]
+    hi, lo = _TABLE_2_4[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "mi_min": lo, "mi_max": hi,
@@ -546,6 +550,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
 # (pdf_page 115, printed II-26)
 # ============================================================================
 
+# Each cell as printed, "high-low" (e.g. "1.25-1.20"): (high, low).
 _TABLE_2_5 = {
     "excellent": [(1.25, 1.20), (1.20, 1.15), (1.15, 1.10), (1.10, 1.10)],
     "good": [(1.20, 1.15), (1.15, 1.10), (1.10, 1.00), (1.00, 1.00)],
@@ -556,7 +561,9 @@ _TABLE_2_5 = {
 
 
 def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
-    """Drainage coefficient Cd for rigid pavement design (Table 2.5).
+    """Recommended values of drainage coefficient Cd for rigid pavement
+    design, AASHTO 1993 Table 2.5 (pdf_page 115, printed II-26); returns the
+    printed range as cd_min and cd_max (dimensionless).
 
     AASHO Road Test conditions correspond to Cd=1.0 (quality 'fair').
 
@@ -588,7 +595,7 @@ def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_5[qk][idx]
+    hi, lo = _TABLE_2_5[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "cd_min": lo, "cd_max": hi,

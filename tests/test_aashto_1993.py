@@ -223,14 +223,16 @@ class TestUnboundK1K2:
 # ============================================================================
 
 class TestDrainageMiFlexible:
+    # Table 2.4, aashto1993.pdf PDF 115 (pdf_page 114), printed II-25; cells
+    # printed high-low ("1.15-1.05"): mi_min is the low value.
     def test_fair_default_aashto_road_test(self):
-        # AASHO Road Test conditions = 'fair' drainage; mi should bracket 1.0
         r = tb.drainage_mi_flexible("fair", "1-5%")
-        assert r["mi_min"] == 1.15 and r["mi_max"] == 1.05
+        assert r["mi_min"] == 1.05 and r["mi_max"] == 1.15
+        assert r["mi_min"] <= r["mi_max"]
 
     def test_excellent_lt1pct(self):
         r = tb.drainage_mi_flexible("excellent", "<1%")
-        assert r["mi_min"] == 1.40 and r["mi_max"] == 1.35
+        assert r["mi_min"] == 1.35 and r["mi_max"] == 1.40
 
     def test_very_poor_gt25pct(self):
         r = tb.drainage_mi_flexible("very_poor", ">25%")
@@ -246,13 +248,19 @@ class TestDrainageMiFlexible:
 
 
 class TestDrainageCdRigid:
+    # Table 2.5, PDF 116 (pdf_page 115), printed II-26; cells printed
+    # high-low ("1.10-1.00"): cd_min is the low value.
     def test_fair_1_5pct(self):
         r = tb.drainage_cd_rigid("fair", "1-5%")
-        assert r["cd_min"] == 1.10 and r["cd_max"] == 1.00
+        assert r["cd_min"] == 1.00 and r["cd_max"] == 1.10
 
     def test_excellent_lt1pct(self):
         r = tb.drainage_cd_rigid("excellent", "<1%")
-        assert r["cd_min"] == 1.25 and r["cd_max"] == 1.20
+        assert r["cd_min"] == 1.20 and r["cd_max"] == 1.25
+
+    def test_poor_5_25pct(self):
+        r = tb.drainage_cd_rigid("poor", "5-25%")
+        assert (r["cd_min"], r["cd_max"]) == (0.80, 0.90)
 
 
 class TestQualityOfDrainageDefinitions:
