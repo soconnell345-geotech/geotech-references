@@ -399,7 +399,7 @@ def table_d2_alpha_oedometer(soil_type: str, qc_mpa: float) -> dict:
 # Dutch method, NEN 6743-1)
 # ============================================================================
 
-_TABLE_D3_QC = [10, 15, 20, 25]  # MPa (qc >= 25 column labelled ">=25")
+_TABLE_D3_QC = [10, 15, 20, 25]  # MPa; columns printed "qc = 10" ... "qc = 25"
 _TABLE_D3 = {
     0.02: [0.70, 1.05, 1.40, 1.75],
     0.03: [0.90, 1.35, 1.80, 2.25],
@@ -409,38 +409,52 @@ _TABLE_D3 = {
 
 def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
                                    enlarged_base: bool = False) -> dict:
-    """Unit base resistance of cast in-situ piles in coarse soil (Table D.3).
+    """Unit base resistance pb, in MPa, of cast in-situ piles in coarse soil
+    with little or no fines, at a normalised pile head settlement and an
+    average cone penetration resistance qc from 10 to 25 MPa (EN 1997-2:2007
+    Annex D.6, Table D.3, printed p. 115).
 
-    Interpolates pb (MPa) at the given normalised pile-head settlement
-    ratio (s/Db) and average cone resistance qc.
+    The table prints the columns qc = 10, 15, 20 and 25 MPa and the note
+    "Intermediate values may be interpolated linearly." pb is interpolated
+    between those columns. Below qc = 10 MPa the table prints nothing and
+    the lookup raises. Above 25 MPa the qc = 25 value is returned (the
+    table prints no column above 25).
 
     Parameters
     ----------
     settlement_ratio : float
-        Normalised settlement s/Db.  Tabulated at 0.02, 0.03, and 0.10
-        (0.10 corresponds to ultimate settlement sg).
+        Normalised settlement s/Ds; s/Db.  Tabulated at 0.02, 0.03, and
+        0.10 (0.10 = sg, the ultimate settlement of the pile head).
     qc_mpa : float
-        Average cone penetration resistance, in MPa (tabulated 10-25 MPa;
-        clamped at endpoints).
+        Average cone penetration resistance qc (CPT), in MPa.  Must be
+        at least 10.
     enlarged_base : bool
-        If True, multiply the result by 0.75 per the table note (piles
-        with pile-base enlargement).
+        If True, multiply the result by 0.75 per the table note ("In the
+        case of cast in-situ piles with pile base enlargement, the values
+        shall be multiplied by 0,75").
 
     Returns
     -------
     dict
-        Keys: settlement_ratio, qc_mpa, pb_mpa.
+        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance, MPa).
 
     Raises
     ------
     ValueError
-        If settlement_ratio is not one of 0.02, 0.03, 0.10.
+        If settlement_ratio is not one of 0.02, 0.03, 0.10, or qc_mpa is
+        below 10 MPa, the first printed column.
     """
     ratios = sorted(_TABLE_D3.keys())
     if settlement_ratio not in _TABLE_D3:
         raise ValueError(
             f"settlement_ratio must be one of {ratios} (tabulated values), "
             f"got {settlement_ratio}"
+        )
+    if qc_mpa < _TABLE_D3_QC[0]:
+        raise ValueError(
+            f"qc_mpa={qc_mpa} is below the first printed column of "
+            f"EN 1997-2:2007 Table D.3 (printed p. 115): the table gives the "
+            f"unit base resistance for qc = 10, 15, 20 and 25 MPa only."
         )
     pb = _linterp(qc_mpa, _TABLE_D3_QC, _TABLE_D3[settlement_ratio])
     if enlarged_base:
@@ -950,12 +964,20 @@ _TABLE_F3 = {
 
 def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
                                      grading: str) -> dict:
-    """Effective angle of shearing resistance of silica sands from ID (Table F.3).
+    """Effective angle of shearing resistance phi', in degrees, of silica
+    sands from the density index ID in percent, for ID from 40 % to 100 %
+    (EN 1997-2:2007 Annex F.2, Table F.3, printed p. 126).
+
+    The table prints the rows ID = 40, 60, 80 and 100 % for fine, medium
+    and coarse sand, each uniform or well-graded. Between two printed rows
+    the value is interpolated linearly (the table itself prints no
+    interpolation rule). Below ID = 40 % the table prints nothing and the
+    lookup raises. ID is in percent: 60, not 0.6.
 
     Parameters
     ----------
     density_index_pct : float
-        Density index ID, in percent (0-100; clamped at endpoints 40-100).
+        Density index ID, in percent.  Must be at least 40.
     grain_size : str
         'fine', 'medium', or 'coarse'.
     grading : str
@@ -964,12 +986,14 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     Returns
     -------
     dict
-        Keys: density_index_pct, grain_size, grading, phi_deg (interpolated).
+        Keys: density_index_pct, grain_size, grading, phi_deg (degrees;
+        interpolated between printed rows).
 
     Raises
     ------
     ValueError
-        If grain_size/grading is not recognized.
+        If grain_size/grading is not recognized, or density_index_pct is
+        below 40, the first printed row.
     """
     gs = grain_size.strip().lower()
     gr = grading.strip().lower().replace(" ", "_").replace("-", "_")
@@ -978,6 +1002,13 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
         raise ValueError(
             f"Unknown (grain_size, grading) combination '{key}'. "
             f"grain_size: fine, medium, coarse; grading: uniform, well_graded"
+        )
+    if density_index_pct < _TABLE_F3_ID[0]:
+        raise ValueError(
+            f"density_index_pct={density_index_pct} is below the first "
+            f"printed row of EN 1997-2:2007 Table F.3 (printed p. 126): the "
+            f"table gives phi' for ID = 40, 60, 80 and 100 % only. ID is in "
+            f"percent (60, not 0.6)."
         )
     phi = _linterp(density_index_pct, _TABLE_F3_ID, _TABLE_F3[key])
     return {

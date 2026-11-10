@@ -204,6 +204,27 @@ class TestTableD3D4:
         with pytest.raises(ValueError):
             table_d3_pile_base_resistance(0.05, 15)
 
+    def test_base_resistance_every_printed_cell(self):
+        # Table D.3 (PDF p. 117, printed p. 115): rows s/Db = 0,02, 0,03,
+        # 0,10 (= sg); columns qc = 10, 15, 20, 25 MPa.
+        printed = {
+            0.02: [0.70, 1.05, 1.40, 1.75],
+            0.03: [0.90, 1.35, 1.80, 2.25],
+            0.10: [2.00, 3.00, 3.50, 4.00],
+        }
+        for ratio, row in printed.items():
+            for qc, pb in zip([10, 15, 20, 25], row):
+                assert table_d3_pile_base_resistance(ratio, qc)["pb_mpa"] == pytest.approx(pb)
+
+    def test_base_resistance_below_first_printed_column_is_refused(self):
+        # The first printed column is qc = 10 MPa. qc = 4 MPa used to return
+        # the qc = 10 value (2.0 MPa at s/Db = 0,10: half of qc).
+        for qc in (1, 4, 9.9):
+            with pytest.raises(ValueError, match="Table D.3"):
+                table_d3_pile_base_resistance(0.10, qc)
+        with pytest.raises(ValueError, match="qc = 10, 15, 20 and 25 MPa"):
+            table_d3_pile_base_resistance(0.02, 1)
+
     def test_shaft_resistance_exact(self):
         r = table_d4_pile_shaft_resistance(10)
         assert r["ps_mpa"] == pytest.approx(0.080)
@@ -369,6 +390,32 @@ class TestTableF1F2F3:
     def test_phi_from_id_coarse_at_40(self):
         assert table_f3_phi_from_density_index(40, "coarse", "uniform")["phi_deg"] == pytest.approx(38)
         assert table_f3_phi_from_density_index(40, "coarse", "well_graded")["phi_deg"] == pytest.approx(41)
+
+    def test_phi_from_id_every_printed_cell(self):
+        # Table F.3 (PDF p. 128, printed p. 126): rows ID = 40, 60, 80,
+        # 100 %; columns Fine, Medium, Coarse, each Uniform and Well-graded.
+        printed = {
+            ("fine", "uniform"): [34, 36, 39, 42],
+            ("fine", "well_graded"): [36, 38, 41, 43],
+            ("medium", "uniform"): [36, 38, 41, 43],
+            ("medium", "well_graded"): [38, 41, 43, 44],
+            ("coarse", "uniform"): [38, 41, 43, 44],
+            ("coarse", "well_graded"): [41, 43, 44, 46],
+        }
+        for (grain, grading), column in printed.items():
+            for id_pct, phi in zip([40, 60, 80, 100], column):
+                r = table_f3_phi_from_density_index(id_pct, grain, grading)
+                assert r["phi_deg"] == pytest.approx(phi)
+
+    def test_phi_from_id_below_first_printed_row_is_refused(self):
+        # The first printed row is ID = 40 %. ID = 10 % used to return the
+        # 40 % value (34 deg for fine uniform sand), and so did a density
+        # index given as a fraction (0.5 -> 41 deg, coarse well-graded).
+        for id_pct in (0.5, 10, 20, 39.9):
+            with pytest.raises(ValueError, match="Table F.3"):
+                table_f3_phi_from_density_index(id_pct, "fine", "uniform")
+        with pytest.raises(ValueError, match="percent"):
+            table_f3_phi_from_density_index(0.5, "coarse", "well_graded")
 
 
 # ============================================================================
