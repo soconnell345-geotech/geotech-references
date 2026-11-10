@@ -23,14 +23,36 @@ from .flexure_axial import DEFAULT_ES_KSI, DEFAULT_EC
 # ============================================================================
 
 def kd_table_d1(rho_over_rho_b, beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
-    """Table D-1's general Kd formula (printed p. 73), the ku value at a
-    target reinforcement ratio (as a fraction of the balanced ratio, e.g.
-    0.25 or 0.50 per paragraph 3-6/3-4b(2)).
+    """Table D-1's general Kd formula (printed p. 73): Kd, the ku value
+    (dimensionless) at a target reinforcement ratio given as a fraction of
+    the balanced ratio (e.g. 0.25 or 0.50 per paragraphs 3-4b(2) and 3-6),
+    from fy in ksi.
 
         Kd = (rho/rho_b) * beta1 * Es*ec / (Es*ec + fy)
 
     Note this is identical in form to Eq 4-3/B-7's kb with rho/rho_b
     scaling it down from the balanced value.
+
+    Parameters
+    ----------
+    rho_over_rho_b : float
+        Target tension reinforcement ratio as a fraction of the balanced
+        ratio, rho/rho_b (0.25 recommended, paragraph 3-4b(2); 0.50 the
+        maximum, paragraph 3-6).
+    beta1 : float
+        ACI 318-19 beta_1 (``flexure_axial.aci_beta1``), dimensionless.
+    fy : float
+        Specified yield strength of reinforcement, ksi (the unit of es).
+    es : float, optional
+        Steel modulus of elasticity Es, ksi (default 29,000 ksi).
+    ec : float, optional
+        Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
+
+    Returns
+    -------
+    dict
+        {'kd', 'rho_over_rho_b', 'table': 'D-1', 'printed_page': '73',
+         'pdf_page': 78}
     """
     kd = rho_over_rho_b * beta1 * es * ec / (es * ec + fy)
     return {"kd": kd, "rho_over_rho_b": rho_over_rho_b, "table": "D-1",
@@ -69,8 +91,10 @@ def minimum_effective_depth(mn, b, fc_prime, kd):
 
 
 def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
-    """Eq D-6, D-7: MDL, the maximum bending moment a member may carry and
-    remain within the target reinforcement-ratio limit (printed p. 72).
+    """Eq D-6, D-7: MDL, kip-in., the maximum bending moment a member may
+    carry and remain within the target reinforcement-ratio limit, with the
+    stress-block depth ad, in., from fc' in ksi, dimensions in inches and
+    Pn in kips (printed p. 72).
 
         ad = Kd * d                                          [Eq D-7]
         MDL = 0.85*fc'*ad*b*(d - ad/2) - (d - h/2)*Pn         [Eq D-6]
@@ -79,6 +103,30 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
     (``design_singly_reinforced`` may be used directly); otherwise the
     section must be enlarged or doubly reinforced
     (``design_doubly_reinforced``).
+
+    Parameters
+    ----------
+    fc_prime : float
+        Specified concrete compressive strength f'c, ksi.
+    kd : float
+        Kd at the target reinforcement ratio (``kd_table_d1``),
+        dimensionless.
+    b : float
+        Design width of member, in.
+    d : float
+        Effective depth, extreme compression fiber to the centroid of the
+        tension reinforcement, in.
+    h : float
+        Overall thickness of the section, in.
+    pn : float, optional
+        Nominal axial load Pn, kips; positive for compression, negative for
+        tension (default 0, pure flexure).
+
+    Returns
+    -------
+    dict
+        {'ad', 'mdl', 'equation': 'D-6/D-7', 'printed_page': '72',
+         'pdf_page': 77}
     """
     ad = kd * d
     mdl = 0.85 * fc_prime * ad * b * (d - ad / 2.0) - (d - h / 2.0) * pn
@@ -87,8 +135,11 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
 
 
 def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
-    """Eq D-8, D-9: direct design of a singly reinforced member for a
-    required nominal moment Mn and axial load Pn (printed p. 72).
+    """Eq D-8, D-9: direct design of a singly reinforced member: the
+    required tension reinforcement area As, sq in., and Ku
+    (dimensionless), for a required nominal moment Mn (kip-in.) and axial
+    load Pn (kips), with strengths in ksi and dimensions in inches (printed
+    p. 72).
 
         Ku = 1 - sqrt(1 - [Mn + Pn*(d - h/2)] / (0.425*fc'*b*d^2))
         As = (0.85*fc'*Ku*b*d - Pn) / fy
@@ -99,6 +150,25 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
     (unused, Pn = 0), b = 12 in, fc' = 4 ksi, fy = 60 ksi): Ku = 0.105,
     As = 0.43 sq in. Also Appendix D-5 Step 3 (Mn = 476 k-ft/ft, Pn = 0,
     d = 36.5 in, fc' = 5 ksi): As = 2.73 sq in/ft.
+
+    Parameters
+    ----------
+    mn : float
+        Required nominal moment Mn = Mu/phi, kip-in.
+    pn : float
+        Required nominal axial load Pn, kips; positive for compression,
+        negative for tension, 0 for pure flexure.
+    d : float
+        Effective depth, extreme compression fiber to the centroid of the
+        tension reinforcement, in.
+    h : float
+        Overall thickness of the section, in.
+    b : float
+        Design width of member, in.
+    fc_prime : float
+        Specified concrete compressive strength f'c, ksi.
+    fy : float
+        Specified yield strength of reinforcement, ksi.
 
     Returns
     -------
@@ -127,9 +197,11 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
 def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
                               rho_over_rho_b=0.25, beta1=None,
                               es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
-    """Eq D-3, D-4, D-6, D-7: direct design of a doubly reinforced member
-    when the required Mn exceeds MDL (the singly reinforced limit at the
-    target reinforcement ratio) (printed pp. 70-72).
+    """Eq D-3, D-4, D-6, D-7: direct design of a doubly reinforced member:
+    the required tension and compression reinforcement areas As and As',
+    sq in., when the required Mn (kip-in.) exceeds MDL (the singly
+    reinforced limit at the target reinforcement ratio), with strengths in
+    ksi, dimensions in inches and Pn in kips (printed pp. 70-72).
 
     Procedure:
       1. Kd, MDL at the target rho/rho_b (``kd_table_d1``,
@@ -142,19 +214,35 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
 
     Parameters
     ----------
-    mn, pn : float
-        Required nominal moment and axial load (Pn positive = compression).
-    d, dprime, h, b : float
-        Effective depth, compression-steel depth, overall thickness,
-        section width.
-    fc_prime, fy : float
-        Material strengths.
+    mn : float
+        Required nominal moment Mn = Mu/phi, kip-in.
+    pn : float
+        Required nominal axial load Pn, kips; positive for compression,
+        negative for tension, 0 for pure flexure.
+    d : float
+        Effective depth, extreme compression fiber to the centroid of the
+        tension reinforcement, in.
+    dprime : float
+        Depth d' from the extreme compression fiber to the centroid of the
+        compression reinforcement, in.
+    h : float
+        Overall thickness of the section, in.
+    b : float
+        Design width of member, in.
+    fc_prime : float
+        Specified concrete compressive strength f'c, ksi.
+    fy : float
+        Specified yield strength of reinforcement, ksi (the unit of es).
     rho_over_rho_b : float, optional
         Target reinforcement ratio as a fraction of balanced (0.25 default,
         per the traditional deflection-control limit; 0.50 is the mandatory
         ceiling, paragraph 3-6).
     beta1 : float, optional
-        ACI 318-19 beta_1; computed from fc_prime if omitted.
+        ACI 318-19 beta_1; computed from fc_prime (ksi) if omitted.
+    es : float, optional
+        Steel modulus of elasticity Es, ksi (default 29,000 ksi).
+    ec : float, optional
+        Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
 
     Returns
     -------
