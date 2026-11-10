@@ -87,3 +87,11 @@ def test_kb_cites_its_printed_page():
     r = flexure_axial.balanced_strain_kb(beta1=0.85, fy=60.0)
     assert r["printed_page"] == "30"
     assert r["kb"] == pytest.approx(0.85 * 87.0 / (87.0 + 60.0))
+
+
+def test_eccentricity_cites_both_printed_pages():
+    # Eq 4-1 is printed on p. 29 (EM_1110-2-2104_2025.pdf pdf 35) and
+    # Eq 4-2 on p. 30 (pdf 36); the function cited p. 29 for both.
+    r = flexure_axial.eccentricity_ratio(mu=1200.0, pu=50.0, d=16.0, h=20.0)
+    assert r["printed_page"] == "29-30"
+    assert r["e_prime"] == pytest.approx(1200.0 / 50.0 + (16.0 - 10.0))

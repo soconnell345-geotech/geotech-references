@@ -130,7 +130,8 @@ def _solve_cubic_ku(coeffs, kb=None, prefer="lt_kb", lo=1e-6, hi=5.0):
 def eccentricity_ratio(mu, pu, d, h):
     """Eq 4-1/4-2: eccentricity of axial load e' (in., measured from the
     centroid of tension reinforcement) and its ratio e'/d (dimensionless)
-    (printed p. 29), from Mu in kip-in., Pu in kips and d, h in inches.
+    (printed pp. 29-30: Eq 4-1 on p. 29, Eq 4-2 on p. 30), from Mu in
+    kip-in., Pu in kips and d, h in inches.
 
     Parameters
     ----------
@@ -151,12 +152,12 @@ def eccentricity_ratio(mu, pu, d, h):
     -------
     dict
         {'e_prime', 'e_prime_over_d', 'equation': '4-1/4-2',
-         'printed_page': '29', 'pdf_page': 34}
+         'printed_page': '29-30', 'pdf_page': '34-35'}
     """
     e_prime = mu / pu + (d - h / 2.0)
     return {
         "e_prime": e_prime, "e_prime_over_d": e_prime / d,
-        "equation": "4-1/4-2", "printed_page": "29", "pdf_page": 34,
+        "equation": "4-1/4-2", "printed_page": "29-30", "pdf_page": "34-35",
     }
 
 
