@@ -332,6 +332,15 @@ class TestTableA1:
         assert r["base_factor"] == 1.00
         assert r["subbase_factor"] == 2.00
 
+    def test_conditions_of_sec_a_1_1(self):
+        # Sec A-1.1, UFC 3-250-11 PDF 71 (pdf_page 70), printed 63: "Limit
+        # the cement content to 4 percent by weight or less to prevent
+        # excessive reflective cracking."
+        r = table_a1_equivalency_factors("cement", "gm")
+        assert (r["base_factor"], r["subbase_factor"]) == (1.00, 2.00)
+        assert any("4 percent by weight or less" in c for c in r["conditions"])
+        assert any("strength and durability" in c for c in r["conditions"])
+
     def test_invalid_stabilizer_type(self):
         with pytest.raises(ValueError):
             table_a1_equivalency_factors("nonexistent", "gp")

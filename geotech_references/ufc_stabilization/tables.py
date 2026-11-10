@@ -717,9 +717,22 @@ _A1_CLASS_MAP = {
 }
 _A1_CLASS_MAP["lime_cement_fly_ash"] = dict(_A1_CLASS_MAP["lime"])
 
+# Sec A-1.1 (printed p.63, pdf_page 70), as printed.
+_A1_CONDITIONS = (
+    "To qualify for application of equivalency factors, ensure the "
+    "stabilized layer meets appropriate strength and durability requirements "
+    "set forth in this UFC.",
+    "Limit the cement content to 4 percent by weight or less to prevent "
+    "excessive reflective cracking.",
+)
+
 
 def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
-    """Equivalency factors for stabilized material thickness design (Table A-1).
+    """Equivalency factors for stabilized material, UFC 3-250-11 Table A-1
+    (printed p.63, pdf_page 70); returns the base and subbase factors
+    (dimensionless) and the two conditions Sec A-1.1 sets on using them
+    (the layer meets this UFC's strength and durability requirements; the
+    cement content is limited to 4 percent by weight or less).
 
     An equivalency factor is the number of inches of a CONVENTIONAL base or
     subbase that can be replaced by 1 inch of stabilized material
@@ -747,7 +760,7 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     dict
         {'stabilizer_type', 'soil_class', 'soil_group', 'base_factor'
          (None if "(*) Not used for base course material"), 'subbase_factor',
-         'reference', 'pdf_page'}.
+         'conditions' (Sec A-1.1, as printed), 'reference', 'pdf_page'}.
 
     Raises
     ------
@@ -769,6 +782,7 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     return {
         "stabilizer_type": st, "soil_class": sc_key.upper(), "soil_group": group,
         "base_factor": row["base"], "subbase_factor": row["subbase"],
+        "conditions": list(_A1_CONDITIONS),
         "reference": "UFC 3-250-11, Table A-1, p.63",
         "pdf_page": 70,
     }
