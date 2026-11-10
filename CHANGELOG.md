@@ -18,7 +18,11 @@ before -> after at the example input.
   `figure_5_18b_Ncm_circular`): rebuilt from the figure; each returns a
   dict with N_cm and the 10 % reduction where the manual calls for it.
   Strip, su2/su1 0.2, H/B 1.0: 3.80 -> 2.53. Off the chart (su2/su1 above
-  2.0) is refused.
+  2.0) is refused. Top layer stiff, 0.65 < su2/su1 < 1: N_cm stays the
+  printed equation's value; `print_note` says the figure's one drawn
+  curve there (H/B 0.5; H/2R 0.25) runs up to about 7.5 % below it, and
+  `N_cm_drawn_curve` gives that curve's value (strip, 0.85, H/B 0.5: 5.12
+  by the equation, 4.74 drawn).
 - Eq. 5-11/5-12, circular footing equivalent rectangle: r 1.5, e 0:
   3.760 x 0.940 -> 2.659 x 2.659 (the area was half the printed one).
 - Eq. 5-26 `second_layer_thickness`: as printed, (2B - H1)(c1 + tan

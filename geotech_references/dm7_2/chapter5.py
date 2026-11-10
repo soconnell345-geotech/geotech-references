@@ -2804,6 +2804,16 @@ def local_shear_vesic(
 # equation of its straight lines in a box:
 #   (a) strip footings:     N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14
 #   (b) circular footings:  N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05
+# N_cm on this side is the equation's value.  The drawn lines follow the
+# equation, except one curve per panel: H/B = 0.5 in (a) follows its line
+# to about su2/su1 = 0.70 and H/2R = 0.25 in (b) to about 0.63; each then
+# bends below its line to meet the uniform value at su2/su1 = 1.0.  Those
+# two curves were read off a 300 dpi render of PDF p. 348 against the
+# figure's own gridlines, to about +/- 0.05 (the value at 1.0 is the
+# labelled line where all curves meet).  On the same render the straight
+# lines nearby read 0.02 to 0.05 below their equations, so part of each
+# difference is drafting.  They give "N_cm_drawn_curve" at that one H/B
+# only; no values for other H/B are built from them.
 #
 # Top layer soft, bottom layer stiff (su2/su1 > 1): curves are drawn for
 # H/B (H/2R) = 0, 0.1, 0.2 and 0.3, and the value is 5.14 for H/B >= 0.7
@@ -2846,6 +2856,19 @@ _FIG_5_18B_SOFT_OVER_STIFF = {
           (2.0, 6.27)],
 }
 
+# Top layer stiff: the one drawn curve per panel that leaves the equation's
+# line, [(su2/su1, N_c,m), ...], used from su2/su1 = 0.68 to 1.0.
+_FIG_5_18A_STIFF_OVER_SOFT_DRAWN = [
+    (0.68, 4.22), (0.70, 4.32), (0.72, 4.38), (0.75, 4.48), (0.80, 4.62),
+    (0.85, 4.74), (0.90, 4.87), (0.95, 4.98), (1.0, 5.14)]
+
+_FIG_5_18B_STIFF_OVER_SOFT_DRAWN = [
+    (0.68, 4.76), (0.70, 4.85), (0.72, 4.95), (0.75, 5.09), (0.80, 5.30),
+    (0.85, 5.50), (0.90, 5.68), (0.95, 5.85), (1.0, 6.05)]
+
+_FIG_5_18_DRAWN_FROM = 0.68     # N_cm_drawn_curve from this su2/su1 to 1.0
+_FIG_5_18_PRINT_NOTE_ABOVE = 0.65   # print_note for 0.65 < su2/su1 < 1
+
 _FIG_5_18_CHARTS = {
     "a": {
         "name": "Figure 5-18(a), strip footings",
@@ -2856,6 +2879,21 @@ _FIG_5_18_CHARTS = {
         "equation": "N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14",
         "depth": "H/B",
         "curves": _FIG_5_18A_SOFT_OVER_STIFF,
+        "drawn_depth": 0.5,
+        "drawn_curve": _FIG_5_18A_STIFF_OVER_SOFT_DRAWN,
+        "print_note_depth_below": 1.0,
+        "print_note": (
+            "Figure 5-18(a) draws one curve in this region that is not the "
+            "printed equation's straight line: H/B = 0.5 follows the line "
+            "to about su2/su1 = 0.70, then runs below it to meet 5.14 at "
+            "su2/su1 = 1.0, by up to about 7.5 percent (read off the "
+            "figure, +/- 0.05: at su2/su1 = 0.80 the equation gives 4.86 "
+            "and the curve about 4.62; at 0.85, 5.12 and about 4.74).  "
+            "N_cm is the equation's value; N_cm_drawn_curve gives the "
+            "curve's value at H/B = 0.5 only.  The manual's text (printed "
+            "p. 309) says it is prudent to reduce the values by 10 percent "
+            "when 0.7 < su2/su1 < 1; on the drawn curve the reduced value "
+            "is at or below the curve."),
         "no_effect_from": 0.7,
         "table_note": (" Table 5-11 on the same page gives ranges of "
                        "N_c,m,s for a strip at H/B = 0.125, 0.50, 0.75 and "
@@ -2871,6 +2909,21 @@ _FIG_5_18_CHARTS = {
         "equation": "N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05",
         "depth": "H/2R",
         "curves": _FIG_5_18B_SOFT_OVER_STIFF,
+        "drawn_depth": 0.25,
+        "drawn_curve": _FIG_5_18B_STIFF_OVER_SOFT_DRAWN,
+        "print_note_depth_below": 0.5,
+        "print_note": (
+            "Figure 5-18(b) draws one curve in this region that is not the "
+            "printed equation's straight line: H/2R = 0.25 follows the "
+            "line to about su2/su1 = 0.63, then runs below it to meet 6.05 "
+            "at su2/su1 = 1.0, by up to about 7.5 percent (read off the "
+            "figure, +/- 0.05: at su2/su1 = 0.80 the equation gives 5.59 "
+            "and the curve about 5.30; at 0.85, 5.89 and about 5.50).  "
+            "N_cm is the equation's value; N_cm_drawn_curve gives the "
+            "curve's value at H/2R = 0.25 only.  The manual's text "
+            "(printed p. 309) says it is prudent to reduce the values by "
+            "10 percent when 0.7 < su2/su1 < 1; on the drawn curve the "
+            "reduced value is at or below the curve."),
         "no_effect_from": 0.4,
         "table_note": "",
     },
@@ -2915,6 +2968,9 @@ def _fig_5_18_lookup(which, ratio, depth_ratio):
         )
     reduced = None
     note = None
+    drawn_value = None
+    print_note = None
+    on_drawn_curve = abs(depth_ratio - chart["drawn_depth"]) <= 1e-9
     if depth_ratio > 3.0:
         value = uniform
         layering = ("the second layer is more than three foundation widths "
@@ -2927,14 +2983,23 @@ def _fig_5_18_lookup(which, ratio, depth_ratio):
                     chart["intercept_per_depth"] * depth_ratio
                     + uniform * ratio)
         layering = "top layer stiff, bottom layer soft"
-        basis = f"equation printed in {chart['name']}: {chart['equation']}"
+        basis = (f"N_cm: by the equation printed in {chart['name']}: "
+                 f"{chart['equation']}")
         if ratio > 0.7:
             reduced = 0.9 * value
             note = _FIG_5_18_REDUCTION_NOTE
+        if (ratio > _FIG_5_18_PRINT_NOTE_ABOVE
+                and 0.0 < depth_ratio < chart["print_note_depth_below"]):
+            print_note = chart["print_note"]
+        if on_drawn_curve and ratio >= _FIG_5_18_DRAWN_FROM:
+            drawn_value = _fig_5_18_on_curve(chart["drawn_curve"], ratio,
+                                             chart, chart["drawn_depth"])
     elif ratio == 1.0:
         value = uniform
         layering = "uniform (su2/su1 = 1)"
         basis = f"{chart['name']}: all curves meet at {uniform:g}"
+        if on_drawn_curve:
+            drawn_value = uniform
     else:
         layering = "top layer soft, bottom layer stiff"
         curves = chart["curves"]
@@ -2973,9 +3038,11 @@ def _fig_5_18_lookup(which, ratio, depth_ratio):
     return {
         "N_cm": value,
         "N_cm_reduced_10_percent": reduced,
+        "N_cm_drawn_curve": drawn_value,
         "layering": layering,
         "basis": basis,
         "note": note,
+        "print_note": print_note,
     }
 
 
@@ -2983,7 +3050,12 @@ def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> dict:
     """Modified bearing capacity factor N_c,m,s (dimensionless) for a strip
     footing on two layers of clay, Figure 5-18(a) of UFC 3-220-20 (after
     Brown and Meyerhof 1969), returned as a dict whose "N_cm" is the
-    figure's value; q_ult = su1 N_c,m with su1 the top layer's strength.
+    factor by the figure's printed equation or read off its curves;
+    q_ult = su1 N_c,m with su1 the top layer's strength.  Where the top
+    layer is stiff, 0.65 < su2/su1 < 1 and 0 < H/B < 1.0, "print_note"
+    says the figure's one drawn curve there (H/B = 0.5) runs below the
+    equation by up to about 7.5 percent, and at H/B = 0.5 with
+    0.68 <= su2/su1 <= 1.0 "N_cm_drawn_curve" gives that curve's value.
 
     Top layer stiff, bottom layer soft (su2/su1 < 1): the equation printed
     in the figure, N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14.  Top layer
@@ -3010,12 +3082,18 @@ def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> dict:
     Returns
     -------
     dict
-        ``N_cm``: N_c,m,s as the figure gives it (dimensionless).
-        ``N_cm_reduced_10_percent``: 0.9 N_cm when 0.7 < su2/su1 < 1,
-        otherwise None.  ``layering``: which side of the chart was read.
-        ``basis``: the printed equation, the curves or the text used.
-        ``note``: the manual's sentence on the 10 percent reduction when
-        it applies, otherwise None.
+        ``N_cm``: N_c,m,s (dimensionless); top layer stiff: by the
+        equation printed in the figure; top layer soft: read off the
+        figure's curves.  ``N_cm_reduced_10_percent``: 0.9 N_cm when
+        0.7 < su2/su1 < 1, otherwise None.  ``N_cm_drawn_curve``: the
+        value read off the figure's drawn H/B = 0.5 curve (+/- 0.05) when
+        H/B = 0.5 and 0.68 <= su2/su1 <= 1.0, otherwise None.
+        ``layering``: which side of the chart was read.  ``basis``: the
+        printed equation, the curves or the text used.  ``note``: the
+        manual's sentence on the 10 percent reduction when it applies,
+        otherwise None.  ``print_note``: where the drawn curve departs
+        from the printed equation (top layer stiff, 0.65 < su2/su1 < 1,
+        0 < H/B < 1.0), otherwise None.
 
     Raises
     ------
@@ -3038,7 +3116,12 @@ def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> dict:
     """Modified bearing capacity factor N_c,m,c (dimensionless, shape
     factor included) for a circular footing on two layers of clay, Figure
     5-18(b) of UFC 3-220-20 (after Brown and Meyerhof 1969), returned as a
-    dict whose "N_cm" is the figure's value; q_ult = su1 N_c,m.
+    dict whose "N_cm" is the factor by the figure's printed equation or
+    read off its curves; q_ult = su1 N_c,m.  Where the top layer is stiff,
+    0.65 < su2/su1 < 1 and 0 < H/2R < 0.5, "print_note" says the figure's
+    one drawn curve there (H/2R = 0.25) runs below the equation by up to
+    about 7.5 percent, and at H/2R = 0.25 with 0.68 <= su2/su1 <= 1.0
+    "N_cm_drawn_curve" gives that curve's value.
 
     Top layer stiff, bottom layer soft (su2/su1 < 1): the equation printed
     in the figure, N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05, with R the
@@ -3065,9 +3148,14 @@ def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> dict:
     Returns
     -------
     dict
-        ``N_cm``: N_c,m,c as the figure gives it (dimensionless).
-        ``N_cm_reduced_10_percent``: 0.9 N_cm when 0.7 < su2/su1 < 1,
-        otherwise None.  ``layering``, ``basis``, ``note``: as for
+        ``N_cm``: N_c,m,c (dimensionless); top layer stiff: by the
+        equation printed in the figure; top layer soft: read off the
+        figure's curves.  ``N_cm_reduced_10_percent``: 0.9 N_cm when
+        0.7 < su2/su1 < 1, otherwise None.  ``N_cm_drawn_curve``: the
+        value read off the figure's drawn H/2R = 0.25 curve (+/- 0.05)
+        when H/2R = 0.25 and 0.68 <= su2/su1 <= 1.0, otherwise None.
+        ``print_note``: as for ``figure_5_18a_Ncm_strip``, for
+        0 < H/2R < 0.5.  ``layering``, ``basis``, ``note``: as for
         ``figure_5_18a_Ncm_strip``.
 
     Raises

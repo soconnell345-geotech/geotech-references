@@ -2160,6 +2160,54 @@ class TestFigure518Strip:
             assert other["N_cm_reduced_10_percent"] is None
             assert other["note"] is None
 
+    # Top layer stiff: the one drawn curve that leaves the printed line,
+    # H/B = 0.5, read off a 300 dpi render of PDF p. 348 against the
+    # figure's gridlines (+/- 0.05); 5.14 at 1.0 is the labelled line.
+    @pytest.mark.parametrize("ratio, drawn", [
+        (0.68, 4.22), (0.70, 4.32), (0.72, 4.38), (0.75, 4.48), (0.80, 4.62),
+        (0.85, 4.74), (0.90, 4.87), (0.95, 4.98), (1.0, 5.14),
+    ])
+    def test_drawn_curve_at_h_b_0_5(self, ratio, drawn):
+        res = figure_5_18a_Ncm_strip(ratio, 0.5)
+        assert res["N_cm_drawn_curve"] == pytest.approx(drawn, abs=1e-9)
+        assert res["N_cm_drawn_curve"] <= res["N_cm"] + 1e-9
+        if res["N_cm_reduced_10_percent"] is not None:
+            assert res["N_cm_reduced_10_percent"] <= res["N_cm_drawn_curve"]
+
+    def test_drawn_curve_is_linear_between_reads(self):
+        res = figure_5_18a_Ncm_strip(0.825, 0.5)
+        assert res["N_cm_drawn_curve"] == pytest.approx(0.5 * (4.62 + 4.74), abs=1e-9)
+
+    @pytest.mark.parametrize("ratio, hb", [
+        (0.67, 0.5), (0.5, 0.5), (0.85, 0.4), (0.85, 0.6), (0.9, 1.0), (1.0, 0.25),
+    ])
+    def test_drawn_curve_only_at_h_b_0_5_from_0_68(self, ratio, hb):
+        assert figure_5_18a_Ncm_strip(ratio, hb)["N_cm_drawn_curve"] is None
+
+    @pytest.mark.parametrize("ratio, hb, expected", [
+        # the printed equation's values are unchanged by the drawn curve
+        (0.85, 0.5, 5.119), (0.9, 0.5, 5.14), (0.7, 0.5, 4.348), (0.66, 0.9, 4.7424),
+    ])
+    def test_n_cm_is_the_printed_equation_beside_the_drawn_curve(self, ratio, hb, expected):
+        res = figure_5_18a_Ncm_strip(ratio, hb)
+        assert res["N_cm"] == pytest.approx(expected, abs=1e-9)
+        assert res["basis"].startswith("N_cm: by the equation printed in Figure 5-18(a)")
+
+    @pytest.mark.parametrize("ratio, hb", [
+        (0.66, 0.5), (0.7, 0.25), (0.85, 0.5), (0.99, 0.1), (0.9, 0.99), (0.66, 0.9),
+    ])
+    def test_print_note_inside_the_region(self, ratio, hb):
+        note = figure_5_18a_Ncm_strip(ratio, hb)["print_note"]
+        assert "H/B = 0.5" in note and "about su2/su1 = 0.70" in note
+        assert "5.12 and about 4.74" in note and "10 percent" in note
+
+    @pytest.mark.parametrize("ratio, hb", [
+        (0.65, 0.5), (0.6, 0.5), (1.0, 0.5), (0.85, 1.0), (0.85, 0.0), (0.85, 1.5),
+        (1.5, 0.2), (0.8, 3.2),
+    ])
+    def test_print_note_outside_the_region(self, ratio, hb):
+        assert figure_5_18a_Ncm_strip(ratio, hb)["print_note"] is None
+
     def test_deeper_than_three_widths_has_no_effect(self):
         # Printed p. 309: for H/B > 3 the deeper layer does not matter.
         assert figure_5_18a_Ncm_strip(0.05, 3.2)["N_cm"] == pytest.approx(5.14)
@@ -2251,6 +2299,48 @@ class TestFigure518Circular:
         assert res["N_cm"] == pytest.approx(0.3 + 6.05 * 0.9, rel=1e-12)
         assert res["N_cm_reduced_10_percent"] == pytest.approx(0.9 * res["N_cm"], rel=1e-12)
         assert "10 percent" in res["note"]
+
+    # Top layer stiff: the one drawn curve that leaves the printed line,
+    # H/2R = 0.25, read off a 300 dpi render of PDF p. 348 against the
+    # figure's gridlines (+/- 0.05); 6.05 at 1.0 is the labelled line.
+    @pytest.mark.parametrize("ratio, drawn", [
+        (0.68, 4.76), (0.70, 4.85), (0.72, 4.95), (0.75, 5.09), (0.80, 5.30),
+        (0.85, 5.50), (0.90, 5.68), (0.95, 5.85), (1.0, 6.05),
+    ])
+    def test_drawn_curve_at_h_2r_0_25(self, ratio, drawn):
+        res = figure_5_18b_Ncm_circular(ratio, 0.25)
+        assert res["N_cm_drawn_curve"] == pytest.approx(drawn, abs=1e-9)
+        assert res["N_cm_drawn_curve"] <= res["N_cm"] + 1e-9
+        if res["N_cm_reduced_10_percent"] is not None:
+            assert res["N_cm_reduced_10_percent"] <= res["N_cm_drawn_curve"]
+
+    @pytest.mark.parametrize("ratio, h2r", [
+        (0.67, 0.25), (0.85, 0.2), (0.85, 0.3), (0.85, 0.5), (1.0, 0.1),
+    ])
+    def test_drawn_curve_only_at_h_2r_0_25_from_0_68(self, ratio, h2r):
+        assert figure_5_18b_Ncm_circular(ratio, h2r)["N_cm_drawn_curve"] is None
+
+    @pytest.mark.parametrize("ratio, h2r, expected", [
+        (0.85, 0.25, 5.8925), (0.9, 0.25, 6.05), (0.7, 0.25, 4.985), (0.66, 0.45, 5.343),
+    ])
+    def test_n_cm_is_the_printed_equation_beside_the_drawn_curve(self, ratio, h2r, expected):
+        res = figure_5_18b_Ncm_circular(ratio, h2r)
+        assert res["N_cm"] == pytest.approx(expected, abs=1e-9)
+        assert res["basis"].startswith("N_cm: by the equation printed in Figure 5-18(b)")
+
+    @pytest.mark.parametrize("ratio, h2r", [
+        (0.66, 0.25), (0.8, 0.49), (0.95, 0.1), (0.9, 0.25),
+    ])
+    def test_print_note_inside_the_region(self, ratio, h2r):
+        note = figure_5_18b_Ncm_circular(ratio, h2r)["print_note"]
+        assert "H/2R = 0.25" in note and "about su2/su1 = 0.63" in note
+        assert "5.89 and about 5.50" in note and "10 percent" in note
+
+    @pytest.mark.parametrize("ratio, h2r", [
+        (0.65, 0.25), (0.85, 0.5), (0.85, 0.0), (1.0, 0.25), (1.5, 0.2),
+    ])
+    def test_print_note_outside_the_region(self, ratio, h2r):
+        assert figure_5_18b_Ncm_circular(ratio, h2r)["print_note"] is None
 
     @pytest.mark.parametrize("ratio, h2r, expected", [
         # read off the chart's curves (about +/- 0.05)
