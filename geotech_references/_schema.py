@@ -17,6 +17,46 @@ import re
 from collections import defaultdict
 
 
+#: A paragraph number of a manual in the Army layout (EM 1110-1-1905): the
+#: paragraph '5-5' (appendix 'B-1'), its subparagraphs a., (1), (a) and 1
+#: as '5-5a', '5-5a(2)', '5-5a(2)(b)', '2-7a(2)(c)1', and a lettered part of
+#: a section split to fit the reference tools ('C-2b.a').
+ARMY_ID = re.compile(r"^(?:[0-9]+|[A-Z])-[0-9]+(?:[a-z]{1,2}(?:\([0-9]{1,2}\)"
+                     r"(?:\([a-z]{1,2}\)[0-9]{0,2})?)?)?(?:\.[a-z])?$")
+#: The last subparagraph mark of an Army-layout number ('a', '(2)', '(b)', '1').
+_ARMY_MARK = re.compile(r"(?<=[0-9])[a-z]{1,2}$|\([0-9]{1,2}\)$|\([a-z]{1,2}\)$"
+                        r"|(?<=\))[0-9]{1,2}$")
+
+
+def army_prefixes(sid: str) -> list[str]:
+    """The numbers above an Army-layout section number down to its
+    paragraph, nearest first: '5-5a(2)(b)' -> ['5-5a(2)', '5-5a', '5-5'],
+    'C-2b.a' -> ['C-2b', 'C-2']; [] for any other number."""
+    out: list[str] = []
+    sid = str(sid or "")
+    if not ARMY_ID.match(sid):
+        return out
+    if re.search(r"\.[a-z]$", sid):
+        sid = sid[:-2]
+        out.append(sid)
+    while True:
+        m = _ARMY_MARK.search(sid)
+        if not m:
+            return out
+        sid = sid[:m.start()]
+        out.append(sid)
+
+
+def numbered_under(sid: str, other: str) -> bool:
+    """Whether section number ``other`` is numbered under ``sid`` ('5-5.2'
+    or '5-5-1' under '5-5'; in the Army layout '5-5a(2)' under '5-5a' and
+    '5-5')."""
+    if not sid:
+        return False
+    return other.startswith(sid + ".") or other.startswith(sid + "-") \
+        or sid in army_prefixes(other)
+
+
 def _is_container(sid: str, sections: list, index: int) -> bool:
     """A container section has child subsections later in document order;
     its body may legitimately be empty."""
@@ -27,7 +67,7 @@ def _is_container(sid: str, sections: list, index: int) -> bool:
         if not isinstance(other, dict):
             continue
         other_id = other.get("section_id", "")
-        if other_id.startswith(sid + ".") or other_id.startswith(sid + "-"):
+        if numbered_under(sid, other_id):
             return True
     return False
 
@@ -38,8 +78,11 @@ def _is_container(sid: str, sections: list, index: int) -> bool:
 #: annex or appendix as printed: its letter alone for its own text ('A'), with
 #: its clause numbers ('D.3', 'X.4.11.2'), or in the UFC hyphen form
 #: ('B-3.4', UFC 3-220-20 Appendix B); a lettered part of a section split
-#: to fit the reference tools ('D.15.a', GEC-12 Appendix D).
-SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]([-.][0-9]+)*(\.[a-z])?)$")
+#: to fit the reference tools ('D.15.a', GEC-12 Appendix D); and the
+#: paragraph numbers of a manual in the Army layout (``ARMY_ID``: '5-5a(2)(b)',
+#: EM 1110-1-1905).
+SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]([-.][0-9]+)*(\.[a-z])?)$"
+                        r"|" + ARMY_ID.pattern)
 
 #: Fields every section carries. ``summary`` is not among them: it is the
 #: short text a ``reference_search`` hit shows, written for DM7 and some
