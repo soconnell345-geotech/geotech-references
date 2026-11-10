@@ -118,6 +118,13 @@ class TestLoadCombinations:
         r = gravity_load_away_from_removal(d=100, s=40)
         assert r["g"] == pytest.approx(1.2 * 100 + 0.2 * 40)
 
+    def test_live_and_snow_together_refused(self):
+        # UFC_4-023-03.pdf pdf 60 / printed 44: 1.2 D + (0.5 L or 0.2 S).
+        with pytest.raises(ValueError, match="not both"):
+            gravity_load_away_from_removal(d=100, l=50, s=40)
+        with pytest.raises(ValueError, match="not both"):
+            deformation_controlled_load_lsp(omega_ld=2.0, d=100, l=50, s=40)
+
     def test_equation_3_12_force_controlled(self):
         r = force_controlled_load_lsp(omega_lf=2.0, d=100, l=50)
         expected = 2.0 * (1.2 * 100 + 0.5 * 50)
