@@ -442,7 +442,15 @@ def tension_crack_depth(cohesion_psf, gamma_pcf, ka) -> dict:
 
 def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft,
                               beta_deg=None) -> dict:
-    """Maximum allowable embankment slope angle for c-phi soil (Eqs. 4-5-1..4-5-4).
+    """Estimate of the maximum allowable embankment slope angle beta, in
+    degrees, for a c-phi soil backfill, from Eqs. 4-5-1 to 4-5-4 solved
+    exactly as the manual prints them (Caltrans Trenching and Shoring Manual
+    Section 4-5, printed pp. 4-22 and 4-23). Eq. 4-5-2 as printed is not
+    dimensionally consistent (it adds a stress to a pure number and, under
+    the root, a stress to stress-squared terms), and the angle it gives
+    does not behave as a physical limit should (it can fall as cohesion
+    rises). Treat the result as the printed estimate only and check the
+    slope by a slope stability analysis.
 
     None of the earth-pressure theories work when the slope angle beta exceeds
     the friction angle phi; cohesion lets a stable slope stand steeper. The

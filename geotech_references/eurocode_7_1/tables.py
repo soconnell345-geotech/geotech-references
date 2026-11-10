@@ -1026,7 +1026,10 @@ _TABLE_H_1_RELATIVE_ROTATION_SAGGING = {
 
 def table_h_1_limiting_relative_rotation(limit_type: str = "acceptable_many_structures",
                                          mode: str = "sagging") -> float:
-    """Limiting relative rotation (angular distortion) for foundation movement (Annex H(2)-(3)).
+    """Limiting relative rotation (angular distortion) of a foundation, as a
+    dimensionless ratio (0.002 is 1/500) (EN 1997-1:2004 Annex H (2) and
+    (3), printed p. 165; Annex H prints these in its text, not in a
+    numbered table).
 
     Parameters
     ----------
@@ -1065,7 +1068,10 @@ def table_h_1_limiting_relative_rotation(limit_type: str = "acceptable_many_stru
 
 
 def table_h_2_limiting_total_settlement() -> float:
-    """Typical acceptable total settlement for isolated foundations (Annex H(4)).
+    """Total settlement often acceptable for normal structures with isolated
+    foundations, returned in metres: 0.050 m, printed as 50 mm (EN 1997-1:2004
+    Annex H (4), printed p. 165; Annex H prints this in its text, not in a
+    numbered table).
 
     Returns
     -------
