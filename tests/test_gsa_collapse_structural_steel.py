@@ -175,6 +175,56 @@ class TestTable11NonlinearModeling:
         assert r["c"] == pytest.approx(0.2)
 
 
+class TestDepthInInchesAndRange:
+    """struct-04: Tables 10/11 print c0 - c1 d and c0 - c1 dbg with
+    "d = depth of beam, in" / "dbg = depth of bolt group, in" (Table 10,
+    GSA_Alternate_Path_2016.pdf pdf 58 / printed 45) and "..., inch"
+    (Table 11, pdf 59 / printed 46). The result names the inch unit; a
+    depth at which a printed expression is <= 0 is refused."""
+
+    def test_wuf_m_factors_at_30_in(self):
+        # WUF: 3.9 - 0.043d primary, 5.5 - 0.064d secondary (printed p. 45)
+        r = table_10_fr_connection_mfactor("wuf", d=30.0)
+        assert r["m_primary"] == pytest.approx(3.9 - 0.043 * 30.0)  # 2.61
+        assert r["m_secondary"] == pytest.approx(5.5 - 0.064 * 30.0)  # 3.58
+        assert r["d_units"] == "in"
+        assert "note" not in r
+
+    def test_depth_in_mm_is_refused(self):
+        # 762 (a 30 in beam typed in mm): 3.9 - 0.043 x 762 = -28.9
+        with pytest.raises(ValueError, match="inches"):
+            table_10_fr_connection_mfactor("wuf", d=762.0)
+
+    def test_m_below_one_returned_with_note(self):
+        # Improved WUF at d = 70 in: primary 3.1 - 0.032 x 70 = 0.86,
+        # secondary 6.2 - 0.065 x 70 = 1.65 (printed p. 45, no lower limit)
+        r = table_10_fr_connection_mfactor("improved_wuf_bolted_web", d=70.0)
+        assert r["m_primary"] == pytest.approx(0.86)
+        assert r["m_secondary"] == pytest.approx(1.65)
+        assert "m_primary below 1" in r["note"]
+
+    def test_bolt_group_m_factors(self):
+        # Simple shear tab: 5.8 - 0.107dbg / 8.7 - 0.161dbg (printed p. 45)
+        r = table_10_pr_flexible_connection_mfactor("simple_shear_tab", dbg=12.0)
+        assert r["m_primary"] == pytest.approx(5.8 - 0.107 * 12.0)  # 4.516
+        assert r["m_secondary"] == pytest.approx(8.7 - 0.161 * 12.0)  # 6.768
+        assert r["dbg_units"] == "in"
+        with pytest.raises(ValueError, match="inches"):
+            table_10_pr_flexible_connection_mfactor("simple_shear_tab", dbg=305.0)
+
+    def test_rotations_refused_past_zero(self):
+        # Table 11 simple shear tab: a = 0.0502 - 0.0015dbg, b = 0.1125 -
+        # 0.0027dbg (printed p. 46); a reaches zero at dbg = 33.5 in
+        r = table_11_pr_flexible_connection_modeling("simple_shear_tab", 12.0)
+        assert r["a"] == pytest.approx(0.0502 - 0.0015 * 12.0)  # 0.0322
+        assert r["b"] == pytest.approx(0.1125 - 0.0027 * 12.0)  # 0.0801
+        with pytest.raises(ValueError, match="plastic rotation"):
+            table_11_pr_flexible_connection_modeling("simple_shear_tab", 40.0)
+        # WUF a = 0.0284 - 0.0004d reaches zero at d = 71 in
+        with pytest.raises(ValueError, match="plastic rotation"):
+            table_11_fr_connection_modeling("wuf", 80.0)
+
+
 class TestTableC11ConnectionTypes:
     def test_all_seventeen_types_present(self):
         assert len(TABLE_C1_1_CONNECTION_TYPES) == 17

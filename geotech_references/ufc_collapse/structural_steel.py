@@ -85,9 +85,46 @@ _TABLE_5_1_PR_FLEXIBLE = {
 }
 
 
+def _linear_in_depth(terms, depth, depth_name, source, quantity):
+    """Evaluate printed c0 - c1 * depth expressions (depth in inches).
+
+    Refuses a depth that is not positive, and a depth at which a printed
+    expression is zero or negative: the table prints no such m-factor or
+    plastic rotation, the straight line has run past where it applies.
+    """
+    if depth <= 0:
+        raise ValueError(f"{source}: {depth_name} must be a positive depth in inches, got {depth!r}")
+    out = {}
+    for name, (c0, c1) in terms.items():
+        value = c0 - c1 * depth
+        if value <= 0:
+            raise ValueError(
+                f"{source}: {name} = {c0} - {c1} {depth_name} is {value:.4g} at "
+                f"{depth_name} = {depth} in, not a positive {quantity}; the printed "
+                f"expression reaches zero at {depth_name} = {c0 / c1:.1f} in and the "
+                f"table gives no {quantity} beyond it. {depth_name} is in inches "
+                f"(table footnote).")
+        out[name] = value
+    return out
+
+
+def _m_below_one_note(m, depth_name, depth):
+    """A note when a printed m-factor expression gives less than 1."""
+    low = [k for k in ("m_primary", "m_secondary") if m[k] < 1]
+    if not low:
+        return {}
+    return {"note": (f"{' and '.join(low)} below 1 at {depth_name} = {depth} in: the "
+                     f"printed expression gives it and the table prints no lower "
+                     f"limit; check that {depth_name} is in inches.")}
+
+
 def table_5_1_fr_connection_mfactor(connection_type, d):
-    """Table 5-1, Fully Restrained Moment Connections: linear-model
-    m-factors as a function of beam depth d (printed p. 69).
+    """UFC 4-023-03 Table 5-1, Fully Restrained Moment Connections:
+    linear-model m-factors (dimensionless), primary and secondary, printed
+    as c0 - c1 d with d the beam depth in INCHES (footnote 2)
+    (printed p. 69). A depth at which a printed expression is zero or
+    negative is refused: the table prints no such m-factor. An m below 1
+    is returned with a note (the table prints no lower limit).
 
     Parameters
     ----------
@@ -95,23 +132,31 @@ def table_5_1_fr_connection_mfactor(connection_type, d):
         One of 'improved_wuf_bolted_web', 'reduced_beam_section', 'wuf',
         'sideplate'.
     d : float
-        Beam depth (inch).
+        Beam depth in inches (footnote 2: "d = depth of beam,
+        inch"); a depth in mm or cm gives wrong m-factors.
 
     Returns
     -------
     dict
-        {'m_primary', 'm_secondary', 'connection_type', 'd', 'table': '5-1',
-         'printed_page': '69', 'pdf_page': 84}
+        {'m_primary', 'm_secondary', 'connection_type', 'd', 'd_units':
+         'in', 'table': '5-1', 'printed_page': '69', 'pdf_page': 84},
+        plus 'note' when an m-factor is below 1.
+
+    Raises
+    ------
+    ValueError
+        Unknown connection_type, d <= 0, or a d at which a printed
+        expression is <= 0 (e.g. 'wuf' beyond its zero depth).
     """
     key = connection_type.lower().strip()
     if key not in _TABLE_5_1_FR:
         raise ValueError(f"connection_type must be one of {sorted(_TABLE_5_1_FR)}, got {connection_type!r}")
     row = _TABLE_5_1_FR[key]
-    m_primary = row["primary"][0] - row["primary"][1] * d
-    m_secondary = row["secondary"][0] - row["secondary"][1] * d
-    return {"m_primary": m_primary, "m_secondary": m_secondary,
-            "connection_type": key, "d": d, "table": "5-1",
-            "printed_page": "69", "pdf_page": 84}
+    m = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
+                         d, "d", "UFC 4-023-03 Table 5-1 (printed p. 69)", "m-factor")
+    return {"m_primary": m["m_primary"], "m_secondary": m["m_secondary"],
+            "connection_type": key, "d": d, "d_units": "in", "table": "5-1",
+            "printed_page": "69", "pdf_page": 84, **_m_below_one_note(m, "d", d)}
 
 
 def table_5_1_pr_stiff_connection_mfactor(connection_type, limit_state):
@@ -143,16 +188,22 @@ def table_5_1_pr_stiff_connection_mfactor(connection_type, limit_state):
 
 
 def table_5_1_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=None):
-    """Table 5-1, Partially Restrained Simple Connections (Flexible):
-    linear-model m-factors as a function of bolt-group depth dbg (printed
-    p. 69).
+    """UFC 4-023-03 Table 5-1: linear-model m-factors (dimensionless),
+    primary and secondary, for Partially Restrained Simple Connections (Flexible),
+    printed as constants or as c0 - c1 dbg with dbg the bolt-group depth
+    in INCHES (footnote 3) (printed p. 69). A depth at which a
+    printed expression is zero or negative is refused: the table prints no
+    such m-factor. An m below 1 is returned with a note (the table prints
+    no lower limit).
 
     Parameters
     ----------
     connection_type : str
         'double_angles' (requires limit_state) or 'simple_shear_tab'.
     dbg : float
-        Depth of the bolt group (inch).
+        Depth of the bolt group in inches (footnote 3: "dbg = depth
+        of bolt group, inch"); a depth in mm or cm gives wrong
+        m-factors.
     limit_state : str, optional
         For 'double_angles': 'shear_in_bolt', 'tension_in_bolt', or
         'flexure_in_angles'. Not used for 'simple_shear_tab'.
@@ -161,7 +212,14 @@ def table_5_1_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=N
     -------
     dict
         {'m_primary', 'm_secondary', 'connection_type', 'limit_state',
-         'dbg', 'table': '5-1', 'printed_page': '69', 'pdf_page': 84}
+         'dbg', 'dbg_units': 'in', 'table': '5-1', 'printed_page': '69',
+         'pdf_page': 84}, plus 'note' when an m-factor is below 1.
+
+    Raises
+    ------
+    ValueError
+        Unknown row, dbg <= 0, or a dbg at which a printed expression is
+        <= 0.
     """
     conn = connection_type.lower().strip()
     ls = limit_state.lower().strip() if limit_state else None
@@ -169,11 +227,12 @@ def table_5_1_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=N
     if key not in _TABLE_5_1_PR_FLEXIBLE:
         raise ValueError(f"No Table 5-1 row for {key}; valid: {sorted(_TABLE_5_1_PR_FLEXIBLE)}")
     row = _TABLE_5_1_PR_FLEXIBLE[key]
-    m_primary = row["primary"][0] - row["primary"][1] * dbg
-    m_secondary = row["secondary"][0] - row["secondary"][1] * dbg
-    return {"m_primary": m_primary, "m_secondary": m_secondary,
-            "connection_type": conn, "limit_state": ls, "dbg": dbg,
-            "table": "5-1", "printed_page": "69", "pdf_page": 84}
+    m = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
+                         dbg, "dbg", "UFC 4-023-03 Table 5-1 (printed p. 69)", "m-factor")
+    return {"m_primary": m["m_primary"], "m_secondary": m["m_secondary"],
+            "connection_type": conn, "limit_state": ls, "dbg": dbg, "dbg_units": "in",
+            "table": "5-1", "printed_page": "69", "pdf_page": 84,
+            **_m_below_one_note(m, "dbg", dbg)}
 
 
 # ============================================================================
@@ -218,9 +277,13 @@ _TABLE_5_2_PR_FLEXIBLE = {
 
 
 def table_5_2_fr_connection_modeling(connection_type, d):
-    """Table 5-2, Fully Restrained Moment Connections: nonlinear modeling
-    parameters (a, b, c) and acceptance criteria (equal to a, b per the
-    printed table) as a function of beam depth d (printed p. 70).
+    """UFC 4-023-03 Table 5-2, Fully Restrained Moment Connections:
+    nonlinear modeling parameters a, b (plastic rotation, radians) and c
+    (residual strength ratio), and the acceptance-criteria plastic
+    rotations (radians; printed equal to a and b), with a and b printed as
+    c0 - c1 d and d the beam depth in INCHES (footnote 3) (printed
+    p. 70). A depth at which a printed expression is zero or negative is
+    refused: the table prints no such plastic rotation.
 
     Parameters
     ----------
@@ -228,24 +291,32 @@ def table_5_2_fr_connection_modeling(connection_type, d):
         One of 'improved_wuf_bolted_web', 'reduced_beam_section', 'wuf',
         'sideplate'.
     d : float
-        Beam depth (inch).
+        Beam depth in inches (footnote 3: "d = depth of beam, inch");
+        a depth in mm or cm gives wrong rotations.
 
     Returns
     -------
     dict
         {'a', 'b', 'c', 'primary_acceptance' (=a), 'secondary_acceptance'
-        (=b), 'connection_type', 'd', 'table': '5-2', 'printed_page': '70',
-        'pdf_page': 85}
+        (=b), 'connection_type', 'd', 'd_units': 'in', 'table': '5-2',
+        'printed_page': '70', 'pdf_page': 85}
+
+    Raises
+    ------
+    ValueError
+        Unknown connection_type, d <= 0, or a d at which a or b is <= 0.
     """
     key = connection_type.lower().strip()
     if key not in _TABLE_5_2_FR:
         raise ValueError(f"connection_type must be one of {sorted(_TABLE_5_2_FR)}, got {connection_type!r}")
     row = _TABLE_5_2_FR[key]
-    a = row["a"][0] - row["a"][1] * d
-    b = row["b"][0] - row["b"][1] * d
+    v = _linear_in_depth({"a": row["a"], "b": row["b"]}, d, "d",
+                         "UFC 4-023-03 Table 5-2 (printed p. 70)",
+                         "plastic rotation")
+    a, b = v["a"], v["b"]
     return {"a": a, "b": b, "c": row["c"], "primary_acceptance": a,
             "secondary_acceptance": b, "connection_type": key, "d": d,
-            "table": "5-2", "printed_page": "70", "pdf_page": 85}
+            "d_units": "in", "table": "5-2", "printed_page": "70", "pdf_page": 85}
 
 
 def table_5_2_pr_stiff_connection_modeling(connection_type, limit_state):
@@ -279,16 +350,21 @@ def table_5_2_pr_stiff_connection_modeling(connection_type, limit_state):
 
 
 def table_5_2_pr_flexible_connection_modeling(connection_type, dbg, limit_state=None):
-    """Table 5-2, Partially Restrained Simple Connections (Flexible):
-    nonlinear modeling parameters and acceptance criteria as a function
-    of bolt-group depth dbg (printed p. 70).
+    """UFC 4-023-03 Table 5-2: nonlinear modeling parameters a, b
+    (plastic rotation, radians) and c, and the acceptance-criteria plastic
+    rotations (radians, primary and secondary), for
+    Partially Restrained Simple Connections (Flexible), printed as c0 - c1 dbg with dbg
+    the bolt-group depth in INCHES (footnote 4) (printed p. 70).
+    A depth at which a printed expression is zero or negative is refused:
+    the table prints no such rotation.
 
     Parameters
     ----------
     connection_type : str
         'double_angles' (requires limit_state) or 'simple_shear_tab'.
     dbg : float
-        Depth of the bolt group (inch).
+        Depth of the bolt group in inches (footnote 4: "dbg = depth
+        of bolt group, inch"); a depth in mm or cm gives wrong rotations.
     limit_state : str, optional
         For 'double_angles': 'shear_in_bolt', 'tension_in_bolt', or
         'flexure_in_angles'.
@@ -297,8 +373,14 @@ def table_5_2_pr_flexible_connection_modeling(connection_type, dbg, limit_state=
     -------
     dict
         {'a', 'b', 'c', 'primary_acceptance', 'secondary_acceptance',
-         'connection_type', 'limit_state', 'dbg', 'table': '5-2',
-         'printed_page': '70', 'pdf_page': 85}
+         'connection_type', 'limit_state', 'dbg', 'dbg_units': 'in',
+         'table': '5-2', 'printed_page': '70', 'pdf_page': 85}
+
+    Raises
+    ------
+    ValueError
+        Unknown row, dbg <= 0, or a dbg at which a printed expression is
+        <= 0.
     """
     conn = connection_type.lower().strip()
     ls = limit_state.lower().strip() if limit_state else None
@@ -306,13 +388,14 @@ def table_5_2_pr_flexible_connection_modeling(connection_type, dbg, limit_state=
     if key not in _TABLE_5_2_PR_FLEXIBLE:
         raise ValueError(f"No Table 5-2 row for {key}; valid: {sorted(_TABLE_5_2_PR_FLEXIBLE)}")
     row = _TABLE_5_2_PR_FLEXIBLE[key]
-    a = row["a"][0] - row["a"][1] * dbg
-    b = row["b"][0] - row["b"][1] * dbg
-    primary = row["primary"][0] - row["primary"][1] * dbg
-    secondary = row["secondary"][0] - row["secondary"][1] * dbg
-    return {"a": a, "b": b, "c": row["c"], "primary_acceptance": primary,
-            "secondary_acceptance": secondary, "connection_type": conn,
-            "limit_state": ls, "dbg": dbg, "table": "5-2",
+    v = _linear_in_depth({"a": row["a"], "b": row["b"], "primary_acceptance": row["primary"],
+                          "secondary_acceptance": row["secondary"]},
+                         dbg, "dbg", "UFC 4-023-03 Table 5-2 (printed p. 70)",
+                         "plastic rotation")
+    return {"a": v["a"], "b": v["b"], "c": row["c"],
+            "primary_acceptance": v["primary_acceptance"],
+            "secondary_acceptance": v["secondary_acceptance"], "connection_type": conn,
+            "limit_state": ls, "dbg": dbg, "dbg_units": "in", "table": "5-2",
             "printed_page": "70", "pdf_page": 85}
 
 
