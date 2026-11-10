@@ -51,7 +51,7 @@ def test_citations_follow_the_chapter_files():
     assert cat["gec_10"]["citation"].startswith("FHWA-NHI-18-024 — ")
     assert cat["dm7_1"]["citation"].startswith("UFS 3-220-10 — ")
     # no text: the package docstring's first line
-    assert cat["ufc_backfill"]["citation"].startswith("UFC 3-220-04N")
+    assert cat["ufc_backfill"]["citation"].startswith("UFC 3-220-04FA")
 
 
 def test_empty_reference_lists_the_catalog():

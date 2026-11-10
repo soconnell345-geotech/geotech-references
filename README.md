@@ -65,7 +65,7 @@ Function counts are the public functions defined in each package's modules (coun
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
-| `ufc_backfill` | UFC 3-220-04N Backfill for Subsurface Structures | 8 |
+| `ufc_backfill` | UFC 3-220-04FA Backfill for Subsurface Structures | 7 |
 | `ufc_expansive` | UFC 3-220-07 Foundations in Expansive Soils | 9 |
 | `ufc_pavement` | UFC 3-250-01 Pavement Design for Roads and Parking Areas | 53 |
 | `ufc_stabilization` | UFC 3-250-11 Soil Stabilization and Modification for Pavements | 17 |

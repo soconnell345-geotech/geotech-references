@@ -1,5 +1,5 @@
 """
-UFC Backfill Agent — Foundry-style wrapper for UFC 3-220-04N lookups.
+UFC Backfill Agent — Foundry-style wrapper for UFC 3-220-04FA lookups.
 
 Wraps the density requirements, Table 5-1 compaction criteria, backfill
 material categories, lift thicknesses, compaction equipment, Figure 2-5
@@ -7,7 +7,7 @@ compaction-induced lateral pressures and the relative compaction check,
 each read off the held UFC 3-220-04FA with its printed page.
 
 Three entry-point functions:
-  1. ufc_backfill_agent           - Run a UFC 3-220-04N function
+  1. ufc_backfill_agent           - Run a UFC 3-220-04FA function
   2. ufc_backfill_list_methods    - Browse available functions by category
   3. ufc_backfill_describe_method - Get detailed parameter docs for a specific function
 
@@ -125,8 +125,8 @@ def _load_registry():
     _METHOD_INFO = {}
 
     _lookup_modules = [
-        (equations, "equations", "UFC 3-220-04N relative compaction check"),
-        (tables, "tables", "UFC 3-220-04N compaction and backfill tables"),
+        (equations, "equations", "UFC 3-220-04FA relative compaction check"),
+        (tables, "tables", "UFC 3-220-04FA compaction and backfill tables"),
     ]
 
     for _mod, _category_prefix, _ref in _lookup_modules:
@@ -147,7 +147,7 @@ def _load_registry():
 @function
 def ufc_backfill_agent(method: str, parameters_json: str) -> str:
     """
-    UFC 3-220-04N Backfill for Subsurface Structures tool.
+    UFC 3-220-04FA Backfill for Subsurface Structures tool.
 
     Provides density requirements, Table 5-1 compaction criteria, material
     categories, lift thicknesses, equipment selection and Figure 2-5
@@ -194,7 +194,7 @@ def ufc_backfill_agent(method: str, parameters_json: str) -> str:
 @function
 def ufc_backfill_list_methods(category: str = "") -> str:
     """
-    Lists available UFC 3-220-04N backfill functions by category.
+    Lists available UFC 3-220-04FA backfill functions by category.
 
     Parameters:
         category: Optional filter (e.g. 'tables', 'equations').
@@ -219,7 +219,7 @@ def ufc_backfill_list_methods(category: str = "") -> str:
 @function
 def ufc_backfill_describe_method(method: str) -> str:
     """
-    Returns detailed documentation for a UFC 3-220-04N backfill function.
+    Returns detailed documentation for a UFC 3-220-04FA backfill function.
 
     Parameters:
         method: The method name (e.g. 'table_compaction_requirements',
