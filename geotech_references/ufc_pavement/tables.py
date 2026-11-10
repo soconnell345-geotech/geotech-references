@@ -758,30 +758,42 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     ----------
     k_subgrade_psi_in : float
         Modulus of subgrade reaction measured (or estimated, Table 10-1) on
-        the subgrade, psi/in. Interpolated within 25-300 psi/in; clamped at
-        the endpoints outside that range.
+        the subgrade, psi/in. Interpolated between the printed curves, 25 to
+        300 psi/in. Below 25 refused; above 300 the 300 curve is used, with
+        a note (it then understates k on the base).
     base_thickness_in : float
-        Thickness of base course above the subgrade, inches. Clamped to
-        0-60 in (the plotted range).
+        Thickness of base course above the subgrade, inches, 0-60 in (the
+        chart's axis). Above 60 in the 60 in value is used, with a note.
 
     Returns
     -------
     dict
         {'k_subgrade_psi_in', 'base_thickness_in', 'k_on_base_psi_in',
-         'chart_read', 'tolerance', 'reference'}.
+         'chart_read', 'tolerance', 'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If k_subgrade_psi_in or base_thickness_in is negative.
+        If k_subgrade_psi_in is below 25 psi/in (the lowest printed curve)
+        or base_thickness_in is negative.
     """
-    if k_subgrade_psi_in < 0:
-        raise ValueError(f"k_subgrade_psi_in must be >= 0, got {k_subgrade_psi_in}")
+    if k_subgrade_psi_in < _FIG_10_1_SUBGRADE_K[0]:
+        raise ValueError(
+            f"k_subgrade_psi_in {k_subgrade_psi_in} is below Figure 10-1's "
+            "lowest curve (k on subgrade = 25 pci); the chart covers 25-300.")
     if base_thickness_in < 0:
         raise ValueError(f"base_thickness_in must be >= 0, got {base_thickness_in}")
 
+    notes = []
+    if base_thickness_in > 60:
+        notes.append(f"Base thickness {base_thickness_in:g} in is past Figure "
+                     "10-1's axis (0-60 in); the 60 in value is used.")
+    if k_subgrade_psi_in > _FIG_10_1_SUBGRADE_K[-1]:
+        notes.append(f"k on subgrade {k_subgrade_psi_in:g} pci is above Figure "
+                     "10-1's top curve (300 pci); the 300 curve is used, which "
+                     "understates k on the base.")
     t = min(max(base_thickness_in, 0), 60)
-    ks = min(max(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[0]), _FIG_10_1_SUBGRADE_K[-1])
+    ks = min(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[-1])
 
     # Interpolate along thickness for each bracketing subgrade-k curve, then
     # interpolate between the two curves.
@@ -802,6 +814,7 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
         "chart_read": True,
         "tolerance": "approximate, visual read-off of the rendered chart, ~+/-15%",
         "reference": "UFC 3-250-01, Figure 10-1 (pdf_page 51, printed 32)",
+        **({"note": " ".join(notes)} if notes else {}),
     }
 
 
@@ -1122,10 +1135,11 @@ def table_16_1_joint_spacing(thickness_in) -> dict:
     -------
     dict
         {'thickness_in', 'spacing_range_ft', 'max_spacing_ft', 'note',
-         'reference'}. ``max_spacing_ft`` is capped at 20 ft (the absolute
-         DoD maximum for transverse contraction joints regardless of
-         thickness), and further to 20 ft/6 m in regions with design
-         freezing index < 1,800 degree-days (else per Section 16-2.1.3).
+         'reference'}. ``max_spacing_ft`` is capped at 20 ft (the table's
+         footnote: the maximum spacing of transverse contraction joints for
+         DoD pavements is 20 ft (6.1 m)). Para 16-2.1.3 (same page): in
+         regions where the design freezing index is 1,800 or more degree
+         days the maximum spacing should be 20 ft (6 m).
 
     Raises
     ------

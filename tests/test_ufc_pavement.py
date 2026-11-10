@@ -590,6 +590,20 @@ class TestFigure10_1:
         with pytest.raises(ValueError):
             figure_10_1_k_on_base(100, -1)
 
+    def test_printed_range(self):
+        # Figure 10-1, UFC 3-250-01 PDF 52 (pdf_page 51), printed 32: curves
+        # for k on subgrade 25-300 pci over base thickness 0-60 in. Below the
+        # lowest curve is refused; past the top or the axis is held, noted.
+        with pytest.raises(ValueError, match="lowest curve"):
+            figure_10_1_k_on_base(20, 10)
+        r = figure_10_1_k_on_base(400, 10)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
+        assert "300 curve is used" in r["note"]
+        r = figure_10_1_k_on_base(100, 70)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
+        assert "60 in value is used" in r["note"]
+        assert "note" not in figure_10_1_k_on_base(100, 30)
+
 
 class TestConditionFactor:
     def test_rigid_plain_good(self):
