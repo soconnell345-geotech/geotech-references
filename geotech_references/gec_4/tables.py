@@ -66,8 +66,6 @@ _DENSITY_ALIASES_T6 = {
     "dense": "dense",
     "stiff": "stiff",
     "hard": "hard",
-    "very_stiff": "hard",
-    "very stiff": "hard",
 }
 
 
@@ -94,7 +92,9 @@ def table_6_soil_anchor_transfer_load(soil_type, relative_density_or_consistency
     relative_density_or_consistency : str
         Relative density or consistency.  For granular soils:
         'loose', 'medium_dense', or 'dense'.
-        For silt-clay mixtures: 'stiff' or 'hard'.
+        For silt-clay mixtures: 'stiff' (SPT 10-20) or 'hard' (SPT 21-40),
+        the two consistencies Table 6 (p. 71) prints; 'very stiff' names
+        neither and is refused (it was answered from the Hard row).
 
     Returns
     -------
@@ -244,15 +244,28 @@ _TABLE_7_COHESIONLESS = {
 }
 
 
+_TABLE_7_ROCK_FS_NOTE = (
+    "Table 7 prints no factor of safety. P. 74: the allowable load in "
+    "competent rock is the bond length times Table 8's ultimate transfer "
+    "load divided by a factor of safety of 3.0; weak rocks such as clay "
+    "shales, 'intermediate geomaterials' with unconfined compressive "
+    "strengths of 0.5 to 5.0 MPa, should use a factor of safety of 2.0.")
+
+
 def table_7_bond_stress_rock(rock_type):
-    """Presumptive average ultimate bond stress for rock anchors (Table 7).
+    """Presumptive average ultimate bond stress range in MPa at the rock/grout interface, by rock type, GEC-4 Table 7 (FHWA-IF-99-015, p. 73; after PTI, 1996).
 
     Returns range of bond stresses at the rock/grout interface for
     gravity-grouted anchors in competent rock.  Values after PTI (1996).
 
     Note: Alternatively, PTI (1996) suggests the ultimate bond stress can
     be approximated as 10% of the unconfined compressive strength of the rock,
-    up to a maximum of 3.1 MPa.
+    up to a maximum of 3.1 MPa (p. 74).
+
+    Table 7 prints no factor of safety. The result quotes p. 74: FS 3.0 on
+    Table 8's ultimate transfer load in competent rock, 2.0 in weak rocks
+    ("intermediate geomaterials", unconfined compressive strength 0.5 to
+    5.0 MPa). 'limestone' and 'shale' name two rows each and are refused.
 
     Parameters
     ----------
@@ -265,8 +278,7 @@ def table_7_bond_stress_rock(rock_type):
     -------
     dict
         {'rock_type': str, 'bond_stress_min_MPa': float,
-         'bond_stress_max_MPa': float, 'recommended_FS': float,
-         'source': str}
+         'bond_stress_max_MPa': float, 'print_note': str, 'source': str}
 
     Raises
     ------
@@ -282,12 +294,11 @@ def table_7_bond_stress_rock(rock_type):
         "dolomitic_limestone": "dolomitic_limestone",
         "dolomite": "dolomitic_limestone",
         "soft_limestone": "soft_limestone",
-        "limestone": "soft_limestone",
         "slates": "slates_hard_shales",
         "hard_shales": "slates_hard_shales",
+        "slates_and_hard_shales": "slates_hard_shales",
         "slate": "slates_hard_shales",
         "soft_shale": "soft_shales",
-        "shale": "soft_shales",
         "sandstone": "sandstones",
         "weathered_sandstone": "weathered_sandstones",
         "chalk": "chalk",
@@ -308,8 +319,8 @@ def table_7_bond_stress_rock(rock_type):
         "rock_type": resolved,
         "bond_stress_min_MPa": row["bond_stress_min"],
         "bond_stress_max_MPa": row["bond_stress_max"],
-        "recommended_FS": 3.0,
-        "source": "GEC-4 Table 7 (after PTI 1996)",
+        "print_note": _TABLE_7_ROCK_FS_NOTE,
+        "source": "GEC-4 Table 7, p. 73 (after PTI, 1996)",
     }
 
 
@@ -432,14 +443,12 @@ _ROCK_ALIASES_T8 = {
     "granite_and_basalt": "granite_basalt",
     "dolomite": "dolomitic_limestone",
     "dolomitic_limestone": "dolomitic_limestone",
-    "limestone": "soft_limestone",
     "soft_limestone": "soft_limestone",
     "sandstones": "sandstone",
     "sandstone": "sandstone",
     "slates": "slates_hard_shales",
     "hard_shales": "slates_hard_shales",
     "slates_and_hard_shales": "slates_hard_shales",
-    "shale": "soft_shales",
     "soft_shale": "soft_shales",
     "soft_shales": "soft_shales",
 }
@@ -503,7 +512,7 @@ def table_8_rock_anchor_transfer_load(rock_type):
 
 
 # ============================================================================
-# Table 20: Corrosion Protection Requirements (after PTI 1996)
+# Table 20: Corrosion Protection Requirements (modified after PTI, 1996)
 # (Chapter 6, p. 131)
 #
 # Two protection classes:
@@ -516,21 +525,21 @@ _TABLE_20_CORROSION = {
     "class_i": {
         "name": "Encapsulated Tendon",
         "anchorage": [
-            "Trumpet (attached to bearing plate with watertight weld)",
+            "Trumpet",
             "Cover if exposed",
         ],
         "unbonded_length_strand": [
-            "Encapsulate: individual grease-filled extruded strand sheaths "
-            "with a common smooth sheath; or",
-            "Encapsulate: individual grease-filled strand sheaths with "
-            "grout-filled smooth sheath",
+            "Encapsulate tendons composed of individual grease filled "
+            "extruded strand sheaths with a common smooth sheath",
+            "Encapsulate tendons composed of individual grease filled "
+            "strand sheaths with grout filled smooth sheath",
         ],
         "unbonded_length_bar": [
-            "Smooth bondbreaker over grout-filled bar sheath",
+            "Use smooth bondbreaker over grout filled bar sheath",
         ],
         "bond_length": [
-            "Corrugated HDPE or polypropylene encapsulation (grout-filled); or",
-            "Fusion-bonded epoxy coating",
+            "Grout-filled encapsulation or",
+            "Fusion-bonded epoxy",
         ],
         "description": (
             "Full encapsulation provides double barrier against corrosion "
@@ -540,15 +549,15 @@ _TABLE_20_CORROSION = {
     "class_ii": {
         "name": "Grout Protected Tendon",
         "anchorage": [
-            "Trumpet (attached to bearing plate)",
+            "Trumpet",
             "Cover if exposed",
         ],
         "unbonded_length": [
-            "Grease-filled sheath; or",
-            "Heat-shrink sleeve",
+            "Grease-filled sheath, or",
+            "Heat shrink sleeve",
         ],
         "bond_length": [
-            "Grout (primary and only barrier; no encapsulation)",
+            "Grout",
         ],
         "description": (
             "Grout provides the primary protective barrier; single barrier system"
@@ -558,11 +567,15 @@ _TABLE_20_CORROSION = {
 
 
 def table_20_corrosion_protection(protection_class):
-    """Corrosion protection requirements for ground anchors (Table 20).
+    """Corrosion protection requirements (anchorage, unbonded length, tendon bond length) for a ground anchor protection class, GEC-4 Table 20 (FHWA-IF-99-015, p. 131; modified after PTI, 1996).
 
     Returns protection requirements for anchorage, unbonded length, and
-    tendon bond length for the specified class.  Selection between
-    Class I and Class II per Figure 63 decision tree (Chapter 6).
+    tendon bond length for the specified class, in the table's words
+    (Class I's unbonded items 1-2 are for strand tendons, item 3 for bar
+    tendons). Selection between Class I and Class II per Figure 63
+    decision tree (Chapter 6). The section after the table (p. 131) says
+    the trumpet should be attached to the bearing plate for a water tight
+    seal, usually by welding.
 
     Decision summary: aggressive/unknown ground → Class I (permanent);
     non-aggressive + consequences not serious → Class II acceptable;
@@ -609,4 +622,5 @@ def table_20_corrosion_protection(protection_class):
         )
 
     row = _TABLE_20_CORROSION[resolved]
-    return {"class": resolved, **row}
+    return {"class": resolved, **row,
+            "source": "GEC-4 Table 20, p. 131 (modified after PTI, 1996)"}

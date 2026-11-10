@@ -268,6 +268,25 @@ rows instead of being answered from the first row that contains the words.
     gave 2,000 pci unsaid. The docstring's "for Ca > 4 ton/ft2 use k = 2000
     or 800" is removed: GEC-9 does not print it (gec-25).
 
+- **GEC-4 ground anchors (FHWA-IF-99-015).**
+  - `table_6_soil_anchor_transfer_load` (Table 6, p. 71): "very stiff" is
+    refused; the silt-clay row prints Stiff (10-20) 30 kN/m and Hard
+    (21-40) 60 kN/m only, and "very stiff" returned the Hard row's 60
+    (gec-30).
+  - `table_7_bond_stress_rock` (Table 7, p. 73): `recommended_FS` 3.0 on
+    every row is gone (the table prints no factor of safety); the result
+    quotes p. 74 instead: 3.0 on Table 8's transfer load in competent
+    rock, 2.0 for intermediate geomaterials (qu 0.5 to 5.0 MPa) (gec-38).
+  - `table_7_bond_stress_rock`, `table_8_rock_anchor_transfer_load`:
+    "limestone" and "shale" are refused (each names two printed rows;
+    they returned soft limestone and soft shales) (gec-39).
+  - `table_20_corrosion_protection` (Table 20, p. 131): the table's words.
+    The anchorage is "Trumpet" for both classes (was "attached to bearing
+    plate with watertight weld"); Class I bond length "Grout-filled
+    encapsulation or" / "Fusion-bonded epoxy" (was "Corrugated HDPE or
+    polypropylene encapsulation"); Class II bond length "Grout". The source
+    reads "modified after PTI, 1996", as printed (gec-39).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
