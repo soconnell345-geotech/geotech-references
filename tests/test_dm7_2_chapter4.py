@@ -1388,6 +1388,18 @@ class TestFigure436Integration:
         assert ratio == pytest.approx(0.68, abs=0.01)
         assert ratio * 950000.0 == pytest.approx(646000.0, rel=0.015)
 
+    def test_appendix_b_example_2(self):
+        # Appendix B, Example 2 (anchored cut wall), PDF p. 652 (printed
+        # p. 614): H_top + D = 24 ft + 14.45 ft, E = 29,000 ksi,
+        # I = 84.4 in^4 -> rho = 18.52; "For medium dense sand ...
+        # 2.03/ln(18.52) - 0.076 = 0.62"; M_design = 63.4 ft-k (0.62)
+        # = 39.3 ft-k.
+        rho = relative_flexibility_anchored_bulkhead(24.0 * 12.0, 14.45 * 12.0, 29.0e6, 84.4)
+        assert rho == pytest.approx(18.52, abs=0.01)
+        ratio = figure_4_36_moment_reduction(rho, "medium_dense_and_dense_coarse_grained")
+        assert ratio == pytest.approx(0.62, abs=0.005)
+        assert 63.4 * ratio == pytest.approx(39.3, abs=0.1)
+
     def test_flexible_wall_more_reduction(self):
         # More flexible wall (lower EI) -> higher rho -> more moment reduction
         rho_stiff = relative_flexibility_anchored_bulkhead(396.0, 180.0, 30.0e6, 385.7)
