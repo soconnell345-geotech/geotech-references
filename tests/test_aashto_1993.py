@@ -134,7 +134,14 @@ class TestLaneDistribution:
 
 class TestLayerCoefficientA1:
     def test_100k_psi(self):
-        assert tb.layer_coefficient_a1_asphalt(100000)["a1"] == pytest.approx(0.20, abs=0.01)
+        # Figure 2.5, PDF 108 (pdf_page 107), printed II-18: the curve starts
+        # on the a1 = 0.20 line at about 106,000 psi (re-read 2026-11-10;
+        # was taken as 100,000) and reads 0.252 at 150,000 (was 0.26).
+        assert tb.layer_coefficient_a1_asphalt(106000)["a1"] == pytest.approx(0.20, abs=0.005)
+        assert tb.layer_coefficient_a1_asphalt(150000)["a1"] == pytest.approx(0.252, abs=0.005)
+        assert tb.layer_coefficient_a1_asphalt(125000)["a1"] == pytest.approx(0.224, abs=0.005)
+        with pytest.raises(ValueError, match="106,000"):
+            tb.layer_coefficient_a1_asphalt(100000)
 
     def test_200k_psi(self):
         assert tb.layer_coefficient_a1_asphalt(200000)["a1"] == pytest.approx(0.30, abs=0.01)
@@ -145,14 +152,14 @@ class TestLayerCoefficientA1:
 
     def test_monotonic_increasing(self):
         prev = 0
-        for eac in (100000, 200000, 300000, 400000, 500000):
+        for eac in (110000, 200000, 300000, 400000, 500000):
             a1 = tb.layer_coefficient_a1_asphalt(eac)["a1"]
             assert a1 > prev
             prev = a1
 
     def test_below_curve_start_refused(self):
         # Figure 2.5, aashto1993.pdf PDF 108 (pdf_page 107), printed II-18:
-        # the curve begins at about EAC 100,000 psi, a1 0.20. Below it the
+        # the curve begins at about EAC 106,000 psi, a1 0.20. Below it the
         # chart gives nothing (was silently 0.20).
         with pytest.raises(ValueError, match="curve begins"):
             tb.layer_coefficient_a1_asphalt(80000)

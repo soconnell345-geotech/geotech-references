@@ -272,13 +272,17 @@ def directional_distribution_default() -> dict:
 # concrete surface course vs elastic (resilient) modulus EAC at 68F.
 # CHART READ-OFF (no printed closed-form equation): digitized at dpi 150/240
 # (pdf_page 107, printed II-18). Anchor points from the printed curve
-# (solid to EAC~420,000-450,000 psi; dashed extrapolation beyond, per the
-# guide's own caution against modulus values above 450,000 psi).
+# (solid to about EAC 450,000 psi; dashed beyond to the 500,000 psi edge;
+# II-17: "Caution is recommended for modulus values above 450,000 psi").
+# Re-read 2026-11-10 (review pave-11) from a 400-dpi render, gridline-
+# calibrated: the curve begins on the a1 = 0.20 line at about 106,000 psi
+# (was taken as 100,000) and reads 0.252 at 150,000 (was 0.26); the other
+# anchors agree with the trace within 0.004.
 # ============================================================================
 
-_A1_EAC = [100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
+_A1_EAC = [106000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
           500000]
-_A1_VAL = [0.20, 0.26, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
+_A1_VAL = [0.20, 0.252, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 
 
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
@@ -287,16 +291,18 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     Figure 2.5 (pdf_page 107, printed II-18); returns a1 (per inch).
 
     Chart-read-off (interpolated), NOT a printed closed-form equation.
-    Digitized anchor points (EAC psi -> a1): 100000->0.20, 150000->0.26,
+    Digitized anchor points (EAC psi -> a1): 106000->0.20, 150000->0.252,
     200000->0.30, 250000->0.335, 300000->0.365, 350000->0.39, 400000->0.42,
-    450000->0.44, 500000->0.465 (dashed/extrapolated beyond ~420,000 psi
-    in the source chart).
+    450000->0.44, 500000->0.465. The printed curve is drawn from about
+    106,000 psi (a1 0.20) to the chart's 500,000 psi edge, dashed past
+    about 450,000 psi; II-17: "Caution is recommended for modulus values
+    above 450,000 psi".
 
     Parameters
     ----------
     eac_psi : float
         Asphalt concrete elastic (resilient) modulus at 68 F, psi. The
-        printed curve begins at about 100,000 psi (a1 0.20): below that the
+        printed curve begins at about 106,000 psi (a1 0.20): below that the
         lookup refuses. Above 450,000 psi the curve is dashed (noted);
         above 500,000 psi, the chart's edge, a1 is held at its 500,000 psi
         value, with a note.
@@ -309,20 +315,24 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     Raises
     ------
     ValueError
-        If eac_psi is below 100,000 psi, where Figure 2.5's curve begins.
+        If eac_psi is below about 106,000 psi, where Figure 2.5's curve
+        begins.
     """
     if eac_psi is None or eac_psi < _A1_EAC[0]:
         raise ValueError(
-            f"EAC {eac_psi} psi is below where Figure 2.5's curve begins "
-            "(about 100,000 psi, a1 0.20); the chart gives no a1 there.")
+            f"EAC {eac_psi} psi is below where Figure 2.5's curve begins: "
+            "the chart draws a1 for EAC from about 106,000 psi (a1 0.20) to "
+            "500,000 psi (printed II-18); it gives no a1 below that.")
     a1 = _linterp(eac_psi, _A1_EAC, _A1_VAL)
     out = {
         "eac_psi": eac_psi, "a1": round(a1, 3), "chart_read": True,
         "reference": "AASHTO 1993 Guide, Figure 2.5 (pdf_page 107, printed II-18)",
     }
     if eac_psi > 450000:
-        out["note"] = ("EAC > 450,000 psi: guide cautions this is beyond the "
-                       "reliable chart range (dashed extrapolation).")
+        out["note"] = ("EAC > 450,000 psi: the curve is dashed here, and "
+                       "II-17 says 'Caution is recommended for modulus "
+                       "values above 450,000 psi' (stiffer mixes are more "
+                       "susceptible to thermal and fatigue cracking).")
     if eac_psi > _A1_EAC[-1]:
         out["note"] += (" EAC is past the chart's 500,000 psi edge; a1 is "
                         "held at its 500,000 psi value.")
