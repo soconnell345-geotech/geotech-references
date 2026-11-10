@@ -2029,7 +2029,7 @@ def hydraulic_conductivity_benson_landfill(
         *gc* is negative, gamma_w/gamma_d - 1/Gs is not positive (the
         dry unit weight is then above the zero-void-ratio value), or the
         degree of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0
-        or is above 1.0.
+        or is above 1.10.
 
     Notes
     -----
@@ -2037,8 +2037,12 @@ def hydraulic_conductivity_benson_landfill(
     page (PDF p. 491, printed p. 463) gives "w = molding water content"
     with no unit.  It is taken as a decimal, which makes the bracket the
     degree of saturation as a decimal: a percentage there would give k
-    below 1e-100 m/s.  A saturation above 1.0 is refused (a water
-    content given in percent would produce one).
+    below 1e-100 m/s.  A saturation above 1.10 is refused.  The guard is
+    there to catch a water content entered in percent (which gives a
+    saturation of tens); a computed saturation a little over 1.0 occurs
+    from ordinary scatter in the measured w, dry unit weight and Gs, and
+    up to 1.10 it is evaluated as computed.  The 1.10 is this library's
+    limit, not printed.
 
     The manual gives k "in m/s".  As printed, ordinary liner inputs give
     about 3.6e-8 m/s (CF 30, GC 4, W 200 kN, PI 25, w 0.18, dry unit
@@ -2069,10 +2073,12 @@ def hydraulic_conductivity_benson_landfill(
             "non-positive); check gamma_d, gamma_w, gs."
         )
     saturation = w / denominator
-    if saturation <= 0.0 or saturation > 1.0:
+    # 1.10, not 1.0: measured w, gamma_d and Gs scatter; the guard is for
+    # a water content entered in percent (the library's limit, not printed).
+    if saturation <= 0.0 or saturation > 1.10:
         raise ValueError(
             "The degree of saturation w/(gamma_w/gamma_d - 1/gs) comes to "
-            f"{saturation:.4g}; it must be above 0 and not above 1.0. Give "
+            f"{saturation:.4g}; it must be above 0 and not above 1.10. Give "
             "w as a decimal (0.18 for 18 %)."
         )
 
@@ -2139,7 +2145,7 @@ def hydraulic_conductivity_benson_trast(
         If *gamma_d*, *gamma_w* or *gs* is not positive, if
         gamma_w/gamma_d - 1/Gs is not positive, or if the initial degree
         of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0 or is
-        above 100%.
+        above 110%.
 
     Notes
     -----
@@ -2149,10 +2155,18 @@ def hydraulic_conductivity_benson_trast(
     on the page's own numbers.  In Equation 8-43 on the same page the
     same term carries a coefficient of 2.87 and can only be a decimal (a
     percentage gives k below 1e-100 m/s).  Here its coefficient is
-    0.087: as a decimal the term would change ln k by under 0.09 over
-    the whole range of saturation and would be idle, while in percent it
-    spans about what Equation 8-43's does (0.087 x 30 against
-    2.87 x 0.3).
+    0.087.  Read in percent, it gives the term a span in ln k of the
+    same order as Equation 8-43's (2.61 over 30 points of saturation,
+    0.087 x 30, against 0.86 for Equation 8-43, 2.87 x 0.3); read as a
+    decimal, it would change ln k by under 0.09 over the whole range of
+    saturation and would be idle.
+
+    A saturation above 110% is refused.  The guard is there to catch a
+    water content entered in percent (which gives thousands of percent);
+    a computed saturation a little over 100% occurs from ordinary
+    scatter in the measured w, dry unit weight and Gs, and up to 110% it
+    is evaluated as computed.  The 110% is this library's limit, not
+    printed.
 
     The two readings at one made-up input (PI 25, CF 30, E 0, w 0.18,
     gamma_w 9.81, gamma_d 17.0 kN/m3, Gs 2.70; saturation 87.09%):
@@ -2179,11 +2193,13 @@ def hydraulic_conductivity_benson_trast(
             "non-positive); check gamma_d, gamma_w, gs."
         )
     saturation_percent = 100.0 * w / denominator
-    if saturation_percent <= 0.0 or saturation_percent > 100.0:
+    # 110 %, not 100 %: measured w, gamma_d and Gs scatter; the guard is
+    # for a water content entered in percent (the library's limit).
+    if saturation_percent <= 0.0 or saturation_percent > 110.0:
         raise ValueError(
             "The initial degree of saturation w/(gamma_w/gamma_d - 1/gs) "
             f"comes to {saturation_percent:.4g} %; it must be above 0 and "
-            "not above 100 %. Give w as a decimal (0.18 for 18 %)."
+            "not above 110 %. Give w as a decimal (0.18 for 18 %)."
         )
 
     ln_k = (-15.0 - 0.087 * saturation_percent - 0.054 * pi + 0.022 * cf

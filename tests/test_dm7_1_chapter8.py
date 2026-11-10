@@ -1474,9 +1474,29 @@ class TestHydraulicConductivityBensonLandfill:
         # The page gives w no unit; the function takes a decimal. w=18.0
         # would make the bracket (the degree of saturation) 87.09 and k
         # below 1e-100 m/s.
-        with pytest.raises(ValueError, match="not above 1.0"):
+        with pytest.raises(ValueError, match="not above 1.10"):
             hydraulic_conductivity_benson_landfill(
                 cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=18.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_saturation_limit_is_1_10(self):
+        # The guard refuses a saturation above 1.10 (the library's limit,
+        # not printed): a little over 1.0 comes from scatter in measured
+        # w, gamma_d and Gs. Same clay as test_basic, by the printed
+        # equation, ln k = -14.64 - 2.87 * bracket (bracket = w/0.206688):
+        # w=0.21:  bracket 1.01602; ln k = -17.55598; k = 2.3743e-08 m/s
+        # w=0.227: bracket 1.09827; ln k = -17.79204; k = 1.8751e-08 m/s
+        # w=0.228: bracket 1.10311, refused
+        for w, k in ((0.21, 2.3743e-08), (0.227, 1.8751e-08)):
+            result = hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=w,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+            assert result == pytest.approx(k, rel=1e-4, abs=0.0)
+        with pytest.raises(ValueError, match="1.103.*not above 1.10"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=0.228,
                 gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
@@ -1544,17 +1564,37 @@ class TestHydraulicConductivityBensonTrast:
 
     def test_w_given_in_percent_raises(self):
         # w=18.0 would be a saturation of 8,709 %
-        with pytest.raises(ValueError, match="not above 100 %"):
+        with pytest.raises(ValueError, match="not above 110 %"):
             hydraulic_conductivity_benson_trast(
                 pi=25.0, cf=30.0, e_effort=0.0, w=18.0,
                 gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
-    def test_saturation_above_100_percent_raises(self):
+    def test_saturation_above_110_percent_raises(self):
         # w=0.30 at gamma_d=17.0: 0.30/0.206688 = 145.1 %
         with pytest.raises(ValueError, match="145.1 %"):
             hydraulic_conductivity_benson_trast(
                 pi=25.0, cf=30.0, e_effort=0.0, w=0.30,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_saturation_limit_is_110_percent(self):
+        # The guard refuses a saturation above 110 % (the library's limit,
+        # not printed): a little over 100 % comes from scatter in measured
+        # w, gamma_d and Gs. Same clay as test_basic, by the printed
+        # equation with the bracket in percent, ln k = -15.69 - 0.087 * S%:
+        # w=0.21:  S 101.602 %; ln k = -24.52939; k = 2.2234e-11 m/s
+        # w=0.227: S 109.827 %; ln k = -25.24496; k = 1.0871e-11 m/s
+        # w=0.228: S 110.311 %, refused
+        for w, k in ((0.21, 2.2234e-11), (0.227, 1.0871e-11)):
+            result = hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=w,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+            assert result == pytest.approx(k, rel=1e-4, abs=0.0)
+        with pytest.raises(ValueError, match="110.3 %.*not above 110 %"):
+            hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.228,
                 gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
