@@ -51,10 +51,15 @@ rows instead of being answered from the first row that contains the words.
     name that fits two rows or curves ("silt", "pile", "taper") is refused;
     `table_7_3_static_analysis_methods` refuses an unknown soil type
     instead of returning an empty list (gec-45, gec-37).
-  - `table_7_10_brown_method_factors` (Table 7-10, p. 260): values
-    unchanged. The docstring now says that the page prints Bb equal to Ab
-    for compression in gravelly sand to boulders and in rock, and prints
-    the vibratory rows under "Tension"; both await a ruling (gec-06).
+  - `table_7_10_brown_method_factors` (Table 7-10, p. 260): for
+    compression in gravelly sand to boulders and in rock the table prints
+    Bb equal to Ab (0.888 and 2.89 ksf/bpf); Bb is now 0.0, as the matching
+    tension rows print it, and the result carries the printed value and a
+    `print_note` (lead's ruling). At N60 = 30 in gravelly sand to boulders
+    Eq. 7-21 now gives fs = 0.89 ksf (was 27.5, against Table 7-8's 2.4 ksf
+    limit). The vibratory rows (Fvs 0.68) are answered under tension, where
+    the table prints them; a vibratory compression lookup, which returned
+    them, is refused (gec-06).
 - **GEC-13 ground modification (FHWA-NHI-16-027 Vol I).**
   - `table_3_1_lightweight_fill` (Table 3-1, p. 3-1): rebuilt from the
     print, with the specific gravity column. Four of eight rows change:

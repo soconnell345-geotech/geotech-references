@@ -270,53 +270,66 @@ def table_7_9_beta_nt_coefficients(soil_type: str) -> dict:
 # FHWA-NHI-16-009 (GEC-12) Vol I, p. 260 (PDF page 306); Eq. 7-21, p. 258:
 # fs = Fvs (Ab + Bb N60), fs in ksf, N60 held between 3 and 50 (p. 259).
 #
-# The values below are the printed ones. Two things on the page look wrong
-# and are NOT corrected here (the owner is to rule; review finding gec-06):
-# 1. Bb for the two compression rows "Gravelly Sand to Boulders" and "Rock"
-#    is printed equal to Ab (0.888 and 2.89), where the matching tension
-#    rows print 0.0. By Eq. 7-21 at N60 = 30 that is 27.5 and 89.6 ksf,
-#    against 1.76 ksf for clay to sand.
-# 2. The three Vibratory rows are printed under a ditto mark below
-#    "Tension"; they are held here under loading "compression".
+# Read off the rendered page (PDF page 306). The rows are as printed except
+# one cell pair, by the lead's ruling (RULINGS row 7, review finding gec-06):
+# Bb for the two compression rows "Gravelly Sand to Boulders" and "Rock" is
+# PRINTED equal to Ab (0.888 and 2.89); it is CODED 0.0, as the matching
+# tension rows print it (every printed tension cell is 0.94 times its
+# compression cell; with Bb = 0.888, Eq. 7-21 gives 27.5 ksf at N60 = 30,
+# against Table 7-8's 2.4 ksf limit). Those two rows carry a print_note.
+# The three Vibratory rows are typeset under a ditto mark below "Tension"
+# and are filed under tension, as printed; the table prints no vibratory
+# compression row.
 # ============================================================================
 
 _TABLE_7_10 = [
     # (loading, installation, soil_type, Fvs, Ab_ksf, Bb_ksf_per_bpf)
     ("compression", "impact", "clay_to_sand",           1.0,  0.555, 0.040),
-    ("compression", "impact", "gravelly_sand_to_boulders", 1.0, 0.888, 0.888),
-    ("compression", "impact", "rock",                   1.0,  2.89,  2.89),
+    ("compression", "impact", "gravelly_sand_to_boulders", 1.0, 0.888, 0.0),
+    ("compression", "impact", "rock",                   1.0,  2.89,  0.0),
     ("tension",     "impact", "clay_to_sand",           1.0,  0.522, 0.0376),
     ("tension",     "impact", "gravelly_sand_to_boulders", 1.0, 0.835, 0.0),
     ("tension",     "impact", "rock",                   1.0,  2.71,  0.0),
-    ("compression", "vibratory", "clay_to_sand",        0.68, 0.522, 0.0376),
-    ("compression", "vibratory", "gravelly_sand_to_boulders", 0.68, 0.835, 0.0),
-    ("compression", "vibratory", "rock",                0.68, 2.71,  0.0),
+    ("tension",     "vibratory", "clay_to_sand",        0.68, 0.522, 0.0376),
+    ("tension",     "vibratory", "gravelly_sand_to_boulders", 0.68, 0.835, 0.0),
+    ("tension",     "vibratory", "rock",                0.68, 2.71,  0.0),
 ]
+
+# The printed Bb of the two rows coded 0.0 (RULINGS row 7).
+_TABLE_7_10_PRINTED_BB = {
+    ("compression", "impact", "gravelly_sand_to_boulders"): 0.888,
+    ("compression", "impact", "rock"): 2.89,
+}
 
 
 def table_7_10_brown_method_factors(loading: str = "compression",
                                     installation: str = "impact",
                                     soil_type: str = "clay_to_sand") -> dict:
-    """Input factors Fvs, Ab (ksf) and Bb (ksf per blow/ft) of Brown's SPT method, fs = Fvs (Ab + Bb N60), as held from GEC-12 Table 7-10 (FHWA-NHI-16-009 Vol I, p. 260); two things on the printed page look wrong and are returned unchanged: Bb for compression in gravelly sand to boulders (0.888) and rock (2.89) is printed equal to Ab, giving 27.5 and 89.6 ksf at N60 = 30 where the tension rows print Bb = 0.0, and the vibratory rows, printed under "Tension", are held here under compression.
+    """Input factors Fvs, Ab (ksf) and Bb (ksf per blow/ft) of Brown's SPT method, fs = Fvs (Ab + Bb N60), from GEC-12 Table 7-10 (FHWA-NHI-16-009 Vol I, p. 260, PDF page 306). For compression in gravelly sand to boulders and in rock the table prints Bb equal to Ab (0.888 and 2.89); Bb = 0.0 is returned there, as the matching tension rows print it, with a print_note saying so (lead's ruling). The vibratory rows are printed under "Tension" and are answered for loading 'tension' only.
 
     Eq. 7-21 (p. 258): fs = Fvs (Ab + Bb N60) in ksf, with N60 taken no
     higher than 50 and no lower than 3 (p. 259). The manual recommends the
-    method for preliminary length estimates only (p. 259). Check the two
-    rows named above against the page before using them.
+    method for preliminary length estimates only (p. 259). With the printed
+    Bb = 0.888, Eq. 7-21 gives 27.5 ksf at N60 = 30 for gravelly sand to
+    boulders, against Table 7-8's limit of 2.4 ksf on unit shaft resistance
+    (p. 253); every printed tension cell is 0.94 times its compression cell.
 
     Parameters
     ----------
     loading : str
         'compression' or 'tension'.
     installation : str
-        'impact' or 'vibratory'.
+        'impact' or 'vibratory' (vibratory rows are printed under tension
+        only).
     soil_type : str
         'clay_to_sand', 'gravelly_sand_to_boulders', or 'rock'.
 
     Returns
     -------
     dict
-        Keys: Fvs, Ab_ksf, Bb_ksf_per_bpf.
+        Keys: Fvs, Ab_ksf, Bb_ksf_per_bpf; for the two compression rows
+        whose printed Bb is replaced by 0.0, also Bb_printed_ksf_per_bpf
+        and print_note.
     """
     load_key = loading.lower().strip()
     inst_key = installation.lower().strip()
@@ -324,11 +337,24 @@ def table_7_10_brown_method_factors(loading: str = "compression",
 
     for row in _TABLE_7_10:
         if row[0] == load_key and row[1] == inst_key and row[2] == soil_key:
-            return {"Fvs": row[3], "Ab_ksf": row[4], "Bb_ksf_per_bpf": row[5]}
+            out = {"Fvs": row[3], "Ab_ksf": row[4], "Bb_ksf_per_bpf": row[5]}
+            printed = _TABLE_7_10_PRINTED_BB.get(row[:3])
+            if printed is not None:
+                out["Bb_printed_ksf_per_bpf"] = printed
+                out["print_note"] = (
+                    f"GEC-12 Table 7-10 (p. 260) prints Bb = {printed} for "
+                    f"this row, equal to its Ab; Bb = 0.0 is used, as the "
+                    f"matching tension row prints it. With the printed "
+                    f"value, Eq. 7-21 gives far more than Table 7-8's 2.4 "
+                    f"ksf limit on unit shaft resistance (p. 253)."
+                )
+            return out
 
+    rows = ", ".join(f"({r[0]}, {r[1]}, {r[2]})" for r in _TABLE_7_10)
     raise ValueError(
         f"No match for loading='{loading}', installation='{installation}', "
-        f"soil_type='{soil_type}'."
+        f"soil_type='{soil_type}' in GEC-12 Table 7-10 (p. 260), which "
+        f"prints the vibratory rows under tension only. Printed rows: {rows}."
     )
 
 

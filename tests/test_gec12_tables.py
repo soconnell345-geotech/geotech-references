@@ -293,29 +293,41 @@ class TestTable710:
         assert result["Bb_ksf_per_bpf"] == 0.0
 
     def test_vibratory_fvs(self):
-        """Vibratory installation has Fvs = 0.68."""
-        result = table_7_10_brown_method_factors("compression", "vibratory", "clay_to_sand")
+        """Vibratory installation has Fvs = 0.68; GEC-12 Vol I Table 7-10,
+        p. 260 (PDF page 306) types the vibratory rows under "Tension"."""
+        result = table_7_10_brown_method_factors("tension", "vibratory", "clay_to_sand")
         assert result["Fvs"] == 0.68
+        assert (result["Ab_ksf"], result["Bb_ksf_per_bpf"]) == (0.522, 0.0376)
+        result = table_7_10_brown_method_factors("tension", "vibratory", "rock")
+        assert (result["Fvs"], result["Ab_ksf"], result["Bb_ksf_per_bpf"]) == (0.68, 2.71, 0.0)
 
     def test_no_match_raises(self):
-        """Invalid combination raises ValueError."""
-        with pytest.raises(ValueError):
-            table_7_10_brown_method_factors("tension", "vibratory", "clay_to_sand")
+        """The table prints no vibratory compression row (p. 260)."""
+        with pytest.raises(ValueError, match="vibratory rows under tension"):
+            table_7_10_brown_method_factors("compression", "vibratory", "clay_to_sand")
 
-    def test_printed_values_kept_and_oddities_stated(self):
+    def test_printed_bb_replaced_by_zero_with_note(self):
         """GEC-12 Vol I Table 7-10, p. 260 (PDF page 306): Bb is printed
         equal to Ab for compression in gravelly sand to boulders (0.888) and
-        rock (2.89). The values are returned as printed and the docstring's
-        first paragraph says so (review finding gec-06, owner to rule)."""
+        rock (2.89); the tension rows print 0.0. By the lead's ruling
+        (RULINGS row 7, finding gec-06) 0.0 is returned with a print_note
+        naming the printed value; Ab is as printed."""
         r = table_7_10_brown_method_factors(soil_type="gravelly_sand_to_boulders")
-        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (0.888, 0.888)
+        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (0.888, 0.0)
+        assert r["Bb_printed_ksf_per_bpf"] == 0.888
+        assert "0.888" in r["print_note"] and "p. 260" in r["print_note"]
         r = table_7_10_brown_method_factors(soil_type="rock")
-        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (2.89, 2.89)
+        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (2.89, 0.0)
+        assert r["Bb_printed_ksf_per_bpf"] == 2.89
+        assert "2.89" in r["print_note"]
         r = table_7_10_brown_method_factors("tension", "impact",
                                             "gravelly_sand_to_boulders")
         assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (0.835, 0.0)
+        assert "print_note" not in r
+        r = table_7_10_brown_method_factors("compression", "impact", "clay_to_sand")
+        assert "print_note" not in r
         first = table_7_10_brown_method_factors.__doc__.split("\n\n")[0]
-        assert "printed equal to Ab" in first
+        assert "prints Bb equal to Ab" in first
         assert 'printed under "Tension"' in first
 
 
