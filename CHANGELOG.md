@@ -35,7 +35,17 @@ Equations re-coded as typeset:
   became 3.5e-9 m/s at e 1.5, PL 25, PI 30.
 - `hydraulic_conductivity_benson_landfill` (Eq. 8-43, p. 463) raised an
   overflow error at ordinary inputs; it now gives 3.6e-8 m/s for the
-  example in its tests.
+  example in its tests. The page prints no unit for the molding water
+  content: the function takes a decimal (a percentage gives k below
+  1e-100 m/s) and refuses a degree of saturation above 1.0.
+- `hydraulic_conductivity_benson_trast` (Eq. 8-44, p. 463) had its four
+  coefficients on the wrong terms: 1.5e-8 m/s became 7.9e-11 m/s at PI 25,
+  CF 30, standard Proctor, w 0.18, dry unit weight 17 kN/m3, Gs 2.70. The
+  page prints no unit for the molding water content. The function takes it
+  as a decimal and enters the saturation term in percent; that is this
+  review's reading, not a printed statement (as a decimal the same input
+  gives 1.4e-7 m/s), and the docstring gives the reasons. A degree of
+  saturation above 100% is refused.
 - `well_resistance_factor` (Eq. 5-26, p. 268) was zero at the far end of a
   drain, where the manual's equation is largest: 0 became 1.26 at
   z = Lm = 20, kh/qw = 0.001.
@@ -72,17 +82,38 @@ Tables and charts rebuilt from the print:
 - `table_5_6_Calpha_Cc` (Table 5-6, p. 254) gains the shale and mudstone
   row (0.03); the table's +/- 0.01 and its source are in the docstring.
 
-Refused or flagged, not changed:
+Inputs outside the range the manual states or plots are now refused, with
+the range and page in the message (values inside the range are unchanged):
 
-- `hydraulic_conductivity_benson_trast` (Eq. 8-44, p. 463) now refuses: the
-  manual gives the molding water content no unit, and k differs by a factor
-  of 200 to 5,000 between the two readings.
-- `trench_load_coefficient` (Eq. 4-7, p. 195) and
-  `flexible_pipe_trench_load` (Eq. 4-8, p. 197) evaluate a form that gives
-  a higher pipe load than the equation as typeset; their values are
-  unchanged and their docstrings now show both forms. A decision is open.
-- `relative_density_from_dry_density` (Eq. 3-2, p. 141) is unchanged: the
-  manual's density form has a misprint, and the docstring says so.
+- `hydraulic_conductivity_hazen` (Eq. 8-40, p. 458): D10 outside 0.1 to
+  3 mm, the range the manual states.
+- `fully_softened_friction_angle` (Eq. 8-13) and
+  `residual_friction_angle_gibson` (Eq. 8-16): PI above 100, the end of
+  Figure 8-13 (p. 408).
+- `spt_friction_angle_roads` (Eq. 8-2) and `spt_friction_angle_buildings`
+  (Eq. 8-3): N60 above 50, the end of the curves in Figure 8-2 (p. 397).
+- `spt_friction_angle_kulhawy_mayne` (Eq. 8-4): N60 above 60 or a vertical
+  effective stress above 3.0 kgf/cm2, the axes of Figure 8-3 (p. 398).
+- `spt_friction_angle_wolff` (Eq. 8-5) and
+  `spt_friction_angle_hatanaka_uchida` (Eq. 8-6): N1,60 above 60, the end
+  of Figure 8-4 (p. 399).
+- `schmertmann_time_correction` (Eq. 5-9, p. 232): a time below the
+  equation's reference time of 0.1 year.
+
+Coded differently from the print, values unchanged (the docstrings now give
+both forms, the pages and the reasons):
+
+- `trench_load_coefficient` (Eq. 4-7, p. 195) has a 2 in the exponent,
+  e^(-2 K mu' H/Bd), where the manual prints e^(-K mu' H/Bd).
+  `flexible_pipe_trench_load` (Eq. 4-8, p. 197) multiplies by the trench
+  width Bd where the manual prints Bc, the diameter of the pipe. Each coded
+  form gives the higher pipe load. The review kept the coded forms; the
+  library's owner is to revisit them.
+- `relative_density_from_dry_density` (Eq. 3-2, p. 141) has
+  gamma_d - gamma_d-min in the numerator where the manual prints
+  gamma_d - gamma_d-max. The printed form is negative for any soil looser
+  than its densest state and so cannot equal the void-ratio form it is set
+  equal to; the coded form makes the two sides equal.
 
 Descriptions corrected, values unchanged: the angles of the Table 4-2
 strip-load functions (`boussinesq_semi_infinite_load`,
