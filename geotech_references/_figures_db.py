@@ -235,10 +235,7 @@ def _ro_connect() -> sqlite3.Connection:
 
 def _norm_fig_number(s: str) -> str:
     """Normalize a figure id for lookup ('Figure 4-12', 'Fig. 4-12',
-    ' 4-12 ' -> '4-12'). A part letter printed in brackets is the
-    catalog's plain letter: 'Figure 9-37(a)' -> '9-37A', as the catalogs
-    file it ('9-37a'; 2026-11-10 review: the printed form was not
-    found)."""
+    ' 4-12 ' -> '4-12')."""
     s = (str(s or "")).strip()
     low = s.lower()
     for prefix in ("figure", "fig."):
@@ -248,9 +245,21 @@ def _norm_fig_number(s: str) -> str:
     else:
         if low.startswith("fig "):
             s = s[3:].strip()
-    s = s.strip(" .:")
-    s = re.sub(r"\s*\(([A-Za-z])\)$", r"\1", s)
-    return s.upper()
+    return s.strip(" .:").upper()
+
+
+def _fig_number_keys(s: str) -> tuple:
+    """The normalized forms a figure id is looked up by: itself and, for a
+    part letter printed in brackets, the plain letter the catalogs file
+    ('Figure 9-37(a)' -> ('9-37(A)', '9-37A'); 2026-11-10 review: the
+    printed form was not found)."""
+    num = _norm_fig_number(s)
+    plain = re.sub(r"\s*\(([A-Z])\)$", r"\1", num)
+    return (num, plain) if plain != num else (num,)
+
+
+def _number_clause(keys: tuple) -> str:
+    return "UPPER(figure_number) IN (" + ", ".join("?" * len(keys)) + ")"
 
 
 def _id_key(text: str) -> str:
@@ -357,10 +366,10 @@ def resolve_reference(reference: str, figure_number: str | None = None) -> str:
         if not cands:
             raise KeyError(_unknown_reference(conn, reference))
         if figure_number:
-            num = _norm_fig_number(figure_number)
+            keys = _fig_number_keys(figure_number)
             holding = [c for c in cands if conn.execute(
                 "SELECT 1 FROM figures WHERE reference = ? AND "
-                "UPPER(figure_number) = ? LIMIT 1", (c, num)).fetchone()]
+                + _number_clause(keys) + " LIMIT 1", (c, *keys)).fetchone()]
             if len(holding) == 1:
                 return holding[0]
             if holding:
@@ -368,8 +377,8 @@ def resolve_reference(reference: str, figure_number: str | None = None) -> str:
                 for c in holding:
                     row = conn.execute(
                         "SELECT caption, reference_title FROM figures WHERE "
-                        "reference = ? AND UPPER(figure_number) = ? LIMIT 1",
-                        (c, num)).fetchone()
+                        "reference = ? AND " + _number_clause(keys)
+                        + " LIMIT 1", (c, *keys)).fetchone()
                     shown.append(f"{c} ({str(row['reference_title'])[:40]}: "
                                  f"{str(row['caption'])[:70]})")
                 raise KeyError(
@@ -724,13 +733,14 @@ def figure_get(reference: str, figure_number: str,
         its page): the message names each row's page and caption.
     """
     num = _norm_fig_number(figure_number)
+    keys = _fig_number_keys(figure_number)
     ref = resolve_reference(reference, figure_number)
     conn = _ro_connect()
     try:
         rows = conn.execute(
             "SELECT * FROM figures WHERE reference = ? "
-            "AND UPPER(figure_number) = ? ORDER BY rowid",
-            (ref, num),
+            "AND " + _number_clause(keys) + " ORDER BY rowid",
+            (ref, *keys),
         ).fetchall()
         if rows and pdf_page_index is not None:
             on_page = [r for r in rows

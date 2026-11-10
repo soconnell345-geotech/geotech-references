@@ -80,6 +80,15 @@ def test_numbers_as_printed():
     assert "ground water lowering" in b["caption"]
 
 
+def test_a_bracketed_part_letter_is_looked_up_both_ways():
+    """A catalog (a local pack) that files '9-37(a)' as printed still finds
+    it; one that files '9-37a' finds the printed form."""
+    assert _figures_db._fig_number_keys("Figure 9-37(a).") == (
+        "9-37(A)", "9-37A")
+    assert _figures_db._fig_number_keys("9-37a") == ("9-37A",)
+    assert _figures_db._fig_number_keys("D-3") == ("D-3",)
+
+
 def _chapters(ref):
     return {json.loads(p.read_text(encoding="utf-8")).get("chapter")
             for p in (PKG / ref / "text").glob("*.json")}
