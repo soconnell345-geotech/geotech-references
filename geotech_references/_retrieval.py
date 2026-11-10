@@ -255,7 +255,9 @@ def load_chapter(reference: str, chapter: int,
     reference : str
         Reference identifier (e.g., 'gec_12').
     chapter : int
-        Chapter number.
+        Chapter number, as :func:`list_chapters` gives it: an appendix or
+        a prologue is filed under a number of its own (UFC 3-220-20
+        prologue 0, GEC-12 Appendix D 22).
     max_chars : int, optional
         The largest result the caller can take, in JSON characters. A
         chapter longer than that is not returned whole: the result is its
@@ -272,17 +274,34 @@ def load_chapter(reference: str, chapter: int,
     Raises
     ------
     FileNotFoundError
-        If the chapter JSON file does not exist.
+        If the reference has no chapter of that number; the message names
+        the chapters it has.
     """
     ref_dir = _reference_dir(reference)
-    chapter_file = ref_dir / f"chapter{int(chapter):02d}.json"
-    if not chapter_file.exists():
-        raise FileNotFoundError(
-            f"Chapter {chapter} not found for reference '{reference}'. "
-            f"Expected file: {chapter_file}"
-        )
-    with open(chapter_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        chapter_file = ref_dir / f"chapter{int(chapter):02d}.json"
+    except (TypeError, ValueError):
+        chapter_file = None
+    data = None
+    if chapter_file is None or not chapter_file.exists():
+        # a file not named for its number (a prologue, an appendix, a
+        # Eurocode section file) is found by its 'chapter' field, the
+        # number list_chapters gives for it
+        numbers = []
+        for json_file in sorted(ref_dir.glob("*.json")):
+            with open(json_file, "r", encoding="utf-8") as f:
+                candidate = json.load(f)
+            numbers.append(candidate.get("chapter", 0))
+            if data is None and str(numbers[-1]) == str(chapter).strip():
+                data = candidate
+        if data is None:
+            raise FileNotFoundError(
+                f"Chapter {chapter} not found for reference '{reference}'; "
+                "its chapters: "
+                + ", ".join(str(n) for n in dict.fromkeys(numbers)))
+    else:
+        with open(chapter_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
     if max_chars is None:
         return data
     size = json_size(data)
