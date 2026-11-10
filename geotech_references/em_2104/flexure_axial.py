@@ -921,7 +921,9 @@ def pure_flexure_singly(as_, fy, fc_prime, b, d, phi=None):
         Mn = As*fy*(d - a/2)                    [phi*Mn if phi is given]
 
     Verified against Appendix C-2 (As=1.58 sq in, fc'=4 ksi, fy=60 ksi,
-    b=12 in, d=20.5 in, phi=0.9): phi*Mn = 137.5 k-ft.
+    b=12 in, d=20.5 in, phi=0.9): this function returns phi*Mn = 1649.9
+    kip-in., printed as "1649.9 in.-k = 137.5 ft-k" (printed p. 54,
+    EM_1110-2-2104_2025.pdf pdf 60).
 
     Parameters
     ----------
