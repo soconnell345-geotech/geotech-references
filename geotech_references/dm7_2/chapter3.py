@@ -53,7 +53,7 @@ def dry_unit_weight(gamma_t: float, w: float) -> float:
 
 def dry_unit_weight_from_saturation(S: float, w: float,
                                     G_s: float,
-                                    gamma_w: float = 62.4) -> float:
+                                    gamma_w: float) -> float:
     """Dry unit weight from degree of saturation (Equation 3-2).
 
     Relates the dry unit weight to the degree of saturation, water content,
@@ -78,9 +78,9 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     G_s : float
         Specific gravity of solids (dimensionless).  Typically 2.60 to 2.80
         for most soils.
-    gamma_w : float, optional
-        Unit weight of water (pcf or kN/m^3).  Defaults to 62.4 pcf.
-        Use 9.81 kN/m^3 for SI units.
+    gamma_w : float
+        Unit weight of water (9.81 kN/m^3 or 62.4 pcf); the result is in
+        this unit.  Required: there is no default.
 
     Returns
     -------
@@ -354,7 +354,7 @@ def oversize_corrected_water_content(
 
 def oversize_corrected_dry_unit_weight(
     gamma_dF: float, P_C: float, G_sC: float,
-    P_F: float, gamma_w: float = 62.4
+    P_F: float, gamma_w: float
 ) -> float:
     """Combined dry unit weight with oversize correction (Equation 3-7).
 
@@ -379,9 +379,9 @@ def oversize_corrected_dry_unit_weight(
     P_F : float
         Percent of the finer fraction as a decimal.  Must satisfy
         P_C + P_F = 1.0.
-    gamma_w : float, optional
-        Unit weight of water (pcf or kN/m^3).  Defaults to 62.4 pcf.
-        Use 9.81 kN/m^3 for SI units.
+    gamma_w : float
+        Unit weight of water in the unit of *gamma_dF* (9.81 kN/m^3 or
+        62.4 pcf).  Required: there is no default.
 
     Returns
     -------
@@ -477,14 +477,15 @@ def borrow_volume_from_waste_weight(
 def borrow_volume_from_waste_fraction(
     V_F: float, gamma_d_F: float, gamma_d_B: float, X_L: float
 ) -> float:
-    """Total borrow volume from fill volume and waste fraction (Equation 3-9).
+    """Total borrow volume V_B (in the volume unit of V_F) for a fill
+    volume when the waste is a loss percentage X_L, Equation 3-9 of
+    UFC 3-220-20: V_B = V_F (gamma_d,F / gamma_d,B) (1 + X_L).
 
-    Calculates the total volume of borrow required to produce a specified
-    fill volume when the waste is expressed as a loss percentage rather than
-    a total weight.
+    The manual's example (Figure 3-13): 1800 ft^3 of fill at 112.7 pcf
+    from borrow at 102 pcf with a 2 % loss needs 2029 ft^3 of borrow.
 
     .. math::
-        V_B = V_F \\frac{\\gamma_{d,F}}{\\gamma_{d,B} (1 - X_L)}
+        V_B = V_F \\frac{\\gamma_{d,F}}{\\gamma_{d,B}} (1 + X_L)
 
     Parameters
     ----------
@@ -513,7 +514,8 @@ def borrow_volume_from_waste_fraction(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-9, p. 173.
+    Chapter 3, Equation 3-9, PDF p. 173 (printed p. 135); example in
+    Figure 3-13, PDF p. 174 (printed p. 136).
     """
     if V_F < 0.0:
         raise ValueError("V_F must be non-negative.")
@@ -523,13 +525,15 @@ def borrow_volume_from_waste_fraction(
         raise ValueError("gamma_d_B must be positive.")
     if X_L < 0.0 or X_L >= 1.0:
         raise ValueError("X_L must be in the range [0, 1).")
-    return V_F * gamma_d_F / (gamma_d_B * (1.0 - X_L))
+    return V_F * (gamma_d_F / gamma_d_B) * (1.0 + X_L)
 
 
 def shrinkage_factor(
     gamma_d_F: float, gamma_d_B: float, X_L: float
 ) -> float:
-    """Overall shrinkage factor for borrow-fill calculations (Equation 3-10).
+    """Overall shrinkage factor Delta V / V_F (a decimal fraction of the
+    fill volume) for borrow and fill, Equation 3-10 of UFC 3-220-20:
+    (gamma_d,F / gamma_d,B) (1 + X_L) - 1, with Delta V = V_B - V_F.
 
     Quantifies the fractional change in total volume from borrow to fill,
     accounting for both the change in dry unit weight and the loss of
@@ -539,7 +543,7 @@ def shrinkage_factor(
     15% of V_F can be used for estimating purposes.
 
     .. math::
-        \\frac{\\Delta V}{V_F} = \\frac{\\gamma_{d,F}}{\\gamma_{d,B} (1 - X_L)} - 1
+        \\frac{\\Delta V}{V_F} = \\frac{\\gamma_{d,F}}{\\gamma_{d,B}} (1 + X_L) - 1
 
     where :math:`\\Delta V = V_B - V_F`.
 
@@ -568,7 +572,7 @@ def shrinkage_factor(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-10, p. 173.
+    Chapter 3, Equation 3-10, PDF p. 173 (printed p. 135).
     """
     if gamma_d_F <= 0.0:
         raise ValueError("gamma_d_F must be positive.")
@@ -576,4 +580,4 @@ def shrinkage_factor(
         raise ValueError("gamma_d_B must be positive.")
     if X_L < 0.0 or X_L >= 1.0:
         raise ValueError("X_L must be in the range [0, 1).")
-    return gamma_d_F / (gamma_d_B * (1.0 - X_L)) - 1.0
+    return (gamma_d_F / gamma_d_B) * (1.0 + X_L) - 1.0
