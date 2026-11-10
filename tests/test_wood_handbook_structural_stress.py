@@ -127,6 +127,29 @@ class TestCombinedBendingAxialStress:
         assert eccentric["ft_max"] == pytest.approx(concentric["ft_max"])
         assert eccentric["fc_max"] == pytest.approx(concentric["fc_max"])
 
+    def test_compression_case_superposes_eq_9_12(self):
+        # FPL-GTR-282 pdf 244 / printed 9-12: total stress = Eq 9-12 + Eq
+        # 9-22. A compressive P adds P/A on the concave edge: fb0 = 10,
+        # P/A = 2 (P = 4, A = 2), P/Pcr = 0.2 gives fb 12.5, ft_max 10.5,
+        # fc_max 14.5 (the edges were swapped: 14.5 and 10.5).
+        r = combined_bending_axial_stress(10.0, 4.0, 2.0, 20.0, is_tension=False)
+        assert r["fb"] == pytest.approx(12.5)
+        assert r["ft_max"] == pytest.approx(10.5)
+        assert r["fc_max"] == pytest.approx(14.5)
+
+    def test_eccentric_compression_adds_the_moment(self):
+        # fb0 augmented by +/-P e0/S (pdf 244): the printed tensile case
+        # subtracts; a compressive P at the same e0 adds. fb0 = 10,
+        # P e0/S = 1 (P = 4, e0 = 0.5, S = 2), P/A = 2, P/Pcr = 0.2:
+        # (10 + 1)/0.8 = 13.75, ft_max 11.75, fc_max 15.75.
+        r = eccentric_bending_axial_stress(10.0, 0.5, 2.0, 4.0, 2.0, 20.0, is_tension=False)
+        assert r["ft_max"] == pytest.approx(11.75)
+        assert r["fc_max"] == pytest.approx(15.75)
+        # The printed tensile case is unchanged: (10 - 1)/1.2 + 2, - 2.
+        t = eccentric_bending_axial_stress(10.0, 0.5, 2.0, 4.0, 2.0, 20.0, is_tension=True)
+        assert t["ft_max"] == pytest.approx(9.0 / 1.2 + 2.0)
+        assert t["fc_max"] == pytest.approx(9.0 / 1.2 - 2.0)
+
 
 class TestTorsionalShearStress:
     def test_circular_formula(self):

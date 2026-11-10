@@ -485,17 +485,20 @@ def crack_initiation_check(h, b, moment, shear_force, a_coefficient, b_coefficie
 # ============================================================================
 
 def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension):
-    """Eq 9-22: net bending stress from combined bending and concentric
-    axial load, on a simply supported, pin-ended beam (printed p. 9-12).
-    Total stress is by superposition of this with Eq 9-12 (fb + P/A).
+    """Eq 9-22: net bending stress fb from combined bending and concentric
+    axial load on a simply supported, pin-ended beam, and the edge stresses
+    ft_max (convex edge, tension) and fc_max (concave edge, compression),
+    in the unit of fb0 and P/A (printed p. 9-12).
 
         fb = fb0 / (1 +/- P/Pcr)   (+ tension, - compression)
 
-    Worked example forms (printed): with fb0 tensile on the convex edge
-    and compressive on the concave edge, and an added tensile axial force P:
-        ft_max = fb0/(1+P/Pcr) + P/A   (convex edge)
-        fc_max = fb0/(1+P/Pcr) - P/A   (concave edge; negative result means
-                                         the stress is actually tensile)
+    The print obtains the total stress "by superposition of the stresses
+    given by Equations (9-12) and (9-22)" and prints the edge stresses for
+    a tensile P only: ft_max = fb0/(1+P/Pcr) + P/A, fc_max = fb0/(1+P/Pcr)
+    - P/A (FPL-GTR-282 pdf 244). For a compressive P the same superposition
+    gives ft_max = fb - P/A and fc_max = fb + P/A (fb0 = 10, P/A = 2,
+    P/Pcr = 0.2: ft_max 10.5, fc_max 14.5). A negative result means the
+    stress is of the other sign.
 
     Parameters
     ----------
@@ -518,7 +521,9 @@ def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension)
     """
     sign = 1.0 if is_tension else -1.0
     fb = fb0 / (1.0 + sign * axial_load / p_critical)
-    axial_stress_value = axial_load / area
+    # Eq 9-12 superposed: a tensile P adds P/A on the convex (tension) edge,
+    # a compressive P adds P/A on the concave (compression) edge.
+    axial_stress_value = sign * axial_load / area
     return {
         "fb0": fb0, "axial_load": axial_load, "area": area,
         "p_critical": p_critical, "is_tension": is_tension, "fb": fb,
@@ -529,14 +534,22 @@ def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension)
 
 def eccentric_bending_axial_stress(fb0, eccentricity, section_modulus_value,
                                     axial_load, area, p_critical, is_tension):
-    """Printed p. 9-12: maximum tensile/compressive stresses under an
-    eccentrically applied axial load added to transverse bending (fb0
-    tensile on the convex edge, compressive on the concave edge). The
-    bending stress fb0 is augmented by +/- P*e0/S before applying the
-    Eq 9-22 amplification.
+    """Printed p. 9-12: maximum tensile stress ft_max (convex edge) and
+    compressive stress fc_max (concave edge), in the unit of fb0 and P/A,
+    under an eccentrically applied axial load added to transverse bending
+    (fb0 tensile on the convex edge, compressive on the concave edge).
+
+    The print augments fb0 "by +/-P*e0/S" and prints the case of a tensile
+    P eccentric toward the concave edge (Figure 9-7, FPL-GTR-282 pdf 244):
 
         ft_max = (fb0 - P*e0/S)/(1+P/Pcr) + P/A
         fc_max = (fb0 - P*e0/S)/(1+P/Pcr) - P/A
+
+    For a compressive P at the same eccentricity the moment P*e0 adds to
+    the bending and P/A adds on the concave edge (the superposition of
+    Eq 9-12 and 9-22): ft_max = (fb0 + P*e0/S)/(1-P/Pcr) - P/A and fc_max =
+    (fb0 + P*e0/S)/(1-P/Pcr) + P/A (fb0 = 10, P*e0/S = 1, P/A = 2,
+    P/Pcr = 0.2: 11.75 and 15.75).
 
     Parameters
     ----------
@@ -562,9 +575,9 @@ def eccentric_bending_axial_stress(fb0, eccentricity, section_modulus_value,
         {'ft_max', 'fc_max', 'printed_page': '9-12', ...}
     """
     sign = 1.0 if is_tension else -1.0
-    augmented = fb0 - axial_load * eccentricity / section_modulus_value
+    augmented = fb0 - sign * axial_load * eccentricity / section_modulus_value
     amplified = augmented / (1.0 + sign * axial_load / p_critical)
-    axial_stress_value = axial_load / area
+    axial_stress_value = sign * axial_load / area
     return {
         "fb0": fb0, "eccentricity": eccentricity, "axial_load": axial_load,
         "ft_max": amplified + axial_stress_value,
