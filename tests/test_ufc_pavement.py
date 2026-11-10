@@ -520,18 +520,30 @@ class TestMinThickness:
 
 
 class TestEquivalencyFactor:
+    # Table 9-1, UFC 3-250-01 PDF 47 (pdf_page 46), printed 27. Asphalt-
+    # stabilized: all-bituminous concrete 1.15/2.30; GW, GP, GM, GC
+    # 1.00/2.00; SW, SP, SM, SC */1.50 (* not used for base course).
     def test_asphalt_base(self):
-        assert table_9_1_equivalency_factor("asphalt", "gm", "base")["equivalency_factor"] == 1.15
+        assert table_9_1_equivalency_factor("asphalt", "gm", "base")["equivalency_factor"] == 1.00
+        assert table_9_1_equivalency_factor("asphalt", "GW", "subbase")["equivalency_factor"] == 2.00
+        assert table_9_1_equivalency_factor("asphalt", "SM", "subbase")["equivalency_factor"] == 1.50
+        with pytest.raises(ValueError, match="not used as a base"):
+            table_9_1_equivalency_factor("asphalt", "SP", "base")
+        with pytest.raises(ValueError, match="No equivalency factor"):
+            table_9_1_equivalency_factor("asphalt", "CL", "subbase")
 
     def test_appendix_g4_cement_base(self):
-        # G-4.1: cement-stabilized base E=1.15
+        # G-4.1 (PDF 280, printed 260): cement-stabilized GP base E=1.15
         r = table_9_1_equivalency_factor("cement", "GP", "base")
         assert r["equivalency_factor"] == 1.15
 
     def test_appendix_g4_asphalt_subbase(self):
-        # G-4.2: subbase E=2.30
-        r = table_9_1_equivalency_factor("asphalt", "GW", "subbase")
+        # G-4.2 (PDF 280, printed 260), bituminous pavement: base 1.15,
+        # subbase 2.30 = the all-bituminous concrete row.
+        r = table_9_1_equivalency_factor("asphalt", "all-bituminous concrete", "subbase")
         assert r["equivalency_factor"] == 2.30
+        r = table_9_1_equivalency_factor("asphalt", "All-bituminous concrete", "base")
+        assert r["equivalency_factor"] == 1.15
 
     def test_lime_cl_base_raises(self):
         with pytest.raises(ValueError, match="not used as a base"):

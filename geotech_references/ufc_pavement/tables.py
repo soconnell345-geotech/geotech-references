@@ -496,7 +496,16 @@ def table_7_2_min_thickness(esal, base_cbr) -> dict:
 # ============================================================================
 
 _TABLE_9_1 = {
-    ("asphalt", "all"): {"base": 1.15, "subbase": 2.30},
+    # Asphalt-stabilized, as printed: three rows by material.
+    ("asphalt", "all_bituminous_concrete"): {"base": 1.15, "subbase": 2.30},
+    ("asphalt", "gw"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gp"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gm"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gc"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "sw"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sp"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sm"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sc"): {"base": None, "subbase": 1.50},
     ("cement", "gw"): {"base": 1.15, "subbase": 2.30},
     ("cement", "gp"): {"base": 1.15, "subbase": 2.30},
     ("cement", "sw"): {"base": 1.15, "subbase": 2.30},
@@ -548,12 +557,16 @@ _STABILIZER_ALIASES = {
 
 
 def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dict:
-    """Equivalency factor for stabilized pavement material (Table 9-1,
-    Chapter 9; pdf_page 46, printed 27).
+    """Equivalency factor for stabilized material, UFC 3-250-01 Table 9-1
+    (pdf_page 46, printed 27); returns the factor E, the inches of
+    conventional base or subbase that 1 in of the stabilized material
+    replaces (t_stab = t_conventional / E).
 
-    1 in of stabilized material replaces E inches of conventional base or
-    subbase (t_stab = t_conventional / E). Cement content is limited to
-    <= 4% by weight to prevent reflective cracking.
+    Asphalt-stabilized rows as printed: all-bituminous concrete 1.15 base /
+    2.30 subbase; GW, GP, GM, GC 1.00 / 2.00; SW, SP, SM, SC subbase 1.50
+    only (* not used for base course material). The cement content must be
+    limited to 4 percent by weight or less to prevent excessive reflective
+    cracking (para 9-5.1, same page).
 
     Verified against the guide's printed examples (Appendix G, G-4.1/G-4.2,
     pdf_page 279-280): cement-stabilized base E = 1.15, subbase E = 2.30.
@@ -564,8 +577,9 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
         'asphalt', 'cement', 'lime', 'lime_cement_flyash',
         'unbound_crushed_stone', or 'unbound_aggregate'.
     uscs_class : str
-        USCS classification of the soil to be stabilized (e.g. 'CL', 'SM').
-        Ignored for 'asphalt', 'unbound_crushed_stone', 'unbound_aggregate'.
+        USCS classification of the soil to be stabilized (e.g. 'CL', 'SM'),
+        or 'all-bituminous concrete' for that asphalt row. Ignored for
+        'unbound_crushed_stone' and 'unbound_aggregate'.
     layer_type : str
         'base' or 'subbase'.
 
@@ -592,9 +606,11 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
     if layer_key not in ("base", "subbase"):
         raise ValueError(f"layer_type must be 'base' or 'subbase', got '{layer_type}'")
 
-    all_stabs = {"asphalt", "unbound_crushed_stone", "unbound_aggregate"}
+    all_stabs = {"unbound_crushed_stone", "unbound_aggregate"}
     if stab_resolved in all_stabs:
         uscs_key = "all"
+    elif stab_resolved == "asphalt" and "bituminous" in uscs_class.lower():
+        uscs_key = "all_bituminous_concrete"
     else:
         simple = uscs_class.lower().strip().split("-")[0].strip()
         uscs_key = _USCS_TO_GROUP_9_1.get(simple, simple)
