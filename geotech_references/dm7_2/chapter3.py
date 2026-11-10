@@ -155,7 +155,13 @@ def relative_compaction(gamma_d_field: float, gamma_d_max: float) -> float:
 
 
 def relative_water_content(w_field: float, w_opt: float) -> float:
-    """Relative water content of compacted fill (Equation 3-4).
+    """Relative water content Delta w (percentage points) of compacted
+    fill, Equation 3-4 of UFC 3-220-20, coded as w_field - w_opt.
+    Equation 3-4 is printed the other way round, Delta w = w_opt -
+    w_field (PDF p. 150, printed p. 112); the code follows footnote A of
+    Table 3-11, "Relative water content, Delta w = w_field - w_opt" (PDF
+    p. 182, printed p. 144), whose specifications (-2 % to +2 %, "Wet")
+    read with that sign (lead's ruling).
 
     Expresses the water content of the compacted fill relative to the
     optimum water content from the reference compaction curve.  Positive
@@ -187,7 +193,8 @@ def relative_water_content(w_field: float, w_opt: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-4, p. 150.
+    Chapter 3, Equation 3-4, PDF p. 150 (printed p. 112); Table 3-11,
+    footnote A, PDF p. 182 (printed p. 144).
     """
     if w_field < 0.0:
         raise ValueError("w_field must be non-negative.")
