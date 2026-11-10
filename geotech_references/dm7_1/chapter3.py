@@ -97,11 +97,13 @@ def relative_density_from_void_ratio(
 def relative_density_from_dry_density(
     gamma_d: float, gamma_d_max: float, gamma_d_min: float
 ) -> float:
-    """Relative density from dry densities (Equation 3-2, density form).
+    """Relative density Dr (%) of a soil with less than 15% fines from dry densities, Equation 3-2 (density form), coded with gamma_d - gamma_d-min in the numerator where the manual prints gamma_d - gamma_d-max.
 
-    Equivalent formulation of relative density using dry densities instead
-    of void ratios.  Applicable to coarse-grained soils with less than 15%
-    fines.
+    Printed (p. 141): Dr = (gamma_d-max / gamma_d) [(gamma_d - gamma_d-max)
+    / (gamma_d-max - gamma_d-min)] 100%.  Coded: the same with
+    gamma_d - gamma_d-min in the numerator of the bracket.  The printed
+    second form is negative for any soil looser than its densest state
+    and so cannot equal the first form it is set equal to; see Notes.
 
     .. math::
         D_r = \\frac{\\gamma_{d-max}}{\\gamma_d}
@@ -130,6 +132,24 @@ def relative_density_from_dry_density(
     ValueError
         If *gamma_d_max* equals *gamma_d_min*, or if *gamma_d* is zero
         or negative.
+
+    Notes
+    -----
+    The manual prints Equation 3-2 (PDF p. 169, printed p. 141) as two
+    forms set equal::
+
+        Dr = (e_max - e) / (e_max - e_min) * 100%
+           = (gamma_d-max / gamma_d)
+             * [(gamma_d - gamma_d-max) / (gamma_d-max - gamma_d-min)] * 100%
+
+    The printed second form is negative for any soil looser than its
+    densest state (-56.25% at gamma_d 16, gamma_d-max 18, gamma_d-min
+    14) and so cannot equal the first form it is set equal to.  It is
+    coded with gamma_d-min in the numerator, which makes the two sides
+    equal (+56.25% from both, whatever the specific gravity)::
+
+        Dr = (gamma_d-max / gamma_d)
+             * [(gamma_d - gamma_d-min) / (gamma_d-max - gamma_d-min)] * 100%
 
     References
     ----------

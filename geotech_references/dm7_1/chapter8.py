@@ -71,7 +71,7 @@ def spt_n_correction_for_pore_pressure(n60: float) -> float:
 
 
 def spt_friction_angle_roads(n60: float) -> float:
-    """Effective stress friction angle from SPT N60 for roads and bridges (Equation 8-2).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from SPT N60 (0 to 50), for roads and bridges, Equation 8-2 (Shioi and Fukui 1982).
 
     Correlation by Shioi and Fukui (1982) relating the effective stress
     friction angle of coarse-grained soils to the SPT N value corrected
@@ -94,7 +94,8 @@ def spt_friction_angle_roads(n60: float) -> float:
     Raises
     ------
     ValueError
-        If *n60* is negative.
+        If *n60* is negative, or above 50, where the curve Figure 8-2
+        plots for this equation ends.
 
     References
     ----------
@@ -103,11 +104,16 @@ def spt_friction_angle_roads(n60: float) -> float:
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
+    if n60 > 50.0:
+        raise ValueError(
+            "n60 is above 50, the end of the curve Figure 8-2 (UFS 3-220-10 "
+            "p. 397) plots for Equation 8-2."
+        )
     return math.sqrt(15.0 * n60) + 15.0
 
 
 def spt_friction_angle_buildings(n60: float) -> float:
-    """Effective stress friction angle from SPT N60 for buildings (Equation 8-3).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from SPT N60 (0 to 50), for buildings, Equation 8-3 (Shioi and Fukui 1982).
 
     Correlation by Shioi and Fukui (1982) relating the effective stress
     friction angle of coarse-grained soils to the SPT N value corrected
@@ -130,7 +136,8 @@ def spt_friction_angle_buildings(n60: float) -> float:
     Raises
     ------
     ValueError
-        If *n60* is negative.
+        If *n60* is negative, or above 50, where the line Figure 8-2
+        plots for this equation ends.
 
     References
     ----------
@@ -139,13 +146,18 @@ def spt_friction_angle_buildings(n60: float) -> float:
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
+    if n60 > 50.0:
+        raise ValueError(
+            "n60 is above 50, the end of the line Figure 8-2 (UFS 3-220-10 "
+            "p. 397) plots for Equation 8-3."
+        )
     return 0.3 * n60 + 27.0
 
 
 def spt_friction_angle_kulhawy_mayne(
     n60: float, sigma_v_eff: float, pa: float
 ) -> float:
-    """Effective stress friction angle from SPT using Kulhawy and Mayne (Equation 8-4).
+    """Peak effective stress friction angle phi' (degrees) of sand from SPT N60 (0 to 60) and vertical effective stress (up to 3 atmospheres), Equation 8-4 (Kulhawy and Mayne 1990).
 
     Kulhawy and Mayne (1990) approximation of the Schmertmann (1975) and
     DeMello (1971) relationships between peak effective stress friction
@@ -155,6 +167,12 @@ def spt_friction_angle_kulhawy_mayne(
         \\tan(\\phi') = \\left[\\frac{N_{60}}{12.2 + 20.3
         \\left(\\frac{\\sigma'_v}{P_a}\\right)}\\right]^{0.34}
 
+    Figure 8-3 (bottom), whose trends the equation approximates, prints
+    an N60 axis from 0 to 60 and a sigma'v axis from 0 to 3.0 kgf/cm2
+    (294.2 kPa, 2.90 atmospheres).  The function refuses sigma'v/Pa
+    above 3.0: the axis end taken in atmospheres, a few percent over
+    the printed 3.0 kgf/cm2.
+
     Parameters
     ----------
     n60 : float
@@ -162,8 +180,8 @@ def spt_friction_angle_kulhawy_mayne(
     sigma_v_eff : float
         Vertical effective stress (stress units, e.g., kPa, psf).
     pa : float
-        Atmospheric pressure in the same units as *sigma_v_eff*
-        (e.g., 101.325 kPa or 2116.2 psf).
+        Atmospheric pressure: one atmosphere in the units of
+        *sigma_v_eff* (101.325 kPa, 2116.2 psf or 1.033 kgf/cm2).
 
     Returns
     -------
@@ -174,7 +192,8 @@ def spt_friction_angle_kulhawy_mayne(
     ------
     ValueError
         If *n60* is negative, *sigma_v_eff* is negative, or *pa* is not
-        positive.
+        positive; or if *n60* is above 60 or *sigma_v_eff* / *pa* above
+        3.0, the ends of the axes of Figure 8-3 (bottom) (see above).
 
     References
     ----------
@@ -187,6 +206,21 @@ def spt_friction_angle_kulhawy_mayne(
         raise ValueError("sigma_v_eff must be non-negative.")
     if pa <= 0.0:
         raise ValueError("pa must be positive.")
+    if n60 > 60.0:
+        raise ValueError(
+            "n60 is above 60, the end of the N60 axis of Figure 8-3 (bottom) "
+            "(UFS 3-220-10 p. 398), whose trends Equation 8-4 approximates."
+        )
+    # The axis ends at 3.0 kgf/cm2 = 294.2 kPa = 2.9035 standard
+    # atmospheres; the limit is taken as 3 atmospheres (pa is one
+    # atmosphere in the caller's units), a few percent over the print.
+    if sigma_v_eff / pa > 3.0:
+        raise ValueError(
+            "sigma_v_eff/pa is above 3.0 (3 atmospheres): the stress axis of "
+            "Figure 8-3 (bottom) (UFS 3-220-10 p. 398), whose trends "
+            "Equation 8-4 approximates, ends at 3.0 kgf/cm2 (2.90 "
+            "atmospheres)."
+        )
     ratio = n60 / (12.2 + 20.3 * (sigma_v_eff / pa))
     if ratio < 0.0:
         raise ValueError("Computed ratio is negative; check inputs.")
@@ -195,7 +229,7 @@ def spt_friction_angle_kulhawy_mayne(
 
 
 def spt_friction_angle_wolff(n1_60: float) -> float:
-    """Effective stress friction angle from N1,60 using Wolff (Equation 8-5).
+    """Effective stress friction angle phi' (degrees) of coarse-grained soil from N1,60 (0 to 60), Equation 8-5 (Wolff 1989).
 
     Wolff (1989) approximation of the Peck et al. (1974) correlation
     between effective stress friction angle and SPT N value corrected for
@@ -218,7 +252,8 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     Raises
     ------
     ValueError
-        If *n1_60* is negative.
+        If *n1_60* is negative, or above 60, the end of the N1,60 axis
+        of Figure 8-4.
 
     References
     ----------
@@ -227,11 +262,16 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
+    if n1_60 > 60.0:
+        raise ValueError(
+            "n1_60 is above 60, the end of the N1,60 axis of Figure 8-4 "
+            "(UFS 3-220-10 p. 399), which plots this relationship."
+        )
     return 27.1 + 0.3 * n1_60 - 0.00054 * n1_60 ** 2
 
 
 def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
-    """Effective stress friction angle from N1,60 using Hatanaka and Uchida (Equation 8-6).
+    """Effective stress friction angle phi' (degrees) of sands from N1,60 (0 to 60), Equation 8-6 (Hatanaka and Uchida 1996).
 
     Hatanaka and Uchida (1996) correlation for the effective stress friction
     angle of sands based on N1,60, developed from triaxial tests on
@@ -255,7 +295,8 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     Raises
     ------
     ValueError
-        If *n1_60* is negative.
+        If *n1_60* is negative, or above 60, the end of the N1,60 axis
+        of Figure 8-4.
 
     References
     ----------
@@ -264,6 +305,11 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
+    if n1_60 > 60.0:
+        raise ValueError(
+            "n1_60 is above 60, the end of the N1,60 axis of Figure 8-4 "
+            "(UFS 3-220-10 p. 399), which plots this relationship."
+        )
     return math.sqrt(15.4 * n1_60) + 20.0
 
 
@@ -275,15 +321,18 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
 def cpt_friction_angle_mayne(
     qt: float, sigma_v_eff: float, pa: float
 ) -> float:
-    """Effective stress friction angle from CPT using Mayne (Equation 8-7).
+    """Drained friction angle phi' (degrees) of coarse-grained soil from CPT, Equation 8-7 (Mayne 2007).
 
     Mayne (2007) correlation using calibration chamber tests to estimate
     the effective stress friction angle of coarse-grained soils from CPT
-    corrected tip resistance.
+    corrected tip resistance.  As printed (the vertical stress term is
+    under a square root)::
+
+        phi' = 17.6 + 11 * log10[ (qt / Pa) / sqrt(sigma'v / Pa) ]
 
     .. math::
         \\phi' = 17.6 + 11 \\cdot \\log_{10}\\!
-        \\left(\\frac{q_t / P_a}{\\sigma'_v / P_a}\\right)
+        \\left(\\frac{q_t / P_a}{\\sqrt{\\sigma'_v / P_a}}\\right)
 
     Parameters
     ----------
@@ -316,53 +365,25 @@ def cpt_friction_angle_mayne(
         raise ValueError("sigma_v_eff must be positive.")
     if pa <= 0.0:
         raise ValueError("pa must be positive.")
-    return 17.6 + 11.0 * math.log10((qt / pa) / (sigma_v_eff / pa))
+    return 17.6 + 11.0 * math.log10((qt / pa) / math.sqrt(sigma_v_eff / pa))
 
 
 def cpt_friction_angle_robertson_campanella(
     qc: float, sigma_v_eff: float
 ) -> float:
-    """Effective stress friction angle from CPT using Robertson and Campanella (Equation 8-8).
+    """Drained friction angle phi' (degrees) of sand from CPT tip resistance, Equation 8-8.
 
     Robertson and Campanella (1983) correlation for the effective stress
     friction angle from electric cone CPT tip resistance tested in a
     calibration chamber on uncemented, unaged, moderately compressible
-    quartz sands.  Approximated by Robertson and Cabal (2014).
+    quartz sands (Figure 8-8(a)), approximated by Robertson and Cabal
+    (2014).  As printed::
+
+        tan(phi') = (1 / 2.68) * [ log10(qc / sigma'v) + 0.29 ]
 
     .. math::
-        \\phi' = \\tan^{-1}\\!\\left[
-        \\frac{1}{\\log_{10}\\!\\left(\\frac{q_c}{\\sigma'_v}\\right)
-        + 0.29} \\cdot 2.68 \\right]^{-1}
-
-    Note: The actual form from the text is:
-    tan(phi') = 1 / [log10(qc/sigma'v) + 0.29] / 2.68
-    which simplifies to phi' = arctan(log10(qc/sigma'v) + 0.29) ... after
-    rearranging from the PDF equation presented as:
-    phi' = arctan[1 / (log10(qc/sigma'v) + 0.29)] ... but the PDF shows:
-    tan^{-1}[log(qc/sigma'v) + 0.29] ... Reading the equation carefully:
-
-    .. math::
-        \\phi' = \\arctan\\!\\left[
-        \\frac{1}{\\log_{10}(q_c / \\sigma'_v) + 0.29}
-        \\right] \\div 2.68
-
-    Actually from the PDF text: 1 / [tan(phi') = log(qc/sv) + 0.29] / 2.68
-    The standard Robertson & Campanella (1983) form is:
-
-    .. math::
-        \\phi' = \\arctan\\!\\left[0.1 + 0.38 \\cdot \\log_{10}(q_c/\\sigma'_v)\\right]
-
-    From the PDF extracted text the equation reads:
-    tan^{-1}[1 / (log(qc/sigma'v) + 0.29)] = phi' ... no, reading again:
-    phi' = arctan[ 1 / ( log(qc/sigma'v) + 0.29 ) ] ... wait, let me
-    re-read: "1 / tan(phi') = log(qc/sigma'v) + 0.29" ... rearranged as
-    phi' = arctan(1 / (log10(qc/sigma'v) + 0.29))... but there is also
-    the 2.68 factor.
-
-    The standard published form (Robertson and Cabal 2014) is:
-    phi' = arctan[1 / (2.68 * (log10(qc/sigma'v) + 0.29))]
-
-    This is an inverse tangent equation.
+        \\tan\\phi' = \\frac{1}{2.68}\\left[
+        \\log_{10}\\!\\left(\\frac{q_c}{\\sigma'_v}\\right) + 0.29\\right]
 
     Parameters
     ----------
@@ -374,12 +395,14 @@ def cpt_friction_angle_robertson_campanella(
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Drained (effective stress) friction angle, phi' (degrees).
 
     Raises
     ------
     ValueError
-        If *qc* is not positive or *sigma_v_eff* is not positive.
+        If *qc* is not positive, *sigma_v_eff* is not positive, or
+        log10(qc/sigma'v) + 0.29 is not positive (the equation then gives
+        no positive friction angle).
 
     References
     ----------
@@ -391,15 +414,13 @@ def cpt_friction_angle_robertson_campanella(
         raise ValueError("qc must be positive.")
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
-    log_ratio = math.log10(qc / sigma_v_eff)
-    denominator = 2.68 * (log_ratio + 0.29)
-    if denominator <= 0.0:
+    bracket = math.log10(qc / sigma_v_eff) + 0.29
+    if bracket <= 0.0:
         raise ValueError(
-            "Computed denominator is non-positive; qc/sigma_v_eff ratio "
-            "may be too small for this correlation."
+            "log10(qc/sigma_v_eff) + 0.29 is not positive; qc/sigma_v_eff "
+            "is too small for Equation 8-8 (UFS 3-220-10 p. 402)."
         )
-    phi_rad = math.atan(1.0 / denominator)
-    return math.degrees(phi_rad)
+    return math.degrees(math.atan(bracket / 2.68))
 
 
 def cpt_oc_nc_resistance_ratio(ocr: float, beta: float) -> float:
@@ -569,15 +590,18 @@ def dmt_friction_angle_lower_bound(kd: float) -> float:
 
 
 def fully_softened_friction_angle(pi: float) -> float:
-    """Fully softened friction angle from plasticity index (Equation 8-13).
+    """Fully softened friction angle phi'FS (degrees) from plasticity index, Equation 8-13.
 
     Gibson (1953) relationship for the fully softened friction angle
-    (phi'FS), approximated by Carter and Bentley (2016).  The fully
-    softened friction angle is taken to be equal to the normally
-    consolidated peak value.
+    (phi'FS), the mean trend line of Figure 8-13 as approximated by
+    Carter and Bentley (2016).  The fully softened friction angle is
+    taken to be equal to the normally consolidated peak value.  As
+    printed (Figure 8-13 plots PI from 0 to 100)::
+
+        phi'FS = 0.0058 * PI^1.73 - 0.32 * PI + 36.2
 
     .. math::
-        \\phi'_{FS} = -0.0058 \\cdot PI^{1.73} + 0.32 \\cdot PI + 36.2
+        \\phi'_{FS} = 0.0058 \\cdot PI^{1.73} - 0.32 \\cdot PI + 36.2
 
     Parameters
     ----------
@@ -592,7 +616,8 @@ def fully_softened_friction_angle(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or above 100, the end of the plasticity
+        index axis of Figure 8-13.
 
     References
     ----------
@@ -601,7 +626,12 @@ def fully_softened_friction_angle(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
-    return -0.0058 * pi ** 1.73 + 0.32 * pi + 36.2
+    if pi > 100.0:
+        raise ValueError(
+            "pi is above 100, the end of the plasticity index axis of Figure "
+            "8-13 (UFS 3-220-10 p. 408), which plots Equation 8-13."
+        )
+    return 0.0058 * pi ** 1.73 - 0.32 * pi + 36.2
 
 
 def secant_friction_angle_shear_strength(
@@ -693,7 +723,7 @@ def power_function_shear_strength(
 
 
 def residual_friction_angle_gibson(pi: float) -> float:
-    """Residual friction angle from plasticity index (Equation 8-16).
+    """Residual friction angle phi'r (degrees) from plasticity index (0 to 100), Equation 8-16 (Gibson 1953, as approximated by Carter and Bentley 2016).
 
     Gibson (1953) relationship for the residual friction angle (phi'r),
     approximated by Carter and Bentley (2016).  The polynomial fit agrees
@@ -715,7 +745,8 @@ def residual_friction_angle_gibson(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or above 100, the end of the plasticity
+        index axis of Figure 8-13.
 
     References
     ----------
@@ -724,6 +755,11 @@ def residual_friction_angle_gibson(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
+    if pi > 100.0:
+        raise ValueError(
+            "pi is above 100, the end of the plasticity index axis of Figure "
+            "8-13 (UFS 3-220-10 p. 408), which plots Equation 8-16."
+        )
     return 0.084 * pi ** 1.4 - 0.75 * pi + 31.9
 
 
@@ -1101,22 +1137,29 @@ def cpt_undrained_strength_nkt(
 
 
 def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
-    """Undrained shear strength from SPT for OC clays (Equation 8-26).
+    """Undrained shear strength su (kPa) of overconsolidated clay from SPT N and PI (15 to 62), Equation 8-26.
 
     Carter and Bentley (2016) approximation of the Stroud and Butler
-    (1975) trendline relating undrained shear strength of
+    (1975) trendline (Figure 8-31) relating undrained shear strength of
     overconsolidated clays to SPT N and plasticity index.  The
-    relationship exhibits significant scatter.
+    relationship exhibits significant scatter.  As printed, with su in
+    kPa::
+
+        su / N = 8910 / PI^3 + 4.36
 
     .. math::
-        s_u = \\frac{N}{4.36 + \\frac{8910}{PI^3}}
+        \\frac{s_u}{N} = \\frac{8910}{PI^3} + 4.36
+
+    Figure 8-31 (p. 428) draws the trendline for PI from 15 (su/N 7.0)
+    to about 62 (su/N 4.40).
 
     Parameters
     ----------
     n : float
         SPT N value (blows/ft).
     pi : float
-        Plasticity index (%).  Must be > 0.
+        Plasticity index (%), from 15 to 62, the range over which
+        Figure 8-31 draws the trendline.
 
     Returns
     -------
@@ -1126,18 +1169,25 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
     Raises
     ------
     ValueError
-        If *n* is negative or *pi* is not positive.
+        If *n* is negative or *pi* is not positive, or if *pi* is
+        outside 15 to 62 (the figure draws no trendline there).
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-26, p. 428.
+    Chapter 8, Equation 8-26 and Figure 8-31, p. 428.
     """
     if n < 0.0:
         raise ValueError("n must be non-negative.")
     if pi <= 0.0:
         raise ValueError("pi must be positive.")
-    return n / (4.36 + 8910.0 / pi ** 3)
+    if pi < 15.0 or pi > 62.0:
+        raise ValueError(
+            "pi is outside 15 to 62, the range of plasticity index over which "
+            "Figure 8-31 (UFS 3-220-10 p. 428) draws the Stroud and Butler "
+            "(1975) trendline that Equation 8-26 approximates."
+        )
+    return n * (8910.0 / pi ** 3 + 4.36)
 
 
 # ============================================================================
@@ -1609,58 +1659,21 @@ def cbr_from_dcp_power(a_coeff: float, dcp: float, x: float) -> float:
 
 
 def cbr_from_dcp_nazzal(dcp: float) -> float:
-    """CBR from DCP using Nazzal correlation (Equation 8-38).
+    """California Bearing Ratio CBR (%) from the DCP index in mm/blow, Equation 8-38 (Nazzal 2003).
 
     Nazzal (2003) correlation for soils with DCP values between 6.3
-    and 67 mm/blow.
+    and 67 mm/blow.  As printed::
+
+        CBR = 2559 / (DCP^1.84 - 7.35) + 1
 
     .. math::
-        CBR = \\frac{2559}{DCP^{1.84}} + \\frac{1}{7.35} - 1
-
-    Note: Reading the PDF carefully, the equation is:
-    CBR = 2559 / (DCP^1.84 + 7.35) - 1
-    Actually, re-reading: "CBR = 2559 / (DCP^1.84) + 1/7.35 - 1" ...
-    The extracted text reads: "2559 / (1 + 7.35)^1.84 ..." No. Let me
-    re-read the raw text:
-
-    1.84
-    2559
-    1
-    7.35
-    CBR
-    DCP
-    =
-    +
-    -
-
-    This is: CBR = 2559 / (DCP^1.84 + 7.35) - 1 ... No. Looking at the
-    layout more carefully: the fraction has 2559 on top and DCP^1.84 on
-    the bottom, then + 1/7.35 ... Actually from layout analysis:
-
-    CBR = 2559 / DCP^1.84 + 1/7.35
-
-    But that yields large CBR values. Checking Nazzal (2003), the
-    published form is: CBR = 1 / (0.002871 * DCP) ^ 2
-    or more commonly: log(CBR) = ... Let me use what the PDF says
-    most literally. The stacked fractions suggest:
-
-    CBR = 2559 / (DCP^1.84) - 1 + 1/7.35
-
-    The most standard Nazzal (2003) form found in literature is:
-    CBR = (292 / DCP)^1.12
-    But the UFC presents a different specific form. Reading the stacked
-    notation carefully: 2559/(DCP^1.84 + 7.35) - 1
-
-    After careful analysis of the PDF layout:
-
-    .. math::
-        CBR = \\frac{2559}{DCP^{1.84} + 7.35} - 1
+        CBR = \\frac{2559}{DCP^{1.84} - 7.35} + 1
 
     Parameters
     ----------
     dcp : float
-        Dynamic cone penetration index (mm/blow).  Valid range is
-        6.3 to 67 mm/blow.
+        Dynamic cone penetration index (mm/blow), between 6.3 and
+        67 mm/blow, the range the manual gives for this correlation.
 
     Returns
     -------
@@ -1670,7 +1683,9 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     Raises
     ------
     ValueError
-        If *dcp* is not positive.
+        If *dcp* is not positive, or is outside 6.3 to 67 mm/blow (the
+        denominator DCP^1.84 - 7.35 passes through zero near 3 mm/blow,
+        so the equation has no meaning below its stated range).
 
     References
     ----------
@@ -1679,30 +1694,35 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     """
     if dcp <= 0.0:
         raise ValueError("dcp must be positive.")
-    return 2559.0 / (dcp ** 1.84 + 7.35) - 1.0
+    if dcp < 6.3 or dcp > 67.0:
+        raise ValueError(
+            "dcp is outside 6.3 to 67 mm/blow, the range UFS 3-220-10 "
+            "p. 456 gives for Equation 8-38 (Nazzal 2003)."
+        )
+    return 2559.0 / (dcp ** 1.84 - 7.35) + 1.0
 
 
 def cbr_from_spt(n: float) -> float:
-    """CBR from SPT N value using Livneh (Equation 8-39).
+    """California Bearing Ratio CBR (%) from the SPT blow count N (5 to 68), Equation 8-39 (Livneh 1989).
 
     Livneh (1989) correlation to estimate the California Bearing Ratio
-    from SPT blow count.
+    from SPT blow count.  As printed (the exponent -0.26 is on the
+    logarithm)::
+
+        log10(CBR) = -5.13 + 6.55 * [log10(300 / N)]^(-0.26)
 
     .. math::
-        \\log(CBR) = -5.13 + 6.55 \\cdot \\log
-        \\left(\\frac{300}{N^{0.26}}\\right)
+        \\log CBR = -5.13 + 6.55
+        \\left(\\log\\frac{300}{N}\\right)^{-0.26}
 
-    Rearranged:
-
-    .. math::
-        CBR = 10^{\\left[-5.13 + 6.55 \\cdot
-        \\log_{10}\\!\\left(\\frac{300}{N^{0.26}}\\right)\\right]}
+    Figure 8-57 (p. 458) draws this curve with the data behind it for N
+    from 5 (CBR 3.2) to 68 (CBR 163).
 
     Parameters
     ----------
     n : float
         SPT blow count (blows/ft).  Use N60 for modern hammers.
-        Must be > 0.
+        From 5 to 68, the range over which Figure 8-57 draws the curve.
 
     Returns
     -------
@@ -1712,16 +1732,30 @@ def cbr_from_spt(n: float) -> float:
     Raises
     ------
     ValueError
-        If *n* is not positive.
+        If *n* is not positive, or is outside 5 to 68 (the figure draws
+        no curve there; at 300 or more log(300/N) is not positive and the
+        equation cannot be evaluated at all).
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-39, p. 457.
+    Chapter 8, Equation 8-39, p. 457; Figure 8-57, p. 458.
     """
     if n <= 0.0:
         raise ValueError("n must be positive.")
-    log_cbr = -5.13 + 6.55 * math.log10(300.0 / n ** 0.26)
+    if n < 5.0 or n > 68.0:
+        note = ""
+        if n >= 300.0:
+            note = (
+                " At 300 or more the equation cannot be evaluated at all: "
+                "it raises log(300/N) to the power -0.26."
+            )
+        raise ValueError(
+            "n is outside 5 to 68, the range of N over which Figure 8-57 "
+            "(UFS 3-220-10 p. 458) draws the curve of Equation 8-39 "
+            "(p. 457) with the data behind it." + note
+        )
+    log_cbr = -5.13 + 6.55 * math.log10(300.0 / n) ** -0.26
     return 10.0 ** log_cbr
 
 
@@ -1731,7 +1765,7 @@ def cbr_from_spt(n: float) -> float:
 
 
 def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
-    """Hydraulic conductivity from Hazen equation (Equation 8-40).
+    """Hydraulic conductivity k (cm/s) of saturated clean sand (fines under 5%) from D10 in mm (0.1 to 3 mm), Equation 8-40 (Hazen 1911): k = C D10^2.
 
     Hazen (1911) correlation for saturated clean sands with fines
     content less than 5% and D10 values from 0.1 to 3 mm.
@@ -1756,7 +1790,9 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
     Raises
     ------
     ValueError
-        If *d10* is not positive or *c* is not positive.
+        If *d10* is not positive or *c* is not positive, or if *d10*
+        is outside 0.1 to 3 mm, the range the manual gives for the
+        correlation.
 
     References
     ----------
@@ -1767,6 +1803,12 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
         raise ValueError("d10 must be positive.")
     if c <= 0.0:
         raise ValueError("c must be positive.")
+    if d10 < 0.1 or d10 > 3.0:
+        raise ValueError(
+            "d10 is outside 0.1 to 3 mm, the range of D10 for which UFS "
+            "3-220-10 p. 458 gives Equation 8-40 (Hazen 1911; saturated clean "
+            "sands with a fines content less than 5%)."
+        )
     return c * d10 ** 2
 
 
@@ -1775,35 +1817,42 @@ def hydraulic_conductivity_kozeny_carman(
     e: float,
     s: float = 6.0,
 ) -> float:
-    """Hydraulic conductivity from modified Kozeny-Carman equation (Equation 8-41).
+    """Hydraulic conductivity k (cm/s) of coarse-grained soil from its grain-size distribution, Equation 8-41 (Kozeny-Carman, Carrier 2003).
 
     Carrier (2003) modified version of the Kozeny-Carman equation
     (Kozeny 1927; Carman 1938, 1956) using the full grain-size
-    distribution.
+    distribution.  As printed, with particle sizes in mm and k in cm/s::
+
+        k = 1.99e2 [cm/(s mm^2)]
+            * [ 100% / sum( fi / (D_li^0.404 * D_si^0.596) ) ]^2
+            * (1 / S^2) * (e^3 / (1 + e))
 
     .. math::
-        k = 1.99 \\times 10^4 \\cdot
-        \\frac{1}{S^2} \\cdot
-        \\frac{e^3}{1+e} \\cdot
-        \\left[\\sum \\frac{f_i}{0.404 \\cdot D_{li} + 0.596 \\cdot D_{si}}
-        \\right]^{-2} \\cdot
-        \\frac{\\mathrm{cm}}{\\mathrm{s}} \\cdot \\frac{100\\%}{\\mathrm{mm}^2}
-
-    The result is in cm/s when D is in mm.
+        k = 1.99 \\times 10^{2}
+        \\left[\\frac{100\\%}{\\sum \\dfrac{f_i}
+        {D_{li}^{0.404} \\times D_{si}^{0.596}}}\\right]^2
+        \\left(\\frac{1}{S^2}\\right)
+        \\left(\\frac{e^3}{1+e}\\right)
 
     Parameters
     ----------
     fractions : list of (fi, d_li, d_si) tuples
-        Each tuple contains:
-        - fi : float -- fraction of particles (by mass) between two
-          adjacent sieve sizes (as a decimal, e.g., 0.15 for 15%).
-        - d_li : float -- particle size of the coarser sieve (mm).
-        - d_si : float -- particle size of the finer sieve (mm).
+        One (fi, d_li, d_si) tuple per pair of adjacent sieves: fi =
+        fraction of particles (by mass) between the two sieves, d_li =
+        particle size of the coarser sieve (mm), d_si = particle size of
+        the finer sieve (mm).  The fi are either decimals that add up to
+        1.0 (0.15 for 15%) or percentages that add up to 100; the whole
+        grain-size distribution must be given.  A total within 2 % of
+        that (0.98 to 1.02, or 98 to 102) is accepted and used as given,
+        not normalised.  The 2 % is this library's tolerance, not
+        printed: it is there to catch fractions in percent mixed up with
+        decimals, not to judge the grading.
     e : float
         Void ratio (dimensionless).
     s : float, optional
-        Surface area factor (dimensionless).  6.0 for spheres, up to
-        8.5 for angular particles.  Default is 6.0.
+        Surface area factor S (dimensionless), ranging from 6 for
+        spheres to 8.5 for angular particles.  Default is 6.0 (spheres),
+        which gives the highest k of that range.
 
     Returns
     -------
@@ -1813,8 +1862,9 @@ def hydraulic_conductivity_kozeny_carman(
     Raises
     ------
     ValueError
-        If *e* is negative, *s* is not positive, or any sieve size is
-        not positive.
+        If *e* is negative, *s* is not positive, any sieve size is
+        not positive, or the fractions add up to neither 1.0 nor 100
+        (within 2 %).
 
     References
     ----------
@@ -1827,34 +1877,59 @@ def hydraulic_conductivity_kozeny_carman(
         raise ValueError("s must be positive.")
 
     summation = 0.0
+    total = 0.0
     for fi, d_li, d_si in fractions:
         if d_li <= 0.0 or d_si <= 0.0:
             raise ValueError(
                 "All sieve sizes (d_li, d_si) must be positive."
             )
-        avg_d = 0.404 * d_li + 0.596 * d_si
-        summation += fi / avg_d
+        summation += fi / (d_li ** 0.404 * d_si ** 0.596)
+        total += fi
 
-    if summation == 0.0:
-        raise ValueError("Sum of fi/D_avg is zero; check input fractions.")
+    if summation <= 0.0:
+        raise ValueError(
+            "Sum of fi/(d_li^0.404 * d_si^0.596) is zero; check input "
+            "fractions."
+        )
+    # The library's tolerance, not printed: 2 % catches a percent/decimal
+    # mix-up; the total is used as given, not normalised.
+    if abs(total - 1.0) <= 0.02 + 1e-9:
+        hundred_percent = 1.0
+    elif abs(total - 100.0) <= 2.0 + 1e-7:
+        hundred_percent = 100.0
+    else:
+        raise ValueError(
+            f"The fractions add up to {total:g}; they must add up to 1.0 "
+            "(decimals) or 100 (percent), within 2 % (0.98 to 1.02, or 98 "
+            "to 102). Equation 8-41 (UFS 3-220-10 p. 462) divides 100% by "
+            "the sum over the whole grain-size distribution."
+        )
 
-    k = 1.99e4 * (1.0 / s ** 2) * (e ** 3 / (1.0 + e)) * (1.0 / summation ** 2)
+    k = (
+        1.99e2
+        * (hundred_percent / summation) ** 2
+        * (1.0 / s ** 2)
+        * (e ** 3 / (1.0 + e))
+    )
     return k
 
 
 def hydraulic_conductivity_carrier_beckman(
     e: float, pl: float, pi: float
 ) -> float:
-    """Hydraulic conductivity of fine-grained soils from index properties (Equation 8-42).
+    """Hydraulic conductivity k (m/s) of fine-grained soil from void ratio and Atterberg limits, Equation 8-42 (Carrier and Beckman 1984).
 
     Carrier and Beckman (1984) correlation relating the hydraulic
     conductivity of fine-grained soils to the void ratio, plastic limit,
-    and plasticity index.
+    and plasticity index.  As printed (the plasticity index divides
+    inside the bracket that is raised to 4.29)::
+
+        k = 0.0174 * { [e - 0.027 (PL - 0.242 PI)] / PI }^4.29 * 1 / (1 + e)
 
     .. math::
-        k = 0.0174 \\cdot
-        \\frac{[e - 0.027 \\cdot (PL - 0.242 \\cdot PI)]^{4.29}}
-        {(1+e) \\cdot PI}
+        k = 0.0174 \\left[
+        \\frac{e - 0.027 (PL - 0.242 PI)}{PI} \\right]^{4.29}
+        \\left(\\frac{1}{1+e}\\right)
 
     Parameters
     ----------
@@ -1873,7 +1948,9 @@ def hydraulic_conductivity_carrier_beckman(
     Raises
     ------
     ValueError
-        If *e* is negative or *pi* is not positive.
+        If *e* is negative, *pi* is not positive, or
+        e - 0.027 (PL - 0.242 PI) is not positive (the void ratio is
+        then too low for the equation to be evaluated).
 
     References
     ----------
@@ -1884,9 +1961,14 @@ def hydraulic_conductivity_carrier_beckman(
         raise ValueError("e must be non-negative.")
     if pi <= 0.0:
         raise ValueError("pi must be positive.")
-    numerator = (e - 0.027 * (pl - 0.242 * pi)) ** 4.29
-    denominator = (1.0 + e) * pi
-    return 0.0174 * numerator / denominator
+    numerator = e - 0.027 * (pl - 0.242 * pi)
+    if numerator <= 0.0:
+        raise ValueError(
+            "e - 0.027 (PL - 0.242 PI) is not positive; Equation 8-42 "
+            "(UFS 3-220-10 p. 462) raises it to the power 4.29 and cannot "
+            "be evaluated at this void ratio."
+        )
+    return 0.0174 * (numerator / pi) ** 4.29 / (1.0 + e)
 
 
 def hydraulic_conductivity_benson_landfill(
@@ -1899,108 +1981,39 @@ def hydraulic_conductivity_benson_landfill(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Hydraulic conductivity of compacted clay liners (Equation 8-43).
+    """Hydraulic conductivity k (m/s) of a compacted clay liner, Equation 8-43 (Benson et al. 1994), with the molding water content taken as a decimal: the page prints no unit for it.
 
-    Benson et al. (1994) correlation based on intact test specimens from
-    compacted clay liners at 67 landfills in North America.
+    Benson et al. (1994) measured the hydraulic conductivity of intact
+    specimens from compacted clay liners at 67 landfills in North
+    America and related it to other measured properties of the clays.
+    As printed::
 
-    .. math::
-        \\ln(k) = -18.35 + 0.08 \\cdot PI + 2.87 \\cdot GC
-                  - 0.32 \\cdot CF - 0.02 \\cdot W
-                  + \\frac{894}{1 + \\frac{w \\cdot \\gamma_w}{\\gamma_d \\cdot G_s}
-                  \\cdot ... }
-
-    Re-reading the equation from the PDF more carefully:
+        ln k = -18.35 + 894 / W - 0.08 PI
+               - 2.87 * [ w / (gamma_w / gamma_d - 1 / Gs) ]
+               + 0.32 * sqrt(GC) + 0.02 CF
 
     .. math::
-        \\ln(k) = -18.35 + 0.08 \\cdot PI + 2.87 \\cdot GC
-                  - 0.32 \\cdot CF - 0.02 \\cdot W
-                  + \\frac{894}{1 + \\frac{w \\cdot \\gamma_w}
-                  {\\gamma_d} \\cdot G_s}
-
-    Actually, the PDF text layout is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W + 894/(1 + w*gamma_w/(gamma_d*Gs))
-
-    Wait -- looking again, the fraction at the end with gamma_w/gamma_d/Gs
-    is computing the degree of saturation: S = w*Gs*gamma_w/gamma_d...
-    Actually the standard form for degree of saturation is S = w*Gs/e
-    where e = Gs*gamma_w/gamma_d - 1. The fraction structure in the PDF
-    is: 894 / (1 + (w*gamma_w)/(gamma_d) * Gs) which is not standard.
-
-    Re-reading the stacked text from the PDF extraction:
-    894
-    ln
-    18.35
-    0.08
-    2.87
-    0.32
-    0.02
-    1
-    w
-    d
-    s
-    w
-    k
-    PI
-    GC
-    CF
-    W
-    G
-    gamma
-    gamma
-
-    The correct form from the PDF layout (fraction under 894) is:
-    894 * [w * gamma_w / (gamma_d)] * Gs ... no that doesn't work either.
-
-    Based on the Benson et al. (1994) paper, the actual equation is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W + 894*S
-    where S = degree of saturation = w * Gs / e, and
-    e = Gs * gamma_w / gamma_d - 1.
-
-    However, the PDF text renders as:
-    894 / [1 + w*gamma_w/(gamma_d*Gs)]
-
-    After reconciling, the most faithful reading of the PDF is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W
-            + 894 / [1 / (w * gamma_w / (gamma_d * Gs))]
-
-    Actually, simplifying the stacked fraction in the PDF, the last
-    term is: 894 * w * gamma_w / (gamma_d * Gs * (1 + ...)) ...
-
-    Given the ambiguity, I will implement the form most consistent with
-    the Benson et al. (1994) original paper, where the degree of
-    saturation S = w * Gs * gamma_w / gamma_d is the key variable:
-
-    Actually the standard soil mechanics relation is:
-    S * e = w * Gs, and e = Gs * gamma_w / gamma_d - 1
-
-    So: S = w * Gs / e = w * Gs / (Gs * gamma_w / gamma_d - 1)
-
-    The PDF layout suggests the final term is 894 * S where
-    S is expressed as w/(1/Gs - gamma_d/(gamma_w*Gs)) ... Looking
-    at the equation structure one more time, it appears to be:
-
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W
-            + 894 / (something involving w, gamma_w, gamma_d, Gs)
-
-    I will implement this using the standard Benson et al. (1994) form.
+        \\ln k = -18.35 + \\frac{894}{W} - 0.08\\,PI
+        - 2.87 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
+        + 0.32 \\sqrt{GC} + 0.02\\,CF
 
     Parameters
     ----------
     cf : float
-        Clay-sized fraction (% by mass smaller than 0.002 mm).
+        Clay-sized fraction CF (percent by mass smaller than 0.002 mm).
     gc : float
-        Gravel content (% retained between 75 mm and No. 4 sieve).
+        Gravel content GC (percent retained between 75 mm and the No. 4
+        sieve).
     w_compactor : float
-        Weight of field compactor (kN).
+        Weight of field compactor, W (kN).  Must be > 0.
     pi : float
         Plasticity index (%).
     w : float
-        Molding water content (decimal, e.g., 0.20 for 20%).
+        Molding water content as a decimal (0.20 for 20%).
     gamma_w : float
         Unit weight of water (kN/m^3, e.g., 9.81).
     gamma_d : float
-        Dry unit weight (kN/m^3).
+        Dry unit weight (same units as *gamma_w*).
     gs : float
         Specific gravity of the solids (dimensionless).
 
@@ -2012,8 +2025,29 @@ def hydraulic_conductivity_benson_landfill(
     Raises
     ------
     ValueError
-        If *gamma_d* is not positive, *gamma_w* is not positive, or
-        *gs* is not positive.
+        If *gamma_d*, *gamma_w*, *gs* or *w_compactor* is not positive,
+        *gc* is negative, gamma_w/gamma_d - 1/Gs is not positive (the
+        dry unit weight is then above the zero-void-ratio value), or the
+        degree of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0
+        or is above 1.10.
+
+    Notes
+    -----
+    The term in brackets is the degree of saturation at molding.  The
+    page (PDF p. 491, printed p. 463) gives "w = molding water content"
+    with no unit.  It is taken as a decimal, which makes the bracket the
+    degree of saturation as a decimal: a percentage there would give k
+    below 1e-100 m/s.  A saturation above 1.10 is refused.  The guard is
+    there to catch a water content entered in percent (which gives a
+    saturation of tens); a computed saturation a little over 1.0 occurs
+    from ordinary scatter in the measured w, dry unit weight and Gs, and
+    up to 1.10 it is evaluated as computed.  The 1.10 is this library's
+    limit, not printed.
+
+    The manual gives k "in m/s".  As printed, ordinary liner inputs give
+    about 3.6e-8 m/s (CF 30, GC 4, W 200 kN, PI 25, w 0.18, dry unit
+    weight 17 kN/m3, Gs 2.70).  Whether the source regression was in
+    another unit of k cannot be settled from the page.
 
     References
     ----------
@@ -2027,17 +2061,29 @@ def hydraulic_conductivity_benson_landfill(
         raise ValueError("gamma_w must be positive.")
     if gs <= 0.0:
         raise ValueError("gs must be positive.")
+    if w_compactor <= 0.0:
+        raise ValueError("w_compactor must be positive.")
+    if gc < 0.0:
+        raise ValueError("gc must be non-negative.")
 
-    # Degree of saturation
-    e = gs * gamma_w / gamma_d - 1.0
-    if e <= 0.0:
+    denominator = gamma_w / gamma_d - 1.0 / gs
+    if denominator <= 0.0:
         raise ValueError(
-            "Computed void ratio is non-positive; check gamma_d, gamma_w, gs."
+            "gamma_w/gamma_d - 1/gs is not positive (the void ratio is "
+            "non-positive); check gamma_d, gamma_w, gs."
         )
-    s_degree = w * gs / e
+    saturation = w / denominator
+    # 1.10, not 1.0: measured w, gamma_d and Gs scatter; the guard is for
+    # a water content entered in percent (the library's limit, not printed).
+    if saturation <= 0.0 or saturation > 1.10:
+        raise ValueError(
+            "The degree of saturation w/(gamma_w/gamma_d - 1/gs) comes to "
+            f"{saturation:.4g}; it must be above 0 and not above 1.10. Give "
+            "w as a decimal (0.18 for 18 %)."
+        )
 
-    ln_k = (-18.35 + 0.08 * pi + 2.87 * gc - 0.32 * cf
-            - 0.02 * w_compactor + 894.0 * s_degree)
+    ln_k = (-18.35 + 894.0 / w_compactor - 0.08 * pi - 2.87 * saturation
+            + 0.32 * math.sqrt(gc) + 0.02 * cf)
     return math.exp(ln_k)
 
 
@@ -2050,48 +2096,82 @@ def hydraulic_conductivity_benson_trast(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Hydraulic conductivity of compacted clays from Benson and Trast (Equation 8-44).
+    """Hydraulic conductivity k (m/s) of compacted clay, Equation 8-44 (Benson and Trast 1995), with the saturation term taken in percent: the page prints no unit for it, and percent is the reading of this library's review of 2026-11-10, not a printed statement.
 
-    Benson and Trast (1995) correlation from hydraulic conductivity tests
-    on 13 compacted clays used for compacted clay liners.
+    Benson and Trast (1995) tested 13 compacted clays used for
+    compacted clay liners around the United States, prepared at
+    different water contents.  As printed::
+
+        ln k = -15 - 0.087 * [ w / (gamma_w / gamma_d - 1 / Gs) ]
+               - 0.054 PI + 0.022 CF + 0.91 E
 
     .. math::
-        \\ln(k) = -15 - 0.087 \\cdot PI - 0.054 \\cdot CF
-                  + 0.022 \\cdot E + 0.91 \\cdot S
+        \\ln k = -15
+        - 0.087 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
+        - 0.054\\,PI + 0.022\\,CF + 0.91\\,E
 
-    where S = degree of saturation computed from the molding water
-    content, dry unit weight, specific gravity, and unit weight of water.
-    The term involving gamma_w, gamma_d, w, and Gs in the PDF computes
-    the degree of saturation.
+    The term in brackets is the initial degree of saturation.  This
+    function works it out from *w* given as a decimal and enters it in
+    the equation in percent (see Notes).
 
     Parameters
     ----------
     pi : float
         Plasticity index (%).
     cf : float
-        Clay-sized fraction (% by mass smaller than 0.002 mm).
+        Clay-sized fraction (%).
     e_effort : float
-        Compactive effort index: -1 for modified Proctor, 0 for standard
-        Proctor, 1 for reduced Proctor.
+        Compactive effort index E: -1 for modified Proctor, 0 for
+        standard Proctor, +1 for reduced Proctor.
     w : float
-        Molding water content (decimal, e.g., 0.20 for 20%).
+        Molding water content as a decimal (0.18 for 18%), as in
+        Equation 8-43.
     gamma_w : float
         Unit weight of water (kN/m^3, e.g., 9.81).
     gamma_d : float
-        Dry unit weight (kN/m^3).
+        Dry unit weight (same units as *gamma_w*).
     gs : float
         Specific gravity of the solids (dimensionless).
 
     Returns
     -------
     float
-        Hydraulic conductivity, k (m/s).
+        Hydraulic conductivity, k (m/s), with the initial degree of
+        saturation entered in percent.
 
     Raises
     ------
     ValueError
-        If *gamma_d* is not positive, *gamma_w* is not positive, or
-        *gs* is not positive.
+        If *gamma_d*, *gamma_w* or *gs* is not positive, if
+        gamma_w/gamma_d - 1/Gs is not positive, or if the initial degree
+        of saturation w/(gamma_w/gamma_d - 1/Gs) is not above 0 or is
+        above 110%.
+
+    Notes
+    -----
+    The page (PDF p. 491, printed p. 463) gives "w = molding water
+    content" with no unit, and no figure, table or worked example in the
+    manual uses the equation with numbers.  The reading in percent rests
+    on the page's own numbers.  In Equation 8-43 on the same page the
+    same term carries a coefficient of 2.87 and can only be a decimal (a
+    percentage gives k below 1e-100 m/s).  Here its coefficient is
+    0.087.  Read in percent, it gives the term a span in ln k of the
+    same order as Equation 8-43's (2.61 over 30 points of saturation,
+    0.087 x 30, against 0.86 for Equation 8-43, 2.87 x 0.3); read as a
+    decimal, it would change ln k by under 0.09 over the whole range of
+    saturation and would be idle.
+
+    A saturation above 110% is refused.  The guard is there to catch a
+    water content entered in percent (which gives thousands of percent);
+    a computed saturation a little over 100% occurs from ordinary
+    scatter in the measured w, dry unit weight and Gs, and up to 110% it
+    is evaluated as computed.  The 110% is this library's limit, not
+    printed.
+
+    The two readings at one made-up input (PI 25, CF 30, E 0, w 0.18,
+    gamma_w 9.81, gamma_d 17.0 kN/m3, Gs 2.70; saturation 87.09%):
+    in percent, as coded, ln k = -23.267 and k = 7.86e-11 m/s; as a
+    decimal, ln k = -15.766 and k = 1.42e-07 m/s.
 
     References
     ----------
@@ -2106,16 +2186,24 @@ def hydraulic_conductivity_benson_trast(
     if gs <= 0.0:
         raise ValueError("gs must be positive.")
 
-    # Degree of saturation
-    e = gs * gamma_w / gamma_d - 1.0
-    if e <= 0.0:
+    denominator = gamma_w / gamma_d - 1.0 / gs
+    if denominator <= 0.0:
         raise ValueError(
-            "Computed void ratio is non-positive; check gamma_d, gamma_w, gs."
+            "gamma_w/gamma_d - 1/gs is not positive (the void ratio is "
+            "non-positive); check gamma_d, gamma_w, gs."
         )
-    s_degree = w * gs / e
+    saturation_percent = 100.0 * w / denominator
+    # 110 %, not 100 %: measured w, gamma_d and Gs scatter; the guard is
+    # for a water content entered in percent (the library's limit).
+    if saturation_percent <= 0.0 or saturation_percent > 110.0:
+        raise ValueError(
+            "The initial degree of saturation w/(gamma_w/gamma_d - 1/gs) "
+            f"comes to {saturation_percent:.4g} %; it must be above 0 and "
+            "not above 110 %. Give w as a decimal (0.18 for 18 %)."
+        )
 
-    ln_k = (-15.0 - 0.087 * pi - 0.054 * cf
-            + 0.022 * e_effort + 0.91 * s_degree)
+    ln_k = (-15.0 - 0.087 * saturation_percent - 0.054 * pi + 0.022 * cf
+            + 0.91 * e_effort)
     return math.exp(ln_k)
 
 
@@ -2179,33 +2267,50 @@ def shear_wave_velocity_spt(
 # ===========================================================================
 
 _TABLE_8_6_STARK_HUSSAIN = {
-    ("lt_20", "50_kpa"):  {"c0": 35.2, "c1": -0.1440, "c2": 0.000564, "c3": -0.00000116},
-    ("lt_20", "100_kpa"): {"c0": 33.4, "c1": -0.1330, "c2": 0.000495, "c3": -0.00000092},
-    ("lt_20", "400_kpa"): {"c0": 35.3, "c1": -0.1460, "c2": 0.000567, "c3": -0.00000115},
-    ("20_to_50", "50_kpa"):  {"c0": 42.8, "c1": -0.2980, "c2": 0.001390, "c3": -0.00000251},
-    ("20_to_50", "100_kpa"): {"c0": 38.5, "c1": -0.2220, "c2": 0.000880, "c3": -0.00000137},
-    ("20_to_50", "400_kpa"): {"c0": 38.8, "c1": -0.2330, "c2": 0.001010, "c3": -0.00000168},
-    ("gt_50", "50_kpa"):  {"c0": 53.5, "c1": -0.6100, "c2": 0.004060, "c3": -0.00000925},
-    ("gt_50", "100_kpa"): {"c0": 49.2, "c1": -0.4820, "c2": 0.002870, "c3": -0.00000600},
-    ("gt_50", "400_kpa"): {"c0": 44.1, "c1": -0.3400, "c2": 0.001780, "c3": -0.00000345},
+    # (CF and LL range, effective normal stress): C0, C1, C2, C3 (p. 417)
+    # CF < 20%
+    ("lt_20", "50_kpa"):  {"c0": 39.7, "c1": -0.29,  "c2": 6.63e-04, "c3": 0.0},
+    ("lt_20", "100_kpa"): {"c0": 39.4, "c1": -0.298, "c2": 6.81e-04, "c3": 0.0},
+    ("lt_20", "400_kpa"): {"c0": 40.2, "c1": -0.375, "c2": 1.36e-03, "c3": 0.0},
+    ("lt_20", "700_kpa"): {"c0": 40.3, "c1": -0.412, "c2": 1.68e-03, "c3": 0.0},
+    # 25% < CF < 45%
+    ("25_to_45", "50_kpa"):  {"c0": 31.4, "c1": -6.79e-03, "c2": -3.62e-03, "c3": 1.86e-05},
+    ("25_to_45", "100_kpa"): {"c0": 29.8, "c1": -3.63e-04, "c2": -3.58e-03, "c3": 1.85e-05},
+    ("25_to_45", "400_kpa"): {"c0": 28.4, "c1": -5.62e-02, "c2": -2.95e-03, "c3": 1.72e-05},
+    ("25_to_45", "700_kpa"): {"c0": 28.1, "c1": -0.2083,   "c2": -8.18e-04, "c3": 9.37e-06},
+    # CF > 50% and LL < 120
+    ("gt_50_ll_lt_120", "50_kpa"):  {"c0": 33.5, "c1": -0.31,   "c2": 3.90e-04,  "c3": 4.40e-06},
+    ("gt_50_ll_lt_120", "100_kpa"): {"c0": 30.7, "c1": -0.2504, "c2": -4.21e-04, "c3": 8.05e-06},
+    ("gt_50_ll_lt_120", "400_kpa"): {"c0": 29.4, "c1": -0.2621, "c2": -4.01e-04, "c3": 8.72e-06},
+    ("gt_50_ll_lt_120", "700_kpa"): {"c0": 27.7, "c1": -0.3233, "c2": 2.90e-04,  "c3": 7.11e-06},
+    # CF > 50% and 120 < LL < 300
+    ("gt_50_ll_120_to_300", "50_kpa"):  {"c0": 12.0, "c1": -0.0215, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "100_kpa"): {"c0": 10.9, "c1": -0.0183, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "400_kpa"): {"c0": 8.3,  "c1": -0.0114, "c2": 0.0, "c3": 0.0},
+    ("gt_50_ll_120_to_300", "700_kpa"): {"c0": 5.8,  "c1": -0.0049, "c2": 0.0, "c3": 0.0},
 }
 
 
 def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
-    """Stark & Hussain (2013) polynomial coefficients for residual
-    friction angle (Table 8-6).
+    """Coefficients C0 to C3 of Equation 8-17 (residual friction angle in degrees from liquid limit in %), Table 8-6 "Coefficients for Stark and Hussain (2013) Residual Friction Angle Correlation".
 
-    Returns the four coefficients (C0, C1, C2, C3) for use with
-    ``residual_friction_angle_stark_hussain`` (Equation 8-17).
+    Returns the four coefficients (C0, C1, C2, C3) of one row of
+    Table 8-6 for use with ``residual_friction_angle_stark_hussain``
+    (Equation 8-17): phi'r = C0 + C1 LL + C2 LL^2 + C3 LL^3.  The table
+    has four "CF and LL Range" groups, each at four effective normal
+    stresses.  It has no row for a clay-sized fraction between 20 and
+    25% or between 45 and 50%.
 
     Parameters
     ----------
     cf_range : str
-        Clay fraction range: ``"lt_20"`` (< 20 %), ``"20_to_50"``
-        (20-50 %), or ``"gt_50"`` (> 50 %).
+        "CF and LL Range" of the table (CF = clay-sized fraction, LL =
+        liquid limit): ``"lt_20"`` (CF < 20%), ``"25_to_45"``
+        (25% < CF < 45%), ``"gt_50_ll_lt_120"`` (CF > 50% and LL < 120)
+        or ``"gt_50_ll_120_to_300"`` (CF > 50% and 120 < LL < 300).
     sigma_n_range : str
-        Effective normal stress level: ``"50_kPa"``, ``"100_kPa"``,
-        or ``"400_kPa"``.
+        Effective normal stress: ``"50_kPa"``, ``"100_kPa"``,
+        ``"400_kPa"`` or ``"700_kPa"``.
 
     Returns
     -------
@@ -2215,7 +2320,7 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     Raises
     ------
     ValueError
-        If the combination is not recognised.
+        If the combination is not a row of the table.
 
     References
     ----------
@@ -2227,58 +2332,133 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     if key not in _TABLE_8_6_STARK_HUSSAIN:
         raise ValueError(
             f"Unknown combination cf_range='{cf_range}', "
-            f"sigma_n_range='{sigma_n_range}'."
+            f"sigma_n_range='{sigma_n_range}'. Table 8-6 (UFS 3-220-10 "
+            "p. 417) has cf_range 'lt_20', '25_to_45', 'gt_50_ll_lt_120', "
+            "'gt_50_ll_120_to_300' and sigma_n_range '50_kPa', '100_kPa', "
+            "'400_kPa', '700_kPa'."
         )
     return dict(_TABLE_8_6_STARK_HUSSAIN[key])
 
 
 # ===========================================================================
-# TABLE 8-9: SHANSEP Exponent m
+# TABLE 8-9: Typical Values of m
 # ===========================================================================
 
 _TABLE_8_9_SHANSEP_M = {
-    "ciuc": 0.85,
-    "ck0uc": 0.80,
-    "dss": 0.80,
-    "ck0ue": 0.70,
-    "field_vane": 0.85,
+    # key: m (a number where the table prints one), the m cell as printed,
+    # the source and the soil description as printed (p. 425)
+    "theoretical": {
+        "m": None,
+        "m_as_printed": "m is approximately 1 - Cr/Cc",
+        "source": "Roscoe et al. (1958), Mitachi and Kitago (1976)",
+        "soil_description": "Saturated clay (theoretical)",
+    },
+    "field_vane": {
+        "m": None,
+        "m_as_printed": (
+            "Range: 0.8 to 1.35; High value: 1.51; Mean (all): 1.03; "
+            "Mean (discarding extreme values): 0.97"),
+        "source": "Jamiolkowski et al. (1985), Chandler (1988)",
+        "soil_description": "Field vane shear tests on clay",
+    },
+    "saturated_clay": {
+        "m": 0.8,
+        "m_as_printed": "0.8",
+        "source": "Sabatini et al. (2002)",
+        "soil_description": "Saturated clay",
+    },
+    "sensitive_cemented_marine_clay": {
+        "m": 1.00,
+        "m_as_printed": "1.00",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Sensitive cemented marine clays, Canadian Champlain clays "
+            "(PI < 30%, LI > 1.5)"),
+    },
+    "homogeneous_cl_ch_sedimentary_clay": {
+        "m": 0.8,
+        "m_as_printed": "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Homogeneous CL and CH sedimentary clays of low to moderate "
+            "sensitivity, no shells or sand lenses layers (PI = 20 to 80%)"),
+    },
+    "varved_clay_dss": {
+        "m": 0.75,
+        "m_as_printed": "0.75",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Northeastern U.S. varved clays, direct simple shear failure "
+            "mode"),
+    },
+    "silt_organic_below_a_line": {
+        "m": 0.8,
+        "m_as_printed": "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8",
+        "source": "Ladd and DeGroot (2004)",
+        "soil_description": (
+            "Sedimentary deposits of silts and organic soils with "
+            "Atterberg Limits below the A-line and clays with shells, "
+            "excludes peat"),
+    },
 }
 
 
-def table_8_9_shansep_m(test_type: str) -> float:
-    """SHANSEP exponent m for undrained strength ratio (Table 8-9).
+def table_8_9_shansep_m(soil: str) -> dict:
+    """Exponent m (dimensionless) of Equation 8-20, (su/sigma'v)OC = (su/sigma'v)NC * OCR^m, by source and soil, Table 8-9 "Typical Values of m".
 
-    Returns the semi-empirical exponent *m* for use with
-    ``undrained_strength_ratio_oc`` (Equation 8-20).
+    Returns one row of Table 8-9 for use with
+    ``undrained_strength_ratio_oc`` (Equation 8-20).  The table lists m
+    by source and soil description, not by type of strength test.  Two
+    rows give no single number: the theoretical value 1 - Cr/Cc (Cc =
+    compression index, Cr = recompression index) and the field vane
+    range; for those ``"m"`` is ``None`` and ``"m_as_printed"`` holds
+    the cell.  Where the table prints 0.88 (1 - Cr/Cc) +/- 0.06,
+    "Nominally 0.8", ``"m"`` is the nominal 0.8.
 
     Parameters
     ----------
-    test_type : str
-        One of ``"CIUC"``, ``"CK0UC"``, ``"DSS"``, ``"CK0UE"``,
-        ``"field_vane"``.
+    soil : str
+        Row of the table, one of:
+        ``"theoretical"`` (Roscoe et al. 1958, Mitachi and Kitago 1976;
+        saturated clay, theoretical; m about 1 - Cr/Cc),
+        ``"field_vane"`` (Jamiolkowski et al. 1985, Chandler 1988; field
+        vane shear tests on clay; range 0.8 to 1.35, mean 1.03),
+        ``"saturated_clay"`` (Sabatini et al. 2002; 0.8),
+        ``"sensitive_cemented_marine_clay"`` (Ladd and DeGroot 2004;
+        sensitive cemented marine clays, Canadian Champlain clays,
+        PI < 30%, LI > 1.5; 1.00),
+        ``"homogeneous_cl_ch_sedimentary_clay"`` (Ladd and DeGroot 2004;
+        PI = 20 to 80%; nominally 0.8),
+        ``"varved_clay_dss"`` (Ladd and DeGroot 2004; Northeastern U.S.
+        varved clays, direct simple shear failure mode; 0.75),
+        ``"silt_organic_below_a_line"`` (Ladd and DeGroot 2004; silts
+        and organic soils below the A-line and clays with shells,
+        excludes peat; nominally 0.8).
 
     Returns
     -------
-    float
-        Exponent m (dimensionless).
+    dict
+        ``{"m": float or None, "m_as_printed": str, "source": str,
+        "soil_description": str}``.
 
     Raises
     ------
     ValueError
-        If *test_type* is not recognised.
+        If *soil* is not a row of the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
     Chapter 8, Table 8-9, p. 425.
     """
-    key = test_type.lower().strip()
+    key = soil.lower().strip()
     if key not in _TABLE_8_9_SHANSEP_M:
         raise ValueError(
-            f"Unknown test_type '{test_type}'. "
+            f"Unknown soil '{soil}'. Table 8-9 (UFS 3-220-10 p. 425) "
+            "lists m by source and soil, not by test type. "
             f"Choose from: {list(_TABLE_8_9_SHANSEP_M.keys())}"
         )
-    return _TABLE_8_9_SHANSEP_M[key]
+    return dict(_TABLE_8_9_SHANSEP_M[key])
 
 
 # ===========================================================================
@@ -2286,37 +2466,86 @@ def table_8_9_shansep_m(test_type: str) -> float:
 # ===========================================================================
 
 _TABLE_8_24_CBR_DCP = {
-    "webster_1992":  {"a": 292.0, "x": -1.12},
-    "ese_2006":      {"a": 17.6, "x": -0.64},
-    "livneh_2000":   {"a": 327.0, "x": -0.78},
-    "harrison_1987": {"a": 1620.0, "x": -2.10},
-    "chua_1988":     {"a": 3370.0, "x": -1.51},
-    "pen_2002":      {"a": 146.0, "x": -0.70},
+    # key: A, x, and the row's "Reference / Comment" as printed (p. 456)
+    "gabr_2000": {
+        "a": 25.0, "x": -0.55,
+        "reference": "Gabr et al. (2000)"},
+    "feleke_araya_2016_fine_a47": {
+        "a": 47.0, "x": -0.90,
+        "reference": "Feleke and Araya (2016), fine-grained soils"},
+    "george_2009": {
+        "a": 47.0, "x": -0.79,
+        "reference": "George et al. (2009)"},
+    "white_2018_cl_cbr_lt_10": {
+        "a": 59.0, "x": -2.00,
+        "reference": "White et al. (2018), CL with CBR < 10"},
+    "feleke_araya_2016_coarse_a90": {
+        "a": 90.0, "x": -1.17,
+        "reference": "Feleke and Araya (2016), coarse-grained soils"},
+    "feleke_araya_2016_fine_a104": {
+        "a": 104.0, "x": -0.91,
+        "reference": "Feleke and Araya (2016), fine-grained soils"},
+    "feleke_araya_2016_coarse_a157": {
+        "a": 157.0, "x": -0.85,
+        "reference": "Feleke and Araya (2016), coarse-grained soils"},
+    "george_kumar_2018": {
+        "a": 246.0, "x": -1.35,
+        "reference": "George and Kumar (2018)"},
+    "white_2018_all_except_cl_cbr_lt_10": {
+        "a": 292.0, "x": -1.12,
+        "reference": "White et al. (2018), All soils except CL with CBR < 10"},
+    "smith_pratt_1983": {
+        "a": 363.0, "x": -1.15,
+        "reference": "Smith and Pratt (1983)"},
+    "harrison_1986_clay_dcp_lt_10": {
+        "a": 501.0, "x": -1.12,
+        "reference": "Harrison (1986), clay-like soils with DCP < 10 mm/blow"},
+    "harrison_1986_clay_dcp_gt_10": {
+        "a": 363.0, "x": -1.16,
+        "reference": "Harrison (1986), clay-like soils with DCP > 10 mm/blow"},
+    "kleyn_van_heerden_1983": {
+        "a": 425.0, "x": -1.27,
+        "reference": "Kleyn and Van Heerden (1983)"},
 }
 
 
 def table_8_24_cbr_dcp(source: str) -> dict:
-    """CBR-DCP power-law correlation coefficients (Table 8-24).
+    """Coefficient A and exponent x of CBR = A * DCP^x (DCP in mm/blow), Table 8-24 "CBR Correlations with DCP".
 
-    Returns the empirical coefficient *a* and exponent *x* for use
-    with ``cbr_from_dcp_power`` (Equation 8-37).
+    Returns one row of Table 8-24 for use with ``cbr_from_dcp_power``
+    (Equation 8-37): the empirical coefficient *a*, the exponent *x*
+    (both dimensionless) and the row's reference as printed.  The table
+    has thirteen rows; Feleke and Araya (2016) appear in four of them
+    (two for fine-grained and two for coarse-grained soils, told apart
+    here by their A value).
 
     Parameters
     ----------
     source : str
-        Correlation source name: ``"webster_1992"``, ``"ese_2006"``,
-        ``"livneh_2000"``, ``"harrison_1987"``, ``"chua_1988"``,
-        or ``"pen_2002"``.
+        Row of the table, one of:
+        ``"gabr_2000"`` (A 25, x -0.55),
+        ``"feleke_araya_2016_fine_a47"`` (47, -0.90),
+        ``"george_2009"`` (47, -0.79),
+        ``"white_2018_cl_cbr_lt_10"`` (59, -2.00),
+        ``"feleke_araya_2016_coarse_a90"`` (90, -1.17),
+        ``"feleke_araya_2016_fine_a104"`` (104, -0.91),
+        ``"feleke_araya_2016_coarse_a157"`` (157, -0.85),
+        ``"george_kumar_2018"`` (246, -1.35),
+        ``"white_2018_all_except_cl_cbr_lt_10"`` (292, -1.12),
+        ``"smith_pratt_1983"`` (363, -1.15),
+        ``"harrison_1986_clay_dcp_lt_10"`` (501, -1.12),
+        ``"harrison_1986_clay_dcp_gt_10"`` (363, -1.16),
+        ``"kleyn_van_heerden_1983"`` (425, -1.27).
 
     Returns
     -------
     dict
-        ``{"a": float, "x": float}``.
+        ``{"a": float, "x": float, "reference": str}``.
 
     Raises
     ------
     ValueError
-        If *source* is not recognised.
+        If *source* is not a row of the table.
 
     References
     ----------
@@ -2336,21 +2565,41 @@ def table_8_24_cbr_dcp(source: str) -> dict:
 # FIGURE 8-46: Stroud (1974) f-coefficient for Constrained Modulus
 # ===========================================================================
 
-# Digitised from Figure 8-46 (f vs PI)
-_FIG_8_46_PI = [10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 80.0]
-_FIG_8_46_F  = [500.0, 450.0, 400.0, 350.0, 300.0, 250.0, 225.0, 200.0, 175.0]
+# Read off the curve of Figure 8-46 (f against plasticity index, p. 444).
+# The curve is drawn from PI 14.8 to PI 64.5; f is read to about +/-0.02
+# (the points at PI 14.8 to 17 off a 400 dpi render).
+_FIG_8_46_PI = [
+    14.8, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0,
+    25.0, 26.0, 27.0, 28.0, 30.0, 32.0, 34.0, 36.0, 38.0, 40.0,
+    42.0, 44.0, 46.0, 48.0, 50.0, 52.0, 54.0, 56.0, 58.0, 60.0,
+    62.0, 64.0, 64.5,
+]
+_FIG_8_46_F = [
+    6.85, 6.78, 6.36, 6.10, 5.86, 5.66, 5.51, 5.39, 5.26, 5.15, 5.06,
+    4.98, 4.91, 4.85, 4.79, 4.70, 4.63, 4.56, 4.54, 4.51, 4.48,
+    4.44, 4.44, 4.42, 4.41, 4.39, 4.37, 4.35, 4.33, 4.31, 4.29,
+    4.27, 4.24, 4.24,
+]
 
 
 def figure_8_46_f(pi: float) -> float:
-    """Stroud (1974) f-coefficient from plasticity index (Figure 8-46).
+    """Empirical coefficient f (dimensionless) for the constrained modulus of clay from SPT, Mds = f N Pa, read from Figure 8-46 at a plasticity index.
 
-    Returns the empirical coefficient *f* for use with
-    ``constrained_modulus_spt`` (Equation 8-30).
+    Figure 8-46, "Variation of Empirical Coefficient f used for
+    Calculating Constrained Modulus with PI (after Stroud 1974)", plots
+    f against plasticity index for nine British clays, with one curve
+    drawn from PI 14.8 (f about 6.85) to PI 64.5 (f about 4.24).  This
+    function interpolates linearly between points read off that curve
+    (to about +/-0.02).  Use f with ``constrained_modulus_spt``
+    (Equation 8-33).  The data scatter widely about the curve (f from
+    about 3.5 to 8), and the manual notes that Kulhawy and Mayne (1990)
+    found the correlation not very reliable.
 
     Parameters
     ----------
     pi : float
-        Plasticity index (%).  Typically 10 to 80.
+        Plasticity index (%), from 14.8 to 64.5, the range over which the
+        curve is drawn.
 
     Returns
     -------
@@ -2360,7 +2609,8 @@ def figure_8_46_f(pi: float) -> float:
     Raises
     ------
     ValueError
-        If *pi* is negative.
+        If *pi* is negative, or outside 14.8 to 64.5 (the figure draws
+        no curve there).
 
     References
     ----------
@@ -2370,6 +2620,11 @@ def figure_8_46_f(pi: float) -> float:
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
+    if pi < _FIG_8_46_PI[0] or pi > _FIG_8_46_PI[-1]:
+        raise ValueError(
+            "pi is outside 14.8 to 64.5, the range over which the curve of "
+            "Figure 8-46 (UFS 3-220-10 p. 444) is drawn."
+        )
     return _linterp(pi, _FIG_8_46_PI, _FIG_8_46_F)
 
 
@@ -2379,8 +2634,8 @@ def plot_figure_8_46(PI=None, ax=None, show=True, **kwargs):
     Parameters
     ----------
     PI : float, optional
-        Plasticity index query point.  If provided, highlights the
-        interpolated f value.
+        Plasticity index query point (14.8 to 64.5).  If provided,
+        highlights the interpolated f value.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -2395,23 +2650,20 @@ def plot_figure_8_46(PI=None, ax=None, show=True, **kwargs):
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 5))
 
-    # Smooth interpolated curve
-    pi_smooth = [i * 1.0 for i in range(5, 86)]
-    f_smooth = [figure_8_46_f(p) for p in pi_smooth]
-    ax.plot(pi_smooth, f_smooth, 'b-', linewidth=1.5, label='Stroud (1974)')
-
-    # Digitised data points
-    ax.plot(_FIG_8_46_PI, _FIG_8_46_F, 'ko', markersize=6,
-            label='Digitised points')
+    # The read-off curve, over the range the figure draws it
+    ax.plot(_FIG_8_46_PI, _FIG_8_46_F, 'b-', linewidth=1.5,
+            label='Curve of Figure 8-46 (after Stroud 1974)')
 
     # Query point
     if PI is not None:
         f_q = figure_8_46_f(PI)
         ax.plot(PI, f_q, 's', color='red', markersize=10, zorder=5,
-                label=f'PI={PI:.0f} → f={f_q:.0f}')
+                label=f'PI={PI:.0f} → f={f_q:.2f}')
         ax.axhline(f_q, color='red', linestyle=':', alpha=0.4)
         ax.axvline(PI, color='red', linestyle=':', alpha=0.4)
 
+    ax.set_xlim(10, 70)
+    ax.set_ylim(3, 8)
     ax.legend(fontsize=8)
     setup_engineering_plot(
         ax, 'Figure 8-46: Stroud f-Coefficient',

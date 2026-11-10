@@ -490,7 +490,7 @@
       "section_id": "4-4.2.1",
       "title": "Dead Load",
       "summary": "Presents the Marston-Anderson (1913) and Spangler (1948) method for estimating dead load on rigid pipe in a trench. The load per unit length (Wd) is a function of a load coefficient (Cd), soil unit weight, and trench width. Cd depends on trench depth, lateral earth pressure, and friction coefficient, with recommended parameter values tabulated in Table 4-3.",
-      "body": "Estimates of the load caused by vertical stress on a rigid pipe can be made using the approach suggested by Marston and Anderson (1913) and subsequent work by Spangler (1948). The load per length of pipe (Wd) in a trench can be calculated as:\n\nWd = Cd × γt × Bd²\n\nwhere:\nCd = a load coefficient,\nγt = the total unit weight of the soil, and\nBd = the width of the trench.\n\nThe value of Cd can be calculated as:\n\nCd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ')\n\nwhere:\nH = the depth of the trench above the top of the pipe,\nK = a lateral earth pressure coefficient, and\nµʹ = the coefficient of friction for the trench fill.\n\nRecommended values of γt, K, and µʹ for use with this equation are provided in Table 4-3 as summarized by Moser (1990).",
+      "body": "Estimates of the load caused by vertical stress on a rigid pipe can be made using the approach suggested by Marston and Anderson (1913) and subsequent work by Spangler (1948). The load per length of pipe (Wd) in a trench can be calculated as:\n\nWd = Cd × γt × Bd²\n\nwhere:\nCd = a load coefficient,\nγt = the total unit weight of the soil, and\nBd = the width of the trench.\n\nThe value of Cd can be calculated as:\n\nCd = (1 - e^(-Kµ'(H/Bd))) / (2Kµ')\n\nwhere:\nH = the depth of the trench above the top of the pipe,\nK = a lateral earth pressure coefficient, and\nµʹ = the coefficient of friction for the trench fill.\n\nRecommended values of γt, K, and µʹ for use with this equation are provided in Table 4-3 as summarized by Moser (1990).",
       "key_points": [
         "Dead load per unit pipe length: Wd = Cd × γt × Bd² (Eq. 4-6).",
         "Load coefficient Cd accounts for trench geometry, lateral earth pressure (K), and friction (µʹ) per Eq. 4-7.",
@@ -506,8 +506,8 @@
         },
         {
           "id": "Eq. 4-7",
-          "description": "Load coefficient for rigid pipe in a trench: Cd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ'), where H is depth of trench above pipe top, K is lateral earth pressure coefficient, and µʹ is coefficient of friction for trench fill.",
-          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_trench_load"
+          "description": "Load coefficient for rigid pipe in a trench: Cd = (1 - e^(-Kµ'(H/Bd))) / (2Kµ'), where H is depth of trench above pipe top, K is lateral earth pressure coefficient, and µʹ is coefficient of friction for trench fill. (As printed; the library function evaluates the exponent -2Kµ'(H/Bd), see its docstring.)",
+          "implemented_in": "geotech_references.dm7_1.chapter4.trench_load_coefficient"
         }
       ],
       "figures": [],
@@ -556,9 +556,9 @@
       "section_id": "4-4.3.1",
       "title": "Dead Load",
       "summary": "Presents two methods for estimating dead load on flexible buried pipe: (1) the Marston flexible pipe load equation (Eq. 4-8), which uses the same Cd coefficient as rigid pipe but may be unconservative because it assumes equal pipe and soil stiffness; and (2) the more conservative prism load method (Eq. 4-9), which uses the full weight of soil above the pipe.",
-      "body": "For very flexible pipe with outside diameter (Bc) the Marston load theory predicts a load (Wc) of:\n\nWc = Cd × γt × D\n\nwhere:\nCd = the load coefficient for rigid pipe (see Equation 4-7),\nγt = the total unit weight of the trench backfill, and\nD = the outer diameter of the pipe (Moser 1990).\n\nThis method assumes that the pipe stiffness and soil stiffness are equal, which may lead to unconservative values of Wc.\n\nThe prism load is a more conservative approach for determining the dead load on a buried flexible pipe. The prism load (Wp) is simply the total weight of the soil above the pipe and is equal to:\n\nWp = γt × H × D\n\nwhere:\nγt = the backfill total unit weight,\nH = the depth of soil cover, and\nD = the outer diameter of the pipe.",
+      "body": "For very flexible pipe with outside diameter (Bc) the Marston load theory predicts a load (Wc) of:\n\nWc = Cd × γt × Bc × D\n\nwhere:\nCd = the load coefficient for rigid pipe (see Equation 4-7),\nγt = the total unit weight of the trench backfill, and\nD = the outer diameter of the pipe (Moser 1990).\n\nThis method assumes that the pipe stiffness and soil stiffness are equal, which may lead to unconservative values of Wc.\n\nThe prism load is a more conservative approach for determining the dead load on a buried flexible pipe. The prism load (Wp) is simply the total weight of the soil above the pipe and is equal to:\n\nWp = γt × H × D\n\nwhere:\nγt = the backfill total unit weight,\nH = the depth of soil cover, and\nD = the outer diameter of the pipe.",
       "key_points": [
-        "Marston flexible pipe dead load: Wc = Cd × γt × D (Eq. 4-8), using the same Cd as for rigid pipe.",
+        "Marston flexible pipe dead load: Wc = Cd × γt × Bc × D (Eq. 4-8), using the same Cd as for rigid pipe.",
         "Eq. 4-8 assumes equal pipe and soil stiffness, potentially yielding unconservative (low) load estimates.",
         "Prism load (Eq. 4-9) is more conservative: Wp = γt × H × D, equaling the full weight of soil above the pipe.",
         "Prism load is preferred when a conservative design basis is needed for flexible pipe dead load."
@@ -566,8 +566,8 @@
       "equations": [
         {
           "id": "Eq. 4-8",
-          "description": "Marston dead load on very flexible pipe: Wc = Cd × γt × D, where Cd is the load coefficient (same as Eq. 4-7), γt is total unit weight of trench backfill, and D is the outer diameter of the pipe.",
-          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_prism_load"
+          "description": "Marston dead load on very flexible pipe: Wc = Cd × γt × Bc × D, where Cd is the load coefficient (same as Eq. 4-7), γt is total unit weight of trench backfill, Bc is the outside diameter of the very flexible pipe, and D is the outer diameter of the pipe. (As printed; the library function multiplies by the trench width Bd in place of Bc, see its docstring.)",
+          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_trench_load"
         },
         {
           "id": "Eq. 4-9",
