@@ -52,6 +52,9 @@ class TestTable32PermanentFactors:
 class TestTable32PrincipalCompanionFactors:
     def test_hydrostatic_principal_by_category(self):
         assert table_3_2_load_factor("Hs", "usual")["factor"] == 1.5
+        # Table 3-2 is printed on pp. 24-25 (EM_1110-2-2104_2025.pdf pdf
+        # 30-31), not 23-24.
+        assert table_3_2_load_factor("Hs", "usual")["printed_page"] == "24-25"
         assert table_3_2_load_factor("Hs", "unusual")["factor"] == 1.4
         assert table_3_2_load_factor("Hs", "extreme")["factor"] == 1.3
 

@@ -72,7 +72,7 @@ def table_3_1_load_inventory(load_id=None):
 
 # ============================================================================
 # Table 3-2 -- Minimum load factors for strength design
-# (printed pp. 23-24, pdf_page 28-29)
+# (printed pp. 24-25, pdf_page 29-30)
 # ============================================================================
 
 # Permanent load factors, gamma_p (paragraph 3-3d, printed p. 22, pdf 27).
@@ -89,7 +89,7 @@ TABLE_3_2_PERMANENT = {
 }
 
 # Principal/companion load factors, gamma_pu / gamma_c, by load category
-# (Table 3-2, printed pp. 23-24). None = no entry ('-' or 'N/A' in the
+# (Table 3-2, printed pp. 24-25). None = no entry ('-' or 'N/A' in the
 # printed table); 'AASHTO' = per AASHTO LRFD (footnote 8, paragraph 3-1g).
 TABLE_3_2_TEMPORARY_DYNAMIC = {
     "Hs": {"companion": 1.0, "usual": 1.5, "unusual": 1.4, "extreme": 1.3},
@@ -120,7 +120,7 @@ PRINCIPAL_LOAD_CONDITIONS = {
 
 
 def table_3_2_permanent_load_factor(load_id, effect="add"):
-    """Table 3-2 permanent load factor gamma_p (printed pp. 23-24).
+    """Table 3-2 permanent load factor gamma_p (printed pp. 24-25).
 
     Parameters
     ----------
@@ -147,13 +147,13 @@ def table_3_2_permanent_load_factor(load_id, effect="add"):
         )
     return {
         "load_id": load_id, "effect": effect, "gamma_p": row[effect],
-        "table": "3-2", "printed_page": "23-24", "pdf_page": "28-29",
+        "table": "3-2", "printed_page": "24-25", "pdf_page": "29-30",
     }
 
 
 def table_3_2_load_factor(load_id, category, role="principal"):
     """Table 3-2 principal/companion load factor for a temporary or dynamic
-    load (printed pp. 23-24).
+    load (printed pp. 24-25).
 
     Parameters
     ----------
@@ -200,8 +200,8 @@ def table_3_2_load_factor(load_id, category, role="principal"):
         )
     return {
         "load_id": load_id, "category": category, "role": role,
-        "factor": factor, "table": "3-2", "printed_page": "23-24",
-        "pdf_page": "28-29",
+        "factor": factor, "table": "3-2", "printed_page": "24-25",
+        "pdf_page": "29-30",
     }
 
 

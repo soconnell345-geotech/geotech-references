@@ -336,7 +336,7 @@ def max_force_in_column_or_wall_strip(fi_per_length, l_transverse_or_longitudina
 
 def peripheral_tie_force_two_way(wf, l1, wc, lp=3.3):
     """Equation 3-6: peripheral tie force for FRAMED and TWO-WAY load-
-    bearing wall buildings (printed p. 23).
+    bearing wall buildings (printed p. 24).
 
         Fp = 6 wF L1 Lp + 3 WC
 
@@ -372,11 +372,11 @@ def peripheral_tie_force_two_way(wf, l1, wc, lp=3.3):
     -------
     dict
         {'fp', 'wf', 'l1', 'wc', 'lp', 'equation': '3-6',
-         'printed_page': '23', 'pdf_page': 38}
+         'printed_page': '24', 'pdf_page': 39}
     """
     fp = 6 * wf * l1 * lp + 3 * wc
     return {"fp": fp, "wf": wf, "l1": l1, "wc": wc, "lp": lp,
-            "equation": "3-6", "printed_page": "23", "pdf_page": 38}
+            "equation": "3-6", "printed_page": "24", "pdf_page": 39}
 
 
 def peripheral_tie_force_one_way(wf, l1, wc, ww, lp=3.3):

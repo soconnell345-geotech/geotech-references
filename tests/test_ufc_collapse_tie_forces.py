@@ -142,6 +142,8 @@ class TestPeripheralTieForce:
         r = peripheral_tie_force_two_way(wf=214.5, l1=37.5, wc=35100, lp=3.0)
         assert r["fp"] / 1000 == pytest.approx(250.1, abs=0.2)
         assert r["equation"] == "3-6"
+        # Equation (3-6) is printed on p. 24 (UFC_4-023-03.pdf pdf 40), not 23.
+        assert r["printed_page"] == "24"
 
     def test_equation_3_7_one_way_wall(self):
         r = peripheral_tie_force_one_way(wf=100, l1=20, wc=10, ww=5, lp=3.3)
