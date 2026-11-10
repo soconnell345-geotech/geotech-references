@@ -97,14 +97,25 @@ class TestSizeEffect:
 
 
 class TestNotchCrackInitiation:
-    def test_figure_9_14_endpoints(self):
-        row = figure_9_14_coefficients(0.0, edge="tension")
-        assert row["a_coefficient"] == pytest.approx(0.0)
-        assert row["b_coefficient"] == pytest.approx(0.0)
+    def test_figure_9_14_traced_values(self):
+        # Figure 9-14 (FPL-GTR-282 pdf 244 / printed 9-12), traced off the
+        # rendered figure; units 1e-4 (kPa sqrt(mm))^-1, +/-0.01e-4.
+        t = figure_9_14_coefficients(0.1, edge="tension")
+        c = figure_9_14_coefficients(0.1, edge="compression")
+        assert t["a_coefficient"] == pytest.approx(0.177e-4, abs=0.015e-4)
+        assert c["a_coefficient"] == pytest.approx(0.074e-4, abs=0.015e-4)
+        assert t["b_coefficient"] == pytest.approx(0.277e-4, abs=0.015e-4)
+        end = figure_9_14_coefficients(0.55, edge="tension")
+        assert end["a_coefficient"] == pytest.approx(0.589e-4, abs=0.015e-4)
+        assert end["b_coefficient"] == pytest.approx(1.948e-4, abs=0.015e-4)
+        assert figure_9_14_coefficients(0.55, edge="compression")["a_coefficient"] == pytest.approx(0.160e-4, abs=0.015e-4)
 
     def test_figure_9_14_out_of_range_raises(self):
         with pytest.raises(ValueError):
             figure_9_14_coefficients(0.9)
+        # Below a/h 0.02 the curves run together at the origin.
+        with pytest.raises(ValueError, match="0.02"):
+            figure_9_14_coefficients(0.0)
 
     def test_crack_initiation_no_load_not_predicted(self):
         result = crack_initiation_check(h=0.3, b=0.1, moment=0.0, shear_force=0.0, a_coefficient=1e-5, b_coefficient=1e-5)

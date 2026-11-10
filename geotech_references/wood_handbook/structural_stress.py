@@ -382,36 +382,46 @@ def shear_strength_size_adjusted(cf, tau_astm, area, units="metric"):
 
 # Figure 9-14: coefficients A (tension-edge At, compression-edge Ac) and B
 # for the crack-initiation criterion, as a function of slit-depth ratio
-# a/h. Units: A, B in (kPa*sqrt(mm))^-1 x 1e-4 as plotted. Values below are
-# a visual digitization of the printed curves at a/h = 0, 0.1, ..., 0.5,
-# 0.55 (nearest ~0.05 gridline on the plotted 1e-4 scale); piecewise-linear
-# interpolation between them approximates the printed curves. The
-# handbook's own text notes these curve values are already conservative
-# estimates for most softwood species -- treat this digitization as an
-# approximate figure read, not an exact table value.
+# a/h. Units: A, B in (kPa*sqrt(mm))^-1 x 1e-4 as plotted (left axis).
+# Read off the rendered figure (FPL-GTR-282 pdf 244 / printed 9-12) by
+# tracing the curves' pixels at 400 dpi: left-axis ticks 2.0 / 1.5 / 1.0 /
+# 0.5 / 0 at 324.5 px per unit, a/h = 0 to 0.6 across 931 px; each value is
+# the middle of the drawn line, about +/-0.01 (the line is ~6 px thick).
+# Below a/h = 0.02 the three curves run together at the origin and cannot
+# be read apart. Linear interpolation between stations. The handbook's
+# text notes these values are conservative for most softwood species.
+# (Before 2026-11-10 the table held a coarse visual estimate: At 0.05 at
+# a/h 0.1 where the curve is at 0.177.)
 FIGURE_9_14_AB = [
     # (a/h, A_tension, A_compression, B)  -- units 1e-4 (kPa*sqrt(mm))^-1
-    (0.0, 0.00, 0.00, 0.00),
-    (0.1, 0.05, 0.03, 0.35),
-    (0.2, 0.15, 0.07, 0.65),
-    (0.3, 0.25, 0.10, 1.00),
-    (0.4, 0.45, 0.15, 1.35),
-    (0.5, 0.60, 0.20, 1.75),
-    (0.55, 0.70, 0.25, 2.00),
+    (0.02, 0.097, 0.040, 0.040),
+    (0.05, 0.136, 0.060, 0.100),
+    (0.10, 0.177, 0.074, 0.277),
+    (0.15, 0.202, 0.079, 0.459),
+    (0.20, 0.236, 0.085, 0.644),
+    (0.25, 0.268, 0.088, 0.826),
+    (0.30, 0.304, 0.099, 1.014),
+    (0.35, 0.341, 0.106, 1.202),
+    (0.40, 0.385, 0.116, 1.388),
+    (0.45, 0.436, 0.123, 1.576),
+    (0.50, 0.504, 0.137, 1.761),
+    (0.55, 0.589, 0.160, 1.948),
 ]
 
 
 def figure_9_14_coefficients(a_over_h, edge="tension"):
     """Figure 9-14: coefficients A (tension- or compression-edge slit) and
-    B for the crack-initiation criterion (Eq 9-21), by slit-depth ratio
-    a/h (printed p. 9-12). Linearly interpolated between the printed
-    curve's plotted stations; conservative for most softwood species per
-    the handbook text.
+    B, in (kPa*sqrt(mm))^-1, for the crack-initiation criterion (Eq 9-21),
+    by slit-depth ratio a/h (printed p. 9-12). Values traced off the
+    rendered figure at a/h 0.02, 0.05, 0.10, ..., 0.55 and linearly
+    interpolated (``FIGURE_9_14_AB``); a figure read, about +/-0.01e-4.
+    Conservative for most softwood species per the handbook text.
 
     Parameters
     ----------
     a_over_h : float
-        a/h, slit depth over beam depth (0 to ~0.55, the plotted range).
+        a/h, slit depth over beam depth, 0.02 to 0.55 (the curves start
+        together at the origin and end at 0.55; outside that ValueError).
     edge : str, optional
         'tension' (default, uses At) or 'compression' (uses Ac).
 
@@ -425,7 +435,10 @@ def figure_9_14_coefficients(a_over_h, edge="tension"):
         raise ValueError(f"edge must be 'tension' or 'compression', got {edge!r}")
     pts = FIGURE_9_14_AB
     if not (pts[0][0] <= a_over_h <= pts[-1][0]):
-        raise ValueError(f"a_over_h={a_over_h} outside the digitized Figure 9-14 range [0, 0.55]")
+        raise ValueError(
+            f"a_over_h={a_over_h} outside the range read from Figure 9-14 "
+            f"[{pts[0][0]}, {pts[-1][0]}]: the printed curves end at 0.55, and "
+            f"below 0.02 they run together at the origin")
     a_idx = 1 if edge == "tension" else 2
     for i in range(len(pts) - 1):
         x0, x1 = pts[i][0], pts[i + 1][0]
