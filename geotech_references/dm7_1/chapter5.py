@@ -282,13 +282,13 @@ def immediate_settlement(
 # ---------------------------------------------------------------------------
 
 def corrected_spt_silty_sand(N_prime: float) -> float:
-    """Corrected SPT blow count for dense, saturated silty sand
-    (Equation 5-6).
+    """SPT value N'SM (blows/ft) for settlement of a dense, saturated silty sand, Equation 5-6: N'SM = 15 + 0.5 (N' - 15).
 
-    When the average N60 value (*N'*) in a dense saturated silty sand
-    exceeds 15, the blow count is adjusted to account for the tendency
-    of these soils to dilate, which can increase measured blow counts
-    beyond representative values.
+    The elastic method uses an average SPT value N' to predict
+    settlement in coarse-grained soils.  In dense, saturated silty
+    sands the manual calculates the value N'SM as printed::
+
+        N'SM = 15 + 0.5 (N' - 15)
 
     .. math::
         N'_{SM} = 15 + 0.5 \\, (N' - 15)
@@ -296,8 +296,11 @@ def corrected_spt_silty_sand(N_prime: float) -> float:
     Parameters
     ----------
     N_prime : float
-        Average N60 blow count from the bottom of the foundation to a
-        depth of B below the load (blows/ft or blows/300 mm).
+        Average N60 value N' of a dense, saturated silty sand, from the
+        bottom of the loaded area to a depth of B below the load
+        (blows/ft or blows/300 mm).  The manual gives the condition in
+        words only; below N' = 15 the equation returns a value higher
+        than N'.
 
     Returns
     -------
@@ -311,8 +314,10 @@ def corrected_spt_silty_sand(N_prime: float) -> float:
 
     Notes
     -----
-    This correction is applied only when *N'* > 15.  When *N'* <= 15
-    the uncorrected value should be used directly.
+    The manual applies the equation to "dense, saturated silty sands"
+    and prints no blow-count limit for it.  The equation leaves N' = 15
+    unchanged, lowers a higher N' and raises a lower one (N' = 5 gives
+    10), so it is not for a silty sand that is not dense.
 
     References
     ----------
@@ -1201,17 +1206,19 @@ def time_factor_radial(
 # ---------------------------------------------------------------------------
 
 def drain_spacing_factor(n: float, approximate: bool = True) -> float:
-    """Drain spacing factor Fn (Equation 5-23).
+    """Drainage factor Fn (dimensionless) for vertical drains from the ratio n = dc/dw, Equation 5-23.
 
     Computes the drainage factor as a function of the ratio *n* of
     effective drainage diameter (*dc*) to drain diameter (*dw*).  Both
-    an exact expression and an approximation are available.
+    the full expression and its approximation are printed::
 
-    Exact:
+        Fn = [n^2 / (n^2 - 1)] ln(n) - (3 n^2 - 1) / (4 n^2)
+           ~ ln(n) - 0.75
+
+    Full expression (n^2/(n^2 - 1) multiplies ln(n) only):
 
     .. math::
-        F_n = \\frac{n^2}{n^2 - 1}
-        \\left[\\ln(n) - \\frac{3 n^2 - 1}{4 n^2}\\right]
+        F_n = \\frac{n^2}{n^2 - 1} \\ln(n) - \\frac{3 n^2 - 1}{4 n^2}
 
     Approximate (error < 10% for n > 4, < 1% for n > 12):
 
@@ -1249,7 +1256,7 @@ def drain_spacing_factor(n: float, approximate: bool = True) -> float:
         return math.log(n) - 0.75
     else:
         n2 = n ** 2
-        return (n2 / (n2 - 1.0)) * (math.log(n) - (3.0 * n2 - 1.0) / (4.0 * n2))
+        return (n2 / (n2 - 1.0)) * math.log(n) - (3.0 * n2 - 1.0) / (4.0 * n2)
 
 
 # ---------------------------------------------------------------------------
@@ -1355,14 +1362,16 @@ def smear_factor(kh: float, ks: float, s: float) -> float:
 def well_resistance_factor(
     kh: float, z: float, Lm: float, qw: float
 ) -> float:
-    """Well resistance factor Fr for vertical drains (Equation 5-26).
+    """Well resistance factor Fr (dimensionless) for vertical drains, Equation 5-26: Fr = pi z (2 Lm - z) kh / qw.
 
     Estimates the loss in drainage efficiency due to the finite discharge
     capacity of a vertical drain.  Well resistance becomes important for
-    long drains or drains with low discharge capacity.
+    long drains or drains with low discharge capacity.  As printed::
+
+        Fr = pi * z * (2 Lm - z) * kh / qw
 
     .. math::
-        F_r = \\pi \\, \\frac{k_h}{q_w} \\, z \\, (L_m - z)
+        F_r = \\pi \\, z \\, (2 L_m - z) \\, \\frac{k_h}{q_w}
 
     Parameters
     ----------
@@ -1401,7 +1410,7 @@ def well_resistance_factor(
         raise ValueError("z must be non-negative.")
     if z > Lm:
         raise ValueError("z must not exceed Lm.")
-    return math.pi * (kh / qw) * z * (Lm - z)
+    return math.pi * z * (2.0 * Lm - z) * (kh / qw)
 
 
 # ---------------------------------------------------------------------------

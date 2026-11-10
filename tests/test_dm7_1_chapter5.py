@@ -220,7 +220,9 @@ class TestCorrectedSptSiltySand:
 
     def test_below_15(self):
         # N'=10 => N'_SM = 15 + 0.5*(10-15) = 15 - 2.5 = 12.5
-        # (equation still applies mathematically, though manual says only for N'>15)
+        # (PDF p. 257, printed p. 229: the manual applies the equation to
+        # "dense, saturated silty sands" and prints no blow-count limit;
+        # below 15 the equation returns more than N')
         assert corrected_spt_silty_sand(10.0) == pytest.approx(12.5, rel=1e-4)
 
     def test_zero(self):
@@ -822,17 +824,27 @@ class TestDrainSpacingFactor:
         assert drain_spacing_factor(30.0) == pytest.approx(expected, rel=1e-4)
 
     def test_exact_basic(self):
-        # n=20, exact
-        # n2 = 400
-        # Fn = (400/399) * (ln(20) - (3*400 - 1)/(4*400))
-        #    = 1.002506 * (2.995732 - 1199/1600)
-        #    = 1.002506 * (2.995732 - 0.749375)
-        #    = 1.002506 * 2.246357
-        #    = 2.251988
-        n = 20.0
-        n2 = n ** 2
-        expected = (n2 / (n2 - 1.0)) * (math.log(n) - (3.0 * n2 - 1.0) / (4.0 * n2))
-        assert drain_spacing_factor(20.0, approximate=False) == pytest.approx(expected, rel=1e-4)
+        # Eq. 5-23 as printed, PDF p. 295 (printed p. 267):
+        # Fn = [n^2/(n^2 - 1)] ln(n) - (3 n^2 - 1)/(4 n^2)
+        # n=20: (400/399) * 2.995732 - 1199/1600
+        #     = 3.003240 - 0.749375 = 2.253865
+        assert drain_spacing_factor(20.0, approximate=False) == pytest.approx(2.253865, abs=1e-5)
+
+    def test_exact_small_n(self):
+        # PDF p. 295 (printed p. 267).
+        # n=5: (25/24) * 1.609438 - 74/100 = 1.676498 - 0.74 = 0.936498
+        assert drain_spacing_factor(5.0, approximate=False) == pytest.approx(0.936498, abs=1e-5)
+
+    def test_approximation_error_as_printed(self):
+        # PDF p. 295 (printed p. 267): "The error in the approximation is
+        # less than 10% for n greater than 4 and less than 1% for n
+        # greater than 12."  With the equation as typeset the error is
+        # 8.2% at n = 5 and 0.9% at n = 13 (it is 14.5% at n = 4 exactly
+        # and 1.1% at n = 12 exactly).
+        for n, limit in [(5.0, 0.10), (6.0, 0.10), (13.0, 0.01), (30.0, 0.01)]:
+            full = drain_spacing_factor(n, approximate=False)
+            approx = drain_spacing_factor(n, approximate=True)
+            assert abs(full - approx) / full < limit
 
     def test_n_equals_one_raises(self):
         with pytest.raises(ValueError, match="n must be greater than 1"):
@@ -917,30 +929,34 @@ class TestSmearFactor:
 # ===========================================================================
 
 class TestWellResistanceFactor:
-    """Tests for Equation 5-26: Fr = pi * (kh/qw) * z * (Lm - z)."""
+    """Tests for Equation 5-26: Fr = pi * z * (2 Lm - z) * kh / qw.
+
+    As printed, PDF p. 296 (printed p. 268).
+    """
 
     def test_basic(self):
         # kh=1e-6, z=5, Lm=20, qw=0.001
-        # Fr = pi * (1e-6 / 0.001) * 5 * (20-5)
-        #    = pi * 0.001 * 5 * 15
-        #    = pi * 0.075
-        #    = 0.23562
-        expected = math.pi * (1e-6 / 0.001) * 5.0 * 15.0
-        assert well_resistance_factor(1e-6, 5.0, 20.0, 0.001) == pytest.approx(expected, rel=1e-4)
+        # Fr = pi * 5 * (2*20 - 5) * (1e-6 / 0.001)
+        #    = pi * 5 * 35 * 0.001 = pi * 0.175 = 0.549779
+        assert well_resistance_factor(1e-6, 5.0, 20.0, 0.001) == pytest.approx(0.549779, abs=1e-5)
 
     def test_at_top(self):
-        # z=0 => Fr = 0 (water enters at top, no resistance)
-        assert well_resistance_factor(1e-6, 0.0, 20.0, 0.001) == pytest.approx(0.0, rel=1e-4)
+        # z=0 => Fr = 0
+        assert well_resistance_factor(1e-6, 0.0, 20.0, 0.001) == pytest.approx(0.0, abs=1e-12)
 
     def test_at_bottom(self):
-        # z = Lm => Fr = pi * (kh/qw) * Lm * 0 = 0
-        assert well_resistance_factor(1e-6, 20.0, 20.0, 0.001) == pytest.approx(0.0, rel=1e-4)
+        # z = Lm = 20 => Fr = pi * 20 * (40 - 20) * 0.001 = pi * 0.4 = 1.256637
+        # (the largest value along the drain, not zero)
+        assert well_resistance_factor(1e-6, 20.0, 20.0, 0.001) == pytest.approx(1.256637, abs=1e-5)
 
     def test_midpoint(self):
-        # z = Lm/2 = 10, Lm=20 => (Lm - z) = 10
-        # Fr = pi * (1e-6/0.001) * 10 * 10 = pi * 0.001 * 100 = pi * 0.1 = 0.31416
-        expected = math.pi * 0.001 * 100.0
-        assert well_resistance_factor(1e-6, 10.0, 20.0, 0.001) == pytest.approx(expected, rel=1e-4)
+        # z = Lm/2 = 10, Lm=20 => (2 Lm - z) = 30
+        # Fr = pi * 10 * 30 * 0.001 = pi * 0.3 = 0.942478
+        assert well_resistance_factor(1e-6, 10.0, 20.0, 0.001) == pytest.approx(0.942478, abs=1e-5)
+
+    def test_increases_with_depth(self):
+        values = [well_resistance_factor(1e-6, z, 20.0, 0.001) for z in (2.0, 8.0, 14.0, 20.0)]
+        assert values == sorted(values)
 
     def test_qw_zero_raises(self):
         with pytest.raises(ValueError, match="qw must be positive"):
