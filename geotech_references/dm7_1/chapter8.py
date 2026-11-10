@@ -1825,16 +1825,19 @@ def hydraulic_conductivity_kozeny_carman(
 def hydraulic_conductivity_carrier_beckman(
     e: float, pl: float, pi: float
 ) -> float:
-    """Hydraulic conductivity of fine-grained soils from index properties (Equation 8-42).
+    """Hydraulic conductivity k (m/s) of fine-grained soil from void ratio and Atterberg limits, Equation 8-42 (Carrier and Beckman 1984).
 
     Carrier and Beckman (1984) correlation relating the hydraulic
     conductivity of fine-grained soils to the void ratio, plastic limit,
-    and plasticity index.
+    and plasticity index.  As printed (the plasticity index divides
+    inside the bracket that is raised to 4.29)::
+
+        k = 0.0174 * { [e - 0.027 (PL - 0.242 PI)] / PI }^4.29 * 1 / (1 + e)
 
     .. math::
-        k = 0.0174 \\cdot
-        \\frac{[e - 0.027 \\cdot (PL - 0.242 \\cdot PI)]^{4.29}}
-        {(1+e) \\cdot PI}
+        k = 0.0174 \\left[
+        \\frac{e - 0.027 (PL - 0.242 PI)}{PI} \\right]^{4.29}
+        \\left(\\frac{1}{1+e}\\right)
 
     Parameters
     ----------
@@ -1853,7 +1856,9 @@ def hydraulic_conductivity_carrier_beckman(
     Raises
     ------
     ValueError
-        If *e* is negative or *pi* is not positive.
+        If *e* is negative, *pi* is not positive, or
+        e - 0.027 (PL - 0.242 PI) is not positive (the void ratio is
+        then too low for the equation to be evaluated).
 
     References
     ----------
@@ -1864,9 +1869,14 @@ def hydraulic_conductivity_carrier_beckman(
         raise ValueError("e must be non-negative.")
     if pi <= 0.0:
         raise ValueError("pi must be positive.")
-    numerator = (e - 0.027 * (pl - 0.242 * pi)) ** 4.29
-    denominator = (1.0 + e) * pi
-    return 0.0174 * numerator / denominator
+    numerator = e - 0.027 * (pl - 0.242 * pi)
+    if numerator <= 0.0:
+        raise ValueError(
+            "e - 0.027 (PL - 0.242 PI) is not positive; Equation 8-42 "
+            "(UFS 3-220-10 p. 462) raises it to the power 4.29 and cannot "
+            "be evaluated at this void ratio."
+        )
+    return 0.0174 * (numerator / pi) ** 4.29 / (1.0 + e)
 
 
 def hydraulic_conductivity_benson_landfill(
@@ -1879,108 +1889,45 @@ def hydraulic_conductivity_benson_landfill(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Hydraulic conductivity of compacted clay liners (Equation 8-43).
+    """Hydraulic conductivity k (m/s) of a compacted clay liner, Equation 8-43 (Benson et al. 1994).
 
-    Benson et al. (1994) correlation based on intact test specimens from
-    compacted clay liners at 67 landfills in North America.
+    Benson et al. (1994) measured the hydraulic conductivity of intact
+    specimens from compacted clay liners at 67 landfills in North
+    America and related it to other measured properties of the clays.
+    As printed::
 
-    .. math::
-        \\ln(k) = -18.35 + 0.08 \\cdot PI + 2.87 \\cdot GC
-                  - 0.32 \\cdot CF - 0.02 \\cdot W
-                  + \\frac{894}{1 + \\frac{w \\cdot \\gamma_w}{\\gamma_d \\cdot G_s}
-                  \\cdot ... }
-
-    Re-reading the equation from the PDF more carefully:
+        ln k = -18.35 + 894 / W - 0.08 PI
+               - 2.87 * [ w / (gamma_w / gamma_d - 1 / Gs) ]
+               + 0.32 * sqrt(GC) + 0.02 CF
 
     .. math::
-        \\ln(k) = -18.35 + 0.08 \\cdot PI + 2.87 \\cdot GC
-                  - 0.32 \\cdot CF - 0.02 \\cdot W
-                  + \\frac{894}{1 + \\frac{w \\cdot \\gamma_w}
-                  {\\gamma_d} \\cdot G_s}
+        \\ln k = -18.35 + \\frac{894}{W} - 0.08\\,PI
+        - 2.87 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
+        + 0.32 \\sqrt{GC} + 0.02\\,CF
 
-    Actually, the PDF text layout is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W + 894/(1 + w*gamma_w/(gamma_d*Gs))
-
-    Wait -- looking again, the fraction at the end with gamma_w/gamma_d/Gs
-    is computing the degree of saturation: S = w*Gs*gamma_w/gamma_d...
-    Actually the standard form for degree of saturation is S = w*Gs/e
-    where e = Gs*gamma_w/gamma_d - 1. The fraction structure in the PDF
-    is: 894 / (1 + (w*gamma_w)/(gamma_d) * Gs) which is not standard.
-
-    Re-reading the stacked text from the PDF extraction:
-    894
-    ln
-    18.35
-    0.08
-    2.87
-    0.32
-    0.02
-    1
-    w
-    d
-    s
-    w
-    k
-    PI
-    GC
-    CF
-    W
-    G
-    gamma
-    gamma
-
-    The correct form from the PDF layout (fraction under 894) is:
-    894 * [w * gamma_w / (gamma_d)] * Gs ... no that doesn't work either.
-
-    Based on the Benson et al. (1994) paper, the actual equation is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W + 894*S
-    where S = degree of saturation = w * Gs / e, and
-    e = Gs * gamma_w / gamma_d - 1.
-
-    However, the PDF text renders as:
-    894 / [1 + w*gamma_w/(gamma_d*Gs)]
-
-    After reconciling, the most faithful reading of the PDF is:
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W
-            + 894 / [1 / (w * gamma_w / (gamma_d * Gs))]
-
-    Actually, simplifying the stacked fraction in the PDF, the last
-    term is: 894 * w * gamma_w / (gamma_d * Gs * (1 + ...)) ...
-
-    Given the ambiguity, I will implement the form most consistent with
-    the Benson et al. (1994) original paper, where the degree of
-    saturation S = w * Gs * gamma_w / gamma_d is the key variable:
-
-    Actually the standard soil mechanics relation is:
-    S * e = w * Gs, and e = Gs * gamma_w / gamma_d - 1
-
-    So: S = w * Gs / e = w * Gs / (Gs * gamma_w / gamma_d - 1)
-
-    The PDF layout suggests the final term is 894 * S where
-    S is expressed as w/(1/Gs - gamma_d/(gamma_w*Gs)) ... Looking
-    at the equation structure one more time, it appears to be:
-
-    ln(k) = -18.35 + 0.08*PI + 2.87*GC - 0.32*CF - 0.02*W
-            + 894 / (something involving w, gamma_w, gamma_d, Gs)
-
-    I will implement this using the standard Benson et al. (1994) form.
+    The term in brackets is the degree of saturation at molding.  The
+    manual gives no unit for the molding water content *w*; this
+    function takes it as a decimal, which makes the bracket the degree
+    of saturation as a decimal (a percentage there would give k below
+    1e-100 m/s).
 
     Parameters
     ----------
     cf : float
-        Clay-sized fraction (% by mass smaller than 0.002 mm).
+        Clay-sized fraction CF (percent by mass smaller than 0.002 mm).
     gc : float
-        Gravel content (% retained between 75 mm and No. 4 sieve).
+        Gravel content GC (percent retained between 75 mm and the No. 4
+        sieve).
     w_compactor : float
-        Weight of field compactor (kN).
+        Weight of field compactor, W (kN).  Must be > 0.
     pi : float
         Plasticity index (%).
     w : float
-        Molding water content (decimal, e.g., 0.20 for 20%).
+        Molding water content as a decimal (0.20 for 20%).
     gamma_w : float
         Unit weight of water (kN/m^3, e.g., 9.81).
     gamma_d : float
-        Dry unit weight (kN/m^3).
+        Dry unit weight (same units as *gamma_w*).
     gs : float
         Specific gravity of the solids (dimensionless).
 
@@ -1992,8 +1939,9 @@ def hydraulic_conductivity_benson_landfill(
     Raises
     ------
     ValueError
-        If *gamma_d* is not positive, *gamma_w* is not positive, or
-        *gs* is not positive.
+        If *gamma_d*, *gamma_w*, *gs* or *w_compactor* is not positive,
+        *gc* is negative, or gamma_w/gamma_d - 1/Gs is not positive
+        (the dry unit weight is then above the zero-void-ratio value).
 
     References
     ----------
@@ -2007,17 +1955,21 @@ def hydraulic_conductivity_benson_landfill(
         raise ValueError("gamma_w must be positive.")
     if gs <= 0.0:
         raise ValueError("gs must be positive.")
+    if w_compactor <= 0.0:
+        raise ValueError("w_compactor must be positive.")
+    if gc < 0.0:
+        raise ValueError("gc must be non-negative.")
 
-    # Degree of saturation
-    e = gs * gamma_w / gamma_d - 1.0
-    if e <= 0.0:
+    denominator = gamma_w / gamma_d - 1.0 / gs
+    if denominator <= 0.0:
         raise ValueError(
-            "Computed void ratio is non-positive; check gamma_d, gamma_w, gs."
+            "gamma_w/gamma_d - 1/gs is not positive (the void ratio is "
+            "non-positive); check gamma_d, gamma_w, gs."
         )
-    s_degree = w * gs / e
+    saturation = w / denominator
 
-    ln_k = (-18.35 + 0.08 * pi + 2.87 * gc - 0.32 * cf
-            - 0.02 * w_compactor + 894.0 * s_degree)
+    ln_k = (-18.35 + 894.0 / w_compactor - 0.08 * pi - 2.87 * saturation
+            + 0.32 * math.sqrt(gc) + 0.02 * cf)
     return math.exp(ln_k)
 
 
@@ -2030,48 +1982,53 @@ def hydraulic_conductivity_benson_trast(
     gamma_d: float,
     gs: float,
 ) -> float:
-    """Hydraulic conductivity of compacted clays from Benson and Trast (Equation 8-44).
+    """Not evaluated: Equation 8-44 (Benson and Trast 1995), hydraulic conductivity k (m/s) of compacted clay. Always raises ValueError, because the manual does not give the unit of the molding water content.
 
-    Benson and Trast (1995) correlation from hydraulic conductivity tests
-    on 13 compacted clays used for compacted clay liners.
+    Benson and Trast (1995) tested 13 compacted clays used for
+    compacted clay liners around the United States, prepared at
+    different water contents.  As printed::
+
+        ln k = -15 - 0.087 * [ w / (gamma_w / gamma_d - 1 / Gs) ]
+               - 0.054 PI + 0.022 CF + 0.91 E
 
     .. math::
-        \\ln(k) = -15 - 0.087 \\cdot PI - 0.054 \\cdot CF
-                  + 0.022 \\cdot E + 0.91 \\cdot S
+        \\ln k = -15
+        - 0.087 \\left( \\frac{w}{\\gamma_w / \\gamma_d - 1 / G_s} \\right)
+        - 0.054\\,PI + 0.022\\,CF + 0.91\\,E
 
-    where S = degree of saturation computed from the molding water
-    content, dry unit weight, specific gravity, and unit weight of water.
-    The term involving gamma_w, gamma_d, w, and Gs in the PDF computes
-    the degree of saturation.
+    where E is the compactive effort index, equal to -1, 0 and 1 for
+    modified, standard and reduced Proctor compactive effort.
+
+    The term in brackets is the degree of saturation at molding.  The
+    manual gives the molding water content *w* no unit, and here the
+    two readings both give a possible k: with *w* as a decimal the term
+    is about 0.6 to 1.0 and changes k by a few percent; with *w* in
+    percent it is about 60 to 100 and lowers k by a factor of about 200
+    to 5,000.  The page does not settle which is meant, so the function
+    refuses rather than return either.
 
     Parameters
     ----------
     pi : float
         Plasticity index (%).
     cf : float
-        Clay-sized fraction (% by mass smaller than 0.002 mm).
+        Clay-sized fraction (%).
     e_effort : float
-        Compactive effort index: -1 for modified Proctor, 0 for standard
-        Proctor, 1 for reduced Proctor.
+        Compactive effort index E: -1 for modified Proctor, 0 for
+        standard Proctor, +1 for reduced Proctor.
     w : float
-        Molding water content (decimal, e.g., 0.20 for 20%).
+        Molding water content (unit not given by the manual).
     gamma_w : float
-        Unit weight of water (kN/m^3, e.g., 9.81).
+        Unit weight of water.
     gamma_d : float
-        Dry unit weight (kN/m^3).
+        Dry unit weight (same units as *gamma_w*).
     gs : float
         Specific gravity of the solids (dimensionless).
-
-    Returns
-    -------
-    float
-        Hydraulic conductivity, k (m/s).
 
     Raises
     ------
     ValueError
-        If *gamma_d* is not positive, *gamma_w* is not positive, or
-        *gs* is not positive.
+        Always.
 
     References
     ----------
@@ -2079,24 +2036,14 @@ def hydraulic_conductivity_benson_trast(
     Chapter 8, Equation 8-44, p. 463.
     Benson and Trast (1995).
     """
-    if gamma_d <= 0.0:
-        raise ValueError("gamma_d must be positive.")
-    if gamma_w <= 0.0:
-        raise ValueError("gamma_w must be positive.")
-    if gs <= 0.0:
-        raise ValueError("gs must be positive.")
-
-    # Degree of saturation
-    e = gs * gamma_w / gamma_d - 1.0
-    if e <= 0.0:
-        raise ValueError(
-            "Computed void ratio is non-positive; check gamma_d, gamma_w, gs."
-        )
-    s_degree = w * gs / e
-
-    ln_k = (-15.0 - 0.087 * pi - 0.054 * cf
-            + 0.022 * e_effort + 0.91 * s_degree)
-    return math.exp(ln_k)
+    raise ValueError(
+        "Equation 8-44 (Benson and Trast 1995) is not evaluated: UFS "
+        "3-220-10 p. 463 prints ln k = -15 - 0.087 [w/(gamma_w/gamma_d - "
+        "1/Gs)] - 0.054 PI + 0.022 CF + 0.91 E (k in m/s) without the unit "
+        "of the molding water content w, and k differs by a factor of "
+        "about 200 to 5,000 (degree of saturation 60 to 100 %) between w "
+        "as a decimal and w in percent."
+    )
 
 
 # ============================================================================

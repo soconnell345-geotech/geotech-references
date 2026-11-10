@@ -1272,20 +1272,31 @@ class TestHydraulicConductivityKozenyCarman:
 class TestHydraulicConductivityCarrierBeckman:
     """Tests for Equation 8-42."""
 
+    # Eq. 8-42 as printed, PDF p. 490 (printed p. 462), k in m/s:
+    # k = 0.0174 {[e - 0.027 (PL - 0.242 PI)] / PI}^4.29 * 1/(1+e)
+
     def test_basic(self):
-        # e=0.8, PL=25, PI=20
-        # numerator_base = 0.8 - 0.027*(25 - 0.242*20) = 0.8 - 0.027*(25 - 4.84) = 0.8 - 0.027*20.16
-        # = 0.8 - 0.54432 = 0.25568
-        # numerator = 0.25568^4.29
-        # denominator = (1+0.8)*20 = 1.8*20 = 36
-        # k = 0.0174 * 0.25568^4.29 / 36
-        num_base = 0.8 - 0.027 * (25.0 - 0.242 * 20.0)
-        numerator = num_base ** 4.29
-        denominator = (1.0 + 0.8) * 20.0
-        expected = 0.0174 * numerator / denominator
-        assert hydraulic_conductivity_carrier_beckman(0.8, 25.0, 20.0) == pytest.approx(
-            expected, rel=1e-4
+        # e=1.5, PL=25, PI=30
+        # e - 0.027*(25 - 7.26) = 1.5 - 0.47898 = 1.02102
+        # (1.02102/30)^4.29 = 0.034034^4.29 = 5.0339e-07
+        # k = 0.0174 * 5.0339e-07 / 2.5 = 3.5036e-09 m/s
+        assert hydraulic_conductivity_carrier_beckman(1.5, 25.0, 30.0) == pytest.approx(
+            3.5036e-09, rel=1e-4, abs=0.0
         )
+
+    def test_second_point(self):
+        # e=2.0, PL=20, PI=20
+        # e - 0.027*(20 - 4.84) = 2.0 - 0.40932 = 1.59068
+        # (1.59068/20)^4.29 = 0.079534^4.29 = 1.9203e-05
+        # k = 0.0174 * 1.9203e-05 / 3.0 = 1.1138e-07 m/s
+        assert hydraulic_conductivity_carrier_beckman(2.0, 20.0, 20.0) == pytest.approx(
+            1.1138e-07, rel=1e-4, abs=0.0
+        )
+
+    def test_void_ratio_too_low_raises(self):
+        # e=0.3, PL=30, PI=10: 0.3 - 0.027*(30 - 2.42) = -0.4447
+        with pytest.raises(ValueError, match="is not positive"):
+            hydraulic_conductivity_carrier_beckman(0.3, 30.0, 10.0)
 
     def test_e_negative_raises(self):
         with pytest.raises(ValueError, match="e must be non-negative"):
@@ -1308,28 +1319,39 @@ class TestHydraulicConductivityCarrierBeckman:
 class TestHydraulicConductivityBensonLandfill:
     """Tests for Equation 8-43."""
 
+    # Eq. 8-43 as printed, PDF p. 491 (printed p. 463), k in m/s:
+    # ln k = -18.35 + 894/W - 0.08 PI - 2.87 [w/(gamma_w/gamma_d - 1/Gs)]
+    #        + 0.32 sqrt(GC) + 0.02 CF
+
     def test_basic(self):
-        # Use inputs that keep the degree of saturation low enough to
-        # avoid overflow in math.exp().  Pick a low water content and
-        # a relatively high void ratio.
-        # cf=50, gc=0, w_compactor=100, pi=30, w=0.02,
-        # gamma_w=9.81, gamma_d=14.0, gs=2.70
-        # e = 2.70*9.81/14.0 - 1 = 26.487/14 - 1 = 1.89193 - 1 = 0.89193
-        # S = 0.02*2.70/0.89193 = 0.054/0.89193 = 0.060542
-        # ln(k) = -18.35 + 0.08*30 + 2.87*0 - 0.32*50 - 0.02*100 + 894*0.060542
-        #       = -18.35 + 2.4 + 0 - 16.0 - 2.0 + 54.124
-        #       = 20.174
-        # k = exp(20.174)
-        e = 2.70 * 9.81 / 14.0 - 1.0
-        s_degree = 0.02 * 2.70 / e
-        ln_k = (-18.35 + 0.08 * 30.0 + 2.87 * 0.0 - 0.32 * 50.0
-                - 0.02 * 100.0 + 894.0 * s_degree)
-        expected = math.exp(ln_k)
+        # CF=30, GC=4, W=200 kN, PI=25, w=0.18, gamma_w=9.81, gamma_d=17.0,
+        # Gs=2.70
+        # bracket = 0.18 / (9.81/17.0 - 1/2.70) = 0.18 / 0.206688 = 0.870876
+        # ln k = -18.35 + 4.47 - 2.0 - 2.87*0.870876 + 0.32*2 + 0.6
+        #      = -17.13941;  k = 3.6012e-08 m/s
         result = hydraulic_conductivity_benson_landfill(
-            cf=50.0, gc=0.0, w_compactor=100.0, pi=30.0, w=0.02,
-            gamma_w=9.81, gamma_d=14.0, gs=2.70
+            cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
         )
-        assert result == pytest.approx(expected, rel=1e-4)
+        assert result == pytest.approx(3.6012e-08, rel=1e-4, abs=0.0)
+
+    def test_heavier_compactor_lower_k(self):
+        # Same clay, W=400 kN: 894/W falls from 4.47 to 2.235
+        # ln k = -17.13941 - 2.235 = -19.37441;  k = 3.8530e-09 m/s
+        result = hydraulic_conductivity_benson_landfill(
+            cf=30.0, gc=4.0, w_compactor=400.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result == pytest.approx(3.8530e-09, rel=1e-4, abs=0.0)
+
+    def test_no_gravel(self):
+        # GC=0: the square-root term is zero
+        # ln k = -17.13941 - 0.64 = -17.77941;  k = 1.8989e-08 m/s
+        result = hydraulic_conductivity_benson_landfill(
+            cf=30.0, gc=0.0, w_compactor=200.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result == pytest.approx(1.8989e-08, rel=1e-4, abs=0.0)
 
     def test_gamma_d_not_positive_raises(self):
         with pytest.raises(ValueError, match="gamma_d must be positive"):
@@ -1352,10 +1374,17 @@ class TestHydraulicConductivityBensonLandfill:
                 gamma_w=9.81, gamma_d=17.0, gs=0.0
             )
 
+    def test_w_compactor_not_positive_raises(self):
+        with pytest.raises(ValueError, match="w_compactor must be positive"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=0.05, w_compactor=0.0, pi=20.0, w=0.20,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
     def test_void_ratio_nonpositive_raises(self):
-        # e = gs*gamma_w/gamma_d - 1 <= 0 when gamma_d >= gs*gamma_w
-        # gs=2.7, gamma_w=9.81 => gs*gamma_w=26.487; gamma_d=27 => e = 26.487/27 -1 = -0.019
-        with pytest.raises(ValueError, match="Computed void ratio is non-positive"):
+        # gamma_w/gamma_d - 1/Gs <= 0 when gamma_d >= Gs*gamma_w
+        # Gs=2.7, gamma_w=9.81 => Gs*gamma_w=26.487; gamma_d=27
+        with pytest.raises(ValueError, match="void ratio is non-positive"):
             hydraulic_conductivity_benson_landfill(
                 cf=30.0, gc=0.05, w_compactor=300.0, pi=20.0, w=0.20,
                 gamma_w=9.81, gamma_d=27.0, gs=2.70
@@ -1370,62 +1399,35 @@ class TestHydraulicConductivityBensonLandfill:
 class TestHydraulicConductivityBensonTrast:
     """Tests for Equation 8-44."""
 
-    def test_basic(self):
-        # pi=25, cf=40, e_effort=0, w=0.22, gamma_w=9.81, gamma_d=16.5, gs=2.70
-        # e = 2.70*9.81/16.5 - 1 = 26.487/16.5 - 1 = 1.60527 - 1 = 0.60527
-        # S = 0.22*2.70/0.60527 = 0.594/0.60527 = 0.98128
-        # ln(k) = -15 - 0.087*25 - 0.054*40 + 0.022*0 + 0.91*0.98128
-        # = -15 - 2.175 - 2.16 + 0 + 0.89296 = -18.44204
-        # k = exp(-18.44204)
-        e = 2.70 * 9.81 / 16.5 - 1.0
-        s_degree = 0.22 * 2.70 / e
-        ln_k = -15.0 - 0.087 * 25.0 - 0.054 * 40.0 + 0.022 * 0.0 + 0.91 * s_degree
-        expected = math.exp(ln_k)
-        result = hydraulic_conductivity_benson_trast(
-            pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-            gamma_w=9.81, gamma_d=16.5, gs=2.70
-        )
-        assert result == pytest.approx(expected, rel=1e-4)
+    # Eq. 8-44 as printed, PDF p. 491 (printed p. 463), k in m/s:
+    # ln k = -15 - 0.087 [w/(gamma_w/gamma_d - 1/Gs)] - 0.054 PI
+    #        + 0.022 CF + 0.91 E
+    # The page gives no unit for the molding water content w. With w as a
+    # decimal the example below gives ln k = -15.766 (k = 1.42e-07 m/s);
+    # with w in percent, ln k = -23.267 (k = 7.86e-11 m/s). The function
+    # returns neither until the unit is settled.
 
-    def test_modified_proctor_effort(self):
-        # e_effort=-1 (modified Proctor)
-        e = 2.70 * 9.81 / 16.5 - 1.0
-        s_degree = 0.22 * 2.70 / e
-        ln_k = -15.0 - 0.087 * 25.0 - 0.054 * 40.0 + 0.022 * (-1.0) + 0.91 * s_degree
-        expected = math.exp(ln_k)
-        result = hydraulic_conductivity_benson_trast(
-            pi=25.0, cf=40.0, e_effort=-1.0, w=0.22,
-            gamma_w=9.81, gamma_d=16.5, gs=2.70
-        )
-        assert result == pytest.approx(expected, rel=1e-4)
-
-    def test_gamma_d_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gamma_d must be positive"):
+    def test_refuses_and_names_the_page(self):
+        with pytest.raises(ValueError, match="p. 463") as excinfo:
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=9.81, gamma_d=0.0, gs=2.70
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+        message = str(excinfo.value)
+        assert "Equation 8-44" in message
+        assert "molding water content" in message
+
+    def test_refuses_with_w_in_percent_too(self):
+        with pytest.raises(ValueError, match="Equation 8-44"):
+            hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=-1.0, w=18.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
-    def test_gamma_w_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gamma_w must be positive"):
-            hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=0.0, gamma_d=16.5, gs=2.70
-            )
-
-    def test_gs_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gs must be positive"):
-            hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=9.81, gamma_d=16.5, gs=0.0
-            )
-
-    def test_void_ratio_nonpositive_raises(self):
-        with pytest.raises(ValueError, match="Computed void ratio is non-positive"):
-            hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=9.81, gamma_d=27.0, gs=2.70
-            )
+    def test_docstring_gives_the_printed_equation(self):
+        doc = hydraulic_conductivity_benson_trast.__doc__
+        assert "ln k = -15 - 0.087 * [ w / (gamma_w / gamma_d - 1 / Gs) ]" in doc
+        assert "- 0.054 PI + 0.022 CF + 0.91 E" in doc
 
 
 # ============================================================================
