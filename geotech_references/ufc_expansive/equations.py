@@ -1,175 +1,59 @@
 """UFC 3-220-07 expansive soil equations.
 
-Activity index, free swell estimation (Seed et al. 1962), swell
-pressure correlations, heave prediction (layer summation), and
-pier minimum embedment.  All units SI.
+From UFC 3-220-07, Foundations in Expansive Soils (the reproduced
+TM 5-818-7), docs/ufc_3_220_07.pdf: total swell as the area under the
+per cent swell versus depth curve, Figure 5-4 (printed p. 5-7, PDF 42).
+
+Rebuilt from the print 2026-11-10 (review pave-13): activity_index
+(Skempton), free_swell_percent (Seed et al. 1962), swell_pressure_kPa
+(Komornik and David, with LL taken as PI + 20) and
+pier_minimum_embedment_m (1.5 times the active zone) were removed; none
+is printed in this manual.
 """
 
-import math
-
-
-def activity_index(plasticity_index, clay_fraction_pct):
-    """Calculate Skempton's activity index.
-
-    ::
-
-        A = PI / (% finer than 2 um)
-
-    Parameters
-    ----------
-    plasticity_index : float
-        Plasticity index (%).
-    clay_fraction_pct : float
-        Percentage of particles finer than 2 um (%).
-
-    Returns
-    -------
-    dict
-        Keys: activity, classification (inactive/normal/active/highly_active).
-
-    Raises
-    ------
-    ValueError
-        If inputs are non-positive or clay_fraction_pct > 100.
-    """
-    if plasticity_index <= 0:
-        raise ValueError(
-            f"plasticity_index must be > 0, got {plasticity_index}"
-        )
-    if clay_fraction_pct <= 0:
-        raise ValueError(
-            f"clay_fraction_pct must be > 0, got {clay_fraction_pct}"
-        )
-    if clay_fraction_pct > 100:
-        raise ValueError(
-            f"clay_fraction_pct must be <= 100, got {clay_fraction_pct}"
-        )
-
-    A = plasticity_index / clay_fraction_pct
-
-    if A < 0.75:
-        classification = "inactive"
-    elif A < 1.25:
-        classification = "normal"
-    elif A < 2.0:
-        classification = "active"
-    else:
-        classification = "highly_active"
-
-    return {
-        "activity": round(A, 3),
-        "classification": classification,
-    }
-
-
-def free_swell_percent(plasticity_index):
-    """Estimate free swell from plasticity index (Seed et al. 1962).
-
-    ::
-
-        S_free (%) = 2.16e-3 * PI^2.44
-
-    Parameters
-    ----------
-    plasticity_index : float
-        Plasticity index (%).  Valid range approx 10-70.
-
-    Returns
-    -------
-    float
-        Estimated free swell (%).
-
-    Raises
-    ------
-    ValueError
-        If plasticity_index <= 0.
-    """
-    if plasticity_index <= 0:
-        raise ValueError(
-            f"plasticity_index must be > 0, got {plasticity_index}"
-        )
-
-    return 2.16e-3 * plasticity_index ** 2.44
-
-
-def swell_pressure_kPa(
-    plasticity_index,
-    dry_density_kN_per_m3,
-    moisture_content_pct,
-):
-    """Estimate swell pressure from index properties (Komornik & David 1969).
-
-    ::
-
-        log10(p_s) = 2.132 + 0.0208 * LL + 0.000665 * gamma_d - 0.0269 * w
-
-    Approximated here using PI in place of LL (LL ~ PI + PL, typical
-    PL ~ 20, so LL ~ PI + 20).  Units: p_s in kPa, gamma_d in kN/m³,
-    w in %.
-
-    Parameters
-    ----------
-    plasticity_index : float
-        Plasticity index (%).
-    dry_density_kN_per_m3 : float
-        Dry unit weight (kN/m³).
-    moisture_content_pct : float
-        Natural moisture content (%).
-
-    Returns
-    -------
-    float
-        Estimated swell pressure (kPa).
-
-    Raises
-    ------
-    ValueError
-        If inputs are non-positive.
-    """
-    PI = plasticity_index
-    gd = dry_density_kN_per_m3
-    w = moisture_content_pct
-
-    if PI <= 0:
-        raise ValueError(f"plasticity_index must be > 0, got {PI}")
-    if gd <= 0:
-        raise ValueError(f"dry_density_kN_per_m3 must be > 0, got {gd}")
-    if w <= 0:
-        raise ValueError(f"moisture_content_pct must be > 0, got {w}")
-
-    # Approximate LL from PI (assume typical PL ~ 20)
-    LL = PI + 20.0
-    log_ps = 2.132 + 0.0208 * LL + 0.000665 * gd - 0.0269 * w
-    return round(10.0 ** log_ps, 1)
+_REF = "UFC 3-220-07 (TM 5-818-7)"
+_M_TO_FT = 1.0 / 0.3048
 
 
 def heave_prediction_mm(layers):
-    """Predict total heave using the layer summation method.
+    """Total swell (heave) of a soil profile, mm, as the sum of each
+    layer's per cent swell times its thickness: the stepwise form of
+    UFC 3-220-07 Figure 5-4, "Approximate method for computing foundation
+    swell" (printed p. 5-7, PDF 42).
 
-    ::
+    Figure 5-4 (A), procedure for estimating total swell, as printed:
+    "3. Compute swell in terms of per cent of original specimen height and
+    plot vs depth. 4. Compute total swell which is equal to area
+    encompassed by per cent swell vs depth curve. For example, using
+    curves shown above: Total swell = 1/2 x (8.2 - 1.0) x 2.8/100 =
+    0.10 ft". The specimens are loaded in the consolidometer to the
+    overburden pressure plus the weight of the structure (step 2). This
+    function takes the area as a sum of rectangles::
 
-        delta_H = sum(epsilon_i * H_i)
+        delta_H = sum(swell_strain_pct_i / 100 * H_i)
 
-    where epsilon_i is the swell strain (decimal) and H_i is layer
-    thickness (m) for each layer within the active zone.
+    with H_i in metres; delta_H is returned in mm (and in feet, the
+    print's unit, as a conversion). One layer of 7.2 ft (2.195 m) at the
+    printed triangle's mean 1.4 % gives the printed 0.10 ft.
 
     Parameters
     ----------
     layers : list of dict
         Each dict must have:
         - thickness_m (float): layer thickness (m)
-        - swell_strain_pct (float): swell strain (%)
+        - swell_strain_pct (float): swell, per cent of original specimen
+          height, under overburden plus structure load (%)
 
     Returns
     -------
     dict
-        Keys: total_heave_mm, layer_heaves_mm (list of float),
-        number_of_layers.
+        Keys: total_heave_mm, total_heave_ft (conversion),
+        layer_heaves_mm (list of float), number_of_layers, reference.
 
     Raises
     ------
     ValueError
-        If layers is empty or any value is non-positive.
+        If layers is empty or any value is out of range.
     """
     if not layers:
         raise ValueError("layers list must not be empty")
@@ -187,58 +71,12 @@ def heave_prediction_mm(layers):
         heave_mm = (s / 100.0) * t * 1000.0  # convert m to mm
         layer_heaves.append(round(heave_mm, 1))
 
+    total_mm = round(sum(layer_heaves), 1)
     return {
-        "total_heave_mm": round(sum(layer_heaves), 1),
+        "total_heave_mm": total_mm,
+        "total_heave_ft": round(total_mm / 1000.0 * _M_TO_FT, 3),
         "layer_heaves_mm": layer_heaves,
         "number_of_layers": len(layers),
-    }
-
-
-def pier_minimum_embedment_m(active_zone_depth_m, factor=1.5):
-    """Minimum pier embedment depth in expansive soils.
-
-    Piers must extend through the active zone and be anchored into
-    stable material below.  Minimum embedment::
-
-        D_min = active_zone_depth + anchorage
-
-    where anchorage = factor * active_zone_depth (typically the pier
-    is embedded at least 1.5x the active zone depth, or a minimum of
-    1 m into stable soil, whichever is greater).
-
-    Parameters
-    ----------
-    active_zone_depth_m : float
-        Depth of the active (moisture-change) zone (m).
-    factor : float, optional
-        Multiplier for total embedment (default 1.5, i.e. pier tip
-        at 1.5 * active zone depth).
-
-    Returns
-    -------
-    dict
-        Keys: min_embedment_m, active_zone_depth_m,
-        anchorage_below_active_zone_m.
-
-    Raises
-    ------
-    ValueError
-        If active_zone_depth_m <= 0 or factor < 1.
-    """
-    if active_zone_depth_m <= 0:
-        raise ValueError(
-            f"active_zone_depth_m must be > 0, got {active_zone_depth_m}"
-        )
-    if factor < 1.0:
-        raise ValueError(f"factor must be >= 1.0, got {factor}")
-
-    total = factor * active_zone_depth_m
-    # Minimum 1 m anchorage below the active zone
-    anchorage = max(total - active_zone_depth_m, 1.0)
-    min_embed = active_zone_depth_m + anchorage
-
-    return {
-        "min_embedment_m": round(min_embed, 2),
-        "active_zone_depth_m": active_zone_depth_m,
-        "anchorage_below_active_zone_m": round(anchorage, 2),
+        "reference": (f"{_REF}, Figure 5-4 (A) step 4, printed p. 5-7 "
+                      "(PDF 42)"),
     }
