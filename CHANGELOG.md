@@ -255,6 +255,19 @@ rows instead of being answered from the first row that contains the words.
     not printed); Table 4-2's types of load; Table 4-5's conditions (0.65
     also where the slope contains or supports a structural element).
 
+- **GEC-9 laterally loaded deep foundations (FHWA-HIF-18-031).**
+  - `table_7_1_p_multiplier` (Table 7-1, p. 104): beyond 5B the 5B row is
+    still used, and the result now says the table has no row there (note
+    (3) allows interpolation between 3B and 5B only); the table's notes
+    come back as `print_notes`. The refusal below 3B no longer says "use
+    Pm = 1.0 beyond 5B", which the table does not print (rows 2 and 3 are
+    0.85 and 0.7 at 5B) (gec-25).
+  - `table_a1_k_stiff_clay`, `table_a2_epsilon50_stiff_clay` (Tables A-1,
+    A-2, p. 222): outside the printed Ca columns (0.5 to 4 ton/ft2) the
+    end column is still used, with a note; Ca 100 (kPa passed as ton/ft2)
+    gave 2,000 pci unsaid. The docstring's "for Ca > 4 ton/ft2 use k = 2000
+    or 800" is removed: GEC-9 does not print it (gec-25).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
