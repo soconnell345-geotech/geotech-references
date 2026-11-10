@@ -732,13 +732,31 @@ def rigid_pipe_trench_load(
 def trench_load_coefficient(
     H: float, B_d: float, K: float, mu_prime: float
 ) -> float:
-    """Trench load coefficient for rigid pipe (Equation 4-7).
+    """Load coefficient Cd (dimensionless) for the dead load on a rigid pipe in a trench, Wd = Cd gamma_t Bd^2 (Equation 4-6), after Equation 4-7 but with the exponent -2 K mu' H/Bd where the manual prints -K mu' (H/Bd); the printed form gives a Cd about 40% lower.
 
-    Computes the Marston load coefficient *C_d* used in the calculation
-    of dead load on a rigid pipe in a trench (Equation 4-6).
+    Computes the load coefficient *C_d* used in the calculation of dead
+    load on a rigid pipe in a trench (Equation 4-6, the approach of
+    Marston and Anderson 1913 and Spangler 1948).
+
+    The manual prints Equation 4-7 (p. 195) as::
+
+        Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
+
+    This function evaluates::
+
+        Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')
 
     .. math::
         C_d = \\frac{1 - e^{-2 K \\mu' H / B_d}}{2 K \\mu'}
+
+    The two differ by the 2 in the exponent.  As the wall friction
+    K mu' goes to zero, the evaluated form tends to H/Bd, so that
+    Equation 4-6 gives gamma_t H Bd, the weight of the backfill in the
+    trench; the printed form tends to H/(2 Bd), half that weight.  The
+    printed form gives the lower load (Cd = 0.85 against 1.46 at
+    H/Bd = 2, K = 0.33, mu' = 0.5).  Which form is to be used is an
+    open decision; an engineer relying on this value should state which
+    form was used.
 
     Parameters
     ----------
@@ -786,15 +804,32 @@ def trench_load_coefficient(
 def flexible_pipe_trench_load(
     C_d: float, gamma_t: float, B_d: float, D: float
 ) -> float:
-    """Dead load per unit length on a flexible pipe in a trench -- Marston
-    theory (Equation 4-8).
+    """Dead load Wc per unit length (lb/ft or kN/m) on a very flexible pipe in a trench, after Equation 4-8 but as Cd gamma_t Bd D with the trench width Bd, where the manual prints Cd gamma_t Bc D with Bc the pipe's outside diameter; the printed form gives a lower load when the trench is wider than the pipe.
 
-    Estimates the load per unit length on a very flexible pipe (corrugated
-    metal, plastic, or thin-wall smooth steel) in a trench.  This method
-    assumes that the pipe stiffness and soil stiffness are equal.
+    Estimates the load per unit length on a very flexible pipe in a
+    trench by the Marston load theory.  The manual notes that this
+    method assumes that the pipe stiffness and soil stiffness are equal,
+    which may lead to unconservative values of Wc.
+
+    The manual prints Equation 4-8 (p. 197) as::
+
+        Wc = Cd * gamma_t * Bc * D
+
+    and defines both Bc ("very flexible pipe with outside diameter
+    (Bc)"; notation list, p. 216, "Diameter of a flexible pipe") and D
+    ("the outer diameter of the pipe") as the diameter of the pipe.
+    This function evaluates::
+
+        Wc = Cd * gamma_t * Bd * D
 
     .. math::
         W_c = C_d \\cdot \\gamma_t \\cdot B_d \\cdot D
+
+    with *B_d* the width of the trench.  The two agree when the trench
+    is as wide as the pipe; for a wider trench the printed form gives
+    the lower load, by the ratio D/Bd.  Which form is to be used is an
+    open decision; an engineer relying on this value should state which
+    form was used.
 
     Parameters
     ----------

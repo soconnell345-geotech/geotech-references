@@ -156,7 +156,7 @@
         },
         {
           "id": "Eq. 3-2",
-          "description": "Relative density (Dr): defined in terms of void ratios (emax, e, emin) and equivalently in terms of dry densities (γd-max, γd, γd-min), expressed as a percentage.",
+          "description": "Relative density (Dr): defined in terms of void ratios (emax, e, emin) and equivalently in terms of dry densities (γd-max, γd, γd-min), expressed as a percentage. (The manual prints γd − γd-max in the numerator of the density form, which would be negative for every soil looser than its densest state and so cannot equal the void-ratio form; γd − γd-min makes the two forms equal, and is what this section's text and the library function give.)",
           "implemented_in": "geotech_references.dm7_1.chapter3.relative_density_from_dry_density"
         }
       ],

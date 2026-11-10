@@ -634,16 +634,41 @@ class TestRigidPipeTrenchLoad:
 
 class TestTrenchLoadCoefficient:
 
+    # Eq. 4-7, PDF p. 223 (printed p. 195), is printed as
+    #   Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
+    # The function evaluates the exponent -2 K mu' (H/Bd) and says so in
+    # its docstring: with the printed exponent, Eq. 4-6 gives half the
+    # weight of the backfill when the wall friction is zero. These tests
+    # pin the evaluated form and record the printed one; which form is
+    # used is an open decision.
+
     def test_basic(self):
         # H=10, B_d=3, K=0.33, mu'=0.55
         # exponent = -2*0.33*0.55*10/3 = -2*0.1815*10/3 = -3.63/3 = -1.21
         # C_d = (1 - exp(-1.21)) / (2*0.33*0.55) = (1 - 0.29820) / 0.3630
         # = 0.70180 / 0.3630 = 1.9333
-        H, B_d, K, mu_prime = 10.0, 3.0, 0.33, 0.55
-        exponent = -2.0 * K * mu_prime * H / B_d
-        expected = (1.0 - math.exp(exponent)) / (2.0 * K * mu_prime)
-        result = trench_load_coefficient(H, B_d, K, mu_prime)
-        assert result == pytest.approx(expected, rel=1e-4)
+        # (as printed: (1 - exp(-0.605)) / 0.3630 = 1.2505)
+        result = trench_load_coefficient(10.0, 3.0, 0.33, 0.55)
+        assert result == pytest.approx(1.9333, abs=1e-4)
+
+    def test_table_4_3_dry_sand(self):
+        # H/Bd = 2, K = 0.33, mu' = 0.5 (Table 4-3, dry sand)
+        # C_d = (1 - exp(-0.66)) / 0.33 = (1 - 0.51685) / 0.33 = 1.4641
+        # (as printed: (1 - exp(-0.33)) / 0.33 = 0.8517)
+        result = trench_load_coefficient(2.0, 1.0, 0.33, 0.5)
+        assert result == pytest.approx(1.4641, abs=1e-4)
+
+    def test_no_friction_limit_is_the_weight_of_the_backfill(self):
+        # As K mu' goes to zero C_d tends to H/Bd, so Wd = Cd gamma Bd^2
+        # (Eq. 4-6) tends to gamma H Bd, the weight of the backfill in
+        # the trench. (As printed the limit is H/(2 Bd), half of it.)
+        result = trench_load_coefficient(6.0, 2.0, 1e-6, 1e-3)
+        assert result == pytest.approx(3.0, rel=1e-6)
+
+    def test_docstring_gives_the_printed_form(self):
+        doc = trench_load_coefficient.__doc__
+        assert "Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')" in doc
+        assert "the manual prints -K mu' (H/Bd)" in doc
 
     def test_shallow_trench(self):
         # Very small H/B_d => C_d approaches H/B_d (limit of exponential)
@@ -693,10 +718,29 @@ class TestTrenchLoadCoefficient:
 
 class TestFlexiblePipeTrenchLoad:
 
+    # Eq. 4-8, PDF p. 225 (printed p. 197), is printed as
+    #   Wc = Cd gamma_t Bc D
+    # with Bc and D both defined as the pipe's outside diameter (also the
+    # notation list, PDF p. 244, printed p. 216). The function multiplies
+    # by the trench width B_d in place of Bc and says so in its docstring.
+    # These tests pin the evaluated form and record the printed one; which
+    # form is used is an open decision.
+
     def test_basic(self):
         # C_d=1.5, gamma_t=120, B_d=3, D=2 => W_c = 1.5*120*3*2 = 1080 lb/ft
+        # (as printed, Bc = D = 2: 1.5*120*2*2 = 720 lb/ft)
         result = flexible_pipe_trench_load(1.5, 120.0, 3.0, 2.0)
         assert result == pytest.approx(1080.0, rel=1e-4)
+
+    def test_trench_as_wide_as_the_pipe_agrees_with_the_printed_form(self):
+        # B_d = D = 2: 1.5*120*2*2 = 720 lb/ft either way
+        result = flexible_pipe_trench_load(1.5, 120.0, 2.0, 2.0)
+        assert result == pytest.approx(720.0, rel=1e-4)
+
+    def test_docstring_gives_the_printed_form(self):
+        doc = flexible_pipe_trench_load.__doc__
+        assert "Wc = Cd * gamma_t * Bc * D" in doc
+        assert "the manual prints Cd gamma_t Bc D" in doc
 
     def test_unit_values(self):
         result = flexible_pipe_trench_load(1.0, 1.0, 1.0, 1.0)
