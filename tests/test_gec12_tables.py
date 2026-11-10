@@ -92,10 +92,32 @@ class TestTable72:
         """Engineering News phi_dyn = 0.10."""
         assert table_7_2_resistance_factor_field("engineering news") == 0.10
 
+    # GEC-12 Vol I Table 7-2, p. 226 (PDF page 272), every printed row.
+    @pytest.mark.parametrize("key, phi", [
+        ("static_load_test_and_dynamic_testing", 0.80),
+        ("static_load_test_without_dynamic_testing", 0.75),
+        ("dynamic_testing_100_percent", 0.75),
+        ("dynamic_testing_2_percent", 0.65),
+        ("wave_equation", 0.50),
+        ("fhwa_modified_gates", 0.40),
+        ("engineering_news", 0.10),
+        ("tension_static_load_test", 0.60),
+        ("tension_dynamic_testing_signal_matching", 0.50),
+    ])
+    def test_every_printed_row(self, key, phi):
+        assert table_7_2_resistance_factor_field(key) == phi
+
     def test_static_load_test_compression(self):
-        """Static load test + dynamic testing phi_dyn = 0.80."""
-        phi = table_7_2_resistance_factor_field("static load test + dynamic")
+        """Static load test and dynamic testing: phi_dyn = 0.80."""
+        phi = table_7_2_resistance_factor_field(
+            "static load test and dynamic testing")
         assert phi == 0.80
+
+    def test_static_load_test_without_dynamic_testing(self):
+        """A static load test alone is 0.75, not the combined row's 0.80."""
+        phi = table_7_2_resistance_factor_field(
+            "static load test without dynamic testing")
+        assert phi == 0.75
 
     def test_dynamic_testing_100_percent(self):
         """Dynamic testing 100% phi_dyn = 0.75."""
@@ -104,9 +126,17 @@ class TestTable72:
 
     def test_tension_static(self):
         """Static load test (tension) phi_dyn = 0.60."""
-        phi = table_7_2_resistance_factor_field("static load test")
-        # First match in compression list
-        assert phi in (0.80, 0.75, 0.60)
+        assert table_7_2_resistance_factor_field(
+            "static load test (tension)") == 0.60
+
+    @pytest.mark.parametrize("ambiguous", [
+        "static load test", "dynamic testing", "dynamic", "signal matching",
+        "static", "load test", "testing"])
+    def test_a_key_that_fits_several_rows_is_refused(self, ambiguous):
+        """'static load test' fits three rows (0.80, 0.75, 0.60) and 'dynamic
+        testing' four; each returned the first row's 0.80 before."""
+        with pytest.raises(ValueError, match="does not name one row"):
+            table_7_2_resistance_factor_field(ambiguous)
 
     def test_no_match_raises(self):
         """No matching method raises ValueError."""
@@ -137,6 +167,17 @@ class TestTable73:
         methods = table_7_3_static_analysis_methods("cohesive")
         assert len(methods) >= 3
         assert all(m["soil_type"] == "cohesive" for m in methods)
+
+    def test_unknown_filter_is_refused(self):
+        """An unknown soil type raised nothing and returned [] before."""
+        for bad in ("sand", "clay", "zzz"):
+            with pytest.raises(ValueError, match="cohesionless, cohesive, mixed"):
+                table_7_3_static_analysis_methods(bad)
+
+    def test_mixed_filter(self):
+        methods = table_7_3_static_analysis_methods("mixed")
+        assert len(methods) == 5
+        assert all(m["soil_type"] == "mixed" for m in methods)
 
     def test_method_has_required_keys(self):
         """Each method dict has all required keys."""
@@ -261,6 +302,22 @@ class TestTable710:
         with pytest.raises(ValueError):
             table_7_10_brown_method_factors("tension", "vibratory", "clay_to_sand")
 
+    def test_printed_values_kept_and_oddities_stated(self):
+        """GEC-12 Vol I Table 7-10, p. 260 (PDF page 306): Bb is printed
+        equal to Ab for compression in gravelly sand to boulders (0.888) and
+        rock (2.89). The values are returned as printed and the docstring's
+        first paragraph says so (review finding gec-06, owner to rule)."""
+        r = table_7_10_brown_method_factors(soil_type="gravelly_sand_to_boulders")
+        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (0.888, 0.888)
+        r = table_7_10_brown_method_factors(soil_type="rock")
+        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (2.89, 2.89)
+        r = table_7_10_brown_method_factors("tension", "impact",
+                                            "gravelly_sand_to_boulders")
+        assert (r["Ab_ksf"], r["Bb_ksf_per_bpf"]) == (0.835, 0.0)
+        first = table_7_10_brown_method_factors.__doc__.split("\n\n")[0]
+        assert "printed equal to Ab" in first
+        assert 'printed under "Tension"' in first
+
 
 # ============================================================================
 # Table 7-11: Eslami-Fellenius Cs
@@ -277,10 +334,31 @@ class TestTable711:
         """Sand Cs = 0.4."""
         assert table_7_11_eslami_fellenius_cs("sand") == 0.4
 
+    # GEC-12 Vol I Table 7-11, p. 261 (PDF page 307): Cs in percent.
+    @pytest.mark.parametrize("soil, cs", [
+        ("soft_sensitive_soil", 8.0), ("clay", 5.0),
+        ("silty_clay_stiff_clay_silt", 2.5), ("sandy_silt_silt", 1.5),
+        ("fine_sand_silty_sand", 1.0), ("sand", 0.4),
+        ("silty clay", 2.5), ("stiff clay", 2.5), ("sandy silt", 1.5),
+        ("fine sand", 1.0), ("silty sand", 1.0),
+    ])
+    def test_printed_rows_and_listed_names(self, soil, cs):
+        assert table_7_11_eslami_fellenius_cs(soil) == cs
+
     def test_partial_match(self):
-        """Partial match on soil type works."""
+        """A soil named in one printed row is that row."""
         cs = table_7_11_eslami_fellenius_cs("fine_sand")
         assert cs == 1.0  # fine_sand_silty_sand
+
+    def test_silt_alone_is_refused(self):
+        """'silt' is printed in two rows (2.5 and 1.5); it returned 2.5."""
+        with pytest.raises(ValueError, match="does not name one row"):
+            table_7_11_eslami_fellenius_cs("silt")
+
+    def test_unprinted_soil_is_refused(self):
+        """'sandy gravel' returned the Sand row's 0.4 before."""
+        with pytest.raises(ValueError):
+            table_7_11_eslami_fellenius_cs("sandy gravel")
 
     def test_unknown_soil_raises(self):
         """Unknown soil type raises ValueError."""
@@ -317,10 +395,47 @@ class TestTable716:
         result = table_7_16_soil_setup_factor("CLAY")
         assert result["recommended"] == 2.0
 
+    # GEC-12 Vol I Table 7-16, p. 299 (PDF page 345), every printed row:
+    # (key, row name, range min, range max, recommended, sites, percent)
+    @pytest.mark.parametrize("key, name, lo, hi, rec, sites, pct", [
+        ("clay", "Clay", 1.2, 5.5, 2.0, 7, 15),
+        ("silt_clay", "Silt - Clay", 1.0, 2.0, 1.0, 10, 22),
+        ("silt", "Silt", 1.5, 5.0, 1.5, 2, 4),
+        ("sand_clay", "Sand - Clay", 1.0, 6.0, 1.5, 13, 28),
+        ("sand_silt", "Sand - Silt", 1.2, 2.0, 1.2, 8, 18),
+        ("fine_sand", "Fine Sand", 1.2, 2.0, 1.2, 2, 4),
+        ("sand", "Sand", 0.8, 2.0, 1.0, 3, 7),
+        ("sand_gravel", "Sand - Gravel", 1.2, 2.0, 1.0, 1, 2),
+    ])
+    def test_every_printed_row(self, key, name, lo, hi, rec, sites, pct):
+        r = table_7_16_soil_setup_factor(key)
+        assert r["soil_type"] == name
+        assert (r["range_min"], r["range_max"], r["recommended"]) == (lo, hi, rec)
+        assert (r["sites"], r["percent_of_database"]) == (sites, pct)
+        assert "Confirmation with Local Experience" in r["note"]
+        assert "p. 299" in r["reference"]
+
+    @pytest.mark.parametrize("name, row, rec", [
+        ("silty clay", "Silt - Clay", 1.0),     # returned Clay's 2.0 before
+        ("sandy clay", "Sand - Clay", 1.5),     # returned Clay's 2.0 before
+        ("silty sand", "Sand - Silt", 1.2),     # returned Silt's 1.5 before
+        ("Silt - Clay", "Silt - Clay", 1.0),
+        ("sandy gravel", "Sand - Gravel", 1.0),
+    ])
+    def test_mixed_soils_reach_their_own_row(self, name, row, rec):
+        r = table_7_16_soil_setup_factor(name)
+        assert r["soil_type"] == row
+        assert r["recommended"] == rec
+
     def test_partial_match(self):
-        """Partial match works."""
+        """A printed row by its key."""
         result = table_7_16_soil_setup_factor("fine_sand")
         assert result["recommended"] == 1.2
+
+    @pytest.mark.parametrize("bad", ["gravel", "stiff clay", "cla", "san"])
+    def test_partial_or_unprinted_name_is_refused(self, bad):
+        with pytest.raises(ValueError, match="does not name one row"):
+            table_7_16_soil_setup_factor(bad)
 
     def test_unknown_soil_raises(self):
         """Unknown soil type raises ValueError."""

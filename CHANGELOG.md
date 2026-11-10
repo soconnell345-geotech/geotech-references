@@ -36,6 +36,25 @@ rows instead of being answered from the first row that contains the words.
     print's words, with "300 mm or less" and "600 mm or more" and the
     footnote; `table_5_12_elastic_modulus` says where its two sand rows
     differ from the table's kPa column (gec-47).
+- **GEC-12 driven piles (FHWA-NHI-16-009 Vol I).**
+  - `table_7_2_resistance_factor_field` (Table 7-2, p. 226): a key names
+    one row. "static load test" and "dynamic testing" alone, which each
+    returned the combined row's 0.80, are refused; a static load test
+    without dynamic testing is 0.75 and dynamic testing of two piles per
+    site condition 0.65, as printed (gec-04).
+  - `table_7_16_soil_setup_factor` (Table 7-16, p. 299): mixed soils reach
+    their own row. "silty clay" is Silt - Clay, recommended 1.0 (it
+    returned Clay's 2.0); "sandy clay" is Sand - Clay, 1.5 (was 2.0);
+    "silty sand" is Sand - Silt, 1.2 (was Silt's 1.5). The result names the
+    row and carries the table's footnote and site counts (gec-05).
+  - `table_7_11_eslami_fellenius_cs` and `figure_7_9_delta_phi_ratio`: a
+    name that fits two rows or curves ("silt", "pile", "taper") is refused;
+    `table_7_3_static_analysis_methods` refuses an unknown soil type
+    instead of returning an empty list (gec-45, gec-37).
+  - `table_7_10_brown_method_factors` (Table 7-10, p. 260): values
+    unchanged. The docstring now says that the page prints Bb equal to Ab
+    for compression in gravelly sand to boulders and in rock, and prints
+    the vibratory rows under "Tension"; both await a ruling (gec-06).
 
 ## 1.6.0
 
