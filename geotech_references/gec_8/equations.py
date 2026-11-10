@@ -20,12 +20,18 @@ def dd_pile_side_resistance_MPa(
     spt_n: float,
     soil_type: str = "dirty_rounded",
 ) -> dict:
-    """Unit side resistance for drilled displacement (DD) piles (NeSmith 2002).
+    """Ultimate unit side resistance fs in MPa of a drilled displacement (DD) pile in cohesionless soil from SPT-N60, GEC-8 Eq. 5.29 in its MPa form (FHWA-HIF-07-03, pp. 83-84; NeSmith 2002).
 
-    From NeSmith (2002) research on 22 full-scale compression and pullout tests
-    at 19 U.S. sites (Chapter 5.4.2, GEC-8)::
+    From NeSmith (2002): 22 full-scale compression load tests and six
+    pullout tests of DD piles at 19 U.S. sites (Section 5.4.2)::
 
         fs (MPa) = 0.005 × N + Ws     (N ≤ 50)
+
+    "SPT-N60 values should be based on 60% hammer efficiency but should
+    not be depth corrected. These relationships should only be applied to
+    cohesionless materials in which displacement of the spoils into the
+    borehole wall during construction will result in densification of the
+    surrounding soil" (p. 83). Every result carries that sentence.
 
     where Ws is a soil correlation constant that accounts for gradation.
 
@@ -41,8 +47,9 @@ def dd_pile_side_resistance_MPa(
     Parameters
     ----------
     spt_n : float
-        SPT N-value (blows per 300 mm) at the depth of interest.
-        Valid for N ≤ 50; for N > 50 use N = 50.
+        SPT-N60 (blows per 300 mm, 60% hammer efficiency, not depth
+        corrected) at the depth of interest. The equation is printed for
+        N ≤ 50; above 50, N = 50 is used and the result says so.
     soil_type : str
         Soil gradation type: 'dirty_rounded' or 'clean_angular'.
 
@@ -91,15 +98,24 @@ def dd_pile_side_resistance_MPa(
     fs = 0.005 * n_capped + params["ws"]
     fs_limited = min(fs, params["fs_limit"])
 
-    return {
+    out = {
         "spt_n": spt_n,
         "soil_type": key,
         "ws_MPa": params["ws"],
         "fs_MPa": round(fs, 4),
         "limiting_fs_MPa": params["fs_limit"],
         "fs_limited_MPa": round(fs_limited, 4),
-        "source": "GEC-8 Section 5.4.2 (NeSmith 2002)",
+        "print_note": (
+            "SPT-N60 values should be based on 60% hammer efficiency but "
+            "should not be depth corrected. These relationships should only "
+            "be applied to cohesionless materials in which displacement of "
+            "the spoils into the borehole wall during construction will "
+            "result in densification of the surrounding soil (GEC-8 p. 83)."),
+        "source": "GEC-8 Section 5.4.2, Eq. 5.29, pp. 83-84 (NeSmith 2002)",
     }
+    if spt_n > 50.0:
+        out["note"] = ("Eq. 5.29 is printed for N <= 50; N = 50 is used.")
+    return out
 
 
 def cfa_allowable_capacity_kN(

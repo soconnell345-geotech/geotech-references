@@ -287,6 +287,12 @@ rows instead of being answered from the first row that contains the words.
     polypropylene encapsulation"); Class II bond length "Grout". The source
     reads "modified after PTI, 1996", as printed (gec-39).
 
+- **GEC-8 continuous flight auger piles (FHWA-HIF-07-03).**
+  - `dd_pile_side_resistance_MPa` (Eq. 5.29, pp. 83-84): every result
+    carries the print's conditions, N60 not depth corrected and
+    cohesionless materials only (they were dropped); above N = 50 the
+    result says N = 50 is used. Values unchanged (gec-42).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
