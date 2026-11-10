@@ -281,7 +281,11 @@ def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None)
 
 def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
                                  method="standard_obe"):
-    """Eq 3-3/3-4/3-5: earthquake load combinations (printed p. 26).
+    """Eq 3-3/3-4/3-5: earthquake load combination U, in the unit of the
+    loads given (printed p. 26). Eq 3-3 and 3-4 take the FACTORED
+    permanent-load sum sum(gamma_p*Lp); Eq 3-5 takes the UNFACTORED sum
+    sum(Lp), which the print multiplies by 1.0 (EM_1110-2-2104_2025.pdf
+    pdf 32). The result's 'permanent_sum_basis' says which was assumed.
 
     Only one temporary load is included at a time (if applicable) with an
     earthquake load (paragraph 3-3h(3)). For dynamic analysis, load factors
@@ -290,8 +294,11 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     Parameters
     ----------
     permanent_sum : float
-        sum(gamma_p * Lp), the factored permanent-load sum (see
-        ``load_combination_lrfd``'s permanent_sum, or compute directly).
+        For 'standard_obe' and 'standard_mde': sum(gamma_p * Lp), the
+        factored permanent-load sum (see ``load_combination_lrfd``'s
+        permanent_sum). For 'site_specific_mde_mce' (Eq 3-5): sum(Lp), the
+        UNFACTORED permanent-load sum (D = 100 and EQ = 50 give U = 150;
+        passing 1.2 x 100 would give 170, which the print does not).
     eq_load : float
         EQ, the earthquake load effect (unfactored).
     companion_terms : list of (load_value, gamma_c), optional
@@ -308,7 +315,8 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     Returns
     -------
     dict
-        {'u', 'eq_factor', 'equation', 'printed_page': '26', 'pdf_page': 31}
+        {'u', 'eq_factor', 'equation', 'permanent_sum_basis',
+         'printed_page': '26', 'pdf_page': 31}
     """
     companion_terms = companion_terms or []
     if method == "standard_obe":
@@ -331,8 +339,11 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
             "method must be 'standard_obe', 'standard_mde', or "
             f"'site_specific_mde_mce', got {method!r}"
         )
+    basis = ("unfactored sum(Lp), x 1.0 as printed" if equation == "3-5"
+             else "factored sum(gamma_p*Lp)")
     return {
         "u": u, "eq_factor": eq_factor, "equation": equation,
+        "permanent_sum_basis": basis,
         "printed_page": "26", "pdf_page": 31,
     }
 
