@@ -54,9 +54,10 @@ before -> after at the example input.
   (the unread `Q_d_drag` removed); `figure_4_36_moment_reduction(rho,
   soil_type)`.
 - Printed limits now refused: Eq. 6-15 outside su/Pa 0.24 to 1.42; Eq. 6-1
-  below sand size (D50 < 0.075 mm); Cheng Nq and the drained base
-  resistance below Z/b 5; Table 5-6 between phi 0 and 10 degrees. The
-  20 ft wall limits of Eq. 4-13 and 4-17 are stated, not checked.
+  below sand size (D50 < 0.075 mm); Cheng Nq below Z/b 5; Table 5-6
+  between phi 0 and 10 degrees. Stated, not checked (the function takes
+  no such input): Z/b >= 5 for the drained base resistance (Eq. 6-20,
+  6-21) and the 20 ft wall limits of Eq. 4-13 and 4-17.
 - Chapter text: chapter titles as printed (chapter 2 is "Excavations",
   not "Earth Pressures"); chapter 6 equation descriptions and
   `implemented_in` links corrected; Eq. 3-4 and Eq. 6-15 state their
