@@ -102,6 +102,21 @@ _TABLE_3_2 = {
     "total_fine_incl_minus_200": {"coarse_severe": None, "coarse_moderate": None, "fine": 3.0},
 }
 
+# Footnotes 2 and 3 as printed (PDF 33, printed p.15); they change the limit
+# for these rows. Footnotes 1 and 4-7 define the materials.
+_TABLE_3_2_FOOTNOTES = {
+    "material_finer_than_no_200": (
+        "Footnote 2: Limit for material finer than 0.075 mm (No.200 sieve) "
+        "will be increased to 1.5 percent for crushed aggregates if the fine "
+        "material consists of crusher dust that is essentially free from "
+        "clay or shale."),
+    "lightweight_particles": (
+        "Footnote 3: The separation medium will have a density of 2.0 mg/m3 "
+        "(SG of 2.0). This limit does not apply to coarse aggregate "
+        "manufactured from blast-furnace slag unless contamination is "
+        "evident."),
+}
+
 _TABLE_3_2_ALIASES = {
     "clay_lumps": "clay_lumps_and_friable_particles",
     "friable_particles": "clay_lumps_and_friable_particles",
@@ -118,7 +133,13 @@ _TABLE_3_2_ALIASES = {
 
 
 def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
-    """Deleterious material limit, percent mass, airfield aggregates (Table 3-2).
+    """Deleterious material limit in airfield aggregates, percent mass,
+    UFC 3-250-04 Table 3-2 (pdf_page 32, printed p.15); returns the printed
+    limit and, for material finer than No. 200 and lightweight particles,
+    the footnote that changes it (footnote 2: raised to 1.5 percent for
+    crushed aggregates whose fines are crusher dust essentially free from
+    clay or shale; footnote 3: the lightweight limit does not apply to
+    blast-furnace slag coarse aggregate unless contamination is evident).
 
     DoD airfield limits are an order of magnitude lower than ASTM
     C33/CRD-C 133 for roads.
@@ -143,9 +164,11 @@ def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
     Returns
     -------
     dict
-        {'material', 'aggregate_category', 'limit_pct_mass', 'reference'}.
-        ``limit_pct_mass`` is None if the printed table cell is "-" (not
-        applicable for that material/category combination).
+        {'material', 'aggregate_category', 'limit_pct_mass', 'footnote'?,
+        'reference'}. ``limit_pct_mass`` is None if the printed table cell
+        is "-" (not applicable for that material/category combination).
+        ``footnote`` (the printed footnote 2 or 3) is present for
+        'material_finer_than_no_200' and 'lightweight_particles'.
 
     Raises
     ------
@@ -165,12 +188,15 @@ def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
             f"or 'fine', got '{aggregate_category}'"
         )
     limit = _TABLE_3_2[key][cat]
-    return {
+    out = {
         "material": key,
         "aggregate_category": cat,
         "limit_pct_mass": limit,
-        "reference": "UFC 3-250-04, Table 3-2 (pdf_page 32, printed p.15)",
     }
+    if key in _TABLE_3_2_FOOTNOTES:
+        out["footnote"] = _TABLE_3_2_FOOTNOTES[key]
+    out["reference"] = "UFC 3-250-04, Table 3-2 (pdf_page 32, printed p.15)"
+    return out
 
 
 # ============================================================================

@@ -81,6 +81,19 @@ class TestTable32DeleteriousMaterialLimit:
         r = table_3_2_deleterious_material_limit("minus_200", "coarse_moderate")
         assert r["limit_pct_mass"] == 0.5
 
+    def test_footnotes_2_and_3(self):
+        # Table 3-2, UFC 3-250-04 PDF 33 (pdf_page 32), printed 15:
+        # footnote 2 raises the minus-No. 200 limit to 1.5 percent for
+        # crushed aggregates with crusher-dust fines; footnote 3 exempts
+        # blast-furnace slag coarse aggregate from the lightweight limit.
+        r = table_3_2_deleterious_material_limit("material_finer_than_no_200", "coarse_severe")
+        assert r["limit_pct_mass"] == 0.5
+        assert "1.5 percent" in r["footnote"] and "crusher dust" in r["footnote"]
+        r = table_3_2_deleterious_material_limit("lightweight_particles", "coarse_severe")
+        assert r["limit_pct_mass"] == 0.2
+        assert "blast-furnace slag" in r["footnote"]
+        assert "footnote" not in table_3_2_deleterious_material_limit("shale", "coarse_severe")
+
     def test_not_applicable_cell_returns_none(self):
         r = table_3_2_deleterious_material_limit("shale", "fine")
         assert r["limit_pct_mass"] is None
