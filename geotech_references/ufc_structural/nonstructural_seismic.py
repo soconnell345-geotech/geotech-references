@@ -58,26 +58,41 @@ def rigid_pipe_period_constant(support_condition):
             "equation": "C-1", "printed_page": "137", "pdf_page": 158}
 
 
-def rigid_pipe_fundamental_period(support_condition, length, ei, w):
-    """Eq C-1: fundamental period of a pipe span (printed p. 137).
+def rigid_pipe_fundamental_period(support_condition, length, ei, w, g=386.4):
+    """Eq C-1: fundamental period Ta, seconds, of a pipe span L (in. with
+    EI in lb-in.^2 and w in lb/in.; or mm, N-mm^2, N/mm with g given in
+    mm/s^2) (printed p. 137).
 
-        Ta = C * L * sqrt(w / (EI * g))
+    The print gives the span for a period:
 
-    where g is the acceleration of gravity. A pipe is "rigid" per Section
-    C-3.1.3.2.1 if Ta <= 0.06 second (ASCE 7-22 Section 11.2 "Component,
-    rigid" definition); Tables C-1/C-2/C-3 tabulate the span L that
-    produces exactly Ta = 0.06 s for standard pipe/tube sizes.
+        L = sqrt( C * pi * Ta * sqrt(E I g / w) )      (Equation C-1)
+
+    so the period of a span is
+
+        Ta = L**2 / (C * pi) * sqrt(w / (E I g))
+
+    (UFC_3-301-01_2023_c4.pdf pdf 159; with C = 0.50 this is the
+    pinned-pinned beam period). A pipe is "rigid" per Section C-3.1.3.2.1
+    if Ta <= 0.06 second (ASCE 7-22 Section 11.2 "Component, rigid"
+    definition); Tables C-1/C-2/C-3 tabulate the span L that produces
+    exactly Ta = 0.06 s for standard water-filled pipe and tube sizes
+    (Table C-1, 1-in. standard steel pipe, pinned-pinned: 7 ft 0 in).
 
     Parameters
     ----------
     support_condition : str
-        'pinned_pinned', 'fixed_pinned', or 'fixed_fixed'.
+        'pinned_pinned' (C = 0.50), 'fixed_pinned' (0.78), or
+        'fixed_fixed' (1.125).
     length : float
-        Pipe span, L (in. or mm, consistent with `ei`/`w`).
+        Pipe span, L, in. (or mm with SI units throughout).
     ei : float
-        Flexural rigidity, E*I (consistent units).
+        Flexural rigidity, E*I, lb-in.^2 (E psi x I in.^4; or N-mm^2).
     w : float
-        Weight of pipe and contents per unit length (lb/in. or N/mm).
+        Weight of pipe and contents per unit length, lb/in. (or N/mm).
+    g : float, optional
+        Acceleration of gravity in the length unit of L per s^2: 386.4
+        in./s^2 (default); pass 9806.65 for mm/s^2. The print does not
+        state g's value.
 
     Returns
     -------
@@ -88,8 +103,7 @@ def rigid_pipe_fundamental_period(support_condition, length, ei, w):
     """
     import math
     c = rigid_pipe_period_constant(support_condition)["period_constant"]
-    g = 386.4  # in/s^2 (consistent with in./lb unit convention used by the source tables)
-    ta = c * length * math.sqrt(w / (ei * g))
+    ta = length ** 2 / (c * math.pi) * math.sqrt(w / (ei * g))
     return {
         "support_condition": support_condition.lower().strip(), "period_constant": c,
         "length": length, "ta_seconds": ta, "is_rigid": ta <= 0.06,
