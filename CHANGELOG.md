@@ -209,6 +209,16 @@ rows instead of being answered from the first row that contains the words.
     GEC-10 prints no range for the relations; above those points the
     answers are unchanged (Example 10-2: 2,000 psf at 3,697 psf gives
     2,571 psf) (gec-14).
+  - `equation_10_22_caving_rock_side` (Table 10-3, p. 10-21): below RQD 20,
+    where the table has no row, the RQD 20 row is still used and the
+    result now says so. `equation_10_21_rock_socket_side`,
+    `equation_10_22_caving_rock_side`, `figure_10_6_alpha_clay` and
+    `table_10_2_nc_base_clay` docstrings quote the print: the resistance
+    factor for rock side resistance is 0.50 in Table 8-4 and 0.55 in the
+    text of p. 10-21 (both printed, not reconciled); qu should not exceed
+    the shaft concrete's strength (p. 10-21, not checked); Figure 10-6
+    draws its curve from su/pa of about 0.25 to 5; Eq. 10-20 is in D, the
+    depth of embedment. No value changes (gec-43).
 
 ## 1.6.0
 

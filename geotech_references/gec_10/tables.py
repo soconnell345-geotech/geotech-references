@@ -341,9 +341,10 @@ def table_9_1_lateral_resistance_factor(method: str) -> dict:
 # Table 10-2: Bearing Capacity Factor N*c for Base Resistance in Cohesive Soil
 # (FHWA-NHI-18-024 Table 10-2)
 #
-# For L/B ≥ 3: qBN = N*c × su
-# For L/B < 3: qBN = (2/3)(1 + L/(6B)) × N*c × su  (Equation 10-20)
-# su = mean undrained shear strength over depth 2B below base
+# For D >= 3B: qBN = N*c x su (Equation 10-19)
+# For D < 3B: qBN = (2/3)[1 + (1/6)(D/B)] x N*c x su  (Equation 10-20)
+# D = depth of embedment; su = mean undrained shear strength of the cohesive
+# soil over a depth of 2B below the base (p. 10-19, PDF page 299)
 # ============================================================================
 
 _TABLE_10_2_SU_PSF = [0.0, 500.0, 1000.0, 2000.0]
@@ -351,17 +352,21 @@ _TABLE_10_2_NC     = [6.50,  6.50,   8.00,   9.00]
 
 
 def table_10_2_nc_base_clay(su_psf: float) -> dict:
-    """Bearing capacity factor N*c for drilled shaft base resistance in cohesive soil (Table 10-2).
+    """Bearing capacity factor N*c (dimensionless) for drilled shaft base resistance in cohesive soil from the undrained shear strength in psf, GEC-10 Table 10-2 (FHWA-NHI-18-024, p. 10-19).
 
-    N*c is the dimensionless bearing capacity factor used in:
+    N*c is used in Eq. 10-19:
 
-        qBN = N*c × su  (for L/B ≥ 3)
+        qBN = N*c x su  (depth of embedment D at least 3B)
 
-    where su is the mean CIUC-equivalent undrained shear strength over a
-    depth of 2B below the shaft base.  For shallow embedment (L/B < 3), apply
-    the reduction from Equation 10-20:
+    where su is the mean undrained shear strength of the cohesive soil over
+    a depth of 2B below the base (Example 10-3 uses the CIUC-equivalent
+    strength).  For D < 3B, Equation 10-20:
 
-        qBN = (2/3)(1 + L/(6B)) × N*c × su
+        qBN = (2/3)[1 + (1/6)(D/B)] x N*c x su
+
+    Table 10-2 prints su 500, 1,000 and >= 2,000 psf (N*c 6.5, 8.0, 9.0)
+    and allows linear interpolation between them; below 500 psf the 500
+    row is used (the note says so).
 
     Resistance factor (Table 8-4): φ = 0.40 (compression).
 

@@ -22,14 +22,13 @@ _PA_KPA = 101.325  # atmospheric pressure, kPa
 # ============================================================================
 
 def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
-    """Alpha adhesion factor for drilled shaft side resistance in cohesive soil (Figure 10-6).
-
-    Regression equation from Chen et al. (2011) fitted to load test database:
+    """Adhesion factor alpha (dimensionless) for drilled shaft side resistance in cohesive soil from the CIUC-equivalent undrained strength in kPa, GEC-10 Eq. 10-18 (FHWA-NHI-18-024, p. 10-16), the regression curve of Figure 10-6 (p. 10-17; Chen et al. 2011).
 
         α = 0.30 + 0.17 / (su_CIUC / pa)
 
-    where pa = 101.325 kPa.  This expression supersedes the AASHTO (2017a) piecewise
-    α-method per Section 10.3.5.2 of FHWA-NHI-18-024.
+    where pa = 101.325 kPa.  GEC-10 recommends the expression "as a
+    revision to the expressions for alpha currently given in the AASHTO
+    LRFD Bridge Design Specifications (2017a)" (p. 10-16).
 
     Input must be CIUC-equivalent undrained shear strength.  For UC or UU lab
     test results, first convert using su_uu_to_ciuc() or su_uc_to_ciuc().
@@ -40,7 +39,9 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     ----------
     su_ciuc_kpa : float
         CIUC-equivalent undrained shear strength in kPa.  Must be positive.
-        Typical range: 25 to 500 kPa.
+        Figure 10-6 draws the curve from su(CIUC)/pa of about 0.25 to 5
+        (about 25 to 500 kPa); outside that the expression is evaluated
+        as written, not refused.
 
     Returns
     -------
@@ -165,17 +166,24 @@ def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
     artificially roughened sockets, C = 1.9 may be used with load test
     verification (Kulhawy and Prakoso, 2007).
 
-    Resistance factor (Table 8-4): φ = 0.50 (compression), 0.40 (uplift).
+    Resistance factor: Table 8-4 (p. 8-14) prints 0.50 (compression) and
+    0.40 (uplift) for rock side resistance by Eq. 10-21; the text of p.
+    10-21 says 0.55 for Eqs. 10-21 and 10-22 "as presented in Table 8-4".
+    Both are printed; they are not reconciled here.
 
     Parameters
     ----------
     qu_kpa : float
-        Mean uniaxial compressive strength of intact rock in kPa.  Must be
-        positive.  Should not exceed the compressive strength of the shaft
-        concrete.
+        Mean uniaxial compressive strength of the rock layer in kPa.  Must
+        be positive.  "For design, the value of qu used in Equation 10-21
+        should not exceed the compressive strength of the drilled shaft
+        concrete" (p. 10-21); the function does not check it.
     C : float
-        Regression coefficient.  Default 1.0 for normal sockets; use 1.9 for
-        artificially roughened sockets (load test verification required).
+        Regression coefficient.  Default 1.0, recommended for "normal"
+        sockets (p. 10-20).  For roughened sockets p. 10-22 gives Kulhawy
+        and Prakoso's (2007) mean C = 1.9 "with use of Equation 10-22" (C
+        appears only in Eq. 10-21) and strongly recommends load tests or
+        local experience to verify C greater than 1.0.
 
     Returns
     -------
@@ -230,14 +238,19 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
     αE is the joint modification factor from Table 10-3, which depends on RQD
     and the condition of discontinuity surfaces.
 
-    Resistance factor (Table 8-4): φ = 0.50 (compression), 0.40 (uplift).
+    Resistance factor: Table 8-4 (p. 8-14) lists rock side resistance
+    under Eq. 10-21 only (0.50 / 0.40); the text of p. 10-21 says 0.55 for
+    Eqs. 10-21 and 10-22. Both are printed; they are not reconciled here.
 
     Parameters
     ----------
     qu_kpa : float
         Mean uniaxial compressive strength of intact rock in kPa.  Must be positive.
     rqd_pct : float
-        Rock Quality Designation as a percentage (0–100).
+        Rock Quality Designation as a percentage (0–100).  Table 10-3
+        (p. 10-21) prints RQD 100, 70, 50, 30 and 20; between rows alpha_E
+        is interpolated linearly, and below 20 the 20 row is used, with a
+        note in the result.
     joint_condition : str
         Discontinuity condition: 'closed' (tight joints) or 'open'
         (open or gouge-filled joints).  Default 'closed'.
@@ -266,8 +279,11 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
 
     table = _TABLE_10_3_AE_CLOSED if jc == "closed" else _TABLE_10_3_AE_OPEN
 
-    if rqd_pct <= _TABLE_10_3_RQD[0]:
+    note = None
+    if rqd_pct < _TABLE_10_3_RQD[0]:
         alpha_e = table[0]
+        note = ("Table 10-3 prints no row below RQD 20; the RQD 20 row's "
+                "alpha_E is used.")
     elif rqd_pct >= _TABLE_10_3_RQD[-1]:
         alpha_e = table[-1]
     else:
@@ -275,7 +291,7 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
 
     f_sn_kpa = 0.65 * alpha_e * _PA_KPA * math.sqrt(qu_kpa / _PA_KPA)
 
-    return {
+    out = {
         "alpha_E": round(alpha_e, 3),
         "qu_kpa": qu_kpa,
         "f_sn_kpa": round(f_sn_kpa, 2),
@@ -283,3 +299,6 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
         "rqd_pct": rqd_pct,
         "joint_condition": jc,
     }
+    if note:
+        out["note"] = note
+    return out

@@ -246,9 +246,14 @@ class TestEquation1022CavingRockSide:
             assert key in result
 
     def test_rqd_below_minimum_clamped(self):
-        """RQD below table minimum (20%) should return the minimum αE value."""
+        """FHWA-NHI-18-024 Table 10-3, p. 10-21 (PDF page 301) prints no row
+        below RQD 20; the RQD 20 row (0.45) is used and the result says so
+        (review finding gec-43). At RQD 20 itself there is no note."""
         result = equation_10_22_caving_rock_side(1000.0, 10, "closed")
         assert abs(result["alpha_E"] - 0.45) < 0.01
+        assert "no row below RQD 20" in result["note"]
+        assert "note" not in equation_10_22_caving_rock_side(1000.0, 20, "open")
+        assert equation_10_22_caving_rock_side(1000.0, 50, "open")["alpha_E"] == 0.55
 
     def test_zero_qu_raises(self):
         with pytest.raises(ValueError):
