@@ -440,6 +440,16 @@ def tension_crack_depth(cohesion_psf, gamma_pcf, ka) -> dict:
 # Chapter 4-5 — maximum allowable embankment slope angle (c-phi soil)
 # ============================================================================
 
+# Put first in every result note of max_allowable_slope_angle.
+_EQ_4_5_2_CAUTION = (
+    "CAUTION: Eq. 4-5-2 is not dimensionally consistent as the manual prints "
+    "it (it adds a stress to a pure number and, under the root, a stress to "
+    "stress-squared terms; printed p. 4-22), so this result is the printed "
+    "estimate only and does not behave as a physical limit should (the angle "
+    "can fall as cohesion rises). Check the slope by a slope stability "
+    "analysis. "
+)
+
 def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft,
                               beta_deg=None) -> dict:
     """Estimate of the maximum allowable embankment slope angle beta, in
@@ -561,7 +571,8 @@ def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft,
             "equation": "4-5-1..4-5-4",
             "reference": "Caltrans T&S Manual Section 4-5 (Eqs. 4-5-1..4-5-4, ASCE JGGE Feb 1997)",
             "pdf_page": 72, "printed_page": "4-22",
-            "note": ("Single-point check: evaluates Eq. 4-5-1 RHS and l (Eq. 4-5-2, "
+            "note": (_EQ_4_5_2_CAUTION +
+                     "Single-point check: evaluates Eq. 4-5-1 RHS and l (Eq. 4-5-2, "
                      "with sigma_v/sigma_x from Eqs. 4-5-3/4-5-4) at the supplied "
                      "beta. satisfies_4_5_1 is True when sin(beta) <= RHS."),
         }
@@ -636,7 +647,8 @@ def max_allowable_slope_angle(phi_deg, cohesion_psf, gamma_pcf, height_ft,
         "equation": "4-5-1..4-5-4",
         "reference": "Caltrans T&S Manual Section 4-5 (Eqs. 4-5-1..4-5-4, ASCE JGGE Feb 1997)",
         "pdf_page": 72, "printed_page": "4-22",
-        "note": ("Faithful implementation of the manual's coupled Eqs. 4-5-1..4-5-4: "
+        "note": (_EQ_4_5_2_CAUTION +
+                 "Faithful implementation of the manual's coupled Eqs. 4-5-1..4-5-4: "
                  "sin(beta) <= sin(phi) + (c/l) cos(phi) with l from Eq. 4-5-2 "
                  "(sigma_v = gamma*H*cos(beta), sigma_x = gamma*H*cos^2(beta)). "
                  "Because l depends on beta, the limiting beta is found by scanning "
@@ -1087,10 +1099,23 @@ def heave_factor_of_safety(cohesion_psf, nc, gamma_pcf, height_ft, width_ft,
     s = cohesion_psf * height_ft
     q_drive = w + b07 * surcharge_psf - s
     qu = cohesion_psf * nc * b07
+    note = "Check heave when the stability number Ns = gamma*H/c exceeds 6."
     if q_drive <= 0:
-        fs = float("inf")
+        # FS = QU/Q (Eq. 10-3-5) has no value when the driving force Q of
+        # Eq. 10-3-2 is zero or negative. None, not infinity: the result
+        # has to stay valid JSON.
+        fs = None
+        adequate = True
+        note = (
+            "The driving force Q = W + (0.7B)q - S of Eq. 10-3-2 is zero or "
+            "negative here (S = cH, the resistance of the soil due to "
+            "cohesion over the depth of the excavation, is not less than "
+            "W + (0.7B)q), so FS = QU/Q (Eq. 10-3-5) has no value: 'fs' is "
+            "null and there is no net driving force for heave. " + note
+        )
     else:
-        fs = qu / q_drive
+        fs = round(qu / q_drive, 3)
+        adequate = fs >= 1.5
     return {
         "cohesion_psf": cohesion_psf, "nc": nc, "gamma_pcf": gamma_pcf,
         "height_ft": height_ft, "width_ft": width_ft,
@@ -1099,11 +1124,11 @@ def heave_factor_of_safety(cohesion_psf, nc, gamma_pcf, height_ft, width_ft,
         "cohesion_resistance_S_plf": round(s, 2),
         "driving_force_Q_plf": round(q_drive, 2),
         "resisting_force_Qu_plf": round(qu, 2),
-        "fs": (fs if fs == float("inf") else round(fs, 3)),
+        "fs": fs,
         "fs_required": 1.5,
-        "adequate": fs >= 1.5,
+        "adequate": adequate,
         "equation": "10-3-2..10-3-5",
         "reference": "Caltrans T&S Manual Section 10-3 (Terzaghi; Bjerrum & Eide Nc)",
         "pdf_page": 224, "printed_page": "10-16",
-        "note": "Check heave when the stability number Ns = gamma*H/c exceeds 6.",
+        "note": note,
     }

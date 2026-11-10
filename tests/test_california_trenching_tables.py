@@ -347,6 +347,22 @@ class TestMaxAllowableSlopeAngle:
         assert r["degenerate"] is True
         assert r["beta_max_deg"] == pytest.approx(20.0, abs=0.1)
 
+    def test_the_result_note_opens_with_the_caution(self):
+        # Eq. 4-5-2 (PDF p. 73, printed p. 4-22) as typeset adds sigma_x (a
+        # stress) to 1/2 sin(2 phi) (a number) and, under the root, a stress
+        # term to stress-squared terms. The caution used to sit at the end
+        # of a long note; it now opens it, in both forms of the result.
+        r = max_allowable_slope_angle(30, 200, 120, 20)
+        assert r["note"].startswith("CAUTION: Eq. 4-5-2 is not dimensionally consistent")
+        assert "slope stability analysis" in r["note"][:420]
+        r = max_allowable_slope_angle(30, 200, 120, 20, beta_deg=35)
+        assert r["note"].startswith("CAUTION: Eq. 4-5-2 is not dimensionally consistent")
+
+    def test_the_printed_equations_are_still_solved_as_before(self):
+        # No change to the numbers: the lookup is left as the print.
+        assert max_allowable_slope_angle(30, 200, 120, 20)["beta_max_deg"] == pytest.approx(40.52, abs=0.01)
+        assert max_allowable_slope_angle(30, 0, 120, 20)["beta_max_deg"] == pytest.approx(30.0, abs=0.01)
+
     def test_single_point_check(self):
         # Evaluating at a supplied beta returns the Eq. 4-5-1 RHS and whether
         # the inequality is satisfied at that beta.
@@ -438,6 +454,32 @@ class TestHeave:
     def test_bad_cohesion_raises(self):
         with pytest.raises(ValueError):
             heave_factor_of_safety(0, 7.6, 120, 30, 15)
+
+    def test_no_driving_force_gives_null_not_infinity(self):
+        # Eq. 10-3-2 (PDF p. 225, printed p. 10-16): Q = W + (0.7B)q - S with
+        # W = gamma H (0.7B) and S = cH. c 5000 psf, H 10 ft, B 15 ft:
+        # W = 12,600, S = 50,000 plf, so Q is negative and FS = QU/Q
+        # (Eq. 10-3-5, printed p. 10-19) has no value. "fs" used to be
+        # float("inf"), which is not valid JSON.
+        import json
+        r = heave_factor_of_safety(5000, 7.6, 120, 10, 15)
+        assert r["weight_W_plf"] == pytest.approx(12600.0)
+        assert r["cohesion_resistance_S_plf"] == pytest.approx(50000.0)
+        assert r["driving_force_Q_plf"] < 0
+        assert r["fs"] is None
+        assert r["adequate"] is True
+        assert "has no value" in r["note"]
+        assert "Infinity" not in json.dumps(r, allow_nan=False)
+
+    def test_factor_of_safety_from_the_printed_equations(self):
+        # Eqs. 10-3-2, 10-3-3, 10-3-5 with made-up values: c 500 psf, Nc 7.6,
+        # gamma 120 pcf, H 30 ft, B 15 ft, q 300 psf.
+        # W = 120 x 30 x 10.5 = 37,800; S = 500 x 30 = 15,000;
+        # Q = 37,800 + 10.5 x 300 - 15,000 = 25,950; QU = 500 x 7.6 x 10.5 = 39,900
+        r = heave_factor_of_safety(500, 7.6, 120, 30, 15, surcharge_psf=300)
+        assert r["driving_force_Q_plf"] == pytest.approx(25950.0)
+        assert r["fs"] == pytest.approx(39900.0 / 25950.0, abs=1e-3)
+        assert r["adequate"] is True
 
 
 # ===================================================================
