@@ -521,6 +521,37 @@ class TestKozenyCarmanHydraulicConductivity:
             kozeny_carman_hydraulic_conductivity(
                 [(0.5, 2.0, 0.85), (0.3, 0.85, 0.425)], 6.0, 0.5)
 
+    def test_total_within_two_percent_used_as_given(self):
+        # The library accepts a total within 2 % of 1.0 or 100 (its own
+        # tolerance, not printed) and does not normalise it. Same sieves
+        # as test_two_fractions, S=7, e=0.5, by the printed formula:
+        # 0.6 + 0.38 = 0.98: sum = 0.6/1.20102 + 0.38/0.56235 = 1.17531
+        #   k = 199 * (1/1.17531)^2 * (1/49) * (0.125/1.5) = 0.24500
+        # 60 + 39 = 99 (percent): sum = 119.30968; k = 0.23775
+        # 0.6 + 0.42 = 1.02: sum = 1.24644; k = 0.21784
+        # 60 + 42 = 102: the same k as 1.02
+        cases = [
+            ([(0.6, 2.0, 0.85), (0.38, 0.85, 0.425)], 0.24500),
+            ([(60.0, 2.0, 0.85), (39.0, 0.85, 0.425)], 0.23775),
+            ([(0.6, 2.0, 0.85), (0.42, 0.85, 0.425)], 0.21784),
+            ([(60.0, 2.0, 0.85), (42.0, 0.85, 0.425)], 0.21784),
+        ]
+        for fractions, k in cases:
+            result = kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5)
+            assert result == pytest.approx(k, abs=1e-5)
+
+    def test_total_more_than_two_percent_off_raises(self):
+        # 0.97, 1.03, 97, 103 and a percent/decimal mix-up (60 + 0.4)
+        for fractions in (
+            [(0.6, 2.0, 0.85), (0.37, 0.85, 0.425)],
+            [(0.6, 2.0, 0.85), (0.43, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (37.0, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (43.0, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (0.4, 0.85, 0.425)],
+        ):
+            with pytest.raises(ValueError, match="within 2 %"):
+                kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5)
+
     def test_S_zero_raises(self):
         with pytest.raises(ValueError, match="S must be positive"):
             kozeny_carman_hydraulic_conductivity([(1.0, 2.0, 1.0)], 0.0, 0.5)

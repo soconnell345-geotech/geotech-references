@@ -1842,7 +1842,11 @@ def hydraulic_conductivity_kozeny_carman(
         particle size of the coarser sieve (mm), d_si = particle size of
         the finer sieve (mm).  The fi are either decimals that add up to
         1.0 (0.15 for 15%) or percentages that add up to 100; the whole
-        grain-size distribution must be given.
+        grain-size distribution must be given.  A total within 2 % of
+        that (0.98 to 1.02, or 98 to 102) is accepted and used as given,
+        not normalised.  The 2 % is this library's tolerance, not
+        printed: it is there to catch fractions in percent mixed up with
+        decimals, not to judge the grading.
     e : float
         Void ratio (dimensionless).
     s : float, optional
@@ -1859,7 +1863,8 @@ def hydraulic_conductivity_kozeny_carman(
     ------
     ValueError
         If *e* is negative, *s* is not positive, any sieve size is
-        not positive, or the fractions add up to neither 1.0 nor 100.
+        not positive, or the fractions add up to neither 1.0 nor 100
+        (within 2 %).
 
     References
     ----------
@@ -1886,16 +1891,18 @@ def hydraulic_conductivity_kozeny_carman(
             "Sum of fi/(d_li^0.404 * d_si^0.596) is zero; check input "
             "fractions."
         )
-    if abs(total - 1.0) <= 0.005:
+    # The library's tolerance, not printed: 2 % catches a percent/decimal
+    # mix-up; the total is used as given, not normalised.
+    if abs(total - 1.0) <= 0.02 + 1e-9:
         hundred_percent = 1.0
-    elif abs(total - 100.0) <= 0.5:
+    elif abs(total - 100.0) <= 2.0 + 1e-7:
         hundred_percent = 100.0
     else:
         raise ValueError(
             f"The fractions add up to {total:g}; they must add up to 1.0 "
-            "(decimals) or 100 (percent). Equation 8-41 (UFS 3-220-10 "
-            "p. 462) divides 100% by the sum over the whole grain-size "
-            "distribution."
+            "(decimals) or 100 (percent), within 2 % (0.98 to 1.02, or 98 "
+            "to 102). Equation 8-41 (UFS 3-220-10 p. 462) divides 100% by "
+            "the sum over the whole grain-size distribution."
         )
 
     k = (

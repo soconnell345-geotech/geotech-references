@@ -571,7 +571,11 @@ def kozeny_carman_hydraulic_conductivity(
         particle size of the coarser sieve (mm), D_si = particle size of
         the finer sieve (mm).  The f_i are either decimals that add up to
         1.0 (0.25 for 25%) or percentages that add up to 100; the whole
-        grain-size distribution must be given.
+        grain-size distribution must be given.  A total within 2 % of
+        that (0.98 to 1.02, or 98 to 102) is accepted and used as given,
+        not normalised.  The 2 % is this library's tolerance, not
+        printed: it is there to catch fractions in percent mixed up with
+        decimals, not to judge the grading.
     S : float
         Surface area factor (dimensionless).  Ranges from 6 for spheres
         to 8.5 for angular particles.
@@ -588,7 +592,7 @@ def kozeny_carman_hydraulic_conductivity(
     ValueError
         If *S* is not positive, if *e* is not positive, if any sieve
         size is not positive, if a fraction is negative, or if the
-        fractions add up to neither 1.0 nor 100.
+        fractions add up to neither 1.0 nor 100 (within 2 %).
 
     References
     ----------
@@ -618,16 +622,18 @@ def kozeny_carman_hydraulic_conductivity(
             "The summation term is zero; at least one fraction must be "
             "non-zero with valid sieve sizes."
         )
-    if abs(total - 1.0) <= 0.005:
+    # The library's tolerance, not printed: 2 % catches a percent/decimal
+    # mix-up; the total is used as given, not normalised.
+    if abs(total - 1.0) <= 0.02 + 1e-9:
         hundred_percent = 1.0
-    elif abs(total - 100.0) <= 0.5:
+    elif abs(total - 100.0) <= 2.0 + 1e-7:
         hundred_percent = 100.0
     else:
         raise ValueError(
             f"The fractions add up to {total:g}; they must add up to 1.0 "
-            "(decimals) or 100 (percent). Equation 6-13 (UFS 3-220-10 "
-            "p. 300) divides 100% by the sum over the whole grain-size "
-            "distribution."
+            "(decimals) or 100 (percent), within 2 % (0.98 to 1.02, or 98 "
+            "to 102). Equation 6-13 (UFS 3-220-10 p. 300) divides 100% by "
+            "the sum over the whole grain-size distribution."
         )
 
     k = (
