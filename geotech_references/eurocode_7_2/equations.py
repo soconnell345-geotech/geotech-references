@@ -134,21 +134,26 @@ def equation_4_4_cu_from_fvt(mu: float, cfv_kpa: float) -> float:
 
 def equation_4_5_cu_from_dmt(sigma_v0_eff_kpa: float, k_dmt: float,
                               i_dmt: float = None) -> float:
-    """Undrained shear strength of non-cemented clays from DMT (Eq. 4.5).
+    """Undrained shear strength cu, in kPa, of non-cemented clays from the
+    flat dilatometer test (DMT), for a material index IDMT < 0,8
+    (EN 1997-2:2007 clause 4.10.4.1 (2), Eq. 4.5, printed p. 57).
 
-    cu = 0.22 * sigma'v0 * (0.5 * KDMT)^1.25
+    As printed, "the derived value of the undrained shear strength (cu) of
+    non-cemented clays, for which the DMT test results show material index
+    IDMT < 0,8, may be determined using the following relationship":
 
-    Valid only when the DMT material index IDMT < 0.8 (non-cemented clay).
+        cu = 0,22 * sigma'v0 * (0,5 * KDMT)^1,25
 
     Parameters
     ----------
     sigma_v0_eff_kpa : float
         Initial effective vertical stress at the test depth, in kPa.
     k_dmt : float
-        Horizontal stress index from the flat dilatometer test.
-    i_dmt : float, optional
-        Material index from the flat dilatometer test.  If given and
-        >= 0.8, raises ValueError (outside the equation's stated validity).
+        Horizontal stress index KDMT from the flat dilatometer test.
+    i_dmt : float
+        Material index IDMT from the flat dilatometer test.  Required: the
+        relationship is printed for IDMT < 0,8 only, and the function
+        raises without it or at 0.8 and above.
 
     Returns
     -------
@@ -158,9 +163,15 @@ def equation_4_5_cu_from_dmt(sigma_v0_eff_kpa: float, k_dmt: float,
     Raises
     ------
     ValueError
-        If i_dmt is given and >= 0.8.
+        If i_dmt is not given, or is >= 0.8.
     """
-    if i_dmt is not None and i_dmt >= 0.8:
+    if i_dmt is None:
+        raise ValueError(
+            "i_dmt (the DMT material index IDMT) is required: Eq. 4.5 is "
+            "printed for non-cemented clays whose DMT results show "
+            "IDMT < 0,8 (EN 1997-2:2007, printed p. 57)."
+        )
+    if i_dmt >= 0.8:
         raise ValueError(
             f"Eq. 4.5 is only valid for IDMT < 0.8 (non-cemented clay), got {i_dmt}"
         )
@@ -486,15 +497,28 @@ _DP_ID_FORMULAS = {
 
 def equation_g1_density_index_from_dp(n10: float, grading: str, groundwater: str,
                                        probe_type: str) -> float:
-    """Density index from dynamic probing (DP) blow count N10 (Annex G.1).
+    """Density index ID, as a fraction (0.45 means 45 %), from the number of
+    blows N10 of the dynamic probing (DP) test, for 3 <= N10 <= 50
+    (EN 1997-2:2007 Annex G.1, printed p. 129).
 
-    ID = a + b * log10(N10), coefficients (a, b) depend on grading,
-    groundwater position, and probe type.  Range of validity: 3 <= N10 <= 50.
+    As printed (range of validity 3 <= N10 <= 50):
+
+        poorly-graded sand (CU <= 3) above groundwater
+            ID = 0,15 + 0,260 lg N10L (DPL)
+            ID = 0,10 + 0,435 lg N10H (DPH)
+        poorly-graded sand (CU <= 3) below groundwater
+            ID = 0,21 + 0,230 lg N10L (DPL)
+            ID = 0,23 + 0,380 lg N10H (DPH)
+        well-graded sand-gravel (CU >= 6) above groundwater
+            ID = -0,14 + 0,550 lg N10H (DPH)
+
+    Tables F.1 and F.3 take ID in percent: multiply this result by 100.
 
     Parameters
     ----------
     n10 : float
         Number of blows per 10 cm penetration (N10L for DPL, N10H for DPH).
+        Must be from 3 to 50, the printed range of validity.
     grading : str
         'poorly_graded' (Cu <= 3) or 'well_graded' (Cu >= 6, sand-gravel).
     groundwater : str
@@ -512,7 +536,8 @@ def equation_g1_density_index_from_dp(n10: float, grading: str, groundwater: str
     ValueError
         If the (grading, groundwater, probe_type) combination is not
         tabulated (only 'well_graded'+'above'+'dph' is given in the
-        standard; no well-graded-below-groundwater or DPL formula exists).
+        standard; no well-graded-below-groundwater or DPL formula exists),
+        or n10 is outside 3 to 50.
     """
     key = (
         grading.strip().lower().replace(" ", "_").replace("-", "_"),
@@ -523,6 +548,12 @@ def equation_g1_density_index_from_dp(n10: float, grading: str, groundwater: str
         raise ValueError(
             f"No G.1 correlation tabulated for (grading, groundwater, probe_type) "
             f"= {key}. Valid combinations: {sorted(_DP_ID_FORMULAS.keys())}"
+        )
+    if not 3 <= n10 <= 50:
+        raise ValueError(
+            f"n10={n10} is outside the range of validity 3 <= N10 <= 50 "
+            f"printed for the G.1 correlations (EN 1997-2:2007, printed "
+            f"p. 129)."
         )
     a, b = _DP_ID_FORMULAS[key]
     return a + b * math.log10(n10)
@@ -541,25 +572,40 @@ _DP_W1_FORMULAS = {
     ("clay", "dph"): (6, 50),
 }
 
+# Printed range of validity of each G.3 (2) equation: (N10 min, N10 max).
+_DP_W1_VALIDITY = {
+    ("sand", "dpl"): (4, 50),
+    ("sand", "dph"): (3, 10),
+    ("clay", "dpl"): (6, 19),
+    ("clay", "dph"): (3, 13),
+}
+
 
 def equation_g3_stiffness_coefficient_from_dp(n10: float, soil_type: str,
                                                probe_type: str) -> float:
-    """Stiffness coefficient w1 from dynamic probing (DP) blow count (Annex G.3).
+    """Stiffness coefficient w1, dimensionless, of the stress-dependent
+    oedometer modulus Eoed from the number of blows N10 of the dynamic
+    probing (DP) test, within each equation's printed range of validity
+    (EN 1997-2:2007 Annex G.3 (2), printed p. 130).
 
-    Used in Eoed = w1 * pa * ((sigma'v + 0.5*delta_sigma'v)/pa)^w2 (w2=0.5
-    for Cu<=3 sands, w2=0.6 for low-plasticity clays) (p.130).
+    Used in Eoed = w1 * pa * ((sigma'v + 0,5*delta_sigma'v)/pa)^w2 (w2 = 0,5
+    for sands with CU <= 3, w2 = 0,6 for clays of low plasticity) (p. 130).
 
-    Poorly-graded sands (Cu<=3) above groundwater:
-        w1 = 214*lg(N10L) + 71  (DPL; 4<=N10L<=50)
-        w1 = 249*lg(N10H) + 161 (DPH; 3<=N10H<=10)
-    Low-plasticity clays (0.75<=Ic<=1.30) above groundwater:
-        w1 = 4*N10L + 30  (DPL; 6<=N10L<=19)
-        w1 = 6*N10H + 50  (DPH; 3<=N10H<=13)
+    As printed:
+
+    Poorly-graded sands (CU <= 3) above groundwater:
+        w1 = 214 lg N10L + 71   (DPL; range of validity: 4 <= N10L <= 50)
+        w1 = 249 lg N10H + 161  (DPH; range of validity: 3 <= N10H <= 10)
+    Low-plasticity clays of at least stiff consistency (0,75 <= Ic <= 1,30)
+    and above groundwater:
+        w1 = 4 N10L + 30  (DPL; range of validity: 6 <= N10L <= 19)
+        w1 = 6 N10H + 50  (DPH; range of validity: 3 <= N10H <= 13)
 
     Parameters
     ----------
     n10 : float
-        Number of blows per 10 cm penetration.
+        Number of blows per 10 cm penetration.  Must be inside the range
+        of validity printed for the equation used.
     soil_type : str
         'sand' (poorly-graded, Cu<=3) or 'clay' (low-plasticity, stiff).
     probe_type : str
@@ -573,13 +619,21 @@ def equation_g3_stiffness_coefficient_from_dp(n10: float, soil_type: str,
     Raises
     ------
     ValueError
-        If soil_type/probe_type is not recognized.
+        If soil_type/probe_type is not recognized, or n10 is outside the
+        printed range of validity of that equation.
     """
     key = (soil_type.strip().lower(), probe_type.strip().lower())
     if key not in _DP_W1_FORMULAS:
         raise ValueError(
             f"Unknown (soil_type, probe_type) '{key}'. "
             f"Valid: {sorted(_DP_W1_FORMULAS.keys())}"
+        )
+    n_min, n_max = _DP_W1_VALIDITY[key]
+    if not n_min <= n10 <= n_max:
+        raise ValueError(
+            f"n10={n10} is outside the range of validity "
+            f"{n_min} <= N10 <= {n_max} printed for the G.3 equation for "
+            f"{key[0]} and {key[1].upper()} (EN 1997-2:2007, printed p. 130)."
         )
     coeff, const = _DP_W1_FORMULAS[key]
     if soil_type.strip().lower() == "sand":

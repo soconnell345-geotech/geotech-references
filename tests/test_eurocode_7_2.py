@@ -431,6 +431,23 @@ class TestTableG1:
         r = table_g1_phi_from_density_index_dp("well_graded", "dense")
         assert r["phi_deg"] == 38
 
+    def test_every_printed_row_with_its_range_of_id(self):
+        # Table G.1 (PDF p. 131, printed p. 129): both gradings print the
+        # ranges 15-35 (loose), 35-65 (medium dense), >65 (dense). The
+        # well-graded ranges used to be labelled "(assumed)".
+        printed = {
+            ("poorly_graded", "loose"): ("15-35%", 30),
+            ("poorly_graded", "medium_dense"): ("35-65%", 32.5),
+            ("poorly_graded", "dense"): (">65%", 35),
+            ("well_graded", "loose"): ("15-35%", 30),
+            ("well_graded", "medium_dense"): ("35-65%", 34),
+            ("well_graded", "dense"): (">65%", 38),
+        }
+        for (grading, state), (id_range, phi) in printed.items():
+            r = table_g1_phi_from_density_index_dp(grading, state)
+            assert r["id_range"] == id_range
+            assert r["phi_deg"] == phi
+
     def test_invalid(self):
         with pytest.raises(ValueError):
             table_g1_phi_from_density_index_dp("unknown", "dense")
@@ -591,8 +608,21 @@ class TestMainEquations:
         assert equation_4_4_cu_from_fvt(0.8, 40) == pytest.approx(32.0)
 
     def test_eq_4_5_cu_from_dmt(self):
-        cu = equation_4_5_cu_from_dmt(100, 5)
+        # Eq. 4.5 (PDF p. 59, printed p. 57):
+        # cu = 0,22 sigma'v0 (0,5 KDMT)^1,25, for IDMT < 0,8
+        cu = equation_4_5_cu_from_dmt(100, 5, i_dmt=0.4)
         assert cu == pytest.approx(0.22 * 100 * (0.5 * 5) ** 1.25)
+        cu = equation_4_5_cu_from_dmt(60, 2, i_dmt=0.79)
+        assert cu == pytest.approx(0.22 * 60)   # (0,5 x 2)^1,25 = 1
+
+    def test_eq_4_5_needs_the_material_index(self):
+        # The relationship is printed for clays "for which the DMT test
+        # results show material index IDMT < 0,8". Without IDMT the check
+        # used to be skipped.
+        with pytest.raises(ValueError, match="IDMT"):
+            equation_4_5_cu_from_dmt(100, 5)
+        with pytest.raises(ValueError):
+            equation_4_5_cu_from_dmt(100, 5, i_dmt=0.8)
 
     def test_eq_4_5_rejects_high_idmt(self):
         with pytest.raises(ValueError):
@@ -741,6 +771,55 @@ class TestAnnexGEquations:
     def test_g3_invalid(self):
         with pytest.raises(ValueError):
             equation_g3_stiffness_coefficient_from_dp(10, "silt", "dpl")
+
+    def test_g1_all_five_printed_equations(self):
+        # G.1 (PDF p. 131, printed p. 129), at N10 = 20.
+        lg = math.log10(20)
+        cases = {
+            ("poorly_graded", "above", "dpl"): 0.15 + 0.260 * lg,
+            ("poorly_graded", "above", "dph"): 0.10 + 0.435 * lg,
+            ("poorly_graded", "below", "dpl"): 0.21 + 0.230 * lg,
+            ("poorly_graded", "below", "dph"): 0.23 + 0.380 * lg,
+            ("well_graded", "above", "dph"): -0.14 + 0.550 * lg,
+        }
+        for (grading, water, probe), expected in cases.items():
+            assert equation_g1_density_index_from_dp(20, grading, water, probe) == pytest.approx(expected)
+
+    def test_g1_range_of_validity(self):
+        # "range of validity 3 <= N10 <= 50" (printed p. 129). N10 = 200 used
+        # to return ID = 1.10, N10 = 1 returned 0.10.
+        for n10 in (3, 50):
+            equation_g1_density_index_from_dp(n10, "poorly_graded", "above", "dph")
+        for n10 in (1, 2.9, 50.1, 100, 200):
+            with pytest.raises(ValueError, match="3 <= N10 <= 50"):
+                equation_g1_density_index_from_dp(n10, "poorly_graded", "above", "dph")
+
+    def test_g3_all_four_printed_equations(self):
+        # G.3 (2) (PDF p. 132, printed p. 130), at N10 = 8.
+        assert equation_g3_stiffness_coefficient_from_dp(8, "sand", "dpl") == pytest.approx(
+            214 * math.log10(8) + 71)
+        assert equation_g3_stiffness_coefficient_from_dp(8, "sand", "dph") == pytest.approx(
+            249 * math.log10(8) + 161)
+        assert equation_g3_stiffness_coefficient_from_dp(8, "clay", "dpl") == pytest.approx(4 * 8 + 30)
+        assert equation_g3_stiffness_coefficient_from_dp(8, "clay", "dph") == pytest.approx(6 * 8 + 50)
+
+    def test_g3_ranges_of_validity(self):
+        # Printed ranges (p. 130): sand DPL 4-50, sand DPH 3-10, clay DPL
+        # 6-19, clay DPH 3-13. Sand DPH at N10 = 40 used to return 560
+        # (410 at the limit), clay DPL at 50 returned 230.
+        limits = {
+            ("sand", "dpl"): (4, 50), ("sand", "dph"): (3, 10),
+            ("clay", "dpl"): (6, 19), ("clay", "dph"): (3, 13),
+        }
+        for (soil, probe), (lo, hi) in limits.items():
+            equation_g3_stiffness_coefficient_from_dp(lo, soil, probe)
+            equation_g3_stiffness_coefficient_from_dp(hi, soil, probe)
+            with pytest.raises(ValueError, match="range of validity"):
+                equation_g3_stiffness_coefficient_from_dp(lo - 0.5, soil, probe)
+            with pytest.raises(ValueError, match="range of validity"):
+                equation_g3_stiffness_coefficient_from_dp(hi + 0.5, soil, probe)
+        with pytest.raises(ValueError, match="3 <= N10 <= 10"):
+            equation_g3_stiffness_coefficient_from_dp(40, "sand", "dph")
 
 
 # ============================================================================

@@ -1030,8 +1030,8 @@ _TABLE_G1 = {
     ("poorly_graded", "medium_dense"): {"id_range": "35-65%", "phi_deg": 32.5},
     ("poorly_graded", "dense"): {"id_range": ">65%", "phi_deg": 35},
     ("well_graded", "loose"): {"id_range": "15-35%", "phi_deg": 30},
-    ("well_graded", "medium_dense"): {"id_range": "35-65%(assumed)", "phi_deg": 34},
-    ("well_graded", "dense"): {"id_range": ">65%(assumed)", "phi_deg": 38},
+    ("well_graded", "medium_dense"): {"id_range": "35-65%", "phi_deg": 34},
+    ("well_graded", "dense"): {"id_range": ">65%", "phi_deg": 38},
 }
 
 
