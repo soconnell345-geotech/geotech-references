@@ -2932,7 +2932,8 @@ _FIG_5_18_CHARTS = {
 _FIG_5_18_REDUCTION_NOTE = (
     "When 0.7 < su2/su1 < 1, it is prudent to reduce the values of "
     "N_c,m,s and N_c,m,c by 10 percent (UFC 3-220-20, printed p. 309). "
-    "N_cm is the figure's value; N_cm_reduced_10_percent is 0.9 of it."
+    "N_cm is the value by the figure's equation or curves; "
+    "N_cm_reduced_10_percent is 0.9 of it."
 )
 
 
