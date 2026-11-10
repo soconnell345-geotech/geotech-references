@@ -116,6 +116,24 @@ _TABLE_6_OTHER = {
     "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2},
 }
 
+# The shear ratio V / (bw d sqrt(f'c)) heading Tables 6(i) and 7(i) is
+# printed without a unit; its rows (<= 3, >= 6) are psi-unit values: the
+# worked example (pdf 114 / printed D12) computes it as 222 kips / (36 in x
+# 22.5 in x sqrt(5000 psi)) = 3.88. A ratio computed with N, mm and MPa is
+# 1/12.04 of the psi value and would always land in the "<= 3" row.
+VW_RATIO_UNITS = "psi units: V in lb, bw and d in inches, f'c in psi"
+
+
+def _vw_ratio_row(vw_ratio):
+    """Name the unit of vw_ratio and the printed row(s) it was read in."""
+    if vw_ratio <= 3.0:
+        row = "<= 3 (printed row)"
+    elif vw_ratio >= 6.0:
+        row = ">= 6 (printed row)"
+    else:
+        row = "interpolated between the printed 3 and 6 rows (footnote 1)"
+    return {"vw_ratio": vw_ratio, "vw_ratio_units": VW_RATIO_UNITS, "vw_ratio_row": row}
+
 
 def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ratio):
     """GSA Table 6(i): nonlinear modeling parameters a, b (plastic
@@ -123,7 +141,9 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     criteria plastic rotation (radians) for a reinforced-concrete beam
     controlled by FLEXURE (printed p. 39, replaces ASCE 41 Table 10-7).
     GSA prints a single acceptance column, which equals b in every row and
-    applies to primary and secondary components (footnote 2). Linear
+    applies to primary and secondary components (footnote 2). vw_ratio =
+    V / (bw d sqrt(f'c)) must be in psi units (V lb, bw and d in., f'c
+    psi). Linear
     interpolation between the printed grid points is permitted (footnote
     1) and performed here over rho_diff_over_rho_bal in [0.0, 0.5] and
     vw_ratio in [3, 6].
@@ -140,16 +160,19 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
         the strength provided by the hoops (Vs) is at least 3/4 of the
         design shear.
     vw_ratio : float
-        V / (bw * d * sqrt(f'c)) [psi units, f'c in psi], clamped to
-        [3, 6] for interpolation.
+        V / (bw * d * sqrt(f'c)) in psi units: V in lb, bw and d in
+        inches, f'c in psi (a ratio computed with N, mm and MPa must be
+        multiplied by 12.04). Below 3 the printed "<= 3" row is used,
+        above 6 the ">= 6" row.
 
     Returns
     -------
     dict
         {'a', 'b', 'c' (residual strength ratio), 'acceptance' (the
         single printed column, = b), 'primary_acceptance' and
-        'secondary_acceptance' (both = 'acceptance'), 'table': '6',
-        'printed_page': '39', 'pdf_page': 51}
+        'secondary_acceptance' (both = 'acceptance'), 'vw_ratio',
+        'vw_ratio_units', 'vw_ratio_row' (the printed row(s) read),
+        'table': '6', 'printed_page': '39', 'pdf_page': 51}
     """
     key = transverse_reinf.upper().strip()
     if key not in ("C", "NC"):
@@ -175,6 +198,7 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     # components alike.
     return {"a": a, "b": b, "c": c, "acceptance": b,
             "primary_acceptance": b, "secondary_acceptance": b,
+            **_vw_ratio_row(vw_ratio),
             "table": "6", "printed_page": "39", "pdf_page": 51}
 
 
@@ -238,9 +262,11 @@ _TABLE_7_OTHER = {
 
 
 def table_7_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_ratio):
-    """Table 7(i): linear-model m-factors for an RC beam controlled by
-    FLEXURE, primary and secondary components (printed p. 40, replaces
-    ASCE 41 Table 10-13). Bilinear interpolation over
+    """GSA Table 7(i): linear-model m-factors (dimensionless) for an RC
+    beam controlled by FLEXURE, primary and secondary components (printed
+    p. 40, replaces ASCE 41 Table 10-13). vw_ratio = V / (bw d sqrt(f'c))
+    must be in psi units (V lb, bw and d in., f'c psi). Bilinear
+    interpolation over
     rho_diff_over_rho_bal in [0.0, 0.5] and vw_ratio in [3, 6] (footnote
     1).
 
@@ -262,13 +288,17 @@ def table_7_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_rat
     transverse_reinf : str
         'C' (conforming) or 'NC' (nonconforming).
     vw_ratio : float
-        V / (bw * d * sqrt(f'c)), clamped to [3, 6].
+        V / (bw * d * sqrt(f'c)) in psi units: V in lb, bw and d in
+        inches, f'c in psi (a ratio computed with N, mm and MPa must be
+        multiplied by 12.04). Below 3 the printed "<= 3" row is used,
+        above 6 the ">= 6" row.
 
     Returns
     -------
     dict
-        {'m_primary', 'm_secondary', 'table': '7', 'printed_page': '40',
-         'pdf_page': 52}
+        {'m_primary', 'm_secondary', 'vw_ratio', 'vw_ratio_units',
+         'vw_ratio_row' (the printed row(s) read), 'table': '7',
+         'printed_page': '40', 'pdf_page': 52}
     """
     key = transverse_reinf.upper().strip()
     if key not in ("C", "NC"):
@@ -287,7 +317,8 @@ def table_7_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_rat
     mp6, ms6 = _at_vw(row_6)
     m_primary = _linterp(vw, [3.0, 6.0], [mp3, mp6])
     m_secondary = _linterp(vw, [3.0, 6.0], [ms3, ms6])
-    return {"m_primary": m_primary, "m_secondary": m_secondary, "table": "7",
+    return {"m_primary": m_primary, "m_secondary": m_secondary,
+            **_vw_ratio_row(vw_ratio), "table": "7",
             "printed_page": "40", "pdf_page": 52}
 
 

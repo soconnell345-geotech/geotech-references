@@ -153,6 +153,23 @@ class TestTable7BeamFlexureMfactor:
         assert gsa["m_secondary"] == pytest.approx(ufc["m_secondary"])
 
 
+class TestShearRatioUnits:
+    # struct-02: the worked example (GSA_Alternate_Path_2016.pdf pdf 114 /
+    # printed D12) computes V/(bw d sqrt f'c) = 222 kips / (36 in x 22.5 in
+    # x sqrt(5000 psi)) = 3.88, so the printed rows are psi-unit values.
+    def test_worked_example_ratio_in_psi_units(self):
+        ratio = 222_000 / (36 * 22.5 * 5000 ** 0.5)
+        assert ratio == pytest.approx(3.88, abs=0.005)
+        r = table_7_beam_flexure_mfactor(0.037, "C", ratio)
+        assert "psi" in r["vw_ratio_units"]
+        assert r["vw_ratio_row"].startswith("interpolated")
+
+    def test_low_ratio_reads_le3_row_and_says_so(self):
+        r = table_6_beam_flexure_modeling(0.0, "C", 0.4)
+        assert r["vw_ratio_row"].startswith("<= 3")
+        assert r["vw_ratio"] == 0.4
+
+
 class TestTable8SlabFlexureModeling:
     def test_yes_continuity_vg02(self):
         # PRINTED TABLE VALUE: (<=0.2, Yes) -> a=0.05, b=0.10, c=0.2.

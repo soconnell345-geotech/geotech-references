@@ -101,6 +101,35 @@ class TestTable41BeamOther:
         assert r["c"] == pytest.approx(0.0)
 
 
+class TestShearRatioUnits:
+    """struct-02: the V/(bw d sqrt f'c) rows (<= 3, >= 6) of Tables 4-1(i)
+    and 4-2(i) (pdf 79-80 / printed 63-64) are psi-unit values; the result
+    names the unit and the printed row read."""
+
+    def test_result_names_psi_units_and_row(self):
+        r = table_4_2_beam_flexure_mfactor(0.0, "C", 2.0)
+        assert "psi" in r["vw_ratio_units"]
+        assert r["vw_ratio_row"].startswith("<= 3")
+        # printed row rho<=0.0, C, <=3: m = 16 / 19 (printed p. 64)
+        assert r["m_primary"] == pytest.approx(16)
+        assert r["m_secondary"] == pytest.approx(19)
+
+    def test_interpolated_row_named(self):
+        # (rho-rho')/rho_bal 0.2, C, ratio 4.8 (psi): between the printed
+        # rows 16/9 (<=3) and 9/6 (>=6) -> m_primary 13.2 and 7.8 at rho 0.2,
+        # then 13.2 + (7.8 - 13.2) * 1.8/3 = 9.96.
+        r = table_4_2_beam_flexure_mfactor(0.2, "C", 4.8)
+        assert r["vw_ratio_row"].startswith("interpolated")
+        assert r["m_primary"] == pytest.approx(9.96)
+
+    def test_table_4_1_names_units(self):
+        r = table_4_1_beam_flexure_modeling(0.5, "NC", 6.5)
+        assert r["vw_ratio_row"].startswith(">= 6")
+        assert "psi" in r["vw_ratio_units"]
+        # printed row >=0.5, NC, >=6: a 0.013, b 0.02 (printed p. 63)
+        assert r["a"] == pytest.approx(0.013)
+
+
 class TestTable42BeamFlexureMfactor:
     def test_conforming_low_rho_low_v(self):
         # PRINTED TABLE (p. 64): rho<=0.0, C, V<=3 -> m_primary=16, m_secondary=19
