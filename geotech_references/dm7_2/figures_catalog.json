@@ -1723,7 +1723,7 @@
       "pdf_page_index": 480,
       "printed_page": 443,
       "page_estimated": false,
-      "description": "Empirical Method for Drilled Shaft Settlement Applies when performing preliminary settlement analysis of individual drilled shafts in either coarse-grained or fine-grained soil profiles. Method applies to drilled shafts with diameter 1–6.5 ft, depth 16–200 ft, and Z/b ratio 6–56. ACF (axial compressive force) = unfactored applied load + effective shaft weight; FT = Rs + Rʹb at δ/b = 4%. Rʹb = 0.71·Rb for cohesive soils; Rʹb = Rb for cohesionless soils at δ/b = 4%. Normalized settlement δ/b is read from Figure 6-17 or computed from Table 6-31 equations. Elastic compression of the concrete shaft is already incorporated in the load-displacement curves. Intended for preliminary analysis; large ACF/FT ratios (≥100% for cohesive, ≥159% for cohesionless) indicate large settlements."
+      "description": "Empirical Method for Drilled Shaft Settlement Applies when performing preliminary settlement analysis of individual drilled shafts in either coarse-grained or fine-grained soil profiles. Method applies to drilled shafts with diameter 1–6.5 ft, depth 16–200 ft, and Z/b ratio 6–56. ACF (axial compressive force) = unfactored applied load + effective shaft weight; FT = Rs + Rʹb at δ/b = 4%. Rʹb = Rb for fine-grained (cohesive) soils; Rʹb = 0.71·Rb for coarse-grained (cohesionless) soils at δ/b = 4% (Eq. 6-48). Normalized settlement δ/b is read from Figure 6-17 or computed from Table 6-31 equations. Elastic compression of the concrete shaft is already incorporated in the load-displacement curves. Intended for preliminary analysis; large ACF/FT ratios (≥100% for cohesive, ≥159% for cohesionless) indicate large settlements."
     },
     {
       "figure_number": "6-18",
@@ -1732,7 +1732,7 @@
       "pdf_page_index": 483,
       "printed_page": 446,
       "page_estimated": false,
-      "description": "Empirical Selection of Equivalent Footing Applies when locating the equivalent footing depth and dimensions empirically for pile group settlement analysis using Table 6-32 guidance. Equivalent footing depth = z1 + z2; load spreads at 2V:1H below the equivalent footing and at 4V:1H through the z2 interval. Equivalent footing dimensions: Bʹ = B + 2z2 and Lʹ = L + 2z2. 2V:1H stress spread: Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ)) below the equivalent footing. Battered pile group footing dimensions depend on whether side or base resistance governs, per FHWA (2016). Other stress sources (groundwater lowering, fill, adjacent foundations) must be added; neutral plane method is preferred for these cases."
+      "description": "Empirical Selection of Equivalent Footing Applies when locating the equivalent footing depth and dimensions empirically for pile group settlement analysis using Table 6-32 guidance. Equivalent footing depth = z1 + z2; load spreads at 2V:1H below the equivalent footing and at 4V:1H through the z2 interval. Equivalent footing dimensions: Bʹ = B + z2/2 and Lʹ = L + z2/2 (Eq. 6-49, 6-50). 2V:1H stress spread: Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ)) below the equivalent footing. Battered pile group footing dimensions depend on whether side or base resistance governs, per FHWA (2016). Other stress sources (groundwater lowering, fill, adjacent foundations) must be added; neutral plane method is preferred for these cases."
     },
     {
       "figure_number": "6-19",
