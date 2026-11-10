@@ -50,6 +50,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 import unicodedata
 from dataclasses import dataclass, field
 
@@ -67,14 +68,16 @@ except ImportError:  # older PyMuPDF
 SYMBOL_FONT = {0xF062: "β", 0xF06D: "μ", 0xF070: "π", 0xF071: "θ"}
 #: Characters written another way: the phi and epsilon variants as the plain
 #: Greek letters, the multiplication dots as one dot, slashes as "/".
-_FOLD = {"ϕ": "φ", "ϵ": "ε", "∙": "·", "⋅": "·", "∕": "/", "‑": "-",
+_FOLD = {"ϕ": "φ", "ϵ": "ε", "∙": "·", "⋅": "·", "∕": "/", "‑": "-", "Ʌ": "Λ", "ʋ": "υ",
          "∗": "*", "ﬁ": "fi", "ﬂ": "fl", "∆": "Δ"}
 _FRACTION_SLASH = "⁄"
 _PRIMES = "′″‴*"
 _DELIMS = "()[]{}|⌈⌉⌊⌋"
-#: A unit a raised 2 or 3 in the text font squares or cubes ("ft2"); any
-#: other raised mark in the text font is a note mark.
-_UNIT_END = re.compile(r"(?:ft|in|yd|mi|mm|cm|km|m|sec|s)$")
+#: A unit a raised number in the text font is a power of ("ft2", "psf-1");
+#: so is a raised negative number, or one after a 10. Any other raised mark
+#: in the text font is a note mark.
+_UNIT_END = re.compile(r"(?:ft|in|yd|mi|mm|cm|km|m|sec|s|psf|ksf|tsf|pcf|kcf|lb|kg|kN|N)$")
+_NEGATIVE = re.compile(r"[−–-]\d+")
 
 
 def plain_char(ch: str, font: str) -> str:
@@ -105,6 +108,7 @@ class Ch:
     italic: bool = False
     frac: bool = False
     role: str = "base"  # base / sup / sub
+    doubt: bool = False  # holds a root whose bar was not found
 
     @property
     def xc(self) -> float:
@@ -231,13 +235,20 @@ def _wrap(text: str, symbols: int = 1) -> str:
     or one symbol (``symbols`` is how many full-size letters it holds)."""
     if re.fullmatch(r"[\d.,]+%?", text):
         return text
-    if symbols <= 1 and re.fullmatch(r"[\w.′°%]+", text):
+    if symbols <= 1 and re.fullmatch(r"[^\W\d][\w.′°%]*", text):
         return text
     return f"({text})"
 
 
 def _symbols(items: list) -> int:
     return sum(1 for i in items if i.role == "base" and (i.frac or i.t.isalpha()))
+
+
+def _doubt(items: list, radicals) -> bool:
+    """Whether ``items`` hold a root sign with no bar found for it (what
+    stands under the root is then not known)."""
+    return any(i.doubt or (i.t == "√" and not any(sign is i for _, sign in radicals))
+               for i in items)
 
 
 def read_slant_fractions(items: list[Ch], spaces, radicals: list) -> list[Ch]:
@@ -277,7 +288,7 @@ def read_slant_fractions(items: list[Ch], spaces, radicals: list) -> list[Ch]:
         both = num + den
         items.append(Ch(text, min(i.x0 for i in both), max(i.x1 for i in both), main,
                         min(i.top for i in both), max(i.bot for i in both), size,
-                        True, frac=True))
+                        True, frac=True, doubt=_doubt(both, radicals)))
     return items
 
 
@@ -288,20 +299,26 @@ def read_fractions(items: list[Ch], bars: list[Bar], spaces, radicals: list,
     ``(numerator)/(denominator)`` set where the bar is. A bar with a root
     sign at its left end is the root's bar and is noted in ``radicals``.
     A bar with mathematics on one side only goes to ``unread``."""
+    # a root's bar: the topmost bar that starts where a root sign ends (a
+    # tall root over a fraction has the fraction's bar there too, lower)
+    roots = {}
+    for sign in (it for it in items if it.t == "√"):
+        cand = [b for b in bars if b.x0 - 2.5 <= sign.x1 <= b.x0 + 3.0
+                and sign.y - 2.8 * sign.size <= b.y <= sign.bot - 2]
+        if cand:
+            top = min(cand, key=lambda b: b.y)
+            roots[id(top)] = sign
+            radicals.append((top, sign))
     items = read_slant_fractions(items, spaces, radicals)
     for bar in sorted(bars, key=lambda b: b.x1 - b.x0):
+        if id(bar) in roots:
+            continue
         near = [it for it in items if it.math
                 and bar.x0 - 0.8 <= it.xc <= bar.x1 + 0.8
                 and abs(it.y - bar.y) <= 1.6 * max(it.size, 10.0)]
         if not near:
             continue
         size = max(it.size for it in near)
-        root = [it for it in items if it.t == "√"
-                and bar.x0 - 2.5 <= it.x1 <= bar.x0 + 3.0
-                and it.top <= bar.y + 4 and it.bot >= bar.y + 2]
-        if root:
-            radicals.append((bar, size))
-            continue
         num = [it for it in near if bar.y - 1.35 * size <= it.y <= bar.y - 0.08 * size]
         den = [it for it in near if bar.y + 0.35 * size <= it.y <= bar.y + 1.45 * size]
         if not num or not den:
@@ -317,7 +334,8 @@ def read_fractions(items: list[Ch], bars: list[Bar], spaces, radicals: list,
         items.append(Ch(text, min(bar.x0, min(i.x0 for i in both)),
                         max(bar.x1, max(i.x1 for i in both)),
                         bar.y + 0.28 * size, min(i.top for i in both),
-                        max(i.bot for i in both), size, True, frac=True))
+                        max(i.bot for i in both), size, True, frac=True,
+                        doubt=_doubt(both, radicals)))
     return items
 
 
@@ -327,6 +345,9 @@ def _rows_text(items: list[Ch], spaces, radicals) -> str:
     return " ".join(r.text for r in cluster_rows(items, spaces, radicals))
 
 
+#: The index of a root (the 4 of a fourth root), written raised before the sign.
+_RAISED = {"0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶",
+           "7": "⁷", "8": "⁸", "9": "⁹", "n": "ⁿ", "y": "ʸ", "i": "ⁱ"}
 #: A character under this size is a raised or lowered one where a line of
 #: full-size characters runs beside it.
 _SCRIPT_SIZE = 9.0
@@ -368,6 +389,22 @@ def cluster_rows(items: list[Ch], spaces, radicals=()) -> list[Row]:
         if host is not None:
             host.items.extend(r.items)
             rows.remove(r)
+    # the limits of a sum, set under and over its sign: ∑(i=1 to n)
+    for r in rows:
+        for sign in [i for i in r.items if i.t == "∑"]:
+            lims = [c for c in small if sign.x0 - 4 <= c.xc <= sign.x1 + 4
+                    and not any(abs(b.y - c.y) <= 6 and abs(b.xc - c.xc) <= 25
+                                for b in base if b is not sign)]
+            lower = sorted((c for c in lims if 0.6 * r.size < c.y - r.y <= 2.0 * r.size),
+                           key=lambda c: c.x0)
+            upper = sorted((c for c in lims if -2.2 * r.size <= c.y - r.y < -r.size),
+                           key=lambda c: c.x0)
+            if not lower:
+                continue
+            sign.t = "∑(" + "".join(c.t for c in lower) + (
+                " to " + "".join(c.t for c in upper) if upper else "") + ")"
+            gone = {id(c) for c in lower + upper}
+            small = [c for c in small if id(c) not in gone]
     loose = []
     for it in small:
         best = None
@@ -384,6 +421,26 @@ def cluster_rows(items: list[Ch], spaces, radicals=()) -> list[Row]:
         it.role = ("sup" if dy < -0.15 * best.size
                    else "sub" if dy > 0.06 * best.size else "base")
         best.items.append(it)
+    # a power on a tall bracket (one round a built-up fraction) is set at the
+    # bracket's top, higher than a power on a letter; a subscript at its
+    # foot, lower than one on a letter
+    for it in sorted(loose, key=lambda c: c.x0):
+        for r in rows:
+            fracs = [f for f in r.items if f.frac]
+            if not fracs or not (min(f.top for f in fracs) - 3 <= it.y
+                                 <= max(f.bot for f in fracs) + 3):
+                continue
+            role = "sup" if it.y < r.y else "sub"
+            after = [d for d in r.items
+                     if -1.0 <= it.x0 - d.x1 <= 0.6 * r.size
+                     and ((d.t in ")]}" and d.role == "base"
+                           and any(f.x1 <= d.x0 + 1.5 for f in fracs))
+                          or (d.role == role and abs(d.y - it.y) <= 1.0))]
+            if after:
+                it.role = role
+                r.items.append(it)
+                loose.remove(it)
+                break
     small_rows: list[Row] = []
     for it in sorted(loose, key=lambda c: (c.y, c.x0)):
         it.role = "base"
@@ -422,11 +479,11 @@ def linear(row: Row, spaces, radicals=()) -> str:
     items = sorted(row.items, key=lambda c: (round(c.x0, 1), order[c.role]))
     # the characters under a root's bar
     under = {}
-    for bar, size in radicals:
-        if not (bar.y <= row.y <= bar.y + 1.5 * size):
+    for bar, sign in radicals:
+        if not any(it is sign for it in items):
             continue
         inside = [it for it in items if bar.x0 - 0.8 <= it.xc <= bar.x1 + 0.8
-                  and it.t != "√"]
+                  and it is not sign]
         if inside:
             under[id(inside[0])] = "open"
             under[id(inside[-1])] = under.get(id(inside[-1]), "") + "close"
@@ -436,26 +493,67 @@ def linear(row: Row, spaces, radicals=()) -> str:
             runs[-1][1].append(it)
         else:
             runs.append([it.role, [it]])
+    # a raised group set over a subscript: a prime belongs to the symbol,
+    # before the subscript (σ′z0 for σ with z0 under a prime); a power comes
+    # after the whole subscript (N60^m for N with 60 under m)
+    k = 1
+    while k < len(runs):
+        role, its = runs[k]
+        before = runs[k - 1]
+        if role == "sup" and before[0] == "sub" and its[0].x0 < before[1][-1].x1 + 0.5:
+            split = k + 1 < len(runs) and runs[k + 1][0] == "sub"
+            if all(i.t in _PRIMES for i in its):
+                runs[k - 1], runs[k] = runs[k], runs[k - 1]
+                if split:
+                    runs[k][1].extend(runs[k + 1][1])
+                    del runs[k + 1]
+                k = max(1, k - 1)
+                continue
+            if split:
+                before[1].extend(runs[k + 1][1])
+                del runs[k + 1]
+                continue
+        k += 1
+    # the limits of a sum set beside its sign: ∑(1 to i)
+    k = 0
+    while k < len(runs):
+        role, its = runs[k]
+        after = [r for r in runs[k + 1:k + 3] if r[0] in ("sup", "sub")]
+        if role == "base" and its[-1].t == "∑" and after and runs[k + 1][0] != "base":
+            if len(after) == 2 and after[0][0] == after[1][0]:
+                after = after[:1]
+            lims = {r[0]: "".join(i.t for i in r[1]) for r in after}
+            if "sub" in lims:
+                its[-1].t = "∑(" + lims["sub"] + (
+                    " to " + lims["sup"] if "sup" in lims else "") + ")"
+                gone = {id(i) for r in after for i in r[1]}
+                row.items = [i for i in row.items if id(i) not in gone]
+                del runs[k + 1:k + 1 + len(after)]
+        k += 1
     out = ""
     prev = None
     for k, (role, its) in enumerate(runs):
         text = ""
         last = None
         for it in its:
-            if last is not None and _space_between(last, it, row.y, spaces):
+            if last is not None and (
+                    _space_between(last, it, row.y, spaces) if role == "base"
+                    else it.x0 - last.x1 > 0.45 * min(last.size, it.size)):
                 text += " "
             mark = under.get(id(it), "")
             if "open" in mark:
                 text += "\x02"
             if it.frac:
-                # a fraction set against a symbol: a space before it, and
-                # brackets round it where a symbol follows with no sign
+                # a fraction set against a symbol (one before it or after
+                # it, with no sign between): a space, and brackets round it
                 k2 = its.index(it)
                 after = its[k2 + 1] if k2 + 1 < len(its) else None
-                if text[-1:].isalnum() or text[-1:] in ("′", ")"):
+                prior = (out + text).replace("\x02", "").replace("\x03", "")[-1:]
+                tight = prior.isalnum() or prior in ("′", ")", "]")
+                if tight:
                     text += " "
-                if after is not None and (after.t[:1].isalnum()
-                                          or after.t[:1] == "(" or after.frac):
+                if tight or (after is not None and (after.t[:1].isalnum()
+                                                    or after.t[:1] == "(" or after.frac)):
                     text += f"({it.t})"
                 else:
                     text += it.t
@@ -471,23 +569,30 @@ def linear(row: Row, spaces, radicals=()) -> str:
             is_math = all(i.math for i in its)
             if all(c in _PRIMES for c in body):
                 piece = body
-            elif body in ("o", "∘") and out[-1:].isdigit():
+            elif nxt is not None and nxt.t == "√" and all(c in _RAISED for c in body):
+                piece = " " + "".join(_RAISED[c] for c in body)   # a root's index
+            elif body in ("o", "∘", "°") and out[-1:].isdigit():
                 piece = "°"
-            elif not is_math and not (body in ("2", "3") and _UNIT_END.search(out)) \
-                    and not (re.fullmatch(r"[−–-]?\d+", body) and out.endswith("10")):
+            elif not is_math and not _NEGATIVE.fullmatch(body) \
+                    and not (body.isdigit() and (_UNIT_END.search(out)
+                                                 or out.endswith("10"))):
                 piece = f"[{body}]"                     # a note mark
             elif re.fullmatch(r"[\w.]+", body):
                 piece = "^" + body
             else:
                 piece = f"^({body})"
+            # where a root's bar starts or ends over the raised group
+            piece = ("\x02" if "\x02" in text else "") + piece \
+                + ("\x03" if "\x03" in text else "")
             # a symbol set straight after a raised group starts a new factor
-            if piece.startswith("^") and nxt is not None and nxt.role == "base" \
+            if "^" in piece and nxt is not None and nxt.role == "base" \
                     and nxt.t[:1].isalnum():
                 piece += " "
             out += piece
         elif role == "sub":
             body = text.replace("\x02", "").replace("\x03", "")
-            out += body
+            out += ("\x02" if "\x02" in text else "") + body \
+                + ("\x03" if "\x03" in text else "")
             if nxt is not None and nxt.role == "base" and nxt.t[:1].isalnum() \
                     and body[-1:].isalnum() \
                     and not _space_between(its[-1], nxt, row.y, spaces):
@@ -512,7 +617,7 @@ def rows_of(chars: list[Ch], bars: list[Bar], spaces, unread: list) -> list[Row]
     items = read_fractions(chars, bars, spaces, radicals, unread)
     rows = cluster_rows(items, spaces, radicals)
     for r in rows:
-        if "√" in r.text and "√(" not in r.text and not re.search(r"√[\w.′]+", r.text):
+        if _doubt(r.items, radicals):
             r.crowded = True      # a root with no bar found for it
     return rows
 
@@ -565,9 +670,14 @@ def take_equation_numbers(chars: list[Ch]) -> tuple[list[Ch], list[dict]]:
             continue
         found.append({"num": hyphen(m.group(1)), "y": first.y,
                       "top": min(c.top for c in tail), "bot": max(c.bot for c in tail),
-                      "x0": first.x0})
+                      "x0": first.x0, "x1": last.x1})
         used.update(id(c) for c in tail)
     return [c for c in chars if id(c) not in used], found
+
+
+def _opens_with_math(row: Row) -> bool:
+    first = min(row.items, key=lambda c: c.x0)
+    return first.math and row.x0 > MARGIN + 20
 
 
 @dataclass
@@ -587,39 +697,80 @@ class Line:
     mathy: bool = False              # mostly mathematics (a formula on its own line)
 
 
+def _formula_row(r: Row) -> bool:
+    """Whether a row is a displayed formula's, or a piece of one: mostly
+    mathematics, or opening with it in from the margin."""
+    return r.math_share >= 0.6 or (r.math_share >= 0.3 and _opens_with_math(r))
+
+
+#: A piece of a numbered equation lies no further than this from its number.
+_EQUATION_REACH = 90.0
+
+
 def lines_of(chars: list[Ch], bars: list[Bar], spaces, book) -> list[Line]:
     """A region's characters as lines, top to bottom, each numbered equation
     as one line: its formula as typed in from the page (``book.formula``)
-    followed by ``[Eq. 5-21]``."""
+    followed by ``[Eq. 5-21]``.
+
+    A numbered equation is every piece of mathematics printed between the
+    line of text above its number and the line of text below it. Where
+    several numbers stand with no text between them, the pieces are shared
+    out at the widest gap between one number's line and the first piece that
+    reaches the level of the next number."""
     chars, numbers = take_equation_numbers(chars)
     rows = rows_of(chars, bars, spaces, book.unread_bars)
+    numbers.sort(key=lambda n: n["y"])
     taken: dict[int, dict] = {}
+    # words set under the number, against the right margin (the equation's
+    # source, the soil it is for), are part of its line
     for n in numbers:
-        show = [r for r in rows if r.math_share >= 0.6 and id(r) not in taken]
-        hit = [r for r in show
-               if min(r.bot, n["bot"]) - max(r.top, n["top"]) >= 2.5]
-        if not hit:
-            near = [r for r in show if min(abs(r.top - n["bot"]),
-                                           abs(n["top"] - r.bot)) <= 16]
-            hit = near[:1]
-            if hit:
-                book.note(f"Eq. {n['num']}: its number stands clear of its line, "
-                          f"the nearest was taken ({hit[0].text[:50]!r})")
-        # pieces set over or under the equation's line (a limit of a sum, a
-        # piece of a built-up fraction the bar did not gather) are its too
-        grew = True
-        while grew:
-            grew = False
-            for r in rows:
-                if id(r) in taken or r in hit:
-                    continue
-                if any(abs(r.y - h.y) < 0.92 * max(r.size, h.size, 10.0)
-                       and min(r.x1, h.x1) - max(r.x0, h.x0) > 2 for h in hit):
-                    hit.append(r)
-                    grew = True
-        n["rows"] = hit
-        for r in hit:
+        n["rows"] = []
+        edge = n["bot"]
+        for r in sorted(rows, key=lambda r: r.y):
+            if id(r) not in taken and r.x0 > 250 and abs(r.x1 - n["x1"]) <= 10 \
+                    and -2 <= r.top - edge <= 9:
+                n["rows"].append(r)
+                taken[id(r)] = n
+                edge = r.bot
+    free = [r for r in rows if id(r) not in taken]
+    pieces = sorted((r for r in free if _formula_row(r)), key=lambda r: r.y)
+    words = [r.y for r in free if not _formula_row(r)]
+    for n in numbers:
+        n["band"] = (max((y for y in words if y < n["y"] - 4), default=-1e9),
+                     min((y for y in words if y > n["y"] + 4), default=1e9))
+    k = 0
+    while k < len(numbers):
+        group = [numbers[k]]
+        while k + len(group) < len(numbers) \
+                and numbers[k + len(group)]["band"] == group[0]["band"]:
+            group.append(numbers[k + len(group)])
+        k += len(group)
+        top, bot = group[0]["band"]
+        cand = [r for r in pieces if top < r.y < bot
+                and min(abs(r.y - n["y"]) for n in group) <= _EQUATION_REACH]
+        cuts = [-1e9]
+        for one, two in zip(group, group[1:]):
+            between = [r for r in cand if r.y >= one["y"] - 3]
+            reach = next((j for j, r in enumerate(between) if r.bot >= two["top"] - 2),
+                         len(between) - 1)
+            between = between[:reach + 1]
+            gaps = [(q.top - r.bot, (q.top + r.bot) / 2)
+                    for r, q in zip(between, between[1:])]
+            cuts.append(max(gaps)[1] if gaps else (one["y"] + two["y"]) / 2)
+        cuts.append(1e9)
+        for r in cand:
+            n = next(g for g, lo, hi in zip(group, cuts, cuts[1:]) if lo <= r.y < hi)
+            n["rows"].append(r)
             taken[id(r)] = n
+    for n in numbers:
+        if not any(_formula_row(r) for r in n["rows"]):
+            # its line reads as text (words in the text font beside a symbol)
+            near = [r for r in free if id(r) not in taken
+                    and min(r.bot, n["bot"]) - max(r.top, n["top"]) >= 2.5
+                    and r.x0 > MARGIN + 4 and r.math_share >= 0.15]
+            for r in near[:1]:
+                n["rows"].append(r)
+                taken[id(r)] = n
     out: list[Line] = []
     done = set()
     for r in rows:
@@ -628,13 +779,12 @@ def lines_of(chars: list[Ch], bars: list[Bar], spaces, book) -> list[Line]:
             out.append(Line(r.text, r.y, r.x0, r.x1, r.type_size, row=r,
                             crowded=r.crowded, mathy=r.math_share >= 0.5))
             continue
-        if n["num"] in done and id(n) in done:
+        if id(n) in done:
             continue
         done.add(id(n))
-        done.add(n["num"])
         out.append(_equation_line(n, book))
     for n in numbers:
-        if not n["rows"]:
+        if id(n) not in done:
             book.note(f"Eq. {n['num']}: no printed symbols found beside its number")
             out.append(_equation_line(n, book))
     out.sort(key=lambda ln: ln.y)
@@ -642,7 +792,7 @@ def lines_of(chars: list[Ch], bars: list[Bar], spaces, book) -> list[Line]:
 
 
 def _equation_line(n: dict, book) -> Line:
-    auto = [r.text for r in sorted(n["rows"], key=lambda r: r.y)]
+    auto = [r.text for r in sorted(n["rows"], key=lambda r: (not _formula_row(r), r.y))]
     typed = book.formula(n["num"], auto)
     rows = n["rows"]
     y = min([r.y for r in rows] + [n["y"]])
@@ -981,6 +1131,15 @@ def read_page(page, index: int, book) -> PageData:
 # what a build carries from page to page
 # ---------------------------------------------------------------------------
 
+_LOWERED = {v: k for k, v in _RAISED.items()}
+
+
+def _letters(text: str) -> Counter:
+    """The letters and digits of a formula, counted (its signs, brackets and
+    spaces left out): what a typed formula must share with the page."""
+    return Counter(_LOWERED.get(c, c) for c in text if c.isalnum())
+
+
 class Book:
     """The typed-in formulas and tables of a volume's manifest entry, and
     what the build finds for a reader to settle (``problems``, which stop a
@@ -1022,6 +1181,15 @@ class Book:
         entry = self.typed.get(number)
         if entry and entry.get("formula"):
             self.used.add(number)
+            if not entry.get("differs_from_text_layer"):
+                page, typed = _letters(" ".join(auto)), _letters(entry["formula"])
+                if page != typed:
+                    self.problems.append(
+                        f"Eq. {number} (p. {self.page}): the typed formula and the "
+                        "characters the page holds beside the number differ (on the page "
+                        f"only: {''.join(sorted((page - typed).elements()))!r}; typed only: "
+                        f"{''.join(sorted((typed - page).elements()))!r}; read: "
+                        f"{' | '.join(auto)!r})")
             return entry["formula"]
         self.untyped.append((number, self.page))
         return " ".join(auto) or "(equation printed on the page)"
@@ -1370,10 +1538,20 @@ class Flow:
                 self.book.note(f"{self.sid}: a line opens with {m.group(0).strip()!r}, "
                                f"out of sequence after {self.path}; read as text")
                 break
-        listed = ln.x0 > 95 and ln.x0 < 380 and row is not None
+        # a list (of symbols under "where:", of items) is set in from the
+        # margin: past the indent of a subparagraph's first line, or anywhere
+        # in from the margin while a list is being read
+        under_where = self.para is not None and (
+            self.para.kind == "list" or self.para.text.strip().lower() == "where:")
+        listed = row is not None and ln.x0 < 380 and (
+            ln.x0 > 95 or (ln.x0 > MARGIN + 4 and under_where
+                           and (abs(ln.x0 - INDENT) > 3 or bool(_ITEM.match(text)))))
         bullet = text.startswith("• ")
         prev = self.prev
         if listed or bullet:
+            if self.para is not None and prev is not None \
+                    and abs(ln.size - prev.size) > 1.2:
+                self.close_para()        # a note in smaller type under the list
             in_list = self.para is not None and self.para.kind == "list" \
                 and len(self.para.pieces) > (1 if self.para.text.lower().startswith("where") else 0)
             if not in_list:
