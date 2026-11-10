@@ -125,8 +125,29 @@ class TestTable84ResistanceFactor:
         assert result["phi"] == 0.50
 
     def test_partial_match_group_block(self):
+        """'group_block' is a listed name of Group block failure, 0.55."""
         result = table_8_4_resistance_factor("group_block")
         assert result["phi"] == 0.55
+        assert result["method"] == "group_block_failure"
+
+    def test_word_of_several_rows_refused(self):
+        """FHWA-NHI-18-024 Table 8-4, p. 8-14 (PDF page 222): 'side'
+        returned cohesionless compression 0.55 and 'uplift' 0.45, the first
+        rows holding the word; each fits several rows and is refused."""
+        for word in ("side", "uplift", "rock", "load_test", "structural",
+                     "lateral", "side_rock", "base"):
+            with pytest.raises(ValueError, match="one printed row"):
+                table_8_4_resistance_factor(word)
+
+    def test_printed_conditions(self):
+        """Rock side resistance prints Eq. 10-21 (0.50 / 0.40); combined
+        axial and flexure prints 0.75 to 0.90."""
+        r = table_8_4_resistance_factor("side_rock_uplift")
+        assert r["phi"] == 0.40 and "Eq. 10-21," in r["condition"]
+        assert "10-22" not in r["condition"]
+        r = table_8_4_resistance_factor("structural_flexure")
+        assert (r["phi"], r["phi_max"]) == (0.75, 0.90)
+        assert table_8_4_resistance_factor("Service I")["phi"] == 1.00
 
     def test_unknown_raises(self):
         with pytest.raises(ValueError, match="No matching"):
@@ -183,6 +204,14 @@ class TestTable84ByCategory:
         results = table_8_4_by_category("extreme")
         assert len(results) == 3
 
+    def test_unknown_category_raises(self):
+        """An unknown category returned an empty list, and 'side' both side
+        categories; the category names are listed instead."""
+        for cat in ("xyz", "side", "base"):
+            with pytest.raises(ValueError, match="compression_base"):
+                table_8_4_by_category(cat)
+        assert len(table_8_4_by_category("compression_base")) == 3
+
 
 # ============================================================================
 # Table 9-1: Lateral resistance factors
@@ -217,6 +246,12 @@ class TestTable91LateralResistanceFactor:
     def test_unknown_raises(self):
         with pytest.raises(ValueError):
             table_9_1_lateral_resistance_factor("unknown_xyz")
+
+    def test_part_of_a_name_refused(self):
+        """Table 9-1, p. 9-22 (PDF page 248): 'group_uplift' returned the
+        group row's 0.8 because it holds 'group'; refused."""
+        with pytest.raises(ValueError):
+            table_9_1_lateral_resistance_factor("group_uplift")
 
     def test_result_has_description(self):
         result = table_9_1_lateral_resistance_factor("individual")

@@ -181,6 +181,18 @@ rows instead of being answered from the first row that contains the words.
     is a dict with `F_pga`, a `print_note` naming both headings and the
     reference (it was a bare number); site class F is refused with the
     table's note (1), a site-specific analysis (gec-29).
+- **GEC-10 drilled shafts (FHWA-NHI-18-024, 2018).**
+  - `table_8_4_resistance_factor` (Table 8-4, p. 8-14): a key names one
+    printed row. "side" returned cohesionless compression 0.55 and
+    "uplift" 0.45, the first rows holding the word; these and "rock",
+    "load test", "structural" are refused with the rows. Rock side
+    resistance cites Eq. 10-21, as printed (it said Eq. 10-21 or 10-22);
+    combined axial and flexure gives the printed range, 0.75 with
+    `phi_max` 0.90 (gec-15). `table_8_4_by_category` refuses a category it
+    does not have (it returned an empty list), and
+    `table_9_1_lateral_resistance_factor` (Table 9-1, p. 9-22) no longer
+    answers a name that holds a row's word ("group uplift" returned the
+    group row's 0.8).
 
 ## 1.6.0
 

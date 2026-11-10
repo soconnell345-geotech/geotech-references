@@ -42,22 +42,22 @@ _TABLE_8_4 = {
     },
     "side_cohesive_compression": {
         "phi": 0.45,
-        "condition": "Cohesive soil, Alpha method (Fig 10-6), compression (without load test)",
+        "condition": "Cohesive soil, Alpha method, compression (without load test)",
         "category": "compression_side",
     },
     "side_cohesive_uplift": {
         "phi": 0.35,
-        "condition": "Cohesive soil, Alpha method (Fig 10-6), uplift (without load test)",
+        "condition": "Cohesive soil, Alpha method, uplift (without load test)",
         "category": "uplift_side",
     },
     "side_rock_compression": {
         "phi": 0.50,
-        "condition": "Rock, Eq. 10-21 or 10-22, compression (without load test)",
+        "condition": "Rock, Eq. 10-21, compression (without load test)",
         "category": "compression_side",
     },
     "side_rock_uplift": {
         "phi": 0.40,
-        "condition": "Rock, Eq. 10-21 or 10-22, uplift (without load test)",
+        "condition": "Rock, Eq. 10-21, uplift (without load test)",
         "category": "uplift_side",
     },
     "side_igm_compression": {
@@ -78,7 +78,7 @@ _TABLE_8_4 = {
     },
     "base_cohesive": {
         "phi": 0.40,
-        "condition": "Cohesive soil, bearing capacity equation (Table 10-2), compression",
+        "condition": "Cohesive soil, bearing capacity eq., compression",
         "category": "compression_base",
     },
     "base_rock": {
@@ -116,7 +116,10 @@ _TABLE_8_4 = {
     },
     "structural_flexure": {
         "phi": 0.75,
-        "condition": "Combined axial and flexure, RC (0.75–0.90; use 0.75 as minimum)",
+        "phi_max": 0.90,
+        "condition": ("Combined axial and flexure, reinforced concrete; "
+                      "printed 0.75 to 0.90 (phi is the lower value, "
+                      "phi_max the upper)"),
         "category": "structural",
     },
     "structural_shear": {
@@ -149,85 +152,113 @@ _TABLE_8_4 = {
 }
 
 
+# Other names of ONE row of Table 8-4 (p. 8-14). A word that fits several
+# rows ('side', 'uplift', 'rock', 'load_test', 'structural') is refused.
+_TABLE_8_4_ALIASES = {
+    "lateral_single_row": "lateral_individual",
+    "lateral_single": "lateral_individual",
+    "lateral_multiple_row_group": "lateral_group",
+    "group_block": "group_block_failure",
+    "group_uplift_resistance": "group_uplift",
+    "static_compressive_resistance_from_load_tests": "load_test_compression",
+    "static_uplift_resistance_from_load_tests": "load_test_uplift",
+    "structural_axial_compression": "structural_compression",
+    "structural_combined_axial_and_flexure": "structural_flexure",
+    "structural_axial_flexure": "structural_flexure",
+    "service_i": "service",
+    "extreme_axial_uplift": "extreme_uplift",
+    "extreme_all_other": "extreme_other",
+}
+
+
 def table_8_4_resistance_factor(method: str) -> dict:
-    """Resistance factor φ for LRFD drilled shaft design (Table 8-4).
+    """Resistance factor phi for one row of GEC-10 Table 8-4 Resistance Factors for LRFD Design of Drilled Shafts (FHWA-NHI-18-024, p. 8-14); the key must name one printed row.
 
     Covers lateral, axial (side and base), load test, group, structural,
-    service, and extreme event limit states per FHWA-NHI-18-024 Table 8-4
-    (consistent with AASHTO 2017a except lateral resistance).
-
-    Axial side resistance entries follow the pattern
-    'side_<geomaterial>_compression' or 'side_<geomaterial>_uplift';
-    without-load-test values.  Use 'load_test_compression' (φ=0.70) or
-    'load_test_uplift' (φ=0.60) when static load tests are performed.
+    service, and extreme event limit states. Side resistance prints
+    compression / uplift (e.g. 0.55 / 0.45), one key each:
+    'side_<geomaterial>_compression' or 'side_<geomaterial>_uplift'.
+    Use 'load_test_compression' (phi = 0.70) or 'load_test_uplift'
+    (phi = 0.60) when static load tests are performed.
 
     Parameters
     ----------
     method : str
-        Lookup key.  Partial matching on words is supported.
-        Examples: 'side_cohesionless_compression', 'base_rock',
-        'lateral_individual', 'load_test_compression',
-        'group_block', 'structural_shear', 'extreme_uplift'.
+        One printed row: 'lateral_individual', 'lateral_group',
+        'side_cohesionless_compression', 'side_cohesionless_uplift',
+        'side_cohesive_compression', 'side_cohesive_uplift',
+        'side_rock_compression', 'side_rock_uplift', 'side_igm_compression',
+        'side_igm_uplift', 'base_cohesionless', 'base_cohesive',
+        'base_rock', 'load_test_compression', 'load_test_uplift',
+        'group_block_failure', 'group_uplift', 'structural_compression',
+        'structural_flexure', 'structural_shear', 'service',
+        'extreme_uplift', 'extreme_lateral', 'extreme_other', or a listed
+        alias ('group_block', 'service_i', ...).
 
     Returns
     -------
     dict
-        {'method': str, 'phi': float, 'condition': str, 'category': str}
+        {'method': str, 'phi': float, 'condition': str, 'category': str};
+        'structural_flexure' adds 'phi_max' (printed 0.75 to 0.90).
 
     Raises
     ------
     ValueError
-        If no matching method is found.
+        If method does not name one printed row (a word found in several
+        rows, such as 'side' or 'uplift', was answered from the first).
     """
     key = method.lower().strip().replace(" ", "_").replace("-", "_")
+    key = _TABLE_8_4_ALIASES.get(key, key)
 
     if key in _TABLE_8_4:
         result = dict(_TABLE_8_4[key])
         result["method"] = key
         return result
 
-    # Substring match
-    for k, v in _TABLE_8_4.items():
-        if key in k or k in key:
-            result = dict(v)
-            result["method"] = k
-            return result
-
-    # Word-level match
-    key_words = key.split("_")
-    for k, v in _TABLE_8_4.items():
-        k_words = k.split("_")
-        if all(w in k_words for w in key_words):
-            result = dict(v)
-            result["method"] = k
-            return result
-
     available = ", ".join(sorted(_TABLE_8_4.keys()))
     raise ValueError(
-        f"No matching method for '{method}'.\nAvailable: {available}"
+        f"No matching method for '{method}': Table 8-4 (p. 8-14) keys name "
+        f"one printed row.\nAvailable: {available}"
     )
 
 
+_TABLE_8_4_CATEGORIES = ("lateral", "compression_side", "uplift_side",
+                         "compression_base", "load_test", "group",
+                         "structural", "service", "extreme")
+
+
 def table_8_4_by_category(category: str) -> list:
-    """List all Table 8-4 resistance factors in a given category.
+    """All rows of GEC-10 Table 8-4 (FHWA-NHI-18-024, p. 8-14) in one of the library's categories, each with its resistance factor phi.
 
     Parameters
     ----------
     category : str
-        Category filter: 'lateral', 'compression_side', 'uplift_side',
-        'compression_base', 'load_test', 'group', 'structural', 'service',
-        'extreme', or '' for all.
+        'lateral', 'compression_side', 'uplift_side', 'compression_base',
+        'load_test', 'group', 'structural', 'service', 'extreme', or ''
+        for all rows.
 
     Returns
     -------
     list of dict
-        All entries matching the category, each with 'method', 'phi',
+        All entries in the category, each with 'method', 'phi',
         'condition', and 'category' keys.
+
+    Raises
+    ------
+    ValueError
+        If category is not one of the listed names (an unknown word
+        returned an empty list; a part of a name, such as 'side', every
+        category holding it).
     """
-    cat = category.lower().strip()
+    cat = category.lower().strip().replace(" ", "_").replace("-", "_")
+    if cat and cat not in _TABLE_8_4_CATEGORIES:
+        raise ValueError(
+            f"Unknown category '{category}'. Options: "
+            f"{', '.join(_TABLE_8_4_CATEGORIES)}, or '' for all rows."
+        )
     results = []
     for k, v in _TABLE_8_4.items():
-        if not cat or cat in v["category"]:
+        if not cat or v["category"] == cat:
             entry = dict(v)
             entry["method"] = k
             results.append(entry)
@@ -256,7 +287,7 @@ _TABLE_9_1 = {
 
 
 def table_9_1_lateral_resistance_factor(method: str) -> dict:
-    """Resistance factor for geotechnical lateral loading (Table 9-1).
+    """Resistance factor phi for geotechnical strength of laterally loaded drilled shafts by the p-y method, GEC-10 Table 9-1 (FHWA-NHI-18-024, p. 9-22); the key must name one of its three rows.
 
     Based on p-y method static pushover analysis.  AASHTO (2017a) specifies
     φ = 1.0 for lateral resistance; this manual recommends lower values
@@ -294,13 +325,6 @@ def table_9_1_lateral_resistance_factor(method: str) -> dict:
 
     key = method.lower().strip().replace(" ", "_").replace("-", "_")
     resolved = _aliases.get(key)
-
-    if resolved is None:
-        # Partial match
-        for k in _TABLE_9_1:
-            if key in k or k in key:
-                resolved = k
-                break
 
     if resolved is None or resolved not in _TABLE_9_1:
         raise ValueError(
