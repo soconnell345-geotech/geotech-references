@@ -1192,36 +1192,55 @@ class TestHydraulicConductivityHazen:
 class TestHydraulicConductivityKozenyCarman:
     """Tests for Equation 8-41."""
 
+    # Eq. 8-41 as printed, PDF p. 490 (printed p. 462), D in mm, k in cm/s:
+    # k = 1.99e2 * [100% / sum(fi / (D_li^0.404 * D_si^0.596))]^2
+    #     * (1/S^2) * (e^3/(1+e))
+
     def test_basic(self):
-        # Single fraction: fi=1.0, d_li=0.5, d_si=0.25, e=0.65, s=6.0
-        # avg_d = 0.404*0.5 + 0.596*0.25 = 0.202 + 0.149 = 0.351
-        # summation = 1.0/0.351 = 2.8490
-        # k = 1.99e4 * (1/36) * (0.65^3/(1.65)) * (1/2.8490^2)
-        # = 1.99e4 * 0.027778 * (0.274625/1.65) * (1/8.11683)
-        # = 552.778 * 0.16644 * 0.12320
-        # = 552.778 * 0.020505 = 11.334
-        fractions = [(1.0, 0.5, 0.25)]
-        e = 0.65
-        s = 6.0
-        avg_d = 0.404 * 0.5 + 0.596 * 0.25
-        summation = 1.0 / avg_d
-        expected = 1.99e4 * (1.0 / s ** 2) * (e ** 3 / (1.0 + e)) * (1.0 / summation ** 2)
-        assert hydraulic_conductivity_kozeny_carman(fractions, e, s) == pytest.approx(
-            expected, rel=1e-4
+        # One fraction between the 0.425 mm and 0.25 mm sieves, e=0.6, S=6
+        # D_eff = 0.425^0.404 * 0.25^0.596 = 0.70773 * 0.43770 = 0.30977 mm
+        # 100% / sum = 0.30977; squared = 0.095958
+        # k = 199 * 0.095958 * (1/36) * (0.216/1.6) = 0.07161 cm/s
+        fractions = [(1.0, 0.425, 0.25)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.6, 6.0) == pytest.approx(
+            0.07161, abs=1e-5
         )
 
     def test_two_fractions(self):
-        # Two fractions
-        fractions = [(0.6, 1.0, 0.5), (0.4, 0.5, 0.25)]
-        e = 0.7
-        s = 6.0
-        avg_d1 = 0.404 * 1.0 + 0.596 * 0.5  # 0.702
-        avg_d2 = 0.404 * 0.5 + 0.596 * 0.25  # 0.351
-        summation = 0.6 / avg_d1 + 0.4 / avg_d2
-        expected = 1.99e4 * (1.0 / 36.0) * (0.7 ** 3 / 1.7) * (1.0 / summation ** 2)
-        assert hydraulic_conductivity_kozeny_carman(fractions, e, s) == pytest.approx(
-            expected, rel=1e-4
+        # 60% between 2.0 and 0.85 mm, 40% between 0.85 and 0.425 mm,
+        # e=0.5, S=7
+        # D_eff_1 = 2.0^0.404 * 0.85^0.596 = 1.20103
+        # D_eff_2 = 0.85^0.404 * 0.425^0.596 = 0.56235
+        # sum = 0.6/1.20103 + 0.4/0.56235 = 1.21087
+        # k = 199 * (1/1.21087)^2 * (1/49) * (0.125/1.5) = 0.23082 cm/s
+        fractions = [(0.6, 2.0, 0.85), (0.4, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            0.23082, abs=1e-5
         )
+
+    def test_fractions_in_percent(self):
+        # The print writes the numerator as 100%: the same grading given
+        # in percent returns the same k.
+        fractions = [(60.0, 2.0, 0.85), (40.0, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            0.23082, abs=1e-5
+        )
+
+    def test_same_as_equation_6_13(self):
+        # Eq. 6-13 (PDF p. 328, printed p. 300) and Eq. 8-41 are printed
+        # identically.
+        from geotech_references.dm7_1.chapter6 import (
+            kozeny_carman_hydraulic_conductivity,
+        )
+        fractions = [(0.6, 2.0, 0.85), (0.4, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5), rel=1e-12
+        )
+
+    def test_fractions_not_whole_grading_raises(self):
+        with pytest.raises(ValueError, match="must add up to 1.0"):
+            hydraulic_conductivity_kozeny_carman(
+                [(0.5, 2.0, 0.85), (0.3, 0.85, 0.425)], 0.5, 6.0)
 
     def test_e_negative_raises(self):
         with pytest.raises(ValueError, match="e must be non-negative"):
@@ -1241,7 +1260,7 @@ class TestHydraulicConductivityKozenyCarman:
 
     def test_empty_fractions_zero_sum_raises(self):
         # All fractions with fi=0 result in summation=0
-        with pytest.raises(ValueError, match="Sum of fi/D_avg is zero"):
+        with pytest.raises(ValueError, match="Sum of fi/.* is zero"):
             hydraulic_conductivity_kozeny_carman([(0.0, 0.5, 0.25)], 0.65, 6.0)
 
 

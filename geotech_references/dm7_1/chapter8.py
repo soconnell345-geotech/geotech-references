@@ -1732,35 +1732,38 @@ def hydraulic_conductivity_kozeny_carman(
     e: float,
     s: float = 6.0,
 ) -> float:
-    """Hydraulic conductivity from modified Kozeny-Carman equation (Equation 8-41).
+    """Hydraulic conductivity k (cm/s) of coarse-grained soil from its grain-size distribution, Equation 8-41 (Kozeny-Carman, Carrier 2003).
 
     Carrier (2003) modified version of the Kozeny-Carman equation
     (Kozeny 1927; Carman 1938, 1956) using the full grain-size
-    distribution.
+    distribution.  As printed, with particle sizes in mm and k in cm/s::
+
+        k = 1.99e2 [cm/(s mm^2)]
+            * [ 100% / sum( fi / (D_li^0.404 * D_si^0.596) ) ]^2
+            * (1 / S^2) * (e^3 / (1 + e))
 
     .. math::
-        k = 1.99 \\times 10^4 \\cdot
-        \\frac{1}{S^2} \\cdot
-        \\frac{e^3}{1+e} \\cdot
-        \\left[\\sum \\frac{f_i}{0.404 \\cdot D_{li} + 0.596 \\cdot D_{si}}
-        \\right]^{-2} \\cdot
-        \\frac{\\mathrm{cm}}{\\mathrm{s}} \\cdot \\frac{100\\%}{\\mathrm{mm}^2}
-
-    The result is in cm/s when D is in mm.
+        k = 1.99 \\times 10^{2}
+        \\left[\\frac{100\\%}{\\sum \\dfrac{f_i}
+        {D_{li}^{0.404} \\times D_{si}^{0.596}}}\\right]^2
+        \\left(\\frac{1}{S^2}\\right)
+        \\left(\\frac{e^3}{1+e}\\right)
 
     Parameters
     ----------
     fractions : list of (fi, d_li, d_si) tuples
-        Each tuple contains:
-        - fi : float -- fraction of particles (by mass) between two
-          adjacent sieve sizes (as a decimal, e.g., 0.15 for 15%).
-        - d_li : float -- particle size of the coarser sieve (mm).
-        - d_si : float -- particle size of the finer sieve (mm).
+        One (fi, d_li, d_si) tuple per pair of adjacent sieves: fi =
+        fraction of particles (by mass) between the two sieves, d_li =
+        particle size of the coarser sieve (mm), d_si = particle size of
+        the finer sieve (mm).  The fi are either decimals that add up to
+        1.0 (0.15 for 15%) or percentages that add up to 100; the whole
+        grain-size distribution must be given.
     e : float
         Void ratio (dimensionless).
     s : float, optional
-        Surface area factor (dimensionless).  6.0 for spheres, up to
-        8.5 for angular particles.  Default is 6.0.
+        Surface area factor S (dimensionless), ranging from 6 for
+        spheres to 8.5 for angular particles.  Default is 6.0 (spheres),
+        which gives the highest k of that range.
 
     Returns
     -------
@@ -1770,8 +1773,8 @@ def hydraulic_conductivity_kozeny_carman(
     Raises
     ------
     ValueError
-        If *e* is negative, *s* is not positive, or any sieve size is
-        not positive.
+        If *e* is negative, *s* is not positive, any sieve size is
+        not positive, or the fractions add up to neither 1.0 nor 100.
 
     References
     ----------
@@ -1784,18 +1787,38 @@ def hydraulic_conductivity_kozeny_carman(
         raise ValueError("s must be positive.")
 
     summation = 0.0
+    total = 0.0
     for fi, d_li, d_si in fractions:
         if d_li <= 0.0 or d_si <= 0.0:
             raise ValueError(
                 "All sieve sizes (d_li, d_si) must be positive."
             )
-        avg_d = 0.404 * d_li + 0.596 * d_si
-        summation += fi / avg_d
+        summation += fi / (d_li ** 0.404 * d_si ** 0.596)
+        total += fi
 
-    if summation == 0.0:
-        raise ValueError("Sum of fi/D_avg is zero; check input fractions.")
+    if summation <= 0.0:
+        raise ValueError(
+            "Sum of fi/(d_li^0.404 * d_si^0.596) is zero; check input "
+            "fractions."
+        )
+    if abs(total - 1.0) <= 0.005:
+        hundred_percent = 1.0
+    elif abs(total - 100.0) <= 0.5:
+        hundred_percent = 100.0
+    else:
+        raise ValueError(
+            f"The fractions add up to {total:g}; they must add up to 1.0 "
+            "(decimals) or 100 (percent). Equation 8-41 (UFS 3-220-10 "
+            "p. 462) divides 100% by the sum over the whole grain-size "
+            "distribution."
+        )
 
-    k = 1.99e4 * (1.0 / s ** 2) * (e ** 3 / (1.0 + e)) * (1.0 / summation ** 2)
+    k = (
+        1.99e2
+        * (hundred_percent / summation) ** 2
+        * (1.0 / s ** 2)
+        * (e ** 3 / (1.0 + e))
+    )
     return k
 
 

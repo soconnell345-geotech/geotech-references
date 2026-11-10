@@ -475,54 +475,51 @@ class TestHydraulicConductivityEffectiveGrainSize:
 
 # ============================================================================
 # kozeny_carman_hydraulic_conductivity  (Equation 6-13)
-#   k = 1.99e-4 * (1/S^2) * (e^3/(1+e)) * (1/sum(f_i / D_eff_i^2))
+#   As printed, PDF p. 328 (printed p. 300), D in mm, k in cm/sec:
+#   k = 1.99e2 * [100% / sum(f_i / (D_li^0.404 * D_si^0.596))]^2
+#       * (1/S^2) * (e^3/(1+e))
 # ============================================================================
 
 class TestKozenyCarmanHydraulicConductivity:
 
     def test_basic_single_fraction(self):
-        # fractions = [(1.0, 2.0, 1.0)], S=6.0, e=0.5
-        # D_eff = 2.0^0.404 * 1.0^0.596 = 1.32317...
-        # summation = 1.0 / 1.32317^2 = 0.57117...
-        # k = 1.99e-4 * (1/36) * (0.125/1.5) * (1/0.57117)
-        # k = 8.06495e-07
-        fractions = [(1.0, 2.0, 1.0)]
-        result = kozeny_carman_hydraulic_conductivity(fractions, 6.0, 0.5)
-        assert result == pytest.approx(8.064947898572156e-07, rel=1e-4)
+        # One fraction between the 0.425 mm and 0.25 mm sieves, S=6, e=0.6
+        # D_eff = 0.425^0.404 * 0.25^0.596 = 0.70773 * 0.43770 = 0.30977 mm
+        # 100% / sum = 0.30977; squared = 0.095958
+        # k = 199 * 0.095958 * (1/36) * (0.216/1.6) = 0.07161 cm/sec
+        fractions = [(1.0, 0.425, 0.25)]
+        result = kozeny_carman_hydraulic_conductivity(fractions, 6.0, 0.6)
+        assert result == pytest.approx(0.07161, abs=1e-5)
 
     def test_two_fractions(self):
-        # fractions: (0.6, 4.0, 2.0), (0.4, 2.0, 1.0), S=7.0, e=0.7
-        # D_eff_1 = 4.0^0.404 * 2.0^0.596 = 1.7531 * 1.5117 = 2.6503
-        # D_eff_2 = 2.0^0.404 * 1.0^0.596 = 1.3232 * 1.0 = 1.3232
-        # summation = 0.6/2.6503^2 + 0.4/1.3232^2
-        #           = 0.6/7.0241 + 0.4/1.7508
-        #           = 0.08542 + 0.22849
-        #           = 0.31391
-        # k = 1.99e-4 * (1/49) * (0.343/1.7) * (1/0.31391)
-        # Compute in Python for exact expected value
-        import math
-        D_eff_1 = 4.0**0.404 * 2.0**0.596
-        D_eff_2 = 2.0**0.404 * 1.0**0.596
-        summ = 0.6 / D_eff_1**2 + 0.4 / D_eff_2**2
-        expected = 1.99e-4 * (1.0/49.0) * (0.7**3 / 1.7) * (1.0/summ)
+        # 60% between 2.0 and 0.85 mm, 40% between 0.85 and 0.425 mm,
+        # S=7, e=0.5
+        # D_eff_1 = 2.0^0.404 * 0.85^0.596 = 1.32317 * 0.90769 = 1.20103
+        # D_eff_2 = 0.85^0.404 * 0.425^0.596 = 0.93645 * 0.60051 = 0.56235
+        # sum = 0.6/1.20103 + 0.4/0.56235 = 0.49957 + 0.71130 = 1.21087
+        # k = 199 * (1/1.21087)^2 * (1/49) * (0.125/1.5) = 0.23082 cm/sec
+        fractions = [(0.6, 2.0, 0.85), (0.4, 0.85, 0.425)]
+        result = kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5)
+        assert result == pytest.approx(0.23082, abs=1e-5)
 
-        fractions = [(0.6, 4.0, 2.0), (0.4, 2.0, 1.0)]
-        result = kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.7)
-        assert result == pytest.approx(expected, rel=1e-4)
+    def test_fractions_in_percent(self):
+        # The print writes the numerator as 100%: the same grading given
+        # in percent returns the same k.
+        fractions = [(60.0, 2.0, 0.85), (40.0, 0.85, 0.425)]
+        result = kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5)
+        assert result == pytest.approx(0.23082, abs=1e-5)
 
-    def test_spherical_particles(self):
-        # S=6 (spherical), single fraction, e=1.0
-        # fractions = [(1.0, 1.0, 0.5)]
-        # D_eff = 1.0^0.404 * 0.5^0.596 = 1.0 * 0.6605 = 0.6605
-        # summation = 1.0 / 0.6605^2 = 1.0 / 0.43626 = 2.2922
-        # k = 1.99e-4 * (1/36) * (1.0/2.0) * (1/2.2922)
-        D_eff = 1.0**0.404 * 0.5**0.596
-        summ = 1.0 / D_eff**2
-        expected = 1.99e-4 * (1.0/36.0) * (1.0**3 / 2.0) * (1.0/summ)
+    def test_angular_particles_lower_k(self):
+        # S = 8.5 (angular) against S = 6 (spheres): k scales by (6/8.5)^2
+        # 0.07161 * 36/72.25 = 0.03568 cm/sec
+        fractions = [(1.0, 0.425, 0.25)]
+        result = kozeny_carman_hydraulic_conductivity(fractions, 8.5, 0.6)
+        assert result == pytest.approx(0.03568, abs=1e-5)
 
-        fractions = [(1.0, 1.0, 0.5)]
-        result = kozeny_carman_hydraulic_conductivity(fractions, 6.0, 1.0)
-        assert result == pytest.approx(expected, rel=1e-4)
+    def test_fractions_not_whole_grading_raises(self):
+        with pytest.raises(ValueError, match="must add up to 1.0"):
+            kozeny_carman_hydraulic_conductivity(
+                [(0.5, 2.0, 0.85), (0.3, 0.85, 0.425)], 6.0, 0.5)
 
     def test_S_zero_raises(self):
         with pytest.raises(ValueError, match="S must be positive"):
