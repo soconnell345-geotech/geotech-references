@@ -732,31 +732,15 @@ def rigid_pipe_trench_load(
 def trench_load_coefficient(
     H: float, B_d: float, K: float, mu_prime: float
 ) -> float:
-    """Load coefficient Cd (dimensionless) for the dead load on a rigid pipe in a trench, Wd = Cd gamma_t Bd^2 (Equation 4-6), after Equation 4-7 but with the exponent -2 K mu' H/Bd where the manual prints -K mu' (H/Bd); the printed form gives a Cd about 40% lower.
+    """Load coefficient Cd (dimensionless) for the dead load on a rigid pipe in a trench, Wd = Cd gamma_t Bd^2 (Equation 4-6); coded differently from Equation 4-7 as printed.
 
-    Computes the load coefficient *C_d* used in the calculation of dead
-    load on a rigid pipe in a trench (Equation 4-6, the approach of
-    Marston and Anderson 1913 and Spangler 1948).
-
-    The manual prints Equation 4-7 (p. 195) as::
-
-        Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
-
-    This function evaluates::
-
-        Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')
+    Printed (p. 195): Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu').  Coded:
+    Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu'), with a 2 in the exponent.
+    The printed form gives a lower Cd (0.85 against 1.46 at H/Bd = 2,
+    K = 0.33, mu' = 0.5); see Notes.
 
     .. math::
         C_d = \\frac{1 - e^{-2 K \\mu' H / B_d}}{2 K \\mu'}
-
-    The two differ by the 2 in the exponent.  As the wall friction
-    K mu' goes to zero, the evaluated form tends to H/Bd, so that
-    Equation 4-6 gives gamma_t H Bd, the weight of the backfill in the
-    trench; the printed form tends to H/(2 Bd), half that weight.  The
-    printed form gives the lower load (Cd = 0.85 against 1.46 at
-    H/Bd = 2, K = 0.33, mu' = 0.5).  Which form is to be used is an
-    open decision; an engineer relying on this value should state which
-    form was used.
 
     Parameters
     ----------
@@ -784,6 +768,28 @@ def trench_load_coefficient(
     ValueError
         If *H*, *B_d*, *K*, or *mu_prime* is not positive.
 
+    Notes
+    -----
+    The function is coded differently from the print.  The manual prints
+    Equation 4-7 (PDF p. 223, printed p. 195), for the approach of
+    Marston and Anderson (1913) and Spangler (1948), as::
+
+        Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
+
+    and this function evaluates::
+
+        Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')
+
+    A check on the printed pair of equations (it is not a printed
+    statement): as the wall friction K mu' goes to zero, the coded form
+    tends to H/Bd, so that Equation 4-6 on the same page gives
+    gamma_t H Bd, the weight of the backfill in the trench, while the
+    printed form tends to H/(2 Bd), half that weight.  The printed form
+    lowers Cd, and so the load on a rigid pipe, by about 40% at ordinary
+    inputs.  The review of 2026-11-10 kept the coded form; the library's
+    owner is to revisit it.  An engineer relying on this value should
+    state which form was used.
+
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
@@ -804,32 +810,16 @@ def trench_load_coefficient(
 def flexible_pipe_trench_load(
     C_d: float, gamma_t: float, B_d: float, D: float
 ) -> float:
-    """Dead load Wc per unit length (lb/ft or kN/m) on a very flexible pipe in a trench, after Equation 4-8 but as Cd gamma_t Bd D with the trench width Bd, where the manual prints Cd gamma_t Bc D with Bc the pipe's outside diameter; the printed form gives a lower load when the trench is wider than the pipe.
+    """Dead load Wc per unit length (lb/ft or kN/m) on a very flexible pipe in a trench; coded differently from Equation 4-8 as printed.
 
-    Estimates the load per unit length on a very flexible pipe in a
-    trench by the Marston load theory.  The manual notes that this
-    method assumes that the pipe stiffness and soil stiffness are equal,
-    which may lead to unconservative values of Wc.
-
-    The manual prints Equation 4-8 (p. 197) as::
-
-        Wc = Cd * gamma_t * Bc * D
-
-    and defines both Bc ("very flexible pipe with outside diameter
-    (Bc)"; notation list, p. 216, "Diameter of a flexible pipe") and D
-    ("the outer diameter of the pipe") as the diameter of the pipe.
-    This function evaluates::
-
-        Wc = Cd * gamma_t * Bd * D
+    Printed (p. 197): Wc = Cd gamma_t Bc D.  Coded: Wc = Cd gamma_t Bd D,
+    with the trench width Bd where the print has Bc.  The printed form
+    gives a lower load when the trench is wider than the pipe (720
+    against 1080 lb/ft at Cd 1.5, gamma_t 120 pcf, D 2 ft, Bd 3 ft); see
+    Notes.
 
     .. math::
         W_c = C_d \\cdot \\gamma_t \\cdot B_d \\cdot D
-
-    with *B_d* the width of the trench.  The two agree when the trench
-    is as wide as the pipe; for a wider trench the printed form gives
-    the lower load, by the ratio D/Bd.  Which form is to be used is an
-    open decision; an engineer relying on this value should state which
-    form was used.
 
     Parameters
     ----------
@@ -852,6 +842,34 @@ def flexible_pipe_trench_load(
     ------
     ValueError
         If *gamma_t*, *B_d*, or *D* is not positive.
+
+    Notes
+    -----
+    The function is coded differently from the print.  The manual prints
+    Equation 4-8 (PDF p. 225, printed p. 197), for the Marston load
+    theory, as::
+
+        Wc = Cd * gamma_t * Bc * D
+
+    and this function evaluates::
+
+        Wc = Cd * gamma_t * Bd * D
+
+    What the manual defines (these are its definitions, not a statement
+    about the equation): the sentence before the equation reads "For very
+    flexible pipe with outside diameter (Bc)", and its list under the
+    equation gives "D = the outer diameter of the pipe"; the chapter's
+    notation list (PDF p. 244, printed p. 216) gives Bc "Diameter of a
+    flexible pipe", D "Outer diameter of pipe" and Bd "Width of trench in
+    pipe loading calculations".  As printed, then, both Bc and D are the
+    diameter of the pipe and the trench width does not enter.  The two
+    forms agree when the trench is as wide as the pipe; for a wider
+    trench the printed form gives the lower load, by the ratio D/Bd.
+    The manual also notes that this method assumes that the pipe
+    stiffness and soil stiffness are equal, which may lead to
+    unconservative values of Wc.  The review of 2026-11-10 kept the coded
+    form; the library's owner is to revisit it.  An engineer relying on
+    this value should state which form was used.
 
     References
     ----------

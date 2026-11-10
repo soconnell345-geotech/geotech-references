@@ -639,8 +639,8 @@ class TestTrenchLoadCoefficient:
     # The function evaluates the exponent -2 K mu' (H/Bd) and says so in
     # its docstring: with the printed exponent, Eq. 4-6 gives half the
     # weight of the backfill when the wall friction is zero. These tests
-    # pin the evaluated form and record the printed one; which form is
-    # used is an open decision.
+    # pin the evaluated form and record the printed one. The review of
+    # 2026-11-10 kept the coded form; the library's owner is to revisit it.
 
     def test_basic(self):
         # H=10, B_d=3, K=0.33, mu'=0.55
@@ -668,7 +668,14 @@ class TestTrenchLoadCoefficient:
     def test_docstring_gives_the_printed_form(self):
         doc = trench_load_coefficient.__doc__
         assert "Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')" in doc
-        assert "the manual prints -K mu' (H/Bd)" in doc
+        assert "Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')" in doc
+        assert "PDF p. 223, printed p. 195" in doc
+        assert "misprint" not in doc
+
+    def test_docstring_first_line_says_it_differs_from_the_print(self):
+        # The first line is what a caller sees of a function in a listing.
+        first = trench_load_coefficient.__doc__.strip().splitlines()[0]
+        assert "coded differently from Equation 4-7 as printed" in first
 
     def test_shallow_trench(self):
         # Very small H/B_d => C_d approaches H/B_d (limit of exponential)
@@ -723,8 +730,9 @@ class TestFlexiblePipeTrenchLoad:
     # with Bc and D both defined as the pipe's outside diameter (also the
     # notation list, PDF p. 244, printed p. 216). The function multiplies
     # by the trench width B_d in place of Bc and says so in its docstring.
-    # These tests pin the evaluated form and record the printed one; which
-    # form is used is an open decision.
+    # These tests pin the evaluated form and record the printed one. The
+    # review of 2026-11-10 kept the coded form; the library's owner is to
+    # revisit it.
 
     def test_basic(self):
         # C_d=1.5, gamma_t=120, B_d=3, D=2 => W_c = 1.5*120*3*2 = 1080 lb/ft
@@ -740,7 +748,16 @@ class TestFlexiblePipeTrenchLoad:
     def test_docstring_gives_the_printed_form(self):
         doc = flexible_pipe_trench_load.__doc__
         assert "Wc = Cd * gamma_t * Bc * D" in doc
-        assert "the manual prints Cd gamma_t Bc D" in doc
+        assert "Wc = Cd * gamma_t * Bd * D" in doc
+        assert "PDF p. 225, printed p. 197" in doc
+        # the notation list's definitions, PDF p. 244 (printed p. 216)
+        assert 'Bc "Diameter of a' in doc
+        assert 'Bd "Width of trench in' in doc
+        assert "misprint" not in doc
+
+    def test_docstring_first_line_says_it_differs_from_the_print(self):
+        first = flexible_pipe_trench_load.__doc__.strip().splitlines()[0]
+        assert "coded differently from Equation 4-8 as printed" in first
 
     def test_unit_values(self):
         result = flexible_pipe_trench_load(1.0, 1.0, 1.0, 1.0)
