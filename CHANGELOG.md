@@ -220,6 +220,41 @@ rows instead of being answered from the first row that contains the words.
     draws its curve from su/pa of about 0.25 to 5; Eq. 10-20 is in D, the
     depth of embedment. No value changes (gec-43).
 
+- **GEC-11 MSE walls (FHWA-NHI-10-024 Vol I).**
+  - `table_2_1_min_reinforcement_length` (Table 2-1, p. 2-43): the three
+    printed cases. Seismic loading is one row, "0.8 to 1.1"; it was two
+    rows, "Seismic (low)" 0.8 and "Seismic (moderate to high)" 1.1. Each
+    row gives the printed cell (`typical_min_L_over_H`) and its ends
+    (`L_over_H_low`, `L_over_H_high`; the key `L_over_H` is gone). The 8 ft
+    (2.5 m) minimum on every row is removed: the table does not print it;
+    the docstring quotes where the text does (p. 4-11) (gec-21).
+  - `table_4_4_traffic_surcharge` (Table 4-4, p. 4-17): the parameter is
+    `abutment_height_ft` (was `wall_height_ft`), and every result says the
+    table is for abutments perpendicular to traffic and that walls parallel
+    to traffic take heq = 2.0 ft (p. 4-16). Below 5.0 ft the 5.0 ft row
+    (4.0 ft) is still used, with a note. Values unchanged (gec-20).
+  - `table_4_7_internal_resistance` (Table 4-7, p. 4-48): rows and keys as
+    printed: `static_phi`, `combined_static_earthquake_phi`,
+    `combined_static_traffic_barrier_phi`, with notes A to C. The key
+    `combined_static_phi` (a copy of the static factor, 0.75 for strips,
+    beside the printed combined static/earthquake 1.00) and the keys
+    `earthquake_phi` and `traffic_barrier_phi` are gone; values unchanged
+    (gec-34).
+  - `table_3_4_electrochemical_geosynth` (Table 3-4, p. 3-10): the two
+    printed rows, polyester (PET) 3 < pH < 9 and polyolefin (PP & HDPE)
+    pH > 3, by AASHTO T-289; "polyolefin" returned an empty list.
+  - The eleven filter lookups (Tables 2-1, 2-2, 3-4, 3-6, 3-8, 3-9, 3-11,
+    4-1, 4-2, 4-5, 4-7) refuse a filter that matches no row, naming the
+    printed rows; they returned an empty list. A filter is matched as one
+    phrase, then word by word, so "metallic strip" and "vertical earth
+    pressure" find their printed rows (gec-37).
+  - Notes as printed: Table 2-2's footnote (frost and scour depth); Table
+    3-9's backfill types (Type 2: max. 3/4 in. (20 mm), D50 about #30; the
+    docstring said "uniform fine sand to medium sand", 19 mm) and footnote
+    a; Table 4-1's gamma_EQ note (the code said "typically 0.0 to 0.50",
+    not printed); Table 4-2's types of load; Table 4-5's conditions (0.65
+    also where the slope contains or supports a structural element).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
