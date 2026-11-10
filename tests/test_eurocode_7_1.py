@@ -209,8 +209,20 @@ class TestTableA6DrivenPiles:
         assert table_a_6_driven_pile_resistance("shaft_tension", "R4") == 1.6
 
     def test_aliases(self):
-        assert table_a_6_driven_pile_resistance("shaft", "R1") == 1.0
+        assert table_a_6_driven_pile_resistance("shaft_comp", "R1") == 1.0
         assert table_a_6_driven_pile_resistance("tension", "R4") == 1.6
+
+    def test_bare_shaft_is_refused(self):
+        # Tables A.6, A.7, A.8 (PDF p. 134, printed p. 132) print two shaft
+        # rows: "Shaft (compression)" (R4 1,3) and "Shaft in tension" (R4
+        # 1,6). "shaft" alone used to return the compression row.
+        for lookup in (table_a_6_driven_pile_resistance,
+                       table_a_7_bored_pile_resistance,
+                       table_a_8_cfa_pile_resistance):
+            with pytest.raises(ValueError, match="shaft_compression.*shaft_tension"):
+                lookup("shaft", "R4")
+            assert lookup("shaft_compression", "R4") == 1.3
+            assert lookup("shaft_tension", "R4") == 1.6
 
     def test_invalid(self):
         with pytest.raises(ValueError):
@@ -536,12 +548,51 @@ class TestDesignApproachSets:
         assert r["material_set"] == "M2"
         assert r["resistance_set"] == "R3"
 
-    def test_da1_alias(self):
-        assert design_approach_sets("DA1") == design_approach_sets("DA1-C1")
+    def test_da1_returns_both_combinations(self):
+        # 2.4.7.3.4.2 (1)P (PDF p. 34, printed p. 32): Combination 1:
+        # A1 "+" M1 "+" R1; Combination 2: A2 "+" M2 "+" R1. (2)P (PDF
+        # p. 35, printed p. 33), axially loaded piles and anchors:
+        # Combination 2: A2 "+" (M1 or M2) "+" R4. "DA1" used to return
+        # Combination 1 alone.
+        r = design_approach_sets("DA1")
+        c1, c2 = r["combinations"]
+        assert (c1["action_set"], c1["material_set"], c1["resistance_set"]) == ("A1", "M1", "R1")
+        assert (c2["action_set"], c2["material_set"], c2["resistance_set"]) == ("A2", "M2", "R1")
+        assert c2["pile_anchor_material_set"] == "M1 or M2"
+        assert c2["pile_anchor_resistance_set"] == "R4"
+        assert "different combinations may be critical" in r["note"]
+
+    def test_each_da1_combination_points_to_the_other(self):
+        c1 = design_approach_sets("DA1-C1")
+        c2 = design_approach_sets("DA1-C2")
+        assert c1["other_combination"] == "DA1-C2"
+        assert c2["other_combination"] == "DA1-C1"
+        assert "both are verified" in c1["note"]
+        assert "both are verified" in c2["note"]
+        # 2.4.7.3.4.2 NOTE 2 (printed p. 33)
+        assert "set M1 is used for calculating resistances of piles or anchors" in c2["pile_anchor_note"]
 
     def test_invalid(self):
         with pytest.raises(ValueError):
             design_approach_sets("DA4")
+
+
+class TestBareCohesionIsRefused:
+    def test_cohesion_alone_is_not_a_row(self):
+        # Table A.4 (PDF p. 132, printed p. 130) prints "Effective cohesion"
+        # (M2 1,25) and "Undrained shear strength" (M2 1,4); Tables A.2 and
+        # A.16 likewise. "cohesion" alone used to return the effective
+        # cohesion factor.
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_4_str_geo_soil_parameters("cohesion", "M2")
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_2_equ_soil_parameters("cohesion")
+        with pytest.raises(ValueError, match="effective cohesion c'"):
+            table_a_16_upl_soil_resistance("cohesion")
+        assert table_a_4_str_geo_soil_parameters("effective_cohesion", "M2") == 1.25
+        assert table_a_4_str_geo_soil_parameters("c", "M2") == 1.25
+        assert table_a_4_str_geo_soil_parameters("cu", "M2") == 1.4
+        assert table_a_4_str_geo_soil_parameters("undrained_shear_strength", "M2") == 1.4
 
 
 # ============================================================================

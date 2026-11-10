@@ -86,13 +86,21 @@ _TABLE_A_2 = {
     "gamma": 1.0,      # gamma_gamma (weight density)
 }
 
+# "cohesion" alone is not an alias: Tables A.2, A.4 and A.16 print two rows,
+# "Effective cohesion" (gamma_c') and "Undrained shear strength" (gamma_cu),
+# with different factors, so the caller has to say which.
 _TABLE_A_2_ALIASES = {
     "phi'": "phi", "tan_phi": "phi", "friction_angle": "phi",
-    "c'": "c", "cohesion": "c", "effective_cohesion": "c",
+    "c'": "c", "effective_cohesion": "c",
     "undrained_shear_strength": "cu", "su": "cu",
     "unconfined_strength": "qu",
     "unit_weight": "gamma", "weight_density": "gamma",
 }
+
+_SOIL_PARAMETER_KEY_HINT = (
+    " ('c' is the effective cohesion c', 'cu' the undrained shear strength:"
+    " the tables give them different factors)"
+)
 
 
 def table_a_2_equ_soil_parameters(parameter: str = "phi") -> float:
@@ -115,6 +123,7 @@ def table_a_2_equ_soil_parameters(parameter: str = "phi") -> float:
         raise ValueError(
             f"Unknown parameter '{parameter}'. "
             f"Valid: {', '.join(sorted(_TABLE_A_2.keys()))}"
+            f"{_SOIL_PARAMETER_KEY_HINT}"
         )
     return _TABLE_A_2[key]
 
@@ -204,7 +213,8 @@ def table_a_4_str_geo_soil_parameters(parameter: str = "phi",
     if key not in _TABLE_A_4:
         raise ValueError(
             f"Unknown parameter='{parameter}' or factor_set='{factor_set}'. "
-            f"Valid parameters: phi, c, cu, qu, gamma. Valid sets: M1, M2."
+            f"Valid parameters: phi, c, cu, qu, gamma"
+            f"{_SOIL_PARAMETER_KEY_HINT}. Valid sets: M1, M2."
         )
     return _TABLE_A_4[key]
 
@@ -293,8 +303,11 @@ _TABLE_A_8_CFA = {
 
 _PILE_RESISTANCE_KEYS = ("base", "shaft_compression", "total_compression",
                           "shaft_tension")
+# "shaft" alone is not an alias: Tables A.6, A.7 and A.8 print two shaft
+# rows, "Shaft (compression)" (gamma_s) and "Shaft in tension" (gamma_s;t),
+# with different factors, so the caller has to say which.
 _PILE_RESISTANCE_ALIASES = {
-    "shaft": "shaft_compression", "shaft_comp": "shaft_compression",
+    "shaft_comp": "shaft_compression",
     "total": "total_compression", "combined": "total_compression",
     "tension": "shaft_tension", "shaft_uplift": "shaft_tension",
     "uplift": "shaft_tension",
@@ -745,6 +758,7 @@ def table_a_16_upl_soil_resistance(parameter: str = "phi") -> float:
         raise ValueError(
             f"Unknown parameter '{parameter}'. "
             f"Valid: {', '.join(sorted(_TABLE_A_16.keys()))}"
+            f"{_SOIL_PARAMETER_KEY_HINT}"
         )
     return _TABLE_A_16[key]
 
@@ -792,10 +806,24 @@ def table_a_17_hyd_actions(action: str = "permanent",
 # action/material/resistance sets apply to each Design Approach.
 # ============================================================================
 
+_DA1_BOTH_COMBINATIONS_NOTE = (
+    "Design Approach 1 has two combinations and both are verified: 'it "
+    "shall be verified that a limit state of rupture or excessive "
+    "deformation will not occur with either of the following combinations "
+    "of sets of partial factors' (2.4.7.3.4.2 (1)P and (2)P, printed "
+    "pp. 32-33). 'If it is obvious that one of the two combinations "
+    "governs the design, calculations for the other combination need not "
+    "be carried out. However, different combinations may be critical to "
+    "different aspects of the same design.' (2.4.7.3.4.2 (3), printed "
+    "p. 33)."
+)
+
 _DESIGN_APPROACHES = {
     "da1-c1": {
         "description": "Design Approach 1, Combination 1: A1 + M1 + R1",
         "action_set": "A1", "material_set": "M1", "resistance_set": "R1",
+        "other_combination": "DA1-C2",
+        "note": _DA1_BOTH_COMBINATIONS_NOTE,
     },
     "da1-c2": {
         "description": (
@@ -805,6 +833,14 @@ _DESIGN_APPROACHES = {
         "action_set": "A2", "material_set": "M2", "resistance_set": "R1",
         "pile_anchor_material_set": "M1 or M2",
         "pile_anchor_resistance_set": "R4",
+        "pile_anchor_note": (
+            "In Combination 2, set M1 is used for calculating resistances "
+            "of piles or anchors and set M2 for calculating unfavourable "
+            "actions on piles owing e.g. to negative skin friction or "
+            "transverse loading (2.4.7.3.4.2 NOTE 2, printed p. 33)."
+        ),
+        "other_combination": "DA1-C1",
+        "note": _DA1_BOTH_COMBINATIONS_NOTE,
     },
     "da2": {
         "description": "Design Approach 2: A1 + M1 + R2",
@@ -821,7 +857,7 @@ _DESIGN_APPROACHES = {
 }
 
 _DESIGN_APPROACH_ALIASES = {
-    "da1": "da1-c1", "da1c1": "da1-c1", "da1_c1": "da1-c1",
+    "da1c1": "da1-c1", "da1_c1": "da1-c1",
     "combination1": "da1-c1", "combination_1": "da1-c1",
     "da1c2": "da1-c2", "da1_c2": "da1-c2",
     "combination2": "da1-c2", "combination_2": "da1-c2",
@@ -831,22 +867,42 @@ _DESIGN_APPROACH_ALIASES = {
 
 
 def design_approach_sets(approach: str = "DA1-C1") -> dict:
-    """Annex A action/material/resistance sets used by each Design Approach (2.4.7.3.4).
+    """The sets of Annex A partial factors (A for actions, M for soil
+    parameters, R for resistances) that a Design Approach combines
+    (EN 1997-1:2004 clause 2.4.7.3.4, printed pp. 32-33). Design Approach 1
+    has two combinations, and both are verified. Which Design Approach to
+    use may be given in the National annex (2.4.7.3.4.1 NOTE 1).
+
+    As printed:
+
+        Design Approach 1 (2.4.7.3.4.2), except axially loaded piles and
+        anchors:  Combination 1: A1 "+" M1 "+" R1
+                  Combination 2: A2 "+" M2 "+" R1
+        Design Approach 1, axially loaded piles and anchors:
+                  Combination 1: A1 "+" M1 "+" R1
+                  Combination 2: A2 "+" (M1 or M2) "+" R4
+        Design Approach 2 (2.4.7.3.4.3):  A1 "+" M1 "+" R2
+        Design Approach 3 (2.4.7.3.4.4):  (A1 on structural actions or A2
+                  on geotechnical actions) "+" M2 "+" R3
 
     Parameters
     ----------
     approach : str
-        One of 'DA1-C1', 'DA1-C2', 'DA2', 'DA3' (case-insensitive; 'DA1' is
-        accepted as an alias for 'DA1-C1').
+        'DA1' (both combinations of Design Approach 1), 'DA1-C1', 'DA1-C2',
+        'DA2' or 'DA3' (case-insensitive).
 
     Returns
     -------
     dict
-        Keys vary by approach: 'description' plus 'action_set'/
-        'material_set'/'resistance_set' for DA1-C1 and DA2; for DA1-C2 also
-        'pile_anchor_material_set'/'pile_anchor_resistance_set'; for DA3
-        'structural_action_set'/'geotechnical_action_set' instead of a
-        single 'action_set'.
+        For 'DA1': 'description', 'combinations' (the DA1-C1 and DA1-C2
+        entries, in that order) and 'note'. For one combination or
+        approach: 'description' plus 'action_set'/'material_set'/
+        'resistance_set' for DA1-C1 and DA2; for DA1-C2 also
+        'pile_anchor_material_set'/'pile_anchor_resistance_set'/
+        'pile_anchor_note'; for DA3 'structural_action_set'/
+        'geotechnical_action_set' instead of a single 'action_set'. The
+        DA1-C1 and DA1-C2 entries carry 'other_combination' and a 'note'
+        that both combinations are verified.
 
     Raises
     ------
@@ -854,11 +910,24 @@ def design_approach_sets(approach: str = "DA1-C1") -> dict:
         If approach is not recognized.
     """
     key = approach.strip().lower().replace(" ", "")
+    if key in ("da1", "da_1", "designapproach1"):
+        return {
+            "description": (
+                "Design Approach 1: Combination 1 (A1 + M1 + R1) and "
+                "Combination 2 (A2 + M2 + R1; axially loaded piles and "
+                "anchors A2 + (M1 or M2) + R4)"
+            ),
+            "combinations": [
+                dict(_DESIGN_APPROACHES["da1-c1"]),
+                dict(_DESIGN_APPROACHES["da1-c2"]),
+            ],
+            "note": _DA1_BOTH_COMBINATIONS_NOTE,
+        }
     key = _DESIGN_APPROACH_ALIASES.get(key, key)
     if key not in _DESIGN_APPROACHES:
         raise ValueError(
             f"Unknown design approach '{approach}'. "
-            f"Valid: DA1-C1, DA1-C2, DA2, DA3."
+            f"Valid: DA1 (both combinations), DA1-C1, DA1-C2, DA2, DA3."
         )
     return dict(_DESIGN_APPROACHES[key])
 
