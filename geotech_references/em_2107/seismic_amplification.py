@@ -62,10 +62,14 @@ import math
 # ============================================================================
 
 def westergaard_pressure(gamma_w, ac, h, y):
-    """Eq 4.3: Westergaard (1933) hydrodynamic pressure at depth y below the
-    pool surface, for simplified seismic screening (printed p. 28).
+    """Eq 4.3: Westergaard (1933) hydrodynamic pressure p at depth y below
+    the pool surface, in the unit of gamma_w times length (psf for pcf and
+    ft), for simplified seismic screening (printed p. 28).
 
-        p = gamma_w * ac * sqrt(H * y)
+        p = (7/8) * gamma_w * ac * sqrt(H * y)
+
+    The 7/8 is printed as a stacked fraction (EM 1110-2-2107_2022.pdf
+    pdf 37); gamma_w 62.4 pcf, ac 0.5, H 100 ft, y 50 ft gives 1930.4 psf.
 
     Parameters
     ----------
@@ -84,7 +88,7 @@ def westergaard_pressure(gamma_w, ac, h, y):
     dict
         {'p', 'equation': '4.3', 'printed_page': '28', 'pdf_page': 36}
     """
-    p = gamma_w * ac * math.sqrt(h * y)
+    p = 7.0 / 8.0 * gamma_w * ac * math.sqrt(h * y)
     return {"p": p, "equation": "4.3", "printed_page": "28", "pdf_page": 36}
 
 
