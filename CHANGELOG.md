@@ -5,7 +5,7 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 ## Unreleased
 
 **Structural lookups checked against the print (review of 2026-11-10,
-struct-01 to struct-16).** Values that change:
+struct-01 to struct-27).** Values that change:
 
 - UFC 4-023-03 Table 4-1, RC beams controlled by shear, development or
   embedment (`ufc_collapse.table_4_1_beam_other_modeling`): the
@@ -46,6 +46,60 @@ struct-01 to struct-16).** Values that change:
   add `height_limits_m` with footnote d's 30 m for 100 ft and 50 m for
   160 ft, and None for heights the footnote does not convert; Table B-1
   prints no metric values (printed pp. 57, 99, 124).
+- EM 1110-2-2107 Eq 4.3 (`em_2107.seismic_amplification.westergaard_pressure`): the
+  printed 7/8 is applied, p = (7/8) wc ac sqrt(H y); 62.4 pcf, ac 0.5,
+  H 100 ft, y 50 ft gives 1930.4 psf (was 2206.2; printed p. 28). The
+  chapter 4 text is corrected.
+- EM 1110-2-2104 Eq 3-5 (`em_2104.loads.earthquake_load_combination`):
+  the docstring said every combination takes the factored permanent sum;
+  Eq 3-5 is U = 1.0 Sum Lp + 1.0 EQ + 1.0 Ltc (printed p. 26). The result
+  adds `permanent_sum_basis`. Following the old docstring, D = 100 with
+  EQ = 50 gave 170 instead of 150.
+- UFC 3-301-01 Eq C-1 (`ufc_structural.rigid_pipe_fundamental_period`):
+  the print gives L = sqrt(C pi Ta sqrt(E I g / w)), so Ta = L^2/(C pi)
+  sqrt(w/(E I g)); the code had C L sqrt(w/(E I g)) and called spans to
+  about 757 ft rigid. New keyword `g` (386.4 in/s^2 default). A 1 in.
+  40S steel pipe at Table C-1's 7 ft 0 in gives Ta 0.059 s, rigid, and
+  8 ft is not (printed pp. 137-138).
+- Wood Handbook combined bending and axial load, compression
+  (`wood_handbook.combined_bending_axial_stress`,
+  `eccentric_bending_axial_stress`): a compressive P adds P/A on the
+  concave edge and P e0/S to fb0. Example: concentric 14.5 / 10.5 ->
+  10.5 / 14.5 (edges were swapped); eccentric 13.25 / 9.25 -> 11.75 /
+  15.75 (printed p. 9-12).
+- Wood Handbook Figure 9-14 (`wood_handbook.figure_9_14_coefficients`):
+  traced off the rendered figure (printed p. 9-12). At a/h 0.1, At / Ac
+  / B = 0.177 / 0.074 / 0.277 e-4 (was 0.05 / 0.03 / 0.35 e-4); A was
+  too low below a/h 0.3 and 20-55 % too high above 0.4. a/h below 0.02
+  is refused (the curves meet at the origin). Example: Eq 9-21 criterion
+  0.90 (no crack) -> 2.17 (crack).
+- UFC 4-023-03 and GSA Alternate Path gravity loads (`*_collapse.
+  alternate_path`): live and snow load together are refused; both
+  documents print 1.2 D + (0.5 L or 0.2 S), and the code added both.
+
+Judgment calls where the printed equation cannot be right as typeset
+(ruled by the lead, 2026-11-10; each function's first docstring
+paragraph and its result give the printed form, the form used, the page
+and the reason):
+
+- Wood Handbook Eq 9-24 (`torsional_shear_stress_rectangular`): printed
+  fs = T/(beta h b^2); used fs = beta T/(h b^2), because Figure 9-15's
+  beta (3 to 4.8) is the classical multiplier. 100 x 100 mm, T = 1 kN m:
+  0.208 -> 4.81 MPa (printed p. 9-13).
+- Wood Handbook Eq 9-32 (`critical_ponding_spacing`): the print defines
+  rho as "density of water (1,000 kg m-3, 0.0361 lb in-3)"; the SI
+  default is now the unit weight 9,810 N/m^3 (1,000 gave s_cr 9.81 times
+  too large). `rho_water` keeps its name (printed p. 9-15).
+- Wood Handbook Eq 9-41 (`elastic_buckling_stress_edgewise_bending`):
+  printed (1.44 E/le)(d2/d1) is not a stress; used 1.44 E d2^2/(le d1)
+  (printed p. 9-17).
+- EM 1110-2-2107 Appendix F (`hydrostatic_horizontal_component`,
+  `resultant_angle_from_horizontal`, `trunnion_reaction_force`): values
+  unchanged; the docstrings now state that Eq F.10's typeset sign,
+  theta_p = tan^-1(Ph/Pv) and theta_Rt = tan^-1(Rtx/Rty) contradict the
+  worked example and its tables, which the code follows (printed pp.
+  427, 436, 440, 445). `trunnion_reaction_force` returns the magnitude
+  of theta_Rt; Table F.8 prints -0.2653.
 
 Labels, units and citations (no value changes):
 
@@ -67,6 +121,25 @@ Labels, units and citations (no value changes):
   5-8).
 - GSA chapter 4 text no longer says Tables 6/7 are identical to UFC
   Tables 4-1/4-2.
+- More page and equation citations: EM 1110-2-2107 para 5.2.1.1 (was
+  5.2.1.2), Eq D.8 p. 392 (was 400), `amplification_factor` is Eq D.8
+  (was D.10, its top-of-structure case), the trunnion Rt / Ft / Mt
+  functions cite paragraph F.4.2.4's unnumbered equations (were "F.17",
+  the QT equation); Wood Handbook Eq 9-3/9-4 p. 9-2, Eq 9-10/9-11 p. 9-5,
+  Eq 9-16 p. 9-10, Eq 4-6 p. 4-3, Eq 4-15/4-16 p. 4-12.
+- `ufc_collapse.effective_wf_for_nonuniform_load` adds `case` and
+  `action`: when the bay loads differ by 25 % or less but the max-load
+  area is over 25 %, the print allows only the maximum floor load
+  (sub-areas are for a difference over 25 %).
+- Docstrings that misstated the print: EM 1110-2-2104 Eq B-33 is clean on
+  the page (not "corrupted"); in Appendix C-3 the compression steel does
+  not yield (the printed 0.0148 is the tension-steel strain); Eq B-53's
+  typeset form is a misprint the code does not follow; GSA Icr 19160
+  gives 325.46 kip/in, 16423 gives 279; GSA Eq 3.18's Phi is left out by
+  default, as Figure 3.19 and Appendix D do; UFC 3-301-01's tie-rod
+  "118 kN" for 40 kips is a misprint (178 kN), noted in the result; Wood
+  Handbook Eq 4-3's printed anchors (267 % / 44 %) fit a cell-wall
+  specific gravity of 1.5, not the printed 1.54.
 
 ## 1.6.0
 
