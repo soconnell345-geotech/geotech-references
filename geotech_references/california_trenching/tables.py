@@ -280,9 +280,11 @@ def osha_timber_shoring_pressure(soil_type: str, depth_ft) -> dict:
 # Apparent density vs SPT N60, friction angle, and unit weight.
 # ============================================================================
 
-# (density, rel_density_pct, n60_label, phi_min, phi_max, gamma_moist, gamma_sub)
+# (density, rel_density_pct, n60_label, phi_min, phi_max, gamma_moist_min,
+#  gamma_moist_max, gamma_sub_min, gamma_sub_max, <unused>, <unused>)
+# An open-ended printed cell ("<28", "<100", ">130") has None on its open side.
 _TABLE_3_1 = [
-    ("Very Loose", "0-15", "N60 < 5", None, 28, None, None, None, 100, None, 60),
+    ("Very Loose", "0-15", "N60 < 5", None, 28, None, 100, None, 60, None, None),
     ("Loose", "16-35", "5 <= N60 < 10", 28, 30, 95, 125, 55, 65, None, None),
     ("Medium Dense", "36-65", "10 <= N60 < 30", 31, 36, 110, 130, 60, 70, None, None),
     ("Dense", "66-85", "30 <= N60 < 50", 37, 41, 110, 140, 65, 85, None, None),
@@ -974,8 +976,10 @@ _FS_REQUIREMENTS = [
      "basis": "Embedment with FS=1.0 to back-calculate the anchor force (Section 8-4)."},
     {"item": "Bottom heave (braced cut in clay)", "fs": 1.5,
      "basis": "FS = Qu/Q minimum recommended (Section 10-3.01)."},
-    {"item": "Anchor block (deadman) capacity", "fs": 1.5,
-     "basis": "Typical minimum FS on ultimate anchor-block resistance (Section 10-2)."},
+    {"item": "Anchor block (deadman) capacity", "fs": 2.0,
+     "basis": ("\"Anchor blocks should be placed against firm, undisturbed, or "
+               "recompacted soil, and a safety factor of 2 is recommended for "
+               "all anchor blocks.\" (Section 10-2, printed p. 10-4).")},
     {"item": "Cantilever (unrestrained) embedment", "fs": None,
      "basis": ("D = 1.2*D0 — the 20% increase on the point-of-rotation depth D0 "
                "is NOT a factor of safety; it accounts for rotation below point O "
@@ -989,8 +993,9 @@ def factor_of_safety_requirements() -> dict:
     Collects the design FS / embedment rules an engineer needs for a shoring
     review: anchored-wall embedment (FS = 1.3) and anchor-load (FS = 1.0)
     moment calculations (Ch 8), bottom-heave FS (>= 1.5, Ch 10-3), anchor-block
-    FS, and the cantilever embedment rule D = 1.2*D0 (the 20% increase that is
-    explicitly NOT a factor of safety, Ch 7-5).
+    FS (2, Section 10-2, printed p. 10-4), and the cantilever embedment rule
+    D = 1.2*D0 (the 20% increase that is explicitly NOT a factor of safety,
+    Ch 7-5).
 
     Returns
     -------

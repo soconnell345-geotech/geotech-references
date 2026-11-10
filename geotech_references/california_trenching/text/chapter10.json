@@ -8,14 +8,14 @@
     {
       "section_id": "10-2",
       "title": "Use of Anchor Blocks (Deadmen)",
-      "summary": "Anchor blocks (deadmen) develop tie-rod resistance only when placed OUTSIDE the active failure wedge; the net resistance is the passive minus active force. In cohesionless soil the 3-D end effects are captured by the Ovesen factor R (3-D ultimate load / 2-D ultimate load), capped at 2.0. The ultimate block capacity Tult = R*(Pp - Pa)*L, and a factor of safety on the tie load is checked (FS ~ 1.5+).",
-      "body": "Proper placement of anchor blocks (deadmen) is critical: anchors placed within a soil failure wedge will not provide the needed resistance once the active zone moves. The available resistance is the passive force in front minus the active force behind the block. For an isolated/continuous anchor block in cohesionless soil, three-dimensional end effects increase the capacity; Ovesen's theory gives the factor R = (3-D ultimate load)/(2-D ultimate load), and if the calculated R exceeds 2.0 then R = 2 is used. The ultimate anchor-block capacity is Tult = R*(Pp - Pa)*L (Eq. 10-2-36), where L is the block length, and the factor of safety FS = Tult/T is checked against the applied tie load T (the worked example shows FS = 2.03). Cases are given for cohesionless soil at the surface, cohesionless soil with 1.5 <= D/H <= 5.5, and cohesive soil near and below the surface (d <= H/2 and d >= H/2).",
+      "summary": "Anchor blocks (deadmen) develop tie-rod resistance only when placed OUTSIDE the active failure wedge; the net resistance is the passive minus active force. In cohesionless soil the 3-D end effects are captured by the Ovesen factor R (3-D ultimate load / 2-D ultimate load), capped at 2.0. The ultimate block capacity Tult = R*(Pp - Pa)*L, and a factor of safety on the tie load is checked: a safety factor of 2 is recommended for all anchor blocks (p. 10-4).",
+      "body": "Proper placement of anchor blocks (deadmen) is critical: anchors placed within a soil failure wedge will not provide the needed resistance once the active zone moves. The available resistance is the passive force in front minus the active force behind the block. Anchor blocks should be placed against firm, undisturbed, or recompacted soil, and a safety factor of 2 is recommended for all anchor blocks (p. 10-4). For an isolated/continuous anchor block in cohesionless soil, three-dimensional end effects increase the capacity; Ovesen's theory gives the factor R = (3-D ultimate load)/(2-D ultimate load), and if the calculated R exceeds 2.0 then R = 2 is used. The ultimate anchor-block capacity is Tult = R*(Pp - Pa)*L (Eq. 10-2-36), where L is the block length, and the factor of safety FS = Tult/T is checked against the applied tie load T (the worked example shows FS = 2.03). Cases are given for cohesionless soil at the surface, cohesionless soil with 1.5 <= D/H <= 5.5, and cohesive soil near and below the surface (d <= H/2 and d >= H/2).",
       "key_points": [
         "Anchor blocks must be placed OUTSIDE the active failure wedge to be effective",
         "Net resistance = passive force Pp minus active force Pa",
         "Ovesen 3-D factor R = (3-D ultimate)/(2-D ultimate), capped at 2.0",
         "Ultimate capacity Tult = R*(Pp - Pa)*L (Eq. 10-2-36)",
-        "Check FS = Tult / T on the applied tie load"
+        "Check FS = Tult / T on the applied tie load; a safety factor of 2 is recommended for all anchor blocks (p. 10-4)"
       ],
       "equations": [
         {

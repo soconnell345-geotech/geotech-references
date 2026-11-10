@@ -140,6 +140,32 @@ class TestGranularProperties:
         with pytest.raises(ValueError):
             table_3_1_granular_properties("squishy")
 
+    def test_every_printed_row(self):
+        # Table 3-1, Properties of Granular Soils (PDF p. 43, printed p. 3-5).
+        # Columns: friction angle (deg), unit weight moist (pcf), unit weight
+        # submerged (pcf). An open-ended cell is (None, x) or (x, None).
+        printed = {
+            "very loose": ((None, 28), (None, 100), (None, 60)),    # <28, <100, <60
+            "loose": ((28, 30), (95, 125), (55, 65)),
+            "medium dense": ((31, 36), (110, 130), (60, 70)),
+            "dense": ((37, 41), (110, 140), (65, 85)),
+            "very dense": ((41, None), (130, None), (75, None)),   # >41, >130, >75
+        }
+        for density, (phi, moist, submerged) in printed.items():
+            r = table_3_1_granular_properties(density)
+            assert (r["friction_angle_min_deg"], r["friction_angle_max_deg"]) == phi
+            assert (r["unit_weight_moist_pcf_min"], r["unit_weight_moist_pcf_max"]) == moist
+            assert (r["unit_weight_submerged_pcf_min"],
+                    r["unit_weight_submerged_pcf_max"]) == submerged
+
+    def test_very_loose_row_in_the_whole_table(self):
+        # The Very Loose row used to read moist: none, submerged: 60 to 100.
+        row = table_3_1_granular_properties()["rows"][0]
+        assert row["apparent_density"] == "Very Loose"
+        assert row["unit_weight_moist_pcf_max"] == 100
+        assert row["unit_weight_submerged_pcf_max"] == 60
+        assert row["unit_weight_submerged_pcf_min"] is None
+
 
 class TestSimplifiedSoilValues:
     def test_gravel_dense_ka_and_efp(self):
@@ -462,6 +488,16 @@ class TestStructural:
         items = {r["item"]: r["fs"] for r in reqs}
         assert any("embedment" in k.lower() and v == 1.3 for k, v in items.items())
         assert any("heave" in k.lower() and v == 1.5 for k, v in items.items())
+
+    def test_anchor_block_factor_of_safety_is_2(self):
+        # Section 10-2 (PDF p. 213, printed p. 10-4): "a safety factor of 2
+        # is recommended for all anchor blocks". The summary used to say 1.5.
+        reqs = factor_of_safety_requirements()["requirements"]
+        anchor = [r for r in reqs if "anchor block" in r["item"].lower()]
+        assert len(anchor) == 1
+        assert anchor[0]["fs"] == 2.0
+        assert "safety factor of 2 is recommended for all anchor blocks" in anchor[0]["basis"]
+        assert "10-4" in anchor[0]["basis"]
 
 
 # ===================================================================
