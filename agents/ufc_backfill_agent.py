@@ -1,9 +1,10 @@
 """
 UFC Backfill Agent — Foundry-style wrapper for UFC 3-220-04N lookups.
 
-Wraps compaction criteria, material classification, lift thickness,
-equipment selection, drainage requirements, compaction-induced
-pressure, filter criteria, and relative compaction checks.
+Wraps the density requirements, Table 5-1 compaction criteria, backfill
+material categories, lift thicknesses, compaction equipment, Figure 2-5
+compaction-induced lateral pressures and the relative compaction check,
+each read off the held UFC 3-220-04FA with its printed page.
 
 Three entry-point functions:
   1. ufc_backfill_agent           - Run a UFC 3-220-04N function
@@ -124,7 +125,7 @@ def _load_registry():
     _METHOD_INFO = {}
 
     _lookup_modules = [
-        (equations, "equations", "UFC 3-220-04N compaction and filter equations"),
+        (equations, "equations", "UFC 3-220-04N relative compaction check"),
         (tables, "tables", "UFC 3-220-04N compaction and backfill tables"),
     ]
 
@@ -148,9 +149,9 @@ def ufc_backfill_agent(method: str, parameters_json: str) -> str:
     """
     UFC 3-220-04N Backfill for Subsurface Structures tool.
 
-    Provides compaction criteria, material classification, equipment
-    selection, filter design criteria, and compaction-induced lateral
-    pressure calculations.
+    Provides density requirements, Table 5-1 compaction criteria, material
+    categories, lift thicknesses, equipment selection and Figure 2-5
+    compaction-induced lateral pressures, as printed.
 
     Parameters:
         method: The function name. Use ufc_backfill_list_methods() to browse.
@@ -196,7 +197,7 @@ def ufc_backfill_list_methods(category: str = "") -> str:
     Lists available UFC 3-220-04N backfill functions by category.
 
     Parameters:
-        category: Optional filter (e.g. 'compaction', 'filter', 'drainage').
+        category: Optional filter (e.g. 'tables', 'equations').
 
     Returns:
         JSON string with method names grouped by category.
@@ -222,7 +223,7 @@ def ufc_backfill_describe_method(method: str) -> str:
 
     Parameters:
         method: The method name (e.g. 'table_compaction_requirements',
-                'filter_criteria_check').
+                'table_5_1_compaction_criteria').
 
     Returns:
         JSON string with parameters, types, defaults, and description.
