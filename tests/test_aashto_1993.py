@@ -717,12 +717,28 @@ class TestStageReliability:
 # equations.py: aggregate-surfaced road models
 # ============================================================================
 
+class TestAggregateLossTruckTraffic:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # the first equation, GL = 0.12 + 0.1223(LT), > 50 % truck traffic.
+    def test_printed_equation(self):
+        assert eq.aggregate_loss_truck_traffic(0)["gl_in"] == pytest.approx(0.12)
+        assert eq.aggregate_loss_truck_traffic(10)["gl_in"] == pytest.approx(1.343)
+        r = eq.aggregate_loss_truck_traffic(50)
+        assert r["gl_in"] == pytest.approx(6.235)
+        assert "printed II-12" in r["reference"]
+
+    def test_negative_raises(self):
+        with pytest.raises(ValueError):
+            eq.aggregate_loss_truck_traffic(-1)
+
+
 class TestAggregateLossArmyCorps:
     # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
     # the Brazil-study equation GL = (B/25.4)/(.0045LADT + 3380.6/R + .467G).
+    # The function is aggregate_loss_brazil (was aggregate_loss_army_corps).
     def test_basic(self):
-        r = eq.aggregate_loss_army_corps(bladings=6, ladt=200, radius_ft=1000,
-                                         grade_pct=3)
+        r = eq.aggregate_loss_brazil(bladings=6, ladt=200, radius_ft=1000,
+                                     grade_pct=3)
         assert r["gl_in"] == pytest.approx(
             (6 / 25.4) / (0.0045 * 200 + 3380.6 / 1000 + 0.467 * 3), abs=1e-3)
         assert "Brazil" in r["source"]
@@ -730,28 +746,33 @@ class TestAggregateLossArmyCorps:
 
     def test_invalid_radius_raises(self):
         with pytest.raises(ValueError):
-            eq.aggregate_loss_army_corps(bladings=6, ladt=200, radius_ft=0,
-                                         grade_pct=3)
+            eq.aggregate_loss_brazil(bladings=6, ladt=200, radius_ft=0,
+                                     grade_pct=3)
+
+    def test_old_name_gone(self):
+        assert not hasattr(eq, "aggregate_loss_army_corps")
 
 
 class TestAnnualAggregateLossKenya:
     # Same page: AGL = [T^2/(T^2+50)] x f(4.2 + .092T + 0.889R^2 + 1.88VC);
-    # the scan drops decimal points ("092T", f "037" = 0.37).
+    # the scan drops decimal points, a space where each was (" 092T" =
+    # .092T; f " 037" = .037, was read as 0.37).
     def test_lateritic_default(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,
                                            grade_pct=5)
-        assert r["f"] == 0.37
-        expected = (4 / 54) * 0.37 * (4.2 + 0.092 * 2 + 0.889 * 900 + 1.88 * 5)
+        assert r["f"] == 0.037
+        expected = (4 / 54) * 0.037 * (4.2 + 0.092 * 2 + 0.889 * 900 + 1.88 * 5)
         assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
+        assert r["agl_in_per_year"] == pytest.approx(2.231, abs=1e-3)
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=20, rainfall_in=2,
                                            grade_pct=1)
-        expected = (400 / 450) * 0.37 * (4.2 + 0.092 * 20 + 0.889 * 4 + 1.88)
+        expected = (400 / 450) * 0.037 * (4.2 + 0.092 * 20 + 0.889 * 4 + 1.88)
         assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
 
     def test_coral(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,
                                            grade_pct=5, gravel_type="coral")
-        assert r["f"] == 0.59
+        assert r["f"] == 0.059
 
     def test_invalid_gravel_type_raises(self):
         with pytest.raises(ValueError):
