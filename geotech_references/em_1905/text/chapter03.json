@@ -1,0 +1,1834 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 3,
+ "chapter_title": "Soil Properties",
+ "sections": [
+  {
+   "section_id": "3-1",
+   "title": "Introduction",
+   "body": "[p. 21] Engineering properties of soils are those properties which can be used for evaluating the ultimate and serviceability limit states (such as shear strength, compressibility, permeability). This chapter considers engineering properties of soil that are useful in designing shallow foundations using static methods. Limited discussions on dynamic soil properties are included in this chapter; more details of dynamic properties are discussed in Chapter 9.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-1, printed p. 21."
+  },
+  {
+   "section_id": "3-1a",
+   "title": "Influence depths",
+   "body": "[p. 21] Influence depths. Supporting soils can be influenced to certain depths depending on foundation type, size, load application, and other soil-structure interactions. These depths are identified as influence zones and can vary based on the limit state evaluated. Soil properties should be evaluated within the load influence zones. In addition, the geotechnical engineer should also be familiar with major geologic processes that have and can affect the project site so that soil and rock conditions outside of the influence zones do not negatively impact foundation performance.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-1a, printed p. 21."
+  },
+  {
+   "section_id": "3-1b",
+   "title": "Methods of determining soil properties",
+   "body": "[p. 21] Methods of determining soil properties. Engineering soil properties of geologic strata or imported fill are typically estimated using (1) in situ test data from field explorations, (2) laboratory testing, and (3) empirical correlations. In situ and laboratory tests should be performed using ASTM procedures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-1b, printed p. 21."
+  },
+  {
+   "section_id": "3-1c",
+   "title": "Purpose of guidance tables and charts",
+   "body": "[p. 21] Purpose of guidance tables and charts. Tables and charts based on index properties (such as grain size, Atterberg limits, and water contents) are useful for initial estimates or checking the reasonableness of design parameters. However, these correlations can incorporate a higher level of uncertainties and should be used with caution. The final design parameters should be based on in situ test results (such as standard penetration test [SPT], cone penetration test [CPT], Becker Penetration Test [BPT], and vane shear tests [VST]), laboratory test results on relatively undisturbed or disturbed soils based on soil types, or appropriate empirical relationships. Use of empirical correlations should be based on in situ or laboratory test data and should be evaluated based on successful applications in local geologic conditions (whichever is more reliable).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-1c, printed p. 21."
+  },
+  {
+   "section_id": "3-1d",
+   "title": "Reference guidelines",
+   "body": "[p. 21] Reference guidelines. Several national agencies including USACE have developed guidelines for soil parameters that should be reviewed by the practitioners for background, development, and application of soil parameters.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-1d, printed p. 21."
+  },
+  {
+   "section_id": "3-2",
+   "title": "Main categories of soil parameters analyses and design",
+   "body": "[p. 21] Soil parameters for static analyses of shallow foundations fall into four main categories: (1) water flow characteristics, hydraulic conductivity, and coefficient of consolidation, (2) strength, (3) volume change (compressibility), and (4) shear distortion (stiffness).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2, printed p. 21."
+  },
+  {
+   "section_id": "3-2a",
+   "title": "Water flow characteristics",
+   "body": "[p. 22] Water flow characteristics. The rate at which water moves through the soil as a function of a hydraulic gradient or a change in volume. These are generally characterized using vertical and horizontal hydraulic conductivity (kv and kh, respectively) and coefficient of consolidation (vertical Cv and horizontal Ch). Coefficient of consolidation (Cv) provides estimates of rate of consolidation due to loading and is generally measured from deformation versus time data from laboratory consolidation testing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2a, printed p. 22."
+  },
+  {
+   "section_id": "3-2b",
+   "title": "Shear strength",
+   "body": "[p. 22] Shear strength. Soil shear strength is defined as the ultimate resistance to shear stresses imposed by structures in static or dynamic conditions. A key consideration for evaluation shear strength is whether the soil will be drained or undrained during loading.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2b, printed p. 22."
+  },
+  {
+   "section_id": "3-2b(1)",
+   "title": "Drained conditions (effective stress parameters)",
+   "body": "[p. 22] Drained conditions (effective stress parameters). For coarse-grained soils with relatively high permeability, or where the rate of loading is relatively slow, drained conditions should be evaluated. Pore pressures near equilibrium can be estimated from the position of the water table, or by flownet solution if flow is present. Effective stress parameters are used for evaluation of drained conditions. For moderately consolidated to overconsolidated clays and plastic silts, both drained and undrained strength parameters should be evaluated, and design should reflect both end of construction and long-term conditions. For coarse-grained soils (such as sand, gravel), drained strength is often more critical. Drained conditions are also critical for settlement analyses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2b(1), printed p. 22."
+  },
+  {
+   "section_id": "3-2b(2)",
+   "title": "Undrained conditions (total stress parameters)",
+   "body": "[p. 22] Undrained conditions (total stress parameters). For fine-grained soil with relatively low permeability, or if the rate of loading is relatively fast, undrained conditions should be evaluated. For undrained conditions, pore pressures will be unknown and only total stresses can be estimated. Therefore, total stress parameters are used for evaluation of undrained conditions. For normally consolidated to slightly overconsolidated clays and plastic silt with overconsolidation ratio, OCR < 4, undrained soil strengths could be more critical. Overconsolidation ratio (OCR) is defined as the ratio of the preconsolidation stress (σ′p) to the existing vertical effective overburden stress (σ′vo).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2b(2), printed p. 22."
+  },
+  {
+   "section_id": "3-2b(3)",
+   "title": "Peak strength condition",
+   "body": "[p. 22] Peak strength condition. Soil strength for peak strength condition is generally characterized by using shear stress at failure (τf) through the undrained strength (τf = su), drained friction angle (τf = σ′n tan φ′), or combination of effective stress cohesion and drained friction angle for peak strength (τf = c′ + σ′n tan φ′). Drained soil parameters are also identified as effective strength parameters and thus, “drained strength parameter” and “effective strength parameter” are used interchangeably.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2b(3), printed p. 22."
+  },
+  {
+   "section_id": "3-2b(4)",
+   "title": "Design strength",
+   "body": "[p. 22] Design strength. In general, shallow foundations are designed for peak soil strengths using drained soil parameters (c′ and φ′) or undrained strength (su). However, for seismic analysis, or evaluating performance of an existing foundation, other soil strengths associated with higher strains such as such as critical state strength, fully softened strength, and residual strength may be needed. EM 1110-2-1902 should be used for guidance for these strength parameters. For dynamic analyses of shallow foundations, guidance is provided in Chapter 9.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2b(4), printed p. 22."
+  },
+  {
+   "section_id": "3-2c",
+   "title": "Volume change (compression)",
+   "body": "[p. 23] Volume change (compression).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c, printed p. 23."
+  },
+  {
+   "section_id": "3-2c(1)",
+   "title": "General",
+   "body": "[p. 23] General. Volume changes can occur due to changes in effective stresses. This can be visualized as the change in size of a soil element. The effective stress level with shallow foundation loading relative to the maximum effective stress level the soil has experienced is important to estimate the volume change due to foundation loading. Chapter 7 provides detail procedures to estimate settlement using laboratory testing. This chapter provides typical values of compression indexes.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c(1), printed p. 23."
+  },
+  {
+   "section_id": "3-2c(2)",
+   "title": "Consolidation test parameters",
+   "body": "[p. 23] Consolidation test parameters. Volume change in soil due to shallow foundation loadings in fine-grained soils are generally characterized by consolidation-related parameters (such as compression index, Cc, recompression index, Cr, and coefficient of secondary settlement, Cα). These parameters are generally estimated from consolidation testing. Definition of these parameters are as follows,",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c(2), printed p. 23."
+  },
+  {
+   "section_id": "3-2c(2)(a)",
+   "title": "Compression index (Cc), is the slope of the virgin compression part of the void …",
+   "body": "[p. 23] Compression index (Cc), is the slope of the virgin compression part of the void ratio (e) versus effective vertical stress (σ′z) curve from the consolidation test.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c(2)(a), printed p. 23. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-2c(2)(b)",
+   "title": "Recompression index (Cr), is the slope of the recompression part of the void …",
+   "body": "[p. 23] Recompression index (Cr), is the slope of the recompression part of the void ratio (e) versus effective vertical stress (σ′z) curve from the consolidation test.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c(2)(b), printed p. 23. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-2c(2)(c)",
+   "title": "Secondary compression index (Cα), is the ratio of the change in void ratio (Δe) …",
+   "body": "[p. 23] Secondary compression index (Cα), is the ratio of the change in void ratio (Δe) and logarithm of time curve between time of interest (t), expressed as [Δlog(t) = log(t1) − log(t2)] from a part of the void ratio versus logarithm of time curve.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2c(2)(c), printed p. 23. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-2d",
+   "title": "Stiffness",
+   "body": "[p. 23] Stiffness. Stiffness properties of soil are relationships that relate stress to strain. The four main stiffness relationships used in foundation analysis and design are the shear modulus (G), elastic modulus (E), constrained modulus (M) and bulk modulus (K). These different stiffness relationships are related, and if one is known, the others can be determined using Poison’s ratio. Stiffness parameters and typical values are discussed in paragraph 3-9. Figure 3-13 illustrates the different stiffness definitions. The stiffness parameters can be determined by laboratory testing, in situ testing, and correlation with other properties.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2d, printed p. 23."
+  },
+  {
+   "section_id": "3-2d(1)",
+   "title": "Shear modulus",
+   "body": "[p. 23] Shear modulus. The shear modulus (G) is the ratio of shear stress to shear strain. This is described as shear distortion and can be visualized as the change in shape of a soil element. The shear modulus is used primarily in numerical modeling of excavations, large embankments, retaining structures, and other situations where soil shear stresses and shear distortion are of concern.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2d(1), printed p. 23."
+  },
+  {
+   "section_id": "3-2d(2)",
+   "title": "Elastic modulus",
+   "body": "[p. 23] Elastic modulus. The elastic modulus, E (also Young’s modulus), is the ratio of normal stress to normal strain in the same direction. E is used in many foundation analysis settlement solutions in which the ground is treated as an infinite elastic half-space. Soil behavior generally has a non-linear, stress-strain relationship, and therefore, care should be taken to apply E for the stress range under consideration.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2d(2), printed p. 23."
+  },
+  {
+   "section_id": "3-2d(3)",
+   "title": "Constrained modulus",
+   "body": "[p. 24] Constrained modulus. The constrained modulus (M) is the ratio of normal stress to strain in the loading direction when the ground is constrained from movement in the perpendicular directions. Some settlement analysis formulas use M to estimate vertical displacements under foundation loads, under the assumption that there is no horizontal ground strain.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2d(3), printed p. 24."
+  },
+  {
+   "section_id": "3-2d(4)",
+   "title": "Bulk modulus",
+   "body": "[p. 24] Bulk modulus. Bulk modulus (K) is the ratio of the mean stress to the volumetric strain. The bulk modulus is used primarily in certain numerical constitutive model formulations methods for estimating ground deformation patterns, however, most routine shallow foundation problems do not use the bulk modulus in settlement estimates.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-2d(4), printed p. 24."
+  },
+  {
+   "section_id": "3-3",
+   "title": "Unit weight and phase relationships",
+   "body": "[p. 24] Unit weight of soil is required to estimate the in situ stress conditions of soils. Some common phase relationships are provided in Table 3-1. Care should be exercised when using several typical values (such as unit weights, moisture, void ratio) as some are not independent of others.\n\nTable 3-1 Unit weight and phase relationships\nMoisture content (w) | w = Ww/Ws · 100%\nw = (Wsat − Ws)/Ws · 100% (saturated)\nVoid ratio (e) | e = Vv/Vs\ne = w · Gs (saturated)\ne = ((w · Gs)/Sr) (partially saturated)\nPorosity | n = Vv/V = e/(1 + e)\nDegree saturation (Sr) (Sr = 1.0 if saturated) | Sr = Vw/Vv · 100%\nSpecific gravity of solids (Gs) | Gs = Ws/(Vs · γw)\nMoist unit weight (γm) (also referred to as total, wet, and bulk) | γm = ((Gs (1 + w))/(1 + e)) γw = γd(1 + w)\n[p. 25]\nDry unit weight (γd) | γd = (γw · Gs)/(1 + e) = γb/(1 + w)\nSaturated unit weight (γsat) | γsat = (((Gs + e))/(1 + e))γw\nSubmerged unit weight (γ′) (also referred to as effective or buoyant) | γ′ = γw ((Gs − 1)/(1 + e)) = γsat − γw\nRelative density | R. D. = (emax − e)/(emax − emin)\nNotes:\nWw = weight of water, Ws = weight of soil solids, Wsat = weight of soil saturated, Vw = volume of water,\nVv = volume of voids, Vs = volume of soil solids, Υw = unit weight of water",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-1: Unit weight and phase relationships"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-3, printed pp. 24 to 25."
+  },
+  {
+   "section_id": "3-3a",
+   "title": "Specific gravity",
+   "body": "[p. 25] Specific gravity. General ranges of specific gravity are provided in Table 3-2. Washed silica sand (such as quartz) has a specific gravity of about 2.65. Organic soils have a lower specific gravity, and soils with heavy metallic minerals have a higher specific gravity. In practice, in situ unit weight is generally calculated from in situ water content (w) and dry unit weight (γd).\n\nTable 3-2 General ranges of specific gravity\nSoil Type | Specific Gravity\nSand | 2.63 to 2.67\nSilty sand | 2.67 to 2.70\nSilt | 2.65 to 2.70\nClay and silty clay | 2.67 to 2.90\nOrganic soils | < 2.0",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-2: General ranges of specific gravity"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-3a, printed p. 25."
+  },
+  {
+   "section_id": "3-3b",
+   "title": "Unit weight and void ratio",
+   "body": "[p. 25] Unit weight and void ratio. Typical values of unit weights of different soils are presented in Table 3-3. Table 3-4 presents typical values of range of maximum and minimum void ratio, dry and saturated unit weights. Care should be exercised when using several typical values (such as unit weights, moisture, void ratio) as some are not independent of others.\n\n[p. 26] Table 3-3 Typical values of unit weights for different soils γsat and γdry (Carter and Bentley 1991)\nSoil Type | Saturated Unit Weight (pcf) | Dry Unit Weight (pcf)\nSand and Gravels\nVery loose | 106 to 112 | 81 to 87\nLoose | 112 to 119 | 87 to 94\nMedium dense | 119 to 131 | 94 to 112\nDense | 125 to 137 | 106 to 125\nVery dense | 137 to 144 | 125 to 137\nPoorly graded sands | 106 to 119 | 81 to 94\nWell-graded sands | 112 to 144 | 87 to 137\nWell-graded sand/gravel mix | 119 to 144 | 94 to 137\nClays\nUnconsolidated muds | 100 to 106 | 56 to 69\nSoft, open-structured | 106 to 119 | 69 to 87\nTypical, normally consolidated | 112 to 137 | 81 to 119\nBoulder clays (overconsolidated) | 125 to 150 | 106 to 137\n\n[p. 27] Table 3-4 Typical values of range of void ratio, dry unit weight, and saturated unit weight for natural soils (Kulhawy and Mayne 1990)\nSoil Description | Particle Size and Uniformity Coefficient (Cu) (See Note) | Range of Void Ratio (e) | Range of Dry Unit Weight; (γd) | Range of Saturated Unit Weight\n(γsat)\n– | D10 (mm) | Cu | min | max | min | max | min | max\nUniform Granular Soil\na) Equal sphere (theoretical) | – | 1.0 | 0.35 | 0.92 | 91.8 | 109.9 | 93.0 | 131.1\nb) Standard Ottawa Sand | 0.67 | 1.1 | 0.50 | 0.80 | 83.0 | 118.0 | 84.3 | 136.1\nc) Clean, uniform Sand | – | 1.2 to 2.0 | 0.40 | 1.00 | 79.9 | 118.0 | 81.2 | 136.1\nd) Uniform, inorganic Silt | 0.012 | 1.2 to 2.0 | 0.40 | 1.10 | 86.8 | 127.4 | 88.0 | 142.3\nWell-Graded Granular Soil\na) Silty Sand | 0.02 | 5 to 10 | 0.30 | 0.90 | 84.9 | 138.0 | 86.2 | 148.0\nb) Clean, fine to coarse Sand | 0.09 | 4 to 6 | 0.20 | 0.95 | 76.2 | 119.9 | 76.8 | 138.0\nc) Micaceous Sand | – | – | 0.40 | 1.20 | 89.3 | 146.1 | 89.9 | 154.8\nd) Silty Sand and Gravel | 0.02 | 15 to 300 | 0.14 | 0.85 | 59.9 | 134.8 | 99.9 | 147.3\nFine-Grained Soil\nSilty or sandy Clay | 0.003 | 10 to 30 | 0.25 | 1.80 | 84.3 | 139.8 | 114.9 | 151.1\nGap-graded silty Clay with Gravel or larger | – | – | 0.20 | 1.00 | 99.9 | 148.0 | 124.9 | 156.1\nWell-graded Gravel, Sand, Silt, and Clay | 0.002 | 25 to 1000 | 0.13 | 0.70 | 49.9 | 111.7 | 94.3 | 133.0\nClay (30 to 50% < 2μm size) | 0.001 | – | 0.50 | 2.40 | 13.1 | 106.1 | 71.2 | 128.0\nColloidal Clay (over 50% < 2μm size) | – | – | 0.60 | 12.00 | 40.0 | 109.9 | 86.8 | 131.1\nOrganic Silt | – | – | 0.55 | 3.00 | 30.0 | 99.9 | 81.2 | 124.9\nOrganic Clay (30 to 50% < 2μm size) | – | – | 0.70 | 4.40 | 0.70 | – | – | 131.1\nNote: Uniformity coefficient, Cu = D60/D10, where D60 and D10 = particle size corresponding to 10 percent and 60 percent finer on the cumulative particle size distribution curve, respectively (mm).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-3: Typical values of unit weights for different soils γsat and γdry (Carter and Bentley 1991)",
+    "Table 3-4: Typical values of range of void ratio, dry unit weight, and saturated unit weight for natural soils (Kulhawy and Mayne 1990)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-3b, printed pp. 25 to 27."
+  },
+  {
+   "section_id": "3-4",
+   "title": "Relative density",
+   "body": "[p. 27] Relative density (DR) represents the relative denseness or looseness of a soil layer and applies to soils having less than 15 percent fines. Laboratory and in situ tests can be performed to estimate relative density of soils. Different in situ soil index parameters (such as normalized SPT blow counts (N1)60cs, CPT tip resistance, CPT-qc) can provide quantitative measures for relative denseness of coarse-grained soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4, printed p. 27."
+  },
+  {
+   "section_id": "3-4a",
+   "title": "Relative density and void ratio of coarse-grained soils",
+   "body": "[p. 28] Relative density and void ratio of coarse-grained soils. Relative density of coarse-grained soils compares the void ratio of a given soil with the maximum void ratio (emax) and minimum void ratio (emin). The void ratio (e) is defined by equation 3-1. Typical values of void ratios for sand vary from about 0.4 to 1.0, and typical values of clays vary from about 0.3 to 1.5. Higher void ratios can be present for some organic soils (Holtz et al. 2011).\n\ne = Vv/Vs [Eq. 3-1]\n\nwhere:\ne = void ratio (expressed as a decimal)\nVv = volume of voids (ft^3)\nVs = volume of solids (ft^3)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-1",
+     "description": "Equation 3-1 as printed (p. 28).",
+     "formula": "e = Vv/Vs",
+     "variables": {
+      "e": "void ratio (expressed as a decimal)",
+      "Vv": "volume of voids (ft^3)",
+      "Vs": "volume of solids (ft^3)"
+     },
+     "source": "Typed in from p. 28.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4a, printed p. 28."
+  },
+  {
+   "section_id": "3-4b",
+   "title": "Coarse-grained sand and gravelly soils",
+   "body": "[p. 28] Coarse-grained sand and gravelly soils. For coarse-grained sand and gravelly soils, in situ density tests in combination with laboratory maximum and minimum density tests can generally provide more reliable results than laboratory or in situ methods alone. Table 3-5 provides a general range of denseness of cohesionless soils, expressed in terms of relative density.\n\nTable 3-5 Relative density (DR) of cohesionless soils\nDescriptive Term | Relative Density, DR (%)\nDescriptive Term | (Lambe and Whitman 1969) | (Meyerhof 1956)\nVery Loose | 0 to 15 | 0 to 20\nLoose | 15 to 35 | 20 to 40\nMedium Dense | 35 to 65 | 40 to 60\nDense | 65 to 85 | 60 to 80\nVery Dense | 85 to 100 | 80 to 100",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-5: Relative density (DR) of cohesionless soils"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4b, printed p. 28."
+  },
+  {
+   "section_id": "3-4c",
+   "title": "Relative density of coarse-grained soils from in situ and laboratory testing",
+   "body": "[p. 28] Relative density of coarse-grained soils from in situ and laboratory testing. The relative density (DR) is commonly expressed in terms of void ratio as indicated in equations 3-2 and 3-3.\n\nDR = (emax − e)/(emax − emin) × 100(%) [Eq. 3-2]\n\nDR = (1/γd,min − 1/γd)/(1/γd,min − 1/γd,max) × 100 (%) [Eq. 3-3]\n\nwhere:\nDR = relative density (%)\nemax = void ratio of cohesionless soil in its loosest state\nemin = void ratio of cohesionless in its densest state\n[p. 29]\ne = void ratio of cohesionless in its natural existing state\nγd,max = maximum dry density (pcf) of cohesionless soil in most compact state\nγd,min = minimum dry density (pcf) of cohesionless soil in most loose state\nγd = dry density (pcf) of cohesionless soil in its natural state",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-2",
+     "description": "Equation 3-2, introduced by: \"The relative density (DR) is commonly expressed in terms of void ratio as indicated in equations 3-2 and 3-3.\" (p. 28).",
+     "formula": "DR = (emax − e)/(emax − emin) × 100(%)",
+     "variables": {
+      "DR": "relative density (%)",
+      "emax": "void ratio of cohesionless soil in its loosest state",
+      "emin": "void ratio of cohesionless in its densest state",
+      "e": "void ratio of cohesionless in its natural existing state"
+     },
+     "source": "Typed in from p. 28.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-3",
+     "description": "Equation 3-3, introduced by: \"DR = (emax − e)/(emax − emin) × 100(%)\" (p. 28).",
+     "formula": "DR = (1/γd,min − 1/γd)/(1/γd,min − 1/γd,max) × 100 (%)",
+     "variables": {
+      "DR": "relative density (%)",
+      "γd,max": "maximum dry density (pcf) of cohesionless soil in most compact state",
+      "γd,min": "minimum dry density (pcf) of cohesionless soil in most loose state",
+      "γd": "dry density (pcf) of cohesionless soil in its natural state"
+     },
+     "source": "Typed in from p. 28.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4c, printed pp. 28 to 29."
+  },
+  {
+   "section_id": "3-4c(1)",
+   "title": "Laboratory test methods",
+   "body": "[p. 29] Laboratory test methods.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4c(1), printed p. 29."
+  },
+  {
+   "section_id": "3-4c(1)(a)",
+   "title": "The maximum and minimum dry density of a soil can be obtained from laboratory …",
+   "body": "[p. 29] The maximum and minimum dry density of a soil can be obtained from laboratory testing. The maximum dry density is obtained from laboratory testing ASTM D4253, Standard Test Methods for Maximum Index Density and Unit Weight of Soils Using a Vibratory Table. The minimum dry density is obtained from laboratory testing ASTM D4254, Standard Test Methods for Minimum Index Density and Unit Weight of Soils and Calculation of Relative Density.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4c(1)(a), printed p. 29. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4c(1)(b)",
+   "title": "These test methods (ASTM D4253 and ASTM D4254) are applicable to soils that …",
+   "body": "[p. 29] These test methods (ASTM D4253 and ASTM D4254) are applicable to soils that contain up to 15 percent, by dry mass, of soil particles passing a No. 200 sieve, provided they still have cohesionless, free-draining characteristics. Further, these test methods are applicable to soils in which 100 percent, by dry mass, of soil particles pass a 3-inch sieve. In case of soils that contain larger particles, scalping of particles larger than 3 inches is performed for this testing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4c(1)(b), printed p. 29. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4c(2)",
+   "title": "In situ test methods",
+   "body": "[p. 29] In situ test methods. The in situ void ratio (e) or dry density (γd) of soil can be obtained from a sand cone test (ASTM D1556) or a large-diameter ring density test (ASTM D4914 or ASTM D5030). Sand cone tests (ASTM D1556) are not suitable for soils consisting of unbound granular materials that will not maintain stable sides in the test hole, soils containing appreciable amounts of coarse materials larger than 1.5 inches, and granular soils having high void ratios (very loose soils). When materials contain appreciable amounts of particles larger than 1.5 inch, or when test hole volumes larger than 0.1 ft^3 are required, test method ASTM D4914 or ASTM D5030 are used.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4c(2), printed p. 29."
+  },
+  {
+   "section_id": "3-4d",
+   "title": "Relative density of coarse-grained soils from standard penetration test and laboratory",
+   "body": "[p. 29] Relative density of coarse-grained soils from standard penetration test and laboratory.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d, printed p. 29."
+  },
+  {
+   "section_id": "3-4d(1)",
+   "title": "Relative density of coarse-grained soils provides quantitative measurements of …",
+   "body": "[p. 29] Relative density of coarse-grained soils provides quantitative measurements of relative denseness of soils. In situ methods such as SPT N-value or CPT-qc provide method-specific measurements that can be correlated to relative density of soils. It is important for practitioners to have background in relative density approaches and expected values.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(1), printed p. 29. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4d(2)",
+   "title": "Terzaghi and Peck (1948) first developed a relationship between relative …",
+   "body": "[p. 29] Terzaghi and Peck (1948) first developed a relationship between relative density (DR) and SPT N-values. Meyerhof (1957) developed a relationship between SPT N-values and relative density of clean sands based on chamber tests. Skempton (1986) used laboratory and field test data from the United States and Japan to provide guidance on the relationship between SPT N-values and relative density. SPT N-values corrected for overburden pressure (N1)60 and relative density (DR) are related based on equation 3-4.\n\n[p. 30] DR = √((N1)60/Cd) × 100(%) [Eq. 3-4]\n\nwhere:\nDR = relative density (%)\n(N1)60 = normalized SPT N-Value, (N1)60 = N60 · CN Skempton (1986) suggested that for fine sands (N1)60 values should be reduced in the ratio of 55/60 and for coarse sands, (N1)60 values should be increased in the ratio of 65/60.\nN60 = SPT N-value (blows/ft) corrected to 60% of the theoretical free fall hammer energy, = Nm · (Energy Ratio/60), equation 4-4\nNm = measured SPT N-value in field per ASTM D1586 (blows/ft)\nCN = overburden stress correction factor, equation 4-6\nCd = parameter representing the grain-size effects and is a function of emax − emin, see Section 3-4d(3)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-4",
+     "description": "Equation 3-4, introduced by: \"SPT N-values corrected for overburden pressure (N1)60 and relative density (DR) are related based on equation 3-4.\" (p. 30).",
+     "formula": "DR = √((N1)60/Cd) × 100(%)",
+     "variables": {
+      "DR": "relative density (%)",
+      "(N1)60": "normalized SPT N-Value, (N1)60 = N60 · CN Skempton (1986) suggested that for fine sands (N1)60 values should be reduced in the ratio of 55/60 and for coarse sands, (N1)60 values should be increased in the ratio of 65/60.",
+      "N60": "SPT N-value (blows/ft) corrected to 60% of the theoretical free fall hammer energy, = Nm · (Energy Ratio/60), equation 4-4",
+      "Nm": "measured SPT N-value in field per ASTM D1586 (blows/ft)",
+      "CN": "overburden stress correction factor, equation 4-6",
+      "Cd": "parameter representing the grain-size effects and is a function of emax − emin, see Section 3-4d(3)"
+     },
+     "source": "Typed in from p. 30.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(2), printed pp. 29 to 30. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4d(3)",
+   "title": "Widely recognized empirical relations for relative density were developed by …",
+   "body": "[p. 30] Widely recognized empirical relations for relative density were developed by Skempton (1986) and Cubrinovski and Ishihara (1999).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(3), printed p. 30. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4d(3)(a)",
+   "title": "Skempton (1986) found that the relative density of sand depends on overburden …",
+   "body": "[p. 30] Skempton (1986) found that the relative density of sand depends on overburden pressure, SPT N60 value, particle, size, soil aging, and overconsolidation. Selection of appropriate Cd is an important part of relative density estimation from in situ index properties such as (N1)60. Skempton found good conformance with Terzaghi and Peck’s (1948) classification using Cd ≈ 60.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(3)(a), printed p. 30. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4d(3)(b)",
+   "title": "Cubrinovski and Ishihara (1999) compiled results of 61 relative density …",
+   "body": "[p. 30] Cubrinovski and Ishihara (1999) compiled results of 61 relative density measurements performed on sands and gravel samples, where SPT data of known (N1)78 blow counts (Japanese energy ratio of 78 percent) were available. The relationship of emax – emin for sand and gravel (equation 3-5), suggested by Cubrinovski and Ishihara (1999), is based on D50 values (particle diameter at 50 percent in the cumulative distribution). However, as discussed in paragraph 3-4c, emax – emin values can be more accurately developed using laboratory tests ASTM D4253 and ASTM D4254. Figure 3-1 shows a relationship between emax – emin and D50 of sand and gravel.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(3)(b), printed p. 30. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4d(4)",
+   "title": "Equation 3-6 can be used for Cd estimation for relating to SPT (N1)60 values",
+   "body": "[p. 30] Equation 3-6 can be used for Cd estimation for relating to SPT (N1)60 values. Equation 3-6 has been converted from original Cubrinovski and Ishihara (1999) relationship for use in U.S. practice of SPT (N1)60. In general, Cd values of 45 reflect silty sand, 60 reflects clean sands to gravelly sand, and 60 to 70 reflects gravelly soil to gravel.\n\nemax − emin = 0.23 + 0.06/D50 [Eq. 3-5]\n\n[p. 31] where:\nemax = void ratio of cohesionless soil in its loosest state\nemin = void ratio of cohesionless in its densest state\nD50 = particle size corresponding to 50 percent finer on the cumulative particle size distribution curve (mm)\n\nCd = 11.7/(emax − emin)^1.7   for hammer energy ratio = 60% [Eq. 3-6]\n\nwhere:\nCd = parameter representing the grain-size effects, and therefore, function of emax – emin\nemax = void ratio of cohesionless soil in its loosest state\nemin = void ratio of cohesionless in its densest state\n\nFigure 3-1. Relationship between void ratio range and mean grain diameter (Cubrinovski and Ishihara 1999)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-5",
+     "description": "Equation 3-5, introduced by: \"In general, Cd values of 45 reflect silty sand, 60 reflects clean sands to gravelly sand, and 60 to 70 reflects gravelly soil to gravel.\" (p. 30).",
+     "formula": "emax − emin = 0.23 + 0.06/D50",
+     "variables": {
+      "emax": "void ratio of cohesionless soil in its loosest state",
+      "emin": "void ratio of cohesionless in its densest state",
+      "D50": "particle size corresponding to 50 percent finer on the cumulative particle size distribution curve (mm)"
+     },
+     "notes": "The relationship of emax − emin for sand and gravel suggested by Cubrinovski and Ishihara (1999), paragraph 3-4d(3)(b); Figure 3-1 plots it.",
+     "source": "Typed in from p. 30.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-6",
+     "description": "Equation 3-6, introduced by: \"esionless soil in its loosest state emin = void ratio of cohesionless in its densest state D50 = particle size corresponding to 50 percent finer on the cumulative particle size distribution curve (mm)\" (p. 31).",
+     "formula": "Cd = 11.7/(emax − emin)^1.7   for hammer energy ratio = 60%",
+     "variables": {
+      "Cd": "parameter representing the grain-size effects, and therefore, function of emax – emin",
+      "emax": "void ratio of cohesionless soil in its loosest state",
+      "emin": "void ratio of cohesionless in its densest state"
+     },
+     "notes": "Converted from the original Cubrinovski and Ishihara (1999) relationship for U.S. practice of SPT (N1)60 (paragraph 3-4d(4)).",
+     "source": "Typed in from p. 31.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-1: Relationship between void ratio range and mean grain diameter (Cubrinovski and Ishihara 1999)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4d(4), printed pp. 30 to 31. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4e",
+   "title": "Relative density of gravelly soils",
+   "body": "[p. 32] Relative density of gravelly soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4e, printed p. 32."
+  },
+  {
+   "section_id": "3-4e(1)",
+   "title": "In soils with gravel, the soil behavior will depend on quantity, distribution …",
+   "body": "[p. 32] In soils with gravel, the soil behavior will depend on quantity, distribution, and size of gravel particles (percent retained on #4 sieve) as well as the characteristics of the other soil particles. Gravels could be in particle-to-particle contact in soils with higher gravel contents or stay in a soil matrix without particle contacts. If gravel particles stay in a soil matrix, the soil behaviors could be predominantly influenced by the other soil types in the matrix, such as sand, silt, and clay. In this case, gravel particles could float in a soil matrix. However, if gravel particles are in particle-to-particle contact, the probability of particle breakage could increase due to stress concentration at smaller contact areas.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4e(1), printed p. 32. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4e(2)",
+   "title": "In both cases, SPT or CPT measurements tend higher than for a sand at a similar …",
+   "body": "[p. 32] In both cases, SPT or CPT measurements tend higher than for a sand at a similar relative density. Gravel or larger particle contents as low as 5 to 10 percent can result in higher SPT N60 or CPT-tip resistance, whereas the soil behavior tends be influenced by other soil types in the matrix.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4e(2), printed p. 32. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-4e(3)",
+   "title": "Relative density for gravel can be used to estimate the in situ state of …",
+   "body": "[p. 32] Relative density for gravel can be used to estimate the in situ state of gravelly materials. Rollins (1998) used Cd = 70 to estimate relative density (DR) and shear modulus of gravelly soils, when using equation 3-4. Cubrinovski and Ishihara (1999) can be used for gravelly soils, as the database includes both sand and gravel soils (equation 3-5 and 3-6). Menq (2003) compiled (emax – emin) data from different studies in the United States and Japan (Figure 3-2) to develop a relationship for emax – emin, emax, and emin, based on Cu.\n\nNote. It is not apparent from Menq (2003) whether the tests in the database were performed with scalping particles larger than 3 inches, as required in ASTM D4253 and ASTM D4254. A gradation of 3 inches minus should be used in equations 3-7 to 3-9 to appropriately capture the portion of the soil matrix that would most influence behaviors.\n\nemax − emin = 0.35 (1/Cu) + 0.21, if 200 ≥ Cu ≥ 2 [Eq. 3-7]\n\nemax = 0.95 (1/Cu) + 0.43, if 200 ≥ Cu ≥ 1 [Eq. 3-8]\n\nemin = 0.60 (1/Cu) + 0.22, if 200 ≥ Cu ≥ 2 [Eq. 3-9]\n\nwhere:\nemax = void ratio of cohesionless soil in its loosest state\nemin = void ratio of cohesionless in its densest state\nCu = uniformity coefficient of soil from gradation tests (D60 / D10)\nD60 = particle size corresponding to 60% finer on the cumulative particle size distribution curve (mm)\nD10 = particle size corresponding to 10% finer on the cumulative particle size distribution curve (mm)\n\n[p. 33] Figure 3-2. Variation of (emax – emin) with uniformity coefficient, Cu of gravelly materials tested in the United States and Japan (Winterkom and Fang 1975; Kokusho et al. 1995; Rix 1984) (Figure adopted from Menq 2003)\n\nNote: As shown in Figure 3-2, scatter in data is significant. For example, for a uniformity coefficient, Cu = 50, emax – emin results from the database vary between 0.2 and 0.32. To reduce unconservative bias in using this dataset, the gradation curves (after adjusting by removing materials greater than 3-inch particles) should be used to calculate Cu. It will be consistent with protocol for ASTM D4253 and ASTM D4254. The adjustment should provide a more realistic basis for the engineering properties for the soil portions that would control design and performance of a shallow foundation.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-7",
+     "description": "Equation 3-7, introduced by: \"A gradation of 3 inches minus should be used in equations 3-7 to 3-9 to appropriately capture the portion of the soil matrix that would most influence behaviors.\" (p. 32).",
+     "formula": "emax − emin = 0.35 (1/Cu) + 0.21, if 200 ≥ Cu ≥ 2",
+     "variables": {
+      "emax": "void ratio of cohesionless soil in its loosest state",
+      "emin": "void ratio of cohesionless in its densest state",
+      "Cu": "uniformity coefficient of soil from gradation tests (D60 / D10)"
+     },
+     "source": "Typed in from p. 32.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-8",
+     "description": "Equation 3-8, introduced by: \"emax − emin = 0.35 (1/Cu) + 0.21, if 200 ≥ Cu ≥ 2\" (p. 32).",
+     "formula": "emax = 0.95 (1/Cu) + 0.43, if 200 ≥ Cu ≥ 1",
+     "variables": {
+      "emax": "void ratio of cohesionless soil in its loosest state",
+      "Cu": "uniformity coefficient of soil from gradation tests (D60 / D10)"
+     },
+     "source": "Typed in from p. 32.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-9",
+     "description": "Equation 3-9, introduced by: \"emax = 0.95 (1/Cu) + 0.43, if 200 ≥ Cu ≥ 1\" (p. 32).",
+     "formula": "emin = 0.60 (1/Cu) + 0.22, if 200 ≥ Cu ≥ 2",
+     "variables": {
+      "emin": "void ratio of cohesionless in its densest state",
+      "Cu": "uniformity coefficient of soil from gradation tests (D60 / D10)"
+     },
+     "source": "Typed in from p. 32.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-2: Variation of (emax – emin) with uniformity coefficient, Cu of gravelly materials tested in the United States and Japan (Winterkom and Fang 1975; Kokusho et al. 1995; Rix 1984) (Figure adopted from Menq 2003)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-4e(3), printed pp. 32 to 33. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-5",
+   "title": "Drained shear strength parameters",
+   "body": "[p. 33] Drained shear strength parameters are generally cohesion intercept (c′) and drained friction angle (φ′). In situ and laboratory tests can be used for φ′ estimation. Laboratory tests can be used to estimate cohesion intercept (c′). However, it is typical to neglect c′ in shallow foundation design considering that the values are usually low. This section provides typical values and correlations for estimating drained friction angle.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5, printed p. 33."
+  },
+  {
+   "section_id": "3-5a",
+   "title": "Typical relative density and strength characteristics of silica sands at shallow depths",
+   "body": "[p. 33] Typical relative density and strength characteristics of silica sands at shallow depths.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5a, printed p. 33."
+  },
+  {
+   "section_id": "3-5a(1)",
+   "title": "Evaluation of strength states or similar calculations for shallow foundation …",
+   "body": "[p. 33] Evaluation of strength states or similar calculations for shallow foundation design require strength parameters at shallower depths up to the influence zones, with considerations for outside the influence zones. At these shallower depths, SPT blow counts or CPT tip resistance could be negatively impacted by the lack of confinement.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5a(1), printed p. 33. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-5a(2)",
+   "title": "With construction of the shallow foundation and structures, overburden stress …",
+   "body": "[p. 33] With construction of the shallow foundation and structures, overburden stress increases. Stress-normalized strength relationships (based on overburden stress-corrected blow counts or tip resistance) have potential to overestimate drained friction angle of coarse-grained soils at shallower depths. Considering the limitations regarding [p. 34] in situ testing and empirical relationships for shallow depths, Table 3-6 can be used to estimate drained friction angle of coarse-grained soils at shallow depths. The table is based on different geotechnical design textbooks and manuals.\n\nTable 3-6 Typical relative density and strength characteristics of silica sands (c′ = 0) at shallow depths\nDensity Class | Relative Density (%) | SPT N60 (blows/ft) | CPT qt (tsf) | Peak Friction Angle\n(φ′peak)\nVery Loose | < 20 | < 4 | 10 to 25 | 28\nLoose | 20 to 40 | 4 to 10 | 25 to 60 | 30\nMedium Dense | 40 to 60 | 10 to 30 | 60 to 180 | 32\nDense | 60 to 80 | 30 to 50 | 180 to 300 | 34\nVery Dense | >80 | >50 | >300 | 36\nNote: qt = corrected tip resistance (tsf), reference Table 4-7.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-6: Typical relative density and strength characteristics of silica sands (c′ = 0) at shallow depths"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5a(2), printed pp. 33 to 34. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-5b",
+   "title": "Drained friction angle of sand from standard penetration test",
+   "body": "[p. 34] Drained friction angle of sand from standard penetration test. The friction angle of sand can be expressed for different states such as peak friction angle (φ′peak), critical state friction angle (φ′cv), and residual state friction angle (φ′rs). As shallow foundations are not designed for post-peak strength or large-strain conditions, peak friction angle is applicable for shallow foundation design. An SPT N-value-based relationship by Hatanaka and Uchida (1996) is widely used for estimating the drained friction angle of sand (Figure 3-3). The Hatanaka and Uchida (1996) database includes clean sand (~1 percent fines) to silty sand (up to 30 percent fines).\n\nφ′ = 20° + √(15.4 (N1)60)   (Hatanaka and Uchida 1996) [Eq. 3-10]\n\nwhere:\nφ′ = drained friction angle (degrees), see note\n(N1)60 = normalized SPT N-Value (bpf), (N1)60 = N60 · CN\nN60 = SPT N-value corrected to 60 percent of the theoretical free-fall hammer energy (bpf), reference equation 4-4\nCN = overburden stress correction factor; equation 4-6\n\nNote. This relationship has potential to overestimate drained friction angle for design at shallow depths. A comparison with Table 3-6 should be performed to estimate drained friction angle. Values greater than 36 degrees should be generally avoided for shallow foundation design.\n\n[p. 35] Figure 3-3. Effective friction angle of undisturbed sands vs. normalized standard penetration test-value based on Hatanaka and Uchida (1996) relationship (Mayne 2007b)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-10",
+     "description": "Equation 3-10, introduced by: \"The Hatanaka and Uchida (1996) database includes clean sand (~1 percent fines) to silty sand (up to 30 percent fines).\" (p. 34).",
+     "formula": "φ′ = 20° + √(15.4 (N1)60)   (Hatanaka and Uchida 1996)",
+     "variables": {
+      "φ′": "drained friction angle (degrees), see note",
+      "(N1)60": "normalized SPT N-Value (bpf), (N1)60 = N60 · CN",
+      "N60": "SPT N-value corrected to 60 percent of the theoretical free-fall hammer energy (bpf), reference equation 4-4",
+      "CN": "overburden stress correction factor; equation 4-6"
+     },
+     "notes": "Note printed under the list of symbols: this relationship has potential to overestimate drained friction angle for design at shallow depths; a comparison with Table 3-6 should be performed; values greater than 36 degrees should be generally avoided for shallow foundation design.",
+     "source": "Typed in from p. 34.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-3: Effective friction angle of undisturbed sands vs. normalized standard penetration test-value based on Hatanaka and Uchida (1996) relationship (Mayne 2007b)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5b, printed pp. 34 to 35."
+  },
+  {
+   "section_id": "3-5c",
+   "title": "Drained friction angle of sand from CPTu",
+   "body": "[p. 35] Drained friction angle of sand from CPTu. The drained friction angle (φ′) of sand can be estimated from equation 3-11 (Uzielli et al. 2013) as illustrated in Figure 3-4. This equation is applicable for clean quartz to silica sands where the CPTu soundings are advanced at a rate of 0.787 inches/sec or less, pore water pressures are essentially hydrostatic (pore water ratio, Bq = 0, reference Table 4-7), and the soil behavior type index, Ic < 2.6.\n\nφ′ = 25° (qt1)^0.10   (Uzielli et al. 2013) [Eq. 3-11]\n\nwhere:\nφ′ = drained friction angle (degrees), see note\nqt1 = stress-normalized CPT resistance for sands, (qt/Patm)/(σ′vo/Patm)^0.5 same units as Patm\nqt = corrected total cone resistance (same unit as Patm)\nPatm = atmospheric pressure (at sea level Pa ≈ 2,116.2 psf or 101.3 kPa)\nσ′vo = in situ vertical effective stress (same unit as Patm)\n\nNote. This relationship has potential to overestimate drained friction angle for design of shallow foundations at shallow depths. A comparison with Table 3-6 should be performed to estimate drained friction angle. Values greater than 36 degrees should generally be avoided for shallow foundation design.\n\n[p. 36] Figure 3-4. Effective triaxial friction angle of undisturbed sands vs. normalized cone tip resistance (Uzielli et al. 2013)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-11",
+     "description": "Equation 3-11, introduced by: \"ndings are advanced at a rate of 0.787 inches/sec or less, pore water pressures are essentially hydrostatic (pore water ratio, Bq = 0, reference Table 4-7), and the soil behavior type index, Ic < 2.6.\" (p. 35).",
+     "formula": "φ′ = 25° (qt1)^0.10   (Uzielli et al. 2013)",
+     "variables": {
+      "φ′": "drained friction angle (degrees), see note",
+      "qt1": "stress-normalized CPT resistance for sands, (qt/Patm)/(σ′vo/Patm)^0.5 same units as Patm",
+      "qt": "corrected total cone resistance (same unit as Patm)",
+      "Patm": "atmospheric pressure (at sea level Pa ≈ 2,116.2 psf or 101.3 kPa)",
+      "σ′vo": "in situ vertical effective stress (same unit as Patm)"
+     },
+     "notes": "Applicable for clean quartz to silica sands (paragraph 3-5c). Note printed under the list of symbols: this relationship has potential to overestimate drained friction angle for design of shallow foundations at shallow depths; a comparison with Table 3-6 should be performed; values greater than 36 degrees should generally be avoided for shallow foundation design.",
+     "source": "Typed in from p. 35.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-4: Effective triaxial friction angle of undisturbed sands vs. normalized cone tip resistance (Uzielli et al. 2013)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5c, printed pp. 35 to 36."
+  },
+  {
+   "section_id": "3-5d",
+   "title": "Drained friction angle of sand from dilatometer",
+   "body": "[p. 36] Drained friction angle of sand from dilatometer. A series of direct relationships between the effective stress friction angle of clean sands (φ′) at peak strength to the dilatometer text (DMT) horizontal stress index (KD) were developed by Marchetti (1997) as illustrated in Figure 3-5. The relationships were developed for several specific horizontal stress conditions. A lower bound solution from (Marchetti 1997) is shown in equation 3-12. For clean sands, equation 3-13 (Rix et al. 2018) can also be used.\n\nφ′ = 28.0° + 14.6 · log(KD) − 2.1 · log[(KD)]^2   (Marchetti 1997) [Eq. 3-12]\n\nφ′ = 20.0° + [0.04 + 0.06 · (KD)^(−1)]^(−1)   (Rix et al.2018) [Eq. 3-13]\n\nwhere:\nφ′ = drained friction angle (degrees), see note\nKD = horizontal stress index, see equation 4-14\n\nNote. Equation 3-12 tends to underpredict the drained friction angle by approximately 2° to 4°. A comparison with Table 3-6 should be performed to estimate drained friction angle. Values greater than 36 degrees should be generally avoided for shallow foundation design.\n\n[p. 37] Figure 3-5. Sand friction angle φ′ in terms of KD for different lateral stress states (after Marchetti 1997)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-12",
+     "description": "Equation 3-12, introduced by: \"2018) can also be used.\" (p. 36).",
+     "formula": "φ′ = 28.0° + 14.6 · log(KD) − 2.1 · log[(KD)]^2   (Marchetti 1997)",
+     "variables": {
+      "φ′": "drained friction angle (degrees), see note",
+      "KD": "horizontal stress index, see equation 4-14"
+     },
+     "notes": "A lower bound solution (paragraph 3-5d). Note printed under the list of symbols: Equation 3-12 tends to underpredict the drained friction angle by approximately 2° to 4°; a comparison with Table 3-6 should be performed; values greater than 36 degrees should be generally avoided for shallow foundation design.",
+     "source": "Typed in from p. 36.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-13",
+     "description": "Equation 3-13, introduced by: \"φ′ = 28.0° + 14.6 · log(KD) − 2.1 · log ^2 (Marchetti 1997)\" (p. 36).",
+     "formula": "φ′ = 20.0° + [0.04 + 0.06 · (KD)^(−1)]^(−1)   (Rix et al.2018)",
+     "variables": {
+      "φ′": "drained friction angle (degrees), see note",
+      "KD": "horizontal stress index, see equation 4-14"
+     },
+     "notes": "For clean sands (paragraph 3-5d). The note printed under the list of symbols says a comparison with Table 3-6 should be performed and values greater than 36 degrees should be generally avoided for shallow foundation design.",
+     "source": "Typed in from p. 36.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-5: Sand friction angle φ′ in terms of KD for different lateral stress states (after Marchetti 1997)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5d, printed pp. 36 to 37."
+  },
+  {
+   "section_id": "3-5e",
+   "title": "Drained friction angle of sand and gravel from dry unit weight, void ratio, and relative density",
+   "body": "[p. 37] Drained friction angle of sand and gravel from dry unit weight, void ratio, and relative density. The drained friction angle (φ′) of sand and gravel can be estimated from Figure 3-6 if in situ or compacted dry unit weight, void ratio, and relative density are known.\n\n[p. 38] Figure 3-6. Angle of internal friction for coarse-grained soils based on dry unit weight, void ratio, and relative density (UFC 3-220-10)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 3-6: Angle of internal friction for coarse-grained soils based on dry unit weight, void ratio, and relative density (UFC 3-220-10)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5e, printed pp. 37 to 38."
+  },
+  {
+   "section_id": "3-5f",
+   "title": "Drained friction angle of clay from laboratory",
+   "body": "[p. 38] Drained friction angle of clay from laboratory.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5f, printed p. 38. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-5f(1)",
+   "title": "Appendix D in EM 1110-2-1902 provides guidelines for using three different …",
+   "body": "[p. 38] Appendix D in EM 1110-2-1902 provides guidelines for using three different types of triaxial strength tests: Unconsolidated-Undrained (UU or Q), Consolidated- Undrained (CU or R), and Consolidated-Drained (CD or S). As relatively undisturbed soil samples can be collected in clayey soils, triaxial strength tests are regularly performed on clayey soils for important projects. Figure 3-7 shows drained or effective stress paths for normally consolidated and overconsolidated clays in p′-q space.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5f(1), printed p. 38. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-5f(2)",
+   "title": "As shown on Figure 3-7, an evaluation of stress paths can also be helpful to …",
+   "body": "[p. 38] As shown on Figure 3-7, an evaluation of stress paths can also be helpful to identify the stress history of undisturbed soil and establish whether the soil is normally consolidated or overconsolidated. Figure 3-8 shows determination of cohesion (c′) and friction angle (φ′) from a p′-q plot. The confining pressure for the triaxial tests is selected considering the in situ stress condition and design stress conditions.\n\n[p. 39] Figure 3-7. Effective stress paths for normally consolidated and heavily overconsolidated clay in p′-q space\n\nFigure 3-8. Effective stress parameters (effective cohesion intercept and drained friction angle) from triaxial strength tests",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 3-7: Effective stress paths for normally consolidated and heavily overconsolidated clay in p′-q space",
+    "Figure 3-8: Effective stress parameters (effective cohesion intercept and drained friction angle) from triaxial strength tests"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-5f(2), printed pp. 38 to 39. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-6",
+   "title": "Undrained shear strength",
+   "body": "[p. 39] Undrained shear strength (su) values vary in response to a particular loading condition, and is, therefore, stress path-dependent. Generally, su varies over depth as a function of in situ confining stress.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6, printed p. 39."
+  },
+  {
+   "section_id": "3-6a",
+   "title": "Undrained shear strength of clay from standard penetration test",
+   "body": "[p. 39] Undrained shear strength of clay from standard penetration test. For soft to firm intact clays and structured or sensitive clays, the dynamic energy of the SPT is inappropriate and correlations with undrained shear strength could be unreliable. In the case of stiff to hard, insensitive clays, the SPT may be used to estimate undrained shear strength. Even for these clays, site-specific relationships for a given clay in a [p. 40] particular geologic setting should be developed, considering geologic setting, plasticity, origin, and other aspects of the clay formation (Rix et al. 2018).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6a, printed pp. 39 to 40."
+  },
+  {
+   "section_id": "3-6b",
+   "title": "Undrained shear strength of clay from cone penetration test",
+   "body": "[p. 40] Undrained shear strength of clay from cone penetration test. CPTs are commonly used for undrained shear strength (su) estimates using equation 3-14. The su estimates based on cone penetration data depend on the empirical cone factor.\n\nsu = (qt − σvo)/Nkt [Eq. 3-14]\n\nwhere:\nsu = undrained shear strength (tsf)\nqt = total cone resistance (tsf)\nσvo = total in situ vertical stress (tsf)\nNkt = empirical cone factors, see Note\n\nNote. Empirical cone factor (Nkt) values have been found to range between 6 and 30, with commonly used values ranging from 12 to 15 (Lunne et al. 1997). Robertson and Cabal (2022) recommends an average value of 14. Multiple studies suggest that Nkt increases with increasing plasticity and decreases with increasing soil sensitivity. For very sensitive, fine-grained soils, values as low as 6 are reported. In many projects, an Nkt value of 15 is assumed without consideration of the actual site-specific soil conditions or predominant shear modes. In critical projects, laboratory tests from adjacent borings should be performed to determine site-specific Nkt values.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-14",
+     "description": "Equation 3-14, introduced by: \"The su estimates based on cone penetration data depend on the empirical cone factor.\" (p. 40).",
+     "formula": "su = (qt − σvo)/Nkt",
+     "variables": {
+      "su": "undrained shear strength (tsf)",
+      "qt": "total cone resistance (tsf)",
+      "σvo": "total in situ vertical stress (tsf)",
+      "Nkt": "empirical cone factors, see Note"
+     },
+     "notes": "Note printed under the list of symbols: Nkt values have been found to range between 6 and 30, with commonly used values ranging from 12 to 15 (Lunne et al. 1997); Robertson and Cabal (2022) recommends an average value of 14; for very sensitive, fine-grained soils values as low as 6 are reported.",
+     "source": "Typed in from p. 40.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6b, printed p. 40."
+  },
+  {
+   "section_id": "3-6c",
+   "title": "Undrained shear strength of clay from dilatometer",
+   "body": "[p. 40] Undrained shear strength of clay from dilatometer. Marchetti (1980) suggested estimating the undrained shear strength (su) as a function of the KD-value as shown in equation 3-15 for cohesive soils (ID < 1.2). This equation incorporates a value of (su/σ′vc)nc = 0.22 which was obtained from field vane tests as suggested by Mesri (1975).\n\nsu = 0.22 σ′vc (0.5 KD)^1.25 [Eq. 3-15]\n\nwhere:\nsu = undrained shear strength (tsf)\nσ′vc = initial vertical effective stress, prior to blade penetration (tsf)\nKD = horizontal stress index, see equation 4-14",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-15",
+     "description": "Equation 3-15, introduced by: \"This equation incorporates a value of (su/σ′vc)nc = 0.22 which was obtained from field vane tests as suggested by Mesri (1975).\" (p. 40).",
+     "formula": "su = 0.22 σ′vc (0.5 KD)^1.25",
+     "variables": {
+      "su": "undrained shear strength (tsf)",
+      "σ′vc": "initial vertical effective stress, prior to blade penetration (tsf)",
+      "KD": "horizontal stress index, see equation 4-14"
+     },
+     "notes": "Marchetti (1980), for cohesive soils (ID < 1.2); incorporates (su/σ′vc)nc = 0.22 from field vane tests as suggested by Mesri (1975) (paragraph 3-6c).",
+     "source": "Typed in from p. 40.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6c, printed p. 40."
+  },
+  {
+   "section_id": "3-6d",
+   "title": "Typical undrained strength characteristics of clay",
+   "body": "[p. 40] Typical undrained strength characteristics of clay. As discussed in paragraph 3-6a, su estimates using SPT N60 tend to be unreliable. Considering the limitations regarding in situ testing and empirical relationships for shallow depths, Table 3-7 can be used to estimate undrained shear strength of clayey soils at shallow depths for an initial estimate. Cross checking or confirmation of these values with laboratory test results is recommended.\n\n[p. 41] Table 3-7 Typical undrained strength characteristics of clays^1\nConsistency | su, psf (kPa) | SPT N60 (blows/ft) | CPT qn^(2,3) tsf (MPa) | Field Test\nVery Soft | 0 to 250 (0 to 12) | 0 to 2 | 0 to 2 (0 to 0.2) | Squeezes between fingers when fist is closed\nSoft | 250 to 500 (12 to 24) | 2 to 4 | 2 to 4 (0.2 to 0.4) | Easily molded by fingers\nMedium | 500 to 1,000 (24 to 48) | 4 to 8 | 4 to 8 (0.4 to 0.8) | Molded by strong pressure with fingers\nStiff | 1,000 to 2,000 (48 to 96) | 8 to 15 | 8 to 15 (0.8 to 1.5) | Dented slightly by finger pressure\nVery Stiff | 2,000 to 4,000 (96 to 192) | 15 to 30 | 15 to 30 (1.5 to 3.0) | Dented only slightly by pencil point\nHard | > 4,000 (192) | > 30 | > 30 (3.0) | –\nNotes:\n[1] Strength values in tables are not for use in design without additional verification, but to present the designer with general characteristics of the consistency of clays.\n[2] Use qn rather than q1 or qc in CPT undrained strength correlations to avoid depth bias.\n[3] tsf = tons per square foot.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-7: Typical undrained strength characteristics of clays^1"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6d, printed pp. 40 to 41."
+  },
+  {
+   "section_id": "3-6e",
+   "title": "Undrained shear strength using SHANSEP (stress history and normalized soil engineering properties) method",
+   "body": "[p. 41] Undrained shear strength using SHANSEP (stress history and normalized soil engineering properties) method. Soil strength of plastic, fine-grained soils due to shallow foundation loading depends on stress history of soils. The overconsolidation ratio (OCR), established from an oedometer test, is a common measure of stress history of soil, reference paragraph 6-5d. A plastic, fine-grained soil that has experienced higher loading in the past due to geologic processes (such as glaciation) or artificial preloading or groundwater level change, or drainage, etc., has a higher OCR than a soil that has not been subjected to subsequent loading. If a soil is loaded and then unloaded, it retains part of its stress history, which can then influence soil behavior if it is later reloaded (Holtz et al. 2011).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6e, printed p. 41."
+  },
+  {
+   "section_id": "3-6f",
+   "title": "Undrained shear strength ratio",
+   "body": "[p. 41] Undrained shear strength ratio.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6f, printed p. 41."
+  },
+  {
+   "section_id": "3-6f(1)",
+   "title": "General",
+   "body": "[p. 41] General. The undrained shear strength ratio in clayey soils increases with increasing OCR. Ladd and Foote (1974) developed the SHANSEP method to estimate undrained strengths of clayey soils. This procedure also reduces impacts of disturbances that could occur in soil sample collection, transportation, sample preparation, and laboratory testing. Equation 3-16 relates undrained strength ratio with OCR. Figure 3-9 presents examples of su/σ′vc vs. OCR for different soils (Ladd et al. 1977).\n\nsu/σ′vo = S (OCR)^m [Eq. 3-16]\n\n[p. 42] where:\nsu = undrained shear strength, (psf or kPa)\nσ′vo = in situ vertical effective stress (same unit as su)\nS = undrained shear strength ratio (su/σ′vo)NC, use S = 0.22 if no laboratory data\nOCR = overconsolidation ratio\nm = 0.8 ± 0.1 for most soils (if laboratory test data is not available, use 0.8)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-16",
+     "description": "Equation 3-16 as printed (p. 41).",
+     "formula": "su/σ′vo = S (OCR)^m",
+     "variables": {
+      "su": "undrained shear strength, (psf or kPa)",
+      "σ′vo": "in situ vertical effective stress (same unit as su)",
+      "S": "undrained shear strength ratio (su/σ′vo)NC, use S = 0.22 if no laboratory data",
+      "OCR": "overconsolidation ratio",
+      "m": "0.8 ± 0.1 for most soils (if laboratory test data is not available, use 0.8)"
+     },
+     "source": "Typed in from p. 41.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6f(1), printed pp. 41 to 42."
+  },
+  {
+   "section_id": "3-6f(2)",
+   "title": "Modified SHANSEP procedure",
+   "body": "[p. 42] Modified SHANSEP procedure. Mayne (2005) developed a modified version of SHANSEP equation considering experimental data and the critical state soil mechanics (CSSM) framework (equation 3-17 and Figure 3-10). These strength parameters indicate direct simple shear (DSS) mode.\n\n(su/σ′vo)DSS = (sinφ′/2) OCR^Λ [Eq. 3-17]\n\nwhere:\nsu = undrained shear strength (psf or kPa)\nσ′vo = in situ vertical effective stress (same unit as su)\nOCR = overconsolidation ratio\nφ′ = effective or drained friction angle (degrees)\nΛ = plastic volumetric strain ratio (1 – recompression index/compression index) clays of low to medium sensitivity exhibit 0.7 < Λ < 0.8, whereas structured and sensitive soils show 0.9 < Λ < 1.0\n\n[p. 43] Figure 3-9. Undrained shear strength ratio, su/σ′vc vs. overconsolidation ratio from consolidated-undrained (CKo U) direct simple shear tests on five clays (after Ladd and Edgers 1972)\n\n[p. 44] Figure 3-10. Experimental and critical state soil mechanics variation of undrained direct simple shear strengths with overconsolidation ratio (Mayne 2005)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-17",
+     "description": "Equation 3-17, introduced by: \"These strength parameters indicate direct simple shear (DSS) mode.\" (p. 42).",
+     "formula": "(su/σ′vo)DSS = (sinφ′/2) OCR^Λ",
+     "variables": {
+      "su": "undrained shear strength (psf or kPa)",
+      "σ′vo": "in situ vertical effective stress (same unit as su)",
+      "OCR": "overconsolidation ratio",
+      "Λ": "plastic volumetric strain ratio (1 – recompression index/compression index) clays of low to medium sensitivity exhibit 0.7 < Λ < 0.8, whereas structured and sensitive soils show 0.9 < Λ < 1.0"
+     },
+     "notes": "The subscript DSS: direct simple shear mode (paragraph 3-6f(2)).",
+     "source": "Typed in from p. 42.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-9: Undrained shear strength ratio, su/σ′vc vs. overconsolidation ratio from consolidated-undrained (CKo U) direct simple shear tests on five clays (after Ladd and Edgers 1972)",
+    "Figure 3-10: Experimental and critical state soil mechanics variation of undrained direct simple shear strengths with overconsolidation ratio (Mayne 2005)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6f(2), printed pp. 42 to 44."
+  },
+  {
+   "section_id": "3-6g",
+   "title": "Undrained shear strength from vane shear strength tests",
+   "body": "[p. 44] Undrained shear strength from vane shear strength tests. Vane shear testing is a useful method for determining undrained shear strength (su), stress history, and sensitivity in soft clays, silts, and organic soils. VSTs are not applicable in sandy soils or non-plastic silts as these can allow drainage during testing. VSTs should be performed according to ASTM D2573. Field vane shear strength values require correction based on plasticity index (PI) values to calculate mobilized shear strength. Bjerrum’s (1973) correction factor (μ) has been commonly used to calculate mobilized shear strength (equation 3-18 and Figure 3-11). ASTM D2573 also presents the vane shear correction factor (μR), as per Chandler (1988) and Aas et al. (1988) for determining su. The Chandler correction factor depends on time to failure, along with PI.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6g, printed p. 44."
+  },
+  {
+   "section_id": "3-6g(1)",
+   "title": "Determination of overconsolidation ratio from vane shear test results",
+   "body": "[p. 44] Determination of overconsolidation ratio from vane shear test results. The undrained shear strength of softer soils, as measured by the VSTs can be used to estimate OCR using the SHANSEP relationship (Ladd and Foote 1974; Ladd et al. 1977; and Ladd 1991).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6g(1), printed p. 44."
+  },
+  {
+   "section_id": "3-6g(2)",
+   "title": "Sensitivity of soft soils",
+   "body": "[p. 44] Sensitivity of soft soils. Sensitivity of soft soils can be calculated as the ratio of peak to remolded shear strengths. Sensitivity of soft soils is a useful index to estimate residual strength at large deformations. It can be important for slope stability of shallow structures on slopes or conditions where construction of a structure on shallow foundation on soft soils may induce large deformations. Slope stability is not covered in this manual.\n\n[p. 45] (su)fv(mob) = μ(su)fv [Eq. 3-18]\n\nwhere:\n(su)fv(mob) = mobilized undrained shear strength from field vane shear test (tsf)\nμ = correction factor (Bjerrum 1973; Chandler 1988; or Aas et al. 1988); see Figure 3-11 for Bjerrum 1972 plot after Ladd et al. 1977\n(su)fv = peak undrained shear strength from field vane shear test (tsf)\n\nFigure 3-11. Field vane shear correction factor, μ vs plasticity index derived from embankment failures (after Ladd et al. 1977)\n\nNote: Data in profile should include peak and remolded undrained shear strength values from field vane shear tests, (su)fv and (sur)fv, respectively. These values should be presented as the adjusted values after the correction factor is applied.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-18",
+     "description": "Equation 3-18, introduced by: \"Slope stability is not covered in this manual.\" (p. 45).",
+     "formula": "(su)fv(mob) = μ(su)fv",
+     "variables": {
+      "(su)fv(mob)": "mobilized undrained shear strength from field vane shear test (tsf)",
+      "μ": "correction factor (Bjerrum 1973; Chandler 1988; or Aas et al. 1988); see Figure 3-11 for Bjerrum 1972 plot after Ladd et al. 1977",
+      "(su)fv": "peak undrained shear strength from field vane shear test (tsf)"
+     },
+     "source": "Typed in from p. 45.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-11: Field vane shear correction factor, μ vs plasticity index derived from embankment failures (after Ladd et al. 1977)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-6g(2), printed pp. 44 to 45."
+  },
+  {
+   "section_id": "3-7",
+   "title": "Consolidation and rate of consolidation parameters",
+   "body": "[p. 45] Consolidation theory is described in geotechnical engineering textbooks. Section 7-9 provides step-by-step procedures for estimating consolidation parameters from laboratory consolidation test data. This section provides typical values and empirical relationships for consolidation and rate of consolidation parameters that can be used to evaluate the reasonableness of laboratory test results.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7, printed p. 45."
+  },
+  {
+   "section_id": "3-7a",
+   "title": "Compression (Cc) and recompression index (Cr)",
+   "body": "[p. 45] Compression (Cc) and recompression index (Cr). Typical values of compression index (Cc) of various natural soils are provided in Table 3-8. Empirical relationships are also provided in Table 3-9, based on soil index properties. The recompression index [p. 46] (Cr) is typically 5 to 10 percent of the magnitude of Cc. Typical values of Cr range from 0.015 to 0.035, with nearly all results between 0.002 and 0.05 (Leonards 1976).\n\nTable 3-8 Typical values of compression index (Cc)\nSoil | Compression Index (Cc) | Source\nBoston blue Clay, undisturbed (CL) | 0.30 to 0.50 | Modified after Lambe and Whitman 1969\nCincinnati Clay (CL) | 0.17 | Modified after Lambe and Whitman 1969\nLouisiana Clay undisturbed | 0.33 | Modified after Lambe and Whitman 1969\nNew Orleans Clay, undisturbed (CH) | 0.29 | Modified after Lambe and Whitman 1969\nSiburua Clay (CH) | 0.21 | Modified after Lambe and Whitman 1969\nNa-Montmorillonite (CH) | 0.21 to 0.26 | Modified after Lambe and Whitman 1969\nNormally consolidated medium sensitive Clays | 0.2 to 0.5 | Holtz et al. 2011\nChicago silty Clay (CL) | 0.15 to 0.3 | Holtz et al. 2011\nBoston blue Clays (CL) | 0.3 to 0.5 | Holtz et al. 2011\nVicksburg buckshot Clay (CH) | 0.5 to 0.6 | Holtz et al. 2011\nSan Francisco Bay Mud (CL) | 0.4 to 1.2 | Holtz et al. 2011\nSan Francisco Old Bay Clays (CH) | 0.7 to 0.9 | Holtz et al. 2011\nBangkok Clay (CH) | 0.4 | Holtz et al. 2011\nSwedish medium sensitive Clays (CL-CH) | 1 to 3 | Holtz et al. 2011\nCanadian Leda Clays (CL-CH) | 1 to 4 | Holtz et al. 2011\nMexico City Clay (MH) | 7 to 10 | Holtz et al. 2011\nOrganic Clays (OH) | > 4.0 | Holtz et al. 2011\nOrganic silt and clayey Silts (ML-MH) | 1.5 to 4.0 | Holtz et al. 2011\nPeats (Pt) | 10 to 15 | Holtz et al. 2011\nUniform Sand, loose (SP) | 0.05 to 0.06 | EM 1110-1-1904\nFor σv^(;) = 2,000 to 8,000 pcf\nUniform Sand, dense (SP) | 0.02 to 0.03 | EM 1110-1-1904; For σv^(;) = 2,000 to 8,000 pcf\nUniform Silts (ML) | 0.20 | EM 1110-1-1904; For σv^(;) = 2,000 to 8,000 pcf\n\n[p. 47] Table 3-9 Empirical relationships for compression index (Cc) based on soil index properties\nApplicability | Equation | Source\nFor remolded Clay | Cc= 0.007 (LL – 7%) | Skempton 1944\nNormally consolidated Clay with sensitivity less than 4 | Cc= 0.009 (LL – 10%) | Terzaghi and Peck 1948\nFor organic soil, Peat | Cc= 0.0115 ωn | Moran et al. 1959\nAll Clays | Cc= 1.15 (e0 – 0.35) | Nishida 1956\nVarved Clays | Cc= (1 + e0) [0.1 + (ωn – 25) 0.006] | NAVFAC DM 7.1\nNote: ωn = natural water content, LL = liquid limit, and e0 = initial void ratio.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-8: Typical values of compression index (Cc)",
+    "Table 3-9: Empirical relationships for compression index (Cc) based on soil index properties"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7a, printed pp. 45 to 47."
+  },
+  {
+   "section_id": "3-7b",
+   "title": "Compression and recompression ratios",
+   "body": "[p. 47] Compression and recompression ratios. Values of compression index (Cc) and recompression index (Cr) can be normalized with respect to the void space available in the soil by dividing by (1+e0) as shown in equations 3-19 and 3-20. The resulting values are expressed in terms of vertical strain (such as Cεc and Cεr) and can be used as an alternative to estimating the compression and recompression indices directly where the initial void ratio is known. For soils of similar geologic origin, site-specific correlations can be established for Cεc and Cεr versus initial void ratio. Ranges of compression ratio (Cεc) and recompression ratio (Cεr) for different classifications of soil compressibility are provided in Table 3-10 (Coduto et al. 2016).\n\nCompression Ratio, Cεc = Cc/(1 + e0) [Eq. 3-19]\n\nRecompression Ratio, Cεr = Cr/(1 + e0) [Eq. 3-20]\n\nTable 3-10 Typical ranges of soil compressibility based on compression and recompression ratios (Cεc and Cεr)\n(Cc/(1 + e0)) (for NC clays) or (Cr/(1 + e0)) (for OC clays) | Description of Soil Compressibility\n0 to 0.05 | Very slightly compressible\n0.05 to 0.10 | Slightly compressible\n0.10 to 0.20 | Moderately compressible\n0.20 to 0.35 | Highly compressible\n> 0.35 | Very highly compressible",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-19",
+     "description": "Equation 3-19 as printed (p. 47).",
+     "formula": "Compression Ratio, Cεc = Cc/(1 + e0)",
+     "variables": {
+      "Cεc": "compression ratio (paragraph 3-7b)",
+      "Cc": "compression index (Cc), the slope of the virgin compression part of the void ratio (e) versus effective vertical stress (σ′z) curve from the consolidation test (paragraph 3-2c(2)(a))"
+     },
+     "notes": "The print gives no list of symbols under it; Table 3-10 gives ranges of the ratio.",
+     "source": "Typed in from p. 47.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-20",
+     "description": "Equation 3-20, introduced by: \"Compression Ratio, Cεc = Cc/(1 + e0)\" (p. 47).",
+     "formula": "Recompression Ratio, Cεr = Cr/(1 + e0)",
+     "variables": {
+      "Cεr": "recompression ratio (paragraph 3-7b)",
+      "Cr": "recompression index (Cr), the slope of the recompression part of the void ratio (e) versus effective vertical stress (σ′z) curve from the consolidation test (paragraph 3-2c(2)(b))"
+     },
+     "notes": "The print gives no list of symbols under it; Table 3-10 gives ranges of the ratio.",
+     "source": "Typed in from p. 47.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 3-10: Typical ranges of soil compressibility based on compression and recompression ratios (Cεc and Cεr)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7b, printed p. 47."
+  },
+  {
+   "section_id": "3-7c",
+   "title": "Coefficient of consolidation",
+   "body": "[p. 47] Coefficient of consolidation. The coefficient of consolidation (Cv) is a key parameter used to describe the rate at which saturated clay or other soil undergoes consolidation when subjected to an increase in effective stress. Larger Cv values indicate faster consolidation. In general, Cv is greater for stiff clays than soft clays. [p. 48] Often, consolidation is faster in the field than determined in a laboratory due to sand seams and fissures that can shorten the drainage path.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7c, printed pp. 47 to 48."
+  },
+  {
+   "section_id": "3-7c(1)",
+   "title": "Laboratory determination of Cv and correlations with liquid limit",
+   "body": "[p. 48] Laboratory determination of Cv and correlations with liquid limit. For incremental stress consolidation tests (ASTM D2435), Cv can be calculated from the time curves using one of several different methods, reference paragraph 7-18c. For the constant rate of strain (CRS) consolidation test (ASTM D4186), Cv can be calculated at every point where the excess pore water pressure, average stress, and strain are known. The CRS consolidation test provides increased resolution of the compression curve in the vicinity of the preconsolidation stress. CRS testing also allows the determination of the coefficient of consolidation (Cv) over the entire range of loading as long as the excess pore water pressures are in an acceptable range. Table 3-11 presents typical values of coefficient of consolidation (Cv). Correlations between coefficient of consolidation and liquid limit are shown in Figure 3-12.\n\nTable 3-11 Typical values of coefficient of consolidation (Cv)\nSoil | Coefficient of Consolidation (Cv) (cm^2/sec, x 10^(-4))\nBoston blue Clay (CL) (Source: Ladd and Luscher 1965) | 40 ± 20\nChicago silty Clay (CL) (Source: Terzaghi and Peck 1967) | 8 to 11\nOrganic Silts and Clays (OH) (Source: Sivakugan 1990) | 1 to 10\nGlacial lake Clay (CL) (Source: Wallace and Otto 1964) | 6.5 to 8.7\nSwedish medium sensitive Clay (CL-CH) (Source: Holtz and Broms 1972) | –\n1. Laboratory | 0.4 to 0.7\n2. Field | 0.7 to 3.0\nSan Francisco Bay Mud (CL) (Source: Holtz et al. 2011) | 2 to 4\nMexico City Clay (MH) (Source: Leonards and Girault 1961) | 0.9 to 1.5\n\n[p. 49] Figure 3-12. Approximate relationship between coefficient of consolidation (Cv) and liquid limit (UFC 3-220-10)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 3-12: Approximate relationship between coefficient of consolidation (Cv) and liquid limit (UFC 3-220-10)"
+   ],
+   "tables": [
+    "Table 3-11: Typical values of coefficient of consolidation (Cv)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7c(1), printed pp. 48 to 49."
+  },
+  {
+   "section_id": "3-7c(2)",
+   "title": "Hydraulic conductivity relationship with coefficient of consolidation",
+   "body": "[p. 49] Hydraulic conductivity relationship with coefficient of consolidation. Hydraulic conductivity (k) can be indirectly calculated at each loading step based on Terzaghi’s consolidation theory per equation 3-21. Indirect methods tend to give much lower hydraulic conductivity values in the low-compressibility zone. Mesri et al. (1994) reported that the indirect method typically underestimates the value of permeability by a factor of 2.\n\nHydraulic Conductivity, k = Cv · mv · γw [Eq. 3-21]\n\nwhere:\nk = hydraulic conductivity or permeability (ft/sec)\nCv = coefficient of consolidation (ft^2/sec), reference paragraph 7-18c\nmv = coefficient of volumetric consolidation (psf^(-1))\nγw = unit weight of water (pcf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-21",
+     "description": "Equation 3-21, introduced by: \"(1994) reported that the indirect method typically underestimates the value of permeability by a factor of 2.\" (p. 49).",
+     "formula": "Hydraulic Conductivity, k = Cv · mv · γw",
+     "variables": {
+      "k": "hydraulic conductivity or permeability (ft/sec)",
+      "Cv": "coefficient of consolidation (ft^2/sec), reference paragraph 7-18c",
+      "mv": "coefficient of volumetric consolidation (psf^(-1))",
+      "γw": "unit weight of water (pcf)"
+     },
+     "source": "Typed in from p. 49.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7c(2), printed p. 49."
+  },
+  {
+   "section_id": "3-7d",
+   "title": "Coefficient of secondary compression",
+   "body": "[p. 49] Coefficient of secondary compression.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7d, printed p. 49."
+  },
+  {
+   "section_id": "3-7d(1)",
+   "title": "General",
+   "body": "[p. 49] General. The coefficient of secondary compression (Cα) is defined as the creep deformation over one log cycle of time, t following the end of primary consolidation. The magnitude of Cα is stress-dependent for a particular soil and should be determined at an effective stress similar to that expected in situ. Soil compressibility is characterized for Cα in Table 3-12. As with the compression ratios, the coefficient of secondary compression can be defined as function of strain (Cεα) or as a function of the void ratio Cα. Mesri (1973) summarized the data shown in Figure 3-13 to estimate the modified secondary compression index (Cεα) of NC clays using the natural water [p. 50] content. Based on that data, Cεα can be estimated using equation 3-22. For overconsolidated clays, Cεα generally ranges from 0.0005 and 0.001 (Kulhawy and Mayne 1990). The procedure for estimating the coefficient of secondary compression from oedometer test data is addressed in paragraph 7-19.\n\nCεα = Cα/(1 + e) = 0.0001 ωn [Eq. 3-22]\n\nwhere:\nCεα = modified secondary compression index\nCα = coefficient of secondary compression\nωn = natural water content (%)\n\nFigure 3-13. Modified secondary compression index vs. natural water content (after Mesri et al. 1973)\n\nTable 3-12 Soil compressibility based on coefficient of secondary compression Cα (Mesri 1973)\nCα % (per log cycle) | Secondary Compression\n< 0.2 | Very low\n0.4 | Low\n0.8 | Medium\n1.6 | High\n3.2 | Very high\n> 6.4 | Extremely high",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-22",
+     "description": "Equation 3-22, introduced by: \"The procedure for estimating the coefficient of secondary compression from oedometer test data is addressed in paragraph 7-19.\" (p. 50).",
+     "formula": "Cεα = Cα/(1 + e) = 0.0001 ωn",
+     "variables": {
+      "Cεα": "modified secondary compression index",
+      "Cα": "coefficient of secondary compression",
+      "ωn": "natural water content (%)",
+      "e": "void ratio (the symbol is not in the list of symbols under the equation)"
+     },
+     "notes": "From Figure 3-13 (after Mesri et al. 1973); for overconsolidated clays Cεα generally ranges from 0.0005 to 0.001 (paragraph 3-7d(1)).",
+     "source": "Typed in from p. 50.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-13: Modified secondary compression index vs. natural water content (after Mesri et al. 1973)"
+   ],
+   "tables": [
+    "Table 3-12: Soil compressibility based on coefficient of secondary compression Cα (Mesri 1973)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7d(1), printed pp. 49 to 50."
+  },
+  {
+   "section_id": "3-7d(2)",
+   "title": "Compression index ratio, Cα/Cc",
+   "body": "[p. 51] Compression index ratio, Cα/Cc. Mesri and Godlewski (1977) observed that the value of Cα/Cc, referred to as the compression index ratio, is approximately a constant over the range of engineering stresses for a wide variety of natural soils. Empirical correlations are provided in Table 3-13 for coefficient of secondary compression and compression index ratio (Cα/Cc). The rate of secondary compression generally increases with increases in the liquid limit and natural water contents.\n\nTable 3-13 Empirical correlation between Cα/Cc for various types of soil (Mesri and Godlewski 1977)\nGrouping Soil | Typical values of\nCα/Cc\nInorganic Clays and Silts\nLeda Clay (Canada) | 0.03 to 0.06\nSoft blue Clay (Victoria, B.C.) | 0.026\nSensitive Clay, Portland, ME | 0.025 to 0.055\nHudson River Silt | 0.03 to 0.06\nMexico City Clay | 0.03 to 0.035\nSan Francisco Bay Mud | 0.04 to 0.06\nNew Liskeard (Canada) varved Clay | 0.03 to 0.06\nOrganic Clays and Silts\nOrganic Clays and Silts | 0.04 to 0.06\nNew Haven organic clay Silt | 0.040 to 0.075\nNorfolk organic Silt | 0.05\nPost-glacial Swedish Clay | 0.05 to 0.07\nPeats\nAmorphous and fibrous Peat | 0.035 to 0.083\nCanadian Muskeg | 0.09 to 0.10\nPeat | 0.05 to 0.085\nFibrous Peat | 0.06 to 0.085",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-13: Empirical correlation between Cα/Cc for various types of soil (Mesri and Godlewski 1977)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7d(2), printed p. 51."
+  },
+  {
+   "section_id": "3-7e",
+   "title": "Preconsolidation stress and overconsolidation ratio from standard penetration test",
+   "body": "[p. 51] Preconsolidation stress and overconsolidation ratio from standard penetration test. Empirical correlations can be used to estimate the OCR of a sand. For OCR in sands, silty sands, and sandy silts, equation 3-23 (Mayne 2007a) can be used. Equation 3-24, suggested by Kulhawy and Chen 2007, is intended for gravels. For sandy soils, preconsolidation stress can be more difficult to estimate due to difficulties in separating the effects of relative density from OCR.\n\nOCR = σ′p/σ′zo = (0.468 Pa · (N60)^m)/σ′zo   (sands, silty sand, sandy silts) [Eq. 3-23]\n\n[p. 52] OCR = σ′p/σ′zo = (0.15 Pa · (N60)^m)/σ′zo   (gravels) [Eq. 3-24]\n\nwhere:\nOCR = overconsolidation ratio\nσ′p = preconsolidation stress (tsf)\nσ′zo = initial vertical effective stress (tsf)\nPa = atmospheric pressure (tsf), 1 Pa ≈ 1 tsf\nN60 = corrected SPT N-value for field procedure and hammer efficiency (blows/ft)\nm = exponent, 0.6 for clean quartzite sands or 0.8 for silty sands to sandy silts (such as Piedmont), 1.0 for intact clays and clayey silts",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-23",
+     "description": "Equation 3-23, introduced by: \"For sandy soils, preconsolidation stress can be more difficult to estimate due to difficulties in separating the effects of relative density from OCR.\" (p. 51).",
+     "formula": "OCR = σ′p/σ′zo = (0.468 Pa · (N60)^m)/σ′zo   (sands, silty sand, sandy silts)",
+     "variables": {
+      "OCR": "overconsolidation ratio",
+      "σ′p": "preconsolidation stress (tsf)",
+      "σ′zo": "initial vertical effective stress (tsf)",
+      "Pa": "atmospheric pressure (tsf), 1 Pa ≈ 1 tsf",
+      "N60": "corrected SPT N-value for field procedure and hammer efficiency (blows/ft)",
+      "m": "exponent, 0.6 for clean quartzite sands or 0.8 for silty sands to sandy silts (such as Piedmont), 1.0 for intact clays and clayey silts"
+     },
+     "notes": "Mayne 2007a, for sands, silty sands and sandy silts (paragraph 3-7e).",
+     "source": "Typed in from p. 51.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-24",
+     "description": "Equation 3-24, introduced by: \"OCR = σ′p/σ′zo = (0.468 Pa · (N60)^m)/σ′zo (sands, silty sand, sandy silts)\" (p. 52).",
+     "formula": "OCR = σ′p/σ′zo = (0.15 Pa · (N60)^m)/σ′zo   (gravels)",
+     "variables": {
+      "OCR": "overconsolidation ratio",
+      "σ′p": "preconsolidation stress (tsf)",
+      "σ′zo": "initial vertical effective stress (tsf)",
+      "Pa": "atmospheric pressure (tsf), 1 Pa ≈ 1 tsf",
+      "N60": "corrected SPT N-value for field procedure and hammer efficiency (blows/ft)",
+      "m": "exponent, 0.6 for clean quartzite sands or 0.8 for silty sands to sandy silts (such as Piedmont), 1.0 for intact clays and clayey silts"
+     },
+     "notes": "Suggested by Kulhawy and Chen 2007, intended for gravels (paragraph 3-7e).",
+     "source": "Typed in from p. 52.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7e, printed pp. 51 to 52."
+  },
+  {
+   "section_id": "3-7f",
+   "title": "Preconsolidation stress from cone penetration test",
+   "body": "[p. 52] Preconsolidation stress from cone penetration test. Mayne 2014 suggested a correlation expressed as equation 3-25, which applies to clays and sands. The correlation was derived from cavity expansion—critical state solution for clays, large calibration chamber tests on sand, and field and laboratory data worldwide. The interpreted σ′p results should be compared with other information, such as oedometer results on high-quality, undisturbed samples, as well as geologic stress history. Additional corroboration may be obtained by comparison with other in situ tests, such as DMT and/or VST.\n\nσ′p = 0.33 (qt − σvo)^m · (0.01 pa)^(1−m)   (clays and sands) [Eq. 3-25]\n\nwhere:\nσ′p = preconsolidation stress (psf)\nqc = measured end-bearing component of cone resistance, psf\nqt = see Table 4-7 (psf); for sandy soils qc = qt\nσvo = total vertical stress (psf)\nm = function of SBT Ic and typically 0.72 in clean quartz to silica sands, 0.80 in silty sands, 0.85 in silt mixtures, 0.9 in organic clays, 1.0 in intact clays of low sensitivity. For fissured clays, m ≈1.1+ may be applicable. m ≈ 1 − 0.28/[1 + (Ic/2.65)^25]; where Ic= CPT material index, see Table 4-7\nPa = atmospheric pressure, ≈ 2,000 psf",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-25",
+     "description": "Equation 3-25, introduced by: \"Additional corroboration may be obtained by comparison with other in situ tests, such as DMT and/or VST.\" (p. 52).",
+     "formula": "σ′p = 0.33 (qt − σvo)^m · (0.01 pa)^(1−m)   (clays and sands)",
+     "variables": {
+      "σ′p": "preconsolidation stress (psf)",
+      "qc": "measured end-bearing component of cone resistance, psf",
+      "qt": "see Table 4-7 (psf); for sandy soils qc = qt",
+      "σvo": "total vertical stress (psf)",
+      "m": "function of SBT Ic and typically 0.72 in clean quartz to silica sands, 0.80 in silty sands, 0.85 in silt mixtures, 0.9 in organic clays, 1.0 in intact clays of low sensitivity. For fissured clays, m ≈1.1+ may be applicable. m ≈ 1 − 0.28/[1 + (Ic/2.65)^25]; where Ic= CPT material index, see Table 4-7",
+      "pa": "atmospheric pressure, ≈ 2,000 psf (printed Pa in the list of symbols)"
+     },
+     "notes": "Mayne 2014 (paragraph 3-7f).",
+     "source": "Typed in from p. 52.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7f, printed p. 52."
+  },
+  {
+   "section_id": "3-7g",
+   "title": "Overconsolidation ratio from dilatometer",
+   "body": "[p. 53] Overconsolidation ratio from dilatometer. OCR can be calculated for uncemented clays with ID < 1.2 and sands/silts with ID > 1.2 using equation 3-26 (Marchetti 1980). Kulhawy and Mayne (1990) showed test data suggesting that the coefficient 0.5 in equation 3-26 can vary in the range of 0.27 to 0.75 depending on the degree of fissuring, sensitivity, and geologic origin. For all soil types, equation 3-27 (Marchetti 1980) can be used.\n\nOCR = (0.5KD)^1.56 [Eq. 3-26]\n\nwhere:\nOCR = overconsolidation ratio (dimensionless)\nKD = horizontal stress index, see equation 4-14\n\nNote. For NC clays with OCR = 1, KD = 2. This correlation does not apply to “cemented-structured-aged” clays. It is more difficult to correlate DMT data with OCR of sands, and only very rough estimates can be obtained using both M from DMT data and qc from the CPT.\n\nOCR ≈ 0.51(po − uo) [Eq. 3-27]\n\nwhere:\nOCR = overconsolidation ratio (dimensionless)\npo = contact stress or corrected A-Reading (kPa), reference equation 4-10\nuo = hydrostatic pore water pressure (kPa), reference equation 4-12",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-26",
+     "description": "Equation 3-26, introduced by: \"For all soil types, equation 3-27 (Marchetti 1980) can be used.\" (p. 53).",
+     "formula": "OCR = (0.5KD)^1.56",
+     "variables": {
+      "OCR": "overconsolidation ratio (dimensionless)",
+      "KD": "horizontal stress index, see equation 4-14"
+     },
+     "notes": "Note printed under the list of symbols: for NC clays with OCR = 1, KD = 2; this correlation does not apply to cemented-structured-aged clays. The coefficient 0.5 can vary in the range of 0.27 to 0.75 depending on the degree of fissuring, sensitivity and geologic origin (paragraph 3-7g).",
+     "source": "Typed in from p. 53.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-27",
+     "description": "Equation 3-27, introduced by: \"It is more difficult to correlate DMT data with OCR of sands, and only very rough estimates can be obtained using both M from DMT data and qc from the CPT.\" (p. 53).",
+     "formula": "OCR ≈ 0.51(po − uo)",
+     "variables": {
+      "OCR": "overconsolidation ratio (dimensionless)",
+      "po": "contact stress or corrected A-Reading (kPa), reference equation 4-10",
+      "uo": "hydrostatic pore water pressure (kPa), reference equation 4-12"
+     },
+     "notes": "Marchetti 1980, for all soil types (paragraph 3-7g).",
+     "source": "Typed in from p. 53.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7g, printed p. 53."
+  },
+  {
+   "section_id": "3-7h",
+   "title": "Preconsolidation stress from pressuremeter",
+   "body": "[p. 53] Preconsolidation stress from pressuremeter. Briaud (2013) established relationships for determining the preconsolidation stress (σ′p) of clay and sand from PMT data, equations 3-28 and 3-29. The yield pressure (Py) of the PMT (at the end of the straight line of the PMT curve) is a yield pressure comparable to the preconsolidation stress (σ′p).\n\nσ′p = 0.5pl (clays) [Eq. 3-28]\n\nσ′p = 0.33pl (sands) [Eq. 3-29]\n\nwhere:\nσ′p = preconsolidation stress (tsf)\npl = limit pressure (tsf), reference paragraph 4-10d(4)\n\nNote. To limit creep deformations, designing beyond the yield pressure (Py) is not recommended, reference paragraph 4-10d(4).",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-28",
+     "description": "Equation 3-28, introduced by: \"The yield pressure (Py) of the PMT (at the end of the straight line of the PMT curve) is a yield pressure comparable to the preconsolidation stress (σ′p).\" (p. 53).",
+     "formula": "σ′p = 0.5pl (clays)",
+     "variables": {
+      "σ′p": "preconsolidation stress (tsf)",
+      "pl": "limit pressure (tsf), reference paragraph 4-10d(4)"
+     },
+     "notes": "Briaud (2013). Note printed under the list of symbols: to limit creep deformations, designing beyond the yield pressure (Py) is not recommended, reference paragraph 4-10d(4).",
+     "source": "Typed in from p. 53.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-29",
+     "description": "Equation 3-29, introduced by: \"σ′p = 0.5pl (clays)\" (p. 53).",
+     "formula": "σ′p = 0.33pl (sands)",
+     "variables": {
+      "σ′p": "preconsolidation stress (tsf)",
+      "pl": "limit pressure (tsf), reference paragraph 4-10d(4)"
+     },
+     "notes": "Briaud (2013). Note printed under the list of symbols: to limit creep deformations, designing beyond the yield pressure (Py) is not recommended, reference paragraph 4-10d(4).",
+     "source": "Typed in from p. 53.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-7h, printed p. 53."
+  },
+  {
+   "section_id": "3-8",
+   "title": "Hydraulic conductivity",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-8, printed p. 53."
+  },
+  {
+   "section_id": "3-8a",
+   "title": "General",
+   "body": "[p. 53] General. The hydraulic conductivity (k) depends primarily on the size and shape of the soil grains, void ratio, shape and arrangement of voids, degree of saturation, and temperature. Hydraulic conductivity of soil in saturated conditions is typically used for steady-state seepage analyses. Time-dependent settlement of soil depends on its [p. 54] hydraulic conductivity, among other factors. Hydraulic conductivity parameters are required to evaluate drainage conditions, uplift pressure, and time rate of settlement. EM 1110-2-1901 and EM 1110-2-1913 provide guidance for determining hydraulic conductivity of different types of soils. Hydraulic conductivity of fine-grained soils should be obtained from laboratory tests or guidance provided in EM 1110-2-1901 and EM 1110-2-1913.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-8a, printed pp. 53 to 54."
+  },
+  {
+   "section_id": "3-8b",
+   "title": "Hydraulic conductivity of sand and gravel",
+   "body": "[p. 54] Hydraulic conductivity of sand and gravel.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-8b, printed p. 54."
+  },
+  {
+   "section_id": "3-8b(1)",
+   "title": "Empirical equations such as Kozeny-Carman and Hazen equations have been …",
+   "body": "[p. 54] Empirical equations such as Kozeny-Carman and Hazen equations have been modified recently to account for both relative density and grain size distributions of soils. These equations can be used to develop site-specific k-values.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-8b(1), printed p. 54. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-8b(2)",
+   "title": "A modified version of the Kozeny-Carman equation, as proposed by Chapuis and …",
+   "body": "[p. 54] A modified version of the Kozeny-Carman equation, as proposed by Chapuis and Aubertin (2003) requires a complete gradation curve (both sieve and hydrometer), as it accounts for the surface area of the particles. In the absence of hydrometer tests, the estimated k-values could tend higher, as the tail portion of the grain size distribution impacts the estimate. Equation 3-30 (Chapuis 2004) provides a relationship for hydraulic conductivity values based on void ratio (e) and D10 (mm) values, which is considered a modification of the original Hazen (1911) equation. Equation 3-30 is applicable to sand and gravel specimens having an effective diameter D10 between 0.13 and 1.98 mm and a void ratio (e) between 0.4 and 1.5.\n\nk = 2.4622 [D10^2 · e0^3/(1 + e0)]^0.7825 [Eq. 3-30]\n\nwhere:\nk = hydraulic conductivity (cm/s)\nD10 = particle size corresponding to 10 percent finer on the cumulative particle size distribution curve (mm)\ne0 = in situ void ratio",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-30",
+     "description": "Equation 3-30, introduced by: \"Equation 3-30 is applicable to sand and gravel specimens having an effective diameter D10 between 0.13 and 1.98 mm and a void ratio (e) between 0.4 and 1.5.\" (p. 54).",
+     "formula": "k = 2.4622 [D10^2 · e0^3/(1 + e0)]^0.7825",
+     "variables": {
+      "k": "hydraulic conductivity (cm/s)",
+      "D10": "particle size corresponding to 10 percent finer on the cumulative particle size distribution curve (mm)",
+      "e0": "in situ void ratio"
+     },
+     "notes": "A modified version of the Kozeny-Carman equation (paragraph 3-8b(2)); applicable to sand and gravel specimens having an effective diameter D10 between 0.13 and 1.98 mm and a void ratio (e) between 0.4 and 1.5.",
+     "source": "Typed in from p. 54.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-8b(2), printed p. 54. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-9",
+   "title": "Soil stiffness parameters",
+   "body": "[p. 54] Soil stiffness parameters used in analysis depend on mode of loading and can be evaluated using laboratory testing, in situ testing, correlation from other soil parameters, or geophysical testing. Soil stiffness parameters are used for evaluating soil deformation due to static or dynamic loadings. Figure 3-14 illustrates the definitions of various forms of elastic moduli in terms of loading and applied boundary conditions. Based on theory of elasticity, equations 3-32 through 3-35 correlate, K, G, E, M with Poisson’s ratio (υ). Units for G, E, M, and K are expressed in stress/strain format using same unit system, such as English or Metric system. Evaluation of bulk modulus and constrained modulus is complicated when Poisson’s ratio (υ) approaches 0.5 due to the term (1 − 2υ) in the denominator of the equation.\n\n[p. 55] Poisson's ratio, υ = −εh/εv [Eq. 3-31]\n\nBulk modulus, K = E/(3(1 − 2υ)) [Eq. 3-32]\n\nShear modulus, G = E/(2(1 + υ)) [Eq. 3-33]\n\nElastic modulus, E = (9K · G)/(3K + G) [Eq. 3-34]\n\nConstrained modulus, M = (E(1 − υ))/((1 + υ)(1 − 2υ)) [Eq. 3-35]\n\nwhere:\nυ = Poisson’s ratio\nεh = horizontal strain, in/in\nεv = vertical strain, in/in\n\n[p. 56] Figure 3-14. Definitions of elastic moduli in terms of loading and applied boundary conditions (adapted from Rix et al. 2018)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-31",
+     "description": "Equation 3-31, introduced by: \"Evaluation of bulk modulus and constrained modulus is complicated when Poisson’s ratio (υ) approaches 0.5 due to the term (1 − 2υ) in the denominator of the equation.\" (p. 55).",
+     "formula": "Poisson's ratio, υ = −εh/εv",
+     "variables": {
+      "υ": "Poisson’s ratio",
+      "εh": "horizontal strain, in/in",
+      "εv": "vertical strain, in/in"
+     },
+     "source": "Typed in from p. 55.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-32",
+     "description": "Equation 3-32, introduced by: \"Poisson's ratio, υ = −εh/εv\" (p. 55).",
+     "formula": "Bulk modulus, K = E/(3(1 − 2υ))",
+     "variables": {
+      "υ": "Poisson’s ratio",
+      "K": "bulk modulus",
+      "E": "elastic modulus"
+     },
+     "source": "Typed in from p. 55.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-33",
+     "description": "Equation 3-33, introduced by: \"Bulk modulus, K = E/(3(1 − 2υ))\" (p. 55).",
+     "formula": "Shear modulus, G = E/(2(1 + υ))",
+     "variables": {
+      "υ": "Poisson’s ratio",
+      "G": "shear modulus",
+      "E": "elastic modulus"
+     },
+     "source": "Typed in from p. 55.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-34",
+     "description": "Equation 3-34, introduced by: \"Shear modulus, G = E/(2(1 + υ))\" (p. 55).",
+     "formula": "Elastic modulus, E = (9K · G)/(3K + G)",
+     "variables": {
+      "E": "elastic modulus",
+      "K": "bulk modulus",
+      "G": "shear modulus"
+     },
+     "source": "Typed in from p. 55.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-35",
+     "description": "Equation 3-35, introduced by: \"Elastic modulus, E = (9K · G)/(3K + G)\" (p. 55).",
+     "formula": "Constrained modulus, M = (E(1 − υ))/((1 + υ)(1 − 2υ))",
+     "variables": {
+      "υ": "Poisson’s ratio",
+      "M": "constrained modulus",
+      "E": "elastic modulus"
+     },
+     "source": "Typed in from p. 55.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-14: Definitions of elastic moduli in terms of loading and applied boundary conditions (adapted from Rix et al. 2018)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9, printed pp. 54 to 56."
+  },
+  {
+   "section_id": "3-9a",
+   "title": "Poisson’s ratio",
+   "body": "[p. 56] Poisson’s ratio. Poisson’s ratio is defined as the ratio of the change in width per unit width of a material, to the change in its length per unit length, as a result of strain. Typical values of Poisson’s ratio (υ) are shown in Table 3-14. For isotropic elastic materials, the range of υ is from 0 to 0.5. A perfectly incompressible (no volume change under applied deformation) isotropic material deformed elastically at small strains would [p. 57] have a Poisson’s ratio of exactly 0.5. Materials that do not deform in the lateral direction (such as cork) under elastic compression have a Poisson’s ratio that approaches zero.\n\nTable 3-14 Range of Poisson’s ratio (adapted from Coduto et al. 2016)\nType of Soil | Drainage Condition | Poisson’s Ratio, υ\nClay (saturated) | undrained | 0.49\nClay (partially saturated) | undrained | 0.30 to 0.40\nDense Sand | drained | 0.30 to 0.40\nLoose Sand | drained | 0.10 to 0.30\nSandstone | – | 0.25 to 0.30\nGranite | – | 0.23 to 0.27\nHardened concrete | – | 0.15 to 0.25",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-14: Range of Poisson’s ratio (adapted from Coduto et al. 2016)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9a, printed pp. 56 to 57."
+  },
+  {
+   "section_id": "3-9b",
+   "title": "Elastic modulus",
+   "body": "[p. 57] Elastic modulus. Modulus of elasticity is an important soil property for elastic settlement analysis of foundations and for estimation of dynamic soil behavior. In many foundation settlement formulas, the elastic modulus (E) is the stiffness parameter routinely used. The elastic modulus can be defined in different ways along the stress-strain curve as illustrated in Figure 3-16. The elastic modulus definition commonly referenced for shallow foundation design is the secant modulus determined at about 1/2 the deviator stress (Das 2008). When soils show nearly linear behavior in a stress range, the secant modulus definition and tangent definition are nearly the same.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b, printed p. 57."
+  },
+  {
+   "section_id": "3-9b(1)",
+   "title": "Undrained clayey soils",
+   "body": "[p. 57] Undrained clayey soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(1), printed p. 57."
+  },
+  {
+   "section_id": "3-9b(1)(a)",
+   "title": "The elastic modulus of undrained clay (Eu) is commonly used to estimate the …",
+   "body": "[p. 57] The elastic modulus of undrained clay (Eu) is commonly used to estimate the immediate settlement of a saturated clay due to foundation loading. The elastic modulus can be determined using in situ tests, triaxial shear strength testing on undisturbed samples, or estimated from correlations with other soil properties. Eu can be correlated with the undrained shear strength by the relationship shown in equation 3-36, with β being correlated to OCR and plasticity. D’Appolonia et al. (1971) published results of ten large-scale field studies that found correlation between Eu, undrained shear strength, soil sensitivity, overconsolidation ratio, and plasticity index.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(1)(a), printed p. 57. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-9b(1)(b)",
+   "title": "D’Appolonia et al",
+   "body": "[p. 57] D’Appolonia et al. also concluded that for highly plastic clays, the laboratory-consolidated, undrained shear tests provided a close approximation of field behavior and unconfined compression. It was also observed that unconsolidated, undrained tests significantly underestimated Eu, and for most clays, consolidated undrained Triaxial tests (both CIU and CKoU) resulted in similar Eu to the measured field conditions. Duncan and Buchagani (1976) advanced the work, compiling results of various studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and overconsolidation, as shown in Table 3-15.\n\n[p. 58] Eu = β · su [Eq. 3-36]\n\nwhere:\nEu = undrained elastic modulus of clay (psf or kPa)\nβ = dimensionless factor from Figure 3-5\nsu = undrained shear strength of clay (psf or kPa)\n\nFigure 3-15. Elastic modulus for undrained clays (adapted from Duncan and Buchagani 1976)\n\n[p. 59] Table 3-15 Elastic modulus of undrained clays (after Duncan and Buchagani 1976)\nOCR | PI Range | β Range\n1 | PI < 30 | 600 to 1,500\n1 | 30 < PI < 50 | 300 to 600\n1 | PI > 50 | 125 to 300\n2 | PI < 30 | 575 to 1,450\n2 | 30 < PI < 50 | 275 to 575\n2 | PI > 50 | 115 to 75\n4 | PI < 30 | 400 to 975\n4 | 30 < PI < 50 | 185 to 400\n4 | PI > 50 | 70 to 185\n6 | PI < 30 | 250 to 600\n6 | 30 < PI < 50 | 115 to 250\n6 | PI > 50 | 60 to 115",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-36",
+     "description": "Equation 3-36, introduced by: \"arious studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and overconsolidation, as shown in Table 3-15.\" (p. 58).",
+     "formula": "Eu = β · su",
+     "variables": {
+      "Eu": "undrained elastic modulus of clay (psf or kPa)",
+      "β": "dimensionless factor from Figure 3-5",
+      "su": "undrained shear strength of clay (psf or kPa)"
+     },
+     "notes": "As printed, the list of symbols says β is from 'Figure 3-5'; the figure printed under the equation, Figure 3-15, is the one titled 'Elastic modulus for undrained clays'.",
+     "source": "Typed in from p. 58.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 3-15: Elastic modulus for undrained clays (adapted from Duncan and Buchagani 1976)"
+   ],
+   "tables": [
+    "Table 3-15: Elastic modulus of undrained clays (after Duncan and Buchagani 1976)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(1)(b), printed pp. 57 to 59. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-9b(2)",
+   "title": "Elastic modulus from in situ deformation tests",
+   "body": "[p. 59] Elastic modulus from in situ deformation tests. Flat plate DMT and pressuremeter tests (PMT) are two in situ test “deformation” methods that are commonly used to test the stiffness of the ground in situ. The elastic modulus (E) has been related empirically to the pressuremeter modulus (Eo) by a rheological coefficient (see paragraph 4-10d(4)) and can be estimated by determining the shear modulus (G) using cavity expansion theory. If required, E can also be derived from the DMT modulus (MDMT) using the theory of elasticity. For a Poisson’s ratio of ~ 0.2, theory of elasticity provides E = 0.9M . In view of this approximation, E and M are often used interchangeably.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(2), printed p. 59."
+  },
+  {
+   "section_id": "3-9b(3)",
+   "title": "Elastic modulus from laboratory triaxial tests",
+   "body": "[p. 59] Elastic modulus from laboratory triaxial tests. Consolidated, undrained triaxial testing of clay soils reasonably approximates field conditions. As stiffness of soil depends on the confining pressure, strain level, stress level, and drainage conditions, different definitions of modulus of elasticity (E) can be used, considering the application. Figure 3-16 illustrates a representative stress-strain curve of a soil in triaxial compression mode with different types of modulus of elasticity values (Rix et al. 2018). The type of modulus of elasticity (E) is defined by the loading conditions and specific point on the stress-strain curve, such as (1) initial modulus (Emax), (2) secant modulus, Esec = q/εa, (3) tangent modulus, Etan = Δq/εa, and (4) unload-reload modulus, Eur. For foundation design, it is typical to use the secant modulus at 1/2 of the deviator stress.\n\n[p. 60] Figure 3-16. Representative modulus of elasticity in a typical stress-strain strength curve of soil in triaxial compression mode (Rix et al. 2018)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 3-16: Representative modulus of elasticity in a typical stress-strain strength curve of soil in triaxial compression mode (Rix et al. 2018)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(3), printed pp. 59 to 60."
+  },
+  {
+   "section_id": "3-9b(4)",
+   "title": "Drained sand and gravels",
+   "body": "[p. 60] Drained sand and gravels.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(4), printed p. 60."
+  },
+  {
+   "section_id": "3-9b(4)(a)",
+   "title": "The elastic modulus for sand and gravel is best determined by in situ testing …",
+   "body": "[p. 60] The elastic modulus for sand and gravel is best determined by in situ testing, either directly or through correlation with strength measurements. Table 3-16 summarizes the general range of E that can be expected (Das 2017), and equations 3-37, 7-16, and 7-17 provide formulas correlating E with SPT and CPT measurements. The horizontal stress-strain can be directly measured using the flat plate DMT or E can be estimated from SPT and CPT measurements. DMT testing to estimate elastic modulus and constrained modulus is presented in paragraph 3-9c(2).\n\nTable 3-16 General range of modulus of elasticity (E) for sand (after Das 2017)\nType | Es (psi)\nCoarse and Medium Coarse Sand\nLoose | 3,626 to 5,076\nMedium Dense | 4,351 to 5,802\nDense | 5,802 to 6,527\nFine Sand\nLoose | 2,900 to 3,626\nMedium Dense | 3,626 to 5,076\nDense | 5,076 to 5,802\nSandy Silt\nLoose | 1,160 to 1,740\nMedium Dense | 1,450 to 1,740\nDense | 1,740 to 2,476",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 3-16: General range of modulus of elasticity (E) for sand (after Das 2017)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(4)(a), printed p. 60. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-9b(4)(b)",
+   "title": "Correlations with standard penetration test data",
+   "body": "[p. 61] Correlations with standard penetration test data. Correlation of E with SPT blowcount data is inherently approximate and much scatter is observed in the literature. It is generally better to use CPT or DMT measurements to estimate E, due the higher degree of reliability and repeatability. Codutu (2016) identifies equation 3-37 to estimate E from SPT data, as it is noted to be generally conservative. In general, an OCR equal to 1 is assumed unless there is compelling evidence otherwise.\n\nE = β0 √OCR + β1 N60 [Eq. 3-37]\n\nwhere:\nE = elastic modulus (psf)\nβo and β1 = factors related to soil classification, see Table 3-17\nN60 = corrected SPT N-value for field procedures, per equation 4-4 (blows/ft)\nOCR = overconsolidation ratio\n\nTable 3-17 βo and β1 factors\nSoil Classification | βo (psf) | β1 (psf)\nClean Sands (SW and SP) | 100,000 | 24,000\nSilty and Clayey Sands (SM and SC) | 50,000 | 12,000",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-37",
+     "description": "Equation 3-37, introduced by: \"In general, an OCR equal to 1 is assumed unless there is compelling evidence otherwise.\" (p. 61).",
+     "formula": "E = β0 √OCR + β1 N60",
+     "variables": {
+      "E": "elastic modulus (psf)",
+      "N60": "corrected SPT N-value for field procedures, per equation 4-4 (blows/ft)",
+      "OCR": "overconsolidation ratio",
+      "β0, β1": "factors related to soil classification, see Table 3-17 (printed 'βo and β1' in the list of symbols)"
+     },
+     "notes": "Identified by Coduto (2016) to estimate E from SPT data, noted to be generally conservative; in general an OCR equal to 1 is assumed unless there is compelling evidence otherwise (paragraph 3-9b(4)(b)).",
+     "source": "Typed in from p. 61.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 3-17: βo and β1 factors"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(4)(b), printed p. 61."
+  },
+  {
+   "section_id": "3-9b(5)",
+   "title": "Unsaturated soils",
+   "body": "[p. 61] Unsaturated soils. For soils, the elastic modulus varies in relation to degree of saturation. The higher the degree of saturation, the lower the elastic modulus. This is especially true for clay, and much less significant for sand. Lu and Kaya (2013) proposed a power-law relationship to relate the elastic modulus E to the degree of saturation. The elastic modulus is a maximum when the soil is dry and minimum when the specimen is wet. For some clays evaluated by Lu and Kaya, the ratio of Emin to Emax was as low as about 0.1 but was generally negligible for sand with intermediate levels of reduction for silts. For most static foundation designs on clay, it is conservative to use E from saturated undrained testing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9b(5), printed p. 61."
+  },
+  {
+   "section_id": "3-9c",
+   "title": "Constrained modulus",
+   "body": "[p. 61] Constrained modulus. The constrained modulus (M) is used in the one-dimensional (1-D) analysis of consolidation settlement and is simply the ratio of axial stress to axial strain in confined compression. The constrained modulus (M) can be determined from laboratory oedometer test data (see paragraph 7-7) as the inverse of the coefficient of volume compressibility (mv) or correlated with in situ test data. For an ideal elastic soil, M is related to the elastic modulus by equation 3-35. Codutu (2016) indicates that the constrained modulus is commonly used for settlement analysis (as opposed to the e-log-p method) when the soil is overconsolidated and behaves in a linear way, and when strain vs load is plotted on a linear scale.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9c, printed p. 61."
+  },
+  {
+   "section_id": "3-9c(1)",
+   "title": "Constrained modulus from cone penetration test",
+   "body": "[p. 61] Constrained modulus from cone penetration test. Existing correlations between constrained modulus and cone resistance typically have the form shown in equation 3-38.\n\n[p. 62] M = αM(qt − σv0) [Eq. 3-38]\n\nwhere:\nM = constrained modulus (tsf)\nαM = constrained modulus cone factor (dimensionless), see Note\nqt = corrected tip resistance (tsf), see Table 4-7\nσv0 = total vertical stress (tsf)\n\nNote. Mayne (2006) showed that αM varies with soil type and net cone resistance with values of 1 to 10, where the low values apply to soft clays. Robertson and Cabal (2022) related the coefficient αM to the normalized cone resistance (Qt) and the soil behavior index (Ic) as shown in equations 3-39a, 3-39b, and 3-40.\n\nαM = Qt when Qt ≤ 14   (fine-grained soils, where Ic > 2.2) [Eq. 3-39a]\n\nαM = 14 when Qt > 14   (fine-grained soils, where Ic > 2.2) [Eq. 3-39b]\n\nαM = 0.0188 [10^(0.55 Ic + 1.68)]   (coarse-grained soils, where Ic < 2.2) [Eq. 3-40]\n\nwhere:\nαM = constrained modulus cone factor (dimensionless), used in equation 3-38\nQt = normalized cone resistance, see Table 4-7\nIc = soil behavior index, see Table 4-7",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-38",
+     "description": "Equation 3-38, introduced by: \"Existing correlations between constrained modulus and cone resistance typically have the form shown in equation 3-38.\" (p. 62).",
+     "formula": "M = αM(qt − σv0)",
+     "variables": {
+      "M": "constrained modulus (tsf)",
+      "αM": "constrained modulus cone factor (dimensionless), see Note",
+      "qt": "corrected tip resistance (tsf), see Table 4-7",
+      "σv0": "total vertical stress (tsf)"
+     },
+     "notes": "Note printed under the list of symbols: Mayne (2006) showed that αM varies with soil type and net cone resistance with values of 1 to 10, where the low values apply to soft clays; Robertson and Cabal (2022) related αM to Qt and Ic as shown in equations 3-39a, 3-39b and 3-40.",
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-39a",
+     "description": "Equation 3-39a, introduced by: \"Robertson and Cabal (2022) related the coefficient αM to the normalized cone resistance (Qt) and the soil behavior index (Ic) as shown in equations 3-39a, 3-39b, and 3-40.\" (p. 62).",
+     "formula": "αM = Qt when Qt ≤ 14   (fine-grained soils, where Ic > 2.2)",
+     "variables": {
+      "αM": "constrained modulus cone factor (dimensionless), used in equation 3-38",
+      "Qt": "normalized cone resistance, see Table 4-7",
+      "Ic": "soil behavior index, see Table 4-7"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-39b",
+     "description": "Equation 3-39b, introduced by: \"αM = Qt when Qt ≤ 14 (fine-grained soils, where Ic > 2.2)\" (p. 62).",
+     "formula": "αM = 14 when Qt > 14   (fine-grained soils, where Ic > 2.2)",
+     "variables": {
+      "αM": "constrained modulus cone factor (dimensionless), used in equation 3-38",
+      "Qt": "normalized cone resistance, see Table 4-7",
+      "Ic": "soil behavior index, see Table 4-7"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-40",
+     "description": "Equation 3-40, introduced by: \"αM = 14 when Qt > 14 (fine-grained soils, where Ic > 2.2)\" (p. 62).",
+     "formula": "αM = 0.0188 [10^(0.55 Ic + 1.68)]   (coarse-grained soils, where Ic < 2.2)",
+     "variables": {
+      "αM": "constrained modulus cone factor (dimensionless), used in equation 3-38",
+      "Ic": "soil behavior index, see Table 4-7"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9c(1), printed pp. 61 to 62."
+  },
+  {
+   "section_id": "3-9c(2)",
+   "title": "Constrained modulus from dilatometer",
+   "body": "[p. 62] Constrained modulus from dilatometer. The DMT constrained modulus (M or MDMT) is obtained at the pre-insertion in situ vertical effective stress (σ′vo). MDMT is the vertical drained confined tangent modulus. MDMT is calculated by applying a correction factor to the DMT modulus (ED). MDMT should be used in the same way as the constrained modulus determined from laboratory oedometer testing, reference paragraph 7-7. For sand or clay, MDMT can be calculated per equation 3-41 using the correction factor RM. The equations defining RM = f(ID, KD) were established by Marchetti (1980).\n\nConstrained Modulus, MDMT = RM · ED [Eq. 3-41]\n\nRM = 0.14 + 2.36 log KD   for ID ≤ 0.6 [Eq. 3-41a]\n\nRM = RM,0 + (2.5 − RM,0) log KD   for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6) [Eq. 3-41b]\n\nRM = 0.5 + 2.0 log KD   for ID > 3 [Eq. 3-41c]\n\n[p. 63] RM = 0.32 + 2.18 log KD   for KD > 10 [Eq. 3-41d]\n\nwhere:\nMDMT = constrained modulus from DMT (bar); note that 1 bar ≈ 1.044 tsf\nRM = correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85\nED = DMT modulus, see equation 4-15\nKD = horizontal stress index, see equation 4-14\nID = material index, see equation 4-13\n\nNote. The correction factor (RM) is a function of the intermediate DMT parameters (KD and ID). KD typically varies in the range of 2 to 20, with corresponding values of RM in the range of 1 to 3 (Marchetti et al. 2001). Typically, MDMT varies in the range of 4 to 4,000 bar (~ 4.18 tsf to 4,177 tsf).",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-41",
+     "description": "Equation 3-41, introduced by: \"The equations defining RM = f(ID, KD) were established by Marchetti (1980).\" (p. 62).",
+     "formula": "Constrained Modulus, MDMT = RM · ED",
+     "variables": {
+      "MDMT": "constrained modulus from DMT (bar); note that 1 bar ≈ 1.044 tsf",
+      "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
+      "ED": "DMT modulus, see equation 4-15"
+     },
+     "notes": "For sand or clay; the equations defining RM = f(ID, KD), 3-41a to 3-41d, were established by Marchetti (1980) (paragraph 3-9c(2)).",
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-41a",
+     "description": "Equation 3-41a, introduced by: \"Constrained Modulus, MDMT = RM · ED\" (p. 62).",
+     "formula": "RM = 0.14 + 2.36 log KD   for ID ≤ 0.6",
+     "variables": {
+      "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
+      "KD": "horizontal stress index, see equation 4-14",
+      "ID": "material index, see equation 4-13"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-41b",
+     "description": "Equation 3-41b, introduced by: \"Constrained Modulus, MDMT = RM · ED\" (p. 62).",
+     "formula": "RM = RM,0 + (2.5 − RM,0) log KD   for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)",
+     "variables": {
+      "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
+      "KD": "horizontal stress index, see equation 4-14",
+      "ID": "material index, see equation 4-13"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-41c",
+     "description": "Equation 3-41c, introduced by: \"RM = RM,0 + (2.5 − RM,0) log KD for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)\" (p. 62).",
+     "formula": "RM = 0.5 + 2.0 log KD   for ID > 3",
+     "variables": {
+      "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
+      "KD": "horizontal stress index, see equation 4-14",
+      "ID": "material index, see equation 4-13"
+     },
+     "source": "Typed in from p. 62.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-41d",
+     "description": "Equation 3-41d, introduced by: \"RM = RM,0 + (2.5 − RM,0) log KD for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)\" (p. 63).",
+     "formula": "RM = 0.32 + 2.18 log KD   for KD > 10",
+     "variables": {
+      "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
+      "KD": "horizontal stress index, see equation 4-14"
+     },
+     "notes": "Note printed under the list of symbols: KD typically varies in the range of 2 to 20, with corresponding values of RM in the range of 1 to 3 (Marchetti et al. 2001); typically MDMT varies in the range of 4 to 4,000 bar (~ 4.18 tsf to 4,177 tsf).",
+     "source": "Typed in from p. 63.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9c(2), printed pp. 62 to 63."
+  },
+  {
+   "section_id": "3-9d",
+   "title": "Bulk and shear modulus",
+   "body": "[p. 63] Bulk and shear modulus. Bulk modulus (K) and shear modulus (G) are not used in typical hand-calculation formulations for routine foundation design. For some numerical analyses, the constitutive models require the use of K and G as model inputs.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d, printed p. 63."
+  },
+  {
+   "section_id": "3-9d(1)",
+   "title": "Bulk modulus",
+   "body": "[p. 63] Bulk modulus. The bulk modulus (K) is not used directly in most routine calculations for foundation design. The bulk modulus is more commonly used in non-linear elastic stress models such as Duncan and Chang (1970) to model stress-dependent stiffness changes, which is further described in Duncan (1980).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d(1), printed p. 63."
+  },
+  {
+   "section_id": "3-9d(2)",
+   "title": "Shear strain modulus",
+   "body": "[p. 63] Shear strain modulus. The shear strain modulus is a non-linear function, which is defined by the initial or small-strain modulus and relationships to describe the shear modulus reduction at larger strains. For static foundation problems, shear strain is typically about 1/2 percent. The initial, or small, strain shear modulus (Gmax) is commonly determined using in situ shear wave velocity measurements. Geophysical tests such as crosshole seismic tests and suspension logging or surface geophysical methods (from free field) or downhole seismic tests (from free field) measure shear wave velocity (Vs), of soils. Shear wave velocity data can be used to calculate Gmax of soil using equation 3-42. Typical values for small strain shear modulus are provided in Table 3-18.\n\nGmax = ρ · Vs^2 [Eq. 3-42]\n\nwhere:\nGmax = initial or small strain shear modulus (psf)\nρ = density [total unit weight of soil, γt (pcf) / g (acceleration due to gravity, ft/sec^2)]\nVs = shear wave velocity (ft/sec)\n\n[p. 64] Table 3-18 Typical values of small-strain shear modulus (AASHTO LRFD Bridge Design Specifications)\nSoil Type | Small-Strain Shear Modulus Gmax (kPa)\nSoft clays | 2,700 to 13,750\nFirm clays | 6,900 to 34,500\nSilty sands | 27,600 to 138,000\nDense sands and gravels | 69,000 to 345,000",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-42",
+     "description": "Equation 3-42, introduced by: \"Typical values for small strain shear modulus are provided in Table 3-18.\" (p. 63).",
+     "formula": "Gmax = ρ · Vs^2",
+     "variables": {
+      "Gmax": "initial or small strain shear modulus (psf)",
+      "ρ": "density [total unit weight of soil, γt (pcf) / g (acceleration due to gravity, ft/sec^2)]",
+      "Vs": "shear wave velocity (ft/sec)"
+     },
+     "source": "Typed in from p. 63.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 3-18: Typical values of small-strain shear modulus (AASHTO LRFD Bridge Design Specifications)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d(2), printed pp. 63 to 64."
+  },
+  {
+   "section_id": "3-9d(2)(a)",
+   "title": "Initial or small-strain shear modulus",
+   "body": "[p. 64] Initial or small-strain shear modulus. Small-strain shear modulus (G) depends on in situ confining pressure and packing conditions of soil particles. A few common relationships to estimate the initial or maximum shear modulus are provided in equations 3-43 through 3-46. These relations use SPT N-values or relative density for coarse-grained soils and void ratio and stress history for fine-grained soils.\n\nGmax = 21.7 K2max · Pa (σ′m/Pa)^(1/2) [Eq. 3-43]\n\nK2max = 20[(N1)60cs]^0.33   (Seed et al. 1984) [Eq. 3-44]\n\nK2max = 0.6DR + 15   (Byrne et al. 1987) [Eq. 3-45]\n\nK2max = 625 OCR^k/(0.3 + 0.7 e^2)   (Hardin 1978) [Eq. 3-46]\n\nwhere:\nK2max = modulus coefficient for estimating Gmax\nPa = atmospheric pressure (at sea level Pa ≈ 2,116 psf or 101.3 kPa)\nσ′m = mean normal effective stress (same unit as Pa)\n(N1)60cs = normalized SPT N-Value using Youd et al. (2001) or Boulanger and Idriss (2015) or Cetin et al. (2018) methods, as used in analysis\nDR = relative density (percent)\nOCR = overconsolidation ratio (dimensionless)\nk = function of PI and OCR\ne = initial void ratio (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 3-43",
+     "description": "Equation 3-43, introduced by: \"These relations use SPT N-values or relative density for coarse-grained soils and void ratio and stress history for fine-grained soils.\" (p. 64).",
+     "formula": "Gmax = 21.7 K2max · Pa (σ′m/Pa)^(1/2)",
+     "variables": {
+      "K2max": "modulus coefficient for estimating Gmax",
+      "Pa": "atmospheric pressure (at sea level Pa ≈ 2,116 psf or 101.3 kPa)",
+      "σ′m": "mean normal effective stress (same unit as Pa)",
+      "Gmax": "initial or small strain shear modulus"
+     },
+     "source": "Typed in from p. 64.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-44",
+     "description": "Equation 3-44, introduced by: \"Gmax = 21.7 K2max · Pa (σ′m/Pa)^(1/2)\" (p. 64).",
+     "formula": "K2max = 20[(N1)60cs]^0.33   (Seed et al. 1984)",
+     "variables": {
+      "K2max": "modulus coefficient for estimating Gmax",
+      "(N1)60cs": "normalized SPT N-Value using Youd et al. (2001) or Boulanger and Idriss (2015) or Cetin et al. (2018) methods, as used in analysis"
+     },
+     "source": "Typed in from p. 64.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-45",
+     "description": "Equation 3-45 as printed (p. 64).",
+     "formula": "K2max = 0.6DR + 15   (Byrne et al. 1987)",
+     "variables": {
+      "K2max": "modulus coefficient for estimating Gmax",
+      "DR": "relative density (percent)"
+     },
+     "source": "Typed in from p. 64.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 3-46",
+     "description": "Equation 3-46 as printed (p. 64).",
+     "formula": "K2max = 625 OCR^k/(0.3 + 0.7 e^2)   (Hardin 1978)",
+     "variables": {
+      "K2max": "modulus coefficient for estimating Gmax",
+      "OCR": "overconsolidation ratio (dimensionless)",
+      "k": "function of PI and OCR",
+      "e": "initial void ratio (dimensionless)"
+     },
+     "source": "Typed in from p. 64.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d(2)(a), printed p. 64."
+  },
+  {
+   "section_id": "3-9d(2)(b)",
+   "title": "G/Gmax relationships",
+   "body": "[p. 64] G/Gmax relationships. The shear modulus for the shallow foundation needs to be reduced from the Gmax level, considering the loading and strain condition. A full shear modulus curve can be estimated using the G/Gmax relationships by Darendeli (2001) for clay and sand and Menq (2003) relationship for gravel or other appropriate soil-type-specific relationships based on local experience or laboratory testing. A strength correction considering the soil strength should be performed according to Stewart et al. (2014). The full curves are commonly used in dynamic numerical analysis where the shear strain and modulus values change during the course of dynamic loading.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d(2)(b), printed p. 64. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "3-9d(2)(c)",
+   "title": "Shear modulus for shallow foundations",
+   "body": "[p. 65] Shear modulus for shallow foundations. Shear modulus (G) values vary with strain. The allowable strain depends on structure type and design objectives. Figure 3-17 conceptually shows shear modulus (G) versus shear strain relationship and the allowable stress range for different types of structures, including shallow foundations. For most static shallow foundation applications, G is about 0.1 to 0.05 of Gmax (Das 1997), although sensitive buildings or machines may require smaller strain levels.\n\nFigure 3-17. Shear modulus (G) vs. shear strain relationship, and typical allowable shear strain for different structures, including shallow foundations",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 3-17: Shear modulus (G) vs. shear strain relationship, and typical allowable shear strain for different structures, including shallow foundations"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9d(2)(c), printed p. 65."
+  },
+  {
+   "section_id": "3-9e",
+   "title": "Shear wave velocity from standard and cone penetration tests",
+   "body": "[p. 65] Shear wave velocity from standard and cone penetration tests. Seismic CPT or other surface or borehole geophysical methods can measure shear wave velocity, which can then be used to calculate Gmax. In the absence of field measurement of shear wave velocity (Vs) from seismic CPTs or other geophysical methods, empirical relationships can be used. Wair et al. (2012) provides empirical relationships for Vs estimation from SPT and CPT data. Some of these relationships were developed using SPT energy ratio of 67 percent or 78 percent, commonly used in Japan. A conversion factor of 1.12 or 1.3 between the U.S. SPT N-value and the Japanese N-value should be used [SPT N(U.S.) = 1.12 or 1.3 SPT N (Japan)] while converting relationships that have been developed using Japanese SPT N-values. Uncertainty in Vs to SPT or CPT is high and site-specific relationships are preferred.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 3 (Soil Properties), paragraph 3-9e, printed p. 65."
+  }
+ ]
+}

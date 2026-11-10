@@ -1,0 +1,756 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 9,
+ "chapter_title": "Seismic Design",
+ "sections": [
+  {
+   "section_id": "9-1",
+   "title": "Introduction",
+   "body": "[p. 213] Earthquake loading must be considered in shallow foundation design. Earthquake-induced loads could result in unsatisfactory foundation performance or failure. This chapter discusses the aspects of foundation performance due to seismic loads that should be considered during foundation design. Requirements for ultimate and serviceability limits states for seismic loading conditions are also provided.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-1, printed p. 213."
+  },
+  {
+   "section_id": "9-2",
+   "title": "Geologic and seismic hazards",
+   "body": "[p. 213] Earthquake ground motions can affect shallow foundations in many ways. Load effects considered during foundation design should include: (1) cyclic softening, which can lead to bearing capacity failure, (2) inertial forces resulting in sliding or overturning failure, (3) soil liquefaction resulting in loss of shear strength and settlement, (4) ground mass instability (such as global stability, lateral spreading), and (5) fault rupture. As per American Society of Civil Engineers (ASCE) 7, an investigation report for a building structure must include the geologic and seismic hazards such as (a) slope instability, (b) liquefaction, (c) total and differential settlement, and (d) surface displacement caused by faulting or seismically induced lateral spreading or lateral flow. Seismic stability of sloping ground with structure is not covered in this manual.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-2, printed p. 213."
+  },
+  {
+   "section_id": "9-3",
+   "title": "Design standards",
+   "body": "[p. 213] Design and loading conditions are determined according to the requirements of ER 1110-2-1806 and criteria provided in UFCs 3-301-01 and 3-301-02. Buildings are required to be designed according to ASCE 7, bridges are required to be designed according to the latest AASHTO code. Hydraulic structures (such as dams, floodwalls) are required to be designed according to ER 1110-2-1806 loading and associated performance criteria.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-3, printed p. 213."
+  },
+  {
+   "section_id": "9-4",
+   "title": "Design loads",
+   "body": "[p. 213] Seismic loadings for shallow foundation design at a site are generally estimated based on site and regional seismic hazard, subsurface conditions, and the structure’s natural frequency. Depending on the limit state or structural behavior evaluated, various parameters are used to characterize these loads.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4, printed p. 213."
+  },
+  {
+   "section_id": "9-4a",
+   "title": "Earthquake moment magnitude",
+   "body": "[p. 213] Earthquake moment magnitude. Moment magnitude (Mw) is a measure of an earthquake’s intensity and is used in liquefaction evaluations. Deaggregation methods can be used to review earthquake magnitudes that contribute to the earthquake hazard at a site. The modal Mw value has the highest contribution to the seismic hazard. The mean Mw value is calculated using the weighted average from all sources in the deaggregation. Using the modal or the mean values when there is more than one major contributing source is not always appropriate. In such cases, analysis should be [p. 214] performed for multiple mean (Mw) values and their associated peak ground acceleration (PGA) to establish the critical scenario.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4a, printed pp. 213 to 214."
+  },
+  {
+   "section_id": "9-4b",
+   "title": "Response spectrum",
+   "body": "[p. 214] Response spectrum.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4b, printed p. 214."
+  },
+  {
+   "section_id": "9-4b(1)",
+   "title": "The response spectrum is a plot of the peak accelerations experienced by a …",
+   "body": "[p. 214] The response spectrum is a plot of the peak accelerations experienced by a series of single-degree-of-freedom (SDOF) oscillators with varying fundamental periods of vibration (typically with an assumed structural damping of 5 percent) when excited by an input ground motion. Code-based procedures simplify the spectral shape such that it can be scaled with several parameters (such as SS, S1). Generally, response spectrum based on geotechnical studies are developed at the foundation elevation. It can be further used in seismic demand estimation and structural analyses. Spectral accelerations can be obtained from the applicable building code, U.S. Geological Survey (USGS), or from site-specific ground motion studies. Mapped accelerations should be adjusted (multiplied by appropriate site coefficients) depending on seismic site classification.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4b(1), printed p. 214. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-4b(2)",
+   "title": "PGA is the maximum acceleration that corresponds to the 0-second period (very …",
+   "body": "[p. 214] PGA is the maximum acceleration that corresponds to the 0-second period (very low period such as 0.001 to 0.01 sec) on the response spectrum for a particular site. This parameter is used in several analyses (such as liquefaction evaluations). The USGS National Seismic Hazard Mapping Program (NSHMP) tools or site-specific seismic hazard analyses can be used to develop site PGA. Even though other seismic parameters such as peak ground velocity (PGV) (for near-source conditions), Arias Intensity (IA), and duration (Dur) are important for seismic evaluations, PGA and spectral acceleration are the widely used parameters for seismic evaluations. However, for seismic evaluations of critical structures, other parameters should be evaluated during ground motion time series selection for seismic analyses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4b(2), printed p. 214. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-4c",
+   "title": "Site classification",
+   "body": "[p. 214] Site classification. Sites should be classified as Site Class A through F based on the soil conditions in the upper 100 ft and determined according to the applicable design code (for example, ASCE 7). The site classification quantifies the soil’s propensity to amplify surface ground motion propagating from underlying rock. The degree of site amplifications varies based on site soil conditions. Site classification is used to adjust mapped spectral accelerations (response spectrum) and for assigning the seismic design category. The site class should reflect the soil conditions that affect the ground motion input to the structure or a significant portion of the structure.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4c, printed p. 214."
+  },
+  {
+   "section_id": "9-4d",
+   "title": "Site-specific ground motion studies",
+   "body": "[p. 214] Site-specific ground motion studies. Code-based response spectrum data allow the use of a site-specific ground motion study. Site-specific studies can be performed by supplementing USGS data or independently performing site-specific seismic hazards analyses. For other DoD structures, the methods used for evaluation of seismic ground motion parameters is referenced in UFC. The decision to perform this study is typically based on (1) site classification (such as Site Class F requires site-specific study), (2) cost optimization (such as cost savings due to potential reduction or increase in seismic loading), (3) cases that require input not covered in general codes (such as power generation facility, storage tanks), and (4) development of site-specific parameters for critical structures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-4d, printed p. 214."
+  },
+  {
+   "section_id": "9-5",
+   "title": "Seismic design category",
+   "body": "[p. 215] Building codes use the seismic design category (SDC) to progressively increase the requirements for seismic analysis and design as both the seismic hazard and consequences of failure increase. The SDC is a function of site class, occupancy, and the response spectrum. Coordination between the geotechnical engineer and structural engineer is necessary and should be implemented for assignment of the seismic design category. In some instances, minor design adjustments (such as lowering the building base, site-specific ground motion studies) could result in a more favorable design category, which could result in construction cost savings. Conversely, similar adjustments or a site-specific study could warrant a more conservative site design category assignment.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-5, printed p. 215."
+  },
+  {
+   "section_id": "9-6",
+   "title": "Performance requirements",
+   "body": "[p. 215] The design should satisfy the performance requirements in the seismic design standards, see paragraph 9-3. Seismic performance requirements depend on type of structure and consequences of failure. As with static design, serviceability criteria are more subjective depending on building type and function; however, certain minimum requirements must be met and are generally guided by life-safety considerations (such as safe egress). Performance requirements are provided in paragraphs 9-10 and 9-11.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-6, printed p. 215."
+  },
+  {
+   "section_id": "9-7",
+   "title": "Liquefaction",
+   "body": "[p. 215] Liquefaction occurs when the dynamic shear stresses from a seismic event are applied to saturated soils with lower relative densities, which causes contraction of the soil matrix. This contraction caused by the quickly applied loading causes the effective stresses supported by the soil matrix to be transferred to the pore water. Because a large volume (potentially laterally and vertically) of soil is subject to the dynamic shear stresses, dissipation of the excess pore pressures is not possible within a short time frame during or after the seismic event. The high excess pore pressures result in a substantial reduction in shear strength and stiffness of soils, termed liquefaction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7, printed p. 215."
+  },
+  {
+   "section_id": "9-7a",
+   "title": "Liquefaction susceptibility",
+   "body": "[p. 215] Liquefaction susceptibility. Liquefaction susceptibility is the ability of a soil to liquefy irrespective of the level of earthquake shaking. The assessment of soil susceptibility for liquefaction of coarse-grained soils or cyclic softening of fine-grained soils depends on the soil type, depth from surface, grain size distribution, Atterberg limits, water levels during earthquake, OCR, sensitivity, etc.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7a, printed p. 215."
+  },
+  {
+   "section_id": "9-7a(1)",
+   "title": "Fine-grained soils",
+   "body": "[p. 215] Fine-grained soils. Non-plastic silts and clayey silts of low plasticity (PI < 12) at high water content-to-liquid limit ratios (wc/LL > 0.85) can liquefy under significant cyclic loading. Clayey silts and silty clays of moderate plasticity (12 < PI < 18) at wc/LL > 0.8 can undergo liquefaction when shaken intensely for a number of cycles of loading. Additionally, there could be cases where sensitive soils (PI > 18) undergo severe strength loss due to earthquake-induced straining (Bray and Sancio 2006). Per Boulanger and Idriss (2006), clay-like behavior can be expected for fine-grained soils that have PI > 7. Recent studies by Stuedlein et al. (2023) indicate that (PI < 12) [p. 216] provides sufficient criterion for the evaluation of liquefaction susceptibility, which considers material characteristics alone. Clay-like soils are not susceptible to liquefaction; however, they could be susceptible to cyclic softening (see paragraph 9-8).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7a(1), printed pp. 215 to 216."
+  },
+  {
+   "section_id": "9-7a(2)",
+   "title": "Geologic age and deposition",
+   "body": "[p. 216] Geologic age and deposition. Table 9-1 presents screening guidance for liquefaction susceptibility. This guidance can be used when deposition environment and age are known, with geologic mapping or through subsurface exploration. However, site-specific geotechnical data should be given higher importance for liquefaction assessment. The highest anticipated temporal phreatic surface should be considered.\n\n[p. 217] Table 9-1 Liquefaction screening based on deposition and age (Youd and Perkins 1978)\nType of Deposit | Distribution of cohesionless sediments in deposit | Likelihood that cohesionless sediments, when saturated, would be susceptible to liquefication\nType of Deposit | Distribution of cohesionless sediments in deposit | < 500 years | Holocene | Pleistocene | Pre- Pleistocene\nContinental\nRiver channel | Locally variable | Very high | High | Low | Very low\nFloodplain | Locally variable | High | Moderate | Low | Very low\nAlluvial fan and plains | Widespread | Moderate | Low | Low | Very low\nMarine terraces and plains | Widespread | — | Low | Very low | Very low\nDelta and fan delta | Widespread | High | Moderate | Low | Very low\nLacustrine and playa | Variable | High | Moderate | Low | Very low\nColluvium | Variable | High | Moderate | Low | Very low\nTalus | Widespread | Low | Low | Very low | Very low\nDunes | Widespread | High | Moderate | Low | Very low\nLoess | Variable | High | High | High | Unknown\nGlacial till | Variable | Low | Low | Very low | Very low\nTuff | Rare | Low | Low | Very low | Very low\nTephra | Widespread | High | High | ? | ?\nResidual soils | Rare | Low | Low | Very low | Very low\nSebkha | Locally variable | High | Moderate | Low | Very low\nCoastal zone\nDelta | Widespread | Very high | High | Low | Very low\nEstuarine | Locally variable | High | Moderate | Low | Very low\nBeach—high wave energy | Widespread | Moderate | Low | Very low | Very low\nBeach—low wave energy | Widespread | High | Moderate | Low | Very low\nLagoonal | Locally variable | High | Moderate | Low | Very low\nForeshore | Locally variable | High | Moderate | Low | Very low\nArtificial fill\nUncompacted fill | Variable | Very high | — | — | —\nCompacted fill | Variable | Low | — | — | —",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 9-1: Liquefaction screening based on deposition and age (Youd and Perkins 1978)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7a(2), printed pp. 216 to 217."
+  },
+  {
+   "section_id": "9-7b",
+   "title": "Liquefaction triggering analyses",
+   "body": "[p. 217] Liquefaction triggering analyses. Youd et al. (2001), Boulanger and Idriss (2014), and Cetin et al. (2018) can be used to evaluate liquefaction potential of sandy soils and low plasticity fine-grained soils using the SPT results. Youd et al. (2001), Moss et al. (2006), and Boulanger and Idriss (2015) can be used to evaluate liquefaction potential of sandy soils and low-plasticity, fine-grained soils using the CPT results. The Andrus and Stokoe (2000) and Kayen et al. (2013) methods can be used to evaluate liquefaction based on shear wave velocity results.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b, printed p. 217."
+  },
+  {
+   "section_id": "9-7b(1)",
+   "title": "Subsurface exploration",
+   "body": "[p. 217] Subsurface exploration. Field explorations should use techniques that can allow calculation of liquefaction resistance (such as shear wave velocity testing, SPTs, and [p. 218] CPTs). EM 1110-1-1804 includes considerations for site investigations for seismic studies.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(1), printed pp. 217 to 218."
+  },
+  {
+   "section_id": "9-7b(2)",
+   "title": "Gravelly soils",
+   "body": "[p. 218] Gravelly soils. In gravelly soils where behavior is dominated by sand or finer particles, the sand-based liquefaction triggering relationships may be used. Sand-dominant behavior typically occurs when the sand and finer particles content is at least 20 percent. For gravelly soils, the Becker Penetration Test (BPT) and large-diameter ring density tests can be used to evaluate the in situ density of gravelly soils and the results converted to equivalent SPT values for liquefaction assessment. EM 1110-1-1804 includes guidance on investigation at gravelly sites. SPT and CPT could be unreliable or unfeasible for site investigations in gravelly sites for liquefaction assessment. SPT gravel corrections can be evaluated per paragraph 4-10a(2); however, results could be unreliable.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(2), printed p. 218."
+  },
+  {
+   "section_id": "9-7b(3)",
+   "title": "Liquefaction potential factor of safety",
+   "body": "[p. 218] Liquefaction potential factor of safety. Liquefaction potential is generally expressed in terms of factors of safety against liquefaction as the ratio of cyclic resistance ratio (CRR) to cyclic stress ratio (CSR). Where FSliq < 1.0, liquefaction is likely, and where 1.0 < FSliq < 1.4, liquefaction is likely to marginal. Liquefaction triggering analyses can be performed using different methods, understanding the limitations of each. The difference in results can indicate the level of uncertainty in the methods used.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(3), printed p. 218."
+  },
+  {
+   "section_id": "9-7b(4)",
+   "title": "Rigorous methods",
+   "body": "[p. 218] Rigorous methods. More rigorous methods such as 2-D site response analysis using stiffness and damping relationships can be performed to obtain site-specific CSR, which eliminates use of empirical stress reduction factor (rD). FHWA-NHI-11-032 provides examples of some conditions that may warrant the use of more rigorous methods. These are:",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(4), printed p. 218."
+  },
+  {
+   "section_id": "9-7b(4)(a)",
+   "title": "Sites where simplified liquefaction procedure shows liquefiable soils to depths …",
+   "body": "[p. 218] Sites where simplified liquefaction procedure shows liquefiable soils to depths greater than what is considered suitable for using the simplified procedures,",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(4)(a), printed p. 218. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-7b(4)(b)",
+   "title": "Sites that have significant interlayering, particularly where interlayers …",
+   "body": "[p. 218] Sites that have significant interlayering, particularly where interlayers comprise highly permeable soils or low-permeability layers, and",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(4)(b), printed p. 218. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-7b(4)(c)",
+   "title": "Sites where the cost of ground improvement methods or deep foundation support …",
+   "body": "[p. 218] Sites where the cost of ground improvement methods or deep foundation support to mitigate the impact of liquefaction is high.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-7b(4)(c), printed p. 218. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-8",
+   "title": "Behavior of fine-grained soils",
+   "body": "[p. 218] Ground failures and deformations in clays and plastic silts have also occurred with similar results to liquefied cohesionless soils. However, these occurrences are typically less common than liquefaction failures in cohesionless soils (sands and non-plastic silts). The term cyclic softening is used to describe strength loss and deformation in clays and plastic silts.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-8, printed p. 218."
+  },
+  {
+   "section_id": "9-8a",
+   "title": "Susceptibility",
+   "body": "[p. 219] Susceptibility. Generally, normally consolidated to lightly overconsolidated clayey soils (OCR < 3 to 4) with medium to high sensitivity (sensitivity > 2) can be subject to cyclic strain softening due to an earthquake.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-8a, printed p. 219."
+  },
+  {
+   "section_id": "9-8b",
+   "title": "Cyclic softening soil behavior",
+   "body": "[p. 219] Cyclic softening soil behavior. Clay-like soils can generate excess pore pressures during cyclic loading and suffer a corresponding decrease in shear stiffness. These effects could lead to the accumulation of significant shear strains during cyclic loading or, in the case of sensitive clays, a significant drop in the available undrained strength. These effects should be included in seismic response and deformation analysis that includes potentially susceptible clay-like soils. Overconsolidation ratio, sensitivity ratio, peak or fully softened peak strength, and residual strength of fine-grained soils are required to characterize cyclic softening behaviors.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-8b, printed p. 219."
+  },
+  {
+   "section_id": "9-8c",
+   "title": "Cyclic softening resistance",
+   "body": "[p. 219] Cyclic softening resistance. Boulanger and Idriss (2007) provide a relationship to evaluate cyclic resistance of silts and clays that are likely to experience clay-like behavior and subject to potential cyclic softening. This relationship requires ratio of cyclic stress to undrained shear strength (su) for the number of equivalent uniform cycles representative of an Mw = 7.5. earthquake. Laboratory testing of undisturbed samples is required for use of this relationship and if the factor of safety of cyclic softening (FScs ≤ 1.0), cyclic softening is likely.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-8c, printed p. 219."
+  },
+  {
+   "section_id": "9-9",
+   "title": "Dynamic shear strength",
+   "body": "[p. 219] During strong ground motions, liquefaction of sand-like soil and cyclic softening of clay-like soils could result in sudden loss of shear strength.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9, printed p. 219."
+  },
+  {
+   "section_id": "9-9a",
+   "title": "Soils not susceptible to shear strength loss",
+   "body": "[p. 219] Soils not susceptible to shear strength loss.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9a, printed p. 219."
+  },
+  {
+   "section_id": "9-9a(1)",
+   "title": "Dynamic strength of soils not susceptible to marginal liquefaction …",
+   "body": "[p. 219] Dynamic strength of soils not susceptible to marginal liquefaction, liquefaction, or cyclic softening depends on rate effects, cyclic loading, and deformations. It also depends on duration and intensity of ground motions and response of soils. Various references suggest strength values from 80 percent to over 100 percent of the soil peak strength are expected during earthquake shaking. Some research has indicated that a 15 to 20 percent strength reduction based on static strength is appropriate. Other research indicates that this strength reduction can be ignored considering rapid earthquake loading. However, this assumption may not be appropriate for longer-duration earthquakes.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9a(1), printed p. 219. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-9a(2)",
+   "title": "In general, a peak to fully softened shear strength value should be used for …",
+   "body": "[p. 219] In general, a peak to fully softened shear strength value should be used for evaluation, and selection of the parameter should be consistent with the amount of strain expected in the analysis. Static undrained strength reduced by 20 percent may also be used as the dynamic yield strength for non-liquefiable soils. This criterion is based on the Makdisi and Seed (1978) findings, which indicate that for clayey soils, dry or partially saturated cohesionless soils, or very dense saturated cohesionless soils, 80 percent of the static undrained strength represents an approximate threshold between large and small strains induced by cyclic loading.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9a(2), printed p. 219. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-9b",
+   "title": "Residual strength of soils susceptible to liquefaction",
+   "body": "[p. 220] Residual strength of soils susceptible to liquefaction. Residual strength (Sr) of potentially liquefiable soils can be estimated using empirical relationships. These empirical relationships have been developed using performance case histories of embankments that have experienced large deformations or flow slides. Several post-liquefaction residual strength relationships are available for use as shown in Table 9-2. The post-liquefaction residual strength should be estimated using different methods, understanding the limitations of each method.\n\nTable 9-2 Post-liquefaction residual strength relationships\nDescription | Source\nResidual shear strengths (Sr) for liquefied soils based on equivalent clean sand N-value (N1)60cs−Sr. | Seed and Harder (1990)\nResidual shear strength to initial effective stress (σ′vo) ratio (Sr/σ′vo) based on stress normalized SPT N-value (N1)60. | Olson and Stark (2002)\nEstimates Sr or Sr/σ′vo based on (N1)60cs−Sr. Fines correction factors for Boulanger and Idriss (2015) are the same as Seed and Harder (1990) and different than fines correction factors for liquefaction triggering analysis. Relationship with void redistribution should be used. | Boulanger and Idriss (2015)\nEstimates Sr as a function of (N1)60 and σ′vo. | Kramer and Wang (2015)\nEstimates Sr as a function of equivalent clean sand SPT N-value; (N1)60cs−Sr and σ′vo. | Weber et al. (2022)\nNote: Use the appropriate (N1)60 and (N1)60cs−Sr procedures in residual strength estimation.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 9-2: Post-liquefaction residual strength relationships"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9b, printed p. 220."
+  },
+  {
+   "section_id": "9-9c",
+   "title": "Residual excess pore pressures for marginally liquefiable soils",
+   "body": "[p. 220] Residual excess pore pressures for marginally liquefiable soils. Residual excess pore pressure (ru) is defined as the ratio of excess pore pressure to the total initial effective overburden stress. ru can be generated when FSliq > 1.0. As shown in Figure 9-1, when FSliq < 1.4 and approaching FSliq = 1.0 the expected ru increases substantially compared to FSliq > 1.4. Not accounting for this increase in pore pressures can greatly overestimate the shear strength. Figure 9-1 can be used to estimate excess pore pressures for marginally liquefiable soils, otherwise, residual undrained shear strengths should be used.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9c, printed p. 220."
+  },
+  {
+   "section_id": "9-9d",
+   "title": "Fine-grained soils susceptible to cyclic softening",
+   "body": "[p. 220] Fine-grained soils susceptible to cyclic softening. Shear strengths should be representative of large strains, which could be incrementally lowered from an initial reduced strength (80 percent of static strength) to residual strength of clay. If analyses are performed without ability to estimate strains, then the failure mode should be evaluated based on residual strength of clay. Laboratory cyclic triaxial shear or cyclic simple shear testing may also be used to evaluate the cyclic stress-strain behavior.\n\n[p. 221] Figure 9-1. Relationship between residual excess pore pressure ratio and FSliq for sand and gravel (Marcuson et al. 1990)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-1: Relationship between residual excess pore pressure ratio and FSliq for sand and gravel (Marcuson et al. 1990)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-9d, printed pp. 220 to 221."
+  },
+  {
+   "section_id": "9-10",
+   "title": "Ultimate limit state",
+   "body": "[p. 221] Design for the ultimate limit state under seismic loading should represent a process that ensures the probability of collapse of a building and its associated risk to human life is at an acceptable level. Because the probability of a seismic event is lower than that assumed for working levels of stress, a lower factor of safety is often permitted and performance limits are generally less rigid.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10, printed p. 221."
+  },
+  {
+   "section_id": "9-10a",
+   "title": "Liquefaction and shear strength loss",
+   "body": "[p. 221] Liquefaction and shear strength loss. With respect to liquefaction and SSL and to prevent foundation failure, shallow foundations should not be used where (1) soils within the bearing capacity shear zone are liquefiable, marginally liquefiable, or subject to significant SSL, and (2) significant lateral spreading (see paragraph 9-12) is expected.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10a, printed p. 221."
+  },
+  {
+   "section_id": "9-10b",
+   "title": "Bearing capacity of soils not susceptible to shear strength loss",
+   "body": "[p. 221] Bearing capacity of soils not susceptible to shear strength loss. For soils within the bearing capacity shear zone that are not susceptible to SSL, the ultimate values for bearing capacity may be calculated using conventional static methods. The undrained shear strengths for cohesive soils and drained shear strengths for cohesionless soils should be used. Overstress factors may be applied where permitted by the building code. These values must not exceed one-third increase to the static allowable resistance. Overstress factors should not be applied to soils that are susceptible to SSL.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10b, printed p. 221."
+  },
+  {
+   "section_id": "9-10c",
+   "title": "Bearing capacity of soils with shear strength loss",
+   "body": "[p. 222] Bearing capacity of soils with shear strength loss. The general design principles in paragraph 9-10a should be adhered. Where additional evaluation may prove useful, the bearing capacity methods presented in this section can be used for foundations where the soils within the bearing capacity shear zone are susceptible to SSL during strong ground motions. Some of these procedures can be used for analysis of foundation systems with soils susceptible to SSL (FSliq ≤ 1.4 or FScs ≤ 1.0) being within the bearing shear zone. The expected capacity of foundations can be calculated using the methods presented in the following sections.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c, printed p. 222."
+  },
+  {
+   "section_id": "9-10c(1)",
+   "title": "Punching shear analysis",
+   "body": "[p. 222] Punching shear analysis. Foundations supported by a non-liquefiable soil that is underlain by a potentially liquefiable layer should be evaluated for punching shear failure. For this analysis, the resistance to punching failure is provided by shear resistance of non-liquified soil acting on a vertical plane below the foundation edges as illustrated in Figure 9-2. The potentially liquefiable soil is assumed to provide no resistance to punching failure. The general forms of the equations are expressed in equations 9-1 and 9-2. The shear resistance will vary depending on material type and strength. The minimum factor of safety against a punching-type failure should be at least 3.0.\n\nFigure 9-2. Punching shear resistance below a shallow footing (Day 2012)\n\nFS = R/P = (2T · τf)/P   (Continuous Footings) [Eq. 9-1]\n\nFS = R/P = (2(B + L) τf)/P   (Isolated Spread Footings) [Eq. 9-2]\n\n[p. 223] where:\nFS = calculated factor of safety for punching shear failure\nR = shear resistance of soil (lb/ft for continuous footings, lb for isolated spread footings)\nP = applied foundation load (lb/ft for continuous footings, lb for isolated spread footings)\nT = vertical distance from bottom of foundation to top of liquefiable layer (ft)\nτf = shear resistance of non-liquefiable soil layer above liquefiable layer (psf)\nB = base width of footing (ft)\nL = base length of rectangular footing (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-1",
+     "description": "Equation 9-1, introduced by: \"Punching shear resistance below a shallow footing (Day 2012)\" (p. 222).",
+     "formula": "FS = R/P = (2T · τf)/P   (Continuous Footings)",
+     "variables": {
+      "FS": "calculated factor of safety for punching shear failure",
+      "R": "shear resistance of soil (lb/ft for continuous footings, lb for isolated spread footings)",
+      "P": "applied foundation load (lb/ft for continuous footings, lb for isolated spread footings)",
+      "T": "vertical distance from bottom of foundation to top of liquefiable layer (ft)",
+      "τf": "shear resistance of non-liquefiable soil layer above liquefiable layer (psf)"
+     },
+     "source": "Typed in from p. 222.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 9-2",
+     "description": "Equation 9-2, introduced by: \"FS = R/P = (2T · τf)/P (Continuous Footings)\" (p. 222).",
+     "formula": "FS = R/P = (2(B + L) τf)/P   (Isolated Spread Footings)",
+     "variables": {
+      "FS": "calculated factor of safety for punching shear failure",
+      "R": "shear resistance of soil (lb/ft for continuous footings, lb for isolated spread footings)",
+      "P": "applied foundation load (lb/ft for continuous footings, lb for isolated spread footings)",
+      "τf": "shear resistance of non-liquefiable soil layer above liquefiable layer (psf)",
+      "B": "base width of footing (ft)",
+      "L": "base length of rectangular footing (ft)"
+     },
+     "source": "Typed in from p. 222.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 9-2: Punching shear resistance below a shallow footing (Day 2012)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c(1), printed pp. 222 to 223."
+  },
+  {
+   "section_id": "9-10c(2)",
+   "title": "Potentially liquefiable and non-liquefiable layers in soil stratum",
+   "body": "[p. 223] Potentially liquefiable and non-liquefiable layers in soil stratum. A total stress analysis is used to evaluate the bearing capacity of a cohesive soil underlain by a soil susceptible to liquefaction or cyclic SSL. The soil influencing bearing capacity is modeled as a layered profile and evaluated in a similar manner as described in paragraph 5-5a(2) (undrained loading of stiff clay over soft clay). The undrained shear strength of the upper, non-liquefiable cohesive soil is used to calculate the ultimate bearing capacity of the upper zone. The residual or reduced shear strength of the underlying soil that is susceptible to cyclic SSL is used to calculate the ultimate bearing capacity of the lower zone. If a cohesionless non-liquefiable soil is underlain by a soil susceptible to liquefaction or cyclic strength loss, drained strength parameters for the non-liquefiable soil should be used.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c(2), printed p. 223."
+  },
+  {
+   "section_id": "9-10c(3)",
+   "title": "Sand-like soil with earthquake-induced excess pore water pressures",
+   "body": "[p. 223] Sand-like soil with earthquake-induced excess pore water pressures. Excess pore pressures generated in cohesionless soils that do not liquefy will effectively reduce the resistance provided in the soil effective weight term of the bearing capacity equation. Generally, this should be evaluated when a soil that is marginally liquefiable is in the shearing influence zone of a shallow foundation. A procedure presented by Day (2012) for determining ultimate bearing capacity that accounts for rise in excess pore pressures is shown in equations 9-3 and 9-4. This procedure utilizes the residual excess pore pressure ratio (ru), reference paragraph 9-9c.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c(3), printed p. 223."
+  },
+  {
+   "section_id": "9-10c(3)(a)",
+   "title": "Excess pore pressures influencing full shear zone",
+   "body": "[p. 223] Excess pore pressures influencing full shear zone. Equations 9-3 and 9-4 should be used when the water surface and the cohesionless soil layer with the excess pore pressures are within the bearing capacity shear zone. In this equation, the surcharge term has been removed as the shearing zone might not mobilize for a punching shear failure. Appropriate correction factors should be included as described in paragraph 5-5f of this manual.\n\nqu = (1/2)(1 − ru) γb · B′ · Nγ   (Strip Footings) [Eq. 9-3]\n\nqu = 0.4 (1 − ru) γb · B′ · Nγ   (Spread Footings) [Eq. 9-4]\n\n[p. 224] where:\nqu = ultimate bearing capacity (psf)\nB′ = effective base width of footing (feet)\nru = residual excess pore pressure ratio (dimensionless), reference paragraph 9-9c\nγb = buoyant or effective unit weight of soil within shear zone (pcf)\nNγ = bearing capacity factor for soil effective unit weight (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-3",
+     "description": "Equation 9-3, introduced by: \"Appropriate correction factors should be included as described in paragraph 5-5f of this manual.\" (p. 223).",
+     "formula": "qu = (1/2)(1 − ru) γb · B′ · Nγ   (Strip Footings)",
+     "variables": {
+      "qu": "ultimate bearing capacity (psf)",
+      "B′": "effective base width of footing (feet)",
+      "ru": "residual excess pore pressure ratio (dimensionless), reference paragraph 9-9c",
+      "γb": "buoyant or effective unit weight of soil within shear zone (pcf)",
+      "Nγ": "bearing capacity factor for soil effective unit weight (dimensionless)"
+     },
+     "source": "Typed in from p. 223.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 9-4",
+     "description": "Equation 9-4, introduced by: \"qu = (1/2)(1 − ru) γb · B′ · Nγ (Strip Footings)\" (p. 223).",
+     "formula": "qu = 0.4 (1 − ru) γb · B′ · Nγ   (Spread Footings)",
+     "variables": {
+      "qu": "ultimate bearing capacity (psf)",
+      "B′": "effective base width of footing (feet)",
+      "ru": "residual excess pore pressure ratio (dimensionless), reference paragraph 9-9c",
+      "γb": "buoyant or effective unit weight of soil within shear zone (pcf)",
+      "Nγ": "bearing capacity factor for soil effective unit weight (dimensionless)"
+     },
+     "source": "Typed in from p. 223.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c(3)(a), printed pp. 223 to 224."
+  },
+  {
+   "section_id": "9-10c(3)(b)",
+   "title": "Excess pore pressures partially influencing shear zone",
+   "body": "[p. 224] Excess pore pressures partially influencing shear zone. For foundations partially influenced by excess pore pressures, the effective unit weight of the soil below the footing may be calculated using a weighted average of the soil susceptible to excess pore pressures and the soils not susceptible to generating excess pore pressures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10c(3)(b), printed p. 224."
+  },
+  {
+   "section_id": "9-10d",
+   "title": "Sliding stability",
+   "body": "[p. 224] Sliding stability.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10d, printed p. 224."
+  },
+  {
+   "section_id": "9-10d(1)",
+   "title": "Sliding stability should be evaluated using seismic loads applied in the …",
+   "body": "[p. 224] Sliding stability should be evaluated using seismic loads applied in the direction that results in the most critical condition. The sliding shear zone is assumed to be similar to the static sliding shear zone described in paragraph 5-6a. Sliding should consider reduced resistance due to cyclic SSL.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10d(1), printed p. 224. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-10d(2)",
+   "title": "Technical Report ITL-92-11 provides procedures and examples for sliding …",
+   "body": "[p. 224] Technical Report ITL-92-11 provides procedures and examples for sliding stability with shallow founded retaining walls and for scenarios with and without excess pore pressure that can be applied to design of shallow foundations. Net lateral earth resistance (passive resistance minus active thrust) is typically calculated using the Mononobe-Okabe dynamic active and passive earth pressure coefficients as described in EM 1110-2-2502. Minimum factors of safety are provided in Table 2-1. Overstress factors can be applied if allowed by the building code. These values should generally not exceed one-third increase to the static allowable resistance. Overstress factors should not be applied to soils that are susceptible to SSL.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10d(2), printed p. 224. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-10e",
+   "title": "Overturning stability",
+   "body": "[p. 224] Overturning stability.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10e, printed p. 224."
+  },
+  {
+   "section_id": "9-10e(1)",
+   "title": "For evaluation of overturning stability, seismic loads should be applied in the …",
+   "body": "[p. 224] For evaluation of overturning stability, seismic loads should be applied in the direction that results in the most critical condition. Similar to static conditions for overturning stability, eccentricity governs. The overturning stability requirements can vary from the static requirements that are presented in Table 2-1 for an extreme event. In the absence of specific criteria in building codes or design guidance, the following procedure should be used for seismic overturning stability of individual shallow footings during extreme events.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10e(1), printed p. 224. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-10e(2)",
+   "title": "Two criteria that must be adhered include",
+   "body": "[p. 224] Two criteria that must be adhered include: (1) the resultant of the footings should be located within the foundation footprint, and (2) the effective footing dimensions should be determined considering the eccentricity of the resultant in relation to the centroid of the foundation, and the effective foundation bearing pressure must not exceed the allowable bearing pressure.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10e(2), printed p. 224. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-10f",
+   "title": "Uplift",
+   "body": "[p. 225] Uplift. Uplift stability for a seismic load case is performed using the methodology in paragraph 5-7. For cases when a vertical seismic coefficient is used, the inertial loads on the structure should be adjusted based on the direction and magnitude of the inertial force. Uplift pressures acting on the base of foundations should be increased to include residual excess pore pressures (if present) that could be generated because of a seismic event (paragraph 9-9c). For load combinations that include seismic effects, the uplift factor of safety must be 1.5 or greater.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-10f, printed p. 225."
+  },
+  {
+   "section_id": "9-11",
+   "title": "Seismically induced settlement",
+   "body": "[p. 225] Settlement caused by ground shaking during earthquakes is often non-uniformly distributed and can cause differential deformations in structures, leading to major damage. Settlement can occur from compaction in moist or dry cohesionless soil and from dissipation of excess pore pressures induced in saturated soil by earthquake ground motions. For heavily loaded shallow footings that have stress influences in liquefiable layers, shear strain potential is increased. Ground deformations calculated for liquefiable and dry soils beneath foundations should be evaluated.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11, printed p. 225."
+  },
+  {
+   "section_id": "9-11a",
+   "title": "Applicability",
+   "body": "[p. 225] Applicability. The procedures presented in paragraphs 9-11d through 9-11f are specifically designed for free-field conditions and are most applicable for use with lightweight structures and mat foundations. The estimates do not capture shear-induced strains resulting from foundations bearing directly on liquefiable soils, shallow foundations with stress influences in a liquefiable zone, sites on sloping ground where flow or lateral spreading can occur, or where liquefaction-induced ground damage is predicted (paragraph 9-11f).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11a, printed p. 225."
+  },
+  {
+   "section_id": "9-11b",
+   "title": "Differential settlement threshold values",
+   "body": "[p. 225] Differential settlement threshold values. Presumptive differential settlement thresholds for various structures referenced in ASCE 7 must be used when designing a shallow foundation system subject to SSL caused by liquefaction due to the maximum considered earthquake geometric mean peak ground acceleration (MCEG) earthquake. These values assume the foundation and superstructure are designed to accommodate the differential settlements as detailed in ASCE 7. The threshold values provided for Risk Category II and III are intended to provide resistance to collapse. The limits for Risk Category IV are intended to result in less differential settlement than would cause doors to jam in the design earthquake. Adequate subsurface investigation and characterization data (such as at the foundation locations) should be available to properly analyze differential settlement potential.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11b, printed p. 225."
+  },
+  {
+   "section_id": "9-11c",
+   "title": "Differential settlement due to liquefaction",
+   "body": "[p. 225] Differential settlement due to liquefaction. Uniform liquefaction settlements could be estimated in rather uniform deposits. However, due to the dynamic loading conditions and natural soil variability, differential settlements should be expected. The preferred approach should be to estimate seismic settlement at the foundation locations based on site-specific data for differential settlement calculation. For uniform subsurface conditions between the foundations, the maximum differential settlement (due to liquefaction) between adjacent shallow foundations should be assumed to be on the order of 1/2 the uniform maximum liquefaction settlement assumed in the analysis. Where there is significant spatial variability and thickness of deposits, a minimum [p. 226] differential settlement between adjacent supports of one-half to two-thirds of the maximum liquefaction settlement should be used unless more is determined by the analysis. If lateral spreading hazard is present and unmitigated, then maximum and differential settlements could be much greater than calculated (Martin and Lew 1999).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11c, printed pp. 225 to 226."
+  },
+  {
+   "section_id": "9-11d",
+   "title": "Settlement of unsaturated cohesionless soils (dry sand)",
+   "body": "[p. 226] Settlement of unsaturated cohesionless soils (dry sand). Ground shaking due to earthquakes can induce settlement in dry or unsaturated cohesionless soil deposits. The procedure presented in Table 9-3 is recommended for estimating settlements of dry sand.\n\nTable 9-3 Procedure for estimating settlement of dry sand (Tokimatsu and Seed 1984)\nStep 1 | Develop an idealized, representative soil profile for the analysis. This should consist of the corrected standard penetration resistance (N1)60 (blows per foot) and the unit weight of each soil layer. Use Youd et al. (2001) for (N1)60.\nStep 2 | Evaluate the total vertical stress (σv) and the mean normal total stress (σm = σ′m) for unsaturated sand at several depths within the deposit at the time of exploration and for design. The design values should include stresses resulting from new structure or embankment loads. Outside of the structure footprint, the exploration and design values are generally the same unless grading is planned. For unsaturated, cohesionless soil σm ≈ 0.65σv assuming the at-rest earth pressure coefficient (K0) is approximately 0.475.\nStep 3 | Evaluate the stress-reduction factor (rd) using referenced methods in paragraph 9-7b for liquefaction resistance of cohesionless soils.\nStep 4 | Evaluate the normalized effective stress γeff(Geff/Gmax) using the methods developed by Tokimatsu and Seed (1984) in equation 9-5.\nStep 5 | Evaluate the effective shear strain (γeff) that occurs in response to the effective shear stress as a function of the mean principal effective stress (σ′m) and γeff(Geff/Gmax) using Figure 9-3.\nStep 6 | Assuming γeff ≈ γc, where γc = cyclic shear strain, evaluate the volumetric strain (εc) due to compaction as a function of γc and (N1)60 for an earthquake of magnitude 7.5 (15 cycles) using Figure 9-4.\nStep 7 | Correct the volumetric strain (εc) for earthquake magnitude other than Mw 7.5 using the correction factors reproduced in Table 9-4.\nStep 8 | Multiply the volumetric strain (εc) for each layer by 2.0 to correct for the multidirectional shaking effect, to get the representative volumetric strain for each layer.\nStep 9 | Calculate settlements of each layer by multiplying the layer thickness by representative volumetric strain evaluated in Step 8. Sum up the layer settlements to obtain the total settlement for the analyzed profile.\n\nγeff (Geff/Gmax) = 0.65 rd (σv/Gmax)(amax/g) [Eq. 9-5]\n\n[p. 227] where:\nγeff = effective vertical stress (psf)\nGeff = effective shear modulus at induced strain level (psf)\nGmax = shear modulus at low strain level (psf)\nrD = stress-reduction factor (dimensionless)\nσv = total vertical stress (psf)\namax = peak ground acceleration (ft/s^2)\ng = acceleration due to gravity (fps)\n\nFigure 9-3. Plot for determination of earthquake-induced shear strain in sand deposits (Tokimatsu and Seed 1984)\n\n[p. 228] Figure 9-4. Relationship between volumetric strain, cyclic shear strain, and penetration resistance for unsaturated sands at N = 15 cycles (Tokimatsu and Seed 1984)\n\nTable 9-4 Influence of earthquake magnitude on volumetric strain ratio for dry sands (after Tokimatsu and Seed 1984)\nEarthquake Magnitude | Number of Representative Cycles (N) at 0.65τmax | Volumetric Strain Ratio\nεC,N/εC,N=15\n8.5 | 26 | 1.25\n7.5 | 15 | 1.0\n6.75 | 10 | 0.85\n6.0 | 5 | 0.6\n5.25 | 2 to 3 | 0.4",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-5",
+     "description": "Equation 9-5, introduced by: \"Sum up the layer settlements to obtain the total settlement for the analyzed profile.\" (p. 226).",
+     "formula": "γeff (Geff/Gmax) = 0.65 rd (σv/Gmax)(amax/g)",
+     "variables": {
+      "γeff": "effective vertical stress (psf)",
+      "Geff": "effective shear modulus at induced strain level (psf)",
+      "Gmax": "shear modulus at low strain level (psf)",
+      "σv": "total vertical stress (psf)",
+      "amax": "peak ground acceleration (ft/s^2)",
+      "g": "acceleration due to gravity (fps)",
+      "rD": "stress-reduction factor (dimensionless) (the list of symbols prints rD; the formula prints rd)"
+     },
+     "notes": "As printed, the list of symbols (p. 227) defines γeff as 'effective vertical stress (psf)'; Table 9-3, Step 5 (p. 226) calls γeff the effective shear strain, and Step 4 calls γeff(Geff/Gmax) the normalized effective stress.",
+     "source": "Typed in from p. 226.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 9-3: Plot for determination of earthquake-induced shear strain in sand deposits (Tokimatsu and Seed 1984)",
+    "Figure 9-4: Relationship between volumetric strain, cyclic shear strain, and penetration resistance for unsaturated sands at N = 15 cycles (Tokimatsu and Seed 1984)"
+   ],
+   "tables": [
+    "Table 9-3: Procedure for estimating settlement of dry sand (Tokimatsu and Seed 1984)",
+    "Table 9-4: Influence of earthquake magnitude on volumetric strain ratio for dry sands (after Tokimatsu and Seed 1984)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11d, printed pp. 226 to 228."
+  },
+  {
+   "section_id": "9-11e",
+   "title": "Settlement of liquefiable sands",
+   "body": "[p. 228] Settlement of liquefiable sands. Figure 9-5 provides the relationship between factor of safety against liquefaction and post liquefaction volumetric strain for different initial relative density values (DR) from Ishihara and Yoshimine (1992). Normalized SPT blow counts, (N1)60 can be converted to DR using relationships provided in paragraph 3-4. These volumetric settlement estimates or other relationships such as Cetin et al. (2009) are valid for saturated coarse-grained soils in relatively level-ground sites without potential for lateral spreading. The volumetric strain should be multiplied by the layer [p. 229] thickness to estimate settlement. For lateral spreading sites, settlement estimates are likely to be larger than those for level-ground sites.\n\nFigure 9-5. Post-liquefaction volumetric strains versus factor of safety against liquefaction (Ishihara and Yoshimine 1992)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-5: Post-liquefaction volumetric strains versus factor of safety against liquefaction (Ishihara and Yoshimine 1992)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11e, printed pp. 228 to 229."
+  },
+  {
+   "section_id": "9-11f",
+   "title": "Liquefaction-induced ground damage",
+   "body": "[p. 229] Liquefaction-induced ground damage. Liquefaction can result in surface expressions in the form of sand boils and surface fissures, also referred to as ejecta. It is difficult to determine the amount of settlement due to the development of these features. Ishihara (1985) developed a series of charts presented in Figure 9-6 that can be used to determine the required thickness of a non-liquefiable soil surface layer (H1) for a thickness of liquefiable soil layer (H2) to mitigate such damages. The designer should verify that there is adequate non-liquefiable soil above any liquefiable zone. When designing shallow foundations, the required thickness of non-liquefiable soil is measured from the bottom of the foundation to the top of the non-liquefiable layer. If this cannot be provided, then additional fill can be placed, ground improvements performed, or deep foundation support provided. Seismic settlement in cases of shallow foundations over adequate non-liquefiable layer (thickness and stiffer or denser) overlying potentially liquefiable layers must be within allowable limits (per building code) to justify selection of a shallow foundation system.\n\n[p. 230] Figure 9-6. Relationship between H1, H2, and PGA and observed liquefaction-induced ground damage (from Obermeier et al. 2001; modified from Ishihara 1985)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-6: Relationship between H1, H2, and PGA and observed liquefaction-induced ground damage (from Obermeier et al. 2001; modified from Ishihara 1985)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11f, printed pp. 229 to 230."
+  },
+  {
+   "section_id": "9-11g",
+   "title": "Settlement due to rocking",
+   "body": "[p. 230] Settlement due to rocking. Rocking can occur due to dynamic structural loads cyclically increasing the pressure to the foundation. The soil can deform in response to the additional foundation load. For cohesionless soils, rocking and volumetric compression can result in settlements. For cohesive soils, settlements due to rocking can occur when foundation soils are overloaded and strains due to mobilizing shear resistance occur. Settlement due to rocking can also occur when the existing vertical effective stress plus the dynamic loads subject the foundations soils to an effective stress beyond the preconsolidation pressures. The soils most susceptible to this are loose sands and gravels, sensitive cohesive soils, and soft, normally consolidated cohesive soils. To provide a sufficiently high factor of safety against bearing capacity failure, a factor of safety (for static loading conditions), FS ≥ 3.0 is recommended.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11g, printed p. 230."
+  },
+  {
+   "section_id": "9-11h",
+   "title": "Seismic settlement considering building loads",
+   "body": "[p. 230] Seismic settlement considering building loads. Structures on shallow foundations at liquefied sites typically settle more than the surrounding ground (such as free-field settlements). Bray and Macedo (2017) and Bullock et al. (2017) have developed procedures that may be used in a more detailed evaluation to estimate liquefaction-induced building settlement to account for three mechanisms for settlement. [p. 231] These mechanisms are: (1) settlement resulting from loss of ground due to formation of sediment ejecta (De), (2) reconsolidation (volumetric) settlement (Dv), and (3) shear-induced settlement (Ds). For design, this process requires estimating the settlement due to ejecta from relevant case histories, evaluation of generated acceleration time histories, post-liquefaction bearing capacity analysis, and estimation of free-field volumetric settlement.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-11h, printed pp. 230 to 231."
+  },
+  {
+   "section_id": "9-12",
+   "title": "Faulting and lateral spreading",
+   "body": "[p. 231] Seismic global stability is not covered in this manual; however, lateral spreading and faulting can occur on relatively flat to gently sloping sites. This section provides recommended procedures and serviceability criteria for these conditions.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-12, printed p. 231."
+  },
+  {
+   "section_id": "9-12a",
+   "title": "Faulting",
+   "body": "[p. 231] Faulting. A fault is a fracture or zone of fractures between two blocks of rock or rock formations. Faults allow the blocks to move relative to each other. This movement may occur rapidly (in the form of an earthquake) or may occur slowly (in the form of creep). Faults are commonly considered to be active if they have moved one or more times in the last 11,000 to 35,000 years. The footprints for new structures should avoid active faults. ER 1110-2-1806 provides seismic loading criteria based on fault slip rates. It also has requirements for design in mapped fault areas and considerations for near-source effects on ground motions. Refer to EM 1110-1-1804 for fault identification in geotechnical exploration. California State guidelines based on Alquist-Priolo Earthquake Fault Zoning Act (1994) is an effective method to determine offset distances for design of structures in areas with known faults. It should be used in areas where active faults are mapped.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-12a, printed p. 231."
+  },
+  {
+   "section_id": "9-12b",
+   "title": "Lateral spreading",
+   "body": "[p. 231] Lateral spreading. Lateral spreading occurs when the static plus seismically induced shear stresses exceed the resistance, often reduced by the earthquake, provided by the soil. In lateral spreading, the static factor of safety of the soil mass is greater than 1.0 but lateral movements accumulate during the earthquake. Displacement of a liquefied layer or displacement of an upper, non-liquefied layer above a liquefied layer can occur on gently sloping ground or on embankments. The potential for lateral movements due to lateral spreading is increased if there is a “free face,” such as a riverbank, in the laterally spreading mass. Usually, cracks are associated with movement of sliding masses in lateral spreading.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-12b, printed p. 231."
+  },
+  {
+   "section_id": "9-12b(1)",
+   "title": "Horizontal displacements from lateral spreading can be estimated using …",
+   "body": "[p. 231] Horizontal displacements from lateral spreading can be estimated using empirical and semiempirical methods. The multilinear regression (MLR) (Bartlett, Youd, and Hansen 2002) was developed for sites with sloping ground and for relatively level ground with a “free face” toward which lateral displacements could occur. The shear strain potential procedure by Zhang et al. (2004) developed methods to estimate lateral spreading that considers estimated shear strain from empirical methods, distance to free face, free-face height, and slope of the site. Bartlett, Youd, and Hansen (2002) suggested that a multiplier of 2 (applied to lateral spreading estimates) should be used for design. It is recommended to use appropriate relative density considering soil types when these simplified relationships are used. The resulting estimates of the simplified methods are applicable for up to 2 to 3 ft of lateral spreading.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-12b(1), printed p. 231. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "9-12b(2)",
+   "title": "Horizontal displacements due to lateral spreading for buildings supported on …",
+   "body": "[p. 232] Horizontal displacements due to lateral spreading for buildings supported on conventional shallow-spread footings should be 3 inches or less. In some cases, the negative impacts from lateral spreading could reduce with increased distance from the free face. Building and foundations may be designed to accommodate greater lateral spreading displacements, up to the values shown in Table 9-5, using design techniques such as interconnecting individual foundations and integrating the foundations and slab. Specific design requirements are provided in ASCE 7.\n\nTable 9-5 Upper limit on lateral spreading horizontal ground displacements with accommodating design features, from ASCE 7\nGeneral risk category description | Shallow-founded structures that represent low hazard to human life in the event of failure | Shallow-founded structures except for Risk Categories I, III, and IV | Shallow-founded structures that represent a substantial hazard to human life in the event of failure | Shallow-founded structures designated as essential structures\nRisk Category | I | II | III | IV\nLimit (inches) with accommodating design | 18 | 18 | 12 | 4",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 9-5: Upper limit on lateral spreading horizontal ground displacements with accommodating design features, from ASCE 7"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 9 (Seismic Design), paragraph 9-12b(2), printed p. 232. The manual prints this subparagraph without a heading; the title is its opening words."
+  }
+ ]
+}

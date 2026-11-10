@@ -15,6 +15,13 @@ this script:
    neighbours, so every figure gets a best-estimate page.
 4. Writes ``geotech_references/<package>/figures_catalog.json``.
 
+A manifest volume with ``"layout": "army"`` (EM 1110-1-1905) is read its own
+way instead (``_army_figs``): its "Figure List" as
+``scripts/printed_army_layout.py`` reads the front matter (en dash numbers,
+lettered appendix figures such as C-2a), each figure on the page that prints
+its number and caption, and appendix figures in the chapter file the manifest
+gives that appendix. No other catalog changes.
+
 The catalog is the indexable artifact consumed by
 ``geotech_references._figures_db`` (FTS5 retrieval) and by the
 ``read_reference_figure`` vision tool, which renders the resolved page for
@@ -47,6 +54,7 @@ from __future__ import annotations
 import json
 import re
 import statistics
+import unicodedata
 import sys
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -784,6 +792,55 @@ def _figs_from_pdf(pdf_abs, seq=False) -> list[dict]:
         doc.close()
 
 
+#: Pages either side of the page a printed page number gives that an Army-layout
+#: figure's caption is looked for on.
+ARMY_SEARCH_PAGES = 3
+
+
+def _army_figs(pdf_abs, vol: dict) -> list[dict]:
+    """The figures of a manual in the Army layout (manifest ``"layout": "army"``,
+    EM 1110-1-1905): its printed Figure List as ``scripts/printed_army_layout.py``
+    reads the front matter (``Figure 4–7. <caption> .... 85``, lettered numbers
+    such as C-2a, en dashes as hyphens), each figure on the page whose text holds
+    its number followed by its caption: the page the list gives, else the
+    nearest within :data:`ARMY_SEARCH_PAGES` (``page_estimated`` where none
+    does). An appendix figure's ``chapter`` is the number the manifest gives
+    that appendix's chapter file (Appendix B is chapter 13)."""
+    import fitz  # PyMuPDF
+    if str(_SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(_SCRIPTS_DIR))
+    import printed_army_layout as pal
+
+    letters = {c["appendix"]: c["number"] for c in vol["chapters"] if c.get("appendix")}
+    # printed p. 1 is the first page of chapter 1
+    offset = min(c["page_start"] for c in vol["chapters"]) - 1
+    doc = fitz.open(str(pdf_abs))
+    try:
+        front = pal.read_front(doc, *vol["contents_pages"], pal.Book(vol, draft=True))
+        # a caption on its page sets its symbols in mathematical bold italic
+        # letters ('Typical 𝒆-log-p consolidation curve'), the list in plain ones
+        norm_pages = [_norm(unicodedata.normalize("NFKC", doc[i].get_text()))
+                      for i in range(doc.page_count)]
+    finally:
+        doc.close()
+    figs = []
+    for num, (caption, printed) in front["figures"].items():
+        caption = caption.translate(_SMART)
+        needle = _norm(f"Figure {num}") + _norm(unicodedata.normalize("NFKC", caption))[:20]
+        guess = printed + offset - 1
+        order = sorted(range(max(0, guess - ARMY_SEARCH_PAGES),
+                             min(len(norm_pages), guess + ARMY_SEARCH_PAGES + 1)),
+                       key=lambda i: abs(i - guess))
+        idx = next((i for i in order if needle in norm_pages[i]), None)
+        prefix = num.split("-")[0]
+        figs.append({"figure_number": num, "caption": caption,
+                     "printed_page": printed, "list_page": str(printed),
+                     "pdf_page_index": guess if idx is None else idx,
+                     "page_estimated": idx is None,
+                     "chapter": int(prefix) if prefix.isdigit() else letters.get(prefix)})
+    return figs
+
+
 def build_catalog(package: str) -> dict:
     """Build and write ``figures_catalog.json`` for one package.
 
@@ -803,7 +860,8 @@ def build_catalog(package: str) -> dict:
             vabs = _REPO_ROOT / vrel
             if not vabs.exists():
                 raise FileNotFoundError(f"PDF not found for '{package}': {vabs}")
-            vfigs = _figs_from_pdf(vabs)
+            vfigs = _army_figs(vabs, vol) if vol.get("layout") == "army" \
+                else _figs_from_pdf(vabs)
             for f in vfigs:
                 f["pdf_path"] = vrel            # per-figure source PDF
                 f["volume"] = vol.get("volume")
@@ -830,7 +888,7 @@ def build_catalog(package: str) -> dict:
         rec = {
             "figure_number": f["figure_number"],
             "caption": f["caption"],
-            "chapter": _chapter_of(f["figure_number"]),
+            "chapter": f["chapter"] if "chapter" in f else _chapter_of(f["figure_number"]),
             "pdf_page_index": f["pdf_page_index"],
             "printed_page": f["printed_page"],
             "page_estimated": bool(f.get("page_estimated", False)),

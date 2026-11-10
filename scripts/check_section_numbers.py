@@ -643,13 +643,41 @@ def is_range(sid: str, style: str) -> tuple[str, str] | None:
     return (m.group(1), m.group(2)) if m else None
 
 
+#: A subparagraph of a manual in the Army layout (EM 1110-1-1905): '5-5a',
+#: '5-5a(2)(b)', '2-7a(2)(c)1', 'C-2b.a'.
+_ARMY_SUB = re.compile(r"^(?:\d+|[A-Z])-\d+[a-z(]")
+
+
+def army_layout(ref: str) -> bool:
+    """Whether a reference's manifest reads it in the Army layout."""
+    for mf in sorted(MANIFESTS.glob("*.json")):
+        m = json.loads(mf.read_text(encoding="utf-8"))
+        if m.get("package") == ref and any(
+                v.get("layout") == "army" for v in m.get("volumes", [])):
+            return True
+    return False
+
+
 def compare_reference(ref: str) -> dict:
     files = json_sections(ref)
+    subparagraphs = 0
+    if army_layout(ref):
+        # a manual in the Army layout prints its subparagraphs' marks ('a.',
+        # '(1)', '(a)', '1') at the start of their text, not as numbered
+        # headings; the build that reads its paragraph headings reads those
+        # marks on the same pages, so only the paragraphs ('5-5', 'B-1') are
+        # compared with the printed headings here
+        for jf in files:
+            kept = [s for s in files[jf] if not _ARMY_SUB.match(s.sid)]
+            subparagraphs += len(files[jf]) - len(kept)
+            files[jf] = kept
     all_secs = [s for v in files.values() for s in v]
     style = numbering_style(all_secs)
     pdfs = ref_pdfs(ref)
     result = {"reference": ref, "style": style, "pdfs": [p.name for _, p in pdfs],
               "chapters": [], "skipped": None}
+    if subparagraphs:
+        result["subparagraphs_not_compared"] = subparagraphs
     if ref in SKIP:
         result["skipped"] = SKIP[ref]
         return result
