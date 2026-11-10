@@ -16,20 +16,32 @@ Appendix F's own worked example (Tables F.1-F.7, printed pp. 437-445) rather
 than transcribing a form that fails to reproduce the printed numbers --
 doctrine: never guess, verify against the manual's own numbers:
 
-  - Eq F.10 (Ph, horizontal hydrostatic component): the printed OCR text
-    reads "Ph = R*gamma_w*[Y*(sin th1 - sin th2) - (R/2)*(sin^2 th2 -
-    sin^2 th1)]". Direct integration of the stated integral
+  - Eq F.10 (Ph, horizontal hydrostatic component): the rendered page
+    (pdf 436 / printed 427) typesets "Ph = R*gamma_w*[Y*(sin th1 - sin
+    th2) - (1/2)R*(sin^2 th2 - sin^2 th1)]". Direct integration of the
+    stated integral
     INT(th1,th2) (Y + R sin(th)) cos(th) dth gives the opposite sign:
     "Ph = R*gamma_w*[Y*(sin th2 - sin th1) + (R/2)*(sin^2 th2 - sin^2
     th1)]" -- and THIS form reproduces the worked example's Ph = 50.0 kips
     exactly (Table F.3), while the literally-printed form gives -50.0.
     ``hydrostatic_horizontal_component`` implements the calculus-consistent,
     numerically-verified form.
-  - Paragraph F.3.5 narrative ("arctangent of the horizontal component over
-    the vertical component") implies theta_p = atan(Ph/Pv), but the worked
-    example computes theta_p = atan(Pv/Ph) = 0.293 rad (printed p. 440).
+  - theta_p: paragraph F.3.5 says "arctangent of the horizontal component
+    over the vertical component" and typesets the displayed equation
+    theta_p = tan^-1(Ph/Pv) (printed p. 427), but the worked example
+    computes theta_p = atan(Pv/Ph) = 0.293 rad (printed p. 440), the angle
+    "from the horizontal" the same sentence names.
     ``resultant_angle_from_horizontal`` implements atan(Pv/Ph), matching
     the worked number.
+  - theta_Rt: paragraph F.4.2.4 typesets theta_Rt = tan^-1(Rtx/Rty)
+    (printed p. 436), but the worked example computes tan^-1(363/1336) =
+    0.2653 rad (printed p. 445) and Table F.8 prints -0.2653.
+    ``trunnion_reaction_force`` implements atan(|Rty|/|Rtx|), the worked
+    magnitude.
+  These three are judgment calls ruled by the lead on 2026-11-10 (the
+  owner has delegated equation judgment calls): the code follows the
+  worked example and its tables, and each function's first docstring
+  paragraph says so.
 
 See ``seismic_amplification.py``'s module docstring for the Table 4.2 /
 Eq 4.4-vs-4.6 discrepancies (a different chapter, same doctrine).
@@ -58,8 +70,8 @@ guidance, listed with page numbers rather than digitized):
     which requires every applied load's own site-specific line of action
     angle (theta_H, theta_Q, theta_Fs, theta_T) and the iterative process
     described in paragraph F.4.1 (steps a-g). ``trunnion_friction_force``
-    below implements the GENERALIZABLE remainder (Eq F.17's magnitude/
-    direction resolution onward: Rt from components, Ft = mu*Rt, Mt = Ft*r),
+    below implements the GENERALIZABLE remainder (paragraph F.4.2.4's
+    unnumbered equations: Rt from components, Ft = mu*Rt, Mt = Ft*r),
     taking the net horizontal/vertical trunnion-reaction components as
     inputs -- validated against the worked example's Rtx=-1336 kips,
     Rty=-363.0 kips -> Rt=1385 kips, Ft=415.3 kips, Mt=207.7 kip-ft
@@ -289,8 +301,15 @@ def hydrostatic_radial_force(r, gamma_w, y, theta1, theta2):
 
 
 def hydrostatic_horizontal_component(r, gamma_w, y, theta1, theta2):
-    """Eq F.10: horizontal component of the radial hydrostatic force
-    (printed p. 427; see module docstring for the sign correction applied).
+    """Eq F.10: horizontal component Ph of the radial hydrostatic force, in
+    the unit of R*gamma_w*Y (kips/ft for R, Y in ft and gamma_w in kcf)
+    (printed p. 427). JUDGMENT CALL (kept; lead, 2026-11-10): Eq F.10 is
+    typeset Ph = R gamma_w [Y(sin th1 - sin th2) - (1/2)R(sin^2 th2 -
+    sin^2 th1)] (EM 1110-2-2107_2022.pdf pdf 436 / printed 427), the
+    negative of the integral printed above it; this function uses the
+    integral's sign, which the worked example and its Table F.3 follow
+    (Ph = +50.0 kips/ft, pdf 449 / printed 440; the typeset form gives
+    -50.0).
 
         Ph = R*gamma_w * [Y*(sin(th2) - sin(th1)) + (R/2)*(sin(th2)^2 - sin(th1)^2)]
 
@@ -330,10 +349,15 @@ def hydrostatic_vertical_component(r, gamma_w, y, theta1, theta2):
 
 
 def resultant_angle_from_horizontal(ph, pv):
-    """The radial-force resultant angle from horizontal, theta_p (printed
-    p. 427/440). See the module docstring: this implements atan(Pv/Ph), the
-    form the worked example (printed p. 440) actually computes, not the
-    atan(Ph/Pv) implied by the surrounding narrative text.
+    """Angle theta_p, radians, of the radial hydrostatic force from the
+    horizontal (printed pp. 427, 440). JUDGMENT CALL (kept; lead,
+    2026-11-10): paragraph F.3.5 typesets theta_p = tan^-1(Ph/Pv) as a
+    displayed equation, after "arctangent of the horizontal component over
+    the vertical component" (pdf 436 / printed 427); this function uses
+    atan(Pv/Ph), which the worked example and Table F.3 use (Ph 50.0,
+    Pv 15.081: 0.293 rad, pdf 449 / printed 440; the typeset form gives
+    1.278 rad) and which is the angle "from the horizontal" the same
+    sentence names.
 
     Verified against Table F.3: Ph=50.0, Pv=15.081 -> theta_p = 0.293 rad.
 
@@ -442,17 +466,24 @@ def hydrostatic_simplified_projection(gamma_w, h, el_trunnion=None, el_sill=None
 # ============================================================================
 
 def trunnion_reaction_force(rtx, rty):
-    """Eq F.17 (magnitude/direction portion): resultant trunnion-pin
-    reaction force from its net horizontal and vertical components (printed
-    p. 436). See the module docstring for why the full component ASSEMBLY
-    (Eq F.17-F.19) is left to the caller -- it requires site-specific load
-    line-of-action angles.
+    """Trunnion-pin reaction Rt, kips, and its angle theta_Rt, radians, from
+    the net horizontal and vertical components (paragraph F.4.2.4,
+    unnumbered, printed p. 436). JUDGMENT CALL (kept; lead, 2026-11-10):
+    the print typesets theta_Rt = tan^-1(Rtx/Rty) (pdf 445 / printed 436);
+    this function uses atan(|Rty|/|Rtx|), which the worked example uses
+    (tan^-1(363/1336) = 0.2653 rad, pdf 454 / printed 445; the typeset
+    form gives 1.3055 rad). It returns the MAGNITUDE: Table F.8 (same
+    page) prints theta_Rt = -0.2653 for Rtx = -1336, Rty = -363 kips; the
+    sign follows from the components' signs and is the caller's.
 
         Rt = sqrt(Rtx^2 + Rty^2)
         theta_Rt = atan(|Rty| / |Rtx|)
 
-    Verified against the worked example (printed p. 445): Rtx=-1336 kips,
-    Rty=-363.0 kips -> Rt=1385 kips, theta_Rt=0.2653 rad.
+    See the module docstring for why the full component ASSEMBLY
+    (Eq F.17-F.19) is left to the caller -- it requires site-specific load
+    line-of-action angles. Verified against the worked example (printed
+    p. 445): Rtx=-1336 kips, Rty=-363.0 kips -> Rt=1385 kips,
+    theta_Rt=0.2653 rad.
 
     Parameters
     ----------
@@ -464,17 +495,18 @@ def trunnion_reaction_force(rtx, rty):
     Returns
     -------
     dict
-        {'rt', 'theta_rt_rad', 'equation': 'F.17', 'printed_page': '436',
+        {'rt', 'theta_rt_rad', 'equation': 'F.4.2.4 (unnumbered)', 'printed_page': '436',
          'pdf_page': 444}
     """
     rt = math.sqrt(rtx ** 2 + rty ** 2)
     theta_rt = math.atan(abs(rty) / abs(rtx))
-    return {"rt": rt, "theta_rt_rad": theta_rt, "equation": "F.17",
+    return {"rt": rt, "theta_rt_rad": theta_rt, "equation": "F.4.2.4 (unnumbered)",
             "printed_page": "436", "pdf_page": 444}
 
 
 def trunnion_friction_force(mu, rt):
-    """Eq F.17 (friction-force portion): trunnion-pin friction force
+    """Paragraph F.4.2.4 (unnumbered; not Eq F.17, which is the QT
+    equation): trunnion-pin friction force
     (printed p. 436).
 
         Ft = mu * Rt
@@ -493,9 +525,9 @@ def trunnion_friction_force(mu, rt):
     Returns
     -------
     dict
-        {'ft', 'equation': 'F.17', 'printed_page': '436', 'pdf_page': 444}
+        {'ft', 'equation': 'F.4.2.4 (unnumbered)', 'printed_page': '436', 'pdf_page': 444}
     """
-    return {"ft": mu * rt, "equation": "F.17", "printed_page": "436", "pdf_page": 444}
+    return {"ft": mu * rt, "equation": "F.4.2.4 (unnumbered)", "printed_page": "436", "pdf_page": 444}
 
 
 def trunnion_friction_moment(ft, r):
@@ -514,9 +546,9 @@ def trunnion_friction_moment(ft, r):
     Returns
     -------
     dict
-        {'mt', 'equation': 'F.17', 'printed_page': '436', 'pdf_page': 444}
+        {'mt', 'equation': 'F.4.2.4 (unnumbered)', 'printed_page': '436', 'pdf_page': 444}
     """
-    return {"mt": ft * r, "equation": "F.17", "printed_page": "436", "pdf_page": 444}
+    return {"mt": ft * r, "equation": "F.4.2.4 (unnumbered)", "printed_page": "436", "pdf_page": 444}
 
 
 # ============================================================================
