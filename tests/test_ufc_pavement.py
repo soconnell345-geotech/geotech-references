@@ -431,13 +431,44 @@ class TestCompactionDepth:
         with pytest.raises(ValueError, match="passes"):
             table_5_1_compaction_depth(0, 95, "cohesive")
 
-    def test_table_21_2_basic(self):
-        r = table_21_2_aggregate_compaction_depth(1_000_000, 95, "cohesionless")
-        assert r["depth_in"] > 0
+    def test_table_5_1_rigid_column(self):
+        # Table 5-1, UFC 3-250-01 PDF 34 (pdf_page 33), printed 14: rigid
+        # column < 1,300 / < 1,500 / < 34,000 / < 343,000 / ... >= 290 million.
+        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "rigid")
+        assert r["depth_in"] == 12      # < 2.1 million row (flexible 11)
+        assert table_5_1_compaction_depth(
+            1_000_000, 95, "cohesive")["depth_in"] == 11   # < 1.3 million
+        assert table_5_1_compaction_depth(
+            300_000_000, 80, "cohesionless", "rigid")["depth_in"] == 77
+        assert table_5_1_compaction_depth(
+            1_400, 100, "cohesive", "rigid")["depth_in"] == 4
+        with pytest.raises(ValueError, match="pavement_type"):
+            table_5_1_compaction_depth(1_000, 95, "cohesive", "composite")
 
-    def test_table_21_2_no_80pct_level(self):
+    def test_table_5_1_bounds_are_strict(self):
+        # Printed "< 15,500": 15,500 itself is in the "< 67,500" row.
+        assert table_5_1_compaction_depth(15_499, 100, "cohesive")["depth_in"] == 3
+        assert table_5_1_compaction_depth(15_500, 100, "cohesive")["depth_in"] == 4
+        assert table_5_1_compaction_depth(
+            1_300, 95, "cohesionless", "rigid")["depth_in"] == 15
+
+    def test_table_21_2_basic(self):
+        # Table 21-2, PDF 144 (pdf_page 143), printed 124.
+        r = table_21_2_aggregate_compaction_depth(1_000_000, 95, "cohesionless")
+        assert r["depth_in"] == 11
+
+    def test_table_21_2_cohesive_80pct_column(self):
+        # Cohesive 80 % column as printed: 9, 11, 13, 14, 16, 18, 20, 22, 25, 27.
+        assert table_21_2_aggregate_compaction_depth(
+            1_000_000, 80, "cohesive")["depth_in"] == 14
+        assert table_21_2_aggregate_compaction_depth(
+            10_000, 80, "cohesive")["depth_in"] == 9
+        assert table_21_2_aggregate_compaction_depth(
+            3e9, 80, "cohesive")["depth_in"] == 27
+
+    def test_table_21_2_no_80pct_level_cohesionless(self):
         with pytest.raises(ValueError):
-            table_21_2_aggregate_compaction_depth(1_000_000, 80, "cohesive")
+            table_21_2_aggregate_compaction_depth(1_000_000, 80, "cohesionless")
 
 
 class TestSubbasePermissibleValues:

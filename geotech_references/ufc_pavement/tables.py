@@ -120,10 +120,16 @@ def table_4_1_subgrade_category(cbr) -> dict:
 # printed values -- shared lookup helper below.
 # ============================================================================
 
-# ESAL bins: upper bound exclusive except last (inf)
+# ESAL bins as printed "< n" (upper bound exclusive), the last ">= n".
+# Flexible column of Table 5-1 and the only column of Table 21-2:
 _COMPACTION_ESAL_BINS = [
     15_500, 67_500, 295_000, 1_300_000, 5_700_000,
     25_000_000, 112_000_000, 500_000_000, 2_200_000_000, float("inf"),
+]
+# Rigid column of Table 5-1 (pdf_page 33, printed 14), as printed:
+_COMPACTION_ESAL_BINS_RIGID = [
+    1_300, 1_500, 34_000, 343_000, 2_100_000,
+    9_200_000, 37_000_000, 105_000_000, 290_000_000, float("inf"),
 ]
 
 # Table 5-1: rows = (cohesive depths @ 100/95/90/85/80%, cohesionless depths @ same)
@@ -140,11 +146,12 @@ _TABLE_5_1_COHESIONLESS = [
     (20, 34, 47, 59, 77),
 ]
 
-# Table 21-2 (aggregate surfaces): only 4 density levels printed (100/95/90/85)
+# Table 21-2 (aggregate surfaces; pdf_page 143, printed 124): cohesive soils
+# at 100/95/90/85/80 %, cohesionless soils at 100/95/90/85 % (no 80 column).
 _TABLE_21_2_COHESIVE = [
-    (2, 4, 6, 7), (3, 5, 7, 9), (3, 5, 8, 10), (3, 6, 9, 12),
-    (4, 7, 10, 13), (4, 7, 11, 15), (4, 8, 12, 16), (5, 9, 13, 18),
-    (5, 10, 15, 20), (6, 11, 17, 22),
+    (2, 4, 6, 7, 9), (3, 5, 7, 9, 11), (3, 5, 8, 10, 13), (3, 6, 9, 12, 14),
+    (4, 7, 10, 13, 16), (4, 7, 11, 15, 18), (4, 8, 12, 16, 20),
+    (5, 9, 13, 18, 22), (5, 10, 15, 20, 25), (6, 11, 17, 22, 27),
 ]
 _TABLE_21_2_COHESIONLESS = [
     (4, 7, 10, 13), (5, 8, 12, 16), (5, 10, 14, 18), (6, 11, 16, 21),
@@ -153,21 +160,25 @@ _TABLE_21_2_COHESIONLESS = [
 ]
 
 
-def _compaction_depth_lookup(passes, density_pct, soil_type, table):
+def _compaction_depth_lookup(passes, density_pct, soil_type, table,
+                             bins=_COMPACTION_ESAL_BINS):
     idx = None
-    for i, upper in enumerate(_COMPACTION_ESAL_BINS):
-        if passes <= upper:
+    for i, upper in enumerate(bins):
+        if passes < upper:
             idx = i
             break
     if idx is None:
-        idx = len(_COMPACTION_ESAL_BINS) - 1
+        idx = len(bins) - 1
 
     if table == "5-1":
         density_levels = (100, 95, 90, 85, 80)
         rows = _TABLE_5_1_COHESIVE if soil_type == "cohesive" else _TABLE_5_1_COHESIONLESS
+    elif soil_type == "cohesive":
+        density_levels = (100, 95, 90, 85, 80)
+        rows = _TABLE_21_2_COHESIVE
     else:
         density_levels = (100, 95, 90, 85)
-        rows = _TABLE_21_2_COHESIVE if soil_type == "cohesive" else _TABLE_21_2_COHESIONLESS
+        rows = _TABLE_21_2_COHESIONLESS
 
     if density_pct not in density_levels:
         raise ValueError(
@@ -178,13 +189,18 @@ def _compaction_depth_lookup(passes, density_pct, soil_type, table):
     return rows[idx][col]
 
 
-def table_5_1_compaction_depth(passes, density_pct, soil_type) -> dict:
-    """Depth of compaction for select materials/subgrades, CBR <= 20
-    (Table 5-1, Chapter 5; pdf_page 33, printed 14).
+def table_5_1_compaction_depth(passes, density_pct, soil_type,
+                               pavement_type="flexible") -> dict:
+    """Depth of compaction for select materials and subgrades (CBR <= 20),
+    UFC 3-250-01 Table 5-1 (pdf_page 33, printed 14); returns depth_in, the
+    depth in inches from the pavement surface to which the given percent
+    compaction is required, for a flexible or a rigid pavement.
 
-    Returns the depth (measured from the pavement surface) at which the
-    given percent compaction (of ASTM D1557 maximum density) is required to
-    resist densification under the design traffic.
+    The table has one column of traffic for flexible and one for rigid
+    pavements (passes of an 18,000-lb ESAL): flexible < 15,500, < 67,500,
+    < 295,000, < 1.3 million ... >= 2,200 million; rigid < 1,300, < 1,500,
+    < 34,000, < 343,000 ... >= 290 million. Each bound is printed "<", so a
+    value equal to a bound falls in the next row.
 
     Parameters
     ----------
@@ -192,47 +208,60 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type) -> dict:
         Equivalent passes of an 18,000-lb (8,200-kg) ESAL over the design
         life. Must be > 0.
     density_pct : int
-        Target percent compaction: 100, 95, 90, 85, or 80.
+        Percent compaction (of ASTM D1557 maximum density): 100, 95, 90, 85,
+        or 80.
     soil_type : str
         'cohesive' (PI > 5, LL > 25) or 'cohesionless' (PI <= 5, LL <= 25).
+    pavement_type : str, optional
+        'flexible' (default) or 'rigid': which printed traffic column to use.
 
     Returns
     -------
     dict
-        {'passes', 'density_pct', 'soil_type', 'depth_in', 'reference'}.
+        {'passes', 'density_pct', 'soil_type', 'pavement_type', 'depth_in',
+         'reference'}.
 
     Raises
     ------
     ValueError
         If passes <= 0, density_pct is not one of the printed levels, or
-        soil_type is not recognized.
+        soil_type or pavement_type is not recognized.
     """
     if passes <= 0:
         raise ValueError(f"passes must be > 0, got {passes}")
     key = soil_type.lower().strip()
     if key not in ("cohesive", "cohesionless"):
         raise ValueError(f"soil_type must be 'cohesive' or 'cohesionless', got '{soil_type}'")
-    depth = _compaction_depth_lookup(passes, density_pct, key, "5-1")
+    ptype = str(pavement_type).lower().strip()
+    if ptype not in ("flexible", "rigid"):
+        raise ValueError(
+            f"pavement_type must be 'flexible' or 'rigid', got '{pavement_type}'")
+    bins = _COMPACTION_ESAL_BINS_RIGID if ptype == "rigid" else _COMPACTION_ESAL_BINS
+    depth = _compaction_depth_lookup(passes, density_pct, key, "5-1", bins)
     return {
         "passes": passes, "density_pct": density_pct, "soil_type": key,
-        "depth_in": depth,
+        "pavement_type": ptype, "depth_in": depth,
         "reference": "UFC 3-250-01, Table 5-1 (pdf_page 33, printed 14)",
     }
 
 
 def table_21_2_aggregate_compaction_depth(passes, density_pct, soil_type) -> dict:
-    """Depth of compaction for aggregate-surfaced roads (Table 21-2,
-    Chapter 21; pdf_page 143, printed 124). Same structure as Table 5-1;
-    depths are measured from the surface of the aggregate road, not the
-    subgrade surface.
+    """Compaction depth requirements for aggregate surfaces, UFC 3-250-01
+    Table 21-2 (pdf_page 143, printed 124); returns depth_in, the depth in
+    inches from the surface of the aggregate road (not the subgrade) to
+    which the given percent compaction is required.
+
+    Traffic bins are printed "< 15,500" ... ">= 2,200 million" passes; a
+    value equal to a bound falls in the next row.
 
     Parameters
     ----------
     passes : float
         Equivalent passes of an 18,000-lb (8,200-kg) ESAL. Must be > 0.
     density_pct : int
-        Target percent compaction: 100, 95, 90, or 85 (no 80% row printed
-        for aggregate surfaces).
+        Percent compaction: 100, 95, 90, 85 or 80 for cohesive soils; 100,
+        95, 90 or 85 for cohesionless soils (the print has no 80 column for
+        them).
     soil_type : str
         'cohesive' (PI > 5, LL > 25) or 'cohesionless' (PI <= 5, LL <= 25).
 
