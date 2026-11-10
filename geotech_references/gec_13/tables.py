@@ -10,6 +10,14 @@ case-insensitive keys.
 
 from geotech_references._interpolation import _linterp
 
+
+def _no_match(table, page, given, choices):
+    """ValueError for a filter that matched no printed row."""
+    asked = ", ".join(f"{k}='{v}'" for k, v in given.items() if v)
+    return ValueError(
+        f"No row of GEC-13 {table} ({page}) matches {asked}. "
+        + " ".join(f"{name}: {', '.join(vals)}." for name, vals in choices))
+
 # ============================================================================
 # Table 1-2: General Applicability of Technologies
 # ============================================================================
@@ -101,7 +109,9 @@ _TABLE_1_2 = [
         "technology": "Compaction Grouting",
         "applicability": "Cohesionless granular soils, collapsible soils, and "
                          "unsaturated fine grained soils; may be used to fill "
-                         "voids in sinkholes or abandoned mine shafts",
+                         "voids in sinkholes or abandoned mine shafts; can "
+                         "arrest settlement under a structure and lift "
+                         "foundations that have settled",
     },
     {
         "category": "grouting",
@@ -129,7 +139,8 @@ _TABLE_1_2 = [
         "technology": "Chemical Stabilization",
         "applicability": "Portland cement and lime: high plasticity clays; "
                          "Fly ash: soils with little or no plastic fines; "
-                         "Asphalt: silty, sandy and granular soils",
+                         "Asphalt: silty, sandy and granular soils; "
+                         "Cement Kiln Dust: expansive soils",
     },
     {
         "category": "pavement_stabilization",
@@ -165,7 +176,7 @@ _TABLE_1_2 = [
 
 
 def table_1_2_applicability(category: str = "", technology: str = "") -> list:
-    """Technology applicability lookup from GEC-13 Table 1-2.
+    """Ground conditions each ground modification technology applies to, as printed in GEC-13 Table 1-2 "General Applicability of Technologies" (FHWA-NHI-16-027 Vol I, pp. 1-10 to 1-11).
 
     Parameters
     ----------
@@ -180,6 +191,11 @@ def table_1_2_applicability(category: str = "", technology: str = "") -> list:
     -------
     list of dict
         Matching entries with category, technology, and applicability.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     cat_lower = category.lower().strip()
     tech_lower = technology.lower().strip()
@@ -190,6 +206,16 @@ def table_1_2_applicability(category: str = "", technology: str = "") -> list:
         if tech_lower and tech_lower not in entry["technology"].lower():
             continue
         results.append(dict(entry))
+    if not results:
+        cats = []
+        for entry in _TABLE_1_2:
+            if entry["category"] not in cats:
+                cats.append(entry["category"])
+        raise _no_match(
+            "Table 1-2", "pp. 1-10 to 1-11",
+            {"category": category, "technology": technology},
+            [("Categories", cats),
+             ("Technologies", [e["technology"] for e in _TABLE_1_2])])
     return results
 
 
@@ -197,6 +223,10 @@ def table_1_2_applicability(category: str = "", technology: str = "") -> list:
 # Table 1-3: Technologies Classified by Function
 # ============================================================================
 
+# FHWA-NHI-16-027 (GEC-13) Vol I, pp. 1-15 and 1-16 (PDF pages 29-30), read
+# off the rendered pages: ten functions, each with its bulleted technologies
+# and its comment, in the print's words (the fourth row prints "Columns
+# Supported Embankments").
 _TABLE_1_3 = {
     "increase_shear_strength": {
         "description": "Increase shear strength and bearing resistance",
@@ -230,7 +260,7 @@ _TABLE_1_3 = {
     "control_deformations": {
         "description": "Control deformations (settlement, heave, distortions)",
         "technologies": [
-            "Column Supported Embankments",
+            "Columns Supported Embankments",
             "Reinforced Load Transfer Platforms",
             "Non-compressible Columns", "Mixing Methods",
             "Vibro-Compaction", "Dynamic Compaction",
@@ -244,58 +274,85 @@ _TABLE_1_3 = {
     "increase_drainage": {
         "description": "Increase drainage",
         "technologies": [
-            "PVDs", "Stone Columns", "Aggregate Drains",
-            "Earthquake Drains",
+            "PVDs", "Aggregate Columns", "Geotextile Encased columns",
+            "Electro-osmosis", "Geosynthetics in Pavement Drainage",
         ],
-        "comment": "Vertical drains to accelerate consolidation or mitigate "
-                   "liquefaction potential.",
+        "comment": "Generally increase drainage by inserting a drainage "
+                   "path within the soil to be drained.",
     },
     "accelerate_consolidation": {
         "description": "Accelerate consolidation",
         "technologies": [
-            "PVDs with Preloading", "PVDs with Surcharge",
-            "Surcharge Only", "Vacuum Consolidation",
+            "PVDs", "Aggregate Columns", "Geotextile Encased Columns",
         ],
-        "comment": "Used with soft compressible soils; surcharge alone may "
-                   "be sufficient for thin compressible layers.",
+        "comment": "Acceleration due to decreased length of flow path to "
+                   "dissipate excess pore water pressure.",
+    },
+    "decrease_imposed_loads": {
+        "description": "Decrease imposed loads",
+        "technologies": [
+            "Granular Fills (Wood Fiber; Blast Furnace Slag; Fly Ash; "
+            "Boiler Slag; Expanded Shale, Clay & Slate; Tire Shreds)",
+            "Compressive Strength Fills: (Geofoam, Foamed Concrete)",
+        ],
+        "comment": "Densities vary from 1 to 90 pcf. Granular fill usage "
+                   "subject to local availability.",
     },
     "provide_lateral_stability": {
         "description": "Provide lateral stability",
         "technologies": [
-            "Reinforced Embankments", "Reinforced Soil Walls",
-            "Reinforced Soil Slopes", "Soil Nail Walls",
-            "Deep Mixing for Shear Walls",
+            "Mechanically Stabilized Earth (MSE) Walls",
+            "Reinforced Soil Slopes", "Soil Nailing",
         ],
-        "comment": "Both active and passive earth retention and slope "
-                   "reinforcement methods.",
+        "comment": "Techniques based on internal reinforcement of soils.",
     },
     "increase_liquefaction_resistance": {
         "description": "Increase resistance to liquefaction",
         "technologies": [
-            "Vibro-Compaction", "Dynamic Compaction",
-            "Stone Columns", "Earthquake Drains",
-            "Compaction Grouting", "Deep Mixing",
+            "Aggregate Columns", "Deep Dynamic Compaction", "Deep Mixing",
+            "Jet Grouting", "Vibro-Compaction",
         ],
-        "comment": "Densification methods for loose saturated sands; "
-                   "drainage methods for pore pressure relief.",
+        "comment": "Techniques generally to modify and improve soil "
+                   "susceptible to liquefaction. Aggregate columns also "
+                   "provide drainage path for excess pore water pressure.",
+    },
+    "transfer_embankment_loads": {
+        "description": "Transfer embankment loads to more competent layers",
+        "technologies": [
+            "Column Supported Embankments",
+            "Reinforced Soil Load Transfer Platforms",
+            "Non-compressible Columns", "Compressible Columns",
+        ],
+        "comment": "A column supported embankment may be constructed on a "
+                   "load transfer platform that is supported on columns.",
     },
 }
 
+_TABLE_1_3_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol I, Table 1-3 "
+                        "Technologies Classified by Function, pp. 1-15 to 1-16")
+
 
 def table_1_3_by_function(function: str = "") -> list:
-    """Technologies classified by function from GEC-13 Table 1-3.
+    """Ground modification technologies listed under each function (increase shear strength, increase density, decrease permeability, control deformations, increase drainage, accelerate consolidation, decrease imposed loads, provide lateral stability, increase resistance to liquefaction, transfer embankment loads), as printed in GEC-13 Table 1-3 (FHWA-NHI-16-027 Vol I, pp. 1-15 to 1-16).
 
     Parameters
     ----------
     function : str
         Filter by function name (partial match, case-insensitive).
-        E.g., 'shear', 'density', 'drainage', 'liquefaction'.
-        Empty string returns all functions.
+        E.g., 'shear', 'density', 'drainage', 'liquefaction', 'loads'.
+        Empty string returns all ten functions.
 
     Returns
     -------
     list of dict
-        Each dict has function, description, technologies, and comment.
+        Each dict has function, description (the function as printed),
+        technologies (the printed bullets), comment (as printed) and
+        reference.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no function of the table matches it.
     """
     func_lower = function.lower().strip()
     results = []
@@ -308,7 +365,12 @@ def table_1_3_by_function(function: str = "") -> list:
             "description": data["description"],
             "technologies": list(data["technologies"]),
             "comment": data["comment"],
+            "reference": _TABLE_1_3_REFERENCE,
         })
+    if not results:
+        raise _no_match(
+            "Table 1-3", "pp. 1-15 to 1-16", {"function": function},
+            [("Functions", [d["description"] for d in _TABLE_1_3.values()])])
     return results
 
 
@@ -533,6 +595,11 @@ def table_1_6_unit_cost(category: str = "", technology: str = "") -> list:
     list of dict
         Matching entries with category, technology, unit_cost,
         cost_low, cost_high, and unit fields.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     cat_lower = category.lower().strip()
     tech_lower = technology.lower().strip()
@@ -543,6 +610,16 @@ def table_1_6_unit_cost(category: str = "", technology: str = "") -> list:
         if tech_lower and tech_lower not in entry["technology"].lower():
             continue
         results.append(dict(entry))
+    if not results:
+        cats = []
+        for entry in _TABLE_1_6:
+            if entry["category"] not in cats:
+                cats.append(entry["category"])
+        raise _no_match(
+            "Table 1-6", "p. 1-36",
+            {"category": category, "technology": technology},
+            [("Categories", cats),
+             ("Technologies", [e["technology"] for e in _TABLE_1_6])])
     return results
 
 
@@ -608,6 +685,11 @@ def table_2_1_pvd_applications(application: str = "") -> list:
     list of dict
         Matching entries with application, increase_stability, and
         accelerate_settlements fields.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     app_lower = application.lower().strip()
     results = []
@@ -615,95 +697,101 @@ def table_2_1_pvd_applications(application: str = "") -> list:
         if app_lower and app_lower not in entry["application"].lower():
             continue
         results.append(dict(entry))
+    if not results:
+        raise _no_match(
+            "Table 2-1", "p. 2-9", {"application": application},
+            [("Fields of application",
+              [e["application"] for e in _TABLE_2_1])])
     return results
 
 
 # ============================================================================
-# Table 3-1: Lightweight Fill Material Properties (selected values)
+# Table 3-1: Densities and Specific Gravity for Various Lightweight Fill
+# Materials. FHWA-NHI-16-027 (GEC-13) Vol I, p. 3-1 (PDF page 151), read off
+# the rendered page:
+#
+#   Fill Type                                Range in Density pcf   Range in Specific Gravity
+#   Geofoam (RCPS)                           0.70 to 3.00           0.01 to 0.05
+#   Cellular Concrete                        20 to 80               0.4 to 1.3
+#   Wood Fiber                               35 to 55               0.6 to 0.9
+#   Tire Shreds                              37 to 73               0.6 to 1.2
+#   Expanded Shale, Clay, and Slate (ESCS)   37 to 65               0.6 to 1.0
+#   Fly Ash                                  70 to 90               1.1 to 1.4
+#   Boiler Slag                              60 to 90               1.0 to 1.4
+#   Expanded Air-Cooled Slag                 69 to 94               1.1 to 1.5
 # ============================================================================
 
+_PCF_TO_KN_M3 = 0.157087
+
+# key: (fill type as printed, (density pcf low, high), (specific gravity low, high))
 _TABLE_3_1 = {
-    "geofoam_eps": {
-        "material": "Geofoam (EPS)",
-        "unit_weight_pcf": (0.7, 3.0),
-        "unit_weight_kn_m3": (0.11, 0.47),
-        "notes": "Expanded polystyrene blocks; compressive strength 2-18 psi",
-    },
-    "foamed_concrete": {
-        "material": "Foamed Concrete",
-        "unit_weight_pcf": (24, 55),
-        "unit_weight_kn_m3": (3.8, 8.6),
-        "notes": "Cellular concrete; strength varies with density",
-    },
-    "wood_fiber": {
-        "material": "Wood Fiber",
-        "unit_weight_pcf": (35, 55),
-        "unit_weight_kn_m3": (5.5, 8.6),
-        "notes": "Compacted wood chips/fibers; susceptible to decomposition below GWT",
-    },
-    "blast_furnace_slag": {
-        "material": "Blast Furnace Slag",
-        "unit_weight_pcf": (60, 75),
-        "unit_weight_kn_m3": (9.4, 11.8),
-        "notes": "Air-cooled or expanded; granular lightweight fill",
-    },
-    "fly_ash": {
-        "material": "Fly Ash",
-        "unit_weight_pcf": (70, 90),
-        "unit_weight_kn_m3": (11.0, 14.1),
-        "notes": "Coal combustion byproduct; needs moisture control",
-    },
-    "expanded_shale": {
-        "material": "Expanded Shale, Clay, and Slate",
-        "unit_weight_pcf": (40, 65),
-        "unit_weight_kn_m3": (6.3, 10.2),
-        "notes": "Rotary kiln produced; durable and chemically inert",
-    },
-    "tire_shreds": {
-        "material": "Tire Derived Aggregate (TDA)",
-        "unit_weight_pcf": (37, 55),
-        "unit_weight_kn_m3": (5.8, 8.6),
-        "notes": "Shredded tires; max fill height ~10 ft per FHWA guidelines",
-    },
-    "boiler_slag": {
-        "material": "Boiler Slag",
-        "unit_weight_pcf": (60, 90),
-        "unit_weight_kn_m3": (9.4, 14.1),
-        "notes": "Wet-bottom furnace byproduct; hard and angular",
-    },
+    "geofoam": ("Geofoam (RCPS)", (0.70, 3.00), (0.01, 0.05)),
+    "cellular_concrete": ("Cellular Concrete", (20, 80), (0.4, 1.3)),
+    "wood_fiber": ("Wood Fiber", (35, 55), (0.6, 0.9)),
+    "tire_shreds": ("Tire Shreds", (37, 73), (0.6, 1.2)),
+    "expanded_shale_clay_slate": (
+        "Expanded Shale, Clay, and Slate (ESCS)", (37, 65), (0.6, 1.0)),
+    "fly_ash": ("Fly Ash", (70, 90), (1.1, 1.4)),
+    "boiler_slag": ("Boiler Slag", (60, 90), (1.0, 1.4)),
+    "expanded_air_cooled_slag": (
+        "Expanded Air-Cooled Slag", (69, 94), (1.1, 1.5)),
 }
+
+_TABLE_3_1_REFERENCE = ("FHWA-NHI-16-027 (GEC-13) Vol I, Table 3-1 Densities "
+                        "and Specific Gravity for Various Lightweight Fill "
+                        "Materials, p. 3-1")
 
 
 def table_3_1_lightweight_fill(material: str = "") -> list:
-    """Lightweight fill material properties from GEC-13 Chapter 3.
+    """Range of density (pcf as printed, and kN/m3 converted) and of specific gravity for eight lightweight fill materials, as printed in GEC-13 Table 3-1 (FHWA-NHI-16-027 Vol I, p. 3-1).
+
+    As printed, density in pcf: Geofoam (RCPS) 0.70 to 3.00; Cellular
+    Concrete 20 to 80; Wood Fiber 35 to 55; Tire Shreds 37 to 73; Expanded
+    Shale, Clay, and Slate (ESCS) 37 to 65; Fly Ash 70 to 90; Boiler Slag
+    60 to 90; Expanded Air-Cooled Slag 69 to 94.
 
     Parameters
     ----------
     material : str
         Filter by material name (partial match, case-insensitive).
-        E.g., 'geofoam', 'tire', 'wood', 'fly ash'.
+        E.g., 'geofoam', 'tire', 'wood', 'fly ash', 'slag', 'cellular'.
+        Empty returns all eight.
 
     Returns
     -------
     list of dict
-        Each dict has material, unit_weight_pcf (low, high),
-        unit_weight_kn_m3 (low, high), and notes.
+        Each dict has key, material (as printed), unit_weight_pcf_low and
+        _high (as printed), unit_weight_kn_m3_low and _high (the printed
+        pcf at 0.157087 kN/m3 per pcf), specific_gravity_low and _high (as
+        printed), reference.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     mat_lower = material.lower().strip()
     results = []
-    for key, data in _TABLE_3_1.items():
+    for key, (name, pcf, sg) in _TABLE_3_1.items():
         if mat_lower and (mat_lower not in key.lower() and
-                          mat_lower not in data["material"].lower()):
+                          mat_lower not in key.replace("_", " ") and
+                          mat_lower not in name.lower()):
             continue
         results.append({
             "key": key,
-            "material": data["material"],
-            "unit_weight_pcf_low": data["unit_weight_pcf"][0],
-            "unit_weight_pcf_high": data["unit_weight_pcf"][1],
-            "unit_weight_kn_m3_low": data["unit_weight_kn_m3"][0],
-            "unit_weight_kn_m3_high": data["unit_weight_kn_m3"][1],
-            "notes": data["notes"],
+            "material": name,
+            "unit_weight_pcf_low": pcf[0],
+            "unit_weight_pcf_high": pcf[1],
+            "unit_weight_kn_m3_low": round(pcf[0] * _PCF_TO_KN_M3, 2),
+            "unit_weight_kn_m3_high": round(pcf[1] * _PCF_TO_KN_M3, 2),
+            "specific_gravity_low": sg[0],
+            "specific_gravity_high": sg[1],
+            "reference": _TABLE_3_1_REFERENCE,
         })
+    if not results:
+        raise _no_match(
+            "Table 3-1", "p. 3-1", {"material": material},
+            [("Fill types", [v[0] for v in _TABLE_3_1.values()])])
     return results
 
 
@@ -778,6 +866,11 @@ def table_4_3_applied_energy(soil_type: str = "") -> list:
         Each dict has key, type_of_deposit, the unit applied energy in
         ft-lbf/ft3 and kJ/m3 (low, high), percent of standard Proctor
         energy (low, high), reference and note.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     st_lower = soil_type.lower().strip()
     results = []
@@ -803,6 +896,11 @@ def table_4_3_applied_energy(soil_type: str = "") -> list:
             "reference": _TABLE_4_3_REFERENCE,
             "note": _TABLE_4_3_NOTE,
         })
+    if not results:
+        raise _no_match(
+            "Table 4-3", "p. 4-46", {"soil_type": soil_type},
+            [("Types of deposit",
+              [d["type_of_deposit"] for d in _TABLE_4_3.values()])])
     return results
 
 
@@ -1066,6 +1164,11 @@ def table_8_1_jet_grouting_systems(system: str = "") -> list:
     list of dict
         Each dict has key, system, advantages (list), disadvantages (list),
         reference and note.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no system of the table matches it.
     """
     sys_lower = system.lower().strip()
     results = []
@@ -1081,6 +1184,10 @@ def table_8_1_jet_grouting_systems(system: str = "") -> list:
             "reference": _TABLE_8_1_REFERENCE,
             "note": _TABLE_8_1_NOTE,
         })
+    if not results:
+        raise _no_match(
+            "Table 8-1", "p. 8-26", {"system": system},
+            [("Systems", [d["system"] for d in _TABLE_8_1.values()])])
     return results
 
 
@@ -1135,6 +1242,11 @@ def table_8_6_soilcrete_strength(soil_type: str = "") -> list:
         Each dict has key, soil_type, ucs_psi_low (None where the print
         says "less than"), ucs_psi_high, ucs_kpa_low, ucs_kpa_high,
         system, reference and note.
+
+    Raises
+    ------
+    ValueError
+        If a filter is given and no row of the table matches it.
     """
     st_lower = soil_type.lower().strip()
     results = []
@@ -1153,4 +1265,8 @@ def table_8_6_soilcrete_strength(soil_type: str = "") -> list:
             "reference": _TABLE_8_6_REFERENCE,
             "note": _TABLE_8_6_NOTE,
         })
+    if not results:
+        raise _no_match(
+            "Table 8-6", "p. 8-71", {"soil_type": soil_type},
+            [("Soil types", [v[0] for v in _TABLE_8_6.values()])])
     return results

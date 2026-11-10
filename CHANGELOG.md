@@ -55,6 +55,25 @@ rows instead of being answered from the first row that contains the words.
     unchanged. The docstring now says that the page prints Bb equal to Ab
     for compression in gravelly sand to boulders and in rock, and prints
     the vibratory rows under "Tension"; both await a ruling (gec-06).
+- **GEC-13 ground modification (FHWA-NHI-16-027 Vol I).**
+  - `table_3_1_lightweight_fill` (Table 3-1, p. 3-1): rebuilt from the
+    print, with the specific gravity column. Four of eight rows change:
+    Tire Shreds 37 to 73 pcf (was 37 to 55); Cellular Concrete 20 to 80
+    (was "Foamed Concrete" 24 to 55); Expanded Shale, Clay, and Slate 37 to
+    65 (was 40 to 65); Expanded Air-Cooled Slag 69 to 94 (was "Blast
+    Furnace Slag" 60 to 75). The `notes` field, whose statements the table
+    does not print, is gone (gec-07).
+  - `table_1_3_by_function` (Table 1-3, pp. 1-15 to 1-16): the ten printed
+    functions with their printed technologies and comments. Increase
+    drainage, accelerate consolidation, provide lateral stability and
+    increase resistance to liquefaction listed technologies the table does
+    not (earthquake drains, vacuum consolidation, compaction grouting) and
+    left out ones it does (jet grouting for liquefaction); "decrease
+    imposed loads" and "transfer embankment loads" were missing (gec-09).
+  - `table_1_2_applicability`: two rows completed (gec-46). The eight
+    filter lookups (`table_1_2`, `1_3`, `1_6`, `2_1`, `3_1`, `4_3`, `8_1`,
+    `8_6`) refuse a filter that matches no row, naming the printed rows,
+    instead of returning an empty list (gec-37).
 
 ## 1.6.0
 
