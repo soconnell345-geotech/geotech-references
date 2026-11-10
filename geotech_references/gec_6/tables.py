@@ -8,6 +8,27 @@ lookup functions, case-insensitive keys.
 from geotech_references._interpolation import _linterp
 
 
+def _key(text: str) -> str:
+    """A caller's name for a row as a lower-case, underscore-joined key."""
+    for ch in ",;:()/-_":
+        text = text.replace(ch, " ")
+    return "_".join(text.lower().split())
+
+
+def _one_row(given, rows, aliases, table, page):
+    """The one row a key names: its own key or a listed alias. A key that
+    is neither is refused with the printed rows; no partial matching."""
+    key = _key(given)
+    key = aliases.get(key, key)
+    for row in rows:
+        if row["key"] == key:
+            return row
+    raise ValueError(
+        f"'{given}' does not name one row of GEC-6 {table} ({page}). "
+        "Rows (key: as printed): "
+        + "; ".join(f"{r['key']}: {r['printed']}" for r in rows))
+
+
 # ============================================================================
 # Table 4-1: Soil Properties Correlated with SPT Values
 # ============================================================================
@@ -190,74 +211,177 @@ def table_5_4_depth_correction_factor(phi: float, df_bf: float) -> float:
 # Table 5-7: Presumptive Bearing Pressures for Rock (NAVFAC, 1986b)
 # ============================================================================
 
+# FHWA-SA-02-054 (GEC-6), p. 68 (PDF page 74), read off the rendered page:
+#
+#   Type of Bearing Material                         Consistency In Place     Range (MPa)  Recommended Value for Use (MPa)
+#   Massive crystalline igneous and metamorphic      Hard, sound rock         5.8 to 9.6   7.7
+#     rock: granite, diorite, basalt, gneiss,
+#     thoroughly cemented conglomerate (sound
+#     condition allows minor cracks)
+#   Foliated metamorphic rock: Slate, schist         Medium-hard, sound rock  2.9 to 3.8   3.4
+#     (sound condition allows minor cracks)
+#   Sedimentary rock; hard cemented shales,          Medium-hard, sound rock  1.4 to 2.4   1.9
+#     siltstone, sandstone, limestone without
+#     cavities
+#   Weathered or broken bedrock of any kind except   Soft rock                0.8 to 1.2   1
+#     highly argillaceous rock (shale). RQD less
+#     than 25
+#   Compaction shale or other highly argillaceous    Soft rock                0.8 to 1.2   1
+#     rock in sound condition
 _TABLE_5_7 = [
     {
+        "key": "massive_crystalline_igneous_metamorphic",
         "type": "massive_crystalline_igneous_metamorphic",
         "consistency": "hard_sound_rock",
+        "printed": "Massive crystalline igneous and metamorphic rock: "
+                   "granite, diorite, basalt, gneiss, thoroughly cemented "
+                   "conglomerate (sound condition allows minor cracks)",
+        "consistency_printed": "Hard, sound rock",
         "range_min_mpa": 5.8,
         "range_max_mpa": 9.6,
         "recommended_mpa": 7.7,
     },
     {
+        "key": "foliated_metamorphic",
         "type": "foliated_metamorphic",
         "consistency": "medium_hard_sound_rock",
+        "printed": "Foliated metamorphic rock: Slate, schist (sound "
+                   "condition allows minor cracks)",
+        "consistency_printed": "Medium-hard, sound rock",
         "range_min_mpa": 2.9,
         "range_max_mpa": 3.8,
         "recommended_mpa": 3.4,
     },
     {
+        "key": "sedimentary_hard_cemented",
         "type": "sedimentary_hard_cemented",
         "consistency": "medium_hard_sound_rock",
+        "printed": "Sedimentary rock; hard cemented shales, siltstone, "
+                   "sandstone, limestone without cavities",
+        "consistency_printed": "Medium-hard, sound rock",
         "range_min_mpa": 1.4,
         "range_max_mpa": 2.4,
         "recommended_mpa": 1.9,
     },
     {
+        "key": "weathered_broken_bedrock",
         "type": "weathered_broken_bedrock",
         "consistency": "soft_rock",
+        "printed": "Weathered or broken bedrock of any kind except highly "
+                   "argillaceous rock (shale). RQD less than 25",
+        "consistency_printed": "Soft rock",
         "range_min_mpa": 0.8,
         "range_max_mpa": 1.2,
         "recommended_mpa": 1.0,
     },
     {
+        "key": "compaction_shale_argillaceous",
         "type": "compaction_shale_argillaceous",
         "consistency": "soft_rock",
+        "printed": "Compaction shale or other highly argillaceous rock in "
+                   "sound condition",
+        "consistency_printed": "Soft rock",
         "range_min_mpa": 0.8,
         "range_max_mpa": 1.2,
         "recommended_mpa": 1.0,
     },
 ]
 
+# Names of ONE row: its leading words and the rocks it lists. 'rock',
+# 'hard', 'metamorphic', 'medium hard', 'soft rock' and 'shale' each fit
+# more than one row and are refused.
+_TABLE_5_7_ALIASES = {
+    "massive": "massive_crystalline_igneous_metamorphic",
+    "massive_crystalline": "massive_crystalline_igneous_metamorphic",
+    "crystalline": "massive_crystalline_igneous_metamorphic",
+    "igneous": "massive_crystalline_igneous_metamorphic",
+    "massive_crystalline_igneous_and_metamorphic_rock":
+        "massive_crystalline_igneous_metamorphic",
+    "granite": "massive_crystalline_igneous_metamorphic",
+    "diorite": "massive_crystalline_igneous_metamorphic",
+    "basalt": "massive_crystalline_igneous_metamorphic",
+    "gneiss": "massive_crystalline_igneous_metamorphic",
+    "conglomerate": "massive_crystalline_igneous_metamorphic",
+    "thoroughly_cemented_conglomerate":
+        "massive_crystalline_igneous_metamorphic",
+    "hard_sound_rock": "massive_crystalline_igneous_metamorphic",
+    "hard_sound": "massive_crystalline_igneous_metamorphic",
+    "foliated": "foliated_metamorphic",
+    "foliated_metamorphic_rock": "foliated_metamorphic",
+    "slate": "foliated_metamorphic",
+    "schist": "foliated_metamorphic",
+    "sedimentary": "sedimentary_hard_cemented",
+    "sedimentary_rock": "sedimentary_hard_cemented",
+    "hard_cemented_shale": "sedimentary_hard_cemented",
+    "hard_cemented_shales": "sedimentary_hard_cemented",
+    "siltstone": "sedimentary_hard_cemented",
+    "sandstone": "sedimentary_hard_cemented",
+    "limestone": "sedimentary_hard_cemented",
+    "limestone_without_cavities": "sedimentary_hard_cemented",
+    "weathered": "weathered_broken_bedrock",
+    "broken": "weathered_broken_bedrock",
+    "weathered_rock": "weathered_broken_bedrock",
+    "weathered_bedrock": "weathered_broken_bedrock",
+    "broken_bedrock": "weathered_broken_bedrock",
+    "weathered_or_broken_bedrock": "weathered_broken_bedrock",
+    "compaction_shale": "compaction_shale_argillaceous",
+    "argillaceous": "compaction_shale_argillaceous",
+    "highly_argillaceous_rock": "compaction_shale_argillaceous",
+}
+
+_TABLE_5_7_REFERENCE = ("FHWA-SA-02-054 (GEC-6), Table 5-7 Presumptive Values "
+                        "of Allowable Bearing Pressures for Spread "
+                        "Foundations on Rock (modified after NAVFAC, 1986b), "
+                        "p. 68")
+
 
 def table_5_7_presumptive_bearing_rock(rock_type: str) -> dict:
-    """Presumptive bearing pressures for rock (Table 5-7, NAVFAC 1986b).
+    """Presumptive allowable bearing pressure (MPa: range and recommended value for use) for a spread foundation on one type of rock, one row of GEC-6 Table 5-7 (FHWA-SA-02-054, p. 68, modified after NAVFAC 1986b): massive crystalline igneous and metamorphic rock 7.7; foliated metamorphic rock 3.4; sedimentary rock 1.9; weathered or broken bedrock 1; compaction shale or other highly argillaceous rock 1.
+
+    The table's eight notes (p. 68) modify these nominal values: among
+    them, the pressure is not to exceed the unconfined compressive strength
+    of the intact specimen (note 8), and for footings smaller than 1 m in
+    the least lateral dimension it is the nominal value multiplied by that
+    dimension in meters (note 7).
 
     Parameters
     ----------
     rock_type : str
-        Rock type or consistency keyword. Partial matching supported.
-        Examples: 'massive', 'crystalline', 'foliated', 'sedimentary',
-        'weathered', 'shale', 'soft_rock', 'hard_sound'.
+        One row: 'massive_crystalline_igneous_metamorphic' (or 'massive',
+        'crystalline', 'igneous', 'granite', 'diorite', 'basalt', 'gneiss',
+        'conglomerate'), 'foliated_metamorphic' (or 'foliated', 'slate',
+        'schist'), 'sedimentary_hard_cemented' (or 'sedimentary',
+        'siltstone', 'sandstone', 'limestone', 'hard cemented shale'),
+        'weathered_broken_bedrock' (or 'weathered', 'broken'),
+        'compaction_shale_argillaceous' (or 'compaction shale'). 'rock',
+        'metamorphic', 'medium hard', 'soft rock' and 'shale' fit more than
+        one row and are refused.
 
     Returns
     -------
     dict
-        {'type': str, 'consistency': str, 'range_min_mpa': float,
-         'range_max_mpa': float, 'recommended_mpa': float}
+        {'type': str, 'consistency': str, 'type_printed': str,
+         'consistency_printed': str, 'range_min_mpa': float,
+         'range_max_mpa': float, 'recommended_mpa': float,
+         'reference': str}
 
     Raises
     ------
     ValueError
-        If no matching rock type is found.
+        If rock_type does not name one row of the table.
     """
-    key = rock_type.lower().strip().replace(" ", "_")
-    for row in _TABLE_5_7:
-        if key in row["type"] or key in row["consistency"]:
-            return dict(row)
-    raise ValueError(
-        f"No match for rock_type '{rock_type}'. Try: 'massive', "
-        "'foliated', 'sedimentary', 'weathered', 'shale'."
-    )
+    row = _one_row(rock_type, _TABLE_5_7, _TABLE_5_7_ALIASES,
+                   "Table 5-7", "p. 68")
+    return {
+        "type": row["type"],
+        "consistency": row["consistency"],
+        "type_printed": row["printed"],
+        "consistency_printed": row["consistency_printed"],
+        "range_min_mpa": row["range_min_mpa"],
+        "range_max_mpa": row["range_max_mpa"],
+        "recommended_mpa": row["recommended_mpa"],
+        "reference": _TABLE_5_7_REFERENCE,
+    }
 
 
 # ============================================================================
@@ -270,7 +394,12 @@ _TABLE_5_9_QUALITY = ["soil_like", "very_poor", "poor", "fair", "good", "excelle
 
 
 def table_5_9_rqd_bearing_capacity(rqd: float) -> dict:
-    """Allowable bearing capacity based on RQD (Table 5-9, Peck et al. 1974).
+    """Suggested allowable bearing pressure on rock (MPa) and rock mass quality for an RQD (percent), from GEC-6 Table 5-9 (FHWA-SA-02-054, p. 70, Peck et al. 1974), which prints six rows: RQD 100 Excellent 29 MPa; 90 Good 19; 75 Fair 12; 50 Poor 6; 25 Very Poor 3; 0 Soil-like 1. Between two printed rows the pressure is interpolated linearly, which the table does not state, and the quality is given as lying between the two rows' words.
+
+    The text with the table (p. 70): the allowable bearing capacity is
+    in no instance to exceed the allowable stress of the concrete, and the
+    RQD is the average for the rock within a depth of one footing width Bf
+    below the base (the poorer rock's RQD if rock within 0.5 Bf is poorer).
 
     Parameters
     ----------
@@ -280,8 +409,11 @@ def table_5_9_rqd_bearing_capacity(rqd: float) -> dict:
     Returns
     -------
     dict
-        {'rqd': float, 'rock_mass_quality': str,
-         'allowable_pressure_mpa': float}
+        {'rqd': float, 'rock_mass_quality': str (the printed word on a
+         printed row, e.g. 'good'; between rows e.g. 'between fair (RQD
+         75) and good (RQD 90)'), 'allowable_pressure_mpa': float,
+         'interpolated': bool, 'printed_rows': the one or two printed rows
+         used, each (RQD, quality, MPa), 'reference': str}
 
     Raises
     ------
@@ -292,17 +424,28 @@ def table_5_9_rqd_bearing_capacity(rqd: float) -> dict:
         raise ValueError(f"RQD must be 0-100%, got {rqd}")
 
     pressure = _linterp(rqd, _TABLE_5_9_RQD, _TABLE_5_9_PRESSURE_MPA)
+    rows = list(zip(_TABLE_5_9_RQD, _TABLE_5_9_QUALITY,
+                    _TABLE_5_9_PRESSURE_MPA))
 
-    # Determine quality category
-    quality = "soil_like"
-    for i, threshold in enumerate(_TABLE_5_9_RQD):
-        if rqd >= threshold:
-            quality = _TABLE_5_9_QUALITY[i]
+    on_row = [r for r in rows if r[0] == rqd]
+    if on_row:
+        quality = on_row[0][1]
+        used = on_row
+    else:
+        lower = [r for r in rows if r[0] < rqd][-1]
+        upper = [r for r in rows if r[0] > rqd][0]
+        quality = (f"between {lower[1].replace('_', ' ')} (RQD {lower[0]}) "
+                   f"and {upper[1].replace('_', ' ')} (RQD {upper[0]})")
+        used = [lower, upper]
 
     return {
         "rqd": rqd,
         "rock_mass_quality": quality,
         "allowable_pressure_mpa": round(pressure, 1),
+        "interpolated": not on_row,
+        "printed_rows": used,
+        "reference": ("FHWA-SA-02-054 (GEC-6), Table 5-9 Suggested Values of "
+                      "Allowable Bearing Capacity (Peck et al., 1974), p. 70"),
     }
 
 
@@ -328,7 +471,7 @@ _TABLE_5_12_RECT_AVERAGE = [1.15, 1.30, 1.52, 1.83, 2.25, 3.70, 5.15, 6.60]
 
 def table_5_12_shape_rigidity_factor(shape: str, location: str = "center",
                                      length_width: float = None) -> float:
-    """Shape and rigidity factor Cd for settlement on rock (Table 5-12).
+    """Shape and rigidity factor Cd (dimensionless) for the settlement of a point on a loaded area at the surface of an elastic half space, from GEC-6 Table 5-12 (FHWA-SA-02-054, p. 97, after Winterkorn & Fang 1975), used in Eq. 5-36 for settlement on rock; for a rectangle the table prints length/width = 1.5, 2, 3, 5, 10, 100, 1000 and 10000 only, and a ratio between two of them is interpolated linearly in length/width, which the table does not state and which reads up to about 11 % below a logarithmic interpolation between the rows 10 and 100.
 
     Parameters
     ----------
@@ -417,7 +560,10 @@ def table_5_13_poissons_ratio_rock(rock_type: str) -> dict:
     Parameters
     ----------
     rock_type : str
-        Rock type (e.g., 'granite', 'sandstone', 'limestone').
+        One rock type of the table, by its name: 'granite', 'gabbro',
+        'diabase', 'basalt', 'quartzite', 'marble', 'gneiss', 'schist',
+        'sandstone', 'siltstone', 'shale', 'limestone', 'dolostone'. Any
+        other name (a part of a name, 'weathered granite') is refused.
 
     Returns
     -------
@@ -436,15 +582,9 @@ def table_5_13_poissons_ratio_rock(rock_type: str) -> dict:
         result["rock_type"] = key
         return result
 
-    # Try partial match
-    for k, v in _TABLE_5_13.items():
-        if key in k or k in key:
-            result = dict(v)
-            result["rock_type"] = k
-            return result
-
     raise ValueError(
-        f"Unknown rock_type '{rock_type}'. Options: "
+        f"'{rock_type}' is not a rock type of GEC-6 Table 5-13 (p. 97, "
+        "intact rock). Rock types: "
         f"{', '.join(_TABLE_5_13.keys())}"
     )
 
@@ -480,7 +620,11 @@ def table_5_14_youngs_modulus_rock(rock_type: str) -> dict:
     Parameters
     ----------
     rock_type : str
-        Rock type (e.g., 'granite', 'sandstone', 'limestone').
+        One rock type of the table, by its name: 'granite', 'diorite',
+        'gabbro', 'diabase', 'basalt', 'quartzite', 'marble', 'gneiss',
+        'slate', 'schist', 'phyllite', 'sandstone', 'siltstone', 'shale',
+        'limestone', 'dolostone'. Any other name (a part of a name,
+        'weathered granite') is refused.
 
     Returns
     -------
@@ -495,19 +639,12 @@ def table_5_14_youngs_modulus_rock(rock_type: str) -> dict:
         If rock type is not found.
     """
     key = rock_type.lower().strip()
-    match = None
-
-    if key in _TABLE_5_14:
-        match = key
-    else:
-        for k in _TABLE_5_14:
-            if key in k or k in key:
-                match = k
-                break
+    match = key if key in _TABLE_5_14 else None
 
     if match is None:
         raise ValueError(
-            f"Unknown rock_type '{rock_type}'. Options: "
+            f"'{rock_type}' is not a rock type of GEC-6 Table 5-14 (p. 98, "
+            "intact rock). Rock types: "
             f"{', '.join(_TABLE_5_14.keys())}"
         )
 
@@ -526,105 +663,181 @@ def table_5_14_youngs_modulus_rock(rock_type: str) -> dict:
 # (NAVFAC, 1986b)
 # ============================================================================
 
+# FHWA-SA-02-054 (GEC-6), p. 99 (PDF page 105), read off the rendered page.
+# "Mass concrete on the following materials:"
+#
+#   Interface Materials                                      Coefficient of Friction, tan delta   Friction Angle, delta (degrees)
+#   Clean sound rock                                         0.70            35
+#   Clean gravel, gravel sand mixtures, coarse sand          0.55 to 0.60    29 to 31
+#   Clean fine to medium sand, silty medium to coarse        0.45 to 0.55    24 to 29
+#     sand, silty or clayey gravel
+#   Clean fine sand, silty or clayey fine to medium sand     0.35 to 0.45    19 to 24
+#   Fine sandy silt, nonplastic silt                         0.30 to 0.35    17 to 19
+#   Very stiff and hard residual or preconsolidated clay     0.40 to 0.50    22 to 26
+#   Medium stiff and stiff clay and silty clay (masonry on   0.30 to 0.35    17 to 19
+#     foundation materials has same friction factor)
 _TABLE_5_15 = [
     {
+        "key": "clean_sound_rock",
         "interface": "clean_sound_rock",
+        "printed": "Clean sound rock",
         "tan_delta_min": 0.70,
         "tan_delta_max": 0.70,
         "delta_min_deg": 35,
         "delta_max_deg": 35,
     },
     {
+        "key": "clean_gravel_coarse_sand",
         "interface": "clean_gravel_coarse_sand",
+        "printed": "Clean gravel, gravel sand mixtures, coarse sand",
         "tan_delta_min": 0.55,
         "tan_delta_max": 0.60,
         "delta_min_deg": 29,
         "delta_max_deg": 31,
     },
     {
+        "key": "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
         "interface": "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+        "printed": "Clean fine to medium sand, silty medium to coarse sand, "
+                   "silty or clayey gravel",
         "tan_delta_min": 0.45,
         "tan_delta_max": 0.55,
         "delta_min_deg": 24,
         "delta_max_deg": 29,
     },
     {
+        "key": "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
         "interface": "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+        "printed": "Clean fine sand, silty or clayey fine to medium sand",
         "tan_delta_min": 0.35,
         "tan_delta_max": 0.45,
         "delta_min_deg": 19,
         "delta_max_deg": 24,
     },
     {
+        "key": "fine_sandy_silt_nonplastic_silt",
         "interface": "fine_sandy_silt_nonplastic_silt",
+        "printed": "Fine sandy silt, nonplastic silt",
         "tan_delta_min": 0.30,
         "tan_delta_max": 0.35,
         "delta_min_deg": 17,
         "delta_max_deg": 19,
     },
     {
-        "interface": "medium_stiff_clay_silty_clay",
-        "tan_delta_min": 0.30,
-        "tan_delta_max": 0.35,
-        "delta_min_deg": 17,
-        "delta_max_deg": 19,
-    },
-    {
+        "key": "very_stiff_hard_residual_preconsolidated_clay",
         "interface": "very_stiff_hard_residual_preconsolidated_clay",
+        "printed": "Very stiff and hard residual or preconsolidated clay",
         "tan_delta_min": 0.40,
         "tan_delta_max": 0.50,
         "delta_min_deg": 22,
         "delta_max_deg": 26,
     },
+    {
+        "key": "medium_stiff_clay_silty_clay",
+        "interface": "medium_stiff_clay_silty_clay",
+        "printed": "Medium stiff and stiff clay and silty clay (masonry on "
+                   "foundation materials has same friction factor)",
+        "tan_delta_min": 0.30,
+        "tan_delta_max": 0.35,
+        "delta_min_deg": 17,
+        "delta_max_deg": 19,
+    },
 ]
+
+# Each soil a row names, as its own key. 'sand', 'gravel', 'clay', 'silty
+# sand', 'medium sand' and 'stiff' fit more than one row and are refused.
+_TABLE_5_15_ALIASES = {
+    "rock": "clean_sound_rock",
+    "sound_rock": "clean_sound_rock",
+    "clean_gravel": "clean_gravel_coarse_sand",
+    "gravel_sand_mixtures": "clean_gravel_coarse_sand",
+    "gravel_sand_mixture": "clean_gravel_coarse_sand",
+    "coarse_sand": "clean_gravel_coarse_sand",
+    "clean_gravel_gravel_sand_mixtures_coarse_sand":
+        "clean_gravel_coarse_sand",
+    "clean_fine_to_medium_sand":
+        "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+    "silty_medium_to_coarse_sand":
+        "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+    "silty_gravel": "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+    "clayey_gravel": "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+    "silty_or_clayey_gravel":
+        "clean_fine_to_medium_sand_silty_medium_to_coarse_sand",
+    "clean_fine_sand": "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+    "fine_sand": "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+    "silty_fine_to_medium_sand":
+        "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+    "clayey_fine_to_medium_sand":
+        "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+    "silty_or_clayey_fine_to_medium_sand":
+        "clean_fine_sand_silty_or_clayey_fine_to_medium_sand",
+    "silt": "fine_sandy_silt_nonplastic_silt",
+    "fine_sandy_silt": "fine_sandy_silt_nonplastic_silt",
+    "nonplastic_silt": "fine_sandy_silt_nonplastic_silt",
+    "very_stiff_clay": "very_stiff_hard_residual_preconsolidated_clay",
+    "hard_clay": "very_stiff_hard_residual_preconsolidated_clay",
+    "very_stiff_and_hard_clay":
+        "very_stiff_hard_residual_preconsolidated_clay",
+    "residual_clay": "very_stiff_hard_residual_preconsolidated_clay",
+    "preconsolidated_clay": "very_stiff_hard_residual_preconsolidated_clay",
+    "very_stiff_and_hard_residual_or_preconsolidated_clay":
+        "very_stiff_hard_residual_preconsolidated_clay",
+    "medium_stiff_clay": "medium_stiff_clay_silty_clay",
+    "stiff_clay": "medium_stiff_clay_silty_clay",
+    "silty_clay": "medium_stiff_clay_silty_clay",
+    "medium_stiff_and_stiff_clay": "medium_stiff_clay_silty_clay",
+    "medium_stiff_and_stiff_clay_and_silty_clay":
+        "medium_stiff_clay_silty_clay",
+}
+
+_TABLE_5_15_REFERENCE = ("FHWA-SA-02-054 (GEC-6), Table 5-15 Ultimate "
+                         "Friction Factors for Dissimilar Materials (NAVFAC, "
+                         "1986b), p. 99")
 
 
 def table_5_15_friction_factor(interface: str) -> dict:
-    """Friction factors for concrete on soil/rock (Table 5-15, NAVFAC 1986b).
+    """Ultimate coefficient of friction tan delta (dimensionless) and friction angle delta (degrees) of mass concrete on one foundation material, one row of GEC-6 Table 5-15 (FHWA-SA-02-054, p. 99, NAVFAC 1986b): clean sound rock 0.70; clean gravel, gravel sand mixtures, coarse sand 0.55 to 0.60; clean fine to medium sand, silty medium to coarse sand, silty or clayey gravel 0.45 to 0.55; clean fine sand, silty or clayey fine to medium sand 0.35 to 0.45; fine sandy silt, nonplastic silt 0.30 to 0.35; very stiff and hard residual or preconsolidated clay 0.40 to 0.50; medium stiff and stiff clay and silty clay 0.30 to 0.35.
+
+    These are ultimate values. The table's last row adds "masonry on
+    foundation materials has same friction factor".
 
     Parameters
     ----------
     interface : str
-        Interface material description. Partial matching supported.
-        Examples: 'rock', 'gravel', 'sand', 'silt', 'clay', 'stiff'.
+        One row, by a soil the row names: 'clean_sound_rock' (or 'rock');
+        'clean_gravel', 'gravel_sand_mixtures', 'coarse_sand';
+        'clean_fine_to_medium_sand', 'silty_medium_to_coarse_sand',
+        'silty_gravel', 'clayey_gravel'; 'clean_fine_sand' (or
+        'fine_sand'), 'silty_fine_to_medium_sand',
+        'clayey_fine_to_medium_sand'; 'fine_sandy_silt',
+        'nonplastic_silt' (or 'silt'); 'very_stiff_clay', 'hard_clay',
+        'residual_clay', 'preconsolidated_clay'; 'medium_stiff_clay',
+        'stiff_clay', 'silty_clay'. 'sand', 'gravel', 'clay' and 'silty
+        sand' alone fit more than one row and are refused.
 
     Returns
     -------
     dict
-        {'interface': str, 'tan_delta_min': float, 'tan_delta_max': float,
-         'delta_min_deg': int, 'delta_max_deg': int}
+        {'interface': str, 'interface_printed': str,
+         'tan_delta_min': float, 'tan_delta_max': float,
+         'delta_min_deg': int, 'delta_max_deg': int, 'reference': str}
 
     Raises
     ------
     ValueError
-        If no matching interface is found.
+        If interface does not name one row of the table.
     """
-    key = interface.lower().strip().replace(" ", "_")
-
-    # Exact match first
-    for row in _TABLE_5_15:
-        if key == row["interface"]:
-            return dict(row)
-
-    # Try matching where the key is a primary word (appears as a
-    # standalone segment between underscores), not merely a substring
-    # of a compound name. E.g., 'silt' should match
-    # 'fine_sandy_silt_nonplastic_silt' not 'silty_medium_to_coarse_sand'.
-    key_words = key.replace("_", " ").split()
-    for row in _TABLE_5_15:
-        iface_words = row["interface"].replace("_", " ").split()
-        if all(w in iface_words for w in key_words):
-            return dict(row)
-
-    # Fallback: substring match
-    for row in _TABLE_5_15:
-        if key in row["interface"] or row["interface"] in key:
-            return dict(row)
-
-    raise ValueError(
-        f"No match for interface '{interface}'. Try: 'rock', "
-        "'gravel', 'sand', 'silt', 'clay', 'stiff'."
-    )
+    row = _one_row(interface, _TABLE_5_15, _TABLE_5_15_ALIASES,
+                   "Table 5-15", "p. 99")
+    return {
+        "interface": row["interface"],
+        "interface_printed": row["printed"],
+        "tan_delta_min": row["tan_delta_min"],
+        "tan_delta_max": row["tan_delta_max"],
+        "delta_min_deg": row["delta_min_deg"],
+        "delta_max_deg": row["delta_max_deg"],
+        "reference": _TABLE_5_15_REFERENCE,
+    }
 
 
 # ============================================================================

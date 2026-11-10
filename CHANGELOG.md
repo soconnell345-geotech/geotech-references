@@ -100,6 +100,25 @@ rows instead of being answered from the first row that contains the words.
     0 % line is 27.5 degrees at 17.3 kN/m3 (it returned 30.0). A dry unit
     weight the chart does not plot at the given relative density (22.0
     kN/m3 at 0 %, which returned 33 degrees) is refused (gec-13).
+  - `table_5_15_friction_factor` (Table 5-15, p. 99): a key names one row
+    by a soil the row prints. "fine sand" is the Clean fine sand row, 0.35
+    to 0.45 (it returned 0.45 to 0.55); "sand", which returned the clean
+    gravel and coarse sand row's 0.55 to 0.60, and "gravel", "clay",
+    "silty sand" are refused (gec-16).
+  - `table_5_7_presumptive_bearing_rock` (Table 5-7, p. 68): "rock" and
+    "hard", which returned the first row's 7.7 MPa, and "medium hard",
+    "shale", "soft rock" are refused; each row answers to its own words and
+    the rocks it lists (gec-31).
+  - `table_5_9_rqd_bearing_capacity` (Table 5-9, p. 70): between two
+    printed rows the quality is "between fair (RQD 75) and good (RQD 90)",
+    not the lower row's word, and the result says the pressure was
+    interpolated (gec-32).
+  - `table_5_13_poissons_ratio_rock` and `table_5_14_youngs_modulus_rock`:
+    a rock type by its printed name only ("s" returned diabase, "weathered
+    granite" the intact granite row) (gec-40).
+  - `table_5_12_shape_rigidity_factor`: values unchanged; the docstring
+    says the linear interpolation between the printed length/width rows is
+    not the table's (gec-33).
 
 ## 1.6.0
 
