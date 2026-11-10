@@ -461,11 +461,14 @@ def boussinesq_triangular_load(
     """Change in vertical stress beneath a triangular strip load -- Boussinesq
     (Table 4-2).
 
-    Computes the change in vertical stress at a point beneath a triangular
-    (linearly varying) strip load.  The load varies linearly from zero at
-    one edge to *q0* at the other edge over width *b*.  The parameter *a*
-    is the horizontal distance from the point of interest to the far edge
-    of the loaded strip.
+    Computes the change in vertical stress at a point (x, z) beneath a
+    triangular strip load, as drawn in the table's stress diagram: the
+    load rises linearly from zero at x = 0 to *q0* at x = *a*, then falls
+    linearly back to zero at x = *a* + *b*.  The angles *alpha* and *beta*
+    are measured at the point: *alpha* between the lines from it to
+    x = 0 and to x = *a* (the angle the rising part subtends), *beta*
+    between the lines from it to x = *a* and to x = *a* + *b* (the angle
+    the falling part subtends).
 
     .. math::
         \\Delta\\sigma_z = \\frac{q_0}{\\pi}
@@ -477,18 +480,21 @@ def boussinesq_triangular_load(
     q0 : float
         Maximum intensity of the triangular load (psf or kPa).
     x : float
-        Horizontal distance from the point where load is zero to the
-        point of interest, measured at the surface (ft or m).
+        Horizontal coordinate of the point of interest, measured from
+        the edge where the rising part of the load starts at zero
+        (ft or m).
     a : float
-        Horizontal distance from the point of interest to the edge
-        where the full load q0 acts (ft or m).  Must be positive.
+        Width over which the load rises from zero to *q0* (ft or m).
+        Must be positive.
     b : float
-        Width of the triangular load (ft or m).  Must be positive.
+        Width over which the load falls from *q0* back to zero
+        (ft or m).  Must be positive.
     alpha : float
-        Angle subtended at the point of interest by the distance *a*
-        (radians).
+        Angle at the point of interest subtended by the rising part of
+        the load, between the lines to x = 0 and to x = *a* (radians).
     beta : float
-        Angle subtended at the point of interest by the loaded width *b*
+        Angle at the point of interest subtended by the falling part of
+        the load, between the lines to x = *a* and to x = *a* + *b*
         (radians).
 
     Returns
@@ -520,9 +526,10 @@ def boussinesq_slope_load(
     """Change in vertical stress beneath a slope (embankment ramp) load --
     Boussinesq (Table 4-2).
 
-    Computes the change in vertical stress beneath a load that increases
-    linearly from zero to *q0* over a horizontal distance *a* (a ramp or
-    slope load).
+    Computes the change in vertical stress at a point (x, z) beneath a
+    load that increases linearly without limit from zero at x = 0, as
+    drawn in the table's stress diagram: q = q0 (x / a), so the load is
+    *q0* at x = *a* and keeps rising beyond it.
 
     .. math::
         \\Delta\\sigma_z = \\frac{q_0}{\\pi \\cdot a}
@@ -541,8 +548,12 @@ def boussinesq_slope_load(
         Horizontal distance over which the load increases from zero to
         *q0* (ft or m).  Must be positive.
     beta : float
-        Angle at the point of interest subtended by the slope load
-        geometry (radians).
+        Angle at the point of interest, as drawn in the table's stress
+        diagram: from the horizontal through the point in the +x
+        direction (toward the rising load) round to the line from the
+        point to the toe of the load at x = 0 on the surface (radians;
+        between 0 and pi, close to pi for a shallow point far in under
+        the load).
 
     Returns
     -------
@@ -589,11 +600,16 @@ def boussinesq_terrace_load(
         Horizontal distance of the sloping portion of the load (ft or m).
         Must be positive.
     alpha : float
-        Angle at the point of interest subtended by the level load
-        portion (radians).
+        Angle at the point of interest subtended by the sloping portion
+        of the load, between the lines from the point to the toe
+        (x = 0) and to the top of the slope (x = *a*), as drawn in the
+        table's stress diagram (radians).
     beta : float
-        Angle at the point of interest subtended by the sloping load
-        portion (radians).
+        Angle at the point of interest under the level portion of the
+        load, as drawn in the table's stress diagram: from the
+        horizontal through the point in the +x direction round to the
+        line from the point to the top of the slope at x = *a*
+        (radians).
 
     Returns
     -------
@@ -642,8 +658,12 @@ def boussinesq_semi_infinite_load(
         interest, :math:`R = \\sqrt{x^2 + z^2}` (ft or m).  Must be
         positive.
     beta : float
-        Angle at the point of interest measured from the vertical to the
-        line connecting the edge of the load and the point (radians).
+        Angle at the point of interest, as drawn in the table's stress
+        diagram: from the horizontal through the point in the +x
+        direction (under the load) round to the line *R* from the point
+        to the edge of the load (radians; between 0 and pi, close to pi
+        for a shallow point far in under the load).  It is not measured
+        from the vertical.
 
     Returns
     -------

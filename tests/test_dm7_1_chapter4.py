@@ -532,6 +532,69 @@ class TestBoussinesqSemiInfiniteLoad:
 
 
 # ===================================================================
+# Table 4-2 stress diagrams: where the angles are measured
+# PDF p. 214 (printed p. 186). The diagrams draw beta from the horizontal
+# through the point (+x direction) round to the line from the point to the
+# toe or edge of the load, and alpha between two such lines. With the
+# angles taken that way the equations give the known limits below; with
+# beta from the vertical they do not.
+# ===================================================================
+
+class TestTable42AngleDefinitions:
+
+    def test_semi_infinite_below_the_edge(self):
+        # Point straight below the edge of the load (x = 0): the line R
+        # is vertical, so beta = pi/2 from the horizontal, and the stress
+        # is half the load.
+        result = boussinesq_semi_infinite_load(100.0, 0.0, 2.0, 2.0, math.pi / 2.0)
+        assert result == pytest.approx(50.0, abs=1e-9)
+
+    def test_semi_infinite_far_under_the_load(self):
+        # Shallow point far in under the load: beta close to pi, stress
+        # close to the full load.
+        x, z = 100.0, 1.0
+        beta = math.pi - math.atan2(z, x)
+        R = math.hypot(x, z)
+        result = boussinesq_semi_infinite_load(100.0, x, z, R, beta)
+        assert result == pytest.approx(100.0, abs=0.01)
+
+    def test_semi_infinite_far_outside_the_load(self):
+        # Shallow point far outside the load (x negative): beta close to
+        # zero, stress close to zero.
+        x, z = -100.0, 1.0
+        beta = math.pi - math.atan2(z, x)
+        R = math.hypot(x, z)
+        result = boussinesq_semi_infinite_load(100.0, x, z, R, beta)
+        assert result == pytest.approx(0.0, abs=0.01)
+
+    def test_slope_far_under_the_load(self):
+        # Shallow point far from the toe of q = q0 (x/a): the stress is
+        # close to the load above it, q0 x / a = 100 * 100 / 10 = 1000.
+        x, z, a = 100.0, 1.0, 10.0
+        beta = math.pi - math.atan2(z, x)
+        result = boussinesq_slope_load(100.0, x, z, a, beta)
+        assert result == pytest.approx(1000.0, abs=0.01)
+
+    def test_terrace_far_under_the_level_part(self):
+        # Shallow point far in under the level part: stress close to q0.
+        # beta from the horizontal to the line to the top of the slope
+        # (x = a); alpha between the lines to the toe and to the top.
+        x, z, a = 100.0, 1.0, 10.0
+        beta = math.pi - math.atan2(z, x - a)
+        alpha = math.atan2(z, x - a) - math.atan2(z, x)
+        result = boussinesq_terrace_load(100.0, x, a, alpha, beta)
+        assert result == pytest.approx(100.0, abs=0.01)
+
+    def test_triangular_under_the_apex(self):
+        # Symmetrical triangle a = b = 2, point under the apex (x = 2) at
+        # depth 2: each half subtends atan(2/2) = pi/4, and
+        # sigma_z = (q0/pi) [2 (pi/4)/2 + (2/2)(pi/4)] = q0 / 2
+        result = boussinesq_triangular_load(
+            100.0, 2.0, 2.0, 2.0, math.pi / 4.0, math.pi / 4.0)
+        assert result == pytest.approx(50.0, abs=1e-9)
+
+
+# ===================================================================
 # rigid_pipe_trench_load  (Equation 4-6)
 # W_d = C_d * gamma_t * B_d^2
 # ===================================================================
