@@ -1699,105 +1699,170 @@ def table_5_6_Calpha_Cc(soil_type: str) -> float:
 
 
 # ===========================================================================
-# FIGURE 5-6: Immediate Settlement Influence Factors (Janbu et al. 1956)
+# FIGURE 5-6: Elastic Influence Factors for nu = 0.5 for (a) mu1 (after
+#             Giroud 1972) and (b) mu0 (after Burland 1970)
 # ===========================================================================
 
-# mu0: embedment correction factor vs D/B
-_FIG_5_6_DB = [0.0, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0]
-_FIG_5_6_MU0 = [1.00, 0.92, 0.87, 0.83, 0.78, 0.70, 0.62]
+# (b) mu0 against D/B, read off the curve of Figure 5-6(b) (p. 230).
+# Axes: D/B 0 to 20, mu0 0.85 to 1.00.  Read to about +/-0.003.
+_FIG_5_6_DB = [
+    0.0, 0.16, 0.24, 0.37, 0.47, 0.66, 1.0, 1.5, 2.0, 2.5, 3.0,
+    4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 12.0, 15.0, 20.0,
+]
+_FIG_5_6_MU0 = [
+    1.00, 0.97, 0.96, 0.945, 0.94, 0.93, 0.92, 0.908, 0.901, 0.896, 0.891,
+    0.883, 0.877, 0.872, 0.868, 0.866, 0.863, 0.862, 0.860, 0.859, 0.859,
+]
 
 
 def figure_5_6_mu0(D_over_B: float) -> float:
-    """Embedment influence factor mu0 from Figure 5-6.
+    """Influence factor mu0 (dimensionless) for embedment of the load in the elastic settlement s = mu0 mu1 q0 B / Es (Equation 5-5), read from Figure 5-6(b) at D/B, for Poisson's ratio 0.5.
 
-    Janbu, Bjerrum, and Kjaernsli (1956) correction factor that
-    accounts for the depth of foundation embedment.
+    Figure 5-6, "Elastic Influence Factors for nu = 0.5 for (a) mu1
+    (after Giroud 1972) and (b) mu0 (after Burland 1970)".  Panel (b)
+    plots mu0 against D/B from 0 to 20: 1.00 at D/B = 0, 0.92 at 1,
+    0.90 at 2, 0.877 at 5, 0.862 at 10 and 0.859 from about 13 to 20.
+    This function interpolates linearly between points read off that
+    curve (to about +/-0.003).
 
     Parameters
     ----------
     D_over_B : float
-        Ratio of foundation embedment depth to width (>= 0).
+        Ratio of the depth D of the load below the ground surface to
+        its width B, from 0 to 20 (the range of the figure's axis).
 
     Returns
     -------
     float
-        Influence factor mu0 (dimensionless, <= 1.0).
+        Influence factor mu0 (dimensionless, 0.859 to 1.0).
 
     Raises
     ------
     ValueError
-        If *D_over_B* is negative.
+        If *D_over_B* is negative or above 20 (the figure's axis ends
+        there).
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-6, p. 230.
-    Janbu, Bjerrum & Kjaernsli (1956).
+    Chapter 5, Figure 5-6(b), p. 230 (after Burland 1970).
     """
     if D_over_B < 0.0:
         raise ValueError("D_over_B must be non-negative.")
+    if D_over_B > _FIG_5_6_DB[-1]:
+        raise ValueError(
+            "D_over_B is above 20, the end of the D/B axis of Figure "
+            "5-6(b) (UFS 3-220-10 p. 230)."
+        )
     return _linterp(D_over_B, _FIG_5_6_DB, _FIG_5_6_MU0)
 
 
-# mu1: geometry + Poisson's ratio influence factor
-# Family of curves for different Poisson's ratios.  Each sub-list is
-# indexed by L/B for a fixed H/B.
-# Data digitised from Figure 5-6 (Janbu et al. 1956).
+# (a) mu1 against H/B, read off the curves of Figure 5-6(a) (p. 230).
+# Axes: H/B 0.1 to 1000 (logarithmic), mu1 0 to 2.0.  Curves: Square,
+# L/B = 2, L/B = 5, L/B = 10 and Infinite (drawn to H/B = 20).
+#
+# Below H/B of about 1.5 the five curves run together in one band about
+# 0.06 wide and cannot be told apart on the print: every curve is given
+# the middle of the band there (+/-0.03).  The L/B = 5, L/B = 10 and
+# Infinite curves stay together in the same way up to H/B = 5.  Where a
+# curve stands alone it is read to about +/-0.01.
+_FIG_5_6_HB = [
+    0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2,
+    1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0, 12.0, 15.0, 20.0,
+    25.0, 30.0, 40.0, 50.0, 70.0, 100.0, 150.0, 200.0, 300.0, 500.0,
+    700.0, 1000.0,
+]
+_FIG_5_6_LOG_HB = [math.log10(_hb) for _hb in _FIG_5_6_HB]
 
-_FIG_5_6_LB = [1.0, 2.0, 5.0, 10.0, 20.0]  # L/B breakpoints
-_FIG_5_6_HB = [0.5, 1.0, 2.0, 5.0, 10.0, 20.0]  # H/B breakpoints
+# H/B 0.1 to 1.2: the band of all five curves
+_FIG_5_6_MU1_BAND = [
+    0.01, 0.02, 0.035, 0.05, 0.07, 0.11, 0.15, 0.19, 0.23, 0.27, 0.30,
+    0.34, 0.40,
+]
+# H/B 1.5 to 1000
+_FIG_5_6_MU1_SQUARE = _FIG_5_6_MU1_BAND + [
+    0.455, 0.515, 0.555, 0.585, 0.62, 0.645, 0.65, 0.66, 0.665, 0.675,
+    0.68, 0.685, 0.69, 0.695, 0.695, 0.70, 0.705, 0.705, 0.71, 0.71,
+    0.71, 0.71, 0.71, 0.71, 0.71,
+]
+_FIG_5_6_MU1_LB2 = _FIG_5_6_MU1_BAND + [
+    0.49, 0.59, 0.67, 0.72, 0.79, 0.83, 0.845, 0.86, 0.87, 0.89,
+    0.905, 0.92, 0.935, 0.94, 0.945, 0.955, 0.96, 0.965, 0.97, 0.97,
+    0.97, 0.975, 0.975, 0.975, 0.975,
+]
+_FIG_5_6_MU1_LB5 = _FIG_5_6_MU1_BAND + [
+    0.49, 0.62, 0.715, 0.795, 0.93, 1.00, 1.045, 1.08, 1.10, 1.14,
+    1.175, 1.21, 1.25, 1.265, 1.28, 1.295, 1.305, 1.315, 1.33, 1.335,
+    1.345, 1.35, 1.36, 1.365, 1.37,
+]
+_FIG_5_6_MU1_LB10 = _FIG_5_6_MU1_BAND + [
+    0.49, 0.62, 0.715, 0.795, 0.93, 1.02, 1.085, 1.135, 1.18, 1.265,
+    1.325, 1.39, 1.455, 1.49, 1.515, 1.545, 1.57, 1.595, 1.62, 1.635,
+    1.645, 1.655, 1.67, 1.675, 1.685,
+]
+# H/B 1.5 to 20, where the Infinite curve ends
+_FIG_5_6_MU1_INFINITE = _FIG_5_6_MU1_BAND + [
+    0.49, 0.62, 0.715, 0.795, 0.93, 1.02, 1.12, 1.195, 1.255, 1.345,
+    1.425, 1.535, 1.67,
+]
+_FIG_5_6_HB_INFINITE_MAX = 20.0
 
-# mu1 values for nu = 0.5 (undrained) at each (H/B, L/B)
-_FIG_5_6_MU1_05 = [
-    [0.35, 0.39, 0.41, 0.42, 0.42],   # H/B = 0.5
-    [0.56, 0.65, 0.72, 0.73, 0.74],   # H/B = 1.0
-    [0.72, 0.88, 1.04, 1.10, 1.12],   # H/B = 2.0
-    [0.82, 1.04, 1.36, 1.52, 1.60],   # H/B = 5.0
-    [0.85, 1.10, 1.50, 1.75, 1.90],   # H/B = 10.0
-    [0.87, 1.12, 1.56, 1.85, 2.04],   # H/B = 20.0
+_FIG_5_6_LB = [1.0, 2.0, 5.0, 10.0]  # the Square, L/B = 2, 5 and 10 curves
+_FIG_5_6_MU1_CURVES = [
+    _FIG_5_6_MU1_SQUARE, _FIG_5_6_MU1_LB2, _FIG_5_6_MU1_LB5,
+    _FIG_5_6_MU1_LB10,
 ]
 
-# mu1 values for nu = 0.3 at each (H/B, L/B)
-_FIG_5_6_MU1_03 = [
-    [0.48, 0.54, 0.57, 0.58, 0.58],   # H/B = 0.5
-    [0.70, 0.82, 0.90, 0.92, 0.93],   # H/B = 1.0
-    [0.86, 1.06, 1.26, 1.34, 1.37],   # H/B = 2.0
-    [0.96, 1.24, 1.63, 1.83, 1.93],   # H/B = 5.0
-    [1.00, 1.30, 1.78, 2.08, 2.26],   # H/B = 10.0
-    [1.02, 1.34, 1.84, 2.20, 2.44],   # H/B = 20.0
-]
 
-# mu1 values for nu = 0.0 at each (H/B, L/B)
-_FIG_5_6_MU1_00 = [
-    [0.60, 0.68, 0.72, 0.73, 0.73],   # H/B = 0.5
-    [0.85, 1.00, 1.10, 1.13, 1.14],   # H/B = 1.0
-    [1.00, 1.24, 1.49, 1.59, 1.63],   # H/B = 2.0
-    [1.10, 1.42, 1.90, 2.14, 2.27],   # H/B = 5.0
-    [1.14, 1.50, 2.06, 2.42, 2.64],   # H/B = 10.0
-    [1.16, 1.54, 2.14, 2.56, 2.84],   # H/B = 20.0
-]
-
-_FIG_5_6_NU_KEYS = [0.0, 0.3, 0.5]
-_FIG_5_6_MU1_ALL = [_FIG_5_6_MU1_00, _FIG_5_6_MU1_03, _FIG_5_6_MU1_05]
+def _fig_5_6_is_infinite(L_over_B) -> bool:
+    """True if *L_over_B* names the Infinite curve of Figure 5-6(a)."""
+    if isinstance(L_over_B, str):
+        return L_over_B.lower().strip() in ("infinite", "infinity", "inf")
+    return math.isinf(L_over_B) and L_over_B > 0.0
 
 
 def figure_5_6_mu1(
-    H_over_B: float, L_over_B: float, nu: float = 0.3
+    H_over_B: float, L_over_B, nu: float = 0.5
 ) -> float:
-    """Geometry/Poisson's ratio influence factor mu1 from Figure 5-6.
+    """Influence factor mu1 (dimensionless) for the problem geometry in the elastic settlement s = mu0 mu1 q0 B / Es (Equation 5-5), read from Figure 5-6(a) at H/B and L/B, for Poisson's ratio 0.5 only.
 
-    Janbu, Bjerrum, and Kjaernsli (1956) settlement influence factor
-    that accounts for foundation geometry (H/B, L/B) and soil
-    Poisson's ratio.
+    Figure 5-6, "Elastic Influence Factors for nu = 0.5 for (a) mu1
+    (after Giroud 1972) and (b) mu0 (after Burland 1970)".  Panel (a)
+    plots mu1 against H/B (0.1 to 1000, logarithmic) with one curve
+    each for Square, L/B = 2, L/B = 5, L/B = 10 and Infinite; the
+    Infinite curve is drawn to H/B = 20 only.  At large H/B the curves
+    level off near 0.71 (Square), 0.975 (L/B = 2), 1.37 (L/B = 5) and
+    1.685 (L/B = 10).
+
+    This function interpolates between points read off those curves,
+    linearly in log(H/B) along a curve and linearly in L/B between two
+    printed curves.  Where a curve stands alone the reading is good to
+    about +/-0.01.  Below H/B of about 1.5 the five curves run together
+    in one band and cannot be told apart on the print; the value
+    returned there is the middle of the band, +/-0.03, whatever the
+    L/B.  The same holds for L/B of 5 and more up to H/B = 5.
+
+    The manual notes (p. 229) that the zone that contributes to
+    settlement typically has a thickness of 4B to 5B below the loaded
+    area, so the use of H/B ratios greater than 4 to 5 may overestimate
+    settlement, and that the user of any mu1 chart must check whether a
+    (1 - nu^2) term is included and what nu was assumed.
 
     Parameters
     ----------
     H_over_B : float
-        Ratio of compressible layer thickness to foundation width (> 0).
-    L_over_B : float
-        Ratio of foundation length to width (>= 1.0).
+        Ratio of the thickness H of the layer below the load to the
+        width B of the load, from 0.1 to 1000 (to 20 on the Infinite
+        curve).
+    L_over_B : float or str
+        Ratio of the length L of the load to its width B: 1 (the
+        Square curve) to 10, or ``"infinite"`` for the Infinite curve.
+        A ratio above 10 is refused: it lies between the L/B = 10 and
+        Infinite curves, and the figure gives nothing to interpolate
+        with.
     nu : float, optional
-        Poisson's ratio (0.0 to 0.5).  Default is 0.3.
+        Poisson's ratio.  Must be 0.5, the only value the figure is
+        drawn for (default 0.5).
 
     Returns
     -------
@@ -1807,44 +1872,64 @@ def figure_5_6_mu1(
     Raises
     ------
     ValueError
-        If *H_over_B* or *L_over_B* is not positive, or *nu* is
-        outside [0, 0.5].
+        If *nu* is not 0.5, *H_over_B* is outside 0.1 to 1000 (or above
+        20 on the Infinite curve), or *L_over_B* is below 1, or above 10
+        and not infinite.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-6, p. 230.
-    Janbu, Bjerrum & Kjaernsli (1956).
+    Chapter 5, Figure 5-6(a), p. 230 (after Giroud 1972).
     """
+    if abs(nu - 0.5) > 1e-9:
+        raise ValueError(
+            "nu must be 0.5: Figure 5-6 (UFS 3-220-10 p. 230) is drawn "
+            "for a Poisson's ratio of 0.5 only."
+        )
     if H_over_B <= 0.0:
         raise ValueError("H_over_B must be positive.")
+    if H_over_B < _FIG_5_6_HB[0] or H_over_B > _FIG_5_6_HB[-1]:
+        raise ValueError(
+            "H_over_B is outside 0.1 to 1000, the H/B axis of Figure "
+            "5-6(a) (UFS 3-220-10 p. 230)."
+        )
+    log_hb = math.log10(H_over_B)
+
+    if _fig_5_6_is_infinite(L_over_B):
+        if H_over_B > _FIG_5_6_HB_INFINITE_MAX:
+            raise ValueError(
+                "H_over_B is above 20, where the Infinite curve of "
+                "Figure 5-6(a) (UFS 3-220-10 p. 230) ends."
+            )
+        n = len(_FIG_5_6_MU1_INFINITE)
+        return _linterp(log_hb, _FIG_5_6_LOG_HB[:n], _FIG_5_6_MU1_INFINITE)
+
+    if isinstance(L_over_B, str):
+        key = L_over_B.lower().strip()
+        if key == "square":
+            L_over_B = 1.0
+        else:
+            try:
+                L_over_B = float(key)
+            except ValueError:
+                raise ValueError(
+                    f"Unknown L_over_B '{L_over_B}'. Give a ratio from 1 "
+                    "to 10, or 'infinite'."
+                ) from None
     if L_over_B < 1.0:
         raise ValueError("L_over_B must be >= 1.0.")
-    if nu < 0.0 or nu > 0.5:
-        raise ValueError("nu must be in [0, 0.5].")
-
-    def _interp_grid(grid: list) -> float:
-        """Bilinear interpolation on H/B and L/B."""
-        # Interpolate each H/B row at the query L/B
-        row_vals = [_linterp(L_over_B, _FIG_5_6_LB, row) for row in grid]
-        # Then interpolate across H/B
-        return _linterp(H_over_B, _FIG_5_6_HB, row_vals)
-
-    # Interpolate between nu tables
-    if nu <= 0.0:
-        return _interp_grid(_FIG_5_6_MU1_00)
-    if nu >= 0.5:
-        return _interp_grid(_FIG_5_6_MU1_05)
-
-    # Linearly interpolate between the two bracketing nu grids
-    nu_keys = _FIG_5_6_NU_KEYS
-    for i in range(len(nu_keys) - 1):
-        if nu_keys[i] <= nu <= nu_keys[i + 1]:
-            v0 = _interp_grid(_FIG_5_6_MU1_ALL[i])
-            v1 = _interp_grid(_FIG_5_6_MU1_ALL[i + 1])
-            t = (nu - nu_keys[i]) / (nu_keys[i + 1] - nu_keys[i])
-            return v0 + t * (v1 - v0)
-    return _interp_grid(_FIG_5_6_MU1_03)  # pragma: no cover
+    if L_over_B > _FIG_5_6_LB[-1]:
+        raise ValueError(
+            "L_over_B is above 10 and not infinite: Figure 5-6(a) (UFS "
+            "3-220-10 p. 230) prints curves for Square, L/B = 2, 5, 10 "
+            "and Infinite, and gives nothing to interpolate with between "
+            "the last two. Use 10 or 'infinite' and say which."
+        )
+    values = [
+        _linterp(log_hb, _FIG_5_6_LOG_HB, curve)
+        for curve in _FIG_5_6_MU1_CURVES
+    ]
+    return _linterp(L_over_B, _FIG_5_6_LB, values)
 
 
 # ===========================================================================
@@ -1913,15 +1998,16 @@ def plot_figure_5_16(Tv=None, U=None, ax=None, show=True, **kwargs):
 
 
 def plot_figure_5_6_mu0(D_over_B=None, ax=None, show=True, **kwargs):
-    """Reproduce UFC Figure 5-6 (mu0): Embedment Influence Factor.
+    """Reproduce UFC Figure 5-6(b): Influence Factor mu0 vs D/B (nu = 0.5).
 
-    Plots the Janbu et al. (1956) embedment correction factor mu0
-    versus D/B from the digitised data points.
+    Plots the points read off the mu0 curve of Figure 5-6(b) (after
+    Burland 1970).
 
     Parameters
     ----------
     D_over_B : float, optional
-        Query point.  If provided, highlights the interpolated mu0.
+        Query point (0 to 20).  If provided, highlights the
+        interpolated mu0.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -1936,15 +2022,9 @@ def plot_figure_5_6_mu0(D_over_B=None, ax=None, show=True, **kwargs):
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 5))
 
-    # Smooth interpolated curve
-    db_smooth = [i * 0.2 for i in range(0, 101)]  # 0 to 20
-    mu0_smooth = [figure_5_6_mu0(db) for db in db_smooth]
-    ax.plot(db_smooth, mu0_smooth, 'b-', linewidth=1.5,
-            label='Janbu et al. (1956)')
-
-    # Digitised data points
-    ax.plot(_FIG_5_6_DB, _FIG_5_6_MU0, 'ko', markersize=6,
-            label='Digitised points')
+    # The read-off curve
+    ax.plot(_FIG_5_6_DB, _FIG_5_6_MU0, 'b-', linewidth=1.5,
+            label='Curve of Figure 5-6(b) (after Burland 1970)')
 
     # Query point
     if D_over_B is not None:
@@ -1954,9 +2034,11 @@ def plot_figure_5_6_mu0(D_over_B=None, ax=None, show=True, **kwargs):
         ax.axhline(mu0_q, color='red', linestyle=':', alpha=0.4)
         ax.axvline(D_over_B, color='red', linestyle=':', alpha=0.4)
 
+    ax.set_xlim(0, 20)
+    ax.set_ylim(0.85, 1.0)
     ax.legend(fontsize=8)
     setup_engineering_plot(
-        ax, 'Figure 5-6: Embedment Influence Factor, μ₀',
+        ax, 'Figure 5-6(b): Influence Factor, μ₀ (ν = 0.5)',
         'D / B', 'μ₀')
     if show:
         plt.tight_layout()
@@ -1964,22 +2046,24 @@ def plot_figure_5_6_mu0(D_over_B=None, ax=None, show=True, **kwargs):
     return ax
 
 
-def plot_figure_5_6_mu1(H_over_B=None, L_over_B=None, nu=0.3,
+def plot_figure_5_6_mu1(H_over_B=None, L_over_B=None, nu=0.5,
                          ax=None, show=True, **kwargs):
-    """Reproduce UFC Figure 5-6 (mu1): Geometry Influence Factor.
+    """Reproduce UFC Figure 5-6(a): Influence Factor mu1 vs H/B (nu = 0.5).
 
-    Plots mu1 vs H/B for each L/B value at the specified Poisson's
-    ratio.  Shows one family of curves.
+    Plots the points read off the five mu1 curves of Figure 5-6(a)
+    (after Giroud 1972): Square, L/B = 2, 5, 10 and Infinite.
 
     Parameters
     ----------
     H_over_B : float, optional
         Query H/B.  If provided together with *L_over_B*, highlights
         the interpolated mu1 on the plot.
-    L_over_B : float, optional
-        Query L/B.  Required if *H_over_B* is given.
+    L_over_B : float or str, optional
+        Query L/B (1 to 10, or "infinite").  Required if *H_over_B* is
+        given.
     nu : float, optional
-        Poisson's ratio to plot (0.0, 0.3, or 0.5).  Default 0.3.
+        Poisson's ratio.  Must be 0.5, the only value the figure is
+        drawn for (default 0.5).
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -1989,47 +2073,39 @@ def plot_figure_5_6_mu1(H_over_B=None, L_over_B=None, nu=0.3,
     -------
     matplotlib.axes.Axes
     """
+    if abs(nu - 0.5) > 1e-9:
+        raise ValueError(
+            "nu must be 0.5: Figure 5-6 (UFS 3-220-10 p. 230) is drawn "
+            "for a Poisson's ratio of 0.5 only."
+        )
     from geotech_references._plotting import get_pyplot, setup_engineering_plot
     plt = get_pyplot()
     if ax is None:
         fig, ax = plt.subplots(figsize=(8, 6))
 
-    # Select the grid for the requested nu
-    if nu <= 0.15:
-        grid = _FIG_5_6_MU1_00
-        nu_label = '0.0'
-    elif nu >= 0.4:
-        grid = _FIG_5_6_MU1_05
-        nu_label = '0.5'
-    else:
-        grid = _FIG_5_6_MU1_03
-        nu_label = '0.3'
-
-    # Plot one curve per L/B
+    # One curve per printed L/B
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
-    hb_smooth = [i * 0.2 for i in range(1, 101)]  # 0.2 to 20
-    for j, lb in enumerate(_FIG_5_6_LB):
-        # Extract column j (this L/B) across all H/B rows
-        col_vals = [grid[k][j] for k in range(len(_FIG_5_6_HB))]
-        # Smooth interpolation along H/B axis
-        mu1_curve = [_linterp(hb, _FIG_5_6_HB, col_vals) for hb in hb_smooth]
-        ax.plot(hb_smooth, mu1_curve, '-', color=colors[j % len(colors)],
-                linewidth=1.5, label=f'L/B = {lb:.0f}')
-        # Data point markers
-        ax.plot(_FIG_5_6_HB, col_vals, 'o', color=colors[j % len(colors)],
-                markersize=5)
+    labels = ['Square', 'L/B = 2', 'L/B = 5', 'L/B = 10', 'Infinite']
+    curves = _FIG_5_6_MU1_CURVES + [_FIG_5_6_MU1_INFINITE]
+    for j, curve in enumerate(curves):
+        ax.plot(_FIG_5_6_HB[:len(curve)], curve, '-',
+                color=colors[j % len(colors)], linewidth=1.5,
+                label=labels[j])
 
     # Query point
     if H_over_B is not None and L_over_B is not None:
         mu1_q = figure_5_6_mu1(H_over_B, L_over_B, nu)
         ax.plot(H_over_B, mu1_q, 's', color='red', markersize=10, zorder=5,
-                label=f'H/B={H_over_B:.1f}, L/B={L_over_B:.1f} → μ₁={mu1_q:.3f}')
+                label=f'H/B={H_over_B:g}, L/B={L_over_B} → μ₁={mu1_q:.3f}')
         ax.axhline(mu1_q, color='red', linestyle=':', alpha=0.4)
         ax.axvline(H_over_B, color='red', linestyle=':', alpha=0.4)
 
+    ax.set_xscale('log')
+    ax.set_xlim(0.1, 1000)
+    ax.set_ylim(0, 2.0)
     ax.legend(fontsize=8, loc='upper left')
     setup_engineering_plot(
-        ax, f'Figure 5-6: Geometry Influence Factor, μ₁ (ν = {nu_label})',
+        ax, 'Figure 5-6(a): Influence Factor, μ₁ (ν = 0.5)',
         'H / B', 'μ₁')
     if show:
         plt.tight_layout()

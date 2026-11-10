@@ -1224,27 +1224,38 @@ class TestTable56CalphaCc:
 # ===========================================================================
 
 class TestFigure56Mu0:
-    """Tests for Figure 5-6: mu0 depth correction factor."""
+    """Tests for Figure 5-6(b): influence factor mu0 for embedment."""
 
-    def test_surface(self):
-        # D/B=0 => mu0=1.0
-        assert figure_5_6_mu0(0.0) == pytest.approx(1.0, rel=1e-4)
+    # Read off the curve of Figure 5-6(b), PDF p. 258 (printed p. 230),
+    # "Elastic Influence Factors for nu = 0.5 for (a) mu1 (after Giroud
+    # 1972) and (b) mu0 (after Burland 1970)"; axes D/B 0 to 20 and mu0
+    # 0.85 to 1.00. Tolerance 0.005 = a tenth of a labelled division.
+    @pytest.mark.parametrize("d_over_b, mu0", [
+        (0.0, 1.00),
+        (1.0, 0.92),
+        (2.0, 0.90),
+        (3.0, 0.89),
+        (5.0, 0.877),
+        (10.0, 0.862),
+        (15.0, 0.859),
+        (20.0, 0.859),
+    ])
+    def test_read_off_points(self, d_over_b, mu0):
+        assert figure_5_6_mu0(d_over_b) == pytest.approx(mu0, abs=0.005)
 
-    def test_at_1(self):
-        # D/B=1 => mu0=0.92
-        assert figure_5_6_mu0(1.0) == pytest.approx(0.92, rel=1e-2)
+    def test_steep_start(self):
+        # The curve falls to 0.94 by D/B of about 0.5
+        assert figure_5_6_mu0(0.5) == pytest.approx(0.94, abs=0.005)
 
-    def test_interpolated(self):
-        # D/B=0.5 => approx 0.96 (midpoint of 1.0 and 0.92)
-        assert figure_5_6_mu0(0.5) == pytest.approx(0.96, rel=1e-2)
+    def test_never_below_the_axis_floor(self):
+        # The mu0 axis of the figure runs from 0.85 to 1.00
+        for d_over_b in [0.0, 0.3, 1.0, 4.0, 9.0, 20.0]:
+            assert 0.85 < figure_5_6_mu0(d_over_b) <= 1.0
 
-    def test_deep(self):
-        # D/B=20 => mu0=0.62
-        assert figure_5_6_mu0(20.0) == pytest.approx(0.62, rel=1e-2)
-
-    def test_clamped(self):
-        # D/B=30 => clamped to D/B=20 value of 0.62
-        assert figure_5_6_mu0(30.0) == pytest.approx(0.62, rel=1e-2)
+    def test_above_axis_raises(self):
+        # The D/B axis ends at 20
+        with pytest.raises(ValueError, match="above 20"):
+            figure_5_6_mu0(30.0)
 
     def test_negative_raises(self):
         with pytest.raises(ValueError):
@@ -1252,41 +1263,99 @@ class TestFigure56Mu0:
 
 
 # ===========================================================================
-# Figure 5-6  mu1 (shape/rigidity factor)
+# Figure 5-6  mu1 (geometry factor)
 # ===========================================================================
 
 class TestFigure56Mu1:
-    """Tests for Figure 5-6: mu1 shape/rigidity factor."""
+    """Tests for Figure 5-6(a): influence factor mu1 for geometry."""
 
-    def test_at_grid_point(self):
-        # H/B=1, L/B=1, nu=0.3 => mu1=0.70
-        assert figure_5_6_mu1(1.0, 1.0, nu=0.3) == pytest.approx(0.70, rel=1e-2)
+    # Read off the curves of Figure 5-6(a), PDF p. 258 (printed p. 230);
+    # axes H/B 0.1 to 1000 (logarithmic) and mu1 0 to 2.0; curves Square,
+    # L/B = 2, L/B = 5, L/B = 10 and Infinite. Tolerance 0.02 = a fifth
+    # of a division of the mu1 axis, where a curve stands alone.
+    @pytest.mark.parametrize("h_over_b, l_over_b, mu1", [
+        (2.0, 1.0, 0.515),
+        (5.0, 1.0, 0.645),
+        (10.0, 1.0, 0.675),
+        (100.0, 1.0, 0.71),
+        (1000.0, 1.0, 0.71),
+        (5.0, 2.0, 0.83),
+        (10.0, 2.0, 0.89),
+        (100.0, 2.0, 0.97),
+        (1000.0, 2.0, 0.975),
+        (10.0, 5.0, 1.14),
+        (20.0, 5.0, 1.25),
+        (100.0, 5.0, 1.33),
+        (1000.0, 5.0, 1.37),
+        (10.0, 10.0, 1.265),
+        (20.0, 10.0, 1.455),
+        (100.0, 10.0, 1.62),
+        (1000.0, 10.0, 1.685),
+        (10.0, "infinite", 1.345),
+        (20.0, "infinite", 1.67),
+    ])
+    def test_read_off_points(self, h_over_b, l_over_b, mu1):
+        assert figure_5_6_mu1(h_over_b, l_over_b) == pytest.approx(mu1, abs=0.02)
 
-    def test_at_grid_point_nu0(self):
-        # H/B=1, L/B=1, nu=0.0 => mu1=0.85
-        assert figure_5_6_mu1(1.0, 1.0, nu=0.0) == pytest.approx(0.85, rel=1e-2)
+    # Below H/B of about 1.5 the five curves run in one band about 0.06
+    # wide; the function returns the middle of the band for every L/B.
+    @pytest.mark.parametrize("h_over_b, band_centre", [
+        (0.2, 0.035),
+        (0.5, 0.15),
+        (1.0, 0.34),
+    ])
+    def test_band_of_merged_curves(self, h_over_b, band_centre):
+        for l_over_b in [1.0, 2.0, 5.0, 10.0, "infinite"]:
+            assert figure_5_6_mu1(h_over_b, l_over_b) == pytest.approx(
+                band_centre, abs=0.03)
 
-    def test_at_grid_point_nu05(self):
-        # H/B=1, L/B=1, nu=0.5 => mu1=0.56
-        assert figure_5_6_mu1(1.0, 1.0, nu=0.5) == pytest.approx(0.56, rel=1e-2)
+    def test_crossing_of_the_long_load_curves(self):
+        # The L/B = 5, L/B = 10 and Infinite curves pass through
+        # mu1 = 1.0 together at H/B of about 5
+        for l_over_b in [5.0, 10.0, "infinite"]:
+            assert figure_5_6_mu1(5.0, l_over_b) == pytest.approx(1.01, abs=0.03)
 
-    def test_interpolated(self):
-        # H/B=1.5, L/B=3 => between known values, check reasonable range
-        result = figure_5_6_mu1(1.5, 3.0, nu=0.3)
-        assert result > 0.5
-        assert result < 2.0
+    def test_between_printed_curves(self):
+        # L/B = 3 lies between the L/B = 2 and L/B = 5 curves
+        low = figure_5_6_mu1(10.0, 2.0)
+        high = figure_5_6_mu1(10.0, 5.0)
+        assert low < figure_5_6_mu1(10.0, 3.0) < high
 
-    def test_HB_negative_raises(self):
+    def test_infinite_spellings(self):
+        expected = figure_5_6_mu1(10.0, "infinite")
+        assert figure_5_6_mu1(10.0, float("inf")) == expected
+        assert figure_5_6_mu1(10.0, " Infinite ") == expected
+
+    def test_default_nu_is_the_figures(self):
+        assert figure_5_6_mu1(5.0, 2.0) == figure_5_6_mu1(5.0, 2.0, nu=0.5)
+
+    def test_other_poisson_ratio_raises(self):
+        # The figure is drawn for nu = 0.5 only
+        for nu in [0.0, 0.3, 0.6]:
+            with pytest.raises(ValueError, match="nu must be 0.5"):
+                figure_5_6_mu1(1.0, 1.0, nu=nu)
+
+    def test_infinite_curve_ends_at_20(self):
+        with pytest.raises(ValueError, match="Infinite curve"):
+            figure_5_6_mu1(25.0, "infinite")
+
+    def test_between_10_and_infinite_raises(self):
+        with pytest.raises(ValueError, match="above 10 and not infinite"):
+            figure_5_6_mu1(5.0, 20.0)
+
+    def test_h_over_b_outside_axis_raises(self):
+        with pytest.raises(ValueError, match="outside 0.1 to 1000"):
+            figure_5_6_mu1(0.05, 2.0)
+        with pytest.raises(ValueError, match="outside 0.1 to 1000"):
+            figure_5_6_mu1(2000.0, 2.0)
+
+    def test_negative_H_raises(self):
         with pytest.raises(ValueError):
-            figure_5_6_mu1(-0.5, 2.0, nu=0.3)
+            figure_5_6_mu1(-0.5, 2.0)
 
-    def test_LB_below_1_raises(self):
+    def test_L_over_B_less_than_1_raises(self):
         with pytest.raises(ValueError):
-            figure_5_6_mu1(1.0, 0.5, nu=0.3)
-
-    def test_nu_out_of_range_raises(self):
-        with pytest.raises(ValueError):
-            figure_5_6_mu1(1.0, 2.0, nu=0.6)
+            figure_5_6_mu1(1.0, 0.5)
 
 
 # ===========================================================================
@@ -1338,32 +1407,32 @@ class TestFigure56Integration:
     """Chain figure_5_6_mu0/mu1 → immediate_settlement."""
 
     def test_surface_square_footing(self):
-        # Surface footing (D/B=0): mu0=1.0
-        # Square (L/B=1), H/B=2, nu=0.3: mu1 from grid
+        # Figure 5-6, PDF p. 258 (printed p. 230); Eq. 5-5, PDF p. 257
+        # (printed p. 229): s = q0 B mu0 mu1 / Es
+        # Surface load (D/B=0): mu0 = 1.00. Square, H/B=2: mu1 = 0.515
+        # q0=100, B=2, Es=10000: s = 0.02 * 1.00 * 0.515 = 0.0103
         mu0 = figure_5_6_mu0(0.0)
-        mu1 = figure_5_6_mu1(2.0, 1.0, nu=0.3)
-        assert mu0 == pytest.approx(1.0, rel=1e-4)
-        # Settlement: s = q0*B/Es * mu0 * mu1
+        mu1 = figure_5_6_mu1(2.0, 1.0)
+        assert mu0 == pytest.approx(1.0, abs=1e-9)
         s = immediate_settlement(100.0, 2.0, 10000.0, mu0, mu1)
-        # s = 100*2/10000 * 1.0 * mu1 = 0.02 * mu1
-        assert s == pytest.approx(0.02 * mu1, rel=1e-6)
-        assert s > 0.0
+        assert s == pytest.approx(0.0103, abs=0.0004)
 
     def test_embedded_footing_reduces_settlement(self):
-        # Deeper embedment should reduce settlement (mu0 decreases)
-        mu1 = figure_5_6_mu1(5.0, 2.0, nu=0.3)
+        # Deeper embedment reduces settlement (mu0 decreases): at D/B = 5
+        # mu0 = 0.877, so the settlement is 0.877 of the surface value
+        mu1 = figure_5_6_mu1(5.0, 2.0)
         s_surface = immediate_settlement(100.0, 2.0, 10000.0,
                                          figure_5_6_mu0(0.0), mu1)
         s_embedded = immediate_settlement(100.0, 2.0, 10000.0,
                                           figure_5_6_mu0(5.0), mu1)
-        assert s_embedded < s_surface
+        assert s_embedded / s_surface == pytest.approx(0.877, abs=0.005)
 
-    def test_undrained_vs_drained_settlement(self):
-        # Undrained (nu=0.5) should give less settlement than drained (nu=0.0)
-        mu0 = figure_5_6_mu0(1.0)
-        mu1_undrained = figure_5_6_mu1(5.0, 2.0, nu=0.5)
-        mu1_drained = figure_5_6_mu1(5.0, 2.0, nu=0.0)
-        assert mu1_undrained < mu1_drained
+    def test_longer_load_settles_more(self):
+        # At H/B = 10 the curves stand in the order Square, 2, 5, 10,
+        # Infinite
+        values = [figure_5_6_mu1(10.0, lb)
+                  for lb in [1.0, 2.0, 5.0, 10.0, "infinite"]]
+        assert values == sorted(values)
 
 
 class TestFigure530Integration:
@@ -1425,7 +1494,7 @@ class TestPlotFigure516:
 
 
 class TestPlotFigure56Mu0:
-    """Smoke tests for plot_figure_5_6_mu0 (Janbu mu0 curve)."""
+    """Smoke tests for plot_figure_5_6_mu0 (mu0 curve of Figure 5-6(b))."""
 
     def test_no_query(self):
         ax = plot_figure_5_6_mu0(show=False)
@@ -1439,7 +1508,7 @@ class TestPlotFigure56Mu0:
 
 
 class TestPlotFigure56Mu1:
-    """Smoke tests for plot_figure_5_6_mu1 (Janbu mu1 family of curves)."""
+    """Smoke tests for plot_figure_5_6_mu1 (mu1 curves of Figure 5-6(a))."""
 
     def test_no_query(self):
         ax = plot_figure_5_6_mu1(show=False)
@@ -1447,6 +1516,6 @@ class TestPlotFigure56Mu1:
         _plt.close("all")
 
     def test_query_point(self):
-        ax = plot_figure_5_6_mu1(H_over_B=5.0, L_over_B=2.0, nu=0.3, show=False)
+        ax = plot_figure_5_6_mu1(H_over_B=5.0, L_over_B=2.0, show=False)
         assert isinstance(ax, matplotlib.axes.Axes)
         _plt.close("all")
