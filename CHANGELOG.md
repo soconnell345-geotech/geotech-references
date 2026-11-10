@@ -29,15 +29,21 @@ Equations re-coded as typeset:
   `hydraulic_conductivity_kozeny_carman` (Eq. 8-41, p. 462), printed
   identically, returned 7e-8 cm/s and 7.7 cm/s for a sand the equation
   gives 0.072 cm/s; both now return 0.072. Fractions may be decimals
-  adding up to 1 or percentages adding up to 100; any other total is
-  refused.
+  adding up to 1 or percentages adding up to 100, within 2 % (0.98 to
+  1.02, or 98 to 102; the library's tolerance, not printed, there to catch
+  percent and decimals mixed up); the total is used as given, not
+  normalised, and any other total is refused. A grading summing to 99 %
+  is accepted (0.238 cm/s for the two-fraction sand in the tests).
 - `hydraulic_conductivity_carrier_beckman` (Eq. 8-42, p. 462): 2.5e-4 m/s
   became 3.5e-9 m/s at e 1.5, PL 25, PI 30.
 - `hydraulic_conductivity_benson_landfill` (Eq. 8-43, p. 463) raised an
   overflow error at ordinary inputs; it now gives 3.6e-8 m/s for the
   example in its tests. The page prints no unit for the molding water
   content: the function takes a decimal (a percentage gives k below
-  1e-100 m/s) and refuses a degree of saturation above 1.0.
+  1e-100 m/s) and refuses a degree of saturation above 1.10. The limit is
+  the library's, not printed: a little over 1.0 comes from scatter in the
+  measured w, dry unit weight and Gs, and the guard is there to catch w
+  entered in percent.
 - `hydraulic_conductivity_benson_trast` (Eq. 8-44, p. 463) had its four
   coefficients on the wrong terms: 1.5e-8 m/s became 7.9e-11 m/s at PI 25,
   CF 30, standard Proctor, w 0.18, dry unit weight 17 kN/m3, Gs 2.70. The
@@ -45,7 +51,7 @@ Equations re-coded as typeset:
   as a decimal and enters the saturation term in percent; that is this
   review's reading, not a printed statement (as a decimal the same input
   gives 1.4e-7 m/s), and the docstring gives the reasons. A degree of
-  saturation above 100% is refused.
+  saturation above 110% is refused, for the same reason as in Eq. 8-43.
 - `well_resistance_factor` (Eq. 5-26, p. 268) was zero at the far end of a
   drain, where the manual's equation is largest: 0 became 1.26 at
   z = Lm = 20, kh/qw = 0.001.
@@ -55,9 +61,10 @@ Equations re-coded as typeset:
 Tables and charts rebuilt from the print:
 
 - `figure_8_46_f` (Figure 8-46, p. 444) returned 500 to 175; the figure's f
-  runs from 6.75 at PI 15 to 4.24 at PI 64.5, so the constrained modulus
-  Mds = f N Pa was about 70 times too stiff. PI outside 15 to 64.5 is
-  refused.
+  runs from 6.85 at PI 14.8 (6.78 at PI 15) to 4.24 at PI 64.5, so the
+  constrained modulus Mds = f N Pa was 46 to 73 times too stiff, by PI
+  (66 at PI 15, 73 at PI 20, 47 at PI 60, 46 at PI 64.5). PI outside 14.8
+  to 64.5 is refused.
 - `figure_5_6_mu0` and `figure_5_6_mu1` (Figure 5-6, p. 230): mu0 is now
   0.877 at D/B = 5 (was 0.78) and 0.859 at D/B = 20 (was 0.62); mu1 for a
   square load is 0.645 at H/B = 5 (was 0.82, or 0.96 at the old default
@@ -72,7 +79,11 @@ Tables and charts rebuilt from the print:
   the table does, not by test type; it takes `soil` and returns the printed
   row as a dict.
 - `table_8_24_cbr_dcp` (Table 8-24, p. 456) now holds the thirteen printed
-  rows; none of the six it held is in the table.
+  rows. Of the six keys it held, only the removed `webster_1992` carried
+  printed coefficients: its (292, -1.12) are those of the printed White et
+  al. (2018) row for all soils except CL with CBR < 10, now
+  `white_2018_all_except_cl_cbr_lt_10`. The other five are not in the
+  table.
 - `table_4_3_trench_fill` (Table 4-3, pp. 195-196) returns the six printed
   rows (unit weight in pcf, K, mu', K x mu'); for saturated clay K x mu' is
   0.11 (was 0.029).
@@ -92,8 +103,16 @@ the range and page in the message (values inside the range are unchanged):
   Figure 8-13 (p. 408).
 - `spt_friction_angle_roads` (Eq. 8-2) and `spt_friction_angle_buildings`
   (Eq. 8-3): N60 above 50, the end of the curves in Figure 8-2 (p. 397).
-- `spt_friction_angle_kulhawy_mayne` (Eq. 8-4): N60 above 60 or a vertical
-  effective stress above 3.0 kgf/cm2, the axes of Figure 8-3 (p. 398).
+- `spt_friction_angle_kulhawy_mayne` (Eq. 8-4): N60 above 60, the end of
+  the N60 axis of Figure 8-3 (p. 398), or sigma'v/Pa above 3.0. The stress
+  axis ends at 3.0 kgf/cm2 (2.90 atmospheres); the limit is taken as
+  3 atmospheres, so 291 kPa with Pa given as 100 kPa is answered
+  (33.0 degrees at N60 20).
+- `spt_undrained_strength_stroud_butler` (Eq. 8-26): PI outside 15 to 62,
+  the trendline of Figure 8-31 (p. 428). At PI 5 it returned 1,513 kPa
+  for N 20.
+- `cbr_from_spt` (Eq. 8-39): N outside 5 to 68, the curve of Figure 8-57
+  (p. 458). At N 200 it returned CBR 144,025.
 - `spt_friction_angle_wolff` (Eq. 8-5) and
   `spt_friction_angle_hatanaka_uchida` (Eq. 8-6): N1,60 above 60, the end
   of Figure 8-4 (p. 399).
@@ -123,7 +142,7 @@ them; `corrected_spt_silty_sand` no longer claims a limit of N' = 15 the
 manual does not print.
 
 Chapter text (`dm7_1/text/` chapters 3, 4, 5, 6 and 8) now states
-Eq. 4-7, 4-8, 5-23, 5-26, 6-13, 8-8, 8-13, 8-16, 8-26, 8-38, 8-39 and 8-41
+Eq. 3-2, 4-7, 4-8, 5-23, 5-26, 6-13, 8-8, 8-13, 8-16, 8-26, 8-38, 8-39 and 8-41
 to 8-44 as printed.
 
 ## 1.6.0
