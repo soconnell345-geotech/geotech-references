@@ -260,7 +260,7 @@ wherever the deployment's built-in PDFs go.
 |---|---|---|
 | Foundry | committed in the workspace repository beside the app's entry file (for example `references/packs/`, next to the reference PDFs); or, if committed folders do not reach the published app, in the deployment's dataset store, copied to a temp folder at boot by the same step that fetches the PDFs | `os.environ.setdefault("GEOTECH_REFERENCES_PACKS", "<that folder>")` in the entry file |
 | Databricks | a Workspace folder or a Unity Catalog volume | the environment variable, set before the app is launched |
-| Tiny Apps | not needed for Document Review (it has no librarian); a geotechnical page there could use a folder in the wrapper repository | `.env` or `run.sh` |
+| Tiny Apps | not needed: Tiny Apps hosts Document Review alone (`aec-document-review`), which has no librarian | — |
 
 The Foundry workspace repository and the Tiny Apps wrapper repository are
 the deployment's own, not the public repositories, so a pack may be
