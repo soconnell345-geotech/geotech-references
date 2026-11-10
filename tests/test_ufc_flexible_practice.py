@@ -181,6 +181,14 @@ class TestTable28:
         r = table_2_8_marshall_design_criteria("hma", "50_gyrations")
         assert r["marshall_stability_min_kn"] is None
 
+    def test_section_1_optimum_ac_vtm(self):
+        # Table 2-8 Section 1, UFC 3-250-03 PDF 53 (pdf_page 52), printed 39:
+        # percent VTM (point of curve) 4 for HMA, 6 for sand asphalt.
+        for cp in ("50_blows", "75_blows", "50_gyrations", "75_gyrations"):
+            assert table_2_8_marshall_design_criteria("hma", cp)["optimum_ac_vtm_pct"] == 4
+        for cp in ("50_blows", "50_gyrations"):
+            assert table_2_8_marshall_design_criteria("sand_asphalt", cp)["optimum_ac_vtm_pct"] == 6
+
     def test_single_property_stability(self):
         r = table_2_8_marshall_design_criteria("hma", "50_blows", property="stability")
         assert r["value"]["marshall_stability_min_kn"] == 6.0

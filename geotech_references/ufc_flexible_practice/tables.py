@@ -281,23 +281,28 @@ def table_2_7_minimum_vma(gradation) -> dict:
 # (Section 2-4.2.6/2-4.2.10; pdf_page 52, printed p.39)
 # ============================================================================
 
-# Section 2: acceptability criteria (Section 1's optimum-AC-determination
-# criteria are all "point of curve", i.e. procedural, not numeric -- not
-# digitized as a lookup, see chapter text instead).
+# Section 2: acceptability criteria. Section 1 (procedure for determining
+# optimum asphalt content, "point of curve") prints one number per row, the
+# percent VTM: 4 for HMA surface or intermediate course (all four compaction
+# columns) and 6 for sand asphalt (50 blows, 50 gyrations); its other
+# properties are NA. Kept as optimum_ac_vtm_pct.
 _TABLE_2_8 = {
     ("hma", "50_blows"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": 6.0, "marshall_stability_min_lbf": 1350,
         "flow_max_0p25mm": 20, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
         "vfa_pct_range": (75, 85),
     },
     ("hma", "75_blows"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": 8.0, "marshall_stability_min_lbf": 1800,
         "flow_max_0p25mm": 16, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
         "vfa_pct_range": (70, 80),
     },
     ("hma", "50_gyrations"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
@@ -305,6 +310,7 @@ _TABLE_2_8 = {
         "note": "Superpave (gyratory) -- no flow/stability criteria.",
     },
     ("hma", "75_gyrations"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
@@ -312,12 +318,14 @@ _TABLE_2_8 = {
         "note": "Superpave (gyratory) -- no flow/stability criteria.",
     },
     ("sand_asphalt", "50_blows"): {
+        "optimum_ac_vtm_pct": 6,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": 500,
         "flow_max_0p25mm": 20, "vtm_pct_range": (5, 7),
         "vma_pct_note": None, "vfa_pct_range": (65, 75),
         "note": "Not for pavements with tire pressures above 690 kPa (100 psi).",
     },
     ("sand_asphalt", "50_gyrations"): {
+        "optimum_ac_vtm_pct": 6,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (5, 7),
         "vma_pct_note": None, "vfa_pct_range": (65, 75),
@@ -328,13 +336,15 @@ _TABLE_2_8 = {
 
 
 def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> dict:
-    """Marshall/Superpave mix acceptability criteria by mix type and compaction (Table 2-8).
+    """Design criteria for HMA and sand asphalt by mix type and compaction,
+    UFC 3-250-03 Table 2-8 (pdf_page 52, printed p.39); returns Section 2's
+    mix-acceptability criteria (stability, flow, VTM, VMA, VFA) and
+    Section 1's percent VTM for determining the optimum asphalt content.
 
-    Section 2 of Table 2-8 -- criteria for judging whether a mix at its
-    determined optimum asphalt content is acceptable. (Section 1, the
-    procedure for locating the optimum-AC point on each property curve, is
-    purely "point of curve" -- procedural, not a numeric lookup, and is
-    covered in the chapter text instead.)
+    Section 1 (procedure for determining optimum asphalt content, point of
+    curve) prints only percent VTM: 4 for HMA surface or intermediate
+    course, 6 for sand asphalt; returned as optimum_ac_vtm_pct. Section 2
+    gives the criteria for judging whether the mix is acceptable.
 
     Parameters
     ----------
@@ -354,7 +364,8 @@ def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> d
     dict
         Full row: {'mix_type', 'compaction', 'marshall_stability_min_kn',
         'marshall_stability_min_lbf', 'flow_max_0p25mm', 'vtm_pct_range',
-        'vma_pct_note', 'vfa_pct_range', 'note'?, 'reference'}.
+        'vma_pct_note', 'vfa_pct_range', 'optimum_ac_vtm_pct', 'note'?,
+        'reference'}.
         Single property: {'mix_type', 'compaction', 'property', 'value',
         'reference'}.
 
