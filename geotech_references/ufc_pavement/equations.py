@@ -721,13 +721,14 @@ def darcy_flow_rate(k, i, area) -> dict:
 
 
 def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
-    """Taylor's equation for coefficient of permeability from soil/fluid
-    properties (Chapter 20, Eq. 20-3; pdf_page 112, printed 93).
+    """Coefficient of permeability k by Taylor's equation, UFC 3-250-01
+    Eq. 20-3 (pdf_page 112, printed 93); returns k in the inputs' consistent
+    units. Eq. 20-3 is printed with (1-e) in the denominator,
+    k = Ds^2 * C * (gamma*e^3 / (mu*(1-e))); this function computes it with
+    (1+e), k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)] (a judgment call kept
+    as coded, review pave-24), and its result says so.
 
         k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)]
-
-    The print shows k = Ds^2 * C * (gamma*e^3 / (mu*(1-e))), with (1-e) in
-    the denominator; this function uses (1+e) and says so in its result.
 
     Parameters
     ----------
@@ -764,8 +765,9 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
         "equation": "k = C * Ds^2 * (gamma/mu) * [e^3/(1+e)]",
         "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page 112, printed 93)",
         "note": (
-            "Eq. 20-3 as printed has (1-e) in the denominator, "
-            "k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this result uses (1+e)."
+            "Eq. 20-3 as printed (printed p. 93) has (1-e) in the "
+            "denominator, k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this result is "
+            "computed with (1+e), as coded (judgment call, review pave-24)."
         ),
     }
 
