@@ -157,7 +157,7 @@ def spt_friction_angle_buildings(n60: float) -> float:
 def spt_friction_angle_kulhawy_mayne(
     n60: float, sigma_v_eff: float, pa: float
 ) -> float:
-    """Peak effective stress friction angle phi' (degrees) of sand from SPT N60 (0 to 60) and vertical effective stress (up to 3.0 kgf/cm2), Equation 8-4 (Kulhawy and Mayne 1990).
+    """Peak effective stress friction angle phi' (degrees) of sand from SPT N60 (0 to 60) and vertical effective stress (up to 3 atmospheres), Equation 8-4 (Kulhawy and Mayne 1990).
 
     Kulhawy and Mayne (1990) approximation of the Schmertmann (1975) and
     DeMello (1971) relationships between peak effective stress friction
@@ -167,6 +167,12 @@ def spt_friction_angle_kulhawy_mayne(
         \\tan(\\phi') = \\left[\\frac{N_{60}}{12.2 + 20.3
         \\left(\\frac{\\sigma'_v}{P_a}\\right)}\\right]^{0.34}
 
+    Figure 8-3 (bottom), whose trends the equation approximates, prints
+    an N60 axis from 0 to 60 and a sigma'v axis from 0 to 3.0 kgf/cm2
+    (294.2 kPa, 2.90 atmospheres).  The function refuses sigma'v/Pa
+    above 3.0: the axis end taken in atmospheres, a few percent over
+    the printed 3.0 kgf/cm2.
+
     Parameters
     ----------
     n60 : float
@@ -174,8 +180,8 @@ def spt_friction_angle_kulhawy_mayne(
     sigma_v_eff : float
         Vertical effective stress (stress units, e.g., kPa, psf).
     pa : float
-        Atmospheric pressure in the same units as *sigma_v_eff*
-        (e.g., 101.325 kPa or 2116.2 psf).
+        Atmospheric pressure: one atmosphere in the units of
+        *sigma_v_eff* (101.325 kPa, 2116.2 psf or 1.033 kgf/cm2).
 
     Returns
     -------
@@ -186,9 +192,8 @@ def spt_friction_angle_kulhawy_mayne(
     ------
     ValueError
         If *n60* is negative, *sigma_v_eff* is negative, or *pa* is not
-        positive; or if *n60* is above 60 or *sigma_v_eff* above
-        3.0 kgf/cm2 (2.90 atmospheres), the ends of the axes of
-        Figure 8-3 (bottom), whose trends the equation approximates.
+        positive; or if *n60* is above 60 or *sigma_v_eff* / *pa* above
+        3.0, the ends of the axes of Figure 8-3 (bottom) (see above).
 
     References
     ----------
@@ -206,12 +211,15 @@ def spt_friction_angle_kulhawy_mayne(
             "n60 is above 60, the end of the N60 axis of Figure 8-3 (bottom) "
             "(UFS 3-220-10 p. 398), whose trends Equation 8-4 approximates."
         )
-    # 3.0 kgf/cm2 = 294.2 kPa = 2.9035 standard atmospheres
-    if sigma_v_eff / pa > 2.9035:
+    # The axis ends at 3.0 kgf/cm2 = 294.2 kPa = 2.9035 standard
+    # atmospheres; the limit is taken as 3 atmospheres (pa is one
+    # atmosphere in the caller's units), a few percent over the print.
+    if sigma_v_eff / pa > 3.0:
         raise ValueError(
-            "sigma_v_eff is above 3.0 kgf/cm2 (2.90 atmospheres), the end of "
-            "the stress axis of Figure 8-3 (bottom) (UFS 3-220-10 p. 398), "
-            "whose trends Equation 8-4 approximates."
+            "sigma_v_eff/pa is above 3.0 (3 atmospheres): the stress axis of "
+            "Figure 8-3 (bottom) (UFS 3-220-10 p. 398), whose trends "
+            "Equation 8-4 approximates, ends at 3.0 kgf/cm2 (2.90 "
+            "atmospheres)."
         )
     ratio = n60 / (12.2 + 20.3 * (sigma_v_eff / pa))
     if ratio < 0.0:

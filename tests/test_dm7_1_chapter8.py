@@ -1873,8 +1873,27 @@ class TestPrintedRanges:
             43.35, abs=0.01)
         with pytest.raises(ValueError, match="above 60"):
             spt_friction_angle_kulhawy_mayne(61.0, 100.0, 101.325)
-        with pytest.raises(ValueError, match="above 3.0 kgf/cm2"):
-            spt_friction_angle_kulhawy_mayne(20.0, 300.0, 101.325)
+
+    def test_kulhawy_mayne_stress_limit_is_three_atmospheres(self):
+        # The stress axis of Figure 8-3 (bottom), PDF p. 426 (printed
+        # p. 398), ends at 3.0 kgf/cm2 (294.2 kPa, 2.90 atm); the function
+        # refuses sigma'v/Pa above 3.0, a few percent over it, so a caller
+        # who gives Pa as 100 kPa is not refused at 291 kPa.
+        # N60=20, Pa=100: 291 kPa -> 20/(12.2 + 20.3*2.91) = 0.280611;
+        # ^0.34 = 0.649166; atan = 32.99 deg
+        # 300 kPa (ratio 3.0, the limit) -> 20/73.1 = 0.273598; ^0.34 =
+        # 0.643603; atan = 32.77 deg
+        # 300 kPa with Pa=101.325 (ratio 2.961) -> 32.86 deg
+        assert spt_friction_angle_kulhawy_mayne(20.0, 291.0, 100.0) == pytest.approx(
+            32.99, abs=0.01)
+        assert spt_friction_angle_kulhawy_mayne(20.0, 300.0, 100.0) == pytest.approx(
+            32.77, abs=0.01)
+        assert spt_friction_angle_kulhawy_mayne(20.0, 300.0, 101.325) == pytest.approx(
+            32.86, abs=0.01)
+        with pytest.raises(ValueError, match="above 3.0"):
+            spt_friction_angle_kulhawy_mayne(20.0, 301.0, 100.0)
+        with pytest.raises(ValueError, match="3.0 kgf/cm2"):
+            spt_friction_angle_kulhawy_mayne(20.0, 305.0, 101.325)
 
     def test_wolff_and_hatanaka_uchida_axis_of_figure_8_4(self):
         # Figure 8-4, PDF p. 427 (printed p. 399), plots both for N1,60
