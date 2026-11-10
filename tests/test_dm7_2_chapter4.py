@@ -1443,8 +1443,12 @@ class TestPlotFigure436:
         assert isinstance(ax, matplotlib.axes.Axes)
         _plt.close("all")
 
-    def test_old_log_rho_keyword_is_refused(self):
-        # It would otherwise fall into **kwargs and the query point be lost.
-        with pytest.raises(TypeError, match="not log_rho"):
+    def test_old_log_rho_call_is_refused(self):
+        # log_rho falls into **kwargs (which the function never reads, so
+        # the app still checks parameter names); a soil type without rho is
+        # refused rather than drawn with no point.
+        with pytest.raises(ValueError, match="both rho"):
             plot_figure_4_36(log_rho=-2.0, soil_type="dense_sand", show=False)
+        with pytest.raises(ValueError, match="both rho"):
+            plot_figure_4_36(rho=9.5, show=False)
         _plt.close("all")

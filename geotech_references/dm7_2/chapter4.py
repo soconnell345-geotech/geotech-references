@@ -1926,10 +1926,13 @@ def plot_figure_4_36(rho=None, soil_type=None, ax=None, show=True,
     -------
     matplotlib.axes.Axes
     """
-    if "log_rho" in kwargs:
-        raise TypeError(
-            "plot_figure_4_36 takes rho (the flexibility number itself, 5 "
-            "to 200 in^2/lb), not log_rho: Figure 4-36 is drawn on rho."
+    if (rho is None) != (soil_type is None):
+        # A point needs both.  (A caller of the old form, log_rho= with a
+        # soil type, lands here: log_rho falls into the unread catch-all.)
+        raise ValueError(
+            "plot_figure_4_36 marks a point only when both rho (the "
+            "flexibility number itself, 5 to 200 in^2/lb, not its "
+            "logarithm) and soil_type are given."
         )
     from geotech_references._plotting import get_pyplot, setup_engineering_plot
     plt = get_pyplot()
