@@ -56,11 +56,10 @@ COVERS = [
     ("ufc_structural", None, "UFC 3-301-01", "11 April 2023", False),
     ("em_2104", None, "EM 1110-2-2104", "1 November 2023", False),
     # 2026-11-10 review, core-13: each volume by its own cover. GEC-12
-    # Vol II's cover prints FHWA-NHI-16-009 like Vol I's, while its
-    # Technical Report Documentation Page prints FHWA-NHI-16-010; its data
-    # keeps 16-009 until that is settled (not a call this fix makes).
+    # Vol II is read on its documentation page (READ_PAGES): its cover
+    # prints FHWA-NHI-16-009, Vol I's number.
     ("gec_12/1", None, "FHWA-NHI-16-009", None, False),
-    ("gec_12/2", None, "FHWA-NHI-16-009", None, False),
+    ("gec_12/2", None, "FHWA-NHI-16-010", None, False),
     ("gec_12/3", None, "FHWA-NHI-16-064", None, False),
     ("gec_11/1", None, "FHWA-NHI-10-024", None, False),
     ("gec_11/2", None, "FHWA-NHI-10-025", None, False),
@@ -98,6 +97,16 @@ COVERS = [
             "equations are not in it (edition gap, REF-31)")),
         id="ufc_backfill"),
 ]
+
+
+#: Volumes checked against another page than the cover (0-based PDF pages).
+#: GEC-12 Vol II's cover (PDF page 1) prints "Publication No.
+#: FHWA-NHI-16-009", Vol I's number; its Technical Report Documentation Page
+#: (PDF page 3) prints "1. REPORT NO. FHWA-NHI-16-010", and Vol III's
+#: documentation page names "FHWA-NHI-16-009 and FHWA-NHI-16-010" as the
+#: two volumes it supplements. The volume is cited as 16-010 and the cover's
+#: number taken as a misprint (2026-11-10 review).
+READ_PAGES = {"gec_12/2": (2,)}
 
 
 def _norm(text):
@@ -144,9 +153,11 @@ def _pdf(pkg, pdf):
     return (path.parent / rel).resolve()
 
 
-def _cover_text(path):
+def _cover_text(path, pages=None):
     with fitz.open(str(path)) as doc:
-        return " ".join(doc[i].get_text() for i in range(min(2, len(doc))))
+        if pages is None:
+            pages = range(min(2, len(doc)))
+        return " ".join(doc[i].get_text() for i in pages)
 
 
 def _cited_ids(pkg):
@@ -195,7 +206,7 @@ def test_cited_designation_and_date_on_cover(pkg, pdf, designation, date,
     path = _pdf(pkg, pdf)
     if not path.exists():
         pytest.skip(f"{path.name} not checked out")
-    cover = _cover_text(path)
+    cover = _cover_text(path, READ_PAGES.get(pkg))
     assert _norm(designation) in _norm(cover), (
         f"{designation!r} is not on the cover of {path.name}")
     if date:
@@ -225,6 +236,19 @@ def test_cited_designation_and_date_on_cover(pkg, pdf, designation, date,
                     f"{f.name}: {m.group(0)!r} gives another date than "
                     f"the cover's {date}")
         assert seen, f"no dated citation of {designation} in {pkg}/*.py"
+
+
+def test_gec12_vol2_cover_and_documentation_page():
+    """The two numbers GEC-12 Vol II prints (READ_PAGES): if the PDF in
+    docs/ is replaced by a printing that corrects either, this says so."""
+    path = _pdf("gec_12/2", None)
+    if not path.exists():
+        pytest.skip(f"{path.name} not checked out")
+    cover, doc_page = _norm(_cover_text(path, (0,))), _norm(
+        _cover_text(path, (2,)))
+    assert _norm("FHWA-NHI-16-009") in cover
+    assert _norm("FHWA-NHI-16-010") not in cover
+    assert _norm("REPORT NO. FHWA-NHI-16-010") in doc_page
 
 
 @pytest.mark.parametrize("pkg,designation", [

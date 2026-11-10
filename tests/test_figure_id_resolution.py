@@ -34,6 +34,9 @@ def test_spellings_of_a_reference_resolve(ref, fig, want):
     # the report number on a volume's cover, with or without the agency
     ("FHWA-NHI-16-027", "gec_13"), ("FHWA-NHI-16-028", "gec_13"),
     ("NHI-16-028", "gec_13"), ("3-250-01", "ufc_pavement"),
+    # each GEC-12 volume's number (Vol II on its documentation page)
+    ("FHWA-NHI-16-009", "gec_12"), ("FHWA-NHI-16-010", "gec_12"),
+    ("NHI-16-064", "gec_12"),
 ])
 def test_a_name_or_report_number_resolves_to_its_one_catalog(ref, want):
     assert fdb.resolve_reference(ref) == want
@@ -43,6 +46,17 @@ def test_a_name_or_report_number_resolves_to_its_one_catalog(ref, want):
         (want,)).fetchone()[0]
     # the result names the catalog it came from, whatever the caller wrote
     assert fdb.figure_get(ref, number)["reference"] == want
+
+
+def test_a_gec12_vol2_figure_is_found_by_any_volume_number():
+    """Vol II figures are cited FHWA-NHI-16-010 (its documentation page),
+    and a caller who names the manual by Vol I's 16-009, as Vol II's cover
+    prints it, still finds them."""
+    for name in ("FHWA-NHI-16-009", "FHWA-NHI-16-010", "gec_12"):
+        row = fdb.figure_get(name, "9-1")
+        assert (row["reference"], row["reference_id"], row["volume"]) == (
+            "gec_12", "FHWA-NHI-16-010", 2)
+    assert fdb.figure_get("gec_12", "7-1")["reference_id"] == "FHWA-NHI-16-009"
 
 
 @pytest.mark.parametrize("loose", [

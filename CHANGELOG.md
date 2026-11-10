@@ -50,8 +50,10 @@ and caption below was read off the rendered print.
 - **Each volume is cited by its own cover's number** (core-13). GEC-11 Vol
   II rows are FHWA-NHI-10-025, GEC-12 Vol III rows and Appendix D are
   FHWA-NHI-16-064, and Soils and Foundations Vol II rows are
-  FHWA-NHI-06-089. GEC-13 chapter 6's title says Volume II. GEC-12 Vol II is
-  unchanged: its cover prints 16-009 and its documentation page 16-010.
+  FHWA-NHI-06-089. GEC-13 chapter 6's title says Volume II. GEC-12 Vol II's
+  rows and chapters 9-18 are FHWA-NHI-16-010, the number on its Technical
+  Report Documentation Page; its cover prints Vol I's 16-009, taken as a
+  misprint, and a figure lookup by either number still finds them.
 - **`load_chapter` finds a chapter file by its `chapter` field** (core-15),
   so the 17 files named otherwise (prologues, appendices, Eurocode 7 Part 2
   sections) load.
