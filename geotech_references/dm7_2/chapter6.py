@@ -22,11 +22,14 @@ from geotech_references._interpolation import _linterp
 # ===========================================================================
 
 def critical_scour_velocity(D50: float) -> float:
-    """Critical velocity for onset of scour in coarse-grained soils (Equation 6-1).
+    """Critical velocity v_c in m/s for the onset of scour in
+    coarse-grained soil from the median particle size D50 in mm, Equation
+    6-1 of UFC 3-220-20: v_c = 0.35 D50^0.45.  The manual says the
+    equation "should not be extrapolated below sand-sized particles"
+    (0.075 mm in its glossary), so a D50 below 0.075 mm is refused.
 
-    Correlates the critical velocity for scour onset to the median particle
-    size for coarse-grained soils.  Should not be extrapolated below
-    sand-sized particles.
+    The constant carries the units m / (s mm^0.45).  The critical
+    velocity is not correlated to particle size for fine-grained soils.
 
     .. math::
         v_c = 0.35 \\cdot D_{50}^{0.45}
@@ -34,7 +37,7 @@ def critical_scour_velocity(D50: float) -> float:
     Parameters
     ----------
     D50 : float
-        Median particle size (mm).
+        Median particle size (mm), at least 0.075 mm.
 
     Returns
     -------
@@ -44,14 +47,23 @@ def critical_scour_velocity(D50: float) -> float:
     Raises
     ------
     ValueError
-        If *D50* is not positive.
+        If *D50* is not positive or is below 0.075 mm, the lower size of
+        sand-sized particles.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-1, p. 409.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-1, PDF p. 409
+    (printed p. 371); Glossary, "Sand-sized – Particle size between
+    0.075 mm and 4.75 mm", PDF p. 719 (printed p. 681).
     """
     if D50 <= 0.0:
         raise ValueError("D50 must be positive.")
+    if D50 < 0.075:
+        raise ValueError(
+            f"D50 = {D50:g} mm: Equation 6-1 \"should not be extrapolated "
+            "below sand-sized particles\" (0.075 mm); the critical velocity "
+            "is not correlated to particle size for fine-grained soils."
+        )
     return 0.35 * D50 ** 0.45
 
 
@@ -302,7 +314,11 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
 
 
 def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
-    """Alpha for drilled shafts – Chen et al. (2011) (Equation 6-10).
+    """Adhesion factor alpha (dimensionless) for drilled shafts after Chen
+    et al. (2011), Equation 6-10 of UFC 3-220-20:
+    alpha = 0.3 + 0.17 Pa / su,ICU, limited to 1 as printed.
+
+    A value of exactly 1 is the printed limit, not the equation.
 
     .. math::
         \\alpha = 0.3 + \\frac{0.17}{s_{u,ICU}/P_a} \\leq 1
@@ -321,7 +337,8 @@ def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-10, p. 456.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-10, PDF p. 456
+    (printed p. 418).
     """
     if s_u_ICU <= 0.0:
         raise ValueError("s_u_ICU must be positive.")
@@ -408,9 +425,12 @@ def su_ICU_from_DSS(s_u_DSS: float) -> float:
 
 
 def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
-    """Alpha for drilled shafts and CFAs – Salgado (2008) (Equation 6-14).
-
-    For soils with clay fraction >= 50% and OCR between 3 and 5.
+    """Adhesion factor alpha (dimensionless) for drilled shafts and CFAs
+    after Salgado (2008), Equation 6-14 of UFC 3-220-20:
+    alpha = 0.4 [1 - 0.12 ln(su / Pa)].  The manual gives it for soils
+    with a clay fraction of at least 50 % and an OCR between 3 and 5 (for
+    lower OCR it is expected to be conservative); the function cannot
+    check either.
 
     .. math::
         \\alpha = 0.4 \\left[1 - 0.12 \\ln\\left(\\frac{s_u}{P_a}\\right)\\right]
@@ -429,7 +449,8 @@ def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-14, p. 456.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-14, PDF p. 456
+    (printed p. 418).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -439,16 +460,21 @@ def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
 
 
 def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
-    """Alpha for CFAs – Coleman and Arcement (2002) (Equation 6-15).
-
-    Valid for normalized strengths in the range 0.24 to 1.42.
+    """Adhesion factor alpha (dimensionless) for CFAs after Coleman and
+    Arcement (2002), Equation 6-15 of UFC 3-220-20 (PDF p. 457, printed
+    p. 419), coded as alpha = 0.53 / (su/Pa).  The equation is printed as
+    alpha = 0.53 (su/Pa), with no exponent; the coded exponent -1 is the
+    one Curve E of Figure 6-14 follows.  The manual gives the relation as
+    "valid for normalized strengths in the range of 0.24 to 1.42"; su/Pa
+    outside that range is refused.
 
     .. math::
         \\alpha = 0.53 \\left(\\frac{s_u}{P_a}\\right)^{-1}
 
-    The printed Equation 6-15 shows ``0.53 (s_u/P_a)`` with no legible
-    exponent. Curve E of Figure 6-14 (vector data) is 0.53 / (s_u/P_a):
-    alpha 1.32 at 0.4, 0.53 at 1.0, 0.39 at 1.37. The exponent is -1.
+    Curve E of Figure 6-14 (vector data) is 0.53 / (s_u/P_a): alpha 1.32
+    at 0.4, 0.53 at 1.0, 0.39 at 1.37.  As printed, without the exponent,
+    alpha would rise with strength (0.53 at su/Pa = 1.0, 0.75 at 1.42),
+    which is not the curve.
 
     Parameters
     ----------
@@ -462,19 +488,42 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
     float
         Adhesion factor alpha (dimensionless).
 
+    Raises
+    ------
+    ValueError
+        If *s_u* or *P_a* is not positive, or su/Pa is outside 0.24 to
+        1.42.
+
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-15, p. 457.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-15, PDF p. 457
+    (printed p. 419).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
-    return 0.53 / (s_u / P_a)
+    ratio = s_u / P_a
+    # 1e-9: a strength entered as exactly 0.24 Pa or 1.42 Pa is in range
+    if ratio < 0.24 - 1e-9 or ratio > 1.42 + 1e-9:
+        raise ValueError(
+            f"su/Pa = {ratio:.3g}: Equation 6-15 (Coleman and Arcement "
+            "2002, CFAs) is valid for normalized strengths in the range "
+            "of 0.24 to 1.42."
+        )
+    return 0.53 / ratio
 
 
 def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
-    """Alpha by API P2A method – Randolph and Murphy (1985) (Equations 6-16, 6-17).
+    """Adhesion factor alpha (dimensionless) by the API P2A method
+    (Randolph and Murphy 1985), Equations 6-16 and 6-17 of UFC 3-220-20:
+    0.5 (su/sigma'z)^-0.5 for su/sigma'z <= 1 and 0.5 (su/sigma'z)^-0.25
+    above 1, capped at 1.0 as the manual says for a strength ratio below
+    0.25.
+
+    A value of exactly 1 is the printed cap, not the equation.  The
+    method was developed from large-diameter (36 inches and more)
+    open-end steel pipe piles offshore.
 
     .. math::
         \\alpha = 0.5 \\left(\\frac{s_u}{\\sigma'_z}\\right)^{-0.5}
@@ -497,7 +546,8 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-16 and 6-17, p. 457.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-16 and 6-17, PDF
+    p. 457 (printed p. 419).
     """
     if sigma_z_eff <= 0.0:
         raise ValueError("sigma_z_eff must be positive.")
@@ -510,7 +560,12 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
 
 
 def alpha_API_from_OCR(OCR: float) -> float:
-    """Alpha by API method expressed in terms of OCR (Equations 6-18, 6-19).
+    """Adhesion factor alpha (dimensionless) by the API guidance in terms
+    of OCR, Equations 6-18 and 6-19 of UFC 3-220-20: 1.07 OCR^-0.4 for
+    OCR <= 4.5 and 0.73 OCR^-0.2 above, capped at 1.0 as the manual says
+    for an OCR below 1.2.
+
+    A value of exactly 1 is the printed cap, not the equation.
 
     .. math::
         \\alpha = 1.07 \\cdot OCR^{-0.4} \\quad \\text{for } OCR \\leq 4.5
@@ -529,7 +584,8 @@ def alpha_API_from_OCR(OCR: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-18 and 6-19, p. 458.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-18 and 6-19, PDF
+    p. 458 (printed p. 420).
     """
     if OCR <= 0.0:
         raise ValueError("OCR must be positive.")
@@ -545,7 +601,9 @@ def alpha_API_from_OCR(OCR: float) -> float:
 # ===========================================================================
 
 def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
-    """Unit base resistance for drained conditions (Equation 6-20).
+    """Unit base resistance q_b (in the stress unit of sigma'_zD) of a
+    deep foundation element (Z/b >= 5) in drained conditions, Equation
+    6-20 of UFC 3-220-20: q_b = Nq sigma'_zD.
 
     .. math::
         q_b = N_q \\cdot \\sigma'_{zD}
@@ -564,43 +622,67 @@ def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-20, p. 459.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-20, PDF p. 459
+    (printed p. 421).
     """
     return N_q * sigma_zD_eff
 
 
 def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
-    """Bearing capacity factor Nq after Cheng (2004), from Table 6-17.
+    """Base resistance factor Nq (dimensionless) for a deep foundation
+    element (Z/b >= 5) in drained conditions, from the equation printed
+    under Table 6-17 of UFC 3-220-20 (after Cheng 2004):
+    Nq = 1.2 (Z/b)^-0.437 exp[6.34 (Z/b)^0.0486 tan phi'], limited to
+    200 as the table prints ("unless supported by project-specific
+    information").
+
+    The table's own ranges, which the equation reproduces: sand,
+    phi' = 32 to 40 degrees, Nq = 37 to 168 at Z/b = 10, 32 to 152 at
+    Z/b = 20 and 27 to 139 at Z/b = 40.  A value of exactly 200 is the
+    printed limit, not the equation.
 
     .. math::
-        N_q \\approx \\exp\\left[\\frac{\\phi' \\cdot \\tan\\phi'}{6.34}
-        \\cdot \\left(\\frac{Z}{b}\\right)^{-0.0486}\\right]
-        \\cdot \\left(\\frac{Z}{b}\\right)^{0.437}
+        N_q \\approx 1.2 \\left(\\frac{Z}{b}\\right)^{-0.437}
+        \\exp\\left[6.34 \\left(\\frac{Z}{b}\\right)^{0.0486}
+        \\tan\\phi'\\right] \\le 200
 
     Parameters
     ----------
     phi_deg : float
         Effective friction angle (degrees).
     Z_over_b : float
-        Ratio of embedment depth to pile width (dimensionless).
+        Ratio of embedment depth to pile width (dimensionless).  At
+        least 5: Section 6-5.4.3.1 gives the method for deep foundation
+        elements, Z/b >= 5.
 
     Returns
     -------
     float
-        Bearing capacity factor Nq (dimensionless), capped at 200.
+        Bearing capacity factor Nq (dimensionless), at most 200.
+
+    Raises
+    ------
+    ValueError
+        If *phi_deg* is not between 0 and 90 degrees or *Z_over_b* is
+        below 5.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-17, p. 459.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-17 (Base Resistance
+    Factors for Drained Conditions based on Soil Type and Friction
+    Angle), PDF p. 459 (printed p. 421).
     """
-    if phi_deg <= 0.0:
-        raise ValueError("phi_deg must be positive.")
-    if Z_over_b <= 0.0:
-        raise ValueError("Z_over_b must be positive.")
-    phi_rad = math.radians(phi_deg)
-    N_q = (math.exp(phi_rad * math.tan(phi_rad) / 6.34
-                     * Z_over_b ** (-0.0486))
-           * Z_over_b ** 0.437)
+    if phi_deg <= 0.0 or phi_deg >= 90.0:
+        raise ValueError("phi_deg must be between 0 and 90 degrees.")
+    if Z_over_b < 5.0:
+        raise ValueError(
+            f"Z_over_b = {Z_over_b:g}: Section 6-5.4.3.1 and Table 6-17 "
+            "give the base resistance of deep foundation elements, "
+            "Z/b >= 5."
+        )
+    tan_phi = math.tan(math.radians(phi_deg))
+    N_q = (1.2 * Z_over_b ** (-0.437)
+           * math.exp(6.34 * Z_over_b ** 0.0486 * tan_phi))
     return min(N_q, 200.0)
 
 
@@ -611,7 +693,9 @@ def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
 def unit_base_resistance_vesic_drained(
     N_q_star: float, sigma_m_eff: float
 ) -> float:
-    """Unit base resistance by Vesic method, drained (Equation 6-21).
+    """Unit base resistance q_b (in the stress unit of sigma'_m) of a deep
+    foundation element (Z/b >= 5) in drained conditions by Vesic's
+    method, Equation 6-21 of UFC 3-220-20: q_b = N*q sigma'_m.
 
     .. math::
         q_b = N^*_q \\cdot \\sigma'_m
@@ -630,7 +714,8 @@ def unit_base_resistance_vesic_drained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-21, p. 459.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-21, PDF p. 459
+    (printed p. 421).
     """
     return N_q_star * sigma_m_eff
 
@@ -638,19 +723,24 @@ def unit_base_resistance_vesic_drained(
 def mean_effective_stress(
     sigma_zD_eff: float, phi_deg: float
 ) -> float:
-    """Mean effective stress at b/2 below pile base (Equation 6-22).
+    """Mean effective stress sigma'_m (in the stress unit of the input) at
+    b/2 below the pile base for K0 conditions, Equation 6-22 of
+    UFC 3-220-20: sigma'_m = (1 - (2/3) sin phi') sigma'_zD+b/2.
 
-    Assumes K0 conditions.
+    Used with Vesic's method (Equations 6-21, 6-23 and 6-24).
 
     .. math::
-        \\sigma'_m = \\frac{2 - \\sin\\phi'}{3} \\cdot \\sigma'_{zD+b/2}
+        \\sigma'_m = \\left(1 - \\frac{2}{3}\\sin\\phi'\\right)
+        \\sigma'_{zD+b/2}
 
     Parameters
     ----------
     sigma_zD_eff : float
-        Effective vertical stress at b/2 below the base (stress).
+        Effective vertical stress at b/2 below the base prior to pile
+        installation (stress).
     phi_deg : float
-        Peak effective friction angle (degrees).
+        Peak effective friction angle within proximity of the base
+        (degrees).
 
     Returns
     -------
@@ -659,26 +749,33 @@ def mean_effective_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-22, p. 460.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-22, PDF p. 460
+    (printed p. 422).
     """
     phi_rad = math.radians(phi_deg)
-    return (2.0 - math.sin(phi_rad)) / 3.0 * sigma_zD_eff
+    return (1.0 - 2.0 / 3.0 * math.sin(phi_rad)) * sigma_zD_eff
 
 
 def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
-    """Modified bearing capacity factor N*q by Vesic (1977) (Equation 6-23).
+    """Vesic's (1977) modified bearing capacity factor N*q (dimensionless)
+    for the base of a deep foundation in drained conditions, Equation 6-23
+    of UFC 3-220-20, from the peak friction angle and the reduced rigidity
+    index I_rr.
 
     .. math::
-        N^*_q = \\frac{3}{3 - \\sin\\phi'}
-        \\cdot e^{\\left(\\frac{\\pi}{2} - \\phi'\\right)\\tan\\phi'}
-        \\cdot I_{rr}^{\\frac{4\\sin\\phi'}{3(1+\\sin\\phi')}}
+        N^*_q = \\left(\\frac{3}{3 - \\sin\\phi'}\\right)
+        e^{\\left(\\frac{\\pi}{2} - \\phi'\\right)\\tan\\phi'}
+        \\tan^2\\left(\\frac{\\pi}{4} + \\frac{\\phi'}{2}\\right)
+        I_{rr}^{\\frac{4\\sin\\phi'}{3(1+\\sin\\phi')}}
 
     Parameters
     ----------
     phi_deg : float
-        Peak effective friction angle (degrees).
+        Peak effective friction angle within proximity of the base
+        (degrees; the equation takes it in radians).
     I_rr : float
-        Reduced rigidity index (dimensionless).
+        Reduced rigidity index (dimensionless; Equation 6-25).  For piles
+        bearing in soil it normally ranges from 10 to 500.
 
     Returns
     -------
@@ -687,7 +784,8 @@ def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-23, p. 460.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-23, PDF p. 460
+    (printed p. 422).
     """
     if I_rr <= 0.0:
         raise ValueError("I_rr must be positive.")
@@ -695,9 +793,10 @@ def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
     sin_phi = math.sin(phi)
     term1 = 3.0 / (3.0 - sin_phi)
     term2 = math.exp((math.pi / 2.0 - phi) * math.tan(phi))
+    term3 = math.tan(math.pi / 4.0 + phi / 2.0) ** 2
     exponent = 4.0 * sin_phi / (3.0 * (1.0 + sin_phi))
-    term3 = I_rr ** exponent
-    return term1 * term2 * term3
+    term4 = I_rr ** exponent
+    return term1 * term2 * term3 * term4
 
 
 def rigidity_index(E: float, nu: float, sigma_m_eff: float,
@@ -871,59 +970,83 @@ def undrained_rigidity_index(E_u: float, s_u: float) -> float:
 
 
 def Nc_star_FHWA_from_Ir(I_r: float) -> float:
-    """N*c from FHWA (1999) as function of rigidity index (Equation 6-30).
+    """Base resistance factor N*c (dimensionless) from the rigidity index,
+    Equation 6-30 of UFC 3-220-20 (after FHWA 1999):
+    N*c = 1.33 [ln(Ir) + 1], limited to 9 as printed.  The manual gives it
+    for formed-in-place columns bearing on fine-grained soil with an
+    undrained shear strength below 2 ksf (96 kPa); otherwise N*c = 9
+    (Brinch Hansen 1957, Z/b of at least 2.5).
 
-    For formed-in-place columns with su < 2 ksf.
+    A value of exactly 9 is the printed limit, not the equation.  This is
+    not Vesic's Equation 6-28 (``vesic_Nc_star``), which adds pi/2 + 1.
 
     .. math::
-        N^*_c = \\frac{4}{3}(\\ln I_r + 1) + \\frac{\\pi}{2} + 1 \\leq 9
+        N^*_c = 1.33 \\left[\\ln(I_r) + 1\\right] \\leq 9
 
     Parameters
     ----------
     I_r : float
-        Rigidity index (dimensionless).
+        Rigidity index (dimensionless; Equation 6-29, Eu / (3 su)).
 
     Returns
     -------
     float
-        N*c (dimensionless), capped at 9.
+        N*c (dimensionless), at most 9.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-30, p. 462.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-30, PDF p. 462
+    (printed p. 424).
     """
     if I_r <= 0.0:
         raise ValueError("I_r must be positive.")
-    val = (4.0 / 3.0) * (math.log(I_r) + 1.0) + math.pi / 2.0 + 1.0
+    val = 1.33 * (math.log(I_r) + 1.0)
     return min(val, 9.0)
 
 
 def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
-    """N*c from FHWA (1999) as function of undrained strength (Equation 6-31).
+    """Base resistance factor N*c (dimensionless) from the normalized
+    undrained shear strength, Equation 6-31 of UFC 3-220-20 (after FHWA
+    1999): N*c = 10.2 - 12.4 [0.1 / (0.1 + su/Pa)], limited to 9 as
+    printed.  The manual gives it for formed-in-place columns bearing on
+    fine-grained soil with su below 2 ksf (96 kPa); the equation reaches
+    the limit of 9 (Brinch Hansen 1957) at about that strength.
+
+    A value of exactly 9 is the printed limit, not the equation.
 
     .. math::
-        N^*_c = 10.2 - \\frac{12.4}{0.1 + s_u/P_a} \\leq 9
+        N^*_c = 10.2 - 12.4 \\left(\\frac{0.1}{0.1 + s_u/P_a}\\right)
+        \\leq 9
 
     Parameters
     ----------
     s_u : float
-        Undrained shear strength (stress).
+        Undrained shear strength within proximity of the base (stress).
     P_a : float
-        Atmospheric pressure (same units).
+        Atmospheric pressure in the unit of *s_u* (101.325 kPa,
+        2116 psf).
 
     Returns
     -------
     float
-        N*c (dimensionless), capped at 9.
+        N*c (dimensionless), at most 9.
+
+    Raises
+    ------
+    ValueError
+        If *P_a* is not positive or *s_u* is negative.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-31, p. 462.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-31, PDF p. 462
+    (printed p. 424).
     """
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
+    if s_u < 0.0:
+        raise ValueError("s_u must be non-negative.")
     ratio = s_u / P_a
-    val = 10.2 - 12.4 / (0.1 + ratio)
+    val = 10.2 - 12.4 * (0.1 / (0.1 + ratio))
     return min(val, 9.0)
 
 
@@ -932,57 +1055,92 @@ def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
 # ===========================================================================
 
 def lcpc_unit_shaft_resistance(
-    q_c: float, P_a: float, k_s: float, f_p: float
+    q_c: float, P_a: float, k_s: float, fp_over_Pa: float
 ) -> float:
-    """LCPC method unit side resistance from CPT (Equation 6-32).
+    """Nominal unit side resistance f_s (in the stress unit of q_c and Pa)
+    by the LCPC method from the CPT, Equation 6-32 of UFC 3-220-20:
+    f_s = (Pa / ks)(qc / Pa), limited to Pa (fp/Pa) as printed, with ks
+    from Table 6-21 and the ratio fp/Pa from Table 6-22.
+
+    A result equal to Pa (fp/Pa) is the printed limit, not qc / ks.  The
+    limit is taken as the table gives it, the ratio fp/Pa (0.15 to 1.5),
+    so a maximum side resistance entered as a stress is refused.
 
     .. math::
-        f_s = \\frac{q_c / P_a}{k_s} \\cdot P_a \\leq f_p
+        f_s = \\frac{P_a}{k_s}\\left(\\frac{q_c}{P_a}\\right)
+        \\leq P_a\\left(\\frac{f_p}{P_a}\\right)
 
     Parameters
     ----------
     q_c : float
         Cone tip resistance (stress).
     P_a : float
-        Atmospheric pressure (same units).
+        Atmospheric pressure in the unit of *q_c* (101.325 kPa,
+        2116 psf).
     k_s : float
-        Side resistance factor (dimensionless, from Table 6-21).
-    f_p : float
-        Maximum unit side resistance (stress, from Table 6-22).
+        Side resistance factor (dimensionless, from Table 6-21,
+        ``table_6_21_ks``).
+    fp_over_Pa : float
+        Maximum unit side resistance divided by atmospheric pressure
+        (dimensionless, from Table 6-22, ``table_6_22_fp``: 0.15 to 1.5).
+        Not a stress.
 
     Returns
     -------
     float
-        Unit side resistance (stress), capped at *f_p*.
+        Unit side resistance (stress), at most Pa (fp/Pa).
+
+    Raises
+    ------
+    ValueError
+        If *k_s* or *P_a* is not positive, or *fp_over_Pa* is not
+        positive or is above 1.5, the largest ratio Table 6-22 prints.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-32, p. 463.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-32, PDF p. 463
+    (printed p. 425); Table 6-22, PDF p. 465 (printed p. 427).
     """
     if k_s <= 0.0:
         raise ValueError("k_s must be positive.")
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
-    f_s = (q_c / P_a) / k_s * P_a
-    return min(f_s, f_p)
+    if fp_over_Pa <= 0.0 or fp_over_Pa > 1.5:
+        raise ValueError(
+            f"fp_over_Pa = {fp_over_Pa:g}: Equation 6-32 takes the "
+            "maximum unit side resistance as the ratio fp/Pa of Table "
+            "6-22, which runs from 0.15 to 1.5; a larger number is a "
+            "stress, not the ratio."
+        )
+    f_s = (P_a / k_s) * (q_c / P_a)
+    return min(f_s, P_a * fp_over_Pa)
 
 
 def lcpc_unit_base_resistance(
     q_c_avg: float, P_a: float, k_t: float
 ) -> float:
-    """LCPC method unit base resistance from CPT (Equation 6-33).
+    """Nominal unit base resistance q_b (in the stress unit of q_c,a) by
+    the LCPC method from the CPT, Equation 6-33 of UFC 3-220-20:
+    q_b = Pa kt (qc,a / Pa), that is kt times the average cone tip
+    resistance near the base, with kt from Table 6-23 (0.2 to 0.55).
+
+    The average cone tip resistance is taken over 1.5 b above and below
+    the base, discarding values above the base until all fall within 70 %
+    to 130 % of the average, and values below the base until none exceeds
+    130 % of the average.
 
     .. math::
-        q_b = \\frac{q_{c,a} / P_a}{k_t} \\cdot P_a
+        q_b = P_a \\, k_t \\left(\\frac{q_{c,a}}{P_a}\\right)
 
     Parameters
     ----------
     q_c_avg : float
-        Average cone tip resistance near the base (stress).
+        Average cone tip resistance in the vicinity of the base (stress).
     P_a : float
         Atmospheric pressure (same units).
     k_t : float
-        Base bearing factor (dimensionless, from Table 6-23).
+        Base bearing factor (dimensionless, from Table 6-23,
+        ``table_6_23_kt``: 0.2 to 0.55).
 
     Returns
     -------
@@ -991,13 +1149,14 @@ def lcpc_unit_base_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-33, p. 463.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-33, PDF p. 463
+    (printed p. 425).
     """
     if k_t <= 0.0:
         raise ValueError("k_t must be positive.")
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
-    return (q_c_avg / P_a) / k_t * P_a
+    return P_a * k_t * (q_c_avg / P_a)
 
 
 # ===========================================================================
@@ -1174,8 +1333,13 @@ def block_failure_resistance(
 
 
 def block_failure_Nc(B: float, L: float, Z: float) -> float:
-    """Bearing capacity factor Nc for block failure – Brinch-Hansen (1957)
-    (Equation 6-39).
+    """Bearing capacity factor Nc (dimensionless) for block failure of a
+    group of columns (Brinch-Hansen 1957), Equation 6-39 of UFC 3-220-20:
+    Nc = 5 (1 + 0.2 B/L)(1 + 0.2 Z/B), limited to 9 as printed.
+
+    A value of exactly 9 is the printed limit, not the equation (the
+    manual's Appendix B Example 5: B = L = 18 ft, Z = 60 ft gives 10, so
+    9 is used).
 
     .. math::
         N_c = 5 \\left(1 + \\frac{0.2 B}{L}\\right)
@@ -1197,7 +1361,8 @@ def block_failure_Nc(B: float, L: float, Z: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-39, p. 471.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-39, PDF p. 471
+    (printed p. 433); Appendix B Example 5, PDF p. 676 (printed p. 638).
     """
     if L <= 0.0:
         raise ValueError("L must be positive.")
@@ -1215,11 +1380,16 @@ def group_uplift_capacity(
     n: int, R_r_s: float, W_r_e: float, W_r_e_cap: float,
     R_r_ublock: float
 ) -> float:
-    """Combined factored uplift capacity of n columns (Equation 6-40).
+    """Combined factored uplift capacity R_r,gu (force) of a group of n
+    columns, Equation 6-40 of UFC 3-220-20: the smaller of
+    n (R_r,s + W_r,e) + W_r,e,cap and the block capacity R_r,ublock.
+
+    The effective weight of a single column, W_r,e, is counted for each
+    of the n columns.
 
     .. math::
-        R_{r,gu} = \\min\\left(n \\cdot R_{r,s} + W_{r,e} + W_{r,e,cap},
-        \\; R_{r,ublock}\\right)
+        R_{r,gu} = \\min\\left(n \\left(R_{r,s} + W_{r,e}\\right)
+        + W_{r,e,cap}, \\; R_{r,ublock}\\right)
 
     Parameters
     ----------
@@ -1241,18 +1411,26 @@ def group_uplift_capacity(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-40, p. 473.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-40, PDF p. 473
+    (printed p. 435).
     """
-    individual = n * R_r_s + W_r_e + W_r_e_cap
+    individual = n * (R_r_s + W_r_e) + W_r_e_cap
     return min(individual, R_r_ublock)
 
 
 def uplift_block_volume(B: float, L: float, Z: float) -> float:
-    """Volume of the truncated uplift block prism for coarse-grained soils
-    (Equation 6-41).
+    """Volume V_block (length^3) of the soil block lifted by a group of
+    columns in coarse-grained soil, Equation 6-41 of UFC 3-220-20, for a
+    uniform soil profile: V = B L Z + (Z^2 / 4)(B + L) + Z^3 / 12, the
+    truncated prism of Figure 6-16(a) with sides at 4V:1H.
+
+    For layered profiles or a water table within the block, the manual
+    divides the block into layers: each layer's thickness replaces Z, and
+    B and L become the block's dimensions at the bottom of that layer.
 
     .. math::
-        V_{block} = \\frac{Z}{12}\\left(4 B L + Z^2 + 2 Z (B + L)\\right)
+        V_{block} = B \\cdot L \\cdot Z + \\frac{Z^2}{4}(B + L)
+        + \\frac{Z^3}{12}
 
     Parameters
     ----------
@@ -1270,9 +1448,10 @@ def uplift_block_volume(B: float, L: float, Z: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-41, p. 474.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-41, PDF p. 474
+    (printed p. 436).
     """
-    return Z / 12.0 * (4.0 * B * L + Z ** 2 + 2.0 * Z * (B + L))
+    return B * L * Z + Z ** 2 / 4.0 * (B + L) + Z ** 3 / 12.0
 
 
 def uplift_block_weight_undrained(
@@ -1424,51 +1603,64 @@ def meyerhof_group_settlement(
 
 
 def meyerhof_influence_factor(Z: float, B: float) -> float:
-    """Influence factor for Meyerhof group settlement (Equation 6-47).
+    """Influence factor I_f (dimensionless) for the settlement of a pile
+    group in coarse-grained soil by Equation 6-46, Equation 6-47 of
+    UFC 3-220-20: I_f = the larger of 1 - Z / (12 B) and 0.5, with Z the
+    length of the group and B its width in the same unit.
+
+    I_f falls from 1 for a short group to 0.5 at Z = 6 B and stays 0.5
+    for longer groups.
 
     .. math::
-        I_f = 1 - \\frac{1}{2} \\left(\\frac{Z}{B}\\right)^{-1}
-        \\geq 0.5
+        I_f = \\max\\left(1 - \\frac{Z}{12 B}, \\; 0.5\\right)
 
     Parameters
     ----------
     Z : float
         Length of the pile group (same units as B).
     B : float
-        Short dimension of the pile group.
+        Width of the pile group, as defined in Figure 6-15.
 
     Returns
     -------
     float
-        Influence factor (dimensionless), minimum 0.5.
+        Influence factor (dimensionless), from 0.5 to 1.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-47, p. 480.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-47, PDF p. 480
+    (printed p. 442).
     """
     if B <= 0.0:
         raise ValueError("B must be positive.")
     if Z <= 0.0:
         raise ValueError("Z must be positive.")
-    return max(1.0 - 0.5 * B / Z, 0.5)
+    return max(1.0 - Z / (12.0 * B), 0.5)
 
 
 def drilled_shaft_base_resistance_at_4pct(
     R_b: float, soil_type: str
 ) -> float:
-    """Nominal base resistance at 4% displacement for drilled shafts
-    (Equation 6-48).
+    """Nominal base resistance R'_b (in the force unit of R_b) of a
+    drilled shaft at a displacement of 4 % of its diameter, Equation 6-48
+    of UFC 3-220-20: R'_b = R_b for fine-grained (cohesive) soils and
+    0.71 R_b for coarse-grained (cohesionless) soils.
+
+    Used with Figure 6-17 and Table 6-31 (Chen and Kulhawy 2002): the
+    failure threshold FT is the nominal shaft resistance plus R'_b.
 
     .. math::
         R'_b = \\begin{cases}
-        0.71 \\cdot R_b & \\text{fine-grained (cohesive)} \\\\
-        R_b & \\text{coarse-grained (cohesionless)}
+        R_b & \\text{fine-grained (cohesive) soils} \\\\
+        0.71 \\cdot R_b & \\text{coarse-grained (cohesionless) soils}
         \\end{cases}
 
     Parameters
     ----------
     R_b : float
-        Nominal base resistance from bearing capacity theory (force).
+        Nominal base resistance (force): Equation 6-27 for fine-grained
+        soils, Reese and O'Neill (1989) in Table 6-20 for cohesionless
+        soils.
     soil_type : str
         Either ``'fine'`` or ``'coarse'``.
 
@@ -1479,26 +1671,34 @@ def drilled_shaft_base_resistance_at_4pct(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-48, p. 481.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-48, PDF p. 481
+    (printed p. 443).
     """
     if soil_type == "fine":
-        return 0.71 * R_b
-    elif soil_type == "coarse":
         return R_b
+    elif soil_type == "coarse":
+        return 0.71 * R_b
     else:
         raise ValueError("soil_type must be 'fine' or 'coarse'.")
 
 
 def equivalent_footing_width(B: float, z2: float) -> float:
-    """Width of equivalent footing for pile group settlement (Equation 6-49).
+    """Width B' (in the length unit of B) of the equivalent footing for
+    the settlement of a group of deep foundation elements, Equation 6-49
+    of UFC 3-220-20: B' = B + z2 / 2, with z2 the depth interval over
+    which the load spreads at 4V:1H above the equivalent footing.
+
+    Below the equivalent footing the load spreads at 2V:1H
+    (Equation 6-51, ``stress_change_2V1H``).  With no spreading above the
+    footing (z2 = 0) B' = B, as in the manual's Appendix B Example 5.
 
     .. math::
-        B' = B + z_2
+        B' = B + \\frac{z_2}{2}
 
     Parameters
     ----------
     B : float
-        Short dimension of the pile group (length).
+        Width of the group of elements, Figure 6-15 (length).
     z2 : float
         Depth interval of load spreading at 4V:1H (length).
 
@@ -1509,21 +1709,25 @@ def equivalent_footing_width(B: float, z2: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-49, p. 483.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-49, PDF p. 483
+    (printed p. 445).
     """
-    return B + z2
+    return B + z2 / 2.0
 
 
 def equivalent_footing_length(L: float, z2: float) -> float:
-    """Length of equivalent footing for pile group settlement (Equation 6-50).
+    """Length L' (in the length unit of L) of the equivalent footing for
+    the settlement of a group of deep foundation elements, Equation 6-50
+    of UFC 3-220-20: L' = L + z2 / 2, with z2 the depth interval over
+    which the load spreads at 4V:1H above the equivalent footing.
 
     .. math::
-        L' = L + z_2
+        L' = L + \\frac{z_2}{2}
 
     Parameters
     ----------
     L : float
-        Long dimension of the pile group (length).
+        Length of the group of elements, Figure 6-15 (length).
     z2 : float
         Depth interval of load spreading at 4V:1H (length).
 
@@ -1534,9 +1738,10 @@ def equivalent_footing_length(L: float, z2: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-50, p. 483.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-50, PDF p. 483
+    (printed p. 445).
     """
-    return L + z2
+    return L + z2 / 2.0
 
 
 def stress_change_2V1H(
@@ -1565,7 +1770,8 @@ def stress_change_2V1H(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-51, p. 485.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-51, PDF p. 483
+    (printed p. 445).
     """
     denom = (B_prime + z_prime) * (L_prime + z_prime)
     if denom <= 0.0:
@@ -2232,17 +2438,19 @@ def clm_max_moment(
 def mobilized_passive_resistance(
     P_P_ult: float, y: float, H_cap: float
 ) -> float:
-    """Mobilized passive resistance on pile cap (Equation 6-71).
+    """Mobilized passive resistance P_P,mob (in the force unit of P_P,ult)
+    on a pile cap that has moved laterally by y, Equation 6-71 of
+    UFC 3-220-20: P_P,mob / P_P,ult = y / (0.85 y + 0.006 H_cap), limited
+    to 1 as printed.
 
-    Hyperbolic load-displacement relationship from Mokwa (1999).
+    A result equal to P_P,ult is the printed limit: the hyperbola
+    (Mokwa 1999, Duncan and Mokwa 2001; failure ratio 0.85, full
+    resistance at a displacement of 4 % of the cap height) passes it at
+    y = 0.04 H_cap.
 
     .. math::
-        P_{P,mob} = \\frac{y}{\\frac{0.006}{P_{P,ult}} + \\frac{0.85 y}{H_{cap} \\cdot P_{P,ult}}}
-
-    Simplified form:
-
-    .. math::
-        P_{P,mob} = \\frac{P_{P,ult} \\cdot y}{0.006 H_{cap} + 0.85 y} \\leq P_{P,ult}
+        \\frac{P_{P,mob}}{P_{P,ult}} =
+        \\left(\\frac{y}{0.85 y + 0.006 H_{cap}}\\right) \\leq 1
 
     Parameters
     ----------
@@ -2260,7 +2468,8 @@ def mobilized_passive_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-71, p. 505.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-71, PDF p. 505
+    (printed p. 467).
     """
     if P_P_ult <= 0.0:
         raise ValueError("P_P_ult must be positive.")
@@ -2268,10 +2477,7 @@ def mobilized_passive_resistance(
         raise ValueError("H_cap must be positive.")
     if y <= 0.0:
         return 0.0
-    # From the equation: P_mob = y / (0.006/P_ult + 0.85*y/(H_cap*P_ult))
-    # Simplify: = P_ult * y * H_cap / (0.006*H_cap + 0.85*y)
-    # But checking original: P_mob/P_ult = y / (0.006*H_cap + 0.85*y)
-    P_mob = P_P_ult * y / (0.006 * H_cap + 0.85 * y)
+    P_mob = P_P_ult * y / (0.85 * y + 0.006 * H_cap)
     return min(P_mob, P_P_ult)
 
 
@@ -2394,10 +2600,17 @@ def driving_stress_limit_timber(phi_da: float, f_cto: float) -> float:
 def depth_to_fixity_undrained(
     E_p: float, I_p: float, b: float, k_h: float
 ) -> float:
-    """Depth to fixity for undrained soil conditions (Equation 6-76).
+    """Depth to fixity Z_f (length) of a pile element in uniform undrained
+    soil, Equation 6-76 of UFC 3-220-20 (Davisson and Robinson 1965):
+    Z_f = sqrt(2) (Ep Ip / (b kh))^0.25, in any consistent units.
+
+    Z_f is the embedded length that adds to the unbraced length for
+    buckling.  The moment of inertia is for the weak axis unless bending
+    is only expected in the strong direction; b kh may be taken as the
+    soil modulus Es = C su (Equation 6-77).
 
     .. math::
-        Z_f = 2 \\left(\\frac{E_p I_p}{b \\cdot k_h}\\right)^{0.25}
+        Z_f = \\sqrt{2} \\left(\\frac{E_p I_p}{b \\cdot k_h}\\right)^{0.25}
 
     Parameters
     ----------
@@ -2417,11 +2630,12 @@ def depth_to_fixity_undrained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-76, p. 512.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-76, PDF p. 512
+    (printed p. 474).
     """
     if b <= 0.0 or k_h <= 0.0:
         raise ValueError("b and k_h must be positive.")
-    return 2.0 * (E_p * I_p / (b * k_h)) ** 0.25
+    return math.sqrt(2.0) * (E_p * I_p / (b * k_h)) ** 0.25
 
 
 def undrained_subgrade_modulus(C: float, s_u: float) -> float:
@@ -2485,9 +2699,17 @@ def depth_to_fixity_drained(
 # ===========================================================================
 
 def drag_force_check(
-    Q_d: float, Q_np: float, Q_d_drag: float, P_r: float
+    Q_d: float, Q_np: float, P_r: float
 ) -> bool:
-    """Check structural strength limit state with drag force (Equation 6-80).
+    """Whether a pile passes the structural strength check with drag
+    force, Equation 6-80 of UFC 3-220-20 (True or False):
+    1.25 Q_d + 1.10 (Q_np - Q_d) <= P_r, all three in one force unit.
+
+    The drag force is Q_np - Q_d, the load at the neutral plane less the
+    unfactored permanent load (Figure 6-26); it is not a separate input.
+    The 1.10 factor on the drag force is one the manual reports from FHWA
+    (2016).  The manual's Appendix B Example 5: Q_d = 40 kips,
+    Q_np = 133 kips, P_r = 200 kips gives 152 kips <= 200 kips.
 
     .. math::
         1.25 Q_d + 1.10 (Q_{np} - Q_d) \\leq P_r
@@ -2495,13 +2717,11 @@ def drag_force_check(
     Parameters
     ----------
     Q_d : float
-        Unfactored dead load (force).
+        Unfactored permanent load on the pile (force).
     Q_np : float
-        Maximum load at neutral plane (force).
-    Q_d_drag : float
-        Not used directly; Q_np - Q_d is the drag force component.
+        Maximum load in the pile, at the neutral plane (force).
     P_r : float
-        Factored structural resistance (force).
+        Factored structural resistance of the pile in compression (force).
 
     Returns
     -------
@@ -2510,348 +2730,486 @@ def drag_force_check(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-80, p. 516.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-80 and Figure 6-26,
+    PDF p. 516 (printed p. 478); Appendix B Example 5, PDF p. 678
+    (printed p. 640).
     """
     demand = 1.25 * Q_d + 1.10 * (Q_np - Q_d)
     return demand <= P_r
 
 
 # ===========================================================================
-# TABLE 6-18: Vesic Strain Factor F_nu
+# TABLE 6-18: Factors for Approximating Volumetric Strain
 # ===========================================================================
 
-_TABLE_6_18_NU = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-_TABLE_6_18_FNU = [1.00, 0.95, 0.90, 0.82, 0.69, 0.50]
+# Table 6-18 (PDF p. 461, printed p. 423): strain factor F_nu by pile shape
+# at Poisson's ratio 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 and 0.5.
+_TABLE_6_18_NU = [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+_TABLE_6_18_FNU = {
+    "square": [0.59, 0.54, 0.48, 0.41, 0.30, 0.17, 0.0],
+    "circular": [0.63, 0.58, 0.52, 0.44, 0.33, 0.18, 0.0],
+}
 
 
-def table_6_18_Fnu(poisson_ratio: float) -> float:
-    """Vesic strain factor F_nu from Poisson's ratio (Table 6-18).
+def table_6_18_Fnu(poisson_ratio: float, pile_shape: str) -> float:
+    """Strain factor F_nu (dimensionless) for approximating the volumetric
+    strain below a pile base (Equation 6-26), Table 6-18 of UFC 3-220-20,
+    by pile shape ("square" or "circular") for Poisson's ratio from 0.2
+    to 0.5, the columns the table prints.
 
-    Returns the strain factor used in ``volumetric_strain``
-    (Equation 6-26) to estimate volumetric strain near the pile base.
+    Square: 0.59, 0.54, 0.48, 0.41, 0.30, 0.17, 0 and circular: 0.63,
+    0.58, 0.52, 0.44, 0.33, 0.18, 0 at nu = 0.2, 0.25, 0.3, 0.35, 0.4,
+    0.45, 0.5.  Between two printed columns the value is interpolated
+    linearly; below 0.2 the table has no column and the function refuses.
 
     Parameters
     ----------
     poisson_ratio : float
-        Poisson's ratio of the soil (0 to 0.5).
+        Poisson's ratio of the soil, from 0.2 to 0.5.
+    pile_shape : str
+        ``"square"`` or ``"circular"``, the table's two rows.
 
     Returns
     -------
     float
-        Strain factor F_nu (dimensionless).
+        Strain factor F_nu (dimensionless), for
+        epsilon_v = F_nu q_b,app / E_s (``volumetric_strain``).
 
     Raises
     ------
     ValueError
-        If *poisson_ratio* is outside [0, 0.5].
+        If *poisson_ratio* is outside 0.2 to 0.5 or *pile_shape* is not
+        one of the two rows.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-18, p. 461.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-18 (Factors for
+    Approximating Volumetric Strain), PDF p. 461 (printed p. 423).
     """
-    if poisson_ratio < 0.0 or poisson_ratio > 0.5:
-        raise ValueError("poisson_ratio must be in [0, 0.5].")
-    return _linterp(poisson_ratio, _TABLE_6_18_NU, _TABLE_6_18_FNU)
+    shape = pile_shape.lower().strip()
+    if shape not in _TABLE_6_18_FNU:
+        raise ValueError(
+            f"Table 6-18 has no row for pile_shape '{pile_shape}'. "
+            f"Choose from: {list(_TABLE_6_18_FNU.keys())}"
+        )
+    if poisson_ratio < 0.2 or poisson_ratio > 0.5:
+        raise ValueError(
+            f"poisson_ratio = {poisson_ratio:g} is outside Table 6-18, "
+            "which prints the strain factor for Poisson's ratio from 0.2 "
+            "to 0.5."
+        )
+    return _linterp(poisson_ratio, _TABLE_6_18_NU, _TABLE_6_18_FNU[shape])
 
 
 # ===========================================================================
 # TABLES 6-21 / 6-22 / 6-23: LCPC Method Factors
 # ===========================================================================
 
+# The three tables (PDF p. 465, printed p. 427, after Bustamante and
+# Gianeselli 1982) share eight soil rows, each defined by the soil type and
+# a range of qc/Pa, and four foundation groups (printed p. 425):
+#   Group I-A   drilled shafts without permanent casing, CFAs,
+#               gravity-grouted micropiles, and barrettes
+#   Group I-B   drilled shafts with permanent casing
+#   Group II-A  driven and jacked concrete piles
+#   Group II-B  driven and jacked steel piles
+
+_LCPC_SOIL_ROWS = {
+    # key: (printed row name, printed qc/Pa range)
+    "soft_clay_and_mud": ("Soft clay and mud", "<10"),
+    "moderately_compact_clay": ("Moderately compact clay", "10 to 50"),
+    "silt_and_loose_sand": ("Silt and loose sand", "<= 50"),
+    "compact_to_stiff_clay_and_compact_silt": (
+        "Compact to stiff clay and compact silt", "> 50"),
+    "soft_chalk": ("Soft chalk", "<= 50"),
+    "moderately_compact_sand_and_gravel": (
+        "Moderately compact sand and gravel", "50 to 120"),
+    "weathered_to_fragmented_chalk": (
+        "Weathered to fragmented chalk", "> 50"),
+    "compact_to_very_compact_sand_and_gravel": (
+        "Compact to very compact sand and gravel", "> 120"),
+}
+
+_LCPC_GROUPS = ("I-A", "I-B", "II-A", "II-B")
+
+# Table 6-21, side resistance factor ks: (I-A, I-B, II-A, II-B)
 _TABLE_6_21_KS = {
-    ("soft_clay", "driven_concrete"): 50,
-    ("soft_clay", "driven_steel_closed"): 50,
-    ("soft_clay", "driven_steel_open"): 50,
-    ("soft_clay", "bored"): 75,
-    ("stiff_clay", "driven_concrete"): 40,
-    ("stiff_clay", "driven_steel_closed"): 40,
-    ("stiff_clay", "driven_steel_open"): 80,
-    ("stiff_clay", "bored"): 60,
-    ("loose_sand", "driven_concrete"): 60,
-    ("loose_sand", "driven_steel_closed"): 60,
-    ("loose_sand", "driven_steel_open"): 120,
-    ("loose_sand", "bored"): 100,
-    ("medium_sand", "driven_concrete"): 100,
-    ("medium_sand", "driven_steel_closed"): 100,
-    ("medium_sand", "driven_steel_open"): 200,
-    ("medium_sand", "bored"): 150,
-    ("dense_sand", "driven_concrete"): 150,
-    ("dense_sand", "driven_steel_closed"): 150,
-    ("dense_sand", "driven_steel_open"): 200,
-    ("dense_sand", "bored"): 200,
-    ("chalk", "driven_concrete"): 100,
-    ("chalk", "driven_steel_closed"): 100,
-    ("chalk", "driven_steel_open"): 120,
-    ("chalk", "bored"): 60,
-    ("marl_limestone", "driven_concrete"): 60,
-    ("marl_limestone", "driven_steel_closed"): 60,
-    ("marl_limestone", "driven_steel_open"): 80,
-    ("marl_limestone", "bored"): 60,
+    "soft_clay_and_mud": (30, 30, 30, 30),
+    "moderately_compact_clay": (40, 80, 40, 80),
+    "silt_and_loose_sand": (60, 150, 60, 120),
+    "compact_to_stiff_clay_and_compact_silt": (60, 120, 60, 120),
+    "soft_chalk": (100, 120, 100, 120),
+    "moderately_compact_sand_and_gravel": (100, 200, 100, 200),
+    "weathered_to_fragmented_chalk": (60, 80, 60, 80),
+    "compact_to_very_compact_sand_and_gravel": (150, 300, 150, 200),
 }
 
-
-def table_6_21_ks(soil_type: str, pile_type: str) -> float:
-    """LCPC side resistance factor k_s (Table 6-21).
-
-    Returns the side resistance factor for use with
-    ``lcpc_unit_shaft_resistance`` (Equation 6-32).
-
-    Parameters
-    ----------
-    soil_type : str
-        One of ``"soft_clay"``, ``"stiff_clay"``, ``"loose_sand"``,
-        ``"medium_sand"``, ``"dense_sand"``, ``"chalk"``,
-        ``"marl_limestone"``.
-    pile_type : str
-        One of ``"driven_concrete"``, ``"driven_steel_closed"``,
-        ``"driven_steel_open"``, ``"bored"``.
-
-    Returns
-    -------
-    float
-        Side resistance factor k_s (dimensionless).
-
-    Raises
-    ------
-    ValueError
-        If the combination is not recognised.
-
-    References
-    ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-21, p. 464.
-    """
-    key = (soil_type.lower().strip(), pile_type.lower().strip())
-    if key not in _TABLE_6_21_KS:
-        raise ValueError(
-            f"Unknown combination soil_type='{soil_type}', "
-            f"pile_type='{pile_type}'."
-        )
-    return float(_TABLE_6_21_KS[key])
-
-
-_TABLE_6_22_FP = {
-    ("soft_clay", "driven_concrete"): 15.0,
-    ("soft_clay", "driven_steel_closed"): 15.0,
-    ("soft_clay", "driven_steel_open"): 15.0,
-    ("soft_clay", "bored"): 15.0,
-    ("stiff_clay", "driven_concrete"): 40.0,
-    ("stiff_clay", "driven_steel_closed"): 40.0,
-    ("stiff_clay", "driven_steel_open"): 40.0,
-    ("stiff_clay", "bored"): 40.0,
-    ("loose_sand", "driven_concrete"): 35.0,
-    ("loose_sand", "driven_steel_closed"): 35.0,
-    ("loose_sand", "driven_steel_open"): 35.0,
-    ("loose_sand", "bored"): 35.0,
-    ("medium_sand", "driven_concrete"): 80.0,
-    ("medium_sand", "driven_steel_closed"): 80.0,
-    ("medium_sand", "driven_steel_open"): 80.0,
-    ("medium_sand", "bored"): 80.0,
-    ("dense_sand", "driven_concrete"): 120.0,
-    ("dense_sand", "driven_steel_closed"): 120.0,
-    ("dense_sand", "driven_steel_open"): 120.0,
-    ("dense_sand", "bored"): 120.0,
-    ("chalk", "driven_concrete"): 40.0,
-    ("chalk", "driven_steel_closed"): 40.0,
-    ("chalk", "driven_steel_open"): 40.0,
-    ("chalk", "bored"): 40.0,
-    ("marl_limestone", "driven_concrete"): 40.0,
-    ("marl_limestone", "driven_steel_closed"): 40.0,
-    ("marl_limestone", "driven_steel_open"): 40.0,
-    ("marl_limestone", "bored"): 40.0,
+# Table 6-22, maximum unit side resistance fp/Pa: (I-A, I-B, II-A, II-B),
+# each cell (value, value in parentheses or None).  "Note: Values in
+# parentheses reflect careful construction."
+_TABLE_6_22_FP_OVER_PA = {
+    "soft_clay_and_mud": (
+        (0.15, None), (0.15, None), (0.15, None), (0.15, None)),
+    "moderately_compact_clay": (
+        (0.35, 0.8), (0.35, 0.8), (0.35, 0.8), (0.35, None)),
+    "silt_and_loose_sand": (
+        (0.35, None), (0.35, None), (0.35, None), (0.35, None)),
+    "compact_to_stiff_clay_and_compact_silt": (
+        (0.35, 0.8), (0.35, 0.8), (0.35, 0.8), (0.35, None)),
+    "soft_chalk": (
+        (0.35, None), (0.35, None), (0.35, None), (0.35, None)),
+    "moderately_compact_sand_and_gravel": (
+        (0.8, 1.2), (0.35, 0.8), (0.8, 1.2), (0.8, None)),
+    "weathered_to_fragmented_chalk": (
+        (1.2, 1.5), (0.8, 1.2), (1.2, 1.5), (1.2, None)),
+    "compact_to_very_compact_sand_and_gravel": (
+        (1.2, 1.5), (0.8, 1.2), (1.2, 1.5), (1.2, None)),
 }
 
+# The largest fp/Pa the table prints (in parentheses).
+_TABLE_6_22_FP_OVER_PA_MAX = 1.5
 
-def table_6_22_fp(soil_type: str, pile_type: str) -> float:
-    """LCPC maximum unit side resistance f_p (Table 6-22).
-
-    Returns the limiting unit side resistance (kPa) for use with
-    ``lcpc_unit_shaft_resistance`` (Equation 6-32).
-
-    Parameters
-    ----------
-    soil_type : str
-        Same keys as ``table_6_21_ks``.
-    pile_type : str
-        Same keys as ``table_6_21_ks``.
-
-    Returns
-    -------
-    float
-        Maximum unit side resistance f_p (kPa).
-
-    Raises
-    ------
-    ValueError
-        If the combination is not recognised.
-
-    References
-    ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-22, p. 464.
-    """
-    key = (soil_type.lower().strip(), pile_type.lower().strip())
-    if key not in _TABLE_6_22_FP:
-        raise ValueError(
-            f"Unknown combination soil_type='{soil_type}', "
-            f"pile_type='{pile_type}'."
-        )
-    return _TABLE_6_22_FP[key]
-
-
+# Table 6-23, base bearing factor kt: (Group I-A&B, Group II-A&B)
 _TABLE_6_23_KT = {
-    ("soft_clay", "driven"): 10,
-    ("soft_clay", "bored"): 10,
-    ("stiff_clay", "driven"): 15,
-    ("stiff_clay", "bored"): 15,
-    ("loose_sand", "driven"): 40,
-    ("loose_sand", "bored"): 20,
-    ("medium_sand", "driven"): 80,
-    ("medium_sand", "bored"): 40,
-    ("dense_sand", "driven"): 120,
-    ("dense_sand", "bored"): 80,
-    ("chalk", "driven"): 20,
-    ("chalk", "bored"): 20,
-    ("marl_limestone", "driven"): 40,
-    ("marl_limestone", "bored"): 40,
+    "soft_clay_and_mud": (0.4, 0.5),
+    "moderately_compact_clay": (0.35, 0.45),
+    "silt_and_loose_sand": (0.4, 0.5),
+    "compact_to_stiff_clay_and_compact_silt": (0.45, 0.55),
+    "soft_chalk": (0.2, 0.3),
+    "moderately_compact_sand_and_gravel": (0.4, 0.5),
+    "weathered_to_fragmented_chalk": (0.2, 0.4),
+    "compact_to_very_compact_sand_and_gravel": (0.3, 0.4),
 }
 
 
-def table_6_23_kt(soil_type: str, pile_type: str) -> float:
-    """LCPC base bearing factor k_t (Table 6-23).
+def _lcpc_soil_row(soil_type: str, table: str) -> str:
+    key = soil_type.lower().strip().replace("-", "_").replace(" ", "_")
+    if key not in _LCPC_SOIL_ROWS:
+        rows = "; ".join(
+            f"'{k}' (qc/Pa {v[1]})" for k, v in _LCPC_SOIL_ROWS.items())
+        raise ValueError(
+            f"{table} has no row for soil_type '{soil_type}'. Its rows, "
+            f"each for a range of qc/Pa: {rows}."
+        )
+    return key
 
-    Returns the base bearing factor for use with
-    ``lcpc_unit_base_resistance`` (Equation 6-33).
+
+def _lcpc_group(group: str, table: str, merged: bool = False) -> int:
+    """Column index of a foundation group.  With ``merged`` (Table 6-23,
+    whose columns are Group I-A&B and Group II-A&B) the index is 0 for
+    Group I and 1 for Group II."""
+    text = str(group).upper()
+    for junk in ("GROUP", " ", "_", "-", "&"):
+        text = text.replace(junk, "")
+    index = {"IA": 0, "IB": 1, "IIA": 2, "IIB": 3}.get(text)
+    if merged:
+        if text in ("I", "IAB"):
+            return 0
+        if text in ("II", "IIAB"):
+            return 1
+        if index is not None:
+            return index // 2
+    elif index is not None:
+        return index
+    choices = ("'I' (I-A and I-B) or 'II' (II-A and II-B)" if merged
+               else "'I-A', 'I-B', 'II-A' or 'II-B'")
+    raise ValueError(
+        f"{table} has no column for group '{group}'. Choose {choices}: "
+        "Group I-A is drilled shafts without permanent casing, CFAs, "
+        "gravity-grouted micropiles and barrettes; I-B drilled shafts "
+        "with permanent casing; II-A driven and jacked concrete piles; "
+        "II-B driven and jacked steel piles."
+    )
+
+
+def table_6_21_ks(soil_type: str, group: str) -> float:
+    """Side resistance factor ks (dimensionless) of the LCPC CPT method,
+    Table 6-21 of UFC 3-220-20 (after Bustamante and Gianeselli 1982), by
+    the table's soil row and foundation group (I-A, I-B, II-A, II-B); used
+    in Equation 6-32, f_s = (Pa / ks)(qc / Pa).
+
+    Each soil row holds for a range of qc/Pa, the cone tip resistance
+    over atmospheric pressure; the caller picks the row that matches both
+    the soil and its qc/Pa.
 
     Parameters
     ----------
     soil_type : str
-        Same keys as ``table_6_21_ks``.
-    pile_type : str
-        ``"driven"`` or ``"bored"``.
+        One of the table's eight rows (qc/Pa range in brackets):
+        ``"soft_clay_and_mud"`` (<10), ``"moderately_compact_clay"``
+        (10 to 50), ``"silt_and_loose_sand"`` (<= 50),
+        ``"compact_to_stiff_clay_and_compact_silt"`` (> 50),
+        ``"soft_chalk"`` (<= 50),
+        ``"moderately_compact_sand_and_gravel"`` (50 to 120),
+        ``"weathered_to_fragmented_chalk"`` (> 50),
+        ``"compact_to_very_compact_sand_and_gravel"`` (> 120).
+    group : str
+        Foundation group: ``"I-A"`` drilled shafts without permanent
+        casing, CFAs, gravity-grouted micropiles and barrettes;
+        ``"I-B"`` drilled shafts with permanent casing; ``"II-A"`` driven
+        and jacked concrete piles; ``"II-B"`` driven and jacked steel
+        piles.
 
     Returns
     -------
     float
-        Base bearing factor k_t (dimensionless).
+        Side resistance factor ks (dimensionless, 30 to 300).
 
     Raises
     ------
     ValueError
-        If the combination is not recognised.
+        If the soil row or the group is not in the table.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-23, p. 464.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-21 (Side Resistance
+    Factor), PDF p. 465 (printed p. 427); groups on PDF p. 463 (printed
+    p. 425).
     """
-    key = (soil_type.lower().strip(), pile_type.lower().strip())
-    if key not in _TABLE_6_23_KT:
-        raise ValueError(
-            f"Unknown combination soil_type='{soil_type}', "
-            f"pile_type='{pile_type}'."
-        )
-    return float(_TABLE_6_23_KT[key])
+    row = _lcpc_soil_row(soil_type, "Table 6-21")
+    return float(_TABLE_6_21_KS[row][_lcpc_group(group, "Table 6-21")])
+
+
+def table_6_22_fp(
+    soil_type: str, group: str, careful_construction: bool = False
+) -> float:
+    """Maximum unit side resistance of the LCPC CPT method as the ratio
+    fp/Pa (dimensionless, NOT a stress), Table 6-22 of UFC 3-220-20 (after
+    Bustamante and Gianeselli 1982), by the table's soil row and
+    foundation group; the limit in Equation 6-32 is Pa (fp/Pa).
+
+    Some cells print a second value in parentheses: "Values in
+    parentheses reflect careful construction".  That value is returned
+    only when *careful_construction* is True and the cell has one;
+    otherwise the cell's first value is returned.  Pass the result to
+    ``lcpc_unit_shaft_resistance`` as ``fp_over_Pa``.
+
+    Parameters
+    ----------
+    soil_type : str
+        One of the table's eight rows, as for ``table_6_21_ks``:
+        ``"soft_clay_and_mud"`` (qc/Pa <10),
+        ``"moderately_compact_clay"`` (10 to 50),
+        ``"silt_and_loose_sand"`` (<= 50),
+        ``"compact_to_stiff_clay_and_compact_silt"`` (> 50),
+        ``"soft_chalk"`` (<= 50),
+        ``"moderately_compact_sand_and_gravel"`` (50 to 120),
+        ``"weathered_to_fragmented_chalk"`` (> 50),
+        ``"compact_to_very_compact_sand_and_gravel"`` (> 120).
+    group : str
+        Foundation group ``"I-A"``, ``"I-B"``, ``"II-A"`` or ``"II-B"``,
+        as for ``table_6_21_ks``.
+    careful_construction : bool, optional
+        True to take the value the table prints in parentheses, which
+        reflects careful construction.  Default False: the first value.
+
+    Returns
+    -------
+    float
+        fp/Pa (dimensionless, 0.15 to 1.5): the maximum unit side
+        resistance divided by atmospheric pressure.
+
+    Raises
+    ------
+    ValueError
+        If the soil row or the group is not in the table.
+
+    References
+    ----------
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-22 (Maximum Unit Side
+    Resistance), PDF p. 465 (printed p. 427).
+    """
+    row = _lcpc_soil_row(soil_type, "Table 6-22")
+    value, careful = _TABLE_6_22_FP_OVER_PA[row][
+        _lcpc_group(group, "Table 6-22")]
+    if careful_construction and careful is not None:
+        return careful
+    return value
+
+
+def table_6_23_kt(soil_type: str, group: str) -> float:
+    """Base bearing factor kt (dimensionless) of the LCPC CPT method,
+    Table 6-23 of UFC 3-220-20 (after Bustamante and Gianeselli 1982), by
+    the table's soil row and foundation group (I or II); used in
+    Equation 6-33, q_b = Pa kt (qc,a / Pa), so q_b is kt times the average
+    cone tip resistance near the base.
+
+    The table has one column for Group I-A&B and one for Group II-A&B.
+    Each soil row holds for a range of qc,a/Pa.
+
+    Parameters
+    ----------
+    soil_type : str
+        One of the table's eight rows, as for ``table_6_21_ks``:
+        ``"soft_clay_and_mud"`` (qca/Pa <10),
+        ``"moderately_compact_clay"`` (10 to 50),
+        ``"silt_and_loose_sand"`` (<= 50),
+        ``"compact_to_stiff_clay_and_compact_silt"`` (> 50),
+        ``"soft_chalk"`` (<= 50),
+        ``"moderately_compact_sand_and_gravel"`` (50 to 120),
+        ``"weathered_to_fragmented_chalk"`` (> 50),
+        ``"compact_to_very_compact_sand_and_gravel"`` (> 120).
+    group : str
+        ``"I"`` (Groups I-A and I-B: drilled shafts, CFAs, gravity-grouted
+        micropiles, barrettes) or ``"II"`` (Groups II-A and II-B: driven
+        and jacked piles); ``"I-A"``, ``"I-B"``, ``"II-A"`` and ``"II-B"``
+        are taken as their group.
+
+    Returns
+    -------
+    float
+        Base bearing factor kt (dimensionless, 0.2 to 0.55).
+
+    Raises
+    ------
+    ValueError
+        If the soil row or the group is not in the table.
+
+    References
+    ----------
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-23 (Base Bearing
+    Factor), PDF p. 465 (printed p. 427).
+    """
+    row = _lcpc_soil_row(soil_type, "Table 6-23")
+    return _TABLE_6_23_KT[row][_lcpc_group(group, "Table 6-23", merged=True)]
 
 
 # ===========================================================================
-# TABLE 6-36: CLM Deflection Constants (a, n)
+# TABLE 6-36: Constants for Load and Moment Deflection Equations
 # ===========================================================================
 
+# Table 6-36 (PDF p. 500, printed p. 462, after Brettmann and Duncan 1996):
+# (soil type, ratio, fixity) -> (a, n).  The Mt/Mc rows print fixity "N/A".
 _TABLE_6_36_CLM = {
-    ("clay", "free", "deflection_from_load"): {"a": 0.0075, "n": 1.85},
-    ("clay", "fixed", "deflection_from_load"): {"a": 0.0052, "n": 1.82},
-    ("clay", "free", "deflection_from_moment"): {"a": 0.031, "n": 1.88},
-    ("clay", "fixed", "deflection_from_moment"): {"a": 0.0090, "n": 1.46},
-    ("sand", "free", "deflection_from_load"): {"a": 0.0038, "n": 2.10},
-    ("sand", "fixed", "deflection_from_load"): {"a": 0.0021, "n": 2.15},
-    ("sand", "free", "deflection_from_moment"): {"a": 0.015, "n": 2.10},
-    ("sand", "fixed", "deflection_from_moment"): {"a": 0.0042, "n": 1.69},
+    ("clay", "pt/pc", "free"): (50.0, 1.822),
+    ("clay", "pt/pc", "fixed"): (14.0, 1.846),
+    ("clay", "mt/mc", "n/a"): (21.0, 1.412),
+    ("sand", "pt/pc", "free"): (119.0, 1.523),
+    ("sand", "pt/pc", "fixed"): (28.8, 1.500),
+    ("sand", "mt/mc", "n/a"): (36.0, 1.308),
+}
+
+_TABLE_6_36_EQUATIONS = {
+    "pt/pc": ("y_t/b = a (P_t/P_c)^n (Eq. 6-66); "
+              "P_t/P_c = [(1/a)(y_t/b)]^(1/n) (Eq. 6-67)"),
+    "mt/mc": ("y_t/b = a (M_t/M_c)^n (Eq. 6-68); "
+              "M_t/M_c = [(1/a)(y_t/b)]^(1/n) (Eq. 6-69)"),
 }
 
 
-def table_6_36_clm(
-    soil_type: str, head_condition: str, quantity: str
-) -> dict:
-    """CLM deflection constants a and n (Table 6-36).
+def table_6_36_clm(soil_type: str, ratio: str, fixity: str) -> dict:
+    """Constant a and exponent n (both dimensionless) of the Characteristic
+    Load Method deflection equations, Table 6-36 of UFC 3-220-20 (after
+    Brettmann and Duncan 1996), by soil type, ratio (Pt/Pc or Mt/Mc) and
+    fixity: y_t/b = a (P_t/P_c)^n (Eq. 6-66) or y_t/b = a (M_t/M_c)^n
+    (Eq. 6-68).
 
-    Returns the empirical constants for Equations 6-66 through 6-69.
+    The table's six rows: clay, Pt/Pc, free 50.0, 1.822 and fixed 14.0,
+    1.846; clay, Mt/Mc (fixity N/A) 21.0, 1.412; sand, Pt/Pc, free 119.0,
+    1.523 and fixed 28.8, 1.500; sand, Mt/Mc (N/A) 36.0, 1.308.  y_t is
+    the lateral deflection at the top of the element and b its width.
 
     Parameters
     ----------
     soil_type : str
         ``"clay"`` or ``"sand"``.
-    head_condition : str
-        ``"free"`` or ``"fixed"``.
-    quantity : str
-        ``"deflection_from_load"`` or ``"deflection_from_moment"``.
+    ratio : str
+        ``"Pt/Pc"`` (applied load over characteristic load) or
+        ``"Mt/Mc"`` (applied moment over characteristic moment).
+    fixity : str
+        ``"free"`` or ``"fixed"`` for the Pt/Pc rows; ``"n/a"`` for the
+        Mt/Mc rows, which the table prints without a fixity.
 
     Returns
     -------
     dict
-        ``{"a": float, "n": float}``.
+        ``{"a": float, "n": float, "equations": str}``: the constants and
+        the two printed equations they belong to.
 
     Raises
     ------
     ValueError
-        If the combination is not recognised.
+        If the combination is not one of the table's six rows.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-36, p. 500.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-36 (Constants for Load
+    and Moment Deflection Equations) and Equations 6-66 to 6-69, PDF
+    p. 500 (printed p. 462).
     """
     key = (
         soil_type.lower().strip(),
-        head_condition.lower().strip(),
-        quantity.lower().strip(),
+        ratio.lower().replace(" ", ""),
+        "n/a" if fixity is None else str(fixity).lower().strip(),
     )
     if key not in _TABLE_6_36_CLM:
         raise ValueError(
-            f"Unknown combination soil_type='{soil_type}', "
-            f"head_condition='{head_condition}', quantity='{quantity}'."
+            f"Table 6-36 has no row for soil_type='{soil_type}', "
+            f"ratio='{ratio}', fixity='{fixity}'. Its six rows are "
+            "(clay or sand) with ratio 'Pt/Pc' and fixity 'free' or "
+            "'fixed', and (clay or sand) with ratio 'Mt/Mc' and fixity "
+            "'n/a'."
         )
-    return dict(_TABLE_6_36_CLM[key])
+    a, n = _TABLE_6_36_CLM[key]
+    return {"a": a, "n": n, "equations": _TABLE_6_36_EQUATIONS[key[1]]}
 
 
 # ===========================================================================
-# TABLE 6-37: CLM Maximum Moment Constants (a, n)
+# TABLE 6-37: Coefficients for Estimating the Maximum Moment
 # ===========================================================================
 
+# Table 6-37 (PDF p. 502, printed p. 464): (soil, fixity) -> (a, n)
 _TABLE_6_37_CLM = {
-    ("clay", "free"): {"a": 0.55, "n": 0.72},
-    ("clay", "fixed"): {"a": 0.47, "n": 0.71},
-    ("sand", "free"): {"a": 0.57, "n": 0.82},
-    ("sand", "fixed"): {"a": 0.40, "n": 0.82},
+    ("clay", "free"): (0.855, 1.288),
+    ("clay", "fixed"): (0.782, 1.249),
+    ("sand", "free"): (4.28, 1.384),
+    ("sand", "fixed"): (2.64, 1.300),
 }
 
 
-def table_6_37_clm(soil_type: str, head_condition: str) -> dict:
-    """CLM maximum moment constants a and n (Table 6-37).
+def table_6_37_clm(soil_type: str, fixity: str) -> dict:
+    """Coefficient a and exponent n (both dimensionless) for the maximum
+    moment by the Characteristic Load Method, Table 6-37 of UFC 3-220-20,
+    by soil (clay or sand) and fixity (free or fixed):
+    M_max / M_c = a (P_t / P_c)^n (Eq. 6-70).
 
-    Returns the empirical constants for Equation 6-70.
+    The table's four rows: clay, free 0.855, 1.288 and fixed 0.782,
+    1.249; sand, free 4.28, 1.384 and fixed 2.64, 1.300.  The maximum
+    moment is at the top of the element for 100 % fixity and at a depth
+    below the top for 0 % fixity; the equation is for an applied load
+    P_t with no applied moment.
 
     Parameters
     ----------
     soil_type : str
         ``"clay"`` or ``"sand"``.
-    head_condition : str
+    fixity : str
         ``"free"`` or ``"fixed"``.
 
     Returns
     -------
     dict
-        ``{"a": float, "n": float}``.
+        ``{"a": float, "n": float, "equations": str}``: the constants and
+        the printed equation they belong to.
 
     Raises
     ------
     ValueError
-        If the combination is not recognised.
+        If the combination is not one of the table's four rows.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-37, p. 501.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-37 (Coefficients for
+    Estimating the Maximum Moment), PDF p. 502 (printed p. 464);
+    Equation 6-70, PDF p. 501 (printed p. 463).
     """
-    key = (soil_type.lower().strip(), head_condition.lower().strip())
+    key = (soil_type.lower().strip(), str(fixity).lower().strip())
     if key not in _TABLE_6_37_CLM:
         raise ValueError(
-            f"Unknown combination soil_type='{soil_type}', "
-            f"head_condition='{head_condition}'."
+            f"Table 6-37 has no row for soil_type='{soil_type}', "
+            f"fixity='{fixity}'. Its four rows are clay or sand with "
+            "fixity 'free' or 'fixed'."
         )
-    return dict(_TABLE_6_37_CLM[key])
+    a, n = _TABLE_6_37_CLM[key]
+    return {"a": a, "n": n,
+            "equations": "M_max/M_c = a (P_t/P_c)^n (Eq. 6-70)"}
