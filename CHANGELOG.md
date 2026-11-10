@@ -44,6 +44,11 @@ Lookups that now refuse where they used to answer:
   circular case only. Any other shape raises, a rectangular shape needs L,
   and the result names the shape case used. For a strip give
   `shape="rectangular"` and its length.
+- **EN 1997-1 Annex A partial and correlation factors** (the 17
+  `table_a_*` lookups and `design_approach_sets`): the row and the set must
+  be given. A call that left the set out used to get the set of ones
+  (`table_a_4_str_geo_soil_parameters()` returned 1.0, where set M2 gives
+  1.25). The value returned is still a bare number.
 - **EN 1997-1 selectors**: `parameter="cohesion"` (Tables A.2, A.4, A.16)
   and `resistance="shaft"` (Tables A.6 to A.8) picked one of two printed
   rows (effective cohesion 1.25 not undrained shear strength 1.4; shaft in
@@ -88,6 +93,15 @@ Results that now say more, with the same numbers:
 - `site_class_from_vs30` also returns the site classes at vs/1.3 and
   1.3 vs, which Section 20.3 requires when the velocity is estimated from
   correlations.
+- `max_allowable_slope_angle` (Caltrans Eqs. 4-5-1 to 4-5-4) computes what
+  it did. Its note and its description now open with the caution that
+  Eq. 4-5-2 is not dimensionally consistent as the manual prints it and
+  that the slope needs a slope stability analysis.
+- `heave_factor_of_safety` returns `fs: null` with a note where the driving
+  force is zero or negative (it returned infinity, which is not valid JSON).
+- Three error messages name what is wrong: Table A.3 for a misspelt
+  condition, Table A.9 for a fractional n, and the EN 1997-2 quality class
+  given as text.
 - The chapter text of EN 1997-1 (Eqs. C.1, C.2, Kpc, Tables A.10 and A.11)
   and of Caltrans Section 10-2 is corrected to the print.
 
