@@ -708,6 +708,12 @@ class TestSeedWhitmanDynamicIncrement:
         result = seed_whitman_dynamic_increment(120.0, 10.0, 0.2)
         assert result == pytest.approx(900.0, rel=1e-4)
 
+    def test_figure_4_25_example(self):
+        # Figure 4-25 (PDF p. 253, printed p. 215): gamma 120 pcf,
+        # H 20 ft, kh 0.2: "3/8(120)(20)^2(0.2)=3600 lb"
+        result = seed_whitman_dynamic_increment(120.0, 20.0, 0.2)
+        assert result == pytest.approx(3600.0, rel=1e-9)
+
     def test_zero_kh(self):
         result = seed_whitman_dynamic_increment(120.0, 10.0, 0.0)
         assert result == pytest.approx(0.0, rel=1e-4)

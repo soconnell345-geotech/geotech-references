@@ -830,14 +830,18 @@ def equivalent_fluid_unit_weight(
     gamma: float,
     K: float,
 ) -> float:
-    """Equivalent fluid unit weight (Equation 4-13).
+    """Equivalent fluid unit weight gamma_eq (in the unit of gamma),
+    Equation 4-13 of UFC 3-220-20, gamma_eq = gamma K, from the backfill
+    unit weight and an at-rest or active earth pressure coefficient.
+    The manual limits the method: "their use should be limited to walls
+    that are less than 20 feet tall" (PDF p. 233, printed p. 195).  The
+    function takes no wall height and cannot check that limit.
 
     Computes the equivalent fluid unit weight for calculating earth
     pressures using hydrostatic fluid analogy.  The equivalent fluid
     unit weight combines the soil unit weight and earth pressure
     coefficient into a single parameter for simplified calculations.
-
-    Limited to walls less than 20 feet (6 m) tall.
+    Table 4-3 (same page) prints presumptive values.
 
     .. math::
         \\gamma_{eq} = K \\cdot \\gamma
@@ -862,7 +866,8 @@ def equivalent_fluid_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-13, p. 195.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-13, PDF p. 233
+    (printed p. 195).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -1079,14 +1084,18 @@ def seed_whitman_dynamic_increment(
     H: float,
     kh: float,
 ) -> float:
-    """Seed-Whitman simplified dynamic earth pressure increment (Equation 4-17).
+    """Dynamic earth pressure force increment Delta P_AE (force per unit
+    length of wall, in the units of gamma H^2), Equation 4-17 of
+    UFC 3-220-20, Delta P_AE = (3/8) kh gamma H^2 (Seed and Whitman 1970).
+    The manual gives it for a horizontal backfill, vertical wall face and
+    no wall friction, and says "This simplified approach is limited to
+    cases where the backfill is horizontal and the wall height is less
+    than 20 feet" (PDF p. 253, printed p. 215).  The function does not
+    refuse a taller wall: H has no fixed unit here, and the manual's own
+    example (Figure 4-25) is a 20 ft wall.
 
-    Computes the dynamic component of the seismic earth pressure force
-    using the simplified Seed and Whitman (1970) approach.  This is
-    limited to cases with horizontal backfill, vertical wall face, and
-    no wall friction, with wall height less than 20 feet.
-
-    The dynamic component acts at 0.6H above the wall base.
+    The dynamic component acts at 0.6H above the wall base.  Figure 4-25:
+    gamma 120 pcf, H 20 ft, kh 0.2 gives 3600 lb.
 
     .. math::
         \\Delta P_{AE} = \\frac{3}{8} k_h \\gamma H^2
@@ -1114,7 +1123,8 @@ def seed_whitman_dynamic_increment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-17, p. 215.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-17 and Figure 4-25,
+    PDF p. 253 (printed p. 215).
     Seed, H.B. and Whitman, R.V. (1970).
     """
     if gamma < 0.0:
