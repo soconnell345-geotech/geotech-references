@@ -46,12 +46,19 @@ import math
 def active_earth_pressure(K_a: float, gamma: float, depth: float,
                           q: float = 0.0, u: float = 0.0, c: float = 0.0,
                           K_ac: float = 0.0) -> float:
-    """Total active earth pressure normal to a wall at depth z (Eq. C.1).
+    """Active limit value of the total stress normal to a vertical wall at
+    depth z, sigma_a(z) in kPa (EN 1997-1:2004 Annex C.1, Eq. C.1, printed
+    p. 141).
 
-    sigma_a(z) = Ka * [integral(gamma dz) + q] + u - c * Kac
+    As printed:
 
-    For a homogeneous layer the integral of weight density from the ground
-    surface to depth reduces to ``gamma * depth``.
+        sigma_a(z) = Ka * [integral(gamma dz) + q - u] + u - c * Kac
+
+    with the integration taken from the ground surface to depth z. Ka acts
+    on the effective vertical stress (total overburden plus surcharge minus
+    the pore water pressure u), and u is then added back. For a homogeneous
+    layer the integral of the total weight density from the ground surface
+    to depth z is ``gamma * depth``.
 
     Parameters
     ----------
@@ -79,15 +86,23 @@ def active_earth_pressure(K_a: float, gamma: float, depth: float,
     float
         Total stress normal to the wall at depth z, sigma_a(z) [kPa].
     """
-    return K_a * (gamma * depth + q) + u - c * K_ac
+    return K_a * (gamma * depth + q - u) + u - c * K_ac
 
 
 def passive_earth_pressure(K_p: float, gamma: float, depth: float,
                            q: float = 0.0, u: float = 0.0, c: float = 0.0,
                            K_pc: float = 0.0) -> float:
-    """Total passive earth pressure normal to a wall at depth z (Eq. C.2).
+    """Passive limit value of the total stress normal to a vertical wall at
+    depth z, sigma_p(z) in kPa (EN 1997-1:2004 Annex C.1, Eq. C.2, printed
+    p. 141).
 
-    sigma_p(z) = Kp * [integral(gamma dz) + q] + u + c * Kpc
+    As printed:
+
+        sigma_p(z) = Kp * [integral(gamma dz) + q - u] + u + c * Kpc
+
+    with the integration taken from the ground surface to depth z. Kp acts
+    on the effective vertical stress (total overburden plus surcharge minus
+    the pore water pressure u), and u is then added back.
 
     Parameters
     ----------
@@ -105,29 +120,27 @@ def passive_earth_pressure(K_p: float, gamma: float, depth: float,
     float
         Total stress normal to the wall at depth z, sigma_p(z) [kPa].
     """
-    return K_p * (gamma * depth + q) + u + c * K_pc
+    return K_p * (gamma * depth + q - u) + u + c * K_pc
 
 
 def cohesion_earth_pressure_coefficient(K: float, adhesion: float,
                                         cohesion: float) -> float:
-    """Cohesion earth-pressure coefficient Kac (Eq. C.1 note, pdf idx 142).
+    """Cohesion earth-pressure coefficient Kac or Kpc, dimensionless
+    (EN 1997-1:2004 Annex C.1, printed under Eqs. C.1 and C.2, p. 141).
 
-    Kac = 2 * sqrt(K * (1 + a/c)), limited to 2.56 * sqrt(K)
+    As printed, one form for each limit state:
 
-    The source explicitly gives this form for the active coefficient Kac
-    (used with Ka in Eq. C.1).  EN 1997-1 does not restate a separate
-    formula for the passive Kpc (used with Kp in Eq. C.2) in the visible
-    text; by analogy with the standard Coulomb/Caquot-Kerisel treatment of
-    cohesion this same functional form is commonly applied for Kpc as well
-    (with K = Kp), but that extension is NOT explicitly stated in the
-    source PDF -- treat a Kpc result from this function as inferred by
-    analogy, not as a directly cited EN 1997-1 value.
+        Kac = 2 * sqrt[Ka * (1 + a/c)], limited to 2,56 * sqrt(Ka)
+        Kpc = 2 * sqrt[Kp * (1 + a/c)], limited to 2,56 * sqrt(Kp)
+
+    Pass ``K = Ka`` for Kac (used in Eq. C.1) and ``K = Kp`` for Kpc (used
+    in Eq. C.2).
 
     Parameters
     ----------
     K : float
-        The corresponding earth-pressure coefficient (Ka for Kac, or Kp by
-        analogy for Kpc).
+        The corresponding earth-pressure coefficient: Ka for Kac, Kp for
+        Kpc.
     adhesion : float
         Adhesion between ground and wall, a [kPa].
     cohesion : float
@@ -136,7 +149,7 @@ def cohesion_earth_pressure_coefficient(K: float, adhesion: float,
     Returns
     -------
     float
-        Kac (or, by analogy, Kpc).
+        Kac (K = Ka) or Kpc (K = Kp), dimensionless.
 
     Raises
     ------

@@ -586,18 +586,68 @@ class TestAnnexCEarthPressure:
         assert val == pytest.approx(0.33 * (18.0 * 3.0 + 10.0))
 
     def test_active_earth_pressure_with_u_and_cohesion(self):
+        # Eq. C.1 as printed (PDF p. 143, printed p. 141):
+        # sigma_a(z) = Ka [ integral(gamma dz) + q - u ] + u - c Kac
         val = active_earth_pressure(K_a=0.33, gamma=18.0, depth=3.0, q=0.0,
                                     u=15.0, c=20.0, K_ac=1.15)
-        assert val == pytest.approx(0.33 * 18.0 * 3.0 + 15.0 - 20.0 * 1.15)
+        assert val == pytest.approx(0.33 * (18.0 * 3.0 - 15.0) + 15.0 - 20.0 * 1.15)
+
+    def test_active_earth_pressure_below_water_made_up_numbers(self):
+        # Eq. C.1 (PDF p. 143, printed p. 141), made-up values:
+        # 0.333 * (20*5 + 0 - 49.05) + 49.05 = 66.02 kPa
+        val = active_earth_pressure(K_a=0.333, gamma=20.0, depth=5.0, u=49.05)
+        assert val == pytest.approx(66.01635)
+        # and with a surcharge: 0.333 * (100 + 12 - 49.05) + 49.05
+        val = active_earth_pressure(K_a=0.333, gamma=20.0, depth=5.0, q=12.0, u=49.05)
+        assert val == pytest.approx(0.333 * 62.95 + 49.05)
+
+    def test_active_earth_pressure_undrained_pore_pressure_cancels(self):
+        # C.1 (2) (printed p. 141): "For undrained soil, Ka = Kp = 1 and
+        # c = cu". With Ka = 1 the printed Eq. C.1 gives gamma*z + q - cu*Kac
+        # whatever u is.
+        dry = active_earth_pressure(K_a=1.0, gamma=19.0, depth=4.0, q=10.0,
+                                    u=0.0, c=30.0, K_ac=2.0)
+        wet = active_earth_pressure(K_a=1.0, gamma=19.0, depth=4.0, q=10.0,
+                                    u=25.0, c=30.0, K_ac=2.0)
+        assert dry == pytest.approx(19.0 * 4.0 + 10.0 - 30.0 * 2.0)
+        assert wet == pytest.approx(dry)
 
     def test_passive_earth_pressure_no_cohesion(self):
         val = passive_earth_pressure(K_p=4.6, gamma=18.0, depth=2.0, q=5.0)
         assert val == pytest.approx(4.6 * (18.0 * 2.0 + 5.0))
 
     def test_passive_earth_pressure_with_cohesion(self):
+        # Eq. C.2 as printed (PDF p. 143, printed p. 141):
+        # sigma_p(z) = Kp [ integral(gamma dz) + q - u ] + u + c Kpc
         val = passive_earth_pressure(K_p=4.6, gamma=18.0, depth=2.0,
                                      u=8.0, c=25.0, K_pc=3.1)
-        assert val == pytest.approx(4.6 * 18.0 * 2.0 + 8.0 + 25.0 * 3.1)
+        assert val == pytest.approx(4.6 * (18.0 * 2.0 - 8.0) + 8.0 + 25.0 * 3.1)
+
+    def test_passive_earth_pressure_below_water_made_up_numbers(self):
+        # Eq. C.2 (PDF p. 143, printed p. 141), made-up values:
+        # 3.0 * (20*5 + 0 - 49.05) + 49.05 = 201.90 kPa
+        val = passive_earth_pressure(K_p=3.0, gamma=20.0, depth=5.0, u=49.05)
+        assert val == pytest.approx(201.90)
+        # the pore pressure is not multiplied by Kp
+        dry = passive_earth_pressure(K_p=3.0, gamma=20.0, depth=5.0)
+        assert dry - val == pytest.approx((3.0 - 1.0) * 49.05)
+
+    def test_passive_earth_pressure_undrained_pore_pressure_cancels(self):
+        # C.1 (2) (printed p. 141): undrained soil, Kp = 1 and c = cu.
+        dry = passive_earth_pressure(K_p=1.0, gamma=19.0, depth=4.0, c=30.0, K_pc=2.0)
+        wet = passive_earth_pressure(K_p=1.0, gamma=19.0, depth=4.0, u=25.0,
+                                     c=30.0, K_pc=2.0)
+        assert dry == pytest.approx(19.0 * 4.0 + 30.0 * 2.0)
+        assert wet == pytest.approx(dry)
+
+    def test_cohesion_coefficient_passive_form_as_printed(self):
+        # Printed under Eq. C.2 (PDF p. 143, printed p. 141):
+        # Kpc = 2 sqrt[Kp (1 + a/c)], limited to 2,56 sqrt(Kp)
+        Kp = 3.0
+        val = cohesion_earth_pressure_coefficient(Kp, adhesion=5.0, cohesion=20.0)
+        assert val == pytest.approx(2.0 * math.sqrt(3.0 * 1.25))
+        capped = cohesion_earth_pressure_coefficient(Kp, adhesion=20.0, cohesion=20.0)
+        assert capped == pytest.approx(2.56 * math.sqrt(3.0))
 
     def test_cohesion_coefficient_no_adhesion(self):
         # Kac = 2*sqrt(Ka), when a=0
