@@ -112,11 +112,11 @@ TABLE_4_1_TEMPORARY_DYNAMIC = {
     "L": {"serviceability_fatigue": 1.0, "companion": 1.0,
           "usual": None, "unusual": 1.6, "extreme": None, "note": "footnote 4, from ASCE 7-22"},
     "T": {"serviceability_fatigue": 1.0, "companion": 1.0,
-          "usual": None, "unusual": None, "extreme": None,
-          "note": ("Table 4.1's compact printed cell for T is ambiguous; paragraph "
-                    "4.3.4.4 states the T principal load factor directly as gamma_pr "
-                    "= 1.2 (min), not banded by usual/unusual/extreme -- see "
-                    "``principal_load_factor_self_straining``.")},
+          "usual": 1.2, "unusual": 1.2, "extreme": 1.2,
+          "note": ("companion 1.0 footnote 4; principal 1.2 with footnote 4 is ONE "
+                    "merged cell spanning the Usual, Unusual and Extreme columns "
+                    "(printed p. 27); paragraph 4.3.4.4 states gamma_pr = 1.2 (min), "
+                    "see ``principal_load_factor_self_straining``.")},
     "F": {"serviceability_fatigue": 1.0, "companion": 1.4,
           "usual": None, "unusual": None, "extreme": None,
           "note": "companion-only, footnote-free (paragraph 4.3.5): gamma_c = 1.4 applied to friction coefficients."},
