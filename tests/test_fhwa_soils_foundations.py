@@ -305,6 +305,7 @@ APPENDICES = {
     "C": ("appendix_c.json", 15,
           "Appendix C: Load and Resistance Factor Design (LRFD)"),
     "D": ("appendix_d.json", 16, "Appendix D: Use of the Computer Program ReSSA"),
+    "E": ("appendix_e.json", 17, "Appendix E: Use of the Computer Program FoSSA"),
 }
 
 
@@ -426,6 +427,21 @@ def test_appendix_d_sections_as_printed():
     # a word the print breaks across a line is joined ("Figure D-" / "1)")
     assert "the ReSSA startup screen (Figure D-1)." in secs["D.3"]["body"]
     assert "reviewed by an experienced peer and senior reviewer" in secs["D.3.a"]["body"]
+
+
+def test_appendix_e_sections_as_printed():
+    secs = {s["section_id"]: s for s in _appendix("E")["sections"]}
+    assert list(secs) == ["E.1", "E.2", "E.3"]
+    assert secs["E.3"]["title"] == "Working with FoSSA"
+    assert secs["E.1"]["figures"] == [
+        "Figure E-1: Opening screen to learn capabilities of the program (Help Topics)"]
+    assert [f.split(":")[0] for f in secs["E.3"]["figures"]] == [
+        f"Figure E-{n}" for n in range(2, 20)]
+    body = secs["E.3"]["body"]
+    assert ("the vertical incremental stress distribution at 50 different depths "
+            "beneath the centerline of the embankment to a depth of 400 ft") in body
+    assert "soil layers of non-uniform thickness" in body
+    assert "as presented in Figure 7-6 in the Reference Manual" in secs["E.1"]["body"]
 
 
 def test_appendix_sections_found_by_search():
