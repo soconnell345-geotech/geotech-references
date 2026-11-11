@@ -603,6 +603,42 @@ place of the removed correlations, each read off the rendered page:
 
 No stored statement changed; the package keeps no chapter text.
 
+**Build: figure catalog rows for printed figures that had none (app backlog
+REF-08, REF-84).** A figure without a catalog row can be neither found by
+`figure_search` nor read by the app's vision tool. 428 rows were added and
+no existing row changed:
+
+| Catalog | Rows before | Added | After | Figures added |
+|---------|-------------|-------|-------|---------------|
+| `gec_5` | 256 | 93 | 349 | 11-10 to 11-26, chapters 12 and 13, Appendix 2 (A2-1 to A2-40) |
+| `gec_13` | 33 | 206 | 239 | chapters 2-5 (Vol I) and 7-10 (Vol II) |
+| `fhwa_soils_foundations` | 331 | 60 | 391 | Appendix A (A.1-1 to A.9-1), D-10 |
+| `gec_6` | 57 | 29 | 86 | Appendices B and C (B1-1 to B5-2, C1-1 to C2-4) |
+| `gec_4` | 73 | 17 | 90 | Appendices A, B and D (A-1 to A-10, B-1 to B-5, D-1, D-2) |
+| `gec_7` | 78 | 11 | 89 | 3.22 and Appendices A, B, C and G |
+| `micropile` | 132 | 10 | 142 | the sample problems' S1-1 to S1-7, S2-1 to S2-3 |
+| `eurocode_7_2` | 19 | 2 | 21 | Annex B's B.4 and B.5 |
+
+- Each row points at the page that prints the figure's label and caption
+  and holds a picture or drawing; one row in five, by a seeded draw, was
+  looked at on the rendered page. The caption is the one printed under the
+  figure, where a List of Figures words it otherwise (GEC-5 12-24, GEC-13
+  4-17). Captions whose symbols the text layer garbles were typed from the
+  page (GEC-5 "su/σ′vc").
+- Figures printed turned on the page carry `read_notes` saying which way to
+  turn it: GEC-5 A2-6 and A2-9; FHWA NHI-06-089 A.2-9 to A.2-12 and A.4-3;
+  micropile S1-2, S1-6 and S1-7.
+- Placed by hand (`--overrides`) where the scan cannot: FHWA A.2-3 and
+  GEC-6 B3-4, typed text in a box with no picture; FHWA A.7-2, filed under
+  the number its text cites though its caption prints "A7-2"; EN 1997-2
+  B.5, whose text layer reads "Figure B.S".
+- Descriptions come from the chapter text that cites the figure; appendix
+  figures, which have no chapter text, have none, as the appendix rows
+  before them.
+- `scripts/build_figure_catalog.py --add-missing <package>` finds the rows
+  and adds them without touching the others (`find_missing`, `add_rows`);
+  the full build is unchanged. Tests: `tests/test_catalog_added_rows.py`.
+
 **Fixes from the 2026-11-10 review of the core layer.** Every page, number
 and caption below was read off the rendered print.
 
