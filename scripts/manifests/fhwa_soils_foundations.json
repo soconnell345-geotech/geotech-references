@@ -95,6 +95,50 @@
         {"number": 10, "title": "Earth Retaining Structures", "page_start": 291, "page_end": 348},
         {"number": 11, "title": "Geotechnical Reports", "page_start": 349, "page_end": 366},
         {"number": 12, "title": "References", "page_start": 367, "page_end": 388}
+      ],
+      "appendices": [
+        {
+          "letter": "B", "number": 14, "file": "appendix_b.json",
+          "title": "MOHR’S CIRCLE AND ITS APPLICATIONS IN GEOTECHNICAL ENGINEERING",
+          "page_start": 535, "page_end": 546,
+          "sections": [
+            {"id": "B", "printed": "APPENDIX B", "title": "MOHR’S CIRCLE AND ITS APPLICATIONS IN GEOTECHNICAL ENGINEERING", "page": "B-1"},
+            {"id": "B.1", "title": "BASIC CONVENTIONS FOR PLOTTING A MOHR’S CIRCLE", "page": "B-1"},
+            {"id": "B.2", "title": "MOHR’S CIRCLE CONSTRUCTION FOR GENERAL STRESS CONDITIONS", "page": "B-1"},
+            {"id": "B.3", "title": "BASIC RELATIONSHIPS DERIVED FROM THE MOHR’S CIRCLE", "page": "B-5"},
+            {"id": "B.4", "title": "MOHR’S THEORY OF FAILURE – APPLICATION TO SOILS", "page": "B-6"}
+          ],
+          "figures": [
+            {"number": "B-1", "page": "B-2", "caption": "Mohr’s circle for general stress conditions (Cernica, 1982)"},
+            {"number": "B-2", "page": "B-6", "caption": "Simplified version of Figure B-1(b) showing some basic relationships and characteristics of the Mohr’s Circle (Cernica, 1982)"},
+            {"number": "B-3", "page": "B-7", "caption": "Shear strength according to Mohr (a) and Coulomb (b) (Cernica, 1982)"},
+            {"number": "B-4", "page": "B-9", "caption": "Mohr coulomb failure envelope with one Mohr failure circle (Holtz and Kovacs, 1981)"}
+          ],
+          "tables": [
+            {"number": "B-1", "page": "B-2", "caption": "Summary of stresses acting on the four planes shown in Figure B-1(a)"}
+          ],
+          "typed_pages": "fhwa_soils_foundations_typed/appendix_b.txt",
+          "printed_equations": [
+            {"number": "B-2a", "page": "B-8", "formula": "τ = c + σ tan φ", "variables": {"τ": "shear stress (on the failure plane; the Mohr-Coulomb failure criterion)", "c": "“cohesion”, the intercept of the straight-line failure envelope on the τ-axis (p. B-7)", "σ": "normal stress", "φ": "internal friction angle of the soil, the slope of the envelope (p. B-7)"}},
+            {"number": "B-2b", "page": "B-8", "formula": "τ = σ tan φ", "variables": {"τ": "shear stress", "σ": "normal stress", "φ": "internal friction angle"}, "notes": "For cohesionless soils (c = 0)."},
+            {"number": "B-2c", "page": "B-8", "formula": "τ = c", "variables": {"τ": "shear stress", "c": "cohesion"}, "notes": "For purely cohesive soils (φ = 0)."},
+            {"number": "B-2d", "page": "B-8", "formula": "τ′ = c′ + σ′ tan φ′", "variables": {"τ′": "shear stress (effective stress form)", "c′": "effective cohesion", "σ′": "effective normal stress", "φ′": "effective friction angle"}, "notes": "For use with effective stress parameters (c = c′, φ = φ′)."},
+            {"number": "B-3a", "page": "B-8", "formula": "sin φ = R / D", "variables": {"φ": "friction angle (slope of the Mohr-Coulomb envelope)", "R": "radius of the Mohr failure circle, (σ1f – σ3f)/2 (Figure B-4)", "D": "distance along the σ-axis from where the envelope meets it to the circle's center, c cot φ + (σ1f + σ3f)/2 (Figure B-4)"}},
+            {"number": "B-3b", "page": "B-9", "formula": "sin φ = [(σ1f – σ3f) / 2] / [(σ1f + σ3f) / 2 + c cot φ]", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "c": "cohesion", "φ": "friction angle"}},
+            {"number": "B-3c", "page": "B-9", "formula": "(σ1f – σ3f) = (σ1f + σ3f) sin φ + 2c cos φ", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "c": "cohesion", "φ": "friction angle"}},
+            {"number": "B-3d", "page": "B-9", "formula": "σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c cos φ / (1 - sin φ)]", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "c": "cohesion", "φ": "friction angle"}},
+            {"number": "B-3e", "page": "B-10", "formula": "σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c √(1 + sin φ) / √(1 - sin φ)]", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "c": "cohesion", "φ": "friction angle"}, "notes": "The general relationship between the major and minor principal stresses in terms of c and φ (p. B-10)."},
+            {"number": "B-3f", "page": "B-10", "formula": "σ1f / σ3f = (1 + sin φ) / (1 - sin φ)", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "φ": "friction angle"}, "notes": "Eq. B-3e for cohesionless soils (c = 0)."},
+            {"number": "B-3g", "page": "B-10", "formula": "σ3f / σ13f = (1 - sin φ) / (1 + sin φ)", "variables": {"σ3f": "minor principal stress at failure", "σ13f": "printed so; Eq. B-3f, of which this is the reciprocal, has σ1f (major principal stress at failure)", "φ": "friction angle"}, "notes": "Typed as printed: the denominator is printed σ13f, where Eq. B-3f, whose reciprocal the page says this is, has σ1f."},
+            {"number": "B-3h", "page": "B-10", "formula": "σ1f / σ3f = tan² (45° + φ/2)", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "φ": "friction angle"}, "notes": "The page says Equation B-3h gives the coefficient of passive earth pressure, Kp."},
+            {"number": "B-3h (second)", "page": "B-10", "formula": "σ3f / σ1f = tan² (45° – φ/2)", "variables": {"σ1f": "major principal stress at failure", "σ3f": "minor principal stress at failure", "φ": "friction angle"}, "notes": "Printed with the number B-3h a second time (p. B-10); the sentence after it calls this equation B-3i and says it gives the coefficient of active earth pressure, Ka."}
+          ],
+          "fixes": [
+            {"find": "Plane Normal Stress Sign Shear Stress Sign Note:", "replace": "\n\n[Table B-1, its rows read off the page:]\nPlane | Normal Stress | Sign | Shear Stress | Sign\nP | σx | + | τxy | +\nQ | σy | + | τyx | -\nR | σx | + | τyx | +\nS | σy | + | τxy | -\n\nNote:"},
+            {"find": "has a magnitude of 2 2 τ + σ as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan-1 (τ/σ).", "replace": "has a magnitude of √(σ² + τ²) as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan^-1 (τ/σ)."},
+            {"find": "(see Figure B- 2).”", "replace": "(see Figure B-2).”"}
+          ]
+        }
       ]
     }
   ]

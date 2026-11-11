@@ -1,0 +1,62 @@
+=== B-8
+The linear approximation was first proposed by Coulomb in 1776 in connection with his investigations of retaining walls.  Therefore, the linear approximation to the Mohr failure envelope is called the “Mohr-Coulomb failure envelope” and constitutes the Mohr-Coulomb failure criterion.  As shown in Figure B-3(b), the Mohr-Coulomb failure criterion can be expressed as:
+
+τ = c + σ tan φ [Eq. B-2a]
+
+Equation B-2a is a general expression of the Mohr-Coulomb failure criterion that is applicable to all soils and conditions of loading.  It can be easily modified to account of those cases.  For example:
+
+• For cohesionless soils (c = 0)
+
+τ = σ tan φ [Eq. B-2b]
+
+• For purely cohesive soils (φ = 0)
+
+τ = c [Eq. B-2c]
+
+• For use with effective stress parameters (c = c′ , φ = φ′)
+
+τ′ = c′ + σ′ tan φ′ [Eq. B-2d]
+
+Since many applications of soil mechanics to problems in practice involve knowledge of the principal stresses in the soil (e.g. lateral earth pressure theory and use of triaxial test results for slope stability analyses), it is useful to express the Mohr Coulomb failure criterion in terms of principal stresses rather than in the formats used in Equations B-2a to B-2d.  Figure B-4 shows the Mohr coulomb strength envelope for one Mohr circle at failure.  The principal stresses contain a subscript “f” to indicate that they are the principal stress acting at failure on the stress element shown in the insert.
+
+The following relationships can be derived from Figure B-4.
+
+sin φ = R / D [Eq. B-3a]
+=== B-9
+Figure B-4. Mohr coulomb failure envelope with one Mohr failure circle (Holtz and Kovacs, 1981).
+
+Substitution of the stresses corresponding to R and D into Eq. B-3a yields:
+
+sin φ = [(σ1f – σ3f) / 2] / [(σ1f + σ3f) / 2 + c cot φ] [Eq. B-3b]
+
+Rearrangement of terms in Eq. B-3b and substitution of trigonometric identities yields:
+
+(σ1f – σ3f) = (σ1f + σ3f) sin φ + 2c cos φ [Eq. B-3c]
+
+Solving Eq. B-3c for σ1f yields:
+
+σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c cos φ / (1 - sin φ)] [Eq. B-3d]
+
+Substitution of the identity cos φ = (1 – sin² φ)^½ into Eq. B-3d yields:
+=== B-10
+σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c √(1 + sin φ) / √(1 - sin φ)] [Eq. B-3e]
+
+Equation B-3e represents the general relationship between the major (σ1) and minor (σ3) principal stresses in terms of the soil strength parameters c and φ.
+
+For cohesionless soils (c = 0), Eq. B-3e reduces to:
+
+σ1f / σ3f = (1 + sin φ) / (1 - sin φ) [Eq. B-3f]
+
+The reciprocal of Eq. B-3f yields:
+
+σ3f / σ13f = (1 - sin φ) / (1 + sin φ) [Eq. B-3g]
+
+By the use of trigonometric identities Eq. B-3f can be re-written as:
+
+σ1f / σ3f = tan² (45° + φ/2) [Eq. B-3h]
+
+Similarly, Eq. B-3g can be re-written as:
+
+σ3f / σ1f = tan² (45° – φ/2) [Eq. B-3h (second)]
+
+Equation B-3h gives the coefficient of passive earth pressure, Kp, while Equation B-3i gives the coefficient of active earth pressure, Ka that were introduced in Chapter 2.  Many concepts in geotechnical engineering can be similarly explained by used of Mohr’s circle.  The most common use of Mohr’s circle is for interpretation of the results of shear strength tests discussed in Chapter 5.  For use of Mohr’s circle in interpretation of shear strength tests, the reader is referred to well-known text books such as Holtz and Kovacs (1981) and Lambe and Whitman (1979).

@@ -264,6 +264,25 @@ def test_rebuild_reproduces_the_committed_text():
         assert builder.chapter_json(data) == committed, f"chapter {n}"
 
 
+def test_rebuild_reproduces_the_committed_appendices():
+    # the appendices (REF-85) are built by scripts/build_printed_appendices.py
+    # from the same manifest; the 12 chapters above stay byte-identical
+    pytest.importorskip("fitz")
+    if not (DOCS / VOLUMES[2][1]).exists():
+        pytest.skip("PDF not checked out")
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import build_printed_appendices as builder
+    finally:
+        sys.path.remove(str(ROOT / "scripts"))
+    built = builder.build_appendices(REF)
+    assert sorted(built) == sorted(f for f, _, _ in APPENDICES.values())
+    for name, data in built.items():
+        committed = (PKG / "text" / name).read_text(encoding="utf-8")
+        assert builder.chapter_json(data) == committed, name
+
+
 def test_manifest_formulas_match_the_text():
     manifest = json.loads((ROOT / "scripts" / "manifests" / f"{REF}.json")
                           .read_text(encoding="utf-8"))
@@ -275,3 +294,76 @@ def test_manifest_formulas_match_the_text():
                 assert eqs[p["number"]][1]["formula"] == p["formula"], p["number"]
                 n += 1
     assert n >= len(CITED)
+
+
+# --- REF-85: the appendices (NHI-06-089, Vol II) ---------------------------
+
+#: letter -> (file, chapter number it is filed under, title as built)
+APPENDICES = {
+    "B": ("appendix_b.json", 14,
+          "Appendix B: Mohr’s Circle and Its Applications in Geotechnical Engineering"),
+}
+
+
+def _appendix(letter):
+    name = APPENDICES[letter][0]
+    return json.loads((PKG / "text" / name).read_text(encoding="utf-8"))
+
+
+def _appendix_sections():
+    return {s["section_id"]: s for letter in APPENDICES
+            for s in _appendix(letter)["sections"]}
+
+
+def test_appendices_filed_after_the_chapters():
+    for letter, (name, number, title) in APPENDICES.items():
+        data = _appendix(letter)
+        assert data["chapter"] == number and data["chapter_title"] == title
+        assert data["volume"] == 2 and data["reference_id"] == "FHWA-NHI-06-089"
+        assert _retrieval.load_chapter(REF, number)["chapter_title"] == title
+        for s in data["sections"]:
+            assert s["section_id"] == letter or s["section_id"].startswith(
+                (f"{letter}.", f"{letter}-")), s["section_id"]
+            assert s["body"] == "" or s["body"].startswith("[p. "), s["section_id"]
+            assert len(json.dumps(s)) <= 14000, s["section_id"]
+            for e in s["equations"]:
+                assert f"[{e['id']}]" in s["body"], (s["section_id"], e["id"])
+                assert e["formula"] and e["source"].startswith("Typed in from p. ")
+            # the summary and key points are left out, as in the chapters
+            assert s["key_points"] == [] and "summary" not in s
+
+
+def test_appendix_b_sections_as_printed():
+    secs = {s["section_id"]: s for s in _appendix("B")["sections"]}
+    assert list(secs) == ["B", "B.1", "B.2", "B.3", "B.4"]
+    assert secs["B.2"]["title"] == "Mohr’s Circle Construction for General Stress Conditions"
+    assert secs["B.4"]["title"] == "Mohr’s Theory of Failure – Application to Soils"
+    assert "[p. B-6]" in secs["B.4"]["body"] and "[p. B-10]" in secs["B.4"]["body"]
+    assert "Otto Mohr who devised it in 1882" in secs["B"]["body"]
+    # Table B-1 (p. B-2), its cells read row by row off the page
+    assert "S | σy | + | τxy | -" in secs["B.2"]["body"]
+    assert secs["B.2"]["tables"] == [
+        "Table B-1: Summary of stresses acting on the four planes shown in Figure B-1(a)"]
+    assert [f.split(":")[0] for f in secs["B.4"]["figures"]] == ["Figure B-3", "Figure B-4"]
+    # the radical the text layer scrambled (p. B-5)
+    assert "magnitude of √(σ² + τ²) as shown in Figure B-2" in secs["B.3"]["body"]
+
+
+def test_appendix_b_equations_as_printed():
+    eqs = {e["id"]: e for e in _appendix_sections()["B.4"]["equations"]}
+    # pp. B-8 to B-10
+    assert eqs["Eq. B-2a"]["formula"] == "τ = c + σ tan φ"
+    assert eqs["Eq. B-3d"]["formula"] == (
+        "σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c cos φ / (1 - sin φ)]")
+    assert "2c √(1 + sin φ) / √(1 - sin φ)" in eqs["Eq. B-3e"]["formula"]
+    assert eqs["Eq. B-3h"]["formula"] == "σ1f / σ3f = tan² (45° + φ/2)"
+    # the print's slips are kept and said: σ13f in B-3g, and the number
+    # B-3h printed twice where the text calls the second one B-3i
+    assert "σ13f" in eqs["Eq. B-3g"]["formula"] and "as printed" in eqs["Eq. B-3g"]["notes"]
+    assert eqs["Eq. B-3h (second)"]["formula"] == "σ3f / σ1f = tan² (45° – φ/2)"
+    assert "B-3i" in eqs["Eq. B-3h (second)"]["notes"]
+
+
+def test_appendix_sections_found_by_search():
+    hits = _retrieval_db.reference_search("Mohr-Coulomb failure envelope", reference=REF)
+    assert any(h["section_id"].startswith("B") for h in hits[:5])

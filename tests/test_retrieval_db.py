@@ -144,5 +144,10 @@ def test_a_manual_in_volumes_is_listed_once():
     title = "Ground Modification Methods Reference Manual \N{EN DASH} Volume"
     assert gec13["reference_title"] == f"{title} I"
     assert gec13["reference_titles"] == [f"{title} I", f"{title} II"]
-    assert by_ref["fhwa_soils_foundations"]["n_chapters"] == 12
+    # its 12 chapters and the appendices built from the print (REF-85),
+    # each appendix filed under a chapter number of its own (13 to 17)
+    from pathlib import Path
+    text = Path(_retrieval_db.__file__).parent / "fhwa_soils_foundations" / "text"
+    assert by_ref["fhwa_soils_foundations"]["n_chapters"] == \
+        len(list(text.glob("*.json"))) >= 12
     assert "reference_titles" not in by_ref["dm7_1"]

@@ -1,0 +1,238 @@
+{
+ "reference_id": "FHWA-NHI-06-089",
+ "reference_title": "Soils and Foundations Reference Manual – Volume II",
+ "volume": 2,
+ "chapter": 14,
+ "chapter_title": "Appendix B: Mohr’s Circle and Its Applications in Geotechnical Engineering",
+ "sections": [
+  {
+   "section_id": "B",
+   "title": "Mohr’s Circle and Its Applications in Geotechnical Engineering",
+   "body": "[p. B-1] The relationship between the normal and shear stress acting on any plane within a solid mass (continuum) may be represented graphically by an extremely useful device known as Mohr’s Circle for Stress. It is named after the German engineer Otto Mohr who devised it in 1882.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix B (Mohr’s Circle and Its Applications in Geotechnical Engineering), printed p. B-1."
+  },
+  {
+   "section_id": "B.1",
+   "title": "Basic Conventions for Plotting a Mohr’s Circle",
+   "body": "[p. B-1] The basic conventions for plotting a Mohr’s circle are as follows:\n\n1. The normal stresses (σ) are plotted on the abscissa. In conventional solid mechanics, tensile stresses are considered positive (plotted to the right of the origin) and compressive stresses are considered negative (plotted to the left of the origin).\n\n2. The shear stresses (τ) are plotted on the ordinate. In both conventional solid mechanics and soil mechanics, positive shear stresses are plotted above the origin while negative shear stresses are plotted below the origin. This sign convention for plotting the shear stresses should not be confused with the sign convention for the shear stresses themselves. Although sign conventions for the shear stresses themselves vary from one text to another, in general positive shear causes clockwise rotation of the stress element and negative shear causes counterclockwise rotation of the stress element (as discussed in Section B.2).\n\n3. Positive angles on the circle are measured in the counterclockwise sense; negative angles are obtained in the clockwise sense. An angle of 2θ on the circle corresponds to an angle of θ on the element, where θ is defined as the angle between any two planes within the soil element (as discussed in Section B.2).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix B (Mohr’s Circle and Its Applications in Geotechnical Engineering), printed p. B-1."
+  },
+  {
+   "section_id": "B.2",
+   "title": "Mohr’s Circle Construction for General Stress Conditions",
+   "body": "[p. B-1] Figure B-1(a) shows a solid element subjected to a normal stress (σ) and a shear stress ( τ ) on each of its four planes. The element can be considered to consist of a set of two mutually perpendicular planes – one horizontal, e.g., Plane Q, the other vertical, e.g., Plane P. Table B-1 presents a summary of the stresses acting on the four planes shown in Figure B-1(a) and their directions (sign) according to the conventions discussed in Section B.1.\n\n[p. B-2] Figure B-1. Mohr’s circle for general stress conditions (Cernica, 1982).\n\nTable B-1 Summary of stresses acting on the four planes shown in Figure B-1(a) \n\n[Table B-1, its rows read off the page:]\nPlane | Normal Stress | Sign | Shear Stress | Sign\nP | σx | + | τxy | +\nQ | σy | + | τyx | -\nR | σx | + | τyx | +\nS | σy | + | τxy | -\n\nNote: In this table and Figure B-1, the sign convention is according to that commonly used in solid mechanics, i.e., tensile (normal) stresses are considered positive and are plotted to the right of the origin. In soil mechanics it is customary to indicate compressive stresses as positive because soil cannot sustain tensile stresses since it has virtually no strength in tension. The use of the soil mechanics convention will be illustrated in Sections B.3 and B.4.\n\n[p. B-3] The following convention is used for the subscripts in Figure B-1:\n\n• For normal stresses, the subscript denotes the orientation of the stress with respect to an x-y coordinate system centered on the element where x is the horizontal axis and y is the vertical axis. Thus σy acts in the vertical direction on planes Q and S, both of which are horizontal planes. Since the element is in static equilibrium, the normal stresses acting on the two horizontal planes must be equal. The same logic applies to σx, which acts horizontally on vertical planes R and P.\n\n• For shear stress, there are two letters in the subscript. The first letter refers to the subscript of the normal stress acting on the same plane as the shear stress. The second letter refers to the direction in which the shear stress itself is acting. Thus, τyx acts on Plane Q where the normal stress is σy and it acts horizontally (x-direction). Since τyx causes counterclockwise rotation of the element, it is considered to be negative as per the sign convention discussed previously. Although it is not shown on the figure, the shear stress acting on Plane S is also τyx and it also causes counterclockwise rotation of the element. Since moment equilibrium must exist for the element to be in static equilibrium, τxy = τyx but the signs must be opposite. This can be verified by reference to Table B-1, which was derived from Figure B-1(a).\n\nFor the purpose of illustration, assume σx > σy > 0 The Mohr circle for the stress element shown in Figure B-1(a) is then plotted as follows (Recall that Mohr’s circle is plotted on shear stress (τ) vs. normal stress (σ) coordinates where (τ) is the ordinate and (σ) is the abscissa.):\n\n1. Find the planes having the larger normal stress and determine its sign. In this case, σx acts on planes P and R and its sign is positive (tension). Determine the magnitude and sign of the shear stress acting on those planes; τxy is of known magnitude and it causes clockwise rotation of the element, therefore it is positive. Refer to Table B.1 for confirmation. The normal and shear stresses on plane P (or R) represent a point on the τ-σ axis shown in Figure B-1(b).\n\n2. Plot the normal and shear stress values on plane P (or R) at the coordinate point D shown in Figure B-1(b). The reason the stresses on these two planes plot at the same point is that one plane is oriented 180-degrees from the other on the stress element, i.e., refer to Figure B-1(a) and rotate vertical plane P and its normal and shear stresses by 180-degrees to obtain vertical Plane R that has the same magnitude and direction\n\n[p. B-4] (sign) of normal and shear stresses as plane P. Since an angle between two planes on the stress element (θ) plots as twice the angle on the Mohr’s circle (2θ), point D represents the stress conditions on both planes P and R since 2θ = 360-degrees. The same holds true for the stress conditions on planes S and Q. Note that the point plots in the first quadrant since both σx and τxy are positive as per the sign convention discussed previously.\n\n3. Find the planes perpendicular to planes P and R; those are planes Q and S. The lesser normal stress, σy, acts on those planes and it too is positive (tension). Determine the magnitude and sign of the shear stress acting on those planes; τyx is of known magnitude and it causes counterclockwise rotation of the element, therefore it is negative. Refer to Table B-1 for confirmation. The normal and shear stresses on plane Q (or S) represent a point on the τ-σ axis shown in Figure B-1(b).\n\n4. As in Step 2, plot the normal and shear stress values on plane Q (or S) at the coordinate point E shown in Figure B-1(b). The reason that both planes plot at the same point was explained previously in #2. Note that the point plots in the fourth quadrant since both σx is positive but and τyx is negative as per the sign convention discussed previously.\n\n5. The line ED represents the diameter of the Mohr’s circle. The center of the circle lies on the σ axis at point C, which is simply the average value of the normal stresses σx and σy. Use the center of the circle and the diameter to draw the full circle.\n\nA number of important stress conditions can be determined once the full Mohr’s circle is drawn. For example, the values of the major and minor principal stresses can be read directly from the circle. By definition, the major and minor principal stresses are normal stresses that occur on planes where the shear stress equals zero. The major principal stress is shown as σmax and the minor principal stress as σmin (point H) on Figure B-1(b). In soil mechanics, the major and minor principal stresses are called σ1 and σ3, respectively.\n\nAlso, the magnitude of the maximum shear stress (τmax), which is equal to the radius of the circle, can be read directly from the circle at points F (or G) on Figure B-1(b). Alternatively, the radius of the circle can be calculated from triangle ACE shown in the figure. The orientation of the maximum shear stress with respect to the original plane can either be measured directly on the Mohr’s circle or easily calculated with the help of trigonometry.\n\n[p. B-5] In general, the normal and shear stresses on any plane oriented at an angle θ from a plane of known stress conditions (2θ on the Mohr’s circle), e.g., planes P, Q, R, S, can either be read directly from the Mohr’s circle or easily calculated with the help of trigonometry.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure B-1: Mohr’s circle for general stress conditions (Cernica, 1982)"
+   ],
+   "tables": [
+    "Table B-1: Summary of stresses acting on the four planes shown in Figure B-1(a)"
+   ],
+   "applicability": "FHWA-NHI-06-089, Appendix B (Mohr’s Circle and Its Applications in Geotechnical Engineering), printed pp. B-1 to B-5."
+  },
+  {
+   "section_id": "B.3",
+   "title": "Basic Relationships Derived from the Mohr’s Circle",
+   "body": "[p. B-5] Figure B-2 shows a simplified version of Figure B-1(b). A number of basic relationships between stresses can be obtained from a Mohr’s circle. The following relationships can be observed directly from Figure B-2:\n\n1. As indicated previously, the maximum shear stress (τmax) is equal to the radius of the circle. Furthermore, since τmax is oriented at + or – 90º (2θ) from a principle stress on the Mohr’s circle, the maximum shear stress in the stress element acts on planes that make an angle (θ) of + or – 45º with the principal stress planes.\n\n2. For the stress conditions (σ, τ) at a point S on the circle, which correspond to the stress conditions on some plane in the soil element, the resultant stress (0S) has a magnitude of √(σ² + τ²) as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan^-1 (τ/σ). The angle of obliquity is the angle formed between the σ-axis and the line drawn from the point on the σ-axis where τ = 0 to any point on the Mohr’s circle.\n\n3. The maximum angle of obliquity (αf) is constructed by passing a line through the origin that is also tangent to the Mohr circle, such as line 0T in Figure B-2. The normal and shear stresses that correspond to point T on the circle represent the stresses on the plane of maximum obliquity. Note that the shear stress on this plane is less than τmax and that slippage occurs at the point of maximum obliquity and not at the angle where τmax occurs. Therefore αf assumes the more prominent position regarding slip failure.\n\n[p. B-6] Figure B-2. Simplified version of Figure B-1(b) showing some basic relationships and characteristics of the Mohr’s Circle (Cernica, 1982).",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure B-2: Simplified version of Figure B-1(b) showing some basic relationships and characteristics of the Mohr’s Circle (Cernica, 1982)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix B (Mohr’s Circle and Its Applications in Geotechnical Engineering), printed pp. B-5 to B-6."
+  },
+  {
+   "section_id": "B.4",
+   "title": "Mohr’s Theory of Failure – Application to Soils",
+   "body": "[p. B-6] The following concise description of Mohr’s theory of failure is provided by Cernica (1982).\n\n“The shear strength of soil is generally regarded as the resistance to deformation by continuous shear displacement of soil particles along surfaces or rupture. That is, the shear strength of the soil is not regarded solely in terms of its ability to resist peak stresses, but it must be viewed in the context of deformation which may govern its performance. In that light, therefore, shear failure is necessarily viewed as the state of deformation when the functional performance of the soil mass is impaired.\n\nThere are a number of different theories as to the nature and extent of the state of stress and deformation at the time of failure. Failure of a soil mass, particularly cohesionless soil which develops its strength primarily from solid frictional resistance between and interlocking of grains, appears to be best explained by Mohr’s rupture theory. According to Mohr’s theory, the shear stress in the plane of slip reaches, at the limit a maximum value which depends on the normal stress acting in the same planes and the properties of the material. This represents the combination of normal\n\n[p. B-7] and shear stresses which results in a maximum angle of obliquity αf .” (see Figure B-2).”\n\nThe combination of normal and shear stresses that results in the line inclined at the maximum angle of obliquity αf represents the stress conditions on the failure plane within the soil mass. The Mohr’s circle corresponding to failure conditions is called the “Mohr failure circle” and the straight line inclined at the maximum angle of obliquity αf is called the “Mohr failure envelope.” The combination of stresses at any other point on the Mohr’s circle defined by an obliquity angle smaller than αf represents stress conditions on a plane where failure has not occurred even though the soil mass has failed. Thus, for example, failure does not occur on the plane where the shear stress equals τmax.\n\nIn reality, the relationship between normal stress and shear stress in soils is usually non- linear, as shown in Figure B-3(a). In addition, depending upon the type of soil and the conditions of loading, a soil might exhibit shear strength when the normal stress = 0, as is also illustrated in Figure B-3(a). Fortunately, the curvature of the Mohr failure envelope is relatively small for most practical problems where the stress range of interest is fairly narrow. Thus, it is mathematically convenient to represent the Mohr envelope by a straight line, sloped at an angle φ, that intersects the τ-axis at a value of shear stress = c. This is shown in Figure B-3(b) where φ represents the internal friction angle of the soil and c represents its “cohesion.” The cohesion and friction angle are called the shear strength parameters of the soils.\n\nFigure B-3. Shear strength according to Mohr (a) and Coulomb (b) (Cernica, 1982).\n\n[p. B-8] The linear approximation was first proposed by Coulomb in 1776 in connection with his investigations of retaining walls. Therefore, the linear approximation to the Mohr failure envelope is called the “Mohr-Coulomb failure envelope” and constitutes the Mohr-Coulomb failure criterion. As shown in Figure B-3(b), the Mohr-Coulomb failure criterion can be expressed as:\n\nτ = c + σ tan φ [Eq. B-2a]\n\nEquation B-2a is a general expression of the Mohr-Coulomb failure criterion that is applicable to all soils and conditions of loading. It can be easily modified to account of those cases. For example:\n\n• For cohesionless soils (c = 0)\n\nτ = σ tan φ [Eq. B-2b]\n\n• For purely cohesive soils (φ = 0)\n\nτ = c [Eq. B-2c]\n\n• For use with effective stress parameters (c = c′ , φ = φ′)\n\nτ′ = c′ + σ′ tan φ′ [Eq. B-2d]\n\nSince many applications of soil mechanics to problems in practice involve knowledge of the principal stresses in the soil (e.g. lateral earth pressure theory and use of triaxial test results for slope stability analyses), it is useful to express the Mohr Coulomb failure criterion in terms of principal stresses rather than in the formats used in Equations B-2a to B-2d. Figure B-4 shows the Mohr coulomb strength envelope for one Mohr circle at failure. The principal stresses contain a subscript “f” to indicate that they are the principal stress acting at failure on the stress element shown in the insert.\n\nThe following relationships can be derived from Figure B-4.\n\nsin φ = R / D [Eq. B-3a]\n\n[p. B-9] Figure B-4. Mohr coulomb failure envelope with one Mohr failure circle (Holtz and Kovacs, 1981).\n\nSubstitution of the stresses corresponding to R and D into Eq. B-3a yields:\n\nsin φ = [(σ1f – σ3f) / 2] / [(σ1f + σ3f) / 2 + c cot φ] [Eq. B-3b]\n\nRearrangement of terms in Eq. B-3b and substitution of trigonometric identities yields:\n\n(σ1f – σ3f) = (σ1f + σ3f) sin φ + 2c cos φ [Eq. B-3c]\n\nSolving Eq. B-3c for σ1f yields:\n\nσ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c cos φ / (1 - sin φ)] [Eq. B-3d]\n\nSubstitution of the identity cos φ = (1 – sin² φ)^½ into Eq. B-3d yields:\n\n[p. B-10] σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c √(1 + sin φ) / √(1 - sin φ)] [Eq. B-3e]\n\nEquation B-3e represents the general relationship between the major (σ1) and minor (σ3) principal stresses in terms of the soil strength parameters c and φ.\n\nFor cohesionless soils (c = 0), Eq. B-3e reduces to:\n\nσ1f / σ3f = (1 + sin φ) / (1 - sin φ) [Eq. B-3f]\n\nThe reciprocal of Eq. B-3f yields:\n\nσ3f / σ13f = (1 - sin φ) / (1 + sin φ) [Eq. B-3g]\n\nBy the use of trigonometric identities Eq. B-3f can be re-written as:\n\nσ1f / σ3f = tan² (45° + φ/2) [Eq. B-3h]\n\nSimilarly, Eq. B-3g can be re-written as:\n\nσ3f / σ1f = tan² (45° – φ/2) [Eq. B-3h (second)]\n\nEquation B-3h gives the coefficient of passive earth pressure, Kp, while Equation B-3i gives the coefficient of active earth pressure, Ka that were introduced in Chapter 2. Many concepts in geotechnical engineering can be similarly explained by used of Mohr’s circle. The most common use of Mohr’s circle is for interpretation of the results of shear strength tests discussed in Chapter 5. For use of Mohr’s circle in interpretation of shear strength tests, the reader is referred to well-known text books such as Holtz and Kovacs (1981) and Lambe and Whitman (1979).",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. B-2a",
+     "description": "Equation B-2a, introduced by: \"As shown in Figure B-3(b), the Mohr-Coulomb failure criterion can be expressed as:\" (p. B-8).",
+     "formula": "τ = c + σ tan φ",
+     "variables": {
+      "τ": "shear stress (on the failure plane; the Mohr-Coulomb failure criterion)",
+      "c": "“cohesion”, the intercept of the straight-line failure envelope on the τ-axis (p. B-7)",
+      "σ": "normal stress",
+      "φ": "internal friction angle of the soil, the slope of the envelope (p. B-7)"
+     },
+     "source": "Typed in from p. B-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-2b",
+     "description": "Equation B-2b, introduced by: \"• For cohesionless soils (c = 0)\" (p. B-8).",
+     "formula": "τ = σ tan φ",
+     "variables": {
+      "τ": "shear stress",
+      "σ": "normal stress",
+      "φ": "internal friction angle"
+     },
+     "notes": "For cohesionless soils (c = 0).",
+     "source": "Typed in from p. B-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-2c",
+     "description": "Equation B-2c, introduced by: \"• For purely cohesive soils (φ = 0)\" (p. B-8).",
+     "formula": "τ = c",
+     "variables": {
+      "τ": "shear stress",
+      "c": "cohesion"
+     },
+     "notes": "For purely cohesive soils (φ = 0).",
+     "source": "Typed in from p. B-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-2d",
+     "description": "Equation B-2d, introduced by: \"• For use with effective stress parameters (c = c′ , φ = φ′)\" (p. B-8).",
+     "formula": "τ′ = c′ + σ′ tan φ′",
+     "variables": {
+      "τ′": "shear stress (effective stress form)",
+      "c′": "effective cohesion",
+      "σ′": "effective normal stress",
+      "φ′": "effective friction angle"
+     },
+     "notes": "For use with effective stress parameters (c = c′, φ = φ′).",
+     "source": "Typed in from p. B-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3a",
+     "description": "Equation B-3a, introduced by: \"The following relationships can be derived from Figure B-4.\" (p. B-8).",
+     "formula": "sin φ = R / D",
+     "variables": {
+      "φ": "friction angle (slope of the Mohr-Coulomb envelope)",
+      "R": "radius of the Mohr failure circle, (σ1f – σ3f)/2 (Figure B-4)",
+      "D": "distance along the σ-axis from where the envelope meets it to the circle's center, c cot φ + (σ1f + σ3f)/2 (Figure B-4)"
+     },
+     "source": "Typed in from p. B-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3b",
+     "description": "Equation B-3b, introduced by: \"Substitution of the stresses corresponding to R and D into Eq. B-3a yields:\" (p. B-9).",
+     "formula": "sin φ = [(σ1f – σ3f) / 2] / [(σ1f + σ3f) / 2 + c cot φ]",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "c": "cohesion",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. B-9.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3c",
+     "description": "Equation B-3c, introduced by: \"Rearrangement of terms in Eq. B-3b and substitution of trigonometric identities yields:\" (p. B-9).",
+     "formula": "(σ1f – σ3f) = (σ1f + σ3f) sin φ + 2c cos φ",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "c": "cohesion",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. B-9.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3d",
+     "description": "Equation B-3d, introduced by: \"Solving Eq. B-3c for σ1f yields:\" (p. B-9).",
+     "formula": "σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c cos φ / (1 - sin φ)]",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "c": "cohesion",
+      "φ": "friction angle"
+     },
+     "source": "Typed in from p. B-9.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3e",
+     "description": "Equation B-3e, introduced by: \"Substitution of the identity cos φ = (1 – sin² φ)^½ into Eq. B-3d yields:\" (p. B-10).",
+     "formula": "σ1f = σ3f [(1 + sin φ) / (1 - sin φ)] + [2c √(1 + sin φ) / √(1 - sin φ)]",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "c": "cohesion",
+      "φ": "friction angle"
+     },
+     "notes": "The general relationship between the major and minor principal stresses in terms of c and φ (p. B-10).",
+     "source": "Typed in from p. B-10.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3f",
+     "description": "Equation B-3f, introduced by: \"For cohesionless soils (c = 0), Eq. B-3e reduces to:\" (p. B-10).",
+     "formula": "σ1f / σ3f = (1 + sin φ) / (1 - sin φ)",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "φ": "friction angle"
+     },
+     "notes": "Eq. B-3e for cohesionless soils (c = 0).",
+     "source": "Typed in from p. B-10.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3g",
+     "description": "Equation B-3g, introduced by: \"The reciprocal of Eq. B-3f yields:\" (p. B-10).",
+     "formula": "σ3f / σ13f = (1 - sin φ) / (1 + sin φ)",
+     "variables": {
+      "σ3f": "minor principal stress at failure",
+      "σ13f": "printed so; Eq. B-3f, of which this is the reciprocal, has σ1f (major principal stress at failure)",
+      "φ": "friction angle"
+     },
+     "notes": "Typed as printed: the denominator is printed σ13f, where Eq. B-3f, whose reciprocal the page says this is, has σ1f.",
+     "source": "Typed in from p. B-10.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3h",
+     "description": "Equation B-3h, introduced by: \"By the use of trigonometric identities Eq. B-3f can be re-written as:\" (p. B-10).",
+     "formula": "σ1f / σ3f = tan² (45° + φ/2)",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "φ": "friction angle"
+     },
+     "notes": "The page says Equation B-3h gives the coefficient of passive earth pressure, Kp.",
+     "source": "Typed in from p. B-10.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. B-3h (second)",
+     "description": "Equation B-3h (second), introduced by: \"Similarly, Eq. B-3g can be re-written as:\" (p. B-10).",
+     "formula": "σ3f / σ1f = tan² (45° – φ/2)",
+     "variables": {
+      "σ1f": "major principal stress at failure",
+      "σ3f": "minor principal stress at failure",
+      "φ": "friction angle"
+     },
+     "notes": "Printed with the number B-3h a second time (p. B-10); the sentence after it calls this equation B-3i and says it gives the coefficient of active earth pressure, Ka.",
+     "source": "Typed in from p. B-10.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure B-3: Shear strength according to Mohr (a) and Coulomb (b) (Cernica, 1982)",
+    "Figure B-4: Mohr coulomb failure envelope with one Mohr failure circle (Holtz and Kovacs, 1981)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix B (Mohr’s Circle and Its Applications in Geotechnical Engineering), printed pp. B-6 to B-10."
+  }
+ ]
+}
