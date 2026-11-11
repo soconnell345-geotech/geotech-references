@@ -301,10 +301,15 @@ def load_chapter(reference: str, chapter: int,
             if data is None and str(numbers[-1]) == str(chapter).strip():
                 data = candidate
         if data is None:
+            # in numeric order, numbers before names: in file-name order a
+            # reference whose files are not all named chapterNN listed its
+            # chapters out of order (2026-11-10 review follow-up)
+            have = sorted(dict.fromkeys(numbers), key=lambda n: (
+                (0, n, "") if isinstance(n, (int, float))
+                and not isinstance(n, bool) else (1, 0, str(n))))
             raise FileNotFoundError(
                 f"Chapter {chapter} not found for reference '{reference}'; "
-                "its chapters: "
-                + ", ".join(str(n) for n in dict.fromkeys(numbers)))
+                "its chapters: " + ", ".join(str(n) for n in have))
     else:
         with open(chapter_file, "r", encoding="utf-8") as f:
             data = json.load(f)

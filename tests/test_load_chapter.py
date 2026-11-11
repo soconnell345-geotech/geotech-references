@@ -45,7 +45,15 @@ def test_a_file_not_named_for_its_number_is_found(reference, chapter,
     assert out["chapter"] == chapter
 
 
-def test_a_missing_chapter_names_the_chapters_there_are():
+@pytest.mark.parametrize("reference,listed", [
+    # in numeric order: they came in file-name order ("6, 7, 8, 1, 2, ...",
+    # "9, 2, ..., 7, 0"; 2026-11-10 review follow-up)
+    ("ufc_stabilization", "1, 2, 3, 4, 5, 6, 7, 8"),
+    ("dm7_2", "0, 2, 3, 4, 5, 6, 7, 9"),
+    ("gec_12", "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, "
+               "18, 22"),
+])
+def test_a_missing_chapter_names_the_chapters_there_are(reference, listed):
     with pytest.raises(FileNotFoundError) as e:
-        _retrieval.load_chapter("ufc_stabilization", 99)
-    assert "its chapters: 6, 7, 8, 1, 2, 3, 4, 5" in str(e.value)
+        _retrieval.load_chapter(reference, 99)
+    assert str(e.value).endswith(f"its chapters: {listed}")

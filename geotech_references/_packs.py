@@ -107,26 +107,32 @@ def scan() -> tuple[list[tuple[str, Path]], list[str]]:
 def _scan() -> tuple[list[tuple[str, Path]], list[tuple[str, str]]]:
     """:func:`scan`, each problem with the pack it belongs to: the pack's
     id (``pack.json``'s, else its folder's name), or the setting's folder
-    for one that is not there."""
+    for one that is not there. A folder named as a built-in reference is
+    keyed by its whole path, so its problems are never filed under the
+    built-in's id (2026-11-10 review follow-up)."""
     packs: list[tuple[str, Path]] = []
     problems: list[tuple[str, str]] = []
     builtins = None
     seen: dict[str, Path] = {}
+
+    def key_of(folder: Path) -> str:
+        return str(folder) if folder.name in builtins else folder.name
+
     for root in _roots():
         folders, root_problems = _candidates(root)
         problems.extend((str(root), p) for p in root_problems)
         for folder in folders:
+            if builtins is None:
+                builtins = builtin_ids()
             try:
                 data = read_pack_json(folder)
             except (OSError, ValueError) as e:
-                problems.append((folder.name, f"{folder}: pack.json "
+                problems.append((key_of(folder), f"{folder}: pack.json "
                                  f"unreadable ({e}); skipped"))
                 continue
             pid = str(data.get("id") or folder.name)
-            if builtins is None:
-                builtins = builtin_ids()
             if pid in builtins:
-                problems.append((folder.name, f"{folder}: id '{pid}' is a "
+                problems.append((key_of(folder), f"{folder}: id '{pid}' is a "
                                  "built-in reference's name; skipped"))
                 continue
             if not pid.startswith(PACK_PREFIX):

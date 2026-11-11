@@ -514,6 +514,28 @@ def test_a_skipped_pack_is_listed_and_a_search_of_it_says_why(
     assert listed["local_good"]["n_sections"] == 3
 
 
+@pytest.mark.parametrize("broken", ["builtin id", "unreadable"])
+def test_a_folder_named_as_a_built_in_is_not_filed_under_it(
+        tmp_path, monkeypatch, broken):
+    """2026-11-10 review follow-up: a skipped pack's problems were keyed by
+    its folder's name, so a folder named gec_12 put them on the built-in
+    gec_12's listing."""
+    folder = make_pack(tmp_path / "packs", "gec_12", pdf=False)
+    if broken == "builtin id":
+        _write_json(folder / "pack.json", dict(_pack_json(), id="gec_12"))
+    else:
+        (folder / "pack.json").write_text("{not json", encoding="utf-8")
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    by_pack = _packs.problems_by_pack()
+    assert "gec_12" not in by_pack
+    assert list(by_pack) == [str(folder)]
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    assert "problems" not in listed["gec_12"]
+    assert listed["gec_12"]["n_sections"] > 0
+
+
 # ---------------------------------------------------------------------------
 # the checker
 # ---------------------------------------------------------------------------
