@@ -167,10 +167,15 @@ def test_eq_8_11():
     assert "0.236·KD +" not in _eq(8, "8-2.1.4", "Eq. 8-11") + _kps(8, "8-2.1.4")
 
 
-# Chapter 8, PDF p. 455: qt as printed, with a note on the usual (1 - a) form.
+# Chapter 8, PDF p. 455: qt as printed; the note cites the (1 - a) form only where a held manual prints it
+# (FHWA-NHI-16-072, GEC 5, Eq. 4.23, p. 4-29).
 def test_eq_8_25_qt_note():
-    assert "qc + u·(1+a) [As printed" in _sec(8, "8-3.3")["body"]
-    assert "qc + u2·(1 − a)" in _eq(8, "8-3.3", "Eq. 8-25")
+    body = _sec(8, "8-3.3")["body"]
+    assert "qc + u·(1+a) [As printed" in body
+    assert "FHWA-NHI-16-072 (GEC 5, November 2016), Eq. 4.23, p. 4-29, prints qt = qc + u2(1 − a)" in body
+    eq = _eq(8, "8-3.3", "Eq. 8-25")
+    assert "Eq. 4.23, p. 4-29, prints qt = qc + u2(1 − a)" in eq
+    assert "usually written" not in body + eq
 
 
 # Chapter 8, PDF p. 457: Table 8-11.
@@ -212,3 +217,112 @@ def test_table_8_25_key_points():
     kps = _kps(8, "8-7.1")
     assert "Sandy gravel, clean sand, and fine sand: k = 10⁻³ to 10⁻⁵ m/s" in kps
     assert "Sand, dirty sand, and silty sand: k = 10⁻⁵ to 10⁻⁷ m/s" in kps
+
+
+# Chapter 8, PDF p. 483: Table 8-22's first row as printed, with what FHWA-NHI-05-037 Table 5-34 (p. 5-53) prints.
+def test_table_8_22_cbr_note():
+    kps = _kps(8, "8-6.1")
+    assert "CBR = 75/[1 + 0.728·(FC × PI)], printed with the condition FC×PI = 0" in kps
+    assert "CBR = 28.09·(D60)^0.358, has the same condition" in kps
+    assert "FHWA-NHI-05-037 Table 5-34, p. 5-53, prints CBR = 75/[1 + 0.728(wPI)], wPI = P200·PI" in kps
+
+
+# Chapter 3, PDF p. 180: the heading prints "(ASTM D2116)"; the text and Table 3-4 (PDF p. 172) print D2166.
+def test_uct_heading_note():
+    s = _sec(3, "3-2.4.2.1")
+    assert s["title"] == "Unconfined Compression Test (ASTM D2166)"
+    assert "[The section heading prints “(ASTM D2116)” (PDF p. 180, printed p. 152)" in s["body"]
+
+
+# The seven printed sections the text did not hold, each with one printed sentence.
+@pytest.mark.parametrize("ch, sid, title, sentence", [
+    # PDF p. 41
+    (1, "1-3.2.3", "Examples",
+     "Below are a few examples of visual descriptions and identifications (ASTM D2488):"),
+    # PDF p. 87
+    (2, "2-2.2", "Published Geologic and Hydrogeologic Maps",
+     "An example of documents and sources of available information is provided in Table 2-2."),
+    # PDF p. 190
+    (3, "3-2.5.1.2", "Resonant Column Test (ASTM D4015)",
+     "is a dynamic test that provides values of shear modulus for low shear strain amplitudes."),
+    (3, "3-2.5.1.3", "Cyclic Triaxial Test for Modulus and Damping (ASTM D3999)",
+     "The main purpose of this test is to determine the dynamic properties for strains ranging from about 0.01% to 0.5%."),
+    # PDF p. 211
+    (4, "4-2.2", "Mohr Circle of Stress",
+     "by rotating an angle 2α about the center of the circle, where α is the angle between the major principal plane and the plane of interest."),
+    # PDF pp. 283-284
+    (5, "5-5.5", "Organic Soils and Peat",
+     "Primary consolidation tends to occur more rapidly in these soils due to their relatively high hydraulic conductivity."),
+    # PDF p. 476
+    (8, "8-4.5", "Coefficient of Consolidation",
+     "A first-order approximation for the coefficient of consolidation can be obtained using Figure 8-50."),
+])
+def test_missing_sections_added(ch, sid, title, sentence):
+    s = _sec(ch, sid)
+    assert s["title"] == title
+    assert sentence in s["body"]
+
+
+def test_all_465_printed_sections_held():
+    assert sum(len(_chapter(ch)["sections"]) for ch in range(1, 9)) == 465
+
+
+# The new sections list the figure and table they cite, which no section listed before.
+def test_new_sections_list_their_figure_and_table():
+    assert _sec(2, "2-2.2")["tables"] == ["Table 2-2"]
+    assert _sec(4, "4-2.2")["figures"] == ["Figure 4-3: Mohr Circle Relationships"]
+    assert _sec(8, "8-4.5")["figures"] == ["Figure 8-50"]
+
+
+# Chapter 1, PDF p. 41 prints "Poorly-Graded Gravel with Sand (GW)"; Section 1-3.3.2 (PDF p. 44) uses GP for it.
+def test_example_1_symbol_as_printed_with_note():
+    body = _sec(1, "1-3.2.3")["body"]
+    assert "1) Poorly-Graded Gravel with Sand (GW): About 80%" in body
+    assert "classifies poorly-graded gravel as GP and well-graded gravel as GW" in body
+
+
+# Bodies the text had cut off, completed from the print.
+@pytest.mark.parametrize("ch, sid, sentence", [
+    # PDF p. 41
+    (1, "1-3.2.2.2", "“with cobbles,” “with boulders,” or “with cobbles and boulders” should be added to the group name."),
+    # PDF p. 92
+    (2, "2-4.2", "Spot checks of “interpreted” versus “actual” conditions are strongly recommended for each site using boring methods."),
+    # PDF pp. 170-171
+    (3, "3-2.3.2", "Using a Vibratory Table) is used to determine emin and γd-max."),
+    # PDF p. 329
+    (6, "6-3.4", "Table 6-6 and Table 6-7 present typical values for anisotropy in natural soil deposits and compacted fill."),
+])
+def test_cut_off_bodies_completed(ch, sid, sentence):
+    assert sentence in _sec(ch, sid)["body"]
+
+
+def test_no_body_cut_off():
+    for ch in range(1, 9):
+        for s in _chapter(ch)["sections"]:
+            body = s["body"]
+            assert "[section continues]" not in body and "continues beyond" not in body, s["section_id"]
+            assert not body.rstrip().endswith("..."), s["section_id"]
+
+
+# Chapter 6, PDF p. 330: Tables 6-6 and 6-7 are listed under 6-3.4, which cites them.
+def test_anisotropy_tables_listed():
+    tables = _sec(6, "6-3.4")["tables"]
+    assert [t.split(" — ")[0] for t in tables] == ["Table 6-6", "Table 6-7"]
+    assert "hydraulic fill 64 to 225 (Table 6-7)" in _kps(6, "6-3.4")
+
+
+# Table sweep: key points that said more than the print.
+def test_table_sweep_key_points():
+    # PDF p. 452-453: m is about 0.8 from direct simple shear tests (Ladd et al. 1977); the print never says SHANSEP.
+    s = _sec(8, "8-3.2")
+    assert "for most clays" not in _kps(8, "8-3.2")
+    assert "SHANSEP" not in s["summary"] + _kps(8, "8-3.2")
+    assert "m is approximately 0.8 based on direct simple shear tests" in _kps(8, "8-3.2")
+    # PDF p. 475, Table 8-17.
+    assert "organic clays and silts: 0.035–0.075" in _kps(8, "8-4.4")
+    # PDF p. 495, Table 8-28's notes attribute n to no source.
+    assert "per Robertson (2009)" not in _kps(8, "8-8.2")
+    # PDF p. 352.
+    assert "provided the soil is non-dispersive" in _kps(6, "6-5.3.2")
+    # PDF p. 327.
+    assert "some of which also account for the effect of void ratio on k" in _kps(6, "6-3.3")
