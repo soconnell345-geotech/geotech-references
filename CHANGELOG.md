@@ -14,36 +14,73 @@ and caption below was read off the rendered print.
   (`II-2.3.5`), and UFC 3-250-11's appendices are `A-1`, `B-1` and `C` as
   printed. Both fetches refuse a number two sections hold, and a
   `section_id` that is not text (7.10 sent as a number arrived as 7.1).
+  - A GEC-13 number that chapter 1 prints names chapter 1's section, in
+    both fetches. "8.2.7" still returns chapter 8's Jet Grouting, with a
+    note that chapter 1 prints 8.2.7 too, as `1.8.2.7` Step 7: Consider
+    Project Risks (p. 1-46). The error for "1.3" names `1.1.3` Focus and
+    Scope (p. 1-4) first.
 - **A figure number the catalog holds twice is never the first row**
   (core-02). `figure_get` and `resolve_pdf` take `pdf_page_index`, and a
   repeated number is refused without it, naming each row's page. GEC-11
   Figure 5-11 had been catalogued as a second 5-14, and GEC-12's Appendix D
   continuation sheets each had the first sheet's page.
+  - `figure_search` gives a figure printed over several pages one hit: its
+    best-ranked sheet, with `pages` listing each sheet's `pdf_page_index`
+    and `printed_page` (GEC-12 D-1 to D-4, UFC 3-250-01 D-3). Rows of one
+    number with different captions stay apart (UFC 3-250-01 F-21, GEC-13
+    6-14). Before, the sheets took the places of other figures, so
+    "driven pile design process flow chart" lost GEC-12 Figure 7-32 from
+    its top ten. A list no figure repeats is unchanged.
 - **`_linterp` refuses a NaN or infinite input** (core-04).
 - **Search results say how they matched** (core-05). `reference_search` and
   `figure_search` hits that do not hold every word carry `match`
-  (`"synonyms"`, or `"any word"` with `lacks`). This is worked out after the
-  ranking, so no hit moves. With `max_chars` the result adds `matched`,
-  `words_not_found` and a sentence on the note. An empty result names the
-  scope, what was tried and the words nothing there holds.
+  (`"synonyms"`, or `"any word"` with `lacks`). A hit with every word but
+  not a phrase of the query (a hyphenated term runs as the phrase of its
+  parts: "5-2" as "5 2") is `"all words"` with `not_as_phrase`; it had been
+  "any word" lacking nothing. This is worked out after the ranking, so no
+  hit moves. With `max_chars` the result adds `matched` (the loosest mark:
+  any word, synonyms, all words), `words_not_found` and a sentence on the
+  note. An empty result names the scope, what was tried and the words
+  nothing there holds.
 - **An unknown reference or chapter is an error, and a reference name means
   one thing** (core-06, core-09). A search scoped to either returned `[]`.
   A figure lookup no longer reads a loose name ("FHWA", "pile") as every
   catalog it touches.
+  - Both searches read a `reference` by one rule
+    (`_retrieval_db.search_scope`): the id, another spelling of it
+    (`GEC-10`), or a report number its files carry. A volume's own number
+    searches that volume alone: `FHWA-NHI-06-089` is Soils and Foundations
+    Vol II, and the result adds `report_number` and a note naming the id
+    that searches every volume. Before, `figure_search` read the number as
+    the whole manual and `reference_search` refused it. A name that is not
+    an id adds `resolved_reference` in both.
+  - `"dm7"` (the app's name for UFS 3-220-10 and UFC 3-220-20) is refused by
+    both searches with the same error naming `dm7_1` and `dm7_2`;
+    `figure_search` had searched both. `figure_get` still reads it by the
+    figure asked for.
+  - Every `figure_search` hit carries `reference_id`, its volume's report
+    number.
 - **`search_sections` with no section holding every word** (core-07) returns
   the ranked search of that reference, each hit marked `match` ("all
   words", "synonyms", "any word" with `lacks`), 10 by default. The fitted
-  result has no `total_hits`. A search that finds hits is unchanged.
+  result has no `total_hits`. A search that finds hits lists the same
+  sections, except that hits of equal score are ordered by section id, so
+  they reorder where core-01 renamed ids: `search_sections("aashto_1993",
+  "layer coefficient")` ranks 5-7 and `search_sections("ufc_stabilization",
+  "sulfate")` ranks 7-10.
 - **A skipped local pack is named** (core-10). `list_indexed_references`
   gives a partly skipped pack its `problems`. It lists a pack skipped whole
   with no sections and its problems, and a search naming that pack quotes
   them. A manual whose volumes' files carry titles of their own is listed
   once, with `reference_titles`.
+  - A pack folder named as a built-in reference (`gec_12`) has its problems
+    filed under its path, not on the built-in's listing.
 - **A database knows what it was built from** (core-11). Both search
   databases store a signature of their source files and are rebuilt when it
   differs. Before, a chapter file or catalog that was deleted, added or
   restored with an older date kept the old text. The text layout version
-  is 3; the figures database has `user_version` 1.
+  is 4 (each section row stores its chapter file's `reference_id`); the
+  figures database has `user_version` 1.
 - **An unreadable built-in source fails the build** (core-12), naming the
   file and keeping the database already there. A local pack's file is still
   skipped and named.
@@ -56,7 +93,8 @@ and caption below was read off the rendered print.
   misprint, and a figure lookup by either number still finds them.
 - **`load_chapter` finds a chapter file by its `chapter` field** (core-15),
   so the 17 files named otherwise (prologues, appendices, Eurocode 7 Part 2
-  sections) load.
+  sections) load. A missing chapter's error lists the chapters in numeric
+  order (it gave UFC 3-250-11's as "6, 7, 8, 1, 2, 3, 4, 5").
 - **Catalog rows lead to their figure.**
   - Pages corrected: UFS 3-220-10 Figures 1-13, 3-1, 5-4, 6-9 (the figure
     is on the page before its caption), GEC-10 4-5, GEC-14 A-1 to A-3 and
