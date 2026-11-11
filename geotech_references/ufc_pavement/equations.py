@@ -808,13 +808,23 @@ def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
     Raises
     ------
     ValueError
-        If any input is not positive.
+        If any input is not positive, or if the inputs give no drainable
+        pore space (ne <= 0: We at or above the saturated water content for
+        that dry density).
     """
     for name, val in (("dry_density", dry_density), ("gs", gs),
                       ("water_unit_weight", water_unit_weight), ("we", we)):
         if val <= 0:
             raise ValueError(f"{name} must be > 0, got {val}")
     ne = 1 - dry_density / (gs * water_unit_weight) * (1 + gs * we)
+    if ne <= 0:
+        w_zero = water_unit_weight / dry_density - 1.0 / gs
+        raise ValueError(
+            f"Eq. 20-4 (UFC 3-250-01, printed p. 94) gives ne = {ne:.4f} for "
+            f"these inputs: no drainable pore space. The effective water "
+            f"content We = {we} is at or above the saturated water content "
+            f"for dry density {dry_density} (Eq. 20-4 gives ne = 0 at "
+            f"We = {w_zero:.4f}).")
     return {
         "dry_density": dry_density, "gs": gs,
         "water_unit_weight": water_unit_weight, "we": we,

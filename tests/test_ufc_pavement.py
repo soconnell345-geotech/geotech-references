@@ -272,6 +272,12 @@ class TestDrainageEquations:
             1 - 100 / (2.70 * 62.4) * (1 + 2.70 * 0.02), abs=1e-4)
         assert "printed 94" in r["reference"]
 
+    def test_effective_porosity_no_drainable_pore_space_raises(self):
+        # Eq. 20-4 (printed 94) at made-up inputs 125 pcf, Gs 2.65, We 0.2
+        # gives 1 - 125/(2.65*62.4)*(1 + 0.53) = -0.157: no drainable voids.
+        with pytest.raises(ValueError, match="no drainable pore space"):
+            effective_porosity(125, 2.65, 62.4, 0.2)
+
     def test_effective_horizontal_permeability_weighted_average(self):
         r = effective_horizontal_permeability([(100, 4), (10, 8)])
         expected = (100 * 4 + 10 * 8) / (4 + 8)
