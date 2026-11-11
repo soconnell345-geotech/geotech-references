@@ -26,6 +26,61 @@ def test_spellings_of_a_reference_resolve(ref, fig, want):
     assert rec["figure_number"].upper() == fdb._norm_fig_number(fig)
 
 
+@pytest.mark.parametrize("ref,want", [
+    # a manual whose volumes carry their own report numbers was listed once
+    # per number, so its own name failed as "in more than one catalog --
+    # gec_13; gec_13" (2026-11-10 review, core-09)
+    ("GEC-13", "gec_13"), ("gec13", "gec_13"),
+    # the report number on a volume's cover, with or without the agency
+    ("FHWA-NHI-16-027", "gec_13"), ("FHWA-NHI-16-028", "gec_13"),
+    ("NHI-16-028", "gec_13"), ("3-250-01", "ufc_pavement"),
+    # each GEC-12 volume's number (Vol II on its documentation page)
+    ("FHWA-NHI-16-009", "gec_12"), ("FHWA-NHI-16-010", "gec_12"),
+    ("NHI-16-064", "gec_12"),
+])
+def test_a_name_or_report_number_resolves_to_its_one_catalog(ref, want):
+    assert fdb.resolve_reference(ref) == want
+    number = fdb._ro_connect().execute(
+        "SELECT figure_number FROM figures WHERE reference = ? "
+        "GROUP BY UPPER(figure_number) HAVING COUNT(*) = 1 LIMIT 1",
+        (want,)).fetchone()[0]
+    # the result names the catalog it came from, whatever the caller wrote
+    assert fdb.figure_get(ref, number)["reference"] == want
+
+
+def test_a_gec12_vol2_figure_is_found_by_any_volume_number():
+    """Vol II figures are cited FHWA-NHI-16-010 (its documentation page),
+    and a caller who names the manual by Vol I's 16-009, as Vol II's cover
+    prints it, still finds them."""
+    for name in ("FHWA-NHI-16-009", "FHWA-NHI-16-010", "gec_12"):
+        row = fdb.figure_get(name, "9-1")
+        assert (row["reference"], row["reference_id"], row["volume"]) == (
+            "gec_12", "FHWA-NHI-16-010", 2)
+    assert fdb.figure_get("gec_12", "7-1")["reference_id"] == "FHWA-NHI-16-009"
+
+
+@pytest.mark.parametrize("loose", [
+    "FHWA",      # began fhwa_pavements and fhwa_soils_foundations
+    "gec_1",     # began gec_10 ... gec_14
+    "GEC",       # began eleven catalogs
+    "UFC",       # began every ufc_* catalog
+    "pile",      # a word in several titles
+    "Soil Mechanics",   # part of a title
+    "GEC-3",     # a manual the library does not hold
+])
+def test_a_loose_name_resolves_to_nothing(loose):
+    """2026-11-10 review, core-09: a name that only began a catalog id, or
+    sat inside a title, resolved to whichever catalog held the figure
+    number. It now names no catalog, and the caller is given the ids."""
+    with pytest.raises(KeyError) as e:
+        fdb.figure_get(loose, "5-2")
+    assert "Use a catalog id" in str(e.value) and "gec_10" in str(e.value)
+    for kwargs in ({}, {"max_chars": 14000}):
+        out = fdb.figure_search("pile", reference=loose, **kwargs)
+        err = out["error"] if isinstance(out, dict) else out[0]["error"]
+        assert "no figure catalog" in err and "dm7_2" in err
+
+
 def test_a_module_name_covering_two_catalogs_names_both():
     with pytest.raises(KeyError) as e:
         fdb.figure_get("dm7", "4-12")

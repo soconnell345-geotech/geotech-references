@@ -129,3 +129,20 @@ def test_dm7_full_eq_coverage_via_db():
     counts = {r["reference"]: r["n"] for r in rows}
     assert counts.get("dm7_1", 0) >= 400
     assert counts.get("dm7_2", 0) >= 400
+
+
+def test_a_manual_in_volumes_is_listed_once():
+    """2026-11-10 review, core-13: a reference whose volumes' files carry
+    titles of their own was listed once per title, each entry counting only
+    that title's chapters."""
+    inv = _retrieval_db.list_indexed_references()
+    refs = [r["reference"] for r in inv]
+    assert len(refs) == len(set(refs))
+    by_ref = {r["reference"]: r for r in inv}
+    gec13 = by_ref["gec_13"]
+    assert gec13["n_chapters"] == 10
+    title = "Ground Modification Methods Reference Manual \N{EN DASH} Volume"
+    assert gec13["reference_title"] == f"{title} I"
+    assert gec13["reference_titles"] == [f"{title} I", f"{title} II"]
+    assert by_ref["fhwa_soils_foundations"]["n_chapters"] == 12
+    assert "reference_titles" not in by_ref["dm7_1"]

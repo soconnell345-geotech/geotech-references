@@ -102,7 +102,8 @@ def _shortened(item: dict, fields, n: int) -> tuple[dict, bool]:
 def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
              more: bool = False, total=None,
              narrow: str = "narrow the query", fetch: str = "",
-             max_offset: int | None = None) -> dict:
+             max_offset: int | None = None,
+             more_text: str = "more match") -> dict:
     """Ranked ``hits`` cut down to fit ``max_chars`` JSON characters by
     their shape, never cut part-way (REF-26).
 
@@ -135,6 +136,11 @@ def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
         hits would start past it there is no ``next_offset``, and the note
         says the search goes no deeper (never offering a page it cannot
         give).
+    more_text : str
+        What the note says of the hits after these: "more match" for a
+        search whose hits hold every word; a search that relaxed to
+        synonyms or any one word says "more were found" (2026-11-10
+        review, core-05: "more match" called any-word hits matches).
 
     Returns
     -------
@@ -185,12 +191,12 @@ def fit_hits(hits, max_chars: int, *, text_fields=(), offset: int = 0,
                if left_out else "as many as asked for")
         if max_offset is not None and nxt > max_offset:
             notes.append(
-                f"Showing {shown}, best first ({why}); more match, but this "
+                f"Showing {shown}, best first ({why}); {more_text}, but this "
                 f"search pages no deeper than offset={max_offset}: {narrow}.")
         else:
             out["next_offset"] = nxt
             notes.append(
-                f"Showing {shown}, best first ({why}); more match. Call "
+                f"Showing {shown}, best first ({why}); {more_text}. Call "
                 f"again with offset={nxt} for the next ones, or {narrow}.")
     if shortened_to:
         fields = "/".join(f for f in text_fields)
@@ -255,7 +261,9 @@ def load_chapter(reference: str, chapter: int,
     reference : str
         Reference identifier (e.g., 'gec_12').
     chapter : int
-        Chapter number.
+        Chapter number, as :func:`list_chapters` gives it: an appendix or
+        a prologue is filed under a number of its own (UFC 3-220-20
+        prologue 0, GEC-12 Appendix D 22).
     max_chars : int, optional
         The largest result the caller can take, in JSON characters. A
         chapter longer than that is not returned whole: the result is its
@@ -272,17 +280,39 @@ def load_chapter(reference: str, chapter: int,
     Raises
     ------
     FileNotFoundError
-        If the chapter JSON file does not exist.
+        If the reference has no chapter of that number; the message names
+        the chapters it has.
     """
     ref_dir = _reference_dir(reference)
-    chapter_file = ref_dir / f"chapter{int(chapter):02d}.json"
-    if not chapter_file.exists():
-        raise FileNotFoundError(
-            f"Chapter {chapter} not found for reference '{reference}'. "
-            f"Expected file: {chapter_file}"
-        )
-    with open(chapter_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        chapter_file = ref_dir / f"chapter{int(chapter):02d}.json"
+    except (TypeError, ValueError):
+        chapter_file = None
+    data = None
+    if chapter_file is None or not chapter_file.exists():
+        # a file not named for its number (a prologue, an appendix, a
+        # Eurocode section file) is found by its 'chapter' field, the
+        # number list_chapters gives for it
+        numbers = []
+        for json_file in sorted(ref_dir.glob("*.json")):
+            with open(json_file, "r", encoding="utf-8") as f:
+                candidate = json.load(f)
+            numbers.append(candidate.get("chapter", 0))
+            if data is None and str(numbers[-1]) == str(chapter).strip():
+                data = candidate
+        if data is None:
+            # in numeric order, numbers before names: in file-name order a
+            # reference whose files are not all named chapterNN listed its
+            # chapters out of order (2026-11-10 review follow-up)
+            have = sorted(dict.fromkeys(numbers), key=lambda n: (
+                (0, n, "") if isinstance(n, (int, float))
+                and not isinstance(n, bool) else (1, 0, str(n))))
+            raise FileNotFoundError(
+                f"Chapter {chapter} not found for reference '{reference}'; "
+                "its chapters: " + ", ".join(str(n) for n in have))
+    else:
+        with open(chapter_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
     if max_chars is None:
         return data
     size = json_size(data)
@@ -525,55 +555,166 @@ def retrieve_section(reference: str, section_id: str,
     ------
     KeyError
         If the section_id is not found in any chapter; the message names
-        the nearest section above that number and up to eight sections
-        numbered under it, as :func:`_retrieval_db.reference_get` does.
+        the nearest section above that number, up to eight sections
+        numbered under it, and the sections that carry it under a part or
+        appendix letter ('2.3.5' -> 'II-2.3.5'), as
+        :func:`_retrieval_db.reference_get` does. Also if more than one
+        section of the reference holds that number: the message names
+        each, and neither is returned.
+    TypeError
+        If ``section_id`` is not text (a number loses its trailing zero:
+        7.10 arrives as 7.1, another section).
     """
+    require_text_id(section_id)
     ref_dir = _reference_dir(reference)
 
-    # Determine which chapter to search based on the section_id prefix.
-    # Handles dot form ('5.3.2'), UFC hyphen-then-dot form ('4-2.1'), and
-    # prologue ('P-1' / 'P.1' → prologue.json).
-    head = section_id.split(".")[0].split("-")[0]
-    chapter_file = None
-    if head.upper() == "P":
-        cand = ref_dir / "prologue.json"
-        if cand.exists():
-            chapter_file = cand
-    else:
-        try:
-            chapter_num = int(head)
-            cand = ref_dir / f"chapter{chapter_num:02d}.json"
-            if cand.exists():
-                chapter_file = cand
-        except ValueError:
-            pass
-
-    def find(json_file):
-        with open(json_file, "r", encoding="utf-8") as f:
-            entries = section_entries(json.load(f))
-        for i, e in enumerate(entries):
-            if e["section"].get("section_id") == section_id:
-                return section_view(entries, i, include_subsections)
-        return None
-
-    if chapter_file is not None:
-        found = find(chapter_file)
-        if found is not None:
-            return found
-
-    # If not found in expected chapter, search all chapters (and prologue)
+    # Every chapter file is read, so a number two sections hold is seen
+    # (2026-11-10 review, core-01: the file was guessed from the number's
+    # first part, so '8.2.7' of GEC-13 came from chapter 8 here and from
+    # chapter 1 in reference_get).
+    held = []
+    titles: dict[str, str] = {}
     for json_file in sorted(ref_dir.glob("*.json")):
-        found = find(json_file)
-        if found is not None:
-            return found
+        with open(json_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        entries = section_entries(data)
+        held += [(data.get("chapter"), entries, i)
+                 for i, e in enumerate(entries)
+                 if e["section"].get("section_id") == section_id]
+        for e in entries:
+            titles.setdefault(str(e["section"].get("section_id", "")),
+                              e["section"].get("title", ""))
+    if len(held) > 1:
+        raise KeyError(held_twice_note(reference, section_id, [
+            (chapter, entries[i]["section"].get("title", ""))
+            for chapter, entries, i in held]))
+    if held:
+        _, entries, i = held[0]
+        return with_printed_note(
+            section_view(entries, i, include_subsections), reference,
+            prefixed_matches(reference, section_id, titles))
 
     raise KeyError(
         f"Section '{section_id}' not found in reference '{reference}'"
-        + _nearby(ref_dir, section_id)
+        + _nearby(ref_dir, section_id, reference)
     )
 
 
-def _nearby(ref_dir: Path, section_id: str) -> str:
+#: References whose section ids put the chapter before the number the print
+#: gives the section, because each chapter restarts its numbering. GEC-13's
+#: chapter 1 prints "8.2.7 Step 7: Consider Project Risks" (p. 1-46), held as
+#: section_id 1.8.2.7, and "1.3 Focus and Scope" (p. 1-4), held as 1.1.3; a
+#: caller who types those printed numbers reaches chapter 8's section 8.2.7
+#: or nothing. Both fetches name the chapter's section (2026-11-10 review
+#: follow-up). Only chapter 1: its printed numbers run 1.0 to 9.0
+#: ("9.0 REFERENCES") and so read as the ids of other chapters.
+CHAPTER_PREFIXED = {"gec_13": (1,)}
+
+
+def prefixed_matches(reference: str, section_id: str,
+                     titles) -> list[tuple[str, str]]:
+    """``(section_id, title)`` of each section that the chapters of
+    :data:`CHAPTER_PREFIXED` print under the number ``section_id`` (held as
+    '<chapter>.<printed number>'); ``titles`` maps the reference's ids to
+    titles, or is a function returning the title of an id or None."""
+    lookup = titles.get if isinstance(titles, dict) else titles
+    out = []
+    for ch in CHAPTER_PREFIXED.get(reference, ()):
+        sid = f"{ch}.{section_id}"
+        title = lookup(sid) if sid != section_id else None
+        if title is not None:
+            out.append((sid, title))
+    return out
+
+
+def _printed_as(reference: str, prefixed, lead: str = "prints that number:"
+                ) -> str:
+    """'chapter 1 prints that number: section_id 1.1.3 Focus and Scope
+    (...)'; ``lead`` replaces 'prints that number:'."""
+    return "; ".join(
+        f"chapter {sid.split('.', 1)[0]} {lead} section_id {sid} {title}"
+        for sid, title in prefixed) + (
+        f" (a {reference} section_id is the chapter and the number printed "
+        "in it, since each chapter restarts its numbering)")
+
+
+def with_printed_note(view: dict, reference: str, prefixed) -> dict:
+    """A fetched section with a note naming the section a chapter of
+    :data:`CHAPTER_PREFIXED` prints under the same number, when there is
+    one ('8.2.7' of GEC-13 is chapter 8's section; chapter 1 prints its own
+    8.2.7, section_id 1.8.2.7)."""
+    if not prefixed:
+        return view
+    printed = prefixed[0][0].split(".", 1)[1]
+    sentence = _printed_as(reference, prefixed,
+                           f"prints {printed} too, as") + "."
+    sentence = sentence[0].upper() + sentence[1:]
+    out = dict(view)
+    out["note"] = (out.get("note", "") + " " + sentence).strip()
+    return out
+
+
+def require_text_id(section_id) -> None:
+    """Refuse a section number that is not text (both retrieval layers).
+
+    A number sent as a number loses what makes it a section number: 7.10
+    arrives as 7.1 and names another section (34 sections in 10 references
+    came back as their neighbour; 2026-11-10 review, core-08)."""
+    if not isinstance(section_id, str):
+        raise TypeError(
+            f"section_id must be text, not the {type(section_id).__name__} "
+            f"{section_id!r}: send it in quotes (\"7.10\", not 7.10). As a "
+            "number a section number loses its trailing zero (7.10 becomes "
+            "7.1) and names another section.")
+
+
+def held_twice_note(reference: str, section_id: str, places: list) -> str:
+    """What both retrieval layers say for a section number that more than
+    one section of a reference holds; ``places`` is ``(chapter, title)`` of
+    each. Neither is returned: which one was meant cannot be told."""
+    listed = "; ".join(f"chapter {chapter} '{title}'"
+                       for chapter, title in places)
+    return (f"section_id '{section_id}' is held by {len(places)} sections of "
+            f"reference '{reference}' ({listed}), so it does not say which "
+            "one is meant. Find the one you need with a search limited to "
+            "its chapter; the reference's files need distinct numbers "
+            "(packs check names the files).")
+
+
+def duplicate_section_ids(text_dir) -> dict[str, list[tuple]]:
+    """The section numbers more than one section of a reference holds:
+    ``{number: [(file name, chapter, title), ...]}`` over every chapter
+    file of ``text_dir``, at every level. Empty when every number is its
+    own, which the fetches rely on (they refuse a number held twice). A
+    file that cannot be read is left out; the index build names it."""
+    seen: dict[str, list[tuple]] = {}
+    for jf in sorted(Path(text_dir).glob("*.json")):
+        try:
+            data = json.loads(jf.read_text(encoding="utf-8"))
+            entries = section_entries(data)
+        except (OSError, ValueError, TypeError, AttributeError):
+            continue
+        for e in entries:
+            sec = e["section"]
+            seen.setdefault(str(sec.get("section_id", "")), []).append(
+                (jf.name, data.get("chapter"), sec.get("title", "")))
+    return {sid: places for sid, places in seen.items() if len(places) > 1}
+
+
+#: A section number carried under a lettered part or appendix
+#: ('II-2.3.5', 'A-1.2'), for a caller who asks by the bare number.
+_LETTERED_RE = r"^[A-Za-z]+-{}$"
+
+
+def lettered_matches(section_id: str, numbered) -> list[tuple[str, str]]:
+    """The ``(section_id, title)`` pairs of ``numbered`` whose number is
+    ``section_id`` under a lettered part or appendix: '2.3.5' ->
+    'II-2.3.5'; '1' -> 'A-1', 'B-1'. Up to eight."""
+    pat = re.compile(_LETTERED_RE.format(re.escape(str(section_id))))
+    return [(sid, title) for sid, title in numbered if pat.match(sid)][:8]
+
+
+def _nearby(ref_dir: Path, section_id: str, reference: str = "") -> str:
     """For a section number that is not there: the nearest section above
     it and up to eight sections numbered under it (:func:`nearby_note`)."""
     numbered: list[tuple[str, str]] = []
@@ -590,15 +731,27 @@ def _nearby(ref_dir: Path, section_id: str) -> str:
     below = [(sid, title) for sid, title in numbered
              if sid.startswith(f"{section_id}.")
              or sid.startswith(f"{section_id}-")][:8]
-    return nearby_note(above, below)
+    return nearby_note(above, below, lettered_matches(section_id, numbered),
+                       prefixed_matches(reference, section_id, titles),
+                       reference)
 
 
-def nearby_note(above, below) -> str:
+def nearby_note(above, below, lettered=(), prefixed=(),
+                reference: str = "") -> str:
     """``'; nearest section above it: 7.2.1 Title; sections numbered under
     it: 7.2.1.3.1 Title; ...'`` from ``above`` (a ``(section_id, title)``
-    or None) and ``below`` (a list of them); ``''`` when both are empty.
-    The wording of a missing section number in both retrieval layers."""
+    or None) and ``below`` (a list of them); ``''`` when all are empty.
+    ``lettered`` (:func:`lettered_matches`) adds the sections that carry
+    the number under a lettered part or appendix, and ``prefixed``
+    (:func:`prefixed_matches`) the section a chapter of ``reference``
+    prints under that number ('1.3' of GEC-13 -> 1.1.3), first. The
+    wording of a missing section number in both retrieval layers."""
     parts = []
+    if prefixed:
+        parts.append(_printed_as(reference, prefixed))
+    if lettered:
+        parts.append("that number under a part or appendix letter: "
+                     + "; ".join(f"{sid} {title}" for sid, title in lettered))
     if above:
         parts.append(f"nearest section above it: {above[0]} {above[1]}")
     if below:
@@ -622,10 +775,19 @@ def search_sections(reference: str, query: str, limit: int | None = None,
     reference : str
         Reference identifier (e.g., 'gec_12').
     query : str
-        Search query (case-insensitive). Multiple words are AND-matched.
+        Search query (case-insensitive). Multiple words are AND-matched,
+        each found anywhere in a section's text, inside a longer word too
+        ("Ka" in "shrinkage"). When no section holds every word, the
+        result is the ranked search of this reference instead
+        (:func:`_retrieval_db.reference_search`: words by their stem, then
+        synonyms, then any one word), each hit marked ``match`` ("all
+        words", "synonyms", or "any word" with ``lacks``, the words it
+        does not hold); before the 2026-11-10 review (core-07) it was an
+        empty list.
     limit : int, optional
         At most this many matches. Default None: every match ("pile" in
-        GEC-12 is over 300,000 characters of sections).
+        GEC-12 is over 300,000 characters of sections); the ranked
+        fallback gives :data:`FALLBACK_LIMIT` (10), at most 50.
     offset : int, optional
         Skip this many of the best matches first (the next page).
     max_chars : int, optional
@@ -635,7 +797,10 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         ``under`` and a ``snippet`` of its text around the first query
         word, never its whole text (:func:`retrieve_section` fetches that);
         as many as fit, best first, with ``total_hits`` and, when some are
-        not shown, ``next_offset`` and a ``note``.
+        not shown, ``next_offset`` and a ``note``. The ranked fallback's
+        dict has the hits' ``match`` / ``lacks``, ``matched`` and
+        ``words_not_found`` where some hit does not hold every word, a
+        ``note`` saying where the hits came from, and no ``total_hits``.
 
     Returns
     -------
@@ -649,6 +814,7 @@ def search_sections(reference: str, query: str, limit: int | None = None,
     query_lower = query.lower()
     query_words = query_lower.split()
     results = []
+    files = []
 
     for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
@@ -657,6 +823,7 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         ch_num = chapter_data.get("chapter", 0)
         ch_title = chapter_data.get("chapter_title", "")
         entries = section_entries(chapter_data)
+        files.append((ch_num, ch_title, entries))
 
         for i, entry in enumerate(entries):
             score = _score_section(entry["section"], query_words)
@@ -677,6 +844,11 @@ def search_sections(reference: str, query: str, limit: int | None = None,
 
     offset = max(0, int(offset or 0))
     total = len(results)
+    if total == 0 and query_words:
+        # no section holds every word: the ranked search of this reference,
+        # each hit saying how it matched (2026-11-10 review, core-07)
+        return _ranked_fallback(reference, query, query_words, files, limit,
+                                offset, max_chars)
     if limit is not None or offset:
         end = None if limit is None else offset + max(1, int(limit))
         results = results[offset:end]
@@ -688,6 +860,97 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         more=offset + len(hits) < total, total=total,
         narrow="narrow the query (more, or more specific, words)",
         fetch="retrieve_section(section_id) returns a section's whole text")
+
+
+#: How many hits :func:`search_sections`' ranked fallback gives when the
+#: call names no ``limit`` (an any-word search matches most of a
+#: reference, where "every match" of an every-word search is a few).
+FALLBACK_LIMIT = 10
+
+#: A size no ranked search reaches, to read its whole fitted dict.
+_NO_LIMIT_CHARS = 10 ** 9
+
+
+def _ranked_fallback(reference: str, query: str, query_words: list,
+                     files: list, limit, offset: int, max_chars):
+    """:func:`search_sections` when no section holds every word: the hits
+    of :func:`_retrieval_db.reference_search` for this reference, in its
+    order, each in ``search_sections``' own shape and marked ``match``
+    ("all words" -- every word by its stem, where the parts of words
+    ``search_sections`` matches failed --, "synonyms" or "any word" with
+    ``lacks``). With ``max_chars`` the dict also has ``matched``,
+    ``words_not_found`` and a ``note``, and no ``total_hits`` (an any-word
+    search does not count its matches). A reference the text index does
+    not hold gives what it gave before: ``[]``, or with ``max_chars`` no
+    hits and the index's reason in the ``note``."""
+    from . import _retrieval_db
+    n = FALLBACK_LIMIT if limit is None else max(1, int(limit))
+    ranked = _retrieval_db.reference_search(
+        query, reference=reference, limit=min(n, _retrieval_db._MAX_LIMIT),
+        offset=offset, max_chars=_NO_LIMIT_CHARS)
+    if "error" in ranked:
+        return [] if max_chars is None else {
+            "hits": [], "shown": 0, "total_hits": 0, "note": (
+                "No section holds every word, and the ranked search could "
+                f"not be run: {ranked['error']}")}
+    where = {}
+    for ch_num, ch_title, entries in files:
+        for i, e in enumerate(entries):
+            where.setdefault((str(ch_num), e["section"].get("section_id")),
+                             (ch_num, ch_title, entries, i))
+    sections, marks = [], []
+    for hit in ranked["hits"]:
+        place = where.get((str(hit.get("chapter")), hit.get("section_id")))
+        if place is None:
+            continue
+        ch_num, ch_title, entries, i = place
+        section = section_view(entries, i)
+        section.pop("children", None)
+        section["chapter"] = ch_num
+        section["chapter_title"] = ch_title
+        mark = {k: hit[k] for k in ("match", "lacks", "not_as_phrase")
+                if k in hit}
+        section["match"] = mark.get("match", _retrieval_db.MATCH_ALL_WORDS)
+        for k in ("lacks", "not_as_phrase"):
+            if k in mark:
+                section[k] = mark[k]
+        sections.append(section)
+        if "match" in mark:
+            marks.append(mark)
+    if max_chars is None:
+        return sections
+    if not ranked["hits"]:
+        out = {"hits": [], "shown": 0, "total_hits": 0}
+        out.update({k: ranked[k] for k in ("note", "words_not_found")
+                    if k in ranked})
+        return out
+    hits = []
+    for s in sections:
+        h = _search_hit(s, query_words)
+        h["match"] = s["match"]
+        for k in ("lacks", "not_as_phrase"):
+            if k in s:
+                h[k] = s[k]
+        hits.append(h)
+    # nothing of the ranked page was left out (no size limit), so it says
+    # more were found by offering the next page, or by saying it pages no
+    # deeper
+    more = ("next_offset" in ranked
+            or "pages no deeper" in ranked.get("note", ""))
+    out = fit_hits(
+        hits, max_chars, text_fields=("snippet",), offset=offset,
+        more=more, max_offset=_retrieval_db._MAX_OFFSET,
+        narrow="narrow the query (more, or more specific, words)",
+        fetch="retrieve_section(section_id) returns a section's whole text",
+        more_text="more were found")
+    lead = ("No section holds every word as typed (this search matches "
+            "parts of words), so these hits are from the ranked search of "
+            "the reference (reference_search), and each says how it "
+            "matched in 'match'.")
+    out["note"] = (lead + " " + out.get("note", "")).strip()
+    return _retrieval_db.with_match_summary(
+        out, _retrieval_db.match_summary(
+            marks, ranked.get("words_not_found", [])))
 
 
 def _search_hit(section: dict, query_words: list[str]) -> dict:

@@ -426,7 +426,9 @@ def _builtin_search_works():
 def test_a_bad_pack_file_is_skipped_and_named(tmp_path, monkeypatch, kind):
     _bad_and_good_packs(tmp_path, monkeypatch, kind)
     _builtin_search_works()
-    refs = {r["reference"] for r in _retrieval_db.list_indexed_references()}
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    refs = {k for k, r in listed.items() if r["n_sections"]}
     figs = {r["reference"] for r in _figures_db.list_indexed_figures()}
     assert "local_good" in refs and "local_good" in figs
     # the bad file alone is left out; the pack's other file still indexes
@@ -437,6 +439,9 @@ def test_a_bad_pack_file_is_skipped_and_named(tmp_path, monkeypatch, kind):
             else "'description' is a list, not text or a number")
     assert len(named) == 1 and what in named[0] and named[0].endswith(
         "; skipped")
+    # and the listing says so (2026-11-10 review, core-10)
+    assert listed["local_bad"]["problems"] == named
+    assert "problems" not in listed["local_good"]
 
 
 @pytest.mark.parametrize("kind", ["text", "catalog"])
@@ -450,7 +455,7 @@ def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
     _builtin_search_works()
     if kind == "text":  # section 1.1 went in before 1.2 failed
         refs = {r["reference"] for r in
-                _retrieval_db.list_indexed_references()}
+                _retrieval_db.list_indexed_references() if r["n_sections"]}
         assert "local_good" in refs and "local_bad" not in refs
     else:  # figure 1-1 went in before 1-2 failed
         assert _figures_db.figure_get("local_good", "1-2")
@@ -459,6 +464,76 @@ def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
     named = [p for p in _packs.problems() if "local_bad" in p]
     assert len(named) == 1 and "could not be indexed (ProgrammingError" \
         in named[0]
+
+
+def test_a_number_two_sections_hold_is_refused_by_both_fetches(
+        tmp_path, monkeypatch):
+    """2026-11-10 review, core-01: the first one indexed used to come back.
+    Neither does now, and the message names both."""
+    folder = make_pack(tmp_path / "packs", pdf=False)
+    second = _chapter(chapter=2)
+    second["chapter_title"] = "Zorblite Walls"
+    second["sections"] = [_section(
+        "1.2", "Zorblite Wall Drainage",
+        "[p. 2-1] Made-up text: a zorblite wall drains through its face.")]
+    _write_json(folder / "text" / "chapter02.json", second)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    for fetch in (_retrieval_db.reference_get, _retrieval.retrieve_section):
+        with pytest.raises(KeyError) as e:
+            fetch(PID, "1.2")
+        msg = str(e.value)
+        assert "held by 2 sections" in msg
+        assert "chapter 1 'Zorblite Settlement'" in msg
+        assert "chapter 2 'Zorblite Wall Drainage'" in msg
+        # a number only one section holds still comes back
+        assert fetch(PID, "1.1")["title"] == "Scope"
+
+
+def test_a_skipped_pack_is_listed_and_a_search_of_it_says_why(
+        tmp_path, monkeypatch):
+    """2026-11-10 review, core-10: a pack the index skipped was left out of
+    list_indexed_references without a word, and a search naming it was
+    told only that no such reference exists."""
+    make_pack(tmp_path / "packs", "local_good", pdf=False)
+    make_pack(tmp_path / "packs", "noprefix", pdf=False)
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    skipped = listed["noprefix"]
+    assert skipped["n_sections"] == 0 and skipped["n_chapters"] == 0
+    assert len(skipped["problems"]) == 1
+    assert "'noprefix' does not start with 'local_'" in skipped["problems"][0]
+    assert "problems" not in listed["local_good"]
+    assert "problems" not in listed["gec_12"]
+    for search in (_retrieval_db.reference_search, _figures_db.figure_search):
+        out = search(TERM, reference="noprefix", max_chars=14_000)
+        assert "the index skipped it" in out["error"]
+        assert "does not start with 'local_'" in out["error"]
+    assert listed["local_good"]["n_sections"] == 3
+
+
+@pytest.mark.parametrize("broken", ["builtin id", "unreadable"])
+def test_a_folder_named_as_a_built_in_is_not_filed_under_it(
+        tmp_path, monkeypatch, broken):
+    """2026-11-10 review follow-up: a skipped pack's problems were keyed by
+    its folder's name, so a folder named gec_12 put them on the built-in
+    gec_12's listing."""
+    folder = make_pack(tmp_path / "packs", "gec_12", pdf=False)
+    if broken == "builtin id":
+        _write_json(folder / "pack.json", dict(_pack_json(), id="gec_12"))
+    else:
+        (folder / "pack.json").write_text("{not json", encoding="utf-8")
+    monkeypatch.setenv(_packs.PACKS_ENV, str(tmp_path / "packs"))
+    _private_db(monkeypatch, tmp_path)
+    by_pack = _packs.problems_by_pack()
+    assert "gec_12" not in by_pack
+    assert list(by_pack) == [str(folder)]
+    listed = {r["reference"]: r
+              for r in _retrieval_db.list_indexed_references()}
+    assert "problems" not in listed["gec_12"]
+    assert listed["gec_12"]["n_sections"] > 0
 
 
 # ---------------------------------------------------------------------------
@@ -504,6 +579,9 @@ def test_check_catches_text_errors(tmp_path):
     _write_json(folder / "text" / "chapter01.json", _chapter())
     _write_json(folder / "text" / "chapter02.json", _chapter())
     assert "chapter 1 repeats" in _errors(folder)
+    # the two files hold the same section numbers (2026-11-10 review, core-01)
+    assert ("section 1.1 is in text/chapter01.json and text/chapter02.json"
+            in _errors(folder))
     shutil.rmtree(folder / "text")
     assert "no chapter files" in _errors(folder)
 

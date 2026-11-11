@@ -140,7 +140,8 @@ def _load_registry():
         Parameters
         ----------
         section_id : str
-            Section identifier (e.g., '2.3.1', '1.3').
+            Section identifier, '<chapter>.<printed number>' (e.g., '2.3.1';
+            chapter 1's printed 1.3 is '1.1.3').
 
         Returns
         -------

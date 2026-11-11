@@ -38,8 +38,11 @@ def _is_container(sid: str, sections: list, index: int) -> bool:
 #: annex or appendix as printed: its letter alone for its own text ('A'), with
 #: its clause numbers ('D.3', 'X.4.11.2'), or in the UFC hyphen form
 #: ('B-3.4', UFC 3-220-20 Appendix B); a lettered part of a section split
-#: to fit the reference tools ('D.15.a', GEC-12 Appendix D).
-SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]([-.][0-9]+)*(\.[a-z])?)$")
+#: to fit the reference tools ('D.15.a', GEC-12 Appendix D); and, where the
+#: print restarts its chapter numbers in each Part, the Part's numeral before
+#: the number ('I-1.1' and 'II-1.1', AASHTO 1993 Guide; 'III' for a Part's
+#: own text), so that no two sections of a reference share a number.
+SECTION_ID = re.compile(r"^([0-9P]+([-.][0-9]+)*(\.[a-z])?|[A-Z]+([-.][0-9]+)*(\.[a-z])?)$")
 
 #: Fields every section carries. ``summary`` is not among them: it is the
 #: short text a ``reference_search`` hit shows, written for DM7 and some

@@ -547,8 +547,12 @@ class TestSearchSections:
         assert len(results) > 0
 
     def test_search_no_results(self):
+        """Nonsense: no section holds every word, so the hits are the
+        ranked search's, each marked as holding only some of the words
+        (2026-11-10 review, core-07; it was an empty list)."""
         results = search_sections("ufc_concrete_practice", "xyzzy_nonexistent_term_abc")
-        assert results == []
+        assert all(r["match"] == "any word" and "xyzzy" in r["lacks"]
+                   for r in results)
 
 
 class TestListChapters:

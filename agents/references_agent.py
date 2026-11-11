@@ -84,7 +84,12 @@ def _build_catalog() -> dict:
         pkg_dir = Path(pkg.__file__).parent
         submodules = sorted(m.name for m in pkgutil.iter_modules(pkg.__path__)
                             if not m.ispkg and not m.name.startswith("_"))
-        texts = sorted((pkg_dir / "text").glob("*.json"))
+        # a chapter file first: an appendix printed in a volume of its own
+        # carries that volume's number (GEC-12 Appendix D, FHWA-NHI-16-064;
+        # 2026-11-10 review, core-13) and is not the manual's citation
+        texts = sorted((pkg_dir / "text").glob("*.json"),
+                       key=lambda p: (not p.name.startswith("chapter"),
+                                      p.name))
         citation = ""
         if texts:
             with open(texts[0], encoding="utf-8") as f:
