@@ -22,16 +22,25 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   raises ValueError outside what the print covers. A limit printed as part
   of a relation is applied as printed (USACE dc <= 1.5, AASHTO dq <= 1.4,
   Pa,d >= 0, C1 >= 0.5): the limited value comes back with the formula's
-  value beside it and `limit_governs`; an input the page's own conditions
-  exclude (beta > phi' in Table 5-3, sigma'p < sigma'zo in Eqs. 7-7 to
-  7-9) is refused, the message naming the condition and the page. Eqs.
-  5-34/5-35 keep the printed 2c'd without the square root of K (noted);
-  Eqs. 7-7 to 7-10 return feet and inches, as the examples convert. The
-  worked examples' slips (Example C-7c's first term, Example C-7d's layer
-  7) are kept as printed in the text with a note. The tests run Appendix B
-  Examples B-1 to B-7 and Appendix C Examples C-1 and C-3 to C-7. The
-  equations of Chapters 3, 4, 8 and 9 and the charts are text and
-  catalog only.
+  value beside it and `limit_governs`. sigma'p < sigma'zo, outside the
+  conditions printed beside Eqs. 7-7 to 7-9 (pp. 159-160), is refused, the
+  message naming them and the page. Some refusals rest on no printed
+  condition, and their messages and docstrings say they are the library's
+  reading: beta > phi' (Table 5-3, USACE), tan(beta) > 1 (Table 5-3,
+  AASHTO), t < 3 years (Eq. 7-34; p. 178 says only that R3 covers the
+  first 3 years), a void ratio that rises (Eqs. 7-5, 7-6, 7-46) and q <
+  sigma'zD in the settlement equations. A correction factor of Tables 5-3
+  and 5-4 that computes negative is refused with its value, one of exactly
+  zero returned with a note; Eqs. 6-5 and 6-6 return a negative net
+  pressure flagged `net_negative`. Eq. 7-43 returns Cv in in^2/day and
+  ft^2/day; Eq. 7-42 takes ft^2/day (`cv_ft2_per_day`). Eqs. 5-34/5-35
+  keep the printed 2c'd without the square root of K (noted); Eqs. 7-7 to
+  7-10 return feet and inches, as the examples convert. The worked
+  examples' slips (in Examples B-4, B-6, C-2, C-3, C-4, C-6 and C-7) are
+  kept as printed in the text, each with a note giving what the inputs
+  give, and the tests pin what the inputs give. The tests run Appendix B
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
 - Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
   are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
   parents in both retrieval layers; the existing ids give the same
