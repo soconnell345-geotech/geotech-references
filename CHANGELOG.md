@@ -349,6 +349,22 @@ Table 5-22 has eleven soil rows (not seven), Figure 4-54 note 3 (moments
 Seven `implemented_in` links now name the equation's own function. Tests:
 `tests/test_dm7_2_text_equations.py`.
 
+Also in this build:
+- Eq. 5-7 `corner_bearing_pressure` uses |eB| and |eL| as printed, so q1
+  is the maximum corner pressure whatever signs are passed. It now returns
+  a dict (`q1` to `q4` and a `note` that the magnitudes were used) instead
+  of a 4-tuple. q_gross 10, eB -0.5, eL -1.0, B 6, L 12: q1 0 -> 20 (it
+  was the minimum), q4 20 -> 0.
+- `dry_unit_weight_from_saturation`: the docstring's first formula is the
+  printed Eq. 3-2, gamma_w S / (w/100 + S/Gs); the computation is unchanged.
+- Chapter text: the 5-3.6.2 applicability gives the printed H/B limits
+  (strong layer below 0.7B, weak layer below 3B, no effect); the 5-6.2.2
+  floor-slab key point keeps its printed condition (where heave of the slab
+  is not a critical concern); 7-4.2.4 keeps the printed "beta = 4.26 (Pu =
+  0.0001)" and adds a note, marked as not printed, that a standard normal
+  distribution gives beta 3.72 at 1e-4 and 4.26 at about 1e-5. Eq. 6-79
+  stays uncoded (`implemented_in` null).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
