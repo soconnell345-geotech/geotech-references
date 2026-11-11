@@ -21,6 +21,13 @@ _PA_KPA = 101.325  # atmospheric pressure, kPa
 # Figure 10-6: Alpha Adhesion Factor (Chen et al., 2011)
 # ============================================================================
 
+# Ends of the Eq. 10-18 curve drawn in Figure 10-6 (p. 10-17, PDF page 297),
+# read at 300 dpi (frame x 0-6 at px 505-1649, alpha 0-1.2 at px 1237-77):
+# first dash at px x 552, y 282 -> su/pa 0.247-0.252, alpha 0.988; last dash
+# ends at px x 1459-1460 -> su/pa 5.00, alpha 0.339 (Eq. 10-18: 0.334).
+_FIG_10_6_RATIO = (0.25, 5.0)
+
+
 def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     """Adhesion factor alpha (dimensionless) for drilled shaft side resistance in cohesive soil from the CIUC-equivalent undrained strength in kPa, GEC-10 Eq. 10-18 (FHWA-NHI-18-024, p. 10-16), the regression curve of Figure 10-6 (p. 10-17; Chen et al. 2011).
 
@@ -38,10 +45,12 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     Parameters
     ----------
     su_ciuc_kpa : float
-        CIUC-equivalent undrained shear strength in kPa.  Must be positive.
-        Figure 10-6 draws the curve from su(CIUC)/pa of about 0.25 to 5
-        (about 25 to 500 kPa); outside that the expression is evaluated
-        as written, not refused.
+        CIUC-equivalent undrained shear strength in kPa.  Figure 10-6
+        (p. 10-17) draws the curve from su(CIUC)/pa = 0.25 (alpha 0.98) to
+        5.0 (alpha 0.33), read at 300 dpi; that is 25.3 to 506.6 kPa.
+        Outside it the call is refused: Eq. 10-18 prints no range, and
+        below the curve's start alpha passes the figure's 1.0 (su/pa 0.1
+        gives 2.0).
 
     Returns
     -------
@@ -51,13 +60,18 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     Raises
     ------
     ValueError
-        If su_ciuc_kpa is not positive.
+        If su_ciuc_kpa / pa is outside 0.25 to 5.0.
     """
-    if su_ciuc_kpa <= 0:
+    ratio = su_ciuc_kpa / _PA_KPA
+    if not (_FIG_10_6_RATIO[0] <= ratio <= _FIG_10_6_RATIO[1]):
         raise ValueError(
-            f"su_ciuc_kpa must be positive, got {su_ciuc_kpa}"
-        )
-    return 0.30 + 0.17 / (su_ciuc_kpa / _PA_KPA)
+            f"su_ciuc_kpa = {su_ciuc_kpa} gives su(CIUC)/pa = {ratio:.3g}, "
+            "outside the curve of GEC-10 Figure 10-6 (p. 10-17), drawn from "
+            f"su(CIUC)/pa {_FIG_10_6_RATIO[0]} to {_FIG_10_6_RATIO[1]} "
+            f"({_FIG_10_6_RATIO[0] * _PA_KPA:.1f} to "
+            f"{_FIG_10_6_RATIO[1] * _PA_KPA:.1f} kPa). Eq. 10-18 prints no "
+            "range; the figure gives no alpha here.")
+    return 0.30 + 0.17 / ratio
 
 
 # ============================================================================
@@ -153,8 +167,19 @@ def su_uc_to_ciuc(su_uc_kpa: float, sigma_v0_kpa: float) -> float:
 # Equation 10-22 + Table 10-3: caving / fractured rock
 # ============================================================================
 
+# pp. 10-21 to 10-22 (PDF pages 301-302), as printed (the sentence runs over
+# the page break after "Kulhawy and"); lead's ruling G2 (2026-11-10).
+_EQ_10_21_C_PRINT_NOTE = (
+    "pp. 10-21 to 10-22: \"Regression analysis of the available load test "
+    "data by Kulhawy and Prakoso (2007) suggests a mean value of C = 1.9 with "
+    "use of Equation 10-22 for roughened sockets. It is strongly recommended that "
+    "load tests or local experience be used to verify values of C greater "
+    "than 1.0.\" The page names Equation 10-22, but C appears only in "
+    "Equation 10-21; the library applies C to Eq. 10-21.")
+
+
 def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
-    """Unit side resistance in a rock socket — normal conditions (Equation 10-21).
+    """Unit side resistance f_SN (kPa and MPa) of a rock socket, GEC-10 Eq. 10-21 (FHWA-NHI-18-024, p. 10-20), f_SN/pa = C sqrt(qu/pa), C = 1.0 by default. For roughened sockets pp. 10-21 to 10-22 print: "Regression analysis of the available load test data by Kulhawy and Prakoso (2007) suggests a mean value of C = 1.9 with use of Equation 10-22 for roughened sockets. It is strongly recommended that load tests or local experience be used to verify values of C greater than 1.0." The page names Equation 10-22, but C appears only in Equation 10-21; the library applies C here (lead's ruling G2, 2026-11-10).
 
     For sockets with nominally clean sidewalls constructed with conventional
     equipment:
@@ -162,14 +187,16 @@ def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
         f_SN / pa = C × sqrt(qu / pa)
 
     where pa = 101.325 kPa.  The mean regression coefficient from Kulhawy et al.
-    (2005) is C = 1.0, recommended for normal ("clean") sockets.  For
-    artificially roughened sockets, C = 1.9 may be used with load test
-    verification (Kulhawy and Prakoso, 2007).
+    (2005) is C = 1.0, recommended for "normal" rock sockets (p. 10-20).
+    Every result carries the pp. 10-21 to 10-22 sentences as
+    ``print_note``; with C above 1.0 it also carries the recommendation to
+    verify C by load tests or local experience as ``note``.
 
     Resistance factor: Table 8-4 (p. 8-14) prints 0.50 (compression) and
     0.40 (uplift) for rock side resistance by Eq. 10-21; the text of p.
     10-21 says 0.55 for Eqs. 10-21 and 10-22 "as presented in Table 8-4".
-    Both are printed; they are not reconciled here.
+    ``table_8_4_resistance_factor('side_rock_compression')`` returns the
+    table's 0.50 with a ``print_note`` (lead's ruling G1).
 
     Parameters
     ----------
@@ -189,7 +216,8 @@ def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
     -------
     dict
         {'C': float, 'qu_kpa': float, 'qu_mpa': float,
-         'f_sn_kpa': float, 'f_sn_mpa': float, 'condition': str}
+         'f_sn_kpa': float, 'f_sn_mpa': float, 'condition': str,
+         'print_note': str}, plus 'note' when C > 1.0.
 
     Raises
     ------
@@ -209,14 +237,21 @@ def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
     else:
         condition = "custom"
 
-    return {
+    out = {
         "C": C,
         "qu_kpa": qu_kpa,
         "qu_mpa": round(qu_kpa / 1000, 4),
         "f_sn_kpa": round(f_sn_kpa, 2),
         "f_sn_mpa": round(f_sn_kpa / 1000, 5),
         "condition": condition,
+        "print_note": _EQ_10_21_C_PRINT_NOTE,
     }
+    if C > 1.0:
+        out["note"] = (
+            f"C = {C} is above 1.0. p. 10-22: \"It is strongly recommended "
+            "that load tests or local experience be used to verify values of "
+            "C greater than 1.0.\"")
+    return out
 
 
 # Table 10-3 data: αE (joint modification factor) for Equation 10-22
@@ -240,7 +275,8 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
 
     Resistance factor: Table 8-4 (p. 8-14) lists rock side resistance
     under Eq. 10-21 only (0.50 / 0.40); the text of p. 10-21 says 0.55 for
-    Eqs. 10-21 and 10-22. Both are printed; they are not reconciled here.
+    Eqs. 10-21 and 10-22. ``table_8_4_resistance_factor`` returns the
+    table's 0.50 with a ``print_note`` (lead's ruling G1).
 
     Parameters
     ----------

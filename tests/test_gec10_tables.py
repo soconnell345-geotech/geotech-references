@@ -48,6 +48,16 @@ class TestTable84ResistanceFactor:
         result = table_8_4_resistance_factor("side_rock_compression")
         assert result["phi"] == 0.50
 
+    def test_side_rock_compression_names_the_text_0_55(self):
+        """Table 8-4, p. 8-14 (PDF page 222), prints 0.50 for rock side
+        resistance by Eq. 10-21; the text of p. 10-21 (PDF page 301) says
+        0.55 "as presented in Table 8-4". The table's value is returned with
+        a print_note (lead's ruling G1)."""
+        r = table_8_4_resistance_factor("side_rock_compression")
+        assert r["phi"] == 0.50
+        assert "phi = 0.55" in r["print_note"]
+        assert "prints 0.50; the table's value is returned" in r["print_note"]
+
     def test_side_rock_uplift(self):
         result = table_8_4_resistance_factor("side_rock_uplift")
         assert result["phi"] == 0.40

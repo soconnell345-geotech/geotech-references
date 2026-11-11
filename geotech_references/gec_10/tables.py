@@ -54,6 +54,13 @@ _TABLE_8_4 = {
         "phi": 0.50,
         "condition": "Rock, Eq. 10-21, compression (without load test)",
         "category": "compression_side",
+        # Lead's ruling G1 (2026-11-10): the table's value is returned.
+        "print_note": (
+            "The text of p. 10-21 says: 'The resistance factor recommended "
+            "with use of Equations 10-21 and 10-22 is phi = 0.55 based on "
+            "fitting to ASD with a factor of safety FS = 2.5, as presented in "
+            "Table 8-4.' Table 8-4 (p. 8-14) prints 0.50; the table's value "
+            "is returned."),
     },
     "side_rock_uplift": {
         "phi": 0.40,
@@ -199,7 +206,10 @@ def table_8_4_resistance_factor(method: str) -> dict:
     -------
     dict
         {'method': str, 'phi': float, 'condition': str, 'category': str};
-        'structural_flexure' adds 'phi_max' (printed 0.75 to 0.90).
+        'structural_flexure' adds 'phi_max' (printed 0.75 to 0.90);
+        'side_rock_compression' adds 'print_note' (the text of p. 10-21
+        says 0.55 "as presented in Table 8-4"; the table's 0.50 is
+        returned).
 
     Raises
     ------

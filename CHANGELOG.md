@@ -185,6 +185,11 @@ rows instead of being answered from the first row that contains the words.
     is a dict with `F_pga`, a `print_note` naming both headings and the
     reference (it was a bare number); site class F is refused with the
     table's note (1), a site-specific analysis (gec-29).
+  - `table_4_10_site_coefficient_fv` (Table 4.10, p. 95): values and
+    headings unchanged (they match GEC-12 Table 7-29). Site class F is
+    refused with the table's note (1), "A site-specific dynamic site
+    response analysis must be performed in these cases." (it said
+    "Unknown site_class"); Table 4.9's refusal quotes the same note.
 - **GEC-10 drilled shafts (FHWA-NHI-18-024, 2018).**
   - `table_8_4_resistance_factor` (Table 8-4, p. 8-14): a key names one
     printed row. "side" returned cohesionless compression 0.55 and
@@ -220,9 +225,20 @@ rows instead of being answered from the first row that contains the words.
     `table_10_2_nc_base_clay` docstrings quote the print: the resistance
     factor for rock side resistance is 0.50 in Table 8-4 and 0.55 in the
     text of p. 10-21 (both printed, not reconciled); qu should not exceed
-    the shaft concrete's strength (p. 10-21, not checked); Figure 10-6
-    draws its curve from su/pa of about 0.25 to 5; Eq. 10-20 is in D, the
-    depth of embedment. No value changes (gec-43).
+    the shaft concrete's strength (p. 10-21, not checked); Eq. 10-20 is in
+    D, the depth of embedment (gec-43).
+  - Lead's rulings G1-G3 on the review's three GEC-10 questions:
+    `table_8_4_resistance_factor('side_rock_compression')` returns the
+    table's 0.50 with a `print_note` quoting p. 10-21's 0.55 "as
+    presented in Table 8-4" (G1). `equation_10_21_rock_socket_side`
+    quotes pp. 10-21 to 10-22, "Kulhawy and Prakoso (2007) suggests a
+    mean value of C = 1.9 with use of Equation 10-22 for roughened
+    sockets", and says C appears only in Eq. 10-21; with C above 1.0 the
+    result carries the page's recommendation to verify C by load tests or
+    local experience (G2; values unchanged). `figure_10_6_alpha_clay`
+    (Eq. 10-18, Figure 10-6, p. 10-17) refuses su(CIUC)/pa outside the
+    drawn curve, 0.25 to 5.0 (25.3 to 506.6 kPa), read at 300 dpi; su/pa
+    0.1 returned alpha 2.0 and su 10,000 kPa 0.302 (G3).
 
 - **GEC-11 MSE walls (FHWA-NHI-10-024 Vol I).**
   - `table_2_1_min_reinforcement_length` (Table 2-1, p. 2-43): the three

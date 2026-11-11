@@ -390,7 +390,8 @@ class TestTable49:
 
     def test_unknown_class_raises(self):
         """Site class F: note (1), a site-specific analysis."""
-        with pytest.raises(ValueError, match="site-specific"):
+        with pytest.raises(ValueError, match="site-specific dynamic site "
+                           "response analysis must be performed in these cases"):
             table_4_9_site_coefficient_fpga("F", 0.5)
         with pytest.raises(ValueError):
             table_4_9_site_coefficient_fpga("G", 0.5)
@@ -418,6 +419,14 @@ class TestTable410:
 
     def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
+            table_4_10_site_coefficient_fv("F", 0.3)
+
+    def test_site_class_f_quotes_note_1(self):
+        """GEC-7 Table 4.10, p. 95 (PDF page 135), site class F row, note
+        (1): "A site-specific dynamic site response analysis must be
+        performed in these cases." The refusal said "Unknown site_class"."""
+        with pytest.raises(ValueError, match="Table 4.10 .p. 95. gives no F_v"
+                           ".*must be performed in these cases"):
             table_4_10_site_coefficient_fv("F", 0.3)
 
 

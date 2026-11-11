@@ -820,6 +820,12 @@ _TABLE_4_9_NOTE = (
 )
 
 
+# Note (1) of Tables 4.9 (p. 94) and 4.10 (p. 95), on the site class F row.
+_SITE_CLASS_F_NOTE = (
+    "A site-specific dynamic site response analysis must be performed in "
+    "these cases.")
+
+
 def table_4_9_site_coefficient_fpga(site_class: str,
                                     pga: float) -> dict:
     """Site coefficient F_PGA for site classes A to E, GEC-7 Table 4.9 (FHWA-NHI-14-007, p. 94), read under the PGA columns 0.1 to 0.5 of GEC-12 Vol I Table 7-27 (p. 380), which prints the same values; GEC-7 heads them PGA <= 0.25 to >= 1.25 (lead's ruling; print_note in the result).
@@ -850,8 +856,8 @@ def table_4_9_site_coefficient_fpga(site_class: str,
     key = site_class.upper().strip()
     if key == "F":
         raise ValueError(
-            "GEC-7 Table 4.9 (p. 94), note (1): for site class F a "
-            "site-specific dynamic site response analysis must be performed.")
+            "Site class F: GEC-7 Table 4.9 (p. 94) gives no F_PGA; its note "
+            f"(1): \"{_SITE_CLASS_F_NOTE}\"")
     if key not in _TABLE_4_9_FPGA:
         raise ValueError(
             f"Unknown site_class '{site_class}'. Options: A, B, C, D, E"
@@ -905,9 +911,14 @@ def table_4_10_site_coefficient_fv(site_class: str,
     Raises
     ------
     ValueError
-        If site_class is not recognized.
+        If site_class is F (the table's note (1): a site-specific dynamic
+        site response analysis) or not a site class.
     """
     key = site_class.upper().strip()
+    if key == "F":
+        raise ValueError(
+            "Site class F: GEC-7 Table 4.10 (p. 95) gives no F_v; its note "
+            f"(1): \"{_SITE_CLASS_F_NOTE}\"")
     if key not in _TABLE_4_10_FV:
         raise ValueError(
             f"Unknown site_class '{site_class}'. Options: A, B, C, D, E"
