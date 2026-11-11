@@ -98,7 +98,8 @@ def _chapters(ref):
 def test_every_numbered_figure_is_filed_under_a_chapter_of_the_text(ref):
     have = _chapters(ref)
     for fig in _catalog(ref)["figures"]:
-        if fig["figure_number"].startswith("A."):   # GEC-8 Appendix A
+        # GEC-8 Appendix A ("A.1"), GEC-4 Appendices A, B and D ("A-1")
+        if re.match(r"[A-Z][-.]", fig["figure_number"]):
             assert fig["chapter"] is None
             continue
         assert fig["chapter"] in have, (ref, fig["figure_number"])
@@ -120,6 +121,9 @@ def test_a_figure_numbered_by_chapter_is_filed_under_it(ref):
 def test_gec4_figures_by_chapter():
     by = {}
     for fig in _catalog("gec_4")["figures"]:
+        if not fig["figure_number"].isdigit():   # Appendices A, B and D
+            assert fig["chapter"] is None
+            continue
         by.setdefault(fig["chapter"], []).append(int(fig["figure_number"]))
     # in order through the manual, each chapter a run of numbers
     assert [n for c in sorted(by) for n in by[c]] == list(range(1, 74))

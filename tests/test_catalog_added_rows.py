@@ -58,6 +58,8 @@ ADDED = {
     "gec_6": (_nums("B1", 1, 3) + _nums("B2", 1, 3) + _nums("B3", 1, 6)
               + _nums("B4", 1, 7) + _nums("B5", 1, 2) + _nums("C1", 1, 4)
               + _nums("C2", 1, 4)),
+    # Appendices A (design examples), B (soldier beam wedges) and D (creep)
+    "gec_4": _nums("A", 1, 10) + _nums("B", 1, 5) + _nums("D", 1, 2),
 }
 
 #: Rows whose page holds no picture and too few lines to count as a
@@ -176,6 +178,15 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
     ("gec_6", "B3-4", 203, "Summary Output of EMBANK Settlement Analysis"),
     ("gec_6", "B4-7", 236, "Final Loading Conditions"),
     ("gec_6", "C1-3", 267, "Effective Stress Diagram"),
+    ("gec_4", "A-10", 232, "Location of unbonded and bond length for ground "
+                           "anchors"),
+    ("gec_4", "B-4", 245, "Passive wedge failure for a soldier beam in clay "
+                          "(after Reese, 1958, discussion of \"Soil Modulus "
+                          "for Laterally Loaded Piles\" by McClelland and "
+                          "Focht, Transactions, Volume 123, Reprinted by "
+                          "permission of ASCE)"),
+    ("gec_4", "D-2", 255, "Extrapolation of creep curves for determining "
+                          "working tension"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -248,6 +259,12 @@ def test_added_rows_are_found_by_their_captions():
         ("gec_6", "integral abutment symbols", "B2-2"),
         ("gec_6", "allowable bearing pressure function of footing width",
          "B3-5"),
+        ("gec_4", "secant residual friction angle", "A-6"),
+        ("gec_4", "plastic flow around a soldier beam toe", "B-3"),
+        ("gec_4", "critical creep tension", "D-1"),
+        ("gec_4", "Wang-Reese embedment depth calculations", "A-4"),
+        ("gec_4", "slope stability analysis of existing site conditions",
+         "A-7"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
