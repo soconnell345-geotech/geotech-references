@@ -183,7 +183,7 @@
       "body": "Marchetti (1997) proposed correlations to relate the effective stress friction angle for clean sands to the horizontal stress index (KD) from the dilatometer test in which KD is defined by Eq. 8-10.\n\nRicceri et al. (2002) proposed that the upper bound estimate of effective stress friction angle from dilatometer tests is given by Eq. 8-11, and Marchetti (1997) proposed that the lower bound estimate is given by Eq. 8-12.\n\nAccording to Marchetti, the lower bound solution can underestimate the in situ friction angle by 2° to 4°. The upper and lower bound equations are plotted in Figure 8-12.",
       "key_points": [
         "KD (horizontal stress index) from DMT is defined as KD = (p0 − u0)/σ′v (Eq. 8-10).",
-        "Upper bound (Ricceri et al. 2002, Eq. 8-11): φ′ = 31 + 0.236·KD + 0.066·KD.",
+        "Upper bound (Ricceri et al. 2002, Eq. 8-11): φ′ = 31 + KD / (0.236 + 0.066·KD).",
         "Lower bound (Marchetti 1997, Eq. 8-12): φ′ = 28 + 14.6·log(KD) − 2.1·log²(KD).",
         "Lower bound may underestimate in situ φ′ by 2°–4°.",
         "Applicable to clean sands only; results plotted in Figure 8-12."
@@ -196,7 +196,7 @@
         },
         {
           "id": "Eq. 8-11",
-          "description": "Ricceri et al. (2002) upper bound estimate of effective stress friction angle from KD: φ′ = 31 + 0.236·KD + 0.066·KD.",
+          "description": "Ricceri et al. (2002) upper bound estimate of effective stress friction angle from KD: φ′ = 31 + KD / (0.236 + 0.066·KD).",
           "implemented_in": "geotech_references.dm7_1.chapter8.dmt_friction_angle_upper_bound"
         },
         {
@@ -400,7 +400,7 @@
       "section_id": "8-3.3",
       "title": "Correlations with Cone Penetration Test",
       "summary": "Describes three CPT-based methods (Nc, Nk, and Nkt) for estimating undrained shear strength from cone tip resistance. Provides Equations 8-23 through 8-25 with definitions of empirical bearing capacity factors and their typical ranges. Emphasizes site-specific calibration of factors against laboratory or field vane measurements, and notes that modern high-area-ratio cones yield similar Nk and Nkt results.",
-      "body": "Undrained shear strength is typically estimated from the cone tip resistance measured in the CPT using methods based on bearing capacity. The three methods are the Nc, Nk, and Nkt methods as defined by Lunne et al. (1997). The empirical bearing capacity factors (Nc, Nk, and Nkt) should be calibrated on a site- or region-specific basis by relating known values of undrained shear strength measured using the triaxial device (ASTM D2166, ASTM D2850), laboratory miniature vane shear (ASTM D4648), field vane shear (ASTM D2573), or direct simple shear (ASTM D6528) to the predicted values based on Equations 8-23 to 8-25.\n\nThe Nc method is the simplest and directly relates the CPT tip resistance to the undrained shear strength as:\n\nsu = qc / Nc  (Eq. 8-23)\n\nwhere qc = cone tip resistance, and Nc = empirical bearing capacity factor.\n\nIn most cases, the value of Nc is in the range of 17 to 23 for normally consolidated and slightly overconsolidated clays. The Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.\n\nThe Nk method considers the overburden pressure acting at the point of the measurement. Based on this method, the undrained shear strength can be determined from CPT results as:\n\nsu = (qc − σv) / Nk  (Eq. 8-24)\n\nwhere qc = cone tip resistance, σv = total vertical stress, and Nk = empirical bearing capacity factor.\n\nData presented by Lunne and Kleven (1982) shows that Nk ranges from about 10 to about 19 with an average of 15. Carter and Bentley (2016) suggest values of 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.\n\nThe Nkt method is a modification of the Nk method that considers the pore pressure acting at the tip of the cone. The undrained shear strength is calculated as:\n\nsu = (qt − σv) / Nkt  (Eq. 8-25)\n\nwhere qc = cone tip resistance, σv = total vertical stress, Nkt = empirical bearing capacity factor, qt = corrected tip resistance = qc + u·(1+a), u = pore pressure measured behind the cone tip (u2 position), and a = cone net area ratio = ratio of face area to shoulder area.\n\nModern cones have net area ratios above 0.8 and little difference is typically observed in the Nk and Nkt methods. Values of Nkt are often in the range of 14 to 16.",
+      "body": "Undrained shear strength is typically estimated from the cone tip resistance measured in the CPT using methods based on bearing capacity. The three methods are the Nc, Nk, and Nkt methods as defined by Lunne et al. (1997). The empirical bearing capacity factors (Nc, Nk, and Nkt) should be calibrated on a site- or region-specific basis by relating known values of undrained shear strength measured using the triaxial device (ASTM D2166, ASTM D2850), laboratory miniature vane shear (ASTM D4648), field vane shear (ASTM D2573), or direct simple shear (ASTM D6528) to the predicted values based on Equations 8-23 to 8-25.\n\nThe Nc method is the simplest and directly relates the CPT tip resistance to the undrained shear strength as:\n\nsu = qc / Nc  (Eq. 8-23)\n\nwhere qc = cone tip resistance, and Nc = empirical bearing capacity factor.\n\nIn most cases, the value of Nc is in the range of 17 to 23 for normally consolidated and slightly overconsolidated clays. The Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.\n\nThe Nk method considers the overburden pressure acting at the point of the measurement. Based on this method, the undrained shear strength can be determined from CPT results as:\n\nsu = (qc − σv) / Nk  (Eq. 8-24)\n\nwhere qc = cone tip resistance, σv = total vertical stress, and Nk = empirical bearing capacity factor.\n\nData presented by Lunne and Kleven (1982) shows that Nk ranges from about 10 to about 19 with an average of 15. Carter and Bentley (2016) suggest values of 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.\n\nThe Nkt method is a modification of the Nk method that considers the pore pressure acting at the tip of the cone. The undrained shear strength is calculated as:\n\nsu = (qt − σv) / Nkt  (Eq. 8-25)\n\nwhere qc = cone tip resistance, σv = total vertical stress, Nkt = empirical bearing capacity factor, qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400); the pore pressure correction is usually written qt = qc + u2·(1 − a).], u = pore pressure measured behind the cone tip (u2 position), and a = cone net area ratio = ratio of face area to shoulder area.\n\nModern cones have net area ratios above 0.8 and little difference is typically observed in the Nk and Nkt methods. Values of Nkt are often in the range of 14 to 16.",
       "key_points": [
         "Three CPT methods: Nc (Eq. 8-23, simplest, no overburden correction), Nk (Eq. 8-24, subtracts total vertical stress), and Nkt (Eq. 8-25, uses pore-pressure-corrected tip resistance).",
         "Nc typically ranges 17–23; Nc method loses accuracy below 15 m depth due to neglect of overburden.",
@@ -421,7 +421,7 @@
         },
         {
           "id": "Eq. 8-25",
-          "description": "Nkt method: undrained shear strength from pore-pressure-corrected CPT tip resistance: su = (qt − σv) / Nkt, where qt = qc + u·(1+a)",
+          "description": "Nkt method: undrained shear strength from pore-pressure-corrected CPT tip resistance: su = (qt − σv) / Nkt, where qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400); the pore pressure correction is usually written qt = qc + u2·(1 − a).]",
           "implemented_in": "geotech_references.dm7_1.chapter8.cpt_undrained_strength_nkt"
         }
       ],
@@ -462,8 +462,8 @@
       "summary": "Summarizes empirical correlations for estimating undrained shear strength of overconsolidated clays from dilatometer horizontal stress index (KD) and dilatometer modulus (ED). Table 8-11 presents three source correlations: Marchetti (1980) and Kamei and Iwasaki (1995) using KD-based su/σ′v expressions, and Iwasaki and Kamei (1994) using ED directly for su in kPa.",
       "body": "The undrained shear strength of overconsolidated clays has been correlated to the horizontal stress index (KD) and the dilatometer modulus (ED) as summarized in Table 8-11.",
       "key_points": [
-        "Marchetti (1980): (su/σ′v)OC = 0.22·(0.5·KD)^1.25 ≈ (su/σ′v)NC·(0.5·KD)^1.25, using KD from dilatometer.",
-        "Kamei and Iwasaki (1995): (su/σ′v)OC = (0.35·KD − 0.47)^1.14, an alternative KD-based power law.",
+        "Marchetti (1980): (su/σ′v)OC = (su/σ′v)NC·(0.5·KD)^1.25 ≈ 0.22·(0.5·KD)^1.25, using KD from dilatometer.",
+        "Kamei and Iwasaki (1995): (su/σ′v)OC = 0.35·(0.47·KD)^1.14, an alternative KD-based power law.",
         "Iwasaki and Kamei (1994): su = 0.018·ED (kPa), a direct correlation using dilatometer modulus.",
         "All three correlations target overconsolidated clays; KD and ED must be derived from dilatometer testing."
       ],
@@ -553,7 +553,7 @@
         {
           "id": "Eq. 8-30",
           "description": "Intrinsic compression index estimated from void ratio at liquid limit: C*c = 0.256eL − 0.04.",
-          "implemented_in": "geotech_references.dm7_1.chapter8.figure_8_46_f"
+          "implemented_in": "geotech_references.dm7_1.chapter8.intrinsic_compression_index_from_el"
         }
       ],
       "figures": [
@@ -729,7 +729,7 @@
       "equations": [
         {
           "id": "Eq. 8-36",
-          "description": "Converts undrained Young's modulus (Eu) to drained Young's modulus (E) using drained Poisson's ratio (ν), assuming undrained ν = 0.5: E = Eu / (2(1+ν)/3)",
+          "description": "Drained Young's modulus from the undrained Young's modulus, assuming a Poisson's ratio of 0.5 for undrained conditions: E = (2/3)·(1 + ν)·Eu, where E is the Young's modulus for drained conditions, ν the Poisson's ratio for drained conditions, and Eu the Young's modulus for undrained conditions.",
           "implemented_in": "geotech_references.dm7_1.chapter8.drained_youngs_modulus_from_undrained"
         }
       ],
@@ -834,9 +834,9 @@
       "body": "Coarse-grained soils only experience undrained conditions for a very short period of time and under special circumstances. For this reason, the Young's modulus is only required for drained conditions in most cases. Typical values of drained Young's modulus (E) based on relative density are summarized in Table 8-20 for coarse-grained soils.",
       "key_points": [
         "Coarse-grained soils are analyzed using drained Young's modulus in virtually all practical cases.",
-        "E/Pa ranges from 100–200 (loose) to 500–1000 (dense) per Poulos (1975); USACE (1990) gives higher values for driven pile conditions.",
-        "Silty sand has a wide typical range of 250–2000 Pa (USACE 1990).",
-        "Values are normalized by atmospheric pressure (Pa) for non-dimensionalization."
+        "Table 8-20 gives E/Pa by relative density: Poulos (1975) typical 100–200 (loose), 200–500 (medium), 500–1000 (dense), and for driven piles 275–550, 550–700, 700–1100; USACE (1990) 100–250 (loose), 250–1000 (medium), 1000–2000 (dense).",
+        "Silty sand: E/Pa = 250–2000 (USACE 1990 only).",
+        "Values are drained Young's modulus divided by atmospheric pressure, E/Pa (the table's column heading prints the symbol Eu/Pa)."
       ],
       "equations": [],
       "figures": [],
@@ -854,7 +854,7 @@
         "Multiple correlations exist for drained E of coarse-grained soils from SPT N; all normalize E by atmospheric pressure (Pa).",
         "Ferrent (1963): E ≈ 7.1(1−ν²)·N·Pa for sandy soils.",
         "Webb (1969): E ≈ 4.7(N+15)·Pa for sands; E ≈ 3.1(N+5)·Pa for clayey sands.",
-        "Begemann (1974): E ≈ C(N+6)·Pa for N<15; E ≈ C(N+6)−39.5·Pa for N≥15, with C depending on soil type.",
+        "Begemann (1974), silts with sand and gravels with sand: E/Pa ≈ C(N + 6) for N < 15; E/Pa ≈ 39.5 + C(N − 6) for N ≥ 15; C = 3 for silts with sand and 12 for gravel with sand.",
         "Kulhawy and Mayne (1990): E ≈ 5·N60·Pa (sands with fines), 10·N60·Pa (NC clean sands), 15·N60·Pa (OC clean sands).",
         "N60 (energy-corrected blow count) should be used for modern samplers per Kulhawy and Mayne (1990)."
       ],
@@ -889,7 +889,7 @@
       "summary": "Presents empirical correlations for estimating CBR from index properties (grain size, Atterberg limits, unit weight, specific gravity, angle of repose) in Table 8-22, and from compaction properties (dry unit weight ratio and water content ratio relative to Modified Proctor values) in Table 8-23. Covers both soaked and unsoaked conditions across multiple researchers.",
       "body": "Several researchers have presented correlations to estimate the CBR using index properties. Correlations to grain size, Atterberg limits, and other index properties are summarized in Table 8-22. Correlations between CBR and soil compaction properties are summarized in Table 8-23.",
       "key_points": [
-        "CBR can be estimated from fines content and plasticity index: CBR = 75 / (1 + 0.728 × FC×PI) when FC×PI = 0 per NCHRP (2001).",
+        "CBR can be estimated from fines content and plasticity index: CBR = 75 / [1 + 0.728·(FC × PI)], printed with the condition FC×PI = 0, NCHRP (2001) [As printed; the table gives the same condition, FC×PI = 0, for the next row, CBR = 28.09·(D60)^0.358.]",
         "Gravel content, liquid limit, plastic limit, dry/moist unit weight, specific gravity, and angle of repose are all used in various CBR correlations (Table 8-22).",
         "Compaction-based correlations (Table 8-23) use the ratio of dry unit weight to maximum dry unit weight and water content to optimum water content from the Modified Proctor test.",
         "Water contents in compaction correlations must be expressed consistently — both decimal or both percentage form.",
@@ -984,8 +984,8 @@
       "body": "Typical values of hydraulic conductivity based on soil type are presented in Table 8-25. Other typical values based on soil type can be found in Section 6-3.3.",
       "key_points": [
         "Gravel: k > 10⁻³ m/s (high permeability).",
-        "Sandy gravel: k = 10⁻³ to 10⁻⁵ m/s (medium permeability).",
-        "Clean to fine sands: k = 10⁻⁵ to 10⁻⁷ m/s (low permeability).",
+        "Sandy gravel, clean sand, and fine sand: k = 10⁻³ to 10⁻⁵ m/s (medium permeability).",
+        "Sand, dirty sand, and silty sand: k = 10⁻⁵ to 10⁻⁷ m/s (low permeability).",
         "Silt and silty clay: k = 10⁻⁷ to 10⁻⁹ m/s (very low permeability).",
         "Clay: k < 10⁻⁹ m/s (practically impermeable).",
         "Additional typical values by soil type are in Section 6-3.3."
@@ -1001,7 +1001,7 @@
       "section_id": "8-7.2",
       "title": "Correlations for Coarse-Grained Soils",
       "summary": "Presents multiple empirical correlations for estimating hydraulic conductivity of coarse-grained soils from grain-size parameters. Covers the Hazen (1911) D10-based formula for clean sands (Eq. 8-40), the USACE (1993) horizontal permeability chart for Mississippi Valley SP/SW sands (Figure 8-58), Kenney et al. (1984) D5-based correlation (Figure 8-59), a combined D5/D10/Cu/e chart (Figure 8-60), and the modified Kozeny-Carman equation by Carrier (2003) using the full grain-size distribution (Eq. 8-41).",
-      "body": "One of the first correlations to estimate the hydraulic conductivity based on grain size was presented by Hazen (1911). This correlation was developed for saturated clean sands with a fines content less than 5% and D10 values ranging from 0.1 mm to 3 mm:\n\nk = C · (D10)²  (Eq. 8-40)\n\nWhere: k = hydraulic conductivity (cm/s), C = empirical coefficient, usually taken to be 1 cm/s/mm², and D10 = grain size corresponding to 10% passing on the grain-size distribution (mm).\n\nBased on data from the middle and lower Mississippi River Valley, the USACE (1993) correlated the in situ horizontal permeability of fine to medium, relatively uniform sands (USCS classifications of SP or SW) as shown in Figure 8-58. This correlation was recommended for use only within the geographic area for which it was developed.\n\nKenney et al. (1984) correlated the hydraulic conductivity of coarse-grained soils to the grain size corresponding to 5% passing on the cumulative grain-size distribution curve (D5), as shown in Figure 8-59. A similar correlation can be developed between the hydraulic conductivity for clean coarse-grained soils and the D10 grain size as shown in Figure 8-60.\n\nCarrier (2003) presented a modified version of the Kozeny-Carman equation (Kozeny 1927; Carman 1938, 1956) to estimate the hydraulic conductivity using the full grain-size distribution of a soil. The modifications introduced by Carrier (2003) to the original equation simplify its use. The hydraulic conductivity can be estimated by Eq. 8-41:\n\nk = 1.99×10² (cm/s·mm²) · [100% / Σ(fi / (Dli^0.404 · Dsi^0.596))]² · (1 / S²) · [e³/(1+e)]  (Eq. 8-41)\n\nwhere: k = hydraulic conductivity (cm/s), fi = fraction of particles (by mass) between two adjacent sieve sizes, Dli = the particle size of the coarser sieve (mm), Dsi = the particle size of the finer sieve (mm), S = surface area factor ranging from 6 for spheres to 8.5 for angular particles, and e = void ratio.\n\nAdditional discussion and correlations of k to grain size can be found in Section 6-3.3.",
+      "body": "One of the first correlations to estimate the hydraulic conductivity based on grain size was presented by Hazen (1911). This correlation was developed for saturated clean sands with a fines content less than 5% and D10 values ranging from 0.1 mm to 3 mm:\n\nk = C · (D10)²  (Eq. 8-40)\n\nWhere: k = hydraulic conductivity (cm/s), C = empirical coefficient, usually taken to be 1 cm/s/mm², and D10 = grain size corresponding to 10% passing on the grain-size distribution (mm).\n\nBased on data from the middle and lower Mississippi River Valley, the USACE (1993) correlated the in situ horizontal permeability of fine to medium, relatively uniform sands (USCS classifications of SP or SW) as shown in Figure 8-58. This correlation was recommended for use only within the geographic area for which it was developed.\n\nKenney et al. (1984) correlated the hydraulic conductivity of coarse-grained soils to the grain size corresponding to 5% passing on the cumulative grain-size distribution curve (D5), as shown in Figure 8-59. A similar correlation can be developed between the hydraulic conductivity for clean coarse-grained soils and the D10 grain size as shown in Figure 8-60.\n\nCarrier (2003) presented a modified version of the Kozeny-Carman equation (Kozeny 1927; Carman 1938, 1956) to estimate the hydraulic conductivity using the full grain-size distribution of a soil. The modifications introduced by Carrier (2003) to the original equation simplify its use. The hydraulic conductivity can be estimated by Eq. 8-41:\n\nk = 1.99×10² cm/(s·mm²) · [100% / Σ(fi / (Dli^0.404 · Dsi^0.596))]² · (1 / S²) · [e³/(1+e)]  (Eq. 8-41)\n\nwhere: k = hydraulic conductivity (cm/s), fi = fraction of particles (by mass) between two adjacent sieve sizes, Dli = the particle size of the coarser sieve (mm), Dsi = the particle size of the finer sieve (mm), S = surface area factor ranging from 6 for spheres to 8.5 for angular particles, and e = void ratio.\n\nAdditional discussion and correlations of k to grain size can be found in Section 6-3.3.",
       "key_points": [
         "Hazen (1911) formula (Eq. 8-40): k = C·D10²; valid for clean sands with <5% fines and D10 between 0.1–3 mm.",
         "USACE (1993) correlation (Figure 8-58) applies specifically to SP/SW sands from the middle and lower Mississippi River Valley.",
