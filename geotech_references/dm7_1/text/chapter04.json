@@ -207,6 +207,24 @@
       "applicability": "Applies when accounting for external applied loads in soil stress calculations, selecting the critical depth for settlement analysis, and understanding load distribution differences between flexible and rigid foundations."
     },
     {
+      "section_id": "4-2.2",
+      "title": "Mohr Circle of Stress",
+      "summary": "Defines the principal planes and principal stresses (σ1, σ2, σ3), how σ2 is treated in two-dimensional problems, the usual alignment of principal stresses for level ground, and the sign convention used in the manual (compressive stress, counterclockwise shear and counterclockwise angles positive). Explains plotting a Mohr circle from σ1 and σ3, or from the stresses on any two perpendicular planes, and finding the stresses on any plane by rotating 2α about its center (Figure 4-3).",
+      "body": "The normal and shear stress on a plane at any point within the ground depends on the orientation of that plane with respect to the orientation of the stress system. At any point, the will be three mutually perpendicular planes that have no shear stress, which are referred to as the principal planes. The normal stresses that act on these planes are defined as the principal stresses. The major principal stress (σ1) has the largest magnitude. The minor principal stress (σ3) has the smallest magnitude. The intermediate principal stress (σ2) falls between σ1 and σ3. For two-dimensional problems, σ2 is either assumed equal to σ3 or ignored. For level ground conditions, the principal stresses are often assumed to be aligned with the horizontal and vertical directions with the horizontal normal stress being equal in all directions. The sign convention used herein assigns positive values to compressive stress, shear stress that causes counterclockwise rotation, and counterclockwise angles.\n\nA Mohr circle of stress can easily be plotted from σ1 and σ3, or the normal and shear stresses on any two perpendicular planes. More information on the use of the Mohr circle can be found in Parry (2004). From the Mohr circle for a point, the normal and shear stress conditions on any plane can be determined by rotating an angle 2α about the center of the circle, where α is the angle between the major principal plane and the plane of interest. Figure 4-3 illustrates the Mohr circle and mathematical relationships between common stresses.",
+      "key_points": [
+        "At any point there are three mutually perpendicular planes with no shear stress, the principal planes; the normal stresses on them are the principal stresses σ1 (largest), σ2 (intermediate) and σ3 (smallest).",
+        "For two-dimensional problems, σ2 is either assumed equal to σ3 or ignored; for level ground, the principal stresses are often assumed aligned with the horizontal and vertical directions.",
+        "Sign convention: positive values for compressive stress, shear stress that causes counterclockwise rotation, and counterclockwise angles.",
+        "From the Mohr circle, the stresses on any plane are found by rotating an angle 2α about the center of the circle, where α is the angle between the major principal plane and the plane of interest (Figure 4-3)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-3: Mohr Circle Relationships"
+      ],
+      "tables": [],
+      "applicability": "Applies when finding the normal and shear stresses on any plane at a point from the principal stresses, or from the stresses on two perpendicular planes."
+    },
+    {
       "section_id": "4-3",
       "title": "Elastic Solutions for Stresses Due to Applied Loads",
       "summary": "Container section covering elastic (Boussinesq and Westergaard) solutions for calculating changes in stress due to applied surface loads. Includes applicability guidance, stress distribution formulas for common load geometries, chart solutions, superposition, St. Venant's principle, and methods for layered or anisotropic foundations.",
