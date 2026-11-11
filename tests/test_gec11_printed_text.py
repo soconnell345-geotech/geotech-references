@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5, 6, 7, 8)
+BUILT = (1, 2, 3, 4, 5, 6, 7, 8, 9)
 
 
 def _chapter(n):
@@ -106,6 +106,7 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("6.")]) == 13
     assert len([s for s in secs if s.startswith("7.")]) == 12
     assert len([s for s in secs if s.startswith("8.")]) == 27
+    assert len([s for s in secs if s.startswith("9.")]) == 14
     # the chapter's first page prints "MSE WALL DETAILS"; the contents and
     # the running footer say "MSE Wall Design Details"
     assert secs["5.0"]["title"] == "MSE Wall Details"
@@ -364,6 +365,29 @@ def test_chapter_8_rss_equations_and_facing_table_as_printed():
     assert "3. 18 in. (450 mm) high wire baskets are recommended." in body
     assert secs["8.5.2"]["figures"] == [
         "Figure 8-6: Components of a vegetated reinforced slope (VRSS) system"]
+
+
+def test_chapter_9_rss_design_equations_as_printed():
+    eqs = _equations()
+    secs = _sections()
+    # Vol II pp. 9-7 to 9-24; the print numbers no Eqs. 9-10 to 9-13
+    assert eqs["9-1"][1]["formula"] == "TS = (FSR − FSU) MD / D"
+    assert eqs["9-6"][1]["formula"] == "TTop = 1/6 TS-MAX"
+    assert eqs["9-7"][1]["formula"] == "Tmax = Tzone Sv / Hzone = Tzone / N ≤ Tal Rc"
+    assert eqs["9-9"][1]["formula"] == "Le = Tmax FS / (F* α σ′v Rc C)"
+    assert eqs["9-15"][1]["formula"] == (
+        "FSsqueezing = 2 cu / (γ Ds tan θ) + 4.14 cu / (H γ) ≥ 1.3")
+    assert eqs["9-17"][1]["formula"] == "FS = MR / (MD − Ts D)"
+    assert not any(n in eqs for n in ("9-10", "9-11", "9-12", "9-13"))
+    # Eq. 9-1 where the page sets it, before its "where" list
+    body = secs["9.2.6"]["body"]
+    assert body.index("TS = (FSR − FSU) MD / D [Eq. 9-1]") < body.index("where:")
+    assert "TS-MAX = 0.5 K γr (H’)²" in body
+    assert "φf = tan⁻¹ (tan φr / FRR)" in body
+    assert "[Unnumbered equation, p. 9-18:] F.S. dynamic ≥ 1.1" in secs["9.2.8"]["body"]
+    assert secs["9.2.3"]["title"].endswith("the retained backfill")
+    assert secs["9.2.7"]["body"].startswith("[p. 9-16] (see discussion in Chapter 8.)")
+    assert "Overexcavation | yd3 (m3 |" in secs["9.4"]["body"]
 
 
 def test_figure_text_typed_in_from_the_page():

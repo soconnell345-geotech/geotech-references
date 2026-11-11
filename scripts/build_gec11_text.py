@@ -60,7 +60,9 @@ form of ``build_printed_text``: per volume ``volume_title``,
 before the build: a heading printed "11.2.1. Precast ..." with a full
 stop, a List entry's stray leader dots; with ``through``, the run of
 lines up to that one replaced, as for the pieces of the unnumbered
-equations printed inside Figure 6-14), ``printed_equations`` (``number``, ``page``, ``formula``,
+equations printed inside Figure 6-14; a ``replace`` given as a list puts
+in several lines, "" for a paragraph break, as for an equation object the
+text layer sets after its "where" list), ``printed_equations`` (``number``, ``page``, ``formula``,
 ``variables``, optional ``notes``: see
 ``build_printed_text.add_printed_equations``), ``printed_tables`` (a table
 whose text-layer cells come out a column at a time or lose signs and
@@ -442,7 +444,9 @@ def _skip_heading(stream, s: int, t: int, sid: str, title: str) -> int:
         for c, ch in enumerate(rest):
             n += bool(bpt._norm(ch))
             if n == len(want):
-                stream[k] = (stream[k][0], rest[c + 1:].strip())
+                # the heading's own full stop goes with it ("Step 7. Check
+                # external stability. (see discussion in Chapter 8.)")
+                stream[k] = (stream[k][0], rest[c + 1:].strip().lstrip(".").strip())
                 return k
     k += 1
     while k < t and len(got) < len(want):
@@ -623,7 +627,8 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
         # layer's pieces of equations set inside a figure, give way to
         # the typed text
         j = lines.index(f["through"], i) if f.get("through") else i
-        lines[i:j + 1] = [f["replace"]] + [""] * (j - i)
+        rep = f["replace"] if isinstance(f["replace"], list) else [f["replace"]]
+        lines[i:j + 1] = rep + [""] * (j - i)
     entries = parse_contents(pages, *vol["contents_pages"])
     figs, tabs = parse_lists(pages, *vol["lists_pages"])
     headings = vol.get("headings", {})
