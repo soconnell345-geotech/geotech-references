@@ -332,3 +332,479 @@ Depth, ft | Tube No. | w % | su from UU tests (U) | su @ po from CU tests (C) | 
 31 | T7 | 40 | 1,000 | 1,250 |  |
 37 |  | 35 |  |  | 1,250 | 600
 40 | T9 | 38 | 800 | 1,300 |  |
+
+=== A.6-3
+curve.
+• Evaluate the stability of the 30 ft embankment fill with the addition of 10 ft of surcharge treatment.
+• Examine the effect of treatment by surcharging on settlement and time (including cost analysis).
+• Examine the effect of treatment by vertical wick drains without surcharge on settlement and time (including cost analysis).
+• Estimate the amount of horizontal deformation due to lateral squeeze of the embankment foundation soils
+
+Figure A.6-2. Design subsurface profile and soil properties at east embankment location.
+
+[The figure's lettering: Fill, 30′, 2:1, γ = 130 pcf, φ = 40°, c = 0; Organic, 3′, γ = 90 pcf; w = 120%; Gs = 1.6; Sand, 7′, γ = 110 pcf; N60 = 17, γb = 50 pcf; c′ = 90; 5′ to the water table mark beyond the toe of the slope; Clay, 35′, γb = 65 pcf, Cc = 0.35, Cr = 0.035, cv = 0.6 ft²/day, w = 35%, Gs = 2.78; Incompressible.]
+
+=== A.6-4
+A.6-3 SOLUTION TO DETERMINE THE MAGNITUDE OF AND TIME FOR THE ANTICIPATED SETTLEMENT DUE TO THE EMBANKMENT FILL
+
+Step 1: Obtain soil consolidation characteristics (from laboratory tests).
+
+Table A.6-1
+Consolidation test results summary (Hole BAF-4)
+
+[Table A.6-1, its rows read off the page:]
+Depth | Tube | pc (psf) | Cc | Cr | cv (ft²/day)
+11 | T3 | 6,500 | 0.35 | 0.033 | 0.6
+16 | T4 | 6,000 | 0.32 | 0.031 | 0.4
+21 | T5 | 4,800 | 0.36 | 0.040 | 0.8
+26 | T6 | 4,200 | 0.34 | 0.035 | 0.6
+31 | T7 | 3,400 | 0.34 | 0.037 | 0.8
+40 | T9 | 3,800 | 0.35 | 0.032 | 0.4
+eo (average) = 0.97
+
+Step 2: Plot overburden pressure (Figure A.4-2) and preconsolidation pressure (Table A.6-1) with Depth as shown in Figure A.6-3.
+
+Figure A.6-3. Variation of overburden pressure and preconsolidation pressure with depth.
+
+=== A.6-5
+Step 3: Determine the distribution of pressure increase with depth due to the embankment pressure (pf) at end of construction:
+• Obtain embankment geometry. Use the same geometry (plan and section) from Example 7-1 in Chapter 7.
+• Embankment top width = 100 ft
+• Side and end slopes = 1V on 2H
+• Top of end slope from toe = 60 ft
+• Embankment height = 30 ft
+• Embankment load (at longitudinal centerline) = Hemb × γemb = 30 ft × 130 pcf = 3,900 psf
+• Use Figure A.6-4 to obtain pressure coefficient K (left ordinate) for b= (100 ft/2 + 60 ft/2) = 80 ft and a distance from midpoint of end slope = 0.375b.
+• Abutment center located 30 ft from midpoint of end slope → (30 ft / 80 ft)(b) = 0.375b
+• Use a series of charts corresponding to different depths expressed as a percentage of bf (right ordinate) to obtain a distribution of pressure coefficients with depth.
+• Compute pressure change ∆p = K × embankment load at various depths expressed as a percentage of bf. The results of these computations are presented in Table A.6-2.
+
+=== A.6-6
+Figure A.6-4. Pressure distribution chart used to estimate the change in pressure at depths below the end of an embankment fill.
+
+[The figure's lettering: PRESSURE DISTRIBUTION CHART; PRESSURE COEFFICIENTS BENEATH THE END OF A FILL; Case of Long Strip-Uniform Loading, Vertical Pressures at End of Fill; chart legend: pressure under center line (solid line), pressure under mid point of side slope (dashed line); vertical pressure "p" at any point = K γf h, where h = fill height, γf = unit weight of fill material; Section A-A, b = distance from centerline to mid-point of slope; b = 80 ft, h = 30 ft; Point Where Design Problem Settlement Needed. Written by hand on the charts: 0.375b; 1.0, .88, .78 and .70 beside the first four charts; .2 x 80 = 16′, .4 x 80 = 32′, .6 x 80 = 48′, .8 x 80 = 64′ and 1 x 80 = 80 beside the first five.]
+
+=== A.6-7
+Table A.6-2
+Summary of pressure increments at various depths due to embankment fill
+
+[Table A.6-2, its rows read off the page:]
+Depth (ft) | ″K″ - from Figure A.6-4 | ∆p = ″K″ × 3,900 psf Distributed pressure (psf)
+0.2 bf = 16 ft | 1.00 | 3,900
+0.4 bf = 32 ft | 0.88 | 3,432
+0.6 bf = 48 ft | 0.78 | 3,042
+0.8 bf = 64 ft | 0.70 | 2,730
+1.0 bf = 80 ft | 0.60 | 2,340
+
+Step 4: Calculate the final pressure (pf = po + ∆p) at various depths and plot the overburden pressure (po), preconsolidation pressure (pc), and pf with depth as shown in Figure A.6-5
+
+Figure A.6-5. Variation of overburden pressure (po), preconsolidation pressure (pc) and final pressure due to embankment (pf) with depth.
+
+[The figure's lettering: PSF, 0 to 6000; DEPTH (ft), 0 to 40; Organic, Sand, Clay; on the po line 135 (200 Minimum), 570, 1020, 1630 and 2460; on the pc line 4450 and 3600; on the pf line 4100, 4470, 4920, 5300 and 5800; dashed lines at 3 ft, 10 ft, 18 ft and 28 ft.]
+
+In settlement analyses, use pressures measured at the center of a layer or a partial layer. Thick layers should be subdivided (i.e., if a layer is 20 ft thick compute settlement in 10 ft increments) unless the slope of po, pc, or pf are slowly converging straight lines. Dashed horizontal lines in Figure A.6-5 show the increments selected here for analysis.
+
+=== A.6-8
+Step 5: Compute settlement in each layer (or partial layer).
+
+• Layer 1 – Organic (0 ft to 3 ft) – use equation for consolidation settlement (Refer to Chapter 7.5). As indicated in the logs of Borings BAF-3 and BAF-4 where this material was encountered, no tube samples were obtained for consolidation testing. Therefore, the stress history of the layer cannot be determined from test results. However, based on the description of the material given in the boring logs and from experience with surface and near-surface organic soils, the organic layer is assumed to be normally consolidated for the computation presented here as shown in the sketch of the generic consolidation curve below. As is generally the case with these soils in practice, for the Apple Freeway Bridge the organic layer will be removed and replaced with compacted select material before the embankment fill is constructed. Settlement of 3-ft of compacted select material is considered to be negligible. The situation presented here illustrates the importance of sampling and testing all soils that have the potential to cause problems during and after construction.
+
+[A sketch of the generic consolidation curve, e against pressure, with po = pc and pf marked.]
+
+∆H = H [Cc / (1 + eo)] log (pf / po)
+
+H = 3 ft – 0 ft = 3 ft
+
+The mid-thickness depth of the Organic Layer is 3 ft / 2 = 1.5 ft
+
+Cc = 0.0115 w = 0.0115 (120) = 1.38 - (Refer to Table 5-5 of Chapter 5)
+
+From Figure 5-9 of Chapter 5, Cc ≈ 1.0
+
+Therefore use Cc (average) = 1.2
+
+=== A.6-9
+e0 = (w × Gs) / %Sat. = (120 × 1.6) / 100 = 1.9
+
+∆H = 3 ft (1.2 / (1 + 1.9)) log (4,100 psf / 200 psf *)     * Remember (po ≥ 200psf)
+
+∆H = 1.63 ft = 19.54 in
+
+This enormous amount of settlement corresponds to more than 50% of the original thickness of the organic layer, which is one of the reasons why such materials, when located at or close to the surface, should be removed and replaced with compacted select material.
+
+• Layer 2 – Sand (3 ft to 10 ft) – use equation for immediate settlement (Refer to Chapter 7.4).
+
+∆H = H (1 / C′) log (pf / po)
+
+H = 10 ft - 3 ft = 7 ft
+
+The mid-thickness depth of the Sand Layer is 3 ft + 7 ft / 2 = 6.5 ft
+
+To find C′ use N60 = 17 (Refer to Boring BAF–3 at depth = 7 ft)
+
+N160 / N60 = 2 @ po = 500 psf (Refer to Eq. 3-3 in Chapter 3)
+
+Therefore N160 = 34
+
+C′ = 90 (Refer to Figure 7-7 in Chapter 7 – interpolate between silty sand & fine to coarse sand)
+
+∆H = (7 ft) (1 / 90) log (4470 psf / 570 psf)
+
+∆H = 0.069 ft = 0.83 in
+
+• Layer 3 – Clay – Sub-layer 1 (10 ft to 18 ft) – use equation for consolidation settlement (Refer to Chapter 7.5). As shown in Figure A.6-5, the clay layer is over-consolidated since pc > po and remains so during application of the entire load increment within this depth range as shown in the sketch of the generic
+
+=== A.6-10
+consolidation curve below, i.e., pf < pc. (Refer to Chapter 7.5.2)
+
+[A sketch of the generic consolidation curve, e against pressure, with p0, pf and pc marked.]
+
+∆H = H [Cc / (1 + eo)] log (pf / po)
+
+[The equation is printed with Cc; the numbers below use Cr (average) = 0.035.]
+
+H = 18 ft – 10 ft = 8 ft
+
+The mid-thickness depth of Clay Sub-layer 1 is 10 ft + 8 ft / 2 = 14 ft
+
+From consolidation test data:
+Cr (average) = 0.035
+eo (average) = 0.97
+
+∆H = (8 ft) (0.035 / (1 + 0.97)) log (4,920 psf / 1,020 psf)
+
+∆H = 0.097 ft = 1.17 in
+
+• Layer 3 – Clay - Sub-layer 2 (18 ft to 28 ft) - use equation for consolidation settlement (Refer to Chapter 7.5). The thickness of this sub-layer of the clay stratum was chosen because of the sharp break in the slope of the pc vs. depth curve at 28-ft (Refer to Figure A.6-5). As shown in Figure A.6-5, the clay layer is over-consolidated within this depth range since pc > po, but at the mid-depth the load increment causes pf > pc. Therefore the settlement for this sub-layer must be calculated in two steps as shown in the following sketch of the generic consolidation curve, one step for the pressure increment from po to pc for which Cr applies, and the other for the pressure increment from pc to pf for which Cc applies. (Refer to Chapter 7.5)
+
+=== A.6-11
+[A sketch of the generic consolidation curve, e against pressure, with po, pc and pf marked.]
+
+∆H = H [Cr / (1 + eo)] log (pc / po) + H [Cc / (1 + eo)] log (pf / pc)
+
+H = 28 ft – 18 ft = 10 ft
+
+Mid-thickness depth of Clay Sub-layer 2 is at 18 ft + 10 ft / 2 = 23 ft
+From consolidation test data:
+Cr (avg.) = 0.035
+Cc (avg.) = 0.35
+eo (avg.) = 0.97
+
+∆H = (10 ft) (0.035 / (1 + 0.97)) log (4,450 psf / 1,630 psf) + 10 ft (0.35 / (1 + 0.97)) log (5,300 psf / 4,450 psf)
+
+∆H = 0.077 ft + 0.135 ft = 0.93 in + 1.62 in = 2.55 in
+
+• Layer 3 – Clay - Sub-layer 3 (28 ft to 45 ft) - use equation for consolidation settlement (Refer to Chapter 7.5). The thickness of this sub-layer of the clay stratum represents the depth from the sharp beak in the pc vs. depth curve at 28-ft to the bottom of the clay stratum (Refer to Figure A.6-5). As shown in Figure A.6-5, the clay layer is over-consolidated within this depth range since pc > po, but at the mid-depth the load increment causes pf > pc. Therefore the settlement for this sub-layer, as was the case for Sub-layer 2, must be calculated in two steps as shown in the following sketch of the generic consolidation curve, step one for the pressure increment from po to pc for which Cr applies, and the other for the pressure increment from pc to pf for which Cc applies. (Refer to Chapter 7.5)
+
+=== A.6-12
+[A sketch of the generic consolidation curve, e against pressure, with po, pc and pf marked.]
+
+∆H = H [Cr / (1 + eo)] log (pc / po) + H [Cc / (1 + eo)] log (pf / pc)
+
+H = 45 ft – 28 ft = 17 ft
+
+The mid-thickness depth of Clay Sub-layer 3 is 28 ft + 17 ft / 2 = 36.5 ft
+
+From consolidation test data:
+Cr (average) = 0.035
+Cc (average) = 0.35
+eo (average) = 0.97
+
+∆H = (17 ft) (0.035 / (1 + 0.97)) log (3,600 psf / 2,460 psf) + (17 ft) (0.35 / (1 + 0.97)) log (5,800 psf / 3,600 psf)
+
+∆H = 0.050 ft + 0.63 ft = 0.60 in + 7.51 in = 8.11 in
+
+Table A.6-3
+Summary of layer and sub-layer settlements due to embankment fill and computation of total settlement
+
+[Table A.6-3, its rows read off the page:]
+Layer | Settlement (in)
+Layer 1 – Organic (0 ft to 3 ft) - replaced with compacted select material | ≈ 0
+Layer 2 – Sand (3 ft to 10 ft) | 0.83 in
+Layer 3 – Clay (10 ft to 45 ft) |
+Sub-layer 1 - (10 ft to 18 ft) | 1.17 in
+Sub-layer 2 - (18 ft to 28 ft) | 2.55 in
+Sub-layer 3 - (28 ft to 45 ft) | 8.11 in
+∆H Total | 12.66 in
+
+=== A.6-13
+Step 6: Compute Time for Settlement to Occur in Clay (Layer 3)
+
+• Layer 1 – Select backfill material no settlement expected.
+• Layer 2 – 0.83 inch settlement occurs immediately in sand.
+• Layer 3 – ∆H Total (Layer 3) = 1.17 in + 2.55 in + 8.11 in = 11.83 in
+
+Time required for a specified percentage of total settlement to occur is computed from: t = Tv Hd² / cv where:
+
+Hd = longest drainage path (ft) = ½ thickness of clay layer since permeable layers exist above and below. Therefore, for the clay layer
+
+Hd = 35 ft / 2 = 17.5 ft
+
+cv = 0.6 ft²/day
+
+Tv = time factor corresponding to a specified average percent consolidation (U) - (Refer to Table 7-4 in Chapter 7 or calculate by using Equation 7-8 in the Chapter 7)
+
+Table A.6-4 provides a convenient template for performing computations to obtain settlement vs. time values for arbitrarily chosen values of average percent consolidation.
+
+Table A.6-4
+Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of embankment load
+
+[Table A.6-4, its rows read off the page; the Hd²/cv column prints 510.4 on the first row and an arrow down the rows below:]
+Average % Consol. (U) | ∆H (in) = (U)( ∆H Total (Layer 3)) | Time Factor (T) From Table 7-4 | Hd²/cv | t (days)
+20 | 2.4 | 0.031 | 510.4 | 16
+50 | 5.9 | 0.197 |  | 101
+70 | 8.3 | 0.403 |  | 206
+90 | 10.6 | 0.848 |  | 432
+
+The time-settlement plot can now be constructed for all soil layers. Remember to include 0.83 inch sand settlement, which occurs immediately as load is applied. Therefore ∆HTotal = 12.66 in
+
+=== A.6-14
+Step 7: Plot Settlement vs. Time Curve – (include ∆H Sand = 0.83 in)
+
+Figure A.6-6. Settlement vs. Time after construction of 30-ft embankment fill.
+
+[The figure's lettering: Time (days), 100 to 500; Settlement (in.), 0.83 to 15; 11.43 in; t100 for sand + t90 for clay @ 432 days; 12.66" (max. ∆H).]
+
+The designer must insure that 90% consolidation is achieved before construction of the abutment foundation begins. If the waiting period is too long, as it is in this case for the Apple Freeway (432 days ≈ 14 months), the choices of treatment are:
+1. Surcharge.
+2. Vertical drains
+It should be noted that the decision on the choice of treatments will be made before construction of the embankment fill begins. That decision will influence the construction procedure, e.g., if surcharging is chosen, the surcharge will be placed as part of the embankment fill and removed afterward.
+
+A.6-4 CONSIDERATION OF SURCHARGE OPTION TO ACCELERATE CONSOLIDATION SETTLEMENT AND REDUCE TIME REQUIRED FOR SETTLEMENT DUE TO THE EMBANKMENT FILL
+
+Assume:
+• 10-ft high compacted surcharged (γ = 130 pcf). Therefore, the total change in pressure (∆ptotal) at the surface is now due to the embankment fill (∆pfill) plus the surcharge (∆ps) = (30-ft)(130 pcf) + (10-ft)(130 pcf) = 5,200 psf.
+• The pressure increase at various depths below the surface is calculated as before, but with the value of the change in pressure at the surface = 5,200 psf. Since the dimensions of the embankment, except for the height, are the same as before, the values of “K” are unchanged. The results of these computations are presented in
+
+=== A.6-15
+Table A.6-5.
+• Additional immediate settlement of sand due to the surcharge is negligible.
+• eo remains 0.97 although the actual value is less due to compression under the previous load.
+
+Step 1: Obtain pressure increase with depth (use previous “K” value)
+
+Table A.6-5
+Pressure increments at various depths due to embankment fill + surcharge
+
+[Table A.6-5, its rows read off the page:]
+Depth (ft) | ″K″ - from Figure A.6-4 | ∆ptotal = ″K″ × 5,200 psf Distributed pressure (psf)
+0.2b = 16 ft | 1.00 | 5,200
+0.4b = 32 ft | 0.88 | 4,580
+0.6b = 48 ft | 0.78 | 4,060
+
+Step 2: Calculate the new final pressure (pf + ps = po + ∆ptotal) at various depths and plot the overburden pressure (po), preconsolidation pressure (pc), and the new final pressure due to the embankment plus the surcharge (pf + ps) with depth.
+
+Figure A.6-7. Variation of overburden pressure (po), preconsolidation pressure (pc) and final pressure due to embankment + surcharge (pf + ps) with depth.
+
+[The figure's lettering: Pressure (PSF), 0 to 6000; DEPTH (ft), 0 to 40; Sand, Clay; on the po line 570, 1020, 1630 and 2460; on the pc line 5730, 4450 and 3600; on the PF line 4470, 4920, 5300 and 5800; on the pf + ps line 6220, 6500 and 6920.]
+
+=== A.6-16
+Step 3: Compute Settlement in Layer 3
+
+The Layer 1 organics were replaced by compacted select fill, therefore any settlement of this layer will be negligible even with the 10 ft surcharge. As indicated previously, additional settlement of Layer 2 due to an additional 10 ft of surcharge fill will also be negligible. Therefore, Layer 3 is the only layer that will settle more than originally calculated due to the additional 10 ft of surcharge. As was done originally, subdivide Layer 3 into three partial layers or sub-layers for computational purposes.
+
+• Layer 3 – Clay – Sub-layer 1 (10 ft to 18 ft) – use equation for consolidation settlement (Refer to Chapter 7.5). As shown in Figure A.6-5, the clay layer is over-consolidated since pc > po , but at the mid-depth the load increment due to the additional 10 ft of surcharge causes pf + ps > pc. Therefore the settlement for this sub-layer must now be calculated in two steps as shown in the following sketch of the generic consolidation curve, one step for the pressure increment from po to pc for which Cr applies, and the other for the pressure increment from pc to (pf + ps) for which Cc applies. (Refer to Chapter 7.5)
+
+[A sketch of the generic consolidation curve with po, pf, pc and pf + ps marked.]
+
+∆H = H [Cr / (1 + eo)] log (pc / po) + H [Cc / (1 + eo)] log ((pf + ps) / pc)
+
+∆H = (8 ft) (0.035 / (1 + 0.97)) log (5,730 psf / 1,020 psf) + (8 ft) (0.35 / (1 + 0.97)) log (6,220 psf / 5,730 psf)
+
+∆H = 0.11 ft + 0.05 ft = 0.16 ft
+∆H = 1.32 in + 0.61 in = 1.93 in
+
+[1.32 in as printed, which is 0.11 ft × 12; from the inputs the first term is 0.107 ft, 1.28 in, and the sum 1.89 in.]
+
+=== A.6-17
+• Layer 3 – Clay - Sub-layer 2 (18 ft to 28 ft) - use equation for consolidation settlement (Refer to Chapter 7.5). The thickness of this sub-layer of the clay stratum was chosen because of the sharp break in the slope of pc vs depth curve at 28-ft (Refer to Figure A.6-5). As shown in Figure A.6-5, the clay layer is over-consolidated within this depth range since pc > po, but at the mid-depth the load increment including the 10-ft surcharge causes pf + ps > pc. Therefore the settlement for this sub-layer must be calculated in two steps as shown in the following sketch of the generic consolidation curve, one step for the pressure increment from po to pc for which Cr applies, and the other for the pressure increment from pc to (pf + ps) for which Cc applies. (Refer to Chapter 7.5)
+
+[A sketch of the generic consolidation curve with po, pc, pf and pf + ps marked.]
+
+∆H = H [Cr / (1 + eo)] log (pc / po) + H [Cc / (1 + eo)] log ((pf + ps) / pc)
+
+∆H = (10 ft) (0.035 / (1 + 0.97)) log (4,450 psf / 1,630 psf) + 10 ft (0.35 / (1 + 0.97)) log (6,500 psf / 4,450 psf)
+
+∆H = 0.08 ft + 0.29 ft = 0.37 ft
+∆H = 0.93 in + 3.51 in = 4.44 in
+
+• Layer 3 – Clay - Sub-layer 3 (28 ft to 45 ft) - use equation for consolidation settlement (Refer to Chapter 7.5). The thickness of this sub-layer represents the depth from the sharp break in the pc vs. depth curve at 28-ft to the bottom of the clay stratum (Refer to Figure A.6-5). As shown in Figure A.6-5, the clay layer is over-consolidated within this depth range since pc > po, but at the mid-depth the load increment including the 10-ft surcharge causes pf + ps > pc. Therefore the settlement for this sub-layer, must also be calculated in two steps as shown in the following sketch of the generic consolidation curve, step one for the pressure increment from po to pc for which Cr applies, and the other for the pressure increment from pc to (pf + ps) for which Cc applies. (Refer to Chapter 7.5).
+
+=== A.6-18
+[A sketch of the generic consolidation curve with po, pc, pf and pf + ps marked.]
+
+∆H = H [Cr / (1 + eo)] log (pc / po) + H [Cc / (1 + eo)] log ((pf + ps) / pc)
+
+∆H = (17 ft) (0.035 / (1 + 0.97)) log (3,600 psf / 2,460 psf) + (17 ft) (0.35 / (1 + 0.97)) log (6,920 psf / 3,600 psf)
+
+∆H = 0.05 ft + 0.86 ft = 0.91 ft
+∆H = 0.60 in + 10.32 in = 10.89 in
+
+[As printed: 0.60 in + 10.32 in is 10.92 in. 10.32 in is 0.86 ft × 12; from the inputs the second term is 0.857 ft, 10.29 in, which with 0.60 in gives the 10.89 in printed.]
+
+Table A.6-6
+Summary of sub-layer settlements in clay due to embankment fill + surcharge and computation of total settlement of clay - Layer 3
+
+[Table A.6-6, its rows read off the page:]
+Layer | Embankment Only | Embankment + Surcharge | Surcharge
+10 ft to 18 ft | 1.17 in | 1.93 in | 0.76 in
+18 ft to 28 ft | 2.55 in | 4.44 in | 1.89 in
+28 ft to 45 ft | 8.11 in | 10.89 in | 2.78 in
+Total ∆H = | 11.83 in | 17.26 in | 5.43 in
+
+Step 4: Obtain Time-Settlement Relationship: t = Tv Hd² / cv
+
+Table A.6-7
+Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of embankment and surcharge loads
+
+[Table A.6-7, its rows read off the page; the Hd²/cv column prints 510.4 on the first row and an arrow down the rows below:]
+Average % Consol. (U) | ∆H (in) = (U)( ∆H Total - Layer 3) | Time Factor (T) From Table 6-3 | Hd²/cv | t (days)
+20 | 3.5 in | 0.031 | 510.4 | 16
+50 | 8.6 in | 0.197 |  | 101
+70 | 12.1 in | 0.403 |  | 206
+90 | 15.5 in | 0.848 |  | 432
+
+[“From Table 6-3” as printed; Table A.6-4 and p. A.6-13 cite Table 7-4 in Chapter 7 for the same time factors.]
+
+=== A.6-19
+Step 5: Plot Settlement vs. Time Curve – (include ∆H Sand = 0.83 in)
+
+Figure A.6-8. Settlement vs. Time after construction of 30 ft embankment fill with and without surcharge.
+
+[The figure's lettering: Time (days), 100 to 500; Settlement (in.), 0.83 to 15; 30' Fill; 30' Fill + 10' Surcharge; 12.66"; 195 days.]
+
+Step 6: Determine time of waiting period with surcharge to obtain equivalent settlement to that of proposed embankment.
+
+Enter the settlement vs. time plot for 30 ft fill with 10 ft surcharge with 12.66 inches (total [immediate + consolidation] settlement expected for 30 ft fill). Extend the line across to the “30’ Fill + 10’ Surcharge” curve and read the waiting period time in days on the time axis, i.e. 195 days or 6.5 months.
+
+Step 7: Recommend instrumentation for monitoring settlement and pore water pressures – (Table A.6-8)
+
+Table A.6-8
+Recommend instrumentation for monitoring settlement and excess pore water pressures at East Abutment
+
+[Table A.6-8, its rows read off the page:]
+Instrument | Station | Depth Below Ground
+Settlement plate | 90 + 00 | At ground surface
+Settlement plate | 93 + 50 | At ground surface
+Settlement plate | 96 + 50 | At ground surface
+Piezometers | 93 + 50 | 20 ft, 28 ft, 36 ft
+Piezometers | 96 + 50 | 20 ft, 28 ft, 36 ft
+
+=== A.6-20
+Step 8: Recheck stability of 30 ft fill with 10 ft surcharge – Refer to procedure in Section A.5
+
+Figure A.6-9. Trial failure circle – embankment fill + surcharge - East Abutment.
+
+[The figure's lettering: 10′ Surcharge; Fill, 33′; 2:1; Sand, 7′; Clay, 35′; 10′ and 25′ beyond the toe of the slope; Dense Gravel.]
+
+Safety Factor with surcharge = 1.33.
+Safety Factor without surcharge = 1.63.
+Conclusion: the safety factor in both cases is greater than 1.30, which is minimum recommended for bridge approach stability for the temporary case of surcharge.
+
+Step 9: Prepare cost estimate for surcharge
+
+Figure A.6-10. Idealized cross section of embankment fill + surcharge.
+
+[The figure's lettering: Top Width = 60′ min.; 10′ over 30′; slopes 1:2 and 1: 1.5.]
+
+=== A.6-21
+• Assume 500 linear feet behind top of end slope to be surcharged at each approach, therefore total length of surcharge = 1,000 feet.
+• Assume average width of surcharge = 80 feet including side slopes.
+• Calculate surcharge quantity (Vsur) as:
+
+80 ft × 10 ft × 1,000 ft / (27 ft³/yd³) = 29,630 yd³
+
+• Unit cost to place and remove surcharge = $4.00 /yd³, therefore total cost is as follows:
+Total cost = 29,630 yd³ × $4.00 /yd³ ≈ $120,000
+[THIS IS AN EXAMPLE. ALWAYS CHECK THE LOCAL UNIT PRICES]
+
+A.6-5 CONSIDERATION OF WICK DRAIN OPTION (NO SURCHARGE) TO ACCELERATE CONSOLIDATION SETTLEMENT AND REDUCE TIME REQUIRED FOR SETTLEMENT DUE TO THE EMBANKMENT FILL
+
+Step 1: Choose reasonable spacing of wick drains – assume equivalent wick drain diameter of 0.5 ft and try 7.5-ft center to center triangular spacing.
+
+• Recent designs for wick drains have used equivalent diameters of 0.5 ft, i.e., dw = 0.5 ft
+• For triangular spacing:
+de = 1.05 × s = 1.05 × 7.5 ft = 7.875 ft
+η = de/dw = 7.875 ft / 0.5 ft = 15.75 ft ≈ 16 ft
+
+Step 2: Compute settlement-time-relationship
+
+• cv = cr = 0.6 ft²/day
+
+• Arbitrarily select a reasonable range of values of time (days) and calculate the corresponding time factors for vertical (Tv) and radial (Tr) drainage as follows:
+
+Tr = t ch/de² = t (days) 0.6 ft²/day/(7.875 ft)²
+Tv = t cv/Hd² = t (days) 0.6 ft²/day/(17.5 ft)²
+
+Hd = ½ H = 17.5 ft (Refer to previous calculation for vertical drainage only)
+
+=== A.6-22
+• Calculate the values of average percent consolidation (Uv) corresponding to the calculated values of time factor (Tv) by:
+
+Uv = (4 Tv /π)^(1/2)
+
+• Estimate the values of average percent consolidation (Ur) corresponding to the calculated values of time factor (Tr) for η = 16 from the curves in Figure 4 in FHWA (1986).
+
+• Calculate average percent consolidation for combined drainage (Uc) by:
+
+Uc = 1 - [(1 - Ur)(1 -Uv)]
+
+where Ur and Uv are in decimals.
+
+• Calculate values of consolidation settlement ∆H (inches) in clay Layer 3 due to combined vertical and radial drainage corresponding to the arbitrarily assumed values of time –use template shown in Table A.6-10 to aid in the calculation.
+
+Table A.6-10
+Template to compute values of consolidation settlement (∆H) in clay -Layer 3 at various times (t) after application of embankment load (wick drains with no surcharge) due to combined vertical and radial drainage
+
+[Table A.6-10, its rows read off the page:]
+Time after loading t (days) | Time factor- Tv | Average % Consolidation Uv | Time factor- Tr | Average % Consolidation Ur | Combined Average % Consolidation Uc% | Layer 3 ∆H (in)
+10 | 0.020 | 16 | 0.097 | 34 | 44 | 5.2
+20 | 0.039 | 22 | 0.193 | 57 | 66 | 7.8
+30 | 0.059 | 27 | 0.290 | 71 | 79 | 9.3
+40 | 0.078 | 32 | 0.387 | 81 | 87 | 10.3
+50 | 0.098 | 35 | 0.484 | 85 | 90 | 10.6
+60 | 0.118 | 39 | 0.580 | 92 | 95 | 11.2
+70 | 0.137 | 42 | 0.677 | 94 | 97 | 11.4
+80 | 0.157 | 45 | 0.774 | 97 | 98 | 11.6
+90 | 01.76 | 47 | 0.871 | 99 | 99 | 11.8
+
+[01.76 as printed; t cv/Hd² for 90 days is 0.176, from which the Uv of 47 follows.]
+
+Step 3: Plot settlement-time-curve for wick drains – Refer to Figure A.6-11.
+
+=== A.6-23
+Figure A.6-11. Time versus settlement after completion of embankment fill for wick drain treatment without surcharge.
+
+[The figure's lettering: Time (days), 0 to 400; Settlement (inches), 0.83 to 10; Wick 7.5′ spacing.]
+
+Step 4: Prepare cost estimate for wick drains
+
+• Assume:
+1. 500 linear feet of drains at both approaches, therefore total length = 1,000 linear feet.
+2. Width of drain treatment midslope to midslope = 160 linear ft
+3. Length of each drain = 45 ft
+4. Unit cost per wick drain: $1.00/ft (THE USER SHOULD CALL THE LOCAL CONTRACTORS FOR LATEST COSTS)
+
+• Consider Wick Drains - 7.5 ft center to center.
+Treated area/drain = 0.866 S² = 0.866(7.5 ft)² = 49 ft²/drain
+No. of drains = (160 ft)(1,000 ft)/49 ft²/drain = 3,265 drains
+Linear feet of drain = (3,265 drains) 45 ft/drain = 146,925 ft
+Cost = (146,925 ft)($1.00/ft) + $25,000 (Mobilization) = $172,000
+
+Step 5: Prepare settlement–time curves for (a) 30-ft embankment fill, (b) 30-ft embankment fill with 10-ft surcharge (c) 30-ft fill embankment with vertical drains (wick) without surcharge (Refer to Figure A.6-12)
+
+=== A.6-24
+Figure A.6-12. Summary of time-settlement curves for baseline case (30-ft embankment fill) and various treatment options.
+
+[The figure's lettering: Time (days), 0 to 400; ∆H″, 0.83 to 20; 30′ Fill; 30′ Fill + Surcharge; 30′ Fill w/Vertical Drains; 12.66 inches.]
+
+Step 6: Prepare table showing summary of results for base-line case (embankment fill only) and various treatment options in terms of waiting period and extra costs of treatment. Refer to Table A.6-12
+
+Table A.6-12
+Summary of results for base-line case (embankment fill only) and various treatment options
+
+[Table A.6-12, its rows read off the page:]
+Treatment | Time for at Least 90% Consolidation (Months) | Extra Cost
+Fill only | 14 | Base line
+Fill with 10-ft of surcharge | 6.5 | $120,000
+Fill with Wick Drains | 2 | $172,000

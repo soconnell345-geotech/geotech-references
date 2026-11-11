@@ -389,6 +389,31 @@ def test_appendix_a_slope_stability_values_as_printed():
     assert "¾" not in body
 
 
+def test_appendix_a_settlement_values_as_printed():
+    # Section A.6 (pp. A.6-3 to A.6-27), the calculation pages typed in
+    secs = {s["section_id"]: s for s in _appendix("A")["sections"]}
+    fill = secs["A.6-3"]["body"]
+    assert "21 | T5 | 4,800 | 0.36 | 0.040 | 0.8" in fill
+    assert "0.4 bf = 32 ft | 0.88 | 3,432" in fill
+    assert "∆H = 1.63 ft = 19.54 in" in fill
+    assert "∆H = 0.077 ft + 0.135 ft = 0.93 in + 1.62 in = 2.55 in" in fill
+    assert "∆H Total | 12.66 in" in fill
+    assert "20 | 2.4 | 0.031 | 510.4 | 16" in fill
+    # the equation printed with Cc where the numbers use Cr, noted
+    assert "The equation is printed with Cc" in fill
+    surcharge = secs["A.6-4"]["body"]
+    assert "0.6b = 48 ft | 0.78 | 4,060" in surcharge
+    assert "∆H = 1.32 in + 0.61 in = 1.93 in" in surcharge
+    assert "1.32 in as printed" in surcharge
+    assert "Total ∆H = | 11.83 in | 17.26 in | 5.43 in" in surcharge
+    assert "“From Table 6-3” as printed" in surcharge
+    wick = secs["A.6-5"]["body"]
+    assert "90 | 01.76 | 47 | 0.871 | 99 | 99 | 11.8" in wick
+    assert "Cost = (146,925 ft)($1.00/ft) + $25,000 (Mobilization) = $172,000" in wick
+    assert "Fill with Wick Drains | 2 | $172,000" in wick
+    assert "3,900 psf > 3,300 psf" in secs["A.6-6"]["body"]
+
+
 def test_appendix_b_sections_as_printed():
     secs = {s["section_id"]: s for s in _appendix("B")["sections"]}
     assert list(secs) == ["B", "B.1", "B.2", "B.3", "B.4"]

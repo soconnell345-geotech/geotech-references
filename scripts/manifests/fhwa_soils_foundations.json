@@ -100,7 +100,7 @@
         {
           "letter": "A", "number": 13, "file": "appendix_a.json",
           "title": "APPLE FREEWAY PROJECT",
-          "page_start": 387, "page_end": 446,
+          "page_start": 387, "page_end": 473,
           "sections": [
             {"id": "A", "printed": "APPENDIX A", "title": "APPLE FREEWAY PROJECT GENERAL NOTES", "page": "A-1"},
             {"id": "A.1", "printed": "SECTION A.1", "title": "INTRODUCTION AND SCOPE OF WORK", "page": "A.1-1"},
@@ -122,7 +122,16 @@
             {"id": "A.5", "printed": "SECTION A.5", "title": "SLOPE STABILITY", "page": "A.5-1", "start_page": "A.5-1"},
             {"id": "A.5-1", "title": "RELEVANT CONCEPTS AND PROCEDURES", "page": "A.5-2"},
             {"id": "A.5-2", "title": "DETAILED PROCEDURES", "page": "A.5-2"},
-            {"id": "A.5-3", "title": "SUMMARY OF THE APPROACH USED TO DETERMINE EMBANKMENT STABLITY FOR THE APPLE FREEWAY DESIGN PROBLEM", "page": "A.5-17"}
+            {"id": "A.5-3", "title": "SUMMARY OF THE APPROACH USED TO DETERMINE EMBANKMENT STABLITY FOR THE APPLE FREEWAY DESIGN PROBLEM", "page": "A.5-17"},
+            {"id": "A.6", "printed": "SECTION A.6", "title": "APPROACH ROADWAY DEFORMATIONS", "page": "A.6-1", "start_page": "A.6-1"},
+            {"id": "A.6-1", "title": "RELEVANT CONCEPTS AND PROCEDURES", "page": "A.6-2"},
+            {"id": "A.6-2", "title": "DETAILED PROCEDURES", "page": "A.6-2"},
+            {"id": "A.6-3", "title": "SOLUTION TO DETERMINE THE MAGNITUDE OF AND TIME FOR THE ANTICIPATED SETTLEMENT DUE TO THE EMBANKMENT FILL", "page": "A.6-4"},
+            {"id": "A.6-4", "title": "CONSIDERATION OF SURCHARGE OPTION TO ACCELERATE CONSOLIDATION SETTLEMENT AND REDUCE TIME REQUIRED FOR SETTLEMENT DUE TO THE EMBANKMENT FILL", "page": "A.6-14"},
+            {"id": "A.6-5", "title": "CONSIDERATION OF WICK DRAIN OPTION (NO SURCHARGE) TO ACCELERATE CONSOLIDATION SETTLEMENT AND REDUCE TIME REQUIRED FOR SETTLEMENT DUE TO THE EMBANKMENT FILL", "page": "A.6-21"},
+            {"id": "A.6-6", "title": "CHECK FOR LATERAL SQUEEZE OF CLAY", "page": "A.6-25"},
+            {"id": "A.6-7", "title": "SUMMARY OF THE APPROACH ROADWAY STABILITY – FOR DETAILS REFER TO SECTION A.5-4 OF PREVIOUS PROBLEM", "page": "A.6-26"},
+            {"id": "A.6-8", "title": "SUMMARY OF EMBANKMENT SETTLEMENT ANALYSES AT EAST ABUTMENT", "page": "A.6-26"}
           ],
           "figures": [
             {"number": "A.1-1", "page": "A.1-2", "caption": "Apple Freeway plan and section"},
@@ -160,9 +169,21 @@
             {"number": "A.5-11", "page": "A.5-14", "caption": "Trial failure surface consisting of Active and Passive Rankine wedges and central sliding block"},
             {"number": "A.5-12", "page": "A.5-15", "caption": "Active earth pressure diagram and resultant active Rankine force"},
             {"number": "A.5-13", "page": "A.5-16", "caption": "Passive earth pressure diagram and resultant passive Rankine force"},
-            {"number": "A.5-14", "page": "A.5-16", "caption": "Force system acting on central block"}
+            {"number": "A.5-14", "page": "A.5-16", "caption": "Force system acting on central block"},
+            {"number": "A.6-1", "page": "A.6-1", "caption": "Status of geotechnical work"},
+            {"number": "A.6-2", "page": "A.6-3", "caption": "Design subsurface profile and soil properties at east embankment location"},
+            {"number": "A.6-3", "page": "A.6-4", "caption": "Variation of overburden pressure and preconsolidation pressure with depth"},
+            {"number": "A.6-4", "page": "A.6-6", "caption": "Pressure distribution chart used to estimate the change in pressure at depths below the end of an embankment fill"},
+            {"number": "A.6-5", "page": "A.6-7", "caption": "Variation of overburden pressure (po), preconsolidation pressure (pc) and final pressure due to embankment (pf) with depth"},
+            {"number": "A.6-6", "page": "A.6-14", "caption": "Settlement vs. Time after construction of 30-ft embankment fill"},
+            {"number": "A.6-7", "page": "A.6-15", "caption": "Variation of overburden pressure (po), preconsolidation pressure (pc) and final pressure due to embankment + surcharge (pf + ps) with depth"},
+            {"number": "A.6-8", "page": "A.6-19", "caption": "Settlement vs. Time after construction of 30 ft embankment fill with and without surcharge"},
+            {"number": "A.6-9", "page": "A.6-20", "caption": "Trial failure circle – embankment fill + surcharge - East Abutment"},
+            {"number": "A.6-10", "page": "A.6-20", "caption": "Idealized cross section of embankment fill + surcharge"},
+            {"number": "A.6-11", "page": "A.6-23", "caption": "Time versus settlement after completion of embankment fill for wick drain treatment without surcharge"},
+            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of time-settlement curves for baseline case (30-ft embankment fill) and various treatment options"}
           ],
-          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1", "A.5-1", "A.5-12"],
+          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1", "A.5-1", "A.5-12", "A.6-1"],
           "tables": [
             {"number": "A.4-1", "page": "A.4-7", "caption": "Unit weights of soils in idealized profile (Boring UDH BAF-4)"},
             {"number": "A.4-2", "page": "A.4-7", "caption": "Computations for construction of po diagram (Boring UDH BAF-4)"},
@@ -170,13 +191,25 @@
             {"number": "A.4-4", "page": "A.4-8", "caption": "Shear strength test results summary (Boring UDH BAF-4)"},
             {"number": "A.5-1", "page": "A.5-3", "caption": "Geotechnical engineering properties of embankment and foundation soils East Abutment - (Boring BAF-4)"},
             {"number": "A.5-2", "page": "A.5-9", "caption": "Tabular form for computing total weights of slices for a unit thickness into the plane of the paper"},
-            {"number": "A.5-3", "page": "A.5-11", "caption": "Tabular form for computing factor of safety by Ordinary Method of Slices"}
+            {"number": "A.5-3", "page": "A.5-11", "caption": "Tabular form for computing factor of safety by Ordinary Method of Slices"},
+            {"number": "A.6-1", "page": "A.6-4", "caption": "Consolidation test results summary (Hole BAF-4)"},
+            {"number": "A.6-2", "page": "A.6-7", "caption": "Summary of pressure increments at various depths due to embankment fill"},
+            {"number": "A.6-3", "page": "A.6-12", "caption": "Summary of layer and sub-layer settlements due to embankment fill and computation of total settlement"},
+            {"number": "A.6-4", "page": "A.6-13", "caption": "Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of embankment load"},
+            {"number": "A.6-5", "page": "A.6-15", "caption": "Pressure increments at various depths due to embankment fill + surcharge"},
+            {"number": "A.6-6", "page": "A.6-18", "caption": "Summary of sub-layer settlements in clay due to embankment fill + surcharge and computation of total settlement of clay - Layer 3"},
+            {"number": "A.6-7", "page": "A.6-18", "caption": "Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of embankment and surcharge loads"},
+            {"number": "A.6-8", "page": "A.6-19", "caption": "Recommend instrumentation for monitoring settlement and excess pore water pressures at East Abutment"},
+            {"number": "A.6-10", "page": "A.6-22", "caption": "Template to compute values of consolidation settlement (∆H) in clay -Layer 3 at various times (t) after application of embankment load (wick drains with no surcharge) due to combined vertical and radial drainage"},
+            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of results for base-line case (embankment fill only) and various treatment options"}
           ],
           "typed_pages": "fhwa_soils_foundations_typed/appendix_a.txt",
           "printed_equations": [],
           "fixes": [
             {"find": "from each auger hole. CPT-BAF-2 CPT-BAF-4 CPT-BAF-3 CPT-BAF-1", "replace": "from each auger hole."},
-            {"find": "[p. A.4-5] Figure X.4-2: Pressure Diagram (p0 and pt)\n\nFigure A.4-2.", "replace": "[p. A.4-5] Figure A.4-2."}
+            {"find": "[p. A.4-5] Figure X.4-2: Pressure Diagram (p0 and pt)\n\nFigure A.4-2.", "replace": "[p. A.4-5] Figure A.4-2."},
+            {"find": "Clay (Layer 1) - 11.83 inches of consolidation settlement.", "replace": "Clay (Layer 1) - 11.83 inches of consolidation settlement. [Layer 1 as printed; the clay is Layer 3 in Section A.6-3.]"},
+            {"find": "t90 = 432 days. (organic material replaced) • Recheck stability", "replace": "t90 = 432 days. (organic material replaced) [432 days as printed under the surcharge option; Step 6 of Section A.6-4 reads 195 days or 6.5 months with the surcharge.] • Recheck stability"}
           ]
         },
         {
