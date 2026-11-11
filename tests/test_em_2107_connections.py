@@ -37,6 +37,11 @@ class TestBoltGradeCheck:
         with pytest.raises(ValueError, match="ASTM F3125 Grade A325"):
             bolt_grade_check("ISO 898 class 8.8", "nonstructural")
 
+    def test_print_spelling_3148_names_the_grade_to_pass(self):
+        # Paragraph 6.1.3.4 (pdf 47 / printed 38) reads "ASTM 3148".
+        with pytest.raises(ValueError, match="reads 'ASTM 3148'.*'ASTM F3148'"):
+            bolt_grade_check("ASTM 3148", "structural")
+
 
 class TestWeldingCodeSelection:
     def test_cyclic_or_fcm_requires_d15(self):

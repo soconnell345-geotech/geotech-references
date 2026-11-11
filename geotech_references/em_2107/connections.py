@@ -29,6 +29,10 @@ def bolt_grade_check(grade, application="structural"):
     ASTM A307 or graded bolts (SAE J429 Grade 5/8) may be used only for
     NON-structural applications, per AISC and RCSC S348.
 
+    The print reads "ASTM 3148" (EM 1110-2-2107_2022.pdf pdf 47 / printed
+    38); this function names it 'ASTM F3148', and a call with the print's
+    spelling raises ValueError saying so.
+
     Parameters
     ----------
     grade : str
@@ -48,6 +52,10 @@ def bolt_grade_check(grade, application="structural"):
     g = grade.strip().lower()
     structural_ok = any(g == s.lower() for s in STRUCTURAL_BOLT_GRADES)
     nonstructural_ok = structural_ok or any(g == s.lower() for s in NONSTRUCTURAL_BOLT_GRADES)
+    if not nonstructural_ok and g in ("astm 3148", "3148"):
+        raise ValueError(
+            f"bolt grade {grade!r}: paragraph 6.1.3.4 (printed p. 38) reads 'ASTM 3148'; "
+            "pass 'ASTM F3148', the name this lookup gives that grade.")
     if not nonstructural_ok:
         raise ValueError(
             f"bolt grade {grade!r} is not one paragraph 6.1.3.4 names (printed p. 38): structural "
