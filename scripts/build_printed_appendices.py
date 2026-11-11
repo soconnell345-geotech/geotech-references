@@ -65,6 +65,17 @@ from build_printed_text import (  # noqa: E402
     add_printed_equations, chapter_json, fitz, fix_printed_equations,
     split_long, title_case)
 
+def _title(title: str) -> str:
+    """title_case, keeping a word the print sets in mixed case among the
+    capitals as printed ("WORKING WITH ReSSA" -> "Working with ReSSA")."""
+    words = title.split()
+    cased = title_case(title).split()
+    if len(cased) != len(words):
+        return title_case(title)
+    return " ".join(w if re.search(r"[a-z]", w) and re.search(r"[A-Z]", w) else c
+                    for w, c in zip(words, cased))
+
+
 #: An appendix page's printed number ("B - 3", "A.6 - 12", "A - 1").
 _APP_LABEL = re.compile(rf"^([A-E](?:\.\d{{1,2}})?)\s*[-{_DASH}]\s*(\d{{1,3}})$")
 _HEADER_END = re.compile(r"^December\s+2006$")
@@ -462,14 +473,14 @@ def build_appendix(vol: dict, app: dict, manifest_dir: Path, log: list,
                             "implemented_in": None})
         record = {
             "section_id": sec["id"],
-            "title": title_case(sec["title"]),
+            "title": _title(sec["title"]),
             "body": body,
             "key_points": [],
             "equations": add_printed_equations(body, eq_list, printed_eqs, attached),
             "figures": _listed(figures, "Figure", body),
             "tables": _listed(tables, "Table", body),
             "applicability": (f"{vol['volume_id']}, Appendix {app['letter']} "
-                              f"({title_case(app['title'])}), printed {pages_txt}."),
+                              f"({_title(app['title'])}), printed {pages_txt}."),
         }
         for part in split_long(record):
             part["figures"] = _listed(figures, "Figure", part["body"])
@@ -507,7 +518,7 @@ def build_appendix(vol: dict, app: dict, manifest_dir: Path, log: list,
         "reference_title": vol.get("volume_title", ""),
         "volume": vol["volume"],
         "chapter": app["number"],
-        "chapter_title": f"Appendix {app['letter']}: {title_case(app['title'])}",
+        "chapter_title": f"Appendix {app['letter']}: {_title(app['title'])}",
         "sections": sections,
     }
 

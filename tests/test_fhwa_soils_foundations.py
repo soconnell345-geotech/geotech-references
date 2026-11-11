@@ -304,6 +304,7 @@ APPENDICES = {
           "Appendix B: Mohr’s Circle and Its Applications in Geotechnical Engineering"),
     "C": ("appendix_c.json", 15,
           "Appendix C: Load and Resistance Factor Design (LRFD)"),
+    "D": ("appendix_d.json", 16, "Appendix D: Use of the Computer Program ReSSA"),
 }
 
 
@@ -411,6 +412,20 @@ def test_appendix_c_example_values_as_printed():
     assert "2,025 kips / 0.70 = 2,893 kips (12,868 kN)" in lrfd
     # the print's 2,892 on the next line is kept and said
     assert "2,892 kips / 330 kips = 8.8 piles, say 9.0 piles [2,892 as printed" in lrfd
+
+
+def test_appendix_d_sections_as_printed():
+    secs = {s["section_id"]: s for s in _appendix("D")["sections"]}
+    # D.3 runs past the size limit: its last page is the lettered part D.3.a
+    assert list(secs) == ["D.1", "D.2", "D.3", "D.3.a"]
+    assert secs["D.3"]["title"] == "Working with ReSSA"
+    assert [f.split(":")[0] for f in secs["D.3"]["figures"]] == [
+        f"Figure D-{n}" for n in range(1, 11)]
+    assert "utilizing the Modified Bishop method of analysis" in secs["D.1"]["body"]
+    assert "a 30 ft deep cut slope in a uniform deposit of clay" in secs["D.1"]["body"]
+    # a word the print breaks across a line is joined ("Figure D-" / "1)")
+    assert "the ReSSA startup screen (Figure D-1)." in secs["D.3"]["body"]
+    assert "reviewed by an experienced peer and senior reviewer" in secs["D.3.a"]["body"]
 
 
 def test_appendix_sections_found_by_search():
