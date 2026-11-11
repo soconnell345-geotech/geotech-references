@@ -92,11 +92,25 @@ class TestPondingAndLateralTorsionalBuckling:
         # in SI. Same joist in SI and inch-pound gives the same spacing.
         e_pa, i_m4, l_m = 12.0e9, 0.038 * 0.286 ** 3 / 12.0, 6.0
         si = critical_ponding_spacing(e_pa, i_m4, l_m)
-        assert si["rho_water"] == 9810.0
+        assert si["unit_weight_water"] == 9810.0
         assert si["s_cr"] == pytest.approx(math.pi ** 4 * e_pa * i_m4 / (9810.0 * l_m ** 4))
         e_psi, i_in4, l_in = e_pa / 6894.757, i_m4 / 0.0254 ** 4, l_m / 0.0254
-        ip = critical_ponding_spacing(e_psi, i_in4, l_in, rho_water=0.0361)
+        ip = critical_ponding_spacing(e_psi, i_in4, l_in, unit_weight_water=0.0361)
         assert ip["s_cr"] * 0.0254 == pytest.approx(si["s_cr"], rel=0.01)
+
+    def test_critical_ponding_spacing_refuses_mass_density(self):
+        # The print's "1,000 kg m-3" passed as the weight would give a
+        # spacing 9.81 times too large; 900 to 1,100 is refused.
+        e_pa, i_m4, l_m = 12.0e9, 0.038 * 0.286 ** 3 / 12.0, 6.0
+        for value in (900.0, 1000.0, 1100.0):
+            with pytest.raises(ValueError, match="9,810 N/m"):
+                critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=value)
+        # Just outside the band, and kN/m^3, are taken as given.
+        assert critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=1100.5)["s_cr"] > 0
+        assert critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=9.81)["s_cr"] > 0
+        # The old keyword is gone, with no alias.
+        with pytest.raises(TypeError):
+            critical_ponding_spacing(e_pa, i_m4, l_m, rho_water=9810.0)
 
     def test_lateral_torsional_buckling_formula(self):
         result = lateral_torsional_buckling_stress(10e9, alpha=20.0)

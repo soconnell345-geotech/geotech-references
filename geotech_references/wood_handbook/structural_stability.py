@@ -281,7 +281,7 @@ RHO_WATER_KG_M3 = 1000.0  # as printed; a mass density, not used by the formula
 
 
 def critical_ponding_spacing(modulus_of_elasticity, moment_of_inertia, length,
-                              end_condition="simple", rho_water=GAMMA_WATER_N_M3):
+                              end_condition="simple", unit_weight_water=GAMMA_WATER_N_M3):
     """Eq 9-32: critical beam spacing s_cr, in the length unit of L, to
     prevent progressive deflection (ponding failure) under roof water
     (printed p. 9-15, Zahn 1988); the actual spacing must be less than
@@ -304,15 +304,19 @@ def critical_ponding_spacing(modulus_of_elasticity, moment_of_inertia, length,
         L, beam length (m or in.).
     end_condition : str, optional
         'simple' (default, m=1) or 'fixed' (m=16/3).
-    rho_water : float, optional
+    unit_weight_water : float, optional
         Unit weight of water: 9,810 N/m^3 (default, SI: Pa, m^4, m) or
         0.0361 lb/in^3 (``GAMMA_WATER_LB_IN3``, inch-pound: lb/in^2, in^4,
-        in.). Not the mass density 1,000 kg/m^3.
+        in.). Not the mass density 1,000 kg/m^3: a value from 900 to 1,100
+        is refused, since it can only be a mass density in SI and would
+        give s_cr about 9.81 times too large. This parameter was called
+        ``rho_water`` until 2026-11-10; it was renamed, with no alias,
+        because the print's rho is a mass density and this is a weight.
 
     Returns
     -------
     dict
-        {'s_cr', 'm', 'rho_water', 'basis', 'equation': '9-32', ...}
+        {'s_cr', 'm', 'unit_weight_water', 'basis', 'equation': '9-32', ...}
     """
     if end_condition == "simple":
         m = 1.0
@@ -320,10 +324,16 @@ def critical_ponding_spacing(modulus_of_elasticity, moment_of_inertia, length,
         m = 16.0 / 3.0
     else:
         raise ValueError(f"end_condition must be 'simple' or 'fixed', got {end_condition!r}")
-    s_cr = m * math.pi**4 * modulus_of_elasticity * moment_of_inertia / (rho_water * length**4)
+    if 900.0 <= unit_weight_water <= 1100.0:
+        raise ValueError(
+            f"unit_weight_water={unit_weight_water!r} looks like the mass density of water "
+            "in kg/m^3. Eq 9-32 needs the unit weight: 9,810 N/m^3 in SI (0.0361 lb/in^3 "
+            "inch-pound). The print's '1,000 kg m-3' is a mass density; with it the "
+            "spacing comes out about 9.81 times too large.")
+    s_cr = m * math.pi**4 * modulus_of_elasticity * moment_of_inertia / (unit_weight_water * length**4)
     return {"modulus_of_elasticity": modulus_of_elasticity, "moment_of_inertia": moment_of_inertia,
             "length": length, "end_condition": end_condition, "m": m, "s_cr": s_cr,
-            "rho_water": rho_water,
+            "unit_weight_water": unit_weight_water,
             "basis": ("unit weight of water (9,810 N/m^3 SI; 0.0361 lb/in^3 as printed); "
                       "the print's '1,000 kg m-3' is a mass density"),
             "equation": "9-32", "printed_page": "9-15", "pdf_page": 246}
