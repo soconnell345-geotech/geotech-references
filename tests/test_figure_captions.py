@@ -80,10 +80,12 @@ def test_gec6_figures_sit_on_their_caption_pages():
 
 def test_micropile_lists_every_printed_figure_once():
     """The printed List of Figures has 132 entries (3, 5, 14, 18, 27, 44, 13
-    and 8 in chapters 1-8)."""
+    and 8 in chapters 1-8); the sample problems of Appendices D and E print
+    10 more (S1-1 to S1-7, S2-1 to S2-3; REF-84)."""
     figs = _load(ROOT / "geotech_references" / "micropile" / "figures_catalog.json")
     numbers = [f["figure_number"] for f in figs["figures"]]
-    assert len(numbers) == len(set(numbers)) == figs["figure_count"] == 132
+    assert len(numbers) == len(set(numbers)) == figs["figure_count"] == 142
+    assert sum(1 for n in numbers if n.startswith("S")) == 10
     per_chapter = [sum(1 for n in numbers if n.split("-")[0] == str(c))
                    for c in range(1, 9)]
     assert per_chapter == [3, 5, 14, 18, 27, 44, 13, 8]

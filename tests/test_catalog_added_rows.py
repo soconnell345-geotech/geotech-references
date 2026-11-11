@@ -63,6 +63,8 @@ ADDED = {
     # Figure 3.22 and Appendices A, B, C and G
     "gec_7": ["3.22", "A.1"] + _nums("B", 1, 4, ".") + _nums("C", 1, 3, ".")
              + ["G.1", "G.2"],
+    # the sample problems of Appendices D and E
+    "micropile": _nums("S1", 1, 7) + _nums("S2", 1, 3),
 }
 
 #: Rows whose page holds no picture and too few lines to count as a
@@ -195,6 +197,10 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
     ("gec_7", "B.3", 338, "Chart. Batter = 0 deg. - Backslope 10 deg"),
     # printed without the stop after "Illustration"
     ("gec_7", "C.2", 345, "Illustration Design cross section"),
+    ("micropile", "S1-3", 405, "Sample Problem No. 1 - Summary of Abutment "
+                               "Loads"),
+    ("micropile", "S1-5", 418, "Pile Top to Abutment Footing Connection "
+                               "Detail"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -233,6 +239,9 @@ def test_sideways_figures_say_how_to_turn_the_page(ref, number, turn):
     ("fhwa_soils_foundations", "A.2-11"),
     ("fhwa_soils_foundations", "A.2-12"),
     ("fhwa_soils_foundations", "A.4-3"),
+    ("micropile", "S1-2"),
+    ("micropile", "S1-6"),
+    ("micropile", "S1-7"),
 ])
 def test_figures_turned_under_an_upright_caption(ref, number):
     notes = _figures_db.figure_get(ref, number)["read_notes"]
@@ -278,6 +287,11 @@ def test_added_rows_are_found_by_their_captions():
         ("gec_7", "batter backslope 30 deg chart", "B.4"),
         ("gec_7", "results of overall stability", "C.3"),
         ("gec_7", "launched nail installation", "G.1"),
+        ("micropile", "abutment section detail sample problem", "S1-1"),
+        ("micropile", "soil boring log sample problem", "S1-4"),
+        ("micropile", "working drawing submittal", "S1-6"),
+        ("micropile", "bending moment diagram sample problem 2", "S2-2"),
+        ("micropile", "lateral deflection profile", "S2-3"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
