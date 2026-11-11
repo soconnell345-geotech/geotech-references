@@ -39,8 +39,9 @@ the figures its PDF prints under a caption that the catalog lacks, and
 changes none of its rows: each new row's page prints the caption and holds
 a picture or a drawing (:func:`find_missing`, :func:`add_rows`). The caption
 is the one printed under the figure; ``--overrides`` gives a caption typed
-from the rendered page where the text layer garbles a symbol, or the page of
-a figure the scan cannot place.
+from the rendered page where the text layer garbles a symbol, the page of
+a figure the scan cannot place, ``read_notes`` for a figure printed turned,
+or the ``chapter`` a catalog files an annex's figures under.
 
 ``--pack`` builds a local reference pack's catalog (BACKLOG REF-64; see
 ``docs/REFERENCE_PACKS.md``): the PDF is ``--pdf`` or the first of
@@ -1322,7 +1323,7 @@ def find_missing(package: str, chapters=None, numbers=None,
         row = {
             "figure_number": num,
             "caption": cap,
-            "chapter": _row_chapter(num),
+            "chapter": ov.get("chapter", _row_chapter(num)),
             "pdf_page_index": c["pdf_page_index"],
             "printed_page": ov.get("printed_page", _printed_page_like(
                 cat["figures"], entry["list_page"] if entry else None,
