@@ -224,3 +224,68 @@ class TestCommentaryC22:
             assert f"Table C22-{n} " in body
         assert body.count("[The cells of this table are not typed here:") == 5
         assert "The increase at the Sacramento location (from 0.76g to 0.97g)" in body
+
+
+class TestCommentaryC11:
+    """Part 2, Commentary to Chapter 11, printed pp. 114-139. Two parts over 14,000 characters
+    are split: C11.2 / C11.2.a and C11.9.2 / C11.9.2.a (the references), letters not printed."""
+
+    def test_sections_as_printed(self):
+        ch = _commentary(11)
+        assert ch["chapter"] == 11
+        assert _ids(ch) == [
+            "C11.1", "C11.1.1", "C11.1.2", "C11.1.3", "C11.1.4", "C11.1.5", "C11.2", "C11.2.a", "C11.3",
+            "C11.4", "C11.4.1", "C11.4.2", "C11.4.2.1", "C11.4.3", "C11.4.4", "C11.4.5", "C11.4.5.1",
+            "C11.4.5.2", "C11.4.6", "C11.5", "C11.5.1", "C11.5.2", "C11.6", "C11.7", "C11.8", "C11.8.1",
+            "C11.8.2", "C11.8.3", "C11.9", "C11.9.1", "C11.9.2", "C11.9.2.a"]
+        assert all(len(s["body"]) <= 14000 for s in ch["sections"])
+        part = retrieve_section("fema_p2082", "C11.2.a")
+        assert part["title"] == "Definitions (continued, pp. 122-123)"
+        assert part["body"].startswith("DISTRIBUTION SYSTEM: For the purposes of determining the anchorage")
+        assert part["figures"] == ["Figure C11.2-10: Illustration of Definition of Story above Grade Plane (p. 123)"]
+
+    def test_two_period_spectrum_segments(self):
+        # p. 127, typed from the page.
+        body = retrieve_section("fema_p2082", "C11.4.5.2")["body"]
+        assert "The constant-acceleration segment covers the period band from T0 to Ts;" in body
+        assert "The constant-velocity segment covers the period band from Ts to TL," in body
+        assert "Response accelerations in the constant-displacement segment, where T ≥ TL, are proportional to 1/T²." in body
+
+    def test_liquefaction_pga(self):
+        # p. 133: the former defaults SS/2.5 and SDS/2.5; now MCEG PGA.
+        body = retrieve_section("fema_p2082", "C11.8.3")["body"]
+        assert "peak ground acceleration shall be assumed to be equal to SS/2.5 (where SS was the MCE short-period response spectral acceleration on Site Class B rock)" in body
+        assert "was given as SDS/2.5 (where SDS was the short-period site-adjusted design response spectral acceleration on Site Class B rock)" in body
+        assert "requires explicitly that liquefaction potential be evaluated based on the MCEG peak ground acceleration." in body
+        assert "multiplying the MCE ground motion by a factor of 2/3 to account for a margin in capacity" in body
+
+    def test_importance_factor_divides_r(self):
+        # p. 128.
+        body = retrieve_section("fema_p2082", "C11.5.1")["body"]
+        assert "the Importance Factor is shown as a divisor on the factor R or Rp to reduce damage for important structures" in body
+        assert "The R and Rp factors adjust the computed linear elastic response" in body
+
+    def test_seismic_design_category_parameters(self):
+        # p. 130.
+        body = retrieve_section("fema_p2082", "C11.6")["body"]
+        assert "used the peak velocity-related acceleration, Av, to determine a building’s seismic performance category." in body
+        assert "adopted the use of response spectral acceleration parameters SDS and SD1, which include site soil effects" in body
+        assert "MMI VI SDC B\n[p. 130] MMI VII SDC C\nMMI VIII SDC D" in body
+        assert "structural height, [no symbol is printed here: the page shows a blank space], and the length" in body
+
+    def test_vertical_spectrum_considerations(self):
+        # p. 135.
+        body = retrieve_section("fema_p2082", "C11.9.2")["body"]
+        assert "controlled by the spectral acceleration at Tv = 0.1 s;" in body
+        assert "This was taken as Tv^−0.75 in the 2009 NEHRP Provisions and has been updated to Tv^−0.5;" in body
+        assert "\n4. For vertical vibration periods Tv > about 0.3 to 0.5 sec, V⁄H spectral ratios saturate" in body
+        refs = retrieve_section("fema_p2082", "C11.9.2.a")
+        assert refs["title"] == "MCER Vertical Response Spectrum (continued, references, pp. 137-139)"
+        assert "\nOTHER REFERENCES (NOT CITED)\n" in refs["body"]
+        assert "Earthq. Spectra, 24, 319–341." in refs["body"]
+
+    def test_diaphragm_symbols(self):
+        # p. 123.
+        body = retrieve_section("fema_p2082", "C11.3")["body"]
+        assert "δMDD = This symbol refers to in-plane diaphragm deflection" in body
+        assert "the definition for ΔADVE refers to “tributary lateral load equivalent to that used in the computation of δMDD.”" in body
