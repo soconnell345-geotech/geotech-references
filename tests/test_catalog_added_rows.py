@@ -60,6 +60,9 @@ ADDED = {
               + _nums("C2", 1, 4)),
     # Appendices A (design examples), B (soldier beam wedges) and D (creep)
     "gec_4": _nums("A", 1, 10) + _nums("B", 1, 5) + _nums("D", 1, 2),
+    # Figure 3.22 and Appendices A, B, C and G
+    "gec_7": ["3.22", "A.1"] + _nums("B", 1, 4, ".") + _nums("C", 1, 3, ".")
+             + ["G.1", "G.2"],
 }
 
 #: Rows whose page holds no picture and too few lines to count as a
@@ -187,6 +190,11 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
                           "permission of ASCE)"),
     ("gec_4", "D-2", 255, "Extrapolation of creep curves for determining "
                           "working tension"),
+    ("gec_7", "B.1", 334, "Illustration. Conditions for calculations with "
+                          "charts"),
+    ("gec_7", "B.3", 338, "Chart. Batter = 0 deg. - Backslope 10 deg"),
+    # printed without the stop after "Illustration"
+    ("gec_7", "C.2", 345, "Illustration Design cross section"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -265,6 +273,11 @@ def test_added_rows_are_found_by_their_captions():
         ("gec_4", "Wang-Reese embedment depth calculations", "A-4"),
         ("gec_4", "slope stability analysis of existing site conditions",
          "A-7"),
+        ("gec_7", "sculpted natural rock-like wall facing", "3.22"),
+        ("gec_7", "geometry of headed studs", "A.1"),
+        ("gec_7", "batter backslope 30 deg chart", "B.4"),
+        ("gec_7", "results of overall stability", "C.3"),
+        ("gec_7", "launched nail installation", "G.1"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
