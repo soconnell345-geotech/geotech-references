@@ -325,6 +325,30 @@ before -> after at the example input.
   `implemented_in` links corrected; Eq. 3-4 and Eq. 6-15 state their
   printed form beside the coded one.
 
+**DM 7.2 chapter text: equations as printed (build of 2026-11-10, app
+BACKLOG REF-79).** The equations the review found stored in a form the
+print does not have were read again from the rendered pages and point-fixed
+in `dm7_2/text/` (body, key points and equation entries); no lookup
+changes. Those that change a computed value: Eq. 2-10 (rho = q gamma_w /
+delta p, it was divided by gamma_w), 3-2, 4-25 (qmax = 2R/(3 x0); the text
+gave 2.25 times it), the six Table 4-7 cofferdam checks (sliding lost +PP,
+rotation had the signs swapped, the interlock pressure and the sheeting
+slippage were other formulas), 5-21 (- ic), 5-34 (lambda = fourth root of
+ks B/(4 Ec I)), 5-39, 6-53, 6-60, 6-64 and 6-79 (tcap = Pui/12 + 30, it was
+Pui/30 + 12). Eq. 5-5 to 5-7 keep the printed absolute values; P-2, 2-5,
+2-6, 3-1, 3-7, 4-5, 4-12, 4-16 and 6-63 are in their printed forms. Filed
+where printed: Eq. 4-20 to 4-22 (new section 4-4.4.3.2 Low Hydraulic
+Conductivity Soils; three empty "force-injected" entries under 4-5.1.1
+removed), 5-34 and its paragraphs (5-4.2.1), 6-38/6-39 with the
+block-failure text (6-5.5), 7-6 (7-4.1.1) and 7-16 (7-4.4, the empty
+7-4.5.2 entry removed); 7-4.1.1, 7-4.4 and 5-3.3.3 bodies completed from
+the page. The Table 4-7 entries are named by the printed rows ("Table 4-7,
+Sliding at Base" and so on), replacing ten unprinted ids. Key points:
+Table 5-22 has eleven soil rows (not seven), Figure 4-54 note 3 (moments
+80 % of simple span, not a pressure reduction), 2^n point-estimate cases.
+Seven `implemented_in` links now name the equation's own function. Tests:
+`tests/test_dm7_2_text_equations.py`.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
