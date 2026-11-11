@@ -179,8 +179,9 @@ class TestDepthInInchesAndRange:
     """struct-04: Tables 10/11 print c0 - c1 d and c0 - c1 dbg with
     "d = depth of beam, in" / "dbg = depth of bolt group, in" (Table 10,
     GSA_Alternate_Path_2016.pdf pdf 58 / printed 45) and "..., inch"
-    (Table 11, pdf 59 / printed 46). The result names the inch unit; a
-    depth at which a printed expression is <= 0 is refused."""
+    (Table 11, pdf 59 / printed 46). The result names the inch unit; an
+    entry whose printed expression is <= 0 at that depth is None with a
+    note, and a depth at which every entry of the row is <= 0 is refused."""
 
     def test_wuf_m_factors_at_30_in(self):
         # WUF: 3.9 - 0.043d primary, 5.5 - 0.064d secondary (printed p. 45)
@@ -212,17 +213,40 @@ class TestDepthInInchesAndRange:
         with pytest.raises(ValueError, match="inches"):
             table_10_pr_flexible_connection_mfactor("simple_shear_tab", dbg=305.0)
 
-    def test_rotations_refused_past_zero(self):
+    def test_rotations_none_past_zero_and_refused_past_all(self):
         # Table 11 simple shear tab: a = 0.0502 - 0.0015dbg, b = 0.1125 -
-        # 0.0027dbg (printed p. 46); a reaches zero at dbg = 33.5 in
+        # 0.0027dbg (printed p. 46); a reaches zero at dbg = 33.5 in, b at
+        # 41.7 in. At 40 in a and the primary acceptance are None, b and the
+        # secondary acceptance are printed.
         r = table_11_pr_flexible_connection_modeling("simple_shear_tab", 12.0)
         assert r["a"] == pytest.approx(0.0502 - 0.0015 * 12.0)  # 0.0322
         assert r["b"] == pytest.approx(0.1125 - 0.0027 * 12.0)  # 0.0801
+        assert "note" not in r
+        r = table_11_pr_flexible_connection_modeling("simple_shear_tab", 40.0)
+        assert r["a"] is None and r["primary_acceptance"] is None
+        assert r["b"] == pytest.approx(0.1125 - 0.0027 * 40.0)  # 0.0045
+        assert r["secondary_acceptance"] == pytest.approx(r["b"])
+        assert "a is None" in r["note"] and "dbg < 33.5 in" in r["note"]
         with pytest.raises(ValueError, match="plastic rotation"):
-            table_11_pr_flexible_connection_modeling("simple_shear_tab", 40.0)
-        # WUF a = 0.0284 - 0.0004d reaches zero at d = 71 in
-        with pytest.raises(ValueError, match="plastic rotation"):
+            table_11_pr_flexible_connection_modeling("simple_shear_tab", 42.0)
+        # WUF a = 0.0284 - 0.0004d and b = 0.043 - 0.0006d both past zero
+        with pytest.raises(ValueError, match="no entry of this row"):
             table_11_fr_connection_modeling("wuf", 80.0)
+        r = table_11_fr_connection_modeling("wuf", 71.3)
+        assert r["a"] is None and r["b"] == pytest.approx(0.043 - 0.0006 * 71.3)
+
+    def test_wuf_primary_m_returned_where_secondary_is_not(self):
+        # Table 10 WUF (printed p. 45): primary 3.9 - 0.043d is zero at
+        # d = 90.7 in, secondary 5.5 - 0.064d at d = 85.9 in.
+        r = table_10_fr_connection_mfactor("wuf", d=85.0)
+        assert r["m_secondary"] == pytest.approx(5.5 - 0.064 * 85.0)  # 0.06
+        r = table_10_fr_connection_mfactor("wuf", d=88.0)
+        assert r["m_secondary"] is None
+        assert r["m_primary"] == pytest.approx(3.9 - 0.043 * 88.0)  # 0.116
+        assert "m_secondary is None" in r["note"] and "d < 85.9 in" in r["note"]
+        assert "m_primary below 1" in r["note"]
+        with pytest.raises(ValueError, match="no entry of this row"):
+            table_10_fr_connection_mfactor("wuf", d=91.0)
 
 
 class TestTableC11ConnectionTypes:

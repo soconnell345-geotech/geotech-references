@@ -138,42 +138,61 @@ _TABLE_10_PR_FLEXIBLE = {
 def _linear_in_depth(terms, depth, depth_name, source, quantity):
     """Evaluate printed c0 - c1 * depth expressions (depth in inches).
 
-    Refuses a depth that is not positive, and a depth at which a printed
-    expression is zero or negative: the table prints no such m-factor or
-    plastic rotation, the straight line has run past where it applies.
+    Refuses a depth that is not positive. An entry whose printed
+    expression is zero or negative at this depth is returned as None, with
+    a note naming the entry, the expression and the depths at which it is
+    positive: the table prints no such m-factor or plastic rotation there,
+    the straight line has run past where it applies. The row's other
+    entries are returned as printed. Refuses the call only when every
+    entry of the row is zero or negative.
+
+    Returns ``(values, notes)``: each entry's value or None, and a list of
+    notes.
     """
     if depth <= 0:
         raise ValueError(f"{source}: {depth_name} must be a positive depth in inches, got {depth!r}")
-    out = {}
+    out, notes = {}, []
     for name, (c0, c1) in terms.items():
         value = c0 - c1 * depth
-        if value <= 0:
-            raise ValueError(
-                f"{source}: {name} = {c0} - {c1} {depth_name} is {value:.4g} at "
-                f"{depth_name} = {depth} in, not a positive {quantity}; the printed "
-                f"expression reaches zero at {depth_name} = {c0 / c1:.1f} in and the "
-                f"table gives no {quantity} beyond it. {depth_name} is in inches "
-                f"(table footnote).")
-        out[name] = value
-    return out
+        if value > 0:
+            out[name] = value
+            continue
+        out[name] = None
+        where = (f"positive only for {depth_name} < {c0 / c1:.1f} in" if c1 > 0
+                 else "not positive at any depth")
+        notes.append(
+            f"{name} is None: the printed expression {c0} - {c1} {depth_name} is "
+            f"{value:.4g} at {depth_name} = {depth} in, not a positive {quantity}; it is "
+            f"{where}, and the table gives no {quantity} beyond that.")
+    if all(v is None for v in out.values()):
+        raise ValueError(
+            f"{source}: no entry of this row is a positive {quantity} at "
+            f"{depth_name} = {depth} in. " + " ".join(notes) +
+            f" {depth_name} is in inches (table footnote).")
+    return out, notes
 
 
-def _m_below_one_note(m, depth_name, depth):
-    """A note when a printed m-factor expression gives less than 1."""
-    low = [k for k in ("m_primary", "m_secondary") if m[k] < 1]
-    if not low:
-        return {}
-    return {"note": (f"{' and '.join(low)} below 1 at {depth_name} = {depth} in: the "
+def _m_below_one_note(m, depth_name, depth, notes=()):
+    """The result's 'note': the entries a printed expression gives no
+    positive value for (``notes``), and any m-factor below 1."""
+    notes = list(notes)
+    low = [k for k in ("m_primary", "m_secondary") if m[k] is not None and m[k] < 1]
+    if low:
+        notes.append(f"{' and '.join(low)} below 1 at {depth_name} = {depth} in: the "
                      f"printed expression gives it and the table prints no lower "
-                     f"limit; check that {depth_name} is in inches.")}
+                     f"limit; check that {depth_name} is in inches.")
+    return {"note": " ".join(notes)} if notes else {}
 
 
 def table_10_fr_connection_mfactor(connection_type, d):
     """GSA Table 10, Fully Restrained Moment Connections:
     linear-model m-factors (dimensionless), primary and secondary, printed
     as c0 - c1 d with d the beam depth in INCHES (footnote 2)
-    (printed p. 45). A depth at which a printed expression is zero or
-    negative is refused: the table prints no such m-factor. An m below 1
+    (printed p. 45).
+    An entry whose printed expression is zero or negative at that depth
+    is returned as None, with a note naming it and the depths at which
+    it is positive (the table prints no such m-factor there); the call is
+    refused only when every entry of the row is. An m below 1
     is returned with a note (the table prints no lower limit).
 
     Parameters
@@ -188,25 +207,26 @@ def table_10_fr_connection_mfactor(connection_type, d):
     Returns
     -------
     dict
-        {'m_primary', 'm_secondary', 'connection_type', 'd', 'd_units':
+        {'m_primary', 'm_secondary' (None where the printed expression
+         is zero or negative at d), 'connection_type', 'd', 'd_units':
          'in', 'table': '10', 'printed_page': '45', 'pdf_page': 57},
-        plus 'note' when an m-factor is below 1.
+        plus 'note' when an entry is None or an m-factor is below 1.
 
     Raises
     ------
     ValueError
-        Unknown connection_type, d <= 0, or a d at which a printed
-        expression is <= 0 (e.g. 'wuf' beyond its zero depth).
+        Unknown connection_type, d <= 0, or a d at which every printed
+        expression of the row is <= 0 (e.g. 'wuf' beyond its zero depth).
     """
     key = connection_type.lower().strip()
     if key not in _TABLE_10_FR:
         raise ValueError(f"connection_type must be one of {sorted(_TABLE_10_FR)}, got {connection_type!r}")
     row = _TABLE_10_FR[key]
-    m = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
+    m, notes = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
                          d, "d", "GSA Table 10 (printed p. 45)", "m-factor")
     return {"m_primary": m["m_primary"], "m_secondary": m["m_secondary"],
             "connection_type": key, "d": d, "d_units": "in", "table": "10",
-            "printed_page": "45", "pdf_page": 57, **_m_below_one_note(m, "d", d)}
+            "printed_page": "45", "pdf_page": 57, **_m_below_one_note(m, "d", d, notes)}
 
 
 def table_10_pr_stiff_connection_mfactor(connection_type, limit_state):
@@ -241,10 +261,12 @@ def table_10_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=No
     """GSA Table 10: linear-model m-factors (dimensionless),
     primary and secondary, for Partially Restrained Moment Connections (Flexible),
     printed as constants or as c0 - c1 dbg with dbg the bolt-group depth
-    in INCHES (footnote 3) (printed p. 45). A depth at which a
-    printed expression is zero or negative is refused: the table prints no
-    such m-factor. An m below 1 is returned with a note (the table prints
-    no lower limit).
+    in INCHES (footnote 3) (printed p. 45).
+    An entry whose printed expression is zero or negative at that depth
+    is returned as None, with a note naming it and the depths at which
+    it is positive (the table prints no such m-factor there); the call is
+    refused only when every entry of the row is. An m below 1 is
+    returned with a note (the table prints no lower limit).
 
     Parameters
     ----------
@@ -263,13 +285,15 @@ def table_10_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=No
     dict
         {'m_primary', 'm_secondary', 'connection_type', 'limit_state',
          'dbg', 'dbg_units': 'in', 'table': '10', 'printed_page': '45',
-         'pdf_page': 57}, plus 'note' when an m-factor is below 1.
+         'pdf_page': 57}; an m-factor is None where its printed
+        expression is zero or negative at dbg; plus 'note' when an
+        entry is None or an m-factor is below 1.
 
     Raises
     ------
     ValueError
-        Unknown row, dbg <= 0, or a dbg at which a printed expression is
-        <= 0.
+        Unknown row, dbg <= 0, or a dbg at which every printed
+        expression of the row is <= 0.
     """
     conn = connection_type.lower().strip()
     ls = limit_state.lower().strip() if limit_state else None
@@ -277,12 +301,12 @@ def table_10_pr_flexible_connection_mfactor(connection_type, dbg, limit_state=No
     if key not in _TABLE_10_PR_FLEXIBLE:
         raise ValueError(f"No Table 10 row for {key}; valid: {sorted(_TABLE_10_PR_FLEXIBLE)}")
     row = _TABLE_10_PR_FLEXIBLE[key]
-    m = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
+    m, notes = _linear_in_depth({"m_primary": row["primary"], "m_secondary": row["secondary"]},
                          dbg, "dbg", "GSA Table 10 (printed p. 45)", "m-factor")
     return {"m_primary": m["m_primary"], "m_secondary": m["m_secondary"],
             "connection_type": conn, "limit_state": ls, "dbg": dbg, "dbg_units": "in",
             "table": "10", "printed_page": "45", "pdf_page": 57,
-            **_m_below_one_note(m, "dbg", dbg)}
+            **_m_below_one_note(m, "dbg", dbg, notes)}
 
 
 # ============================================================================
@@ -332,8 +356,11 @@ def table_11_fr_connection_modeling(connection_type, d):
     (residual strength ratio), and the acceptance-criteria plastic
     rotations (radians; printed equal to a and b), with a and b printed as
     c0 - c1 d and d the beam depth in INCHES (footnote 3) (printed
-    p. 46). A depth at which a printed expression is zero or negative is
-    refused: the table prints no such plastic rotation.
+    p. 46).
+    An entry whose printed expression is zero or negative at that depth
+    is returned as None, with a note naming it and the depths at which
+    it is positive (the table prints no such plastic rotation there); the call is
+    refused only when every entry of the row is.
 
     Parameters
     ----------
@@ -349,24 +376,27 @@ def table_11_fr_connection_modeling(connection_type, d):
     dict
         {'a', 'b', 'c', 'primary_acceptance' (=a), 'secondary_acceptance'
         (=b), 'connection_type', 'd', 'd_units': 'in', 'table': '11',
-        'printed_page': '46', 'pdf_page': 58}
+        'printed_page': '46', 'pdf_page': 58}; a or b (and its
+        acceptance) is None where its printed expression is zero or
+        negative at d, with a 'note'.
 
     Raises
     ------
     ValueError
-        Unknown connection_type, d <= 0, or a d at which a or b is <= 0.
+        Unknown connection_type, d <= 0, or a d at which both a and b are <= 0.
     """
     key = connection_type.lower().strip()
     if key not in _TABLE_11_FR:
         raise ValueError(f"connection_type must be one of {sorted(_TABLE_11_FR)}, got {connection_type!r}")
     row = _TABLE_11_FR[key]
-    v = _linear_in_depth({"a": row["a"], "b": row["b"]}, d, "d",
+    v, notes = _linear_in_depth({"a": row["a"], "b": row["b"]}, d, "d",
                          "GSA Table 11 (printed p. 46)",
                          "plastic rotation")
     a, b = v["a"], v["b"]
     return {"a": a, "b": b, "c": row["c"], "primary_acceptance": a,
             "secondary_acceptance": b, "connection_type": key, "d": d,
-            "d_units": "in", "table": "11", "printed_page": "46", "pdf_page": 58}
+            "d_units": "in", "table": "11", "printed_page": "46", "pdf_page": 58,
+            **({"note": " ".join(notes)} if notes else {})}
 
 
 def table_11_pr_stiff_connection_modeling(connection_type, limit_state):
@@ -405,8 +435,10 @@ def table_11_pr_flexible_connection_modeling(connection_type, dbg, limit_state=N
     rotations (radians, primary and secondary), for
     Partially Restrained Simple Connections (Flexible), printed as c0 - c1 dbg with dbg
     the bolt-group depth in INCHES (footnote 4) (printed p. 46).
-    A depth at which a printed expression is zero or negative is refused:
-    the table prints no such rotation.
+    An entry whose printed expression is zero or negative at that depth
+    is returned as None, with a note naming it and the depths at which
+    it is positive (the table prints no such rotation there); the call is
+    refused only when every entry of the row is.
 
     Parameters
     ----------
@@ -424,13 +456,15 @@ def table_11_pr_flexible_connection_modeling(connection_type, dbg, limit_state=N
     dict
         {'a', 'b', 'c', 'primary_acceptance', 'secondary_acceptance',
          'connection_type', 'limit_state', 'dbg', 'dbg_units': 'in',
-         'table': '11', 'printed_page': '46', 'pdf_page': 58}
+         'table': '11', 'printed_page': '46', 'pdf_page': 58}; an
+         entry is None where its printed expression is zero or negative
+         at dbg, with a 'note'.
 
     Raises
     ------
     ValueError
-        Unknown row, dbg <= 0, or a dbg at which a printed expression is
-        <= 0.
+        Unknown row, dbg <= 0, or a dbg at which every printed
+        expression of the row is <= 0.
     """
     conn = connection_type.lower().strip()
     ls = limit_state.lower().strip() if limit_state else None
@@ -438,7 +472,7 @@ def table_11_pr_flexible_connection_modeling(connection_type, dbg, limit_state=N
     if key not in _TABLE_11_PR_FLEXIBLE:
         raise ValueError(f"No Table 11 row for {key}; valid: {sorted(_TABLE_11_PR_FLEXIBLE)}")
     row = _TABLE_11_PR_FLEXIBLE[key]
-    v = _linear_in_depth({"a": row["a"], "b": row["b"], "primary_acceptance": row["primary"],
+    v, notes = _linear_in_depth({"a": row["a"], "b": row["b"], "primary_acceptance": row["primary"],
                           "secondary_acceptance": row["secondary"]},
                          dbg, "dbg", "GSA Table 11 (printed p. 46)",
                          "plastic rotation")
@@ -446,7 +480,8 @@ def table_11_pr_flexible_connection_modeling(connection_type, dbg, limit_state=N
             "primary_acceptance": v["primary_acceptance"],
             "secondary_acceptance": v["secondary_acceptance"], "connection_type": conn,
             "limit_state": ls, "dbg": dbg, "dbg_units": "in", "table": "11",
-            "printed_page": "46", "pdf_page": 58}
+            "printed_page": "46", "pdf_page": 58,
+            **({"note": " ".join(notes)} if notes else {})}
 
 
 # ============================================================================
