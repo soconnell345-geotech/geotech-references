@@ -2,6 +2,37 @@
 
 Releases before 1.6.0 are described in their release commits (`git log`).
 
+## Unreleased
+
+**EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils
+(U.S. Army Corps of Engineers, 31 July 2025), as package `em_1905`.**
+
+- Chapter text read off the print: chapters 1-12, and Appendices B
+  (design examples, ultimate limit states), C (design examples,
+  settlement) and D (unit conversion factors) as chapters 13-15; 778
+  sections, each body in the print's own wording with page markers, and
+  all 213 numbered equations typed in from the rendered page with their
+  symbols and units. Figure catalog: all 136 figures, each on the page
+  that prints its caption.
+- Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
+  5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
+  `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
+  `figures` (the table printed on Figure 7-16). Each returns a dict with
+  `units`, `source` (the printed page), `valid_for` and `notes`, and
+  raises ValueError outside what the print covers; a value past a limit
+  printed beside a formula is refused, not cut. The tests run Appendix B
+  Examples B-1 to B-7 and Appendix C Examples C-1 and C-3 to C-7. The
+  equations of Chapters 3, 4, 8 and 9 and the charts are text and
+  catalog only.
+- Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
+  are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
+  parents in both retrieval layers; the existing ids give the same
+  results.
+- Scripts: `scripts/printed_army_layout.py` reads manuals in the Army
+  layout for `build_printed_text.py` (manifest layout "army");
+  `build_figure_catalog.py` and `check_section_numbers.py` read that
+  layout too.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references

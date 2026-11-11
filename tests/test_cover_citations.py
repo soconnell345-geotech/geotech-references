@@ -55,6 +55,7 @@ COVERS = [
     ("ufc_stabilization", None, "UFC 3-250-11", "30 November 2020", False),
     ("ufc_structural", None, "UFC 3-301-01", "11 April 2023", False),
     ("em_2104", None, "EM 1110-2-2104", "1 November 2023", False),
+    ("em_1905", None, "EM 1110-1-1905", "31 July 2025", False),
     ("gec_12", None, "FHWA-NHI-16-009", None, False),
     ("gec_13/1", None, "FHWA-NHI-16-027", None, False),
     ("gec_13/2", None, "FHWA-NHI-16-028", None, False),

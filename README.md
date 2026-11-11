@@ -10,7 +10,7 @@ pip install geotech-references
 
 ## Overview
 
-This package provides 1,231 digitized functions from 33 reference packages, turning published figures, tables, and equations into callable Python code. 31 of the 33 packages also carry structured chapter text (see Text Retrieval below).
+This package provides 1,297 digitized functions from 34 reference packages, turning published figures, tables, and equations into callable Python code. 32 of the 34 packages also carry structured chapter text (see Text Retrieval below).
 
 ```python
 from geotech_references.dm7_1.chapter1 import table_1_4_uscs_classification
@@ -52,7 +52,7 @@ Function counts are the public functions defined in each package's modules (coun
 | `fhwa_soils_foundations` | Soils and Foundations Reference Manual, Volumes I and II (FHWA-NHI-06-088, -089) | - |
 | `fhwa_pavements` | Geotechnical Aspects of Pavements (FHWA-NHI-05-037) | 25 |
 
-### Other geotechnical and seismic references (118 functions)
+### Other geotechnical and seismic references (184 functions)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
@@ -60,6 +60,7 @@ Function counts are the public functions defined in each package's modules (coun
 | `fema_p2082` | 2020 NEHRP Recommended Seismic Provisions (FEMA P-2082-1) | 12 |
 | `eurocode_7_1` | EN 1997-1:2004 Eurocode 7, Part 1: General Rules | 31 |
 | `eurocode_7_2` | EN 1997-2:2007 Eurocode 7, Part 2: Ground Investigation and Testing | 43 |
+| `em_1905` | EM 1110-1-1905 Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025) | 66 |
 
 ### UFC pavement, soils and structural criteria (576 functions)
 
@@ -81,7 +82,7 @@ Function counts are the public functions defined in each package's modules (coun
 
 ### Text Retrieval
 
-Structured chapter text is available for 31 of the 33 packages (all but `ufc_backfill` and `ufc_expansive`). List them with `geotech_references._retrieval_db.list_indexed_references()`:
+Structured chapter text is available for 32 of the 34 packages (all but `ufc_backfill` and `ufc_expansive`). List them with `geotech_references._retrieval_db.list_indexed_references()`:
 
 ```python
 from geotech_references._retrieval import search_sections
