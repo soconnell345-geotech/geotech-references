@@ -9,11 +9,11 @@
       "section_id": "2-1",
       "title": "Risk Category Determination",
       "summary": "Determine the progressive-collapse Risk Category (RC) from Table 2-1, based on the Risk Category already assigned per UFC 3-301-01 Table 2-2 -- itself a function of occupancy level and building function/criticality.",
-      "body": "Determine the Risk Category (RC) of a particular structure by using Table 2-1 for the situation that most closely matches the building. The Risk Category is taken from the risk category definitions in UFC 3-301-01 Structural Engineering; the RC level can be considered as a measure of the consequences of a progressive collapse event and is based on two main factors: level of occupancy and building function or criticality. Chapter 3 provides the Tie Force, Alternate Path, and Enhanced Local Resistance approaches and requirements, common across all construction types, with material-specific details in Chapters 4-8; Appendix C provides the development rationale.",
+      "body": "[p. 7] For both new and existing buildings, the level of progressive collapse design will be based on the risk category (RC) of the structure. The risk category will be determined per Section 2-1. The RC is used to define the corresponding level of progressive collapse design for new and existing construction as detailed in Section 2-2. Chapter 3 Design Procedures provides the approaches and requirements for applying Tie Forces (TF), Alternate Path (AP), and Enhanced Local Resistance (ELR). The overall techniques for these three approaches are the same for each construction type, but the details may vary with material type. Chapters 4 through 8 provide the material specific design requirements. Finally, Appendix C provides insight into the development of these approaches. Determine the Risk Category (RC) of a particular structure by using Table 2-1 for the situation that most closely matches the building. The Risk Category is taken from the risk category definitions in UFC 3-301-01 Structural Engineering; the RC level can be considered as a measure of the consequences of a progressive collapse event and is based on two main factors: level of occupancy and building function or criticality. Table 2-1 (Risk Categories): Risk Category I: buildings in Risk Category I in Table 2-2 of UFC 3-301-01; low occupancy buildings (footnote A). Risk Category II: buildings in Risk Category II in Table 2-2 of UFC 3-301-01; inhabited buildings with less than 50 personnel, primary gathering buildings, billeting, and high occupancy family housing (footnotes A, B). Risk Category III: buildings in Risk Category III in Table 2-2 of UFC 3-301-01. Risk Category IV: buildings in Risk Category IV and Risk Category V in Table 2-2 of UFC 3-301-01. Footnote A: As defined by UFC 4-010-01 DoD Minimum Antiterrorism Standards for Buildings. Footnote B: Risk Category II is the minimum occupancy category for these buildings, as their population or function may require designation as Risk Category III, IV, or V. Footnote C (on the Risk Category column): Section 1604.5.1 Multiple occupancies of the International Building Code (IBC) is applicable for determination of the Risk Category including the provisions for structurally separated structures.",
       "key_points": [
-        "Progressive-collapse RC derives from the building's UFC 3-301-01 Risk Category (Table 2-1)",
-        "RC reflects occupancy level and building function/criticality",
-        "See applicability.table_2_1_risk_category()"
+        "The Risk Category is taken from UFC 3-301-01 and measures the consequences of a progressive collapse event (p. 7)",
+        "The RC is based on level of occupancy and building function or criticality (p. 7)",
+        "Table 2-1: UFC 3-301-01 RC I and low occupancy buildings: I; RC II and inhabited buildings with less than 50 personnel, primary gathering, billeting, high occupancy family housing: II; RC III: III; RC IV and V: IV (p. 7)"
       ],
       "equations": [], "figures": [],
       "tables": ["Table 2-1: Risk Categories"],
@@ -23,14 +23,12 @@
       "section_id": "2-2",
       "title": "Design Requirements",
       "summary": "Table 2-2 maps each Risk Category to its required combination of Tie Forces (TF), Alternate Path (AP), and Enhanced Local Resistance (ELR): RC I none; RC II TF+ELR (Option 1) or AP alone (Option 2); RC III AP+ELR; RC IV TF+AP+ELR (with a Tie-Force-minimum exemption for buildings that are UFC 3-301-01 RC IV, but not RC V).",
-      "body": "The design requirements for each Risk Category (RC) are shown in Table 2-2. RC I: no specific requirements. RC II: Option 1 (Tie Forces for the entire structure plus Enhanced Local Resistance for the first-story corner and penultimate columns/walls) OR Option 2 (Alternate Path for specified removal locations). RC III: Alternate Path plus Enhanced Local Resistance for all first-story perimeter columns/walls. RC IV: Tie Forces AND Alternate Path plus Enhanced Local Resistance for all first-story perimeter columns/walls -- Footnote A permits exempting the Tie Force minimum structural requirements (Section 3-1.1) for buildings that are UFC 3-301-01 Risk Category IV, but NOT for Risk Category V (which retains the minimum requirements).",
+      "body": "[p. 8] The design requirements for each risk category (RC) are shown in Table 2-2. The details are provided in the following sections. Table 2-2 (Risk Categories and Design Requirements): I: No specific requirements. II: Option 1: Tie Forces (TF) for the entire structure and Enhanced Local Resistance (ELR) for the corner and penultimate columns or walls at the first story. OR Option 2: Alternate Path (AP) for specified column and wall removal locations. III: Alternate Path for specified column and wall removal locations and Enhanced Local Resistance (ELR) for all perimeter first story columns or walls. IV (footnote A): Tie Forces and Alternate Path for specified column and wall removal locations and Enhanced Local Resistance for all perimeter first story columns or walls. Footnote A: For buildings in Risk Category IV in Table 2-2 of UFC 3-301-01, the minimum structural requirements for Tie Force application in Section 3-1.1 can be exempted. The minimum structural requirements shall remain for buildings in Risk Category V.",
       "key_points": [
-        "RC I: no requirements",
-        "RC II Option 1: TF (entire structure) + ELR (first-story corner/penultimate)",
-        "RC II Option 2: AP alone, at specified removal locations",
-        "RC III: AP + ELR (all first-story perimeter)",
-        "RC IV: TF + AP + ELR; Section 3-1.1 minimum TF requirements exemptable only for UFC 3-301-01 RC IV, not RC V",
-        "See applicability.table_2_2_design_requirements() and applicability.rc4_tie_force_minimum_exempt()"
+        "RC I: no specific requirements (p. 8)",
+        "RC II: Option 1, TF for the entire structure plus ELR for first-story corner and penultimate columns or walls; or Option 2, AP (p. 8)",
+        "RC III: AP plus ELR for all perimeter first story columns or walls (p. 8)",
+        "RC IV: TF and AP plus ELR; the Section 3-1.1 minimum structural requirements can be exempted for UFC 3-301-01 RC IV but remain for RC V (p. 8)"
       ],
       "equations": [], "figures": [],
       "tables": ["Table 2-2: Risk Categories and Design Requirements"],
@@ -40,7 +38,7 @@
       "section_id": "2-2.1",
       "title": "Risk Category I Design Requirement",
       "summary": "No progressive collapse design is required for RC I structures.",
-      "body": "Progressive collapse design is not required for these structures.",
+      "body": "[p. 8] Progressive collapse design is not required for these structures.",
       "key_points": ["RC I: no design required"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC I buildings."
@@ -48,8 +46,8 @@
     {
       "section_id": "2-2.2",
       "title": "Risk Category II Design Requirement",
-      "summary": "Designer chooses Option 1 (TF + ELR) or Option 2 (AP); AP is often the more practical choice for load-bearing wall structures, which can leverage inherent redundancy and deep-beam/arching action.",
-      "body": "For RC II structures, one of two options may be chosen. In the first, the designer shall incorporate the Tie Force requirement for the entire structure and Enhanced Local Resistance for the first story corner and penultimate columns and walls (a penultimate column or wall is the closest column or wall to the corner). In the second option, the designer shall design or analyze the building with the Alternate Path method to show that the structure can bridge over the removal of columns, load-bearing walls, or beams supporting columns or walls at specified locations.",
+      "summary": "One of two options may be chosen: Option 1, Tie Forces for the entire structure and Enhanced Local Resistance for the first-story corner and penultimate columns and walls (the penultimate column or wall is the closest one to the corner); or Option 2, the Alternate Path method for specified removal locations.",
+      "body": "[p. 8] For RC II structures, one of two options may be chosen. In the first, the designer shall incorporate the Tie Force requirement for the entire structure and Enhanced Local Resistance for the first story corner and penultimate columns and walls (a penultimate column or wall is the closest column or wall to the corner). In the second option, the designer shall design or analyze the building with the Alternate Path method to show that the structure can bridge over the removal of columns, load-bearing walls, or beams supporting columns or walls at specified locations.",
       "key_points": ["Designer's choice between TF+ELR (Option 1) and AP (Option 2)", "Penultimate = closest column/wall to a corner"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC II buildings choosing between the two design options."
@@ -58,7 +56,7 @@
       "section_id": "2-2.2.1",
       "title": "Option 1 for Risk Category II: Tie Force and Enhanced Local Resistance",
       "summary": "Sub-requirements 2-2.2.1.1 (Tie Force) and 2-2.2.1.2 (ELR) must both be satisfied; a vertical member deficient in vertical tie strength may instead be shown adequate via AP, but a horizontal-tie deficiency must be redesigned/retrofitted (AP cannot substitute).",
-      "body": "The requirements in 2-2.2.1.1 and 2-2.2.1.2 for Tie Forces and Enhanced Local Resistance shall be satisfied, if this option is chosen. Tie Force Requirement: the procedure and requirements for Tie Forces for framed and load-bearing wall structures are presented in Section 3-1. If a vertical structural member cannot provide the required vertical tie force strength, either re-design the member or use the AP method to prove that the structure can bridge over the element when it is removed. For elements with inadequate horizontal tie force strength, the designer shall re-design the element in the case of new construction or retrofit the element in the case of existing construction; the AP method cannot be used as an alternative for inadequate horizontal ties. Enhanced Local Resistance Requirement: applied to the first story corner and penultimate columns and walls only; the flexural demand is not increased, but the design shear strength of the column/wall and its connections shall exceed the shear demand associated with the flexural demand. The procedure is presented in Section 3-3.",
+      "body": "[p. 9] The requirements in 2-2.2.1.1 and 2-2.2.1.2 for Tie Forces and Enhanced Local Resistance shall be satisfied, if this option is chosen. 2-2.2.1.1 Tie Force Requirement for RC II Option 1. The procedure and requirements for Tie Forces for framed and load-bearing wall structures are presented in Section 3-1. If a vertical structural member cannot provide the required vertical tie force strength, either re-design the member or use the AP method to prove that the structure can bridge over the element when it is removed. For elements with inadequate horizontal tie force strength, the designer shall re-design the element in the case of new construction or retrofit the element in the case of existing construction. The AP method cannot be used as an alternative for inadequate horizontal ties. 2-2.2.1.2 Enhanced Local Resistance Requirement for RC II Option 1. The Enhanced Local Resistance requirement is applied to the first story corner and penultimate columns and walls only. For this requirement for RC II Option 1, the flexural demand of the column or wall is not increased; however, the design shear strength of the column or wall and the connections to the slabs, floor system or other lateral load resisting elements shall be greater than the shear demand associated with the flexural demand of the component. The procedure is presented in Section 3-3.",
       "key_points": [
         "Deficient VERTICAL tie strength: redesign OR use AP as an alternative",
         "Deficient HORIZONTAL tie strength: must redesign/retrofit; AP is NOT an allowed alternative",
@@ -71,7 +69,7 @@
       "section_id": "2-2.2.2",
       "title": "Option 2 for Risk Category II: Alternate Path",
       "summary": "AP is applied to specified column/wall removal locations (Section 3-2); if bridging fails at any location, redesign/retrofit is required. Redundant buildings may rely on one typical analysis for similar locations, with the observation documented. AP is often the most practical choice for load-bearing wall structures.",
-      "body": "If the Alternate Path requirement is chosen, then the structure shall be able to bridge over vertical load-bearing elements that are notionally removed one at a time from the structure at specific plan and elevation locations, as required in Section 3-2. If bridging cannot be demonstrated for one of the removed load-bearing elements, the structure shall be re-designed or retrofitted to increase the bridging capacity. If the results of the analyses are similar for multiple locations due to the redundancy of the building, a formal analysis is not required for every location, provided that one typical analysis is performed and annotated in the design documents. Note: for load-bearing wall structures, the Alternate Path approach will often be the most practical choice.",
+      "body": "[p. 9] If the Alternate Path requirement is chosen, then the structure shall be able to bridge over vertical load-bearing elements that are notionally removed one at a time from the structure at specific plan and elevation locations, as required in Section 3-2. The procedures and general requirements for the Alternate Path method are provided in Section 3-2 with specific requirements for each material given in Chapters 4 through 8. If bridging cannot be demonstrated for one of the removed load-bearing elements, the structure shall be re-designed or retrofitted to increase the bridging capacity. If the results of the analyses are similar for multiple locations due to the redundancy of the building, a formal analysis is not required for every location, provided that one typical analysis is performed, and that this observation is annotated in the design documents. Note: for load-bearing wall structures, the Alternate Path approach will often be the most practical choice.",
       "key_points": ["AP at specified locations (Section 3-2)", "Redundant buildings: one typical analysis may cover multiple similar locations, with documentation", "AP often most practical for load-bearing wall structures"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC II Option 2 buildings."
@@ -80,7 +78,7 @@
       "section_id": "2-2.3",
       "title": "Risk Category III Design Requirement",
       "summary": "Both Alternate Path (2-2.3.1) and Enhanced Local Resistance (2-2.3.2) must be satisfied.",
-      "body": "For Risk Category III, two requirements shall be satisfied: Alternate Path and Enhanced Local Resistance as discussed in the following sections.",
+      "body": "[p. 10] For Risk Category III, two requirements shall be satisfied: Alternate Path and Enhanced Local Resistance as discussed in the following sections.",
       "key_points": ["RC III: AP AND ELR, both required"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC III buildings."
@@ -89,7 +87,7 @@
       "section_id": "2-2.3.1",
       "title": "Alternate Path Requirement for Risk Category III",
       "summary": "AP applies at specified removal locations (Section 3-2); if a location fails, redesign/retrofit that column AND other similarly-situated columns, not just the single deficient element.",
-      "body": "The structure shall be able to bridge over vertical load-bearing elements that are notionally removed one at a time from the structure at specific plan and elevation locations, as required in Section 3-2. If bridging cannot be demonstrated for one of the removed load-bearing elements, the structure shall be re-designed or retrofitted to increase the bridging capacity. Note that the structural re-design or retrofit is not applied to just the deficient element -- if a structure cannot bridge over a removed typical column, the engineer shall develop suitable re-designs for that column and other similar columns.",
+      "body": "[p. 10] The structure shall be able to bridge over vertical load-bearing elements that are notionally removed one at a time from the structure at specific plan and elevation locations, as required in Section 3-2. If bridging cannot be demonstrated for one of the removed load-bearing elements, the structure shall be re-designed or retrofitted to increase the bridging capacity. Note that the structural re-design or retrofit is not applied to just the deficient element, i.e., if a structure cannot be shown to bridge over a removed typical column at the center of the long side, the engineer shall develop suitable or similar re-designs or retrofits for that column and other similar columns. The procedures and general requirements for the Alternate Path method are provided in Section 3-2 with specific requirements for each material given in Chapters 4 through 8.",
       "key_points": ["Failure at one location -> redesign that element AND similar elements elsewhere, not just the tested one"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC III Alternate Path design."
@@ -98,7 +96,7 @@
       "section_id": "2-2.3.2",
       "title": "Enhanced Local Resistance Requirement for Risk Category III",
       "summary": "ELR applies to ALL first-story perimeter columns/walls; flexural demand is not increased (unlike RC IV), but shear strength must exceed the shear demand from the (unincreased) flexural demand.",
-      "body": "The Enhanced Local Resistance requirement is applied to all first story perimeter columns and walls. For this requirement, for RC III, the flexural demand of the column or wall need not be increased; however, the design shear strength of the column or wall and the connections to the slabs, floor system or other lateral load resisting elements shall be greater than the shear demand associated with the flexural demand of the component. The procedure is presented in Section 3-3.",
+      "body": "[p. 10] The Enhanced Local Resistance requirement is applied to all first story perimeter columns and walls. For this requirement, for RC III, the flexural demand of the column or wall need not be increased; however, the design shear strength of the column or wall and the connections to the slabs, floor system or other lateral load resisting elements shall be greater than the shear demand associated with the flexural demand of the component. The procedure is presented in Section 3-3.",
       "key_points": ["RC III ELR: all first-story perimeter columns/walls, flexural demand not increased"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC III Enhanced Local Resistance design."
@@ -107,7 +105,7 @@
       "section_id": "2-2.4",
       "title": "Risk Category IV Design Requirement",
       "summary": "All three methods required: Tie Forces (2-2.4.1), Alternate Path (2-2.4.2, same as RC III), and Enhanced Local Resistance (2-2.4.3, with an added flexural-demand multiplier not present in RC III).",
-      "body": "The design requirements for Risk Category IV include Alternate Path, Tie Forces and Enhanced Local Resistance as discussed in the following paragraphs.",
+      "body": "[p. 10] The design requirements for Risk Category IV include Alternate Path, Tie Forces and Enhanced Local Resistance as discussed in the following paragraphs.",
       "key_points": ["RC IV: TF + AP + ELR, all three required"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC IV buildings."
@@ -115,12 +113,12 @@
     {
       "section_id": "2-2.4.1",
       "title": "Tie Force Requirement for Risk Category IV",
-      "summary": "Full internal/peripheral/vertical Tie Force strength required (Section 3-1); a deficient vertical tie may be resolved via redesign or AP, but a deficient horizontal tie must be redesigned/retrofitted (AP not allowed). Section 3-1.1's minimum structural requirements (4-bay rule) can be exempted for UFC 3-301-01 RC IV buildings but remain mandatory for RC V buildings.",
-      "body": "For RC IV, the designer shall provide adequate internal, peripheral and vertical Tie Force strengths. The procedure and requirements for applying the Tie Force approach are provided in Section 3-1. If a structural member cannot provide the required vertical tie force strength, the designer shall either re-design the member or use the Alternate Path method to prove that the structure can bridge over the element when it is removed. For elements with inadequate horizontal tie force strength, the Alternate Path method cannot be used -- the designer shall re-design or retrofit the element. The minimum structural requirements for Tie Force application in Section 3-1.1 can be exempted for Risk Category IV, however, for Risk Category V, the minimum structural requirements shall remain.",
+      "summary": "The designer shall provide adequate internal, peripheral and vertical Tie Force strengths (Section 3-1); a member deficient in vertical tie strength is redesigned or shown by AP to be bridged, but for inadequate horizontal tie strength AP cannot be used and the element is redesigned or retrofitted. The Section 3-1.1 minimum structural requirements can be exempted for RC IV but remain for RC V.",
+      "body": "[p. 10] For RC IV, the designer shall provide adequate internal, peripheral and vertical Tie Force strengths. The procedure and requirements for applying the Tie Force approach are provided in Section 3-1. If a structural member cannot provide the required vertical tie force strength, the designer shall either re-design the member or use the Alternate Path method to prove that the structure can bridge over the element when it is removed. For elements with inadequate horizontal tie force strength, the Alternate Path method cannot be used. In this case, the designer shall re-design the element in the case of new construction or retrofit the element for existing construction. [p. 11] The minimum structural requirements for Tie Force application in Section 3-1.1 can be exempted for Risk Category IV, however, for Risk Category V, the minimum structural requirements shall remain.",
       "key_points": [
-        "Full TF strength required: internal, peripheral, vertical",
-        "Deficient vertical tie: redesign OR AP; deficient horizontal tie: redesign/retrofit only (no AP substitute)",
-        "Section 3-1.1 minimum-bay-count exemption applies to UFC 3-301-01 RC IV only, not RC V"
+        "Adequate internal, peripheral and vertical Tie Force strengths are required (p. 10)",
+        "Inadequate vertical tie strength: redesign or AP; inadequate horizontal tie strength: AP cannot be used, redesign or retrofit (p. 10)",
+        "Section 3-1.1 minimum structural requirements can be exempted for RC IV; for RC V they shall remain (p. 11)"
       ],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC IV Tie Force design."
@@ -129,7 +127,7 @@
       "section_id": "2-2.4.2",
       "title": "Alternate Path Requirement for Risk Category IV",
       "summary": "Identical AP requirement to RC III (Section 2-2.3.1).",
-      "body": "For RC IV, use the same AP requirement as for RC III; see Section 2-2.3.1.",
+      "body": "[p. 11] For RC IV, use the same AP requirement as for RC III; see Section 2-2.3.1.",
       "key_points": ["Same AP requirement as RC III"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC IV Alternate Path design."
@@ -137,12 +135,12 @@
     {
       "section_id": "2-2.4.3",
       "title": "Enhanced Local Resistance Requirement for Risk Category IV",
-      "summary": "ELR applies to all first-story perimeter columns/walls; UNLIKE RC III, the flexural demand IS increased -- columns by 2.0x and walls by 1.5x the gravity-only-design flexural strength (compared against the all-loads design strength, larger governs) -- to reduce the chance of two elements failing in the same event.",
-      "body": "The Enhanced Local Resistance requirement is applied to all first story perimeter columns and walls. The flexural demand of the columns and walls for a design with only gravity loads meeting the AP requirements shall be increased respectively by a factor of 2 and a factor of 1.5 and compared to the flexural demands for the building as designed to meet the AP requirements and all other building code requirements; the larger of these two flexural demands is used to determine the shear demand. The design shear strength of the column or wall and the connections to the slabs, floor system or other lateral load resisting elements shall be greater than this shear demand. Procedures for Enhanced Local Resistance are given in Section 3-3.",
+      "summary": "ELR applies to all first-story perimeter columns and walls. The flexural demand of the columns and walls for a design with only gravity loads meeting the AP requirements is increased by a factor of 2 (columns) and 1.5 (walls) and compared with the flexural demand of the building as designed for AP and all other code requirements; the larger sets the shear demand, which the design shear strength of the member and its connections shall exceed.",
+      "body": "[p. 11] The Enhanced Local Resistance requirement is applied to all first story perimeter columns and walls. The flexural demand of the columns and walls for a design with only gravity loads meeting the AP requirements shall be increased respectively by a factor of 2 and a factor of 1.5 and compared to the flexural demands for the building as designed to meet the AP requirements and all other building code requirements; the larger of these two flexural demands is used to determine the shear demand. The design shear strength of the column or wall and the connections to the slabs, floor system or other lateral load resisting elements shall be greater than this shear demand. Procedures for Enhanced Local Resistance are given in Section 3-3.",
       "key_points": [
-        "RC IV ELR flexural-demand multipliers: 2.0x (columns), 1.5x (walls), applied to the gravity-only-design Mn",
-        "Governing demand = larger of (multiplied gravity-only Mn) and (all-loads design Mn)",
-        "See enhanced_local_resistance.rc4_column_flexural_demand() / rc4_wall_flexural_demand()"
+        "Flexural demand of the gravity-only design meeting AP increased by a factor of 2 for columns and 1.5 for walls (p. 11)",
+        "The larger of this and the flexural demand of the design for AP and all other code requirements determines the shear demand (p. 11)",
+        "Section 3-3.5.1 states this as the baseline nominal flexural strength multiplied by 2.0 (columns) or 1.5 (walls) (p. 58-59)"
       ],
       "equations": [], "figures": [], "tables": [],
       "applicability": "RC IV Enhanced Local Resistance design."
