@@ -426,3 +426,23 @@ def test_docstring_layout(fn):
     doc = inspect.getdoc(fn)
     assert "Print check" in doc and "Parameters" in doc and "Raises" in doc
     assert doc.index("Print check") < doc.index("Parameters")
+
+
+# Table 6-2 (p. 139), Boussinesq column: (B/z, I_sigma) beneath the center
+# of a square uniformly loaded area
+_T6_2 = [
+    (20, 0.9992), (16, 0.9984), (12, 0.9968), (10, 0.9944), (8, 0.9892),
+    (6, 0.9756), (5, 0.9604), (4, 0.9300), (3.6, 0.9096), (3.2, 0.8812),
+    (2.8, 0.8408), (2.4, 0.7832), (2.0, 0.7008), (1.8, 0.6476),
+    (1.6, 0.5844), (1.4, 0.5108), (1.2, 0.4276), (1.0, 0.3360),
+    (0.8, 0.2410), (0.6, 0.1494), (0.4, 0.0716), (0.2, 0.0188),
+]
+
+
+@pytest.mark.parametrize("ratio, boussinesq", _T6_2)
+def test_eq_6_9_against_table_6_2(ratio, boussinesq):
+    # p. 144 says Eqs. 6-8 to 6-11 are within 5 percent of the Boussinesq
+    # solution: Eq. 6-9 is within 0.012 of every row of Table 6-2 (the
+    # difference is up to 7.7 percent of the value where I_sigma < 0.02).
+    i = st.equation_6_8_influence_factor("square", ratio, 1.0, None)
+    assert i["I_sigma"] == approx(boussinesq, abs=0.0125)
