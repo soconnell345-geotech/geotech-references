@@ -19,10 +19,10 @@
     {
       "section_id": "14-1.1",
       "title": "Subgrade Conditions",
-      "summary": "Reinforcement can reduce cracked-slab damage on subgrades where differential vertical movement is a real risk (e.g., borderline frost-susceptible foundations that can't feasibly meet conventional frost criteria).",
+      "summary": "Reinforcement can reduce cracked-slab damage on subgrades where differential vertical movement is a definite potential (e.g., borderline frost-susceptible foundations that can't feasibly meet conventional frost criteria).",
       "body": "Reinforcement may reduce the damage resulting from cracked slabs. Cracking may occur in rigid pavements founded on subgrades where differential vertical movement is a definite potential. An example is a foundation with definite or borderline frost susceptibility that cannot feasibly be made to conform to conventional frost design requirements.",
       "key_points": [
-        "Reinforcement doesn't prevent differential-movement cracking, but holds cracks tightly closed to limit damage."
+        "Reinforcement may reduce the damage resulting from cracked slabs on subgrades where differential vertical movement is a definite potential, e.g. a foundation with definite or borderline frost susceptibility that cannot feasibly meet conventional frost design requirements."
       ],
       "equations": [],
       "figures": [],
@@ -35,7 +35,7 @@
       "summary": "Reinforced concrete is generally NOT economically competitive with plain concrete of equal capacity even accounting for the thickness reduction; invite alternate bids where reasonable doubt exists.",
       "body": "In general, reinforced concrete pavements are not economically competitive with plain concrete pavements of equal load-carrying capacity, even though a reduction in pavement thickness is possible. Alternate bids, however, should be invited if reasonable doubt exists on this point.",
       "key_points": [
-        "Reinforced concrete's thinner slab usually does NOT offset its added steel cost vs. an equal-capacity plain slab."
+        "In general, reinforced concrete pavements are not economically competitive with plain concrete of equal load-carrying capacity, even though a thickness reduction is possible; alternate bids should be invited if reasonable doubt exists."
       ],
       "equations": [],
       "figures": [],
@@ -45,15 +45,15 @@
     {
       "section_id": "14-1.3",
       "title": "Plain Concrete Pavements (Reinforcement Triggers)",
-      "summary": "Steel is required for odd-shaped slabs and at mismatched joints, per 14-1.3.1.",
+      "summary": "In plain concrete pavements, steel reinforcement should be used for odd-shaped slabs and mismatched joints (14-1.3.1).",
       "body": "In plain concrete pavements, steel reinforcement should be used for the following conditions: odd-shaped slabs and mismatched joints (see 14-1.3.1).",
       "key_points": [
-        "Two mandatory-reinforcement triggers within an otherwise plain-concrete project: odd-shaped slabs, mismatched joints."
+        "In plain concrete pavements, steel reinforcement should be used for odd-shaped slabs and mismatched joints."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Identifying where reinforcement is mandatory even in a nominally 'plain concrete' project."
+      "applicability": "Identifying where reinforcement is called for in a plain-concrete project."
     },
     {
       "section_id": "14-1.3.1",
@@ -64,7 +64,7 @@
       "equations": [],
       "figures": ["Figure C14-1: Typical Layout of Joints at Intersection"],
       "tables": [],
-      "applicability": "Odd geometry or joint-mismatch conditions requiring mandatory reinforcement even in an otherwise plain-concrete project."
+      "applicability": "Odd-shaped slabs and mismatched joints, which call for reinforcement in an otherwise plain-concrete project."
     },
     {
       "section_id": "14-1.4",
@@ -86,9 +86,7 @@
       "body": "The design procedure for reinforced concrete pavements uses the principle of allowing a reduction in the required thickness of plain concrete pavement due to the presence of the steel reinforcing. Essentially, the design method consists of determining the percentage of steel required, the thickness of the reinforced concrete pavement, and the minimum allowable length of the slabs. Figure 14-1 presents a graphic solution for the design of reinforced concrete pavements. Since the thickness of a reinforced concrete pavement is a function of the percentage of steel reinforcing, the designer may determine either the required percentage of steel for a predetermined thickness of pavement or the required thickness of pavement for a predetermined percentage of steel. In either case, it is necessary first to determine the required thickness of plain concrete pavement by the method outlined previously in Chapter titled Plain Concrete Pavement Design. Enter the nomograph in Figure 14-1 using the plain concrete pavement thickness hd (to the nearest 0.1 in (3 mm)). Then draw a straight line from the value of hd to the value selected for either the reinforced concrete pavement thickness hr or the percentage of reinforcing steel S. Note that the S value indicated by Figure 14-1 is the percentage to be used in the longitudinal direction only. For normal designs, the percentage of steel used in the transverse direction is one half of that used in the longitudinal direction. In fillets, the percent steel is the same in both directions. Once the hr and S values have been determined, obtain the maximum allowable slab length L from the intersection of the straight line and the scale for L.",
       "key_points": [
         "Workflow: design plain-concrete hd first (Chapter 13), then enter Figure 14-1 with hd + (hr OR S) to get the other, plus As and L.",
-        "Transverse steel % = half the longitudinal S (except fillets, where they're equal).",
-        "Verified against Appendix G, G-6: hd=7.9in -> at S=0.10%, hr=7in, L=49ft; at S=0.30%, hr=6in, L=97ft raw (75ft cap applies).",
-        "L for a general (non-60,000-psi) steel yield strength uses the closed-form Eq. 17-1 instead of the Figure 14-1 L-scale."
+        "Transverse steel % = half the longitudinal S (except fillets, where they're equal)."
       ],
       "equations": [],
       "figures": ["Figure 14-1: Reinforced Rigid Pavement Design"],
@@ -98,10 +96,11 @@
     {
       "section_id": "14-2.1",
       "title": "Thickness Design on Unbound Base or Subbase",
-      "summary": "For a reinforced slab on unbound foundation, work directly from the plain-concrete hd via Figure 14-1 as described in Section 14-2.",
-      "body": "See paragraph titled Design Procedure: determine plain concrete pavement thickness first, then use Figure 14-1 to obtain hr, S, and L.",
+      "summary": "The reinforced design allows a reduction in the plain concrete thickness for the steel present (empirical, from accelerated traffic tests; the steel holds cracks tightly closed). First determine the plain concrete thickness hd (Chapter 13); enter the Figure 14-1 nomograph with hd (nearest 0.1 in) and draw a straight line to the selected hr or S; S is the longitudinal percentage (transverse normally one half; equal in fillets); read the maximum allowable slab length L where the line crosses the L scale.",
+      "body": "The design procedure for reinforced concrete pavements uses the principle of allowing a reduction in the required thickness of plain concrete pavement due to the presence of the steel reinforcing. Essentially, the design method consists of determining the percentage of steel required, the thickness of the reinforced concrete pavement, and the minimum allowable length of the slabs. Figure 14-1 presents a graphic solution for the design of reinforced concrete pavements. Since the thickness of a reinforced concrete pavement is a function of the percentage of steel reinforcing, the designer may determine either the required percentage of steel for a predetermined thickness of pavement or the required thickness of pavement for a predetermined percentage of steel. In either case, it is necessary first to determine the required thickness of plain concrete pavement by the method outlined previously in Chapter titled Plain Concrete Pavement Design. Enter the nomograph in Figure 14-1 using the plain concrete pavement thickness hd (to the nearest 0.1 in (3 mm)). Then draw a straight line from the value of hd to the value selected for either the reinforced concrete pavement thickness hr or the percentage of reinforcing steel S. Note that the S value indicated by Figure 14-1 is the percentage to be used in the longitudinal direction only. For normal designs, the percentage of steel used in the transverse direction is one half of that used in the longitudinal direction. In fillets, the percent steel is the same in both directions. Once the hr and S values have been determined, obtain the maximum allowable slab length L from the intersection of the straight line and the scale for L.",
       "key_points": [
-        "Unbound-foundation case: no extra credit equation -- go straight from plain-concrete hd into Figure 14-1."
+        "First determine the plain concrete thickness hd (Chapter 13), then use the Figure 14-1 nomograph for hr or S and the maximum allowable slab length L.",
+        "The S value from Figure 14-1 is the longitudinal percentage only; for normal designs the transverse percentage is one half of it, and in fillets the same in both directions."
       ],
       "equations": [
         {"id": "N/A (Figure 14-1 nomograph, cross-referenced by Eq. 17-1 for L)", "description": "Reinforced pavement thickness/steel/slab-length design from a plain-concrete hd.", "implemented_in": "geotech_references.ufc_pavement.tables.figure_14_1_reinforced_pavement_design"}
@@ -126,16 +125,14 @@
     {
       "section_id": "14-3",
       "title": "Limitations",
-      "summary": "No thickness reduction below 0.05% longitudinal steel; no further reduction beyond the 0.5% longitudinal-steel value on Figure 14-1 regardless of steel used beyond that; max slab length 75 ft (25 m) regardless of steel %, yield, or thickness; minimum thickness 6 in for new construction, 4 in for reinforced overlays over rigid pavement.",
+      "summary": "No thickness reduction below 0.05% longitudinal steel; no further reduction beyond the 0.5% longitudinal-steel value on Figure 14-1 regardless of steel used beyond that; the maximum slab length L should not exceed 75 ft (25 m) regardless of steel %, yield, or thickness, and long slabs need special consideration of joint design and sealant; minimum thickness 6 in for new construction, 4 in for reinforced overlays over rigid pavement.",
       "body": "The design criteria for reinforced concrete pavement for roads and parking areas are subject to the following limitations. No reduction in the required thickness of plain concrete pavement should be allowed for percentages of longitudinal steel less than 0.05 percent. No further reduction in the required thickness of plain concrete pavement should be allowed over that indicated in Figure 14-1 for 0.5 percent longitudinal steel, regardless of the percentage of steel used. The maximum length L of reinforced concrete pavement slabs should not exceed 75 ft (25 m) regardless of the percentage of longitudinal steel, yield strength of the steel, or thickness of the pavement. When long slabs are used, special consideration must be given to joint design and sealant requirements. The minimum thickness of reinforced concrete pavements should be 6 in (150 mm) and the minimum thickness for reinforced overlays over rigid pavements will be 4 in (100 mm).",
       "key_points": [
         "Steel percentage design range: 0.05% (floor, no benefit below) to 0.5% (ceiling, no further benefit above).",
-        "Absolute maximum slab length: 75 ft (25 m), no exceptions.",
+        "The maximum slab length L should not exceed 75 ft (25 m) regardless of the percentage of longitudinal steel, yield strength of the steel, or thickness of the pavement.",
         "Minimum thickness: 6 in new construction, 4 in reinforced overlay over rigid pavement."
       ],
-      "equations": [
-        {"id": "Eq. 17-1", "description": "L capped at 75 ft (25 m) regardless of hr, fs, S.", "implemented_in": "geotech_references.ufc_pavement.equations.reinforced_pavement_max_slab_length"}
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Bounding checks after a reinforced design is produced."
@@ -143,8 +140,8 @@
     {
       "section_id": "14-4",
       "title": "Design Example",
-      "summary": "Appendix G, G-6 gives a worked reinforced concrete pavement design example.",
-      "body": "Appendix G includes a design example for a reinforced concrete pavement, showing how a plain-concrete thickness of 7.9 in reduces to a reinforced thickness of 7 in at 0.10% longitudinal steel (L=49 ft) or 6 in at 0.30% steel (L=97 ft raw, capped at 75 ft).",
+      "summary": "Appendix G includes a design example for a reinforced concrete pavement (G-6, Reinforced Concrete Pavements).",
+      "body": "Appendix G includes a design example for a reinforced concrete pavement.",
       "key_points": [
         "Worked example: Appendix G, G-6."
       ],

@@ -33,7 +33,7 @@
       "summary": "See Section 9-2 general procedure; permeable pavement criteria are in UFC 3-201-01.",
       "body": "In designing conventional flexible pavement structures, apply the design values assigned to the various layers to the curves and criteria presented in this UFC. Refer to UFC 3-201-01 for permeable pavement criteria.",
       "key_points": [
-        "Conventional flexible design applies the assigned layer values directly to the Appendix E curves/criteria; permeable pavement follows UFC 3-201-01 instead."
+        "Apply the design values assigned to the various layers to the curves and criteria presented in this UFC; refer to UFC 3-201-01 for permeable pavement criteria."
       ],
       "equations": [],
       "figures": [],
@@ -43,7 +43,7 @@
     {
       "section_id": "9-2.2",
       "title": "Stabilized Soil Layers",
-      "summary": "Design a conventional pavement first, then apply Table 9-1 equivalency factors to the layer(s) to be stabilized; stabilized materials must meet UFC 3-250-11 gradation/durability/strength plus Chapter 19 frost requirements; cement content <4% by weight (else the layer is 'modified', treated as conventional); unbound layers sandwiched between two bound layers need drainage to avoid trapped moisture.",
+      "summary": "Design a conventional pavement first, then apply Table 9-1 equivalency factors to the layer(s) to be stabilized; stabilized materials must meet UFC 3-250-11 gradation/durability/strength plus Chapter 19 frost requirements; when Portland cement stabilizes base course, keep the treatment level below about 4 percent by weight to minimize reflective shrinkage cracking (the base course will then, in most instances, be modified rather than stabilized); soils mixed with a stabilizing agent that do not meet the stabilized-soil requirements are modified and designed as conventional layers; unbound layers sandwiched between two bound layers need drainage to avoid trapped moisture.",
       "body": "Flexible pavements containing stabilized soil layers are designed through the use of equivalency factors. A conventional flexible pavement is first designed and the equivalency factors applied to the thickness of the layer to be stabilized. When stabilized materials meeting all gradation, durability, and strength requirements indicated in UFC 3-250-11, and Chapter titled Seasonal Frost Conditions are used in pavement structures, an appropriate equivalency factor may be applied. Soils which have been mixed with a stabilizing agent and which do not meet the requirements for a stabilized soil are considered modified and are designed as conventional pavement layers. When Portland cement is used to stabilize base course materials in DoD pavements, the treatment level must be maintained below about 4 percent by weight to minimize shrinkage cracking which will reflect through the bituminous concrete surface course. In this case, the base course will, in most instances, be modified rather than stabilized. In addition, when unbound granular layers are used between two bound layers (e.g., an unbound base course between an asphalt concrete (AC) surface course and a stabilized subbase course), provide adequate drainage to the unbound layer to prevent entrapment of excessive moisture in the layer. Additional criteria on soil stabilization may be obtained from UFC 3-250-11.",
       "key_points": [
         "'Stabilized' (equivalency factor applies) vs. 'modified' (treated as conventional) hinges on meeting UFC 3-250-11 gradation/durability/strength.",
@@ -99,14 +99,15 @@
     {
       "section_id": "9-5",
       "title": "Thickness Criteria -- Stabilized Soil Layers",
-      "summary": "Apply Table 7-1 minimums to the conventional design first; stabilized-layer minimums for asphalt layers still follow Table 7-1.",
-      "body": "Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses. However for pavements with stabilized layers, the minimum thickness requirement for the asphalt layer is the same as shown in Table 7-1 for conventional pavements.",
+      "summary": "Stabilized layers qualify for equivalency factors (Table 9-1) only when they meet the UFC 3-250-11 strength and durability requirements; an equivalency factor is the inches of conventional base or subbase replaced by 1 in of stabilized material; cement content limited to 4 percent by weight or less. Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses; the asphalt-layer minimum is the same as for conventional pavements (the page cites Table 7-1; the minimum thicknesses are Table 7-2).",
+      "body": "(Heading only in the print, p. 27; the text under it is 9-5.1 Equivalency Factors and 9-5.2 Minimum Thickness.) The use of stabilized soil layers within a flexible pavement provides the opportunity to reduce the overall thickness of pavement structure required to support a given load. The design of pavement containing stabilized soil layers requires the application of equivalency factors to a layer or layers of a conventionally designed pavement. To qualify for application of equivalency factors, the stabilized layer must meet appropriate strength and durability requirements set forth in UFC 3-250-11. An equivalency factor represents the number of inches (millimeters) of a conventional base or subbase which can be replaced by 1 in (25 mm) of stabilized material. Equivalency factors for stabilized materials are determined as shown in Table 9-1. The cement content must be limited to 4 percent by weight or less to prevent excessive reflective cracking. Selection of an equivalency factor from the tabulation is dependent upon the classification of the soil to be stabilized. Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses. However for pavements with stabilized layers, the minimum thickness requirement for the asphalt layer is the same as shown in Table 7-1 for conventional pavements. The page prints \"Table 7-1\" here (9-5.2, p. 27), but Table 7-1 is Design CBR Values (p. 20); the minimum thicknesses of flexible pavement sections are Table 7-2 (p. 21).",
       "key_points": [
-        "Check Table 7-2 minimums against the CONVENTIONAL design first, before dividing by the equivalency factor."
+        "Apply the minimum thickness requirements to the standard (conventional) pavement before determining the stabilized layer thicknesses.",
+        "Cement content limited to 4 percent by weight or less to prevent excessive reflective cracking."
       ],
       "equations": [],
       "figures": [],
-      "tables": ["Table 9-1: Equivalency Factors for Stabilized Material"],
+      "tables": ["Table 9-1: Equivalency Factors for Stabilized Material", "Table 7-2: Minimum Thickness of Flexible Pavement Sections"],
       "applicability": "Stabilized-layer minimum thickness checks."
     },
     {
@@ -128,8 +129,8 @@
     {
       "section_id": "9-5.2",
       "title": "Minimum Thickness",
-      "summary": "Apply Table 7-2 minimums to the standard pavement before determining stabilized-layer thicknesses; the asphalt-layer minimum stays the same as the conventional case.",
-      "body": "Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses. However for pavements with stabilized layers, the minimum thickness requirement for the asphalt layer is the same as shown in Table 7-1 for conventional pavements.",
+      "summary": "Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses; for pavements with stabilized layers the asphalt-layer minimum is the same as for conventional pavements (the page cites Table 7-1; the minimum thicknesses are Table 7-2).",
+      "body": "Apply the minimum thickness requirements to the standard pavement before determining the stabilized layer thicknesses. However for pavements with stabilized layers, the minimum thickness requirement for the asphalt layer is the same as shown in Table 7-1 for conventional pavements. [The page prints \"Table 7-1\" here (9-5.2, p. 27), but Table 7-1 is Design CBR Values (p. 20); the minimum thicknesses of flexible pavement sections are Table 7-2 (p. 21).]",
       "key_points": [
         "The asphalt-layer minimum thickness for a stabilized design equals the conventional-pavement minimum -- stabilization does not relax it."
       ],
@@ -154,9 +155,9 @@
     {
       "section_id": "9-7",
       "title": "Shoulders and Similar Areas",
-      "summary": "Shoulders are not normal-traffic areas -- they protect vehicles that use them accidentally/in emergencies; provide paved shoulders on high-volume roads, otherwise wet-weather-stable surfacing with compaction, dust/erosion control, and must not block base drainage (especially in frost areas).",
+      "summary": "Shoulders are not normal-traffic areas -- they protect vehicles that use them accidentally/in emergencies; provide paved shoulders on high-volume roads, otherwise wet-weather-stable surfacing with compaction, dust/erosion control, and will not block base course drainage (particularly where frost conditions are a factor).",
       "body": "These areas are provided only for the purpose of minimizing damage to vehicles which use them accidentally or in emergencies; therefore, they are not considered normal vehicular traffic areas. Provide paved shoulders for high volume roads. Others will be surfaced with soils selected for their stability in wet weather and will be compacted as required. Dust and erosion control will be provided by vegetative cover, anchored mulch, coarse-graded aggregate or liquid palliatives UFC 3-260-17. Shoulders will not block base course drainage, particularly where frost conditions are a factor.",
-      "key_points": ["Shoulders must never block base-course drainage, especially in frost areas."],
+      "key_points": ["Shoulders will not block base course drainage, particularly where frost conditions are a factor."],
       "equations": [],
       "figures": [],
       "tables": [],
@@ -165,10 +166,10 @@
     {
       "section_id": "9-8",
       "title": "Bituminous Sidewalks, Curbs, and Gutters",
-      "summary": "Bituminous sidewalk, curb, and gutter design criteria are not covered in this UFC; refer instead to UFC 3-201-01 (Civil Engineering) for those requirements.",
-      "body": "Refer to UFC 3-201-01 for criteria on bituminous sidewalks, curbs and gutters. This UFC's flexible pavement design procedures (Appendix E curves, equivalency factors, minimum thickness tables) apply to roads and parking areas, not to these ancillary bituminous elements.",
+      "summary": "Refer to UFC 3-201-01 for criteria on bituminous sidewalks, curbs and gutters.",
+      "body": "Refer to UFC 3-201-01 for criteria on bituminous sidewalks, curbs and gutters.",
       "key_points": [
-        "Bituminous sidewalks/curbs/gutters are outside this UFC's scope -- use UFC 3-201-01."
+        "Criteria for bituminous sidewalks, curbs and gutters: UFC 3-201-01."
       ],
       "equations": [],
       "figures": [],
@@ -178,10 +179,10 @@
     {
       "section_id": "9-9",
       "title": "Flexible Overlay Design",
-      "summary": "Flexible pavement overlay design (both flexible-on-flexible and flexible-on-rigid) is presented separately in Chapter 15, Pavement Overlays, not in this chapter.",
-      "body": "For the design of flexible pavement overlays, see Chapter titled Pavement Overlays. That chapter covers flexible overlay of an existing flexible pavement (Section 15-6, a simple new-design-minus-existing-thickness difference) and flexible overlay of an existing rigid base pavement (Section 15-7, Eq. 15-4).",
+      "summary": "For the design of flexible pavement overlays, see Chapter 15, Pavement Overlays.",
+      "body": "For the design of flexible pavement overlays, see Chapter titled Pavement Overlays.",
       "key_points": [
-        "Flexible overlay design (new or over rigid) is covered in Chapter 15, not this chapter."
+        "For the design of flexible pavement overlays, see Chapter 15, Pavement Overlays."
       ],
       "equations": [],
       "figures": [],
@@ -193,7 +194,7 @@
       "title": "Flexible Pavement Design Curves",
       "summary": "Appendix E contains the flexible design curves for commonly included vehicles; contact USACE Transportation Systems Center for a vehicle not covered.",
       "body": "Appendix E contains the flexible pavement design curves of vehicles commonly included in the design traffic mix. If a design curve for a vehicle not included in Appendix E, the U.S. Army Corps of Engineers, Transportation Systems Center, 1616 Capitol Avenue, Omaha, NE 68102-4901 may be contacted.",
-      "key_points": ["31 vehicle-specific curves (E-1..E-31); E-1 (single axle, dual-tire, 18-kip) is the general-purpose/universal curve used throughout the worked examples."],
+      "key_points": ["Appendix E contains the flexible pavement design curves of vehicles commonly included in the design traffic mix; for a vehicle not included, the USACE Transportation Systems Center (Omaha) may be contacted."],
       "equations": [],
       "figures": ["Figure E-1: Single Axle, Dual-Tire Load Flexible Pavement Design Curve"],
       "tables": [],

@@ -603,6 +603,37 @@ place of the removed correlations, each read off the rendered page:
 
 No stored statement changed; the package keeps no chapter text.
 
+**Build: the pavement references' chapter text read against the print
+(app backlog REF-83).** Summaries and key points that said more than the
+page, or put a stronger word on it, now restate the printed sentence;
+equations were checked on the rendered pages. No section was renumbered
+and no lookup changed.
+
+- **UFC 3-250-01 (`ufc_pavement`, 21 chapters, 317 sections; 130
+  sections changed: 95 summaries, 102 key-point lists, 21 bodies, 8
+  equation lists).** Summaries and key points brought back to the print: "must"/"never"/
+  "prohibited"/"mandatory" where the page says "should", "should not",
+  "may" or "is required" (e.g. 4-0, 14-3, 16-2.2.1, 16-2.2.3, 17-1.2,
+  17-1.4, 19-4, 19-7, 19-8.1, 20-2.7.2, 20-5.1, 21-4.4); conditions put
+  back (18-4.1 to 18-4.3 bond, 19-9.3 stones, 20-5.3.1 frost pipe depth,
+  20-3.4 exemptions); sentences that were not printed removed (2-2.4,
+  5-3, 9-8, 9-9, 13-5, 13-6, 16-2.3.2.3, 19-12, 19-14, 21-8), as were
+  the "Verified against Appendix G" key points. 16-6.2 said the special
+  joint may be left out "below" 75 percent capacity; the page says at 75
+  percent or less. The drainage-layer thickness paragraph and Eqs. 20-17
+  and 20-18, printed under 20-3.4.3, had been stored under 20-3.4.1; they
+  are back under 20-3.4.3. Eq. 20-13 is stored in its printed form
+  (L = Lt sqrt(it^2 + ie^2) / it, the same value). Heading-only
+  paragraphs 9-5, 10-2.1 and 14-2.1 carry the text printed under them.
+  Print slips are kept as printed with a note: 4-3.1 "165 in (420 mm)";
+  5-2 "cohesive fills at less than 90 percent" against 6-3; 9-5.2
+  "Table 7-1" for the minimum thicknesses (Table 7-2); 15-7.2 "he" in the
+  definition and hE in Eq. 15-4; 17-2 "paragraph 15-5" for joint sealing
+  (16-5); 20-3.4.3 "equation 7-17"; 20-3.4.4 "become saturated"; Eqs.
+  20-15 (mm/sec, 217.5) and 20-16 (ft/day, 6.214 x 10^5), which differ by
+  a factor of about 10 once converted. `tests/test_ufc_pavement_text_equations.py`
+  pins the equations, limits and notes (38 tests).
+
 **Fixes from the 2026-11-10 review of the core layer.** Every page, number
 and caption below was read off the rendered print.
 

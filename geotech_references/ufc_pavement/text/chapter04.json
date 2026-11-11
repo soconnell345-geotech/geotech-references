@@ -8,11 +8,11 @@
     {
       "section_id": "4-0",
       "title": "State Pavement Design Procedure Option",
-      "summary": "For standard AASHTO/non-special-military-vehicle traffic in the US, a State DoT pavement design procedure may substitute for this UFC, except keyed joints may not be used on pavement thinner than 9 in; use UFC 3-201-01's Design Traffic guidance to predict ADT under a State procedure.",
+      "summary": "For standard AASHTO/non-special-military-vehicle traffic in the US, a State DoT pavement design procedure may substitute for this UFC, except keyed joints, if the State allows them, must not be used on pavement thinner than 9 in; use UFC 3-201-01's Design Traffic guidance to predict ADT under a State procedure.",
       "body": "For the design of pavements traveled by standard American Association of State Highway and Transportation Officials (AASHTO) vehicles or vehicles not characterized as special military vehicles in UFC 3-201-01, in the United States, the State pavement design procedure may be used, except that the use of keyed joint, if allowed by the State, must not be used on pavement thinner than 9 inches. When using the State pavement design procedure, use the pavement design criteria and procedures recognized by the Department of Transportation (DoT) in the state in which the project is located. Refer to UFC 3-201-01, paragraph titled 'Design Traffic' to predict average daily traffic (ADT) when using a State pavement design procedure.",
       "key_points": [
         "State DoT procedures are usable in the US for standard (non-special-military-vehicle) traffic.",
-        "Keyed joints prohibited below 9 in thickness even under a State procedure."
+        "Under a State procedure, keyed joints, if the State allows them, must not be used on pavement thinner than 9 in."
       ],
       "equations": [],
       "figures": [],
@@ -36,10 +36,10 @@
     {
       "section_id": "4-2",
       "title": "Equivalent Single Axle Load (ESAL)",
-      "summary": "This UFC's ESAL is NOT the AASHTO ESAL; it is PCASE's mixed-traffic/CBR Beta-model equivalency, derived from USACE ERDC research, and the two are not directly comparable.",
+      "summary": "This UFC's ESAL is NOT the AASHTO ESAL; it is PCASE's mixed-traffic/CBR Beta-model equivalency, derived from USACE ERDC research, and direct comparison or equivalence between the two is not straightforward.",
       "body": "The ESAL used in this UFC is not the ESAL as computed by the AASHTO Guide for Design of Pavement Structures. In PCASE, the equivalency used is based on mixed traffic and the CBR Beta design model. Direct comparison or equivalence between AASHTO and PCASE ESAL is not straightforward since the ESAL computation in each methodology derives from specific models, assumptions, and design procedures. The conversion of each vehicle to ESALs is based on research done by the USACE, ERDC.",
       "key_points": [
-        "UFC 3-250-01 ESAL != AASHTO ESAL -- do not mix the two methodologies' traffic numbers.",
+        "The ESAL of this UFC (PCASE) is not the AASHTO ESAL; direct comparison or equivalence between the two is not straightforward.",
         "PCASE's ESAL derives from the CBR Beta design model and USACE ERDC vehicle-conversion research."
       ],
       "equations": [],
@@ -50,7 +50,7 @@
     {
       "section_id": "4-3",
       "title": "Pavement Design",
-      "summary": "Design for a 25-year life (unless specified) using ADT converted to total passes per vehicle; printed Appendix E/F design charts (from PCASE) may substitute for PCASE; mixed traffic is reduced to an equivalent 18,000-lb (8,200-kg) single-axle dual-tire ESAL via the controlling-vehicle procedure.",
+      "summary": "Design for a 25-year life (unless specified) using ADT converted to total passes per vehicle; printed Appendix E/F design charts (from PCASE) may substitute for PCASE; mixed traffic is reduced to an equivalent 18,000-lb (8,200-kg) single-axle, dual load ESAL via the controlling-vehicle procedure.",
       "body": "Unless specified otherwise in the project specific requirements, design pavement based upon anticipated vehicles and loadings for a 25 year life; however, sections must not be less than the minimums indicated in UFC 3-201-01. Pavements design is based on loads and the total number of passes during the life of the pavement for the expected vehicles. Typically, traffic is counted in terms of ADT. This ADT value should take into consideration the type, numbers of passes, and load for each of the vehicles in the mix. The ADT in the daily traffic distribution is converted to total number of passes for the desired pavement design life. For example, if a road is to be designed for an average of 10 passes per day of a 5 axle truck, then the total design passes for a 25 year life will be 10 passes/day x 365 days/year x 25 years = 91,250 total passes. Design charts have been prepared using PCASE and can be used in lieu of PCASE. These charts are for flexible and rigid pavements use required thickness and total number of passes for various vehicles and are provided in Appendix E, and Appendix F, respectively. When designing for a mix of vehicles (mixed traffic), the concept of an equivalent vehicle is used. In this procedure each vehicle is converted to a critical or controlling vehicle, which in turn represents the cumulative effect of all vehicles in the mix. This procedure is the same procedure used to convert mixed traffic to an equivalent number of passes of an 18,000 lb (8,200 kg) single-axle, dual load ESAL. Use the number of ESALs to compute the minimum pavement layer thicknesses and compaction requirements.",
       "key_points": [
         "Default design life 25 years unless the project specifies otherwise.",
@@ -66,11 +66,11 @@
     {
       "section_id": "4-3.1",
       "title": "Vehicle Wander Width",
-      "summary": "Lateral wander (33 in / 850 mm wander width for roads, +-165 in / 420 mm from centerline) is built into the design charts' assumed load-repetition distribution.",
+      "summary": "Lateral wander (wander width for roads about 33 in / 850 mm; maximum lateral deviation printed as 165 in (420 mm) from the line of travel) is built into the design charts' assumed load-repetition distribution.",
       "body": "As vehicles travel down a road, there is a natural tendency for the vehicles to wander from side to side. This lateral wander determines the actual number of load or stress repetitions applied to a given point on the pavement. This effect is accounted for in pavement design by the wander width, which is defined as the total width of pavement over which the centerline of a vehicle is distributed 75 percent of the time symmetrically around the mean. Traffic studies have indicated that the wander width for roads is about 33 in (850 mm) assuming a statistical normal distribution of traffic. This means that a vehicle would deviate laterally from its centerline a maximum distance of 165 in (420 mm) from its line of travel. The pavement design charts presented in this UFC are based on these assumptions.",
       "key_points": [
         "Road wander width = 33 in (850 mm), containing 75% of vehicle centerline positions.",
-        "Assumed max lateral deviation = 165 in (420 mm) from the line of travel."
+        "Maximum lateral deviation from the line of travel printed as 165 in (420 mm) (p. 10); 420 mm is 16.5 in, half the 33 in wander width, so the inch value looks like a misprint."
       ],
       "equations": [],
       "figures": [],
@@ -94,7 +94,7 @@
     {
       "section_id": "4-3.3",
       "title": "Mixed Traffic",
-      "summary": "Mixed-traffic thickness requirements are computed per vehicle at a representative subgrade category (Table 4-1); the vehicle needing the largest thickness controls, and other vehicles' design passes are re-expressed as equivalent controlling-vehicle passes via the ratio of allowable-to-design passes at the controlling thickness (see Appendix G, Tables G-1/G-2, and equations.mixed_traffic_equivalent_esal).",
+      "summary": "Mixed-traffic equivalency: the thickness requirement of each vehicle is calculated for its passes and subgrade CBR; the vehicle with the largest required thickness becomes the controlling vehicle and the others are converted to it by the procedure in the Appendix G examples. The controlling vehicle for flexible and rigid pavements may differ. Mixed-traffic calculations use a representative subgrade category (Table 4-1); the design CBR or k value is then used for the required thickness.",
       "body": "The examples included in Appendix G illustrate the procedure for handling mixed traffic for either flexible or rigid pavements. The mixed traffic procedure performs an equivalency between vehicles by calculating the thickness requirements of each vehicle for the specified number of passes and subgrade CBR. The vehicle with the largest required thickness then becomes the controlling vehicle and the other vehicles converted to it by the procedure described in the examples. The calculations are based on the thickness requirements of each individual vehicle; therefore the resulting controlling vehicle for flexible and rigid pavements may be different. Since subgrade conditions may vary along a road, mixed traffic calculations use a representative subgrade strength category instead of a specific value. These representative subgrade categories are shown in Table 4-1. However, when the final mixed traffic equivalency has been finished in terms of the equivalent passes of the controlling vehicle, the design CBR or k value will be used to obtain the required pavement thickness above the subgrade.",
       "key_points": [
         "Mixed-traffic thickness calcs use Table 4-1's REPRESENTATIVE subgrade CBR/k (category A-D), not the actual site-specific value.",
@@ -102,7 +102,11 @@
         "After the mixed-traffic equivalency is resolved, switch back to the actual design CBR/k for the final thickness computation."
       ],
       "equations": [
-        {"id": "N/A (procedure, no numbered equation)", "description": "Mixed-traffic equivalent-ESAL procedure: ratio = controlling design passes / this vehicle's allowable passes at the controlling thickness; equivalent passes = ratio x this vehicle's own design passes.", "implemented_in": "geotech_references.ufc_pavement.equations.mixed_traffic_equivalent_esal"}
+        {
+          "id": "N/A (procedure, no numbered equation)",
+          "description": "Mixed-traffic equivalency, printed as steps in Appendix G, paragraph G-1 (p. 256), to which this paragraph refers: the ratio for each vehicle is the allowable passes for the thickness section (of the controlling vehicle) divided by that vehicle's allowable passes at the controlling thickness; the ratio times the vehicle's design passes gives its equivalent passes in terms of the controlling vehicle.",
+          "implemented_in": "geotech_references.ufc_pavement.equations.mixed_traffic_equivalent_esal"
+        }
       ],
       "figures": [],
       "tables": ["Table 4-1: Representative Subgrade Categories"],
@@ -111,12 +115,11 @@
     {
       "section_id": "4-4",
       "title": "Table 4-1: Representative Subgrade Categories",
-      "summary": "Table 4-1 assigns subgrade category A-D (CBR/k bands with representative CBR 15/10/6/3 and representative k 552.6/294.7/147.4/73.7 psi/in) for use ONLY in mixed-traffic equivalency calculations; final thickness design still uses the actual CBR/k.",
-      "body": "Table 4-1 buckets subgrade strength into four categories for mixed-traffic calculations: Category A (CBR >= 13, representative CBR 15; k >= 442 psi/in, representative k 552.6 psi/in); Category B (8 < CBR < 13, representative CBR 10; 221 < k < 442, representative k 294.7 psi/in); Category C (4 < CBR <= 8, representative CBR 6; 92 < k <= 221, representative k 147.4 psi/in); Category D (CBR <= 4, representative CBR 3; k <= 92, representative k 73.7 psi/in). Conversion: kPa/mm = psi/in / 0.271. Verified in Appendix G, G-1: a design subgrade CBR of 4 maps to Category D, representative CBR 3.",
+      "summary": "Table 4-1 assigns subgrade category A-D (CBR/k bands with representative CBR 15/10/6/3 and representative k 552.6/294.7/147.4/73.7 psi/in) used in mixed-traffic calculations; the design CBR or k value is then used for the required thickness (paragraph 4-3.3).",
+      "body": "Table 4-1 buckets subgrade strength into four categories for mixed-traffic calculations: Category A (CBR >= 13, representative CBR 15; k >= 442 psi/in, representative k 552.6 psi/in); Category B (8 < CBR < 13, representative CBR 10; 221 < k < 442, representative k 294.7 psi/in); Category C (4 < CBR <= 8, representative CBR 6; 92 < k <= 221, representative k 147.4 psi/in); Category D (CBR <= 4, representative CBR 3; k <= 92, representative k 73.7 psi/in). Conversion: kPa/mm = psi/in / 0.271. (Table 4-1 is printed under paragraph 4-3.3, p. 11; the manual has no paragraph 4-4.)",
       "key_points": [
         "4 categories (A-D), each carrying BOTH a representative flexible CBR and a representative rigid k.",
-        "Representative values: A=15/552.6, B=10/294.7, C=6/147.4, D=3/73.7 (CBR / k psi-in).",
-        "Verified against Appendix G, G-1: CBR=4 -> Category D -> representative CBR=3."
+        "Representative values: A=15/552.6, B=10/294.7, C=6/147.4, D=3/73.7 (CBR / k psi-in)."
       ],
       "equations": [],
       "figures": [],

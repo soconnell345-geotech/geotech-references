@@ -10,7 +10,7 @@
       "title": "Soil Classification and Tests",
       "summary": "Classify all soils per USCS (ASTM D2487); avoid ambiguous local terms like 'loam,' 'gumbo,' 'mud,' 'muck'; reference Atterberg-limit test procedures/limits in specs when used for classification.",
       "body": "All soils should be classified according to the USCS as given in ASTM D2487. There have been instances in construction specifications where the use of such terms as 'loam,' 'gumbo,' 'mud,' and 'muck' have resulted in misunderstandings. These terms are not specific and are subject to different interpretations throughout the United States. Such terms should not be used. Sufficient investigations should be performed at the proposed site to facilitate the description of all soils that will be used or removed during construction in accordance with ASTM D 2487; any additional descriptive information considered pertinent should also be included. If Atterberg limits are a required part of the description, as indicated by the classification tests, the test procedures and limits should be referenced in the construction specifications.",
-      "key_points": ["Use USCS terminology only; ambiguous local terms ('loam', 'gumbo', 'mud', 'muck') are prohibited in specs."],
+      "key_points": ["Classify all soils by the USCS (ASTM D2487); terms such as 'loam', 'gumbo', 'mud' and 'muck' are not specific and should not be used."],
       "equations": [],
       "figures": [],
       "tables": [],
@@ -23,7 +23,7 @@
       "body": "Compaction improves the stability of the subgrade soils and provides a more uniform foundation for the pavement. The ASTM D1557 soil compaction test conducted at several moisture contents is used to determine the compaction characteristics of the subgrade soils. The range of maximum densities normally obtained in the compaction test on various soil types is listed in UFC 3-260-02. This test method should not be used if the soil contains particles that are easily broken under the blow of the tamper unless the field method of compaction will produce a similar degradation. Certain types of soil may require the use of a laboratory compaction control test other than the soil compaction test. The unit weight of some types of sands and gravels obtained using the compaction method above may be lower than the unit weight that can be obtained by field compaction; hence, the method may not be applicable. In those cases where a higher laboratory density is desired, compaction tests are usually made under some variation of the ASTM D1557 method, such as vibration or tamping (alone or in combination) with a type hammer or compaction effort different from that used in the test.",
       "key_points": [
         "Standard characterization test: ASTM D1557 at several moisture contents.",
-        "Do not use ASTM D1557 on particle-degrading soils unless field compaction produces similar degradation -- use an alternate lab control test instead."
+        "ASTM D1557 should not be used if the soil contains particles easily broken under the tamper unless the field compaction will produce a similar degradation; certain soils may require another laboratory compaction control test."
       ],
       "equations": [],
       "figures": [],
@@ -33,10 +33,11 @@
     {
       "section_id": "10-2.1",
       "title": "General",
-      "summary": "See Section 10-2 for the general compaction test discussion.",
-      "body": "Compaction improves the stability of the subgrade soils and provides a more uniform foundation for the pavement. The ASTM D1557 soil compaction test is the standard characterization method, with variations for particle-degrading soils and low-unit-weight sands/gravels as discussed above.",
+      "summary": "Compaction improves subgrade stability/uniformity; ASTM D1557 at several moisture contents characterizes it, except for particle-degrading soils unless field compaction produces similar degradation.",
+      "body": "Compaction improves the stability of the subgrade soils and provides a more uniform foundation for the pavement. The ASTM D1557 soil compaction test conducted at several moisture contents is used to determine the compaction characteristics of the subgrade soils. The range of maximum densities normally obtained in the compaction test on various soil types is listed in UFC 3-260-02. This test method should not be used if the soil contains particles that are easily broken under the blow of the tamper unless the field method of compaction will produce a similar degradation. Certain types of soil may require the use of a laboratory compaction control test other than the soil compaction test. The unit weight of some types of sands and gravels obtained using the compaction method above may be lower than the unit weight that can be obtained by field compaction; hence, the method may not be applicable. In those cases where a higher laboratory density is desired, compaction tests are usually made under some variation of the ASTM D1557 method, such as vibration or tamping (alone or in combination) with a type hammer or compaction effort different from that used in the test.",
       "key_points": [
-        "This subsection restates the Section 10-2 general compaction-test background before the specific requirements (10-2.2) and special-soil cases (10-2.3)."
+        "Standard characterization test: ASTM D1557 at several moisture contents.",
+        "ASTM D1557 should not be used if the soil contains particles easily broken under the tamper unless the field compaction will produce a similar degradation; certain soils may require another laboratory compaction control test."
       ],
       "equations": [],
       "figures": [],
@@ -88,12 +89,12 @@
     {
       "section_id": "10-4",
       "title": "Determination of Modulus of Subgrade Reaction",
-      "summary": "Prefer a field plate-bearing test for k; Table 10-1 gives typical k by soil type/moisture as a guide only; where a base course exists, use the EFFECTIVE k on top of the base (Figure 10-1, or a plate test run on the base) for the thickness design.",
+      "summary": "Where no previous performance experience is available, determine k by the field plate-bearing test; where performance data from existing rigid pavements are available, k can usually be determined from soil type, drainage and frost conditions. Table 10-1 gives typical k by soil type and moisture as a guide only (its use in place of the plate test, although not recommended, is left to the engineer); where a base course exists, use the EFFECTIVE k on top of the base (Figure 10-1, or a plate test run on the base) for the thickness design.",
       "body": "For the design of rigid pavements in those areas where no previous experience regarding pavement performance is available, determine the modulus of subgrade reaction k for design purposes by the field plate-bearing test. Where performance data from existing rigid pavements are available, adequate values for k can usually be determined on the basis of consideration of soil type, drainage conditions, and frost conditions that prevail at the proposed site. Table 10-1 presents typical values of k for various soil types and moisture conditions as a function of base course thickness. Consider these values as a guide only and their use in place of the field plate-bearing test, although not recommended, is left to the discretion of the engineer. Where a base course is used under the pavement, the k value on top of the base (also known as the effective k value) is used to determine the pavement thickness. The plate-bearing test may be run on top of the base, or Figure 10-1 may be used to determine the modulus of soil reaction on top of the base. It is good practice to confirm adequacy of the k on top of the base from Figure 10-1 by running a field plate-load test.",
       "key_points": [
         "Field plate-bearing test is preferred; Table 10-1 is guidance only.",
         "The DESIGN value is the EFFECTIVE k on top of the base course, from Figure 10-1 (or a plate test run on the base surface itself), not the raw subgrade k.",
-        "Table 10-1 k varies by soil group and moisture-content band (1-4% through >28%), 90-95% ASTM D1557 density assumed; reduce 50 psi/in if density < 90% (min 25 psi/in); may increase slightly if > 95% (max 500 psi/in); frost-area k comes from Chapter 19 instead."
+        "Table 10-1 k values are typical for dry densities of 90 to 95 percent of maximum; below 90 percent reduce by 50 psi/in (minimum 25 psi/in for design); above 95 percent they may be increased slightly (maximum 500 psi/in for design); frost-area k values are in Chapter 19."
       ],
       "equations": [],
       "figures": ["Figure 10-1: Effect of Base Course Thickness on Modulus of Soil Reaction for Non-frost Conditions"],

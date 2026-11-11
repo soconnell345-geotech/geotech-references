@@ -12,8 +12,7 @@
       "body": "The thickness design of aggregate surfaced roads and parking areas is similar to the design of flexible pavement as described in Chapter titled Flexible Pavement Design. This procedure involves selecting a vehicle mix or traffic, as explained in Chapter titled Vehicular Traffic, a subgrade CBR, and using unsurfaced design criteria contained within the PCASE software. The procedure determines total thickness of material to be placed above the subgrade, as well as its required strength in relation to the CBR value. A computer program is available for determining pavement thickness and compaction requirements and may be obtained as described in paragraph titled Pavement-Transportation Computer Assisted Structural Engineering.",
       "key_points": [
         "Aggregate-surface design mirrors flexible pavement design: traffic mix + subgrade CBR, fed into PCASE's unsurfaced-design criteria.",
-        "Output is total granular thickness above subgrade plus the required strength/CBR of that material.",
-        "PCASE (Pavement-Transportation Computer Assisted Structural Engineering) is the governing design tool, not a closed-form hand equation."
+        "Output is total granular thickness above subgrade plus the required strength/CBR of that material."
       ],
       "equations": [],
       "figures": [],
@@ -26,7 +25,7 @@
       "summary": "Approach/exit roads and other channelized-traffic areas warrant special design attention (heavier, more frequent loads than the general road) -- typically designed to primary-road load/pass levels; large multi-entrance hardstands should be partitioned into separate design sections for economy and better traffic organization.",
       "body": "Special consideration should be given to the design of approach roads, exit roads, and other heavily trafficked areas. Early failure or poor performance may be expected in these areas due to the channelized traffic. Since these areas will almost certainly be subjected to more frequent and heavier loads than the road, the design should be based on vehicular loads and passes usually used for primary road designs. In the case of large hardstands having multiple use and multiple entrances and exits, consideration should be given to partitioning and using different design sections. The immediate benefits that would accrue include economy through elimination of overdesign in some areas and better organization of vehicles and equipment.",
       "key_points": [
-        "Channelized-traffic areas (entrances, exits) fail early if under-designed -- design to primary-road load/pass levels, not the lighter general-area traffic.",
+        "Early failure or poor performance may be expected in approach roads, exit roads and other heavily trafficked areas because of channelized traffic; their design should be based on the vehicular loads and passes usually used for primary road designs.",
         "Large multi-entrance hardstands should be partitioned into separate design sections: avoids overdesigning low-traffic zones and organizes vehicle flow better."
       ],
       "equations": [],
@@ -37,12 +36,12 @@
     {
       "section_id": "21-3",
       "title": "Thickness Criteria (Non-Frost Areas)",
-      "summary": "Non-frost thickness comes from PCASE for the given soil strength and design vehicle/pass levels; Figure 21-1 gives a convenience design chart for the common equivalent-18-kip-axle case. Granular fill may be uniform depth or a layered base/subbase-plus-compacted-subgrade system; the top 6 in of any base/subbase used as surface fill must meet Table 21-1 gradation.",
+      "summary": "Non-frost thickness comes from PCASE for the given soil strength and design vehicle/pass levels; Figure 21-1 gives a convenience design chart for the common equivalent-18-kip-axle case. Granular fill may be uniform depth or a layered base/subbase-plus-compacted-subgrade system; the fill may be base and subbase material provided the top 6 in meet the Table 21-1 gradation.",
       "body": "Refer to UFC 3-201-01 for minimum thickness requirements. Thickness requirements for aggregate surfaced roads and parking areas are determined using the PCASE software for a given soil strength and design vehicles and pass levels. Since roads and parking areas are usually designed for equivalent 18-kip (8,200-kg) axles, the design chart in Figure 21-1 is provided for convenience. The computed design thickness may be constructed of compacted granular fill for the total depth over the natural subgrade or in a layered system of granular fill (including subbases) and compacted subgrade for the same total depth. The layered section should be checked to ensure that an adequate thickness of material is used to protect the underlying layer and if it also meets the minimum surface CBR required. The granular fill may consist of base and subbase material provided the top 6 in (150 mm) meet the gradation requirements in Table 21-1.",
       "key_points": [
-        "PCASE is the governing design tool for non-frost thickness; Figure 21-1 (18-kip-equivalent design chart) is a convenience read for the common traffic case -- not digitized here (chart-only; see figures_catalog.json), consistent with the PCASE-first framing of Section 21-1.",
-        "UFC 3-201-01 sets the minimum thickness floor.",
-        "Granular fill may be full-depth uniform material OR a layered base/subbase-over-compacted-subgrade system, provided each layer adequately protects the one below and the top 6 in meets Table 21-1 gradation."
+        "Thickness of aggregate surfaced roads and parking areas is determined using the PCASE software for a given soil strength and design vehicles and pass levels; the Figure 21-1 chart (equivalent 18-kip axles) is provided for convenience.",
+        "Refer to UFC 3-201-01 for minimum thickness requirements.",
+        "The design thickness may be compacted granular fill for the total depth or a layered system with compacted subgrade, checked for protection of each underlying layer and the minimum surface CBR; base and subbase may be used provided the top 6 in (150 mm) meet Table 21-1."
       ],
       "equations": [],
       "figures": [
@@ -117,10 +116,10 @@
     {
       "section_id": "21-4.4",
       "title": "Base Course",
-      "summary": "The coarse-graded base course provides drainage of the granular fill and must be NFS (non-frost-susceptible) to retain its strength through spring thaw.",
+      "summary": "The coarse-graded base course provides drainage of the granular fill and it is important that it be NFS so that it retains its strength during spring thaw periods.",
       "body": "The coarse-graded base course is important in providing drainage of the granular fill. It is also important that this material be NFS so that it retains its strength during spring thaw periods.",
       "key_points": [
-        "Base course must be NFS material -- drains the fill and keeps its strength through spring thaw."
+        "It is important that the coarse-graded base course be NFS so that it retains its strength during spring thaw periods; it provides drainage of the granular fill."
       ],
       "equations": [],
       "figures": [],
@@ -279,11 +278,10 @@
     {
       "section_id": "21-8",
       "title": "Design Examples",
-      "summary": "Appendix G contains two worked design examples for unsurfaced aggregate roads (a non-frost design and a frost design), demonstrating the full procedure of this chapter end to end.",
+      "summary": "Appendix G contains two design examples of unsurfaced aggregate roads (G-9.1 Example 1: Non-Frost Design; G-9.2 Example 2: Frost Design).",
       "body": "Appendix G contains two design examples of unsurfaced aggregate roads.",
       "key_points": [
-        "Appendix G, G-9.1/G-9.2: non-frost and frost worked examples for unsurfaced aggregate roads.",
-        "Both examples run the full PCASE-driven procedure of this chapter (traffic mix, subgrade CBR, gradation/compaction tables) end to end."
+        "Appendix G, G-9.1 Example 1: Non-Frost Design; G-9.2 Example 2: Frost Design."
       ],
       "equations": [],
       "figures": [],
