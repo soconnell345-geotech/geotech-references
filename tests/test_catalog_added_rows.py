@@ -44,6 +44,10 @@ def _nums(prefix, first, last, sep="-"):
 ADDED = {
     "gec_5": (_nums("11", 10, 26) + _nums("12", 1, 25) + _nums("13", 1, 11)
               + _nums("A2", 1, 40)),
+    # chapters 2-5 (Vol I) and 7-10 (Vol II); the catalog held 1 and 6
+    "gec_13": (_nums("2", 1, 19) + _nums("3", 1, 18) + _nums("4", 1, 43)
+               + _nums("5", 1, 30) + _nums("7", 1, 8) + _nums("8", 1, 51)
+               + _nums("9", 1, 18) + _nums("10", 1, 19)),
 }
 
 #: Rows whose caption was typed from the rendered page (the text layer
@@ -110,10 +114,40 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
                             "shown in Figure 11-21"),
     ("gec_5", "A2-35", 671, "Relationship between su/σ′vc and OCR for the soft "
                             "clay site from 15 C̅U̅ tests"),
+    ("gec_13", "2-14", 125, "PVD Installation showing typical instrumentation "
+                            "and monitoring"),
+    ("gec_13", "4-10", 247, "12 kip tamper"),
+    # listed as "Manitowoc 4000 crane with special lifting drum ..."
+    ("gec_13", "4-17", 251, "Crane with special lifting drum attached to rear "
+                            "of crane for use with 64 kip tamper"),
+    ("gec_13", "5-23", 366, "Relationship between stress ratio causing "
+                            "liquefaction and (N1)60 values for silty sands "
+                            "for 7.5 magnitude earthquakes"),
+    ("gec_13", "8-22", 225, "Rock grouting injection pressures used in Swedish "
+                            "grouting practice"),
+    ("gec_13", "9-1", 340, "Stabilization aggregate thickness design curves "
+                           "for a single wheel load (top) and dual wheel loads "
+                           "(bottom)"),
+    ("gec_13", "10-17", 543, "Minimum recommended geometry of a stable "
+                             "feature MSE (SFMSE) wall system"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
     assert (row["pdf_page_index"], row["caption"]) == (index, caption)
+
+
+def test_gec13_rows_carry_their_volume():
+    """Vol I (FHWA-NHI-16-027) rows carry no number of their own; Vol II
+    rows carry FHWA-NHI-16-028 and its PDF, as the rows before them do."""
+    _, by = _rows("gec_13")
+    for n in ADDED["gec_13"]:
+        row = by[n]
+        if int(n.split("-")[0]) <= 5:
+            assert (row["volume"], row["pdf_path"]) == (1, "docs/GEC 13 Vol 1.pdf")
+            assert "reference_id" not in row
+        else:
+            assert (row["volume"], row["pdf_path"], row["reference_id"]) == (
+                2, "docs/GEC 13 Vol 2.pdf", "FHWA-NHI-16-028")
 
 
 @pytest.mark.parametrize("ref,number,turn", [
@@ -133,6 +167,11 @@ def test_added_rows_are_found_by_their_captions():
         ("gec_5", "example CPTU log Caltrans", "13-4"),
         ("gec_5", "strain energy method", "A2-29"),
         ("gec_5", "Mohr-Coulomb curved failure envelope", "11-23"),
+        ("gec_13", "Asaoka end of primary consolidation", "2-8"),
+        ("gec_13", "EPS-block geofoam slope system components", "3-7"),
+        ("gec_13", "Swedish rock grouting injection pressures", "8-22"),
+        ("gec_13", "stabilization aggregate thickness design curves", "9-1"),
+        ("gec_13", "stable feature MSE wall geometry", "10-17"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
