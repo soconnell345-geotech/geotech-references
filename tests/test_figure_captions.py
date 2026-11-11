@@ -134,7 +134,9 @@ def test_a_caption_ends_where_its_list_page_number_begins():
         assert got == [caption], (ref, number, got)
     gec5 = _load(ROOT / "geotech_references" / "gec_5" / "figures_catalog.json")
     numbers = [f["figure_number"] for f in gec5["figures"]]
-    assert len(numbers) == len(set(numbers)) == gec5["figure_count"] == 256
+    # 256 from the List of Figures, then 11-10 to 11-26, chapters 12 and 13
+    # and Appendix 2 from their caption pages (REF-84, 2026-11-10)
+    assert len(numbers) == len(set(numbers)) == gec5["figure_count"] == 349
 
 
 # ---------------------------------------------------------------------------
