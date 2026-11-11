@@ -319,6 +319,7 @@ def drop_lettering(body: str, caption_pages: set, figures: list[dict],
             continue
         if (text and len(text) < 60 and not re.search(r"[.:;]\s*$", text)
                 and not text.startswith(("Figure", "Table", "["))
+                and not re.match(r"Step\s+\d", text)  # "Step 3: Establish ..."
                 and "[Eq. " not in text):
             log.append(("lettering left out", page, text))
             if markers:
@@ -443,6 +444,8 @@ def build_appendix(vol: dict, app: dict, manifest_dir: Path, log: list,
                 body = body.replace(f["find"], f["replace"], 1)
                 own_fixes.add(n_f)
         body = _merge_markers(body).strip()
+        # a page marker with nothing after it: the next heading opens that page
+        body = re.sub(r"(?:\s*\[p\. [^\]]+\])+$", "", body).strip() or body
         for kind, label, text in local_log:
             log.append((app["letter"], sec["id"], kind, label, text))
             if kind == "glyph run kept" and text in body and strict:

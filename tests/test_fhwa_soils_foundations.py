@@ -300,6 +300,7 @@ def test_manifest_formulas_match_the_text():
 
 #: letter -> (file, chapter number it is filed under, title as built)
 APPENDICES = {
+    "A": ("appendix_a.json", 13, "Appendix A: Apple Freeway Project"),
     "B": ("appendix_b.json", 14,
           "Appendix B: Mohr’s Circle and Its Applications in Geotechnical Engineering"),
     "C": ("appendix_c.json", 15,
@@ -335,6 +336,37 @@ def test_appendices_filed_after_the_chapters():
                 assert e["formula"] and e["source"].startswith("Typed in from p. ")
             # the summary and key points are left out, as in the chapters
             assert s["key_points"] == [] and "summary" not in s
+
+
+def test_appendix_a_sections_as_printed():
+    secs = {s["section_id"]: s for s in _appendix("A")["sections"]}
+    assert list(secs)[:9] == ["A", "A.1", "A.1-1", "A.1-2", "A.1-3",
+                              "A.2", "A.2-1", "A.2-2", "A.2-3"]
+    assert "A.4-3" in secs
+    assert "the unit weight of water, γw, of 60 pcf has been used" in secs["A"]["body"]
+    # each section's overview figure is printed on its first page, before
+    # the heading: the section starts there
+    assert secs["A.2"]["body"].startswith(
+        "[p. A.2-1] Figure A.2-1 . Overview of the geotechnical work to be performed.")
+    # steps the lettering filter must not take for figure lettering (p. A.2-3)
+    assert "Step 3: Establish criteria for determining boring depth" in secs["A.2-2"]["body"]
+    # the request form (Figure A.2-3, p. A.2-5), typed in
+    assert "DH-BAF-2 | 92 + 00 | 50' Lt" in secs["A.2-2"]["body"]
+    assert len(secs["A.2-3"]["figures"]) == 9
+
+
+def test_appendix_a_laboratory_values_as_printed():
+    # Section A.4, Tables A.4-1 to A.4-4 (pp. A.4-7, A.4-8), typed in
+    secs = {s["section_id"]: s for s in _appendix("A")["sections"]}
+    body = secs["A.4-3"]["body"]
+    assert "Sand | 3 - 10 | 110 | 110 | 50" in body
+    assert ("45 | 1,040 psf + 35 ft x 125 pcf = 5,415 psf | "
+            "800 psf + 35-ft x 65 pcf = 3,075 psf") in body
+    assert "21 | T5 | 31 | 1450 | 0.96 | 4,800 | 0.040 | 0.36 | 0.8" in body
+    assert "21 | T5 | 35 | 950 | 1,250 | |" in body
+    assert "Select 1,100 psf as the design value" in secs["A.4-2"]["body"]
+    # a string in the text layer that the page does not print is left out
+    assert "Figure X.4-2" not in body
 
 
 def test_appendix_b_sections_as_printed():
