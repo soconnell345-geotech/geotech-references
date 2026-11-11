@@ -3,8 +3,12 @@
 From UFC 3-220-07, Foundations in Expansive Soils (the reproduced
 TM 5-818-7), docs/ufc_3_220_07.pdf: total swell as the area under the
 per cent swell versus depth curve, Figure 5-4 (printed p. 5-7, PDF 42),
-and the four relations of Table 4-2, "Other Empirical Methods for
-Prediction of Potential Heave" (printed p. 4-3, PDF 33).
+the four relations of Table 4-2, "Other Empirical Methods for
+Prediction of Potential Heave" (printed p. 4-3, PDF 33), Van Der Merwe's
+total heave, Eq. 4-1 with Figure 4-1 (printed p. 4-1 to 4-2), the
+potential vertical heave from void ratios, Eq. 5-2 (p. 5-2), the
+equilibrium pore water pressure profiles, Eqs. 5-3 to 5-5 (p. 5-3 to
+5-4), and the heave from a consolidometer test, Eqs. 5-8 and 5-9 (p. 5-5).
 
 Rebuilt from the print 2026-11-10 (review pave-13): activity_index
 (Skempton), free_swell_percent (Seed et al. 1962), swell_pressure_kPa
@@ -329,4 +333,525 @@ def heave_prediction_mm(layers):
         "number_of_layers": len(layers),
         "reference": (f"{_REF}, Figure 5-4 (A) step 4, printed p. 5-7 "
                       "(PDF 42)"),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Chapter 4 and 5 heave methods (built 2026-11-10, app backlog REF-91)
+# ---------------------------------------------------------------------------
+
+_GAMMA_W_TCF = 0.0312  # unit weight of water, ton per cubic foot (p. 5-3)
+_UW_ASSUMED_BASIS = (
+    "taken as u_w = 0, the saturated profile of Eq. 5-3 (Method 1, para "
+    "5-4b(2)(a), p. 5-3): 'This profile should be used if other information "
+    "on the equilibrium pore water pressure profile is not available.'")
+
+
+def _whole_feet(name, v):
+    if v is None or v <= 0 or abs(v - round(v)) > 1e-9:
+        raise ValueError(
+            f"{name} must be a positive whole number of feet (Eq. 4-1 sums "
+            f"1-foot increments), got {v}")
+    return int(round(v))
+
+
+def eq_4_1_van_der_merwe_heave(layers):
+    """Total heave at the ground surface, inches, by Van Der Merwe's
+    method, UFC 3-220-07 Eq. 4-1 with Figure 4-1 (printed p. 4-1 to 4-2,
+    PDF 31-32): the sum over 1-foot depth increments of the surcharge
+    reduction factor F = 10^(-D/20) times the potential expansiveness PE
+    (inch/foot) read off Figure 4-1 from each soil's PI and clay fraction.
+
+    As printed (para 4-1c)::
+
+        delta_H = sum from D = 1 to D_bar = n of F * PE        (4-1)
+
+    delta_H = total heave, inches; D = depth of soil layer in increments of
+    1 foot; D_bar = increment at the deepest level; F = reduction factor
+    for surcharge pressure, F = 10^(-D/20); PE = potential expansiveness in
+    inch/foot of depth (fig. 4-1). The layers are numbered from the ground
+    surface, the first foot being D = 1. Para 4-1e (p. 4-2): the method
+    does not need the active zone depth "since computations extend down to
+    depths where the computed heaves become negligible", and it tends to
+    "give maximum values or may overestimate heave". Para 4-1f(1): "More
+    than one identification test should be used"; "estimates of potential
+    heave at the ground surface of more than 1/2 inch may require further
+    laboratory tests".
+
+    Parameters
+    ----------
+    layers : list of dict
+        From the ground surface down. Each dict: thickness_ft (a whole
+        number of feet), plasticity_index (percent, whole sample) and
+        clay_fraction_pct (percent finer than 2 microns, whole sample);
+        both 0 to 70, Figure 4-1's range.
+
+    Returns
+    -------
+    dict
+        Keys: total_heave_in, depth_ft (n), increments (list of dicts: D,
+        level, pe_in_per_ft, F, heave_in), equation, notes, source.
+
+    Raises
+    ------
+    ValueError
+        If layers is empty, a thickness is not a whole number of feet, or
+        a PI or clay fraction is outside Figure 4-1's range.
+
+    Example: 10 ft of soil with PI 40 and clay fraction 30 % (very high,
+    PE 1 inch/foot) gives the sum of 10^(-D/20) for D = 1 to 10 =
+    5.604 in.
+    """
+    from geotech_references.ufc_expansive.tables import (
+        figure_4_1_potential_expansiveness)
+    if not layers:
+        raise ValueError("layers must not be empty")
+    increments = []
+    d = 0
+    for i, layer in enumerate(layers):
+        n_ft = _whole_feet(f"layers[{i}].thickness_ft", layer.get("thickness_ft"))
+        fig = figure_4_1_potential_expansiveness(
+            layer.get("plasticity_index"), layer.get("clay_fraction_pct"))
+        for _ in range(n_ft):
+            d += 1
+            f = 10.0 ** (-d / 20.0)
+            increments.append({
+                "D": d, "level": fig["level"],
+                "pe_in_per_ft": fig["pe_in_per_ft"],
+                "F": round(f, 4), "heave_in": round(f * fig["pe_in_per_ft"], 4),
+            })
+    total = sum(10.0 ** (-r["D"] / 20.0) * r["pe_in_per_ft"] for r in increments)
+    return {
+        "total_heave_in": round(total, 3),
+        "depth_ft": d,
+        "increments": increments,
+        "equation": "delta_H (in) = sum_{D=1}^{n} F * PE, F = 10^(-D/20)",
+        "notes": [
+            "Para 4-1c: the PE values are based on consolidometer swell test "
+            "results and field observations; this method does not consider "
+            "variations in initial moisture conditions.",
+            "Para 4-1e: computations extend down to depths where the "
+            "computed heaves become negligible; the Van Der Merwe method "
+            "tends to give maximum values or may overestimate heave.",
+            "Para 4-1f(1): more than one identification test should be "
+            "used; estimates of potential heave at the ground surface of "
+            "more than 1/2 inch may require further laboratory tests.",
+            _figure_4_1_trace_note(),
+        ],
+        "source": (f"{_REF}, Eq. 4-1 and Figure 4-1, para 4-1c, printed "
+                   "p. 4-1 to 4-2 (PDF 31-32)"),
+    }
+
+
+def _figure_4_1_trace_note():
+    from geotech_references.ufc_expansive.tables import _FIG_4_1_TRACE
+    return "Figure 4-1: " + _FIG_4_1_TRACE
+
+
+def eq_5_2_potential_vertical_heave(elements, depth_increment_ft,
+                                    vertical_swell_fraction):
+    """Potential vertical heave at the bottom of the foundation, feet,
+    UFC 3-220-07 Eq. 5-2 (printed p. 5-2, PDF 37): N times the depth
+    increment DX times the sum, over the elements from the bottom of the
+    foundation to the bottom of the profile, of each element's volumetric
+    swell (e_f - e_o)/(1 + e_o).
+
+    As printed (para 5-4a)::
+
+        delta_H = N * DX * sum_{i=NBX}^{NEL} DELTA(i)
+                = N * DX * sum_{i=NBX}^{NEL} (e_f(i) - e_o(i)) / (1 + e_o(i))   (5-2)
+
+    delta_H = potential vertical heave at the bottom of the foundation,
+    feet; N = fraction of volumetric swell that occurs as heave in the
+    vertical direction; DX = increment of depth, feet; NEL = total number
+    of elements; NBX = number of nodal point at bottom of the foundation;
+    DELTA(i) = potential volumetric swell of soil element i, fraction;
+    e_f(i), e_o(i) = final and initial void ratio of element i. "The
+    delta_H is the potential vertical heave beneath a flexible,
+    unrestrained foundation. The bottom nodal point NNP = NEL + 1, and it
+    is often set at the active depth of heave Xa." N (para 5-3a and 5-4):
+    "Vertical heave of intact soil with few fissures may account for all
+    of the volumetric swell such that N = 1, while vertical heave of
+    heavily fissured and isotropic soil may be as low as N = 1/3 of the
+    volumetric swell"; "N should be 1 for consolidometer swell test
+    results and a minimum of 1/3 for soil suction test results". N given
+    as 0.33 or 0.333 is taken as 1/3, and the result says so.
+
+    For one element with N = 1 and DX = H this is Figure 4-2's relation
+    (p. 4-4), Sp/100 = delta_H/H = (e1 - eo)/(1 + eo); each element's
+    percent_swell is that Sp.
+
+    Parameters
+    ----------
+    elements : list of dict
+        The elements from the bottom of the foundation down, each with
+        initial_void_ratio (e_o) and final_void_ratio (e_f), both > 0.
+    depth_increment_ft : float
+        DX, feet, > 0.
+    vertical_swell_fraction : float
+        N, from 1/3 to 1 (para 5-3a); 0.33 up to 1/3 is taken as 1/3.
+
+    Returns
+    -------
+    dict
+        Keys: heave_ft, elements (list: DELTA, percent_swell),
+        sum_delta, depth_increment_ft, vertical_swell_fraction (the N
+        used), vertical_swell_fraction_given, equation, notes, source.
+
+    Raises
+    ------
+    ValueError
+        If elements is empty, a void ratio is not positive, DX is not
+        positive, or N is below 0.33 or above 1.
+
+    Example: one element, e_o 0.8, e_f 0.9, DX 1 ft, N 1: 0.1/1.8 =
+    0.0556 ft.
+    """
+    if not elements:
+        raise ValueError("elements must not be empty")
+    if depth_increment_ft is None or depth_increment_ft <= 0:
+        raise ValueError(f"depth_increment_ft must be > 0, got {depth_increment_ft}")
+    n_given = vertical_swell_fraction
+    if n_given is None or not (0.33 <= n_given <= 1.0):
+        raise ValueError(
+            "vertical_swell_fraction N must be from 1/3 (0.33 is accepted) "
+            "to 1 (para 5-3a, p. 5-2: N = 1 for intact soil, as low as 1/3 "
+            f"for heavily fissured and isotropic soil); got {n_given}")
+    n = 1.0 / 3.0 if n_given < 1.0 / 3.0 else n_given
+    rows = []
+    for i, el in enumerate(elements):
+        eo, ef = el.get("initial_void_ratio"), el.get("final_void_ratio")
+        for name, v in (("initial_void_ratio", eo), ("final_void_ratio", ef)):
+            if v is None or v <= 0:
+                raise ValueError(f"elements[{i}].{name} must be > 0, got {v}")
+        delta = (ef - eo) / (1.0 + eo)
+        rows.append({"initial_void_ratio": eo, "final_void_ratio": ef,
+                     "DELTA": round(delta, 5),
+                     "percent_swell": round(100.0 * delta, 3)})
+    sum_delta = sum((r["final_void_ratio"] - r["initial_void_ratio"])
+                    / (1.0 + r["initial_void_ratio"]) for r in rows)
+    heave = n * depth_increment_ft * sum_delta
+    notes = [
+        "Para 5-4a: the potential vertical heave beneath a flexible, "
+        "unrestrained foundation; the bottom nodal point is often set at "
+        "the active depth of heave Xa.",
+        "Para 5-4: N should be 1 for consolidometer swell test results and "
+        "a minimum of 1/3 for soil suction test results.",
+    ]
+    if n != n_given:
+        notes.append(
+            f"N = {n_given:g} was taken as 1/3, the print's value (para "
+            "5-3a: heave of heavily fissured and isotropic soil 'may be as "
+            "low as N = 1/3 of the volumetric swell').")
+    if heave < 0:
+        notes.append("The final void ratios are smaller than the initial "
+                     "ones overall: the result is a settlement, not heave.")
+    return {
+        "heave_ft": round(heave, 4),
+        "sum_delta": round(sum_delta, 5),
+        "elements": rows,
+        "depth_increment_ft": depth_increment_ft,
+        "vertical_swell_fraction": n,
+        "vertical_swell_fraction_given": n_given,
+        "equation": "delta_H = N * DX * sum (e_f(i) - e_o(i)) / (1 + e_o(i))",
+        "notes": notes,
+        "source": f"{_REF}, Eq. 5-2, para 5-4a, printed p. 5-2 (PDF 37)",
+    }
+
+
+_PROFILES = {
+    "saturated": "saturated", "method_1": "saturated", "method 1": "saturated",
+    "hydrostatic_i": "hydrostatic_i", "hydrostatic i": "hydrostatic_i",
+    "method_2": "hydrostatic_i", "method 2": "hydrostatic_i",
+    "hydrostatic_ii": "hydrostatic_ii", "hydrostatic ii": "hydrostatic_ii",
+    "method_3": "hydrostatic_ii", "method 3": "hydrostatic_ii",
+}
+
+
+def eq_5_3_to_5_5_equilibrium_pore_water_pressure(
+        profile, depth_ft, active_zone_depth_ft=None,
+        pore_water_pressure_at_xa_tsf=None):
+    """Equilibrium (final) pore water pressure u_w, tons per square foot,
+    at depth X in the active zone, UFC 3-220-07 Eqs. 5-3 to 5-5 (printed
+    p. 5-3 to 5-4, PDF 38-39), for the saturated (Method 1), hydrostatic I
+    (Method 2) or hydrostatic II (Method 3) profile of Figure 5-1; u_w is
+    the pore water pressure Eq. 5-9 subtracts to give the final effective
+    pressure for Eq. 5-8.
+
+    As printed (para 5-4b(2))::
+
+        saturated, Method 1:       u_w = 0                         (5-3)
+        hydrostatic I, Method 2:   u_w = gamma_w (X - Xa)          (5-4)
+        hydrostatic II, Method 3:  u_w = u_wa + gamma_w (X - Xa)   (5-5)
+
+    u_w = pore water pressure in tons per square foot at any depth X in
+    feet within the active zone; gamma_w = unit weight of water (0.0312 ton
+    per cubic foot); u_wa = the negative pore water pressure in tons per
+    square foot at depth Xa in feet. Figure 5-1 draws X down from the
+    foundation slab. Method 1 "should be used if other information on the
+    equilibrium pore water pressure profile is not available"; Method 2 is
+    believed more realistic beneath highways and pavements where drainage
+    is good, and leads to smaller predictions of heave than Method 1;
+    Method 3 is Method 2 without a shallow water table. Para 5-4c(1)
+    (p. 5-4): for groundwater levels less than 20 feet in clay soil Xa may
+    be assumed equal to the depth of the water table, and the u_wa term
+    becomes zero for the hydrostatic I profile.
+
+    Parameters
+    ----------
+    profile : str
+        'saturated' (or 'method_1'), 'hydrostatic_i' ('method_2') or
+        'hydrostatic_ii' ('method_3').
+    depth_ft : float
+        X, feet, from 0 to Xa.
+    active_zone_depth_ft : float, optional
+        Xa, feet (> 0); required for Methods 2 and 3 (for Method 2 the
+        depth of the water table, para 5-4c(1)).
+    pore_water_pressure_at_xa_tsf : float, optional
+        u_wa, tons per square foot, <= 0; required for Method 3.
+
+    Returns
+    -------
+    dict
+        Keys: pore_water_pressure_tsf, profile, method, depth_ft,
+        active_zone_depth_ft, gamma_w_tcf, equation, note, source.
+
+    Raises
+    ------
+    ValueError
+        For an unknown profile, a missing Xa or u_wa, X outside 0 to Xa, or
+        a positive u_wa.
+
+    Example: Method 3 at X = 2 ft with Xa = 8 ft and u_wa = -7.5 tsf (the
+    values Figure 5-2 prints for the Hayes, Kansas site): -7.5 + 0.0312 x
+    (2 - 8) = -7.687 tsf.
+    """
+    key = _PROFILES.get(str(profile).strip().lower())
+    if key is None:
+        raise ValueError(
+            f"Unknown profile '{profile}'. Use 'saturated' (Method 1, Eq. "
+            "5-3), 'hydrostatic_i' (Method 2, Eq. 5-4) or 'hydrostatic_ii' "
+            "(Method 3, Eq. 5-5).")
+    x, xa, uwa = depth_ft, active_zone_depth_ft, pore_water_pressure_at_xa_tsf
+    if x is None or x < 0:
+        raise ValueError(f"depth_ft must be >= 0, got {x}")
+    if key != "saturated" and xa is None:
+        raise ValueError(f"active_zone_depth_ft (Xa) is required for the {key} profile")
+    if xa is not None:
+        if xa <= 0:
+            raise ValueError(f"active_zone_depth_ft must be > 0, got {xa}")
+        if x > xa:
+            raise ValueError(
+                f"depth_ft {x} is below the active zone (Xa = {xa} ft); Eqs. "
+                "5-3 to 5-5 give u_w within the active zone")
+    if key == "saturated":
+        uw, method, eq = 0.0, "Method 1", "u_w = 0 (5-3)"
+    elif key == "hydrostatic_i":
+        uw = _GAMMA_W_TCF * (x - xa)
+        method, eq = "Method 2", "u_w = gamma_w (X - Xa) (5-4)"
+    else:
+        if uwa is None:
+            raise ValueError(
+                "pore_water_pressure_at_xa_tsf (u_wa) is required for the "
+                "hydrostatic II profile")
+        if uwa > 0:
+            raise ValueError(
+                "pore_water_pressure_at_xa_tsf is the negative pore water "
+                f"pressure at Xa (<= 0), got {uwa}")
+        uw = uwa + _GAMMA_W_TCF * (x - xa)
+        method, eq = "Method 3", "u_w = u_wa + gamma_w (X - Xa) (5-5)"
+    return {
+        "pore_water_pressure_tsf": round(uw, 4),
+        "profile": key,
+        "method": method,
+        "depth_ft": x,
+        "active_zone_depth_ft": xa,
+        "pore_water_pressure_at_xa_tsf": uwa,
+        "gamma_w_tcf": _GAMMA_W_TCF,
+        "equation": eq,
+        "note": ("Para 5-4b(2)(a) (p. 5-3), of the saturated profile: 'This "
+                 "profile should be used if other information on the "
+                 "equilibrium pore water pressure profile is not available.' "
+                 "Para 5-4b(2)(b), of the hydrostatic I profile: 'This "
+                 "assumption will lead to smaller predictions of heave than "
+                 "the saturated profile of Method 1.' Para 5-4b(2)(d) "
+                 "(p. 5-4), of the Hayes, Kansas example: heave will be "
+                 "predicted if the saturated profile occurs, while shrinkage "
+                 "will likely be predicted if the hydrostatic II profile "
+                 "occurs."),
+        "source": (f"{_REF}, Eqs. 5-3 to 5-5 and Figure 5-1, para 5-4b(2), "
+                   "printed p. 5-3 to 5-4 (PDF 38-39)"),
+    }
+
+
+def eq_5_8_consolidometer_heave(layers):
+    """Heave from consolidometer swell tests, feet, UFC 3-220-07 Eq. 5-8
+    with the final effective pressure of Eq. 5-9 (printed p. 5-5, PDF 40):
+    for each expansive layer, its thickness times the swell index over
+    (1 + e_o) times log(swell pressure / final vertical effective
+    pressure), summed over the layers.
+
+    As printed (para 5-4e(1))::
+
+        delta_H / H = c_s / (1 + e_o) * log(sigma_s / sigma'_v)    (5-8)
+        sigma'_v = sigma_v - u_w                                   (5-9)
+
+    H = thickness of expansive soil layer, feet; c_s = swell index, slope
+    of the curve between points 3 and 4, figure 4-2; sigma_s = swell
+    pressure, tons per square foot; sigma'_v = final vertical effective
+    pressure, tons per square foot; sigma_v = total vertical overburden
+    pressure and u_w = equilibrium pore water pressure, tons per square
+    foot (Eqs. 5-3 to 5-5). "log" is taken as log10, the scale of Figure
+    4-2's "LOG PRESSURE" axis on which c_s is the slope. e_o is the initial
+    void ratio (point 1 of Figure 4-2). The total vertical heave at the
+    ground surface is the sum of the delta_H for each thickness H in the
+    soil profile (para 4-2a(1), p. 4-4).
+
+    A layer whose final effective pressure exceeds its swell pressure is
+    given no heave and is left out of the total, with a flag and a note:
+    "Net settlements will occur for final effective pressures exceeding
+    the swell pressure" (para 4-2a(1)(b), p. 4-4), and the swell index,
+    the slope from the seating pressure (point 3) to the swell pressure
+    (point 4), does not give that settlement; p. 4-4 says the void
+    ratio-log pressure curve from the seating to the maximum applied
+    pressure can be used to determine heave or settlement with respect
+    to e_o. When u_w is not given for a layer it is taken as zero, the
+    saturated profile of Eq. 5-3, of which p. 5-3 says "This profile
+    should be used if other information on the equilibrium pore water
+    pressure profile is not available"; the result says which layers.
+
+    How it relates to Figure 5-4 (heave_prediction_mm): "If u_w is zero
+    for a saturated profile, equation (5-3), then sigma'_v is equal to
+    sigma_v and heave will be the same as that given by the equation for
+    Sp in figure 4-2" (p. 5-5), that is delta_H/H = Sp/100. Figure 5-4
+    adds up those per cent swells over depth as the area under the per
+    cent swell versus depth curve; heave_prediction_mm takes that area as
+    rectangles, so the layers' percent_swell from this function, fed to
+    it with the same thicknesses, gives the same total. Para 5-4e(1)
+    (p. 5-5): "A simple hand method and an example of predicting
+    potential total vertical heave from consolidometer swell tests
+    assuming a saturated equilibrium profile, equation (5-3), are given
+    in TM 5-818-1 and in figure 5-4." Figure 5-4's example prints per
+    cent swells measured on specimens loaded to the overburden pressure
+    plus the weight of the structure, with no c_s, e_o or sigma_s, so it
+    cannot be run through Eq. 5-8.
+
+    Parameters
+    ----------
+    layers : list of dict
+        Each dict: thickness_ft (H, > 0), swell_index (c_s, >= 0),
+        initial_void_ratio (e_o, > 0), swell_pressure_tsf (sigma_s, > 0),
+        total_vertical_pressure_tsf (sigma_v, >= 0) and, optionally,
+        pore_water_pressure_tsf (u_w; when left out or None, taken as 0,
+        the saturated profile of Eq. 5-3, which para 5-4b(2)(a) says
+        should be used if other information is not available).
+
+    Returns
+    -------
+    dict
+        Keys: total_heave_ft and total_heave_in (conversion), both over
+        the swelling layers; layers (list: pore_water_pressure_tsf,
+        pore_water_pressure_basis, final_effective_pressure_tsf,
+        past_swell_pressure, percent_swell and heave_ft, the last two
+        None for a layer past its swell pressure); layers_left_out (list:
+        layer, reason); pore_water_pressure_assumed (layers taken as
+        u_w = 0 with the page's sentence, or None); equation, notes,
+        source.
+
+    Raises
+    ------
+    ValueError
+        If layers is empty, an input is out of range, or a final
+        effective pressure is not positive.
+
+    Example: H 1 ft, c_s 0.1, e_o 1.0, sigma_s 4 tsf, sigma_v 0.4 tsf,
+    u_w 0: 1 x 0.1/2 x log10(10) = 0.05 ft.
+    """
+    if not layers:
+        raise ValueError("layers must not be empty")
+    rows = []
+    notes = [
+        "Para 4-2a(1): the total vertical heave at the ground surface is the "
+        "sum of the delta_H for each thickness H in the soil profile.",
+        "'log' in Eq. 5-8 is taken as log10, the scale of Figure 4-2's log "
+        "pressure axis on which the swell index c_s is the slope.",
+    ]
+    left_out, assumed, total = [], [], 0.0
+    for i, layer in enumerate(layers):
+        h = layer.get("thickness_ft")
+        cs = layer.get("swell_index")
+        eo = layer.get("initial_void_ratio")
+        ss = layer.get("swell_pressure_tsf")
+        sv = layer.get("total_vertical_pressure_tsf")
+        uw = layer.get("pore_water_pressure_tsf")
+        if uw is None:
+            uw = 0.0
+            assumed.append(i)
+            basis = ("not given: taken as 0, the saturated profile of Eq. "
+                     "5-3 (p. 5-3); see pore_water_pressure_assumed")
+        else:
+            basis = "given"
+        checks = (("thickness_ft", h, h is not None and h > 0),
+                  ("swell_index", cs, cs is not None and cs >= 0),
+                  ("initial_void_ratio", eo, eo is not None and eo > 0),
+                  ("swell_pressure_tsf", ss, ss is not None and ss > 0),
+                  ("total_vertical_pressure_tsf", sv, sv is not None and sv >= 0))
+        for name, v, ok in checks:
+            if not ok:
+                raise ValueError(f"layers[{i}].{name} is out of range: {v}")
+        sev = sv - uw
+        if sev <= 0:
+            raise ValueError(
+                f"layers[{i}]: final vertical effective pressure "
+                f"sigma_v - u_w = {sev:g} tsf is not positive (Eq. 5-9); "
+                "Eq. 5-8 needs it > 0")
+        row = {"thickness_ft": h, "pore_water_pressure_tsf": uw,
+               "pore_water_pressure_basis": basis,
+               "final_effective_pressure_tsf": round(sev, 4),
+               "past_swell_pressure": sev > ss}
+        if sev > ss:
+            row["percent_swell"] = None
+            row["heave_ft"] = None
+            reason = (
+                f"final effective pressure {sev:g} tsf exceeds the swell "
+                f"pressure {ss:g} tsf: 'Net settlements will occur for final "
+                "effective pressures exceeding the swell pressure' (para "
+                "4-2a(1)(b), p. 4-4). The swell index c_s is the slope from "
+                "the seating pressure to the swell pressure (points 3 to 4, "
+                "Figure 4-2) and does not give the settlement; p. 4-4 says "
+                "the void ratio-log pressure curve from the seating to the "
+                "maximum applied pressure can be used to determine heave or "
+                "settlement with respect to e_o.")
+            left_out.append({"layer": i, "reason": reason})
+            notes.append(
+                f"Layer {i} is past its swell pressure: no heave is computed "
+                "for it and it is left out of the total (the reason, with "
+                "p. 4-4's sentence, is in layers_left_out).")
+        else:
+            ratio = cs / (1.0 + eo) * math.log10(ss / sev)
+            row["percent_swell"] = round(100.0 * ratio, 3)
+            row["heave_ft"] = round(h * ratio, 4)
+            total += h * ratio
+        rows.append(row)
+    if left_out and len(left_out) == len(rows):
+        notes.append("No layer swells: every layer is past its swell "
+                     "pressure, so no heave is computed (total 0); Eq. 5-8 "
+                     "does not give the settlement.")
+    uw_assumed = None
+    if assumed:
+        uw_assumed = {"layers": assumed, "value_tsf": 0.0,
+                      "basis": _UW_ASSUMED_BASIS}
+        notes.append(f"u_w not given for layer(s) {assumed}: "
+                     + _UW_ASSUMED_BASIS)
+    return {
+        "total_heave_ft": round(total, 4),
+        "total_heave_in": round(total * 12.0, 3),
+        "layers": rows,
+        "layers_left_out": left_out,
+        "pore_water_pressure_assumed": uw_assumed,
+        "equation": ("delta_H/H = c_s/(1 + e_o) * log10(sigma_s/sigma'_v); "
+                     "sigma'_v = sigma_v - u_w"),
+        "notes": notes,
+        "source": (f"{_REF}, Eqs. 5-8 and 5-9, para 5-4e(1), printed p. 5-5 "
+                   "(PDF 40); symbols of Figure 4-2, printed p. 4-4 (PDF 34)"),
     }

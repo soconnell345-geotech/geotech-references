@@ -65,8 +65,8 @@ geotech_references/           # Python package (pip install -e .)
     equations.py               # relative compaction check (CE 55 basis, para 5-1b(4))
     tables.py                  # para 5-1b(4) densities, Table 5-1, para 3-3d materials, 5-1b(3) lifts, 5-1b(2) equipment, Fig 2-5a
   ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils (the reproduced TM 5-818-7) — rebuilt from the print 2026-11-10
-    equations.py               # total swell as the area under per cent swell vs depth (Figure 5-4); Table 4-2's four swell relations
-    tables.py                  # Table 4-1 swell potential, para 5-4c active zone, Table 6-1 foundations, para 6-4 grade-beam void
+    equations.py               # total swell as the area under per cent swell vs depth (Figure 5-4); Table 4-2's four swell relations; Eq 4-1 (Van Der Merwe), Eq 5-2, Eqs 5-3 to 5-5, Eqs 5-8/5-9
+    tables.py                  # Table 4-1 swell potential, para 5-4c active zone, Table 6-1 foundations, para 6-4 grade-beam void, Figure 4-1 potential expansiveness
   ufc_pavement/                # UFC 3-250-01 (2016) Pavement Design for Roads & Parking — REBUILT 2026-07 from the real doc (audit gap CLOSED): CBR curve E-1, rigid Eq 13-1, overlays, frost, drainage
   ufc_stabilization/           # UFC 3-250-11 (2020) Soil Stabilization (additive selection, criteria, equivalency)
   ufc_flexible_practice/       # UFC 3-250-03 (2018) Flexible Pavement Practice (HMA/Marshall/Superpave, sprays, seals)
@@ -148,7 +148,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
 | ufc_backfill | UFC 3-220-04FA Backfill (rebuilt from the print 2026-11-10) | 7 | 49 | - |
-| ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10) | 9 | 57 | - |
+| ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10; the printed heave methods of ch 4-5 built 2026-11-10, REF-91) | 14 | 79 | - |
 | ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | 339 | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
 | eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes) |
