@@ -71,6 +71,16 @@ class TestDDPileSideResistance:
         r = dd_pile_side_resistance_MPa(20.0, "clean")
         assert r["soil_type"] == "clean_angular"
 
+    def test_print_conditions_carried(self):
+        """FHWA-HIF-07-03 p. 83 (PDF page 106): N60 not depth corrected,
+        cohesionless materials only; neither was in the result (review
+        finding gec-42). Above N = 50 the result says N = 50 is used."""
+        r = dd_pile_side_resistance_MPa(20.0, "dirty_rounded")
+        assert "should not be depth corrected" in r["print_note"]
+        assert "only be applied to cohesionless materials" in r["print_note"]
+        assert "note" not in r
+        assert "N = 50 is used" in dd_pile_side_resistance_MPa(60.0)["note"]
+
 
 class TestCFAAllowableCapacity:
     """cfa_allowable_capacity_kN: GEC-8 Section 6.3.1, p. 138."""

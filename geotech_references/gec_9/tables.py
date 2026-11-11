@@ -118,6 +118,14 @@ def table_4_1_lateral_resistance_factor(condition: str) -> dict:
 
 _TABLE_7_1_SPACING = [3.0, 5.0]
 
+# FHWA-HIF-18-031 (GEC-9), Table 7-1, p. 104 (PDF page 108): notes as printed.
+_TABLE_7_1_NOTES = [
+    "(1) Spacing is in the direction of loading; B = foundation element "
+    "width/diameter",
+    "(2) P-multipliers are for vertical piles only",
+    "(3) Interpolation may be used for other spacing between 3B and 5B",
+]
+
 _TABLE_7_1 = {
     "lead_row": {
         "pm": [0.8, 1.0],
@@ -135,7 +143,7 @@ _TABLE_7_1 = {
 
 
 def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
-    """P-multiplier Pm for group lateral analysis (Table 7-1).
+    """P-multiplier Pm (dimensionless) for a row of a laterally loaded deep foundation group, from the row position and the centre-to-centre spacing in widths B, GEC-9 Table 7-1 (p. 104).
 
     Scales the p-y resistance of each element in a laterally loaded group:
 
@@ -143,8 +151,10 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
 
     Values from AASHTO (2014), modified from Hannigan et al. (2006).  Applicable
     to all subsurface conditions (soil type does not significantly affect Pm).
-    Valid for vertical piles and drilled shafts only.  Linear interpolation
-    applies between 3B and 5B spacing.
+    The table prints spacings 3B and 5B; note (3): "Interpolation may be
+    used for other spacing between 3B and 5B". Beyond 5B the 5B row is
+    used and the result says so (rows 2 and 3 still reduce at 5B: 0.85
+    and 0.7). Below 3B the table has no row and the call is refused.
 
     Parameters
     ----------
@@ -153,14 +163,15 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
         'lead' (or '1st', 'front', 'row1'), '2nd' (or 'second', 'row2'),
         '3rd' (or 'trail', 'trailing', '3rd_or_more', 'row3+').
     spacing_over_b : float
-        Center-to-center spacing ÷ pile width/diameter.  Must be ≥ 3.0.
-        Use 5.0 or more for no group reduction.
+        Center-to-center spacing ÷ pile width/diameter, in the direction
+        of loading.  Must be ≥ 3.0.
 
     Returns
     -------
     dict
         {'row_position': str, 'spacing_over_b': float,
-         'pm': float, 'notes': str}
+         'pm': float, 'notes': str, 'print_notes': list,
+         'note': str (beyond 5B only)}
 
     Raises
     ------
@@ -169,8 +180,9 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
     """
     if spacing_over_b < 3.0:
         raise ValueError(
-            f"spacing_over_b={spacing_over_b} is below the minimum of 3.0B "
-            "(Table 7-1 applies for 3B ≤ spacing ≤ 5B; use Pm=1.0 beyond 5B)."
+            f"spacing_over_b={spacing_over_b} is below 3.0: GEC-9 Table 7-1 "
+            "(p. 104) prints spacings 3B and 5B only, with interpolation "
+            "between them (note 3)."
         )
 
     _aliases = {
@@ -213,12 +225,19 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
     # beyond the table range (no extrapolation assumed).
     pm = _linterp(spacing_over_b, _TABLE_7_1_SPACING, data["pm"])
 
-    return {
+    out = {
         "row_position": row_key,
         "spacing_over_b": spacing_over_b,
         "pm": round(pm, 3),
         "notes": data["notes"],
+        "print_notes": list(_TABLE_7_1_NOTES),
     }
+    if spacing_over_b > _TABLE_7_1_SPACING[-1]:
+        out["note"] = (
+            "Table 7-1 prints spacings 3B and 5B and allows interpolation "
+            "between them (note 3); it has no row beyond 5B, and the 5B "
+            "row is used.")
+    return out
 
 
 # ============================================================================
@@ -236,6 +255,16 @@ _TABLE_A1_K_STATIC = [500.0, 1000.0, 2000.0]
 _TABLE_A1_K_CYCLIC = [200.0, 400.0, 800.0]
 
 
+def _ca_outside_note(table: str, ca_tsf: float):
+    """Note for a Ca outside the 0.5-4 ton/ft2 that Tables A-1/A-2 print."""
+    if _TABLE_A1_CA_BOUNDS[0] <= ca_tsf <= _TABLE_A1_CA_BOUNDS[-1]:
+        return None
+    end = "0.5 - 1" if ca_tsf < _TABLE_A1_CA_BOUNDS[0] else "2 - 4"
+    return (f"{table} prints Ca of 0.5 - 1, 1 - 2 and 2 - 4 ton/ft2; "
+            f"Ca = {ca_tsf} ton/ft2 is outside them, and the {end} column "
+            "is used.")
+
+
 def _ca_bin_index(ca_tsf: float) -> int:
     """Return 0, 1, or 2 for Ca bins 0.5-1, 1-2, 2-4 ton/ft²."""
     if ca_tsf < _TABLE_A1_CA_BOUNDS[1]:
@@ -246,16 +275,17 @@ def _ca_bin_index(ca_tsf: float) -> int:
 
 
 def table_a1_k_stiff_clay(ca_tsf: float, loading: str = "static") -> dict:
-    """Initial p-y modulus k for stiff clay with free water (Table A-1).
+    """Coefficient k in pci (ks static or kc cyclic) for the initial linear portion of the p-y curve in stiff clay with free water, from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-1 (p. 222; Reese et al. 1975).
 
     Provides the proportionality coefficient k (pci) for constructing the
     initial linear portion of the Reese et al. (1975) p-y curve:
 
         p = (k × z) × y   [z in inches, y in inches, p in lb/in]
 
-    Values are bin-based (not interpolated) per Reese et al. (1975).
-    For Ca < 0.5 ton/ft², the soft clay Matlock (1970) criterion is more
-    appropriate.  For Ca > 4 ton/ft², use k = 2000 (static) or 800 (cyclic).
+    Values are bin-based (not interpolated): the table prints Ca columns
+    0.5 - 1, 1 - 2 and 2 - 4 ton/ft2. Outside 0.5 - 4 ton/ft2 the nearest
+    column is used and the result carries a note (Appendix A.1 gives the
+    p-y curve for soft clay, Matlock 1970).
 
     Parameters
     ----------
@@ -291,13 +321,17 @@ def table_a1_k_stiff_clay(ca_tsf: float, loading: str = "static") -> dict:
     hi = bounds[idx + 1]
     ca_range = f"{lo}–{hi} ton/ft²"
 
-    return {
+    out = {
         "ca_tsf": ca_tsf,
         "loading": load_key,
         "k_pci": k,
         "ca_range_tsf": ca_range,
         "source": "GEC-9 Table A-1 (Reese et al. 1975)",
     }
+    note = _ca_outside_note("Table A-1", ca_tsf)
+    if note:
+        out["note"] = note
+    return out
 
 
 # ============================================================================
@@ -312,13 +346,16 @@ _TABLE_A2_EPS50 = [0.007, 0.005, 0.004]
 
 
 def table_a2_epsilon50_stiff_clay(ca_tsf: float) -> dict:
-    """Strain at 50% peak deviatoric stress ε50 for stiff clay (Table A-2).
+    """Strain at 50% of the peak deviator stress, epsilon_50 (dimensionless), for stiff clay from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-2 (p. 222; Reese et al. 1975).
 
     Used in Reese et al. (1975) p-y curve construction:
 
         y50 = ε50 × D
 
-    where D is the pile/shaft diameter.  Values are bin-based per Table A-2.
+    where D is the pile/shaft diameter.  Values are bin-based per Table A-2
+    (Ca columns 0.5 - 1, 1 - 2 and 2 - 4 ton/ft2); outside 0.5 - 4 ton/ft2
+    the nearest column is used and the result carries a note. GEC-9 says
+    epsilon_50 can also be obtained from lab tests (p. 222).
 
     Parameters
     ----------
@@ -347,12 +384,16 @@ def table_a2_epsilon50_stiff_clay(ca_tsf: float) -> dict:
     hi = bounds[idx + 1]
     ca_range = f"{lo}–{hi} ton/ft²"
 
-    return {
+    out = {
         "ca_tsf": ca_tsf,
         "epsilon_50": eps50,
         "ca_range_tsf": ca_range,
         "source": "GEC-9 Table A-2 (Reese et al. 1975)",
     }
+    note = _ca_outside_note("Table A-2", ca_tsf)
+    if note:
+        out["note"] = note
+    return out
 
 
 # ============================================================================
