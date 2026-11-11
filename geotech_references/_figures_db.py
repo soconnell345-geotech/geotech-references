@@ -314,6 +314,13 @@ def _reference_candidates(conn: sqlite3.Connection,
     ("pile"), and the catalog that happened to hold the figure number
     answered. Such a name now resolves to nothing, and the caller is given
     the ids to choose from.
+
+    Otherwise the name is read as the searches read it
+    (:func:`_retrieval_db.search_scope`): a report number by any of its
+    forms, the designation of a stored id among them ("FHWA-NHI-05-037"
+    for fhwa_pavements, "EN 1997-1" for eurocode_7_1), and a number that
+    could be more than one raises ``KeyError`` naming them (2026-11-10
+    review follow-up).
     """
     refs = _catalog_refs(conn)
     ids = [r[0] for r in refs]
@@ -322,14 +329,13 @@ def _reference_candidates(conn: sqlite3.Connection,
     key = _id_key(reference)
     if not key:
         return []
-    exact = [r for r in ids if _id_key(r) == key]
-    if exact:
-        return exact
     shared = [r for r in _SHARED_NAMES.get(key, ()) if r in ids]
-    if shared:
+    if shared and not any(_id_key(r) == key for r in ids):
         return shared
-    return [r for r, _, numbers in refs
-            if any(_is_report_number(key, _id_key(n)) for n in numbers)]
+    found, _numbers, error = search_scope(reference, refs)
+    if error:
+        raise KeyError(error)
+    return found
 
 
 def _unknown_reference(conn: sqlite3.Connection, reference: str) -> str:
