@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3)
+BUILT = (1, 2, 3, 4)
 
 
 def _chapter(n):
@@ -101,11 +101,22 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("1.")]) == 7
     assert len([s for s in secs if s.startswith("2.")]) == 44
     assert len([s for s in secs if s.startswith("3.")]) == 37
+    assert len([s for s in secs if s.startswith("4.")]) == 48
     # the printed lettered level (p. 3-28 ff.)
     for letter in "abcdefgh":
         assert f"3.5.2.{letter}" in secs
     assert secs["3.5.2.f"]["title"] == "LRFD Geosynthetic Reinforcement Resistance Factor, φ"
     assert secs["3.6.1.a"]["title"] == "Segmental Panels"
+    # chapter 4's design steps at every printed level (p. 4-9 ff.); the
+    # page prints 4.4.11.a-c, the contents 4.11.a-c
+    # the page prints "MSE WALL DESIGN GUIDELINES", the contents "WALLS"
+    assert secs["4.4"]["title"] == "MSE Wall Design Guidelines"
+    assert secs["4.4"]["body"] == "[p. 4-9]"      # a heading with no text of its own
+    for letter in "abcdefghijk":
+        assert f"4.4.7.{letter}" in secs
+    assert secs["4.4.6.b"]["title"] == "Eccentricity Limit Check"
+    assert secs["4.4.11.a"]["title"] == "Subsurface Drainage"
+    assert "4.11.a" not in secs
 
 
 def test_printed_sentences_with_their_pages():
@@ -207,6 +218,66 @@ def test_chapter_3_tables_typed_in():
     assert "All Polymers | % Post Consumer Recycled Material by Weight" in body
 
 
+def test_chapter_4_equations_as_printed():
+    eqs = _equations()
+    # pullout (p. 4-49, 4-51) and the active length (p. 4-51, 4-52)
+    assert eqs["4-35"][1]["formula"] == "φ Le ≥ TMAX / (F* α σv C Rc)"
+    assert eqs["4-36"][1]["formula"] == "Le ≥ TMAX / (φ F* α σv C Rc) ≥ 3 ft (1 m)"
+    assert eqs["4-35"][0] == eqs["4-40"][0] == "4.4.7.h"
+    assert eqs["4-38"][1]["formula"] == "La = (H - Z) tan (45 - φ′/2)"
+    assert eqs["4-39"][1]["formula"] == "La = 0.6 (H-Z)"
+    assert eqs["4-40"][1]["formula"] == "La = 0.3H"
+    # tension and its resistance (p. 4-46 to 4-49)
+    assert eqs["4-32a"][1]["formula"].startswith("TMAX = σH Sv ")
+    assert eqs["4-32c"][1]["formula"] == "PTMAX-D = σH Sv WP / NP"
+    assert eqs["4-33"][1]["formula"] == "Tr = φ Tal"
+    assert eqs["4-34"][1]["formula"] == "TMAX ≤ Tr"
+    # horizontal stress (p. 4-41 to 4-43), γEV-MAX = 1.35
+    assert eqs["4-28"][1]["formula"] == "σH = Kr [(γr Z) γEV-MAX]"
+    assert "(= 1.35)" in eqs["4-28"][1]["variables"]["γEV-MAX"]
+    # external stability: Rankine and Coulomb Kab (p. 4-15), bearing (p. 4-28, 4-30)
+    assert eqs["4-1"][1]["formula"] == "Kab = tan²(45 − φ′b / 2)"
+    assert eqs["4-22"][1]["formula"] == "qn = cf Nc + 0.5 L′ γf Nγ"
+    assert "0.65" in eqs["4-23"][1]["variables"]["φ"]
+    assert eqs["4-24"][1]["formula"] == "γr H ≤ 3 cu"
+    # Eq. 4-26 as the page prints it, the bracket with no exponent (p. 4-36)
+    assert eqs["4-26"][1]["formula"].endswith("{sin³θ [1 + sin φ′r / sin θ]}")
+    assert "no exponent" in eqs["4-26"][1]["notes"]
+
+
+def test_chapter_4_text_and_tables_as_printed():
+    secs = _sections()
+    body = secs["4.4.6.b"]["body"]
+    assert ("within the middle one-half of the base width for soil foundations "
+            "(i.e., emax = L / 4) and middle three-fourths of the base width for "
+            "rock foundations (i.e., emax = 3/8 L)") in body
+    # Kr/Ka from the top of the reinforced fill to 20 ft (6 m) (p. 4-35)
+    assert ("decreases from the top of the reinforced wall fill to a constant "
+            "value 20 ft (6 m) below this elevation") in secs["4.4.7.c"]["body"]
+    # temporary walls (p. 4-66): RFD 1.0, not the earlier file's RF = 3.5
+    body = secs["4.5"]["body"]
+    assert "36 month or less service life" in body
+    assert "minimum durability reduction factor of 1.0 in lieu of 1.1" in body
+    assert "3.5" not in body
+    # Tables 4-2, 4-4, 4-5, 4-6, 4-7 typed in (pp. 4-4, 4-17, 4-19, 4-29, 4-48)
+    assert ("EV: Vertical Earth Pressure: Retaining Walls and Abutments | 1.35 | 1.00"
+            in secs["4.2"]["body"])
+    assert "10.0 | 3.0\n≥ 20.0 | 2.0" in secs["4.4.4"]["body"]
+    assert "Bearing Resistance | (blank) | 0.65\nSliding | (blank) | 1.0" in secs["4.4.6"]["body"]
+    body = secs["4.4.6.c"]["body"]
+    assert "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n" in body
+    assert "30 | 30.1 | 18.4 | 22.4" in body
+    assert "39 | 37.9 | 56.0 | 92.3" in body      # as printed; noted
+    body = secs["4.4.7.f"]["body"]
+    assert ("Metallic reinforcement and connectors: Grid reinforcements (A, C): "
+            "Static loading | 0.65") in body
+    assert ("Pullout resistance of tensile reinforcement (metallic and geosynthetic): "
+            "Combined static/traffic barrier impact (B) | 1.00") in body
+    # the page's caption, with the φ and the Kr the lists drop
+    assert secs["4.4.7.f"]["tables"][0].startswith("Table 4-7: Resistance Factors, φ, ")
+    assert "(Kr/Ka)" in secs["4.4.7.c"]["figures"][0]
+
+
 def test_lookups_linked_from_the_section_that_prints_the_table():
     import importlib
     seen = {}
@@ -222,6 +293,12 @@ def test_lookups_linked_from_the_section_that_prints_the_table():
     assert seen.get("Table 3-3") == seen.get("Table 3-4") == "3.2.3"
     assert seen.get("Table 3-7") == seen.get("Table 3-8") == "3.5.1"
     assert seen.get("Table 3-9") == "3.5.2.b" and seen.get("Table 3-11") == "3.5.2.d"
+    assert seen.get("Table 4-1") == seen.get("Table 4-2") == "4.2"
+    assert seen.get("Table 4-4") == "4.4.4" and seen.get("Table 4-5") == "4.4.6"
+    assert seen.get("Table 4-6") == "4.4.6.c" and seen.get("Table 4-7") == "4.4.7.f"
+    assert seen.get("Figure 4-10") == "4.4.7.c"
+    # 16 tables in tables.py and Figure 4-10 in figures.py
+    assert len(seen) == 17
 
 
 def test_search_and_fetch_through_the_database():

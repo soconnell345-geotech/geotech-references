@@ -63,7 +63,8 @@ stop), ``printed_equations`` (``number``, ``page``, ``formula``,
 ``build_printed_text.add_printed_equations``), ``printed_tables`` (a table
 whose text-layer cells come out a column at a time or lose signs and
 superscripts, typed in row by row from the render: ``number``, ``page``,
-``rows``, optional ``resume`` and ``notes``; see ``_type_tables``),
+``rows``, optional ``resume``, ``to_end``, ``caption_start`` and ``notes``;
+see ``_type_tables``),
 ``page_captions`` (a caption the page prints in other words than the List
 of Figures or Tables, in sense: Table 3-8 "Moderately" against the list's
 "Mildly"; the section lists it in the page's words), ``split_ids`` and
@@ -305,6 +306,8 @@ def read_pages(pdf: Path) -> list[dict]:
                 lines[j1:end] = [""] + [x for n in nums for x in (f"[Eq. {n}]", "")]
                 eqs = nums + eqs
             label, lines = _cut_footer([ln.strip() for ln in lines])
+            # a degree sign set as a small circle after a number ("10◦")
+            lines = [re.sub(r"(?<=\d)◦", "°", ln) for ln in lines]
             pages.append({"label": label, "lines": _join_hyphens(lines),
                           "equations": eqs})
     return pages
@@ -510,7 +513,8 @@ def _is_caption(lines: list[str], k: int, m, listed: dict) -> bool:
 def _caption(kind: str, num: str, listed: dict, page_caps: dict) -> str:
     """The caption a section lists for a figure or table: the List of
     Figures or Tables' wording, or the page's where the manifest's
-    ``page_captions`` gives it (the two differ in sense: Table 3-8)."""
+    ``page_captions`` gives it (the two differ in sense: Table 3-8; or the
+    list drops a symbol: Figure 4-10 "(K/Ka)", Table 4-7's φ)."""
     return page_caps.get(f"{kind} {num}") or listed.get(num, {}).get("caption", "")
 
 
@@ -536,13 +540,15 @@ def _fill_equations(body: str, printed: list[dict]) -> str:
 
 def _type_tables(body: str, printed: list[dict], done: set) -> str:
     """Each table typed in from the page (the manifest's ``printed_tables``:
-    ``number``, ``page``, ``rows``, optional ``resume``, ``caption_start``
-    (words of the printed caption, where a sentence in the text also starts
-    a paragraph with the table's number) and ``notes``) put in
-    place of its text-layer cells, which come out a column at a time or
+    ``number``, ``page``, ``rows``, optional ``resume``, ``to_end``,
+    ``caption_start`` (words of the printed caption, where a sentence in the
+    text also starts a paragraph with the table's number) and ``notes``) put
+    in place of its text-layer cells, which come out a column at a time or
     with signs and superscripts lost: after the caption's paragraph, the
     text up to ``resume`` (the words that start the print's next paragraph
-    after the table) or, without one, the next paragraph, is replaced by
+    after the table), to the end of the section with ``to_end`` (a table
+    the section ends with, whose cells the text layer breaks into
+    paragraphs) or, without either, the next paragraph, is replaced by
     the typed rows, one to a line, cells parted by " | ". Page markers in
     the replaced text are kept. Numbers typed in are added to ``done``."""
     for t in printed:
@@ -559,7 +565,9 @@ def _type_tables(body: str, printed: list[dict], done: set) -> str:
         if start < 0:
             start = len(body)
         start += 2
-        if t.get("resume"):
+        if t.get("to_end"):
+            end = len(body)
+        elif t.get("resume"):
             end = body.find(t["resume"], start)
             if end < 0:
                 raise ValueError(f"Table {t['number']}: resume text not found")
