@@ -1203,6 +1203,28 @@ Also in this build:
   distribution gives beta 3.72 at 1e-4 and 4.26 at about 1e-5. Eq. 6-79
   stays uncoded (`implemented_in` null).
 
+**Build: UFC 3-250-01 Figure 10-1 retraced from the chart (pave-22).**
+`ufc_pavement.figure_10_1_k_on_base` read the effective k on top of the
+base up to 29 % low at mid thicknesses and, for the 25 to 75 pci curves
+under bases thinner than about 10 in., up to 39 % high (the unsafe side):
+its curves were read by eye at 10 in. steps and joined by straight lines
+across their S-shaped start. Each curve is now traced from the chart
+image (PDF 52, printed 32) column by column, calibrated on the chart's own
+gridlines, which fit one thickness scale within 0.07 in. and one log k
+scale within 0.7 %, and stored every 0.5 to 2 in.; stated tolerance 1 % of
+k on a curve (2 % for the 200 curve past 55 in. and the 300 curve past
+57 in., where they run together with the 150 curve and the 500 pci
+frame). Between curves, log k on base is interpolated in log k on
+subgrade (the library's rule; it was linear). Before and after, psi/in:
+k 25 under 4 in. 41.0 -> 29.5; 100 under 10 in. 160.0 -> 194.4; 200
+under 10 in. 255.0 -> 299.7 (the curve passes through the 300 gridline
+there); 100 under 28 in. 246.0 -> 346.3; 300 under 10 in. 350.0 -> 357.7
+(the review's note had misread this one as 385).
+The limits are unchanged and were re-read from the trace: below the
+25 pci curve refused, above 300 pci and past 60 in. held with a note.
+Results also carry the chart's note and how the value was interpolated.
+Nothing in the library or the app calls the function.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
