@@ -2,17 +2,57 @@
   "reference_id": "FHWA-NHI-10-024",
   "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes",
   "package": "gec_11",
+  "text_build": "printed",
+  "text_builder": "scripts/build_gec11_text.py",
   "volumes": [
     {
       "volume": 1,
       "volume_id": "FHWA-NHI-10-024",
+      "volume_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
       "pdf_path": "../../docs/GEC 11 Vol 1.pdf",
+      "contents_pages": [7, 11],
+      "lists_pages": [13, 18],
+      "headings": {
+        "2.10.3": {"page_title": "SeaTac Airport Runway Extension MSE Wall"},
+        "3.2": {"page_title": "ESTABLISHMENT OF REINFORCED AND RETAINED FILL ENGINEERING PROPERTIES"},
+        "3.5.2.f": {"page_title": "LRFD Geosynthetic Reinforcement Resistance Factor, φ"},
+        "4.4.6.b": {"page_title": "Eccentricity Limit Check"},
+        "4.4.9": {"page_title": "Step 9 – Assess Overall/Global Stability"},
+        "4.11.a": {"printed_as": "4.4.11.a", "page_title": "Subsurface Drainage"},
+        "4.11.b": {"printed_as": "4.4.11.b"},
+        "4.11.c": {"printed_as": "4.4.11.c"},
+        "7.3": {"page_title": "SUPERFLOOD EVENTS AND SCOUR"}
+      },
+      "lookups": {
+        "Table 2-1": "geotech_references.gec_11.tables.table_2_1_min_reinforcement_length",
+        "Table 2-2": "geotech_references.gec_11.tables.table_2_2_min_embedment_depth"
+      },
+      "printed_tables": [
+        {"number": "2-1", "page": "2-43", "rows": [
+          "Case | Typical Minimum L/H Ratio",
+          "Static loading with or with traffic surcharge | 0.7",
+          "Sloping backfill surcharge | 0.8",
+          "Seismic loading | 0.8 to 1.1"],
+         "notes": "the first case is printed \"with or with traffic surcharge\" (p. 2-43), kept as printed."},
+        {"number": "2-2", "page": "2-43", "resume": "Larger values may be required", "rows": [
+          "Slope in Front of Wall | Minimum Embedment Depth to Top of Leveling Pad*",
+          "All Geometries | 2 ft minimum",
+          "horizontal (walls) | H/20",
+          "horizontal (abutments) | H/10",
+          "3H:1V | H/10",
+          "2H:1V | H/7",
+          "1.5H:1V | H/5",
+          "* Minimum depth is the greater of applicable values listed, frost depth, or scour depth."]},
+        {"number": "2-3", "page": "2-46", "rows": [
+          "Joint Width | Limiting Differential Settlement, Area ≤ 30 ft² | Limiting Differential Settlement, 30 ft² < Area ≤ 75 ft²",
+          "¾-in. (20 mm) | 1/100 | 1/200"]}
+      ],
       "chapters": [
         {"number": 1,  "title": "Introduction",                                           "page_start": 27,  "page_end": 40},
         {"number": 2,  "title": "Systems and Project Evaluation",                         "page_start": 41,  "page_end": 92},
         {"number": 3,  "title": "Soil Reinforcement Principles and System Design Properties", "page_start": 93,  "page_end": 142},
         {"number": 4,  "title": "Design of MSE Walls",                                   "page_start": 143, "page_end": 226},
-        {"number": 5,  "title": "MSE Wall Design Details",                               "page_start": 227, "page_end": 286},
+        {"number": 5,  "title": "MSE Wall Details",                                      "page_start": 227, "page_end": 286},
         {"number": 6,  "title": "Design of MSE Walls with Complex Geometrics",           "page_start": 287, "page_end": 314},
         {"number": 7,  "title": "Design of MSE Walls for Extreme Events",                "page_start": 315, "page_end": 332}
       ]
@@ -20,7 +60,16 @@
     {
       "volume": 2,
       "volume_id": "FHWA-NHI-10-025",
+      "volume_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume II",
       "pdf_path": "../../docs/GEC 11 VOL 2.pdf",
+      "contents_pages": [7, 10],
+      "lists_pages": [11, 14],
+      "headings": {
+        "8.3.1": {"page_title": "Application Considerations"}
+      },
+      "fix_lines": [
+        {"pdf_page": 153, "find": "11.2.1. Precast Concrete Elements", "replace": "11.2.1 Precast Concrete Elements"}
+      ],
       "chapters": [
         {"number": 8,  "title": "Reinforced Soil Slopes Project Evaluation",             "page_start": 27,  "page_end": 62},
         {"number": 9,  "title": "Design of Reinforced Soil Slopes",                      "page_start": 63,  "page_end": 88},
