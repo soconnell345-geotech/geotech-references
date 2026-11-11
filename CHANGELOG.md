@@ -633,6 +633,29 @@ and no lookup changed.
   20-15 (mm/sec, 217.5) and 20-16 (ft/day, 6.214 x 10^5), which differ by
   a factor of about 10 once converted. `tests/test_ufc_pavement_text_equations.py`
   pins the equations, limits and notes (38 tests).
+- **UFC 3-250-11 (`ufc_stabilization`, 8 files, 101 sections; 85 sections
+  changed: 57 bodies, 38 summaries, 71 key-point lists, 2 equation lists,
+  4 applicability lines).** Every body now holds its printed text; printed
+  sub-paragraphs with no section of their own stay in their parent with
+  their numbers (2-1.1 now carries 2-1.1.1 to 2-1.1.6). Tables and figure
+  labels are named, not run into the text; 4-1.4 and 4-2.2, whose printed
+  text is over the 14,000-character body limit, are verbatim extracts with
+  the gaps marked "[...]". Heading-only paragraphs (2-1.3, 2-2, 4-1, A-1 and
+  others) say so and name their sub-paragraphs. 4-2.1 said deep mixing is
+  "NOT routine for airfield projects"; that caution is printed under
+  4-2.2.4 and is there now, and 4-2.1 holds the printed deep-stabilization
+  approaches (24 in, then the top 6 to 12 in; 18 in by progressive cuts;
+  8- to 9-in lifts near the surface; the frost caution). "Hard limit",
+  "must" and "never" put back to the page's "do not", "should", "cannot
+  ... and remain effective"; 2-1.2.2 states both printed sulfate sentences
+  (one allows Pavements DWG authorization, one does not and adds lime).
+  Print slips kept with notes: 4-1.4.7 "construct all layers to be less
+  than 4 inches thick"; 4-2.1 "6 to 12 inches (130 to 300 mm)"; A-1.2.1 and
+  A-1.2.2 millimetre arithmetic; A-2 pH 12.1 against 2-1.2.1's 12.0; A-3.1
+  dilution "to 50 ml" then "take 100 ml" (the factor 411.6 fits 500 ml);
+  A-3.1 oven-dry weight expression malformed; A-3.2 prints only a numeric
+  example with "x 0.0338 percent" for "= 0.0338 percent".
+  `tests/test_ufc_stabilization_text_equations.py` pins them (28 tests).
 
 **Fixes from the 2026-11-10 review of the core layer.** Every page, number
 and caption below was read off the rendered print.
