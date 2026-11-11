@@ -273,7 +273,109 @@ def test_appendix_b_figures():
     assert "Figure B-2: Features of Karstic Terrane (Knott et al., 1993)" in figs
 
 
-@pytest.mark.parametrize("ch", [19, 20])
+# ---------------------------------------------------------------- Appendix C
+
+C_IDS = ["C", "C.1", "C.2", "C.3", "C.3.1", "C.3.1.a", "C.3.2"]
+
+
+def test_appendix_c_sections_and_titles():
+    data = _appendix(21)
+    assert data["chapter_title"] == "Appendix C: Analysis of Axial Load-Deformation Response"
+    assert [s["section_id"] for s in data["sections"]] == C_IDS
+    titles = {s["section_id"]: s["title"] for s in data["sections"]}
+    # printed headings, pp. C-1, C-2, C-6 and C-10
+    assert titles["C.1"] == "Simple Formulas"
+    assert titles["C.2"] == "Numerical Simulation of Load Transfer"
+    assert titles["C.3"] == "Approximate Closed-Form Solutions"
+    assert titles["C.3.1"] == "Rock Sockets (Kulhawy and Carter 1992)"
+    assert titles["C.3.1.a"].startswith("Rock Sockets (Kulhawy and Carter 1992) (continued, ")
+    assert "The letter is not printed" in _section("C.3.1.a")["applicability"]
+    assert titles["C.3.2"] == "Dense Residual Piedmont Soils (Mayne and Harris 1993)"
+    # p. C-11 holds only Figure C-6
+    pages = [int(p) for s in data["sections"]
+             for p in re.findall(r"\[p\. C-(\d+)\]", s["body"])]
+    assert pages == sorted(pages) and pages[0] == 1 and pages[-1] == 13
+    assert set(pages) == set(range(1, 14)) - {11}
+
+
+def test_appendix_c_numbered_equations_all_held_once():
+    data = _appendix(21)
+    ids = [e["id"] for s in data["sections"] for e in s["equations"]]
+    assert ids == [f"Eq. C-{n}" for n in range(1, 43)]
+    body = " ".join(s["body"] for s in data["sections"])
+    for n in range(1, 43):
+        assert body.count(f"(C-{n})") == 1
+
+
+@pytest.mark.parametrize("sid,eq,formula", [
+    # typed from renders of pp. C-1 to C-13 (PDF 630 to 642)
+    ("C.1", "Eq. C-1", "wT = wc + wbb + wbs"),
+    ("C.1", "Eq. C-2", "wc = (Qh - 0.5 Qms) L / (AE)shaft"),
+    ("C.1", "Eq. C-4", "wbb = Cp (Qmb / (B qmax))"),
+    ("C.1", "Eq. C-5", "wbs = (0.93 + 0.16 √(L/B)) Cp (Qms / (L qmax))"),
+    ("C.2", "Eq. C-6", "EA d²z/dy² = πBt"),
+    ("C.3.1", "Eq. C-10", "(μL)² = (2/(ζλ)) (2L/B)²"),
+    ("C.3.1", "Eq. C-11", "ζ = ln [5(1 - νr)L/B]"),
+    ("C.3.1.a", "Eq. C-22", "λ1,2 = [-β ± (β² + 4α)^(1/2)] / (2α)"),
+    ("C.3.1.a", "Eq. C-26", "a2 = [(1 - νc)(Er/Ec) + (1 + νr)] (1/(2 tan φ tan ψ))"),
+    ("C.3.1.a", "Eq. C-31", "c/pa = 0.1 (qu/pa)^(2/3)"),
+    ("C.3.1.a", "Eq. C-32", "tan φ tan ψ = 0.001 (qu/pa)^(2/3)"),
+    ("C.3.2", "Eq. C-33", "Es/pa = 22 (N60)^0.82"),
+    ("C.3.2", "Eq. C-36", "μL = (L/B) 2 √(2/(ζ λ))"),
+    ("C.3.2", "Eq. C-39", "ξ = EsL/Eb = 2.5"),
+    ("C.3.2", "Eq. C-41", "RN = fSN (πBL) + qBN (πB²/4)"),
+])
+def test_appendix_c_equations_typed_from_the_page(sid, eq, formula):
+    eqs = {e["id"]: e for e in _section(sid)["equations"]}
+    assert eqs[eq]["formula"] == formula
+    assert eqs[eq]["implemented_in"] is None
+    assert formula in _section(sid)["body"]
+
+
+def test_appendix_c_table_c1():
+    t = _section("C.1")["tables"]
+    assert len(t) == 1 and t[0].startswith("Table C-1: Values of Cp")
+    for row in ("Sand (dense to loose); 0.09 – 0.18", "Clay (stiff to soft); 0.03 – 0.06",
+                "Silt (dense to loose); 0.09 – 0.12"):
+        assert row in t[0]
+
+
+def test_appendix_c_print_slips_kept_and_noted():
+    # p. C-7: no parenthesis closes in Eqs. C-13 and C-15
+    assert "Gr = Er / [2(1 + νr] = elastic shear modulus of rock mass (C-13) (as printed" \
+        in _section("C.3.1")["body"]
+    a = _section("C.3.1.a")["body"]
+    # p. C-9: the point (QC1, wC1) is drawn in Figure C-5b
+    assert "in Figure C-3b (as printed; the point (QC1, wC1) is drawn in Figure C-5b)" in a
+    # p. C-10 against Figure C-6 (p. C-11)
+    assert "Illustrative Example 19-4 Chapter 10) (as printed; the caption of Figure C-6 " \
+           "cites Illustrative Example 10-4)" in a
+    assert "was 1,751 kips (as printed; the spreadsheet of Figure C-6 is for a complete socket " \
+           "with B = 6 ft (72 in), D = 10 ft (120 in)" in a
+    # p. C-13: QT and QT1 in Eq. C-42
+    assert "Δw = (QT - QT1) (1 - ν²) / (Eb B) (C-42) (as printed" in _section("C.3.2")["body"]
+
+
+def test_appendix_c_printed_sentences_keep_their_force():
+    assert "To be valid, closed form solutions should be verified by reasonable agreement" \
+        in _section("C.3")["body"]
+    assert "Rock mass modulus and its variation with depth must, therefore, be assessed " \
+           "carefully" in _section("C.3.1.a")["body"]
+    assert "was recommended for dense cohesionless soils with N-values greater than 50" \
+        in _section("C.3.2")["body"]
+    assert "reasonable results for diameters up to 5 ft" in _section("C.3.2")["body"]
+
+
+def test_appendix_c_figures():
+    figs = {s["section_id"]: [f.split(":")[0] for f in s["figures"]]
+            for s in _appendix(21)["sections"]}
+    assert figs["C.2"] == ["Figure C-1", "Figure C-2", "Figure C-3", "Figure C-4"]
+    assert figs["C.3.1"] == ["Figure C-5"]
+    assert figs["C.3.1.a"] == ["Figure C-6"]
+    assert figs["C.3.2"] == ["Figure C-7"]
+
+
+@pytest.mark.parametrize("ch", [19, 20, 21])
 def test_appendix_sections_fit_the_tools(ch):
     for s in _appendix(ch)["sections"]:
         assert len(s["body"]) <= 12000
