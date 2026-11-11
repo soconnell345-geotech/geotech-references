@@ -35,7 +35,10 @@ rows instead of being answered from the first row that contains the words.
   - `table_5_11_fixity` (Table 5-11, p. 5-58): the three columns in the
     print's words, with "300 mm or less" and "600 mm or more" and the
     footnote; `table_5_12_elastic_modulus` says where its two sand rows
-    differ from the table's kPa column (gec-47).
+    differ from the table's kPa column; the values held there, 29,000 -
+    48,000 and 48,000 - 76,000 kPa, are the kPa the table prints for 600,
+    1,000 and 1,600 ksf in its other rows (the note said "48 kPa per ksf",
+    which gives 28,800 and 76,800) (gec-47).
   - `table_4_5_pipe_properties` (Table 4-5, p. 4-33): values unchanged.
     The table prints no Fy column; note (4) reads "Fy = 241 MPa (36 ksi)",
     and 36 ksi is the 248 MPa the lookup returns for ASTM A519/A106 and
@@ -138,8 +141,11 @@ rows instead of being answered from the first row that contains the words.
 - **GEC-7 soil nail walls (FHWA-NHI-14-007).**
   - `figure_4_3_friction_angle_spt` (Figure 4.3, p. 79): the six curves
     rebuilt from the rendered page; the points read are in the comment
-    above the data. They were 3 to 8 degrees low for N60 of 12 or more and
-    up to 4 degrees high at low N60 on the higher stress ratios. N60 = 22 at
+    above the data. On the curves sigma'vo/Pa = 0.5, 1.0, 1.5, 2.0, 2.5 and
+    3.0 they were at most 8.3, 7.6, 5.9, 5.3, 4.9 and 3.9 degrees low
+    (toward the high-N60 end of each curve) and at most 3.9, 3.5, 3.9, 3.9,
+    3.3 and 3.4 degrees high (at the low-N60 start of each curve, up to
+    N60 = 4.5, 6, 8, 10.5, 13 and 15.5 respectively). N60 = 22 at
     sigma'vo/Pa = 2.0 is 37.0 degrees (it returned 33.6); N60 = 31 at 1.0 is
     45.0 (was 38.2); N60 = 48 at 1.5 is 46.5 (was 40.6). A curve is read
     only where it is drawn, from phi 25 to where it leaves the top of the
@@ -157,7 +163,11 @@ rows instead of being answered from the first row that contains the words.
     to 30 and 45 to 50, bounds the table does not print, and now give no
     lower and no upper bound respectively, with the printed text in
     `phi_printed`. The result carries notes (1) to (3); note (3) holds
-    sands to 40 degrees and gravelly soils to 45 (gec-22).
+    sands to 40 degrees and gravelly soils to 45 (gec-22). N60 = 50 is
+    Dense, the row that prints it ("30 to 50"; Very Dense is "> 50"); it
+    returned very dense. At N60 = 4, 10 and 30, each printed in two rows,
+    the upper row is returned as before and the result names the lower
+    one (`also_printed_in`, `note`).
   - `table_4_3b_elastic_modulus_spt` (Table 4.3b, p. 82): "sand" returned
     the silts row, 8 (N1)60 ksf (7,661 kPa at (N1)60 = 20, where clean fine
     to medium sand is 13,406); it fits two rows and is refused. Each row
@@ -196,7 +206,9 @@ rows instead of being answered from the first row that contains the words.
     headings unchanged (they match GEC-12 Table 7-29). Site class F is
     refused with the table's note (1), "A site-specific dynamic site
     response analysis must be performed in these cases." (it said
-    "Unknown site_class"); Table 4.9's refusal quotes the same note.
+    "Unknown site_class"); Table 4.9's refusal quotes the same note. The
+    docstring cites the table as headed, "(Kavazanjian 2011)" (it said
+    AASHTO 2014).
 - **GEC-10 drilled shafts (FHWA-NHI-18-024, 2018).**
   - `table_8_4_resistance_factor` (Table 8-4, p. 8-14): a key names one
     printed row. "side" returned cohesionless compression 0.55 and
@@ -231,7 +243,8 @@ rows instead of being answered from the first row that contains the words.
     `equation_10_22_caving_rock_side`, `figure_10_6_alpha_clay` and
     `table_10_2_nc_base_clay` docstrings quote the print: the resistance
     factor for rock side resistance is 0.50 in Table 8-4 and 0.55 in the
-    text of p. 10-21 (both printed, not reconciled); qu should not exceed
+    text of p. 10-21 (the lookup returns the table's 0.50, ruling G1
+    below); qu should not exceed
     the shaft concrete's strength (p. 10-21, not checked); Eq. 10-20 is in
     D, the depth of embedment (gec-43).
   - Lead's rulings G1-G3 on the review's three GEC-10 questions:
@@ -245,7 +258,9 @@ rows instead of being answered from the first row that contains the words.
     local experience (G2; values unchanged). `figure_10_6_alpha_clay`
     (Eq. 10-18, Figure 10-6, p. 10-17) refuses su(CIUC)/pa outside the
     drawn curve, 0.25 to 5.0 (25.3 to 506.6 kPa), read at 300 dpi; su/pa
-    0.1 returned alpha 2.0 and su 10,000 kPa 0.302 (G3).
+    0.1 returned alpha 2.0 and su 10,000 kPa 0.302 (G3). The refusal
+    prints the ratio to enough digits that a value just outside the curve
+    does not show as one of its ends.
 
 - **GEC-11 MSE walls (FHWA-NHI-10-024 Vol I).**
   - `table_2_1_min_reinforcement_length` (Table 2-1, p. 2-43): the three

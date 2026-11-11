@@ -592,6 +592,22 @@ class TestTable512:
         assert r["es_min_kpa"] == 48000
         assert r["es_max_kpa"] == 76000
 
+    def test_sand_rows_note_says_what_the_page_shows(self):
+        """Table 5-12, p. 5-69 (PDF page 161): sand medium dense prints
+        '29,000 - 96,000 (600 - 1,000)' and dense '96,000 - 76,000 (1,000 -
+        1,600)'. The held kPa are the table's own kPa for 600, 1,000 and
+        1,600 ksf in other rows (29,000; 48,000; 76,000), not 48 x ksf
+        (600 x 48 = 28,800; 1,600 x 48 = 76,800); the note said '48 kPa
+        per ksf' (independent check)."""
+        md = table_5_12_elastic_modulus("sand_medium_dense")
+        d = table_5_12_elastic_modulus("sand_dense")
+        assert (md["es_min_kpa"], md["es_max_kpa"]) == (29000, 48000)
+        for r in (md, d):
+            assert "48 kPa per ksf" not in r["note"]
+            assert "in its other rows" in r["note"]
+        assert "28,728 and 47,880" in md["note"]
+        assert "47,880 and 76,608" in d["note"]
+
     def test_gravel_dense(self):
         r = table_5_12_elastic_modulus("gravel_dense")
         assert r["es_min_kpa"] == 96000

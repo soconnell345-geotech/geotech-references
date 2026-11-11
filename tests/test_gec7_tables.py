@@ -48,6 +48,26 @@ class TestTable42a:
     def test_boundary_at_10(self):
         assert table_4_2a_spt_soil_properties(10)["density"] == "medium"
 
+    def test_each_printed_boundary(self):
+        """GEC-7 Table 4.2a, p. 78 (PDF page 118): N60 rows "0 to 4", "4 to
+        10", "10 to 30", "30 to 50", "> 50". 50 is printed only in "30 to
+        50", so N60 = 50 is Dense (it returned Very Dense). 4, 10 and 30 are
+        printed in two rows each: the upper row is returned and the lower
+        named (independent check)."""
+        t = table_4_2a_spt_soil_properties
+        assert t(0)["density"] == "very_loose" and "note" not in t(0)
+        assert t(50)["density"] == "dense" and t(50)["n60_printed"] == "30 to 50"
+        assert "note" not in t(50)
+        assert t(51)["density"] == "very_dense" and t(51)["n60_printed"] == "> 50"
+        for n, upper, lower in ((4, "loose", "very_loose"),
+                                (10, "medium", "loose"),
+                                (30, "dense", "medium")):
+            r = t(n)
+            assert r["density"] == upper
+            assert r["also_printed_in"]["density"] == lower
+            assert "in two rows" in r["note"]
+        assert "note" not in t(5) and "note" not in t(49)
+
     def test_phi_range_medium(self):
         r = table_4_2a_spt_soil_properties(20)
         assert r["phi_min_deg"] == 35
@@ -420,6 +440,12 @@ class TestTable410:
     def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
             table_4_10_site_coefficient_fv("F", 0.3)
+
+    def test_cites_as_printed(self):
+        """Table 4.10, p. 95, is headed '(Kavazanjian 2011)'; the docstring
+        said AASHTO 2014 (independent check)."""
+        doc = table_4_10_site_coefficient_fv.__doc__
+        assert "Kavazanjian 2011" in doc and "AASHTO 2014" not in doc
 
     def test_site_class_f_quotes_note_1(self):
         """GEC-7 Table 4.10, p. 95 (PDF page 135), site class F row, note

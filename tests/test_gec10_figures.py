@@ -61,6 +61,16 @@ class TestFigure106AlphaClay:
         alpha = figure_10_6_alpha_clay(500)
         assert abs(alpha - 0.334) < 0.002
 
+    def test_refusal_message_not_rounded_onto_an_end(self):
+        """Just outside the curve the message must not print the ratio as
+        the end it is outside of (independent check)."""
+        for su in (25.33, 506.7):
+            with pytest.raises(ValueError) as e:
+                figure_10_6_alpha_clay(su)
+            msg = str(e.value)
+            shown = msg.split("su(CIUC)/pa = ")[1].split(",")[0]
+            assert not (0.25 <= float(shown) <= 5.0), msg
+
     def test_large_su_refused(self):
         """su 10,000 kPa (su/pa 98.7) is far past Figure 10-6's curve, which
         ends at su/pa 5.0; it returned 0.302 (lead's ruling G3)."""

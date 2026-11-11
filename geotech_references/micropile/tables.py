@@ -982,19 +982,28 @@ _TABLE_5_12 = {
 }
 
 # Table 5-12, p. 5-69 (PDF page 161): in the two sand rows below the kPa
-# column disagrees with the ksf column printed beside it; every other row's
-# kPa is its ksf at 48 kPa per ksf, and so are the values held here.
+# column disagrees with the ksf column printed beside it. Elsewhere the kPa
+# is the ksf converted and rounded (kPa/ksf 47.5 to 48.3; 1 ksf = 47.88
+# kPa), and the table prints the same kPa wherever a ksf value recurs: 600
+# ksf as 29,000 (fine sand dense, sand loose, gravel loose), 1,000 as 48,000
+# (clay medium stiff, very stiff), 1,600 as 76,000 (gravel loose, medium
+# dense). The values held for the two sand rows are those printed kPa
+# values of their ksf ends: 29,000 - 48,000 and 48,000 - 76,000.
 _TABLE_5_12_PRINT_NOTES = {
     "sand_medium_dense": (
         "Table 5-12 (p. 5-69) prints '29,000 - 96,000 (600 - 1,000)' for "
         "this row, kPa (ksf): the upper kPa value disagrees with the ksf "
-        "beside it. The value here is the printed ksf range (600 - 1,000 "
-        "ksf) at the table's 48 kPa per ksf."),
+        "beside it. The value here, 29,000 - 48,000 kPa, is the kPa the "
+        "table prints for 600 and 1,000 ksf in its other rows (fine sand "
+        "dense, sand loose, gravel loose; clay medium stiff and very "
+        "stiff); 600 and 1,000 ksf are 28,728 and 47,880 kPa."),
     "sand_dense": (
         "Table 5-12 (p. 5-69) prints '96,000 - 76,000 (1,000 - 1,600)' for "
         "this row, kPa (ksf): the lower kPa value disagrees with the ksf "
-        "beside it. The value here is the printed ksf range (1,000 - 1,600 "
-        "ksf) at the table's 48 kPa per ksf."),
+        "beside it. The value here, 48,000 - 76,000 kPa, is the kPa the "
+        "table prints for 1,000 and 1,600 ksf in its other rows (clay "
+        "medium stiff and very stiff; gravel loose and medium dense); "
+        "1,000 and 1,600 ksf are 47,880 and 76,608 kPa."),
 }
 
 _TABLE_5_12_DESCRIPTIONS = {

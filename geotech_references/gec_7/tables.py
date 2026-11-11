@@ -51,21 +51,27 @@ def _one_key(given, rows, aliases, table, page):
 #
 # The open bounds "< 30" and "> 45" print no second value: phi_min_deg is
 # None for very loose and phi_max_deg is None for very dense.
+#
+# Boundaries, as printed: 50 is printed only in "30 to 50" (Dense; Very Dense
+# is "> 50"), so N60 = 50 is Dense. 4, 10 and 30 are each printed in two
+# rows ("0 to 4" and "4 to 10", ...); there the upper row is returned, as
+# before, and the result names the lower row that also prints the value.
 # ============================================================================
 
 _TABLE_4_2A = [
-    {"n_min": 0, "n_max": 4, "density": "very_loose",
+    {"n_min": 0, "n_max": 4, "n_printed": "0 to 4", "density": "very_loose",
      "dr_pct": "<20", "phi_min": None, "phi_max": 30, "phi_printed": "< 30"},
-    {"n_min": 4, "n_max": 10, "density": "loose",
+    {"n_min": 4, "n_max": 10, "n_printed": "4 to 10", "density": "loose",
      "dr_pct": "20-40", "phi_min": 30, "phi_max": 35,
      "phi_printed": "30 to 35"},
-    {"n_min": 10, "n_max": 30, "density": "medium",
+    {"n_min": 10, "n_max": 30, "n_printed": "10 to 30", "density": "medium",
      "dr_pct": "40-60", "phi_min": 35, "phi_max": 40,
      "phi_printed": "35 to 40"},
-    {"n_min": 30, "n_max": 50, "density": "dense",
+    {"n_min": 30, "n_max": 50, "n_printed": "30 to 50", "density": "dense",
      "dr_pct": "60-80", "phi_min": 40, "phi_max": 45,
      "phi_printed": "40 to 45"},
-    {"n_min": 50, "n_max": float("inf"), "density": "very_dense",
+    {"n_min": 50, "n_max": float("inf"), "n_printed": "> 50",
+     "density": "very_dense",
      "dr_pct": ">80", "phi_min": 45, "phi_max": None,
      "phi_printed": "> 45 (3)"},
 ]
@@ -88,12 +94,18 @@ def table_4_2a_spt_soil_properties(n60: float) -> dict:
         SPT blow count corrected for 60 % hammer efficiency (blows/ft); the
         table's note (1) takes uncorrected values as equivalent.
 
+    N60 = 50 is Dense: the table prints 50 in "30 to 50" and Very Dense as
+    "> 50". N60 = 4, 10 and 30 are printed in two rows each ("0 to 4" and
+    "4 to 10", ...); the upper row is returned and the result names the
+    lower one under ``also_printed_in``, with a ``note``.
+
     Returns
     -------
     dict
         density, relative_density_pct, phi_min_deg, phi_max_deg (None where
         the print gives an open bound), phi_printed (the cell as printed),
-        notes (the table's notes (1) to (3)), reference.
+        n60_printed (the row's N60 cell), notes (the table's notes (1) to
+        (3)), reference; at N60 = 4, 10 or 30 also also_printed_in and note.
 
     Raises
     ------
@@ -103,17 +115,35 @@ def table_4_2a_spt_soil_properties(n60: float) -> dict:
     if n60 < 0:
         raise ValueError(f"n60 must be non-negative, got {n60}")
 
-    for row in _TABLE_4_2A:
+    def _out(row):
+        return {
+            "density": row["density"],
+            "relative_density_pct": row["dr_pct"],
+            "phi_min_deg": row["phi_min"],
+            "phi_max_deg": row["phi_max"],
+            "phi_printed": row["phi_printed"],
+            "n60_printed": row["n_printed"],
+            "notes": _TABLE_4_2A_NOTES,
+            "reference": "FHWA-NHI-14-007 (GEC-7), Table 4.2a, p. 78",
+        }
+
+    if n60 == 50:          # printed in "30 to 50" only; Very Dense is "> 50"
+        return _out(_TABLE_4_2A[3])
+    for i, row in enumerate(_TABLE_4_2A):
         if row["n_min"] <= n60 < row["n_max"]:
-            return {
-                "density": row["density"],
-                "relative_density_pct": row["dr_pct"],
-                "phi_min_deg": row["phi_min"],
-                "phi_max_deg": row["phi_max"],
-                "phi_printed": row["phi_printed"],
-                "notes": _TABLE_4_2A_NOTES,
-                "reference": "FHWA-NHI-14-007 (GEC-7), Table 4.2a, p. 78",
-            }
+            out = _out(row)
+            if i > 0 and n60 == row["n_min"]:
+                lower = _TABLE_4_2A[i - 1]
+                out["also_printed_in"] = {
+                    "n60_printed": lower["n_printed"],
+                    "density": lower["density"],
+                    "phi_printed": lower["phi_printed"]}
+                out["note"] = (
+                    f"Table 4.2a prints N60 = {n60:g} in two rows, "
+                    f"'{lower['n_printed']}' ({lower['density']}) and "
+                    f"'{row['n_printed']}' ({row['density']}); the upper row "
+                    "is returned.")
+            return out
     raise AssertionError("unreachable")  # pragma: no cover
 
 
@@ -877,7 +907,8 @@ def table_4_9_site_coefficient_fpga(site_class: str,
 
 
 # ============================================================================
-# Table 4.10: Site Coefficient F_v (AASHTO 2014, as cited in GEC-7)
+# Table 4.10: Site Coefficient F_v (Kavazanjian 2011), FHWA-NHI-14-007
+# (GEC-7), p. 95 (PDF page 135)
 # ============================================================================
 
 _TABLE_4_10_S1 = [0.1, 0.2, 0.3, 0.4, 0.5]
@@ -893,7 +924,7 @@ _TABLE_4_10_FV = {
 
 def table_4_10_site_coefficient_fv(site_class: str,
                                    s1: float) -> float:
-    """Site coefficient F_v from AASHTO 2014, as cited in GEC-7 Table 4.10.
+    """Site coefficient F_v for site classes A to E from the 1-second spectral acceleration S1, GEC-7 Table 4.10 Site Coefficient F_v (Kavazanjian 2011) (FHWA-NHI-14-007, p. 95); site class F is refused with the table's note (1).
 
     Parameters
     ----------

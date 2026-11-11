@@ -274,9 +274,12 @@ def table_7_9_beta_nt_coefficients(soil_type: str) -> dict:
 # one cell pair, by the lead's ruling (RULINGS row 7, review finding gec-06):
 # Bb for the two compression rows "Gravelly Sand to Boulders" and "Rock" is
 # PRINTED equal to Ab (0.888 and 2.89); it is CODED 0.0, as the matching
-# tension rows print it (every printed tension cell is 0.94 times its
-# compression cell; with Bb = 0.888, Eq. 7-21 gives 27.5 ksf at N60 = 30,
-# against Table 7-8's 2.4 ksf limit). Those two rows carry a print_note.
+# tension rows print it. In the printed table each tension Ab is about 0.94
+# times its compression Ab (0.522/0.555, 0.835/0.888, 2.71/2.89) and the
+# clay-to-sand tension Bb is 0.94 times its compression Bb (0.0376/0.040);
+# the tension Bb of gravelly sand to boulders and of rock prints 0.0. With
+# Bb = 0.888, Eq. 7-21 gives 27.5 ksf at N60 = 30, against Table 7-8's 2.4
+# ksf limit. Those two rows carry a print_note.
 # The three Vibratory rows are typeset under a ditto mark below "Tension"
 # and are filed under tension, as printed; the table prints no vibratory
 # compression row.
@@ -312,7 +315,11 @@ def table_7_10_brown_method_factors(loading: str = "compression",
     method for preliminary length estimates only (p. 259). With the printed
     Bb = 0.888, Eq. 7-21 gives 27.5 ksf at N60 = 30 for gravelly sand to
     boulders, against Table 7-8's limit of 2.4 ksf on unit shaft resistance
-    (p. 253); every printed tension cell is 0.94 times its compression cell.
+    (p. 253). In the printed table each tension Ab is about 0.94 times its
+    compression Ab (0.522/0.555, 0.835/0.888, 2.71/2.89) and the
+    clay-to-sand tension Bb is 0.94 times its compression Bb
+    (0.0376/0.040); the tension Bb of gravelly sand to boulders and of rock
+    prints 0.0.
 
     Parameters
     ----------

@@ -64,8 +64,12 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     """
     ratio = su_ciuc_kpa / _PA_KPA
     if not (_FIG_10_6_RATIO[0] <= ratio <= _FIG_10_6_RATIO[1]):
+        # Enough digits that a ratio just outside does not print as an end.
+        shown = f"{ratio:.4g}"
+        if _FIG_10_6_RATIO[0] <= float(shown) <= _FIG_10_6_RATIO[1]:
+            shown = repr(ratio)
         raise ValueError(
-            f"su_ciuc_kpa = {su_ciuc_kpa} gives su(CIUC)/pa = {ratio:.3g}, "
+            f"su_ciuc_kpa = {su_ciuc_kpa} gives su(CIUC)/pa = {shown}, "
             "outside the curve of GEC-10 Figure 10-6 (p. 10-17), drawn from "
             f"su(CIUC)/pa {_FIG_10_6_RATIO[0]} to {_FIG_10_6_RATIO[1]} "
             f"({_FIG_10_6_RATIO[0] * _PA_KPA:.1f} to "
