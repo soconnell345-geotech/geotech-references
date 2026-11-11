@@ -141,7 +141,8 @@ TEXT_LAYER_LACKS = {
     "eurocode_7_1": {
         'D.1'},
     "eurocode_7_2": {
-        'B.1', 'D.1', 'G.1', 'I.1', 'I.2', 'I.3', 'I.4', 'K.1'},
+        'B.1', 'D.1', 'G.1', 'I.1', 'I.2', 'I.3', 'I.4', 'K.1',
+        'B.5'},   # the scan's text layer reads "Figure B.S"
     # the text cites Figure A.7-2; its caption label is printed "A7-2"
     "fhwa_soils_foundations": {
         'A.7-2'},

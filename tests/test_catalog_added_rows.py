@@ -65,6 +65,7 @@ ADDED = {
              + ["G.1", "G.2"],
     # the sample problems of Appendices D and E
     "micropile": _nums("S1", 1, 7) + _nums("S2", 1, 3),
+    "eurocode_7_2": ["B.4", "B.5"],
 }
 
 #: Rows whose page holds no picture and too few lines to count as a
@@ -74,10 +75,12 @@ ADDED = {
 #: page 204, printed B-46).
 NO_GRAPHIC = {"fhwa_soils_foundations": {"A.2-3"}, "gec_6": {"B3-4"}}
 
-#: Rows filed under the number the text cites, whose caption label is
-#: printed otherwise: the text on PDF page 476 cites "Figure A.7-2" twice,
-#: the caption on page 477 reads "Figure A7-2.".
-LABEL_AS_PRINTED = {("fhwa_soils_foundations", "A.7-2"): "A7-2"}
+#: Rows whose caption label the text layer gives otherwise: FHWA NHI-06-089
+#: cites "Figure A.7-2" twice in the text (PDF page 476) and prints the
+#: caption on page 477 as "Figure A7-2."; the OCR of EN 1997-2 reads the
+#: printed "Figure B.5 — Excavations" (PDF page 109) as "Figure B.S -".
+LABEL_AS_PRINTED = {("fhwa_soils_foundations", "A.7-2"): "A7-2",
+                    ("eurocode_7_2", "B.5"): "B.S"}
 
 #: Rows whose caption was typed from the rendered page (the text layer
 #: garbles a symbol), so only the label is looked for in the text.
@@ -201,6 +204,8 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
                                "Loads"),
     ("micropile", "S1-5", 418, "Pile Top to Abutment Footing Connection "
                                "Detail"),
+    ("eurocode_7_2", "B.4", 107, "Tunnels and caverns"),
+    ("eurocode_7_2", "B.5", 108, "Excavations"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -292,6 +297,8 @@ def test_added_rows_are_found_by_their_captions():
         ("micropile", "working drawing submittal", "S1-6"),
         ("micropile", "bending moment diagram sample problem 2", "S2-2"),
         ("micropile", "lateral deflection profile", "S2-3"),
+        ("eurocode_7_2", "tunnels and caverns", "B.4"),
+        ("eurocode_7_2", "excavations investigation depth", "B.5"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
