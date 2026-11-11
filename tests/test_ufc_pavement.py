@@ -584,19 +584,71 @@ class TestKSubgrade:
             table_10_1_k_subgrade("XX", 10)
 
 
+# Figure 10-1 (UFC 3-250-01 PDF 52, printed 32), traced from the chart
+# image 2026-11-10 (pave-22). Reading points: off the stored grid, a line
+# through the traced readings near each thickness (raw readings, not the
+# stored table). Stated tolerance 1 % of k.
+_FIG_10_1_READS = [
+    (25, [(2.7, 27.0), (8.3, 46.6), (15.5, 88.7), (25.1, 155.8), (37.7, 235.5), (51.3, 308.4)]),
+    (50, [(2.7, 53.3), (8.3, 89.4), (15.5, 149.9), (25.1, 229.4), (37.7, 306.8), (51.3, 367.4)]),
+    (75, [(2.7, 83.2), (8.3, 130.9), (15.5, 203.5), (25.1, 280.7), (37.7, 354.9), (51.3, 408.8)]),
+    (100, [(2.7, 116.8), (8.3, 176.0), (15.5, 245.9), (25.1, 326.9), (37.7, 397.8), (51.3, 444.1)]),
+    (150, [(2.7, 179.1), (8.3, 231.5), (15.5, 295.9), (25.1, 372.7), (37.7, 439.1), (51.3, 475.2)]),
+    (200, [(2.7, 229.2), (8.3, 284.3), (15.5, 344.4), (25.1, 406.3), (37.7, 455.8), (51.3, 483.8)]),
+    (300, [(2.7, 317.9), (8.3, 348.8), (15.5, 386.9), (25.1, 431.8), (37.7, 465.2), (51.3, 488.0)]),
+]
+
+
 class TestFigure10_1:
-    def test_k_on_base_exceeds_subgrade_k(self):
-        r = figure_10_1_k_on_base(100, 20)
-        assert r["k_on_base_psi_in"] > 100
+    @pytest.mark.parametrize(
+        "k, t, read", [(k, t, v) for k, rows in _FIG_10_1_READS for t, v in rows])
+    def test_reads_on_each_curve(self, k, t, read):
+        r = figure_10_1_k_on_base(k, t)
+        assert r["k_on_base_psi_in"] == pytest.approx(read, rel=0.01)
+        assert r["interpolation"] == f"on the {k} pci curve"
+
+    def test_200_curve_through_gridline_crossing(self):
+        # The 200 curve is drawn through the crossing of the 10 in. and
+        # 300 pci gridlines.
+        assert figure_10_1_k_on_base(200, 10)["k_on_base_psi_in"] == pytest.approx(300, rel=0.01)
+
+    def test_values_that_changed(self):
+        # pave-22: the earlier table gave 41.0, 160, 255, 246 and 225 here.
+        assert figure_10_1_k_on_base(25, 4)["k_on_base_psi_in"] == pytest.approx(29.5, abs=0.1)
+        assert figure_10_1_k_on_base(100, 10)["k_on_base_psi_in"] == pytest.approx(194.4, abs=0.1)
+        assert figure_10_1_k_on_base(200, 10)["k_on_base_psi_in"] == pytest.approx(299.7, abs=0.1)
+        assert figure_10_1_k_on_base(100, 28)["k_on_base_psi_in"] == pytest.approx(346.3, abs=0.1)
+        assert figure_10_1_k_on_base(75, 30)["k_on_base_psi_in"] == pytest.approx(313.4, abs=0.1)
 
     def test_zero_thickness_equals_subgrade_k(self):
-        r = figure_10_1_k_on_base(100, 0)
-        assert r["k_on_base_psi_in"] == pytest.approx(100, abs=1)
+        for k in (25, 50, 75, 100, 125, 150, 200, 260, 300):
+            assert figure_10_1_k_on_base(k, 0)["k_on_base_psi_in"] == pytest.approx(k, abs=0.1)
 
-    def test_more_base_gives_more_k(self):
-        r1 = figure_10_1_k_on_base(100, 10)
-        r2 = figure_10_1_k_on_base(100, 40)
-        assert r2["k_on_base_psi_in"] > r1["k_on_base_psi_in"]
+    def test_between_curves_log_log(self):
+        # Between curves: log k on base linear in log k on subgrade (the
+        # library's rule); halfway in log between 100 and 150 is the
+        # geometric mean of the two curves.
+        import math
+        for t in (5, 15, 33):
+            lo = figure_10_1_k_on_base(100, t)["k_on_base_psi_in"]
+            hi = figure_10_1_k_on_base(150, t)["k_on_base_psi_in"]
+            r = figure_10_1_k_on_base(math.sqrt(100 * 150), t)
+            assert r["k_on_base_psi_in"] == pytest.approx(math.sqrt(lo * hi), abs=0.15)
+            assert lo < r["k_on_base_psi_in"] < hi
+            assert "library's rule" in r["interpolation"]
+
+    def test_rises_with_thickness_and_subgrade_k(self):
+        for k in (25, 50, 75, 100, 150, 200, 300):
+            vals = [figure_10_1_k_on_base(k, t)["k_on_base_psi_in"] for t in range(0, 61, 3)]
+            assert vals == sorted(vals)
+        for t in (1, 10, 30, 59):
+            vals = [figure_10_1_k_on_base(k, t)["k_on_base_psi_in"] for k in (25, 50, 75, 100, 150, 200, 300)]
+            assert vals == sorted(vals)
+
+    def test_top_corner_and_frame(self):
+        # At 60 in. the curves run together near the 500 pci frame.
+        assert figure_10_1_k_on_base(150, 60)["k_on_base_psi_in"] == pytest.approx(489.7, rel=0.01)
+        assert figure_10_1_k_on_base(300, 60)["k_on_base_psi_in"] <= 500
 
     def test_negative_inputs_raise(self):
         with pytest.raises(ValueError):
@@ -604,10 +656,27 @@ class TestFigure10_1:
         with pytest.raises(ValueError):
             figure_10_1_k_on_base(100, -1)
 
+    def test_limits_just_inside_and_outside(self):
+        # Drawn curves k on subgrade 25-300 pci; thickness axis 0-60 in.
+        r = figure_10_1_k_on_base(25, 10)
+        assert r["k_on_base_psi_in"] == pytest.approx(55.3, abs=0.1) and "note" not in r
+        with pytest.raises(ValueError, match="lowest curve"):
+            figure_10_1_k_on_base(24.99, 10)
+        assert "note" not in figure_10_1_k_on_base(300, 10)
+        r = figure_10_1_k_on_base(300.01, 10)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
+        assert "300 curve is used" in r["note"]
+        assert "note" not in figure_10_1_k_on_base(100, 60)
+        r = figure_10_1_k_on_base(100, 60.01)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
+        assert "60 in value is used" in r["note"]
+        assert "note" not in figure_10_1_k_on_base(100, 0)
+        with pytest.raises(ValueError, match=">= 0"):
+            figure_10_1_k_on_base(100, -0.01)
+
     def test_printed_range(self):
-        # Figure 10-1, UFC 3-250-01 PDF 52 (pdf_page 51), printed 32: curves
-        # for k on subgrade 25-300 pci over base thickness 0-60 in. Below the
-        # lowest curve is refused; past the top or the axis is held, noted.
+        # Below the lowest curve is refused; past the top or the axis is
+        # held, noted.
         with pytest.raises(ValueError, match="lowest curve"):
             figure_10_1_k_on_base(20, 10)
         r = figure_10_1_k_on_base(400, 10)
@@ -617,6 +686,12 @@ class TestFigure10_1:
         assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
         assert "60 in value is used" in r["note"]
         assert "note" not in figure_10_1_k_on_base(100, 30)
+
+    def test_result_carries_the_chart_note_and_page(self):
+        r = figure_10_1_k_on_base(100, 20)
+        assert "high-quality material" in r["chart_note"]
+        assert "printed p. 32" in r["reference"]
+        assert "1 %" in r["tolerance"]
 
 
 class TestConditionFactor:
