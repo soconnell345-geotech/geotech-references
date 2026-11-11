@@ -702,7 +702,7 @@
       "tables": [
         "Table 5-11 Values of Bearing Capacity Factor, Nms, for Strip Footings (after Brown and Meyerhof 1969, Meyerhof and Hanna 1978, Merifield et al. 1999, and Zhu 2004)"
       ],
-      "applicability": "Applies when bearing capacity analysis involves two-layer undrained clay profiles where layer strengths differ significantly and the lower layer top is within depth B of the bearing elevation."
+      "applicability": "Applies to bearing capacity on two-layer undrained clay profiles. With the soft layer on top, the bearing capacity is not affected by the stronger layer when its top is more than 70% of the foundation width below the bearing elevation (H / B ≥ 0.7); with the stiff layer on top, it is not affected by the weak layer when that layer is more than three foundation widths below the bearing elevation (H / B > 3)."
     },
     {
       "section_id": "5-3.6.3",
@@ -1497,7 +1497,7 @@
     {
       "section_id": "5-6.2.2",
       "title": "Minimizing Expansion Effects",
-      "summary": "Lists practical design and construction measures to minimize the structural effects of expansive soils when full removal is not economically feasible. Measures include compaction above optimum moisture, grade beams over cardboard, surface drainage, relocating utilities, lime/cement stabilization, and use of expansion joints in floor slabs.",
+      "summary": "Lists practical design and construction measures to minimize the structural effects of expansive soils when full removal is not economically feasible. Measures include compaction above optimum moisture, grade beams over cardboard, surface drainage, relocating utilities, lime/cement stabilization, and, where heave of the floor slab is not a critical concern, floor slabs placed directly on the soil with expansion joints.",
       "body": "Where it is not economically feasible to remove expansive materials or to support foundations below depths of possible expansion, the effects can be minimized by the following.\n• Place fill with expansion prone plastic fines at moisture contents multiple percentage points above optimum moisture content at dry unit weight no higher than required for strength and compressibility.\n• Construct grade beams over degradable cardboard.\n• Provide impervious blankets or grade surface around structure to drain away from foundations.\n• Locate water and drainage lines away from soils supporting foundations.\n• Consider stabilization of the foundation soils with lime or cement to reduce the plasticity.\nWhere heave of the floor slab is not a critical concern, place concrete floor slabs directly on problem soil but provide expansion joints so the floor can move freely from structure.",
       "key_points": [
         "Compacting expansive fill above optimum moisture at minimum required dry unit weight reduces future swell potential.",
@@ -1505,7 +1505,7 @@
         "Surface grading and impervious blankets should direct water away from foundation soils.",
         "Water and drainage lines should be kept away from foundation-bearing soils to prevent localized wetting.",
         "Lime or cement stabilization can reduce soil plasticity and expansion potential.",
-        "Floor slabs can be placed on problem soils if expansion joints allow free movement relative to the structure."
+        "Where heave of the floor slab is not a critical concern, place concrete floor slabs directly on problem soil but provide expansion joints so the floor can move freely from the structure."
       ],
       "equations": [],
       "figures": [],

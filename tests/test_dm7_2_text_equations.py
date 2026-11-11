@@ -239,3 +239,30 @@ def test_eq_6_79_printed_values():
     body = section("chapter06.json", "6-7.3")["body"]
     assert "(in inches)" in body and "(in kips)" in body
     assert math.isclose(1200.0 / 12.0 + 30.0, 130.0)
+
+
+def test_eq_6_79_not_coded():
+    assert equation("chapter06.json", "6-7.3", "Eq. 6-79")["implemented_in"] is None
+
+
+def test_5_3_6_2_applicability_printed_limits():
+    # PDF p. 346-347 (printed 308-309): H/B >= 0.7 (soft on top), H/B > 3 (stiff on top)
+    app = section("chapter05.json", "5-3.6.2")["applicability"]
+    assert "H / B ≥ 0.7" in app and "H / B > 3" in app
+    assert "within depth B" not in app
+
+
+def test_5_6_2_2_floor_slab_condition_kept():
+    # PDF p. 391 (printed 353)
+    kps = section("chapter05.json", "5-6.2.2")["key_points"]
+    assert any(k.startswith("Where heave of the floor slab is not a critical concern") for k in kps)
+
+
+def test_7_4_2_4_printed_beta_kept_with_marked_check():
+    # PDF p. 579 (printed 541) prints beta = 4.26 with Pu = 0.0001; kept, with a marked note
+    from statistics import NormalDist
+    s = section("chapter07.json", "7-4.2.4")
+    assert "β = 4.26 (Pu = 0.0001)" in s["body"]
+    assert "not printed" in s["body"]
+    assert NormalDist().inv_cdf(1 - 1e-4) == pytest.approx(3.72, abs=0.005)
+    assert NormalDist().cdf(-4.26) == pytest.approx(1e-5, rel=0.03)
