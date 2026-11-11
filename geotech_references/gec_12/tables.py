@@ -625,8 +625,10 @@ def table_7_8_api_design_parameters(delta_deg: float) -> dict:
     Parameters
     ----------
     delta_deg : float
-        Soil-pile friction angle (degrees): 15, 20, 25, 30, or 35.
-        Interpolation between values is supported.
+        Soil-pile friction angle (degrees): 15, 20, 25, 30, or 35, the
+        printed rows (p. 253, PDF page 299), each given for density classes
+        and soils. A value between rows is interpolated linearly, which the
+        table does not print; the result then carries a "note".
 
     Returns
     -------
@@ -656,4 +658,8 @@ def table_7_8_api_design_parameters(delta_deg: float) -> dict:
         "fs_limit_ksf": _linterp(delta_deg, deltas, fs_vals),
         "Nq": _linterp(delta_deg, deltas, nq_vals),
         "qp_limit_ksf": _linterp(delta_deg, deltas, qp_vals),
+        "note": ("Interpolated between Table 7-8's rows (p. 253), which it "
+                 "prints only at delta 15, 20, 25, 30 and 35 deg, each for "
+                 "density classes and soils; the interpolation is not "
+                 "printed."),
     }

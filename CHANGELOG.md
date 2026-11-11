@@ -51,6 +51,10 @@ rows instead of being answered from the first row that contains the words.
     name that fits two rows or curves ("silt", "pile", "taper") is refused;
     `table_7_3_static_analysis_methods` refuses an unknown soil type
     instead of returning an empty list (gec-45, gec-37).
+    `table_7_8_api_design_parameters` (Table 7-8, p. 253): a friction angle
+    between the printed rows (15 to 35 degrees, by density class and soil)
+    is still interpolated, and the result now says the interpolation is
+    not printed (gec-45).
   - `table_7_10_brown_method_factors` (Table 7-10, p. 260): for
     compression in gravelly sand to boulders and in rock the table prints
     Bb equal to Ab (0.888 and 2.89 ksf/bpf); Bb is now 0.0, as the matching

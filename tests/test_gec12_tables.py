@@ -229,6 +229,13 @@ class TestTable78:
         result = table_7_8_api_design_parameters(22.5)
         assert 1.4 < result["fs_limit_ksf"] < 1.7
 
+    def test_interpolation_says_not_printed(self):
+        """GEC-12 Vol I Table 7-8, p. 253 (PDF page 299) prints rows at
+        delta 15, 20, 25, 30, 35 by density and soil; an interpolated value
+        says so (review finding gec-45). A printed row carries no note."""
+        assert "not printed" in table_7_8_api_design_parameters(22.5)["note"]
+        assert "note" not in table_7_8_api_design_parameters(25)
+
     def test_out_of_range_raises(self):
         """delta outside 15-35 raises ValueError."""
         with pytest.raises(ValueError):
