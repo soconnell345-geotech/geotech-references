@@ -1,0 +1,314 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and Design Methods",
+  "volume": null,
+  "chapter": 25,
+  "chapter_title": "Appendix G: Alternative Models for Analysis of Lateral Loading",
+  "sections": [
+    {
+      "section_id": "G.1",
+      "title": "Introduction",
+      "body": "[p. G-1] This Appendix is provided to include an overview of several alternative models reported in the literature for analysis of lateral loading. Alternative models include those based on elastic continuum, boundary element, and finite element models. A brief overview of these models follows, with references for further investigation.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Section G.1 (p. G-1), opening text: an overview of alternative models for analysis of lateral loading (elastic continuum, boundary element and finite element models)."
+    },
+    {
+      "section_id": "G.1.1",
+      "title": "Elastic Continuum and Boundary Element Models",
+      "body": "[p. G-1] The elastic continuum approach for laterally loaded deep foundations was developed by Poulos (1971), initially for analysis of a single pile under lateral and moment loading at the pile head. The numerical solution is based on the boundary element method with the pile modeled as a thin elastic strip and the soil modeled as a homogeneous, isotropic elastic material. This approach was used to approximate socketed piles by Poulos (1972) by considering two boundary conditions at the tip of the pile: (1) the pile is completely fixed against rotation and displacement at the tip (rock surface), and (2) the pile is free to rotate but fixed against translation (pinned) at the tip. The fixed pile tip condition was intended to model a socketed deep foundation while the pinned tip was intended to model a pile bearing on, but not embedded into, rock. While these tip conditions do not adequately model the behavior of many rock socketed shafts, the analyses served to demonstrate some important aspects of socketed deep foundations. For relatively stiff foundations, which applies to many drilled shafts, considerable reduction in displacement at the pile head can be achieved by socketing, especially if the effect of the socket is to approximate a \"fixed\" condition at the soil/rock interface.\n\nThe elastic continuum approach was further developed by Randolph (1981) through use of the finite element method. Solutions presented by Randolph cover a wide range of conditions for flexible piles and the results are presented in the form of charts as well as convenient closed-form solutions for a limited range of parameters. The solutions do not adequately cover the full range of parameters applicable to drilled shafts used in practice. Extension of this approach by Carter and Kulhawy (1992) to rigid shafts and shafts of intermediate flexibility, has led to analytical tools for drilled shafts in rock based on the continuum approach.\n\nSun (1994) applied elastic continuum theory to deep foundations using variational calculus to obtain the governing differential equations of the soil and pile system, based on the Vlasov model for a beam on elastic foundation. This approach was extended to rock socketed shafts by Zhang et al. (2000).\n\nThe continuum models developed by Carter and Kulhawy and by Zhang et al. are described below.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Section G.1.1 (p. G-1): the elastic continuum approach of Poulos (1971, 1972), Randolph (1981), Carter and Kulhawy (1992), Sun (1994) and Zhang et al. (2000)."
+    },
+    {
+      "section_id": "G.1.1.1",
+      "title": "Carter and Kulhawy Model for an Elastic Shaft Embedded in an Elastic Rock Mass",
+      "body": "[p. G-1] Carter and Kulhawy (1988, 1992) studied the behavior of flexible and rigid shafts socketed into rock and subjected to lateral loads and moments. Solutions for the load-displacement relations were first generated using finite element analyses. The finite element analyses followed the approach of Randolph (1981) for flexible piles under lateral loading. Based on the FEM solutions, approximate closed-form equations [p. G-2] were developed to describe the response for a range of rock socket parameters typically encountered in practice. The results provide a first-order approximation of horizontal groundline displacements and rotations and can incorporate an overlying soil layer. The method is summarized as follows.\n\nInitially, consider the case where the top of the shaft corresponds to the top of the rock layer (Figure G-1). The shaft is idealized as a cylindrical elastic inclusion with an effective Young’s modulus (Ee), Poisson’s ratio (υc), depth (D), and diameter (B), subjected to a known lateral force (H) and an overturning moment (M). For a reinforced concrete shaft having an actual flexural rigidity equal to (EI)c, the effective Young’s modulus is given by:\n\nEe = (EI)c / (πB⁴/64) (G-1)\n\nIt is assumed that the elastic shaft is embedded in a homogeneous, isotropic elastic rock mass, with properties Er and νr. Effects of variations in the Poisson’s ratio of the rock mass (νr), are represented approximately by an equivalent shear modulus of the rock mass (G*), defined as:\n\nG* = Gr (1 + 3νr/4) (G-2)\n\nin which Gr = shear modulus of the elastic rock mass. For an isotropic rock mass, the shear modulus is related to Er and νr by:\n\nGr = Er / (2(1 + νr)) (G-3)\n\n[p. G-3] Based on a parametric study using finite element analysis, it was found that closed-form expressions could be obtained to provide reasonably accurate predictions of horizontal displacement (u) and rotation (θ) at the head of the shaft, for two limiting cases. The two cases correspond to flexible shafts and rigid shafts. The criterion for a flexible shaft is:\n\nD/B ≥ (Ee/G*)^(2/7) (G-4)\n\nFor shafts satisfying Equation G-4, the response depends only on the modulus ratio (Ee/G*) and Poisson’s ratio of the rock mass (νr) and is effectively independent of (D/B). The following closed-form expressions, suggested by Randolph (1981), provide accurate approximations for the deformations of flexible shafts:\n\nu = 0.50 (H/(G*B)) (Ee/G*)^(-1/7) + 1.08 (M/(G*B²)) (Ee/G*)^(-3/7) (G-5)\n\nθ = 1.08 (H/(G*B²)) (Ee/G*)^(-3/7) + 6.40 (M/(G*B³)) (Ee/G*)^(-5/7) (G-6)\n\nCarter and Kulhawy (1992) report that the accuracy of the above equations is verified for the following ranges of parameters:\n\n1 ≤ Ee/Er ≤ 10^6 and D/B ≥ 1.\n\nThe criterion for a rigid shaft is:\n\nD/B ≤ 0.05 (Ee/G*)^(1/2) (G-7)\n\nand\n\n(Ee/G*) / (B/(2D))² ≥ 100 (G-8)\n\nWhen Equation G-7 and G-8 are satisfied, the displacements of the shaft will be independent of the modulus ratio (Ee/Er) and will depend only on the slenderness ratio (D/B) and Poisson's ratio of the rock mass (νr). The following closed-form expressions give reasonably accurate displacements for rigid shafts:\n\nu = 0.4 (H/(G*B)) (2D/B)^(-1/3) + 0.3 (M/(G*B²)) (2D/B)^(-7/8) (G-9)\n\nθ = 0.3 (H/(G*B²)) (2D/B)^(-7/8) + 0.8 (M/(G*B³)) (2D/B)^(-5/3) (G-10)\n\n[p. G-4] The accuracy of Equation G-9 and G-10 has been verified for the following ranges of parameters:\n\n1 ≤ D/B ≤ 10 and Ee/Er ≥ 1.\n\nShafts can be described as having intermediate stiffness whenever the slenderness ratio is bounded approximately as follows:\n\n0.05 (Ee/G*)^(1/2) < D/B < (Ee/G*)^(2/7) (G-11)\n\nFor the intermediate case, Carter and Kulhawy suggest that the displacements be taken as 1.25 times the maximum of either: (1) The predicted displacement of a rigid shaft with the same slenderness ratio (D/B) as the actual shaft; or (2) the predicted displacement of a flexible shaft with the same modulus ratio (Ee/G*) as the actual shaft. Values calculated in this way should, in most cases, be slightly larger than those given by the more rigorous finite element analysis for a shaft of intermediate stiffness.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. G-1",
+          "description": "Effective Young's modulus of a reinforced concrete shaft (Carter and Kulhawy 1988, 1992)",
+          "formula": "Ee = (EI)c / (πB⁴/64)",
+          "variables": {
+            "(EI)c": "actual flexural rigidity of the reinforced concrete shaft",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-2 (PDF page 733, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-2",
+          "description": "Equivalent shear modulus of the rock mass, representing approximately the effects of variations in its Poisson's ratio",
+          "formula": "G* = Gr (1 + 3νr/4)",
+          "variables": {
+            "Gr": "shear modulus of the elastic rock mass (Eq. G-3)",
+            "νr": "Poisson's ratio of the rock mass"
+          },
+          "source": "Typed in from p. G-2 (PDF page 733, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-3",
+          "description": "Shear modulus of an isotropic rock mass",
+          "formula": "Gr = Er / (2(1 + νr))",
+          "variables": {
+            "Er": "Young's modulus of the rock mass",
+            "νr": "Poisson's ratio of the rock mass"
+          },
+          "source": "Typed in from p. G-2 (PDF page 733, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-4",
+          "description": "Criterion for a flexible shaft",
+          "formula": "D/B ≥ (Ee/G*)^(2/7)",
+          "variables": {
+            "D": "depth of the shaft",
+            "B": "diameter of the shaft",
+            "Ee": "effective Young's modulus of the shaft (Eq. G-1)"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-5",
+          "description": "Horizontal displacement at the head of a flexible shaft (Randolph 1981); accuracy verified for 1 ≤ Ee/Er ≤ 10^6 and D/B ≥ 1",
+          "formula": "u = 0.50 (H/(G*B)) (Ee/G*)^(-1/7) + 1.08 (M/(G*B²)) (Ee/G*)^(-3/7)",
+          "variables": {
+            "H": "known lateral force at the head of the shaft",
+            "M": "overturning moment at the head of the shaft",
+            "u": "horizontal displacement at the head of the shaft",
+            "θ": "rotation at the head of the shaft",
+            "G*": "equivalent shear modulus of the rock mass (Eq. G-2)",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-6",
+          "description": "Rotation at the head of a flexible shaft (Randolph 1981); accuracy verified for 1 ≤ Ee/Er ≤ 10^6 and D/B ≥ 1",
+          "formula": "θ = 1.08 (H/(G*B²)) (Ee/G*)^(-3/7) + 6.40 (M/(G*B³)) (Ee/G*)^(-5/7)",
+          "variables": {
+            "H": "known lateral force at the head of the shaft",
+            "M": "overturning moment at the head of the shaft",
+            "u": "horizontal displacement at the head of the shaft",
+            "θ": "rotation at the head of the shaft",
+            "G*": "equivalent shear modulus of the rock mass (Eq. G-2)",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-7",
+          "description": "Criterion for a rigid shaft, with Equation G-8",
+          "formula": "D/B ≤ 0.05 (Ee/G*)^(1/2)",
+          "variables": {
+            "D": "depth of the shaft",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-8",
+          "description": "Criterion for a rigid shaft, with Equation G-7",
+          "formula": "(Ee/G*) / (B/(2D))² ≥ 100",
+          "variables": {
+            "D": "depth of the shaft",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-9",
+          "description": "Horizontal displacement at the head of a rigid shaft; accuracy verified for 1 ≤ D/B ≤ 10 and Ee/Er ≥ 1",
+          "formula": "u = 0.4 (H/(G*B)) (2D/B)^(-1/3) + 0.3 (M/(G*B²)) (2D/B)^(-7/8)",
+          "variables": {
+            "H": "known lateral force at the head of the shaft",
+            "M": "overturning moment at the head of the shaft",
+            "u": "horizontal displacement at the head of the shaft",
+            "θ": "rotation at the head of the shaft",
+            "G*": "equivalent shear modulus of the rock mass (Eq. G-2)",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-10",
+          "description": "Rotation at the head of a rigid shaft; accuracy verified for 1 ≤ D/B ≤ 10 and Ee/Er ≥ 1",
+          "formula": "θ = 0.3 (H/(G*B²)) (2D/B)^(-7/8) + 0.8 (M/(G*B³)) (2D/B)^(-5/3)",
+          "variables": {
+            "H": "known lateral force at the head of the shaft",
+            "M": "overturning moment at the head of the shaft",
+            "u": "horizontal displacement at the head of the shaft",
+            "θ": "rotation at the head of the shaft",
+            "G*": "equivalent shear modulus of the rock mass (Eq. G-2)",
+            "B": "diameter of the shaft"
+          },
+          "source": "Typed in from p. G-3 (PDF page 734, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-11",
+          "description": "Approximate bounds of the slenderness ratio of a shaft of intermediate stiffness, whose displacements Carter and Kulhawy suggest be taken as 1.25 times the maximum of the rigid and flexible predictions",
+          "formula": "0.05 (Ee/G*)^(1/2) < D/B < (Ee/G*)^(2/7)",
+          "variables": {
+            "D/B": "slenderness ratio"
+          },
+          "source": "Typed in from p. G-4 (PDF page 735, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure G-1: Lateral Loading of a Rock-Socketed Shaft (Carter and Kulhawy, 1992)"
+      ],
+      "tables": [],
+      "applicability": "Printed Section G.1.1.1 part 1 (pp. G-1 to G-4): closed-form groundline displacement and rotation of flexible, rigid and intermediate rock-socketed shafts (Eqs. G-1 to G-11). The overlying soil layer and the Broms limiting pressures (Eqs. G-12 and G-13) are in part G.1.1.1.a."
+    },
+    {
+      "section_id": "G.1.1.1.a",
+      "title": "Carter and Kulhawy Model for an Elastic Shaft Embedded in an Elastic Rock Mass (continued, overlying soil layer, pp. G-4 to G-5)",
+      "body": "[p. G-4] Carter and Kulhawy next considered a layer of soil of thickness Ds overlying rock as shown in Figure G-2. The analysis is approached by structural decomposition of the shaft and its loading, as shown in Figure G-2b. It was assumed that the magnitude of applied lateral loading is sufficient to cause yielding within the soil from the ground surface to the top of the rock mass. The portion of the shaft within the soil is then analyzed as a determinant beam subjected to known loading. The displacement and rotation of point A relative to point O can be determined by established techniques of structural analysis. The horizontal shear force (Ho) and bending moment (Mo) acting in the shaft at the rock surface level can be computed from statics, and the displacement and rotation at this level can be computed by the methods described previously. The overall groundline displacements can then be calculated by superposition of the appropriate parts.\n\nDetermination of the limiting soil reactions is recommended for the two limiting cases of cohesive soil in undrained loading (φ = 0) and frictional soil (c = 0) in drained loading. Ultimate resistance for shafts in cohesive soils is based on the method of Broms (1964), in which the undrained soil resistance ranges [p. G-5] from zero at the ground surface to a depth of 1.5B and has a constant value of 9su below this depth, where su = soil undrained shear strength. For socketed shafts extending through a cohesionless soil layer, the following limiting pressure suggested by Broms (1964) is assumed:\n\npu = 3 Kp σ′v (G-12)\n\nKp = (1 + sin φ′) / (1 - sin φ′) (G-13)\n\nin which σv' = vertical effective stress and φ' = effective stress friction angle of the soil. For both cases (undrained and drained) solutions are given by Carter and Kulhawy (1992) for the displacement, rotation, shear, and moment at point O of Figure G-2. The contribution to groundline displacement and rotation from the loading transmitted to the rock mass (Ho and Mo) is determined based on Equations G-5 and G-6 or Equations G-9 and G-10 and added to the calculated displacement and rotation at the top of the socket to determine overall groundline response.\n\nApplication of the proposed theory is described by Carter and Kulhawy (1992) through back-analysis of a single case involving field loading of a pair of rock-socketed shafts. The method has not been evaluated against a sufficient data base of field performance, and further research is needed to assess its reliability. The analysis was developed primarily for application to electrical transmission line foundations in rock, although the concepts are not limited to foundations supporting a specific type of structure. The approach is attractive for design purposes, because the closed-form equations can be executed by hand or on a spreadsheet.\n\nCarter and Kulhawy (1992) state that the assumption of yield everywhere in the soil layer may represent an oversimplification, but that the resulting predictions of groundline displacements will overestimate the true displacements, giving a conservative approximation. However, the assumption that the limit soil reaction is always fully mobilized may lead to erroneous results by overestimating the load carried by the soil and thus underestimating the load transmitted to the socket. Furthermore, groundline displacements may be underestimated because actual soil resistance may be smaller than the limiting values assumed in the analysis.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. G-12",
+          "description": "Limiting pressure suggested by Broms (1964), assumed for socketed shafts extending through a cohesionless soil layer",
+          "formula": "pu = 3 Kp σ′v",
+          "variables": {
+            "Kp": "Eq. G-13",
+            "σ′v": "vertical effective stress"
+          },
+          "source": "Typed in from p. G-5 (PDF page 736, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-13",
+          "description": "Rankine coefficient of passive earth pressure",
+          "formula": "Kp = (1 + sin φ′) / (1 - sin φ′)",
+          "variables": {
+            "φ′": "effective stress friction angle of the soil"
+          },
+          "source": "Typed in from p. G-5 (PDF page 736, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure G-2: Rock Socketed Shaft with Overlying Soil Layer (Carter and Kulhawy 1992)"
+      ],
+      "tables": [],
+      "applicability": "Part 2 of printed Section G.1.1.1 (overlying soil layer, pp. G-4 to G-5): a soil layer over the rock (Figure G-2), structural decomposition, the Broms limiting soil reactions (Eqs. G-12 and G-13) and the limits of the method. The letter is not printed; the section is split here to fit the reference tools."
+    },
+    {
+      "section_id": "G.1.1.2",
+      "title": "Zhang, et al. Nonlinear Model for an Elastic Shaft Embedded in an Elastic Rock Mass",
+      "body": "[p. G-5] Zhang et al. (2000) extended the continuum approach to predict the nonlinear lateral load-displacement response of rock socketed shafts. The method considers subsurface profiles consisting of a soil layer overlying a rock layer. The deformation modulus of the soil is assumed to vary linearly with depth, while the deformation modulus of the rock mass is assumed to vary linearly with depth and then to stay constant below the shaft tip. Effects of soil and/or rock mass yielding on response of the shaft are considered by assuming that the soil and/or rock mass behaves linearly elastically at small strain levels and yields when the soil and/or rock mass reaction force p (force/length) exceeds the ultimate resistance pult (force/length).\n\nAnalysis of the loaded shaft as an elastic continuum is accomplished using the method developed by Sun (1994). The numerical solution is by a finite difference scheme and incorporates the linear variation in soil modulus and linear variation in rock mass modulus above the base of the shaft. Solutions obtained for purely elastic response are compared to those of Poulos (1971) and finite element solutions by Verruijt and Kooijman (1989) and Randolph (1981). Reasonable agreement with those published solutions is offered as verification of the theory for elastic response.\n\n[p. G-6] The method is extended to nonlinear response by accounting for local yielding of the soil and rock mass. The soil and rock mass are modeled as elastic-perfectly plastic materials, and the analysis consists of the following steps:\n\n1. For the applied lateral load H and moment M, the shaft is analyzed by assuming the soil and rock mass are elastic, and the lateral reaction force p of the soil and rock mass along the shaft is determined by solution of the governing differential equation and boundary conditions at the head of the shaft.\n\n2. The computed lateral reaction force p is compared to the ultimate resistance pult. If p > pult, the depth of yield zy in the soil and/or rock mass is determined.\n\n3. The portion of the shaft in the unyielded soil and/or rock mass (zy ≤ z ≤ L) is considered to be a new shaft and analyzed by ignoring the effect of the soil and/or rock mass above the level z = zy. The lateral load and moment at the new shaft head are given by:\n\nHo = H - ∫[0 to zy] pult dz (G-14)\n\nMo = M + H zy - ∫[0 to zy] pult (zy - z) dz (G-15)\n\n4. Steps 2 and 3 are repeated and the iteration is continued until no further yielding of soil or rock mass occurs.\n\n5. The final results are obtained by decomposition of the shaft into two parts which are analyzed separately, as illustrated previously in Figure G-2. The section of the shaft in the zone of yielded soil and/or rock mass is analyzed as a beam subjected to a distributed load of magnitude pult. The length of shaft in the unyielded zone of soil and/or rock mass is analyzed as a shaft with the soil and/or rock mass behaving elastically.\n\nUltimate resistance developed in the overlying soil layer is evaluated for the two conditions of undrained loading (φ = 0) and fully-drained loading (c = 0). For fine-grained soils (clay), undrained loading conditions are assumed and the limit pressure is given by:\n\npult = Np cu B (G-16)\n\nNp = 3 + (γ′/cu) z + (J/(2R)) z ≤ 9 (G-17) (as printed: R is not defined on p. G-6)\n\nin which cu = undrained shear strength, B = shaft diameter, γ' = average effective unit weight of soil above depth z, and J = a coefficient ranging from 0.25 to 0.5. For shafts in sand, a method attributed to Fleming et al. (1992) is given as follows:\n\npult = Kp² γ′ z B (G-18)\n\nwhere Kp = Rankine coefficient of passive earth pressure defined by Equation G-11 (as printed; Kp is defined by Equation G-13). Ultimate resistance of the rock mass is given by:\n\n[p. G-7] pult = (pL + τmax) B (G-19)\n\nwhere τmax = maximum shearing resistance along the sides of the shaft and pL = normal limit resistance. The limit normal stress pL is evaluated using the Hoek-Brown strength criterion with the strength parameters determined on the basis of correlations to Geological Strength Index (GSI). The resulting expression is:\n\npL = γ′z + qu (mb γ′z/qu + s)^a (G-20)\n\nAccording to Zhang et al. (2000), a computer program was written to execute the above procedure. Predictions using the proposed method are compared to results of field load tests reported by Frantzen and Stratten (1987) for shafts socketed into sandy shale and sandstone. Computed pile head deflections show reasonable agreement with the load test results. The method appears to have potential as a useful tool for foundations designers. Availability of the computer program is unknown. Programming the method using a finite difference scheme as described by Zhang et al. (2000) is also possible.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. G-14",
+          "description": "Lateral load at the new shaft head, below the depth of yield (Zhang et al. 2000, step 3)",
+          "formula": "Ho = H - ∫[0 to zy] pult dz",
+          "variables": {
+            "H": "applied lateral load",
+            "zy": "depth of yield in the soil and/or rock mass",
+            "pult": "ultimate resistance (force/length)"
+          },
+          "source": "Typed in from p. G-6 (PDF page 737, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-15",
+          "description": "Moment at the new shaft head, below the depth of yield (Zhang et al. 2000, step 3)",
+          "formula": "Mo = M + H zy - ∫[0 to zy] pult (zy - z) dz",
+          "variables": {
+            "M": "applied moment",
+            "zy": "depth of yield",
+            "pult": "ultimate resistance (force/length)"
+          },
+          "source": "Typed in from p. G-6 (PDF page 737, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-16",
+          "description": "Limit pressure of fine-grained soils (clay) under undrained loading",
+          "formula": "pult = Np cu B",
+          "variables": {
+            "Np": "Eq. G-17",
+            "cu": "undrained shear strength",
+            "B": "shaft diameter"
+          },
+          "source": "Typed in from p. G-6 (PDF page 737, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-17",
+          "description": "Term Np of Equation G-16 (as printed: R is not defined on p. G-6)",
+          "formula": "Np = 3 + (γ′/cu) z + (J/(2R)) z ≤ 9",
+          "variables": {
+            "γ′": "average effective unit weight of soil above depth z",
+            "J": "a coefficient ranging from 0.25 to 0.5",
+            "cu": "undrained shear strength",
+            "R": "not defined on p. G-6 (as printed)"
+          },
+          "source": "Typed in from p. G-6 (PDF page 737, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-18",
+          "description": "Limit pressure for shafts in sand, a method attributed to Fleming et al. (1992)",
+          "formula": "pult = Kp² γ′ z B",
+          "variables": {
+            "Kp": "Rankine coefficient of passive earth pressure (Eq. G-13; the text cites Equation G-11, as printed)"
+          },
+          "source": "Typed in from p. G-6 (PDF page 737, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-19",
+          "description": "Ultimate resistance of the rock mass",
+          "formula": "pult = (pL + τmax) B",
+          "variables": {
+            "pL": "normal limit resistance (Eq. G-20)",
+            "τmax": "maximum shearing resistance along the sides of the shaft"
+          },
+          "source": "Typed in from p. G-7 (PDF page 738, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. G-20",
+          "description": "Limit normal stress by the Hoek-Brown strength criterion, its strength parameters determined from correlations to the Geological Strength Index (GSI)",
+          "formula": "pL = γ′z + qu (mb γ′z/qu + s)^a",
+          "variables": {
+            "qu, mb, s, a": "Hoek-Brown strength criterion parameters, determined from correlations to GSI (not defined further on p. G-7)"
+          },
+          "source": "Typed in from p. G-7 (PDF page 738, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Section G.1.1.2 (pp. G-5 to G-7): the nonlinear continuum method of Zhang et al. (2000), its iteration steps (Eqs. G-14 and G-15) and the ultimate resistance of clay, sand and rock mass (Eqs. G-16 to G-20)."
+    },
+    {
+      "section_id": "G.1.2",
+      "title": "Finite Element Soil Models",
+      "body": "[p. G-7] Software now exists that will permit the nonlinear analysis of drilled shafts or groups of drilled shafts using the finite element method (FEM) with relative ease on a high-end PC or a workstation, for example ABAQUS (Hibbett et al., 1996). FEM analysis is justified when the soil or rock conditions, foundation geometry or loading of the group is unusual. An example of a case in which a comprehensive FEM analysis might be conducted is for designing a group of drilled shafts that are to be socketed into sloping rock on a steep mountainside, in which it is necessary to use permanent tiebacks to secure the drilled shaft group to stable rock.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Section G.1.2 (p. G-7): when nonlinear FEM analysis of drilled shafts or groups is justified."
+    }
+  ]
+}

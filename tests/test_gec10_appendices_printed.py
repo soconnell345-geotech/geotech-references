@@ -375,7 +375,85 @@ def test_appendix_c_figures():
     assert figs["C.3.2"] == ["Figure C-7"]
 
 
-@pytest.mark.parametrize("ch", [19, 20, 21])
+# ---------------------------------------------------------------- Appendix G
+
+G_IDS = ["G.1", "G.1.1", "G.1.1.1", "G.1.1.1.a", "G.1.1.2", "G.1.2"]
+
+
+def test_appendix_g_sections_and_titles():
+    data = _appendix(25)
+    assert data["chapter_title"] == (
+        "Appendix G: Alternative Models for Analysis of Lateral Loading")
+    assert [s["section_id"] for s in data["sections"]] == G_IDS
+    titles = {s["section_id"]: s["title"] for s in data["sections"]}
+    # printed headings, pp. G-1, G-5 and G-7 (G.1.1.2 is set in plain type)
+    assert titles["G.1.1"] == "Elastic Continuum and Boundary Element Models"
+    assert titles["G.1.1.1"] == (
+        "Carter and Kulhawy Model for an Elastic Shaft Embedded in an Elastic Rock Mass")
+    assert titles["G.1.1.1.a"].startswith(titles["G.1.1.1"] + " (continued, ")
+    assert titles["G.1.1.2"] == (
+        "Zhang, et al. Nonlinear Model for an Elastic Shaft Embedded in an Elastic Rock Mass")
+    assert titles["G.1.2"] == "Finite Element Soil Models"
+    pages = [int(p) for s in data["sections"]
+             for p in re.findall(r"\[p\. G-(\d+)\]", s["body"])]
+    assert pages == sorted(pages) and set(pages) == set(range(1, 8))
+
+
+def test_appendix_g_equations_all_held_once():
+    data = _appendix(25)
+    ids = [e["id"] for s in data["sections"] for e in s["equations"]]
+    assert ids == [f"Eq. G-{n}" for n in range(1, 21)]
+    body = " ".join(s["body"] for s in data["sections"])
+    for n in range(1, 21):
+        assert body.count(f"(G-{n})") == 1
+
+
+@pytest.mark.parametrize("sid,eq,formula", [
+    # typed from renders of pp. G-2 to G-7 (PDF 733 to 738)
+    ("G.1.1.1", "Eq. G-1", "Ee = (EI)c / (πB⁴/64)"),
+    ("G.1.1.1", "Eq. G-2", "G* = Gr (1 + 3νr/4)"),
+    ("G.1.1.1", "Eq. G-4", "D/B ≥ (Ee/G*)^(2/7)"),
+    ("G.1.1.1", "Eq. G-5", "u = 0.50 (H/(G*B)) (Ee/G*)^(-1/7) + 1.08 (M/(G*B²)) (Ee/G*)^(-3/7)"),
+    ("G.1.1.1", "Eq. G-6", "θ = 1.08 (H/(G*B²)) (Ee/G*)^(-3/7) + 6.40 (M/(G*B³)) (Ee/G*)^(-5/7)"),
+    ("G.1.1.1", "Eq. G-8", "(Ee/G*) / (B/(2D))² ≥ 100"),
+    ("G.1.1.1", "Eq. G-9", "u = 0.4 (H/(G*B)) (2D/B)^(-1/3) + 0.3 (M/(G*B²)) (2D/B)^(-7/8)"),
+    ("G.1.1.1", "Eq. G-10", "θ = 0.3 (H/(G*B²)) (2D/B)^(-7/8) + 0.8 (M/(G*B³)) (2D/B)^(-5/3)"),
+    ("G.1.1.1", "Eq. G-11", "0.05 (Ee/G*)^(1/2) < D/B < (Ee/G*)^(2/7)"),
+    ("G.1.1.1.a", "Eq. G-12", "pu = 3 Kp σ′v"),
+    ("G.1.1.2", "Eq. G-17", "Np = 3 + (γ′/cu) z + (J/(2R)) z ≤ 9"),
+    ("G.1.1.2", "Eq. G-18", "pult = Kp² γ′ z B"),
+    ("G.1.1.2", "Eq. G-20", "pL = γ′z + qu (mb γ′z/qu + s)^a"),
+])
+def test_appendix_g_equations_typed_from_the_page(sid, eq, formula):
+    eqs = {e["id"]: e for e in _section(sid)["equations"]}
+    assert eqs[eq]["formula"] == formula
+    assert eqs[eq]["implemented_in"] is None
+    assert formula in _section(sid)["body"]
+
+
+def test_appendix_g_ranges_read_from_the_page():
+    # pp. G-3 and G-4: the text layer reads ≤ and ≥ as < and > and 10^6 as 106
+    body = _section("G.1.1.1")["body"]
+    assert "1 ≤ Ee/Er ≤ 10^6 and D/B ≥ 1." in body
+    assert "1 ≤ D/B ≤ 10 and Ee/Er ≥ 1." in body
+    assert "displacements be taken as 1.25 times the maximum of either" in body
+    assert "(zy ≤ z ≤ L)" in _section("G.1.1.2")["body"]
+
+
+def test_appendix_g_print_slips_kept_and_noted():
+    body = _section("G.1.1.2")["body"]
+    assert "defined by Equation G-11 (as printed; Kp is defined by Equation G-13)." in body
+    assert "(G-17) (as printed: R is not defined on p. G-6)" in body
+
+
+def test_appendix_g_figures():
+    figs = {s["section_id"]: [f.split(":")[0] for f in s["figures"]]
+            for s in _appendix(25)["sections"]}
+    assert figs["G.1.1.1"] == ["Figure G-1"]
+    assert figs["G.1.1.1.a"] == ["Figure G-2"]
+
+
+@pytest.mark.parametrize("ch", [19, 20, 21, 25])
 def test_appendix_sections_fit_the_tools(ch):
     for s in _appendix(ch)["sections"]:
         assert len(s["body"]) <= 12000
