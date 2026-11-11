@@ -601,8 +601,8 @@ def retrieve_section(reference: str, section_id: str,
 #: section_id 1.8.2.7, and "1.3 Focus and Scope" (p. 1-4), held as 1.1.3; a
 #: caller who types those printed numbers reaches chapter 8's section 8.2.7
 #: or nothing. Both fetches name the chapter's section (2026-11-10 review
-#: follow-up). Only chapter 1: its printed numbers run 1.0 to 8.x and so
-#: read as the ids of other chapters.
+#: follow-up). Only chapter 1: its printed numbers run 1.0 to 9.0
+#: ("9.0 REFERENCES") and so read as the ids of other chapters.
 CHAPTER_PREFIXED = {"gec_13": (1,)}
 
 
@@ -903,10 +903,12 @@ def _ranked_fallback(reference: str, query: str, query_words: list,
         section.pop("children", None)
         section["chapter"] = ch_num
         section["chapter_title"] = ch_title
-        mark = {k: hit[k] for k in ("match", "lacks") if k in hit}
+        mark = {k: hit[k] for k in ("match", "lacks", "not_as_phrase")
+                if k in hit}
         section["match"] = mark.get("match", _retrieval_db.MATCH_ALL_WORDS)
-        if "lacks" in mark:
-            section["lacks"] = mark["lacks"]
+        for k in ("lacks", "not_as_phrase"):
+            if k in mark:
+                section[k] = mark[k]
         sections.append(section)
         if "match" in mark:
             marks.append(mark)
@@ -921,8 +923,9 @@ def _ranked_fallback(reference: str, query: str, query_words: list,
     for s in sections:
         h = _search_hit(s, query_words)
         h["match"] = s["match"]
-        if "lacks" in s:
-            h["lacks"] = s["lacks"]
+        for k in ("lacks", "not_as_phrase"):
+            if k in s:
+                h[k] = s[k]
         hits.append(h)
     # nothing of the ranked page was left out (no size limit), so it says
     # more were found by offering the next page, or by saying it pages no

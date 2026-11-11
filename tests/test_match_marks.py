@@ -161,3 +161,47 @@ def test_search_sections_with_no_word_found_is_still_empty(auto):
     assert out["hits"] == [] and out["total_hits"] == 0
     assert out["words_not_found"] == ["zzzqqq", "xyzzyplugh"]
     assert "reference 'gec_12'" in out["note"]
+
+
+# A term typed with a hyphen runs as the phrase of its parts ('5-2' as
+# '"5 2"'). A hit holding every word but not that phrase was marked "any
+# word" with nothing in 'lacks' (2026-11-10 review follow-up): it is "all
+# words", and 'not_as_phrase' names the phrase it does not hold.
+
+@pytest.mark.parametrize("query", ["Table 5-2 bearing",
+                                   "Boring Log S-1, Page 2"])
+def test_no_hit_is_marked_any_word_lacking_nothing(auto, query):
+    for search in (_figures_db.figure_search, _retrieval_db.reference_search):
+        for hit in search(query, limit=20):
+            if hit.get("match") == _retrieval_db.MATCH_ANY_WORD:
+                assert hit["lacks"], hit
+            if hit.get("match") == _retrieval_db.MATCH_ALL_WORDS:
+                assert hit["not_as_phrase"] and "lacks" not in hit, hit
+
+
+def test_a_hit_with_every_word_but_not_the_phrase_says_so(auto):
+    out = _figures_db.figure_search("Table 5-2 bearing", limit=10,
+                                    max_chars=BUDGET)
+    hit = next(h for h in out["hits"] if (h["reference"], h["figure_number"])
+               == ("dm7_2", "5-9"))
+    assert hit["match"] == "all words" and hit["not_as_phrase"] == ["5 2"]
+    assert "lacks" not in hit
+    # the loosest mark of the page is the result's
+    assert out["matched"] == "any word"
+    assert "'all words' holds every word but not as the phrase typed" in (
+        out["note"])
+    # hits that hold the phrase are not marked; nothing moved
+    plain = _figures_db.figure_search("Table 5-2 bearing", limit=10)
+    assert [(h["reference"], h["figure_number"]) for h in plain] == [
+        (h["reference"], h["figure_number"]) for h in out["hits"]]
+
+
+def test_match_summary_orders_the_marks():
+    summary = _retrieval_db.match_summary(
+        [{"match": "all words", "not_as_phrase": ["5 2"]}], [])
+    assert summary["matched"] == "all words"
+    assert summary["sentence"].startswith(
+        "1 of these hits do not hold the query as typed")
+    assert _retrieval_db.match_summary(
+        [{"match": "all words", "not_as_phrase": ["5 2"]},
+         {"match": "synonyms"}], [])["matched"] == "synonyms"

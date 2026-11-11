@@ -1091,11 +1091,17 @@ def match_marks(conn: sqlite3.Connection, table: str, rids: list,
     Returns ``({rid: mark}, words_not_found)``. A hit that holds every
     word of the query gets no mark. Any other hit gets ``{"match":
     "synonyms"}`` when it holds every word with a named term as one of its
-    synonyms (:func:`._query_expansion.substituted_query`), else ``{"match":
-    "any word", "lacks": [the query words it does not hold]}``.
-    ``words_not_found`` lists the query words no hit holds; it is empty
-    when every hit holds every word. Nothing is marked when the query
-    cannot be run as an FTS5 expression here (an OperationalError)."""
+    synonyms (:func:`._query_expansion.substituted_query`); ``{"match":
+    "all words", "not_as_phrase": [phrases]}`` when it holds every word
+    but not a phrase the query was run with (a term typed with a hyphen or
+    other punctuation runs as the phrase of its parts: 'Table 5-2 bearing'
+    runs '"5 2"', and a caption with "5" and "2" apart holds every word,
+    not that phrase; it was marked "any word" with nothing in ``lacks``,
+    2026-11-10 review follow-up); else ``{"match": "any word", "lacks":
+    [the query words it does not hold]}``. ``words_not_found`` lists the
+    query words no hit holds; it is empty when every hit holds every word.
+    Nothing is marked when the query cannot be run as an FTS5 expression
+    here (an OperationalError)."""
     rids = [int(r) for r in rids]
     if not rids:
         return {}, []
@@ -1115,31 +1121,46 @@ def match_marks(conn: sqlite3.Connection, table: str, rids: list,
         has = {w: held(w) for w in words}
         sub = _qe.substituted_query(query)
         synonym = held(sub) if sub else set()
+        phrases = list(dict.fromkeys(
+            p for p in re.findall(r'"([^"]+)"', query) if " " in p.strip()))
+        as_phrase = {p: held(f'"{p}"') for p in phrases}
     except sqlite3.OperationalError:
         return {}, []
     marks: dict = {}
     for r in rest:
+        lacks = [w for w in words if r not in has[w]]
         if r in synonym:
             marks[r] = {"match": MATCH_SYNONYMS}
+        elif not lacks and phrases:
+            marks[r] = {"match": MATCH_ALL_WORDS, "not_as_phrase": [
+                p for p in phrases if r not in as_phrase[p]]}
         else:
-            marks[r] = {"match": MATCH_ANY_WORD,
-                        "lacks": [w for w in words if r not in has[w]]}
+            marks[r] = {"match": MATCH_ANY_WORD, "lacks": lacks}
     return marks, [w for w in words if not has[w]]
 
 
 def match_summary(marks: list[dict], words_not_found: list[str]) -> dict:
     """The keys a size-fitted result adds when some of its hits do not hold
-    every word (``marks``, those hits' marks): ``matched`` ("synonyms", or
-    "any word" when any hit holds only some words), ``words_not_found``
-    when some query word is in no hit, and the sentence for the note.
-    Empty when every hit holds every word."""
+    every word as the query was run (``marks``, those hits' marks):
+    ``matched`` (the loosest: "any word" when any hit holds only some
+    words, else "synonyms", else "all words" when the hits hold every
+    word but not a phrase of the query), ``words_not_found`` when some
+    query word is in no hit, and the sentence for the note. Empty when
+    every hit holds the query as run."""
     if not marks:
         return {}
     kinds = {m["match"] for m in marks}
-    out: dict = {"matched": (MATCH_ANY_WORD if MATCH_ANY_WORD in kinds
-                             else MATCH_SYNONYMS)}
-    said = [f"{len(marks)} of these hits do not hold every word of the "
-            "query, and say so in 'match':"]
+    out: dict = {"matched": next(
+        k for k in (MATCH_ANY_WORD, MATCH_SYNONYMS, MATCH_ALL_WORDS)
+        if k in kinds)}
+    said = [f"{len(marks)} of these hits do not hold "
+            + ("the query as typed" if MATCH_ALL_WORDS in kinds
+               else "every word of the query")
+            + ", and say so in 'match':"]
+    if MATCH_ALL_WORDS in kinds:
+        said.append("'all words' holds every word but not as the phrase "
+                    "typed, which 'not_as_phrase' names (a term typed with "
+                    "a hyphen is searched as the phrase of its parts);")
     if MATCH_SYNONYMS in kinds:
         said.append("'synonyms' holds every word with a named term as one "
                     "of its synonyms;")
