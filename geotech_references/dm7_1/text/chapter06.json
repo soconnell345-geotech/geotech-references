@@ -462,7 +462,7 @@
         "Figure 6-6 provides k ranges by soil classification type across multiple unit systems.",
         "USBR Table 6-3 gives horizontal k for natural soils and rock; Table 6-4 gives vertical k for compacted embankment materials.",
         "Eq. 6-12: k = βα·Dα^x — general power-law correlation of k to effective grain size (D5 to D20); x ≈ 2 theoretically.",
-        "Table 6-5 summarizes published grain-size k correlations (Hazen, Slichter, Chapuis, Carrier, Sherard, Kenney), many incorporating void ratio.",
+        "Table 6-5 summarizes published grain-size k correlations (Hazen, Slichter, Chapuis, Carrier, Sherard, Kenney), some of which also account for the effect of void ratio on k.",
         "Eq. 6-13 (Kozeny-Carman): accounts for full grain-size distribution and particle shape via surface area factor S (6 for spheres, 8.5 for angular).",
         "Eq. 6-14 (Kozeny): relates k at two different void ratios; useful for compaction or consolidation effects.",
         "Figure 6-7: k decreases with increasing fines content; at a given fines content, kv spans 2.5–3 orders of magnitude."
@@ -498,16 +498,22 @@
     {
       "section_id": "6-3.4",
       "title": "Anisotropy",
-      "summary": "Introduces the concept of hydraulic conductivity anisotropy in soils. Notes that natural soils typically exhibit horizontal k greater than vertical k due to depositional layering, but mentions that vertical cracks can create exceptions where vertical k exceeds horizontal k. Section continues beyond this chunk.",
-      "body": "More often than not soils exhibit anisotropy with respect to hydraulic conductivity. In natural soils this is usually a consequence of depositional layering of the soil and results in horizontal hydraulic conductivity greater than in the vertical direction. However, in some cases, often related to the formation and filling of vertical cracks, the vertical [section continues].",
+      "summary": "Introduces the concept of hydraulic conductivity anisotropy in soils. Notes that natural soils typically exhibit horizontal k greater than vertical k due to depositional layering, but mentions that vertical cracks can create exceptions where vertical k exceeds horizontal k. In engineered fills anisotropy forms between lifts. Tables 6-6 and 6-7 give typical kh/kv ranges for natural soils and engineered fill (after USBR 2014); anisotropy can greatly affect the calculated seepage pressures, flows, and hydraulic gradients.",
+      "body": "More often than not soils exhibit anisotropy with respect to hydraulic conductivity. In natural soils this is usually a consequence of depositional layering of the soil and results in horizontal hydraulic conductivity greater than in the vertical direction. However, in some cases, often related to the formation and filling of vertical cracks, the vertical hydraulic conductivity can be greater than the horizontal. In engineered fills, anisotropy can form as a consequence of soil variation between lifts, differential compaction between the top and bottom of lifts, and planes that form between lifts. Table 6-6 and Table 6-7 present typical values for anisotropy in natural soil deposits and compacted fill. Anisotropy can greatly affect the seepage behavior in a soil deposit and can have a significant effect on the calculated pressures, flows, and hydraulic gradients in the seepage regime.",
       "key_points": [
         "Most natural soils exhibit hydraulic conductivity anisotropy due to depositional layering.",
         "Horizontal k typically exceeds vertical k in naturally deposited soils.",
-        "Vertical cracking can create conditions where vertical k exceeds horizontal k."
+        "Vertical cracking can create conditions where vertical k exceeds horizontal k.",
+        "In engineered fills, anisotropy can form from soil variation between lifts, differential compaction between the top and bottom of lifts, and planes that form between lifts.",
+        "Typical kh/kv (after USBR 2014): stratified deposits 10 to 1000, intact soil or rock 1 to 3, fractured bedrock 0.1 to 10, loess 0.02 to 2 (Table 6-6); core zone 4 to 9 with USBR compaction procedures or 9 to 36 with standard ones, hydraulic fill 64 to 225 (Table 6-7).",
+        "Anisotropy can greatly affect the seepage behavior in a soil deposit and the calculated pressures, flows, and hydraulic gradients."
       ],
       "equations": [],
       "figures": [],
-      "tables": [],
+      "tables": [
+        "Table 6-6 — Typical Values of Anisotropy in Natural Soils (after USBR 2014)",
+        "Table 6-7 — Typical Values of Anisotropy in Engineered Fill (after USBR 2014)"
+      ],
       "applicability": "Applies when assessing directional differences in hydraulic conductivity for natural or engineered soil deposits."
     },
     {
@@ -786,7 +792,7 @@
         "Four base soil categories (Table 6-11) based on percent finer than No. 200 sieve; gap-graded soils need special attention.",
         "Retention criterion: maximum D15F controlled by D85B (Table 6-12); dispersive soils use tighter criteria.",
         "Permeability criterion: minimum D15F ≥ (3–5)×D15B depending on agency (Table 6-13); minimum absolute value 0.1 mm.",
-        "Filter Cu should be 2–6; D100F < 2 in (51 mm); fines must be non-plastic (PI = 0).",
+        "Filters should have Cu = D60F/D10F between 2 and 6; most agencies require D100F less than 2 in. (51 mm), although the USACE allows up to 3 in. (76 mm); any fines in the filter should be non-plastic (PI = 0).",
         "Segregation limits set maximum D90F based on minimum D10F (Table 6-14).",
         "Envelope material D50E must exceed maximum pipe perforation size when a drainpipe is included."
       ],
@@ -811,7 +817,7 @@
       "key_points": [
         "Geotextile types: woven, nonwoven (needle-punched, spun-bonded, resin-bonded), and knitted; each has different pore structure and performance.",
         "Retention criterion uses O95 (opening size at which 95% of openings are smaller); Table 6-15 provides criteria for soils with <10% fines.",
-        "For soils with >10% fines and PI > 5, O95 < 0.21 mm required (non-dispersive); dispersive soils need an intermediate sand filter layer.",
+        "For soils with more than 10% fines and PI greater than 5, the geotextile should have O95 less than 0.21 mm, provided the soil is non-dispersive; for dispersive soils with more than 20% clay sized particles, place 75 to 100 mm of sand between the base soil and the geotextile.",
         "Permeability requirement (Eq. 6-16): FSg = kg/ks = ψg·tg/ks; Giroud (2010) suggests FSg of 10 to 20, others recommend 10 to 100; permittivity ψg from manufacturers or testing (ASTM D4491).",
         "Clogging is difficult to quantify; avoid alkaline/acidic environments, dispersive soils, and organic-rich settings.",
         "All major U.S. dam agencies prohibit geotextile filters in critical dam embankment zones or high-hazard structures."

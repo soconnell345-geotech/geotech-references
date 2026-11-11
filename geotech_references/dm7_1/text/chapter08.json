@@ -359,15 +359,15 @@
     {
       "section_id": "8-3.2",
       "title": "Correlations with Stress History",
-      "summary": "Covers how stress history (OCR) affects the undrained shear strength ratio of cohesive soils. Provides typical NC undrained strength ratios (Table 8-7), OCR-dependent ratios (Table 8-8, Fig. 8-30), and the SHANSEP-type power law (Eq. 8-20) with fitting parameter m (Table 8-9). Also includes simplified estimate for very soft clays (Eq. 8-21) and K0 vs. isotropic consolidation correction (Eq. 8-22).",
+      "summary": "Covers how stress history (OCR) affects the undrained shear strength ratio of cohesive soils. Provides typical NC undrained strength ratios (Table 8-7), OCR-dependent ratios (Table 8-8, Fig. 8-30), and the power law (Eq. 8-20) with fitting parameter m (Table 8-9). Also includes simplified estimate for very soft clays (Eq. 8-21) and K0 vs. isotropic consolidation correction (Eq. 8-22).",
       "body": "Mesri (1975) corrected the results of vane shear tests from the literature with the vane correction factor proposed by Bjerrum (1972) and found that the undrained strength ratio for normally consolidated soil is relatively constant. Similarly, Jamiolkowski et al. (1985) found relatively constant values of normally consolidated undrained strength ratio for clays with PI less than 60. Chandler (1988) and Ladd and DeGroot (2004) also analyzed undrained strength data sets to determine typical values of undrained strength ratio for various types of clay. These trends are summarized in Table 8-7.\n\nOverconsolidation results in an increase in the undrained shear strength. Schmertmann (1978) compared the undrained strength ratio for overconsolidated clays to that for normally consolidated clays as a function of OCR as summarized in Table 8-8 and Figure 8-30.\n\nFor overconsolidated clays, Jamiolkowski et al. (1985) and Ladd and DeGroot (2004) showed that the effects of stress history on the undrained shear strength ratio can be accounted for by:\n\n(su/σ′v)OC = (su/σ′v)NC · OCR^m  (Eq. 8-20)\n\nwhere su = undrained shear strength (NC = normally consolidated, OC = overconsolidated), σ′v = vertical effective stress, OCR = overconsolidation ratio, and m = semi-empirical fitting parameter.\n\nThe value of m is theoretically related to the recompression and compression indices as shown by Roscoe et al. (1958) and Mitachi and Kitago (1976) for ideal or remolded soils. For real soils, undrained laboratory shear strength tests on soil specimens at different values of OCR can be used to determine m. Ladd et al. (1977) observed that m is approximately 0.8 based on direct simple shear tests. Typical values for m are summarized in Table 8-9.\n\nFor very soft clays with overconsolidation ratios less than 2, Sabatini et al. (2002) found that the undrained shear strength could be estimated as (assumes m equals 1):\n\nsu ≈ 0.21·σ′p  (Eq. 8-21)\n\nwhere su = undrained shear strength and σ′p = preconsolidation pressure.\n\nThe consolidation stress state in triaxial compression tests also influences the undrained shear strength. Based on data from 48 normally consolidated clays, Mayne (1985) found that the ratio was about 0.87 for undrained shear strengths from K0-consolidated and isotropically consolidated undrained triaxial compression tests.\n\nKulhawy and Mayne (1990) examined the data and found that the normally consolidated undrained strength ratio for K0-consolidated tests can be related to the isotropically consolidated tests by:\n\n(su/σ′v)ACU = 0.15 + 0.49·(su/σ′v)ICU  (Eq. 8-22)\n\nwhere (su/σ′v)ACU = undrained strength ratio in CK0U triaxial compression, and (su/σ′v)ICU = undrained strength ratio in ICU triaxial compression.",
       "key_points": [
-        "NC undrained strength ratio is relatively constant across sources: approximately 0.22 ± 0.03 to 0.23 ± 0.04 for most clays (Table 8-7).",
-        "Eq. 8-20 (SHANSEP power law): (su/σ′v)OC = (su/σ′v)NC · OCR^m accounts for overconsolidation; m ≈ 0.8 for most clays.",
-        "For very soft OC clays (OCR < 2), Eq. 8-21 simplifies to su ≈ 0.21·σ′p.",
+        "Mesri (1975) found the NC undrained strength ratio relatively constant, 0.22 ± 0.03 from corrected vane shear tests; Jamiolkowski et al. (1985) found 0.23 ± 0.04 for clays with PI less than 60 (Table 8-7).",
+        "Eq. 8-20: (su/σ′v)OC = (su/σ′v)NC · OCR^m, with m a semi-empirical fitting parameter; Ladd et al. (1977) observed that m is approximately 0.8 based on direct simple shear tests (typical values in Table 8-9).",
+        "For very soft clays with OCR less than 2, Sabatini et al. (2002) found su ≈ 0.21·σ′p (Eq. 8-21; assumes m equals 1).",
         "Eq. 8-22 corrects for consolidation stress state: K0-consolidated vs. isotropically consolidated triaxial tests yield different su/σ′v ratios.",
         "Field vane data from Jamiolkowski et al. (1985) and Chandler (1988) may be too high due to lack of ASTM D2573 vane correction.",
-        "Semi-empirical parameter m can theoretically be estimated as m ≈ 1 − Cr/Cc for ideal soils following critical state mechanics."
+        "m is theoretically related to the recompression and compression indices, m ≈ 1 − Cr/Cc (Roscoe et al. 1958; Mitachi and Kitago 1976), for ideal or remolded soils assumed to follow critical state soil mechanics (Table 8-9)."
       ],
       "equations": [
         {
@@ -400,7 +400,7 @@
       "section_id": "8-3.3",
       "title": "Correlations with Cone Penetration Test",
       "summary": "Describes three CPT-based methods (Nc, Nk, and Nkt) for estimating undrained shear strength from cone tip resistance. Provides Equations 8-23 through 8-25 with definitions of empirical bearing capacity factors and their typical ranges. Emphasizes site-specific calibration of factors against laboratory or field vane measurements, and notes that modern high-area-ratio cones yield similar Nk and Nkt results.",
-      "body": "Undrained shear strength is typically estimated from the cone tip resistance measured in the CPT using methods based on bearing capacity. The three methods are the Nc, Nk, and Nkt methods as defined by Lunne et al. (1997). The empirical bearing capacity factors (Nc, Nk, and Nkt) should be calibrated on a site- or region-specific basis by relating known values of undrained shear strength measured using the triaxial device (ASTM D2166, ASTM D2850), laboratory miniature vane shear (ASTM D4648), field vane shear (ASTM D2573), or direct simple shear (ASTM D6528) to the predicted values based on Equations 8-23 to 8-25.\n\nThe Nc method is the simplest and directly relates the CPT tip resistance to the undrained shear strength as:\n\nsu = qc / Nc  (Eq. 8-23)\n\nwhere qc = cone tip resistance, and Nc = empirical bearing capacity factor.\n\nIn most cases, the value of Nc is in the range of 17 to 23 for normally consolidated and slightly overconsolidated clays. The Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.\n\nThe Nk method considers the overburden pressure acting at the point of the measurement. Based on this method, the undrained shear strength can be determined from CPT results as:\n\nsu = (qc − σv) / Nk  (Eq. 8-24)\n\nwhere qc = cone tip resistance, σv = total vertical stress, and Nk = empirical bearing capacity factor.\n\nData presented by Lunne and Kleven (1982) shows that Nk ranges from about 10 to about 19 with an average of 15. Carter and Bentley (2016) suggest values of 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.\n\nThe Nkt method is a modification of the Nk method that considers the pore pressure acting at the tip of the cone. The undrained shear strength is calculated as:\n\nsu = (qt − σv) / Nkt  (Eq. 8-25)\n\nwhere qc = cone tip resistance, σv = total vertical stress, Nkt = empirical bearing capacity factor, qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400); the pore pressure correction is usually written qt = qc + u2·(1 − a).], u = pore pressure measured behind the cone tip (u2 position), and a = cone net area ratio = ratio of face area to shoulder area.\n\nModern cones have net area ratios above 0.8 and little difference is typically observed in the Nk and Nkt methods. Values of Nkt are often in the range of 14 to 16.",
+      "body": "Undrained shear strength is typically estimated from the cone tip resistance measured in the CPT using methods based on bearing capacity. The three methods are the Nc, Nk, and Nkt methods as defined by Lunne et al. (1997). The empirical bearing capacity factors (Nc, Nk, and Nkt) should be calibrated on a site- or region-specific basis by relating known values of undrained shear strength measured using the triaxial device (ASTM D2166, ASTM D2850), laboratory miniature vane shear (ASTM D4648), field vane shear (ASTM D2573), or direct simple shear (ASTM D6528) to the predicted values based on Equations 8-23 to 8-25.\n\nThe Nc method is the simplest and directly relates the CPT tip resistance to the undrained shear strength as:\n\nsu = qc / Nc  (Eq. 8-23)\n\nwhere qc = cone tip resistance, and Nc = empirical bearing capacity factor.\n\nIn most cases, the value of Nc is in the range of 17 to 23 for normally consolidated and slightly overconsolidated clays. The Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.\n\nThe Nk method considers the overburden pressure acting at the point of the measurement. Based on this method, the undrained shear strength can be determined from CPT results as:\n\nsu = (qc − σv) / Nk  (Eq. 8-24)\n\nwhere qc = cone tip resistance, σv = total vertical stress, and Nk = empirical bearing capacity factor.\n\nData presented by Lunne and Kleven (1982) shows that Nk ranges from about 10 to about 19 with an average of 15. Carter and Bentley (2016) suggest values of 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.\n\nThe Nkt method is a modification of the Nk method that considers the pore pressure acting at the tip of the cone. The undrained shear strength is calculated as:\n\nsu = (qt − σv) / Nkt  (Eq. 8-25)\n\nwhere qc = cone tip resistance, σv = total vertical stress, Nkt = empirical bearing capacity factor, qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400). FHWA-NHI-16-072 (GEC 5, November 2016), Eq. 4.23, p. 4-29, prints qt = qc + u2(1 − a), with a the net area ratio determined through calibration.], u = pore pressure measured behind the cone tip (u2 position), and a = cone net area ratio = ratio of face area to shoulder area.\n\nModern cones have net area ratios above 0.8 and little difference is typically observed in the Nk and Nkt methods. Values of Nkt are often in the range of 14 to 16.",
       "key_points": [
         "Three CPT methods: Nc (Eq. 8-23, simplest, no overburden correction), Nk (Eq. 8-24, subtracts total vertical stress), and Nkt (Eq. 8-25, uses pore-pressure-corrected tip resistance).",
         "Nc typically ranges 17–23; Nc method loses accuracy below 15 m depth due to neglect of overburden.",
@@ -421,7 +421,7 @@
         },
         {
           "id": "Eq. 8-25",
-          "description": "Nkt method: undrained shear strength from pore-pressure-corrected CPT tip resistance: su = (qt − σv) / Nkt, where qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400); the pore pressure correction is usually written qt = qc + u2·(1 − a).]",
+          "description": "Nkt method: undrained shear strength from pore-pressure-corrected CPT tip resistance: su = (qt − σv) / Nkt, where qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400). FHWA-NHI-16-072 (GEC 5, November 2016), Eq. 4.23, p. 4-29, prints qt = qc + u2(1 − a), with a the net area ratio determined through calibration.]",
           "implemented_in": "geotech_references.dm7_1.chapter8.cpt_undrained_strength_nkt"
         }
       ],
@@ -512,8 +512,8 @@
       "key_points": [
         "Cc for normally consolidated medium-sensitive clays typically ranges from 0.2 to 0.5.",
         "Organic clays (OH) have Cc > 4.0; peat (Pt) ranges from 10 to 15.",
-        "Dense uniform sands (SP) have very low Cc of 0.02–0.03, reflecting much lower compressibility than fine-grained soils.",
-        "Na-Montmorillonite has an exceptionally high Cc of 2.6 among mineral clays."
+        "Uniform sand (SP): Cc of 0.05–0.06 loose and 0.02–0.03 dense (USACE 1990).",
+        "Table 8-12 gives Cc = 2.6 for Na-Montmorillonite (CH) and 0.21–0.26 for kaolinite."
       ],
       "equations": [],
       "figures": [],
@@ -678,7 +678,7 @@
         "Cεα = 0.0001 · wn (Eq. 8-35) estimates modified secondary compression coefficient from natural water content for NC clays.",
         "For most OC clays, Cεα ranges from 0.0005 to 0.001 (Kulhawy and Mayne 1990).",
         "The ratio Cα/Cc (= Cεα/Cεc) is approximately constant for a given soil — enables estimation of Cα from measured Cc.",
-        "Inorganic clays: Cα/Cc ≈ 0.025–0.075; peats: Cα/Cc ≈ 0.035–0.10 (Table 8-17).",
+        "Inorganic clays and silts: Cα/Cc ≈ 0.025–0.075; organic clays and silts: 0.035–0.075; peats: 0.035–0.10 (Table 8-17).",
         "Figure 8-49 provides an additional graphical correlation for Cα in silts and clays."
       ],
       "equations": [
@@ -696,6 +696,23 @@
         "Table 8-17"
       ],
       "applicability": "Applies when estimating secondary (creep) compression settlement after primary consolidation is complete, particularly for NC clays, organic soils, and peats."
+    },
+    {
+      "section_id": "8-4.5",
+      "title": "Coefficient of Consolidation",
+      "summary": "Explains why the coefficient of consolidation (cv) is difficult to estimate for design: in situ sand seams, lenses and varved layers that small laboratory specimens may not contain, and different values in the vertical and horizontal directions where laboratory tests normally measure one. Figure 8-50 gives a first-order approximation from the liquid limit.",
+      "body": "The coefficient of consolidation (cv) is a difficult parameter to estimate for design use because in situ stratigraphy can include sand seams and lenses, varved layers, etc. Small laboratory test specimens may not contain these fabric elements. In addition, the coefficient of consolidation can differ in the vertical and horizontal directions. Laboratory tests normally only measure the coefficient of consolidation in one direction. A first-order approximation for the coefficient of consolidation can be obtained using Figure 8-50.",
+      "key_points": [
+        "cv is a difficult parameter to estimate for design use because in situ stratigraphy can include sand seams and lenses, varved layers, etc., which small laboratory test specimens may not contain.",
+        "The coefficient of consolidation can differ in the vertical and horizontal directions; laboratory tests normally only measure it in one direction.",
+        "A first-order approximation for the coefficient of consolidation can be obtained using Figure 8-50 (Approximate Relationship between Coefficient of Consolidation and Liquid Limit)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 8-50"
+      ],
+      "tables": [],
+      "applicability": "Applies when estimating the coefficient of consolidation for design, including a first-order estimate from the liquid limit."
     },
     {
       "section_id": "8-5",
@@ -889,7 +906,7 @@
       "summary": "Presents empirical correlations for estimating CBR from index properties (grain size, Atterberg limits, unit weight, specific gravity, angle of repose) in Table 8-22, and from compaction properties (dry unit weight ratio and water content ratio relative to Modified Proctor values) in Table 8-23. Covers both soaked and unsoaked conditions across multiple researchers.",
       "body": "Several researchers have presented correlations to estimate the CBR using index properties. Correlations to grain size, Atterberg limits, and other index properties are summarized in Table 8-22. Correlations between CBR and soil compaction properties are summarized in Table 8-23.",
       "key_points": [
-        "CBR can be estimated from fines content and plasticity index: CBR = 75 / [1 + 0.728·(FC × PI)], printed with the condition FC×PI = 0, NCHRP (2001) [As printed; the table gives the same condition, FC×PI = 0, for the next row, CBR = 28.09·(D60)^0.358.]",
+        "Table 8-22, NCHRP (2001): CBR = 75/[1 + 0.728·(FC × PI)], printed with the condition FC×PI = 0 [as printed; the next row, CBR = 28.09·(D60)^0.358, has the same condition. FHWA-NHI-05-037 Table 5-34, p. 5-53, prints CBR = 75/[1 + 0.728(wPI)], wPI = P200·PI, with no condition.]",
         "Gravel content, liquid limit, plastic limit, dry/moist unit weight, specific gravity, and angle of repose are all used in various CBR correlations (Table 8-22).",
         "Compaction-based correlations (Table 8-23) use the ratio of dry unit weight to maximum dry unit weight and water content to optimum water content from the Modified Proctor test.",
         "Water contents in compaction correlations must be expressed consistently — both decimal or both percentage form.",
@@ -1116,7 +1133,7 @@
         "Table 8-28 consolidates equations from over ten references, differentiating by soil type (sands, clays, general).",
         "Normalized parameters include Vs,1 = Vs·(Pa/σ′v)^0.25 and qc1 = (qc/Pa)·(Pa/σ′v)^n, where n depends on Ic.",
         "Some CPT cones equipped with geophones or accelerometers can directly measure Vs, bypassing correlation uncertainty.",
-        "The exponent n in qc1 normalization is 0.5 for Ic < 2.6 and 0.75 otherwise, per Robertson (2009) and Ulmer et al. (2020)."
+        "Table 8-28 notes: the exponent n in the qc1 normalization is 0.5 for Ic < 2.6, else 0.75."
       ],
       "equations": [],
       "figures": [],
