@@ -640,8 +640,31 @@
       "headings": {
         "8.3.1": {"page_title": "Application Considerations"}
       },
+      "page_captions": {
+        "Figure 8-1": "Failure modes for reinforced soil slopes including internal failure within the reinforced soil zone, external failure entirely outside the reinforced soil zone, and compound failure starting behind and passing through the reinforced soil zone.",
+        "Figure 8-5": "Example of welded wire mesh detail for temporary (during construction) or permanent face support showing a) smooth inclined face, and b) stepped face."
+      },
       "fix_lines": [
+        {"pdf_page": 43, "find": "Figure 8-6. Components of a", "through": "(VRSS) system.", "replace": "Figure 8-6. Components of a vegetated reinforced slope (VRSS) system."},
+        {"pdf_page": 55, "find": "PORE PRESSURE READINGS DURING CONSTRUCTION", "through": "1 kPa = 0.145 lb/ft2, 1 m = 3.28 ft", "replace": "[Figure 8-10 (continued) labels, typed in from p. 8-29:] PORE PRESSURE READINGS DURING CONSTRUCTION; Time (days); Pore Pressure (kPa); 1 kPa = 0.145 lb/ft2, 1 m = 3.28 ft."},
         {"pdf_page": 153, "find": "11.2.1. Precast Concrete Elements", "replace": "11.2.1 Precast Concrete Elements"}
+      ],
+      "printed_equations": [
+        {"number": "8-1", "page": "8-7", "formula": "FSR = (MR + TS R) / MD",
+         "variables": {"FSR": "the required stability factor of safety", "MR": "resisting moment provided by the strength of the soil", "MD": "driving moment about the center of the failure circle", "TS": "sum of tensile force per unit width of reinforcement (considering rupture and pullout) in all reinforcement layers intersecting the failure surface", "R": "the moment arm of TS about the center of failure circle as shown in Figure 8-2"},
+         "notes": "The reinforcement force taken as contributing to the resisting moment (p. 8-7)."},
+        {"number": "8-2", "page": "8-8", "formula": "FS = MR / (MD − TS R)",
+         "notes": "The reinforcement force taken as reducing the driving moment; the stability factor of safety is then not applied to TS, and Tal = TULT / (FSR × RF). The page refers to the reduction factors RF 'in equation 8-12'; the manual has no Eq. 8-12 (RF is Eq. 3-12, p. 3-28) (p. 8-8)."}
+      ],
+      "printed_tables": [
+        {"number": "8-1", "page": "8-14", "rows": [
+          "Slope Face Angle and Soil Type | Type of Facing, When Geosynthetic is not Wrapped at Face: Vegetated Face(1) | Not Wrapped: Hard Facing(2) | When Geosynthetic is Wrapped at Face: Vegetated Face(1) | Wrapped: Hard Facing(2)",
+          "> 50° (> ~0.9H:1V), All Soil Types | Not Recommended | Gabions | Sod, Permanent Erosion Blanket w/ seed | Wire Baskets,(3) Stone, Shotcrete",
+          "35° to 50° (~ 1.4H:1V to 0.9H:1V), Clean Sands (SP)(4), Rounded Gravel (GP) | Not Recommended | Gabions, Soil-Cement | Sod, Permanent Erosion Blanket w/ seed | Wire Baskets,(3) Stone, Shotcrete",
+          "35° to 50° (~ 1.4H:1V to 0.9H:1V), Silts (ML), Sandy Silts (ML) | Soil Bio reinforcement, Drainage Composites(5) | Gabions, Soil-Cement, Stone Veneer | Sod, Permanent Erosion Blanket w/ seed | Wire Baskets,(3) Stone, Shotcrete",
+          "35° to 50° (~ 1.4H:1V to 0.9H:1V), Silty Sands (SM), Clayey Sands (SC), Well graded sands and gravels (SW & GW) | Temporary Erosion Blanket w/ Seed or Sod, Permanent Erosion Mat w/ Seed or Sod | Hard Facing, Not Needed | Geosynthetic Wrap Not Needed | Geosynthetic Wrap Not Needed",
+          "25° to 35° (~ 2H:1V to 1.4H:1V), All Soil Types | Temporary Erosion Blanket w/ Seed or Sod, Permanent Erosion Mat w/ Seed or Sod | Hard Facing Not Needed | Geosynthetic Wrap Not Needed | Geosynthetic Wrap Not Needed",
+          "Notes: 1. Vertical spacing of reinforcement (primary/secondary) shall be no greater than 16 in. (400 mm) with primary reinforcements spaced no greater than 32 in. (800 mm) when secondary reinforcement is used. 2. Vertical spacing of primary reinforcement shall be no greater than 32 in. (800 mm). 3. 18 in. (450 mm) high wire baskets are recommended. 4. Unified Soil Classification 5. Geosynthetic or natural horizontal drainage layers to intercept and drain the saturated soil at the face of the slope."]}
       ],
       "chapters": [
         {"number": 8,  "title": "Reinforced Soil Slopes Project Evaluation",             "page_start": 27,  "page_end": 62},

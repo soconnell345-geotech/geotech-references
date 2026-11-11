@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5, 6, 7)
+BUILT = (1, 2, 3, 4, 5, 6, 7, 8)
 
 
 def _chapter(n):
@@ -105,6 +105,7 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("5.")]) == 26
     assert len([s for s in secs if s.startswith("6.")]) == 13
     assert len([s for s in secs if s.startswith("7.")]) == 12
+    assert len([s for s in secs if s.startswith("8.")]) == 27
     # the chapter's first page prints "MSE WALL DETAILS"; the contents and
     # the running footer say "MSE Wall Design Details"
     assert secs["5.0"]["title"] == "MSE Wall Details"
@@ -345,6 +346,24 @@ def test_chapter_7_seismic_and_impact_equations_as_printed():
     assert eqs["7-20b"][1]["formula"] == (
         "Ttotal = SV Kr γr [(Z + heq) γEV-MAX] + ti (γCT)")
     assert "2,300 lb/lft (33.5 kN/m)" in secs["7.2.1"]["body"]
+
+
+def test_chapter_8_rss_equations_and_facing_table_as_printed():
+    eqs = _equations()
+    secs = _sections()
+    # Vol II pp. 8-7, 8-8
+    assert eqs["8-1"][1]["formula"] == "FSR = (MR + TS R) / MD"
+    assert eqs["8-2"][1]["formula"] == "FS = MR / (MD − TS R)"
+    assert eqs["8-1"][0] == eqs["8-2"][0] == "8.3.4"
+    assert "Tal = TULT / (FSR ×RF)" in secs["8.3.4"]["body"]
+    # Table 8-1 (p. 8-14)
+    body = secs["8.4"]["body"]
+    assert ("> 50° (> ~0.9H:1V), All Soil Types | Not Recommended | Gabions | "
+            "Sod, Permanent Erosion Blanket w/ seed | Wire Baskets,(3) Stone, "
+            "Shotcrete") in body
+    assert "3. 18 in. (450 mm) high wire baskets are recommended." in body
+    assert secs["8.5.2"]["figures"] == [
+        "Figure 8-6: Components of a vegetated reinforced slope (VRSS) system"]
 
 
 def test_figure_text_typed_in_from_the_page():

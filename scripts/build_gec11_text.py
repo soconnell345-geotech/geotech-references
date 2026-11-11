@@ -679,7 +679,10 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
                 continue
             m = _CAPTION.match(ln)
             entry = (figs if m.group(1) == "Figure" else tabs).get(bpt._caption_number(m), {})
-            end = _caption_end(raw, q, m, entry.get("caption", ""))
+            # the page's wording where the manifest gives it (the list's
+            # "Welded wire mesh detail ...", printed "Example of welded ...")
+            end = _caption_end(raw, q, m, page_caps.get(
+                f"{m.group(1)} {bpt._caption_number(m)}") or entry.get("caption", ""))
             stream.append((i, ""))
             cap_idx.add(len(stream))
             stream.extend(raw[q:end + 1])
