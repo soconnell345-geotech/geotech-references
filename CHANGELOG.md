@@ -297,6 +297,16 @@ rows instead of being answered from the first row that contains the words.
     every row is gone (the table prints no factor of safety); the result
     quotes p. 74 instead: 3.0 on Table 8's transfer load in competent
     rock, 2.0 for intermediate geomaterials (qu 0.5 to 5.0 MPa) (gec-38).
+  - `table_8_rock_anchor_transfer_load` (Table 8, p. 74): transfer loads
+    unchanged. It returned a factor of safety of 3.0 on every row, soft
+    shales included; p. 74 gives 3.0 "in competent rock" and 2.0 for weak
+    rocks such as clay shales, "intermediate geomaterials" of unconfined
+    compressive strength 0.5 to 5.0 MPa, and the table assigns neither to
+    a row. Each row now returns both in `factor_of_safety_options`, each
+    with its condition and allowable load per metre, the page's sentences
+    in `print_note` and the printed row name (`factor_of_safety`,
+    `allowable_load_per_m_kN` and `notes` are gone). Soft shales: 50 kN/m
+    at 3.0 or 75 kN/m at 2.0 (lead).
   - `table_7_bond_stress_rock`, `table_8_rock_anchor_transfer_load`:
     "limestone" and "shale" are refused (each names two printed rows;
     they returned soft limestone and soft shales) (gec-39).

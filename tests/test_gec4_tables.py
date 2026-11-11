@@ -209,13 +209,26 @@ class TestTable8RockAnchorTransferLoad:
         r = table_8_rock_anchor_transfer_load("soft_shales")
         assert r["ultimate_transfer_load_kN_per_m"] == 150
 
-    def test_fs_3(self):
-        r = table_8_rock_anchor_transfer_load("granite_basalt")
-        assert r["factor_of_safety"] == 3.0
-
-    def test_allowable_correct(self):
-        r = table_8_rock_anchor_transfer_load("granite_basalt")
-        assert r["allowable_load_per_m_kN"] == pytest.approx(730 / 3.0, abs=0.5)
+    def test_both_printed_factors_of_safety_on_every_row(self):
+        """GEC-4 p. 74 (PDF page 95): FS 3.0 "in competent rock"; FS 2.0 for
+        weak rocks such as clay shales, "intermediate geomaterials" of
+        unconfined compressive strength 0.5 to 5.0 MPa. Table 8 assigns
+        neither to a row and prints no strength, so each row returns both
+        (lead). Every row returned 3.0 alone, soft shales included."""
+        for rock, q in (("granite_basalt", 730), ("soft_shales", 150),
+                        ("slates_hard_shales", 360)):
+            r = table_8_rock_anchor_transfer_load(rock)
+            opts = {o["factor_of_safety"]: o for o in r["factor_of_safety_options"]}
+            assert set(opts) == {3.0, 2.0}
+            assert opts[3.0]["allowable_load_per_m_kN"] == pytest.approx(q / 3.0, abs=0.05)
+            assert opts[2.0]["allowable_load_per_m_kN"] == pytest.approx(q / 2.0, abs=0.05)
+            assert "competent rock" in opts[3.0]["applies_to"]
+            assert "0.5 to 5.0 MPa" in opts[2.0]["applies_to"]
+            assert "factor_of_safety" not in r
+            assert "dividing by a factor of safety of 3.0" in r["print_note"]
+            assert "should use a factor of safety of 2.0" in r["print_note"]
+        assert table_8_rock_anchor_transfer_load("soft_shales")[
+            "rock_type_printed"] == "Soft Shales"
 
     def test_granite_alias(self):
         r = table_8_rock_anchor_transfer_load("granite")
