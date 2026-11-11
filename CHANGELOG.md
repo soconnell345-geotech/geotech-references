@@ -413,22 +413,30 @@ place of the removed correlations, each read off the rendered page:
 - `figure_4_1_potential_expansiveness`: Van Der Merwe's potential
   expansiveness PE (0, 1/4, 1/2, 1 inch/foot) from the PI and clay
   fraction of the whole sample, Figure 4-1 (printed 4-2), its regions
-  taken at the axis ticks (a 400-dpi trace puts the drawn lines within 0.7
-  clay % and 0.5 PI); outside the frame (70) refused.
+  taken at the labelled axis ticks; outside the frame (70) refused. The
+  drawn lines sit up to about 0.8 % clay and 0.6 PI off the ticks and the
+  chart's PI marks agree only to about 0.5 PI, so the result says a point
+  within about 1 % clay or 1 PI of a boundary may lie in the next region.
 - `eq_4_1_van_der_merwe_heave`: total heave at the ground surface,
   delta_H = sum of 10^(-D/20) x PE over 1-ft increments, Eq. 4-1 (printed
   4-1); 10 ft of very high soil gives 5.604 in.
 - `eq_5_2_potential_vertical_heave`: N x DX x sum (ef - eo)/(1 + eo),
-  Eq. 5-2 (printed 5-2), N from 1/3 to 1; one element is Figure 4-2's
+  Eq. 5-2 (printed 5-2), N from 1/3 to 1 (0.33 or 0.333 is taken as 1/3,
+  and the result says so); one element is Figure 4-2's
   Sp/100 = (e1 - eo)/(1 + eo).
 - `eq_5_3_to_5_5_equilibrium_pore_water_pressure`: the saturated,
   hydrostatic I and hydrostatic II profiles, gamma_w 0.0312 ton per cubic
   foot (printed 5-3 to 5-4).
 - `eq_5_8_consolidometer_heave`: delta_H/H = cs/(1 + eo) log(sigma_s /
   sigma'_v) with sigma'_v = sigma_v - u_w, Eqs. 5-8 and 5-9 (printed 5-5),
-  "log" taken as log10 (Figure 4-2's log pressure axis); u_w defaults to
-  the saturated profile, which the print says to use when nothing else is
-  known; a layer above its swell pressure settles.
+  "log" taken as log10 (Figure 4-2's log pressure axis). A u_w left out is
+  taken as 0, the saturated profile the print says to use when nothing
+  else is known, and the result names those layers with p. 5-3's
+  sentence. A layer past its swell pressure gets no magnitude (heave
+  None, flagged, listed in `layers_left_out`): p. 4-4 says only that net
+  settlements will occur, and c_s, the slope from the seating to the
+  swell pressure, does not give them; the total is over the swelling
+  layers.
 
 No stored statement changed; the package keeps no chapter text.
 

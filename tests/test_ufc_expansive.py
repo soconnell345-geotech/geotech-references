@@ -247,9 +247,24 @@ class TestPotentialVerticalHeaveEq52:
         assert r["heave_ft"] == pytest.approx(0.0283, abs=1e-4)
 
     def test_n_outside_one_third_to_one_refused(self):
-        with pytest.raises(ValueError, match="1/3 to 1"):
-            eq_5_2_potential_vertical_heave(
-                [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9}], 1.0, 0.2)
+        el = [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9}]
+        for n in (0.2, 0.329, 1.01):
+            with pytest.raises(ValueError, match="1/3"):
+                eq_5_2_potential_vertical_heave(el, 1.0, n)
+
+    def test_n_written_0_33_is_one_third(self):
+        # The print writes "1/3"; 0.33 and 0.333 are taken as 1/3 and said so.
+        el = [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9}]
+        exact = eq_5_2_potential_vertical_heave(el, 1.0, 1 / 3)
+        assert not any("taken as 1/3" in n for n in exact["notes"])
+        for n in (0.33, 0.333):
+            r = eq_5_2_potential_vertical_heave(el, 1.0, n)
+            assert r["vertical_swell_fraction"] == pytest.approx(1 / 3)
+            assert r["vertical_swell_fraction_given"] == n
+            assert r["heave_ft"] == exact["heave_ft"]
+            assert any("taken as 1/3" in note for note in r["notes"])
+        r = eq_5_2_potential_vertical_heave(el, 1.0, 0.5)
+        assert r["vertical_swell_fraction"] == 0.5
 
 
 class TestEquilibriumPoreWaterPressure:
@@ -284,7 +299,8 @@ class TestEquilibriumPoreWaterPressure:
 class TestConsolidometerHeaveEq58:
     """Eqs. 5-8 and 5-9, PDF 40 (printed 5-5):
     delta_H/H = cs/(1 + eo) log(sigma_s/sigma'_v), sigma'_v = sigma_v - u_w.
-    The print gives no worked example; values worked by hand."""
+    Figure 5-4's example prints measured per cent swells, not c_s, e_o
+    and sigma_s, so these values are worked by hand."""
 
     def test_saturated_profile_default(self):
         # 1 x 0.1/2 x log10(4/0.4) = 0.05 ft.
@@ -294,6 +310,24 @@ class TestConsolidometerHeaveEq58:
         assert r["total_heave_ft"] == pytest.approx(0.05)
         assert r["layers"][0]["percent_swell"] == pytest.approx(5.0)
 
+    def test_u_w_left_out_is_said_to_be_zero(self):
+        # Left out (or None) -> 0, the saturated profile, with p. 5-3's sentence.
+        base = {"thickness_ft": 1, "swell_index": 0.1, "initial_void_ratio": 1.0,
+                "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 0.4}
+        r = eq_5_8_consolidometer_heave(
+            [dict(base), dict(base, pore_water_pressure_tsf=None),
+             dict(base, pore_water_pressure_tsf=-0.6)])
+        assert r["pore_water_pressure_assumed"]["layers"] == [0, 1]
+        assert r["pore_water_pressure_assumed"]["value_tsf"] == 0.0
+        assert "should be used if other information" in (
+            r["pore_water_pressure_assumed"]["basis"])
+        assert [L["pore_water_pressure_tsf"] for L in r["layers"]] == [0.0, 0.0, -0.6]
+        assert r["layers"][2]["pore_water_pressure_basis"] == "given"
+        assert "p. 5-3" in r["layers"][0]["pore_water_pressure_basis"]
+        given = eq_5_8_consolidometer_heave(
+            [dict(base, pore_water_pressure_tsf=0.0)])
+        assert given["pore_water_pressure_assumed"] is None
+
     def test_negative_pore_pressure_raises_effective_pressure(self):
         # u_w -0.6: sigma'_v = 1.0; 0.05 x log10(4) = 0.0301 ft.
         r = eq_5_8_consolidometer_heave([
@@ -302,13 +336,32 @@ class TestConsolidometerHeaveEq58:
              "pore_water_pressure_tsf": -0.6}])
         assert r["total_heave_ft"] == pytest.approx(0.0301, abs=1e-4)
 
-    def test_above_swell_pressure_settles(self):
-        # sigma'_v 8 > sigma_s 4: 2 x 0.1/2 x log10(0.5) = -0.0301 ft.
+    def test_above_swell_pressure_gives_no_magnitude(self):
+        # sigma'_v 5 > sigma_s 2.5: c_s (points 3 to 4 of Figure 4-2) does
+        # not give the settlement (p. 4-4); no heave, flagged, left out.
         r = eq_5_8_consolidometer_heave([
-            {"thickness_ft": 2, "swell_index": 0.1, "initial_void_ratio": 1.0,
-             "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 8}])
-        assert r["total_heave_ft"] == pytest.approx(-0.0301, abs=1e-4)
-        assert any("Net settlements" in n for n in r["notes"])
+            {"thickness_ft": 2, "swell_index": 0.05, "initial_void_ratio": 0.8,
+             "swell_pressure_tsf": 2.5, "total_vertical_pressure_tsf": 5}])
+        row = r["layers"][0]
+        assert row["heave_ft"] is None and row["percent_swell"] is None
+        assert row["past_swell_pressure"] is True
+        assert r["total_heave_ft"] == 0.0
+        assert r["layers_left_out"][0]["layer"] == 0
+        assert "Net settlements" in r["layers_left_out"][0]["reason"]
+        assert "does not give the settlement" in r["layers_left_out"][0]["reason"]
+        assert any("No layer swells" in n for n in r["notes"])
+
+    def test_total_is_over_the_swelling_layers(self):
+        # Layer 0 swells (0.05 ft); layer 1 is past its swell pressure.
+        r = eq_5_8_consolidometer_heave([
+            {"thickness_ft": 1, "swell_index": 0.1, "initial_void_ratio": 1.0,
+             "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 0.4},
+            {"thickness_ft": 2, "swell_index": 0.05, "initial_void_ratio": 0.8,
+             "swell_pressure_tsf": 2.5, "total_vertical_pressure_tsf": 5}])
+        assert r["total_heave_ft"] == pytest.approx(0.05)
+        assert r["layers"][0]["past_swell_pressure"] is False
+        assert [x["layer"] for x in r["layers_left_out"]] == [1]
+        assert not any("No layer swells" in n for n in r["notes"])
 
     def test_layers_sum_and_match_figure_5_4_area(self):
         # Two layers; their percent swell fed to heave_prediction_mm (the

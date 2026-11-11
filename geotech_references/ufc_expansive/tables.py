@@ -428,8 +428,18 @@ _FIG_4_1_TRACE = (
     "12, 18, 24, 27, 45, 63 %; PI 12.5, 23, 32): medium from clay 12 and "
     "PI 12.5, high from clay 18 and PI 23, very high from clay 27 and PI "
     "32, each above the sloped line PI = 0.5 x clay + 0.5 through (24, "
-    "12.5), (45, 23) and (63, 32). Traced at 400 dpi, the drawn lines lie "
-    "within 0.7 (clay %) and 0.5 (PI) of these. A point on a boundary is "
+    "12.5), (45, 23) and (63, 32). The drawn lines do not sit exactly on "
+    "these values. Read at 400 dpi (two traces in the build and an "
+    "independent one), the vertical lines lie 0.2 to 0.7 % clay to the "
+    "right of the ticks 12, 18 and 27, and the sloped line meets the "
+    "horizontal lines at clay about 24.8, 45.0 to 45.5 and 63.7 to 63.8. "
+    "The chart's own PI marks (the bottom axis and the dashes at 12.5, 23 "
+    "and 32) do not fit one scale closer than about 0.5 PI, so the PI "
+    "readings depend on the marks used: the lowest horizontal line reads "
+    "12.4 to 13.0, the others 22.8 to 23.0 and 32.0 to 32.4, and the "
+    "sloped line 0 to 0.6 PI below PI = 0.5 x clay + 0.5. A point within "
+    "about 1 % clay or 1 PI of a boundary may therefore lie in the "
+    "neighbouring region on the drawn chart. A point on a boundary is "
     "given the higher level (the code's choice). The frame runs to about "
     "70 on both axes; no value is drawn beyond it.")
 
@@ -454,8 +464,12 @@ def figure_4_1_potential_expansiveness(plasticity_index, clay_fraction_pct):
     clay 12 % and PI 12.5, high from clay 18 % and PI 23, very high from
     clay 27 % and PI 32, each region lying above the sloped line through
     (24, 12.5), (45, 23) and (63, 32), PI = 0.5 x clay + 0.5; everything
-    else is low. A 400-dpi trace puts the drawn lines within 0.7 (clay %)
-    and 0.5 (PI) of these. A point on a boundary takes the higher level.
+    else is low. The drawn lines sit up to about 0.8 % clay and 0.6 PI
+    off these values, and the chart's own PI marks agree with one another
+    only to about 0.5 PI (trace_note gives the readings), so a point
+    within about 1 % clay or 1 PI of a boundary may lie in the
+    neighbouring region on the drawn chart. A point on a boundary takes
+    the higher level.
 
     Parameters
     ----------
