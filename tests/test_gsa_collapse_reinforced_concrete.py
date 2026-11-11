@@ -60,7 +60,8 @@ class TestTable6BeamFlexureModeling:
     def test_single_acceptance_column_flexure(self, rho, reinf, vw, printed):
         # GSA_Alternate_Path_2016.pdf pdf 52 / printed p. 39, Table 6: ONE
         # "Acceptance Criteria" column (0.1, 0.08, 0.06, 0.04, 0.06, 0.03,
-        # 0.03, 0.02), for primary and secondary components alike.
+        # 0.03, 0.02), for primary and secondary components where the full
+        # backbone curve is explicitly modeled (footnote 2).
         r = table_6_beam_flexure_modeling(rho, reinf, vw)
         assert r["acceptance"] == pytest.approx(printed)
         assert r["primary_acceptance"] == pytest.approx(printed)

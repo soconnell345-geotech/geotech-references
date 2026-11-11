@@ -91,15 +91,16 @@ def minimum_effective_depth(mn, b, fc_prime, kd):
 
 
 def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
-    """Eq D-6, D-7: MDL, kip-in., the maximum bending moment a member may
+    """Eq D-6, D-7: M_DS, kip-in. (returned as 'mdl'), the maximum bending
+    moment a member may
     carry and remain within the target reinforcement-ratio limit, with the
     stress-block depth ad, in., from fc' in ksi, dimensions in inches and
     Pn in kips (printed p. 72).
 
         ad = Kd * d                                          [Eq D-7]
-        MDL = 0.85*fc'*ad*b*(d - ad/2) - (d - h/2)*Pn         [Eq D-6]
+        M_DS = 0.85*fc'*ad*b*(d - ad/2) - (d - h/2)*Pn        [Eq D-6]
 
-    If the required Mn <= MDL, the trial section is adequate
+    If the required Mn <= M_DS, the trial section is adequate
     (``design_singly_reinforced`` may be used directly); otherwise the
     section must be enlarged or doubly reinforced
     (``design_doubly_reinforced``).
@@ -125,7 +126,7 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
     Returns
     -------
     dict
-        {'ad', 'mdl', 'equation': 'D-6/D-7', 'printed_page': '72',
+        {'ad', 'mdl' (the print's M_DS), 'equation': 'D-6/D-7', 'printed_page': '72',
          'pdf_page': 77}
     """
     ad = kd * d
@@ -199,17 +200,17 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
                               es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     """Eq D-3, D-4, D-6, D-7: direct design of a doubly reinforced member:
     the required tension and compression reinforcement areas As and As',
-    sq in., when the required Mn (kip-in.) exceeds MDL (the singly
+    sq in., when the required Mn (kip-in.) exceeds M_DS (the singly
     reinforced limit at the target reinforcement ratio), with strengths in
     ksi, dimensions in inches and Pn in kips (printed pp. 70-72).
 
     Procedure:
-      1. Kd, MDL at the target rho/rho_b (``kd_table_d1``,
+      1. Kd, M_DS at the target rho/rho_b (``kd_table_d1``,
          ``max_moment_at_rho_limit``).
       2. Compression-steel stress fs' at ad = Kd*d, from strain
          compatibility (paragraph D-2b): fs' = (ad - beta1*d')*ec*Es/ad
          (capped at fy).
-      3. As' = (Mn - MDL) / [fs'*(d - d')]                       [Eq D-4]
+      3. As' = (Mn - M_DS) / [fs'*(d - d')]                      [Eq D-4]
       4. As = (0.85*fc'*Kd*b*d - Pn + As'*fs') / fy                [Eq D-3]
 
     Parameters
@@ -247,7 +248,7 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
     Returns
     -------
     dict
-        {'kd', 'mdl', 'fs_prime', 'as_prime_required', 'as_required',
+        {'kd', 'mdl' (M_DS), 'fs_prime', 'as_prime_required', 'as_required',
          'equation': 'D-3/D-4/D-6/D-7', ...}
     """
     from .flexure_axial import aci_beta1
@@ -260,7 +261,7 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
 
     if mn <= mdl:
         raise ValueError(
-            "Required Mn does not exceed MDL -- a singly reinforced section "
+            "Required Mn does not exceed M_DS (Eq D-6) -- a singly reinforced section "
             "is adequate; use design_singly_reinforced instead."
         )
 

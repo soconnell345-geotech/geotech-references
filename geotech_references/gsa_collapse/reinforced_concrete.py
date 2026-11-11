@@ -140,8 +140,12 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     rotation, radians) and c (residual strength ratio) and the acceptance-
     criteria plastic rotation (radians) for a reinforced-concrete beam
     controlled by FLEXURE (printed p. 39, replaces ASCE 41 Table 10-7).
-    GSA prints a single acceptance column, which equals b in every row and
-    applies to primary and secondary components (footnote 2). vw_ratio =
+    GSA prints a single acceptance column, which equals b in every row.
+    Footnote 2 (pdf 52 / printed 39): "Primary and secondary component
+    demands shall be within secondary component acceptance criteria
+    where the full backbone curve is explicitly modeled including
+    strength degradation and residual strength, in accordance with
+    Section 7.5.3.2 of ASCE 41". vw_ratio =
     V / (bw d sqrt(f'c)) must be in psi units (V lb, bw and d in., f'c
     psi). Linear
     interpolation between the printed grid points is permitted (footnote
@@ -195,7 +199,7 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     c = _linterp(vw, [3.0, 6.0], [c3, c6])
     # GSA prints ONE acceptance column (equal to b in every row, rendered
     # pdf 52 / printed 39); footnote 2 applies it to primary and secondary
-    # components alike.
+    # components where the full backbone curve is explicitly modeled.
     return {"a": a, "b": b, "c": c, "acceptance": b,
             "primary_acceptance": b, "secondary_acceptance": b,
             **_vw_ratio_row(vw_ratio),
@@ -205,7 +209,8 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
 def table_6_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
     """GSA Table 6(ii-iv): nonlinear modeling parameters a, b (radians)
     and c, and the single printed acceptance-criteria plastic rotation
-    (radians, = b, for primary and secondary components alike) for RC
+    (radians, = b, for primary and secondary components where the full
+    backbone curve is explicitly modeled, footnote 2) for RC
     beams controlled by SHEAR, inadequate development/splicing, or
     inadequate embedment into the beam-column joint (printed p. 39).
 
@@ -365,7 +370,8 @@ _TABLE_8_FLEXURE = {
     "no": {"vg0.2": (0.02, 0.02, None), "vg0.4": (0.0, 0.0, None)},
 }
 # GSA prints ONE "Acceptance Criteria" column (plastic rotation, radians)
-# for primary and secondary components alike (footnote 2), rendered pdf 54
+# for primary and secondary components where the full backbone curve is
+# explicitly modeled (footnote 2), rendered pdf 54
 # / printed 41: 0.100, 0.080, 0.020, 0.000; development 0.02; embedment
 # 0.03. (UFC 4-023-03 Table 4-3 prints two columns with other values.)
 _TABLE_8_ACCEPT = {
@@ -382,7 +388,8 @@ _TABLE_8_OTHER = {
 def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
     """GSA Table 8(i): nonlinear modeling parameters a, b (plastic
     rotation, radians) and c, and the single printed acceptance-criteria
-    plastic rotation (radians; primary and secondary alike, footnote 2:
+    plastic rotation (radians; primary and secondary alike where the full
+    backbone curve is explicitly modeled, footnote 2:
     0.100 / 0.080 with continuity reinforcement, 0.020 / 0.000 without,
     at Vg/Vo <= 0.2 / >= 0.4) for a two-way slab or slab-column connection
     controlled by FLEXURE (printed p. 41, replaces ASCE 41 Table 10-15).

@@ -257,7 +257,8 @@ def wind_speed_conversion_fastest_mile(v):
         Vfm = (sqrt(0.6) * V - 10.5) / 1.05
 
     The radical covers 0.6 only, as typeset (V = 150 mph gives Vfm =
-    100.7 mph). The constant 10.5 is in mph.
+    100.7 mph). The page prints 10.5 with no unit and gives no unit for
+    V; this function reads V in mph, and 10.5 then carries V's unit.
 
     Parameters
     ----------
