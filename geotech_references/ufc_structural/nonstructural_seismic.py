@@ -63,16 +63,22 @@ def rigid_pipe_fundamental_period(support_condition, length, ei, w, g=386.4):
     EI in lb-in.^2 and w in lb/in.; or mm, N-mm^2, N/mm with g given in
     mm/s^2) (printed p. 137).
 
-    The print gives the span for a period:
+    The print gives the span for a period (UFC_3-301-01_2023_c4.pdf pdf
+    159), with "I_g" printed as I with a subscript g:
 
-        L = sqrt( C * pi * Ta * sqrt(E I g / w) )      (Equation C-1)
+        L = sqrt( C * pi * Ta * sqrt(E I_g / w) ), in. or mm   (Equation C-1)
 
-    so the period of a span is
+    and defines C, Ta, E, I ("moment of inertia of pipe, in^4 or mm^4")
+    and w, but neither g nor I_g. READING: this function takes E I_g as
+    E x I x g, with I the pipe's moment of inertia and g the acceleration
+    of gravity, so the period of a span is
 
         Ta = L**2 / (C * pi) * sqrt(w / (E I g))
 
-    (UFC_3-301-01_2023_c4.pdf pdf 159; with C = 0.50 this is the
-    pinned-pinned beam period). A pipe is "rigid" per Section C-3.1.3.2.1
+    (with C = 0.50 this is the pinned-pinned beam period). Table C-1
+    confirms the reading: its 1-in. standard steel pipe, pinned-pinned,
+    rigid to 7 ft 0 in, gives Ta = 0.0594 s at 84 in. with g = 386.4
+    in./s^2 (printed p. 138). A pipe is "rigid" per Section C-3.1.3.2.1
     if Ta <= 0.06 second (ASCE 7-22 Section 11.2 "Component, rigid"
     definition); Tables C-1/C-2/C-3 tabulate the span L that produces
     exactly Ta = 0.06 s for standard water-filled pipe and tube sizes

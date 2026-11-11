@@ -41,7 +41,10 @@ class TestPeriodConstants:
 
     def test_fundamental_period_formula(self):
         # Eq C-1 (UFC_3-301-01_2023_c4.pdf pdf 159 / printed 137) prints
-        # L = sqrt(C pi Ta sqrt(E I g / w)), so Ta = L^2/(C pi) sqrt(w/(E I g)).
+        # L = sqrt(C pi Ta sqrt(E I_g / w)) and defines neither g nor I_g.
+        # Read as E x I x g (I the pipe's moment of inertia, g gravity), so
+        # Ta = L^2/(C pi) sqrt(w/(E I g)); Table C-1's 7 ft 0 in row (next
+        # test) confirms the reading.
         r = rigid_pipe_fundamental_period("pinned_pinned", length=100.0, ei=2.0e6, w=0.5)
         expected = 100.0 ** 2 / (0.50 * math.pi) * math.sqrt(0.5 / (2.0e6 * 386.4))
         assert r["ta_seconds"] == pytest.approx(expected)
