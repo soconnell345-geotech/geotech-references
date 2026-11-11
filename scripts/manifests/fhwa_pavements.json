@@ -83,11 +83,23 @@
       ],
       "text_fixes": [
         {"page": "3-31", "find": "10x106 ESALs", "replace": "10x10^6 ESALs", "all": true},
-        {"page": "3-33", "find": "4.2x106 psi", "replace": "4.2x10^6 psi"}
+        {"page": "3-33", "find": "4.2x106 psi", "replace": "4.2x10^6 psi"},
+        {"page": "4-37", "find": "N60 = (Ef/60) Nmeas\n\n(5-1)", "replace": "N60 = (Ef/60) Nmeas (5-1) [numbered (5-1) on the page, inside Table 4-8 of chapter 4; chapter 5's Eq. (5.1) is another equation]"},
+        {"page": "4-38", "find": "E/Pa ~ 5 N60\n\n(sands with fines) E/Pa ~ 10 N60 (clean, normally consolidated sands) E/Pa ~ 15 N60 (clean, over consolidated sands)", "replace": "E/Pa ~ 5 N60 (sands with fines)\nE/Pa ~ 10 N60 (clean, normally consolidated sands)\nE/Pa ~ 15 N60 (clean, over consolidated sands)"},
+        {"page": "4-39", "find": "CBR = 292/(DPI)1.12 for gravel, sand, and silt CBR = 1/0.002871 DCP for highly plastic clays CBR = 1/(0.017 DCP)2 for low plasticity clays", "replace": "CBR = 292/(DPI)^1.12 for gravel, sand, and silt\nCBR = 1/0.002871 DCP for highly plastic clays\nCBR = 1/(0.017 DCP)^2 for low plasticity clays\n[Table 4-9 prints no unit for DPI or DCP. The library's cbr_from_dcp takes DCP in mm per blow; its notes say why.]"}
       ],
-      "typed_tables": []
+      "table_functions": {
+        "4-9": ["geotech_references.fhwa_pavements.equations.cbr_from_dcp"],
+        "4-14": ["geotech_references.fhwa_pavements.tables.table_4_14_soil_as_pavement_material"]
+      },
+      "typed_tables": [
+        {"number": "4-14", "page": "4-65", "from": "Table 4-14. Summary of soil characteristics as a pavement material. (from NCHRP 1-37A Pavement Design Guide)\n\n", "to": "\n\n[p. 4-66]",
+         "rows": "Major Divisions | Name | Subgrade Strength when Not Subject to Frost Action | Potential Frost Action | Compressibility & Expansion | Drainage Characteristics\nGravel and Gravelly Soils, GW | Well-graded gravels or gravel-sand mixtures, little or no fines | Excellent | None to very slight | Almost none | Excellent\nGP | Poorly graded gravels or gravel-sand mixtures, little or no fines | Good to excellent | None to very slight | Almost none | Excellent\nGM* d | Silty gravels, gravel-sand silt mixtures | Good to excellent | Slight to medium | Very slight | Fair to poor\nGM* u | (as GM d) | Good | Slight to medium | Slight | Poor to practically impervious\nGC | Clayey gravels, gravel-sand-clay mixture | Good | Slight to medium | Slight | Poor to practically impervious\nSand and Sandy Soils, SW | Well-graded sands or gravelly sands, little or no fines | Good | None to very slight | Almost none | Excellent\nSP | Poorly graded sands or gravelly sands, little or no fines | Fair to good | None to very slight | Almost none | Excellent\nSM* d | Silty sands, sand-silt mixtures | Fair to good | Slight to high | Very slight | Fair to poor\nSM* u | (as SM d) | Fair | Slight to high | Slight to medium | Poor to practically impervious\nSC | Clayey sands, sand-clay mixtures | Poor to fair | Slight to high | Slight to medium | Poor to practically impervious\n*Division of GM and SM groups is based on Atterberg Limits (See Chapter 6) with suffix d used when L.L. is 28 or less and the PI is 6 or less. The suffix u is used when L.L. is greater that 28."},
+        {"number": "4-14", "page": "4-66", "from": "Table 4-14. Summary of soil characteristics as a pavement material (continued).\n\n", "to": "\n\n[p. 4-67]",
+         "rows": "Major Divisions | Name | Subgrade Strength when Not Subject to Frost Action | Potential Frost Action | Compressibility & Expansion | Drainage Characteristics\nSilts & Clays with Liquid Limit Less Than 50, ML | Inorganic silts & very fine sand, rock flour, silty or clayey fine sand or clayey silts with slight plasticity | Poor to Fair | Medium to Very High | Slight to medium | Fair to Poor\nCL | Inorganic clays of low to medium plasticity, gravelly clays, sandy clays, silty clays, lean clays | Poor to Fair | Medium to High | Slight to medium | Practically Impervious\nOL | Organic silts & organic silt-clays or low plasticity | Poor | Medium to High | Medium to high | Poor\nSilts & Clays with Liquid Limit Greater Than 50, MH | Inorganic silts, micaceous or diatomaceous fine sand or silty soils, elastic silts | Poor | Medium to Very High | High | Fair to Poor\nCH | Inorganic clays of high plasticity, fat clays | Poor to Fair | Medium to Very High | High | Practically Impervious\nOH | Organic clays of medium to high plasticity, organic silts | Poor to Very Poor | Medium | High | Practically Impervious\nHighly Organic Soils, (Pt) | Peat & other highly organic soils | Not Suitable | Slight | Very high | Fair to Poor"}
+      ]
     }
   ],
-  "skip_chapters": [4, 5, 6, 7, 8],
+  "skip_chapters": [5, 6, 7, 8],
   "chapters": []
 }

@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2, 3]
+BUILT = [1, 2, 3, 4]
 
 
 def _manifest():
@@ -189,3 +189,43 @@ def test_chapter_3_formulas_stand_in_the_body():
     assert "10x106" not in body and body.count("10x10^6 ESALs") == 2
     assert "4.2x10^6 psi (29 GPa)" in body
     assert "Reliability Level (%) Reliability Factor Fr 50 1.00 70 1.44 90 2.32" in body
+
+
+def test_chapter_4_headings_as_printed():
+    assert _printed_ids(4) == [
+        "4.1", "4.2", "4.2.1", "4.2.2", "4.2.3", "4.2.4", "4.3", "4.4", "4.5",
+        "4.5.1", "4.5.2", "4.5.3", "4.5.4", "4.5.5", "4.5.6", "4.5.7", "4.6",
+        "4.7", "4.7.1", "4.7.2", "4.7.3", "4.7.4", "4.8"]
+    s4 = _sections(4)
+    # the stored text filed Table 4-14 under 4.7.3; the print's 4.7.3 is
+    # the subsurface profile and Table 4-14 is printed in 4.7.2 (p. 4-65)
+    assert s4["4.7.3"]["title"] == "Subsurface Profile"
+    assert any(t.startswith("Table 4-14") for t in s4["4.7.2"]["tables"])
+
+
+def test_dcp_relation_where_the_page_prints_it():
+    # finding text-10: the stored 4.5.5 gave the DCP relation and ASTM
+    # numbers the section does not print; the relation is printed in Table
+    # 4-9 (p. 4-39), after the 4.5.6 heading, and prints no unit
+    s4 = _sections(4)
+    assert "292" not in s4["4.5.5"]["body"]
+    assert "D4429" not in s4["4.5.5"]["body"] and "D6951" not in s4["4.5.5"]["body"]
+    body = "\n".join(s["body"] for k, s in s4.items() if k.startswith("4.5.6"))
+    assert "[p. 4-39]" in body
+    assert ("CBR = 292/(DPI)^1.12 for gravel, sand, and silt\n"
+            "CBR = 1/0.002871 DCP for highly plastic clays\n"
+            "CBR = 1/(0.017 DCP)^2 for low plasticity clays") in body
+    assert "prints no unit for DPI or DCP" in body and "cbr_from_dcp" in body
+    links = [e["implemented_in"] for s in s4.values() for e in s["equations"]]
+    assert "geotech_references.fhwa_pavements.equations.cbr_from_dcp" in links
+
+
+def test_table_4_14_typed_from_the_page():
+    body = _sections(4)["4.7.2"]["body"]
+    assert "[Table 4-14 as printed on p. 4-65, typed in from the page:]" in body
+    assert "GM* u | (as GM d) | Good | Slight to medium | Slight | Poor to practically impervious" in body
+    assert "CH | Inorganic clays of high plasticity, fat clays | Poor to Fair | Medium to Very High | High | Practically Impervious" in body
+    assert "(Pt) | Peat & other highly organic soils | Not Suitable | Slight | Very high | Fair to Poor" in body
+    # the SPT energy correction keeps the number the page gives it
+    sec = "\n".join(s["body"] for s in _chapter(4)["sections"])
+    assert "N60 = (Ef/60) Nmeas (5-1) [numbered (5-1) on the page" in sec

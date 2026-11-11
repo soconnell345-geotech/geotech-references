@@ -720,7 +720,16 @@ stored before; 3 (Geotechnical Issues in Pavement Design and Performance,
 from the page and written where the page prints them. Two are typed as
 printed with a note: Eq. 3.5 prints 7.3 log(D + 1) where Eqs. 3.3 and 3.9
 print 7.35, and Eq. 3.9 prints 1.64x10^7 where Eqs. 3.3 and 3.5 print
-1.624×10^7. The script gains options a manifest opts into
+1.624×10^7. Chapter 4 (Geotechnical Exploration and Testing, 23 printed
+sections, was 3): the stored 4.5.5 gave the DCP relation CBR = 292/DCP^1.12
+and ASTM D6951 and D4429, which that section does not print; the relation is
+printed in Table 4-9 (p. 4-39, after the 4.5.6 heading) with two more for
+clays and no unit, and the text now says so and points to `cbr_from_dcp`'s
+note (mm per blow). The stored 4.7.3 discussed Table 4-14; the printed 4.7.3
+is Subsurface Profile and Table 4-14 is in 4.7.2, now typed in from pp. 4-65
+and 4-66 with the silts, clays and peat rows the lookup leaves out. The
+SPT correction in Table 4-8 keeps the number the page gives it, (5-1). The
+script gains options a manifest opts into
 (`contents_format` and `list_format` "lines", `header_end`, `page_label`,
 `front_matter_header`, `equation_numbers` "parenthesized_dot",
 `title_lines`, `headings_on_listed_page`, `heading_overrides`,
