@@ -242,7 +242,8 @@ class TestTrunnionJudgmentCall:
         # Paragraph F.4.2.4 (EM 1110-2-2107_2022.pdf pdf 445 / printed 436)
         # typesets theta_Rt = tan^-1(Rtx/Rty) (1.3055 rad here); the worked
         # example (pdf 454 / printed 445) computes tan^-1(363/1336) = 0.2653
-        # and Table F.8 prints -0.2653. The code returns the magnitude.
+        # from Rtx = -1,336, Rty = -363.0; Table F.8 lists the components
+        # unsigned beside -0.2653. The code returns the magnitude.
         r = trunnion_reaction_force(rtx=-1336.0, rty=-363.0)
         assert r["theta_rt_rad"] == pytest.approx(0.2653, abs=0.0005)
         assert r["theta_rt_rad"] > 0

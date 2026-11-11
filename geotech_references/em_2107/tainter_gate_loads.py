@@ -22,10 +22,13 @@ doctrine: never guess, verify against the manual's own numbers:
     stated integral
     INT(th1,th2) (Y + R sin(th)) cos(th) dth gives the opposite sign:
     "Ph = R*gamma_w*[Y*(sin th2 - sin th1) + (R/2)*(sin^2 th2 - sin^2
-    th1)]" -- and THIS form reproduces the worked example's Ph = 50.0 kips
-    exactly (Table F.3), while the literally-printed form gives -50.0.
-    ``hydrostatic_horizontal_component`` implements the calculus-consistent,
-    numerically-verified form.
+    th1)]" -- and THIS form reproduces Table F.3's Ph = 50.0 kips/ft
+    exactly, while the literally-printed Eq F.10 gives -50.0. The worked
+    example's own displayed equation (pdf 449 / printed 440) is a third
+    form, "Ph = R*gamma_w*[Y*(sin th2 - sin th1) - (1/2)R*(sin^2 th2 -
+    sin^2 th1)] = 50.0", which gives 30.0 with Table F.3's inputs; only
+    the integral's form gives the table's 50.0.
+    ``hydrostatic_horizontal_component`` implements the integral's form.
   - theta_p: paragraph F.3.5 says "arctangent of the horizontal component
     over the vertical component" and typesets the displayed equation
     theta_p = tan^-1(Ph/Pv) (printed p. 427), but the worked example
@@ -35,9 +38,12 @@ doctrine: never guess, verify against the manual's own numbers:
     the worked number.
   - theta_Rt: paragraph F.4.2.4 typesets theta_Rt = tan^-1(Rtx/Rty)
     (printed p. 436), but the worked example computes tan^-1(363/1336) =
-    0.2653 rad (printed p. 445) and Table F.8 prints -0.2653.
-    ``trunnion_reaction_force`` implements atan(|Rty|/|Rtx|), the worked
-    magnitude.
+    0.2653 rad from Rtx = -1,336 and Rty = -363.0 kips (printed p. 445).
+    Table F.8 on the same page lists Rtx 1,336 and Rty 363.0 without signs
+    beside theta_Rt -0.2653; the page does not say what that minus sign
+    means (with both components negative, the arctangent of their ratio
+    is +0.2653). ``trunnion_reaction_force`` implements
+    atan(|Rty|/|Rtx|), the worked magnitude.
   These three are judgment calls ruled by the lead on 2026-11-10 (the
   owner has delegated equation judgment calls): the code follows the
   worked example and its tables, and each function's first docstring
@@ -307,9 +313,11 @@ def hydrostatic_horizontal_component(r, gamma_w, y, theta1, theta2):
     typeset Ph = R gamma_w [Y(sin th1 - sin th2) - (1/2)R(sin^2 th2 -
     sin^2 th1)] (EM 1110-2-2107_2022.pdf pdf 436 / printed 427), the
     negative of the integral printed above it; this function uses the
-    integral's sign, which the worked example and its Table F.3 follow
-    (Ph = +50.0 kips/ft, pdf 449 / printed 440; the typeset form gives
-    -50.0).
+    integral's form, the only one that gives Table F.3's Ph = +50.0
+    kips/ft (pdf 449 / printed 440). The typeset Eq F.10 gives -50.0, and
+    the worked example's own displayed equation, Ph = R gamma_w [Y(sin th2
+    - sin th1) - (1/2)R(sin^2 th2 - sin^2 th1)] = 50.0 (same page), gives
+    30.0 with the table's inputs.
 
         Ph = R*gamma_w * [Y*(sin(th2) - sin(th1)) + (R/2)*(sin(th2)^2 - sin(th1)^2)]
 
@@ -472,9 +480,12 @@ def trunnion_reaction_force(rtx, rty):
     the print typesets theta_Rt = tan^-1(Rtx/Rty) (pdf 445 / printed 436);
     this function uses atan(|Rty|/|Rtx|), which the worked example uses
     (tan^-1(363/1336) = 0.2653 rad, pdf 454 / printed 445; the typeset
-    form gives 1.3055 rad). It returns the MAGNITUDE: Table F.8 (same
-    page) prints theta_Rt = -0.2653 for Rtx = -1336, Rty = -363 kips; the
-    sign follows from the components' signs and is the caller's.
+    form gives 1.3055 rad). It returns the MAGNITUDE. Table F.8 (same
+    page) lists theta_Rt = -0.2653 beside Rtx = 1,336 and Rty = 363.0
+    kips printed without signs, and the page does not say what its minus
+    sign means; with both components negative, as in the example, the
+    arctangent of their ratio is +0.2653. The direction of Rt is the
+    caller's, from the components' signs.
 
         Rt = sqrt(Rtx^2 + Rty^2)
         theta_Rt = atan(|Rty| / |Rtx|)
