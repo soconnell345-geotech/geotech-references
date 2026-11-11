@@ -704,6 +704,24 @@ and caption below was read off the rendered print.
   - Chapters filled in: GEC-7 and GEC-8 rows had none, and GEC-4 rows had
     their own figure number as the chapter.
 
+**Build of 2026-11-10: FHWA-NHI-05-037 Geotechnical Aspects of Pavements,
+chapter text read off the print (app backlog REF-82).** The stored text was
+23 hand-written sections in chapters 3, 4, 5, 7 and 8, ten of them wrong in
+substance, several under section numbers that are other subjects in the
+print. `scripts/build_printed_text.py` now reads this manual
+(manifest `fhwa_pavements.json`, `"text_build": "printed"`): every numbered
+heading of the printed contents is a section with its printed number and
+title, the body in the print's own wording with a `[p. 5-53]` marker where
+each printed page starts, and each figure and table listed under the section
+that prints it. Chapters rebuilt so far: 1 (Introduction, 15 sections) and 2
+(State Agencies, 2 sections; the host agency's questionnaire), neither
+stored before. The script gains options a manifest opts into
+(`contents_format` and `list_format` "lines", `header_end`, `page_label`,
+`front_matter_header`, `equation_numbers` "parenthesized_dot",
+`title_lines`, `headings_on_listed_page`, `heading_overrides`,
+`typed_tables`); without them it builds as before (the Soils and
+Foundations rebuild test is unchanged).
+
 **Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
 Shaft Design Process) rewritten from the print (app backlog REF-81).** The
 review found 9 of the 12 sections of chapter 6 and 2 of the 3 of chapter 8
