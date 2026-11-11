@@ -446,3 +446,23 @@ def test_eq_6_9_against_table_6_2(ratio, boussinesq):
     # difference is up to 7.7 percent of the value where I_sigma < 0.02).
     i = st.equation_6_8_influence_factor("square", ratio, 1.0, None)
     assert i["I_sigma"] == approx(boussinesq, abs=0.0125)
+
+
+def test_c7c_menard_on_sand():
+    # Table C-7c (pp. 381-382): harmonic means and Ed as printed
+    hm = st.equation_7_13_harmonic_mean
+    assert hm([78, 238])["E"] == approx(118, abs=0.6)  # 117.49
+    assert hm([238, 320, 826])["E"] == approx(351, abs=0.5)
+    assert hm([1419, 1065])["E"] == approx(1217, abs=0.5)
+    assert hm([2508, 1059, 1128])["E"] == approx(1346, abs=0.5)
+    ed = st.equation_7_14_equivalent_distortion_modulus(78, 118, 351, 1217,
+                                                        1346)
+    assert ed["E_d"] == approx(152, abs=0.5)
+    r = st.equation_7_11_menard_settlement(3.31, 0.156, 8.0, 152, 78, 0.5,
+                                           0.33, 1.1, 1.1, [])
+    assert r["spherical_ft"] == approx(0.013, abs=0.0005)
+    # Step 12 prints the deviatoric term as 0.015 ft and the sum as
+    # 0.028 ft = 0.38 in; the typed-in numbers give 0.0193 ft, and
+    # 0.019 + 0.013 = 0.032 ft is the printed 0.38 in (0.028 ft is 0.34 in).
+    assert r["deviatoric_ft"] == approx(0.0193, abs=0.0001)
+    assert r["settlement_in"] == approx(0.38, abs=0.01)
