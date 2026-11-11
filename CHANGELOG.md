@@ -4,6 +4,61 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
+equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
+was read off the rendered page and compared with the stored `equations`,
+`body` and `key_points`. No function changes; the text an agent quotes does.
+Pages are printed page numbers.
+
+- Formulas that were wrong: Is(50) = F·P/d² and F = √(De/50) (Eqs. 1-4,
+  1-5, p. 32); five rows of Table 4-2 (line, rectangular, triangular, slope
+  and terrace loads, pp. 185-186); s = ΔH = Σ εz,i·Hi (Eq. 5-4, p. 227);
+  the zi of Eq. 5-7 (p. 232); FSg = kg/ks = ψg·tg/ks (Eq. 6-16, p. 325);
+  φ′ = 31 + KD/(0.236 + 0.066·KD) (Eq. 8-11, p. 406); E = (2/3)(1 + ν)Eu
+  (Eq. 8-36, p. 449).
+- Formulas the text left out are typed in: Eqs. 5-19 to 5-22, 5-24, 5-25,
+  5-27 and 5-28 (pp. 254-268).
+- Equations filed where they are printed: Eq. 3-5 in 3-2.7.3 (was 3-3.1),
+  Eq. 4-12 in 4-5.5.2 (was 4-6.3), Eq. 7-2 in the new section 7-5.2
+  Seepage Forces (p. 357; was 7-6.7). Copies under sections that only cite
+  an equation are removed (Eqs. 5-9, 5-15, 5-22, 6-3, 6-5, 6-11, 7-1).
+- Key points that misread a table: Tables 8-11, 8-20, 8-21 and 8-25
+  (pp. 429-459); the UCT key point no longer states su = qu/2, which the
+  section does not print (p. 152). Sections 4-7 and 4-8 no longer list
+  Tables 4-7 and 4-8, which are tunnelling tables.
+- Kept as printed, with a note: KD = (p1 − p0)/σ′v0 on p. 88 (Eq. 8-10
+  prints (p0 − u0)/σ′v); the time factor C1 in the where-list of Eq. 5-7
+  (Eq. 5-9 calls it C2); qt = qc + u·(1 + a) for Eq. 8-25 (the note cites
+  qt = qc + u2(1 − a) from FHWA-NHI-16-072, GEC 5, Eq. 4.23, p. 4-29); the
+  condition FC×PI = 0 on the first row of Table 8-22 (p. 455; the note adds
+  that FHWA-NHI-05-037 Table 5-34, p. 5-53, prints the relation with no
+  condition); "Example 1, Poorly-Graded Gravel with Sand (GW)" in 1-3.2.3
+  (p. 13; Section 1-3.3.2 uses GP for poorly-graded gravel). The heading of
+  3-2.4.2.1 prints "(ASTM D2116)"; its text and Table 3-4 print D2166, and
+  the body says so (p. 152).
+- The constant of Eqs. 6-13 and 8-41 is in cm/(s·mm²). Eq. 8-30 points to
+  `intrinsic_compression_index_from_el` (it named the Figure 8-46 lookup).
+- The seven printed sections the text did not hold are added in the print's
+  wording: 1-3.2.3 Examples, 2-2.2 Published Geologic and Hydrogeologic Maps
+  (lists Table 2-2), 3-2.5.1.2 Resonant Column Test, 3-2.5.1.3 Cyclic
+  Triaxial Test for Modulus and Damping, 4-2.2 Mohr Circle of Stress (lists
+  Figure 4-3), 5-5.5 Organic Soils and Peat, 8-4.5 Coefficient of
+  Consolidation (lists Figure 8-50). The text now holds all 465 printed
+  sections (`scripts/check_section_numbers.py dm7_1`: 0 missing).
+- Four bodies cut off mid-sentence are completed from the print: 1-3.2.2.2,
+  2-4.2, 3-2.3.2 and 6-3.4; 6-3.4 now lists Tables 6-6 and 6-7 (p. 302),
+  which no section listed.
+- The formulas and values of the tables in chapters 5, 6 and 8 were read
+  off the rendered pages and compared with the key points and summaries
+  that restate them. Key points that said more than the print now say what
+  it says: m is about 0.8 from direct simple shear tests (Ladd et al. 1977),
+  not "for most clays", and the print never says SHANSEP (8-3.2, Tables 8-7
+  and 8-9); Table 8-17's groups (8-4.4); Table 8-28's exponent n is not
+  attributed to a source (8-8.2); O95 < 0.21 mm holds for non-dispersive
+  soils (6-5.3.2); filter Cu, D100F and fines (6-5.3.1); void ratio in
+  Table 6-5 (6-3.3); Table 8-12 rows (8-4.1.1).
+  Test: `tests/test_dm7_1_text_equations.py`.
+
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
 that returned a value the print does not support now return the printed

@@ -96,13 +96,7 @@
         "Critical failure surfaces can often be identified from geologic features (e.g., weak seams); otherwise robust search routines are used.",
         "Most commercial slope stability programs include Spencer's and Morgenstern-Price methods and robust failure surface search routines."
       ],
-      "equations": [
-        {
-          "id": "Eq. 7-1",
-          "description": "Factor of safety used with shear stresses determined from limit equilibrium to compute slope stability: F = s/τ",
-          "implemented_in": "geotech_references.dm7_1.chapter7.factor_of_safety"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 7-3",
         "Figure 7-4"
@@ -123,13 +117,7 @@
         "FE method satisfies all equilibrium equations, unlike some limit equilibrium methods.",
         "Griffiths and Lane (1999) provide a thorough assessment of FE application to slope stability."
       ],
-      "equations": [
-        {
-          "id": "Eq. 7-1",
-          "description": "Factor of safety definition referenced as a contrast to the strength reduction factor (SRF) used in FE/FD analysis.",
-          "implemented_in": "geotech_references.dm7_1.chapter7.factor_of_safety"
-        }
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Applies when considering finite element or finite difference methods as alternatives to limit equilibrium for slope stability analysis."
@@ -187,6 +175,30 @@
       ],
       "tables": [],
       "applicability": "Applies when using computer software for slope stability analysis where internal pore water pressures must be defined and verified."
+    },
+    {
+      "section_id": "7-5.2",
+      "title": "Seepage Forces",
+      "summary": "Defines the seepage force imparted to soil by flowing water, S = i · γw (Eq. 7-2), a force per volume where the head loss occurs. Flow parallel to a slope face can reduce the factor of safety to about half of that without flowing water. Seepage forces with buoyant unit weights require hand calculation; current programs instead use total unit weights below the water table with boundary water pressures, the method used in practice.",
+      "body": "The flow of water through a slope can serve to destabilize slopes. As indicated in Figure 7-1, the flow of water parallel to the surface of a slope can reduce the factor of safety to about half of the factor of safety without flowing water. As water flows through a soil, a seepage force (S) is imparted to the soil from the viscous resistance to the flow of water. The seepage force can be calculated from:\n\nS = i · γw   (7-2)\n\nwhere:\ni = hydraulic gradient, and\nγw = unit weight of water.\n\nThe seepage force equation provides a force per volume for the volume where the hydraulic gradient or head loss occurs. For slope stability analyses, the effect of flowing water can be handled by (1) calculating the seepage forces for each slice or free-body and (2) using the buoyant unit weight of the soil below the phreatic surface. Unfortunately, using this method requires that the calculations be largely done by hand. The computer programs that are commercially available do not perform these calculations automatically. The alternative method, which is accommodated by current computer programs, correctly calculates the factor of safety of slopes where flow is occurring by using total unit weights of soils below the water table along with boundary water pressures as discussed above. This method is currently used in geotechnical engineering practice.",
+      "key_points": [
+        "Flow of water parallel to the surface of a slope can reduce the factor of safety to about half of the factor of safety without flowing water (Figure 7-1).",
+        "Seepage force S = i · γw (Eq. 7-2), a force per volume for the volume where the hydraulic gradient or head loss occurs.",
+        "Seepage forces for each slice with buoyant unit weights below the phreatic surface must be calculated largely by hand; commercial programs do not perform these calculations automatically.",
+        "Current programs correctly calculate the factor of safety with flow by using total unit weights below the water table along with boundary water pressures; this method is currently used in practice."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 7-2",
+          "description": "Seepage force imparted to soil by flowing water: S = i · γw, where i is the hydraulic gradient and γw the unit weight of water; a force per volume for the volume where the hydraulic gradient or head loss occurs.",
+          "implemented_in": "geotech_references.dm7_1.chapter7.seepage_force"
+        }
+      ],
+      "figures": [
+        "Figure 7-1"
+      ],
+      "tables": [],
+      "applicability": "Applies when the destabilizing effect of water flowing through a slope is considered in a slope stability analysis."
     },
     {
       "section_id": "7-6",
@@ -326,13 +338,7 @@
         "Tension cracks can be added to prevent tensile inter-slice forces in commercial programs.",
         "Iterative solutions may not converge, potentially causing critical failure surfaces to be missed; engineers must check convergence before finalizing results."
       ],
-      "equations": [
-        {
-          "id": "Eq. 7-2",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_1.chapter7.seepage_force"
-        }
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Applies when evaluating, verifying, and quality-checking results from computer-based limit equilibrium slope stability analyses."
