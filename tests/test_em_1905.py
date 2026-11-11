@@ -149,6 +149,18 @@ def test_print_quirk_kept_as_printed():
     assert "iγ | iγ = [1 − β/φ′]^2 | iq = [1 − tanβ]^(n+1)" in body
 
 
+def test_worked_example_slips_kept_with_a_note():
+    # Examples C-7c and C-7d keep their printed numbers (pp. 382, 385-386);
+    # a note after each (manifest print_notes) gives what the rows give
+    c7 = _retrieval.retrieve_section(REF, "C-7b")["body"]
+    assert "δ = 0.015 ft + 0.013 ft = 0.028 ft = 0.38 in\n[Note (not printed): " \
+        "Table C-7c, Step 12 (p. 382)" in c7
+    c7a = _retrieval.retrieve_section(REF, "C-7b.a")["body"]
+    assert "| 0.114 | 0.008\n" in c7a and "= 0.0266" in c7a
+    assert "= 0.125 ft = 1.5 in\n[Note (not printed): Table C-7d" in c7a
+    assert "the sum is 0.0194, not 0.0266" in c7a and "0.092 ft (1.1 in)" in c7a
+
+
 # --- figures ----------------------------------------------------------------
 
 #: figure -> (printed page, 0-based PDF page, chapter file). Lettered appendix

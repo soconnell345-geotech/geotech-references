@@ -43,6 +43,12 @@ no fraction bar is drawn) is listed by the build and stops it until the
 manifest types the passage in (``printed_passages``: ``page``, ``find``,
 ``replace``) or accepts it as read (``accepted_math``).
 
+Where the print's own figures are wrong (a worked example whose sum does
+not follow from its rows), the body keeps them as printed and the
+manifest's ``print_notes`` (``section``, ``after``, ``note``) add a line
+after them, ``[Note (not printed): ...]``, stating the conflict and the
+pages.
+
 Requires PyMuPDF.
 """
 
@@ -1211,6 +1217,7 @@ class Book:
                     "typed in from the printed page:]")
             self.tables[t["number"]] = {"note": t.get("note", note), "rows": t["rows"]}
         self.passages = vol.get("printed_passages", [])
+        self.print_notes = vol.get("print_notes", [])
         self.accepted = {(str(a["page"]), a["text"]) for a in vol.get("accepted_math", [])}
         self.draft = draft
         self.page = ""
@@ -1301,6 +1308,33 @@ class Book:
             self.problems.append(f"p. {page} ({sid}): mathematics set in stacked "
                                  f"pieces, read as {text!r}; type the passage in "
                                  "(printed_passages) or accept it (accepted_math)")
+        self._add_print_notes(chapters)
+
+    def _add_print_notes(self, chapters: dict) -> None:
+        """Place each of the manifest's ``print_notes`` (``section``,
+        ``after``, ``note``) on a line of its own after the first place
+        ``after`` occurs in that section (or one of its split parts), in
+        square brackets and opening "Note (not printed):", so the print's
+        own figures stay as printed beside it. A note whose ``after`` is not
+        found stops the build."""
+        for k, n in enumerate(self.print_notes):
+            hit = False
+            for data in chapters.values():
+                for sec in data["sections"]:
+                    sid = sec["section_id"]
+                    if hit or not (sid == n["section"]
+                                   or sid.startswith(n["section"] + ".")):
+                        continue
+                    i = sec["body"].find(n["after"])
+                    if i < 0:
+                        continue
+                    j = i + len(n["after"])
+                    sec["body"] = (sec["body"][:j] + "\n[Note (not printed): "
+                                   + n["note"] + "]" + sec["body"][j:])
+                    hit = True
+            if not hit:
+                self.problems.append(f"print_notes[{k}] ({n['section']}): its "
+                                     "'after' text is not in that section's body")
 
 
 # ---------------------------------------------------------------------------
