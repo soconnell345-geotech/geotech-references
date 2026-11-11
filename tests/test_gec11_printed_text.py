@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5)
+BUILT = (1, 2, 3, 4, 5, 6)
 
 
 def _chapter(n):
@@ -103,6 +103,7 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("3.")]) == 37
     assert len([s for s in secs if s.startswith("4.")]) == 48
     assert len([s for s in secs if s.startswith("5.")]) == 26
+    assert len([s for s in secs if s.startswith("6.")]) == 13
     # the chapter's first page prints "MSE WALL DETAILS"; the contents and
     # the running footer say "MSE Wall Design Details"
     assert secs["5.0"]["title"] == "MSE Wall Details"
@@ -162,6 +163,12 @@ def test_steel_strength_equations_as_printed():
     text = json.dumps(sec["equations"], ensure_ascii=False) + sec["body"]
     assert "0.86" not in text and "Fu " not in text
     assert "Ec = En − ER [Eq. 3-10]" in sec["body"]
+    # the unnumbered equations inside Figure 3-5 (p. 3-24), typed in from
+    # the page; its Ac for bars prints no π, kept as printed with a note
+    assert "Tmax = φ Rc Tal = φ Rc Fy Ac / b" in sec["body"]
+    assert "Ac = (No. of longitudinal bars) × ((D*)² / 4)" in sec["body"]
+    assert "the page prints no π" in sec["body"]
+    assert "φ R F A" not in sec["body"]
 
 
 def test_pullout_equations_and_alpha_as_printed():
@@ -306,6 +313,29 @@ def test_chapter_5_filter_criteria_as_printed():
     # Table 5-3 (p. 5-29)
     assert ("Grab Strength | ASTM D4632 | N (lb) | 1400 (315) | 900 (200) | "
             "1100 (250) | 700 (157)") in secs["5.3.3.a"]["body"]
+
+
+def test_figure_text_typed_in_from_the_page():
+    secs = _sections()
+    # the List of Figures numbers Figure 5-11 "Figure 5-14"; the page
+    # prints 5-11 (p. 5-17)
+    assert ("Figure 5-11: Example detail for wall that may experience "
+            "inundation") in secs["5.3.1"]["figures"]
+    assert secs["5.3.2"]["figures"][2].startswith(
+        "Figure 5-14: (a) Example geomembrane barrier details")
+    # RFCR ranges (p. 3-33) and the FS equivalents (p. 4-60)
+    assert ("Polypropylene (PP): 5 to 4.0. High Density Polyethylene (HDPE): "
+            "5 to 2.6.") in secs["3.5.2.c"]["body"]
+    assert "φ = 0.75 ⇒ 1/0.75 ≈ 1.3 = FS" in secs["4.4.9"]["body"]
+    # the unnumbered SMSE equations printed in Figure 6-14 (p. 6-25)
+    body = secs["6.5"]["body"]
+    assert ("Case 3: For LW ≥ H tanβ: Tmax = [H tan β (γH + 2q) + 2FV] / "
+            "(2 tan(φ′ + β)) + FH.") in body
+    assert "a. φp = 0.90 for L/H > 0.4 b. φp = 0.65 for L/H ≤ 0.4" in body
+    assert "10 tan(φ′ + β) Case 3" not in body
+    # Figure 6-16's dimensions (p. 6-28)
+    assert "Lt = 0.8 H min; Lb = Greater of 0.3H or 5 ft" in secs["6.6"]["body"]
+    assert "Lt 3 ft min H" not in secs["6.6"]["body"]
 
 
 def test_lookups_linked_from_the_section_that_prints_the_table():

@@ -1,355 +1,164 @@
 {
-  "reference_id": "FHWA-NHI-10-024",
-  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
-  "volume": 1,
-  "chapter": 6,
-  "chapter_title": "Design of MSE Walls with Complex Geometrics",
-  "sections": [
-    {
-      "section_id": "6.0",
-      "title": "Introduction to Complex MSE Geometries",
-      "body": "The basic design methods in Chapter 4 consider MSE structures with simple geometries where reinforcement layers of the same length support either a horizontal backfill or a surcharge slope. Structures with more complex geometries or significant external loads require additional consideration. Complex cases include: bridge abutments with MSE walls, superimposed (tiered) MSE walls, MSE walls with uneven reinforcement lengths (trapezoidal walls), back-to-back MSE (BBMSE) walls, shored MSE (SMSE) walls for steep terrains and low volume roads, and stable feature MSE (SFMSE) walls.\n\nFor complex or compound structures, it is difficult to separate internal stability from external stability because the most critical slip-failure surface may pass through both reinforced and unreinforced sections. Both global and compound stability analyses are required. The current method is to use an ASD reinforced soil slope stability computer method as detailed in Chapter 9, or alternatively to adapt the LRFD global and compound stability analyses discussed in Chapter 4.",
-      "key_points": [
-        "Complex MSE geometries require compound and global stability analyses in addition to standard internal and external stability checks",
-        "Six complex case types: bridge abutments, tiered walls, trapezoidal walls, back-to-back walls, shored MSE walls, and stable feature MSE walls",
-        "Critical slip surfaces may pass through both reinforced and unreinforced sections in complex geometries",
-        "ASD slope stability computer methods (Chapter 9) are used for global and compound stability of complex structures"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-1",
-          "title": "Schematics of complex MSE structure types",
-          "description": "Graphical illustrations of types of complex MSE structures including bridge abutments, tiered walls, trapezoidal walls, BBMSE walls, SMSE walls, and SFMSE walls"
-        }
-      ],
-      "tables": [],
-      "applicability": "All complex MSE wall geometries; design guidance supplements Chapter 4 standard procedures"
-    },
-    {
-      "section_id": "6.1",
-      "title": "Bridge Abutments with MSE Walls",
-      "body": "Bridge abutments have been designed to support bridge superstructures on spread foundations constructed directly on the reinforced soil zone, or on deep foundations constructed through the reinforced soil zone. The spread footing configuration may be more economical when projected settlement is rapid or essentially complete prior to erection of bridge beams.\n\nAASHTO (2007) suggests tolerable angular distortions (limiting differential settlements) between abutments or between piers and abutments be limited to: 0.008 radians for simple spans, and 0.004 radians for continuous spans. For a 100 ft (30 m) span, this corresponds to acceptable differential settlements of 9.6 in. (240 mm) for simple spans or 4.8 in. (120 mm) for continuous spans.",
-      "key_points": [
-        "Spread footing configuration preferred when settlement is rapid or complete before bridge beam erection",
-        "AASHTO tolerable angular distortions: 0.008 rad for simple spans, 0.004 rad for continuous spans",
-        "Both spread footing and deep foundation abutment configurations are addressed"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Bridge abutments supported by MSE walls"
-    },
-    {
-      "section_id": "6.1.1",
-      "title": "MSEW Abutments on Spread Footings",
-      "body": "Where fully supporting bridge loads, MSEW bridge abutments are designed as rectangular walls with surcharge loads at the top. When bf + cf is greater than H/3, where bf is the footing base width and cf is the distance from the back face of panels to the footing toe, the maximum tensile force line (critical failure surface) must be modified to extend to the back edge of the spread footing. The Kr/Ka and F* variations must also be modified. For extensible reinforcements, the maximum tensile force line should also be modified if the back edge of the footing extends beyond H*tan(45°-φ°/2) from the wall face.\n\nAdditional details for MSEW abutments on spread footings:\n- Minimum offset from front of facing to bridge bearing centerline: 3.5 ft (1 m)\n- Minimum clear distance cf between back face of facing panels and front edge of footing: 6 in. (150 mm)\n- In frost areas: place footing on non-frost susceptible compacted coarse aggregate (No. 57 per AASHTO M 43), minimum bed thickness of 3 ft (1 m) or 1 ft (0.3 m) below deepest anticipated frost penetration, whichever is greater; separation geotextile at aggregate/fill interfaces with minimum 1 ft (0.3 m) overlaps\n- Bearing resistance of reinforced soil zone: service limit state = 4 ksf (200 kPa) to limit vertical movement to approximately 0.5 in. (12.5 mm); strength limit state factored resistance = 7 ksf (335 kPa)\n- Use maximum horizontal force at top reinforcement level below abutment for connection design at all reinforcement levels\n- Extend reinforcement density, length, and cross-section to wingwalls for a horizontal distance greater of: 50% of maximum abutment wall height H, or cf + bf + 3 ft (1 m)\n- Two-way soil reinforcement zones within wingwall overlap should separate overlapping reinforcements by 3 to 6 in. (75–150 mm) of soil\n- Minimum vertical clearance between bottom of spread footing and top reinforcement level: 1 ft (0.3 m)\n- Connection adequacy should be determined by full-sized panel pullout and flexural tests\n- Seismic design forces should include forces transferred from bridge through bearing supports that do not slide freely",
-      "key_points": [
-        "Modify critical failure surface to extend to back edge of spread footing when bf + cf > H/3",
-        "Service bearing resistance = 4 ksf (200 kPa); strength factored bearing resistance = 7 ksf (335 kPa)",
-        "Minimum offset from face to bearing centerline = 3.5 ft (1 m); minimum cf = 6 in. (150 mm)",
-        "Frost areas require No. 57 aggregate bed minimum 3 ft (1 m) thick or 1 ft below frost penetration",
-        "Minimum vertical clearance from footing bottom to top reinforcement = 1 ft (0.3 m)",
-        "Wingwall reinforcement must extend distance greater of 0.5H or cf + bf + 3 ft (1 m)"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-2",
-          "title": "MSEW abutment on spread footing parameters",
-          "description": "Geometrical definition, location of critical failure surface, and variation of Kr and F* parameters for analysis of MSEW abutment on spread footing"
-        }
-      ],
-      "tables": [],
-      "applicability": "MSEW bridge abutments founded on spread footings within or on top of the reinforced soil zone; LRFD framework"
-    },
-    {
-      "section_id": "6.1.2",
-      "title": "MSEW Abutments on Stub Footings Supported by Deep Foundations through Reinforced Wall Fill",
-      "body": "Where spread footings are not viable due to unacceptable settlements or other reasons, the bridge superstructure is placed on stub footings supported by deep foundations. Vertical loads are transmitted to bearing stratum by deep foundations, but horizontal bridge and abutment backwall forces must be resisted by methods depending on abutment type:\n\nFor conventional abutments: horizontal forces are resisted by extending soil reinforcement from the back edge of the abutment footing. Resistance is provided by soil-reinforcement interaction over the full reinforcement length.\n\nFor integral abutments: horizontal forces are analyzed using lateral load (p) – lateral deflection (y), i.e., p-y methods. These horizontal forces are added as a supplementary force to be resisted by reinforcements and vary based on magnitude of horizontal loads and moments, diameter and spacing of deep foundations, and clear distance between back face of panels and front of deep foundation elements.\n\nConstruction guidelines for deep foundations through reinforced fill:\n- Where significant embankment settlement is anticipated, provide casings (sonotubes or corrugated metal pipes) for deep foundations constructed after MSE wall settlement; for driven piles, fill annulus with loose sand prior to footing construction; for drilled shafts, an internal casing may be needed\n- For deep foundations constructed prior to MSE wall construction where downdrag is anticipated, provide casing filled with sand, or use a bond breaker\n- Where deep foundations are not isolated from casings, horizontal stresses from Figure 6-4 must be included in MSE wall analysis\n- For driven piles: minimum offset from back face of wall panels to front of pile elements = 1.5 ft (0.5 m)\n- For drilled shafts: minimum offset from back face of wall panels to front of shaft = 3 ft (1 m); for shafts where reinforcements will be splayed, greater of 3 ft (1 m) or 1 times shaft diameter\n- Interference between soil reinforcements and deep foundations requires specific field installation methods on plans; simple cutting and bending of reinforcements during construction is not permitted\n- Soil cover between dissimilar metals per Section 5.4.1 must be implemented",
-      "key_points": [
-        "Vertical loads carried by deep foundations; horizontal forces must be resisted by soil reinforcements or lateral pile resistance",
-        "Integral abutments use p-y methods to distribute horizontal forces as supplemental pressure on reinforcements",
-        "Driven pile minimum clearance from panel face = 1.5 ft (0.5 m)",
-        "Drilled shaft minimum clearance from panel face = 3 ft (1 m); or 1× shaft diameter for splayed reinforcements",
-        "Casings should be provided for deep foundations to permit construction after MSE wall settlement",
-        "Cutting and bending reinforcements during construction to accommodate pile obstructions is not permitted"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-3",
-          "title": "Typical pile-supported MSE abutment detail",
-          "description": "Diagrammatical and graphical illustrations of details of a typical pile supported MSE abutment showing reinforcement connection to abutment footing"
-        },
-        {
-          "figure_id": "6-4",
-          "title": "Supplemental lateral pressure from deep foundation",
-          "description": "Geometrical definition and typical supplemental lateral pressure distribution from deep foundation on MSE wall face"
-        }
-      ],
-      "tables": [],
-      "applicability": "MSEW bridge abutments with deep foundations (driven piles or drilled shafts) through reinforced backfill"
-    },
-    {
-      "section_id": "6.1.3",
-      "title": "Alternative Configuration of MSE Walls at Bridge Abutments",
-      "body": "An alternative to deep foundations through reinforced backfill is to construct MSE walls behind abutment foundations not within or on top of reinforced fills. The MSE walls support only the approach fills while abutments are constructed in pier configuration. Special details such as bridge approach slabs are required for integration with the bridge abutment. This configuration allows independent foundation construction and better MSE wall construction control with no obstructions through reinforced backfill.\n\nAdditional details for MSE walls behind abutment foundations:\n- Require bridge superstructure placement after MSE wall construction so most foundation deformations have occurred\n- Construct foundations prior to MSE wall, but construct abutment columns after MSE wall construction so foundation deformations from adjacent MSE wall construction can be compensated at the beam seat connection\n- Consider construction of a false wall in front of the abutment substructure for vehicular impact protection; false wall may be structurally connected to abutment substructure or an independent wall with 3 to 6 in. (75–150 mm) gap\n- For integral abutments with walls on deep foundations, a wrapped or wire-faced MSE wall can be constructed behind the abutment using the abutment as an offset form with a spacer to maintain distance between MSEW and abutment wall",
-      "key_points": [
-        "MSE wall supports only approach fills; abutment is not within or on top of reinforced zone",
-        "Superstructure should be placed after MSE wall construction to allow foundation deformations to occur first",
-        "False wall in front of abutment provides vehicular impact protection; may be connected or separated by 3–6 in.",
-        "Independent construction control without pile/shaft obstructions is the major advantage"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-5",
-          "title": "Geosynthetic wrapped face wall behind integral abutment",
-          "description": "Example of use of a geosynthetic wrapped face wall behind an integral abutment with spacer maintaining distance between MSEW and abutment wall"
-        }
-      ],
-      "tables": [],
-      "applicability": "Bridge abutments where MSE wall supports only approach fills; abutment founded independently"
-    },
-    {
-      "section_id": "6.1.4",
-      "title": "Protection of MSE Wall at Abutments",
-      "body": "At abutment locations, permeation of water through expansion joints into the MSE wall can result in seepage problems including the potential for salt-laden runoff creating a chloride-rich, corrosive environment near the face panel connection for a significant percentage of the wall height. Seepage must be controlled at abutment locations to minimize corrosion risk to metallic reinforcement components near panel connections. The control methods are illustrated in Figure 6-6 and involve detailing the abutment seat to prevent water from expansion joints from reaching the reinforced zone.",
-      "key_points": [
-        "Expansion joint seepage can create chloride-rich corrosive environment near face panel connections",
-        "Seepage control at abutment seats is required to protect metallic reinforcement connections",
-        "Corrosion risk affects a significant percentage of wall height near abutment locations"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-6",
-          "title": "Abutment seat seepage control detail",
-          "description": "Diagrammatical illustration of example abutment seat detail for seepage control to prevent chloride-laden water from reaching face panel connections"
-        }
-      ],
-      "tables": [],
-      "applicability": "MSE walls at bridge abutments with metallic reinforcement components"
-    },
-    {
-      "section_id": "6.2",
-      "title": "Superimposed (Tiered) MSE Walls",
-      "body": "For tall walls, consideration should be given to superimposed (tiered) walls from the viewpoint of constructability. Reconfiguring a tall wall into superimposed walls with smaller heights permits a fresh start with a new leveling pad, reduces vertical stress on facing elements, and permits better control of vertical alignment. Analytically, an equivalent sloped wall face from tiered configuration may result in lesser lateral force on the overall wall system.",
-      "key_points": [
-        "Tiered walls are recommended for tall walls to improve constructability and reduce facing stresses",
-        "Tiered configuration can result in effective sloped face geometry reducing total lateral forces",
-        "Both simplified design rules and slope stability analysis are required for tiered walls"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Tall MSE walls where constructability or stress reduction justifies tiered configuration"
-    },
-    {
-      "section_id": "6.2.1",
-      "title": "2-Tier Superimposed Walls",
-      "body": "The design of 2-tier superimposed MSE walls requires two analyses: (1) simplified design rules for calculating external stability and locating the internal failure plane for internal stability; and (2) slope stability analysis including both compound and global stability using a reinforced soil global stability computer program (Chapter 4).\n\nUsing the definitions of wall heights H1 (upper) and H2 (lower) and offset D between walls from Figure 6-7, for preliminary design with offsets D greater than 1/20(H1 + H2):\n- Upper wall minimum reinforcement length: L'1 ≥ 0.7 H1\n- Lower wall minimum reinforcement length: L'2 ≥ 0.6 H, where H = H1 + H2\n\nBasic design guidelines:\n- Where D > H2 tan(90° - φr), walls are not considered superimposed and are independently designed from an internal stability viewpoint; internal stability of upper wall is neglected for lower wall\n- For small offset D ≤ 1/20(H1 + H2), assume failure surface does not fundamentally change and design as a single wall with height H\n- For intermediate offsets, see Figure 6-7a for failure surface location and Figure 6-7b for vertical pressures in internal stress calculations\n- External stability: upper wall computed conventionally per Chapter 4; lower wall treats upper wall as surcharge (Load type ES) for bearing pressure; sliding uses wedge-type slope stability with failure surfaces along and below the base, checked at Service I with sliding resistance factor of 0.65\n- Compound and global stability must be checked in all cases",
-      "key_points": [
-        "Minimum reinforcement lengths: upper wall L'1 ≥ 0.7H1; lower wall L'2 ≥ 0.6H (H = H1+H2)",
-        "D > H2·tan(90°-φr): walls designed independently; D ≤ 1/20(H1+H2): single wall design with height H",
-        "Lower wall external stability: upper wall treated as ES surcharge for bearing; sliding uses wedge slope stability at Service I with φ = 0.65",
-        "Compound and global stability is an essential computation for all tiered wall configurations"
-      ],
-      "equations": [
-        {
-          "equation_id": "6-1",
-          "description": "Minimum upper wall reinforcement length for 2-tier configuration",
-          "latex": "L'_1 \\geq 0.7 H_1",
-          "variables": {
-            "L'_1": "minimum reinforcement length of upper wall (m)",
-            "H_1": "height of upper wall (m)"
-          },
-          "conditions": "D > 1/20(H1 + H2)"
-        },
-        {
-          "equation_id": "6-2",
-          "description": "Minimum lower wall reinforcement length for 2-tier configuration",
-          "latex": "L'_2 \\geq 0.6 H",
-          "variables": {
-            "L'_2": "minimum reinforcement length of lower wall (m)",
-            "H": "total height H1 + H2 (m)"
-          },
-          "conditions": "D > 1/20(H1 + H2)"
-        }
-      ],
-      "figures": [
-        {
-          "figure_id": "6-7",
-          "title": "2-tier superimposed MSE wall configuration and analysis",
-          "description": "Configuration of a 2-tier superimposed MSE wall system showing definitions of H1, H2, offset D, maximum tensile force lines (Fig 6-7a), and vertical pressures for internal stress calculations (Fig 6-7b)"
-        }
-      ],
-      "tables": [],
-      "applicability": "2-tier superimposed MSE wall systems; preliminary design and LRFD stability"
-    },
-    {
-      "section_id": "6.2.2",
-      "title": "Superimposed Walls with More Than 2-Tiers",
-      "body": "The criteria for 2-tier walls in Figure 6-7 can be extended to walls with more than two tiers. For such configurations, global and compound stability analysis becomes even more critical. Wright (2005) and Leschinsky and Han (2004) found that the vertical stress criteria in Figure 6-7b may be used for walls with more than 2-tiers provided that only the immediately overlying tier is considered to contribute to the increase in vertical stress on the lower tier. Wright (2005) presents an elastic solution based on an assumption of rigid walls for estimating additional vertical stresses in a given tier due to effects of all overlying wall tiers.\n\nAnalysis of tiered walls should proceed from the top wall to the bottom wall so that stresses are properly accumulated and accounted for in the design of the bottom-most wall. For preliminary design, the length of reinforcement of the bottom-most tier can be assumed to be 0.6 times the total height of the wall system.",
-      "key_points": [
-        "2-tier criteria from Figure 6-7b extend to multi-tier walls; only immediately overlying tier contributes incremental vertical stress",
-        "Analysis proceeds top-to-bottom so stresses accumulate properly",
-        "Bottom-most tier preliminary reinforcement length = 0.6 × total wall system height",
-        "Wright (2005) elastic solution available for multi-tier vertical stress estimation"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "MSE wall systems with more than 2 superimposed tiers"
-    },
-    {
-      "section_id": "6.3",
-      "title": "MSE Walls with Uneven Reinforcement Lengths (Trapezoidal Walls)",
-      "body": "Trapezoidal walls with uneven reinforcement lengths should be used only when the base of the MSE structure is in rock or competent foundation material exhibiting minimal post-construction settlements. Competent foundation materials include those with SPT N60 greater than 50 and sound rock.\n\nThe design requires two analyses: (1) simplified design rules for internal and external stability; and (2) slope stability analysis using a reinforced soil stability program checking both global (circular and wedge) and compound failure planes.\n\nSimplified design rules:\n- For external stability calculations, represent the wall as a rectangular block (Lo, H) with the same total height and cross-sectional area as the stepped section\n- The maximum tensile force line is the same as in rectangular walls (bilinear for inextensible or linear Rankine for extensible reinforcements)\n- Minimum base length L3 = 0.4H or 8 ft (2.5 m) whichever is greater, with the difference in length between adjacent zones less than 0.15H\n- For internal stability, divide the wall into rectangular sections and use the appropriate L (L1, L2, L3) for pullout calculations in each section per Chapter 4 methods",
-      "key_points": [
-        "Trapezoidal walls restricted to rock or competent foundation (SPT N60 > 50) due to differential settlement risk",
-        "External stability: use equivalent rectangular block with same total height and cross-sectional area",
-        "Minimum base length L3 = 0.4H or 2.5 m (8 ft), whichever is greater",
-        "Difference in reinforcement length between adjacent zones must be less than 0.15H",
-        "Internal stability divides wall into rectangular sections using section-specific reinforcement length L for pullout"
-      ],
-      "equations": [
-        {
-          "equation_id": "6-3",
-          "description": "Minimum base reinforcement length for trapezoidal MSE wall",
-          "latex": "L_3 \\geq \\max(0.4H,\\; 2.5 \\text{ m})",
-          "variables": {
-            "L_3": "minimum base reinforcement length (m)",
-            "H": "total wall height (m)"
-          },
-          "conditions": "Foundation must be rock or competent material (SPT N60 > 50)"
-        }
-      ],
-      "figures": [
-        {
-          "figure_id": "6-8",
-          "title": "MSE wall with uneven reinforcement lengths (trapezoidal)",
-          "description": "Diagrammatical illustration of dimensioning of MSE wall with uneven reinforcement lengths showing equivalent rectangular block for external stability and zone divisions L1, L2, L3"
-        }
-      ],
-      "tables": [],
-      "applicability": "MSE walls with uneven reinforcement lengths (trapezoidal cross-section); rock or competent foundation only"
-    },
-    {
-      "section_id": "6.4",
-      "title": "Back-to-Back MSE (BBMSE) Walls",
-      "body": "Back-to-back walls are often used for highway ramps. For walls built back-to-back, a modified value of lateral pressure influences external stability calculations. Two cases are defined based on the separation distance D and reinforcement overlap LR:\n\nCase I — Walls designed independently:\nWhen the overall base width is large enough that there is no overlapping of reinforcements, each wall behaves independently. Theoretically, if D < H1·tan(45° - φ°/2), the active wedges cannot fully spread and active thrust is reduced. However, for design, full active thrust is assumed when D > H1·tan(45° - φ°/2) ≈ 0.5H1.\n\nCase II — Interacting walls with overlapping reinforcements:\nWhen the reinforcement overlap LR is greater than 0.3H2 (H2 = shorter wall height), no active earth thrust from the backfill needs to be considered for external stability calculations. For intermediate geometries between Case I and Case II, active earth thrust may be linearly interpolated from full active to zero.\n\nFor Case II geometries with LR > 0.3H2:\n- L1/H1 ≥ 0.6 (taller wall)\n- L2/H2 ≥ 0.6 (shorter wall)\n- Wb/H1 ≥ 1.1 (Wb = base width)\n\nThese guidelines are valid for static loads or seismic horizontal accelerations ≤ 0.05g. BBMSE walls in seismically active areas require more detailed analysis accounting for non-uniform seismic and inertial force distribution.\n\nSingle reinforcement layers connected to both wall facings create an at-rest stress state (Ko) from top to bottom, resulting in much higher reinforcement tensions than in the standard design method. If such connections are used, the design must include increased lateral stress in reinforcement tension, connection design, and facing element design. Compaction-induced stresses at connections must also be accounted for. Geosynthetic wrapped-face walls may use this configuration but conservatively should use Ko for reinforcement tension calculations unless numerical modeling and instrumentation confirm lower stress conditions.",
-      "key_points": [
-        "Case I (D > 0.5H1): full active thrust, walls designed independently",
-        "Case II (LR > 0.3H2): no active thrust; L1/H1 ≥ 0.6, L2/H2 ≥ 0.6, Wb/H1 ≥ 1.1",
-        "Intermediate geometries: linear interpolation of active thrust between full and zero",
-        "Single reinforcements connected to both facings create Ko stress state — significantly higher tensions",
-        "Guidelines valid for seismic horizontal accelerations ≤ 0.05g; greater seismic activity requires detailed analysis"
-      ],
-      "equations": [
-        {
-          "equation_id": "6-4",
-          "description": "Case I/II boundary condition for back-to-back MSE walls",
-          "latex": "D > H_1 \\tan(45^\\circ - \\phi/2) \\approx 0.5 H_1 \\Rightarrow \\text{full active thrust}",
-          "variables": {
-            "D": "clear distance between back faces of the two MSE walls (m)",
-            "H_1": "height of the taller wall (m)",
-            "phi": "friction angle of backfill (degrees)"
-          }
-        },
-        {
-          "equation_id": "6-5",
-          "description": "Case II condition — no active thrust required",
-          "latex": "L_R > 0.3 H_2 \\Rightarrow \\text{no active earth thrust for external stability}",
-          "variables": {
-            "L_R": "overlap length of reinforcements from both walls (m)",
-            "H_2": "height of the shorter wall (m)"
-          }
-        }
-      ],
-      "figures": [
-        {
-          "figure_id": "6-9",
-          "title": "Back-to-back MSE wall cases",
-          "description": "Diagrammatical illustration of back-to-back MSE walls showing Case I (no overlap, full active thrust) and Case II (overlap LR > 0.3H2, no active thrust) with definitions of D, LR, Wb"
-        }
-      ],
-      "tables": [],
-      "applicability": "Back-to-back MSE wall systems; highway ramps and similar configurations; static or low seismic (≤ 0.05g)"
-    },
-    {
-      "section_id": "6.5",
-      "title": "Shored MSE (SMSE) Walls for Steep Terrains and Low Volume Roads",
-      "body": "In steep terrains, MSE wall construction requires excavation to establish a flat bench accommodating soil reinforcements with minimum length of 8 ft (2.5 m) or 70% of wall height. When required excavation is substantial, shoring (most often soil nail walls) can stabilize the backslope with MSE walls constructed in front. This configuration is known as a Shored MSE (SMSE) wall. Details are in FHWA-CFL/TD-06-001 (Morrison et al., 2006).\n\nSMSE wall guidelines (valid for static loads or seismic horizontal accelerations ≤ 0.05g; seismically active areas require detailed analysis; not recommended in urban areas for roadway widening due to tension crack risk under traffic dynamics):\n- The shoring wall must be designed as a permanent wall with design life equal to or greater than the MSE wall; drainage features must be integrated to eliminate hydrostatic pressures\n- Hydrostatic stress should be evaluated by flow net analysis; horizontal drains should be considered\n- Minimum reinforcement length = 0.3H or 5 ft (1.5 m), whichever is greater\n- Where construction space permits, upper two reinforcement layers should be extended to minimum 0.6H or 5 ft (1.5 m) beyond the shoring wall interface to limit tension crack development (Figure 6-11a); this requires shoring wall height ≥ 2/3 MSE wall height H over majority of wall length\n- If extension of upper reinforcements is not feasible, provide positive mechanical connection between upper two or more reinforcements and shoring wall (Figure 6-11b); extension is superior to mechanical connection\n- Where shoring wall height < 2/3H (as may occur at tapered ends), verify reinforcement lengths in upper MSE mass exceed conventional 0.7H; generally satisfied when total height < 14 ft (4 m)\n\nInternal stability for SMSE walls:\n- Critical failure surface approximated using Rankine's active earth pressure theory within reinforced soil mass, with remaining portion along shoring/MSE interface (Figure 6-12)\n- Only lower reinforcement layers (those extending into the resistant zone) are designed to resist pullout for the entire active MSE mass\n- TMAX and pullout resistance equations are given in Figure 6-14\n- Tensile resistance and connection strength evaluated per Chapter 4 procedures\n- Horizontal stress σh along the potential failure line computed using Chapter 4 procedures\n- For superimposed concentrated vertical loads, use modified 2:1 method (Figure 6-13)\n\nExternal stability for SMSE walls:\n- Address bearing capacity and settlement using Chapter 4 procedures\n- Limiting eccentricity (overturning) and sliding are not included as failure mechanisms due to stabilization by shoring wall\n- Hydrostatic forces are eliminated by incorporating internal drainage\n\nGlobal stability of the SMSE system as a compound structure must be evaluated including five failure modes (Figure 6-15): most critical are failure along the shoring/MSE interface (Mode 4) and global stability external to the SMSE system (Mode 1). ASD limit equilibrium analysis methods should be used.",
-      "key_points": [
-        "SMSE walls used in steep terrain where bench excavation for standard MSE is impractical",
-        "Shoring wall must be permanent with design life ≥ MSE wall; integrated drainage required",
-        "Minimum reinforcement length = 0.3H or 1.5 m; upper two layers extended to 0.6H or 5 ft (1.5 m) beyond shoring if space permits",
-        "Extension of upper reinforcements preferred over mechanical connection to shoring wall",
-        "Only lower reinforcement layers in resistant zone resist pullout for the entire active MSE mass",
-        "Overturning and sliding are not evaluated — shoring wall provides stabilization",
-        "Five global failure modes must be evaluated; ASD limit equilibrium methods used",
-        "Not recommended in urban areas for roadway widening; guidelines valid for seismic accelerations ≤ 0.05g"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-10",
-          "title": "Generic cross-section of SMSE wall system",
-          "description": "Generic cross-section of a shored MSE (SMSE) wall system for steep terrains with shoring wall (Morrison et al., 2006)"
-        },
-        {
-          "figure_id": "6-11",
-          "title": "Minimum recommended SMSE geometry",
-          "description": "Minimum recommended geometry of a shored MSE wall system showing (a) extension of upper two rows of reinforcement and (b) mechanical connection of upper two rows to shoring wall"
-        },
-        {
-          "figure_id": "6-12",
-          "title": "Critical failure surfaces for SMSE walls",
-          "description": "Location of potential failure surface for internal stability design of shored MSE walls: (a) extensible reinforcements, (b) inextensible reinforcements"
-        },
-        {
-          "figure_id": "6-13",
-          "title": "Distribution of stress from concentrated vertical load — SMSE",
-          "description": "Distribution of stress from concentrated vertical load for internal and external stability calculations using modified 2:1 method"
-        },
-        {
-          "figure_id": "6-14",
-          "title": "TMAX and pullout resistance computation for SMSE walls",
-          "description": "Diagrammatical illustration of computation for TMAX and evaluation of pullout resistance for SMSE wall systems"
-        },
-        {
-          "figure_id": "6-15",
-          "title": "Global stability and compound failure surfaces for SMSE walls",
-          "description": "Example global stability and compound failure surfaces for SMSE wall system showing five failure modes (Morrison et al., 2006)"
-        }
-      ],
-      "tables": [],
-      "applicability": "SMSE walls in steep terrain and low volume roads; static or seismic accelerations ≤ 0.05g; permanent shoring required"
-    },
-    {
-      "section_id": "6.6",
-      "title": "Stable Feature MSE (SFMSE) Walls",
-      "body": "MSE walls can be constructed in front of apparently stable features such as a rock face (Figure 6-16). Depending on the space between the MSE wall face and the stable feature, the behavior may be similar to an SMSE wall.\n\nGuidelines for SFMSE walls:\n- Establish that the feature behind the proposed SFMSE wall is stable and will remain stable during the design life; stabilize the feature as necessary to be compatible with the SFMSE wall design life\n- Evaluate deformation and strength behavior of the feature under additional stresses from the MSE wall fill; include hydrostatic and other lateral pressures that may contribute to instability\n- Perform deformation analysis of the foundation under the SFMSE wall and evaluate effects on facilities above the wall and at the feature/MSE interface\n- Evaluate effect of increased stresses at the MSE wall base on settlement of the existing feature; existing retaining walls may experience immediate and long-term settlement plus downdrag forces at the MSE/feature interface\n- Ensure drainage features of the SFMSE wall system and stable feature are integrated to eliminate hydrostatic conditions\n- Extend at least the top two reinforcement layers over the top of the stable feature (do not mechanically connect); for roadway widening with existing wall, trim wall top as necessary to accommodate top reinforcement layers\n- Extend all reinforcement layers above the top of the stable feature a distance back Lt (Figure 6-16), with minimum two layers as noted\n- Minimum clearance between top of stable feature and reinforcement layer above it = 6 in. (150 mm) to prevent stress concentrations and contact between dissimilar materials\n- Establish reinforcement layout based on TMAX values from Figure 6-14 and Section 6.5 guidance\n- Perform global stability analysis as MSE wall construction increases driving forces; especially critical where structures are on slopes at the toe or on soft ground; evaluate all failure modes per Figure 6-15\n\nThese guidelines are valid for static loads or seismic horizontal accelerations ≤ 0.05g. SFMSE walls in seismically active areas require detailed analysis for non-uniform seismic and inertial force distribution. Not recommended in urban areas for roadway widening due to tension crack risk under dynamic traffic effects at the existing feature/new MSE interface.",
-      "key_points": [
-        "Stable feature (rock face, existing wall) must be verified stable for the MSE wall design life",
-        "Top two reinforcement layers must extend over (not be mechanically connected to) the stable feature",
-        "Minimum clearance between top of stable feature and overlying reinforcement = 6 in. (150 mm)",
-        "Drainage of both SFMSE wall system and stable feature must be integrated",
-        "Global stability analysis required due to increased driving forces from MSE wall construction",
-        "Not recommended for urban roadway widening due to tension crack risk; valid for seismic accelerations ≤ 0.05g"
-      ],
-      "equations": [],
-      "figures": [
-        {
-          "figure_id": "6-16",
-          "title": "Minimum recommended geometry of SFMSE wall system",
-          "description": "Diagrammatical illustration of the minimum recommended geometry of a stable feature MSE (SFMSE) wall system showing reinforcement extension Lt over the stable feature"
-        }
-      ],
-      "tables": [],
-      "applicability": "MSE walls constructed in front of stable features (rock faces, existing walls); static or seismic accelerations ≤ 0.05g"
-    }
-  ]
+ "reference_id": "FHWA-NHI-10-024",
+ "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
+ "volume": 1,
+ "chapter": 6,
+ "chapter_title": "Design of MSE Walls with Complex Geometrics",
+ "sections": [
+  {
+   "section_id": "6.0",
+   "title": "Design of MSE Walls with Complex Geometrics",
+   "body": "[p. 6-1] The basic design methods outlined in Chapter 4 consider MSE structures with simple geometries with reinforcement layers of the same length supporting either a horizontal backfill or a surcharge slope. Although most MSE structures fall into this category, structures with more complex geometries or significant external loads are feasible and require consideration during the selection process. They include:\n\n• Bridge abutments with MSE walls • Superimposed (tiered) MSE walls • MSE Walls with uneven length reinforcements (trapezoidal walls) • Back-to-back MSE (BBMSE) walls • Shored MSE (SMSE) walls for steep terrains and low volume roads • Stable feature MSE (SFMSE) walls Schematics of these complex cases are illustrated in Figure 6-1. The shape and location of the maximum tensile forces line are generally altered by both the geometry and the loads applied on the complex MSE wall structure. It is possible to assume an approximate maximum tensile force line for each. However, supporting experience and analysis are more limited than for rectangular reinforced soil walls. For complex or compound structures, it is always difficult to separate internal stability from external stability because the most critical slip-failure surface may pass through both reinforced and unreinforced sections of the structure. For this reason, both global and compound stability analyses are required for these types of complex structures. The current method for performing these analyses is to use an ASD reinforced soil slope stability computer method, as detailed in Chapter 9. An alternative method is to adapt the simple modification to the global and compound stability analyses for the LRFD procedure as discussed in Chapter 4. The following sections give guidelines for each complex case identified in Figure 6-1. [p. 6-2]\n\n[Figure 6-1 panels, as labelled on p. 6-2:] (a) Bridge abutment; (b) Superimposed (Tiered) walls; (c) Trapezoidal walls; (d) Back-to-back walls; (e) Shored walls; (f) Stable feature walls.\n\nFigure 6-1. Types of complex MSE structures.\n\n[p. 6-3]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-1: Types of complex MSE structures"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-1 to 6-3."
+  },
+  {
+   "section_id": "6.1",
+   "title": "Bridge Abutments",
+   "body": "[p. 6-3] BRIDGE ABUTMENTS WITH MSE WALLS Bridge abutments have been designed to support the bridge superstructure on a spread foundation constructed directly on the reinforced soil zone, or on a deep foundations constructed through the reinforced soil zone. The configuration wherein bridge superstructure is supported on a spread footing on top of the reinforced soil zone may be more economical compared to abutments supported by deep foundation through the reinforced soil zone, and should be considered when the projected settlement of the foundation and reinforced volume is rapid/small or essentially complete, prior to the erection of the bridge beams. Based on field studies of actual structures, AASHTO (2007) suggests, that tolerable angular distortions (i.e., limiting differential settlements) between abutments or between piers and abutments be limited to the following angular distortions (in radians): • 0.008 for simple spans, and • 0.004 for continuous spans This criteria, suggests that for a 100 ft (30 m) span for instance, differential settlements of 4.8 in. (120 mm) for a continuous span or 9.6 in. (240 mm) for a simple span, would be acceptable, with no ensuing overstress and damage to superstructure elements. On an individual project basis differential settlements of smaller amounts may be required from functional or performance criteria. Settlements well within the tolerable range can often be achieved with MSEW abutments abutments on spread footings.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed p. 6-3."
+  },
+  {
+   "section_id": "6.1.1",
+   "title": "MSEW Abutments on Spread Footings",
+   "body": "[p. 6-3] Where fully supporting the bridge loads, MSEW bridge abutments are designed by considering them as rectangular walls with surcharge loads at the top. The base width of the bridge support spread footing, bf, and the location of the toe of the footing with respect to the back face of the walls panels, cf, is commonly such that bf + cf is greater than H/3. In this case, the shape of the maximum tensile force line, i.e., the critical failure surface, has to be modified to extend to the back edge of the spread footing. The variation of Kr/Ka and F* also need to be modified. Figure 6-2 shows definitions of various parameters including measurements of heights and depths. [p. 6-4]\n\n[Figure 6-2 labels, typed in from p. 6-4:] Roadway Surface; cf; bf; h; H; H'; d; L; z; Z; z'; 0.3 H'; Active Zone; Resistant Zone; a slope drawn 1 (vertical) to 0.6 (horizontal); Kr/Ka and F* plotted against z, changing from z = 0 to z = 20 ft and constant from z = 20 ft to z = H'.\n\nNotes: • d is the depth of embedment • Z is measured below bottom of footing; z is measured from top of spread footing • H is measured from top of leveling pad to bottom of bridge support spread footing • h is height of the wall as measured from bottom of bridge support spread footing to finished roadway surface • H' is height of wall as measured from top of leveling pad to finished roadway surface • z = Z + h; z' = H – (cf + bf)/0.6 • Within height z' the length of the reinforcement in the active zone is La= cf + bf\n\nFigure 6-2. Geometry definition, location of critical failure surface and variation of Kr and F* parameters for analysis of a MSEW abutment on spread footing.\n\nAlthough MSEW abutments on spread footings have historically almost always used inextensible, steel reinforcements, they can also be used with extensible reinforcements. However, similar shifts in the maximum tension line to the back of the footing have been observed for extensible reinforcement. Therefore, the maximum tensile force line should also be modified for extensible reinforcement if the back edge of the footing extends beyond a distance of H*tan(45°-φ°/2) from the wall face. These maximum tensile force lines should be compared with the critical failure surface from compound stability analysis and the more conservative profile of the failure surface should be selected. Successful experience with construction of MSEW abutments on spread footings has suggested that the following additional details be implemented: [p. 6-5]\n\n• Require a minimum offset from the front of the facing to the centerline of the bridge bearing of 3.5 ft (1 m).\n\n• Require a minimum clear distance, cf, of 6 in. (150 mm) between the back face of the facing panels and the front edge of the footing.\n\n• In areas that are susceptible for frost, the frost effect can develop from both the top of the wall as well as the front of the wall. Where significant frost penetration is anticipated, place the abutment footing on a bed of non-frost susceptible compacted coarse aggregate (e.g., No. 57 as specified in AASHTO M 43). The thickness of the aggregate bed should be minimum 3 ft (1 m) or 1 ft (0.3 m) below deepest anticipated frost penetration depth, whichever is greater. Separation geotextile should be provided at the interface of No. 57 coarse aggregate and the surrounding fills (reinforced, retained and above the footing base). Adjoining sections of the separation geotextile should be overlapped by a minimum of 1 ft (0.3 m).\n\n• For the analysis of the spread footing on top of the reinforced soil zone, use the following values of bearing resistance of the reinforced soil zone o For service limit state, bearing resistance = 4 ksf (200 kPa) to limit the vertical movement to less than approximately 0.5 in. (12.5 mm) o For strength limit state, factored bearing resistance = 7 ksf (335 kPa) (Note: AASHTO does not provide a value of factored bearing resistance at strength limit state and the recommended value is based on the authors’ experience.)\n\n• Use the maximum horizontal force at top reinforcement level below the abutment for the design of connections of the panels at all reinforcement levels.\n\n• Extend the density, length and cross-section of reinforcements of the abutments to wingwalls, for a horizontal distance which is greater of the following: o 50 percent of the maximum height, H, of the abutment wall face. o cf + bf + 3 ft (1 m) where cf and bf are as shown in Figure 6-2\n\n• There will be 2-way soil reinforcement within the length of reinforcement perpendicular to the abutment face. It is preferable that reinforcement is not placed on top of each other in the zone of 2-way reinforcement. The overlapping reinforcement should be separated by 3 to 6 in. (75 to 150 mm) of soil or some multiple of compacted fill height. This may be achieved by appropriately adjusting the steps of the leveling pad between the abutment face wall and the wing walls. This practice is especially recommended where a corrosion monitoring program is implemented in the abutment area (Elias et al., 2009). [p. 6-6]\n\n• To prevent adverse stress concentrations at the reinforcement connections, the minimum vertical clearance between the bottom of the bridge support spread footing and the top level of reinforcement should be 1 ft (0.3 m). • Due to the relatively high bearing pressures near the panel connections, the adequacy and nominal capacity of panel connections should be determined by conducting pullout and flexural tests on full-sized panels. • The seismic design forces should also include seismic forces transferred from the bridge though bearing supports which do not slide freely (e.g., elastomeric bearings). In the LRFD context, the design of a MSEW abutment on spread footing requires careful separation of various load types. This results in a complex set of inter-related equations which are best illustrated by a worked example. Example E4 presents a comprehensive step-by-step illustration of both external and internal stability of a MSEW abutment on spread footing. The reader should become familiar with Example E5 because the principles and computations used in the example problem can also be applied to different complex geometries.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-2: Geometry definition, location of critical failure surface and variation of Kr and F* parameters for analysis of a MSEW abutment on spread footing"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-3 to 6-6."
+  },
+  {
+   "section_id": "6.1.2",
+   "title": "MSEW Abutments on Stub Footings Supported by Deep Foundations through Reinforced Wall Fill",
+   "body": "[p. 6-6] For cases where MSEW abutments on spread footings may not be viable based on considerations of unacceptable post-construction settlements or other reasons, the bridge superstructure is placed on stub footings supported by deep foundations such as driven piles or drilled shafts. In this configuration, vertical loads are not considered in analysis since they are transmitted to an appropriate bearing stratum by deep foundations. However, the horizontal bridge and abutment backwall forces must be resisted by methods dependent on the type of abutment support, namely: • For conventional abutments, the horizontal forces must be resisted by extending soil reinforcement from the back edge of the abutment footing (cap). The resistance is provided by the interaction between the soil and reinforcement over the full length of the reinforcement. A typical detail is shown in Figure 6-3. Alternatively, the horizontal forces may be resisted by the lateral resistance of the deep foundation or by other means. [p. 6-7]\n\nFigure 6-3. Details of a typical pile supported MSE abutment.\n\n[p. 6-8]\n\n• For integral abutments, the horizontal forces and its distribution with depth may be developed using a lateral load (p)-lateral deflection (y), i.e., p-y methods. These horizontal forces are added as a supplementary force to be resisted by the reinforcements. These forces will vary depending on the following: o magnitude of the horizontal loads and moments, o diameter and spacing of deep foundations, and o clear distance between the back face of wall panels and front of the deep foundation elements. Several agencies have constructed integral abutments in front of MSE walls as discussed in Section 6.1.3 in order to avoid applying a lateral stress to soil behind the abutment.\n\nFigure 6-4 shows a typical supplemental lateral pressure that must be considered in the internal stability analysis. This lateral pressure is addressed in a fashion similar to the inverted triangular lateral pressure distribution shown in Figure E5-2 of Example Problem E5. The effect of the roadway fill and the live load surcharge above the MSE wall is also addressed in a fashion similar to that for the same features in Example E5. The balance of the computations remains identical to those in Chapter 4.\n\nBased on successful experience of the authors with abutment construction of MSE walls with deep foundations through the reinforced fill, following are suggested additional details, as applicable:\n\n• Where significant settlement of the embankment is anticipated, provide casings (e.g., sonotubes or corrugated metal pipes) in the reinforced soil zone to permit construction of deep foundations after the MSE wall is constructed and settlement has occurred. In the case of driven piles it may be possible to isolate the piles from the casings by filling the annulus with loose sand just prior to construction of the footing at top of the piles. In the case of drilled shafts it may not be possible to isolate the shaft from the casing in an economical manner unless another internal casing is used.\n\n• In the case where deep foundations are constructed prior to MSE wall construction, and negative skin friction, i.e., downdrag force, is anticipated, provide a casing around the deep foundation element, through the reinforced fill. The casing is filled with sand just prior to the construction of the footing at top of the deep foundation element. Alternatively, a bond breaker can be used on the deep foundation element when negative skin friction, i.e., downdrag force, is anticipated.\n\n[p. 6-9]\n\n[Figure 6-4 labels, typed in from p. 6-9:] Bridge Superstructure; Traffic Surcharge on the Roadway Surface; h, Roadway fill above MSE wall; Reinforced fill; Retained fill; Foundation soil; H; d; z; Z; qT and qB, the top and bottom of the Simplified supplemental lateral pressure distribution on back of wall facing (may have nonlinear distribution with depth based on actual geometries and loads); Deep foundation extending more than 1 time the height of the MSE wall below the wall or socketed into sound rock.\n\nNotes: • d is the depth of embedment • H is measured from top of leveling pad to top of coping • z is measured below finished grade behind footing • The Kr/Ka and F* values are assumed to start at z = 0, i.e., below the finished grade behind the footing.\n\nFigure 6-4. Geometry definition and typical supplemental lateral pressure distribution from deep foundation on MSE wall face.\n\n• In the case where deep foundations are constructed prior to MSE wall construction and/or the deep foundation element is not isolated from the casing as noted above, the horizontal stresses as shown in Figure 6-4 must be included in the analysis of MSE wall. If the deep foundations are constructed through casings and isolated from the casings, the horizontal stresses may be neglected in the design of the MSE wall. However, it must be realized that this configuration leads to a longer unsupported length of the deep foundation that may result in undesirable movements at the bridge seat level in addition to increased size of the deep foundation element. [p. 6-10]\n\n• For driven piles extending though the reinforced soil zone, require a minimum offset from the back face of the wall panels and the front of the driven pile elements as 1.5 ft (0.5 m). • For drilled shaft extending through the reinforced soil zone, require a minimum offset from the back face of the wall panels and the front of drilled shaft elements as 3 ft (1 m). This criterion provides the necessary clear space to achieve proper compaction of the soil in this area. Thus, for example, if drilled shafts with a maximum dimension of 2 ft (0.61 m) are used then the minimum clearance is 3 ft (1 m). For walls where reinforcements will be splayed (e.g., steel strip reinforcements), require a minimum offset from the back face of the wall panels and the front of deep foundation elements as the greater of 3 ft (1 m) or 1 times the diameter of the deep foundation. Thus, for example, if a drilled shaft of 4 ft (1.2 m) diameter is used then the minimum clearance is 4 ft (1.2 m). These criteria provides the necessary clear space to achieve proper compaction of the soil in this area and adequate distance for splaying of reinforcements within the acceptable limits noted in Chapter 5. • Provide soil reinforcements in the soil behind the abutment footing (cap) as shown in Figure 6-3. Interference between Soil Reinforcements and Deep Foundations Design of MSE walls with deep foundations needs careful consideration of the interference between the soil reinforcements and the deep foundation element(s). Where deep foundation elements interfere with the reinforcements, specific methods for field installation must be developed and presented on the plans. Simple cutting and then bending of the reinforcements during construction should not be allowed. Guidance for navigating soil reinforcement around vertical obstructions is presented in Chapter 5. Soil cover as recommended in Section 5.4.1 of Chapter 5 between dissimilar metals should be implemented as appropriate.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-3: Details of a typical pile supported MSE abutment",
+    "Figure 6-4: Geometry definition and typical supplemental lateral pressure distribution from deep foundation on MSE wall face"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-6 to 6-10."
+  },
+  {
+   "section_id": "6.1.3",
+   "title": "Alternative Configuration of MSE Walls at Bridge Abutments",
+   "body": "[p. 6-10] An alternative to construction of MSEW abutments that use deep foundations through reinforced backfill is to construct the MSE walls behind abutment foundations that are constructed. In this configuration, the foundations are not constructed within or on top of reinforced fills. Rather the MSE walls supports only the approach fills while the abutments are constructed in configuration of piers. Special details (e.g., bridge approach slabs) are required for this configuration to integrate the MSE walls with the bridge abutment. The major advantage of this type of abutment configuration is that the construction of the foundations for the abutments can be performed independently of the MSE wall construction and that better construction control can be exercised for MSE walls since there are no obstructions through the reinforced backfill. [p. 6-11]\n\nBased on successful experience of the authors with construction of an abutment configuration with MSE wall behind the abutment foundations, following are suggested additional details, as applicable: • Require that the bridge superstructure be placed after the construction of the MSE walls so that most of the possible foundation deformations have occurred. • Construct the foundations prior to construction of the MSE wall, but construct the abutment columns after the construction of the MSE wall. In this construction sequence, the foundation deformation due to the construction of the adjacent MSE wall can be compensated for by adjusting the connection of the abutment structure rather than running the risk of abutment structure deforming to the extent that it does not fit with the bridge superstructure at the beam seat level. • Consider construction of a false wall in front of the abutment substructure, i.e., the element between the foundation and the superstructure. This false panel serves to protect the abutment elements against vehicular impact as well as protecting vehicle occupants. The false wall may be structurally connected to the abutment substructure or an independent wall with a separation of 3 to 6 in. (75 mm to 150 mm) with the decision based on the design of the abutment substructure and its ability to absorb vehicular impacts. • For integral abutments with a wall supported on deep foundations, a wrapped or wire faced MSE wall can be constructed behind the abutment wall, using the abutment as and offset form with a spacer to maintain the distance between the MSEW and the abutment wall as shown in Figure 6-5.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-10 to 6-11."
+  },
+  {
+   "section_id": "6.1.4",
+   "title": "Protection of MSE Wall at Abutments",
+   "body": "[p. 6-11] At abutment locations, the permeation or water through expansion joints into the MSE wall results in a number of seepage problems as discussed in Chapter 5 including the potential for salt-laden runoff, which could result in a chloride rich, corrosive environment near the face panel connection for a significant percentage of the wall height. To minimize this problem, seepage should be controlled as shown on Figure 6-6. [p. 6-12]\n\nFigure 6-5. Example of use of a geosynthetic wrapped face wall behind an integral abutment.\n\nFigure 6-6. Example abutment seat detail.\n\n[p. 6-13]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-5: Example of use of a geosynthetic wrapped face wall behind an integral abutment",
+    "Figure 6-6: Example abutment seat detail"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-11 to 6-13."
+  },
+  {
+   "section_id": "6.2",
+   "title": "Superimposed (Tiered) MSE Walls",
+   "body": "[p. 6-13]\n\nFor tall walls consideration should be given to superimposed (tiered) walls from the viewpoint of constructability. Reconfiguring a tall wall in superimposed walls with smaller heights permits a fresh start with a new leveling pad, reduces vertical stress on facing elements, and permits better control of vertical alignment of the wall face. Analytically, depending on the offsets between the superimposed walls, another beneficial effect might be an overall (equivalent) sloped wall face that results in lesser lateral force on the whole wall system.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed p. 6-13."
+  },
+  {
+   "section_id": "6.2.1",
+   "title": "2-Tier Superimposed Wall",
+   "body": "[p. 6-13] s\n\nFigure 6-7 shows a configuration of a 2-tier superimposed MSE wall system. The design of superimposed MSE walls requires two analyses as follows:\n\n(1) A design using simplified design rules for calculating external stability and locating the internal failure plane for internal stability as shown in Figure 6-7. (2) A slope stability analysis, including both compound and global stability using a reinforced soil global stability computer program outlined in Chapter 4. This is an essential computation. The definition of wall heights, H1 and H2, and offset D between walls for a 2-tier superimposed wall configuration is shown in Figure 6-7. Using the definitions in Figure 6-7, for preliminary design, the following minimum values for reinforcement length, of L1 and L2, should be used for offsets (D) greater than [1/20 (H1 + H2)]:\n\nUpper wall: L'1 ≥ 0.7 H1 Lower wall: L'2 ≥ 0.6 H where H = H1 + H2\n\nBased on the definitions in Figure 6-7, following are basic design guidelines:\n\n• Where the offset distance (D) is greater than H2 tan (90-φr), walls are not considered superimposed and are independently designed from an internal stability viewpoint,\n\n• For a small upper wall offset; D ≤ [1/20 (H1 + H2)], it is assumed that the failure surface does not fundamentally change and it is simply adjusted laterally by the offset distance D. The walls should be designed as a single wall with a height H.\n\nIn both of the above cases, compound and global stability should be checked. [p. 6-14]\n\nFigure 6-7. Design rules for a 2-tier superimposed MSE wall system.\n\n[p. 6-15]\n\nThe stability analysis for a 2-tier superimposed MSE wall system is performed as follows: • External stability calculations for the upper wall are conventionally performed as outlined in Chapter 4. For the lower wall, consider the upper wall as a surcharge (Load type “ES”) in computing bearing pressures. In lieu of a conventional external sliding stability computation, perform a wedge type slope stability analysis with failure surfaces along and exiting at the base as well as below the base. The overall stability should be investigated at the Service I load combination and a sliding resistance factor of 0.65. • For calculating the internal stability, the maximum tensile force lines are as indicated in figure 6-7a. These relationships are somewhat empirical and geometrically derived. • For intermediate offset distances, see Figure 6-7a for the location of the failure surface and consider the vertical pressures in Figure 6-7b for internal stress calculations. • For large setback distances, [D ≥ H2 tan (90-φr)], the maximum tensile force lines are considered independently, without regard to the geometry of the two superimposed walls. For internal stability computations, the upper wall is neglected. • The balance of the computations remains identical as in Chapter 4.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-7: Design rules for a 2-tier superimposed MSE wall system"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-13 to 6-15."
+  },
+  {
+   "section_id": "6.2.2",
+   "title": "Superimposed Walls with More than 2-Tiers",
+   "body": "[p. 6-15] The criteria for 2-tier wall presented in Figure 6-7 can be extended to walls with more than two tiers. For such configurations, the global and compound stability analysis becomes even more critical. Methods outlined in Chapter 4 may be used for evaluating the global and compound stability. For internal stability analysis, Wright (2005) and Leschinsky and Han (2004) found that the criteria for additional vertical stress in Figure 6-7b may be used for walls with more than 2-tiers provided that only the immediately overlying tier is considered to contribute to the increase in vertical stress on the lower tier. As an alternative, Wright (2005) presents an elastic solution based on an assumption of “rigid” walls for estimating additional vertical stresses in a given tier of a multi-tier wall due to the effect of all overlying wall tiers. Regardless of the approach used for estimating the increase in vertical stresses for evaluation of internal stability, the analysis of tiered walls should proceed from the top wall to the bottom wall so that the stresses are properly accumulated and accounted for in the design of the bottom-most wall. For preliminary design, the length of the reinforcement of the bottom-most tier can be assumed to be 0.6 times the total height of the wall system. [p. 6-16]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-15 to 6-16."
+  },
+  {
+   "section_id": "6.3",
+   "title": "Walls with Uneven Reinforcement Lengths",
+   "body": "[p. 6-16] MSE WALLS WITH UNEVEN REINFORCEMENT LENGTHS (TRAPEZOIDAL WALLS)\n\nUse of this type of reinforcement geometry should be considered only if the base of the MSE structure is in rock or competent foundation material, i.e., foundation materials which will exhibit minimal post construction settlements. Examples of competent foundation materials include materials with SPT N60 value greater than 50 and sound rock.\n\nThe design of these walls requires two analyses as follows:\n\n1. A design using simplified design rules for determining internal and external stability. 2. A slope stability analysis performed using a reinforced soil stability program checking both global (i.e., circular and wedge type analysis) and compound failure planes.\n\nSimplified design rules for these structures are as follows:\n\n• As shown in Figure 6-8, the wall is represented by a rectangular block (Lo, H) having the same total height and the same cross-sectional area as the stepped section for external stability calculations.\n\n• The maximum tensile force line is the same as in rectangular walls (bilinear or linear according to the extensibility of the reinforcements).\n\n• Minimum base length (L3) of 0.4H or 8 ft (2.5 m) whichever is greater, with the difference in length in each zones being less than 0.15 H.\n\nFor internal stability calculations, the wall is divided in rectangular sections and for each section the appropriate L (L1, L2, L3), is used for pullout calculations, using methods developed in Chapter 4.\n\n[p. 6-17]\n\nFigure 6-8. Dimensioning of MSE wall with uneven reinforcement lengths.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-8: Dimensioning of MSE wall with uneven reinforcement lengths"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-16 to 6-17."
+  },
+  {
+   "section_id": "6.4",
+   "title": "Back-To-Back (BBMSE) Walls",
+   "body": "[p. 6-17] Back-to-back walls are often used for highway ramps. For walls which are built back-to-back as shown in Figure 6-9, a modified value of lateral pressure influences the external stability calculations. As indicated in Figure 6-9, two cases can be considered and are discussed below. • Case I For Case I, the overall base width is large enough so that each wall behaves and can be designed independently. In particular, there is no overlapping of the reinforcements. Theoretically, if the distance, D, between the two walls is shorter than D = H1 tan (45° - φ°/2) where H1 is the taller of the parallel walls, then the active wedges at the back of each wall cannot fully spread out and the active thrust is reduced. However, for design it is assumed that for values of D > H1 tan (45o - φ°/2) ≈ 0.5H1 then full active thrust is mobilized. • Case II For Case II, there is an overlapping of the reinforcements such that the two walls interact. When the overlap, LR, is greater than 0.3H2, where H2 is the shorter of the parallel walls, no active earth thrust from the backfill needs to be considered for external stability calculations. For intermediate geometries between Case I and Case II, the active earth thrust may be linearly interpolated from the full active case to zero. [p. 6-18]\n\nFigure 6-9. Back–to–back MSE walls.\n\nFor Case II geometries with overlaps (LR) greater than 0.3H2, the following guidelines should be used:\n\n• L1/H1 ≥ 0.6 where L1 and H1 is the length of the reinforcement and height, respectively, of the taller wall.\n\n• L2/H2 ≥ 0.6 where L2 and H2 is the length of the reinforcement and height, respectively of the shorter wall.\n\n• Wb/H1 ≥ 1.1 where Wb is the base width as shown in Figure 6-9 and H1 is the height of the taller wall.\n\nThe above guidelines are valid for static load conditions or in areas where the seismic horizontal accelerations at the foundation level are less than 0.05g. Back-to-back walls in seismically active areas should be designed based on a more detailed analysis that includes effects of potential non-uniform distribution of seismic and inertial forces within the wall.\n\nFor back-to-back walls designers might be tempted to use single layers of reinforcements that are connected to both wall facings. This alternative creates an unyielding structure creating an at rest stress state (Ko) from the top to the bottom of the wall, resulting in much higher reinforcement tensions than previously used in the design method in this manual. The design must include the increases in lateral stress in the determination of the tension in reinforcement and connection and in the design of facing elements. Additionally compaction may induce higher stress at the connection, which must be accounted for in the lateral earth pressure [p. 6-19]\n\ncalculations. Furthermore, difficulties in maintaining wall alignment could be encountered during construction, especially when the walls are not in a tangent section. The exception is the use of geosynthetic wrapped faced walls, where alignment with connections is not an issue. However, while there is a potential for stress relief due to extensible reinforcements, very few instrumented structures have been constructed and therefore even in the case of geosynthetic reinforcements Ko should conservatively be used to calculate the tension in the reinforcements unless numerical modeling is performed to evaluate the anticipated stress state and instrumentation is used to confirm the actual stress conditions.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-9: Back–to–back MSE walls"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-17 to 6-19."
+  },
+  {
+   "section_id": "6.5",
+   "title": "Shored MSE Walls for Steep Terrains and Low Volume Roads",
+   "body": "[p. 6-19] In steep terrains MSE wall construction necessitate excavation to establish a flat bench to accommodate the soil reinforcements with a minimum length of greater than 8 ft (2.5 m) or 70% of the height of the wall. Additionally, the required depths of embedment are proportional to the steepness of the slope below the wall toe. In some cases, the excavation required for construction of a MSE wall becomes substantial, and unshored excavation for the MSE wall is not practical, particularly if traffic must be maintained during construction of the MSE wall. Shoring, most often in the form of soil nail walls, has been employed to stabilize the backslope (or back-cut), with a MSE walls being designed and constructed in front of it. Figure 6-10 shows a generic cross-section of this configuration. In this configuration, if the shoring wall is designed as a permanent wall it can significantly reduce the long-term lateral pressures on the MSE wall. Such MSE wall configuration is known as a shored MSE or SMSE wall. Details of SMSE walls systems are presented in FHWA-CFL/TD-06-001 (Morrison et al., 2006).\n\nFigure 6-10. Generic cross-section of a shored MSE (SMSE) wall system for steep terrains (Morrison et al., 2006).\n\n[p. 6-20]\n\nFor successful implementation of the SMSE walls, the following guidelines should be implemented. These guidelines are valid for static load conditions or in areas where the seismic horizontal accelerations at the foundation level are less than 0.05g. SMSE walls in seismically active areas should be designed based on a more detailed analysis that includes effects of potential non-uniform distribution of seismic and inertial forces within the wall system (both the MSE and the shoring components). Finally, it should be recognized that these walls were developed for low volume roads in mountains and are not recommended in urban areas for roadway widening applications because of the relatively high risk for tension cracks under dynamic effects of traffic at the interface between an existing wall and new MSE wall. • The shoring wall should be designed as a permanent wall whose design life is equal to or greater than that for the MSE wall. For design of shoring systems using ground anchors and soil nail walls, see Sabatini et al. (1999) and Lazarte et al., (2003), respectively. • Ensure that the drainage features of the MSE wall system and the permanent shoring wall behind it are integrated so that there are no lateral pressures due to hydrostatic conditions in either wall. Note, as discussed in Chapter 5, thin vertical drains behind the face of the soil nail wall do not necessarily fully relieve hydrostatic stress. Thus, some level of hydrostatic stress based on flow net analysis should be included in the design or horizontal drains and should be considered in the design of SMSE walls. • Figure 6-11 presents the minimum recommended geometry of a SMSE system. The minimum length of the reinforcement is 0.3H or 5 ft (1.5 m) whichever is greater. Where adequate construction space is available (or can be made temporarily available with permanent underground easement), it is recommended that the upper two layers of reinforcement are extended to a minimum length of 0.6H or a minimum of 5 ft (1.5 m) beyond the shoring wall interface, whichever is greater, as illustrated in Figure 6-11a. This feature limits the potential for tension cracks to develop at the shoring/MSE wall interface, and resists lateral loading effects. Extension of the upper two layers is intended to result in a wall cross-section as depicted in Figure 6-11a, where the height of the shoring wall is at least 2/3 of the MSE wall height, H. These guidelines should only be applied to wall designs that meet this constraint over the majority of their length. Walls with short shoring walls, i.e., heights less than 2/3H over most of their length are outside the scope of these guidelines. It should be noted that near the ends of the retaining wall the height usually tapers, and the shoring wall height may be less than 2/3 of the MSE height for a short distance. However, application of these guidelines will result in MSE reinforcements not less than 10 ft (3 m) long at the top of the MSE wall (5 ft (1.5 m) minimum plus 5 ft (1.5 m) minimum). [p. 6-21]\n\nFigure 6-11. Minimum recommended geometry of a shored MSE wall system in steep terrains, (a) with extension of upper two rows of reinforcement, and (b) with the upper two rows connected to the shoring wall (Morrison et al., 2006).\n\n[p. 6-22]\n\n• Where the shoring wall is less than 2/3 of the height of the MSE wall, as may occur as the wall ends taper, the engineer should check to assure that reinforcement lengths in the upper part of the MSE mass is greater than the conventional 0.7H as discussed in Chapter 4. Generally, this will be satisfied, as long as the total retaining wall height in such sections is less than about 14 ft (4 m).\n\n• If extension of the upper reinforcements is not feasible, a positive mechanical connection between the upper two or more reinforcements and the shoring wall is recommended as shown in Figure 6-11b. Incorporation of interface connections may limit differential movement between the shoring wall and MSE wall components, as a result limiting development of a tension crack, especially if the slack in the MSE reinforcements can be effectively removed. This could potentially be accomplished through the fastening mechanism or by surcharge loading. Extension of the upper MSE reinforcements is considered superior to mechanical connection of the reinforcements and is recommended by the authors.\n\n• The critical failure surfaces for SMSE walls with extensible and inextensible reinforcements are presented in Figure 6-12. The critical failure surface is approximated using Rankine’s active earth pressure theory within the reinforced soil mass, assuming that the remaining portion lies along the shoring/MSE interface. The critical failure surfaces are consistent with those presented in Chapter 4 (except pullout calculations). Design for internal stability conservatively neglects the additional retaining benefits provided by longer upper reinforcement layers shown in Figure 6-10a or the resistance from connections shown in Figure 6-11b.\n\n• For SMSE walls, lateral pressures are essentially the result of reaction of reinforced soil mass against the shoring wall, and are thus internal to the MSE mass. At each reinforcement level, the horizontal stress, σh, along the potential failure line is computed using exactly the procedures in Chapter 4. If superimposed concentrated vertical loads are present then the increment of vertical stress (Δσv) maybe computed by a modified version of the 2:1 method as shown in Figure 6-13.\n\n[p. 6-23]\n\nFigure 6-12. Location of potential failure surface for internal stability design of shored MSE walls (a) extensible reinforcements, (b) inextensible reinforcements (Morrison et al., 2006).\n\nNotes: 1. The measurement of x may be from either the face of the MSE wall or the shoring wall, depending on the location of the load footing and the slopes of the various walls. 2. The figure is applicable to MSE walls constructed without a batter, and where the load footing does not straddle the shoring wall. When wall batters are employed, as is generally recommended, the vertical stresses can be estimated by geometrically calculating D1 at each reinforcement depth. In the case where the footing straddles the shoring wall, D1 is always greater than z2, as defined in the figure.\n\nFigure 6-13. Distribution of stress from concentrated vertical load for internal and external stability calculations (Morrison et al., 2006).\n\n[p. 6-24]\n\n• Internal design differs from design of a conventional MSE wall with regard to pullout of the reinforcements. Conventional MSE design requires that each layer of reinforcement resist pullout by extending beyond the estimated failure surface as indicated in Chapter 4. In the case of a SMSE wall system, only the lower reinforcement layers (i.e., those that extend into the resistant zone) are designed to resist pullout for the entire “active” MSE mass. The relevant equations of TMAX and pullout resistance are given in Figure 6-14. The tensile resistance of the reinforcement as well as the connection strength is evaluated in accordance with the procedures in Chapter 4. • External stability design of the MSE component of a SMSE wall should address bearing capacity and settlement of foundation materials based strength limit state and service limit state considerations. Limiting eccentricity (i.e., overturning) and sliding are not included as failure mechanisms due to stabilization provided by the shoring wall. Hydrostatic forces are eliminated by incorporating internal drainage into the design. Procedures for evaluating bearing capacity and settlement analysis are the same as those in Chapter 4. • As part of the design of the individual MSE wall and shoring components, stability internal to these individual components will have been achieved. However, a global stability evaluation of the SMSE wall system as a compound structure must also be evaluated. Various failure modes are shown in Figure 6-15. Although, all failure five failure modes shown in Figure 6-15 must be evaluated, the most critical failure mechanisms are along the shoring/MSE interface (Mode 4 in Figure 6-15) and global stability external to the SMSE wall system must be evaluated (Mode 1 in Figure 6-15). Morrison et al. (2006) present suggestions for global stability analyses and measures to improve stability. Stability analyses for the SMSE wall system should use conventional (i.e., ASD) limit equilibrium analysis methods. As with any earth stability evaluation, selection of appropriate material parameters is of utmost importance in obtaining a realistic evaluation. In addition, the compound nature of the SMSE wall system requires defining other factors such as drainage issues which affect its behavior. [p. 6-25]\n\n[Equations printed in Figure 6-14 (unnumbered), typed in from p. 6-25:] Case 1: For LW < H tanβ: Tmax = {LW [γ (H − LW / (2 tan β)) + q] + FV} / tan(φ′ + β) + FH. Case 2: For LW = 0.3H: Tmax = {3H [γ (H − 3H / (20 tan β)) + q] + FV} / (10 tan(φ′ + β)) + FH. Case 3: For LW ≥ H tanβ: Tmax = [H tan β (γH + 2q) + 2FV] / (2 tan(φ′ + β)) + FH.\n\nNotes: 1. The loads FV, FH and W should be multiplied by the appropriate load factors when evaluating the strength and service limit state load combinations. 2. The pullout resistance of the MSE wall component of a SMSE wall system is considered adequate if TMAX ≤ φpΣFpo where ΣFpo is the summation of the pullout resistances from all layers of reinforcement based on the length of the reinforcement beyond the active zone and φp is the resistance factor as follows: a. φp = 0.90 for L/H > 0.4 b. φp = 0.65 for L/H ≤ 0.4\n\nFigure 6-14. Computation for TMAX and evaluation of pullout resistance (after Morrison et al., 2006).\n\n[p. 6-26]\n\nFigure 6-15. Example global stability and compound failure surfaces (Morrison et al., 2006).",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-10: Generic cross-section of a shored MSE (SMSE) wall system for steep terrains (Morrison et al., 2006)",
+    "Figure 6-11: Minimum recommended geometry of a shored MSE wall system in steep terrains, (a) with extension of upper two rows of reinforcement, and (b) with the upper two rows connected to the shoring wall (Morrison et al., 2006)",
+    "Figure 6-12: Location of potential failure surface for internal stability design of shored MSE walls (a) extensible reinforcements, (b) inextensible reinforcements (Morrison et al., 2006)",
+    "Figure 6-13: Distribution of stress from concentrated vertical load for internal and external stability calculations (Morrison et al., 2006)",
+    "Figure 6-14: Computation for TMAX and evaluation of pullout resistance (after Morrison et al., 2006)",
+    "Figure 6-15: Example global stability and compound failure surfaces (Morrison et al., 2006)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-19 to 6-26."
+  },
+  {
+   "section_id": "6.6",
+   "title": "Stable Feature MSE (SFMSE) Walls",
+   "body": "[p. 6-26] MSE walls can be considered in front of apparently stable features such as a rock face as shown in Figure 6-16. Depending on the space between the MSE wall face and the stable feature, the behavior of the SFMSE wall may be similar to that of a SMSE wall. Following are some guidelines for such cases: • Establish that the feature behind the proposed SFMSE wall line is stable and will be stable during the design life of the SFMSE wall. The feature should be stabilized to the extent necessary to be compatible with the design life of the SFMSE wall that is being proposed at that particular location. • Evaluate the deformation and strength behavior of the feature (rock face or existing wall) under additional stresses behind it. Hydrostatic pressure and or other lateral pressures may contribute to the instability of a rock cut in front of which a SFMSE wall is being proposed. The stability analysis should include an evaluation of potential lateral movements under anticipated additional loadings on the existing feature. [p. 6-27]\n\n• Perform a deformation analysis of the foundation under the SFMSE wall and evaluate the effect of the estimated deformations on the facilities above the top of the wall and in particular at and immediately above the interface between the existing feature and the SFMSE wall. • Evaluate the effect of the increased stresses at the base of the MSE wall on the settlement of the existing feature. If the existing feature is a retaining wall then it might experience detrimental settlement in the immediate and long-term as well as downdrag forces at the interface between the MSE wall and the existing feature. • Ensure that the drainage features of the SFMSE wall system and the stable feature behind it are integrated so that there are no lateral pressures due to hydrostatic conditions. • For SFMSE wall systems, the configuration in Figure 6-16 is recommended wherein at least the top two reinforcements are extended over the top of the stable feature rather than being mechanically connected to the stable feature. For roadway widening projects where the stable feature may be an existing wall, it is recommended that the top of the wall be trimmed as necessary to accommodate the top layers of reinforcements and mitigate long-term maintenance issues. • Extend all soil reinforcement layers above the top of the stable feature a distance back of Lt, per Figure 6-15, with a minimum of two layers as previously noted. • Establish the reinforcement layout based on the TMAX values obtained using the guidance provided in Figure 6-14 and other guidance provided in Section 6.5. The minimum clearance between the top of the stable feature and the reinforcement layer above it should be 6 in. (150 mm) to prevent adverse stress concentrations in this area and contact between dissimilar materials. • Global stability analysis should be performed as the MSE wall will increase driving forces. Global analysis is especially needed where structures are constructed with a slope at the toe or on soft ground. All failure modes similar to those shown in Figure 6-15 should be evaluated. The above guidelines are valid for static load conditions or in areas where the seismic horizontal accelerations at the foundation level are less than 0.05g. SFMSE walls in seismically active areas should be designed based on a more detailed analysis that includes effects of potential non-uniform distribution of seismic and inertial forces within the wall system (both the MSE and the stable feature components). Finally, these types of walls are not recommended in urban areas for [p. 6-28]\n\n[Figure 6-16 dimensions, typed in from p. 6-28:] Lt = 0.8 H min; Lb = Greater of 0.3H or 5 ft; 3 ft min (drawn from the top of the wall down to the top of the stable feature); 6.5 ft min (drawn from the stable feature to the end of the upper, longer reinforcement); 1 m = 3.28 ft.\n\nFigure 6-16. Minimum recommended geometry of a stable feature MSE (SFMSE) wall system.\n\ncases such as roadway widening because of the relatively high risk for tension cracks under dynamic effects of traffic at the interface between the existing feature such as a wall and new MSE wall.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-16: Minimum recommended geometry of a stable feature MSE (SFMSE) wall system"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 6 (Design of MSE Walls with Complex Geometrics), printed pp. 6-26 to 6-28."
+  }
+ ]
 }

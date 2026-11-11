@@ -58,7 +58,9 @@ form of ``build_printed_text``: per volume ``volume_title``,
 ``contents_pages`` and ``lists_pages`` ([first, last], 1-based PDF pages),
 ``headings``, ``fix_lines`` (a text-layer line, on its PDF page, mended
 before the build: a heading printed "11.2.1. Precast ..." with a full
-stop), ``printed_equations`` (``number``, ``page``, ``formula``,
+stop, a List entry's stray leader dots; with ``through``, the run of
+lines up to that one replaced, as for the pieces of the unnumbered
+equations printed inside Figure 6-14), ``printed_equations`` (``number``, ``page``, ``formula``,
 ``variables``, optional ``notes``: see
 ``build_printed_text.add_printed_equations``), ``printed_tables`` (a table
 whose text-layer cells come out a column at a time or lose signs and
@@ -466,7 +468,8 @@ def _caption_end(raw, q: int, m, listed: str) -> int:
     without the list's first words ("Table 3-5." / "Reinforcement Pullout
     ...", listed "Basic Aspects of Reinforcement Pullout ...") is matched
     from where its words start in the list's, and a line in brackets right
-    after it ("(after AASHTO M 111 and ASTM A123).") is its own."""
+    after it ("(after AASHTO M 111 and ASTM A123).", a source and year
+    alone: "(Collin et al., 2002).") is its own."""
     want = bpt._norm(listed)
     got = bpt._norm(raw[q][1][m.end():])
     off = 0
@@ -492,7 +495,8 @@ def _caption_end(raw, q: int, m, listed: str) -> int:
     while k < len(raw) and raw[k][0] == raw[q][0] and not raw[k][1]:
         k += 1
     if (k < len(raw) and raw[k][0] == raw[q][0]
-            and re.match(r"\((?:after|from|adapted|modified)\b", raw[k][1], re.I)
+            and (re.match(r"\((?:after|from|adapted|modified)\b", raw[k][1], re.I)
+                 or re.match(r"\([A-Z][^()]*\b(?:19|20)\d\d[a-z]?\)\.?$", raw[k][1]))
             and re.search(r"\)\.?$", raw[k][1]) and len(raw[k][1]) < 120):
         end = k
     return end
@@ -614,7 +618,12 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
         lines = pages[f["pdf_page"] - 1]["lines"]
         if f["find"] not in lines:
             raise ValueError(f"fix_lines: {f['find']!r} not on PDF page {f['pdf_page']}")
-        lines[lines.index(f["find"])] = f["replace"]
+        i = lines.index(f["find"])
+        # with "through": the lines from "find" to that line, the text
+        # layer's pieces of equations set inside a figure, give way to
+        # the typed text
+        j = lines.index(f["through"], i) if f.get("through") else i
+        lines[i:j + 1] = [f["replace"]] + [""] * (j - i)
     entries = parse_contents(pages, *vol["contents_pages"])
     figs, tabs = parse_lists(pages, *vol["lists_pages"])
     headings = vol.get("headings", {})
