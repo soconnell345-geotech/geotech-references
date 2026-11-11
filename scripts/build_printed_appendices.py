@@ -270,6 +270,10 @@ def render(stream, a: int, b: int, pages, figure_pages: set, caption_pages: set,
             flush()
             k += 1
             continue
+        if ln.startswith("¾ "):
+            # the arrow bullet, which the text layer reads through its
+            # symbol font as "¾"
+            ln = "➢ " + ln[2:]
         if (cur and re.search(r"\w-$", cur[-1]) and re.match(r"[a-z0-9]", ln)
                 and not cur[-1].startswith("[p. ")):
             # a word the print hyphenates at the end of a line

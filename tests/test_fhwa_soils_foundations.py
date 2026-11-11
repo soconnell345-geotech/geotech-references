@@ -369,6 +369,26 @@ def test_appendix_a_laboratory_values_as_printed():
     assert "Figure X.4-2" not in body
 
 
+def test_appendix_a_slope_stability_values_as_printed():
+    # Section A.5 (pp. A.5-3 to A.5-16), the calculation pages typed in
+    secs = {s["section_id"]: s for s in _appendix("A")["sections"]}
+    body = secs["A.5-2"]["body"] + "\n\n" + secs["A.5-2.a"]["body"]
+    assert "Silty clay | 1,100 | 0 | 125 | 125 | 65" in body
+    # the Ordinary Method of Slices by hand: slice 7, slice 15, the totals
+    assert "(1 ft)(12 ft)((28 ft + 25 ft)/2)(125 pcf) = 95,790 lbs" in body
+    assert "T = WT sin α = 95,790 lbs (sin 16°) = 26,403 lbs" in body
+    assert "N tan φ = 1,190 lbs (tan 36°) = 865 lbs" in body
+    assert "7 | 12 | (27+33)/2 | 130 | 46,800 |" in body
+    assert "Σ | | | | | | | | | | 26,591 | 169,400 | 144,154" in body
+    assert "(26,591 lbs + 169,400 lbs) / 144,154 lbs = 1.36" in body
+    assert "F.S. = 1.63 - Bishop’s Simplified Method: Computer Solution" in body
+    # the sliding block by Rankine wedges
+    assert "Ka1=tan² (45° - 40°/2) = tan² (25°) = 0.22" in body
+    assert "= 15.5 kips + 2.3 k + 6 k ≈ 24 k" in body
+    assert "= (18K + 66K) / 24K = 84K / 24K = 3.5" in body
+    assert "¾" not in body
+
+
 def test_appendix_b_sections_as_printed():
     secs = {s["section_id"]: s for s in _appendix("B")["sections"]}
     assert list(secs) == ["B", "B.1", "B.2", "B.3", "B.4"]

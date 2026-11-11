@@ -100,7 +100,7 @@
         {
           "letter": "A", "number": 13, "file": "appendix_a.json",
           "title": "APPLE FREEWAY PROJECT",
-          "page_start": 387, "page_end": 428,
+          "page_start": 387, "page_end": 446,
           "sections": [
             {"id": "A", "printed": "APPENDIX A", "title": "APPLE FREEWAY PROJECT GENERAL NOTES", "page": "A-1"},
             {"id": "A.1", "printed": "SECTION A.1", "title": "INTRODUCTION AND SCOPE OF WORK", "page": "A.1-1"},
@@ -118,7 +118,11 @@
             {"id": "A.4", "printed": "SECTION A.4", "title": "LABORATORY TESTING", "page": "A.4-1", "start_page": "A.4-1"},
             {"id": "A.4-1", "title": "RELEVANT CONCEPTS AND PROCEDURES", "page": "A.4-2"},
             {"id": "A.4-2", "title": "DETAILED PROCEDURES", "page": "A.4-2"},
-            {"id": "A.4-3", "title": "Summary of Laboratory Testing and Illustration of the Use of Laboratory Test Results to Obtain Values for Geotechnical Design Parameters", "page": "A.4-4"}
+            {"id": "A.4-3", "title": "Summary of Laboratory Testing and Illustration of the Use of Laboratory Test Results to Obtain Values for Geotechnical Design Parameters", "page": "A.4-4"},
+            {"id": "A.5", "printed": "SECTION A.5", "title": "SLOPE STABILITY", "page": "A.5-1", "start_page": "A.5-1"},
+            {"id": "A.5-1", "title": "RELEVANT CONCEPTS AND PROCEDURES", "page": "A.5-2"},
+            {"id": "A.5-2", "title": "DETAILED PROCEDURES", "page": "A.5-2"},
+            {"id": "A.5-3", "title": "SUMMARY OF THE APPROACH USED TO DETERMINE EMBANKMENT STABLITY FOR THE APPLE FREEWAY DESIGN PROBLEM", "page": "A.5-17"}
           ],
           "figures": [
             {"number": "A.1-1", "page": "A.1-2", "caption": "Apple Freeway plan and section"},
@@ -142,14 +146,31 @@
             {"number": "A.4-2", "page": "A.4-5", "caption": "The po diagram for boring UDH BAF – 4 (Note: Ground water was encountered at a depth of 6 ft in UDH BAF-4)"},
             {"number": "A.4-3", "page": "A.4-6", "caption": "Laboratory test request"},
             {"number": "A.4-4", "page": "A.4-9", "caption": "Plot of estimated preconsolidation pressure, pc, on a po plot"},
-            {"number": "A.4-5", "page": "A.4-10", "caption": "Plot of variation of undrained shear strength with depth determined by various test methods (U = UU Test, C = CU Test, V = Undisturbed Vane Shear Test)"}
+            {"number": "A.4-5", "page": "A.4-10", "caption": "Plot of variation of undrained shear strength with depth determined by various test methods (U = UU Test, C = CU Test, V = Undisturbed Vane Shear Test)"},
+            {"number": "A.5-1", "page": "A.5-1", "caption": "Status of geotechnical work"},
+            {"number": "A.5-2", "page": "A.5-3", "caption": "Idealized design soil profile – East Abutment"},
+            {"number": "A.5-3", "page": "A.5-4", "caption": "Trial failure circle – Embankment fill - East Abutment"},
+            {"number": "A.5-4", "page": "A.5-5", "caption": "Vertical slices above assumed failure arc – East Abutment. (Not-to-scale)"},
+            {"number": "A.5-5", "page": "A.5-5", "caption": "Determination of α – Angles corresponding to each vertical slice above assumed failure arc – East Abutment. (Not-to-scale)"},
+            {"number": "A.5-6", "page": "A.5-6", "caption": "Geometry and relevant soil properties for slice 7 (Not-to-scale)"},
+            {"number": "A.5-7", "page": "A.5-7", "caption": "Geometry and relevant soil properties for slice 15 (Not-to-scale)"},
+            {"number": "A.5-8", "page": "A.5-12", "caption": "Graphical representation of solution for minimum Factor of Safety by Ordinary Method of Slices/Hand computation – East Abutment"},
+            {"number": "A.5-9", "page": "A.5-12", "caption": "Graphical representation of solution for minimum Factor of Safety by Ordinary Method of Slices (OMS)/Computer solution and Bishop’s Method – East Abutment"},
+            {"number": "A.5-10", "page": "A.5-13", "caption": "Illustration of search routine used by computer program to develop contours of equal FS that converge on the point of minimum FS and center of critical circle"},
+            {"number": "A.5-11", "page": "A.5-14", "caption": "Trial failure surface consisting of Active and Passive Rankine wedges and central sliding block"},
+            {"number": "A.5-12", "page": "A.5-15", "caption": "Active earth pressure diagram and resultant active Rankine force"},
+            {"number": "A.5-13", "page": "A.5-16", "caption": "Passive earth pressure diagram and resultant passive Rankine force"},
+            {"number": "A.5-14", "page": "A.5-16", "caption": "Force system acting on central block"}
           ],
-          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1"],
+          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1", "A.5-1", "A.5-12"],
           "tables": [
             {"number": "A.4-1", "page": "A.4-7", "caption": "Unit weights of soils in idealized profile (Boring UDH BAF-4)"},
             {"number": "A.4-2", "page": "A.4-7", "caption": "Computations for construction of po diagram (Boring UDH BAF-4)"},
             {"number": "A.4-3", "page": "A.4-7", "caption": "Consolidation test results summary (Boring UDH BAF-4)"},
-            {"number": "A.4-4", "page": "A.4-8", "caption": "Shear strength test results summary (Boring UDH BAF-4)"}
+            {"number": "A.4-4", "page": "A.4-8", "caption": "Shear strength test results summary (Boring UDH BAF-4)"},
+            {"number": "A.5-1", "page": "A.5-3", "caption": "Geotechnical engineering properties of embankment and foundation soils East Abutment - (Boring BAF-4)"},
+            {"number": "A.5-2", "page": "A.5-9", "caption": "Tabular form for computing total weights of slices for a unit thickness into the plane of the paper"},
+            {"number": "A.5-3", "page": "A.5-11", "caption": "Tabular form for computing factor of safety by Ordinary Method of Slices"}
           ],
           "typed_pages": "fhwa_soils_foundations_typed/appendix_a.txt",
           "printed_equations": [],
