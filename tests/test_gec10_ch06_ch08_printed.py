@@ -158,6 +158,14 @@ class TestChapter6Printed:
         t = _text("6.6")
         assert "drilled shaft is specified to be 6 inches larger in diameter than the column" in t
         assert "adjusted by 3 inches in any direction" in t
+        # p. 6-11: the out-hook caution holds where the shaft connects to a
+        # cap, grade beam or abutment wall and temporary casing is used
+        kps = " ".join(_section("6.6")["key_points"])
+        assert ("When the drilled shaft reinforcement includes a connection to a cap, "
+                "grade beam, or abutment wall, it is important that the cage for the "
+                "shaft should not include out-hook bars or other obstacles if "
+                "temporary casing is used") in kps
+        assert "Where temporary casing is used, the shaft cage" not in kps
 
     def test_6_7_tie_wire_and_transverse_bar_size(self):
         t = _text("6.7")
@@ -236,6 +244,15 @@ class TestChapter8Printed:
         t = _text("8.1.b")
         assert ("Strength I, Strength IV, Extreme Event I (earthquake), and Service I") in t
         assert "are not relevant to foundation design" in t
+        # Table 8-1 (p. 8-9) in the print's own words
+        table = _section("8.1.b")["tables"][0]
+        assert ("such as access roads to ports or industrial sites which might lead to "
+                "a disproportionate number of permit loads, a site specific increase in "
+                "the load factor should be considered") in table
+        assert ("Fatigue II: Fatigue and fracture load combination related to finite "
+                "load-induced fatigue life") in table
+        assert ("This load combination should also be used for the investigation of "
+                "slope stability") in table
 
     def test_table_8_2_rows(self):
         t = _text("8.1.b")
@@ -285,3 +302,10 @@ class TestChapter8Printed:
         assert ("The sequence of steps is not as important as verifying that "
                 "important issues are not overlooked") in t
         assert "[p. 8-5] Block 1:" in t
+        # the key points keep the print's force words (pp. 8-1, 8-6, 8-7)
+        kps = " ".join(_section("8.1")["key_points"])
+        assert "It is particularly important that a review of major design issues" in kps
+        assert "It is essential that the foundation designer obtain" in kps
+        kps_a = " ".join(_section("8.1.a")["key_points"])
+        assert "In general, designers should identify more than one deep foundation alternate" in kps_a
+        assert "it is also important that a potential range of geomaterial properties be identified" in kps_a
