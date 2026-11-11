@@ -159,6 +159,34 @@ def test_worked_example_slips_kept_with_a_note():
     assert "| 0.114 | 0.008\n" in c7a and "= 0.0266" in c7a
     assert "= 0.125 ft = 1.5 in\n[Note (not printed): Table C-7d" in c7a
     assert "the sum is 0.0194, not 0.0266" in c7a and "0.092 ft (1.1 in)" in c7a
+    # Step 10's ratios and Step 12's exponent (p. 382)
+    assert "Table 7-6, αc = 0.33\n[Note (not printed): Table C-7c, Step 10" in c7
+    assert "17.9 and 78 tsf/8.5 tsf = 9.2, not 9.5 and 4.9" in c7
+    assert "4.4^(1/3) = 0.0151 ft" in c7
+    # the other worked examples' slips, each kept with a note after it
+    after = {
+        "B-4c": ("| u (ksf) | 0499 | 0.499\n[Note (not printed): ",
+                 "0499 is 0.499 ksf"),
+        "B-6c": ("limit state requirements.\n[Note (not printed): ",
+                 "18.82 ksf (USACE) and 16.62 ksf (FHWA), the sand layer"),
+        "C-2b": ("| 12.5 | 0.06 | 0.023 | 0.18\n[Note (not printed): ",
+                 "0.06 + 0.023 = 0.08 tsf, printed 0.18"),
+        "C-3b": ("0.54 tcf = 0.54 tsf for depths < 25 ft per Step 2.\n[Note "
+                 "(not printed): ", "is 0.54 tsf (tcf is the unit of γm)"),
+        "C-4b": ("| 3 | 13.0 | 8 | 0.12 | 0.11\n[Note (not printed): ",
+                 "1.43 is the same pressure in ksf"),
+        "C-6b": ("| 30.5 | 0.7 | 32 | 0.030 | 0.07 | 0.018\n[Note (not "
+                 "printed): ", "total 0.812 in, not 0.081 in"),
+    }
+    for sid, (place, words) in after.items():
+        body = _retrieval.retrieve_section(REF, sid)["body"]
+        assert place in body and words in body, sid
+    c4 = _retrieval.retrieve_section(REF, "C-4b")["body"]
+    assert "= 1.01 tsf\n[Note (not printed): Table C-4, Steps 3 and 6" in c4
+    c2 = _retrieval.retrieve_section(REF, "C-2b")["body"]
+    assert "|  | 0.72 | 0.045 | 0.04\n[Note (not printed): " in c2
+    c3 = _retrieval.retrieve_section(REF, "C-3b")["body"]
+    assert "to a depth of 25.0 ft per Step 2.\n[Note (not printed): Table C-3b" in c3
 
 
 # --- figures ----------------------------------------------------------------
