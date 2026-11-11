@@ -216,9 +216,9 @@ def render(stream, a: int, b: int, pages, figure_pages: set, caption_pages: set,
             prev_whole = whole
             cur.append(f"[p. {label}]")
         if label in figure_pages and not typed:
-            # only the caption lines: from a caption start to a blank line
-            if any(_caption_line(ln, "Figure", f["number"]) for f in figures
-                   if f["page"] == label):
+            # only the caption lines (a figure's first page or its
+            # "(Continued)" pages): from a caption start to a blank line
+            if any(_caption_line(ln, "Figure", f["number"]) for f in figures):
                 flush()
                 while k < b and stream[k][0] == n and stream[k][1]:
                     cur.append(stream[k][1])
@@ -226,7 +226,10 @@ def render(stream, a: int, b: int, pages, figure_pages: set, caption_pages: set,
                 flush()
                 continue
             if ln:
-                log.append(("figure lettering left out", label, ln))
+                if log and log[-1][:2] == ("figure lettering left out", label):
+                    log[-1] = (log[-1][0], label, log[-1][2] + " / " + ln)
+                else:
+                    log.append(("figure lettering left out", label, ln))
             k += 1
             continue
         if typed:
@@ -256,7 +259,13 @@ def render(stream, a: int, b: int, pages, figure_pages: set, caption_pages: set,
             flush()
             k += 1
             continue
-        cur.append(ln)
+        if (cur and re.search(r"\w-$", cur[-1]) and re.match(r"[a-z0-9]", ln)
+                and not cur[-1].startswith("[p. ")):
+            # a word the print hyphenates at the end of a line
+            # ("live-" / "dead load", "non-" / "redundant", "Figure B-" / "2")
+            cur[-1] += ln
+        else:
+            cur.append(ln)
         k += 1
     flush()
     out = []
@@ -354,7 +363,8 @@ def _listed(items: list[dict], kind: str, text: str) -> list[str]:
         for m in re.finditer(rf"(?:^|\n|\] ){kind}\s+{re.escape(it['number'])}(?!\d|[.-]\d)"
                              r"\s*(?:\(Continued\))?\s*[.:]?\s*", text):
             if _norm(text[m.end():m.end() + 60]).startswith(cap):
-                out.append(f"{kind} {it['number']}: {it['caption']}")
+                # a table printed with no caption is listed by its number
+                out.append(f"{kind} {it['number']}: {it['caption']}".rstrip(": "))
                 break
     return out
 

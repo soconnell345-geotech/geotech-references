@@ -98,6 +98,50 @@
       ],
       "appendices": [
         {
+          "letter": "C", "number": 15, "file": "appendix_c.json",
+          "title": "LOAD AND RESISTANCE FACTOR DESIGN (LRFD)",
+          "page_start": 547, "page_end": 564,
+          "sections": [
+            {"id": "C", "printed": "APPENDIX C", "title": "LOAD AND RESISTANCE FACTOR DESIGN (LRFD)", "page": "C-1"},
+            {"id": "C.1", "title": "INTRODUCTION", "page": "C-1"},
+            {"id": "C.1.1", "title": "Primary References", "page": "C-1"},
+            {"id": "C.2", "title": "CONCEPTS OF ASD AND LRFD", "page": "C-2"},
+            {"id": "C.3", "title": "CALIBRATION OF PROBABILITY BASED LRFD", "page": "C-5"},
+            {"id": "C.4", "title": "LRFD DETAILS", "page": "C-9"},
+            {"id": "C.5", "title": "THE DESIGN PROCESS", "page": "C-11"},
+            {"id": "C.6", "title": "A SIMPLE EXAMPLE", "page": "C-11"},
+            {"id": "C.6.1", "title": "ASD", "page": "C-14"},
+            {"id": "C.6.2", "title": "LRFD", "page": "C-14"},
+            {"id": "C.6.3", "title": "Comments", "page": "C-15"}
+          ],
+          "figures": [
+            {"number": "C-1", "page": "C-6", "caption": "Example of Probability Density Functions for both Load and Resistance"},
+            {"number": "C-2", "page": "C-7", "caption": "Probability Density Function for R-Q"},
+            {"number": "C-3", "page": "C-9", "caption": "Resistance factor as a function of QL/QD for various factors of safety for the AASHTO LRFD Bridge Code"},
+            {"number": "C-4", "page": "C-12", "caption": "Driven pile design and construction process by LRFD (FHWA, 2006a)"}
+          ],
+          "figure_pages": ["C-12", "C-13"],
+          "tables": [
+            {"number": "C-1", "page": "C-10", "caption": ""}
+          ],
+          "printed_equations": [
+            {"number": "C-1", "page": "C-3", "formula": "Σ γij Qij ≤ φk Rnk", "variables": {"γij": "load factor; the subscripts i and j refer to the load condition (dead, live, wind, etc.) and the load combination, respectively", "Qij": "load effect (the element load calculated from the applied loads by a linear elastic structural analysis)", "φk": "resistance factor for a given limit state (failure mode)", "Rnk": "nominal resistance in the kth limit state"}, "notes": "The LRFD form adopted in ACI 318-63 (p. C-3). The text on p. C-4 calls it Equation (1).", "fix": {"find": "Σγij Qij ≤ φk Rnk C-1", "replace": "Σγij Qij ≤ φk Rnk [Eq. C-1]"}},
+            {"number": "C-2", "page": "C-4", "formula": "Σ η γij Qij ≤ φk Rnk", "variables": {"η": "factor related to the ductility, redundancy and operational importance", "γij": "load factor (load condition i, load combination j)", "Qij": "load effect", "φk": "resistance factor for limit state k", "Rnk": "nominal resistance in the kth limit state"}, "notes": "The form used in the AASHTO LRFD Design Specification (p. C-4).", "fix": {"find": "Σηγij Qij ≤ φk Rnk C-2", "replace": "Σηγij Qij ≤ φk Rnk [Eq. C-2]"}},
+            {"number": "C-3", "page": "C-7", "formula": "γD QD + γL QL = φk Rnk", "variables": {"γD": "dead load factor", "QD": "dead load effect", "γL": "live load factor", "QL": "live load effect", "φk": "resistance factor", "Rnk": "nominal resistance"}, "notes": "AASHTO Strength I, stated with the equality condition (p. C-7); the subscript D refers to dead load and L to live load (p. C-8).", "fix": {"find": "in a simplified fashion as\n\n[p. C-8]", "replace": "in a simplified fashion as\n\nγD QD + γL QL = φk Rnk [Eq. C-3]\n\n[p. C-8]"}},
+            {"number": "C-4", "page": "C-8", "formula": "1.25 QD + 1.75 QL = φk Rnk", "variables": {"QD": "dead load effect", "QL": "live load effect", "φk": "resistance factor", "Rnk": "nominal resistance"}, "notes": "Equation C-3 with the dead and live load factors for Strength I in the AASHTO LRFD Bridge Code (p. C-8).", "fix": {"find": "1.25 QD + 1.75 QL = φk Rnk C-4", "replace": "1.25 QD + 1.75 QL = φk Rnk [Eq. C-4]"}},
+            {"number": "C-5", "page": "C-8", "formula": "(QD + QL) FS = Rnk", "variables": {"QD": "dead load effect", "QL": "live load effect", "FS": "the ASD factor of safety", "Rnk": "nominal resistance"}, "notes": "The equivalent ASD relationship (p. C-8).", "fix": {"find": "(QD + QL) FS = Rnk C-5", "replace": "(QD + QL) FS = Rnk [Eq. C-5]"}},
+            {"number": "C-6", "page": "C-8", "formula": "φk = FS (1 + QL / QD) / (1.25 + 1.75 QL / QD)", "variables": {"φk": "resistance factor", "FS": "the ASD factor of safety", "QL / QD": "ratio of live load to dead load"}, "notes": "Typed as printed (p. C-8). Eliminating Rnk from Equations C-4 and C-5, as the page says it does, gives φk = (1.25 + 1.75 QL/QD) / [FS (1 + QL/QD)], the reciprocal of the printed form; Figure C-3 (p. C-9) plots that form (1.25/1.5 = 0.83 at QL/QD = 0 and 1.00 at QL/QD = 1 for F.S. = 1.5), not the printed one, which gives values over 1.", "fix": {"find": ") Q / Q 75 .1 25 .1( ) Q / Q 1( FS D L D L k + + = φ C-6 Figure C-3 shows", "replace": "φk = FS (1 + QL / QD) / (1.25 + 1.75 QL / QD) [Eq. C-6]\n\nFigure C-3 shows"}}
+          ],
+          "fixes": [
+            {"find": "the mean values are denoted by R and Q . The nominal", "replace": "the mean values are denoted by Q̄ and R̄. The nominal"},
+            {"find": "the mean of that distribution, Q R − , be greater", "replace": "the mean of that distribution, [R – Q, printed with a bar over it], be greater"},
+            {"find": " has been presented by Kulicki (1998). fR(R),fQ(Q ) Load Effect Q Resistance (R) A R,Q a b Rn R", "replace": " has been presented by Kulicki (1998)."},
+            {"find": "for various factors\n\nof safety for the AASHTO LRFD Bridge Code.", "replace": "for various factors of safety for the AASHTO LRFD Bridge Code."},
+            {"find": "2,892 kips / 330 kips = 8.8 piles, say 9.0 piles", "replace": "2,892 kips / 330 kips = 8.8 piles, say 9.0 piles [2,892 as printed; the line above gives 2,893 kips]"},
+            {"find": "Table C-1 Strength Limit State Load Combination I γpD + 1.75 L + 1.0 WA + 1.0 FR II γpD + 1.35 L + 1.0 WA + 1.0 FR III γpD + 1.0 WA + 1.4 WS + 1.0 FR IV γp D + 1.0 WA + 1.0 FR (but for dead load due to structural components only 1.5 D) V γpD + 1.35 L + 1.0 WA + 0.4 WS + 1.0 WL + 1.0 FR Notations: γp – load factor for the various types of dead load. For the superstructure dead load γp is 1.25, but other values are specified for other types of dead load. D – dead load. L – live load WA – water and stream load FR – friction load WS – wind load on the structure WL – wind load on the live load", "replace": "Table C-1\n\n[Table C-1, its rows read off the page:]\nStrength Limit State | Load Combination\nI | γpD + 1.75 L + 1.0 WA + 1.0 FR\nII | γpD + 1.35 L + 1.0 WA + 1.0 FR\nIII | γpD + 1.0 WA + 1.4 WS + 1.0 FR\nIV | γp D + 1.0 WA + 1.0 FR (but for dead load due to structural components only 1.5 D)\nV | γpD + 1.35 L + 1.0 WA + 0.4 WS + 1.0 WL + 1.0 FR\nNotations:\nγp – load factor for the various types of dead load. For the superstructure dead load γp is 1.25, but other values are specified for other types of dead load.\nD – dead load.\nL – live load\nWA – water and stream load\nFR – friction load\nWS – wind load on the structure\nWL – wind load on the live load"}
+          ]
+        },
+        {
           "letter": "B", "number": 14, "file": "appendix_b.json",
           "title": "MOHR’S CIRCLE AND ITS APPLICATIONS IN GEOTECHNICAL ENGINEERING",
           "page_start": 535, "page_end": 546,
@@ -135,8 +179,7 @@
           ],
           "fixes": [
             {"find": "Plane Normal Stress Sign Shear Stress Sign Note:", "replace": "\n\n[Table B-1, its rows read off the page:]\nPlane | Normal Stress | Sign | Shear Stress | Sign\nP | σx | + | τxy | +\nQ | σy | + | τyx | -\nR | σx | + | τyx | +\nS | σy | + | τxy | -\n\nNote:"},
-            {"find": "has a magnitude of 2 2 τ + σ as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan-1 (τ/σ).", "replace": "has a magnitude of √(σ² + τ²) as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan^-1 (τ/σ)."},
-            {"find": "(see Figure B- 2).”", "replace": "(see Figure B-2).”"}
+            {"find": "has a magnitude of 2 2 τ + σ as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan-1 (τ/σ).", "replace": "has a magnitude of √(σ² + τ²) as shown in Figure B-2. Furthermore, the angle of obliquity (α) of the resultant is equal to tan^-1 (τ/σ)."}
           ]
         }
       ]

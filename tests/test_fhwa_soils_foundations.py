@@ -302,6 +302,8 @@ def test_manifest_formulas_match_the_text():
 APPENDICES = {
     "B": ("appendix_b.json", 14,
           "Appendix B: Mohr’s Circle and Its Applications in Geotechnical Engineering"),
+    "C": ("appendix_c.json", 15,
+          "Appendix C: Load and Resistance Factor Design (LRFD)"),
 }
 
 
@@ -362,6 +364,53 @@ def test_appendix_b_equations_as_printed():
     assert "σ13f" in eqs["Eq. B-3g"]["formula"] and "as printed" in eqs["Eq. B-3g"]["notes"]
     assert eqs["Eq. B-3h (second)"]["formula"] == "σ3f / σ1f = tan² (45° – φ/2)"
     assert "B-3i" in eqs["Eq. B-3h (second)"]["notes"]
+
+
+def test_appendix_c_sections_as_printed():
+    secs = {s["section_id"]: s for s in _appendix("C")["sections"]}
+    assert list(secs) == ["C.1", "C.1.1", "C.2", "C.3", "C.4", "C.5", "C.6",
+                          "C.6.1", "C.6.2", "C.6.3"]
+    assert secs["C.3"]["title"] == "Calibration of Probability Based LRFD"
+    assert [f.split(":")[0] for f in secs["C.3"]["figures"]] == [
+        "Figure C-1", "Figure C-2", "Figure C-3"]
+    # Figure C-4 is two pages of flowchart (pp. C-12, C-13): captions only
+    assert secs["C.6"]["figures"] == [
+        "Figure C-4: Driven pile design and construction process by LRFD (FHWA, 2006a)"]
+    assert "Establish Factored Load" not in secs["C.6"]["body"]
+    # Table C-1 (p. C-10), printed with no caption, its rows read off the page
+    assert secs["C.4"]["tables"] == ["Table C-1"]
+    body = secs["C.4"]["body"]
+    assert "V | γpD + 1.35 L + 1.0 WA + 0.4 WS + 1.0 WL + 1.0 FR" in body
+    assert "For the superstructure dead load γp is 1.25" in body
+    # the bars the text layer lost (p. C-6)
+    assert "the mean values are denoted by Q̄ and R̄." in secs["C.3"]["body"]
+
+
+def test_appendix_c_equations_as_printed():
+    eqs = {e["id"]: e for s in _appendix("C")["sections"] for e in s["equations"]}
+    assert sorted(eqs) == [f"Eq. C-{n}" for n in range(1, 7)]
+    assert eqs["Eq. C-2"]["formula"] == "Σ η γij Qij ≤ φk Rnk"
+    assert eqs["Eq. C-4"]["formula"] == "1.25 QD + 1.75 QL = φk Rnk"
+    assert eqs["Eq. C-5"]["formula"] == "(QD + QL) FS = Rnk"
+    # C-6 is kept as printed (p. C-8); the note says the elimination the
+    # page describes, and Figure C-3, give its reciprocal
+    assert eqs["Eq. C-6"]["formula"] == "φk = FS (1 + QL / QD) / (1.25 + 1.75 QL / QD)"
+    assert "reciprocal" in eqs["Eq. C-6"]["notes"]
+
+
+def test_appendix_c_example_values_as_printed():
+    # C.6, a simple example (pp. C-11 to C-14): ASD against LRFD for one pile group
+    secs = {s["section_id"]: s for s in _appendix("C")["sections"]}
+    assert "nominal axial resistance of 330 kips (1470 kN)" in secs["C.6"]["body"]
+    asd = secs["C.6.1"]["body"]
+    assert "500 kips + 800 kips = 1,300 kips (5,785 kN)" in asd
+    assert "2,600 kips/330 kips = 7.8 piles, say 8 piles" in asd
+    assert "1,300 kips x 2.25 = 2,925 kips (13,016 kN)" in asd
+    lrfd = secs["C.6.2"]["body"]
+    assert "1.25 x 500 + 1.75 x 800 = 2,025 kips (9,007 kN)" in lrfd
+    assert "2,025 kips / 0.70 = 2,893 kips (12,868 kN)" in lrfd
+    # the print's 2,892 on the next line is kept and said
+    assert "2,892 kips / 330 kips = 8.8 piles, say 9.0 piles [2,892 as printed" in lrfd
 
 
 def test_appendix_sections_found_by_search():

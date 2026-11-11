@@ -1,0 +1,205 @@
+{
+ "reference_id": "FHWA-NHI-06-089",
+ "reference_title": "Soils and Foundations Reference Manual – Volume II",
+ "volume": 2,
+ "chapter": 15,
+ "chapter_title": "Appendix C: Load and Resistance Factor Design (LRFD)",
+ "sections": [
+  {
+   "section_id": "C.1",
+   "title": "Introduction",
+   "body": "[p. C-1] In 1994, the AASHTO Subcommittee on Bridges adopted a Bridge Design Specification based on the use of the Load and Resistance Factor (LRFD) method (AASHTO, 1994). The geotechnical parts of the new specification had been developed by an NCHRP Research Project (NCHRP, 1991). The most recent version of the LRFD specifications is the 2004 version of AASHTO. Most states are now in the process of implementing the LRFD specifications.\n\nThe geotechnical portion of the LRFD specification has proven to be one of the most difficult to implement. This includes shallow and deep foundations, and earth retaining systems. In fact, the Section 10 of the LRFD specification, was significantly updated in 2006 Interims. In this Appendix, basic concepts of LRFD will be presented including a brief discussion on comparison of LRFD with allowable stress design (ASD) approach. The purpose here is to provide the necessary basis for preparing the geotechnical specialist to use this new method. The material presented in this Appendix has been adapted from similar material included in the FHWA (2006a) manual on driven pile foundations.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-1."
+  },
+  {
+   "section_id": "C.1.1",
+   "title": "Primary References",
+   "body": "[p. C-1] The primary references for this Appendix are as follows:\n\nAASHTO (2002). Standard Specifications for Highway Bridges. 17th Edition, American Association of State Highway and Transportation Officials, Washington, D.C.\n\nAASHTO (2004 with 2006 Interims). AASHTO LRFD Bridge Design Specifications, 3rd Edition, American Association of State Highway and Transportation Officials, Washington, D.C.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-1."
+  },
+  {
+   "section_id": "C.2",
+   "title": "Concepts of ASD and LRFD",
+   "body": "[p. C-2] To understand and appreciate LRFD approach, it is necessary to first briefly summarize the fundamental basis for allowable stress design (ASD) and then to review the history of the development of the LRFD and its early implementation.\n\nAllowable Stress Design (ASD) evolved from the development of methods of structural analysis during the nineteenth century. Prior to these developments, structures were designed based entirely on experience and of rules-of-thumb. The methods of structural analyses were developed based on the assumption that the structure behaved elastically and that they produced a rational evaluation of structural behavior that satisfied both equilibrium and compatibility. But, the analyses only explained structural behavior. It was desirable that a rational design approach be developed and it was logical to limit the calculated stresses in a structure to some fraction of the structural material strength. Gradually, structural loads appropriate for design were defined and then codified. So, if member stresses could be calculated it was logical to limit those stresses and values of allowable stresses were gradually accepted based on the experience that the structure did not fail. These limiting stress values became known “design stresses” or “allowable stresses.” For instance, the allowable stresses in steel beams in bending have been limited to between about 0.4 and 0.66 times the steel yield strength.\n\nBut, linear elastic behavior is not universally observed in all structural elements. For example, the failure strength of a column is related the slenderness ratio of the member and methods are available to confidently calculate the failure load. Similar considerations affect the design of other structural elements. The approach that came to be used in some applications during the development of ASD was to apply a “factor of safety” to the calculated ultimate member capacity.\n\nOnce the structural analysis was performed based on linear elastic theory and an appropriate factor of safety, the forces at the foundation element were obtained. At this stage, it was realized that the foundation element is embedded in geomaterials (i.e., soils and rocks) which are inherently inelastic and use of linear elastic theory will not represent the strength of a soil structure. Therefore, to account for inherent uncertainties in the characterization of geomaterials, the use of the concept of factor of safety was extended to geomaterials as well and has become universal in geotechnical design. Rather than use of two factors of safety, one for structural analysis and one for geotechnical analysis, a single combined factor of safety was applied to account for all uncertainties and this was commonly applied in the geotechnical analysis.\n\n[p. C-3] The combined factors of safety were selected so that failures were very unlikely, based on experience, but the magnitudes of the factors of safety were based only on experience. The geotechnical engineer should understand that he/she does not “own” all of the factor of safety. It must be adequate to deal with the variability of the loads and the inadequacy of the analysis in addition to the strength variability.\n\nUntil 1956, the analysis of a concrete section subject to bending was performed assuming that the compression stress in the concrete was linearly distributed on the cross section with the further assumption that concrete could carry no tension. Designs were limited by placing limits on the calculated stress in both the concrete in compression and in the steel in both tension and compression (if compression steel was present). In other words, the element strength was treated as if the materials were elastic and, to perform the analysis, the steel was then “transformed” into concrete based on the relative moduli of the two materials. The result of these assumptions produced quite conservative results, particularly if compression reinforcement was present as is always the case with columns. The time dependent deformation of concrete subjected to compression causes its effective modulus to be time dependent. Extensive research was performed in the first half of the twentieth century to understand what the actual stress distribution was and how it could be used in design.\n\nThese fundamental probIems with the use of ASD caused the American Concrete Institute (ACI) in 1956 to adopt a new edition of their Building Code for the design of concrete structures and in that code an Appendix was included that used a strength design approach (ACI 1956) to replace the allowable stress method described above. The ultimate strength of the element in bending was calculated using a prescribed, nonlinear concrete stress distribution on the section at failure. The computational procedure was quite simple and the result was element strength not stress. The Appendix of ACI 318-56 achieved little use.\n\nThe ACI Committee that prepared this method then took another major step. Instead of selecting a factor of safety for particular failure modes they broke the factor of safety into parts. They realized that the limiting value of ultimate load should depend on the variability of the particular load types. So they specified different “load factors” for the various types of loads and, indirectly, they applied an additional multiplier to provide structural safety for the strength variability of member types and failure modes.\n\nACI 318-63, adopted in 1963, made extensive changes from the 1956 Code and the result had the form that we now know as LRFD (ACI 1963).\n\nΣγij Qij ≤ φk Rnk [Eq. C-1]\n\n[p. C-4] Where, γ is the load factor, Q is the load effect (this refers the element load calculated from the applied loads by a linear elastic structural analysis.) The subscripts i and j refer to the load condition (dead, live, wind, etc.) and the load combination, respectively. ϕ is the resistance factor for a given limit state (failure mode), Rnk is the nominal resistance in the kth limit state. The term nominal resistance was adopted to define the element strength determined by some specified method. (It should be noted that in the AASHTO LRFD Code the term nominal resistance is used instead of nominal strength.) The summation on the left side of Equation (1) is known as the factored load. A generally used name for the right side of the expression has not been accepted. The term factored resistance will be used here.\n\nThe version of Equation (1) used in the AASHTO LRFD Design Specification is somewhat different. It has the following form:\n\nΣηγij Qij ≤ φk Rnk [Eq. C-2]\n\nwhere η is a factor related to the ductility, redundancy and operational importance.\n\nWhen ACI 318-63 was adopted, the load and resistance factors were generated based on judgment followed by extensive comparative designs. By 1965, the designers of concrete structures in the private sector had almost universally adopted the ACI LRFD Code. There were a few minor changes in the load factors in the next edition of the Code in 1968 (ACI 1968) and the ASD section was dropped completely. The ACI LRFD Building Code was then essentially unchanged until 2002 (ACI 2002) when extensive changes were made primarily to the load and resistance factors. During this entire development period the design method was known as “Ultimate Strength Design.”\n\nThe LRFD procedure adopted by ACI 318-63 was applicable to structural concrete elements for buildings only. It did not apply to the geotechnical aspects of foundation design. This produced a considerable anomaly for reinforced concrete building designers. For example, in the design process the geotechnical engineer recommended an allowable bearing pressure for a spread footing. The structural designer then had to size the footing using allowable loads – and that implied the use of a different set of loads - but perform the structural design of the reinforced concrete footing with factored loads.\n\nDriven pile cap design was even more absurd. The geotechnical engineer selected an ultimate pile capacity based on subsurface conditions. Most of the methods that are used to establish pile capacity produce ultimate capacity. As discussed in Chapter 9, those methods include wave equation analysis, dynamic testing or static load testing. The one exception is\n\n[p. C-5] the use of a dynamic formula and most formulas usually give allowable loads. The Gates Formula is an exception in that it produces a predicted ultimate load. The geotechnical engineer then selected a factor of safety to arrive at an allowable load. Again, the structural engineer had to use allowable loads to do the pile group selection and layout but then use factored loads to design the pile cap. Private sector designers have been dealing with this inconsistency for forty years.\n\nIn 1969, Cornell published a paper in the ACI Journal (Cornell, 1969) showing that the load and resistance factors could be determined rationally using a probabilistic analysis. As input to that analysis the variability of both the loads and the resistance was required. The National Bureau of Standards (NBS) completed a research project to collect the necessary information for buildings and they generated the associated factors (Ellingwood, et al., 1980). At that time the only LRFD Design Code in use was the ACI Code and the NBS factors were quite different than those contained in the ACI Code. These differences continued until 2002.\n\nToday, LRFD design specifications are available for both steel and concrete buildings. Beginning with the 2002 ACI Building Code the load factors for both steel and concrete structures became the same. All concrete buildings are designed using LRFD but in the case of steel buildings the implementation of LRFD is not complete and an ASD design specification is still available and widely used for steel structures.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. C-1",
+     "description": "Equation C-1, introduced by: \"ACI 318-63, adopted in 1963, made extensive changes from the 1956 Code and the result had the form that we now know as LRFD (ACI 1963).\" (p. C-3).",
+     "formula": "Σ γij Qij ≤ φk Rnk",
+     "variables": {
+      "γij": "load factor; the subscripts i and j refer to the load condition (dead, live, wind, etc.) and the load combination, respectively",
+      "Qij": "load effect (the element load calculated from the applied loads by a linear elastic structural analysis)",
+      "φk": "resistance factor for a given limit state (failure mode)",
+      "Rnk": "nominal resistance in the kth limit state"
+     },
+     "notes": "The LRFD form adopted in ACI 318-63 (p. C-3). The text on p. C-4 calls it Equation (1).",
+     "source": "Typed in from p. C-3.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. C-2",
+     "description": "Equation C-2, introduced by: \"It has the following form:\" (p. C-4).",
+     "formula": "Σ η γij Qij ≤ φk Rnk",
+     "variables": {
+      "η": "factor related to the ductility, redundancy and operational importance",
+      "γij": "load factor (load condition i, load combination j)",
+      "Qij": "load effect",
+      "φk": "resistance factor for limit state k",
+      "Rnk": "nominal resistance in the kth limit state"
+     },
+     "notes": "The form used in the AASHTO LRFD Design Specification (p. C-4).",
+     "source": "Typed in from p. C-4.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed pp. C-2 to C-5."
+  },
+  {
+   "section_id": "C.3",
+   "title": "Calibration of Probability Based LRFD",
+   "body": "[p. C-5] The original work of Cornell (1969) produced a major research effort to develop a probabilistic approach to structural design based on the load and resistance factor concept. The fundamental concept held that, since neither the loads nor the resistance are deterministic, it is appropriate to treat both load and resistance as random variables and to develop an approach to the design of structures based on probability theory. The concept is illustrated in Figure C-1 where probability density functions (PDFs) are shown for both the load effect, Q, and the resistance, R. The area under the resistance curve between a and b represents the probability of the resistance being between a and b. The region where the two curves overlap represents cases of “failure.” Probability-based design is founded on the concept that the design be selected so that the probability of failure is equal to, or less than, some prescribed value. The limiting failure probability was originally established from laboratory test data on structural elements.\n\n[p. C-6] Figure C-1. Example of Probability Density Functions for both Load and Resistance.\n\nThe load effect in Figure C-1 has been shown much narrower than the resistance for illustrative purposes, indicating that, in this case, the load has less variability than the resistance. The variability is defined by the standard deviation of the distribution. (The standard deviations are not shown in Figure C-1.) In Figure C-1, the mean values are denoted by Q̄ and R̄. The nominal resistance, Rn is not necessarily the same as the mean resistance as illustrated in Figure C-1, but is the resistance that would be determined by the specified analysis method.\n\nIf distributions are available for both the load effect and the resistance, then the probability of failure can be determined. One approach that has been used is to consider the combined probability density function for R-Q and this is illustrated in Figure C-2. Failure is defined when R-Q is less that zero and the region is shaded in Figure C-2. The probability of failure is the area of the shaded portion under the curve. The basis for design is to require that the mean of that distribution, [R – Q, printed with a bar over it], be greater than the value of R-Q = 0. The distance of that mean above zero is taken as a multiple, β, of the standard deviation of the distribution. β is known as the safety index or reliability index. There are other approaches to establishing a measure of safety. A more detailed discussion of probabilistic code calibration has been presented by Kulicki (1998).\n\n[p. C-7] Figure C-2. Probability Density Function for R-Q.\n\nExisting structures that have performed satisfactorily have been analyzed to determine safety indices and from these analyses recommended values have been determined. Then, with knowledge of the load and the strength variabilities it is possible to select load and resistance factors to produce the required safety index. Structural engineers have established load factors for the various load types in the AASHTO Bridge Code and most of these values are probably not subject to change today. So the geotechnical resistance factors must be selected to achieve the required appropriate safety index.\n\nGeotechnical strength measurement is very difficult to describe statistically due to the lack of standardized procedures for material characterization of soils. But, load and resistance factors can be calibrated based on a direct comparison with existing design practice. Load factors have been selected for the AASHTO LRFD Bridge Code so resistance factors can be directly determined to produce designs similar to those obtained in current ASD practice. For example, the AASHTO Strength I case is considered since it is commonly critical in design. The equality condition is used to obtain a unique and limiting expression. The expression can be stated in a simplified fashion as\n\nγD QD + γL QL = φk Rnk [Eq. C-3]\n\n[p. C-8] where the subscript D refers to dead load and L refers to live load. Values are available for the dead and live load factors for Strength I in the AASHTO LRFD Bridge Code and Equation C-3 becomes\n\n1.25 QD + 1.75 QL = φk Rnk [Eq. C-4]\n\nThe equivalent ASD relationship can be stated\n\n(QD + QL) FS = Rnk [Eq. C-5]\n\nwhere FS is the ASD factor of safety. For the equality condition, Rnk can be eliminated from Equations C-4 and C-5 and this results in a single relationship for φk, in terms of FS and the QL/QD ratio.\n\nφk = FS (1 + QL / QD) / (1.25 + 1.75 QL / QD) [Eq. C-6]\n\nFigure C-3 shows resistance factors for various factors of safety as a function of QL/QD ratio for the AASHTO LRFD Code. From Equation C-6 and Figure C-2, the importance of live-dead load ratio becomes clear. For short span bridges the live load may be much larger than the dead load while for very long spans structures the live loads can be almost inconsequential. Regardless of the source of resistance factors they must be checked against existing ASD practice. For example, if the probability analysis produced smaller resistance factors than the equivalent ASD factors of safety this would imply an unnecessary increase in conservatism in the design.\n\nThe factor η in Equation C-2 has been ignored in the above discussion. The primary concern with η in foundation design comes when only a very few deep foundation elements are used so that the foundation is non-redundant. While it is not so clear how redundancy can be determined since it is to some degree controlled by the superstructure geometry it can be critical and must be evaluated. Certainly a single deep foundation element will be non-redundant. Of course, most driven pile foundations will have enough piles to be redundant.\n\n[p. C-9] Figure C-3. Resistance factor as a function of QL/QD for various factors of safety for the AASHTO LRFD Bridge Code.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. C-3",
+     "description": "Equation C-3, introduced by: \"The expression can be stated in a simplified fashion as\" (p. C-7).",
+     "formula": "γD QD + γL QL = φk Rnk",
+     "variables": {
+      "γD": "dead load factor",
+      "QD": "dead load effect",
+      "γL": "live load factor",
+      "QL": "live load effect",
+      "φk": "resistance factor",
+      "Rnk": "nominal resistance"
+     },
+     "notes": "AASHTO Strength I, stated with the equality condition (p. C-7); the subscript D refers to dead load and L to live load (p. C-8).",
+     "source": "Typed in from p. C-7.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. C-4",
+     "description": "Equation C-4, introduced by: \"Values are available for the dead and live load factors for Strength I in the AASHTO LRFD Bridge Code and Equation C-3 becomes\" (p. C-8).",
+     "formula": "1.25 QD + 1.75 QL = φk Rnk",
+     "variables": {
+      "QD": "dead load effect",
+      "QL": "live load effect",
+      "φk": "resistance factor",
+      "Rnk": "nominal resistance"
+     },
+     "notes": "Equation C-3 with the dead and live load factors for Strength I in the AASHTO LRFD Bridge Code (p. C-8).",
+     "source": "Typed in from p. C-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. C-5",
+     "description": "Equation C-5, introduced by: \"The equivalent ASD relationship can be stated\" (p. C-8).",
+     "formula": "(QD + QL) FS = Rnk",
+     "variables": {
+      "QD": "dead load effect",
+      "QL": "live load effect",
+      "FS": "the ASD factor of safety",
+      "Rnk": "nominal resistance"
+     },
+     "notes": "The equivalent ASD relationship (p. C-8).",
+     "source": "Typed in from p. C-8.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. C-6",
+     "description": "Equation C-6, introduced by: \"For the equality condition, Rnk can be eliminated from Equations C-4 and C-5 and this results in a single relationship for φk, in terms of FS and the QL/QD ratio.\" (p. C-8).",
+     "formula": "φk = FS (1 + QL / QD) / (1.25 + 1.75 QL / QD)",
+     "variables": {
+      "φk": "resistance factor",
+      "FS": "the ASD factor of safety",
+      "QL / QD": "ratio of live load to dead load"
+     },
+     "notes": "Typed as printed (p. C-8). Eliminating Rnk from Equations C-4 and C-5, as the page says it does, gives φk = (1.25 + 1.75 QL/QD) / [FS (1 + QL/QD)], the reciprocal of the printed form; Figure C-3 (p. C-9) plots that form (1.25/1.5 = 0.83 at QL/QD = 0 and 1.00 at QL/QD = 1 for F.S. = 1.5), not the printed one, which gives values over 1.",
+     "source": "Typed in from p. C-8.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure C-1: Example of Probability Density Functions for both Load and Resistance",
+    "Figure C-2: Probability Density Function for R-Q",
+    "Figure C-3: Resistance factor as a function of QL/QD for various factors of safety for the AASHTO LRFD Bridge Code"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed pp. C-5 to C-9."
+  },
+  {
+   "section_id": "C.4",
+   "title": "LRFD Details",
+   "body": "[p. C-9] The issue of the verification of the safety safety of an LRFD-based design is now discussed. The question that will be considered is, “Does the structural element (pile) have adequate axial strength.” To answer this question it is best to consider some details. First, consider the determination of the loads that would be used in bridge design. There are five strength limit states, two extreme event limit states, four serviceability limit states and one fatigue limit state given in Table 3.4.1-1 of the AASHTO LRFD Bridge Code (AASHTO 2004 with 2006 Interims). Here only the strength limit states will be considered for illustration purposes. The factored loads for those five cases are as shown in Table C-1. These load combinations have been somewhat simplified for this discussion.\n\n[p. C-10] Table C-1\n\n[Table C-1, its rows read off the page:]\nStrength Limit State | Load Combination\nI | γpD + 1.75 L + 1.0 WA + 1.0 FR\nII | γpD + 1.35 L + 1.0 WA + 1.0 FR\nIII | γpD + 1.0 WA + 1.4 WS + 1.0 FR\nIV | γp D + 1.0 WA + 1.0 FR (but for dead load due to structural components only 1.5 D)\nV | γpD + 1.35 L + 1.0 WA + 0.4 WS + 1.0 WL + 1.0 FR\nNotations:\nγp – load factor for the various types of dead load. For the superstructure dead load γp is 1.25, but other values are specified for other types of dead load.\nD – dead load.\nL – live load\nWA – water and stream load\nFR – friction load\nWS – wind load on the structure\nWL – wind load on the live load\n\nSince the load combinations have been somewhat simplified, the reader is encouraged to review Section 3 of the AASHTO LRFD Bridge Design Specifications (AASHTO 2004 with 2006 Interims). Probably geotechnical engineers that are responsible for foundation design will not be required to determine the factored loads, but a general understanding of those loads provides a better understanding of the entire design process. While the above loads and load combinations have differences from that of previous AASHTO Specifications the general structure of the loads is unchanged. Since there may be several different sets of loads (for instance, maximum and minimum) for each of the strength limit states the final set of factored loads will usually be larger than the five given above and sometimes much larger, particularly if extreme event conditions must be considered.\n\nAt this stage of the foundation design process, the factored loads will have been determined by the structural designer and with the exception of the downdrag case it is unlikely that these loads or load combinations will change in future AASHTO Codes. Therefore, the left side of Equation C-2 has now been determined.\n\nThe right side of Equation C-2 is of greater concern for the geotechnical foundation designer who must determine values of φk, the resistance factor, and Rnk, the nominal strength. Values for ϕk must be defined by code. It has often been implied that resistance factors may be determined in the design process using a probability analysis. This is not realistic and\n\n[p. C-11] certainly not necessary for deep foundation design. At the present, the resistance factors are prescribed in AASHTO (2004 with 2006 Interims) and are not always unique. The reader is referred to Sections 10 and 11 of AASHTO 2006 Interims for selection of appropriate resistance factors and methods to determine the nominal strength, Rnk.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table C-1"
+   ],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed pp. C-9 to C-11."
+  },
+  {
+   "section_id": "C.5",
+   "title": "The Design Process",
+   "body": "[p. C-11] The design process for LRFD will now be reviewed. The flow chart for LRFD-based design is given in Figure C-4. In Blocks 1 to 5, project requirements must be determined and the subsurface must be explored and evaluated to obtain the necessary geotechnical design quantities. In Blocks 6 and 7, an appropriate foundation type is selected. For illustration purposes herein, a driven pile type is selected. Then in Block 8 the factored loads are determined. After determining whether the pile is driven in soil or to rock (see Blocks 9 or 11), the designer selects the resistance factor in Blocks 10 or 12 based on the capacity verification procedure and the quality control method that has been selected. In the ASD method, a factor of safety is selected based on the information in Table 4.5.6.2.1A of AASHTO (2002). The resistance factor for LRFD is given in the Tables 10.5.5.2.3-1, 10.5.5.2.3-2 of AASHTO (2004 with 2006 Interims). Selection of the proper value for resistance factor from the LRFD Specification will not be discussed here.\n\nThe rest of the flow chart is similar to the one for ASD. It can be seen that there is little difference in the design process for LRFD composed to ASD.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-11."
+  },
+  {
+   "section_id": "C.6",
+   "title": "A Simple Example",
+   "body": "[p. C-11] A very simple numerical design example will be solved to illustrate the differences between ASD and LRFD. Only strength will be considered since those limitations are the only ones that are different for the two methods. The soil is a medium dense sand with an adjusted N160-value of 20 and a friction angle of 33 degrees. The site has some variability and in terms of low, medium and high variability, the site can be characterized as having medium variability. In this trial design, a closed end steel pile having a length of 66 ft (20 m) and a cross section 14 in x 5/16 in (356 mm x 8 mm) has been selected and a geotechnical analysis indicates a nominal axial resistance of 330 kips (1470 kN). The working load on the foundation will be taken as 500 kips (2,225 kN) dead load and 800 kips (3,560 kN) live load including impact. Assume one (1) static load test will be performed.\n\n[p. C-12] Figure C-4. Driven pile design and construction process by LRFD (FHWA, 2006a).\n\n[p. C-13] Figure C-4. Driven pile design and construction process by LRFD (FHWA, 2006a) (Continued).",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure C-4: Driven pile design and construction process by LRFD (FHWA, 2006a)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed pp. C-11 to C-13."
+  },
+  {
+   "section_id": "C.6.1",
+   "title": "ASD",
+   "body": "[p. C-14] According to Table 3.22.1A of AASHTO (2002) for the service load Case I, the design load is\n\n500 kips + 800 kips = 1,300 kips (5,785 kN)\n\nFirst, assume that a static load test will be used in addition to a drivability analysis by wave equation with subsurface exploration and static analysis to verify the driving criteria. Therefore, the factor of safety specified in Table 4.5.6.2A of AASHTO (2002) is 2.0 and the required nominal axial resistance is 2,600 kips (11,570 kN). Now if the pile nominal resistance is 330 kips (1,470 kN), then the total required number of piles will be\n\n2,600 kips/330 kips = 7.8 piles, say 8 piles\n\nIf dynamic measurement and analysis is used the specified factor of safety is 2.25 per AASHTO (2002), giving a required ultimate axial resistance of 1,300 kips x 2.25 = 2,925 kips (13,016 kN). In this case the required number of piles will be\n\n2,925 kips/330 kips = 8.9 piles, say 9 piles",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-14."
+  },
+  {
+   "section_id": "C.6.2",
+   "title": "LRFD",
+   "body": "[p. C-14] First, determine the factored load. In this very simple example, only Strength I of Table 3.4.1-1 of the AASHTO LRFD Bridge Code (AASHTO 2004 with 2006 Interims) will be considered.\n\n1.25 x 500 + 1.75 x 800 = 2,025 kips (9,007 kN)\n\nAs per Table 10.5.5.2.3-2 of AASHTO (2004 with 2006 Interims), the specified resistance factor to be used for the case of one (1) on a site with medium variability is 0.70. Based on this resistance factor, the required nominal resistance is as follows:\n\n2,025 kips / 0.70 = 2,893 kips (12,868 kN)\n\nThe required number of piles is\n\n2,892 kips / 330 kips = 8.8 piles, say 9.0 piles [2,892 as printed; the line above gives 2,893 kips]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-14."
+  },
+  {
+   "section_id": "C.6.3",
+   "title": "Comments",
+   "body": "[p. C-15] This very simple example illustrates the difference between ASD and LRFD. Of course, only one failure mode limit state was considered. In a real design problem, several load combinations would be included, the loads would include overturning loads and all aspects of the problem would be much more complex. This simple example illustrates the difference between ASD and LRFD clearly and simply. No conclusions should be made regarding the fact that the LRFD design for this simple example was virtually the same as the ASD design. For other load combination, the design may be different. (In the latter case, Strength IV load combination would become critical and fewer piles would be required.)",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-06-089, Appendix C (Load and Resistance Factor Design (LRFD)), printed p. C-15."
+  }
+ ]
+}
