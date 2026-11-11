@@ -13,8 +13,12 @@ rendered page; results and docstrings name the page.
   (H was 0.72 of the print), Eq. 20-4 effective porosity computed the water
   retained (0.088 against the printed form's 0.247 at 110 pcf, Gs 2.65,
   We 0.05), and Eq. 20-11 lacked its 2 (T50 twice the print). Eq. 20-3 is
-  kept with (1+e) where the page prints (1-e), and the result and the
-  first docstring paragraph say so.
+  kept with (1+e) where the page prints (1-e), as it was coded before
+  the review; the result and the first docstring paragraph say so and that
+  the owner is to revisit the choice. Eq. 20-4 now raises ValueError when
+  the inputs give no drainable pore space (We at or above saturation for
+  the dry density), where it returned a negative porosity (125 pcf, Gs
+  2.65, We 0.2 gave -0.157).
 - UFC 3-250-01 Table 5-1 gained its rigid-pavement traffic column
   (`pavement_type='rigid'`; 1 million passes, cohesive 95 %: 11 -> 12 in);
   `pavement_type` is required, since the table prints both columns and no
@@ -77,7 +81,9 @@ rendered page; results and docstrings name the page.
   print): `activity_index`, `free_swell_percent`, `swell_pressure_kPa`,
   `pier_minimum_embedment_m`. Added: Table 4-2's four empirical swell
   relations as printed (Vijayvergiya and Ghazzaly, Schneider and Poor,
-  McKeen-Lytton, Johnson; printed 4-3).
+  McKeen-Lytton, Johnson; printed 4-3). Johnson's relation can give a
+  negative number (PI 20, H 0, wo 40: -8.648); it is returned with a note
+  that it is not a predicted shrinkage.
 
 ## 1.6.0
 
