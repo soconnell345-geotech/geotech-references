@@ -107,10 +107,12 @@ class TestRadiationAndSoilDamping:
             assert f"psi = sqrt(2(1-nu)/(1-2nu)) <= 2.5 (Eq. {eq})" in body
 
     def test_rectangular_where_list_b_symbol_note(self):
-        # p. 82 prints "v_so = half the smaller dimension of the base".
+        # p. 82 prints "v_so = half the smaller dimension of the base"; stored as
+        # printed, the evident symbol B in a note.
         body = _section(19, "19.3.3")["body"]
-        assert "B = half the smaller dimension of the base of the structure" in body
-        assert "prints this symbol as v_so" in body
+        assert "v_so = half the smaller dimension of the base of the structure (as printed on p. 82" in body
+        assert "the symbol is evidently B" in body
+        assert "B = half the smaller dimension of the base of the structure" not in body
 
     def test_alpha_rr(self):
         # p. 84: alpha_rr = 1.0 - [0.35 a0^2/(1.0 + a0^2)] (19.3-24).
