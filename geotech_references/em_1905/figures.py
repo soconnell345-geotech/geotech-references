@@ -24,12 +24,12 @@ _FIG_7_16 = (
 def figure_7_16_time_factor(U_percent: float | None,
                             T_v: float | None) -> dict:
     """Time factor for vertical drainage against the average degree of
-    consolidation, from the table printed on Figure 7-16 (initial excess
-    pore pressure constant or linear with depth). Give one of U_percent or
-    T_v and get the other. A printed pair comes back exactly; between
-    printed pairs the value is interpolated linearly and marked
-    ``interpolated`` True (the curve is not linear, so the interpolated
-    value is approximate: read the chart for more).
+    consolidation, from the table printed on Figure 7-16 (the caption: "for
+    linear distribution of excess pore water pressure with depth"). Give one
+    of U_percent or T_v and get the other. A printed pair comes back
+    exactly; between printed pairs the value is interpolated linearly and
+    marked ``interpolated`` True (the curve is not linear, so the
+    interpolated value is approximate: read the chart for more).
 
     Print check (Figure 7-16, p. 185, read off the rendered page):
 
@@ -86,7 +86,7 @@ def figure_7_16_time_factor(U_percent: float | None,
             "units": {"U_percent": "percent", "T_v": "dimensionless"},
             "source": f"{_REF} Figure 7-16, p. 185",
             "valid_for": ("One-dimensional consolidation, vertical drainage, "
-                          "initial excess pore pressure constant or linear "
-                          "with depth."),
+                          "linear distribution of excess pore water pressure "
+                          "with depth (the caption of Figure 7-16)."),
             "notes": ("Printed pairs exact; between them linear "
                       "interpolation of a curved relation (approximate).")}

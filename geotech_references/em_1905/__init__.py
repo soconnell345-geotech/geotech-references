@@ -33,8 +33,10 @@ printed on Figure 7-16). Each function returns a dict with its values,
 raises ValueError outside what the print covers. A limit printed as part
 of a relation (dc <= 1.5, Pa,d >= 0) is applied as printed: the limited
 value is returned with the formula's value beside it and
-``limit_governs``; an input the page's own conditions exclude is refused,
-the message naming the condition and the page. Each docstring
+``limit_governs``; an input outside a condition the page prints is
+refused, the message naming the condition and the page, and a refusal the
+page prints no condition for says it is the library's reading. Each
+docstring
 holds a print check: the formula as printed beside what the code does. The
 tests run the Appendix B and C worked examples. The other charts are not
 digitized: read them off the rendered page through the figure catalog.

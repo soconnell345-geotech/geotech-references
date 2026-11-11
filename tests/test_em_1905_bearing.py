@@ -335,6 +335,48 @@ def test_inclination_and_slope_factors():
     assert u["gc"] == pytest.approx(u["gc0"] + (1 - u["gc0"]) * 6 / 12)
 
 
+def test_one_rule_for_the_correction_factors():
+    # a factor that computes negative is refused with its value
+    with pytest.raises(ValueError, match=r"gc0 = -0\.644 < 0 .* no usable factor"):
+        tb.table_5_3_usace_ground_inclination_factors(20, 0, 5, 5)
+    with pytest.raises(ValueError, match=r"ic = -2\.934 < 0 .* no usable factor"):
+        tb.table_5_3_aashto_load_inclination_factors(5, 10, 6, 6, 0, 2, 0)
+    with pytest.raises(ValueError, match=r"ic = -0\.300 < 0 .* Table 5-4"):
+        tb.table_5_4_undrained_factors("usace", 6, 6, 2, 10, 10, 1, None, 0, 0, None)
+    # a factor of exactly zero is returned, with a note
+    z = tb.table_5_3_usace_load_inclination_factors(1, 1, 45)
+    assert z["i_gamma"] == 0 and "i_gamma = 0 exactly" in z["notes"]
+    u = tb.table_5_4_undrained_factors("usace", 6, 6, 2, 10, 13, 1, None, 0, 0, None)
+    assert u["ic"] == 0 and "ic = 0 exactly" in u["notes"]
+    # Table 5-3 prints no range for alpha_g or beta: a slope steeper than
+    # phi' is accepted, a load inclined past phi' refused (the library's
+    # reading), as is tan(beta) above 1 in the AASHTO factors
+    steep = tb.table_5_3_usace_ground_inclination_factors(30, 0, 5, 20)
+    assert steep["gc0"] > 0 and "steeper than phi' is" in steep["notes"]
+    with pytest.raises(ValueError, match="library's reading, not a condition"):
+        tb.table_5_3_usace_load_inclination_factors(80, 100, 30)
+    with pytest.raises(ValueError, match="library's reading, not a condition"):
+        tb.table_5_3_aashto_load_inclination_factors(120, 100, 6, 6, 0, 30, 0)
+    with pytest.raises(ValueError, match="library's reading, not a condition"):
+        tb.table_5_3_usace_ground_inclination_factors(50, 0, 5, 30)
+
+
+def test_conventions_and_method_named_in_the_result():
+    # B' <= L' is the library's convention (p. 106 defines B' and L' as the
+    # effective base width and length); the AASHTO dq <= 1.4 is applied for
+    # method 'fhwa' and the result says so
+    r = eq.equation_5_4_effective_dimensions(B=8, L=10, V=200, M_B=100, M_L=0)
+    assert "convention" in r["notes"] and "(pp. 96, 106)" in r["notes"]
+    with pytest.raises(ValueError, match="convention"):
+        tb.table_5_2_usace_shape_depth_factors(3, 8, 6, 2.5)
+    f = eq.ultimate_bearing_capacity_drained("fhwa", 30, 0, 4.0, 0.06, 2, 2, 40,
+                                             0, 100, None, 0, 0, None)
+    assert f["dq"] == 1.4 and "Method 'fhwa'" in f["notes"]
+    a = eq.ultimate_bearing_capacity_drained("aashto", 30, 0, 4.0, 0.06, 2, 2,
+                                             40, 0, 100, None, 0, 0, None)
+    assert "Method 'fhwa'" not in a["notes"]
+
+
 def test_effective_unit_weight_and_geometric_mean():
     assert eq.equation_5_19_effective_unit_weight(0.12, 2.5, 2.5, 8, "usace")["ratio"] == 0.45
     assert eq.equation_5_19_effective_unit_weight(0.12, 0, 2.5, 8, "fhwa")["ratio"] == 0.5

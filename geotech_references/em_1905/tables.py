@@ -8,8 +8,17 @@ Every value and formula is as printed, each table compared cell by cell with
 the rendered page. Units are the manual's (ft, kips, ksf, kcf, tsf, degrees).
 Each function returns a dict with its values, ``units``, ``source`` (table and
 printed page), ``valid_for`` and ``notes``, and raises ValueError for a value
-outside what the table covers or a category it does not print; nothing is
-clamped and nothing is assumed.
+outside what the table covers or a category it does not print. A limit the
+page prints as part of a relation (dc <= 1.5, dq <= 1.4) is applied as
+printed, the formula's value returned beside it with ``limit_governs``.
+
+The correction factors of Tables 5-3 and 5-4 follow one rule: a factor that
+computes negative is refused, the message giving its value and saying the
+printed formula gives no usable factor for those inputs; a factor of exactly
+zero is returned with a note. Where a function refuses an input range the
+page does not print (beta above phi', tan(beta) above 1, a bracket that
+would turn negative under a square), the message and docstring say it is the
+library's reading, not a printed condition.
 """
 
 from __future__ import annotations
@@ -58,15 +67,20 @@ def _non_negative(name: str, value) -> float:
 
 def _ratio_b_over_l(B_eff, L_eff) -> float:
     """B'/L': 0 for a continuous footing (L_eff None), as the shape factors
-    are 1 for a continuous footing (p. 106)."""
+    are 1 for a continuous footing (p. 106). B' <= L' is the library's
+    convention: p. 106 defines B' as the effective base width and L' as the
+    effective base length and does not say which is the lesser."""
     B = _positive("B_eff", B_eff)
     if L_eff is None:
         return 0.0
     L = _positive("L_eff", L_eff)
     if L < B:
         raise ValueError(
-            f"L_eff ({L_eff}) is less than B_eff ({B_eff}): B' is the "
-            f"effective width and L' the effective length (p. 106)")
+            f"L_eff ({L_eff}) is less than B_eff ({B_eff}): the library takes "
+            f"B' as the lesser effective dimension (its convention; p. 106 "
+            f"defines B' as the effective base width and L' as the effective "
+            f"base length, and does not say which is the lesser); give the "
+            f"lesser as B_eff")
     return B / L
 
 
@@ -77,6 +91,24 @@ def _friction_angle(phi_deg) -> float:
             f"phi_deg = {phi_deg}: the drained factors of Tables 5-2 and 5-3 "
             f"need 0 < phi' < 90 degrees; for phi' = 0 use Table 5-4")
     return phi
+
+
+def _usable_factors(factors: dict, table: str, inputs: str) -> str:
+    """The one rule for the correction factors of Tables 5-3 and 5-4: a
+    factor that computes negative is refused, the message giving its value;
+    a factor of exactly zero is returned, and the note returned here says
+    so ("" when none is zero)."""
+    for name, v in factors.items():
+        if v < 0:
+            raise ValueError(
+                f"{name} = {v:.3f} < 0 for {inputs}: the printed formula of "
+                f"{table} gives no usable factor for these inputs")
+    zero = [n for n, v in factors.items() if v == 0]
+    if zero:
+        return (f" {', '.join(zero)} = 0 exactly for these inputs: the printed "
+                f"formula gives zero, which removes that term from equation "
+                f"5-22.")
+    return ""
 
 
 # ---------------------------------------------------------------------------
@@ -382,6 +414,13 @@ def table_5_3_usace_load_inclination_factors(H: float, V: float,
     capacity: beta = atan(H/V), iq = ic = (1 - beta/90)^2,
     i-gamma = (1 - beta/phi')^2, beta and phi' in degrees.
 
+    Range: Table 5-3 prints no range for beta. The function refuses beta
+    above phi': [1 - beta/phi']^2 reaches 0 at beta = phi' and would rise
+    again past it, which the library reads as outside the formula's use.
+    That refusal is the library's reading, not a printed condition. At
+    beta = phi' exactly, i-gamma = 0 is returned with a note. (The ground
+    inclination function, by contrast, accepts a slope steeper than phi'.)
+
     Print check (Table 5-3, p. 108, rendered and compared cell by cell):
 
         factor  USACE as printed
@@ -410,8 +449,8 @@ def table_5_3_usace_load_inclination_factors(H: float, V: float,
     ------
     ValueError
         If H < 0, V <= 0, phi' is not between 0 and 90 degrees, or beta
-        exceeds phi' (the bracket of i-gamma turns negative; the table gives
-        no value there).
+        exceeds phi' (the library's reading: the printed bracket of i-gamma
+        would rise again past phi'; Table 5-3 prints no range for beta).
     """
     _non_negative("H", H)
     _positive("V", V)
@@ -421,16 +460,23 @@ def table_5_3_usace_load_inclination_factors(H: float, V: float,
         raise ValueError(
             f"beta = {beta:.2f} degrees exceeds phi' = {phi_deg}: Table 5-3 "
             f"(p. 108) gives i-gamma = [1 - beta/phi']^2, which reaches 0 at "
-            f"beta = phi'; past it the bracket turns negative and the table "
-            f"gives no value, so the load inclination must not exceed phi'")
+            f"beta = phi' and would rise again past it. The library refuses "
+            f"beta above phi' as outside the formula's use; this is the "
+            f"library's reading, not a condition the table prints")
     iq = (1 - beta / 90.0) ** 2
+    ig = (1 - beta / phi) ** 2
+    note = _usable_factors({"iq": iq, "ic": iq, "i_gamma": ig},
+                           "Table 5-3 (p. 108)",
+                           f"H = {H}, V = {V}, phi' = {phi_deg}")
     return {
-        "beta_deg": beta, "iq": iq, "ic": iq, "i_gamma": (1 - beta / phi) ** 2,
+        "beta_deg": beta, "iq": iq, "ic": iq, "i_gamma": ig,
         "units": {"beta_deg": "degrees", "iq": "dimensionless",
                   "ic": "dimensionless", "i_gamma": "dimensionless"},
         "source": _source("Table 5-3", 108),
-        "valid_for": "Drained analysis, USACE method; beta <= phi'.",
-        "notes": "beta is the load inclination from vertical (Figure 5-9).",
+        "valid_for": ("Drained analysis, USACE method; beta <= phi' (the "
+                      "library's reading; Table 5-3 prints no range)."),
+        "notes": ("beta is the load inclination from vertical (Figure 5-9)."
+                  + note),
     }
 
 
@@ -443,6 +489,13 @@ def table_5_3_aashto_load_inclination_factors(H: float, V: float,
     drained bearing capacity: beta = atan(H/(V + B'L' c cot(phi'))),
     n = nL cos^2(theta) + nB sin^2(theta), iq = (1 - tan(beta))^n,
     ic = iq - (1 - iq)/(Nq - 1), i-gamma = (1 - tan(beta))^(n+1).
+
+    Range: Table 5-3 prints no range for beta. The function refuses
+    tan(beta) above 1, where 1 - tan(beta) is negative and its power n (in
+    general not a whole number) has no real value; that refusal is the
+    library's reading, not a printed condition. ic can compute negative
+    (small phi', where Nq - 1 is small): a negative factor is refused, a
+    zero one returned with a note.
 
     Print check (Table 5-3, p. 108, rendered and compared cell by cell):
 
@@ -484,8 +537,9 @@ def table_5_3_aashto_load_inclination_factors(H: float, V: float,
     ------
     ValueError
         If H < 0, V <= 0, c < 0, B' or L' is not positive, L' < B', phi' is
-        not between 0 and 90 degrees, theta is outside 0 to 90 degrees, or
-        tan(beta) > 1.
+        not between 0 and 90 degrees, theta is outside 0 to 90 degrees,
+        tan(beta) > 1 (the library's reading), or a factor computes
+        negative.
     """
     _non_negative("H", H)
     _positive("V", V)
@@ -508,14 +562,22 @@ def table_5_3_aashto_load_inclination_factors(H: float, V: float,
     r = math.radians(phi)
     t = float(H) / (float(V) + area * float(c) / math.tan(r))
     if t > 1:
-        raise ValueError(f"tan(beta) = {t:.3f} > 1: [1 - tan(beta)]^n of "
-                         f"Table 5-3 is not defined for it")
+        raise ValueError(
+            f"tan(beta) = {t:.3f} > 1: the bracket of Table 5-3's "
+            f"[1 - tan(beta)]^n (p. 108) is negative, and a negative number "
+            f"to a power that is in general not a whole number has no real "
+            f"value. The library refuses tan(beta) above 1; this is the "
+            f"library's reading, not a condition the table prints")
     Nq = table_5_2_bearing_capacity_factors(phi, "aashto")["Nq"]
     iq = (1 - t) ** n
+    ic = iq - (1 - iq) / (Nq - 1)
+    ig = (1 - t) ** (n + 1)
+    note = _usable_factors({"iq": iq, "ic": ic, "i_gamma": ig},
+                           "Table 5-3 (p. 108)",
+                           f"H = {H}, V = {V}, c = {c}, phi' = {phi_deg}")
     return {
         "beta_deg": math.degrees(math.atan(t)), "nB": nB, "nL": nL, "n": n,
-        "iq": iq, "ic": iq - (1 - iq) / (Nq - 1), "i_gamma": (1 - t) ** (n + 1),
-        "Nq": Nq,
+        "iq": iq, "ic": ic, "i_gamma": ig, "Nq": Nq,
         "units": {"beta_deg": "degrees", "n": "dimensionless",
                   "iq": "dimensionless", "ic": "dimensionless",
                   "i_gamma": "dimensionless"},
@@ -523,7 +585,7 @@ def table_5_3_aashto_load_inclination_factors(H: float, V: float,
         "valid_for": "Drained analysis, AASHTO (2020)/FHWA (2002) method.",
         "notes": ("As printed, the i-gamma cell reads 'iq = [1 - tan(beta)]"
                   "^(n+1)'. For a continuous footing nB = 1 and nL = 2 are "
-                  "the printed expressions' limits as L'/B' grows."),
+                  "the printed expressions' limits as L'/B' grows." + note),
     }
 
 
@@ -534,6 +596,12 @@ def table_5_3_base_inclination_factors(alpha_b_deg: float,
     bc = bq - (1 - bq)/(Nc tan(phi')), alpha_b the base inclination from
     horizontal in degrees. AASHTO (2020) does not present base inclination;
     FHWA (2002) does (note a).
+
+    Range: Table 5-3 prints no range for alpha_b. The function refuses an
+    alpha_b for which 1 - alpha_b/57 tan(phi') is negative (its square would
+    rise again), the library's reading, not a printed condition. bc can
+    compute negative: a negative factor is refused, a zero one returned
+    with a note.
 
     Print check (Table 5-3, p. 108, rendered and compared cell by cell):
 
@@ -557,27 +625,34 @@ def table_5_3_base_inclination_factors(alpha_b_deg: float,
     Raises
     ------
     ValueError
-        If alpha_b < 0, phi' is not between 0 and 90 degrees, or the
-        bracket turns negative.
+        If alpha_b < 0, phi' is not between 0 and 90 degrees, the bracket
+        turns negative (the library's reading), or bc computes negative.
     """
     a = _non_negative("alpha_b_deg", alpha_b_deg)
     phi = _friction_angle(phi_deg)
     t = math.tan(math.radians(phi))
     inner = 1 - a / 57.0 * t
     if inner < 0:
-        raise ValueError(f"1 - alpha_b/57 * tan(phi') = {inner:.3f} < 0: "
-                         f"Table 5-3 gives no value for it")
+        raise ValueError(
+            f"1 - alpha_b/57 * tan(phi') = {inner:.3f} < 0: the bracket of "
+            f"Table 5-3's bq (p. 108) is negative and its square would rise "
+            f"again. The library refuses it; this is the library's reading, "
+            f"not a condition the table prints")
     Nc = table_5_2_bearing_capacity_factors(phi, "usace" if 1.4 * phi < 90
                                             else "aashto")["Nc"]
     bq = inner ** 2
+    bc = bq - (1 - bq) / (Nc * t)
+    note = _usable_factors({"bq": bq, "bc": bc, "b_gamma": bq},
+                           "Table 5-3 (p. 108)",
+                           f"alpha_b = {alpha_b_deg}, phi' = {phi_deg}")
     return {
-        "bq": bq, "bc": bq - (1 - bq) / (Nc * t), "b_gamma": bq, "Nc": Nc,
+        "bq": bq, "bc": bc, "b_gamma": bq, "Nc": Nc,
         "units": {"bq": "dimensionless", "bc": "dimensionless",
                   "b_gamma": "dimensionless"},
         "source": _source("Table 5-3", 108),
         "valid_for": ("Drained analysis, both methods (AASHTO (2020) does "
                       "not present base inclination; FHWA (2002) does)."),
-        "notes": "alpha_b is measured from horizontal (Figure 5-10).",
+        "notes": "alpha_b is measured from horizontal (Figure 5-10)." + note,
     }
 
 
@@ -591,6 +666,14 @@ def table_5_3_usace_ground_inclination_factors(alpha_g_deg: float,
     The subscript 0 is for a footing directly next to a slope with FS > 1.3.
     The AASHTO/FHWA column says "See tables in AASHTO (2020)", which this
     manual does not print.
+
+    Range: Table 5-3 prints no range for alpha_g, and nothing about alpha_g
+    against phi'. The function takes alpha_g from 0 to 45 degrees (above 45,
+    1 - tan(alpha_g) is negative and its square would rise again: the
+    library's reading, not a printed condition) and accepts a slope steeper
+    than phi'. gc,0 and gc can compute negative (small phi'): a negative
+    factor is refused, a zero one returned with a note. (The load
+    inclination functions, by contrast, refuse beta above phi'.)
 
     Print check (Table 5-3, pp. 108-109, rendered and compared):
 
@@ -622,25 +705,33 @@ def table_5_3_usace_ground_inclination_factors(alpha_g_deg: float,
     Raises
     ------
     ValueError
-        If alpha_g is outside 0 to 45 degrees (tan(alpha_g) above 1 turns
-        the bracket negative), d_g < 0, B' is not positive, or phi' is not
-        between 0 and 90 degrees.
+        If alpha_g is outside 0 to 45 degrees (the library's reading:
+        tan(alpha_g) above 1 turns the bracket negative), d_g < 0, B' is not
+        positive, phi' is not between 0 and 90 degrees, or a factor computes
+        negative.
     """
     a = float(alpha_g_deg)
     if not 0 <= a <= 45:
-        raise ValueError(f"alpha_g_deg = {alpha_g_deg}: [1 - tan(alpha_g)]^2 "
-                         f"needs 0 to 45 degrees")
+        raise ValueError(
+            f"alpha_g_deg = {alpha_g_deg}: above 45 degrees the bracket of "
+            f"Table 5-3's [1 - tan(alpha_g)]^2 (p. 108) is negative and its "
+            f"square would rise again. The library takes 0 to 45 degrees; "
+            f"this is the library's reading, not a condition the table prints")
     dg = _non_negative("d_g", d_g)
     B = _positive("B_eff", B_eff)
     phi = _friction_angle(phi_deg)
-    Nc = table_5_3_base_inclination_factors(0, phi)["Nc"]
+    Nc = table_5_2_bearing_capacity_factors(phi, "usace" if 1.4 * phi < 90
+                                            else "aashto")["Nc"]
     g0 = (1 - math.tan(math.radians(a))) ** 2
     gc0 = g0 - (1 - g0) / (Nc * math.tan(math.radians(phi)))
     ramp = dg / (5 * B)
-    return {
-        "gq0": g0, "gq": min(1.0, g0 + (1 - g0) * ramp),
-        "gc0": gc0, "gc": min(1.0, gc0 + (1 - gc0) * ramp),
-        "g_gamma0": g0, "g_gamma": min(1.0, g0 + (1 - g0) * ramp),
+    f = {"gq0": g0, "gq": min(1.0, g0 + (1 - g0) * ramp),
+         "gc0": gc0, "gc": min(1.0, gc0 + (1 - gc0) * ramp),
+         "g_gamma0": g0, "g_gamma": min(1.0, g0 + (1 - g0) * ramp)}
+    note = _usable_factors(f, "Table 5-3 (p. 108)",
+                           f"alpha_g = {alpha_g_deg}, d_g = {d_g}, "
+                           f"B' = {B_eff}, phi' = {phi_deg}")
+    f.update({
         "units": {k: "dimensionless" for k in
                   ("gq0", "gq", "gc0", "gc", "g_gamma0", "g_gamma")},
         "source": _source("Table 5-3", 108),
@@ -648,8 +739,11 @@ def table_5_3_usace_ground_inclination_factors(alpha_g_deg: float,
                       "sloping away from it; the 0 values are for a footing "
                       "directly next to a slope with FS > 1.3 (note b)."),
         "notes": ("The AASHTO (2020)/FHWA (2002) column refers to tables in "
-                  "AASHTO (2020), not printed in this manual."),
-    }
+                  "AASHTO (2020), not printed in this manual. Table 5-3 "
+                  "prints no range for alpha_g; a slope steeper than phi' is "
+                  "accepted." + note),
+    })
+    return f
 
 
 # ---------------------------------------------------------------------------
@@ -671,6 +765,11 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
     The USACE limit dc <= 1.5 is applied as printed: where the formula gives
     more, dc = 1.5 is returned, with the formula's value in dc_unlimited and
     limit_governs True.
+
+    Range: Table 5-4 prints no range for H/V, alpha_b or alpha_g. A factor
+    that computes negative (ic for a steep load inclination, bc or gc,0 past
+    147.3 degrees) is refused, the message giving its value; a factor of
+    exactly zero is returned with a note.
 
     Print check (Table 5-4, p. 109, rendered and compared cell by cell):
 
@@ -724,9 +823,11 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
     Raises
     ------
     ValueError
-        For an unknown method, a slope with the AASHTO/FHWA method (its ground factors are in AASHTO (2020), not
-        printed here), theta or d_g missing where needed, or values out of
-        range (H < 0, V <= 0, su <= 0, angles negative, ic < 0).
+        For an unknown method, a slope with the AASHTO/FHWA method (its
+        ground factors are in AASHTO (2020), not printed here), theta or
+        d_g missing where needed, values out of range (H < 0, V <= 0,
+        su <= 0, angles negative), or a factor that computes negative (ic,
+        bc, gc,0 or gc; a zero factor is returned with a note).
     """
     m = _method(method)
     bl = _ratio_b_over_l(B_eff, L_eff)
@@ -775,9 +876,6 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
             out["ic"] = 1 - n * h / (c * area * Nc)
         else:
             out["ic"] = 1.0
-    if out["ic"] < 0:
-        raise ValueError(f"ic = {out['ic']:.3f} < 0: the load is too "
-                         f"inclined for Table 5-4's expression")
     out["bc"] = 1 - ab / 147.3
     if ag > 0:
         if m != "usace":
@@ -792,6 +890,11 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
         out["gc"] = min(1.0, gc0 + (1 - gc0) * _non_negative("d_g", d_g) / (2 * B))
     else:
         out["gc"] = 1.0
+    zero_note = _usable_factors(
+        {k: out[k] for k in ("sc", "dc", "ic", "bc", "gc0", "gc") if k in out},
+        "Table 5-4 (p. 109)",
+        f"B' = {B_eff}, L' = {L_eff}, Df = {Df}, H = {H}, V = {V}, su = {su}, "
+        f"alpha_b = {alpha_b_deg}, alpha_g = {alpha_g_deg}")
     out.update({
         "method": _METHOD_NAMES[m],
         "units": {k: "dimensionless" for k in out if k != "limit_governs"},
@@ -803,7 +906,7 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
                   "conservatively omitted' (note b). The 0 ground value is "
                   "for a footing directly next to a slope with FS > 1.3, "
                   "rising linearly to 1 at a distance of 2B' (note d)."
-                  + limit_note),
+                  + limit_note + zero_note),
     })
     return out
 

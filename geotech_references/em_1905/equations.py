@@ -11,9 +11,10 @@ raises ValueError for a value outside what the equation covers. A limit
 printed as part of a relation ("dc <= 1.5", "Pa,d >= 0") is applied as
 printed: the limited value is returned, with the formula's value beside it
 (``dc_unlimited``, ``P_ad_unlimited``), ``limit_governs`` and a note quoting
-the page. An input the page's own conditions exclude is refused, the
-message naming the condition and the page. A min[] or max[] inside a
-formula is computed as printed.
+the page. Where a function refuses an input the page prints no condition
+on (beta above phi' in Table 5-3, for one), the message and docstring say
+it is the library's reading, not a printed condition. A min[] or max[]
+inside a formula is computed as printed.
 
 ``ultimate_bearing_capacity_drained`` and
 ``ultimate_bearing_capacity_undrained`` follow the steps of the worked
@@ -227,9 +228,13 @@ def equation_5_4_effective_dimensions(B: float, L: float | None, V: float,
                   "A_eff": "ft^2"},
         "source": _source("Eqs. 5-4 to 5-8", 96),
         "valid_for": "Rectangular and continuous footings (paragraph 5-4a).",
-        "notes": ("If L' comes out less than B', the two are swapped in use: "
-                  "B' is the lesser effective dimension (Figure 5-4). The "
-                  "middle-third check is Table 2-1, note 3."),
+        "notes": ("The manual defines B' as the effective base width and L' "
+                  "as the effective base length (pp. 96, 106) and does not "
+                  "say which is the lesser. The library takes B' as the "
+                  "lesser (its convention, not printed): if L' comes out "
+                  "less than B', swap them before Tables 5-2 to 5-4, whose "
+                  "functions refuse L' < B'. The middle-third check is "
+                  "Table 2-1, note 3."),
     })
     return out
 
@@ -640,6 +645,13 @@ def ultimate_bearing_capacity_drained(method: str, phi_deg: float, c: float,
         notes += (f" The formula gives dq = {sd['dq_unlimited']:.3f}; note a "
                   f"to Table 5-2 (p. 107) limits the AASHTO (2020) dq to "
                   f"1.4, and q_ult uses dq = 1.4.")
+    if str(method).lower().strip() == "fhwa":
+        notes += (" Method 'fhwa' is computed as the AASHTO (2020)/FHWA "
+                  "(2002) column: the dq formula and its 1.4 limit, both "
+                  "applied here, are AASHTO (2020)'s, while note a to Table "
+                  "5-2 (p. 107) says "
+                  "FHWA (2002) presents tabulated depth factors, which this "
+                  "manual does not print.")
     out.update({
         "method": bf["method"],
         "units": units,
