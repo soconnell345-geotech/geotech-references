@@ -74,7 +74,8 @@ def test_gec6_figures_sit_on_their_caption_pages():
     assert {n: pages.get(n) for n in printed} == {n: p + 5 for n, p in printed.items()}
     five_11 = [f["caption"] for f in figs["figures"] if f["figure_number"] == "5-11"]
     assert five_11[0].startswith("(a) Chart for Use in Determining Vertical Stresses")
-    assert figs["figure_count"] == len(figs["figures"]) == 57
+    # 57 from the List of Figures; Appendices B and C added 29 (REF-84)
+    assert figs["figure_count"] == len(figs["figures"]) == 86
 
 
 def test_micropile_lists_every_printed_figure_once():

@@ -54,12 +54,18 @@ ADDED = {
                                + _nums("A.5", 1, 14) + _nums("A.6", 1, 12)
                                + _nums("A.7", 1, 9) + ["A.8-1", "A.9-1",
                                                        "D-10"]),
+    # the worked examples of Appendices B and C
+    "gec_6": (_nums("B1", 1, 3) + _nums("B2", 1, 3) + _nums("B3", 1, 6)
+              + _nums("B4", 1, 7) + _nums("B5", 1, 2) + _nums("C1", 1, 4)
+              + _nums("C2", 1, 4)),
 }
 
 #: Rows whose page holds no picture and too few lines to count as a
 #: drawing: FHWA NHI-06-089 Figure A.2-3 is a typed request letter in a
-#: ruled box (PDF page 397, printed A.2-5).
-NO_GRAPHIC = {"fhwa_soils_foundations": {"A.2-3"}}
+#: ruled box (PDF page 397, printed A.2-5); GEC-6 Figure B3-4 is the EMBANK
+#: program's output screen typed in a box of box-drawing characters (PDF
+#: page 204, printed B-46).
+NO_GRAPHIC = {"fhwa_soils_foundations": {"A.2-3"}, "gec_6": {"B3-4"}}
 
 #: Rows filed under the number the text cites, whose caption label is
 #: printed otherwise: the text on PDF page 476 cites "Figure A.7-2" twice,
@@ -166,6 +172,10 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
      "Apple Freeway Bridge including SPT-N blow counts from Boring BAF-2"),
     ("fhwa_soils_foundations", "D-10", 576,
      "Factor of safety distribution and Safety Map"),
+    ("gec_6", "B2-3", 180, "Layers Used in the Analysis"),
+    ("gec_6", "B3-4", 203, "Summary Output of EMBANK Settlement Analysis"),
+    ("gec_6", "B4-7", 236, "Final Loading Conditions"),
+    ("gec_6", "C1-3", 267, "Effective Stress Diagram"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -230,6 +240,14 @@ def test_added_rows_are_found_by_their_captions():
         ("fhwa_soils_foundations", "settlement time wick drain without "
                                    "surcharge", "A.6-11"),
         ("fhwa_soils_foundations", "ReSSA safety map", "D-10"),
+        ("gec_6", "EMBANK settlement analysis output", "B3-4"),
+        ("gec_6", "intermediate construction step loading conditions",
+         "B4-5"),
+        ("gec_6", "nominal bearing resistance effective footing width "
+                  "service", "C1-4"),
+        ("gec_6", "integral abutment symbols", "B2-2"),
+        ("gec_6", "allowable bearing pressure function of footing width",
+         "B3-5"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
