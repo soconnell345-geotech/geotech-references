@@ -199,8 +199,10 @@ class TestHeightLimitUnits:
     """struct-08: heights are returned under a key naming feet. Footnote d
     to Tables 3-1 and 7-1 (UFC_3-301-01_2023_c4.pdf pdf 79 / printed 57 and
     pdf 121 / printed 99): "For metric units, use 30 m for 100 ft and 50 m
-    for 160 ft." Table B-1 heads its columns "Height (ft)" (pdf 146 /
-    printed 124) and prints no metric values."""
+    for 160 ft." Table 3-1 footnotes i "45 ft (14 m)", j "60 ft (18 m)", q
+    "60 ft (18.3 m)"; Table 7-1 footnote w "60 ft (18.3m)". Table B-1 heads
+    its columns "Height (ft)" (pdf 146 / printed 124), has no footnote d,
+    and its footnote 7 reads "60 ft (18.3m)" (pdf 148 / printed 126)."""
 
     def test_table_3_1_feet_and_footnote_d_metres(self):
         r = table_3_1_seismic_system("A", "special_reinforced_concrete_shear_walls")
@@ -224,5 +226,26 @@ class TestHeightLimitUnits:
         r = table_b1_rc4_permitted_system("Cantilevered Column Systems",
                                           "special_steel_cantilever_column_systems")
         assert r["height_limits_ft"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
-        assert "height_limits_m" not in r
-        assert "no metric" in r["height_limits_note"]
+        assert r["height_limits_m"] == {"B": None, "C": None, "D": None, "E": None, "F": None}
+        assert r["metric_footnotes"] == {}
+        assert "60 ft (18.3m)" in r["height_limits_note"]
+
+    def test_table_b1_footnote_7_metric(self):
+        # 160 ft has no metric value in Table B-1 (no footnote d there).
+        r = table_b1_rc4_permitted_system("Bearing Wall Systems",
+                                          "reinforced_concrete_ductile_coupled_walls")
+        assert r["height_limits_m"]["D"] is None
+        assert r["metric_footnotes"] == {"7": "60 ft (18.3 m)"}
+
+    def test_footnote_metric_heights_tables_3_1_and_7_1(self):
+        r = table_3_1_seismic_system("A", "intermediate_precast_shear_walls")
+        assert r["metric_footnotes"] == {"i": "45 ft (14 m)"}
+        r = table_3_1_seismic_system("B", "steel_ordinary_concentrically_braced_frames")
+        assert r["height_limits_m"]["D"] is None and r["height_limits_m"]["F"] == "NPj"
+        assert r["metric_footnotes"] == {"j": "60 ft (18 m)"}
+        r = table_3_1_seismic_system("A", "reinforced_concrete_ductile_coupled_walls")
+        assert r["metric_footnotes"] == {"q": "60 ft (18.3 m)"}
+        assert "304.8 mm" in r["height_limits_note"]
+        r = table_7_1_healthcare_seismic_system("B", "reinforced_concrete_ductile_coupled_walls")
+        assert r["metric_footnotes"] == {"w": "60 ft (18.3 m)"}
+        assert "304.8 mm" in r["height_limits_note"]

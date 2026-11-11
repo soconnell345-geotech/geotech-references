@@ -27,17 +27,51 @@ height limit in feet ('NL' = not limited, 'NP' = not permitted):
     required" for the Appendix B nonlinear procedure (paragraph B-18.4.2.4).
 
 Height-limit units: feet, as printed. Results return them as
-``height_limits_ft``. Tables 3-1 and 7-1 print footnote d, "For metric
-units, use 30 m for 100 ft and 50 m for 160 ft" (printed pp. 57 and 99),
-and their results give those two metric values as ``height_limits_m``;
-no other height is converted. Table B-1 heads its columns "Height (ft)"
-and prints no metric values.
+``height_limits_ft``, with ``height_limits_m`` holding the metric value
+the print gives for each cell (None where it gives none) and
+``metric_footnotes`` the row's footnotes that print a metric height.
+Tables 3-1 and 7-1 print "FOR SI: 1 foot (ft) = 304.8 mm" under the table
+and footnote d, "For metric units, use 30 m for 100 ft and 50 m for 160
+ft" (printed pp. 56-57 and 99); footnotes e (240 ft, 75 m), f (160 ft, 50
+m), Table 3-1's i (45 ft, 14 m), j (60 ft, 18 m) and q and Table 7-1's w
+(60 ft, 18.3 m) give the others. Table B-1 heads its columns "Height
+(ft)", has no "FOR SI" line or footnote d, and gives one metric height,
+footnote 7's "60 ft (18.3m)" (printed p. 126).
 """
 
-# Footnote d to Tables 3-1 and 7-1 (UFC_3-301-01_2023_c4.pdf pdf 79 /
-# printed 57 and pdf 121 / printed 99): "For metric units, use 30 m for
-# 100 ft and 50 m for 160 ft." The print gives no other metric height.
+# Metric heights the print gives, read from the rendered pages of
+# UFC_3-301-01_2023_c4.pdf. Under Table 3-1 (pdf 78 / printed 56) and
+# Table 7-1 (pdf 121 / printed 99): "FOR SI: 1 foot (ft) = 304.8 mm, 1
+# pound per square foot (psf) = 0.0479 kN/m2". Footnote d of both (pdf 79
+# / printed 57; pdf 121): "For metric units, use 30 m for 100 ft and 50 m
+# for 160 ft." Footnotes e and f of both: "240 feet (75 m)", "160 feet (50
+# m)". Table 3-1 footnote i "45 ft (14 m)", j "60 ft (18 m)", q "60 ft
+# (18.3 m)"; Table 7-1 footnote w "60 ft (18.3m)". Table B-1 (pdf 148 /
+# printed 126): footnote 7 "60 ft (18.3m)" only.
 _FOOTNOTE_D_METRIC = {100: 30, 160: 50}
+_METRIC_FOOTNOTES = {
+    "3-1": {"i": "45 ft (14 m)", "j": "60 ft (18 m)", "q": "60 ft (18.3 m)"},
+    "7-1": {"w": "60 ft (18.3 m)"},
+    "B-1": {"7": "60 ft (18.3 m)"},
+}
+_METRIC_NOTES = {
+    "3-1": ("Heights in feet as printed. 'FOR SI: 1 foot (ft) = 304.8 mm' (printed "
+            "p. 56, under the table). Footnote d (printed p. 57): 'For metric units, "
+            "use 30 m for 100 ft and 50 m for 160 ft'; height_limits_m gives those and "
+            "None where the print gives no metric value (35, 40, 65 ft). Footnotes e "
+            "(240 ft, 75 m) and f (160 ft, 50 m) and those in metric_footnotes give the "
+            "print's other metric heights."),
+    "7-1": ("Heights in feet as printed. 'FOR SI: 1 foot (ft) = 304.8 mm' (printed "
+            "p. 99, under the table). Footnote d: 'For metric units, use 30 m for 100 "
+            "ft and 50 m for 160 ft'; height_limits_m gives those and None where the "
+            "print gives no metric value (65 ft). Footnotes e (240 ft, 75 m) and f "
+            "(160 ft, 50 m) and those in metric_footnotes give the print's other "
+            "metric heights."),
+    "B-1": ("Heights in feet as printed ('Height (ft)', printed p. 124). Table B-1 "
+            "has no 'FOR SI' line or footnote d, so height_limits_m is None for every "
+            "height; its one metric height is footnote 7, '60 ft (18.3m)' (printed "
+            "p. 126)."),
+}
 
 
 def _row(detailing, r, omega0, cd, h_b, h_c, h_d, h_e, h_f, footnotes=None):
@@ -49,14 +83,15 @@ def _row(detailing, r, omega0, cd, h_b, h_c, h_d, h_e, h_f, footnotes=None):
     }
 
 
-def _metric_height_limits(height_limits_ft):
-    """Footnote d's metric heights beside the printed feet: 100 ft -> 30 m
-    and 160 ft -> 50 m; 'NL'/'NP' entries as printed; None for a height
-    the footnote does not convert (35, 35j, 40i, 65 ft)."""
+def _metric_height_limits(height_limits_ft, table):
+    """The metric value the print gives for each height cell: footnote d's
+    30 m for 100 ft and 50 m for 160 ft (Tables 3-1 and 7-1 only); 'NL'/'NP'
+    entries as printed; None for a height the print gives no metric value
+    for (35, 35j, 35k, 40i, 65 ft, and every Table B-1 height)."""
     out = {}
     for sdc, value in height_limits_ft.items():
         if isinstance(value, (int, float)):
-            out[sdc] = _FOOTNOTE_D_METRIC.get(value)
+            out[sdc] = _FOOTNOTE_D_METRIC.get(value) if table in ("3-1", "7-1") else None
         elif isinstance(value, str) and value.startswith(("NL", "NP")):
             out[sdc] = value
         else:
@@ -64,15 +99,26 @@ def _metric_height_limits(height_limits_ft):
     return out
 
 
-def _with_metric_heights(row, printed_page):
-    """Add footnote d's metric heights and a note saying which they are."""
+def _cited_footnotes(row):
+    """Footnote ids a row cites: its own list plus the letters printed after
+    a height value ('40i', '35j', 'NPl,r')."""
+    cited = list(row.get("footnotes", []))
+    for value in row.get("height_limits_ft", {}).values():
+        if isinstance(value, str):
+            tail = value.lstrip("0123456789").replace("NL", "", 1).replace("NP", "", 1)
+            cited.extend(x for x in tail.split(",") if x)
+    return cited
+
+
+def _with_metric_heights(row, table):
+    """Add the print's metric heights, the row's footnotes that print one,
+    and a note saying where they come from."""
     if "height_limits_ft" in row:
-        row["height_limits_m"] = _metric_height_limits(row["height_limits_ft"])
-        row["height_limits_note"] = (
-            f"Heights in feet as printed. Footnote d (printed p. {printed_page}): "
-            "'For metric units, use 30 m for 100 ft and 50 m for 160 ft.' "
-            "height_limits_m gives only those two; None marks a height the "
-            "footnote does not convert.")
+        row["height_limits_m"] = _metric_height_limits(row["height_limits_ft"], table)
+        printed = _METRIC_FOOTNOTES[table]
+        row["metric_footnotes"] = {f: printed[f] for f in _cited_footnotes(row)
+                                   if f in printed}
+        row["height_limits_note"] = _METRIC_NOTES[table]
     return row
 
 
@@ -243,8 +289,8 @@ def table_3_1_seismic_system(category, system):
     -------
     dict
         The system's row (R/omega0/cd/height_limits_ft/permitted/footnotes)
-        plus {'height_limits_m', 'height_limits_note' (for a permitted
-        row), 'category', 'system', 'table': '3-1', 'printed_page':
+        plus {'height_limits_m', 'metric_footnotes', 'height_limits_note'
+        (for a permitted row), 'category', 'system', 'table': '3-1', 'printed_page':
         '49-57', 'pdf_page': '70-78'}. Heights are feet, 'NL' not limited,
         'NP' not permitted; a letter after a value is its footnote.
     """
@@ -257,7 +303,7 @@ def table_3_1_seismic_system(category, system):
             f"Unknown system {system!r} in category {cat!r}; see "
             f"list_table_3_1_systems({cat!r})"
         )
-    row = _with_metric_heights(dict(TABLE_3_1[cat][key]), "57")
+    row = _with_metric_heights(dict(TABLE_3_1[cat][key]), "3-1")
     row.update({"category": cat, "system": key, "table": "3-1",
                 "printed_page": "49-57", "pdf_page": "70-78"})
     return row
@@ -364,7 +410,8 @@ def table_7_1_healthcare_seismic_system(category, system):
     -------
     dict
         The system's row (height_limits_ft in feet) plus
-        {'height_limits_m', 'height_limits_note', 'category', 'system',
+        {'height_limits_m', 'metric_footnotes', 'height_limits_note',
+        'category', 'system',
         'table': '7-1', 'printed_page': '98-99', 'pdf_page': '119-120'}.
     """
     cat = category.upper().strip()
@@ -376,7 +423,7 @@ def table_7_1_healthcare_seismic_system(category, system):
             f"Unknown system {system!r} in category {cat!r}; see "
             f"list_table_7_1_systems({cat!r})"
         )
-    row = _with_metric_heights(dict(TABLE_7_1[cat][key]), "99")
+    row = _with_metric_heights(dict(TABLE_7_1[cat][key]), "7-1")
     row.update({"category": cat, "system": key, "table": "7-1",
                 "printed_page": "98-99", "pdf_page": "119-120"})
     return row
@@ -401,7 +448,7 @@ def list_table_7_1_systems(category=None):
 # ============================================================================
 
 def _b1_row(h_b, h_c, h_d, h_e, h_f, footnotes=None):
-    """Build one Table B-1 row (heights in feet; the table prints no metric)."""
+    """Build one Table B-1 row (heights in feet, as printed)."""
     return {"height_limits_ft": {"B": h_b, "C": h_c, "D": h_d, "E": h_e, "F": h_f},
             "footnotes": footnotes or []}
 
@@ -487,7 +534,7 @@ TABLE_B_1_FOOTNOTES = {
 def table_b1_rc4_permitted_system(category, system):
     """Table B-1: permitted seismic force-resisting systems and height
     limits in feet (``height_limits_ft``; the table heads them "Height
-    (ft)" and prints no metric values) for Risk Category IV buildings
+    (ft)"; its one metric height is footnote 7) for Risk Category IV buildings
     using the Appendix B alternate nonlinear-design procedure (printed
     pp. 124-126). This table REPLACES
     both ASCE 7-22 Table 12.2-1 and this UFC's own Table 3-1 when the
@@ -506,9 +553,11 @@ def table_b1_rc4_permitted_system(category, system):
     Returns
     -------
     dict
-        {'height_limits_ft', 'height_limits_note', 'footnotes',
-         'category', 'system', 'table': 'B-1', 'printed_page': '124-126',
-         'pdf_page': '145-147'}
+        {'height_limits_ft', 'height_limits_m' (None for every height:
+         the table gives none), 'metric_footnotes' (footnote 7's "60 ft
+         (18.3m)" where the row cites it), 'height_limits_note',
+         'footnotes', 'category', 'system', 'table': 'B-1',
+         'printed_page': '124-126', 'pdf_page': '145-147'}
     """
     cat_match = next((c for c in TABLE_B_1 if c.lower() == category.lower().strip()), None)
     if cat_match is None:
@@ -519,9 +568,7 @@ def table_b1_rc4_permitted_system(category, system):
             f"Unknown system {system!r} in category {cat_match!r}; see "
             f"list_table_b1_systems({cat_match!r})"
         )
-    row = dict(TABLE_B_1[cat_match][key])
-    row["height_limits_note"] = ("Heights in feet as printed ('Height (ft)', printed "
-                                 "p. 124); Table B-1 prints no metric values.")
+    row = _with_metric_heights(dict(TABLE_B_1[cat_match][key]), "B-1")
     row.update({"category": cat_match, "system": key, "table": "B-1",
                 "printed_page": "124-126", "pdf_page": "145-147"})
     return row
