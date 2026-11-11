@@ -484,8 +484,10 @@ def table_backfill_material_classification(uscs_class):
     clayey sands (SC) through the well-graded gravels ... (GW)"; CL and ML;
     and fine-grained soils of high plasticity, of which "the only soil type
     ... that might be considered suitable as backfill is inorganic clay
-    (CH)". Table 3-1, which the text cites, is not in the held copy. Groups
-    the paragraph does not place (OL, Pt) are refused.
+    (CH)". Table 3-1, which the text cites, "Typical Engineering Properties
+    of Compacted Materials", is printed on p. 3-3 (PDF 20); this package
+    does not code it. Groups the paragraph does not place (OL, Pt) are
+    refused.
 
     Parameters
     ----------
@@ -637,8 +639,10 @@ def figure_2_5_compaction_induced_lateral_pressure(equipment):
     (psf), with SI conversions.
 
     Figure 2-5a draws the lateral pressure in excess of active pressure
-    induced by compaction: constant at (sigma_H)c down to Dc, then K_A
-    sigma_v. Paragraph 2-3d(2) (p. 2-6): the diagram assumes the equipment
+    induced by compaction: from zero at the top of the backfill it rises to
+    (sigma_H)c at the critical depth Dc, then runs straight down at
+    (sigma_H)c until the active pressure line K_A sigma_v crosses it, near
+    the base of the wall as drawn. Paragraph 2-3d(2) (p. 2-6): the diagram assumes the equipment
     can operate to within 6 inches of the wall; for an operating distance 5
     feet from the wall the induced pressure is much less than that caused
     by the backfill (Figure 2-5b). The figure gives no equation.
