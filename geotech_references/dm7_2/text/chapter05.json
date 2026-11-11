@@ -145,11 +145,11 @@
       "section_id": "5-2.3",
       "title": "Eccentricity",
       "summary": "Covers eccentrically loaded shallow foundations subject to moments about one or both axes. Defines eccentricity, limiting criteria (middle-third rule for one-way and kern for two-way), corner bearing pressure equations, and the equivalent footing method (Meyerhof 1953) for ductile materials. Includes formulations for both rectangular and circular footings.",
-      "body": "Shallow foundations may be eccentrically loaded by moments applied about one or both axes. The applied moments may be the result of either non-concentric vertical loading or directly applied to the foundation by the structure. The resulting eccentricity (e) is defined as the horizontal distance between the resultant force on the bearing surface and the centerlines of the foundation.\n\nEccentricity is calculated as:\ne = M / Q   (5-4)\nwhere:\nM = applied moment and\nQ = gross vertical load on the footing.\n\nFor cases where non-concentric vertical loading causes eccentricity, the applied moment can be determined by summing moments about the centerline of the footing. Where the eccentric loading is not aligned with the axes of the foundation, it is convenient to split the eccentricity into two parts and calculate eB and eL from the respective moments, MB and ML. By convention, the width (B) is the shorter dimension of the foundation, and the length (L) is the longer dimension.\n\nEccentricity causes an uneven bearing pressure. If the eccentricity is too high, the bearing pressure will no longer be compressive under all of the foundation. In order to prevent this, the eccentricity must be limited for normal loading. For eccentricity in one direction, the resultant must be in the middle one-third of the foundation:\neB ≤ B/6  or  eL ≤ L/6   (5-5)\n\nFor cases with eccentricity in two directions, the resultant must fall within a diamond-shaped area in the middle of the rectangular foundation called the kern and the following should be satisfied:\neB/B + eL/L ≤ 1/6   (5-6)\n\nIf the eccentricity falls within these limits, the bearing pressure at the four corners of the rectangular foundation can be found as:\nq_corner = q_gross * (1 ± 6*eB/B ± 6*eL/L)   (5-7)\n\nThe maximum value, qmax, should be used for comparisons with ultimate bearing capacity for brittle materials such as sensitive soil and rock. For more ductile materials, it is appropriate to approximate the applied bearing pressure using the equivalent footing method (Meyerhof 1953). The equivalent footing is the bearing area on which the resultant bearing force is centered. The equivalent width (B') and length (L') are calculated as:\nB' = B - 2*eB   (5-8)\nL' = L - 2*eL   (5-9)\n\nThe equivalent uniform bearing pressure for a rectangular foundation can be found as:\nq_unif = (Q_LL+DL + W_F + W_S) / (B' * L')   (5-10)\n\nCircular footings can only have eccentricity in one direction. The resultant is centered on the lens-shaped area circumscribed by two arcs. If the aspect ratio of the equivalent rectangle is the same as the circumscribed area, then the equivalent dimensions can be calculated as:\nL' = a'b' = sqrt{ [2·r²·cos⁻¹(ex/r) − 2·ex·sqrt(r² − ex²)] · [sqrt(r² − ex²) / (r − ex)] }  (5-11)\nand\nB' = b'c' = L' · (r − ex) / sqrt(r² − ex²)  (5-12)\nwhere ex = eccentricity and r = radius of the foundation. Note that the inverse cosine term in Eq. 5-11 must be expressed in radians.",
+      "body": "Shallow foundations may be eccentrically loaded by moments applied about one or both axes. The applied moments may be the result of either non-concentric vertical loading or directly applied to the foundation by the structure. The resulting eccentricity (e) is defined as the horizontal distance between the resultant force on the bearing surface and the centerlines of the foundation.\n\nEccentricity is calculated as:\ne = M / Q   (5-4)\nwhere:\nM = applied moment and\nQ = gross vertical load on the footing.\n\nFor cases where non-concentric vertical loading causes eccentricity, the applied moment can be determined by summing moments about the centerline of the footing. Where the eccentric loading is not aligned with the axes of the foundation, it is convenient to split the eccentricity into two parts and calculate eB and eL from the respective moments, MB and ML. By convention, the width (B) is the shorter dimension of the foundation, and the length (L) is the longer dimension.\n\nEccentricity causes an uneven bearing pressure. If the eccentricity is too high, the bearing pressure will no longer be compressive under all of the foundation. In order to prevent this, the eccentricity must be limited for normal loading. For eccentricity in one direction, the resultant must be in the middle one-third of the foundation:\n|eB| ≤ B/6  or  |eL| ≤ L/6   (5-5)\n\nFor cases with eccentricity in two directions, the resultant must fall within a diamond-shaped area in the middle of the rectangular foundation called the kern and the following should be satisfied:\n6|eB|/B + 6|eL|/L ≤ 1   (5-6)\n\nIf the eccentricity falls within these limits, the bearing pressure at the four corners of the rectangular foundation can be found as:\nq_corner = q_gross * (1 ± 6|eB|/B ± 6|eL|/L)   (5-7)\n\nThe maximum value, qmax, should be used for comparisons with ultimate bearing capacity for brittle materials such as sensitive soil and rock. For more ductile materials, it is appropriate to approximate the applied bearing pressure using the equivalent footing method (Meyerhof 1953). The equivalent footing is the bearing area on which the resultant bearing force is centered. The equivalent width (B') and length (L') are calculated as:\nB' = B - 2*eB   (5-8)\nL' = L - 2*eL   (5-9)\n\nThe equivalent uniform bearing pressure for a rectangular foundation can be found as:\nq_unif = (Q_LL+DL + W_F + W_S) / (B' * L')   (5-10)\n\nCircular footings can only have eccentricity in one direction. The resultant is centered on the lens-shaped area circumscribed by two arcs. If the aspect ratio of the equivalent rectangle is the same as the circumscribed area, then the equivalent dimensions can be calculated as:\nL' = a'b' = sqrt{ [2·r²·cos⁻¹(ex/r) − 2·ex·sqrt(r² − ex²)] · [sqrt(r² − ex²) / (r − ex)] }  (5-11)\nand\nB' = b'c' = L' · (r − ex) / sqrt(r² − ex²)  (5-12)\nwhere ex = eccentricity and r = radius of the foundation. Note that the inverse cosine term in Eq. 5-11 must be expressed in radians.",
       "key_points": [
         "Eccentricity e = M/Q, where M is applied moment and Q is gross vertical load (Eq. 5-4).",
-        "For one-way eccentricity, resultant must be within middle third: eB ≤ B/6 or eL ≤ L/6 (Eq. 5-5).",
-        "For two-way eccentricity, resultant must fall within the kern: eB/B + eL/L ≤ 1/6 (Eq. 5-6).",
+        "For one-way eccentricity, resultant must be within middle third: |eB| ≤ B/6 or |eL| ≤ L/6 (Eq. 5-5).",
+        "For two-way eccentricity, resultant must fall within the kern: 6|eB|/B + 6|eL|/L ≤ 1 (Eq. 5-6).",
         "Corner bearing pressures for rectangular footings given by Eq. 5-7; qmax used for brittle materials.",
         "Equivalent footing method (Meyerhof 1953) uses reduced dimensions B'=B-2eB and L'=L-2eL for ductile materials (Eqs. 5-8, 5-9).",
         "Circular footings have eccentricity in one direction only; equivalent rectangle dimensions given by Eqs. 5-11 and 5-12."
@@ -162,17 +162,17 @@
         },
         {
           "id": "Eq. 5-5",
-          "description": "Middle-third rule for one-way eccentricity: eB ≤ B/6 or eL ≤ L/6, ensuring compressive bearing pressure across full foundation width or length.",
+          "description": "Middle-third rule for one-way eccentricity: |eB| ≤ B/6 or |eL| ≤ L/6 (PDF p. 314, printed p. 276), ensuring compressive bearing pressure across full foundation width or length.",
           "implemented_in": "geotech_references.dm7_2.chapter5.check_eccentricity_one_direction"
         },
         {
           "id": "Eq. 5-6",
-          "description": "Kern criterion for two-way eccentricity: eB/B + eL/L ≤ 1/6, ensuring resultant falls within kern of rectangular foundation.",
+          "description": "Kern criterion for two-way eccentricity: 6|eB|/B + 6|eL|/L ≤ 1 (PDF p. 314, printed p. 276), ensuring resultant falls within kern of rectangular foundation.",
           "implemented_in": "geotech_references.dm7_2.chapter5.check_eccentricity_two_directions"
         },
         {
           "id": "Eq. 5-7",
-          "description": "Corner bearing pressure for rectangular foundation under two-way eccentricity: q_corner = q_gross*(1 ± 6eB/B ± 6eL/L).",
+          "description": "Corner bearing pressure for rectangular foundation under two-way eccentricity: q_corner = q_gross·(1 ± 6|eB|/B ± 6|eL|/L) (PDF p. 315, printed p. 277).",
           "implemented_in": "geotech_references.dm7_2.chapter5.corner_bearing_pressure"
         },
         {
@@ -502,19 +502,20 @@
       "section_id": "5-3.3.3",
       "title": "Brinch Hansen (1970) Method",
       "summary": "Describes the Brinch Hansen (1970) correction factor framework, which handles the most complicating effects of any method: shape, depth, load inclination, base inclination, and ground inclination. For φ = 0 the lumped Nc correction factor is additive (Eq. 5-21) rather than multiplicative. Three options address missing Nc factors for drained/unsaturated conditions. Load direction must be considered for inclination factors on rectangular foundations.",
-      "body": "The Brinch Hansen (1970) method allows the most complicating factors to be considered. For this reason, it is more complex than the other methods. Similar to Meyerhof, the shape factors are adjusted for inclined loading.\n\nBrinch Hansen considered conditions for undrained shear strength (φ = 0) separately. The φ = 0 factors are summarized in Table 5-7. An important difference is that the lumped correction factor is additive, yielding:\n\nΨc,BH,φ=0 = 1 + sc + dc + ic – bc – gc  (5-21)\n\nwhere:\nΨc,BH,φ=0 = Brinch Hansen correction factor for Nc term for φ = 0 analysis.\n\nThe Brinch Hansen factors for unsaturated undrained (φ > 0) and drained conditions are summarized in Table 5-8. Brinch Hansen did not provide factors for the Nc term. Three options are available to address this shortcoming:\n• Use Brinch Hansen's alternative bearing capacity equation, which is provided in the notes to Table 5-8,\n• Ignore the contribution of the Nc term, which is often an appropriately conservative assumption, or\n• Use the c factors provided in Table 5-8, which are based on the relationship between Nc and Nq (Hansen 1961, de Beer 1970).\n\nFor vertical loading, the bearing capacity of a rectangular foundation is controlled by the narrower dimension (B). However, load inclination may cause the longer dimension to control. The direction of the horizontal loading should be considered when calculating the inclination factors in Table 5-7 and Table 5-8.",
+      "body": "The Brinch Hansen (1970) method allows the most complicating factors to be considered. For this reason, it is more complex than the other methods. Similar to Meyerhof, the shape factors are adjusted for inclined loading.\n\nBrinch Hansen considered conditions for undrained shear strength (φ = 0) separately. The φ = 0 factors are summarized in Table 5-7. An important difference is that the lumped correction factor is additive, yielding:\n\nΨc,BH,φ=0 = (1 + sc + dc − ic − bc − gc)  (5-21)\n\nwhere:\nΨc,BH,φ=0 = Brinch Hansen correction factor for Nc term for φ = 0 analysis.\n\nThe Brinch Hansen factors for unsaturated undrained (φ > 0) and drained conditions are summarized in Table 5-8. Brinch Hansen did not provide factors for the Nc term. Three options are available to address this shortcoming:\n• Use Brinch Hansen's alternative bearing capacity equation, which is provided in the notes to Table 5-8,\n• Ignore the contribution of the Nc term, which is often an appropriately conservative assumption, or\n• Use the c factors provided in Table 5-8, which are based on the relationship between Nc and Nq (Hansen 1961, de Beer 1970).\n\nFor vertical loading, the bearing capacity of a rectangular foundation is controlled by the narrower dimension (B). However, load inclination may cause the longer dimension to control. The direction of the horizontal loading should be considered when calculating the inclination factors in Table 5-7 and Table 5-8. The direction of the inclination factor affects the shape factors. Bearing capacity should be checked in both directions for a rectangular foundation with inclined loading.\n\nThe development of Brinch Hansen's method does not clearly consider the interaction between inclined ground and the other factors. Caution should be used with the Brinch Hansen g factors for cases with inclined ground steeper than 2H:1V or Df / B > 1.",
       "key_points": [
         "Brinch Hansen (1970) handles the most complicating factors: shape, depth, load inclination, base inclination, and ground inclination.",
-        "For φ = 0, the lumped Nc correction factor is ADDITIVE: Ψc,BH,φ=0 = 1 + sc + dc + ic – bc – gc (Eq. 5-21), unlike the multiplicative form for other methods.",
+        "For φ = 0, the lumped Nc correction factor is ADDITIVE: Ψc,BH,φ=0 = (1 + sc + dc − ic − bc − gc) (Eq. 5-21), unlike the multiplicative form for other methods.",
         "For φ > 0 and drained conditions, Brinch Hansen did not provide Nc term factors; three workarounds exist: use alternative equation, ignore Nc, or use derived c factors from Hansen (1961)/de Beer (1970).",
-        "Shape factors are adjusted (reduced) under inclined loading, similar to Meyerhof.",
+        "Similar to Meyerhof, the shape factors are adjusted for inclined loading.",
         "For rectangular foundations, load inclination direction determines whether the short or long dimension controls bearing capacity.",
-        "φ = 0 factors and φ > 0/drained factors are tabulated separately in Table 5-7 and Table 5-8 respectively."
+        "φ = 0 factors and φ > 0/drained factors are tabulated separately in Table 5-7 and Table 5-8 respectively.",
+        "Bearing capacity should be checked in both directions for a rectangular foundation with inclined loading; caution should be used with the Brinch Hansen g factors for inclined ground steeper than 2H:1V or Df / B > 1."
       ],
       "equations": [
         {
           "id": "Eq. 5-21",
-          "description": "Brinch Hansen additive lumped correction factor for Nc term under φ = 0 conditions: Ψc,BH,φ=0 = 1 + sc + dc + ic – bc – gc",
+          "description": "Brinch Hansen additive lumped correction factor for Nc term under φ = 0 conditions: Ψc,BH,φ=0 = (1 + sc + dc − ic − bc − gc) (PDF p. 333, printed p. 295)",
           "implemented_in": "geotech_references.dm7_2.chapter5.hansen_correction_factor_c_phi0"
         }
       ],
@@ -701,7 +702,7 @@
       "tables": [
         "Table 5-11 Values of Bearing Capacity Factor, Nms, for Strip Footings (after Brown and Meyerhof 1969, Meyerhof and Hanna 1978, Merifield et al. 1999, and Zhu 2004)"
       ],
-      "applicability": "Applies when bearing capacity analysis involves two-layer undrained clay profiles where layer strengths differ significantly and the lower layer top is within depth B of the bearing elevation."
+      "applicability": "Applies to bearing capacity on two-layer undrained clay profiles. With the soft layer on top, the bearing capacity is not affected by the stronger layer when its top is more than 70% of the foundation width below the bearing elevation (H / B ≥ 0.7); with the stiff layer on top, it is not affected by the weak layer when that layer is more than three foundation widths below the bearing elevation (H / B > 3)."
     },
     {
       "section_id": "5-3.6.3",
@@ -865,46 +866,43 @@
     {
       "section_id": "5-4.2.1",
       "title": "Rigid Foundation Criteria",
-      "summary": "Presents Meyerhof's (1953) relative stiffness factor Kr (Eq. 5-33) to determine whether combined footings or mat foundations qualify as rigid. When Kr ≥ 0.5, the differential-to-total settlement ratio is ≤ 0.1 and the foundation is considered rigid. Describes the collaborative role of structural and geotechnical engineers in computing Kr, including use of the factor λ for continuous foundations.",
-      "body": "Combined footings and mat foundations may be designed as rigid structures if they meet the relative stiffness factor criteria, Kr, developed by Meyerhof (1953):\n\nKr = (E′·Ib) / (Es · B³)\n\nwhere:\nE′·Ib = flexural stiffness of the structure (beyond scope of this document),\nEs = soil modulus, and\nB = width of foundation.\n\nCalculation of the relative stiffness is a joint effort of the structural and geotechnical engineers. A preliminary Es value must be provided by the geotechnical engineer to the structural engineer. An approximate value of stiffness per unit width of building and foundation width is estimated by the structural engineer. Using this information, the structural engineer calculates the relative stiffness, Kr, of a foundation. The structural engineer should indicate to the geotechnical engineer whether the foundation is rigid or flexible, or whether both types of foundations should be considered by the geotechnical engineer. When Kr ≥ 0.5, the ratio of differential to total settlement is about 0.1 or less and the foundation may be considered rigid.\n\nThe spacing of columns can be used to determine if continuous foundations may be considered rigid using a factor (λ) based on soil and foundation stiffness.",
+      "summary": "Presents Meyerhof's (1953) relative stiffness factor Kr (Eq. 5-33) to determine whether combined footings or mat foundations qualify as rigid. When Kr ≥ 0.5, the differential-to-total settlement ratio is about 0.1 or less and the foundation may be considered rigid. Describes the collaborative role of structural and geotechnical engineers in computing Kr, and the factor λ (Eq. 5-34) for continuous foundations: rigid if the average spacing of two adjacent column spans is less than 1.75/λ. A foundation meeting either criterion may be designed as rigid with a linear distribution of soil pressure based on statics.",
+      "body": "Combined footings and mat foundations may be designed as rigid structures if they meet the relative stiffness factor criteria, Kr, developed by Meyerhof (1953):\n\nKr = (E′·Ib) / (Es · B³)\n\nwhere:\nE′·Ib = flexural stiffness of the structure (beyond scope of this document),\nEs = soil modulus, and\nB = width of foundation.\n\nCalculation of the relative stiffness is a joint effort of the structural and geotechnical engineers. A preliminary Es value must be provided by the geotechnical engineer to the structural engineer. An approximate value of stiffness per unit width of building and foundation width is estimated by the structural engineer. Using this information, the structural engineer calculates the relative stiffness, Kr, of a foundation. The structural engineer should indicate to the geotechnical engineer whether the foundation is rigid or flexible, or whether both types of foundations should be considered by the geotechnical engineer. When Kr ≥ 0.5, the ratio of differential to total settlement is about 0.1 or less and the foundation may be considered rigid.\n\nThe spacing of columns can be used to determine if continuous foundations may be considered rigid using a factor (λ) based on soil and foundation stiffness:\n\nλ = ⁴√[ ks·B / (4Ec·I) ]   (5-34)\n\nwhere:\nks = modulus of subgrade reaction (see Section 5-4.5),\nEc = modulus of concrete, and\nI = moment of inertia of footing.\n\nA foundation can be considered rigid if the average spacing of two adjacent column spans is less than 1.75/λ, provided adjacent column loads and column spacing do not vary by more than 20 percent. This assessment is typically completed by the structural engineer.\n\nIf the foundation meets either of these criteria, it may be designed as a rigid foundation with a linear distribution of soil pressure based on statics. Thus, the assumption for design is that a straight-line relationship exists between maximum and minimum contact pressures below the footing. In this case, the geotechnical engineer is responsible for providing a net allowable soil bearing pressure, qall,net, as described in Section 5-2.4. The settlement should be estimated using the methods of Chapter 5 of DM 7.1.",
       "key_points": [
         "Rigid foundation criterion: Kr ≥ 0.5, corresponding to differential-to-total settlement ratio ≤ 0.1 (Meyerhof 1953).",
         "Kr = (E′·Ib) / (Es · B³), where E′·Ib is flexural stiffness, Es is soil modulus, and B is foundation width.",
         "Geotechnical engineer provides preliminary Es; structural engineer estimates stiffness per unit width and computes Kr.",
         "Structural engineer must communicate to geotechnical engineer whether foundation is rigid, flexible, or both conditions need consideration.",
-        "Column spacing can also be used to assess rigidity of continuous foundations via a stiffness-based factor λ."
+        "λ = ⁴√[ks·B/(4Ec·I)] (Eq. 5-34); a foundation can be considered rigid if the average spacing of two adjacent column spans is less than 1.75/λ, provided adjacent column loads and column spacing do not vary by more than 20 percent.",
+        "A foundation meeting either criterion may be designed as rigid with a linear distribution of soil pressure based on statics; the geotechnical engineer provides qall,net (Section 5-2.4) and settlement is estimated using the methods of Chapter 5 of DM 7.1."
       ],
       "equations": [
         {
           "id": "Eq. 5-33",
           "description": "Relative stiffness factor Kr for combined footings and mat foundations: Kr = (E′·Ib) / (Es · B³), where E′·Ib is the flexural stiffness of the structure, Es is the soil modulus, and B is the foundation width. Kr ≥ 0.5 indicates a rigid foundation.",
           "implemented_in": "geotech_references.dm7_2.chapter5.relative_stiffness_factor"
+        },
+        {
+          "id": "Eq. 5-34",
+          "description": "Factor λ based on soil and foundation stiffness, used to judge whether continuous foundations may be considered rigid: λ = ⁴√[ks·B/(4Ec·I)] (PDF p. 359, printed p. 321), where ks = modulus of subgrade reaction, B = footing width, Ec = modulus of concrete and I = moment of inertia of footing. Rigid if the average spacing of two adjacent column spans is less than 1.75/λ.",
+          "implemented_in": "geotech_references.dm7_2.chapter5.foundation_stiffness_factor"
         }
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when evaluating whether a combined footing or mat foundation qualifies as rigid using Meyerhof's relative stiffness factor criterion."
+      "applicability": "Applies when evaluating whether a combined footing, continuous footing or mat foundation qualifies as rigid, using Meyerhof's relative stiffness factor Kr or the column-spacing factor λ."
     },
     {
       "section_id": "5-4.3",
       "title": "Flexible Foundation Criteria",
-      "summary": "Defines the criteria for classifying a foundation as flexible (Kr < 0.5) and describes design implications. Covers the relative flexibility parameter λ (Eq. 5-34), the rigid foundation threshold based on column spacing, and how flexible foundations are designed as beams on elastic foundations, including idealized contact pressure distributions for coarse- and fine-grained soils.",
-      "body": "If Kr < 0.5, the foundation should be designed as a flexible foundation. For example, when Kr = 0, the ratio of differential settlement to total settlement is about 0.5 and 0.35 for continuous and square footings, respectively, according to ACI (2002).\n\nIf a foundation is considered flexible, it is usually designed by the structural engineer as a beam on elastic foundation. Figure 5-27 illustrates the contact pressure for these foundations when uniformly loaded and supported on ideal coarse-grained soil (c′ = 0) and fine-grained soil (φ = 0). The contact pressure will be uniform for a uniform load, and the settlement will be greatest at the edges of the foundation for coarse-grained soil and dish shaped (concave up) for a saturated clay with the greatest settlement at the center of the foundation.\n\nThe relative flexibility parameter λ is defined as:\n\nλ = (ks · B · I)^(1/4) / (Ec · I)^(1/4)\n\nwhere:\n  ks = modulus of subgrade reaction (see Section 5-4.5),\n  Ec = modulus of concrete, and\n  I = moment of inertia of footing.\n\nA foundation can be considered rigid if the average spacing of two adjacent column spans is less than 1.75/λ, provided adjacent column loads and column spacing do not vary by more than 20 percent. This assessment is typically completed by the structural engineer.\n\nIf the foundation meets either of these criteria, it may be designed as a rigid foundation with a linear distribution of soil pressure based on statics. Thus, the assumption for design is that a straight-line relationship exists between maximum and minimum contact pressures below the footing. In this case, the geotechnical engineer is responsible for providing a net allowable soil bearing pressure, qall,net, as described in Section 5-2.4. The settlement should be estimated using the methods of Chapter 5 of DM 7.1.",
+      "summary": "Defines the criteria for classifying a foundation as flexible (Kr < 0.5) and describes design implications: flexible foundations are usually designed by the structural engineer as beams on elastic foundation, with the idealized contact pressure and settlement distributions for coarse- and fine-grained soils of Figure 5-27.",
+      "body": "If Kr < 0.5, the foundation should be designed as a flexible foundation. For example, when Kr = 0, the ratio of differential settlement to total settlement is about 0.5 and 0.35 for continuous and square footings, respectively, according to ACI (2002).\n\nIf a foundation is considered flexible, it is usually designed by the structural engineer as a beam on elastic foundation. Figure 5-27 illustrates the contact pressure for these foundations when uniformly loaded and supported on ideal coarse-grained soil (c′ = 0) and fine-grained soil (φ = 0). The contact pressure will be uniform for a uniform load, and the settlement will be greatest at the edges of the foundation for coarse-grained soil and dish shaped (concave up) for a saturated clay with the greatest settlement at the center of the foundation.",
       "key_points": [
         "Foundation is classified as flexible when Kr < 0.5; at Kr = 0, differential-to-total settlement ratio is ~0.5 (continuous) or ~0.35 (square footing).",
         "Flexible foundations are typically designed by the structural engineer as beams on an elastic foundation.",
-        "The relative flexibility parameter λ (Eq. 5-34) uses modulus of subgrade reaction (ks), modulus of concrete (Ec), footing width (B), and moment of inertia (I).",
-        "A foundation may be treated as rigid if average adjacent column spacing is less than 1.75/λ, provided loads and spacing vary ≤20%.",
-        "For coarse-grained soil (c′=0), settlement is greatest at foundation edges; for fine-grained saturated clay (φ=0), settlement is dish-shaped and greatest at center.",
-        "Geotechnical engineer provides net allowable soil bearing pressure qall,net (Section 5-2.4) when rigid foundation design is used; settlement estimated per DM 7.1 Chapter 5."
+        "For coarse-grained soil (c′=0), settlement is greatest at foundation edges; for fine-grained saturated clay (φ=0), settlement is dish-shaped and greatest at center."
       ],
-      "equations": [
-        {
-          "id": "Eq. 5-34",
-          "description": "Relative flexibility parameter λ for evaluating rigid vs. flexible foundation behavior: λ = (ks · B · I)^(1/4) / (Ec · I)^(1/4), where ks is the modulus of subgrade reaction, B is the footing width, Ec is the modulus of concrete, and I is the moment of inertia of the footing.",
-          "implemented_in": "geotech_references.dm7_2.chapter5.foundation_stiffness_factor"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 5-27 Idealized Distribution of Contact Pressure and Settlement Under a Uniformly Distributed Loading for a Flexible Foundation – a) Fine-grained Soil (φ = 0 deg) and b) Coarse-grained Soil (c′ = 0) (after Das 2022)"
       ],
@@ -1040,18 +1038,17 @@
     {
       "section_id": "5-4.5.4",
       "title": "Evaluation of ks for Time-Dependent Settlement",
-      "summary": "Covers how to incorporate time-dependent (consolidation) settlements into the subgrade modulus estimate for continuous footings or mat foundations. When imposed stresses exceed preconsolidation stress, or when recompression/heave occurs due to excavation, a reduced subgrade modulus (ksc) must be computed by adding consolidation settlement to elastic settlement, as expressed in Eq. 5-39.",
-      "body": "Time-dependent settlements must be included in the estimate for ks for a continuous footing or mat foundation when the structure imposes stresses beyond the preconsolidation stress, or when recompression or heave occurs due to excavation for the foundation. Neither of these settlements are included in the ks values estimated from Equation 5-35. In this case, consolidation settlement (sc) must be added to the elastic settlement, and the reduced subgrade modulus (ksc) is given by Eq. 5-39.",
+      "summary": "Covers how to incorporate time-dependent (consolidation) settlements into the subgrade modulus estimate for continuous footings or mat foundations. When imposed stresses exceed preconsolidation stress, or when recompression/heave occurs due to excavation, consolidation settlement (sc) must be added to the elastic settlement and the reduced subgrade modulus is ksc = s·ks/(s + sc) = q/[q(B/Es)µ0µ1 + sc] (Eq. 5-39).",
+      "body": "Time-dependent settlements must be included in the estimate for ks for a continuous footing or mat foundation when the structure imposes stresses beyond the preconsolidation stress, or when recompression or heave occurs due to excavation for the foundation. Neither of these settlements are included in the ks values estimated from Equation 5-35. In this case, consolidation settlement (sc) must be added to the elastic settlement, and the reduced subgrade modulus (ksc) is:\n\nksc = s·ks / (s + sc) = q / [ q·(B/Es)·µ0·µ1 + sc ]   (5-39)",
       "key_points": [
         "Time-dependent (consolidation) settlements are NOT included in ks values estimated from Eq. 5-35.",
         "ksc (reduced subgrade modulus) must be used when stresses exceed preconsolidation stress or when recompression/heave occurs due to excavation.",
-        "ksc is computed by adding consolidation settlement (sc) to elastic settlement in the denominator of the subgrade modulus expression.",
-        "Eq. 5-39 provides the formulation for ksc incorporating both elastic and consolidation settlements."
+        "Consolidation settlement (sc) must be added to the elastic settlement: ksc = s·ks/(s + sc) = q/[q(B/Es)µ0µ1 + sc] (Eq. 5-39)."
       ],
       "equations": [
         {
           "id": "Eq. 5-39",
-          "description": "Reduced subgrade modulus (ksc) accounting for consolidation settlement: ksc = (ks · q0) / (q0 + sc/B · q/Es · (1 - μ²)), combining elastic and consolidation settlements in the denominator.",
+          "description": "Reduced subgrade modulus ksc accounting for consolidation settlement: ksc = s·ks/(s + sc) = q/[q·(B/Es)·µ0·µ1 + sc] (PDF p. 368, printed p. 330), where s = soil (elastic) settlement, sc = consolidation settlement, ks = modulus of subgrade reaction (Eq. 5-35), q = contact pressure, B = foundation width, Es = elastic modulus of soil, and µ0, µ1 = influence factors of Eq. 5-37.",
           "implemented_in": "geotech_references.dm7_2.chapter5.subgrade_modulus_time_dependent"
         }
       ],
@@ -1293,7 +1290,7 @@
         "Rock mass breakout theory is conservative and best for weathered, severely fractured rock; local experience preferred where available.",
         "Four failure modes: cone breakout, grout/rock shear, grout/tendon shear, tendon tension — all must be checked.",
         "Minimum unbonded length (h) > 10 ft for bar anchors; cone angle 60–90° based on rock quality.",
-        "Anchor spacing should be ≥ 2R if flexible, to avoid cone overlap that reduces individual anchor capacity.",
+        "If the anchor spacing is flexible, the spacing can be set as 2R, which causes the cones to touch but not overlap.",
         "FS = 2–3 for transient loads; FS = 3 for sustained loads on grout/rock interface.",
         "Allowable grout-tendon bond stress = 10% of grout unconfined compressive strength.",
         "Performance test: 2% of anchors tested to 133% design load (cycled); all others proof tested to 125% design load; lock-off at 75–100% design load.",
@@ -1500,7 +1497,7 @@
     {
       "section_id": "5-6.2.2",
       "title": "Minimizing Expansion Effects",
-      "summary": "Lists practical design and construction measures to minimize the structural effects of expansive soils when full removal is not economically feasible. Measures include compaction above optimum moisture, grade beams over cardboard, surface drainage, relocating utilities, lime/cement stabilization, and use of expansion joints in floor slabs.",
+      "summary": "Lists practical design and construction measures to minimize the structural effects of expansive soils when full removal is not economically feasible. Measures include compaction above optimum moisture, grade beams over cardboard, surface drainage, relocating utilities, lime/cement stabilization, and, where heave of the floor slab is not a critical concern, floor slabs placed directly on the soil with expansion joints.",
       "body": "Where it is not economically feasible to remove expansive materials or to support foundations below depths of possible expansion, the effects can be minimized by the following.\n• Place fill with expansion prone plastic fines at moisture contents multiple percentage points above optimum moisture content at dry unit weight no higher than required for strength and compressibility.\n• Construct grade beams over degradable cardboard.\n• Provide impervious blankets or grade surface around structure to drain away from foundations.\n• Locate water and drainage lines away from soils supporting foundations.\n• Consider stabilization of the foundation soils with lime or cement to reduce the plasticity.\nWhere heave of the floor slab is not a critical concern, place concrete floor slabs directly on problem soil but provide expansion joints so the floor can move freely from structure.",
       "key_points": [
         "Compacting expansive fill above optimum moisture at minimum required dry unit weight reduces future swell potential.",
@@ -1508,7 +1505,7 @@
         "Surface grading and impervious blankets should direct water away from foundation soils.",
         "Water and drainage lines should be kept away from foundation-bearing soils to prevent localized wetting.",
         "Lime or cement stabilization can reduce soil plasticity and expansion potential.",
-        "Floor slabs can be placed on problem soils if expansion joints allow free movement relative to the structure."
+        "Where heave of the floor slab is not a critical concern, place concrete floor slabs directly on problem soil but provide expansion joints so the floor can move freely from the structure."
       ],
       "equations": [],
       "figures": [],
@@ -1628,23 +1625,28 @@
     {
       "section_id": "5-6.4",
       "title": "Other Problem Soils",
-      "summary": "Provides a tabular reference (Table 5-22) summarizing primary shallow foundation design considerations for soft clays/organics/peat, stiff fissured expansive clays/shales, loess/collapsible soils, sensitive clays, residual soils, laterites, and talus. Points to Chapter 1 for a comprehensive catalog of problem soil conditions.",
+      "summary": "Provides a tabular reference (Table 5-22) summarizing primary shallow foundation design considerations for eleven problem soils: soft clays/organic soils/peat/muskeg, stiff fissured expansive clays and shales, loess and other collapsible soils, sensitive clays, residual soils, laterites, talus, loose sands, dredged soils, low plasticity and nonplastic silts, and municipal solid waste (MSW). Points to Chapter 1 for a summary of problem soil conditions.",
       "body": "Chapter 1 provides a summary of many types of problem soil conditions that can affect the design of foundations and earth structures. Table 5-22 summarizes important conditions for the design of shallow foundations in problem soils.",
       "key_points": [
-        "Table 5-22 consolidates primary shallow foundation considerations for seven major problem soil types into a single reference.",
-        "Soft clays, organics, peat, and muskeg: low allowable bearing, secondary compression critical, often requires ground improvement or deep foundations.",
-        "Stiff fissured clays/shales: shrink/swell potential controls design; bearing capacity rarely critical except for very high loads.",
-        "Sensitive clays: shear stress must not exceed peak shear strength; eccentrically loaded foundations must use maximum bearing pressure for FS calculation.",
-        "Residual soils: standard correlations may be unreliable; coefficient of compressibility preferred for settlement.",
-        "Laterites: weakly cemented types may fail under cyclic loads or flowing groundwater.",
-        "Talus: global stability must be assessed before use as shallow foundation support."
+        "Table 5-22 consolidates primary shallow foundation considerations for eleven problem soil types into a single reference.",
+        "Soft clays, organic soils, peat, and muskeg: very low allowable bearing pressures; secondary compression should be included in settlement calculations; ground improvement or deep foundations may be more economical.",
+        "Stiff fissured expansive clays and shales: bearing capacity and settlement are typically not a concern, except for very high loads; shrink/swell potential will control foundation design.",
+        "Loess and other collapsible soils: the metastable structure can collapse under loading, especially wetting; solutions can vary from controlled wetting to ground improvement to deep foundations.",
+        "Sensitive clays: the shear stress should not exceed the peak shear strength at any point below the foundation; for eccentric loads the factor of safety should be calculated using the maximum bearing pressure.",
+        "Residual soils: correlations to engineering properties are less reliable and may not be valid; settlement calculations may be more accurate using the coefficient of compressibility.",
+        "Laterites: if weakly cemented, may provide poor support, especially for cyclic loads or if exposed to flowing groundwater.",
+        "Talus: global stability should be assessed prior to use for the support of shallow foundations.",
+        "Loose sands: settlements can exceed tolerable limits even for relatively low bearing pressures; in many cases the CPT provides better characterization of saturated loose sands than the SPT.",
+        "Dredged soils should be treated as soft or loose for design of shallow foundations.",
+        "Low plasticity and nonplastic silts: wetting of bearing surfaces or dilatancy can make construction difficult; a mud mat may be required to keep a stable bearing surface.",
+        "Municipal solid waste: shallow foundations will rarely be supported within or above MSW; settlement will likely control, with special consideration of differential movement; ongoing consolidation under its own weight must also be considered."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 5-22 Problem Soil Considerations for Shallow Foundations"
       ],
-      "applicability": "Applies as a quick-reference guide when evaluating shallow foundation design in any of seven recognized problem soil categories."
+      "applicability": "Applies as a quick-reference guide when evaluating shallow foundation design in any of the eleven problem soil types of Table 5-22."
     },
     {
       "section_id": "5-7",
