@@ -586,23 +586,23 @@
       "section_id": "1-4.3.2",
       "title": "Classification by Strength",
       "summary": "Describes classification of rock by uniaxial compressive strength and modulus ratio (per ASTM D7012) and by point load strength index Is(50) (per ASTM D5731), using Figure 1-4. Defines the point load strength index formula and size correction factor, and notes that Is(50) correlates with direct tensile strength, specific gravity, seismic velocity, elastic modulus, and compressive strength.",
-      "body": "The uniaxial compressive strength and modulus ratio can be used to classify rock using the results of ASTM D7012. The strength of intact sample can be used with Figure 1-4 to assign a classification as weak, strong, etc.\nThe point load strength can also be used to classify rock as indicated in Figure 1-4. Point load strength tests, described in ASTM D5731, are sometimes performed in the field for larger projects where rippability and rock strength are critical design factors. This simple field test can be performed on core samples and irregular rock specimens.\nThe point load strength index, Is(50), is defined as:\n\nIs(50) = P / (F · d²)   (1-4)\n\nF = De / 50   (1-5)\n\nwhere:\nF = size correction factor,\nP = the applied force at failure,\nd = the distance between the loaded points, and\nDe = equivalent core diameter.\n\nThis index is related to the direct tensile strength of the rock by a proportionality constant F depending on the size of sample. Useful relationships of point load tensile strength index to other parameters such as specific gravity, seismic velocity, elastic modulus, and compressive strength are readily available in the literature.",
+      "body": "The uniaxial compressive strength and modulus ratio can be used to classify rock using the results of ASTM D7012. The strength of intact sample can be used with Figure 1-4 to assign a classification as weak, strong, etc.\nThe point load strength can also be used to classify rock as indicated in Figure 1-4. Point load strength tests, described in ASTM D5731, are sometimes performed in the field for larger projects where rippability and rock strength are critical design factors. This simple field test can be performed on core samples and irregular rock specimens.\nThe point load strength index, Is(50), is defined as:\n\nIs(50) = F · P / d²   (1-4)\n\nF = √(De / 50)   (1-5)\n\nwhere:\nF = size correction factor,\nP = the applied force at failure,\nd = the distance between the loaded points, and\nDe = equivalent core diameter.\n\nThis index is related to the direct tensile strength of the rock by a proportionality constant F depending on the size of sample. Useful relationships of point load tensile strength index to other parameters such as specific gravity, seismic velocity, elastic modulus, and compressive strength are readily available in the literature.",
       "key_points": [
         "Uniaxial compressive strength and modulus ratio (ASTM D7012) classify intact rock strength using Figure 1-4.",
         "Point load strength index Is(50) (ASTM D5731) can be determined in the field on cores or irregular specimens.",
-        "Is(50) = P / (F · d²), with size correction factor F = De/50.",
+        "Is(50) = F · P / d² (Eq. 1-4), with size correction factor F = √(De / 50) (Eq. 1-5).",
         "Is(50) correlates with direct tensile strength, specific gravity, seismic velocity, elastic modulus, and compressive strength.",
         "Point load testing is particularly useful for large projects where rippability and rock strength are critical design factors."
       ],
       "equations": [
         {
           "id": "Eq. 1-4",
-          "description": "Point load strength index Is(50) = P / (F · d²), where P is applied force at failure, F is size correction factor, and d is distance between loaded points.",
+          "description": "Point load strength index Is(50) = F · P / d², where F is the size correction factor (Eq. 1-5), P is the applied force at failure, and d is the distance between the loaded points.",
           "implemented_in": "geotech_references.dm7_1.chapter1.point_load_strength_index"
         },
         {
           "id": "Eq. 1-5",
-          "description": "Size correction factor F = De / 50, where De is the equivalent core diameter.",
+          "description": "Size correction factor F = √(De / 50), where De is the equivalent core diameter.",
           "implemented_in": "geotech_references.dm7_1.chapter1.point_load_strength_index"
         }
       ],
