@@ -52,27 +52,27 @@
     {
       "section_id": "10.3",
       "title": "Failure by heave",
-      "summary": "Requires checking soil stability against heave for every relevant soil column by verifying either equation (2.9a), expressed in terms of pore-water pressures and total stresses, or the equivalent equation (2.9b), expressed in terms of seepage forces and submerged weights. Where the soil has significant cohesive shear resistance, the failure mode shifts from heave to uplift (checked per 10.2). Table A.17 gives the HYD partial action factors.",
-      "body": "The stability of soil against heave shall be checked by verifying either equation (2.9a) or equation (2.9b) for every relevant soil column; equation (2.9a) expresses the condition for stability in terms of pore-water pressures and total stresses, while equation (2.9b) expresses the same condition in terms of seepage forces and submerged weights. Both equations are defined in Section 2 of the standard (2.4.7.5) and are outside the pdf_page_index range extracted for this chapter, so their explicit forms are not reproduced here; they are referenced rather than re-derived. An example situation where heave shall be checked is a narrow excavation below water level retaining water on one side against a sand layer of limited thickness. The determination of the characteristic value of the pore-water pressure shall take into account all possible unfavourable conditions, such as thin layers of soil of low permeability and spatial effects such as narrow, circular, or rectangular excavations below water level. Where the soil has a significant cohesive shear resistance, the mode of failure changes from failure by heave to failure by uplift, and stability is then checked using the provisions of 10.2, where additional resisting forces may be added to the weight; stability against heave will not necessarily prevent internal erosion, which should be checked independently when relevant. The measures most commonly adopted to resist failure by heave are decreasing the water pressure below the soil mass subjected to heave, and increasing the resisting weight. Annex A Table A.17 (digitized as table_a_17_hyd_actions) gives the HYD partial action factors: gamma_G;dst = 1,35, gamma_G;stb = 0,90, and gamma_Q;dst = 1,50.",
+      "summary": "The stability of soil against heave shall be checked for every relevant soil column by verifying either equation (2.9a), u_dst;d <= sigma_stb;d, in terms of pore-water pressures and total stresses, or equation (2.9b), S_dst;d <= G'_stb;d, in terms of seepage forces and submerged weights (2.4.7.5); Figure 10.2 gives an example. Where the soil has a significant cohesive shear resistance, the mode of failure changes from heave to uplift, checked by 10.2 (NOTE 1). The partial factors are those of A.5(1)P (2.4.7.5(2)P), recommended values in Table A.17.",
+      "body": "(1)P The stability of soil against heave shall be checked by verifying either equation (2.9a) or equation (2.9b) for every relevant soil column. Equation (2.9a), u_dst;d <= sigma_stb;d, expresses the condition for stability in terms of pore-water pressures and total stresses: the design value of the destabilising total pore water pressure at the bottom of the column is less than or equal to the stabilising total vertical stress at the bottom of the column. Equation (2.9b), S_dst;d <= G'_stb;d, expresses the same condition in terms of seepage forces and submerged weights: the design value of the seepage force in the column is less than or equal to the submerged weight of the same column (both equations printed in 2.4.7.5(1)P, pp. 33-34). An example of situations where heave shall be checked is given in Figure 10.2 (key: excavation level (left), free-water level (right), water, sand). (2)P The determination of the characteristic value of the pore-water pressure shall take into account all possible unfavourable conditions, such as thin layers of soil of low permeability, and spatial effects such as narrow, circular or rectangular excavations below water level. NOTE 1: Where the soil has a significant cohesive shear resistance, the mode of failure changes from failure by heave to failure by uplift; the stability is then checked by using the provisions of 10.2, where additional resisting forces may be added to the weight. NOTE 2: Stability against heave will not necessarily prevent internal erosion, which should be checked independently, when relevant. (3) The measures most commonly adopted to resist failure by heave are decreasing the water pressure below the soil mass subjected to heave, and increasing the resisting weight. The partial factors for u_dst;d, sigma_stb;d, S_dst;d and G'_stb;d defined in A.5(1)P shall be used in equations 2.9a and 2.9b (2.4.7.5(2)P); the values may be set by the National annex, and Table A.17 (digitized as table_a_17_hyd_actions) gives the recommended values: gamma_G;dst = 1,35 (permanent, destabilising), gamma_G;stb = 0,90 (permanent, stabilising), gamma_Q;dst = 1,50 (variable, destabilising).",
       "key_points": [
         "Heave stability checked per soil column by equation (2.9a) (pore pressures/total stresses) or the equivalent (2.9b) (seepage forces/submerged weights)",
-        "Eq. 2.9a/2.9b are defined in Section 2 (2.4.7.5), outside this chapter's extracted page range -- referenced here, not reproduced",
-        "Example situation: narrow excavation below water level (Figure 10.2)",
+        "Eq. 2.9a: u_dst;d <= sigma_stb;d; Eq. 2.9b: S_dst;d <= G'_stb;d (2.4.7.5(1)P)",
+        "An example of situations where heave shall be checked is given in Figure 10.2",
         "Characteristic pore-water pressure accounts for thin low-permeability layers and spatial (narrow/circular/rectangular excavation) effects",
         "Significant cohesive shear resistance shifts the failure mode from heave to uplift -- check per 10.2 instead, with added resisting forces",
         "Heave stability does not guarantee against internal erosion -- check independently when relevant",
         "Mitigation: decrease water pressure below the soil mass, or increase resisting weight",
-        "Table A.17 (table_a_17_hyd_actions): gamma_G;dst=1,35, gamma_G;stb=0,90, gamma_Q;dst=1,50"
+        "Partial factors per A.5(1)P (2.4.7.5(2)P); Table A.17 recommended values (table_a_17_hyd_actions): gamma_G;dst=1,35, gamma_G;stb=0,90, gamma_Q;dst=1,50"
       ],
       "equations": [
         {
           "id": "Eq. 2.9a",
-          "description": "Heave stability condition expressed in terms of pore-water pressures and total stresses, verified for every relevant soil column. Defined in Section 2 (2.4.7.5), outside the pdf_page_index range extracted for this chapter; referenced by clause 10.3(1)P but its explicit form is not reproduced here.",
+          "description": "u_dst;d <= sigma_stb;d: design destabilising total pore water pressure at the bottom of the soil column not greater than the stabilising total vertical stress at the bottom of the column (2.4.7.5(1)P).",
           "implemented_in": null
         },
         {
           "id": "Eq. 2.9b",
-          "description": "Heave stability condition expressed in terms of seepage forces and submerged weights -- the equivalent alternative to Eq. 2.9a. Same source-range note as Eq. 2.9a.",
+          "description": "S_dst;d <= G'_stb;d: design seepage force in the soil column not greater than the submerged weight of the same column (2.4.7.5(1)P).",
           "implemented_in": null
         }
       ],
@@ -82,7 +82,7 @@
       "tables": [
         "Table A.17: Partial factors on actions (gamma_F) for the HYD (hydraulic heave) limit state (table_a_17_hyd_actions)"
       ],
-      "applicability": "Applies to excavations and cofferdams below water level where upward seepage could reduce vertical effective stress to zero in the retained soil column."
+      "applicability": "Applies to soil columns where seepage of water in the ground may cause heave, such as excavations below water level (Figure 10.2)."
     },
     {
       "section_id": "10.4",

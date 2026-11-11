@@ -241,12 +241,12 @@
       "equations": [
         {
           "id": "Eq. 9.1",
-          "description": "At-rest earth pressure coefficient for a horizontal ground surface: K0 = (1 - sin phi') * sqrt(OCR). Not to be used for very high OCR values. Reconstructed from a source PDF whose OCR text layer detached this equation's number label from its formula (the label prints just ahead of the 9.5.3 heading); the formula itself renders legibly in the extracted text.",
+          "description": "At-rest earth pressure coefficient for a horizontal ground surface: K0 = (1 - sin phi') x sqrt(OCR); the formula should not be used for very high values of OCR.",
           "implemented_in": null
         },
         {
           "id": "Eq. 9.2",
-          "description": "At-rest earth pressure coefficient adjustment for ground sloping upward from the wall at angle beta <= phi': K0;beta = K0 * (1 + sin beta), with the resultant force direction assumed parallel to the ground surface. Same detached-label transcription note as Eq. 9.1.",
+          "description": "If the ground slopes upwards from the wall at an angle beta <= phi to the horizontal: K0;beta = K0*(1 + sin beta), relating the horizontal effective earth pressure sigma'h;0 to the effective overburden pressure q'; the direction of the resulting force should then be assumed parallel to the ground surface.",
           "implemented_in": null
         }
       ],
@@ -257,15 +257,15 @@
     {
       "section_id": "9.5.3",
       "title": "Limiting values of earth pressure",
-      "summary": "Covers the limiting (fully mobilised) active and passive earth pressure values, determined from the relative soil-wall movement at failure and the corresponding failure-surface shape. Annex C provides a sample analytical method for these limiting values: the basic Eq. C.1/C.2 pressure formulas, the Kac cohesion coefficient, and the mw and Kgamma relations from the (partially legible) log-spiral analytical procedure.",
-      "body": "Limiting values of earth pressures shall be determined taking account of the relative movement of the soil and the wall at failure and the corresponding shape of the failure surface. Limiting values of earth pressure assuming straight failure surfaces can significantly deviate from the values assuming curved failure surfaces for high angles of shearing resistance and wall-ground interface friction parameters delta, and so lead to unsafe results. Annex C provides some data on relative movements that cause limiting values of earth pressure to develop, and it is the source of the sample analytical procedure digitized in this reference's equations module. Annex C.1 gives the basic limit-pressure formulas: the total active earth pressure normal to the wall at depth z is sigma_a(z) = Ka*[integral(gamma dz) + q - u] + u - c*Kac (Eq. C.1), and the total passive earth pressure is sigma_p(z) = Kp*[integral(gamma dz) + q - u] + u + c*Kpc (Eq. C.2), where Ka and Kp are the coefficients of effective horizontal active/passive earth pressure (read from Annex C design charts or an external analytical/numerical method) and Kac and Kpc are the cohesion earth-pressure coefficients, Kac = 2*sqrt[Ka*(1+a/c)] capped at 2.56*sqrt(Ka) and Kpc = 2*sqrt[Kp*(1+a/c)] capped at 2.56*sqrt(Kp), where a is the ground-wall adhesion and c is the cohesion. Annex C.2 gives a sample analytical (log-spiral) procedure for deriving Ka and Kp themselves; of its equations, the wall boundary condition for the angle mw (Eq. C.4: cos(2*mw + phi + delta) = sin(delta)/sin(phi), with phi and delta entered as negative values for active-pressure calculations) and the approximate weight-density coefficient Kgamma given the normal-loading coefficient Kn (Eq. C.9: Kgamma = Kn*cos(beta)*cos(beta-theta)) are legible in the source scan and are digitized below. The remaining log-spiral equations (the soil-surface boundary condition for angle mt, the tangent rotation v, the surcharge coefficient Kq, the cohesion coefficient Kc, and Kn itself) were embedded as images in the original document scan and were not captured by the OCR text layer at all, so this reference does not implement the full log-spiral procedure -- it should be treated as a sample procedure from the informative Annex C, only partially digitized here; a designer needing the complete method should consult EN 1997-1:2004 Annex C.2 directly or use the Annex C design charts (Figures C.1.1-C.1.4 for Ka, C.2.1-C.2.4 for Kp). In cases where struts, anchorages, or similar elements restrain movement of the retaining structure, it should be considered that the limiting active and passive values of earth pressure, and their distributions, may not be the most adverse ones.",
+      "summary": "Covers the limiting (fully mobilised) active and passive earth pressure values, determined from the relative soil-wall movement at failure and the corresponding failure-surface shape. Annex C provides a sample analytical method for these limiting values: the basic Eq. C.1/C.2 pressure formulas, the Kac cohesion coefficient, and the analytical procedure of Annex C.2 for Ka and Kp (Eqs. C.3 to C.10), of which Eqs. C.4 (mw) and C.9 (Kgamma) are implemented as functions.",
+      "body": "Limiting values of earth pressures shall be determined taking account of the relative movement of the soil and the wall at failure and the corresponding shape of the failure surface. Limiting values of earth pressure assuming straight failure surfaces can significantly deviate from the values assuming curved failure surfaces for high angles of shearing resistance and wall-ground interface friction parameters delta, and so lead to unsafe results. NOTE: Annex C provides some data of relative movements that cause limiting values of earth pressures. Annex C also gives the analytical procedure summarised here (C.2). Annex C.1 gives the basic limit-pressure formulas: the total active earth pressure normal to the wall at depth z is sigma_a(z) = Ka*[integral(gamma dz) + q - u] + u - c*Kac (Eq. C.1), and the total passive earth pressure is sigma_p(z) = Kp*[integral(gamma dz) + q - u] + u + c*Kpc (Eq. C.2), where Ka and Kp are the coefficients of effective horizontal active/passive earth pressure (read from Annex C design charts or an external analytical/numerical method) and Kac and Kpc are the cohesion earth-pressure coefficients, Kac = 2*sqrt[Ka*(1+a/c)] capped at 2.56*sqrt(Ka) and Kpc = 2*sqrt[Kp*(1+a/c)] capped at 2.56*sqrt(Kp), where a is the ground-wall adhesion and c is the cohesion. Annex C.2 gives an analytical procedure, which includes certain approximations and may be used in all cases, for Ka and Kp themselves (stated for passive pressure with phi, c, delta, a positive; for active pressure these are inserted as negative values and beta0 = beta): cos(2mt + phi + beta0) = -sin(beta0)/sin(phi) (Eq. C.3); cos(2mw + phi + delta) = sin(delta)/sin(phi) (Eq. C.4); v = mt + beta - mw - theta (Eq. C.5); Kn = [1 + sin(phi)*sin(2mw + phi)]/[1 - sin(phi)*sin(2mt + phi)] * exp(2v*tan(phi)) (Eq. C.6); Kq = Kn*cos^2(beta) (Eq. C.7); Kc = (Kn - 1)*cot(phi) (Eq. C.8); Kgamma = Kn*cos(beta)*cos(beta - theta) (Eq. C.9, on the safe side); and for phi = 0 limit values ending in Kgamma = cos(theta) + sin(beta)*cos(mw)/sin(mt) (Eq. C.10); see Annex C.2 (chapter 15, section 15-2) for the symbols and the condition v >= 0. In this package Eq. C.4 is implemented as mobilised_wall_angle_mw and Eq. C.9 as weight_density_coefficient; the other Annex C.2 equations are not implemented as functions. In cases where struts, anchorages, or similar elements restrain movement of the retaining structure, it should be considered that the limiting active and passive values of earth pressure, and their distributions, may not be the most adverse ones.",
       "key_points": [
         "Limiting active/passive pressures depend on relative soil-wall movement at failure and the failure-surface shape",
         "Straight-surface limiting values can deviate unsafely from curved-surface values at high phi' and delta",
-        "Annex C.1 basic formulas: sigma_a = Ka*(gamma*z+q-u)+u-c*Kac (Eq. C.1); sigma_p = Kp*(gamma*z+q-u)+u+c*Kpc (Eq. C.2)",
+        "Annex C.1 basic formulas: sigma_a(z) = Ka*[integral(gamma dz) + q - u] + u - c*Kac (Eq. C.1); sigma_p(z) = Kp*[integral(gamma dz) + q - u] + u + c*Kpc (Eq. C.2)",
         "Cohesion coefficients, both printed in Annex C.1: Kac = 2*sqrt(Ka*(1+a/c)), capped at 2.56*sqrt(Ka); Kpc = 2*sqrt(Kp*(1+a/c)), capped at 2.56*sqrt(Kp)",
-        "Annex C.2 log-spiral procedure: mw wall boundary condition (Eq. C.4) and Kgamma weight-density coefficient (Eq. C.9) are digitized",
-        "Eq. C.3, C.5, C.6, C.7, C.8 of Annex C.2 were image-based in the source scan and are NOT digitized -- only a sample procedure from the informative Annex C is implemented here",
+        "Annex C.2 analytical procedure: Eqs. C.3 to C.10 give mt, mw, v, Kn, Kq, Kc and Kgamma; Eq. C.4 (mw) and Eq. C.9 (Kgamma) are implemented as functions",
+        "Eq. C.6: Kn = [1 + sin(phi) sin(2mw + phi)]/[1 - sin(phi) sin(2mt + phi)] exp(2v tan(phi)); Kq = Kn cos^2(beta) (C.7); Kc = (Kn - 1) cot(phi) (C.8)",
         "Where struts/anchorages restrain wall movement, the limiting active/passive values may not be the most adverse case"
       ],
       "equations": [
@@ -286,28 +286,28 @@
         },
         {
           "id": "Eq. C.4",
-          "description": "Wall boundary condition of the Annex C.2 log-spiral analytical procedure, giving the angle mw: cos(2*mw + phi + delta) = sin(delta)/sin(phi) (phi, delta negative for active pressure per C.2(3)).",
+          "description": "Wall boundary condition of the Annex C.2 analytical procedure, giving the angle mw: cos(2*mw + phi + delta) = sin(delta)/sin(phi) (phi, delta negative for active pressure per C.2(3)).",
           "implemented_in": "geotech_references.eurocode_7_1.equations.mobilised_wall_angle_mw"
         },
         {
           "id": "Eq. C.9",
-          "description": "Approximate weight-density earth-pressure coefficient of the Annex C.2 log-spiral procedure, given the normal-loading coefficient Kn: Kgamma = Kn*cos(beta)*cos(beta-theta). Safe-sided; error may be considerable for passive pressures with positive beta.",
+          "description": "Approximate soil-weight coefficient of the Annex C.2 analytical procedure, given the normal-loading coefficient Kn (Eq. C.6): Kgamma = Kn*cos(beta)*cos(beta-theta). On the safe side; the error may be considerable for passive pressures with positive beta.",
           "implemented_in": "geotech_references.eurocode_7_1.equations.weight_density_coefficient"
         }
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Applies to walls that move (or rotate) enough relative to the retained ground to fully mobilise active or passive shear strength, and to computing the Ka/Kp coefficients used in Eq. C.1/C.2 via the (partially digitized) Annex C.2 sample analytical procedure."
+      "applicability": "Applies to walls that move (or rotate) enough relative to the retained ground to fully mobilise active or passive shear strength, and to computing the Ka/Kp coefficients used in Eq. C.1/C.2 from the Annex C design charts or the Annex C.2 analytical procedure."
     },
     {
       "section_id": "9.5.4",
       "title": "Intermediate values of earth pressure",
       "summary": "Covers earth pressures intermediate between at-rest and limiting values, occurring when wall movement is insufficient to fully mobilise the limiting active or passive pressure. Annex C Figure C.3 gives a diagram for determining mobilised passive earth pressure; intermediate values may otherwise be computed by empirical rules, spring-constant methods, or finite element methods.",
-      "body": "Intermediate values of earth pressure occur if the wall movements are insufficient to mobilise the limiting values. The determination of the intermediate values of earth pressure shall take account of the amount of wall movement and its direction relative to the ground. Annex C, Figure C.3, gives a diagram which may be used for the determination of the mobilised passive earth pressure. The intermediate values of earth pressures may be calculated using, for example, various empirical rules, spring constant methods, or finite element methods.",
+      "body": "Intermediate values of earth pressure occur if the wall movements are insufficient to mobilise the limiting values. The determination of the intermediate values of earth pressure shall take account of the amount of wall movement and its direction relative to the ground. NOTE: Annex C, figure C.3, gives a diagram which may be used for the determination of the mobilised passive earth pressure (as printed; the mobilisation diagram in Annex C is Figure C.4, p. 156, Figure C.3 being the C.2 definitions). The intermediate values of earth pressures may be calculated using, for example, various empirical rules, spring constant methods, or finite element methods.",
       "key_points": [
         "Intermediate values apply when wall movement is insufficient to mobilise the full active/passive (limiting) pressure",
         "Determination accounts for the amount and direction of wall movement relative to the ground",
-        "Annex C Figure C.3 gives a diagram for mobilised passive earth pressure",
+        "Annex C gives a diagram for mobilised passive earth pressure (the NOTE cites figure C.3; the diagram is Figure C.4)",
         "May also be computed by empirical rules, spring-constant methods, or finite element methods"
       ],
       "equations": [],
