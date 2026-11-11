@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4)
+BUILT = (1, 2, 3, 4, 5)
 
 
 def _chapter(n):
@@ -102,6 +102,10 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("2.")]) == 44
     assert len([s for s in secs if s.startswith("3.")]) == 37
     assert len([s for s in secs if s.startswith("4.")]) == 48
+    assert len([s for s in secs if s.startswith("5.")]) == 26
+    # the chapter's first page prints "MSE WALL DETAILS"; the contents and
+    # the running footer say "MSE Wall Design Details"
+    assert secs["5.0"]["title"] == "MSE Wall Details"
     # the printed lettered level (p. 3-28 ff.)
     for letter in "abcdefgh":
         assert f"3.5.2.{letter}" in secs
@@ -276,6 +280,32 @@ def test_chapter_4_text_and_tables_as_printed():
     # the page's caption, with the φ and the Kr the lists drop
     assert secs["4.4.7.f"]["tables"][0].startswith("Table 4-7: Resistance Factors, φ, ")
     assert "(Kr/Ka)" in secs["4.4.7.c"]["figures"][0]
+
+
+def test_chapter_5_filter_criteria_as_printed():
+    eqs = _equations()
+    secs = _sections()
+    # the geotextile retention criterion (p. 5-26), B from Tables 5-1, 5-2
+    assert eqs["5-4"][1]["formula"] == "AOS ≤ B D85"
+    assert eqs["5-4"][0] == "5.3.3"
+    assert "AOS ≤ B D85 [Eq. 5-4]" in secs["5.3.3"]["body"]
+    assert "The B coefficient ranges from 0.5 to 2" in secs["5.3.3"]["body"]
+    assert "2 ≤ Cu ≤ 4 | 0.5 Cu\n4 < Cu < 8 | 8 / Cu" in secs["5.3.3"]["body"]
+    assert "Nonwoven | B = 1.8 | AOS ≤ 1.8D85" in secs["5.3.3"]["body"]
+    # granular filters (p. 5-25, 5-26)
+    assert eqs["5-1"][1]["formula"] == "D15(filter) / D85(soil) < 5"
+    assert eqs["5-2"][1]["formula"] == "4 < D15(filter) / D15(soil) < 20"
+    assert eqs["5-3"][1]["formula"] == "D50(filter) / D50(soil) < 25"
+    # permeability, permittivity and clogging (p. 5-28)
+    assert "kgeotextile ≥ 10 ksoil (Critical / Severe)" in eqs["5-5a"][1]["formula"]
+    assert eqs["5-5c"][1]["formula"].startswith("Ψ ≥ 0.2 sec⁻¹ for 15% to 50%")
+    assert eqs["5-6"][1]["formula"] == "AOS ≥ 3 D15(upstream soil)"
+    # drains (p. 5-31, 5-32)
+    assert eqs["5-7"][1]["formula"] == "q = k i A"
+    assert eqs["5-11"][1]["formula"] == "q = (0.463 / n) d^(8/3) s^(1/2)"
+    # Table 5-3 (p. 5-29)
+    assert ("Grab Strength | ASTM D4632 | N (lb) | 1400 (315) | 900 (200) | "
+            "1100 (250) | 700 (157)") in secs["5.3.3.a"]["body"]
 
 
 def test_lookups_linked_from_the_section_that_prints_the_table():
