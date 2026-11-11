@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2]
+BUILT = [1, 2, 3]
 
 
 def _manifest():
@@ -52,6 +52,7 @@ def test_built_chapters_carry_the_printed_titles():
     titles = {n: _chapter(n)["chapter_title"] for n in BUILT}
     assert titles[1] == "Introduction"
     assert titles[2] == "State Agencies"
+    assert titles[3] == "Geotechnical Issues in Pavement Design and Performance"
     for n in BUILT:
         c = _chapter(n)
         assert c["reference_id"] == "FHWA-NHI-05-037 Geotechnical Aspects of Pavements"
@@ -108,7 +109,8 @@ def test_every_listed_equation_is_marked_in_its_section():
     for n in BUILT:
         for s in _chapter(n)["sections"]:
             for e in s["equations"]:
-                assert f"[{e['id']}]" in s["body"], (s["section_id"], e["id"])
+                if e["id"].startswith("Eq. "):
+                    assert f"[{e['id']}]" in s["body"], (s["section_id"], e["id"])
 
 
 def test_manifest_formulas_match_the_text():
@@ -141,3 +143,49 @@ def test_rebuild_reproduces_the_committed_text():
 def test_section_lookup_through_the_retrieval_layer():
     sec = _retrieval.retrieve_section(REF, "1.3.1")
     assert sec["title"] == "Components of a Pavement System"
+
+
+def _printed_ids(n):
+    return [k for k in _sections(n) if not re.search(r"\.[a-z]$", k)]
+
+
+def test_chapter_3_headings_as_printed():
+    assert _printed_ids(3) == [
+        "3.1", "3.2", "3.3", "3.3.1", "3.3.2", "3.4", "3.5", "3.5.1", "3.5.2",
+        "3.5.3", "3.5.4", "3.6", "3.7"]
+    s3 = _sections(3)
+    # the stored text before the rebuild titled these with its own glosses
+    assert s3["3.2"]["title"] == "Basic Concepts"
+    assert s3["3.4"]["title"] == "Sensitivity of Pavement Design"
+    assert s3["3.5.2"]["title"] == "The AASHTO Pavement Design Guides"
+
+
+def test_chapter_3_equations_typed_from_the_page():
+    eqs = _equations()
+    assert [k for k in eqs if k.startswith("3.")] == [f"3.{i}" for i in range(1, 11)]
+    assert eqs["3.2"][1]["formula"] == "SN = a1D1 + a2D2 + a3D3"
+    assert eqs["3.7"][1]["formula"] == "SN = a1D1 + a2D2m2 + a3D3m3"
+    assert eqs["3.8"][1]["formula"] == (
+        "log10(W18) = ZR S0 + 9.36 log10(SN + 1) – 0.20 + log10[ΔPSI/(4.2 – 1.5)] / "
+        "[0.40 + 1094/(SN + 1)^5.19] + 2.32 log10(MR) – 8.07")
+    assert eqs["3.8"][1]["source"] == "Typed in from p. 3-28."
+    # print slips typed as printed and said
+    assert "7.3 log(D + 1)" in eqs["3.5"][1]["formula"]
+    assert "7.35" in eqs["3.5"][1]["notes"]
+    assert "1.64x10^7" in eqs["3.9"][1]["formula"]
+    assert "1.624×10^7" in eqs["3.9"][1]["notes"]
+    assert "(log t)^.002" in eqs["3.10"][1]["formula"]
+    assert "80 psi" in eqs["3.10"][1]["variables"]["R"]
+
+
+def test_chapter_3_formulas_stand_in_the_body():
+    body = "\n".join(s["body"] for s in _chapter(3)["sections"])
+    assert ("The structural number SN is defined as\n\nSN = a1D1 + a2D2 + a3D3 "
+            "[Eq. 3.2]") in body
+    # the glyphs the text layer left beside an equation are gone
+    for glyphs in ("9.36log( 1)", "a D m a D m = + +", "rF R t C C"):
+        assert glyphs not in body
+    # superscripts the text layer lost (Tables 3-5 and 3-6, pp. 3-31, 3-33)
+    assert "10x106" not in body and body.count("10x10^6 ESALs") == 2
+    assert "4.2x10^6 psi (29 GPa)" in body
+    assert "Reliability Level (%) Reliability Factor Fr 50 1.00 70 1.44 90 2.32" in body

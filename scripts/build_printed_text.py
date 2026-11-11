@@ -744,10 +744,24 @@ def add_typed_tables(body: str, typed: list[dict], applied: set) -> str:
             b = len(body) if b < 0 else b
         if b < 0:
             continue
-        body = (body[:a] + f" [Table {t['number']} as printed on p. {t['page']}, "
+        lead = "" if a and body[a - 1].isspace() else " "
+        body = (body[:a] + f"{lead}[Table {t['number']} as printed on p. {t['page']}, "
                 f"typed in from the page:] {t['rows']}"
                 + (" " if t.get("to") else "") + body[b:])
         applied.add(t["number"])
+    return body
+
+
+def apply_text_fixes(body: str, fixes: list[dict], applied: set) -> str:
+    """The body with each of the manifest's ``text_fixes`` applied
+    (``{"page", "find", "replace"}``): where the text layer lost what the
+    page prints, most often a superscript ("10x106 ESALs" for 10x10^6), the
+    ``find`` text, as this builder writes it, becomes ``replace``, read off
+    the printed page. Each fix applied is added to ``applied`` by index."""
+    for k, f in enumerate(fixes):
+        if f["find"] in body:
+            body = body.replace(f["find"], f["replace"], 1 if not f.get("all") else -1)
+            applied.add(k)
     return body
 
 
@@ -768,8 +782,41 @@ def fix_printed_equations(body: str, printed: list[dict], applied: set) -> str:
     return body
 
 
+def add_table_functions(parts: list[dict], functions: dict, linked: set) -> list[dict]:
+    """Each section part that prints a table the library computes gets an
+    entry in ``equations`` naming the function (manifest
+    ``"table_functions": {"5-34": ["geotech_references.pkg.mod.func", ...]}``),
+    so a reader of the text finds the lookup. Tables linked are added to
+    ``linked``."""
+    for part in parts:
+        for t in part["tables"]:
+            num = t.split(":")[0][len("Table "):]
+            for path in functions.get(num, []):
+                name = path.rsplit(".", 1)[1]
+                part["equations"].append({
+                    "id": f"Table {num} ({name})",
+                    "description": (f"Table {num} as a library lookup, {name}; "
+                                    "the function's notes say how it reads the table."),
+                    "implemented_in": path})
+                linked.add(num)
+    return parts
+
+
+def put_formulas_in_body(body: str, printed: list[dict]) -> str:
+    """The body with each typed formula written before its ``[Eq. N]``
+    marker (manifest ``"formulas_in_body": true``), so a reader of the
+    section sees the equation where the page prints it, not only in the
+    section's ``equations``. Glyphs the text layer left beside an equation
+    are taken out first by the entry's ``fix``."""
+    for p in printed:
+        marker = f"[Eq. {p['number']}]"
+        if p.get("formula") and marker in body:
+            body = body.replace(marker, f"{p['formula']} {marker}", 1)
+    return body
+
+
 def add_printed_equations(body: str, equations: list[dict], printed: list[dict],
-                          attached: set) -> list[dict]:
+                          attached: set, formulas_in_body: bool = False) -> list[dict]:
     """A section's ``equations`` in the order their ``[Eq. N]`` markers stand
     in ``body`` (a marker a fix put there gets an entry saying the equation
     is printed on the entry's page), each with the formula, the symbols and
@@ -787,12 +834,24 @@ def add_printed_equations(body: str, equations: list[dict], printed: list[dict],
                   "implemented_in": None}
         p = by_num.get(num)
         if p and p.get("formula"):
-            typed = {"id": eq["id"], "description": eq["description"],
+            description = eq["description"]
+            if p.get("description"):
+                description = p["description"]
+            elif formulas_in_body:
+                # the words before the formula as the body now prints it,
+                # not the glyphs the text layer left beside the equation
+                at = body.find(f"{p['formula']} [Eq. {num}]")
+                if at > 0:
+                    description = _typed_eq_description(body[max(0, at - 600):at], num,
+                                                        p["page"])
+            typed = {"id": eq["id"], "description": description,
                      "formula": p["formula"], "variables": p.get("variables", {})}
             if p.get("notes"):
                 typed["notes"] = p["notes"]
             typed["source"] = f"Typed in from p. {p['page']}."
-            typed["implemented_in"] = eq.get("implemented_in")
+            # the library function that computes it (manifest entry's
+            # "implemented_in"), else what the builder found (none)
+            typed["implemented_in"] = p.get("implemented_in", eq.get("implemented_in"))
             eq = typed
             attached.add(num)
         out.append(eq)
@@ -807,6 +866,19 @@ def _eq_description(words: str, eq: str, label: str | None) -> str:
     if len(tail) < 12:
         return f"Equation {eq} as printed{where}."
     return f"Equation {eq}, introduced by: \"{tail}\"{where}."
+
+
+def _typed_eq_description(words: str, eq: str, label: str) -> str:
+    """Like ``_eq_description``, but the sentence before the equation is cut
+    only where a sentence ends (". The"), not at the point of a number such
+    as "Equation (3.4)" (used with ``formulas_in_body``)."""
+    paras = [_clean_ws(re.sub(r"\[[^\]]*\]", " ", p)) for p in words.split("\n\n")]
+    paras = [p for p in paras if re.search(r"[A-Za-z]", p)] or [""]
+    tail = re.split(r"(?<=[a-z0-9)][.!?])\s+(?=[A-Z•])", paras[-1])[-1]
+    tail = re.sub(r"^(?:[•o]\s+)+", "", tail).strip()[-200:]
+    if len(tail) < 12:
+        return f"Equation {eq} as printed (p. {label})."
+    return f"Equation {eq}, introduced by: \"{tail}\" (p. {label})."
 
 
 def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, list]:
@@ -831,6 +903,9 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     eq_style = vol.get("equation_numbers")
     typed_tables = vol.get("typed_tables", [])
     tables_typed: set = set()
+    text_fixes = vol.get("text_fixes", [])
+    text_fixes_applied: set = set()
+    table_functions_linked: set = set()
 
     # where each caption is printed: the page whose lines start with it
     printed_at: dict[tuple[str, str], list[int]] = {}
@@ -909,6 +984,10 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
             if typed_tables:
                 body = add_typed_tables(body, typed_tables, tables_typed)
             body = fix_printed_equations(body, printed_eqs, fixes_applied)
+            if text_fixes:
+                body = apply_text_fixes(body, text_fixes, text_fixes_applied)
+            if vol.get("formulas_in_body"):
+                body = put_formulas_in_body(body, printed_eqs)
             # the printed pages the section runs over (a chapter's last,
             # blank page prints no number)
             labels = [pages[stream[q][0]]["label"] for q in range(s, t)
@@ -929,7 +1008,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 continue
             pages_txt = (f"p. {page_from}" if page_from == page_to
                          else f"pp. {page_from} to {page_to}")
-            sections.extend(split_long({
+            sections.extend(add_table_functions(split_long({
                 "section_id": h.get("printed_as", h["sid"]),
                 "title": title,
                 "body": body,
@@ -937,7 +1016,8 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 "equations": add_printed_equations(body, [
                     {"id": f"Eq. {eq}", "description": _eq_description(w, eq, lab),
                      "implemented_in": None}
-                    for eq, w, lab in _unique_eqs(eq_ids)], printed_eqs, eqs_attached),
+                    for eq, w, lab in _unique_eqs(eq_ids)], printed_eqs, eqs_attached,
+                    bool(vol.get("formulas_in_body"))),
                 "figures": sec_figs,
                 "tables": sec_tabs,
                 "applicability": (f"{vol['volume_id']}, Chapter {n} "
@@ -945,7 +1025,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                                   + (f" The contents list this section as "
                                      f"\"{h['contents_title']}\"."
                                      if h.get("contents_title") else "")),
-            }))
+            }), vol.get("table_functions", {}), table_functions_linked))
         chapters[n] = {
             "reference_id": vol["volume_id"],
             "reference_title": vol.get("volume_title", ""),
@@ -960,6 +1040,13 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     for t in typed_tables:
         if int(t["number"].split("-")[0]) in built and t["number"] not in tables_typed:
             problems.append(f"Table {t['number']}: typed_tables entry found no text to replace")
+    for k, f in enumerate(text_fixes):
+        ch_of = re.split(r"[-.]", f["page"])[0]
+        if ch_of.isdigit() and int(ch_of) in built and k not in text_fixes_applied:
+            problems.append(f"text_fixes {k} (p. {f['page']}): found no text to mend")
+    for num in vol.get("table_functions", {}):
+        if int(num.split("-")[0]) in built and num not in table_functions_linked:
+            problems.append(f"table_functions {num}: no section lists Table {num}")
     for e in printed_eqs:
         if int(re.split(r"[-.]", e["number"])[0]) not in built:
             continue

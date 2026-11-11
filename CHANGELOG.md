@@ -715,11 +715,18 @@ title, the body in the print's own wording with a `[p. 5-53]` marker where
 each printed page starts, and each figure and table listed under the section
 that prints it. Chapters rebuilt so far: 1 (Introduction, 15 sections) and 2
 (State Agencies, 2 sections; the host agency's questionnaire), neither
-stored before. The script gains options a manifest opts into
+stored before; 3 (Geotechnical Issues in Pavement Design and Performance,
+13 printed sections, was 5 paraphrased ones), with Eqs. 3.1 to 3.10 typed in
+from the page and written where the page prints them. Two are typed as
+printed with a note: Eq. 3.5 prints 7.3 log(D + 1) where Eqs. 3.3 and 3.9
+print 7.35, and Eq. 3.9 prints 1.64x10^7 where Eqs. 3.3 and 3.5 print
+1.624×10^7. The script gains options a manifest opts into
 (`contents_format` and `list_format` "lines", `header_end`, `page_label`,
 `front_matter_header`, `equation_numbers` "parenthesized_dot",
 `title_lines`, `headings_on_listed_page`, `heading_overrides`,
-`typed_tables`); without them it builds as before (the Soils and
+`typed_tables`, `text_fixes`, `formulas_in_body`, `table_functions`, and
+`implemented_in` and `description` on a `printed_equations` entry); without
+them it builds as before (the Soils and
 Foundations rebuild test is unchanged).
 
 **Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
