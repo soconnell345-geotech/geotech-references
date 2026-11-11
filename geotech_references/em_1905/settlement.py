@@ -15,8 +15,14 @@ given (feet x 12). Each function returns a dict with its values, ``units``,
 the equation covers. A limit printed as part of a relation ("C1 >= 0.5")
 is applied as printed: the limited value is returned, with the formula's
 value beside it (``C1_unlimited``), ``limit_governs`` and a note quoting
-the page. An input the page's own conditions exclude is refused, the
-message naming the condition and the page.
+the page. An input outside conditions the page prints (sigma'p below
+sigma'zo beside Eqs. 7-7 to 7-9, pp. 159-160) is refused, the message
+naming the condition and the page. Where a function refuses an input the
+page prints no condition on (t below 3 years in Eq. 7-34; a void ratio that
+rises in Eqs. 7-5, 7-6 and 7-46; q below sigma'zD in the settlement
+equations), the message and docstring say it is the library's reading.
+Eqs. 6-5 and 6-6 return a negative net pressure, flagged ``net_negative``
+with a note.
 """
 
 from __future__ import annotations
@@ -41,6 +47,48 @@ def _non_negative(name: str, value) -> float:
     v = float(value)
     if v < 0:
         raise ValueError(f"{name} must be >= 0 (got {value})")
+    return v
+
+
+def _net_negative_note(qn: float, what: str, where: str) -> str:
+    """The note for a net pressure q - sigma'zD below zero (Eqs. 6-5 and
+    6-6): computed as printed and flagged, not refused."""
+    if qn >= 0:
+        return ""
+    return (f"q - sigma'zD = {qn:.3f} tsf < 0, so {what} is negative: the "
+            f"gross bearing pressure q is below the initial vertical effective "
+            f"stress at the bearing elevation. {where} defines q as the gross "
+            f"bearing pressure and sigma'zD as that stress and prints no sign "
+            f"condition; a negative value is a net unloading (for rebound see "
+            f"Eqs. 7-35 to 7-40). The functions for Eqs. 7-11, 7-18, 7-24 "
+            f"and 7-26 refuse it, and Eq. 7-10 refuses a negative "
+            f"delta_sigma_z.")
+
+
+def _net_refusal(q, sigma_zD, where: str, strict: bool = False) -> float:
+    """q - sigma'zD for a settlement equation, refused below zero (at zero
+    too when ``strict``, where the equation divides by it): the page prints
+    no condition on it, so the message says the refusal is the library's
+    reading."""
+    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
+    if qn < 0 or (strict and qn == 0):
+        raise ValueError(
+            f"q ({q}) is {'not above' if strict else 'below'} sigma_zD "
+            f"({sigma_zD}), so the net pressure q - sigma'zD in {where} would "
+            f"be {'zero or ' if strict else ''}negative. The page prints no "
+            f"condition on it; the library refuses it (its reading: the "
+            f"settlement equations are not written for a net unloading)")
+    return qn
+
+
+def _rheological(name: str, value) -> float:
+    """Menard's rheological factor: Table 7-6 (p. 170) prints 1, 2/3, 1/2,
+    1/3 and 1/4, so a value outside 1/4 to 1 is refused."""
+    v = float(value)
+    if not 0.25 <= v <= 1:
+        raise ValueError(f"{name} = {value}: Table 7-6 (p. 170) prints "
+                         f"rheological factors from 1/4 to 1 (1, 2/3, 1/2, "
+                         f"1/3, 1/4)")
     return v
 
 
@@ -170,6 +218,9 @@ def equation_6_3_overconsolidation(sigma_p: float, sigma_zo: float) -> dict:
 def equation_6_5_net_bearing_pressure(q: float, sigma_zD: float) -> dict:
     """Net bearing pressure, the gross bearing pressure less the initial
     vertical effective stress at the bearing elevation, q' = q - sigma'_zD.
+    A q below sigma'_zD gives a negative q', returned with net_negative
+    True and a note: the page defines q' as the net bearing pressure and
+    prints no sign condition; a negative value is a net unloading.
 
     Print check (Eq. 6-5, p. 127, typed in from the rendered page):
 
@@ -186,25 +237,28 @@ def equation_6_5_net_bearing_pressure(q: float, sigma_zD: float) -> dict:
     Returns
     -------
     dict
-        q_net, units, source, valid_for, notes.
+        q_net, net_negative, units, source, valid_for, notes.
 
     Raises
     ------
     ValueError
         If a stress is negative.
     """
-    return {"q_net": _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD),
+    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
+    return {"q_net": qn, "net_negative": qn < 0,
             "units": {"q_net": "tsf"},
             "source": _source("Eq. 6-5", 127),
             "valid_for": "Settlement analysis (paragraph 6-6a(1)).",
-            "notes": ""}
+            "notes": _net_negative_note(qn, "q'", "Eq. 6-5 (p. 127)")}
 
 
 def equation_6_6_induced_vertical_stress(I_sigma: float, q: float,
                                          sigma_zD: float) -> dict:
     """Induced vertical stress below a footing or loaded area from the net
     bearing pressure and an influence factor, delta_sigma_z = I_sigma
-    (q - sigma'_zD).
+    (q - sigma'_zD). A q below sigma'_zD gives a negative delta_sigma_z,
+    returned with net_negative True and a note (the page prints no sign
+    condition; a negative value is a net unloading).
 
     Print check (Eq. 6-6, p. 131, typed in from the rendered page; printed
     again in Table 7-3, Step 7, p. 161):
@@ -225,7 +279,7 @@ def equation_6_6_induced_vertical_stress(I_sigma: float, q: float,
     Returns
     -------
     dict
-        delta_sigma_z, units, source, valid_for, notes.
+        delta_sigma_z, net_negative, units, source, valid_for, notes.
 
     Raises
     ------
@@ -235,12 +289,13 @@ def equation_6_6_induced_vertical_stress(I_sigma: float, q: float,
     i = float(I_sigma)
     if not 0 <= i <= 1:
         raise ValueError(f"I_sigma = {I_sigma}: give 0 to 1")
-    return {"delta_sigma_z": i * (_non_negative("q", q)
-                                  - _non_negative("sigma_zD", sigma_zD)),
+    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
+    return {"delta_sigma_z": i * qn, "net_negative": qn < 0,
             "units": {"delta_sigma_z": "tsf"},
             "source": _source("Eq. 6-6", 131),
             "valid_for": "Footings and uniformly loaded areas (6-6e(1)).",
-            "notes": ""}
+            "notes": _net_negative_note(qn, "delta_sigma_z",
+                                        "Eq. 6-6 (p. 131)")}
 
 
 def equation_6_7_embankment_stress(I_sigma: float, q: float) -> dict:
@@ -557,7 +612,8 @@ def equation_7_5_compression_indices(e_1: float, e_2: float,
     ------
     ValueError
         For an unknown index, stresses not positive or not increasing, or
-        a void ratio that does not fall.
+        a void ratio that rises from point 1 to point 2 (the library's
+        reading; the page prints no condition on it).
     """
     k = str(index).strip()
     if k not in ("Cr", "Cc"):
@@ -566,9 +622,15 @@ def equation_7_5_compression_indices(e_1: float, e_2: float,
     s2 = _positive("sigma_2", sigma_2)
     if s2 <= s1:
         raise ValueError("sigma_2 must exceed sigma_1")
-    if e_2 > e_1:
-        raise ValueError("the void ratio must fall from point 1 to point 2")
     eq, page = ("7-5", 157) if k == "Cr" else ("7-6", 158)
+    if e_2 > e_1:
+        raise ValueError(
+            f"e_2 ({e_2}) is above e_1 ({e_1}): Eq. {eq} (p. {page}) gives "
+            f"{k}, the slope of the reconstructed field consolidation curve "
+            f"(Figure 7-4), from a point 1 to a point 2 at higher stress; a "
+            f"void ratio that rises with the stress gives a negative {k}. The "
+            f"page prints no condition on e_2 against e_1; the library "
+            f"refuses it (its reading)")
     return {k: (e_1 - e_2) / math.log10(s2 / s1), "equation": eq,
             "units": {k: "dimensionless"},
             "source": _source(f"Eq. {eq}", page),
@@ -850,32 +912,44 @@ def equation_7_11_menard_settlement(q: float, sigma_zD: float, B: float,
     Raises
     ------
     ValueError
-        If a modulus, B or a shape factor is not positive, a factor is out
-        of range, or q < sigma_zD.
+        If a modulus, B or a shape factor is not positive, a rheological
+        factor is outside 1/4 to 1 (the range of the values Table 7-6
+        prints), I_sigma is outside 0 to 1, or q < sigma_zD (the
+        library's reading). An E_L above
+        E_d is computed as printed, with a note (the page prints no
+        condition on it).
     """
-    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
-    if qn < 0:
-        raise ValueError("q is less than sigma_zD")
+    qn = _net_refusal(q, sigma_zD, "Eqs. 7-11 and 7-12 (p. 167)")
     b = _positive("B", B)
     ed = _positive("E_d", E_d)
     ec = _positive("E_c", E_c)
     for n, v in (("alpha_d", alpha_d), ("alpha_c", alpha_c)):
-        if not 0 < float(v) <= 1:
-            raise ValueError(f"{n} = {v}: Table 7-6 gives 1/4 to 1")
+        _rheological(n, v)
     ld = _positive("lambda_d", lambda_d)
     lc = _positive("lambda_c", lambda_c)
     B0 = 2.0
     dev = 2 / (9 * ed) * qn * B0 * (ld * b / B0) ** alpha_d
     sph = alpha_c / (9 * ec) * qn * lc * b
     soft = 0.0
+    stiff = []
     for aL, eL, isg, h in soft_layers:
-        if not 0 < float(aL) <= 1:
-            raise ValueError(f"alpha_L = {aL}: Table 7-6 gives 1/4 to 1")
+        _rheological("alpha_L", aL)
         i = float(isg)
         if not 0 <= i <= 1:
             raise ValueError(f"I_sigma = {isg}: give 0 to 1")
-        soft += aL * (1 / _positive("E_L", eL) - 1 / ed) * i * qn * _positive("H", h)
+        el = _positive("E_L", eL)
+        if el > ed:
+            stiff.append(el)
+        soft += aL * (1 / el - 1 / ed) * i * qn * _positive("H", h)
     eq = "7-12" if soft_layers else "7-11"
+    stiff_note = ""
+    if stiff:
+        stiff_note = (f" E_L above E_d ({', '.join(f'{e:g}' for e in stiff)} "
+                      f"tsf against {ed:g} tsf) makes that layer's term "
+                      f"negative, so it lowers the settlement. The page "
+                      f"defines EL as the modulus of a soft/loose layer "
+                      f"(p. 167) but prints no condition EL <= Ed; the term "
+                      f"is computed as printed.")
     out = _settlement(dev + sph + soft)
     out.update({"deviatoric_ft": dev, "spherical_ft": sph,
                 "soft_layers_ft": soft, "equation": eq,
@@ -886,7 +960,7 @@ def equation_7_11_menard_settlement(q: float, sigma_zD: float, B: float,
                               "soft layer within 2B (7-12); Table 7-5."),
                 "notes": ("B0 = 2.0 ft. lambda_d and lambda_c come from "
                           "Figure 7-11, a chart not coded here: Example C-5 "
-                          "reads 1.1 for both at L/B = 1.")})
+                          "reads 1.1 for both at L/B = 1." + stiff_note)})
     return out
 
 
@@ -970,11 +1044,10 @@ def equation_7_18_peak_strain_influence(q: float, sigma_zD: float,
     Raises
     ------
     ValueError
-        If q < sigma_zD or sigma_zp is not positive.
+        If q < sigma_zD (the library's reading) or sigma_zp is not
+        positive.
     """
-    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
-    if qn < 0:
-        raise ValueError("q is less than sigma_zD")
+    qn = _net_refusal(q, sigma_zD, "Eq. 7-18 (p. 173)")
     return {"I_zp": 0.5 + 0.1 * math.sqrt(qn / _positive("sigma_zp", sigma_zp)),
             "units": {"I_zp": "dimensionless"},
             "source": _source("Eq. 7-18", 173),
@@ -1097,12 +1170,11 @@ def equation_7_24_embedment_factor(q: float, sigma_zD: float) -> dict:
     Raises
     ------
     ValueError
-        If q <= sigma_zD.
+        If q <= sigma_zD (the library's reading; the formula divides by
+        q - sigma'zD).
     """
     s = _non_negative("sigma_zD", sigma_zD)
-    qn = _non_negative("q", q) - s
-    if qn <= 0:
-        raise ValueError("q must exceed sigma_zD")
+    qn = _net_refusal(q, s, "Eq. 7-24 (p. 174)", strict=True)
     c1 = 1 - 0.5 * s / qn
     governs = c1 < 0.5
     notes = ""
@@ -1185,7 +1257,8 @@ def equation_7_26_schmertmann_settlement(C1: float, C2: float, q: float,
     Raises
     ------
     ValueError
-        If no layers are given, a factor is out of range, or q < sigma_zD.
+        If no layers are given, a factor is out of range, or q < sigma_zD
+        (the library's reading).
     """
     if not layers:
         raise ValueError("give at least one layer (I_z, H, E_s)")
@@ -1193,9 +1266,7 @@ def equation_7_26_schmertmann_settlement(C1: float, C2: float, q: float,
         raise ValueError("C1 is at least 0.5 (Eq. 7-24)")
     if float(C2) < 1:
         raise ValueError("C2 is at least 1.0 (Eq. 7-25)")
-    qn = _non_negative("q", q) - _non_negative("sigma_zD", sigma_zD)
-    if qn < 0:
-        raise ValueError("q is less than sigma_zD")
+    qn = _net_refusal(q, sigma_zD, "Eq. 7-26 (p. 175)")
     per = [_non_negative("I_z", iz) * _positive("H", h) / _positive("E_s", es)
            for iz, h, es in layers]
     s = sum(per)
@@ -1384,11 +1455,16 @@ def equation_7_33_thickness_factor(H_s: float, Z_I: float) -> dict:
 
 def equation_7_34_time_factor(R3: float, Rt: float, t_years: float) -> dict:
     """Time-dependent factor for the Burland and Burbidge method,
-    C3 = 1 + R3 + Rt log10(t/3), t in years from loading (3 or more: R3
-    covers the first 3 years). The manual gives conservative values: static
-    loads R3 = 0.3, Rt = 0.2 (C3 = 1.5 at 30 years); fluctuating loads such
-    as bridges R3 = 0.7, Rt = 0.8 (C3 = 2.5 at 30 years); the choice is the
-    engineer's.
+    C3 = 1 + R3 + Rt log10(t/3), t in years from loading. The manual gives
+    conservative values: static loads R3 = 0.3, Rt = 0.2 (C3 = 1.5 at 30
+    years); fluctuating loads such as bridges R3 = 0.7, Rt = 0.8 (C3 = 2.5
+    at 30 years); the choice is the engineer's.
+
+    Range: p. 178 prints no range for t. It says R3 accounts for the
+    settlement within the first 3 years and Rt for the settlement after
+    them. The function refuses t below 3 years, where log10(t/3) turns
+    negative; that refusal is the library's reading, not a printed
+    condition.
 
     Print check (Eq. 7-34 and paragraph 7-13g, p. 178, typed in from the
     rendered page):
@@ -1403,7 +1479,8 @@ def equation_7_34_time_factor(R3: float, Rt: float, t_years: float) -> dict:
     Rt : float
         Time-dependent factor after the first 3 years.
     t_years : float
-        Time after foundation loading, years (at least 3).
+        Time after foundation loading, years (at least 3: the library's
+        reading).
 
     Returns
     -------
@@ -1413,15 +1490,18 @@ def equation_7_34_time_factor(R3: float, Rt: float, t_years: float) -> dict:
     Raises
     ------
     ValueError
-        If R3 or Rt is negative or t < 3 years.
+        If R3 or Rt is negative or t < 3 years (the library's reading).
     """
     r3 = _non_negative("R3", R3)
     rt = _non_negative("Rt", Rt)
     t = float(t_years)
     if t < 3:
-        raise ValueError(f"t = {t_years} years: R3 covers the first 3 years "
-                         f"and Rt the time after (paragraph 7-13g); give "
-                         f"t >= 3")
+        raise ValueError(
+            f"t = {t_years} years: p. 178 says R3 accounts for the settlement "
+            f"within the first 3 years and Rt for the settlement after them, "
+            f"and log10(t/3) turns negative below 3 years. The library refuses "
+            f"t below 3 years; this is the library's reading, not a condition "
+            f"the page prints")
     return {"C3": 1 + r3 + rt * math.log10(t / 3),
             "units": {"C3": "dimensionless"},
             "source": _source("Eq. 7-34", 178),
@@ -1673,10 +1753,11 @@ def equation_7_41_settlement_at_time(U_percent: float,
 
 
 def equation_7_42_time_for_consolidation(T_v: float, H_dr: float,
-                                         C_v: float) -> dict:
+                                         cv_ft2_per_day: float) -> dict:
     """Time for a degree of consolidation by vertical drainage,
     t = Tv Hdr^2/Cv, Tv from Figure 7-16 (``figures``), Hdr the longest
-    drainage distance (half the layer for drainage at top and bottom).
+    drainage distance in ft (half the layer for drainage at top and
+    bottom), Cv in ft^2/day.
 
     Print check (Eq. 7-42, p. 184, typed in from the rendered page):
 
@@ -1689,8 +1770,11 @@ def equation_7_42_time_for_consolidation(T_v: float, H_dr: float,
         Time factor for vertical drainage (Figure 7-16).
     H_dr : float
         Longest distance to a drainage boundary, ft.
-    C_v : float
-        Coefficient of consolidation, ft^2/day.
+    cv_ft2_per_day : float
+        Coefficient of consolidation in ft^2/day, as p. 184 lists it. The
+        oedometer equations 7-43 and 7-44 give Cv in in^2/day: pass their
+        ``cv_ft2_per_day``, not ``cv_in2_per_day`` (that would give a time
+        144 times too short).
 
     Returns
     -------
@@ -1700,15 +1784,17 @@ def equation_7_42_time_for_consolidation(T_v: float, H_dr: float,
     Raises
     ------
     ValueError
-        If T_v < 0 or H_dr or C_v is not positive.
+        If T_v < 0 or H_dr or cv_ft2_per_day is not positive.
     """
     return {"t_days": _non_negative("T_v", T_v) * _positive("H_dr", H_dr) ** 2
-            / _positive("C_v", C_v),
+            / _positive("cv_ft2_per_day", cv_ft2_per_day),
             "units": {"t_days": "days"},
             "source": _source("Eq. 7-42", 184),
             "valid_for": ("Vertical drainage, linear initial excess pore "
                           "pressure with depth (Figure 7-16)."),
-            "notes": "Hdr = H/2 for two-way drainage, H for one-way (p. 184)."}
+            "notes": ("Hdr = H/2 for two-way drainage, H for one-way (p. "
+                      "184). Cv is in ft^2/day (p. 184); Eqs. 7-43 and 7-44 "
+                      "give it in in^2/day and ft^2/day.")}
 
 
 def equation_7_43_coefficient_of_consolidation(method: str, H_dr: float,
@@ -1717,7 +1803,9 @@ def equation_7_43_coefficient_of_consolidation(method: str, H_dr: float,
     Casagrande's log-time method, Cv = T50 Hdr^2/t50 with T50 = 0.197
     (Eq. 7-43, Table 7-12), or Taylor's square-root-of-time method,
     Cv = T90 Hdr^2/t90 with T90 = 0.848 (Eq. 7-44, Table 7-13). The root-time
-    method typically gives higher values; both give bounds (7-18c).
+    method typically gives higher values; both give bounds (7-18c). With
+    Hdr in inches the result is in in^2/day, as pp. 186 and 188 print; it
+    comes back in ft^2/day too (/144), the unit Eq. 7-42 takes.
 
     Print check (Eqs. 7-43 and 7-44, pp. 186 and 188, typed in from the
     rendered pages):
@@ -1739,7 +1827,8 @@ def equation_7_43_coefficient_of_consolidation(method: str, H_dr: float,
     Returns
     -------
     dict
-        C_v, T, equation, units, source, valid_for, notes.
+        cv_in2_per_day, cv_ft2_per_day, T, equation, units, source,
+        valid_for, notes.
 
     Raises
     ------
@@ -1754,11 +1843,17 @@ def equation_7_43_coefficient_of_consolidation(method: str, H_dr: float,
     else:
         raise ValueError(f"Unknown method {method!r}: 'log time' or "
                          f"'root time'")
-    return {"C_v": T * _positive("H_dr", H_dr) ** 2 / _positive("t", t),
-            "T": T, "equation": eq, "units": {"C_v": "in^2/day"},
+    cv = T * _positive("H_dr", H_dr) ** 2 / _positive("t", t)
+    return {"cv_in2_per_day": cv, "cv_ft2_per_day": cv / 144.0,
+            "T": T, "equation": eq,
+            "units": {"cv_in2_per_day": "in^2/day",
+                      "cv_ft2_per_day": "ft^2/day"},
             "source": _source(f"Eq. {eq}", page),
             "valid_for": "Laboratory oedometer time-deformation data.",
-            "notes": ""}
+            "notes": (f"Eq. {eq} (p. {page}) gives Cv in in^2/day with Hdr "
+                      f"in inches. Eq. 7-42 (p. 184) takes Cv in ft^2/day: "
+                      f"pass cv_ft2_per_day (in^2/day / 144); passing "
+                      f"cv_in2_per_day gives a time 144 times too short.")}
 
 
 def equation_7_45_void_ratio_from_dial(H0: float, e0: float, d0: float,
@@ -1828,12 +1923,22 @@ def equation_7_46_secondary_compression_index(e1: float, e2: float,
     Raises
     ------
     ValueError
-        If the times are not positive and increasing.
+        If the times are not positive and increasing, or e2 > e1 (a void
+        ratio that rises with time gives a negative C_alpha; refused, as
+        equation 7-5 refuses a rising void ratio: the library's reading,
+        the page printing no condition on it).
     """
     a = _positive("t1", t1)
     b = _positive("t2", t2)
     if b <= a:
         raise ValueError("t2 must exceed t1")
+    if float(e2) > float(e1):
+        raise ValueError(
+            f"e2 ({e2}) is above e1 ({e1}): Eq. 7-46 (p. 191) is the "
+            f"coefficient of secondary compression, e1 and e2 the void ratios "
+            f"at t1 and the later t2; a void ratio that rises with time gives "
+            f"a negative C_alpha. The page prints no condition on e2 against "
+            f"e1; the library refuses it (its reading)")
     return {"C_alpha": (e1 - e2) / math.log10(b / a),
             "units": {"C_alpha": "dimensionless"},
             "source": _source("Eq. 7-46", 191),
