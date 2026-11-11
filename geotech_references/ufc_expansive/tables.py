@@ -2,8 +2,9 @@
 
 From UFC 3-220-07, Foundations in Expansive Soils (the reproduced
 TM 5-818-7), docs/ufc_3_220_07.pdf. Every value is read off the printed
-page named in its result: Table 4-1 (p. 4-1), paragraph 5-4c (p. 5-4),
-Table 6-1 (p. 6-2) and paragraph 6-4, Grade beams (p. 6-16). The print's
+page named in its result: Table 4-1 (p. 4-1), Figure 4-1 (p. 4-2),
+paragraph 5-4c (p. 5-4), Table 6-1 (p. 6-2) and paragraph 6-4, Grade
+beams (p. 6-16). The print's
 units (inches, feet, tsf) are kept, with SI conversions labelled as
 conversions. PDF page (1-based) = 30 + n for printed p. 4-n, 35 + n for
 p. 5-n, 42 + n for p. 6-n.
@@ -403,4 +404,95 @@ def table_grade_beam_void_space(predicted_total_heave_in=None):
             "subject to distortion from uplift pressure of swelling "
             "foundation soil and are not recommended."),
         "reference": f"{_REF}, para 6-4, Grade beams, printed p. 6-16 (PDF 58)",
+    }
+
+
+# ---------------------------------------------------------------------------
+# Figure 4-1 Van Der Merwe potential expansiveness (PDF 32, printed p. 4-2)
+# ---------------------------------------------------------------------------
+
+#: PE (inch/foot of depth) per level, para 4-1c (p. 4-1 to 4-2): "assumed
+#: values of PE = 0, 1/4, 1/2, and 1 inch/foot for low, medium, high, and
+#: very high levels, respectively, of potential expansiveness".
+_FIG_4_1_PE = {"low": 0.0, "medium": 0.25, "high": 0.5, "very high": 1.0}
+#: Each region's lower-left corner, from the axis ticks (clay fraction 12,
+#: 18, 27 %; PI 12.5, 23, 32). Every region is bounded below and to the
+#: right by the sloped line through the ticks (24, 12.5), (45, 23) and
+#: (63, 32), PI = 0.5 x clay + 0.5.
+_FIG_4_1_CORNERS = (("very high", 27.0, 32.0), ("high", 18.0, 23.0),
+                    ("medium", 12.0, 12.5))
+#: The chart's frame: clay fraction 0 to about 70 %, PI 0 to about 70.
+_FIG_4_1_MAX = 70.0
+_FIG_4_1_TRACE = (
+    "Region boundaries taken at the axis ticks of Figure 4-1 (clay fraction "
+    "12, 18, 24, 27, 45, 63 %; PI 12.5, 23, 32): medium from clay 12 and "
+    "PI 12.5, high from clay 18 and PI 23, very high from clay 27 and PI "
+    "32, each above the sloped line PI = 0.5 x clay + 0.5 through (24, "
+    "12.5), (45, 23) and (63, 32). Traced at 400 dpi, the drawn lines lie "
+    "within 0.7 (clay %) and 0.5 (PI) of these. A point on a boundary is "
+    "given the higher level (the code's choice). The frame runs to about "
+    "70 on both axes; no value is drawn beyond it.")
+
+
+def figure_4_1_potential_expansiveness(plasticity_index, clay_fraction_pct):
+    """Potential expansiveness PE (inch per foot of depth) for Van Der
+    Merwe's method, UFC 3-220-07 Figure 4-1 (printed p. 4-2, PDF 32), from
+    the PI and the clay fraction (percent finer than 2 microns) of the
+    whole sample; returns the level (low, medium, high or very high) and
+    PE = 0, 1/4, 1/2 or 1 inch/foot.
+
+    Paragraph 4-1c (p. 4-1 to 4-2): "The PE is found by assumed values of
+    PE = 0, 1/4, 1/2, and 1 inch/foot for low, medium, high, and very high
+    levels, respectively, of potential expansiveness, defined in figure
+    4-1 as functions of the PI and the minus 2 micron fraction. The PE
+    values are based on consolidometer swell test results and field
+    observations. This method does not consider variations in initial
+    moisture conditions." PE feeds Eq. 4-1
+    (equations.eq_4_1_van_der_merwe_heave).
+
+    The chart is read as regions bounded at its axis ticks: medium from
+    clay 12 % and PI 12.5, high from clay 18 % and PI 23, very high from
+    clay 27 % and PI 32, each region lying above the sloped line through
+    (24, 12.5), (45, 23) and (63, 32), PI = 0.5 x clay + 0.5; everything
+    else is low. A 400-dpi trace puts the drawn lines within 0.7 (clay %)
+    and 0.5 (PI) of these. A point on a boundary takes the higher level.
+
+    Parameters
+    ----------
+    plasticity_index : float
+        PI of the whole sample, percent (0 to 70, the chart's frame).
+    clay_fraction_pct : float
+        Clay fraction of the whole sample, percent finer than 2 microns
+        (0 to 70, the chart's frame).
+
+    Returns
+    -------
+    dict
+        Keys: level, pe_in_per_ft, plasticity_index, clay_fraction_pct,
+        trace_note, source.
+
+    Raises
+    ------
+    ValueError
+        If either input is outside 0 to 70, the chart's drawn range.
+    """
+    pi, c = plasticity_index, clay_fraction_pct
+    for name, v in (("plasticity_index", pi), ("clay_fraction_pct", c)):
+        if v is None or not (0.0 <= v <= _FIG_4_1_MAX):
+            raise ValueError(
+                f"{name} must be within 0 to {_FIG_4_1_MAX:g}, the range "
+                f"Figure 4-1 (p. 4-2) draws; got {v}")
+    level = "low"
+    if pi >= 0.5 * c + 0.5:
+        for name, c0, pi0 in _FIG_4_1_CORNERS:
+            if c >= c0 and pi >= pi0:
+                level = name
+                break
+    return {
+        "plasticity_index": pi,
+        "clay_fraction_pct": c,
+        "level": level,
+        "pe_in_per_ft": _FIG_4_1_PE[level],
+        "trace_note": _FIG_4_1_TRACE,
+        "source": f"{_REF}, Figure 4-1 and para 4-1c, printed p. 4-2 (PDF 32)",
     }

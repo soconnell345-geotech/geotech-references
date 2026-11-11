@@ -3,7 +3,10 @@
 Expected values are read off docs/ufc_3_220_07.pdf (PDF page 1-based):
 Table 4-1 PDF 31 (printed 4-1); para 5-4c PDF 39 (printed 5-4);
 Figure 5-4 PDF 42 (printed 5-7); Table 6-1 PDF 44 (printed 6-2);
-para 6-4, Grade beams, PDF 58 (printed 6-16).
+para 6-4, Grade beams, PDF 58 (printed 6-16); Eq. 4-1 and Figure 4-1
+PDF 31-32 (printed 4-1 to 4-2); Figure 4-2 PDF 34 (printed 4-4); Eq. 5-2
+PDF 37 (printed 5-2); Eqs. 5-3 to 5-5 PDF 38-39 (printed 5-3 to 5-4);
+Eqs. 5-8 and 5-9 PDF 40 (printed 5-5).
 
 Rebuilt 2026-11-10 (review pave-07, pave-13): activity_index,
 free_swell_percent, swell_pressure_kPa and pier_minimum_embedment_m were
@@ -18,8 +21,13 @@ from geotech_references.ufc_expansive.equations import (
     table_4_2_swell_schneider_poor,
     table_4_2_swell_mckeen_lytton,
     table_4_2_swell_johnson,
+    eq_4_1_van_der_merwe_heave,
+    eq_5_2_potential_vertical_heave,
+    eq_5_3_to_5_5_equilibrium_pore_water_pressure,
+    eq_5_8_consolidometer_heave,
 )
 from geotech_references.ufc_expansive.tables import (
+    figure_4_1_potential_expansiveness,
     table_swell_potential_classification,
     table_active_zone_depth,
     table_foundation_selection,
@@ -160,6 +168,171 @@ class TestTable42:
         r = table_4_2_swell_johnson(30, 5, 20)
         assert "'='" in r["print_note"] and "minus" in r["print_note"]
         assert "16.21" in r["print_note"] and "16.43" in r["print_note"]
+
+
+class TestVanDerMerwe:
+    """Eq. 4-1 with Figure 4-1, PDF 31-32 (printed 4-1 to 4-2):
+    delta_H = sum_{D=1}^{n} F * PE, F = 10^(-D/20); PE = 0, 1/4, 1/2, 1
+    inch/foot. Expected values worked by hand at made-up soils."""
+
+    def test_figure_4_1_regions(self):
+        # Corners at the axis ticks; sloped line PI = 0.5 x clay + 0.5.
+        cases = [((50, 10), "low"), ((20, 15), "medium"), ((30, 20), "high"),
+                 ((40, 30), "very high"), ((15, 40), "low"),
+                 ((22, 40), "medium"), ((30, 50), "high"),
+                 ((35, 66), "very high"), ((32.5, 66), "low")]
+        for (pi, clay), level in cases:
+            assert figure_4_1_potential_expansiveness(pi, clay)["level"] == level
+        assert figure_4_1_potential_expansiveness(40, 30)["pe_in_per_ft"] == 1.0
+        assert figure_4_1_potential_expansiveness(30, 20)["pe_in_per_ft"] == 0.5
+        assert figure_4_1_potential_expansiveness(20, 15)["pe_in_per_ft"] == 0.25
+
+    def test_figure_4_1_tick_corners_take_the_higher_level(self):
+        assert figure_4_1_potential_expansiveness(12.5, 12)["level"] == "medium"
+        assert figure_4_1_potential_expansiveness(12.5, 24)["level"] == "medium"
+        assert figure_4_1_potential_expansiveness(23, 45)["level"] == "high"
+        assert figure_4_1_potential_expansiveness(32, 63)["level"] == "very high"
+
+    def test_figure_4_1_refuses_outside_the_frame(self):
+        with pytest.raises(ValueError, match="Figure 4-1"):
+            figure_4_1_potential_expansiveness(75, 30)
+        with pytest.raises(ValueError, match="Figure 4-1"):
+            figure_4_1_potential_expansiveness(30, -1)
+
+    def test_eq_4_1_uniform_very_high(self):
+        # 10 ft, PE 1: sum of 10^(-D/20), D = 1..10 = 5.604 in.
+        r = eq_4_1_van_der_merwe_heave(
+            [{"thickness_ft": 10, "plasticity_index": 40, "clay_fraction_pct": 30}])
+        assert r["total_heave_in"] == pytest.approx(5.604, abs=0.001)
+        assert r["depth_ft"] == 10
+        assert r["increments"][0]["F"] == pytest.approx(10 ** -0.05, abs=1e-4)
+        assert "p. 4-1 to 4-2" in r["source"]
+
+    def test_eq_4_1_two_layers(self):
+        # 3 ft medium (PE 1/4) over 3 ft high (PE 1/2):
+        # 0.25(F1+F2+F3) + 0.5(F4+F5+F6) = 1.446 in.
+        r = eq_4_1_van_der_merwe_heave([
+            {"thickness_ft": 3, "plasticity_index": 20, "clay_fraction_pct": 15},
+            {"thickness_ft": 3, "plasticity_index": 30, "clay_fraction_pct": 20}])
+        assert r["total_heave_in"] == pytest.approx(1.446, abs=0.001)
+        assert [i["level"] for i in r["increments"]] == ["medium"] * 3 + ["high"] * 3
+
+    def test_eq_4_1_reduction_factor_at_20_ft(self):
+        # F = 10^(-20/20) = 0.1 at D = 20.
+        r = eq_4_1_van_der_merwe_heave(
+            [{"thickness_ft": 20, "plasticity_index": 40, "clay_fraction_pct": 30}])
+        assert r["increments"][19]["F"] == pytest.approx(0.1)
+
+    def test_eq_4_1_needs_whole_feet(self):
+        with pytest.raises(ValueError, match="whole number of feet"):
+            eq_4_1_van_der_merwe_heave(
+                [{"thickness_ft": 2.5, "plasticity_index": 40, "clay_fraction_pct": 30}])
+
+
+class TestPotentialVerticalHeaveEq52:
+    """Eq. 5-2, PDF 37 (printed 5-2): delta_H = N DX sum (ef - eo)/(1 + eo)."""
+
+    def test_one_element_is_figure_4_2(self):
+        # Figure 4-2 (printed 4-4): Sp/100 = delta_H/H = (e1 - eo)/(1 + eo).
+        r = eq_5_2_potential_vertical_heave(
+            [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9}], 1.0, 1.0)
+        assert r["heave_ft"] == pytest.approx(0.1 / 1.8, abs=1e-4)
+        assert r["elements"][0]["percent_swell"] == pytest.approx(5.556, abs=0.001)
+
+    def test_two_elements_with_n_one_third(self):
+        # N 1/3, DX 1 ft: (0.1/1.8 + 0.05/1.7)/3 = 0.0283 ft.
+        r = eq_5_2_potential_vertical_heave(
+            [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9},
+             {"initial_void_ratio": 0.7, "final_void_ratio": 0.75}], 1.0, 1 / 3)
+        assert r["heave_ft"] == pytest.approx(0.0283, abs=1e-4)
+
+    def test_n_outside_one_third_to_one_refused(self):
+        with pytest.raises(ValueError, match="1/3 to 1"):
+            eq_5_2_potential_vertical_heave(
+                [{"initial_void_ratio": 0.8, "final_void_ratio": 0.9}], 1.0, 0.2)
+
+
+class TestEquilibriumPoreWaterPressure:
+    """Eqs. 5-3 to 5-5, PDF 38-39 (printed 5-3 to 5-4); gamma_w 0.0312 tcf."""
+
+    def test_saturated(self):
+        r = eq_5_3_to_5_5_equilibrium_pore_water_pressure("saturated", 5)
+        assert r["pore_water_pressure_tsf"] == 0.0
+        assert r["method"] == "Method 1"
+
+    def test_hydrostatic_i(self):
+        # u_w = 0.0312 (5 - 10) = -0.156 tsf.
+        r = eq_5_3_to_5_5_equilibrium_pore_water_pressure("hydrostatic_i", 5, 10)
+        assert r["pore_water_pressure_tsf"] == pytest.approx(-0.156)
+
+    def test_hydrostatic_ii_hayes_values(self):
+        # Figure 5-2 (printed 5-4) prints u_wa = -7.5 tsf at Xa about 8 ft.
+        r = eq_5_3_to_5_5_equilibrium_pore_water_pressure("method_3", 8, 8, -7.5)
+        assert r["pore_water_pressure_tsf"] == pytest.approx(-7.5)
+        r = eq_5_3_to_5_5_equilibrium_pore_water_pressure("method_3", 2, 8, -7.5)
+        assert r["pore_water_pressure_tsf"] == pytest.approx(-7.6872)
+
+    def test_refusals(self):
+        with pytest.raises(ValueError, match="below the active zone"):
+            eq_5_3_to_5_5_equilibrium_pore_water_pressure("hydrostatic_i", 12, 10)
+        with pytest.raises(ValueError, match="required"):
+            eq_5_3_to_5_5_equilibrium_pore_water_pressure("method_3", 2, 8)
+        with pytest.raises(ValueError, match="Unknown profile"):
+            eq_5_3_to_5_5_equilibrium_pore_water_pressure("wet", 2, 8)
+
+
+class TestConsolidometerHeaveEq58:
+    """Eqs. 5-8 and 5-9, PDF 40 (printed 5-5):
+    delta_H/H = cs/(1 + eo) log(sigma_s/sigma'_v), sigma'_v = sigma_v - u_w.
+    The print gives no worked example; values worked by hand."""
+
+    def test_saturated_profile_default(self):
+        # 1 x 0.1/2 x log10(4/0.4) = 0.05 ft.
+        r = eq_5_8_consolidometer_heave([
+            {"thickness_ft": 1, "swell_index": 0.1, "initial_void_ratio": 1.0,
+             "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 0.4}])
+        assert r["total_heave_ft"] == pytest.approx(0.05)
+        assert r["layers"][0]["percent_swell"] == pytest.approx(5.0)
+
+    def test_negative_pore_pressure_raises_effective_pressure(self):
+        # u_w -0.6: sigma'_v = 1.0; 0.05 x log10(4) = 0.0301 ft.
+        r = eq_5_8_consolidometer_heave([
+            {"thickness_ft": 1, "swell_index": 0.1, "initial_void_ratio": 1.0,
+             "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 0.4,
+             "pore_water_pressure_tsf": -0.6}])
+        assert r["total_heave_ft"] == pytest.approx(0.0301, abs=1e-4)
+
+    def test_above_swell_pressure_settles(self):
+        # sigma'_v 8 > sigma_s 4: 2 x 0.1/2 x log10(0.5) = -0.0301 ft.
+        r = eq_5_8_consolidometer_heave([
+            {"thickness_ft": 2, "swell_index": 0.1, "initial_void_ratio": 1.0,
+             "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 8}])
+        assert r["total_heave_ft"] == pytest.approx(-0.0301, abs=1e-4)
+        assert any("Net settlements" in n for n in r["notes"])
+
+    def test_layers_sum_and_match_figure_5_4_area(self):
+        # Two layers; their percent swell fed to heave_prediction_mm (the
+        # Figure 5-4 area as rectangles) gives the same total.
+        layers = [
+            {"thickness_ft": 2, "swell_index": 0.08, "initial_void_ratio": 0.9,
+             "swell_pressure_tsf": 3, "total_vertical_pressure_tsf": 0.3},
+            {"thickness_ft": 3, "swell_index": 0.05, "initial_void_ratio": 0.8,
+             "swell_pressure_tsf": 2, "total_vertical_pressure_tsf": 0.6}]
+        r = eq_5_8_consolidometer_heave(layers)
+        expected = (2 * 0.08 / 1.9 + 3 * 0.05 / 1.8 * 0.5228787)
+        assert r["total_heave_ft"] == pytest.approx(expected, abs=1e-4)
+        fig = heave_prediction_mm([
+            {"thickness_m": L["thickness_ft"] * 0.3048,
+             "swell_strain_pct": row["percent_swell"]}
+            for L, row in zip(layers, r["layers"])])
+        assert fig["total_heave_ft"] == pytest.approx(r["total_heave_ft"], abs=0.002)
+
+    def test_non_positive_effective_pressure_refused(self):
+        with pytest.raises(ValueError, match="not positive"):
+            eq_5_8_consolidometer_heave([
+                {"thickness_ft": 1, "swell_index": 0.1, "initial_void_ratio": 1.0,
+                 "swell_pressure_tsf": 4, "total_vertical_pressure_tsf": 0.4,
+                 "pore_water_pressure_tsf": 0.5}])
 
 
 # ===================================================================
