@@ -1095,6 +1095,10 @@ def page_captions(page, marker=None) -> list[dict]:
                 # math letters ("𝒑−𝒒 diagram for 𝑪𝑰𝑼𝑪 tests", GEC-5 A2-19)
                 symbol = bool(words) and _MATH_BLOCK[0] <= ord(words[0]) \
                     <= _MATH_BLOCK[1]
+                # or with a number after a label that ends with a stop
+                # ("Figure 4-10. 12 kip tamper", GEC-13)
+                symbol = symbol or (words[:1].isdigit() and bool(re.match(
+                    r"\s*[.:]", row.lstrip()[m.end():])))
                 if len(cap) < 4 or not (words[:1].isupper() or symbol) \
                         or re.match(r"(?i)cont(?:inued|'?d\b|\.)", words):
                     continue
