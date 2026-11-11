@@ -343,7 +343,7 @@
       "summary": "Describes the unconfined compression test (UCT, ASTM D2166), one of the oldest and simplest strength tests. Explains the theoretical basis (su independent of confining pressure for saturated soils), its limitations (typically yields lower strengths than higher-quality tests, difficult to interpret for partially saturated soils, single-point c-φ envelope), and the recommendation to treat it as an index test rather than a primary design strength measurement.",
       "body": "Unconfined compression tests, UCTs, (ASTM D2166) are one of the oldest and simplest strength tests. The quality and care in conducting the test can vary greatly from specimens being tested using portable load frames in the field to testing the specimen in a membrane in a temperature-controlled laboratory. The basic premise of the test is that if the soil is saturated, the undrained shear strength (su) should be the same if the soil is tested with zero confining pressure (σ3) as it would be with an elevated confining pressure. This assumption might be valid for high quality test specimens carefully tested, but actual test results can deviate from this assumption considerably. In general, UCTs provide lower strengths than would be determined from higher quality tests.\n\nIn practice, UCTs are also conducted on partially saturated soils. These tests are difficult to correctly interpret since the results would represent one shear strength value on a c-φ envelope, and one point cannot define the envelope. Shortcomings of the UCT have been recognized for over 70 years, and this test should be considered as an index test as opposed to a viable method to measure reliable shear strengths.",
       "key_points": [
-        "ASTM D2166; measures qu (unconfined compressive strength); su = qu/2 for saturated soils.",
+        "Unconfined compression test (UCT), ASTM D2166 (Unconfined Compressive Strength of Cohesive Soil; parameter qu in Table 3-4): one of the oldest and simplest strength tests; the quality and care in conducting it can vary greatly.",
         "Theoretical basis: saturated soil su is independent of confining pressure, so σ3=0 test should give same su as confined test.",
         "In practice, UCTs generally yield lower strengths than higher-quality tests.",
         "UCTs on partially saturated soils give only one point on the c-φ envelope — insufficient to define the envelope.",
@@ -677,14 +677,21 @@
     {
       "section_id": "3-2.7.3",
       "title": "Hydraulic Conductivity from Consolidation Tests",
-      "summary": "Introduces the method of deriving hydraulic conductivity indirectly from consolidation tests via the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is obtained from time curves using various methods; for CRS consolidation tests, cv is calculated directly from test output. This section is introductory and continues beyond the chunk.",
-      "body": "One of the purposes of conducting a consolidation test is to determine the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is calculated from the time curves using one of several different methods. For the CRS consolidation test, cv",
+      "summary": "Introduces the method of deriving hydraulic conductivity indirectly from consolidation tests via the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is obtained from time curves using various methods; for CRS consolidation tests, cv is calculated directly from test output. The hydraulic conductivity is then k = cv · mv · γw (Eq. 3-5), with mv the slope of strain versus arithmetic effective stress at the stress where cv is calculated; permeability can also be determined from the consolidation phase of CU and CD triaxial tests.",
+      "body": "One of the purposes of conducting a consolidation test is to determine the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is calculated from the time curves using one of several different methods. For the CRS consolidation test, cv can be calculated at every point where the excess pore water pressure, average stress, and strain are known.\n\nThe hydraulic conductivity of a soil is related to the value of cv by the equation below:\n\nk = cv · mv · γw   (3-5)\n\nwhere:\nk = hydraulic conductivity or permeability,\ncv = coefficient of consolidation,\nmv = coefficient of volumetric compressibility, and\nγw = unit weight of water.\n\nThe coefficient of volumetric compressibility can be determined by plotting the strain (y-axis) versus the arithmetic effective stress (x-axis) and determining the slope of the plot corresponding to the stress where cv is calculated. Consolidation tests are rarely conducted just to determine the value of permeability, but if these data are available for a project where additional values of permeability are useful, little effort is required to calculate the permeability.\n\nIt is also possible to determine the permeability from the consolidation phase of CU and CD triaxial tests. This normally requires that the test specimen only be drained at the ends (no filter paper drainage strips) and it may be necessary to consolidate the specimen in stages leading up to the final consolidation stress.",
       "key_points": [
         "Hydraulic conductivity can be derived indirectly from consolidation tests via the coefficient of consolidation (cv).",
         "For incremental stress consolidation tests, cv is calculated from time-settlement curves using one of several methods.",
-        "For CRS (constant rate of strain) consolidation tests, cv is computed directly from test measurements."
+        "For CRS (constant rate of strain) consolidation tests, cv is computed directly from test measurements.",
+        "Eq. 3-5: k = cv · mv · γw; mv is determined from the slope of the strain versus arithmetic effective stress plot at the stress where cv is calculated."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Eq. 3-5",
+          "description": "Hydraulic conductivity from consolidation test results: k = cv · mv · γw, where k is the hydraulic conductivity or permeability, cv is the coefficient of consolidation, mv is the coefficient of volumetric compressibility, and γw is the unit weight of water.",
+          "implemented_in": "geotech_references.dm7_1.chapter3.hydraulic_conductivity_from_consolidation"
+        }
+      ],
       "figures": [],
       "tables": [],
       "applicability": "Applies when hydraulic conductivity is to be estimated indirectly from consolidation test data, particularly for fine-grained soils."
@@ -720,13 +727,7 @@
         "Wide variability in results is expected due to joints, fractures, faults, and other inhomogeneities; multiple specimens should be tested.",
         "Primary output is the uniaxial compressive strength (σu), usable for design or as an index property."
       ],
-      "equations": [
-        {
-          "id": "Eq. 3-5",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_1.chapter3.hydraulic_conductivity_from_consolidation"
-        }
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Applies when determining the unconfined (uniaxial) compressive strength or elastic moduli of intact rock core specimens per ASTM D7012."

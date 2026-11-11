@@ -271,10 +271,10 @@
     {
       "section_id": "4-3.2.2",
       "title": "Stress Distribution Formulas",
-      "summary": "Presents closed-form Boussinesq equations in Table 4-2 for calculating changes in vertical stress beneath eight common loading conditions: point load, uniform line load, uniform strip load, uniformly loaded rectangular area, uniformly loaded circular area, triangular load, slope load, terrace load, and semi-infinite uniform load. Formulas support hand calculations, spreadsheets, and numerical analysis verification.",
+      "summary": "Presents closed-form Boussinesq equations in Table 4-2 for calculating changes in vertical stress beneath nine common loading conditions: point load, uniform line load, uniform strip load, uniformly loaded rectangular area, uniformly loaded circular area, triangular load, slope load, terrace load, and semi-infinite uniform load. Formulas support hand calculations, spreadsheets, and numerical analysis verification.",
       "body": "Formulas for homogeneous, semi-infinite, isotropic foundations are summarized in Table 4-2. These formulas can be used for hand calculations for simple computations and to check the results of more complex numerical analyses. Such formulas can also easily be programmed into a spreadsheet solution. Additional formulas for other geometric and loading conditions are summarized in Poulos and Davis (1974).\n\nHorizontal and shear stresses caused by applied loads can also be determined from elastic solutions. In many cases, these calculations require a value of Poisson's ratio (ν) for the soil. Many of the common figures assume ν = 0.5 making it important to verify the value of ν that was used. One application of horizontal stress calculations is for the loading of unyielding walls as discussed in DM 7.2. For conditions where elastic solutions are suitable, the calculation of shear stress is typically not required.",
       "key_points": [
-        "Table 4-2 provides vertical stress equations for eight standard loading geometries under Boussinesq assumptions.",
+        "Table 4-2 provides vertical stress equations for nine standard loading geometries under Boussinesq assumptions.",
         "Formulas are suitable for hand calculations, spreadsheets, and as checks on numerical analyses.",
         "Horizontal and shear stress calculations from elastic solutions often require specifying Poisson's ratio ν.",
         "Many chart solutions assume ν = 0.5; always verify the assumed value of ν before using.",
@@ -284,12 +284,12 @@
       "equations": [
         {
           "id": "Table 4-2 (Point Load)",
-          "description": "Vertical stress change below a point load Q at depth z and horizontal distance R from the load: σ_z = (3·Q·z³) / (2π·R⁵), where R² = x² + y² + z².",
+          "description": "Vertical stress change below a point load Q: σz = (3·Q·z³) / (2π·R⁵), where R = √(x² + y² + z²).",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Uniform Line Load)",
-          "description": "Vertical stress change below a uniform line load of infinite length P at depth z: σ_z = (4·P·z³) / (π·R⁴), where R² = x² + z².",
+          "description": "Vertical stress change below a uniform line load of infinite length P: σz = (2·P / π) · (z³ / R⁴), where R = √(x² + z²).",
           "implemented_in": null
         },
         {
@@ -299,7 +299,7 @@
         },
         {
           "id": "Table 4-2 (Rectangular Area)",
-          "description": "Vertical stress change below the corner of a uniformly loaded rectangular area of intensity q₀: σ_z = (q₀/2π)·[2·x·y·z/R₃·(1/R₁² + 1/R₂²) + tan⁻¹(x·y/(z·R₃))], with R₁²=y²+z², R₂²=x²+z², R₃²=x²+y²+z².",
+          "description": "Vertical stress change below the corner of a uniformly loaded rectangular area of intensity q0 (Figure 4-5): σz = (q0 / 2π) · [tan⁻¹(y·x / (z·R3)) + (x·y·z / R3) · (1/R1² + 1/R2²)], where R1 = √(y² + z²), R2 = √(x² + z²), and R3 = √(x² + y² + z²).",
           "implemented_in": null
         },
         {
@@ -309,17 +309,17 @@
         },
         {
           "id": "Table 4-2 (Triangular Load)",
-          "description": "Vertical stress change below a triangular load of maximum intensity q₀ over width a: σ_z = (q₀/π)·[(x/a)·α − β·(x/a − 1) ... (α and β in radians)].",
+          "description": "Vertical stress change below a triangular load of peak intensity q0 over the widths a and b of the table's stress diagram: σz = (q0 / π) · [x·α / a + ((a + b − x) / b) · β], where α and β are in radians.",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Slope Load)",
-          "description": "Vertical stress change below a slope load of intensity q₀: σ_z = (q₀/π)·(β + x·z/a), where β is in radians.",
+          "description": "Vertical stress change below a slope load rising as q = q0(x/a): σz = (q0 / (π·a)) · (x·β + z), where β is in radians.",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Terrace Load)",
-          "description": "Vertical stress change below a terrace load of intensity q₀: σ_z = (q₀/π)·(a·β + α)·(x/a), where α and β are in radians.",
+          "description": "Vertical stress change below a terrace load of intensity q0: σz = (q0 / (π·a)) · (a·β + x·α), where α and β are in radians.",
           "implemented_in": null
         },
         {
@@ -904,18 +904,24 @@
     {
       "section_id": "4-5.5.2",
       "title": "Shafts in Clay",
-      "summary": "Provides the formula for critical depth zcrit in clay, above which no lateral support is needed for a vertical shaft. The critical depth is zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight. This equation defines the self-supporting zone near the ground surface in clay shaft excavations.",
-      "body": "No support is needed from the ground surface to a depth of zcrit for shafts in clay. The critical depth (zcrit) is:\n\nzcrit = 2su / γt\n\nwhere:\nsu = the undrained shear strength of the soil and\nγt = the total unit weight of the soil.",
+      "summary": "Provides the formula for critical depth zcrit in clay, above which no lateral support is needed for a vertical shaft. The critical depth is zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight. This equation defines the self-supporting zone near the ground surface in clay shaft excavations. At greater depths the ultimate horizontal pressure on a shaft lining in soft clay is estimated as σh = γʹ · z − su (Eq. 4-12); in stiff clays the pressure may grow over time to several times the effective vertical stress.",
+      "body": "No support is needed from the ground surface to a depth of zcrit for shafts in clay. The critical depth (zcrit) is:\n\nzcrit = 2su / γt   (4-11)\n\nwhere:\nsu = the undrained shear strength of the soil and\nγt = the total unit weight of the soil.\n\nAt greater depths, the ultimate horizontal pressure (σh) on a shaft lining in soft clay can be estimated as:\n\nσh = γʹ · z − su   (4-12)\n\nwhere:\nγʹ = effective unit weight of the soil,\nz = depth below the ground surface, and\nsu = undrained shear strength of the soil.\n\nThis pressure will likely occur after several months of unsupported excavation. The stability factors for fine-grained soils in Table 4-9 can be used as guidelines for the behavior of vertical shafts in clay.\n\nIn stiff, intact or fissured clays, the initial horizontal stress on vertical shaft walls will be small. Over time the pressure may increase to a value several times larger than the effective vertical stress (and ultimately to the swelling pressure if the shaft lining is sufficiently rigid). Local experience is important to provide useful information for soil pressures on vertical shafts in stiff clays.",
       "key_points": [
         "In clay, no lateral shaft support is needed from the surface down to the critical depth zcrit.",
         "Critical depth zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight.",
-        "Below zcrit, lateral support must be provided to maintain shaft stability."
+        "At greater depths, the ultimate horizontal pressure on a shaft lining in soft clay can be estimated as σh = γʹ · z − su (Eq. 4-12); this pressure will likely occur after several months of unsupported excavation.",
+        "In stiff, intact or fissured clays the initial horizontal stress on shaft walls will be small; over time it may increase to several times the effective vertical stress (ultimately to the swelling pressure if the lining is sufficiently rigid)."
       ],
       "equations": [
         {
           "id": "Eq. 4-11",
           "description": "Critical depth for unsupported clay shaft: zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight of soil. Defines the depth above which no lateral support is required.",
           "implemented_in": "geotech_references.dm7_1.chapter4.shaft_critical_depth_clay"
+        },
+        {
+          "id": "Eq. 4-12",
+          "description": "Ultimate horizontal pressure on a shaft lining in soft clay at greater depths: σh = γʹ · z − su, where γʹ is the effective unit weight of the soil, z is the depth below the ground surface, and su is the undrained shear strength of the soil. This pressure will likely occur after several months of unsupported excavation.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_horizontal_pressure_clay"
         }
       ],
       "figures": [],
@@ -986,13 +992,7 @@
         "Parameters K, n, Rf, Kb, m, and Kur govern the model; soil is stiffer during unload-reload with modulus Eur.",
         "See Table 4-13 for parameter summary and Figure 4-13 for illustration."
       ],
-      "equations": [
-        {
-          "id": "Eq. 4-12",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_horizontal_pressure_clay"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 4-13"
       ],
@@ -1101,9 +1101,7 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4-7: Suggested Reading (Topic/Reference)"
-      ],
+      "tables": [],
       "applicability": "Applies when an engineer seeks deeper reference material on stress analysis, elastic solutions, pipe loading, tunneling, or numerical methods topics introduced in Chapter 4."
     },
     {
@@ -1121,9 +1119,7 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4-8: Notation (Symbol/Description)"
-      ],
+      "tables": [],
       "applicability": "Applies whenever a symbol used anywhere in Chapter 4 requires definition or clarification."
     }
   ]
