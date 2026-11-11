@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5, 6)
+BUILT = (1, 2, 3, 4, 5, 6, 7)
 
 
 def _chapter(n):
@@ -104,6 +104,7 @@ def test_section_numbers_and_titles_as_printed():
     assert len([s for s in secs if s.startswith("4.")]) == 48
     assert len([s for s in secs if s.startswith("5.")]) == 26
     assert len([s for s in secs if s.startswith("6.")]) == 13
+    assert len([s for s in secs if s.startswith("7.")]) == 12
     # the chapter's first page prints "MSE WALL DETAILS"; the contents and
     # the running footer say "MSE Wall Design Details"
     assert secs["5.0"]["title"] == "MSE Wall Details"
@@ -313,6 +314,37 @@ def test_chapter_5_filter_criteria_as_printed():
     # Table 5-3 (p. 5-29)
     assert ("Grab Strength | ASTM D4632 | N (lb) | 1400 (315) | 900 (200) | "
             "1100 (250) | 700 (157)") in secs["5.3.3.a"]["body"]
+
+
+def test_chapter_7_seismic_and_impact_equations_as_printed():
+    eqs = _equations()
+    secs = _sections()
+    # Anderson et al. (2008) procedure (pp. 7-2 to 7-8)
+    assert eqs["7-1"][1]["formula"] == "kmax = Fpga (PGA)"
+    assert eqs["7-2"][1]["formula"] == "PGV (in/sec) = 38 Fv S1"
+    assert eqs["7-4"][1]["formula"] == "α = 1 + 0.01H [0.5 (Fv S1 / kmax) − 1]"
+    assert eqs["7-4"][1]["source"] == "Typed in from p. 7-2."
+    assert eqs["7-7"][1]["formula"] == "PIR = 0.5 (kav) (W)"
+    assert eqs["7-8"][1]["formula"].startswith("log(d) = -1.51 – 0.74 log(ky/kmax)")
+    assert eqs["7-9"][1]["formula"].endswith("0.46 log(kmax) + 1.12 log(PGV)")
+    assert ("ξ = tan⁻¹ [kh / (1 − kv)] with kh = horizontal seismic "
+            "coefficient") in secs["7.1.1"]["body"]
+    assert "h = H + [tan I (0.5H)] / (1 − 0.5 tan I)" in secs["7.1.1"]["body"]
+    assert "CDRsliding = Rτ / THF" in secs["7.1.1.a"]["body"]
+    assert "0.46 log(kmax) + 1.12log(PGV)" not in secs["7.1.1.a"]["body"]
+    # internal stability (pp. 7-9 to 7-14): pullout with 0.8 F*, the
+    # frictional connection with 0.8 φ, φ = 1.20
+    assert eqs["7-11"][1]["formula"] == "Tmd = Pi / n"
+    assert eqs["7-14"][1]["formula"] == "Srt ≥ Tmd RFID RFD / (φ Rc)"
+    assert eqs["7-16"][1]["formula"] == "Le ≥ Ttotal / [φ (0.8 F* α σv C Rc)]"
+    assert eqs["7-16"][0] == "7.1.2.b"
+    assert "= 1.20 from Table 11.5.6-1" in eqs["7-16"][1]["variables"]["φ"]
+    assert eqs["7-17"][1]["formula"] == "Srs ≥ Tmax RFD / [0.8 φ (CRcr) Rc]"
+    assert eqs["7-18"][1]["formula"] == "Srt ≥ Tmd RFD / [0.8 φ (CRu) Rc]"
+    # traffic barrier impact (p. 7-16)
+    assert eqs["7-20b"][1]["formula"] == (
+        "Ttotal = SV Kr γr [(Z + heq) γEV-MAX] + ti (γCT)")
+    assert "2,300 lb/lft (33.5 kN/m)" in secs["7.2.1"]["body"]
 
 
 def test_figure_text_typed_in_from_the_page():
