@@ -182,3 +182,45 @@ class TestCommentaryC19:
     def test_print_slips_kept_with_notes(self):
         assert "two [as printed; three are listed] following SSI effects" in retrieve_section("fema_p2082", "C19.1")["body"]
         assert "Eq. (19.2-4) [as printed" in retrieve_section("fema_p2082", "C19.4.2")["body"]
+
+
+class TestCommentaryC22:
+    """Part 2, Commentary to Chapter 22, printed pp. 524-544. Its headings are not numbered;
+    the file holds them as C22 and C22.a to C22.g (letters not printed)."""
+
+    def test_sections_and_printed_headings(self):
+        ch = _commentary(22)
+        assert ch["chapter"] == 22
+        assert _ids(ch) == ["C22", "C22.a", "C22.b", "C22.c", "C22.d", "C22.e", "C22.f", "C22.g"]
+        titles = [s["title"] for s in ch["sections"]]
+        assert titles[4] == "Risk-Targeted Maximum Considered Earthquake (MCER) Spectral Response Accelerations"
+        assert titles[6] == "Long-Period Transition Maps"
+
+    def test_table_c22_1_cells(self):
+        # p. 525.
+        body = retrieve_section("fema_p2082", "C22.a")["body"]
+        assert "3b. 84th-percentile calculation | X | X | X |  |  | " in body
+        assert "4. Max-direction factors | X |  | X | X |  | X" in body
+        assert "the MCER and MCEG ground motions of ASCE/SEI 7-16 (and back to ASCE/SEI 7-98)" in body
+
+    def test_epsilon_and_table_c22_7(self):
+        # pp. 539-540: the 84th-percentile ground motion from epsilon; sigma 0.6.
+        body = retrieve_section("fema_p2082", "C22.d")["body"]
+        assert "dividing the probabilistic ground motion by exp(ε∙σ) ÷ exp(1∙σ)." in body
+        assert "0.20 | 2.36 | 1.87 | 1.40 | 1.88 | 1.39 | 2.07 | 1.24" in body
+        assert "5.0 | 0.20 | 1.36 | 0.16 | 1.41 | 0.16 | 0.97 | 0.20" in body
+        assert "maximum-response ground [p. 541] motions are multiplied by 1.8." in body
+
+    def test_long_period_transition(self):
+        # p. 541.
+        body = retrieve_section("fema_p2082", "C22.f")["body"]
+        assert "is used in Eq. (11.4-7) to determine values of Sa for periods greater than TL." in body
+        assert "Thus, for Tc ≤ 10 s, the fundamental convective period range for nearly all storage tanks" in body
+
+    def test_comparison_tables_named_not_typed(self):
+        # pp. 529-538: the 34-location comparison tables are named, their cells left to the page.
+        body = retrieve_section("fema_p2082", "C22.c")["body"]
+        for n in range(2, 7):
+            assert f"Table C22-{n} " in body
+        assert body.count("[The cells of this table are not typed here:") == 5
+        assert "The increase at the Sacramento location (from 0.76g to 0.97g)" in body
