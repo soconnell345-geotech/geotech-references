@@ -142,3 +142,43 @@ class TestCommentaryC21:
         assert "for a period range, 1 s ≤ T ≤ 2 s, for stiffer sites vs > 1,450 ft/s (vs > 442 m/s)" in body
         assert "1 s ≤ T ≤ 5 s, for softer sites vs ≤ 1,450 ft/s (vs ≤ 442 m/s)" in body
         assert "the value of the parameter SDS should be taken as 90% of the peak value" in body
+
+
+class TestCommentaryC19:
+    """Part 2, Commentary to Chapter 19, printed pp. 495-504."""
+
+    def test_sections_as_printed(self):
+        ch = _commentary(19)
+        assert ch["chapter"] == 19
+        assert _ids(ch) == ["C19.1", "C19.2", "C19.3", "C19.4", "C19.4.1", "C19.4.2"]
+
+    def test_reduction_limit_for_low_r(self):
+        # p. 497, typed from the page.
+        body = retrieve_section("fema_p2082", "C19.2")["body"]
+        assert "That is why reductions of 30% are permitted for R = 3 or less." in body
+        assert "and then divided by (R/Ie), is input into the mathematical model." in body
+        assert "Reductions for kinematic SSI effects are not permitted for the equivalent lateral force and modal response spectrum procedures." in body
+
+    def test_shear_modulus_from_velocity(self):
+        # p. 500: G from the small-strain shear wave velocity over half the lesser foundation dimension.
+        body = retrieve_section("fema_p2082", "C19.3")["body"]
+        assert "G = (G/Go)Go = (G/Go)γvso²/g (all terms defined in the standard)." in body
+        assert "The effective depth should be taken as half the lesser dimension of the foundation, which in the provisions is defined as B." in body
+
+    def test_period_lengthening_ratio(self):
+        # p. 499.
+        body = retrieve_section("fema_p2082", "C19.3")["body"]
+        assert "the effective period lengthening ratio, (T̃/T)eff given by Eq. (19.3-2)." in body
+        assert "The period lengthening ratio, (T̃/T) appearing in Eq. (19.3-2) is derived in the same manner assuming that μ = 1." in body
+
+    def test_kinematic_limits(self):
+        # p. 503: 260 ft effective base size, 0.75 factor, about 20 ft embedment.
+        b1 = retrieve_section("fema_p2082", "C19.4.1")["body"]
+        assert "effective base size of 260 ft (79.2 m), which is why that limitation has been placed on Eq. (19.4-4)." in b1
+        b2 = retrieve_section("fema_p2082", "C19.4.2")["body"]
+        assert "effective embedment depth of approximately 20 ft (6.096 m)" in b2
+        assert "the provisions are not applicable to embedded individual spread footings." in b2
+
+    def test_print_slips_kept_with_notes(self):
+        assert "two [as printed; three are listed] following SSI effects" in retrieve_section("fema_p2082", "C19.1")["body"]
+        assert "Eq. (19.2-4) [as printed" in retrieve_section("fema_p2082", "C19.4.2")["body"]
