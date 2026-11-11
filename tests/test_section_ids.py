@@ -107,3 +107,41 @@ def test_a_number_that_is_not_text_is_refused(number):
             fetch("gec_12", number)
     assert _retrieval_db.reference_get("gec_12", "7.10")["title"] != \
         _retrieval_db.reference_get("gec_12", "7.1")["title"]
+
+
+# GEC-13 restarts its numbering in each chapter, and its section ids are the
+# chapter and the printed number: chapter 1 prints "8.2.7 Step 7: Consider
+# Project Risks" (p. 1-46), held as 1.8.2.7, and "1.3 Focus and Scope"
+# (p. 1-4), held as 1.1.3. A caller who types the printed number reached
+# chapter 8's 8.2.7 (Jet Grouting) without a word, or was pointed at 1.3.0,
+# 1.3.1 and 1.3.2 (2026-11-10 review follow-up).
+
+FETCHES = [_retrieval.retrieve_section, _retrieval_db.reference_get]
+
+
+@pytest.mark.parametrize("fetch", FETCHES)
+def test_a_number_chapter_1_prints_names_its_section(fetch):
+    out = fetch("gec_13", "8.2.7")
+    assert out["section_id"] == "8.2.7" and out["title"] == "Jet Grouting"
+    assert ("Chapter 1 prints 8.2.7 too, as section_id 1.8.2.7 Step 7: "
+            "Consider Project Risks") in out["note"]
+    # the section itself, and a number chapter 1 does not print, add none
+    assert "note" not in fetch("gec_13", "1.8.2.7")
+    assert "note" not in fetch("gec_13", "8.2.0")
+    # a note that was there is kept
+    both = fetch("gec_13", "8.2.7", include_subsections=True)
+    assert both["note"].startswith("Subsections not inlined")
+    assert "section_id 1.8.2.7" in both["note"]
+
+
+@pytest.mark.parametrize("fetch", FETCHES)
+def test_a_missing_number_chapter_1_prints_names_its_section(fetch):
+    with pytest.raises(KeyError) as e:
+        fetch("gec_13", "1.3")
+    assert ("chapter 1 prints that number: section_id 1.1.3 Focus and "
+            "Scope") in str(e.value)
+    assert (fetch("gec_13", "1.1.3")["title"] == "Focus and Scope")
+    # other references are untouched
+    with pytest.raises(KeyError) as e:
+        fetch("gec_12", "7.99")
+    assert "prints that number" not in str(e.value)

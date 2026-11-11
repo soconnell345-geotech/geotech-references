@@ -568,6 +568,7 @@ def retrieve_section(reference: str, section_id: str,
     # first part, so '8.2.7' of GEC-13 came from chapter 8 here and from
     # chapter 1 in reference_get).
     held = []
+    titles: dict[str, str] = {}
     for json_file in sorted(ref_dir.glob("*.json")):
         with open(json_file, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -575,18 +576,77 @@ def retrieve_section(reference: str, section_id: str,
         held += [(data.get("chapter"), entries, i)
                  for i, e in enumerate(entries)
                  if e["section"].get("section_id") == section_id]
+        for e in entries:
+            titles.setdefault(str(e["section"].get("section_id", "")),
+                              e["section"].get("title", ""))
     if len(held) > 1:
         raise KeyError(held_twice_note(reference, section_id, [
             (chapter, entries[i]["section"].get("title", ""))
             for chapter, entries, i in held]))
     if held:
         _, entries, i = held[0]
-        return section_view(entries, i, include_subsections)
+        return with_printed_note(
+            section_view(entries, i, include_subsections), reference,
+            prefixed_matches(reference, section_id, titles))
 
     raise KeyError(
         f"Section '{section_id}' not found in reference '{reference}'"
-        + _nearby(ref_dir, section_id)
+        + _nearby(ref_dir, section_id, reference)
     )
+
+
+#: References whose section ids put the chapter before the number the print
+#: gives the section, because each chapter restarts its numbering. GEC-13's
+#: chapter 1 prints "8.2.7 Step 7: Consider Project Risks" (p. 1-46), held as
+#: section_id 1.8.2.7, and "1.3 Focus and Scope" (p. 1-4), held as 1.1.3; a
+#: caller who types those printed numbers reaches chapter 8's section 8.2.7
+#: or nothing. Both fetches name the chapter's section (2026-11-10 review
+#: follow-up). Only chapter 1: its printed numbers run 1.0 to 8.x and so
+#: read as the ids of other chapters.
+CHAPTER_PREFIXED = {"gec_13": (1,)}
+
+
+def prefixed_matches(reference: str, section_id: str,
+                     titles) -> list[tuple[str, str]]:
+    """``(section_id, title)`` of each section that the chapters of
+    :data:`CHAPTER_PREFIXED` print under the number ``section_id`` (held as
+    '<chapter>.<printed number>'); ``titles`` maps the reference's ids to
+    titles, or is a function returning the title of an id or None."""
+    lookup = titles.get if isinstance(titles, dict) else titles
+    out = []
+    for ch in CHAPTER_PREFIXED.get(reference, ()):
+        sid = f"{ch}.{section_id}"
+        title = lookup(sid) if sid != section_id else None
+        if title is not None:
+            out.append((sid, title))
+    return out
+
+
+def _printed_as(reference: str, prefixed, lead: str = "prints that number:"
+                ) -> str:
+    """'chapter 1 prints that number: section_id 1.1.3 Focus and Scope
+    (...)'; ``lead`` replaces 'prints that number:'."""
+    return "; ".join(
+        f"chapter {sid.split('.', 1)[0]} {lead} section_id {sid} {title}"
+        for sid, title in prefixed) + (
+        f" (a {reference} section_id is the chapter and the number printed "
+        "in it, since each chapter restarts its numbering)")
+
+
+def with_printed_note(view: dict, reference: str, prefixed) -> dict:
+    """A fetched section with a note naming the section a chapter of
+    :data:`CHAPTER_PREFIXED` prints under the same number, when there is
+    one ('8.2.7' of GEC-13 is chapter 8's section; chapter 1 prints its own
+    8.2.7, section_id 1.8.2.7)."""
+    if not prefixed:
+        return view
+    printed = prefixed[0][0].split(".", 1)[1]
+    sentence = _printed_as(reference, prefixed,
+                           f"prints {printed} too, as") + "."
+    sentence = sentence[0].upper() + sentence[1:]
+    out = dict(view)
+    out["note"] = (out.get("note", "") + " " + sentence).strip()
+    return out
 
 
 def require_text_id(section_id) -> None:
@@ -649,7 +709,7 @@ def lettered_matches(section_id: str, numbered) -> list[tuple[str, str]]:
     return [(sid, title) for sid, title in numbered if pat.match(sid)][:8]
 
 
-def _nearby(ref_dir: Path, section_id: str) -> str:
+def _nearby(ref_dir: Path, section_id: str, reference: str = "") -> str:
     """For a section number that is not there: the nearest section above
     it and up to eight sections numbered under it (:func:`nearby_note`)."""
     numbered: list[tuple[str, str]] = []
@@ -666,17 +726,24 @@ def _nearby(ref_dir: Path, section_id: str) -> str:
     below = [(sid, title) for sid, title in numbered
              if sid.startswith(f"{section_id}.")
              or sid.startswith(f"{section_id}-")][:8]
-    return nearby_note(above, below, lettered_matches(section_id, numbered))
+    return nearby_note(above, below, lettered_matches(section_id, numbered),
+                       prefixed_matches(reference, section_id, titles),
+                       reference)
 
 
-def nearby_note(above, below, lettered=()) -> str:
+def nearby_note(above, below, lettered=(), prefixed=(),
+                reference: str = "") -> str:
     """``'; nearest section above it: 7.2.1 Title; sections numbered under
     it: 7.2.1.3.1 Title; ...'`` from ``above`` (a ``(section_id, title)``
     or None) and ``below`` (a list of them); ``''`` when all are empty.
     ``lettered`` (:func:`lettered_matches`) adds the sections that carry
-    the number under a lettered part or appendix. The wording of a missing
-    section number in both retrieval layers."""
+    the number under a lettered part or appendix, and ``prefixed``
+    (:func:`prefixed_matches`) the section a chapter of ``reference``
+    prints under that number ('1.3' of GEC-13 -> 1.1.3), first. The
+    wording of a missing section number in both retrieval layers."""
     parts = []
+    if prefixed:
+        parts.append(_printed_as(reference, prefixed))
     if lettered:
         parts.append("that number under a part or appendix letter: "
                      + "; ".join(f"{sid} {title}" for sid, title in lettered))

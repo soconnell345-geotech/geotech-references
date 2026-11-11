@@ -1280,9 +1280,25 @@ def reference_get(reference: str, section_id: str,
         if include_subsections:
             out = _retrieval.inline_subsections(
                 out, _subtree(conn, row["rowid"], {row["rowid"]}))
-        return out
+        # the section a chapter prints under the same number (GEC-13
+        # chapter 1's printed 8.2.7 is 1.8.2.7), as retrieve_section says
+        return _retrieval.with_printed_note(
+            out, reference, _retrieval.prefixed_matches(
+                reference, section_id, _title_of(conn, reference)))
     finally:
         conn.close()
+
+
+def _title_of(conn: sqlite3.Connection, reference: str):
+    """A function giving the title of a section id of ``reference``, or
+    None when the reference holds no such id."""
+    def title(section_id: str):
+        r = conn.execute(
+            "SELECT title FROM sections WHERE reference = ? AND "
+            "section_id = ? ORDER BY rowid LIMIT 1",
+            (reference, section_id)).fetchone()
+        return None if r is None else r["title"]
+    return title
 
 
 def _nearby(conn: sqlite3.Connection, reference: str,
@@ -1314,7 +1330,10 @@ def _nearby(conn: sqlite3.Connection, reference: str,
     return _retrieval.nearby_note(
         above, [(r["section_id"], r["title"]) for r in below],
         _retrieval.lettered_matches(
-            section_id, [(r["section_id"], r["title"]) for r in lettered]))
+            section_id, [(r["section_id"], r["title"]) for r in lettered]),
+        _retrieval.prefixed_matches(reference, section_id,
+                                    _title_of(conn, reference)),
+        reference)
 
 
 def reference_query(sql: str, limit: int = _MAX_LIMIT,
