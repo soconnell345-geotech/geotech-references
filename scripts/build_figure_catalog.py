@@ -391,6 +391,18 @@ def _chapter_of(figure_number: str):
     return None
 
 
+def _row_chapter(figure_number: str):
+    """The chapter of a row ``--add-missing`` adds: :func:`_chapter_of`, and
+    the chapter of a dot-numbered figure too (``"3.22"`` -> 3, as GEC-7
+    files it); a lettered appendix number stays ``None``."""
+    chapter = _chapter_of(figure_number)
+    if chapter is None:
+        m = re.fullmatch(r"(\d+)\.\d+[A-Za-z]?", figure_number)
+        if m:
+            chapter = int(m.group(1))
+    return chapter
+
+
 def _chapter_key(figure_number: str) -> str:
     """The chapter part of a figure number: "4" of "4-12", "A" of "A.17"."""
     return re.split(r"[-.]", figure_number, maxsplit=1)[0]
@@ -1310,7 +1322,7 @@ def find_missing(package: str, chapters=None, numbers=None,
         row = {
             "figure_number": num,
             "caption": cap,
-            "chapter": _chapter_of(num),
+            "chapter": _row_chapter(num),
             "pdf_page_index": c["pdf_page_index"],
             "printed_page": ov.get("printed_page", _printed_page_like(
                 cat["figures"], entry["list_page"] if entry else None,
