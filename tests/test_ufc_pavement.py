@@ -252,6 +252,11 @@ class TestDrainageEquations:
         r = taylor_permeability(0.5, 25, 62.4, 1.0, 0.6)
         assert r["k"] > 0
 
+    def test_taylor_permeability_note_names_both_forms(self):
+        # Eq. 20-3, PDF 113 (printed 93), prints (1-e); the code keeps (1+e).
+        note = taylor_permeability(0.5, 25, 62.4, 1.0, 0.6)["note"]
+        assert "(1-e)" in note and "(1+e)" in note and "owner" in note
+
     def test_taylor_permeability_requires_positive(self):
         with pytest.raises(ValueError):
             taylor_permeability(0, 25, 62.4, 1.0, 0.6)
@@ -259,6 +264,24 @@ class TestDrainageEquations:
     def test_effective_porosity_typical_range(self):
         r = effective_porosity(110, 2.68, 62.4, 0.05)
         assert 0 < r["effective_porosity"] < 0.35
+
+    def test_effective_porosity_eq_20_4_as_printed(self):
+        # Eq. 20-4, UFC 3-250-01 PDF 114 (printed 94):
+        # ne = 1 - gamma_d/(Gs*gamma_w) * (1 + Gs*We). Made-up inputs.
+        r = effective_porosity(110, 2.65, 62.4, 0.05)
+        expected = 1 - 110 / (2.65 * 62.4) * (1 + 2.65 * 0.05)
+        assert r["effective_porosity"] == pytest.approx(expected, abs=1e-4)
+        assert r["effective_porosity"] == pytest.approx(0.2466, abs=1e-4)
+        r2 = effective_porosity(100, 2.70, 62.4, 0.02)
+        assert r2["effective_porosity"] == pytest.approx(
+            1 - 100 / (2.70 * 62.4) * (1 + 2.70 * 0.02), abs=1e-4)
+        assert "printed 94" in r["reference"]
+
+    def test_effective_porosity_no_drainable_pore_space_raises(self):
+        # Eq. 20-4 (printed 94) at made-up inputs 125 pcf, Gs 2.65, We 0.2
+        # gives 1 - 125/(2.65*62.4)*(1 + 0.53) = -0.157: no drainable voids.
+        with pytest.raises(ValueError, match="no drainable pore space"):
+            effective_porosity(125, 2.65, 62.4, 0.2)
 
     def test_effective_horizontal_permeability_weighted_average(self):
         r = effective_horizontal_permeability([(100, 4), (10, 8)])
@@ -282,12 +305,18 @@ class TestDrainageEquations:
             drainage_layer_drainable_flow(2, 1000, 0.02, 4, 0)
 
     def test_time_for_50pct(self):
+        # Eq. 20-11, UFC 3-250-01 PDF 118 (printed 98): T50 = ne*D/(2*i*k).
         r = time_for_50pct_drainage(0.25, 50, 0.02, 1000)
-        assert r["t50"] == pytest.approx((0.25 * 50) / (0.02 * 1000))
+        assert r["t50"] == pytest.approx((0.25 * 50) / (2 * 0.02 * 1000))
+        r2 = time_for_50pct_drainage(0.30, 20, 0.015, 40)
+        assert r2["t50"] == pytest.approx((0.30 * 20) / (2 * 0.015 * 40))
 
     def test_time_for_85pct(self):
+        # Eq. 20-12, same page: T85 = ne*D/(i*k), twice T50 of Eq. 20-11.
         r = time_for_85pct_drainage(0.25, 50, 0.02, 1000)
-        assert r["t85"] > 0
+        assert r["t85"] == pytest.approx((0.25 * 50) / (0.02 * 1000))
+        t50 = time_for_50pct_drainage(0.25, 50, 0.02, 1000)["t50"]
+        assert r["t85"] == pytest.approx(2 * t50)
 
     def test_time_for_50pct_requires_positive(self):
         with pytest.raises(ValueError):
@@ -322,12 +351,26 @@ class TestDrainageEquations:
             granular_permeability_estimate(0.5, 0.35, 5, units="bogus")
 
     def test_drainage_layer_thickness_required_positive(self):
+        # Eq. 20-17, UFC 3-250-01 PDF 127 (printed 107):
+        # H = 2*F*R*L*t / [(1.7*ne*L) + (k*i*t)]. Made-up inputs.
         r = drainage_layer_thickness_required(0.5, 0.2, 50, 1, 0.25, 1000, 0.02)
-        assert r["h"] > 0
+        assert r["h"] == pytest.approx(
+            (2 * 0.5 * 0.2 * 50 * 1) / (1.7 * 0.25 * 50 + 1000 * 0.02 * 1))
+        r2 = drainage_layer_thickness_required(0.5, 0.1, 30, 1, 0.3, 50, 0.01)
+        assert r2["h"] == pytest.approx(
+            (2 * 0.5 * 0.1 * 30 * 1) / (1.7 * 0.3 * 30 + 50 * 0.01 * 1))
+        assert "printed 107" in r["reference"]
 
     def test_drainage_layer_thickness_simplified_positive(self):
+        # Eq. 20-18, same page: H = F*R*t / (0.85*ne).
         r = drainage_layer_thickness_simplified(0.5, 0.2, 1, 0.25)
-        assert r["h"] == pytest.approx((0.85 * 0.5 * 0.2 * 1) / 0.25)
+        assert r["h"] == pytest.approx((0.5 * 0.2 * 1) / (0.85 * 0.25))
+
+    def test_eq_20_18_is_eq_20_17_without_kit(self):
+        # Eq. 20-17 with k = 0 reduces to Eq. 20-18 (PDF 127, printed 107).
+        full = drainage_layer_thickness_required(0.5, 0.2, 50, 1, 0.25, 0, 0.02)
+        simple = drainage_layer_thickness_simplified(0.5, 0.2, 1, 0.25)
+        assert full["h"] == pytest.approx(simple["h"])
 
     def test_collector_drain_flow_ft_day(self):
         r = collector_drain_flow(0.33, 0.02, 1000, units="ft_day")
@@ -383,29 +426,63 @@ class TestSubgradeCategory:
 
 class TestCompactionDepth:
     def test_table_5_1_basic(self):
-        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive")
+        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "flexible")
         assert r["depth_in"] > 0
 
     def test_table_5_1_cohesionless_deeper_than_cohesive(self):
-        r_cl = table_5_1_compaction_depth(1_000_000, 90, "cohesive")
-        r_cs = table_5_1_compaction_depth(1_000_000, 90, "cohesionless")
+        r_cl = table_5_1_compaction_depth(1_000_000, 90, "cohesive", "flexible")
+        r_cs = table_5_1_compaction_depth(1_000_000, 90, "cohesionless", "flexible")
         assert r_cs["depth_in"] > r_cl["depth_in"]
 
     def test_table_5_1_bad_soil_type_raises(self):
         with pytest.raises(ValueError, match="soil_type"):
-            table_5_1_compaction_depth(1_000_000, 95, "bogus")
+            table_5_1_compaction_depth(1_000_000, 95, "bogus", "flexible")
 
     def test_table_5_1_zero_passes_raises(self):
         with pytest.raises(ValueError, match="passes"):
-            table_5_1_compaction_depth(0, 95, "cohesive")
+            table_5_1_compaction_depth(0, 95, "cohesive", "flexible")
+
+    def test_table_5_1_rigid_column(self):
+        # Table 5-1, UFC 3-250-01 PDF 34 (pdf_page 33), printed 14: rigid
+        # column < 1,300 / < 1,500 / < 34,000 / < 343,000 / ... >= 290 million.
+        r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "rigid")
+        assert r["depth_in"] == 12      # < 2.1 million row (flexible 11)
+        assert table_5_1_compaction_depth(
+            1_000_000, 95, "cohesive", "flexible")["depth_in"] == 11   # < 1.3 million
+        assert table_5_1_compaction_depth(
+            300_000_000, 80, "cohesionless", "rigid")["depth_in"] == 77
+        assert table_5_1_compaction_depth(
+            1_400, 100, "cohesive", "rigid")["depth_in"] == 4
+        with pytest.raises(ValueError, match="pavement_type"):
+            table_5_1_compaction_depth(1_000, 95, "cohesive", "composite")
+        # The table prints both columns and no default: the type is required.
+        with pytest.raises(TypeError):
+            table_5_1_compaction_depth(1_000, 95, "cohesive")
+
+    def test_table_5_1_bounds_are_strict(self):
+        # Printed "< 15,500": 15,500 itself is in the "< 67,500" row.
+        assert table_5_1_compaction_depth(15_499, 100, "cohesive", "flexible")["depth_in"] == 3
+        assert table_5_1_compaction_depth(15_500, 100, "cohesive", "flexible")["depth_in"] == 4
+        assert table_5_1_compaction_depth(
+            1_300, 95, "cohesionless", "rigid")["depth_in"] == 15
 
     def test_table_21_2_basic(self):
+        # Table 21-2, PDF 144 (pdf_page 143), printed 124.
         r = table_21_2_aggregate_compaction_depth(1_000_000, 95, "cohesionless")
-        assert r["depth_in"] > 0
+        assert r["depth_in"] == 11
 
-    def test_table_21_2_no_80pct_level(self):
+    def test_table_21_2_cohesive_80pct_column(self):
+        # Cohesive 80 % column as printed: 9, 11, 13, 14, 16, 18, 20, 22, 25, 27.
+        assert table_21_2_aggregate_compaction_depth(
+            1_000_000, 80, "cohesive")["depth_in"] == 14
+        assert table_21_2_aggregate_compaction_depth(
+            10_000, 80, "cohesive")["depth_in"] == 9
+        assert table_21_2_aggregate_compaction_depth(
+            3e9, 80, "cohesive")["depth_in"] == 27
+
+    def test_table_21_2_no_80pct_level_cohesionless(self):
         with pytest.raises(ValueError):
-            table_21_2_aggregate_compaction_depth(1_000_000, 80, "cohesive")
+            table_21_2_aggregate_compaction_depth(1_000_000, 80, "cohesionless")
 
 
 class TestSubbasePermissibleValues:
@@ -457,18 +534,30 @@ class TestMinThickness:
 
 
 class TestEquivalencyFactor:
+    # Table 9-1, UFC 3-250-01 PDF 47 (pdf_page 46), printed 27. Asphalt-
+    # stabilized: all-bituminous concrete 1.15/2.30; GW, GP, GM, GC
+    # 1.00/2.00; SW, SP, SM, SC */1.50 (* not used for base course).
     def test_asphalt_base(self):
-        assert table_9_1_equivalency_factor("asphalt", "gm", "base")["equivalency_factor"] == 1.15
+        assert table_9_1_equivalency_factor("asphalt", "gm", "base")["equivalency_factor"] == 1.00
+        assert table_9_1_equivalency_factor("asphalt", "GW", "subbase")["equivalency_factor"] == 2.00
+        assert table_9_1_equivalency_factor("asphalt", "SM", "subbase")["equivalency_factor"] == 1.50
+        with pytest.raises(ValueError, match="not used as a base"):
+            table_9_1_equivalency_factor("asphalt", "SP", "base")
+        with pytest.raises(ValueError, match="No equivalency factor"):
+            table_9_1_equivalency_factor("asphalt", "CL", "subbase")
 
     def test_appendix_g4_cement_base(self):
-        # G-4.1: cement-stabilized base E=1.15
+        # G-4.1 (PDF 280, printed 260): cement-stabilized GP base E=1.15
         r = table_9_1_equivalency_factor("cement", "GP", "base")
         assert r["equivalency_factor"] == 1.15
 
     def test_appendix_g4_asphalt_subbase(self):
-        # G-4.2: subbase E=2.30
-        r = table_9_1_equivalency_factor("asphalt", "GW", "subbase")
+        # G-4.2 (PDF 280, printed 260), bituminous pavement: base 1.15,
+        # subbase 2.30 = the all-bituminous concrete row.
+        r = table_9_1_equivalency_factor("asphalt", "all-bituminous concrete", "subbase")
         assert r["equivalency_factor"] == 2.30
+        r = table_9_1_equivalency_factor("asphalt", "All-bituminous concrete", "base")
+        assert r["equivalency_factor"] == 1.15
 
     def test_lime_cl_base_raises(self):
         with pytest.raises(ValueError, match="not used as a base"):
@@ -515,6 +604,20 @@ class TestFigure10_1:
         with pytest.raises(ValueError):
             figure_10_1_k_on_base(100, -1)
 
+    def test_printed_range(self):
+        # Figure 10-1, UFC 3-250-01 PDF 52 (pdf_page 51), printed 32: curves
+        # for k on subgrade 25-300 pci over base thickness 0-60 in. Below the
+        # lowest curve is refused; past the top or the axis is held, noted.
+        with pytest.raises(ValueError, match="lowest curve"):
+            figure_10_1_k_on_base(20, 10)
+        r = figure_10_1_k_on_base(400, 10)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
+        assert "300 curve is used" in r["note"]
+        r = figure_10_1_k_on_base(100, 70)
+        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
+        assert "60 in value is used" in r["note"]
+        assert "note" not in figure_10_1_k_on_base(100, 30)
+
 
 class TestConditionFactor:
     def test_rigid_plain_good(self):
@@ -535,18 +638,58 @@ class TestConditionFactor:
 
 
 class TestFigure15_1:
+    # Figure 15-1, UFC 3-250-01 PDF page 70 (pdf_page 69), printed 50: F
+    # read along each printed curve; measured tolerance 0.005 on F.
+    PRINT = {  # k psi/in: {passes: F read off the printed curve}
+        25: {100: 0.812, 10_000: 0.963, 10_000_000: 0.980},
+        100: {1_000: 0.726, 10_000: 0.874, 100_000: 0.916,
+              1_000_000: 0.927, 10_000_000: 0.930},
+        200: {1_000: 0.608, 10_000: 0.807, 100_000: 0.870,
+              1_000_000: 0.885, 10_000_000: 0.890},
+        300: {1_000: 0.482, 10_000: 0.734, 100_000: 0.828,
+              1_000_000: 0.853, 10_000_000: 0.859},
+        500: {10_000: 0.477, 100_000: 0.629, 1_000_000: 0.671,
+              10_000_000: 0.678},
+    }
+
+    def test_printed_curves(self):
+        for k, pts in self.PRINT.items():
+            for passes, f in pts.items():
+                r = figure_15_1_cracking_projection_factor(passes, k)
+                assert r["f"] == pytest.approx(f, abs=0.005), (k, passes)
+
     def test_verified_anchor(self):
-        # Appendix G, G-7: k=100, passes=20e6 -> F=0.93
+        # Appendix G, G-7 (PDF 284, printed 264): k=100, 20 million passes
+        # -> F = 0.93; beyond the chart's 10,000,000 edge F is held, noted.
         r = figure_15_1_cracking_projection_factor(20_000_000, 100)
-        assert r["f"] == pytest.approx(0.93, abs=0.03)
+        assert r["f"] == pytest.approx(0.93, abs=0.005)
+        assert "held" in r["note"]
+
+    def test_between_curves_linear_in_k(self):
+        r = figure_15_1_cracking_projection_factor(100_000, 250)
+        assert r["f"] == pytest.approx(0.853, abs=0.005)
+        r = figure_15_1_cracking_projection_factor(100_000, 225)
+        lo = figure_15_1_cracking_projection_factor(100_000, 200)["f"]
+        hi = figure_15_1_cracking_projection_factor(100_000, 250)["f"]
+        assert r["f"] == pytest.approx((lo + hi) / 2, abs=0.001)
 
     def test_higher_k_lower_f(self):
         r_soft = figure_15_1_cracking_projection_factor(1_000_000, 50)
         r_stiff = figure_15_1_cracking_projection_factor(1_000_000, 300)
         assert r_stiff["f"] < r_soft["f"]
 
+    def test_below_printed_curve_start_raises(self):
+        # The k = 500 curve begins at about 8,600 passes (F 0.46); k = 150
+        # at about 145 passes; k = 25-100 at the chart's 100-pass edge.
+        with pytest.raises(ValueError, match="k=500 curve begins"):
+            figure_15_1_cracking_projection_factor(5_000, 500)
+        assert figure_15_1_cracking_projection_factor(9_000, 500)["f"] == \
+            pytest.approx(0.46, abs=0.01)
+        with pytest.raises(ValueError, match="k=150 curve begins"):
+            figure_15_1_cracking_projection_factor(120, 150)
+
     def test_low_passes_raises(self):
-        with pytest.raises(ValueError, match="passes must be >= 100"):
+        with pytest.raises(ValueError, match="curve begins"):
             figure_15_1_cracking_projection_factor(10, 100)
 
     def test_k_out_of_range_raises(self):

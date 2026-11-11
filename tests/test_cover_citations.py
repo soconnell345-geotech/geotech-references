@@ -22,8 +22,8 @@ fails the test until its mark is removed). Skips when the PDFs are not checked
 out.
 
 REF-31 (2026-11-06): GEC-10 is cited as FHWA-NHI-18-024 (its data is the
-2018 edition) and GEC-13 Vol II as FHWA-NHI-16-028; ufc_backfill's tables
-and equations are not in the held UFC 3-220-04FA, so it stays marked.
+2018 edition) and GEC-13 Vol II as FHWA-NHI-16-028. ufc_backfill, rebuilt
+from the held UFC 3-220-04FA (review pave-14, 2026-11-10), cites its cover.
 """
 
 import json
@@ -77,17 +77,10 @@ COVERS = [
     # aashto_1993 is a scan with no text layer; the wood_handbook PDF is not
     # in docs/.
     ("gec_10", None, "FHWA-NHI-18-024", None, False),
-    # REF-31: the package's tables and equations are not the held 04FA's
-    # (it prints CE 55 / MIL-STD-621 densities and Table 5-1, no ASTM D698
-    # table, no Broms equation, no filter ratios), so its citation is left
-    # as it is until the edition it came from is found.
-    pytest.param(
-        "ufc_backfill", None, "UFC 3-220-04FA", "16 January 2004", False,
-        marks=pytest.mark.xfail(strict=True, reason=(
-            "the data cites UFC 3-220-04N; the cover reads "
-            "UFC 3-220-04FA, 16 January 2004, and the data's tables and "
-            "equations are not in it (edition gap, REF-31)")),
-        id="ufc_backfill"),
+    # REF-31 kept the 04N citation while the package's tables were not the
+    # held 04FA's; review pave-14 (2026-11-10) rebuilt them from the 04FA
+    # print, so it cites the cover.
+    ("ufc_backfill", None, "UFC 3-220-04FA", "16 January 2004", False),
 ]
 
 

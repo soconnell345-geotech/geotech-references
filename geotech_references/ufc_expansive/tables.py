@@ -1,94 +1,110 @@
 """UFC 3-220-07 expansive soil lookup tables.
 
-Swell potential classification, active zone depth, foundation
-selection guidance, and grade beam void space requirements.
-All units SI.
+From UFC 3-220-07, Foundations in Expansive Soils (the reproduced
+TM 5-818-7), docs/ufc_3_220_07.pdf. Every value is read off the printed
+page named in its result: Table 4-1 (p. 4-1), paragraph 5-4c (p. 5-4),
+Table 6-1 (p. 6-2) and paragraph 6-4, Grade beams (p. 6-16). The print's
+units (inches, feet, tsf) are kept, with SI conversions labelled as
+conversions. PDF page (1-based) = 30 + n for printed p. 4-n, 35 + n for
+p. 5-n, 42 + n for p. 6-n.
+
+Rebuilt from the print 2026-11-10 (review pave-07, pave-13): the earlier
+five-class swell table, climate active-zone depths, swell-class foundation
+table and millimetre grade-beam voids were not printed in this manual.
 """
 
+_REF = "UFC 3-220-07 (TM 5-818-7)"
+_FT_TO_M = 0.3048
+_IN_TO_MM = 25.4
+
 # ---------------------------------------------------------------------------
-# Table data
+# Table 4-1 WES Classification of Potential Swell (PDF 31, printed p. 4-1)
 # ---------------------------------------------------------------------------
 
-# Swell potential classification (modified from Holtz & Gibbs 1956,
-# Chen 1988, and UFC 3-220-07)
-_TABLE_SWELL_POTENTIAL = [
-    # (pi_min, pi_max, ll_min, ll_max, classification, typical_swell_pct)
-    (0, 10, 0, 30, "very_low", "< 1"),
-    (10, 20, 30, 40, "low", "1 - 4"),
-    (20, 35, 40, 55, "medium", "4 - 8"),
-    (35, 55, 55, 70, "high", "8 - 15"),
-    (55, 200, 70, 200, "very_high", "> 15"),
+# classification -> printed ranges (potential swell Sp %, LL %, PI %,
+# natural soil suction tsf)
+_TABLE_4_1 = {
+    "low": {"potential_swell_pct": "<0.5", "liquid_limit_pct": "<50",
+            "plasticity_index_pct": "<25", "natural_soil_suction_tsf": "<1.5"},
+    "marginal": {"potential_swell_pct": "0.5-1.5", "liquid_limit_pct": "50-60",
+                 "plasticity_index_pct": "25-35",
+                 "natural_soil_suction_tsf": "1.5-4.0"},
+    "high": {"potential_swell_pct": ">1.5", "liquid_limit_pct": ">60",
+             "plasticity_index_pct": ">35", "natural_soil_suction_tsf": ">4.0"},
+}
+_RANK = {"low": 0, "marginal": 1, "high": 2}
+_TABLE_4_1_NOTE = (
+    "Para 4-1a (p. 4-1): The Sp represents the percent increase in the "
+    "vertical dimension or the percent potential vertical heave. The "
+    "classification may be used without knowing the natural soil suction, "
+    "but the accuracy and conservatism of the system are reduced. Soils that "
+    "rate low may not require further swell tests, particularly if the LL is "
+    "less than 40 percent and the PI is less than 15 percent. Soils with "
+    "these Atterberg limits or less are essentially nonexpansive. However, "
+    "swell tests may be required for soils of low swelling potential if the "
+    "foundation of the structure is required to maintain small differential "
+    "movements less than 1 inch (para 4-2c).")
+
+
+def _band(value, low_below, high_above):
+    """'low' below low_below, 'high' above high_above, else 'marginal'."""
+    if value < low_below:
+        return "low"
+    if value > high_above:
+        return "high"
+    return "marginal"
+
+
+# ---------------------------------------------------------------------------
+# Table 6-1 Foundation Systems (PDF 44, printed p. 6-2)
+# ---------------------------------------------------------------------------
+
+_SHALLOW = {
+    "foundation_system": "Shallow individual; continuous wall; strip",
+    "remarks": "Lightly loaded buildings and residences.",
+}
+_THIN_MAT_REMARKS = (
+    "Residences and lightly loaded structures; on-grade 4- to 5-in. "
+    "reinforced concrete slab with stiffening beams; maximum free area "
+    "between beams 400 ft2; 1/2 percent reinforcing steel; 10- to "
+    "12-in.-thick beams; external beams thickened or deepened, and extra "
+    "steel stirrups added to tolerate high edge forces as needed; dimensions "
+    "adjusted to resist loading. Beams positioned beneath corners to reduce "
+    "slab distortion.")
+_THIN_MATS = {
+    # type of mat -> (predicted differential movement in., effective PI,
+    #                 beam depth in., beam spacing ft), as printed
+    "light": ("1/2 to 1", "15 to 25", "16 to 20", "20 to 15"),
+    "medium": ("1 to 2", "26 to 40", "20 to 25", "15 to 12"),
+    "heavy": ("2 to 4", ">41", "25 to 30", "15 to 12"),
+}
+_NO_LIMIT = [
+    {"foundation_system": "Thick, reinforced mat",
+     "predicted_differential_movement_in": "No limit",
+     "remarks": ("Large, heavy structures; mats usually 2 ft or more in "
+                 "thickness.")},
+    {"foundation_system": "Deep foundations, pile or drilled shaft",
+     "predicted_differential_movement_in": "No limit",
+     "remarks": ("Foundations for any light or heavy structure; grade beams "
+                 "span between piles or shafts 6 to 12 in. above ground "
+                 "level; suspended floors or on-grade slabs isolated from "
+                 "grade beams and walls. Concrete drilled shafts may be "
+                 "underreamed or straight, reinforced, and cast in place "
+                 "with 3000-psi concrete of 6-in. slump.")},
 ]
 
-_TABLE_ACTIVE_ZONE = {
-    # climate -> typical active zone depth (m) and notes
-    "arid": {
-        "typical_depth_m": 6.0,
-        "range_m": (3.0, 9.0),
-        "notes": "Deep seasonal moisture change; sparse vegetation",
-    },
-    "semi_arid": {
-        "typical_depth_m": 4.0,
-        "range_m": (2.0, 6.0),
-        "notes": "Moderate seasonal moisture change",
-    },
-    "subhumid": {
-        "typical_depth_m": 3.0,
-        "range_m": (1.5, 4.5),
-        "notes": "Moderate rainfall; seasonal variation",
-    },
-    "humid": {
-        "typical_depth_m": 1.5,
-        "range_m": (1.0, 3.0),
-        "notes": "Shallow moisture fluctuation; consistent rainfall",
-    },
-    "coastal": {
-        "typical_depth_m": 1.0,
-        "range_m": (0.5, 2.0),
-        "notes": "Shallow active zone; stable moisture conditions",
-    },
-}
 
-_TABLE_FOUNDATION_SELECTION = {
-    # swell_potential -> recommended foundation types
-    "very_low": {
-        "recommended": ["conventional_slab_on_grade", "strip_footings"],
-        "precautions": "Standard design; no special provisions needed",
-        "void_space_mm": 0,
-    },
-    "low": {
-        "recommended": ["stiffened_slab_on_grade", "strip_footings"],
-        "precautions": "Provide positive drainage away from foundations",
-        "void_space_mm": 0,
-    },
-    "medium": {
-        "recommended": ["stiffened_slab_on_grade", "pier_and_beam"],
-        "precautions": "Moisture barriers; positive drainage; flexible utilities",
-        "void_space_mm": 50,
-    },
-    "high": {
-        "recommended": ["pier_and_beam", "post_tensioned_slab"],
-        "precautions": "Deep piers into stable zone; void forms under grade beams; "
-                       "moisture barriers; flexible utility connections",
-        "void_space_mm": 100,
-    },
-    "very_high": {
-        "recommended": ["pier_and_beam"],
-        "precautions": "Deep piers well below active zone; large void space; "
-                       "structural floor isolated from soil; moisture barriers; "
-                       "flexible utility connections; consider removal and replacement",
-        "void_space_mm": 150,
-    },
-}
-
-_TABLE_GRADE_BEAM_VOID = {
-    # swell_potential -> void space under grade beams (mm)
-    "very_low": {"void_space_mm": 0, "notes": "No void required"},
-    "low": {"void_space_mm": 0, "notes": "No void required; ensure drainage"},
-    "medium": {"void_space_mm": 50, "notes": "Minimum 50 mm void with cardboard forms"},
-    "high": {"void_space_mm": 100, "notes": "100 mm void; use wax-coated cardboard or foam"},
-    "very_high": {"void_space_mm": 150, "notes": "150 mm minimum void; structural floor preferred"},
-}
+def _thin_mat(mat):
+    move, pi, depth, spacing = _THIN_MATS[mat]
+    return {
+        "foundation_system": "Reinforced and stiffened thin mat",
+        "type_of_mat": mat,
+        "predicted_differential_movement_in": move,
+        "effective_plasticity_index": pi,
+        "beam_depth_in": depth,
+        "beam_spacing_ft": spacing,
+        "remarks": _THIN_MAT_REMARKS,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -98,12 +114,18 @@ _TABLE_GRADE_BEAM_VOID = {
 def table_swell_potential_classification(
     plasticity_index=None,
     liquid_limit=None,
+    natural_soil_suction_tsf=None,
 ):
-    """Classify swell potential from plasticity index or liquid limit.
+    """WES classification of potential swell, UFC 3-220-07 Table 4-1
+    (printed p. 4-1, PDF 31); returns 'low', 'marginal' or 'high' with the
+    printed potential swell Sp (percent potential vertical heave).
 
-    At least one of *plasticity_index* or *liquid_limit* must be given.
-    If both are given, the classification is based on the more severe
-    (higher swell potential) of the two.
+    Table 4-1 as printed: Low, Sp < 0.5 %, LL < 50, PI < 25, natural soil
+    suction < 1.5 tsf; Marginal, Sp 0.5-1.5 %, LL 50-60, PI 25-35, suction
+    1.5-4.0 tsf; High, Sp > 1.5 %, LL > 60, PI > 35, suction > 4.0 tsf.
+    When the given properties fall in different rows the more severe row is
+    returned (the code's choice; the table does not say), with each
+    property's own row.
 
     Parameters
     ----------
@@ -111,155 +133,274 @@ def table_swell_potential_classification(
         Plasticity index (%).
     liquid_limit : float, optional
         Liquid limit (%).
+    natural_soil_suction_tsf : float, optional
+        Natural soil suction, tons per square foot.
 
     Returns
     -------
     dict
-        Keys: classification, typical_swell_pct, pi_range, ll_range.
+        Keys: classification, potential_swell_pct (the printed range),
+        by_property (each given property's row), printed_row, note,
+        reference, and the inputs given.
 
     Raises
     ------
     ValueError
-        If neither parameter is given or values are negative.
+        If no property is given or a value is negative.
     """
-    if plasticity_index is None and liquid_limit is None:
+    given = {"plasticity_index": plasticity_index,
+             "liquid_limit": liquid_limit,
+             "natural_soil_suction_tsf": natural_soil_suction_tsf}
+    given = {k: v for k, v in given.items() if v is not None}
+    if not given:
         raise ValueError(
-            "At least one of plasticity_index or liquid_limit must be given"
-        )
-
-    classifications = []
-
-    if plasticity_index is not None:
-        if plasticity_index < 0:
-            raise ValueError(
-                f"plasticity_index must be >= 0, got {plasticity_index}"
-            )
-        for pi_min, pi_max, _, _, cls, swell in _TABLE_SWELL_POTENTIAL:
-            if pi_min <= plasticity_index < pi_max:
-                classifications.append((cls, swell, f"{pi_min}-{pi_max}"))
-                break
-        else:
-            # Above the last range
-            _, _, _, _, cls, swell = _TABLE_SWELL_POTENTIAL[-1]
-            pi_min = _TABLE_SWELL_POTENTIAL[-1][0]
-            classifications.append((cls, swell, f">{pi_min}"))
-
-    if liquid_limit is not None:
-        if liquid_limit < 0:
-            raise ValueError(
-                f"liquid_limit must be >= 0, got {liquid_limit}"
-            )
-        for _, _, ll_min, ll_max, cls, swell in _TABLE_SWELL_POTENTIAL:
-            if ll_min <= liquid_limit < ll_max:
-                classifications.append((cls, swell, f"LL {ll_min}-{ll_max}"))
-                break
-        else:
-            _, _, _, _, cls, swell = _TABLE_SWELL_POTENTIAL[-1]
-            ll_min = _TABLE_SWELL_POTENTIAL[-1][2]
-            classifications.append((cls, swell, f"LL >{ll_min}"))
-
-    # Use the more severe classification
-    rank = {"very_low": 0, "low": 1, "medium": 2, "high": 3, "very_high": 4}
-    worst = max(classifications, key=lambda x: rank.get(x[0], 0))
-
+            "At least one of plasticity_index, liquid_limit or "
+            "natural_soil_suction_tsf must be given")
+    for k, v in given.items():
+        if v < 0:
+            raise ValueError(f"{k} must be >= 0, got {v}")
+    bounds = {"plasticity_index": (25, 35), "liquid_limit": (50, 60),
+              "natural_soil_suction_tsf": (1.5, 4.0)}
+    by_prop = {k: _band(v, *bounds[k]) for k, v in given.items()}
+    worst = max(by_prop.values(), key=lambda c: _RANK[c])
     result = {
-        "classification": worst[0],
-        "typical_swell_pct": worst[1],
+        "classification": worst,
+        "potential_swell_pct": _TABLE_4_1[worst]["potential_swell_pct"],
+        "by_property": by_prop,
+        "printed_row": dict(_TABLE_4_1[worst]),
+        "note": _TABLE_4_1_NOTE,
+        "reference": f"{_REF}, Table 4-1, printed p. 4-1 (PDF 31)",
     }
-    if plasticity_index is not None:
-        result["plasticity_index"] = plasticity_index
-    if liquid_limit is not None:
-        result["liquid_limit"] = liquid_limit
+    result.update(given)
     return result
 
 
-def table_active_zone_depth(climate):
-    """Return typical active zone depth for a given climate.
+def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
+                            depth_to_groundwater_ft=None,
+                            shaft_base_diameter_ft=None):
+    """Depth of the active zone Xa, feet below the base of the foundation,
+    UFC 3-220-07 paragraph 5-4c (printed p. 5-4, PDF 39); returns the
+    printed estimate with a conversion to metres.
 
-    The active zone is the depth of seasonal moisture change that
-    drives shrink-swell movements.
+    As printed: (1) for groundwater levels less than 20 feet in clay soil,
+    Xa may be assumed equal to the depth of the water table; (2)(a) if
+    depths to groundwater exceed 20 feet and no other information is
+    available, Xa can be assumed to be between 10 feet (moist profiles or
+    soil suctions less than 4 tsf) and 20 feet (dry profiles or soil
+    suctions greater than 4 tsf) below the base of the foundation; "the
+    depth Xa should not be estimated less than three times the base
+    diameter of a shaft foundation". (2)(b)-(c): Xa can also be estimated
+    from the suction or water content/plastic limit profile (appendix B).
 
     Parameters
     ----------
-    climate : str
-        One of: arid, semi_arid, subhumid, humid, coastal.
+    profile : str, optional
+        'moist' (10 ft) or 'dry' (20 ft), for groundwater deeper than
+        20 ft.
+    natural_soil_suction_tsf : float, optional
+        Used in place of *profile*: < 4 tsf -> 10 ft, > 4 tsf -> 20 ft
+        (exactly 4 is refused: the print gives none).
+    depth_to_groundwater_ft : float, optional
+        Below 20 ft, Xa = this depth (paragraph 5-4c(1)).
+    shaft_base_diameter_ft : float, optional
+        If given, the deep-groundwater Xa is not less than 3 times it
+        (printed under 5-4c(2)(a)).
 
     Returns
     -------
     dict
-        Keys: climate, typical_depth_m, range_m (tuple), notes.
+        Keys: active_zone_depth_ft, active_zone_depth_m (conversion),
+        basis, reference.
 
     Raises
     ------
     ValueError
-        If *climate* is not recognised.
+        If neither a shallow groundwater depth, a profile nor a suction is
+        given, or a value is out of range.
     """
-    key = climate.lower().strip()
-    if key not in _TABLE_ACTIVE_ZONE:
+    if depth_to_groundwater_ft is not None and depth_to_groundwater_ft < 0:
         raise ValueError(
-            f"Unknown climate '{climate}'. "
-            f"Valid: {sorted(_TABLE_ACTIVE_ZONE)}"
-        )
-    row = _TABLE_ACTIVE_ZONE[key]
-    return {"climate": key, **row}
+            f"depth_to_groundwater_ft must be >= 0, got {depth_to_groundwater_ft}")
+    if depth_to_groundwater_ft is not None and depth_to_groundwater_ft < 20:
+        xa = float(depth_to_groundwater_ft)
+        basis = ("5-4c(1) shallow groundwater: Xa may be assumed equal to the "
+                 "depth of the water table for groundwater levels less than "
+                 "20 feet in clay soil.")
+    else:
+        if profile is None and natural_soil_suction_tsf is not None:
+            if natural_soil_suction_tsf < 0:
+                raise ValueError("natural_soil_suction_tsf must be >= 0")
+            if natural_soil_suction_tsf < 4:
+                profile = "moist"
+            elif natural_soil_suction_tsf > 4:
+                profile = "dry"
+            else:
+                raise ValueError(
+                    "Paragraph 5-4c(2)(a) gives 10 ft for suctions less "
+                    "than 4 tsf and 20 ft for greater than 4 tsf; exactly 4 "
+                    "is not stated")
+        p = None if profile is None else str(profile).strip().lower()
+        if p not in ("moist", "dry"):
+            raise ValueError(
+                "Give depth_to_groundwater_ft (< 20 ft), or profile "
+                "'moist'/'dry' or natural_soil_suction_tsf for groundwater "
+                "deeper than 20 ft (paragraph 5-4c, p. 5-4)")
+        xa = 10.0 if p == "moist" else 20.0
+        basis = ("5-4c(2)(a) deep groundwater, no other information: Xa "
+                 "between 10 feet (moist profiles or soil suctions less than "
+                 "4 tsf) and 20 feet (dry profiles or soil suctions greater "
+                 f"than 4 tsf) below the base of the foundation; {p} -> "
+                 f"{xa:g} ft.")
+    if shaft_base_diameter_ft is not None:
+        if shaft_base_diameter_ft <= 0:
+            raise ValueError("shaft_base_diameter_ft must be > 0")
+        if basis.startswith("5-4c(1)"):
+            basis += (" The three-base-diameter floor for shafts is printed "
+                      "under 5-4c(2)(a), deep groundwater; not applied.")
+        elif 3 * shaft_base_diameter_ft > xa:
+            xa = 3.0 * shaft_base_diameter_ft
+            basis += (" Raised to 3 times the shaft base diameter: the depth "
+                      "Xa should not be estimated less than three times the "
+                      "base diameter of a shaft foundation.")
+    return {
+        "active_zone_depth_ft": xa,
+        "active_zone_depth_m": round(xa * _FT_TO_M, 3),
+        "basis": basis,
+        "reference": f"{_REF}, para 5-4c, printed p. 5-4 (PDF 39)",
+    }
 
 
-def table_foundation_selection(swell_potential):
-    """Recommend foundation type based on swell potential.
+def table_foundation_selection(predicted_differential_movement_in=None,
+                               effective_plasticity_index=None):
+    """Foundation systems for expansive soils, UFC 3-220-07 Table 6-1
+    (printed p. 6-2, PDF 44); returns the printed systems that apply to the
+    predicted differential movement (inches) or effective plasticity index,
+    with the printed remarks and, for stiffened thin mats, beam depth and
+    spacing.
+
+    Table 6-1 as printed: 1/2 in, effective PI < 15, shallow individual,
+    continuous wall or strip footings; reinforced and stiffened thin mat:
+    light (1/2 to 1 in, PI 15 to 25; beams 16 to 20 in deep at 20 to 15 ft),
+    medium (1 to 2 in, PI 26 to 40; 20 to 25 in at 15 to 12 ft), heavy (2 to
+    4 in, PI > 41; 25 to 30 in at 15 to 12 ft); thick reinforced mat and
+    deep foundations (pile or drilled shaft), no limit. Rows are read as:
+    movement <= 1/2, (1/2, 1], (1, 2], (2, 4], over 4 (no-limit systems
+    only); PI < 15, 15-25, over 25 to 40, over 40 (the printed 25-26 and
+    40-41 gaps go to the higher row; the code's choice). Figure 6-1 (p. 6-3)
+    gives the effective PI.
 
     Parameters
     ----------
-    swell_potential : str
-        One of: very_low, low, medium, high, very_high.
+    predicted_differential_movement_in : float, optional
+        Predicted differential movement, inches.
+    effective_plasticity_index : float, optional
+        Effective (or average) PI of the top 15 ft (Figure 6-1). Used when
+        no movement is given.
 
     Returns
     -------
     dict
-        Keys: swell_potential, recommended (list), precautions,
-        void_space_mm.
+        Keys: predicted_differential_movement_in or
+        effective_plasticity_index, systems (list of dicts as printed),
+        reference.
 
     Raises
     ------
     ValueError
-        If *swell_potential* is not recognised.
+        If neither input is given or a value is negative.
     """
-    key = swell_potential.lower().strip()
-    if key not in _TABLE_FOUNDATION_SELECTION:
+    m = predicted_differential_movement_in
+    pi = effective_plasticity_index
+    if m is None and pi is None:
         raise ValueError(
-            f"Unknown swell potential '{swell_potential}'. "
-            f"Valid: {sorted(_TABLE_FOUNDATION_SELECTION)}"
-        )
-    row = _TABLE_FOUNDATION_SELECTION[key]
-    return {"swell_potential": key, **row}
+            "Give predicted_differential_movement_in or "
+            "effective_plasticity_index (Table 6-1, p. 6-2)")
+    if m is not None:
+        if m < 0:
+            raise ValueError(f"predicted_differential_movement_in must be >= 0, got {m}")
+        if m <= 0.5:
+            row = "shallow"
+        elif m <= 1:
+            row = "light"
+        elif m <= 2:
+            row = "medium"
+        elif m <= 4:
+            row = "heavy"
+        else:
+            row = None
+        out = {"predicted_differential_movement_in": m}
+    else:
+        if pi < 0:
+            raise ValueError(f"effective_plasticity_index must be >= 0, got {pi}")
+        if pi < 15:
+            row = "shallow"
+        elif pi <= 25:
+            row = "light"
+        elif pi <= 40:
+            row = "medium"
+        else:
+            row = "heavy"
+        out = {"effective_plasticity_index": pi}
+    systems = []
+    if row == "shallow":
+        systems.append({**_SHALLOW,
+                        "predicted_differential_movement_in": "1/2",
+                        "effective_plasticity_index": "<15"})
+    elif row is not None:
+        systems.append(_thin_mat(row))
+    systems.extend(dict(s) for s in _NO_LIMIT)
+    out["systems"] = systems
+    out["reference"] = f"{_REF}, Table 6-1, printed p. 6-2 (PDF 44)"
+    return out
 
 
-def table_grade_beam_void_space(swell_potential):
-    """Return required void space under grade beams for expansive soils.
+def table_grade_beam_void_space(predicted_total_heave_in=None):
+    """Void space beneath grade beams spanning between shafts, UFC 3-220-07
+    paragraph 6-4, Grade beams (printed p. 6-16, PDF 58); returns the
+    printed rule "6 to 12 inches or 2 times the predicted total heave of
+    soil located above the base of the shaft foundation (whichever is
+    larger)" and, given the heave, the void in inches.
 
-    Void space allows upward soil movement without loading the grade
-    beam.  Typically created with wax-coated cardboard void forms that
-    degrade after construction.
+    With a predicted total heave h (in.): void_space_low_in = max(6, 2h),
+    void_space_high_in = max(12, 2h). Figure 6-12 (p. 6-17) shows typical
+    void details (a 6-in. void). Grade beams resting on the soil without
+    void spaces are not recommended.
 
     Parameters
     ----------
-    swell_potential : str
-        One of: very_low, low, medium, high, very_high.
+    predicted_total_heave_in : float, optional
+        Predicted total heave of the soil above the base of the shaft
+        foundation, inches.
 
     Returns
     -------
     dict
-        Keys: swell_potential, void_space_mm, notes.
+        Keys: void_space_low_in, void_space_high_in, void_space_low_mm,
+        void_space_high_mm (conversions), predicted_total_heave_in, printed,
+        reference.
 
     Raises
     ------
     ValueError
-        If *swell_potential* is not recognised.
+        If the heave is negative.
     """
-    key = swell_potential.lower().strip()
-    if key not in _TABLE_GRADE_BEAM_VOID:
-        raise ValueError(
-            f"Unknown swell potential '{swell_potential}'. "
-            f"Valid: {sorted(_TABLE_GRADE_BEAM_VOID)}"
-        )
-    row = _TABLE_GRADE_BEAM_VOID[key]
-    return {"swell_potential": key, **row}
+    h = predicted_total_heave_in
+    if h is not None and h < 0:
+        raise ValueError(f"predicted_total_heave_in must be >= 0, got {h}")
+    lo, hi = (6.0, 12.0) if h is None else (max(6.0, 2.0 * h), max(12.0, 2.0 * h))
+    return {
+        "predicted_total_heave_in": h,
+        "void_space_low_in": lo,
+        "void_space_high_in": hi,
+        "void_space_low_mm": round(lo * _IN_TO_MM, 1),
+        "void_space_high_mm": round(hi * _IN_TO_MM, 1),
+        "printed": (
+            "These grade beams should be isolated from the underlying "
+            "swelling soil with a void space beneath the beams of 6 to 12 "
+            "inches or 2 times the predicted total heave of soil located "
+            "above the base of the shaft foundation (whichever is larger). "
+            "... Grade beams resting on the soil without void spaces are "
+            "subject to distortion from uplift pressure of swelling "
+            "foundation soil and are not recommended."),
+        "reference": f"{_REF}, para 6-4, Grade beams, printed p. 6-16 (PDF 58)",
+    }

@@ -680,7 +680,7 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
 
 
 # ============================================================================
-# Subsurface drainage design (Chapter 20; pdf_page 108-118, printed 89-99)
+# Subsurface drainage design (Chapter 20; pdf_page 111-134, printed 92-115)
 # ============================================================================
 
 def darcy_flow_rate(k, i, area) -> dict:
@@ -716,13 +716,18 @@ def darcy_flow_rate(k, i, area) -> dict:
     return {
         "k": k, "i": i, "area": area, "velocity": v, "flow_rate": q,
         "equation": "v = k*i;  Q = k*i*A",
-        "reference": "UFC 3-250-01, Eq. 20-1/20-2 (pdf_page 108, printed 89)",
+        "reference": "UFC 3-250-01, Eq. 20-1/20-2 (pdf_page 111, printed 92)",
     }
 
 
 def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
-    """Taylor's equation for coefficient of permeability from soil/fluid
-    properties (Chapter 20, Eq. 20-3; pdf_page 109, printed 90).
+    """Coefficient of permeability k by Taylor's equation, UFC 3-250-01
+    Eq. 20-3 (pdf_page 112, printed 93); returns k in the inputs' consistent
+    units. Eq. 20-3 is printed with (1-e) in the denominator,
+    k = Ds^2 * C * (gamma*e^3 / (mu*(1-e))); this function computes it with
+    (1+e), k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)], as it was coded
+    before the review of 2026-11-10; the owner is to revisit the choice.
+    The result says so.
 
         k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)]
 
@@ -759,23 +764,28 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
         "ds_mm": ds_mm, "c": c, "gamma": gamma, "mu": mu, "e": e,
         "k": k,
         "equation": "k = C * Ds^2 * (gamma/mu) * [e^3/(1+e)]",
-        "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page 109, printed 90)",
+        "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page 112, printed 93)",
+        "note": (
+            "Eq. 20-3 as printed (printed p. 93) has (1-e) in the "
+            "denominator, k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this function "
+            "keeps (1+e), as it was coded before the review of 2026-11-10, "
+            "and the owner is to revisit the choice."
+        ),
     }
 
 
 def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
-    """Effective (drainable) porosity of a soil (Chapter 20, Eq. 20-4;
-    pdf_page 111, printed 92).
+    """Effective porosity ne of a soil, UFC 3-250-01 Eq. 20-4 (pdf_page 113,
+    printed 94); returns ne as a decimal fraction (dimensionless).
 
-        ne = [gamma_d / (Gs*gamma_w)] * [(1+e) part folded into We form]
-        ne = (gamma_d * We) / gamma_w     [as printed: gamma_d/(Gs*gamma_w)]
+        ne = 1 - [gamma_d / (Gs * gamma_w)] * (1 + Gs * We)
 
-    Reproduced as printed: ne = (gamma_d * We * Gs) / (Gs * gamma_w)
-    simplifies to ne = gamma_d*We/gamma_w; the Gs term cancels in the
-    printed form (Gs appears in both the porosity definition and the
-    effective-water-content weighting). Typical bounds: well-graded base
-    course <= 0.15; uniform medium/coarse sand <= 0.25; open-graded
-    drainage aggregate 0.25-0.35+.
+    The effective porosity is the ratio of the volume of voids drained by
+    gravity flow to the total volume of soil. The same page states: test
+    data for well-graded base course materials (bank-run sands and gravels)
+    indicate ne of not more than 0.15; uniformly graded medium or coarse
+    sands not more than 0.25; a uniformly graded aggregate such as a
+    drainage layer may be above 0.25.
 
     Parameters
     ----------
@@ -800,25 +810,35 @@ def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
     Raises
     ------
     ValueError
-        If any input is not positive.
+        If any input is not positive, or if the inputs give no drainable
+        pore space (ne <= 0: We at or above the saturated water content for
+        that dry density).
     """
     for name, val in (("dry_density", dry_density), ("gs", gs),
                       ("water_unit_weight", water_unit_weight), ("we", we)):
         if val <= 0:
             raise ValueError(f"{name} must be > 0, got {val}")
-    ne = (dry_density * gs * we) / (gs * water_unit_weight)
+    ne = 1 - dry_density / (gs * water_unit_weight) * (1 + gs * we)
+    if ne <= 0:
+        w_zero = water_unit_weight / dry_density - 1.0 / gs
+        raise ValueError(
+            f"Eq. 20-4 (UFC 3-250-01, printed p. 94) gives ne = {ne:.4f} for "
+            f"these inputs: no drainable pore space. The effective water "
+            f"content We = {we} is at or above the saturated water content "
+            f"for dry density {dry_density} (Eq. 20-4 gives ne = 0 at "
+            f"We = {w_zero:.4f}).")
     return {
         "dry_density": dry_density, "gs": gs,
         "water_unit_weight": water_unit_weight, "we": we,
         "effective_porosity": round(ne, 4),
-        "equation": "ne = (gamma_d * Gs * We) / (Gs * gamma_w)",
-        "reference": "UFC 3-250-01, Eq. 20-4 (pdf_page 111, printed 92)",
+        "equation": "ne = 1 - [gamma_d / (Gs * gamma_w)] * (1 + Gs * We)",
+        "reference": "UFC 3-250-01, Eq. 20-4 (pdf_page 113, printed 94)",
     }
 
 
 def effective_horizontal_permeability(layers) -> dict:
     """Weighted-average effective horizontal permeability of a layered
-    pavement section (Chapter 20, Eq. 20-5; pdf_page 112, printed 93).
+    pavement section (Chapter 20, Eq. 20-5; pdf_page 114, printed 95).
 
         k = sum(k_i * d_i) / sum(d_i)
 
@@ -851,7 +871,7 @@ def effective_horizontal_permeability(layers) -> dict:
     return {
         "layers": list(layers), "k_effective": k_eff,
         "equation": "k = sum(k_i*d_i) / sum(d_i)",
-        "reference": "UFC 3-250-01, Eq. 20-5 (pdf_page 112, printed 93)",
+        "reference": "UFC 3-250-01, Eq. 20-5 (pdf_page 114, printed 95)",
     }
 
 
@@ -932,15 +952,15 @@ def drainage_layer_drainable_flow(t, k, i, h, length) -> dict:
 
 
 def time_for_50pct_drainage(ne, d, i, k) -> dict:
-    """Time for 50% drainage of a base/subbase layer (Chapter 20, Eq. 20-11;
-    pdf_page 117, printed 98). Applies when the drainage-layer thickness is
-    small compared to the drainage-path length, so i ~= Ho/D.
+    """Time for 50 percent drainage T50 of a base/subbase layer, UFC 3-250-01
+    Eq. 20-11 (pdf_page 117, printed 98); returns t50 in the time unit of k.
 
-        T50 = (ne * D) / (i * k)
+        T50 = (ne * D) / (2 * i * k)
 
-    Verified functional form against the guide's simplified relation from
-    Eq. 20-10 (T50 = ne*D^2 / (k*Ho*D) = ne*D/(k*Ho) = ne*D/(k*i) with
-    i = Ho/D).
+    Eq. 20-11 is Eq. 20-10, T50 = (ne * D^2) / (2 * k * Ho), written with
+    the slope of the drainage path i = Ho/D, which the page allows when the
+    drainage-layer thickness is small compared to the length of the
+    drainage path.
 
     Parameters
     ----------
@@ -968,21 +988,24 @@ def time_for_50pct_drainage(ne, d, i, k) -> dict:
     for name, val in (("ne", ne), ("d", d), ("i", i), ("k", k)):
         if val <= 0:
             raise ValueError(f"{name} must be > 0, got {val}")
-    t50 = (ne * d) / (i * k)
+    t50 = (ne * d) / (2 * i * k)
     return {
         "ne": ne, "d": d, "i": i, "k": k, "t50": t50,
-        "equation": "T50 = (ne*D) / (i*k)",
+        "equation": "T50 = (ne*D) / (2*i*k)",
         "reference": "UFC 3-250-01, Eq. 20-11 (pdf_page 117, printed 98)",
     }
 
 
 def time_for_85pct_drainage(ne, d, i, k) -> dict:
-    """Time for 85% drainage (twice the 50%-drainage time; Chapter 20,
-    Eq. 20-12; pdf_page 117, printed 98).
+    """Time for 85 percent drainage T85 of a drainage layer, UFC 3-250-01
+    Eq. 20-12 (pdf_page 117, printed 98); returns t85 in the time unit of k.
 
-        T85 = (ne * D) / (i * k)   [T85 ~= 2*T50 per the guide's text; the
-        printed Eq. 20-12 uses the same symbolic form as Eq. 20-11 with the
-        implicit factor absorbed -- apply directly for the 85% criterion.]
+        T85 = (ne * D) / (i * k)
+
+    The page states that the time for 85 percent drainage is about twice
+    the time for 50 percent drainage (Eq. 20-11 has 2*i*k in the
+    denominator), and that a drainage layer must reach 85 percent drainage
+    within 24 hr.
 
     Parameters
     ----------
@@ -1008,10 +1031,10 @@ def time_for_85pct_drainage(ne, d, i, k) -> dict:
         "equation": "T85 = (ne*D) / (i*k)",
         "reference": "UFC 3-250-01, Eq. 20-12 (pdf_page 117, printed 98)",
         "note": (
-            "Printed as the same symbolic ratio as Eq. 20-11 (T50); the "
-            "guide states T85 is about twice T50 in practice -- confirm "
-            "which criterion (10-day T50 pre-1994, or 24-hr/10-day T85 "
-            "current) governs your design case."
+            "T85 is about twice T50 (Eq. 20-11 has 2*i*k in the "
+            "denominator). The page gives the drainage-layer criterion as "
+            "85 percent drainage within 24 hr; until 1994 the criterion was "
+            "50 percent drainage of the base and subbase within 10 days."
         ),
     }
 
@@ -1093,7 +1116,7 @@ def drainage_path_slope(it, ie) -> dict:
 
 def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> dict:
     """Estimate the coefficient of permeability of a granular material from
-    gradation (Chapter 20, Eq. 20-15/20-16; pdf_page 126, printed 106).
+    gradation (Chapter 20, Eq. 20-15/20-16; pdf_page 125, printed 106).
 
         k (mm/sec) = 217.5 * D10^1.478 * n^6.654 / P200^0.597
         k (ft/day) = 6.214e5 * D10^1.478 * n^6.654 / P200^0.597
@@ -1143,15 +1166,19 @@ def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> d
         "d10_mm": d10_mm, "n": n, "p200_pct": p200_pct,
         "k": k, "units": units,
         "equation": eq,
-        "reference": "UFC 3-250-01, Eq. 20-15/20-16 (pdf_page 126, printed 106)",
+        "reference": "UFC 3-250-01, Eq. 20-15/20-16 (pdf_page 125, printed 106)",
     }
 
 
 def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
-    """Required drainage-layer thickness for a design storm (Chapter 20,
-    Eq. 20-17; pdf_page 127, printed 107).
+    """Required thickness H of a drainage layer for the design storm,
+    UFC 3-250-01 Eq. 20-17 (pdf_page 126, printed 107); returns h in the
+    length unit of L and R (ft or m).
 
-        H = (F*R*L*t) / [1.7*ne*L + (k*i*t)]
+        H = (2*F*R*L*t) / [(1.7*ne*L) + (k*i*t)]
+
+    The page gives L in feet (meters), R and k in feet/hour (meters/hour)
+    and t in hours; ne, F and i are non-dimensional.
 
     Parameters
     ----------
@@ -1189,22 +1216,25 @@ def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
             raise ValueError(f"{name} must be > 0, got {val}")
     if k < 0 or i < 0:
         raise ValueError("k and i must be >= 0")
-    h = (f * r * length * t) / (1.7 * ne * length + k * i * t)
+    h = (2 * f * r * length * t) / (1.7 * ne * length + k * i * t)
     return {
         "f": f, "r": r, "length": length, "t": t, "ne": ne, "k": k, "i": i,
         "h": h,
-        "equation": "H = (F*R*L*t) / [1.7*ne*L + k*i*t]",
-        "reference": "UFC 3-250-01, Eq. 20-17 (pdf_page 127, printed 107)",
+        "equation": "H = (2*F*R*L*t) / [(1.7*ne*L) + (k*i*t)]",
+        "reference": "UFC 3-250-01, Eq. 20-17 (pdf_page 126, printed 107)",
     }
 
 
 def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
-    """Simplified required drainage-layer thickness for long drainage paths
-    (>= ~20 ft / 6 m; Chapter 20, Eq. 20-18; pdf_page 127, printed 107).
+    """Required thickness H of a drainage layer for long drainage paths,
+    UFC 3-250-01 Eq. 20-18 (pdf_page 126, printed 107); returns h in the
+    length unit of R (ft or m), units as in Eq. 20-17.
 
-        H = (0.85*F*R*t) / ne
+        H = (F*R*t) / (0.85*ne)
 
-    Valid when k*i*t is small compared to 1.7*ne*L (Eq. 20-17).
+    Eq. 20-17 with the term (k*i*t) deleted, which the page allows when it
+    is small compared to (1.7*ne*L), as for drainage paths longer than
+    about 20 ft (6 m).
 
     Parameters
     ----------
@@ -1230,11 +1260,11 @@ def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
     for name, val in (("f", f), ("r", r), ("t", t), ("ne", ne)):
         if val <= 0:
             raise ValueError(f"{name} must be > 0, got {val}")
-    h = (0.85 * f * r * t) / ne
+    h = (f * r * t) / (0.85 * ne)
     return {
         "f": f, "r": r, "t": t, "ne": ne, "h": h,
-        "equation": "H = (0.85*F*R*t) / ne",
-        "reference": "UFC 3-250-01, Eq. 20-18 (pdf_page 127, printed 107)",
+        "equation": "H = (F*R*t) / (0.85*ne)",
+        "reference": "UFC 3-250-01, Eq. 20-18 (pdf_page 126, printed 107)",
     }
 
 

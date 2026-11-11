@@ -65,13 +65,13 @@ Function counts are the public functions defined in each package's modules (coun
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
-| `ufc_backfill` | UFC 3-220-04N Backfill for Subsurface Structures | 8 |
+| `ufc_backfill` | UFC 3-220-04FA Backfill for Subsurface Structures | 7 |
 | `ufc_expansive` | UFC 3-220-07 Foundations in Expansive Soils | 9 |
 | `ufc_pavement` | UFC 3-250-01 Pavement Design for Roads and Parking Areas | 53 |
 | `ufc_stabilization` | UFC 3-250-11 Soil Stabilization and Modification for Pavements | 17 |
 | `ufc_flexible_practice` | UFC 3-250-03 Standard Practice Manual for Flexible Pavements | 36 |
 | `ufc_concrete_practice` | UFC 3-250-04 Standard Practice for Concrete Pavements | 18 |
-| `aashto_1993` | AASHTO Guide for Design of Pavement Structures, 1993 | 52 |
+| `aashto_1993` | AASHTO Guide for Design of Pavement Structures, 1993 | 53 |
 | `ufc_structural` | UFC 3-301-01 Structural Engineering | 66 |
 | `ufc_collapse` | UFC 4-023-03 Design of Buildings to Resist Progressive Collapse | 77 |
 | `gsa_collapse` | GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance | 63 |

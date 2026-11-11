@@ -281,23 +281,28 @@ def table_2_7_minimum_vma(gradation) -> dict:
 # (Section 2-4.2.6/2-4.2.10; pdf_page 52, printed p.39)
 # ============================================================================
 
-# Section 2: acceptability criteria (Section 1's optimum-AC-determination
-# criteria are all "point of curve", i.e. procedural, not numeric -- not
-# digitized as a lookup, see chapter text instead).
+# Section 2: acceptability criteria. Section 1 (procedure for determining
+# optimum asphalt content, "point of curve") prints one number per row, the
+# percent VTM: 4 for HMA surface or intermediate course (all four compaction
+# columns) and 6 for sand asphalt (50 blows, 50 gyrations); its other
+# properties are NA. Kept as optimum_ac_vtm_pct.
 _TABLE_2_8 = {
     ("hma", "50_blows"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": 6.0, "marshall_stability_min_lbf": 1350,
         "flow_max_0p25mm": 20, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
         "vfa_pct_range": (75, 85),
     },
     ("hma", "75_blows"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": 8.0, "marshall_stability_min_lbf": 1800,
         "flow_max_0p25mm": 16, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
         "vfa_pct_range": (70, 80),
     },
     ("hma", "50_gyrations"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
@@ -305,6 +310,7 @@ _TABLE_2_8 = {
         "note": "Superpave (gyratory) -- no flow/stability criteria.",
     },
     ("hma", "75_gyrations"): {
+        "optimum_ac_vtm_pct": 4,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (3, 5),
         "vma_pct_note": "see table_2_7_minimum_vma",
@@ -312,12 +318,14 @@ _TABLE_2_8 = {
         "note": "Superpave (gyratory) -- no flow/stability criteria.",
     },
     ("sand_asphalt", "50_blows"): {
+        "optimum_ac_vtm_pct": 6,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": 500,
         "flow_max_0p25mm": 20, "vtm_pct_range": (5, 7),
         "vma_pct_note": None, "vfa_pct_range": (65, 75),
         "note": "Not for pavements with tire pressures above 690 kPa (100 psi).",
     },
     ("sand_asphalt", "50_gyrations"): {
+        "optimum_ac_vtm_pct": 6,
         "marshall_stability_min_kn": None, "marshall_stability_min_lbf": None,
         "flow_max_0p25mm": None, "vtm_pct_range": (5, 7),
         "vma_pct_note": None, "vfa_pct_range": (65, 75),
@@ -328,13 +336,15 @@ _TABLE_2_8 = {
 
 
 def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> dict:
-    """Marshall/Superpave mix acceptability criteria by mix type and compaction (Table 2-8).
+    """Design criteria for HMA and sand asphalt by mix type and compaction,
+    UFC 3-250-03 Table 2-8 (pdf_page 52, printed p.39); returns Section 2's
+    mix-acceptability criteria (stability, flow, VTM, VMA, VFA) and
+    Section 1's percent VTM for determining the optimum asphalt content.
 
-    Section 2 of Table 2-8 -- criteria for judging whether a mix at its
-    determined optimum asphalt content is acceptable. (Section 1, the
-    procedure for locating the optimum-AC point on each property curve, is
-    purely "point of curve" -- procedural, not a numeric lookup, and is
-    covered in the chapter text instead.)
+    Section 1 (procedure for determining optimum asphalt content, point of
+    curve) prints only percent VTM: 4 for HMA surface or intermediate
+    course, 6 for sand asphalt; returned as optimum_ac_vtm_pct. Section 2
+    gives the criteria for judging whether the mix is acceptable.
 
     Parameters
     ----------
@@ -354,7 +364,8 @@ def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> d
     dict
         Full row: {'mix_type', 'compaction', 'marshall_stability_min_kn',
         'marshall_stability_min_lbf', 'flow_max_0p25mm', 'vtm_pct_range',
-        'vma_pct_note', 'vfa_pct_range', 'note'?, 'reference'}.
+        'vma_pct_note', 'vfa_pct_range', 'optimum_ac_vtm_pct', 'note'?,
+        'reference'}.
         Single property: {'mix_type', 'compaction', 'property', 'value',
         'reference'}.
 
@@ -612,7 +623,7 @@ _SPRAY_RATES = {
     "fog_seal": {
         "rate_l_per_m2": (0.14, 0.36), "rate_gal_per_yd2": (0.03, 0.08),
         "basis": "residual asphalt",
-        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page 83, printed p.70)",
+        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page 84, printed p.71)",
     },
     "rejuvenator": {
         "rate_l_per_m2": (0.18, 0.9), "rate_gal_per_yd2": (0.04, 0.2),
@@ -1220,35 +1231,55 @@ def table_6_1_cold_mix_gradation(mix_type, column, sieve_mm=None) -> dict:
 # (Section 6-5.1.2; pdf_page 116, printed p.103)
 # ============================================================================
 
+# As printed: kerosene for a mix used immediately, with the amount for a mix
+# to be stockpiled for future use in parentheses (footnote 1); one list of
+# emulsified asphalt grades per climate (footnote 2: emulsified asphalts are
+# available that are specifically formulated for stockpile use).
 _TABLE_6_2 = {
     "cold": {
         "kerosene_l_per_metric_ton": 8.3, "kerosene_gal_per_ton": 2.0,
+        "kerosene_stockpile_l_per_metric_ton": 18.8,
+        "kerosene_stockpile_gal_per_ton": 4.5,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-70-RC-250",
-        "emulsion_immediate_use": ["MS-2h", "SS-1h"],
-        "emulsion_stockpile": [],
+        "emulsified_asphalts": ["MS-2h", "SS-1h"],
     },
     "moderate": {
         "kerosene_l_per_metric_ton": 7.1, "kerosene_gal_per_ton": 1.7,
+        "kerosene_stockpile_l_per_metric_ton": 15.4,
+        "kerosene_stockpile_gal_per_ton": 3.7,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-250-RC-800",
-        "emulsion_immediate_use": ["MS-2", "SS-1"],
-        "emulsion_stockpile": ["MS-2h", "SS-1h"],
+        "emulsified_asphalts": ["MS-2-MS-2h", "SS-1-SS-1h"],
     },
     "hot": {
         "kerosene_l_per_metric_ton": 6.3, "kerosene_gal_per_ton": 1.5,
+        "kerosene_stockpile_l_per_metric_ton": 12.5,
+        "kerosene_stockpile_gal_per_ton": 3.0,
         "kerosene_added_to": "AC-20, 85-100 pen, and PG 58-22",
         "cutback_range": "RC-800-RC-3000",
-        "emulsion_immediate_use": ["MS-2", "SS-1"],
-        "emulsion_stockpile": [],
+        "emulsified_asphalts": ["MS-2", "SS-1"],
     },
+}
+_TABLE_6_2_NOTES = {
+    "abbreviations": "RC = rapid curing; MS = medium set; SS = slow set.",
+    "footnote_1": ("Amount of kerosene to be added when mixture is to be "
+                   "stockpiled for future use (the kerosene_stockpile_* "
+                   "values)."),
+    "footnote_2": ("Emulsified asphalts are available that are specifically "
+                   "formulated for stockpile use."),
 }
 
 _TABLE_6_2_CLIMATE_BOUNDS = {"cold": (None, 16), "moderate": (16, 27), "hot": (27, None)}
 
 
 def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
-    """Asphalt type and grade selection for cold-mix asphalt by climate (Table 6-2).
+    """Selection of asphalt type and grade for cold-mix asphalt by climate,
+    UFC 3-250-03 Table 6-2 (pdf_page 116, printed p.103); returns the
+    kerosene to add to asphalt cement (liters/metric ton and gallons/ton of
+    mix; for a mix used immediately and, footnote 1, for one stockpiled for
+    future use), the cutback asphalt grades and the emulsified asphalt
+    grades.
 
     Parameters
     ----------
@@ -1260,12 +1291,14 @@ def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     -------
     dict
         {'climate', 'temp_c_range', 'kerosene_l_per_metric_ton',
-         'kerosene_gal_per_ton', 'kerosene_added_to', 'cutback_range',
-         'emulsion_immediate_use', 'emulsion_stockpile', 'reference'}.
-        ``emulsion_stockpile`` lists emulsions specifically formulated for
-        stockpiling (empty list where the source gives none for that
-        climate); ``kerosene_*`` applies when the mix is stockpiled for
-        future use.
+         'kerosene_gal_per_ton', 'kerosene_stockpile_l_per_metric_ton',
+         'kerosene_stockpile_gal_per_ton', 'kerosene_added_to',
+         'cutback_range', 'emulsified_asphalts', 'notes', 'reference'}.
+        ``kerosene_l_per_metric_ton`` / ``kerosene_gal_per_ton`` are the
+        printed amounts; ``kerosene_stockpile_*`` the amounts in
+        parentheses, for a mixture to be stockpiled (footnote 1).
+        ``emulsified_asphalts`` is the printed grade list; footnote 2 says
+        emulsions specifically formulated for stockpile use are available.
 
     Raises
     ------
@@ -1278,6 +1311,7 @@ def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     return {
         "climate": key, "temp_c_range": _TABLE_6_2_CLIMATE_BOUNDS[key],
         **_TABLE_6_2[key],
+        "notes": dict(_TABLE_6_2_NOTES),
         "reference": "UFC 3-250-03, Table 6-2 (pdf_page 116, printed p.103)",
     }
 

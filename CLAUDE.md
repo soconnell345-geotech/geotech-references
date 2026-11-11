@@ -61,12 +61,12 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 13 table lookup functions (bond stress, pipe/rebar, elastic modulus)
     figures.py                 # 1 figure lookup function (limiting lateral modulus)
     text/                      # Structured chapter JSON (10 chapters, 70 sections, complete)
-  ufc_backfill/                # UFC 3-220-04N Backfill for Subsurface Structures — text extraction skipped (content covered by DM7)
-    equations.py               # 3 equations (compaction pressure, filter criteria, RC check)
-    tables.py                  # 5 tables (compaction, material, lift, equipment, drainage)
-  ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils
-    equations.py               # 5 equations (activity, free swell, swell pressure, heave, pier)
-    tables.py                  # 4 tables (swell potential, active zone, foundation, void space)
+  ufc_backfill/                # UFC 3-220-04FA Backfill for Subsurface Structures (16 Jan 2004, the reproduced TM 5-818-4) — rebuilt from the print 2026-11-10; no chapter text
+    equations.py               # relative compaction check (CE 55 basis, para 5-1b(4))
+    tables.py                  # para 5-1b(4) densities, Table 5-1, para 3-3d materials, 5-1b(3) lifts, 5-1b(2) equipment, Fig 2-5a
+  ufc_expansive/               # UFC 3-220-07 Foundations in Expansive Soils (the reproduced TM 5-818-7) — rebuilt from the print 2026-11-10
+    equations.py               # total swell as the area under per cent swell vs depth (Figure 5-4); Table 4-2's four swell relations
+    tables.py                  # Table 4-1 swell potential, para 5-4c active zone, Table 6-1 foundations, para 6-4 grade-beam void
   ufc_pavement/                # UFC 3-250-01 (2016) Pavement Design for Roads & Parking — REBUILT 2026-07 from the real doc (audit gap CLOSED): CBR curve E-1, rigid Eq 13-1, overlays, frost, drainage
   ufc_stabilization/           # UFC 3-250-11 (2020) Soil Stabilization (additive selection, criteria, equivalency)
   ufc_flexible_practice/       # UFC 3-250-03 (2018) Flexible Pavement Practice (HMA/Marshall/Superpave, sprays, seals)
@@ -95,7 +95,7 @@ agents/
   gec12_agent.py               # GEC-12 Foundry-style 3-function wrapper
   gec13_agent.py               # GEC-13 Foundry-style 3-function wrapper
   micropile_agent.py           # Micropile Foundry-style 3-function wrapper
-  ufc_backfill_agent.py        # UFC 3-220-04N Foundry-style 3-function wrapper
+  ufc_backfill_agent.py        # UFC 3-220-04FA Foundry-style 3-function wrapper
   ufc_expansive_agent.py       # UFC 3-220-07 Foundry-style 3-function wrapper
   ufc_pavement_agent.py        # UFC 3-250-01 Foundry-style 3-function wrapper
 tests/                         # 6,755 tests collected (`pytest --collect-only -q`, 2026-11-09)
@@ -147,8 +147,8 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 | gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
-| ufc_backfill | UFC 3-220-04N Backfill | 8 | 75 | - |
-| ufc_expansive | UFC 3-220-07 Expansive Soils | 9 | 63 | - |
+| ufc_backfill | UFC 3-220-04FA Backfill (rebuilt from the print 2026-11-10) | 7 | 49 | - |
+| ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10) | 9 | 57 | - |
 | ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done) | 53 | 339 | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
 | eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes) |

@@ -1,9 +1,10 @@
 """
 UFC Expansive Soils Agent — Foundry-style wrapper for UFC 3-220-07 lookups.
 
-Wraps swell potential classification, free swell and swell pressure
-estimation, heave prediction, active zone depth, foundation selection,
-and pier design for expansive soils.
+Wraps Table 4-1's classification of potential swell, paragraph 5-4c's
+active zone depth, Table 6-1's foundation systems, the grade-beam void
+space (para 6-4), Figure 5-4's total swell and Table 4-2's four
+empirical swell relations, each read off the print with its page.
 
 Three entry-point functions:
   1. ufc_expansive_agent           - Run a UFC 3-220-07 function
@@ -144,10 +145,10 @@ def ufc_expansive_agent(method: str, parameters_json: str) -> str:
     """
     UFC 3-220-07 Foundations in Expansive Soils tool.
 
-    Provides swell potential classification, activity index, free swell
-    estimation, swell pressure, heave prediction (layer summation),
-    active zone depth by climate, foundation type selection, grade beam
-    void space, and pier minimum embedment depth.
+    Provides Table 4-1's WES classification of potential swell, the
+    active zone depth of paragraph 5-4c, Table 6-1's foundation systems,
+    the grade beam void space of paragraph 6-4, total swell by
+    Figure 5-4 and Table 4-2's empirical swell relations, as printed.
 
     Parameters:
         method: The function name. Use ufc_expansive_list_methods() to browse.
@@ -193,7 +194,7 @@ def ufc_expansive_list_methods(category: str = "") -> str:
     Lists available UFC 3-220-07 expansive soil functions by category.
 
     Parameters:
-        category: Optional filter (e.g. 'swell', 'heave', 'foundation', 'pier').
+        category: Optional filter (e.g. 'swell', 'heave', 'foundation', 'void').
 
     Returns:
         JSON string with method names grouped by category.
@@ -218,7 +219,7 @@ def ufc_expansive_describe_method(method: str) -> str:
     Returns detailed documentation for a UFC 3-220-07 expansive soil function.
 
     Parameters:
-        method: The method name (e.g. 'free_swell_percent',
+        method: The method name (e.g. 'heave_prediction_mm',
                 'table_swell_potential_classification').
 
     Returns:
