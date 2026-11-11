@@ -704,6 +704,51 @@ and caption below was read off the rendered print.
   - Chapters filled in: GEC-7 and GEC-8 rows had none, and GEC-4 rows had
     their own figure number as the chapter.
 
+**Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
+Shaft Design Process) rewritten from the print (app backlog REF-81).** The
+review found 9 of the 12 sections of chapter 6 and 2 of the 3 of chapter 8
+written from memory. Both chapters now hold the printed sections in the
+print's own wording, with a `[p. 6-5]` marker where each printed page
+starts; Tables 6-1, 6-2, 6-3 and 8-1 to 8-4 and Eq. 8-1 are typed in from
+the rendered pages, and each figure and table is listed under the section
+that prints it. Printed Section 8.1 (pp. 8-1 to 8-17, Blocks 1 to 22 of
+Figure 8-1) is over the tools' size limit and is stored as 8.1 and parts
+8.1.a to 8.1.d (the letters are not printed). Statements that changed:
+
+- 6.3: "maximum bar spacing should not exceed 6 inches" is gone. The print
+  (p. 6-5) gives a minimum: clear distance not less than the greater of
+  five times the maximum aggregate size and 5.0 in. (AASHTO Art.
+  5.12.9.5.2); eight times the aggregate for tremie concrete (Dees and
+  Mullins, 2005); where tremie placement is anticipated, many agencies
+  require 5 in. and at least ten times the aggregate.
+- 6.4: the unprinted spiral limits (3 in. minimum and 6 in. maximum pitch,
+  No. 3 at 12 in., bar size by shaft diameter) are gone. Printed: a pitch
+  under 5 in. causes flow problems (p. 6-8), Caltrans' bundled hoops give at
+  least 5 in. clear, and the ACI development length is 0.04 A_b f_y/[(f'_c)^0.5]
+  (p. 6-7). Transverse bar sizes for handling are in 6.7 (p. 6-17): No. 5
+  from a 4 ft cage, No. 7 and No. 8 at 8 ft.
+- 6.5: the unprinted 2 ft minimum lap and 125 % couplers are gone; printed:
+  not more than 50 per cent of the splices at any one level (p. 6-9).
+- 6.8 and 6.9: sizing hoops are fabrication guides spaced 8 to 10 ft
+  (p. 6-17), not cover spacers; the cover is 3, 4 and 6 in. for shafts up to
+  3 ft, between 3 and 5 ft, and 5 ft and larger, and the annular space at
+  least five times the largest coarse aggregate (p. 6-18), where the old
+  text said "typically 3 inches".
+- 6.6, 6.7, 6.10, 6.11: statements the pages do not make are gone (precast
+  column pockets, anchor bolts, storage on blocks, a required lifting
+  analysis); the printed limits are stored: shaft cover around 6 in. and a
+  shaft 6 in. larger than the column, No. 15 gauge tie wire as the minimum,
+  internal bracing at a length to diameter ratio of 8 or more with No. 8
+  bars, rigging connections at a factor of safety of 2 or more, Table 6-3.
+- 8.1: the blocks are the printed Blocks 1 to 22 (Block 16 is plans and
+  specifications; construction is Blocks 17 to 22); Tables 8-1 to 8-3 are
+  typed in beside Table 8-4.
+- 8.2: "minimum 5-10 load tests required" is gone: p. 8-17 gives no number.
+  It says fitting to the ASD factor of safety is an interim approach and
+  points to Allen et al. (2005) for the calibration steps.
+
+Tests: `tests/test_gec10_ch06_ch08_printed.py` (64).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
