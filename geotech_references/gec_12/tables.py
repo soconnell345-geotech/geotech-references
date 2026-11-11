@@ -361,7 +361,8 @@ def table_7_10_brown_method_factors(loading: str = "compression",
     raise ValueError(
         f"No match for loading='{loading}', installation='{installation}', "
         f"soil_type='{soil_type}' in GEC-12 Table 7-10 (p. 260), which "
-        f"prints the vibratory rows under tension only. Printed rows: {rows}."
+        f"prints the vibratory rows under tension only. Rows (loading, "
+        f"installation, soil_type keys): {rows}."
     )
 
 

@@ -95,6 +95,10 @@ def figure_4_1_relative_density_spt(n_value: float,
     corrected for overburden: the chart is itself a function of the
     effective overburden stress.
 
+    The chart draws its curves from 0 k/ft2, the top of the chart. They are
+    read here from 0.25 k/ft2 (12 kPa) down, so a stress under 12 kPa is
+    refused by this library, not by the chart.
+
     Parameters
     ----------
     n_value : float
@@ -112,7 +116,8 @@ def figure_4_1_relative_density_spt(n_value: float,
     Raises
     ------
     ValueError
-        If the stress is outside 0.25 to 6 k/ft2, or N at that stress is
+        If the stress is outside 0.25 to 6 k/ft2 (below 0.25 the refusal
+        is the library's: the curves are drawn there), or N at that stress is
         left of the chart's 15 % curve or right of its 100 % curve (or,
         above 5.15 k/ft2 where the 100 % curve has left the chart, right
         of the 90 % curve).
@@ -126,7 +131,8 @@ def figure_4_1_relative_density_spt(n_value: float,
         raise ValueError(
             f"sigma_v_kpa = {sigma_v_kpa} is outside GEC-6 Figure 4-1 as "
             f"read here: 12 to 287 kPa ({lo} to {hi:g} k/ft2). The chart "
-            "is plotted from 0 to 6 k/ft2.")
+            "is plotted from 0 to 6 k/ft2; its curves are drawn above 0.25 "
+            "k/ft2 but are not read there by this library.")
     sigma_ksf = min(max(sigma_ksf, lo), hi)
 
     n_curves = [_fig_4_1_n_at(i, sigma_ksf) for i in range(len(_FIG_4_1_DR))]
@@ -412,9 +418,11 @@ def figure_4_2_friction_angle_from_density(gamma_d_kNm3: float,
     20.5; 100 %: 15.4 to 23.1). The chart says phi' was obtained from
     effective stress failure envelopes and that the correlation is
     approximate, for cohesionless materials without plastic fines; its note
-    says to use caution in the shaded portion (about the GP to GW range
-    above 50 % relative density) because of the potential for unreliable
-    SPT N-values in gravels.
+    says to use caution in the shaded portion of the chart because of the
+    potential for unreliable SPT N-values in gravels. As drawn, the shaded
+    portion lies between the SW line and the GW line, up to the 100 %
+    relative density line, above a thin line drawn from the SW line at 75 %
+    through the GP label to the GW line at 50 %.
 
     Parameters
     ----------

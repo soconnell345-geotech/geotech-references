@@ -471,7 +471,7 @@ _TABLE_5_12_RECT_AVERAGE = [1.15, 1.30, 1.52, 1.83, 2.25, 3.70, 5.15, 6.60]
 
 def table_5_12_shape_rigidity_factor(shape: str, location: str = "center",
                                      length_width: float = None) -> float:
-    """Shape and rigidity factor Cd (dimensionless) for the settlement of a point on a loaded area at the surface of an elastic half space, from GEC-6 Table 5-12 (FHWA-SA-02-054, p. 97, after Winterkorn & Fang 1975), used in Eq. 5-36 for settlement on rock; for a rectangle the table prints length/width = 1.5, 2, 3, 5, 10, 100, 1000 and 10000 only, and a ratio between two of them is interpolated linearly in length/width, which the table does not state and which reads up to about 11 % below a logarithmic interpolation between the rows 10 and 100.
+    """Shape and rigidity factor Cd (dimensionless) for the settlement of a point on a loaded area at the surface of an elastic half space, from GEC-6 Table 5-12 (FHWA-SA-02-054, p. 97, after Winterkorn & Fang 1975), used in Eq. 5-36 for settlement on rock; for a rectangle the table prints length/width = 1.5, 2, 3, 5, 10, 100, 1000 and 10000 only, and a ratio between two of them is interpolated linearly in length/width, which the table does not state and which reads up to about 13.5 % below a logarithmic interpolation between the rows 10 and 100 (at the middle of the long side, near length/width 34).
 
     Parameters
     ----------

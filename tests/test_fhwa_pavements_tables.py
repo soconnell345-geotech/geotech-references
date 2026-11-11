@@ -216,7 +216,9 @@ class TestCbrFromDcp:
         r = resilient_modulus_from_dcp(10)
         cbr = 292 / 10 ** 1.12
         assert r["cbr"] == pytest.approx(round(cbr, 1), abs=0.1)
-        assert r["mr"] == pytest.approx(2555 * round(cbr, 1) ** 0.64, abs=5)
+        # from the unrounded CBR 22.15: 18,553.9 psi (it used 22.2: 18,580.5)
+        assert r["mr"] == pytest.approx(2555 * cbr ** 0.64, abs=0.06)
+        assert r["mr"] == pytest.approx(18553.9, abs=0.06)
         assert "mm per blow" in r["print_note"]
         with pytest.raises(ValueError, match="over 100 %"):
             resilient_modulus_from_dcp(0.5)
@@ -247,6 +249,10 @@ class TestCbrFromPlasticity:
         assert r["wpi"] == pytest.approx(3.5)
         assert r["cbr"] == pytest.approx(75 / (1 + 0.728 * 3.5), abs=0.05)
         assert "decimal" in r["print_note"]
+        # one example of each reading, no claim about every plastic soil
+        # (P200 10 %, PI 5 read as the percent gives CBR 2.0) (independent check)
+        assert "CBR 21.1" in r["print_note"] and "CBR 0.29" in r["print_note"]
+        assert "any plastic soil" not in r["print_note"]
         with pytest.raises(ValueError, match="give 0.35"):
             cbr_from_plasticity_gradation(35, 10)
 

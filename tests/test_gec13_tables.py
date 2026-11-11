@@ -287,6 +287,32 @@ class TestTable16:
 
 
 # ============================================================================
+# Tables 1-2 and 1-6: names as printed (independent check)
+# ============================================================================
+
+def test_table_1_2_and_1_6_names_as_printed():
+    """GEC-13 Vol I Table 1-2 (p. 1-10, PDF page 24) and Table 1-6 (p. 1-36,
+    PDF page 50). Table 1-2 prints "All soil types except very soft soils
+    low undrained shear strength" (no "with"); Table 1-6 prints the
+    lightweight fill rows in full; both print "PVDs, with and without fill
+    preloading"."""
+    from geotech_references.gec_13.tables import (
+        table_1_2_applicability, table_1_6_unit_cost)
+    col = table_1_2_applicability(technology="columns: compressible")[0]
+    assert col["applicability"] == ("All soil types except very soft soils "
+                                    "low undrained shear strength")
+    assert table_1_2_applicability(technology="pvd")[0]["technology"] == (
+        "PVDs, with and without fill preloading")
+    names = [r["technology"] for r in table_1_6_unit_cost("lightweight")]
+    assert names == [
+        "Compressive Strength Fills: Geofoam; Foamed Concrete",
+        "Granular Fills: Wood Fiber; Blast Furnace Slag; Fly Ash; Boiler "
+        "Slag; Expanded Shale, Clay and Slate; Tire Shreds"]
+    assert table_1_6_unit_cost(technology="pvd")[0]["technology"] == (
+        "PVDs, with and without fill preloading")
+
+
+# ============================================================================
 # Table 2-1: Common Uses of PVDs
 # ============================================================================
 

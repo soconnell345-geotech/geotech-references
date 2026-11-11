@@ -57,7 +57,7 @@ class TestFigure41:
             figure_4_1_relative_density_spt(47, 2.0 * KSF)
 
     def test_gec6_example(self):
-        """GEC-6 p. B-25 (PDF page 184) reads about 95 % for N = 24 at
+        """GEC-6 p. B-26 (PDF page 184) reads about 95 % for N = 24 at
         0.58 k/ft2; the lookup returned 90.2."""
         dr = figure_4_1_relative_density_spt(24, 0.58 * KSF)
         assert 94 <= dr <= 98

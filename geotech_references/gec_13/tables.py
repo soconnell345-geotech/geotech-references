@@ -25,7 +25,7 @@ def _no_match(table, page, given, choices):
 _TABLE_1_2 = [
     {
         "category": "vertical_drains",
-        "technology": "PVDs with and without fill preloading",
+        "technology": "PVDs, with and without fill preloading",
         "applicability": "Compressible clays, saturated low strength clays",
     },
     {
@@ -83,7 +83,7 @@ _TABLE_1_2 = [
     {
         "category": "column_supported_embankments",
         "technology": "Columns: Compressible",
-        "applicability": "All soil types except very soft soils with low undrained "
+        "applicability": "All soil types except very soft soils low undrained "
                          "shear strength",
     },
     {
@@ -382,7 +382,7 @@ def table_1_3_by_function(function: str = "") -> list:
 _TABLE_1_6 = [
     {
         "category": "vertical_drains",
-        "technology": "PVDs with and without fill preloading",
+        "technology": "PVDs, with and without fill preloading",
         "unit_cost": "$0.50-$4/lft",
         "cost_low": 0.50,
         "cost_high": 4.00,
@@ -390,7 +390,7 @@ _TABLE_1_6 = [
     },
     {
         "category": "lightweight_fills",
-        "technology": "Compressive Strength Fills (Geofoam, Foamed Concrete)",
+        "technology": "Compressive Strength Fills: Geofoam; Foamed Concrete",
         "unit_cost": "$75-$150/yd3",
         "cost_low": 75.0,
         "cost_high": 150.0,
@@ -398,7 +398,9 @@ _TABLE_1_6 = [
     },
     {
         "category": "lightweight_fills",
-        "technology": "Granular Fills (Wood Fiber, Slag, Fly Ash, Tire Shreds)",
+        "technology": "Granular Fills: Wood Fiber; Blast Furnace Slag; Fly "
+                      "Ash; Boiler Slag; Expanded Shale, Clay and Slate; Tire "
+                      "Shreds",
         "unit_cost": "$3-$15/yd3",
         "cost_low": 3.0,
         "cost_high": 15.0,

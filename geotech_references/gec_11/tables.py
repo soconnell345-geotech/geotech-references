@@ -31,8 +31,9 @@ def _pick(rows, field, key, table, page, also=()):
 
     The key is looked for in ``field`` (case-insensitive); where no row
     holds it, every word of the key is looked for in ``field`` and the
-    ``also`` fields. A key that matches no row raises ValueError naming
-    the printed rows (review finding gec-37: it returned an empty list).
+    ``also`` fields. A key that matches no row raises ValueError listing
+    the rows by the library's labels, which are not all worded as printed
+    (review finding gec-37: it returned an empty list).
     """
     k = key.lower().strip()
     hits = [r for r in rows if k in str(r[field]).lower()]
@@ -50,7 +51,8 @@ def _pick(rows, field, key, table, page, also=()):
                 names.append(r[field])
         raise ValueError(
             f"No row of GEC-11 {table} ({page}) matches '{key}'. "
-            f"Printed rows: {'; '.join(names)}.")
+            "Rows, by the library's labels (not all worded as printed; "
+            f"filter with words from one): {'; '.join(names)}.")
     return hits
 
 
@@ -69,6 +71,9 @@ _TABLE_2_1 = [
         "typical_min_L_over_H": "0.7",
         "L_over_H_low": 0.7,
         "L_over_H_high": 0.7,
+        "print_note": ("Table 2-1 (p. 2-43) prints this case as 'Static "
+                       "loading with or with traffic surcharge'; it is read "
+                       "here as 'with or without'."),
     },
     {
         "condition": "Sloping backfill surcharge",
@@ -111,7 +116,8 @@ def table_2_1_min_reinforcement_length(condition: str = "") -> list:
     -------
     list of dict
         Matching rows: condition, typical_min_L_over_H (the printed text),
-        L_over_H_low, L_over_H_high, reference.
+        L_over_H_low, L_over_H_high, reference; the static row also
+        print_note (the table prints "with or with traffic surcharge").
     """
     rows = [dict(r, reference=_TABLE_2_1_REF) for r in _TABLE_2_1]
     if not condition:

@@ -256,10 +256,11 @@ def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
         If dcp_mm_per_blow <= 0, the CBR would exceed 100 %, or units is
         invalid.
     """
-    cbr = cbr_from_dcp(dcp_mm_per_blow)["cbr"]
+    cbr_from_dcp(dcp_mm_per_blow)            # refuses DCP <= 0 and CBR > 100 %
+    cbr = 292.0 / dcp_mm_per_blow ** 1.12    # unrounded; only the result is rounded
     mr = resilient_modulus_from_cbr(cbr, units=units)
     return {
-        "dcp_mm_per_blow": dcp_mm_per_blow, "cbr": cbr,
+        "dcp_mm_per_blow": dcp_mm_per_blow, "cbr": round(cbr, 1),
         "mr": mr["mr"], "units": mr["units"],
         "equation": "CBR=292/DCP^1.12 (DCP in mm/blow) -> Mr=2555*CBR^0.64 (psi)",
         "print_note": _DCP_PRINT_NOTE,
@@ -274,9 +275,11 @@ def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
 
 _P200_PRINT_NOTE = (
     "FHWA-NHI-05-037 Table 5-34 (p. 5-53) prints wPI = P200*PI with 'P200 = "
-    "% passing No. 200 sieve size'. P200 is taken as a decimal fraction: with "
-    "the percent the equation gives a CBR under 1 for any plastic soil (P200 "
-    "35, PI 10: wPI 350, CBR 0.29). (Lead's ruling, 2026-11-10.)")
+    "% passing No. 200 sieve size'. The library takes the weighted "
+    "plasticity index wPI as P200 times PI with P200 as a decimal fraction "
+    "(lead's ruling, 2026-11-10). Read as a decimal, 35 % passing (0.35) at "
+    "PI 10 gives wPI 3.5 and CBR 21.1; read as the percent (35), wPI 350 and "
+    "CBR 0.29.")
 
 
 def cbr_from_plasticity_gradation(p200, pi) -> dict:
@@ -285,10 +288,10 @@ def cbr_from_plasticity_gradation(p200, pi) -> dict:
         CBR = 75 / (1 + 0.728 * wPI),   wPI = P200 * PI
 
     Table 5-34 defines P200 as the "% passing No. 200 sieve size"; the
-    library takes it as a decimal fraction (0.35 for 35 %), since with the
-    percent the equation gives a CBR under 1 for any plastic soil (see
-    ``print_note`` in the result). A value above 1 is refused. The
-    resulting CBR is then used to estimate Mr.
+    library takes the weighted plasticity index wPI as P200 times PI with
+    P200 as a decimal fraction (0.35 for 35 %), by the lead's ruling;
+    ``print_note`` in the result gives one example of each reading. A value
+    above 1 is refused. The resulting CBR is then used to estimate Mr.
 
     Parameters
     ----------

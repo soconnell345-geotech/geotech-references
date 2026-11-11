@@ -46,6 +46,20 @@ class TestTable21:
         for r in table_2_1_min_reinforcement_length():
             assert "min_length_ft" not in r and "min_length_m" not in r
 
+    def test_static_row_print_note(self):
+        """Table 2-1, p. 2-43 (PDF page 83), prints 'Static loading with or
+        with traffic surcharge' (independent check)."""
+        r = table_2_1_min_reinforcement_length("static")[0]
+        assert "with or with traffic surcharge" in r["print_note"]
+        others = table_2_1_min_reinforcement_length()[1:]
+        assert all("print_note" not in o for o in others)
+
+    def test_refusal_does_not_call_labels_printed(self):
+        with pytest.raises(ValueError) as e:
+            table_2_1_min_reinforcement_length("wind")
+        assert "Printed rows" not in str(e.value)
+        assert "not all worded as printed" in str(e.value)
+
     def test_static(self):
         results = table_2_1_min_reinforcement_length("static")
         assert len(results) == 1

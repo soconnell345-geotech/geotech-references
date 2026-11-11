@@ -91,8 +91,12 @@ rows instead of being answered from the first row that contains the words.
     imposed loads" and "transfer embankment loads" were missing (gec-09).
   - `table_1_2_applicability`: two rows completed (gec-46). The eight
     filter lookups (`table_1_2`, `1_3`, `1_6`, `2_1`, `3_1`, `4_3`, `8_1`,
-    `8_6`) refuse a filter that matches no row, naming the printed rows,
-    instead of returning an empty list (gec-37).
+    `8_6`) refuse a filter that matches no row, naming the rows,
+    instead of returning an empty list (gec-37). Table 1-2's and Table
+    1-6's names as printed: "PVDs, with and without fill preloading"; Table
+    1-6's two lightweight fill rows in full (Granular Fills was shortened to
+    four materials); Table 1-2's compressible columns "All soil types except
+    very soft soils low undrained shear strength" (the code added "with").
 - **GEC-6 shallow foundations (FHWA-SA-02-054).** The three chart lookups
   are rebuilt from the rendered pages; the points read are in the comment
   above each data block.
@@ -111,14 +115,19 @@ rows instead of being answered from the first row that contains the words.
   - `figure_4_1_relative_density_spt` (Figure 4-1, p. 34): the 80 to 100 %
     curves were far right of the print. N = 30 at 1 k/ft2 is on the 100 %
     curve (it returned 87.5 %); N = 24 at 0.58 k/ft2 is 97 % (was 90). The
-    chart's whole stress range, 0.25 to 6 k/ft2 (12 to 287 kPa), is read. A
-    point left of the 15 % curve or right of the 100 % curve is refused; it
-    returned 15 or 100 (gec-10).
+    curves are read from 0.25 to 6 k/ft2 (12 to 287 kPa); the chart draws
+    them from 0, and the refusal below 0.25 k/ft2 is the library's, as the
+    docstring and the message say. A point left of the 15 % curve or right
+    of the 100 % curve is refused; it returned 15 or 100 (gec-10).
   - `figure_4_2_friction_angle_from_density` (Figure 4-2, p. 35): the
     printed mesh of relative density lines between the ML and GW lines. The
     0 % line is 27.5 degrees at 17.3 kN/m3 (it returned 30.0). A dry unit
     weight the chart does not plot at the given relative density (22.0
-    kN/m3 at 0 %, which returned 33 degrees) is refused (gec-13).
+    kN/m3 at 0 %, which returned 33 degrees) is refused (gec-13). The
+    docstring describes the shaded caution area as drawn: between the SW
+    and GW lines up to the 100 % line, above a thin line from the SW line
+    at 75 % through the GP label to the GW line at 50 % (it said "about the
+    GP to GW range above 50 %").
   - `table_5_15_friction_factor` (Table 5-15, p. 99): a key names one row
     by a soil the row prints. "fine sand" is the Clean fine sand row, 0.35
     to 0.45 (it returned 0.45 to 0.55); "sand", which returned the clean
@@ -137,7 +146,8 @@ rows instead of being answered from the first row that contains the words.
     granite" the intact granite row) (gec-40).
   - `table_5_12_shape_rigidity_factor`: values unchanged; the docstring
     says the linear interpolation between the printed length/width rows is
-    not the table's (gec-33).
+    not the table's and reads up to about 13.5 % below a logarithmic
+    interpolation between the rows 10 and 100 (gec-33).
 - **GEC-7 soil nail walls (FHWA-NHI-14-007).**
   - `figure_4_3_friction_angle_spt` (Figure 4.3, p. 79): the six curves
     rebuilt from the rendered page; the points read are in the comment
@@ -269,7 +279,9 @@ rows instead of being answered from the first row that contains the words.
     row gives the printed cell (`typical_min_L_over_H`) and its ends
     (`L_over_H_low`, `L_over_H_high`; the key `L_over_H` is gone). The 8 ft
     (2.5 m) minimum on every row is removed: the table does not print it;
-    the docstring quotes where the text does (p. 4-11) (gec-21).
+    the docstring quotes where the text does (p. 4-11) (gec-21). The
+    static row carries a `print_note`: the table prints "Static loading
+    with or with traffic surcharge".
   - `table_4_4_traffic_surcharge` (Table 4-4, p. 4-17): the parameter is
     `abutment_height_ft` (was `wall_height_ft`), and every result says the
     table is for abutments perpendicular to traffic and that walls parallel
@@ -286,8 +298,9 @@ rows instead of being answered from the first row that contains the words.
     printed rows, polyester (PET) 3 < pH < 9 and polyolefin (PP & HDPE)
     pH > 3, by AASHTO T-289; "polyolefin" returned an empty list.
   - The eleven filter lookups (Tables 2-1, 2-2, 3-4, 3-6, 3-8, 3-9, 3-11,
-    4-1, 4-2, 4-5, 4-7) refuse a filter that matches no row, naming the
-    printed rows; they returned an empty list. A filter is matched as one
+    4-1, 4-2, 4-5, 4-7) refuse a filter that matches no row, listing the
+    rows by the library's labels, which the message says are not all
+    worded as printed; they returned an empty list. A filter is matched as one
     phrase, then word by word, so "metallic strip" and "vertical earth
     pressure" find their printed rows (gec-37).
   - Notes as printed: Table 2-2's footnote (frost and scour depth); Table
@@ -351,13 +364,16 @@ rows instead of being answered from the first row that contains the words.
     prints). Read in inches, 0.5 in./blow gave CBR 634.7 and Mr 158,867
     psi; TM 3-34.48-2 (2016) Figure G-11 and WES GL-92-3 (1992) p. 17 give
     the relation in mm per blow, and TM 3-34.48-2 Table G-1 prints CBR 22
-    at 10 mm/blow. A CBR over 100 % (DCP under 2.6 mm/blow) is refused;
+    at 10 mm/blow. `resilient_modulus_from_dcp` works Mr from the
+    unrounded CBR (10 mm/blow: 18,553.9 psi; it used CBR 22.2, 18,580.5).
+    A CBR over 100 % (DCP under 2.6 mm/blow) is refused;
     every result carries a `print_note` naming the sources (gec-08, lead's
     ruling 8).
   - `cbr_from_plasticity_gradation` (Table 5-34): `p200` is the fraction
-    passing the No. 200 sieve as a decimal (0 to 1), as wPI = P200 x PI
-    needs; a value above 1 is refused with the decimal to give. It took
-    the percent: 0.35 was read as 0.35 % (CBR 72.5 at PI 10; now 21.4)
+    passing the No. 200 sieve as a decimal (0 to 1), wPI = P200 x PI being
+    taken with P200 as a decimal fraction; a value above 1 is refused with
+    the decimal to give. It took the percent: 0.35 was read as 0.35 % (CBR
+    73.1 at PI 10; now 21.1)
     (lead's ruling 9). Table 5-34's lookup keeps the printed comments and
     adds a `library_note` for the DCP and P200 rows.
   - `modulus_subgrade_reaction_from_cbr` is removed: FHWA-NHI-05-037 does
@@ -370,7 +386,7 @@ rows instead of being answered from the first row that contains the words.
     0.95-0.75) (gec-26).
   - `effective_subgrade_modulus_from_relative_damage` is Eq. 5.12 as
     printed, Mr = 3015 uf^-0.431 (it computed the exact inverse of Eq. 5.11
-    and cited Eq. 5.11; 3015.6 at uf 1.0, now 3015.0).
+    and cited Eq. 5.11; 3014.8 at uf 1.0, now 3015.0).
     `resilient_modulus_from_cbr_aashto93` warns above CBR 10, not at it
     (Eq. 5.13 is printed for CBR <= 10). `backcalculated_to_design_modulus`
     cites Table 5-31's commentary (pp. 5-48 to 5-49), where the factors are
