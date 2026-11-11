@@ -1428,7 +1428,7 @@ def _main_add_missing(argv: list[str]) -> int:
                          split(args.numbers), overrides)
     for r in found["rows"]:
         print(f"  + {r['figure_number']:<8} idx {r['pdf_page_index']:>4} "
-              f"vol {r.get('volume')} {r['_graphic']:<7} "
+              f"vol {r.get('volume')} {r['_graphic'] or 'NO GRAPHIC':<7} "
               f"{'SIDEWAYS ' if r['_sideways'] else ''}{r['caption'][:80]}")
     for n in found["not_placed"]:
         print(f"  ? {n['figure_number']}: {n['why']} {n.get('pages', '')}")
