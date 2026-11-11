@@ -198,7 +198,83 @@ def test_appendix_a_lists_and_tolerance_read_from_the_page():
     assert "agreement to within ± 20 percent" in text
 
 
-def test_appendix_sections_fit_the_tools():
-    for s in _appendix(19)["sections"]:
+# ---------------------------------------------------------------- Appendix B
+
+B_TITLES = {
+    # printed headings, pp. B-1 to B-11
+    "B": "Drilled Shafts in Challenging Geomaterials",
+    "B.1": "Argillaceous Sedimentary Rock",
+    "B.2": "Limestone and Other Carbonate Rocks",
+    "B.3": "Glacial Till",
+    "B.4": "Piedmont Residual Soils",
+    "B.5": "Cemented Soils",
+    "B.6": "Expansive Soils",
+    "B.7": "Summary",
+}
+
+
+def test_appendix_b_sections_and_titles():
+    data = _appendix(20)
+    assert data["chapter_title"] == "Appendix B: Drilled Shafts in Challenging Geomaterials"
+    assert {s["section_id"]: s["title"] for s in data["sections"]} == B_TITLES
+    pages = [int(p) for s in data["sections"]
+             for p in re.findall(r"\[p\. B-(\d+)\]", s["body"])]
+    assert pages[0] == 1 and pages[-1] == 11 and pages == sorted(pages)
+
+
+@pytest.mark.parametrize("sid,printed", [
+    # p. B-1: TCP hammer
+    ("B.1", "the TCP test should be performed using a special 170 lb drop hammer with 24-inch "
+            "drop height (Texas DOT, 2018)"),
+    # p. B-2: the Colorado SPT limit, italic N printed as a plain letter
+    ("B.1", "as long as the number of blows required to penetrate six inches is 50 or less "
+            "(corresponding to N < 100)"),
+    # p. B-2: Florida pullout test
+    ("B.2", "a grout plug is formed in a 5.5-inch diameter cored hole at the bottom of a "
+            "6.5-inch diameter hole"),
+    # p. B-4: PMT modulus against triaxial
+    ("B.3", "modulus values from PMT were 2.6 to 6 times those obtained from triaxial tests"),
+    # p. B-8: caliche side resistance
+    ("B.5", "unit side resistances in the range of 30 to 55 ksf in competent caliche layers, "
+            "compared to 8 to 22 ksf in uncemented dense sand and gravel, and 4 ksf in stiff "
+            "clay layers (Gura et al., 2007)"),
+    ("B.5", "a range of 576 ksf to 1,440 ksf (4,000 to 10,000 psi)"),
+    # p. B-8: force kept
+    ("B.5", "If so, soil strength should be evaluated for the uncemented state."),
+    # p. B-10: the parenthesis is empty in the print
+    ("B.6", "the full strength of the soil can be mobilized (i.e., ) (as printed"),
+])
+def test_appendix_b_printed_sentences(sid, printed):
+    assert printed in _section(sid)["body"]
+
+
+def test_appendix_b_page_breaks_join_sentences():
+    # a sentence running over a page is one paragraph with the marker inside
+    assert "the compressive strength of [p. B-2] upper Cretaceous formation clay shales" \
+        in _section("B.1")["body"]
+    assert "(3) the Southwest, and (4) the Great Plains" in _section("B.6")["body"]
+
+
+def test_appendix_b_tables():
+    t1 = _section("B.5")["tables"]
+    assert len(t1) == 1 and t1[0].startswith("Table B-1: Example Classification")
+    assert "fresh caliche; very hard; 700; 70;" in t1[0]
+    assert "weathered caliche; hard; 6 to 30; 3 to 6;" in t1[0]
+    t2 = _section("B.6")["tables"]
+    assert len(t2) == 1 and t2[0].startswith("Table B-2: Method of Identifying")
+    for row in ("< 50; < 25; < 1.5; < 0.5; low", "50 – 60; 25 - 35; 1.5 – 4.0; 0.5 – 1.5; marginal",
+                "> 60; > 35; > 4.0; > 1.5; high"):
+        assert row in t2[0]
+
+
+def test_appendix_b_figures():
+    figs = [f for s in _appendix(20)["sections"] for f in s["figures"]]
+    assert [f.split(":")[0] for f in figs] == [f"Figure B-{n}" for n in range(1, 6)]
+    assert "Figure B-2: Features of Karstic Terrane (Knott et al., 1993)" in figs
+
+
+@pytest.mark.parametrize("ch", [19, 20])
+def test_appendix_sections_fit_the_tools(ch):
+    for s in _appendix(ch)["sections"]:
         assert len(s["body"]) <= 12000
         assert len(json.dumps(s)) <= 14000
