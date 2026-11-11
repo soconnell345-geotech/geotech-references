@@ -51,4 +51,9 @@ class TestPrintedNumericCriteria:
         r = gable_bent_tie_rod_force_range()
         assert r["min_force_kips"] == 40
         assert r["max_force_kips"] == 50
+        # UFC_3-301-01_2023_c4.pdf pdf 127 / printed 105 prints "40 to 50
+        # kips (118 kN to 222 kN)"; 40 kips is 178 kN. Kept as printed,
+        # flagged in the result.
+        assert r["min_force_kn"] == 118
+        assert "178 kN" in r["note"]
         assert r["min_force_kips"] < r["max_force_kips"]

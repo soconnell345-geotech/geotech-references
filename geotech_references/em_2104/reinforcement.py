@@ -46,10 +46,13 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
         (same but > 12 in. and < 24 in. thick, 3 in.), or
         ``'formed_le_12in'`` (<= 12 in. thick -- per ACI 318-19, not
         specified numerically in this manual).
-    aggregate_size_in, bar_diameter_in : float, optional
-        If given, the governing minimum is also checked against the note:
-        cover >= 1.5x max aggregate size and >= 2.5x max reinforcement
-        diameter.
+    aggregate_size_in : float, optional
+        Maximum aggregate size, in.; if given, the minimum is also checked
+        against the table note, cover >= 1.5 x maximum aggregate size.
+    bar_diameter_in : float, optional
+        Maximum reinforcement diameter, in.; if given, the minimum is also
+        checked against the table note, cover >= 2.5 x maximum
+        reinforcement diameter.
 
     Returns
     -------

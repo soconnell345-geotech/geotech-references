@@ -53,6 +53,32 @@ class TestTable6BeamFlexureModeling:
         with pytest.raises(ValueError):
             table_6_beam_flexure_modeling(0.1, "X", 4.0)
 
+    @pytest.mark.parametrize("rho,reinf,vw,printed", [
+        (0.0, "C", 3.0, 0.1), (0.0, "C", 6.0, 0.08), (0.5, "C", 3.0, 0.06),
+        (0.5, "C", 6.0, 0.04), (0.0, "NC", 3.0, 0.06), (0.5, "NC", 6.0, 0.02),
+    ])
+    def test_single_acceptance_column_flexure(self, rho, reinf, vw, printed):
+        # GSA_Alternate_Path_2016.pdf pdf 52 / printed p. 39, Table 6: ONE
+        # "Acceptance Criteria" column (0.1, 0.08, 0.06, 0.04, 0.06, 0.03,
+        # 0.03, 0.02), for primary and secondary components where the full
+        # backbone curve is explicitly modeled (footnote 2).
+        r = table_6_beam_flexure_modeling(rho, reinf, vw)
+        assert r["acceptance"] == pytest.approx(printed)
+        assert r["primary_acceptance"] == pytest.approx(printed)
+        assert r["secondary_acceptance"] == pytest.approx(printed)
+
+    @pytest.mark.parametrize("condition,le_d2,printed", [
+        ("shear", True, 0.02), ("shear", False, 0.01),
+        ("development", True, 0.02), ("development", False, 0.01),
+        ("inadequate_embedment", True, 0.03),
+    ])
+    def test_single_acceptance_column_other(self, condition, le_d2, printed):
+        # pdf 52 / printed p. 39, Table 6 rows ii-iv acceptance column.
+        r = table_6_beam_other_modeling(condition, stirrup_spacing_le_d2=le_d2)
+        assert r["acceptance"] == pytest.approx(printed)
+        assert r["primary_acceptance"] == pytest.approx(printed)
+        assert r["secondary_acceptance"] == pytest.approx(printed)
+
     @pytest.mark.parametrize("rho,reinf,vw", [
         (0.0, "C", 3.0), (0.5, "C", 3.0), (0.0, "C", 6.0), (0.5, "C", 6.0),
         (0.0, "NC", 3.0), (0.5, "NC", 3.0), (0.0, "NC", 6.0), (0.5, "NC", 6.0),
@@ -128,6 +154,23 @@ class TestTable7BeamFlexureMfactor:
         assert gsa["m_secondary"] == pytest.approx(ufc["m_secondary"])
 
 
+class TestShearRatioUnits:
+    # struct-02: the worked example (GSA_Alternate_Path_2016.pdf pdf 114 /
+    # printed D12) computes V/(bw d sqrt f'c) = 222 kips / (36 in x 22.5 in
+    # x sqrt(5000 psi)) = 3.88, so the printed rows are psi-unit values.
+    def test_worked_example_ratio_in_psi_units(self):
+        ratio = 222_000 / (36 * 22.5 * 5000 ** 0.5)
+        assert ratio == pytest.approx(3.88, abs=0.005)
+        r = table_7_beam_flexure_mfactor(0.037, "C", ratio)
+        assert "psi" in r["vw_ratio_units"]
+        assert r["vw_ratio_row"].startswith("interpolated")
+
+    def test_low_ratio_reads_le3_row_and_says_so(self):
+        r = table_6_beam_flexure_modeling(0.0, "C", 0.4)
+        assert r["vw_ratio_row"].startswith("<= 3")
+        assert r["vw_ratio"] == 0.4
+
+
 class TestTable8SlabFlexureModeling:
     def test_yes_continuity_vg02(self):
         # PRINTED TABLE VALUE: (<=0.2, Yes) -> a=0.05, b=0.10, c=0.2.
@@ -144,6 +187,30 @@ class TestTable8SlabFlexureModeling:
         r = table_8_slab_other_modeling("development")
         assert r["a"] == pytest.approx(0.0)
         assert r["b"] == pytest.approx(0.02)
+
+    @pytest.mark.parametrize("vg,continuity,printed", [
+        (0.2, True, 0.100), (0.4, True, 0.080), (0.2, False, 0.020),
+        (0.4, False, 0.000), (0.3, True, 0.090),
+    ])
+    def test_single_acceptance_column_flexure(self, vg, continuity, printed):
+        # GSA_Alternate_Path_2016.pdf pdf 54 / printed p. 41, Table 8: ONE
+        # "Acceptance Criteria" column, 0.100 / 0.080 (Yes) and 0.020 /
+        # 0.000 (No) at Vg/Vo <= 0.2 / >= 0.4; 0.3 is the permitted linear
+        # interpolation (footnote 1).
+        r = table_8_slab_flexure_modeling(vg, continuity)
+        assert r["acceptance"] == pytest.approx(printed)
+        assert r["primary_acceptance"] == pytest.approx(printed)
+        assert r["secondary_acceptance"] == pytest.approx(printed)
+
+    @pytest.mark.parametrize("condition,printed", [
+        ("development", 0.02), ("inadequate_embedment", 0.03),
+    ])
+    def test_single_acceptance_column_other(self, condition, printed):
+        # pdf 54 / printed p. 41, Table 8 rows ii and iii.
+        r = table_8_slab_other_modeling(condition)
+        assert r["acceptance"] == pytest.approx(printed)
+        assert r["primary_acceptance"] == pytest.approx(printed)
+        assert r["secondary_acceptance"] == pytest.approx(printed)
 
     @pytest.mark.parametrize("vg,continuity", [
         (0.2, True), (0.4, True), (0.3, True), (0.2, False), (0.4, False),

@@ -28,9 +28,15 @@ from geotech_references.em_2107.seismic_amplification import (
 
 class TestWestergaardPressure:
     def test_matches_eq_4_3_form(self):
+        # Eq 4.3 (EM 1110-2-2107_2022.pdf pdf 37 / printed 28) as typeset:
+        # p = (7/8) gamma_w ac sqrt(H y), the 7/8 a stacked fraction.
         gamma_w, ac, h, y = 62.4, 0.2, 100.0, 50.0
         r = westergaard_pressure(gamma_w, ac, h, y)
-        assert r["p"] == pytest.approx(gamma_w * ac * math.sqrt(h * y))
+        assert r["p"] == pytest.approx(7.0 / 8.0 * gamma_w * ac * math.sqrt(h * y))
+
+    def test_seven_eighths_value(self):
+        # 62.4 pcf, ac 0.5, H 100 ft, y 50 ft: 1930.4 psf (without 7/8, 2206.2).
+        assert westergaard_pressure(62.4, 0.5, 100.0, 50.0)["p"] == pytest.approx(1930.4, abs=0.1)
 
 
 class TestModeShapePhi_AppendixDExample:

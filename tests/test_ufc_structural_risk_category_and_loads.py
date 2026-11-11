@@ -83,25 +83,29 @@ class TestTable22RiskCategory:
 
 
 class TestWindSpeedConversion:
-    """Anchors: Eq 16-18a/16-18b algebraic identities."""
+    """Anchors: Eq 16-18a/16-18b as typeset (UFC_3-301-01_2023_c4.pdf
+    pdf 41 / printed 19): Vasd = sqrt(0.6) V and Vfm = (sqrt(0.6) V -
+    10.5)/1.05, the radical over 0.6 only."""
 
     def test_asd_conversion_matches_formula(self):
-        v = 140.0
-        r = wind_speed_conversion_asd(v)
-        assert r["v_asd"] == pytest.approx((0.6 * v) ** 0.5)
+        # Eq 16-18a, pdf 41 / printed 19: sqrt(0.6) x 150 = 116.2 mph.
+        r = wind_speed_conversion_asd(150.0)
+        assert r["v_asd"] == pytest.approx(116.19, abs=0.01)
         assert r["equation"] == "16-18a"
 
     def test_fastest_mile_conversion_matches_formula(self):
-        v = 140.0
-        r = wind_speed_conversion_fastest_mile(v)
-        expected = ((0.6 * v) ** 0.5 - 10.5) / 1.05
-        assert r["v_fm"] == pytest.approx(expected)
+        # Eq 16-18b, pdf 41 / printed 19: (116.19 - 10.5)/1.05 = 100.7 mph.
+        r = wind_speed_conversion_fastest_mile(150.0)
+        assert r["v_fm"] == pytest.approx(100.66, abs=0.01)
         assert r["equation"] == "16-18b"
 
-    def test_asd_speed_less_than_basic_speed(self):
-        # sqrt(0.6*V) < V for any positive V > 0.6
-        r = wind_speed_conversion_asd(120.0)
-        assert r["v_asd"] < 120.0
+    def test_asd_speed_is_sqrt_point6_times_basic_speed(self):
+        # The radical covers 0.6 only: Vasd is proportional to V, so
+        # doubling V doubles Vasd (sqrt(0.6*V) gave 9.49 mph at 150 mph).
+        a = wind_speed_conversion_asd(120.0)["v_asd"]
+        b = wind_speed_conversion_asd(240.0)["v_asd"]
+        assert b == pytest.approx(2 * a)
+        assert a == pytest.approx(92.95, abs=0.01)
 
     def test_nonpermanent_reduction_factor(self):
         assert nonpermanent_structure_wind_reduction_factor()["reduction_factor"] == 0.78

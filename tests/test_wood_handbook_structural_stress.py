@@ -97,14 +97,25 @@ class TestSizeEffect:
 
 
 class TestNotchCrackInitiation:
-    def test_figure_9_14_endpoints(self):
-        row = figure_9_14_coefficients(0.0, edge="tension")
-        assert row["a_coefficient"] == pytest.approx(0.0)
-        assert row["b_coefficient"] == pytest.approx(0.0)
+    def test_figure_9_14_traced_values(self):
+        # Figure 9-14 (FPL-GTR-282 pdf 244 / printed 9-12), traced off the
+        # rendered figure; units 1e-4 (kPa sqrt(mm))^-1, +/-0.01e-4.
+        t = figure_9_14_coefficients(0.1, edge="tension")
+        c = figure_9_14_coefficients(0.1, edge="compression")
+        assert t["a_coefficient"] == pytest.approx(0.177e-4, abs=0.015e-4)
+        assert c["a_coefficient"] == pytest.approx(0.074e-4, abs=0.015e-4)
+        assert t["b_coefficient"] == pytest.approx(0.277e-4, abs=0.015e-4)
+        end = figure_9_14_coefficients(0.55, edge="tension")
+        assert end["a_coefficient"] == pytest.approx(0.589e-4, abs=0.015e-4)
+        assert end["b_coefficient"] == pytest.approx(1.948e-4, abs=0.015e-4)
+        assert figure_9_14_coefficients(0.55, edge="compression")["a_coefficient"] == pytest.approx(0.160e-4, abs=0.015e-4)
 
     def test_figure_9_14_out_of_range_raises(self):
         with pytest.raises(ValueError):
             figure_9_14_coefficients(0.9)
+        # Below a/h 0.02 the curves run together at the origin.
+        with pytest.raises(ValueError, match="0.02"):
+            figure_9_14_coefficients(0.0)
 
     def test_crack_initiation_no_load_not_predicted(self):
         result = crack_initiation_check(h=0.3, b=0.1, moment=0.0, shear_force=0.0, a_coefficient=1e-5, b_coefficient=1e-5)
@@ -127,6 +138,29 @@ class TestCombinedBendingAxialStress:
         assert eccentric["ft_max"] == pytest.approx(concentric["ft_max"])
         assert eccentric["fc_max"] == pytest.approx(concentric["fc_max"])
 
+    def test_compression_case_superposes_eq_9_12(self):
+        # FPL-GTR-282 pdf 244 / printed 9-12: total stress = Eq 9-12 + Eq
+        # 9-22. A compressive P adds P/A on the concave edge: fb0 = 10,
+        # P/A = 2 (P = 4, A = 2), P/Pcr = 0.2 gives fb 12.5, ft_max 10.5,
+        # fc_max 14.5 (the edges were swapped: 14.5 and 10.5).
+        r = combined_bending_axial_stress(10.0, 4.0, 2.0, 20.0, is_tension=False)
+        assert r["fb"] == pytest.approx(12.5)
+        assert r["ft_max"] == pytest.approx(10.5)
+        assert r["fc_max"] == pytest.approx(14.5)
+
+    def test_eccentric_compression_adds_the_moment(self):
+        # fb0 augmented by +/-P e0/S (pdf 244): the printed tensile case
+        # subtracts; a compressive P at the same e0 adds. fb0 = 10,
+        # P e0/S = 1 (P = 4, e0 = 0.5, S = 2), P/A = 2, P/Pcr = 0.2:
+        # (10 + 1)/0.8 = 13.75, ft_max 11.75, fc_max 15.75.
+        r = eccentric_bending_axial_stress(10.0, 0.5, 2.0, 4.0, 2.0, 20.0, is_tension=False)
+        assert r["ft_max"] == pytest.approx(11.75)
+        assert r["fc_max"] == pytest.approx(15.75)
+        # The printed tensile case is unchanged: (10 - 1)/1.2 + 2, - 2.
+        t = eccentric_bending_axial_stress(10.0, 0.5, 2.0, 4.0, 2.0, 20.0, is_tension=True)
+        assert t["ft_max"] == pytest.approx(9.0 / 1.2 + 2.0)
+        assert t["fc_max"] == pytest.approx(9.0 / 1.2 - 2.0)
+
 
 class TestTorsionalShearStress:
     def test_circular_formula(self):
@@ -144,3 +178,13 @@ class TestTorsionalShearStress:
     def test_rectangular_square_section(self):
         result = torsional_shear_stress_rectangular(500.0, h=0.1, b=0.1)
         assert result["beta"] == pytest.approx(4.80, abs=0.05)
+
+    def test_rectangular_beta_multiplies(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-24 (FPL-GTR-282 pdf 245 /
+        # printed 9-13) prints fs = T/(beta h b^2), but Figure 9-15's beta
+        # (3 to 4.8) is the classical multiplier: fs = beta T/(h b^2).
+        # 100 x 100 mm, T = 1 kN m: 4.81 MPa (0.208 MPa as printed).
+        r = torsional_shear_stress_rectangular(1000.0, h=0.1, b=0.1)
+        assert r["shear_stress"] == pytest.approx(4.81e6, rel=0.01)
+        assert r["form_used"] == "beta*T/(h*b**2)"
+        assert r["printed_page"] == "9-13"
