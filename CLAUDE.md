@@ -163,7 +163,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 **Figure Functions** (2): Friction angle vs SPT N60 (Fig 4.3), basal heave Nc (Fig 5.11)
 
-### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (12 functions, 247 tests)
+### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (12 functions, 311 tests)
 
 **Figure/Equation Functions** (5): Alpha adhesion factor for cohesive side resistance (Fig 10-6, Chen 2011 formula α=0.30+0.17/(su/pa)); UU→CIUC and UC→CIUC strength conversion (Eq 10-16/17, Chen & Kulhawy 1993); rock socket side resistance for normal sockets (Eq 10-21, C=1.0 normalized); rock socket side resistance for caving/fractured rock (Eq 10-22 + Table 10-3 αE reduction factors by RQD and joint condition)
 
