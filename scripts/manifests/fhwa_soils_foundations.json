@@ -100,7 +100,7 @@
         {
           "letter": "A", "number": 13, "file": "appendix_a.json",
           "title": "APPLE FREEWAY PROJECT",
-          "page_start": 387, "page_end": 473,
+          "page_start": 387, "page_end": 500,
           "sections": [
             {"id": "A", "printed": "APPENDIX A", "title": "APPLE FREEWAY PROJECT GENERAL NOTES", "page": "A-1"},
             {"id": "A.1", "printed": "SECTION A.1", "title": "INTRODUCTION AND SCOPE OF WORK", "page": "A.1-1"},
@@ -131,7 +131,16 @@
             {"id": "A.6-5", "title": "CONSIDERATION OF WICK DRAIN OPTION (NO SURCHARGE) TO ACCELERATE CONSOLIDATION SETTLEMENT AND REDUCE TIME REQUIRED FOR SETTLEMENT DUE TO THE EMBANKMENT FILL", "page": "A.6-21"},
             {"id": "A.6-6", "title": "CHECK FOR LATERAL SQUEEZE OF CLAY", "page": "A.6-25"},
             {"id": "A.6-7", "title": "SUMMARY OF THE APPROACH ROADWAY STABILITY – FOR DETAILS REFER TO SECTION A.5-4 OF PREVIOUS PROBLEM", "page": "A.6-26"},
-            {"id": "A.6-8", "title": "SUMMARY OF EMBANKMENT SETTLEMENT ANALYSES AT EAST ABUTMENT", "page": "A.6-26"}
+            {"id": "A.6-8", "title": "SUMMARY OF EMBANKMENT SETTLEMENT ANALYSES AT EAST ABUTMENT", "page": "A.6-26"},
+            {"id": "A.7", "printed": "SECTION A.7", "title": "GEOTECHNICAL DESIGN OF SPREAD FOOTING", "page": "A.7-2", "start_page": "A.7-1"},
+            {"id": "A.7-1", "title": "RELEVANT CONCEPTS AND PROCEDURES", "page": "A.7-2"},
+            {"id": "A.7-2", "title": "DETAILED PROCEDURES", "page": "A.7-2"},
+            {"id": "A.7-3", "title": "COMPUTE ULTIMATE AND ALLOWABLE BEARING CAPACITY OF PIER FOOTING", "page": "A.7-4"},
+            {"id": "A.7-4", "printed": "A7-4", "title": "CHECK PRESSURE TRANSMITTED TO CLAY LAYER AND COMPARE IT TO THE ALLOWABLE BEARING CAPACITY OF THE CLAY", "page": "A.7-5", "note": "The heading prints its number as A7-4."},
+            {"id": "A.7-5", "printed": "A7-5", "title": "CALCULATE SETTLEMENT OF PIER FOOTING FOUNDED WITHIN A TWO-LAYER SYSTEM", "page": "A.7-8", "note": "The heading prints its number as A7-5."},
+            {"id": "A.7-6", "title": "CALCULATE SETTLEMENT OF EAST ABUTMENT FOOTING FOUNDED WITHIN A TWO-LAYER SYSTEM", "page": "A.7-16"},
+            {"id": "A.7-7", "title": "EVALUATE THE EFFECT OF PRE-TREATMENT ON THE SETTLEMENT OF EAST ABUTMENT FOOTING", "page": "A.7-22"},
+            {"id": "A.7-8", "printed": "A.7-7", "title": "SUMMARY OF GEOTECHNICAL DESIGN OF PIER AND ABUTMENT SPREAD FOOTINGS", "page": "A.7-25", "note": "The print numbers this section A.7-7, the number of the section before it; it is held as A.7-8 so that each section has its own number."}
           ],
           "figures": [
             {"number": "A.1-1", "page": "A.1-2", "caption": "Apple Freeway plan and section"},
@@ -181,9 +190,18 @@
             {"number": "A.6-9", "page": "A.6-20", "caption": "Trial failure circle – embankment fill + surcharge - East Abutment"},
             {"number": "A.6-10", "page": "A.6-20", "caption": "Idealized cross section of embankment fill + surcharge"},
             {"number": "A.6-11", "page": "A.6-23", "caption": "Time versus settlement after completion of embankment fill for wick drain treatment without surcharge"},
-            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of time-settlement curves for baseline case (30-ft embankment fill) and various treatment options"}
+            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of time-settlement curves for baseline case (30-ft embankment fill) and various treatment options"},
+            {"number": "A.7-1", "page": "A.7-1", "caption": "Status of geotechnical work"},
+            {"number": "A.7-2", "page": "A.7-3", "caption": "Footing geometry and subsurface conditions for center pier of the Apple Freeway Bridge including SPT-N blow counts from Boring BAF-2"},
+            {"number": "A.7-3", "page": "A.7-9", "caption": "Variation of overburden pressure (po), preconsolidation pressure (pc) and final pressure due to pier footing (pf) with depth"},
+            {"number": "A.7-4", "page": "A.7-15", "caption": "Settlement-time curve for pier including immediate settlement of sand"},
+            {"number": "A.7-5", "page": "A.7-16", "caption": "Footing geometry for embankment footing"},
+            {"number": "A.7-6", "page": "A.7-18", "caption": "Pressure distributions with depth at East Abutment for the overburden pressure (po), preconsolidation pressure (pc), final pressure due to embankment fill only (pf), and the final pressure due to embankment fill plus abutment footing (pabut)"},
+            {"number": "A.7-7", "page": "A.7-21", "caption": "Settlement-Time curve for abutment footing"},
+            {"number": "A.7-8", "page": "A.7-23", "caption": "Settlement –Time curve for abutment footing built 6 months after completion of embankment fill with vertical drain pre-treatment"},
+            {"number": "A.7-9", "page": "A.7-24", "caption": "Settlement –Time curve for 30 ft of embankment fill plus 10 ft surcharge"}
           ],
-          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1", "A.5-1", "A.5-12", "A.6-1"],
+          "figure_pages": ["A.1-2", "A.2-1", "A.2-8", "A.2-9", "A.2-10", "A.2-11", "A.2-12", "A.2-13", "A.2-14", "A.2-15", "A.2-16", "A.2-17", "A.2-18", "A.2-19", "A.2-20", "A.3-1", "A.4-1", "A.5-1", "A.5-12", "A.6-1", "A.7-1"],
           "tables": [
             {"number": "A.4-1", "page": "A.4-7", "caption": "Unit weights of soils in idealized profile (Boring UDH BAF-4)"},
             {"number": "A.4-2", "page": "A.4-7", "caption": "Computations for construction of po diagram (Boring UDH BAF-4)"},
@@ -201,7 +219,13 @@
             {"number": "A.6-7", "page": "A.6-18", "caption": "Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of embankment and surcharge loads"},
             {"number": "A.6-8", "page": "A.6-19", "caption": "Recommend instrumentation for monitoring settlement and excess pore water pressures at East Abutment"},
             {"number": "A.6-10", "page": "A.6-22", "caption": "Template to compute values of consolidation settlement (∆H) in clay -Layer 3 at various times (t) after application of embankment load (wick drains with no surcharge) due to combined vertical and radial drainage"},
-            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of results for base-line case (embankment fill only) and various treatment options"}
+            {"number": "A.6-12", "page": "A.6-24", "caption": "Summary of results for base-line case (embankment fill only) and various treatment options"},
+            {"number": "A.7-2", "page": "A.7-8", "caption": "Computation of pressure change at various depths due to pressure applied by footing"},
+            {"number": "A.7-3", "page": "A.7-14", "caption": "Summary of settlement of pier footing"},
+            {"number": "A.7-4", "page": "A.7-15", "caption": "Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of pier footing load (refer to section A.6)"},
+            {"number": "A.7-5", "page": "A.7-17", "caption": "Computation of pressure change due to pressure applied by abutment footing and pabut at various depths the embankment"},
+            {"number": "A.7-6", "page": "A.7-20", "caption": "Summary of settlement of pier footing"},
+            {"number": "A.7-7", "page": "A.7-21", "caption": "Template to compute values of consolidation settlement (∆H) in clay layer at various times (t) after application of abutment footing load (refer to section A.6)"}
           ],
           "typed_pages": "fhwa_soils_foundations_typed/appendix_a.txt",
           "printed_equations": [],

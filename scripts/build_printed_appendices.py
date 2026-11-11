@@ -487,7 +487,8 @@ def build_appendix(vol: dict, app: dict, manifest_dir: Path, log: list,
             "figures": _listed(figures, "Figure", body),
             "tables": _listed(tables, "Table", body),
             "applicability": (f"{vol['volume_id']}, Appendix {app['letter']} "
-                              f"({_title(app['title'])}), printed {pages_txt}."),
+                              f"({_title(app['title'])}), printed {pages_txt}."
+                              + (f" {sec['note']}" if sec.get("note") else "")),
         }
         for part in split_long(record):
             part["figures"] = _listed(figures, "Figure", part["body"])
