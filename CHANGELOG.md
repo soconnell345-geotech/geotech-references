@@ -5,7 +5,7 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 ## Unreleased
 
 **Structural lookups checked against the print (review of 2026-11-10,
-struct-01 to struct-27).** Values that change:
+struct-01 to struct-34).** Values that change:
 
 - UFC 4-023-03 Table 4-1, RC beams controlled by shear, development or
   embedment (`ufc_collapse.table_4_1_beam_other_modeling`): the
@@ -28,12 +28,19 @@ struct-01 to struct-27).** Values that change:
   category; it raised an error before (printed p. 27).
 - Steel connection m-factors and plastic rotations printed as c0 - c1 d
   (UFC Tables 5-1/5-2, GSA Tables 10/11, eight functions): d and dbg are
-  inches, named in the docstrings and results (`d_units`, `dbg_units`); a
-  depth at which a printed expression is zero or negative is refused
-  (a 30 in WUF beam typed as 762 gave UFC m = -59.0; now ValueError). An
-  m-factor between 0 and 1 is returned with a `note`.
+  inches, named in the docstrings and results (`d_units`, `dbg_units`).
+  An entry whose printed expression is zero or negative at that depth is
+  None, with a `note` naming the entry, its expression and the depths at
+  which it is positive; the row's other entries are returned, and the
+  call is refused only when every entry is zero or negative (a 30 in WUF
+  beam typed as 762 gave UFC m = -58.9; now ValueError). A UFC WUF beam
+  51.8 to 89.6 in deep returns its printed secondary m-factor with
+  `m_primary` None. An m-factor between 0 and 1 is returned with a
+  `note`.
 - EM 1110-2-2107 `bolt_grade_check` refuses a grade the manual does not
-  name (it answered "not permitted", even for "A325").
+  name (it answered "not permitted", even for "A325"). The print's own
+  spelling, "ASTM 3148" (printed p. 38), gets a message naming the grade
+  to pass, 'ASTM F3148'.
 - UFC 3-301-01 Eq 16-18a/b (`ufc_structural.wind_speed_conversion_asd`,
   `wind_speed_conversion_fastest_mile`): Vasd = sqrt(0.6) V and Vfm =
   (sqrt(0.6) V - 10.5)/1.05, the radical over 0.6 only as typeset. The
@@ -42,10 +49,15 @@ struct-01 to struct-27).** Values that change:
   stated the same wrong form and is corrected.
 - UFC 3-301-01 Tables 3-1, 7-1 and B-1 (`ufc_structural.table_3_1_*`,
   `table_7_1_*`, `table_b1_*`): height limits are returned as
-  `height_limits_ft` (was `height_limits`, no unit). Tables 3-1 and 7-1
-  add `height_limits_m` with footnote d's 30 m for 100 ft and 50 m for
-  160 ft, and None for heights the footnote does not convert; Table B-1
-  prints no metric values (printed pp. 57, 99, 124).
+  `height_limits_ft` (was `height_limits`, no unit), with
+  `height_limits_m`: footnote d's 30 m for 100 ft and 50 m for 160 ft in
+  Tables 3-1 and 7-1, None for a height the print gives no metric value
+  for (35, 40, 65 ft, and every Table B-1 height). `metric_footnotes`
+  gives the row's cited footnotes that print a metric height (Table 3-1
+  i "45 ft (14 m)", j "60 ft (18 m)", q "60 ft (18.3 m)"; Table 7-1 w
+  and Table B-1 footnote 7 "60 ft (18.3m)"); the notes cite "FOR SI: 1
+  foot (ft) = 304.8 mm" under Tables 3-1 and 7-1 and footnotes e and f
+  (240 ft, 75 m; 160 ft, 50 m) (printed pp. 56-57, 99, 124-126).
 - EM 1110-2-2107 Eq 4.3 (`em_2107.seismic_amplification.westergaard_pressure`): the
   printed 7/8 is applied, p = (7/8) wc ac sqrt(H y); 62.4 pcf, ac 0.5,
   H 100 ft, y 50 ft gives 1930.4 psf (was 2206.2; printed p. 28). The
@@ -56,8 +68,10 @@ struct-01 to struct-27).** Values that change:
   adds `permanent_sum_basis`. Following the old docstring, D = 100 with
   EQ = 50 gave 170 instead of 150.
 - UFC 3-301-01 Eq C-1 (`ufc_structural.rigid_pipe_fundamental_period`):
-  the print gives L = sqrt(C pi Ta sqrt(E I g / w)), so Ta = L^2/(C pi)
-  sqrt(w/(E I g)); the code had C L sqrt(w/(E I g)) and called spans to
+  the print gives L = sqrt(C pi Ta sqrt(E I_g / w)) and defines neither g
+  nor I_g; read as E x I x g (I the pipe's moment of inertia, g gravity,
+  confirmed by Table C-1), Ta = L^2/(C pi) sqrt(w/(E I g)). The code had
+  C L sqrt(w/(E I g)) and called spans to
   about 757 ft rigid. New keyword `g` (386.4 in/s^2 default). A 1 in.
   40S steel pipe at Table C-1's 7 ft 0 in gives Ta 0.059 s, rigid, and
   8 ft is not (printed pp. 137-138).
@@ -89,7 +103,9 @@ and the reason):
 - Wood Handbook Eq 9-32 (`critical_ponding_spacing`): the print defines
   rho as "density of water (1,000 kg m-3, 0.0361 lb in-3)"; the SI
   default is now the unit weight 9,810 N/m^3 (1,000 gave s_cr 9.81 times
-  too large). `rho_water` keeps its name (printed p. 9-15).
+  too large). The parameter is renamed `unit_weight_water` (was
+  `rho_water`, no alias; the result key follows), and a value from 900
+  to 1,100 is refused as a mass density (printed p. 9-15).
 - Wood Handbook Eq 9-41 (`elastic_buckling_stress_edgewise_bending`):
   printed (1.44 E/le)(d2/d1) is not a stress; used 1.44 E d2^2/(le d1)
   (printed p. 9-17).
@@ -98,8 +114,12 @@ and the reason):
   unchanged; the docstrings now state that Eq F.10's typeset sign,
   theta_p = tan^-1(Ph/Pv) and theta_Rt = tan^-1(Rtx/Rty) contradict the
   worked example and its tables, which the code follows (printed pp.
-  427, 436, 440, 445). `trunnion_reaction_force` returns the magnitude
-  of theta_Rt; Table F.8 prints -0.2653.
+  427, 436, 440, 445). For Eq F.10 only the integral's form gives Table
+  F.3's Ph = 50.0; the typeset form gives -50.0 and the worked example's
+  own displayed equation 30.0. `trunnion_reaction_force` returns the
+  magnitude of theta_Rt: the example computes +0.2653 from Rtx = -1,336
+  and Rty = -363.0, and Table F.8 lists the components unsigned beside
+  -0.2653 without saying what the sign means.
 
 Labels, units and citations (no value changes):
 
@@ -140,6 +160,12 @@ Labels, units and citations (no value changes):
   "118 kN" for 40 kips is a misprint (178 kN), noted in the result; Wood
   Handbook Eq 4-3's printed anchors (267 % / 44 %) fit a cell-wall
   specific gravity of 1.5, not the printed 1.54.
+- More wording from the print: GSA Tables 6 and 8 footnote 2 applies the
+  one acceptance column to primary and secondary components "where the
+  full backbone curve is explicitly modeled"; UFC 3-301-01 commentary
+  [C] 503.12 is on printed p. 84, the page after the normative text; Eq
+  16-18b prints 10.5 with no unit; EM 1110-2-2104 Eq D-6's moment is
+  M_DS as printed (was "MDL"; the result key stays `mdl`).
 
 ## 1.6.0
 
