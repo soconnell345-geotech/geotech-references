@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2)
+BUILT = (1, 2, 3)
 
 
 def _chapter(n):
@@ -100,6 +100,12 @@ def test_section_numbers_and_titles_as_printed():
     assert secs["1.2.a"]["title"].startswith("Historical Development (continued")
     assert len([s for s in secs if s.startswith("1.")]) == 7
     assert len([s for s in secs if s.startswith("2.")]) == 44
+    assert len([s for s in secs if s.startswith("3.")]) == 37
+    # the printed lettered level (p. 3-28 ff.)
+    for letter in "abcdefgh":
+        assert f"3.5.2.{letter}" in secs
+    assert secs["3.5.2.f"]["title"] == "LRFD Geosynthetic Reinforcement Resistance Factor, φ"
+    assert secs["3.6.1.a"]["title"] == "Segmental Panels"
 
 
 def test_printed_sentences_with_their_pages():
@@ -129,6 +135,78 @@ def test_design_tables_typed_in_from_the_page():
            "30 ft² < Area ≤ 75 ft²\n¾-in. (20 mm) | 1/100 | 1/200" in body
 
 
+def test_steel_strength_equations_as_printed():
+    # Eqs. 3-10, 3-11a and 3-11b (p. 3-22): no 0.86 factor, no Fu; the
+    # earlier file carried both
+    eqs = _equations()
+    assert eqs["3-10"][1]["formula"] == "Ec = En − ER"
+    assert eqs["3-11a"][1]["formula"].startswith("Tal = Fy Ac / b ")
+    assert eqs["3-11b"][1]["formula"].startswith("Ptal = Fy Ac ")
+    assert eqs["3-10"][0] == eqs["3-11a"][0] == "3.5.1"
+    sec = _sections()["3.5.1"]
+    text = json.dumps(sec["equations"], ensure_ascii=False) + sec["body"]
+    assert "0.86" not in text and "Fu " not in text
+    assert "Ec = En − ER [Eq. 3-10]" in sec["body"]
+
+
+def test_pullout_equations_and_alpha_as_printed():
+    eqs = _equations()
+    secs = _sections()
+    assert eqs["3-2"][1]["formula"] == "Pr = F* α σ′v Le C"
+    assert eqs["3-3"][1]["formula"].endswith("F* = Fq · αβ + tan ρ")
+    # p. 3-20 and 3-21
+    assert eqs["3-4"][1]["formula"].startswith("F* = tan ρ = 1.2 + log Cu at the top")
+    assert eqs["3-5"][1]["formula"] == "F* = tan φ at a depth of 20 ft (6 m) and below"
+    assert "= 20 (t/St) at the top" in eqs["3-6"][1]["formula"]
+    assert "= 10 (t/St) at a depth of 20 ft" in eqs["3-7"][1]["formula"]
+    assert eqs["3-8"][1]["formula"] == "F* = (2/3) tan φ"
+    # alpha absent test data (p. 3-16)
+    body = secs["3.4.2"]["body"]
+    assert ("In the absence of test data, α = 0.8 for geogrids and α = 0.6 for "
+            "geotextiles (extensible sheets) is recommended") in body
+    assert body.index("α = 0.8 for geogrids") < body.index("[p. 3-17]")
+    # the "≥" the print sets as an underlined ">" (p. 3-20)
+    assert "transverse spacing of St ≥ 6 inches (150 mm)" in secs["3.4.2.a"]["body"]
+
+
+def test_geosynthetic_strength_equations_as_printed():
+    eqs = _equations()
+    assert eqs["3-12"][1]["formula"].startswith(
+        "Tal = Tult / RF = Tult / (RFID × RFCR × RFD)")
+    assert eqs["3-13"][1]["formula"] == "Tal = Tult / RF = Tult / 7"
+    body = _sections()["3.5.2.g"]["body"]
+    # p. 3-39: the limits of RF = 7, "≤" read from the underlined "<"
+    assert "• 4.5 ≤ pH ≤ 9 • Site temperature < 85o F (30o C)" in body
+    assert "a default value for RF of 3.5 rather than 7 may be considered" in body
+
+
+def test_chapter_3_tables_typed_in():
+    secs = _sections()
+    body = secs["3.4.2"]["body"]
+    # Table 3-6 (p. 3-17)
+    assert ("Inextensible grids (bar mats and welded wire) | t Fq / (2 tan φ) | "
+            "St > Sopt | NA | Obtain Fq from tests, or use default values | "
+            "t / (2St) | 1.0*") in body
+    assert "Extensible sheets | (blank) | NA | Obtain Tan ρ from tests | NA | NA | 0.6" in body
+    body = secs["3.2.3"]["body"]
+    assert "pH | > 5 and < 10 | AASHTO T-289" in body          # Table 3-3, p. 3-9
+    assert "Polyester (PET) | pH | 3 < pH < 9 | AASHTO T-289" in body   # Table 3-4
+    body = secs["3.5.1"]["body"]
+    assert "Strip | > ¼ in. (6.4 mm) | 3.9 mils (100 μm)" in body      # Table 3-7
+    assert "For residual carbon steel/side: | 0.47 mils/yr (12 μm/year)" in body
+    # Table 3-8: the page's caption, not the List of Tables' "Mildly"
+    assert ("Table 3-8: Steel Corrosion Rates for Moderately Corrosive "
+            "Reinforced Fill.") in secs["3.5.1"]["tables"]
+    body = secs["3.5.2.b"]["body"]
+    assert "Slit film woven PP geotextile(a) | 1.60 - 3.00 | 1.10 - 2.00" in body
+    body = secs["3.5.2.d"]["body"]
+    assert "Coated geogrids, Geotextiles, Mn > 25,000, CEG < 30 | 1.15 | 1.3" in body
+    # a sentence starting "Table 3-13." is not taken for the caption (p. 3-40)
+    body = secs["3.5.2.g"]["body"]
+    assert "minimum requirements in Table 3-13. It should be noted" in body
+    assert "All Polymers | % Post Consumer Recycled Material by Weight" in body
+
+
 def test_lookups_linked_from_the_section_that_prints_the_table():
     import importlib
     seen = {}
@@ -140,6 +218,10 @@ def test_lookups_linked_from_the_section_that_prints_the_table():
             assert callable(getattr(importlib.import_module(mod), fn)), path
             seen[obj] = sid
     assert seen.get("Table 2-1") == "2.8.3" and seen.get("Table 2-2") == "2.8.3"
+    assert seen.get("Table 3-1") == "3.2.1" and seen.get("Table 3-6") == "3.4.2"
+    assert seen.get("Table 3-3") == seen.get("Table 3-4") == "3.2.3"
+    assert seen.get("Table 3-7") == seen.get("Table 3-8") == "3.5.1"
+    assert seen.get("Table 3-9") == "3.5.2.b" and seen.get("Table 3-11") == "3.5.2.d"
 
 
 def test_search_and_fetch_through_the_database():

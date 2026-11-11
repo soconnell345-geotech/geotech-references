@@ -35,7 +35,9 @@ between them, captions, equation entries, splitting):
   of the line printed beside it; a line ending in a hyphen (some set as
   soft hyphens) is joined to the next with no space, since the print breaks
   lines at a word's own hyphen ("long-term", "Figure 2-2"), except before
-  "or", "to", "and" ("5- or 10-ft");
+  "or", "to", "and" ("5- or 10-ft"); "≤" and "≥", which the print sets as
+  "<" and ">" with a short stroke drawn under them, are read back from
+  that stroke ("4.5 ≤ pH ≤ 9", p. 3-39);
 * a caption is made a paragraph of its own (the text layer runs it on into
   the text before and after it), ending where the List of Figures or
   Tables caption ends, so no body text is cut with a figure's lettering;
@@ -62,7 +64,10 @@ stop), ``printed_equations`` (``number``, ``page``, ``formula``,
 whose text-layer cells come out a column at a time or lose signs and
 superscripts, typed in row by row from the render: ``number``, ``page``,
 ``rows``, optional ``resume`` and ``notes``; see ``_type_tables``),
-``split_ids`` and ``lookups`` (printed object -> the library function that
+``page_captions`` (a caption the page prints in other words than the List
+of Figures or Tables, in sense: Table 3-8 "Moderately" against the list's
+"Mildly"; the section lists it in the page's words), ``split_ids`` and
+``lookups`` (printed object -> the library function that
 codes it, written to the section that prints the object as a section-level
 ``implemented_in`` mapping; the lookups were checked by opening them).
 
@@ -168,17 +173,55 @@ def _span_text(span: dict) -> str:
     return "".join(out)
 
 
+def _underlines(page) -> list[tuple]:
+    """Short horizontal strokes drawn on the page, as (x0, x1, y): the print
+    sets "≤" and "≥" as "<" and ">" with a stroke under them."""
+    segs = []
+    for dr in page.get_drawings():
+        for it in dr["items"]:
+            if it[0] == "l" and abs(it[1].y - it[2].y) < 0.6:
+                segs.append((min(it[1].x, it[2].x), max(it[1].x, it[2].x), it[1].y))
+            elif it[0] == "re" and it[1].height < 1.5 and it[1].width < 15:
+                segs.append((it[1].x0, it[1].x1, it[1].y1))
+    return segs
+
+
+def _underlined(bbox, segs) -> bool:
+    x0, _, x1, y1 = bbox
+    return any(a < x1 - 0.5 and b > x0 + 0.5 and y1 - 4 < y < y1 + 3
+               and b - a < 2.5 * (x1 - x0) for a, b, y in segs)
+
+
 def _page_lines(page, ignore_actualtext: bool, mapped: bool) -> list[str]:
     flags = fitz.TEXTFLAGS_DICT
     if ignore_actualtext:
         flags |= fitz.TEXT_IGNORE_ACTUALTEXT
     found = []
-    for b in page.get_text("dict", flags=flags)["blocks"]:
-        if b["type"] != 0:
-            continue
-        for ln in b["lines"]:
-            found.append(("".join(_span_text(s) if mapped else s["text"]
-                                  for s in ln["spans"]), ln["bbox"]))
+    if not mapped:
+        for b in page.get_text("dict", flags=flags)["blocks"]:
+            if b["type"] != 0:
+                continue
+            for ln in b["lines"]:
+                found.append(("".join(s["text"] for s in ln["spans"]), ln["bbox"]))
+    else:
+        under = None
+        for b in page.get_text("rawdict", flags=flags)["blocks"]:
+            if b["type"] != 0:
+                continue
+            for ln in b["lines"]:
+                parts = []
+                for s in ln["spans"]:
+                    chars = []
+                    for c in s["chars"]:
+                        ch = c["c"]
+                        if ch in "<>":
+                            if under is None:
+                                under = _underlines(page)
+                            if _underlined(c["bbox"], under):
+                                ch = "≤" if ch == "<" else "≥"
+                        chars.append(ch)
+                    parts.append(_span_text({"text": "".join(chars), "font": s["font"]}))
+                found.append(("".join(parts), ln["bbox"]))
     # a bullet set in the Symbol font is a line of its own, which the text
     # layer often puts after its item ("... Note that for sites •"): it is
     # put at the start of the line it is printed beside
@@ -416,22 +459,39 @@ def _caption_end(raw, q: int, m, listed: str) -> int:
     """The stream position of a caption's last line: the lines after the
     caption line that go on with the words the List of Figures or Tables
     gives (a caption printed with more words than the list ends where the
-    list's words end; what follows is kept as text)."""
+    list's words end; what follows is kept as text). A caption printed
+    without the list's first words ("Table 3-5." / "Reinforcement Pullout
+    ...", listed "Basic Aspects of Reinforcement Pullout ...") is matched
+    from where its words start in the list's, and a line in brackets right
+    after it ("(after AASHTO M 111 and ASTM A123).") is its own."""
     want = bpt._norm(listed)
     got = bpt._norm(raw[q][1][m.end():])
+    off = 0
     end, k = q, q + 1
-    while want and len(got) < len(want) and k < len(raw) and raw[k][0] == raw[q][0]:
+    while want and len(got) < len(want) - off and k < len(raw) and raw[k][0] == raw[q][0]:
         nxt = bpt._norm(raw[k][1])
         if not nxt:
             if got:
                 break
             k += 1
             continue
+        if (got and raw[end][1].rstrip().endswith(".")
+                and len(got) >= 0.8 * (len(want) - off)):
+            break   # a caption printed with fewer words than the list
         cand = got + nxt
-        if difflib.SequenceMatcher(None, cand, want[:len(cand)]).ratio() < 0.8:
+        if not got and not want.startswith(cand[:12]) and cand[:16] in want:
+            off = want.index(cand[:16])
+        if difflib.SequenceMatcher(None, cand, want[off:off + len(cand)]).ratio() < 0.8:
             break
         got, end = cand, k
         k += 1
+    k = end + 1
+    while k < len(raw) and raw[k][0] == raw[q][0] and not raw[k][1]:
+        k += 1
+    if (k < len(raw) and raw[k][0] == raw[q][0]
+            and re.match(r"\((?:after|from|adapted|modified)\b", raw[k][1], re.I)
+            and re.search(r"\)\.?$", raw[k][1]) and len(raw[k][1]) < 120):
+        end = k
     return end
 
 
@@ -447,11 +507,18 @@ def _is_caption(lines: list[str], k: int, m, listed: dict) -> bool:
     return bool(entry) and len(a) >= 16 and a in bpt._norm(entry["caption"])
 
 
-def _caption_in_segment(stream, s, t, kind, num, caption_lines) -> bool:
+def _caption(kind: str, num: str, listed: dict, page_caps: dict) -> str:
+    """The caption a section lists for a figure or table: the List of
+    Figures or Tables' wording, or the page's where the manifest's
+    ``page_captions`` gives it (the two differ in sense: Table 3-8)."""
+    return page_caps.get(f"{kind} {num}") or listed.get(num, {}).get("caption", "")
+
+
+def _caption_in_segment(stream, s, t, kind, num, cap_idx) -> bool:
     for q in range(s, t):
         m = _CAPTION.match(stream[q][1])
         if (m and m.group(1) == kind and bpt._caption_number(m) == num
-                and stream[q] in caption_lines):
+                and q in cap_idx):
             return True
     return False
 
@@ -469,7 +536,9 @@ def _fill_equations(body: str, printed: list[dict]) -> str:
 
 def _type_tables(body: str, printed: list[dict], done: set) -> str:
     """Each table typed in from the page (the manifest's ``printed_tables``:
-    ``number``, ``page``, ``rows``, optional ``resume`` and ``notes``) put in
+    ``number``, ``page``, ``rows``, optional ``resume``, ``caption_start``
+    (words of the printed caption, where a sentence in the text also starts
+    a paragraph with the table's number) and ``notes``) put in
     place of its text-layer cells, which come out a column at a time or
     with signs and superscripts lost: after the caption's paragraph, the
     text up to ``resume`` (the words that start the print's next paragraph
@@ -477,8 +546,13 @@ def _type_tables(body: str, printed: list[dict], done: set) -> str:
     the typed rows, one to a line, cells parted by " | ". Page markers in
     the replaced text are kept. Numbers typed in are added to ``done``."""
     for t in printed:
-        cap = re.search(rf"(?:^|\n\n)(?:\[p\. [^\]]+\]\s*)?Table {re.escape(t['number'])}"
-                        rf"(?![\d])[^\n]*", body)
+        # the caption's paragraph, not a sentence that starts "Table 3-13."
+        cap = None
+        for c in re.finditer(rf"(?:^|\n\n)(?:\[p\. [^\]]+\]\s*)?Table {re.escape(t['number'])}"
+                             rf"(?![\d])[^\n]*", body):
+            if not t.get("caption_start") or t["caption_start"] in c.group(0):
+                cap = c
+                break
         if not cap:
             continue
         start = body.find("\n\n", cap.end())
@@ -546,14 +620,14 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
             e["sid"] = h["printed_as"]
 
     printed_at: dict[tuple[str, str], list[int]] = {}
-    caption_lines: set[tuple[int, str]] = set()
+    caption_pos: set[tuple[int, int]] = set()   # (page index, line index)
     for i, p in enumerate(pages):
         lines = p["lines"]
         for k, ln in enumerate(lines):
             m = _CAPTION.match(ln)
             if m and _is_caption(lines, k, m, figs if m.group(1) == "Figure" else tabs):
                 printed_at.setdefault((m.group(1), bpt._caption_number(m)), []).append(i)
-                caption_lines.add((i, ln))
+                caption_pos.add((i, k))
     captions_on_page = {pages[i]["label"] for (kind, _), idx in printed_at.items()
                         if kind == "Figure" for i in idx}
     tables_on_page = {pages[i]["label"] for (kind, _), idx in printed_at.items()
@@ -563,6 +637,7 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
     printed_tabs = vol.get("printed_tables", [])
     lookups = vol.get("lookups", {})
     split_ids = vol.get("split_ids", {})
+    page_caps = vol.get("page_captions", {})
     eqs_attached: set = set()
     tables_typed: set = set()
     lookups_done: set = set()
@@ -575,10 +650,13 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
         # from the line before and into the text after), so a split part
         # lists the objects it prints and no body text is taken for caption
         raw = bpt._stream(pages, ch["page_start"], ch["page_end"])
+        where = [(i, k) for i in range(ch["page_start"] - 1, ch["page_end"])
+                 for k in range(len(pages[i]["lines"]))]
         stream, q = [], 0
+        cap_idx: set[int] = set()   # stream positions of caption lines
         while q < len(raw):
             i, ln = raw[q]
-            if (i, ln) not in caption_lines:
+            if where[q] not in caption_pos:
                 stream.append((i, ln))
                 q += 1
                 continue
@@ -586,6 +664,7 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
             entry = (figs if m.group(1) == "Figure" else tabs).get(bpt._caption_number(m), {})
             end = _caption_end(raw, q, m, entry.get("caption", ""))
             stream.append((i, ""))
+            cap_idx.add(len(stream))
             stream.extend(raw[q:end + 1])
             stream.append((raw[end][0], ""))
             q = end + 1
@@ -620,14 +699,14 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
             page_from = labels[0] if labels else None
             page_to = labels[-1] if labels else None
             seg_idx = {stream[q][0] for q in range(s, t)}
-            sec_figs = [f"Figure {num}: {figs[num]['caption'] if num in figs else ''}".rstrip(": ")
+            sec_figs = [f"Figure {num}: {_caption('Figure', num, figs, page_caps)}".rstrip(": ")
                         for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
                         if kind == "Figure" and any(i in seg_idx for i in idx)
-                        and _caption_in_segment(stream, s, t, "Figure", num, caption_lines)]
-            sec_tabs = [f"Table {num}: {tabs[num]['caption'] if num in tabs else ''}".rstrip(": ")
+                        and _caption_in_segment(stream, s, t, "Figure", num, cap_idx)]
+            sec_tabs = [f"Table {num}: {_caption('Table', num, tabs, page_caps)}".rstrip(": ")
                         for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
                         if kind == "Table" and any(i in seg_idx for i in idx)
-                        and _caption_in_segment(stream, s, t, "Table", num, caption_lines)]
+                        and _caption_in_segment(stream, s, t, "Table", num, cap_idx)]
             if h["sid"] == f"{n}.0" and len(re.sub(r"\[[^\]]*\]", "", body).strip()) < 20:
                 continue
             pages_txt = (f"p. {page_from}" if page_from == page_to
