@@ -36,6 +36,13 @@ rows instead of being answered from the first row that contains the words.
     print's words, with "300 mm or less" and "600 mm or more" and the
     footnote; `table_5_12_elastic_modulus` says where its two sand rows
     differ from the table's kPa column (gec-47).
+  - `table_4_5_pipe_properties` (Table 4-5, p. 4-33): values unchanged.
+    The table prints no Fy column; note (4) reads "Fy = 241 MPa (36 ksi)",
+    and 36 ksi is the 248 MPa the lookup returns for ASTM A519/A106 and
+    the table's printed yield strengths imply (the 139.7 x 12.7 row's
+    1,270 kN implies 250.6 MPa). A519/A106 results now carry a
+    `print_note` saying so and every result a `fy_basis` naming the note
+    (gec-47, lead's ruling).
 - **GEC-12 driven piles (FHWA-NHI-16-009 Vol I).**
   - `table_7_2_resistance_factor_field` (Table 7-2, p. 226): a key names
     one row. "static load test" and "dynamic testing" alone, which each

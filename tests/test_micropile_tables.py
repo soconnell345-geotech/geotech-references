@@ -194,6 +194,24 @@ class TestTable45:
         assert r["area_mm2"] == 12850
         assert r["yield_kn"] == 3190
 
+    def test_a519_fy_from_note_4_with_print_note(self):
+        """FHWA-NHI-05-039 Table 4-5, p. 4-33 (PDF page 89): no Fy column;
+        note (4) "Fy = 241 MPa (36 ksi)". 36 ksi = 248 MPa, which the four
+        printed yield strengths imply (1,270, 1,540, 1,890, 3,190 kN on
+        5,067, 6,208, 7,600, 12,850 mm2); 248 is returned with a note
+        (lead's ruling on gec-47)."""
+        printed = {(139.7, 12.7): (5067, 1270), (168.3, 12.7): (6208, 1540),
+                   (203.2, 12.7): (7600, 1890), (273.1, 16.0): (12850, 3190)}
+        for (od, wall), (area, kn) in printed.items():
+            r = table_4_5_pipe_properties(od, wall, "a519")
+            assert (r["area_mm2"], r["yield_kn"]) == (area, kn)
+            assert r["fy_mpa"] == 248
+            assert "241 MPa (36 ksi)" in r["print_note"]
+            assert "implies 250.6" in r["print_note"]
+            assert "36 ksi" in r["fy_basis"]
+        n80 = table_4_5_pipe_properties(177.8, 12.6, "n80")
+        assert n80["fy_mpa"] == 552 and "print_note" not in n80
+
     def test_no_wall_returns_list(self):
         r = table_4_5_pipe_properties(139.7, 0, "n80")
         assert isinstance(r, list)

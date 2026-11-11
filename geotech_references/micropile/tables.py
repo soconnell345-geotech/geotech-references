@@ -356,8 +356,14 @@ def table_4_2_rebar_properties(bar_size: str,
 
 
 # ============================================================================
-# Table 4-5: Pipe Dimensions and Yield Strengths
-# API N-80 (Fy = 552 MPa) and ASTM A519/A106 (Fy = 248 MPa)
+# Table 4-5: Dimensions and Yield Strength of Common Micropile Pipe Types and
+# Sizes (p. 4-33, PDF page 89). The table prints OD, wall, area and yield
+# strength in kN (kip) per pipe, and no Fy column. Note (3): API N-80 Fy =
+# 552 MPa (80 ksi). Note (4): ASTM A519 & A106 Fy = "241 MPa (36 ksi)"; 36 ksi
+# is 248.2 MPa, which the printed yield strengths imply (1,540/6,208 = 248.1,
+# 1,890/7,600 = 248.7, 3,190/12,850 = 248.2; 1,270/5,067 = 250.6). fy_mpa
+# 248 for A519/A106 is derived from the note's 36 ksi (lead's ruling,
+# 2026-11-10).
 # ============================================================================
 
 _TABLE_4_5_API_N80 = [
@@ -378,12 +384,22 @@ _TABLE_4_5_ASTM_A519 = [
 ]
 
 
+_TABLE_4_5_A519_FY_NOTE = (
+    "Table 4-5 (p. 4-33) prints no Fy column. Note (4) reads \"Nominal yield "
+    "stress for ASTM A519 & A106 steel is Fy = 241 MPa (36 ksi).\" 36 ksi is "
+    "248 MPa, which the table's printed yield strengths imply (1,540 kN / "
+    "6,208 mm2 = 248.1 MPa; 1,890 / 7,600 = 248.7; 3,190 / 12,850 = 248.2; "
+    "the 139.7 x 12.7 row's printed 1,270 kN / 5,067 mm2 implies 250.6 "
+    "MPa); 248 is returned. The printed yield strengths (kN) are returned "
+    "as printed.")
+
+
 def table_4_5_pipe_properties(od_mm: float,
                               wall_mm: float = 0.0,
                               steel_type: str = "n80") -> dict:
-    """Pipe dimensions and yield strength for micropile casing (Table 4-5).
+    """Dimensions, area (mm2) and yield strength (kN) of a micropile casing pipe, FHWA-NHI-05-039 Table 4-5 (p. 4-33), with the nominal yield stress fy_mpa from the table's notes: 552 MPa for API N-80 (note 3) and 248 MPa for ASTM A519/A106, derived from note (4)'s 36 ksi; note (4) prints "241 MPa (36 ksi)" and the A519/A106 results carry a print_note.
 
-    Looks up the closest matching pipe size from the table.
+    Looks up the printed pipe size (OD within 1 mm, wall within 0.5 mm).
 
     Parameters
     ----------
@@ -392,14 +408,16 @@ def table_4_5_pipe_properties(od_mm: float,
     wall_mm : float
         Wall thickness in mm.  If 0, returns all pipes with that OD.
     steel_type : str
-        'n80' for API N-80 (Fy=552 MPa) or 'a519' for ASTM A519/A106
-        (Fy=248 MPa).  Case-insensitive.
+        'n80' for API N-80 (Fy = 552 MPa, note 3) or 'a519' for ASTM
+        A519/A106 (Fy = 248 MPa, from note 4's 36 ksi; the note prints
+        "241 MPa (36 ksi)").  Case-insensitive.
 
     Returns
     -------
     dict or list of dict
-        Pipe properties: od_mm, wall_mm, area_mm2, yield_kn, fy_mpa.
-        Returns a list if wall_mm=0 and multiple sizes match.
+        Pipe properties: od_mm, wall_mm, area_mm2, yield_kn, fy_mpa,
+        fy_basis, steel_type, and print_note for A519/A106. Returns a list
+        if wall_mm=0 and multiple sizes match.
 
     Raises
     ------
@@ -423,14 +441,21 @@ def table_4_5_pipe_properties(od_mm: float,
         if abs(od - od_mm) < 1.0:
             if wall_mm > 0 and abs(wall - wall_mm) > 0.5:
                 continue
-            matches.append({
+            row = {
                 "od_mm": od,
                 "wall_mm": wall,
                 "area_mm2": area,
                 "yield_kn": yld,
                 "fy_mpa": fy,
                 "steel_type": "API N-80" if fy == 552 else "ASTM A519/A106",
-            })
+            }
+            if fy == 552:
+                row["fy_basis"] = "Table 4-5 note (3): Fy = 552 MPa (80 ksi)"
+            else:
+                row["fy_basis"] = ("Table 4-5 note (4)'s 36 ksi (248.2 MPa); "
+                                   "the note prints 241 MPa (36 ksi)")
+                row["print_note"] = _TABLE_4_5_A519_FY_NOTE
+            matches.append(row)
 
     if not matches:
         valid_ods = sorted({od for od, *_ in table})
