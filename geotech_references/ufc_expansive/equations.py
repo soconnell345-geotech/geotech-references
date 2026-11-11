@@ -218,6 +218,8 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
     dict
         Keys: potential_swell_pct, form ('PI >= 40' or 'PI <= 40'),
         condition, equation, note, print_note, reference, and the inputs.
+        A negative value is returned as computed, and the note says it is
+        not a predicted shrinkage.
 
     Raises
     ------
@@ -244,6 +246,9 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
         sp, form = lo, "PI <= 40"
         eq = ("Sp = -9.18 + 1.5546PI + 0.08424H + 0.1wo - 0.0432PIwo "
               "- 0.01215PIH")
+    if sp < 0:
+        note += (" The relation gives a negative number for these inputs; "
+                 "it is not a predicted shrinkage.")
     return {
         "plasticity_index": pi, "depth_ft": h, "initial_water_content": w,
         "potential_swell_pct": round(sp, 3),

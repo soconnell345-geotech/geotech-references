@@ -147,6 +147,14 @@ class TestTable42:
         assert r["potential_swell_pct"] == pytest.approx(16.21, abs=0.001)
         assert "16.426" in r["note"]
 
+    def test_johnson_negative_value_noted(self):
+        # PI <= 40 form at made-up PI 20, H 0, wo 40:
+        # -9.18 + 31.092 + 4 - 34.56 = -8.648, returned with a note.
+        r = table_4_2_swell_johnson(20, 0, 40)
+        assert r["potential_swell_pct"] == pytest.approx(-8.648, abs=0.001)
+        assert "not a predicted shrinkage" in r["note"]
+        assert "shrinkage" not in table_4_2_swell_johnson(30, 5, 20)["note"]
+
     def test_johnson_print_note_states_the_reading(self):
         # The PI <= 40 form's operators render as "="; read as minus.
         r = table_4_2_swell_johnson(30, 5, 20)

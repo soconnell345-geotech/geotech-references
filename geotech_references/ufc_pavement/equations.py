@@ -725,8 +725,9 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
     Eq. 20-3 (pdf_page 112, printed 93); returns k in the inputs' consistent
     units. Eq. 20-3 is printed with (1-e) in the denominator,
     k = Ds^2 * C * (gamma*e^3 / (mu*(1-e))); this function computes it with
-    (1+e), k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)] (a judgment call kept
-    as coded, review pave-24), and its result says so.
+    (1+e), k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)], as it was coded
+    before the review of 2026-11-10; the owner is to revisit the choice.
+    The result says so.
 
         k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)]
 
@@ -766,8 +767,9 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
         "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page 112, printed 93)",
         "note": (
             "Eq. 20-3 as printed (printed p. 93) has (1-e) in the "
-            "denominator, k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this result is "
-            "computed with (1+e), as coded (judgment call, review pave-24)."
+            "denominator, k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this function "
+            "keeps (1+e), as it was coded before the review of 2026-11-10, "
+            "and the owner is to revisit the choice."
         ),
     }
 

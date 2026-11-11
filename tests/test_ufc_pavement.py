@@ -252,6 +252,11 @@ class TestDrainageEquations:
         r = taylor_permeability(0.5, 25, 62.4, 1.0, 0.6)
         assert r["k"] > 0
 
+    def test_taylor_permeability_note_names_both_forms(self):
+        # Eq. 20-3, PDF 113 (printed 93), prints (1-e); the code keeps (1+e).
+        note = taylor_permeability(0.5, 25, 62.4, 1.0, 0.6)["note"]
+        assert "(1-e)" in note and "(1+e)" in note and "owner" in note
+
     def test_taylor_permeability_requires_positive(self):
         with pytest.raises(ValueError):
             taylor_permeability(0, 25, 62.4, 1.0, 0.6)
