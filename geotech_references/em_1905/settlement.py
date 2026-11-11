@@ -12,8 +12,11 @@ Settlements come back in feet and inches: the lists of symbols give some
 settlements in inches while the layer thickness is in feet, so both are
 given (feet x 12). Each function returns a dict with its values, ``units``,
 ``source``, ``valid_for`` and ``notes``, and raises ValueError outside what
-the equation covers; a limit printed beside a formula is checked and a
-result beyond it refused, not cut.
+the equation covers. A limit printed as part of a relation ("C1 >= 0.5")
+is applied as printed: the limited value is returned, with the formula's
+value beside it (``C1_unlimited``), ``limit_governs`` and a note quoting
+the page. An input the page's own conditions exclude is refused, the
+message naming the condition and the page.
 """
 
 from __future__ import annotations
@@ -639,9 +642,11 @@ def equation_7_7_consolidation_settlement(H: float, e0: float, Cc: float,
                          "equations 7-38 and 7-40")
     if sp < so:
         raise ValueError(
-            f"sigma_p ({sigma_p}) is below sigma_zo ({sigma_zo}): equations "
-            f"7-7 to 7-9 cover sigma'_zo about sigma'_p (7-7) and above; to "
-            f"use 7-7 give sigma_p = sigma_zo")
+            f"sigma_p ({sigma_p}) is below sigma_zo ({sigma_zo}): the "
+            f"conditions printed beside equations 7-7 to 7-9 (pp. 159-160) "
+            f"are sigma'_zo about sigma'_p (7-7), sigma'_zf < sigma'_p (7-8) "
+            f"and sigma'_zo < sigma'_p < sigma'_zf (7-9), and none covers "
+            f"sigma'_p < sigma'_zo; to use 7-7 give sigma_p = sigma_zo")
     if sp == so:
         ft, eq, page = cc / (1 + e) * h * math.log10(sf / so), "7-7", 159
     elif sf <= sp:
@@ -655,10 +660,13 @@ def equation_7_7_consolidation_settlement(H: float, e0: float, Cc: float,
                 "source": _source(f"Eq. {eq}", page),
                 "valid_for": ("One-dimensional primary consolidation of a "
                               "layer (Table 7-3)."),
-                "notes": ("The list of symbols gives delta_c in inches with "
-                          "H in feet; the formula gives feet, so both are "
-                          "returned (Example C-1 sums the layers in feet and "
-                          "converts).")})
+                "notes": ("The list of symbols gives delta_c in inches, but "
+                          "the formula with H in feet, as listed, gives feet, "
+                          "so both are returned (settlement_ft, and "
+                          "settlement_in = settlement_ft x 12). Example C-1 "
+                          "works in feet: Table C-1, Step 9 (p. 342) sums "
+                          "the layers as 'Sum delta_c = 0.0309 ft (0.37 "
+                          "inches)'.")})
     return out
 
 
@@ -700,7 +708,13 @@ def equation_7_10_constrained_modulus_settlement(layers: list) -> dict:
                 "valid_for": ("Layers with a constrained modulus, e.g. from "
                               "the DMT (Table 7-4, paragraph 7-10)."),
                 "notes": ("q is the gross (or gross equivalent) bearing "
-                          "pressure or qult/FS, whichever is less (p. 164).")})
+                          "pressure or qult/FS, whichever is less (p. 164). "
+                          "The list of symbols gives delta in inches, but "
+                          "the formula with H in feet, as listed, gives "
+                          "feet, so both are returned (settlement_ft, and "
+                          "settlement_in = settlement_ft x 12). Example C-6 "
+                          "converts the same way: Table C-6b, Step 7 (p. "
+                          "373) multiplies by (12 in/1 ft).")})
     return out
 
 
@@ -1058,12 +1072,15 @@ def equation_7_19_strain_influence_factor(footing: str, z: float, B: float,
 def equation_7_24_embedment_factor(q: float, sigma_zD: float) -> dict:
     """Embedment correction factor for Schmertmann's method,
     C1 = 1 - 0.5 sigma'_zD/(q - sigma'_zD), which the equation limits to at
-    least 0.5; a C1 below 0.5 is refused, not set to 0.5.
+    least 0.5. The limit is applied as printed: where the formula gives
+    less, C1 = 0.5 is returned, with the formula's value in C1_unlimited
+    and limit_governs True.
 
     Print check (Eq. 7-24, p. 174, typed in from the rendered page):
 
         printed    C1 = 1 − 0.5 (σ′zD/(q − σ′zD)) ≥ 0.5
-        here       the same; below 0.5 refused
+        here       the same; below 0.5, C1 = 0.5, the formula's value in
+                   C1_unlimited
 
     Parameters
     ----------
@@ -1075,24 +1092,28 @@ def equation_7_24_embedment_factor(q: float, sigma_zD: float) -> dict:
     Returns
     -------
     dict
-        C1, units, source, valid_for, notes.
+        C1, C1_unlimited, limit_governs, units, source, valid_for, notes.
 
     Raises
     ------
     ValueError
-        If q <= sigma_zD or C1 < 0.5.
+        If q <= sigma_zD.
     """
     s = _non_negative("sigma_zD", sigma_zD)
     qn = _non_negative("q", q) - s
     if qn <= 0:
         raise ValueError("q must exceed sigma_zD")
     c1 = 1 - 0.5 * s / qn
-    if c1 < 0.5:
-        raise ValueError(f"C1 = {c1:.3f} is below 0.5, the limit Eq. 7-24 "
-                         f"prints (p. 174); it does not say what to use")
-    return {"C1": c1, "units": {"C1": "dimensionless"},
+    governs = c1 < 0.5
+    notes = ""
+    if governs:
+        notes = (f"The formula gives C1 = {c1:.3f}; Eq. 7-24 (p. 174) prints "
+                 f"'C1 = 1 - 0.5 (sigma'zD/(q - sigma'zD)) >= 0.5', so C1 = "
+                 f"0.5 is returned (C1_unlimited holds the formula's value).")
+    return {"C1": max(c1, 0.5), "C1_unlimited": c1, "limit_governs": governs,
+            "units": {"C1": "dimensionless", "C1_unlimited": "dimensionless"},
             "source": _source("Eq. 7-24", 174),
-            "valid_for": "Schmertmann's CPT method.", "notes": ""}
+            "valid_for": "Schmertmann's CPT method.", "notes": notes}
 
 
 def equation_7_25_creep_factor(t_years: float) -> dict:

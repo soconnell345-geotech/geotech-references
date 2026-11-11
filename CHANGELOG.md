@@ -19,8 +19,16 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
   `figures` (the table printed on Figure 7-16). Each returns a dict with
   `units`, `source` (the printed page), `valid_for` and `notes`, and
-  raises ValueError outside what the print covers; a value past a limit
-  printed beside a formula is refused, not cut. The tests run Appendix B
+  raises ValueError outside what the print covers. A limit printed as part
+  of a relation is applied as printed (USACE dc <= 1.5, AASHTO dq <= 1.4,
+  Pa,d >= 0, C1 >= 0.5): the limited value comes back with the formula's
+  value beside it and `limit_governs`; an input the page's own conditions
+  exclude (beta > phi' in Table 5-3, sigma'p < sigma'zo in Eqs. 7-7 to
+  7-9) is refused, the message naming the condition and the page. Eqs.
+  5-34/5-35 keep the printed 2c'd without the square root of K (noted);
+  Eqs. 7-7 to 7-10 return feet and inches, as the examples convert. The
+  worked examples' slips (Example C-7c's first term, Example C-7d's layer
+  7) are kept as printed in the text with a note. The tests run Appendix B
   Examples B-1 to B-7 and Appendix C Examples C-1 and C-3 to C-7. The
   equations of Chapters 3, 4, 8 and 9 and the charts are text and
   catalog only.

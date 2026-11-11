@@ -247,8 +247,11 @@ def test_sliding_and_uplift():
     assert d["c_d"] == 0.2
     f = eq.equation_5_34_developed_earth_forces(0.12, 3, 2.0, 0.5, 0.0, 1)
     assert f["P_pd"] == pytest.approx(0.5 * 0.12 * 3 * 2.0 * 3)
-    with pytest.raises(ValueError, match="must be >= 0"):
-        eq.equation_5_34_developed_earth_forces(0.12, 3, 2.0, 0.5, 0.2, 1)
+    assert f["limit_governs"] is False and f["P_ad"] == f["P_ad_unlimited"]
+    # as printed (p. 121) the cohesion term is 2c'd with no square root of K
+    c = eq.equation_5_34_developed_earth_forces(0.12, 3, 4.0, 0.25, 0.01, 1)
+    assert c["P_pd"] == pytest.approx((0.5 * 0.12 * 3 * 4.0 + 2 * 0.01) * 3)
+    assert c["P_ad"] == pytest.approx((0.5 * 0.12 * 3 * 0.25 - 2 * 0.01) * 3)
     s = eq.equation_5_29_sliding_factor_of_safety_drained(
         N=100, U=10, delta_deg=25, ca_over_c=0, c_eff=0, A=50, H=20,
         P_ad=0, P_pd=0)
@@ -259,13 +262,44 @@ def test_sliding_and_uplift():
     assert up["FS"] == 1.25 and up["meets_minimum"] is False
 
 
-def test_limits_printed_beside_a_formula_are_refused_not_cut():
-    # USACE dc = 1 + 0.2 Df/B' <= 1.5 (Table 5-4): Df/B' = 3 gives 1.6
-    with pytest.raises(ValueError, match="1.5"):
-        tb.table_5_4_undrained_factors("usace", 2, 2, 6, 0, 10, 1, None, 0, 0, None)
-    # AASHTO dq <= 1.4 (Table 5-2, note a)
-    with pytest.raises(ValueError, match="1.4"):
-        tb.table_5_2_aashto_shape_depth_factors(30, 2, 2, 40)
+def test_limits_printed_in_a_relation_are_applied_as_printed():
+    # USACE dc = 1 + 0.2 Df/B' <= 1.5 (Table 5-4, p. 109): Df/B' = 3 gives 1.6
+    u = tb.table_5_4_undrained_factors("usace", 2, 2, 6, 0, 10, 1, None, 0, 0, None)
+    assert u["dc"] == 1.5 and u["limit_governs"] is True
+    assert u["dc_unlimited"] == pytest.approx(1.6)
+    assert "p. 109" in u["notes"] and "<= 1.5" in u["notes"]
+    below = tb.table_5_4_undrained_factors("usace", 2, 2, 2, 0, 10, 1, None, 0, 0, None)
+    assert below["dc"] == pytest.approx(1.2) and below["limit_governs"] is False
+    assert below["dc_unlimited"] == below["dc"]
+    # the undrained capacity uses the limited dc and says so
+    q = eq.ultimate_bearing_capacity_undrained("usace", 1.0, 0.5, 2, 2, 6, 0, 10,
+                                               None, 0, 0, None)
+    assert q["dc"] == 1.5 and q["limit_governs"] is True
+    assert q["dc_unlimited"] == pytest.approx(1.6)
+    assert q["q_ult"] == pytest.approx(1.2 * 1.5 * 1.0 * (2 + math.pi) + 0.5)
+    # AASHTO dq <= 1.4 (Table 5-2 note a, p. 107): phi' 30, Df/B' 20 gives
+    # 1 + 2 tan30 (1 - sin30)^2 atan(20) = 1.439
+    a = tb.table_5_2_aashto_shape_depth_factors(30, 2, 2, 40)
+    r = math.radians(30)
+    assert a["dq"] == 1.4 and a["limit_governs"] is True
+    assert a["dq_unlimited"] == pytest.approx(
+        1 + 2 * math.tan(r) * (1 - math.sin(r)) ** 2 * math.atan(20))
+    assert "p. 107" in a["notes"]
+    d = eq.ultimate_bearing_capacity_drained("aashto", 30, 0, 4.0, 0.06, 2, 2, 40,
+                                             0, 100, None, 0, 0, None)
+    assert d["dq"] == 1.4 and d["limit_governs"] is True
+    assert d["dq_unlimited"] == pytest.approx(a["dq_unlimited"])
+    assert eq.ultimate_bearing_capacity_drained(
+        "usace", 30, 0, 4.0, 0.06, 2, 2, 40, 0, 100, None, 0, 0, None)[
+            "limit_governs"] is False
+    # Pa,d >= 0 (Eq. 5-35 list of symbols, p. 121)
+    f = eq.equation_5_34_developed_earth_forces(0.12, 3, 2.0, 0.5, 0.2, 1)
+    assert f["P_ad"] == 0.0 and f["limit_governs"] is True
+    assert f["P_ad_unlimited"] == pytest.approx((0.5 * 0.12 * 3 * 0.5 - 0.4) * 3)
+    assert "must be >= 0" in f["notes"]
+    # the page's own conditions: beta past phi' (Table 5-3) is refused
+    with pytest.raises(ValueError, match="Table 5-3"):
+        tb.table_5_3_usace_load_inclination_factors(80, 100, 30)
     # the AASHTO ground factors are in AASHTO (2020), not printed here
     with pytest.raises(ValueError, match="AASHTO"):
         tb.table_5_4_undrained_factors("aashto", 6, 6, 2, 0, 10, 1, None, 0, 10, 3)

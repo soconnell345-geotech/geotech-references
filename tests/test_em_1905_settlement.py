@@ -226,8 +226,9 @@ def test_c7d_factors():
     # sigma'_zp at D + B/2 = 6.5 ft, 125 pcf
     izp = st.equation_7_18_peak_strain_influence(3.31, 0.156, 6.5 * 125 / 2000)
     assert izp["I_zp"] == approx(0.779, abs=0.0005)
-    assert st.equation_7_24_embedment_factor(3.31, 0.156)["C1"] == approx(
-        0.975, abs=0.0005)
+    c1 = st.equation_7_24_embedment_factor(3.31, 0.156)
+    assert c1["C1"] == approx(0.975, abs=0.0005)
+    assert c1["limit_governs"] is False and c1["C1_unlimited"] == c1["C1"]
     assert st.equation_7_25_creep_factor(50)["C2"] == approx(1.539, abs=0.001)
     assert st.equation_7_16_cpt_modulus(100, "axisymmetric")["E_s"] == 250
     assert st.equation_7_16_cpt_modulus(300, "axisymmetric")["E_s"] == 750
@@ -387,7 +388,6 @@ def test_figure_7_16_interpolation_and_inverse():
     lambda: st.equation_7_7_consolidation_settlement(1, 1, 0.3, 0.03, 1.0,
                                                      0.9, 2.0),
     lambda: st.equation_7_3_constrained_modulus(1, 1.0, 0.9, 1.0, 0.3, 0.03),
-    lambda: st.equation_7_24_embedment_factor(0.3, 0.2),
     lambda: st.equation_7_19_strain_influence_factor("axisymmetric", 9.0,
                                                      4.0, 0.7, None),
     lambda: st.equation_7_19_strain_influence_factor("plane strain", 17.0,
@@ -409,6 +409,35 @@ def test_figure_7_16_interpolation_and_inverse():
 def test_refusals(call):
     with pytest.raises(ValueError):
         call()
+
+
+def test_c1_limit_applied_as_printed():
+    # Eq. 7-24 (p. 174): C1 = 1 - 0.5 (sigma'zD/(q - sigma'zD)) >= 0.5;
+    # q 0.3, sigma'zD 0.2 gives 1 - 0.5 x 2 = 0, so C1 = 0.5
+    c1 = st.equation_7_24_embedment_factor(0.3, 0.2)
+    assert c1["C1"] == 0.5 and c1["limit_governs"] is True
+    assert c1["C1_unlimited"] == approx(0.0)
+    assert "p. 174" in c1["notes"] and ">= 0.5" in c1["notes"]
+
+
+def test_preconsolidation_below_initial_stress_names_the_conditions():
+    # sigma'p < sigma'zo is outside the conditions printed beside Eqs. 7-7
+    # to 7-9 (pp. 159-160)
+    with pytest.raises(ValueError, match="pp. 159-160"):
+        st.equation_7_7_consolidation_settlement(1, 1, 0.3, 0.03, 1.0, 2.0, 0.8)
+
+
+def test_settlements_in_feet_and_inches():
+    # the lists of symbols give inches; the formulas with H in ft give ft
+    # (Table C-1 Step 9, p. 342; Table C-6b Step 7, p. 373)
+    s = st.equation_7_7_consolidation_settlement(2.0, 1.0, 0.3, 0.03, 1.0,
+                                                 2.0, 1.0)
+    assert s["settlement_in"] == approx(12 * s["settlement_ft"])
+    assert "p. 342" in s["notes"]
+    m = st.equation_7_10_constrained_modulus_settlement([(1.0, 1.0, 100.0)])
+    assert m["settlement_ft"] == approx(0.01)
+    assert m["settlement_in"] == approx(0.12)
+    assert "p. 373" in m["notes"]
 
 
 # ---------------------------------------------------------------------------

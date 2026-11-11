@@ -8,9 +8,12 @@ Units are the manual's: ft, kips (kips/ft for a continuous footing), ksf,
 kcf, degrees. Each function returns a dict with its values, ``units``,
 ``source`` (equation and printed page), ``valid_for`` and ``notes``, and
 raises ValueError for a value outside what the equation covers. A limit
-printed beside a formula ("dc <= 1.5", "Pa,d >= 0") is checked and a result
-beyond it refused, not cut to the limit; a min[] or max[] inside a formula
-is computed as printed.
+printed as part of a relation ("dc <= 1.5", "Pa,d >= 0") is applied as
+printed: the limited value is returned, with the formula's value beside it
+(``dc_unlimited``, ``P_ad_unlimited``), ``limit_governs`` and a note quoting
+the page. An input the page's own conditions exclude is refused, the
+message naming the condition and the page. A min[] or max[] inside a
+formula is computed as printed.
 
 ``ultimate_bearing_capacity_drained`` and
 ``ultimate_bearing_capacity_undrained`` follow the steps of the worked
@@ -567,8 +570,9 @@ def ultimate_bearing_capacity_drained(method: str, phi_deg: float, c: float,
     -------
     dict
         q_ult, the bearing factors (N, Nq, Nc, N_gamma) and every
-        correction factor (sq ... g_gamma), method, units, source,
-        valid_for, notes.
+        correction factor (sq ... g_gamma), limit_governs (True where the
+        AASHTO dq <= 1.4 of Table 5-2 note a governs, with dq_unlimited
+        then given), method, units, source, valid_for, notes.
 
     Raises
     ------
@@ -620,22 +624,31 @@ def ultimate_bearing_capacity_drained(method: str, phi_deg: float, c: float,
            "gamma_term": q["gamma_term"], "N": bf["N"], "Nq": bf["Nq"],
            "Nc": bf["Nc"], "N_gamma": bf["N_gamma"]}
     out.update(f)
+    governs = bool(sd.get("limit_governs", False))
+    out["limit_governs"] = governs
+    units = dict({"q_ult": "ksf", "c_term": "ksf", "q_term": "ksf",
+                  "gamma_term": "ksf"},
+                 **{k: "dimensionless" for k in
+                    ["N", "Nq", "Nc", "N_gamma"] + list(f)})
+    notes = ("The worked examples round each factor to two decimals before "
+             "multiplying, so their qult can differ from this one in the "
+             "third figure. The manual recommends both methods and the "
+             "average when bearing capacity controls (paragraph 5-5e).")
+    if governs:
+        out["dq_unlimited"] = sd["dq_unlimited"]
+        units["dq_unlimited"] = "dimensionless"
+        notes += (f" The formula gives dq = {sd['dq_unlimited']:.3f}; note a "
+                  f"to Table 5-2 (p. 107) limits the AASHTO (2020) dq to "
+                  f"1.4, and q_ult uses dq = 1.4.")
     out.update({
         "method": bf["method"],
-        "units": dict({"q_ult": "ksf", "c_term": "ksf", "q_term": "ksf",
-                       "gamma_term": "ksf"},
-                      **{k: "dimensionless" for k in
-                         ["N", "Nq", "Nc", "N_gamma"] + list(f)}),
+        "units": units,
         "source": (f"{_REF} Eq. 5-22, p. 105, with Table 5-2, p. 107 and "
                    f"Table 5-3, p. 108"),
         "valid_for": ("Drained (effective stress) analysis, phi' > 0, "
                       "general shear in a uniform shear zone; check a weak "
                       "layer below with equation 5-17 or 5-18."),
-        "notes": ("The worked examples round each factor to two decimals "
-                  "before multiplying, so their qult can differ from this "
-                  "one in the third figure. The manual recommends both "
-                  "methods and the average when bearing capacity controls "
-                  "(paragraph 5-5e)."),
+        "notes": notes,
     })
     return out
 
@@ -688,14 +701,15 @@ def ultimate_bearing_capacity_undrained(method: str, su: float, q0: float,
     Returns
     -------
     dict
-        q_ult, Nc, sc, dc, ic, bc, gc, method, units, source, valid_for,
-        notes.
+        q_ult, Nc, sc, dc, ic, bc, gc, limit_governs (True where the USACE
+        dc <= 1.5 of Table 5-4 governs, with dc_unlimited then given),
+        method, units, source, valid_for, notes.
 
     Raises
     ------
     ValueError
-        As ``tables.table_5_4_undrained_factors`` does (for one, a USACE dc
-        above 1.5).
+        As ``tables.table_5_4_undrained_factors`` does (for one, a slope
+        with the AASHTO/FHWA method).
     """
     f = _t.table_5_4_undrained_factors(method, B_eff, L_eff, Df, H, V, su,
                                        theta_deg, alpha_b_deg, alpha_g_deg,
@@ -706,17 +720,26 @@ def ultimate_bearing_capacity_undrained(method: str, su: float, q0: float,
         1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
     out = {"q_ult": q["q_ult"]}
     out.update({k: f[k] for k in ("Nc", "sc", "dc", "ic", "bc", "gc")})
+    out["limit_governs"] = f["limit_governs"]
+    units = {"q_ult": "ksf", "Nc": "dimensionless", "sc": "dimensionless",
+             "dc": "dimensionless", "ic": "dimensionless",
+             "bc": "dimensionless", "gc": "dimensionless"}
+    notes = ("The worked examples round each factor to two decimals before "
+             "multiplying, so their qult can differ from this one in the "
+             "third figure.")
+    if f["limit_governs"]:
+        out["dc_unlimited"] = f["dc_unlimited"]
+        units["dc_unlimited"] = "dimensionless"
+        notes += (f" The formula gives dc = {f['dc_unlimited']:.3f}; Table "
+                  f"5-4 (p. 109) limits the USACE dc to 1.5, and q_ult uses "
+                  f"dc = 1.5.")
     out.update({
         "method": f["method"],
-        "units": {"q_ult": "ksf", "Nc": "dimensionless", "sc": "dimensionless",
-                  "dc": "dimensionless", "ic": "dimensionless",
-                  "bc": "dimensionless", "gc": "dimensionless"},
+        "units": units,
         "source": (f"{_REF} Eq. 5-22, p. 105, with Table 5-4, p. 109"),
         "valid_for": ("Undrained (total stress) analysis, phi = 0, c = su; "
                       "q0 is the total stress at the footing base."),
-        "notes": ("The worked examples round each factor to two decimals "
-                  "before multiplying, so their qult can differ from this "
-                  "one in the third figure."),
+        "notes": notes,
     })
     return out
 
@@ -1091,15 +1114,23 @@ def equation_5_34_developed_earth_forces(gamma_eff: float, Df: float,
                                          c_d: float, L: float) -> dict:
     """Developed passive force on the front and active force on the back of
     a footing for sliding: Pp,d = ((1/2) gamma' Df Kp,d + 2c'd) Df L and
-    Pa,d = ((1/2) gamma' Df Ka,d - 2c'd) Df L, which must be >= 0. As
-    printed, the cohesion terms carry no square root of Kp,d or Ka,d.
+    Pa,d = ((1/2) gamma' Df Ka,d - 2c'd) Df L, which must be >= 0. The
+    limit is applied as printed: where the formula gives a negative Pa,d,
+    Pa,d = 0 is returned, with the formula's value in P_ad_unlimited and
+    limit_governs True. As printed, the cohesion terms are 2c'd, without
+    the square root of Kp,d or Ka,d: the Rankine pressures in UFC 3-220-20
+    (2025), Eqs. 4-6 and 4-7 (p. 178), carry 2c' sqrt(KA) and
+    2c' sqrt(KP), so for Kp,d > 1 and Ka,d < 1 the printed form gives less
+    passive force and a smaller active force than those pressures
+    integrated over Df.
 
     Print check (Eqs. 5-34 and 5-35, p. 121, rendered and compared):
 
         5-34  Pp,d = ((1/2) γ′ · Df · Kp,d + 2c′d) Df · L
         5-35  Pa,d = ((1/2) γ′ · Df · Ka,d − 2c′d) Df · L ≥ 0
-        here the same; a negative Pa,d is refused (the list of symbols:
-        "must be ≥ 0"), not set to 0
+        here the same (2c′d, no square root); a negative Pa,d is 0 (the
+        list of symbols: "must be ≥ 0"), the formula's value in
+        P_ad_unlimited
 
     Parameters
     ----------
@@ -1120,12 +1151,13 @@ def equation_5_34_developed_earth_forces(gamma_eff: float, Df: float,
     Returns
     -------
     dict
-        P_pd, P_ad, units, source, valid_for, notes.
+        P_pd, P_ad, P_ad_unlimited, limit_governs, units, source,
+        valid_for, notes.
 
     Raises
     ------
     ValueError
-        If a value is negative, L is not positive, or Pa,d < 0.
+        If a value is negative or L is not positive.
     """
     for name, v in (("gamma_eff", gamma_eff), ("Df", Df), ("Kp_d", Kp_d),
                     ("Ka_d", Ka_d), ("c_d", c_d)):
@@ -1133,17 +1165,22 @@ def equation_5_34_developed_earth_forces(gamma_eff: float, Df: float,
     Lf = _positive("L", L)
     Pp = (0.5 * gamma_eff * Df * Kp_d + 2 * c_d) * Df * Lf
     Pa = (0.5 * gamma_eff * Df * Ka_d - 2 * c_d) * Df * Lf
+    notes = ("As printed (p. 121), the cohesion term is 2c'd, without the "
+             "square root of Kp,d or Ka,d; the Rankine pressures of UFC "
+             "3-220-20 (2025) Eqs. 4-6 and 4-7 (p. 178) carry 2c' sqrt(KA) "
+             "and 2c' sqrt(KP). For Kp,d > 1 and Ka,d < 1 the printed form "
+             "gives less passive force and a smaller active force.")
     if Pa < 0:
-        raise ValueError(
-            f"Pa,d = {Pa:.3f} < 0: the list of symbols says Pa,d must be "
-            f">= 0 (p. 121) and does not say what to use instead")
-    return {"P_pd": Pp, "P_ad": Pa,
-            "units": {"P_pd": "kips (kips/ft for L = 1)",
-                      "P_ad": "kips (kips/ft for L = 1)"},
+        notes += (f" The formula gives Pa,d = {Pa:.3f}; the list of symbols "
+                  f"(p. 121) says Pa,d 'must be >= 0', so Pa,d = 0 is "
+                  f"returned (P_ad_unlimited holds the formula's value).")
+    unit = "kips (kips/ft for L = 1)"
+    return {"P_pd": Pp, "P_ad": max(Pa, 0.0), "P_ad_unlimited": Pa,
+            "limit_governs": Pa < 0,
+            "units": {"P_pd": unit, "P_ad": unit, "P_ad_unlimited": unit},
             "source": _source("Eqs. 5-34 and 5-35", 121),
             "valid_for": "Sliding resistance (paragraph 5-6f(2)).",
-            "notes": ("As printed, the cohesion term is 2c'd, without the "
-                      "square root of Kp,d or Ka,d.")}
+            "notes": notes}
 
 
 def equation_5_36_uplift_factor_of_safety(Wf: float, Ws: float, Wc: float,

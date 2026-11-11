@@ -300,7 +300,9 @@ def table_5_2_aashto_shape_depth_factors(phi_deg: float, B_eff: float,
     sc = 1 + (B'/L')(Nq/Nc), s-gamma = 1 - 0.4 (B'/L'),
     dq = 1 + 2 tan(phi') (1 - sin(phi'))^2 atan(Df/B') with atan in radians,
     dc = d-gamma = 1. The note to the table limits dq to 1.4 for AASHTO
-    (2020); a dq above 1.4 is refused, not cut to 1.4.
+    (2020), and the limit is applied as printed: where the formula gives
+    more, dq = 1.4 is returned, with the formula's value in dq_unlimited
+    and limit_governs True.
 
     Print check (Table 5-2, p. 107, rendered and compared cell by cell):
 
@@ -313,6 +315,8 @@ def table_5_2_aashto_shape_depth_factors(phi_deg: float, B_eff: float,
         dγ      1
         note a  dq for AASHTO (2020) ≤ 1.4, atan(D/B′) in radians,
                 FHWA (2002) presents tabulated values
+        here    the same; above 1.4, dq = 1.4 (note a), the formula's value
+                in dq_unlimited
 
     Parameters
     ----------
@@ -329,38 +333,42 @@ def table_5_2_aashto_shape_depth_factors(phi_deg: float, B_eff: float,
     Returns
     -------
     dict
-        sq, sc, s_gamma, dq, dc, d_gamma, Nq, Nc, B_over_L, Df_over_B,
-        units, source, valid_for, notes.
+        sq, sc, s_gamma, dq, dq_unlimited, limit_governs, dc, d_gamma, Nq,
+        Nc, B_over_L, Df_over_B, units, source, valid_for, notes.
 
     Raises
     ------
     ValueError
         If phi' is not between 0 and 90 degrees, B' or L' is not positive,
-        L' < B', Df < 0, or dq comes out above 1.4 (note a).
+        L' < B', or Df < 0.
     """
     phi = _friction_angle(phi_deg)
     bl = _ratio_b_over_l(B_eff, L_eff)
     dfb = _non_negative("Df", Df) / float(B_eff)
     f = table_5_2_bearing_capacity_factors(phi, "aashto")
     r = math.radians(phi)
-    dq = 1 + 2 * math.tan(r) * (1 - math.sin(r)) ** 2 * math.atan(dfb)
-    if dq > 1.4:
-        raise ValueError(
-            f"dq = {dq:.3f} exceeds 1.4, the limit the note to Table 5-2 "
-            f"gives for AASHTO (2020) (p. 107); the table does not say what "
-            f"to use beyond it")
+    dq_formula = 1 + 2 * math.tan(r) * (1 - math.sin(r)) ** 2 * math.atan(dfb)
+    governs = dq_formula > 1.4
+    notes = ("As printed, the sc cell reads 'sq = 1 + (B'/L')(Nq/Nc)' and "
+             "the sq cell uses tan(phi) without a prime; FHWA (2002) presents "
+             "tabulated depth factors (note a).")
+    if governs:
+        notes += (f" The formula gives dq = {dq_formula:.3f}; note a to Table "
+                  f"5-2 (p. 107) reads 'dq for AASHTO (2020) <= 1.4', so dq "
+                  f"= 1.4 is returned (dq_unlimited holds the formula's value).")
     return {
         "sq": 1 + bl * math.tan(r), "sc": 1 + bl * (f["Nq"] / f["Nc"]),
-        "s_gamma": 1 - 0.4 * bl, "dq": dq, "dc": 1.0, "d_gamma": 1.0,
+        "s_gamma": 1 - 0.4 * bl, "dq": min(dq_formula, 1.4),
+        "dq_unlimited": dq_formula, "limit_governs": governs,
+        "dc": 1.0, "d_gamma": 1.0,
         "Nq": f["Nq"], "Nc": f["Nc"], "B_over_L": bl, "Df_over_B": dfb,
         "units": {k: "dimensionless" for k in
-                  ("sq", "sc", "s_gamma", "dq", "dc", "d_gamma")},
+                  ("sq", "sc", "s_gamma", "dq", "dq_unlimited", "dc",
+                   "d_gamma")},
         "source": _source("Table 5-2", 107),
         "valid_for": ("Drained analysis, AASHTO (2020)/FHWA (2002) (Vesic "
-                      "based) method; dq <= 1.4."),
-        "notes": ("As printed, the sc cell reads 'sq = 1 + (B'/L')(Nq/Nc)' "
-                  "and the sq cell uses tan(phi) without a prime; FHWA "
-                  "(2002) presents tabulated depth factors (note a)."),
+                      "based) method; dq <= 1.4 (note a)."),
+        "notes": notes,
     }
 
 
@@ -411,8 +419,10 @@ def table_5_3_usace_load_inclination_factors(H: float, V: float,
     beta = math.degrees(math.atan(float(H) / float(V)))
     if beta > phi:
         raise ValueError(
-            f"beta = {beta:.2f} degrees exceeds phi' = {phi_deg}: "
-            f"[1 - beta/phi']^2 of Table 5-3 (p. 108) is not defined for it")
+            f"beta = {beta:.2f} degrees exceeds phi' = {phi_deg}: Table 5-3 "
+            f"(p. 108) gives i-gamma = [1 - beta/phi']^2, which reaches 0 at "
+            f"beta = phi'; past it the bracket turns negative and the table "
+            f"gives no value, so the load inclination must not exceed phi'")
     iq = (1 - beta / 90.0) ** 2
     return {
         "beta_deg": beta, "iq": iq, "ic": iq, "i_gamma": (1 - beta / phi) ** 2,
@@ -658,7 +668,9 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
     (AASHTO/FHWA); bc = 1 - alpha_b/147.3; and the USACE ground factor
     gc = min[1, gc,0 + (1 - gc,0) dg/(2B')] with gc,0 = 1 - alpha_g/147.3.
     The factors for q (sq, dq, iq, bq, gq) are 1 by both methods (note a).
-    A USACE dc above 1.5 is refused, not cut to 1.5.
+    The USACE limit dc <= 1.5 is applied as printed: where the formula gives
+    more, dc = 1.5 is returned, with the formula's value in dc_unlimited and
+    limit_governs True.
 
     Print check (Table 5-4, p. 109, rendered and compared cell by cell):
 
@@ -671,6 +683,8 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
         bc      1 − αb/(147.3°)                1 − αb/(147.3°)
         gc,0    1 − αg/(147.3°)                Not Applicable
         gc      min[1, gc,0 + (1 − gc,0) dg/(2B′)]   See tables in AASHTO (2020)
+        here    the same; a USACE dc above 1.5 is 1.5, the formula's value
+                in dc_unlimited
 
     Parameters
     ----------
@@ -703,14 +717,14 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
     Returns
     -------
     dict
-        Nc, sc, dc, ic, bc, gc, gc0 (USACE with a slope), n (AASHTO with
-        H > 0), method, units, source, valid_for, notes.
+        Nc, sc, dc, dc_unlimited, limit_governs, ic, bc, gc, gc0 (USACE
+        with a slope), n (AASHTO with H > 0), method, units, source,
+        valid_for, notes.
 
     Raises
     ------
     ValueError
-        For an unknown method, a USACE dc above 1.5, a slope with the
-        AASHTO/FHWA method (its ground factors are in AASHTO (2020), not
+        For an unknown method, a slope with the AASHTO/FHWA method (its ground factors are in AASHTO (2020), not
         printed here), theta or d_g missing where needed, or values out of
         range (H < 0, V <= 0, su <= 0, angles negative, ic < 0).
     """
@@ -725,17 +739,22 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
     ag = _non_negative("alpha_g_deg", alpha_g_deg)
     Nc = 2 + math.pi
     out = {"Nc": Nc, "sc": 1 + 0.2 * bl}
+    limit_note = ""
     if m == "usace":
         dc = 1 + 0.2 * dfb
+        out["dc"] = min(dc, 1.5)
+        out["dc_unlimited"] = dc
+        out["limit_governs"] = dc > 1.5
         if dc > 1.5:
-            raise ValueError(
-                f"dc = {dc:.3f} exceeds 1.5, the limit Table 5-4 prints for "
-                f"the USACE depth factor (p. 109); the table does not say "
-                f"what to use beyond it")
-        out["dc"] = dc
+            limit_note = (f" The formula gives dc = {dc:.3f}; Table 5-4 (p. "
+                          f"109) prints the USACE depth factor as 'dc = 1 + "
+                          f"0.2 Df/B' <= 1.5', so dc = 1.5 is returned "
+                          f"(dc_unlimited holds the formula's value).")
         out["ic"] = 1 - 1.3 * h / v
     else:
         out["dc"] = 1.0
+        out["dc_unlimited"] = 1.0
+        out["limit_governs"] = False
         if h > 0:
             if theta_deg is None:
                 raise ValueError("theta_deg is needed for the AASHTO ic "
@@ -775,7 +794,7 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
         out["gc"] = 1.0
     out.update({
         "method": _METHOD_NAMES[m],
-        "units": {k: "dimensionless" for k in out if k not in ("method",)},
+        "units": {k: "dimensionless" for k in out if k != "limit_governs"},
         "source": _source("Table 5-4", 109),
         "valid_for": ("Undrained (phi' = 0) analysis, c = su; the factors "
                       "for q (sq, dq, iq, bq, gq) are 1 by both methods."),
@@ -783,7 +802,8 @@ def table_5_4_undrained_factors(method: str, B_eff: float,
                   "states that 'the depth correction factors can be "
                   "conservatively omitted' (note b). The 0 ground value is "
                   "for a footing directly next to a slope with FS > 1.3, "
-                  "rising linearly to 1 at a distance of 2B' (note d)."),
+                  "rising linearly to 1 at a distance of 2B' (note d)."
+                  + limit_note),
     })
     return out
 

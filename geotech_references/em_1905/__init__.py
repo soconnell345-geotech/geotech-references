@@ -30,8 +30,11 @@ Lookups, in the manual's US units: ``tables`` (Tables 2-1, 5-2 to 5-5 and
 settlement, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and ``figures`` (the table
 printed on Figure 7-16). Each function returns a dict with its values,
 ``units``, ``source`` (the printed page), ``valid_for`` and ``notes``, and
-raises ValueError outside what the print covers; a limit printed beside a
-formula is checked and a result beyond it refused, not cut. Each docstring
+raises ValueError outside what the print covers. A limit printed as part
+of a relation (dc <= 1.5, Pa,d >= 0) is applied as printed: the limited
+value is returned with the formula's value beside it and
+``limit_governs``; an input the page's own conditions exclude is refused,
+the message naming the condition and the page. Each docstring
 holds a print check: the formula as printed beside what the code does. The
 tests run the Appendix B and C worked examples. The other charts are not
 digitized: read them off the rendered page through the figure catalog.
