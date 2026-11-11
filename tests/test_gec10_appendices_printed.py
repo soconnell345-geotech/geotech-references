@@ -453,7 +453,59 @@ def test_appendix_g_figures():
     assert figs["G.1.1.1.a"] == ["Figure G-2"]
 
 
-@pytest.mark.parametrize("ch", [19, 20, 21, 25])
+# ---------------------------------------------------------------- Appendix H
+
+H_TITLES = {
+    # printed headings, pp. H-1 to H-6
+    "H.1": "Introduction",
+    "H.2": "Post-Grouting Process and Mechanisms for Improvement",
+    "H.3": "Grouting Procedures and QA/QC",
+    "H.4": "Design for Post-Grouted Drilled Shafts",
+    "H.5": "Summary",
+}
+
+
+def test_appendix_h_sections_and_titles():
+    data = _appendix(26)
+    assert data["chapter_title"] == (
+        "Appendix H: Preliminary Guidance for Post-Grouted Drilled Shafts")
+    assert {s["section_id"]: s["title"] for s in data["sections"]} == H_TITLES
+    pages = [int(p) for s in data["sections"]
+             for p in re.findall(r"\[p\. H-(\d+)\]", s["body"])]
+    assert pages == sorted(pages) and set(pages) == set(range(1, 7))
+
+
+@pytest.mark.parametrize("sid,printed", [
+    # p. H-2
+    ("H.2", "potentially producing up to a 40 percent increase in tip resistance, but quite "
+            "limited for cohesive soils or rock"),
+    ("H.2", "Post-grouting should not be considered as a means to remedy poor shaft "
+            "construction and base cleaning operations."),
+    # p. H-3
+    ("H.3", "after the concrete has achieved a compressive strength of at least 2,500 psi"),
+    ("H.3", "a water/cement ratio ranging from 0.40 to 0.55"),
+    ("H.3", "paddle mixers should not be used"),
+    ("H.3", "may approach 800 psi or more in some applications"),
+    # p. H-4: the three limiting criteria
+    ("H.3", "2. Upward shaft movement exceeds some established threshold. Upward shaft movement "
+            "has commonly been limited to 1/2 inch or less."),
+    # p. H-5
+    ("H.4", "recommends that the nominal axial resistance for post-grouted drilled shafts be "
+            "estimated using load transfer (i.e., t-z) methods"),
+    ("H.4", "(e.g., one or two feet multiplied by the shaft area)"),
+    ("H.4", "the practice should be avoided because the grout pressure may not be applied over "
+            "the entire area of the shaft tip"),
+])
+def test_appendix_h_printed_sentences(sid, printed):
+    assert printed in _section(sid)["body"]
+
+
+def test_appendix_h_figures():
+    figs = [f for s in _appendix(26)["sections"] for f in s["figures"]]
+    assert [f.split(":")[0] for f in figs] == ["Figure H-1", "Figure H-2", "Figure H-3"]
+
+
+@pytest.mark.parametrize("ch", [19, 20, 21, 25, 26])
 def test_appendix_sections_fit_the_tools(ch):
     for s in _appendix(ch)["sections"]:
         assert len(s["body"]) <= 12000
