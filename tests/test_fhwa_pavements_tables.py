@@ -176,6 +176,16 @@ class TestMrFromRValue:
         with pytest.raises(ValueError):
             resilient_modulus_from_r_value(150)
 
+    def test_cites_table_5_34_not_eq_5_15(self):
+        """Table 5-34, p. 5-53 (PDF page 231): Mr (psi) = 1155 + 555R. Eq.
+        5.15, p. 5-49 (PDF page 227), prints 1000 + 555 (R-value); the
+        docstring called the two equivalent and the reference cited both."""
+        import geotech_references.fhwa_pavements.equations as eq
+        r = resilient_modulus_from_r_value(60)
+        assert "Eq. 5.15" not in r["reference"]
+        assert "1000 + 555" in eq.resilient_modulus_from_r_value.__doc__
+        assert "Equivalent" not in eq.resilient_modulus_from_r_value.__doc__
+
 
 class TestCbrFromDcp:
     def test_dcp_10(self):

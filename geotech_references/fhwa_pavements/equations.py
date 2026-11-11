@@ -116,15 +116,16 @@ def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
 # ============================================================================
 
 def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
-    """Resilient modulus Mr from Stabilometer R-value (Table 5-34 / Eq. 5.15).
+    """Resilient modulus Mr (psi, or MPa) from the Stabilometer R-value, NCHRP 1-37A correlation of FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
         Mr (psi) = 1155 + 555 * R   (Table 5-34)
         Mr (MPa) = 8.0  + 3.8  * R
 
-    Equivalent to the recommended subgrade form Eq. 5.15, Mr(psi)=1000+555*R
-    (the 1993 AASHTO general form Mr = A + B*R has A = 772-1155, B = 369-555,
-    Asphalt Institute 1982). The Table 5-34 coefficients (1155, 555) are used
-    here.
+    The Table 5-34 coefficients (1155, 555) are used. The 1993 AASHTO forms
+    on p. 5-49 differ: Eq. 5.14, Mr (psi) = A + B (R-value) with A = 772 to
+    1,155 and B = 369 to 555 (Asphalt Institute, 1982), and Eq. 5.15, Mr
+    (psi) = 1000 + 555 (R-value), "recommended values" (155 psi lower than
+    Table 5-34 at every R).
 
     Parameters
     ----------
@@ -156,7 +157,7 @@ def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
     return {
         "r_value": r_value, "mr": round(mr, 1), "units": u,
         "equation": "Mr(psi)=1155+555*R (Mr(MPa)=8.0+3.8*R)",
-        "reference": "FHWA-NHI-05-037 Table 5-34 / Eq. 5.15 (Asphalt Institute 1982)",
+        "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
         "pdf_page": 230, "printed_page": "5-53",
         "note": ("Recommended subgrade form Eq. 5.15 is Mr(psi)=1000+555*R; the "
                  "general 1993 AASHTO form is Mr=A+B*R, A=772-1155, B=369-555."),
@@ -349,9 +350,11 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
     theta_psi : float
         Bulk stress theta = sigma1 + sigma2 + sigma3 (psi), > 0.
     k1 : float
-        Material coefficient k1 (Mr units, psi). Typical ranges in Table 5-39.
+        Material coefficient k1 (Mr units, psi). Typical ranges in Table 5-30
+        (granular base 3000-8000, subbase 2500-7000).
     k2 : float
-        Material exponent k2 (dimensionless). Typical ranges in Table 5-39.
+        Material exponent k2 (dimensionless). Typical ranges in Table 5-30
+        (granular base 0.5-0.7, subbase 0.4-0.6).
 
     Returns
     -------

@@ -324,6 +324,12 @@ rows instead of being answered from the first row that contains the words.
     cites Table 5-31's commentary (pp. 5-48 to 5-49), where the factors are
     printed. The module docstrings say `pdf_page` is a 0-based page index
     (gec-48).
+  - `resilient_modulus_from_r_value` cites Table 5-34 only (Mr = 1155 +
+    555R, unchanged): its docstring called Eq. 5.15, Mr = 1000 + 555R (p.
+    5-49), equivalent, and the chapter text said the function implements
+    Eq. 5.15. `granular_resilient_modulus_bulk_stress` names Table 5-30
+    (p. 5-46) for typical k1, k2 (it named Table 5-39, which is for Eq.
+    5.17).
 
 ## 1.6.0
 

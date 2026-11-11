@@ -41,8 +41,8 @@
       "equations": [
         {
           "id": "Eq. 5.15",
-          "description": "Subgrade resilient modulus from R-value: Mr (psi) = 1000 + 555*R (recommended).",
-          "implemented_in": "geotech_references.fhwa_pavements.equations.resilient_modulus_from_r_value"
+          "description": "Subgrade resilient modulus from R-value: Mr (psi) = 1000 + 555*R (recommended). Not coded: resilient_modulus_from_r_value uses Table 5-34's Mr (psi) = 1155 + 555*R and names this form.",
+          "implemented_in": null
         }
       ],
       "figures": [
