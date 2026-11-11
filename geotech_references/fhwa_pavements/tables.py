@@ -183,18 +183,32 @@ _TABLE_5_34 = {
         "Plasticity index and gradation",
         "CBR = 75 / (1 + 0.728 * wPI)  [then use the CBR->Mr model]",
         "CBR = 75 / (1 + 0.728 * wPI)",
-        "wPI = P200 * PI, where P200 = % passing the No. 200 sieve (as a "
-        "decimal) and PI = plasticity index (%).",
+        "wPI = P200*PI; P200 = % passing No. 200 sieve size; PI = "
+        "plasticity index (%).",
         "AASHTO T27 / AASHTO T90",
     ),
     "dcp": (
         "Dynamic Cone Penetration",
         "CBR = 292 / DCP^1.12  [then use the CBR->Mr model]",
         "CBR = 292 / DCP^1.12",
-        "DCP = penetration index (in./blow). Estimates of CBR are used to "
-        "estimate Mr.",
+        "CBR = California Bearing Ratio (%); DCP = Penetration index, "
+        "in./blow. Estimates of CBR are used to estimate Mr.",
         "ASTM D6951",
     ),
+}
+
+
+# What the library takes where Table 5-34's printed definition cannot be used
+# as typeset (lead's rulings 8 and 9, 2026-11-10).
+_TABLE_5_34_LIBRARY_NOTES = {
+    "plasticity_gradation": (
+        "The comments are as printed. cbr_from_plasticity_gradation takes P200 "
+        "as a decimal fraction: with the percent the equation gives a CBR under "
+        "1 for any plastic soil."),
+    "dcp": (
+        "The comments are as printed. cbr_from_dcp takes DCP in mm per blow: "
+        "in inches the relation gives CBRs of hundreds of percent; TM 3-34.48-2 "
+        "Figure G-11 and WES GL-92-3 give it in mm/blow."),
 }
 
 
@@ -226,8 +240,11 @@ def table_5_34_resilient_modulus_correlations(property: str = "") -> dict:
     """
     def _row(key):
         label, mpsi, msi, comments, std = _TABLE_5_34[key]
-        return {"property": key, "label": label, "model_psi": mpsi,
-                "model_si": msi, "comments": comments, "test_standard": std}
+        row = {"property": key, "label": label, "model_psi": mpsi,
+               "model_si": msi, "comments": comments, "test_standard": std}
+        if key in _TABLE_5_34_LIBRARY_NOTES:
+            row["library_note"] = _TABLE_5_34_LIBRARY_NOTES[key]
+        return row
 
     aliases = {
         "cbr": "cbr", "california bearing ratio": "cbr",
@@ -567,13 +584,23 @@ def _drainage_lookup(data, quality, table_no, coeff_key, label):
     return out
 
 
+_TABLE_5_49_NOTE = (
+    "Values as FHWA-NHI-05-037 prints them (p. 5-87). Its source, AASHTO 1993 "
+    "Guide Table 2.4 (p. II-25), prints two cells of the < 1 % column "
+    "differently: Poor 1.15-1.05 (FHWA: 1.05-0.80) and Very Poor 1.05-0.95 "
+    "(FHWA: 0.95-0.75); FHWA's two cells repeat its 1-5 % column. "
+    "aashto_1993.tables.drainage_mi_flexible holds the AASHTO values.")
+
+
 def table_5_49_drainage_modifier_mi(quality: str = "") -> dict:
     """AASHTO 1993 drainage modifier mi for FLEXIBLE pavements (Table 5-49).
 
     Recommended mi values that modify the structural layer coefficients of
     untreated base and subbase materials in flexible pavements (AASHTO 1993,
     Eq. SN = a1 D1 + a2 D2 m2 + a3 D3 m3), as a function of the quality of
-    drainage and the % of time the structure is near saturation.
+    drainage and the % of time the structure is near saturation. Values as
+    FHWA prints them; two cells of the < 1 % column (Poor, Very Poor) differ
+    from AASHTO 1993 Table 2.4, which FHWA cites, and every result says so.
 
     Parameters
     ----------
@@ -591,9 +618,11 @@ def table_5_49_drainage_modifier_mi(quality: str = "") -> dict:
     ValueError
         If quality is unrecognized.
     """
-    return _drainage_lookup(_TABLE_5_49_MI, quality, "5-49", "mi",
-                            "Drainage modifier mi (untreated base/subbase, "
-                            "flexible pavements)")
+    out = _drainage_lookup(_TABLE_5_49_MI, quality, "5-49", "mi",
+                           "Drainage modifier mi (untreated base/subbase, "
+                           "flexible pavements)")
+    out["print_note"] = _TABLE_5_49_NOTE
+    return out
 
 
 def table_5_50_drainage_coefficient_cd(quality: str = "") -> dict:

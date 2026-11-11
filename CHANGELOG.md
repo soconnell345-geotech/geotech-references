@@ -293,6 +293,38 @@ rows instead of being answered from the first row that contains the words.
     cohesionless materials only (they were dropped); above N = 50 the
     result says N = 50 is used. Values unchanged (gec-42).
 
+- **FHWA-NHI-05-037 Geotechnical Aspects of Pavements (`fhwa_pavements`).**
+  - `cbr_from_dcp`, `resilient_modulus_from_dcp` (Table 5-34, p. 5-53): the
+    parameter is `dcp_mm_per_blow` (was `dcp_index`, in./blow as Table 5-34
+    prints). Read in inches, 0.5 in./blow gave CBR 634.7 and Mr 158,867
+    psi; TM 3-34.48-2 (2016) Figure G-11 and WES GL-92-3 (1992) p. 17 give
+    the relation in mm per blow, and TM 3-34.48-2 Table G-1 prints CBR 22
+    at 10 mm/blow. A CBR over 100 % (DCP under 2.6 mm/blow) is refused;
+    every result carries a `print_note` naming the sources (gec-08, lead's
+    ruling 8).
+  - `cbr_from_plasticity_gradation` (Table 5-34): `p200` is the fraction
+    passing the No. 200 sieve as a decimal (0 to 1), as wPI = P200 x PI
+    needs; a value above 1 is refused with the decimal to give. It took
+    the percent: 0.35 was read as 0.35 % (CBR 72.5 at PI 10; now 21.4)
+    (lead's ruling 9). Table 5-34's lookup keeps the printed comments and
+    adds a `library_note` for the DCP and P200 rows.
+  - `modulus_subgrade_reaction_from_cbr` is removed: FHWA-NHI-05-037 does
+    not print k = 1500 CBR / 19.4. AASHTO 1993 prints k = MR/19.4 (p.
+    II-44); `aashto_1993.equations.modulus_subgrade_reaction_simple` holds
+    it (gec-27, lead's ruling).
+  - `table_5_49_drainage_modifier_mi` (p. 5-87): values as FHWA prints; the
+    result notes that AASHTO 1993 Table 2.4, which it cites, prints Poor
+    and Very Poor < 1 % as 1.15-1.05 and 1.05-0.95 (FHWA: 1.05-0.80 and
+    0.95-0.75) (gec-26).
+  - `effective_subgrade_modulus_from_relative_damage` is Eq. 5.12 as
+    printed, Mr = 3015 uf^-0.431 (it computed the exact inverse of Eq. 5.11
+    and cited Eq. 5.11; 3015.6 at uf 1.0, now 3015.0).
+    `resilient_modulus_from_cbr_aashto93` warns above CBR 10, not at it
+    (Eq. 5.13 is printed for CBR <= 10). `backcalculated_to_design_modulus`
+    cites Table 5-31's commentary (pp. 5-48 to 5-49), where the factors are
+    printed. The module docstrings say `pdf_page` is a 0-based page index
+    (gec-48).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references

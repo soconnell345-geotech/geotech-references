@@ -4,9 +4,17 @@ Numeric correlations and models for the geotech pavement inputs in
 FHWA-NHI-05-037 (FHWA, May 2006): resilient modulus Mr from CBR, R-value,
 plasticity/gradation, and the Dynamic Cone Penetrometer; the AASHTO 1993
 stress-dependent (bulk-stress) granular Mr model; CBR from DCP; the seasonal
-effective-Mr relative-damage relationship; and the modulus-of-subgrade-reaction
-approximation. Units follow the source (Mr in psi, CBR/R in percent). Each
-function cites the source equation/table and PDF page.
+effective-Mr relative-damage relationship. Units follow the source (Mr in psi,
+CBR/R in percent). Each function cites the source equation/table and page.
+
+``pdf_page`` values are 0-based fitz page indices into
+``docs/FHWA-NHI-05-037 - Geotech Pavements.pdf`` (add 1 for a PDF viewer);
+``printed_page`` is the manual's own page number (e.g. "5-53").
+
+The modulus of subgrade reaction from CBR (k = 1500 CBR / 19.4) was removed:
+FHWA-NHI-05-037 does not print it (review finding gec-27). The AASHTO 1993
+Guide prints k = MR/19.4 (p. II-44) for a slab directly on the roadbed;
+``aashto_1993.equations.modulus_subgrade_reaction_simple`` holds it.
 """
 
 
@@ -65,7 +73,7 @@ def resilient_modulus_from_cbr(cbr, units: str = "psi") -> dict:
 def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
     """Subgrade Mr from CBR, Heukelom & Klomp 1962 (Eq. 5.13, 1993 AASHTO Guide).
 
-        Mr (psi) = 1500 * CBR     (for CBR < 10)
+        Mr (psi) = 1500 * CBR     (for CBR <= 10, as printed on p. 5-49)
 
     The legacy 1993 AASHTO Guide subgrade correlation. NCHRP 1-37A strongly
     recommends AGAINST this form; prefer ``resilient_modulus_from_cbr``
@@ -74,8 +82,8 @@ def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
     Parameters
     ----------
     cbr : float
-        California Bearing Ratio (%), > 0. The correlation is intended for
-        CBR < 10 (fine-grained subgrade); a warning is added above 10.
+        California Bearing Ratio (%), > 0. Eq. 5.13 is printed for CBR <= 10;
+        a warning is added above 10.
 
     Returns
     -------
@@ -91,14 +99,14 @@ def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
         raise ValueError(f"cbr must be > 0, got {cbr}")
     out = {
         "cbr": cbr, "mr_psi": round(1500.0 * cbr, 1),
-        "equation": "Mr(psi) = 1500 * CBR  (CBR < 10)",
+        "equation": "Mr(psi) = 1500 * CBR  (CBR <= 10)",
         "reference": "FHWA-NHI-05-037 Eq. 5.13 (Heukelom & Klomp 1962 / 1993 AASHTO)",
         "pdf_page": 226, "printed_page": "5-49",
         "note": ("Legacy 1993 AASHTO subgrade form; NCHRP 1-37A recommends "
                  "AGAINST it. Prefer Mr = 2555*CBR^0.64."),
     }
-    if cbr >= 10:
-        out["warning"] = "Eq. 5.13 is intended for CBR < 10; result may be unreliable."
+    if cbr > 10:
+        out["warning"] = "Eq. 5.13 is printed for CBR <= 10; result may be unreliable."
     return out
 
 
@@ -159,70 +167,101 @@ def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
 # CBR from the Dynamic Cone Penetrometer, and Mr from DCP (Table 5-34)
 # ============================================================================
 
-def cbr_from_dcp(dcp_index) -> dict:
-    """CBR from the Dynamic Cone Penetrometer index (Table 5-34, ASTM D6951).
+_DCP_PRINT_NOTE = (
+    "FHWA-NHI-05-037 Table 5-34 (p. 5-53) prints 'DCP = Penetration index, "
+    "in./blow'; read in inches the relation gives CBR 635 % at 0.5 in./blow, "
+    "against field CBRs of 3 to 80 in Table 5-28. The library takes DCP in mm "
+    "per blow: TM 3-34.48-2 (29 February 2016) Figure G-11 (p. G-11) plots "
+    "CBR = 292/PR^1.12 against 'DCP INDEX (mm/blow)', and its Table G-1 "
+    "(p. G-12) gives CBR 22 at 10 mm/blow ('All other soils'); WES "
+    "Instruction Report GL-92-3 (1992), p. 17: 'DCP is the penetration ratio "
+    "in millimetres per blow'. Table 4-9 (p. 4-39) gives the relation after "
+    "Webster et al. (1994) for gravel, sand, and silt, with no unit. A CBR "
+    "over 100 % (DCP under 2.6 mm/blow) is refused. (Lead's ruling, "
+    "2026-11-10.)")
+_DCP_MIN_MM = (292.0 / 100.0) ** (1.0 / 1.12)   # CBR = 100 % here
+
+
+def cbr_from_dcp(dcp_mm_per_blow) -> dict:
+    """California Bearing Ratio CBR (%) from the Dynamic Cone Penetrometer index in mm per blow, FHWA-NHI-05-037 Table 5-34 (p. 5-53; ASTM D6951).
 
         CBR = 292 / DCP^1.12
 
-    where DCP is the penetration index (in./blow). The CBR estimate is then used
-    to estimate Mr (e.g. via ``resilient_modulus_from_cbr``).
+    Table 5-34 prints DCP as the penetration index in in./blow; the library
+    takes it in mm/blow (see ``print_note`` in the result: in inches the
+    relation gives CBRs of hundreds of percent; TM 3-34.48-2 Figure G-11 and
+    WES GL-92-3 give the relation in mm/blow). Table 4-9 (p. 4-39) gives it
+    for gravel, sand, and silt. The CBR estimate is then used to estimate Mr
+    (e.g. via ``resilient_modulus_from_cbr``).
 
     Parameters
     ----------
-    dcp_index : float
-        DCP penetration index (inches per blow), > 0.
+    dcp_mm_per_blow : float
+        DCP penetration index (millimetres per blow), > 0. Below about
+        2.6 mm/blow the relation passes CBR 100 % and the call is refused.
 
     Returns
     -------
     dict
-        {'dcp_index_in_per_blow', 'cbr', 'equation', 'reference', ...}
+        {'dcp_mm_per_blow', 'cbr', 'equation', 'print_note', 'reference', ...}
 
     Raises
     ------
     ValueError
-        If dcp_index <= 0.
+        If dcp_mm_per_blow <= 0 or the CBR would exceed 100 %.
     """
-    if dcp_index <= 0:
-        raise ValueError(f"dcp_index must be > 0, got {dcp_index}")
-    cbr = 292.0 / dcp_index ** 1.12
+    if dcp_mm_per_blow <= 0:
+        raise ValueError(f"dcp_mm_per_blow must be > 0, got {dcp_mm_per_blow}")
+    cbr = 292.0 / dcp_mm_per_blow ** 1.12
+    if cbr > 100.0:
+        raise ValueError(
+            f"dcp_mm_per_blow = {dcp_mm_per_blow} gives CBR {cbr:.0f} %, over "
+            f"100 % (DCP under {_DCP_MIN_MM:.2f} mm/blow). The DCP index is in "
+            "mm per blow (TM 3-34.48-2 Figure G-11; WES GL-92-3 p. 17); a value "
+            "in inches per blow is 25.4 times too small.")
     return {
-        "dcp_index_in_per_blow": dcp_index, "cbr": round(cbr, 1),
-        "equation": "CBR = 292 / DCP^1.12",
+        "dcp_mm_per_blow": dcp_mm_per_blow, "cbr": round(cbr, 1),
+        "equation": "CBR = 292 / DCP^1.12  (DCP in mm/blow)",
+        "print_note": _DCP_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (ASTM D6951)",
         "pdf_page": 230, "printed_page": "5-53",
         "note": "Feed the CBR into resilient_modulus_from_cbr to estimate Mr.",
     }
 
 
-def resilient_modulus_from_dcp(dcp_index, units: str = "psi") -> dict:
-    """Resilient modulus Mr from the DCP index, via CBR (Table 5-34).
+def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
+    """Resilient modulus Mr (psi, or MPa) from the Dynamic Cone Penetrometer index in mm per blow, via CBR, FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
-    Chains CBR = 292/DCP^1.12 (ASTM D6951) into the preferred Mr-CBR correlation
+    Chains CBR = 292/DCP^1.12 (ASTM D6951; DCP in mm/blow, see
+    ``cbr_from_dcp``) into the preferred Mr-CBR correlation
     Mr = 2555*CBR^0.64 (psi) / 17.6*CBR^0.64 (MPa).
 
     Parameters
     ----------
-    dcp_index : float
-        DCP penetration index (inches per blow), > 0.
+    dcp_mm_per_blow : float
+        DCP penetration index (millimetres per blow), > 0; refused below
+        about 2.6 mm/blow (CBR over 100 %).
     units : str, optional
         'psi' (default) or 'mpa'.
 
     Returns
     -------
     dict
-        {'dcp_index_in_per_blow', 'cbr', 'mr', 'units', 'reference', ...}
+        {'dcp_mm_per_blow', 'cbr', 'mr', 'units', 'print_note', 'reference', ...}
 
     Raises
     ------
     ValueError
-        If dcp_index <= 0 or units is invalid.
+        If dcp_mm_per_blow <= 0, the CBR would exceed 100 %, or units is
+        invalid.
     """
-    cbr = cbr_from_dcp(dcp_index)["cbr"]
+    cbr = cbr_from_dcp(dcp_mm_per_blow)["cbr"]
     mr = resilient_modulus_from_cbr(cbr, units=units)
     return {
-        "dcp_index_in_per_blow": dcp_index, "cbr": cbr,
+        "dcp_mm_per_blow": dcp_mm_per_blow, "cbr": cbr,
         "mr": mr["mr"], "units": mr["units"],
-        "equation": "CBR=292/DCP^1.12 -> Mr=2555*CBR^0.64 (psi)",
+        "equation": "CBR=292/DCP^1.12 (DCP in mm/blow) -> Mr=2555*CBR^0.64 (psi)",
+        "print_note": _DCP_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (ASTM D6951; NCHRP 1-37A)",
         "pdf_page": 230, "printed_page": "5-53",
     }
@@ -232,42 +271,57 @@ def resilient_modulus_from_dcp(dcp_index, units: str = "psi") -> dict:
 # CBR from plasticity index + gradation (Table 5-34)
 # ============================================================================
 
+_P200_PRINT_NOTE = (
+    "FHWA-NHI-05-037 Table 5-34 (p. 5-53) prints wPI = P200*PI with 'P200 = "
+    "% passing No. 200 sieve size'. P200 is taken as a decimal fraction: with "
+    "the percent the equation gives a CBR under 1 for any plastic soil (P200 "
+    "35, PI 10: wPI 350, CBR 0.29). (Lead's ruling, 2026-11-10.)")
+
+
 def cbr_from_plasticity_gradation(p200, pi) -> dict:
-    """CBR from plasticity index and gradation, wPI form (Table 5-34).
+    """California Bearing Ratio CBR (%) from the fraction passing the No. 200 sieve (a decimal) and the plasticity index (%), FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
         CBR = 75 / (1 + 0.728 * wPI),   wPI = P200 * PI
 
-    where P200 is the percent passing the No. 200 sieve (as a percentage value,
-    e.g. 35 for 35%) expressed as a decimal fraction in wPI, and PI is the
-    plasticity index (%). The resulting CBR is then used to estimate Mr.
+    Table 5-34 defines P200 as the "% passing No. 200 sieve size"; the
+    library takes it as a decimal fraction (0.35 for 35 %), since with the
+    percent the equation gives a CBR under 1 for any plastic soil (see
+    ``print_note`` in the result). A value above 1 is refused. The
+    resulting CBR is then used to estimate Mr.
 
     Parameters
     ----------
     p200 : float
-        Percent passing the No. 200 sieve (%), 0-100.
+        Fraction passing the No. 200 sieve, as a decimal, 0 to 1.
     pi : float
         Plasticity index (%), >= 0.
 
     Returns
     -------
     dict
-        {'p200_pct', 'pi_pct', 'wpi', 'cbr', 'equation', 'reference', ...}
+        {'p200_decimal', 'pi_pct', 'wpi', 'cbr', 'equation', 'print_note',
+         'reference', ...}
 
     Raises
     ------
     ValueError
-        If p200 is out of 0-100 or pi < 0.
+        If p200 is outside 0 to 1 or pi < 0.
     """
-    if not (0 <= p200 <= 100):
-        raise ValueError(f"p200 must be in 0-100, got {p200}")
+    if not (0 <= p200 <= 1):
+        hint = (f" For {p200} % passing, give {p200 / 100:g}."
+                if 1 < p200 <= 100 else "")
+        raise ValueError(
+            f"p200 is the fraction passing the No. 200 sieve as a decimal, "
+            f"0 to 1; got {p200}.{hint}")
     if pi < 0:
         raise ValueError(f"pi must be >= 0, got {pi}")
-    wpi = (p200 / 100.0) * pi
+    wpi = p200 * pi
     cbr = 75.0 / (1.0 + 0.728 * wpi)
     return {
-        "p200_pct": p200, "pi_pct": pi, "wpi": round(wpi, 3),
+        "p200_decimal": p200, "pi_pct": pi, "wpi": round(wpi, 3),
         "cbr": round(cbr, 1),
-        "equation": "CBR = 75 / (1 + 0.728*wPI), wPI = (P200/100)*PI",
+        "equation": "CBR = 75 / (1 + 0.728*wPI), wPI = P200*PI (P200 a decimal)",
+        "print_note": _P200_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
         "pdf_page": 230, "printed_page": "5-53",
         "note": "Feed the CBR into resilient_modulus_from_cbr to estimate Mr.",
@@ -286,8 +340,9 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
 
     The AASHTO 1993 (and NCHRP 1-37A) K-theta model for unbound granular base and
     subbase materials, where theta = bulk stress = sigma1 + sigma2 + sigma3 (psi)
-    and k1, k2 are material properties (Table 5-39 gives typical k1, k2 for base
-    and subbase; Table 5-41/5-43 give suggested theta values).
+    and k1, k2 are material properties (Table 5-30, p. 5-46, gives typical
+    ranges of k1 and k2 for Eq. 5.9; Table 5-39, p. 5-60, typical values for
+    Eq. 5.17; Tables 5-41/5-43 give suggested theta values).
 
     Parameters
     ----------
@@ -317,8 +372,9 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
         "equation": "Mr = k1 * theta^k2  (theta = sigma1+sigma2+sigma3, psi)",
         "reference": "FHWA-NHI-05-037 Eq. 5.9 (AASHTO 1993 / NCHRP 1-37A)",
         "pdf_page": 221, "printed_page": "5-44",
-        "note": ("Typical k1/k2 for base & subbase: Table 5-39. Suggested theta: "
-                 "base ~Table 5-41, subbase ~Table 5-43."),
+        "note": ("Typical k1/k2 ranges for Eq. 5.9: Table 5-30 (p. 5-46); "
+                 "Table 5-39 (p. 5-60) for Eq. 5.17. Suggested theta: base "
+                 "Table 5-41, subbase Table 5-43."),
     }
 
 
@@ -360,19 +416,20 @@ def seasonal_relative_damage(mr_psi) -> dict:
         "equation": "uf = 1.18e8 * Mr^(-2.32)",
         "reference": "FHWA-NHI-05-037 Eq. 5.11 (1993 AASHTO seasonal effective Mr)",
         "pdf_page": 223, "printed_page": "5-46",
-        "note": ("Average uf over the seasons, then invert to the effective "
-                 "design Mr: Mr_eff = (1.18e8 / uf_avg)^(1/2.32)."),
+        "note": ("Average uf over the seasons, then Eq. 5.12 gives the "
+                 "effective design Mr: Mr = 3015 * uf_avg^(-0.431) "
+                 "(effective_subgrade_modulus_from_relative_damage)."),
     }
 
 
 def effective_subgrade_modulus_from_relative_damage(uf_avg) -> dict:
-    """Effective design subgrade Mr from average relative damage (inverse of Eq. 5.11).
+    """Effective design subgrade resilient modulus Mr in psi from the average seasonal relative damage, FHWA-NHI-05-037 Eq. 5.12 (p. 5-46; 1993 AASHTO Guide).
 
-        Mr_eff (psi) = (1.18e8 / uf_avg)^(1/2.32)
+        Mr (psi) = 3015 * uf^(-0.431)      (Eq. 5.12, as printed)
 
-    Inverts the seasonal relative-damage relationship: given the average relative
-    damage uf over the analysis seasons, recover the single effective (design)
-    subgrade resilient modulus (1993 AASHTO Guide).
+    Eq. 5.12 is printed as "the inverse of Eq. (5.11)", uf = 1.18e8 Mr^-2.32;
+    its rounded coefficients differ from the exact inverse,
+    (1.18e8 / uf)^(1/2.32), by under 0.1 %. The printed form is used.
 
     Parameters
     ----------
@@ -391,11 +448,11 @@ def effective_subgrade_modulus_from_relative_damage(uf_avg) -> dict:
     """
     if uf_avg <= 0:
         raise ValueError(f"uf_avg must be > 0, got {uf_avg}")
-    mr = (1.18e8 / uf_avg) ** (1.0 / 2.32)
+    mr = 3015.0 * uf_avg ** (-0.431)
     return {
         "uf_avg": uf_avg, "mr_effective_psi": round(mr, 1),
-        "equation": "Mr_eff = (1.18e8 / uf_avg)^(1/2.32)",
-        "reference": "FHWA-NHI-05-037 Eq. 5.11 (1993 AASHTO seasonal effective Mr)",
+        "equation": "Mr = 3015 * uf_avg^(-0.431)  (Eq. 5.12)",
+        "reference": "FHWA-NHI-05-037 Eq. 5.12 (1993 AASHTO seasonal effective Mr)",
         "pdf_page": 223, "printed_page": "5-46",
     }
 
@@ -424,11 +481,15 @@ _BACKCALC_FACTORS = {
 
 def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
                                      layer: str = "subgrade") -> dict:
-    """Adjust a backcalculated/field Mr to a design Mr (Table 5-32 guidance).
+    """Design resilient modulus Mr in psi from a backcalculated or field Mr, by the adjustment factor of the chosen basis, FHWA-NHI-05-037 Table 5-31 commentary (pp. 5-48 to 5-49).
 
     Backcalculated (or field-measured) resilient moduli must be reduced to design
-    values. This applies the recommended adjustment factor (C) for the chosen
-    basis and layer:
+    values. Table 5-31's commentary gives the factors: field subgrade Mr
+    "multiplied by a factor of up to 0.33 for flexible pavements and up to
+    0.25 for rigid pavements" (1993 AASHTO Guide); NCHRP 1-37A 0.40 for
+    subgrade soils and 0.67 for granular bases and subbases under flexible
+    pavements; more detailed guidance in Table 5-32. This applies the
+    factor (C) for the chosen basis and layer:
 
         Mr_design = C * Mr_backcalculated
 
@@ -485,49 +546,7 @@ def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
         "mr_design_psi": round(factor * mr_backcalculated_psi, 1),
         "basis": b, "layer": layer_out,
         "equation": "Mr_design = C * Mr_backcalculated",
-        "reference": "FHWA-NHI-05-037 Table 5-32 / NCHRP 1-37A (Ch 5)",
-        "pdf_page": 226, "printed_page": "5-49",
+        "reference": "FHWA-NHI-05-037 Table 5-31 commentary (see also Table 5-32)",
+        "pdf_page": 225, "printed_page": "5-48 to 5-49",
         "note": note,
-    }
-
-
-# ============================================================================
-# Modulus of subgrade reaction k from CBR (carried in the broader FHWA context)
-# ============================================================================
-
-def modulus_subgrade_reaction_from_cbr(cbr) -> dict:
-    """Approximate modulus of subgrade reaction k from CBR.
-
-        k (psi/in, pci) ~ 1500 * CBR / 19.4   (i.e. k ~ 77.3 * CBR)
-
-    A commonly used approximation relating the modulus of subgrade reaction k
-    (pci) to CBR via the elastic modulus (Mr ~ 1500*CBR for fine-grained
-    subgrade, then k ~ Mr/19.4). It is approximate; for design, k is normally
-    obtained from a plate-load test or the AASHTO/NCHRP k-from-Mr procedure.
-
-    Parameters
-    ----------
-    cbr : float
-        California Bearing Ratio (%), > 0.
-
-    Returns
-    -------
-    dict
-        {'cbr', 'k_pci', 'equation', 'reference', ...}
-
-    Raises
-    ------
-    ValueError
-        If cbr <= 0.
-    """
-    if cbr <= 0:
-        raise ValueError(f"cbr must be > 0, got {cbr}")
-    k = 1500.0 * cbr / 19.4
-    return {
-        "cbr": cbr, "k_pci": round(k, 1),
-        "equation": "k (pci) ~ 1500*CBR / 19.4  (via Mr ~ 1500*CBR)",
-        "reference": "FHWA-NHI-05-037 Ch 5 (approximate; k from Mr/19.4)",
-        "pdf_page": 226, "printed_page": "5-49",
-        "note": ("Approximate screening value only; obtain k from a plate-load "
-                 "test or the AASHTO/NCHRP k-from-Mr procedure for design."),
     }
