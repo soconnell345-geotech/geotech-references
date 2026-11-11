@@ -61,9 +61,11 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     constant-saturation curves on the compaction plane.
 
     .. math::
-        \\gamma_d = \\frac{S \\, \\gamma_w}{\\frac{w}{100} \\left(S + \\frac{100}{G_s}\\right)}
+        \\gamma_d = \\frac{\\gamma_w \\, S}{\\frac{w}{100} + \\frac{S}{G_s}}
 
-    Rearranging the standard phase relationship:
+    as printed (p. 147), with *w* in percent and S read as a decimal
+    fraction (the print does not state its unit; this function takes S in
+    percent and divides it by 100). Dividing through by S:
 
     .. math::
         \\gamma_d = \\frac{\\gamma_w}{\\frac{w}{S} + \\frac{1}{G_s}}
