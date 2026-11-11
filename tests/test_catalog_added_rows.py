@@ -48,7 +48,23 @@ ADDED = {
     "gec_13": (_nums("2", 1, 19) + _nums("3", 1, 18) + _nums("4", 1, 43)
                + _nums("5", 1, 30) + _nums("7", 1, 8) + _nums("8", 1, 51)
                + _nums("9", 1, 18) + _nums("10", 1, 19)),
+    # Appendix A (the Apple Freeway example) and D-10, all in Volume II
+    "fhwa_soils_foundations": (["A.1-1"] + _nums("A.2", 1, 13)
+                               + _nums("A.3", 1, 3) + _nums("A.4", 1, 5)
+                               + _nums("A.5", 1, 14) + _nums("A.6", 1, 12)
+                               + _nums("A.7", 1, 9) + ["A.8-1", "A.9-1",
+                                                       "D-10"]),
 }
+
+#: Rows whose page holds no picture and too few lines to count as a
+#: drawing: FHWA NHI-06-089 Figure A.2-3 is a typed request letter in a
+#: ruled box (PDF page 397, printed A.2-5).
+NO_GRAPHIC = {"fhwa_soils_foundations": {"A.2-3"}}
+
+#: Rows filed under the number the text cites, whose caption label is
+#: printed otherwise: the text on PDF page 476 cites "Figure A.7-2" twice,
+#: the caption on page 477 reads "Figure A7-2.".
+LABEL_AS_PRINTED = {("fhwa_soils_foundations", "A.7-2"): "A7-2"}
 
 #: Rows whose caption was typed from the rendered page (the text layer
 #: garbles a symbol), so only the label is looked for in the text.
@@ -89,12 +105,16 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
             if rel not in docs:
                 docs[rel] = pymupdf.open(str(ROOT / rel))
             page = docs[rel][row["pdf_page_index"]]
-            assert bfc.page_graphic(page), (ref, n, "no picture or drawing")
+            if n in NO_GRAPHIC.get(ref, ()):
+                assert not bfc.page_graphic(page), (ref, n, "now has one")
+            else:
+                assert bfc.page_graphic(page), (ref, n, "no picture or drawing")
             text = page.get_text()
+            label = LABEL_AS_PRINTED.get((ref, n), n)
             if n in TYPED.get(ref, ()):
                 assert re.search(rf"Figure\s+{re.escape(n)}(?!\d)", text), n
             else:
-                assert bfc.caption_on_page(text, n, row["caption"]), (ref, n)
+                assert bfc.caption_on_page(text, label, row["caption"]), (ref, n)
     finally:
         for d in docs.values():
             d.close()
@@ -130,6 +150,22 @@ def test_each_added_row_page_prints_its_caption_and_holds_a_figure(ref):
                            "(bottom)"),
     ("gec_13", "10-17", 543, "Minimum recommended geometry of a stable "
                              "feature MSE (SFMSE) wall system"),
+    ("fhwa_soils_foundations", "A.2-3", 396,
+     "Typical preliminary exploration request"),
+    ("fhwa_soils_foundations", "A.2-11", 409,
+     "CPT sounding from CPT-BAF-3 in vicinity of DH BAF-3"),
+    ("fhwa_soils_foundations", "A.5-9", 439,
+     "Graphical representation of solution for minimum Factor of Safety by "
+     "Ordinary Method of Slices (OMS)/Computer solution and Bishop's Method "
+     "- East Abutment"),
+    ("fhwa_soils_foundations", "A.6-7", 460,
+     "Variation of overburden pressure (po), preconsolidation pressure (pc) "
+     "and final pressure due to embankment + surcharge (pf + ps) with depth"),
+    ("fhwa_soils_foundations", "A.7-2", 476,
+     "Footing geometry and subsurface conditions for center pier of the "
+     "Apple Freeway Bridge including SPT-N blow counts from Boring BAF-2"),
+    ("fhwa_soils_foundations", "D-10", 576,
+     "Factor of safety distribution and Safety Map"),
 ])
 def test_pinned_rows(ref, number, index, caption):
     row = _figures_db.figure_get(ref, number)
@@ -160,6 +196,21 @@ def test_sideways_figures_say_how_to_turn_the_page(ref, number, turn):
     assert "sideways" in notes and f"quarter turn {turn}" in notes
 
 
+@pytest.mark.parametrize("ref,number", [
+    # the figure turned on the page under an upright caption (seen on the
+    # rendered pages; the text layer cannot show it, the pages are scans)
+    ("fhwa_soils_foundations", "A.2-9"),
+    ("fhwa_soils_foundations", "A.2-10"),
+    ("fhwa_soils_foundations", "A.2-11"),
+    ("fhwa_soils_foundations", "A.2-12"),
+    ("fhwa_soils_foundations", "A.4-3"),
+])
+def test_figures_turned_under_an_upright_caption(ref, number):
+    notes = _figures_db.figure_get(ref, number)["read_notes"]
+    assert "sideways under an upright caption" in notes
+    assert "quarter turn clockwise" in notes
+
+
 def test_added_rows_are_found_by_their_captions():
     for ref, query, number in [
         ("gec_5", "karst sinkhole pinnacled bedrock", "12-1"),
@@ -172,6 +223,13 @@ def test_added_rows_are_found_by_their_captions():
         ("gec_13", "Swedish rock grouting injection pressures", "8-22"),
         ("gec_13", "stabilization aggregate thickness design curves", "9-1"),
         ("gec_13", "stable feature MSE wall geometry", "10-17"),
+        ("fhwa_soils_foundations", "Apple Freeway plan and section", "A.1-1"),
+        ("fhwa_soils_foundations", "CPT sounding CPT-BAF-2", "A.2-10"),
+        ("fhwa_soils_foundations", "Rankine wedges central sliding block",
+         "A.5-11"),
+        ("fhwa_soils_foundations", "settlement time wick drain without "
+                                   "surcharge", "A.6-11"),
+        ("fhwa_soils_foundations", "ReSSA safety map", "D-10"),
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)

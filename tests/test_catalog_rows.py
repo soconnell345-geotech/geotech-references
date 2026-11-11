@@ -138,6 +138,9 @@ TEXT_LAYER_LACKS = {
         'D.1'},
     "eurocode_7_2": {
         'B.1', 'D.1', 'G.1', 'I.1', 'I.2', 'I.3', 'I.4', 'K.1'},
+    # the text cites Figure A.7-2; its caption label is printed "A7-2"
+    "fhwa_soils_foundations": {
+        'A.7-2'},
     "gec_11": {
         '2-5', '2-8', '2-10', '2-15', '2-21', '2-22', '3-2', '3-4', '3-5',
         '4-3', '4-9', '4-12', '4-13', '4-19', '5-1', '5-2', '5-3', '5-4',
