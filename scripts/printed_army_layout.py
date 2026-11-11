@@ -1000,7 +1000,18 @@ class Grid:
         # it: a line over the inner table, a total under it), sets each
         # paragraph on the row it stands on; a merged cell's text on rows
         # next to each other is one text (a source wrapped over two rows)
+        # A merged cell whose text stands only on rows where no other cell
+        # has text of its own (a total under an inner table on a page the
+        # table runs on to, a sub-heading between two inner tables) is
+        # spread too: its text once, on the row it stands on, not repeated
+        # on every row it spans.
         spread: dict = {}
+
+        def alone(c, i):
+            return not any(o is not c and o.paras and o.i0 == i
+                           for o in {id(self.box[(i, j)]): self.box[(i, j)]
+                                     for j in range(m)}.values())
+
         for c in self.cells:
             if c.i1 > c.i0 and c.paras:
                 rows: dict = {}
@@ -1008,7 +1019,8 @@ class Grid:
                     ym = p.y - 0.3 * p.size
                     i = max(c.i0, min(c.i1, sum(1 for y in self.ys[1:] if y <= ym)))
                     rows.setdefault(i, []).append(p)
-                if max(rows) - min(rows) + 1 > len(rows):
+                if max(rows) - min(rows) + 1 > len(rows) \
+                        or (min(rows) > c.i0 and all(alone(c, i) for i in rows)):
                     spread[id(c)] = rows
 
         def own_at(c, i):
