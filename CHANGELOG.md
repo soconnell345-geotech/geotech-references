@@ -657,8 +657,27 @@ and caption below was read off the rendered print.
     both searches with the same error naming `dm7_1` and `dm7_2`;
     `figure_search` had searched both. `figure_get` still reads it by the
     figure asked for.
-  - Every `figure_search` hit carries `reference_id`, its volume's report
-    number.
+  - Every `figure_search` and `reference_search` hit carries
+    `reference_id`, its volume's report number, so the plain list shows the
+    volume a report-number scope kept to (only the `max_chars` form carries
+    the note). `references_agent.reference_search` returns the `max_chars`
+    form (14,000 characters, the app's size) and takes `offset`. It was a
+    plain list of hits, which could not carry the scope note.
+  - A report number matches by its designation as well as by the whole
+    stored text. That is the text up to the first space after the number,
+    and a standard's number with or without its year. So "FHWA-NHI-05-037"
+    names fhwa_pavements (stored with its title after the number) and "EN
+    1997-1" names eurocode_7_1 (stored as EN 1997-1:2004); both had been
+    refused. Every stored id's designation resolves in both searches. A
+    number that ends more than one designation is refused, naming them:
+    "2-2007" (EN 1997-2:2007 and UFC 3-220-07) had searched both catalogs.
+  - Every function that takes a reference reads it the same way:
+    `reference_get`, `retrieve_section`, `search_sections`,
+    `list_chapters`, `load_chapter`, `figure_get`, `resolve_pdf` and the
+    agent's `lookup_reference`, as the searches do. `reference_get("gec12",
+    "7.2")` had been refused. An unknown name, or `dm7` in a text fetch,
+    gets the search's refusal, with each function's own error type (`KeyError`,
+    or `FileNotFoundError` in `_retrieval`).
 - **`search_sections` with no section holding every word** (core-07) returns
   the ranked search of that reference, each hit marked `match` ("all
   words", "synonyms", "any word" with `lacks`), 10 by default. The fitted
