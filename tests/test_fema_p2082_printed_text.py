@@ -98,3 +98,47 @@ class TestCommentaryC20:
         # p. 510 prints "Eq. (C.20.3-1)"; p. 512 cites Section 20.3 for the site class definitions.
         assert "Eq. (C.20.3-1) [as printed" in retrieve_section("fema_p2082", "C20.3")["body"]
         assert "Section 20.3 [as printed; the site class definitions are in Section 20.2" in retrieve_section("fema_p2082", "C20.4")["body"]
+
+
+class TestCommentaryC21:
+    """Part 2, Commentary to Chapter 21, printed pp. 514-522."""
+
+    def test_sections_as_printed(self):
+        ch = _commentary(21)
+        assert ch["chapter"] == 21
+        assert _ids(ch) == ["C21.0", "C21.1", "C21.1.1", "C21.1.2", "C21.1.3", "C21.2", "C21.2.1",
+                            "C21.2.2", "C21.2.3", "C21.3", "C21.4", "C21.5"]
+
+    def test_maximum_direction_factors(self):
+        # p. 516: average response factored to the maximum direction.
+        body = retrieve_section("fema_p2082", "C21.2")["body"]
+        assert ("period-dependent factors of 1.2 at periods less than or equal to 0.2 s, by 1.25 for a period of "
+                "1.0 s, and by 1.3 for periods greater than or equal to 10 s") in body
+
+    def test_scenario_earthquake_table_in_its_section(self):
+        # p. 517: Table C21.2.2-1, printed after the C21.2.2 text that cites it.
+        body = retrieve_section("fema_p2082", "C21.2.2")["body"]
+        assert "0.20 | 7.0 | 53% | 7.2 | 16% | 7.9 | 11% | 6.9 | 3%" in body
+        assert "5.0 | 7.4 | 24% | 7.4 | 13% | 8.0 | 44% | NA | <1%" in body
+        assert "Table C21.2.2-1" not in retrieve_section("fema_p2082", "C21.2.1")["body"]
+
+    def test_ten_percent_contributor_rule(self):
+        # pp. 517-518.
+        body = retrieve_section("fema_p2082", "C21.2.2")["body"]
+        assert ("scenario earthquakes contributing less than 10% of the largest contributor at each period "
+                "shall be ignored.") in body
+        assert "deaggregations used [p. 518] to determine the earthquake magnitudes." in body
+        assert "great (M ≥ 8) or giant (M ≥ 9) earthquakes" in body
+
+    def test_eighty_percent_of_usgs_spectrum(self):
+        # p. 518.
+        body = retrieve_section("fema_p2082", "C21.2.3")["body"]
+        assert ("cannot be taken as less than 80% of the MCER response spectrum obtained from the USGS web "
+                "service.") in body
+
+    def test_sd1_period_ranges(self):
+        # p. 519, typed from the page.
+        body = retrieve_section("fema_p2082", "C21.4")["body"]
+        assert "for a period range, 1 s ≤ T ≤ 2 s, for stiffer sites vs > 1,450 ft/s (vs > 442 m/s)" in body
+        assert "1 s ≤ T ≤ 5 s, for softer sites vs ≤ 1,450 ft/s (vs ≤ 442 m/s)" in body
+        assert "the value of the parameter SDS should be taken as 90% of the peak value" in body
