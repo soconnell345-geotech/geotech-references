@@ -742,6 +742,16 @@ def test_audit_script_uses_the_package_validator():
     assert audit_chapter_text.SECTION_ID is _schema.SECTION_ID
 
 
+def test_section_id_forms():
+    """The printed forms SECTION_ID takes, including a commentary section
+    with C before its number (FEMA P-2082 Part 2, 'C19.3.2'; REF-85)."""
+    for sid in ("5.7.2", "4-2.1", "P-1", "5.15-5.16", "3.5.2.a", "A", "D.3",
+                "B-3.4", "D.15.a", "C11", "C19.3.2"):
+        assert _schema.SECTION_ID.match(sid), sid
+    for sid in ("c19.3", "C19.", "CC19.3", "19.3 ", ""):
+        assert not _schema.SECTION_ID.match(sid), sid
+
+
 def test_validator_passes_every_builtin_chapter():
     bad = {}
     for jf in sorted(_packs._PACKAGE_DIR.glob("*/text/*.json")):
