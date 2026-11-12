@@ -728,8 +728,68 @@ clays and no unit, and the text now says so and points to `cbr_from_dcp`'s
 note (mm per blow). The stored 4.7.3 discussed Table 4-14; the printed 4.7.3
 is Subsurface Profile and Table 4-14 is in 4.7.2, now typed in from pp. 4-65
 and 4-66 with the silts, clays and peat rows the lookup leaves out. The
-SPT correction in Table 4-8 keeps the number the page gives it, (5-1). The
-script gains options a manifest opts into
+SPT correction in Table 4-8 keeps the number the page gives it, (5-1).
+Chapters 5 to 8 followed (2026-11-11 and 12), so all eight printed chapters
+are built, 200 sections in all: 5 (Geotechnical Inputs for Pavement Design,
+39 sections, was 5) with Eqs. 5.1 to 5.69 typed in from the page; 6
+(Pavement Structural Design and Performance, 25 sections), not stored
+before, with the 1993 AASHTO example calculations typed in (pp. 6-5, 6-22,
+6-32, 6-42); 7 (Design Details and Construction Conditions Requiring Special
+Design Attention, the title on the chapter's first page, where the contents
+print "Subgrade" for "Construction"; 49 sections, was 3) with Eqs. 7.1 to
+7.6 and the second "Eq. 7-5" of p. 7-42; 8 (Construction and Design
+Verification for Unbound Pavement Materials, 24 sections, was 5). Sections
+over 14,000 characters are stored in lettered parts (5.2.2.a, 6.2.2.a,
+7.6.5.a, 8.4.4.a and others), the letters not printed. Tables the text layer
+scrambles are typed in from the rendered page: 4-14, 5-3 to 5-6, 5-8, 5-18,
+5-24, 5-28, 5-30, 5-34, 5-35, 5-41, 5-49 to 5-54, 5-56, 5-57, 6-5, 6-8, 6-10,
+7-1 to 7-3, 7-11 to 7-13, 7-16, 7-19 to 7-21, 8-1, 8-3 (printed "Table 8.3")
+and 8-4. Table 7-18 is printed as a picture and is not typed; Tables 7-5 to
+7-10, 7-14, 7-15, 7-17, 7-22, 7-23a/b, 8-2, 8-5 and 8-6 keep the text
+layer's row order. Every formula line of chapters 1 to 8 was read against
+the rendered page, and a new test fails on the patterns the text layer
+leaves where it scatters a formula (an isolated prime, lone digits beside an
+equals sign, "= = =", a formula line whose brackets do not pair, a sentence
+repeated back to back). Appendices A to F (Terminology, the Main Highway
+example project, the 1993 AASHTO and NCHRP 1-37A design methods, the boring
+log key, admixture content for subgrade stabilization) are not built.
+Statements that changed in substance:
+
+- Eq. 3.5's last term is typed with the page's brackets,
+  (4.22 – 0.32pt)[log(Sc/215.63J)(...)]; the stored form took the log of the
+  whole product, which is Eq. 3.9's form.
+- 4.5.4: the two FWD back-calculation relations (d0 from Ep and MR, p. 4-21;
+  MR = 0.24P/(dr r) with r ≥ 0.7ae, and ae, p. 4-22), which the text layer
+  dropped, leaving only their symbol lists, are typed in.
+- The stored 5.3.3 was Compaction Characteristics: the printed 5.3.3 is
+  Problem Soil Identification (Tables 5-23 to 5-25, swell and collapse), and
+  compaction (Tables 5-15, 5-16, 5-18) is in 5.3.2. The stored 5.4.7 was
+  Swell and Collapse Potential: the printed 5.4.7 is Interface Friction. The
+  stored 5.5 was Drainage Inputs: the printed 5.5 is Thermo-Hydraulic
+  Properties, with the drainage coefficients (Tables 5-49, 5-50) in 5.5.1.
+- The stored 7.4 was Stabilization (Lime, Cement, Asphalt) and
+  Geosynthetics: the printed 7.4 is Compaction; stabilization is printed in
+  7.6 (7.6.3 to 7.6.5) and treated bases in 7.3. 7.2 keeps its subject under
+  its printed title, Subsurface Water and Drainage Requirements, and 7.5.6
+  under Frost-Susceptible Soils.
+- 7.5.6, Table 7-12: all silts, very fine silty sands and clays with PI
+  under 12 are frost group F4. The stored text put clays and all silts in F3
+  and only varved sediments in F4.
+- The stored 8.4.5 was Chemical Stabilization and Base/Subbase Construction:
+  the printed 8.4.5 is Stabilization, and base and subbase construction is
+  8.4.6. Table 8.3 (the five example soils of 8.3.2) is typed in with their
+  limits, gradation, density, classes and resilient modulus constants.
+- Typed as printed, each with a note naming the page: Eq. 5.15 (1000 + 555R)
+  beside Table 5-34 (1155 + 555R); Eq. 5.17 (ES and EBS); the bound of Eq.
+  5.34; Eq. 5.39's (3/4)(OCR/OCRmax); Eq. 5.65 (9.7e^–4); Eq. 5.66 (haev and
+  have); Table 5-18's A-6 "10.30"; Table 5-57's 1 m/s = 3.25 ft/s; p. 6-42's
+  SN1 = 5.67 – 0.91 = 4.76 where SN is 5.76; Eq. 7.2's S1 (the text prints
+  Sl); Eq. 7.5's unclosed bracket; p. 7-26's "0.13 ft3/day (6 ft3/day)";
+  slips in Table 7-20; Table 8.3's K1 "10 387"; p. 4-59's boring log key "in
+  Appendix D" (it is Appendix E) and p. 8-9's lime pH test "in Appendix E"
+  (it is Appendix F).
+
+The script gains options a manifest opts into
 (`contents_format` and `list_format` "lines", `header_end`, `page_label`,
 `front_matter_header`, `equation_numbers` "parenthesized_dot",
 `title_lines`, `headings_on_listed_page`, `heading_overrides`,
