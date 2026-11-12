@@ -121,9 +121,58 @@ class TestChapter2:
         assert "[C] 1613.2.1.4" in b and "Print note" in b
 
 
+class TestChapter3:
+    def test_vertical_seismic_load_combinations(self):
+        # pp. 44-46, rendered: combinations 8, 9 and 11 to 13.
+        s = _section(3, "3-2")
+        for combo in ("8. 1.2D + 1.0Ev0 + 0.3Eh + L + 0.2S", "9. 0.9D – 1.0Ev0 + 0.3Eh",
+                      "11. 1.0D + 0.7Ev0 + 0.21Eh", "12. 1.0D + 0.525Ev0 + 0.1575Eh + 0.75L + 0.75S",
+                      "13. 0.6D – 0.7Ev0 + 0.21Eh", "13. 0.6D – 0.7Ev0 + 0.21Emh"):
+            assert combo in s["body"], combo
+        assert "Ev0 = 0.67SDSD" in s["body"]
+        assert "(0.3×0.67SDS = 0.2SDS)" in s["body"]
+        assert "0.525Ev0" in s["equations"][1]["formula"]
+
+    def test_collector_item_c_is_not_a_general_rule(self):
+        # p. 58: only Item (c) of 12.10.2.1 and its exception are replaced.
+        s = _section(3, "3-6")
+        assert "Item (c) [Replacement]. Forces calculated using the load combinations of Section 2.3.6 without overstrength factor" in s["body"]
+        assert not any(k.startswith("Collector elements at SDC C-F: use load combinations WITHOUT") for k in s["key_points"])
+
+    def test_table_3_1_notes_symbols_from_the_page(self):
+        # pp. 56-57 notes b and q: Omega-o and hn, read off the rendered page.
+        b = _section(3, "3-6")["body"]
+        assert "Where the tabulated value of the overstrength factor, Ωo, is greater than or equal to 2½, Ωo is permitted to be reduced by subtracting the value of ½" in b
+        assert "Structural height, hn, shall not be less than 60 ft (18.3 m)" in b
+        assert "its rows are not typed into this text" in b
+
+    def test_nonstructural_anchor_factor_is_omega_op(self):
+        # p. 61: "multiplied by Omega_op as given in ASCE 7-22 Tables 13.5-1 and 13.6-1";
+        # the text layer gives only "Omega o o o o". p. 65 (nonbuilding structures) prints Omega_o.
+        assert "QE, is multiplied by Ωop as given in ASCE 7-22 Tables 13.5-1 and 13.6-1" in _section(3, "3-7")["body"]
+        assert "QE, is multiplied by Ωo as given in ASCE 7-22 Tables 13.5-1 and 13.6-1" in _section(3, "3-8")["body"]
+
+    def test_crane_ratios(self):
+        # p. 64: CAR/Rpo = 1, crane rail connections 1.15; commentary 1.5/1.3 = 1.15.
+        b = _section(3, "3-7")["body"]
+        assert "Seismic forces, Fp, must be calculated using CAR/Rpo = 1, except that crane rail connections must be designed for the forces resulting from CAR/Rpo = 1.15 in all directions" in b
+        assert "raised by a factor of 1.5/1.3 = 1.15" in b
+
+    def test_training_towers_need_ahj_approval(self):
+        # p. 47: "are not to be classified as non-building structures unless specifically approved by the AHJ".
+        s = _section(3, "3-5")
+        assert "unless specifically approved by the AHJ" in s["body"]
+        assert "automatically" not in _all_text(s)
+
+    def test_printed_chapter_titles(self):
+        # pp. 65, 67 print "ASCE 7 CHAPTER 15" and "ASCE 7 CHAPTER 26".
+        assert _section(3, "3-8")["title"].startswith("ASCE 7 Chapter 15")
+        assert _section(3, "3-9")["title"].startswith("ASCE 7 Chapter 26")
+
+
 class TestAllChapters:
     def test_no_module_notes(self):
-        for ch in (1, 2):
+        for ch in (1, 2, 3):
             text = json.dumps(load_chapter("ufc_structural", ch), ensure_ascii=False)
             assert ".py" not in text, ch
             assert not re.search(r"see [a-z_]+\.[a-z_]+", text), ch
