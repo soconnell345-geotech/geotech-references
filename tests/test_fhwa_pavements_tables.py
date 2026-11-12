@@ -381,12 +381,72 @@ class TestSoilAsPavementMaterial:
         r = table_4_14_soil_as_pavement_material("SC")
         assert "Poor" in r["subgrade_strength"]
 
-    def test_full_table_eight_classes(self):
-        assert len(table_4_14_soil_as_pavement_material()["rows"]) == 8
+    def test_every_cell_as_printed(self):
+        """Table 4-14, pp. 4-65 and 4-66 (PDF pages 167, 168), every cell
+        from 300 dpi renders. Before 2026-11-12 the lookup held only the ten
+        gravel and sand rows less GM u and SM u."""
+        printed = [
+            ("GW", "Well-graded gravels or gravel-sand mixtures, little or no fines",
+             "Excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GP", "Poorly graded gravels or gravel-sand mixtures, little or no fines",
+             "Good to excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GM-d", "Silty gravels, gravel-sand silt mixtures",
+             "Good to excellent", "Slight to medium", "Very slight", "Fair to poor"),
+            ("GM-u", "Silty gravels, gravel-sand silt mixtures",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("GC", "Clayey gravels, gravel-sand-clay mixture",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("SW", "Well-graded sands or gravelly sands, little or no fines",
+             "Good", "None to very slight", "Almost none", "Excellent"),
+            ("SP", "Poorly graded sands or gravelly sands, little or no fines",
+             "Fair to good", "None to very slight", "Almost none", "Excellent"),
+            ("SM-d", "Silty sands, sand-silt mixtures",
+             "Fair to good", "Slight to high", "Very slight", "Fair to poor"),
+            ("SM-u", "Silty sands, sand-silt mixtures",
+             "Fair", "Slight to high", "Slight to medium", "Poor to practically impervious"),
+            ("SC", "Clayey sands, sand-clay mixtures",
+             "Poor to fair", "Slight to high", "Slight to medium",
+             "Poor to practically impervious"),
+            ("ML", "Inorganic silts & very fine sand, rock flour, silty or clayey fine sand "
+                   "or clayey silts with slight plasticity",
+             "Poor to Fair", "Medium to Very High", "Slight to medium", "Fair to Poor"),
+            ("CL", "Inorganic clays of low to medium plasticity, gravelly clays, sandy "
+                   "clays, silty clays, lean clays",
+             "Poor to Fair", "Medium to High", "Slight to medium", "Practically Impervious"),
+            ("OL", "Organic silts & organic silt-clays or low plasticity",
+             "Poor", "Medium to High", "Medium to high", "Poor"),
+            ("MH", "Inorganic silts, micaceous or diatomaceous fine sand or silty soils, "
+                   "elastic silts",
+             "Poor", "Medium to Very High", "High", "Fair to Poor"),
+            ("CH", "Inorganic clays of high plasticity, fat clays",
+             "Poor to Fair", "Medium to Very High", "High", "Practically Impervious"),
+            ("OH", "Organic clays of medium to high plasticity, organic silts",
+             "Poor to Very Poor", "Medium", "High", "Practically Impervious"),
+            ("Pt", "Peat & other highly organic soils",
+             "Not Suitable", "Slight", "Very high", "Fair to Poor"),
+        ]
+        rows = table_4_14_soil_as_pavement_material()["rows"]
+        got = [(r["soil_class"], r["name"], r["subgrade_strength"],
+                r["potential_frost_action"], r["compressibility_expansion"],
+                r["drainage"]) for r in rows]
+        assert got == printed
+        pages = [r["printed_page"] for r in rows]
+        assert pages == ["4-65"] * 10 + ["4-66"] * 7
 
-    def test_fine_grained_not_in_table_raises(self):
+    def test_gm_alone_gives_both_rows(self):
+        r = table_4_14_soil_as_pavement_material("GM")
+        assert [x["soil_class"] for x in r["sub_rows"]] == ["GM-d", "GM-u"]
+        assert table_4_14_soil_as_pavement_material("sm u")["subgrade_strength"] == "Fair"
+
+    def test_fine_grained_and_peat(self):
+        ch = table_4_14_soil_as_pavement_material("CH")
+        assert ch["drainage"] == "Practically Impervious"
+        assert ch["printed_page"] == "4-66" and ch["pdf_page"] == 167
+        assert table_4_14_soil_as_pavement_material("Pt")["subgrade_strength"] == "Not Suitable"
+
+    def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
-            table_4_14_soil_as_pavement_material("CH")
+            table_4_14_soil_as_pavement_material("XX")
 
 
 # ===================================================================

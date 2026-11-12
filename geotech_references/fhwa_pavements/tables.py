@@ -352,97 +352,174 @@ def table_5_28_typical_cbr(soil_class: str = "") -> dict:
 
 # ============================================================================
 # Table 4-14: Summary of soil characteristics as a pavement material
-# (from NCHRP 1-37A).  (Chapter 4; PDF p.166, printed 4-65)
+# (from NCHRP 1-37A).  (Chapter 4; PDF pp. 167-168 = 0-based 166-167,
+# printed 4-65 and 4-66)
 #
 # Subgrade strength, potential frost action, compressibility/expansion, and
-# drainage by USCS soil class (gravels and sands only in the printed table).
+# drainage by USCS soil class: gravels and sands on p. 4-65 (GM and SM each
+# in a "d" and a "u" row), silts, clays and peat on p. 4-66. Every cell as
+# printed, read from 300 dpi renders (2026-11-12). Until then the lookup
+# held only the ten gravel and sand classes, one row each for GM and SM
+# (the "d" row), and said the printed table covered gravels and sands only.
 # ============================================================================
 
-# uscs_class -> (name, subgrade_strength, frost_action, compressibility, drainage)
-_TABLE_4_14 = {
-    "GW": ("Well-graded gravels or gravel-sand mixtures, little or no fines",
-           "Excellent", "None to very slight", "Almost none", "Excellent"),
-    "GP": ("Poorly graded gravels or gravel-sand mixtures, little or no fines",
-           "Good to excellent", "None to very slight", "Almost none", "Excellent"),
-    "GM": ("Silty gravels, gravel-sand-silt mixtures",
-           "Good to excellent", "Slight to medium", "Very slight",
-           "Fair to poor"),
-    "GC": ("Clayey gravels, gravel-sand-clay mixtures",
-           "Good", "Slight to medium", "Slight",
-           "Poor to practically impervious"),
-    "SW": ("Well-graded sands or gravelly sands, little or no fines",
-           "Good", "None to very slight", "Almost none", "Excellent"),
-    "SP": ("Poorly graded sands or gravelly sands, little or no fines",
-           "Fair to good", "None to very slight", "Almost none", "Excellent"),
-    "SM": ("Silty sands, sand-silt mixtures",
-           "Fair to good", "Slight to high", "Very slight", "Fair to poor"),
-    "SC": ("Clayey sands, sand-clay mixtures",
-           "Poor to fair", "Slight to high", "Slight to medium",
-           "Poor to practically impervious"),
+_T414_DIV = {
+    "G": "Gravel And Gravelly Soils",
+    "S": "Sand and Sandy Soils",
+    "L": "Silts & Clays with Liquid Limit Less Than 50",
+    "H": "Silts & Clays with Liquid Limit Greater Than 50",
+    "O": "Highly Organic Soils",
 }
+
+# (key, printed class, division, printed page, name, subgrade_strength,
+#  frost_action, compressibility, drainage), in the page's order
+_TABLE_4_14 = [
+    ("GW", "GW", "G", "4-65",
+     "Well-graded gravels or gravel-sand mixtures, little or no fines",
+     "Excellent", "None to very slight", "Almost none", "Excellent"),
+    ("GP", "GP", "G", "4-65",
+     "Poorly graded gravels or gravel-sand mixtures, little or no fines",
+     "Good to excellent", "None to very slight", "Almost none", "Excellent"),
+    ("GM-D", "GM d", "G", "4-65", "Silty gravels, gravel-sand silt mixtures",
+     "Good to excellent", "Slight to medium", "Very slight", "Fair to poor"),
+    ("GM-U", "GM u", "G", "4-65", "Silty gravels, gravel-sand silt mixtures",
+     "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+    ("GC", "GC", "G", "4-65", "Clayey gravels, gravel-sand-clay mixture",
+     "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+    ("SW", "SW", "S", "4-65",
+     "Well-graded sands or gravelly sands, little or no fines",
+     "Good", "None to very slight", "Almost none", "Excellent"),
+    ("SP", "SP", "S", "4-65",
+     "Poorly graded sands or gravelly sands, little or no fines",
+     "Fair to good", "None to very slight", "Almost none", "Excellent"),
+    ("SM-D", "SM d", "S", "4-65", "Silty sands, sand-silt mixtures",
+     "Fair to good", "Slight to high", "Very slight", "Fair to poor"),
+    ("SM-U", "SM u", "S", "4-65", "Silty sands, sand-silt mixtures",
+     "Fair", "Slight to high", "Slight to medium",
+     "Poor to practically impervious"),
+    ("SC", "SC", "S", "4-65", "Clayey sands, sand-clay mixtures",
+     "Poor to fair", "Slight to high", "Slight to medium",
+     "Poor to practically impervious"),
+    ("ML", "ML", "L", "4-66",
+     "Inorganic silts & very fine sand, rock flour, silty or clayey fine sand "
+     "or clayey silts with slight plasticity",
+     "Poor to Fair", "Medium to Very High", "Slight to medium", "Fair to Poor"),
+    ("CL", "CL", "L", "4-66",
+     "Inorganic clays of low to medium plasticity, gravelly clays, sandy "
+     "clays, silty clays, lean clays",
+     "Poor to Fair", "Medium to High", "Slight to medium",
+     "Practically Impervious"),
+    ("OL", "OL", "L", "4-66",
+     "Organic silts & organic silt-clays or low plasticity",
+     "Poor", "Medium to High", "Medium to high", "Poor"),
+    ("MH", "MH", "H", "4-66",
+     "Inorganic silts, micaceous or diatomaceous fine sand or silty soils, "
+     "elastic silts",
+     "Poor", "Medium to Very High", "High", "Fair to Poor"),
+    ("CH", "CH", "H", "4-66", "Inorganic clays of high plasticity, fat clays",
+     "Poor to Fair", "Medium to Very High", "High", "Practically Impervious"),
+    ("OH", "OH", "H", "4-66",
+     "Organic clays of medium to high plasticity, organic silts",
+     "Poor to Very Poor", "Medium", "High", "Practically Impervious"),
+    ("PT", "(Pt)", "O", "4-66", "Peat & other highly organic soils",
+     "Not Suitable", "Slight", "Very high", "Fair to Poor"),
+]
+
+_TABLE_4_14_FOOTNOTE = (
+    "*Division of GM and SM groups is based on Atterberg Limits (See Chapter "
+    "6) with suffix d used when L.L. is 28 or less and the PI is 6 or less. "
+    "The suffix u is used when L.L. is greater that 28."
+)
+
+_TABLE_4_14_PRINT_NOTE = (
+    "Cells as printed on pp. 4-65 and 4-66. The page prints the GM and SM "
+    "names once, in the d row; the u row's name cell is blank and the name "
+    "is repeated here. OL's name is printed \"organic silt-clays or low "
+    "plasticity\" (\"of low plasticity\" is probably meant). The footnote "
+    "is printed with \"greater that 28\". Subgrade strength is for soils "
+    "not subject to frost action, as the column heading says."
+)
+
+
+def _t414_key(soil_class: str) -> str:
+    k = str(soil_class).strip().upper().replace("(", "").replace(")", "")
+    k = k.replace("_", "-").replace(" ", "-")
+    if k in ("GMD", "GMU", "SMD", "SMU"):
+        k = k[:2] + "-" + k[2]
+    return k
 
 
 def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
     """Soil characteristics as a pavement material by USCS class (Table 4-14).
 
-    Summary of subgrade strength (when not subject to frost action), potential
-    frost action, compressibility & expansion, and drainage characteristics by
-    USCS soil class (gravels and sands; from NCHRP 1-37A). Use to judge a soil's
-    suitability as subgrade/subbase.
+    Subgrade strength (when not subject to frost action), potential frost
+    action, compressibility & expansion, and drainage characteristics for
+    every USCS class the table prints (from NCHRP 1-37A): the gravels and
+    sands on p. 4-65, with GM and SM each split into a "d" row (L.L. 28 or
+    less and PI 6 or less) and a "u" row (L.L. greater than 28), and the
+    silts, clays and peat on p. 4-66. Use to judge a soil's suitability as
+    subgrade/subbase.
 
     Parameters
     ----------
     soil_class : str, optional
-        '', or a USCS class: 'GW','GP','GM','GC','SW','SP','SM','SC'. Empty
-        (default) returns the whole table.
+        '' (the whole table), or a USCS class: 'GW', 'GP', 'GC', 'SW', 'SP',
+        'SC', 'ML', 'CL', 'OL', 'MH', 'CH', 'OH', 'Pt'; or 'GM-d', 'GM-u',
+        'SM-d', 'SM-u' for one GM or SM row. 'GM' or 'SM' alone returns both
+        of its rows, since the page splits them by the Atterberg limits.
 
     Returns
     -------
     dict
-        For a specific class: {'soil_class','name','subgrade_strength',
-        'potential_frost_action','compressibility_expansion','drainage', ...}.
-        For '': {'rows': [...]}.
+        For one row: {'soil_class', 'printed_class', 'major_division',
+        'name', 'subgrade_strength', 'potential_frost_action',
+        'compressibility_expansion', 'drainage', 'printed_page', ...}.
+        For 'GM'/'SM': {'soil_class', 'sub_rows': [d row, u row], 'note', ...}.
+        For '': {'rows': [...], 'footnote', 'print_note', ...}.
 
     Raises
     ------
     ValueError
-        If soil_class is unrecognized.
+        If soil_class is not a class the table prints.
     """
-    def _row(cls):
-        name, strength, frost, comp, drain = _TABLE_4_14[cls]
-        return {"soil_class": cls, "name": name,
-                "subgrade_strength": strength,
+    def _row(t):
+        key, printed, div, page, name, strength, frost, comp, drain = t
+        return {"soil_class": key.replace("-D", "-d").replace("-U", "-u").replace("PT", "Pt"),
+                "printed_class": printed, "major_division": _T414_DIV[div],
+                "name": name, "subgrade_strength": strength,
                 "potential_frost_action": frost,
-                "compressibility_expansion": comp, "drainage": drain}
+                "compressibility_expansion": comp, "drainage": drain,
+                "printed_page": page}
 
-    sc = str(soil_class).strip().upper()
-    if sc in ("", "ALL"):
-        return {
-            "reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
-            "table": "4-14", "pdf_page": 166, "printed_page": "4-65",
-            "rows": [_row(k) for k in _TABLE_4_14],
-            "note": ("Subgrade strength is for soils NOT subject to frost action. "
-                     "Printed table covers gravels (G*) and sands (S*) only. The "
-                     "GM and SM rows here represent ONLY the low-plasticity 'd' "
-                     "sub-row (Atterberg LL <= 28 and PI <= 6); the printed table "
-                     "splits GM/SM into 'd' and 'u' (high-plasticity, LL > 28) "
-                     "variants and the 'u' variants are not represented."),
-        }
-    if sc not in _TABLE_4_14:
+    ref = {"reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
+           "table": "4-14", "pdf_page": 166, "printed_page": "4-65 to 4-66"}
+    k = _t414_key(soil_class)
+    if k in ("", "ALL"):
+        return {**ref, "rows": [_row(t) for t in _TABLE_4_14],
+                "footnote": _TABLE_4_14_FOOTNOTE,
+                "print_note": _TABLE_4_14_PRINT_NOTE}
+    if k in ("GM", "SM"):
+        sub = [_row(t) for t in _TABLE_4_14 if t[0] in (k + "-D", k + "-U")]
+        return {"soil_class": k, "sub_rows": sub, **ref,
+                "note": (f"The page splits {k} by the Atterberg limits: "
+                         f"{k} d when L.L. is 28 or less and the PI is 6 or "
+                         f"less, {k} u when L.L. is greater than 28. Give "
+                         f"'{k}-d' or '{k}-u' for one row."),
+                "footnote": _TABLE_4_14_FOOTNOTE}
+    rows = {t[0]: t for t in _TABLE_4_14}
+    if k not in rows:
         raise ValueError(
-            f"Unknown soil_class '{soil_class}'. Use a USCS gravel/sand class: "
-            "'GW','GP','GM','GC','SW','SP','SM','SC'."
+            f"Unknown soil_class '{soil_class}'. Table 4-14 prints GW, GP, "
+            "GM-d, GM-u, GC, SW, SP, SM-d, SM-u, SC, ML, CL, OL, MH, CH, OH "
+            "and Pt."
         )
-    out = _row(sc)
-    out.update({"reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
-                "table": "4-14", "pdf_page": 166, "printed_page": "4-65"})
-    if sc in ("GM", "SM"):
-        out["note"] = (
-            "Represents ONLY the low-plasticity 'd' sub-row (Atterberg LL <= 28 "
-            "and PI <= 6). The printed table splits GM/SM into 'd' and 'u' "
-            "(high-plasticity, LL > 28) variants; the 'u' variant is not "
-            "represented here."
-        )
+    out = _row(rows[k])
+    out.update({**ref, "printed_page": out["printed_page"],
+                "pdf_page": 166 if out["printed_page"] == "4-65" else 167})
+    if k.startswith(("GM", "SM")):
+        out["footnote"] = _TABLE_4_14_FOOTNOTE
+    if k in ("GM-U", "SM-U", "OL"):
+        out["print_note"] = _TABLE_4_14_PRINT_NOTE
     return out
 
 
