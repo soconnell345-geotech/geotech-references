@@ -151,6 +151,35 @@ error. No lookup changes; what the text tools return does:
   `tests/test_california_trenching_text_equations.py`,
   `tests/test_fema_p2082_text_equations.py`.
 
+**EN 1997-1 Annex A text: wrong pile factors corrected (build of
+2026-11-12, app BACKLOG REF-83 review).** The stored text of Annex A.3.3.2
+gave R4 = 1.3 for the base and total resistance of bored piles (Table A.7)
+and the base of CFA piles (Table A.8). The standard prints 1,6 and 1,5
+(bored) and 1,45 (CFA), printed p. 132. Its key points also said the R4
+column was the same as Table A.6's. The coded tables
+(`table_a_7_bored_pile_resistance`, `table_a_8_cfa_pile_resistance`) were
+right. This text was in release 1.6.0, so a text answer about R4 for
+bored or CFA piles from 1.6.0 should be checked again. Every cell of
+Tables A.1 to A.17 in the Annex A text was compared with the print and
+the coded tables; no other value was wrong. Also corrected to the print:
+- The Table A.11 model factors keep their printed force words: 0.85
+  "may", 1.10 "should", 1.20 "shall".
+- The Design Approach summary quotes 2.4.7.3.4's NOTEs. It had said
+  Combination 1 factors "actions and ground strength, not resistance".
+  Set M1 is 1.0 throughout, and set R1 is not 1.0 for piles or anchorages.
+- No section now says Design Approach 3 is the usual one for slopes,
+  which the print does not say (Annex A.3.3.6, Section 11.5.1).
+- Three force words the 2026-11-10 build weakened are back to the print:
+  11.5.1(11)P "shall be considered" (ground-structure interaction),
+  6.6.4(3)P "shall be considered using EN 1998", and 6.6.2(16) "should
+  take account of non-linear stiffness effects".
+- Also: 9.5.2 Eq. 9.2 is beta <= phi' (the prime was missing); Eqs.
+  2.9a/2.9b are on p. 34, not pp. 33-34; 7.6.3.1(4)P block uplift "shall
+  be carried out" per 2.4.7.4.
+
+No lookup and no section id changes. The new tests are in
+`tests/test_eurocode_7_1_text_equations.py`.
+
 **UFS 3-220-10 (dm7_1) lookups corrected to the printed manual (review of
 2026-11-10).** A review of the `dm7_1` functions against the rendered pages
 found equations, tables and charts that did not match the print. Results
