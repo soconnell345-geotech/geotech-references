@@ -49,7 +49,7 @@ geotech_references/           # Python package (pip install -e .)
     text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
   gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
     tables.py, figures.py
-    text/                      # All 11 chapters complete (FHWA-NHI-10-024, ch 1-11)
+    text/                      # All 11 chapters (Vol I ch 1-7, Vol II ch 8-11), 284 sections, rebuilt from the print by scripts/build_gec11_text.py (REF-80); appendices not built (REF-85)
   gec_12/                      # FHWA-NHI-16-009 Driven Piles
     tables.py                  # 8 table lookup functions (resistance factors, beta/Nt, setup, API)
     figures.py                 # 8 figure lookup functions (Nordlund Kd, CF, alpha_t, N'q, adhesion)
@@ -142,7 +142,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 247 | All 18 chapters complete (ch 1-18) |
-| gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |
+| gec_11 | FHWA-NHI-10-024 / -025 MSE Walls & Slopes, Vols I-II (Nov 2009) | 17 | 202 | All 11 chapters (Vol I ch 1-7, Vol II ch 8-11), 284 sections, rebuilt from the print 2026-11-12 by `scripts/build_gec11_text.py` (REF-80; the earlier files were a condensed paraphrase): bodies in the print's words with page markers, every numbered equation and the design, specification and checklist tables typed in from the rendered pages, no summaries or key points; long sections split into lettered parts (`10.9.a`), the letters not printed; appendices A-F not built (REF-85) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
 | gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63) |
 | micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
@@ -187,13 +187,13 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 **Structured Text**: 8 chapters (Ch 1-8 of Vol I), 109 top-level sections plus 76 nested in `subsections` (chapter 7: the static methods, group efficiency, uplift, setup, settlement, p-y), with title, body, key_points, equations, figures, tables, and applicability fields
 
-### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 (17 functions, 135 tests)
+### GEC-11: MSE Walls & Reinforced Soil Slopes — FHWA-NHI-10-024 / -025 (17 functions, 202 tests)
 
 **Table Functions** (16): Minimum reinforcement length and embedment depth (Tables 2-1/2-2); select fill gradation (Table 3-1); electrochemical limits for steel and geosynthetics (Tables 3-3/3-4); pullout parameters Ci and F* (Table 3-6); galvanization thickness and corrosion rates (Tables 3-7/3-8); installation damage reduction factors (Table 3-9); PET durability (Table 3-11); LRFD load combinations and permanent load factors (Tables 4-1/4-2); traffic surcharge (Table 4-4); external resistance factors (Table 4-5); bearing capacity factors (Table 4-6); internal resistance factors (Table 4-7)
 
 **Figure Functions** (1): Kr/Ka lateral stress ratio vs depth (Fig 4-10)
 
-**Text**: All 11 chapters (Vol I ch 1-6: overview through design of MSE walls; Vol II ch 1-5: RSS design, construction, and inspection)
+**Text**: All 11 chapters, read off the print (REF-80): Vol I ch 1-7 (introduction, systems and project evaluation, reinforcement principles and design properties, design of MSE walls, wall details, complex geometries, extreme events); Vol II ch 8-11 (RSS project evaluation, RSS design, contracting methods and specifications, field inspection and monitoring). Appendices A-F not built (REF-85)
 
 ### GEC-13: Ground Modification Methods — FHWA-NHI-16-027 (Vol I) / -028 (Vol II) (16 functions, 222 tests)
 
