@@ -518,27 +518,48 @@ class TestTable46:
         assert len(result["table"]) == 46
 
     def test_phi_0(self):
+        """Row 0 as printed on p. 4-29 (Nc to two decimals there)."""
         result = table_4_6_bearing_capacity_factors(0)
-        assert result["Nc"] == pytest.approx(5.14, abs=0.01)
-        assert result["Nq"] == pytest.approx(1.0, abs=0.01)
-        assert result["Ngamma"] == pytest.approx(0.0, abs=0.01)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (5.14, 1.0, 0.0)
 
     def test_phi_30(self):
+        """Row 30 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(30)
-        assert result["Nc"] == pytest.approx(30.14, abs=0.1)
-        assert result["Nq"] == pytest.approx(18.4, abs=0.1)
-        assert result["Ngamma"] == pytest.approx(22.4, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (30.1, 18.4, 22.4)
 
     def test_phi_45(self):
+        """Row 45 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(45)
-        assert result["Nc"] == pytest.approx(133.88, abs=0.5)
-        assert result["Nq"] == pytest.approx(134.88, abs=0.5)
-        assert result["Ngamma"] == pytest.approx(271.76, abs=1.0)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (133.9, 134.9, 271.8)
 
     def test_interpolation(self):
-        """phi=32.5 should interpolate between 32 and 33."""
+        """phi = 32.5 lies between the printed rows 32 (35.5, 23.2, 30.2) and
+        33 (38.6, 26.1, 35.2); the result is rounded to one decimal."""
         result = table_4_6_bearing_capacity_factors(32.5)
-        assert 35.49 < result["Nc"] < 38.64 or result["Nc"] == pytest.approx(37.065, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (37.1, 24.7, 32.7)
+        result = table_4_6_bearing_capacity_factors(38.5)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (64.7, 52.5, 85.2)
+
+    def test_cells_are_the_typed_table(self):
+        """Every cell equals the typed Table 4-6 in the chapter text (p. 4-29)
+        except Nc at phi = 39 (printed 37.9, the library's 67.9)."""
+        import json
+        import pathlib
+        from geotech_references.gec_11 import tables
+        path = pathlib.Path(tables.__file__).parent / "text" / "chapter04.json"
+        sections = json.loads(path.read_text(encoding="utf-8"))["sections"]
+        body = next(s["body"] for s in sections if s["section_id"] == "4.4.6.c")
+        head = "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n"
+        lines = body.split(head, 1)[1].split("\n")[:46]
+        printed = {int(r.split(" | ")[0]): [float(v) for v in r.split(" | ")[1:]]
+                   for r in lines}
+        assert sorted(printed) == list(range(46))
+        differ = []
+        for row in table_4_6_bearing_capacity_factors()["table"]:
+            got = [row["Nc"], row["Nq"], row["Ngamma"]]
+            if got != printed[row["phi_deg"]]:
+                differ.append((row["phi_deg"], got, printed[row["phi_deg"]]))
+        assert differ == [(39, [67.9, 56.0, 92.3], [37.9, 56.0, 92.3])]
 
     def test_out_of_range_raises(self):
         with pytest.raises(ValueError, match="between 0 and 45"):
@@ -547,13 +568,14 @@ class TestTable46:
             table_4_6_bearing_capacity_factors(50)
 
     def test_phi_39_misprint_note(self):
-        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup keeps 67.87 and
-        says so wherever the phi = 39 row is used."""
-        note = ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the "
-                "neighbouring rows (61.35 at 38, 75.31 at 40) show a "
-                "misprint, and this function returns 67.87")
+        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup returns the
+        library's 67.9 and says so wherever the phi = 39 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. This "
+                "function returns 67.9 there, the library's correction of the "
+                "printed 37.9, because the column runs 61.4 at 38 and 75.3 at "
+                "40; 67.9 is not printed in the manual")
         result = table_4_6_bearing_capacity_factors(39)
-        assert result["Nc"] == 67.87
+        assert result["Nc"] == 67.9
         assert result["note"] == note
         assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
         assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
@@ -563,13 +585,13 @@ class TestTable46:
         assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
 
     def test_phi_31_ngamma_note(self):
-        """p. 4-29 prints Ngamma = 25.9 at phi = 31; the lookup keeps 25.99
-        and says so wherever the phi = 31 row is used."""
-        note = ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31; its "
-                "neighbouring Ngamma cells are printed to one decimal (22.4 "
-                "at 30, 30.2 at 32), and this function returns 25.99")
+        """p. 4-29 prints Ngamma = 25.9 at phi = 31; the lookup returns it
+        uncorrected and says so wherever the phi = 31 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within "
+                "the run of its column (22.4 at 30, 30.2 at 32); this function "
+                "returns the printed 25.9, not corrected")
         result = table_4_6_bearing_capacity_factors(31)
-        assert result["Ngamma"] == 25.99
+        assert result["Ngamma"] == 25.9
         assert result["note"] == note
         assert table_4_6_bearing_capacity_factors(30.5)["note"] == note
         assert table_4_6_bearing_capacity_factors(31.5)["note"] == note

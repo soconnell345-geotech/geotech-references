@@ -40,14 +40,21 @@ Stored statements that changed in substance, the unsafe ones first:
   requirement (4.1.1).
 - 10.9 (p. 10-26): tie strips to ASTM A1101 Grade 50, as printed (stored
   A1011).
+- `table_4_6_bearing_capacity_factors` (Table 4-6, p. 4-29) held
+  two-decimal values the manual does not print (the page prints the table
+  to one decimal and gives no equations for the factors). It now returns
+  the printed cells, interpolated values rounded to one decimal; at phi =
+  39 it returns 67.9 for the printed Nc = 37.9, a correction the page
+  does not print, and says so.
 
 Stored as printed, each with a note: Eq. 4-26 (p. 4-36) prints its bracket
 without the square that Eqs. 4-2 and 4-3 give with no wall friction and
 beta = 0 (the printed form gives the larger Ka); Figure 9-4 (p. 9-8)
 prints FSR = FSU + (TS + D) / MD where Eq. 9-1 gives TS D; Table 4-6
-prints Nc = 37.9 at phi = 39 and Ngamma = 25.9 at phi = 31
-(`table_4_6_bearing_capacity_factors` returns 67.87 and 25.99, and its
-result says so wherever those rows are used); the alignment tolerances on p. 11-26 give 6 mm per m for
+prints Nc = 37.9 at phi = 39 (`table_4_6_bearing_capacity_factors`
+returns 67.9 there and says so) and Ngamma = 25.9 at phi = 31 (within
+the run of its column; returned as printed); the alignment tolerances on
+p. 11-26 give 6 mm per m for
 1/2 inch per 10 ft (about 4) and 15 for 2 inches (about 17); Table 5 of
 the example MSE wall specification (p. 10-30) gives AASHTO T 26 for
 gradation where Table 6 gives T 27. Section ids: none removed; 101 added,

@@ -283,13 +283,14 @@ def test_chapter_4_text_and_tables_as_printed():
     assert "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n" in body
     assert "30 | 30.1 | 18.4 | 22.4" in body
     assert "39 | 37.9 | 56.0 | 92.3" in body      # as printed; noted
-    assert ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the neighbouring "
-            "rows (61.35 at 38, 75.31 at 40) show a misprint, and "
-            "table_4_6_bearing_capacity_factors returns 67.87") in body
+    assert ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. The lookup "
+            "table_4_6_bearing_capacity_factors returns 67.9 there, the "
+            "library's correction of the printed 37.9, because the column runs "
+            "61.4 at 38 and 75.3 at 40; 67.9 is not printed in the manual") in body
     assert "31 | 32.7 | 20.6 | 25.9" in body      # as printed; noted
-    assert ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31; its "
-            "neighbouring Ngamma cells are printed to one decimal (22.4 at 30, "
-            "30.2 at 32), and table_4_6_bearing_capacity_factors returns 25.99"
+    assert ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within the "
+            "run of its column (22.4 at 30, 30.2 at 32); the lookup returns the "
+            "printed 25.9, not corrected. Both rows are kept here as printed."
             ) in body
     body = secs["4.4.7.f"]["body"]
     assert ("Metallic reinforcement and connectors: Grid reinforcements (A, C): "
