@@ -774,7 +774,11 @@ Statements that changed in substance:
   under Frost-Susceptible Soils.
 - 7.5.6, Table 7-12: all silts, very fine silty sands and clays with PI
   under 12 are frost group F4. The stored text put clays and all silts in F3
-  and only varved sediments in F4.
+  and only varved sediments in F4. The lookup `table_7_12_frost_susceptibility`
+  is not changed in this build and still puts six rows one group lower than
+  the page (gravelly soils 10-20 % fines in F1; gravelly soils over 20 % and
+  sands over 15 % in F2; all silts, very fine silty sands and clays with PI
+  under 12 in F3).
 - The stored 8.4.5 was Chemical Stabilization and Base/Subbase Construction:
   the printed 8.4.5 is Stabilization, and base and subbase construction is
   8.4.6. Table 8.3 (the five example soils of 8.3.2) is typed in with their
