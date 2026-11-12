@@ -8,34 +8,65 @@
     {
       "section_id": "4-1",
       "title": "Design assumptions and general requirements",
-      "summary": "Sets the general design procedure (loading -> eccentricity ratio -> the applicable phiPn/phiMn equations from Appendix B), the six member categories by reinforcement/loading type, the eccentricity of axial load e' and its ratio e'/d (Eq 4-1/4-2), and the fundamental assumptions: max usable concrete strain 0.003, balanced-condition definition, the rectangular stress block (0.85*fc' over depth a=beta1*c), beta1 per ACI 318-19, and the balanced stress-block-depth ratio kb (Eq 4-3).",
-      "body": "(a) General procedure: determine the member's loadings/reinforcement, determine the eccentricity ratio, then design using the phiPn/phiMn equations for that member type and eccentricity ratio. (b) Six member categories: (1) tension-reinforcement-only, flexure+compression (paragraph B-2); (2) tension+compression reinforcement, flexure+compression (paragraph B-3); (3) tension+flexure (paragraph B-4); (4) axial load with biaxial bending (paragraph 4-3); (5) tension-reinforcement-only, flexure only (paragraph B-5); (6) tension+compression reinforcement, flexure only (paragraph B-6). (c) Eccentricity of axial load e' (Eq 4-1) is measured from the centroid of tensile reinforcement: e' = Mu/Pu + (d - h/2), with Pu positive for compression, negative for tension; Mu/Pu are resultants of all applied loadings, with tension loadings/bottom-in-compression moments taken as negative. The eccentricity ratio e'/d (Eq 4-2) normalizes this: ratio=1 means the axial load acts at the extreme compression fiber, ratio=0 means it acts at the tension-steel centroid. (d) General assumptions for all members: max usable concrete compression strain epsilon_c = 0.003 (ACI 318-19); balanced condition = tension reinforcement reaches its yield strain as concrete reaches epsilon_c, with rho complying with paragraph 3-6; concrete stress of 0.85*fc' assumed uniform over an equivalent compression zone of depth a=beta1*c (c = distance to neutral axis; free-body diagrams in Figures B-1 through B-3); beta1 per ACI 318-19; kb (Eq 4-3) = the ratio of stress-block depth to effective depth at balanced strain, kb = beta1*Es*ec/(Es*ec+fy), applicable to all member types. (e) Appendix B gives the applicable design equations and derivations for each member type.",
+      "summary": "General design procedure for members under combined loadings: loadings and reinforcement, eccentricity ratio, then the ϕPn and ϕMn equations of Appendix B for the member category (six categories: tension reinforcement only or both, in flexure and compression, tension and flexure, biaxial bending, flexure only). Eccentricity e′ = Mu/Pu + d − h/2 (Eq 4-1), measured from the tensile reinforcement, and ratio e′/d (Eq 4-2). εc = 0.003; ρ per paragraph 3-6; 0.85f′c over a = β1c; kb = β1 Es εc/(Es εc + fy) (Eq 4-3).",
+      "body": "[p. 29] a. This chapter covers general design requirements for the strength design of RCHS subject to combined loadings. The general design procedure for these members is: (1) Determine the member’s loadings and reinforcement configuration. (2) Determine the eccentricity ratio of the loading. (3) Design the member using the specified φPn and φMn equations for the given member and eccentricity ratio. b. Members subject to flexural and axial loads are considered in six categories: (1) Members that contain only tension reinforcement and are loaded in flexure and compression. Design of these members is covered in paragraph B-2. (2) Members with both tension and compression reinforcement and are loaded in flexure and compression. Design of these members is covered in paragraph B-3. (3) Members loaded in tension and flexure. Design of these members is covered in paragraph B-4. (4) Members that support axial loadings and are subject to biaxial bending. Design of these members is covered in paragraph 4-3. (5) Members that contain only tension reinforcement and are loaded in flexure only. Design of these members is covered in paragraph B-5. (6) Members that contain tension and compression reinforcement and are loaded in flexure only. Design of these members is covered in paragraph B-6. c. The eccentricity of axial load (e′) is a critical component in determining the effect that a given loading has on a member. (1) The eccentricity of axial load is a distance measured from the centroid of the tensile reinforcement, and is taken as: e′ = Mu/Pu + d − h/2 (4-1) where Pu is considered positive for compression and negative for tension. [p. 30] (2) For equation 4-1, the applied moment and axial loadings are the resultants of all applied loadings. Tension loadings and moments causing the bottom of the member to act in compression are taken as negative by convention. (3) The eccentricity ratio normalizes eccentricities such that a ratio of one represents an axial loading acting at the member’s extreme compression fiber, and a ratio of zero represents a loading acting directly at the centroid of tensile reinforcement. The eccentricity ratio for all members is defined as: e′/d (4-2) d. Additional general requirements that apply to all members covered by this chapter are: (1) The assumed maximum usable strain εc at the extreme concrete compression fiber must be equal to 0.003, according to ACI 318-19. (2) Balanced conditions for hydraulic structures exist at a cross section when the tension reinforcement ρb reaches the strain corresponding to its specified yield strength fy as the concrete in compression reaches its design strain εc. Tensile reinforcement must be provided such that ρ complies with paragraph 3-6. (3) Concrete stress of 0.85fc ′ must be assumed uniformly distributed over an equivalent compression zone bounded by edges of the cross section and a straight line located parallel to the neutral axis at a distance a = β1c from the fiber of maximum compressive strain, where c is the distance from the extreme compression fiber to the neutral axis. The free body diagrams shown in Figure B-1 through Figure B-3 illustrates these conditions. (4) Factor β1 will be taken as specified in ACI 318-19. (5) Factor kb represents the ratio of stress block depth (a) to the effective depth (d) at balanced strain conditions. Its value can be determined for all members using: kb = β1 Es εc/(Es εc + fy) (4-3) e. Appendix B contains the applicable design equations for each member type described in paragraphs 4-1a through 4-1d, along with the derivations of those equations.",
       "key_points": [
-        "Six member categories by reinforcement pattern and loading (uniaxial flexure+axial vs. biaxial vs. pure flexure)",
-        "Eq 4-1/4-2: eccentricity e' = Mu/Pu + (d-h/2), ratio e'/d normalizes it (0=at steel centroid, 1=at extreme compression fiber)",
-        "Whitney rectangular stress block: 0.85*fc' over depth a=beta1*c",
-        "Eq 4-3: kb = beta1*Es*epsilon_c/(Es*epsilon_c + fy), the balanced-condition stress-block-depth ratio"
+        "The eccentricity of axial load is measured from the centroid of the tensile reinforcement: e′ = Mu/Pu + d − h/2 (Eq 4-1), Pu positive for compression and negative for tension (p. 29)",
+        "Eccentricity ratio e′/d (Eq 4-2): one represents an axial load at the extreme compression fiber, zero a load at the centroid of tensile reinforcement (p. 30)",
+        "The assumed maximum usable strain εc at the extreme concrete compression fiber must be equal to 0.003 (p. 30)",
+        "Tensile reinforcement must be provided such that ρ complies with paragraph 3-6 (p. 30)",
+        "kb, the ratio of stress block depth to effective depth at balanced strain: kb = β1 Es εc/(Es εc + fy) (Eq 4-3) (p. 30)"
       ],
       "equations": [
-        {"id": "4-1", "description": "Eccentricity of axial load: e' = Mu/Pu + (d - h/2), Pu positive in compression.",
-         "implemented_in": "geotech_references.em_2104.flexure_axial.eccentricity_ratio"},
-        {"id": "4-2", "description": "Eccentricity ratio: e'/d.",
-         "implemented_in": "geotech_references.em_2104.flexure_axial.eccentricity_ratio"},
-        {"id": "4-3", "description": "Balanced stress-block-depth ratio: kb = beta1*Es*epsilon_c/(Es*epsilon_c + fy).",
-         "implemented_in": "geotech_references.em_2104.flexure_axial.balanced_strain_kb"}
+        {
+          "id": "4-1",
+          "description": "Eccentricity of axial load, measured from the centroid of the tensile reinforcement",
+          "formula": "e′ = Mu/Pu + d − h/2",
+          "variables": {
+            "Pu": "factored axial load, positive for compression and negative for tension",
+            "Mu": "factored moment"
+          },
+          "notes": "The applied moment and axial loadings are the resultants of all applied loadings; tension loadings and moments causing the bottom of the member to act in compression are negative by convention (p. 30).",
+          "source": "Typed in from the rendered p. 29 (PDF p. 35).",
+          "implemented_in": "geotech_references.em_2104.flexure_axial.eccentricity_ratio"
+        },
+        {
+          "id": "4-2",
+          "description": "Eccentricity ratio",
+          "formula": "e′/d",
+          "variables": {
+            "e′": "eccentricity of axial load (Eq 4-1)",
+            "d": "effective depth"
+          },
+          "source": "Typed in from the rendered p. 30 (PDF p. 36).",
+          "implemented_in": "geotech_references.em_2104.flexure_axial.eccentricity_ratio"
+        },
+        {
+          "id": "4-3",
+          "description": "Ratio of stress block depth (a) to effective depth (d) at balanced strain conditions",
+          "formula": "kb = β1 Es εc/(Es εc + fy)",
+          "variables": {
+            "β1": "factor taken as specified in ACI 318-19",
+            "εc": "maximum usable concrete strain, 0.003",
+            "fy": "specified yield strength of reinforcement",
+            "Es": "modulus of elasticity of reinforcement"
+          },
+          "source": "Typed in from the rendered p. 30 (PDF p. 36).",
+          "implemented_in": "geotech_references.em_2104.flexure_axial.balanced_strain_kb"
+        }
       ],
       "figures": [],
       "tables": [],
-      "applicability": "The entry point for any combined flexure+axial design/investigation -- classify the member type, then compute e'/d and kb before applying Appendix B."
+      "applicability": "Members of RCHS subject to flexural and axial loads: member categories, eccentricity ratio and the general requirements before the Appendix B equations."
     },
     {
       "section_id": "4-2",
       "title": "Interaction diagrams",
       "summary": "Introduces the P-M interaction diagram (compression failure, tension failure, and balanced point branches, Figure 4-1/4-2) and notes that diagrams can be built with the CGSI computer program or commercial software (demonstrated in Appendix C-4).",
-      "body": "An interaction diagram plots the axial loads and bending moments causing a member of specified size/reinforcement to fail. Figure 4-1 diagrams the compression failure, tension failure, and balance point; Figure 4-2 shows the corresponding strain conditions. Interaction diagrams can be developed using the Concrete General Strength Investigation (CGSI) program or commercial software (Appendix C-4 gives a CGSI example).",
+      "body": "[p. 30] a. An interaction diagram is a plot of the axial loads and bending moments that cause a concrete member of specified size and reinforcement to fail. Figure 4-1 diagrammatically shows the compression failure, tension failure, and balance point. [p. 31] Figure 4-2 shows strain condition at the compression failure, tension failure, and balance point. b. Interaction diagrams can be developed using the computer-aided software engineering program Concrete General Strength Investigation (CGSI) or commercial software. Appendix C includes an example using computer program CGSI. Figure 4-1. Interaction diagram with illustrated failure modes [p. 32] Figure 4-2. Interaction diagram illustrating strain conditions",
       "key_points": [
-        "Interaction diagram = P-M failure envelope with compression, tension, and balanced branches",
-        "CGSI (USACE computer program) or commercial software can generate full diagrams"
+        "An interaction diagram is a plot of the axial loads and bending moments that cause a concrete member of specified size and reinforcement to fail (p. 30)",
+        "Interaction diagrams can be developed using the program CGSI or commercial software (p. 31)"
       ],
       "equations": [],
       "figures": [
@@ -43,33 +74,58 @@
         "Figure 4-2: Interaction diagram illustrating strain conditions"
       ],
       "tables": [],
-      "applicability": "Visualizing a section's full flexure+axial capacity envelope; the Appendix B investigation functions compute individual points on this diagram."
+      "applicability": "Interaction diagrams of axial load and moment capacity."
     },
     {
       "section_id": "4-3",
       "title": "Biaxial bending and axial load for all members",
-      "summary": "The Bresler load-contour method for square/rectangular sections under axial compression plus biaxial bending: the capacity equation (Eq 4-4) and its design form (Eq 4-5), with K=1.5 (rectangular) or 1.75 (square/circular); M0x/M0y come from the applicable Appendix B uniaxial equations; recommends circular columns for biaxial bending where possible, or uniformly-perimeter-spread reinforcement for rectangular/square columns.",
-      "body": "(a) Applies to all reinforced concrete members subjected to biaxial bending. (b) The Bresler load-contour method (Bresler 1960) investigates or designs a square/rectangular section under axial compression plus biaxial moments: [Mnx/M0x]^K + [Mny/M0y]^K = 1.0 (Eq 4-4), where Mnx/Mny are nominal biaxial moment strengths and M0x/M0y are the uniaxial nominal bending strengths at the same Pn about x and y. For design, at a given Pn=Pu/phi: [Mux/(phi*M0x)]^K + [Muy/(phi*M0y)]^K <= 1.0 (Eq 4-5), K=1.5 for rectangular members, K=1.75 for square or circular members. (c) M0x and M0y are found per paragraphs B-2 through B-4 as applicable (the uniaxial singly/doubly-reinforced or tension+flexure equations). (d) Circular columns are preferred for biaxial bending; if rectangular/square, reinforcement should be uniformly spread around the perimeter. (e) Appendix C-5 gives a rectangular-column biaxial example using CGSI.",
+      "summary": "Biaxial bending with axial compression of square or rectangular sections: the Bresler load contour equation [Mnx/M0x]^K + [Mny/M0y]^K = 1.0 (Eq 4-4); for design, at Pn = Pu/ϕ, [Mux/(φM0x)]^K + [Muy/(φM0y)]^K ≤ 1.0 (Eq 4-5), with K = 1.5 for rectangular and 1.75 for square or circular members. M0x and M0y from paragraphs B-2 to B-4. Columns in biaxial bending should be circular where possible.",
+      "body": "[p. 32] a. Paragraph 4-3 applies to all reinforced concrete members subjected to biaxial bending. b. The load contour method and equation, known as the Bresler Approach, is used for investigation or design of a square or rectangular section that is subjected to an axial [p. 33] compression in combination with bending moments about both the x and y axes. The method is described in Bresler 1960. The Bresler load contour equation describing the capacity of a section with axial load and biaxial bending is: [Mnx/M0x]^K + [Mny/M0y]^K = 1.0 (4-4) where: Mnx, Mny = nominal biaxial moment strengths with respect to the x and y axes, respectively M0x, M0y = uniaxial nominal bending strength at Pn about the x and y axes, respectively For use in design, the equation is modified as shown in equation 4-5. For a given nominal axial load Pn = Pu/ϕ, the following nondimensional equation must be satisfied: [Mux/(φM0x)]^K + [Muy/(φM0y)]^K ≤ 1.0 (4-5) where: Mux, Muy = factored bending moments with respect to the x and y axes, respectively M0x, M0y = uniaxial nominal bending strength at Pn about the x and y axes, respectively M0x = capacity at Pn when Muy is zero; M0y = capacity at Pn when Mux is zero; K = 1.5 for rectangular members = 1.75 for square or circular members c. M0x and M0y are determined according to paragraphs B-2 through B-4 as applicable. d. Whenever possible, columns subjected to biaxial bending should be circular in cross section. If rectangular or square columns are necessary, the reinforcement should be uniformly spread around the perimeter. e. Appendix C includes an example of a rectangular column of axial load with biaxial bending using the computer program CGSI.",
       "key_points": [
-        "Eq 4-4/4-5: Bresler load-contour biaxial check, K=1.5 rectangular / 1.75 square-or-circular",
-        "M0x, M0y are uniaxial capacities at the SAME Pn, from the Appendix B singly/doubly-reinforced equations",
-        "Circular columns preferred for biaxial bending; otherwise spread reinforcement uniformly around the perimeter"
+        "Bresler load contour equation: [Mnx/M0x]^K + [Mny/M0y]^K = 1.0 (Eq 4-4) (p. 33)",
+        "For a given nominal axial load Pn = Pu/ϕ: [Mux/(φM0x)]^K + [Muy/(φM0y)]^K ≤ 1.0 (Eq 4-5) (p. 33)",
+        "K = 1.5 for rectangular members; 1.75 for square or circular members (p. 33)",
+        "Whenever possible, columns subjected to biaxial bending should be circular; if rectangular or square, the reinforcement should be uniformly spread around the perimeter (p. 33)"
       ],
       "equations": [
-        {"id": "4-4", "description": "Bresler load-contour capacity equation: [Mnx/M0x]^K + [Mny/M0y]^K = 1.0.", "implemented_in": null},
-        {"id": "4-5", "description": "Bresler design form: [Mux/(phi*M0x)]^K + [Muy/(phi*M0y)]^K <= 1.0.",
-         "implemented_in": "geotech_references.em_2104.flexure_axial.bresler_biaxial_check"}
+        {
+          "id": "4-4",
+          "description": "Bresler load contour equation, capacity of a section with axial load and biaxial bending",
+          "formula": "[Mnx/M0x]^K + [Mny/M0y]^K = 1.0",
+          "variables": {
+            "Mnx, Mny": "nominal biaxial moment strengths with respect to the x and y axes",
+            "M0x, M0y": "uniaxial nominal bending strength at Pn about the x and y axes",
+            "K": "1.5 for rectangular members, 1.75 for square or circular members"
+          },
+          "source": "Typed in from the rendered p. 33 (PDF p. 39).",
+          "implemented_in": null
+        },
+        {
+          "id": "4-5",
+          "description": "Bresler equation for design, at a given nominal axial load Pn = Pu/ϕ",
+          "formula": "[Mux/(φM0x)]^K + [Muy/(φM0y)]^K ≤ 1.0",
+          "variables": {
+            "Mux, Muy": "factored bending moments with respect to the x and y axes",
+            "M0x": "capacity at Pn when Muy is zero",
+            "M0y": "capacity at Pn when Mux is zero",
+            "K": "1.5 for rectangular members, 1.75 for square or circular members"
+          },
+          "source": "Typed in from the rendered p. 33 (PDF p. 39).",
+          "implemented_in": "geotech_references.em_2104.flexure_axial.bresler_biaxial_check"
+        }
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Columns/piers under axial load with moments about both axes (e.g. corner columns, gate piers); worked in Appendix C-5."
+      "applicability": "Square or rectangular sections with axial compression and bending about both axes."
     },
     {
       "section_id": "4-4",
       "title": "Mandatory requirements",
       "summary": "Design of members for flexure and axial load must meet paragraph 4-1; design for biaxial bending and axial load must meet paragraph 4-3.",
-      "body": "Design of members for flexure and axial load must meet the requirements of paragraph 4-1. Design of members for biaxial bending and axial load must meet the requirements of paragraph 4-3.",
-      "key_points": ["Restates 4-1 and 4-3 as mandatory chapter requirements"],
+      "body": "[p. 34] a. Design of members for flexure and axial load must meet the requirements of paragraph 4-1. b. Design of members for biaxial bending and axial load must meet the requirements of paragraph 4-3.",
+      "key_points": [
+        "Design of members for flexure and axial load must meet paragraph 4-1; for biaxial bending and axial load, paragraph 4-3 (p. 34)"
+      ],
       "equations": [],
       "figures": [],
       "tables": [],
