@@ -452,24 +452,36 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
 # ============================================================================
 
 # (frost_group, degree, soil_type, percent_finer_0p075mm, typical_classification)
+# Every cell as printed on p. 7-60 (read from a 300 dpi render), in the
+# page's order; "—" is the page's dash (no percentage given). Until
+# 2026-11-12 six rows sat one group lower than the page: gravelly soils
+# 10-20 in F1; gravelly soils > 20 and sands except very fine silty sands
+# in F2; all silts, very fine silty sands and clays PI<12 in F3.
 _TABLE_7_12 = [
     ("F1", "Negligible to low", "Gravelly soils", "3-10",
      "GC, GP, GC-GM, GP-GM"),
-    ("F1", "Negligible to low", "Gravelly soils", "10-20",
+    ("F2", "Low to medium", "Gravelly soils", "10-20",
      "GM, GC-GM, GP-GM"),
     ("F2", "Low to medium", "Sands", "3-15",
      "SW, SP, SM, SW-SM, SP-SM"),
-    ("F2", "Low to medium", "Gravelly soils", "Greater than 20", "GM-GC"),
-    ("F2", "Low to medium", "Sands, except very fine silty sands",
+    ("F3", "High", "Gravelly Soils", "Greater than 20", "GM-GC"),
+    ("F3", "High", "Sands, except very fine silty sands",
      "Greater than 15", "SM, SC"),
-    ("F3", "High", "Clays, PI > 12", "", "CL, CH"),
-    ("F3", "High", "All silts", "", "ML-MH"),
-    ("F3", "High", "Very fine silty sands", "Greater than 15", "SM"),
-    ("F3", "High", "Clays, PI < 12", "", "CL, CL-ML"),
+    ("F3", "High", "Clays PI>12", "—", "CL, CH"),
+    ("F4", "Very high", "All Silts", "—", "ML-MH"),
+    ("F4", "Very high", "Very Fine Silty Sands", "Greater than 15", "SM"),
+    ("F4", "Very high", "Clays PI<12", "—", "CL, CL-ML"),
     ("F4", "Very high",
-     "Varved clays and other fine-grained, banded sediments", "",
+     "Varied clays and other fine grained, banded sediments", "—",
      "CL, ML, SM, CH"),
 ]
+
+_TABLE_7_12_PRINT_NOTE = (
+    "Cells as printed on p. 7-60. The last F4 row prints \"Varied clays\"; "
+    "the varved clays the manual defines on p. 7-52 (alternate thin layers "
+    "of silt and clay), which its words \"banded sediments\" describe, are "
+    "probably meant. \"—\": the page gives no percentage."
+)
 
 
 def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
@@ -477,8 +489,12 @@ def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
 
     NCHRP 1-37A frost-susceptibility groups F1 (negligible to low) through F4
     (very high), keyed on soil type, percentage finer than 0.075 mm (No. 200),
-    and typical USCS classification. F4 (varved/banded fine-grained sediments) is
-    the most frost-susceptible.
+    and typical USCS classification, as FHWA-NHI-05-037 prints them (p. 7-60).
+    F4, the most frost-susceptible, holds all silts (ML-MH), very fine silty
+    sands with more than 15 % finer (SM), clays with PI < 12 (CL, CL-ML) and
+    the banded sediments the page prints as "Varied clays"; F3 holds gravelly
+    soils over 20 % finer, sands except very fine silty sands over 15 %, and
+    clays with PI > 12.
 
     Parameters
     ----------
@@ -512,6 +528,7 @@ def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
             "note": ("Increasing frost susceptibility F1 < F2 < F3 < F4. The "
                      "USACE uses a >= 3% finer-than-0.02 mm threshold for a frost-"
                      "susceptible soil (see chapter text)."),
+            "print_note": _TABLE_7_12_PRINT_NOTE,
         }
     if fg not in {"F1", "F2", "F3", "F4"}:
         raise ValueError(
@@ -524,6 +541,7 @@ def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
         "entries": entries,
         "reference": "FHWA-NHI-05-037 Table 7-12 (NCHRP 1-37A)",
         "table": "7-12", "pdf_page": 411, "printed_page": "7-60",
+        "print_note": _TABLE_7_12_PRINT_NOTE,
     }
 
 

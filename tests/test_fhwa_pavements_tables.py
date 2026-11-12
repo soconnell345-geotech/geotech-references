@@ -403,10 +403,36 @@ class TestFrostSusceptibility:
         r = table_7_12_frost_susceptibility("F4")
         assert r["degree_of_frost_susceptibility"] == "Very high"
 
-    def test_f3_includes_silts(self):
-        r = table_7_12_frost_susceptibility("F3")
-        joined = " ".join(e["type_of_soil"] for e in r["entries"])
-        assert "silt" in joined.lower()
+    def test_every_cell_as_printed(self):
+        """Table 7-12, p. 7-60 (PDF page 412), every cell from a 300 dpi
+        render, in the page's order. Before 2026-11-12 six rows sat one group
+        lower than the page (all silts were F3 "High")."""
+        printed = [
+            ("F1", "Negligible to low", "Gravelly soils", "3-10", "GC, GP, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Gravelly soils", "10-20", "GM, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Sands", "3-15", "SW, SP, SM, SW-SM, SP-SM"),
+            ("F3", "High", "Gravelly Soils", "Greater than 20", "GM-GC"),
+            ("F3", "High", "Sands, except very fine silty sands", "Greater than 15",
+             "SM, SC"),
+            ("F3", "High", "Clays PI>12", "—", "CL, CH"),
+            ("F4", "Very high", "All Silts", "—", "ML-MH"),
+            ("F4", "Very high", "Very Fine Silty Sands", "Greater than 15", "SM"),
+            ("F4", "Very high", "Clays PI<12", "—", "CL, CL-ML"),
+            ("F4", "Very high", "Varied clays and other fine grained, banded sediments",
+             "—", "CL, ML, SM, CH"),
+        ]
+        rows = table_7_12_frost_susceptibility()["rows"]
+        got = [(r["frost_group"], r["degree_of_frost_susceptibility"], r["type_of_soil"],
+                r["percent_finer_0p075mm"], r["typical_classification"]) for r in rows]
+        assert got == printed
+
+    def test_silts_are_f4_very_high(self):
+        r = table_7_12_frost_susceptibility("F4")
+        soils = [e["type_of_soil"] for e in r["entries"]]
+        assert soils[:3] == ["All Silts", "Very Fine Silty Sands", "Clays PI<12"]
+        f3 = [e["type_of_soil"] for e in table_7_12_frost_susceptibility("F3")["entries"]]
+        assert not any("silt" in s.lower() and "except" not in s for s in f3)
+        assert "Varied clays" in r["print_note"]
 
     def test_full_table(self):
         rows = table_7_12_frost_susceptibility()["rows"]
