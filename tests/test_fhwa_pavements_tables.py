@@ -563,6 +563,28 @@ class TestPermeability:
     def test_soils_full_table(self):
         assert len(table_5_56_permeability_soils()["rows"]) == 8
 
+    def test_highway_materials_every_cell_and_page(self):
+        """Table 5-57 is printed on p. 5-105 (PDF page 283, 0-based 282),
+        read from a 300 dpi render; it was cited at p. 5-103 before
+        2026-11-12."""
+        printed = [
+            ("Uniformly graded coarse aggregate", "0.4 - 4e-3"),
+            ("Well-graded aggregate without fines", "4e-3 - 4e-5"),
+            ("Concrete sand, low dust content", "7e-4 - 7e-6"),
+            ("Concrete sand, high dust content", "7e-6 - 7e-8"),
+            ("Silty and clayey sands", "1e-7 - 1e-9"),
+            ("Compacted silt", "7e-8 - 7e-10"),
+            ("Compacted clay", "< 1e-9"),
+            ("Bituminous concrete", "4e-5 - 4e-8"),
+            ("Portland cement concrete", "< 1e-10"),
+        ]
+        r = table_5_57_permeability_highway_materials()
+        assert [(x["material"], x["k_m_s"]) for x in r["rows"]] == printed
+        assert (r["printed_page"], r["pdf_page"]) == ("5-105", 282)
+        assert "3.28 ft" in r["print_note"]
+        bit = table_5_57_permeability_highway_materials("bituminous concrete")
+        assert bit["printed_page"] == "5-105" and "10^-10" in bit["footnote"]
+
     def test_bad_soil_raises(self):
         with pytest.raises(ValueError):
             table_5_56_permeability_soils("moon rock")
