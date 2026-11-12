@@ -251,6 +251,9 @@ def test_appendix_c_ddef_against_table_5_12():
     body = _section("C.8.a")["body"]
     assert "DDEF = C H (1- tan α) = 0.8 H = 20 ft (as printed; Table 5.12, p. 141, gives " \
            "C = 1.25 for sandy soil, for which 1.25 H = 31.25 ft" in body
+    # the note names what the coded lookup returns, so the example does not lead to 0.8
+    assert "and C = 0.8 for weathered rock and stiff soil; the coded " \
+           "table_5_12_wall_displacement(\"sandy_soil\") returns the table's 1.25)" in body
     sandy = tables.table_5_12_wall_displacement("sandy_soil")
     assert sandy["C"] == 1.25
     assert tables.table_5_12_wall_displacement("weathered_rock_stiff_soil")["C"] == 0.8

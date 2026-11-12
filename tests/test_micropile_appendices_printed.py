@@ -314,6 +314,10 @@ def test_appendix_d_table_s1_1_typed_from_the_page():
                 "IS; Seismic inertial force of the superstructure; EQ; 26.8; —; —; 3.55; 95.14"):
         assert row in t
     assert t.endswith("*Moment is calculated about the center of the footing at its base.")
+    # the HL row's moment, which Step 2 quotes, is noted against its force and arm
+    assert "HL; Earth pressure due to live load surcharge; L; 14.91; —; —; 2.63; 39.13 (as " \
+           "printed; 14.91 × 2.625 = 39.14, and 14.91 × 2.63 = 39.21)" in t
+    assert (round(14.91 * 2.625, 2), round(14.91 * 2.63, 2)) == (39.14, 39.21)
     # moment = force x arm, row by row (IA from its unrounded 30.852 kN)
     for f, arm, m in ((97.00, 0.27, 26.19), (108.68, -0.55, -59.77), (178.70, 0.58, 103.65),
                       (73.00, 0.58, 42.34), (65.32, 1.75, 114.31), (15.91, 3.15, 50.12),
