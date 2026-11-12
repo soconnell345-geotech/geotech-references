@@ -1,0 +1,281 @@
+{
+  "reference_id": "FHWA-NHI-14-007",
+  "reference_title": "Soil Nail Walls Reference Manual",
+  "volume": 1,
+  "chapter": 13,
+  "chapter_title": "Appendix C: Design Example",
+  "sections": [
+    {
+      "section_id": "C",
+      "title": "Overview",
+      "body": "[p. 301] The purpose of this example is to illustrate the main steps of the design of soil nail walls by matching the steps listed in Chapter 6. Several assumptions were made to simplify the example, including: development of geotechnical parameters, selection of a critical cross-section for design, evaluation of loads, and feasibility supporting the selection of a soil nail wall as an earth-retaining system. This example omits Step 9 (seismic design), Step 10 (drainage), and Step 11 (other design considerations). The calculations in the example were obtained using the program SNAP-2 (Siel 2014). Differences between the nomenclature used in this manual and that of SNAP-2 are noted where necessary. The example also includes LRFD verifications as described in Chapter 5.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C (p. 301), printed heading Overview: the purpose of the design example of a 25-ft high permanent soil nail wall worked with SNAP-2 and LRFD verifications, and the steps it omits (9, 10 and 11)."
+    },
+    {
+      "section_id": "C.1",
+      "title": "Step 1: Project Requirements",
+      "body": "[p. 301] A 25-ft high soil nail wall, 200 ft in length, is planned for construction as part of a roadway project. Figure C.1 shows an idealized cross-section of the wall. The constraints and requirements of the project from the Owner require a permanent wall with cast-in-place (CIP) concrete as final facing to address aesthetic concerns. In addition, the wall is considered a critical structure. No underground utilities or permanent structures exist behind the wall. It is also assumed that standards have been selected and that the project performance requirements are similar to those recommended in this manual.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C.1: Illustration. Cross-section of wall"
+      ],
+      "tables": [],
+      "applicability": "Printed Step 1 (p. 301): the wall, its height and length, permanent CIP final facing, a critical structure."
+    },
+    {
+      "section_id": "C.2",
+      "title": "Step 2: Subsurface Exploration and Development of Parameters for Design",
+      "body": "[p. 302] It is assumed that a geotechnical exploration and a geotechnical laboratory testing program have been completed. The geotechnical exploration revealed a uniform stratigraphy consisting of medium dense, silty sand and groundwater occurring several feet below the planned toe of the wall. The geotechnical exploration also revealed that sliding and basal heave would not occur at this site. Results from laboratory testing indicated that the corrosion potential of the in situ soils is low. It is assumed that the Owner’s engineer followed the procedure included in Section 7.7 for selecting an adequate level of corrosion protection for soil nails. The minimum protection level selected for this soil nail wall would be Class C. Based on results from the geotechnical exploration and laboratory testing, the following geotechnical parameters have been selected for design:\n\n• soil unit weight, γs = 125 pcf\n\n• effective friction angle, φs′ = 32 degrees\n\n• cohesion, c = 100 psf\n\n• bond strength, qU = 14.5 psi\n\nThe soil profile developed for design is that shown in Figure C.1.\n\nIt is assumed that the wall is in a zone with very low seismic hazard; therefore, there is no need to develop seismic parameters for design.\n\nIt is assumed that the Owner conducted a risk evaluation and perceives some risks associated with long-term corrosion. As the Owner considers that the cost differential to provide a higher level of protection is marginal, the Owner prefers to specify a Class B corrosion protection, consisting of epoxy coating or galvanizing over steel bars.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 2 (p. 302): the subsurface conditions, the design soil parameters (γs, φs′, c, qU), seismic hazard and the Class B corrosion protection the Owner prefers."
+    },
+    {
+      "section_id": "C.3",
+      "title": "Step 3: Load Definition",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 3 (p. 302): heading of sub-steps 3.a and 3.b; no text of its own."
+    },
+    {
+      "section_id": "C.3.a",
+      "title": "Define Unfactored, Service Loads",
+      "body": "[p. 302] The permanent load acting on the wall includes the weight of the soil behind the wall. The live loads include those loads from equipment construction operating behind and above the wall. It is assumed that the live load consists of a uniform load, QLS equal to 150 psf, extending from the wall to 25 ft behind the wall.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 3.a (p. 302): the permanent load and the 150 psf live load surcharge."
+    },
+    {
+      "section_id": "C.3.b",
+      "title": "Select Load Combinations and Load Factors",
+      "body": "[p. 302] The load combinations for this example only include Strength I and Service limit states. Load factors for overall stability are 1.0 for use with SNAP-2. Load factors to be used in [p. 303] LRFD verifications are presented subsequently for each case, according to Section 5.5 “Load Combinations and Load Factors.”",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 3.b (pp. 302 to 303): Strength I and Service limit states; load factors 1.0 for SNAP-2."
+    },
+    {
+      "section_id": "C.4",
+      "title": "Step 4: Soil-Nail Configuration and Material Selection",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 4 (p. 303): heading of sub-steps 4.a/b/c/d, 4.e and 4.f; no text of its own."
+    },
+    {
+      "section_id": "C.4.a",
+      "title": "Develop Wall Layout, Cross-Sections, Nail Pattern, and Splaying",
+      "body": "[p. 303] Given the wall height (H = 25 ft) and face batter (α = 0), the following layout is selected for trial runs in SNAP-2.\n\nVertical and Horizontal Spacing of Soil Nails\n\n• Adopt SH = SV = 5 ft; Check: SH × SV = 25 ft² ≤ 36 to 42 ft²\n\n• This vertical spacing results in five rows of soil nails.\n\nVertical Spacing at the Top and Bottom of the Wall\n\nThe spacing between the first row and the top of the wall (SV0) is selected as:\n\n• SV0 = 3 ft ≤ 3.5 ft; ok\n\nThe spacing between the deepest row and the bottom of the wall (SVN) is:\n\n• SVN = 2 ft ≤ 2 to 3 ft; ok\n\nSoil Nail Inclination\n\nBecause no utilities or obstructions exist behind the wall, the soil nail inclination is selected as:\n\n• i = 15 degrees for all nails; ok (between 10 and 15 degrees)\n\nSoil Nail Length\n\nThe maximum soil nail length is selected for a trial run at:\n\n• L = 0.7 H = 17.5 ft; ok (L between 0.6 H and 1.2H)\n\nDistribution of Soil Nail Length in Elevation\n\nA uniform pattern of soil nail lengths is first selected for simplification. Therefore, all five soil nails have L = 17.5 ft.\n\n[p. 304] However, the reader is reminded that the lowermost rows of nails should be ideally shorter than the upper rows to estimate a smaller maximum load nail Tmax, obtain a better distribution of loads among all rows, and help reduce the wall deflection. If the soil nails are uniform in length, the lower nails develop larger loads than the upper rows.\n\nNo sensitive structures exist immediately behind the wall; hence no special considerations for controlling wall deflections are needed. If this was required, wall deformation could be partly controlled by installing longer soil nails in the upper rows (for the same safety factor), selecting tendons of larger sizes (to mobilize strength with less strains in the bars), or even by using ground anchors.\n\nSoil Nail Pattern on Wall Face\n\nBoth “square” and “staggered” soil nail patterns are considered feasible. A staggered pattern would tend to result in smaller effective nail spacings, and therefore fewer nails than the square pattern.\n\nSoil Nail Splaying\n\nSpecial considerations for the layout of soil nails in plan are not required because wall corners and obstructions are omitted in this example.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 4.a/b/c/d, one heading for four sub-steps (pp. 303 to 304), stored as C.4.a: nail spacing, top and bottom spacing, inclination, trial length, length distribution, pattern on the face, splaying."
+    },
+    {
+      "section_id": "C.4.e",
+      "title": "Detail Corrosion Protection",
+      "body": "[p. 304] It was assumed that the Owner specified a Class B level of corrosion protection for soil nails to accommodate their tolerance for risk and because the cost differential for providing a higher corrosion protection was estimated to be low.\n\nThe Contractor should select the drill hole diameter not only for constructability and to achieve the design bond strength and soil nail pullout resistance, but also to accommodate tendons, centralizers, and couplings (if applicable), while providing the minimum grout cover required for corrosion protection.\n\nIt is assumed that the drill hole diameter will be DDH = 6 in. and that the tendons will consist of #7 threaded bars. The nominal diameter for #7 bars, including threads, is 0.99 in. (see Table A.1b).\n\nIt is assumed that the corrosion protection will consist of epoxy coating, with a thickness of up to 10 mils on each side of the bar. This thickness of epoxy lies within the recommended range presented in Chapter 7. Therefore, the available space for grout cover is 0.5 × (6.0 - 0.99) = 2.50 in., not accounting for couplers. However, even if the trial tendon length needs to be modified if indicated by stability analysis, the expected soil nail lengths [p. 305] are within the range of normally available tendon lengths; hence, couplers are not needed. Therefore, the available space is greater than the minimum cover of 1 in. recommended in Chapter 7.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 4.e (pp. 304 to 305): Class B protection, drill hole diameter, #7 bars, epoxy coating and grout cover."
+    },
+    {
+      "section_id": "C.4.f",
+      "title": "Select Soil Nail Type and Mechanical Properties",
+      "body": "[p. 305] Solid bar soil nails are selected. The steel is selected as Grade 75, with fy = 75 ksi.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 4.f (p. 305): solid bar soil nails, Grade 75."
+    },
+    {
+      "section_id": "C.5",
+      "title": "Step 5: Selection of Resistance Factors",
+      "body": "[p. 305] Safety factors selected for this example are presented in Table C.1 for ASD calculations with SNAP-2. Resistance factors for LRFD verifications are adopted from Tables 5.4-5.7 and 5.10-5.12, and are summarized in Table C.2.\n\n[Table C.1]\n\n[Table C.2]",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C.1: Summary of Factors of Safety for Use with the ASD Method (p. 305) - columns: limit state; condition; symbol per this manual; SNAP-2 symbol; minimum recommended factors of safety. Overall Stability; Internal; FSOS; FS; 1.5 | Strength – Geotechnical; Pullout Resistance; FSPO; FoSp; 2.0 | Strength – Structural; Tendon Tensile Strength; FST; FoSy; 1.8 | Strength – Facing; Flexural; FSFF; TF FoS; 1.5 | Strength – Facing; Punching Shear; FSFP; TF FoS; 1.5 | Strength – Facing; A307 steel bolt (assumed); FSFH; HT-FoS; 2.0",
+        "Table C.2: Summary of Resistance Factors for LRFD Verifications (p. 305) - columns: strength limit state; condition/case; symbol; resistance factor. Overall Stability; Wall is permanent and critical; φOS; 0.65 | Nail Pullout; Static; φPO; 0.65 | Nail in Tension; Grade 75; φT; 0.75 | Facing Flexure; Both initial and final facing; φFF; 0.90 | Facing Punching Shear; Both initial and final facing; φFP; 0.90 | Facing Headed Stud Tensile; A307 steel bolt; φFH; 0.70"
+      ],
+      "applicability": "Printed Step 5 (p. 305): the factors of safety for SNAP-2 (Table C.1) and the LRFD resistance factors (Table C.2)."
+    },
+    {
+      "section_id": "C.6",
+      "title": "Step 6: Overall Stability",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 6 (p. 306): heading of sub-steps 6.a to 6.c; no text of its own."
+    },
+    {
+      "section_id": "C.6.a",
+      "title": "Verify Internal Stability",
+      "body": "[p. 306] Before going into the design sub-steps, a succinct overview of stability analysis with SNAP-2, data entry, and results is presented.\n\nOverview of Stability Analysis with SNAP-2\n\nA SNAP-2 user can perform a full design of a soil nail wall by selecting trial designs and repeating the analysis until strengths and capacities are verified. After the first run, the user must modify one or more of the design parameters (e.g., increase in the tendon length and/or diameter, decrease tendon spacing, thickening the facings, etc.), and conduct new trials until stability requirements are met. In addition, SNAP-2 allows the user to search for various slip circles and select one with the lowest safety factor.\n\nData Entry – Wall Geometry and Stratigraphy\n\nTo model the wall in SNAP-2, the user must enter the points defining the initial, intermediate, and final configuration of the grades; the top surface of each soil layer; and the location of groundwater. The location of each point is defined by the horizontal coordinate, X, and the vertical coordinate, Y. In this example, the base of the wall is at (0,0). The final configuration of the design cross-section is shown on Figure C.2.\n\n[p. 307] Data Entry – Material Properties\n\nThe user must enter properties for soil layers, as well as dimensions and material properties of the soil nails, facing components, shotcrete/concrete, welded-wire mesh, rebar, bearing plate, and headed studs. Mean values of the soil resistance should be considered.\n\nThe wall-soil interface friction is estimated to be 2/3 φs′ in SNAP-2. This parameter, among others, is considered in SNAP-2 to perform checks for eccentricity (overturning), lateral sliding and bearing capacity. Because lateral sliding and basal heave are unlikely scenarios for this wall, these limit states are not further considered. Overturning of soil nail walls is not considered a realistic limit state in this manual.\n\nA summary of properties of soil nail wall components is presented in Table C.3.\n\n[Table C.3]\n\nOther Input\n\nOther parameters must be entered when applicable. Additional parameters may include seismic coefficients and tolerable wall deflections. Also, the excavation sequence can be defined. Attachment 1 lists the input parameters used in SNAP-2. Note that the symbols used in SNAP-2 do not generally coincide with those defined in this manual.\n\n[p. 308] Results\n\nAfter a few trial runs, the length of the nails was modified to L = 18 ft until the calculated factor of safety for overall stability was at or slightly above the minimum value. The output was also inspected until all the internal checks conducted by SNAP-2 indicated that the minimum requirements were exceeded.\n\nThe results of overall stability are summarized in Table C.4 for the various construction stages. Results for the scenario where the deepest nail has been installed are shown in Figure C.3.\n\n[Table C.4]\n\nThe calculated FSOS is directly used in LRFD verifications. Considering that the load factor in ASD-based overall stability is γ = 1.0:\n\nφOS = 1/ FSOS = 1/1.51 ~ 0.60; ok (matches value of Table C.2 for static loads) (as printed; 1/1.51 = 0.66, and Table C.2 gives φOS = 0.65)\n\n[p. 309] The LRFD verification of strength limit states includes the maximum tensile force of all soil nails, Tmax, as calculated in ASD-based stability analyses. Tmax is limited by pullout resistance, tensile resistance, or any of the facing resistances.\n\nTmax, LP, and Lfail are summarized in Table C.5 for all nails for the final excavation stage. The pullout development length, LP, which can be calculated from L and Lfail, is also calculated.\n\n[Table C.5]\n\nTmax = 24.7 kip is at the lowermost nail, as expected for this shape of a slip surface and uniform-length nails. The force distribution among nails calculated by SNAP-2 would suggest that the upper nails are not as effectively utilized as the lowest nail in the final wall [p. 310] configuration. However, this is an artifact of the limit-equilibrium analysis. The nail head force at this nail is estimated as To = 0.7 × 24.7 = 17.3 kip.\n\nSNAP-2 includes an option to automatically shorten the rows of nails in the lower half of the wall following a procedure by Byrne et al. (1996), which is similar to the method described in Chapter 6. This option was not used in this design example.\n\nAs an alternative to the reduction of soil nail lengths in the lower half of the wall, a non-uniform soil length pattern was selected manually in SNAP-2 for all rows. The objective was to obtain the same or comparable FSOS. The soil nail lengths were selected, from the top down, as L = 25, 21, 19, 15, 13 ft. The following was calculated: FSOS =1.50, Tmax = 15.9 kip, and minimum nail load 10.2 kip. These results indicate a much better utilization of the capacity of all nails.\n\nSummary of Overall Stability\n\nThe analyses indicate that all construction stages, even temporary stages, are safe and produced adequate factors of safety. The analyses also indicate that a uniform pattern of soil nail lengths leads to an uneven utilization of the soil nail capacities over the height of the wall. A non-uniform pattern of soil nail lengths results in smaller soil nail loads, and presents the opportunity to consider a reduction in the section of the nails.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C.2: Illustration Design cross section",
+        "Figure C.3: Illustration. Results of overall stability"
+      ],
+      "tables": [
+        "Table C.3: Summary of Properties of Soil Nail Components (p. 307) - columns: parameter; main features; additional descriptions (lines printed in one cell are joined with commas). Nail features; 5 solid bars, #7 Grade 75; bore hole diameter, DDH = 6 in. | Facing thickness/type; initial: hi = 4 in., final: hf = 8 in.; initial: shotcrete f'c = 4,000 psi, final: CIP concrete f'c = 4,000 psi | Primary reinforcement grade/type; initial: Grade 60 WWM 6×6 - W2.9×W2.9; final: Grade 60 rebar, No. 4 @ 12 in. (ea. way) | Added reinforcement in facing; initial: rebar 2 × #5 (ea. way); final: none | Bearing plate; Square dimension: LP = 9 in., thickness: tP = 1 in.; Grade 50, fy = 50 ksi | Headed stud type; 4 × (1/2 × 4 1/8); Grade A307 steel | Headed stud dimensions; stud length: LS = 4.125 in., head diameter: DH = 1 in., head thickness: tSH = 0.31 in.; shaft diameter: DSC = 0.5 in., stud spacing: SSH = 6 in.",
+        "Table C.4: Summary of Stability Analysis from SNAP-2 (p. 308) - columns: excavation stage; calculated safety factor, FSOS; condition; remarks. 0; 1.98; Initial; Existing sloping grades | 1; 1.99; Temporary; 1st unsupported cut | 2; 2.11; Temporary; 1st row installed, 2nd lift exposed | 3; 1.81; Temporary; 2 upper rows installed, 3rd lift exposed | 4; 1.50; Temporary; 3 upper rows installed, 4th lift exposed | 5; 1.24; Temporary; 4 upper rows installed, 5th lift exposed | 6; 1.62; Final; 5 rows installed, no surcharge | 7; 1.51; Final; 5 rows installed, with surcharge",
+        "Table C.5: Summary of Nail Loads from SNAP-2 (p. 309) - columns: nail no.; maximum force, Tmax_i (kip); controlling limit state; Lfail (ft); Lp (ft). 1; 3.2; Pullout; 16.1; 1.9 | 2; 7.2; Pullout; 13.6; 4.4 | 3; 12.5; Pullout; 10.4; 7.6 | 4; 19.0; Pullout; 6.4; 11.6 | 5; 24.7; Tensile; 2.4; 15.6"
+      ],
+      "applicability": "Printed 6.a (pp. 306 to 310): SNAP-2 data entry, the component properties (Table C.3), the stability results by construction stage (Table C.4), the nail loads (Table C.5), the nail head force To and a non-uniform nail length pattern."
+    },
+    {
+      "section_id": "C.6.b",
+      "title": "Verify Global Stability",
+      "body": "[p. 310] Because SNAP-2 allows extending the slip surfaces to extend below the toe of the wall, the user can check global stability. The calculated factors of safety for global stability were larger than the minimum recommended values. The geometry and subsurface conditions of the example do not warrant the use of a different limit-equilibrium program.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 6.b (p. 310): global stability checked in SNAP-2."
+    },
+    {
+      "section_id": "C.6.c",
+      "title": "Verify Basal Heave",
+      "body": "[p. 310] This case does not need to be evaluated in this example because the soils underlying the wall cannot generate basal heave instability.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 6.c (p. 310): not evaluated in this example."
+    },
+    {
+      "section_id": "C.7",
+      "title": "Step 7: Strength Limit States",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 7 (p. 310): heading of sub-steps 7.a to 7.g; no text of its own."
+    },
+    {
+      "section_id": "C.7.a",
+      "title": "Verify Pullout Resistance",
+      "body": "[p. 310] The nominal pullout resistance, RPO, is calculated for the most critically loaded nail to conduct the LRFD verification as follows:\n\nRPO = rPO LP = π qU DDH LP\n\n[p. 311] Where:\n\nqU = nominal bond strength of the nail-grout-soil interface (force/unit area)\n\nDDH = diameter of the drill hole\n\nLP = pullout development length\n\nAfter replacing:\n\nRPO = π × 14.5 × 144 × 0.5 × 15.6/1000 = 51.2 kip\n\nSNAP-2 calculates this value as 24.7 × 2.0 = 49.4 kip.\n\nThe pullout resistance is verified through the capacity-to-demand ratio (CDR) as follows:\n\nCDR = φPO RPO / (γ Tmax) ≥ 1.0\n\nWhere, γ = γEV = 1.35 is the load factor selected for LRFD verification of soil nail walls. After replacing:\n\nCDR = (0.65 × 51.2) / (1.35 × 24.7) = 1.0; ok",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.a (pp. 310 to 311): nominal pullout resistance RPO of the most critically loaded nail and its CDR."
+    },
+    {
+      "section_id": "C.7.b",
+      "title": "Verify Sliding Stability",
+      "body": "[p. 311] This case does not need to be evaluated in this example.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.b (p. 311): not evaluated in this example."
+    },
+    {
+      "section_id": "C.7.c",
+      "title": "Verify Nail Tensile Resistance",
+      "body": "[p. 311] The nominal tensile resistance, RT, is calculated for the LRFD verification as follows:\n\nRT = At fy\n\nWhere:\n\nAt = cross-sectional area of nail tendon\n\nfy = nominal yield resistance of nail tendon\n\nAfter replacing:\n\nRT = 0.60 × 75 = 45 kip\n\nSNAP-2 calculates this value as 24.7 × 1.8 = 44.5 kip.\n\n[p. 312] The tensile CDR is verified as follows:\n\nCDR = φT RT / (γ Tmax) ≥ 1.0\n\nConsidering again that γ = γEV = 1.35 and after replacing:\n\nCDR = (0.75 × 45) / (1.35 × 24.7) = 1.01 > 1.0; ok",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.c (pp. 311 to 312): nominal tensile resistance RT and its CDR."
+    },
+    {
+      "section_id": "C.7.d",
+      "title": "Verify Facing Bending/Flexure Resistance",
+      "body": "[p. 312] Initial Facing\n\nThe nominal bending/flexural resistance, RFF, is calculated for the most critically loaded nail head to conduct the LRFD verification. Considering that the WWM and the rebar are both Grade 60 steel, the reinforcement is the same in the vertical and horizontal directions, f'c = 4,000 psi for the shotcrete, and SV = SH = 5 ft, RFF is estimated as follows:\n\nRFF [kip] = 3.8 × CF × fy [ksi] × F\n\nWhere:\n\nCF = 2 for hi = 4 in. (from Table 6.8)\n\nF = (avn + avm) [in²/ft] x hi [ft]\n\navn = cross-sectional area per unit width of reinforcement in the vertical direction at head\n\navm = cross-sectional area per unit width of reinforcement in the vertical direction at midspan\n\nFor a 6 × 6 - W2.9 × W2.9 WWM, avm is 0.058 in.²/ft, from Table A.5.\n\navn = avm + AVN / SH\n\nWhere:\n\nAVN is the cross-sectional area of additional rebar over the nail head, in the vertical direction. Two #5 bars are used in the vertical direction and, from Table A.6:\n\n[p. 313] AVN = 2 × 0.31 = 0.62 in.²\n\navn = 0.058 + 0.62/5 = 0.18 in.²/ft\n\nF = (0.058 + 0.18) × (4/12) = 0.079\n\nRFF = 3.8 × 2 × 60 × 0.079 = 36 kip\n\nAlternatively, RFF can be estimated by first calculating the total reinforcement ratio for the initial facing, which is defined as:\n\nρTOT (%) = [(avn + avm) / (12 (hi/2))] × 100 = (0.058 + 0.18)/ (12 × 2) × 100 = 0.99%\n\nUsing Table 6.9b, RFF is also estimated to be 36 kip.\n\nThe facing flexure CDR is verified as follows:\n\nCDR = φFF RFF / (γ To) ≥ 1.0\n\nConsidering again that γ = 1.35 and after replacing:\n\nCDR = (0.90 × 36) / (1.35 × 17.3) = 1.39 > 1.0; ok\n\nThe additional reinforcement over the nail head could have also been accomplished by overlapping a rectangular piece of WWM with enough development length (AASHTO 2014 or ACI 2011) at this location.\n\nThe existing reinforcement ratio should also fall between the minimum and maximum recommended reinforcement ratios which are defined as:\n\nρmin [%] = 0.24 √(f′c [psi]) / fy [ksi] = 0.24 √4,000 / 60 = 0.25 % < ρTOT = 0.99 %; ok\n\nρmax [%] = 0.05 (f′c [psi] / fy [ksi]) (90 / (90 + fy [ksi])) = 0.05 (4,000/60) (90/(90 + 60)) = 2 % > ρTOT = 0.99 %; ok\n\n[p. 314] Reinforcement details should follow AASHTO (2014) specifications or ACI (2011) and should include:\n\n• Minimum cover of 2 in.\n\n• Appropriate development lengths\n\n• Appropriate splice locations and lengths\n\nFinal Facing\n\nFor the final facing, RFF can be estimated using approximate expression or using Table 6.9b, considering CF = 1.\n\nThe same reinforcement is used in both directions (Grade 60 No. 4 @ 12 in. each way), hf = 8 in. and f 'c = 4,000 psi.\n\navm = avn = 0.20 in.²/ft (from Table A.6).\n\nρTOT (%) = [(avn + avm) / (12 (hi/2))] × 100 = 2 × 0.20 /(12 × 4) = 0.83%\n\nTherefore:\n\nRFF = 3.8 × 1 × 60 × 2 × 0.20 × (8/12) = 60.8 kip\n\nUsing Table 6.9b and interpolating, RFF can be estimated to be 59.1 kip.\n\nThe facing flexure CDR is verified as follows:\n\nCDR = φFF RFF / (γ To) ≥ 1.0\n\nConsidering again that γ = 1.35 and after replacing:\n\nCDR = (0.90 × 60.8) / (1.35 × 17.3) = 2.34 > 1.0; ok\n\nNote that for a shotcrete with f'c = 3,000 psi, CDR ~ 1.76.\n\nIn addition, the existing reinforcement ratio should fall between the minimum and maximum recommended reinforcement ratios:\n\n[p. 315] ρmin [%] = 0.25 % < ρTOT = 0.83 %; ok\n\nρmax [%] = 2 % > ρTOT = 0.83 %; ok",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.d (pp. 312 to 315): flexural resistance RFF of the initial and final facings, their CDRs and reinforcement ratios."
+    },
+    {
+      "section_id": "C.7.e",
+      "title": "Verify Facing Punching Shear Resistance",
+      "body": "[p. 315] Initial Facing\n\nThe punching shear limit state includes slippage along a truncated cone of mean diameter D'C = LBP + hi. The resisting shear force developed in this slip surface, VF, is calculated as:\n\nVF [kip] = 0.58 √(f′c [psi]) π D′c [ft] hi [ft]\n\nFor the problem conditions:\n\nVF = 0.58 √4000 π × ((9 + 4)/12) × (4/12) = 41.6 kip\n\nFor shotcrete with f'c = 3,000 psi, VF ~ 36 kip.\n\nThe nominal resistance against punching shear, RFP, is calculated as follows:\n\nRFP = CP VF\n\nAssuming conservatively that CP is equal to 1.0; therefore, RFP = 41.6 kip.\n\nThis value can also be estimated from Table 6.9.b, for hi = 4 in., f'c = 4,000 psi, and LBP = 9 in. and RFP = 40 kip, which is about the same as the value above.\n\nConsidering again that γ = γEV = 1.35, the facing punching shear CDR is verified as follows:\n\nCDR = φFP RFP / (γ To) ≥ 1.0\n\nAfter replacing:\n\nCDR = (0.90 × 41.6) / (1.35 × 17.3) = 1.58 > 1.0; ok (as printed; 0.90 × 41.6 / (1.35 × 17.3) = 1.60)\n\nFor a shotcrete with f'c = 3,000 psi, CDR ~ 1.38.\n\n[p. 316] Final Facing\n\nThe resisting shear force, VF, is calculated for the final facing as:\n\nVF [kip] = 0.58 √(f′c [psi]) π D′c [ft] hc [ft]\n\nD'C is defined for final facings as D'c = minimum of (SSH + hc, 2 hc). SSH is the separation between headed studs, and hc is the effective length of the headed stud, which is defined as:\n\nhc = LS + tP – tSH = 4.125 + 1 - 0.31 = 4.8 in.\n\nSSH = 6 in.\n\nD'c = min (6 + 4.8, 2 × 4.8) = min (10.8, 9.6) = 9.6 in.\n\nThe resisting shear force is then:\n\nVF = 0.58 √4000 π (9.6/12) (4.8/12) = 36.9 kip\n\nRFP is calculated again as RFP = CP VF. Assuming conservatively that CP is equal to 1.0, then RFP = 36.9 kip. SNAP-2 calculates this value equal to 35.1 kip.\n\nThe facing punching shear CDR is verified as follows:\n\nCDR = φFP RFP / (γ To) ≥ 1.0\n\nAfter replacing:\n\nCDR = (0.90 × 36.9) / (1.35 × 17.3) = 1.42 > 1.0; ok",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.e (pp. 315 to 316): punching shear force VF and resistance RFP of the initial and final facings and their CDRs."
+    },
+    {
+      "section_id": "C.7.f",
+      "title": "Verify Facing Headed Stud Tensile Resistance",
+      "body": "[p. 316] Calculate the facing headed stud tensile resistance as:\n\nRFH = N AS fy = 4 × (π DSC²/4) × 60 = 4 × (π 0.5²/4) × 60 = 47.1 kips.\n\nConsidering again that γ = 1.35, the facing headed stud tensile CDR is verified as follows:\n\nCDR = φFH RFS / (γ To) ≥ 1.0 (as printed; RFS here, RFH in the line above)\n\nAfter replacing:\n\n[p. 317] CDR = (0.70 × 47.1) / (1.35 × 17.3) = 1.42 > 1.0; ok (as printed; 0.70 × 47.1 / (1.35 × 17.3) = 1.41)\n\nSummary of Strength Limit States\n\nThe verifications indicate that for all strength limit states, the existing factored resistances are greater than the factored loads. The analyses also suggest that, while the section of the tendons is appropriate for a uniform pattern of soil nail length, other elements of the wall can be optimized. For example, the strength of the initial shotcrete can be decreased to 3,000 psi, or the amount of reinforcement in the final facing may be decreased.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.f (pp. 316 to 317): headed stud tensile resistance RFH and its CDR, and the summary of strength limit states."
+    },
+    {
+      "section_id": "C.7.g",
+      "title": "Other Facing Design Considerations",
+      "body": "[p. 317] No other considerations for facing are necessary in this example.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 7.g (p. 317): none in this example."
+    },
+    {
+      "section_id": "C.8",
+      "title": "Step 8: Service Limit States",
+      "body": "",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Step 8 (p. 317): heading of sub-steps 8.a and 8.b; no text of its own."
+    },
+    {
+      "section_id": "C.8.a",
+      "title": "Evaluate Wall Lateral and Vertical Displacements",
+      "body": "[p. 317] Wall deflections induced by construction and operation can be estimated from correlations presented in Section 5.9. For a vertical soil nail wall with sandy soil behind, it is expected that the maximum vertical and horizontal permanent deflections at the top of the wall (δh, δv, respectively) will be approximately:\n\nδh = δv = H / 500 = 25 × 12 /500 = 0.6 in.\n\nThe wall deformations are expected to decrease to insignificant values over a distance DDEF behind the wall. Considering that wall has batter equal to zero, this distance is estimated as (Figure 5.15):\n\nDDEF = C H (1- tan α) = 0.8 H = 20 ft (as printed; Table 5.12, p. 141, gives C = 1.25 for sandy soil, for which 1.25 H = 31.25 ft, and C = 0.8 for weathered rock and stiff soil)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 8.a (p. 317): the expected top-of-wall displacements and the distance DDEF."
+    },
+    {
+      "section_id": "C.8.b",
+      "title": "Evaluate Lateral Squeeze (if applicable)",
+      "body": "[p. 317] This case is not applicable in this example.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed 8.b (p. 317): not applicable in this example."
+    }
+  ]
+}

@@ -1344,8 +1344,33 @@ printed).
   Table A-7's axial 1,836,420 against 2,673.42 kips in the text, and p. C-10's
   example (a 2-ft socket, 870 psi, 1,751 kips) against Figure C-6 (a 6-ft
   socket, 2,500 psi).
+- **GEC-10, more slips noted (values unchanged)**: Table A-5's cohesionless
+  total (p. A-13) leaves out Layer 1, so the Extreme Event I summation of
+  9,932 kips is about 525 kips under its rows; 0.41 x 2,266 = 929 (p.
+  A-10, printed 936) and 0.47 x 2,057 = 967 (p. A-11, printed 976); 26 ft
+  below the scoured ground where 60 - 38 = 22 (p. A-16); 30 percent of the
+  transverse demands in the text and one third in the resultants (pp. A-17
+  and A-18); 365.76 printed 365.7 (p. A-23). Figure C-4(b) (p. C-5) is a
+  copy of Figure C-3(b), the side curves for cohesionless soil: the
+  appendix note, the figure line and the catalog row's `read_notes` say so.
+  Eq. C-2's variables gain A and E (p. C-1); Eq. C-17's lose L.
+- **GEC-7 (FHWA-NHI-14-007)**, new: Appendix B, charts for preliminary
+  design (chapter 12, section B, pp. 295 to 300: the charts' assumptions,
+  the ten steps and Equations B.1 to B.8, the corrections for drill hole
+  diameter, cohesion and factor of safety); Appendix C, the design example
+  (chapter 13, sections C and C.1 to C.8.b as the print numbers its steps,
+  "4.a/b/c/d" stored as C.4.a; Tables C.1 to C.5 and every calculation line
+  of the LRFD checks). Chapter 11 is left for Appendix A (reinforcement
+  tables); Appendices D to G (example plans, two specifications, similar
+  technologies) are not built. Kept as printed and noted: φOS = 1/1.51 ~
+  0.60 (p. 308; 0.66, Table C.2 gives 0.65); the initial-facing punching
+  CDR 1.58 (p. 315; 1.60); the headed-stud CDR 1.42 (p. 317; 1.41) and its
+  RFS for RFH (p. 316); and DDEF = 0.8 H = 20 ft for sandy soil (p. 317),
+  where Table 5.12 (p. 141) gives C = 1.25 for sandy soil and 0.8 for
+  weathered rock and stiff soil.
 
-Tests: `tests/test_gec10_appendices_printed.py` (116).
+Tests: `tests/test_gec10_appendices_printed.py` (119),
+`tests/test_gec7_appendices_printed.py` (63).
 
 ## 1.6.0
 
