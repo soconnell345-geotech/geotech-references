@@ -63,6 +63,7 @@ BUILT = {
     "5": ["B-5", "B-5.1", "B-5.2", "B-5.3", "B-5.4", "B-5.5", "B-5.6", "B-5.7", "B-5.8"],
     "6": ["B-6", "B-6.1", "B-6.2", "B-6.3", "B-6.3.1", "B-6.3.2", "B-6.3.3", "B-6.3.4", "B-6.3.5",
           "B-6.3.6", "B-6.4"],
+    "7": ["B-7", "B-7.1", "B-7.2", "B-7.3", "B-7.4", "B-7.5"],
 }
 
 
@@ -126,7 +127,9 @@ def _parens_balanced(text):
 def _scatter(text):
     # the print's own "(ʹ)" where P-2.1 names the prime symbol is not scatter
     text = text.replace("prime symbol (ʹ)", "prime symbol")
-    found = [name for name, rx in SCATTER if rx.search(text)]
+    # nor the spreadsheet function RAND() that Example 7 names (p. 657)
+    text = text.replace("RAND()", "RAND")
+    found =[name for name, rx in SCATTER if rx.search(text)]
     if not _parens_balanced(text):
         found.append("unbalanced ()")
     if text.count("[") != text.count("]"):
@@ -616,3 +619,164 @@ def test_example_6_dm7_2_lookups():
     assert (m_free["a"], m_free["n"]) == (0.855, 1.288)
     assert 1.2 / 12 * clm_max_moment(197 / _N, _PC, _MC, m_free["a"], m_free["n"]) == \
         pytest.approx(18, abs=0.5)
+
+
+# ---------------------------------------------------------------------------
+# Example 7 – reliability analysis of a retaining wall (pp. 651-659)
+# ---------------------------------------------------------------------------
+
+def _phi(x):
+    return 0.5 * math.erfc(-x / math.sqrt(2))
+
+
+def _wall(gc=150.0, gt=140.0, qs=250.0, ka=0.25, h=18.0, surcharge_on_heel=False):
+    """Figure B-23 wall per ft: (R, x0 from the toe, horizontal force T, FOT).
+
+    Toe 2 ft, base 9.5 x 2 ft (19 ft3/ft), stem 16 ft high, 1 ft at the top
+    and 1.5 ft at the base with a battered front face (20 ft3/ft), heel 6 ft
+    under 96 ft3/ft of backfill, 2 ft3/ft of soil over the toe; active force
+    at H/3 and the surcharge force at H/2. H is varied in the lateral loads
+    only, as Table B-36 trials 9 and 10 imply.
+    """
+    v = 39 * gc + 98 * gt
+    mr = (19 * 4.75 + 16 * 3.0 + 4 * (2 + 1 / 3)) * gc + (96 * 6.5 + 2 * 1.0) * gt
+    if surcharge_on_heel:
+        v += 6 * qs
+        mr += 6 * qs * 6.5
+    pa, ps = 0.5 * ka * gt * h * h, qs * ka * h
+    mo = pa * h / 3 + ps * h / 2
+    return v, (mr - mo) / v, pa + ps, mr / mo
+
+
+def test_example_7_wall_statics():
+    r, x0, t, fot = _wall()
+    assert r == 19570 and t == 6795
+    assert x0 == pytest.approx(3.35, abs=0.005)          # p. 652
+    assert fot == pytest.approx(2.49, abs=0.005)         # p. 653
+    assert 0.55 * r / t == pytest.approx(1.58, abs=0.005)  # FSL, p. 653
+    r, x0, _, _ = _wall(surcharge_on_heel=True)
+    assert r == 21070 and x0 == pytest.approx(3.58, abs=0.005)   # p. 655
+    assert r / (2 * x0) == pytest.approx(2945, abs=0.5)
+    # Table B-35 COVs
+    for mean, sd, cov, tol in ((140, 16, 11.4, 0.06), (0.25, 0.04, 16, 0.5), (250, 50, 20, 0.5),
+                               (150, 5, 3.3, 0.06), (0.55, 0.07, 13, 0.5), (18, 0.2, 1.1, 0.06)):
+        assert 100 * sd / mean == pytest.approx(cov, abs=tol)
+
+
+def test_example_7_table_b36_overturning():
+    rows = _rows(_table("B-7.2", "B-36"))[1:11]
+    xs = []
+    for row in rows:
+        gc, gt, qs, ka, h, xn = (_num(c) for c in row[1:7])
+        x0 = _wall(gc, gt, qs, ka, h)[1]
+        assert x0 == pytest.approx(xn, abs=0.006), row[0]
+        xs.append(x0)
+    terms = [((xs[i] - xs[i + 1]) / 2) ** 2 for i in range(0, 10, 2)]
+    for term, printed in zip(terms, (0.00002, 0.00207, 0.01071, 0.13026, 0.00482)):
+        assert term == pytest.approx(printed, abs=0.00002)
+    assert sum(terms) == pytest.approx(0.14788, abs=0.0001)
+    assert math.sqrt(0.14788) == pytest.approx(0.38456, abs=0.00001)
+    assert _wall()[1] / 0.38456 == pytest.approx(8.72, abs=0.005)
+    # Table B-37: Pu from the reliability indices (normal x0)
+    assert 1 - _phi(6.45) == pytest.approx(6e-11, rel=0.1)
+    assert 1 - _phi(7.41) == pytest.approx(6e-14, rel=0.1)
+
+
+def test_example_7_sliding_derivatives_and_beta():
+    def g(gc=150.0, gt=140.0, mu=0.55, qs=250.0, ka=0.25, h=18.0):
+        return (39 * gc * mu + 98 * gt * mu) / (qs * ka * h + 0.5 * gt * ka * h * h) - 1
+
+    def d(name, step):
+        return (g(**{name: base[name] + step}) - g(**{name: base[name] - step})) / (2 * step)
+
+    base = dict(gc=150.0, gt=140.0, mu=0.55, qs=250.0, ka=0.25, h=18.0)
+    assert g() == pytest.approx(0.58, abs=0.005)
+    printed = {"gc": 3.157e-3, "mu": 2.88, "qs": -1.05e-3, "ka": -6.336, "h": -0.1614}
+    derivs = {k: d(k, base[k] * 1e-5) for k in base}
+    for k, v in printed.items():
+        assert derivs[k] == pytest.approx(v, rel=0.002), k
+    # ∂g/∂γt as printed, 98μ/(qsKaH + 0.5γtKaH²) = 7.932e-3, holds only the numerator's γt;
+    # γt is also in the active force below, and the full derivative is −1.51e-3
+    denom = 250 * 0.25 * 18 + 0.5 * 140 * 0.25 * 18 ** 2
+    assert 98 * 0.55 / denom == pytest.approx(7.932e-3, rel=0.0005)
+    assert derivs["gt"] == pytest.approx(-1.51e-3, abs=0.005e-3)
+    sds = {"gc": 5, "gt": 16, "mu": 0.07, "qs": 50, "ka": 0.04, "h": 0.2}
+    as_printed = dict(derivs, gt=98 * 0.55 / denom)
+    var = sum((as_printed[k] * sds[k]) ** 2 for k in sds)
+    assert var == pytest.approx(0.125, abs=0.0006)
+    # with the full ∂g/∂γt: σ ≈ 0.331 and β ≈ 1.76
+    full = sum((derivs[k] * sds[k]) ** 2 for k in sds)
+    assert math.sqrt(full) == pytest.approx(0.331, abs=0.001)
+    assert g() / math.sqrt(full) == pytest.approx(1.76, abs=0.01)
+    # the variance line's own numbers (3.076e-3, 7.892e-3, 0.1596) give the same 0.125
+    line = [(3.076e-3, 5), (7.892e-3, 16), (2.88, 0.07), (1.05e-3, 50), (6.336, 0.04), (0.1596, 0.2)]
+    assert sum((a * b) ** 2 for a, b in line) == pytest.approx(0.125, abs=0.0005)
+    assert math.sqrt(0.125) == pytest.approx(0.354, abs=0.0005)
+    assert 0.58 / 0.354 == pytest.approx(1.64, abs=0.005)
+    # Table B-38: Pu = 1 - Φ(β)
+    for row in _rows(_table("B-7.3", "B-38"))[1:6]:
+        beta, pu = _num(row[1]), _num(row[2].rstrip("%")) / 100
+        assert 1 - _phi(beta) == pytest.approx(pu, abs=0.0006), row[0]
+
+
+def test_example_7_bearing_capacity_mean_and_table_b40():
+    from geotech_references.dm7_2.chapter5 import (
+        meyerhof_Ngamma, meyerhof_hansen_Nq, meyerhof_inclination_factors)
+
+    def bearing(phi, qs=250.0, ka=0.25, h=18.0):
+        r, x0, t, _ = _wall(qs=qs, ka=ka, h=h, surcharge_on_heel=True)
+        theta = math.degrees(math.atan(t / r))
+        _, iq, ig = meyerhof_inclination_factors(theta, phi)
+        nq, ng = meyerhof_hansen_Nq(phi), meyerhof_Ngamma(phi)
+        # qult = σzD·Nq·iq + 0.5·Bʹ·Nγ·iγ with a unit weight of 140 pcf in the second term
+        return r / (2 * x0), 420 * nq * iq + 0.5 * 140 * 2 * x0 * ng * ig, theta, iq, ig, nq, ng, x0
+
+    qapp, qult, theta, iq, ig, nq, ng, x0 = bearing(35.0)
+    assert 2 * x0 == pytest.approx(7.16, abs=0.005)
+    assert (round(nq), round(ng)) == (33, 37)
+    assert iq == pytest.approx(0.64, abs=0.005) and ig == pytest.approx(0.24, abs=0.005)
+    assert qult == pytest.approx(13338, rel=0.01)
+    assert 13338 / 2945 == pytest.approx(4.53, abs=0.005)
+    rows = _rows(_table("B-7.4", "B-40"))
+    trials = rows[1:17]
+    for row in trials:
+        phi, qs, ka, h, qa, qu, f, p, pf, pf2 = (_num(c) for c in row[1:11])
+        q_app, q_ult = bearing(phi, qs, ka, h)[:2]
+        assert q_app == pytest.approx(qa, abs=0.6), row[0]
+        assert q_ult == pytest.approx(qu, rel=0.01), row[0]
+        assert qu / qa == pytest.approx(f, abs=0.006), row[0]
+        assert p * qu / qa == pytest.approx(pf, abs=0.001), row[0]
+        assert p * (qu / qa) ** 2 == pytest.approx(pf2, abs=0.003), row[0]
+    mean = sum(_num(r[9]) for r in trials)
+    second = sum(_num(r[10]) for r in trials)
+    assert mean == pytest.approx(5.40, abs=0.005) and second == pytest.approx(37.96, abs=0.005)
+    assert math.sqrt(8.79) == pytest.approx(2.96, abs=0.005)
+    # p. 657: β 1.48 and 6.9% (Table B-41 prints 1.45 beside the same 6.9%)
+    assert (5.40 - 1) / 2.96 == pytest.approx(1.48, abs=0.01)
+    assert 1 - _phi(1.486) == pytest.approx(0.069, abs=0.0005)
+    assert 1 - _phi(1.45) == pytest.approx(0.0735, abs=0.0005)
+
+
+def test_example_7_table_b39_and_b41():
+    rows = {r[0]: r[1:] for r in _rows(_table("B-7.4", "B-39"))[1:7]}
+    for name in ("γc (pcf)", "φʹ (deg)", "qs (psf)", "Ka"):
+        fp, fm, term, pct = rows[name]
+        assert ((_num(fp) - _num(fm)) / 2) ** 2 == pytest.approx(_num(term), rel=0.08), name
+        assert 100 * _num(term) / 4.05 == pytest.approx(_num(pct.rstrip("%")), abs=0.25), name
+    # the H row prints 0.390; its F+ and F- give 0.040 and its 1.0% needs about 0.04
+    fp, fm, term, pct = rows["H (ft)"]
+    assert ((_num(fp) - _num(fm)) / 2) ** 2 == pytest.approx(0.04, abs=0.001)
+    assert 0.0390 / 4.05 * 100 == pytest.approx(1.0, abs=0.05)
+    total = 2.4e-6 + 0.017 + 1.42 + 0.948 + 1.63 + 0.0390
+    assert total == pytest.approx(4.05, abs=0.005)
+    assert math.sqrt(4.05) == pytest.approx(2.01, abs=0.005)
+    assert (4.53 - 1) / 2.01 == pytest.approx(1.75, abs=0.01)
+    assert 1 - _phi(1.75) == pytest.approx(0.04, abs=0.001)
+    # Table B-41, lognormal F: β = ln(μ/sqrt(1+V²))/sqrt(ln(1+V²))
+    for mu, sd, beta, pf in ((4.53, 2.01, 3.35, 0.0004), (5.40, 2.96, 3.03, 0.0012)):
+        s2 = math.log(1 + (sd / mu) ** 2)
+        b = (math.log(mu) - s2 / 2) / math.sqrt(s2)
+        assert b == pytest.approx(beta, abs=0.005)
+        assert 1 - _phi(b) == pytest.approx(pf, abs=0.00005)
+    # Table B-42: bearing capacity 0.6% at β 2.5
+    assert 1 - _phi(2.5) == pytest.approx(0.006, abs=0.0003)
