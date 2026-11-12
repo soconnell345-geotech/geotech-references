@@ -14,6 +14,31 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   all 213 numbered equations typed in from the rendered page with their
   symbols and units. Figure catalog: all 136 figures, each on the page
   that prints its caption.
+- Build: each of the 475 formula lines of Appendices B and C was read
+  against the rendered page. The 40 the placement rules had read wrongly
+  (a power left off, a denominator stacked on a line of its own,
+  subscripts spaced off their symbols, two lines run into one, "pf" where
+  the page prints "bpf") are typed in from the page in the manifest
+  (`printed_passages`), each checked by its letters and digits, and each
+  result recomputed from the line as stored. Among them: Example C-3,
+  Step 4 (p. 359), whose time line had lost the square on the drainage
+  path (as read it gave 12.2 days, not the printed 152.8); Example C-7,
+  Steps 6 and 7 (p. 384); Eq. 7-10 as quoted in Examples C-6 and C-7; the
+  equivalent bearing pressure of Example B-2 (p. 301). A total or
+  sub-heading beside a table stands once, not on every row. Eight more
+  slips of the print are kept as printed with a note (Examples B-1, B-4,
+  B-5, B-6, C-2 and C-6, Table 3-15, the symbol list of Eqs. 8-27 and
+  8-28). Table 3-8's σ′v (the page sets a raised semicolon for the prime)
+  and Table 4-10's E*0 (the text layer holds a capital O) are typed in; the
+  symbol lists of Eqs. 3-17, 7-3b, 7-4, 7-6, 7-11, 7-12 and 8-2 give every
+  symbol the formula prints; an equation printed straight after another
+  is described as printed after it, not by the other's formula (Eq. 5-3);
+  the Figure List keeps a word broken after its own hyphen whole
+  ("per-inch", "1-D"); a split leaves room for the notes placed after it
+  (C-2b is in two parts). A test looks through every chapter
+  for formula pieces put back in the wrong places (a prime alone, a lone
+  number above a formula, a number doubled from a stacked fraction, a
+  subscript spaced off its symbol, brackets that do not pair).
 - Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
   5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
   `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
@@ -36,7 +61,7 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   ft^2/day; Eq. 7-42 takes ft^2/day (`cv_ft2_per_day`). Eqs. 5-34/5-35
   keep the printed 2c'd without the square root of K (noted); Eqs. 7-7 to
   7-10 return feet and inches, as the examples convert. The worked
-  examples' slips (in Examples B-4, B-6, C-2, C-3, C-4, C-6 and C-7) are
+  examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
   kept as printed in the text, each with a note giving what the inputs
   give, and the tests pin what the inputs give. The tests run Appendix B
   Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
