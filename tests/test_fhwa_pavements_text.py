@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2, 3, 4, 5, 6]
+BUILT = [1, 2, 3, 4, 5, 6, 7]
 
 
 def _manifest():
@@ -117,7 +117,8 @@ def test_manifest_formulas_match_the_text():
     eqs = _equations()
     for vol in _manifest()["volumes"]:
         for p in vol.get("printed_equations", []):
-            if int(p["number"].split(".")[0]) in BUILT and p.get("formula"):
+            # "7-5": chapter 7 prints one equation number with a hyphen
+            if int(re.split(r"[-.]", p["number"])[0]) in BUILT and p.get("formula"):
                 assert eqs[p["number"]][1]["formula"] == p["formula"], p["number"]
                 assert eqs[p["number"]][1]["source"] == f"Typed in from p. {p['page']}."
 
@@ -371,3 +372,75 @@ def test_chapter_6_tables_typed_from_the_page():
     assert "Class 10 | 1.19 | 1.09 | 0.89 | 0.00" in text
     assert "Average Axle Spacing (ft) | 12 | 15 | 18" in text
     assert "Truck Class: Axle Weight (lbs) | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13" in text
+
+
+def test_chapter_7_headings_as_printed():
+    ch = _chapter(7)
+    # the chapter's first page; the contents prints "Subgrade" for "Construction"
+    assert ch["chapter_title"] == ("Design Details and Construction Conditions "
+                                   "Requiring Special Design Attention")
+    ids = _printed_ids(7)
+    assert ids[:3] == ["7.1", "7.2", "7.2.1"] and ids[-1] == "7.8"
+    assert [i for i in ids if i.startswith("7.2.")] == [f"7.2.{k}" for k in range(1, 17)]
+    s7 = _sections(7)
+    # the old file had 7.2, 7.4 and 7.5.6 only, as summaries; 7.4 was
+    # "Stabilization (Lime, Cement, Asphalt) and Geosynthetics"
+    assert s7["7.4"]["title"] == "Compaction"
+    assert s7["7.5.6"]["title"] == "Frost-Susceptible Soils"
+    # titles as the page heads them (the contents misspells two)
+    assert s7["7.2.8"]["title"] == "Dense-Graded Stabilized Base with Permeable Shoulders"
+    assert s7["7.2.16"]["title"] == "Geotextile Separator and Filter Design"
+    assert all(len(s["body"]) <= 14000 for s in ch["sections"])
+
+
+def test_chapter_7_equations_typed_from_the_page():
+    s7 = _sections(7)
+    eqs = {e["id"]: e for sid in ("7.2.13", "7.2.14", "7.4.1")
+           for e in s7[sid]["equations"]}
+    assert eqs["Eq. 7.1"]["formula"] == "t = T × m × 24"
+    assert eqs["Eq. 7.2"]["formula"] == "S1 = (LR SR)/H"
+    assert eqs["Eq. 7.3"]["formula"] == "m = No LR^2/(kH) = No LR^2/ψ"
+    assert eqs["Eq. 7.4"]["formula"] == "Q = (53.01/n) D^(8/3) S^(1/2)"
+    assert eqs["Eq. 7.5a"]["formula"] == "qi = 2 C R"
+    assert eqs["Eq. 7.6"]["formula"] == "qd = qi LR"
+    # the relative compaction is numbered "Eq. 7-5" on p. 7-42, a second 7.5
+    assert eqs["Eq. 7-5"]["formula"] == "CR = γd/(γd)max × 100%"
+    body = s7["7.2.14"]["body"]
+    assert "Q = (53.01/n) D^(8/3) S^(1/2) [Eq. 7.4]" in body
+    # the Manning coefficient the text layer left on the rainfall line
+    assert "= 5301" not in body
+    # recomputed: 4-in. smooth pipe at 1% grade, 17800 ft3/day as printed
+    assert round(53.01 / 0.012 * 4 ** (8 / 3) * 0.01 ** 0.5, -2) == 17800
+    # the worked time-to-drain example (p. 7-25): 0.01 squared, not "0.012"
+    body = s7["7.2.13"]["body"]
+    assert "(0.01^2 + 0.02^2)^½ = 0.022" in body and "(0.012 + 0.022)" not in body
+    assert round((0.01 ** 2 + 0.02 ** 2) ** 0.5, 3) == 0.022
+    assert round(24 * (1 + (0.01 / 0.02) ** 2) ** 0.5, 1) == 26.8
+    assert round(0.25 * 26.8 ** 2 / (1000 * 0.33), 2) == 0.54
+    assert round(0.16 * 0.54 * 24, 1) == 2.1
+
+
+def test_chapter_7_tables_typed_from_the_page():
+    s7 = _sections(7)
+    # Table 7-12: the text layer ran "All Silts" into F3; the page puts all
+    # silts, very fine silty sands and clays with PI < 12 in F4 (the old file
+    # said "clays and all silts F3")
+    body = s7["7.5.6"]["body"]
+    assert "F4 | Very high | All Silts | — | ML-MH" in body
+    assert "F3 | High | Clays PI>12 | — | CL, CH" in body
+    assert "F2 | Low to medium | Gravelly soils | 10-20 | GM, GC-GM, GP-GM" in body
+    assert "" not in body
+    text = "\n".join(s["body"] for s in _chapter(7)["sections"])
+    assert "Wet-No Freeze | R | R | F | R | F | F | F | NR | NR" in text
+    assert "Cracking | Slippage | Yes | No | Loss of Bond | Yes | Yes, Bond | No | No" in text
+    assert "Surface Deformation | Faulting | Yes | Moisture-Suction | Erosion-Settlement" in text
+    assert "Lime | Doubtful | Usually suitable | Usually suitable | Usually not suitable" in text
+    # footnote marks, not digits of the cost (the text layer gave "85.002")
+    assert "Geofoam (EPS) | 12 to 32 | 0.01 to .03 | 40.00 to 85.00²" in text
+    assert "85.002" not in text
+    # Table 7-20 print slips kept with a note
+    assert "0.475-mm (#4) [as printed; Table 7-19 prints the #4 sieve as 4.75-mm]" in text
+    # symbol-font glyphs of Table 7-11 written as the page's key
+    assert "ï" not in text and "æ" not in text and "™" not in text
+    # Table 7-18 is a picture; the text says its values are not typed in
+    assert "printed as a picture on p. 7-81" in text
