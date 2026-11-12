@@ -785,7 +785,9 @@ def table_7_4_drainage_quality_definitions() -> dict:
 
 # ============================================================================
 # Table 5-56 / 5-57: Typical saturated hydraulic conductivity (permeability).
-# (Chapter 5; PDF p.281/280, printed 5-104/5-103)
+# (Chapter 5; 0-based PDF pages 281/282, printed 5-104/5-105. Table 5-57 was
+# cited at p. 5-103 until 2026-11-12, the page that refers to it; its values
+# were checked against a 300 dpi render of p. 5-105 and match.)
 # ============================================================================
 
 # Table 5-56: soils (Coduto, 1999) — (description, k_cm_s, k_ft_s)
@@ -812,6 +814,17 @@ _TABLE_5_57 = [
     ("Bituminous concrete", "4e-5 - 4e-8"),
     ("Portland cement concrete", "< 1e-10"),
 ]
+
+_TABLE_5_57_FOOTNOTES = (
+    "*1 m/s = 3.25 ft/s",
+    "**Bituminous concrete: new pavements; values as low as 10^-10 have been "
+    "reported for sealed, traffic-compacted highway pavements.",
+)
+
+_TABLE_5_57_PRINT_NOTE = (
+    "Values and footnotes as printed on p. 5-105. The first footnote is "
+    "printed 1 m/s = 3.25 ft/s; 1 m is 3.28 ft."
+)
 
 
 def table_5_56_permeability_soils(soil_description: str = "") -> dict:
@@ -888,9 +901,11 @@ def table_5_57_permeability_highway_materials(material: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-57 (Carter & Bentley, 1991)",
-            "table": "5-57", "pdf_page": 280, "printed_page": "5-103",
+            "table": "5-57", "pdf_page": 282, "printed_page": "5-105",
             "rows": rows,
             "note": "1 m/s = 3.25 ft/s.",
+            "footnotes": _TABLE_5_57_FOOTNOTES,
+            "print_note": _TABLE_5_57_PRINT_NOTE,
         }
     match = next((r for r in rows if r["material"].lower() == key), None)
     if match is None:
@@ -900,7 +915,9 @@ def table_5_57_permeability_highway_materials(material: str = "") -> dict:
         )
     out = dict(match)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-57 (Carter & Bentley, 1991)",
-                "table": "5-57", "pdf_page": 280, "printed_page": "5-103"})
+                "table": "5-57", "pdf_page": 282, "printed_page": "5-105"})
+    if out["material"] == "Bituminous concrete":
+        out["footnote"] = _TABLE_5_57_FOOTNOTES[1]
     return out
 
 
