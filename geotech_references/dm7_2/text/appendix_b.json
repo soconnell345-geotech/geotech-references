@@ -3,7 +3,7 @@
   "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
   "volume": 2,
   "chapter": 9,
-  "chapter_title": "Appendix B: Verification Examples (Examples 1 to 5)",
+  "chapter_title": "Appendix B: Verification Examples (Examples 1 to 6)",
   "sections": [
     {
       "section_id": "B",
@@ -727,6 +727,175 @@
       "figures": [],
       "tables": [],
       "applicability": "Worked LRFD check of a 7 x 7 group of 12-inch square PPC driven piles 65 ft long (3 ft spacing, buried cap) through 40 ft of soft normally consolidated clay into stiff overconsolidated clay under 8 ft of new fill: alpha method with the Tomlinson transition zone, group and block resistance, neutral plane with 0, 50 and 100% base mobilization, the structural check with drag force (Equation 6-80), and settlement from an equivalent footing at the neutral plane plus elastic shortening; lateral loads, uplift, moments and time rate of settlement are not considered."
+    },
+    {
+      "section_id": "B-6",
+      "title": "EXAMPLE 6 – LATERAL LOAD ANALYSIS.",
+      "summary": "Example 6: lateral deflection of the Example 5 pile cap under a 300 kip longitudinal shear, by the Characteristic Load Method for the group plus pile cap resistance, at the geotechnical strength and service limit states (B-6.1 to B-6.4).",
+      "body": "Example 6 checks the lateral response of a pile group: B-6.1 Description of the Problem; B-6.2 Goals and Limitations of the Analysis; B-6.3 Characteristic Load Method Analysis (B-6.3.1 Calculation of p-Multiplier; B-6.3.2 Calculation of the Characteristic Load and Moment; B-6.3.3 Lateral Resistance of the Pile Cap; B-6.3.4 Lateral Deflection at the Geotechnical Strength Limit State; B-6.3.5 Lateral Deflection at the Service Limit State; B-6.3.6 Calculation of Maximum Moment under Service Conditions); B-6.4 Conclusions from the Analysis. (pp. 644 to 651)",
+      "key_points": [
+        "The trial design meets the geotechnical strength limit state and the 0.5 inch service deflection limit; under 300 kips the cap deflects 0.29 in. (free head) or 0.11 in. (fixed head) (Table B-34, pp. 650 to 651)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.1",
+      "title": "Description of the Problem.",
+      "summary": "Example 5 pier: lateral deflection of the cap under a 300 kip longitudinal shear (100 kip permanent, 200 kip transient); transverse shear and moments zero (Figure B-19).",
+      "body": "For the pile-supported bridge pier considered in Example 5, evaluate the serviceability state limit with respect to lateral deflection of the pile cap due to an applied longitudinal shear load of 300 kips, i.e. a shear load parallel to the bridge span. The 300 kip load is comprised of a 100 kip permanent load and a 200 kip transient load. Transverse shear loads and applied moments are equal to zero in this example. Figure B-19 provides useful information for this example. (Labels of Figure B-19: Soft clay, su = 500 psf, 40 ft; 12-inch square PPC piles, Ep = 4,000 ksi (no cracks); Stiff clay, su = 3,000 psf, 25 ft; (Stiff clay continues to great depth).) (p. 644)",
+      "key_points": [
+        "Longitudinal shear of 300 kips at the cap: 100 kips permanent and 200 kips transient; transverse shear and applied moments are zero (p. 644)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-19 Laterally Loaded Pile Group in Soft and Stiff Clay"
+      ],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.2",
+      "title": "Goals and Limitations of the Analysis.",
+      "summary": "Shear at the cap only; unfactored pile and cap resistance, with 1/0.8 = 1.25 on the factored load (Section 6-6.2.1); load factors 1.25 and 1.75; service deflection limit 0.5 inches with unfactored loads; CLM adapted to groups; constant bending stiffness; Rankine pressures and the simplified hyperbolic relation for the cap; piles embedded at least 12 inches with unknown fixity; no scour or seismic.",
+      "body": "The goal of this analysis is to determine whether the trial pile design analyzed in Example 6 satisfies the geotechnical strength limit state and serviceability limit state with respect to lateral deflection of the pile cap. (As printed on p. 645: \"Example 6\"; the trial pile design is that of Example 5.) The performance requirements as well as assumptions and simplifications are listed below: • Both the geotechnical strength and service limit states only consider the application of shear load at the cap elevation, i.e. no moment is applied to the cap. The geotechnical resistance of the piles and pile cap are unfactored for both limit states. For the geotechnical strength limit state, the inverse of the resistance factor, equal to 0.8, is applied to the factored load, i.e. 1/0.8 = 1.25 (see Section 6-6.2.1). • The geotechnical strength limit state is evaluated using load factors equal to 1.25 for permanent loads and 1.75 for transient loads. In actual design, factored load demands are typically determined using an iterative process of structural modeling and foundation response. • The serviceability limit state with respect to lateral deflection is evaluated using unfactored loads. The limit on lateral deflection of the pile cap is equal to 0.5 inches based on consideration of negative impacts on the superstructure and alignment of the pier. • The response of the pile group is modeled using the Characteristic Load Method (CLM) (Section 6-6.4.3) as adapted to pile groups (Section 6-6.5). • The piles are modeled using a constant bending stiffness, i.e. nonlinear effects from concrete cracking are not considered. In this case, this assumption is deemed reasonable since the deflection limit is small. Furthermore, the effects of axial load on bending resistance and lateral deflection are not considered. • The response of the pile cap is modeled using Rankine earth pressure theory and the simplified hyperbolic load-deflection relationship presented in Section 6-6.5. • The piles are embedded a minimum of 12 inches into the pile cap; however, the degree of fixity is unknown. • Scour and seismic considerations are not addressed in this example. This analysis includes estimating the maximum bending moment developed in the piles for the serviceability limit state. This moment is not the value used to evaluate the structural strength limit state. (p. 645)",
+      "key_points": [
+        "Pile and cap resistances are unfactored; for the strength limit state the inverse of the resistance factor 0.8 is applied to the factored load, 1/0.8 = 1.25 (Section 6-6.2.1) (p. 645).",
+        "The service deflection limit of the cap is 0.5 inches under unfactored loads (p. 645).",
+        "Constant bending stiffness (no cracking) is deemed reasonable here since the deflection limit is small; axial load effects are not considered (p. 645).",
+        "The piles are embedded at least 12 inches into the cap but the degree of fixity is unknown; scour and seismic are not addressed (p. 645).",
+        "The service-state maximum moment estimated here is not the value used for the structural strength limit state (p. 645)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3",
+      "title": "Characteristic Load Method Analysis",
+      "summary": "The CLM suits long piles in uniform ground: the piles exceed 18·b (18 ft) and the upper 8·b (8 ft) is uniform soft clay (B-6.3.1 to B-6.3.6).",
+      "body": "The CLM is suitable for modeling long piles in uniform ground. Since the pile length exceeds 18·b (18ft), the piles meet the minimum length requirement of the CLM. Since the upper 8·b (8ft) of the pile is in uniform soft clay, the ground conditions meet the uniform ground requirement of the CLM. (p. 645)",
+      "key_points": [
+        "The CLM is suitable for long piles in uniform ground: pile length over 18·b, and uniform soil over the upper 8·b (p. 645)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.1",
+      "title": "Calculation of p-Multiplier",
+      "summary": "Seven rows perpendicular to the load; Mokwa (1999) equations of Table 6-38 at s/b = 3 give 0.82, 0.67, 0.58 and 0.52 (rows 4-7), average pm = 0.593 (Table B-32).",
+      "body": "Due to pile-soil-pile interaction, the softening of the p-y response of the ground is captured using a weighted average p-multiplier. There are 7 rows of piles aligned perpendicular to the applied lateral load. Table B-32 summarizes calculation of the weighted average p-multiplier as proposed by Mokwa (1999) using the equations in Table 6-38 for a normalized spacing, s/b, equal to 3. (p. 646)",
+      "key_points": [
+        "Pile-soil-pile interaction is captured with a weighted average p-multiplier (Mokwa 1999, Table 6-38): pm = 0.593 for 7 rows at s/b = 3 (p. 646)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-32 Calculation of Weighted p-Multiplier — p-Multiplier / Equation and Result; 1st row / pm = 0.06(3) + 0.64 = 0.82; 2nd row / pm = 0.11(3) + 0.34 = 0.67; 3rd row / pm = 0.14(3) + 0.16 = 0.58; 4th – 7th rows / pm = 0.16(3) + 0.04 = 0.52; Average: pm = (0.82 + 0.67 + 0.58 + 0.52 + 0.52 + 0.52 + 0.52)/7 = 0.593 (p. 646)"
+      ],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.2",
+      "title": "Calculation of the Characteristic Load and Moment.",
+      "summary": "Table 6-29 equations with RI = Ip/Icirc = (64/πb⁴)(b⁴/12) = 1.70 for a solid square: Pc = 265 kips and Mc = 45457 in-kips (soft clay su = 500 psf times pm = 0.593).",
+      "body": "The characteristic load and moment are calculated for the PPC pile in soft clay according to equations provided in Table 6-29 in Section 6-6.4.3. These equations require finding the ratio (RI) of the moment of inertia of the pile section (Ip) to the moment of inertia of a solid circular section (Icirc). For an uncracked solid square section, RI = Ip/Icirc = (64/πb⁴)(b⁴/12) = 1.70. Applying the conditions considered in this example, the characteristic load equals: Pc = 7.34(12 in)²(4000 ksi)(1.70)[(500 psf)(0.593)/((4000 ksi)(1.70)(144000 psf/ksi))]^0.68 = 265 kips and the characteristic moment equals: Mc = 3.86(12 in)³(4000 ksi)(1.70)[(500 psf)(0.593)/((4000 ksi)(1.70)(144000 psf/ksi))]^0.46 = 45457 in−kips. (p. 646)",
+      "key_points": [
+        "RI = Ip/Icirc = 1.70 for an uncracked solid square section (p. 646).",
+        "Pc = 265 kips and Mc = 45457 in-kips, with the soft clay strength multiplied by pm = 0.593 (p. 646)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.3",
+      "title": "Lateral Resistance of the Pile Cap.",
+      "summary": "Passive on the leading face (partly mobilized), full active on the trailing face, no side or base shear, pier ignored; sand φʹ = 35 deg: KA = 0.27, KP = 3.7 (Rankine, conservative for passive); Pa = 15 kips, Pp = 204 kips (Table B-33); Pcap,mob = [max{15 kips; 204 kips·yt/(0.85yt + 0.006(3.5 ft)(12 in/ft))}] − 15 kips.",
+      "body": "The embedded pile cap is assumed to mobilize some amount of passive resistance on the leading face, full active pressure on the trailing face, and no shear resistance on the sides and base (Figure B-20). The resistance provided by the pier is also ignored. For the sand surrounding the pile cap having a friction angle of 35 degrees, the Rankine active and passive coefficients are equal to 0.27 and 3.7, respectively. As mentioned in Section 6-6.5, the use of Rankine earth pressure theory results in a conservative (in some cases excessively conservative) estimate of passive resistance. Table B-33 presents the fully-mobilized active and passive pressures and calculation of the active and passive earth forces. Assuming that active resistance is fully mobilized by any pile cap deflection and passive resistance is mobilized according to the simplified hyperbolic relationship presented in Section 6-6.5, the resistance provided by the pile cap is equal to Pcap,mob = [max{15 kips; 204 kips·(yt/(0.85yt + 0.006(3.5 ft)(12 in/ft)))}] − 15 kips where: y = average pile cap deflection in inches. (Labels of Figure B-20: 8 ft; 3.5 ft; 21 ft square cap; New fill, γ = 120 pcf, φʹ = 35 deg, KA = 0.27, KP = 3.7; water table at the base of the cap.) (p. 647)",
+      "key_points": [
+        "The cap mobilizes some passive resistance on the leading face, full active pressure on the trailing face, and no shear on the sides and base; the pier's resistance is ignored (p. 647).",
+        "Rankine coefficients for φʹ = 35 deg: KA = 0.27, KP = 3.7; Rankine theory gives a conservative (in some cases excessively conservative) passive resistance (Section 6-6.5) (p. 647).",
+        "Pcap,mob = [max{15 kips; 204 kips·yt/(0.85yt + 0.006(3.5 ft)(12 in/ft))}] − 15 kips, yt in inches (p. 647)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-20 Development of Active and Passive Pressures on Pile Cap"
+      ],
+      "tables": [
+        "Table B-33 Pile Cap Pressure Calculations — Calculation / Active side / Passive side; Pressure at top of cap / σʹh,a,top = 0.27(4.5 ft)(120 pcf) = 146 psf / σʹh,p,top = 1998 psf; Pressure at bottom of cap / σʹh,a,bot = 259 psf / σʹh,p,bot = 3552 psf; Fully-mobilized lateral earth force / Pa = 0.5(146+259 psf)(3.5 ft)(21 ft)(1 k/1000 lb) = 15 kips / Pp = 204 kips (p. 647)"
+      ],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.4",
+      "title": "Lateral Deflection at the Geotechnical Strength Limit State.",
+      "summary": "Failure criterion: deflection of 10% of the pile width, 1.2 inches; acceptable if Plimit ≥ P'' = (1/0.8)[(1.25)(100) + (1.75)(200)] = 594 kips; Pt,group = (49)(265)[(1/a)(yt/12 in)]^(1/n) (Equation 6-67, Table 6-31: clay a = 50, n = 1.822 free; 14, 1.846 fixed) plus Pcap,mob; at 1.2 in both heads exceed the load (606 and 1070 kips, Figure B-21).",
+      "body": "Since the mobilization of cap resistance is a function of deflection, the geotechnical strength limit state is evaluated by incrementally increasing deflection up to a failure criterion defined by a deflection equal to 10% of the pile width. In this case, 1.2 inches of deflection defines the strength limit state. The lateral load at the deflection limit is Plimit. The trial design is acceptable if Plimit equals or exceeds the factored load multiplied by the inverse of the resistance factor, P'' or: Plimit ≤ (1/φ)Pfactored = P''; P'' = (1/0.8)[(1.25)(100 kips) + (1.75)(200) kips]. (As printed on p. 648: the inequality sign; the sentence before it states Plimit ≥ P''.) A version of Equation 6-67 in Section 6-6.4.3 adapted to the pile group is used to estimate the lateral resistance provided by the piles as a function of deflection. Pt,group = (49 piles)(265 kips/pile)[(1/a)(yt/12 in)]^(1/n). Values for the constants a and n are given in Table 6-31. For piles in clay, the constants a and n are equal to 50 and 1.822, respectively, for a free head condition and 14 and 1.846, respectively, for a fixed head condition. The average deflection of the pile cap is assumed to equal the deflection at the top of the pile. The combined lateral resistance of the piles and cap, Pcap+piles, as a function of deflection is found by: Pcap+piles = (49 piles)(265 kips/pile)[(1/a)(yt/12 in)]^(1/n) + [max{15 kips; 204 kips·(yt/(0.85yt + 0.252))}] − 15 kips. A series of values of yt can be assumed and the corresponding lateral resistance is calculated. Figure B-21 shows the development of lateral resistance as a function of deflection for the cases of 0% and 100% fixity. In both cases, the resistance at the failure criterion of 1.2 inches of deflection exceeds the maximum load, indicating that the trail design is acceptable with respect to the geotechnical strength limit state. While rotational restraint is not required to satisfy the geotechnical strength limit state in this example, it is apparent that rotational restraint contributes significantly to the overall lateral stiffness. If a free head condition is present, cap resistance is required to meet the deflection criteria. (p. 648) (Labels of Figure B-21: P'' = Plimit = 594; 606 for Free head (0% fixity) and 1070 for Fixed head (100% fixity) at 1.2 in.; curves Pcap,mob.) (p. 649)",
+      "key_points": [
+        "The strength limit state is a deflection of 10% of the pile width, 1.2 inches here; the design is acceptable if Plimit equals or exceeds P'' = (1/0.8)[(1.25)(100) + (1.75)(200)] kips (594 kips) (p. 648).",
+        "Pt,group = (49)(265 kips)[(1/a)(yt/12 in)]^(1/n), a version of Equation 6-67; clay: a = 50, n = 1.822 (free head) and a = 14, n = 1.846 (fixed head) (Table 6-31) (p. 648).",
+        "The cap deflection is taken equal to the pile top deflection; Pcap+piles adds Pcap,mob to Pt,group (p. 648).",
+        "At 1.2 inches both free and fixed heads exceed the load (606 and 1070 kips against 594, Figure B-21); with a free head, cap resistance is required to meet the deflection criteria (pp. 648 to 649)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-21. Load-Deflection Relationship with Strength Limit State Check"
+      ],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.5",
+      "title": "Lateral Deflection at the Service Limit State.",
+      "summary": "The unfactored 300 kips gives deflections under 0.5 inches for either fixity (401 and 691 kips at 0.5 in., Figure B-22); with a free head the cap resistance must be counted.",
+      "body": "Figure B-22 shows that the unfactored lateral load of 300 kips produces lateral deflections less than 0.5 inches, regardless of fixity. Cap resistance must be considered to meet this criterion for a free head condition. (Labels of Figure B-22: P = Plimit = 300; 401 for Free head (0% fixity) and 691 for Fixed head (100% fixity) at 0.5 in.; curves Pcap,mob.) (p. 649)",
+      "key_points": [
+        "The unfactored 300 kips produces deflections less than 0.5 inches regardless of fixity; for a free head, cap resistance must be considered to meet this (p. 649)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-22. Load-Deflection Relationship with Service Limit State Check"
+      ],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.3.6",
+      "title": "Calculation of Maximum Moment under Service Conditions.",
+      "summary": "Equation 6-71: Mmax ≈ a·Mc(Pt/Pc)^n (clay a = 0.855, n = 1.288 free; 0.782, 1.249 fixed), times 1.20 for the lead-row corner piles at s/b = 3: 26 ft-kip free and 69 ft-kips fixed at 0.5 in.; under 300 kips (Table B-34) yt = 0.29 and 0.11 in., Pt,group = 197 and 249 kips, Mmax,corner = 18 and 25 ft-kips.",
+      "body": "The maximum moments in the piles at the service limit state are found using Equation 6-71 in Section 6-6.4.3. Use of a single weighted p-multiplier to account for group effects implicitly assumes that all piles in the group carry equal load. The maximum moments are corrected for group effects using the moment scaling factors provided in Section 6-6.5. This correction estimates the maximum moment in the corner piles of the lead row, which are expected to experience the highest moments in the pile group. For this example, the equation is: Mmax ≈ a·Mc(Pt/Pc)^n ≈ a(45457 in−kip)(Pt/265 kips)^n where for piles in clay: a = 0.855 for a free head and 0.782 for a fixed head and n = 1.288 for a free head and 1.249 for a fixed head. At the service limit state of 0.5 inch deflection, the resistance provided by the pile group is equal to 265 kips. Because the normalized pile spacing is equal to 3, a correction equal to 1.20 (see Section 6-6.5) is applied to estimate the maximum moment for the corner piles in the lead row. With these considerations, the maximum moment in the piles for a free head condition is equal to: Mmax,corner = (1.2/(12 in/ft))(0.855)(45457 in−kip)[259 kips/((265 kips/pile)(49 piles))]^1.288 = 26 ft−kip. (As printed on p. 650: the line uses 259 kips, which gives 25 ft-kip; the 265 kips stated just before gives the printed 26.) For fixed head conditions, similar calculations estimate a maximum moment equal to 69 ft-kips at the service limit state deflection of 0.5 inches. Under service conditions, where an unfactored load of 300 kips is anticipated, the loaddeflection relationships provided in Figures B-21 and B-22 can be interpreted to extract the portion of the resistance provided by the piles, Pt,group. Alternatively, the equation for Pcap+piles can be solved for yt corresponding to the unfactored load and that value of yt can be used to find Pt,group. Table B-34 summarizes the values of yt, Pt,group, and Mmax,corner for the applied unfactored load. (p. 650)",
+      "key_points": [
+        "A single weighted p-multiplier implicitly assumes that all piles carry equal load; the moment is scaled for the lead-row corner piles, expected to carry the highest moments (Section 6-6.5) (p. 650).",
+        "Mmax ≈ a·Mc(Pt/Pc)^n (Equation 6-71); clay: a = 0.855, n = 1.288 (free head), a = 0.782, n = 1.249 (fixed head); correction 1.20 at s/b = 3 (p. 650).",
+        "At 0.5 inch: 26 ft-kip (free head) and 69 ft-kips (fixed head); under 300 kips: 18 and 25 ft-kips (Table B-34) (p. 650)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-34 Deflection, Lateral Pile Load, and Maximum Moment due to Unfactored Loading — Parameter / Free head (0% fixity) / Fixed head (100% fixity); yt / 0.29 in. / 0.11 in.; Pt,group / 197 kips / 249 kips; Mmax,corner / 18 ft-kips / 25 ft-kips (p. 650)"
+      ],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
+    },
+    {
+      "section_id": "B-6.4",
+      "title": "Conclusions from the Analysis.",
+      "summary": "The trial design satisfies the strength and lateral deflection limit states; the 1 ft embedment in the cap justifies some rotational restraint, so deflection is expected to be less than 0.29 inches.",
+      "body": "Based on this analysis, the trial pile design satisfies the geotechnical strength limit state and the serviceability limit state with respect to lateral deflection. Given that the piles are embedded in the cap 1 ft, there is some amount of rotational restraint that can be justified in the design. Referring to Table B-34, the contribution of rotational restraint means that lateral deflection is expected to be less that 0.29 inches. (p. 651)",
+      "key_points": [
+        "With the piles embedded 1 ft in the cap some rotational restraint can be justified, so lateral deflection is expected to be less than 0.29 inches (Table B-34) (p. 651)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked lateral load check of the Example 5 pile group (49 12-inch PPC piles in soft over stiff clay, buried 21 ft cap in sand fill) for a 300 kip longitudinal shear (100 permanent, 200 transient), no moment: Mokwa p-multipliers, the Characteristic Load Method adapted to groups (Equations 6-67 and 6-71) for free and fixed heads, cap resistance by Rankine pressures and the simplified hyperbolic relation, the strength limit at 1.2 in (10% of the width) with 1/0.8 on the factored load, and a 0.5 in service limit; cracking, axial load effects, scour and seismic are not considered."
     }
   ]
 }

@@ -61,6 +61,8 @@ BUILT = {
     "3": ["B-3", "B-3.1", "B-3.2", "B-3.3", "B-3.4", "B-3.5", "B-3.6", "B-3.7"],
     "4": ["B-4", "B-4.1", "B-4.2", "B-4.3", "B-4.4", "B-4.5", "B-4.6"],
     "5": ["B-5", "B-5.1", "B-5.2", "B-5.3", "B-5.4", "B-5.5", "B-5.6", "B-5.7", "B-5.8"],
+    "6": ["B-6", "B-6.1", "B-6.2", "B-6.3", "B-6.3.1", "B-6.3.2", "B-6.3.3", "B-6.3.4", "B-6.3.5",
+          "B-6.3.6", "B-6.4"],
 }
 
 
@@ -522,3 +524,95 @@ def test_example_5_dm7_2_lookups():
     assert block_failure_resistance(60.0, 18.0, 18.0, 1.33, 3.0, 9.0) == pytest.approx(14494, abs=1)
     # p. 640: Equation 6-80, 1.25(40) + 1.1(133 − 40) = 152 ≤ 200 kips
     assert drag_force_check(40.0, 133.0, 200.0) is True
+
+
+# ---------------------------------------------------------------------------
+# Example 6 – lateral load analysis (pp. 644-651)
+# ---------------------------------------------------------------------------
+
+_PC, _MC, _N = 265.0, 45457.0, 49
+
+
+def _p_cap_piles(y, a, n):
+    # p. 648: Pcap+piles = 49(265)[(1/a)(yt/12 in)]^(1/n) + [max{15; 204·yt/(0.85yt + 0.252)}] − 15
+    piles = _N * _PC * (y / (a * 12.0)) ** (1.0 / n)
+    cap = max(15.0, 204.0 * y / (0.85 * y + 0.252)) - 15.0
+    return piles, cap
+
+
+def test_example_6_p_multiplier_and_characteristic_values():
+    rows = _rows(_table("B-6.3.1", "B-32"))
+    pms = [float(re.search(r"= (0\.\d+)$", r[1]).group(1)) for r in rows[1:5]]
+    for (m, c), pm in zip(((0.06, 0.64), (0.11, 0.34), (0.14, 0.16), (0.16, 0.04)), pms):
+        assert m * 3 + c == pytest.approx(pm, abs=0.005)
+    assert (pms[0] + pms[1] + pms[2] + 4 * pms[3]) / 7 == pytest.approx(0.593, abs=0.0005)
+    # p. 646: RI = 64/(12π) = 1.70; Pc = 265 kips; Mc = 45457 in-kips
+    ri = 64 / (12 * math.pi)
+    assert ri == pytest.approx(1.70, abs=0.005)
+    ratio = 500 * 0.593 / (4000 * 1.70 * 144000)
+    assert 7.34 * 12 ** 2 * 4000 * 1.70 * ratio ** 0.68 == pytest.approx(265, abs=0.5)
+    assert 3.86 * 12 ** 3 * 4000 * 1.70 * ratio ** 0.46 == pytest.approx(45457, rel=0.001)
+
+
+def test_example_6_cap_pressures():
+    assert 0.27 * 4.5 * 120 == pytest.approx(146, abs=0.5)
+    assert 0.27 * 8 * 120 == pytest.approx(259, abs=0.5)
+    assert 3.7 * 4.5 * 120 == pytest.approx(1998)
+    assert 3.7 * 8 * 120 == pytest.approx(3552)
+    assert 0.5 * (146 + 259) * 3.5 * 21 / 1000 == pytest.approx(15, abs=0.2)
+    assert 0.5 * (1998 + 3552) * 3.5 * 21 / 1000 == pytest.approx(204, abs=0.1)
+    assert 0.006 * 3.5 * 12 == pytest.approx(0.252)
+
+
+def test_example_6_load_deflection_values_of_figures_b21_b22():
+    # P'' = (1/0.8)[(1.25)(100) + (1.75)(200)] = 594 kips
+    assert (1.25 * 100 + 1.75 * 200) / 0.8 == pytest.approx(594, abs=0.5)
+    for y, a, n, printed in ((1.2, 50, 1.822, 606), (1.2, 14, 1.846, 1070),
+                             (0.5, 50, 1.822, 401), (0.5, 14, 1.846, 691)):
+        piles, cap = _p_cap_piles(y, a, n)
+        assert piles + cap == pytest.approx(printed, abs=1.5)
+    # B-6.3.6: "at the service limit state of 0.5 inch ... the pile group ... 265 kips" (free head)
+    assert _p_cap_piles(0.5, 50, 1.822)[0] == pytest.approx(265, abs=0.5)
+
+
+def test_example_6_table_b34():
+    rows = {r[0]: r[1:] for r in _rows(_table("B-6.3.6", "B-34"))[1:]}
+    for i, (a, n, am, nm) in enumerate(((50, 1.822, 0.855, 1.288), (14, 1.846, 0.782, 1.249))):
+        y = _num(rows["yt"][i].replace(" in.", ""))
+        p_group = _num(rows["Pt,group"][i].replace(" kips", ""))
+        m = _num(rows["Mmax,corner"][i].replace(" ft-kips", ""))
+        lo, hi = 0.01, 1.2                                          # solve Pcap+piles = 300 kips
+        for _ in range(60):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if sum(_p_cap_piles(mid, a, n)) < 300 else (lo, mid)
+        assert lo == pytest.approx(y, abs=0.005)
+        assert _p_cap_piles(lo, a, n)[0] == pytest.approx(p_group, abs=1.0)
+        assert 1.2 / 12 * am * _MC * (p_group / (_N * _PC)) ** nm == pytest.approx(m, abs=0.5)
+    # 0.5 in: 26 ft-kip (free, from 265 kips; the printed line's 259 kips gives 25) and 69 (fixed)
+    assert 0.1 * 0.855 * _MC * (265 / (_N * _PC)) ** 1.288 == pytest.approx(26, abs=0.5)
+    assert 0.1 * 0.855 * _MC * (259 / (_N * _PC)) ** 1.288 == pytest.approx(25.1, abs=0.1)
+    fixed_pile = _p_cap_piles(0.5, 14, 1.846)[0]
+    assert 0.1 * 0.782 * _MC * (fixed_pile / (_N * _PC)) ** 1.249 == pytest.approx(69, abs=0.5)
+
+
+def test_example_6_dm7_2_lookups():
+    from geotech_references.dm7_2.chapter4 import (
+        rankine_active_pressure_coefficient, rankine_passive_pressure_coefficient)
+    from geotech_references.dm7_2.chapter6 import (
+        clm_load_from_deflection, clm_max_moment, table_6_36_clm, table_6_37_clm)
+    # p. 647: Rankine 0.27 and 3.7 for 35 degrees
+    assert rankine_active_pressure_coefficient(35.0) == pytest.approx(0.27, abs=0.005)
+    assert rankine_passive_pressure_coefficient(35.0) == pytest.approx(3.7, abs=0.05)
+    # p. 648: Table 6-31 constants as printed in the example (the library's Table 6-36 key)
+    free = table_6_36_clm("clay", "Pt/Pc", "free")
+    fixed = table_6_36_clm("clay", "Pt/Pc", "fixed")
+    assert (free["a"], free["n"]) == (50.0, 1.822) or (free["a"], free["n"]) == (50, 1.822)
+    assert (fixed["a"], fixed["n"]) == (14.0, 1.846) or (fixed["a"], fixed["n"]) == (14, 1.846)
+    # Table B-34 free head: Pt,group = 197 kips at yt = 0.29 in.
+    p = _N * clm_load_from_deflection(0.29, 12.0, _PC, free["a"], free["n"])
+    assert p == pytest.approx(197, abs=0.5)
+    # p. 650: Equation 6-71 constants and the 18 ft-kips of Table B-34
+    m_free = table_6_37_clm("clay", "free")
+    assert (m_free["a"], m_free["n"]) == (0.855, 1.288)
+    assert 1.2 / 12 * clm_max_moment(197 / _N, _PC, _MC, m_free["a"], m_free["n"]) == \
+        pytest.approx(18, abs=0.5)
