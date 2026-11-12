@@ -248,24 +248,28 @@ def check_eccentricity_two_directions(
 
 def corner_bearing_pressure(
     q_gross: float, e_B: float, e_L: float, B: float, L: float
-) -> Tuple[float, float, float, float]:
+) -> dict:
     """Corner bearing pressures for eccentric loading (Equation 5-7).
 
     Returns the bearing pressure at the four corners of a rectangular
     foundation with two-way eccentricity within the kern.
 
     .. math::
-        q_{corner} = q_{gross} \\left(1 \\pm \\frac{6 e_B}{B}
-                      \\pm \\frac{6 e_L}{L}\\right)
+        q_{corner} = q_{gross} \\left(1 \\pm \\frac{6 |e_B|}{B}
+                      \\pm \\frac{6 |e_L|}{L}\\right)
+
+    Eq. 5-7 is printed with the magnitudes |eB| and |eL| (as are the
+    limits of Eq. 5-5 and 5-6), so the signs of *e_B* and *e_L* are not
+    used: q1 is the maximum and q4 the minimum whatever signs are passed.
 
     Parameters
     ----------
     q_gross : float
         Gross bearing pressure (psf, kPa, or consistent stress unit).
     e_B : float
-        Eccentricity in B direction (ft, m).
+        Eccentricity in B direction (ft, m); its magnitude is used.
     e_L : float
-        Eccentricity in L direction (ft, m).
+        Eccentricity in L direction (ft, m); its magnitude is used.
     B : float
         Foundation width -- shorter dimension (ft, m).
     L : float
@@ -273,12 +277,12 @@ def corner_bearing_pressure(
 
     Returns
     -------
-    tuple of float
-        (q1, q2, q3, q4) bearing pressures at four corners:
-        q1 = +eB, +eL corner (maximum);
-        q2 = +eB, -eL corner;
-        q3 = -eB, +eL corner;
-        q4 = -eB, -eL corner (minimum).
+    dict
+        ``q1`` = q_gross(1 + 6|eB|/B + 6|eL|/L), the maximum;
+        ``q2`` = q_gross(1 + 6|eB|/B - 6|eL|/L);
+        ``q3`` = q_gross(1 - 6|eB|/B + 6|eL|/L);
+        ``q4`` = q_gross(1 - 6|eB|/B - 6|eL|/L), the minimum;
+        ``note``: that the magnitudes |eB| and |eL| were used.
 
     Raises
     ------
@@ -291,13 +295,19 @@ def corner_bearing_pressure(
     """
     if B <= 0.0 or L <= 0.0:
         raise ValueError("Foundation dimensions B and L must be positive.")
-    term_B = 6.0 * e_B / B
-    term_L = 6.0 * e_L / L
-    q1 = q_gross * (1.0 + term_B + term_L)
-    q2 = q_gross * (1.0 + term_B - term_L)
-    q3 = q_gross * (1.0 - term_B + term_L)
-    q4 = q_gross * (1.0 - term_B - term_L)
-    return (q1, q2, q3, q4)
+    term_B = 6.0 * abs(e_B) / B
+    term_L = 6.0 * abs(e_L) / L
+    return {
+        "q1": q_gross * (1.0 + term_B + term_L),
+        "q2": q_gross * (1.0 + term_B - term_L),
+        "q3": q_gross * (1.0 - term_B + term_L),
+        "q4": q_gross * (1.0 - term_B - term_L),
+        "note": (
+            "Eq. 5-7 (p. 277) uses the magnitudes |eB| and |eL|; the signs "
+            "of e_B and e_L are not used. q1 is the maximum corner pressure "
+            "and q4 the minimum."
+        ),
+    }
 
 
 def effective_foundation_width(B: float, e_B: float) -> float:

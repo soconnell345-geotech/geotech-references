@@ -197,18 +197,33 @@ def test_corner_bearing_pressure_basic():
     q3 = 10*(1-0.5+0.5) = 10
     q4 = 10*(1-0.5-0.5) = 0
     """
-    q1, q2, q3, q4 = corner_bearing_pressure(10.0, 0.5, 1.0, 6.0, 12.0)
-    assert q1 == pytest.approx(20.0, rel=1e-4)
-    assert q2 == pytest.approx(10.0, rel=1e-4)
-    assert q3 == pytest.approx(10.0, rel=1e-4)
-    assert q4 == pytest.approx(0.0, abs=1e-12)
+    r = corner_bearing_pressure(10.0, 0.5, 1.0, 6.0, 12.0)
+    assert r["q1"] == pytest.approx(20.0, rel=1e-4)
+    assert r["q2"] == pytest.approx(10.0, rel=1e-4)
+    assert r["q3"] == pytest.approx(10.0, rel=1e-4)
+    assert r["q4"] == pytest.approx(0.0, abs=1e-12)
 
 
 def test_corner_bearing_pressure_no_eccentricity():
     """Edge: eB=eL=0 -> all corners = q_gross"""
-    q1, q2, q3, q4 = corner_bearing_pressure(15.0, 0.0, 0.0, 4.0, 8.0)
-    assert q1 == pytest.approx(15.0, rel=1e-4)
-    assert q4 == pytest.approx(15.0, rel=1e-4)
+    r = corner_bearing_pressure(15.0, 0.0, 0.0, 4.0, 8.0)
+    assert r["q1"] == pytest.approx(15.0, rel=1e-4)
+    assert r["q4"] == pytest.approx(15.0, rel=1e-4)
+
+
+def test_corner_bearing_pressure_negative_eccentricity_uses_magnitudes():
+    """Eq. 5-7 (p. 277) is printed with |eB| and |eL|: a negative eccentricity
+    gives the same corners as the positive one, q1 the maximum.
+    Made-up values: q_gross 10, eB -0.5, eL -1.0, B 6, L 12 -> 20, 10, 10, 0."""
+    r = corner_bearing_pressure(10.0, -0.5, -1.0, 6.0, 12.0)
+    assert r["q1"] == pytest.approx(20.0, rel=1e-4)
+    assert r["q2"] == pytest.approx(10.0, rel=1e-4)
+    assert r["q3"] == pytest.approx(10.0, rel=1e-4)
+    assert r["q4"] == pytest.approx(0.0, abs=1e-12)
+    assert r["q1"] == max(r["q1"], r["q2"], r["q3"], r["q4"])
+    assert "|eB|" in r["note"] and "|eL|" in r["note"]
+    mixed = corner_bearing_pressure(10.0, 0.5, -1.0, 6.0, 12.0)
+    assert mixed["q1"] == pytest.approx(20.0, rel=1e-4)
 
 
 def test_corner_bearing_pressure_raises_zero_B():

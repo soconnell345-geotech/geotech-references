@@ -99,13 +99,13 @@
     {
       "section_id": "6.5.2.2",
       "title": "Bearing resistance - Analytical method",
-      "summary": "A commonly recognised analytical method should be used (Annex D's sample method is suggested); both short- and long-term Rd should be evaluated, especially for fine-grained soils; layered/discontinuous ground requires rupture mechanisms and parameters reflecting the actual structure, with per-layer parameter determination for greatly varying layered deposits; a weak-over-strong sequence uses the weak layer's parameters, the reverse triggers a punching check; numerical methods are used where analytical methods are inapplicable, and Section 11's overall stability calculations may also apply.",
-      "body": "A commonly recognised analytical method should be used; the sample analytical calculation for bearing resistance given in Annex D may be used. An analytical evaluation of the short-term and long-term values of Rd shall be considered, particularly in fine-grained soils. Where the soil or rock mass beneath a foundation presents a definite structural pattern of layering or other discontinuities, the assumed rupture mechanism and the selected shear strength/deformation parameters shall reflect that structure. When calculating design bearing resistance on layered deposits whose properties vary greatly, design ground parameters shall be determined for each layer. Where a strong formation underlies a weak one, bearing resistance may be calculated using the weak formation's shear strength parameters; for the reverse situation (weak over strong), punching failure should be checked. Analytical methods are often inapplicable to these layered/discontinuous situations, in which case numerical procedures should determine the most unfavourable failure mechanism; the overall stability calculations of Section 11 may also be applied.",
+      "summary": "A commonly recognised analytical method should be used (NOTE: the Annex D sample method may be used); an analytical evaluation of short- and long-term Rd shall be considered, particularly in fine-grained soils; layered/discontinuous ground requires rupture mechanisms and parameters reflecting the actual structure, with per-layer parameter determination for greatly varying layered deposits; a weak-over-strong sequence uses the weak layer's parameters, the reverse triggers a punching check; numerical methods are used where analytical methods are inapplicable, and Section 11's overall stability calculations may also apply.",
+      "body": "A commonly recognised analytical method should be used; NOTE: the sample analytical calculation for bearing resistance given in Annex D may be used. An analytical evaluation of the short-term and long-term values of Rd shall be considered, particularly in fine-grained soils. Where the soil or rock mass beneath a foundation presents a definite structural pattern of layering or other discontinuities, the assumed rupture mechanism and the selected shear strength/deformation parameters shall reflect that structure. When calculating design bearing resistance on layered deposits whose properties vary greatly, design ground parameters shall be determined for each layer. Where a strong formation underlies a weak one, bearing resistance may be calculated using the weak formation's shear strength parameters; for the reverse situation (a strong formation over a weak one), punching failure should be checked. Analytical methods are often inapplicable to these layered/discontinuous situations, in which case numerical procedures should be applied to determine the most unfavourable failure mechanism; the overall stability calculations of Section 11 may also be applied.",
       "key_points": [
-        "Annex D's sample analytical bearing resistance method is the recommended calculation approach",
-        "Both short-term and long-term Rd should be evaluated for fine-grained soils",
+        "A commonly recognised analytical method should be used; the Annex D sample analytical method may be used (NOTE)",
+        "An analytical evaluation of the short-term and long-term values of Rd shall be considered, particularly in fine-grained soils",
         "Layered ground requires per-layer parameters and rupture mechanisms reflecting the real structure",
-        "Weak-over-strong ground uses the weak layer's parameters; strong-over-weak requires a punching check",
+        "Where a strong formation underlies a weak formation, the weak formation's shear strength parameters may be used; for the reverse situation, punching failure should be checked",
         "Numerical methods or Section 11 overall-stability calculations are used where analytical methods do not apply"
       ],
       "equations": [
@@ -127,7 +127,7 @@
         "Annex E's pressuremeter-based method is the recommended sample approach"
       ],
       "equations": [
-        {"id": "Annex E", "description": "Sample semi-empirical pressuremeter bearing resistance method, Rd/A' = sigma_v0 + k*p*le.", "implemented_in": "geotech_references.eurocode_7_1.equations.pressuremeter_bearing_resistance"}
+        {"id": "Eq. E.1 (Annex E)", "description": "Sample semi-empirical pressuremeter bearing resistance method (Annex E, recommended by the NOTE to 6.5.2.3(1)): Rd/A' = sigma_v;0 + k*p*le (Eq. E.1).", "implemented_in": "geotech_references.eurocode_7_1.equations.pressuremeter_bearing_resistance"}
       ],
       "figures": [],
       "tables": [],
@@ -225,14 +225,14 @@
     {
       "section_id": "6.6.2",
       "title": "Serviceability limit state design - Settlement",
-      "summary": "Settlement calculations include immediate (s0), consolidation (s1), and creep (s2) components; Annex F's sample methods for s0/s1 are suggested; compressible depth is typically taken to the 20%-of-overburden stress point or roughly 1-2x foundation width; linear or non-linear ground stiffness models are used as appropriate. For clay-founded conventional structures, a bearing-capacity-to-serviceability-load ratio below 3 always triggers settlement calculation, and below 2 requires non-linear stiffness effects.",
+      "summary": "Settlement calculations include immediate (s0), consolidation (s1), and creep (s2) components; Annex F's sample methods for s0/s1 are suggested; compressible depth is typically taken to the 20%-of-overburden stress point or roughly 1-2x foundation width; linear or non-linear ground stiffness models are used as appropriate. For clay-founded conventional structures, the ratio of bearing capacity (initial undrained strength) to serviceability loading should be calculated: if this ratio is less than 3, calculations of settlements should always be undertaken; if it is less than 2, the calculations should take account of non-linear stiffness effects in the ground (6.6.2(16), p. 67).",
       "body": "Calculations of settlement shall include both immediate and delayed settlement. Three components are considered for partially/fully saturated soils: s0 (immediate settlement, from shear deformation at constant volume for fully-saturated soil, or shear deformation plus volume reduction for partially-saturated soil); s1 (settlement caused by consolidation); and s2 (settlement caused by creep). Commonly recognised methods should be used; the sample methods for evaluating s0 and s1 given in Annex F may be applied. Special consideration should be given to organic soils and soft clays, where settlement may be prolonged almost indefinitely due to creep. The compressible layer depth for settlement calculation depends on foundation size/shape, soil stiffness variation with depth, and foundation-element spacing; it may normally be taken as the depth at which the foundation-load-induced effective vertical stress is 20% of the effective overburden stress, or roughly estimated as 1 to 2 times the foundation width (reduced for lightly-loaded, wide rafts; not valid for very soft soils). Additional settlement from self-weight compaction shall be assessed, along with self-weight/flooding/vibration effects on fill and collapsible soils, and stress-change effects on crushable sands. Linear or non-linear ground stiffness models shall be adopted as appropriate. Differential settlement/relative rotation assessment shall account for load distribution and ground variability; ignoring structure stiffness tends to over-predict differential settlement, and ground-structure interaction analysis may justify reduced values, though some differential settlement normally occurs even where uniform settlement is calculated. Eccentrically loaded foundation tilting is estimated from a linear bearing pressure distribution, calculating corner-point settlements from the corner vertical stress distributions. For conventional clay-founded structures, the ratio of ground bearing capacity (at initial undrained shear strength) to applied serviceability load should be calculated (2.4.8(4)): if the ratio is below 3, settlement calculations should always be undertaken; if below 2, non-linear stiffness effects should be included.",
       "key_points": [
         "Three settlement components: s0 immediate, s1 consolidation, s2 creep; Annex F gives sample methods for s0/s1",
         "Compressible depth typically taken at 20%-overburden-stress point, or roughly 1-2x foundation width",
         "Organic soils/soft clays may show prolonged creep settlement",
         "Differential settlement assessment accounts for load distribution, ground variability, and structure-stiffness interaction",
-        "Clay-founded structures: bearing-capacity/serviceability-load ratio < 3 triggers settlement calc; < 2 requires non-linear stiffness"
+        "Clay-founded conventional structures: if the bearing capacity/serviceability load ratio is < 3, settlement calculations should always be undertaken; if < 2, they should take account of non-linear stiffness"
       ],
       "equations": [
         {"id": "Annex F", "description": "Sample settlement evaluation methods (stress-strain method F.1, adjusted elasticity method F.2 Eq. F.1) for s0/s1.", "implemented_in": "geotech_references.eurocode_7_1.equations.adjusted_elasticity_settlement"}
@@ -258,12 +258,12 @@
     {
       "section_id": "6.6.4",
       "title": "Serviceability limit state design - Vibration analysis",
-      "summary": "Foundations for vibrating structures/loads must be designed to prevent excessive vibration-induced settlement, avoiding resonance between the dynamic load frequency and a critical foundation-ground system frequency, and avoiding liquefaction; earthquake-induced vibrations are considered per EN 1998.",
+      "summary": "Foundations for structures subjected to vibrations or vibrating loads shall be designed to ensure that vibrations will not cause excessive settlements; precautions should be taken to ensure that resonance will not occur between the dynamic load frequency and a critical foundation-ground system frequency, and that liquefaction will not occur; vibrations caused by earthquakes shall be considered using EN 1998 (6.6.4(3)P, p. 67).",
       "body": "Foundations for structures subjected to vibrations or vibrating loads shall be designed to ensure that vibrations will not cause excessive settlements. Precautions should be taken to ensure resonance does not occur between the dynamic load frequency and a critical frequency of the foundation-ground system, and to ensure that liquefaction will not occur in the ground. Vibrations caused by earthquakes shall be considered using EN 1998.",
       "key_points": [
-        "Vibration-induced settlement must be controlled",
-        "Resonance avoidance between dynamic load and foundation-ground system frequency is required",
-        "Liquefaction avoidance is required; earthquake vibrations follow EN 1998"
+        "Foundations for vibrating structures or loads shall be designed so that vibrations will not cause excessive settlements",
+        "Precautions should be taken to ensure that resonance will not occur between the dynamic load frequency and a critical frequency of the foundation-ground system",
+        "Precautions should be taken to ensure that liquefaction will not occur in the ground; vibrations caused by earthquakes shall be considered using EN 1998 (6.6.4(3)P)"
       ],
       "equations": [],
       "figures": [],

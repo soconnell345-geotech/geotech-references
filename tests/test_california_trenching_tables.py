@@ -384,6 +384,10 @@ class TestSurcharge:
         r = minimum_construction_surcharge()
         assert r["sigma_h_psf"] == 72.0
         assert r["min_depth_ft"] == 10.0
+        # p. 5-2: "applied to a minimum depth of 10 feet (Hs) below the uppermost
+        # level of the soil retained by the shoring system" (a minimum, not the top 10 ft only).
+        assert "minimum depth of 10 ft (Hs)" in r["note"]
+        assert "top 10 ft" not in r["note"]
 
 
 # ===================================================================
