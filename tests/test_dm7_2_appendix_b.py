@@ -60,6 +60,7 @@ BUILT = {
     "2": ["B-2", "B-2.1", "B-2.2", "B-2.3", "B-2.4", "B-2.5", "B-2.6", "B-2.7", "B-2.8"],
     "3": ["B-3", "B-3.1", "B-3.2", "B-3.3", "B-3.4", "B-3.5", "B-3.6", "B-3.7"],
     "4": ["B-4", "B-4.1", "B-4.2", "B-4.3", "B-4.4", "B-4.5", "B-4.6"],
+    "5": ["B-5", "B-5.1", "B-5.2", "B-5.3", "B-5.4", "B-5.5", "B-5.6", "B-5.7", "B-5.8"],
 }
 
 
@@ -425,3 +426,99 @@ def test_example_4_dm7_2_lookups():
     k_el = subgrade_modulus_from_elastic_parameters(120.0, 889.0, 0.97, 0.2)  # ksf/ft
     si_ft = 0.97 * 0.2 * 120 * 2.05 / 889
     assert k_el == pytest.approx(2.05 / si_ft, rel=1e-9)
+
+
+# ---------------------------------------------------------------------------
+# Example 5 – pile group capacity and settlement (pp. 633-643)
+# ---------------------------------------------------------------------------
+
+def test_example_5_loads_and_single_pile_resistance():
+    # p. 635: Wcap+soil = 21²[(3.5)(0.15) + (8 − 3.5)(0.12)] = 470 kips
+    assert 21 ** 2 * (3.5 * 0.15 + 4.5 * 0.12) == pytest.approx(470, abs=0.5)
+    # p. 636: "1500 + 470 = 1976" as printed (1970); Q'g = 3520 follows from 1976
+    assert "1500 kips + 470 kips = 1976 kips" in SEC["B-5.3"]["body"]
+    assert 1.25 * 1976 + 1.75 * 600 == pytest.approx(3520)
+    # p. 637: Rs = 199, Rb = 27, Rn = 226, n(ηg Rr,s) = 3876
+    rs = 40 * 2 + 10 * 2.9 + 15 * 6
+    assert rs == pytest.approx(199)
+    assert 9 * 3000 * 1 / 1000 == pytest.approx(27)
+    assert 49 * 1.0 * 0.35 * 226 == pytest.approx(3876, abs=0.5)
+    # p. 638: block failure
+    su1 = (0.5 * 40 + 3 * 20) / 60
+    assert su1 == pytest.approx(1.33, abs=0.005)
+    rn_block = 2 * 60 * (18 + 18) * 1.33 + 18 * 18 * 3 * 9
+    assert rn_block == pytest.approx(14494, abs=1)
+    assert 0.6 * 14494 == pytest.approx(8696, abs=0.5)
+
+
+def test_example_5_table_b28_neutral_plane():
+    rows = _rows(_table("B-5.5", "B-28"))
+    data = {r[0]: [_num(c) for c in r[1:]] for r in rows[1:5]}
+    # load curve: 40 kips at the bearing grade (8 ft), −Δp of 2, 2.9 and 6 k/ft below
+    assert data["48"][0] == pytest.approx(40 + 2 * 40)
+    assert data["58"][0] == pytest.approx(120 + 2.9 * 10)
+    assert data["73"][0] == pytest.approx(149 + 6 * 15)
+    for i, rb in ((1, 0.0), (2, 13.5), (3, 27.0)):
+        assert data["8"][i] == pytest.approx(199 + rb, abs=0.5)
+        assert data["73"][i] == pytest.approx(rb, abs=0.5)
+    # neutral plane in the transition zone (48 to 58 ft): 120 + 2.9x = Rz(48) − 2.9x
+    znp = [_num(c) for c in rows[5][1:]]
+    pmax = [_num(c) for c in rows[6][1:]]
+    for i, rb in enumerate((0.0, 13.5, 27.0)):
+        x = (119 + rb - 120) / (2 * 2.9)
+        assert 48 + x == pytest.approx(znp[i], abs=0.6)
+        assert 120 + 2.9 * x == pytest.approx(pmax[i], abs=0.8)
+
+
+def test_example_5_table_b30_consolidation():
+    b29 = {r[0]: [_num(c) for c in r[1:]] for r in _rows(_table("B-5.7", "B-29"))[1:]}
+    rows = [r for r in _rows(_table("B-5.7", "B-30"))[1:] if r[0].isdigit()]
+    assert len(rows) == 10
+    total = 0.0
+    for r in rows:
+        sz0 = b29[r[0]][4]
+        sp, dfill, dpile, szf, eps, h0, dh = (_num(c) for c in r[1:])
+        assert sz0 + 5000 == pytest.approx(sp)                       # OCM = 5000 psf (Figure B-16)
+        assert dfill == pytest.approx(8 * 120)                       # 8 ft of fill at 120 pcf
+        assert sz0 + dfill + dpile == pytest.approx(szf, abs=1)
+        e = 0.01 * math.log10(min(sp, szf) / sz0) + 0.10 * math.log10(max(sp, szf) / sp)
+        assert e == pytest.approx(eps, abs=0.00006)
+        assert eps * h0 == pytest.approx(dh, abs=0.0011)
+        total += e * h0
+    # printed ΔH sum to 0.154 ft, unrounded strains to 0.155 ft: "0.15 ft (1.9 in)"
+    printed = sum(_num(r[7]) for r in rows)
+    assert printed == pytest.approx(0.154, abs=0.0005)
+    assert total == pytest.approx(0.155, abs=0.001)
+    assert total * 12 == pytest.approx(1.9, abs=0.05)
+    # Table B-29: σʹz,0 = 40 ft of soft clay at 40 pcf + stiff clay at 55 pcf below 48 ft
+    for sub, (ztop, h0, zbot, zmid, sz0) in b29.items():
+        assert ztop + h0 == zbot and zmid == pytest.approx((ztop + zbot) / 2)
+        assert 40 * 40 + 55 * (zmid - 48) == pytest.approx(sz0)
+
+
+def test_example_5_elastic_shortening():
+    rows = _rows(_table("B-5.7", "B-31"))[1:]
+    ea = 4000 * 144  # kips: E = 4,000 ksi, A = 144 in²
+    total = 0.0
+    for r in rows:
+        L0, pavg, dl = _num(r[2]), _num(r[7]), _num(r[8])
+        assert pavg * L0 / ea == pytest.approx(dl, abs=0.00006)
+        total += dl
+    assert total == pytest.approx(0.006, abs=0.0005)
+
+
+def test_example_5_dm7_2_lookups():
+    from geotech_references.dm7_2.chapter6 import (
+        alpha_method_unit_shaft_resistance, alpha_tomlinson_transition, block_failure_Nc,
+        block_failure_resistance, drag_force_check)
+    # p. 636: fs = α·su
+    assert alpha_method_unit_shaft_resistance(1.0, 500.0) == pytest.approx(500.0)
+    assert alpha_method_unit_shaft_resistance(0.5, 3000.0) == pytest.approx(1500.0)
+    # Equation 6-9: α = 0.28(su/Pa)^−0.44 -> fs,transition = ±720 psf
+    alpha = alpha_tomlinson_transition(3000.0, 2116.0)
+    assert alpha * 3000.0 == pytest.approx(720.0, abs=1.0)
+    # p. 638: Nc = 10 -> 9; block resistance 14494 kips with depth 60 ft, plan 18 ft x 18 ft
+    assert block_failure_Nc(18.0, 18.0, 60.0) == 9.0
+    assert block_failure_resistance(60.0, 18.0, 18.0, 1.33, 3.0, 9.0) == pytest.approx(14494, abs=1)
+    # p. 640: Equation 6-80, 1.25(40) + 1.1(133 − 40) = 152 ≤ 200 kips
+    assert drag_force_check(40.0, 133.0, 200.0) is True
