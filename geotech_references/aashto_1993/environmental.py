@@ -976,6 +976,16 @@ def performance_period_iteration(
     important transparency note on what could and could not be
     independently reconciled from the guide.
 
+    NEEDS PYTHON CALLABLES: ``w18_fn`` and ``time_from_w18_fn`` are
+    functions, so this cannot be called with JSON arguments alone (an
+    agent's tool call). The guide's Steps 5 and 6 read two project curves,
+    the design chart at the trial structural number and the project's
+    cumulative traffic against time (Figure 2.1, a plot); taking either as
+    tabulated points would need a rule for reading between them that the
+    guide does not print, so no JSON form is offered (2026-11-12). The
+    function carries ``needs_python_callables = True`` for a caller that
+    lists tools.
+
     Parameters
     ----------
     delta_psi_design : float
@@ -1097,3 +1107,9 @@ def performance_period_iteration(
         "note": note,
         "reference": "AASHTO 1993 Guide, Table 3.1 (pdf_page 123, printed II-34)",
     }
+
+
+#: w18_fn and time_from_w18_fn are Python functions: an agent calling with
+#: JSON arguments cannot supply them, so a tool list should leave this out
+#: (see the docstring; 2026-11-12 reach audit).
+performance_period_iteration.needs_python_callables = True
