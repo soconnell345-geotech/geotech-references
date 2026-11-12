@@ -52,7 +52,7 @@ def test_twelve_chapters_and_appendices_b_to_d():
     assert titles[13].startswith("Appendix B: Design Examples")
     assert titles[14] == "Appendix C: Design Examples: Settlement for Static Analysis"
     assert titles[15] == "Appendix D: Common Unit Conversion Factors"
-    assert sum(len(c["sections"]) for c in chapters) == 778
+    assert sum(len(c["sections"]) for c in chapters) == 777
 
 
 def test_every_section_carries_its_printed_pages():
@@ -72,12 +72,36 @@ def test_section_bodies_fit_the_reference_tools():
     for c in _chapters():
         for s in c["sections"]:
             assert len(json.dumps(s)) <= 14000, s["section_id"]
-    # the three printed paragraphs too long for that are split into
+    # the two printed paragraphs too long for that are split into
     # lettered parts, the letters not printed
-    for sid in ("7-11c(2)", "C-2b", "C-7b"):
+    for sid in ("7-11c(2)", "C-7b"):
         part = _retrieval.retrieve_section(REF, sid + ".a")
         assert part["parent_id"] == sid
         assert "(continued, pp. " in part["title"]
+    # C-2b fits (the loop above) since its sub-heading is stored once (p. 349)
+    with pytest.raises(KeyError):
+        _retrieval.retrieve_section(REF, "C-2b.a")
+
+
+def test_text_spanning_a_table_is_stored_once():
+    # a total under a table on the page it runs on to (Table C-6b, p. 374)
+    # and a sub-heading between two inner tables (Table C-2, p. 349) stand
+    # once, not on every row of the table beside them
+    c6 = _retrieval.retrieve_section(REF, "C-6b")["body"]
+    assert c6.count("∑ δc = 0.081 inches") == 1
+    assert "| 30.5 | 0.7 | 32 | 0.030 | 0.07 | 0.018\n" in c6
+    c2 = _retrieval.retrieve_section(REF, "C-2b")["body"]
+    assert c2.count("3. The total induced vertical stress (Δσz) below point E") == 1
+    # no sentence or total stands in three or more consecutive rows anywhere
+    for c in _chapters():
+        for s in c["sections"]:
+            run = {}
+            for line in s["body"].split("\n"):
+                cells = {(j, x.strip()) for j, x in enumerate(line.split(" | "))
+                         if " | " in line and len(x.strip()) >= 15
+                         and (x.strip().endswith(".") or "=" in x)}
+                run = {k: run.get(k, 0) + 1 for k in cells}
+                assert not any(v >= 3 for v in run.values()), (s["section_id"], line)
 
 
 def test_paragraph_numbers_address_every_level():
