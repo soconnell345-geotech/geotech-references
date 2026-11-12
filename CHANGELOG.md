@@ -1368,9 +1368,29 @@ printed).
   RFS for RFH (p. 316); and DDEF = 0.8 H = 20 ft for sandy soil (p. 317),
   where Table 5.12 (p. 141) gives C = 1.25 for sandy soil and 0.8 for
   weathered rock and stiff soil.
+- **Micropile manual (FHWA-NHI-05-039)**, new: Appendix D, Sample Problem
+  No. 1, bridge abutment support (chapter 14, sections D and D.1 to D.10
+  as the print numbers its steps: abutment loads with Table S1-1, pile
+  loads, structural capacity of the cased and uncased lengths, bond length,
+  settlement, the pile top connection, test loads); Appendix E, Sample
+  Problem No. 2, a laterally loaded micropile (chapter 15, section E:
+  combined stress checks and the moment limit at a casing joint). The
+  legend of Figure S1-3, which carries the given loads, is stored with the
+  figure. Not built: Appendices A to C (Case 2 networks for slope
+  stabilization, LPILE output, guide specification; chapters 11 to 13 left
+  for them), the LPILE output of pp. E-7 to E-30 and the drawings of pp.
+  D-23 and D-24. Kept as printed and noted: Table 5-4 cited for the loads
+  of Table S1-1, Fx = 15.0 + 65.3 and M with 39.3 where Table S1-1 gives
+  14.91 kN and 39.13 kN-m (p. D-9); the moment of PEQ, 52.54, where Table
+  S1-1 lists 50.12 for PEQ-H (p. D-8); EA 1,252,000 and 1,133,000 kN for
+  1,252,640 and 1,133,600 (pp. D-15, D-16); 286 mm for 286.6 (p. D-18);
+  603 kN for 602 (p. D-21); the cone's nominal strength line carrying φ
+  (p. D-18); Acasing, Icasing, Pc-allowable and Mmax(joint) of pp. E-1 and
+  E-4 (0.00863 for 0.008624 m², 2,479 for 2,479.6 kN, 19.2 for 19.1 kN-m).
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
-`tests/test_gec7_appendices_printed.py` (63).
+`tests/test_gec7_appendices_printed.py` (63),
+`tests/test_micropile_appendices_printed.py` (74).
 
 ## 1.6.0
 
