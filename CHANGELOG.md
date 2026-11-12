@@ -4,6 +4,24 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Lookups outside their printed range (app BACKLOG REF-76).** A lookup
+given an input past the end of its printed table or chart no longer
+returns the edge value with nothing said. Where the print gives an
+open-ended row or curve ("D > 40b", ">= 6") the edge value stays and the
+docstring says so; where the manual's text says what to do beyond the
+range, the lookup does that and says so; otherwise it raises `ValueError`
+naming the printed range, the page and the value given. In-range values
+are unchanged. Functions whose out-of-range behaviour changed (printed
+pages):
+
+- `gec_12.figures.figure_7_17_adhesion`: D/b outside 10 to 40 is refused
+  (curves D = 10b and D = 40b only, p. 248); it was held at 10 or 40.
+- `gec_12.figures.figure_7_18_adhesion_factor`: D/b below 10 in Cases 2
+  and 3 is refused (their shallowest curve is printed "D = 10b", p. 249);
+  it took the D = 10b curve. Case 1's "D < 10b" and every case's "D > 20b"
+  / "D > 40b" curve are open-ended as printed and still read past their
+  label. D/b <= 0 is refused.
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,

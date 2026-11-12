@@ -391,11 +391,19 @@ class TestAdhesion:
         ca_steel = figure_7_17_adhesion(1.0, D_over_b=20.0, pile_surface="steel")
         assert ca_steel < ca_concrete
 
-    def test_db_clamped(self):
-        """D/b values outside 10-40 are clamped, not error."""
-        ca_5 = figure_7_17_adhesion(1.0, D_over_b=5.0)
-        ca_10 = figure_7_17_adhesion(1.0, D_over_b=10.0)
-        assert ca_5 == pytest.approx(ca_10)
+    # Figure 7-17 (GEC-12 Vol I, printed p. 248, PDF page 294) draws D = 10b
+    # and D = 40b only; the text (p. 246) gives no rule outside them.
+    def test_db_inside_10_to_40_unchanged(self):
+        assert figure_7_17_adhesion(1.0, D_over_b=10.0) == pytest.approx(0.948, abs=0.001)
+        assert figure_7_17_adhesion(2.2, D_over_b=40.0) == pytest.approx(1.819, abs=0.001)
+        mid = figure_7_17_adhesion(2.2, D_over_b=25.0)
+        lo = figure_7_17_adhesion(2.2, D_over_b=10.0)
+        assert mid == pytest.approx((lo + 1.819) / 2, abs=0.001)
+
+    @pytest.mark.parametrize("db", [9.9, 5.0, 0.0, 40.1, 60.0])
+    def test_db_outside_10_to_40_refused(self, db):
+        with pytest.raises(ValueError, match="D = 10b and D = 40b only"):
+            figure_7_17_adhesion(1.0, D_over_b=db)
 
     @pytest.mark.parametrize("su, surface", [
         (-1.0, "concrete"), (0.0, "concrete"), (0.2, "steel"),
@@ -474,6 +482,29 @@ class TestAdhesionFactor:
     def test_refuses_su_outside_the_curves(self, su, db, case):
         with pytest.raises(ValueError, match="outside Figure 7-18"):
             figure_7_18_adhesion_factor(su, db, case)
+
+    # Figure 7-18 (GEC-12 Vol I, printed p. 249, PDF page 295): Case 1 prints
+    # "D < 10b" and "D > 40b", Case 2 "D = 10b" and "D > 20b", Case 3
+    # "D = 10b" and "D > 40b". An open-ended label is read past its curve;
+    # below "D = 10b" (Cases 2 and 3) there is no curve.
+    def test_open_ended_curves_read_past_their_label(self):
+        assert figure_7_18_adhesion_factor(2.0, 5, "sand_over_stiff_clay") == pytest.approx(1.0)
+        assert figure_7_18_adhesion_factor(2.0, 80, "sand_over_stiff_clay") == pytest.approx(0.680, abs=0.001)
+        assert figure_7_18_adhesion_factor(2.0, 50, "soft_over_stiff_clay") == pytest.approx(0.674, abs=0.001)
+        assert figure_7_18_adhesion_factor(2.0, 60, "stiff_clay_only") == pytest.approx(0.902, abs=0.001)
+
+    @pytest.mark.parametrize("db, case", [
+        (9.9, "soft_over_stiff_clay"), (5, "soft_over_stiff_clay"),
+        (9.9, "stiff_clay_only"), (2, "stiff_clay_only"),
+    ])
+    def test_below_d_equals_10b_refused(self, db, case):
+        with pytest.raises(ValueError, match="printed 'D = 10b'"):
+            figure_7_18_adhesion_factor(2.0, db, case)
+
+    @pytest.mark.parametrize("db", [0, -5])
+    def test_non_positive_db_refused(self, db):
+        with pytest.raises(ValueError, match="must be positive"):
+            figure_7_18_adhesion_factor(2.0, db, "sand_over_stiff_clay")
 
     def test_unknown_stratigraphy_raises(self):
         """Unknown stratigraphy raises ValueError."""
