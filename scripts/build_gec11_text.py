@@ -62,7 +62,10 @@ stop, a List entry's stray leader dots; with ``through``, the run of
 lines up to that one replaced, as for the pieces of the unnumbered
 equations printed inside Figure 6-14; a ``replace`` given as a list puts
 in several lines, "" for a paragraph break, as for an equation object the
-text layer sets after its "where" list), ``printed_equations`` (``number``, ``page``, ``formula``,
+text layer sets after its "where" list; a "\\n" inside a replacement line
+stays a line break in the body, so a table without a printed number, such
+as Table 1 of the example specification in chapter 10, is typed in one
+row to a line), ``printed_equations`` (``number``, ``page``, ``formula``,
 ``variables``, optional ``notes``: see
 ``build_printed_text.add_printed_equations``), ``printed_tables`` (a table
 whose text-layer cells come out a column at a time or lose signs and
@@ -111,6 +114,9 @@ import build_printed_text as bpt  # noqa: E402
 
 PACKAGE = "gec_11"
 _DASH = "–—−"
+#: Stands for a line break inside a ``fix_lines`` replacement while the
+#: body is put together (the body's white space is collapsed there).
+_ROW = "␞"
 
 #: Symbol-font characters as the text layer gives them (U+F0xx, the font's
 #: own code xx) and as printed. Parenthesis and bracket pieces of a drawn
@@ -628,6 +634,9 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
         # the typed text
         j = lines.index(f["through"], i) if f.get("through") else i
         rep = f["replace"] if isinstance(f["replace"], list) else [f["replace"]]
+        # a line break inside a replacement ("\n", the rows of a table typed
+        # in from the page) is kept through the body's white-space clean-up
+        rep = [r.replace("\n", _ROW) for r in rep]
         lines[i:j + 1] = rep + [""] * (j - i)
     entries = parse_contents(pages, *vol["contents_pages"])
     figs, tabs = parse_lists(pages, *vol["lists_pages"])
@@ -717,6 +726,7 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
             body = bpt.render_body(stream, k, t, pages, captions_on_page, eq_ids,
                                    chapter=str(n), figs={},
                                    tables_on_page=tables_on_page)
+            body = re.sub(rf"[ \t]*{_ROW}[ \t]*", "\n", body)
             body = _type_tables(body, printed_tabs, tables_typed)
             body = _fill_equations(body, printed_eqs)
             labels = [pages[stream[q][0]]["label"] for q in range(s, t)

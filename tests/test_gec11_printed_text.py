@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5, 6, 7, 8, 9)
+BUILT = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 
 def _chapter(n):
@@ -403,6 +403,49 @@ def test_chapter_9_rss_design_equations_as_printed():
     assert secs["9.2.9"]["figures"] == [
         "Figure 9-9: Seismic stability analysis.",
         "Figure 9-10: Subsurface drainage considerations."]
+
+
+def test_chapter_10_specification_tables_as_printed():
+    secs = _sections()
+    assert len([s for s in secs if s.startswith("10.")]) == 33
+    # the page prints the long title; the contents give "MSE Walls"
+    assert secs["10.9"]["title"] == (
+        "Example Specification for Mechanically Stabilized Earth (MSE) Walls")
+    assert secs["10.9"]["body"].startswith("[p. 10-15]\n\nThe following specification")
+    assert secs["10.10.1"]["title"].startswith("Specification Guidelines For RSS")
+    # Table 1 of the example specification (p. 10-19), typed in row by row
+    body = secs["10.9.a"]["body"]
+    assert "Description | Limit State | Value | Note*\n1. Design Life | All limit states | 75 Years |" in body
+    assert ("2. Effective (Drained) Friction Angle – b. Reinforced Backfill | "
+            "All limit states | 34° to max 40° | 1") in body
+    assert "4. Limiting eccentricity | Service I | B/6 (soil), B/4 (rock) |" in body
+    assert "5. Coefficient of Sliding Friction | Strength (all) | tan[min(φr, φf, φi)] | 3" in body
+    assert ("II. Combined static/earthquake – Grid reinforcement | Strength (all) | "
+            "0.85 | 8,9") in body
+    # Table 1.1 note 6 (p. 10-20) and the heading after the table kept apart
+    assert "6 | For earthquake loading condition, a resistance factor of 0.90 shall be used." in body
+    assert "\n\n(B) Subsurface Drainage Systems:\n\nWalls shall be provided" in body
+    # Tables 2 to 7 (pp. 10-28, 10-30, 10-33)
+    body = secs["10.9.c"]["body"]
+    assert "Sieve Size | Percent Passing\n4 inch (Note 1) | 100\nNo. 40 | 0-60\nNo. 200 | 0-15" in body
+    assert "Resistivity, min. | 3,000 ohm-cm | AASHTO T-288" in body
+    assert "Polyester | pH | > 3 and < 9 | AASHTO T-289" in body
+    assert "Gradation (AASHTO T 27), / Plasticity Index (AASHTO T 90) | One per 5,000 CY" in body
+    assert "AASHTO T 26 for gradation as printed" in body
+    assert "¾-inch | 50-75\nNo. 4 | 0-60" in secs["10.9.d"]["body"]
+    # the tie strips' steel as printed (p. 10-26): A1101, not A1011
+    assert "ASTM A1101, Grade 50 minimum" in secs["10.9.b"]["body"]
+    # Tables S-1 and S-2 (p. 10-43): the strength equation set in note 3
+    body = secs["10.10.1"]["body"]
+    assert body.count("Tal = TULT / (RFD × RFID × RFCR) where RFCR") == 2
+    assert "A | (blank) | (blank) | GW-GM\nA | (blank) | (blank) | SW-SM-SC" in body
+    # Table S3 (p. 10-50) and the erosion mat types (p. 10-46)
+    body = secs["10.10.3"]["body"]
+    assert "Geotextile: Puncture, CLASS 2⁶ | ASTM D6241 | 310 lb (1375 N)" in body
+    assert "Geotextile: Permeability⁴ | ASTM D4491⁵ | ______ cm/s" in body
+    body = secs["10.10.2"]["body"]
+    assert "(i) Type __. Long-term duration (Longer than 2 Years)" in body
+    assert "Shear Stress (td) > 2 psf (95 Pa) to < 5 psf (240 Pa)" in body
 
 
 def test_figure_text_typed_in_from_the_page():
