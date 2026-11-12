@@ -46,7 +46,7 @@ geotech_references/           # Python package (pip install -e .)
     text/                      # Structured chapter JSON (ch 1-10, 164 sections; ch 1-5 rebuilt from the print, ch 6-10 checked against it, REF-04)
   gec_10/                      # FHWA-NHI-18-024 Drilled Shafts (2018 edition)
     tables.py, figures.py      # 2018 edition: Table 8-4/9-1/10-2/11-1, Figure 10-6, Eq 10-21/22
-    text/                      # All 18 chapters complete (FHWA-NHI-18-024, ch 1-18)
+    text/                      # All 18 chapters (FHWA-NHI-18-024, ch 1-18) + Appendices A, B, C, G, H (chapters 19-21, 25, 26)
   gec_11/                      # FHWA-NHI-10-024 Design of MSE Walls & Slopes
     tables.py, figures.py
     text/                      # All 11 chapters complete (FHWA-NHI-10-024, ch 1-11)
@@ -141,7 +141,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 |--------|-----------|-----------|-------|---------------|
 | gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30). Figure catalog 89 rows, 3.22 and Appendices A, B, C and G added 2026-11-10 (REF-84) |
-| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 311 | All 18 chapters complete (ch 1-18); ch 6 and 8 rewritten from the print 2026-11-10 (REF-81): bodies in the print's wording with page markers, Tables 6-1 to 6-3 and 8-1 to 8-4 and Eq. 8-1 typed in from the page; printed 8.1 (Blocks 1 to 22) stored as 8.1 and parts 8.1.a to 8.1.d, the letters not printed |
+| gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 427 | All 18 chapters complete (ch 1-18); ch 6 and 8 rewritten from the print 2026-11-10 (REF-81): bodies in the print's wording with page markers, Tables 6-1 to 6-3 and 8-1 to 8-4 and Eq. 8-1 typed in from the page; printed 8.1 (Blocks 1 to 22) stored as 8.1 and parts 8.1.a to 8.1.d, the letters not printed. Appendices A, B, C, G and H built from the print 2026-11-10 (REF-85) as chapters 19, 20, 21, 25 and 26 (`appendix_a.json` ...): the design example, challenging geomaterials, axial load-deformation (Eqs. C-1 to C-42), alternative lateral models (Eqs. G-1 to G-20), post-grouted shafts; App D-F (specification, checklist, forms) not built, chapters 22-24 left for them |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
 | gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63). Figure catalog 239 rows: chapters 2-5 and 7-10 (206 figures) added 2026-11-10, the catalog had held ch 1 and 6 only (REF-84) |
@@ -163,13 +163,13 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 **Figure Functions** (2): Friction angle vs SPT N60 (Fig 4.3), basal heave Nc (Fig 5.11)
 
-### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (11 functions)
+### GEC-10: Drilled Shafts — FHWA-NHI-18-024 (11 functions, 427 tests)
 
 **Figure/Equation Functions** (5): Alpha adhesion factor for cohesive side resistance (Fig 10-6, Chen 2011 formula α=0.30+0.17/(su/pa)); UU→CIUC and UC→CIUC strength conversion (Eq 10-16/17, Chen & Kulhawy 1993); rock socket side resistance for normal sockets (Eq 10-21, C=1.0 normalized); rock socket side resistance for caving/fractured rock (Eq 10-22 + Table 10-3 αE reduction factors by RQD and joint condition)
 
 **Table Functions** (6): LRFD resistance factors by limit state and geomaterial (Table 8-4, compression vs. uplift keys); lateral resistance factors for p-y pushover (Table 9-1); N*c bearing capacity factor for base resistance in cohesive soil (Table 10-2, su-keyed); p-multipliers for lateral group analysis (Table 11-1, 0.70/0.50/0.35 at 3D); group axial efficiency for cohesionless soils (Section 11.4.1.2, p. 11-6, after AASHTO 10.8.3.6.3, 0.65/0.80/1.0 at 2.5D/3D/4D+; GEC-10 has no Table 11-2, the name is kept). `aashto_reliability_index` was removed (GEC-10 prints no such table; review finding gec-23)
 
-**Text**: All 18 chapters (FHWA-NHI-18-024, 2018 edition) — construction methods (ch 1-7), design process (ch 8), lateral and axial design (ch 9-10), group design (ch 11), structural design (ch 12), load tests (ch 13), specifications/inspection/integrity/acceptance/cost (ch 14-18)
+**Text**: All 18 chapters (FHWA-NHI-18-024, 2018 edition) — construction methods (ch 1-7), design process (ch 8), lateral and axial design (ch 9-10), group design (ch 11), structural design (ch 12), load tests (ch 13), specifications/inspection/integrity/acceptance/cost (ch 14-18); Appendices A (design example, ch 19), B (challenging geomaterials, ch 20), C (axial load-deformation response, ch 21), G (alternative lateral models, ch 25) and H (post-grouted shafts, ch 26)
 
 ### Micropile: FHWA-NHI-05-039 (14 functions, 108 tests)
 

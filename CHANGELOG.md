@@ -1316,6 +1316,37 @@ The limits are unchanged and were re-read from the trace: below the
 Results also carry the chart's note and how the value was interpolated.
 Nothing in the library or the app calls the function.
 
+**Build of 2026-11-10: design and worked-example appendices built from
+the print (app backlog REF-85).** The helper could not search or quote
+these appendices: they were held as a condensed paraphrase or not at all.
+Each is now stored in the print's own wording with a `[p. A-5]` marker
+where each printed page starts; every equation, calculation line and table
+is typed in from a rendered page, and figures are listed by printed
+number. Where the print disagrees with itself the text keeps the print and
+says so "(as printed; ...)". A printed section over the tools' size limit
+is stored as the section and lettered parts (`A.2.a`; the letters are not
+printed).
+
+- **GEC-10 (FHWA-NHI-18-024)**: Appendix A, the design example (chapter
+  19, pp. A-1 to A-29), replaces the three-section paraphrase: sections A,
+  A.1, A.2 with parts A.2.a to A.2.g, A.3; Eqs. A-1 and A-2, Tables A-1 to
+  A-10 and the calculation lines of Steps 10 to 13. New: Appendix B,
+  challenging geomaterials (chapter 20, Tables B-1 and B-2); Appendix C,
+  axial load-deformation response (chapter 21: Vesic 1977, the t-z method,
+  Kulhawy and Carter 1992, Mayne and Harris 1993; Eqs. C-1 to C-42, Table
+  C-1); Appendix G, alternative lateral models (chapter 25: Carter and
+  Kulhawy, Zhang et al.; Eqs. G-1 to G-20); Appendix H, post-grouted
+  shafts (chapter 26). Appendices D to F (guide specification, inspection
+  checklist, forms) are not built; chapters 22 to 24 are left for them and
+  the manifest says so. Print conflicts kept and noted include the example's
+  RSN lines of pp. A-10 and A-11 (932 and 967 lb/ft² against fSN 936 and
+  976 psf),
+  Table A-7's axial 1,836,420 against 2,673.42 kips in the text, and p. C-10's
+  example (a 2-ft socket, 870 psi, 1,751 kips) against Figure C-6 (a 6-ft
+  socket, 2,500 psi).
+
+Tests: `tests/test_gec10_appendices_printed.py` (116).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
