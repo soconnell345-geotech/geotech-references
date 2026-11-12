@@ -3,8 +3,170 @@
   "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
   "volume": 2,
   "chapter": 9,
-  "chapter_title": "Appendix B: Verification Examples (Example 3 – Bearing Capacity of Shallow Foundations)",
+  "chapter_title": "Appendix B: Verification Examples (Examples 1 and 3)",
   "sections": [
+    {
+      "section_id": "B",
+      "title": "APPENDIX B. VERIFICATION EXAMPLES",
+      "summary": "Seven extended examples of the analyses in the manual, mainly from Chapters 4 to 7: longer and more complete design calculations, and a way for a user to verify their use of geotechnical software for relatively simple conditions.",
+      "body": "This appendix contains seven extended examples of the types of analyses presented in this manual, particularly from Chapters 4 to 7. The purpose of these examples is twofold. First, the examples provide the opportunity to present longer and more complete design calculations than is possible in the body of the manual. The second purpose is related to geotechnical software. Many designs are completed using software; however, the results can be difficult to verify. It is hoped that these examples will allow a user to verify their use of geotechnical software for relatively simple conditions prior to the application of such software to more complex design scenarios. (p. 596)",
+      "key_points": [
+        "The examples are meant to let a user verify their use of geotechnical software for relatively simple conditions before applying it to more complex design scenarios (p. 596)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Introduction to the seven verification examples of Appendix B (Chapters 4 to 7 analyses)."
+    },
+    {
+      "section_id": "B-1",
+      "title": "EXAMPLE 1 – CANTILEVER CUT WALL.",
+      "summary": "Example 1: a reinforced concrete cantilever retaining wall for a 15 ft grade change in medium dense sand with a 250 psf road surcharge, sized for overturning, sliding and bearing capacity (B-1.1 to B-1.8).",
+      "body": "Example 1 sizes a cantilever retaining wall for geotechnical stability: B-1.1 Description of the Problem; B-1.2 Goals and Limitations of the Analysis; B-1.3 Evaluation of Forces and Moments; B-1.4 Overturning; B-1.5 Sliding; B-1.6 Bearing capacity; B-1.7 Conclusions from the Analysis; B-1.8 Additional Comments on Overturning Factor of Safety. (pp. 596 to 606)",
+      "key_points": [
+        "Design footing width 9.5 ft; overturning (9.11 ft) controls over sliding (9.09 ft) and bearing capacity (7.68 ft) (Table B-3, p. 604)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.1",
+      "title": "Description of the Problem.",
+      "summary": "15 ft vertical grade change in medium dense sandy soil with a reinforced concrete cantilever wall; road live load 250 psf on top; level finished grade with drainage behind the wall; bearing 3 ft below final grade for frost.",
+      "body": "A land development project requires a 15 ft vertical grade change in medium dense sandy soil. A reinforced concrete cantilever retaining wall has been selected to accomplish the grade change. A road will pass along the top of the wall that imposes a live load of 250 psf. The finished grade behind the wall will be approximately level and a drainage system will be incorporated behind the wall to avoid the development of water pressures acting on the wall. For frost considerations, the retaining wall must bear 3 ft below the final grade at the base of the wall. (p. 596)",
+      "key_points": [
+        "Road live load on top of the wall: 250 psf (p. 596).",
+        "The wall must bear 3 ft below the final grade at the base of the wall for frost considerations (p. 596)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.2",
+      "title": "Goals and Limitations of the Analysis.",
+      "summary": "Size the wall geometry for geotechnical stability by ASD (checks also usable in LRFD): resultant in the middle third, FSL >= 1.5, FBC >= 3.0; t2 = 1 ft, t1 = 1.5 ft, d = 2 ft assumed; passive resistance ignored; traffic pressure over the heel only in the bearing check; Pv = 0; Ph1 at 0.5H, earth force at H/3; toe width 2 ft.",
+      "body": "The goal of this analysis is to size the geometry of the cantilever retaining wall for geotechnical stability considerations. Structural design of the wall and global stability analysis is outside the scope of this example. The geotechnical design of the wall will be approached using allowable stress design (ASD); however, the design checks can readily be applied within a Load and Resistance Factor Design (LRFD) framework. The analysis is approached using the following assumptions and performance requirements: • The wall must have adequate resistance to overturning as evaluated by the eccentricity of the resultant force acting on the base of the wall. Since the wall is bearing on soil, the resultant force must be located within the middle third of the base of the wall. • The wall must have a factor of safety against sliding on the foundation soil, FSL, of at least 1.5. • The wall must have a factor of safety against bearing capacity failure, FBC, of at least 3.0. • For structural considerations, the thickness of the top of the wall stem (t2) is assumed to be equal to 1 ft, the thickness of the bottom of the wall stem (t1) is assumed to be equal to 1.5 ft, and the thickness of the base of the wall (d) is (p. 596) assumed to be equal to 2 ft. In this example, these thicknesses are considered to be appropriate for the type of concrete, grade of steel, steel area ratio, height of wall, and imposed forces. • Passive resistance in front of the wall will be conservatively ignored in the stability calculations. • For overturning and sliding checks, it is assumed that the traffic pressure does not act over the wall heel. For the check of bearing capacity, the traffic pressure is included. These assumptions increase the conservatism in the analyses. • The lateral force imposed on the wall by the traffic pressure (Ph1) can be represented by an equivalent result force acting at half of the wall height, 0.5H, as measured above the base of the wall. • The horizontal component of the earth force (Ph2) is greater than zero. The vertical component of the earth force (Pv) is assumed toequal to zero. This is justified for translational wall movement by an assumption that an active wedge over the wall heel and the active wedge behind the wall heel move vertically together and therefore do not transfer shear force (Figure). • The lateral earth force can be represented by an equivalent result force acting at one third of the wall height, H/3, as measured above the base of the wall. (p. 597) Based on these assumptions, the proposed cantilever retaining wall the geometry shown in Figure B-2. The unknown dimensions include: the width of the wall footing (B), the width of the heel (bh), and the width of the toe (bt). These dimensions will be determined by performing stability checks for overturning, sliding, and bearing capacity. These dimensions are related by: B = bt + t1 + bh. If the width of the toe is assumed to be equal to 2 ft, the width of the footing becomes the only unknown since t1 has been set equal to 1.5 ft for structural design reasons. The design process can be repeated using other assumptions regarding the wall geometry to determine which design makes the most efficient use of concrete. (Labels of Figure B-2: hw = 16.0ʹ, H = 18.0ʹ, Df = 3.0ʹ, d = 2.0ʹ, t2 = 1.0ʹ, t1 = 1.5ʹ, qs = 250 psf; Medium dense compacted sand, γ = 140 pcf, φʹ = 37 deg; Foundation soil, γ = 140 pcf, μ = 0.55; Ph1 at 0.5H = 9.0ʹ and Ph2 at y = 6.0ʹ above the base.) (p. 598)",
+      "key_points": [
+        "Structural design of the wall and global stability analysis is outside the scope of this example (p. 596).",
+        "Since the wall is bearing on soil, the resultant force must be located within the middle third of the base of the wall (p. 596).",
+        "FSL of at least 1.5 against sliding; FBC of at least 3.0 against bearing capacity failure (p. 596).",
+        "Passive resistance in front of the wall is conservatively ignored; the traffic pressure over the heel is left out of the overturning and sliding checks and included in the bearing capacity check (p. 597).",
+        "Pv is assumed equal to zero, justified for translational wall movement by assuming the active wedges over and behind the heel move vertically together (p. 597)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-1 Rationale for Assumption of No Vertical Earth Force",
+        "Figure B-2 Geometry of the Proposed Cantilever Retaining Wall"
+      ],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.3",
+      "title": "Evaluation of Forces and Moments.",
+      "summary": "Rankine KA = 0.25: Ph1 = 1,125 lb/ft, Ph2 = 5,670 lb/ft; weights per foot Wf = 300B, Ws1 = 2400, Ws2 = 600, Wbf = 2,240(B - 3.5), Wff = 280; R = 2,540B - 4560 (lb/ft); moments about the toe in Table B-1; B is typically 50 to 70% of H.",
+      "body": "The values of the lateral forces Ph1 and Ph2 depicted in Figure B-2 are determined assuming that the wall moves enough by sliding and/or rotation to mobilize the active condition. For the backfill having the properties given in Figure B-2, application of Rankine earth pressure theory produces a value for the active earth pressure coefficient equal to 0.25. It has already been assumed above that the vertical earth force, Pv, equals zero. The backfill and a traffic pressure equal to 250 psf produce the following lateral forces per linear foot of wall: Ph1 = qs·KA·H = (250 psf)(0.25)(18 ft) = 1,125 lb/ft; Ph2 = 0.5·KA·γ·H² = 0.5(0.25)(140 pcf)(18 ft)² = 5,670 lb/ft. Assuming the unit weight of concrete is 150 pcf, the weight of the wall footing (Wf) per linear foot equals: Wf = d·γc·B = (2 ft)(150 pcf)B = (300B) lb/ft and the weight of the stem equals the sum of the weights of the uniform (Ws1) and tapered (Ws2) portions of the stem: Ws1 = t2·hw·γc = (1 ft)(16 ft)(150 pcf) = 2400 lb/ft; Ws2 = [(t1 − t2)hw/2]·γc = [(1.5 ft − 1 ft)(16 ft)/2](150 pcf) = 600 lb/ft. The weight of the soil over the heel equals: Wbf = hw·bh·γ = (16 ft)(B − 3.5 ft)(140 pcf) = 2,240·(B − 3.5 ft) = 2,240B − 4560 (lb/ft). (As printed on p. 599: 2,240 × 3.5 = 7,840, so the expansion is 2,240B − 7,840; the reaction R below, 2,540·B − 4560, is the sum with −7,840.) The weight of the soil over the toe equals: Wff = (Df − d)·bt·γ = (3 ft − 2 ft)(2 ft)(140 pcf) = 280 lb/ft. Vertical equilibrium requires that the vertical component of the reaction on the base of the wall (R) equals: R = Wf + Ws1 + Ws2 + Wbf + Wff + Ev = 2,540·B − 4560 (lb/ft). (p. 599) Table B-1 summarizes these forces, their moment arms with respect to rotation about the toe of the wall, and moments. The moment arm of the reaction force (x0) is defined in Figure B-3. The primary task at this point in the design is the selection of B to meet the overturning, sliding, and bearing capacity criteria. Two approaches can be taken. The width can be selected by trial and error, realizing that B is typically 50 to 70% of H. It is also possible to derive equations that can be solved for B based on the design criteria. Both will be illustrated in this example. (p. 600)",
+      "key_points": [
+        "Rankine earth pressure theory gives an active earth pressure coefficient of 0.25 for the backfill of Figure B-2 (p. 599).",
+        "Ph1 = qs·KA·H = (250 psf)(0.25)(18 ft) = 1,125 lb/ft; Ph2 = 0.5·KA·γ·H² = 5,670 lb/ft (p. 599).",
+        "R = Wf + Ws1 + Ws2 + Wbf + Wff + Ev = 2,540·B − 4560 (lb/ft) (p. 599).",
+        "The width can be selected by trial and error, realizing that B is typically 50 to 70% of H (p. 600)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-3 Forces for Wall Stability Analysis"
+      ],
+      "tables": [
+        "Table B-1 Forces and Moments for Wall Stability Analysis — Force ID / Force (lb/ft) / Moment Arm Relative to the Wall Toe (ft) / Moment (ft-lb); Ph1 / 1125 / 9 / 10125; Ph2 / 5670 / 6 / 34020; Wf / 300(B) / −B/2 / −150·B²; Ws1 / 2,400 / −(bt+(t1−t2)+0.5t2) = −3 / −7200; Ws2 / 600 / −(bt+2(t1−t2)/3) = −2.33 / −1400; Wbf / 2240(B−3.5) / −(B+bt+t1)/2 = −(B+3.5)/2 / −1120·(B²−12.25); Wff / 280 / −bt/2 = −1 / −280; R / 2540(B)−4,560 / x0 / x0·(2,540·B−4560) (p. 601)"
+      ],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.4",
+      "title": "Overturning.",
+      "summary": "Moment about the toe from Table B-1: ΣMtoe = 48985 − 1270·B² + 2540·B·x0 − 4560·x0; with x0 = B/3 (middle third), 0 = 48985 − 1520·B − 423.33·B², giving a minimum width of 9.11 ft.",
+      "body": "Using the forces and moments provided in Table B-1, the moment about the toe equals (p. 600) ΣMtoe = 48985 − 1270·B² + 2540·B·x0 − 4560·x0. The wall is acceptable with respect to overturning when R is located within the middle third of the base of the wall. The minimum value of x0 from the toe that satisfies this requirement is equal to B/3. Substituting B/3 for x0 enables the minimum width that satisfies the overturning requirement to be found by satisfying moment equilibrium: Σ0 = 48985 − 1520·B − 423.33·B². Solving this quadratic equation for B yields a minimum width equal to 9.11 ft. (p. 601)",
+      "key_points": [
+        "The wall is acceptable with respect to overturning when R is located within the middle third of the base; the minimum x0 from the toe is B/3 (p. 601).",
+        "ΣMtoe = 48985 − 1270·B² + 2540·B·x0 − 4560·x0; with x0 = B/3 the minimum width is 9.11 ft (p. 601)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.5",
+      "title": "Sliding",
+      "summary": "PH = Ph1 + Ph2 = 6795 lb/ft; T = R·tan δ = (2540·B − 4560)(0.55) = 1397·B − 2508; FSL = 0.2056·B − 0.3691, so FSL = 1.5 gives B = 9.09 ft.",
+      "body": "The sliding check is performed by comparing the mobilized horizontal shear load on the base of the wall (PH) to the available shear resistance (T) as shown in Figure 4-27. In this case, the mobilized shear load equals: PH = Ph1 + Ph2 = 6795 lb/ft and the available resisting shear force equals: T = R·tan δ = (2540·B − 4560)(0.55) = 1397·B − 2508 (lb/ft). The factor of safety against sliding equals: FSL = T/PH = (1397·B − 2508)/6795 = 0.2056·B − 0.3691. If FSL is set equal to 1.5, this equation can be solved for B equal to 9.09. (p. 601)",
+      "key_points": [
+        "FSL = T/PH = (1397·B − 2508)/6795 = 0.2056·B − 0.3691; FSL = 1.5 gives B equal to 9.09 (p. 601)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.6",
+      "title": "Bearing capacity",
+      "summary": "Surcharge over the heel included: Wbf+q = 2490(B − 3.5), R = 2,790·B − 5435; Meyerhof with Nq = 42.92 and Nγ = 53.27 for 37 deg, inclination factors iq = (1 − θ/90)², iγ = (1 − θ/φʹ)², equivalent width 2x0, FBC = 3.0; iterating (Table B-2) gives B = 7.68 ft.",
+      "body": "Unlike the checks of overturning and sliding, it is conservative to include the surcharge over the heel of the wall, if this is possible to occur, in the bearing capacity check. The inclusion of the surcharge over the heel changes the forces Wbf and R. The weight of the soil and the surcharge over the heel equals Wbf+q = bh·(hw·γ + qs) = (B − 3.5 ft)[(16 ft)(140 pcf) + 250 psf] = 2490(B − 3.5 ft) (lb/ft). The moment arm associated with Wbf+q is the same as Wbf and is equal to –(B+3.5)/2. The moment produced by Wbf+q is equal to −1245(B²−12.25). The reaction on the base of the wall with the addition of the surcharge over the heel equals: R = Wf + Ws1 + Ws2 + Wbf+q + Wff + Ev = 2,790·B − 5435 (lb/ft). The moment produced by R is equal to x0·(2790·B−5435). Using the forces and moments provided in Table B-1, substituting Wbf+q and R that include the surcharge over the toe, the moment about the toe equals ΣMtoe = 50,516 − 1395·B² + 2790·B·x0 − 5435·x0. (As printed on p. 602: \"surcharge over the toe\"; the surcharge added in this section is the one over the heel.) Moment equilibrium requires that x0 = (1395·B² − 50,516)/(2790·B − 5435) where the value of x0 will be found using bearing capacity theory. The Meyerhof method was selected for the analysis of bearing capacity. The backfill loads cause the pressure on the base of the foundation to be eccentric and inclined. The uniform applied bearing pressure using the equivalent footing approach is: qgross = R/(2x0) = (2790·B − 5435)/(2x0). The load inclination can be found based on the normal and shear forces on the base, θ = tan⁻¹(PH/R) = tan⁻¹[6795/(2790·B − 5435)] (p. 602) For soil with a friction angle of 37 degrees, the Meyerhof bearing capacity factors are Nq = 42.92 and Nγ = 53.27. The inclination factors are found according to: iq = (1 − θ/90)² and iγ = (1 − θ/φʹ)². The bearing capacity for the foundation with the inclined load is found as: qult = Df·γ·Nq·iq + 0.5(2x0)·γ·Nγ·iγ = (3 ft)(140 pcf)(42.92)iq + x0(140 pcf)(53.27)iγ. Substituting known parameter values and dividing qult by FBC of 3.0 gives the allowable bearing pressure: qallow = 6009·(1 − θ/90)² + 2486·x0·(1 − θ/φʹ)². Setting qgross equal to qallow and solving for B results in: B = 1.782x0²·(1 − θ/φʹ)² + 4.308x0·(1 − θ/90)² + 1.948. Trial widths (Btrial) can be selected and used to calculate x0 and θ. These can then be used to calculate B. An iterative process or spreadsheet can be used to the solution where B = Btrial. This solution technique results in B equal to 7.68 ft as shown in Table B-2 and in Figure B-4. (p. 603)",
+      "key_points": [
+        "It is conservative to include the surcharge over the heel of the wall, if this is possible to occur, in the bearing capacity check (p. 602).",
+        "The backfill loads cause the pressure on the base to be eccentric and inclined; qgross = R/(2x0) by the equivalent footing approach (p. 602).",
+        "For a friction angle of 37 degrees the Meyerhof factors are Nq = 42.92 and Nγ = 53.27; iq = (1 − θ/90)², iγ = (1 − θ/φʹ)² (p. 603).",
+        "The iteration gives B equal to 7.68 ft (Table B-2, Figure B-4) (p. 603)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-4 Graphical Implicit Solution for Footing with Desired FBC"
+      ],
+      "tables": [
+        "Table B-2 Implicit Solution for Footing Width with Desired FBC — Assumed Btrial (ft) / Calculated based on Btrial: x0 (ft) / θ (deg) / Resulting Bcalc (ft) / Difference; 7.50 / 1.805 / 23.686 / 6.920 / −0.580; 7.55 / 1.856 / 23.497 / 7.130 / −0.420; 7.60 / 1.906 / 23.312 / 7.343 / −0.257; 7.65 / 1.956 / 23.129 / 7.559 / −0.091; 7.70 / 2.006 / 22.949 / 7.779 / 0.079; 7.75 / 2.055 / 22.771 / 8.002 / 0.252; 7.80 / 2.104 / 22.596 / 8.228 / 0.428; 7.85 / 2.153 / 22.424 / 8.458 / 0.608; 7.90 / 2.201 / 22.254 / 8.691 / 0.791; 7.95 / 2.248 / 22.086 / 8.927 / 0.977; 8.00 / 2.296 / 21.921 / 9.167 / 1.167; Using Solver: 7.68 / 1.983 / 23.032 / 7.677 / 0.000 (p. 603)"
+      ],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.7",
+      "title": "Conclusions from the Analysis.",
+      "summary": "Minimum widths: overturning 9.11 ft, sliding 9.09 ft, bearing capacity 7.68 ft, so overturning controls; design B = 9.5 ft gives x0/B = 0.35, FSL = 1.58 and FBC = 6.35 (Table B-4).",
+      "body": "Table B-3 summarizes the minimum footing widths that meet the stability requirements with respect to overturning, sliding, and bearing capacity. This analysis shows that the footing width is controlled by overturning stability in this case. Based on these stability checks, a design footing width equal to 9.5 feet is satisfactory. Table B-4 provides the stability checks using the design value of B equal to 9.5 ft. Since the minimum required widths for overturning and sliding are close, both the overturning check and sliding checks are close to the minimum requirements for the design value of B. However, the design value of B is considerably greater than the minimum required value of 7.68 ft for bearing capacity, which gives the expected result of a factor of safety that significantly exceeds 3.0. (p. 604) (As printed in Table B-4, p. 605: the Overturning row gives \"FSL = 1.58 > 1.5\" and the Sliding row \"x0/B = 0.35 > 1/3\"; each outcome belongs to the other row, see B-1.4 and B-1.5.)",
+      "key_points": [
+        "The footing width is controlled by overturning stability in this case; a design footing width equal to 9.5 feet is satisfactory (p. 604).",
+        "The design B is considerably greater than the 7.68 ft needed for bearing capacity, giving a factor of safety that significantly exceeds 3.0 (p. 604)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-3 Summary of Minimum Footing Widths Meeting Stability Requirements — Stability check / Required B (ft); Overturning (x0=B/3) / 9.11; Sliding (FSL = 1.5) / 9.09; Bearing capacity (FBC = 3) / 7.68 (p. 604)",
+        "Table B-4 Summary of Stability Checks for Example 1 — Stability check for B = 9.5 ft / Outcome; Overturning / FSL = 1.58 > 1.5; Sliding / x0/B = 0.35 > 1/3; Bearing capacity / FBC = 6.35 > 3 (p. 605) (As printed: the Overturning and Sliding outcomes are each in the other's row.)"
+      ],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-1.8",
+      "title": "Additional Comments on Overturning Factor of Safety.",
+      "summary": "FOT = stabilizing/destabilizing moments about the toe (moment of R neglected) = (1270·B² − 4840)/44145 = 2.49 for B = 9.5 ft; FOT = 1 corresponds to x0 = 0 and B = 6.21 ft; x0 = a(W/(W + Pv))(1 − 1/FOT) with a = 5.61 gives x0 = 3.36, x0/B = 0.353.",
+      "body": "Overturning resistance can also be checked using a factor of safety for overturning, FOT, defined as the ratio of stabilizing moments to destabilizing moments about the toe of the wall. Referring to Table B-1, the absolute value of the moments having a negative sign according to the adopted sign convention are stabilizing moments that are located in the numerator of the factor of safety calculation. The moments in Table B-1 having a positive sign are destabilizing moments that are located in the denominator of the factor of safety calculation. Note that the moment from R is neglected in this calculation as: FOT = Resisting moments/Driving moments = (1270·B² − 4840)/44145 = 2.49. For the design base width of 9.5 ft, FOT is 2.49. It is instructive to consider how this factor of safety interacts with the design criterion requiring R to be in the middle third of the footing base. Recognizing that the resultant vertical force acting on the base of the wall is a destabilizing moment, the state of limit equilibrium corresponds to the resultant being located at the toe of the wall, i.e. x0 = 0, as shown in Figure B-5. (p. 605) For this condition with x0 = 0 ft, the wall will have FOT = 1. For this example, a footing having a width of 6.21 ft corresponds to FOT = 1, which is found by solving: ΣMtoe = 48,985 − 1270·B² + 2540·B·x0 − 4560·x0 = 0; 48,985 = 1270·B². The position of the reaction is related to FOT according to x0 = a[W/(W + Pv)](1 − 1/FOT) (xx) where W equals the sum of Wff, Wf, Wbf, Ws1, and Ws2 and a is the moment arm for W found by dividing the sum of the moments produced by wall and soil over the heel by the sum of the weights of the wall and soil over the heel. (As printed on p. 606: the equation number is \"(xx)\".) For the current example, Ev = 0 and a equals 5.61 resulting in: x0 = 5.61(1 − 1/2.49) = 3.36. For FOT equal to 2.49, x0 = 3.36 and x0/B = 0.353. (p. 606)",
+      "key_points": [
+        "FOT is the ratio of stabilizing to destabilizing moments about the toe; the moment from R is neglected (p. 605).",
+        "FOT = (1270·B² − 4840)/44145 = 2.49 for the design base width of 9.5 ft (p. 605).",
+        "The state of limit equilibrium corresponds to the resultant at the toe, x0 = 0, where FOT = 1; here a 6.21 ft footing (pp. 605 to 606).",
+        "x0 = a[W/(W + Pv)](1 − 1/FOT); with a = 5.61 and FOT = 2.49, x0 = 3.36 and x0/B = 0.353 (p. 606)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-5 Retaining Wall Conditions with FOT = 1"
+      ],
+      "tables": [],
+      "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
     {
       "section_id": "B-3",
       "title": "EXAMPLE 3 – BEARING CAPACITY OF SHALLOW FOUNDATIONS.",
