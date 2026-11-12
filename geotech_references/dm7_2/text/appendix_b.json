@@ -3,7 +3,7 @@
   "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
   "volume": 2,
   "chapter": 9,
-  "chapter_title": "Appendix B: Verification Examples (Examples 1 and 3)",
+  "chapter_title": "Appendix B: Verification Examples (Examples 1 to 3)",
   "sections": [
     {
       "section_id": "B",
@@ -166,6 +166,167 @@
       ],
       "tables": [],
       "applicability": "Worked allowable stress design of a reinforced concrete cantilever retaining wall (15 ft grade change, medium dense sand backfill, 250 psf traffic surcharge, Rankine active pressure, Meyerhof bearing capacity with load inclination): footing width B for overturning (resultant in the middle third), sliding (FSL >= 1.5) and bearing capacity (FBC >= 3.0); structural design and global stability are outside its scope."
+    },
+    {
+      "section_id": "B-2",
+      "title": "EXAMPLE 2 – ANCHORED CUT WALL.",
+      "summary": "Example 2: an anchored steel sheetpile bulkhead retaining 24 ft of sand fill with a 500 psf surcharge, designed by the Free Earth Support method for embedment, tierod force, sheetpile section and continuous deadman anchor (B-2.1 to B-2.8).",
+      "body": "Example 2 designs an anchored bulkhead: B-2.1 Description of the Problem; B-2.2 Goals and Limitations of the Analysis; B-2.3 Calculation of Lateral Pressures and Forces; B-2.4 Embedment of Sheet Pile and Tie Rod Force; B-2.5 Selection of Sheet Pile Section; B-2.6 Location of Maximum Moment; B-2.7 Design of Continuous Anchor; B-2.8 Conclusions from the Analysis. (pp. 606 to 617)",
+      "key_points": [
+        "Design: PZ-22 sheetpile 42 ft long with 18 ft embedment; tierods at 6 ft, 56 ft long, 58 kips (connections 69 kips); deadman 10.5 ft deep, 8.5 ft high, 2 ft wide (Table B-13, p. 617)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.1",
+      "title": "Description of the Problem.",
+      "summary": "Land reclamation bulkhead with the landside 24 ft above the dredge line, one row of horizontal steel tierods at 6 ft to a continuous concrete deadman, tierod 1 ft above water, sandy dredged fill, waterside water 2 ft below landside, surcharge 500 psf; Figure B-6: Layer 1 γʹ = 115 pcf, φʹ = 32°, Layer 2 γʹ = 120 pcf, φʹ = 37°, δ = φʹ/2.",
+      "body": "An anchored bulkhead is needed for a land reclamation project that will provide a landside elevation that is 24 ft higher than the dredge line on the waterside (Figure B-6). The bulkhead will be anchored using a single row of anchors. The anchors will consist of horizontal steel tierods spaced every 6 ft and connected to a continuous concrete deadman located behind the bulkhead. The tierod elevation is established 1-ft above the water elevation so the tierod can be placed in the dry. The site is sandy and dredged onsite soils will be used as fill. Due to tidal effects, the waterside water elevation is to be considered 2 ft below the landside water elevation. Figure B-6 provides relevant material properties, including the interface friction angle between the soil and sheetpile, δ. During the service life of the project, industrial activities will impose ground pressures that can be modeled as a uniform surcharge equal to 500 psf. (p. 606) (Labels of Figure B-6: qs = 500 psf; Htop = 24ʹ, Htie = 19ʹ, Hw,p = 16ʹ, Hw,a = 18ʹ, D = need to find; Layer 1, Medium dense sand backfill, γʹ = 115 pcf, φʹ = 32°, δ = φʹ/2; Layer 2, Medium dense sand, γʹ = 120 pcf, φʹ = 37°, δ = φʹ/2.) (p. 607)",
+      "key_points": [
+        "Tierods spaced every 6 ft to a continuous concrete deadman; the tierod is 1 ft above the water so it can be placed in the dry (p. 606).",
+        "The waterside water elevation is to be considered 2 ft below the landside water elevation (tidal effects) (p. 606).",
+        "Industrial activities are modeled as a uniform surcharge equal to 500 psf (p. 606)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-6 Proposed Anchored Bulkhead in Sand"
+      ],
+      "tables": [],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.2",
+      "title": "Goals and Limitations of the Analysis.",
+      "summary": "Find the sheetpile section, minimum embedment and continuous anchor size by the Free Earth Support Method: factored strengths with a factor of safety of 2.0 for passive resistance; embedment from moment equilibrium increased by 20% for scour and dredging; log spiral passive, Rankine active; corrosion and the tierod, connection, turnbuckle and wale design not included.",
+      "body": "The goals of this analysis are to determine an appropriate steel sheetpile section, minimum embedment of the sheetpile, and size of the continuous anchor needed to provide adequate resistance. The Free Earth Support (FES) Method is applied to this example with the following assumptions and performance requirements: • Allowable stress design will be applied using factored strengths for the evaluation of passive resistance of the embedded sheetpile and deadman anchor. A factor of safety equal to 2.0 is applied to determine the available resistance. This factor of safety accounts for typical uncertainty and variability with respect to soil properties as well the lateral displacements required to mobilize resistance. • The sheetpile embedment determined by moment equilibrium calculations will be increased by 20% to account for the potential for scour and future dredging. • Log spiral earth pressure theory is applied to estimate passive resistance while Rankine earth pressure theory is applied to estimate active pressures. • This analysis ignores the reduction of the sheetpile section due to corrosion over the service life of the bulkhead. • The selection of an acceptable tierod section, connections, turnbuckles, and wales are important design aspects that are not included in this example. (p. 607)",
+      "key_points": [
+        "The Free Earth Support (FES) Method is applied, with factored strengths and a factor of safety equal to 2.0 for the passive resistance of the embedded sheetpile and deadman anchor (p. 607).",
+        "The embedment from moment equilibrium is increased by 20% to account for the potential for scour and future dredging (p. 607).",
+        "The analysis ignores the reduction of the sheetpile section due to corrosion over the service life (p. 607)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.3",
+      "title": "Calculation of Lateral Pressures and Forces.",
+      "summary": "Rankine KA (level backfill, no vertical component: KA,h = KA) = 0.31 and 0.25; passive by log spiral (Equation 4-12) with factored φʹ* = tan⁻¹(tan φʹ/F) and δ* = φʹ*(δ/φʹ), KP,h = KP·cos(δ*) = 2.1 and 2.4 (Table B-5); pressures split into eleven shapes (Figure B-7, Table B-6), ΔP = [(Δσʹh,top + Δσʹh,bot)/2]·hshape.",
+      "body": "Table B-5 summarizes the active and passive earth pressure coefficients used in the analysis. Because Rankine theory is used for active pressures and the ground surface behind the bulkhead is level, there is no vertical component to the active pressure. Therefore, the coefficient of horizontal active earth pressure (KA,h) is equal to KA. Because log spiral earth pressure theory is used for passive pressure and the interface friction angle is greater than zero, there is a vertical component to the passive pressure and the coefficient of horizontal passive earth pressure coefficient (KP,h) must be found. (Table B-5 column formulas: KA = (1 − sin φʹ)/(1 + sin φʹ); φʹ* = tan⁻¹(tan φʹ/F); δ* = φʹ*(δ/φʹ); KP,h = KP·cos(δ*); Find log-spiral KP using Equation 4-12: ln KP = ln[(1 + sin φʹ*)/(1 − sin φʹ*)]·[1.443(δ/φʹ)·sin φʹ* + 1].) (Recomputed for this library: Equation 4-12 with φʹ* = 20.6 deg and δ* = 10.3 deg gives KP = 2.51 and KP,h = 2.47 for layer 2; the print carries 2.4 here and in Table B-6.) Figure B-7 shows the distribution of earth pressures and net water pressure on both sides of the sheetpile. The pressures are divided into simple triangular and rectangular shapes to simplify the calculation of forces and moments. Table B-6 presents a summary of the pressure calculations. The vertical stresses listed in the table equal the incremental change in vertical effective stress at the top and bottom of the numbered shape that form the pressure distribution, Δσʹv,top and Δσʹv,bot, respectively. The horizontal effective stresses at the top and bottom of each shape, Δσʹh,top and Δσʹh,bot, respectively, are found by multiplying by the appropriate value of KA or KP,h. (p. 608) The lateral force due to each numbered shape that forms the lateral pressure distribution is found by: ΔP = [(Δσʹh,top + Δσʹh,bot)/2]·hshape where: hshape = the height of each numbered shape. (p. 610)",
+      "key_points": [
+        "With Rankine active pressure and a level ground surface there is no vertical component to the active pressure, so KA,h equals KA (p. 608).",
+        "With log spiral passive pressure and an interface friction angle greater than zero, there is a vertical component and KP,h must be found (p. 608).",
+        "Factored angles: φʹ* = tan⁻¹(tan φʹ/F), δ* = φʹ*(δ/φʹ); KP,h = KP·cos(δ*) with KP from Equation 4-12 (Table B-5, p. 608).",
+        "ΔP = [(Δσʹh,top + Δσʹh,bot)/2]·hshape for each numbered shape (p. 610)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-7 Distribution of Earth and Water Pressures on the Sheetpile"
+      ],
+      "tables": [
+        "Table B-5 Earth Pressure Coefficients Used in the Design — Soil Layer / φʹ (deg) / Rankine Active, KA [KA = (1 − sin φʹ)/(1 + sin φʹ)] / Factored Friction Angles: φʹ* (deg) [φʹ* = tan⁻¹(tan φʹ/F)] / δ* (deg) [δ* = φʹ*(δ/φʹ)] / Factored Passive Resistance KP,h [KP,h = KP·cos(δ*)]; 1 / 32 / 0.31 / 17.4 / 8.7 / 2.1; 2 / 37 / 0.25 / 20.6 / 10.3 / 2.4; Find log-spiral KP using Equation 4-12: ln KP = ln[(1 + sin φʹ*)/(1 − sin φʹ*)]·[1.443(δ/φʹ)·sin φʹ* + 1] (p. 608)",
+        "Table B-6 Summary of Lateral Pressure and Force Calculations — Force ID / Δσʹv,top (psf) / Δσʹv,bot (psf) / K (note A) / Δσʹh,top (psf) / Δσʹh,bot (psf) / hshape (ft) / ΔP (lb/ft); 1 / 500 / 500 / 0.31 / 155 / 155 / 24 / 3720; 2 / 0 / 690 / 0.31 / 0 / 214 / 6 / 642; 3 / 690 / 690 / 0.31 / 214 / 214 / 18 / 3850; 4 / 0 / 947 / 0.31 / 0 / 294 / 18 / 2642; 5 / 500 / 500 / 0.25 / 125 / 125 / D / 125·D; 6 / 690 / 690 / 0.25 / 172 / 172 / D / 172·D; 7 / 947 / 947 / 0.25 / 237 / 237 / D / 237·D; 8 / 0 / 57.6(D) / 0.25 / 0 / 14.4(D) / D / 7.2·D²; 9 / 0 / 57.6(D) / −2.4 / 0 / −138(D) / D / −69.1·D²; 10 / 0 / 125 / 1 / 0 / 125 / 2 / 125; 11 / 125 / 125 / 1 / 125 / 125 / 16+D / 125·(D+16); Note A: The sign applied to K establishes the direction of the force as defined in Figure. (p. 609)"
+      ],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.4",
+      "title": "Embedment of Sheet Pile and Tie Rod Force.",
+      "summary": "Moment equilibrium about the tierod (Table B-7, Figure B-8) gives D = 14.45 ft; design embedment 1.2 × 14.45 rounded up = 18 ft; horizontal equilibrium gives a tierod force of −9,568 lb/ft; connections 11,400 lb/ft (+20%), tierod 9,600 lb/ft; at 6 ft spacing 58 kips and 69 kips.",
+      "body": "The embedment of the sheetpile is found by computing moment equilibrium about the elevation of the tierod. Referring to the numbered shapes in Figure B-7 and Table B-6, the elevation of the centroid of each component, y, relative to the dredge line is listed in Table B-7. Calculating the centroid as a separate step simplifies making changes to the tierod elevation in the design. The moment arm about the tierod elevation is equal to the difference between the elevation of the tierod and the elevation of the centroid for each component of the lateral force, i.e. Ht − y. The moment about the tierod elevation is found by multiplying the force listed in Table B-6 by the moment arm. The embedded depth of the sheetpile is found by summing moments and satisfying moment equilibrium. Calculations can be performed using an iterative guess and check technique or application of an implicit solving algorithm in a spreadsheet, e.g. Solver macro in MS Excel. Figure B-8 shows the sum of moments versus sheetpile embedment. (p. 610) The calculated sheetpile embedment for this example equals 14.45 ft. This value will be used in subsequent calculation steps; however, a design value is found by increasing the embedment by 20% and rounding up to nearest whole foot. In this case, the design embedment is equal to 18 ft. With the embedment of the sheetpile known, the magnitude of tierod force is found by satisfying horizontal force equilibrium. This calculation is performed using the embedment equal to 14.45 ft. For the sign convention defined in Figure B-7, the tierod force is equal to −9,568 lb/ft. This value will be used to design the sheeting and deadman in subsequent calculation steps. However, a value for designing the connection of the tierod to the sheetpile and deadman is found by increasing the tierod force by 20% and rounding up to nearest 100 lb/ft. In this case, the connections of the tierod to the sheetpile and deadman should be designed for 11,400 lb/ft. (As printed on p. 611: 1.2 × 9,568 = 11,482 lb/ft, which rounds up to 11,500 lb/ft; the 69 kips below equals 6 ft × 11,500 lb/ft.) The tierod itself may be designed using the calculated value, with appropriate rounding, e.g. 9,600 lb/ft. For a tierod spacing of 6 ft, the tierod should be designed for a force equal to 58 kips, while the tierod connections should be designed for a force equal to 69 kips. (p. 611)",
+      "key_points": [
+        "The embedment is found by moment equilibrium about the tierod elevation; the moment arm is Ht − y (p. 610).",
+        "Calculated embedment 14.45 ft; the design value adds 20% and rounds up to the nearest whole foot, 18 ft (p. 611).",
+        "Tierod force −9,568 lb/ft by horizontal equilibrium with D = 14.45 ft; connections are designed for the force increased by 20% (p. 611).",
+        "At 6 ft spacing the tierod should be designed for 58 kips and the tierod connections for 69 kips (p. 611)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-8 Sum of Moments versus Trial Values of Sheet Pile Embedment"
+      ],
+      "tables": [
+        "Table B-7 Summary of Moment Calculations — Force ID / Elevation of Centroid Relative to Dredge Line, y (ft) / Moment Arm at Tierod Elevation (ft) / Moment (ft-lbs); 1 / Htop/2 = 12 / Ht − y = 19−12 = 7 / 26,040; 2 / Hw,a + (Htop − Hw,a)/3 = 20 / −1 / −642; 3 / Hw,a/2 = 9 / 10 / 38,500; 4 / Hw,a/3 = 6 / 13 / 34,346; 5 / −D/2 / 19+D/2 / 125(D)(19+D/2); 6 / −D/2 / 19+D/2 / 172(D)(19+D/2); 7 / −D/2 / 19+D/2 / 237(D)(19+D/2); 8 / −(2/3)D / 19+(2/3)D / 7.2(D²)(19+(2/3)D); 9 / −(2/3)D / 19+(2/3)D / −69.1(D²)(19+(2/3)D); 10 / Hw,p + (Hw,a − Hw,3)/3 = 16.67 / 2.33 / 291; 11 / (Hw,p + D)/2 − D = (16 + D)/2 − D / 19+D−(16+D)/2 / 125(D+16)(19+D−(16+D)/2) (p. 610) (As printed: \"Hw,3\" in row 10, where 16 + (18 − 16)/3 = 16.67 uses Hw,p.)"
+      ],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.5",
+      "title": "Selection of Sheet Pile Section.",
+      "summary": "Steps to select the sheet: locate the maximum moment, solve for it, apply Rowe's moment reduction (Section 4-7.2), and select a sheet with an adequate section modulus (B-2.6).",
+      "body": "This section provides the steps need to select an appropriate sheet pile section. The process involves identifying the location of the maximum moment, solving for the maximum moment, applying Rowe’s moment reduction described in Section 4-7.2, and selecting a sheet with an adequate section modulus. (p. 611)",
+      "key_points": [
+        "Locate and solve for the maximum moment, apply Rowe’s moment reduction (Section 4-7.2), and select a sheet with an adequate section modulus (p. 611)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.6",
+      "title": "Location of Maximum Moment.",
+      "summary": "Zero shear at hV=0 = 4.57 ft above the dredge line (Figures B-9, B-10); Mmax = 63.4 ft-kips (Table B-8); PZ-22 (Table B-9); ρ = (Htop + D)⁴/(E·I) = 18.52 in/lb per foot; Rowe for medium dense sand Mdesign/Mmax = 2.03/ln ρ − 0.076 = 0.62, Mdesign = 39.3 ft-k; Sreq = 12.25 in³ per foot < 18.1 in³/ft provided.",
+      "body": "The elevation of the maximum moment above the dredge line is found by solving for the elevation of zero shear force. The location of zero shear force is found by integrating the pressure distribution in the direction of the dredge line starting from the top of the bulkhead. The shaded portion of Figure B-9 graphically shows the integration of the pressure distribution from the top of the bulkhead to the elevation of zero shear force, hV=0 = 4.57 ft. Figure B-10 plots shear force against height above the dredge line. (p. 612) The maximum bending moment in the sheetpile occurs at the elevation of zero shear, hV=0, calculated in the previous section. Table B-8 summarizes the integrated loads to the elevation of zero shear as indicated by the shaded region in Figure B-9, the elevation of the centroid of each shaded area component, the moment arm relative to hV=0, and the moment. The sum of the components of moment equals the maximum moment, Mmax, equal to 63.4 ft-kips. The steel sheetpile selected for the anchored bulkhead must have an elastic section modulus, S, that will keep the steel sufficiently below yield when subjected to the anticipated bending moment. Recall that the bending moment divided by the section modulus gives the bending stress. For this example, a PZ-22 section is selected for consideration. The PZ-22 section has the properties listed in Table B-9. Since the sheetpile is flexible and the soil is compressible, the maximum moment is expected to be less than the value calculated in the previous section. The method proposed by Rowe (1952) in Figure 4-36 reduces the maximum calculated moment to a value that is expected for the given stiffness of the steel section and soil. The reduction is based on the flexibility number, which is: (p. 613) ρ = (Htop + D)⁴/(E·I) = [(12 in/1 ft)(24 ft + 14.45 ft)]⁴/[(29,000 ksi)(84.4 in⁴)] = 18.52 in/lb per foot. For medium dense sand, the moment reduction proposed by Rowe (1952) is given by Mdesign/Mmax = 2.03/ln ρ − 0.076 = 2.03/ln(18.52) − 0.076 = 0.62. Applying the moment reduction to the maximum moment calculated in the previous section yields a design moment equal to Mdesign = Mmax(Mdesign/Mmax) = 63.4 ft−k(0.62) = 39.3 ft−k. The required section modulus per linear foot of bulkhead is equal to Sreq = Mdesign/fs = 39.3 ft−k(12 in/ft)/38.5 ksi = 12.25 in³ per foot. The PZ-22 sheetpile is an acceptable choice since the provided S equals 18.1 in³/ft, which exceeds the required value of 12.25 in³. A lighter-duty sheetpile section should be checked in cases where the section modulus of the candidate sheetpile significantly exceeds the required value. As stated above, this analysis ignores section loss due to corrosion over the service life of the bulkhead. (p. 614)",
+      "key_points": [
+        "The maximum moment is at the elevation of zero shear, found by integrating the pressure distribution from the top of the bulkhead: hV=0 = 4.57 ft (p. 612).",
+        "Mmax = 63.4 ft-kips (Table B-8) (p. 613).",
+        "Since the sheetpile is flexible and the soil is compressible, Rowe (1952) (Figure 4-36) reduces the calculated maximum moment, based on the flexibility number (p. 613).",
+        "ρ = (Htop + D)⁴/(E·I) = 18.52 in/lb per foot; for medium dense sand Mdesign/Mmax = 2.03/ln ρ − 0.076 = 0.62; Mdesign = 39.3 ft-k (p. 614).",
+        "Sreq = Mdesign/fs = 12.25 in³ per foot; PZ-22 provides 18.1 in³/ft; a lighter-duty section should be checked where S significantly exceeds the required value (p. 614)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-9 Integration of Pressure Distribution to Locate Elevation of Zero Shear Force",
+        "Figure B-10 Shear Force Versus Height Above the Dredge Line"
+      ],
+      "tables": [
+        "Table B-8 Calculation of the Maximum Bending Moment in the Sheet Pile — Force ID / Force (lb) / Elevation of Centroid Relative to Dredge Line, y (ft) / Moment Arm at hV=0 (ft) / Moment (ft-lb); Tierod / −9,568 / 19.0 / −14.4 / 138,073; 1 / 3,012 / 14.3 / −9.7 / −29,261; 2 / 642 / 20.0 / −15.4 / −9,902; 3 / 2,873 / 11.3 / −6.7 / −19,292; 4 / 1,471 / 9.0 / −4.5 / −6,584; 10 / 125 / 16.7 / −12.1 / −1,510; 11 / 1,427 / 10.3 / −5.7 / −8,154; Sum = 63,370 (p. 613)",
+        "Table B-9 Properties of the PZ-22 Hot Rolled Steel Sheet Pile — Property / Value; Width of sheet / 22 in.; Section modulus, S, per sheet / 33.1 in³; Section modulus, S, per foot / 18.1 in³; Moment of interia, I, per sheet / 154.7 in⁴; Moment of interia, I, per foot / 84.4 in⁴; Young’s Modulus, E / 29,000 ksi; Yield stress, fs / 38.5 ksi (p. 613)"
+      ],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.7",
+      "title": "Design of Continuous Anchor.",
+      "summary": "Deadman at least 56 ft behind the sheetpile (Figure B-11, Layer 1 angles); unfactored KA = 0.31 and factored KP,h = 2.1, net 1.79; δmob = min{(δ/φʹ)·φʹ*, tan⁻¹(Wa/T)} (Duncan and Mokwa 2001) needs h1 ≥ 4.9 ft; ΣFh = 0 (Table B-10) gives h = 10.1 ft, design 10.5 ft (Table B-11); the tierod 5 ft below grade is about 14 in above the resultant at 3.93 ft (Table B-12).",
+      "body": "Since this particular land reclamation project imposes no spatial constraints behind the bulkhead, the anchor can be placed far enough behind the bulkhead so that the active zone behind bulkhead does not interfere with the passive zone in front of the anchor. As shown in Figure B-11, the anchor should be placed at least 56 ft behind the sheetpile in order to have the potential to develop full resistance (see also Figure 4-39). Note that the inclinations of the active wedge and stable backslope are based on Layer 1 which has the lower friction angle. In Figure B-11, Construction Line 1 defines the active wedge behind the sheetpile, Construction Line 2 defines the inclination of a stable backslope, and Construction Line 3 defines the inclination of passive wedge in front of the anchor. (p. 614) Since the deadman is embedded in Layer 1, the unfactored value of KA of 0.31 (Table B-5) will be used to evaluate active pressure on the opposite side of the tierod force and the factored value of KP,h equal to 2.1 will be used to estimate passive resistance based on an applied factor of safety equal to 2.0 on the shear strength of the soil. Assume that the anchor is 2 ft thick and made of reinforced concrete. In a complete design, this assumption would be checked as part of the structural design of the anchor. The mobilized vertical force due to interface friction between the anchor and soil is limited by the weight of the anchor. For the Layer 1 sand, the mobilized interface friction angle is limited according Duncan and Mokwa (2001) by: δmob = min{(δ/φʹ)·φʹ*; tan⁻¹(Wa/T)} = min{8.7°; tan⁻¹[(150 pcf)(2 ft)·h1/(9600 lb/ft)]} where Wa = weight of the concrete anchor per foot and T = design tierod force per foot. The minimum anchor height required to allow full mobilization of the factored interface friction is found by rearranging Equation (x) min h1 = [(9600 lb/ft)/((150 pcf)(2 ft))]·tan(8.7°) = 4.9 ft. (As printed on p. 615: \"Equation (x)\", the δmob expression above.) (p. 615) The calculations will proceed assuming that h1 is greater than or equal to 4.9 ft and the embedment of the top of the anchor, h2, equals 2 ft. With these dimensions, h1 will be greater than (h1 + h2) and the anchor can be treated as extending to the ground surface (see Figure 4-40). These assumptions will be checked at the end of the design. The net allowable resistance of the anchor, ignoring base sliding resistance, is estimated by the difference between the active and passive earth pressure coefficients, KP,h − KA,h, which in this case equals 1.79. Table B-10 summarizes the calculation of the net resistance of the anchor based on the sketch provided as Figure B-12. The required height of the anchor can be found summing the horizontal forces: ΣFh = 0 = T − ΣΔP = 9600 lb/ft − [3705 lb/ft + (1235 psf)(h − 6 ft) + (47.1 psf)(h − 6 ft)²]. Solving, h equals 10.1 ft. The height of the anchor should be rounded to the nearest half foot for design, which is 10.5 ft in this case. Since h1 exceeds h/2, it is acceptable to treat the anchor as extending to the ground surface. Since h1 exceeds 4.9 ft, it is acceptable to assume that wall friction will be unimpeded by the weight of the anchor. Table B-11 summarizes the design geometry of the anchor based on the analysis provided in this section. (p. 616) The tierod connection is located 5 ft below the ground surface, which is 5.1 ft above the base of the anchor, using the unrounded depth. Ideally, the anchor should connect at the elevation of the net resultant resistance force. Table B-12 summarizes the calculation of the elevation of the resultant force relative to the base of the anchor. Based on this calculation, the tierod is located about 14 inches higher than the ideal location. Lowering the tierod elevation has implications on the design, including the embedment of the sheetpile. A final design should evaluate the advantages and disadvantages of revising the tierod elevation. (p. 617)",
+      "key_points": [
+        "With no spatial constraints the anchor should be placed at least 56 ft behind the sheetpile so the active zone does not interfere with the passive zone in front of it (Figure B-11) (p. 614).",
+        "Unfactored KA = 0.31 on the side opposite the tierod force and factored KP,h = 2.1 (factor of safety 2.0 on shear strength) for passive resistance (p. 615).",
+        "The mobilized interface friction is limited by the anchor weight (Duncan and Mokwa 2001): δmob = min{(δ/φʹ)·φʹ*; tan⁻¹(Wa/T)}; full mobilization needs h1 ≥ 4.9 ft (p. 615).",
+        "Net allowable resistance, ignoring base sliding, uses KP,h − KA,h = 1.79; ΣFh = 0 gives h = 10.1 ft, rounded to the nearest half foot, 10.5 ft (p. 616).",
+        "Ideally the anchor should connect at the elevation of the net resultant (3.93 ft above the base); the tierod is about 14 inches higher, and a final design should evaluate revising it (p. 617)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-11 Location of the Continuous Anchor",
+        "Figure B-12 Net Anchor Resistance to Counteract Tierod Force"
+      ],
+      "tables": [
+        "Table B-10 Calculation of Net Allowable Anchor Resistance — Force ID / Δσʹv,top (psf) / Δσʹv,bot (psf) / Kp,h−Ka,h / Δσʹh,top (psf) / Δσʹh,bot (psf) / hshape (ft) / ΔP (lb/ft); 12 / 0 / 690 / 1.79 / 0 / 1235 / 6 / 3705; 13 / 690 / 690 / 1.79 / 1235 / 1235 / h−6 / 1235(h − 6); 14 / 0 / 52.6(h − 6) / 1.79 / 0 / 94.2(h − 6) / h−6 / 47.1(h − 6)² (p. 616)",
+        "Table B-11 Summary of Anchor Design — Dimension / Value; Total anchor depth, h / 10.5 ft; Height of anchor block, h1 / 8.5 ft; Depth of embedment, h2 / 2 ft; Width / 2 ft (p. 617)",
+        "Table B-12 Calculation of the Elevation of the Resultant Force — Force ID / Force (lbs) for h = 10.1ft / Elevation of Resultant Relative to Anchor Base (ft) / Weighting by Force (Force) × (Resultant Elev.); 12 / 3705 / 10.1 − 4 = 7.1 / 3705(7.1) = 26,306; 13 / 5064 / (10.1−6)/2 = 2.0 / 10,128; 14 / 792 / (10.1−6)/3 = 1.4 / 1,109; yresultant = (26,306+10,128+1,109)/(3705+5064+792) = 3.93 ft (p. 617)"
+      ],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
+    },
+    {
+      "section_id": "B-2.8",
+      "title": "Conclusions from the Analysis.",
+      "summary": "Table B-13 lists the design: PZ-22, total length 24 + 18 = 42 ft, embedment 18 ft, tierod 37 ft above the tip; deadman h = 10.5 ft, h1 = 8.5 ft, h2 = 2 ft, width 2 ft; tierods at 6 ft, 56 ft long, 58 kips, connections 69 kips. Any change to the problem requires revisiting all calculated values.",
+      "body": "Table B-13 summarizes all of the design parameters determined in this example. Any changes to the problem require revisiting all calculated parameter values. (p. 617)",
+      "key_points": [
+        "Any changes to the problem require revisiting all calculated parameter values (p. 617)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-13 Summary of Anchored Bulkhead Design Example — Design Element / Design Parameter / Value; Sheet Pile / Sheetpile section / PZ-22; Sheet Pile / Total length (H+D) / 24+18 = 42 ft; Sheet Pile / Embedment (D) / 18 ft; Sheet Pile / Position of tierod above pile tip / 19+18 = 37 ft; Concrete Deadman Anchor / Depth to base of anchor, h / 10.5 ft; Concrete Deadman Anchor / Height of anchor, h1 / 8.5 ft; Concrete Deadman Anchor / Depth to top of anchor, h2 / 2 ft; Concrete Deadman Anchor / Width of anchor / 2 ft; Tierod / Spacing / 6 ft; Tierod / Length / 56 ft; Tierod / Force / 58 kips; Tierod / Connection force / 69 kips (p. 617)"
+      ],
+      "applicability": "Worked allowable stress design of an anchored steel sheetpile bulkhead in sand (24 ft retained height, 500 psf surcharge, 2 ft tidal lag, single row of tierods at 6 ft to a continuous concrete deadman) by the Free Earth Support method: Rankine active and log spiral passive pressures with a factor of safety of 2.0 on strength, embedment by moment equilibrium plus 20%, Rowe moment reduction, section modulus, and the deadman size; corrosion and the tierod, wale and connection design are outside its scope."
     },
     {
       "section_id": "B-3",

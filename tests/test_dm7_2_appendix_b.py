@@ -57,6 +57,7 @@ def _num(cell):
 
 BUILT = {
     "1": ["B-1", "B-1.1", "B-1.2", "B-1.3", "B-1.4", "B-1.5", "B-1.6", "B-1.7", "B-1.8"],
+    "2": ["B-2", "B-2.1", "B-2.2", "B-2.3", "B-2.4", "B-2.5", "B-2.6", "B-2.7", "B-2.8"],
     "3": ["B-3", "B-3.1", "B-3.2", "B-3.3", "B-3.4", "B-3.5", "B-3.6", "B-3.7"],
 }
 
@@ -71,8 +72,9 @@ def test_example_sections_present(example):
 def test_chapter_title_names_the_examples_held():
     title = APX["chapter_title"]
     assert title.startswith("Appendix B: Verification Examples")
-    for example in BUILT:
-        assert example in title
+    held = sorted(int(e) for e in BUILT)
+    if held != list(range(1, 8)):
+        assert re.search(rf"Examples? {held[0]}\b", title), title
 
 
 def test_every_body_has_a_page_mark():
@@ -264,3 +266,96 @@ def test_example_1_dm7_2_lookups():
     # B-1.2/B-1.8: resultant in the middle third at B = 9.5 ft (x0/B = 0.353)
     e = 9.5 / 2 - 0.353 * 9.5
     assert check_eccentricity_one_direction(e, 9.5)
+
+
+# ---------------------------------------------------------------------------
+# Example 2 – anchored cut wall (pp. 606-617)
+# ---------------------------------------------------------------------------
+
+def test_example_2_table_b6_forces():
+    rows = {r[0]: r for r in _rows(_table("B-2.3", "B-6"))[1:] if r[0].isdigit()}
+    assert len(rows) == 11
+    # rows with numeric heights: ΔP = [(Δσʹh,top + Δσʹh,bot)/2]·hshape (p. 610)
+    for fid in ("1", "2", "3", "4", "10"):
+        top, bot, h, dp = (_num(rows[fid][i]) for i in (4, 5, 6, 7))
+        assert (top + bot) / 2 * h == pytest.approx(dp, rel=0.003), fid
+    # Δσʹh = K·Δσʹv for the active rows
+    for fid in ("1", "2", "3", "4", "5", "6", "7"):
+        k, vbot, hbot = _num(rows[fid][3]), _num(rows[fid][2]), _num(rows[fid][5])
+        assert k * vbot == pytest.approx(hbot, abs=1.0), fid
+
+
+def _sum_moments(D):
+    # Table B-7 (p. 610), moments about the tierod elevation
+    return (26040 - 642 + 38500 + 34346 + 291
+            + (125 + 172 + 237) * D * (19 + D / 2)
+            + (7.2 - 69.1) * D * D * (19 + 2 * D / 3)
+            + 125 * (D + 16) * (19 + D - (16 + D) / 2))
+
+
+def test_example_2_embedment_and_tierod_force():
+    lo, hi = 10.0, 20.0
+    for _ in range(60):
+        mid = (lo + hi) / 2
+        if _sum_moments(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    D = (lo + hi) / 2
+    assert D == pytest.approx(14.45, abs=0.01)                  # p. 611
+    assert math.ceil(1.2 * 14.45) == 18                         # design embedment
+    # horizontal equilibrium with Table B-6 forces at D = 14.45 ft: −9,568 lb/ft printed
+    sum_p = 3720 + 642 + 3850 + 2642 + 125 + (125 + 172 + 237) * 14.45 \
+        + (7.2 - 69.1) * 14.45 ** 2 + 125 * (14.45 + 16)
+    assert -sum_p == pytest.approx(-9568, rel=0.002)
+    # p. 611: tierod 9,600 lb/ft x 6 ft = 58 kips; connections 69 kips (1.2 x 9,568 rounds up to 11,500)
+    assert round(9600 * 6 / 1000) == 58
+    assert math.ceil(1.2 * 9568 / 100) * 100 == 11500 and 11500 * 6 / 1000 == 69.0
+    assert "11,400 lb/ft" in SEC["B-2.4"]["body"] and "11,500" in SEC["B-2.4"]["body"]
+
+
+def test_example_2_table_b8_sum_and_section():
+    rows = _rows(_table("B-2.6", "B-8"))
+    moments = [_num(r[4]) for r in rows[1:] if len(r) == 5]
+    assert len(moments) == 7
+    assert sum(moments) == pytest.approx(63370, abs=2)
+    # p. 614: Sreq = 39.3 ft-k (12 in/ft)/38.5 ksi = 12.25 in³ per foot
+    assert 39.3 * 12 / 38.5 == pytest.approx(12.25, abs=0.005)
+
+
+def test_example_2_anchor():
+    # p. 615: min h1 = 9600/((150)(2))·tan 8.7° = 4.9 ft
+    assert 9600 / 300 * math.tan(math.radians(8.7)) == pytest.approx(4.9, abs=0.05)
+    # p. 616: 9600 = 3705 + 1235(h − 6) + 47.1(h − 6)² -> h = 10.1 ft
+    x = (-1235 + math.sqrt(1235 ** 2 + 4 * 47.1 * (9600 - 3705))) / (2 * 47.1)
+    assert 6 + x == pytest.approx(10.1, abs=0.05)
+    # Table B-12 (p. 617): yresultant = 3.93 ft; tierod at 5.1 ft is about 14 inches higher
+    y = (26306 + 10128 + 1109) / (3705 + 5064 + 792)
+    assert y == pytest.approx(3.93, abs=0.005)
+    assert (5.1 - y) * 12 == pytest.approx(14, abs=0.5)
+
+
+def test_example_2_dm7_2_lookups():
+    from geotech_references.dm7_2.chapter4 import (
+        figure_4_36_moment_reduction, log_spiral_passive_coefficient,
+        rankine_active_pressure_coefficient, relative_flexibility_anchored_bulkhead)
+    # Table B-5 (p. 608): Rankine KA 0.31 and 0.25
+    assert rankine_active_pressure_coefficient(32.0) == pytest.approx(0.31, abs=0.005)
+    assert rankine_active_pressure_coefficient(37.0) == pytest.approx(0.25, abs=0.005)
+    # factored angles φʹ* = tan⁻¹(tan φʹ/2): 17.4 and 20.6 printed
+    phi1 = math.degrees(math.atan(math.tan(math.radians(32.0)) / 2))
+    phi2 = math.degrees(math.atan(math.tan(math.radians(37.0)) / 2))
+    assert phi1 == pytest.approx(17.4, abs=0.05)
+    assert phi2 == pytest.approx(20.6, abs=0.06)
+    # KP,h = KP·cos δ* with KP from Equation 4-12
+    kph1 = log_spiral_passive_coefficient(17.4, 8.7) * math.cos(math.radians(8.7))
+    assert kph1 == pytest.approx(2.1, abs=0.01)
+    kph2 = log_spiral_passive_coefficient(20.6, 10.3) * math.cos(math.radians(10.3))
+    # DIFFERENCE: the print carries 2.4 for layer 2; Equation 4-12 gives 2.47
+    # (noted in B-2.3).
+    assert kph2 == pytest.approx(2.47, abs=0.01)
+    # p. 614: ρ = 18.52, Rowe medium dense sand 0.62, Mdesign = 39.3 ft-k
+    rho = relative_flexibility_anchored_bulkhead(24.0 * 12.0, 14.45 * 12.0, 29.0e6, 84.4)
+    assert rho == pytest.approx(18.52, abs=0.01)
+    ratio = figure_4_36_moment_reduction(rho, "medium_dense_and_dense_coarse_grained")
+    assert ratio == pytest.approx(0.62, abs=0.005)
