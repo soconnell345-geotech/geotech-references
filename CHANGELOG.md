@@ -176,6 +176,65 @@ Results that now say more, with the same numbers:
 - The chapter text of EN 1997-1 (Eqs. C.1, C.2, Kpc, Tables A.10 and A.11)
   and of Caltrans Section 10-2 is corrected to the print.
 
+**Build of 2026-11-10 (app BACKLOG REF-83): the chapter text of EN 1997-1,
+the Caltrans Trenching and Shoring Manual and FEMA P-2082 read again
+against the printed pages.** About one section in four had a substantive
+error. No lookup changes; what the text tools return does:
+
+- **EN 1997-1**: Eq. 7.16 is Rt;k = Rs;k (stored as Rs;d = Rs;k/gamma_s)
+  and Eq. 7.12 is Ft;d <= Rt;d; Eqs. 7.6 and 7.7 were swapped; Eq. 8.1 is
+  Pd <= Ra;d. Annex C.2 (Eqs. C.3 to C.10), stored as not legible, is typed
+  in from the page. Annex B: B.1 is gamma_F = gamma_S;d gamma_f, the tank
+  exception is gamma_F = 1 with gamma_E != 1 (stored as gamma_Sd), and
+  B.6.2.2 is the gamma_F = 1 case (stored as gamma_F != 1). Annex D's q is
+  the overburden or surcharge pressure and the unprinted Nc = 5.14 is gone.
+  "Must" is back to the print's "should" or "may" in 2.4.3, 2.4.8, 5.3.3,
+  6.6.2, 6.6.4, 7.5, 7.6.1, 11.5.1, 12.1, 12.4 and Annex F.3.
+- **Caltrans**: the maximum slope angle is Eq. 4-5-1 as printed (stored as
+  sin(beta) <= sin(phi) + c/(gamma h), which the manual does not print);
+  D = 1.2 D0 is the Simplified Method's, not the Rigorous Method's; the
+  heave factor of safety 1.5 and the anchor-block factor of safety 2 are
+  printed as recommendations; Appendix A's Eqs. A-2-12 to A-2-16 and A-3-1
+  to A-3-4 and Tables C-1 and C-2 as printed.
+- **FEMA P-2082**: the effective damping ratio of Eq. 19.3-1 is capped at
+  0.20 (the cap was missing) and the period factor of Eq. 19.3-3 is on
+  beta_s, not beta_rd.
+- Equation ids: EN 1997-1 "Annex E Eq." is "Eq. E.1", "Annex E" (6.5.2.3)
+  is "Eq. E.1 (Annex E)", "Eq. B.6.1.1" is added; FEMA "19.3-G0",
+  "21.4-SDS" and "21.4-SD1" say they are unnumbered. No section ids change.
+- New tests pin the printed forms: `tests/test_eurocode_7_1_text_equations.py`,
+  `tests/test_california_trenching_text_equations.py`,
+  `tests/test_fema_p2082_text_equations.py`.
+
+**EN 1997-1 Annex A text: wrong pile factors corrected (build of
+2026-11-12, app BACKLOG REF-83 review).** The stored text of Annex A.3.3.2
+gave R4 = 1.3 for the base and total resistance of bored piles (Table A.7)
+and the base of CFA piles (Table A.8). The standard prints 1,6 and 1,5
+(bored) and 1,45 (CFA), printed p. 132. Its key points also said the R4
+column was the same as Table A.6's. The coded tables
+(`table_a_7_bored_pile_resistance`, `table_a_8_cfa_pile_resistance`) were
+right. This text was in release 1.6.0, so a text answer about R4 for
+bored or CFA piles from 1.6.0 should be checked again. Every cell of
+Tables A.1 to A.17 in the Annex A text was compared with the print and
+the coded tables; no other value was wrong. Also corrected to the print:
+- The Table A.11 model factors keep their printed force words: 0.85
+  "may", 1.10 "should", 1.20 "shall".
+- The Design Approach summary quotes 2.4.7.3.4's NOTEs. It had said
+  Combination 1 factors "actions and ground strength, not resistance".
+  Set M1 is 1.0 throughout, and set R1 is not 1.0 for piles or anchorages.
+- No section now says Design Approach 3 is the usual one for slopes,
+  which the print does not say (Annex A.3.3.6, Section 11.5.1).
+- Three force words the 2026-11-10 build weakened are back to the print:
+  11.5.1(11)P "shall be considered" (ground-structure interaction),
+  6.6.4(3)P "shall be considered using EN 1998", and 6.6.2(16) "should
+  take account of non-linear stiffness effects".
+- Also: 9.5.2 Eq. 9.2 is beta <= phi' (the prime was missing); Eqs.
+  2.9a/2.9b are on p. 34, not pp. 33-34; 7.6.3.1(4)P block uplift "shall
+  be carried out" per 2.4.7.4.
+
+No lookup and no section id changes. The new tests are in
+`tests/test_eurocode_7_1_text_equations.py`.
+
 **UFS 3-220-10 (dm7_1) lookups corrected to the printed manual (review of
 2026-11-10).** A review of the `dm7_1` functions against the rendered pages
 found equations, tables and charts that did not match the print. Results
