@@ -1237,6 +1237,32 @@ the notes that carry formulas (Tables 2-4, 3-11, 3-12, 5-8, 6-10, 6-19,
 printed "LFRD" with a note. No section ids changed. Tests:
 `tests/test_dm7_2_footnotes.py`.
 
+**DM 7.2 Appendix B: all seven verification examples from the print (app
+BACKLOG REF-85).** `dm7_2/text/appendix_b.json` held Example 3 alone; it
+now holds the appendix introduction (new section `B`, p. 596) and Examples
+1, 2, 4, 5, 6 and 7 (pp. 596-659: cantilever and anchored cut walls, mat
+settlement, pile group capacity and settlement, pile group lateral load,
+retaining wall reliability), 60 sections in the print's wording with page
+marks and the labels of each figure. Every formula line (112) and every cell
+of Tables B-1 to B-42 was typed from the rendered page, not the PDF text
+layer, whose formula lines read as valid but wrong formulas. Print slips are
+kept as printed with a note beside them, among them: p. 599 "2,240B - 4560"
+for -7,840; Table B-4 with the overturning and sliding outcomes swapped;
+p. 611 "11,400 lb/ft" (1.2 x 9,568 is 11,500); p. 636 "1500 + 470 = 1976";
+the Example 5 block expression lettering L and Z the other way round from
+Eq. 6-38; p. 650 "259 kips" in a line whose 26 ft-kip needs 265; Example 7's
+derivative of the sliding limit state with respect to the backfill unit
+weight, which leaves out the unit weight in the active force (the full
+derivative gives beta about 1.76 against the printed 1.64); Table B-39's
+"0.390" for 0.039; Table B-41's Point Estimate beta 1.45 where the text
+gives 1.48. The chapter title is "Appendix B: Verification Examples". Tests:
+`tests/test_dm7_2_appendix_b.py` recomputes the printed numbers from the
+printed equations and stored cells, runs the dm7_2 functions on the
+examples' inputs (all agree except Table B-5 layer 2, where Eq. 4-12 gives
+KP,h 2.47 against the printed 2.4), and scans every dm7_2 chapter file for
+the scatter the text layer leaves in formulas (isolated primes, empty or
+unbalanced brackets, runs of single letters or digits, repeated table rows).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
