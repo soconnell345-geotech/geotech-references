@@ -388,6 +388,21 @@ def test_chapter_9_rss_design_equations_as_printed():
     assert secs["9.2.3"]["title"].endswith("the retained backfill")
     assert secs["9.2.7"]["body"].startswith("[p. 9-16] (see discussion in Chapter 8.)")
     assert "Overexcavation | yd3 (m3 |" in secs["9.4"]["body"]
+    # the unnumbered equations set inside Figures 9-4 and 9-8 (pp. 9-8,
+    # 9-17), typed in from the page; Figure 9-4 prints "TS + D", kept with
+    # a note against Eq. 9-1
+    body = secs["9.2.6"]["body"]
+    assert "FSR = FSU + (TS + D) / MD [as printed: the page sets a plus sign" in body
+    assert "gives FSR = FSU + TS D / MD]" in body
+    assert body.index("[Equations and definitions printed in Figure 9-4") < \
+        body.index("Figure 9-4. Rotational shear approach")
+    body = secs["9.2.7"]["body"]
+    assert "σz = 2τx / Ds; τ = Cu" in body
+    assert "may be used.\n\n[Figure 9-8 text, typed in from p. 9-17:]" in body
+    # a section lists its figures in the order printed
+    assert secs["9.2.9"]["figures"] == [
+        "Figure 9-9: Seismic stability analysis.",
+        "Figure 9-10: Subsurface drainage considerations."]
 
 
 def test_figure_text_typed_in_from_the_page():

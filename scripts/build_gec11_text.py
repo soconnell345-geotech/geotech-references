@@ -724,12 +724,23 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
             page_from = labels[0] if labels else None
             page_to = labels[-1] if labels else None
             seg_idx = {stream[q][0] for q in range(s, t)}
+
+            def _order(item):
+                # by the page in this section that prints the caption (the
+                # List of Figures page, where a list entry reads like a
+                # caption, does not count)
+                here = [i for i in item[1] if i in seg_idx]
+                kind, num = item[0]
+                parts = re.match(r"(\d+)-(\d+)(.*)", num)
+                return (min(here or item[1]), kind,
+                        (int(parts.group(1)), int(parts.group(2)), parts.group(3))
+                        if parts else (0, 0, num))
             sec_figs = [f"Figure {num}: {_caption('Figure', num, figs, page_caps)}".rstrip(": ")
-                        for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
+                        for (kind, num), idx in sorted(printed_at.items(), key=_order)
                         if kind == "Figure" and any(i in seg_idx for i in idx)
                         and _caption_in_segment(stream, s, t, "Figure", num, cap_idx)]
             sec_tabs = [f"Table {num}: {_caption('Table', num, tabs, page_caps)}".rstrip(": ")
-                        for (kind, num), idx in sorted(printed_at.items(), key=lambda x: (x[1][0], x[0]))
+                        for (kind, num), idx in sorted(printed_at.items(), key=_order)
                         if kind == "Table" and any(i in seg_idx for i in idx)
                         and _caption_in_segment(stream, s, t, "Table", num, cap_idx)]
             if h["sid"] == f"{n}.0" and len(re.sub(r"\[[^\]]*\]", "", body).strip()) < 20:
