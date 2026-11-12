@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2, 3, 4, 5, 6, 7]
+BUILT = [1, 2, 3, 4, 5, 6, 7, 8]
 
 
 def _manifest():
@@ -444,3 +444,37 @@ def test_chapter_7_tables_typed_from_the_page():
     assert "ï" not in text and "æ" not in text and "™" not in text
     # Table 7-18 is a picture; the text says its values are not typed in
     assert "printed as a picture on p. 7-81" in text
+
+
+def test_chapter_8_headings_as_printed():
+    ch = _chapter(8)
+    assert ch["chapter_title"] == "Construction and Design Verification for Unbound Pavement Materials"
+    assert _printed_ids(8) == [
+        "8.1", "8.2", "8.3", "8.3.1", "8.3.2", "8.3.3", "8.4", "8.4.1", "8.4.2",
+        "8.4.3", "8.4.4", "8.4.5", "8.4.6", "8.4.7", "8.5", "8.5.1", "8.5.2",
+        "8.5.3", "8.5.4", "8.5.5", "8.6", "8.7"]
+    s8 = _sections(8)
+    assert s8["8.4"]["title"] == "Construction and Construction Monitoring"
+    assert s8["8.5.4"]["title"] == "Drainage Inspection (e.g., video logging)"
+    assert s8["8.6"]["title"] == "Post-Construction Issues and Special Cases"
+    assert all(len(s["body"]) <= 14000 for s in ch["sections"])
+
+
+def test_chapter_8_tables_typed_from_the_page():
+    s8 = _sections(8)
+    # Table 8.3: the text layer lost the soil letters, the Atterberg limits
+    # and the Unified classes (p. 8-11)
+    body = s8["8.3.2"]["body"]
+    assert "Liquid Limit, LL | 21 | NL | 35 | 64 | 36" in body
+    assert "Plasticity Index, PI | 5 | --- | 21 | 35 | 9" in body
+    assert "Unified Soil Classification | SC | SM | CL | CH | SC" in body
+    assert "Mr = K1 SV^K2 S3^K3 with SV and S3 in English units" in body
+    # PI = LL - PL as printed for A, C, D and E
+    assert [21 - 16, 35 - 14, 64 - 29, 36 - 27] == [5, 21, 35, 9]
+    body = s8["8.4.4"]["body"]
+    assert "Plastic soils, CH, MH (A-7, A-5) | Sheepsfoot or pad foot | Pneumatic | " \
+           "Thin lifts usually needed" in body
+    assert "" not in body
+    assert "Abrasion² | 1 per material type" in s8["8.3"]["body"]
+    text = "\n".join(s["body"] for s in _chapter(8)["sections"])
+    assert "above 4.4°C (40°F)" in text and "o C" not in text
