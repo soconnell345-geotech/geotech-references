@@ -45,11 +45,11 @@
     {
       "section_id": "18-3",
       "title": "Annex F.3: Settlements without drainage",
-      "summary": "Short-term (undrained) settlement components may be evaluated using either the stress-strain method (F.1) or the adjusted elasticity method (F.2), but the stiffness parameters adopted (Em, Poisson's ratio) must represent undrained behaviour rather than drained behaviour.",
+      "summary": "Short-term (undrained) settlement components may be evaluated using either the stress-strain method (F.1) or the adjusted elasticity method (F.2), but the stiffness parameters adopted (Em, Poisson's ratio) should represent undrained behaviour rather than drained behaviour.",
       "body": "The short-term components of settlement of a foundation, which occur without drainage, may be evaluated using either the stress-strain method (Annex F.1) or the adjusted elasticity method (Annex F.2). The values adopted for the stiffness parameters in this case, such as Em and Poisson's ratio, should represent the undrained behaviour of the ground rather than its drained behaviour.",
       "key_points": [
         "Undrained (short-term) settlement uses the same F.1/F.2 methods, but with UNDRAINED stiffness parameters",
-        "Em and Poisson's ratio must represent undrained, not drained, behaviour for this application",
+        "Em and Poisson's ratio should represent undrained, not drained, behaviour for this application",
         "No new equation introduced -- reuses F.1/F.2 with substituted parameters"
       ],
       "equations": [],
@@ -63,8 +63,8 @@
       "summary": "Consolidation settlement is calculated assuming confined one-dimensional deformation, using the consolidation test curve. Adding undrained and consolidation settlements separately often overestimates total settlement, so empirical corrections may be applied.",
       "body": "To calculate the settlement caused by consolidation, a confined one-dimensional deformation of the soil may be assumed and the consolidation test curve is then used. Addition of settlements in the undrained and consolidation states often leads to an overestimate of the total settlement, and empirical corrections may be applied to account for this.",
       "key_points": [
-        "Consolidation settlement assumes confined one-dimensional deformation, derived from the consolidation (oedometer) test curve",
-        "Simple addition of undrained + consolidation settlement tends to OVERESTIMATE total settlement",
+        "For consolidation settlement a confined one-dimensional deformation of the soil may be assumed, using the consolidation test curve",
+        "Addition of settlements in the undrained and consolidation states often leads to an overestimate of the total settlement",
         "Empirical corrections may be applied to correct this overestimate",
         "No closed-form equation given in this clause"
       ],

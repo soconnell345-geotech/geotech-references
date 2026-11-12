@@ -54,8 +54,24 @@ class TestTable12:
         assert any("Wall" in r["technology"] for r in results)
 
     def test_no_match(self):
-        results = table_1_2_applicability(technology="xyzzy_nonexistent")
-        assert results == []
+        """An unknown filter is refused with the printed choices, not
+        answered with an empty list."""
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 1-2"):
+            table_1_2_applicability(technology="xyzzy_nonexistent")
+        with pytest.raises(ValueError, match="Stone Columns"):
+            table_1_2_applicability(technology="wick drains")
+        with pytest.raises(ValueError, match="deep_compaction"):
+            table_1_2_applicability(category="densification")
+
+    def test_two_rows_complete(self):
+        """Table 1-2, p. 1-11 (PDF page 25): the ends of two rows that were
+        cut short."""
+        r = table_1_2_applicability(technology="compaction grouting")[0]
+        assert r["applicability"].endswith(
+            "can arrest settlement under a structure and lift foundations "
+            "that have settled")
+        r = table_1_2_applicability(technology="chemical stabilization")[0]
+        assert "Cement Kiln Dust: expansive soils" in r["applicability"]
 
     def test_entries_have_required_fields(self):
         results = table_1_2_applicability()
@@ -83,9 +99,73 @@ class TestTable12:
 class TestTable13:
     """Tests for table_1_3_by_function()."""
 
+    # GEC-13 Vol I Table 1-3, pp. 1-15 and 1-16 (PDF pages 29-30): the ten
+    # functions with their bulleted technologies, as printed.
+    PRINTED = {
+        "Increase shear strength and bearing resistance": [
+            "Vibro-Compaction", "Dynamic Compaction", "Compaction Grouting",
+            "Mixing Methods", "PVDs", "Stone Columns",
+            "Rammed Aggregate Piers", "Chemical Stabilization",
+            "Mechanical Stabilization"],
+        "Increase density": [
+            "Vibro-Compaction", "Dynamic Compaction", "Blasting Compaction",
+            "Compaction Grouting", "Mixing Methods", "PVDs"],
+        "Decrease permeability": [
+            "Bulk-infill Grouting", "Chemical Grouting", "Jet Grouting",
+            "Deep Mixing Methods"],
+        "Control deformations (settlement, heave, distortions)": [
+            "Columns Supported Embankments",
+            "Reinforced Load Transfer Platforms", "Non-compressible Columns",
+            "Mixing Methods", "Vibro-Compaction", "Dynamic Compaction",
+            "Stone Columns", "Rammed Aggregate Piers",
+            "Chemical Stabilization", "Mechanical Stabilization",
+            "Encapsulation"],
+        "Increase drainage": [
+            "PVDs", "Aggregate Columns", "Geotextile Encased columns",
+            "Electro-osmosis", "Geosynthetics in Pavement Drainage"],
+        "Accelerate consolidation": [
+            "PVDs", "Aggregate Columns", "Geotextile Encased Columns"],
+        "Decrease imposed loads": [
+            "Granular Fills (Wood Fiber; Blast Furnace Slag; Fly Ash; "
+            "Boiler Slag; Expanded Shale, Clay & Slate; Tire Shreds)",
+            "Compressive Strength Fills: (Geofoam, Foamed Concrete)"],
+        "Provide lateral stability": [
+            "Mechanically Stabilized Earth (MSE) Walls",
+            "Reinforced Soil Slopes", "Soil Nailing"],
+        "Increase resistance to liquefaction": [
+            "Aggregate Columns", "Deep Dynamic Compaction", "Deep Mixing",
+            "Jet Grouting", "Vibro-Compaction"],
+        "Transfer embankment loads to more competent layers": [
+            "Column Supported Embankments",
+            "Reinforced Soil Load Transfer Platforms",
+            "Non-compressible Columns", "Compressible Columns"],
+    }
+
     def test_all_functions(self):
         results = table_1_3_by_function()
-        assert len(results) == 8
+        assert len(results) == 10
+
+    def test_every_function_as_printed(self):
+        got = {r["description"]: r["technologies"]
+               for r in table_1_3_by_function()}
+        assert got == self.PRINTED
+        for r in table_1_3_by_function():
+            assert "pp. 1-15 to 1-16" in r["reference"]
+
+    def test_comments_as_printed(self):
+        """p. 1-16: two of the comments that were not the print's words."""
+        r = table_1_3_by_function("consolidation")[0]
+        assert r["comment"] == ("Acceleration due to decreased length of flow "
+                                "path to dissipate excess pore water pressure.")
+        r = table_1_3_by_function("lateral")[0]
+        assert r["comment"] == ("Techniques based on internal reinforcement "
+                                "of soils.")
+
+    def test_two_rows_that_were_missing(self):
+        r = table_1_3_by_function("imposed loads")
+        assert len(r) == 1 and r[0]["function"] == "decrease_imposed_loads"
+        r = table_1_3_by_function("embankment loads")
+        assert len(r) == 1 and r[0]["function"] == "transfer_embankment_loads"
 
     def test_shear_strength(self):
         results = table_1_3_by_function("shear")
@@ -103,9 +183,13 @@ class TestTable13:
         assert "Jet Grouting" in results[0]["technologies"]
 
     def test_liquefaction(self):
+        """p. 1-16: Jet Grouting is printed; Earthquake Drains and
+        Compaction Grouting, which the lookup listed, are not."""
         results = table_1_3_by_function("liquefaction")
         assert len(results) == 1
-        assert "Earthquake Drains" in results[0]["technologies"]
+        assert "Jet Grouting" in results[0]["technologies"]
+        assert "Earthquake Drains" not in results[0]["technologies"]
+        assert "Compaction Grouting" not in results[0]["technologies"]
 
     def test_drainage(self):
         results = table_1_3_by_function("drainage")
@@ -118,15 +202,17 @@ class TestTable13:
     def test_lateral(self):
         results = table_1_3_by_function("lateral")
         assert len(results) == 1
-        assert "Soil Nail Walls" in results[0]["technologies"]
+        assert results[0]["technologies"] == [
+            "Mechanically Stabilized Earth (MSE) Walls",
+            "Reinforced Soil Slopes", "Soil Nailing"]
 
     def test_deformation(self):
         results = table_1_3_by_function("deformation")
         assert len(results) == 1
 
     def test_no_match(self):
-        results = table_1_3_by_function("nonexistent_xyz")
-        assert results == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 1-3"):
+            table_1_3_by_function("nonexistent_xyz")
 
     def test_entries_have_fields(self):
         results = table_1_3_by_function()
@@ -177,8 +263,10 @@ class TestTable16:
         assert results[0]["cost_low"] == 250.0
 
     def test_no_match(self):
-        results = table_1_6_unit_cost(technology="nonexistent")
-        assert results == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 1-6"):
+            table_1_6_unit_cost(technology="nonexistent")
+        with pytest.raises(ValueError, match="Jet Grouting"):
+            table_1_6_unit_cost(technology="micropiles")
 
     def test_entries_have_cost_fields(self):
         results = table_1_6_unit_cost()
@@ -196,6 +284,32 @@ class TestTable16:
     def test_pavement_stabilization(self):
         results = table_1_6_unit_cost(category="pavement")
         assert len(results) == 3
+
+
+# ============================================================================
+# Tables 1-2 and 1-6: names as printed (independent check)
+# ============================================================================
+
+def test_table_1_2_and_1_6_names_as_printed():
+    """GEC-13 Vol I Table 1-2 (p. 1-10, PDF page 24) and Table 1-6 (p. 1-36,
+    PDF page 50). Table 1-2 prints "All soil types except very soft soils
+    low undrained shear strength" (no "with"); Table 1-6 prints the
+    lightweight fill rows in full; both print "PVDs, with and without fill
+    preloading"."""
+    from geotech_references.gec_13.tables import (
+        table_1_2_applicability, table_1_6_unit_cost)
+    col = table_1_2_applicability(technology="columns: compressible")[0]
+    assert col["applicability"] == ("All soil types except very soft soils "
+                                    "low undrained shear strength")
+    assert table_1_2_applicability(technology="pvd")[0]["technology"] == (
+        "PVDs, with and without fill preloading")
+    names = [r["technology"] for r in table_1_6_unit_cost("lightweight")]
+    assert names == [
+        "Compressive Strength Fills: Geofoam; Foamed Concrete",
+        "Granular Fills: Wood Fiber; Blast Furnace Slag; Fly Ash; Boiler "
+        "Slag; Expanded Shale, Clay and Slate; Tire Shreds"]
+    assert table_1_6_unit_cost(technology="pvd")[0]["technology"] == (
+        "PVDs, with and without fill preloading")
 
 
 # ============================================================================
@@ -226,8 +340,8 @@ class TestTable21:
         assert results[0]["accelerate_settlements"] is True
 
     def test_no_match(self):
-        results = table_2_1_pvd_applications("nonexistent")
-        assert results == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 2-1"):
+            table_2_1_pvd_applications("nonexistent")
 
     def test_entries_have_fields(self):
         results = table_2_1_pvd_applications()
@@ -253,10 +367,52 @@ class TestTable31:
         assert len(results) == 1
         assert results[0]["unit_weight_pcf_low"] < 5
 
+    # GEC-13 Vol I Table 3-1, p. 3-1 (PDF page 151), every printed row:
+    # (fill type, density pcf low, high, specific gravity low, high)
+    PRINTED = [
+        ("Geofoam (RCPS)", 0.70, 3.00, 0.01, 0.05),
+        ("Cellular Concrete", 20, 80, 0.4, 1.3),
+        ("Wood Fiber", 35, 55, 0.6, 0.9),
+        ("Tire Shreds", 37, 73, 0.6, 1.2),
+        ("Expanded Shale, Clay, and Slate (ESCS)", 37, 65, 0.6, 1.0),
+        ("Fly Ash", 70, 90, 1.1, 1.4),
+        ("Boiler Slag", 60, 90, 1.0, 1.4),
+        ("Expanded Air-Cooled Slag", 69, 94, 1.1, 1.5),
+    ]
+
+    def test_every_printed_row(self):
+        got = [(r["material"], r["unit_weight_pcf_low"],
+                r["unit_weight_pcf_high"], r["specific_gravity_low"],
+                r["specific_gravity_high"])
+               for r in table_3_1_lightweight_fill()]
+        assert got == self.PRINTED
+        for r in table_3_1_lightweight_fill():
+            assert "p. 3-1" in r["reference"]
+            assert "notes" not in r
+
     def test_tire(self):
+        """Tire Shreds 37 to 73 pcf (the lookup held 37 to 55)."""
         results = table_3_1_lightweight_fill("tire")
         assert len(results) == 1
-        assert results[0]["material"] == "Tire Derived Aggregate (TDA)"
+        assert results[0]["material"] == "Tire Shreds"
+        assert results[0]["unit_weight_pcf_high"] == 73
+        assert results[0]["unit_weight_kn_m3_high"] == pytest.approx(11.47, abs=0.01)
+
+    def test_cellular_concrete_and_slag(self):
+        """Cellular Concrete 20 to 80 pcf (was 'Foamed Concrete' 24 to 55);
+        Expanded Air-Cooled Slag 69 to 94 (was 'Blast Furnace Slag' 60 to
+        75); Expanded Shale, Clay, and Slate 37 to 65 (was 40 to 65)."""
+        r = table_3_1_lightweight_fill("cellular concrete")[0]
+        assert (r["unit_weight_pcf_low"], r["unit_weight_pcf_high"]) == (20, 80)
+        r = table_3_1_lightweight_fill("air-cooled")[0]
+        assert (r["unit_weight_pcf_low"], r["unit_weight_pcf_high"]) == (69, 94)
+        r = table_3_1_lightweight_fill("shale")[0]
+        assert (r["unit_weight_pcf_low"], r["unit_weight_pcf_high"]) == (37, 65)
+        assert len(table_3_1_lightweight_fill("slag")) == 2
+
+    def test_no_match(self):
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 3-1"):
+            table_3_1_lightweight_fill("foamed")
 
     def test_wood(self):
         results = table_3_1_lightweight_fill("wood")
@@ -320,7 +476,8 @@ class TestTable43:
         assert land["percent_standard_proctor_energy_low"] == 100
 
     def test_no_match(self):
-        assert table_4_3_applied_energy("nonexistent") == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 4-3"):
+            table_4_3_applied_energy("nonexistent")
 
 
 # ============================================================================
@@ -463,7 +620,8 @@ class TestTable81:
         assert "2.5 to 15 ft" in r["note"]
 
     def test_no_match(self):
-        assert table_8_1_jet_grouting_systems("quadruple") == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 8-1"):
+            table_8_1_jet_grouting_systems("quadruple")
 
 
 # ============================================================================
@@ -493,7 +651,8 @@ class TestTable86:
         assert len(table_8_6_soilcrete_strength()) == 4
 
     def test_no_match(self):
-        assert table_8_6_soilcrete_strength("nonexistent") == []
+        with pytest.raises(ValueError, match="No row of GEC-13 Table 8-6"):
+            table_8_6_soilcrete_strength("nonexistent")
 
 
 # ============================================================================

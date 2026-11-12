@@ -4,8 +4,9 @@ interaction of buckling modes; printed pp. 9-13 to 9-17).
 
 Provides:
   - Axial Compression: ``euler_critical_stress`` (Eq 9-25) with
-    ``radius_of_gyration`` (Eq 9-26); ``ylinen_critical_stress`` (Eq 9-27,
-    the FPL fourth-power parabolic form) and ``ylinen_buckling_stress``
+    ``radius_of_gyration`` (Eq 9-26); ``ylinen_critical_stress_fourth_power``
+    (Eq 9-27, the FPL fourth-power parabolic form of Newlin and Gahagan
+    1930; despite the function's name, not Ylinen's) and ``ylinen_buckling_stress``
     (Eq 9-29, the general Ylinen nonlinear-stress-strain form, with the
     printed c=0.957/0.8/0.9 guidance); ``built_up_column_capacity``
     (Eq 9-30); ``flange_instability_stress`` (Eq 9-31).
@@ -270,36 +271,52 @@ def flange_instability_stress(modulus_of_elasticity, flange_thickness, flange_wi
 # Eq 9-32 -- Water ponding critical spacing (printed p. 9-15, pdf_page 246)
 # ============================================================================
 
-RHO_WATER_KG_M3 = 1000.0
+# Unit WEIGHT of water for Eq 9-32 in SI (N/m^3). The print gives "rho
+# density of water (1,000 kg m-3, 0.0361 lb in-3)": 0.0361 lb/in^3 is a
+# weight density, 1,000 kg/m^3 a mass density, and the equation needs the
+# weight (9,810 N/m^3 = 1,000 kg/m^3 x 9.81 m/s^2).
+GAMMA_WATER_N_M3 = 9810.0
+GAMMA_WATER_LB_IN3 = 0.0361  # as printed
+RHO_WATER_KG_M3 = 1000.0  # as printed; a mass density, not used by the formula
 
 
 def critical_ponding_spacing(modulus_of_elasticity, moment_of_inertia, length,
-                              end_condition="simple", rho_water=RHO_WATER_KG_M3):
-    """Eq 9-32: critical beam spacing to prevent progressive deflection
-    (ponding failure) under roof water accumulation (printed p. 9-15,
-    Zahn 1988). To prevent ponding, actual beam spacing must be less than
-    s_cr.
+                              end_condition="simple", unit_weight_water=GAMMA_WATER_N_M3):
+    """Eq 9-32: critical beam spacing s_cr, in the length unit of L, to
+    prevent progressive deflection (ponding failure) under roof water
+    (printed p. 9-15, Zahn 1988); the actual spacing must be less than
+    s_cr. JUDGMENT CALL: the print defines rho as "density of water (1,000
+    kg m-3, 0.0361 lb in-3)" (FPL-GTR-282 pdf 247); this function uses the
+    unit WEIGHT of water, 9,810 N/m^3 in SI (0.0361 lb/in^3 inch-pound, as
+    printed), because the equation needs a weight density for s_cr to be a
+    length, and 1,000 kg/m^3 gives s_cr 9.81 times too large (unsafe).
+    Ruled by the lead, 2026-11-10.
 
-        s_cr = m * pi^4 * E * I / (rho * L^4)
+        s_cr = m * pi^4 * E * I / (gamma_w * L^4)
 
     Parameters
     ----------
     modulus_of_elasticity : float
-        E, beam modulus of elasticity.
+        E, beam modulus of elasticity (Pa with m; lb/in^2 with in.).
     moment_of_inertia : float
-        I, beam moment of inertia.
+        I, beam moment of inertia (m^4 or in^4).
     length : float
-        L, beam length.
+        L, beam length (m or in.).
     end_condition : str, optional
         'simple' (default, m=1) or 'fixed' (m=16/3).
-    rho_water : float, optional
-        Density of water (kg/m^3, default 1000; printed alternative 0.0361
-        lb/in^3 for inch-pound units -- pass explicitly if using those).
+    unit_weight_water : float, optional
+        Unit weight of water: 9,810 N/m^3 (default, SI: Pa, m^4, m) or
+        0.0361 lb/in^3 (``GAMMA_WATER_LB_IN3``, inch-pound: lb/in^2, in^4,
+        in.). Not the mass density 1,000 kg/m^3: a value from 900 to 1,100
+        is refused, since it can only be a mass density in SI and would
+        give s_cr about 9.81 times too large. This parameter was called
+        ``rho_water`` until 2026-11-10; it was renamed, with no alias,
+        because the print's rho is a mass density and this is a weight.
 
     Returns
     -------
     dict
-        {'s_cr', 'm', 'equation': '9-32', ...}
+        {'s_cr', 'm', 'unit_weight_water', 'basis', 'equation': '9-32', ...}
     """
     if end_condition == "simple":
         m = 1.0
@@ -307,9 +324,18 @@ def critical_ponding_spacing(modulus_of_elasticity, moment_of_inertia, length,
         m = 16.0 / 3.0
     else:
         raise ValueError(f"end_condition must be 'simple' or 'fixed', got {end_condition!r}")
-    s_cr = m * math.pi**4 * modulus_of_elasticity * moment_of_inertia / (rho_water * length**4)
+    if 900.0 <= unit_weight_water <= 1100.0:
+        raise ValueError(
+            f"unit_weight_water={unit_weight_water!r} looks like the mass density of water "
+            "in kg/m^3. Eq 9-32 needs the unit weight: 9,810 N/m^3 in SI (0.0361 lb/in^3 "
+            "inch-pound). The print's '1,000 kg m-3' is a mass density; with it the "
+            "spacing comes out about 9.81 times too large.")
+    s_cr = m * math.pi**4 * modulus_of_elasticity * moment_of_inertia / (unit_weight_water * length**4)
     return {"modulus_of_elasticity": modulus_of_elasticity, "moment_of_inertia": moment_of_inertia,
             "length": length, "end_condition": end_condition, "m": m, "s_cr": s_cr,
+            "unit_weight_water": unit_weight_water,
+            "basis": ("unit weight of water (9,810 N/m^3 SI; 0.0361 lb/in^3 as printed); "
+                      "the print's '1,000 kg m-3' is a mass density"),
             "equation": "9-32", "printed_page": "9-15", "pdf_page": 246}
 
 
@@ -494,31 +520,40 @@ def elastic_buckling_stress_edgewise_flatwise(modulus_of_elasticity, le, d):
 
 
 def elastic_buckling_stress_edgewise_bending(modulus_of_elasticity, le, d1, d2):
-    """Eq 9-41: elastic lateral (edgewise) bending buckling stress used in
-    the flatwise moment-magnification factor theta_c2 (printed p. 9-17).
-
-        Fb1'' = 1.44*E/le * d2/d1
+    """Eq 9-41: elastic lateral (edgewise) bending buckling stress Fb1'',
+    in the unit of E, used in the flatwise moment-magnification factor
+    theta_c2 (printed p. 9-17). JUDGMENT CALL: the print gives
+    Fb1'' = (1.44 E / le)(d2 / d1) (FPL-GTR-282 pdf 249); this function
+    uses Fb1'' = 1.44 E d2^2 / (le d1), because the printed form has units
+    of stress per length and its value changes with the length unit, and
+    d2 squared is the only form that is a stress (it has the b^2/(le d)
+    shape of the classic lateral-torsional buckling stress). The page has
+    no worked value; ruled by the lead, 2026-11-10.
 
     Parameters
     ----------
     modulus_of_elasticity : float
-        E.
+        E (MPa, kPa or lb/in^2; the result is in the same unit).
     le : float
-        Effective length of the member.
+        Effective length of the member (any length unit, the same as d1
+        and d2).
     d1 : float
-        Member depth for edgewise bending.
+        Member depth for edgewise bending (the larger dimension).
     d2 : float
-        Member depth for flatwise bending.
+        Member depth for flatwise bending (the thickness).
 
     Returns
     -------
     dict
-        {'fb1_double_prime', 'equation': '9-41', ...}
+        {'fb1_double_prime', 'form_used', 'printed_form', 'equation':
+         '9-41', ...}
     """
-    fb1_dprime = 1.44 * modulus_of_elasticity / le * d2 / d1
+    fb1_dprime = 1.44 * modulus_of_elasticity * d2 ** 2 / (le * d1)
     return {"modulus_of_elasticity": modulus_of_elasticity, "le": le, "d1": d1, "d2": d2,
-            "fb1_double_prime": fb1_dprime, "equation": "9-41",
-            "printed_page": "9-17", "pdf_page": 248}
+            "fb1_double_prime": fb1_dprime,
+            "form_used": "1.44*E*d2**2/(le*d1)",
+            "printed_form": "1.44*E/le*d2/d1 (not a stress; d2 squared used)",
+            "equation": "9-41", "printed_page": "9-17", "pdf_page": 248}
 
 
 def moment_magnification_edgewise(fc, fc1_double_prime, beam_spacing, s_cr):

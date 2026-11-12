@@ -207,6 +207,24 @@
       "applicability": "Applies when accounting for external applied loads in soil stress calculations, selecting the critical depth for settlement analysis, and understanding load distribution differences between flexible and rigid foundations."
     },
     {
+      "section_id": "4-2.2",
+      "title": "Mohr Circle of Stress",
+      "summary": "Defines the principal planes and principal stresses (σ1, σ2, σ3), how σ2 is treated in two-dimensional problems, the usual alignment of principal stresses for level ground, and the sign convention used in the manual (compressive stress, counterclockwise shear and counterclockwise angles positive). Explains plotting a Mohr circle from σ1 and σ3, or from the stresses on any two perpendicular planes, and finding the stresses on any plane by rotating 2α about its center (Figure 4-3).",
+      "body": "The normal and shear stress on a plane at any point within the ground depends on the orientation of that plane with respect to the orientation of the stress system. At any point, the will be three mutually perpendicular planes that have no shear stress, which are referred to as the principal planes. The normal stresses that act on these planes are defined as the principal stresses. The major principal stress (σ1) has the largest magnitude. The minor principal stress (σ3) has the smallest magnitude. The intermediate principal stress (σ2) falls between σ1 and σ3. For two-dimensional problems, σ2 is either assumed equal to σ3 or ignored. For level ground conditions, the principal stresses are often assumed to be aligned with the horizontal and vertical directions with the horizontal normal stress being equal in all directions. The sign convention used herein assigns positive values to compressive stress, shear stress that causes counterclockwise rotation, and counterclockwise angles.\n\nA Mohr circle of stress can easily be plotted from σ1 and σ3, or the normal and shear stresses on any two perpendicular planes. More information on the use of the Mohr circle can be found in Parry (2004). From the Mohr circle for a point, the normal and shear stress conditions on any plane can be determined by rotating an angle 2α about the center of the circle, where α is the angle between the major principal plane and the plane of interest. Figure 4-3 illustrates the Mohr circle and mathematical relationships between common stresses.",
+      "key_points": [
+        "At any point there are three mutually perpendicular planes with no shear stress, the principal planes; the normal stresses on them are the principal stresses σ1 (largest), σ2 (intermediate) and σ3 (smallest).",
+        "For two-dimensional problems, σ2 is either assumed equal to σ3 or ignored; for level ground, the principal stresses are often assumed aligned with the horizontal and vertical directions.",
+        "Sign convention: positive values for compressive stress, shear stress that causes counterclockwise rotation, and counterclockwise angles.",
+        "From the Mohr circle, the stresses on any plane are found by rotating an angle 2α about the center of the circle, where α is the angle between the major principal plane and the plane of interest (Figure 4-3)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 4-3: Mohr Circle Relationships"
+      ],
+      "tables": [],
+      "applicability": "Applies when finding the normal and shear stresses on any plane at a point from the principal stresses, or from the stresses on two perpendicular planes."
+    },
+    {
       "section_id": "4-3",
       "title": "Elastic Solutions for Stresses Due to Applied Loads",
       "summary": "Container section covering elastic (Boussinesq and Westergaard) solutions for calculating changes in stress due to applied surface loads. Includes applicability guidance, stress distribution formulas for common load geometries, chart solutions, superposition, St. Venant's principle, and methods for layered or anisotropic foundations.",
@@ -271,10 +289,10 @@
     {
       "section_id": "4-3.2.2",
       "title": "Stress Distribution Formulas",
-      "summary": "Presents closed-form Boussinesq equations in Table 4-2 for calculating changes in vertical stress beneath eight common loading conditions: point load, uniform line load, uniform strip load, uniformly loaded rectangular area, uniformly loaded circular area, triangular load, slope load, terrace load, and semi-infinite uniform load. Formulas support hand calculations, spreadsheets, and numerical analysis verification.",
+      "summary": "Presents closed-form Boussinesq equations in Table 4-2 for calculating changes in vertical stress beneath nine common loading conditions: point load, uniform line load, uniform strip load, uniformly loaded rectangular area, uniformly loaded circular area, triangular load, slope load, terrace load, and semi-infinite uniform load. Formulas support hand calculations, spreadsheets, and numerical analysis verification.",
       "body": "Formulas for homogeneous, semi-infinite, isotropic foundations are summarized in Table 4-2. These formulas can be used for hand calculations for simple computations and to check the results of more complex numerical analyses. Such formulas can also easily be programmed into a spreadsheet solution. Additional formulas for other geometric and loading conditions are summarized in Poulos and Davis (1974).\n\nHorizontal and shear stresses caused by applied loads can also be determined from elastic solutions. In many cases, these calculations require a value of Poisson's ratio (ν) for the soil. Many of the common figures assume ν = 0.5 making it important to verify the value of ν that was used. One application of horizontal stress calculations is for the loading of unyielding walls as discussed in DM 7.2. For conditions where elastic solutions are suitable, the calculation of shear stress is typically not required.",
       "key_points": [
-        "Table 4-2 provides vertical stress equations for eight standard loading geometries under Boussinesq assumptions.",
+        "Table 4-2 provides vertical stress equations for nine standard loading geometries under Boussinesq assumptions.",
         "Formulas are suitable for hand calculations, spreadsheets, and as checks on numerical analyses.",
         "Horizontal and shear stress calculations from elastic solutions often require specifying Poisson's ratio ν.",
         "Many chart solutions assume ν = 0.5; always verify the assumed value of ν before using.",
@@ -284,12 +302,12 @@
       "equations": [
         {
           "id": "Table 4-2 (Point Load)",
-          "description": "Vertical stress change below a point load Q at depth z and horizontal distance R from the load: σ_z = (3·Q·z³) / (2π·R⁵), where R² = x² + y² + z².",
+          "description": "Vertical stress change below a point load Q: σz = (3·Q·z³) / (2π·R⁵), where R = √(x² + y² + z²).",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Uniform Line Load)",
-          "description": "Vertical stress change below a uniform line load of infinite length P at depth z: σ_z = (4·P·z³) / (π·R⁴), where R² = x² + z².",
+          "description": "Vertical stress change below a uniform line load of infinite length P: σz = (2·P / π) · (z³ / R⁴), where R = √(x² + z²).",
           "implemented_in": null
         },
         {
@@ -299,7 +317,7 @@
         },
         {
           "id": "Table 4-2 (Rectangular Area)",
-          "description": "Vertical stress change below the corner of a uniformly loaded rectangular area of intensity q₀: σ_z = (q₀/2π)·[2·x·y·z/R₃·(1/R₁² + 1/R₂²) + tan⁻¹(x·y/(z·R₃))], with R₁²=y²+z², R₂²=x²+z², R₃²=x²+y²+z².",
+          "description": "Vertical stress change below the corner of a uniformly loaded rectangular area of intensity q0 (Figure 4-5): σz = (q0 / 2π) · [tan⁻¹(y·x / (z·R3)) + (x·y·z / R3) · (1/R1² + 1/R2²)], where R1 = √(y² + z²), R2 = √(x² + z²), and R3 = √(x² + y² + z²).",
           "implemented_in": null
         },
         {
@@ -309,17 +327,17 @@
         },
         {
           "id": "Table 4-2 (Triangular Load)",
-          "description": "Vertical stress change below a triangular load of maximum intensity q₀ over width a: σ_z = (q₀/π)·[(x/a)·α − β·(x/a − 1) ... (α and β in radians)].",
+          "description": "Vertical stress change below a triangular load of peak intensity q0 over the widths a and b of the table's stress diagram: σz = (q0 / π) · [x·α / a + ((a + b − x) / b) · β], where α and β are in radians.",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Slope Load)",
-          "description": "Vertical stress change below a slope load of intensity q₀: σ_z = (q₀/π)·(β + x·z/a), where β is in radians.",
+          "description": "Vertical stress change below a slope load rising as q = q0(x/a): σz = (q0 / (π·a)) · (x·β + z), where β is in radians.",
           "implemented_in": null
         },
         {
           "id": "Table 4-2 (Terrace Load)",
-          "description": "Vertical stress change below a terrace load of intensity q₀: σ_z = (q₀/π)·(a·β + α)·(x/a), where α and β are in radians.",
+          "description": "Vertical stress change below a terrace load of intensity q0: σz = (q0 / (π·a)) · (a·β + x·α), where α and β are in radians.",
           "implemented_in": null
         },
         {
@@ -490,7 +508,7 @@
       "section_id": "4-4.2.1",
       "title": "Dead Load",
       "summary": "Presents the Marston-Anderson (1913) and Spangler (1948) method for estimating dead load on rigid pipe in a trench. The load per unit length (Wd) is a function of a load coefficient (Cd), soil unit weight, and trench width. Cd depends on trench depth, lateral earth pressure, and friction coefficient, with recommended parameter values tabulated in Table 4-3.",
-      "body": "Estimates of the load caused by vertical stress on a rigid pipe can be made using the approach suggested by Marston and Anderson (1913) and subsequent work by Spangler (1948). The load per length of pipe (Wd) in a trench can be calculated as:\n\nWd = Cd × γt × Bd²\n\nwhere:\nCd = a load coefficient,\nγt = the total unit weight of the soil, and\nBd = the width of the trench.\n\nThe value of Cd can be calculated as:\n\nCd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ')\n\nwhere:\nH = the depth of the trench above the top of the pipe,\nK = a lateral earth pressure coefficient, and\nµʹ = the coefficient of friction for the trench fill.\n\nRecommended values of γt, K, and µʹ for use with this equation are provided in Table 4-3 as summarized by Moser (1990).",
+      "body": "Estimates of the load caused by vertical stress on a rigid pipe can be made using the approach suggested by Marston and Anderson (1913) and subsequent work by Spangler (1948). The load per length of pipe (Wd) in a trench can be calculated as:\n\nWd = Cd × γt × Bd²\n\nwhere:\nCd = a load coefficient,\nγt = the total unit weight of the soil, and\nBd = the width of the trench.\n\nThe value of Cd can be calculated as:\n\nCd = (1 - e^(-Kµ'(H/Bd))) / (2Kµ')\n\nwhere:\nH = the depth of the trench above the top of the pipe,\nK = a lateral earth pressure coefficient, and\nµʹ = the coefficient of friction for the trench fill.\n\nRecommended values of γt, K, and µʹ for use with this equation are provided in Table 4-3 as summarized by Moser (1990).",
       "key_points": [
         "Dead load per unit pipe length: Wd = Cd × γt × Bd² (Eq. 4-6).",
         "Load coefficient Cd accounts for trench geometry, lateral earth pressure (K), and friction (µʹ) per Eq. 4-7.",
@@ -506,8 +524,8 @@
         },
         {
           "id": "Eq. 4-7",
-          "description": "Load coefficient for rigid pipe in a trench: Cd = (1 - e^(-2Kµ'H/Bd)) / (2Kµ'), where H is depth of trench above pipe top, K is lateral earth pressure coefficient, and µʹ is coefficient of friction for trench fill.",
-          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_trench_load"
+          "description": "Load coefficient for rigid pipe in a trench: Cd = (1 - e^(-Kµ'(H/Bd))) / (2Kµ'), where H is depth of trench above pipe top, K is lateral earth pressure coefficient, and µʹ is coefficient of friction for trench fill. (As printed; the library function evaluates the exponent -2Kµ'(H/Bd), see its docstring.)",
+          "implemented_in": "geotech_references.dm7_1.chapter4.trench_load_coefficient"
         }
       ],
       "figures": [],
@@ -556,9 +574,9 @@
       "section_id": "4-4.3.1",
       "title": "Dead Load",
       "summary": "Presents two methods for estimating dead load on flexible buried pipe: (1) the Marston flexible pipe load equation (Eq. 4-8), which uses the same Cd coefficient as rigid pipe but may be unconservative because it assumes equal pipe and soil stiffness; and (2) the more conservative prism load method (Eq. 4-9), which uses the full weight of soil above the pipe.",
-      "body": "For very flexible pipe with outside diameter (Bc) the Marston load theory predicts a load (Wc) of:\n\nWc = Cd × γt × D\n\nwhere:\nCd = the load coefficient for rigid pipe (see Equation 4-7),\nγt = the total unit weight of the trench backfill, and\nD = the outer diameter of the pipe (Moser 1990).\n\nThis method assumes that the pipe stiffness and soil stiffness are equal, which may lead to unconservative values of Wc.\n\nThe prism load is a more conservative approach for determining the dead load on a buried flexible pipe. The prism load (Wp) is simply the total weight of the soil above the pipe and is equal to:\n\nWp = γt × H × D\n\nwhere:\nγt = the backfill total unit weight,\nH = the depth of soil cover, and\nD = the outer diameter of the pipe.",
+      "body": "For very flexible pipe with outside diameter (Bc) the Marston load theory predicts a load (Wc) of:\n\nWc = Cd × γt × Bc × D\n\nwhere:\nCd = the load coefficient for rigid pipe (see Equation 4-7),\nγt = the total unit weight of the trench backfill, and\nD = the outer diameter of the pipe (Moser 1990).\n\nThis method assumes that the pipe stiffness and soil stiffness are equal, which may lead to unconservative values of Wc.\n\nThe prism load is a more conservative approach for determining the dead load on a buried flexible pipe. The prism load (Wp) is simply the total weight of the soil above the pipe and is equal to:\n\nWp = γt × H × D\n\nwhere:\nγt = the backfill total unit weight,\nH = the depth of soil cover, and\nD = the outer diameter of the pipe.",
       "key_points": [
-        "Marston flexible pipe dead load: Wc = Cd × γt × D (Eq. 4-8), using the same Cd as for rigid pipe.",
+        "Marston flexible pipe dead load: Wc = Cd × γt × Bc × D (Eq. 4-8), using the same Cd as for rigid pipe.",
         "Eq. 4-8 assumes equal pipe and soil stiffness, potentially yielding unconservative (low) load estimates.",
         "Prism load (Eq. 4-9) is more conservative: Wp = γt × H × D, equaling the full weight of soil above the pipe.",
         "Prism load is preferred when a conservative design basis is needed for flexible pipe dead load."
@@ -566,8 +584,8 @@
       "equations": [
         {
           "id": "Eq. 4-8",
-          "description": "Marston dead load on very flexible pipe: Wc = Cd × γt × D, where Cd is the load coefficient (same as Eq. 4-7), γt is total unit weight of trench backfill, and D is the outer diameter of the pipe.",
-          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_prism_load"
+          "description": "Marston dead load on very flexible pipe: Wc = Cd × γt × Bc × D, where Cd is the load coefficient (same as Eq. 4-7), γt is total unit weight of trench backfill, Bc is the outside diameter of the very flexible pipe, and D is the outer diameter of the pipe. (As printed; the library function multiplies by the trench width Bd in place of Bc, see its docstring.)",
+          "implemented_in": "geotech_references.dm7_1.chapter4.flexible_pipe_trench_load"
         },
         {
           "id": "Eq. 4-9",
@@ -904,18 +922,24 @@
     {
       "section_id": "4-5.5.2",
       "title": "Shafts in Clay",
-      "summary": "Provides the formula for critical depth zcrit in clay, above which no lateral support is needed for a vertical shaft. The critical depth is zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight. This equation defines the self-supporting zone near the ground surface in clay shaft excavations.",
-      "body": "No support is needed from the ground surface to a depth of zcrit for shafts in clay. The critical depth (zcrit) is:\n\nzcrit = 2su / γt\n\nwhere:\nsu = the undrained shear strength of the soil and\nγt = the total unit weight of the soil.",
+      "summary": "Provides the formula for critical depth zcrit in clay, above which no lateral support is needed for a vertical shaft. The critical depth is zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight. This equation defines the self-supporting zone near the ground surface in clay shaft excavations. At greater depths the ultimate horizontal pressure on a shaft lining in soft clay is estimated as σh = γʹ · z − su (Eq. 4-12); in stiff clays the pressure may grow over time to several times the effective vertical stress.",
+      "body": "No support is needed from the ground surface to a depth of zcrit for shafts in clay. The critical depth (zcrit) is:\n\nzcrit = 2su / γt   (4-11)\n\nwhere:\nsu = the undrained shear strength of the soil and\nγt = the total unit weight of the soil.\n\nAt greater depths, the ultimate horizontal pressure (σh) on a shaft lining in soft clay can be estimated as:\n\nσh = γʹ · z − su   (4-12)\n\nwhere:\nγʹ = effective unit weight of the soil,\nz = depth below the ground surface, and\nsu = undrained shear strength of the soil.\n\nThis pressure will likely occur after several months of unsupported excavation. The stability factors for fine-grained soils in Table 4-9 can be used as guidelines for the behavior of vertical shafts in clay.\n\nIn stiff, intact or fissured clays, the initial horizontal stress on vertical shaft walls will be small. Over time the pressure may increase to a value several times larger than the effective vertical stress (and ultimately to the swelling pressure if the shaft lining is sufficiently rigid). Local experience is important to provide useful information for soil pressures on vertical shafts in stiff clays.",
       "key_points": [
         "In clay, no lateral shaft support is needed from the surface down to the critical depth zcrit.",
         "Critical depth zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight.",
-        "Below zcrit, lateral support must be provided to maintain shaft stability."
+        "At greater depths, the ultimate horizontal pressure on a shaft lining in soft clay can be estimated as σh = γʹ · z − su (Eq. 4-12); this pressure will likely occur after several months of unsupported excavation.",
+        "In stiff, intact or fissured clays the initial horizontal stress on shaft walls will be small; over time it may increase to several times the effective vertical stress (ultimately to the swelling pressure if the lining is sufficiently rigid)."
       ],
       "equations": [
         {
           "id": "Eq. 4-11",
           "description": "Critical depth for unsupported clay shaft: zcrit = 2su / γt, where su is undrained shear strength and γt is total unit weight of soil. Defines the depth above which no lateral support is required.",
           "implemented_in": "geotech_references.dm7_1.chapter4.shaft_critical_depth_clay"
+        },
+        {
+          "id": "Eq. 4-12",
+          "description": "Ultimate horizontal pressure on a shaft lining in soft clay at greater depths: σh = γʹ · z − su, where γʹ is the effective unit weight of the soil, z is the depth below the ground surface, and su is the undrained shear strength of the soil. This pressure will likely occur after several months of unsupported excavation.",
+          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_horizontal_pressure_clay"
         }
       ],
       "figures": [],
@@ -986,13 +1010,7 @@
         "Parameters K, n, Rf, Kb, m, and Kur govern the model; soil is stiffer during unload-reload with modulus Eur.",
         "See Table 4-13 for parameter summary and Figure 4-13 for illustration."
       ],
-      "equations": [
-        {
-          "id": "Eq. 4-12",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_1.chapter4.shaft_horizontal_pressure_clay"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 4-13"
       ],
@@ -1101,9 +1119,7 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4-7: Suggested Reading (Topic/Reference)"
-      ],
+      "tables": [],
       "applicability": "Applies when an engineer seeks deeper reference material on stress analysis, elastic solutions, pipe loading, tunneling, or numerical methods topics introduced in Chapter 4."
     },
     {
@@ -1121,9 +1137,7 @@
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "Table 4-8: Notation (Symbol/Description)"
-      ],
+      "tables": [],
       "applicability": "Applies whenever a symbol used anywhere in Chapter 4 requires definition or clarification."
     }
   ]

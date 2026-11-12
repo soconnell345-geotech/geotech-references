@@ -29,8 +29,9 @@ import math
 # ============================================================================
 
 def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
-    """Eq 5-1: nominal shear capacity of a one-way slab/wall section without
-    shear reinforcement (printed p. 35). ACI 318-19's shear-capacity
+    """Eq 5-1: nominal shear capacity Vc of a one-way slab/wall section
+    without shear reinforcement, lbs from f'c in psi (unit='us', default)
+    or N from f'c in MPa (unit='si') (printed p. 35). ACI 318-19's shear-capacity
     requirements for members without shear reinforcement are WAIVED for
     these member types in favor of this equation.
 
@@ -46,8 +47,10 @@ def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
         positive.
     ag : float
         Gross area of the design section (in^2 or mm^2, matching unit).
-    b, d : float
-        Section width and effective depth (in. or mm, matching unit).
+    b : float
+        Section width, in. if unit='us', mm if unit='si'.
+    d : float
+        Effective depth, in. if unit='us', mm if unit='si'.
     unit : str, optional
         'us' (default) or 'si'.
 
@@ -71,11 +74,11 @@ def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
 # ============================================================================
 
 def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
-    """Eq 5-2 with the Eq 5-3 upper limits: shear capacity of special
-    straight members (box-culvert sections, gate wells, similar structures
-    meeting paragraph 5-4c) at the critical section 0.15*ln from the face of
-    support (printed pp. 37-38). U.S. (standard) units only: fc' in psi, Nu
-    in lbs, Vc in lbs.
+    """Eq 5-2 with the Eq 5-3 upper limits: nominal shear capacity Vc, lbs,
+    of special straight members (box-culvert sections, gate wells, similar
+    structures meeting paragraph 5-4c) at the critical section 0.15*ln from
+    the face of support (printed pp. 37-38). U.S. (standard) units only:
+    fc' in psi, Nu in lbs, lengths in inches, Vc in lbs.
 
         Vc = (11.5 - ln/d) * sqrt(fc') * sqrt(1 + Nu/(5*Ag*sqrt(fc'))) * b * d   [Eq 5-2]
         Vc <= 2*[12 - (ln/d)]*sqrt(fc')*b*d                                       [Eq 5-3, first limit]
@@ -90,6 +93,23 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
     Verified against Appendix D-6 (fc'=4,000 psi, ln=120 in, d=24 in,
     Nu=31,700 lbs, Ag=336 sq in, b=12 in): Vc = 134,906 lbs (134.9 kips);
     the Eq 5-3 absolute cap for that section is 182,147 lbs (not governing).
+
+    Parameters
+    ----------
+    fc_prime : float
+        Specified concrete compressive strength f'c, psi (not ksi: the
+        equation takes sqrt(f'c) in psi).
+    ln : float
+        Clear span between supports, in.
+    nu : float
+        Factored axial load Nu, lbs, compression (the equation is for
+        axial compression, paragraph 5-4b).
+    ag : float
+        Gross area of the section, sq in.
+    b : float
+        Section width, in.
+    d : float
+        Effective depth, in.
 
     Returns
     -------
@@ -117,10 +137,11 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
 # ============================================================================
 
 def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
-    """Eq 5-4: shear capacity at points of maximum shear for uniformly
-    loaded, curved, cast-in-place members with R/d > 2.25 (R = radius of
-    curvature to the member centerline) (printed p. 38). U.S. (standard)
-    units only: fc' in psi, Nu in lbs, Vc in lbs.
+    """Eq 5-4: nominal shear capacity Vc, lbs, at points of maximum shear
+    for uniformly loaded, curved, cast-in-place members with R/d > 2.25
+    (R = radius of curvature to the member centerline) (printed p. 38).
+    U.S. (standard) units only: fc' in psi, Nu in lbs, lengths in inches,
+    Vc in lbs.
 
         Vc = 4*sqrt(fc') * sqrt(1 + Nu/(4*Ag*sqrt(fc'))) * b * d
         Vc <= 10*sqrt(fc') * b * d
@@ -131,6 +152,17 @@ def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
 
     Parameters
     ----------
+    fc_prime : float
+        Specified concrete compressive strength f'c, psi (not ksi: the
+        equation takes sqrt(f'c) in psi).
+    nu : float
+        Factored axial load Nu, lbs, compression positive.
+    ag : float
+        Gross area of the section, sq in.
+    b : float
+        Section width, in.
+    d : float
+        Effective depth, in.
     radius : float, optional
         Radius of curvature to the member centerline, in. If given, the
         R/d > 2.25 applicability check is included in the result.

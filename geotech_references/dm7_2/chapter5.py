@@ -16,8 +16,6 @@ Reference:
 import math
 from typing import Tuple
 
-from geotech_references._interpolation import _linterp
-
 
 # ===========================================================================
 # SECTION 5-2: Gross and Net Bearing Pressure (Equations 5-1 through 5-3)
@@ -250,24 +248,28 @@ def check_eccentricity_two_directions(
 
 def corner_bearing_pressure(
     q_gross: float, e_B: float, e_L: float, B: float, L: float
-) -> Tuple[float, float, float, float]:
+) -> dict:
     """Corner bearing pressures for eccentric loading (Equation 5-7).
 
     Returns the bearing pressure at the four corners of a rectangular
     foundation with two-way eccentricity within the kern.
 
     .. math::
-        q_{corner} = q_{gross} \\left(1 \\pm \\frac{6 e_B}{B}
-                      \\pm \\frac{6 e_L}{L}\\right)
+        q_{corner} = q_{gross} \\left(1 \\pm \\frac{6 |e_B|}{B}
+                      \\pm \\frac{6 |e_L|}{L}\\right)
+
+    Eq. 5-7 is printed with the magnitudes |eB| and |eL| (as are the
+    limits of Eq. 5-5 and 5-6), so the signs of *e_B* and *e_L* are not
+    used: q1 is the maximum and q4 the minimum whatever signs are passed.
 
     Parameters
     ----------
     q_gross : float
         Gross bearing pressure (psf, kPa, or consistent stress unit).
     e_B : float
-        Eccentricity in B direction (ft, m).
+        Eccentricity in B direction (ft, m); its magnitude is used.
     e_L : float
-        Eccentricity in L direction (ft, m).
+        Eccentricity in L direction (ft, m); its magnitude is used.
     B : float
         Foundation width -- shorter dimension (ft, m).
     L : float
@@ -275,12 +277,12 @@ def corner_bearing_pressure(
 
     Returns
     -------
-    tuple of float
-        (q1, q2, q3, q4) bearing pressures at four corners:
-        q1 = +eB, +eL corner (maximum);
-        q2 = +eB, -eL corner;
-        q3 = -eB, +eL corner;
-        q4 = -eB, -eL corner (minimum).
+    dict
+        ``q1`` = q_gross(1 + 6|eB|/B + 6|eL|/L), the maximum;
+        ``q2`` = q_gross(1 + 6|eB|/B - 6|eL|/L);
+        ``q3`` = q_gross(1 - 6|eB|/B + 6|eL|/L);
+        ``q4`` = q_gross(1 - 6|eB|/B - 6|eL|/L), the minimum;
+        ``note``: that the magnitudes |eB| and |eL| were used.
 
     Raises
     ------
@@ -293,13 +295,19 @@ def corner_bearing_pressure(
     """
     if B <= 0.0 or L <= 0.0:
         raise ValueError("Foundation dimensions B and L must be positive.")
-    term_B = 6.0 * e_B / B
-    term_L = 6.0 * e_L / L
-    q1 = q_gross * (1.0 + term_B + term_L)
-    q2 = q_gross * (1.0 + term_B - term_L)
-    q3 = q_gross * (1.0 - term_B + term_L)
-    q4 = q_gross * (1.0 - term_B - term_L)
-    return (q1, q2, q3, q4)
+    term_B = 6.0 * abs(e_B) / B
+    term_L = 6.0 * abs(e_L) / L
+    return {
+        "q1": q_gross * (1.0 + term_B + term_L),
+        "q2": q_gross * (1.0 + term_B - term_L),
+        "q3": q_gross * (1.0 - term_B + term_L),
+        "q4": q_gross * (1.0 - term_B - term_L),
+        "note": (
+            "Eq. 5-7 (p. 277) uses the magnitudes |eB| and |eL|; the signs "
+            "of e_B and e_L are not used. q1 is the maximum corner pressure "
+            "and q4 the minimum."
+        ),
+    }
 
 
 def effective_foundation_width(B: float, e_B: float) -> float:
@@ -422,15 +430,20 @@ def equivalent_uniform_bearing_pressure(
 
 
 def circular_effective_length(r: float, e_x: float) -> float:
-    """Effective length for a circular footing (Equation 5-11).
+    """Equivalent length L' (in the length unit of r) of the rectangle
+    that stands for an eccentrically loaded circular footing, Equation
+    5-11 of UFC 3-220-20, from the radius r and the eccentricity e_x.
 
-    The equivalent rectangular length for a circular footing with
-    eccentricity, based on the aspect ratio of the circumscribed
-    lens-shaped area.
+    The resultant is centred on the lens-shaped area between two arcs
+    (Figure 5-1(b)), whose area is
+    A' = 2 r^2 acos(e_x / r) - 2 e_x sqrt(r^2 - e_x^2); the equivalent
+    rectangle has that area and the lens's aspect ratio, so L' B' = A'.
+    With no eccentricity L' = B' = r sqrt(pi).
 
     .. math::
-        L' = 2 \\left[ r^2 \\cos^{-1}\\!\\left(\\frac{e_x}{r}\\right)
-             - e_x \\sqrt{r^2 - e_x^2}\\,\\right]^{0.5}
+        L' = \\sqrt{\\left[ 2 r^2 \\cos^{-1}\\!\\left(\\frac{e_x}{r}\\right)
+             - 2 e_x \\sqrt{r^2 - e_x^2}\\,\\right]
+             \\left( \\frac{\\sqrt{r^2 - e_x^2}}{r - e_x} \\right)}
 
     Parameters
     ----------
@@ -442,7 +455,7 @@ def circular_effective_length(r: float, e_x: float) -> float:
     Returns
     -------
     float
-        Effective length L' (ft, m).
+        Equivalent length L' (ft, m).
 
     Raises
     ------
@@ -455,54 +468,56 @@ def circular_effective_length(r: float, e_x: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-11, p. 277.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-11,
+    PDF p. 315 (printed p. 277); Figure 5-1(b), PDF p. 316 (printed
+    p. 278).
     """
     if r <= 0.0:
         raise ValueError("Radius r must be positive.")
     e_x = abs(e_x)
     if e_x >= r:
         raise ValueError("Eccentricity e_x must be less than radius r.")
-    area = r * r * math.acos(e_x / r) - e_x * math.sqrt(r * r - e_x * e_x)
-    return 2.0 * math.sqrt(area)
+    root = math.sqrt(r * r - e_x * e_x)
+    area = 2.0 * r * r * math.acos(e_x / r) - 2.0 * e_x * root
+    return math.sqrt(area * root / (r - e_x))
 
 
 def circular_effective_width(r: float, e_x: float, L_prime: float) -> float:
-    """Effective width for a circular footing (Equation 5-12).
+    """Equivalent width B' (in the length unit of r) of the rectangle
+    that stands for an eccentrically loaded circular footing, Equation
+    5-12 of UFC 3-220-20, from the radius r, the eccentricity e_x and
+    the equivalent length L' of Equation 5-11.
 
-    The equivalent rectangular width for a circular footing with
-    eccentricity, derived from the aspect ratio of the circumscribed
-    lens-shaped area.
-
-    .. math::
-        B' = \\frac{r^2 - e_x^2}{L'} \\cdot \\frac{\\text{(area ratio)}}{1}
-
-    More precisely:
+    B' is L' times the aspect ratio of the lens-shaped area of
+    Figure 5-1(b); with L' from Equation 5-11, L' B' is the lens area.
 
     .. math::
-        B' = \\frac{\\sqrt{r^2 - e_x^2}}{L'} \\cdot \\text{(lens area / aspect)}
+        B' = L' \\left( \\frac{r - e_x}{\\sqrt{r^2 - e_x^2}} \\right)
 
     Parameters
     ----------
     r : float
         Radius of the circular foundation (ft, m).
     e_x : float
-        Eccentricity (ft, m).
+        Eccentricity (ft, m).  Must be less than *r*.
     L_prime : float
-        Effective length from Equation 5-11 (ft, m).
+        Equivalent length L' from Equation 5-11,
+        ``circular_effective_length`` (ft, m).
 
     Returns
     -------
     float
-        Effective width B' (ft, m).
+        Equivalent width B' (ft, m).
 
     Raises
     ------
     ValueError
-        If inputs are invalid.
+        If *r* or *L_prime* is not positive or *e_x* >= *r*.
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-12, p. 278.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-12,
+    PDF p. 316 (printed p. 278).
     """
     if r <= 0.0:
         raise ValueError("Radius r must be positive.")
@@ -511,10 +526,7 @@ def circular_effective_width(r: float, e_x: float, L_prime: float) -> float:
         raise ValueError("Eccentricity e_x must be less than radius r.")
     if L_prime <= 0.0:
         raise ValueError("Effective length L' must be positive.")
-    # The lens-shaped area = r^2 * acos(ex/r) - ex * sqrt(r^2 - ex^2)
-    # B' = area / L' (preserving the aspect ratio)
-    area = r * r * math.acos(e_x / r) - e_x * math.sqrt(r * r - e_x * e_x)
-    return area / L_prime
+    return L_prime * (r - e_x) / math.sqrt(r * r - e_x * e_x)
 
 
 # ===========================================================================
@@ -1146,13 +1158,20 @@ def second_layer_thickness(
     phi1_deg: float,
     phi2_deg: float,
 ) -> float:
-    """Thickness of the second layer for mixed soil profiles (Equation 5-26).
+    """Thickness H2 of the second layer (in the length unit of B) for a
+    mixed sand and clay profile, Equation 5-26 of UFC 3-220-20 (method
+    of Satyanarayana and Garg 1980, unsaturated undrained conditions):
+    H2 = (2B - H1) (c1 + tan phi1) / (c2 + tan phi2).
 
-    For mixed soil profiles of sand and clay evaluated using the
-    Satyanarayana and Garg (1980) method (unsaturated, undrained).
+    The equation is coded as printed: it adds a cohesion to a tangent,
+    so the result depends on the unit of c1 and c2.  The manual's
+    example (Figure 5-20) uses psf: B = 8 ft, H1 = 7 ft, c1 = 200 psf,
+    phi1 = 28, c2 = 400 psf, phi2 = 20 gives H2 = 4.5 ft.  It applies
+    unless a rigid boundary is met (Figure 5-14(b)).
 
     .. math::
-        H_2 = \\frac{(B/2 + H_1 \\tan\\phi_1) \\cdot c_1}{c_2 \\cdot \\tan\\phi_2}
+        H_2 = (2B - H_1) \\left( \\frac{c_1 + \\tan\\phi_1}
+              {c_2 + \\tan\\phi_2} \\right)
 
     Parameters
     ----------
@@ -1161,9 +1180,9 @@ def second_layer_thickness(
     H1 : float
         Thickness of top layer below bearing elevation (ft, m).
     c1 : float
-        Undrained cohesion of top layer (psf, kPa).
+        Undrained cohesion of top layer (psf in the manual's example).
     c2 : float
-        Undrained cohesion of bottom layer (psf, kPa).
+        Undrained cohesion of bottom layer (same unit as *c1*).
     phi1_deg : float
         Undrained friction angle of top layer (degrees).
     phi2_deg : float
@@ -1172,27 +1191,27 @@ def second_layer_thickness(
     Returns
     -------
     float
-        Thickness of the second layer H2 (ft, m).
+        Thickness of the second layer H2 (ft, m), the unit of *B* and
+        *H1*.
 
     Raises
     ------
     ValueError
-        If *c2* is zero or *phi2_deg* yields zero tangent.
+        If c2 + tan(phi2) is zero.
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-26, p. 311.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-26,
+    PDF p. 349 (printed p. 311); example in Figure 5-20, PDF p. 350
+    (printed p. 312).
     """
-    phi1 = math.radians(phi1_deg)
-    phi2 = math.radians(phi2_deg)
-    tan_phi2 = math.tan(phi2)
-    if c2 == 0.0 or tan_phi2 == 0.0:
+    denominator = c2 + math.tan(math.radians(phi2_deg))
+    if denominator == 0.0:
         raise ValueError(
-            "c2 and tan(phi2) must be non-zero for this formulation."
+            "c2 + tan(phi2) must be non-zero for Equation 5-26."
         )
-    numerator = (B / 2.0 + H1 * math.tan(phi1)) * c1
-    denominator = c2 * tan_phi2
-    return numerator / denominator
+    numerator = c1 + math.tan(math.radians(phi1_deg))
+    return (2.0 * B - H1) * numerator / denominator
 
 
 def average_cohesion_mixed_layers(
@@ -1553,11 +1572,16 @@ def modulus_of_subgrade_reaction(q: float, s: float) -> float:
 def subgrade_modulus_from_plate_load_test(
     kp: float, Bp: float, B: float, n: float = 0.5
 ) -> float:
-    """Subgrade modulus scaled from plate load test (Equation 5-36).
+    """Modulus of subgrade reaction ks (in the unit of kp, force/length^3)
+    for a footing from a plate load test, Equation 5-36 of UFC 3-220-20
+    (Sowers 1977): ks = kp (Bp/B)^n with n = 0.5 to 0.7.  The manual
+    allows it only for a footing no wider than 5 ft on uniform
+    soil within the depth of influence, and says plate load test results
+    cannot be scaled for larger footings and mats; the function does not
+    know the unit of B and does not check this.
 
-    Approximates the subgrade modulus for a footing from a plate load
-    test value, valid for footings with width <= 5 ft with uniform soil
-    conditions within the depth of influence (Sowers 1977).
+    The depth of influence is 2B for square footings or 4B for continuous
+    footings.
 
     .. math::
         k_s = k_p \\left(\\frac{B_p}{B}\\right)^n
@@ -1650,11 +1674,13 @@ def subgrade_modulus_from_elastic_parameters(
 
 
 def poissons_ratio_from_friction_angle(phi_prime_deg: float) -> float:
-    """Drained Poisson's ratio estimated from friction angle (Equation 5-38).
+    """Drained Poisson's ratio nu (dimensionless) from the effective
+    friction angle, Equation 5-38 of UFC 3-220-20:
+    nu = (1 - sin phi') / (2 - sin phi'); the manual gives its range as
+    phi' = 20 to 55 degrees, where nu runs from 0.4 to 0.15, and the
+    function answers outside that range without a warning.
 
-    For drained conditions, the Poisson's ratio can be related to the
-    effective friction angle.  Valid for phi' approximately 20 to 55
-    degrees (nu ranges from 0.4 to 0.15).
+    For undrained conditions nu is 0.5; Table 5-16 lists typical values.
 
     .. math::
         \\nu = \\frac{1 - \\sin\\phi'}{2 - \\sin\\phi'}
@@ -2162,10 +2188,29 @@ def terzaghi_shape_factors(
 # ===========================================================================
 
 
+def _meyerhof_table_5_6_rows(phi_deg: float, factor: str) -> None:
+    """Table 5-6 has two rows for the shape and depth factors, phi = 0 and
+    phi' > 10 degrees; a friction angle between them has no row."""
+    if 0.0 < phi_deg <= 10.0:
+        raise ValueError(
+            f"Table 5-6 gives the Meyerhof (1963) {factor} factors for "
+            f"phi = 0 and for phi' > 10 degrees only; it has no row for "
+            f"phi = {phi_deg:g} degrees."
+        )
+
+
 def meyerhof_shape_factors(
     B: float, L: float, phi_deg: float
 ) -> Tuple[float, float, float]:
-    """Meyerhof (1963) shape factors (Table 5-6).
+    """Meyerhof (1963) shape factors (sc, sq, s_gamma), dimensionless, in
+    that order, from Table 5-6 of UFC 3-220-20, which gives them for
+    phi = 0 and for phi' > 10 degrees only (a friction angle between 0
+    and 10 degrees is refused).
+
+    phi = 0: sc = 1 + 0.2 (B/L), sq = s_gamma = 1.  phi' > 10 degrees:
+    sc = 1 + 0.2 (B/L) KP, sq = s_gamma = 1 + 0.1 (B/L) KP, with
+    KP = tan^2(pi/4 + phi'/2).  Note A of the table: use B/L = 1 for a
+    circle; do not combine factors for shape and inclined load.
 
     Parameters
     ----------
@@ -2174,17 +2219,24 @@ def meyerhof_shape_factors(
     L : float
         Foundation length (ft, m).
     phi_deg : float
-        Friction angle (degrees).
+        Friction angle (degrees): 0, or above 10.
 
     Returns
     -------
     tuple of float
         (sc, sq, s_gamma) shape factors.
 
+    Raises
+    ------
+    ValueError
+        If *phi_deg* is above 0 and not above 10 degrees.
+
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6, p. 294.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
+    PDF p. 332 (printed p. 294).
     """
+    _meyerhof_table_5_6_rows(phi_deg, "shape")
     Kp = _Kp(phi_deg)
     ratio = B / L if L > 0.0 else 0.0
     if phi_deg == 0.0:
@@ -2201,7 +2253,14 @@ def meyerhof_shape_factors(
 def meyerhof_depth_factors(
     Df: float, B: float, phi_deg: float
 ) -> Tuple[float, float, float]:
-    """Meyerhof (1963) depth factors (Table 5-6).
+    """Meyerhof (1963) depth factors (dc, dq, d_gamma), dimensionless, in
+    that order, from Table 5-6 of UFC 3-220-20, which gives them for
+    phi = 0 and for phi' > 10 degrees only (a friction angle between 0
+    and 10 degrees is refused).
+
+    dc = 1 + 0.2 k KP^0.5 in both rows.  phi = 0: dq = d_gamma = 1.
+    phi' > 10 degrees: dq = d_gamma = 1 + 0.1 k KP^0.5, with k = Df/B and
+    KP = tan^2(pi/4 + phi'/2).
 
     Parameters
     ----------
@@ -2210,17 +2269,25 @@ def meyerhof_depth_factors(
     B : float
         Foundation width (ft, m).
     phi_deg : float
-        Friction angle (degrees).
+        Friction angle (degrees): 0, or above 10.
 
     Returns
     -------
     tuple of float
         (dc, dq, d_gamma) depth factors.
 
+    Raises
+    ------
+    ValueError
+        If *B* is not positive, or *phi_deg* is above 0 and not above
+        10 degrees.
+
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6, p. 294.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
+    PDF p. 332 (printed p. 294).
     """
+    _meyerhof_table_5_6_rows(phi_deg, "depth")
     if B <= 0.0:
         raise ValueError("Foundation width B must be positive.")
     k = Df / B
@@ -2739,137 +2806,456 @@ def local_shear_vesic(
 # FIGURE 5-18: Modified Nc for Layered Clay (Brown & Meyerhof 1969)
 # ===========================================================================
 
-# Digitised from Figure 5-18.
-# x-axis: H/B (depth of upper layer / foundation width)
-# y-axis: Nc,m (modified bearing capacity factor)
-# Curves parameterised by cu2/cu1 (strength ratio lower/upper layer).
+# Figure 5-18 (PDF p. 348, printed p. 310) plots the modified bearing
+# capacity factor N_c,m against su2/su1 (0 to 2.0), one curve per H/B for a
+# strip footing (a) and per H/2R for a circular footing (b).
+#
+# Top layer stiff, bottom layer soft (su2/su1 < 1): the figure prints the
+# equation of its straight lines in a box:
+#   (a) strip footings:     N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14
+#   (b) circular footings:  N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05
+# N_cm on this side is the equation's value.  The drawn lines follow the
+# equation, except one curve per panel: H/B = 0.5 in (a) follows its line
+# to about su2/su1 = 0.70 and H/2R = 0.25 in (b) to about 0.63; each then
+# bends below its line to meet the uniform value at su2/su1 = 1.0.  Those
+# two curves were read off a 300 dpi render of PDF p. 348 against the
+# figure's own gridlines, to about +/- 0.05 (the value at 1.0 is the
+# labelled line where all curves meet).  On the same render the straight
+# lines nearby read 0.02 to 0.05 below their equations, so part of each
+# difference is drafting.  They give "N_cm_drawn_curve" at that one H/B
+# only; no values for other H/B are built from them.
+#
+# Top layer soft, bottom layer stiff (su2/su1 > 1): curves are drawn for
+# H/B (H/2R) = 0, 0.1, 0.2 and 0.3, and the value is 5.14 for H/B >= 0.7
+# (6.05 for H/2R >= 0.4).  The figure is an image in the PDF, so the
+# values below were read off its pixels against its own gridlines, to
+# about +/- 0.05.  Where a curve is hidden by its own label the values lie
+# on a straight line between the readings on either side of the label.
+# The H/B = 0 and H/2R = 0 curves leave the top of the chart (N = 10) at
+# su2/su1 of about 1.97 and 1.66; their last points are the last readings
+# on the chart.  Each curve: [(su2/su1, N_c,m), ...].
 
-_FIG_5_18_HB = [0.0, 0.25, 0.50, 0.75, 1.00, 1.50, 2.00]
+_FIG_5_18_RATIO_MAX = 2.0
 
-# --- Figure 5-18(a): Strip footing ---
-# cu2/cu1 values and corresponding Nc,m curves
-_FIG_5_18A_CU_RATIO = [0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 5.0]
-_FIG_5_18A_NCM = [
-    [1.0, 1.5, 2.2, 3.0, 3.8, 4.8, 5.14],   # cu2/cu1 = 0.2
-    [2.1, 2.6, 3.2, 3.8, 4.3, 4.9, 5.14],   # cu2/cu1 = 0.4
-    [3.1, 3.5, 3.9, 4.3, 4.6, 5.0, 5.14],   # cu2/cu1 = 0.6
-    [4.1, 4.3, 4.6, 4.8, 5.0, 5.1, 5.14],   # cu2/cu1 = 0.8
-    [5.14, 5.14, 5.14, 5.14, 5.14, 5.14, 5.14],  # cu2/cu1 = 1.0 (uniform)
-    [6.2, 6.0, 5.7, 5.5, 5.4, 5.2, 5.14],   # cu2/cu1 = 1.5
-    [7.2, 6.7, 6.2, 5.8, 5.5, 5.3, 5.14],   # cu2/cu1 = 2.0
-    [8.6, 7.8, 7.0, 6.3, 5.8, 5.3, 5.14],   # cu2/cu1 = 3.0
-    [10.2, 9.2, 8.0, 7.0, 6.2, 5.5, 5.14],  # cu2/cu1 = 5.0
-]
+_FIG_5_18A_SOFT_OVER_STIFF = {
+    0.0: [(1.0, 5.14), (1.1, 5.58), (1.2, 6.07), (1.3, 6.58), (1.4, 7.08),
+          (1.5, 7.59), (1.6, 8.10), (1.7, 8.61), (1.8, 9.11), (1.9, 9.64),
+          (1.95, 9.89)],
+    0.1: [(1.0, 5.14), (1.1, 5.46), (1.2, 5.79), (1.3, 6.07), (1.4, 6.32),
+          (1.5, 6.49), (1.6, 6.67), (1.7, 6.80), (1.8, 6.94), (1.9, 7.07),
+          (2.0, 7.15)],
+    0.2: [(1.0, 5.14), (1.1, 5.39), (1.2, 5.55), (1.3, 5.67), (1.4, 5.78),
+          (1.5, 5.91), (1.6, 5.97), (1.7, 6.03), (1.8, 6.10), (1.9, 6.14),
+          (2.0, 6.18)],
+    0.3: [(1.0, 5.14), (1.1, 5.24), (1.2, 5.33), (1.3, 5.42), (1.4, 5.51),
+          (1.5, 5.56), (1.6, 5.60), (1.7, 5.63), (1.8, 5.66), (1.9, 5.69),
+          (2.0, 5.72)],
+}
 
-# --- Figure 5-18(b): Circular footing ---
-_FIG_5_18B_CU_RATIO = [0.2, 0.4, 0.6, 0.8, 1.0, 1.5, 2.0, 3.0, 5.0]
-_FIG_5_18B_NCM = [
-    [1.2, 1.8, 2.7, 3.6, 4.5, 5.6, 6.05],   # cu2/cu1 = 0.2
-    [2.5, 3.1, 3.8, 4.5, 5.1, 5.8, 6.05],   # cu2/cu1 = 0.4
-    [3.6, 4.1, 4.6, 5.1, 5.4, 5.9, 6.05],   # cu2/cu1 = 0.6
-    [4.8, 5.1, 5.4, 5.6, 5.8, 6.0, 6.05],   # cu2/cu1 = 0.8
-    [6.05, 6.05, 6.05, 6.05, 6.05, 6.05, 6.05],  # cu2/cu1 = 1.0
-    [7.3, 7.0, 6.7, 6.4, 6.3, 6.1, 6.05],   # cu2/cu1 = 1.5
-    [8.5, 7.9, 7.3, 6.8, 6.5, 6.2, 6.05],   # cu2/cu1 = 2.0
-    [10.2, 9.2, 8.2, 7.4, 6.8, 6.3, 6.05],  # cu2/cu1 = 3.0
-    [12.2, 10.8, 9.4, 8.2, 7.2, 6.5, 6.05], # cu2/cu1 = 5.0
-]
+_FIG_5_18B_SOFT_OVER_STIFF = {
+    0.0: [(1.0, 6.05), (1.1, 6.62), (1.2, 7.22), (1.3, 7.81), (1.4, 8.41),
+          (1.5, 9.00), (1.6, 9.64), (1.65, 9.94)],
+    0.1: [(1.0, 6.05), (1.1, 6.39), (1.2, 6.71), (1.3, 6.96), (1.4, 7.15),
+          (1.5, 7.29), (1.6, 7.39), (1.7, 7.50), (1.8, 7.57), (1.9, 7.62),
+          (2.0, 7.66)],
+    0.2: [(1.0, 6.05), (1.1, 6.33), (1.2, 6.45), (1.3, 6.54), (1.4, 6.60),
+          (1.5, 6.67), (1.6, 6.70), (1.7, 6.73), (1.8, 6.73), (1.9, 6.74),
+          (2.0, 6.75)],
+    0.3: [(1.0, 6.05), (1.1, 6.13), (1.2, 6.18), (1.3, 6.22), (1.4, 6.24),
+          (1.5, 6.25), (1.6, 6.26), (1.7, 6.27), (1.8, 6.27), (1.9, 6.28),
+          (2.0, 6.27)],
+}
+
+# Top layer stiff: the one drawn curve per panel that leaves the equation's
+# line, [(su2/su1, N_c,m), ...], used from su2/su1 = 0.68 to 1.0.
+_FIG_5_18A_STIFF_OVER_SOFT_DRAWN = [
+    (0.68, 4.22), (0.70, 4.32), (0.72, 4.38), (0.75, 4.48), (0.80, 4.62),
+    (0.85, 4.74), (0.90, 4.87), (0.95, 4.98), (1.0, 5.14)]
+
+_FIG_5_18B_STIFF_OVER_SOFT_DRAWN = [
+    (0.68, 4.76), (0.70, 4.85), (0.72, 4.95), (0.75, 5.09), (0.80, 5.30),
+    (0.85, 5.50), (0.90, 5.68), (0.95, 5.85), (1.0, 6.05)]
+
+_FIG_5_18_DRAWN_FROM = 0.68     # N_cm_drawn_curve from this su2/su1 to 1.0
+_FIG_5_18_PRINT_NOTE_ABOVE = 0.65   # print_note for 0.65 < su2/su1 < 1
+
+_FIG_5_18_CHARTS = {
+    "a": {
+        "name": "Figure 5-18(a), strip footings",
+        "symbol": "N_c,m,s",
+        "uniform": 5.14,
+        # N = intercept_per_depth * (H/B) + uniform * su2/su1
+        "intercept_per_depth": 1.5,
+        "equation": "N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14",
+        "depth": "H/B",
+        "curves": _FIG_5_18A_SOFT_OVER_STIFF,
+        "drawn_depth": 0.5,
+        "drawn_curve": _FIG_5_18A_STIFF_OVER_SOFT_DRAWN,
+        "print_note_depth_below": 1.0,
+        "print_note": (
+            "Figure 5-18(a) draws one curve in this region that is not the "
+            "printed equation's straight line: H/B = 0.5 follows the line "
+            "to about su2/su1 = 0.70, then runs below it to meet 5.14 at "
+            "su2/su1 = 1.0, by up to about 7.5 percent (read off the "
+            "figure, +/- 0.05: at su2/su1 = 0.80 the equation gives 4.86 "
+            "and the curve about 4.62; at 0.85, 5.12 and about 4.74).  "
+            "N_cm is the equation's value; N_cm_drawn_curve gives the "
+            "curve's value at H/B = 0.5 only.  The manual's text (printed "
+            "p. 309) says it is prudent to reduce the values by 10 percent "
+            "when 0.7 < su2/su1 < 1; on the drawn curve the reduced value "
+            "is at or below the curve."),
+        "no_effect_from": 0.7,
+        "table_note": (" Table 5-11 on the same page gives ranges of "
+                       "N_c,m,s for a strip at H/B = 0.125, 0.50, 0.75 and "
+                       "1.5 and su2/su1 up to 5.0."),
+    },
+    "b": {
+        "name": "Figure 5-18(b), circular footings",
+        "symbol": "N_c,m,c",
+        "uniform": 6.05,
+        # the printed equation is in H/R; the curves are labelled H/2R,
+        # and H/R = 2 (H/2R), so the intercept is 3.0 per unit of H/2R
+        "intercept_per_depth": 3.0,
+        "equation": "N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05",
+        "depth": "H/2R",
+        "curves": _FIG_5_18B_SOFT_OVER_STIFF,
+        "drawn_depth": 0.25,
+        "drawn_curve": _FIG_5_18B_STIFF_OVER_SOFT_DRAWN,
+        "print_note_depth_below": 0.5,
+        "print_note": (
+            "Figure 5-18(b) draws one curve in this region that is not the "
+            "printed equation's straight line: H/2R = 0.25 follows the "
+            "line to about su2/su1 = 0.63, then runs below it to meet 6.05 "
+            "at su2/su1 = 1.0, by up to about 7.5 percent (read off the "
+            "figure, +/- 0.05: at su2/su1 = 0.80 the equation gives 5.59 "
+            "and the curve about 5.30; at 0.85, 5.89 and about 5.50).  "
+            "N_cm is the equation's value; N_cm_drawn_curve gives the "
+            "curve's value at H/2R = 0.25 only.  The manual's text "
+            "(printed p. 309) says it is prudent to reduce the values by "
+            "10 percent when 0.7 < su2/su1 < 1; on the drawn curve the "
+            "reduced value is at or below the curve."),
+        "no_effect_from": 0.4,
+        "table_note": "",
+    },
+}
+
+_FIG_5_18_REDUCTION_NOTE = (
+    "When 0.7 < su2/su1 < 1, it is prudent to reduce the values of "
+    "N_c,m,s and N_c,m,c by 10 percent (UFC 3-220-20, printed p. 309). "
+    "N_cm is the value by the figure's equation or curves; "
+    "N_cm_reduced_10_percent is 0.9 of it."
+)
 
 
-def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> float:
-    """Modified Nc for strip footing on layered clay (Figure 5-18a).
+def _fig_5_18_on_curve(points, ratio, chart, depth_value):
+    """Value on one drawn soft-over-stiff curve, by straight lines between
+    its tabulated points; refused beyond the curve's last point on the
+    chart."""
+    last_ratio = points[-1][0]
+    if ratio > last_ratio:
+        raise ValueError(
+            f"{chart['name']}: the {chart['depth']} = {depth_value:g} curve "
+            f"leaves the top of the chart (N = 10) just past su2/su1 = "
+            f"{last_ratio:g}; it cannot be read at su2/su1 = {ratio:g}."
+        )
+    for (x0, y0), (x1, y1) in zip(points, points[1:]):
+        if x0 <= ratio <= x1:
+            return y0 + (y1 - y0) * (ratio - x0) / (x1 - x0)
+    return points[0][1]
 
-    Brown & Meyerhof (1969) chart providing the modified bearing
-    capacity factor for a strip footing on a two-layer clay profile.
+
+def _fig_5_18_lookup(which, ratio, depth_ratio):
+    chart = _FIG_5_18_CHARTS[which]
+    depth = chart["depth"]
+    uniform = chart["uniform"]
+    if ratio <= 0.0:
+        raise ValueError("cu2_over_cu1 must be positive.")
+    if depth_ratio < 0.0:
+        raise ValueError("H_over_B must be non-negative.")
+    if ratio > _FIG_5_18_RATIO_MAX:
+        raise ValueError(
+            f"{chart['name']} is drawn for su2/su1 from 0 to 2.0; "
+            f"su2/su1 = {ratio:g} is off the chart." + chart["table_note"]
+        )
+    reduced = None
+    note = None
+    drawn_value = None
+    print_note = None
+    on_drawn_curve = abs(depth_ratio - chart["drawn_depth"]) <= 1e-9
+    if depth_ratio > 3.0:
+        value = uniform
+        layering = ("the second layer is more than three foundation widths "
+                    "below the bearing elevation")
+        basis = ("text, printed p. 309: for H/B > 3 the bearing capacity is "
+                 f"not affected by the deeper layer, so {chart['symbol']} = "
+                 f"{uniform:g}")
+    elif ratio < 1.0:
+        value = min(uniform,
+                    chart["intercept_per_depth"] * depth_ratio
+                    + uniform * ratio)
+        layering = "top layer stiff, bottom layer soft"
+        basis = (f"N_cm: by the equation printed in {chart['name']}: "
+                 f"{chart['equation']}")
+        if ratio > 0.7:
+            reduced = 0.9 * value
+            note = _FIG_5_18_REDUCTION_NOTE
+        if (ratio > _FIG_5_18_PRINT_NOTE_ABOVE
+                and 0.0 < depth_ratio < chart["print_note_depth_below"]):
+            print_note = chart["print_note"]
+        if on_drawn_curve and ratio >= _FIG_5_18_DRAWN_FROM:
+            drawn_value = _fig_5_18_on_curve(chart["drawn_curve"], ratio,
+                                             chart, chart["drawn_depth"])
+    elif ratio == 1.0:
+        value = uniform
+        layering = "uniform (su2/su1 = 1)"
+        basis = f"{chart['name']}: all curves meet at {uniform:g}"
+        if on_drawn_curve:
+            drawn_value = uniform
+    else:
+        layering = "top layer soft, bottom layer stiff"
+        curves = chart["curves"]
+        drawn = sorted(curves)
+        no_effect = chart["no_effect_from"]
+        if depth_ratio >= no_effect:
+            value = uniform
+            basis = (f"{chart['name']}: {uniform:g} for {depth} >= "
+                     f"{no_effect:g}")
+        elif depth_ratio > drawn[-1]:
+            top = _fig_5_18_on_curve(curves[drawn[-1]], ratio, chart,
+                                     drawn[-1])
+            raise ValueError(
+                f"{chart['name']} draws its top-layer-soft curves for "
+                f"{depth} = 0, 0.1, 0.2 and 0.3 and gives {uniform:g} for "
+                f"{depth} >= {no_effect:g}; it draws nothing between 0.3 "
+                f"and {no_effect:g}, so {depth} = {depth_ratio:g} cannot be "
+                f"read.  At su2/su1 = {ratio:g} the {depth} = 0.3 curve "
+                f"reads {top:.2f}, so the value lies between {uniform:g} "
+                f"and {top:.2f}." + chart["table_note"]
+            )
+        else:
+            lower = max(d for d in drawn if d <= depth_ratio)
+            upper = min(d for d in drawn if d >= depth_ratio)
+            v_lower = _fig_5_18_on_curve(curves[lower], ratio, chart, lower)
+            if upper == lower:
+                value = v_lower
+            else:
+                v_upper = _fig_5_18_on_curve(curves[upper], ratio, chart,
+                                             upper)
+                value = v_lower + (v_upper - v_lower) * (
+                    (depth_ratio - lower) / (upper - lower))
+            basis = (f"curves of {chart['name']} for {depth} = 0, 0.1, 0.2 "
+                     "and 0.3, read off the chart (about +/- 0.05) and "
+                     "interpolated linearly")
+    return {
+        "N_cm": value,
+        "N_cm_reduced_10_percent": reduced,
+        "N_cm_drawn_curve": drawn_value,
+        "layering": layering,
+        "basis": basis,
+        "note": note,
+        "print_note": print_note,
+    }
+
+
+def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> dict:
+    """Modified bearing capacity factor N_c,m,s (dimensionless) for a strip
+    footing on two layers of clay, Figure 5-18(a) of UFC 3-220-20 (after
+    Brown and Meyerhof 1969), returned as a dict whose "N_cm" is the
+    factor by the figure's printed equation or read off its curves;
+    q_ult = su1 N_c,m with su1 the top layer's strength.  Where the top
+    layer is stiff, 0.65 < su2/su1 < 1 and 0 < H/B < 1.0, "print_note"
+    says the figure's one drawn curve there (H/B = 0.5) runs below the
+    equation by up to about 7.5 percent, and at H/B = 0.5 with
+    0.68 <= su2/su1 <= 1.0 "N_cm_drawn_curve" gives that curve's value.
+
+    Top layer stiff, bottom layer soft (su2/su1 < 1): the equation printed
+    in the figure, N_c,m,s = 1.5 H/B + 5.14 su2/su1 <= 5.14.  Top layer
+    soft, bottom layer stiff (su2/su1 > 1): the figure's curves for
+    H/B = 0, 0.1, 0.2 and 0.3, read off the chart to about +/- 0.05, and
+    5.14 for H/B >= 0.7; the figure draws nothing between 0.3 and 0.7 and
+    the function refuses there.  The chart ends at su2/su1 = 2.0.  The
+    text (printed p. 309) adds: "When 0.7 < su2/su1 < 1, it is prudent to
+    reduce the values of N_c,m,s and N_c,m,c by 10 percent", and for
+    H/B > 3 the deeper layer has no effect (5.14).  The 10 percent
+    reduction is NOT applied to "N_cm"; where it applies the reduced value
+    is given beside it.  Inclination factors should not be combined with
+    these factors.
 
     Parameters
     ----------
     cu2_over_cu1 : float
-        Ratio of undrained shear strength in lower layer to upper
-        layer (dimensionless, > 0).
+        su2/su1: undrained shear strength of the lower layer over that of
+        the upper layer (dimensionless, > 0, at most 2.0).
     H_over_B : float
-        Ratio of upper layer thickness to foundation width
-        (dimensionless, >= 0).
+        H/B: thickness of the upper layer below the footing base over the
+        footing width (dimensionless, >= 0).
 
     Returns
     -------
-    float
-        Modified bearing capacity factor Nc,m for strip footing
-        (dimensionless).
+    dict
+        ``N_cm``: N_c,m,s (dimensionless); top layer stiff: by the
+        equation printed in the figure; top layer soft: read off the
+        figure's curves.  ``N_cm_reduced_10_percent``: 0.9 N_cm when
+        0.7 < su2/su1 < 1, otherwise None.  ``N_cm_drawn_curve``: the
+        value read off the figure's drawn H/B = 0.5 curve (+/- 0.05) when
+        H/B = 0.5 and 0.68 <= su2/su1 <= 1.0, otherwise None.
+        ``layering``: which side of the chart was read.  ``basis``: the
+        printed equation, the curves or the text used.  ``note``: the
+        manual's sentence on the 10 percent reduction when it applies,
+        otherwise None.  ``print_note``: where the drawn curve departs
+        from the printed equation (top layer stiff, 0.65 < su2/su1 < 1,
+        0 < H/B < 1.0), otherwise None.
 
     Raises
     ------
     ValueError
-        If *cu2_over_cu1* is not positive or *H_over_B* is negative.
+        If *cu2_over_cu1* is not positive or above 2.0, *H_over_B* is
+        negative, the top layer is soft and H/B is between 0.3 and 0.7,
+        or the H/B = 0 curve is needed past where it leaves the chart.
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5,
-    Figure 5-18(a), p. 309.
-    Brown & Meyerhof (1969).
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Figure 5-18(a)
+    (Modified Bearing Capacity Factors for Two-Layer Clay Stratigraphy),
+    PDF p. 348 (printed p. 310); text on PDF p. 347 (printed p. 309);
+    worked example in Figure 5-19, PDF p. 349 (printed p. 311).
     """
-    if cu2_over_cu1 <= 0.0:
-        raise ValueError("cu2_over_cu1 must be positive.")
-    if H_over_B < 0.0:
-        raise ValueError("H_over_B must be non-negative.")
-    # Interpolate each cu-ratio curve at query H/B, then interpolate across cu-ratio
-    row_vals = [_linterp(H_over_B, _FIG_5_18_HB, row) for row in _FIG_5_18A_NCM]
-    return _linterp(cu2_over_cu1, _FIG_5_18A_CU_RATIO, row_vals)
+    return _fig_5_18_lookup("a", cu2_over_cu1, H_over_B)
 
 
-def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> float:
-    """Modified Nc for circular footing on layered clay (Figure 5-18b).
+def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> dict:
+    """Modified bearing capacity factor N_c,m,c (dimensionless, shape
+    factor included) for a circular footing on two layers of clay, Figure
+    5-18(b) of UFC 3-220-20 (after Brown and Meyerhof 1969), returned as a
+    dict whose "N_cm" is the factor by the figure's printed equation or
+    read off its curves; q_ult = su1 N_c,m.  Where the top layer is stiff,
+    0.65 < su2/su1 < 1 and 0 < H/2R < 0.5, "print_note" says the figure's
+    one drawn curve there (H/2R = 0.25) runs below the equation by up to
+    about 7.5 percent, and at H/2R = 0.25 with 0.68 <= su2/su1 <= 1.0
+    "N_cm_drawn_curve" gives that curve's value.
 
-    Brown & Meyerhof (1969) chart providing the modified bearing
-    capacity factor for a circular footing on a two-layer clay profile.
+    Top layer stiff, bottom layer soft (su2/su1 < 1): the equation printed
+    in the figure, N_c,m,c = 1.5 H/R + 6.05 su2/su1 <= 6.05, with R the
+    footing radius (the curves are labelled H/2R, and H/R = 2 H/2R).  Top
+    layer soft, bottom layer stiff (su2/su1 > 1): the figure's curves for
+    H/2R = 0, 0.1, 0.2 and 0.3, read off the chart to about +/- 0.05, and
+    6.05 for H/2R >= 0.4; the figure draws nothing between 0.3 and 0.4
+    and the function refuses there.  The chart ends at su2/su1 = 2.0.
+    The text (printed p. 309) adds: "When 0.7 < su2/su1 < 1, it is
+    prudent to reduce the values of N_c,m,s and N_c,m,c by 10 percent".
+    The reduction is NOT applied to "N_cm"; where it applies the reduced
+    value is given beside it.  For a rectangular footing the manual's
+    example uses 2R = B (Figure 5-19) with Equation 5-25.
 
     Parameters
     ----------
     cu2_over_cu1 : float
-        Ratio of undrained shear strength in lower layer to upper
-        layer (dimensionless, > 0).
+        su2/su1: undrained shear strength of the lower layer over that of
+        the upper layer (dimensionless, > 0, at most 2.0).
     H_over_B : float
-        Ratio of upper layer thickness to foundation diameter
-        (dimensionless, >= 0).
+        H/2R: thickness of the upper layer below the footing base over the
+        footing DIAMETER (dimensionless, >= 0).  Not H/R.
 
     Returns
     -------
-    float
-        Modified bearing capacity factor Nc,m for circular footing
-        (dimensionless).
+    dict
+        ``N_cm``: N_c,m,c (dimensionless); top layer stiff: by the
+        equation printed in the figure; top layer soft: read off the
+        figure's curves.  ``N_cm_reduced_10_percent``: 0.9 N_cm when
+        0.7 < su2/su1 < 1, otherwise None.  ``N_cm_drawn_curve``: the
+        value read off the figure's drawn H/2R = 0.25 curve (+/- 0.05)
+        when H/2R = 0.25 and 0.68 <= su2/su1 <= 1.0, otherwise None.
+        ``print_note``: as for ``figure_5_18a_Ncm_strip``, for
+        0 < H/2R < 0.5.  ``layering``, ``basis``, ``note``: as for
+        ``figure_5_18a_Ncm_strip``.
 
     Raises
     ------
     ValueError
-        If *cu2_over_cu1* is not positive or *H_over_B* is negative.
+        If *cu2_over_cu1* is not positive or above 2.0, *H_over_B* is
+        negative, the top layer is soft and H/2R is between 0.3 and 0.4,
+        or the H/2R = 0 curve is needed past where it leaves the chart.
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5,
-    Figure 5-18(b), p. 309.
-    Brown & Meyerhof (1969).
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Figure 5-18(b),
+    PDF p. 348 (printed p. 310); text on PDF p. 347 (printed p. 309);
+    worked example in Figure 5-19, PDF p. 349 (printed p. 311).
     """
-    if cu2_over_cu1 <= 0.0:
-        raise ValueError("cu2_over_cu1 must be positive.")
-    if H_over_B < 0.0:
-        raise ValueError("H_over_B must be non-negative.")
-    row_vals = [_linterp(H_over_B, _FIG_5_18_HB, row) for row in _FIG_5_18B_NCM]
-    return _linterp(cu2_over_cu1, _FIG_5_18B_CU_RATIO, row_vals)
+    return _fig_5_18_lookup("b", cu2_over_cu1, H_over_B)
+
+
+def _plot_figure_5_18(which, stiff_depths, cu2_over_cu1, H_over_B, ax, show):
+    from geotech_references._plotting import get_pyplot, setup_engineering_plot
+    plt = get_pyplot()
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(8, 6))
+    chart = _FIG_5_18_CHARTS[which]
+    depth = chart["depth"]
+    uniform = chart["uniform"]
+
+    # top layer stiff: the printed straight lines, su2/su1 from 0 to 1
+    for d in stiff_depths:
+        intercept = chart["intercept_per_depth"] * d
+        if intercept >= uniform:
+            xs, ys = [0.0, 1.0], [uniform, uniform]
+        else:
+            # the line meets the cap where intercept + uniform x = uniform
+            x_cap = (uniform - intercept) / uniform
+            xs, ys = [0.0, x_cap, 1.0], [intercept, uniform, uniform]
+        ax.plot(xs, ys, '-', color='#1f77b4', linewidth=1.2)
+        ax.annotate(f'{depth}={d:g}', (xs[0], ys[0]), fontsize=7,
+                    xytext=(3, 2), textcoords='offset points')
+    # top layer soft: the drawn curves
+    for d, points in sorted(chart["curves"].items()):
+        ax.plot([p[0] for p in points], [p[1] for p in points], '-',
+                color='#ff7f0e', linewidth=1.2)
+        ax.annotate(f'{depth}={d:g}', points[-1], fontsize=7,
+                    xytext=(-34, 3), textcoords='offset points')
+    ax.plot([1.0, _FIG_5_18_RATIO_MAX], [uniform, uniform], '-',
+            color='black', linewidth=2.0,
+            label=f'{uniform:g} ({depth} ≥ {chart["no_effect_from"]:g}, '
+                  'top layer soft)')
+
+    # Query point
+    if cu2_over_cu1 is not None and H_over_B is not None:
+        ncm_q = _fig_5_18_lookup(which, cu2_over_cu1, H_over_B)["N_cm"]
+        ax.plot(cu2_over_cu1, ncm_q, 's', color='red', markersize=10,
+                zorder=5,
+                label=f'su₂/su₁={cu2_over_cu1:.2f}, {depth}={H_over_B:.2f}'
+                      f' → Nc,m={ncm_q:.2f}')
+        ax.axhline(ncm_q, color='red', linestyle=':', alpha=0.4)
+        ax.axvline(cu2_over_cu1, color='red', linestyle=':', alpha=0.4)
+
+    ax.set_xlim(0.0, _FIG_5_18_RATIO_MAX)
+    ax.set_ylim(0.0, 10.0)
+    ax.legend(fontsize=7, loc='lower right')
+    setup_engineering_plot(
+        ax,
+        'Figure 5-18(%s): Modified Nc — %s Footing (Two-Layer Clay)'
+        % (which, 'Strip' if which == 'a' else 'Circular'),
+        'Lower Layer Shear Strength / Upper Layer Shear Strength '
+        '(su₂ / su₁)',
+        'Modified Bearing Capacity Factor, Nc,m')
+    if show:
+        plt.tight_layout()
+        plt.show()
+    return ax
 
 
 def plot_figure_5_18a(cu2_over_cu1=None, H_over_B=None, ax=None,
                        show=True, **kwargs):
-    """Reproduce UFC Figure 5-18(a): Modified Nc for Strip Footing.
-
-    Plots Brown & Meyerhof (1969) curves of Nc,m vs H/B for each
-    cu2/cu1 ratio, for a strip footing on layered clay.
+    """Draw UFC 3-220-20 Figure 5-18(a): N_c,m,s for a strip footing on
+    two-layer clay against su2/su1 (0 to 2.0), one line per H/B, from the
+    printed equation (top layer stiff) and the curves read off the figure
+    (top layer soft).
 
     Parameters
     ----------
     cu2_over_cu1 : float, optional
-        Strength ratio query point.
+        su2/su1 of a point to mark.
     H_over_B : float, optional
-        Depth ratio query point.
+        H/B of the point to mark.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -2879,55 +3265,24 @@ def plot_figure_5_18a(cu2_over_cu1=None, H_over_B=None, ax=None,
     -------
     matplotlib.axes.Axes
     """
-    from geotech_references._plotting import get_pyplot, setup_engineering_plot
-    plt = get_pyplot()
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(8, 6))
-
-    # Plot one curve per cu2/cu1 ratio
-    colors = plt.cm.viridis([i / (len(_FIG_5_18A_CU_RATIO) - 1)
-                             for i in range(len(_FIG_5_18A_CU_RATIO))])
-    hb_smooth = [i * 0.02 for i in range(0, 101)]  # 0 to 2.0
-
-    for idx, cr in enumerate(_FIG_5_18A_CU_RATIO):
-        ncm_curve = [figure_5_18a_Ncm_strip(cr, hb) for hb in hb_smooth]
-        ax.plot(hb_smooth, ncm_curve, '-', color=colors[idx], linewidth=1.5,
-                label=f'cu₂/cu₁ = {cr}')
-        ax.plot(_FIG_5_18_HB, _FIG_5_18A_NCM[idx], 'o', color=colors[idx],
-                markersize=4)
-
-    # Query point
-    if cu2_over_cu1 is not None and H_over_B is not None:
-        ncm_q = figure_5_18a_Ncm_strip(cu2_over_cu1, H_over_B)
-        ax.plot(H_over_B, ncm_q, 's', color='red', markersize=10, zorder=5,
-                label=f'cu₂/cu₁={cu2_over_cu1:.1f}, H/B={H_over_B:.2f}'
-                      f' → Nc,m={ncm_q:.2f}')
-        ax.axhline(ncm_q, color='red', linestyle=':', alpha=0.4)
-        ax.axvline(H_over_B, color='red', linestyle=':', alpha=0.4)
-
-    ax.legend(fontsize=7, loc='upper right', ncol=2)
-    setup_engineering_plot(
-        ax, 'Figure 5-18(a): Modified Nc — Strip Footing (Layered Clay)',
-        'H / B', 'Modified Bearing Capacity Factor, Nc,m')
-    if show:
-        plt.tight_layout()
-        plt.show()
-    return ax
+    return _plot_figure_5_18("a", (0.0, 0.5, 1.0, 1.5, 2.0, 2.5),
+                             cu2_over_cu1, H_over_B, ax, show)
 
 
 def plot_figure_5_18b(cu2_over_cu1=None, H_over_B=None, ax=None,
                        show=True, **kwargs):
-    """Reproduce UFC Figure 5-18(b): Modified Nc for Circular Footing.
-
-    Plots Brown & Meyerhof (1969) curves of Nc,m vs H/B for each
-    cu2/cu1 ratio, for a circular footing on layered clay.
+    """Draw UFC 3-220-20 Figure 5-18(b): N_c,m,c for a circular footing on
+    two-layer clay against su2/su1 (0 to 2.0), one line per H/2R, from the
+    printed equation (top layer stiff) and the curves read off the figure
+    (top layer soft).
 
     Parameters
     ----------
     cu2_over_cu1 : float, optional
-        Strength ratio query point.
+        su2/su1 of a point to mark.
     H_over_B : float, optional
-        Depth ratio query point.
+        H/2R (upper layer thickness over footing diameter) of the point
+        to mark.
     ax : matplotlib.axes.Axes, optional
         Axes to plot on.
     show : bool, optional
@@ -2937,37 +3292,5 @@ def plot_figure_5_18b(cu2_over_cu1=None, H_over_B=None, ax=None,
     -------
     matplotlib.axes.Axes
     """
-    from geotech_references._plotting import get_pyplot, setup_engineering_plot
-    plt = get_pyplot()
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(8, 6))
-
-    # Plot one curve per cu2/cu1 ratio
-    colors = plt.cm.viridis([i / (len(_FIG_5_18B_CU_RATIO) - 1)
-                             for i in range(len(_FIG_5_18B_CU_RATIO))])
-    hb_smooth = [i * 0.02 for i in range(0, 101)]  # 0 to 2.0
-
-    for idx, cr in enumerate(_FIG_5_18B_CU_RATIO):
-        ncm_curve = [figure_5_18b_Ncm_circular(cr, hb) for hb in hb_smooth]
-        ax.plot(hb_smooth, ncm_curve, '-', color=colors[idx], linewidth=1.5,
-                label=f'cu₂/cu₁ = {cr}')
-        ax.plot(_FIG_5_18_HB, _FIG_5_18B_NCM[idx], 'o', color=colors[idx],
-                markersize=4)
-
-    # Query point
-    if cu2_over_cu1 is not None and H_over_B is not None:
-        ncm_q = figure_5_18b_Ncm_circular(cu2_over_cu1, H_over_B)
-        ax.plot(H_over_B, ncm_q, 's', color='red', markersize=10, zorder=5,
-                label=f'cu₂/cu₁={cu2_over_cu1:.1f}, H/B={H_over_B:.2f}'
-                      f' → Nc,m={ncm_q:.2f}')
-        ax.axhline(ncm_q, color='red', linestyle=':', alpha=0.4)
-        ax.axvline(H_over_B, color='red', linestyle=':', alpha=0.4)
-
-    ax.legend(fontsize=7, loc='upper right', ncol=2)
-    setup_engineering_plot(
-        ax, 'Figure 5-18(b): Modified Nc — Circular Footing (Layered Clay)',
-        'H / B', 'Modified Bearing Capacity Factor, Nc,m')
-    if show:
-        plt.tight_layout()
-        plt.show()
-    return ax
+    return _plot_figure_5_18("b", (0.0, 0.25, 0.5, 1.0, 1.5),
+                             cu2_over_cu1, H_over_B, ax, show)

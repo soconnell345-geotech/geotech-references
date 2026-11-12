@@ -112,6 +112,19 @@ class TestTable71PMuliplier:
         result = table_7_1_p_multiplier("3rd", 6.0)
         assert result["pm"] == 0.7  # clamped at 5B tabulated value
 
+    def test_beyond_5b_says_so(self):
+        """FHWA-HIF-18-031 Table 7-1, p. 104 (PDF page 108): spacings 3B and
+        5B, note (3) "Interpolation may be used for other spacing between 3B
+        and 5B". Beyond 5B the 5B row was used unsaid (review finding
+        gec-25); at 5B and between the rows there is no note."""
+        result = table_7_1_p_multiplier("3rd", 7.0)
+        assert result["pm"] == 0.7
+        assert "no row beyond 5B" in result["note"]
+        assert "note" not in table_7_1_p_multiplier("3rd", 5.0)
+        assert "note" not in table_7_1_p_multiplier("2nd", 4.0)
+        assert table_7_1_p_multiplier("lead", 3.0)["print_notes"][2].startswith(
+            "(3) Interpolation may be used")
+
     # --- Interpolation at 4B ---
     def test_lead_row_4b_interpolated(self):
         result = table_7_1_p_multiplier("lead", 4.0)
@@ -144,8 +157,11 @@ class TestTable71PMuliplier:
 
     # --- Error cases ---
     def test_spacing_below_3b(self):
-        with pytest.raises(ValueError):
+        """The refusal no longer says 'use Pm=1.0 beyond 5B', which the
+        table does not print (rows 2 and 3 are 0.85 and 0.7 at 5B)."""
+        with pytest.raises(ValueError, match="3B and 5B only") as err:
             table_7_1_p_multiplier("lead", 2.5)
+        assert "1.0" not in str(err.value)
 
     def test_invalid_row_position(self):
         with pytest.raises(ValueError):
@@ -216,6 +232,20 @@ class TestTableA1KStiffClay:
         with pytest.raises(ValueError):
             table_a1_k_stiff_clay(-0.5, "static")
 
+    def test_outside_printed_columns_says_so(self):
+        """FHWA-HIF-18-031 Table A-1, p. 222 (PDF page 226): Ca columns 0.5 - 1,
+        1 - 2 and 2 - 4 ton/ft2. Ca 0.3 answered 500 pci and Ca 100 (kPa
+        passed as ton/ft2) 2,000 pci from the end columns unsaid (gec-25);
+        the values stand, with a note. Inside 0.5 - 4 there is no note."""
+        low = table_a1_k_stiff_clay(0.3, "static")
+        assert low["k_pci"] == 500.0
+        assert "0.5 - 1 column is used" in low["note"]
+        high = table_a1_k_stiff_clay(100.0, "cyclic")
+        assert high["k_pci"] == 800.0
+        assert "2 - 4 column is used" in high["note"]
+        assert "note" not in table_a1_k_stiff_clay(4.0, "static")
+        assert "note" not in table_a1_k_stiff_clay(0.5, "static")
+
     def test_invalid_loading(self):
         with pytest.raises(ValueError):
             table_a1_k_stiff_clay(1.0, "monotonic")
@@ -253,6 +283,13 @@ class TestTableA2Epsilon50StiffClay:
     def test_invalid_ca(self):
         with pytest.raises(ValueError):
             table_a2_epsilon50_stiff_clay(0.0)
+
+    def test_outside_printed_columns_says_so(self):
+        """Table A-2, p. 222: same Ca columns as Table A-1 (gec-25)."""
+        result = table_a2_epsilon50_stiff_clay(6.0)
+        assert result["epsilon_50"] == 0.004
+        assert "Table A-2 prints Ca of 0.5 - 1, 1 - 2 and 2 - 4" in result["note"]
+        assert "note" not in table_a2_epsilon50_stiff_clay(1.5)
 
 
 # ============================================================================

@@ -134,7 +134,9 @@ class TestRetrieveSection:
 
     def test_retrieve_existing_section(self):
         """Can retrieve a section from an existing chapter."""
-        section = retrieve_section("gec_13", "1.0")
+        # chapter 1's printed "1.0 Description and History" (its ids carry
+        # the chapter, '1.<printed number>', as chapters 2-10 do)
+        section = retrieve_section("gec_13", "1.1.0")
         assert "title" in section
         assert "body" in section
 
@@ -146,7 +148,7 @@ class TestRetrieveSection:
 
     def test_section_has_key_points(self):
         """Retrieved sections include key_points."""
-        section = retrieve_section("gec_13", "1.0")
+        section = retrieve_section("gec_13", "1.1.0")
         assert "key_points" in section
         assert isinstance(section["key_points"], list)
 
@@ -191,9 +193,12 @@ class TestSearchSections:
         assert len(results) > 0
 
     def test_search_no_results(self):
-        """Search for nonsense returns empty list."""
+        """Nonsense: no section holds every word, so the hits are the
+        ranked search's, each marked as holding only some of the words
+        (2026-11-10 review, core-07; it was an empty list)."""
         results = search_sections("gec_13", "xyzzy_nonexistent_term_abc")
-        assert results == []
+        assert all(r["match"] == "any word" and "xyzzy" in r["lacks"]
+                   for r in results)
 
 
 # ============================================================================

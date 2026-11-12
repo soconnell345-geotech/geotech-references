@@ -149,7 +149,7 @@ def mohr_coulomb_undrained_saturated(c: float) -> float:
 
 def power_function_shear_strength(a: float, b: float,
                                   sigma_prime: float,
-                                  p_a: float = 2116.0) -> float:
+                                  p_a: float) -> float:
     """Shear strength from two-parameter power function (Equation P-1).
 
     Models a nonlinear (curved) drained failure envelope using a power
@@ -172,9 +172,9 @@ def power_function_shear_strength(a: float, b: float,
     sigma_prime : float
         Effective normal stress on the failure plane (psf, kPa, or any
         consistent stress unit matching *p_a*).
-    p_a : float, optional
-        Atmospheric pressure in the same stress unit as *sigma_prime*.
-        Default is 2116 psf (approximately 1 atm).
+    p_a : float
+        Atmospheric pressure in the stress unit of *sigma_prime*
+        (101.325 kPa or 2116 psf).  Required: there is no default.
 
     Returns
     -------
@@ -208,7 +208,7 @@ def power_function_shear_strength(a: float, b: float,
 
 def power_function_undrained_strength(a_u: float, b_u: float,
                                       sigma_1_con: float,
-                                      p_a: float = 2116.0) -> float:
+                                      p_a: float) -> float:
     """Undrained shear strength from power function (Equation P-2).
 
     Relates undrained shear strength to the effective consolidation
@@ -230,9 +230,9 @@ def power_function_undrained_strength(a_u: float, b_u: float,
     sigma_1_con : float
         Major effective consolidation stress (psf, kPa, or any
         consistent stress unit matching *p_a*).
-    p_a : float, optional
-        Atmospheric pressure in the same stress unit as
-        *sigma_1_con*.  Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of *sigma_1_con*
+        (101.325 kPa or 2116 psf).  Required: there is no default.
 
     Returns
     -------
@@ -267,7 +267,7 @@ def power_function_undrained_strength(a_u: float, b_u: float,
 
 def three_parameter_power_function(a: float, b: float, t: float,
                                    sigma_prime: float,
-                                   p_a: float = 2116.0) -> float:
+                                   p_a: float) -> float:
     """Shear strength from three-parameter power function (Equation P-3).
 
     Extends the two-parameter power function (Equation P-1) by adding a
@@ -292,9 +292,9 @@ def three_parameter_power_function(a: float, b: float, t: float,
     sigma_prime : float
         Effective normal stress on the failure plane (psf, kPa, or any
         consistent stress unit matching *p_a*).
-    p_a : float, optional
-        Atmospheric pressure in the same stress unit as *sigma_prime*.
-        Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of *sigma_prime*
+        (101.325 kPa or 2116 psf).  Required: there is no default.
 
     Returns
     -------
@@ -336,7 +336,7 @@ def three_parameter_power_function(a: float, b: float, t: float,
 def equivalent_friction_angle(a: float, b: float,
                               sigma_prime_low: float,
                               sigma_prime_high: float,
-                              p_a: float = 2116.0) -> float:
+                              p_a: float) -> float:
     """Equivalent Mohr-Coulomb friction angle from power function parameters
     (Figure P-4).
 
@@ -365,8 +365,9 @@ def equivalent_friction_angle(a: float, b: float,
         Upper bound of the effective normal stress range (same stress
         unit as *sigma_prime_low*).  Must be greater than
         *sigma_prime_low*.
-    p_a : float, optional
-        Atmospheric pressure (same stress unit).  Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of *sigma_prime_low*
+        (101.325 kPa or 2116 psf).  Required: there is no default.
 
     Returns
     -------
@@ -397,7 +398,7 @@ def equivalent_friction_angle(a: float, b: float,
 def equivalent_cohesion(a: float, b: float,
                         sigma_prime_low: float,
                         sigma_prime_high: float,
-                        p_a: float = 2116.0) -> float:
+                        p_a: float) -> float:
     """Equivalent Mohr-Coulomb cohesion intercept from power function
     parameters (Figure P-4).
 
@@ -425,8 +426,9 @@ def equivalent_cohesion(a: float, b: float,
         Upper bound of the effective normal stress range (same stress
         unit as *sigma_prime_low*).  Must be greater than
         *sigma_prime_low*.
-    p_a : float, optional
-        Atmospheric pressure (same stress unit).  Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of *sigma_prime_low*
+        (101.325 kPa or 2116 psf).  Required: there is no default.
 
     Returns
     -------
@@ -459,7 +461,7 @@ def equivalent_cohesion(a: float, b: float,
 # ---------------------------------------------------------------------------
 
 def power_function_dimensional_to_normalized(
-    a_dim: float, b: float, p_a: float = 2116.0
+    a_dim: float, b: float, p_a: float
 ) -> float:
     """Convert a dimensional power function *A* parameter to the
     normalized *a* parameter (Figure P-5).
@@ -480,9 +482,10 @@ def power_function_dimensional_to_normalized(
     b : float
         Power function curvature parameter (dimensionless).  Same value
         in both dimensional and normalized forms.
-    p_a : float, optional
-        Atmospheric pressure (same stress unit as used in the
-        dimensional equation).  Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of the dimensional
+        equation (101.325 kPa or 2116 psf).  Required: there is no
+        default.
 
     Returns
     -------
@@ -510,7 +513,7 @@ def power_function_dimensional_to_normalized(
 
 
 def power_function_normalized_to_dimensional(
-    a: float, b: float, p_a: float = 2116.0
+    a: float, b: float, p_a: float
 ) -> float:
     """Convert a normalized power function *a* parameter to the
     dimensional *A* parameter (Figure P-5).
@@ -528,8 +531,10 @@ def power_function_normalized_to_dimensional(
         Normalized (dimensionless) power function parameter.
     b : float
         Power function curvature parameter (dimensionless).
-    p_a : float, optional
-        Atmospheric pressure (stress unit).  Default is 2116 psf.
+    p_a : float
+        Atmospheric pressure in the stress unit of the dimensional
+        equation (101.325 kPa or 2116 psf).  Required: there is no
+        default.
 
     Returns
     -------
@@ -636,15 +641,16 @@ def usr_acu_triaxial(phi_prime_deg: float) -> float:
 
 
 def usr_dss(phi_prime_deg: float) -> float:
-    """Undrained strength ratio from direct simple shear (DSS) test
-    (Table P-6).
+    """Undrained strength ratio USR = su / sigma'_vc (dimensionless) in
+    direct simple shear (DSS) for in situ nonplastic and low-plasticity
+    silt, Table P-6 of UFC 3-220-20: USR = sin phi' - 0.5 sin^2 phi'.
 
-    Estimates the undrained strength ratio (USR = su / sigma'_vc) for
-    nonplastic and low-plasticity silts, assuming zero excess pore
-    pressure at failure (Af = 0) and c' = 0.
+    The table gives it for zero excess pore pressure at failure and
+    c' = 0, under "Correlations", which it rates "marginally
+    appropriate" for these soils.
 
     .. math::
-        USR = \\sin \\phi' - 0.5 \\sin 2\\phi'
+        USR = \\sin \\phi' - 0.5 \\sin^2 \\phi'
 
     Parameters
     ----------
@@ -665,9 +671,9 @@ def usr_dss(phi_prime_deg: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-6, p. 54.
+    Prologue P, Table P-6, PDF p. 54 (printed p. 16).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be in the range (0, 90).")
-    phi_rad = math.radians(phi_prime_deg)
-    return math.sin(phi_rad) - 0.5 * math.sin(2.0 * phi_rad)
+    sin_phi = math.sin(math.radians(phi_prime_deg))
+    return sin_phi - 0.5 * sin_phi ** 2

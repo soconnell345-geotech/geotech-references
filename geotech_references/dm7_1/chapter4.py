@@ -461,11 +461,14 @@ def boussinesq_triangular_load(
     """Change in vertical stress beneath a triangular strip load -- Boussinesq
     (Table 4-2).
 
-    Computes the change in vertical stress at a point beneath a triangular
-    (linearly varying) strip load.  The load varies linearly from zero at
-    one edge to *q0* at the other edge over width *b*.  The parameter *a*
-    is the horizontal distance from the point of interest to the far edge
-    of the loaded strip.
+    Computes the change in vertical stress at a point (x, z) beneath a
+    triangular strip load, as drawn in the table's stress diagram: the
+    load rises linearly from zero at x = 0 to *q0* at x = *a*, then falls
+    linearly back to zero at x = *a* + *b*.  The angles *alpha* and *beta*
+    are measured at the point: *alpha* between the lines from it to
+    x = 0 and to x = *a* (the angle the rising part subtends), *beta*
+    between the lines from it to x = *a* and to x = *a* + *b* (the angle
+    the falling part subtends).
 
     .. math::
         \\Delta\\sigma_z = \\frac{q_0}{\\pi}
@@ -477,18 +480,21 @@ def boussinesq_triangular_load(
     q0 : float
         Maximum intensity of the triangular load (psf or kPa).
     x : float
-        Horizontal distance from the point where load is zero to the
-        point of interest, measured at the surface (ft or m).
+        Horizontal coordinate of the point of interest, measured from
+        the edge where the rising part of the load starts at zero
+        (ft or m).
     a : float
-        Horizontal distance from the point of interest to the edge
-        where the full load q0 acts (ft or m).  Must be positive.
+        Width over which the load rises from zero to *q0* (ft or m).
+        Must be positive.
     b : float
-        Width of the triangular load (ft or m).  Must be positive.
+        Width over which the load falls from *q0* back to zero
+        (ft or m).  Must be positive.
     alpha : float
-        Angle subtended at the point of interest by the distance *a*
-        (radians).
+        Angle at the point of interest subtended by the rising part of
+        the load, between the lines to x = 0 and to x = *a* (radians).
     beta : float
-        Angle subtended at the point of interest by the loaded width *b*
+        Angle at the point of interest subtended by the falling part of
+        the load, between the lines to x = *a* and to x = *a* + *b*
         (radians).
 
     Returns
@@ -520,9 +526,10 @@ def boussinesq_slope_load(
     """Change in vertical stress beneath a slope (embankment ramp) load --
     Boussinesq (Table 4-2).
 
-    Computes the change in vertical stress beneath a load that increases
-    linearly from zero to *q0* over a horizontal distance *a* (a ramp or
-    slope load).
+    Computes the change in vertical stress at a point (x, z) beneath a
+    load that increases linearly without limit from zero at x = 0, as
+    drawn in the table's stress diagram: q = q0 (x / a), so the load is
+    *q0* at x = *a* and keeps rising beyond it.
 
     .. math::
         \\Delta\\sigma_z = \\frac{q_0}{\\pi \\cdot a}
@@ -541,8 +548,12 @@ def boussinesq_slope_load(
         Horizontal distance over which the load increases from zero to
         *q0* (ft or m).  Must be positive.
     beta : float
-        Angle at the point of interest subtended by the slope load
-        geometry (radians).
+        Angle at the point of interest, as drawn in the table's stress
+        diagram: from the horizontal through the point in the +x
+        direction (toward the rising load) round to the line from the
+        point to the toe of the load at x = 0 on the surface (radians;
+        between 0 and pi, close to pi for a shallow point far in under
+        the load).
 
     Returns
     -------
@@ -589,11 +600,16 @@ def boussinesq_terrace_load(
         Horizontal distance of the sloping portion of the load (ft or m).
         Must be positive.
     alpha : float
-        Angle at the point of interest subtended by the level load
-        portion (radians).
+        Angle at the point of interest subtended by the sloping portion
+        of the load, between the lines from the point to the toe
+        (x = 0) and to the top of the slope (x = *a*), as drawn in the
+        table's stress diagram (radians).
     beta : float
-        Angle at the point of interest subtended by the sloping load
-        portion (radians).
+        Angle at the point of interest under the level portion of the
+        load, as drawn in the table's stress diagram: from the
+        horizontal through the point in the +x direction round to the
+        line from the point to the top of the slope at x = *a*
+        (radians).
 
     Returns
     -------
@@ -642,8 +658,12 @@ def boussinesq_semi_infinite_load(
         interest, :math:`R = \\sqrt{x^2 + z^2}` (ft or m).  Must be
         positive.
     beta : float
-        Angle at the point of interest measured from the vertical to the
-        line connecting the edge of the load and the point (radians).
+        Angle at the point of interest, as drawn in the table's stress
+        diagram: from the horizontal through the point in the +x
+        direction (under the load) round to the line *R* from the point
+        to the edge of the load (radians; between 0 and pi, close to pi
+        for a shallow point far in under the load).  It is not measured
+        from the vertical.
 
     Returns
     -------
@@ -712,10 +732,12 @@ def rigid_pipe_trench_load(
 def trench_load_coefficient(
     H: float, B_d: float, K: float, mu_prime: float
 ) -> float:
-    """Trench load coefficient for rigid pipe (Equation 4-7).
+    """Load coefficient Cd (dimensionless) for the dead load on a rigid pipe in a trench, Wd = Cd gamma_t Bd^2 (Equation 4-6); coded differently from Equation 4-7 as printed.
 
-    Computes the Marston load coefficient *C_d* used in the calculation
-    of dead load on a rigid pipe in a trench (Equation 4-6).
+    Printed (p. 195): Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu').  Coded:
+    Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu'), with a 2 in the exponent.
+    The printed form gives a lower Cd (0.85 against 1.46 at H/Bd = 2,
+    K = 0.33, mu' = 0.5); see Notes.
 
     .. math::
         C_d = \\frac{1 - e^{-2 K \\mu' H / B_d}}{2 K \\mu'}
@@ -746,6 +768,28 @@ def trench_load_coefficient(
     ValueError
         If *H*, *B_d*, *K*, or *mu_prime* is not positive.
 
+    Notes
+    -----
+    The function is coded differently from the print.  The manual prints
+    Equation 4-7 (PDF p. 223, printed p. 195), for the approach of
+    Marston and Anderson (1913) and Spangler (1948), as::
+
+        Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
+
+    and this function evaluates::
+
+        Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')
+
+    A check on the printed pair of equations (it is not a printed
+    statement): as the wall friction K mu' goes to zero, the coded form
+    tends to H/Bd, so that Equation 4-6 on the same page gives
+    gamma_t H Bd, the weight of the backfill in the trench, while the
+    printed form tends to H/(2 Bd), half that weight.  The printed form
+    lowers Cd, and so the load on a rigid pipe, by about 40% at ordinary
+    inputs.  The review of 2026-11-10 kept the coded form; the library's
+    owner is to revisit it.  An engineer relying on this value should
+    state which form was used.
+
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
@@ -766,12 +810,13 @@ def trench_load_coefficient(
 def flexible_pipe_trench_load(
     C_d: float, gamma_t: float, B_d: float, D: float
 ) -> float:
-    """Dead load per unit length on a flexible pipe in a trench -- Marston
-    theory (Equation 4-8).
+    """Dead load Wc per unit length (lb/ft or kN/m) on a very flexible pipe in a trench; coded differently from Equation 4-8 as printed.
 
-    Estimates the load per unit length on a very flexible pipe (corrugated
-    metal, plastic, or thin-wall smooth steel) in a trench.  This method
-    assumes that the pipe stiffness and soil stiffness are equal.
+    Printed (p. 197): Wc = Cd gamma_t Bc D.  Coded: Wc = Cd gamma_t Bd D,
+    with the trench width Bd where the print has Bc.  The printed form
+    gives a lower load when the trench is wider than the pipe (720
+    against 1080 lb/ft at Cd 1.5, gamma_t 120 pcf, D 2 ft, Bd 3 ft); see
+    Notes.
 
     .. math::
         W_c = C_d \\cdot \\gamma_t \\cdot B_d \\cdot D
@@ -797,6 +842,34 @@ def flexible_pipe_trench_load(
     ------
     ValueError
         If *gamma_t*, *B_d*, or *D* is not positive.
+
+    Notes
+    -----
+    The function is coded differently from the print.  The manual prints
+    Equation 4-8 (PDF p. 225, printed p. 197), for the Marston load
+    theory, as::
+
+        Wc = Cd * gamma_t * Bc * D
+
+    and this function evaluates::
+
+        Wc = Cd * gamma_t * Bd * D
+
+    What the manual defines (these are its definitions, not a statement
+    about the equation): the sentence before the equation reads "For very
+    flexible pipe with outside diameter (Bc)", and its list under the
+    equation gives "D = the outer diameter of the pipe"; the chapter's
+    notation list (PDF p. 244, printed p. 216) gives Bc "Diameter of a
+    flexible pipe", D "Outer diameter of pipe" and Bd "Width of trench in
+    pipe loading calculations".  As printed, then, both Bc and D are the
+    diameter of the pipe and the trench width does not enter.  The two
+    forms agree when the trench is as wide as the pipe; for a wider
+    trench the printed form gives the lower load, by the ratio D/Bd.
+    The manual also notes that this method assumes that the pipe
+    stiffness and soil stiffness are equal, which may lead to
+    unconservative values of Wc.  The review of 2026-11-10 kept the coded
+    form; the library's owner is to revisit it.  An engineer relying on
+    this value should state which form was used.
 
     References
     ----------
@@ -998,47 +1071,71 @@ def shaft_horizontal_pressure_clay(
 
 
 # ===========================================================================
-# TABLE 4-3: Trench Fill Properties (K and mu')
+# TABLE 4-3: Recommended Values for Trench Load Coefficient (after Moser 1990)
 # ===========================================================================
 
 _TABLE_4_3_TRENCH_FILL = {
-    "granular_no_cohesion": {"K": 0.165, "mu_prime": 0.700},
-    "sand_gravel": {"K": 0.150, "mu_prime": 0.500},
-    "saturated_topsoil": {"K": 0.150, "mu_prime": 0.400},
-    "ordinary_clay": {"K": 0.130, "mu_prime": 0.400},
-    "saturated_clay": {"K": 0.110, "mu_prime": 0.260},
+    # soil type: unit weight (pcf), K, mu', K x mu' as printed (pp. 195-196)
+    "partially_compacted_moist_topsoil": {
+        "soil_type": "Partially compacted moist topsoil",
+        "gamma_pcf": 90.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
+    "saturated_topsoil": {
+        "soil_type": "Saturated top soil",
+        "gamma_pcf": 110.0, "K": 0.37, "mu_prime": 0.4, "K_mu_prime": 0.15},
+    "partially_compacted_moist_clay": {
+        "soil_type": "Partially compacted moist clay",
+        "gamma_pcf": 100.0, "K": 0.33, "mu_prime": 0.4, "K_mu_prime": 0.13},
+    "saturated_clay": {
+        "soil_type": "Saturated clay",
+        "gamma_pcf": 120.0, "K": 0.37, "mu_prime": 0.3, "K_mu_prime": 0.11},
+    "dry_sand": {
+        "soil_type": "Dry sand",
+        "gamma_pcf": 100.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
+    "saturated_sand": {
+        "soil_type": "Saturated sand",
+        "gamma_pcf": 120.0, "K": 0.33, "mu_prime": 0.5, "K_mu_prime": 0.17},
 }
 
 
 def table_4_3_trench_fill(fill_type: str) -> dict:
-    """Lateral earth pressure coefficient and friction for trench fill
-    (Table 4-3).
+    """Unit weight (pcf), lateral earth pressure coefficient K, coefficient of friction mu' and K x mu' (dimensionless) of a trench fill, Table 4-3 "Recommended Values for Trench Load Coefficient (after Moser 1990)".
 
-    Returns *K* (lateral earth pressure coefficient) and *mu_prime*
-    (coefficient of friction between fill and trench walls) for use
-    with Equation 4-7 (``trench_load_coefficient``).
+    Returns one row of Table 4-3 for use with Equation 4-7
+    (``trench_load_coefficient``) and Equation 4-6
+    (``rigid_pipe_trench_load``).  The six printed rows are
+    (unit weight in pcf, K, mu', K x mu'):
+    partially compacted moist topsoil 90, 0.33, 0.5, 0.17;
+    saturated top soil 110, 0.37, 0.4, 0.15;
+    partially compacted moist clay 100, 0.33, 0.4, 0.13;
+    saturated clay 120, 0.37, 0.3, 0.11;
+    dry sand 100, 0.33, 0.5, 0.17;
+    saturated sand 120, 0.33, 0.5, 0.17.
 
     Parameters
     ----------
     fill_type : str
-        One of ``"granular_no_cohesion"``, ``"sand_gravel"``,
-        ``"saturated_topsoil"``, ``"ordinary_clay"``,
-        ``"saturated_clay"``.
+        Soil type of the table, one of
+        ``"partially_compacted_moist_topsoil"``,
+        ``"saturated_topsoil"``, ``"partially_compacted_moist_clay"``,
+        ``"saturated_clay"``, ``"dry_sand"``, ``"saturated_sand"``.
 
     Returns
     -------
     dict
-        ``{"K": float, "mu_prime": float}``.
+        ``{"soil_type": str, "gamma_pcf": float, "K": float,
+        "mu_prime": float, "K_mu_prime": float}``: the soil type as
+        printed, the unit weight in pcf as printed, and the three
+        dimensionless values.
 
     Raises
     ------
     ValueError
-        If *fill_type* is not recognised.
+        If *fill_type* is not a row of the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-3, p. 195.
+    Chapter 4, Table 4-3, pp. 195-196 (after Moser 1990).
     """
     key = fill_type.lower().strip()
     if key not in _TABLE_4_3_TRENCH_FILL:
@@ -1050,53 +1147,84 @@ def table_4_3_trench_fill(fill_type: str) -> dict:
 
 
 # ===========================================================================
-# TABLE 4-9: Ground Behavior for Tunnels in Fine-Grained Soil
+# TABLE 4-9: Ground Behavior for Clayey Fine-Grained Soils and Silty Sand
+#            (after FHWA 2009)
 # ===========================================================================
 
 _TABLE_4_9_TUNNEL_BEHAVIOR = {
-    "1-2": "Stable; negligible ground movement.",
-    "2-3": "Stable; small creep movements.",
-    "3-4": "Significant creep; may require face support.",
-    "4-5": "Creep may become excessive; face support required.",
-    "5-6": "Ground squeeze; substantial support needed.",
-    "6-7": "Severe squeeze; heavy support or compressed air.",
-    ">7": "Very severe squeeze; special measures required.",
+    # soil type: {stability factor Ncrit as printed: ground behavior} (p. 205)
+    "clayey_fine_grained": {
+        "1": "Stable",
+        "2 to 3": "Small amount of creep",
+        "4 to 5": "Creeping, usually slow enough to permit tunneling",
+        "6": ("May experience general shear failure. Clay likely to invade "
+              "tail space too quickly to handle."),
+    },
+    "silty_sand_above_water_table": {
+        "0.25 to 0.33": "Firm",
+        "0.33 to 0.5": "Slow raveling",
+        "0.5 to 1": "Raveling",
+    },
 }
 
 
-def table_4_9_tunnel_behavior(N_crit_range: str) -> str:
-    """Ground behavior description from undrained stability factor
-    (Table 4-9).
+def _table_4_9_row_key(text: str) -> str:
+    """'2-3', '2 - 3' and '2 TO 3' all name the printed row '2 to 3'."""
+    key = text.lower().strip().replace("to", "-")
+    return " to ".join(part.strip() for part in key.split("-"))
 
-    Returns a qualitative description of expected tunnel ground behavior
-    based on the undrained stability factor range from
-    ``undrained_stability_factor`` (Equation 4-10).
+
+def table_4_9_tunnel_behavior(N_crit_range: str, soil_type: str) -> str:
+    """Ground behavior (text) for tunneling in clayey fine-grained soil or silty sand at a stability factor Ncrit, Table 4-9 "Ground Behavior for Clayey Fine-Grained Soils and Silty Sand (after FHWA 2009)".
+
+    Returns the "Ground Behavior" cell of one row of Table 4-9.  The
+    stability factor comes from ``undrained_stability_factor``
+    (Equation 4-10).  The printed rows are, for clayey fine-grained
+    soil: Ncrit 1 "Stable"; 2 to 3 "Small amount of creep"; 4 to 5
+    "Creeping, usually slow enough to permit tunneling"; 6 "May
+    experience general shear failure. Clay likely to invade tail space
+    too quickly to handle."  For silty sand above the water table:
+    0.25 to 0.33 "Firm"; 0.33 to 0.5 "Slow raveling"; 0.5 to 1
+    "Raveling".  The table prints no row between 1 and 2, 3 and 4, or
+    5 and 6, and none above 6.
 
     Parameters
     ----------
     N_crit_range : str
-        Stability factor range, one of ``"1-2"``, ``"2-3"``, ``"3-4"``,
-        ``"4-5"``, ``"5-6"``, ``"6-7"``, ``">7"``.
+        Stability factor as the table prints it: ``"1"``, ``"2 to 3"``,
+        ``"4 to 5"`` or ``"6"`` for clayey fine-grained soil;
+        ``"0.25 to 0.33"``, ``"0.33 to 0.5"`` or ``"0.5 to 1"`` for
+        silty sand above the water table.  ``"2-3"`` is read as
+        ``"2 to 3"``.
+    soil_type : str
+        ``"clayey_fine_grained"`` or ``"silty_sand_above_water_table"``.
 
     Returns
     -------
     str
-        Description of expected ground behavior.
+        The ground behavior as printed.
 
     Raises
     ------
     ValueError
-        If *N_crit_range* is not recognised.
+        If *soil_type* or *N_crit_range* is not in the table.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-9, p. 205.
+    Chapter 4, Table 4-9, p. 205 (after FHWA 2009).
     """
-    key = N_crit_range.strip()
-    if key not in _TABLE_4_9_TUNNEL_BEHAVIOR:
+    soil = soil_type.lower().strip()
+    if soil not in _TABLE_4_9_TUNNEL_BEHAVIOR:
         raise ValueError(
-            f"Unknown N_crit_range '{N_crit_range}'. "
+            f"Unknown soil_type '{soil_type}'. "
             f"Choose from: {list(_TABLE_4_9_TUNNEL_BEHAVIOR.keys())}"
         )
-    return _TABLE_4_9_TUNNEL_BEHAVIOR[key]
+    rows = _TABLE_4_9_TUNNEL_BEHAVIOR[soil]
+    key = _table_4_9_row_key(str(N_crit_range))
+    if key not in rows:
+        raise ValueError(
+            f"Unknown N_crit_range '{N_crit_range}' for {soil}. Table 4-9 "
+            f"(UFS 3-220-10 p. 205) prints: {list(rows.keys())}"
+        )
+    return rows[key]

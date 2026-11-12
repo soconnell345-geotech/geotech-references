@@ -205,6 +205,12 @@ class TestLoadCombinations:
         r = nonlinear_static_load(omega_n=1.5, d=100.0, s=20.0)
         assert r["gn"] == pytest.approx(1.5 * (1.2 * 100 + 0.2 * 20))
 
+    def test_live_and_snow_together_refused(self):
+        # GSA_Alternate_Path_2016.pdf pdf 34 / printed 21: 1.2 D + (0.5 L
+        # or 0.2 S).
+        with pytest.raises(ValueError, match="not both"):
+            nonlinear_static_load(omega_n=1.5, d=100.0, l=50.0, s=20.0)
+
     def test_nonlinear_dynamic_load_no_increase_factor(self):
         # PRINTED VALUE: Equation 3.11 has NO Omega multiplier.
         r = nonlinear_dynamic_load(d=100.0, l=50.0)

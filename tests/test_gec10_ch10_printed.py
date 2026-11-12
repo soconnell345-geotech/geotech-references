@@ -116,7 +116,8 @@ class TestRockPrinted:
         t = _text("10.3.5.3")
         # p. 10-21 text: 0.55 (FS = 2.5, "as presented in Table 8-4")
         assert "phi = 0.55" in t and "FS = 2.5" in t
-        # Table 8-4 (p. 8-14) prints 0.50; both are kept, not reconciled (OWN-81)
+        # Table 8-4 (p. 8-14) prints 0.50; the lookup returns 0.50 with a
+        # print_note quoting p. 10-21 (lead's ruling G1, OWN-81)
         assert "prints 0.50" in t
         # Eq. 10-23 and Eq. 10-29 base resistance: 0.50; structural bearing 0.70
         assert "phi = 0.50" in t and "phi = 0.70" in t

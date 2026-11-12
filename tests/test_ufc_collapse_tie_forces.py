@@ -90,6 +90,16 @@ class TestEffectiveWfNonuniform:
         r = effective_wf_for_nonuniform_load([(100, 50), (200, 60)])
         assert r["averaging_permitted"] is False
         assert r["effective_wf"] is None
+        assert r["case"] == "2"
+
+    def test_cases_follow_3_1_3_2_2(self):
+        # UFC_4-023-03.pdf pdf 32 / printed 16, para 3-1.3.2.2: difference
+        # <= 25 % with the max-load area > 25 % is item 1b, maximum wF only
+        # (sub-areas are item 2, difference > 25 %).
+        r = effective_wf_for_nonuniform_load([(100, 50), (120, 50)])
+        assert r["case"] == "1b"
+        assert "sub-areas are not offered" in r["action"]
+        assert effective_wf_for_nonuniform_load([(100, 90), (120, 10)])["case"] == "1a"
 
 
 class TestInternalTieForce:
@@ -142,6 +152,8 @@ class TestPeripheralTieForce:
         r = peripheral_tie_force_two_way(wf=214.5, l1=37.5, wc=35100, lp=3.0)
         assert r["fp"] / 1000 == pytest.approx(250.1, abs=0.2)
         assert r["equation"] == "3-6"
+        # Equation (3-6) is printed on p. 24 (UFC_4-023-03.pdf pdf 40), not 23.
+        assert r["printed_page"] == "24"
 
     def test_equation_3_7_one_way_wall(self):
         r = peripheral_tie_force_one_way(wf=100, l1=20, wc=10, ww=5, lp=3.3)

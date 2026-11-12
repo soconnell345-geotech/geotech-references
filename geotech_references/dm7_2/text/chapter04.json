@@ -3,7 +3,7 @@
   "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
   "volume": 2,
   "chapter": 4,
-  "chapter_title": "Earth-Retaining Structures",
+  "chapter_title": "Analysis of Walls and Retaining Structures",
   "sections": [
     {
       "section_id": "4-1",
@@ -74,12 +74,12 @@
       "section_id": "4-2.2",
       "title": "Rankine Active and Passive Earth Pressures",
       "summary": "Derives Rankine active and passive earth pressure coefficients (KA and KP) from Mohr circle geometry and effective stress friction angle, and presents equations for horizontal effective stress including cohesion. Explains principal stress orientations in active vs. passive states and discusses when the cohesion term is neglected for practical conservatism in both coarse- and fine-grained soils.",
-      "body": "Both the active and passive earth pressure coefficients represent the effective stress ratio for a failure condition in the soil. The earth pressure coefficients KA and KP are best explained using Rankine's (1857) earth pressure theory. Mohr circles representing at-rest, active, and passive conditions are shown in Figure 4-2.\n\nFor the at-rest conditions, the Mohr circle is not tangent to the envelope; therefore, it does not represent a condition of failure. The circle representing an active failure shows that the horizontal stress is equal to KA multiplied by the vertical stress, and the Mohr circle is tangent to the envelope. The circle representing the passive failure condition shows that the horizontal stress is equal to KP multiplied by the vertical stress. In the active condition, the major principal stress (σ'1) is vertical and the minor principal stress (σ'3) is horizontal. For the passive condition, the major principal stress (σ'1) is horizontal and the minor principal stress (σ'3) is vertical. For both of these cases, the horizontal stress is the earth pressure.\n\nRankine's theory and the geometry of the Mohr circles shown in Figure 4-2 result in the following equations for the active and passive earth pressure coefficients:\n\nActive: KA = (1 − sin φ') / (1 + sin φ') = tan²(45° − φ'/2)  (4-3)\n\nPassive: KP = (1 + sin φ') / (1 − sin φ') = tan²(45° + φ'/2)  (4-4)\n\n1/KA = KP  (4-5)\n\nwhere:\nKA = coefficient of active earth pressure,\nKP = coefficient of passive earth pressure, and\nφ' = effective stress friction angle.\n\nThe Mohr circles in Figure 4-2 allow the horizontal effective stress to be predicted for both active and passive conditions for the stresses at any point within the failure zone. The horizontal pressures are calculated as:\n\nActive: σ'h = KA · σ'z − 2c' · √KA  (4-6)\n\nPassive: σ'h = KP · σ'z + 2c' · √KP  (4-7)\n\nwhere:\nKA = coefficient of active earth pressure,\nKP = coefficient of passive earth pressure,\nσ'h = horizontal effective stress (earth pressure),\nσ'z = vertical effective stress, and\nc' = effective stress cohesion intercept.\n\nFrom Equations 4-6 and 4-7, the effective cohesion intercept theoretically decreases the active earth pressure and increases the passive earth pressure. The value of c' is usually assumed to be zero for coarse-grained soils. Fine-grained soils that are represented by a linear failure envelope may have a value of c', which is associated with overconsolidation or compaction. These soils creep, shrink, and swell with time, and the operating value of c' can decrease or reach zero. For this reason, the changes to the earth pressures caused by c' are usually neglected for fine-grained soils.",
+      "body": "Both the active and passive earth pressure coefficients represent the effective stress ratio for a failure condition in the soil. The earth pressure coefficients KA and KP are best explained using Rankine's (1857) earth pressure theory. Mohr circles representing at-rest, active, and passive conditions are shown in Figure 4-2.\n\nFor the at-rest conditions, the Mohr circle is not tangent to the envelope; therefore, it does not represent a condition of failure. The circle representing an active failure shows that the horizontal stress is equal to KA multiplied by the vertical stress, and the Mohr circle is tangent to the envelope. The circle representing the passive failure condition shows that the horizontal stress is equal to KP multiplied by the vertical stress. In the active condition, the major principal stress (σ'1) is vertical and the minor principal stress (σ'3) is horizontal. For the passive condition, the major principal stress (σ'1) is horizontal and the minor principal stress (σ'3) is vertical. For both of these cases, the horizontal stress is the earth pressure.\n\nRankine's theory and the geometry of the Mohr circles shown in Figure 4-2 result in the following equations for the active and passive earth pressure coefficients:\n\nActive: KA = (1 − sin φ') / (1 + sin φ') = tan²(45° − φ'/2)  (4-3)\n\nPassive: KP = (1 + sin φ') / (1 − sin φ') = tan²(45° + φ'/2)  (4-4)\n\nKA = 1/KP  (4-5)\n\nwhere:\nKA = coefficient of active earth pressure,\nKP = coefficient of passive earth pressure, and\nφ' = effective stress friction angle.\n\nThe Mohr circles in Figure 4-2 allow the horizontal effective stress to be predicted for both active and passive conditions for the stresses at any point within the failure zone. The horizontal pressures are calculated as:\n\nActive: σ'h = KA · σ'z − 2c' · √KA  (4-6)\n\nPassive: σ'h = KP · σ'z + 2c' · √KP  (4-7)\n\nwhere:\nKA = coefficient of active earth pressure,\nKP = coefficient of passive earth pressure,\nσ'h = horizontal effective stress (earth pressure),\nσ'z = vertical effective stress, and\nc' = effective stress cohesion intercept.\n\nFrom Equations 4-6 and 4-7, the effective cohesion intercept theoretically decreases the active earth pressure and increases the passive earth pressure. The value of c' is usually assumed to be zero for coarse-grained soils. Fine-grained soils that are represented by a linear failure envelope may have a value of c', which is associated with overconsolidation or compaction. These soils creep, shrink, and swell with time, and the operating value of c' can decrease or reach zero. For this reason, the changes to the earth pressures caused by c' are usually neglected for fine-grained soils.",
       "key_points": [
         "KA and KP represent effective stress ratios at failure; Mohr circles for active/passive states are tangent to the strength envelope.",
         "Active: KA = (1−sin φ')/(1+sin φ') = tan²(45°−φ'/2); σ'1 is vertical (Eq. 4-3).",
         "Passive: KP = (1+sin φ')/(1−sin φ') = tan²(45°+φ'/2); σ'1 is horizontal (Eq. 4-4).",
-        "KA and KP are reciprocals: 1/KA = KP (Eq. 4-5).",
+        "KA and KP are reciprocals: KA = 1/KP (Eq. 4-5).",
         "Cohesion c' reduces active pressure and increases passive pressure per Eqs. 4-6 and 4-7.",
         "c' is typically assumed zero for coarse-grained soils; neglected for fine-grained soils due to creep and volume change effects."
       ],
@@ -96,7 +96,7 @@
         },
         {
           "id": "Eq. 4-5",
-          "description": "Reciprocal relationship between active and passive coefficients: 1/KA = KP",
+          "description": "Reciprocal relationship between active and passive coefficients: KA = 1/KP (PDF p. 216, printed p. 178)",
           "implemented_in": "geotech_references.dm7_2.chapter4.rankine_Ka_Kp_reciprocal"
         },
         {
@@ -241,12 +241,12 @@
         {
           "id": "Eq. 4-10",
           "description": "Coulomb active earth pressure force PA for sloping wall face (θ), sloping backfill (β), and interface friction angle (δ): PA = (1/2)·γ·H²·cos²(φʹ−θ) / { cos²θ·cos(θ+δ)·[1+sqrt(sin(φʹ+δ)sin(φʹ−β)/(cos(θ+δ)cos(θ−β)))]² }",
-          "implemented_in": "geotech_references.dm7_2.chapter4.coulomb_active_coefficient"
+          "implemented_in": "geotech_references.dm7_2.chapter4.coulomb_active_earth_pressure"
         },
         {
           "id": "Eq. 4-11",
           "description": "Coulomb passive earth pressure force PP for sloping wall face (θ), sloping backfill (β), and interface friction angle (δ): PP = (1/2)·γ·H²·cos²(φʹ+θ) / { cos²θ·cos(θ−δ)·[1−sqrt(sin(φʹ+δ)sin(φʹ+β)/(cos(θ−δ)cos(θ−β)))]² }",
-          "implemented_in": "geotech_references.dm7_2.chapter4.coulomb_passive_coefficient"
+          "implemented_in": "geotech_references.dm7_2.chapter4.coulomb_passive_earth_pressure"
         }
       ],
       "figures": [
@@ -261,7 +261,7 @@
       "section_id": "4-3.2",
       "title": "Log Spiral Method",
       "summary": "Explains that the true failure surface is curved (log spiral), not linear, making Coulomb unconservative for passive resistance especially when δ/φʹ > 0.4. Presents Eq. 4-12 for approximating log spiral Kp for vertical walls with horizontal backfill, references charts (Figures 4-12, 4-13) based on Kerisel and Absi (1990), and Table 4-2 comparing Rankine, Coulomb, and log spiral KA/KP values across friction angles.",
-      "body": "One simplification of the Rankine and Coulomb methods is the assumption of a linear failure plane. Experimental and numerical analysis have shown that the true failure surface is curved instead of linear. The surface closely approximates a logarithmic spiral. The linear and log spiral failure surfaces for the active and passive earth pressure cases are shown in Figure 4-11. The difference in the failure planes is not substantial for the active earth pressure case, but there is a considerable difference in the passive case. If the Coulomb method is used to calculate the passive resistance of an earth anchor, the resistance will be greatly overestimated compared to results using the log spiral method. Much less soil is engaged by the true, log spiral surface compared to the linear Coulomb surface. This is especially true as the interface friction angle approaches the friction angle of the soil (i.e., δ/φʹ > 0.4). Therefore, passive pressure should be calculated using the log spiral method and not the Coulomb method.\n\nUnfortunately, the calculations for the log spiral method are not as simple as for the Coulomb method. Caquot and Kerisel (1948) provide tables of values of KA and KP for different wall geometries and interface friction angles. Alqarawi et al. (2021) provide the equations for using a spreadsheet to perform log spiral analysis calculations. Alternatively, charts can be used to determine values of KA and KP for log spiral solutions.\n\nFigure 4-12 shows values of KA and KP for the log spiral method for walls with a sloping face and δ/φʹ = 0.66 based on the published data of Kerisel and Absi (1990). Figure 4-13 is a similar chart for vertical-faced walls having a sloping backfill.\n\nThe log spiral method is commonly used for cut walls, such as sheet pile or soldier pile and lagging, where both KA and KP are required. These walls are vertical and often have no backslope. While δ/φʹ = 0.66 is a common assumption, this type of design may require Kp for a different value of wall friction. For conditions with θ = 0 deg and β = 0 deg, the value of Kp can be approximated as:\n\nKp = (1 + sin φʹ) / (1 − sin φʹ) · exp( (δ/φʹ) · ln( (1 + sin φʹ) / (1 − sin φʹ) ) · 1.443 · sin φʹ )\n\nwhere:\nKp = log spiral passive earth pressure coefficient for θ = 0 deg and β = 0 deg,\nφʹ = effective stress friction angle, and\nδ = wall-soil interface friction angle.\n\nAs expected, Equation 4-12 results in the Rankine value of Kp if wall friction is neglected.\n\nTable 4-2 compares KA and KP values calculated by the Rankine, Coulomb, and Log Spiral methods for a range of friction angles and δ/φʹ values. Examining the active case, the method and wall friction have little effect on the predicted KA. In most cases, the Rankine method is appropriate for active conditions without sloping wall or backfill. For the passive case, the earth pressure theory and wall friction have a large impact on the magnitude of the predicted KP. The log spiral KP can be in the range of two to five times higher than the Rankine value. This is especially important for the design of cut-type retaining walls, such as sheet pile and soldier pile, that rely on passive earth pressures for stability.",
+      "body": "One simplification of the Rankine and Coulomb methods is the assumption of a linear failure plane. Experimental and numerical analysis have shown that the true failure surface is curved instead of linear. The surface closely approximates a logarithmic spiral. The linear and log spiral failure surfaces for the active and passive earth pressure cases are shown in Figure 4-11. The difference in the failure planes is not substantial for the active earth pressure case, but there is a considerable difference in the passive case. If the Coulomb method is used to calculate the passive resistance of an earth anchor, the resistance will be greatly overestimated compared to results using the log spiral method. Much less soil is engaged by the true, log spiral surface compared to the linear Coulomb surface. This is especially true as the interface friction angle approaches the friction angle of the soil (i.e., δ/φʹ > 0.4). Therefore, passive pressure should be calculated using the log spiral method and not the Coulomb method.\n\nUnfortunately, the calculations for the log spiral method are not as simple as for the Coulomb method. Caquot and Kerisel (1948) provide tables of values of KA and KP for different wall geometries and interface friction angles. Alqarawi et al. (2021) provide the equations for using a spreadsheet to perform log spiral analysis calculations. Alternatively, charts can be used to determine values of KA and KP for log spiral solutions.\n\nFigure 4-12 shows values of KA and KP for the log spiral method for walls with a sloping face and δ/φʹ = 0.66 based on the published data of Kerisel and Absi (1990). Figure 4-13 is a similar chart for vertical-faced walls having a sloping backfill.\n\nThe log spiral method is commonly used for cut walls, such as sheet pile or soldier pile and lagging, where both KA and KP are required. These walls are vertical and often have no backslope. While δ/φʹ = 0.66 is a common assumption, this type of design may require Kp for a different value of wall friction. For conditions with θ = 0 deg and β = 0 deg, the value of Kp can be approximated as:\n\nln(Kp) = ln[ (1 + sin(φʹ)) / (1 − sin(φʹ)) ] · [ 1.443 · (δ/φʹ) · sin φʹ + 1 ]   (4-12)\n\nwhere:\nKp = log spiral passive earth pressure coefficient for θ = 0 deg and β = 0 deg,\nφʹ = effective stress friction angle, and\nδ = wall-soil interface friction angle.\n\nAs expected, Equation 4-12 results in the Rankine value of Kp if wall friction is neglected.\n\nTable 4-2 compares KA and KP values calculated by the Rankine, Coulomb, and Log Spiral methods for a range of friction angles and δ/φʹ values. Examining the active case, the method and wall friction have little effect on the predicted KA. In most cases, the Rankine method is appropriate for active conditions without sloping wall or backfill. For the passive case, the earth pressure theory and wall friction have a large impact on the magnitude of the predicted KP. The log spiral KP can be in the range of two to five times higher than the Rankine value. This is especially important for the design of cut-type retaining walls, such as sheet pile and soldier pile, that rely on passive earth pressures for stability.",
       "key_points": [
         "True failure surface is curved (log spiral), not linear; Coulomb significantly overestimates passive resistance when δ/φʹ > 0.4.",
         "Log spiral method should always be used for passive pressure calculations, especially for earth anchors and cut walls.",
@@ -274,8 +274,8 @@
       "equations": [
         {
           "id": "Eq. 4-12",
-          "description": "Log spiral passive earth pressure coefficient Kp for θ = 0° and β = 0°: Kp = exp[ (δ/φʹ) · ln((1+sinφʹ)/(1−sinφʹ)) · 1.443·sinφʹ ] · (1+sinφʹ)/(1−sinφʹ), where φʹ = effective friction angle and δ = wall-soil interface friction angle.",
-          "implemented_in": "geotech_references.dm7_2.chapter4.coulomb_passive_earth_pressure"
+          "description": "Log spiral passive earth pressure coefficient Kp for θ = 0° and β = 0°: ln(Kp) = ln[(1 + sin φʹ)/(1 − sin φʹ)] · [1.443·(δ/φʹ)·sin φʹ + 1] (PDF p. 229, printed p. 191), where φʹ = effective stress friction angle and δ = wall-soil interface friction angle.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.log_spiral_passive_coefficient"
         }
       ],
       "figures": [
@@ -570,8 +570,8 @@
         },
         {
           "id": "Eq. 4-16",
-          "description": "Total seismic active earth pressure force PAE = (1−kv)/2 · γ · H² · KAE, for cohesionless backfill with phreatic surface below wall base.",
-          "implemented_in": "geotech_references.dm7_2.chapter4.hydrodynamic_water_force"
+          "description": "Total seismic active earth pressure force PAE = (γ·H²/2)·(1 − kv)·KAE (PDF p. 253, printed p. 215), for cohesionless backfill with phreatic surface below wall base; PAE = active earth pressure force including seismic effects, γ = unit weight of backfill soil, H = wall height, KAE = seismic active earth pressure coefficient.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.mononobe_okabe_active_force"
         },
         {
           "id": "Eq. 4-17",
@@ -611,7 +611,7 @@
     {
       "section_id": "4-4.4.3",
       "title": "Dynamic Water Pressure",
-      "summary": "Addresses the change in water pressure on retaining walls due to seismic loading for saturated backfill conditions. Separates calculation approaches by soil hydraulic conductivity, noting that methods for partially submerged conditions are available in Kramer (1996) and Matsuzawa et al. (1985). Subsections cover high and (implicitly) low hydraulic conductivity soils.",
+      "summary": "Addresses the change in water pressure on retaining walls due to seismic loading for saturated backfill conditions. Separates calculation approaches by soil hydraulic conductivity, noting that methods for partially submerged conditions are available in Kramer (1996) and Matsuzawa et al. (1985). Subsections cover high and low hydraulic conductivity soils.",
       "body": "Seismic loading also changes the water pressure applied to walls. The solutions presented below assume that the backfill is saturated. Methods for partially submerged conditions can be found in Kramer (1996) and Matsuzawa et al. (1985). Calculation approaches can be separated by the hydraulic conductivity of the soil.",
       "key_points": [
         "Seismic loading changes water pressure on retaining walls in addition to earth pressure.",
@@ -626,23 +626,54 @@
     {
       "section_id": "4-4.4.3.1",
       "title": "High Hydraulic Conductivity Soils",
-      "summary": "Provides the equation for hydrodynamic water pressure (pw) on retaining walls for soils with hydraulic conductivity greater than ~10⁻³ cm/s, where pore water acts independently of the soil skeleton. The pressure varies with depth below the phreatic surface and total water depth behind the wall. Uses Eq. 4-19 to compute pw as a function of kh, γw, z, and H.",
-      "body": "For soil with hydraulic conductivity greater than about 10⁻³ cm/s, the water in the voids will act independently of the soil and will impart a hydrodynamic water pressure (pw) that can be calculated as Eq. 4-19.\n\nwhere:\nγw = unit weight of water,\nz = depth below the phreatic surface, and\nH = total depth of water behind the wall.",
+      "summary": "Provides the equation for hydrodynamic water pressure (pw) on retaining walls for soils with hydraulic conductivity greater than ~10⁻³ cm/s, where pore water acts independently of the soil skeleton (Eq. 4-19), and its resultant force Pw = (7/12)·kh·γw·H² (Eq. 4-20, Kramer 1996); with this method the seismic earth force uses the buoyant unit weight in Equation 4-16.",
+      "body": "For soil with hydraulic conductivity greater than about 10⁻³ cm/s, the water in the voids will act independently of the soil and will impart a hydrodynamic water pressure (pw) that can be calculated as:\n\npw = 0.875 · kh · γw · √(H · z)   (4-19)\n\nwhere:\nγw = unit weight of water,\nz = depth below the phreatic surface, and\nH = total depth of water behind the wall.\n\nThis equation can also be used to estimate the hydrodynamic pressure acting on a wall from an impounded reservoir.\n\nThe resultant force from the hydrodynamic water pressure is found as (Kramer 1996):\n\nPw = (7/12) · kh · γw · H²   (4-20).\n\nIf the hydrodynamic water pressure is calculated in this manner, the seismic earth force should be calculated using the buoyant unit weight in Equation 4-16.",
       "key_points": [
-        "Applies to soils with hydraulic conductivity > ~10⁻³ cm/s (e.g., gravels, coarse sands).",
         "In high-permeability soils, pore water acts independently of the soil skeleton during seismic shaking.",
-        "Hydrodynamic water pressure pw = 0.875 · kh · γw · √(H·z) (Eq. 4-19), varying with depth z below the phreatic surface and total water depth H."
+        "Hydrodynamic water pressure pw = 0.875 · kh · γw · √(H·z) (Eq. 4-19), varying with depth z below the phreatic surface and total water depth H.",
+        "Resultant hydrodynamic force Pw = (7/12) · kh · γw · H² (Eq. 4-20, Kramer 1996); if the hydrodynamic water pressure is calculated in this manner, the seismic earth force should be calculated using the buoyant unit weight in Equation 4-16."
       ],
       "equations": [
         {
           "id": "Eq. 4-19",
           "description": "Hydrodynamic water pressure for high hydraulic conductivity soils (k > 10⁻³ cm/s): pw = 0.875 · kh · γw · √(H·z), where γw is unit weight of water, z is depth below phreatic surface, and H is total water depth behind the wall.",
           "implemented_in": "geotech_references.dm7_2.chapter4.hydrodynamic_water_pressure"
+        },
+        {
+          "id": "Eq. 4-20",
+          "description": "Resultant force from the hydrodynamic water pressure (Kramer 1996): Pw = (7/12) · kh · γw · H² (PDF p. 256, printed p. 218), with kh, γw and H as in Eq. 4-19. If the hydrodynamic water pressure is calculated in this manner, the seismic earth force should be calculated using the buoyant unit weight in Equation 4-16.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.hydrodynamic_water_force"
         }
       ],
       "figures": [],
       "tables": [],
       "applicability": "Applies to retaining walls with saturated backfill of high hydraulic conductivity (> ~10⁻³ cm/s) under seismic loading."
+    },
+    {
+      "section_id": "4-4.4.3.2",
+      "title": "Low Hydraulic Conductivity Soils",
+      "summary": "For soil with hydraulic conductivity less than about 10⁻³ cm/s the water tends to move with the soil and no separate hydrodynamic water pressure is required; KAE is calculated by Equation 4-15 with the seismic angle ψ of Eq. 4-21, and the seismic earth pressure force by Equation 4-16 with the adjusted unit weight of Eq. 4-22.",
+      "body": "For soil with hydraulic conductivity less than about 10⁻³ cm/s, the water will tend to move with the soil, and a separate hydrodynamic water pressure is not required. However, the effect of increased pore pressures on stability must be considered (Kramer 1996).\n\nThe seismic earth pressure coefficient should be calculated using Equation 4-15 with:\n\nψ = tan⁻¹[ γsat · kh / ((γsat − γw) · (1 − ru) · (1 − kv)) ]   (4-21)\n\nwhere:\nγsat = saturated total unit weight of soil,\nγw = unit weight of water,\nkh = horizontal ground acceleration (g),\nkv = vertical ground acceleration (g), and\nru = pore pressure coefficient.\n\nThe seismic earth pressure force can be calculated using Equation 4-16 with an adjusted unit weight to account for seismically induced excess pore pressure is:\n\nγ = (γsat − γw) · (1 − ru)   (4-22)\n\nwhere:\nγsat = saturated total unit weight of soil,\nγw = unit weight of water, and\nru = pore pressure coefficient.",
+      "key_points": [
+        "For soil with hydraulic conductivity less than about 10⁻³ cm/s, a separate hydrodynamic water pressure is not required, but the effect of increased pore pressures on stability must be considered (Kramer 1996).",
+        "KAE by Equation 4-15 with ψ = tan⁻¹[γsat·kh / ((γsat − γw)(1 − ru)(1 − kv))] (Eq. 4-21).",
+        "Seismic earth pressure force by Equation 4-16 with the adjusted unit weight γ = (γsat − γw)(1 − ru) (Eq. 4-22)."
+      ],
+      "equations": [
+        {
+          "id": "Eq. 4-21",
+          "description": "Seismic angle ψ for use in Equation 4-15 for low hydraulic conductivity soils: ψ = tan⁻¹[γsat · kh / ((γsat − γw)(1 − ru)(1 − kv))] (PDF p. 256, printed p. 218), where γsat = saturated total unit weight of soil, γw = unit weight of water, kh = horizontal ground acceleration (g), kv = vertical ground acceleration (g) and ru = pore pressure coefficient.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_psi_low_permeability"
+        },
+        {
+          "id": "Eq. 4-22",
+          "description": "Adjusted unit weight for Equation 4-16 accounting for seismically induced excess pore pressure: γ = (γsat − γw)(1 − ru) (PDF p. 256, printed p. 218), where γsat = saturated total unit weight of soil, γw = unit weight of water and ru = pore pressure coefficient.",
+          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_adjusted_unit_weight"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies to retaining walls with saturated backfill of low hydraulic conductivity (less than about 10⁻³ cm/s) under seismic loading."
     },
     {
       "section_id": "4-5",
@@ -684,11 +715,11 @@
       "section_id": "4-5.1.1",
       "title": "Pressure Distribution at the Base of Walls",
       "summary": "Covers calculation of the resultant normal force R, shear force T, and eccentricity e at the base of rigid retaining walls. Provides equations for maximum and minimum base pressures under trapezoidal or triangular distributions (when R is within the middle third) and for the case when R falls outside the middle third, including both the exact triangular and simplified uniform-pressure approaches.",
-      "body": "The pressure distribution acting on the base of retaining walls impacts the stability assessment for different failure modes. Using the equations for force equilibrium, the magnitude of the resultant normal force (R) and the shear force (T) can be determined. The location of R can be determined from moment equilibrium about the toe of the wall. The distance that R acts from the centerline or midpoint of the base of the wall is defined as the eccentricity, e. Figure 4-27 provides the method for calculating the resultant location and eccentricity.\n\nKnowledge of the magnitude and position of R allows the pressure distribution on the bottom of the wall to be calculated. Theoretically, the shape of pressure distribution is either triangular or trapezoidal as shown in Figure 4-28. If the resultant acts precisely at the one-third point of the base, a triangular pressure distribution results, with the full base of the wall under compression. If the resultant acts within the middle third of the base, a trapezoidal distribution results, and the maximum pressure, qmax, acting at the toe is given by Eq. 4-23. The minimum pressure, qmin, acting on the heel side of the trapezoidal pressure distribution is given by Eq. 4-24.\n\nIf the resultant is located outside of the middle third of the base, the maximum stress can be calculated by Eq. 4-25, where x0 = B/2 – e = horizontal distance between R and the toe. When the resultant is outside of the middle third of the base, only a portion of the base is under compression. The amount of base under compression, Be, can be calculated by Eq. 4-26.\n\nAs shown at the bottom of Figure 4-28, the pressure distribution can be simplified by assuming that the pressure acts uniformly over a width of 2·x0. If the pressure distribution is assumed to be uniform, its magnitude is given by Eq. 4-27. For the simplified uniform distribution of pressure, the amount of the base that is under compression is given by Eq. 4-28.",
+      "body": "The pressure distribution acting on the base of retaining walls impacts the stability assessment for different failure modes. Using the equations for force equilibrium, the magnitude of the resultant normal force (R) and the shear force (T) can be determined. The location of R can be determined from moment equilibrium about the toe of the wall. The distance that R acts from the centerline or midpoint of the base of the wall is defined as the eccentricity, e. Figure 4-27 provides the method for calculating the resultant location and eccentricity.\n\nKnowledge of the magnitude and position of R allows the pressure distribution on the bottom of the wall to be calculated. Theoretically, the shape of pressure distribution is either triangular or trapezoidal as shown in Figure 4-28. If the resultant acts precisely at the one-third point of the base, a triangular pressure distribution results, with the full base of the wall under compression. If the resultant acts within the middle third of the base, a trapezoidal distribution results, and the maximum pressure, qmax, acting at the toe is given by Eq. 4-23. The minimum pressure, qmin, acting on the heel side of the trapezoidal pressure distribution is given by Eq. 4-24.\n\nIf the resultant is located outside of the middle third of the base, the maximum stress can be calculated by:\n\nqmax = 2R / (3x0)   (4-25)\n\nwhere:\nx0 = B/2 – e = horizontal distance between R and the toe.\n\nWhen the resultant is outside of the middle third of the base, only a portion of the base is under compression. The amount of base under compression, Be, can be calculated by Eq. 4-26.\n\nAs shown at the bottom of Figure 4-28, the pressure distribution can be simplified by assuming that the pressure acts uniformly over a width of 2·x0. If the pressure distribution is assumed to be uniform, its magnitude is given by Eq. 4-27. For the simplified uniform distribution of pressure, the amount of the base that is under compression is given by Eq. 4-28.",
       "key_points": [
         "Resultant R and eccentricity e are found from force and moment equilibrium; e is measured from the base centerline.",
         "When R is within the middle third: trapezoidal pressure distribution; qmax at toe per Eq. 4-23, qmin at heel per Eq. 4-24.",
-        "When R is outside the middle third: only part of the base is in compression; triangular distribution with qmax per Eq. 4-25.",
+        "When R is outside the middle third: only part of the base is in compression; triangular distribution with qmax = 2R/(3x0) per Eq. 4-25.",
         "Effective base width Be under compression (triangular method) = 3·x0 (Eq. 4-26); simplified uniform method gives Be = 2·x0 (Eq. 4-28).",
         "Simplified uniform pressure qmax = R/(2·x0) (Eq. 4-27) is appropriate for ductile soils; triangular/trapezoidal used for brittle materials.",
         "Figure 4-28 illustrates all pressure distribution cases."
@@ -706,8 +737,8 @@
         },
         {
           "id": "Eq. 4-25",
-          "description": "Maximum bearing pressure qmax when resultant R is outside the middle third: qmax = R / (2·x0/3), where x0 = B/2 − e",
-          "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_max_trapezoidal"
+          "description": "Maximum bearing pressure qmax when resultant R is outside the middle third: qmax = 2R / (3x0) (PDF p. 259, printed p. 221), where x0 = B/2 − e = horizontal distance between R and the toe (Figure 4-28: triangular distribution, Be = 3x0).",
+          "implemented_in": "geotech_references.dm7_2.chapter4.base_pressure_max_triangular"
         },
         {
           "id": "Eq. 4-26",
@@ -723,21 +754,6 @@
           "id": "Eq. 4-28",
           "description": "Effective base width under compression for simplified uniform pressure distribution: Be = 2·x0",
           "implemented_in": "geotech_references.dm7_2.chapter4.effective_base_width_uniform"
-        },
-        {
-          "id": "Eq. 4-20",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_2.chapter4.hydrodynamic_water_force"
-        },
-        {
-          "id": "Eq. 4-21",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_psi_low_permeability"
-        },
-        {
-          "id": "Eq. 4-22",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_2.chapter4.seismic_adjusted_unit_weight"
         }
       ],
       "figures": [
@@ -989,8 +1005,8 @@
       "equations": [
         {
           "id": "Eq. 4-31",
-          "description": "Relative flexibility of anchored bulkhead wall: ρ = (H + D)⁴ / EI, where H = exposed wall height (in), D = penetration depth below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft). Used with Figure 4-36 for Rowe's moment reduction.",
-          "implemented_in": "geotech_references.dm7_2.chapter4.figure_4_36_moment_reduction"
+          "description": "Relative flexibility of anchored bulkhead wall: ρ = (H + D)⁴ / EI, where H = exposed wall height (in), D = penetration depth below dredge line (in), E = Young's modulus (psi), I = moment of inertia (in⁴/ft); ρ is in in²/lb per running foot of wall. Used with Figure 4-36 for Rowe's moment reduction (figure_4_36_moment_reduction), which prints its two curves on ρ from 5 to 200 in²/lb: very dense coarse-grained soils M_DESIGN/M_MAX = 1.58/ln ρ − 0.015; medium dense and dense coarse-grained soils 2.03/ln ρ − 0.076; no reduction for fine-grained soils or very loose to loose coarse-grained soils (note 2).",
+          "implemented_in": "geotech_references.dm7_2.chapter4.relative_flexibility_anchored_bulkhead"
         }
       ],
       "figures": [
@@ -1192,7 +1208,7 @@
       "key_points": [
         "Narrow braced excavations require special design procedures separate from general apparent earth pressure diagram application.",
         "Unbalanced water pressure must be included when the retained water table is above the excavation base.",
-        "Arching effect allows an 80% pressure reduction for all spans except the uppermost span when computing required wall section.",
+        "Arching may be accounted for by reducing the pressures in all but the upper span (\"A reduction of 80% of the values shown is appropriate\"); Figure 4-54 note 3: moments in sheeting braces are 80% of the simple span moments, except the upper span, where the moment equals the simple span moment.",
         "Design must also consider active earth pressures at each construction stage (staged analysis using Figure 4-56 approach).",
         "Final design uses the larger of the forces/sections from the apparent pressure diagram approach vs. the staged active pressure approach."
       ],
@@ -1254,66 +1270,56 @@
       "section_id": "4-9",
       "title": "CELLULAR COFFERDAM DESIGN",
       "summary": "Covers the design principles, geometry configurations, loading cases, and failure modes for cellular sheet pile cofferdams. Explains how cofferdams are transformed into equivalent parallel wall sections for hand calculations, discusses phreatic surface assumptions, and enumerates all loading conditions and failure modes that must be assessed, referencing Table 4-7 and key references (USS 1984; USACE 1989).",
-      "body": "Cellular sheet pile cofferdams are structures constructed from sheet piles driven in a variety of geometries and filled with soil. Cofferdams perform many purposes, such as creating dewatered construction areas, lock walls, retaining structures, mooring structures, and spillway weirs.\n\nCofferdam geometries include circular cells, semicircular cells, and cloverleaf cells. These different configurations are shown in Figure 4-57(a). For hand calculations, these configurations are transformed into equivalent parallel wall cofferdams of width, B. The strict definition of B is that it is the width of a rectangular section that has a sectional modulus equivalent to that of the actual cofferdam cell. Since this can be a difficult calculation, approximate methods to calculate B for the different cofferdam cell configurations are shown on Figure 4-57(a).\n\nFigure 4-57(b) shows a typical section used for cofferdam design. In some designs, there may be soil against the outboard face, and the berm may not be present on the inboard face.\n\nMany factors must be considered in the design of cellular cofferdams. Because of the complexity involved in cofferdam design, numerical methods modeling soil-structure interaction are often used. The stability of cofferdams depends on ratio of the width to the height, the resistance of an inboard berm, if any, and the type and permeability of cell fill materials. Usually active and/or passive pressures act on exterior faces of the sheeting. The shear strength of the cofferdam fill material is a very important factor in the overall stability of cofferdams. Equally important is the line of saturation or phreatic surface in the cell fill. The position of the water surface or line of saturation in the cell fill is usually determined by the soil type used. For coarse-grained, free-draining fill, a slope of 1H:1V is assumed. For fine-grained, poorly-draining cell fill, a slope of 3H:1V is often used. In some cases, the line of saturation is assumed to extend from the outboard face of the cofferdam to the top elevation of the berm on the outside of the inboard face. The inboard ground surface or berm also may have an elevated phreatic surface, but the stabilizing effect of the inboard face water pressure is often ignored in design calculations (USS 1984; USACE 1989).\n\nMany different loading cases and failure conditions are used to assess the stability and performance of cofferdams. The main loading conditions are: Case I – maximum pool conditions, Case II – initial filling conditions, and Case III – drawdown conditions (USACE 1989). For each of these loading conditions, the following modes of failure must be assessed:\n• Sliding\n• Overturning\n• Rotation (Hansen method)\n• Deep seated sliding\n• Bearing capacity\n• Settlement\n• Seepage\n• Interlock tension\n• Vertical shear resistance (Terzaghi method)\n• Horizontal shear resistance (Cummings method)\n• Vertical shear resistance (Schroeder-Maitland method)\n• Pullout of outboard sheets\n• Penetration of inboard sheets\n\nSome of the analysis methods, such as overturning, are very similar to those used for gravity retaining walls (Section 4-5.1). Other modes of failure are unique to cellular cofferdams and were developed specifically for the various modes of failure. Many of the failure modes employ earth pressure calculations outlined in this chapter, but the earth pressure coefficients, particularly for the cell fill material, lie between the active and passive pressure conditions used for other retaining structures. Table 4-7 outlines several failure modes and specifics of the analysis methods for cofferdams. Details regarding the stability of sheet pile cofferdams, along with solutions to example problems, can be found in the USS Steel Sheet Piling Design Manual (USS 1984) and the Corps of Engineers' EM 1100-2-2503 (USACE 1989).\n\nTable 4-7 details the following failure modes and design guidance:\n\nSLIDING (base friction):\n• Use F ≥ 1.25 for temporary structures; F ≥ 1.50 for permanent structures.\n• F = (W'tanδ) / (PA + Pw), where W' = effective weight of backfill, Pw = net water pressure force, δ = interface friction angle along bottom (= 0.5 for smooth rock, = φ' for soil at base).\n\nSLIDING (along weak seam):\n• Location of failure plane must be assumed. Active and passive pressure calculated to top of weak seam. W' includes soil beneath sheet piles to top of weak seam.\n• Use F ≥ 1.25 for temporary; F ≥ 1.50 for permanent.\n• F = (W'tanφ' + c'B) / (PA + Pw), where φ' = effective stress friction angle of weak seam, c' = effective stress cohesion of weak seam.\n\nOVERTURNING:\n• Resultant force R must be located in the middle third of base. Calculate eccentricity and maintain |e| ≤ B/6.\n• Note: This is not a realistic failure mode owing to the flexibility of the cofferdam structure; nonetheless, it is customary to still check overturning in cofferdam design.\n\nROTATION (Hansen method):\n• Failure is assumed to occur on a logarithmic spiral surface. W' calculated by removing the area (A) below the failure surface. Critical surface found by trial and error or by locating using the point of application of W' and ΣP forces and the locus of poles. Use F ≥ 1.25 temporary, F ≥ 1.50 permanent.\n• ΣP = PA + PP − PW and F = MB / Mω, where MB = moment about pole for W', Mω = moment about pole for ΣP.\n\nDEEP SEATED SLIDING (Hansen method):\n• Failure on a logarithmic spiral surface, may be inside or outside cofferdam. Interface friction angle (δ) between steel and soil used. Active and passive earth pressure forces assumed to act in reversed direction. Normally only horizontal component used. Critical surface found by trial and error. F ≥ 1.25 temporary, F ≥ 1.50 permanent.\n• ΣP = PA + PP − PW and F = MB / Mω.\n\nBEARING CAPACITY:\n• Seepage into cofferdam can affect bearing capacity. Bearing capacity analysis performed in addition to rotational failure analysis. Use methods from Chapter 5. F ≥ 2.0 for sand (permanent and temporary); F ≥ 3.0 for clay (permanent and temporary).\n\nSETTLEMENT:\n• Settlement can increase tilt and overturning moment. Stress distribution varies horizontally and vertically. Estimate using elastic theory influence charts (DM7.1, Chapter 4). Consolidation settlement calculated per DM7.1 (Chapter 5).\n\nINTERLOCK TENSION:\n• Pressure caused by cell fill should not exceed allowable sheet pile interlock tension. Critical horizontal pressure assumed at H/4 above the point of fixity (alternatively, at top elevation of inboard berm). Use F = 2 to 4.\n• For main cell: p = KA[γ'(H−H3) + γw(H−H3) + γ(H3−H4)] and tmax = p·R (where KA = 0.4, R = cell radius).\n• For connections between main cell and connecting arcs: tmax = p·L·sec α.\n\nVERTICAL SHEAR RESISTANCE (Terzaghi/pullout of outboard sheets):\n• Outboard sheet piles can lift due to applied moment, causing loss of cell fill. Shear occurs between fill and sheet piles. F = resisting moment due to friction on outboard piling / overturning moment. Use F ≥ 1.5 for permanent structures.\n• F = [W'tanδ(B/2 + e)] / [B(PA + PP)·H + PW·H].\n\nHORIZONTAL SHEAR RESISTANCE (Cummings method):\n• Tilting can cause excessive shear on a vertical plane through the centerline of cofferdam fill. Shear resistance of fill and frictional resistance of sheet pile interlocks must exceed applied shear stress. The earth pressure coefficient used is greater than active. Use F ≥ 1.5 for permanent structures.\n• Total shear force Q = 3M / (2B), where M = net overturning moment.",
+      "body": "Cellular sheet pile cofferdams are structures constructed from sheet piles driven in a variety of geometries and filled with soil. Cofferdams perform many purposes, such as creating dewatered construction areas, lock walls, retaining structures, mooring structures, and spillway weirs.\n\nCofferdam geometries include circular cells, semicircular cells, and cloverleaf cells. These different configurations are shown in Figure 4-57(a). For hand calculations, these configurations are transformed into equivalent parallel wall cofferdams of width, B. The strict definition of B is that it is the width of a rectangular section that has a sectional modulus equivalent to that of the actual cofferdam cell. Since this can be a difficult calculation, approximate methods to calculate B for the different cofferdam cell configurations are shown on Figure 4-57(a).\n\nFigure 4-57(b) shows a typical section used for cofferdam design. In some designs, there may be soil against the outboard face, and the berm may not be present on the inboard face.\n\nMany factors must be considered in the design of cellular cofferdams. Because of the complexity involved in cofferdam design, numerical methods modeling soil-structure interaction are often used. The stability of cofferdams depends on ratio of the width to the height, the resistance of an inboard berm, if any, and the type and permeability of cell fill materials. Usually active and/or passive pressures act on exterior faces of the sheeting. The shear strength of the cofferdam fill material is a very important factor in the overall stability of cofferdams. Equally important is the line of saturation or phreatic surface in the cell fill. The position of the water surface or line of saturation in the cell fill is usually determined by the soil type used. For coarse-grained, free-draining fill, a slope of 1H:1V is assumed. For fine-grained, poorly-draining cell fill, a slope of 3H:1V is often used. In some cases, the line of saturation is assumed to extend from the outboard face of the cofferdam to the top elevation of the berm on the outside of the inboard face. The inboard ground surface or berm also may have an elevated phreatic surface, but the stabilizing effect of the inboard face water pressure is often ignored in design calculations (USS 1984; USACE 1989).\n\nMany different loading cases and failure conditions are used to assess the stability and performance of cofferdams. The main loading conditions are: Case I – maximum pool conditions, Case II – initial filling conditions, and Case III – drawdown conditions (USACE 1989). For each of these loading conditions, the following modes of failure must be assessed:\n• Sliding\n• Overturning\n• Rotation (Hansen method)\n• Deep seated sliding\n• Bearing capacity\n• Settlement\n• Seepage\n• Interlock tension\n• Vertical shear resistance (Terzaghi method)\n• Horizontal shear resistance (Cummings method)\n• Vertical shear resistance (Schroeder-Maitland method)\n• Pullout of outboard sheets\n• Penetration of inboard sheets\n\nSome of the analysis methods, such as overturning, are very similar to those used for gravity retaining walls (Section 4-5.1). Other modes of failure are unique to cellular cofferdams and were developed specifically for the various modes of failure. Many of the failure modes employ earth pressure calculations outlined in this chapter, but the earth pressure coefficients, particularly for the cell fill material, lie between the active and passive pressure conditions used for other retaining structures. Table 4-7 outlines several failure modes and specifics of the analysis methods for cofferdams. Details regarding the stability of sheet pile cofferdams, along with solutions to example problems, can be found in the USS Steel Sheet Piling Design Manual (USS 1984) and the Corps of Engineers' EM 1100-2-2503 (USACE 1989).\n\nTable 4-7 (Modes of Failure and Design Details for Sheet Pile Cofferdams, PDF p. 302-304, printed p. 264-266) gives, for each failure mode, the following design guidance:\n\nSliding at Base:\n• Use F ≥ 1.25 for temporary structures.\n• Use F ≥ 1.50 for permanent structures.\n• F = (W'tanδ + PP) / (Pw + PA)\nwhere: W' = effective weight of backfill; Pw = net water pressure force; δ = interface friction angle along bottom = 0.5 for smooth rock = φ' for soil at base.\n\nSliding in Weak Layer:\n• Location of failure plane must be assumed.\n• Active and passive pressure calculated to top of weak seam.\n• W' includes soil beneath sheet piles to top of weak seam.\n• Use F ≥ 1.25 for temporary structures.\n• Use F ≥ 1.50 for permanent structures.\n• F = (W'tanφ' + c'B + PP) / (Pw + PA)\nwhere: φ' = effective stress friction angle of weak seam; c' = effective stress cohesion of weak seam.\n\nOverturning:\n• Resultant force, R, must be located in the middle third of base.\n• Calculate eccentricity as: e = (Pw·yw + PA·yA − PP·yP) / W' − xW + B/2\n• Maintain |e| ≤ B/6.\n• Note: This is not a realistic failure mode owing to the flexibility of the cofferdam structure. Nonetheless, it is customary to still check the overturning mode in cofferdam design.\n\nRotation (Cofferdam on Rock):\n• Failure is assumed to occur on a logarithmic spiral surface.\n• W' calculated by removing the area (A) below the failure surface.\n• Critical surface is found by trial and error or by locating the surface using the point of application of the W' and ΣP forces and the locus of poles of the logarithmic spiral function.\n• Use F ≥ 1.25 for temporary structures.\n• Use F ≥ 1.50 for permanent structures.\n• ΣP = PW + PA − PP and F = MB / Mω\nwhere: MB = moment about pole for W'; Mω = moment about pole for ΣP.\n\nRotation (Cofferdam on Soil):\n• Failure is assumed to occur on a logarithmic spiral surface. The surface may be located inside or outside of the cofferdam.\n• The interface friction angle (δ) between the steel sheet pile and soil is often used in the analysis. Owing to the rotation of the cofferdam, the active and passive earth pressure forces are assumed to act in a reversed direction compared to conventional retaining wall analysis.\n• Normally, only the horizontal component of the earth pressure force is used in the stability calculations.\n• W' calculated by either adding or removing the area (A) depending if the pole is above or below the base of the cofferdam.\n• The critical surface found by trial and error or by locating the surface using the point of application of the W' and ΣP forces and the locus of poles of the logarithmic spiral function.\n• Use F ≥ 1.25 for temporary structures.\n• Use F ≥ 1.50 for permanent structures.\n• ΣP = PW + PA − PP and F = MB / Mω\nwhere: MB = moment about pole for W'; Mω = moment about pole for ΣP.\n\nBearing Capacity:\n• Seepage into the cofferdam can affect bearing capacity.\n• Bearing capacity analysis performed in addition to rotational failure analysis.\n• Bearing capacity methods presented in Chapter 5 should be applied to cofferdam analysis.\n• Use F ≥ 2.0 for cofferdams founded on sand (permanent and temporary).\n• Use F ≥ 3.0 for cofferdams founded on clay (permanent and temporary).\n\nSettlement:\n• Settlement of soil beneath cofferdam can increase tilt, which can increase the moment for overturning.\n• Stress distribution varies both horizontally and vertically.\n• Stress distributions can be estimated using elastic theory influence charts (See DM7.1, Chapter 4).\n• Calculation of consolidation settlement should be performed using procedures presented in DM7.1 (Chapter 5).\n\nSheet Pile Interlock Tension:\n• Pressure caused by cell fill should not cause the allowable sheet pile interlock tension to be exceeded.\n• Critical horizontal pressure assumed to occur at H/4 above the point of fixity. Alternatively, the earth pressure can be calculated at the top elevation of the inboard berm.\n• Use F ≥ 2 to 4. F = Manufacturer's reported interlock strength / Computed interlock tension\n• For the main cell, the maximum inboard sheeting pressure (p) and maximum interlock tension (tmax in lbs per linear inch) can be found as:\np = KA(γ(H − H3) + γ'(H3 − H/4)) + γw(H3 − H/4)\nt = p · R\nwhere: KA = 0.4; R = cell radius.\n• For connections between main cell and connecting arcs: tmax = p · L · sec α\n\nSlippage between Sheeting and Cell Fill:\n• Outboard sheet piles can lift out due to applied moment, and cell fill can be lost.\n• Shear occurs between fill and sheet piles.\n• F is the resisting moment due to friction on outboard piling divided by the overturning moment due to earth and water pressures.\n• Use F ≥ 1.5 for permanent structures.\n• F = [3B(PW + PA)tanδ + PP·HB] / (PW·H + PA·He)\n\nShear Failure on Centerline of Cell:\n• Tilting can cause excessive shear on a vertical plane through the centerline of the cofferdam fill.\n• The shear resistance of the cofferdam cell fill and the frictional resistance of the sheet pile interlocks must exceed the applied shear stress due to the overturning forces.\n• Use F ≥ 1.5 for permanent structures.\n• The earth pressure coefficient used to calculate the shear resistance at the centerline is greater than the active earth pressure coefficient.\n• The total shear force (Q) is found as: Q = 3M / (2B)\nwhere: M = net overturning moment.",
       "key_points": [
         "Cofferdam geometries (circular, semicircular, cloverleaf) are converted to an equivalent parallel wall width B for hand calculations, where B gives the same sectional modulus as the actual cell.",
         "Phreatic surface in cell fill is assumed at 1H:1V slope for free-draining coarse fill and 3H:1V for poorly-draining fine-grained fill; inboard water pressure stabilizing effects are often ignored.",
         "Three main loading cases must be evaluated: Case I (max pool), Case II (initial filling), and Case III (drawdown conditions), each requiring assessment of up to 13 failure modes.",
         "Earth pressure coefficients for cell fill lie between active and passive values; KA = 0.4 is used for interlock tension calculations.",
-        "Interlock tension: tmax = p·R for main cell; tmax = p·L·sec α for connections between main cell and connecting arcs.",
+        "Interlock tension (Table 4-7): t = p·R for the main cell, with p = KA(γ(H − H3) + γ'(H3 − H/4)) + γw(H3 − H/4) and KA = 0.4; tmax = p·L·sec α for connections between main cell and connecting arcs.",
         "Bearing capacity factors of safety: F ≥ 2.0 for sand, F ≥ 3.0 for clay; general F ≥ 1.25 (temporary) and F ≥ 1.50 (permanent) for sliding and rotation modes.",
         "Horizontal shear force at centerline: Q = 3M / (2B), where M is the net overturning moment.",
-        "Numerical methods modeling soil-structure interaction are often used due to the complexity of cofferdam design; key references are USS 1984 and USACE EM 1110-2-2503 (1989)."
+        "Numerical methods modeling soil-structure interaction are often used due to the complexity of cofferdam design; key references are USS 1984 and USACE EM 1100-2-2503 (1989), as printed."
       ],
       "equations": [
         {
-          "id": "Eq. (Sliding - base)",
-          "description": "Factor of safety against sliding along base: F = W'tanδ / (PA + Pw), where W' = effective weight of backfill, Pw = net water pressure force, δ = interface friction angle along bottom.",
+          "id": "Table 4-7, Sliding at Base",
+          "description": "Factor of safety against sliding at base: F = (W'tanδ + PP) / (Pw + PA) (PDF p. 302, printed p. 264), where W' = effective weight of backfill, Pw = net water pressure force, δ = interface friction angle along bottom = 0.5 for smooth rock = φ' for soil at base; use F ≥ 1.25 for temporary structures and F ≥ 1.50 for permanent structures.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Sliding - weak seam)",
-          "description": "Factor of safety against sliding along weak seam: F = (W'tanφ' + c'B) / (PA + Pw), where φ' and c' are effective strength parameters of the weak seam.",
+          "id": "Table 4-7, Sliding in Weak Layer",
+          "description": "Factor of safety against sliding in a weak layer: F = (W'tanφ' + c'B + PP) / (Pw + PA) (PDF p. 302, printed p. 264), where φ' = effective stress friction angle of weak seam and c' = effective stress cohesion of weak seam; use F ≥ 1.25 temporary, F ≥ 1.50 permanent.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Overturning eccentricity)",
-          "description": "Eccentricity of resultant force: e = B/2 - x, where x is calculated from moment equilibrium of W', PA, and Pw about the base; must maintain |e| ≤ B/6.",
+          "id": "Table 4-7, Overturning",
+          "description": "Eccentricity of the resultant: e = (Pw·yw + PA·yA − PP·yP) / W' − xW + B/2 (PDF p. 302, printed p. 264); the resultant force R must be located in the middle third of base; maintain |e| ≤ B/6.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Rotation - ΣP)",
-          "description": "Net lateral force for rotation analysis: ΣP = PA + PP − PW.",
+          "id": "Table 4-7, Rotation",
+          "description": "Rotation (Cofferdam on Rock) and Rotation (Cofferdam on Soil): ΣP = PW + PA − PP and F = MB / Mω (PDF p. 302-303, printed p. 264-265), where MB = moment about pole for W' and Mω = moment about pole for ΣP; failure on a logarithmic spiral surface; use F ≥ 1.25 temporary, F ≥ 1.50 permanent.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Rotation - F)",
-          "description": "Factor of safety for rotation (Hansen method): F = MB / Mω, where MB = moment about pole for W', Mω = moment about pole for ΣP.",
+          "id": "Table 4-7, Sheet Pile Interlock Tension (main cell)",
+          "description": "Maximum inboard sheeting pressure and interlock tension for the main cell: p = KA(γ(H − H3) + γ'(H3 − H/4)) + γw(H3 − H/4) and t = p · R (PDF p. 304, printed p. 266), where KA = 0.4 and R = cell radius (tmax in lbs per linear inch); F = manufacturer's reported interlock strength / computed interlock tension, use F ≥ 2 to 4.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Interlock tension - p)",
-          "description": "Maximum inboard sheeting pressure for interlock tension: p = KA[γ'(H−H3) + γw(H−H3) + γ(H3−H4)], using KA = 0.4.",
+          "id": "Table 4-7, Sheet Pile Interlock Tension (connections)",
+          "description": "Interlock tension at connections between the main cell and connecting arcs: tmax = p · L · sec α (PDF p. 304, printed p. 266).",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Interlock tension - tmax main cell)",
-          "description": "Maximum interlock tension in main cell (lbs per linear inch): tmax = p · R, where R = cell radius.",
+          "id": "Table 4-7, Slippage between Sheeting and Cell Fill",
+          "description": "Factor of safety against slippage between sheeting and cell fill (outboard sheet piles lifting out): F = [3B(PW + PA)tanδ + PP·HB] / (PW·H + PA·He) (PDF p. 304, printed p. 266); use F ≥ 1.5 for permanent structures.",
           "implemented_in": null
         },
         {
-          "id": "Eq. (Interlock tension - tmax arc)",
-          "description": "Maximum interlock tension at connections between main cell and connecting arcs: tmax = p · L · sec α.",
-          "implemented_in": null
-        },
-        {
-          "id": "Eq. (Pullout - F)",
-          "description": "Factor of safety against pullout of outboard sheets (vertical shear, Terzaghi method): F = [W'tanδ(B/2 + e)] / [B(PA + PP)H + PWH].",
-          "implemented_in": null
-        },
-        {
-          "id": "Eq. (Horizontal shear - Q)",
-          "description": "Total shear force on vertical plane through centerline (Cummings method): Q = 3M / (2B), where M = net overturning moment.",
+          "id": "Table 4-7, Shear Failure on Centerline of Cell",
+          "description": "Total shear force on a vertical plane through the centerline of the cell: Q = 3M / (2B) (PDF p. 304, printed p. 266), where M = net overturning moment; use F ≥ 1.5 for permanent structures.",
           "implemented_in": null
         }
       ],

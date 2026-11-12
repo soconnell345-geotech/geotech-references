@@ -80,6 +80,14 @@ class TestTable41TemporaryDynamic:
     def test_barge_impact_extreme(self):
         assert table_4_1_load_factor("BI", "extreme")["factor"] == 1.3
 
+    @pytest.mark.parametrize("category", ["usual", "unusual", "extreme"])
+    def test_self_straining_principal_merged_cell(self, category):
+        # EM 1110-2-2107_2022.pdf pdf 36 / printed p. 27, Table 4.1 row T:
+        # one merged principal cell "1.2" (footnote 4) spans the Usual,
+        # Unusual and Extreme columns; companion 1.0.
+        assert table_4_1_load_factor("T", category)["factor"] == 1.2
+        assert table_4_1_load_factor("T", None, role="companion")["factor"] == 1.0
+
     def test_earthquake_unusual_and_extreme(self):
         assert table_4_1_load_factor("EQ", "unusual")["factor"] == 1.5
         assert table_4_1_load_factor("EQ", "extreme")["factor"] == "1.0 or 1.25"

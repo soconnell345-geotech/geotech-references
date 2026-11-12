@@ -72,7 +72,7 @@ def table_3_1_load_inventory(load_id=None):
 
 # ============================================================================
 # Table 3-2 -- Minimum load factors for strength design
-# (printed pp. 23-24, pdf_page 28-29)
+# (printed pp. 24-25, pdf_page 29-30)
 # ============================================================================
 
 # Permanent load factors, gamma_p (paragraph 3-3d, printed p. 22, pdf 27).
@@ -89,7 +89,7 @@ TABLE_3_2_PERMANENT = {
 }
 
 # Principal/companion load factors, gamma_pu / gamma_c, by load category
-# (Table 3-2, printed pp. 23-24). None = no entry ('-' or 'N/A' in the
+# (Table 3-2, printed pp. 24-25). None = no entry ('-' or 'N/A' in the
 # printed table); 'AASHTO' = per AASHTO LRFD (footnote 8, paragraph 3-1g).
 TABLE_3_2_TEMPORARY_DYNAMIC = {
     "Hs": {"companion": 1.0, "usual": 1.5, "unusual": 1.4, "extreme": 1.3},
@@ -120,7 +120,7 @@ PRINCIPAL_LOAD_CONDITIONS = {
 
 
 def table_3_2_permanent_load_factor(load_id, effect="add"):
-    """Table 3-2 permanent load factor gamma_p (printed pp. 23-24).
+    """Table 3-2 permanent load factor gamma_p (printed pp. 24-25).
 
     Parameters
     ----------
@@ -147,13 +147,13 @@ def table_3_2_permanent_load_factor(load_id, effect="add"):
         )
     return {
         "load_id": load_id, "effect": effect, "gamma_p": row[effect],
-        "table": "3-2", "printed_page": "23-24", "pdf_page": "28-29",
+        "table": "3-2", "printed_page": "24-25", "pdf_page": "29-30",
     }
 
 
 def table_3_2_load_factor(load_id, category, role="principal"):
     """Table 3-2 principal/companion load factor for a temporary or dynamic
-    load (printed pp. 23-24).
+    load (printed pp. 24-25).
 
     Parameters
     ----------
@@ -200,8 +200,8 @@ def table_3_2_load_factor(load_id, category, role="principal"):
         )
     return {
         "load_id": load_id, "category": category, "role": role,
-        "factor": factor, "table": "3-2", "printed_page": "23-24",
-        "pdf_page": "28-29",
+        "factor": factor, "table": "3-2", "printed_page": "24-25",
+        "pdf_page": "29-30",
     }
 
 
@@ -281,7 +281,11 @@ def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None)
 
 def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
                                  method="standard_obe"):
-    """Eq 3-3/3-4/3-5: earthquake load combinations (printed p. 26).
+    """Eq 3-3/3-4/3-5: earthquake load combination U, in the unit of the
+    loads given (printed p. 26). Eq 3-3 and 3-4 take the FACTORED
+    permanent-load sum sum(gamma_p*Lp); Eq 3-5 takes the UNFACTORED sum
+    sum(Lp), which the print multiplies by 1.0 (EM_1110-2-2104_2025.pdf
+    pdf 32). The result's 'permanent_sum_basis' says which was assumed.
 
     Only one temporary load is included at a time (if applicable) with an
     earthquake load (paragraph 3-3h(3)). For dynamic analysis, load factors
@@ -290,8 +294,11 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     Parameters
     ----------
     permanent_sum : float
-        sum(gamma_p * Lp), the factored permanent-load sum (see
-        ``load_combination_lrfd``'s permanent_sum, or compute directly).
+        For 'standard_obe' and 'standard_mde': sum(gamma_p * Lp), the
+        factored permanent-load sum (see ``load_combination_lrfd``'s
+        permanent_sum). For 'site_specific_mde_mce' (Eq 3-5): sum(Lp), the
+        UNFACTORED permanent-load sum (D = 100 and EQ = 50 give U = 150;
+        passing 1.2 x 100 would give 170, which the print does not).
     eq_load : float
         EQ, the earthquake load effect (unfactored).
     companion_terms : list of (load_value, gamma_c), optional
@@ -308,7 +315,8 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     Returns
     -------
     dict
-        {'u', 'eq_factor', 'equation', 'printed_page': '26', 'pdf_page': 31}
+        {'u', 'eq_factor', 'equation', 'permanent_sum_basis',
+         'printed_page': '26', 'pdf_page': 31}
     """
     companion_terms = companion_terms or []
     if method == "standard_obe":
@@ -331,8 +339,11 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
             "method must be 'standard_obe', 'standard_mde', or "
             f"'site_specific_mde_mce', got {method!r}"
         )
+    basis = ("unfactored sum(Lp), x 1.0 as printed" if equation == "3-5"
+             else "factored sum(gamma_p*Lp)")
     return {
         "u": u, "eq_factor": eq_factor, "equation": equation,
+        "permanent_sum_basis": basis,
         "printed_page": "26", "pdf_page": 31,
     }
 

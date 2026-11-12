@@ -140,7 +140,7 @@
       "section_id": "3-2.3",
       "title": "Compaction Tests",
       "summary": "Covers the two primary compaction test types for characterizing soil density: impact compaction (for soils with >15% fines) and index density tests (for soils with <15% fines). Defines relative compaction (RC) and relative density (Dr) as the key characterization parameters, including their governing equations, applicable ASTM standards, and the distinction between maximum dry densities used in each method.",
-      "body": "Two types of compaction tests are available for determining the compaction characteristics of soils. For soils having greater than 15% fines, impact compaction tests are the most appropriate. Impact compaction tests provide a compaction curve for the soil, and the maximum dry density (γd-max) and optimum water content (wopt) can be determined from the curve. The as-compacted density of the soil can be characterized by relative compaction (RC). Relative compaction is defined as:\n\nRC = (γd / γd-max) · 100%   (3-1)\n\nwhere:\nγd = dry density of the soil to be characterized, and\nγd-max = maximum dry density from the compaction curve for a particular effort.\n\nFor soils having less than 15% fines, the density of a soil can be characterized by relative density (Dr). Relative density is defined as:\n\nDr = ((emax - e) / (emax - emin)) · 100% = ((γd - γd-min) / (γd-max - γd-min)) · (γd-max / γd) · 100%   (3-2)\n\nwhere:\ne = void ratio of soil to be characterized,\nemax = maximum index void ratio,\nemin = minimum index void ratio,\nγd = dry density of soil to be characterized (corresponding to e),\nγd-max = maximum index dry density (corresponding to emin), and\nγd-min = minimum index dry density (corresponding to emax).\n\nSoils in their loosest states have a relative density equal to 0% and soils in their densest state have a relative density equal to 100%. For these soils, tests must be conducted to determine the maximum and minimum index void ratios and index densities. These tests are not \"compaction tests\" in the strictest sense of the term, but are index values corresponding to the loosest and densest states of the soil. The maximum dry density used in relative density calculations is not necessarily the same as that obtained in ASTM D1557 that is described below.",
+      "body": "Two types of compaction tests are available for determining the compaction characteristics of soils. For soils having greater than 15% fines, impact compaction tests are the most appropriate. Impact compaction tests provide a compaction curve for the soil, and the maximum dry density (γd-max) and optimum water content (wopt) can be determined from the curve. The as-compacted density of the soil can be characterized by relative compaction (RC). Relative compaction is defined as:\n\nRC = (γd / γd-max) · 100%   (3-1)\n\nwhere:\nγd = dry density of the soil to be characterized, and\nγd-max = maximum dry density from the compaction curve for a particular effort.\n\nFor soils having less than 15% fines, the density of a soil can be characterized by relative density (Dr). Relative density is defined as:\n\nDr = ((emax - e) / (emax - emin)) · 100% = (γd-max / γd) · [(γd - γd-max) / (γd-max - γd-min)] · 100%   (3-2)\n\n(As printed. With γd - γd-max in the numerator the density form is negative for every soil looser than its densest state, so it cannot equal the void-ratio form it is set equal to; γd - γd-min makes the two forms equal, and is what the library function uses.)\n\nwhere:\ne = void ratio of soil to be characterized,\nemax = maximum index void ratio,\nemin = minimum index void ratio,\nγd = dry density of soil to be characterized (corresponding to e),\nγd-max = maximum index dry density (corresponding to emin), and\nγd-min = minimum index dry density (corresponding to emax).\n\nSoils in their loosest states have a relative density equal to 0% and soils in their densest state have a relative density equal to 100%. For these soils, tests must be conducted to determine the maximum and minimum index void ratios and index densities. These tests are not \"compaction tests\" in the strictest sense of the term, but are index values corresponding to the loosest and densest states of the soil. The maximum dry density used in relative density calculations is not necessarily the same as that obtained in ASTM D1557 that is described below.",
       "key_points": [
         "Impact compaction tests are appropriate for soils with >15% fines; index density tests are used for soils with <15% fines.",
         "Relative compaction (RC) = (γd / γd-max) × 100%, where γd-max comes from the impact compaction curve.",
@@ -156,7 +156,7 @@
         },
         {
           "id": "Eq. 3-2",
-          "description": "Relative density (Dr): defined in terms of void ratios (emax, e, emin) and equivalently in terms of dry densities (γd-max, γd, γd-min), expressed as a percentage.",
+          "description": "Relative density (Dr): defined in terms of void ratios (emax, e, emin) and equivalently in terms of dry densities (γd-max, γd, γd-min), expressed as a percentage. (The manual prints γd − γd-max in the numerator of the density form, which would be negative for every soil looser than its densest state and so cannot equal the void-ratio form; γd − γd-min makes the two forms equal, and is what the library function uses; this section's text gives the printed form.)",
           "implemented_in": "geotech_references.dm7_1.chapter3.relative_density_from_dry_density"
         }
       ],
@@ -186,13 +186,13 @@
     {
       "section_id": "3-2.3.2",
       "title": "Index Density Determination",
-      "summary": "Describes laboratory procedures for determining maximum and minimum index densities for soils with less than 15% fines, enabling characterization by relative density (Dr). References ASTM D4254 (minimum index density, three methods) and ASTM D4253 (maximum index density), both applicable to soils with maximum grain sizes up to 3 inches.",
-      "body": "For soils having less than 15% fines, there are specific tests that can be conducted to determine the maximum and minimum index densities so that the soil can be characterized in terms of relative density. ASTM D4254 (Standard Test Methods for Minimum Index Density and Unit Weight of Soils and Calculation of Relative Density) provides three methods to determine emax and γd-min depending on the grain size of the soil tested. Methods are available for soils have a maximum grain size of 3 inches or less. ASTM D4253 (Test Methods for Maximum Index Density and Unit Weight of Soil) ...",
+      "summary": "Describes laboratory procedures for determining maximum and minimum index densities for soils with less than 15% fines, enabling characterization by relative density (Dr). References ASTM D4254 (minimum index density, three methods depending on grain size, for soils with a maximum grain size of 3 inches or less) and ASTM D4253 (maximum index density by vibratory table, an expensive apparatus that many commercial laboratories cannot run).",
+      "body": "For soils having less than 15% fines, there are specific tests that can be conducted to determine the maximum and minimum index densities so that the soil can be characterized in terms of relative density. ASTM D4254 (Standard Test Methods for Minimum Index Density and Unit Weight of Soils and Calculation of Relative Density) provides three methods to determine emax and γd-min depending on the grain size of the soil tested. Methods are available for soils have a maximum grain size of 3 inches or less. ASTM D4253 (Test Methods for Maximum Index Density and Unit Weight of Soil Using a Vibratory Table) is used to determine emin and γd-max. The apparatus used to perform this test is expensive and many commercial laboratories are not able to perform this test.",
       "key_points": [
         "Used for soils with <15% fines to determine emax, emin, γd-max, and γd-min for relative density calculations.",
         "ASTM D4254 provides three methods for minimum index density (emax, γd-min) based on soil grain size.",
-        "ASTM D4253 is used for maximum index density (emin, γd-max).",
-        "Both standards are applicable to soils with a maximum grain size of 3 inches or less.",
+        "ASTM D4253 (vibratory table) is used to determine emin and γd-max; the apparatus is expensive and many commercial laboratories are not able to perform this test.",
+        "ASTM D4254 methods are available for soils with a maximum grain size of 3 inches or less.",
         "These index density values feed directly into the relative density equation (Eq. 3-2)."
       ],
       "equations": [],
@@ -341,9 +341,9 @@
       "section_id": "3-2.4.2.1",
       "title": "Unconfined Compression Test (ASTM D2166)",
       "summary": "Describes the unconfined compression test (UCT, ASTM D2166), one of the oldest and simplest strength tests. Explains the theoretical basis (su independent of confining pressure for saturated soils), its limitations (typically yields lower strengths than higher-quality tests, difficult to interpret for partially saturated soils, single-point c-φ envelope), and the recommendation to treat it as an index test rather than a primary design strength measurement.",
-      "body": "Unconfined compression tests, UCTs, (ASTM D2166) are one of the oldest and simplest strength tests. The quality and care in conducting the test can vary greatly from specimens being tested using portable load frames in the field to testing the specimen in a membrane in a temperature-controlled laboratory. The basic premise of the test is that if the soil is saturated, the undrained shear strength (su) should be the same if the soil is tested with zero confining pressure (σ3) as it would be with an elevated confining pressure. This assumption might be valid for high quality test specimens carefully tested, but actual test results can deviate from this assumption considerably. In general, UCTs provide lower strengths than would be determined from higher quality tests.\n\nIn practice, UCTs are also conducted on partially saturated soils. These tests are difficult to correctly interpret since the results would represent one shear strength value on a c-φ envelope, and one point cannot define the envelope. Shortcomings of the UCT have been recognized for over 70 years, and this test should be considered as an index test as opposed to a viable method to measure reliable shear strengths.",
+      "body": "[The section heading prints “(ASTM D2116)” (PDF p. 180, printed p. 152); the text here and Table 3-4 (PDF p. 172, printed p. 144) give ASTM D2166.]\n\nUnconfined compression tests, UCTs, (ASTM D2166) are one of the oldest and simplest strength tests. The quality and care in conducting the test can vary greatly from specimens being tested using portable load frames in the field to testing the specimen in a membrane in a temperature-controlled laboratory. The basic premise of the test is that if the soil is saturated, the undrained shear strength (su) should be the same if the soil is tested with zero confining pressure (σ3) as it would be with an elevated confining pressure. This assumption might be valid for high quality test specimens carefully tested, but actual test results can deviate from this assumption considerably. In general, UCTs provide lower strengths than would be determined from higher quality tests.\n\nIn practice, UCTs are also conducted on partially saturated soils. These tests are difficult to correctly interpret since the results would represent one shear strength value on a c-φ envelope, and one point cannot define the envelope. Shortcomings of the UCT have been recognized for over 70 years, and this test should be considered as an index test as opposed to a viable method to measure reliable shear strengths.",
       "key_points": [
-        "ASTM D2166; measures qu (unconfined compressive strength); su = qu/2 for saturated soils.",
+        "Unconfined compression test (UCT), ASTM D2166 (Unconfined Compressive Strength of Cohesive Soil; parameter qu in Table 3-4): one of the oldest and simplest strength tests; the quality and care in conducting it can vary greatly.",
         "Theoretical basis: saturated soil su is independent of confining pressure, so σ3=0 test should give same su as confined test.",
         "In practice, UCTs generally yield lower strengths than higher-quality tests.",
         "UCTs on partially saturated soils give only one point on the c-φ envelope — insufficient to define the envelope.",
@@ -514,6 +514,36 @@
       "applicability": "Applies when performing or interpreting cyclic direct simple shear tests (ASTM D8296) to determine cyclic stress ratio and cyclic strength of soils."
     },
     {
+      "section_id": "3-2.5.1.2",
+      "title": "Resonant Column Test (ASTM D4015)",
+      "summary": "Describes the resonant column test (ASTM D4015), a dynamic test in a modified triaxial cell that gives shear modulus at low shear strain amplitudes on intact or remolded specimens: a cyclic, normally sinusoidal torque is applied to the top of a cylindrical specimen and its frequency varied until the specimen's resonant frequency is found. The results are used in specialized earthquake engineering analyses.",
+      "body": "The resonant column test (ASTM D4015 – Standard Test Methods for Modulus and Damping of Soils by Fixed-Base Resonant Column Devices) is a dynamic test that provides values of shear modulus for low shear strain amplitudes. The test is conducted in a modified triaxial cell and can be conducted on intact and remolded test specimens. A cylindrical test specimen is loaded by applying a cyclic torque to the top of the specimen while the resulting angular displacement is measured. The cyclic load normally follows a sinusoidal function, and the frequency of the load is varied until the resonant frequency of the test specimen is determined. This is a complex test and the results are used in specialized earthquake engineering analyses.",
+      "key_points": [
+        "The resonant column test (ASTM D4015) is a dynamic test that provides values of shear modulus for low shear strain amplitudes.",
+        "It is conducted in a modified triaxial cell on intact or remolded specimens; a cyclic torque is applied to the top of a cylindrical specimen and the resulting angular displacement is measured.",
+        "The load frequency is varied until the resonant frequency of the specimen is determined; this is a complex test and the results are used in specialized earthquake engineering analyses."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when shear modulus at low shear strain amplitudes is needed for specialized earthquake engineering analyses."
+    },
+    {
+      "section_id": "3-2.5.1.3",
+      "title": "Cyclic Triaxial Test for Modulus and Damping (ASTM D3999)",
+      "summary": "Describes the cyclic triaxial test for modulus and damping (ASTM D3999), which gives the secant Young's modulus and damping coefficients of fine- or coarse-grained soils on intact or reconstituted, saturated or partially saturated specimens, for strains from about 0.01% to 0.5%.",
+      "body": "A different version of the cyclic triaxial test can be used for determining the secant Young’s Modulus and Damping Coefficients (ASTM D3999 - Standard Test Methods for the Determination of the Modulus and Damping Properties of Soils Using the Cyclic Triaxial Apparatus). This test can be conducted on intact or reconstituted saturated and partially saturated test specimens. Both fine-grained and coarse-grained soils can be tested. The main purpose of this test is to determine the dynamic properties for strains ranging from about 0.01% to 0.5%. The test specimen may be back-pressure saturated, or it may be tested in a partially saturated condition.",
+      "key_points": [
+        "A different version of the cyclic triaxial test (ASTM D3999) determines the secant Young's Modulus and Damping Coefficients.",
+        "It can be conducted on intact or reconstituted, saturated and partially saturated specimens of fine-grained and coarse-grained soils.",
+        "Its main purpose is to determine the dynamic properties for strains ranging from about 0.01% to 0.5%."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when modulus and damping properties are needed for strains from about 0.01% to 0.5%."
+    },
+    {
       "section_id": "3-2.6",
       "title": "Compressibility Tests",
       "summary": "Introduces the four ASTM tests used to measure volume change of soils: two consolidation tests (D2435, D4186) that measure volume change under applied stress, and two response-to-wetting tests (D4546, D4829) that measure volume change when soil is exposed to water or experiences changes in water content. References Table 3-6 and Figure 3-12 for overview.",
@@ -677,14 +707,21 @@
     {
       "section_id": "3-2.7.3",
       "title": "Hydraulic Conductivity from Consolidation Tests",
-      "summary": "Introduces the method of deriving hydraulic conductivity indirectly from consolidation tests via the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is obtained from time curves using various methods; for CRS consolidation tests, cv is calculated directly from test output. This section is introductory and continues beyond the chunk.",
-      "body": "One of the purposes of conducting a consolidation test is to determine the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is calculated from the time curves using one of several different methods. For the CRS consolidation test, cv",
+      "summary": "Introduces the method of deriving hydraulic conductivity indirectly from consolidation tests via the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is obtained from time curves using various methods; for CRS consolidation tests, cv is calculated directly from test output. The hydraulic conductivity is then k = cv · mv · γw (Eq. 3-5), with mv the slope of strain versus arithmetic effective stress at the stress where cv is calculated; permeability can also be determined from the consolidation phase of CU and CD triaxial tests.",
+      "body": "One of the purposes of conducting a consolidation test is to determine the coefficient of consolidation (cv). For incremental stress consolidation tests, cv is calculated from the time curves using one of several different methods. For the CRS consolidation test, cv can be calculated at every point where the excess pore water pressure, average stress, and strain are known.\n\nThe hydraulic conductivity of a soil is related to the value of cv by the equation below:\n\nk = cv · mv · γw   (3-5)\n\nwhere:\nk = hydraulic conductivity or permeability,\ncv = coefficient of consolidation,\nmv = coefficient of volumetric compressibility, and\nγw = unit weight of water.\n\nThe coefficient of volumetric compressibility can be determined by plotting the strain (y-axis) versus the arithmetic effective stress (x-axis) and determining the slope of the plot corresponding to the stress where cv is calculated. Consolidation tests are rarely conducted just to determine the value of permeability, but if these data are available for a project where additional values of permeability are useful, little effort is required to calculate the permeability.\n\nIt is also possible to determine the permeability from the consolidation phase of CU and CD triaxial tests. This normally requires that the test specimen only be drained at the ends (no filter paper drainage strips) and it may be necessary to consolidate the specimen in stages leading up to the final consolidation stress.",
       "key_points": [
         "Hydraulic conductivity can be derived indirectly from consolidation tests via the coefficient of consolidation (cv).",
         "For incremental stress consolidation tests, cv is calculated from time-settlement curves using one of several methods.",
-        "For CRS (constant rate of strain) consolidation tests, cv is computed directly from test measurements."
+        "For CRS (constant rate of strain) consolidation tests, cv is computed directly from test measurements.",
+        "Eq. 3-5: k = cv · mv · γw; mv is determined from the slope of the strain versus arithmetic effective stress plot at the stress where cv is calculated."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Eq. 3-5",
+          "description": "Hydraulic conductivity from consolidation test results: k = cv · mv · γw, where k is the hydraulic conductivity or permeability, cv is the coefficient of consolidation, mv is the coefficient of volumetric compressibility, and γw is the unit weight of water.",
+          "implemented_in": "geotech_references.dm7_1.chapter3.hydraulic_conductivity_from_consolidation"
+        }
+      ],
       "figures": [],
       "tables": [],
       "applicability": "Applies when hydraulic conductivity is to be estimated indirectly from consolidation test data, particularly for fine-grained soils."
@@ -720,13 +757,7 @@
         "Wide variability in results is expected due to joints, fractures, faults, and other inhomogeneities; multiple specimens should be tested.",
         "Primary output is the uniaxial compressive strength (σu), usable for design or as an index property."
       ],
-      "equations": [
-        {
-          "id": "Eq. 3-5",
-          "description": "(force-injected from source text)",
-          "implemented_in": "geotech_references.dm7_1.chapter3.hydraulic_conductivity_from_consolidation"
-        }
-      ],
+      "equations": [],
       "figures": [],
       "tables": [],
       "applicability": "Applies when determining the unconfined (uniaxial) compressive strength or elastic moduli of intact rock core specimens per ASTM D7012."

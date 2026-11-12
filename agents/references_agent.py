@@ -84,7 +84,12 @@ def _build_catalog() -> dict:
         pkg_dir = Path(pkg.__file__).parent
         submodules = sorted(m.name for m in pkgutil.iter_modules(pkg.__path__)
                             if not m.ispkg and not m.name.startswith("_"))
-        texts = sorted((pkg_dir / "text").glob("*.json"))
+        # a chapter file first: an appendix printed in a volume of its own
+        # carries that volume's number (GEC-12 Appendix D, FHWA-NHI-16-064;
+        # 2026-11-10 review, core-13) and is not the manual's citation
+        texts = sorted((pkg_dir / "text").glob("*.json"),
+                       key=lambda p: (not p.name.startswith("chapter"),
+                                      p.name))
         citation = ""
         if texts:
             with open(texts[0], encoding="utf-8") as f:
@@ -190,16 +195,47 @@ def _extract_info(func, category: str, citation: str) -> dict:
     return info
 
 
+def _catalog_id(reference: str) -> str:
+    """The catalog id ``reference`` names, read as the library's searches
+    and fetches read it (2026-11-10 review follow-up): the id, another
+    spelling of it (``gec12``), or a report number its text or figure
+    catalog carries (``FHWA-NHI-16-010`` -> ``gec_12``). Raises ``KeyError``
+    naming the ids for a name that means nothing, and with the library's
+    refusal for ``dm7`` or a number that could be several."""
+    if reference in _REFERENCE_CATALOG:
+        return reference
+    from geotech_references import _figures_db, _retrieval_db
+    key = _retrieval_db.id_key(reference)
+    spelled = [r for r in _REFERENCE_CATALOG
+               if _retrieval_db.id_key(r) == key]
+    if len(spelled) == 1:
+        return spelled[0]
+    if key in _retrieval_db.SHARED_NAMES:
+        _retrieval_db.resolve_text_reference(reference)  # raises, naming both
+    for resolve in (_retrieval_db.resolve_text_reference,
+                    _figures_db.resolve_reference):
+        try:
+            found = resolve(reference)
+        except KeyError as e:
+            if "could be more than one report number" in str(e):
+                raise
+            continue
+        if found in _REFERENCE_CATALOG:
+            return found
+    raise KeyError(
+        f"Unknown reference '{reference}'. Available: "
+        + ", ".join(sorted(_REFERENCE_CATALOG.keys())))
+
+
 def _load_reference(reference: str):
-    """Lazy-load one reference's METHOD_REGISTRY and METHOD_INFO."""
+    """Lazy-load one reference's METHOD_REGISTRY and METHOD_INFO.
+    ``reference`` may be any name :func:`_catalog_id` reads."""
     if reference in _LOADED:
         return _LOADED[reference]
 
-    if reference not in _REFERENCE_CATALOG:
-        raise KeyError(
-            f"Unknown reference '{reference}'. Available: "
-            + ", ".join(sorted(_REFERENCE_CATALOG.keys()))
-        )
+    reference = _catalog_id(reference)
+    if reference in _LOADED:
+        return _LOADED[reference]
 
     cfg = _REFERENCE_CATALOG[reference]
     citation = cfg["citation"]
@@ -434,9 +470,14 @@ def describe_reference_method(reference: str, method: str) -> str:
 # SQL/FTS retrieval tools (cross-reference, summary-first)
 # ---------------------------------------------------------------------------
 
+#: The largest search result the agent tool returns, in JSON characters:
+#: the size GeotechStaffEngineer passes, under its 16,000-character cap.
+SEARCH_MAX_CHARS = 14_000
+
+
 @function
 def reference_search(query: str, reference: str = "", chapter: int = 0,
-                     limit: int = 5) -> str:
+                     limit: int = 5, offset: int = 0) -> str:
     """
     Full-text search across all structured reference text (DM7 + GEC + micropile).
     Returns ranked summary-only hits — call reference_get to fetch the full body.
@@ -447,26 +488,36 @@ def reference_search(query: str, reference: str = "", chapter: int = 0,
             stemming. Use quotes for phrases ("primary consolidation"),
             OR for alternatives, NEAR() for proximity, col:term to scope
             to one column (title/summary/body/key_points/applicability).
-        reference: Optional reference id to scope to (e.g. 'dm7_1', 'gec_12').
-            Empty string searches all references.
+        reference: Optional reference to scope to: its id (e.g. 'dm7_1',
+            'gec_12'), another spelling of it ('GEC-12'), or a report number
+            its files carry. A volume's own number ('FHWA-NHI-16-010')
+            searches that volume alone. Empty string searches all
+            references.
         chapter: Optional chapter number to scope to. Only meaningful when
             reference is set. 0 means no chapter filter.
         limit: Max hits (default 5, capped at 50).
+        offset: Hits to skip, for the next page (the note gives it).
 
     Returns:
-        JSON list of summary hits, each with reference, reference_title,
-        chapter, chapter_title, section_id, title, and summary fields.
-        On error, returns a one-element list with an 'error' field.
+        JSON object: "hits" (each with reference, reference_title,
+        reference_id, chapter, chapter_title, section_id, title, summary,
+        and "match" on a hit that does not hold every word), "shown", and
+        a "note" saying how to get more. A reference that was not itself
+        an id adds "resolved_reference"; a report number that is one volume
+        adds "report_number" and says so in the note. On error,
+        {"error": ...}. (Before the 2026-11-10 review follow-up this was a
+        plain list of hits, which could not carry the note.)
     """
     try:
         from geotech_references import _retrieval_db
         ref = reference if reference else None
         ch = int(chapter) if chapter else None
-        hits = _retrieval_db.reference_search(query, reference=ref,
-                                               chapter=ch, limit=limit)
-        return json.dumps(hits, default=str)
+        out = _retrieval_db.reference_search(
+            query, reference=ref, chapter=ch, limit=limit,
+            offset=int(offset or 0), max_chars=SEARCH_MAX_CHARS)
+        return json.dumps(out, default=str)
     except Exception as e:
-        return json.dumps([{"error": f"{type(e).__name__}: {str(e)}"}])
+        return json.dumps({"error": f"{type(e).__name__}: {str(e)}"})
 
 
 @function

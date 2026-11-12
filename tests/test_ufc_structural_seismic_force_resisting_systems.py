@@ -41,7 +41,7 @@ class TestTable31SpotValues:
         assert r["R"] == 5
         assert r["omega0"] == 2.5
         assert r["cd"] == 5
-        assert r["height_limits"] == {"B": "NL", "C": "NL", "D": 160, "E": 160, "F": 100}
+        assert r["height_limits_ft"] == {"B": "NL", "C": "NL", "D": 160, "E": 160, "F": 100}
 
     def test_reinforced_concrete_ductile_coupled_walls_r8(self):
         # highest-R bearing-wall system; R=Cd=8 is a distinctive, easily-miskeyed pair
@@ -58,22 +58,22 @@ class TestTable31SpotValues:
     def test_moment_frame_steel_special_moment_frames_unlimited_height(self):
         r = table_3_1_seismic_system("C", "steel_special_moment_frames")
         assert r["R"] == 8
-        assert r["height_limits"]["D"] == "NL"
-        assert r["height_limits"]["F"] == "NL"
+        assert r["height_limits_ft"]["D"] == "NL"
+        assert r["height_limits_ft"]["F"] == "NL"
 
     def test_dual_special_reinforced_concrete_ductile_coupled_walls_unlimited(self):
         r = table_3_1_seismic_system("D", "reinforced_concrete_ductile_coupled_walls")
-        assert r["height_limits"] == {"B": "NL", "C": "NL", "D": "NL", "E": "NL", "F": "NL"}
+        assert r["height_limits_ft"] == {"B": "NL", "C": "NL", "D": "NL", "E": "NL", "F": "NL"}
 
     def test_shear_wall_frame_interactive_single_system(self):
         r = table_3_1_seismic_system("F", "ordinary_rc_moment_frames_and_ordinary_rc_shear_walls")
         assert r["R"] == 4.5
-        assert r["height_limits"]["B"] == "NL"
-        assert r["height_limits"]["C"] == "NP"
+        assert r["height_limits_ft"]["B"] == "NL"
+        assert r["height_limits_ft"]["C"] == "NP"
 
     def test_cantilevered_column_special_steel_35ft_all_sdc(self):
         r = table_3_1_seismic_system("G", "steel_special_cantilever_column_systems")
-        assert r["height_limits"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
+        assert r["height_limits_ft"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
 
     def test_steel_not_specifically_detailed(self):
         r = table_3_1_seismic_system("H", "steel_not_specifically_detailed_excl_cantilever_columns")
@@ -172,12 +172,12 @@ class TestTableB1RC4AlternateDesign:
 
     def test_special_steel_moment_frames_unlimited(self):
         r = table_b1_rc4_permitted_system("Moment-Resisting Frame Systems", "special_steel_moment_frames")
-        assert r["height_limits"] == {"B": "NL", "C": "NL", "D": "NL", "E": "NL", "F": "NL"}
+        assert r["height_limits_ft"] == {"B": "NL", "C": "NL", "D": "NL", "E": "NL", "F": "NL"}
         assert "R" not in r  # R/Cd/Omega0 not applicable to this table
 
     def test_cantilevered_column_systems_35ft(self):
         r = table_b1_rc4_permitted_system("Cantilevered Column Systems", "special_steel_cantilever_column_systems")
-        assert r["height_limits"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
+        assert r["height_limits_ft"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
 
     def test_case_insensitive_category(self):
         r = table_b1_rc4_permitted_system("cantilevered column systems", "special_steel_cantilever_column_systems")
@@ -193,3 +193,59 @@ class TestTableB1RC4AlternateDesign:
 
     def test_list_table_b1_systems(self):
         assert set(list_table_b1_systems()) == set(TABLE_B_1)
+
+
+class TestHeightLimitUnits:
+    """struct-08: heights are returned under a key naming feet. Footnote d
+    to Tables 3-1 and 7-1 (UFC_3-301-01_2023_c4.pdf pdf 79 / printed 57 and
+    pdf 121 / printed 99): "For metric units, use 30 m for 100 ft and 50 m
+    for 160 ft." Table 3-1 footnotes i "45 ft (14 m)", j "60 ft (18 m)", q
+    "60 ft (18.3 m)"; Table 7-1 footnote w "60 ft (18.3m)". Table B-1 heads
+    its columns "Height (ft)" (pdf 146 / printed 124), has no footnote d,
+    and its footnote 7 reads "60 ft (18.3m)" (pdf 148 / printed 126)."""
+
+    def test_table_3_1_feet_and_footnote_d_metres(self):
+        r = table_3_1_seismic_system("A", "special_reinforced_concrete_shear_walls")
+        assert "height_limits" not in r
+        assert r["height_limits_ft"] == {"B": "NL", "C": "NL", "D": 160, "E": 160, "F": 100}
+        assert r["height_limits_m"] == {"B": "NL", "C": "NL", "D": 50, "E": 50, "F": 30}
+        assert "30 m for 100 ft and 50 m for 160 ft" in r["height_limits_note"]
+
+    def test_heights_footnote_d_does_not_convert_are_none(self):
+        # 40 ft (footnote i) has no printed metric value under footnote d.
+        r = table_3_1_seismic_system("A", "intermediate_precast_shear_walls")
+        assert r["height_limits_ft"]["D"] == "40i"
+        assert r["height_limits_m"]["D"] is None
+
+    def test_table_7_1_feet_and_footnote_d_metres(self):
+        r = table_7_1_healthcare_seismic_system("B", "steel_eccentrically_braced_frames")
+        assert r["height_limits_ft"] == {"B": "NL", "C": "NL", "D": 160, "E": 160, "F": 100}
+        assert r["height_limits_m"] == {"B": "NL", "C": "NL", "D": 50, "E": 50, "F": 30}
+
+    def test_table_b1_feet_only(self):
+        r = table_b1_rc4_permitted_system("Cantilevered Column Systems",
+                                          "special_steel_cantilever_column_systems")
+        assert r["height_limits_ft"] == {"B": 35, "C": 35, "D": 35, "E": 35, "F": 35}
+        assert r["height_limits_m"] == {"B": None, "C": None, "D": None, "E": None, "F": None}
+        assert r["metric_footnotes"] == {}
+        assert "60 ft (18.3m)" in r["height_limits_note"]
+
+    def test_table_b1_footnote_7_metric(self):
+        # 160 ft has no metric value in Table B-1 (no footnote d there).
+        r = table_b1_rc4_permitted_system("Bearing Wall Systems",
+                                          "reinforced_concrete_ductile_coupled_walls")
+        assert r["height_limits_m"]["D"] is None
+        assert r["metric_footnotes"] == {"7": "60 ft (18.3 m)"}
+
+    def test_footnote_metric_heights_tables_3_1_and_7_1(self):
+        r = table_3_1_seismic_system("A", "intermediate_precast_shear_walls")
+        assert r["metric_footnotes"] == {"i": "45 ft (14 m)"}
+        r = table_3_1_seismic_system("B", "steel_ordinary_concentrically_braced_frames")
+        assert r["height_limits_m"]["D"] is None and r["height_limits_m"]["F"] == "NPj"
+        assert r["metric_footnotes"] == {"j": "60 ft (18 m)"}
+        r = table_3_1_seismic_system("A", "reinforced_concrete_ductile_coupled_walls")
+        assert r["metric_footnotes"] == {"q": "60 ft (18.3 m)"}
+        assert "304.8 mm" in r["height_limits_note"]
+        r = table_7_1_healthcare_seismic_system("B", "reinforced_concrete_ductile_coupled_walls")
+        assert r["metric_footnotes"] == {"w": "60 ft (18.3 m)"}
+        assert "304.8 mm" in r["height_limits_note"]

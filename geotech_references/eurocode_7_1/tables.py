@@ -26,8 +26,6 @@ guess; where the OCR was ambiguous this is noted in the specific function's
 docstring.
 """
 
-from geotech_references._interpolation import _linterp
-
 
 # ============================================================================
 # Table A.1 (pdf p.130, idx 129): Partial factors on actions (gamma_F) for
@@ -42,9 +40,11 @@ _TABLE_A_1 = {
 }
 
 
-def table_a_1_equ_actions(action: str = "permanent",
-                          condition: str = "unfavourable") -> float:
-    """Partial factors on actions (gamma_F) for EQU verification (Table A.1).
+def table_a_1_equ_actions(action: str,
+                          condition: str) -> float:
+    """Partial factors on actions (gamma_F) for EQU verification
+    (EN 1997-1:2004 Table A.1, printed p. 128). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -88,17 +88,27 @@ _TABLE_A_2 = {
     "gamma": 1.0,      # gamma_gamma (weight density)
 }
 
+# "cohesion" alone is not an alias: Tables A.2, A.4 and A.16 print two rows,
+# "Effective cohesion" (gamma_c') and "Undrained shear strength" (gamma_cu),
+# with different factors, so the caller has to say which.
 _TABLE_A_2_ALIASES = {
     "phi'": "phi", "tan_phi": "phi", "friction_angle": "phi",
-    "c'": "c", "cohesion": "c", "effective_cohesion": "c",
+    "c'": "c", "effective_cohesion": "c",
     "undrained_shear_strength": "cu", "su": "cu",
     "unconfined_strength": "qu",
     "unit_weight": "gamma", "weight_density": "gamma",
 }
 
+_SOIL_PARAMETER_KEY_HINT = (
+    " ('c' is the effective cohesion c', 'cu' the undrained shear strength:"
+    " the tables give them different factors)"
+)
 
-def table_a_2_equ_soil_parameters(parameter: str = "phi") -> float:
-    """Partial factors for soil parameters (gamma_M) for EQU verification (Table A.2).
+
+def table_a_2_equ_soil_parameters(parameter: str) -> float:
+    """Partial factors for soil parameters (gamma_M) for EQU verification
+    (EN 1997-1:2004 Table A.2, printed p. 129). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -117,6 +127,7 @@ def table_a_2_equ_soil_parameters(parameter: str = "phi") -> float:
         raise ValueError(
             f"Unknown parameter '{parameter}'. "
             f"Valid: {', '.join(sorted(_TABLE_A_2.keys()))}"
+            f"{_SOIL_PARAMETER_KEY_HINT}"
         )
     return _TABLE_A_2[key]
 
@@ -138,10 +149,12 @@ _TABLE_A_3 = {
 }
 
 
-def table_a_3_str_geo_actions(action: str = "permanent",
-                              condition: str = "unfavourable",
-                              factor_set: str = "A1") -> float:
-    """Partial factors on actions (gamma_F) for STR/GEO verification (Table A.3).
+def table_a_3_str_geo_actions(action: str,
+                              condition: str,
+                              factor_set: str) -> float:
+    """Partial factors on actions (gamma_F) for STR/GEO verification
+    (EN 1997-1:2004 Table A.3, printed p. 130). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -165,7 +178,9 @@ def table_a_3_str_geo_actions(action: str = "permanent",
     if key not in _TABLE_A_3:
         raise ValueError(
             f"Unknown combination action={action}, condition={condition}, "
-            f"factor_set={factor_set}. Valid factor_set: A1, A2."
+            f"factor_set={factor_set}. Valid action: permanent, variable. "
+            f"Valid condition: unfavourable, favourable (spelt as the "
+            f"standard prints them). Valid factor_set: A1, A2."
         )
     return _TABLE_A_3[key]
 
@@ -184,9 +199,11 @@ _TABLE_A_4 = {
 }
 
 
-def table_a_4_str_geo_soil_parameters(parameter: str = "phi",
-                                      factor_set: str = "M1") -> float:
-    """Partial factors for soil parameters (gamma_M) for STR/GEO verification (Table A.4).
+def table_a_4_str_geo_soil_parameters(parameter: str,
+                                      factor_set: str) -> float:
+    """Partial factors for soil parameters (gamma_M) for STR/GEO verification
+    (EN 1997-1:2004 Table A.4, printed p. 130). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -206,7 +223,8 @@ def table_a_4_str_geo_soil_parameters(parameter: str = "phi",
     if key not in _TABLE_A_4:
         raise ValueError(
             f"Unknown parameter='{parameter}' or factor_set='{factor_set}'. "
-            f"Valid parameters: phi, c, cu, qu, gamma. Valid sets: M1, M2."
+            f"Valid parameters: phi, c, cu, qu, gamma"
+            f"{_SOIL_PARAMETER_KEY_HINT}. Valid sets: M1, M2."
         )
     return _TABLE_A_4[key]
 
@@ -222,9 +240,11 @@ _TABLE_A_5 = {
 }
 
 
-def table_a_5_spread_foundation_resistance(resistance: str = "bearing",
-                                           factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for spread foundations (Table A.5).
+def table_a_5_spread_foundation_resistance(resistance: str,
+                                           factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for spread foundations
+    (EN 1997-1:2004 Table A.5, printed p. 131). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -295,8 +315,11 @@ _TABLE_A_8_CFA = {
 
 _PILE_RESISTANCE_KEYS = ("base", "shaft_compression", "total_compression",
                           "shaft_tension")
+# "shaft" alone is not an alias: Tables A.6, A.7 and A.8 print two shaft
+# rows, "Shaft (compression)" (gamma_s) and "Shaft in tension" (gamma_s;t),
+# with different factors, so the caller has to say which.
 _PILE_RESISTANCE_ALIASES = {
-    "shaft": "shaft_compression", "shaft_comp": "shaft_compression",
+    "shaft_comp": "shaft_compression",
     "total": "total_compression", "combined": "total_compression",
     "tension": "shaft_tension", "shaft_uplift": "shaft_tension",
     "uplift": "shaft_tension",
@@ -318,9 +341,11 @@ def _pile_resistance_lookup(table: dict, table_name: str,
     return table[key]
 
 
-def table_a_6_driven_pile_resistance(resistance: str = "base",
-                                     factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for driven piles (Table A.6).
+def table_a_6_driven_pile_resistance(resistance: str,
+                                     factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for driven piles
+    (EN 1997-1:2004 Table A.6, printed p. 132). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -339,9 +364,11 @@ def table_a_6_driven_pile_resistance(resistance: str = "base",
                                    resistance, factor_set)
 
 
-def table_a_7_bored_pile_resistance(resistance: str = "base",
-                                    factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for bored piles (Table A.7).
+def table_a_7_bored_pile_resistance(resistance: str,
+                                    factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for bored piles
+    (EN 1997-1:2004 Table A.7, printed p. 132). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -359,9 +386,11 @@ def table_a_7_bored_pile_resistance(resistance: str = "base",
                                    resistance, factor_set)
 
 
-def table_a_8_cfa_pile_resistance(resistance: str = "base",
-                                  factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for CFA piles (Table A.8).
+def table_a_8_cfa_pile_resistance(resistance: str,
+                                  factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for CFA piles
+    (EN 1997-1:2004 Table A.8, printed p. 132). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Continuous flight auger piles.
 
@@ -392,9 +421,11 @@ _TABLE_A_9_MEAN = [1.40, 1.30, 1.20, 1.10, 1.00]   # xi_1
 _TABLE_A_9_MIN = [1.40, 1.20, 1.05, 1.00, 1.00]    # xi_2
 
 
-def table_a_9_correlation_static_load_test(factor: str = "mean",
-                                           n: int = 1) -> float:
-    """Correlation factors (xi) for static pile load tests (Table A.9).
+def table_a_9_correlation_static_load_test(factor: str,
+                                           n: int) -> float:
+    """Correlation factors (xi) for static pile load tests
+    (EN 1997-1:2004 Table A.9, printed p. 133). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -415,7 +446,12 @@ def table_a_9_correlation_static_load_test(factor: str = "mean",
         raise ValueError(f"Unknown factor '{factor}'. Valid: mean, min.")
     if n < 1:
         raise ValueError(f"n must be >= 1, got {n}")
-    n_eff = min(n, 5)
+    if n != int(n):
+        raise ValueError(
+            f"n must be a whole number of piles tested, got {n}. Table A.9 "
+            f"prints n = 1, 2, 3, 4 and >= 5."
+        )
+    n_eff = min(int(n), 5)
     series = _TABLE_A_9_MEAN if f == "mean" else _TABLE_A_9_MIN
     return series[_TABLE_A_9_N.index(n_eff)]
 
@@ -431,35 +467,54 @@ _TABLE_A_10_MEAN = [1.40, 1.35, 1.33, 1.31, 1.29, 1.27, 1.25]   # xi_3
 _TABLE_A_10_MIN = [1.40, 1.27, 1.23, 1.20, 1.15, 1.12, 1.08]    # xi_4
 
 
-def table_a_10_correlation_ground_test(factor: str = "mean",
-                                       n: int = 1) -> float:
-    """Correlation factors (xi) for characteristic resistance from ground test
-    profiles (Table A.10).
+def table_a_10_correlation_ground_test(factor: str,
+                                       n: int) -> float:
+    """Correlation factor xi_3 (on the mean) or xi_4 (on the minimum),
+    dimensionless, to derive the characteristic pile resistance from ground
+    test results for n profiles of tests (EN 1997-1:2004 Table A.10, printed
+    p. 133; recommended values, the National annex may give others).
+
+    The table prints n = 1, 2, 3, 4, 5, 7 and 10 only, with no ">=" on any
+    column and no interpolation rule. Any other n is refused, and the
+    message gives the printed neighbours.
 
     Parameters
     ----------
     factor : str
-        'mean' (xi_3) or 'min' (xi_4).
+        'mean' (xi_3, on the mean values of the calculated resistances from
+        ground test results) or 'min' (xi_4, on the minimum value).
     n : int
-        Number of ground test profiles, 1 to 10.  Intermediate n values
-        (e.g. 6, 8, 9) are linearly interpolated between the table's
-        tabulated points (1,2,3,4,5,7,10); n > 10 uses the n=10 value.
+        Number of profiles of tests: 1, 2, 3, 4, 5, 7 or 10.
 
     Returns
     -------
     float
-        Correlation factor xi.
+        Correlation factor xi, dimensionless.
+
+    Raises
+    ------
+    ValueError
+        If factor is unknown, or n is not one of the printed columns.
     """
     f = factor.strip().lower()
     if f not in ("mean", "min"):
         raise ValueError(f"Unknown factor '{factor}'. Valid: mean, min.")
     if n < 1:
         raise ValueError(f"n must be >= 1, got {n}")
-    n_eff = min(n, 10)
     series = _TABLE_A_10_MEAN if f == "mean" else _TABLE_A_10_MIN
-    if n_eff in _TABLE_A_10_N:
-        return series[_TABLE_A_10_N.index(n_eff)]
-    return _linterp(n_eff, _TABLE_A_10_N, series)
+    if n in _TABLE_A_10_N:
+        return series[_TABLE_A_10_N.index(n)]
+    symbol = "xi_3" if f == "mean" else "xi_4"
+    below = max(m for m in _TABLE_A_10_N if m < n)
+    neighbours = f"n = {below}: {series[_TABLE_A_10_N.index(below)]:.2f}"
+    above = [m for m in _TABLE_A_10_N if m > n]
+    if above:
+        neighbours += f"; n = {above[0]}: {series[_TABLE_A_10_N.index(above[0])]:.2f}"
+    raise ValueError(
+        f"EN 1997-1:2004 Table A.10 (printed p. 133) gives {symbol} for "
+        f"n = 1, 2, 3, 4, 5, 7 and 10 only; it prints no value and no "
+        f"interpolation rule for n = {n}. Printed {symbol} at {neighbours}."
+    )
 
 
 # ============================================================================
@@ -479,30 +534,40 @@ _TABLE_A_11_MODEL_FACTORS = {
 }
 
 
-def table_a_11_correlation_dynamic_impact_test(factor: str = "mean",
-                                               n: int = 2,
+def table_a_11_correlation_dynamic_impact_test(factor: str,
+                                               n: int,
                                                model_factor: str = None) -> float:
-    """Correlation factors (xi) for dynamic impact pile tests (Table A.11).
+    """Correlation factor xi_5 (on the mean) or xi_6 (on the minimum),
+    dimensionless, to derive the characteristic pile resistance from dynamic
+    impact tests on n tested piles (EN 1997-1:2004 Table A.11, printed
+    p. 134; recommended values, the National annex may give others).
+
+    The printed columns are headed ">= 2", ">= 5", ">= 10", ">= 15" and
+    ">= 20", so the value is that of the highest column whose n is not
+    above the number of piles tested: n = 3 or 4 takes the ">= 2" column,
+    n = 12 the ">= 10" column. Nothing is interpolated.
 
     Parameters
     ----------
     factor : str
-        'mean' (xi_5) or 'min' (xi_6).
+        'mean' (xi_5, on the mean values of the measured resistances in
+        dynamic load tests) or 'min' (xi_6, on the minimum value).
     n : int
-        Number of piles tested, 2 to 20 (n < 2 raises; n > 20 uses n=20;
-        intermediate values are linearly interpolated between 2,5,10,15,20).
+        Number of tested piles, 2 or more (n < 2 raises).
     model_factor : str, optional
-        Additional model factor per the table footnotes: 'signal_matching'
-        (x0.85, for dynamic impact tests with signal matching),
-        'formula_with_measurement' (x1.10, pile driving formula with
-        measured quasi-elastic pile head displacement), or
-        'formula_without_measurement' (x1.20, pile driving formula without
-        that measurement).  If None (default), no model factor is applied.
+        Model factor from the table's footnotes: 'signal_matching' (x 0,85,
+        footnote b, dynamic impact tests with signal matching),
+        'formula_with_measurement' (x 1,10, footnote c, pile driving formula
+        with measurement of the quasi-elastic pile head displacement during
+        the impact), or 'formula_without_measurement' (x 1,20, footnote d,
+        pile driving formula without that measurement).  If None (default),
+        no model factor is applied.
 
     Returns
     -------
     float
-        Correlation factor xi, times the model factor if given.
+        Correlation factor xi, dimensionless, times the model factor if
+        given.
 
     Raises
     ------
@@ -514,12 +579,11 @@ def table_a_11_correlation_dynamic_impact_test(factor: str = "mean",
         raise ValueError(f"Unknown factor '{factor}'. Valid: mean, min.")
     if n < 2:
         raise ValueError(f"n must be >= 2, got {n}")
-    n_eff = min(n, 20)
     series = _TABLE_A_11_MEAN if f == "mean" else _TABLE_A_11_MIN
-    if n_eff in _TABLE_A_11_N:
-        xi = series[_TABLE_A_11_N.index(n_eff)]
-    else:
-        xi = _linterp(n_eff, _TABLE_A_11_N, series)
+    # The columns are printed ">= 2", ">= 5", ">= 10", ">= 15", ">= 20":
+    # a step, read at the highest column not above n.
+    column = max(m for m in _TABLE_A_11_N if m <= n)
+    xi = series[_TABLE_A_11_N.index(column)]
 
     if model_factor is not None:
         mf_key = model_factor.strip().lower()
@@ -545,9 +609,11 @@ _TABLE_A_12 = {
 }
 
 
-def table_a_12_anchorage_resistance(anchorage_type: str = "temporary",
-                                    factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for pre-stressed anchorages (Table A.12).
+def table_a_12_anchorage_resistance(anchorage_type: str,
+                                    factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for pre-stressed anchorages
+    (EN 1997-1:2004 Table A.12, printed p. 134). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -584,9 +650,11 @@ _TABLE_A_13 = {
 }
 
 
-def table_a_13_retaining_structure_resistance(resistance: str = "bearing",
-                                              factor_set: str = "R1") -> float:
-    """Partial resistance factors (gamma_R) for retaining structures (Table A.13).
+def table_a_13_retaining_structure_resistance(resistance: str,
+                                              factor_set: str) -> float:
+    """Partial resistance factors (gamma_R) for retaining structures
+    (EN 1997-1:2004 Table A.13, printed p. 135). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -619,8 +687,10 @@ def table_a_13_retaining_structure_resistance(resistance: str = "bearing",
 _TABLE_A_14 = {"r1": 1.0, "r2": 1.1, "r3": 1.0}
 
 
-def table_a_14_slope_stability_resistance(factor_set: str = "R1") -> float:
-    """Partial resistance factor (gamma_R;e) for slopes and overall stability (Table A.14).
+def table_a_14_slope_stability_resistance(factor_set: str) -> float:
+    """Partial resistance factor (gamma_R;e) for slopes and overall stability
+    (EN 1997-1:2004 Table A.14, printed p. 135). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -652,9 +722,11 @@ _TABLE_A_15 = {
 }
 
 
-def table_a_15_upl_actions(action: str = "permanent",
-                           condition: str = "unfavourable") -> float:
-    """Partial factors on actions (gamma_F) for UPL verification (Table A.15).
+def table_a_15_upl_actions(action: str,
+                           condition: str) -> float:
+    """Partial factors on actions (gamma_F) for UPL verification
+    (EN 1997-1:2004 Table A.15, printed p. 136). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -700,8 +772,10 @@ _TABLE_A_16_ALIASES.update({
 })
 
 
-def table_a_16_upl_soil_resistance(parameter: str = "phi") -> float:
-    """Partial factors for soil parameters/resistances for UPL verification (Table A.16).
+def table_a_16_upl_soil_resistance(parameter: str) -> float:
+    """Partial factors for soil parameters/resistances for UPL verification
+    (EN 1997-1:2004 Table A.16, printed p. 137). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -719,6 +793,7 @@ def table_a_16_upl_soil_resistance(parameter: str = "phi") -> float:
         raise ValueError(
             f"Unknown parameter '{parameter}'. "
             f"Valid: {', '.join(sorted(_TABLE_A_16.keys()))}"
+            f"{_SOIL_PARAMETER_KEY_HINT}"
         )
     return _TABLE_A_16[key]
 
@@ -735,9 +810,11 @@ _TABLE_A_17 = {
 }
 
 
-def table_a_17_hyd_actions(action: str = "permanent",
-                           condition: str = "unfavourable") -> float:
-    """Partial factors on actions (gamma_F) for HYD verification (Table A.17).
+def table_a_17_hyd_actions(action: str,
+                           condition: str) -> float:
+    """Partial factors on actions (gamma_F) for HYD verification
+    (EN 1997-1:2004 Table A.17, printed p. 137). Dimensionless; a recommended
+    value: the National annex may give another.
 
     Parameters
     ----------
@@ -766,10 +843,24 @@ def table_a_17_hyd_actions(action: str = "permanent",
 # action/material/resistance sets apply to each Design Approach.
 # ============================================================================
 
+_DA1_BOTH_COMBINATIONS_NOTE = (
+    "Design Approach 1 has two combinations and both are verified: 'it "
+    "shall be verified that a limit state of rupture or excessive "
+    "deformation will not occur with either of the following combinations "
+    "of sets of partial factors' (2.4.7.3.4.2 (1)P and (2)P, printed "
+    "pp. 32-33). 'If it is obvious that one of the two combinations "
+    "governs the design, calculations for the other combination need not "
+    "be carried out. However, different combinations may be critical to "
+    "different aspects of the same design.' (2.4.7.3.4.2 (3), printed "
+    "p. 33)."
+)
+
 _DESIGN_APPROACHES = {
     "da1-c1": {
         "description": "Design Approach 1, Combination 1: A1 + M1 + R1",
         "action_set": "A1", "material_set": "M1", "resistance_set": "R1",
+        "other_combination": "DA1-C2",
+        "note": _DA1_BOTH_COMBINATIONS_NOTE,
     },
     "da1-c2": {
         "description": (
@@ -779,6 +870,14 @@ _DESIGN_APPROACHES = {
         "action_set": "A2", "material_set": "M2", "resistance_set": "R1",
         "pile_anchor_material_set": "M1 or M2",
         "pile_anchor_resistance_set": "R4",
+        "pile_anchor_note": (
+            "In Combination 2, set M1 is used for calculating resistances "
+            "of piles or anchors and set M2 for calculating unfavourable "
+            "actions on piles owing e.g. to negative skin friction or "
+            "transverse loading (2.4.7.3.4.2 NOTE 2, printed p. 33)."
+        ),
+        "other_combination": "DA1-C1",
+        "note": _DA1_BOTH_COMBINATIONS_NOTE,
     },
     "da2": {
         "description": "Design Approach 2: A1 + M1 + R2",
@@ -795,7 +894,7 @@ _DESIGN_APPROACHES = {
 }
 
 _DESIGN_APPROACH_ALIASES = {
-    "da1": "da1-c1", "da1c1": "da1-c1", "da1_c1": "da1-c1",
+    "da1c1": "da1-c1", "da1_c1": "da1-c1",
     "combination1": "da1-c1", "combination_1": "da1-c1",
     "da1c2": "da1-c2", "da1_c2": "da1-c2",
     "combination2": "da1-c2", "combination_2": "da1-c2",
@@ -804,23 +903,43 @@ _DESIGN_APPROACH_ALIASES = {
 }
 
 
-def design_approach_sets(approach: str = "DA1-C1") -> dict:
-    """Annex A action/material/resistance sets used by each Design Approach (2.4.7.3.4).
+def design_approach_sets(approach: str) -> dict:
+    """The sets of Annex A partial factors (A for actions, M for soil
+    parameters, R for resistances) that a Design Approach combines
+    (EN 1997-1:2004 clause 2.4.7.3.4, printed pp. 32-33). Design Approach 1
+    has two combinations, and both are verified. Which Design Approach to
+    use may be given in the National annex (2.4.7.3.4.1 NOTE 1).
+
+    As printed:
+
+        Design Approach 1 (2.4.7.3.4.2), except axially loaded piles and
+        anchors:  Combination 1: A1 "+" M1 "+" R1
+                  Combination 2: A2 "+" M2 "+" R1
+        Design Approach 1, axially loaded piles and anchors:
+                  Combination 1: A1 "+" M1 "+" R1
+                  Combination 2: A2 "+" (M1 or M2) "+" R4
+        Design Approach 2 (2.4.7.3.4.3):  A1 "+" M1 "+" R2
+        Design Approach 3 (2.4.7.3.4.4):  (A1 on structural actions or A2
+                  on geotechnical actions) "+" M2 "+" R3
 
     Parameters
     ----------
     approach : str
-        One of 'DA1-C1', 'DA1-C2', 'DA2', 'DA3' (case-insensitive; 'DA1' is
-        accepted as an alias for 'DA1-C1').
+        'DA1' (both combinations of Design Approach 1), 'DA1-C1', 'DA1-C2',
+        'DA2' or 'DA3' (case-insensitive).
 
     Returns
     -------
     dict
-        Keys vary by approach: 'description' plus 'action_set'/
-        'material_set'/'resistance_set' for DA1-C1 and DA2; for DA1-C2 also
-        'pile_anchor_material_set'/'pile_anchor_resistance_set'; for DA3
-        'structural_action_set'/'geotechnical_action_set' instead of a
-        single 'action_set'.
+        For 'DA1': 'description', 'combinations' (the DA1-C1 and DA1-C2
+        entries, in that order) and 'note'. For one combination or
+        approach: 'description' plus 'action_set'/'material_set'/
+        'resistance_set' for DA1-C1 and DA2; for DA1-C2 also
+        'pile_anchor_material_set'/'pile_anchor_resistance_set'/
+        'pile_anchor_note'; for DA3 'structural_action_set'/
+        'geotechnical_action_set' instead of a single 'action_set'. The
+        DA1-C1 and DA1-C2 entries carry 'other_combination' and a 'note'
+        that both combinations are verified.
 
     Raises
     ------
@@ -828,11 +947,24 @@ def design_approach_sets(approach: str = "DA1-C1") -> dict:
         If approach is not recognized.
     """
     key = approach.strip().lower().replace(" ", "")
+    if key in ("da1", "da_1", "designapproach1"):
+        return {
+            "description": (
+                "Design Approach 1: Combination 1 (A1 + M1 + R1) and "
+                "Combination 2 (A2 + M2 + R1; axially loaded piles and "
+                "anchors A2 + (M1 or M2) + R4)"
+            ),
+            "combinations": [
+                dict(_DESIGN_APPROACHES["da1-c1"]),
+                dict(_DESIGN_APPROACHES["da1-c2"]),
+            ],
+            "note": _DA1_BOTH_COMBINATIONS_NOTE,
+        }
     key = _DESIGN_APPROACH_ALIASES.get(key, key)
     if key not in _DESIGN_APPROACHES:
         raise ValueError(
             f"Unknown design approach '{approach}'. "
-            f"Valid: DA1-C1, DA1-C2, DA2, DA3."
+            f"Valid: DA1 (both combinations), DA1-C1, DA1-C2, DA2, DA3."
         )
     return dict(_DESIGN_APPROACHES[key])
 
@@ -931,7 +1063,10 @@ _TABLE_H_1_RELATIVE_ROTATION_SAGGING = {
 
 def table_h_1_limiting_relative_rotation(limit_type: str = "acceptable_many_structures",
                                          mode: str = "sagging") -> float:
-    """Limiting relative rotation (angular distortion) for foundation movement (Annex H(2)-(3)).
+    """Limiting relative rotation (angular distortion) of a foundation, as a
+    dimensionless ratio (0.002 is 1/500) (EN 1997-1:2004 Annex H (2) and
+    (3), printed p. 165; Annex H prints these in its text, not in a
+    numbered table).
 
     Parameters
     ----------
@@ -970,7 +1105,10 @@ def table_h_1_limiting_relative_rotation(limit_type: str = "acceptable_many_stru
 
 
 def table_h_2_limiting_total_settlement() -> float:
-    """Typical acceptable total settlement for isolated foundations (Annex H(4)).
+    """Total settlement often acceptable for normal structures with isolated
+    foundations, returned in metres: 0.050 m, printed as 50 mm (EN 1997-1:2004
+    Annex H (4), printed p. 165; Annex H prints this in its text, not in a
+    numbered table).
 
     Returns
     -------

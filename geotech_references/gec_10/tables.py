@@ -42,22 +42,29 @@ _TABLE_8_4 = {
     },
     "side_cohesive_compression": {
         "phi": 0.45,
-        "condition": "Cohesive soil, Alpha method (Fig 10-6), compression (without load test)",
+        "condition": "Cohesive soil, Alpha method, compression (without load test)",
         "category": "compression_side",
     },
     "side_cohesive_uplift": {
         "phi": 0.35,
-        "condition": "Cohesive soil, Alpha method (Fig 10-6), uplift (without load test)",
+        "condition": "Cohesive soil, Alpha method, uplift (without load test)",
         "category": "uplift_side",
     },
     "side_rock_compression": {
         "phi": 0.50,
-        "condition": "Rock, Eq. 10-21 or 10-22, compression (without load test)",
+        "condition": "Rock, Eq. 10-21, compression (without load test)",
         "category": "compression_side",
+        # Lead's ruling G1 (2026-11-10): the table's value is returned.
+        "print_note": (
+            "The text of p. 10-21 says: 'The resistance factor recommended "
+            "with use of Equations 10-21 and 10-22 is phi = 0.55 based on "
+            "fitting to ASD with a factor of safety FS = 2.5, as presented in "
+            "Table 8-4.' Table 8-4 (p. 8-14) prints 0.50; the table's value "
+            "is returned."),
     },
     "side_rock_uplift": {
         "phi": 0.40,
-        "condition": "Rock, Eq. 10-21 or 10-22, uplift (without load test)",
+        "condition": "Rock, Eq. 10-21, uplift (without load test)",
         "category": "uplift_side",
     },
     "side_igm_compression": {
@@ -78,7 +85,7 @@ _TABLE_8_4 = {
     },
     "base_cohesive": {
         "phi": 0.40,
-        "condition": "Cohesive soil, bearing capacity equation (Table 10-2), compression",
+        "condition": "Cohesive soil, bearing capacity eq., compression",
         "category": "compression_base",
     },
     "base_rock": {
@@ -116,7 +123,10 @@ _TABLE_8_4 = {
     },
     "structural_flexure": {
         "phi": 0.75,
-        "condition": "Combined axial and flexure, RC (0.75–0.90; use 0.75 as minimum)",
+        "phi_max": 0.90,
+        "condition": ("Combined axial and flexure, reinforced concrete; "
+                      "printed 0.75 to 0.90 (phi is the lower value, "
+                      "phi_max the upper)"),
         "category": "structural",
     },
     "structural_shear": {
@@ -149,85 +159,116 @@ _TABLE_8_4 = {
 }
 
 
+# Other names of ONE row of Table 8-4 (p. 8-14). A word that fits several
+# rows ('side', 'uplift', 'rock', 'load_test', 'structural') is refused.
+_TABLE_8_4_ALIASES = {
+    "lateral_single_row": "lateral_individual",
+    "lateral_single": "lateral_individual",
+    "lateral_multiple_row_group": "lateral_group",
+    "group_block": "group_block_failure",
+    "group_uplift_resistance": "group_uplift",
+    "static_compressive_resistance_from_load_tests": "load_test_compression",
+    "static_uplift_resistance_from_load_tests": "load_test_uplift",
+    "structural_axial_compression": "structural_compression",
+    "structural_combined_axial_and_flexure": "structural_flexure",
+    "structural_axial_flexure": "structural_flexure",
+    "service_i": "service",
+    "extreme_axial_uplift": "extreme_uplift",
+    "extreme_all_other": "extreme_other",
+}
+
+
 def table_8_4_resistance_factor(method: str) -> dict:
-    """Resistance factor φ for LRFD drilled shaft design (Table 8-4).
+    """Resistance factor phi for one row of GEC-10 Table 8-4 Resistance Factors for LRFD Design of Drilled Shafts (FHWA-NHI-18-024, p. 8-14); the key must name one printed row.
 
     Covers lateral, axial (side and base), load test, group, structural,
-    service, and extreme event limit states per FHWA-NHI-18-024 Table 8-4
-    (consistent with AASHTO 2017a except lateral resistance).
-
-    Axial side resistance entries follow the pattern
-    'side_<geomaterial>_compression' or 'side_<geomaterial>_uplift';
-    without-load-test values.  Use 'load_test_compression' (φ=0.70) or
-    'load_test_uplift' (φ=0.60) when static load tests are performed.
+    service, and extreme event limit states. Side resistance prints
+    compression / uplift (e.g. 0.55 / 0.45), one key each:
+    'side_<geomaterial>_compression' or 'side_<geomaterial>_uplift'.
+    Use 'load_test_compression' (phi = 0.70) or 'load_test_uplift'
+    (phi = 0.60) when static load tests are performed.
 
     Parameters
     ----------
     method : str
-        Lookup key.  Partial matching on words is supported.
-        Examples: 'side_cohesionless_compression', 'base_rock',
-        'lateral_individual', 'load_test_compression',
-        'group_block', 'structural_shear', 'extreme_uplift'.
+        One printed row: 'lateral_individual', 'lateral_group',
+        'side_cohesionless_compression', 'side_cohesionless_uplift',
+        'side_cohesive_compression', 'side_cohesive_uplift',
+        'side_rock_compression', 'side_rock_uplift', 'side_igm_compression',
+        'side_igm_uplift', 'base_cohesionless', 'base_cohesive',
+        'base_rock', 'load_test_compression', 'load_test_uplift',
+        'group_block_failure', 'group_uplift', 'structural_compression',
+        'structural_flexure', 'structural_shear', 'service',
+        'extreme_uplift', 'extreme_lateral', 'extreme_other', or a listed
+        alias ('group_block', 'service_i', ...).
 
     Returns
     -------
     dict
-        {'method': str, 'phi': float, 'condition': str, 'category': str}
+        {'method': str, 'phi': float, 'condition': str, 'category': str};
+        'structural_flexure' adds 'phi_max' (printed 0.75 to 0.90);
+        'side_rock_compression' adds 'print_note' (the text of p. 10-21
+        says 0.55 "as presented in Table 8-4"; the table's 0.50 is
+        returned).
 
     Raises
     ------
     ValueError
-        If no matching method is found.
+        If method does not name one printed row (a word found in several
+        rows, such as 'side' or 'uplift', was answered from the first).
     """
     key = method.lower().strip().replace(" ", "_").replace("-", "_")
+    key = _TABLE_8_4_ALIASES.get(key, key)
 
     if key in _TABLE_8_4:
         result = dict(_TABLE_8_4[key])
         result["method"] = key
         return result
 
-    # Substring match
-    for k, v in _TABLE_8_4.items():
-        if key in k or k in key:
-            result = dict(v)
-            result["method"] = k
-            return result
-
-    # Word-level match
-    key_words = key.split("_")
-    for k, v in _TABLE_8_4.items():
-        k_words = k.split("_")
-        if all(w in k_words for w in key_words):
-            result = dict(v)
-            result["method"] = k
-            return result
-
     available = ", ".join(sorted(_TABLE_8_4.keys()))
     raise ValueError(
-        f"No matching method for '{method}'.\nAvailable: {available}"
+        f"No matching method for '{method}': Table 8-4 (p. 8-14) keys name "
+        f"one printed row.\nAvailable: {available}"
     )
 
 
+_TABLE_8_4_CATEGORIES = ("lateral", "compression_side", "uplift_side",
+                         "compression_base", "load_test", "group",
+                         "structural", "service", "extreme")
+
+
 def table_8_4_by_category(category: str) -> list:
-    """List all Table 8-4 resistance factors in a given category.
+    """All rows of GEC-10 Table 8-4 (FHWA-NHI-18-024, p. 8-14) in one of the library's categories, each with its resistance factor phi.
 
     Parameters
     ----------
     category : str
-        Category filter: 'lateral', 'compression_side', 'uplift_side',
-        'compression_base', 'load_test', 'group', 'structural', 'service',
-        'extreme', or '' for all.
+        'lateral', 'compression_side', 'uplift_side', 'compression_base',
+        'load_test', 'group', 'structural', 'service', 'extreme', or ''
+        for all rows.
 
     Returns
     -------
     list of dict
-        All entries matching the category, each with 'method', 'phi',
+        All entries in the category, each with 'method', 'phi',
         'condition', and 'category' keys.
+
+    Raises
+    ------
+    ValueError
+        If category is not one of the listed names (an unknown word
+        returned an empty list; a part of a name, such as 'side', every
+        category holding it).
     """
-    cat = category.lower().strip()
+    cat = category.lower().strip().replace(" ", "_").replace("-", "_")
+    if cat and cat not in _TABLE_8_4_CATEGORIES:
+        raise ValueError(
+            f"Unknown category '{category}'. Options: "
+            f"{', '.join(_TABLE_8_4_CATEGORIES)}, or '' for all rows."
+        )
     results = []
     for k, v in _TABLE_8_4.items():
-        if not cat or cat in v["category"]:
+        if not cat or v["category"] == cat:
             entry = dict(v)
             entry["method"] = k
             results.append(entry)
@@ -256,7 +297,7 @@ _TABLE_9_1 = {
 
 
 def table_9_1_lateral_resistance_factor(method: str) -> dict:
-    """Resistance factor for geotechnical lateral loading (Table 9-1).
+    """Resistance factor phi for geotechnical strength of laterally loaded drilled shafts by the p-y method, GEC-10 Table 9-1 (FHWA-NHI-18-024, p. 9-22); the key must name one of its three rows.
 
     Based on p-y method static pushover analysis.  AASHTO (2017a) specifies
     φ = 1.0 for lateral resistance; this manual recommends lower values
@@ -295,13 +336,6 @@ def table_9_1_lateral_resistance_factor(method: str) -> dict:
     key = method.lower().strip().replace(" ", "_").replace("-", "_")
     resolved = _aliases.get(key)
 
-    if resolved is None:
-        # Partial match
-        for k in _TABLE_9_1:
-            if key in k or k in key:
-                resolved = k
-                break
-
     if resolved is None or resolved not in _TABLE_9_1:
         raise ValueError(
             f"Unknown method '{method}'. "
@@ -317,9 +351,10 @@ def table_9_1_lateral_resistance_factor(method: str) -> dict:
 # Table 10-2: Bearing Capacity Factor N*c for Base Resistance in Cohesive Soil
 # (FHWA-NHI-18-024 Table 10-2)
 #
-# For L/B ≥ 3: qBN = N*c × su
-# For L/B < 3: qBN = (2/3)(1 + L/(6B)) × N*c × su  (Equation 10-20)
-# su = mean undrained shear strength over depth 2B below base
+# For D >= 3B: qBN = N*c x su (Equation 10-19)
+# For D < 3B: qBN = (2/3)[1 + (1/6)(D/B)] x N*c x su  (Equation 10-20)
+# D = depth of embedment; su = mean undrained shear strength of the cohesive
+# soil over a depth of 2B below the base (p. 10-19, PDF page 299)
 # ============================================================================
 
 _TABLE_10_2_SU_PSF = [0.0, 500.0, 1000.0, 2000.0]
@@ -327,17 +362,21 @@ _TABLE_10_2_NC     = [6.50,  6.50,   8.00,   9.00]
 
 
 def table_10_2_nc_base_clay(su_psf: float) -> dict:
-    """Bearing capacity factor N*c for drilled shaft base resistance in cohesive soil (Table 10-2).
+    """Bearing capacity factor N*c (dimensionless) for drilled shaft base resistance in cohesive soil from the undrained shear strength in psf, GEC-10 Table 10-2 (FHWA-NHI-18-024, p. 10-19).
 
-    N*c is the dimensionless bearing capacity factor used in:
+    N*c is used in Eq. 10-19:
 
-        qBN = N*c × su  (for L/B ≥ 3)
+        qBN = N*c x su  (depth of embedment D at least 3B)
 
-    where su is the mean CIUC-equivalent undrained shear strength over a
-    depth of 2B below the shaft base.  For shallow embedment (L/B < 3), apply
-    the reduction from Equation 10-20:
+    where su is the mean undrained shear strength of the cohesive soil over
+    a depth of 2B below the base (Example 10-3 uses the CIUC-equivalent
+    strength).  For D < 3B, Equation 10-20:
 
-        qBN = (2/3)(1 + L/(6B)) × N*c × su
+        qBN = (2/3)[1 + (1/6)(D/B)] x N*c x su
+
+    Table 10-2 prints su 500, 1,000 and >= 2,000 psf (N*c 6.5, 8.0, 9.0)
+    and allows linear interpolation between them; below 500 psf the 500
+    row is used (the note says so).
 
     Resistance factor (Table 8-4): φ = 0.40 (compression).
 
@@ -481,40 +520,50 @@ def table_11_1_p_multiplier(row_position: str,
 
 
 # ============================================================================
-# AASHTO (2017a) Section 10.8.3.6.3 — Group Efficiency for Cohesionless Soils
-# Referenced in FHWA-NHI-18-024 Section 11.4.1.2
+# Group efficiency for drilled shafts in cohesionless soils
+# FHWA-NHI-18-024 Section 11.4.1.2 Cohesionless Soils, p. 11-6 (PDF page 340),
+# citing AASHTO (2017a) 10.8.3.6.3. GEC-10 prints the three values in the
+# text; it has no Table 11-2 (the function keeps its old name):
 #
-# Applicable when cap is NOT in contact with the ground.
-# η ≥ 1.0 is possible when casing is advanced ahead of the excavation and
-# ground is not loosened; AASHTO values are considered conservative in that case.
+#   "for cases in which the cap is not in contact with the ground:
+#    eta = 0.65 for a center-to-center spacing of 2.5 diameters
+#    eta = 0.80 for a center-to-center spacing of 3 diameters
+#    eta = 1.0 for a center-to-center spacing of 4 diameters or more
+#    The value of eta may be determined by linear interpolation for
+#    intermediate spacings. If the cap will be maintained in contact with
+#    the ground (which is not typically applicable to bridge foundations),
+#    then no reduction is applied."
 # ============================================================================
 
 _GROUP_EFF_SPACING = [2.5, 3.0, 4.0]
 _GROUP_EFF_ETA     = [0.65, 0.80, 1.00]
 
+_GROUP_EFF_REFERENCE = (
+    "FHWA-NHI-18-024 (GEC-10) Section 11.4.1.2 Cohesionless Soils, p. 11-6, "
+    "citing AASHTO (2017a) 10.8.3.6.3 (no Table 11-2 is printed)")
+
 
 def table_11_2_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
-    """Group axial efficiency factor for drilled shafts in cohesionless soil.
+    """Group efficiency eta for the axial resistance of drilled shafts in cohesionless soil with the cap not in contact with the ground, from GEC-10 Section 11.4.1.2 (FHWA-NHI-18-024, p. 11-6, citing AASHTO 10.8.3.6.3); GEC-10 has no Table 11-2, the name is kept.
 
-    Per AASHTO (2017a) Section 10.8.3.6.3, as cited in FHWA-NHI-18-024
-    Section 11.4.1.2.  Cap assumed not in contact with the ground.  Values
-    based on spacing between shaft centers divided by shaft diameter:
-
-        s/D = 2.5 → η = 0.65
-        s/D = 3.0 → η = 0.80
-        s/D ≥ 4.0 → η = 1.00
-
-    Linear interpolation for intermediate spacings.
+    As printed: eta = 0.65 at a center-to-center spacing of 2.5 diameters,
+    0.80 at 3 diameters and 1.0 at 4 diameters or more, by linear
+    interpolation for intermediate spacings. With the cap kept in contact
+    with the ground no reduction is applied; the AASHTO commentary cited
+    there says the reduction need not be made if casing is advanced in
+    front of the excavation (p. 11-6 discusses both).
 
     Parameters
     ----------
     spacing_over_d : float
-        Center-to-center shaft spacing ÷ shaft diameter.  Must be ≥ 2.5.
+        Center-to-center shaft spacing / shaft diameter. Must be >= 2.5
+        (the smallest spacing printed).
 
     Returns
     -------
     dict
-        {'spacing_over_d': float, 'eta': float, 'note': str}
+        {'spacing_over_d': float, 'eta': float, 'note': str,
+         'reference': str}
 
     Raises
     ------
@@ -523,74 +572,24 @@ def table_11_2_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
     """
     if spacing_over_d < _GROUP_EFF_SPACING[0]:
         raise ValueError(
-            f"spacing_over_d={spacing_over_d} is below the AASHTO minimum of 2.5D."
+            f"spacing_over_d={spacing_over_d} is below the minimum of 2.5D, "
+            "the smallest spacing printed (GEC-10 Section 11.4.1.2, p. 11-6)."
         )
 
     if spacing_over_d >= _GROUP_EFF_SPACING[-1]:
         eta = 1.0
-        note = "spacing >= 4D; η = 1.0 (no group reduction)"
+        note = "spacing >= 4 diameters: eta = 1.0 (as printed)"
+    elif spacing_over_d in _GROUP_EFF_SPACING:
+        eta = _GROUP_EFF_ETA[_GROUP_EFF_SPACING.index(spacing_over_d)]
+        note = "printed value"
     else:
         eta = _linterp(spacing_over_d, _GROUP_EFF_SPACING, _GROUP_EFF_ETA)
-        note = "interpolated from AASHTO 10.8.3.6.3 via Table 11-2 range"
+        note = ("linear interpolation for intermediate spacings, as "
+                "Section 11.4.1.2 allows")
 
     return {
         "spacing_over_d": spacing_over_d,
         "eta": round(eta, 3),
         "note": note,
+        "reference": _GROUP_EFF_REFERENCE,
     }
-
-
-# ============================================================================
-# AASHTO reliability index vs. probability of failure
-# (Standard relationship used throughout LRFD calibration; cited in Ch. 8)
-# ============================================================================
-
-_BETA_LIST = [2.0, 2.33, 2.5, 3.0, 3.5, 4.0]
-_PF_LIST   = [2.28e-2, 1.0e-2, 6.2e-3, 1.35e-3, 2.33e-4, 3.17e-5]
-
-
-def aashto_reliability_index(beta: float = None, pf: float = None) -> dict:
-    """Reliability index β vs. probability of failure pF (LRFD calibration reference).
-
-    Standard AASHTO LRFD relationship used in resistance factor calibration
-    (referenced in FHWA-NHI-18-024 Section 8.2).  Provide either beta or pf;
-    the other is interpolated.
-
-    Parameters
-    ----------
-    beta : float, optional
-        Reliability index (2.0 to 4.0).
-    pf : float, optional
-        Probability of failure.
-
-    Returns
-    -------
-    dict
-        {'beta': float, 'pf': float}
-
-    Raises
-    ------
-    ValueError
-        If neither or both arguments are provided, or value is out of range.
-    """
-    if beta is not None and pf is not None:
-        raise ValueError("Provide either beta or pf, not both.")
-    if beta is None and pf is None:
-        raise ValueError("Provide either beta or pf.")
-
-    if beta is not None:
-        if beta < _BETA_LIST[0] or beta > _BETA_LIST[-1]:
-            raise ValueError(
-                f"beta must be {_BETA_LIST[0]}–{_BETA_LIST[-1]}, got {beta}"
-            )
-        pf_result = _linterp(beta, _BETA_LIST, _PF_LIST)
-        return {"beta": beta, "pf": pf_result}
-
-    if pf < _PF_LIST[-1] or pf > _PF_LIST[0]:
-        raise ValueError(
-            f"pf must be {_PF_LIST[-1]:.2e} to {_PF_LIST[0]:.2e}, got {pf}"
-        )
-    pf_rev   = list(reversed(_PF_LIST))
-    beta_rev = list(reversed(_BETA_LIST))
-    beta_result = _linterp(pf, pf_rev, beta_rev)
-    return {"beta": round(beta_result, 3), "pf": pf}

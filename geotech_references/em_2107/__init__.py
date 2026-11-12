@@ -46,7 +46,7 @@ Provides:
   - ``fatigue_fracture.py`` -- Chapter 5: the fatigue load factor (finite
     vs. infinite life, Table 4.1 footnote 5), the fatigue-check screening
     rule (paragraph 5.1.3), and the fracture-critical-member redundancy
-    strength check (paragraph 5.2.1.2). This chapter is mostly qualitative
+    strength check (paragraph 5.2.1.1). This chapter is mostly qualitative
     guidance deferring to AISC 360/AASHTO detail categories -- these are
     its only printed numeric criteria.
   - ``connections.py`` -- Chapter 6: bolt-grade and welding-code selection

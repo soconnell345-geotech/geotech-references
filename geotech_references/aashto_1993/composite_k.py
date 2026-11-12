@@ -528,7 +528,12 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 # ============================================================================
 
 def relative_damage_rigid(d_in, k_pci) -> dict:
-    """Seasonal relative damage u_r for a rigid slab (Figure 3.5).
+    """Seasonal relative damage u_r for a rigid slab, AASHTO 1993 Figure 3.5
+    (pdf_page 130, printed II-41); returns u_r (dimensionless, the chart's
+    "Relative Damage" divided by 100). Figure 3.5 is a chart (u against
+    composite k for slab thicknesses 6-14 in) and prints no equation; this
+    function computes a closed form fitted to it (a judgment call kept as
+    coded, review pave-28), and its result says so:
 
         u_r = [D^0.75 - 0.39*k^0.25]^3.42 / 100
 
@@ -574,6 +579,10 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     return {
         "d_in": d_in, "k_pci": k_pci, "u_r": round(u_r, 4), "chart_read": True,
         "equation": "u_r = [D^0.75 - 0.39*k^0.25]^3.42 / 100",
+        "print_note": ("Figure 3.5 (printed II-41) is a chart and prints no "
+                       "equation; u_r is a closed form fitted to it (Table "
+                       "3.3's four rows within 0.6 %, chart reads at D 6-14 "
+                       "in within 12.5 %)."),
         "reference": "AASHTO 1993 Guide, Figure 3.5 (pdf_page 130, printed II-41)",
     }
 
@@ -623,7 +632,12 @@ _LS_READ_POINTS = {
 
 
 def k_loss_of_support(k_pci, ls) -> dict:
-    """Effective k corrected for potential loss of subbase support (Figure 3.6).
+    """Effective modulus of subgrade reaction corrected for potential loss
+    of subbase support, AASHTO 1993 Figure 3.6 (pdf_page 131, printed
+    II-42); returns k_corrected_pci, pci. Figure 3.6 is a chart (four LS
+    lines on log-log axes) and prints no equation; this function computes
+    a power law whose slopes are fitted to points read off the chart (a
+    judgment call kept as coded, review pave-28), and its result says so:
 
         k_corrected = k_pci ^ slope(LS)
 
@@ -665,6 +679,11 @@ def k_loss_of_support(k_pci, ls) -> dict:
         "chart_read": True,
         "equation": "k_corrected = k_pci^slope(LS)  (slope=1.0,0.8163,0.605,0.464 at LS=0,1,2,3; each fit to multiple chart-read points)",
         "reference": "AASHTO 1993 Guide, Figure 3.6 (pdf_page 131, printed II-42)",
+        "print_note": ("Figure 3.6 (printed II-42) is a chart and prints no "
+                       "equation; the slopes are a fit to points read off "
+                       "its LS = 1, 2 and 3 lines (within about 7 % for "
+                       "LS 1 and 2, 12-16 % for LS 3). Only LS = 1 at "
+                       "k = 540 (170 pci) is a printed value (Table 3.3)."),
     }
     if not (0.0 <= ls <= 3.0):
         out["note"] = "ls outside the guide's plotted range [0, 3]; slope clamped to the nearest end."

@@ -19,6 +19,9 @@ class TestTable53Properties:
         assert row["sg"] == 0.48
         assert row["mor_kpa"] == 85000
         assert row["moe_mpa"] == 13400
+        # Table 5-3a starts on printed p. 5-4 (FPL-GTR-282 pdf 120) and
+        # ends on 5-8 (pdf 124).
+        assert row["printed_page"] == "5-4 to 5-8"
 
     def test_douglas_fir_coast_green(self):
         row = table_5_3_mechanical_properties("douglas-fir, coast", "green")

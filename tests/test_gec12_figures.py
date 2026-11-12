@@ -338,9 +338,20 @@ class TestDeltaPhiRatio:
             figure_7_9_delta_phi_ratio("unknown_pile", 1.0)
 
     def test_partial_match(self):
-        """Partial name matching works."""
+        """A listed other name of one curve works."""
         result = figure_7_9_delta_phi_ratio("pipe", 1.0)
         assert result["curve"] == "a"
+        assert figure_7_9_delta_phi_ratio("concrete", 1.0)["curve"] == "c"
+        assert figure_7_9_delta_phi_ratio("H-pile", 0.15)["curve"] == "f"
+        assert figure_7_9_delta_phi_ratio("step taper", 1.0)["curve"] == "d"
+
+    @pytest.mark.parametrize("ambiguous", ["pile", "taper", "monotube",
+                                           "raymond", "piles"])
+    def test_a_name_that_fits_several_curves_is_refused(self, ambiguous):
+        """'pile' returned the pipe curve (a) and 'taper' the Raymond
+        step-taper curve (d): the first curve whose key held the word."""
+        with pytest.raises(ValueError, match="does not name one curve"):
+            figure_7_9_delta_phi_ratio(ambiguous, 1.0)
 
 
 # ============================================================================

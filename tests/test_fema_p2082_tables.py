@@ -120,6 +120,47 @@ class TestSiteClassFromVs30:
         with pytest.raises(ValueError):
             site_class_from_vs30(0)
 
+    def test_classes_for_an_estimated_velocity(self):
+        # Section 20.3 (PDF p. 126, printed p. 88): "site class based on
+        # estimated values of vs shall be derived using vs, vs/1.3, and
+        # 1.3 vs when correlation models are used". Table 20.2-1 (printed
+        # p. 86): D is >700 to 1,000 ft/s, DE >500 to 700, CD >1,000 to 1,450.
+        r = site_class_from_vs30(800, "ft/s")
+        assert r["site_class"] == "D"
+        # 800/1.3 = 615 ft/s -> DE; 800 x 1.3 = 1,040 ft/s -> CD
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
+        assert "vs/1.3 and 1.3 vs" in r["note"]
+        assert "estimated_vs_limits" not in r
+        # 850 ft/s: /1.3 = 654 -> DE; x1.3 = 1,105 -> CD
+        r = site_class_from_vs30(850, "ft/s")
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "DE", "vs": "D", "1.3vs": "CD"}
+
+    def test_an_estimated_velocity_is_given_no_class_b_or_a(self):
+        # Section 20.2.4 (PDF p. 125, printed p. 87): "Site Class B can only
+        # be assigned to a site on the basis of shear wave velocity measured
+        # on site." Section 20.2.5 (same page): "The hard rock, Site Class A
+        # category shall be supported by shear wave velocity measurement
+        # either on site or on profiles of the same rock type in the same
+        # formation ...". The estimated classes used to include B and A.
+        # 2,500 ft/s -> BC; /1.3 = 1,923 -> C; x1.3 = 3,250 is in the B range
+        r = site_class_from_vs30(2500, "ft/s")
+        assert r["site_class"] == "BC"
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "C", "vs": "BC", "1.3vs": None}
+        assert len(r["estimated_vs_limits"]) == 1
+        assert "Section 20.2.4" in r["estimated_vs_limits"][0]
+        assert "measured on site" in r["estimated_vs_limits"][0]
+        assert "shall be classified as Site Class BC" in r["estimated_vs_limits"][0]
+        # 3,800 ft/s is in the B range; /1.3 = 2,923 -> BC; x1.3 = 4,940 is B
+        r = site_class_from_vs30(3800, "ft/s")
+        assert r["site_class"] == "B"     # the class for the velocity as given
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": "BC", "vs": None, "1.3vs": None}
+        # 4,000 ft/s: /1.3 = 3,077 is B; x1.3 = 5,200 is in the A range
+        r = site_class_from_vs30(4000, "ft/s")
+        assert r["estimated_vs_site_classes"] == {"vs/1.3": None, "vs": None, "1.3vs": None}
+        assert "Section 20.2.5" in r["estimated_vs_limits"][2]
+        assert "Site Class A" in r["estimated_vs_limits"][2]
+        assert "20.2.4 and 20.2.5" in r["note"]
+
 
 class TestSiteClassF:
     def test_four_triggers(self):
@@ -194,7 +235,7 @@ class TestSDCFromSD1:
 class TestCombinedSDC:
     def test_more_severe_governs(self):
         # SDS->C, SD1->D : SD1 governs
-        r = seismic_design_category(sds=0.40, sd1=0.25, risk_category="II")
+        r = seismic_design_category(sds=0.40, sd1=0.25, risk_category="II", s1=0.20)
         assert r["sdc_from_sds"] == "C"
         assert r["sdc_from_sd1"] == "D"
         assert r["sdc"] == "D"
@@ -202,9 +243,21 @@ class TestCombinedSDC:
 
     def test_sds_governs(self):
         # SDS->D, SD1->C : SDS governs
-        r = seismic_design_category(sds=0.55, sd1=0.15, risk_category="II")
+        r = seismic_design_category(sds=0.55, sd1=0.15, risk_category="II", s1=0.10)
         assert r["sdc"] == "D"
         assert "SDS" in r["governed_by"]
+
+    def test_s1_is_required(self):
+        # Section 11.6 (PDF p. 56, printed p. 18): Risk Category I, II or III
+        # with S1 >= 0.75 "shall be assigned to Seismic Design Category E",
+        # Risk Category IV to F; "all other structures" go by the tables.
+        # S1 used to default to 0.0, so SDS 1.2, SD1 0.9 came back as D with
+        # the rule never checked.
+        with pytest.raises(ValueError, match="S1 >= 0.75"):
+            seismic_design_category(sds=1.2, sd1=0.9)
+        assert seismic_design_category(sds=1.2, sd1=0.9, s1=0.6)["sdc"] == "D"
+        assert seismic_design_category(sds=1.2, sd1=0.9, s1=0.8)["sdc"] == "E"
+        assert seismic_design_category(sds=1.2, sd1=0.9, risk_category="IV", s1=0.8)["sdc"] == "F"
 
     def test_s1_override_rc_iii_gives_E(self):
         r = seismic_design_category(sds=0.1, sd1=0.05, risk_category="III", s1=0.80)

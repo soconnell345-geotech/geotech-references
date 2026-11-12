@@ -3,11 +3,12 @@ Wood (equilibrium moisture content, shrinkage, and density/specific-gravity
 conversions).
 
 Provides:
-  - ``equilibrium_moisture_content`` / ``relative_humidity_from_emc`` --
-    the Hailwood-Horrobin sorption model (Eq 4-5, Simpson 1973) that Table
-    4-2 was calculated from, plus its inverse (Eq 4-7).
-  - ``equilibrium_moisture_content_glass`` -- the alternative closed-form
-    EMC model of Glass and others (2014) (Eq 4-6).
+  - ``equilibrium_moisture_content`` -- the Hailwood-Horrobin sorption
+    model (Eq 4-5, Simpson 1973) that Table 4-2 was calculated from.
+  - ``equilibrium_moisture_content_glass`` / ``relative_humidity_from_emc``
+    -- the alternative closed-form EMC model of Glass and others (2014)
+    (Eq 4-6), plus its inverse (Eq 4-7, "the inverted form of Equation
+    (4-6)", printed p. 4-4; it does not invert Eq 4-5).
   - ``max_moisture_content`` / ``sink_moisture_content`` -- the maximum
     possible moisture content (Eq 4-3) and the moisture content at which
     wood just sinks in water (Eq 4-4), both functions of basic specific
@@ -102,8 +103,12 @@ def max_moisture_content(basic_specific_gravity):
 
         MCmax = 100*(1.54 - Gb) / (1.54*Gb)
 
-    where 1.54 is the specific gravity of wood cell-wall substance.
-    Ranges from ~267% at Gb=0.30 to ~44% at Gb=0.90 (both printed anchors).
+    where 1.54 is the specific gravity of wood cell-wall substance. The
+    print says MCmax "varies from 267% at Gb = 0.30 to 44% at Gb = 0.90"
+    (FPL-GTR-282 pdf 97 / printed 4-3); the printed equation gives 268.4%
+    and 46.2% there, and the printed anchors fit a cell-wall specific
+    gravity of 1.5 (266.7% and 44.4%). This function follows the printed
+    equation (1.54).
 
     Parameters
     ----------
@@ -200,7 +205,8 @@ def equilibrium_moisture_content(temp_c, relative_humidity):
 
 def equilibrium_moisture_content_glass(temp_c, relative_humidity):
     """Eq 4-6: alternative EMC equation of Glass and others (2014)
-    (printed p. 4-4). Uses kelvins internally.
+    (printed p. 4-3; its parameters A to Tc on p. 4-4). Uses kelvins
+    internally.
 
         EMC(%) = 100 * [A*T*(1-T/Tc)^B * ln(1-h)] ^ (C*T^D)
 
@@ -230,7 +236,7 @@ def equilibrium_moisture_content_glass(temp_c, relative_humidity):
     emc = 100.0 * inner ** (c * t**d)
     return {
         "temp_c": temp_c, "relative_humidity": relative_humidity,
-        "emc_pct": emc, "equation": "4-6", "printed_page": "4-4", "pdf_page": 97,
+        "emc_pct": emc, "equation": "4-6", "printed_page": "4-3", "pdf_page": 96,
     }
 
 
@@ -476,7 +482,7 @@ def estimate_total_shrinkage_from_basic_sg(basic_specific_gravity):
 
 # ============================================================================
 # Eq 4-14 to 4-16 -- Density at any moisture content
-# (printed pp. 4-12 to 4-13, pdf_page 105-106)
+# (printed p. 4-12, pdf_page 105)
 # ============================================================================
 
 RHO_WATER_KG_M3 = 1000.0
@@ -516,7 +522,7 @@ def density_from_specific_gravity(gx, moisture_content_pct,
 def density_from_ovendry_density(rho_0, moisture_content_pct, s0_pct,
                                   mc_fs=30.0):
     """Eq 4-15 (Method 2): density (including water) at moisture content x,
-    from ovendry density rho_0 (printed p. 4-13).
+    from ovendry density rho_0 (printed p. 4-12).
 
         rho_x = rho_0 * (1 + x/100) * (100 - S0) / (100 - Sx)
 
@@ -545,13 +551,13 @@ def density_from_ovendry_density(rho_0, moisture_content_pct, s0_pct,
     return {
         "rho_0": rho_0, "moisture_content_pct": moisture_content_pct,
         "s0_pct": s0_pct, "density_kg_m3": rho_x, "equation": "4-15",
-        "printed_page": "4-13", "pdf_page": 106,
+        "printed_page": "4-12", "pdf_page": 105,
     }
 
 
 def estimate_total_shrinkage_from_ovendry_density(rho_0, rho_water=RHO_WATER_KG_M3):
     """Eq 4-16: estimate total volumetric shrinkage S0 (%) from ovendry
-    density, the ovendry-density form of Equation (4-12) (printed p. 4-13).
+    density, the ovendry-density form of Equation (4-12) (printed p. 4-12).
 
         S0 = 26.5*rho_0 / (rho_w + 0.265*rho_0)
 
@@ -570,7 +576,7 @@ def estimate_total_shrinkage_from_ovendry_density(rho_0, rho_water=RHO_WATER_KG_
     s0 = 26.5 * rho_0 / (rho_water + 0.265 * rho_0)
     return {
         "rho_0": rho_0, "s0_pct": s0, "equation": "4-16",
-        "printed_page": "4-13", "pdf_page": 106,
+        "printed_page": "4-12", "pdf_page": 105,
     }
 
 

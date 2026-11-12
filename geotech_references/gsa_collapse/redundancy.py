@@ -34,13 +34,13 @@ Column Removal 1:
 FLAGGED PRINTED ARITHMETIC DISCREPANCY (confirmed by direct execution and
 by rendering the source PDF page): the Level 3 instance of the KCE1=279
 kip/in calculation (printed p. D52) states Icr.B1U=19160 in4, but
-384*4031*19160/450^3 = 325.46, NOT 279. The Level 5 and Level 7 instances
-of the IDENTICAL calculation (printed pp. D53-D54) instead state
-Icr.B1U=16423 in4, which DOES reproduce 279 exactly. Since two of the
-three printed instances agree and are internally consistent with the
-stated answer, ``fixed_fixed_flexural_stiffness`` is validated against
-Icr=16423; the Level 3 instance's "19160" is reported as a one-off
-source-document transcription error (not silently corrected).
+384*4031*19160/450^3 = 325.46, NOT 279. The "Where" list under it and the
+Level 5 instance of the IDENTICAL calculation (both printed p. D53, pdf
+155) instead state Icr.B1U=16423 in4, which DOES reproduce 279 exactly;
+the Level 7 instance gives only KCE1 = 279. Since the defined value and
+the stated answer agree, ``fixed_fixed_flexural_stiffness`` is validated
+against Icr=16423; the Level 3 instance's "19160" is reported as a
+one-off source-document transcription error (not silently corrected).
 
 Module tests reproduce all three PRINTED WORKED-EXAMPLE values, plus the
 flagged Level-3 Icr discrepancy above.
@@ -185,19 +185,21 @@ def load_redistribution_strength_ratio(qr_i, qr_bar):
 # ============================================================================
 
 def load_redistribution_system_stiffness(component_stiffnesses, phi_factors=None):
-    """Equation 3.18: flexural stiffness of a given load redistributing
-    system at a single floor level (printed p. 35).
+    """Equation 3.18: flexural stiffness KR (unit of KC, e.g. kip/in) of a
+    given load redistributing system at a single floor level (printed p.
+    35). BY DEFAULT PHI IS LEFT OUT: the print is inconsistent with itself.
+    Equation 3.18 is typeset KR = Sum(Phi * KC) (pdf 48 / printed 35), but
+    Figure 3.19 on the same page shows KR = KCA + KCB + KCC + ..., and the
+    Appendix D worked example sums the raw KC values (KR = Sum KCE = 279 +
+    249 = 528 kip/in, pdf 155 / printed D53). The default follows Figure
+    3.19 and the worked example; pass ``phi_factors`` to apply Equation
+    3.18 as typeset.
 
-        KR = Sum(Phi * KC)
+        KR = Sum(Phi * KC)     (Equation 3.18 as typeset)
+        KR = Sum(KC)           (Figure 3.19, Appendix D; the default)
 
-    Note the printed equation applies Phi to the component stiffness KC,
-    mirroring the strength form (Equation 3.15); the Appendix D worked
-    example (printed pp. D52-D53) computes KC directly as the fixed-fixed
-    flexural stiffness 384*Ec*Icr/L^3 of each beam WITHOUT an explicit Phi
-    multiplier (Phi=1 implied for the stiffness check) and sums the raw
-    KC values -- pass ``phi_factors=None`` (default) to reproduce that
-    worked-example convention, or supply ``phi_factors`` to apply the
-    printed equation literally.
+    The worked example computes each KC as the fixed-fixed flexural
+    stiffness 384*Ec*Icr/L^3 (``fixed_fixed_flexural_stiffness``).
 
     Parameters
     ----------
@@ -290,9 +292,12 @@ def fixed_fixed_flexural_stiffness(ec, icr, length):
 
         KC = 384 * Ec * Icr / L^3
 
-    VALIDATED: Ec=4031 ksi, Icr=0.3*Ig=19160 in4 (Beam B1-U1), L=450 in
-    (37.5 ft) -> KC=279 kip/in (printed p. D52); Icr=14631 in4 (Beam
-    B3-U1) -> KC=249 kip/in (printed p. D53) -- both reproduced exactly.
+    VALIDATED: Ec=4031 ksi, Icr=0.3*Ig=16423 in4 (Beam B1U, the value in
+    the "Where" list and the Level 5 calculation, printed p. D53), L=450
+    in (37.5 ft) -> KC=279 kip/in; Icr=14631 in4 (Beam B3U) -> KC=249
+    kip/in (printed p. D53) -- both reproduced exactly. The Level 3 line
+    on printed p. D52 shows Icr = 19160 in4 with the same 279, but 19160
+    gives 325.46 kip/in (see the module docstring).
 
     Parameters
     ----------

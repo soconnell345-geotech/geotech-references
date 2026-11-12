@@ -40,9 +40,25 @@ class TestPeriodConstants:
             rigid_pipe_period_constant("cantilever")
 
     def test_fundamental_period_formula(self):
+        # Eq C-1 (UFC_3-301-01_2023_c4.pdf pdf 159 / printed 137) prints
+        # L = sqrt(C pi Ta sqrt(E I_g / w)) and defines neither g nor I_g.
+        # Read as E x I x g (I the pipe's moment of inertia, g gravity), so
+        # Ta = L^2/(C pi) sqrt(w/(E I g)); Table C-1's 7 ft 0 in row (next
+        # test) confirms the reading.
         r = rigid_pipe_fundamental_period("pinned_pinned", length=100.0, ei=2.0e6, w=0.5)
-        expected = 0.50 * 100.0 * math.sqrt(0.5 / (2.0e6 * 386.4))
+        expected = 100.0 ** 2 / (0.50 * math.pi) * math.sqrt(0.5 / (2.0e6 * 386.4))
         assert r["ta_seconds"] == pytest.approx(expected)
+
+    def test_agrees_with_table_c1_one_inch_steel_pipe(self):
+        # Table C-1 (pdf 160 / printed 138): 1-in. standard (40S) steel pipe,
+        # water-filled, pinned-pinned, rigid up to 7 ft 0 in = 84 in.
+        # EI = 29e6 psi x 0.0873 in^4; w = 0.171 lb/in (pipe plus water).
+        ei, w = 29.0e6 * 0.0873, 0.171
+        at_84 = rigid_pipe_fundamental_period("pinned_pinned", 84.0, ei, w)
+        assert at_84["ta_seconds"] == pytest.approx(0.0594, abs=0.0005)
+        assert at_84["is_rigid"] is True
+        # The old form C L sqrt(w/(EI g)) called spans up to ~757 ft rigid.
+        assert rigid_pipe_fundamental_period("pinned_pinned", 96.0, ei, w)["is_rigid"] is False
 
     def test_short_stiff_span_is_rigid(self):
         r = rigid_pipe_fundamental_period("pinned_pinned", length=50.0, ei=5.0e7, w=0.3)

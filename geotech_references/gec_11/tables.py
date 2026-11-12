@@ -26,60 +26,103 @@ table_4_7_internal_resistance       Table 4-7  Internal stability resistance fac
 from .._interpolation import _linterp
 
 
+def _pick(rows, field, key, table, page, also=()):
+    """Rows of a GEC-11 table whose ``field`` holds the filter ``key``.
+
+    The key is looked for in ``field`` (case-insensitive); where no row
+    holds it, every word of the key is looked for in ``field`` and the
+    ``also`` fields. A key that matches no row raises ValueError listing
+    the rows by the library's labels, which are not all worded as printed
+    (review finding gec-37: it returned an empty list).
+    """
+    k = key.lower().strip()
+    hits = [r for r in rows if k in str(r[field]).lower()]
+    if not hits:
+        words = k.replace(",", " ").split()
+
+        def _text(r):
+            return " ".join(str(r.get(f, "")) for f in (field,) + tuple(also)).lower()
+
+        hits = [r for r in rows if words and all(w in _text(r) for w in words)]
+    if not hits:
+        names = []
+        for r in rows:
+            if r[field] not in names:
+                names.append(r[field])
+        raise ValueError(
+            f"No row of GEC-11 {table} ({page}) matches '{key}'. "
+            "Rows, by the library's labels (not all worded as printed; "
+            f"filter with words from one): {'; '.join(names)}.")
+    return hits
+
+
 # ============================================================================
 # Table 2-1: Minimum Reinforcement Length
 # ============================================================================
 
+_TABLE_2_1_REF = "FHWA-NHI-10-024, Table 2-1, p. 2-43"
+
+# FHWA-NHI-10-024 Vol I, Table 2-1, p. 2-43 (PDF page 83): three cases, as
+# printed. The table prints no absolute minimum length (review finding gec-21:
+# two seismic rows the table does not have and 8 ft on every row).
 _TABLE_2_1 = [
     {
-        "condition": "Static walls",
-        "L_over_H": 0.7,
-        "min_length_ft": 8.0,
-        "min_length_m": 2.5,
-        "notes": "Greater of 0.7H or 8 ft (2.5 m)",
+        "condition": "Static loading with or without traffic surcharge",
+        "typical_min_L_over_H": "0.7",
+        "L_over_H_low": 0.7,
+        "L_over_H_high": 0.7,
+        "print_note": ("Table 2-1 (p. 2-43) prints this case as 'Static "
+                       "loading with or with traffic surcharge'; it is read "
+                       "here as 'with or without'."),
     },
     {
-        "condition": "Sloping surcharge",
-        "L_over_H": 0.8,
-        "min_length_ft": 8.0,
-        "min_length_m": 2.5,
-        "notes": "Greater of 0.8H or 8 ft (2.5 m)",
+        "condition": "Sloping backfill surcharge",
+        "typical_min_L_over_H": "0.8",
+        "L_over_H_low": 0.8,
+        "L_over_H_high": 0.8,
     },
     {
-        "condition": "Seismic (low)",
-        "L_over_H": 0.8,
-        "min_length_ft": 8.0,
-        "min_length_m": 2.5,
-        "notes": "0.8H for low seismic zones",
-    },
-    {
-        "condition": "Seismic (moderate to high)",
-        "L_over_H": 1.1,
-        "min_length_ft": 8.0,
-        "min_length_m": 2.5,
-        "notes": "Up to 1.1H for moderate-to-high seismic",
+        "condition": "Seismic loading",
+        "typical_min_L_over_H": "0.8 to 1.1",
+        "L_over_H_low": 0.8,
+        "L_over_H_high": 1.1,
     },
 ]
 
 
 def table_2_1_min_reinforcement_length(condition: str = "") -> list:
-    """Look up minimum reinforcement length ratios from GEC-11 Table 2-1.
+    """Typical minimum reinforcement length as the ratio L/H (dimensionless, reinforcement length over wall height) for each case of GEC-11 Table 2-1 (FHWA-NHI-10-024 Vol I, p. 2-43); a list of the matching rows.
+
+    The table prints three cases: static loading with or without traffic
+    surcharge 0.7, sloping backfill surcharge 0.8, and seismic loading
+    "0.8 to 1.1" (one row; the print does not divide it by seismic zone).
+    ``typical_min_L_over_H`` is the printed cell; ``L_over_H_low`` and
+    ``L_over_H_high`` are its ends.
+
+    The table prints no absolute minimum length. Section 4.4.3 (p. 4-11)
+    says the preliminary length "should be the greater of 0.7H or 8 ft
+    (2.5 m)", the 8 ft to suit fill spreading and compaction equipment,
+    and that about 6.0 ft (1.8 m) can be considered for short walls built
+    with smaller compaction equipment, keeping 0.7H.
 
     Parameters
     ----------
     condition : str
-        Optional filter (case-insensitive substring match).
-        E.g., 'static', 'sloping', 'seismic'.
+        Optional filter, matched against the printed case (e.g. 'static',
+        'sloping', 'seismic'). A filter that matches no case raises
+        ValueError naming the cases.
 
     Returns
     -------
     list of dict
-        Matching entries with L/H ratio and minimum absolute length.
+        Matching rows: condition, typical_min_L_over_H (the printed text),
+        L_over_H_low, L_over_H_high, reference; the static row also
+        print_note (the table prints "with or with traffic surcharge").
     """
+    rows = [dict(r, reference=_TABLE_2_1_REF) for r in _TABLE_2_1]
     if not condition:
-        return list(_TABLE_2_1)
-    key = condition.lower().strip()
-    return [r for r in _TABLE_2_1 if key in r["condition"].lower()]
+        return rows
+    return _pick(rows, "condition", condition, "Table 2-1", "p. 2-43")
 
 
 # ============================================================================
@@ -125,24 +168,33 @@ _TABLE_2_2 = [
 ]
 
 
+_TABLE_2_2_NOTE = (
+    "All geometries: 2 ft minimum. * Minimum depth is the greater of "
+    "applicable values listed, frost depth, or scour depth.")
+
+
 def table_2_2_min_embedment_depth(condition: str = "") -> list:
-    """Look up minimum embedment depth ratios from GEC-11 Table 2-2.
+    """Minimum MSE wall embedment depth to the top of the leveling pad, as a fraction of wall height H with a 2 ft (0.6 m) minimum, by slope in front of the wall, from GEC-11 Table 2-2 (FHWA-NHI-10-024 Vol I, p. 2-43); a list of the matching rows.
 
     Parameters
     ----------
     condition : str
-        Optional filter (case-insensitive substring match).
-        E.g., 'horizontal', 'abutment', '2H:1V'.
+        Optional filter (case-insensitive), e.g. 'horizontal', 'abutment',
+        '2H:1V'. A filter that matches no row raises ValueError naming
+        the rows.
 
     Returns
     -------
     list of dict
-        Matching entries with embedment ratio and minimum depth.
+        Matching rows with the embedment ratio, the 2 ft minimum, the
+        table's footnote (frost and scour depth) and the reference.
     """
+    rows = [dict(r, notes=_TABLE_2_2_NOTE,
+                 reference="FHWA-NHI-10-024, Table 2-2, p. 2-43")
+            for r in _TABLE_2_2]
     if not condition:
-        return list(_TABLE_2_2)
-    key = condition.lower().strip()
-    return [r for r in _TABLE_2_2 if key in r["condition"].lower()]
+        return rows
+    return _pick(rows, "condition", condition, "Table 2-2", "p. 2-43")
 
 
 # ============================================================================
@@ -207,47 +259,54 @@ def table_3_3_electrochemical_steel() -> dict:
 # Table 3-4: Electrochemical Limits for Geosynthetic Reinforcement
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 3-4, p. 3-10 (PDF page 102), after FHWA
+# NHI-09-087: two rows as printed. The code held PP and HDPE as two rows
+# with notes the table does not print, so the print's own row name
+# 'polyolefin' matched nothing.
 _TABLE_3_4 = [
     {
         "polymer": "Polyester (PET)",
+        "property": "pH",
+        "criteria": "3 < pH < 9",
         "pH_min": 3.0,
         "pH_max": 9.0,
-        "notes": "PET is susceptible to hydrolysis at extreme pH",
+        "test_method": "AASHTO T-289",
     },
     {
-        "polymer": "Polypropylene (PP)",
+        "polymer": "Polyolefin (PP & HDPE)",
+        "property": "pH",
+        "criteria": "pH > 3",
         "pH_min": 3.0,
         "pH_max": None,
-        "notes": "PP resistant to wide pH range; pH > 3 required",
-    },
-    {
-        "polymer": "Polyethylene (HDPE)",
-        "pH_min": 3.0,
-        "pH_max": None,
-        "notes": "HDPE resistant to wide pH range; pH > 3 required",
+        "test_method": "AASHTO T-289",
     },
 ]
 
 
 def table_3_4_electrochemical_geosynth(polymer: str = "") -> list:
-    """Look up electrochemical limits for geosynthetic reinforcement.
+    """Recommended pH limits for reinforced fill with geosynthetic reinforcement, by base polymer, from GEC-11 Table 3-4 (FHWA-NHI-10-024 Vol I, p. 3-10); a list of the matching rows.
 
-    From GEC-11 Table 3-4.
+    The table prints two rows: polyester (PET) 3 < pH < 9 and polyolefin
+    (PP & HDPE) pH > 3, both by AASHTO T-289. ``criteria`` is the printed
+    cell; the bounds are strict.
 
     Parameters
     ----------
     polymer : str
-        Optional filter (e.g., 'PET', 'PP', 'HDPE').
+        Optional filter, e.g. 'PET', 'polyolefin', 'PP', 'HDPE'. A filter
+        that matches no row raises ValueError naming the rows.
 
     Returns
     -------
     list of dict
-        Matching entries with pH limits.
+        Matching rows: polymer, property, criteria, pH_min, pH_max,
+        test_method, reference.
     """
+    rows = [dict(r, reference="FHWA-NHI-10-024, Table 3-4, p. 3-10")
+            for r in _TABLE_3_4]
     if not polymer:
-        return list(_TABLE_3_4)
-    key = polymer.lower().strip()
-    return [r for r in _TABLE_3_4 if key in r["polymer"].lower()]
+        return rows
+    return _pick(rows, "polymer", polymer, "Table 3-4", "p. 3-10")
 
 
 # ============================================================================
@@ -385,6 +444,7 @@ def table_3_6_pullout_parameters(reinforcement: str = "") -> list:
     ----------
     reinforcement : str
         Optional filter (e.g., 'ribbed', 'grid', 'geogrid', 'geotextile').
+        A filter that matches no row raises ValueError naming the rows.
 
     Returns
     -------
@@ -393,8 +453,8 @@ def table_3_6_pullout_parameters(reinforcement: str = "") -> list:
     """
     if not reinforcement:
         return list(_TABLE_3_6)
-    key = reinforcement.lower().strip()
-    return [r for r in _TABLE_3_6 if key in r["reinforcement"].lower()]
+    return _pick(_TABLE_3_6, "reinforcement", reinforcement,
+                 "Table 3-6", "p. 3-17")
 
 
 # ============================================================================
@@ -463,7 +523,8 @@ def table_3_8_corrosion_rates(material: str = "") -> list:
     Parameters
     ----------
     material : str
-        Optional filter (e.g., 'zinc', 'carbon', 'steel').
+        Optional filter (e.g., 'zinc', 'carbon', 'steel'). A filter that
+        matches no row raises ValueError naming the rows.
 
     Returns
     -------
@@ -472,8 +533,7 @@ def table_3_8_corrosion_rates(material: str = "") -> list:
     """
     if not material:
         return list(_TABLE_3_8)
-    key = material.lower().strip()
-    return [r for r in _TABLE_3_8 if key in r["material"].lower()]
+    return _pick(_TABLE_3_8, "material", material, "Table 3-8", "p. 3-26")
 
 
 # ============================================================================
@@ -533,26 +593,42 @@ _TABLE_3_9 = [
 ]
 
 
-def table_3_9_installation_damage(geosynthetic: str = "") -> list:
-    """Look up installation damage reduction factors from GEC-11 Table 3-9.
+_TABLE_3_9_BACKFILL = {
+    "type1_backfill": "Max. size 4 in. (100 mm), D50 about 1-1/4 in. (30 mm)",
+    "type2_backfill": "Max. size 3/4 in. (20 mm), D50 about #30 (0.7 mm)",
+}
+_TABLE_3_9_NOTE_A = "a. Minimum weight 8.0 oz/yd2 (270 g/m2)."
 
-    Type 1 backfill: well-graded, max particle size up to 4 in (102 mm).
-    Type 2 backfill: uniform fine sand to medium sand, max 3/4 in (19 mm).
+
+def table_3_9_installation_damage(geosynthetic: str = "") -> list:
+    """Installation damage reduction factor RF_ID ranges (dimensionless) by geosynthetic, for Type 1 and Type 2 backfill, from GEC-11 Table 3-9 (FHWA-NHI-10-024 Vol I, p. 3-32); a list of the matching rows.
+
+    The print defines the backfills in the column heads: Type 1, max. size
+    4 in. (100 mm), D50 about 1-1/4 in. (30 mm); Type 2, max. size 3/4 in.
+    (20 mm), D50 about #30 (0.7 mm). Each row carries both definitions;
+    the three geotextile rows carry footnote a (minimum weight 8.0 oz/yd2).
 
     Parameters
     ----------
     geosynthetic : str
-        Optional filter (e.g., 'HDPE', 'PP biaxial', 'PVC', 'woven').
+        Optional filter (e.g., 'HDPE', 'PP biaxial', 'PVC', 'woven'). A
+        filter that matches no row raises ValueError naming the rows.
 
     Returns
     -------
     list of dict
         RF_ID ranges for Type 1 and Type 2 backfill.
     """
+    rows = []
+    for r in _TABLE_3_9:
+        row = dict(r, **_TABLE_3_9_BACKFILL)
+        if "geotextile" in r["geosynthetic"].lower():
+            row["notes"] = _TABLE_3_9_NOTE_A
+        row["reference"] = "FHWA-NHI-10-024, Table 3-9, p. 3-32"
+        rows.append(row)
     if not geosynthetic:
-        return list(_TABLE_3_9)
-    key = geosynthetic.lower().strip()
-    return [r for r in _TABLE_3_9 if key in r["geosynthetic"].lower()]
+        return rows
+    return _pick(rows, "geosynthetic", geosynthetic, "Table 3-9", "p. 3-32")
 
 
 # ============================================================================
@@ -594,8 +670,7 @@ def table_3_11_pet_durability(product: str = "") -> list:
     """
     if not product:
         return list(_TABLE_3_11)
-    key = product.lower().strip()
-    return [r for r in _TABLE_3_11 if key in r["product"].lower()]
+    return _pick(_TABLE_3_11, "product", product, "Table 3-11", "p. 3-36")
 
 
 # ============================================================================
@@ -617,7 +692,8 @@ _TABLE_4_1 = [
         "LL_LS": "gamma_EQ",
         "EQ": 1.00,
         "CT": 0.0,
-        "notes": "Seismic loading; gamma_EQ typically 0.0 to 0.50",
+        "notes": ("gamma_EQ = load factor for live load applied "
+                  "simultaneously with seismic loads (Table 4-1 note)"),
     },
     {
         "limit_state": "Extreme Event II",
@@ -653,8 +729,7 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
     """
     if not limit_state:
         return list(_TABLE_4_1)
-    key = limit_state.lower().strip()
-    return [r for r in _TABLE_4_1 if key in r["limit_state"].lower()]
+    return _pick(_TABLE_4_1, "limit_state", limit_state, "Table 4-1", "p. 4-4")
 
 
 # ============================================================================
@@ -664,31 +739,32 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
 _TABLE_4_2 = [
     {
         "load_type": "DC",
-        "description": "Dead load of structural components",
+        "description": "DC: Component and Attachments",
         "gamma_max": 1.25,
         "gamma_min": 0.90,
     },
     {
         "load_type": "EH Active",
-        "description": "Horizontal earth pressure (active)",
+        "description": "EH: Horizontal Earth Pressure, Active",
         "gamma_max": 1.50,
         "gamma_min": 0.90,
     },
     {
         "load_type": "EV Overall Stability",
-        "description": "Vertical earth pressure (overall stability)",
+        "description": "EV: Vertical Earth Pressure, Overall Stability",
         "gamma_max": 1.00,
         "gamma_min": None,
     },
     {
         "load_type": "EV Retaining Walls",
-        "description": "Vertical earth pressure (retaining walls)",
+        "description": ("EV: Vertical Earth Pressure, Retaining Walls "
+                        "and Abutments"),
         "gamma_max": 1.35,
         "gamma_min": 1.00,
     },
     {
         "load_type": "ES",
-        "description": "Earth surcharge",
+        "description": "ES: Earth Surcharge",
         "gamma_max": 1.50,
         "gamma_min": 0.75,
     },
@@ -701,7 +777,10 @@ def table_4_2_permanent_load_factors(load_type: str = "") -> list:
     Parameters
     ----------
     load_type : str
-        Optional filter (e.g., 'DC', 'EH', 'EV', 'ES').
+        Optional filter (e.g., 'DC', 'EH', 'EV', 'ES'), matched against
+        the load code, then word by word against the printed type of load
+        ('vertical earth pressure'). A filter that matches no row raises
+        ValueError naming the rows.
 
     Returns
     -------
@@ -710,8 +789,8 @@ def table_4_2_permanent_load_factors(load_type: str = "") -> list:
     """
     if not load_type:
         return list(_TABLE_4_2)
-    key = load_type.lower().strip()
-    return [r for r in _TABLE_4_2 if key in r["load_type"].lower()]
+    return _pick(_TABLE_4_2, "load_type", load_type, "Table 4-2", "p. 4-4",
+                 also=("description",))
 
 
 # ============================================================================
@@ -722,42 +801,64 @@ _TABLE_4_4_DEPTHS_FT = [5.0, 10.0, 20.0]
 _TABLE_4_4_HEQ_FT = [4.0, 3.0, 2.0]
 
 
-def table_4_4_traffic_surcharge(wall_height_ft: float = 0.0) -> dict:
-    """Look up equivalent height of soil for traffic surcharge.
+_TABLE_4_4_REF = "FHWA-NHI-10-024, Table 4-4, p. 4-17 (AASHTO 2007 Table 3.11.6.4-1)"
+_TABLE_4_4_APPLIES = ("Traffic loading on abutments perpendicular to traffic "
+                      "(Table 4-4 title)")
+_TABLE_4_4_NOTE = (
+    "Walls parallel to traffic: heq = 2.0 ft for external stability, and for "
+    "internal stability unless traffic is allowed within 1.0 ft of the back "
+    "of the wall facing (p. 4-16). Where a structural approach slab is "
+    "supported on the abutment backwall, heq = 0 unless otherwise mandated "
+    "by an owner (p. 4-17).")
 
-    From GEC-11 Table 4-4. Interpolates for intermediate wall heights.
+
+def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
+    """Equivalent height of soil heq in feet for traffic loading on abutments perpendicular to traffic, from the abutment height in feet, GEC-11 Table 4-4 (FHWA-NHI-10-024 Vol I, p. 4-17).
+
+    The table prints abutment heights 5.0, 10.0 and >= 20.0 ft (heq 4.0,
+    3.0 and 2.0 ft) and is interpolated linearly between them, as p. 4-17
+    says. It is for abutments with traffic running perpendicular to the
+    wall; walls parallel to traffic take heq = 2.0 ft (p. 4-16), and every
+    result says so. Below 5.0 ft, where the table has no row, the 5.0 ft
+    row is used with a note.
 
     Parameters
     ----------
-    wall_height_ft : float
-        Wall height in feet. If 0, returns the full table.
+    abutment_height_ft : float
+        Abutment height in feet. If 0, returns the full table.
 
     Returns
     -------
     dict
-        Equivalent height (h_eq) in feet and the full table data.
+        abutment_height_ft, h_eq_ft, applies_to, print_note, the table and
+        the reference (and a note below 5.0 ft).
     """
     table = [
-        {"wall_height_ft": d, "h_eq_ft": h}
+        {"abutment_height_ft": d, "h_eq_ft": h}
         for d, h in zip(_TABLE_4_4_DEPTHS_FT, _TABLE_4_4_HEQ_FT)
     ]
+    out = {"applies_to": _TABLE_4_4_APPLIES, "print_note": _TABLE_4_4_NOTE}
 
-    if wall_height_ft <= 0:
-        return {"table": table, "reference": "FHWA-NHI-10-024, Table 4-4"}
+    if abutment_height_ft <= 0:
+        return dict(out, table=table, reference=_TABLE_4_4_REF)
 
-    if wall_height_ft <= 5.0:
+    note = None
+    if abutment_height_ft < 5.0:
         h_eq = 4.0
-    elif wall_height_ft >= 20.0:
+        note = ("Table 4-4 prints no row below an abutment height of 5.0 ft; "
+                "the 5.0 ft row is used.")
+    elif abutment_height_ft >= 20.0:
         h_eq = 2.0
     else:
-        h_eq = _linterp(wall_height_ft, _TABLE_4_4_DEPTHS_FT, _TABLE_4_4_HEQ_FT)
+        h_eq = _linterp(abutment_height_ft, _TABLE_4_4_DEPTHS_FT, _TABLE_4_4_HEQ_FT)
 
-    return {
-        "wall_height_ft": wall_height_ft,
-        "h_eq_ft": round(h_eq, 2),
-        "table": table,
-        "reference": "FHWA-NHI-10-024, Table 4-4",
-    }
+    out = dict({"abutment_height_ft": abutment_height_ft,
+                "h_eq_ft": round(h_eq, 2)}, **out)
+    if note:
+        out["note"] = note
+    out["table"] = table
+    out["reference"] = _TABLE_4_4_REF
+    return out
 
 
 # ============================================================================
@@ -768,22 +869,26 @@ _TABLE_4_5 = [
     {
         "failure_mode": "Bearing resistance",
         "phi_factor": 0.65,
-        "notes": "Bearing capacity of foundation soil",
+        "condition": None,
     },
     {
         "failure_mode": "Sliding",
         "phi_factor": 1.0,
-        "notes": "Sliding at base of reinforced zone",
+        "condition": None,
     },
     {
         "failure_mode": "Overall (global) stability — well-defined conditions",
         "phi_factor": 0.75,
-        "notes": "Slope stability with adequate subsurface data",
+        "condition": ("Where geotechnical parameters are well defined, "
+                      "and the slope does not support or contain a "
+                      "structural element"),
     },
     {
         "failure_mode": "Overall (global) stability — limited information",
         "phi_factor": 0.65,
-        "notes": "Slope stability with limited subsurface data",
+        "condition": ("Where geotechnical parameters are based on "
+                      "limited information, or the slope contains or "
+                      "supports a structural element"),
     },
 ]
 
@@ -795,16 +900,17 @@ def table_4_5_external_resistance(failure_mode: str = "") -> list:
     ----------
     failure_mode : str
         Optional filter (e.g., 'bearing', 'sliding', 'global', 'overall').
+        A filter that matches no row raises ValueError naming the rows.
 
     Returns
     -------
     list of dict
-        Resistance factors by failure mode.
+        Resistance factors by failure mode, with the printed condition.
     """
     if not failure_mode:
         return list(_TABLE_4_5)
-    key = failure_mode.lower().strip()
-    return [r for r in _TABLE_4_5 if key in r["failure_mode"].lower()]
+    return _pick(_TABLE_4_5, "failure_mode", failure_mode, "Table 4-5",
+                 "p. 4-19", also=("condition",))
 
 
 # ============================================================================
@@ -890,52 +996,84 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
 # Table 4-7: Internal Stability Resistance Factors
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 4-7, p. 4-48 (PDF page 190), after AASHTO
+# (2007) Table 11.5.6-1: the printed loading conditions are "Static loading",
+# "Combined static/earthquake loading" and "Combined static/traffic barrier
+# impact". The key combined_static_phi (a copy of the static factor, no
+# printed column) was removed (review finding gec-34).
+_TABLE_4_7_NOTE_A = (
+    "A. Apply to gross cross-section less sacrificial area. For sections "
+    "with holes, reduce gross area in accordance with AASHTO (2007) Article "
+    "6.8.3 and apply to net section less sacrificial area.")
+_TABLE_4_7_NOTE_B = (
+    "B. Combined static/traffic barrier impact resistance factors are not "
+    "presented in AASHTO.")
+_TABLE_4_7_NOTE_C = (
+    "C. Applies to grid reinforcements connected to rigid facing element, "
+    "e.g., a concrete panel or block. For grid reinforcements connected to a "
+    "flexible facing mat or which are continuous with the facing mat, use "
+    "the resistance factor for strip reinforcements.")
+
 _TABLE_4_7 = [
     {
-        "reinforcement_type": "Metallic strip reinforcement",
+        "reinforcement_type": ("Metallic reinforcement and connectors: "
+                               "strip reinforcements"),
         "static_phi": 0.75,
-        "combined_static_phi": 0.75,
-        "earthquake_phi": 1.00,
-        "traffic_barrier_phi": 1.00,
+        "combined_static_earthquake_phi": 1.00,
+        "combined_static_traffic_barrier_phi": 1.00,
+        "notes": [_TABLE_4_7_NOTE_A, _TABLE_4_7_NOTE_B],
     },
     {
-        "reinforcement_type": "Metallic grid reinforcement (rigid face)",
+        "reinforcement_type": ("Metallic reinforcement and connectors: "
+                               "grid reinforcements"),
         "static_phi": 0.65,
-        "combined_static_phi": 0.65,
-        "earthquake_phi": 0.85,
-        "traffic_barrier_phi": 0.85,
+        "combined_static_earthquake_phi": 0.85,
+        "combined_static_traffic_barrier_phi": 0.85,
+        "notes": [_TABLE_4_7_NOTE_A, _TABLE_4_7_NOTE_B, _TABLE_4_7_NOTE_C],
     },
     {
-        "reinforcement_type": "Geosynthetic reinforcement",
+        "reinforcement_type": "Geosynthetic reinforcement and connectors",
         "static_phi": 0.90,
-        "combined_static_phi": 0.90,
-        "earthquake_phi": 1.20,
-        "traffic_barrier_phi": 1.20,
+        "combined_static_earthquake_phi": 1.20,
+        "combined_static_traffic_barrier_phi": 1.20,
+        "notes": [_TABLE_4_7_NOTE_B],
     },
     {
-        "reinforcement_type": "Pullout resistance (all types)",
+        "reinforcement_type": ("Pullout resistance of tensile reinforcement "
+                               "(metallic and geosynthetic)"),
         "static_phi": 0.90,
-        "combined_static_phi": 0.90,
-        "earthquake_phi": 1.20,
-        "traffic_barrier_phi": 1.00,
+        "combined_static_earthquake_phi": 1.20,
+        "combined_static_traffic_barrier_phi": 1.00,
+        "notes": [_TABLE_4_7_NOTE_B],
     },
 ]
 
 
 def table_4_7_internal_resistance(reinforcement_type: str = "") -> list:
-    """Look up internal stability resistance factors from GEC-11 Table 4-7.
+    """Resistance factors phi (dimensionless) for tensile and pullout resistance of MSE wall reinforcement, by reinforcement type and loading condition, from GEC-11 Table 4-7 (FHWA-NHI-10-024 Vol I, p. 4-48); a list of the matching rows.
+
+    Each row gives the three printed loading conditions: ``static_phi``
+    (static loading), ``combined_static_earthquake_phi`` (combined
+    static/earthquake loading) and ``combined_static_traffic_barrier_phi``
+    (combined static/traffic barrier impact, note B), with the table's
+    notes A to C as they apply.
 
     Parameters
     ----------
     reinforcement_type : str
-        Optional filter (e.g., 'metallic strip', 'geosynthetic', 'pullout').
+        Optional filter, matched against the printed type and then word by
+        word (e.g. 'metallic strip', 'grid', 'geosynthetic', 'pullout').
+        A filter that matches no row raises ValueError naming the rows.
 
     Returns
     -------
     list of dict
-        Resistance factors by reinforcement type and loading condition.
+        Matching rows: reinforcement_type, the three resistance factors,
+        notes, reference.
     """
+    rows = [dict(r, reference="FHWA-NHI-10-024, Table 4-7, p. 4-48")
+            for r in _TABLE_4_7]
     if not reinforcement_type:
-        return list(_TABLE_4_7)
-    key = reinforcement_type.lower().strip()
-    return [r for r in _TABLE_4_7 if key in r["reinforcement_type"].lower()]
+        return rows
+    return _pick(rows, "reinforcement_type", reinforcement_type,
+                 "Table 4-7", "p. 4-48")
