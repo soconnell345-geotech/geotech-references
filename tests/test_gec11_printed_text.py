@@ -11,6 +11,7 @@ earlier, paraphrased files (each pinned to the printed page).
 """
 
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -201,7 +202,7 @@ def test_geosynthetic_strength_equations_as_printed():
     assert eqs["3-13"][1]["formula"] == "Tal = Tult / RF = Tult / 7"
     body = _sections()["3.5.2.g"]["body"]
     # p. 3-39: the limits of RF = 7, "≤" read from the underlined "<"
-    assert "• 4.5 ≤ pH ≤ 9 • Site temperature < 85o F (30o C)" in body
+    assert "• 4.5 ≤ pH ≤ 9 • Site temperature < 85° F (30° C)" in body
     assert "a default value for RF of 3.5 rather than 7 may be considered" in body
 
 
@@ -572,3 +573,61 @@ def test_volume_cover_designation(vol):
         cover = doc[0].get_text()
     assert f"Publication No. {rid}" in cover
     assert "November 2009" in cover
+
+
+# --- scatter patterns (build rule 2a) ---------------------------------------
+# What a formula taken from the text layer looks like when it has come apart:
+# a prime parted from its symbol or subscript, a number left on a line of its
+# own above the formula, brackets that do not pair, a sentence that follows a
+# table copied into each row.
+
+_PRIMES = (re.compile(r"(?<=\s)['′’](?=\s)"), re.compile(r"\(['′’]\)"),
+           re.compile(r"[φσ]['′’] [a-z]\b(?![a-z])"))
+_OPS = re.compile(r"[+\-−×·*/÷^√Σ²³½]")
+# an enumerator ("2)", "b)", "iii)") at the start of a line, after a stop,
+# a colon or a bullet, or before a capitalised word
+_ENUM = re.compile(r"(?:^|(?<=[.:;•\]] )|(?<=\s)(?=\d{1,2}\)\s[A-Z]))"
+                   r"(?:\d{1,2}|[a-zA-Z]|[ivx]{1,4})\)(?=\s)")
+#: brackets the page itself leaves unpaired (checked on the render)
+_PRINTED_UNPAIRED = {
+    ("9.2.6", "cohesionless soil, c = 0)"),  # Figure 9-5, p. 9-10
+}
+
+
+def _formula_lines(body):
+    for line in body.split("\n"):
+        for m in re.finditer("=", line):
+            if _OPS.search(line[max(0, m.start() - 30): m.end() + 30]):
+                yield line
+                break
+
+
+def test_no_scatter_patterns_in_the_bodies():
+    bad = []
+    for sid, s in _sections().items():
+        body = s["body"]
+        for r in _PRIMES:
+            bad += [f"{sid}: prime parted {body[max(0, m.start() - 20):m.end() + 8]!r}"
+                    for m in r.finditer(body)]
+        lines = body.split("\n")
+        for i, ln in enumerate(lines):
+            if re.fullmatch(r"\s*\d{1,2}\s*", ln):
+                nxt = next((x for x in lines[i + 1:] if x.strip()), "")
+                if "=" in nxt:
+                    bad.append(f"{sid}: lone number {ln!r} above {nxt[:50]!r}")
+        for ln in _formula_lines(body):
+            if any(i == sid and snip in ln for i, snip in _PRINTED_UNPAIRED):
+                continue
+            t = re.sub(r"\[p\. [^\]]+\]|\[Eq\. [^\]]+\]", "", _ENUM.sub("", ln))
+            for a, b in ("()", "[]", "{}"):
+                if t.count(a) != t.count(b):
+                    bad.append(f"{sid}: {a}{b} unpaired in {ln[:80]!r}")
+        prev = None
+        for ln in lines:
+            cells = [c.strip() for c in ln.split(" | ")] if " | " in ln else None
+            if cells and prev:
+                bad += [f"{sid}: sentence repeated in rows {c[:60]!r}"
+                        for c in set(cells) & set(prev)
+                        if len(c) >= 60 and re.search(r"[.?!]\)?$", c)]
+            prev = cells
+    assert bad == []

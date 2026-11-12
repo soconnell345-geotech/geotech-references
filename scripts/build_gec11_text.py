@@ -117,6 +117,7 @@ _DASH = "–—−"
 #: Stands for a line break inside a ``fix_lines`` replacement while the
 #: body is put together (the body's white space is collapsed there).
 _ROW = "␞"
+_PRIME_SUB = re.compile(r"(?:(?<![A-Za-z])|(?<=tan))([φσc])\s?['’]\s?([a-z])\b")
 
 #: Symbol-font characters as the text layer gives them (U+F0xx, the font's
 #: own code xx) and as printed. Parenthesis and bracket pieces of a drawn
@@ -318,6 +319,13 @@ def read_pages(pdf: Path) -> list[dict]:
             label, lines = _cut_footer([ln.strip() for ln in lines])
             # a degree sign set as a small circle after a number ("10◦")
             lines = [re.sub(r"(?<=\d)◦", "°", ln) for ln in lines]
+            # or as a raised letter o ("140o F (60oC)", "θ = 90o for", "45o -")
+            lines = [re.sub(r"(?<=\d)o(?=\s?[FC]\b|\s(?:for\b|[-−])|$)", "°", ln)
+                     for ln in lines]
+            # a prime the text layer sets as an apostrophe, parted from the
+            # subscript after it ("φ' f", "φ’ b", "c'f"): the symbol as
+            # printed, φ′f
+            lines = [_PRIME_SUB.sub(r"\1′\2", ln) for ln in lines]
             pages.append({"label": label, "lines": _join_hyphens(lines),
                           "equations": eqs})
     return pages
