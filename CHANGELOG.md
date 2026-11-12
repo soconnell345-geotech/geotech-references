@@ -1203,6 +1203,40 @@ Also in this build:
   distribution gives beta 3.72 at 1e-4 and 4.26 at about 1e-5. Eq. 6-79
   stays uncoded (`implemented_in` null).
 
+**DM 7.2 chapter text: key points, footnotes and table notes as printed
+(build of 2026-11-11/12, app BACKLOG REF-79).** Every summary,
+applicability and key point of the prologue (Chapter 1) and Chapters 2 to 7
+was read against the printed sentences of its section; those that said
+"must" or "required" where the print says "should" or "may", dropped a
+printed condition, widened a limit, or stated something the print does not
+were brought to the print (chapter 6: 139 of 770 fields; chapter 7: 42 of
+283; earlier chapters in their own commits). Statements that changed a design
+reading include: consolidation settlement under permanent loads "only" (the
+print adds a reasonable fraction of transient live load, 6-5.8); the Table
+6-26 group efficiency reductions (stored as applying mainly to CFAs and
+micropiles; the print reduces drilled shafts in coarse-grained soil, CFAs,
+and driven piles, DDPs and micropiles in soft clay, 6-5.5); the 0.1 to 0.9
+resistance factors are the generic values of the Figure 7-23 example, not a
+range for pile design (7-4.5.3); the COV of very small samples "must" be
+taken from Table 7-4 (7-4.1.1). Section bodies that stopped at a page foot
+now carry the printed rest: 2-4.2.2 (p. 72, water levels should be
+monitored; the wall type must suit the groundwater), 3-4.5.4 (p. 142,
+flooding trench backfill is not recommended), 3-5.6 (p. 155), 4-7.7 (p. 252,
+soil nail wall design), 6-4.5 (p. 399), 6-5.3.1 (p. 409, the API unit
+resistance limits); 6-5.4.2 (pp. 416-417) has the printed Tomlinson
+paragraphs it had condensed, and 6-7.2 two printed sentences on Davisson's C
+and depth to fixity. Notes beside two print slips: p. 476 cites "Equation
+5-81" for Eq. 6-79; p. 538 prints "N(1,0)" for the standard normal. The 45
+numbered footnotes are in the bodies at their marks as "[Footnote n: ...]"
+(prologue 6, chapters 2-7: 6, 5, 10, 2, 11, 5; seven had been stored as a
+loose "Note:" paragraph or run into the text), and 82 table notes the
+library did not hold are stored after the paragraph that cites their table
+as "[Table 6-26 note A: ...]" (chapter 2: 10, 3: 7, 5: 4, 6: 58, 7: 3);
+the notes that carry formulas (Tables 2-4, 3-11, 3-12, 5-8, 6-10, 6-19,
+6-20, 6-31, 6-46) were typed from the rendered page. Footnote 23 keeps the
+printed "LFRD" with a note. No section ids changed. Tests:
+`tests/test_dm7_2_footnotes.py`.
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references

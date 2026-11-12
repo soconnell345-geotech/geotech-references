@@ -35,7 +35,7 @@ geotech_references/           # Python package (pip install -e .)
     figures_catalog.json       # 223 figures (number, caption, page, text-enriched description)
   dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
-    text/                      # Structured chapter JSON (prologue + 6 chapters, 439 sections, plus appendix B; equations point-fixed to the print 2026-11-10, REF-79, tests/test_dm7_2_text_equations.py)
+    text/                      # Structured chapter JSON (prologue + 6 chapters, 439 sections, plus appendix B; equations point-fixed to the print 2026-11-10, REF-79, tests/test_dm7_2_text_equations.py; key points/summaries/applicability read against the print and the 45 footnotes + 82 table notes stored at their marks 2026-11-12, tests/test_dm7_2_footnotes.py; bodies condense the print in places, so some printed sentences are not stored)
     figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
