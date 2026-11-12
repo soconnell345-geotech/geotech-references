@@ -333,3 +333,28 @@ def test_ec7_2_b4_and_b5_describe_their_own_figure():
     found = [h["figure_number"] for h in _figures_db.figure_search(
         "excavations", reference="eurocode_7_2")]
     assert found and found[0] == "B.5", found
+
+
+# Every EN 1997-2 row: the PDF page that prints the figure's caption and the
+# page number printed on that page, both read on the rendered pages. The
+# rows built before 2026-11-10 stored the number one lower from Figure B.1
+# on (B.1 printed_page 104 on a page that prints 105), and a citation quotes
+# this field.
+EC7_2_PAGES = [
+    ("1.1", 16, 15), ("1.2", 17, 16),
+    ("B.1", 106, 105), ("B.2", 106, 105), ("B.3", 107, 106),
+    ("B.4", 107, 106), ("B.5", 108, 107), ("B.6", 109, 108),
+    ("B.7", 109, 108),
+    ("D.1", 114, 113), ("D.2", 120, 119), ("D.3", 121, 120),
+    ("E.1", 125, 124), ("G.1", 132, 131),
+    ("I.1", 135, 134), ("I.2", 135, 134), ("I.3", 136, 135),
+    ("I.4", 137, 136),
+    ("K.1", 141, 140), ("K.2", 142, 141), ("K.3", 143, 142),
+]
+
+
+def test_ec7_2_every_row_has_the_printed_page_of_its_page():
+    rows = json.loads((PKG / "eurocode_7_2" / "figures_catalog.json")
+                      .read_text(encoding="utf-8"))["figures"]
+    assert [(r["figure_number"], r["pdf_page_index"], r["printed_page"])
+            for r in rows] == EC7_2_PAGES
