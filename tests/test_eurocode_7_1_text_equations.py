@@ -293,6 +293,26 @@ class TestAnnexA:
         assert "in Combinations 1 and 2, partial factors are applied to actions and to ground strength parameters" in body
         assert ("in Combination 2, partial factors are applied to actions, to ground resistances "
                 "and sometimes to ground strength parameters") in body
-        assert "In set M1 every factor is 1.0 (Table A.4, p. 130)" in body
+        # The M1/R1 sentence is the library's reading of Tables A.4-A.14, marked as such.
+        assert "[Note (not printed): In set M1 every factor is 1.0 (Table A.4, p. 130)" in body
+        # 2.4.7.3.4.2(2)P keeps its force words for piles and anchors.
+        assert ("For the design of axially loaded piles and anchors, it shall be verified that a limit "
+                "state of rupture or excessive deformation will not occur with either of the combinations") in body
         assert "factor actions and ground strength, not resistance" not in body
         assert "not ground strength" not in body
+
+    def test_eq_7_2_lower_value_governs(self):
+        # p. 79, 7.6.2.2(8)P: Rc;k = Min{(Rc;m)mean/xi1; (Rc;m)min/xi2} (7.2).
+        kps = " ".join(_section(13, "13-7")["key_points"])
+        assert "Rc;k = Min{(Rc;m)mean/xi1; (Rc;m)min/xi2}" in kps
+        assert "the lower of the two values governs" in kps
+
+    def test_reactivated_slopes_partial_factors_need_not(self):
+        # p. 120, 11.5.1(8): "Partial factors normally used for overall stability
+        # analyses then need not be appropriate." Stored as "may then not be".
+        s = _section(11, "11.5.1")
+        phrase = "partial factors normally used for overall stability analyses then need not be appropriate"
+        assert phrase in s["body"]
+        assert phrase in " ".join(s["key_points"])
+        assert "may then not be appropriate" not in _all_text(s)
+        assert "may not be appropriate" not in _all_text(s)
