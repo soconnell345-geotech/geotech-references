@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2, 3, 4]
+BUILT = [1, 2, 3, 4, 5]
 
 
 def _manifest():
@@ -229,3 +229,90 @@ def test_table_4_14_typed_from_the_page():
     # the SPT energy correction keeps the number the page gives it
     sec = "\n".join(s["body"] for s in _chapter(4)["sections"])
     assert "N60 = (Ef/60) Nmeas (5-1) [numbered (5-1) on the page" in sec
+
+
+def test_chapter_5_headings_as_printed():
+    assert _chapter(5)["chapter_title"] == "Geotechnical Inputs for Pavement Design"
+    assert _printed_ids(5) == [
+        "5.1", "5.2", "5.2.1", "5.2.2", "5.2.3", "5.3", "5.3.1", "5.3.2", "5.3.3",
+        "5.3.4", "5.4", "5.4.1", "5.4.2", "5.4.3", "5.4.4", "5.4.5", "5.4.6",
+        "5.4.7", "5.4.8", "5.4.9", "5.5", "5.5.1", "5.5.2", "5.6", "5.6.1",
+        "5.6.2", "5.7", "5.8", "5.8.1", "5.8.2", "5.9"]
+    s5 = _sections(5)
+    # the stored text before the rebuild filed other subjects under these
+    # numbers ("Compaction Characteristics" as 5.3.3, "Swell and Collapse
+    # Potential" as 5.4.7); the page prints
+    assert s5["5.3.3"]["title"] == "Problem Soil Identification"
+    assert s5["5.4.7"]["title"] == "Interface Friction"
+    assert s5["5.5"]["title"] == "Thermo-Hydraulic Properties"
+    assert "Identification of Problem Soils" in s5["5.3.3"]["applicability"]
+
+
+def test_chapter_5_printed_sentences_with_their_pages():
+    s5 = _sections(5)
+    body = s5["5.4.9"]["body"]
+    assert body.startswith("[p. 5-83]")
+    assert ("Values of K0 predicted by Eq. (5.37) for typical geomaterials range "
+            "between 0.4 and 0.6.") in body
+    body = s5["5.3.2"]["body"]
+    assert "[p. 5-19]" in body
+    assert "equivalent dry unit weight is then computed as\n\nγd = γt/(1 + w) [Eq. 5.1]" in body
+    body = s5["5.4.7"]["body"]
+    assert "frictional resistance between the bottom of the slab and the top of the " \
+           "underlying subbase or subgrade" in body
+
+
+def test_chapter_5_equations_typed_from_the_page():
+    eqs = _equations()
+    assert [k for k in eqs if k.startswith("5.")] == [f"5.{i}" for i in range(1, 70)]
+    # the distinguishing term of each, as the rendered page prints it
+    expect = {
+        "5.4": "CR = γd/(γd)max × 100%",                       # p. 5-20
+        "5.7": "R = 100 – 100/[(2.5/D2)((Pv/Ph) – 1) + 1]",    # p. 5-40
+        "5.11": "uf = 1.18×10^8 (MR)^–2.32",                   # p. 5-46
+        "5.12": "MR = 3015(uf)^–0.431",                        # p. 5-46
+        "5.13": "MR (psi) = 1500 × CBR for CBR ≤ 10",          # p. 5-49
+        "5.16": "a2 = 0.249 log10 EBS – 0.977",                # p. 5-59
+        "5.18": "a3 = 0.227 log10 ESB – 0.839",                # p. 5-64
+        "5.24": "uri = [D^0.75 – 0.39 ki^0.25]^3.42",          # p. 5-70
+        "5.26": "keff = kdynamic/2",                           # p. 5-76
+        "5.32": "CBR = (MR/2555)^(1/0.64)",                    # p. 5-81
+        "5.69": "ksat = C * D10^2",                            # p. 5-103
+    }
+    for num, formula in expect.items():
+        assert eqs[num][1]["formula"] == formula, num
+    assert "(E B^4/(Ef I))^(1/12)" in eqs["5.19"][1]["formula"]          # p. 5-67, 12th root
+    assert eqs["5.22"][1]["formula"].startswith("ln k∞ = –2.807 + 0.1253(ln DSB)^2")
+    assert "51.712(CBR)^(–0.3586(GWT)^0.1192)" in eqs["5.31"][1]["formula"]  # p. 5-81
+    assert "(3/4)(OCR/OCRmax)" in eqs["5.39"][1]["formula"]              # p. 5-83
+    assert "Mayne and Kulhawy (1982)" in eqs["5.39"][1]["notes"]
+    assert "commonly quoted" not in eqs["5.39"][1]["notes"]
+    # print slips kept as printed, with a note
+    assert eqs["5.34"][1]["formula"].endswith("≤ 1×10^–7")
+    assert "never met" in eqs["5.34"][1]["notes"]
+    assert "9.7e^–4" in eqs["5.65"][1]["formula"]
+    assert "haev" in eqs["5.66"][1]["notes"]
+    # recomputed: the inverse of Eq. 5.11 gives the constant of Eq. 5.12
+    assert round((1.18e8) ** (1 / 2.32)) == 3015
+    assert round(1 / 2.32, 3) == 0.431
+
+
+def test_chapter_5_tables_typed_from_the_page():
+    body = "\n".join(s["body"] for s in _chapter(5)["sections"])
+    # Tables 5-3 to 5-6 print check marks the text layer gives as "3"
+    assert "[Table 5-3 as printed on p. 5-9, typed in from the page:]" in body
+    assert "CBR | California Bearing Ratio | | ✓(d) | | 5.4.1" in body
+    assert "kdynamic | Backcalculated modulus of subgrade reaction | ✓(b) | | | 5.4.3" in body
+    assert "ksat | Saturated hydraulic conductivity (permeability) | ✓ | | | 5.5.2" in body
+    assert "Material type 3 3 3" not in body
+    # Table 5-8: the total unit weight identity the text layer dropped
+    assert "2. Total Unit Weight: γt = [(1 + w)/(1 + e)] Gs γw" in body
+    assert "not legible as a mathematical sign on p. 5-14" in body
+    # Table 5-51: the text layer put each percentage before the next category
+    assert "None | | 0\nMinor | This option is valid" in body
+    assert "Extreme | Generally not used for new or reconstructed pavement levels. | 100" in body
+    # Tables 5-40 and 5-42: the exponent the text layer lost (8,000 x 5^0.6 = 21,012)
+    assert "Dry 8,000θ^0.6 21,012" in body and "Wet 4,600θ^0.6 12,082" in body
+    assert round(8000 * 5 ** 0.6) == 21012
+    assert "θ0.6" not in body
+    assert "110±5°C" in body and "BTU/ft-hr-°F" in body

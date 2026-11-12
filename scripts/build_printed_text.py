@@ -140,6 +140,9 @@ MAX_BODY_CHARS = 12000
 #: ... and so is one whose section, as JSON with its equations, figures
 #: and tables (a Greek letter is six characters there), is over this.
 MAX_SECTION_JSON_CHARS = 14000
+#: Room kept in a part measured with its own equations (``split_long``,
+#: ``own_equations``) for the table-lookup entries added after the split.
+OWN_EQUATIONS_MARGIN = 1500
 
 # Words kept in capitals when a heading printed in capitals is title-cased.
 _ACRONYMS = {
@@ -638,15 +641,28 @@ def _cut_caption(para: str, figs: dict) -> str:
     return para
 
 
-def split_long(sec: dict, limit: int = MAX_BODY_CHARS) -> list[dict]:
+def split_long(sec: dict, limit: int = MAX_BODY_CHARS, own_equations: bool = False) -> list[dict]:
     """A section whose body is over ``limit`` as the section (its first part)
     and parts lettered ``.a``, ``.b`` ... under it, each cut at a paragraph
     boundary. The letters are not printed: each part's title and
-    applicability say which printed pages of the section it holds."""
+    applicability say which printed pages of the section it holds.
+
+    With ``own_equations`` (manifest ``"split_own_equations": true``) a part
+    is measured with only the equations, figures and tables it prints, as it
+    is written, plus a margin for the table lookups added after the split;
+    without it every part is measured with the whole section's, as before,
+    which cuts a section with many typed equations into many small parts."""
     body = sec["body"]
     overhead = len(json.dumps(dict(sec, body="")))
 
     def fits(text):
+        if own_equations:
+            head = len(json.dumps(dict(
+                sec, body="",
+                equations=[e for e in sec["equations"] if f"[Eq. {e['id'][4:]}]" in text],
+                figures=_listed_in(sec["figures"], text),
+                tables=_listed_in(sec["tables"], text)))) + OWN_EQUATIONS_MARGIN
+            return len(text) <= limit and len(json.dumps(text)) + head <= MAX_SECTION_JSON_CHARS
         return (len(text) <= limit
                 and len(json.dumps(text)) + overhead <= MAX_SECTION_JSON_CHARS)
 
@@ -1025,7 +1041,8 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                                   + (f" The contents list this section as "
                                      f"\"{h['contents_title']}\"."
                                      if h.get("contents_title") else "")),
-            }), vol.get("table_functions", {}), table_functions_linked))
+            }, own_equations=bool(vol.get("split_own_equations"))),
+                vol.get("table_functions", {}), table_functions_linked))
         chapters[n] = {
             "reference_id": vol["volume_id"],
             "reference_title": vol.get("volume_title", ""),
