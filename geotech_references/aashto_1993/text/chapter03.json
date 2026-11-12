@@ -6,39 +6,147 @@
   "sections": [
     {
       "section_id": "I-3.1",
-      "title": "Life-Cycle Cost Concepts and Economic Analysis Basics",
-      "summary": "Recommends life-cycle economic evaluation (present worth and/or equivalent uniform annual cost) over an analysis period to compare alternative pavement design/rehabilitation strategies, but cautions that pavement-type selection should not rest on economics alone (Appendix B provides broader selection guidelines).",
-      "body": "Chapter 3 (condensed here; printed guide Sections 3.1-3.8, pdf_page ~41-73, printed I-41 to I-49) covers life-cycle cost concepts (initial capital costs, maintenance, rehabilitation/resurfacing cost, salvage/residual value, user costs including traffic delay cost, and the identification of pavement benefit) and the discounting/inflation considerations (opportunity cost of capital, discount rates) needed for an economic evaluation. It stresses that economics should be A factor, not the SOLE factor, in pavement type selection; Appendix B provides an extensive list of guidelines for comparing alternative design strategies.",
+      "title": "Introduction",
+      "summary": "The application of principles of engineering economy to pavement projects occurs generally at two levels: the management decisions required to determine the feasibility and programming of a project (network level), and the requirement to achieve the maximum economy within that project. The basic principles involved are the same; the difference is the amount of detail and information required.",
+      "body": "[p. I-41] The application of principles of engineering economy to pavement projects occurs generally at two levels. First, there are the management decisions required to determine the feasibility and programming of a project; second, there is the requirement to achieve the maximum economy within that project if the project is economically feasible as a whole. The second level might be considered suboptimization with respect to the first level, but it is more important to the designer.\n\nProject feasibility is determined at the network level, by comparison with other potential projects, whereas within-project economy is achieved by considering a variety of alternatives capable of satisfying the overall project requirements.\n\nThe major difference in economic evaluation between these two levels of pavement management concerns the amount of detail and information required. Otherwise, the basic principles involved are the same. This chapter considers both these principles and their incorporation into methods of economic evaluation. Such models then become a vital part of the pavement design process.",
       "key_points": [
-        "Life-cycle costs: initial capital, maintenance, rehabilitation/resurfacing, salvage/residual value, user costs",
-        "User costs include vehicle operating cost, travel time cost, accident cost, discomfort cost, and traffic delay cost",
-        "Discounting/inflation: opportunity cost of capital, discount rate selection",
-        "Economics should inform, not solely determine, pavement type selection (Appendix B: broader selection guidelines)"
+        "Project feasibility is determined at the network level, by comparison with other potential projects, whereas within-project economy is achieved by considering a variety of alternatives capable of satisfying the overall project requirements.",
+        "The major difference in economic evaluation between these two levels of pavement management concerns the amount of detail and information required."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Framing for comparing alternative design/rehabilitation strategies on a life-cycle cost basis."
+      "applicability": "Opening of Part I Chapter 3 on the economic evaluation of alternative pavement design strategies (p. I-41)."
+    },
+    {
+      "section_id": "I-3.2",
+      "title": "Life-Cycle Costs",
+      "summary": "It is essential in economic evaluation that all costs occurring during the life of the facility be included; first-cost comparisons are not adequate. Life-cycle costs refer to all costs (and, in the complete sense, all benefits) involved in the provision of a pavement during its complete life cycle: construction, maintenance, rehabilitation costs, etc., with an interest rate or time value of money.",
+      "body": "[p. I-41] It is essential in economic evaluation that all costs occurring during the life of the facility be included. When making economic comparisons this has not always been carefully practiced or even understood by pavement designers because comparisons were often made over a fixed, equal design period. Thus, designers assumed that first-cost comparisons were adequate for economic studies. This is not true, and, in order to emphasize the need for a complete cost analysis, the term \"life-cycle costs\" was coined about 1970 for use with pavements.\n\nLife-cycle costs refer to all costs (and, in the complete sense, all benefits) which are involved in the provision of a pavement during its complete life cycle. These include, of course, construction costs, maintenance costs, rehabilitation costs, etc. In order to compare the costs and value of two automobiles for purchase we all realize the need to include (1) purchase price, (2) gasoline and operating costs, such as buying tires, (3) repairs (maintenance), (4) trade-in value (salvage), etc. The same kind of comparison should be recognized for pavements.\n\nAlso required, of course, is a consideration of the useful life of the car. An inexpensive car may last 4 years while an expensive one, carefully selected, may last 15 years. Since all of these costs do not occur at the same time, it is useful to determine the amount of money which could be invested at a fixed time (usually the beginning) and would earn enough money at a specific interest rate to permit payment of all costs when they occur. Thus, an interest rate or time value of money becomes important in the calculations.\n\n\"Life-cycle costs\" then is a term coined to call special attention to the fact that a complete and current economic analysis is needed if alternatives are to be truly and correctly compared to each other.",
+      "key_points": [
+        "It is essential in economic evaluation that all costs occurring during the life of the facility be included.",
+        "Designers assumed that first-cost comparisons were adequate for economic studies. This is not true.",
+        "Life-cycle costs refer to all costs (and, in the complete sense, all benefits) which are involved in the provision of a pavement during its complete life cycle."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "What life-cycle costs include when alternative pavement strategies are compared (p. I-41)."
+    },
+    {
+      "section_id": "I-3.3",
+      "title": "Basic Concepts",
+      "summary": "Five principles of engineering economy applicable to pavement design: identify the level of management; economic analysis provides the basis for decision but does not provide a decision; consider many alternatives; compare alternatives over the same time period; include agency costs and user costs and benefits if possible.",
+      "body": "[p. I-41] A great deal has been written on the basic principles of engineering economy and methods of economic evaluation. Those principles that are applicable to pavement design can be summarized as follows:\n\n(1) The level of management at which the evaluation is to be performed should be clearly identified, this can range from the planning or programming (network) level (i.e., project-to-project comparison) to a sublevel of design where one element, such as surface type, is being considered within a project.\n\n(2) Economic analysis provides the basis for decision but does not provide a decision. Criteria for such decisions must be separately formulated before the results of the economic evaluation can be applied. Moreover, the economic [p. I-42] evaluation itself has no relationship to the method or source of financing a project.\n\n(3) An economic evaluation should consider many possible alternatives within the constraints of time and design resources. This includes the need for comparing alternatives, not only with an existing situation, but with each other.\n\n(4) Alternatives should be compared over the same time period. This time period should be chosen so that the factors involved in the comparison can be defined with reasonable accuracy.\n\n(5) The economic evaluation of pavements should include agency costs and user costs and benefits if possible.\n\nPrinciple 5 is not normally stated for transport projects because it is an accepted requirement. However, in the pavement field, the usual practice has been to consider only capital and maintenance costs, with the implied assumption that user costs do not vary. This approach is inadequate because, as demonstrated by McFarland (30) and by Kher, et al. (31), user costs can vary significantly with these factors. Benefits can then be considered as cost reductions (32).",
+      "key_points": [
+        "Economic analysis provides the basis for decision but does not provide a decision.",
+        "Alternatives should be compared over the same time period.",
+        "The economic evaluation of pavements should include agency costs and user costs and benefits if possible.",
+        "In the pavement field, the usual practice has been to consider only capital and maintenance costs, with the implied assumption that user costs do not vary. This approach is inadequate."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Principles for setting up an economic comparison of pavement alternatives (pp. I-41 to I-42). Sections 3.4 to 3.8 (pp. I-42 to I-49: definitions, cost and benefit factors, methods, interest, inflation and discount rates) are not held."
     },
     {
       "section_id": "I-3.9",
       "title": "Equations for Economic Analysis",
-      "summary": "Two standard methods are given: Equivalent Uniform Annual Cost (EUAC) and Present Worth (net present value, NPV). NPV is generally preferred for pavements: NPVx1 = TPWCxo,n - TPWCx1,n (present worth of the base/standard alternative minus present worth of the alternative being evaluated); comparisons must use equal-length analysis periods regardless of method.",
-      "body": "Two methods for economic evaluation are presented (Section 3.9): the Equivalent Uniform Annual Cost method (Section 3.9.1) and the Present Worth (net present value) method (Section 3.9.2), NPVx1 = TPWCxo,n - TPWCx1,n, where TPWC is total present worth of costs for an alternative over an n-year analysis period, and xo is the standard/base alternative against which x1 is compared. The present worth (net present value) method is generally preferred for the highway field over the 'traditional' annual-cost and benefit-cost methods, offering several advantages: costs/benefits expressed as a single comparable value; direct comparability of projects with different service lives and stage development; all costs in present-day terms; ability to fold in nonmonetary (cost-effectiveness) considerations; a single payoff figure; and computational simplicity. Its chief disadvantage is that it cannot be applied to single (non-comparative) alternatives, and the lump-sum result may be less intuitively understandable as a rate of return. Most agencies use only the agency-cost term (Eq. 3.9.3, without the user-cost term) due to data/policy limitations. Section 3.9.3 concludes that either NPV or EUAC may be used for life-cycle comparisons, provided comparisons are made over analysis periods of EQUAL length.",
+      "summary": "Only the annual cost and present worth methods are presented: equivalent uniform annual cost (3.9.1, 3.9.4) and present worth of costs and benefits (3.9.2, 3.9.3, 3.9.5), with net present value (3.9.6, 3.9.7). The net present value method is the preferred approach for evaluating alternative pavement strategies when public investments are involved; for most agencies only equation (3.9.3) is used, without the user costs term. Either may be used, but comparisons only for analysis periods of equal length.",
+      "body": "[p. I-49] For this report only the annual cost and present worth methods of analysis are presented because of their wide applicability and acceptance. The material has been adapted from Haas and Hudson (5), who also present details of the remaining methods of economic analysis for those who desire to compare methods. The AASHTO Manual on User Benefit Analysis also presents comprehensive details for those desiring more information (37).\n\n3.9.1 Equivalent Uniform Annual Cost Method\n\nThe equivalent uniform annual cost method combines all initial capital costs and all recurring future expenses into equal annual payments over the analysis period. In equation form, this method may be expressed as (5):\n\nAC(x1,n) = crf(x1) (ICC)(x1) + (AAMO)(x1) + (AAUC)(x1) \u2212 crf(i,n) (SV)(x1,n)   (3.9.1)\n\nwhere\n\nAC(x1,n) = equivalent uniform annual cost for alternative x1, for a service life or analysis period of n years,\n\ncrf(i,n) = capital recovery factor for interest rate i and n years,\n\n(ICC)(x1) = initial capital costs of construction (including actual construction costs, materials costs, engineering costs, etc.),\n\n(AAMO)(x1) = average annual maintenance plus operation costs for alternative x1,\n\n(AAUC)(x1) = average annual user costs for alternative x1 (including vehicle operation, travel time, accidents and discomfort if designated), and\n\n(SV)(x1,n) = salvage value, if any, for alternative x1 at the end of n years.\n\n[Note: the first term is printed crf with the subscript x1 (p. I-49); the symbol list defines crf(i,n).]\n\nEquation (3.9.1) considers annual maintenance and operating costs, and user costs, on an average basis. This can be satisfactory for many purposes. Where such costs do not increase uniformly, however, an exponential growth factor can easily be applied.\n\n3.9.2 Present Worth Method\n\nThe present worth of costs method is directly comparable to the equivalent uniform annual cost method for comparable conditions, e.g., costs, discount rates, and analysis periods. The present worth method can consider either costs alone, benefits alone, or costs and benefits together. It involves the discounting of all future sums to the present, using an appropriate discount rate. The factor (5) for discounting either costs or benefits is:\n\npwf(i,n) = 1/(1 + i)^n   (3.9.2)\n\nwhere\n\npwf(i,n) = present worth factor for a particular i and n,\n\ni = discount rate, and\n\nn = number of years to when the sum will be expended, or saved.\n\nPublished tables for pwf, or the crf of equation (3.9.1), are readily available in a wide variety of references, including Winfrey (32).\n\nThe present worth method for costs alone can be expressed in terms of the following equation (5):\n\n[p. I-50] TPWC(x1,n) = (ICC)(x1) + \u03a3 (t = 0 to t = 1) pwf(i,t) * [(CC)(x1,t) + (MO)(x,t) + (UC)(x1,t)] \u2212 (SV)(x1,n) pwf(i,n)   (3.9.3)\n\n[Note: the upper limit of the sum is printed \"t = 1\" on p. I-50 (the sum of equation (3.9.5) runs to n), and the maintenance term's subscript is printed x,t.]\n\nwhere\n\nTPWC(x1,n) = total present worth of costs for alternative x1, for an analysis period of n years,\n\n(ICC)(x1) = initial capital costs of construction, etc., for alternative x1,\n\n(CC)(x1,t) = capital costs of construction, etc., for alternative x1, in year t, where t is less than n,\n\npwf(i,t) = present worth factor for discount rate, i, for t years, = 1/(1 + i)^t,\n\n(MO)(x1,t) = maintenance plus operation costs for alternative x1 in year t,\n\n(UC)(x1,t) = user costs (including vehicle operation, travel live, accidents, and discomfort if designated) for alternative x1, in year t, and\n\n(SV)(x1,n) = salvage value, if any, for alternative x1, at the end of the design period, n years.\n\nAlthough the present worth of costs method is directly comparable to the equivalent uniform annual cost method, it is only in recent years that it has begun to be applied to the pavement field.\n\nThe present worth of costs is used in the equivalent uniform annual cost method when additional capital expenditures occur before the end of the analysis period, i.e., when the service life is less than the analysis period; and future rehabilitation, such as overlays or seal coats, is needed. The equation (5) for this situation, as modified from that suggested by Baldock (35) to include user costs, is:\n\nAC(x1,n) = crf(i,n) [(ICC)(x1) + R1 pwf(i,a1) + R2 pwf(i,a2) + \u00b7 \u00b7 \u00b7 + Rj pwf(i,aj) + (AAMO)(x1) + (AAUC)(x1) \u2212 crf(i,n) (SV)(x1,n)]   (3.9.4)\n\nwhere\n\nAC(x1,n) = equivalent uniform annual cost for alternative x1, for an analysis period of n years,\n\nR1, R2, ..., Rj = costs of first, second, ..., jth resurfacings, respectively, and\n\na1, a2, ..., aj = ages at which the first, second, ..., jth resurfacings occur, respectively.\n\nAll other factors are as previously defined.\n\nThe present worth of benefits can be calculated in the same manner as the present worth of costs using the following equation (5):\n\nTPWB(x1,n) = \u03a3 (t = 0 to n) pwf(i,t) * [(DUB)(x1,t) + (IUB)(x1,t) + (NUB)(x1,t)]   (3.9.5)\n\nwhere\n\nTPWB(x1,n) = total present worth of benefits for alternative x1 for an analysis period of n years,\n\n(DUB)(x1,t) = direct user benefits accruing from alternative x1 in year t,\n\n(IUB)(x1,t) = indirect user benefits accruing from alternative x1 in year t, and\n\n(NUB)(x1,t) = non-user benefits accruing from project x1 in year t.\n\nIt is questionable, for pavements, whether or not non-user benefits and indirect user benefits can be measured adequately. Consequently, it is perhaps reasonable to consider only direct user benefits until such time as the state of the art is sufficiently advanced to allow the other factors to be measured.\n\nThe net present value method follows from the foregoing methods because it is simply the difference between the present worth of benefits and the present worth of costs. Obviously, benefits must exceed costs if a project is to be justified on economic grounds. The equation (5) for net present value is:\n\nNPV(x1) = TPWB(x1,n) \u2212 TPWC(x1,n)   (3.9.6)\n\nwhere\n\nNPV(x1) = net present value of alternative x1 (and TPWB(x1,n) and TPWC(x1,n) are as previously defined).\n\nHowever, for a pavement project alternative, x1, equation (3.9.6) is not applicable directly to itself but rather to the difference between it and some other [p. I-51] suitable alternative, say xo. Considering only direct user benefits, these are then calculated as the user savings (resulting from lower vehicle operating costs, lower travel time costs, lower accident costs, and lower discomfort costs) realized by x1 over xo.\n\nThus, the net present value method can be applied to pavements only on the basis of project comparison, where the project alternatives are mutually exclusive. When a project alternative is evaluated, it needs to be compared not only with some standard or base alternative but also with all the other project alternatives. In the case of pavements, the base alternative may be that of no capital expenditures for improvements (where increased maintenance and operation costs are required to keep it in service). The equation form of the net present value method for pavements (5) may then be expressed as:\n\nNPV(x1) = TPWC(xo,n) \u2212 TPWC(x1,n)   (3.9.7)\n\nwhere\n\nNPV(x1) = net present value of alternative x1, and\n\nTPWC(xo,n) = total present worth of costs, for alternative xo (where xo can be the standard or base alternative, or any other feasible mutually exclusive alternative x1, x2, ..., xk) for an analysis period of n years, and\n\nTPWC(x1,n) is as previously defined.\n\nThe net present value method is preferred for the transportation field by some writers, such as Wohl and Martin (34). Others, such as Winfrey (32), consider that it has no particular advantage in economic studies of highways. Although there are certain limitations to the method, the advantages outweigh the disadvantages. Thus, it is the preferred approach for evaluating alternative pavement strategies when public investments are involved. Moreover, with increasing use of this approach in the overall transport planning field, its application to pavements will undoubtedly find much greater acceptance in the next decade.\n\nIn many cases, and for most agencies, however, only equation (3.9.3) is used, without the user costs term, either because the data are unavailable to relate user costs to pavement factors or because the policy is to consider only agency costs. The comparison between alternatives is conducted in such cases on the basis of least total present worth of costs.\n\nThere are a number of advantages inherent in the net present value method that make it perhaps the most feasible for the highway field in comparison to the \"traditional\" annual cost and benefit-cost methods. These advantages include the following:\n\n(1) The benefits and costs of a project are related and expressed as a single value.\n\n(2) Projects of different service lives, and with stage development, are directly and easily comparable.\n\n(3) All monetary costs and benefits are expressed in present-day terms.\n\n(4) Nonmonetary benefits (or costs) can be evaluated subjectively and handled with a cost-effectiveness evaluation.\n\n(5) The answer is given as a total payoff for the project.\n\n(6) The method is computationally simple and straightforward.\n\nThere are several disadvantages to the net present value method, including the following:\n\n(1) The method cannot be applied to single alternatives where the benefits of those single alternatives cannot be estimated. In such cases, each alternative must be considered in comparison to the other alternatives, including the standard or base alternative.\n\n(2) The results, in terms of a lump sum, may not be easily understandable to some people as a rate of return or annual cost. In fact, the summation of costs in this form can tend to act as a deterrent to investment in some cases.\n\nWohl and Martin (34) have extensively considered these advantages and disadvantages not only for the net present value method, but also for other methods of economic analysis. They conclude that the net present value method is the only one that will always give the correct answer. The other methods may, under certain situations, give incorrect or ambiguous answers.\n\n3.9.3 Summary\n\nEither the net present worth value or the equivalent uniform annual cost may be used to determine lifecycle costs for comparisons of alternate pavement design or rehabilitation strategies. In either case, it is essential that comparisons only be made for analysis periods of equal length.",
       "key_points": [
-        "NPVx1 = TPWCxo,n - TPWCx1,n (Eq. 3.9.7) -- present worth method, preferred for highways",
-        "TPWC = total present worth of costs for an alternative over an n-year analysis period",
-        "NPV advantages: single comparable value, handles differing service lives/staging, present-day terms, cost-effectiveness-compatible, computationally simple",
-        "NPV disadvantage: cannot evaluate a single non-comparative alternative; lump-sum less intuitive than a rate",
-        "Most agencies use agency-cost-only comparisons (Eq. 3.9.3), omitting the user-cost term",
-        "Either NPV or EUAC acceptable, but ONLY for analysis periods of equal length"
+        "For this report only the annual cost and present worth methods of analysis are presented because of their wide applicability and acceptance.",
+        "The net present value method is the preferred approach for evaluating alternative pavement strategies when public investments are involved.",
+        "In many cases, and for most agencies, only equation (3.9.3) is used, without the user costs term; the comparison between alternatives is conducted in such cases on the basis of least total present worth of costs.",
+        "The net present value method can be applied to pavements only on the basis of project comparison, where the project alternatives are mutually exclusive.",
+        "Either the net present worth value or the equivalent uniform annual cost may be used to determine life-cycle costs for comparisons of alternate pavement design or rehabilitation strategies. In either case, it is essential that comparisons only be made for analysis periods of equal length."
       ],
       "equations": [
-        {"id": "Eq. 3.9.7", "description": "NPVx1 = TPWCxo,n - TPWCx1,n (net present value comparison)"}
+        {
+          "id": "Eq. 3.9.1",
+          "description": "Equivalent uniform annual cost of alternative x1",
+          "formula": "AC(x1,n) = crf(x1) (ICC)(x1) + (AAMO)(x1) + (AAUC)(x1) \u2212 crf(i,n) (SV)(x1,n)",
+          "variables": {
+            "AC(x1,n)": "equivalent uniform annual cost for alternative x1, for a service life or analysis period of n years",
+            "crf(i,n)": "capital recovery factor for interest rate i and n years",
+            "(ICC)(x1)": "initial capital costs of construction (including actual construction costs, materials costs, engineering costs, etc.)",
+            "(AAMO)(x1)": "average annual maintenance plus operation costs for alternative x1",
+            "(AAUC)(x1)": "average annual user costs for alternative x1 (including vehicle operation, travel time, accidents and discomfort if designated)",
+            "(SV)(x1,n)": "salvage value, if any, for alternative x1 at the end of n years"
+          },
+          "notes": "Subscripts written in parentheses. The first term is printed crf with the subscript x1; the symbol list defines crf(i,n) (p. I-49).",
+          "source": "Typed in from the 300 dpi render of p. I-49."
+        },
+        {
+          "id": "Eq. 3.9.2",
+          "description": "Present worth factor",
+          "formula": "pwf(i,n) = 1/(1 + i)^n",
+          "variables": {
+            "pwf(i,n)": "present worth factor for a particular i and n",
+            "i": "discount rate",
+            "n": "number of years to when the sum will be expended, or saved"
+          },
+          "source": "Typed in from the 300 dpi render of p. I-49."
+        },
+        {
+          "id": "Eq. 3.9.3",
+          "description": "Total present worth of costs of alternative x1",
+          "formula": "TPWC(x1,n) = (ICC)(x1) + \u03a3 (t = 0 to t = 1) pwf(i,t) * [(CC)(x1,t) + (MO)(x,t) + (UC)(x1,t)] \u2212 (SV)(x1,n) pwf(i,n)",
+          "variables": {
+            "TPWC(x1,n)": "total present worth of costs for alternative x1, for an analysis period of n years",
+            "(ICC)(x1)": "initial capital costs of construction, etc., for alternative x1",
+            "(CC)(x1,t)": "capital costs of construction, etc., for alternative x1, in year t, where t is less than n",
+            "pwf(i,t)": "present worth factor for discount rate, i, for t years, = 1/(1 + i)^t",
+            "(MO)(x1,t)": "maintenance plus operation costs for alternative x1 in year t",
+            "(UC)(x1,t)": "user costs (including vehicle operation, travel live [sic], accidents, and discomfort if designated) for alternative x1, in year t",
+            "(SV)(x1,n)": "salvage value, if any, for alternative x1, at the end of the design period, n years"
+          },
+          "notes": "As printed on p. I-50: the upper limit of the sum reads t = 1 (equation 3.9.5 sums to n), the maintenance term's subscript reads x,t, and the symbol list prints 'travel live'.",
+          "source": "Typed in from the 300 dpi render of p. I-50."
+        },
+        {
+          "id": "Eq. 3.9.4",
+          "description": "Equivalent uniform annual cost with resurfacings before the end of the analysis period (after Baldock, with user costs)",
+          "formula": "AC(x1,n) = crf(i,n) [(ICC)(x1) + R1 pwf(i,a1) + R2 pwf(i,a2) + \u00b7 \u00b7 \u00b7 + Rj pwf(i,aj) + (AAMO)(x1) + (AAUC)(x1) \u2212 crf(i,n) (SV)(x1,n)]",
+          "variables": {
+            "AC(x1,n)": "equivalent uniform annual cost for alternative x1, for an analysis period of n years",
+            "R1, R2, ..., Rj": "costs of first, second, ..., jth resurfacings, respectively",
+            "a1, a2, ..., aj": "ages at which the first, second, ..., jth resurfacings occur, respectively"
+          },
+          "source": "Typed in from the 300 dpi render of p. I-50."
+        },
+        {
+          "id": "Eq. 3.9.5",
+          "description": "Total present worth of benefits of alternative x1",
+          "formula": "TPWB(x1,n) = \u03a3 (t = 0 to n) pwf(i,t) * [(DUB)(x1,t) + (IUB)(x1,t) + (NUB)(x1,t)]",
+          "variables": {
+            "TPWB(x1,n)": "total present worth of benefits for alternative x1 for an analysis period of n years",
+            "(DUB)(x1,t)": "direct user benefits accruing from alternative x1 in year t",
+            "(IUB)(x1,t)": "indirect user benefits accruing from alternative x1 in year t",
+            "(NUB)(x1,t)": "non-user benefits accruing from project x1 in year t"
+          },
+          "source": "Typed in from the 300 dpi render of p. I-50."
+        },
+        {
+          "id": "Eq. 3.9.6",
+          "description": "Net present value of alternative x1",
+          "formula": "NPV(x1) = TPWB(x1,n) \u2212 TPWC(x1,n)",
+          "source": "Typed in from the 300 dpi render of p. I-50."
+        },
+        {
+          "id": "Eq. 3.9.7",
+          "description": "Net present value of alternative x1 against the base alternative xo (pavements)",
+          "formula": "NPV(x1) = TPWC(xo,n) \u2212 TPWC(x1,n)",
+          "variables": {
+            "NPV(x1)": "net present value of alternative x1",
+            "TPWC(xo,n)": "total present worth of costs, for alternative xo (where xo can be the standard or base alternative, or any other feasible mutually exclusive alternative x1, x2, ..., xk) for an analysis period of n years"
+          },
+          "source": "Typed in from the 300 dpi render of p. I-51."
+        }
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Comparing life-cycle costs of alternative pavement design or rehabilitation strategies over equal-length analysis periods."
+      "applicability": "Life-cycle cost comparison of alternative pavement design or rehabilitation strategies by equivalent uniform annual cost or present worth (pp. I-49 to I-51)."
     }
   ]
 }
