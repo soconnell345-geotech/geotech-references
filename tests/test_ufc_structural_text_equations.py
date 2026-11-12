@@ -170,9 +170,116 @@ class TestChapter3:
         assert _section(3, "3-9")["title"].startswith("ASCE 7 Chapter 26")
 
 
+class TestChapter4:
+    def test_three_modification_actions(self):
+        # p. 69: "one of three actions" ([Addition], [Replacement], [Supplement]).
+        s = _section(4, "4-1")
+        assert "are one of three actions, according to the following legend" in s["body"]
+        assert "four-action" not in _all_text(s)
+
+    def test_table_4_1a_rows(self):
+        # p. 72, rendered: item i evaluates at CP in BSE-1E in every risk category.
+        b = _section(4, "4-2.2")["body"]
+        assert ("i. Unacceptable risk exposure: RC I or II evaluation CP in BSE-1E, retrofit LS in BSE-1E and CP in BSE-2E; "
+                "RC III evaluation CP in BSE-1E, retrofit DC in BSE-1E and LmS in BSE-2E; RC IV evaluation CP in BSE-1E, "
+                "retrofit IO in BSE-1E and LS in BSE-2E.") in b
+        assert ("h. Relocation: RC I or II evaluation CP in BSE-2N (note 3), retrofit LS in BSE-1N and CP in BSE-2N; "
+                "RC III evaluation LmS in BSE-2N (note 3)") in b
+
+    def test_table_4_1b_rows(self):
+        # p. 74, rendered: alteration-type rows give LS in BSE-1E for RC I or II, PR for RC III and IV.
+        b = _section(4, "4-2.2")["body"]
+        assert ("e. Repair of substantial structural damage: RC I or II evaluation and retrofit LS in BSE-1E and HR in "
+                "BSE-2E; RC III evaluation and retrofit PR in BSE-1E and HR in BSE-2E; RC IV evaluation and retrofit PR "
+                "in BSE-1E and HR in BSE-2E.") in b
+        assert "i. Unacceptable risk exposure: Not required in every column." in b
+        assert "[p. 75] Notes to Table 4-1(b): 1 LS = Life Safety; PR = Position Retention" in b
+
+    def test_high_wind_roof_trigger_conditions(self):
+        # p. 83: special wind regions and the 25-year condition are part of the trigger.
+        s = _section(4, "4-4")
+        assert "or where it is a special wind region in accordance with this UFC" in s["body"]
+        assert any("previous 25 years" in k for k in s["key_points"])
+
+    def test_table_4_2_not_typed_and_said_so(self):
+        b = _section(4, "4-3")["body"]
+        assert "Table 4-2 (Replacement for ASCE/SEI 41-17 Tables 3-2 and 3-3 for Benchmark Buildings) is printed on pp. 78-81; its rows are not typed" in b
+        assert "2 Buildings on hillside sites must not be considered Benchmark Buildings." in b
+
+
+class TestChapter5:
+    def test_antenna_towers_only_the_standard(self):
+        # p. 86 names ANSI/TIA-222-H only.
+        s = _section(5, "5-9")
+        assert s["body"] == "[p. 86] Design of antenna towers is required to be in accordance with ANSI/TIA-222-H."
+        assert "wind turbine" not in _all_text(s)
+
+
+class TestChapter6:
+    def test_scope_needs_emergency_surgery_or_treatment(self):
+        # p. 87: both facility types are "having emergency surgery or emergency treatment facilities".
+        s = _section(6, "6-1")
+        assert "• Group I-2, Condition 2 occupancies, as defined in 2021 IBC Section 308.3, having emergency surgery or emergency treatment facilities." in s["body"]
+        assert s["body"].startswith("[p. 87] This Chapter adopts some of the modifications made by the ‘A’ chapters of the 2022 California Building Code")
+        assert "having emergency surgery or emergency treatment facilities" in s["applicability"]
+
+    def test_foundation_member_minimum_steel(self):
+        # p. 89, rendered: As not less than that required by 1.2 times the cracking load based upon fr.
+        s = _section(6, "6-4")
+        assert "The As provided shall not be less than that required by 1.2 times the cracking load based upon fr defined in Section 19.2.3." in s["body"]
+        assert "(f′c)" in s["body"] and "(345 m³)" in s["body"]
+
+    def test_table_6_1(self):
+        # p. 94, rendered.
+        b = _section(6, "6-6")["body"]
+        assert "1. Stone masonry: ratio 14, thickness 16. 2. Reinforced grouted masonry: ratio 25, thickness 6." in b
+        assert "5. Interior reinforced partitions: ratio 36, thickness 4. Notes to Table 6-1: 1. For varying thickness" in b
+        assert _section(6, "6-5.3")["title"] == "Section 2107 - Allowable Stress Design"
+
+    def test_hospital_scope_kept_on_steel_items(self):
+        # p. 93-94: pre-heat and 20-gauge roof deck are for hospitals and correctional treatment centers.
+        kps = _section(6, "6-6")["key_points"]
+        assert kps[0].startswith("In hospitals and correctional treatment centers, welded connections with a medium or high level of restraint")
+        assert any(k.startswith("In hospitals and correctional treatment centers, steel roof deck") for k in kps)
+
+    def test_trim_bar_print_note(self):
+        assert "(Print note: 24 inches is 610 mm; the print gives 406mm, p. 92.)" in _section(6, "6-5")["body"]
+
+
+class TestChapter7:
+    def test_structural_separation_equation(self):
+        # p. 100, rendered: delta_M = Cd delta_max, no importance factor.
+        s = _section(7, "7-2")
+        assert "δM = Cd δmax (Equation 12.12-1)" in s["body"]
+        assert s["equations"][0]["formula"] == "δM = Cd δmax"
+
+    def test_prohibited_irregularities(self):
+        # p. 100: horizontal Type 1b and vertical Types 1b, 5a and 5b.
+        s = _section(7, "7-2")
+        assert "horizontal structural irregularity Type 1b of ASCE 7-16 Table 12.3-1 or vertical structural irregularities Type 1b, 5a or 5b" in s["body"]
+        assert "Two of the four" not in _all_text(s)
+
+    def test_table_7_1(self):
+        # pp. 98-99, rendered.
+        b = _section(7, "7-2")["body"]
+        assert "1. Steel eccentrically braced frames: (F3) (note r); 8; 2; 4; NL, NL, 160, 160, 100." in b
+        assert "11. Special reinforced masonry shear walls: (7.3.2.5) (note t); 5-1/2; 3; 5; NL, NL, NL, NL, NL." in b
+        assert "Print note: the caption reads ASCE 7-22" in b
+
+    def test_earth_pressure_difference_included(self):
+        # p. 100: "plus the difference in earth pressures shall be added to the design lateral forces".
+        s = _section(7, "7-2")
+        assert any("plus the difference in earth pressures" in k for k in s["key_points"])
+
+    def test_guide_rail_rated_load(self):
+        # p. 101: the car weight plus not less than 40 percent of its rated load.
+        s = _section(7, "7-3")
+        assert any("maximum weight of the car plus not less than 40 percent of its rated load" in k for k in s["key_points"])
+
+
 class TestAllChapters:
     def test_no_module_notes(self):
-        for ch in (1, 2, 3):
+        for ch in (1, 2, 3, 4, 5, 6, 7):
             text = json.dumps(load_chapter("ufc_structural", ch), ensure_ascii=False)
             assert ".py" not in text, ch
             assert not re.search(r"see [a-z_]+\.[a-z_]+", text), ch
