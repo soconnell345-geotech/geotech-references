@@ -557,8 +557,24 @@ class TestTable46:
         assert result["note"] == note
         assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
         assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
-        assert table_4_6_bearing_capacity_factors()["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
         for phi in (30, 38, 40):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
+
+    def test_phi_31_ngamma_note(self):
+        """p. 4-29 prints Ngamma = 25.9 at phi = 31; the lookup keeps 25.99
+        and says so wherever the phi = 31 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31; its "
+                "neighbouring Ngamma cells are printed to one decimal (22.4 "
+                "at 30, 30.2 at 32), and this function returns 25.99")
+        result = table_4_6_bearing_capacity_factors(31)
+        assert result["Ngamma"] == 25.99
+        assert result["note"] == note
+        assert table_4_6_bearing_capacity_factors(30.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(31.5)["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
+        for phi in (30, 32, 35):
             assert "note" not in table_4_6_bearing_capacity_factors(phi)
         assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
 

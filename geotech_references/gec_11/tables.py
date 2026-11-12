@@ -851,6 +851,13 @@ _TABLE_4_6_NGAMMA = [
     130.22, 155.55, 186.54, 224.64, 271.76,
 ]
 
+# p. 4-29 prints 25.9 at phi = 31; 25.99 is kept (same rule as above).
+_TABLE_4_6_NGAMMA_NOTE = (
+    "Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31; its neighbouring "
+    "Ngamma cells are printed to one decimal (22.4 at 30, 30.2 at 32), and "
+    "this function returns 25.99"
+)
+
 
 def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     """Look up bearing capacity factors from GEC-11 Table 4-6.
@@ -862,6 +869,12 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     67.87. The result carries that note (key ``note``) for the full table,
     for phi = 39 and for any phi between 38 and 40, where the interpolation
     uses the phi = 39 row.
+
+    Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31; its neighbouring
+    Ngamma cells are printed to one decimal (22.4 at 30, 30.2 at 32), and
+    this function returns 25.99. The result carries that note (key
+    ``note``) for the full table, for phi = 31 and for any phi between 30
+    and 32. The full table's note gives both.
 
     Parameters
     ----------
@@ -881,7 +894,7 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
                     _TABLE_4_6_PHI, _TABLE_4_6_NC, _TABLE_4_6_NQ, _TABLE_4_6_NGAMMA
                 )
             ],
-            "note": _TABLE_4_6_NC_NOTE,
+            "note": _TABLE_4_6_NGAMMA_NOTE + ". " + _TABLE_4_6_NC_NOTE,
             "reference": "FHWA-NHI-10-024, Table 4-6",
         }
 
@@ -899,7 +912,9 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
         "Ngamma": round(ng, 2),
         "reference": "FHWA-NHI-10-024, Table 4-6",
     }
-    if 38 < phi_deg < 40:
+    if 30 < phi_deg < 32:
+        result["note"] = _TABLE_4_6_NGAMMA_NOTE
+    elif 38 < phi_deg < 40:
         result["note"] = _TABLE_4_6_NC_NOTE
     return result
 
