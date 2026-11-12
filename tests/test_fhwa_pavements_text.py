@@ -446,6 +446,61 @@ def test_chapter_7_tables_typed_from_the_page():
     assert "printed as a picture on p. 7-81" in text
 
 
+#: lines the scatter check passes on purpose: figure lettering left in the
+#: text beside a chart (checked against the page), and one bracket the page
+#: itself leaves unclosed (Eq. 7.5, noted in its equation entry)
+_SCATTER_ALLOWED = (
+    "A Line: PI = 0.73(LL-20)",                      # plasticity chart lettering, 4.7.2, p. 4-62
+    "D 60=1 mm P 200PI=0.1",                         # figure lettering, 5.5.2.a
+    "qi = C x R x 1/12 (ft/in) x 24 (hr/day) x 1 ft x 1 ft) [Eq. 7.5]",
+)
+
+
+def test_no_scattered_formula_glyphs():
+    """The patterns the text layer leaves where it scatters a typeset
+    formula: an isolated prime, lone digits beside an equals sign (the
+    subscripts of "SN2 = 1 1 2.28"), equals signs with nothing between
+    them ("= = ="), a formula line whose brackets do not pair, and a
+    sentence repeated back to back."""
+    prime = re.compile(r"(^|\s)\(?['′]\)?(\s|$)")
+    eq_digits = re.compile(r"(?<![\w.,|/^-])\d \d(?![\w.,%/])|=\s*=")
+    formula = re.compile(r"^[^.]{0,40}\b[A-Za-zγσφθτΔ]\w{0,6}\s*=\s*\S")
+    sentence = re.compile(r"[^.!?]{30,}[.!?]")
+    found = []
+    for n in BUILT:
+        for s in _chapter(n)["sections"]:
+            for para in s["body"].split("\n\n"):
+                sents = [x.strip() for x in sentence.findall(para)]
+                found += [(s["section_id"], "repeated", a) for a, b in zip(sents, sents[1:])
+                          if a == b]
+                for line in para.split("\n"):
+                    if any(a in line for a in _SCATTER_ALLOWED):
+                        continue
+                    if prime.search(line):
+                        found.append((s["section_id"], "prime", line[:120]))
+                    if "=" in line and eq_digits.search(line):
+                        found.append((s["section_id"], "digits", line[:120]))
+                    rhs = line.split("=", 1)[1] if "=" in line else ""
+                    if (formula.search(line) and len(line) < 260 and "[as printed" not in line
+                            and not re.search(r"(?:\b[a-z]{2,}\b\W+){3}", rhs)
+                            and any(line.count(o) != line.count(c) for o, c in ("()", "[]", "{}"))):
+                        found.append((s["section_id"], "brackets", line[:120]))
+    assert not found, found
+
+
+def test_chapters_1_to_4_formula_lines_read_off_the_page():
+    # Eq. 3.5's last term with the page's brackets (p. 3-24)
+    eqs = _equations()
+    assert eqs["3.5"][1]["formula"].endswith(
+        "(4.22 – 0.32pt) [log(Sc/(215.63J)) ((D^0.75 – 1.132)/(D^0.75 – 18.42/(Ec/k)^0.25))]")
+    # the FWD back-calculation relations in Table 4-2, which the text layer
+    # dropped (pp. 4-21, 4-22)
+    body = _sections(4)["4.5.4"]["body"]
+    assert ("d0 = 1.5pa {1/[MR (1 + ((D/a)(Ep/MR)^(1/3))^2)^(1/2)] + "
+            "[1 – 1/(1 + (D/a)^2)^(1/2)]/Ep}") in body
+    assert "MR = 0.24P/(dr r)\nr ≥ 0.7ae\nae = [a^2 + (D (Ep/MR)^(1/3))^2]^(1/2)" in body
+
+
 def test_chapter_8_headings_as_printed():
     ch = _chapter(8)
     assert ch["chapter_title"] == "Construction and Design Verification for Unbound Pavement Materials"
