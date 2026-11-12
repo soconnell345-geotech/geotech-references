@@ -46,7 +46,8 @@ without the square that Eqs. 4-2 and 4-3 give with no wall friction and
 beta = 0 (the printed form gives the larger Ka); Figure 9-4 (p. 9-8)
 prints FSR = FSU + (TS + D) / MD where Eq. 9-1 gives TS D; Table 4-6
 prints Nc = 37.9 at phi = 39 (`table_4_6_bearing_capacity_factors`
-returns 67.87); the alignment tolerances on p. 11-26 give 6 mm per m for
+returns 67.87, and its result says so wherever the phi = 39 row is
+used); the alignment tolerances on p. 11-26 give 6 mm per m for
 1/2 inch per 10 ft (about 4) and 15 for 2 inches (about 17); Table 5 of
 the example MSE wall specification (p. 10-30) gives AASHTO T 26 for
 gradation where Table 6 gives T 27. Section ids: none removed; 101 added,

@@ -827,6 +827,14 @@ _TABLE_4_6_NC = [
     83.86, 93.71, 105.11, 118.37, 133.88,
 ]
 
+# p. 4-29 prints 37.9 at phi = 39; 67.87 is kept (the owner's rule: where
+# the print looks wrong the library decides and states both forms).
+_TABLE_4_6_NC_NOTE = (
+    "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the neighbouring rows "
+    "(61.35 at 38, 75.31 at 40) show a misprint, and this function returns "
+    "67.87"
+)
+
 _TABLE_4_6_NQ = [
     1.00, 1.09, 1.20, 1.31, 1.43, 1.57, 1.72, 1.88, 2.06, 2.25, 2.47,
     2.71, 2.97, 3.26, 3.59, 3.94, 4.34, 4.77, 5.26, 5.80, 6.40,
@@ -849,6 +857,12 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
 
     Interpolates for non-integer friction angles.
 
+    Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the neighbouring rows
+    (61.35 at 38, 75.31 at 40) show a misprint, and this function returns
+    67.87. The result carries that note (key ``note``) for the full table,
+    for phi = 39 and for any phi between 38 and 40, where the interpolation
+    uses the phi = 39 row.
+
     Parameters
     ----------
     phi_deg : float
@@ -867,6 +881,7 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
                     _TABLE_4_6_PHI, _TABLE_4_6_NC, _TABLE_4_6_NQ, _TABLE_4_6_NGAMMA
                 )
             ],
+            "note": _TABLE_4_6_NC_NOTE,
             "reference": "FHWA-NHI-10-024, Table 4-6",
         }
 
@@ -877,13 +892,16 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     nq = _linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NQ)
     ng = _linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NGAMMA)
 
-    return {
+    result = {
         "phi_deg": phi_deg,
         "Nc": round(nc, 2),
         "Nq": round(nq, 2),
         "Ngamma": round(ng, 2),
         "reference": "FHWA-NHI-10-024, Table 4-6",
     }
+    if 38 < phi_deg < 40:
+        result["note"] = _TABLE_4_6_NC_NOTE
+    return result
 
 
 # ============================================================================

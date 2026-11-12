@@ -283,6 +283,9 @@ def test_chapter_4_text_and_tables_as_printed():
     assert "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n" in body
     assert "30 | 30.1 | 18.4 | 22.4" in body
     assert "39 | 37.9 | 56.0 | 92.3" in body      # as printed; noted
+    assert ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the neighbouring "
+            "rows (61.35 at 38, 75.31 at 40) show a misprint, and "
+            "table_4_6_bearing_capacity_factors returns 67.87") in body
     body = secs["4.4.7.f"]["body"]
     assert ("Metallic reinforcement and connectors: Grid reinforcements (A, C): "
             "Static loading | 0.65") in body

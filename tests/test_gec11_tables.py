@@ -546,6 +546,22 @@ class TestTable46:
         with pytest.raises(ValueError, match="between 0 and 45"):
             table_4_6_bearing_capacity_factors(50)
 
+    def test_phi_39_misprint_note(self):
+        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup keeps 67.87 and
+        says so wherever the phi = 39 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39; the "
+                "neighbouring rows (61.35 at 38, 75.31 at 40) show a "
+                "misprint, and this function returns 67.87")
+        result = table_4_6_bearing_capacity_factors(39)
+        assert result["Nc"] == 67.87
+        assert result["note"] == note
+        assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors()["note"] == note
+        for phi in (30, 38, 40):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
+
     def test_increasing_with_phi(self):
         """All factors should increase with friction angle."""
         for phi in [0, 10, 20, 30, 40]:
