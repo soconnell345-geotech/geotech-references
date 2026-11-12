@@ -283,10 +283,14 @@ def test_chapter_4_text_and_tables_as_printed():
     assert "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n" in body
     assert "30 | 30.1 | 18.4 | 22.4" in body
     assert "39 | 37.9 | 56.0 | 92.3" in body      # as printed; noted
-    assert ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. The lookup "
-            "table_4_6_bearing_capacity_factors returns 67.9 there, the "
-            "library's correction of the printed 37.9, because the column runs "
-            "61.4 at 38 and 75.3 at 40; 67.9 is not printed in the manual") in body
+    assert ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be "
+            "right between 61.4 at 38 and 75.3 at 40. The lookup "
+            "table_4_6_bearing_capacity_factors returns 67.9. That value is NOT "
+            "printed in the manual.") in body
+    assert ("The relation reproduces all 46 printed Nq cells and 43 of the other "
+            "45 printed Nc cells to the printed decimal") in body
+    assert ("Straight-line interpolation between the printed neighbours would "
+            "give 68.4.") in body
     assert "31 | 32.7 | 20.6 | 25.9" in body      # as printed; noted
     assert ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within the "
             "run of its column (22.4 at 30, 30.2 at 32); the lookup returns the "

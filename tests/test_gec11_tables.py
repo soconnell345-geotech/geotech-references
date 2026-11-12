@@ -568,15 +568,37 @@ class TestTable46:
             table_4_6_bearing_capacity_factors(50)
 
     def test_phi_39_misprint_note(self):
-        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup returns the
-        library's 67.9 and says so wherever the phi = 39 row is used."""
-        note = ("Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. This "
-                "function returns 67.9 there, the library's correction of the "
-                "printed 37.9, because the column runs 61.4 at 38 and 75.3 at "
-                "40; 67.9 is not printed in the manual")
+        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup returns 67.9 and
+        says, wherever the phi = 39 row is used, that 67.9 is not printed and
+        where it comes from.
+
+        The counts in the note were measured on 2026-11-12 by a script
+        comparing the relation Nq = e^(pi tan phi) tan^2(45 + phi/2),
+        Nc = (Nq - 1) cot(phi) with the printed cells, each rounded half up
+        to the printed decimal: Nq 46 of 46; Nc 43 of 46 (phi 39: 67.867
+        against the printed 37.9; phi 10: 8.345 against 8.4; phi 23: 18.049
+        against 18.1). Midpoint of the printed neighbours 61.4 and 75.3:
+        68.35."""
         result = table_4_6_bearing_capacity_factors(39)
         assert result["Nc"] == 67.9
-        assert result["note"] == note
+        note = result["note"]
+        for phrase in (
+            "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be "
+            "right between 61.4 at 38 and 75.3 at 40",
+            "This function returns 67.9",
+            "That value is NOT printed in the manual",
+            "Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2), "
+            "gives at 39 (67.87)",
+            "The manual does not print that relation; it names AASHTO (2007) "
+            "Table 10.6.3.1.2a-1 as the table's source",
+            "reproduces all 46 printed Nq cells and 43 of the other 45 printed "
+            "Nc cells to the printed decimal",
+            "phi 10: 8.345 against the printed 8.4; phi 23: 18.049 against 18.1",
+            "0.1 off in the last digit, as rounding twice would give",
+            "Straight-line interpolation between the printed neighbours would "
+            "give 68.4",
+        ):
+            assert phrase in note, phrase
         assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
         assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
         assert note in table_4_6_bearing_capacity_factors()["note"]

@@ -824,7 +824,8 @@ _TABLE_4_6_PHI = [
 # The cells as printed on p. 4-29 (one decimal; Nc = 5.14 at phi = 0), except
 # Nc at phi = 39: the page prints 37.9 and the library returns 67.9 (the
 # owner's rule: where the print looks wrong the library decides and states
-# both forms). The manual prints no equations for the factors.
+# both forms; the basis is in _TABLE_4_6_NC_NOTE). The manual prints no
+# equations for the factors.
 _TABLE_4_6_NC = [
     5.14, 5.4, 5.6, 5.9, 6.2, 6.5, 6.8, 7.2, 7.5, 7.9, 8.4,
     8.8, 9.3, 9.8, 10.4, 11.0, 11.6, 12.3, 13.1, 13.9, 14.8,
@@ -834,9 +835,17 @@ _TABLE_4_6_NC = [
 ]
 
 _TABLE_4_6_NC_NOTE = (
-    "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. This function returns "
-    "67.9 there, the library's correction of the printed 37.9, because the "
-    "column runs 61.4 at 38 and 75.3 at 40; 67.9 is not printed in the manual"
+    "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be right "
+    "between 61.4 at 38 and 75.3 at 40. This function returns 67.9. That "
+    "value is NOT printed in the manual. It is what the relation "
+    "Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2), "
+    "gives at 39 (67.87). The manual does not print that relation; it names "
+    "AASHTO (2007) Table 10.6.3.1.2a-1 as the table's source. The relation "
+    "reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc "
+    "cells to the printed decimal; the two that differ (phi 10: 8.345 against "
+    "the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last "
+    "digit, as rounding twice would give. Straight-line interpolation between "
+    "the printed neighbours would give 68.4"
 )
 
 _TABLE_4_6_NQ = [
@@ -876,12 +885,19 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     factors. A whole-degree phi returns its row; any other phi is
     interpolated between rows and rounded to one decimal, like the table.
 
-    Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39. This function returns
-    67.9 there, the library's correction of the printed 37.9, because the
-    column runs 61.4 at 38 and 75.3 at 40; 67.9 is not printed in the
-    manual. The result carries that note (key ``note``) for the full table,
-    for phi = 39 and for any phi between 38 and 40, where the interpolation
-    uses the phi = 39 row.
+    Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be right
+    between 61.4 at 38 and 75.3 at 40. This function returns 67.9. That
+    value is NOT printed in the manual. It is what the relation
+    Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2),
+    gives at 39 (67.87). The manual does not print that relation; it names
+    AASHTO (2007) Table 10.6.3.1.2a-1 as the table's source. The relation
+    reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc
+    cells to the printed decimal; the two that differ (phi 10: 8.345 against
+    the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last
+    digit, as rounding twice would give. Straight-line interpolation between
+    the printed neighbours would give 68.4. The result carries that note
+    (key ``note``) for the full table, for phi = 39 and for any phi between
+    38 and 40, where the interpolation uses the phi = 39 row.
 
     Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within the run of
     its column (22.4 at 30, 30.2 at 32); this function returns the printed
