@@ -51,9 +51,9 @@ def _catalog(ref):
     ("dm7_1", "5-4", 253, 226),
     ("dm7_1", "6-9", 332, 305),
     ("gec_10", "4-5", 77, "4-6"),
-    ("gec_14", "A-1", 45, None),   # printed A1
-    ("gec_14", "A-2", 46, None),
-    ("gec_14", "A-3", 47, None),
+    ("gec_14", "A-1", 45, "A1"),
+    ("gec_14", "A-2", 46, "A2"),
+    ("gec_14", "A-3", 47, "A3"),
     ("gec_9", "6-17", 100, 97),
 ])
 def test_a_row_names_the_page_its_figure_is_on(ref, number, index, printed):
