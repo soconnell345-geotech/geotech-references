@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / REF
 PDF = ROOT / "docs" / "FHWA-NHI-05-037 - Geotech Pavements.pdf"
 #: the chapters rebuilt from the print so far
-BUILT = [1, 2, 3, 4, 5]
+BUILT = [1, 2, 3, 4, 5, 6]
 
 
 def _manifest():
@@ -316,3 +316,58 @@ def test_chapter_5_tables_typed_from_the_page():
     assert round(8000 * 5 ** 0.6) == 21012
     assert "θ0.6" not in body
     assert "110±5°C" in body and "BTU/ft-hr-°F" in body
+
+
+def test_chapter_6_headings_as_printed():
+    # chapter 6 was not in the library before the rebuild
+    assert _chapter(6)["chapter_title"] == "Pavement Structural Design and Performance"
+    assert _printed_ids(6) == [
+        "6.1", "6.2", "6.2.1", "6.2.2", "6.2.3", "6.3", "6.3.1", "6.3.2", "6.3.3",
+        "6.4", "6.5", "6.5.1", "6.5.2", "6.5.3", "6.6", "6.6.1", "6.6.2", "6.6.3",
+        "6.7", "6.7.1", "6.7.2", "6.8", "6.9", "6.10"]
+    s6 = _sections(6)
+    assert s6["6.3"]["title"] == "Soft Subgrade"
+    assert s6["6.7"]["title"] == "Shallow Bedrock"
+    body = s6["6.3"]["body"]
+    assert body.startswith("[p. 6-21]")
+    assert ("The subgrade is now postulated to be a very soft high plasticity clay "
+            "(AASHTO A-7-6, USCS CH) with MR = 6000 psi") in body
+
+
+def test_chapter_6_worked_designs_read_off_the_page():
+    s6 = _sections(6)
+    # the 1993 AASHTO calculation lines, which the text layer scattered
+    # ("SN2 = 1 1 2.28", "2 2 2 2 12.7 inches1"), as typeset (p. 6-5)
+    body = s6["6.2.1"]["body"]
+    assert "• Required minimum thickness of asphalt D1 = SN1/a1 = 5.3 inches¹" in body
+    assert "SN2 = SN – D1a1 = 2.28" in body
+    assert "D2 = SN2/(m2a2) = 12.7 inches¹" in body
+    assert "(a1/a2 = 0.44/0.18 = 2.44)" in body and "($14,250/$8,200 = 1.74)" in body
+    assert "SN2 = 1 1 2.28" not in body
+    # recomputed: D1 = 2.35/0.44, SN2 = 4.61 - 5.3 x 0.44, D2 = 2.28/(1.0 x 0.18)
+    assert round(2.35 / 0.44, 1) == 5.3
+    assert round(4.61 - 5.3 * 0.44, 2) == 2.28
+    assert round(2.28 / 0.18, 1) == 12.7
+    # the soft subgrade and low quality base lines (pp. 6-22, 6-32); the
+    # thickness the text layer dropped is back
+    assert "SN2 = m2a2D2 = (1.0)(0.18)(12.7) = 2.28" in s6["6.3.1"]["body"]
+    assert "D1 = SN1/a1 = 7.9 inches" in s6["6.3.1"]["body"]
+    assert "SN1 = SN – SN2 = 4.61 – 1.07 = 3.54" in s6["6.5.1"]["body"]
+    assert "D1 = SN1/a1 = 8.0 inches" in s6["6.5.1"]["body"]
+    # the poor drainage line prints 5.67 where the line above gives 5.76 (p. 6-42)
+    body = s6["6.6.1"]["body"]
+    assert "SN1 = SN – SN2 = 5.67 – 0.91 = 4.76 [as printed on p. 6-42" in body
+    assert round(5.76 - 0.91, 2) == 4.85
+    # the lost superscripts of the traffic and modulus values
+    text = "\n".join(s["body"] for s in _chapter(6)["sections"])
+    assert "x106" not in text
+    assert "Traffic (W18) 6.1x10^6 ESALs" in text and "4.4x10^6 psi" in text
+
+
+def test_chapter_6_tables_typed_from_the_page():
+    text = "\n".join(s["body"] for s in _chapter(6)["sections"])
+    assert "[Table 6-5 as printed on p. 6-13, typed in from the page:] Class 4 | 1.3%" in text
+    assert "Class 9 | 74.0%" in text
+    assert "Class 10 | 1.19 | 1.09 | 0.89 | 0.00" in text
+    assert "Average Axle Spacing (ft) | 12 | 15 | 18" in text
+    assert "Truck Class: Axle Weight (lbs) | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13" in text
