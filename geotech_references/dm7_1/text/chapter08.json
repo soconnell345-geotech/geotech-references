@@ -8,20 +8,20 @@
     {
       "section_id": "8-1",
       "title": "INTRODUCTION",
-      "summary": "Introduces the use of correlations for obtaining soil and rock engineering parameters from index properties. Covers the sources of uncertainty in correlations, appropriate use cases (preliminary design, check against measured values), and methods for handling uncertainty in final designs including use of confidence limits and standard deviations.",
-      "body": "Correlations are useful tools for obtaining values of engineering parameters based on index properties or other easily measured soil parameters. Correlations are often used when measured values are not available. The accuracy and applicability of correlations depend on the data source, the statistical approach for determining the correlation, and the causal relationship between the index property and the engineering parameter. For these reasons, engineers should use correlations with caution. It is often prudent to seek out the original source of the correlation to ensure that it is applicable to the engineering problem at hand.\n\nOften, correlations provide an uncertain, empirical prediction of the parameter, which means that there are usually values above and below the proposed trend line. Uncertainty results from both scatter in the measured data and the inability of the chosen mathematical relationship to perfectly predict the observed trends. Because of this uncertainty, correlations are typically most appropriate for preliminary design or as a check that measured values are in general agreement with the behavior of the soils used to develop the correlation. In addition, correlations can provide the basic form of an equation that can be used with experimental data to create site-specific correlations for an individual project or area.\n\nFor cases where the required property cannot be measured and correlations are used for final designs, the uncertainty in the parameter should be evaluated by the engineer. Different approaches can be used, including (1) the use of a range of values rather than a single value of a parameter, (2) use of the lowest likely value, (3) application of confidence limits, or (4) explicit consideration of uncertainty in the correlation using formal reliability analysis.\n\nConfidence limits are trend lines that are offset from the mean based on the standard deviation (S.D.) of the residuals between the data and the mean. Confidence limit boundaries plotted with mean trends help to illustrate the variability in a data set. Confidence limits or the standard deviation can be used to select appropriately conservative values from correlations. For example, if a correlated parameter is assigned a value that is one standard deviation below the mean, the probability is only 16% that the actual value is lower than the assigned value. This probability reduces to 2% for an assigned value that is two standard deviations below the mean. These probability margins assume that the error in the correlation follows a normal or log-normal distribution and that the selected trend line fits the data well.\n\nThe selection of an appropriate confidence limit above or below the mean trend depends on the effect of parameter on the particular analysis. In most cases, it is better to use a confidence below the mean. This will decrease the probability that the actual value is lower than the assigned value.",
+      "summary": "Introduces correlations as tools for obtaining values of engineering parameters from index properties or other easily measured soil parameters, often used when measured values are not available. Covers the sources of uncertainty in correlations, the uses for which they are typically most appropriate (preliminary design, or a check that measured values agree in general with the behavior of the soils used to develop the correlation), approaches for evaluating uncertainty where the required property cannot be measured and correlations are used for final designs, and the use of confidence limits and standard deviations to select appropriately conservative values.",
+      "body": "Correlations are useful tools for obtaining values of engineering parameters based on index properties or other easily measured soil parameters. Correlations are often used when measured values are not available. The accuracy and applicability of correlations depend on the data source, the statistical approach for determining the correlation, and the causal relationship between the index property and the engineering parameter. For these reasons, engineers should use correlations with caution. It is often prudent to seek out the original source of the correlation to ensure that it is applicable to the engineering problem at hand.\n\nOften, correlations provide an uncertain, empirical prediction of the parameter, which means that there are usually values above and below the proposed trend line. Uncertainty results from both scatter in the measured data and the inability of the chosen mathematical relationship to perfectly predict the observed trends. Because of this uncertainty, correlations are typically most appropriate for preliminary design or as a check that measured values are in general agreement with the behavior of the soils used to develop the correlation. In addition, correlations can provide the basic form of an equation that can be used with experimental data to create site-specific correlations for an individual project or area.\n\nFor cases where the required property cannot be measured and correlations are used for final designs, the uncertainty in the parameter should be evaluated by the engineer. Different approaches can be used, including (1) the use of a range of values rather than a single value of a parameter, (2) use of the lowest likely value, (3) application of confidence limits, or (4) explicit consideration of uncertainty in the correlation using formal reliability analysis.\n\nConfidence limits are trend lines that are offset from the mean based on the standard deviation (S.D.) of the residuals between the data and the mean. Confidence limit boundaries plotted with mean trends help to illustrate the variability in a data set. Confidence limits or the standard deviation can be used to select appropriately conservative values from correlations. For example, if a correlated parameter is assigned a value that is one standard deviation below the mean, the probability is only 16% that the actual value is lower than the assigned value. This probability reduces to 2% for an assigned value that is two standard deviations below the mean. These probability margins assume that the error in the correlation follows a normal or log-normal distribution and that the selected trend line fits the data well.\n\nThe selection of an appropriate confidence limit above or below the mean trend depends on the effect of parameter on the particular analysis. In most cases, it is better to use a confidence below the mean. This will decrease the probability that the correlated parameter is greater than the actual value, which undesirable in many cases (e.g., shear strength, Young's modulus, etc.). In a few cases, the opposite might be the case (e.g., compression index).",
       "key_points": [
-        "Correlations estimate engineering parameters from index or easily measured properties and should be used with caution, referencing original sources for applicability.",
-        "Uncertainty in correlations arises from data scatter and the limitations of the chosen mathematical model, making them best suited for preliminary design or verification of measured values.",
-        "For final designs relying on correlations, engineers should evaluate uncertainty via ranges, lowest likely values, confidence limits, or formal reliability analysis.",
-        "Confidence limits are offset from the mean trend by multiples of the standard deviation of residuals; one S.D. below the mean yields a 16% probability of underestimation, two S.D. yields 2%.",
-        "The appropriate confidence limit (above or below the mean) depends on how the parameter affects the specific analysis; conservative selections typically use values below the mean trend.",
-        "Correlations can serve as the basis for developing site-specific relationships when combined with project-specific experimental data."
+        "Correlations are useful tools for obtaining values of engineering parameters from index properties or other easily measured soil parameters; engineers should use them with caution, and it is often prudent to seek out the original source to ensure the correlation is applicable.",
+        "Uncertainty results from data scatter and the inability of the chosen relationship to perfectly predict the observed trends; so correlations are typically most appropriate for preliminary design or as a check that measured values agree in general with the soils used to develop them.",
+        "Where the required property cannot be measured and correlations are used for final designs, the engineer should evaluate the uncertainty, e.g., by a range of values, the lowest likely value, confidence limits, or formal reliability analysis.",
+        "Confidence limits are offset from the mean by the standard deviation of the residuals; for a value one S.D. below the mean the probability is only 16% that the actual value is lower, and 2% at two S.D., assuming normal or log-normal error and a well-fitting trend line.",
+        "The confidence limit used depends on the parameter's effect on the analysis; in most cases a confidence limit below the mean is better (e.g., shear strength, Young's modulus), but in a few cases the opposite might be the case (e.g., compression index).",
+        "Correlations can provide the basic form of an equation that can be used with experimental data to create site-specific correlations for an individual project or area."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies whenever soil or rock engineering parameters are estimated from correlations rather than direct measurement, particularly during preliminary design or when measured data are unavailable."
+      "applicability": "Applies when values of engineering parameters are obtained from correlations with index properties or other easily measured soil parameters: when measured values are not available, for preliminary design, as a check on measured values, or for final designs where the required property cannot be measured."
     },
     {
       "section_id": "8-2",
@@ -31,8 +31,7 @@
       "key_points": [
         "Covers drained friction angle correlations for coarse-grained soils (sands, gravels) and fine-grained soils (clays).",
         "Organized by soil type (coarse vs. fine-grained) and in-situ test method (SPT, CPT, DMT).",
-        "Fine-grained soil correlations focus on fully softened and residual friction angles due to OC effects precluding general effective strength correlations.",
-        "Correlations span classical references (Meyerhof 1956, Peck et al. 1974) to modern studies (Castellanos et al. 2021)."
+        "Fine-grained soil correlations focus on fully softened and residual friction angles due to OC effects precluding general effective strength correlations."
       ],
       "equations": [],
       "figures": [],
@@ -42,18 +41,17 @@
     {
       "section_id": "8-2.1",
       "title": "Coarse-Grained Soils",
-      "summary": "Introduces the scope and limitations of drained friction angle correlations for coarse-grained soils. Notes that most correlations apply to relatively clean sands, are not valid for micaceous sands, and should not be used for gravelly soils unless specified. Mica presence may reduce SPT N significantly without affecting friction angle.",
+      "summary": "Introduces the scope and limitations of drained friction angle correlations for coarse-grained soils. Most were developed for relatively clean sands unless otherwise noted; they should not be used in micaceous sands, or for gravelly soils unless specified. The presence of mica tends to reduce some index properties (e.g., the SPT N value) significantly but might not affect the drained friction angle (Sabatini et al. 2002).",
       "body": "Most of the correlations presented for coarse-grained soils have been developed for relatively clean sands unless otherwise noted. These correlations should not be used in micaceous sands. The presence of mica tends to reduce some index properties (e.g. the SPT N value) significantly but might not affect the drained friction angle when compared to clean sands (Sabatini et al. 2002). These correlations should not be used for gravelly soils unless specified.",
       "key_points": [
-        "Correlations apply primarily to clean sands; not valid for micaceous sands.",
-        "Mica reduces SPT N significantly but may not affect drained friction angle.",
-        "Correlations should not be applied to gravelly soils unless explicitly specified.",
-        "Older correlations without energy correction assumed reported N values equal to N60."
+        "Most of the correlations presented for coarse-grained soils were developed for relatively clean sands unless otherwise noted; they should not be used in micaceous sands.",
+        "The presence of mica tends to reduce some index properties (e.g., the SPT N value) significantly but might not affect the drained friction angle when compared to clean sands (Sabatini et al. 2002).",
+        "Correlations should not be applied to gravelly soils unless explicitly specified."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when selecting drained friction angle correlations for coarse-grained soils, specifically clean sands; use caution for micaceous or gravelly soils."
+      "applicability": "Applies when selecting drained friction angle correlations for coarse-grained soils: most were developed for relatively clean sands, they should not be used in micaceous sands, and they should not be used for gravelly soils unless specified."
     },
     {
       "section_id": "8-2.1.1",
@@ -63,8 +61,7 @@
       "key_points": [
         "Table 8-1 provides φ′ ranges for loose and dense states: e.g., uniform round-grain sand 27°–34°, well-graded angular sand 33°–45°, sandy gravel 35°–50°.",
         "Table 8-2 provides φ′ for USCS soil groups compacted to ASTM D698 max dry density: GW >38°, SW 38°, SP 37°.",
-        "Figure 8-1 allows graphical estimation of φ′ from dry unit weight and relative density for various soil types.",
-        "Values are for typical conditions and should be used with engineering judgment."
+        "Figure 8-1 allows graphical estimation of φ′ from dry unit weight and relative density for various soil types."
       ],
       "equations": [],
       "figures": [
@@ -74,20 +71,21 @@
         "Table 8-1",
         "Table 8-2"
       ],
-      "applicability": "Applies when estimating drained friction angle of coarse-grained soils based on soil classification (loose/dense state or USCS group) without in-situ test data."
+      "applicability": "Applies when typical values of the effective stress friction angle of coarse-grained soils are taken by soil description in loose or dense condition (Table 8-1), by USCS group compacted to the ASTM D698 maximum dry density (Table 8-2), or from relative density, dry unit weight and soil type (Figure 8-1)."
     },
     {
       "section_id": "8-2.1.2",
       "title": "Correlations with Standard Penetration Test",
-      "summary": "Provides multiple correlations between SPT N values and effective stress friction angle for coarse-grained soils. Covers Meyerhof (1956) and Mitchell (1981) tabular correlations (Tables 8-3 and 8-4), Sowers (1979) and Shioi and Fukui (1982) equations (Eq. 8-2, 8-3), Kulhawy and Mayne (1990) overburden-corrected formula (Eq. 8-4), and Peck et al. (1974) / Hatanaka and Uchida (1996) correlations (Eq. 8-5, 8-6). Includes correction for saturated silty sands (Eq. 8-1).",
-      "body": "Many relationships have been presented in the literature to estimate drained shear strength parameters of coarse-grained soils using results from the standard penetration test. In older correlations where no energy correction for the SPT N value was used, it was assumed that the reported N values were equal to N60.\n\nRelationships between SPT N values and static cone tip resistance presented by Duncan et al. (1989) summarizing the work presented by Meyerhof (1956) and Mitchell (1981) are shown in Table 8-3 and Table 8-4, respectively.\n\nThe effective stress friction angles presented in Table 8-3 are for clean sands and should be decreased by 5° for clayey sands and increased by 5° for gravelly sands. To use Table 8-3 on saturated very fine or silty sand, the measured SPT N should be corrected using Eq. 8-1.\n\nSowers (1979) related the effective stress friction angle to SPT N values for depths less than 5 feet and greater than 20 feet as presented in Figure 8-2. Interpolation can be used for depths between 5 and 20 feet. Shioi and Fukui (1982) also correlated the effective stress friction angle to N60 using Eq. 8-2 (for roads and bridges) and Eq. 8-3 (for buildings).\n\nParry (1977) and Schmertmann (1975) considered the effects of overburden pressure on the relationship between the effective stress friction angle and SPT N, resulting in the correlations shown in Figure 8-3. Kulhawy and Mayne (1990) approximated the trends in Figure 8-3(bottom) as Eq. 8-4.\n\nPeck et al. (1974) developed the correlation for the effective stress friction angle based on SPT N values shown in Figure 8-4. According to Ameratunga et al. (2016), this correlation is conservative. Wolff (1989) approximated this relationship as Eq. 8-5.\n\nHatanaka and Uchida (1996) also correlated the effective stress friction angle of sands to N1,60 as shown in Figure 8-4. This equation was developed using the results of triaxial tests from high-quality intact frozen samples of natural sands. Using an SPT hammer with an efficiency of 78%, the relationship was found to be Eq. 8-6.",
+      "summary": "Provides correlations between SPT N values and the effective stress friction angle of coarse-grained soils: Meyerhof (1956) and Mitchell (1981) tables (Tables 8-3 and 8-4, after Duncan et al. 1989), with Table 8-3 values for clean sands decreased by 5° for clayey sands and increased by 5° for gravelly sands and the N correction of Eq. 8-1 for saturated very fine or silty sand; Sowers (1979) (Figure 8-2); Shioi and Fukui (1982) (Eqs. 8-2, 8-3); Kulhawy and Mayne's (1990) approximation of Figure 8-3 (Eq. 8-4); Wolff's (1989) approximation of Peck et al. (1974) (Eq. 8-5); Hatanaka and Uchida (1996) (Eq. 8-6).",
+      "body": "Many relationships have been presented in the literature to estimate drained shear strength parameters of coarse-grained soils using results from the standard penetration test. In older correlations where no energy correction for the SPT N value was used, it was assumed that the reported N values were equal to N60.\n\nRelationships between SPT N values and static cone tip resistance presented by Duncan et al. (1989) summarizing the work presented by Meyerhof (1956) and Mitchell (1981) are shown in Table 8-3 and Table 8-4, respectively. [Notes to Table 8-4: 1 (on Relative Density) Freshly deposited, normally consolidated sand. 2 (on Standard Penetration Resistance, N1,60) Corrected to an effective vertical overburden pressure of 1 atm.]\n\nThe effective stress friction angles presented in Table 8-3 are for clean sands and should be decreased by 5° for clayey sands and increased by 5° for gravelly sands. To use Table 8-3 on saturated very fine or silty sand, the measured SPT N should be corrected using Eq. 8-1.\n\nSowers (1979) related the effective stress friction angle to SPT N values for depths less than 5 feet and greater than 20 feet as presented in Figure 8-2. Interpolation can be used for depths between 5 and 20 feet. Shioi and Fukui (1982) also correlated the effective stress friction angle to N60 using Eq. 8-2 (for roads and bridges) and Eq. 8-3 (for buildings).\n\nParry (1977) and Schmertmann (1975) considered the effects of overburden pressure on the relationship between the effective stress friction angle and SPT N, resulting in the correlations shown in Figure 8-3. Kulhawy and Mayne (1990) approximated the trends in Figure 8-3(bottom) as Eq. 8-4.\n\nPeck et al. (1974) developed the correlation for the effective stress friction angle based on SPT N values shown in Figure 8-4. According to Ameratunga et al. (2016), this correlation is conservative. Wolff (1989) approximated this relationship as Eq. 8-5.\n\nHatanaka and Uchida (1996) also correlated the effective stress friction angle of sands to N1,60 as shown in Figure 8-4. This equation was developed using the results of triaxial tests from high-quality intact frozen samples of natural sands. Using an SPT hammer with an efficiency of 78%, the relationship was found to be Eq. 8-6.",
       "key_points": [
         "Eq. 8-1 corrects SPT N for dynamic pore pressure effects in saturated very fine or silty sands; N′ = 15 + 0.5(N60 − 15) for N60 > 15.",
         "Shioi and Fukui Eq. 8-2 (roads/bridges): φ′ = √(15·N60) + 15; Eq. 8-3 (buildings): φ′ = 0.3·N60 + 27.",
         "Kulhawy and Mayne Eq. 8-4 accounts for overburden pressure (σ′v/Pa) in estimating φ′ from N60.",
-        "Wolff Eq. 8-5 approximates Peck et al. (1974): φ′ = 27.1 + 0.3·N1,60 − 0.00054·N1,60²; considered conservative.",
+        "Wolff (1989) approximated Peck et al. (1974) as Eq. 8-5: φ′ = 27.1 + 0.3·N1,60 − 0.00054·N1,60²; according to Ameratunga et al. (2016), the Peck et al. correlation is conservative.",
         "Hatanaka and Uchida Eq. 8-6: φ′ = √(15.4·N1,60) + 20, from frozen sample triaxial tests with 78% hammer efficiency.",
-        "Table 8-3 corrections: −5° for clayey sands, +5° for gravelly sands relative to clean sand values."
+        "Table 8-3 corrections: −5° for clayey sands, +5° for gravelly sands relative to clean sand values.",
+        "In older correlations where no energy correction for the SPT N value was used, it was assumed that the reported N values were equal to N60."
       ],
       "equations": [
         {
@@ -136,10 +134,10 @@
       "section_id": "8-2.1.3",
       "title": "Correlations with Cone Penetration Test",
       "summary": "Provides correlations between CPT tip resistance and effective stress friction angle for coarse-grained soils. Covers tabular correlations (Tables 8-3 through 8-5), Mayne (2007) Eq. 8-7 using corrected tip resistance and overburden pressure, Robertson and Campanella (1983) Eq. 8-8 for normally consolidated uncemented quartz sands, Schmertmann (1975/1978) two-step approach via relative density (Figs. 8-9, 8-10), and OC correction factor Eq. 8-9.",
-      "body": "Two relationships between CPT results and effective stress friction angle were already presented in Table 8-3 and Table 8-4. Table 8-5 presents a similar relationship developed by Bergdahl et al. (1993).\n\nMayne (2007) used the results of calibration chamber tests to estimate the effective stress friction of coarse-grained soils for CPT results as Eq. 8-7.\n\nFigure 8-5 correlates the effective stress friction angle with CPT tip resistance as summarized by Meyerhof (1976). In cases where the tip resistance increases with depth, the method outlined in Figure 8-6 can be used to obtain the bearing capacity factor (Nq). The correlation presented in Figure 8-7 can be used to obtain the effective stress friction angle from Nq.\n\nRobertson and Campanella (1983) correlated the effective stress friction angle to the measured CPT tip resistance (electric cone) from tests performed in a calibration chamber. The correlation used drained triaxial tests on uncemented, unaged, moderately compressible quartz sands and considers the effect of overburden pressure as shown in Figure 8-8. The relationship presented in Figure 8-8(a) was approximated by Robertson and Cabal (2014) using Eq. 8-8.\n\nSchmertmann (1975) presented a correlation to determine the effective stress friction angle based on the CPT tip resistance. To use this correlation, the relative density first needs to be determined using Figure 8-9. Using the correlated value of relative density, the effective stress friction angle can be determined from Figure 8-10.\n\nFor this purpose, Schmertmann (1978) developed a correction factor (R) for overconsolidated sands such that the effect of overconsolidation on the measured tip resistance needs to be considered before using correlations proposed for normally consolidated sands, as given in Eq. 8-9. According to Lunne and Christoffersen (1985), β can be assumed as 0.45 for all practical purposes.",
+      "body": "Two relationships between CPT results and effective stress friction angle were already presented in Table 8-3 and Table 8-4. Table 8-5 presents a similar relationship developed by Bergdahl et al. (1993), according to Ameratunga et al. (2016).\n\nMayne (2007) used the results of calibration chamber tests to estimate the effective stress friction of coarse-grained soils for CPT results as Eq. 8-7.\n\nFigure 8-5 correlates the effective stress friction angle with CPT tip resistance as summarized by Meyerhof (1976). In cases where the tip resistance increases with depth, the method outlined in Figure 8-6 can be used to obtain the bearing capacity factor (Nq). The correlation presented in Figure 8-7 can be used to obtain the effective stress friction angle from Nq.\n\nRobertson and Campanella (1983) correlated the effective stress friction angle to the measured CPT tip resistance (electric cone) from tests performed in a calibration chamber. The correlation used drained triaxial tests on uncemented, unaged, moderately compressible quartz sands and considers the effect of overburden pressure as shown in Figure 8-8. The relationship presented in Figure 8-8(a) was approximated by Robertson and Cabal (2014) using Eq. 8-8.\n\nSchmertmann (1975) presented a correlation to determine the effective stress friction angle based on the CPT tip resistance. To use this correlation, the relative density first needs to be determined using Figure 8-9. Using the correlated value of relative density, the effective stress friction angle can be determined from Figure 8-10.\n\nFor this purpose, Schmertmann (1978) developed a correction factor (R) as given in Eq. 8-9, where OCR = overconsolidation ratio, β = exponent, qc,OC = CPT tip resistance in overconsolidated sand, and qc,NC = CPT tip resistance in normally consolidated sand.\n\nFor overconsolidated sands, the effect of overconsolidation on the measured tip resistance needs to be considered before using correlations proposed for normally consolidated sands. An example of using this approach is shown in Figure 8-11. According to Lunne and Christoffersen (1985), β can be assumed as 0.45 for all practical purposes.",
       "key_points": [
         "Mayne (2007) Eq. 8-7 uses corrected tip resistance qt and σ′v/Pa ratio: φ′ = 17.6 + 11·log(qt/Pa / √(σ′v/Pa)).",
-        "Robertson and Campanella (1983) Eq. 8-8, as approximated by Robertson and Cabal (2014): tan φ′ = (1/2.68)·[log(qc/σ′v) + 0.29]; valid for NC uncemented quartz sands.",
+        "Robertson and Campanella (1983), from calibration chamber tests with drained triaxial tests on uncemented, unaged, moderately compressible quartz sands, as approximated by Robertson and Cabal (2014) (Eq. 8-8): tan φ′ = (1/2.68)·[log(qc/σ′v) + 0.29].",
         "Schmertmann two-step approach: first determine Dr from Fig. 8-9, then φ′ from Dr using Fig. 8-10 (North Sea sands).",
         "OC correction (Eq. 8-9): qc,OC/qc,NC = 1 + 0.75·(OCR^β − 1); β ≈ 0.45 per Lunne and Christoffersen (1985).",
         "Table 8-5 (Bergdahl et al. 1993) provides tabular qc vs. φ′ for relative density classes from very loose to very dense.",
@@ -186,7 +184,7 @@
         "Upper bound (Ricceri et al. 2002, Eq. 8-11): φ′ = 31 + KD / (0.236 + 0.066·KD).",
         "Lower bound (Marchetti 1997, Eq. 8-12): φ′ = 28 + 14.6·log(KD) − 2.1·log²(KD).",
         "Lower bound may underestimate in situ φ′ by 2°–4°.",
-        "Applicable to clean sands only; results plotted in Figure 8-12."
+        "The correlations relate the effective stress friction angle for clean sands to KD; the upper and lower bound equations are plotted in Figure 8-12."
       ],
       "equations": [
         {
@@ -217,7 +215,7 @@
       "summary": "Introduces the limitations and scope of effective stress shear strength correlations for fine-grained soils. Overconsolidation effects preclude accurate general effective stress parameter correlations, so the focus is on fully softened friction angle (φ′FS, equal to NC peak value) and residual friction angle (φ′r). Subsections address each category separately.",
       "body": "The effects of overconsolidation on the shear strength preclude the development of accurate correlations for the effective shear parameters of fine-grained soils. However, multiple correlations have been developed for the fully softened (φ′FS) and residual (φ′r) friction angles of clays, where the fully softened friction angle is taken to be equal to the normally consolidated peak value.",
       "key_points": [
-        "Overconsolidation effects make general effective stress parameter correlations unreliable for fine-grained soils.",
+        "The effects of overconsolidation on the shear strength preclude the development of accurate correlations for the effective shear parameters of fine-grained soils.",
         "Two key parameters addressed: fully softened friction angle (φ′FS) and residual friction angle (φ′r).",
         "φ′FS is taken equal to the normally consolidated peak friction angle.",
         "Correlations use plasticity index, liquid limit, and clay fraction as index parameters."
@@ -225,13 +223,13 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when selecting appropriate effective stress shear strength parameters for fine-grained soils, particularly for slope stability analyses involving first-time and reactivated failures."
+      "applicability": "Applies when effective stress friction angles of fine-grained soils are estimated from correlations: overconsolidation effects preclude accurate correlations for the effective shear parameters, so the correlations presented are for the fully softened (taken equal to the normally consolidated peak value) and residual friction angles of clays."
     },
     {
       "section_id": "8-2.2.1",
       "title": "Correlations for Fully Softened Shear Strength",
-      "summary": "Provides multiple correlations for the fully softened friction angle φ′FS of fine-grained soils using plasticity index and mineral composition. Covers Gibson (1953) with Eq. 8-13 polynomial fit, Ladd et al. (1977), Terzaghi et al. (1996), Tiwari and Ajmera (2011), and Castellanos et al. (2021) nonlinear power-function correlations (Eqs. 8-14, 8-15) for both linear and stress-dependent nonlinear failure envelopes.",
-      "body": "Gibson (1953) presented a relationship for φ′FS, which is plotted in Figure 8-13. The standard deviation of the data about the trend is plotted as confidence limits. The mean trend line can be approximated by Eq. 8-13 according to Carter and Bentley (2016). According to Carter and Bentley (2016) the polynomial fit is in agreement with the original curve to within 1% for the fully softened condition.\n\nA similar correlation was presented by Ladd et al. (1977) based on triaxial tests on intact normally consolidated clays as shown in Figure 8-14.\n\nA similar relationship between φ′FS and PI was proposed by Terzaghi et al. (1996) as shown in Figure 8-15. This relationship was developed from the results of tests on normally consolidated specimens with most of them being remolded.\n\nTiwari and Ajmera (2011) presented the correlations shown in Figure 8-16 and Figure 8-17 for the fully softened friction angle. These correlations were based on direct shear tests performed on 36 artificially created soils made by mixing different proportions of quartz, kaolinite and montmorillonite.\n\nThe preceding relationships only consider linear failure envelopes (i.e., constant friction angle) while real soils often exhibit a nonlinear failure envelope. Nonlinear failure envelopes have been described by multiple mathematical forms, including normal stress dependent secant friction angle and two-parameter power function with parameters a and b. Shear strength is calculated using a secant friction angle as given by Eq. 8-14. The two-parameter power function describes shear strength nonlinearly as given by Eq. 8-15.\n\nCastellanos et al. (2021) presented the correlations for nonlinear fully softened shear strength parameters shown in Figure 8-18 and Figure 8-19. These correlations were developed based on over 400 direct shear tests on 97 soils. The equations and standard deviations provided on the plots allow uncertainty in the correlations to be explicitly considered. Castellanos et al. (2021) also provide statistical measures of the covariance of the correlations for aFS and bFS.",
+      "summary": "Provides correlations for the fully softened friction angle φ′FS of clays from plasticity index, clay fraction and mineral composition: Gibson (1953) with the Eq. 8-13 polynomial fit (Carter and Bentley 2016), Ladd et al. (1977), Terzaghi et al. (1996), Tiwari and Ajmera (2011), and, for nonlinear failure envelopes described by a secant friction angle (Eq. 8-14) or a power function (Eq. 8-15), the Castellanos et al. (2021) correlations for aFS and bFS.",
+      "body": "Gibson (1953) presented a relationship for φ′FS, which is plotted in Figure 8-13. The standard deviation of the data about the trend is plotted as confidence limits. The mean trend line can be approximated by Eq. 8-13 according to Carter and Bentley (2016). According to Carter and Bentley (2016) the polynomial fit is in agreement with the original curve to within 1% for the fully softened condition.\n\nA similar correlation was presented by Ladd et al. (1977) based on triaxial tests on intact normally consolidated clays as shown in Figure 8-14. The confidence limits in this figure are plotted at one standard deviation above and below the mean trend.\n\nA similar relationship between φ′FS and PI was proposed by Terzaghi et al. (1996) as shown in Figure 8-15. This relationship was developed from the results of tests on normally consolidated specimens with most of them being remolded.\n\nTiwari and Ajmera (2011) presented the correlations shown in Figure 8-16 and Figure 8-17 for the fully softened friction angle. These correlations were based on direct shear tests performed on 36 artificially created soils. Tiwari and Ajmera (2011) created the artificial soils for this study by mixing different proportions of quartz, kaolinite and montmorillonite.\n\nThe preceding relationships only consider linear failure envelopes (i.e., constant friction angle) while real soils often exhibit a nonlinear failure envelope. Nonlinear failure envelopes have been described by multiple mathematical forms, including normal stress dependent secant friction angle and two-parameter power function with parameters a and b. Shear strength is calculated using a secant friction angle as given by Eq. 8-14. The two-parameter power function describes shear strength nonlinearly as given by Eq. 8-15.\n\nCastellanos et al. (2021) presented the correlations for nonlinear fully softened shear strength parameters shown in Figure 8-18 and Figure 8-19. These correlations were developed based on over 400 direct shear tests on 97 soils. The equations and standard deviations provided on the plots allow uncertainty in the correlations to be explicitly considered. Castellanos et al. (2021) also provide statistical measures of the covariance of the correlations for aFS and bFS.",
       "key_points": [
         "Gibson (1953) Eq. 8-13: φ′FS = 0.0058·PI^1.73 − 0.32·PI + 36.2; fits original curve to within 1%.",
         "Ladd et al. (1977) and Terzaghi et al. (1996) provide graphical PI-based correlations from NC clay triaxial and remolded test data.",
@@ -267,12 +265,12 @@
         "Figure 8-19"
       ],
       "tables": [],
-      "applicability": "Applies when estimating the fully softened friction angle of fine-grained soils using plasticity index or mineral composition, for use in first-time slope failure analyses or progressive failure assessments."
+      "applicability": "Applies when the fully softened friction angle of clays (taken equal to the normally consolidated peak value) is estimated from plasticity index, clay fraction or mineral composition, with a linear failure envelope or a nonlinear one (secant friction angle or power function)."
     },
     {
       "section_id": "8-2.2.2",
       "title": "Correlations for Residual Shear Strength",
-      "summary": "Presents correlations for residual friction angle φ′r of fine-grained soils using plasticity index, clay fraction, and liquid limit. Covers Gibson (1953) Eq. 8-16, Skempton (1964, 1985), Voight (1973), Bovis (1985), Stark and Hussain (2013) stress-dependent Eq. 8-17 with Table 8-6 coefficients, and Castellanos et al. (2021) power-function parameters from ring shear tests on 102 clays (Figs. 8-23, 8-24).",
+      "summary": "Presents correlations for the residual friction angle φ′r of clays using plasticity index, clay fraction, and liquid limit: Gibson (1953) Eq. 8-16, Skempton (1964, 1985), Voight (1973) supported by Bovis (1985), Stark and Hussain (2013) stress-dependent Eq. 8-17 with Table 8-6 coefficients (to be used with care because sample processing was not consistent), and power-function parameters from Virginia Tech torsional ring shear tests on 102 clays (Figures 8-23 and 8-24, after Castellanos et al. 2021).",
       "body": "Gibson (1953) also presented a relationship for φ′r as plotted in Figure 8-13. The residual friction angle trend line can be approximated by Eq. 8-16 according to Carter and Bentley (2016). According to Carter and Bentley (2016) this polynomial fit agrees with the original curves to within 5% for the residual friction angle.\n\nSkempton (1964, 1985) related the residual friction angle to the clay-sized fraction as presented in Figure 8-20. The friction angles were measured using ring shear tests performed on normally consolidated and overconsolidated samples.\n\nUsing published results, Voight (1973) developed the correlation presented in Figure 8-21(top) to estimate the residual strength of clays based on the plasticity index. Voight's correlation was later supported by the residual strength measurements performed by Bovis (1985) whose results can be seen in Figure 8-21(bottom).\n\nStark and Hussain (2013) correlated the residual friction angle of clays to the liquid limit for various ranges of clay sized fraction as shown in Figure 8-22. This correlation needs to be used with care because of the methods that were used to process the soil samples for index property measurements were not consistent. For this correlation, the index properties of clay samples were obtained from specimens sieved through a No. 40 sieve without any other processing. On the other hand, shale samples were ball-milled and sieved through a No. 200 sieve. These differences in the procedures used to process samples for measuring the index properties should be considered when using the correlation.\n\nStark and Hussain (2013) correlation provides stress-dependent residual secant friction angles for four different values of effective normal stress ranging from 50 to 700 kPa, calculated as Eq. 8-17 with coefficients listed in Table 8-6.\n\nLaboratory testing at Virginia Tech has produced correlations for residual shear strength based on the results of torsional ring shear tests on 102 clays with plasticity indices between 6 and 112, liquid limits between 22 and 143, and clay fractions ranging from 13 to 90%. Figure 8-23 and Figure 8-24 present the relationship between power function parameters (see Equation 8-15), plasticity index, and clay fraction.",
       "key_points": [
         "Gibson (1953) Eq. 8-16: φ′r = 0.084·PI^1.4 − 0.75·PI + 31.9; fits original curves to within 5%.",
@@ -304,7 +302,7 @@
       "tables": [
         "Table 8-6"
       ],
-      "applicability": "Applies when estimating residual friction angle of fine-grained soils for reactivated landslide analyses or design of slopes in previously sheared or overconsolidated clays."
+      "applicability": "Applies when the residual friction angle of clays is estimated from plasticity index, clay-sized fraction or liquid limit, including stress-dependent residual secant friction angles for effective normal stresses from 50 to 700 kPa (Stark and Hussain 2013)."
     },
     {
       "section_id": "8-3",
@@ -315,7 +313,7 @@
         "Undrained shear strength can be estimated through multiple empirical correlations involving index properties, stress history, CPT, SPT, and dilatometer data.",
         "All empirical bearing capacity factors (Nc, Nk, Nkt) should be calibrated on a site- or region-specific basis.",
         "Stress history (OCR) significantly influences undrained shear strength; overconsolidation increases su/σ′v ratio.",
-        "SPT-based correlations for su exhibit significant scatter and should be used with caution."
+        "Stroud and Butler's (1975) SPT correlation for overconsolidated clays exhibits significant scatter, which reduces the reliability of the correlation."
       ],
       "equations": [],
       "figures": [],
@@ -329,10 +327,10 @@
       "body": "Skempton and Northey (1952) presented the relationship shown in Figure 8-25 that related the undrained shear strength of normally consolidated clays to the liquidity index. Terzaghi et al. (1996) demonstrated a strong relationship between the undrained shear strength of remolded clays and the liquidity index as shown in Figure 8-26. The results show similar behavior over a wider range of liquidity index to that observed by Skempton and Northey (1952).\n\nSkempton (1957) compiled data from various sources to estimate the undrained shear strength of normally consolidated clay based on plasticity index as:\n\nsu / σ′v = 0.11 + 0.0037·PI  (Eq. 8-18)\n\nwhere su = undrained shear strength, σ′v = vertical effective stress, and PI = plasticity index (%).\n\nSkempton's (1957) correlation, which is plotted in Figure 8-27, was based primarily on the results of field vane tests. It is unlikely that these shear strengths were corrected as required by ASTM D2573, meaning the values might be too high. The correlation presented by Skempton (1957) was later supported by Robertson and Campanella (1984) using vane shear test results presented by Ladd and Foott (1974).\n\nA similar correlation based on laboratory tests was presented by Ladd and DeGroot (2004) and is shown in Figure 8-28. The correlation presented by Ladd and DeGroot (2004) shows the dependency of the undrained shear strength on the laboratory stress path used to obtain the measurement.\n\nLarson (1980) collected the undrained strength ratios and liquid limits of normally consolidated Scandinavian clays from various sources. These data are plotted in Figure 8-29 along with the equation proposed by Hansbo (1957):\n\n(su / σ′v)NC = 0.0045·LL  (Eq. 8-19)\n\nwhere su = undrained shear strength (normally consolidated), σ′v = vertical effective stress, and LL = liquid limit (%).\n\nThe data collected by Larson (1980), which is from field vane tests, agrees well with Equation 8-19. Larson (1980) discusses various methods for correcting undrained strength measured using the vane shear but it is not clear whether or not the data in Figure 8-29 were corrected.",
       "key_points": [
         "Skempton (1957) Eq. 8-18: su/σ′v = 0.11 + 0.0037·PI for normally consolidated clays; based primarily on field vane tests that may not have been corrected per ASTM D2573.",
-        "Hansbo (1957) Eq. 8-19: (su/σ′v)NC = 0.0045·LL, validated against Scandinavian normally consolidated clay field vane data.",
+        "Hansbo (1957) Eq. 8-19: (su/σ′v)NC = 0.0045·LL; Larson's (1980) field vane data on normally consolidated Scandinavian clays agree well with it, though it is not clear whether those data were corrected.",
         "Ladd and DeGroot (2004) lab-based correlation (Fig. 8-28) shows that the undrained strength ratio depends on the laboratory stress path.",
-        "Field vane-based correlations may be unconservatively high if vane correction factors per ASTM D2573 were not applied.",
-        "Liquidity index correlations (Figs. 8-25 and 8-26) provide a quick estimate of su for remolded clays across a wide LI range."
+        "Skempton's (1957) correlation was later supported by Robertson and Campanella (1984) using vane shear test results presented by Ladd and Foott (1974).",
+        "Skempton and Northey (1952) related undrained shear strength to liquidity index (Figure 8-25); Terzaghi et al. (1996) demonstrated a strong relationship for remolded clays over a wider range of liquidity index (Figure 8-26)."
       ],
       "equations": [
         {
@@ -354,13 +352,13 @@
         "Figure 8-29 Variation of the Undrained Strength Ratio with Liquid Limit (after Larson 1980)"
       ],
       "tables": [],
-      "applicability": "Applies when estimating undrained shear strength of normally consolidated clays using Atterberg limits (PI or LL) or liquidity index as input."
+      "applicability": "Applies when estimating the undrained shear strength of normally consolidated clays from plasticity index or liquid limit, or of remolded clays from liquidity index."
     },
     {
       "section_id": "8-3.2",
       "title": "Correlations with Stress History",
       "summary": "Covers how stress history (OCR) affects the undrained shear strength ratio of cohesive soils. Provides typical NC undrained strength ratios (Table 8-7), OCR-dependent ratios (Table 8-8, Fig. 8-30), and the power law (Eq. 8-20) with fitting parameter m (Table 8-9). Also includes simplified estimate for very soft clays (Eq. 8-21) and K0 vs. isotropic consolidation correction (Eq. 8-22).",
-      "body": "Mesri (1975) corrected the results of vane shear tests from the literature with the vane correction factor proposed by Bjerrum (1972) and found that the undrained strength ratio for normally consolidated soil is relatively constant. Similarly, Jamiolkowski et al. (1985) found relatively constant values of normally consolidated undrained strength ratio for clays with PI less than 60. Chandler (1988) and Ladd and DeGroot (2004) also analyzed undrained strength data sets to determine typical values of undrained strength ratio for various types of clay. These trends are summarized in Table 8-7.\n\nOverconsolidation results in an increase in the undrained shear strength. Schmertmann (1978) compared the undrained strength ratio for overconsolidated clays to that for normally consolidated clays as a function of OCR as summarized in Table 8-8 and Figure 8-30.\n\nFor overconsolidated clays, Jamiolkowski et al. (1985) and Ladd and DeGroot (2004) showed that the effects of stress history on the undrained shear strength ratio can be accounted for by:\n\n(su/σ′v)OC = (su/σ′v)NC · OCR^m  (Eq. 8-20)\n\nwhere su = undrained shear strength (NC = normally consolidated, OC = overconsolidated), σ′v = vertical effective stress, OCR = overconsolidation ratio, and m = semi-empirical fitting parameter.\n\nThe value of m is theoretically related to the recompression and compression indices as shown by Roscoe et al. (1958) and Mitachi and Kitago (1976) for ideal or remolded soils. For real soils, undrained laboratory shear strength tests on soil specimens at different values of OCR can be used to determine m. Ladd et al. (1977) observed that m is approximately 0.8 based on direct simple shear tests. Typical values for m are summarized in Table 8-9.\n\nFor very soft clays with overconsolidation ratios less than 2, Sabatini et al. (2002) found that the undrained shear strength could be estimated as (assumes m equals 1):\n\nsu ≈ 0.21·σ′p  (Eq. 8-21)\n\nwhere su = undrained shear strength and σ′p = preconsolidation pressure.\n\nThe consolidation stress state in triaxial compression tests also influences the undrained shear strength. Based on data from 48 normally consolidated clays, Mayne (1985) found that the ratio was about 0.87 for undrained shear strengths from K0-consolidated and isotropically consolidated undrained triaxial compression tests.\n\nKulhawy and Mayne (1990) examined the data and found that the normally consolidated undrained strength ratio for K0-consolidated tests can be related to the isotropically consolidated tests by:\n\n(su/σ′v)ACU = 0.15 + 0.49·(su/σ′v)ICU  (Eq. 8-22)\n\nwhere (su/σ′v)ACU = undrained strength ratio in CK0U triaxial compression, and (su/σ′v)ICU = undrained strength ratio in ICU triaxial compression.",
+      "body": "Mesri (1975) corrected the results of vane shear tests from the literature with the vane correction factor proposed by Bjerrum (1972) and found that the undrained strength ratio for normally consolidated soil is relatively constant. Similarly, Jamiolkowski et al. (1985) found relatively constant values of normally consolidated undrained strength ratio for clays with PI less than 60. Chandler (1988) and Ladd and DeGroot (2004) also analyzed undrained strength data sets to determine typical values of undrained strength ratio for various types of clay. These trends are summarized in Table 8-7. [Notes to Table 8-7: PI = plasticity index, LI = liquid index [as printed; LI is the liquidity index]. Shear strengths presented by Jamiolkowski et al. (1985) and Chandler (1988) were not corrected as required by ASTM D2573 and may be too high.]\n\nOverconsolidation results in an increase in the undrained shear strength. Schmertmann (1978) compared the undrained strength ratio for overconsolidated clays to that for normally consolidated clays as a function of OCR as summarized in Table 8-8 and Figure 8-30.\n\nFor overconsolidated clays, Jamiolkowski et al. (1985) and Ladd and DeGroot (2004) showed that the effects of stress history on the undrained shear strength ratio can be accounted for by:\n\n(su/σ′v)OC = (su/σ′v)NC · OCR^m  (Eq. 8-20)\n\nwhere su = undrained shear strength (NC = normally consolidated, OC = overconsolidated), σ′v = vertical effective stress, OCR = overconsolidation ratio, and m = semi-empirical fitting parameter.\n\nThe value of m is theoretically related to the recompression and compression indices as shown by Roscoe et al. (1958) and Mitachi and Kitago (1976) for ideal or remolded soils. [Footnote 14: For this to be true, ideal or remolded soils must be assumed to follow the tenets of critical state soil mechanics. This assumption breaks down for soils exhibiting post-peak strain softening. This idealization also assumes that Cc and Cr are log-linear for all ranges of stresses and for any rebound pressure.] For real soils, undrained laboratory shear strength tests on soil specimens at different values of OCR can be used to determine m. Ladd et al. (1977) observed that m is approximately 0.8 based on direct simple shear tests. Typical values for m are summarized in Table 8-9. [Note to Table 8-9: Cc = compression index and Cr = recompression index]\n\nFor very soft clays with overconsolidation ratios less than 2, Sabatini et al. (2002) found that the undrained shear strength could be estimated as (assumes m equals 1):\n\nsu ≈ 0.21·σ′p  (Eq. 8-21)\n\nwhere su = undrained shear strength and σ′p = preconsolidation pressure.\n\nThe consolidation stress state in triaxial compression tests also influences the undrained shear strength. Based on data from 48 normally consolidated clays, Mayne (1985) found that the ratio was about 0.87 for undrained shear strengths from K0-consolidated and isotropically consolidated undrained triaxial compression tests.\n\nKulhawy and Mayne (1990) examined the data and found that the normally consolidated undrained strength ratio for K0-consolidated tests can be related to the isotropically consolidated tests by:\n\n(su/σ′v)ACU = 0.15 + 0.49·(su/σ′v)ICU  (Eq. 8-22)\n\nwhere (su/σ′v)ACU = undrained strength ratio in CK0U triaxial compression, and (su/σ′v)ICU = undrained strength ratio in ICU triaxial compression.",
       "key_points": [
         "Mesri (1975) found the NC undrained strength ratio relatively constant, 0.22 ± 0.03 from corrected vane shear tests; Jamiolkowski et al. (1985) found 0.23 ± 0.04 for clays with PI less than 60 (Table 8-7).",
         "Eq. 8-20: (su/σ′v)OC = (su/σ′v)NC · OCR^m, with m a semi-empirical fitting parameter; Ladd et al. (1977) observed that m is approximately 0.8 based on direct simple shear tests (typical values in Table 8-9).",
@@ -403,10 +401,10 @@
       "body": "Undrained shear strength is typically estimated from the cone tip resistance measured in the CPT using methods based on bearing capacity. The three methods are the Nc, Nk, and Nkt methods as defined by Lunne et al. (1997). The empirical bearing capacity factors (Nc, Nk, and Nkt) should be calibrated on a site- or region-specific basis by relating known values of undrained shear strength measured using the triaxial device (ASTM D2166, ASTM D2850), laboratory miniature vane shear (ASTM D4648), field vane shear (ASTM D2573), or direct simple shear (ASTM D6528) to the predicted values based on Equations 8-23 to 8-25.\n\nThe Nc method is the simplest and directly relates the CPT tip resistance to the undrained shear strength as:\n\nsu = qc / Nc  (Eq. 8-23)\n\nwhere qc = cone tip resistance, and Nc = empirical bearing capacity factor.\n\nIn most cases, the value of Nc is in the range of 17 to 23 for normally consolidated and slightly overconsolidated clays. The Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.\n\nThe Nk method considers the overburden pressure acting at the point of the measurement. Based on this method, the undrained shear strength can be determined from CPT results as:\n\nsu = (qc − σv) / Nk  (Eq. 8-24)\n\nwhere qc = cone tip resistance, σv = total vertical stress, and Nk = empirical bearing capacity factor.\n\nData presented by Lunne and Kleven (1982) shows that Nk ranges from about 10 to about 19 with an average of 15. Carter and Bentley (2016) suggest values of 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.\n\nThe Nkt method is a modification of the Nk method that considers the pore pressure acting at the tip of the cone. The undrained shear strength is calculated as:\n\nsu = (qt − σv) / Nkt  (Eq. 8-25)\n\nwhere qc = cone tip resistance, σv = total vertical stress, Nkt = empirical bearing capacity factor, qt = corrected tip resistance = qc + u·(1+a) [As printed here and in the where-list of Eq. 8-7 (PDF p. 428, printed p. 400). FHWA-NHI-16-072 (GEC 5, November 2016), Eq. 4.23, p. 4-29, prints qt = qc + u2(1 − a), with a the net area ratio determined through calibration.], u = pore pressure measured behind the cone tip (u2 position), and a = cone net area ratio = ratio of face area to shoulder area.\n\nModern cones have net area ratios above 0.8 and little difference is typically observed in the Nk and Nkt methods. Values of Nkt are often in the range of 14 to 16.",
       "key_points": [
         "Three CPT methods: Nc (Eq. 8-23, simplest, no overburden correction), Nk (Eq. 8-24, subtracts total vertical stress), and Nkt (Eq. 8-25, uses pore-pressure-corrected tip resistance).",
-        "Nc typically ranges 17–23; Nc method loses accuracy below 15 m depth due to neglect of overburden.",
-        "Nk ranges 10–19 (avg. 15); recommend 17–18 for NC clays and 20 for OC clays (Carter and Bentley 2016).",
-        "Nkt typically 14–16; for modern cones (net area ratio > 0.8), Nk and Nkt results are similar.",
-        "All empirical factors must be calibrated site-specifically against triaxial, vane shear, or DSS measurements."
+        "Nc is in most cases 17 to 23 for normally consolidated and slightly overconsolidated clays; the Nc method may be less accurate than other methods at depths greater than 15 m because the overburden pressure is not considered.",
+        "Lunne and Kleven (1982) data show Nk from about 10 to about 19 with an average of 15; Carter and Bentley (2016) suggest 17 or 18 for normally consolidated clays and 20 for overconsolidated clays.",
+        "Nkt values are often 14 to 16; modern cones have net area ratios above 0.8 and little difference is typically observed between the Nk and Nkt methods.",
+        "The empirical factors Nc, Nk and Nkt should be calibrated on a site- or region-specific basis against undrained shear strengths from triaxial, laboratory miniature vane, field vane or direct simple shear tests."
       ],
       "equations": [
         {
@@ -432,12 +430,12 @@
     {
       "section_id": "8-3.4",
       "title": "Correlations with Standard Penetration Test",
-      "summary": "Reviews correlations between SPT N values and undrained shear strength for cohesive soils. Table 8-10 provides su ranges by consistency class from three sources. Eq. 8-26 (Carter and Bentley 2016) quantifies su for overconsolidated clays as a function of N and PI. Figures 8-31 and 8-32 illustrate significant scatter in SPT-su relationships across different USCS classifications and reference sources.",
+      "summary": "Reviews correlations between SPT N values and undrained shear strength for cohesive soils. Table 8-10 gives su ranges by consistency from three sources. Eq. 8-26 (Carter and Bentley 2016) approximates the Stroud and Butler (1975) trend for overconsolidated clays as a function of N and PI; that relationship exhibits significant scatter (Figure 8-31). Figure 8-32 presents Sowers' (1979) correlations for USCS classifications with those of Hara et al. (1974) and Terzaghi and Peck (1967).",
       "body": "Various attempts have been made to correlate the undrained shear strength of clays to SPT N values. Observed ranges of undrained shear strength based on soil consistency and N are summarized in Table 8-10.\n\nStroud and Butler (1975) developed a correlation for the undrained shear strength of overconsolidated clays as a function of the SPT N value. As shown in Figure 8-31, the relationship exhibits significant scatter, which reduces the reliability of the correlation. Carter and Bentley (2016) approximated the trendline in Figure 8-31 as:\n\nsu/N = 8910/PI³ + 4.36  (Eq. 8-26)\n\nwhere su = undrained shear strength (in kPa), N = SPT-N value, and PI = plasticity index.\n\nSowers (1979) correlated undrained shear strength to SPT N for different USCS soil classifications as presented in Figure 8-32. Relationships proposed by Hara et al. (1974) and Terzaghi and Peck (1967) are also presented in Figure 8-32. Hara et al.'s correlation is based on undrained shear strengths from triaxial compression tests.",
       "key_points": [
-        "Table 8-10 provides su ranges (psf) by SPT N and consistency class (very soft to hard) from three independent sources.",
+        "Table 8-10 gives su ranges (psf) by SPT N and consistency (very soft to hard) from Parcher and Means (1968), Tschebotarioff (1973) and Terzaghi et al. (1996).",
         "Eq. 8-26: su/N = 8910/PI³ + 4.36 for overconsolidated clays (Carter and Bentley 2016, after Stroud and Butler 1975); su in kPa.",
-        "SPT-su correlations show significant scatter, reducing reliability; site-specific calibration is recommended.",
+        "Stroud and Butler's (1975) relationship exhibits significant scatter, which reduces the reliability of the correlation.",
         "Fig. 8-32 compares Sowers (1979), Hara et al. (1974), and Terzaghi and Peck (1967) correlations; Hara et al. based on triaxial compression tests."
       ],
       "equations": [
@@ -460,12 +458,12 @@
       "section_id": "8-3.5",
       "title": "Correlations with Dilatometer",
       "summary": "Summarizes empirical correlations for estimating undrained shear strength of overconsolidated clays from dilatometer horizontal stress index (KD) and dilatometer modulus (ED). Table 8-11 presents three source correlations: Marchetti (1980) and Kamei and Iwasaki (1995) using KD-based su/σ′v expressions, and Iwasaki and Kamei (1994) using ED directly for su in kPa.",
-      "body": "The undrained shear strength of overconsolidated clays has been correlated to the horizontal stress index (KD) and the dilatometer modulus (ED) as summarized in Table 8-11.",
+      "body": "The undrained shear strength of overconsolidated clays has been correlated to the horizontal stress index (KD) and the dilatometer modulus (ED) as summarized in Table 8-11. [Note to Table 8-11: su = undrained shear strength in kPa, σʹv = vertical effective stress in kPa, KD = horizontal stress index from dilatometer, and ED = dilatometer modulus in kPa.]",
       "key_points": [
         "Marchetti (1980): (su/σ′v)OC = (su/σ′v)NC·(0.5·KD)^1.25 ≈ 0.22·(0.5·KD)^1.25, using KD from dilatometer.",
         "Kamei and Iwasaki (1995): (su/σ′v)OC = 0.35·(0.47·KD)^1.14, an alternative KD-based power law.",
         "Iwasaki and Kamei (1994): su = 0.018·ED (kPa), a direct correlation using dilatometer modulus.",
-        "All three correlations target overconsolidated clays; KD and ED must be derived from dilatometer testing."
+        "Table 8-11 note: su = undrained shear strength in kPa, σ′v = vertical effective stress in kPa, KD = horizontal stress index from dilatometer, and ED = dilatometer modulus in kPa."
       ],
       "equations": [],
       "figures": [],
@@ -477,10 +475,10 @@
     {
       "section_id": "8-4",
       "title": "Consolidation Parameters",
-      "summary": "Parent section covering all consolidation parameters needed for settlement analysis, including compression/recompression indices for fine- and coarse-grained soils, constrained modulus correlations from SPT and CPT, and the coefficient of secondary compression. Provides typical values, index-property correlations, and in-situ test correlations for practical geotechnical design.",
+      "summary": "Parent section for consolidation parameters: compression and recompression indices of fine-grained soils (typical values and correlations with index properties) and of coarse-grained soils, the constrained modulus (Janbu's modulus number and correlations with SPT and CPT), the coefficient of secondary compression, and the coefficient of consolidation.",
       "body": "",
       "key_points": [
-        "Covers Cc, Cr, Cεc, Cεr, constrained modulus (Mds), and secondary compression coefficient (Cα/Cεα) for a full range of soil types.",
+        "Covers Cc, Cr, Cεc, Cεr, the constrained modulus (Mds), the coefficient of secondary compression (Cα, Cεα) and the coefficient of consolidation (cv).",
         "Provides both typical tabulated values and empirical correlations with index properties and in-situ tests.",
         "Applicable to fine-grained (clays/silts) and coarse-grained (sands) soils across normally consolidated and overconsolidated ranges."
       ],
@@ -492,7 +490,7 @@
     {
       "section_id": "8-4.1",
       "title": "Compression and Recompression Indices – Fine-Grained",
-      "summary": "Defines the compression index (Cc) and recompression index (Cr) as slopes of the e vs. log(σʹv) plot for fine-grained soils, and introduces the modified indices Cεc and Cεr (compression/recompression ratios) normalized by (1+e0). These parameters govern settlement calculations in both normally consolidated and overconsolidated clay ranges.",
+      "summary": "Defines the compression index (Cc) and recompression index (Cr) as slopes of the virgin consolidation and recompression lines of the e vs. log(σʹv) plot, used to calculate the compression of the clay under an increase in stress in the normally consolidated and overconsolidated ranges (Section 5-5.2.1), and the modified indices Cεc and Cεr (compression and recompression ratios), equal to Cc and Cr divided by (1+e0).",
       "body": "The compression index (Cc) is the slope of the virgin consolidation line of the e vs. log(σʹv) plot. The recompression index (Cr) is the slope of the recompression line of the e vs. log(σʹv) plot. These parameters are used to calculate the compression of the clay when subjected to an increase in stress in the normally consolidated and overconsolidated ranges (See Section 5-5.2.1). An alternative of the compression and recompression indices are the modified compression index (Cεc) and modified recompression index, Cεr (a.k.a., compression and recompression ratio). The modified compression and recompression indices are equal to the compression and recompression indices divided by (1+e0), respectively. These are the slopes of the compression and recompression curves when vertical strain is used instead of void ratio.",
       "key_points": [
         "Cc = slope of the virgin consolidation line on the e vs. log(σʹv) plot; Cr = slope of the recompression line.",
@@ -507,7 +505,7 @@
     {
       "section_id": "8-4.1.1",
       "title": "Typical Values",
-      "summary": "Provides a tabulated summary of typical Cc values for a wide range of undisturbed clays and silts, including Boston Blue Clay, Chicago clay, Mexico City Clay, organic soils, peat, and sands. Values span from 0.02 for dense uniform sand to over 10 for peat, illustrating the wide variability in compressibility across soil types.",
+      "summary": "Table 8-12 gives typical compression index values for clays and silts (with some sands), e.g., Boston Blue Clay, Chicago clay, Mexico City Clay, organic silts and clays, and peat. Values range from 0.02–0.03 for dense uniform sand and 0.15–0.30 for Chicago silty clay to 7–10 for Mexico City Clay and 10–15 for peat.",
       "body": "Typical values of the compression index for different clays and silts are summarized in Table 8-12.",
       "key_points": [
         "Cc for normally consolidated medium-sensitive clays typically ranges from 0.2 to 0.5.",
@@ -520,7 +518,7 @@
       "tables": [
         "Table 8-12"
       ],
-      "applicability": "Applies when selecting a preliminary or reference Cc value for a specific clay or silt type without laboratory test data."
+      "applicability": "Applies when typical values of the compression index for different clays and silts are taken from Table 8-12."
     },
     {
       "section_id": "8-4.1.2",
@@ -528,11 +526,12 @@
       "summary": "Summarizes numerous empirical correlations for estimating Cc and Cr from index properties (liquid limit, initial void ratio, natural water content, plasticity index, specific gravity, clay fraction, and combinations thereof). Highlights variability among correlations, notes that water-content-based Cc correlations show better agreement, and introduces Burland's (1990) intrinsic compression line (ICL) and sedimentation compression line (SCL) framework using Equations 8-27 through 8-30.",
       "body": "Many relationships have been developed to estimate the compression and recompression indices based on parameters, such as water content, liquid limit, and void ratio. Some of these correlations are summarized in Table 8-13 and Table 8-14 and plotted in Figure 8-33 thru Figure 8-38. As can be seen from these plots, the presented correlations estimate values of compression and recompression indices that vary significantly. For the compression index, the correlations using the natural water content tend to be in closer agreement compared to those based on other index properties. Prior to use, the soil type(s) used to develop the correlations and the sensitivity of the project to errors in the prediction of settlement should be considered to determine if the intended application matches.\n\nLeroueil et al. (1983) showed that the sensitivity of the clay also affects the value of the compression index, especially for marine deposits. The results presented in Figure 8-39 show a significant effect of the sensitivity on the compression index.\n\nLambe and Whitman (1969) presented typical ranges of the modified compression index of clays as a function of the natural water content and these are shown in Figure 8-40.\n\nBurland (1990) compiled data from normally consolidated clays, both undisturbed and reconstituted at a liquidity index ranging from 1 to 1.5. Recognizing that vertical stresses between 100 and 1000 kPa control most consolidation calculations, he defined the normally consolidated void ratios at these stresses as e*100 and e*1000, respectively. From these void ratios, the intrinsic compression index was defined as Eq. 8-27. By normalizing the current void ratio with respect to e*100, Burland defined the void index as Eq. 8-28. With the data normalized in this way, he defined the sedimentation compression line (SCL) and intrinsic compression line (ICL), which describe the typical variation of the in situ void index (Iv0) with effective stress for a wide range of clays. The SCL represents the typical relationship for the compression of naturally sedimented clays. The ICL represents the typical relationship for the compression of remolded clays. Burland's SCL and ICL are plotted in Figure 8-41.\n\nWhile the values of e*100 and C*c are best determined from laboratory tests, Burland (1990) found that these parameters could be estimated from the void ratio at the liquid limit (eL) by Eq. 8-29 and Eq. 8-30.\n\nUsing Equations 8-28 through 8-30 and the relationships shown in Figure 8-41, the virgin consolidation line can be approximated solely based on liquid limit for both freshly deposited soils (using ICL) or structured, aged deposits (using SCL). This approach is particularly useful for validation of laboratory consolidation tests. Examples of the ICL and SCL for liquid limits ranging from 25 to 125 are plotted in Figure 8-42.",
       "key_points": [
-        "Natural water content-based correlations for Cc show better mutual agreement than liquid limit or void ratio-based correlations.",
+        "For the compression index, correlations using the natural water content tend to be in closer agreement than those based on other index properties; the correlations presented vary significantly.",
         "Clay sensitivity significantly affects Cc, especially for marine deposits (Leroueil et al. 1983).",
         "Burland's (1990) void index framework normalizes compression behavior across clay types using e*100 and C*c, estimated from eL (Eqs. 8-27 to 8-30).",
         "ICL describes remolded clay compression; SCL describes naturally sedimented clay compression — both approximable from liquid limit alone.",
-        "Approach useful for validating laboratory consolidation test results."
+        "Approach useful for validating laboratory consolidation test results.",
+        "Prior to use, the soil type(s) used to develop a correlation and the sensitivity of the project to errors in the prediction of settlement should be considered to determine if the intended application matches."
       ],
       "equations": [
         {
@@ -572,18 +571,18 @@
         "Table 8-13",
         "Table 8-14"
       ],
-      "applicability": "Applies when laboratory consolidation test data are unavailable and Cc or Cr must be estimated from routine index properties for fine-grained soils."
+      "applicability": "Applies when the compression or recompression index of fine-grained soils is estimated from index properties, and when Burland's (1990) intrinsic and sedimentation compression lines are used to approximate the virgin consolidation line from the liquid limit or to validate laboratory consolidation tests."
     },
     {
       "section_id": "8-4.2",
       "title": "Compression and Recompression Indices – Coarse-Grained",
-      "summary": "Notes that coarse-grained soil compressibility is significantly lower than fine-grained soils and is normally not characterized by Cc and Cr. Recommends modulus-based methods (Chapter 5) instead. Provides tabulated modified compression index (Cεc) values for saturated NC sands as a function of soil gradation and relative density, and compressibility data (e0, Cc, Cr) for six specific sands.",
+      "summary": "The compressibility of coarse-grained soils is normally significantly smaller than that of fine-grained soils and is not typically defined by Cc and Cr; instead the modulus-based methods of Chapter 5 are employed, with a usually stress-dependent constrained modulus (Kulhawy and Mayne 1990) estimated from the correlations of 8-4.3. If required, Table 8-15 gives modified compression indices for saturated, normally consolidated sands by soil type and relative density, and Table 8-16 compressibility data for six sands (Been et al. 1987).",
       "body": "The compressibility of coarse-grained soils is normally significantly smaller than that from fine-grained soils. The compressibility of coarse-grained soils is not typically defined in terms of the compression and recompression indices. Instead the modulus-based methods presented in Chapter 5 are employed. The constrained modulus for coarse-grained soils is usually stress dependent (Kulhawy and Mayne 1990) and may be estimated using correlations in the following section. If required, typical values for the modified compression index of coarse-grained soils are summarized in Table 8-15 and Table 8-16.",
       "key_points": [
-        "Coarse-grained soil compressibility is much smaller than fine-grained soils and is not routinely expressed as Cc or Cr.",
-        "Modulus-based methods from Chapter 5 are preferred for sands and gravels.",
-        "Modified compression index Cεc for NC sands decreases significantly with increasing relative density (Dr).",
-        "Table 8-15 provides Cεc by gradation and Dr; Table 8-16 provides Cc and Cr for six specific research sands."
+        "The compressibility of coarse-grained soils is normally significantly smaller than that of fine-grained soils and is not typically defined in terms of the compression and recompression indices.",
+        "Instead, the modulus-based methods of Chapter 5 are employed; the constrained modulus of coarse-grained soils is usually stress dependent (Kulhawy and Mayne 1990) and may be estimated using the correlations in 8-4.3.",
+        "Table 8-15 gives Cεc = Cc/(1+e0) for saturated, normally consolidated sands at Dr from 0% to 100%, e.g., 0.010 to 0.002 for medium to coarse sand (SW & SP) and 0.017 to 0.003 for fine sand with little fine to coarse silt (SM).",
+        "Table 8-16 gives e0, Cc and Cr for six sands at σ′v/Pa = 1 to 3 and 20 to 30 (Been et al. 1987)."
       ],
       "equations": [],
       "figures": [],
@@ -599,9 +598,9 @@
       "summary": "Defines the secant drained constrained modulus (Mds) per Janbu (1963) as a function of vertical effective stress and modulus number (m), providing both linear and nonlinear forms. Relates modulus number to void ratio, porosity, and natural water content through figures. Serves as the parent section for SPT- and CPT-based correlations for Mds.",
       "body": "The secant drained constrained modulus (Mds) was found to be a function of the vertical effective stress (σʹv) and a modulus number (m) by Janbu (1963). The constrained modulus for normally consolidated clays, silts, and sands is related in either a linear or nonlinear fashion to vertical effective stress by Eq. 8-31 or Eq. 8-32.\n\nJanbu (1963) related the modulus number to the void ratio (or porosity) and the natural water content as shown in Figure 8-43 and Figure 8-44, respectively. In addition, Janbu (1985) presented the relationship for the modulus number of NC silts and sands as a function of the porosity, as presented in Figure 8-45.",
       "key_points": [
-        "Mds = m·σʹv (linear, Eq. 8-31) or Mds = m·Pa·(σʹv/Pa)^0.5 (nonlinear, Eq. 8-32) depending on soil type.",
+        "The constrained modulus of normally consolidated clays, silts, and sands is related linearly (Mds = m·σ′v, Eq. 8-31) or nonlinearly (Mds = m·Pa·(σ′v/Pa)^0.5, Eq. 8-32) to vertical effective stress.",
         "Modulus number m is correlated to void ratio, porosity, and natural water content for NC soils via Janbu's figures.",
-        "Constrained modulus for coarse-grained soils is stress dependent and typically estimated from in-situ tests."
+        "Janbu (1985) presented the modulus number of NC silts and sands as a function of porosity (Figure 8-45)."
       ],
       "equations": [
         {
@@ -626,12 +625,11 @@
     {
       "section_id": "8-4.3.1",
       "title": "Correlations with Standard Penetration Test",
-      "summary": "Presents Stroud's (1974) correlation of the constrained modulus of clays to SPT N-value and an empirical coefficient f dependent on plasticity index (PI). Notes that Kulhawy and Mayne (1990) found Stroud's correlation unreliable and recommend using it with caution.",
+      "summary": "Presents Stroud's (1974) correlation, from nine British clays, of the constrained modulus of clays to the SPT N value with an empirical coefficient f related to plasticity index (Figure 8-46). According to Kulhawy and Mayne (1990), the correlation is not very reliable and should be used with caution.",
       "body": "Based on results from nine British clays, Stroud (1974) correlated the constrained modulus of clays to the SPT N value as Eq. 8-33, where f is an empirical coefficient related to plasticity index from Figure 8-46, Pa is atmospheric pressure, and N is SPT blow count. According to Kulhawy and Mayne (1990), Stroud's correlation is not very reliable and should be used with caution.",
       "key_points": [
         "Mds = f · N · Pa, where f is read from Figure 8-46 as a function of plasticity index.",
-        "Developed from nine British clays; reliability is limited — use with caution (Kulhawy and Mayne 1990).",
-        "f decreases with increasing PI, reflecting reduced stiffness in more plastic clays."
+        "Developed from nine British clays; reliability is limited — use with caution (Kulhawy and Mayne 1990)."
       ],
       "equations": [
         {
@@ -644,7 +642,7 @@
         "Figure 8-46"
       ],
       "tables": [],
-      "applicability": "Applies when estimating constrained modulus of clays from SPT N-values and plasticity index in the absence of laboratory or CPT data."
+      "applicability": "Applies when the constrained modulus of clays is estimated from SPT N values with Stroud's (1974) coefficient f; Kulhawy and Mayne (1990) state the correlation is not very reliable and should be used with caution."
     },
     {
       "section_id": "8-4.3.2",
@@ -653,7 +651,7 @@
       "body": "Numerous correlations have been presented to estimate the value of constrained modulus using the results from the cone penetration tests. Most of these correlations use the form of the equation shown below (Eq. 8-34), where Mds is the constrained modulus, qc is the cone tip resistance, and α is an empirical coefficient.\n\nMitchell and Gardner (1975) compiled values of α for different soils and showed that α can range from 0.4 to 8. In most cases, α is between 1 and 3. These values were obtained using a variety of cones with different geometries and testing procedures.\n\nKulhawy and Mayne (1990) presented the correlation shown in Figure 8-47 to obtain the constrained modulus of clays based on CPTu data in the form of tip resistance corrected for pore pressure and overburden stress.",
       "key_points": [
         "General form: Mds = α · qc, with α ranging 0.4 to 8; most soils fall between α = 1 and 3.",
-        "α values compiled by Mitchell and Gardner (1975) vary with soil type and cone geometry — check applicability before use.",
+        "Mitchell and Gardner's (1975) α values were obtained using a variety of cones with different geometries and testing procedures.",
         "Kulhawy and Mayne (1990) provide a normalized CPTu-based chart correlation for clays using corrected tip resistance qt (Figure 8-47)."
       ],
       "equations": [
@@ -672,12 +670,12 @@
     {
       "section_id": "8-4.4",
       "title": "Coefficient of Secondary Compression",
-      "summary": "Defines the coefficient of secondary compression (Cα or Cεα) for estimating post-primary-consolidation creep settlement. Presents Mesri's (1973) correlation linking Cεα to natural water content (Eq. 8-35), the roughly constant ratio Cα/Cc for a given soil (Mesri and Godlewski 1977), and Table 8-17 tabulating Cα/Cc for natural clays, silts, organic soils, and peats.",
+      "summary": "Defines the coefficient of secondary compression (Cα, or Cεα in terms of strain), which gives settlement as a function of time after primary consolidation is completed (Section 5-5.4). Presents Mesri's (1973) correlation of Cεα with natural water content for NC clays (Eq. 8-35), the range for most overconsolidated clays (Kulhawy and Mayne 1990), the more or less constant ratio Cα/Cc for a given soil (Mesri and Godlewski 1977) with values in Table 8-17, and Figure 8-49.",
       "body": "The coefficient of secondary compression defines the settlement as a function of time after primary consolidation is completed. As with the compression ratios, the coefficient of secondary compression can be defined as a function of strain (Cεα) or as a function of the void ratio (Cα). See Section 5-5.4 for more details.\n\nMesri (1973) summarized the data shown in Figure 8-48 to estimate the coefficient of secondary compression of NC clays using the natural water content. Based on that data, the modified coefficient of secondary compression can be estimated as Eq. 8-35.\n\nAccording to Kulhawy and Mayne (1990), Cεα ranges from 0.0005 and 0.001 for most overconsolidated clays. The ratio of the coefficient of secondary compression to the compression index (Cα / Cc = Cεα / Cεc) is more or less constant for a given soil (Mesri and Godlewski 1977). Values of Cα / Cc are summarized in Table 8-17. Another correlation for the coefficient of correlation for silts and clays is presented in Figure 8-49.",
       "key_points": [
         "Cεα = 0.0001 · wn (Eq. 8-35) estimates modified secondary compression coefficient from natural water content for NC clays.",
         "For most OC clays, Cεα ranges from 0.0005 to 0.001 (Kulhawy and Mayne 1990).",
-        "The ratio Cα/Cc (= Cεα/Cεc) is approximately constant for a given soil — enables estimation of Cα from measured Cc.",
+        "The ratio Cα/Cc (= Cεα/Cεc) is more or less constant for a given soil (Mesri and Godlewski 1977); values are summarized in Table 8-17.",
         "Inorganic clays and silts: Cα/Cc ≈ 0.025–0.075; organic clays and silts: 0.035–0.075; peats: 0.035–0.10 (Table 8-17).",
         "Figure 8-49 provides an additional graphical correlation for Cα in silts and clays."
       ],
@@ -695,7 +693,7 @@
       "tables": [
         "Table 8-17"
       ],
-      "applicability": "Applies when estimating secondary (creep) compression settlement after primary consolidation is complete, particularly for NC clays, organic soils, and peats."
+      "applicability": "Applies when estimating settlement after primary consolidation is completed, using natural water content (NC clays, Eq. 8-35), the typical range for most overconsolidated clays, Cα/Cc ratios for natural soils (Table 8-17), or Figure 8-49 for silts and clays."
     },
     {
       "section_id": "8-4.5",
@@ -728,7 +726,7 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when elastic parameters are needed for any soil type in geotechnical analysis."
+      "applicability": "Applies when elastic parameters (E, K, G, ν) of soils are related, or estimated from typical values and correlations: the undrained Young's modulus of fine-grained soils and the drained Young's modulus of coarse-grained soils."
     },
     {
       "section_id": "8-5.1",
@@ -763,7 +761,6 @@
       "body": "",
       "key_points": [
         "Eu for fine-grained soils is addressed through typical values, shear strength correlations, in-situ test correlations, and load test back-calculations.",
-        "Multiple sources (USACE, Kulhawy and Mayne, Duncan and Buchignani, Ohya et al., Poulos and Davis, Callanan and Kulhawy) are referenced.",
         "Subsections cover typical values, shear strength correlations, SPT/PMT correlations, and load test correlations."
       ],
       "equations": [],
@@ -774,31 +771,28 @@
     {
       "section_id": "8-5.2.1",
       "title": "Typical Values",
-      "summary": "Provides typical ranges of undrained Young's modulus (Eu) normalized by atmospheric pressure (Pa) for clays of varying consistency — from very soft to clay shale — based on USACE (1990) and Kulhawy and Mayne (1990). Values span 5 to 2000 Pa depending on consistency and source.",
+      "summary": "Table 8-19 gives typical ranges of the undrained Young's modulus normalized by atmospheric pressure (Eu/Pa) for clays by consistency, from USACE (1990) and Kulhawy and Mayne (1990): Eu/Pa from 5–50 for very soft clay to 1000–2000 for clay shale (USACE 1990).",
       "body": "Typical values of undrained Young's modulus are summarized in Table 8-19.",
       "key_points": [
         "Eu/Pa ranges from 5–50 for very soft clay to 1000–2000 for clay shale (USACE 1990).",
         "Kulhawy and Mayne (1990) provide narrower ranges: 15–40 (soft) to 80–200 (stiff/silty).",
-        "Sandy clays have a wide USACE range of 250–2000; no Kulhawy and Mayne value is given.",
-        "Values are normalized by atmospheric pressure (Pa) for dimensional consistency."
+        "Sandy clays have a wide USACE range of 250–2000; no Kulhawy and Mayne value is given."
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "Table 8-19"
       ],
-      "applicability": "Applies when a preliminary estimate of undrained Young's modulus is needed for clays based on consistency alone."
+      "applicability": "Applies when typical values of the undrained Young's modulus of clays are taken by consistency from Table 8-19."
     },
     {
       "section_id": "8-5.2.2",
       "title": "Correlations with Undrained Shear Strength",
-      "summary": "Presents the Duncan and Buchignani (1987) correlation for the ratio of undrained Young's modulus to undrained shear strength (Eu/su) as a function of plasticity index (PI) and overconsolidation ratio (OCR), based on direct simple shear test results. Shown graphically in Figure 8-51.",
+      "summary": "Presents the Duncan and Buchignani (1987) correlation, based on direct simple shear tests, of the undrained modulus normalized by undrained shear strength (Eu/su in Figure 8-51; the text prints 'undrained shear modulus') to overconsolidation ratio for ranges of plasticity index, for fine-grained soils.",
       "body": "Duncan and Buchignani (1987) proposed a correlation to obtain the ratio of the undrained shear modulus to the undrained shear strength for fine grained soils as a function of the plasticity index and overconsolidation ratio as shown in Figure 8-51. This correlation is based on results obtained from direct simple shear tests.",
       "key_points": [
-        "Eu/su ratio is a function of plasticity index (PI) and overconsolidation ratio (OCR) per Duncan and Buchignani (1987).",
-        "Correlation is based on direct simple shear test results.",
-        "Figure 8-51 provides the graphical relationship for design use.",
-        "Higher OCR and lower PI generally yield higher Eu/su ratios."
+        "Duncan and Buchignani (1987): the undrained modulus normalized by undrained shear strength (Eu/su, Figure 8-51; the text prints 'undrained shear modulus') as a function of plasticity index and overconsolidation ratio.",
+        "Correlation is based on direct simple shear test results."
       ],
       "equations": [],
       "figures": [
@@ -815,8 +809,7 @@
       "key_points": [
         "PMT directly measures horizontal soil modulus; in clays this is approximately equal to undrained Young's modulus (Kulhawy and Mayne 1990).",
         "Ohya et al. (1982) correlation relates EPMT to SPT N value for clays (Figure 8-52).",
-        "Correlation has high scatter (r² = 0.39) and should be used with caution.",
-        "SPT-based estimates of Eu for clays are inherently uncertain due to scatter."
+        "Correlation has high scatter (r² = 0.39) and should be used with caution."
       ],
       "equations": [],
       "figures": [
@@ -833,8 +826,7 @@
       "key_points": [
         "Poulos and Davis (1980) relate Eu to undrained shear strength for drilled shafts and driven piles in compression (Figure 8-53).",
         "Callanan and Kulhawy (1985) provide Eu correlations for drilled shafts (compression and uplift) and spread foundations (uplift) (Figure 8-54).",
-        "For spread foundations, Eu is normalized by the mean total vertical stress (σvm) over foundation depth.",
-        "Load test back-calculations offer site-specific modulus estimates that may be more reliable than index correlations."
+        "In the right side of Figure 8-54 (spread foundations in uplift), σvm is the mean total vertical stress over the foundation depth."
       ],
       "equations": [],
       "figures": [
@@ -847,10 +839,10 @@
     {
       "section_id": "8-5.3",
       "title": "Drained Young's Modulus of Coarse-Grained Soils",
-      "summary": "Covers estimation of drained Young's modulus (E) for coarse-grained soils, which experience undrained conditions only briefly. Provides typical ranges of E normalized by atmospheric pressure by relative density (loose, medium, dense) and soil type from Poulos (1975) and USACE (1990), and introduces SPT-based correlations in the subsection below.",
+      "summary": "Covers the drained Young's modulus (E) of coarse-grained soils, which only experience undrained conditions for a very short period of time and under special circumstances, so that E is only required for drained conditions in most cases. Table 8-20 gives typical ranges of E normalized by atmospheric pressure by relative density (loose, medium, dense) and for silty sand, from Poulos (1975) and USACE (1990); SPT-based correlations follow in 8-5.3.1.",
       "body": "Coarse-grained soils only experience undrained conditions for a very short period of time and under special circumstances. For this reason, the Young's modulus is only required for drained conditions in most cases. Typical values of drained Young's modulus (E) based on relative density are summarized in Table 8-20 for coarse-grained soils.",
       "key_points": [
-        "Coarse-grained soils are analyzed using drained Young's modulus in virtually all practical cases.",
+        "Coarse-grained soils only experience undrained conditions for a very short period of time and under special circumstances, so the Young's modulus is only required for drained conditions in most cases.",
         "Table 8-20 gives E/Pa by relative density: Poulos (1975) typical 100–200 (loose), 200–500 (medium), 500–1000 (dense), and for driven piles 275–550, 550–700, 700–1100; USACE (1990) 100–250 (loose), 250–1000 (medium), 1000–2000 (dense).",
         "Silty sand: E/Pa = 250–2000 (USACE 1990 only).",
         "Values are drained Young's modulus divided by atmospheric pressure, E/Pa (the table's column heading prints the symbol Eu/Pa)."
@@ -866,14 +858,14 @@
       "section_id": "8-5.3.1",
       "title": "Correlations with SPT N Values",
       "summary": "Presents multiple published correlations for estimating drained Young's modulus of coarse-grained soils from SPT N values, compiled in Table 8-21 and plotted in Figure 8-55. Correlations from Ferrent (1963), Webb (1969), Begemann (1974), and Kulhawy and Mayne (1990) cover sands, clayey sands, silts with sand, and gravels with sand under NC and OC conditions.",
-      "body": "Many different correlations have been developed to estimate the drained Young's modulus of coarse-grained soils using SPT N values. Some of these correlations are presented in Table 8-21 and plotted in Figure 8-55.\n\nE = drained Young's modulus,\nPa = atmospheric pressure (in same units as E),\nN = SPT blow count value (use N60 for modern samplers),\nν = Poisson's ratio, and\nC = empirical coefficient equal to 3 for silts with sand and 12 for gravel with sand.",
+      "body": "Many different correlations have been developed to estimate the drained Young's modulus of coarse-grained soils using SPT N values. Some of these correlations are presented in Table 8-21 and plotted in Figure 8-55. [Note to Table 8-21: E = drained Young's modulus, Pa = atmospheric pressure (in same units as E), N = SPT blow count value (use N60 for modern samplers) ν = Poisson's ratio, and C = empirical coefficient equal to 3 for silts with sand and 12 for gravel with sand]",
       "key_points": [
         "Multiple correlations exist for drained E of coarse-grained soils from SPT N; all normalize E by atmospheric pressure (Pa).",
         "Ferrent (1963): E ≈ 7.1(1−ν²)·N·Pa for sandy soils.",
         "Webb (1969): E ≈ 4.7(N+15)·Pa for sands; E ≈ 3.1(N+5)·Pa for clayey sands.",
         "Begemann (1974), silts with sand and gravels with sand: E/Pa ≈ C(N + 6) for N < 15; E/Pa ≈ 39.5 + C(N − 6) for N ≥ 15; C = 3 for silts with sand and 12 for gravel with sand.",
         "Kulhawy and Mayne (1990): E ≈ 5·N60·Pa (sands with fines), 10·N60·Pa (NC clean sands), 15·N60·Pa (OC clean sands).",
-        "N60 (energy-corrected blow count) should be used for modern samplers per Kulhawy and Mayne (1990)."
+        "Table 8-21 note: N = SPT blow count value (use N60 for modern samplers); C = empirical coefficient equal to 3 for silts with sand and 12 for gravel with sand."
       ],
       "equations": [],
       "figures": [
@@ -893,23 +885,23 @@
         "CBR is a penetration test standardized in ASTM D1883, originally developed by the California Department of Transportation.",
         "CBR is primarily a lab test but field methods also exist.",
         "Test specimens may be evaluated soaked or at their compaction water content.",
-        "All empirical correlations in this section are soil-type specific; original references must be consulted before application."
+        "Because these correlations apply to specific soil types, the original references should be consulted before using the correlations."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies whenever CBR is being determined or estimated for soils used in road or pavement subgrade design."
+      "applicability": "Applies when the CBR, a penetration test to assess the load-bearing capacity of soils used for building roads, is determined (soaked or at compaction water content) or estimated from correlations, whose original references should be consulted."
     },
     {
       "section_id": "8-6.1",
       "title": "Correlations with Index and Compaction Properties",
       "summary": "Presents empirical correlations for estimating CBR from index properties (grain size, Atterberg limits, unit weight, specific gravity, angle of repose) in Table 8-22, and from compaction properties (dry unit weight ratio and water content ratio relative to Modified Proctor values) in Table 8-23. Covers both soaked and unsoaked conditions across multiple researchers.",
-      "body": "Several researchers have presented correlations to estimate the CBR using index properties. Correlations to grain size, Atterberg limits, and other index properties are summarized in Table 8-22. Correlations between CBR and soil compaction properties are summarized in Table 8-23.",
+      "body": "Several researchers have presented correlations to estimate the CBR using index properties. Correlations to grain size, Atterberg limits, and other index properties are summarized in Table 8-22. Correlations between CBR and soil compaction properties are summarized in Table 8-23. [Note to Table 8-22: FC = fines content = percent passing #200 sieve, SC = sand content = percent retained between #4 and #200 sieve, GC = gravel content = percent retained between 75 mm and #4 sieve, LL = liquid limit, PL = plastic limit, PI = plasticity index, γd = dry unit weight (in kN/m3), γm = moist unit weight (in kN/m3), w = water content (in percent), Gs = specific gravity of solids, and β = angle of repose] [Note to Table 8-23: PL = plastic limit, γd = dry unit weight, γd,max = maximum dry unit weight from Modified Proctor test, w = water content, and wopt = optimum water content from Modified Proctor test. Water contents should be either both in decimal or both in percentage form.]",
       "key_points": [
         "Table 8-22, NCHRP (2001): CBR = 75/[1 + 0.728·(FC × PI)], printed with the condition FC×PI = 0 [as printed; the next row, CBR = 28.09·(D60)^0.358, has the same condition. FHWA-NHI-05-037 Table 5-34, p. 5-53, prints CBR = 75/[1 + 0.728(wPI)], wPI = P200·PI, with no condition.]",
         "Gravel content, liquid limit, plastic limit, dry/moist unit weight, specific gravity, and angle of repose are all used in various CBR correlations (Table 8-22).",
         "Compaction-based correlations (Table 8-23) use the ratio of dry unit weight to maximum dry unit weight and water content to optimum water content from the Modified Proctor test.",
-        "Water contents in compaction correlations must be expressed consistently — both decimal or both percentage form.",
+        "Water contents in the Table 8-23 correlations should be either both in decimal or both in percentage form.",
         "Correlations cover both soaked and unsoaked CBR conditions."
       ],
       "equations": [],
@@ -918,7 +910,7 @@
         "Table 8-22",
         "Table 8-23"
       ],
-      "applicability": "Applies when estimating CBR from readily available index properties or compaction test results (Modified Proctor) without performing a direct CBR test."
+      "applicability": "Applies when estimating CBR from grain size, Atterberg limits, unit weight and other index properties (Table 8-22) or from compaction properties relative to the Modified Proctor test (Table 8-23)."
     },
     {
       "section_id": "8-6.2",
@@ -928,8 +920,8 @@
       "key_points": [
         "The general DCP-CBR relationship is a power law: CBR = A·DCP^x, where A and x are empirically determined coefficients (Eq. 8-37).",
         "Coefficients A and x vary widely by researcher and soil type; A ranges from 25 to 501 and x ranges from -0.55 to -2.00 (Table 8-24).",
-        "Nazzal (2003) provides a nonlinear alternative (Eq. 8-38) valid for DCP values of 6.3–67 mm/blow.",
-        "Figure 8-56 illustrates the scatter in predicted CBR across multiple DCP correlations, highlighting uncertainty in selection.",
+        "Nazzal (2003) developed a similar correlation (Eq. 8-38) for soils with DCP values between 6.3 and 67 mm/blow.",
+        "The range of CBR values expected from these correlations is presented in Figure 8-56.",
         "Some correlations are soil-type specific (e.g., fine-grained, coarse-grained, CL with CBR < 10)."
       ],
       "equations": [
@@ -950,18 +942,17 @@
       "tables": [
         "Table 8-24"
       ],
-      "applicability": "Applies when estimating CBR from Dynamic Cone Penetration (DCP) test results in the field or laboratory, particularly for pavement subgrade evaluation."
+      "applicability": "Applies when estimating CBR from dynamic cone penetration index (mm/blow) using Eq. 8-37 with coefficients from Table 8-24 or Nazzal's (2003) Eq. 8-38."
     },
     {
       "section_id": "8-6.3",
       "title": "Correlations with Standard Penetration Test",
-      "summary": "Presents a logarithmic correlation by Livneh (1989) for estimating CBR from SPT blow count (N), with supporting data in Figure 8-57. The equation relates log(CBR) to log(N60), and is applicable using N60 for modern hammers. Provides a direct link between the most commonly performed in-situ test and pavement subgrade capacity.",
+      "summary": "Presents Livneh's (1989) correlation for estimating CBR from the SPT blow count N (Eq. 8-39, log(CBR) in terms of log(300/N), with N60 used for modern hammers); the data used to obtain it are in Figure 8-57.",
       "body": "Livneh (1989) found that the CBR could be estimated from the results of the Standard Penetration Test as shown below. The data used to obtain this correlation is presented in Figure 8-57.\n\nlog(CBR) = −5.13 + 6.55 · [log(300 / N)]^−0.26  (8-39)\n\nwhere:\nCBR = California Bearing Ratio, and\nN = SPT blow count value (use N60 for modern hammers).",
       "key_points": [
         "Livneh (1989) developed a log-log correlation between CBR and SPT blow count N (Eq. 8-39).",
-        "N60 should be used for modern hammer systems to standardize energy input.",
-        "Figure 8-57 presents the original data supporting this correlation.",
-        "This correlation enables CBR estimation directly from routine SPT data without additional testing."
+        "In Eq. 8-39, N = SPT blow count value (use N60 for modern hammers).",
+        "Figure 8-57 presents the original data supporting this correlation."
       ],
       "equations": [
         {
@@ -974,7 +965,7 @@
         "Figure 8-57"
       ],
       "tables": [],
-      "applicability": "Applies when estimating CBR from Standard Penetration Test (SPT) results, particularly where direct CBR measurements are unavailable but SPT data exists."
+      "applicability": "Applies when estimating CBR from Standard Penetration Test blow counts with Livneh's (1989) correlation."
     },
     {
       "section_id": "8-7",
@@ -983,8 +974,8 @@
       "body": "The hydraulic conductivity (a.k.a., the coefficient of permeability) governs the flow rate and head loss as water flows through a soil mass. The hydraulic conductivity has one of the widest ranges of any engineering parameter as can be seen in Table 8-25. The wide range of possible values and the influence of variable ground conditions on the hydraulic conductivity make this parameter difficult to evaluate with a high degree of accuracy.",
       "key_points": [
         "Hydraulic conductivity governs flow rate and head loss through a soil mass.",
-        "Values span many orders of magnitude — one of the widest ranges of any engineering parameter.",
-        "Variable ground conditions make high-accuracy evaluation difficult.",
+        "The hydraulic conductivity has one of the widest ranges of any engineering parameter (Table 8-25).",
+        "The wide range of possible values and the influence of variable ground conditions make hydraulic conductivity difficult to evaluate with a high degree of accuracy.",
         "Typical values by soil type are tabulated in Table 8-25."
       ],
       "equations": [],
@@ -1012,7 +1003,7 @@
       "tables": [
         "Table 8-25"
       ],
-      "applicability": "Applies when selecting or checking preliminary hydraulic conductivity values by USCS soil classification."
+      "applicability": "Applies when typical values of hydraulic conductivity are taken by soil type from Table 8-25 or Section 6-3.3."
     },
     {
       "section_id": "8-7.2",
@@ -1020,12 +1011,12 @@
       "summary": "Presents multiple empirical correlations for estimating hydraulic conductivity of coarse-grained soils from grain-size parameters. Covers the Hazen (1911) D10-based formula for clean sands (Eq. 8-40), the USACE (1993) horizontal permeability chart for Mississippi Valley SP/SW sands (Figure 8-58), Kenney et al. (1984) D5-based correlation (Figure 8-59), a combined D5/D10/Cu/e chart (Figure 8-60), and the modified Kozeny-Carman equation by Carrier (2003) using the full grain-size distribution (Eq. 8-41).",
       "body": "One of the first correlations to estimate the hydraulic conductivity based on grain size was presented by Hazen (1911). This correlation was developed for saturated clean sands with a fines content less than 5% and D10 values ranging from 0.1 mm to 3 mm:\n\nk = C · (D10)²  (Eq. 8-40)\n\nWhere: k = hydraulic conductivity (cm/s), C = empirical coefficient, usually taken to be 1 cm/s/mm², and D10 = grain size corresponding to 10% passing on the grain-size distribution (mm).\n\nBased on data from the middle and lower Mississippi River Valley, the USACE (1993) correlated the in situ horizontal permeability of fine to medium, relatively uniform sands (USCS classifications of SP or SW) as shown in Figure 8-58. This correlation was recommended for use only within the geographic area for which it was developed.\n\nKenney et al. (1984) correlated the hydraulic conductivity of coarse-grained soils to the grain size corresponding to 5% passing on the cumulative grain-size distribution curve (D5), as shown in Figure 8-59. A similar correlation can be developed between the hydraulic conductivity for clean coarse-grained soils and the D10 grain size as shown in Figure 8-60.\n\nCarrier (2003) presented a modified version of the Kozeny-Carman equation (Kozeny 1927; Carman 1938, 1956) to estimate the hydraulic conductivity using the full grain-size distribution of a soil. The modifications introduced by Carrier (2003) to the original equation simplify its use. The hydraulic conductivity can be estimated by Eq. 8-41:\n\nk = 1.99×10² cm/(s·mm²) · [100% / Σ(fi / (Dli^0.404 · Dsi^0.596))]² · (1 / S²) · [e³/(1+e)]  (Eq. 8-41)\n\nwhere: k = hydraulic conductivity (cm/s), fi = fraction of particles (by mass) between two adjacent sieve sizes, Dli = the particle size of the coarser sieve (mm), Dsi = the particle size of the finer sieve (mm), S = surface area factor ranging from 6 for spheres to 8.5 for angular particles, and e = void ratio.\n\nAdditional discussion and correlations of k to grain size can be found in Section 6-3.3.",
       "key_points": [
-        "Hazen (1911) formula (Eq. 8-40): k = C·D10²; valid for clean sands with <5% fines and D10 between 0.1–3 mm.",
+        "Hazen (1911) (Eq. 8-40): k = C·D10², developed for saturated clean sands with a fines content less than 5% and D10 from 0.1 mm to 3 mm; C is usually taken to be 1 cm/s/mm².",
         "USACE (1993) correlation (Figure 8-58) applies specifically to SP/SW sands from the middle and lower Mississippi River Valley.",
         "Kenney et al. (1984) correlate k to D5 (Figure 8-59); a D10-based analog is provided in Figure 8-60.",
         "Carrier (2003) modified Kozeny-Carman equation (Eq. 8-41) uses the full grain-size distribution, void ratio, and particle shape factor.",
         "Surface area factor S ranges from 6 (spherical particles) to 8.5 (angular particles) in the Carrier equation.",
-        "USACE (1993) chart is geographically restricted to the Mississippi River Valley region."
+        "The USACE (1993) correlation was recommended for use only within the geographic area for which it was developed."
       ],
       "equations": [
         {
@@ -1053,7 +1044,7 @@
       "summary": "Presents empirical correlations for estimating hydraulic conductivity of fine-grained soils using Atterberg limits, void ratio, and compaction properties. Covers the Carrier and Beckman (1984) equation relating k to PL, PI, and void ratio (Eq. 8-42); the Benson et al. (1994) equation for compacted clay liners using PI, gravel content, clay fraction, compactor weight, and compaction state (Eq. 8-43); and the Benson and Trast (1995) equation for compacted clays using PI, clay fraction, and compactive effort index (Eq. 8-44). Cautions that these correlations should be used carefully.",
       "body": "Unlike coarse-grained soils, the hydraulic conductivity of fine-grained soils is difficult to estimate from index properties. Hydraulic conductivity correlations for fine-grained soils should be used with caution.\n\nCarrier and Beckman (1984) related the hydraulic conductivity and the Atterberg limits and void ratio of fine-grained soils using Eq. 8-42:\n\nk = 0.0174 · {[e − 0.027·(PL − 0.242·PI)] / PI}^4.29 · [1 / (1 + e)]  (Eq. 8-42)\n\nwhere: k = hydraulic conductivity (m/s), e = void ratio, PL = plastic limit, and PI = plasticity index.\n\nBenson et al. (1994) measured the hydraulic conductivity on intact test specimens obtained from compacted clay liners from 67 landfills in North America. The results of those tests were found to relate to other measured properties of the clays using Eq. 8-43:\n\nln k = −18.35 + 894/W − 0.08·PI − 2.87·[w / (γw/γd − 1/Gs)] + 0.32·√GC + 0.02·CF  (Eq. 8-43)\n\nwhere: k = hydraulic conductivity (m/s), CF = clay-sized fraction (percent by mass smaller than 0.002 mm), GC = gravel content = percent retained between 75 mm and #4 sieve, W = weight of field compactor (kN), PI = plasticity index, w = molding water content, γw = unit weight of water, γd = dry unit weight, and Gs = specific gravity of solids.\n\nBenson and Trast (1995) performed hydraulic conductivity tests on 13 compacted clays used for compacted clay liners around the United States. The test specimens were prepared at different water contents, compacted, and then tested to measure the hydraulic conductivity. The results were correlated by Benson and Trast to k using Eq. 8-44:\n\nln k = −15 − 0.087·[w / (γw/γd − 1/Gs)] − 0.054·PI + 0.022·CF + 0.91·E  (Eq. 8-44)\n\nwhere: k = hydraulic conductivity (m/s), w = molding water content, γw = unit weight of water, γd = dry unit weight, Gs = specific gravity of solids, PI = plasticity index, CF = clay-sized fraction, and E = compactive effort index (equal to -1, 0, and 1 for modified, standard, and reduced Proctor compactive effort, respectively).",
       "key_points": [
-        "Hydraulic conductivity of fine-grained soils cannot be reliably estimated from index properties alone — all correlations should be used with caution.",
+        "Unlike coarse-grained soils, the hydraulic conductivity of fine-grained soils is difficult to estimate from index properties; correlations for fine-grained soils should be used with caution.",
         "Carrier and Beckman (1984) (Eq. 8-42) uses plastic limit, plasticity index, and void ratio to estimate k in m/s.",
         "Benson et al. (1994) (Eq. 8-43) was developed from 67 North American landfill compacted clay liner specimens; incorporates PI, gravel content, clay fraction, compactor weight, and compaction state.",
         "Benson and Trast (1995) (Eq. 8-44) uses PI, clay-sized fraction, and a compactive effort index (E = -1 modified, 0 standard, +1 reduced Proctor).",
@@ -1078,12 +1069,12 @@
       ],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when estimating hydraulic conductivity of fine-grained soils (clays, silts) particularly compacted clay liner materials, using Atterberg limits, void ratio, and compaction parameters."
+      "applicability": "Applies when estimating the hydraulic conductivity of fine-grained soils from Atterberg limits and void ratio (Carrier and Beckman 1984) or, for compacted clays such as clay liners, from compaction and index properties (Benson et al. 1994; Benson and Trast 1995); such correlations should be used with caution."
     },
     {
       "section_id": "8-8",
       "title": "Shear Wave Velocity",
-      "summary": "Parent section covering methods for estimating shear wave velocity (Vs) from in-situ tests. Contains two subsections addressing SPT-based and CPT-based correlations, respectively. Provides the general framework for Vs estimation used in geotechnical and seismic site response analyses.",
+      "summary": "Parent section for estimating shear wave velocity (Vs) from in-situ tests, with correlations to SPT N values (8-8.1) and to cone penetration test results (8-8.2); some cones can measure shear wave velocity directly.",
       "body": "",
       "key_points": [
         "Shear wave velocity (Vs) can be estimated from in-situ test data using empirical correlations.",
@@ -1093,19 +1084,19 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies when estimating shear wave velocity (Vs) from SPT or CPT data for geotechnical or seismic site characterization."
+      "applicability": "Applies when estimating shear wave velocity (Vs) from SPT N values or cone penetration test results."
     },
     {
       "section_id": "8-8.1",
       "title": "Correlations with Standard Penetration Test",
       "summary": "Presents empirical correlations for estimating shear wave velocity (Vs) from SPT N values. The general power-law form (Eq. 8-45) uses empirical coefficients B, x, and y along with blow count N and depth z. Numerous literature-sourced coefficient sets are tabulated in Table 8-26 (N and depth) and Table 8-27 (N only), with Figure 8-61 showing the range of predicted Vs values.",
-      "body": "Many correlations have been developed to estimate the shear wave velocity (Vs) from SPT N values. Judgment is required regarding the use of uncorrected vs. corrected blow count. Older correlations were likely developed using 60% hammer efficiency as represented by N60. The general form for most of the Vs correlations is:\n\nVs = B * N^x * z^y  (Eq. 8-45)\n\nwhere:\nVs = shear wave velocity (m/s),\nB, x, and y = empirical coefficients,\nN = SPT blow count, and\nz = depth to the soil layer (m).\n\nCorrelations using the form of Equation 8-45 are summarized in Table 8-26. Other correlations are presented in Table 8-27. The range of values expected from these correlations can be seen in Figure 8-61.",
+      "body": "Many correlations have been developed to estimate the shear wave velocity (Vs) from SPT N values. Judgment is required regarding the use of uncorrected vs. corrected blow count. Older correlations were likely developed using 60% hammer efficiency as represented by N60. The general form for most of the Vs correlations is:\n\nVs = B * N^x * z^y  (Eq. 8-45)\n\nwhere:\nVs = shear wave velocity (m/s),\nB, x, and y = empirical coefficients,\nN = SPT blow count, and\nz = depth to the soil layer (m).\n\nCorrelations using the form of Equation 8-45 are summarized in Table 8-26. Other correlations are presented in Table 8-27. [Note to Table 8-27: Vs,1 = normalized shear wave velocity = Vs·(Pa / σʹv)^0.25, and N1,60cs = N1,60 corrected for fine content] The range of values expected from these correlations can be seen in Figure 8-61.",
       "key_points": [
         "The general SPT-Vs correlation form is Vs = B·N^x·z^y (Eq. 8-45), with empirical coefficients B, x, and y varying by soil type and reference.",
         "Judgment is required regarding use of uncorrected N vs. corrected N60; older correlations were likely based on N60 (60% hammer efficiency).",
         "Table 8-26 compiles over 30 sets of B, x, y coefficients from the literature, covering sands, clays, silts, and gravels.",
-        "Table 8-27 provides additional correlations in non-standard forms, including normalized Vs,1 and N1,60cs-based equations.",
-        "Figure 8-61 shows the full range of predicted Vs values across the compiled correlations, illustrating prediction uncertainty."
+        "Table 8-27 gives other correlations: Jinan (1987) and Ulmer et al. (2020), the latter in terms of Vs,1 = Vs·(Pa/σ′v)^0.25 and N1,60cs (N1,60 corrected for fines content).",
+        "The range of values expected from these correlations can be seen in Figure 8-61."
       ],
       "equations": [
         {
@@ -1121,18 +1112,18 @@
         "Table 8-26 Shear Wave Velocity Correlated to SPT N Value and Depth",
         "Table 8-27 Shear Wave Velocity Correlated to SPT N Value"
       ],
-      "applicability": "Applies when estimating shear wave velocity (Vs) from Standard Penetration Test (SPT) N values, particularly for seismic site characterization and liquefaction assessments."
+      "applicability": "Applies when estimating shear wave velocity (Vs) from SPT N values, with judgment on the use of uncorrected or corrected blow counts."
     },
     {
       "section_id": "8-8.2",
       "title": "Correlations with Cone Penetration Test",
       "summary": "Summarizes empirical correlations for estimating shear wave velocity (Vs) directly from CPT results, including cone tip resistance (qc), sleeve friction (fs), void ratio (e), depth (z), effective vertical stress (σ′v), and soil behavior index (Ic). Table 8-28 compiles over a dozen equations from multiple references covering sands, clays, and general soils. Notes that some CPT cones can measure Vs directly via geophone or accelerometer.",
-      "body": "Several correlations relating the shear wave velocity to the results of the cone penetration test have been developed and are summarized in Table 8-28. It should be noted that some cones are equipped with a geophone or accelerometer and can measure shear wave velocity directly.",
+      "body": "Several correlations relating the shear wave velocity to the results of the cone penetration test have been developed and are summarized in Table 8-28. It should be noted that some cones are equipped with a geophone or accelerometer and can measure shear wave velocity directly. [Note to Table 8-28: Vs = shear wave velocity (m/s), Vs,1 = normalized shear wave velocity = Vs·(Pa /σʹv)^0.25, qc = cone tip resistance (kPa), qc1 = normalized cone tip resistance = (qc / Pa) (Pa /σʹv)^n, qc1NCS = normalized cone tip resistance as detailed by Boulanger and Idriss (2014), fs = cone sleeve resistance (kPa), e = void ratio, z = depth of the soil layer, σʹv = effective vertical stress (kPa), Ic = soil index for estimating grain characteristics, and n = 0.5 for Ic < 2.6, else 0.75.]",
       "key_points": [
         "Multiple CPT-Vs correlations exist using qc, fs, void ratio, depth, effective stress, and soil behavior index Ic as inputs.",
         "Table 8-28 consolidates equations from over ten references, differentiating by soil type (sands, clays, general).",
         "Normalized parameters include Vs,1 = Vs·(Pa/σ′v)^0.25 and qc1 = (qc/Pa)·(Pa/σ′v)^n, where n depends on Ic.",
-        "Some CPT cones equipped with geophones or accelerometers can directly measure Vs, bypassing correlation uncertainty.",
+        "Some cones are equipped with a geophone or accelerometer and can measure shear wave velocity directly.",
         "Table 8-28 notes: the exponent n in the qc1 normalization is 0.5 for Ic < 2.6, else 0.75."
       ],
       "equations": [],
@@ -1140,17 +1131,17 @@
       "tables": [
         "Table 8-28 Correlations for Shear Wave Velocity with CPT results"
       ],
-      "applicability": "Applies when estimating shear wave velocity (Vs) from Cone Penetration Test (CPT) data, or when selecting among literature correlations for seismic site characterization using CPT soundings."
+      "applicability": "Applies when estimating shear wave velocity (Vs) from cone penetration test results with the correlations of Table 8-28."
     },
     {
       "section_id": "8-9",
       "title": "Suggested Reading",
-      "summary": "Provides a short list of recommended references for further study on two topics covered in Chapter 8: soil properties estimation and geotechnical correlations. Includes key texts by Kulhawy & Mayne (1990), Carter & Bentley (2016), and Duncan, Horz & Yang (1989) on shear strength correlations.",
+      "summary": "Suggested reading for two topics: soil properties (Kulhawy and Mayne 1990, Manual on estimating soil properties for foundation design, EPRI-EL-6800) and geotechnical correlations (Carter and Bentley 2016, Soil properties and their correlations; Duncan, Horz and Yang 1989, Shear Strength Correlations for Geotechnical Engineering, CGPR#4).",
       "body": "Topic: Soil Properties\nReference: Kulhawy, F. H. and Mayne, P. W. (1990). Manual on estimating soil properties for foundation design (No. EPRI-EL-6800). Electric Power Research Inst., Palo Alto, CA; Cornell Univ., Ithaca, NY, Geotechnical Engineering Group.\n\nTopic: Geotechnical Correlations\nReference: Carter, M. and Bentley, S. P. (2016). Soil properties and their correlations. John Wiley & Sons.\n\nDuncan, J. M., Horz, R. C., and Yang, T. L. (1989). Shear Strength Correlations for Geotechnical Engineering, CGPR#4, Center for Geotechnical Practice and Research, Blacksburg, VA, 93 pp.",
       "key_points": [
-        "Kulhawy & Mayne (1990) is the primary reference for estimating soil properties for foundation design.",
-        "Carter & Bentley (2016) covers soil property correlations broadly.",
-        "Duncan, Horz & Yang (1989) specifically addresses shear strength correlations for geotechnical engineering practice."
+        "Topic Soil Properties: Kulhawy, F. H. and Mayne, P. W. (1990). Manual on estimating soil properties for foundation design (No. EPRI-EL-6800).",
+        "Topic Geotechnical Correlations: Carter, M. and Bentley, S. P. (2016). Soil properties and their correlations.",
+        "Topic Geotechnical Correlations: Duncan, J. M., Horz, R. C., and Yang, T. L. (1989). Shear Strength Correlations for Geotechnical Engineering, CGPR#4."
       ],
       "equations": [],
       "figures": [],
