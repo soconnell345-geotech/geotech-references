@@ -59,6 +59,7 @@ BUILT = {
     "1": ["B-1", "B-1.1", "B-1.2", "B-1.3", "B-1.4", "B-1.5", "B-1.6", "B-1.7", "B-1.8"],
     "2": ["B-2", "B-2.1", "B-2.2", "B-2.3", "B-2.4", "B-2.5", "B-2.6", "B-2.7", "B-2.8"],
     "3": ["B-3", "B-3.1", "B-3.2", "B-3.3", "B-3.4", "B-3.5", "B-3.6", "B-3.7"],
+    "4": ["B-4", "B-4.1", "B-4.2", "B-4.3", "B-4.4", "B-4.5", "B-4.6"],
 }
 
 
@@ -359,3 +360,68 @@ def test_example_2_dm7_2_lookups():
     assert rho == pytest.approx(18.52, abs=0.01)
     ratio = figure_4_36_moment_reduction(rho, "medium_dense_and_dense_coarse_grained")
     assert ratio == pytest.approx(0.62, abs=0.005)
+
+
+# ---------------------------------------------------------------------------
+# Example 4 – mat foundation (pp. 627-633)
+# ---------------------------------------------------------------------------
+
+def test_example_4_modulus_and_immediate_settlement():
+    # p. 628: qnet = (3)(150) + 1,000,000/25² = 2050 psf
+    assert 3 * 150 + 1_000_000 / 25 ** 2 == pytest.approx(2050)
+    # Table B-23 (p. 630) from Es,u ≈ 138σʹz·(1 + OCM/σʹz)^0.8 with the printed σʹz
+    rows = _rows(_table("B-4.3", "B-23"))[1:]
+    for r in rows:
+        sz, ocm, ocr, es = (_num(c) for c in r[1:])
+        assert 1 + ocm / sz == pytest.approx(ocr, abs=0.05)
+        assert 138 * sz * (1 + ocm / sz) ** 0.8 == pytest.approx(es, rel=0.002)
+    # p. 630: Es,u = 889 ksf; si = 0.64 in
+    es = (509 * 10 + 661 * 35 + 1281 * 30) / 75
+    assert es == pytest.approx(889, abs=0.5)
+    si = 0.97 * 0.2 * 120 * 2.05 / 889 * 12
+    assert si == pytest.approx(0.64, abs=0.005)
+
+
+def test_example_4_consolidation_tables():
+    b24 = {r[0]: r for r in _rows(_table("B-4.4", "B-24"))[1:]}
+    b25 = {r[0]: r for r in _rows(_table("B-4.4", "B-25"))[1:]}
+    b26 = [r for r in _rows(_table("B-4.4", "B-26"))[1:] if r[0].isdigit()]
+    assert len(b26) == 9
+    total = 0.0
+    for r in b26:
+        sub = r[0]
+        sz0 = _num(b24[sub][9])
+        ocm, sp, dze, sze, dzl, szf = (_num(c) for c in b25[sub][2:])
+        assert sz0 + ocm == pytest.approx(sp)                    # σʹp = σʹz0 + OCM
+        assert sz0 + dze == pytest.approx(sze, abs=1)            # σʹze
+        assert sze + dzl == pytest.approx(szf, abs=1)            # σʹzf
+        cc, cr, eps, h, dh = (_num(c) for c in r[2:])
+        e = cr * math.log10(min(sp, szf) / sze) + cc * math.log10(max(sp, szf) / sp)
+        assert e == pytest.approx(eps, abs=0.00006)              # p. 632
+        assert eps * h == pytest.approx(dh, abs=0.0011)
+        total += e * h
+    assert total == pytest.approx(0.195, abs=0.0015)
+    # "approximately 2.4 inches": 0.195 ft is 2.34 in (noted in B-4.4)
+    assert 0.195 * 12 == pytest.approx(2.34)
+
+
+def test_example_4_table_b24_stresses():
+    for r in _rows(_table("B-4.4", "B-24"))[1:]:
+        mid, gam, s, u, se = (_num(c) for c in r[5:])
+        assert u == pytest.approx(max(0.0, (195 - mid) * 62.4), abs=0.5)
+        assert s - u == pytest.approx(se, abs=0.5)
+
+
+def test_example_4_dm7_2_lookups():
+    from geotech_references.dm7_2.chapter5 import (
+        modulus_of_subgrade_reaction, subgrade_modulus_from_elastic_parameters,
+        subgrade_modulus_time_dependent)
+    # p. 633: ks = 2.05 ksf / 0.7 in = 20.3 pci
+    ks = modulus_of_subgrade_reaction(2.05 * 1000 / 144, 0.7)
+    assert ks == pytest.approx(20.3, abs=0.05)
+    # Eq. 5-39: ksc = s·ks/(s + sc) = 4.6 pci with s = 0.7 in, sc = 2.4 in
+    assert subgrade_modulus_time_dependent(0.7, 2.4, ks) == pytest.approx(4.6, abs=0.05)
+    # Es/(B·μ0·μ1) equals q/si before si is rounded to 0.7 in (0.64 in: 22.1 pci)
+    k_el = subgrade_modulus_from_elastic_parameters(120.0, 889.0, 0.97, 0.2)  # ksf/ft
+    si_ft = 0.97 * 0.2 * 120 * 2.05 / 889
+    assert k_el == pytest.approx(2.05 / si_ft, rel=1e-9)

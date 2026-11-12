@@ -3,7 +3,7 @@
   "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
   "volume": 2,
   "chapter": 9,
-  "chapter_title": "Appendix B: Verification Examples (Examples 1 to 3)",
+  "chapter_title": "Appendix B: Verification Examples (Examples 1 to 4)",
   "sections": [
     {
       "section_id": "B",
@@ -463,6 +463,121 @@
         "Table B-21 Summary of Bearing Capacity Analyses – Example 3 — Analysis / Footing 1 Far from Slope (Q=150 kips) / Footing 2 Near Top of Slope (Q=100 kips) / Footing 3 On Slope (Q=30 kips): Short term, Meyerhof: 6 ft × 11 ft, 2.27 ksf / – / –; Short term, Brinch Hansen: 6 ft × 10 ft, 2.50 ksf / – / 3.5 ft × 3.5 ft, 2.45 ksf; Short term, Leshchinsky & Xie: – / 6 ft × 8.5 ft, 1.96 ksf / –; Long term, Meyerhof: 6 ft × 3.5 ft, 7.14 ksf / 6 ft × 4.25 ft, 3.92 ksf / –; Long term, Brinch Hansen: 6 ft × 4.75 ft, 5.26 ksf / – / 3.5 ft × 3.5 ft, 2.45 ksf; Design: 6 ft × 11 ft, 2.27 ksf / 6 ft × 8.5 ft, 1.96 ksf / 3.5 ft × 3.5 ft, 2.45 ksf (p. 626)"
       ],
       "applicability": "Worked bearing capacity design (Meyerhof 1951/1957, Brinch Hansen 1970, Leshchinsky and Xie 2017) of isolated footings on overconsolidated clay near and on a 2H:1V slope, short-term undrained and long-term drained, FBC >= 2.5."
+    },
+    {
+      "section_id": "B-4",
+      "title": "EXAMPLE 4 – MAT FOUNDATION DESIGN.",
+      "summary": "Example 4: settlement and modulus of subgrade reaction of a 120 ft by 160 ft compensated mat for a 10-story building on lean clay strata over dense sand (B-4.1 to B-4.6).",
+      "body": "Example 4 estimates the settlement of a mat foundation and its modulus of subgrade reaction: B-4.1 Description of the Problem; B-4.2 Goals and Limitations of the Analysis; B-4.3 Immediate Settlement; B-4.4 Primary Consolidation; B-4.5 Modulus of Subgrade Reaction; B-4.6 Conclusions from the Analysis. (pp. 627 to 633)",
+      "key_points": [
+        "Immediate settlement 0.7 inches, consolidation settlement 2.4 inches; ks = 20.3 pci immediate and ksc = 4.6 pci long-term (Table B-27, p. 633)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.1",
+      "title": "Description of the Problem.",
+      "summary": "10-story building with underground parking on a 120 ft by 160 ft mat bearing at El. 200 ft (grade El. 215 ft, groundwater El. 195 ft); four strata (Table B-22) with γ, Cεc, Cεr and OCM; mat 3 ft thick, columns at 25 ft carrying 1,000 kips, qnet = 2050 psf; the 15 ft excavation reduces the total vertical stress by 1,650 psf; swell ratio taken equal to the recompression ratio; all settlement after full loading.",
+      "body": "A proposed 10-story building with underground parking is to be supported by a rectangular mat foundation having plan dimensions of 120 ft by 160 ft (Figure 1). The site is level with an exterior finished grade of El. 215 ft. The site conditions enable the bearing grade of the mat to be set at an elevation of El. 200 ft. In addition to providing space for parking, the excavation will reduce expected settlements since some of the weight of the new structure will be offset, or compensated, by the weight of the excavated material. The subsurface exploration performed for the project indicates that the subsurface consists of the four strata listed in Table B-22. It is known that Stratum 4 continues for several hundred feet. The design groundwater elevation is El. 195 ft. The design of total unit weight (γ), modified compression index (Cεc), modified recompression index (Cεr), and overconsolidation margin (OCM) listed in Table B-22 are based on interpretation of in-situ and lab testing information as well as prior experience with the local geology. The OCM quantifies the preconsolidation and is equal to the difference between the preconsolidation stress and the current vertical effective stress (p. 627) at any depth. The soil properties in Table B-22 reflect the soil prior to the excavation and foundation construction. Additionally, Atterberg limits testing suggests that the Strata 1-3 clays generally have plasticity index values less than 30. The concrete mat foundation will be 3 ft thick and support a regular grid of columns on a 25 ft spacing. The columns will impose design loads of 1,000 kips each on the mat. Based on the self-weight of the mat and uniform distribution of the column load with each column’s tributary area, the bearing pressure of the mat is equal to: qnet = (3 ft)(150 pcf) + 1000000 lb/(25 ft)² = 2050 psf. The 15-ft deep excavation in Stratum 1 soil associated with accessing the bearing grade (El. 200 ft) from the ground surface (El. 215 ft) reduces the total vertical stress on the bearing grade by 1,650 psf. It is conservatively assumed that the excavation is left open long enough for the excess pore pressures generated by the excavation to fully dissipate and the effective vertical stresses in the ground to be reduced and be in equilibrium with the excavation prior to construction of the mat. The reduction in effective vertical stress due to the excavation causes the Stratum 1-3 clays to heave according to the swell ratio, which is assumed to be equal to the recompression ratio. It is further assumed that all settlement occurs after application of the full bearing pressure, i.e. no settlement occurs during construction. This assumption is conservative, particularly for immediate settlement, which occurs simultaneously with loading. (p. 628)",
+      "key_points": [
+        "The excavation will reduce expected settlements since some of the weight of the new structure is offset, or compensated, by the weight of the excavated material (p. 627).",
+        "OCM equals the difference between the preconsolidation stress and the current vertical effective stress at any depth (pp. 627 to 628).",
+        "qnet = (3 ft)(150 pcf) + 1000000 lb/(25 ft)² = 2050 psf (p. 628).",
+        "It is conservatively assumed that the excavation stays open long enough for excess pore pressures to fully dissipate, and that all settlement occurs after the full bearing pressure is applied (p. 628)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-14 Plan and Profile of Site"
+      ],
+      "tables": [
+        "Table B-22 Subsurface Profile — Stratum / Description / Depth (ft): Top / Bottom / Soil Properties: γ (pcf) / Cεc / Cεr / OCM (ksf); 1 / Medium to stiff lean clay / 0 / 25 / 110 / 0.07 / 0.007 / 2; 2 / Medium stiff lean clay / 25 / 60 / 115 / 0.10 / 0.010 / 2; 3 / Very stiff lean clay / 60 / 90 / 125 / 0.05 / 0.005 / 6; 4 / Dense fine to coarse sand / 90 / (blank) / -- (p. 627)"
+      ],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.2",
+      "title": "Goals and Limitations of the Analysis.",
+      "summary": "Estimate ultimate settlement from immediate elastic distortion and time-dependent consolidation of the Strata 1-3 clays (secondary compression not considered, Stratum 4 sand compression ignored), and the modulus of subgrade reaction for service loading, at the center of the mat.",
+      "body": "The first goal of this analysis is to estimate ultimate settlements of the mat foundation due to immediate elastic distortion under loading and time-dependent consolidation. The potential for secondary compression over the service life of the foundation is not considered in this analysis. Compression of the Strata 1-3 clays is considered while compression of the Stratum 4 sand is assumed to be small enough to ignore. The second goal of the analysis is to estimate the modulus of subgrade reaction for the service loading condition based on the results of the settlement analysis. The analysis is performed at the plan view location of the center of the mat. A full analysis of the mat foundation for geotechnical and structural design would likely involve evaluating settlement and the modulus of subgrade reaction at multiple locations. (p. 628)",
+      "key_points": [
+        "Secondary compression over the service life is not considered; compression of the Stratum 4 sand is assumed small enough to ignore (p. 628).",
+        "The analysis is at the center of the mat; a full analysis would likely evaluate settlement and the modulus of subgrade reaction at multiple locations (p. 628)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.3",
+      "title": "Immediate Settlement.",
+      "summary": "Distortion of the Strata 1-3 clays as a linear elastic layer: composite modulus weighted by layer thickness (Bowles 1996); undrained Es,u/su = 600 (PI < 30, slightly overconsolidated); su ≈ 0.23·σʹz·OCR^0.8 (Jamiolkowski et al. 1985, m = 0.8), so Es,u ≈ 138σʹz·[(1 + OCM)/σʹz]^0.8 as printed; Table B-23; Es,u = 889 ksf; μ0 = 0.97, μ1 = 0.2 (Figure B-15); si = 0.64 → ≈ 0.7 in.",
+      "body": "Immediate settlement, si, of the compressible clay soils of Strata 1-3 is due to distortion, i.e. shape change rather than volume change, of the clay due to the finite loaded area of (p. 628) the mat foundation. Immediate settlement calculations of this type are typically performed by approximating the soils that undergo distortion as a linear elastic material that experiences a uniform strain due to an applied uniform bearing pressure. The calculations require estimates of the Young’s modulus, Es, of the layers experiencing distortion as well as an estimate of the thickness of material that experiences the uniform strain. When multiple layers are present, a single composite estimate of Young’s modulus can be estimated using the weighing method by layer thickness proposed by Bowles (1996). This approach does not weight layers by proximity to the bearing grade and soil profiles commonly become stiffer with depth, so care should be used when evaluating which layers to include in the calculation. The thickness of the soil experiencing the average strain is estimated by multiplying the width of the loaded area, B, by two influence factors, μ0 and μ1 (see Section 5-4.5). Estimates of Young’s modulus are almost always imprecise and often do not directly consider stress-strain nonlinearity. Since immediate settlement occurs with loading, the clay soils are best represented as being undrained. In this example, Young’s modulus for undrained conditions is estimated using the correlation with undrained strength, OCR, and plasticity index proposed by Duncan and Buchignani (1987) as presented in Figure 8-51 of UFC 3-220-10 (UFC 2022). The Strata 1 to 3 clays generally have a plasticity index less than 30 and are slightly overconsolidated, so a ratio of Young’s Modulus to undrained strength equal to 600 is a reasonable estimate. Because no direct measurements of shear strength are available, undrained strength is estimated using the correlation proposed by Jamiolkowski et al. (1985) using a fitting parameter, m, equal to 0.8. Expressing the effect of the OCR in terms of a constant value of OCM, yields: su ≈ 0.23·σʹz·OCR^0.8 ≈ 0.23·σʹz·[(1 + OCM)/σʹz]^0.8. Combining the relationship among undrained strength, vertical effective stress, and OCM, with the ratio of undrained Young’s modulus to undrained strength equal to 600 produces the following relationship: Es,u ≈ 600·su ≈ 138σʹz·[(1 + OCM)/σʹz]^0.8. (As printed on p. 629: the fraction is (1 + OCM)/σʹz; OCR = (σʹz + OCM)/σʹz = 1 + OCM/σʹz, which gives the values of Table B-23.) Application of the relationship above with the vertical effective stress at the middle of each stratum prior to construction and the estimates of OCM given in Table B-22 produces the estimates of Young’s Modulus provided in Table B-23. For Stratum 1, the vertical stress is evaluated at the midpoint between the bearing grade of the mat foundation and the bottom of the layer at a depth of 20 ft below the ground surface. The weighed average modulus value is equal to: (p. 629) Es,u = [(509 ksf)(10 ft) + (661 ksf)(35 ft) + (1281 ksf)(30 ft)]/75 ft = 889 ksf. (Table B-24 gives σʹz0 = 3,358 psf at El. 172.5 ft and 5,218 psf at El. 140 ft, the midpoints of Strata 2 and 3; Table B-23 prints 3.27 and 4.89 ksf, and its moduli follow from the printed values.) The values of influence factors, μ0 and μ1, are found using the charts found in Figure 5-29. Based on the geometric ratios and interpretation of the charts presented in Figure B-15, the values of the influence factors, μ0 and μ1, are taken to equal 0.97 and 0.2, respectively. Using the estimated value of Young’s modulus, influence factors, and bearing pressure, the estimated immediate settlement of the mat is equal to: si = μ0μ1B(q/Es,u) = (0.97)(0.2)(120 ft)(2.05 ksf/889 ksf)(12 in/1 ft) = 0.64 → ≈ 0.7 in. (Labels of Figure B-15: Mat Geometry B = 120 ft, L = 160 ft, H = 75 ft; Ratios D/B = 0.125, H/B = 0.625, L/B = 1.33; μ1 = 0.2 at H/B = 0.625; μ0 = 0.97 at D/B = 0.125.) (p. 630)",
+      "key_points": [
+        "Immediate settlement is due to distortion (shape change rather than volume change) of the clay under the finite loaded area (pp. 628 to 629).",
+        "The thickness-weighted composite modulus (Bowles 1996) does not weight layers by proximity to the bearing grade, so care should be used when evaluating which layers to include (p. 629).",
+        "Since immediate settlement occurs with loading, the clay soils are best represented as being undrained; Es,u/su = 600 is a reasonable estimate for PI < 30 and slightly overconsolidated clay (p. 629).",
+        "Es,u = 889 ksf (thickness-weighted over 75 ft); μ0 = 0.97 and μ1 = 0.2 from Figure B-15 (p. 630).",
+        "si = μ0μ1B(q/Es,u) = (0.97)(0.2)(120 ft)(2.05 ksf/889 ksf)(12 in/1 ft) = 0.64 → ≈ 0.7 in. (p. 630)."
+      ],
+      "equations": [],
+      "figures": [
+        "Figure B-15 Intepretation of Influence Factors for Elastic Settlement"
+      ],
+      "tables": [
+        "Table B-23 Calculated Vertical Stresses, OCR, and Modulus at Layer Midpoints — Stratum / σʹz (ksf) / OCM (ksf) / OCR / Es,u (ksf); 1 / 2.20 / 2 / 1.9 / 509; 2 / 3.27 / 2 / 1.6 / 661; 3 / 4.89 / 6 / 2.2 / 1281 (p. 630)"
+      ],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.4",
+      "title": "Primary Consolidation.",
+      "summary": "Ten sublayers thickening with depth (Table B-24); σʹp = σʹz0 + OCM; Boussinesq corner solutions (Table 4-2 of UFC 3-220-10) for Δσze (excavation) and Δσzl (loading); σʹzf = σʹze + Δσzl (Table B-25); εz,ult = Cεr log[min(σʹp, σʹzf)/σʹze] + Cεc log[max(σʹp, σʹzf)/σʹc]; Table B-26 sums to 0.195 ft, about 2.4 inches.",
+      "body": "Ultimate primary consolidation, sc, of the compressible clay soils of Strata 1 to 3 is due to changes in effective stress from the foundation loading, incorporating the effects of the excavation on the stress history of the soils, i.e. preconsolidation stress. While commercial software and spreadsheet analysis of consolidation allow discretization of the compressible soils into a great number of thin layers, a relatively small number of layers having thickness that increases with depth from the bearing grade can produce results that closely match analyses using highly-discretized profiles. In this case ten sublayers are used as shown in Table B-24 along with the evaluation of the total and effective vertical stresses at the mid-depth of each layer prior to making the excavation for the foundation. Table B-25 presents values of preconsolidation stress for each layer (σʹp) found by adding the OCM to the initial vertical effective stress from Table B-24. Changes in total vertical stress due to the excavation and foundation loading are estimated using Boussinesq elastic solutions for stress changes below the corner of a flexible rectangular-loaded area as presented in Table 4-2 in UFC 3-220-10 (UFC 2022). Stress changes due to the excavation are represented by Δσze and stress changes due to the foundation construction and loading are represented by Δσzl. The effective vertical stress after the excavation, σʹze, is the initial effective stress used in the strain calculations and the final effective stress, σʹzf, is equal to the sum of σʹze and Δσzl. Strain due to ultimate consolidation settlement is found according to: (p. 631) εz,ult = Cεr log[min(σʹp, σʹzf)/σʹze] + Cεc log[max(σʹp, σʹzf)/σʹc]. (As printed on p. 632: the second denominator and the Table B-25 heading are σʹc, the preconsolidation stress the text calls σʹp.) Table B-26 summarizes the ultimate strain and compression, ΔHult, of each sublayer. The sum of the sublayer compressions equals the ultimate consolidation settlement, δc,ult. In this case, the consolidation settlement is approximately 2.4 inches. (Table B-26 sums to 0.195 ft, which is 2.34 inches.) (p. 632)",
+      "key_points": [
+        "A relatively small number of sublayers thickening with depth from the bearing grade can closely match highly-discretized analyses; ten sublayers are used here (p. 631).",
+        "σʹp = initial σʹz0 + OCM; stress changes from Boussinesq solutions below the corner of a flexible rectangle (Table 4-2 of UFC 3-220-10); σʹzf = σʹze + Δσzl (p. 631).",
+        "εz,ult = Cεr log[min(σʹp, σʹzf)/σʹze] + Cεc log[max(σʹp, σʹzf)/σʹc] (p. 632).",
+        "The sublayer compressions sum to δc,ult = 0.195 ft; the consolidation settlement is approximately 2.4 inches (p. 632)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-24 Evaluation of Initial Stresses Prior to Construction — Sublayer / Stratum / Top El. (ft) / Bottom El. (ft) / Thickness (ft) / Midpt. El. (ft) / γt (pcf) / At Mid-Depth: σz0 (psf) / u (psf) / σʹz0 (psf); Excavated / (blank) / 215 / 200 / 15 / 207.5 / 110 / 825 / 0 / 825; 1 / 1 / 200 / 195 / 5 / 197.5 / 110 / 1925 / 0 / 1925; 2 / 1 / 195 / 190 / 5 / 192.5 / 110 / 2475 / 156 / 2319; 3 / 2 / 190 / 185 / 5 / 187.5 / 115 / 3038 / 468 / 2570; 4 / 2 / 185 / 175 / 10 / 180.0 / 115 / 3900 / 936 / 2964; 5 / 2 / 175 / 165 / 10 / 170.0 / 115 / 5050 / 1560 / 3490; 6 / 2 / 165 / 155 / 10 / 160.0 / 115 / 6200 / 2184 / 4016; 7 / 3 / 155 / 145 / 10 / 150.0 / 125 / 7400 / 2808 / 4592; 8 / 3 / 145 / 135 / 10 / 140.0 / 125 / 8650 / 3432 / 5218; 9 / 3 / 135 / 125 / 10 / 130.0 / 125 / 9900 / 4056 / 5844 (p. 631)",
+        "Table B-25 Evaluation of Preconsolidation Stress and Stress Changes — Sublayer / Stratum / OCM (psf) / σʹc (psf) / Δσze (psf) / σʹze (psf) / Δσzl (psf) / σʹzf (psf); 1 / 1 / 2000 / 3925 / −1650 / 275 / 2050 / 2325; 2 / 1 / 2000 / 4319 / −1648 / 671 / 2048 / 2719; 3 / 2 / 2000 / 4570 / −1642 / 927 / 2040 / 2968; 4 / 2 / 2000 / 4964 / −1621 / 1343 / 2013 / 3357; 5 / 2 / 2000 / 5490 / −1563 / 1927 / 1942 / 3869; 6 / 2 / 2000 / 6016 / −1476 / 2540 / 1834 / 4374; 7 / 3 / 6000 / 10592 / −1368 / 3224 / 1700 / 4924; 8 / 3 / 6000 / 11218 / −1251 / 3967 / 1555 / 5521; 9 / 3 / 6000 / 11844 / −1134 / 4710 / 1409 / 6119 (p. 632)",
+        "Table B-26 Strain and Compression Calculations — Sublayer / Stratum / Cεc / Cεr / εz,ult / Thickness (ft) / ΔHult (ft); 1 / 1 / 0.070 / 0.007 / 0.0065 / 5 / 0.032; 2 / 1 / 0.070 / 0.007 / 0.0043 / 5 / 0.021; 3 / 2 / 0.100 / 0.010 / 0.0051 / 5 / 0.025; 4 / 2 / 0.100 / 0.010 / 0.0040 / 10 / 0.040; 5 / 2 / 0.100 / 0.010 / 0.0030 / 10 / 0.030; 6 / 2 / 0.100 / 0.010 / 0.0024 / 10 / 0.024; 7 / 3 / 0.050 / 0.005 / 0.0009 / 10 / 0.009; 8 / 3 / 0.050 / 0.005 / 0.0007 / 10 / 0.007; 9 / 3 / 0.050 / 0.005 / 0.0006 / 10 / 0.006; δc,ult = ΣΔH (ft) = 0.195 (p. 632)"
+      ],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.5",
+      "title": "Modulus of Subgrade Reaction.",
+      "summary": "Immediate: ks = q/si = 2.05 ksf/0.7 in. = 20.3 pci; with consolidation: ksc = q/(si + sc) = 14.24 psi/(0.7 in + 2.4 in) = 4.6 pci.",
+      "body": "The modulus of subgrade reaction is calculated for two conditions: 1) considering the immediate settlement response of the loaded mat foundation and 2) considering the additional time-dependent settlement from primary consolidation. The modulus of subgrade reaction for the immediate response of the loaded mat foundation, ks, is found by: ks = q/si = (2.05 ksf/0.7 in.)(1000 lb/1 k)(1 ft²/144 in²) = 20.3 pci. Including the time-depending settlement from primary consolidation further reduces the modulus of subgrade reaction, ksc. Using a value for si equal to 0.7 inches, a value for sc equal to 2.4 inches, and a bearing pressure equal to 2.05 ksf (14.24 psi) produces: ksc = q/(si + sc) = 14.24 psi/(0.7 in + 2.4 in) = 4.6 pci. (p. 633)",
+      "key_points": [
+        "ks = q/si = 20.3 pci for the immediate response of the loaded mat (p. 633).",
+        "Including primary consolidation further reduces it: ksc = q/(si + sc) = 14.24 psi/(0.7 in + 2.4 in) = 4.6 pci (p. 633)."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
+    },
+    {
+      "section_id": "B-4.6",
+      "title": "Conclusions from the Analysis.",
+      "summary": "Table B-27: si = 0.7 inches, sc = 2.4 inches, ks = 20.3 pci, ksc = 4.6 pci.",
+      "body": "Settlement of the proposed mat foundation was calculated. The immediate and consolidiation settlements are summarized in Table B-27. The subgrade reaction moduli are also provided. (p. 633)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table B-27 Summary of Estimated Settlements and Subgrade Reaction Moduli — Design Parameter / Value; Immediate settlement, si / 0.7 inches; Consolidation settlement, sc / 2.4 inches; Immediate modulus of subgrade reaction, ks / 20.3 pci; Long-term modulus of subgrade reaction, ksc / 4.6 pci (p. 633)"
+      ],
+      "applicability": "Worked settlement estimate for a compensated 120 ft by 160 ft mat (3 ft thick, 2,050 psf bearing pressure, 15 ft excavation) on three lean clay strata over dense sand, at the center of the mat: immediate settlement from an undrained modulus (Es,u = 600·su, su by Jamiolkowski et al. 1985) with influence factors μ0 and μ1, ultimate primary consolidation with modified indices and OCM in ten sublayers, and the immediate and long-term moduli of subgrade reaction; secondary compression is not considered."
     }
   ]
 }
