@@ -172,7 +172,7 @@
         "From ground test results: Rt;d = Rt;k/gamma_s;t (Eq. 7.15), Rt;k = Rs;k (Eq. 7.16), Rt;k = Min{(Rs;cal)mean/xi3; (Rs;cal)min/xi4} (Eq. 7.17, Table A.10) or SUM As;i qs;i;k (Eq. 7.18)"
       ],
       "equations": [
-        {"id": "Eq. 7.12", "description": "Ft;d <= Rt;d: design tensile action not greater than the design tensile resistance, for all ULS load cases and load combinations (7.6.3.1(2)P). Block uplift is verified separately in accordance with 2.4.7.4 (Figure 7.1).", "implemented_in": null},
+        {"id": "Eq. 7.12", "description": "Ft;d <= Rt;d: design tensile action not greater than the design tensile resistance, for all ULS load cases and load combinations (7.6.3.1(2)P). Verification against uplift failure of the block of ground containing the piles (see Figure 7.1) shall be carried out in accordance with 2.4.7.4 (7.6.3.1(4)P, p. 83).", "implemented_in": null},
         {"id": "Eq. 7.13", "description": "Rt;d = Rt;k / gamma_s;t, design tensile resistance from pile load test results.", "implemented_in": null},
         {"id": "Eq. 7.14", "description": "Rt;k = Min{(Rt;m)mean/xi1; (Rt;m)min/xi2}, characteristic tensile resistance from pile load tests; xi1, xi2 related to the number of piles tested (Table A.9).", "implemented_in": null},
         {"id": "Eq. 7.15", "description": "Rt;d = Rt;k / gamma_s;t, design tensile resistance from ground test results.", "implemented_in": null},
