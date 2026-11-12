@@ -727,7 +727,13 @@ printed in Table 4-9 (p. 4-39, after the 4.5.6 heading) with two more for
 clays and no unit, and the text now says so and points to `cbr_from_dcp`'s
 note (mm per blow). The stored 4.7.3 discussed Table 4-14; the printed 4.7.3
 is Subsurface Profile and Table 4-14 is in 4.7.2, now typed in from pp. 4-65
-and 4-66 with the silts, clays and peat rows the lookup leaves out. The
+and 4-66 with the silts, clays and peat rows. The lookup
+`table_4_14_soil_as_pavement_material` held only the gravel and sand rows,
+one row each for GM and SM, and said the printed table covered gravels and
+sands only; it now holds all 17 printed rows, every cell as printed (GM and
+SM each as a "d" and a "u" row, ML to OH and Pt from p. 4-66), with each
+row's major division and page; "GM" or "SM" alone returns both of its rows,
+and the page's footnote on the d/u split comes with them. The
 SPT correction in Table 4-8 keeps the number the page gives it, (5-1).
 Chapters 5 to 8 followed (2026-11-11 and 12), so all eight printed chapters
 are built, 200 sections in all: 5 (Geotechnical Inputs for Pavement Design,
