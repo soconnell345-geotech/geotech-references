@@ -25,7 +25,8 @@ built this way):
   (cells of one printed row on one line, ``" | "`` between cells), a merged
   cell repeated on each row it spans. A table whose cells are equations is
   typed in from the rendered page (``printed_tables``: ``number``,
-  ``rows``), and so is one printed as a picture;
+  ``rows``, optional ``title`` where the text layer holds its caption's
+  symbols wrongly), and so is one printed as a picture;
 * figures placed as pictures over a caption ``Figure 5–4. ...``; lettering
   the text layer holds inside a picture is left out.
 
@@ -40,8 +41,14 @@ number is written as a hyphen (``Table 5-2``, ``paragraph 5-5a(2)``), the
 way section, figure and equation numbers are written everywhere else in the
 library. Mathematics the placement rules cannot read (pieces stacked where
 no fraction bar is drawn) is listed by the build and stops it until the
-manifest types the passage in (``printed_passages``: ``page``, ``find``,
-``replace``) or accepts it as read (``accepted_math``).
+manifest types the passage in (``printed_passages``: ``section``,
+``page``, ``find``, ``replace``) or accepts it as read (``accepted_math``).
+A worked example's formula line the rules read wrongly (a power left off,
+a stacked denominator on a line of its own, subscripts spaced off their
+symbols) is typed in the same way, read off the rendered page; the typed
+line must hold the letters and digits the text layer holds unless the
+entry says why not (``differs_from_text_layer``: the page prints "bpf"
+where the text layer holds "pf").
 
 Where the print's own figures are wrong (a worked example whose sum does
 not follow from its rows), the body keeps them as printed and the
@@ -914,7 +921,8 @@ class Cell:
                 beside = p.mathy or self.paras[k - 1].mathy
                 if long or (beside and last):
                     out += "\n"
-                elif beside and not out.endswith((".", ";", ":", ",")):
+                elif beside and not out.endswith((".", ";", ":", ",", "=")):
+                    # (a formula broken after its equals sign runs on)
                     out += "; "
                 else:
                     out += " "
@@ -1227,7 +1235,8 @@ class Book:
                     "off the page:]" if why == "picture" else
                     f"[The cells of Table {t['number']} are equations; its rows as "
                     "typed in from the printed page:]")
-            self.tables[t["number"]] = {"note": t.get("note", note), "rows": t["rows"]}
+            self.tables[t["number"]] = {"note": t.get("note", note), "rows": t["rows"],
+                                        "title": t.get("title")}
         self.passages = vol.get("printed_passages", [])
         self.print_notes = vol.get("print_notes", [])
         self.accepted = {(str(a["page"]), a["text"]) for a in vol.get("accepted_math", [])}
@@ -1247,6 +1256,15 @@ class Book:
 
     def note(self, message: str) -> None:
         self.notes.append(f"p. {self.page}: {message}")
+
+    def added(self, sid: str) -> int:
+        """The characters (as JSON) the manifest's passages and notes add to
+        section ``sid`` when ``finish`` places them, after the section is
+        split, so the split leaves room for them."""
+        n = sum(max(0, len(json.dumps(f["replace"])) - len(json.dumps(f["find"])))
+                for f in self.passages if f["section"] == sid)
+        return n + sum(len(json.dumps("\n[Note (not printed): " + p["note"] + "]")) - 2
+                       for p in self.print_notes if p["section"] == sid)
 
     def formula(self, number: str, auto: list[str]) -> str:
         """The formula typed in for a numbered equation; where none is typed
@@ -1377,9 +1395,9 @@ def read_front(doc, first: int, last: int, book) -> dict:
             m = re.match(r"^(.*?)\s*\.{2,}\s*(\d+)$", e.text) \
                 or re.match(r"^(.*?)\s+\.?\s*(\d{1,3})$", e.text)
             if not m or int(m.group(2)) < last_page:
-                acc = (acc + " " + e.text).strip()
+                acc = _front_join(acc, e.text)
                 continue
-            entry, page = (acc + " " + m.group(1)).strip(), int(m.group(2))
+            entry, page = _front_join(acc, m.group(1)), int(m.group(2))
             acc, last_page = "", page
             for key, pat in (("chapters", r"^Chapter (\d+) (.+)$"),
                              ("appendixes", r"^Appendix ([A-Z]) (.+)$"),
@@ -1393,6 +1411,15 @@ def read_front(doc, first: int, last: int, book) -> dict:
             else:
                 book.note(f"contents entry not read: {entry[:60]!r}")
     return out
+
+
+def _front_join(acc: str, text: str) -> str:
+    """A list entry run on from its previous line: a word broken after its
+    own hyphen keeps the hyphen and no space ('per-' 'inch basis' ->
+    'per-inch basis', 'Laboratory 1-' 'D Oedometer' -> '1-D')."""
+    if acc.endswith("-") and text[:1].isalnum():
+        return acc + text.strip()
+    return (acc + " " + text).strip()
 
 
 def number_hyphens(text: str) -> str:
@@ -1775,14 +1802,15 @@ def render(blocks: list[Block], book) -> tuple[str, list[str], list[str]]:
             pieces = [(b.page, f"Figure {b.number}. {b.title}")] if b.shown else []
             figures.append(f"Figure {b.number}: {b.title}")
         elif b.kind == "table":
-            caption = f"Table {b.number} {b.title}".strip() if b.number else ""
             typed = book.tables.get(b.number)
+            title = (typed or {}).get("title") or b.title
+            caption = f"Table {b.number} {title}".strip() if b.number else ""
             if typed is not None:
                 book.used_tables.add(b.number)
                 pieces = [(b.page, typed["note"])] + [(b.page, r) for r in typed["rows"]]
             if caption:
                 pieces = [(b.page, caption)] + list(pieces)
-                tables.append(f"Table {b.number}: {b.title}")
+                tables.append(f"Table {b.number}: {title}")
         text = ""
         for page, piece in pieces:
             if page != last:
@@ -1805,15 +1833,25 @@ def equations_of(body: str, book) -> list[dict]:
     for num in dict.fromkeys(re.findall(r"\[Eq\. ([^\]]+)\]", body)):
         entry = book.typed.get(num, {})
         k = body.index(f"[Eq. {num}]")
-        words = re.sub(r"\[[^\]]*\]", " ", body[max(0, k - 600):k])
         # the words that lead to the equation: the sentence before its line
-        lead = [p for p in words.split("\n\n")[:-1] if re.search(r"[A-Za-z]{4}", p)]
-        tail = re.sub(r"\s+", " ", lead[-1]).strip()[-200:] if lead else ""
-        tail = re.split(r"(?<=[.;])\s+", tail)[-1] if tail else ""
+        lead = [p for p in body[max(0, k - 600):k].split("\n\n")[:-1]
+                if re.search(r"[A-Za-z]{4}", re.sub(r"\[[^\]]*\]", " ", p))]
+        # where that is another equation's line, the equation is printed after
+        # it (Eq. 5-3 after Eq. 5-2), not introduced by its formula
+        after = re.findall(r"\[Eq\. ([^\]]+)\]", lead[-1]) if lead else []
+        # else its last sentence (not cut after "et al." or "e.g.": "... (Mayne
+        # et al. 2018) can also be used."), from its start, at most 240 characters
+        para = re.sub(r"\s+", " ", re.sub(r"\[[^\]]*\]", " ", lead[-1])).strip() \
+            if lead else ""
+        tail = re.split(r"(?<!\bal\.)(?<!e\.g\.)(?<!i\.e\.)(?<=[.;])\s+", para)[-1] \
+            if para else ""
+        if len(tail) > 240:
+            tail = tail[:240].rsplit(" ", 1)[0] + " ..."
         page = entry.get("page") or next(iter(reversed(_PAGE_MARK.findall(body[:k]))), None)
         where = f" (p. {page})" if page else ""
         desc = entry.get("description") or (
-            f"Equation {num}, introduced by: \"{tail}\"{where}." if len(tail) >= 12
+            f"Equation {num}, printed after Eq. {after[-1]}{where}." if after
+            else f"Equation {num}, introduced by: \"{tail}\"{where}." if len(tail) >= 12
             else f"Equation {num} as printed{where}.")
         eq = {"id": f"Eq. {num}", "description": desc}
         if entry.get("formula"):
@@ -1848,16 +1886,18 @@ def _cut_tables(body: str) -> str:
     return "\n\n".join(out)
 
 
-def split_long(sec: dict, what: str) -> list[dict]:
+def split_long(sec: dict, what: str, room: int = 0) -> list[dict]:
     """A section over the size limits as the section (its first part) and
     parts lettered ``.a``, ``.b`` ... after it, cut between paragraphs or
     between a table's rows. The letters are not printed: each part's title
-    and applicability say which printed pages it holds."""
-    overhead = len(json.dumps(dict(sec, body="", equations=[])))
+    and applicability say which printed pages it holds. ``room``: what the
+    manifest's passages and notes add after the split (``Book.added``),
+    left free in every part."""
+    overhead = len(json.dumps(dict(sec, body="", equations=[]))) + room
 
     def fits(text):
         eqs = [e for e in sec["equations"] if f"[{e['id']}]" in text]
-        return (len(text) <= MAX_BODY_CHARS
+        return (len(text) + room <= MAX_BODY_CHARS
                 and len(json.dumps(text)) + len(json.dumps(eqs)) + overhead
                 <= MAX_SECTION_JSON_CHARS)
 
@@ -1941,7 +1981,7 @@ def sections_of(blocks: list[Block], ch: dict, vol: dict, book) -> list[dict]:
         sec = {"section_id": sid, "title": title, "body": body, "key_points": [],
                "equations": equations_of(body, book), "figures": figures,
                "tables": tables, "applicability": applicability}
-        out.extend(split_long(sec, unit))
+        out.extend(split_long(sec, unit, book.added(sid)))
     return out
 
 

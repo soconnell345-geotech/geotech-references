@@ -290,7 +290,7 @@
    "equations": [
     {
      "id": "Eq. 3-1",
-     "description": "Equation 3-1 as printed (p. 28).",
+     "description": "Equation 3-1, introduced by: \"Higher void ratios can be present for some organic soils (Holtz et al. 2011).\" (p. 28).",
      "formula": "e = Vv/Vs",
      "variables": {
       "e": "void ratio (expressed as a decimal)",
@@ -338,7 +338,7 @@
     },
     {
      "id": "Eq. 3-3",
-     "description": "Equation 3-3, introduced by: \"DR = (emax − e)/(emax − emin) × 100(%)\" (p. 28).",
+     "description": "Equation 3-3, printed after Eq. 3-2 (p. 28).",
      "formula": "DR = (1/γd,min − 1/γd)/(1/γd,min − 1/γd,max) × 100 (%)",
      "variables": {
       "DR": "relative density (%)",
@@ -491,7 +491,7 @@
     },
     {
      "id": "Eq. 3-6",
-     "description": "Equation 3-6, introduced by: \"esionless soil in its loosest state emin = void ratio of cohesionless in its densest state D50 = particle size corresponding to 50 percent finer on the cumulative particle size distribution curve (mm)\" (p. 31).",
+     "description": "Equation 3-6, introduced by: \"where: emax = void ratio of cohesionless soil in its loosest state emin = void ratio of cohesionless in its densest state D50 = particle size corresponding to 50 percent finer on the cumulative particle size distribution curve (mm)\" (p. 31).",
      "formula": "Cd = 11.7/(emax − emin)^1.7   for hammer energy ratio = 60%",
      "variables": {
       "Cd": "parameter representing the grain-size effects, and therefore, function of emax – emin",
@@ -559,7 +559,7 @@
     },
     {
      "id": "Eq. 3-8",
-     "description": "Equation 3-8, introduced by: \"emax − emin = 0.35 (1/Cu) + 0.21, if 200 ≥ Cu ≥ 2\" (p. 32).",
+     "description": "Equation 3-8, printed after Eq. 3-7 (p. 32).",
      "formula": "emax = 0.95 (1/Cu) + 0.43, if 200 ≥ Cu ≥ 1",
      "variables": {
       "emax": "void ratio of cohesionless soil in its loosest state",
@@ -570,7 +570,7 @@
     },
     {
      "id": "Eq. 3-9",
-     "description": "Equation 3-9, introduced by: \"emax = 0.95 (1/Cu) + 0.43, if 200 ≥ Cu ≥ 1\" (p. 32).",
+     "description": "Equation 3-9, printed after Eq. 3-8 (p. 32).",
      "formula": "emin = 0.60 (1/Cu) + 0.22, if 200 ≥ Cu ≥ 2",
      "variables": {
       "emin": "void ratio of cohesionless in its densest state",
@@ -663,7 +663,7 @@
    "equations": [
     {
      "id": "Eq. 3-11",
-     "description": "Equation 3-11, introduced by: \"ndings are advanced at a rate of 0.787 inches/sec or less, pore water pressures are essentially hydrostatic (pore water ratio, Bq = 0, reference Table 4-7), and the soil behavior type index, Ic < 2.6.\" (p. 35).",
+     "description": "Equation 3-11, introduced by: \"This equation is applicable for clean quartz to silica sands where the CPTu soundings are advanced at a rate of 0.787 inches/sec or less, pore water pressures are essentially hydrostatic (pore water ratio, Bq = 0, reference Table 4-7), and ...\" (p. 35).",
      "formula": "φ′ = 25° (qt1)^0.10   (Uzielli et al. 2013)",
      "variables": {
       "φ′": "drained friction angle (degrees), see note",
@@ -691,7 +691,7 @@
    "equations": [
     {
      "id": "Eq. 3-12",
-     "description": "Equation 3-12, introduced by: \"2018) can also be used.\" (p. 36).",
+     "description": "Equation 3-12, introduced by: \"For clean sands, equation 3-13 (Rix et al. 2018) can also be used.\" (p. 36).",
      "formula": "φ′ = 28.0° + 14.6 · log(KD) − 2.1 · log[(KD)]^2   (Marchetti 1997)",
      "variables": {
       "φ′": "drained friction angle (degrees), see note",
@@ -703,7 +703,7 @@
     },
     {
      "id": "Eq. 3-13",
-     "description": "Equation 3-13, introduced by: \"φ′ = 28.0° + 14.6 · log(KD) − 2.1 · log ^2 (Marchetti 1997)\" (p. 36).",
+     "description": "Equation 3-13, printed after Eq. 3-12 (p. 36).",
      "formula": "φ′ = 20.0° + [0.04 + 0.06 · (KD)^(−1)]^(−1)   (Rix et al.2018)",
      "variables": {
       "φ′": "drained friction angle (degrees), see note",
@@ -874,7 +874,7 @@
    "equations": [
     {
      "id": "Eq. 3-16",
-     "description": "Equation 3-16 as printed (p. 41).",
+     "description": "Equation 3-16, introduced by: \"OCR for different soils (Ladd et al. 1977).\" (p. 41).",
      "formula": "su/σ′vo = S (OCR)^m",
      "variables": {
       "su": "undrained shear strength, (psf or kPa)",
@@ -905,6 +905,7 @@
       "su": "undrained shear strength (psf or kPa)",
       "σ′vo": "in situ vertical effective stress (same unit as su)",
       "OCR": "overconsolidation ratio",
+      "φ′": "effective or drained friction angle (degrees)",
       "Λ": "plastic volumetric strain ratio (1 – recompression index/compression index) clays of low to medium sensitivity exhibit 0.7 < Λ < 0.8, whereas structured and sensitive soils show 0.9 < Λ < 1.0"
      },
      "notes": "The subscript DSS: direct simple shear mode (paragraph 3-6f(2)).",
@@ -977,7 +978,7 @@
   {
    "section_id": "3-7a",
    "title": "Compression (Cc) and recompression index (Cr)",
-   "body": "[p. 45] Compression (Cc) and recompression index (Cr). Typical values of compression index (Cc) of various natural soils are provided in Table 3-8. Empirical relationships are also provided in Table 3-9, based on soil index properties. The recompression index [p. 46] (Cr) is typically 5 to 10 percent of the magnitude of Cc. Typical values of Cr range from 0.015 to 0.035, with nearly all results between 0.002 and 0.05 (Leonards 1976).\n\nTable 3-8 Typical values of compression index (Cc)\nSoil | Compression Index (Cc) | Source\nBoston blue Clay, undisturbed (CL) | 0.30 to 0.50 | Modified after Lambe and Whitman 1969\nCincinnati Clay (CL) | 0.17 | Modified after Lambe and Whitman 1969\nLouisiana Clay undisturbed | 0.33 | Modified after Lambe and Whitman 1969\nNew Orleans Clay, undisturbed (CH) | 0.29 | Modified after Lambe and Whitman 1969\nSiburua Clay (CH) | 0.21 | Modified after Lambe and Whitman 1969\nNa-Montmorillonite (CH) | 0.21 to 0.26 | Modified after Lambe and Whitman 1969\nNormally consolidated medium sensitive Clays | 0.2 to 0.5 | Holtz et al. 2011\nChicago silty Clay (CL) | 0.15 to 0.3 | Holtz et al. 2011\nBoston blue Clays (CL) | 0.3 to 0.5 | Holtz et al. 2011\nVicksburg buckshot Clay (CH) | 0.5 to 0.6 | Holtz et al. 2011\nSan Francisco Bay Mud (CL) | 0.4 to 1.2 | Holtz et al. 2011\nSan Francisco Old Bay Clays (CH) | 0.7 to 0.9 | Holtz et al. 2011\nBangkok Clay (CH) | 0.4 | Holtz et al. 2011\nSwedish medium sensitive Clays (CL-CH) | 1 to 3 | Holtz et al. 2011\nCanadian Leda Clays (CL-CH) | 1 to 4 | Holtz et al. 2011\nMexico City Clay (MH) | 7 to 10 | Holtz et al. 2011\nOrganic Clays (OH) | > 4.0 | Holtz et al. 2011\nOrganic silt and clayey Silts (ML-MH) | 1.5 to 4.0 | Holtz et al. 2011\nPeats (Pt) | 10 to 15 | Holtz et al. 2011\nUniform Sand, loose (SP) | 0.05 to 0.06 | EM 1110-1-1904\nFor σv^(;) = 2,000 to 8,000 pcf\nUniform Sand, dense (SP) | 0.02 to 0.03 | EM 1110-1-1904; For σv^(;) = 2,000 to 8,000 pcf\nUniform Silts (ML) | 0.20 | EM 1110-1-1904; For σv^(;) = 2,000 to 8,000 pcf\n\n[p. 47] Table 3-9 Empirical relationships for compression index (Cc) based on soil index properties\nApplicability | Equation | Source\nFor remolded Clay | Cc= 0.007 (LL – 7%) | Skempton 1944\nNormally consolidated Clay with sensitivity less than 4 | Cc= 0.009 (LL – 10%) | Terzaghi and Peck 1948\nFor organic soil, Peat | Cc= 0.0115 ωn | Moran et al. 1959\nAll Clays | Cc= 1.15 (e0 – 0.35) | Nishida 1956\nVarved Clays | Cc= (1 + e0) [0.1 + (ωn – 25) 0.006] | NAVFAC DM 7.1\nNote: ωn = natural water content, LL = liquid limit, and e0 = initial void ratio.",
+   "body": "[p. 45] Compression (Cc) and recompression index (Cr). Typical values of compression index (Cc) of various natural soils are provided in Table 3-8. Empirical relationships are also provided in Table 3-9, based on soil index properties. The recompression index [p. 46] (Cr) is typically 5 to 10 percent of the magnitude of Cc. Typical values of Cr range from 0.015 to 0.035, with nearly all results between 0.002 and 0.05 (Leonards 1976).\n\nTable 3-8 Typical values of compression index (Cc)\nSoil | Compression Index (Cc) | Source\nBoston blue Clay, undisturbed (CL) | 0.30 to 0.50 | Modified after Lambe and Whitman 1969\nCincinnati Clay (CL) | 0.17 | Modified after Lambe and Whitman 1969\nLouisiana Clay undisturbed | 0.33 | Modified after Lambe and Whitman 1969\nNew Orleans Clay, undisturbed (CH) | 0.29 | Modified after Lambe and Whitman 1969\nSiburua Clay (CH) | 0.21 | Modified after Lambe and Whitman 1969\nNa-Montmorillonite (CH) | 0.21 to 0.26 | Modified after Lambe and Whitman 1969\nNormally consolidated medium sensitive Clays | 0.2 to 0.5 | Holtz et al. 2011\nChicago silty Clay (CL) | 0.15 to 0.3 | Holtz et al. 2011\nBoston blue Clays (CL) | 0.3 to 0.5 | Holtz et al. 2011\nVicksburg buckshot Clay (CH) | 0.5 to 0.6 | Holtz et al. 2011\nSan Francisco Bay Mud (CL) | 0.4 to 1.2 | Holtz et al. 2011\nSan Francisco Old Bay Clays (CH) | 0.7 to 0.9 | Holtz et al. 2011\nBangkok Clay (CH) | 0.4 | Holtz et al. 2011\nSwedish medium sensitive Clays (CL-CH) | 1 to 3 | Holtz et al. 2011\nCanadian Leda Clays (CL-CH) | 1 to 4 | Holtz et al. 2011\nMexico City Clay (MH) | 7 to 10 | Holtz et al. 2011\nOrganic Clays (OH) | > 4.0 | Holtz et al. 2011\nOrganic silt and clayey Silts (ML-MH) | 1.5 to 4.0 | Holtz et al. 2011\nPeats (Pt) | 10 to 15 | Holtz et al. 2011\nUniform Sand, loose (SP) | 0.05 to 0.06 | EM 1110-1-1904\nFor σ′v = 2,000 to 8,000 pcf\nUniform Sand, dense (SP) | 0.02 to 0.03 | EM 1110-1-1904; For σ′v = 2,000 to 8,000 pcf\nUniform Silts (ML) | 0.20 | EM 1110-1-1904; For σ′v = 2,000 to 8,000 pcf\n\n[p. 47] Table 3-9 Empirical relationships for compression index (Cc) based on soil index properties\nApplicability | Equation | Source\nFor remolded Clay | Cc= 0.007 (LL – 7%) | Skempton 1944\nNormally consolidated Clay with sensitivity less than 4 | Cc= 0.009 (LL – 10%) | Terzaghi and Peck 1948\nFor organic soil, Peat | Cc= 0.0115 ωn | Moran et al. 1959\nAll Clays | Cc= 1.15 (e0 – 0.35) | Nishida 1956\nVarved Clays | Cc= (1 + e0) [0.1 + (ωn – 25) 0.006] | NAVFAC DM 7.1\nNote: ωn = natural water content, LL = liquid limit, and e0 = initial void ratio.",
    "key_points": [],
    "equations": [],
    "figures": [],
@@ -995,7 +996,7 @@
    "equations": [
     {
      "id": "Eq. 3-19",
-     "description": "Equation 3-19 as printed (p. 47).",
+     "description": "Equation 3-19, introduced by: \"Ranges of compression ratio (Cεc) and recompression ratio (Cεr) for different classifications of soil compressibility are provided in Table 3-10 (Coduto et al. 2016).\" (p. 47).",
      "formula": "Compression Ratio, Cεc = Cc/(1 + e0)",
      "variables": {
       "Cεc": "compression ratio (paragraph 3-7b)",
@@ -1007,7 +1008,7 @@
     },
     {
      "id": "Eq. 3-20",
-     "description": "Equation 3-20, introduced by: \"Compression Ratio, Cεc = Cc/(1 + e0)\" (p. 47).",
+     "description": "Equation 3-20, printed after Eq. 3-19 (p. 47).",
      "formula": "Recompression Ratio, Cεr = Cr/(1 + e0)",
      "variables": {
       "Cεr": "recompression ratio (paragraph 3-7b)",
@@ -1056,7 +1057,7 @@
    "equations": [
     {
      "id": "Eq. 3-21",
-     "description": "Equation 3-21, introduced by: \"(1994) reported that the indirect method typically underestimates the value of permeability by a factor of 2.\" (p. 49).",
+     "description": "Equation 3-21, introduced by: \"Mesri et al. (1994) reported that the indirect method typically underestimates the value of permeability by a factor of 2.\" (p. 49).",
      "formula": "Hydraulic Conductivity, k = Cv · mv · γw",
      "variables": {
       "k": "hydraulic conductivity or permeability (ft/sec)",
@@ -1147,7 +1148,7 @@
     },
     {
      "id": "Eq. 3-24",
-     "description": "Equation 3-24, introduced by: \"OCR = σ′p/σ′zo = (0.468 Pa · (N60)^m)/σ′zo (sands, silty sand, sandy silts)\" (p. 52).",
+     "description": "Equation 3-24, printed after Eq. 3-23 (p. 52).",
      "formula": "OCR = σ′p/σ′zo = (0.15 Pa · (N60)^m)/σ′zo   (gravels)",
      "variables": {
       "OCR": "overconsolidation ratio",
@@ -1249,7 +1250,7 @@
     },
     {
      "id": "Eq. 3-29",
-     "description": "Equation 3-29, introduced by: \"σ′p = 0.5pl (clays)\" (p. 53).",
+     "description": "Equation 3-29, printed after Eq. 3-28 (p. 53).",
      "formula": "σ′p = 0.33pl (sands)",
      "variables": {
       "σ′p": "preconsolidation stress (tsf)",
@@ -1348,7 +1349,7 @@
     },
     {
      "id": "Eq. 3-32",
-     "description": "Equation 3-32, introduced by: \"Poisson's ratio, υ = −εh/εv\" (p. 55).",
+     "description": "Equation 3-32, printed after Eq. 3-31 (p. 55).",
      "formula": "Bulk modulus, K = E/(3(1 − 2υ))",
      "variables": {
       "υ": "Poisson’s ratio",
@@ -1360,7 +1361,7 @@
     },
     {
      "id": "Eq. 3-33",
-     "description": "Equation 3-33, introduced by: \"Bulk modulus, K = E/(3(1 − 2υ))\" (p. 55).",
+     "description": "Equation 3-33, printed after Eq. 3-32 (p. 55).",
      "formula": "Shear modulus, G = E/(2(1 + υ))",
      "variables": {
       "υ": "Poisson’s ratio",
@@ -1372,7 +1373,7 @@
     },
     {
      "id": "Eq. 3-34",
-     "description": "Equation 3-34, introduced by: \"Shear modulus, G = E/(2(1 + υ))\" (p. 55).",
+     "description": "Equation 3-34, printed after Eq. 3-33 (p. 55).",
      "formula": "Elastic modulus, E = (9K · G)/(3K + G)",
      "variables": {
       "E": "elastic modulus",
@@ -1384,7 +1385,7 @@
     },
     {
      "id": "Eq. 3-35",
-     "description": "Equation 3-35, introduced by: \"Elastic modulus, E = (9K · G)/(3K + G)\" (p. 55).",
+     "description": "Equation 3-35, printed after Eq. 3-34 (p. 55).",
      "formula": "Constrained modulus, M = (E(1 − υ))/((1 + υ)(1 − 2υ))",
      "variables": {
       "υ": "Poisson’s ratio",
@@ -1446,12 +1447,12 @@
   {
    "section_id": "3-9b(1)(b)",
    "title": "D’Appolonia et al",
-   "body": "[p. 57] D’Appolonia et al. also concluded that for highly plastic clays, the laboratory-consolidated, undrained shear tests provided a close approximation of field behavior and unconfined compression. It was also observed that unconsolidated, undrained tests significantly underestimated Eu, and for most clays, consolidated undrained Triaxial tests (both CIU and CKoU) resulted in similar Eu to the measured field conditions. Duncan and Buchagani (1976) advanced the work, compiling results of various studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and overconsolidation, as shown in Table 3-15.\n\n[p. 58] Eu = β · su [Eq. 3-36]\n\nwhere:\nEu = undrained elastic modulus of clay (psf or kPa)\nβ = dimensionless factor from Figure 3-5\nsu = undrained shear strength of clay (psf or kPa)\n\nFigure 3-15. Elastic modulus for undrained clays (adapted from Duncan and Buchagani 1976)\n\n[p. 59] Table 3-15 Elastic modulus of undrained clays (after Duncan and Buchagani 1976)\nOCR | PI Range | β Range\n1 | PI < 30 | 600 to 1,500\n1 | 30 < PI < 50 | 300 to 600\n1 | PI > 50 | 125 to 300\n2 | PI < 30 | 575 to 1,450\n2 | 30 < PI < 50 | 275 to 575\n2 | PI > 50 | 115 to 75\n4 | PI < 30 | 400 to 975\n4 | 30 < PI < 50 | 185 to 400\n4 | PI > 50 | 70 to 185\n6 | PI < 30 | 250 to 600\n6 | 30 < PI < 50 | 115 to 250\n6 | PI > 50 | 60 to 115",
+   "body": "[p. 57] D’Appolonia et al. also concluded that for highly plastic clays, the laboratory-consolidated, undrained shear tests provided a close approximation of field behavior and unconfined compression. It was also observed that unconsolidated, undrained tests significantly underestimated Eu, and for most clays, consolidated undrained Triaxial tests (both CIU and CKoU) resulted in similar Eu to the measured field conditions. Duncan and Buchagani (1976) advanced the work, compiling results of various studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and overconsolidation, as shown in Table 3-15.\n\n[p. 58] Eu = β · su [Eq. 3-36]\n\nwhere:\nEu = undrained elastic modulus of clay (psf or kPa)\nβ = dimensionless factor from Figure 3-5\nsu = undrained shear strength of clay (psf or kPa)\n\nFigure 3-15. Elastic modulus for undrained clays (adapted from Duncan and Buchagani 1976)\n\n[p. 59] Table 3-15 Elastic modulus of undrained clays (after Duncan and Buchagani 1976)\nOCR | PI Range | β Range\n1 | PI < 30 | 600 to 1,500\n1 | 30 < PI < 50 | 300 to 600\n1 | PI > 50 | 125 to 300\n2 | PI < 30 | 575 to 1,450\n2 | 30 < PI < 50 | 275 to 575\n2 | PI > 50 | 115 to 75\n[Note (not printed): Table 3-15 (p. 59): the β range for OCR 2 and PI > 50 is printed 115 to 75, its upper value below its lower; at PI > 50 the rows for OCR 1 and OCR 4 print 125 to 300 and 70 to 185. The numbers above are as printed.]\n4 | PI < 30 | 400 to 975\n4 | 30 < PI < 50 | 185 to 400\n4 | PI > 50 | 70 to 185\n6 | PI < 30 | 250 to 600\n6 | 30 < PI < 50 | 115 to 250\n6 | PI > 50 | 60 to 115",
    "key_points": [],
    "equations": [
     {
      "id": "Eq. 3-36",
-     "description": "Equation 3-36, introduced by: \"arious studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and overconsolidation, as shown in Table 3-15.\" (p. 58).",
+     "description": "Equation 3-36, introduced by: \"Duncan and Buchagani (1976) advanced the work, compiling results of various studies and published a graph (Figure 3-15) and table relating the undrained elastic modulus of clay to undrained shear strength, soil plasticity, and ...\" (p. 58).",
      "formula": "Eu = β · su",
      "variables": {
       "Eu": "undrained elastic modulus of clay (psf or kPa)",
@@ -1596,7 +1597,7 @@
     },
     {
      "id": "Eq. 3-39b",
-     "description": "Equation 3-39b, introduced by: \"αM = Qt when Qt ≤ 14 (fine-grained soils, where Ic > 2.2)\" (p. 62).",
+     "description": "Equation 3-39b, printed after Eq. 3-39a (p. 62).",
      "formula": "αM = 14 when Qt > 14   (fine-grained soils, where Ic > 2.2)",
      "variables": {
       "αM": "constrained modulus cone factor (dimensionless), used in equation 3-38",
@@ -1608,7 +1609,7 @@
     },
     {
      "id": "Eq. 3-40",
-     "description": "Equation 3-40, introduced by: \"αM = 14 when Qt > 14 (fine-grained soils, where Ic > 2.2)\" (p. 62).",
+     "description": "Equation 3-40, printed after Eq. 3-39b (p. 62).",
      "formula": "αM = 0.0188 [10^(0.55 Ic + 1.68)]   (coarse-grained soils, where Ic < 2.2)",
      "variables": {
       "αM": "constrained modulus cone factor (dimensionless), used in equation 3-38",
@@ -1643,7 +1644,7 @@
     },
     {
      "id": "Eq. 3-41a",
-     "description": "Equation 3-41a, introduced by: \"Constrained Modulus, MDMT = RM · ED\" (p. 62).",
+     "description": "Equation 3-41a, printed after Eq. 3-41 (p. 62).",
      "formula": "RM = 0.14 + 2.36 log KD   for ID ≤ 0.6",
      "variables": {
       "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
@@ -1655,7 +1656,7 @@
     },
     {
      "id": "Eq. 3-41b",
-     "description": "Equation 3-41b, introduced by: \"Constrained Modulus, MDMT = RM · ED\" (p. 62).",
+     "description": "Equation 3-41b, printed after Eq. 3-41 (p. 62).",
      "formula": "RM = RM,0 + (2.5 − RM,0) log KD   for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)",
      "variables": {
       "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
@@ -1667,7 +1668,7 @@
     },
     {
      "id": "Eq. 3-41c",
-     "description": "Equation 3-41c, introduced by: \"RM = RM,0 + (2.5 − RM,0) log KD for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)\" (p. 62).",
+     "description": "Equation 3-41c, printed after Eq. 3-41b (p. 62).",
      "formula": "RM = 0.5 + 2.0 log KD   for ID > 3",
      "variables": {
       "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
@@ -1679,7 +1680,7 @@
     },
     {
      "id": "Eq. 3-41d",
-     "description": "Equation 3-41d, introduced by: \"RM = RM,0 + (2.5 − RM,0) log KD for 0.6 < ID < 3, with RM,0 = 0.14 + 0.15(ID − 0.6)\" (p. 63).",
+     "description": "Equation 3-41d, printed after Eq. 3-41b (p. 63).",
      "formula": "RM = 0.32 + 2.18 log KD   for KD > 10",
      "variables": {
       "RM": "correction factor for converting ED to MDMT; if RM is calculated to be less than 0.85, set RM = 0.85",
@@ -1760,7 +1761,7 @@
     },
     {
      "id": "Eq. 3-44",
-     "description": "Equation 3-44, introduced by: \"Gmax = 21.7 K2max · Pa (σ′m/Pa)^(1/2)\" (p. 64).",
+     "description": "Equation 3-44, printed after Eq. 3-43 (p. 64).",
      "formula": "K2max = 20[(N1)60cs]^0.33   (Seed et al. 1984)",
      "variables": {
       "K2max": "modulus coefficient for estimating Gmax",
@@ -1771,7 +1772,7 @@
     },
     {
      "id": "Eq. 3-45",
-     "description": "Equation 3-45 as printed (p. 64).",
+     "description": "Equation 3-45, printed after Eq. 3-44 (p. 64).",
      "formula": "K2max = 0.6DR + 15   (Byrne et al. 1987)",
      "variables": {
       "K2max": "modulus coefficient for estimating Gmax",
@@ -1782,7 +1783,7 @@
     },
     {
      "id": "Eq. 3-46",
-     "description": "Equation 3-46 as printed (p. 64).",
+     "description": "Equation 3-46, printed after Eq. 3-45 (p. 64).",
      "formula": "K2max = 625 OCR^k/(0.3 + 0.7 e^2)   (Hardin 1978)",
      "variables": {
       "K2max": "modulus coefficient for estimating Gmax",

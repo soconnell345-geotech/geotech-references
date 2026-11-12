@@ -74,7 +74,7 @@
     },
     {
      "id": "Eq. 5-3",
-     "description": "Equation 5-3, introduced by: \"qeq = (Q + Wf)/A′ − ud = V/A′ − ud = V/(B′ · L′) − ud (Isolated Spread Footing)\" (p. 94).",
+     "description": "Equation 5-3, printed after Eq. 5-2 (p. 94).",
      "formula": "qeq = (Q + Wf)/B′ − ud = V/B′ − ud   (Continuous Footing)",
      "variables": {
       "Q": "vertical column loading (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
@@ -307,7 +307,7 @@
     },
     {
      "id": "Eq. 5-16",
-     "description": "Equation 5-16, introduced by: \"qult = qult,gross = qu = ql = qbL = Vult/A′ (Isolated Spread Footing)\" (p. 99).",
+     "description": "Equation 5-16, printed after Eq. 5-15 (p. 99).",
      "formula": "qult = qult,gross = qu = ql = qbL = Vult/B′   (Continuous Footing)",
      "variables": {
       "Vult": "ultimate vertical force, including foundation weight, for circular or rectangular footings (kips) or force/unit length for continuous footings (kips/ft)",
@@ -389,7 +389,7 @@
     },
     {
      "id": "Eq. 5-18",
-     "description": "Equation 5-18, introduced by: \"qult = min(qult,1, (((B′ + Hs) · (L′ + Hs))/(B · L)) qult,2) (Isolated Spread Footing)\" (p. 102).",
+     "description": "Equation 5-18, printed after Eq. 5-17 (p. 102).",
      "formula": "qult = min(qult,1, ((B′ + Hs)/B′) qult,2)   (Continuous Footing)",
      "variables": {
       "qult": "the ultimate bearing capacity (ksf), due to punching failure",
@@ -784,7 +784,7 @@
     },
     {
      "id": "Eq. 5-26",
-     "description": "Equation 5-26, introduced by: \"qult = k · sq · dq · iqγ · bq · gq · s + q0 (drained)\" (p. 114).",
+     "description": "Equation 5-26, printed after Eq. 5-25 (p. 114).",
      "formula": "qult = k · sc · dc · ic · bc · gc · s + q0   (undrained)",
      "variables": {
       "qult": "ultimate bearing capacity (ksf)",
@@ -803,7 +803,7 @@
     },
     {
      "id": "Eq. 5-27",
-     "description": "Equation 5-27, introduced by: \"qult = k · sc · dc · ic · bc · gc · s + q0 (undrained)\" (p. 114).",
+     "description": "Equation 5-27, printed after Eq. 5-26 (p. 114).",
      "formula": "iqγ = min(Df/B′, 1) · iq + max(1 − Df/B′, 0) · iγ",
      "variables": {
       "iqγ": "dimensionless surcharge and unit weight correction factors for load inclination, use 1 for vertical load and < 1 for inclined loads, see equation 5-27",
@@ -952,7 +952,7 @@
     },
     {
      "id": "Eq. 5-29",
-     "description": "Equation 5-29, introduced by: \"FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/T (General Expression for Drained Sliding Factor of Safety, after EM 1110-2-2100)\" (p. 119).",
+     "description": "Equation 5-29, printed after Eq. 5-28 (p. 119).",
      "formula": "FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/(H + Pa,d − Pp,d)   (Drained Sliding Factor of Safety)",
      "variables": {
       "N": "component of the resultant force normal to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
@@ -972,7 +972,7 @@
     },
     {
      "id": "Eq. 5-30",
-     "description": "Equation 5-30, introduced by: \"FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/(H + Pa,d − Pp,d) (Drained Sliding Factor of Safety)\" (p. 119).",
+     "description": "Equation 5-30, printed after Eq. 5-29 (p. 119).",
      "formula": "FS = ((ca/su) · A · su)/(H + Pa,d − Pp,d)   (Undrained Sliding Factor of Safety φ = 0)",
      "variables": {
       "A": "base area of an isolated spread footing (ft^2), use B = 1 ft for area of continuous footing (ft^2/ft), where B is the base width of the footing in contact with soil",
@@ -1012,7 +1012,7 @@
     },
     {
      "id": "Eq. 5-32",
-     "description": "Equation 5-32, introduced by: \"φ′d = tan^(−1)(tan φ′/FSslide)\" (p. 120).",
+     "description": "Equation 5-32, printed after Eq. 5-31 (p. 120).",
      "formula": "c′d = c′/FSslide",
      "variables": {
       "FSslide": "minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)",
@@ -1024,7 +1024,7 @@
     },
     {
      "id": "Eq. 5-33",
-     "description": "Equation 5-33, introduced by: \"c′d = c′/FSslide\" (p. 120).",
+     "description": "Equation 5-33, printed after Eq. 5-32 (p. 120).",
      "formula": "su,d = su/FSslide",
      "variables": {
       "FSslide": "minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)",

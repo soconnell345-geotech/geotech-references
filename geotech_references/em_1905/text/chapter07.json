@@ -207,7 +207,7 @@
     },
     {
      "id": "Eq. 7-3b",
-     "description": "Equation 7-3b, introduced by: \"Normally Consolidated: σ′z ≥ σ′p: M = (1 + e0) Δσ′z/( Cc)\" (p. 150).",
+     "description": "Equation 7-3b, printed after Eq. 7-3a (p. 150).",
      "formula": "Overconsolidated: σ′f < σ′p:   M = (1 + e0) Δσ′z/([log(σ′f/σ′z)] CR)",
      "variables": {
       "M": "constrained modulus in the range of loading (tsf); also denoted D′",
@@ -215,6 +215,7 @@
       "Δσ′z": "vertical effective stress increment (tsf)",
       "σ′f": "final vertical effective stress (tsf)",
       "σ′z": "vertical effective stress (tsf)",
+      "CR": "recompression index (dimensionless) (the list of symbols, p. 151, prints Cr; the formula prints CR)",
       "σ′p": "preconsolidation stress (tsf)"
      },
      "source": "Typed in from p. 150.",
@@ -222,7 +223,7 @@
     },
     {
      "id": "Eq. 7-4",
-     "description": "Equation 7-4, introduced by: \"Overconsolidated: σ′f < σ′p: M = (1 + e0) Δσ′z/( CR)\" (p. 150).",
+     "description": "Equation 7-4, printed after Eq. 7-3b (p. 150).",
      "formula": "Normally Consolidated to Overconsolidated: σ′z < σ′p and σ′f > σ′p:   M = (1 + e0) Δσ′z/([log(σ′p/σ′z)] CR + [log(σ′f/σ′p)] CC)",
      "variables": {
       "M": "constrained modulus in the range of loading (tsf); also denoted D′",
@@ -230,6 +231,8 @@
       "Δσ′z": "vertical effective stress increment (tsf)",
       "σ′f": "final vertical effective stress (tsf)",
       "σ′z": "vertical effective stress (tsf)",
+      "CR": "recompression index (dimensionless) (the list of symbols, p. 151, prints Cr; the formula prints CR)",
+      "CC": "compression index (dimensionless) (the list of symbols, p. 151, prints Cc; the formula prints CC)",
       "σ′p": "preconsolidation stress (tsf)"
      },
      "source": "Typed in from p. 150.",
@@ -397,11 +400,14 @@
     },
     {
      "id": "Eq. 7-6",
-     "description": "Equation 7-6, introduced by: \"d ratio at point of reload (Point H) eG = void ratio at intersection of unload-reload loop (Point G) σ′zG = vertical effective stress at Point G (tsf) σ′zH = vertical effective stress at Point H (tsf)\" (p. 158).",
+     "description": "Equation 7-6, introduced by: \"where: Cr = recompression index (slope of the recompression curve) eH = void ratio at point of reload (Point H) eG = void ratio at intersection of unload-reload loop (Point G) σ′zG = vertical effective stress at Point G (tsf) σ′zH = ...\" (p. 158).",
      "formula": "Cc = (eF − eG′)/log10(σ′zG′/σ′zF)   (Compression Index, Cc)",
      "variables": {
       "Cc": "compression index (slope of the reconstructed field virgin compression curve)",
-      "eF": "void ratio at preconsolidation pressure on reconstructed curve (Point F)"
+      "eF": "void ratio at preconsolidation pressure on reconstructed curve (Point F)",
+      "eG′": "void ratio at intersection of unload-reload loop (Point G) (the list of symbols prints eG″; the formula prints eG′)",
+      "σ′zG′": "vertical effective stress at Point G′; one-log cycle from Point F (tsf) (the list of symbols prints σ′G″; the formula prints σ′zG′)",
+      "σ′zF": "vertical effective stress at Point F (tsf) (the list of symbols prints σ′F; the formula prints σ′zF)"
      },
      "notes": "From the reconstructed field virgin consolidation curve (the simplified Schmertmann 1955 procedure, Figure 7-4); the points F and G′ are on that figure.",
      "source": "Typed in from p. 158.",
@@ -479,7 +485,7 @@
     },
     {
      "id": "Eq. 7-9",
-     "description": "Equation 7-9, introduced by: \"δc = ∑ (Cr/(1 + e0)) H · log(σ′zf/σ′zo) (Overconsolidated Soil where σ′zf < σ′p)\" (p. 160).",
+     "description": "Equation 7-9, printed after Eq. 7-8 (p. 160).",
      "formula": "δc = ∑ [(Cr/(1 + e0)) H · log(σ′p/σ′zo) + (Cc/(1 + e0)) H · log(σ′zf/σ′p)]   (Overconsolidated Soil where σ′z0 < σ′p < σ′zf)",
      "variables": {
       "δc": "primary consolidation settlement (inches)",
@@ -693,7 +699,7 @@
    "equations": [
     {
      "id": "Eq. 7-11",
-     "description": "Equation 7-11, introduced by: \" are for estimating settlements when a soft/loose layer is encountered within a depth of 2B and 6B below the footing bearing elevation for axisymmetric and plane strain (strip) footings, respectively.\" (p. 167).",
+     "description": "Equation 7-11, introduced by: \"Steps 1 through 17 are for estimating settlements when a soft/loose layer is encountered within a depth of 2B and 6B below the footing bearing elevation for axisymmetric and plane strain (strip) footings, respectively.\" (p. 167).",
      "formula": "δ = deviatoric settlement + spherical (consolidation) settlement:   δ = [(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]   (General Equation (Deep Relatively Uniform Deposits))",
      "variables": {
       "δ": "settlement (feet)",
@@ -705,6 +711,7 @@
       "B0": "reference footing width = 2.0 ft",
       "λd": "shape factor for deviatoric term per Figure 7-11 (dimensionless)",
       "λc": "shape factor for spherical term per Figure 7-11 (dimensionless)",
+      "αd": "rheological factors for deviatoric term per (dimensionless) (as printed, no table named after 'per'; the list of symbols sets it as ∝d, the formula as αd; Table 7-6 gives the rheological factors)",
       "∝c": "rheological factors for spherical term per Table 7-6 (dimensionless)"
      },
      "notes": "The print sets the rheological factor of the second term with a proportional-to sign, ∝c, and the exponent of the first as αd; Table 7-6 gives the rheological factors.",
@@ -713,7 +720,7 @@
     },
     {
      "id": "Eq. 7-12",
-     "description": "Equation 7-12, introduced by: \"δ = deviatoric settlement + spherical (consolidation) settlement: δ = + (General Equation (Deep Relatively Uniform Deposits))\" (p. 167).",
+     "description": "Equation 7-12, printed after Eq. 7-11 (p. 167).",
      "formula": "δ = deviatoric settlement + spherical (consolidation) settlement + soft/loose layer settlement:   δ = [[(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]] + [∑ αL (1/EL − 1/Ed) Iσ (q − σ′zD) H]   (Soft Layer Within 2B)",
      "variables": {
       "δ": "settlement (feet)",
@@ -728,7 +735,9 @@
       "B0": "reference footing width = 2.0 ft",
       "λd": "shape factor for deviatoric term per Figure 7-11 (dimensionless)",
       "λc": "shape factor for spherical term per Figure 7-11 (dimensionless)",
-      "∝c": "rheological factors for spherical term per Table 7-6 (dimensionless)"
+      "αd": "rheological factors for deviatoric term per (dimensionless) (as printed, no table named after 'per'; the list of symbols sets it as ∝d, the formula as αd; Table 7-6 gives the rheological factors)",
+      "∝c": "rheological factors for spherical term per Table 7-6 (dimensionless)",
+      "αL": "rheological factors for soft/loose layer per Table 7-6 (dimensionless) (the list of symbols sets it as ∝L; the formula prints αL)"
      },
      "notes": "The print sets the rheological factor of the second term with a proportional-to sign, ∝c; Table 7-6 gives the rheological factors.",
      "source": "Typed in from p. 167.",
@@ -839,7 +848,7 @@
     },
     {
      "id": "Eq. 7-17",
-     "description": "Equation 7-17, introduced by: \"Es = 2.5qc (Axisymmetric Footings)\" (p. 172).",
+     "description": "Equation 7-17, printed after Eq. 7-16 (p. 172).",
      "formula": "Es = 3.5qc   (Plane Strain Footings)",
      "variables": {
       "Es": "equivalent Young’s modulus (tsf)",
@@ -873,7 +882,7 @@
    "equations": [
     {
      "id": "Eq. 7-18",
-     "description": "Equation 7-18 as printed (p. 173).",
+     "description": "Equation 7-18, introduced by: \"Rigid footing strain influence factor (Schmertmann et al. 1978)\" (p. 173).",
      "formula": "Izp = 0.5 + 0.1√((q − σ′zD)/σ′zp)",
      "variables": {
       "Izp": "peak strain influence factor (dimensionless)",
@@ -886,7 +895,7 @@
     },
     {
      "id": "Eq. 7-16",
-     "description": "Equation 7-16, introduced by: \" the bearing elevation of the footing (tsf) σ′zp = vertical effective stress at the depth of peak strain influence factor (tsf), (D + B/2 for axisymmetric footings and D + B for plane strain footings)\" (p. 172).",
+     "description": "Equation 7-16, introduced by: \"or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf) σ′zD = vertical effective stress at the bearing elevation of the footing (tsf) σ′zp = vertical effective stress at the depth of peak strain ...\" (p. 172).",
      "formula": "Es = 2.5qc   (Axisymmetric Footings)",
      "variables": {
       "Es": "equivalent Young’s modulus (tsf)",
@@ -898,7 +907,7 @@
     },
     {
      "id": "Eq. 7-19",
-     "description": "Equation 7-19, introduced by: \"Es = 2.5qc (Axisymmetric Footings)\" (p. 173).",
+     "description": "Equation 7-19, printed after Eq. 7-16 (p. 173).",
      "formula": "Iza = 0.1 + (z/B)(2 · Izp − 0.2)   (Axisymmetric Footings for z = 0 to B/2)",
      "variables": {
       "z": "depth from bottom of footing to midpoint of layer (ft)",
@@ -910,7 +919,7 @@
     },
     {
      "id": "Eq. 7-20",
-     "description": "Equation 7-20, introduced by: \"Iza = 0.1 + (z/B)(2 · Izp − 0.2) (Axisymmetric Footings for z = 0 to B/2)\" (p. 174).",
+     "description": "Equation 7-20, printed after Eq. 7-19 (p. 174).",
      "formula": "Iza = 0.667 · Izp (2 − z/B)   (Axisymmetric Footings for z = B/2 to 2B)",
      "variables": {
       "z": "depth from bottom of footing to midpoint of layer (ft)",
@@ -922,7 +931,7 @@
     },
     {
      "id": "Eq. 7-21",
-     "description": "Equation 7-21, introduced by: \"Iza = 0.667 · Izp (2 − z/B) (Axisymmetric Footings for z = B/2 to 2B)\" (p. 174).",
+     "description": "Equation 7-21, printed after Eq. 7-20 (p. 174).",
      "formula": "Izc = 0.2 + (z/B)(Izp − 0.2)   (Plane Strain Footings for z = 0 to B)",
      "variables": {
       "z": "depth from bottom of footing to midpoint of layer (ft)",
@@ -934,7 +943,7 @@
     },
     {
      "id": "Eq. 7-22",
-     "description": "Equation 7-22, introduced by: \"Izc = 0.2 + (z/B)(Izp − 0.2) (Plane Strain Footings for z = 0 to B)\" (p. 174).",
+     "description": "Equation 7-22, printed after Eq. 7-21 (p. 174).",
      "formula": "Izc = 0.331 · Izp (4 − z/B)   (Plane Strain Footings for z = B to 4B)",
      "variables": {
       "z": "depth from bottom of footing to midpoint of layer (ft)",
@@ -946,7 +955,7 @@
     },
     {
      "id": "Eq. 7-23",
-     "description": "Equation 7-23, introduced by: \"Izc = 0.331 · Izp (4 − z/B) (Plane Strain Footings for z = B to 4B)\" (p. 174).",
+     "description": "Equation 7-23, printed after Eq. 7-22 (p. 174).",
      "formula": "Izr = Iza + 0.111 (Izc − Iza)(L/B − 1)   (Rectangular Footings)",
      "variables": {
       "Iza": "strain influence factor for axisymmetric footings (dimensionless)",
@@ -1119,7 +1128,7 @@
     },
     {
      "id": "Eq. 7-30",
-     "description": "Equation 7-30, introduced by: \"Δ = C1 · C2 · C3 · (q + σ̅′zo) · ZI · Ic (Normally Consolidated Granular Soil, σ̅′zo = σ′p)\" (p. 177).",
+     "description": "Equation 7-30, printed after Eq. 7-29 (p. 177).",
      "formula": "δ = C1 · C2 · C3 (q + σ̅′zo) ZI (Ic/3)   (Overconsolidated Granular Soil, (q + σ̅′zo) ≤ σ′p)",
      "variables": {
       "δ": "settlement (ft)",
@@ -1137,7 +1146,7 @@
     },
     {
      "id": "Eq. 7-31",
-     "description": "Equation 7-31, introduced by: \"δ = C1 · C2 · C3 (q + σ̅′zo) ZI (Ic/3) (Overconsolidated Granular Soil, (q + σ̅′zo) ≤ σ′p)\" (p. 177).",
+     "description": "Equation 7-31, printed after Eq. 7-30 (p. 177).",
      "formula": "δ = C1 · C2 · C3 [(q + σ̅′z0) − (2/3) σ′p] ZI · Ic   (Overconsolidated Granular Soil, (q + σ̅′zo) > σ′p)",
      "variables": {
       "δ": "settlement (ft)",
@@ -1457,7 +1466,7 @@
     },
     {
      "id": "Eq. 7-42",
-     "description": "Equation 7-42, introduced by: \"solidation settlement at time, t (inches) U% = average degree (or percent) of primary consolidation at time, t (percentage) δc = primary consolidation settlement per equations 7-7 through 7-9 (inches)\" (p. 184).",
+     "description": "Equation 7-42, introduced by: \"where: δct = primary consolidation settlement at time, t (inches) U% = average degree (or percent) of primary consolidation at time, t (percentage) δc = primary consolidation settlement per equations 7-7 through 7-9 (inches)\" (p. 184).",
      "formula": "t = (Tv · Hdr^2)/Cv",
      "variables": {
       "t": "time required for a given percentage of consolidation after loading (days)",

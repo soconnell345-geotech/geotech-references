@@ -451,7 +451,7 @@
    "equations": [
     {
      "id": "Eq. 4-5",
-     "description": "Equation 4-5 as printed (p. 76).",
+     "description": "Equation 4-5, introduced by: \"For cohesive soils, there is no need for overburden pressure correction (Peck et al. 1974).\" (p. 76).",
      "formula": "(N1)60 = CN · N60 ≤ 2N60",
      "variables": {
       "(N1)60": "penetration resistance, N60 normalized to a 1 ton/ft^2 stress level (blows/ft)",
@@ -464,7 +464,7 @@
     },
     {
      "id": "Eq. 4-6",
-     "description": "Equation 4-6 as printed (p. 76).",
+     "description": "Equation 4-6, introduced by: \"For cohesive soils, there is no need for overburden pressure correction (Peck et al. 1974).\" (p. 76).",
      "formula": "CN = (Pa/σ′vo)^0.5",
      "variables": {
       "CN": "overburden stress correction factor (dimensionless)",
@@ -659,7 +659,7 @@
     },
     {
      "id": "Eq. 4-11",
-     "description": "Equation 4-11, introduced by: \"Contact Stress, po = 1.05(A − ZM + ΔA) − 0.05(B − ZM − ΔB)\" (p. 82).",
+     "description": "Equation 4-11, printed after Eq. 4-10 (p. 82).",
      "formula": "Expansion Stress, p1 = B − ZM − ΔB",
      "variables": {
       "ZM": "gauge pressure deviation from zero when vented to atmospheric pressure (bar), if ΔA and ΔB are measured with the same gage used for current readings, A and B, set ZM = 0 (ZM is compensated)",
@@ -672,7 +672,7 @@
     },
     {
      "id": "Eq. 4-12",
-     "description": "Equation 4-12, introduced by: \"Expansion Stress, p1 = B − ZM − ΔB\" (p. 82).",
+     "description": "Equation 4-12, printed after Eq. 4-11 (p. 82).",
      "formula": "Equilibrium Pore Pressure, uo ≈ p2 = C − ZM − ΔA",
      "variables": {
       "ΔA": "vacuum pressure required to keep membrane in contact with its seating (bar)",
@@ -710,7 +710,7 @@
     },
     {
      "id": "Eq. 4-14",
-     "description": "Equation 4-14, introduced by: \"Material Index, ID = (p1 − po)/(po − uo)\" (p. 82).",
+     "description": "Equation 4-14, printed after Eq. 4-13 (p. 82).",
      "formula": "Horizontal Stress Index, KD = (po − uo)/σ′vo",
      "variables": {
       "KD": "horizontal stress index (dimensionless)",
@@ -722,7 +722,7 @@
     },
     {
      "id": "Eq. 4-15",
-     "description": "Equation 4-15, introduced by: \"Horizontal Stress Index, KD = (po − uo)/σ′vo\" (p. 82).",
+     "description": "Equation 4-15, printed after Eq. 4-14 (p. 82).",
      "formula": "Dilatometer Modulus, ED = 34.7 (p1 − po)",
      "variables": {
       "ED": "DMT modulus (bar)",
@@ -733,7 +733,7 @@
     },
     {
      "id": "Eq. 4-16",
-     "description": "Equation 4-16, introduced by: \"Dilatometer Modulus, ED = 34.7 (p1 − po)\" (p. 83).",
+     "description": "Equation 4-16, printed after Eq. 4-15 (p. 83).",
      "formula": "Pore Water Pressure Index, UD = (p2 − uo)/(po − uo)",
      "variables": {
       "UD": "pore water pressure index (dimensionless); in free-draining soils, p2 ≈ uo, UD ≈ 1. In non-free draining soils, p2 will be higher than uo and UD.",
@@ -801,7 +801,7 @@
    "equations": [
     {
      "id": "Eq. 4-17",
-     "description": "Equation 4-17, introduced by: \"n related empirically to the elastic modulus of the soil as E0/E = α, (Ménard 1965), in which α is termed by Ménard as the rheological coefficient and has a value between 0 and 1, reference Table 7-6.\" (p. 87).",
+     "description": "Equation 4-17, introduced by: \"The pressuremeter modulus has been related empirically to the elastic modulus of the soil as E0/E = α, (Ménard 1965), in which α is termed by Ménard as the rheological coefficient and has a value between 0 and 1, reference Table 7-6.\" (p. 87).",
      "formula": "Pressuremeter Modulus, Eo = 2(1 + υ)(Vo + Vm) ΔP/ΔV",
      "variables": {
       "Eo": "pressuremeter modulus, tsf; based on data reduction (see ASTM D4719)",
@@ -848,7 +848,7 @@
    "equations": [
     {
      "id": "Eq. 4-18",
-     "description": "Equation 4-18, introduced by: \"r and push soil to its original position (vo), it is difficult to accurately establish Po from the test data due to disturbance of the borehole walls and a lack of points at the beginning of the test.\" (p. 88).",
+     "description": "Equation 4-18, introduced by: \"Although the initial horizontal pressure (Po) should equal the pressure corresponding to the volume required to inflate the pressuremeter and push soil to its original position (vo), it is difficult to accurately establish Po from the test ...\" (p. 88).",
      "formula": "Net Limit Pressure, P*L = PL − Po",
      "variables": {
       "P*L": "net limit pressure (tsf)",
@@ -880,12 +880,12 @@
   {
    "section_id": "4-10d(1)(f)",
    "title": "Soil type based on pressuremeter data",
-   "body": "[p. 88] Soil type based on pressuremeter data. Soil type can be classified from soil samples obtained during drilling. Soil type can also be characterized by observing the soil cuttings and the general shape of the corrected pressuremeter curve as illustrated in Figure 4-10, and the ratio of the pressuremeter modulus (E0), to the net limit pressure (P*L), per equations 4-19 and 4-20.\n\n[p. 89] Clays: (E0/P*L) > 12 [Eq. 4-19]\n\nSands: 7 < (E0/P*L) < 12 [Eq. 4-20]\n\nFigure 4-10. General pre-bored pressuremeter test curves for clay and sand (Briaud 1992)\n\nTable 4-10 Common values of net limit pressure (P*L) and pressuremeter modulus (E*O) (Briaud 1992)\n[Table 4-10 is printed as two tables, one for clay and one for sand, the sand table narrower and without rules at its right; its rows as typed in from the printed page (p. 89):]\nClay | Soft | Medium | Stiff | Very Stiff | Hard\nP*L (tsf) | 0 to 2 | 2 to 4 | 4 to 8 | 8 to 16 | > 16\nE0 (tsf) | 0 to 25 | 25 to 50 | 50 to 120 | 120 to 150 | > 250\nSand | Loose | Compact | Dense | Very Dense\nP*L (tsf) | 0 to 5 | 5 to 15 | 15 to 25 | > 25\nE0 (tsf) | 0 to 35 | 35 to 120 | 120 to 225 | > 225",
+   "body": "[p. 88] Soil type based on pressuremeter data. Soil type can be classified from soil samples obtained during drilling. Soil type can also be characterized by observing the soil cuttings and the general shape of the corrected pressuremeter curve as illustrated in Figure 4-10, and the ratio of the pressuremeter modulus (E0), to the net limit pressure (P*L), per equations 4-19 and 4-20.\n\n[p. 89] Clays: (E0/P*L) > 12 [Eq. 4-19]\n\nSands: 7 < (E0/P*L) < 12 [Eq. 4-20]\n\nFigure 4-10. General pre-bored pressuremeter test curves for clay and sand (Briaud 1992)\n\nTable 4-10 Common values of net limit pressure (P*L) and pressuremeter modulus (E*0) (Briaud 1992)\n[Table 4-10 is printed as two tables, one for clay and one for sand, the sand table narrower and without rules at its right; its rows as typed in from the printed page (p. 89):]\nClay | Soft | Medium | Stiff | Very Stiff | Hard\nP*L (tsf) | 0 to 2 | 2 to 4 | 4 to 8 | 8 to 16 | > 16\nE0 (tsf) | 0 to 25 | 25 to 50 | 50 to 120 | 120 to 150 | > 250\nSand | Loose | Compact | Dense | Very Dense\nP*L (tsf) | 0 to 5 | 5 to 15 | 15 to 25 | > 25\nE0 (tsf) | 0 to 35 | 35 to 120 | 120 to 225 | > 225",
    "key_points": [],
    "equations": [
     {
      "id": "Eq. 4-19",
-     "description": "Equation 4-19, introduced by: \"and the general shape of the corrected pressuremeter curve as illustrated in Figure 4-10, and the ratio of the pressuremeter modulus (E0), to the net limit pressure (P*L), per equations 4-19 and 4-20.\" (p. 89).",
+     "description": "Equation 4-19, introduced by: \"Soil type can also be characterized by observing the soil cuttings and the general shape of the corrected pressuremeter curve as illustrated in Figure 4-10, and the ratio of the pressuremeter modulus (E0), to the net limit pressure (P*L), ...\" (p. 89).",
      "formula": "Clays: (E0/P*L) > 12",
      "variables": {
       "E0": "pressuremeter modulus (printed Eo in equation 4-17)",
@@ -896,7 +896,7 @@
     },
     {
      "id": "Eq. 4-20",
-     "description": "Equation 4-20, introduced by: \"Clays: (E0/P*L) > 12\" (p. 89).",
+     "description": "Equation 4-20, printed after Eq. 4-19 (p. 89).",
      "formula": "Sands: 7 < (E0/P*L) < 12",
      "variables": {
       "E0": "pressuremeter modulus (printed Eo in equation 4-17)",
@@ -910,7 +910,7 @@
     "Figure 4-10: General pre-bored pressuremeter test curves for clay and sand (Briaud 1992)"
    ],
    "tables": [
-    "Table 4-10: Common values of net limit pressure (P*L) and pressuremeter modulus (E*O) (Briaud 1992)"
+    "Table 4-10: Common values of net limit pressure (P*L) and pressuremeter modulus (E*0) (Briaud 1992)"
    ],
    "applicability": "EM 1110-1-1905, Chapter 4 (Site Exploration), paragraph 4-10d(1)(f), printed pp. 88 to 89."
   },

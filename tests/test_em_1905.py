@@ -11,6 +11,7 @@ page.
 """
 
 import json
+import re
 import unicodedata
 from pathlib import Path
 
@@ -52,7 +53,7 @@ def test_twelve_chapters_and_appendices_b_to_d():
     assert titles[13].startswith("Appendix B: Design Examples")
     assert titles[14] == "Appendix C: Design Examples: Settlement for Static Analysis"
     assert titles[15] == "Appendix D: Common Unit Conversion Factors"
-    assert sum(len(c["sections"]) for c in chapters) == 777
+    assert sum(len(c["sections"]) for c in chapters) == 778
 
 
 def test_every_section_carries_its_printed_pages():
@@ -72,15 +73,15 @@ def test_section_bodies_fit_the_reference_tools():
     for c in _chapters():
         for s in c["sections"]:
             assert len(json.dumps(s)) <= 14000, s["section_id"]
-    # the two printed paragraphs too long for that are split into
-    # lettered parts, the letters not printed
-    for sid in ("7-11c(2)", "C-7b"):
+    # the three printed paragraphs too long for that are split into
+    # lettered parts, the letters not printed; a split leaves room for the
+    # notes the manifest adds (C-2b's three)
+    for sid in ("7-11c(2)", "C-2b", "C-7b"):
         part = _retrieval.retrieve_section(REF, sid + ".a")
         assert part["parent_id"] == sid
-        assert "(continued, pp. " in part["title"]
-    # C-2b fits (the loop above) since its sub-heading is stored once (p. 349)
+        assert "(continued, p" in part["title"]
     with pytest.raises(KeyError):
-        _retrieval.retrieve_section(REF, "C-2b.a")
+        _retrieval.retrieve_section(REF, "C-2b.b")
 
 
 def test_text_spanning_a_table_is_stored_once():
@@ -90,7 +91,7 @@ def test_text_spanning_a_table_is_stored_once():
     c6 = _retrieval.retrieve_section(REF, "C-6b")["body"]
     assert c6.count("∑ δc = 0.081 inches") == 1
     assert "| 30.5 | 0.7 | 32 | 0.030 | 0.07 | 0.018\n" in c6
-    c2 = _retrieval.retrieve_section(REF, "C-2b")["body"]
+    c2 = "\n".join(_retrieval.retrieve_section(REF, sid)["body"] for sid in ("C-2b", "C-2b.a"))
     assert c2.count("3. The total induced vertical stress (Δσz) below point E") == 1
     # no sentence or total stands in three or more consecutive rows anywhere
     for c in _chapters():
@@ -165,6 +166,18 @@ def test_table_typed_in_from_the_page():
     assert "Clay | Soft | Medium | Stiff | Very Stiff | Hard\n" \
         "P*L (tsf) | 0 to 2 | 2 to 4 | 4 to 8 | 8 to 16 | > 16" in rows
     assert "Sand | Loose | Compact | Dense | Very Dense" in rows
+    # the caption's subscript is the zero of E0 (the text layer holds a
+    # capital O; manifest printed_tables 'title')
+    assert "Table 4-10 Common values of net limit pressure (P*L) and pressuremeter " \
+        "modulus (E*0) (Briaud 1992)" in body
+    assert "E*O" not in body
+
+
+def test_table_3_8_note_reads_sigma_v_prime():
+    # Table 3-8 (p. 46) sets a raised semicolon where the prime of σ′v stands
+    body = _retrieval.retrieve_section(REF, "3-7a")["body"]
+    assert body.count("For σ′v = 2,000 to 8,000 pcf") == 3
+    assert "^(;)" not in body
 
 
 def test_print_quirk_kept_as_printed():
@@ -176,10 +189,9 @@ def test_print_quirk_kept_as_printed():
 def test_worked_example_slips_kept_with_a_note():
     # Examples C-7c and C-7d keep their printed numbers (pp. 382, 385-386);
     # a note after each (manifest print_notes) gives what the rows give
-    c7 = _retrieval.retrieve_section(REF, "C-7b")["body"]
+    c7 = c7a = _retrieval.retrieve_section(REF, "C-7b.a")["body"]
     assert "δ = 0.015 ft + 0.013 ft = 0.028 ft = 0.38 in\n[Note (not printed): " \
         "Table C-7c, Step 12 (p. 382)" in c7
-    c7a = _retrieval.retrieve_section(REF, "C-7b.a")["body"]
     assert "| 0.114 | 0.008\n" in c7a and "= 0.0266" in c7a
     assert "= 0.125 ft = 1.5 in\n[Note (not printed): Table C-7d" in c7a
     assert "the sum is 0.0194, not 0.0266" in c7a and "0.092 ft (1.1 in)" in c7a
@@ -211,6 +223,109 @@ def test_worked_example_slips_kept_with_a_note():
     assert "|  | 0.72 | 0.045 | 0.04\n[Note (not printed): " in c2
     c3 = _retrieval.retrieve_section(REF, "C-3b")["body"]
     assert "to a depth of 25.0 ft per Step 2.\n[Note (not printed): Table C-3b" in c3
+    # slips found when every appendix formula line was read against the page
+    noted = {
+        "B-1b": "= 7 ft = 49 ft^2 (Row 3)\n[Note (not printed): Table B-1a, Step 1 (p. 296)",
+        "B-4b": "= 0.226 ksf (Row 6)\n[Note (not printed): Table B-4a, Step 3 (p. 312)",
+        "B-5b": "= 9.9/3 = 3.3 ≥ 3 OK ü\n[Note (not printed): Table B-5a, Step 9 (p. 321)",
+        "B-6b": "tan(1.4 · 31°)\n[Note (not printed): Table B-6a, Step 4 (p. 325)",
+        "C-2b": "= 0.45 tsf\n[Note (not printed): Table C-2, Step 5 (p. 345)",
+        "C-6b": "| 264 | 23.9 | 199\n[Note (not printed): Table C-6a (p. 370)",
+        "3-9b(1)(b)": "2 | PI > 50 | 115 to 75\n[Note (not printed): Table 3-15 (p. 59)",
+        "8-6b(3)": "My = distance ratio as shown on Figure 8-7 (dimensionless)\n"
+                   "[Note (not printed): Eqs. 8-27 and 8-28 (p. 206)",
+    }
+    for sid, place in noted.items():
+        assert place in _retrieval.retrieve_section(REF, sid)["body"], sid
+
+
+def test_appendix_formula_lines_as_printed():
+    # worked-example lines the placement rules read wrongly, typed in from the
+    # rendered page (manifest printed_passages); each result follows from the
+    # line as stored
+    c3 = _retrieval.retrieve_section(REF, "C-3b")["body"]
+    # Step 4 (p. 359): the drainage path squared; without the power the line
+    # gives 12.2 days, not the printed 152.8
+    assert "\nt = (Tv · Hdr^2)/Cv = (0.403 ((25 ft)/2)^2)/(0.412 ft^2/day) = 152.8 days" in c3
+    assert round(0.403 * (25 / 2) ** 2 / 0.412, 1) == 152.8
+    c7a = _retrieval.retrieve_section(REF, "C-7b.a")["body"]
+    # Step 6 (p. 384): σ′zp = 6.5′ × 125 pcf/2,000 under the root
+    assert "Izp = 0.5 + 0.1√((3.31 tsf − 0.156 tsf)/(6.5′ × 125 pcf/2,000)) = 0.779" in c7a
+    assert round(0.5 + 0.1 * ((3.31 - 0.156) / (6.5 * 125 / 2000)) ** 0.5, 3) == 0.779
+    # Step 7 (p. 384): Eq. 7-24 as quoted there
+    assert "Eq. 7-24: C1 = 1 − 0.5 (σ′zD/(q − σ′zD)) ≥ 0.5" in c7a
+    assert round(1 - 0.5 * 0.156 / (3.31 - 0.156), 3) == 0.975
+    assert "Step 10 | ∑ (Iz · H)/Es = 0.0266" in c7a
+    # Eq. 7-10 as quoted in Examples C-6 and C-7 (pp. 373, 380)
+    for sid in ("C-6b", "C-7b"):
+        assert "Eq. 7-10: δ = ∑(Iσ(q − σ′zD))/M · H = ∑(Δσz)/M · H" in \
+            _retrieval.retrieve_section(REF, sid)["body"], sid
+    # Example B-2, Step 3 (p. 301)
+    b2 = _retrieval.retrieve_section(REF, "B-2b")["body"]
+    assert "\nqeq = (Q + Wf)/A′ = (1.2 kips/ft + 0.6 kips/ft)/(2 ft^2/ft) = 0.9 ksf " \
+        "(Row 17)" in b2
+    # the page prints bpf where the text layer holds pf (pp. 335, 386)
+    b7 = _retrieval.retrieve_section(REF, "B-7b")["body"]
+    assert "= 13.2 bpf\n" in b7 and "13.2 bpf · 2 ksf = 26.4 ksf" in b7
+    assert "N̅60 = (12 + 15 + 14)/3 = 14 bpf" in c7a
+    # "14.7 k–ips" (p. 314) is the word kips
+    assert "(80 kips + 14.7 kips)/(49 ft^2)" in _retrieval.retrieve_section(REF, "B-4b")["body"]
+
+
+#: a formula line the scatter check passes because the page prints it so
+AS_PRINTED = {
+    # Table C-4, Step 9 (p. 363): no bracket opens before 6.0 ft · 113 pcf
+    "σ′zD = ((8.0 ft · 100 pcf) + 6.0 ft · 113 pcf) − (8.0 ft · 62.4 pcf))/2,000 = 0.49 tsf",
+    # paragraph 7-19b (p. 190): no bracket opens before 10^(−4)
+    "d0 = initial dial reading 10^(−4) inches)",
+}
+_PRIME_ALONE = re.compile(r"\(\s*[′']\s*\)|\(\s*′\s|(?<![\w)\]′])′(?=[\s)])")
+_LONE_NUMBER = re.compile(r"^\d{1,3}(?:\.\d+)?$")
+_DOUBLED = re.compile(r"(?<![\d.])(\d+(?:\.\d+)?) \1 (?:ft|in|kips|ksf|tsf|psf|pcf|kcf|m)\b")
+_SPACED = re.compile(r"\([A-ZΔσα∝] [a-z0-9]{1,4}(?: [a-z0-9]{1,4})?\)")
+
+
+def _scattered(lines: list[str], k: int) -> list[str]:
+    """What marks line k as pieces of a formula put back in the wrong
+    places: a prime standing alone, a lone number on the line above a
+    formula (a stacked power), a number doubled from a stacked fraction
+    ('2 2 ft'), a subscript spaced off its symbol ('(E 1)'), brackets that
+    do not pair in a cell holding '='."""
+    ln = lines[k]
+    marks = []
+    if _PRIME_ALONE.search(ln):
+        marks.append("prime alone")
+    if _LONE_NUMBER.match(ln.strip()) and k + 1 < len(lines) and "=" in lines[k + 1]:
+        marks.append("lone number above a formula")
+    if _DOUBLED.search(ln):
+        marks.append("number doubled")
+    if _SPACED.search(ln):
+        marks.append("subscript spaced off")
+    if "=" in ln and any(c.count(a) != c.count(b) for c in ln.split(" | ")
+                         for a, b in ("()", "[]")):
+        marks.append("unbalanced brackets")
+    return marks
+
+
+def test_no_formula_pieces_scattered():
+    # the lines as they were read before they were typed in from the page
+    # are each caught
+    for bad in (["Izp = 0.5 + 0.1√((3.31 tsf − 0.156 tsf)/(′) = 0.779)"],
+                ["2", "t = (Tv · Hdr^2)/Cv = (0.403 ((25 ft)/2))/(0.412 ft^2/day) = 152.8 days"],
+                ["qeq = (Q+W f)/(′ A) = (1.2 kips/ft+0.6 kips/ft)/(2 2 ft /ft) = 0.9 ksf"],
+                ["Eq. 7-13: Ek = n/(1/(E 1)+ 1/(E 2)+⋯+ 1/(E n))"],
+                ["Eq. 7-24: C1 = 1 − 0.5 ((′ σ zD)/(′ q − σ z D)) ≥ 0.5"]):
+        assert _scattered(bad, 0), bad
+    found = []
+    for c in _chapters():
+        for s in c["sections"]:
+            lines = s["body"].split("\n")
+            for k, ln in enumerate(lines):
+                if ln.startswith("[Note (not printed)") or ln in AS_PRINTED:
+                    continue
+                if _scattered(lines, k):
+                    found.append((s["section_id"], _scattered(lines, k), ln[:120]))
+    assert found == []
 
 
 # --- figures ----------------------------------------------------------------
@@ -239,6 +354,14 @@ def test_catalog_covers_every_figure():
     listed = {x.split(":")[0].removeprefix("Figure ")
               for c in _chapters() for s in c["sections"] for x in s["figures"]}
     assert listed == set(nums)
+
+
+def test_catalog_captions_keep_a_broken_word_whole():
+    # a Figure List entry broken over two lines after a word's own hyphen
+    caps = {f["figure_number"]: f["caption"] for f in _catalog()["figures"]}
+    assert "blow counts on a per-inch basis" in caps["4-3"]
+    assert caps["C-6c"].endswith("from Laboratory 1-D Oedometer Test")
+    assert not [n for n, c in caps.items() if re.search(r"\w- \w", c)]
 
 
 def test_figure_lookup():
@@ -323,6 +446,31 @@ def test_formulas_as_printed():
     assert eqs["7-15"][1]["notes"].startswith("As printed")
     assert "As printed" in eqs["5-17"][1]["notes"]
     assert "As printed" in eqs["9-5"][1]["notes"]
+    assert "As printed" in eqs["8-28"][1]["notes"]
+
+
+def test_equation_symbols_as_listed():
+    # symbols the formula prints, from the list printed under it (pp. 42, 151,
+    # 158, 167, 197), with the list's spelling said where it differs
+    eqs = _equations()
+    want = {"3-17": {"φ′"}, "7-3b": {"CR"}, "7-4": {"CR", "CC"},
+            "7-6": {"eG′", "σ′zG′", "σ′zF"}, "7-11": {"αd"}, "7-12": {"αd", "αL"},
+            "8-2": {"E", "I"}}
+    for num, symbols in want.items():
+        assert symbols <= set(eqs[num][1]["variables"]), num
+    assert "prints Cr" in eqs["7-3b"][1]["variables"]["CR"]
+
+
+def test_equation_description_is_not_another_formula():
+    # Eq. 5-3 is printed after Eq. 5-2 (p. 94); its description says so and
+    # does not quote Eq. 5-2's formula as the words introducing it
+    eqs = _equations()
+    assert eqs["5-3"][1]["description"] == "Equation 5-3, printed after Eq. 5-2 (p. 94)."
+    formulas = {num: e["formula"] for num, (_, e) in eqs.items()}
+    for num, (_, e) in eqs.items():
+        quoted = [m for m, f in formulas.items()
+                  if m != num and len(f) > 30 and f[:30] in e["description"]]
+        assert quoted == [], num
 
 
 def test_manifest_formulas_match_the_text():
