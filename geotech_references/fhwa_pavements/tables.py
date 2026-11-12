@@ -1042,6 +1042,11 @@ def table_7_17_swell_potential_ll_pi(potential: str = "") -> dict:
 # ============================================================================
 # Table 5-18: Typical compacted dry unit weight and OMC by AASHTO soil class
 # (after Carter & Bentley, 1991).  (Chapter 5; PDF p.201, printed 5-24)
+#
+# Checked against a 300 dpi render (2026-11-12): every cell matches. The A-6
+# optimum moisture content is printed "10.30" (a full stop). Every other cell
+# in the table, the A-6 unit weights included, is a range "a-b", so the
+# lookup reads it as the range 10-30 % and says what the page prints.
 # ============================================================================
 
 # aashto_class -> (description, gamma_pcf_min, gamma_pcf_max,
@@ -1049,12 +1054,19 @@ def table_7_17_swell_potential_ll_pi(potential: str = "") -> dict:
 _TABLE_5_18 = {
     "A-1": ("Well-graded gravel/sand mixtures", 115, 134, 18.1, 21.1, 5, 15),
     "A-2": ("Silty or clayey gravel and sand", 109, 134, 17.2, 21.1, 9, 18),
-    "A-3": ("Poorly graded sands", 100, 119, 15.7, 18.6, 5, 12),
+    "A-3": ("Poorly-graded sands", 100, 119, 15.7, 18.6, 5, 12),
     "A-4": ("Low plasticity silty sands and gravels", 94, 125, 14.7, 19.6, 10, 20),
     "A-5": ("Diatomaceous or micaceous silts", 84, 100, 13.2, 15.7, 20, 35),
     "A-6": ("Plastic clay, sandy clay", 94, 119, 14.7, 18.6, 10, 30),
     "A-7": ("Highly plastic clay", 81, 115, 12.7, 18.1, 15, 35),
 }
+
+_TABLE_5_18_A6_NOTE = (
+    "The page prints the A-6 optimum moisture content as \"10.30\" (p. 5-24). "
+    "Every other cell of the table, the A-6 unit weights included, is printed "
+    "as a range, so it is read as 10-30 %; a single value of 10.30 % would be "
+    "the only one in the table."
+)
 
 
 def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
@@ -1094,6 +1106,7 @@ def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
             "reference": "FHWA-NHI-05-037 Table 5-18 (Carter & Bentley, 1991)",
             "table": "5-18", "pdf_page": 201, "printed_page": "5-24",
             "rows": [_row(k) for k in _TABLE_5_18],
+            "print_note": _TABLE_5_18_A6_NOTE,
         }
     if sc not in _TABLE_5_18:
         raise ValueError(
@@ -1102,6 +1115,8 @@ def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
     out = _row(sc)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-18 (Carter & Bentley, 1991)",
                 "table": "5-18", "pdf_page": 201, "printed_page": "5-24"})
+    if sc == "A-6":
+        out["print_note"] = _TABLE_5_18_A6_NOTE
     return out
 
 

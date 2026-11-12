@@ -633,6 +633,28 @@ class TestCompaction:
     def test_full_table_seven_classes(self):
         assert len(table_5_18_compaction_aashto()["rows"]) == 7
 
+    def test_every_cell_as_printed(self):
+        """Table 5-18, p. 5-24 (PDF page 202), from a 300 dpi render. The A-6
+        optimum moisture content is printed "10.30"; every other cell is a
+        range, so it is read as 10-30 and the result says so."""
+        printed = [
+            ("A-1", "Well-graded gravel/sand mixtures", 115, 134, 18.1, 21.1, 5, 15),
+            ("A-2", "Silty or clayey gravel and sand", 109, 134, 17.2, 21.1, 9, 18),
+            ("A-3", "Poorly-graded sands", 100, 119, 15.7, 18.6, 5, 12),
+            ("A-4", "Low plasticity silty sands and gravels", 94, 125, 14.7, 19.6, 10, 20),
+            ("A-5", "Diatomaceous or micaceous silts", 84, 100, 13.2, 15.7, 20, 35),
+            ("A-6", "Plastic clay, sandy clay", 94, 119, 14.7, 18.6, 10, 30),
+            ("A-7", "Highly plastic clay", 81, 115, 12.7, 18.1, 15, 35),
+        ]
+        rows = table_5_18_compaction_aashto()["rows"]
+        got = [(r["aashto_class"], r["description"], r["dry_unit_weight_pcf_min"],
+                r["dry_unit_weight_pcf_max"], r["dry_unit_weight_knm3_min"],
+                r["dry_unit_weight_knm3_max"], r["optimum_moisture_content_pct_min"],
+                r["optimum_moisture_content_pct_max"]) for r in rows]
+        assert got == printed
+        assert '"10.30"' in table_5_18_compaction_aashto("A-6")["print_note"]
+        assert "print_note" not in table_5_18_compaction_aashto("A-5")
+
     def test_bad_class_raises(self):
         with pytest.raises(ValueError):
             table_5_18_compaction_aashto("A-9")
