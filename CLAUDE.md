@@ -74,7 +74,7 @@ geotech_references/           # Python package (pip install -e .)
     equations.py               # 4 equations (CBR-to-k, flexible/rigid thickness, ESWL)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 scripts/                       # Content generation tools (NOT installed with the package)
-  build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2
+  build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2; `--add-missing <pkg>` adds the printed figures a catalog lacks without changing its rows (REF-84)
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   build_printed_text.py        # Chapter text + figure catalog read off the printed pages (no API): sections from the printed contents, bodies in the print's wording with [p. 6-28] markers, equation objects as [Eq. 9-5], figures/tables from the Lists of Figures/Tables. Manifest "text_build": "printed". Used for fhwa_soils_foundations (REF-29)
@@ -139,19 +139,19 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
-| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready |
-| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30) |
+| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
+| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30). Figure catalog 89 rows, 3.22 and Appendices A, B, C and G added 2026-11-10 (REF-84) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 311 | All 18 chapters complete (ch 1-18); ch 6 and 8 rewritten from the print 2026-11-10 (REF-81): bodies in the print's wording with page markers, Tables 6-1 to 6-3 and 8-1 to 8-4 and Eq. 8-1 typed in from the page; printed 8.1 (Blocks 1 to 22) stored as 8.1 and parts 8.1.a to 8.1.d, the letters not printed |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
-| gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63) |
-| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete) |
-| fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`) |
+| gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63). Figure catalog 239 rows: chapters 2-5 and 7-10 (206 figures) added 2026-11-10, the catalog had held ch 1 and 6 only (REF-84) |
+| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete). Figure catalog 142 rows, the sample problems' S1-1 to S2-3 added 2026-11-10 (REF-84) |
+| fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`). Figure catalog 391 rows, Appendix A's 59 figures and D-10 added 2026-11-10 (REF-84) |
 | ufc_backfill | UFC 3-220-04FA Backfill (rebuilt from the print 2026-11-10) | 7 | 49 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10; the printed heave methods of ch 4-5 built 2026-11-10, REF-91) | 14 | 79 | - |
 | ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done; Figure 10-1 traced from the chart 2026-11-10) | 53 | 397 | 21 chapters |
 | eurocode_7_1 | EN 1997-1:2004 Eurocode 7 Part 1 General Rules (Annex A partial factors, DA1-DA3, Annex C/D/E/F/G/H methods) | 31 | 134 | All 21 chapters (Sections 1-12 + Annexes A-J) |
-| eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes) |
+| eurocode_7_2 | EN 1997-2:2007 Eurocode 7 Part 2 Ground Investigation (CPT/PMT/SPT/DP/FVT/DMT/PLT correlations) | 43 | 143 | 9 chapters (body + all annexes). Figure catalog 21 rows, B.4 and B.5 added 2026-11-10 (REF-84) |
 | aashto_1993 | AASHTO 1993 Pavement Design Guide (flexible SN / rigid D equations, layer coefficients, reliability; FULL Appendix D LEF tables D.1-D.18 in lef.py — closed-form equations are in Volume 2 Appendix MM, NOT in this scan; Section 3.2 composite-k worksheet in composite_k.py, chart-read; Appendix G swell/frost-heave loss + Table 3.1 performance-period iteration in environmental.py; scanned source read visually; US units) | ~45 | 425 | 11 chapters (Part I-II full, III/IV stubs) |
 | em_2104 | EM 1110-2-2104 Strength Design for Reinforced Concrete Hydraulic Structures (1 Nov 2023 ed., published 8 Jan 2025) — load inventory + full Table 3-2 load-factor table + LRFD/earthquake load combinations (loads.py); serviceability service-stress/single-load-factor/reinforcement-limit provisions (serviceability.py); Chapter 2 detailing incl. temp/shrinkage steel (reinforcement.py); the complete Appendix B flexure+axial INVESTIGATION equations for singly/doubly reinforced, tension+flexure, and pure-flexure members incl. numerically-solved cubics (flexure_axial.py); the complementary Appendix D-2 DESIGN equations (design.py); Chapter 5 shear incl. the pre-ACI-318-19 equation deliberately retained for RCHS per Appendix G commentary (shear.py); US units | ~50 | 111 | 5 chapters (1-5) full; Appendix B-G implemented as Python lookups, not re-narrated text |
 | em_2107 | EM 1110-2-2107 Design of Hydraulic Steel Structures (1 Aug 2022 ed.) — does NOT reprint AISC 360 member-capacity equations (member design is by direct AISC 360 reference); LRFD loads/full Table 4.1 load-factor table/load combinations + earthquake combinations (loads.py); HSS-support seismic-acceleration amplification incl. the full Appendix D pseudo-dynamic (Chopra & Tan 1989) derivation, validated against its own 2-variant worked example (seismic_amplification.py); Table 3.1 target reliability + usual/unusual/extreme load categories (design_basis.py); fatigue screening + fracture-critical redundancy check (fatigue_fracture.py); bolt/weld/faying-surface selection rules (connections.py); Chapter 10 + Appendix F Tainter-gate load equations — side-seal friction, wire-rope loads, hydrostatic load by integration + simplified projection, trunnion friction, full Eq 10.2-10.14 load-combination table, anchorage shear-friction (tainter_gate_loads.py), fully validated against Appendix F's own worked example (2 source-document sign/citation errors found and resolved by cross-verification); US units | 49 | 103 | 6 chapters (1-6) full; Chapters 9-16/Appendices B/C gate-geometry content intentionally thin per scope (closed-form Appendix D/E/F content fully covered instead) |
@@ -229,6 +229,17 @@ giving coverage of figures that have not been hand-digitized into `figures.py`.
 
 Built for DM7 (`dm7_1`: 223 figures, `dm7_2`: 252). Run the same script per
 reference to extend. Source PDFs live in `docs/`.
+
+Printed figures a catalog lacks (a List of Figures that leaves out the
+appendices, or one list per chapter read as one) are added with
+`python scripts/build_figure_catalog.py --add-missing <package>`, which
+changes no existing row: each new row's page prints the label and caption
+and holds a picture or drawing, and `--overrides FILE.json` places a figure
+the scan cannot (a garbled label, typed text in a box) or adds `read_notes`
+for one printed turned. 428 rows were added this way on 2026-11-10 (REF-08,
+REF-84): `gec_5` 349 rows, `gec_13` 239, `fhwa_soils_foundations` 391,
+`gec_6` 86, `gec_4` 90, `gec_7` 89, `micropile` 142, `eurocode_7_2` 21.
+Tests: `tests/test_catalog_added_rows.py`.
 
 ## Section levels (REF-24): every section is addressable
 
