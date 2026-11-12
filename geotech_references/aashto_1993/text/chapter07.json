@@ -5,285 +5,560 @@
   "chapter_title": "Part II, Chapter 2 -- Design Requirements",
   "sections": [
     {
-      "section_id": "II-2.1.1",
-      "title": "Design Variables -- Time Constraints",
-      "summary": "Defines the analysis period (total time span the design strategy must cover, 15-50 years by highway condition per general guidelines) and the minimum/maximum performance period concepts underlying stage construction decisions.",
-      "body": "The analysis period is the total time span any design strategy (initial pavement plus any planned rehabilitation) must cover; general guideline ranges are 30-50 years for high-volume urban, 20-50 for high-volume rural, 15-25 for low-volume paved, and 10-20 for low-volume aggregate-surfaced highways. Longer analysis periods are increasingly recommended (vs. the historical 20-year convention) for life-cycle economic comparisons. The minimum performance period is the shortest acceptable service life before a rehabilitation stage; the maximum performance period is the practical ceiling on service life a given design strategy can achieve (often controlled by environmental serviceability loss such as swelling/frost heave rather than traffic).",
+      "section_id": "II-2",
+      "title": "Design Requirements",
+      "summary": "Chapter 2 covers the preparation and selection of the inputs for new (or reconstructed) pavement design. Table 2.1 lists every possible input and marks, for AC, ST, JCP/JRCP, CRCP and aggregate-surfaced designs, those that must be determined (1) and those that should be considered (2); PCP has no column since detailed input requirements are not available. The inputs fall under five categories: design variables, performance criteria, material properties for structural design, structural characteristics and reinforcement variables. Because of the treatment of reliability, the designer should use mean values, not conservative estimates.",
+      "body": "[p. II-5] This chapter discusses the preparation and/or selection of the inputs required for new (or reconstructed) pavement design. Since this chapter addresses the design requirements for several types of pavement structures on both highways and low-volume roads, only certain sets of inputs are required for a given structural design combination. Table 2.1 identifies all possible design input requirements and indicates the specific types of structural designs for which they are required. A one (1) means that a particular design input (or set of inputs) must be determined for that structural combination. A two (2) indicates that the design input should be considered because of its potential impact on the results. Under the \"Flexible\" heading, AC refers to asphalt concrete surfaces and ST to surface treatments. Under \"Rigid,\" JCP refers to plain jointed concrete pavement, JRCP to jointed reinforced concrete pavement, CRCP to continuously reinforced concrete pavement, and PCP to prestressed concrete pavements. PCP is not shown as a column in Table 2.1, however, since detailed design input requirements are not available at this time.\n\n[Table 2.1. Design Requirements for the Different Initial Pavement Types that can be Considered (p. II-6). Description | Flexible: AC | Flexible: ST | Rigid: JCP/JRCP | Rigid: CRCP | Aggr. Surf. (1 = design input variable that must be determined; 2 = design variable that should be considered; - = blank). 2.1 DESIGN VARIABLES: 2.1.1 Time Constraints, Performance Period | 1 | 1 | 1 | 1 | 1; Analysis Period | 1 | 1 | 1 | 1 | 1; 2.1.2 Traffic | 1 | 1 | 1 | 1 | 1; 2.1.3 Reliability | 1 | 1 | 1 | 1 | -; 2.1.4 Environmental Impacts, Roadbed Swelling | 2 | 2 | 2 | 2 | -; Frost Heave | 2 | 2 | 2 | 2 | -. 2.2 PERFORMANCE CRITERIA: 2.2.1 Serviceability | 1 | 1 | 1 | 1 | 1; 2.2.2 Allowable Rutting | - | - | - | - | 1; 2.2.3 Aggregate Loss | - | - | - | - | 1. 2.3 MATERIAL PROPERTIES FOR STRUCTURAL DESIGN: 2.3.1 Effective Roadbed Soil Resilient Modulus | 1 | 1 | - | - | 1; 2.3.2 Effective Modulus of Subgrade Reaction | - | - | 1 | 1 | -; 2.3.3 Pavement Layer Materials Characterization | 2 | 2 | 1 | 1 | 1; 2.3.4 PCC Modulus of Rupture | - | - | 1 | 1 | -; 2.3.5 Layer Coefficients | 1 | 1 | - | - | -. 2.4 PAVEMENT STRUCTURAL CHARACTERISTICS: 2.4.1 Drainage, Flexible Pavements | 1 | 1 | - | - | -; Rigid Pavements | - | 1 | 1 | - | -; 2.4.2 Load Transfer, Jointed Pavements | - | - | 1 | - | -; Continuous Pavements | - | - | - | 1 | -; Tied Shoulders or Widened Outside Lanes | - | - | 2 | 2 | -; 2.4.3 Loss of Support | - | - | 1 | 1 | -. 2.5 REINFORCEMENT VARIABLES: 2.5.1 Jointed Pavements, Slab Length, Working Stress and Friction Factor | - | - | 1 | - | - each; 2.5.2 Continuous Pavements, Concrete Tensile Strength, Concrete Shrinkage, Concrete Thermal Coefficient, Bar Diameter, Steel Thermal Coefficient, Design Temperature Drop and Friction Factor | - | - | - | 1 | - each. AC = Asphalt Concrete; ST = Surface Treatment; JCP = Jointed Concrete Pavement; JRCP = Jointed Reinforced Concrete Pavement; CRCP = Continuously Reinforced Concrete Pavement.]\n\n[Note: in the row Drainage, Rigid Pavements the print sets its two 1s under the ST and JCP/JRCP columns and leaves CRCP blank; stored as printed (p. II-6). Table 2.1 names 2.1.4 \"Environmental Impacts\"; the section's own heading on p. II-10 is \"Environmental Effects\".]\n\nFor ease of description these inputs are classified under five separate categories:\n\nDesign Variables. This category refers to the set of criteria which must be considered for each type of road surface design procedure presented in this Guide.\n\nPerformance Criteria. This represents the user-specified set of boundary conditions within which a given pavement design alternative should perform, e.g., serviceability.\n\nMaterial Properties for Structural Design. This category covers all the pavement and roadbed soil material properties that are required for structural design.\n\nStructural Characteristics. This refers to certain physical characteristics of the pavement structure which have an effect on its performance.\n\nReinforcement Variables. This category covers all the reinforcement design variables needed for the different types of rigid (PCC) pavements considered.\n\nImportant. Because of the treatment of reliability in this Guide (as discussed in Part I and later in this section), it is strongly recommended that the designer use mean (average) values rather than \"conservative estimates\" for each of the design inputs required by the procedures. This is important since the equations were developed using mean values and actual variations. Thus, the designer must use mean values and standard deviations associated with his or her conditions.",
       "key_points": [
-        "Analysis period guidelines: 30-50yr high-volume urban, 20-50 high-volume rural, 15-25 low-volume paved, 10-20 aggregate-surfaced",
-        "Minimum performance period: shortest acceptable stage service life",
-        "Maximum performance period: practical ceiling on service life (may be environmentally, not traffically, controlled)",
-        "Longer analysis periods increasingly recommended for life-cycle cost evaluation"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": ["Analysis Period guidelines by highway condition"],
-      "applicability": "Setting the design/analysis time horizon before applying the traffic and structural design equations."
-    },
-    {
-      "section_id": "II-2.1.2",
-      "title": "Design Variables -- Traffic",
-      "summary": "All design procedures use cumulative expected 18-kip ESAL traffic over the analysis period (w18-hat), converted to mixed traffic via Appendix D. Design-lane traffic w18 = DD*DL*w18-hat, using directional distribution DD (default 0.5, range 0.3-0.7) and lane distribution DL (100% for 1 lane, down to 50-75% for 4+ lanes per direction).",
-      "body": "Both highway and low-volume-road design procedures are based on cumulative 18-kip ESAL during the analysis period. The mixed-traffic-to-ESAL conversion procedure and detailed equivalency values are in Appendix D. If the planning-furnished traffic represents the cumulative total (both directions, all lanes), it must be factored to the design lane via w18 = DD x DL x w18-hat, where DD is a directional distribution factor (typically 0.5, ranging 0.3-0.7 depending on which direction carries heavier loaded traffic) and DL is a lane distribution factor depending on the number of lanes available in one direction (100% for 1 lane; 80-100% for 2; 60-80% for 3; 50-75% for 4 or more). A cumulative-ESAL-vs-time graph (Figure 2.1) is needed whenever stage construction is anticipated, to separate cumulative traffic into the periods (stages) encountered.",
-      "key_points": [
-        "All design based on cumulative 18-kip ESAL (w18-hat) over the analysis period",
-        "w18 = DD x DL x w18-hat (design-lane traffic)",
-        "DD (directional distribution): 0.5 typical, range 0.3-0.7",
-        "DL (lane distribution): 100% (1 lane) down to 50-75% (4+ lanes)",
-        "Appendix D provides the mixed-traffic-to-ESAL conversion (load equivalency factors)",
-        "Figure 2.1 (cumulative ESAL vs time) needed for stage-construction planning"
-      ],
-      "equations": [
-        {"id": "w18 = DD*DL*w18-hat", "description": "Design-lane 18-kip ESAL traffic from cumulative two-directional traffic"}
-      ],
-      "figures": ["Figure 2.1: Example Plot of Cumulative 18-kip ESAL Traffic Versus Time"],
-      "tables": ["Lane distribution factor DL by number of lanes"],
-      "applicability": "Converting planning-level traffic forecasts into the W18 design input for the flexible/rigid design equations."
-    },
-    {
-      "section_id": "II-2.1.3",
-      "title": "Design Variables -- Reliability",
-      "summary": "Table 2.2 gives suggested reliability ranges by functional classification and urban/rural condition (e.g. Interstate/freeway 80-99.9%, local roads 50-80%), derived from a survey of inherent reliability in current state DOT design practice; higher reliability corresponds to more-used facilities. Overall standard deviation So (0.30-0.40 rigid, 0.40-0.50 flexible) is selected per Part I Section 4.3.",
-      "body": "Reliability concepts are introduced in Part I Chapter 4 and developed fully in Appendix EE (Volume 2). Table 2.2 presents suggested reliability levels surveyed across many state DOT design procedures by functional classification and urban/rural condition. The reliability design factor FR (a function of ZR from Table 4.1 and the selected So) is applied to the traffic prediction w18 inside the design equation. Because reliability now separately accounts for design uncertainty, other design inputs should use best-estimate (mean) values rather than additional built-in conservatism.",
-      "key_points": [
-        "Table 2.2: Interstate/freeway 85-99.9% urban / 80-99.9% rural; principal arterial 80-99%/75-95%; collector 80-95%/75-95%; local 50-80%/50-80%",
-        "Higher reliability levels correspond to more heavily used, harder-to-divert facilities",
-        "Reliability factor FR is a function of ZR (Table 4.1) and So (0.30-0.40 rigid, 0.40-0.50 flexible)",
-        "Because FR handles design uncertainty, other inputs should use best-estimate (mean) values, not conservative ones"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": ["Table 2.2: Suggested Levels of Reliability for Various Functional Classifications"],
-      "applicability": "Selecting the design reliability level and So for the flexible/rigid design equations."
-    },
-    {
-      "section_id": "II-2.2.1",
-      "title": "Performance Criteria -- Serviceability",
-      "summary": "Serviceability is the Present Serviceability Index (PSI, 0-5); the guide's core design philosophy relates a specific traffic volume to a minimum desired terminal serviceability pt. po (AASHO Road Test observed) = 4.2 flexible, 4.5 rigid; pt=2.5 or higher for major highways, pt=2.0 for lesser volumes; dPSI = po - pt.",
-      "body": "Serviceability is measured by the Present Serviceability Index (PSI or p), 0 (impossible road) to 5 (perfect road); the guide's serviceability-performance design concept relates a specific total traffic volume to a minimum acceptable pt at the end of the performance period. Terminal (minimum allowable) serviceability selection reflects the lowest index tolerated before rehabilitation becomes necessary: 2.5 or higher for design of major highways, 2.0 for lesser-volume highways. Public-acceptance survey data associated with the AASHO Road Test gives percent of people rating a pt level 'unacceptable': pt=3.0 -> 12%, pt=2.5 -> 55%, pt=2.0 -> 85%. Observed AASHO Road Test initial serviceability po values were 4.2 (flexible) and 4.5 (rigid); dPSI = po - pt.",
-      "key_points": [
-        "PSI ranges 0 (impossible road) to 5 (perfect road)",
-        "po (AASHO Road Test observed): 4.2 flexible, 4.5 rigid",
-        "pt (terminal serviceability): 2.5+ major highways, 2.0 lesser-volume",
-        "Percent rating unacceptable: pt=3.0 -> 12%, pt=2.5 -> 55%, pt=2.0 -> 85%",
-        "dPSI = po - pt (design serviceability loss, the ultimate design-equation input)"
-      ],
-      "equations": [
-        {"id": "dPSI = po - pt", "description": "Design serviceability loss", "implemented_in": "geotech_references.aashto_1993.equations.design_serviceability_loss"}
-      ],
-      "figures": [],
-      "tables": ["Terminal serviceability vs percent rating unacceptable"],
-      "applicability": "Setting po/pt/dPSI, a required input to both the flexible and rigid design equations."
-    },
-    {
-      "section_id": "II-2.2.2",
-      "title": "Performance Criteria -- Allowable Rutting (Aggregate-Surfaced Roads)",
-      "summary": "Rutting is treated as a performance criterion only for aggregate-surfaced roads (no suitable AC-surface rutting model was available for this Guide); allowable rut depth 1.0-2.0 in, dependent on average daily traffic.",
-      "body": "Although rutting is a real distress for asphalt concrete surfaces, no design model suitable for incorporation into this Guide was available at the time of writing; rutting is therefore only a performance criterion for aggregate-surfaced roads, where the model addresses serious deformation of the pavement structure and roadbed support (not simple surface rutting correctable by blading). Allowable rut depth typically ranges 1.0 to 2.0 inches depending on average daily traffic.",
-      "key_points": [
-        "Rutting performance criterion applies ONLY to aggregate-surfaced roads in this Guide",
-        "No suitable AC-surface rutting model was available for inclusion",
-        "Allowable rut depth: 1.0-2.0 in, dependent on ADT"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Low-volume aggregate-surfaced road design (Part II Chapter 4)."
-    },
-    {
-      "section_id": "II-2.2.3",
-      "title": "Performance Criteria -- Aggregate Loss",
-      "summary": "For aggregate-surfaced roads, reduces effective pavement thickness over time; three printed empirical models estimate aggregate/gravel loss: GL=0.12+0.1223(LT) from limited data on sections with more than 50 percent truck traffic, a Brazil-study bladings-based model GL=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G), and a Kenya-study (British) annual model AGL=[T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC) for low-truck-traffic gravel roads.",
-      "body": "Aggregate loss due to traffic and erosion thins the pavement structure over time, accelerating deterioration. Three equations are printed: (1) GL=0.12+0.1223(LT) (GL total aggregate loss, in; LT=loaded trucks, thousands), developed with limited data on sections experiencing greater than 50 percent truck traffic (refs 15, 16); (2) a second equation from a recent study in Brazil on typical rural sections, GL(in)=(B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) where B=bladings, LADT=design-lane ADT, R=curve radius (ft), G=grade (%); and (3) a British study done in Kenya, more applicable to roads with very little truck activity, annual AGL=[T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC), with gravel-type factor f (.037 lateritic, .043 quartzitic, .028 volcanic, .059 coral). The scan drops decimal points, leaving a space where each was (' 092T' is .092T, f ' 037' is .037; read as typeset). All have significant drawbacks; local aggregate-loss data should be used where possible.",
-      "key_points": [
-        "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G) -- Brazil study, bladings-based model",
-        "AGL = [T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC) -- Kenya study, low-truck-traffic gravel roads",
-        "Gravel-type factor f: .037 lateritic, .043 quartzitic, .028 volcanic, .059 coral",
-        "GL=0.12+0.1223(LT) -- sections with more than 50 percent truck traffic (loaded trucks, thousands)",
-        "All models have serious drawbacks; local data preferred where available"
-      ],
-      "equations": [
-        {"id": "GL (truck-traffic sections)", "description": "GL(in) = 0.12 + 0.1223(LT), sections with more than 50 percent truck traffic", "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_truck_traffic"},
-        {"id": "GL (Brazil bladings model)", "description": "GL(in) = (B/25.4)/(0.0045*LADT+3380.6/R+0.467*G)", "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_brazil"},
-        {"id": "AGL (Kenya model)", "description": "AGL = [T^2/(T^2+50)]*f*(4.2+0.092T+0.889R^2+1.88VC)", "implemented_in": "geotech_references.aashto_1993.equations.annual_aggregate_loss_kenya"}
-      ],
-      "figures": [],
-      "tables": [],
-      "applicability": "Aggregate-surfaced (low-volume) road design, estimating total aggregate loss to size the initial surfacing thickness."
-    },
-    {
-      "section_id": "II-2.3.1",
-      "title": "Material Properties -- Effective Roadbed Soil Resilient Modulus",
-      "summary": "Recommends AASHTO T274 laboratory resilient modulus testing across seasonal moisture conditions; the Figure 2.3 chart (uf=1.18e8*MR^-2.32) converts seasonal MR values into a single effective (damage-weighted) design MR for flexible pavements designed via the serviceability criteria. A fully worked 12-month example (Figure 2.4) gives effective MR=5,000 psi.",
-      "body": "For roadbed materials, laboratory resilient modulus testing (AASHTO T274) on samples representative of each primary moisture season is recommended, or correlations with soil properties (clay content, moisture, PI). Because the design equation uses a single MR while soil support varies seasonally, an 'effective' roadbed MR is computed: each season's MR is converted to a relative damage value uf = 1.18x10^8 x MR^-2.32 (Figure 2.3), the uf values are averaged across all seasonal increments, and the effective MR is the value corresponding to that average uf. Frozen-condition practical values of 20,000-50,000 psi and spring-thaw retained modulus of 20-30% of normal summer/fall values are suggested guidelines when direct testing isn't feasible for those extreme seasons. Design sections with within-season coefficient of variation greater than 0.15 should be subdivided into smaller, more uniform sections. This effective MR applies ONLY to flexible pavements designed via the serviceability criteria, not other MR-based procedures.",
-      "key_points": [
-        "AASHTO T274 laboratory testing recommended, across primary moisture seasons",
-        "uf = 1.18e8 * MR^-2.32 (relative damage per seasonal MR, Figure 2.3)",
-        "Effective MR = value corresponding to the AVERAGE uf across all seasonal increments",
-        "Frozen-condition practical MR: 20,000-50,000 psi; spring-thaw retained modulus: 20-30% of normal",
-        "Worked 12-month example (Figure 2.4): monthly MR sum(uf)=3.72, avg uf=0.31 -> effective MR=5,000 psi",
-        "Applies only to flexible pavements designed via the serviceability criteria",
-        "Sections with within-season CoV > 0.15 should be subdivided"
-      ],
-      "equations": [
-        {"id": "uf = 1.18e8*MR^-2.32", "description": "Relative damage from a seasonal roadbed MR", "implemented_in": "geotech_references.aashto_1993.equations.relative_damage_uf"},
-        {"id": "Effective MR procedure", "description": "MR_eff = (1.18e8/mean(uf))^(1/2.32)", "implemented_in": "geotech_references.aashto_1993.equations.effective_roadbed_resilient_modulus"}
-      ],
-      "figures": [
-        "Figure 2.3: Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria",
-        "Figure 2.4: Chart for Estimating Effective Roadbed Soil Resilient Modulus (worked example)"
-      ],
-      "tables": [],
-      "applicability": "Determining the MR input to the flexible design equation (Figure 3.1) from seasonally varying roadbed soil test/correlation data."
-    },
-    {
-      "section_id": "II-2.3.2",
-      "title": "Material Properties -- Effective Modulus of Subgrade Reaction",
-      "summary": "An effective (seasonally weighted) k-value for rigid pavement design is developed analogously, incorporating subbase characteristics; its determination is an iterative step within the rigid design procedure itself (Section 3.2.1) rather than a standalone precursor calculation.",
-      "body": "Like the effective roadbed MR, an effective modulus of subgrade reaction (k-value) is developed for rigid design because k is directly proportional to roadbed MR, using the same seasonal lengths/moduli as input. However, because subbase characteristics also affect the design k-value, its determination is included as an iterative step within the rigid pavement design procedure itself (Part II, Section 3.2.1), not as a standalone precursor calculation.",
-      "key_points": [
-        "Effective k-value is analogous to effective roadbed MR but season-and-subbase dependent",
-        "Determination is folded into the iterative rigid design procedure (Section 3.2.1), not standalone"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Cross-reference to the rigid pavement k-value procedure (Section 3.2.1)."
-    },
-    {
-      "section_id": "II-2.3.3",
-      "title": "Material Properties -- Pavement Layer Materials Characterization",
-      "summary": "Elastic (resilient) modulus is the adopted material-quality basis for this Guide. Low-stiffness materials (soils, unbound granular, stabilized, AC) are tested by AASHTO T274 resilient modulus or ASTM D4123 repeated-load indirect tensile test; high-stiffness materials (PCC, high-cement-content stabilized base) use ASTM C469.",
-      "body": "Although resilient modulus can apply to any material type, the notation MR in this Guide is reserved for roadbed soil; base/subbase/AC/PCC moduli are denoted EBS, ESB, EAC, EC respectively. Relatively low-stiffness materials should be tested per AASHTO T274 (natural soils, unbound granular layers, and even stabilized layers and AC), noting the need for triaxial confinement in unbound materials. Bound/higher-stiffness materials (stabilized bases, AC) may alternatively use the repeated-load indirect tensile test (ASTM D4123), which is simpler to run. Very stiff/brittle materials (PCC, high-cement-content stabilized bases) are difficult to test via the indirect tensile apparatus and should instead use ASTM C469. Correlations developed by a state DOT or other reputable agency (e.g. the ACI correlation Ec=57,000*(f'c)^0.5 for normal-weight PCC) may also be used. As a guideline for successive unbound layers, the ratio of upper-to-lower resilient modulus should not exceed values that produce tensile stresses in the granular layer.",
-      "key_points": [
-        "Elastic (resilient) modulus is the adopted material-quality basis throughout this Guide",
-        "Notation: MR (roadbed soil), EBS (base), ESB (subbase), EAC (asphalt concrete), EC (PCC)",
-        "Low-stiffness materials: AASHTO T274 (or ASTM D4123 for bound/stabilized/AC)",
-        "High-stiffness materials (PCC, cement-stabilized): ASTM C469",
-        "Ec = 57,000*(f'c)^0.5 psi (ACI correlation for normal-weight PCC elastic modulus)",
-        "Ratio of successive unbound-layer moduli limited to avoid tensile stress in the granular layer"
-      ],
-      "equations": [
-        {"id": "Ec = 57,000*(f'c)^0.5", "description": "PCC elastic modulus from compressive strength (ACI correlation)"}
-      ],
-      "figures": [],
-      "tables": [],
-      "applicability": "Selecting the appropriate test method/correlation for characterizing each pavement layer material's modulus."
-    },
-    {
-      "section_id": "II-2.3.4",
-      "title": "Material Properties -- PCC Modulus of Rupture",
-      "summary": "Required only for rigid design; the mean 28-day third-point-loading flexural strength (AASHTO T97/ASTM C78) is used, not the (lower) construction-specification value; a correction factor converts a construction specification to an estimated mean.",
-      "body": "PCC modulus of rupture (flexural strength) is required only for rigid pavement design, using the mean value at 28 days by third-point loading. Because reliability is already separately accounted for, the normal CONSTRUCTION specification value (a lower-tail value, e.g. the 10th or 20th percentile of the strength distribution) should NOT be used directly as design input; instead it should be adjusted to an estimated mean via Sc'(mean) = Sc + z*SDs, where z is a standard normal variate depending on the specification's permissible-below-spec percentage PS (z=0.841 at PS=20%, up to z=2.327 at PS=1%). If an agency's practice uses center-point loading, a correlation to third-point loading should be developed.",
-      "key_points": [
-        "Required only for rigid design; mean 28-day third-point-loading value (AASHTO T97 / ASTM C78)",
-        "Do NOT use the construction specification value directly (a lower-tail value)",
-        "Sc'(mean) = Sc + z*SDs -- converts spec value to estimated mean",
-        "z: 0.841 (PS=20%), 1.037 (15%), 1.282 (10%), 1.645 (5%), 2.327 (1%)"
-      ],
-      "equations": [
-        {"id": "Sc'(mean) = Sc + z*SDs", "description": "Estimated mean PCC modulus of rupture from a construction specification value"}
-      ],
-      "figures": [],
-      "tables": [],
-      "applicability": "Determining the Sc' input to the rigid pavement design equation (Figure 3.7)."
-    },
-    {
-      "section_id": "II-2.3.5",
-      "title": "Material Properties -- Layer Coefficients",
-      "summary": "Assigns AASHTO structural layer coefficients (a1, a2, a3) for use in SN=a1D1+a2D2m2+a3D3m3. Asphalt concrete a1 from a chart (Figure 2.5, EAC vs a1). Granular base a2 and subbase a3 have BOTH a nomograph (Figures 2.6/2.7, multi-scale CBR/R-value/Texas-triaxial/modulus alignment charts) AND a printed closed-form regression: a2=0.249*log10(EBS)-0.977, a3=0.227*log10(ESB)-0.839. Cement-treated and bituminous-treated base a2 are chart-only (Figures 2.8/2.9).",
-      "body": "Although the elastic modulus is the adopted material-quality measure, layer coefficients (ai) are still needed because the SN structural-number approach requires them. Figure 2.5 gives a1 for dense-graded AC surface course vs. EAC at 68F (chart only; caution above EAC=450,000 psi). For granular base, Figure 2.6 is a 5-scale alignment nomograph (a2, CBR, R-value, Texas Triaxial class, elastic modulus) with each scale's origin from different state correlations (Illinois for CBR; California/New Mexico/Wyoming for R-value; Texas for Texas Triaxial; an NCHRP project for modulus); the guide ALSO prints an explicit closed-form alternative, a2=0.249*log10(EBS)-0.977, with a worked check (EBS=30,000 psi -> a2=0.14, CBR~100, R-value~85). Figure 2.7 is the parallel granular-subbase nomograph, with printed regression a3=0.227*log10(ESB)-0.839 (worked check: ESB=15,000 psi -> a3=0.11, CBR~30, R-value~60). For cement-treated bases (Figure 2.8, a2 vs 7-day unconfined compressive strength or elastic modulus) and bituminous-treated bases (Figure 2.9, a2 vs Marshall stability or elastic modulus), only the alignment-nomograph form is printed (no closed-form regression). Table 2.3 gives typical unbound-material k1/k2 for the stress-dependent model MR=k1*theta^k2 by moisture condition, used to estimate EBS/ESB stress-state-dependent values.",
-      "key_points": [
-        "SN = a1*D1 + a2*D2*m2 + a3*D3*m3 -- the layer coefficients ai are the SN 'weights'",
-        "a1 (AC surface): Figure 2.5 chart only, EAC (psi) vs a1",
-        "a2 (granular base): Figure 2.6 nomograph OR printed regression a2=0.249*log10(EBS)-0.977",
-        "a3 (granular subbase): Figure 2.7 nomograph OR printed regression a3=0.227*log10(ESB)-0.839",
-        "a2 (cement-treated base): Figure 2.8 chart only, vs 7-day UCS or modulus",
-        "a2 (bituminous-treated base): Figure 2.9 chart only, vs Marshall stability or modulus",
-        "Table 2.3: typical k1 (3,000-8,000 psi base/subbase), k2 (0.4-0.7) for MR=k1*theta^k2",
-        "Base/subbase EBS/ESB at the AASHO Road Test were moisture- and stress-state-dependent (Table values, theta=5-30 psi)"
-      ],
-      "equations": [
-        {"id": "a2 = 0.249*log10(EBS) - 0.977", "description": "Granular base layer coefficient (printed regression)", "implemented_in": "geotech_references.aashto_1993.equations.layer_coefficient_a2_granular_base"},
-        {"id": "a3 = 0.227*log10(ESB) - 0.839", "description": "Granular subbase layer coefficient (printed regression)", "implemented_in": "geotech_references.aashto_1993.equations.layer_coefficient_a3_granular_subbase"},
-        {"id": "MR = k1*theta^k2", "description": "Stress-dependent (bulk-stress) unbound-material resilient modulus model", "implemented_in": "geotech_references.aashto_1993.tables.unbound_k1_k2"}
-      ],
-      "figures": [
-        "Figure 2.5: Chart for Estimating Structural Layer Coefficient of Dense-Graded Asphalt Concrete",
-        "Figure 2.6: Variation in Granular Base Layer Coefficient (a2) with Various Base Strength Parameters",
-        "Figure 2.7: Variation in Granular Subbase Layer Coefficient (a3) with Various Subbase Strength Parameters",
-        "Figure 2.8: Variation in a2 for Cement-Treated Bases with Base Strength Parameter",
-        "Figure 2.9: Variation in a2 for Bituminous-Treated Bases with Base Strength Parameter"
-      ],
-      "tables": ["Table 2.3: Typical Values for k1 and k2 for Unbound Base and Subbase Materials"],
-      "applicability": "Assigning layer coefficients for the SN calculation, given lab-measured or correlated layer strength/stiffness properties."
-    },
-    {
-      "section_id": "II-2.4.1",
-      "title": "Pavement Structural Characteristics -- Drainage",
-      "summary": "Quality-of-drainage classes (Excellent 2hr to Very Poor no-drain) modify flexible layer coefficients via drainage coefficients mi (Table 2.4, folded into SN=a1D1+a2D2m2+a3D3m3) or rigid design via a drainage coefficient Cd (Table 2.5, in the strength term of the rigid design equation). AASHO Road Test conditions correspond to mi=Cd=1.0 ('fair' drainage).",
-      "body": "Drainage level or quality is classified by the time needed to remove free water from the pavement structure: Excellent (2 hours), Good (1 day), Fair (1 week, matching AASHO Road Test conditions), Poor (1 month), Very Poor (water will not drain). For flexible pavements, drainage effects are captured via a drainage coefficient mi that modifies the base/subbase layer coefficients in the SN equation (Table 2.4, varying with quality and percent-of-time-near-saturation); the AC surface course's own drainage effect is not considered. For rigid pavements, drainage effects enter as the drainage coefficient Cd directly in the rigid design equation's strength term (Table 2.5). Individual agencies are encouraged to develop drainage criteria for local aggregates/climate.",
-      "key_points": [
-        "Quality of drainage: Excellent (2hr), Good (1day), Fair (1wk, = AASHO Road Test), Poor (1mo), Very Poor (no drain)",
-        "Flexible: drainage modifier mi applied to base/subbase layer coefficients (Table 2.4); AASHO Road Test mi=1.0",
-        "Rigid: drainage coefficient Cd used directly in the design equation strength term (Table 2.5); AASHO Road Test Cd=1.0",
-        "SN = a1*D1 + a2*D2*m2 + a3*D3*m3 -- the m2/m3 drainage modifiers"
+        "A one (1) means that a particular design input (or set of inputs) must be determined for that structural combination. A two (2) indicates that the design input should be considered because of its potential impact on the results.",
+        "PCP is not shown as a column in Table 2.1, however, since detailed design input requirements are not available at this time.",
+        "It is strongly recommended that the designer use mean (average) values rather than \"conservative estimates\" for each of the design inputs required by the procedures.",
+        "The equations were developed using mean values and actual variations. Thus, the designer must use mean values and standard deviations associated with his or her conditions."
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 2.4: Recommended mi Values for Modifying Structural Layer Coefficients of Untreated Base and Subbase Materials in Flexible Pavements",
-        "Table 2.5: Recommended Values of Drainage Coefficient, Cd, for Rigid Pavement Design"
+        "Table 2.1: Design Requirements for the Different Initial Pavement Types that can be Considered (p. II-6)"
       ],
-      "applicability": "Selecting mi (flexible SN calculation) or Cd (rigid design equation) for a given drainage quality and climate exposure."
+      "applicability": "Chapter introduction: the five categories of design inputs and Table 2.1, which inputs each pavement type needs (pp. II-5 to II-6)."
     },
     {
-      "section_id": "II-2.4.2",
-      "title": "Pavement Structural Characteristics -- Load Transfer",
-      "summary": "The load transfer coefficient J (Table 2.6) accounts for a rigid pavement's ability to transfer load across joints/cracks (dowels, aggregate interlock, tied shoulders); AASHO Road Test 'protected corner' (dowelled, no tied shoulder) J=3.2. Higher J values apply for higher traffic/thermal conditions; tied PCC shoulders substantially lower the required J.",
-      "body": "The J-factor accounts for a rigid pavement's ability to distribute load across discontinuities (joints or cracks) via load transfer devices (dowels), aggregate interlock, and/or tied concrete shoulders. J generally increases with traffic (aggregate interlock effectiveness decreases with load repetitions) and with higher thermal coefficients/temperature variation. If dowels are used, diameter is typically the slab thickness/8 (e.g. 1-1/4 in dowel for a 10-in slab), with 12-in spacing and 18-in length as general guidance. Recommended J ranges (Table 2.6): plain jointed/JRCP with asphalt shoulder and load transfer devices, J=3.2 (Road Test 'protected corner'); without devices, J=3.8-4.4; with tied PCC shoulder and devices, J=2.5-3.1; without devices, J=3.6-4.2. CRCP without tied shoulders: J=2.9-3.2 (asphalt shoulder, aggregate interlock only, historically often taken as 3.2); CRCP with tied shoulders: J=2.3-2.9 (recommended 2.6), substantially lower due to the added load-distribution capability of tied shoulders (traffic assumed not to run on the shoulder).",
+      "section_id": "II-2.1.1",
+      "title": "Time Constraints",
+      "summary": "Time constraints set the performance and analysis periods. The performance period is the time an initial (or rehabilitated) structure lasts as it deteriorates from initial to terminal serviceability; the designer selects minimum and maximum bounds from agency experience and policy, and choosing longer periods than can be achieved in the field gives unrealistic designs. The analysis period is the time any design strategy must cover (formerly 'design life'); longer analysis periods, extended to include one rehabilitation, are recommended. Guidelines (years): high-volume urban 30-50, high-volume rural 20-50, low-volume paved 15-25, low-volume aggregate surface 10-20.",
+      "body": "[p. II-5] 2.1 DESIGN VARIABLES\n\n2.1.1 Time Constraints\n\nThis section involves the selection of performance and analysis period inputs which affect (or constrain) pavement design from the dimension of time. Consideration of these constraints is required for both highway and low-volume road design. Time constraints permit the designer to select from strategies ranging from the initial structure lasting the entire analysis period (i.e., performance period equals the analysis period) to stage construction with an initial structure and planned overlays.\n\nPerformance Period. This refers to the period of time that an initial pavement structure will last before it needs rehabilitation. It also refers to the performance time between rehabilitation operations. In the design procedures presented in this Guide, the performance period is equivalent to the time elapsed as a new, reconstructed, or rehabilitated structure deteriorates from its initial serviceability to its terminal serviceability. For the performance period, the designer must select minimum and maximum bounds that are established by agency experience and policy. It is important to note that in actual practice the performance period can be significantly affected by the type and [p. II-7] level of maintenance applied. The predicted performance inherent in this procedure is based on the maintenance practices at the AASHO Road Test.\n\nThe minimum performance period is the shortest amount of time a given stage should last. For example, it may be desirable that the initial pavement structure last at least 10 years before some major rehabilitation operation is performed. The limit may be controlled by such factors as the public's perception of how long a \"new\" surface should last, the funds available for initial construction, life-cycle cost, and other engineering considerations.\n\nThe maximum performance period is the maximum practical amount of time that the user can expect from a given stage. For example, experience has shown in areas that pavements originally designed to last 20 years required some type of rehabilitation or resurfacing within 15 years after initial construction. This limiting time period may be the result of PSI loss due to environmental factors, disintegration of surface, etc. The selection of longer time periods than can be achieved in the field will result in unrealistic designs. Thus, if life-cycle costs are to be considered accurately, it is important to give some consideration to the maximum practical performance period of a given pavement type.\n\nAnalysis Period. This refers to the period of time for which the analysis is to be conducted, i.e., the length of time that any design strategy must cover. The analysis period is analogous to the term \"design life\" used by designers in the past. Because of the consideration of the maximum performance period, it may be necessary to consider and plan for stage construction (i.e., an initial pavement structure followed by one or more rehabilitation operations) to achieve the desired analysis period.\n\nIn the past, pavements were typically designed and analyzed for a 20-year performance period since the original Interstate Highway Act in 1956 required that traffic be considered through 1976. It is now recommended that consideration be given to longer analysis periods, since these may be better suited for the evaluation of alternative long-term strategies based on life-cycle costs. Consideration should be given to extending the analysis period to include one rehabilitation. For high-volume urban freeways, longer analysis periods may be considered. Following are general guidelines:\n\n[Unnumbered table (p. II-7). Highway Conditions | Analysis Period (years): High-volume urban | 30-50; High-volume rural | 20-50; Low-volume paved | 15-25; Low-volume aggregate surface | 10-20.]",
       "key_points": [
-        "J accounts for load transfer via dowels, aggregate interlock, and/or tied PCC shoulders",
-        "Higher J needed for higher traffic (interlock degrades with repetitions) and larger thermal variation",
-        "Dowel sizing guideline: diameter = slab thickness/8; 12-in spacing, 18-in length",
-        "JCP/JRCP: J=3.2 (dowelled, no tied shoulder, AASHO Road Test); 3.8-4.4 (no devices); 2.5-3.1 (dowelled + tied shoulder); 3.6-4.2 (tied shoulder, no devices)",
-        "CRCP: J=2.9-3.2 (asphalt shoulder); J=2.3-2.9, recommend 2.6 (tied shoulder)",
-        "Concrete shoulder >= 3 ft wide, tied, may be considered a 'tied shoulder'"
+        "For the performance period, the designer must select minimum and maximum bounds that are established by agency experience and policy.",
+        "The predicted performance inherent in this procedure is based on the maintenance practices at the AASHO Road Test.",
+        "The selection of longer time periods than can be achieved in the field will result in unrealistic designs.",
+        "It is now recommended that consideration be given to longer analysis periods, since these may be better suited for the evaluation of alternative long-term strategies based on life-cycle costs.",
+        "Consideration should be given to extending the analysis period to include one rehabilitation.",
+        "Analysis period guidelines (years): high-volume urban 30-50; high-volume rural 20-50; low-volume paved 15-25; low-volume aggregate surface 10-20."
       ],
       "equations": [],
       "figures": [],
-      "tables": ["Table 2.6: Recommended Load Transfer Coefficient for Various Pavement Types and Design Conditions"],
-      "applicability": "Selecting the J input to the rigid pavement design equation (Figure 3.7)."
+      "tables": [
+        "Unnumbered table: Analysis Period (years) by Highway Conditions (p. II-7)"
+      ],
+      "applicability": "Performance period and analysis period selection, with the analysis period guidelines (pp. II-5 to II-7)."
     },
     {
-      "section_id": "II-2.4.3",
-      "title": "Pavement Structural Characteristics -- Loss of Support",
-      "summary": "The loss-of-support factor LS accounts for potential erosion/voiding beneath a rigid slab's subbase, used to correct the effective k-value downward (Figure 3.6) before use in the rigid design equation.",
-      "body": "Loss of support (LS) corrects the effective modulus of subgrade reaction for the potential loss of support arising from subbase erosion (e.g. under high-traffic-repetition pumping/erosion of untreated or erosion-susceptible stabilized subbases). The LS factor is applied via Figure 3.6 as the final step (Step 8) of the effective-k-value procedure (Section 3.2.1); higher LS corresponds to a greater expected support loss and a lower design k.",
+      "section_id": "II-2.1.2",
+      "title": "Traffic",
+      "summary": "All the design procedures are based on cumulative expected 18-kip ESAL during the analysis period (\u017518), converted from mixed traffic as in Part I and Appendix D. Where stage construction is considered, the user must prepare a graph of cumulative ESAL versus time (Figure 2.1) to separate the traffic into stages. The planning group's two-directional traffic is factored to the design lane by w18 = DD \u00d7 DL \u00d7 \u017518: DD is generally 0.5 and may vary from 0.3 to 0.7; DL is 100 percent for one lane in each direction, 80-100 for two, 60-80 for three and 50-75 for four.",
+      "body": "[p. II-7] The design procedures for both highways and low-volume roads are all based on cumulative expected 18-kip equivalent single axle loads (ESAL) during the analysis period (\u017518). The procedure for converting mixed traffic into these 18-kip ESAL units is presented in Part I and Appendix D of this Guide. Detailed equivalency values are given in Appendix D. For any design situation in which the initial pavement structure is expected to last, the analysis period without any rehabilitation or resurfacing, all that is required is the total traffic over the analysis period. If, however, stage construction is considered, i.e., rehabilitation or resurfacing is anticipated (due to lack of initial funds, roadbed swelling, frost heave, etc.), then the user must prepare a graph of cumulative 18-kip ESAL traffic versus time, as illustrated in Figure 2.1. This will be used to separate the cumulative traffic into the periods (stages) during which it is encountered.\n\n[Figure 2.1. Example Plot of Cumulative 18-kip ESAL Traffic Versus Time (p. II-8): cumulative 18-kip ESAL traffic (millions, 0 to 10.0) rising with time (0 to 20 years); the example marks 1.8 million at 6 years.]\n\nThe predicted traffic furnished by the planning group is generally the cumulative 18-kip ESAL axle applications expected on the highway, whereas the designer requires the axle applications in the design lane. Thus, unless specifically furnished, the designer must factor the design traffic by direction and then by lanes (if more than two). The following equation may be used to determine the traffic (w18) in the design lane:\n\nw18 = DD \u00d7 DL \u00d7 \u017518\n\nwhere\n\nDD = a directional distribution factor, expressed as a ratio, that accounts for the distribution of ESAL units by direction, e.g., east-west, north-south, etc.,\n\n[p. II-9] DL = a lane distribution factor, expressed as a ratio, that accounts for distribution of traffic when two or more lanes are available in one direction, and\n\n\u017518 = the cumulative two-directional 18-kip ESAL units predicted for a specific section of highway during the analysis period (from the planning group).\n\nAlthough the DD factor is generally 0.5 (50 percent) for most roadways, there are instances where more weight may be moving in one direction than the other. Thus, the side with heavier vehicles should be designed for a greater number of ESAL units. Experience has shown that DD may vary from 0.3 to 0.7, depending on which direction is \"loaded\" and which is \"unloaded.\"\n\nFor the DL factor, the following table may be used as a guide:\n\n[Unnumbered table (p. II-9). Number of Lanes in Each Direction | Percent of 18-kip ESAL in Design Lane: 1 | 100; 2 | 80-100; 3 | 60-80; 4 | 50-75.]",
       "key_points": [
-        "LS accounts for potential subbase erosion / void formation beneath the slab",
-        "Applied as the final correction to the effective k-value (Figure 3.6, Section 3.2.1 Step 8)",
-        "Higher LS -> lower corrected design k-value"
+        "The design procedures for both highways and low-volume roads are all based on cumulative expected 18-kip equivalent single axle loads (ESAL) during the analysis period (\u017518).",
+        "If, however, stage construction is considered ... then the user must prepare a graph of cumulative 18-kip ESAL traffic versus time, as illustrated in Figure 2.1.",
+        "Thus, unless specifically furnished, the designer must factor the design traffic by direction and then by lanes (if more than two).",
+        "Although the DD factor is generally 0.5 (50 percent) for most roadways ... Experience has shown that DD may vary from 0.3 to 0.7, depending on which direction is \"loaded\" and which is \"unloaded.\"",
+        "Percent of 18-kip ESAL in design lane: 1 lane in each direction 100; 2 lanes 80-100; 3 lanes 60-80; 4 lanes 50-75."
+      ],
+      "equations": [
+        {
+          "id": "w18 = DD*DL*w18-hat",
+          "description": "Design-lane 18-kip ESAL traffic from the cumulative two-directional traffic",
+          "formula": "w18 = DD \u00d7 DL \u00d7 \u017518",
+          "variables": {
+            "w18": "traffic (18-kip ESAL) in the design lane",
+            "DD": "a directional distribution factor, expressed as a ratio, that accounts for the distribution of ESAL units by direction, e.g., east-west, north-south, etc.",
+            "DL": "a lane distribution factor, expressed as a ratio, that accounts for distribution of traffic when two or more lanes are available in one direction",
+            "\u017518": "the cumulative two-directional 18-kip ESAL units predicted for a specific section of highway during the analysis period (from the planning group)"
+          },
+          "notes": "DD is generally 0.5 and may vary from 0.3 to 0.7; DL from the table on p. II-9 (held by tables.directional_distribution_default and tables.lane_distribution_factor; no function computes w18).",
+          "source": "Typed in from the 200 dpi render of p. II-7."
+        }
+      ],
+      "figures": [
+        "Figure 2.1: Example Plot of Cumulative 18-kip ESAL Traffic Versus Time (p. II-8)"
+      ],
+      "tables": [
+        "Unnumbered table: Percent of 18-kip ESAL in Design Lane by Number of Lanes in Each Direction (p. II-9)"
+      ],
+      "applicability": "Design traffic: cumulative 18-kip ESAL, stage construction traffic plot, directional and lane distribution factors (pp. II-7 to II-9)."
+    },
+    {
+      "section_id": "II-2.1.3",
+      "title": "Reliability",
+      "summary": "The reliability design factor accounts for chance variations in both the traffic prediction (w18) and the performance prediction (W18), giving a predetermined level of assurance (R) that sections survive their design period. Higher reliability is chosen as traffic volume, difficulty of diverting traffic and public expectation of availability increase (Table 2.2: interstates and freeways 85-99.9 urban, 80-99.9 rural; local roads 50-80). With uncertainty treated as a separate factor, the designer should use best estimates of mean values rather than conservative values. Steps: classify the facility, select R from Table 2.2, and select an So representative of local conditions.",
+      "body": "[p. II-9] Reliability concepts were introduced in Chapter 4 of Part I and are developed fully in Appendix EE of Volume 2. Basically, it is a means of incorporating some degree of certainty into the design process to ensure that the various design alternatives will last the analysis period. The reliability design factor accounts for chance variations in both traffic prediction (w18) and the performance prediction (W18), and therefore provides a predetermined level of assurance (R) that pavement sections will survive the period for which they were designed.\n\nGenerally, as the volume of traffic, difficulty of diverting traffic, and public expectation of availability increases, the risk of not performing to expectations must be minimized. This is accomplished by selecting higher levels of reliability. Table 2.2 presents recommended levels of reliability for various functional classifications. Note that the higher levels correspond to the facilities which receive the most use, while the lowest level, 50 percent, corresponds to local roads.\n\n[Table 2.2. Suggested Levels of Reliability for Various Functional Classifications (p. II-9). Functional Classification | Recommended Level of Reliability, Urban | Rural: Interstate and Other Freeways | 85-99.9 | 80-99.9; Principal Arterials | 80-99 | 75-95; Collectors | 80-95 | 75-95; Local | 50-80 | 50-80. NOTE: Results based on a survey of the AASHTO Pavement Design Task Force.]\n\nAs explained in Part I, Chapter 4, design-performance reliability is controlled through the use of a reliability factor (FR) that is multiplied times the design period traffic prediction (w18) to produce design applications (W18) for the design equation. For a given reliability level (R), the reliability factor is a function of the overall standard deviation (So) that accounts for both chance variation in the traffic prediction and normal variation in pavement performance prediction for a given W18.\n\nIt is important to note that by treating design uncertainty as a separate factor, the designer should no longer use \"conservative\" estimates for all the other design input requirements. Rather than conservative values, the designer should use his best estimate of the mean or average value for each input value. The selected level of reliability and overall standard deviation will account for the combined effect of the variation of all the design variables.\n\nApplication of the reliability concept requires the following steps:\n\n(1) Define the functional classification of the facility and determine whether a rural or urban condition exists.\n\n(2) Select a reliability level from the range given in Table 2.2. The greater the value of reliability, the more pavement structure required.\n\n(3) A standard deviation (So) should be selected that is representative of local conditions. Values of So developed at the AASHO Road Test did not include traffic error. However, the performance prediction error developed at the Road Test was .25 for rigid and .35 for flexible pavements. This corresponds to a total standard [p. II-10] deviation for traffic of 0.35 and 0.45 for rigid and flexible pavements, respectively.\n\n[Note: stored as printed. Part I, Section 4.3 (p. I-62) gives overall standard deviations of 0.39 (rigid) and 0.49 (flexible) where the variance of projected traffic is considered and 0.34 and 0.44 where it is not, and says the So range in this section is based on them.]",
+      "key_points": [
+        "The reliability design factor accounts for chance variations in both traffic prediction (w18) and the performance prediction (W18), and therefore provides a predetermined level of assurance (R) that pavement sections will survive the period for which they were designed.",
+        "Note that the higher levels correspond to the facilities which receive the most use, while the lowest level, 50 percent, corresponds to local roads.",
+        "It is important to note that by treating design uncertainty as a separate factor, the designer should no longer use \"conservative\" estimates for all the other design input requirements.",
+        "Select a reliability level from the range given in Table 2.2. The greater the value of reliability, the more pavement structure required.",
+        "Values of So developed at the AASHO Road Test did not include traffic error. However, the performance prediction error developed at the Road Test was .25 for rigid and .35 for flexible pavements.",
+        "This corresponds to a total standard deviation for traffic of 0.35 and 0.45 for rigid and flexible pavements, respectively."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2.2: Suggested Levels of Reliability for Various Functional Classifications (p. II-9)"
+      ],
+      "applicability": "Selecting the reliability level R and the overall standard deviation So (pp. II-9 to II-10); the method is in Part I, Chapter 4."
+    },
+    {
+      "section_id": "II-2.1.4",
+      "title": "Environmental Effects",
+      "summary": "Temperature and moisture changes affect the strength, durability and load-carrying capacity of pavement and roadbed materials (treated in Section 2.3); roadbed swelling, pavement blowups, frost heave and disintegration directly reduce riding quality and serviceability. This section gives only the criteria for roadbed swelling and frost heave: where either can lead to a significant loss in serviceability over the analysis period, it should be considered for all structural types except perhaps aggregate-surfaced roads. The step produces a graph of environmental serviceability loss versus time (Figure 2.2), added to the traffic loss; Appendix G gives the detail.",
+      "body": "[p. II-10] The environment can affect pavement performance in several ways. Temperature and moisture changes can have an effect on the strength, durability, and load-carrying capacity of the pavement and roadbed materials. Another major environmental impact is the direct effect roadbed swelling, pavement blowups, frost heave, disintegration, etc., can have on loss of riding quality and serviceability. Additional effects, such as aging, drying, and overall material deterioration due to weathering, are considered in this Guide only in terms of their inherent influence on the pavement performance prediction models.\n\nThe actual treatment of the effects of seasonal temperature and moisture changes on material properties is discussed in Section 2.3, \"Material Properties for Structural Design.\" This section provides only the criteria necessary for quantifying the input requirements for evaluating roadbed swelling and frost heave. If either of these can lead to a significant loss in serviceability or ride quality during the analysis period, then it (they) should be considered in the design analysis for all pavement structural types, except perhaps aggregate-surfaced roads. As serviceability-based models are developed for such factors as pavement blowups, then they may be added to the design procedure.\n\nThe objective of this step is to produce a graph of serviceability loss versus time, such as that illustrated in Figure 2.2. As described in Part I, the serviceability loss due to environment must be added to that resulting from cumulative axle loads. Figure 2.2 indicates that the environmental loss is a result of the summation of losses from both swelling and frost heave. The chart may be used to estimate the serviceability loss at intermediate periods, e.g., at 13 years the loss is 0.73. Obviously, if only swelling or only frost heave is considered, there will be only one curve on the graph. The environmental serviceability loss is evaluated in detail in Appendix G, \"Treatment of Roadbed Swelling and/or Frost Heave in Design.\"\n\n[Figure 2.2. A Conceptual Example of the Environmental Serviceability Loss Versus Time Graph that may be Developed for a Specific Location (p. II-11): cumulative serviceability loss (0.0 to 1.0) against time (0 to 20 years); one curve for the swelling loss \u0394PSI_SW, one for the frost heave loss \u0394PSI_FH, and their total, which reads 0.73 at 13 years.]",
+      "key_points": [
+        "If either of these can lead to a significant loss in serviceability or ride quality during the analysis period, then it (they) should be considered in the design analysis for all pavement structural types, except perhaps aggregate-surfaced roads.",
+        "As described in Part I, the serviceability loss due to environment must be added to that resulting from cumulative axle loads.",
+        "The chart may be used to estimate the serviceability loss at intermediate periods, e.g., at 13 years the loss is 0.73.",
+        "The environmental serviceability loss is evaluated in detail in Appendix G, \"Treatment of Roadbed Swelling and/or Frost Heave in Design.\""
+      ],
+      "equations": [],
+      "figures": [
+        "Figure 2.2: A Conceptual Example of the Environmental Serviceability Loss Versus Time Graph that may be Developed for a Specific Location (p. II-11)"
+      ],
+      "tables": [],
+      "applicability": "Environmental serviceability loss from roadbed swelling and frost heave (p. II-10); Table 2.1 calls it Environmental Impacts."
+    },
+    {
+      "section_id": "II-2.2.1",
+      "title": "Serviceability",
+      "summary": "The primary measure of serviceability is the Present Serviceability Index (PSI), from 0 (impossible road) to 5 (perfect road). The terminal serviceability index pt is the lowest index tolerated before rehabilitation, resurfacing or reconstruction: 2.5 or higher is suggested for major highways and 2.0 for lesser traffic volumes. In Road Test studies 12, 55 and 85 percent of people rated pt 3.0, 2.5 and 2.0 unacceptable. For minor highways, reduce the design period or traffic rather than design for pt below 2.0. The po values observed at the Road Test were 4.2 flexible and 4.5 rigid; \u0394PSI = po \u2212 pt.",
+      "body": "[p. II-10] 2.2 PERFORMANCE CRITERIA\n\n2.2.1 Serviceability\n\nThe serviceability of a pavement is defined as its ability to serve the type of traffic (automobiles and trucks) which use the facility. The primary measure of serviceability is the Present Serviceability Index (PSI), which ranges from 0 (impossible road) to 5 (perfect road). The basic design philosophy of this Guide is the serviceability-performance concept, which provides a means of designing a pavement based on a specific total traffic volume and a minimum level of serviceability desired at the end of the performance period.\n\nSelection of the lowest allowable PSI or terminal serviceability index (pt) is based on the lowest index that will be tolerated before rehabilitation, resurfacing, or reconstruction becomes necessary. An index of 2.5 or higher is suggested for design of major highways and 2.0 for highways with lesser traffic volumes. One criterion for identifying a minimum level of serviceability may be established on the basis of public acceptance. Following are general guidelines for minimum levels of pt obtained from studies in connection with the AASHO Road Test (14):\n\n[Unnumbered table (p. II-10). Terminal Serviceability Level | Percent of People Stating Unacceptable: 3.0 | 12; 2.5 | 55; 2.0 | 85.]\n\nFor relatively minor highways where economics dictate that the initial capital outlay be kept at a minimum, it is suggested that this be accomplished by reducing the design period or the total traffic volume, rather than by designing for a terminal serviceability less than 2.0.\n\nSince the time at which a given pavement structure reaches its terminal serviceability depends on traffic volume and the original or initial serviceability (po), some consideration must also be given to the selection of po. (It should be recognized that the po values observed at the AASHO Road Test were 4.2 for flexible pavements and 4.5 for rigid pavements.)\n\nOnce po and pt are established, the following equation should be applied to define the total change in serviceability index:\n\n\u0394PSI = po \u2212 pt\n\nThe equation is applicable to flexible, rigid, and aggregate-surfaced roads.",
+      "key_points": [
+        "An index of 2.5 or higher is suggested for design of major highways and 2.0 for highways with lesser traffic volumes.",
+        "It is suggested that this be accomplished by reducing the design period or the total traffic volume, rather than by designing for a terminal serviceability less than 2.0.",
+        "It should be recognized that the po values observed at the AASHO Road Test were 4.2 for flexible pavements and 4.5 for rigid pavements.",
+        "Percent of people stating unacceptable (studies in connection with the AASHO Road Test (14)): pt 3.0, 12; pt 2.5, 55; pt 2.0, 85.",
+        "The equation is applicable to flexible, rigid, and aggregate-surfaced roads."
+      ],
+      "equations": [
+        {
+          "id": "dPSI = po - pt",
+          "description": "Total change in serviceability index (design serviceability loss)",
+          "formula": "\u0394PSI = po \u2212 pt",
+          "variables": {
+            "\u0394PSI": "total change in serviceability index",
+            "po": "initial serviceability index (4.2 for flexible and 4.5 for rigid pavements observed at the AASHO Road Test)",
+            "pt": "terminal serviceability index"
+          },
+          "notes": "Applicable to flexible, rigid, and aggregate-surfaced roads.",
+          "source": "Typed in from the 300 dpi render of p. II-10.",
+          "implemented_in": "geotech_references.aashto_1993.equations.design_serviceability_loss"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Unnumbered table: Terminal Serviceability Level and Percent of People Stating Unacceptable (p. II-10)"
+      ],
+      "applicability": "Selecting terminal and initial serviceability, pt and po, and the design \u0394PSI (p. II-10)."
+    },
+    {
+      "section_id": "II-2.2.2",
+      "title": "Allowable Rutting",
+      "summary": "Rutting is a performance criterion only for aggregate-surfaced roads; no design model suitable for this Guide is available for asphalt concrete surfaces. The rut depth failure predicted by the aggregate-surfaced road model is serious rutting from deformation of the pavement structure and roadbed support, not surface rutting corrected by normal blading. The allowable rut depth depends on the average daily traffic; typically 1.0 to 2.0 inches.",
+      "body": "[p. II-12] In this design guide, rutting is considered only as a performance criterion for aggregate-surfaced roads. Although rutting is a problem with asphalt concrete surface pavements, no design model suitable for incorporation into this Guide is available at this time. It is important to note that the rut depth failure predicted by the aggregate-surfaced road model does not refer to simple surface rutting (which can be corrected by normal blading operations), but to serious rutting associated with deformation of the pavement structure and roadbed support. The allowable rut depth for an aggregate-surfaced road is dependent on the average daily traffic. Typically, allowable rut depths range from 1.0 to 2.0 inches for aggregate-surfaced roads.",
+      "key_points": [
+        "In this design guide, rutting is considered only as a performance criterion for aggregate-surfaced roads.",
+        "The rut depth failure predicted by the aggregate-surfaced road model does not refer to simple surface rutting (which can be corrected by normal blading operations), but to serious rutting associated with deformation of the pavement structure and roadbed support.",
+        "Typically, allowable rut depths range from 1.0 to 2.0 inches for aggregate-surfaced roads."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Final correction step in developing the rigid design k-value (see Section 3.2.1)."
+      "applicability": "Allowable rut depth for aggregate-surfaced roads (p. II-12)."
+    },
+    {
+      "section_id": "II-2.2.3",
+      "title": "Aggregate Loss",
+      "summary": "For aggregate-surfaced roads, aggregate lost to traffic and erosion thins the structure and reduces its load-carrying capacity. The procedure needs the total thickness of aggregate lost during the design period and the minimum thickness for a maintainable working surface. Three prediction equations are given: GL = 0.12 + 0.1223(LT) for sections with more than 50 percent truck traffic; a Brazil equation in terms of bladings, LADT, curve radius and grade; and a Kenya equation for annual loss on roads used mainly by cars. All have serious drawbacks, and local information should be used whenever possible.",
+      "body": "[p. II-12] For aggregate-surfaced roads, an additional concern is the aggregate loss due to traffic and erosion. When aggregate loss occurs, the pavement structure becomes thinner and the load-carrying capacity is reduced. This reduction of the pavement structure thickness increases the rate of surface deterioration.\n\nTo treat aggregate loss in the procedure, it is necessary to estimate (1) the total thickness of aggregate that will be lost during the design period, and (2) the minimum thickness of aggregate that is required to keep a maintainable working surface for the pavement structure.\n\nUnfortunately, there is very little information available today to predict the rate of aggregate loss. Below is an example of a prediction equation developed with limited data on sections experiencing greater than 50 percent truck traffic (15, 16):\n\nGL = 0.12 + 0.1223(LT)\n\nwhere\n\nGL = total aggregate loss in inches, and\n\nLT = number of loaded trucks in thousands.\n\nA second equation, which was developed from a recent study in Brazil on typical rural sections, can be employed by the user to determine the input for gravel loss (15, 16):\n\nGL = (B/25.4)/(.0045LADT + 3380.6/R + 0.467G)\n\nwhere\n\nGL = aggregate loss, in inches, during the period of time being considered,\n\nB = number of bladings during the period of time being considered,\n\nLADT = average daily traffic in design lane (for one-lane road use total traffic in both directions),\n\nR = average radius of curves, in feet, and\n\nG = absolute value of grade, in percent.\n\nAnother equation, developed through a British study done in Kenya, is more applicable to areas where there is very little truck activity and thus the facility is primarily used by cars. Since this equation (below) is for annual gravel loss, the total gravel loss (GL) would be estimated by multiplying by the number of years in the performance period.\n\nAGL = [T\u00b2/(T\u00b2 + 50)] \u00d7 f(4.2 + .092T + 0.889R\u00b2 + 1.88VC)\n\nwhere\n\nAGL = annual aggregate loss, in inches,\n\nT = annual traffic volume in both directions, in thousands of vehicles,\n\nR = annual rainfall, in inches,\n\nVC = average percentage gradient of the road, and\n\nf = .037 for lateritic gravels, = .043 for quartzitic gravels, = .028 for volcanic gravels, and = .059 for coral gravels.\n\nIt should be noted that there are serious drawbacks with all the equations shown here, therefore, whenever possible, local information about aggregate loss should be used as input to the procedure.",
+      "key_points": [
+        "To treat aggregate loss in the procedure, it is necessary to estimate (1) the total thickness of aggregate that will be lost during the design period, and (2) the minimum thickness of aggregate that is required to keep a maintainable working surface for the pavement structure.",
+        "Unfortunately, there is very little information available today to predict the rate of aggregate loss.",
+        "Since this equation (below) is for annual gravel loss, the total gravel loss (GL) would be estimated by multiplying by the number of years in the performance period.",
+        "It should be noted that there are serious drawbacks with all the equations shown here, therefore, whenever possible, local information about aggregate loss should be used as input to the procedure."
+      ],
+      "equations": [
+        {
+          "id": "GL (truck-traffic sections)",
+          "description": "Total aggregate loss on sections experiencing greater than 50 percent truck traffic (15, 16)",
+          "formula": "GL = 0.12 + 0.1223(LT)",
+          "variables": {
+            "GL": "total aggregate loss in inches",
+            "LT": "number of loaded trucks in thousands"
+          },
+          "notes": "Developed with limited data. The scan drops decimal points; 0.12 and 0.1223 are read from the spacing of the type.",
+          "source": "Typed in from the 200 dpi render of p. II-12.",
+          "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_truck_traffic"
+        },
+        {
+          "id": "GL (Brazil bladings model)",
+          "description": "Aggregate loss from a study in Brazil on typical rural sections (15, 16)",
+          "formula": "GL = (B/25.4)/(.0045LADT + 3380.6/R + 0.467G)",
+          "variables": {
+            "GL": "aggregate loss, in inches, during the period of time being considered",
+            "B": "number of bladings during the period of time being considered",
+            "LADT": "average daily traffic in design lane (for one-lane road use total traffic in both directions)",
+            "R": "average radius of curves, in feet",
+            "G": "absolute value of grade, in percent"
+          },
+          "notes": "The scan drops decimal points; 25.4, .0045, 3380.6 and 0.467 are read from the spacing of the type.",
+          "source": "Typed in from the 200 dpi render of p. II-12.",
+          "implemented_in": "geotech_references.aashto_1993.equations.aggregate_loss_brazil"
+        },
+        {
+          "id": "AGL (Kenya model)",
+          "description": "Annual aggregate loss from a British study done in Kenya, for roads with very little truck activity",
+          "formula": "AGL = [T\u00b2/(T\u00b2 + 50)] \u00d7 f(4.2 + .092T + 0.889R\u00b2 + 1.88VC)",
+          "variables": {
+            "AGL": "annual aggregate loss, in inches",
+            "T": "annual traffic volume in both directions, in thousands of vehicles",
+            "R": "annual rainfall, in inches",
+            "VC": "average percentage gradient of the road",
+            "f": ".037 for lateritic gravels, .043 for quartzitic gravels, .028 for volcanic gravels, and .059 for coral gravels"
+          },
+          "notes": "For annual loss: the total GL is AGL multiplied by the number of years in the performance period. The scan drops decimal points; 4.2, .092, 0.889, 1.88 and the f values are read from the spacing of the type.",
+          "source": "Typed in from the 200 dpi render of p. II-12.",
+          "implemented_in": "geotech_references.aashto_1993.equations.annual_aggregate_loss_kenya"
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Aggregate loss prediction for aggregate-surfaced roads (p. II-12)."
+    },
+    {
+      "section_id": "II-2.3.1",
+      "title": "Effective Roadbed Soil Resilient Modulus",
+      "summary": "Roadbed materials are characterized by resilient modulus (AASHTO T 274) tested in the primary moisture seasons or correlated with soil properties; for frozen conditions 20,000 to 50,000 psi, and for spring-thaw 20 to 30 percent of the normal modulus, may be used. No season shorter than one-half month is needed. For flexible pavements the seasonal moduli are combined into an effective roadbed soil resilient modulus with Figure 2.3: each season's relative damage uf = 1.18 \u00d7 10^8 \u00d7 MR^\u22122.32 is averaged and the MR at the average read off. It applies only to flexible pavements designed using the serviceability criteria. Sections with CV above 0.15 within a season should be subdivided.",
+      "body": "[p. II-12] 2.3 MATERIAL PROPERTIES FOR STRUCTURAL DESIGN\n\n2.3.1 Effective Roadbed Soil Resilient Modulus\n\nAs discussed previously in this Part and Part I, the basis for materials characterization in this Guide is [p. II-13] elastic or resilient modulus. For roadbed materials, laboratory resilient modulus tests (AASHTO T 274) should be performed on representative samples in stress and moisture conditions simulating those of the primary moisture seasons. Alternatively, the seasonal resilient modulus values may be determined by correlations with soil properties, i.e., clay content, moisture, PI, etc. The purpose of identifying seasonal moduli is to quantify the relative damage a pavement is subjected to during each season of the year and treat it as part of the overall design. An effective roadbed soil resilient modulus is then established which is equivalent to the combined effect of all the seasonal modulus values. (The development of the procedure for generating an effective roadbed soil resilient modulus is presented in Appendix HH of Volume 2 of this Guide.)\n\nThe seasonal moisture conditions for which the roadbed soil samples should be tested are those which result in significantly different resilient moduli. For example, in a climate which is not subjected to extended sub-freezing temperatures, it would be important to test for differences between the wet (rainy) and dry seasons. It would probably not be necessary, however, to test for the difference between spring-wet and fall-wet, unless there is significant difference in the average rainfall during spring and fall. If operations make it difficult to test the roadbed soil for spring-thaw or winter-frozen conditions, then, for these extreme cases, practical values of resilient moduli of 20,000 to 50,000 psi may be used for frozen conditions, and for spring-thaw conditions, the retained modulus may be 20 to 30 percent of the normal modulus during the summer and fall periods.\n\nTwo different procedures for determining the seasonal variation of the modulus are offered as guidelines. One method is to obtain a laboratory relationship between resilient modulus and moisture content. Then, with an estimate of the in situ moisture content of the soil beneath the pavement, the resilient modulus for each of the seasons may be estimated. An alternate procedure is to back calculate the resilient modulus for different seasons using the procedure described in Part III using deflections measured on in-service pavements. These may be used as adjustment factors to correct the resilient modulus for a reference condition.\n\nBesides defining the seasonal moduli, it is also necessary to separate the year into the various component time intervals during which the different moduli are effective. In making this breakdown, it is not necessary to specify a time interval of less than one-half month for any given season. If it is not possible to adequately estimate the season lengths, the user may refer to Section 4.1.2, which provides criteria suggested for the design of low-volume roads.\n\nAt this point, the length of the seasons and the seasonal roadbed resilient moduli are all that is required in terms of roadbed support for the design of rigid pavements and aggregate-surfaced roads. For the design of flexible pavements, however, the seasonal data must be translated into the effective roadbed soil resilient modulus described earlier. This is accomplished with the aid of the chart in Figure 2.3. The effective modulus is a weighted value that gives the equivalent annual damage obtained by treating each season independently in the performance equation and summing the damage. It is important to note, however, that the effective roadbed soil resilient modulus determined from this chart applies only to flexible pavements designed using the serviceability criteria. It is not necessarily applicable to other resilient modulus-based design procedures.\n\n[Figure 2.3. Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria (p. II-14): a blank form with columns Month (Jan to Dec), Roadbed Soil Modulus MR (psi) and Relative Damage uf, and lines for Summation: \u03a3uf = and Average: \u016bf = \u03a3uf/n =; beside it a scale of Roadbed Soil Resilient Modulus MR (10\u00b3 psi, 1 to 30) against Relative Damage uf (.005 to 13.0), with Equation: uf = 1.18 \u00d7 10^8 \u00d7 MR^\u22122.32; below, Effective Roadbed Soil Resilient Modulus MR (psi) = ___ (corresponds to \u016bf).]\n\nSince a mean value of resilient modulus is used, design sections with coefficient of variations greater than 0.15 (within a season) should be subdivided into smaller sections. For example, if the mean value of resilient modulus is 10,000 psi, then approximately 99 percent of the data should be in a range of 5,500 to 14,500 psi.\n\nThe first step of this process is to enter the seasonal moduli in their respective time periods. If the smallest season is one-half month, then all seasons must be defined in terms of half months and each of the boxes must be filled. If the smallest season is one month, then all seasons must be defined in terms of whole months and only one box per month may be filled in.\n\nThe next step is to estimate the relative damage (uf) values corresponding to each seasonal modulus. This is done using the vertical scale or the corresponding equation shown in Figure 2.3. For example, the relative damage corresponding to a roadbed soil resilient modulus of 4,000 psi is 0.51.\n\nNext, the uf values should all be added together and divided by the number of seasonal increments (12 or 24) to determine the average relative damage. The effective roadbed soil resilient modulus (MR), then, is the value corresponding to the average relative damage on the MR uf scale. Figure 2.4 provides an example of the application of the effective MR estimation process. Again, it is emphasized that this effective MR value should be used only for the design of flexible pavements based on serviceability criteria.\n\n[Figure 2.4. Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria (p. II-15): the Figure 2.3 form filled in as an example. Month | MR (psi) | uf: Jan | 20,000 | 0.01; Feb | 20,000 | 0.01; Mar | 2,500 | 1.51; Apr | 4,000 | 0.51; May | 4,000 | 0.51; June | 7,000 | 0.13; July | 7,000 | 0.13; Aug | 7,000 | 0.13; Sept | 7,000 | 0.13; Oct | 7,000 | 0.13; Nov | 4,000 | 0.51; Dec | 20,000 | 0.01. Summation \u03a3uf = 3.72; Average \u016bf = 3.72/12 = 0.31; Effective Roadbed Soil Resilient Modulus MR = 5,000 psi (corresponds to \u016bf).]",
+      "key_points": [
+        "Practical values of resilient moduli of 20,000 to 50,000 psi may be used for frozen conditions, and for spring-thaw conditions, the retained modulus may be 20 to 30 percent of the normal modulus during the summer and fall periods.",
+        "In making this breakdown, it is not necessary to specify a time interval of less than one-half month for any given season.",
+        "The length of the seasons and the seasonal roadbed resilient moduli are all that is required in terms of roadbed support for the design of rigid pavements and aggregate-surfaced roads.",
+        "The effective roadbed soil resilient modulus determined from this chart applies only to flexible pavements designed using the serviceability criteria. It is not necessarily applicable to other resilient modulus-based design procedures.",
+        "Since a mean value of resilient modulus is used, design sections with coefficient of variations greater than 0.15 (within a season) should be subdivided into smaller sections.",
+        "For example, the relative damage corresponding to a roadbed soil resilient modulus of 4,000 psi is 0.51."
+      ],
+      "equations": [
+        {
+          "id": "uf = 1.18e8*MR^-2.32",
+          "description": "Relative damage uf for a seasonal roadbed soil resilient modulus",
+          "formula": "uf = 1.18 \u00d7 10^8 \u00d7 MR^\u22122.32",
+          "variables": {
+            "uf": "relative damage",
+            "MR": "roadbed soil resilient modulus (psi)"
+          },
+          "notes": "Printed on Figure 2.3 beside the MR-uf scale. For flexible pavements designed using the serviceability criteria only.",
+          "source": "Typed in from the 200 dpi render of p. II-14 (Figure 2.3).",
+          "implemented_in": "geotech_references.aashto_1993.equations.relative_damage_uf"
+        },
+        {
+          "id": "Effective MR procedure",
+          "description": "Effective roadbed soil resilient modulus from the seasonal moduli (Figures 2.3 and 2.4)",
+          "formula": "\u016bf = \u03a3uf / n; effective MR = the MR corresponding to \u016bf on the MR-uf scale of Figure 2.3",
+          "variables": {
+            "uf": "relative damage of each seasonal increment",
+            "n": "number of seasonal increments (12 or 24)",
+            "\u016bf": "average relative damage"
+          },
+          "notes": "The Guide reads MR off the scale. equations.effective_roadbed_resilient_modulus inverts the printed uf equation, MR = (1.18 \u00d7 10^8 / \u016bf)^(1/2.32), which the Guide does not print; for the Figure 2.4 example it gives 4,923 psi against the 5,000 psi printed, read off the scale from rounded uf values.",
+          "source": "Typed in from the 200 dpi renders of pp. II-13 to II-15.",
+          "implemented_in": "geotech_references.aashto_1993.equations.effective_roadbed_resilient_modulus"
+        }
+      ],
+      "figures": [
+        "Figure 2.3: Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria (p. II-14)",
+        "Figure 2.4: Chart for Estimating Effective Roadbed Soil Resilient Modulus for Flexible Pavements Designed Using the Serviceability Criteria (p. II-15, worked example)"
+      ],
+      "tables": [],
+      "applicability": "Seasonal roadbed resilient moduli and the effective roadbed soil resilient modulus for flexible design (pp. II-12 to II-15)."
+    },
+    {
+      "section_id": "II-2.3.2",
+      "title": "Effective Modulus of Subgrade Reaction",
+      "summary": "An effective modulus of subgrade reaction (k-value) is developed for rigid pavement design from the season lengths and seasonal roadbed moduli of Section 2.3.1, since k is directly proportional to roadbed soil resilient modulus. Because subbase characteristics affect the effective design k-value, it is determined as a step in an iterative design procedure (Part II, Chapter 3); the procedure's development is in Appendix HH of Volume 2.",
+      "body": "[p. II-16] Like the effective roadbed soil resilient modulus for flexible pavement design, an effective modulus of subgrade reaction (k-value) will be developed for rigid pavement design. Since the k-value is directly proportional to roadbed soil resilient modulus, the season lengths and seasonal moduli developed in the previous section will be used as input to the estimation of an effective design k-value. But, because of the effects of subbase characteristics on the effective design k-value, its determination is included as a step in an iterative design procedure. (See Part II, Chapter 3.) The development of the actual procedure for generating this effective modulus of subgrade reaction is presented in Appendix HH of Volume 2 of this Guide.",
+      "key_points": [
+        "Since the k-value is directly proportional to roadbed soil resilient modulus, the season lengths and seasonal moduli developed in the previous section will be used as input to the estimation of an effective design k-value.",
+        "Because of the effects of subbase characteristics on the effective design k-value, its determination is included as a step in an iterative design procedure."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Effective k-value for rigid design; the procedure itself is in Part II, Chapter 3 (p. II-16)."
+    },
+    {
+      "section_id": "II-2.3.3",
+      "title": "Pavement Layer Materials Characterization",
+      "summary": "Elastic (resilient) modulus is adopted as the basis for design, though a user who understands the traditional layer coefficients need not characterize the moduli, and layer coefficients from test roads or satellite sections are preferred. MR denotes only the roadbed soil; ESB, EBS, EAC and EC denote subbase, base, asphalt concrete and PCC moduli. Low-stiffness materials are tested by AASHTO T 274, bound materials may use the repeated-load indirect tensile test (ASTM D 4123), and PCC and high-cement bases ASTM C 469. For normal weight PCC the ACI correlation Ec = 57,000(f'c)^0.5 may be used.",
+      "body": "[p. II-16] Although there are many types of material properties and laboratory test procedures for assessing the strength of pavement structural materials, one has been adopted as a basis for design in this Guide. If, however, the user should have a better understanding of the \"layer coefficients\" (see Section 2.3.5) that have traditionally been used in the original AASHTO flexible pavement design procedure, it is not essential that the elastic moduli of these materials be characterized. In general, layer coefficients derived from test roads or satellite sections are preferred.\n\nElastic modulus is a fundamental engineering property of any paving or roadbed material. For those material types which are subject to significant permanent deformation under load, this property may not reflect the material's behavior under load. Thus, resilient modulus refers to the material's stress-strain behavior under normal pavement loading conditions. The strength of the material is important in addition to stiffness, and future mechanistic-based procedures may reflect strength as well as stiffness in the materials characterization procedures. In addition, stabilized base materials may be subject to cracking under certain conditions and the stiffness may not be an indicator for this distress type. It is important to note, that, although resilient modulus can apply to any type of material, the notation MR as used in this Guide applies only to the roadbed soil. Different notations are used to express the moduli for subbase (ESB), base (EBS), asphalt concrete (EAC), and portland cement concrete (EC).\n\nThe procedure for estimating the resilient modulus of a particular pavement material depends on its type. Relatively low stiffness materials, such as natural soils, unbound granular layers, and even stabilized layers and asphalt concrete, should be tested using the resilient modulus test methods (AASHTO T 274). Although the testing apparatus for each of these types of materials is basically the same, there are some differences, such as the need for triaxial confinement for unbound materials.\n\nAlternatively, the bound or higher stiffness materials, such as stabilized bases and asphalt concrete, may be tested using the repeated-load indirect tensile test (ASTM D 4123). This test still relies on the use of electronic gauges to measure small movements of the sample under load, but is less complex and easier to run than the triaxial resilient modulus test.\n\nBecause of the small displacements and brittle nature of the stiffest pavement materials, i.e., portland cement concrete and those base materials stabilized with a high cement content, it is difficult to measure the modulus using the indirect tensile apparatus. Thus, it is recommended that the elastic modulus of such high-stiffness materials be determined according to the procedure described in ASTM C 469.\n\nThe elastic modulus for any type of material may also be estimated using correlations developed by the state's department of transportation or by some other reputable agency. The following is a correlation recommended by the American Concrete Institute (4) for normal weight portland cement concrete:\n\nEc = 57,000(f'c)^0.5\n\nwhere\n\nEc = PCC elastic modulus (in psi), and\n\nf'c = PCC compressive strength (in psi) as determined using AASHTO T 22, T 140, or ASTM C 39.",
+      "key_points": [
+        "In general, layer coefficients derived from test roads or satellite sections are preferred.",
+        "It is important to note, that, although resilient modulus can apply to any type of material, the notation MR as used in this Guide applies only to the roadbed soil.",
+        "Relatively low stiffness materials, such as natural soils, unbound granular layers, and even stabilized layers and asphalt concrete, should be tested using the resilient modulus test methods (AASHTO T 274).",
+        "Thus, it is recommended that the elastic modulus of such high-stiffness materials be determined according to the procedure described in ASTM C 469."
+      ],
+      "equations": [
+        {
+          "id": "Ec = 57,000*(f'c)^0.5",
+          "description": "PCC elastic modulus from compressive strength: correlation recommended by the American Concrete Institute (4) for normal weight portland cement concrete",
+          "formula": "Ec = 57,000(f'c)^0.5",
+          "variables": {
+            "Ec": "PCC elastic modulus (in psi)",
+            "f'c": "PCC compressive strength (in psi) as determined using AASHTO T 22, T 140, or ASTM C 39"
+          },
+          "notes": "The scan drops the decimal point of the exponent 0.5.",
+          "source": "Typed in from the 200 dpi render of p. II-16."
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Test methods for pavement layer moduli and the ACI correlation for PCC elastic modulus (p. II-16)."
+    },
+    {
+      "section_id": "II-2.3.4",
+      "title": "PCC Modulus of Rupture",
+      "summary": "The PCC modulus of rupture (flexural strength), needed only for rigid design, is the mean value at 28 days using third-point loading (AASHTO T 97, ASTM C 78); center-point results need a correlation. Because of the treatment of reliability, the normal construction specification should not be used as input; if it is, the mean is estimated as S'c(mean) = Sc + z(SDs), with z from 0.841 (PS = 20 percent) to 2.327 (PS = 1 percent).",
+      "body": "[p. II-16] The modulus of rupture (flexural strength) of portland cement concrete is required only for the design of a rigid pavement. The modulus of rupture required by the design procedure is the mean value determined after 28 days using third-point loading (AASHTO T 97, ASTM C 78). If standard agency practice dictates the use of center-point loading, then a correlation should be made between the two tests.\n\n[p. II-17] Because of the treatment of reliability in this Guide, it is strongly recommended that the normal construction specification for modulus of rupture (flexural strength) not be used as input, since it represents a value below which only a small percent of the distribution may lie. If it is desirable to use the construction specification, then some adjustment should be applied, based on the standard deviation of modulus of rupture and the percent (PS) of the strength distribution that normally falls below the specification:\n\nS'c(mean) = Sc + z(SDs)\n\nwhere\n\nS'c = estimated mean value for PCC modulus of rupture (psi),\n\nSc = construction specification on concrete modulus of rupture (psi),\n\nSDs = estimated standard deviation of concrete modulus of rupture (psi), and\n\nz = standard normal variate: = 0.841, for PS = 20 percent,* = 1.037, for PS = 15 percent, = 1.282, for PS = 10 percent, = 1.645, for PS = 5 percent, and = 2.327, for PS = 1 percent.\n\n*NOTE: Permissible number of specimens, expressed as a percentage, that may have strengths less than the specification value.",
+      "key_points": [
+        "The modulus of rupture required by the design procedure is the mean value determined after 28 days using third-point loading (AASHTO T 97, ASTM C 78).",
+        "If standard agency practice dictates the use of center-point loading, then a correlation should be made between the two tests.",
+        "It is strongly recommended that the normal construction specification for modulus of rupture (flexural strength) not be used as input, since it represents a value below which only a small percent of the distribution may lie.",
+        "z = 0.841 for PS = 20 percent, 1.037 for 15 percent, 1.282 for 10 percent, 1.645 for 5 percent and 2.327 for 1 percent."
+      ],
+      "equations": [
+        {
+          "id": "Sc'(mean) = Sc + z*SDs",
+          "description": "Estimated mean PCC modulus of rupture from a construction specification value",
+          "formula": "S'c(mean) = Sc + z(SDs)",
+          "variables": {
+            "S'c": "estimated mean value for PCC modulus of rupture (psi)",
+            "Sc": "construction specification on concrete modulus of rupture (psi)",
+            "SDs": "estimated standard deviation of concrete modulus of rupture (psi)",
+            "z": "standard normal variate: 0.841 for PS = 20 percent, 1.037 for 15, 1.282 for 10, 1.645 for 5 and 2.327 for 1 percent"
+          },
+          "notes": "PS = permissible number of specimens, expressed as a percentage, that may have strengths less than the specification value. The scan drops decimal points in the z values.",
+          "source": "Typed in from the 200 dpi render of p. II-17."
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "PCC modulus of rupture input for rigid design (pp. II-16 to II-17)."
+    },
+    {
+      "section_id": "II-2.3.5",
+      "title": "Layer Coefficients",
+      "summary": "Layer coefficients (ai) convert layer thicknesses into structural number, SN = \u03a3 aiDi; agency experience must be included, as ai may vary with thickness, support and position. Moduli are measured by AASHTO T 274 (unbound) and ASTM D 4123 (asphalt, stabilized). Five categories: asphalt concrete (Figure 2.5, caution above 450,000 psi), granular base (Figure 2.6 or a2 = 0.249(log10 EBS) \u2212 0.977; Road Test a2 = 0.14 at 30,000 psi), granular subbase (Figure 2.7 or a3 = 0.227(log10 ESB) \u2212 0.839; a3 = 0.11 at 15,000 psi), cement-treated (Figure 2.8) and bituminous-treated bases (Figure 2.9). Unbound moduli follow k1\u03b8^k2 (Table 2.3).",
+      "body": "[p. II-17] This section describes a method for estimating the AASHTO structural layer coefficients (ai values) required for standard flexible pavement structural design. A value for this coefficient is assigned to each layer material in the pavement structure in order to convert actual layer thicknesses into structural number (SN). This layer coefficient expresses the empirical relationship between SN and thickness and is a measure of the relative ability of the material to function as a structural component of the pavement. The following general equation for structural number reflects the relative impact of the layer coefficients (ai) and thickness (Di):\n\nSN = \u03a3 (i = 1) aiDi\n\n[Note: the print sets only the lower limit, i = 1, under the summation sign; no upper limit is printed (p. II-17).]\n\nAlthough the elastic (resilient) modulus has been adopted as the standard material quality measure, it is still necessary to identify (corresponding) layer coefficients because of their treatment in the structural number design approach. Though there are correlations available to determine the modulus from tests such as the R-value, the procedure recommended is direct measurement using AASHTO Method T 274 (subbase and unbound granular materials) and ASTM D 4123 for asphalt concrete and other stabilized materials. Research and field studies indicate many factors influence the layer coefficients, thus the agency's experience must be included in implementing the results from the procedures presented. For example, the layer coefficient may vary with thickness, underlying support, position in the pavement structure, etc.\n\nIt should be noted that laboratory resilient modulus values can be obtained that are significantly different from what may exist for an in situ condition. For example, the presence of a very stiff unbound layer over a low stiffness layer may result in decompaction and a corresponding reduction of stiffness. As a guideline for successive layers of unbound materials, the ratio of resilient modulus of the upper layer to that of the lower layer should not exceed values that result in tensile stresses in unbound granular layers.\n\nThe discussion of how these coefficients are estimated is separated into five categories, depending on the type and function of the layer material. These are asphalt concrete, granular base, granular subbase, cement-treated, and bituminous base. Other materials such as lime, lime flyash, and cement flyash are acceptable materials, and each agency should develop charts.\n\nAsphalt Concrete Surface Course. Figure 2.5 provides a chart that may be used to estimate the structural layer coefficient of a dense-graded asphalt concrete surface course based on its elastic (resilient) modulus (EAC) at 68\u00b0F. Caution is recommended for modulus values above 450,000 psi. Although higher modulus asphalt concretes are stiffer and more resistant to bending, they are also more susceptible to thermal and fatigue cracking.\n\n[Figure 2.5. Chart for Estimating Structural Layer Coefficient of Dense-Graded Asphalt Concrete Based on the Elastic (Resilient) Modulus (3) (p. II-18): structural coefficient a1 (0.0 to 0.5) against elastic modulus EAC (psi) of asphalt concrete at 68\u00b0F (0 to 500,000); the curve starts at a1 = 0.20 just above 100,000 psi, rises with EAC and is drawn dashed above about 450,000 psi.]\n\nGranular Base Layers. Figure 2.6 provides a chart that may be used to estimate a structural layer coefficient, a2, from one of four different laboratory test results on a granular base material, including base resilient modulus, EBS. The AASHO Road Test basis for these correlations is:\n\n[p. II-20] a2 = 0.14\n\nEBS = 30,000 psi\n\nCBR = 100 (approx.)\n\nR-value = 85 (approx.)\n\n[Figure 2.6. Variation in Granular Base Layer Coefficient (a2) with Various Base Strength Parameters (3) (p. II-19): parallel vertical scales read straight across: a2 (0 to 0.20), CBR (20 to 100), R-value (50 to 85), Texas Triaxial (2.0 to 4.0) and modulus (1000 psi, 15 to 40). The notes give each scale's source: (1) Illinois; (2) California, New Mexico and Wyoming; (3) Texas; (4) NCHRP project (3).]\n\nThe following relationship may be used in lieu of Figure 2.6 to estimate the layer coefficient, a2, for a granular base material from its elastic (resilient) modulus, EBS (5):\n\na2 = 0.249(log10 EBS) \u2212 0.977\n\nFor aggregate base layers, EBS is a function of the stress state (\u03b8) within the layer and is normally given by the relation:\n\nEBS = k1\u03b8^k2\n\n[Note: the print sets k2 on the line here, in \"MR = k1\u03b8k2\" below and in the title of Table 2.3; the Road Test values that follow (8,000\u03b8^0.6 = 21,012 at \u03b8 = 5) show k2 is the exponent of \u03b8 (p. II-20).]\n\nwhere\n\n\u03b8 = stress state or sum of principal stresses \u03c31 + \u03c32 + \u03c33 (psi), and\n\nk1, k2 = regression constants which are a function of material type.\n\nTypical values for base materials are:\n\nk1 = 3,000 to 8,000\n\nk2 = 0.5 to 0.7\n\nAt the AASHO Road Test, modulus values (EBS in psi) for the base were as follows:\n\n[Unnumbered table (p. II-20). Moisture State | Equation | Stress State (psi): \u03b8 = 5 | \u03b8 = 10 | \u03b8 = 20 | \u03b8 = 30: Dry | 8,000\u03b8^0.6 | 21,012 | 31,848 | 48,273 | 61,569; Damp | 4,000\u03b8^0.6 | 10,506 | 15,924 | 24,136 | 30,784; Wet | 3,200\u03b8^0.6 | 8,404 | 12,739 | 19,309 | 24,627.]\n\nNote, EBS is a function of not only moisture but also the stress state (\u03b8). Values for the stress state within the base course vary with the subgrade modulus and thickness of the surface layer. Typical values for use in design are:\n\n[Unnumbered table (p. II-20); its cells are stress states \u03b8 (psi) in the base. Asphalt Concrete Thickness (inches) | Roadbed Soil Resilient Modulus (psi): 3,000 | 7,500 | 15,000: Less than 2 | 20 | 25 | 30; 2-4 | 10 | 15 | 20; 4-6 | 5 | 10 | 15; Greater than 6 | 5 | 5 | 5.]\n\nFor intermediate values of roadbed soil resilient modulus, interpolation can be used.\n\nEach agency is encouraged to develop relationships for their specific base materials (e.g., MR = k1\u03b8^k2) using AASHTO Method T 274; however, in the absence of this data, values given in Table 2.3 can be used.\n\n[Table 2.3. Typical Values for k1 and k2 for Unbound Base and Subbase Materials (MR = k1\u03b8^k2) (p. II-20). Moisture Condition | k1* | k2*: (a) Base: Dry | 6,000-10,000 | 0.5-0.7; Damp | 4,000-6,000 | 0.5-0.7; Wet | 2,000-4,000 | 0.5-0.7; (b) Subbase: Dry | 6,000-8,000 | 0.4-0.6; Damp | 4,000-6,000 | 0.4-0.6; Wet | 1,500-4,000 | 0.4-0.6. *Range in k1 and k2 is a function of the material quality.]\n\n[Note: the text gives typical k1 of 3,000 to 8,000 for base materials (above) and 1,500 to 6,000 for subbase (p. II-22); Table 2.3's k1 ranges run wider (base 2,000 to 10,000, subbase 1,500 to 8,000). Both stored as printed.]\n\nGranular Subbase Layers. Figure 2.7 provides a chart that may be used to estimate a structural layer coefficient, a3, from one of four different laboratory results on a granular subbase material, including subbase resilient modulus, ESB. The AASHO Road Test basis for these correlations is:\n\na3 = 0.11\n\nESB = 15,000 psi\n\nCBR = 30 (approx.)\n\nR-value = 60 (approx.)\n\n[Figure 2.7. Variation in Granular Subbase Layer Coefficient (a3) with Various Subbase Strength Parameters (3) (p. II-21): parallel vertical scales read straight across: a3 (0 to 0.20), CBR (5 to 100), R-value (25 to 90), Texas Triaxial (2 to 5) and modulus (1000 psi, 10 to 20). The notes give each scale's source: (1) Illinois; (2) The Asphalt Institute, California, New Mexico and Wyoming; (3) Texas; (4) NCHRP project (3).]\n\n[p. II-22] The ESB versus a2 relationship (5) similar to that for granular base materials is as follows:\n\na3 = 0.227(log10 ESB) \u2212 0.839\n\n[Note: the sentence above says \"ESB versus a2\"; the equation gives a3, the subbase layer coefficient (p. II-22). Stored as printed.]\n\nFor aggregate subbase layers, ESB is affected by stress state (\u03b8) in a fashion similar to that for the base layer. Typical values for k1 range from 1,500 to 6,000, while k2 varies from 0.4 to 0.6. Values for the AASHO Road Test subbase material were (13):\n\n[Unnumbered table (p. II-22). Moisture State | Developed Relationship | Stress State (psi): \u03b8 = 5 | \u03b8 = 7.5 | \u03b8 = 10: Damp | MR = 5,400\u03b8^0.6 | 14,183 | 18,090 | 21,497; Wet | MR = 4,600\u03b8^0.6 | 12,082 | 15,410 | 18,312.]\n\nAs with the base layers, each agency is encouraged to develop relationships for their specific materials; however, in lieu of this data, the values in Table 2.3 can be used.\n\nStress states (\u03b8) which can be used as a guide to select the modulus value for subbase thicknesses between 6 and 12 inches are as follows:\n\n[Unnumbered table (p. II-22). Asphalt Concrete Thickness (inches) | Stress State (psi): Less than 2 | 10.0; 2-4 | 7.5; Greater than 4 | 5.0.]\n\nCement-Treated Bases. Figure 2.8 provides a chart that may be used to estimate the structural layer coefficient, a2, for a cement-treated base material from either its elastic modulus, EBS, or, alternatively, its 7-day unconfined compressive strength (ASTM D 1633).\n\n[Figure 2.8. Variation in a for Cement-Treated Bases with Base Strength Parameter (3) (p. II-23): parallel vertical scales read straight across: Structural Coefficient a2 (0 to 0.28), Unconfined Compressive Strength (psi), 7-day break (200 to 1000) and Modulus (10^5 psi, 5.0 to 10.0), with dashed lines across them at a2 = 0.10, 0.16, 0.22 and 0.28. Notes: (1) Scale derived by averaging correlations from Illinois, Louisiana and Texas; (2) Scale derived on NCHRP project (3). The caption prints \"a\" with no subscript; the scale is a2.]\n\nBituminous-Treated Bases. Figure 2.9 presents a chart that may be used to estimate the structural layer coefficient, a2, for a bituminous-treated base material from either its elastic modulus, EBS, or, alternatively, its Marshall stability (AASHTO T 245, ASTM D 1559). This is not shown in Figure 2.9.\n\n[Note: the last sentence is printed so; Figure 2.9 carries both a Marshall stability scale and a modulus scale, and the page does not say what is not shown (p. II-22).]\n\n[Figure 2.9. Variation in a2 for Bituminous-Treated Bases with Base Strength Parameter (3) (p. II-24): parallel vertical scales read straight across: Structural Coefficient (a2) (0.10 to 0.30), Marshall Stability (lb, 0 to 1800) and Modulus (10^5 psi, 1.0 to 4.0), with dashed lines across them at a2 = 0.10, 0.20 and 0.30. Notes: (1) Scale derived by correlation obtained from Illinois; (2) Scale derived on NCHRP project (3).]",
+      "key_points": [
+        "Research and field studies indicate many factors influence the layer coefficients, thus the agency's experience must be included in implementing the results from the procedures presented.",
+        "As a guideline for successive layers of unbound materials, the ratio of resilient modulus of the upper layer to that of the lower layer should not exceed values that result in tensile stresses in unbound granular layers.",
+        "Caution is recommended for modulus values above 450,000 psi. Although higher modulus asphalt concretes are stiffer and more resistant to bending, they are also more susceptible to thermal and fatigue cracking.",
+        "The AASHO Road Test basis for these correlations is: a2 = 0.14, EBS = 30,000 psi, CBR = 100 (approx.), R-value = 85 (approx.).",
+        "The AASHO Road Test basis for these correlations is: a3 = 0.11, ESB = 15,000 psi, CBR = 30 (approx.), R-value = 60 (approx.).",
+        "Each agency is encouraged to develop relationships for their specific base materials (e.g., MR = k1\u03b8^k2) using AASHTO Method T 274; however, in the absence of this data, values given in Table 2.3 can be used.",
+        "Other materials such as lime, lime flyash, and cement flyash are acceptable materials, and each agency should develop charts."
+      ],
+      "equations": [
+        {
+          "id": "SN = sum(ai*Di)",
+          "description": "General equation for structural number",
+          "formula": "SN = \u03a3 (i = 1) aiDi",
+          "variables": {
+            "SN": "structural number",
+            "ai": "layer coefficient of layer i",
+            "Di": "thickness of layer i"
+          },
+          "notes": "Only the lower limit, i = 1, is printed under the summation sign.",
+          "source": "Typed in from the 200 dpi render of p. II-17."
+        },
+        {
+          "id": "a2 = 0.249*log10(EBS) - 0.977",
+          "description": "Granular base layer coefficient from its elastic (resilient) modulus EBS (5), in lieu of Figure 2.6",
+          "formula": "a2 = 0.249(log10 EBS) \u2212 0.977",
+          "variables": {
+            "a2": "structural layer coefficient of the granular base",
+            "EBS": "base elastic (resilient) modulus (psi)"
+          },
+          "notes": "AASHO Road Test basis: a2 = 0.14 at EBS = 30,000 psi. The scan drops the decimal points.",
+          "source": "Typed in from the 300 dpi render of p. II-20.",
+          "implemented_in": "geotech_references.aashto_1993.equations.layer_coefficient_a2_granular_base"
+        },
+        {
+          "id": "MR = k1*theta^k2",
+          "description": "Stress-dependent modulus of unbound base (EBS) and subbase (ESB) materials",
+          "formula": "EBS = k1\u03b8^k2 (Table 2.3: MR = k1\u03b8^k2)",
+          "variables": {
+            "\u03b8": "stress state or sum of principal stresses \u03c31 + \u03c32 + \u03c33 (psi)",
+            "k1, k2": "regression constants which are a function of material type"
+          },
+          "notes": "The print sets k2 on the line ('k1\u03b8k2'); the Road Test values (8,000\u03b8^0.6 = 21,012 at \u03b8 = 5) show it is the exponent of \u03b8. Typical values: base k1 3,000 to 8,000 and k2 0.5 to 0.7 (p. II-20); subbase k1 1,500 to 6,000 and k2 0.4 to 0.6 (p. II-22). Table 2.3's ranges are held by tables.unbound_k1_k2, which returns k1 and k2 and does not compute the modulus.",
+          "source": "Typed in from the 300 dpi render of p. II-20."
+        },
+        {
+          "id": "a3 = 0.227*log10(ESB) - 0.839",
+          "description": "Granular subbase layer coefficient from its elastic (resilient) modulus ESB (5), in lieu of Figure 2.7",
+          "formula": "a3 = 0.227(log10 ESB) \u2212 0.839",
+          "variables": {
+            "a3": "structural layer coefficient of the granular subbase",
+            "ESB": "subbase elastic (resilient) modulus (psi)"
+          },
+          "notes": "The sentence before it says \"The ESB versus a2 relationship\"; the equation gives a3. AASHO Road Test basis: a3 = 0.11 at ESB = 15,000 psi. The scan drops the decimal points.",
+          "source": "Typed in from the 200 dpi render of p. II-22.",
+          "implemented_in": "geotech_references.aashto_1993.equations.layer_coefficient_a3_granular_subbase"
+        }
+      ],
+      "figures": [
+        "Figure 2.5: Chart for Estimating Structural Layer Coefficient of Dense-Graded Asphalt Concrete Based on the Elastic (Resilient) Modulus (p. II-18)",
+        "Figure 2.6: Variation in Granular Base Layer Coefficient (a2) with Various Base Strength Parameters (p. II-19)",
+        "Figure 2.7: Variation in Granular Subbase Layer Coefficient (a3) with Various Subbase Strength Parameters (p. II-21)",
+        "Figure 2.8: Variation in a for Cement-Treated Bases with Base Strength Parameter (p. II-23; the scale is a2)",
+        "Figure 2.9: Variation in a2 for Bituminous-Treated Bases with Base Strength Parameter (p. II-24)"
+      ],
+      "tables": [
+        "Table 2.3: Typical Values for k1 and k2 for Unbound Base and Subbase Materials (MR = k1\u03b8k2) (p. II-20)",
+        "Unnumbered table: AASHO Road Test base modulus EBS by moisture state and stress state (p. II-20)",
+        "Unnumbered table: base stress state \u03b8 by asphalt concrete thickness and roadbed soil resilient modulus (p. II-20)",
+        "Unnumbered table: AASHO Road Test subbase modulus by moisture state and stress state (p. II-22)",
+        "Unnumbered table: subbase stress state \u03b8 by asphalt concrete thickness, subbase 6 to 12 inches (p. II-22)"
+      ],
+      "applicability": "Structural layer coefficients a1, a2, a3 for flexible design and the unbound-material modulus relation (pp. II-17 to II-24)."
+    },
+    {
+      "section_id": "II-2.4.1",
+      "title": "Drainage",
+      "summary": "No detailed drainage design is given; the engineer identifies the quality of drainage, defined by the time water is removed: excellent 2 hours, good 1 day, fair 1 week, poor 1 month, very poor (water will not drain). Road Test conditions were fair. For flexible pavements drainage enters through mi values on the base and subbase layer coefficients, SN = a1D1 + a2D2m2 + a3D3m3 (Table 2.4; mi = 1.0 at the Road Test), and applies only to untreated base and subbase layers. For rigid pavements it enters through the drainage coefficient Cd in the performance equation (Table 2.5; Cd = 1.0 at the Road Test).",
+      "body": "[p. II-22] 2.4 PAVEMENT STRUCTURAL CHARACTERISTICS\n\n2.4.1 Drainage\n\nThis section describes the selection of inputs to treat the effects of certain levels of drainage on predicted pavement performance. Guidance is not provided here for any detailed drainage designs or construction methods. Furthermore, criteria on the ability of various drainage methods to remove moisture from the pavement are not provided. It is up to the design engineer to identify what level (or quality) of drainage is achieved under a specific set of drainage conditions. Below are the general definitions corresponding to different drainage levels from the pavement structure:\n\n[Unnumbered table (p. II-22). Quality of Drainage | Water Removed Within: Excellent | 2 hours; Good | 1 day; Fair | 1 week; Poor | 1 month; Very poor | (water will not drain).]\n\nFor comparison purposes, the drainage conditions at the AASHO Road Test are considered to be fair, i.e., free water was removed within 1 week.\n\nFlexible Pavements. The treatment for the expected level of drainage for a flexible pavement is through the use of modified layer coefficients (e.g., a higher effective layer coefficient would be used for improved drainage conditions). The factor for modifying the layer coefficient is referred to as an mi value and has been integrated into the structural number (SN) equation along with layer coefficient (ai) and thickness (Di), thus:\n\nSN = a1D1 + a2D2m2 + a3D3m3\n\n(The possible effect of drainage on the asphalt concrete surface course is not considered.) The conversion of the structural number into actual pavement layer thicknesses is discussed in more detail in Part II, Chapter 3.\n\nTable 2.4 presents the recommended mi values as a function of the quality of drainage and the percent of time during the year the pavement structure would normally be exposed to moisture levels approaching [p. II-25] saturation. Obviously, the latter is dependent on the average yearly rainfall and the prevailing drainage conditions. As a basis for comparison, the mi value for conditions at the AASHO Road Test is 1.0, regardless of the type of material. A discussion of how these recommended mi values were derived is presented in Appendix DD of Volume 2.\n\n[Table 2.4. Recommended mi Values for Modifying Structural Layer Coefficients of Untreated Base and Subbase Materials in Flexible Pavements (p. II-25). Quality of Drainage | Percent of Time Pavement Structure is Exposed to Moisture Levels Approaching Saturation: Less Than 1% | 1-5% | 5-25% | Greater Than 25%: Excellent | 1.40-1.35 | 1.35-1.30 | 1.30-1.20 | 1.20; Good | 1.35-1.25 | 1.25-1.15 | 1.15-1.00 | 1.00; Fair | 1.25-1.15 | 1.15-1.05 | 1.00-0.80 | 0.80; Poor | 1.15-1.05 | 1.05-0.80 | 0.80-0.60 | 0.60; Very poor | 1.05-0.95 | 0.95-0.75 | 0.75-0.40 | 0.40.]\n\nFinally, it is also important to note that these values apply only to the effects of drainage on untreated base and subbase layers. Although improved drainage is certainly beneficial to stabilized or treated materials, the effects on performance of flexible pavements are not as profound as those quantified in Table 2.4.\n\nRigid Pavements. The treatment for the expected level of drainage for a rigid pavement is through the use of a drainage coefficient, Cd, in the performance equation. (It has an effect similar to that of the load transfer coefficient, J.) As a basis for comparison, the value for Cd for conditions at the AASHO Road Test is 1.0.\n\nTable 2.5 provides the recommended Cd values, depending on the quality of drainage and the percent of time during the year the pavement structure would normally be exposed to moisture levels approaching saturation. As before, the latter is dependent on the average yearly rainfall and the prevailing drainage conditions. A discussion of how these recommended Cd values were derived is also presented in Appendix DD of Volume 2.\n\n[Table 2.5. Recommended Values of Drainage Coefficient, Cd, for Rigid Pavement Design (p. II-26). Quality of Drainage | Percent of Time Pavement Structure is Exposed to Moisture Levels Approaching Saturation: Less Than 1% | 1-5% | 5-25% | Greater Than 25%: Excellent | 1.25-1.20 | 1.20-1.15 | 1.15-1.10 | 1.10; Good | 1.20-1.15 | 1.15-1.10 | 1.10-1.00 | 1.00; Fair | 1.15-1.10 | 1.10-1.00 | 1.00-0.90 | 0.90; Poor | 1.10-1.00 | 1.00-0.90 | 0.90-0.80 | 0.80; Very poor | 1.00-0.90 | 0.90-0.80 | 0.80-0.70 | 0.70.]",
+      "key_points": [
+        "It is up to the design engineer to identify what level (or quality) of drainage is achieved under a specific set of drainage conditions.",
+        "For comparison purposes, the drainage conditions at the AASHO Road Test are considered to be fair, i.e., free water was removed within 1 week.",
+        "The possible effect of drainage on the asphalt concrete surface course is not considered.",
+        "Finally, it is also important to note that these values apply only to the effects of drainage on untreated base and subbase layers.",
+        "As a basis for comparison, the mi value for conditions at the AASHO Road Test is 1.0, regardless of the type of material.",
+        "As a basis for comparison, the value for Cd for conditions at the AASHO Road Test is 1.0."
+      ],
+      "equations": [
+        {
+          "id": "SN = a1D1 + a2D2m2 + a3D3m3",
+          "description": "Structural number with the drainage coefficients mi on the base and subbase layer coefficients",
+          "formula": "SN = a1D1 + a2D2m2 + a3D3m3",
+          "variables": {
+            "ai": "layer coefficient of layer i",
+            "Di": "thickness of layer i",
+            "mi": "drainage coefficient modifying the layer coefficient of untreated base (m2) and subbase (m3), Table 2.4"
+          },
+          "notes": "The possible effect of drainage on the asphalt concrete surface course is not considered. mi = 1.0 for AASHO Road Test conditions.",
+          "source": "Typed in from the 200 dpi render of p. II-22.",
+          "implemented_in": "geotech_references.aashto_1993.equations.structural_number"
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Unnumbered table: Quality of Drainage by Water Removed Within (p. II-22)",
+        "Table 2.4: Recommended mi Values for Modifying Structural Layer Coefficients of Untreated Base and Subbase Materials in Flexible Pavements (p. II-25)",
+        "Table 2.5: Recommended Values of Drainage Coefficient, Cd, for Rigid Pavement Design (p. II-26)"
+      ],
+      "applicability": "Quality of drainage, mi for flexible and Cd for rigid design (pp. II-22 to II-25)."
+    },
+    {
+      "section_id": "II-2.4.2",
+      "title": "Load Transfer",
+      "summary": "The load transfer coefficient J accounts for a concrete pavement's ability to transfer load across joints or cracks; load transfer devices, aggregate interlock and tied concrete shoulders all affect it (Table 2.6). Higher J's go with low k-values, high thermal coefficients and large temperature variations. J = 3.2 for dowelled JCP/JRCP (the Road Test 'protected corner'), 3.8 to 4.4 without load transfer devices, 2.5 to 3.1 with dowels and tied shoulders; CRCP 2.9 to 3.2 without tied shoulders and 2.3 to 2.9 (2.6 recommended) with them. Dowel diameter = slab thickness \u00d7 1/8 inch; spacing 12 inches, length 18 inches.",
+      "body": "[p. II-25] The load transfer coefficient, J, is a factor used in rigid pavement design to account for the ability of a concrete pavement structure to transfer (distribute) load across discontinuities, such as joints or cracks. Load transfer devices, aggregate interlock, and the presence of tied concrete shoulders all have an effect on this value. Generally, the J-value for a given set of conditions (e.g., jointed concrete pavement with tied shoulders) increases as traffic loads increase since aggregate load transfer decreases with load repetitions. Table 2.6 establishes ranges of load transfer coefficients for different conditions developed from experience and mechanistic stress analysis. As a general guide for the range of J-values, higher J's should be used with low k-values, high thermal coefficients, and large variations of temperature. (The development of the J-factor terms is provided in Appendix KK of Volume 2.) Each agency should, however, develop criteria for their own aggregates, climatic conditions, etc.\n\n[Table 2.6. Recommended Load Transfer Coefficient for Various Pavement Types and Design Conditions (p. II-26). Shoulder: Asphalt | Asphalt | Tied P.C.C. | Tied P.C.C.; Load Transfer Devices: Yes | No | Yes | No. Pavement Type: 1 Plain jointed and jointed reinforced | 3.2 | 3.8-4.4 | 2.5-3.1 | 3.6-4.2; 2 CRCP | 2.9-3.2 | N/A | 2.3-2.9 | N/A.]\n\nIf dowels are used, the size and spacing should be determined by the local agency's procedures and/or experience. As a general guideline, the dowel diameter should be equal to the slab thickness multiplied by 1/8 inch (e.g., for a 10-inch pavement, the diameter is 1 1/4 inch. The dowel spacing and length are normally 12 inches and 18 inches, respectively. [The print closes no parenthesis after \"1 1/4 inch\".]\n\nJointed Pavements. The value of J recommended for a plain jointed pavement (JCP) or jointed reinforced concrete pavement (JRCP) with some type of load transfer device (such as dowel bars) at the joints is 3.2 (\"protected corner\" condition at the AASHO Road Test). This value is indicative of the load transfer of jointed pavements without tied concrete shoulders.\n\nFor jointed pavements without load transfer devices at the joints, a J-value of 3.8 to 4.4 is recommended. (This basically accounts for the higher bending stresses that develop in undowelled pavements, but also includes some consideration of the increased potential for faulting.) If the concrete has a high thermal [p. II-26] coefficient, then the value of J should be increased. On the other hand, if few heavy trucks are anticipated such as a low-volume road, the J-value may be lowered since the loss of aggregate interlock will be less. Part I of this Guide provides some other general criteria for the consideration and/or design of expansion joints, contraction joints, longitudinal joints, load transfer devices, and tie bars in jointed pavements.\n\nContinuously Reinforced Pavements. The value of J recommended for continuously reinforced concrete pavements (CRCP) without tied concrete shoulders is between 2.9 to 3.2, depending on the capability of aggregate interlock (at future transverse cracks) to transfer load. In the past, a commonly used J-value for CRCP was 3.2, but with better design for crack width control each agency should develop criteria based on local aggregates and temperature ranges.\n\nTied Shoulders or Widened Outside Lanes. One of the major advantages of using tied PCC shoulders (or widened outside lanes) is the reduction of slab stress and increased service life they provide. To account for this, significantly lower J-values may be used for the design of both jointed and continuous pavements.\n\nFor continuously reinforced concrete pavements with tied concrete shoulders (the minimum bar size and maximum tie bar spacing should be the same as that for tie bars between lanes), the range of J is between 2.3 and 2.9, with a recommended value of 2.6. This value is considerably lower than that for the design of concrete pavements without tied shoulders because of the significantly increased load distribution capability of concrete pavements with tied shoulders.\n\nFor jointed concrete pavements with dowels and tied shoulders, the value of J should be between 2.5 and 3.1 based on the agency's experience. The lower J-value for tied shoulders assumes traffic is not permitted to run on the shoulder.\n\nNOTE: Experience has shown that a concrete shoulder of 3 feet or greater may be considered a tied shoulder. Pavements with monolithic or tied curb and gutter that provides additional stiffness and keeps [p. II-27] traffic away from the edge may be treated as a tied shoulder.",
+      "key_points": [
+        "As a general guide for the range of J-values, higher J's should be used with low k-values, high thermal coefficients, and large variations of temperature.",
+        "Each agency should, however, develop criteria for their own aggregates, climatic conditions, etc.",
+        "As a general guideline, the dowel diameter should be equal to the slab thickness multiplied by 1/8 inch ... The dowel spacing and length are normally 12 inches and 18 inches, respectively.",
+        "For jointed pavements without load transfer devices at the joints, a J-value of 3.8 to 4.4 is recommended.",
+        "The lower J-value for tied shoulders assumes traffic is not permitted to run on the shoulder.",
+        "Experience has shown that a concrete shoulder of 3 feet or greater may be considered a tied shoulder."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2.6: Recommended Load Transfer Coefficient for Various Pavement Types and Design Conditions (p. II-26)"
+      ],
+      "applicability": "Load transfer coefficient J for jointed and continuously reinforced rigid pavements (pp. II-25 to II-27)."
+    },
+    {
+      "section_id": "II-2.4.3",
+      "title": "Loss of Support",
+      "summary": "LS accounts in rigid design for potential loss of support from subbase erosion and/or differential vertical soil movements; the design procedure (Part II, Chapter 3) diminishes the effective or composite k-value for the void that may develop. Table 2.7 suggests LS by material stiffness: 0.0 to 1.0 for cement-treated, cement aggregate, asphalt-treated and bituminous stabilized materials, 1.0 to 3.0 for lime-stabilized and unbound granular materials, 2.0 to 3.0 for fine-grained or natural subgrade. For active swelling clays or excessive frost heave LS of 2.0 to 3.0 may be considered; agency experience should be the key element.",
+      "body": "[p. II-27] This factor, LS, is included in the design of rigid pavements to account for the potential loss of support arising from subbase erosion and/or differential vertical soil movements. It is treated in the actual design procedure (discussed in Part II, Chapter 3) by diminishing the effective or composite k-value based on the size of the void that may develop beneath the slab. Table 2.7 provides some suggested ranges of LS depending on the type of material (specifically its stiffness or elastic modulus). Obviously, if various types of base or subbase are to be considered for design, then the corresponding values of LS should be determined for each type. A discussion of how the loss of support factor was derived is present in Appendix LL of Volume 2 of this Guide.\n\nThe LS factor should also be considered in terms of differential vertical soil movements that may result in voids beneath the pavement. Thus, even though a nonerosive subbase is used, a void may still develop, thus reducing pavement life. Generally, for active swelling clays or excessive frost heave, LS values of 2.0 to 3.0 may be considered. Each agency's experience in this area should, however, be the key element in the selection of an appropriate LS value. Examination of the effect of LS on reducing the effective k-value of the roadbed soil (see Figure 3.6) may also be helpful in selecting an appropriate value.\n\n[Table 2.7. Typical Ranges of Loss of Support (LS) Factors for Various Types of Materials (6) (p. II-27). Type of Material | Loss of Support (LS): Cement Treated Granular Base (E = 1,000,000 to 2,000,000 psi) | 0.0 to 1.0; Cement Aggregate Mixtures (E = 500,000 to 1,000,000 psi) | 0.0 to 1.0; Asphalt Treated Base (E = 350,000 to 1,000,000 psi) | 0.0 to 1.0; Bituminous Stabilized Mixtures (E = 40,000 to 300,000 psi) | 0.0 to 1.0; Lime Stabilized (E = 20,000 to 70,000 psi) | 1.0 to 3.0; Unbound Granular Materials (E = 15,000 to 45,000 psi) | 1.0 to 3.0; Fine Grained or Natural Subgrade Materials (E = 3,000 to 40,000 psi) | 2.0 to 3.0. NOTE: E in this table refers to the general symbol for elastic or resilient modulus of the material.]",
+      "key_points": [
+        "Obviously, if various types of base or subbase are to be considered for design, then the corresponding values of LS should be determined for each type.",
+        "Thus, even though a nonerosive subbase is used, a void may still develop, thus reducing pavement life.",
+        "Generally, for active swelling clays or excessive frost heave, LS values of 2.0 to 3.0 may be considered.",
+        "Each agency's experience in this area should, however, be the key element in the selection of an appropriate LS value."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2.7: Typical Ranges of Loss of Support (LS) Factors for Various Types of Materials (p. II-27)"
+      ],
+      "applicability": "Loss of support factor LS for rigid design (p. II-27)."
     },
     {
       "section_id": "II-2.5",
       "title": "Reinforcement Variables",
-      "summary": "Introduces the reinforcement design variables addressed in Section 3.4: for JRCP, distributed steel percentage (subgrade-drag equation); for CRCP, longitudinal steel percentage controlling crack spacing/width.",
-      "body": "For jointed reinforced concrete pavements, the amount of distributed steel reinforcement needed to hold together the wider transverse cracks that develop between the (longer) joint spacings is designed via the subgrade-drag equation. For continuously reinforced concrete pavements, the longitudinal steel percentage is the primary design variable, controlling the resulting transverse crack spacing and crack width. Full reinforcement design procedures are given in Section 3.4.",
+      "summary": "The reinforcement design requirements for jointed and continuous pavements are given in two sections, 2.5.1 and 2.5.2; the page says information is also provided for the design of prestressed concrete pavement. Besides dimensions, corrosion resistance of reinforcement should be considered, especially where pavements are exposed to variable moisture contents and salt applications.",
+      "body": "[p. II-27] Because of the difference in the reinforcement design procedures between jointed and continuous pavements, the design requirements for each are separated into two sections. Information is also provided here for the design of prestressed concrete pavement. In addition to dimensions, consideration should be given to corrosion resistance of reinforcement, especially in areas where pavements are exposed to variable moisture contents and salt applications.",
       "key_points": [
-        "JRCP: distributed steel percentage via the subgrade-drag equation",
-        "CRCP: longitudinal steel percentage controls crack spacing/width",
-        "Full procedures cross-referenced to Section 3.4"
+        "Because of the difference in the reinforcement design procedures between jointed and continuous pavements, the design requirements for each are separated into two sections.",
+        "In addition to dimensions, consideration should be given to corrosion resistance of reinforcement, especially in areas where pavements are exposed to variable moisture contents and salt applications."
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Introduces the reinforcement variables developed in Section 3.4 (Rigid Pavement Reinforcement Design)."
+      "applicability": "Introduction to the reinforcement design requirements (p. II-27)."
+    },
+    {
+      "section_id": "II-2.5.1",
+      "title": "Jointed Reinforced Concrete Pavements",
+      "summary": "JCP is designed without steel reinforcement, JRCP with significant steel (bars or welded mats) where transverse cracking is likely. For JCP the joint spacing should keep temperature and moisture stresses from producing intermediate cracking; each agency's experience governs. JRCP criteria (longitudinal and transverse steel): slab length L (feet) between free transverse joints; steel working stress fs, typically 75 percent of yield (30,000 psi Grade 40, 45,000 psi Grade 60, 48,750 psi for WWF and DWF of 65,000 psi yield); and the friction factor F (Table 2.8: 2.2 surface treatment down to 0.9 natural subgrade).",
+      "body": "[p. II-27] There are two types of rigid pavement which fall under the \"jointed\" category: plain jointed pavement (JCP), which is designed not to have steel reinforcement, and jointed reinforced concrete pavement (JRCP), which is designed to have significant steel reinforcement, in terms of either steel bars or welded steel mats. The steel reinforcement is added if the probability of transverse cracking during pavement life is high due to such factors as soil movement and/or temperature/moisture change stresses.\n\nFor the case of plain jointed concrete pavements (JCP), the joint spacing should be selected at values so that temperature and moisture change stresses do not produce intermediate cracking between joints. The maximum joint spacing will vary, depending on local conditions, subbase types, coarse aggregate types, etc. In addition, the maximum joint spacing may be selected to minimize joint movement and, consequently, maximize load transfer. Each agency's experience should be relied on for this selection.\n\nFollowing are the criteria needed for the design of jointed pavements which are steel reinforced (JRCP). These criteria apply to the design of both longitudinal and transverse steel reinforcement.\n\nSlab Length. This refers to the joint spacing or distance, L (feet), between free (i.e., untied) transverse joints. It is an important design consideration since it has a large impact on the maximum concrete tensile stresses and, consequently, the amount of steel [p. II-28] reinforcement required. Because of this effect, slab length (joint spacing) is an important factor that must be considered in the design of any reinforced or unreinforced jointed concrete pavement. The selection of an appropriate value is covered in more detail in Part II, Chapter 3.\n\nSteel Working Stress. This refers to the allowable working stress, fs (psi), in the steel reinforcement. Typically, a value equivalent to 75 percent of the steel yield strength is used for working stress. For Grade 40 and Grade 60 steel, the allowable working stresses are 30,000 and 45,000 psi, respectively. For Welded Wire Fabric (WWF) and Deformed Wire Fabric (DWF), the steel yield strength is 65,000 psi and the allowable working stress is 48,750 psi. The minimum wire size should be adequate so that potential corrosion does not have a significant impact on the cross-sectional area.\n\nFriction Factor. This factor, F, represents the frictional resistance between the bottom of the slab and the top of the underlying subbase or subgrade layer and is basically equivalent to a coefficient of friction. Recommended values for natural subgrade and a variety of subbase materials are presented in Table 2.8.\n\n[Table 2.8. Recommended Friction Factors (7) (p. II-28). Type of Material Beneath Slab | Friction Factor (F): Surface treatment | 2.2; Lime stabilization | 1.8; Asphalt stabilization | 1.8; Cement stabilization | 1.8; River gravel | 1.5; Crushed stone | 1.5; Sandstone | 1.2; Natural subgrade | 0.9.]",
+      "key_points": [
+        "The steel reinforcement is added if the probability of transverse cracking during pavement life is high due to such factors as soil movement and/or temperature/moisture change stresses.",
+        "For the case of plain jointed concrete pavements (JCP), the joint spacing should be selected at values so that temperature and moisture change stresses do not produce intermediate cracking between joints.",
+        "Typically, a value equivalent to 75 percent of the steel yield strength is used for working stress.",
+        "For Grade 40 and Grade 60 steel, the allowable working stresses are 30,000 and 45,000 psi, respectively.",
+        "The minimum wire size should be adequate so that potential corrosion does not have a significant impact on the cross-sectional area."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table 2.8: Recommended Friction Factors (p. II-28)"
+      ],
+      "applicability": "JCP joint spacing and JRCP reinforcement design inputs: slab length, steel working stress, friction factor (pp. II-27 to II-28)."
+    },
+    {
+      "section_id": "II-2.5.2",
+      "title": "Continuously Reinforced Concrete Pavements",
+      "summary": "CRCP's principal reinforcement is longitudinal steel controlling cracks from concrete volume change; transverse steel controls longitudinal crack width and is designed as for jointed pavements. Longitudinal design needs: the indirect tensile strength (AASHTO T 198, ASTM C 496) at 28 days, normally about 86 percent of the modulus of rupture; 28-day shrinkage (Table 2.9); the PCC thermal coefficient by coarse aggregate (Table 2.10); bar diameter (No. 5 and No. 6 typical; nomographs limit to No. 4 to No. 7); steel thermal coefficient 5.0 \u00d7 10^\u22126 in./in./\u00b0F; design temperature drop DTD = TH \u2212 TL; friction factor as for jointed pavements.",
+      "body": "[p. II-28] The principal reinforcement in continuously reinforced concrete pavements (CRCP) is the longitudinal steel which is essentially \"continuous\" throughout the length of the pavement. This longitudinal reinforcement is used to control cracks which form in the pavement due to volume change in the concrete. The reinforcement may be either reinforcing bars or deformed wire fabric. It is the restraint of the concrete due to the steel reinforcement and subbase friction which causes the concrete to fracture. A balance between the properties of the concrete and the reinforcement must be achieved for the pavement to perform satisfactorily. The evaluation of this interaction forms the basis for longitudinal reinforcement design.\n\nThe purpose of transverse reinforcement in a CRC pavement is to control the width of any longitudinal cracks which may form. Transverse reinforcement may not be required for CRC pavements in which no longitudinal cracking is likely to occur based on observed experience of concrete pavements with same soils, aggregate types, etc. However, if longitudinal cracking does occur, transverse reinforcement will restrain lateral movement and minimize the deleterious effects of a free edge. Transverse reinforcement should be designed based on the same criteria and methodology used for jointed pavements.\n\nThe following are the requirements for the design of longitudinal steel reinforcement in CRC pavements.\n\nConcrete Tensile Strength. Two measures of concrete tensile strength are used in separate sections of this design procedure. The modulus of rupture (or flexural strength) derived from a flexural beam test (with third point loading) is used for determination of the required slab thickness (see Section 2.3.4). Steel reinforcement design is based on the tensile strength derived from the indirect tensile test which is covered under AASHTO T 198 and ASTM C 496 test specifications. The strength at 28 days should be used for both of these values. Also, these two strengths should be consistent with each other. For this design procedure, the indirect tensile strength will normally be about 86 percent of concrete modulus of rupture.\n\nConcrete Shrinkage. Drying shrinkage in the concrete from water loss is a significant factor in the reinforcement design. Other factors affecting shrinkage include cement content, chemical admixtures, curing method, aggregates, and curing conditions. The value of shrinkage at 28 days is used for the design shrinkage value.\n\nBoth shrinkage and strength of the concrete are strongly dependent upon the water-cement ratio. As more water is added to a mix, the potential for shrinkage will increase and the strength will decrease. Since shrinkage can be considered inversely proportional to strength, Table 2.9 may be used as a guide in selecting a value corresponding to the indirect tensile strength determined in Section 2.5.2.\n\n[p. II-29] [Table 2.9. Approximate Relationship Between Shrinkage and Indirect Tensile Strength of Portland Cement Concrete (6) (p. II-29). Indirect Tensile Strength (psi) | Shrinkage (in./in.): 300 (or less) | 0.0008; 400 | 0.0006; 500 | 0.00045; 600 | 0.0003; 700 (or greater) | 0.0002.]\n\nConcrete Thermal Coefficient. The thermal coefficient of expansion for portland cement concrete varies with such factors as water-cement ratio, concrete age, richness of the mix, relative humidity, and the type of aggregate in the mix. In fact, the type of coarse aggregate exerts the most significant influence. Recommended values of PCC thermal coefficient (as a function of aggregate type) are presented in Table 2.10.\n\n[Table 2.10. Recommended Value of the Thermal Coefficient of PCC as a Function of Aggregate Types (8) (p. II-29). Type of Coarse Aggregate | Concrete Thermal Coefficient (10^\u22126/\u00b0F): Quartz | 6.6; Sandstone | 6.5; Gravel | 6.0; Granite | 5.3; Basalt | 4.8; Limestone | 3.8.]\n\nBar or Wire Diameter. Typically, No. 5 and No. 6 deformed bars are used for longitudinal reinforcement in CRCP. The No. 6 bar is the largest practical size that should be used in CRCP to meet bond requirements and to control crack widths. The design nomographs for reinforcement limit the bar selection to a range of No. 4 to No. 7. The nominal diameter of a reinforcing bar, in inches, is simply the bar number divided by 8. The wire diameter should be large enough so that possible corrosion will not significantly reduce the cross section diameter. Also, the relationship between longitudinal and transverse wire should conform to manufacturers' recommendations.\n\nSteel Thermal Coefficient. Unless specific knowledge of the thermal coefficient of the reinforcing steel is known, a value of 5.0 \u00d7 10^\u22126 in./in./\u00b0F may be assumed for design purposes.\n\nDesign Temperature Drop. The temperature drop used in the reinforcement design is the difference between the average concrete curing temperature and a design minimum temperature. The average concrete curing temperature may be taken as the average daily high temperature during the month the pavement is expected to be constructed. This average accounts for the heat of hydration. The design minimum temperature is defined here as the average daily low temperature for the coldest month during the pavement life. If not available, the needed temperature data may be obtained from U.S. Government weather records. The design temperature drop which is entered in the longitudinal reinforcement design procedure is:\n\nDTD = TH \u2212 TL\n\nwhere\n\nDTD = design temperature drop, \u00b0F,\n\nTH = average daily high temperature during the month the pavement is constructed, \u00b0F, and\n\nTL = average daily low temperature during the coldest month of the year, \u00b0F.\n\nFriction Factor. The criteria for the selection of a slab-base friction factor for CRC pavements is the same as that for jointed pavements (see Section 2.5.1).",
+      "key_points": [
+        "For this design procedure, the indirect tensile strength will normally be about 86 percent of concrete modulus of rupture.",
+        "The strength at 28 days should be used for both of these values. Also, these two strengths should be consistent with each other.",
+        "The value of shrinkage at 28 days is used for the design shrinkage value.",
+        "The No. 6 bar is the largest practical size that should be used in CRCP to meet bond requirements and to control crack widths.",
+        "Unless specific knowledge of the thermal coefficient of the reinforcing steel is known, a value of 5.0 \u00d7 10^\u22126 in./in./\u00b0F may be assumed for design purposes.",
+        "The design minimum temperature is defined here as the average daily low temperature for the coldest month during the pavement life."
+      ],
+      "equations": [
+        {
+          "id": "DTD = TH - TL",
+          "description": "Design temperature drop for CRCP longitudinal reinforcement design",
+          "formula": "DTD = TH \u2212 TL",
+          "variables": {
+            "DTD": "design temperature drop, \u00b0F",
+            "TH": "average daily high temperature during the month the pavement is constructed, \u00b0F",
+            "TL": "average daily low temperature during the coldest month of the year, \u00b0F"
+          },
+          "source": "Typed in from the 200 dpi render of p. II-29."
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table 2.9: Approximate Relationship Between Shrinkage and Indirect Tensile Strength of Portland Cement Concrete (p. II-29)",
+        "Table 2.10: Recommended Value of the Thermal Coefficient of PCC as a Function of Aggregate Types (p. II-29)"
+      ],
+      "applicability": "CRCP longitudinal reinforcement design inputs (pp. II-28 to II-29)."
     }
   ]
 }
