@@ -26,7 +26,7 @@ VOLUMES = {
     2: ("FHWA-NHI-10-025", "GEC 11 VOL 2.pdf", range(8, 12)),
 }
 #: Chapters rebuilt from the print so far.
-BUILT = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+BUILT = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
 
 
 def _chapter(n):
@@ -446,6 +446,37 @@ def test_chapter_10_specification_tables_as_printed():
     body = secs["10.10.2"]["body"]
     assert "(i) Type __. Long-term duration (Longer than 2 Years)" in body
     assert "Shear Stress (td) > 2 psf (95 Pa) to < 5 psf (240 Pa)" in body
+
+
+def test_chapter_11_checklists_and_tables_as_printed():
+    secs = _sections()
+    assert len([s for s in secs if s.startswith("11.")]) == 23
+    # Table 11-1 (p. 11-2), one item to a line
+    body = secs["11.1"]["body"]
+    assert "□ 5. On site, check reinforcements" in body
+    assert "- compressive strength < specification requirements\n- molding defects" in body
+    # Tables 11-2 and 11-3 (pp. 11-5 to 11-10), numbered as printed
+    body = secs["11.1.2"]["body"]
+    assert "1.0 DOCUMENTS\n1.1 Have you thoroughly reviewed the design drawings?" in body
+    assert "8.10 Do you understand any erosion control details?" in body
+    assert "2.1.4 Drainage aggregate\n2.1.4 Graded granular filters (if applicable)" in body
+    assert "numbered as printed: 2.1.4 twice" in body
+    assert "6.10 Do the QA test results for the reinforcing materials" in secs["11.1.2.a"]["body"]
+    # the alignment tolerances (p. 11-26) as printed, with a note on the metric
+    body = secs["11.3.5"]["body"]
+    assert "1/2-inch per 10 ft (6 mm per m)" in body
+    assert "1/2 inch per 10 ft is about 4 mm per m" in body
+    # Table 11-4 (pp. 11-30, 11-31): each condition with its causes
+    assert ("5. Wall out of horizontal alignment tolerance, or bulging. | 5. a. See Causes "
+            "3c, 3d, 3e, 3j, 3k.") in body
+    assert "presented in Table 11-4.\n\nTable 11-4. Out-of-Tolerance" in body
+    # Table 11-5 (pp. 11-32 to 11-34): the item the text layer dropped
+    assert secs["11.3.5.a"]["body"].startswith(
+        "[p. 11-34] [Table 11-5 continued, p. 11-34:]\n7.2 Where applicable")
+    # Table 11-6 (pp. 11-38, 11-39)
+    body = secs["11.4.4"]["body"]
+    assert "Stress distribution at base of structure | Earth pressure cells" in body
+    assert "Barometric pressure | Barometric pressure gauge" in body
 
 
 def test_figure_text_typed_in_from_the_page():
