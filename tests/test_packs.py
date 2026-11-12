@@ -462,8 +462,11 @@ def test_a_pack_file_that_fails_anyway_is_rolled_back(tmp_path, monkeypatch,
         with pytest.raises(KeyError):
             _figures_db.figure_get("local_bad", "1-1")
     named = [p for p in _packs.problems() if "local_bad" in p]
-    assert len(named) == 1 and "could not be indexed (ProgrammingError" \
-        in named[0]
+    # sqlite3 names a value it cannot bind ProgrammingError from Python 3.11
+    # and InterfaceError on 3.10; the file is skipped and named either way.
+    assert len(named) == 1 and any(
+        f"could not be indexed ({error}" in named[0]
+        for error in ("ProgrammingError", "InterfaceError"))
 
 
 def test_a_number_two_sections_hold_is_refused_by_both_fetches(
