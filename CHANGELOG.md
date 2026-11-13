@@ -4,6 +4,26 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
+corrected from the page (app BACKLOG REF-93).** Found while the manual's
+chapter text was being rebuilt from the print; each was read from a 300 dpi
+render and independently checked cell by cell.
+
+- `table_7_12_frost_susceptibility` returned six rows one frost group LOWER
+  than Table 7-12 (p. 7-60) prints, the unsafe side: gravelly soils with 10
+  to 20 percent fines F1 (printed F2) and with over 20 percent F2 (printed
+  F3); sands, except very fine silty sands, with over 15 percent F2 (printed
+  F3); all silts F3 "High" (printed F4 "Very high"); very fine silty sands
+  and clays with PI under 12 F3 (printed F4). The other four rows were
+  right. The percent-finer column is the page's 0.075 mm.
+- `table_4_14_soil_as_pavement_material` holds all 17 printed rows (it held
+  10): the GM and SM "u" rows and ML, CL, OL, MH, CH, OH and Pt (p. 4-66).
+- `table_5_57_permeability_highway_materials` cites p. 5-105 (was 5-103)
+  and returns the table's footnotes.
+- `table_5_18_compaction_aashto`: the A-6 optimum moisture cell is printed
+  "10.30"; the function returns 10 to 30 percent and says what the page
+  prints.
+
 **EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils
 (U.S. Army Corps of Engineers, 31 July 2025), as package `em_1905`.**
 
