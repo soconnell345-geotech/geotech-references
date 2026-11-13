@@ -28,7 +28,10 @@ inlined by the 12,000 rule counted on the content without the flags,
 provided the whole fits 14,000 with them (twelve fetches that fitted had
 stopped inlining). A table number on several catalog rows answers from
 the row numbered exactly as listed and filed under the listing section,
-and says it is one of several; a tie in the short form goes to the first
+and says it is one of several; a page answer carries its row's `note`
+where the note says a section holds part of the table (the 30 tables of
+FHWA NHI-06-088/089 whose cells a section carries as the text layer gives
+them); a tie in the short form goes to the first
 answer in sorted order; the baseline lists each item not held, so a new
 one fails even when another was fixed. Pointers not flagged that should
 have been (the review's undercount): an id's tail answers for a printed

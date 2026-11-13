@@ -322,6 +322,41 @@ def test_a_number_on_several_table_rows(tmp_path, monkeypatch):
     assert _reach.ROWS_NOTE in sec["note"]
 
 
+def test_a_page_row_passes_on_a_note_naming_where_cells_are(tmp_path,
+                                                             monkeypatch):
+    """A page answer carries its row's note when the note says a section
+    holds part of the table; other notes (a caption the list gives) and
+    other answers do not."""
+    folder = tmp_path / "local_madeup"
+    folder.mkdir()
+    (folder / "tables_catalog.json").write_text(json.dumps({"tables": [
+        {"table_number": "3-1", "values": "page", "pdf_page_index": 7,
+         "printed_page": "3-2",
+         "note": "Section 3.4 carries this\ntable's cells; read the page."},
+        {"table_number": "3-2", "values": "page", "pdf_page_index": 8,
+         "printed_page": "3-5",
+         "note": "The list of tables gives another caption."},
+        {"table_number": "3-3", "values": "text", "values_in": "3.4",
+         "note": "Section 3.4 holds it."}]}), encoding="utf-8")
+    monkeypatch.setattr(_reach, "reference_dir", lambda ref: folder)
+    h = _reach.Holdings("local_madeup", _rows([{"section_id": "3.4"}]))
+    assert h.table_flag("3-1") == (
+        "page: printed p. 3-2 (pdf_page_index 7); note: Section 3.4 carries "
+        "this table's cells; read the page.")
+    assert h.table_flag("3-2") == "page: printed p. 3-5 (pdf_page_index 8)"
+    assert h.table_flag("3-3") == "text: 3.4"
+    sec = _reach.with_notes({"tables_held": {"3-1": h.table_flag("3-1")}})
+    assert _reach.ROW_NOTE_NOTE in sec["note"]
+    plain = _reach.with_notes({"tables_held": {"3-2": h.table_flag("3-2")}})
+    assert _reach.ROW_NOTE_NOTE not in str(plain.get("note"))
+    # the answer check reads past the note and checks the section it names
+    stored = {"3.4": "Table 3-1 ..."}
+    assert table_problem("local_madeup", "3-9",
+                         "text: 3.4; note: Section 3.9 has it",
+                         lambda ref, sid: stored.get(sid)) == (
+        "the note names section 3.9, which is not stored")
+
+
 def test_table_answers_from_a_catalog():
     row = {"table_number": "5-1", "values": "text", "values_in": ["5-3.2"]}
     assert _reach.table_values(row) == "text: 5-3.2"
@@ -798,6 +833,12 @@ def table_problem(reference: str, number: str, answer: str,
     :data:`NOT_CHECKED`). ``section_text(reference, section_id)`` gives a
     section's body and tables entries as text, or None when there is no
     such section."""
+    # a page row's note: the section it names must be there
+    answer, _, note = answer.partition("; note: ")
+    for sid in re.findall(r"\b[Ss]ections?\s+([A-Z]?\d+(?:[.-]\d+)*[a-z]?)",
+                          note):
+        if section_text(reference, sid) is None:
+            return f"the note names section {sid}, which is not stored"
     # a number on several rows: the mark after the answer names the page
     answer = re.sub(r" \(one of \d+ rows numbered .*\)$", "", answer)
     kind, _, where = answer.partition(": ")

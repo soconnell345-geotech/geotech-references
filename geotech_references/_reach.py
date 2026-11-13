@@ -125,6 +125,13 @@ SHORT_NOTE = "'others' stands for every listed number not named."
 #: Said when a table answer comes from one of several rows of its number.
 ROWS_NOTE = ("'one of N rows': the catalog has N tables so numbered; the "
              "answer is the one filed under this section, else the first.")
+#: Said when a page answer carries its catalog row's note.
+ROW_NOTE_NOTE = ("'; note: ...' after a page answer is the catalog's note: "
+                 "the section it names holds part of the table's cells; "
+                 "read the rest off the page.")
+#: A catalog note that says where part of a "page" table's cells are typed:
+#: it names a section, or says what is typed.
+_NOTE_NAMES_PART = re.compile(r"\b(?:[Ss]ections?\s+[A-Z]?\d|typed)")
 #: A fetch that would pass this many characters with :func:`reach_note`
 #: goes without it (the keys stay): the sections near or over the
 #: library's 14,000-character budget from their own text would otherwise
@@ -584,6 +591,12 @@ class Holdings:
             page = row.get("pdf_page_index")
             answer += (f" (one of {len(rows)} rows numbered {number}: "
                        f"table_get needs pdf_page_index {page})")
+        note = row.get("note")
+        if (answer.startswith("page:") and isinstance(note, str)
+                and _NOTE_NAMES_PART.search(note)):
+            # where part of the cells are typed ("Section 3.5.1 carries
+            # this table's cells as the PDF text layer gives them ...")
+            answer += f"; note: {' '.join(note.split())}"
         return answer
 
     # -- pointers ----------------------------------------------------------
@@ -1187,13 +1200,15 @@ def reach_note(section: dict) -> str:
     :data:`NOT_HELD_NOTE` for ``not_held``. Empty when it carries none."""
     figures: list[str] = []
     tables: list[str] = []
-    short = has_not_held = rows = False
+    short = has_not_held = rows = row_notes = False
     for sec in [section] + list(_inlined(section.get("subsections"))):
         for key, kinds, kind_of in (("figures_held", figures, _figure_kind),
                                     ("tables_held", tables, _table_kind)):
             held = sec.get(key) or {}
             short = short or "others" in held
             rows = rows or any(" (one of " in str(v) for v in held.values())
+            row_notes = row_notes or any("; note: " in str(v)
+                                         for v in held.values())
             for answer in held.values():
                 kind = kind_of(str(answer))
                 if kind and kind not in kinds:
@@ -1212,6 +1227,8 @@ def reach_note(section: dict) -> str:
         out.append(SHORT_NOTE)
     if rows:
         out.append(ROWS_NOTE)
+    if row_notes:
+        out.append(ROW_NOTE_NOTE)
     if any(k in figures for k in ("catalog", "rows", "as")) \
             or "page" in tables:
         out.append(PAGE_NOTE)
