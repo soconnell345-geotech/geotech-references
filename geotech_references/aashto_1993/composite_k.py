@@ -549,6 +549,10 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 # asserted tolerances on both anchor sets.
 # ============================================================================
 
+_FIG35_D_RANGE = (6.0, 14.0)    # the slab-thickness curves drawn
+_FIG35_K_RANGE = (10.0, 2000.0)  # the composite k axis
+
+
 def relative_damage_rigid(d_in, k_pci) -> dict:
     """Seasonal relative damage u_r for a rigid slab, AASHTO 1993 Figure 3.5
     (pdf_page 130, printed II-41); returns u_r (dimensionless, the chart's
@@ -566,13 +570,20 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     column) to within 8% typical / 12.5% worst case -- see section
     docstring above for both anchor sets.
 
+    The closed form is used only on the chart (REF-76): Figure 3.5 draws
+    slab thicknesses 6, 7, 8, 9, 10, 12 and 14 in over a composite k axis
+    of 10 to 2,000 pci (printed II-41); a D or k outside them is refused
+    (the formula gave a number there, 0.0117 at D 3 in, with nothing to
+    say it was off the chart).
+
     Parameters
     ----------
     d_in : float
-        Projected/trial slab thickness, inches, > 0.
+        Projected/trial slab thickness, inches, 6 to 14 (the curves
+        drawn).
     k_pci : float
         Composite (or rigid-foundation-corrected) modulus of subgrade
-        reaction for the season, pci, > 0.
+        reaction for the season, pci, 10 to 2,000 (the chart's k axis).
 
     Returns
     -------
@@ -582,14 +593,23 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     Raises
     ------
     ValueError
-        If d_in or k_pci <= 0, or if D^0.75 <= 0.39*k^0.25 (the slab is too
-        thin / k too high -- off the digitized chart, undefined fractional
-        power of a non-positive base).
+        If d_in is outside 6-14 in or k_pci outside 10-2,000 pci (Figure
+        3.5's curves and k axis), or if D^0.75 <= 0.39*k^0.25.
     """
     if d_in <= 0:
         raise ValueError(f"d_in must be > 0, got {d_in}")
     if k_pci <= 0:
         raise ValueError(f"k_pci must be > 0, got {k_pci}")
+    if not _FIG35_D_RANGE[0] <= d_in <= _FIG35_D_RANGE[1]:
+        raise ValueError(
+            f"Slab thickness D = {d_in:g} in is outside Figure 3.5's curves, "
+            "D = 6, 7, 8, 9, 10, 12 and 14 in (printed II-41); the chart "
+            "gives no relative damage there.")
+    if not _FIG35_K_RANGE[0] <= k_pci <= _FIG35_K_RANGE[1]:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is outside Figure 3.5's composite k axis, "
+            "10 to 2,000 pci (printed II-41); the chart gives no relative "
+            "damage there.")
     base = d_in ** 0.75 - 0.39 * k_pci ** 0.25
     if base <= 0:
         raise ValueError(
@@ -644,6 +664,9 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
 
 _LS_VALUES = [0.0, 1.0, 2.0, 3.0]
 _LS_SLOPES = [1.0, 0.8163, 0.605, 0.464]
+_FIG36_K_MAX = 2000.0      # the k axis's end (printed II-42)
+_FIG36_KC_MAX = 1000.0     # the corrected-k axis's top
+_FIG36_K_FIT_MIN = 10.0    # the lowest k the slopes were checked at
 
 # Read grid used ONLY for documentation/test verification (see section
 # docstring above) -- the slopes in _LS_SLOPES already reproduce these.
@@ -672,11 +695,28 @@ def k_loss_of_support(k_pci, ls) -> dict:
     section docstring above for every read pair and the achieved
     per-curve tolerance (~7% for LS=1/2, ~12-16% for LS=3).
 
+    The power law is used only on the chart (REF-76). Figure 3.6's k axis
+    runs from 1 pci (the corner, where the LS = 0 line starts) to 2,000
+    pci and its corrected-k axis from 1 to 1,000 pci (printed II-42). For
+    LS above 0 the function refuses:
+
+    - k above 2,000 pci, the axis end (k = 5,000 at LS 1 gave 1,045.8);
+    - k below 10 pci: the slopes were checked against the chart only at
+      the points read from 10 pci up, and below it the drawn LS = 3.0
+      line bends away from the power law (it meets the chart's 1 pci
+      floor at about k = 2.4, where the power law gives 1.5). This limit
+      is the library's reading, not a printed one;
+    - a corrected k above 1,000 pci, the top of the chart (possible for
+      LS below 0.5 with k near 2,000).
+
+    LS = 0 is no loss of support: k is returned unchanged for any k (the
+    chart's LS = 0 line is the 1:1 line).
+
     Parameters
     ----------
     k_pci : float
         Effective modulus of subgrade reaction before loss-of-support
-        correction, pci, > 0.
+        correction, pci, 10 to 2,000 for LS above 0 (above).
     ls : float
         Loss of support factor (see ``loss_of_support_values``, Table 2.7),
         0 to 3: Figure 3.6 draws the lines LS = 0, 1.0, 2.0 and 3.0
@@ -691,9 +731,10 @@ def k_loss_of_support(k_pci, ls) -> dict:
     Raises
     ------
     ValueError
-        If k_pci <= 0, or ls is outside 0-3. Above LS = 3 the chart gives
-        no line, and holding the LS = 3.0 line would give a larger k than
-        the trend; a negative LS is not a loss of support.
+        If k_pci <= 0, ls is outside 0-3, or (LS above 0) k_pci is outside
+        10-2,000 pci or the corrected k lands above 1,000 pci. Above LS = 3
+        the chart gives no line, and holding the LS = 3.0 line would give
+        a larger k than the trend; a negative LS is not a loss of support.
     """
     if k_pci <= 0:
         raise ValueError(f"k_pci must be > 0, got {k_pci}")
@@ -701,8 +742,28 @@ def k_loss_of_support(k_pci, ls) -> dict:
         raise ValueError(
             f"ls = {ls} is outside Figure 3.6's lines, LS = 0, 1.0, 2.0 and "
             "3.0 (printed II-42); the chart gives no correction there.")
+    if ls > 0 and k_pci > _FIG36_K_MAX:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is above Figure 3.6's k axis, which ends "
+            "at 2,000 pci (printed II-42); the chart gives no correction "
+            "there.")
+    if ls > 0 and k_pci < _FIG36_K_FIT_MIN:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is below 10 pci. Figure 3.6's k axis "
+            "starts at 1 pci (printed II-42), but the slopes used here were "
+            "checked against the chart only from 10 pci up, and below it the "
+            "drawn LS = 3.0 line bends away from them (it meets the chart's "
+            "1 pci floor at about k = 2.4, where the power law gives 1.5). "
+            "The library refuses there (its reading, not a printed limit); "
+            "read the chart.")
     slope = _linterp(ls, _LS_VALUES, _LS_SLOPES)
     k_corrected = k_pci ** slope
+    if ls > 0 and k_corrected > _FIG36_KC_MAX:
+        raise ValueError(
+            f"The corrected k for k = {k_pci:,.4g} pci and LS = {ls:g} would "
+            f"be {k_corrected:,.0f} pci, above the top of Figure 3.6's "
+            "corrected-k axis, 1,000 pci (printed II-42); the chart gives no "
+            "correction there.")
     out = {
         "k_pci": k_pci, "ls": ls, "k_corrected_pci": round(k_corrected, 1),
         "chart_read": True,
@@ -804,6 +865,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
 
     has_subbase = dsb_in is not None and dsb_in > 0
     rows = []
+    ks = []
     notes = []
     for i, period in enumerate(seasonal):
         if "mr_psi" not in period:
@@ -843,6 +905,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
 
         row["u_r"] = relative_damage_rigid(slab_d_in, k_for_ur)["u_r"]
         rows.append(row)
+        ks.append(k_for_ur)
 
     n = len(rows)
     ur_sum = sum(r["u_r"] for r in rows)
@@ -859,6 +922,11 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
             "non-physical. Increase slab_d_in or check the seasonal inputs."
         )
     k_effective = (base / 0.39) ** 4
+    # The average u_r lies between the periods' u_r, so the effective k lies
+    # between their k; u_r is rounded to 4 places, which can carry k_eff
+    # just past them (and past Figure 3.6's axis ends when they are on
+    # them). Hold it within the periods' k.
+    k_effective = min(max(k_effective, min(ks)), max(ks))
 
     ls_result = k_loss_of_support(k_effective, ls)
     k_corrected = ls_result["k_corrected_pci"]

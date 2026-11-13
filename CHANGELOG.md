@@ -84,6 +84,20 @@ pages):
   curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
   1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
   every Dsg).
+- `aashto_1993.composite_k.relative_damage_rigid` (Figure 3.5, printed
+  II-41, coded as a closed form fitted to the chart): D outside the curves
+  drawn (6-14 in) or k outside the k axis (10-2,000 pci) is refused; the
+  formula gave numbers there with nothing to say so (D 3 in: 0.0117).
+- `aashto_1993.composite_k.k_loss_of_support` (Figure 3.6, printed II-42, a
+  power law fitted to the chart), for LS above 0: k above the axis end,
+  2,000 pci (k 5,000 at LS 1 gave 1,045.8), a corrected k above the chart's
+  top, 1,000 pci, and k below 10 pci are refused. The last is the library's
+  reading: the slopes were checked against the chart only from 10 pci up,
+  and below it the drawn LS = 3.0 line bends away from the power law (at k
+  about 2.4 the chart gives 1 pci, the power law 1.5). LS = 0 returns k
+  unchanged at any k. `effective_modulus_subgrade_reaction` holds its
+  back-solved k within the periods' k (rounding of u_r could carry it just
+  past them, and so past an axis end).
 - `aashto_1993.composite_k.k_loss_of_support` (and
   `effective_modulus_subgrade_reaction`, which calls these three): LS
   outside 0-3 (Figure 3.6's lines, printed II-42) is refused; LS = 3 or 0

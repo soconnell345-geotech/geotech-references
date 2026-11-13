@@ -347,6 +347,19 @@ class TestRelativeDamageRigid:
         with pytest.raises(ValueError):
             ck.relative_damage_rigid(d_in=1.0, k_pci=5000)
 
+    def test_outside_the_chart_refused(self):
+        # REF-76 (fit sweep): Figure 3.5 (printed II-41) draws D = 6-14 in
+        # over a k axis of 10-2,000 pci; the closed form gave numbers past
+        # them (D 3 in: 0.0117) with nothing to say so.
+        ck.relative_damage_rigid(d_in=6.0, k_pci=2000)
+        ck.relative_damage_rigid(d_in=14.0, k_pci=10)
+        for d in (5.9, 14.1, 3.0):
+            with pytest.raises(ValueError, match="6, 7, 8, 9, 10, 12 and 14 in"):
+                ck.relative_damage_rigid(d_in=d, k_pci=100)
+        for k in (9.9, 2001, 5000):
+            with pytest.raises(ValueError, match="10 to 2,000 pci"):
+                ck.relative_damage_rigid(d_in=9.0, k_pci=k)
+
 
 # ============================================================================
 # k_loss_of_support (Figure 3.6)
@@ -412,6 +425,24 @@ class TestKLossOfSupport:
     def test_invalid_k_raises(self):
         with pytest.raises(ValueError):
             ck.k_loss_of_support(k_pci=0, ls=1.0)
+
+    def test_outside_the_chart_refused(self):
+        # REF-76 checker: Figure 3.6's k axis ends at 2,000 pci and its
+        # corrected-k axis at 1,000 (printed II-42); k = 5,000 at LS 1 gave
+        # 1,045.8. Below 10 pci the fitted slopes leave the drawn LS = 3.0
+        # line (the library's reading). LS = 0 is no correction at any k.
+        with pytest.raises(ValueError, match="ends at 2,000 pci"):
+            ck.k_loss_of_support(k_pci=5000, ls=1.0)
+        with pytest.raises(ValueError, match="ends at 2,000 pci"):
+            ck.k_loss_of_support(k_pci=2001, ls=3.0)
+        with pytest.raises(ValueError, match="below 10 pci.*its reading"):
+            ck.k_loss_of_support(k_pci=3, ls=3.0)
+        with pytest.raises(ValueError, match="above the top.*1,000 pci"):
+            ck.k_loss_of_support(k_pci=1800, ls=0.25)
+        assert ck.k_loss_of_support(k_pci=2000, ls=1.0)["k_corrected_pci"] < 1000
+        assert ck.k_loss_of_support(k_pci=10, ls=3.0)["k_corrected_pci"] > 1
+        for k in (3, 1500, 5000):
+            assert ck.k_loss_of_support(k_pci=k, ls=0.0)["k_corrected_pci"] == k
 
 
 # ============================================================================
