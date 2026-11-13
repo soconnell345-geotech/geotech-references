@@ -15,6 +15,8 @@ PDF pages below are 0-based fitz page indices into
 (e.g. "5-54") is also given.
 """
 
+from geotech_references import _units as _u
+
 
 # ============================================================================
 # Table 5-35: Default MR values for unbound granular and subgrade materials at
@@ -66,6 +68,8 @@ _TABLE_5_35_USCS = {
 }
 
 
+@_u.labelled(
+    {"mr_max_psi": "psi", "mr_min_psi": "psi", "mr_typical_psi": "psi"})
 def table_5_35_default_resilient_modulus(soil_class: str = "",
                                          classification: str = "") -> dict:
     """Default resilient modulus Mr by AASHTO/USCS soil class (Table 5-35).
@@ -212,6 +216,7 @@ _TABLE_5_34_LIBRARY_NOTES = {
 }
 
 
+@_u.labelled({})
 def table_5_34_resilient_modulus_correlations(property: str = "") -> dict:
     """Resilient modulus Mr correlations with strength/index properties (Table 5-34).
 
@@ -303,6 +308,7 @@ _TABLE_5_28 = {
 }
 
 
+@_u.labelled({"cbr_max": "percent", "cbr_min": "percent"})
 def table_5_28_typical_cbr(soil_class: str = "") -> dict:
     """Typical field CBR values by USCS soil class (Table 5-28).
 
@@ -449,6 +455,7 @@ def _t414_key(soil_class: str) -> str:
     return k
 
 
+@_u.labelled({})
 def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
     """Soil characteristics as a pavement material by USCS class (Table 4-14).
 
@@ -492,7 +499,7 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
                 "printed_page": page}
 
     ref = {"reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
-           "table": "4-14", "pdf_page_index": 166, "printed_page": "4-65 to 4-66"}
+           "table": "4-14", "pdf_page_index": [166, 167], "printed_page": "4-65 to 4-66"}
     k = _t414_key(soil_class)
     if k in ("", "ALL"):
         return {**ref, "rows": [_row(t) for t in _TABLE_4_14],
@@ -561,6 +568,7 @@ _TABLE_7_12_PRINT_NOTE = (
 )
 
 
+@_u.labelled({})
 def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
     """Frost susceptibility classification of soils, F1-F4 (Table 7-12).
 
@@ -687,6 +695,7 @@ _TABLE_5_49_NOTE = (
     "aashto_1993.tables.drainage_mi_flexible holds the AASHTO values.")
 
 
+@_u.labelled({})
 def table_5_49_drainage_modifier_mi(quality: str = "") -> dict:
     """AASHTO 1993 drainage modifier mi for FLEXIBLE pavements (Table 5-49).
 
@@ -720,6 +729,7 @@ def table_5_49_drainage_modifier_mi(quality: str = "") -> dict:
     return out
 
 
+@_u.labelled({})
 def table_5_50_drainage_coefficient_cd(quality: str = "") -> dict:
     """AASHTO 1993 drainage coefficient Cd for RIGID pavements (Table 5-50).
 
@@ -762,6 +772,7 @@ _TABLE_7_4 = [
 ]
 
 
+@_u.labelled({})
 def table_7_4_drainage_quality_definitions() -> dict:
     """AASHTO definitions of quality of pavement drainage (Table 7-4).
 
@@ -827,6 +838,7 @@ _TABLE_5_57_PRINT_NOTE = (
 )
 
 
+@_u.labelled({})
 def table_5_56_permeability_soils(soil_description: str = "") -> dict:
     """Typical saturated hydraulic conductivity (permeability) for soils (Table 5-56).
 
@@ -872,6 +884,7 @@ def table_5_56_permeability_soils(soil_description: str = "") -> dict:
     return out
 
 
+@_u.labelled({})
 def table_5_57_permeability_highway_materials(material: str = "") -> dict:
     """Typical saturated hydraulic conductivity for highway materials (Table 5-57).
 
@@ -944,6 +957,7 @@ _TABLE_7_17 = [
 ]
 
 
+@_u.labelled({})
 def table_5_24_swell_potential_holtz_gibbs(potential: str = "") -> dict:
     """Swell (expansion) potential from Atterberg limits (Table 5-24, Holtz & Gibbs 1956).
 
@@ -993,6 +1007,7 @@ def table_5_24_swell_potential_holtz_gibbs(potential: str = "") -> dict:
     return out
 
 
+@_u.labelled({})
 def table_7_17_swell_potential_ll_pi(potential: str = "") -> dict:
     """Swell potential of soils from liquid limit and plasticity index (Table 7-17).
 
@@ -1069,6 +1084,12 @@ _TABLE_5_18_A6_NOTE = (
 )
 
 
+@_u.labelled(
+    {"dry_unit_weight_knm3_max": "kN/m^3",
+     "dry_unit_weight_knm3_min": "kN/m^3", "dry_unit_weight_pcf_max": "pcf",
+     "dry_unit_weight_pcf_min": "pcf",
+     "optimum_moisture_content_pct_max": "percent",
+     "optimum_moisture_content_pct_min": "percent"})
 def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
     """Typical compacted dry unit weight and optimum moisture by AASHTO class (Table 5-18).
 
@@ -1142,6 +1163,7 @@ _TABLE_7_15 = [
 ]
 
 
+@_u.labelled({"cbr_max": "percent", "cu_psi_max": "psi", "mr_psi_max": "psi"})
 def table_7_15_geosynthetic_stabilization_criteria() -> dict:
     """Subgrade conditions appropriate for geosynthetic stabilization (Table 7-15).
 

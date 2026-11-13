@@ -139,7 +139,7 @@ class TestMrFromCbr:
         # Mr = 17.6 * 10^0.64 = 76.8 MPa
         r = resilient_modulus_from_cbr(10, units="mpa")
         assert r["mr"] == pytest.approx(17.6 * 10 ** 0.64, abs=0.1)
-        assert r["units"] == "mpa"
+        assert r["units"]["mr"] == "MPa"
 
     def test_zero_cbr_raises(self):
         with pytest.raises(ValueError):

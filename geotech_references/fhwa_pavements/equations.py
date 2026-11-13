@@ -17,12 +17,15 @@ Guide prints k = MR/19.4 (p. II-44) for a slab directly on the roadbed;
 ``aashto_1993.equations.modulus_subgrade_reaction_simple`` holds it.
 """
 
+from geotech_references import _units as _u
+
 
 # ============================================================================
 # Resilient modulus from CBR (Table 5-34; the most preferred Mr correlation)
 # (Chapter 5; PDF p.230, printed 5-53)
 # ============================================================================
 
+@_u.labelled({"cbr": "percent", "mr": "psi"})
 def resilient_modulus_from_cbr(cbr, units: str = "psi") -> dict:
     """Resilient modulus Mr from CBR (NCHRP 1-37A, Table 5-34).
 
@@ -62,7 +65,8 @@ def resilient_modulus_from_cbr(cbr, units: str = "psi") -> dict:
     else:
         raise ValueError(f"units must be 'psi' or 'mpa', got '{units}'.")
     return {
-        "cbr": cbr, "mr": round(mr, 1), "units": u,
+        "cbr": cbr, "mr": round(mr, 1),
+        "units": {"cbr": "percent", "mr": "psi" if u == "psi" else "MPa"},
         "equation": "Mr(psi)=2555*CBR^0.64 (Mr(MPa)=17.6*CBR^0.64)",
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
         "pdf_page_index": 230, "printed_page": "5-53",
@@ -70,6 +74,7 @@ def resilient_modulus_from_cbr(cbr, units: str = "psi") -> dict:
     }
 
 
+@_u.labelled({"cbr": "percent", "mr_psi": "psi"})
 def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
     """Subgrade Mr from CBR, Heukelom & Klomp 1962 (Eq. 5.13, 1993 AASHTO Guide).
 
@@ -115,6 +120,7 @@ def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
 # (Chapter 5; PDF p.230/226, printed 5-53/5-49)
 # ============================================================================
 
+@_u.labelled({"mr": "psi", "r_value": "no unit printed"})
 def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
     """Resilient modulus Mr (psi, or MPa) from the Stabilometer R-value, NCHRP 1-37A correlation of FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
@@ -155,7 +161,9 @@ def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
     else:
         raise ValueError(f"units must be 'psi' or 'mpa', got '{units}'.")
     return {
-        "r_value": r_value, "mr": round(mr, 1), "units": u,
+        "r_value": r_value, "mr": round(mr, 1),
+        "units": {"r_value": "no unit printed",
+                  "mr": "psi" if u == "psi" else "MPa"},
         "equation": "Mr(psi)=1155+555*R (Mr(MPa)=8.0+3.8*R)",
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
         "pdf_page_index": 230, "printed_page": "5-53",
@@ -183,6 +191,7 @@ _DCP_PRINT_NOTE = (
 _DCP_MIN_MM = (292.0 / 100.0) ** (1.0 / 1.12)   # CBR = 100 % here
 
 
+@_u.labelled({"cbr": "percent", "dcp_mm_per_blow": "mm (per blow)"})
 def cbr_from_dcp(dcp_mm_per_blow) -> dict:
     """California Bearing Ratio CBR (%) from the Dynamic Cone Penetrometer index in mm per blow, FHWA-NHI-05-037 Table 5-34 (p. 5-53; ASTM D6951).
 
@@ -230,6 +239,8 @@ def cbr_from_dcp(dcp_mm_per_blow) -> dict:
     }
 
 
+@_u.labelled(
+    {"cbr": "percent", "dcp_mm_per_blow": "mm (per blow)", "mr": "psi"})
 def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
     """Resilient modulus Mr (psi, or MPa) from the Dynamic Cone Penetrometer index in mm per blow, via CBR, FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
@@ -261,7 +272,9 @@ def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
     mr = resilient_modulus_from_cbr(cbr, units=units)
     return {
         "dcp_mm_per_blow": dcp_mm_per_blow, "cbr": round(cbr, 1),
-        "mr": mr["mr"], "units": mr["units"],
+        "mr": mr["mr"],
+        "units": {"dcp_mm_per_blow": "mm (per blow)", "cbr": "percent",
+                  "mr": mr["units"]["mr"]},
         "equation": "CBR=292/DCP^1.12 (DCP in mm/blow) -> Mr=2555*CBR^0.64 (psi)",
         "print_note": _DCP_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (ASTM D6951; NCHRP 1-37A)",
@@ -282,6 +295,9 @@ _P200_PRINT_NOTE = (
     "CBR 0.29.")
 
 
+@_u.labelled(
+    {"cbr": "percent", "p200_decimal": "fraction", "pi_pct": "percent",
+     "wpi": "no unit printed"})
 def cbr_from_plasticity_gradation(p200, pi) -> dict:
     """California Bearing Ratio CBR (%) from the fraction passing the No. 200 sieve (a decimal) and the plasticity index (%), FHWA-NHI-05-037 Table 5-34 (p. 5-53).
 
@@ -337,6 +353,10 @@ def cbr_from_plasticity_gradation(p200, pi) -> dict:
 # (Chapter 5; PDF p.221, printed 5-44)
 # ============================================================================
 
+@_u.labelled(
+    {"k1": "no unit printed", "k2": "no unit printed", "mr_psi": "psi",
+     "theta_psi": "psi"},
+    si={"theta_psi": ("kPa", "psi")})
 def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
     """Stress-dependent (bulk-stress) resilient modulus for granular layers (Eq. 5.9).
 
@@ -358,11 +378,18 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
     k2 : float
         Material exponent k2 (dimensionless). Typical ranges in Table 5-30
         (granular base 0.5-0.7, subbase 0.4-0.6).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        theta_psi in kPa, each converted exactly to the printed unit (psi)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'theta_psi', 'k1', 'k2', 'mr_psi', 'equation', 'reference', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -389,6 +416,9 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
 # (Chapter 5; PDF p.223, printed 5-46)
 # ============================================================================
 
+@_u.labelled(
+    {"mr_psi": "psi", "relative_damage_uf": "no unit printed"},
+    si={"mr_psi": ("MPa", "psi")})
 def seasonal_relative_damage(mr_psi) -> dict:
     """Seasonal relative damage uf for an effective subgrade Mr (Eq. 5.11).
 
@@ -403,11 +433,18 @@ def seasonal_relative_damage(mr_psi) -> dict:
     ----------
     mr_psi : float
         Seasonal subgrade resilient modulus (psi), > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mr_psi', 'relative_damage_uf', 'equation', 'reference', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -428,6 +465,7 @@ def seasonal_relative_damage(mr_psi) -> dict:
     }
 
 
+@_u.labelled({"mr_effective_psi": "psi", "uf_avg": "no unit printed"})
 def effective_subgrade_modulus_from_relative_damage(uf_avg) -> dict:
     """Effective design subgrade resilient modulus Mr in psi from the average seasonal relative damage, FHWA-NHI-05-037 Eq. 5.12 (p. 5-46; 1993 AASHTO Guide).
 
@@ -485,6 +523,10 @@ _BACKCALC_FACTORS = {
 }
 
 
+@_u.labelled(
+    {"factor": "dimensionless", "mr_backcalculated_psi": "psi",
+     "mr_design_psi": "psi"},
+    si={"mr_backcalculated_psi": ("MPa", "psi")})
 def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
                                      layer: str = "subgrade") -> dict:
     """Design resilient modulus Mr in psi from a backcalculated or field Mr, by the adjustment factor of the chosen basis, FHWA-NHI-05-037 Table 5-31 commentary (pp. 5-48 to 5-49).
@@ -508,12 +550,19 @@ def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
     layer : str, optional
         'subgrade' (default) or 'granular_base'/'granular' (NCHRP 1-37A only;
         factor 0.67).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_backcalculated_psi in MPa, each converted exactly to the printed
+        unit (psi) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mr_backcalculated_psi', 'factor', 'mr_design_psi', 'basis', 'layer',
          'reference', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -553,6 +602,6 @@ def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
         "basis": b, "layer": layer_out,
         "equation": "Mr_design = C * Mr_backcalculated",
         "reference": "FHWA-NHI-05-037 Table 5-31 commentary (see also Table 5-32)",
-        "pdf_page_index": 225, "printed_page": "5-48 to 5-49",
+        "pdf_page_index": [225, 226], "printed_page": "5-48 to 5-49",
         "note": note,
     }
