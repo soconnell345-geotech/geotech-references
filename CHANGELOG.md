@@ -143,6 +143,17 @@ pages):
   reinforced functions, also refuses ku or beta1 not positive, beta1 above
   1, d'/d outside 0 to 1, and for Eq B-31 ku not below beta1 (its
   denominator).
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly` (and the
+  other Appendix B and D steel stresses), the lead's ruling 42: fs' from Eq
+  B-37 came back above yield (75.7 ksi with fy 60 for e'/d 0.8, which
+  overstated phi Pn by 24.5 kips). B-37 prints only fs' (>= -fy) (printed
+  p. 48) and B-31 fs' (<= fy) (printed p. 47); the library now holds every
+  fs and fs' within -fy..fy and, where a bound governs, returns
+  `limit_governs` True, the equation's value as `fs_unlimited` /
+  `fs_prime_unlimited` and a note saying the second bound is the library's
+  reading. `design.design_doubly_reinforced` also refuses an fs' that is
+  not positive (ad <= beta1 d': the compression steel is in tension and
+  Eq D-4 gave a negative As').
 - `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
   unchanged past the end rows, which are printed open-ended ("<= 0.0" /
   ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as

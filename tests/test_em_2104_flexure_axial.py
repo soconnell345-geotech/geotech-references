@@ -187,6 +187,40 @@ class TestDoublyReinforcedCompressionControlled:
                 self._call(**kw)
 
 
+class TestSteelStressHeldAtYield:
+    """Ruling 42 on REF-76: Eq B-37 prints fs' (>= -fy) (printed p. 48) and
+    Eq B-31 fs' (<= fy) (printed p. 47); the library holds fs' (and fs)
+    within -fy..fy, gives the equation's value beside it and says so."""
+
+    def test_checkers_call(self):
+        r = compression_controlled_capacity_doubly(
+            0.8, 0.1, 0.01, 0.01, 60, 4, 0.85, 12, 20, 24, 0.65)
+        assert r["ku"] == pytest.approx(0.655, abs=0.001)
+        assert r["fs_prime"] == 60
+        assert r["fs_prime_unlimited"] == pytest.approx(75.70, abs=0.01)
+        assert r["limit_governs"] is True
+        assert "B-37 prints only the lower bound" in r["note"]
+        assert "library's reading" in r["note"]
+        # phi Pn with fs' at fy: 24.5 kips less than with B-37's 75.7 ksi
+        unheld = r["phi_pn"] + 0.65 * 0.01 * (75.704 - 60) * 12 * 20
+        assert r["phi_pn"] == pytest.approx(400.3, abs=0.1)
+        assert unheld - r["phi_pn"] == pytest.approx(24.5, abs=0.1)
+
+    def test_below_yield_unchanged_and_unflagged(self):
+        r = compression_steel_stress_at_ku(0.6, 0.15, 0.85, 60.0,
+                                           regime="compression_controlled")
+        assert r["fs_prime"] == 60.0 and r["limit_governs"] is True
+        r = compression_steel_stress_at_ku(0.4, 0.15, 0.85, 60.0,
+                                           regime="compression_controlled")
+        assert r["fs_prime"] == pytest.approx(87.0 * (0.4 - 0.1275) / 0.4)
+        assert r["limit_governs"] is False and "note" not in r
+
+    def test_tension_controlled_bound_flagged(self):
+        r = compression_steel_stress_at_ku(0.6, 0.05, 0.85, 60.0)
+        assert r["fs_prime"] == 60.0 and r["limit_governs"] is True
+        assert r["fs_prime_unlimited"] > 60.0
+
+
 class TestCompressionSteelStressInputs:
     """REF-76: fs' is bounded at fy (B-31, printed p. 47) and -fy (B-37,
     printed p. 48); inputs no section has are refused, not bounded."""
@@ -195,10 +229,10 @@ class TestCompressionSteelStressInputs:
         r = compression_steel_stress_at_ku(0.3, 0.15, 0.85, 60.0)
         assert r["fs_prime"] == pytest.approx(
             (0.3 - 0.85 * 0.15) / (0.85 - 0.3) * 60.0)
-        r = compression_steel_stress_at_ku(0.6, 0.15, 0.85, 60.0,
+        r = compression_steel_stress_at_ku(0.4, 0.15, 0.85, 60.0,
                                            regime="compression_controlled")
         assert r["fs_prime"] == pytest.approx(
-            max(-60.0, 29000.0 * 0.003 * (0.6 - 0.85 * 0.15) / 0.6))
+            29000.0 * 0.003 * (0.4 - 0.85 * 0.15) / 0.4)
 
     @pytest.mark.parametrize("kw, words", [
         ({"dprime_over_d": 30.0}, "between 0 and 1"),

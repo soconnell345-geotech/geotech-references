@@ -106,6 +106,22 @@ class TestDesignDoublyReinforced:
         assert r["as_required"] > 0
         assert r["as_prime_required"] > 0
 
+    def test_fs_prime_bound_said_and_tension_refused(self):
+        # Ruling 42 on REF-76: fs' from strain compatibility (printed p. 71,
+        # no bound printed) is held at fy, with the formula's value and a
+        # note; where it is not positive (ad <= beta1 d') D-4 gives no As'.
+        args = dict(mn=8000.0, pn=0.0, d=30.0, h=34.0, b=12.0, fc_prime=4.0,
+                    fy=60.0)
+        r = design_doubly_reinforced(dprime=3.0, **args)
+        assert r["fs_prime"] == pytest.approx(28.2, abs=0.05)
+        assert r["limit_governs"] is False and "note" not in r
+        r = design_doubly_reinforced(dprime=1.0, **args)
+        assert r["fs_prime"] == 60.0 and r["limit_governs"] is True
+        assert r["fs_prime_unlimited"] > 60.0 and "library's reading" in r["note"]
+        with pytest.raises(ValueError, match="not in compression"):
+            design_doubly_reinforced(mn=900.0, pn=0.0, d=10.0, dprime=2.5,
+                                     h=12.0, b=12.0, fc_prime=4.0, fy=60.0)
+
     def test_non_physical_bound_refused(self):
         # REF-76: fs' is held at fy; fy, Es or ec not positive is refused.
         for kw in ({"fy": -60.0}, {"es": 0.0}, {"ec": -0.003}):

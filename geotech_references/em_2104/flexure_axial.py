@@ -123,6 +123,22 @@ def _solve_cubic_ku(coeffs, kb=None, prefer="lt_kb", lo=1e-6, hi=5.0):
     raise ValueError(f"Unknown prefer={prefer!r}")
 
 
+def _yield_bounded(value, fy, name, printed):
+    """Hold a steel stress within -fy..fy (ruling 42 on REF-76).
+
+    ``printed`` names the bound the page prints beside the equation; the
+    other side is the library's reading (steel carries no more than yield).
+    Returns (bounded value, note or None)."""
+    if -fy <= value <= fy:
+        return value, None
+    bound = fy if value > fy else -fy
+    return bound, (
+        f"{name} = {value:.4g} ksi from the equation; {printed}. The library "
+        f"applies both bounds, -fy and fy, so {name} = {bound:g} ksi is used "
+        "(steel carries no more than yield; the library's reading where the "
+        "page prints only one side).")
+
+
 # ============================================================================
 # Chapter 4 -- eccentricity, balanced strain factor, biaxial bending
 # ============================================================================
@@ -407,7 +423,12 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
     Returns
     -------
     dict
-        {'ku', 'fs', 'phi_pn', 'phi_mn', 'equation': 'B-17/B-18/B-19/B-21', ...}
+        {'ku', 'fs', 'phi_pn', 'phi_mn', 'limit_governs',
+         'equation': 'B-17/B-18/B-19/B-21', ...}. fs is held within
+        -fy..fy: Eq B-19 prints fs (>= -fy) (printed p. 45) and the library
+        also holds it at fy (ruling 42 on REF-76; possible when kb is not
+        given and the root below kb is taken); where a bound governs,
+        ``fs_unlimited`` and a note are added.
 
     Raises
     ------
@@ -425,14 +446,21 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
         -beta1 * esec * rho * e_prime_over_d / (0.425 * fc_prime),
     ]
     ku = _solve_cubic_ku(coeffs, kb=kb, prefer="gt_kb")
-    fs = max(-fy, es * ec * (beta1 - ku) / ku)
+    fs_raw = es * ec * (beta1 - ku) / ku
+    fs, note = _yield_bounded(
+        fs_raw, fy, "fs",
+        "Eq B-19 prints only the lower bound, fs (>= -fy) (printed p. 45)")
     phi_pn = phi * (0.85 * fc_prime * ku - rho * fs) * b * d
     phi_mn = phi_pn * (e_prime_over_d - (1 - h / (2 * d))) * d
-    return {
+    out = {
         "ku": ku, "fs": fs, "phi_pn": phi_pn, "phi_mn": phi_mn,
         "equation": "B-17/B-18/B-19/B-21", "printed_page": "44-45",
-        "pdf_page": "49-50",
+        "pdf_page": "49-50", "limit_governs": note is not None,
     }
+    if note:
+        out["fs_unlimited"] = fs_raw
+        out["note"] = note
+    return out
 
 
 # ============================================================================
@@ -483,8 +511,15 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
     regime): compression-steel stress fs', ksi, at a given ku (printed
     pp. 46-47).
 
-        fs' = [(ku - beta1*d'/d) / (beta1 - ku)] * Es*epsilon_y   (B-31, capped <= fy)
-        fs' = Es*ec*[ku - beta1*(d'/d)] / ku                       (B-37, capped >= -fy)
+        fs' = [(ku - beta1*d'/d) / (beta1 - ku)] * Es*epsilon_y   (B-31, <= fy)
+        fs' = Es*ec*[ku - beta1*(d'/d)] / ku                       (B-37, >= -fy)
+
+    fs' is held within -fy..fy in both regimes (ruling 42 on REF-76): each
+    equation prints one bound (B-31 <= fy, printed p. 47; B-37 >= -fy,
+    printed p. 48) and the library applies both, since steel carries no
+    more than yield. Where a bound governs, the result gives
+    ``limit_governs`` True, the equation's value as ``fs_prime_unlimited``
+    and a note (B-37 above fy used to be returned as it came).
 
     Parameters
     ----------
@@ -534,20 +569,28 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
             f"beta1={beta1}")
     if regime == "tension_controlled":
         ey = fy / es
-        fs_prime = (ku - beta1 * dprime_over_d) / (beta1 - ku) * es * ey
-        fs_prime = min(fs_prime, fy)
+        raw = (ku - beta1 * dprime_over_d) / (beta1 - ku) * es * ey
         eq = "B-31"
+        printed = "Eq B-31 prints fs' (<= fy) (printed p. 47)"
     elif regime == "compression_controlled":
-        fs_prime = es * ec * (ku - beta1 * dprime_over_d) / ku
-        fs_prime = max(fs_prime, -fy)
+        raw = es * ec * (ku - beta1 * dprime_over_d) / ku
         eq = "B-37"
+        printed = ("Eq B-37 prints only the lower bound, fs' (>= -fy) "
+                   "(printed p. 48); Eq B-31 prints the upper, fs' (<= fy) "
+                   "(printed p. 47)")
     else:
         raise ValueError(
             f"regime must be 'tension_controlled' or 'compression_controlled', "
             f"got {regime!r}"
         )
-    return {"fs_prime": fs_prime, "equation": eq,
-            "printed_page": "46-47", "pdf_page": "51-52"}
+    fs_prime, note = _yield_bounded(raw, fy, "fs'", printed)
+    out = {"fs_prime": fs_prime, "equation": eq,
+           "printed_page": "46-48", "pdf_page": "51-53",
+           "limit_governs": note is not None}
+    if note:
+        out["fs_prime_unlimited"] = raw
+        out["note"] = note
+    return out
 
 
 def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
@@ -586,18 +629,24 @@ def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
     dict
         {'eb_prime_over_d', 'fs_prime_at_kb', 'equation': 'B-28', ...}
     """
-    fs_prime = compression_steel_stress_at_ku(
+    fsr = compression_steel_stress_at_ku(
         kb, dprime_over_d, beta1, fy, es, ec, regime="tension_controlled",
-    )["fs_prime"]
+    )
+    fs_prime = fsr["fs_prime"]
     numerator = (2 * kb - kb ** 2
                  + fs_prime * rho_prime * (1 - dprime_over_d) / (0.425 * fc_prime))
     denominator = (2 * kb - fy * rho / (0.425 * fc_prime)
                    + fs_prime * rho_prime / (0.425 * fc_prime))
     eb_over_d = numerator / denominator
-    return {
+    out = {
         "eb_prime_over_d": eb_over_d, "fs_prime_at_kb": fs_prime,
         "equation": "B-28", "printed_page": "45", "pdf_page": 50,
+        "limit_governs": fsr["limit_governs"],
     }
+    if fsr["limit_governs"]:
+        out["fs_prime_unlimited"] = fsr["fs_prime_unlimited"]
+        out["note"] = fsr["note"]
+    return out
 
 
 def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
@@ -672,15 +721,18 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     a0 = k * beta1 * (rho_prime * dpr * (e + dpr - 1) + rho * e)
     coeffs = [1.0, a2, a1, a0]
     ku = _solve_cubic_ku(coeffs, kb=kb, prefer="lt_kb")
-    fs_prime = compression_steel_stress_at_ku(
+    fsr = compression_steel_stress_at_ku(
         ku, dprime_over_d, beta1, fy, es, ec, regime="tension_controlled",
-    )["fs_prime"]
+    )
+    fs_prime = fsr["fs_prime"]
     phi_pn = phi * (0.85 * fc_prime * ku + rho_prime * fs_prime - rho * fy) * b * d
     phi_mn = phi_pn * (e_prime_over_d - (1 - h / (2 * d))) * d
     return {
         "ku": ku, "fs_prime": fs_prime, "phi_pn": phi_pn, "phi_mn": phi_mn,
         "equation": "B-29/B-30/B-33", "printed_page": "46-47",
-        "pdf_page": "51-52",
+        "pdf_page": "51-52", "limit_governs": fsr["limit_governs"],
+        **({"fs_prime_unlimited": fsr["fs_prime_unlimited"],
+            "note": fsr["note"]} if fsr["limit_governs"] else {}),
     }
 
 
@@ -741,11 +793,17 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     Returns
     -------
     dict
-        {'ku', 'fs', 'fs_prime', 'phi_pn', 'phi_mn',
+        {'ku', 'fs', 'fs_prime', 'phi_pn', 'phi_mn', 'limit_governs',
          'equation': 'B-34/B-35/B-36/B-37/B-39', ...}
-        ``fs`` is held within -fy..fy: steel stress does not pass yield,
-        as the appendix bounds fs' in Eqs B-31 (<= fy, printed p. 47) and
-        B-37 (>= -fy, printed p. 48).
+        ``fs`` and ``fs_prime`` are both held within -fy..fy (ruling 42 on
+        REF-76): Eq B-37 prints only fs' (>= -fy) (printed p. 48), Eq B-31
+        prints fs' (<= fy) (printed p. 47) and Eq B-36 prints no bound on
+        fs; the library applies both bounds to both, since steel carries no
+        more than yield (fs' above fy used to be returned and overstated
+        phi Pn). Where a bound governs: ``limit_governs`` True, the
+        equation's value as ``fs_unlimited`` / ``fs_prime_unlimited``, and a
+        note. ku is the root of Eq B-39 as printed, which takes B-37's fs';
+        it is not solved again with fs' held at fy.
 
     Raises
     ------
@@ -764,16 +822,28 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     a0 = -beta1 * coeff_k * (rho_prime * dpr * (e + dpr - 1) + rho * e)
     coeffs = [1.0, a2, a1, a0]
     ku = _solve_cubic_ku(coeffs, kb=kb, prefer="gt_kb")
-    fs = max(-fy, min(fy, esec * (beta1 - ku) / ku))
-    fs_prime = compression_steel_stress_at_ku(
+    fs_raw = esec * (beta1 - ku) / ku
+    fs, fs_note = _yield_bounded(
+        fs_raw, fy, "fs", "Eq B-36 prints no bound on fs (printed p. 48)")
+    fsr = compression_steel_stress_at_ku(
         ku, dprime_over_d, beta1, fy, es, ec, regime="compression_controlled",
-    )["fs_prime"]
+    )
+    fs_prime = fsr["fs_prime"]
     phi_pn = phi * (0.85 * fc_prime * ku + rho_prime * fs_prime - rho * fs) * b * d
     phi_mn = phi_pn * (e_prime_over_d - (1 - h / (2 * d))) * d
+    notes = [n for n in (fs_note, fsr.get("note")) if n]
+    extra = {}
+    if fs_note:
+        extra["fs_unlimited"] = fs_raw
+    if fsr["limit_governs"]:
+        extra["fs_prime_unlimited"] = fsr["fs_prime_unlimited"]
+    if notes:
+        extra["note"] = " ".join(notes)
     return {
         "ku": ku, "fs": fs, "fs_prime": fs_prime, "phi_pn": phi_pn,
         "phi_mn": phi_mn, "equation": "B-34/B-35/B-36/B-37/B-39",
         "printed_page": "47-48", "pdf_page": "52-53",
+        "limit_governs": bool(notes), **extra,
     }
 
 
