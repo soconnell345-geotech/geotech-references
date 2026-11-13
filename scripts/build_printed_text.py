@@ -44,7 +44,10 @@ The manifest is a multi-volume one (``volumes``, each with ``pdf_path``,
 ``volume_id``, ``contents_pages`` [first, last] (1-based PDF pages) and its
 ``chapters`` with 1-based ``page_start`` / ``page_end``), plus
 ``"text_build": "printed"``. Chapters can be left out with
-``skip_chapters``.
+``skip_chapters``. A volume's ``symbol_fonts`` ({font name: {text-layer
+character: printed glyph}}) puts back the signs a symbol font's text layer
+gives as ordinary characters ("1#Cc #3" for 1 ≤ Cc ≤ 3; see
+``_symbol_glyphs``).
 
 A volume whose manifest entry says ``"layout": "army"`` (a USACE engineer
 manual typeset in Word: paragraphs numbered 5–5, subparagraphs a, (1),
@@ -197,13 +200,53 @@ def _clean_ws(text: str) -> str:
 # reading the volume
 # ---------------------------------------------------------------------------
 
-def read_pages(pdf: Path) -> list[dict]:
+def _symbol_glyphs(page, text: str, fonts: dict, pno: int) -> str:
+    """``text`` (the page's text layer) with each character set in a symbol
+    font the manifest's ``symbol_fonts`` names put back to the glyph the page
+    prints.
+
+    A manual made with WordPerfect sets its signs in symbol fonts (WP MathA,
+    WP Greek Century, WP Typographic Symbols, Wingdings), and the text layer
+    gives each such glyph as an ordinary character: "Cu $4 and 1#Cc #3", "with
+    # 12 percent fines" where the page prints the less-or-equal sign, "40"20"
+    for 40 ± 20, "T = 0E" for ω = 0°. ``symbol_fonts`` maps a font name (as
+    PyMuPDF names a span's font, the subset prefix off) to {text-layer
+    character: printed glyph}, each read off a 300 dpi render of the page
+    (an empty glyph drops a mark that prints nothing a reader reads). The
+    line holding the span is found in ``text`` and rewritten, so nothing else
+    on the page changes."""
+    lines = text.split("\n")
+    at = 0
+    for block in page.get_text("dict")["blocks"]:
+        for line in block.get("lines", []):
+            spans = line["spans"]
+            if not any(s["font"] in fonts and any(c in fonts[s["font"]] for c in s["text"])
+                       for s in spans):
+                continue
+            raw = "".join(s["text"] for s in spans)
+            new = "".join("".join(fonts[s["font"]].get(c, c) for c in s["text"])
+                          if s["font"] in fonts else s["text"] for s in spans)
+            try:
+                k = lines.index(raw, at)
+            except ValueError:
+                raise ValueError(f"PDF page {pno + 1}: symbol-font line {raw!r} "
+                                 "not found in the page's text") from None
+            lines[k] = new
+            at = k + 1
+    return "\n".join(lines)
+
+
+def read_pages(pdf: Path, symbol_fonts: dict | None = None) -> list[dict]:
     """Each page: ``label`` (printed page, e.g. '6-28') and its ``lines``
-    with the running header taken off."""
+    with the running header taken off (and the glyphs of ``symbol_fonts``
+    put back, see ``_symbol_glyphs``)."""
     pages = []
     with fitz.open(str(pdf)) as doc:
-        for page in doc:
-            lines = [ln.strip() for ln in page.get_text().split("\n")]
+        for pno, page in enumerate(doc):
+            text = page.get_text()
+            if symbol_fonts:
+                text = _symbol_glyphs(page, text, symbol_fonts, pno)
+            lines = [ln.strip() for ln in text.split("\n")]
             label, cut = None, 0
             for k, ln in enumerate(lines[:12]):
                 m = _PAGE_LABEL.match(ln)
@@ -662,7 +705,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
         REPORTS[vol["volume_id"]] = book
         return chapters, []
     pdf = (manifest_dir / vol["pdf_path"]).resolve()
-    pages = read_pages(pdf)
+    pages = read_pages(pdf, vol.get("symbol_fonts"))
     first, last = vol["contents_pages"]
     entries = parse_contents(pages, first, last)
     figs = parse_list(pages, "LIST OF FIGURES")
