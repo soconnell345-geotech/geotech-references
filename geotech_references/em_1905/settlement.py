@@ -622,12 +622,16 @@ def equation_7_5_compression_indices(e_1: float, e_2: float,
     s2 = _positive("sigma_2", sigma_2)
     if s2 <= s1:
         raise ValueError("sigma_2 must exceed sigma_1")
-    eq, page = ("7-5", 157) if k == "Cr" else ("7-6", 158)
+    # what the list under each equation calls the index (pp. 157, 158)
+    eq, page, slope = (("7-5", 157, "the slope of the recompression curve")
+                       if k == "Cr" else
+                       ("7-6", 158, "the slope of the reconstructed field virgin "
+                                    "compression curve"))
     if e_2 > e_1:
         raise ValueError(
             f"e_2 ({e_2}) is above e_1 ({e_1}): Eq. {eq} (p. {page}) gives "
-            f"{k}, the slope of the reconstructed field consolidation curve "
-            f"(Figure 7-4), from a point 1 to a point 2 at higher stress; a "
+            f"{k}, {slope} (Figure 7-4), from a point 1 to a point 2 at "
+            f"higher stress; a "
             f"void ratio that rises with the stress gives a negative {k}. The "
             f"page prints no condition on e_2 against e_1; the library "
             f"refuses it (its reading)")
@@ -1771,7 +1775,8 @@ def equation_7_42_time_for_consolidation(T_v: float, H_dr: float,
     H_dr : float
         Longest distance to a drainage boundary, ft.
     cv_ft2_per_day : float
-        Coefficient of consolidation in ft^2/day, as p. 184 lists it. The
+        Coefficient of consolidation in ft^2/day, as the list of symbols
+        under Eq. 7-42 gives it (top of p. 185). The
         oedometer equations 7-43 and 7-44 give Cv in in^2/day: pass their
         ``cv_ft2_per_day``, not ``cv_in2_per_day`` (that would give a time
         144 times too short).
@@ -1793,7 +1798,7 @@ def equation_7_42_time_for_consolidation(T_v: float, H_dr: float,
             "valid_for": ("Vertical drainage, linear initial excess pore "
                           "pressure with depth (Figure 7-16)."),
             "notes": ("Hdr = H/2 for two-way drainage, H for one-way (p. "
-                      "184). Cv is in ft^2/day (p. 184); Eqs. 7-43 and 7-44 "
+                      "184). Cv is in ft^2/day (p. 185); Eqs. 7-43 and 7-44 "
                       "give it in in^2/day and ft^2/day.")}
 
 
@@ -1851,7 +1856,8 @@ def equation_7_43_coefficient_of_consolidation(method: str, H_dr: float,
             "source": _source(f"Eq. {eq}", page),
             "valid_for": "Laboratory oedometer time-deformation data.",
             "notes": (f"Eq. {eq} (p. {page}) gives Cv in in^2/day with Hdr "
-                      f"in inches. Eq. 7-42 (p. 184) takes Cv in ft^2/day: "
+                      f"in inches. Eq. 7-42 (p. 184) takes Cv in ft^2/day "
+                      f"(p. 185): "
                       f"pass cv_ft2_per_day (in^2/day / 144); passing "
                       f"cv_in2_per_day gives a time 144 times too short.")}
 

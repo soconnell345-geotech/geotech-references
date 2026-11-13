@@ -119,8 +119,9 @@ def test_c3c_time_rate():
 
 
 def test_c3c_time_rate_from_an_oedometer_cv():
-    # Eq. 7-43 gives Cv in in^2/day (Hdr in inches, p. 186); Eq. 7-42 takes
-    # ft^2/day (p. 184). A made-up oedometer increment: a 1.0 in specimen
+    # Eq. 7-43 gives Cv in in^2/day (Hdr in inches, p. 186); Eq. 7-42 (p. 184)
+    # takes ft^2/day, as its list of symbols at the top of p. 185 gives Cv.
+    # A made-up oedometer increment: a 1.0 in specimen
     # (Hdr = 0.5 in, two-way drainage) whose t50 gives Example C-3c's
     # 0.412 ft^2/day, chained into Step 4
     t50 = 0.197 * 0.5 ** 2 / (0.412 * 144)
@@ -129,7 +130,9 @@ def test_c3c_time_rate_from_an_oedometer_cv():
     assert cv["cv_ft2_per_day"] == approx(0.412)
     assert cv["units"] == {"cv_in2_per_day": "in^2/day",
                            "cv_ft2_per_day": "ft^2/day"}
-    assert "Eq. 7-42 (p. 184) takes Cv in ft^2/day" in cv["notes"]
+    assert "Eq. 7-42 (p. 184) takes Cv in ft^2/day (p. 185)" in cv["notes"]
+    assert "Cv is in ft^2/day (p. 185)" in st.equation_7_42_time_for_consolidation(
+        0.403, 12.5, 0.412)["notes"]
     t = st.equation_7_42_time_for_consolidation(
         0.403, 25 / 2, cv_ft2_per_day=cv["cv_ft2_per_day"])
     assert t["t_days"] == approx(152.8, abs=0.05)
@@ -642,9 +645,12 @@ def test_menard_factor_range_and_a_stiff_layer():
 def test_rising_void_ratio_refused_with_the_page():
     with pytest.raises(ValueError, match=r"Eq\. 7-46 \(p\. 191\)"):
         st.equation_7_46_secondary_compression_index(0.80, 0.81, 10, 100)
-    with pytest.raises(ValueError, match=r"Eq\. 7-5 \(p\. 157\)"):
+    # each index named as the list under its equation names it
+    with pytest.raises(ValueError, match=r"Eq\. 7-5 \(p\. 157\) gives Cr, the slope "
+                                         r"of the recompression curve"):
         st.equation_7_5_compression_indices(0.80, 0.81, 1.0, 2.0, "Cr")
-    with pytest.raises(ValueError, match=r"Eq\. 7-6 \(p\. 158\)"):
+    with pytest.raises(ValueError, match=r"Eq\. 7-6 \(p\. 158\) gives Cc, the slope "
+                                         r"of the reconstructed field virgin compression"):
         st.equation_7_5_compression_indices(0.80, 0.81, 1.0, 2.0, "Cc")
     assert st.equation_7_46_secondary_compression_index(
         0.81, 0.80, 10, 100)["C_alpha"] == approx(0.01)
