@@ -33,6 +33,7 @@ BUILT = {
     "chapter03": (145, 212),
     "chapter04": (213, 310),
     "chapter05": (311, 401),
+    "chapter06": (402, 545),
     "chapter07": (546, 595),
 }
 #: sha256 of every section's fields other than ``body`` (json, sorted keys),
@@ -143,6 +144,16 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("chapter06", "6-2.2.2", 374,
+     "In the absence of better information, a metal loss of 0.003 inches per year can be "
+     "conservatively applied in design for unprotected steel in non-marine environments (FHWA 2016)."),
+    ("chapter06", "6-4.1.2", 389,
+     "Practical refusal is often defined as 120 bpf or 10 blows per inch for three consecutive "
+     "inches of penetration."),
+    ("chapter06", "6-5.4.2", 419,
+     "When the undrained strength ratio is less than 0.25, the value of α should be capped at 1.0."),
+    ("chapter06", "6-5.4.2", 420,
+     "When the OCR is less than 1.2, the value of α should be capped at 1.0."),
     ("chapter05", "5-3.7", 316,
      "The asperity angle (i) usually ranges from 10 to 15°."),
     ("chapter05", "5-3.7", 317,
@@ -288,6 +299,42 @@ def test_prologue_as_printed():
     assert "Intentionally" not in secs["P-4"]["body"]
     assert "GEOTECHNICAL DESIGN IN PROBLEM SOILS" not in secs["P-4"]["body"]
     assert secs["1-4"]["body"].startswith("[p. 54] Variable | Definition")
+
+
+def test_chapter_6_as_printed():
+    secs = _sections("chapter06")
+    # 6-1.1 to 6-1.4, 6-9.1 and 6-10.5 have no sections: their text under their
+    # printed headings, the numbers (drawn on the page) put back
+    b = secs["6-1"]["body"]
+    assert b.startswith("[p. 364] 6-1.1 Scope.")
+    for h in ("\n6-1.2 Organization\n", "\n6-1.3 Applications.\n",
+              "[p. 365] 6-1.4 General Considerations."):
+        assert h in b
+    assert secs["6-9"]["body"].startswith("[p. 485] 6-9.1 Introduction.")
+    assert "[p. 500] 6-10.5 Gamma-Gamma Logging." in secs["6-10.4"]["body"]
+    # the lettering of figures drawn as lines is left out (pp. 375, 385, 417)
+    for sid, word in (("6-2.2.2", "Exposure time (years)"), ("6-4.1.1", "Lattice"),
+                      ("6-5.4.2", "Very Stiff")):
+        assert word not in secs[sid]["body"]
+    a = _body_with_parts(secs, "6-5.4.2")
+    # the condition printed beside Eqs. 6-16 to 6-19, typed from the render
+    assert "[Eq. 6-17] α = 0.5·(su/σ'z)^(-0.25) for su/σ'z > 1" in a
+    assert "[Eq. 6-19] α = 0.73·OCR^(-0.2) for OCR > 4.5" in a
+    # the earlier body's note on Eq. 6-15 kept after it
+    assert "[Eq. 6-15] α = 0.53·(su/Pa) [As printed, with no exponent." in a
+    # Eq. 6-48: its Arial words are part of the equation object (p. 443)
+    b = secs["6-5.8.3"]["body"]
+    assert "[Eq. 6-48] Rʹb = Rb for fine-grained" in b
+    assert "\nfor coarse-grained (cohesionless) soils\n" not in b
+    assert "N̄1,60 = average overburden corrected N value" in secs["6-5.8.2"]["body"]
+    assert "[Eq. 6-74] σdr,tensile ≤ φda(0.095√f'c + fpe) (ksi)" in secs["6-7.1.1.2"]["body"]
+    assert "[Eq. 6-79] tcap = Pui/12 + 30 [As printed:" in secs["6-7.3"]["body"]
+    # the notation and the reading typed in, the print's slips noted
+    n = secs["6-12"]["body"]
+    assert n.startswith("[p. 502] Variable | Definition")
+    assert "[p. 506] Z | Pile length" in n
+    assert 'Pn | Load at failure in [As printed on p. 504:' in n
+    assert "[As printed on p. 507: FHWA-NHI-16-009" in secs["6-13"]["body"]
 
 
 def test_chapter_5_as_printed():
@@ -455,10 +502,12 @@ _OPS = re.compile(r"[+\-−×·*/÷^√Σ²³½]")
 _ENUM = re.compile(r"(?:^|(?<=[.:;•\]] )|(?<=\s)(?=\d{1,2}\)\s[A-Z]))"
                    r"(?:\d{1,2}|[a-zA-Z]|[ivx]{1,4})\)(?=\s)")
 #: brackets the page itself leaves unpaired (checked on the render): captions
-#: that letter their parts "a) ... b) ..." (pp. 300, 320, 321)
+#: that letter their parts "a) ... b) ..." (pp. 300, 320, 321) and a sentence
+#: that numbers its conditions "1) the ... 2) there ..." (p. 430)
 _PRINTED_UNPAIRED = {("5-3.4.2", "Figure 5-9 Bearing Capacity Factors"),
                      ("5-4.2", "Figure 5-26 Idealized Distribution"),
-                     ("5-4.3", "Figure 5-27 Idealized Distribution")}
+                     ("5-4.3", "Figure 5-27 Idealized Distribution"),
+                     ("6-5.4.6.2", "FHWA (2018a) recommends a value of N*cr = 2.5")}
 #: a prime the page itself sets alone: "the prime symbol (ʹ)" (p. 2)
 _PRINTED_PRIMES = {("P-2.1", "the prime symbol (ʹ)")}
 

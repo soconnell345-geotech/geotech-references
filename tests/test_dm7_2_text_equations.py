@@ -108,14 +108,18 @@ PRINTED = [
     ("chapter05.json", "5-6.4", "kp", "Municipal solid waste", None),
     # Eq. 6-53, PDF p. 486 (printed 448)
     ("chapter06.json", "6-5.8.4.3", "body",
-     "Cεr · log( min(σʹz0 + Δσʹz, σʹp) / σʹz0 ) + Cεc · log( max(σʹz0 + Δσʹz, σʹp) / σʹp )", "- ...]"),
+     "[Eq. 6-53] δs = H0 · [Cεr · log(min(σʹz0 + Δσʹz, σʹp)/σʹz0) + Cεc · log(max(σʹz0 + Δσʹz, σʹp)/σʹp)]",
+     "- ...]"),
     ("chapter06.json", "6-5.8.4.3", "Eq. 6-53", "log(min(σʹz0 + Δσʹz, σʹp)/σʹz0)", None),
     # Eq. 6-60, 6-63, 6-64, PDF p. 495-496 (printed 457-458): square and cube roots
+    # (the bodies print each numbered equation as "[Eq. 6-60]" and its checked
+    # entry's formula, REF-94)
     ("chapter06.json", "6-6.4.1.1", "Eq. 6-60", "g = √[(Mt,ult + Pt,ult·(1.5·b + 0.5·f)) / (2.25·b·su*)]", "..."),
-    ("chapter06.json", "6-6.4.1.1", "body", "(6-60)", None),
+    ("chapter06.json", "6-6.4.1.1", "body",
+     "[Eq. 6-60] g = √[(Mt,ult + Pt,ult·(1.5·b + 0.5·f)) / (2.25·b·su*)]", None),
     ("chapter06.json", "6-6.4.1.2", "Eq. 6-63", "[2·(Pt,ult·Zmin + Mt,ult) / (b·γʹ·KP)]^(1/3)", None),
     ("chapter06.json", "6-6.4.1.2", "Eq. 6-64", "f = √[2·Pt,ult / (3·b·γʹ·KP)]", "..."),
-    ("chapter06.json", "6-6.4.1.2", "body", "(6-64)", None),
+    ("chapter06.json", "6-6.4.1.2", "body", "[Eq. 6-64] f = √[2·Pt,ult / (3·b·γʹ·KP)]", None),
     # Eq. 6-79, PDF p. 514 (printed 476): tcap = Pui/12 + 30
     ("chapter06.json", "6-7.3", "body", "tcap = Pui/12 + 30", "Pui/30 + 12"),
     ("chapter06.json", "6-7.3", "Eq. 6-79", "tcap = Pui/12 + 30", "Pui/30 + 12"),

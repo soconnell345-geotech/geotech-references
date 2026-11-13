@@ -44,7 +44,7 @@
     402,
     545
    ],
-   "built": false
+   "built": true
   },
   "chapter07": {
    "pages": [
@@ -365,17 +365,29 @@
   "Eq. 6-6": "β = K·tan(δ)",
   "Eq. 6-7": "fs = β·σ'z",
   "Eq. 6-8": "fs = Cα = α·su",
-  "Eq. 6-9": "α = 0.28·(su/Pa)^(-0.44), fit to Tomlinson (1994) curve for pile penetration 10b into stiff clay beneath soft clay",
-  "Eq. 6-10": "α = 0.3 + 0.17·(Pa/su,ICU) ≤ 1, based on ICU triaxial undrained strength",
-  "Eq. 6-11": "Conversion of UC undrained strength to ICU equivalent: su,ICU ≈ 1.74·su,UC·OCR^(-0.25)",
-  "Eq. 6-12": "Conversion of UU undrained strength to ICU equivalent: su,ICU ≈ 1.68·su,UU·OCR^(-0.25)",
-  "Eq. 6-13": "Conversion of DSS undrained strength to ICU equivalent: su,ICU ≈ 1.43·su,DSS",
-  "Eq. 6-14": "α = 0.4·(1 - 0.12·ln(su/Pa)), for soils with clay fraction ≥ 50% and OCR between 3 and 5",
-  "Eq. 6-15": "α = 0.53·(su/Pa) with no exponent (Equation 6-15, PDF p. 457, printed p. 419), valid for su/Pa from 0.24 to 1.42",
-  "Eq. 6-16": "α = 0.5·(su/σ'z)^(-0.5), capped at 1.0 when su/σ'z < 0.25",
-  "Eq. 6-17": "α = 0.5·(su/σ'z)^(-0.25)",
-  "Eq. 6-18": "α = 1.07·OCR^(-0.4)",
-  "Eq. 6-19": "α = 0.73·OCR^(-0.2)",
+  "Eq. 6-9": "α = 0.28·(su/Pa)^(-0.44)",
+  "Eq. 6-10": "α = 0.3 + 0.17·(Pa/su,ICU) ≤ 1",
+  "Eq. 6-11": "su,ICU ≈ 1.74·su,UC·OCR^(-0.25)",
+  "Eq. 6-12": "su,ICU ≈ 1.68·su,UU·OCR^(-0.25)",
+  "Eq. 6-13": "su,ICU ≈ 1.43·su,DSS",
+  "Eq. 6-14": "α = 0.4·(1 - 0.12·ln(su/Pa))",
+  "Eq. 6-15": "α = 0.53·(su/Pa)",
+  "Eq. 6-16": {
+   "formula": "α = 0.5·(su/σ'z)^(-0.5) for su/σ'z ≤ 1",
+   "read": "render, p. 419"
+  },
+  "Eq. 6-17": {
+   "formula": "α = 0.5·(su/σ'z)^(-0.25) for su/σ'z > 1",
+   "read": "render, p. 419"
+  },
+  "Eq. 6-18": {
+   "formula": "α = 1.07·OCR^(-0.4) for OCR ≤ 4.5",
+   "read": "render, p. 420"
+  },
+  "Eq. 6-19": {
+   "formula": "α = 0.73·OCR^(-0.2) for OCR > 4.5",
+   "read": "render, p. 420"
+  },
   "Eq. 6-20": "qb = Nq·σ'zD",
   "Eq. 6-21": "qb = N*q·σ'm",
   "Eq. 6-22": "σ'm = (1 - (2/3)·sin(φ'))·σ'zD+b/2",
@@ -394,12 +406,12 @@
   "Eq. 6-35": "fs = C·Pa·(qu/Pa)^n",
   "Eq. 6-36": "qb = N*cr·qu",
   "Eq. 6-37": "Rr,g = min(n · ηg · Rr, Rr,gblock)",
-  "Eq. 6-38": "Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc, combining side shaft resistance and base bearing capacity.",
-  "Eq. 6-39": "Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9, per Brinch-Hansen (1957).",
+  "Eq. 6-38": "Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc",
+  "Eq. 6-39": "Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9",
   "Eq. 6-40": "Rr,gu = min(n(Rr,s + Wr,e) + Wr,e,cap, Rr,ublock)",
-  "Eq. 6-41": "Vblock = B·L·Z + (Z²/4)·(B + L) + Z³/12, for uniform soil profile with 4V:1H slope",
-  "Eq. 6-42": "We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap, accounting for moist and buoyant unit weights",
-  "Eq. 6-43": "Rn,block = 2·Z·(B+L)·su,avg + We,g, summing side shear resistance and effective weight of block and cap",
+  "Eq. 6-41": "Vblock = B·L·Z + (Z²/4)·(B + L) + Z³/12",
+  "Eq. 6-42": "We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap",
+  "Eq. 6-43": "Rn,block = 2·Z·(B+L)·su,avg + We,g",
   "Eq. 6-44": "δ = δe + δs",
   "Eq. 6-45": "δe = ΔQ·Z / (Ap·Ep)",
   "Eq. 6-46": "δs = ((Qd/(B·L))·√B / N̄1,60)·If",
@@ -426,17 +438,20 @@
   "Eq. 6-67": "Pt = Pc·(yt/(a·b))^(1/n)",
   "Eq. 6-68": "yt/b = a·(Mt/Mc)^n",
   "Eq. 6-69": "Mt = Mc·(yt/(a·b))^(1/n)",
-  "Eq. 6-70": "Maximum bending moment in pile due to applied lateral load Pt: Mmax/Mc ≈ a·(Pt/Pc)^n, using coefficients from Table 6-37",
+  "Eq. 6-70": "Mmax/Mc ≈ a·(Pt/Pc)^n",
   "Eq. 6-71": "PP,mob/PP,ult = y/(0.85·y + 0.006·Hcap) ≤ 1",
-  "Eq. 6-72": "AASHTO (2020) limit for maximum compressive driving stress in steel piles: σdr ≤ (0.9)(φda)(fy)",
-  "Eq. 6-73": "AASHTO (2020) limit for maximum compressive driving stress in concrete piles: σdr,comp ≤ φda(0.85f'c − fpe)",
-  "Eq. 6-74": "AASHTO (2020) limit for maximum tensile driving stress in concrete piles: σdr,tensile ≤ φda(0.095√f'c + fpe), in ksi",
-  "Eq. 6-75": "AASHTO (2020) limit for maximum compressive and tensile driving stress in timber piles: σdr ≤ φda(2.6)(fcto)",
+  "Eq. 6-72": "σdr ≤ (0.9)(φda)(fy)",
+  "Eq. 6-73": "σdr,comp ≤ φda(0.85f'c − fpe)",
+  "Eq. 6-74": {
+   "formula": "σdr,tensile ≤ φda(0.095√f'c + fpe) (ksi)",
+   "read": "render, p. 470"
+  },
+  "Eq. 6-75": "σdr ≤ φda(2.6)(fcto)",
   "Eq. 6-76": "Zf = √2 * (Ep*Ip / (b*kh))^0.25",
   "Eq. 6-77": "Es = b*kh = C*su",
   "Eq. 6-78": "Zf = 1.8*(Ep*Ip/nh)^0.2",
   "Eq. 6-79": "tcap = Pui/12 + 30",
-  "Eq. 6-80": "Structural limit state check with drag force, using the load factor of 1.10 on the drag force that FHWA (2016) reports from one state transportation agency: 1.25·Qd + 1.10·(Qnp - Qd) ≤ Pr",
+  "Eq. 6-80": "1.25·Qd + 1.10·(Qnp - Qd) ≤ Pr",
   "Eq. 7-1": "F_X(x_i) = P_X(X ≤ x_i) = Σ (j = 1 to i) P_X(x_i)",
   "Eq. 7-2": "F_X(x_0) = P(X ≤ x_0) = integral from –∞ to x_0 of f_X(x) dx",
   "Eq. 7-3": "f_X(x) = d/dx [F_X(x)]",
@@ -455,16 +470,6 @@
   "Eq. 7-16": "λ(y*) = −ln(1 − P(Y > y*)) / TR"
  },
  "notes": [
-  {
-   "section": "6-5.4.2",
-   "after": "\nColeman and Arcement (2002) found:\nα = 0.53·(su/Pa)  (6-15)",
-   "text": "[As printed, with no exponent. Curve E of Figure 6-14 is 0.53/(su/Pa), and the library codes that form (alpha_coleman_CFA).]"
-  },
-  {
-   "section": "6-7.3",
-   "after": " estimate of the cap thickness:\n\ntcap = Pui/12 + 30   (6-79)",
-   "text": "[As printed: the sentence introducing this equation on p. 476 says \"Equation 5-81\"; the equation is numbered 6-79 on the same page.]"
-  },
   {
    "section": "7-4.2.3",
    "after": "o an equivalent standard normal distribution (i.e., N(1,0)).",
@@ -494,13 +499,32 @@
    "section": "5-2.2",
    "after": "[Eq. 5-2] qnet = qult − σzD",
    "text": "[As printed on p. 275: qult; the sentence before it and Eq. 5-3 give the gross bearing pressure, qgross]"
+  },
+  {
+   "section": "6-5.4.2",
+   "after": "[Eq. 6-15] α = 0.53·(su/Pa)",
+   "text": "[As printed, with no exponent. Curve E of Figure 6-14 is 0.53/(su/Pa), and the library codes that form (alpha_coleman_CFA).]"
+  },
+  {
+   "section": "6-7.3",
+   "after": "[Eq. 6-79] tcap = Pui/12 + 30",
+   "text": "[As printed: the sentence introducing this equation on p. 476 says \"Equation 5-81\"; the equation is numbered 6-79 on the same page.]"
   }
  ],
- "formulas": {},
+ "formulas": {
+  "442@243": {
+   "text": "",
+   "why": "p. 442: the N̄1,60 of the where-line, typed in with its line (lines 442@243)."
+  }
+ },
  "lines": {
   "177@281": {
    "text": "OCR = overconsolidation ratio.",
    "why": "p. 177: the blank after the equals sign is a Symbol-font span the text layer places after the word; read on the render."
+  },
+  "442@243": {
+   "text": "N̄1,60 = average overburden corrected N value within B below the base (Table 6-19).",
+   "why": "p. 442: the symbol N̄1,60 (N with a bar) is set as glyphs beside the line; typed from the render."
   }
  },
  "typed_tables": {
@@ -629,11 +653,68 @@
    "find": "angle of 30^(o) from",
    "replace": "angle of 30° from",
    "why": "p. 281 prints a raised o for the degree sign."
+  },
+  {
+   "section": "6-1",
+   "find": "[p. 364] Scope.",
+   "replace": "[p. 364] 6-1.1 Scope.",
+   "why": "p. 364: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-1",
+   "find": "\nOrganization\n",
+   "replace": "\n6-1.2 Organization\n",
+   "why": "p. 364: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-1",
+   "find": "\nApplications.\n",
+   "replace": "\n6-1.3 Applications.\n",
+   "why": "p. 364: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-1",
+   "find": "[p. 365] General Considerations.",
+   "replace": "[p. 365] 6-1.4 General Considerations.",
+   "why": "p. 365: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-9",
+   "find": "[p. 485] Introduction.",
+   "replace": "[p. 485] 6-9.1 Introduction.",
+   "why": "p. 485: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-10.4",
+   "find": "[p. 500] Gamma-Gamma Logging.",
+   "replace": "[p. 500] 6-10.5 Gamma-Gamma Logging.",
+   "why": "p. 500: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "6-9",
+   "find": "late 19^(th) century",
+   "replace": "late 19th century",
+   "why": "p. 485 prints the ordinal's th raised."
+  },
+  {
+   "section": "6-9",
+   "find": "the 20^(th) century",
+   "replace": "the 20th century",
+   "why": "p. 485 prints the ordinal's th raised."
+  },
+  {
+   "section": "6-6.4.1.2",
+   "find": "γ ʹ = effective unit weight",
+   "replace": "γʹ = effective unit weight",
+   "why": "p. 458: the prime is set on the gamma; the text layer parts them."
   }
  ],
  "row_kinds": {
   "21@90": "running",
-  "21@104": "running"
+  "21@104": "running",
+  "443@221": "math",
+  "443@239": "math",
+  "470@478": "math+eqnum"
  },
  "table_pages": {},
  "heading_alias": {},
@@ -712,6 +793,18 @@
    "after": "",
    "text": "[p. 363] Bearing capacity of soil:\n- Meyerhof, G. G. 1951. \"The ultimate bearing capacity of foudations.\" Geotechnique, 2(4), 301-332.\n- Vesić, A. S. 1973. \"Analysis of ultimate loads of shallow foundations.\" Journal of the Soil Mechanics and Foundations Division, 99(1), 45-73.\n- Brinch Hansen, J. 1970. A Revised and Extended Formula for Bearing Capacity, Bulletin No. 28. Danish Geotechnical Institute, Copenhagen.\n\nBearing capacity of rock:\n- Stagg, K. G. and Zienkiewicz, O. C. 1968. Rock Mechanics in Engineering Practice. John Wiley & Sons, New York, 442 pp.\n\nMat foundations:\n- American Concrete Institute (ACI). 2002. Suggested Analysis and Design Procedures for Combined Footings and Mats, ACI 336.2R-88, ACI.\n\nAnchors for foundations:\n- FHWA. 1999. Ground Anchors and Anchored Systems. Geotechnical Engineering Circular No. 4. Publication FHWA-IF-99-015. Federal Highway Administration, Washington, D.C.\n\nFoundations in expansive soils:\n- Chen, F.H. 1988. Foundations on Expansive Soils. 2nd Edition, Elsevier Science Publications, New York, NY.\n\nFoundations in collapsible soils:\n- Houston, S. L., Houston, W. N., Zapata, C. E., and Lawrence, C. 2001. \"Geotechnical engineering practice for collapsible soils.\" Unsaturated soil concepts and their application in geotechnical practice, 333-355.",
    "why": "The suggested reading is printed as a table (topic, reference; p. 363); the earlier body held it typed in, topic by topic."
+  },
+  {
+   "section": "6-12",
+   "after": "",
+   "text": "[p. 502] Variable | Definition\na | Acceleration in wave mechanics calculations\nA | Total or “gross” cross-sectional area of a pile\nAb | Area of pile base\nAp | Cross-sectional area of the pile material\nAs,i | Shaft area for a pile segment\nb | Pile diameter\nbʹ | Enlarged pile base diameter\nB | Width of pile group (smaller plan dimension)\nBʹ | Width of equivalent footing (smaller plan dimension)\nc | Wave speed in a pile material\nC | Fitting paramer for shaft resistance of drilled shafts\nCα | Adhesion\nCεc | Modified compression index\nCεr | Modified recompression index\nD50 | Median particle size\nDr | Relative density\nE | Young’s modulus\nEp | Young’s modulus of pile material\nEr | Energy rating of a pile driving hammer\nEu | Young’s modulus of soil for undrained conditions\nF | Force in pile in wave mechanics calculations\nFa | Force in pile after reflection\nFb | Force in pile before reflection\nfʹc | Compressive strength of concrete or grout\nfn | Unit negative shaft resistance\nfp | Maximum unit wide resistance\nfpe | Effective prestress\n[p. 503] fs,i | Unit shaft resistance for a segment\nfu | Ultimate tensile strength of steel\nfy | Yield strength of steel\nFS | Factor of safety\ng | Acceleration due to gravity\nI | Pile impedance\nIf | Influence factor\nIp | Moment of inertia of pile\nIr | Rigidity index\nIrr | Reduced rigidity index\nJ | Damping in wave mechanics calculations\nK | Earth pressure coefficient\nK0 | Coefficient of at-rest earth pressure\nkh | Coefficient of horizontal subgrade reaction\nKP | Coefficient of passive earth pressure\nks | Side resistance factor\nkt | Base bearing factor\nL | Length of pile group (larger plan dimension)\nLʹ | Length of equivalent footing (larger plan dimension)\nMc | Characteristic moment\nMt,dead | Applied moment from dead load\nMt,live | Applied moment from live load\nMult | Ultimate moment\nn | Fitting parameter for shaft resistance of drilled shafts\nN | Standard Penetration Test blow count – uncorrected\nN1(60) | Standard Penetration Test blow count corrected for overburden and efficiency\nN60 | Standard Penetration Test blow count corrected for efficiency\nNc, Nq | Bearing capacity factors\n[p. 504] ng | Group efficiency factor\nN*c, N*q | Bearing capacity factors modified to account for compressibility and local shear\nN*cr | Bearing capacity factor for unit base resistance of rock\nOCR | Overconsolidation ratio\np | Pile perimeter in wave mechanics calculations\nPc | Characteristic load\nPn | Load at failure in [As printed on p. 504: the definition ends at \"in\"]\nPP,mob | Resultant force from mobilized passive resistance\nPP,ult | Resultant force from fully mobilized passive resistance\nPr | Factored axial structural capacity\nPt,dead | Applied dead load\nPt,live | Applied live load\nPt,ult | Ultimate load\nPui | Factored maximum single pile axial load\nPa | Atmospheric pressure\nq | Quake in wave mechanics calculations\nqb | Unit base resistance\nqc / Pa | Cone tip resistance normalized by atmospheric pressure\nqc,a / Pa | Average cone tip resistance normalized by atmospheric pressure\nQd | Applied permanent axial load\nQnp | Maximum axial load in pile at neutral plane\nqu | Unconfined compressive strength\nR, Rn | Nominal axial pile resistance\nRb, Rʹb | Base resistance\nRn,block | Block uplift capacity\nRr,g | Factored axial capacity of pile group\nRr,gblock | Factored resistance to block failure\nRr,gu | Combined factored group uplift capacity\n[p. 505] Rr,s | Factored single column capacity\nRr,ublock | Factored uplift capacity of piles and block\nRs | Shaft resistance\nRs- | Negative shaft resistance\nRs+ | Positive shaft resistance\nsu | Undrained shear strength\nsu,UC | Undrained shear strength evaluated using the unconfined compression test\nsu,DSS | Undrained shear strength evaluated using the direct simple shear test\nsu,ICU | Undrained shear strength evaluated using the isotropically consolidated undrained triaxial test\nsu,UU | Undrained shear strength evaluated using the unconsolidated undrained triaxial test\ns*u | Factored undrained shear strength\nt | Time in wave mechanics calculations\ntcap | Pile cap thickness\nu | Pile displacement in wave mechanics calculations\nv | Particle velocity in wave mechanics calculations\nva | Particle velocity at reflection\nvb | Particle velocity before reflection\nvc | Critical velocity for scour\nVblock | Volume of frustum\nWe,g | Effective weight of pile group block\nWre | Factored effective weight of a single column\ny | Lateral deflection of pile or pile cap\nytm | Deflection of pile top due to applied moment\nytp | Deflection of pile top due to applied load\nzs | Depth to bearing layer\nz1 | Depth below the base of the pile cap to the assumed start of load spreading\nz2 | Depth interval where load spreading is assumed to occur\nzʹ | Depth below the equivalent footing\n[p. 506] Z | Pile length\nZʹ | Pile length below strain and acceleration measurements\nZf | Depth to fixity\nα | Adhesion factor\nαbond | Nominal unit grout to ground bond strength\nαE | Joint modification factor\nβ | Beta method coefficient to account for shaft friction and lateral earth pressure\nδ | Interface friction angle\nδ | Total settlement\nδe | Elastic settlement of pile\n∆Q | Average change in load in an element over its length\nδs | Settlement due to compression of soil supporting a pile\nγ | Total unit weight\nγʹ, γb | Bouyant or effective unit weight of soil\nγm | Moist unit weight of soil\nεv | Volumetric strain from foundation loading\nφʹ | Effective stress friction angle\nφʹ∗ | Factored effective stress friction angle\nφda | Resistance factor for pile driving\nν | Poisson’s ratio, s subscript indicates soil\nρ | Mass density\nσʹm | Mean effective stress at b/2 below the pile base elevation\nσʹp | Preconsolidation stress\nσzD | Vertical stress at the base elevation (total or effective depending on the case)\nσʹz | Average vertical effective stress",
+   "why": "The notation is printed as a table with no number (pp. 502-506); the earlier body held it typed in, checked against the print row by row; the print's spelling kept."
+  },
+  {
+   "section": "6-13",
+   "after": "",
+   "text": "[p. 507] Topic | Reference\nDriven piles | FHWA. 2016. Design and Construction of Driven Pile Foundations. Geotechnical Engineering Circular No. 12, FHWA-NHI-16-009, U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nDrilled shafts | FHWA. 2018. Drilled Shafts: Construction Procedures and Design Methods, Geotechnical Engineering Circular No. 10, FHWA-NHI-18-024, U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nContinuous flight auger (CFA) columns | FHWA. 2007. Design and Construction of Continuous Flight Auger Piles, Geotechnical Engineering Circular No. 8, FHWA-HIF-07-03, U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nMicropiles | FHWA. 2005. Micropile Design and Construction. Reference Manual for NHI Course 132078: FHWA-NHI-05-039. U.S. Department of Transportation, Federal Highway Administration, Washington, DC\nDrilled displacement piles (DDP) | FHWA. 2007. Design and Construction of Continuous Flight Auger Piles, Geotechnical Engineering Circular No. 8, FHWA-HIF-07-03, U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nHelical piles | Perko, H. A. 2009. Helical Piles: A Practical Guide to Design and Installation. Wiley, Hoboken, NJ.\nAggregate columns | FHWA. 2017. Ground Modification Methods Reference Manual – Volumes I and II, Geotechnical Engineering Circular No. 13, FHWA-NHI-16-009 [As printed on p. 507: FHWA-NHI-16-009 is the number of Geotechnical Engineering Circular No. 12; No. 13 is FHWA-NHI-16-027 and -028], U.S. Department of Transportation, Federal Highway Administration, Washington, DC.",
+   "why": "The suggested reading is printed as a table (topic, reference; p. 507); the earlier body held it typed in, checked against the print."
   }
  ],
  "headings_as_text": {
@@ -721,7 +814,13 @@
   "267@173": "4-9.2 Cell Fill (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading.",
   "267@315": "4-9.3 Cofferdam Drainage (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading.",
   "335@90": "5-4.10 Two- or Three-Dimensional Problems (p. 335) has no section in the chapter file; its text stays in 5-4.9's body under its printed heading.",
-  "339@679": "5-5.2.1 Applications (p. 339) has no section in the chapter file; its text stays in 5-5.2's body under its printed heading."
+  "339@679": "5-5.2.1 Applications (p. 339) has no section in the chapter file; its text stays in 5-5.2's body under its printed heading.",
+  "364@141": "6-1.1 Scope (p. 364) has no section in the chapter file; its text stays in 6-1's body under its printed heading.",
+  "364@578": "6-1.2 Organization (p. 364) has no section in the chapter file; its text stays in 6-1's body under its printed heading.",
+  "364@661": "6-1.3 Applications (p. 364) has no section in the chapter file; its text stays in 6-1's body under its printed heading.",
+  "365@648": "6-1.4 General Considerations (p. 365) has no section in the chapter file; its text stays in 6-1's body under its printed heading.",
+  "485@116": "6-9.1 Introduction (p. 485) has no section in the chapter file; its text stays in 6-9's body under its printed heading.",
+  "500@90": "6-10.5 Gamma-Gamma Logging (p. 500) has no section in the chapter file; its text stays in 6-10.4's body under its printed heading."
  },
  "typed_tables_why": {
   "Table P-2 to P-8": "Text tables (method, guidance) printed pp. 9-17; the earlier bodies held condensed accounts of them, so they are typed in from the page: words from the text layer, row by row between the table's rules, read against the render; the formulas of Table P-6 typed from the render.",
@@ -729,6 +828,44 @@
   "Table 4-7": "Printed pp. 264-266 (a sketch and the design guidance for each failure mode); the earlier body held the guidance typed in, mode by mode, with its formulas (the section's checked equations entries); kept, the rows of p. 266 after the continued caption."
  },
  "row_kinds_why": {
-  "21@90, 21@104": "The title of the print's Chapter 1 (p. 21), which the prologue file holds after P-4: not body text."
+  "21@90, 21@104": "The title of the print's Chapter 1 (p. 21), which the prologue file holds after P-4: not body text.",
+  "443@221": "Eq. 6-48 (p. 443): \"for fine-grained(cohesive) soils\" is set inside the equation object.",
+  "443@239": "Eq. 6-48 (p. 443): \"for coarse-grained (cohesionless) soils\" is set inside the equation object.",
+  "470@478": "Eq. 6-74 (p. 470): the Arial \"0.095\", \"(ksi)\" and the number are set on the equation's line."
+ },
+ "figure_areas": {
+  "375": {
+   "areas": [
+    [
+     145,
+     155,
+     520,
+     396
+    ]
+   ],
+   "why": "Figure 6-4 is drawn as lines (axes, curve, labels)."
+  },
+  "385": {
+   "areas": [
+    [
+     165,
+     205,
+     445,
+     428
+    ]
+   ],
+   "why": "Figure 6-5 is drawn as lines with its labels."
+  },
+  "417": {
+   "areas": [
+    [
+     100,
+     125,
+     520,
+     432
+    ]
+   ],
+   "why": "Figure 6-14 is drawn as lines (axes, curves A to E, legend)."
+  }
  }
 }

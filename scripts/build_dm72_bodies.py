@@ -22,7 +22,9 @@ How a page is read (PyMuPDF text layer, one column, single font family):
   are Arial of 11 pt or more. Lines in smaller Arial are a table's cells, a
   table's notes or a figure's lettering, and are left out (a table the old
   bodies held typed in is put back from the manifest, see below). Text
-  inside a picture's frame is a figure's lettering and is left out;
+  inside a picture's frame is a figure's lettering and is left out; so is
+  the text of a figure drawn as lines, with no picture, inside the area the
+  manifest's ``figure_areas`` gives for its page (pp. 375, 385, 417);
 * a line set wholly in Times New Roman and Symbol is a piece of an equation
   object (the text layer gives its glyphs one or a few to a line). Those
   pieces are grouped into printed formula lines by their height on the page.
@@ -75,7 +77,9 @@ How a page is read (PyMuPDF text layer, one column, single font family):
 * the notes the earlier bodies carried about the print's own slips ("As
   printed ...") are put back after the same words (manifest ``notes``);
 * ``fixes`` mend a body where the text layer differs from the rendered page
-  (each with the page and why).
+  (each with the page and why); ``row_kinds`` (printed page and height) sets
+  the kind of a line the fonts misread, such as an Arial word set inside an
+  equation object (Eq. 6-48, p. 443).
 
 Usage::
 
@@ -430,6 +434,8 @@ def page_tokens(doc, pno: int, man: dict, foot_marks: set[int], report: list) ->
     page = doc[pno - 1]
     printed = pno - man["page_offset"]
     rows, images = _rows(page)
+    # a figure drawn as lines, with no picture: its area on the page
+    images += [fitz.Rect(a) for a in man.get("figure_areas", {}).get(str(printed), {}).get("areas", [])]
     classify(rows, images, pno)
     rows = _two_column_lists(rows)
     # a raised number is a footnote mark only where the page prints that
@@ -445,6 +451,11 @@ def page_tokens(doc, pno: int, man: dict, foot_marks: set[int], report: list) ->
         report.append(f"PDF p. {pno}: printed number {printed} not found in {running}")
     lines_fix = man.get("lines", {})
     kinds = man.get("row_kinds", {})
+    # set before rows are grouped, so an Arial word inside an equation object
+    # ("for coarse-grained (cohesionless) soils", p. 443) joins its glyphs
+    for r in rows:
+        if f"{printed}@{round(r.y0)}" in kinds:
+            r.kind = kinds[f"{printed}@{round(r.y0)}"]
     toks: list[tuple] = [("page", printed)]
     i = 0
     n = len(rows)
