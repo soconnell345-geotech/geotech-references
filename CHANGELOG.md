@@ -7,6 +7,70 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 - **EM 1110-2-2104: page citations corrected from the page (app BACKLOG REF-98, part 1).**
   Six citations pointed at the wrong printed page and now give the page that prints the equation: Eq B-22 (p. 45, was 44), Eq B-42 and Eq B-43 (p. 50, was 49), Eqs B-44 to B-48 (pp. 50-51, was 49-50), Eq D-5 (p. 71, was 73), and the ACI 318-19 resistance-factor comment (p. 121, was 118); the `pdf_page` values moved with them. No value, factor or formula changed. 56 citations were checked against the pages, 50 were already right.
 
+**Signs set in symbol fonts stored as the page prints them (2026-11-12
+review).** A PDF's text layer can give a glyph of a symbol font as an
+ordinary character ("with ≤ 12 percent fines" comes out "with # 12
+percent fines"). Every PDF in `docs/` was surveyed for such fonts, each
+font-and-character pair read off 300 dpi renders, and the stored text
+compared with the page span by span. Three references held text-layer
+characters:
+
+- `fhwa_soils_foundations` (FHWA NHI-06-088/089, built by
+  `scripts/build_printed_text.py`): 111 characters in six chapters and 2 in
+  the figure catalog. The WordPerfect fonts WP MathA, WP Greek Century and
+  WP Typographic Symbols gave "#" for ≤ (4.1.4.1, "≤ 12 percent fines",
+  twice), "." for ≈ (5.4.6.1, Cc ≈ 0.5 Gs), '"' for ± (89 places in the
+  tables of 5.4.6.3 and 5.8.4), "T = 0E" for "ω = 0°" (Tables 9-6(a) and
+  (b)), "22 minutes" for 2½ minutes (9.15.7.2), "20E" for 20° (9.15.7.4),
+  ")" for Δ, and quotes and bullets. The mapping is in the manifest
+  (`symbol_fonts`, per volume), so a rebuild keeps the printed signs.
+- `gec_4` (FHWA-IF-99-015): the catalog caption of Figure 44 said "A
+  coefficient" for β (a one-page TrueType subset). Its chapter text, written
+  from the print, already spelled every sign right ("OCR <= 4", "D >= 5B").
+- `gec_12` (FHWA-NHI-16-009 Vol III): eight catalog captions (Figures D-11
+  to D-14, D-88 to D-91) ended in eight or ten copies of U+1D719 where the
+  page prints ϕdyn or ϕstat; now φdyn and φstat.
+
+The other references' symbol-font characters print as stored, or are not
+stored (bracket pieces, bullets). `tests/test_symbol_fonts.py` pins the
+corrected places, scans every reference for private-use, control and
+replacement characters and runs of one mathematical letter, and, with the
+PDFs present, checks no symbol-font passage of the checked references is
+stored with the text-layer character.
+
+**Raised exponents, degree signs and signs drawn with a stroke (same
+review).** A text layer also gives a raised exponent or degree sign as an
+ordinary character ("1 x 10-8 cm/sec" for 1 x 10^-8, "230oF" for 230°F),
+and some pages set ≤, ≥ and ± as "<", ">" and "+" with a short stroke drawn
+under them, which the text layer leaves out. Every PDF was surveyed for
+raised spans and for those strokes, and the stored text compared with them;
+each place below was read off a render. Exponents are written with "^".
+
+- `fhwa_soils_foundations`: 48 exponents (chapters 2 and 5, Tables 5-9,
+  5-10 and 5-21 among them), 29 degree signs (chapters 2, 3, 5, 6, 8, 10),
+  and "k ≤ 1x10^-5 cm/s" (p. 5-9), "k ≥ 10^-3 cm/sec" (p. 5-62, twice),
+  "100 ± 5 °C" (p. 5-7), all through the manifest (`raised_o_degree`, and
+  `text_fixes` in Vol I), so a rebuild keeps them; three figure-catalog
+  descriptions that repeat the passages. Both volumes' manifests list the
+  SymbolMT characters (`symbol_fonts_checked`), and a test reads every
+  symbol-font character of both PDFs against the manifest.
+- `gec_10`: "B ≤ 5 ft" and "qu ≥ 10,000 psi" (10.3.4, pp. 10-7, 10-8),
+  "clear spacing ≥ 5 inches" (12.3.2, stored "over 5 inches").
+- `gec_13`: "Cu ≤ 3", "porosity ≥ 50%", "open area ≥ 4%", "≥ 50%
+  elongation" (9.8.3.2.1); permeabilities 1 x 10^-5 and 1 x 10^-6 to
+  1 x 10^-9 m/s (3.4.2.2); 400°F (8.2.5.6.2, 8.3.2.4 and two catalog rows,
+  stored "400 F").
+- `gec_4`: "Ns ≤ 4" (5.2.5, p. 55).
+- `dm7_1`: 8x10^-4 inches (1-5.3.2), less than 10^-3 and 10^-4 cm/sec
+  (3-2.7.1, 3-2.7.2), less 10^-8 cm/sec (6-3).
+- `gec_9`: Eq. A-43's coefficients, A = 3 (10^-7) (z + 1)^6.05 and the
+  exponents of B and C (A.6).
+- `ufc_flexible_practice`: 3.15x10^-4 inch (9-1.1).
+
+`tests/test_symbol_fonts.py` pins these places and scans every stored
+string for a power of ten in plain digits; three in `dm7_2` (UFC 3-220-20
+1-2.11, 3-7.4, B-7.4), left to another branch, are listed in the test.
+
 **The PDF reader is an input of a script build.** The manifest of each
 reference whose text `scripts/build_printed_text.py` reads off the PDF
 (`em_1905`, `fhwa_soils_foundations`) records the PyMuPDF version it was
