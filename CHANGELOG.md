@@ -160,8 +160,8 @@ the rendered pages:
   does not print is gone.
 
 GEC-11 signs the text layer lost (check of the rebuild): the pages print
-± as an underlined plus, read as "+": "60 ± 5" (p. 3-41) and "¾ ±1/8-inch"
-(p. 4-57) now as printed; p. 10-25's "¾+1/8 inch", underlined and shaded
+± as an underlined plus, read as "+": "60 ± 5" (p. 3-42) and "¾ ±1/8-inch"
+(p. 4-58) now as printed; p. 10-25's "¾+1/8 inch", underlined and shaded
 as a whole, keeps its "+" with a note. Figure 4-5's catalog caption held
 the symbol font's codes where the page prints θ and °; it now holds them.
 

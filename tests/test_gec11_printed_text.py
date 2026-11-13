@@ -700,13 +700,13 @@ def test_plus_minus_signs_as_printed():
     """The pages print ± as an underlined plus, which the text layer gives
     as '+' (check follow-up, read from 300 dpi crops)."""
     secs = _sections()
-    # p. 3-41 (PDF 134)
+    # p. 3-42 (PDF 134)
     assert "Durometer Hardness of 60 ± 5." in secs["3.6.1.a"]["body"]
-    # p. 4-57 (PDF 200)
+    # p. 4-58 (PDF 200)
     assert "final joint opening will be at least ¾ ±1/8-inch" in secs["4.4.7.k"]["body"]
     # p. 10-25 (Vol II PDF 113): the whole phrase is underlined and shaded
     assert ("shall be ¾+1/8 inch [Note: as printed, the phrase underlined and shaded "
-            "as a specification's entry, so a ± cannot be told from a +; p. 4-57 prints "
+            "as a specification's entry, so a ± cannot be told from a +; p. 4-58 prints "
             "the opening as ¾ ±1/8-inch.]") in secs["10.9.b"]["body"]
     for sid, s in secs.items():
         assert "60 + 5" not in s["body"] and "¾ +1/8" not in s["body"], sid
