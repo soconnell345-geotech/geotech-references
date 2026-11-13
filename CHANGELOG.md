@@ -1194,6 +1194,35 @@ The script gains options a manifest opts into
 them it builds as before (the Soils and
 Foundations rebuild test is unchanged).
 
+**FHWA-NHI-05-037 chapter text and figure catalog: fixes from the build's
+independent check (2026-11-12).** Each was read from the rendered page.
+- Signs: the manual sets ≥, ≤, ✓, the Table 7-11 symbols, list bullets and
+  table dashes in symbol fonts whose text layer gives other characters ("$"
+  for ≥, "#" for ≤, "3" for ✓). The build now reads them through a table
+  checked against the page (manifest `symbol_fonts`, with `symbol_fonts_checked`
+  for the characters that need no mapping) and reads a raised "o" as a degree
+  sign (`raised_o_degree`); a test fails on any symbol-font character the
+  table does not cover. Exponents and degree signs the text layer flattened
+  are as printed.
+- Tables typed in again from the page: 1-1 to 1-3 (each X under its own
+  column), 4-13 (every row and note, note e's formulas), 7-23a and 7-23b
+  (each cost on its own method's line).
+- Captions: the build had cut the sources and unit conversions after a
+  caption; they are back (`captions_as_printed`), with notes where the
+  printed conversion is wrong (1 pci = 0.271 MN/m³, not 284; a 2,000-lb ton
+  is 8.9 kN, not kPa; Figure 5-5's sieve openings). Nine captions printed in
+  a section but missing from its list are listed (`captions_listed`). Each
+  section's list gives the caption the page prints where the List of Figures
+  or Tables words it otherwise, 37 of them (`list_captions_as_printed`):
+  Figures 6-5 and 6-6 are flexible pavement sections, not rigid; Figure 5-11
+  is granular base stiffness, not subgrade; Figure 5-22 is a3, not a2; Table
+  6-21 has bedrock at 4 ft, not 3 ft.
+- Figure catalog: its captions were already the page's; 22 rows where the
+  List of Figures differs quote it in `read_notes`, Figure 8-11's caption is
+  complete, and the printed slips above are noted there too.
+- The new manifest keys are off unless a manifest sets them; only
+  fhwa_pavements does.
+
 **Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
 Shaft Design Process) rewritten from the print (app backlog REF-81).** The
 review found 9 of the 12 sections of chapter 6 and 2 of the 3 of chapter 8
