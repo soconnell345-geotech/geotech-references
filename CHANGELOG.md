@@ -124,7 +124,10 @@ render and independently checked cell by cell.
   examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
   kept as printed in the text, each with a note giving what the inputs
   give, and the tests pin what the inputs give. The tests run Appendix B
-  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. Every input
+  that may be None says when to pass None: theta_deg unless the AASHTO
+  method has H > 0, d_g unless alpha_g > 0 (USACE); a value given where it
+  is not needed is ignored, not checked. The equations
   of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
 - Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
   are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
