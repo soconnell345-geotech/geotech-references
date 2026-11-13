@@ -40,7 +40,7 @@ except ImportError:  # pragma: no cover - numpy is a repo-wide dependency
     _np = None
 
 # ACI 318-19 strength reduction factors (Table 21.2.2), adopted without
-# modification per Appendix F commentary (printed p. 118).
+# modification per Appendix F commentary (printed p. 121).
 PHI_TENSION_CONTROLLED = 0.90
 PHI_COMPRESSION_CONTROLLED_TIED = 0.65
 PHI_COMPRESSION_CONTROLLED_SPIRAL = 0.75
@@ -574,7 +574,7 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
 def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
     """Eq B-22: maximum design axial load strength phi*Pn(max), kips, for
     tied, doubly reinforced members, from strengths in ksi and areas in
-    sq in. (printed p. 44).
+    sq in. (printed p. 45).
 
         phi*Pn(max) = 0.8*phi*[0.85*fc'*(Ag-(rho+rho')*bd) + fy*(rho+rho')*bd]
 
@@ -599,13 +599,13 @@ def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
     Returns
     -------
     dict
-        {'phi_pn_max', 'equation': 'B-22', 'printed_page': '44',
-         'pdf_page': 49}
+        {'phi_pn_max', 'equation': 'B-22', 'printed_page': '45',
+         'pdf_page': 50}
     """
     steel_area = (rho + rho_prime) * bd
     phi_pn_max = 0.8 * phi * (0.85 * fc_prime * (ag - steel_area) + fy * steel_area)
     return {"phi_pn_max": phi_pn_max, "equation": "B-22",
-            "printed_page": "44", "pdf_page": 49}
+            "printed_page": "45", "pdf_page": 50}
 
 
 def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
@@ -1207,7 +1207,7 @@ def tension_flexure_eccentricity_range(h, d):
 def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime):
     """Eq B-42: ku (dimensionless) for a tensile load with e'/d < 0, no
     compression reinforcement (or c <= d'), designed per paragraph B-2e
-    (printed p. 49).
+    (printed p. 50).
 
         ku = -(e'/d - 1) - sqrt[(e'/d - 1)^2 + (rho*fy/(0.425fc'))*(e'/d)]
 
@@ -1226,19 +1226,19 @@ def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime)
     Returns
     -------
     dict
-        {'ku', 'equation': 'B-42', 'printed_page': '49', 'pdf_page': 54}
+        {'ku', 'equation': 'B-42', 'printed_page': '50', 'pdf_page': 55}
     """
     term = e_prime_over_d - 1
     radicand = term ** 2 + (rho * fy / (0.425 * fc_prime)) * e_prime_over_d
     ku = -term - math.sqrt(radicand)
-    return {"ku": ku, "equation": "B-42", "printed_page": "49", "pdf_page": 54}
+    return {"ku": ku, "equation": "B-42", "printed_page": "50", "pdf_page": 55}
 
 
 def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
                                      rho_prime, fy):
     """Eq B-48, B-46, B-44, B-45: ku (dimensionless) and the second-layer
     steel stress fs' (ksi, the unit of fy) for a tensile load between the
-    two reinforcement layers, 0 <= e'/d <= (1 - h/(2d)) (printed pp. 49-50);
+    two reinforcement layers, 0 <= e'/d <= (1 - h/(2d)) (printed pp. 50-51);
     phi*Pn and phi*Mn follow from them (see 'note').
 
         ku = [rho'*(d'/d)*(1 - d'/d - e'/d) - rho*(e'/d)]
@@ -1264,7 +1264,7 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
     -------
     dict
         {'ku', 'fs_prime', 'equation': 'B-44/B-45/B-46/B-48',
-         'printed_page': '49-50', 'pdf_page': '54-55', 'note'}
+         'printed_page': '50-51', 'pdf_page': '55-56', 'note'}
     """
     e = e_prime_over_d
     dpr = dprime_over_d
@@ -1273,8 +1273,8 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
     fs_prime = fy * (ku + dpr) / (ku + 1)
     return {
         "ku": ku, "fs_prime": fs_prime,
-        "equation": "B-44/B-45/B-46/B-48", "printed_page": "49-50",
-        "pdf_page": "54-55",
+        "equation": "B-44/B-45/B-46/B-48", "printed_page": "50-51",
+        "pdf_page": "55-56",
         "note": ("phi*Pn = phi*(rho*fy + rho'*fs')*b*d and "
                  "phi*Mn = phi*Pn*[(1-h/(2d)) - e'/d]*d -- multiply by the "
                  "section's b*d directly; ku and fs' above are dimensionless/"
@@ -1284,7 +1284,7 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
 
 def pure_tension_capacity(phi, as_, as_prime, fy):
     """Eq B-43: design axial tension strength phi*Pn, kips, at zero
-    eccentricity (printed p. 49), before the Eq B-40 0.8 design cap is
+    eccentricity (printed p. 50), before the Eq B-40 0.8 design cap is
     applied, from areas in sq in. and fy in ksi.
 
         phi*Pn = phi*(As + As')*fy
@@ -1304,11 +1304,11 @@ def pure_tension_capacity(phi, as_, as_prime, fy):
     Returns
     -------
     dict
-        {'phi_pn', 'equation': 'B-43', 'printed_page': '49', 'pdf_page': 54}
+        {'phi_pn', 'equation': 'B-43', 'printed_page': '50', 'pdf_page': 55}
     """
     phi_pn = phi * (as_ + as_prime) * fy
-    return {"phi_pn": phi_pn, "equation": "B-43", "printed_page": "49",
-            "pdf_page": 54}
+    return {"phi_pn": phi_pn, "equation": "B-43", "printed_page": "50",
+            "pdf_page": 55}
 
 
 # ============================================================================
