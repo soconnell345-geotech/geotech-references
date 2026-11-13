@@ -119,8 +119,10 @@ PRINTED = [
     ("chapter06.json", "6-7.3", "Eq. 6-79", "tcap = Pui/12 + 30", "Pui/30 + 12"),
     ("chapter06.json", "6-7.3", "kp", "tcap = Pui/12 + 30", "Pui/30 + 12"),
     # Eq. 7-6, PDF p. 568 (printed 530), and Eq. 7-16, PDF p. 587 (printed 549)
-    ("chapter07.json", "7-4.1.1", "body", "σ = (HCV − LCV) / n   (7-6)", None),
-    ("chapter07.json", "7-4.4", "body", "λ(y*) = − ln(1 − P(Y > y*)) / TR   (7-16)", None),
+    # (the bodies now print each numbered equation as "[Eq. 7-6]" and the
+    # formula its checked entry states, REF-94)
+    ("chapter07.json", "7-4.1.1", "body", "[Eq. 7-6] σ = (HCV − LCV) / n", None),
+    ("chapter07.json", "7-4.4", "body", "[Eq. 7-16] λ(y*) = −ln(1 − P(Y > y*)) / TR", None),
     ("chapter07.json", "7-4.4", "Eq. 7-16", "λ(y*) = −ln(1 − P(Y > y*)) / TR", "force-injected"),
     # Point estimate method, PDF p. 574 (printed 536): 2^n cases
     ("chapter07.json", "7-4.2.2", "kp", "2ⁿ", "2n "),

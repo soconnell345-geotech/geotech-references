@@ -1,0 +1,496 @@
+{
+ "_about": "Manifest of scripts/build_dm72_bodies.py (app BACKLOG REF-94): UFC 3-220-20 section bodies from the printed pages. Keys: chapters (PDF pages, stop_headings, built), footnotes and table_notes (the strings the earlier bodies held, read against the print), equation_formulas (the words of each checked equations entry that are its formula), formulas (unnumbered formula lines typed in from a 300 dpi render, key printed-page@height), lines (prose lines typed in from the render), typed_tables and typed_blocks (tables the earlier bodies held typed in, kept), notes (the earlier bodies' notes on the print's slips, put back after the same words), fixes (each with its page and why).",
+ "package": "dm7_2",
+ "pdf": "ufc_3_220_20_2025.pdf",
+ "page_offset": 38,
+ "chapters": {
+  "prologue": {
+   "pages": [
+    39,
+    92
+   ],
+   "built": false
+  },
+  "chapter02": {
+   "pages": [
+    93,
+    144
+   ],
+   "built": false
+  },
+  "chapter03": {
+   "pages": [
+    145,
+    212
+   ],
+   "built": false
+  },
+  "chapter04": {
+   "pages": [
+    213,
+    310
+   ],
+   "built": false
+  },
+  "chapter05": {
+   "pages": [
+    311,
+    401
+   ],
+   "built": false
+  },
+  "chapter06": {
+   "pages": [
+    402,
+    545
+   ],
+   "built": false
+  },
+  "chapter07": {
+   "pages": [
+    546,
+    595
+   ],
+   "stop_headings": [
+    "suggestedreading"
+   ],
+   "built": true
+  }
+ },
+ "footnotes": {
+  "1": "[Footnote 1: The φ = 0 envelope experimentally determined for saturated clays using the unconsolidated-undrained triaxial test may be slightly nonlinear for a large range of cell pressures, but should always be interpreted as a horizontal linear envelope for saturated fine-grained soils.]",
+  "2": "[Footnote 2: Ideally, these parameters should be obtained from Unconsolidated-Undrained triaxial tests on intact test specimens.]",
+  "3": "[Footnote 3: Although the figure shows the stress-displacement relationship for only one test, at least three tests, at different normal stresses, are required to define any of the three envelopes shown.]",
+  "4": "[Footnote 4: In geotechnical engineering nomenclature, clay normally refers to inorganic or mineral clays. Clays with an appreciable organic content are referred to specifically as organic clays.]",
+  "5": "[Footnote 5: Other groups and organizations have their own definitions of peat, which often differ from ASTM D4427 in the required ash content.]",
+  "6": "[Footnote 6: While these soils are called elastic silts, there is nothing indicative in their behavior which provides the expectation that these soils behave elastically in a classic sense (e.g., no volume change under application of shear stress or significant recoverable strain).]",
+  "7": "[Footnote 7: Sometimes referred to as “in the dry.”]",
+  "8": "[Footnote 8: See OSHA (2020) Paragraph 652(a)(1)(ii) for the legal definition of competent person.]",
+  "9": "[Footnote 9: Running soils have no ability to hold a vertical face and will flow or cave into the excavation if unsupported. Clean, dry coarse-grained soils are an example. Seepage can also result in running soil.]",
+  "10": "[Footnote 10: This definition of FBH differs from that proposed by Terzaghi (1943) and used by Mana and Clough (1981). The two definitions give similar results for FBH < 1.5. Terzaghi (1943) subtracted the strength above the base from the net driving force, which can lead to unreasonably high factors of safety for narrow excavations.]",
+  "11": "[Footnote 11: Peck (1969) used the stability number. Factor of safety is used here for consistency.]",
+  "12": "[Footnote 12: In this context, the term residual soils refer to Piedmont and Blue Ridge Physiographic Province soils derived from weathering of underlying rock which typically are silty to clayey sand and sandy silt.]",
+  "13": "[Footnote 13: These corrections are typically limited to 40% oversize for 4.75 mm particles and 30% oversize for ¾-inch particles.]",
+  "14": "[Footnote 14: This increase in volume is also referred to as swelling. However, bulking will be used in this manual to distinguish from the volume expansion that occurs when clay minerals are hydrated.]",
+  "15": "[Footnote 15: While the term sheepsfoot is commonly used, rollers which use true sheepsfoot tines are rare in current earthwork practice.]",
+  "16": "[Footnote 16: Local regulations should be checked. Some jurisdictions do not allow reinforcement in earth dams and other seepage barriers.]",
+  "17": "[Footnote 17: Confidential location (personal communication)]",
+  "18": "[Footnote 18: This is also called a Ko condition or zero lateral strain condition.]",
+  "19": "[Footnote 19: Total stress earth pressure coefficients can be useful for specifying earth pressures in numerical analyses concerned only with total stresses.]",
+  "20": "[Footnote 20: The Rankine method for calculating earth pressures is more applicable to coarse-grained soils than fine-grained soils. Other methods are recommended for calculating earth pressures of fine-grained soils.]",
+  "21": "[Footnote 21: It is important to note that Figure 4-12 and Figure 4-13 differ significantly from the charts provided in the 1982 version of DM 7.2. Those charts used δ/φʹ = 1 along with reduction ratios for other values of friction angle and δ/φʹ. The reduction ratios were averages that introduced substantial inaccuracy for some cases. For this reason, a single value of δ/φʹ was selected to reproduce the charts.]",
+  "22": "[Footnote 22: The discussions and closure to this paper contain important corrections that are reflected in the figures and tables included here.]",
+  "23": "[Footnote 23: If LFRD techniques are used for design, there are wider thresholds for the location of the resultant force if factored loads are used. (As printed on p. 223: \"LFRD\"; the manual elsewhere writes LRFD.)]",
+  "24": "[Footnote 24: Plastic and vinyl sheet piles have exceptional corrosion resistance, but the interlock strength is much less than steel sheet piles. Plastic and vinyl sheet piles should not be used for cases where there are significant consequences of failure, especially loss of life.]",
+  "25": "[Footnote 25: In common geotechnical engineering nomenclature, piles are “driven” and shafts are “drilled.” However, the concrete shafts in tangent and secant pile walls are most often called “piles.”]",
+  "26": "[Footnote 26: For walls constructed in weaker saturated fine-grained soils, it may be prudent to determine undrained strengths to assess if the unsupported slope is stable during excavation for the depth of the excavation stage. Undrained strengths might also be necessary for basal heave calculations (Section 2-4.3.3).]",
+  "27": "[Footnote 27: If basal sliding is deemed a possible failure mechanism, then active earth pressures determined using the Coulomb method can be used along with the conventional analysis of sliding stability of retaining walls (Section 4-5.1.3).]",
+  "28": "[Footnote 28: The terms footer and footing are common synonyms for shallow spread foundations.]",
+  "29": "[Footnote 29: ASTM D5333 and the collapse index have sometimes been used to estimate collapse settlements. However, this standard has been withdrawn from use.]",
+  "30": "[Footnote 30: Typically mill secondary pipe is used because prime pipe is very expensive. Use of mill secondary pipe requires the implementation of coupon tests, typically two per truckload of pipe, because mill certifications are not available for this material.]",
+  "31": "[Footnote 31: Personal communication. Gregory developed this rule based on extensive design experience, field testing, and synthesis of the guidance provided by Wyllie (1999) and the findings of Rowe and Armitage (1987a,b).]",
+  "32": "[Footnote 32: The Alpha Method credited to “Tomlinson (1979)” in FHWA manuals first appeared in FHWA (1982) and is based on published guidance by Tomlinson. To the authors’ knowledge, the source “Tomlinson (1979)” does not exist.]",
+  "33": "[Footnote 33: The box perimeter is the smallest rectangular shape that encompasses the H-pile cross section.]",
+  "34": "[Footnote 34: The Alpha method presented in Tomlinson (1994) also appears in previous publications by Tomlinson, at least as early as 1975.]",
+  "35": "[Footnote 35: Undrained strength ratio calculated using Eqn. 8-20 in DM 7.1 (Jamiolkowski et al. 1985) assuming the fitting parameter, m = 0.8.]",
+  "36": "[Footnote 36: Undrained strength ratio calculated using Eqn. 8-20 in DM 7.1 (Jamiolkowski et al. 1985) assuming the fitting parameter, m = 0.8.]",
+  "37": "[Footnote 37: Normal rock is defined here as relatively massive, unjointed rock, having at least moderate strength.]",
+  "38": "[Footnote 38: It is important to note that negative skin friction can occur even when none of the conditions are met.]",
+  "39": "[Footnote 39: In this context, an applied load or moment equal to the characteristic load or moment will generate a normalized pile deflection equal to a constant value for a particular soil type and fixity.]",
+  "40": "[Footnote 40: Dimensions are provided for this equation for clarity: F = force and L = length.]",
+  "41": "[Footnote 41: In some cases, outliers may be identified using appropriate statistical methods. Such observations are plotted individually beyond the bounds of the whiskers.]",
+  "42": "[Footnote 42: A physical object with a known density must have thickness in order to have a mass. The interval is the thickness required to have mass in probabilistic terms.]",
+  "43": "[Footnote 43: Empirical correlations are based on the statistical concept of correlation in which probability distributions of two or more random variables are dependent on each other. See Section 7-3.2.]",
+  "44": "[Footnote 44: This method is sometimes referred to as the Taylor Series approach. However, the entire FOSM approach is based on a Taylor Series approximation. This method is distinguished by the numerical method used to determine the derivatives for Equation 7-9.]",
+  "45": "[Footnote 45: These resources have migrated primarily to the internet and are regularly updated. For this reason, specific links or citations have not been included herein.]"
+ },
+ "table_notes": {
+  "Table 2-1": [
+   "[Table 2-1 note A: “Cohesive soil means clay (fine grained soil), or soil with a high clay content, which has cohesive strength. Cohesive soil does not crumble, can be excavated with vertical side slopes, and is plastic when moist. Cohesive soil is hard to break up when dry, and exhibits significant cohesion when submerged. Cohesive soils include clayey silt, sandy clay, silty clay, clay and organic clay.”]",
+   "[Table 2-1 note B: “Granular soil means gravel, sand, or silt (coarse grained soil) with little or no clay content. Granular soil has no cohesive strength. Some moist granular soils exhibit apparent cohesion. Granular soil cannot be molded when moist and crumble easily when dry.”]"
+  ],
+  "Table 2-3": [
+   "[Table 2-3 note A: Design trench with depths greater than 20 feet using manufacturers’ tabulated data, and refer to CFR Part 1926, Subpart P 652(c)(2) and 652(c)(3).]",
+   "[Table 2-3 note B: At this width, 2-inch diameter cylinders shall have structural steel tube oversleeves (3.5x3.5x0.1875) or structural oversleeves of manufacturers’ specification, extending the full, collapsed length.]",
+   "[Table 2-3 note C: O.C. stands for on center spacing.]"
+  ],
+  "Table 2-2": [
+   "[Table 2-2 note A: Design trench with depths greater than 20 feet using manufacturers’ tabulated data, and refer to Code of Federal Regulations (CFR) Part 1926, Subpart P 652(c)(2) and 652(c)(3).]",
+   "[Table 2-2 note B: At this width, 2-inch diameter cylinders shall have structural steel tube oversleeves (3.5x3.5x0.1875 in), or structural oversleeves of manufacturers’ specification, extending the full, collapsed length.]"
+  ],
+  "Table 2-4": [
+   "[Table 2-4 note B: Member sizing considers effective horizontal stress calculated as follows where H = depth of trench: Soil Type A: σʹh = (25×H)+72 psf; Soil Type B: σʹh = (45×H)+72 psf; and Soil Type C: σʹh = (80×H)+72 psf. An assumed 2 ft surcharge is accounted for by the added 72 psf.]",
+   "[Table 2-4 note C: Timber is Douglas fir or equivalent with a bending strength ≥ 1,500 psi.]",
+   "[Table 2-4 note D: Manufactured members of equivalent strength may be substituted for wood.]"
+  ],
+  "Table 3-1": [
+   "[Table 3-1 note A: Hydraulic conductivity ranges for clay soils are typical of laboratory compacted specimens. The hydraulic conductivity of a compacted clay mass is typically about two orders of magnitude higher than the laboratory value.]"
+  ],
+  "Table 3-2": [
+   "[Table 3-2 note A: Suitable if gravelly]",
+   "[Table 3-2 note B: Consideration of erosion is critical]",
+   "[Table 3-2 note C: Consideration of volume change is critical]",
+   "[Table 3-2 note D: USACE experience has shown that organic soils can be incorporated in embankments if necessary. See Chapter 1 for more information.]"
+  ],
+  "Table 3-12": [
+   "[Table 3-12 note A: Relative water content, Δw = wfield − wopt]"
+  ],
+  "Table 3-11": [
+   "[Table 3-11 note A: Relative water content, Δw = wfield − wopt]"
+  ],
+  "Table 5-6": [
+   "[Table 5-6 note A: Use B/L = 1 for circle. Do not combine factors for shape and inclined load.]"
+  ],
+  "Table 5-8": [
+   "[Table 5-8 note A: Use B/L = 1 for circle.]",
+   "[Table 5-8 note B: For Df/B < 1: k = Df/B. For Df/B ≥ 1: k = tan⁻¹(Df/B) in radians]",
+   "[Table 5-8 note C: Shape, depth, and factors have been determined based on the q factors using correspondence formula found in Brinch Hansen (1961) and de Beer (1970). This approach is not appropriate for the inclined base and ground factors. Brinch Hansen did not provide c factors for φ > 0 but presented the following equivalent form of the bearing capacity equation: qult = (σʹvD + cʹ·cot φʹ)·Nq·Ψq − cʹ·cot φʹ + 0.5·γ·B·Nγ·Ψγ. This equation does not require c factors but only applies to conditions with no ground inclination.]"
+  ],
+  "Table 6-10": [
+   "[Table 6-10 note 1: If required, mass density, ρ (slugs/ft³), is found by dividing unit weight by gravity, g = 32.17 ft/s².]",
+   "[Table 6-10 note 2: Modulus of concrete is estimated based on AASHTO (2020) guidance based on fʹc in ksi. Values for modulus of timber are from AWPI (2002).]",
+   "[Table 6-10 note 3: The properties of concrete and timber are influenced by many factors and may differ significantly from the provided values]",
+   "[Table 6-10 note 4: Numbers without parentheses are for creosote preservative, numbers in parentheses are for CCA and ACZA. Values based on wood at 12% moisture content retaining 12 lbs of creosote (pine and oak), 17 lbs of creosote (fir), or 1 lb of CCA or ACZA preservative per ft³ (USDA 2010).]",
+   "[Table 6-10 note 5: Southern pine applies to loblolly, longleaf, shortleaf, and slash pines. Douglas fir applies to coastal variety. Red oak applies to northern and southern red oak. Red pine applies to US-grown red pine.]"
+  ],
+  "Table 6-11": [
+   "[Table 6-11 note A: AASHTO (2020) states that resistance factors should be reduced by 20% for single drilled shafts, small pile groups (<5 piles) to account for lack of redundancy, and micropiles in marginal ground conditions.]"
+  ],
+  "Table 6-12": [
+   "[Table 6-12 note A: Values are for “usual” loading; for unusual loading, such as floods, factors of safety may be decreased by factor of 0.75; for extreme loading, such as rare natural disasters, factors of safety may be decreased by factor of 0.57.]",
+   "[Table 6-12 note B: Use FS > 3 to limit total and differential settlements to small values. Generally, use FS ≥ 2.5. FS for drilled shafts depends on uncertainties in loading, stratification, and verification testing.]",
+   "[Table 6-12 note C: Without load testing, the FS may be reduced by 0.5 for each of the following: uniform ground conditions and extensive site characterization (reduction of 1.0 possible). With load testing, the FS may be reduced by 0.5 for uniform ground conditions and extensive site characterization with an additional reduction of 0.3 possible if the load testing program is very extensive in uniform ground conditions with extensive site characterization.]",
+   "[Table 6-12 note D: Load tests should be performed before and during production pile installation, i.e., verification and proof testing. FS should be increased to 2.5 in marginal ground conditions.]"
+  ],
+  "Table 6-13": [
+   "[Table 6-13 note A: This guidance assumes that K0 = 1 – sin(φʹ)]",
+   "[Table 6-13 note B: For partial displacement columns (e.g., CFAs, H-piles, and unplugged open pipe piles), apply judgment to interpolate between the solid and dashed lines in Figure 6-13.]",
+   "[Table 6-13 note C: OCR can be found from lab or field tests or estimated using empirical correlations, e.g., with N60. The shaft friction within 7.5 ft of the ground surface should be evaluated using β determined at a depth of 7.5 ft.]"
+  ],
+  "Table 6-15": [
+   "[Table 6-15 note A: Guidance based on piles in inorganic alluvium]",
+   "[Table 6-15 note B: This version of the Beta Method for drilled shafts has been replaced by the version in FHWA (2018a).]",
+   "[Table 6-15 note C: z is the depth in feet below the ground surface to the center of the shaft or subdivided shaft segment.]",
+   "[Table 6-15 note D: β limited to 0.25 ≤ β ≤ 1.2; for soils having an N60 value less than 15 bpf, scale β by N/15.]",
+   "[Table 6-15 note E: β limited to 0.25 ≤ β ≤ 1.8]",
+   "[Table 6-15 note F: β limited to 0.25 ≤ β ≤ 3.0; e is the base of the natural logarithm = 2.718.]",
+   "[Table 6-15 note G: β limited to 0.20 ≤ β ≤ 2.5]",
+   "[Table 6-15 note H: β limited to 0.20 ≤ β ≤ 0.96]"
+  ],
+  "Table 6-20": [
+   "[Table 6-20 note A: Zb/b = normalized embedment into bearing stratum. Average N1,60 over 3 pile widths below base. When embedment for full base resistance is not achieved, linearly interpolate N1,60 with overlying weaker stratum or ground surface. Calculate the overburden-corrected blow count as: N1,60 = [0.77·log(40/σʹz)]·N60 where σʹz is the effective vertical stress in ksf]",
+   "[Table 6-20 note B: Ap = area of soil plug for open sections; Ab = base area of pile material; Fp = 0.42 for open pipe sections; and Fp = 0.67 for H-piles. To evaluate Rb, apply resulting qb to Ab.]",
+   "[Table 6-20 note C: Average N60 over 4 piles widths above and below the base (Briaud and Tucker 1984).]",
+   "[Table 6-20 note D: Average N60 within two diameters below base.]",
+   "[Table 6-20 note E: N = the uncorrected SPT blow count averaged over 4 pile diameters above and below the base. Apply judgment to evaluate qb for intermediate soil conditions.]"
+  ],
+  "Table 6-19": [
+   "[Table 6-19 note A: For Meyerhof methods, calculate the overburden-corrected blow count as: N1,60 = [0.77·log(40/σʹz)]·N60 where σʹz is the effective vertical stress in ksf]",
+   "[Table 6-19 note B: Correlation provided for compressive resistance for pile driven with impact hammer and 3 ≤ N60 ≤ 50. See original source for other soil, loading, and installation conditions, keeping in mind that SPT N values generally have low reliability in gravelly soils.]",
+   "[Table 6-19 note C: N = the uncorrected SPT blow count. Apply judgement to evaluate fs for intermediate soil conditions.]"
+  ],
+  "Table 6-24": [
+   "[Table 6-24 note A: Rock mass is unweathered with little to moderate fracturing.]"
+  ],
+  "Table 6-26": [
+   "[Table 6-26 note A: Minimum spacing is greater of 2.5 ft and s/b = 2.5 (AASHTO 2020); minimum recommended spacing is greater of 3 ft and s/b = 3.0 (FHWA 2016).]",
+   "[Table 6-26 note B: Minimum spacing is s/b = 2.5; minimum recommended spacing is greater of s/b = 3.0. If the stability of the shaft is maintained, e.g., by advancing casing ahead of drilled shaft excavation, reductions in coarse-grained soils need not be made (FHWA 2018a).]",
+   "[Table 6-26 note C: Minimum spacing is s/b = 3.0. The reductions in coarse-grained soils are likely quite conservative (FHWA 2007).]",
+   "[Table 6-26 note D: Minimum spacing is s/b = 3.0 (FHWA 2007).]",
+   "[Table 6-26 note E: Minimum spacing is greater of 2.5 ft and s/b = 3.0 (AASHTO 2020). For micropiles, b is the diameter of the grouted bond zone (FHWA 2005).]"
+  ],
+  "Table 6-27": [
+   "[Table 6-27 note A: AASHTO (2020) states that resistance factors should be reduced by 20% for micropiles in marginal ground conditions.]"
+  ],
+  "Table 6-28": [
+   "[Table 6-28 note A: AASHTO (2020) states that resistance factors should be reduced by 20% for single drilled shafts and small pile groups (<5 piles) to account for lack of redundancy and micropiles in marginal ground conditions.]"
+  ],
+  "Table 6-29": [
+   "[Table 6-29 note A: Values are for “usual” loading; for unusual loading, such as floods, factors of safety may be decreased by factor of 0.75; for extreme loading, such as rare natural disasters, factors of safety may be decreased by factor of 0.57.]",
+   "[Table 6-29 note B: Use FS > 3 to limit total and differential settlements to small values. Generally, use FS ≥ 2.5. FS for drilled shafts depends on uncertainties in loading, stratification, and verification testing.]",
+   "[Table 6-29 note C: Without load testing, the FS may be reduced by 1.0 for uniform ground conditions and extensive site characterization. With load testing, the FS may be reduced by 1.0 for uniform ground conditions and extensive site characterization, with an additional reduction of 0.5 possible if the load testing program is very extensive in uniform ground conditions with extensive site characterization.]",
+   "[Table 6-29 note D: Load tests should be performed before and during production pile installation, i.e., verification and proof testing. FS should be increased to 2.5 in marginal ground conditions.]"
+  ],
+  "Table 6-31": [
+   "[Table 6-31 note A: The fit for fine-grained soils is within ±0.1% of the curve.]",
+   "[Table 6-31 note B: The fit for coarse-grained soils is within ±0.1% of the curve, except for 89% < ACF/FT < 93% where the fit is within ±0.2% of the curve.]"
+  ],
+  "Table 6-42": [
+   "[Table 6-42 note A: AASHTO (2020) states that resistance factors should be reduced by 20% for single drilled shafts, small pile groups (<5 piles) to account for lack of redundancy, and micropiles in marginal ground conditions.]",
+   "[Table 6-42 note B: Refer to AASHTO (2020) for guidance to interpolate between tension and compression-controlled sections based on strain limits for combined axial and flexure loading.]",
+   "[Table 6-42 note C: Tension is assumed to be resisted by the reinforcing steel only.]"
+  ],
+  "Table 6-43": [
+   "[Table 6-43 note A: With substantiating data to justify higher allowable stresses, e.g., geotechnical investigation and load tests.]"
+  ],
+  "Table 6-45": [
+   "[Table 6-45 note A: AASHTO (2020) states that resistance factors for single drill shafts and small pile groups (<5 piles) should be reduced by 20% to account for lack of redundancy]",
+   "[Table 6-45 note B: Minimum number of tests is on a per site condition basis.]",
+   "[Table 6-45 note C: Dynamic testing is evaluated for restrike conditions and includes signal matching analysis.]"
+  ],
+  "Table 6-46": [
+   "[Table 6-46 note A: All length units must be consistent; inches are presented here.]",
+   "[Table 6-46 note B: The hyperbolic relationship that approximately satisfies both the Brinch Hansen 80% and 90% criteria is provided below. The synthetic load test data in Figure 6-28 was generated using the hyperbolic relationship with Pn = 400 kips and δn = 1.2 inches. Chin-Kondner hyperbolic relationship for the example: P/Pn = (δ/δn)/(0.91·δ/δn + 0.09)]"
+  ],
+  "Table 6-47": [
+   "[Table 6-47 note A: Uses dynamic force and velocity measurements from PDA or similar device]",
+   "[Table 6-47 note B: Commonly, a high percentage of test piles are tested during initial driving and restrike]",
+   "[Table 6-47 note C: Commonly, a specified subset of production piles is tested, restrikes are performed as needed to address changes and/or concerns]",
+   "[Table 6-47 note D: Driveability includes evaluating hammer energy and driving stresses]",
+   "[Table 6-47 note E: The selection of a hammer and cushion is often refined as the project progresses from design to construction]"
+  ],
+  "Table 6-48": [
+   "[Table 6-48 note B: FHWA (2018a) recommends lowering resistance factors for non-redundant shafts, sites with high variability, and/or when uncalibrated rapid load tests.]"
+  ],
+  "Table 7-4": [
+   "[Table 7-4 note A: Mean COV minus one standard deviation – use for well-characterized or relatively homogeneous site conditions]",
+   "[Table 7-4 note B: Mean COV – use for typical site characterization and/or geologic variability]",
+   "[Table 7-4 note C: Mean COV plus one standard deviation – use for limited characterization and/or highly variable soil conditions]"
+  ]
+ },
+ "equation_formulas": {
+  "Eq. P-1": "s = a·Pa·(σʹ/Pa)^b",
+  "Eq. P-2": "su = au·Pa·(σ'1,con/Pa)^bu",
+  "Eq. A-3": "s = a·Pa·(σʹ/Pa + t)^b",
+  "Eq. 2-1": "Hcrit = 4su / γt",
+  "Eq. 2-2": "Normalized wall stiffness Kwall = EI / (γt × h⁴)",
+  "Eq. 2-3": "β = (δVi − δVj) / db",
+  "Eq. 2-4": "εh = (δHi − δHj) / db",
+  "Eq. 2-5": "δi = δm · ((d0 − di) / d0)",
+  "Eq. 2-6": "δi = δm for 0 ≤ di ≤ 0.75H",
+  "Eq. 2-7": "Scaled distance SD = D / W^β",
+  "Eq. 2-8": "Peak particle velocity PPV = K · SD^(−1.6)",
+  "Eq. 2-9": "K = PPV / SD^(−1.6)",
+  "Eq. 2-10": "ρ = q·γw / Δp",
+  "Eq. 3-1": "γd = Ws/Vt = γt / (1 + w/100)",
+  "Eq. 3-2": "γd = γw·S / (w/100 + S/Gs)",
+  "Eq. 3-3": "R.C",
+  "Eq. 3-4": "Relative water content, printed as Δw = wopt − wfield (Equation 3-4, PDF p. 150, printed p. 112)",
+  "Eq. 3-5": "Dr = [(emax − e)/(emax − emin)] × 100% = [(γd,field − γd,min)/(γd,max − γd,min)] × (γd,max/γd,field) × 100%, expressed in both void ratio and dry unit weight forms",
+  "Eq. 3-6": "wT = PC·wC + PF·wF",
+  "Eq. 3-7": "γdT = (γdF·GsC·γw)/(γdF·PC + GsC·γw·PF)",
+  "Eq. 3-8": "VB = (γd,F / γd,B) × VF + WL / γd,B",
+  "Eq. 3-9": "VB = (γd,F / γd,B) × VF × (1 + XL)",
+  "Eq. 3-10": "ΔV/VF = (γd,F / γd,B) × (1 + XL) - 1",
+  "Eq. 4-1": "K0 = σ'h / σ'z",
+  "Eq. 4-2": "K0 = (1 − sin φ') · OCR^(sin φ')",
+  "Eq. 4-3": "KA = (1 − sin φ') / (1 + sin φ') = tan²(45° − φ'/2)",
+  "Eq. 4-4": "KP = (1 + sin φ') / (1 − sin φ') = tan²(45° + φ'/2)",
+  "Eq. 4-5": "KA = 1/KP",
+  "Eq. 4-6": "σ'h = KA · σ'z − 2c' · √KA",
+  "Eq. 4-7": "σ'h = KP · σ'z + 2c' · √KP",
+  "Eq. 4-8": "PA = KA · γ · H² / 2",
+  "Eq. 4-9": "PP = KP · γ · H² / 2",
+  "Eq. 4-10": "PA = (1/2)·γ·H²·cos²(φʹ−θ) / { cos²θ·cos(θ+δ)·[1+sqrt(sin(φʹ+δ)sin(φʹ−β)/(cos(θ+δ)cos(θ−β)))]² }",
+  "Eq. 4-11": "PP = (1/2)·γ·H²·cos²(φʹ+θ) / { cos²θ·cos(θ−δ)·[1−sqrt(sin(φʹ+δ)sin(φʹ+β)/(cos(θ−δ)cos(θ−β)))]² }",
+  "Eq. 4-12": "ln(Kp) = ln[(1 + sin φʹ)/(1 − sin φʹ)] · [1.443·(δ/φʹ)·sin φʹ + 1]",
+  "Eq. 4-13": "γeq = K · γ",
+  "Eq. 4-14": "σh = γeq · z + K · q",
+  "Eq. 4-15": "Seismic active earth pressure coefficient KAE as a function of backfill friction angle φ', backfill slope β, wall slope θ, interface friction angle δ, and seismic angle ψ = tan⁻¹(kh/(1−kv))",
+  "Eq. 4-16": "Total seismic active earth pressure force PAE = (γ·H²/2)·(1 − kv)·KAE",
+  "Eq. 4-17": "Dynamic earth pressure force component ΔPAE = (3/8) · kh · γ · H², for horizontal backfill, vertical wall face, no wall friction, and wall height < 20 ft (Seed and Whitman 1970 simplification)",
+  "Eq. 4-18": "ΔPE = kh · γ · H² (Wood 1973), added to static pressure to obtain total applied force",
+  "Eq. 4-19": "pw = 0.875 · kh · γw · √(H·z)",
+  "Eq. 4-20": "Pw = (7/12) · kh · γw · H²",
+  "Eq. 4-21": "ψ = tan⁻¹[γsat · kh / ((γsat − γw)(1 − ru)(1 − kv))]",
+  "Eq. 4-22": "γ = (γsat − γw)(1 − ru)",
+  "Eq. 4-23": "qmax = R/B + 6·R·e/B²",
+  "Eq. 4-24": "qmin = R/B − 6·R·e/B²",
+  "Eq. 4-25": "qmax = 2R / (3x0)",
+  "Eq. 4-26": "Be = 3·x0",
+  "Eq. 4-27": "qmax = R / (2·x0)",
+  "Eq. 4-28": "Be = 2·x0",
+  "Eq. 4-29": "PP,allow = PP / F",
+  "Eq. 4-30": "φ′allow = arctan(tan φ′ / F), providing a factor of safety on shear strength",
+  "Eq. 4-31": "ρ = (H + D)⁴ / EI",
+  "Eq. 5-1": "total load (structural load + foundation weight + overlying soil weight) divided by bearing area A",
+  "Eq. 5-2": "gross bearing pressure minus existing vertical overburden pressure at the foundation bearing elevation",
+  "Eq. 5-3": "Net bearing pressure approximation when foundation and backfill unit weights equal existing soil unit weight",
+  "Eq. 5-4": "e = M/Q",
+  "Eq. 5-5": "|eB| ≤ B/6 or |eL| ≤ L/6",
+  "Eq. 5-6": "6|eB|/B + 6|eL|/L ≤ 1",
+  "Eq. 5-7": "q_corner = q_gross·(1 ± 6|eB|/B ± 6|eL|/L)",
+  "Eq. 5-8": "B' = B - 2*eB",
+  "Eq. 5-9": "L' = L - 2*eL",
+  "Eq. 5-10": "Equivalent uniform bearing pressure for eccentrically loaded rectangular foundation using reduced equivalent dimensions B' and L'",
+  "Eq. 5-11": "L' = sqrt{ [2·r²·cos⁻¹(ex/r) − 2·ex·sqrt(r² − ex²)] · [sqrt(r² − ex²) / (r − ex)] }",
+  "Eq. 5-12": "B' = L' · (r − ex) / sqrt(r² − ex²)",
+  "Eq. 5-13": "q_all,gross = q_ult / F_BC",
+  "Eq. 5-14": "q_all,net ≤ q_ult/F_BC - sigma_zD, subtracting overburden pressure from factored ultimate capacity (Peck et al. 1974)",
+  "Eq. 5-15": "qult = cʹ·Nc·Ψc + σʹzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ",
+  "Eq. 5-16": "qult = c·Nc·Ψc + σzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ, using undrained cohesion c, undrained friction angle φ, total unit weight γ, and total vertical stress σzD at bearing elevation",
+  "Eq. 5-17": "qult = su·Nc·Ψc + σzD·Ψq",
+  "Eq. 5-18": "Ψc = sc · dc · ic · bc · gc",
+  "Eq. 5-19": "Ψq = sq · dq · iq · bq · gq",
+  "Eq. 5-20": "Ψγ = sγ · dγ · iγ · bγ · gγ",
+  "Eq. 5-21": "Ψc,BH,φ=0 = (1 + sc + dc − ic − bc − gc)",
+  "Eq. 5-22": "NS = γ·H / su",
+  "Eq. 5-23": "NS = γ·H / c′",
+  "Eq. 5-24": "Nc = 5.14 + (k·B / su0)",
+  "Eq. 5-25": "Nc,m,r = Nc,m,c·(B/L) + Nc,m,s·(1 - B/L), interpolating between circular (Nc,m,c) and strip (Nc,m,s) factors by B/L ratio",
+  "Eq. 5-26": "H2 = (2B − H1) · (c1 + tan φ1) / (c2 + tan φ2)",
+  "Eq. 5-27": "cave = (H1·c1 + H2·c2) / (H1 + H2)",
+  "Eq. 5-28": "φave = arctan[(H1·tan φ1 + H2·tan φ2) / (H1 + H2)]",
+  "Eq. 5-29": "Nc = 5·tan⁴(45 + φʹrf/2)",
+  "Eq. 5-30": "Nq = tan⁶(45 + φʹrf/2)",
+  "Eq. 5-31": "Nγ = Nq + 1",
+  "Eq. 5-32": "qʹult = qult · RQD²",
+  "Eq. 5-33": "Kr = (E′·Ib) / (Es · B³)",
+  "Eq. 5-34": "λ = ⁴√[ks·B/(4Ec·I)]",
+  "Eq. 5-35": "ks = q / s",
+  "Eq. 5-36": "ks = kp * (Bp / B)^n",
+  "Eq. 5-37": "ks = q/s = Es / (B·µ0·µ1)",
+  "Eq. 5-38": "ν = (1 − sin φ') / (2 − sin φ')",
+  "Eq. 5-39": "ksc = s·ks/(s + sc) = q/[q·(B/Es)·µ0·µ1 + sc]",
+  "Eq. 5-40": "K = ks × Acont",
+  "Eq. 5-41": "ks(i) = ks · [σz,ave(1) / σz,ave(i)]",
+  "Eq. 5-42": "q_net = (W_structure - W_excavated) / A_mat",
+  "Eq. 6-1": "vc (m/s) = 0.35 · (D50)^0.45",
+  "Eq. 6-2": "I = E·A/c",
+  "Eq. 6-3": "R = Rs + Rb",
+  "Eq. 6-4": "Rs = Σ(fs,i · As,i)",
+  "Eq. 6-5": "Rb = qb · Ab",
+  "Eq. 6-6": "β = K·tan(δ)",
+  "Eq. 6-7": "fs = β·σ'z",
+  "Eq. 6-8": "fs = Cα = α·su",
+  "Eq. 6-9": "α = 0.28·(su/Pa)^(-0.44), fit to Tomlinson (1994) curve for pile penetration 10b into stiff clay beneath soft clay",
+  "Eq. 6-10": "α = 0.3 + 0.17·(Pa/su,ICU) ≤ 1, based on ICU triaxial undrained strength",
+  "Eq. 6-11": "su,ICU ≈ 1.74·su,UC·OCR^(-0.25)",
+  "Eq. 6-12": "su,ICU ≈ 1.68·su,UU·OCR^(-0.25)",
+  "Eq. 6-13": "su,ICU ≈ 1.43·su,DSS",
+  "Eq. 6-14": "α = 0.4·(1 - 0.12·ln(su/Pa)), for soils with clay fraction ≥ 50% and OCR between 3 and 5",
+  "Eq. 6-15": "Alpha factor for CFAs in mixed alluvial/loessial deposits (Coleman and Arcement 2002), printed as α = 0.53·(su/Pa) with no exponent (Equation 6-15, PDF p. 457, printed p. 419), valid for su/Pa from 0.24 to 1.42",
+  "Eq. 6-16": "α = 0.5·(su/σ'z)^(-0.5), capped at 1.0 when su/σ'z < 0.25",
+  "Eq. 6-17": "α = 0.5·(su/σ'z)^(-0.25)",
+  "Eq. 6-18": "α = 1.07·OCR^(-0.4)",
+  "Eq. 6-19": "α = 0.73·OCR^(-0.2)",
+  "Eq. 6-20": "qb = Nq·σ'zD",
+  "Eq. 6-21": "qb = N*q·σ'm",
+  "Eq. 6-22": "σ'm = (1 - (2/3)·sin(φ'))·σ'zD+b/2",
+  "Eq. 6-23": "N*q = (3/(3 - sin(φ')))·e^((π/2 - φ')·tan(φ'))·tan²(π/4 + φ'/2)·Irr^(4·sin(φ')/(3·(1 + sin(φ'))))",
+  "Eq. 6-24": "Ir = E / ((1 + 2·ν)·σ'm·tan(φ'))",
+  "Eq. 6-25": "Irr = Ir / (1 + εv·Ir)",
+  "Eq. 6-26": "εv = (1+ν)(1-2ν)/((1-ν)·Es)·∆σzD+b/2 ≈ qb,app·Fν / Es",
+  "Eq. 6-27": "qb = N*c·su",
+  "Eq. 6-28": "N*c = (4/3)·(ln(Irr) + 1) + π/2 + 1",
+  "Eq. 6-29": "Irr = Ir = Eu / (3·su)",
+  "Eq. 6-30": "N*c = 1.33·(ln(Ir) + 1) ≤ 9",
+  "Eq. 6-31": "N*c = 10.2 - 12.4·(0.1 / (0.1 + su/Pa)) ≤ 9",
+  "Eq. 6-32": "fs = (Pa/ks)·(qc/Pa) ≤ Pa·(fp/Pa)",
+  "Eq. 6-33": "qb = Pa·kt·(qc,a/Pa)",
+  "Eq. 6-34": "Rs = αbond·π·b·Zb",
+  "Eq. 6-35": "fs = C·Pa·(qu/Pa)^n",
+  "Eq. 6-36": "qb = N*cr·qu",
+  "Eq. 6-37": "Rr,g = min(n · ηg · Rr, Rr,gblock)",
+  "Eq. 6-38": "Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc, combining side shaft resistance and base bearing capacity",
+  "Eq. 6-39": "Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9, per Brinch-Hansen (1957)",
+  "Eq. 6-40": "Rr,gu = min(n(Rr,s + Wr,e) + Wr,e,cap, Rr,ublock)",
+  "Eq. 6-41": "Vblock = B·L·Z + (Z²/4)·(B + L) + Z³/12, for uniform soil profile with 4V:1H slope",
+  "Eq. 6-42": "We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap, accounting for moist and buoyant unit weights",
+  "Eq. 6-43": "Rn,block = 2·Z·(B+L)·su,avg + We,g, summing side shear resistance and effective weight of block and cap",
+  "Eq. 6-44": "δ = δe + δs",
+  "Eq. 6-45": "δe = ΔQ·Z / (Ap·Ep)",
+  "Eq. 6-46": "δs = ((Qd/(B·L))·√B / N̄1,60)·If",
+  "Eq. 6-47": "If = max(1 - Z/(12·B), 0.5)",
+  "Eq. 6-48": "Rʹb = Rb for fine-grained (cohesive) soils",
+  "Eq. 6-49": "Bʹ = B + z2/2",
+  "Eq. 6-50": "Lʹ = L + z2/2",
+  "Eq. 6-51": "Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ))",
+  "Eq. 6-52": "Δσz = Q/((Bʹ+zʹ)(Lʹ+zʹ)) + Δσz,other",
+  "Eq. 6-53": "δs = H0 · [Cεr · log(min(σʹz0 + Δσʹz, σʹp)/σʹz0) + Cεc · log(max(σʹz0 + Δσʹz, σʹp)/σʹp)]",
+  "Eq. 6-54": "δs = (H0/Es) · ((1+νs)(1–2νs)/(1–νs)) · Δσʹz",
+  "Eq. 6-55": "Pt,ult = 1.5·Pt,dead + 2.0·Pt,live",
+  "Eq. 6-56": "Mt,ult = 1.5·Mt,dead + 2.0·Mt,live",
+  "Eq. 6-57": "su* = 0.75·su",
+  "Eq. 6-58": "φ'* = arctan(0.75·tan φ')",
+  "Eq. 6-59": "f = Pt,ult / (9·su*·b)",
+  "Eq. 6-60": "g = √[(Mt,ult + Pt,ult·(1.5·b + 0.5·f)) / (2.25·b·su*)]",
+  "Eq. 6-61": "Zmin = 1.5·b + f + g",
+  "Eq. 6-62": "PP = 3·b·KP·γ'·Zmin²/2",
+  "Eq. 6-63": "Zmin = [2·(Pt,ult·Zmin + Mt,ult) / (b·γʹ·KP)]^(1/3)",
+  "Eq. 6-64": "f = √[2·Pt,ult / (3·b·γʹ·KP)]",
+  "Eq. 6-65": "Mmax,ult = Mt,ult + Pt,ult·f − b·f³·KP·γ'/2",
+  "Eq. 6-66": "yt/b = a·(Pt/Pc)^n",
+  "Eq. 6-67": "Pt = Pc·(yt/(a·b))^(1/n)",
+  "Eq. 6-68": "yt/b = a·(Mt/Mc)^n",
+  "Eq. 6-69": "Mt = Mc·(yt/(a·b))^(1/n)",
+  "Eq. 6-70": "Mmax/Mc ≈ a·(Pt/Pc)^n, using coefficients from Table 6-37",
+  "Eq. 6-71": "Mobilized passive resistance of an embedded pile cap as a fraction of fully-mobilized passive resistance, using a hyperbolic load-displacement relationship",
+  "Eq. 6-72": "σdr ≤ (0.9)(φda)(fy)",
+  "Eq. 6-73": "σdr,comp ≤ φda(0.85f'c − fpe)",
+  "Eq. 6-74": "σdr,tensile ≤ φda(0.095√f'c + fpe), in ksi",
+  "Eq. 6-75": "σdr ≤ φda(2.6)(fcto)",
+  "Eq. 6-76": "Zf = √2 * (Ep*Ip / (b*kh))^0.25",
+  "Eq. 6-77": "Es = b*kh = C*su",
+  "Eq. 6-78": "Zf = 1.8*(Ep*Ip/nh)^0.2",
+  "Eq. 6-79": "tcap = Pui/12 + 30",
+  "Eq. 6-80": "1.25·Qd + 1.10·(Qnp - Qd) ≤ Pr",
+  "Eq. 7-1": "F_X(x_i) = P_X(X ≤ x_i) = Σ (j = 1 to i) P_X(x_i)",
+  "Eq. 7-2": "F_X(x_0) = P(X ≤ x_0) = integral from –∞ to x_0 of f_X(x) dx",
+  "Eq. 7-3": "f_X(x) = d/dx [F_X(x)]",
+  "Eq. 7-4": "P(x_1 ≤ X ≤ x_2) = integral from x_1 to x_2 of f_X(x) dx",
+  "Eq. 7-5": "COV²(θ) = COV²w + COV²e + COV²t",
+  "Eq. 7-6": "σ = (HCV − LCV) / n",
+  "Eq. 7-7": "β = µg(X) / σg(X)",
+  "Eq. 7-8": "µg(X) = g(µX1, µX2, ..., µXn)",
+  "Eq. 7-9": "σ²g(X) = Σ (∂g/∂Xi)² · σ²Xi",
+  "Eq. 7-10": "∆g1 = g(µX1 + σX1, µX2,...,µXn) − g(µX1 − σX1, µX2,...,µXn)",
+  "Eq. 7-11": "σ²g(X) = Σ (∆gi / 2)²",
+  "Eq. 7-12": "βLN = [ln(µg(X)) − 0.5·ln(1 + COV²g)] / √[ln(1 + COV²g)]",
+  "Eq. 7-13": "µg(X) ≈ Σ Pi · g(X)i",
+  "Eq. 7-14": "σ²g(X) ≈ Σ Pi · g(X)²i − (Σ Pi · g(X)i)²",
+  "Eq. 7-15": "λ = 1/R",
+  "Eq. 7-16": "λ(y*) = −ln(1 − P(Y > y*)) / TR"
+ },
+ "notes": [
+  {
+   "section": "6-5.4.2",
+   "after": "\nColeman and Arcement (2002) found:\nα = 0.53·(su/Pa)  (6-15)",
+   "text": "[As printed, with no exponent. Curve E of Figure 6-14 is 0.53/(su/Pa), and the library codes that form (alpha_coleman_CFA).]"
+  },
+  {
+   "section": "6-7.3",
+   "after": " estimate of the cap thickness:\n\ntcap = Pui/12 + 30   (6-79)",
+   "text": "[As printed: the sentence introducing this equation on p. 476 says \"Equation 5-81\"; the equation is numbered 6-79 on the same page.]"
+  },
+  {
+   "section": "7-4.2.3",
+   "after": "o an equivalent standard normal distribution (i.e., N(1,0)).",
+   "text": "[As printed on p. 538. The same page describes the transformed variables as having a unit standard deviation, with the joint distribution of two uncorrelated variables drawn as circles centered on the origin.]"
+  },
+  {
+   "section": "7-4.2.4",
+   "after": "of β = 4.26 (Pu = 0.0001) would require at least 10⁶ trials.",
+   "text": "[Note, not printed (build check, 2026-11-10): a standard normal distribution gives β = 3.72 at Pu = 1×10⁻⁴, and β = 4.26 at about Pu = 1×10⁻⁵.]"
+  }
+ ],
+ "formulas": {},
+ "lines": {},
+ "typed_tables": {},
+ "fixes": [
+  {
+   "section": "7-2.1",
+   "find": "summarized in Table 7 1.",
+   "replace": "summarized in Table 7-1.",
+   "why": "p. 509 prints \"Table 7 1\": the hyphen is missing on the page (a blank where Word's non-breaking hyphen was); put back so the reference can be found."
+  },
+  {
+   "section": "7-2.1",
+   "find": "provided in Table 7 1.",
+   "replace": "provided in Table 7-1.",
+   "why": "p. 509 prints \"Table 7 1\": the hyphen is missing on the page (a blank where Word's non-breaking hyphen was); put back so the reference can be found."
+  }
+ ],
+ "row_kinds": {},
+ "table_pages": {},
+ "heading_alias": {},
+ "caption_continued": {},
+ "typed_blocks": [
+  {
+   "section": "7-5",
+   "after": "",
+   "text": "[p. 555] Variable | Definition\na, b | Limits of uniform distribution\naʹ | Tensile stress intercept of the Mohr Coulomb failure envelope\nCF | Clay fraction\ncov(x,y) | Covariance of variables x and y\nCOVX | Coefficient of variation of x\nE(X) | Expected value of a variable\nED | Dilatometer modulus\nEi | Intact rock modulus\nEm | Rock mass modulus\nF | Factor of safety\ng(X) | Limit state function\nGSI | Geological strength index\nHCV | Highest conceivable value\nIs50 | Point load index\nk | Hydraulic conductivity\nkD | Horizontal stress index from dilatometer\nLCV | Lowest conceivable value\nMk | kth moment about the mean\nN, n | Number of items\nN | Standard Penetration Test blow count\np | Probability of success in binomial trial\nPI | Plasticity index\nPu | Probability of unsatisfactory performance\nQ | Rock mass quality index\nQn | Nominal load\nqc | Cone penetration resistance\nqt | Cone penetration resistance corrected for pore pressure effects\n[p. 556] R | Return period\nRn | Nominal resistance\nrx | Range of a variable\nrxy | Sample correlation coefficient\nRQD | Rock quality designation\nRMR | Rock mass rating\ns | Sample standard deviation\ns2 | Sample variance\nsu | Undrained shear strength\nt | Time\nTR | Exposure period\nw | Water content\nx | Sample mean\nxmax | Maximum value\nxmin | Minimum value\nxP | Percentile value for which a fraction of the data, P, are smaller\nz | Depth below the ground surface\nβ | Reliability index\nδh, δv | Scale of fluctuation in the horizontal and vertical directions\nφ | Resistance factor for LRFD\nφʹ | Effective stress friction angle\nγ | Load factor for LRFD\nγτ | Total unit weight\nγδ | Dry unit weight\nλ | Rate for Poisson and exponential distributions\nµ | Population mean\nσ | Population standard deviation\nσ2 | Population variance\n[p. 557] σci | Unconfined compressive strength of rock",
+   "why": "The notation is printed as a table with no number (pp. 555-557); the earlier body held it typed in and checked; the last row (σci, p. 557) is added from the page."
+  }
+ ]
+}
