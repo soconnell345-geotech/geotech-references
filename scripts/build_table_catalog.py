@@ -908,10 +908,22 @@ CONFIG: dict[str, dict] = {
         ("D-118", 257): "224", ("D-122", 268): "235"},
         # every cell typed: D-60's symbols (Q/n, Mux y) are not words the
         # check finds, D-121 has four cells (renders)
-        "text_by_render": {"D-60": "D.23", "D-121": "D.39.b"},
-        "values": {n: ("page", None) for n in (
+        # Vol I (renders 2026-11-13, REF-97): six typed tables are right on
+        # the page but the cell check cannot count them, and three of the
+        # six are printed as pictures: 5-10 and 5-12 (section 5.2.4.1), 5-13
+        # (5.5.2), 6-10 (6.13), 7-17 (7.2.9), 8-6 (8.3.3). Tables 5-12 and
+        # 5-13 are forced under "values": their entries are one row and
+        # named cells, which entry_has_cells does not count. Table 5-1 also
+        # prints on PDF page 146 (its key); its row listed only 145
+        "text_by_render": {"D-60": "D.23", "D-121": "D.39.b",
+                           "5-10": "5.2.4.1", "5-12": "5.2.4.1",
+                           "6-10": "6.13", "7-17": "7.2.9",
+                           "8-6": "8.3.3"},
+        "pages_from_render": {"5-1": [145, 146]},
+        "values": {**{n: ("page", None) for n in (
         "12-1", "12-7", "15-1", "12-11", "12-12", "18-7", "18-6", "13-4",
-        "13-5", "13-6")},
+        "13-5", "13-6")}, "5-12": ("text", "5.2.4.1"),
+            "5-13": ("text", "5.5.2")},
         "notes": {
             "12-11": "Section 12.10 summarizes this table's problems and "
                      "solutions; read its wording off the page.",
