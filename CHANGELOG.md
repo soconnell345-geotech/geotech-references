@@ -1645,8 +1645,142 @@ printed).
   Table A-7's axial 1,836,420 against 2,673.42 kips in the text, and p. C-10's
   example (a 2-ft socket, 870 psi, 1,751 kips) against Figure C-6 (a 6-ft
   socket, 2,500 psi).
+- **GEC-10, more slips noted (values unchanged)**: Table A-5's cohesionless
+  total (p. A-13) leaves out Layer 1, so the Extreme Event I summation of
+  9,932 kips is about 525 kips under its rows; 0.41 x 2,266 = 929 (p.
+  A-10, printed 936) and 0.47 x 2,057 = 967 (p. A-11, printed 976); 26 ft
+  below the scoured ground where 60 - 38 = 22 (p. A-16); 30 percent of the
+  transverse demands in the text and one third in the resultants (pp. A-17
+  and A-18); 365.76 printed 365.7 (p. A-23). Figure C-4(b) (p. C-5) is a
+  copy of Figure C-3(b), the side curves for cohesionless soil: the
+  appendix note, the figure line and the catalog row's `read_notes` say so.
+  Eq. C-2's variables gain A and E (p. C-1); Eq. C-17's lose L.
+- **GEC-7 (FHWA-NHI-14-007)**, new: Appendix B, charts for preliminary
+  design (chapter 12, section B, pp. 295 to 300: the charts' assumptions,
+  the ten steps and Equations B.1 to B.8, the corrections for drill hole
+  diameter, cohesion and factor of safety); Appendix C, the design example
+  (chapter 13, sections C and C.1 to C.8.b as the print numbers its steps,
+  "4.a/b/c/d" stored as C.4.a; Tables C.1 to C.5 and every calculation line
+  of the LRFD checks). Appendices D to G (example plans, two
+  specifications, similar technologies) are not built. Kept as printed and noted: φOS = 1/1.51 ~
+  0.60 (p. 308; 0.66, Table C.2 gives 0.65); the initial-facing punching
+  CDR 1.58 (p. 315; 1.60); the headed-stud CDR 1.42 (p. 317; 1.41) and its
+  RFS for RFH (p. 316); and DDEF = 0.8 H = 20 ft for sandy soil (p. 317),
+  where Table 5.12 (p. 141) gives C = 1.25 for sandy soil and 0.8 for
+  weathered rock and stiff soil; Table C.3's head thickness tSH = 0.31 in.
+  for the ½ x 4⅛ stud, where Table A.7 gives 0.28 (hc = 4.8 in. either way).
+- **GEC-7**, new: Appendix A, Reinforcement Characteristics (chapter 11,
+  pp. 285 to 293): the manufacturer's-availability note and the property
+  tables of solid-threaded bars (Tables A.1a to A.1c, Grades 60, 75 and
+  150), CTS/Titan, MAI and GEO-Drill hollow bars (Tables A.2 to A.4),
+  welded-wire mesh (A.5), reinforcing bars (A.6) and headed studs (A.7,
+  with Figure A.1), every cell typed in from 300 dpi renders with the units,
+  sources and notes as printed. The appendix prints no section numbers:
+  sections A.1 to A.7 are named for the tables they hold. Kept as printed
+  and noted: Table A.1c's ultimate loads 57 and 400 kips where the area
+  times 150 ksi gives 55.5 and 387 (p. 287); Table A.2's yield loads, which
+  divided by the areas run from 76.6 to 91.4 ksi against its note's 87 ksi
+  (p. 288); Table A.3's R51L outer diameter 1.50 in., where the other rows
+  give the designation's number in mm (51 mm, 2.0 in.; p. 289); Table A.7's
+  three ⅞ in. rows, whose ratio columns (2.5, 0.73) agree with a shaft
+  diameter of 0.88 in., not the printed 0.86 (p. 293). No gec_7 lookup
+  holds any of these values.
+- **Micropile manual (FHWA-NHI-05-039)**, new: Appendix D, Sample Problem
+  No. 1, bridge abutment support (chapter 14, sections D and D.1 to D.10
+  as the print numbers its steps: abutment loads with Table S1-1, pile
+  loads, structural capacity of the cased and uncased lengths, bond length,
+  settlement, the pile top connection, test loads); Appendix E, Sample
+  Problem No. 2, a laterally loaded micropile (chapter 15, section E:
+  combined stress checks and the moment limit at a casing joint). The
+  legend of Figure S1-3, which carries the given loads, is stored with the
+  figure. Not built: Appendices A to C (Case 2 networks for slope
+  stabilization, LPILE output, guide specification; chapters 11 to 13 left
+  for them), the LPILE output of pp. E-7 to E-30 and the drawings of pp.
+  D-23 and D-24. Kept as printed and noted: Table 5-4 cited for the loads
+  of Table S1-1, Fx = 15.0 + 65.3 and M with 39.3 where Table S1-1 gives
+  14.91 kN and 39.13 kN-m (p. D-9); the moment of PEQ, 52.54, where Table
+  S1-1 lists 50.12 for PEQ-H (p. D-8); EA 1,252,000 and 1,133,000 kN for
+  1,252,640 and 1,133,600 (pp. D-15, D-16); 286 mm for 286.6 (p. D-18);
+  603 kN for 602 (p. D-21); the cone's nominal strength line carrying φ
+  (p. D-18); Acasing, Icasing, Pc-allowable and Mmax(joint) of pp. E-1 and
+  E-4 (0.00863 for 0.008624 m², 2,479 for 2,479.6 kN, 19.2 for 19.1 kN-m).
+- **GEC-6 (FHWA-SA-02-054)**, new: Appendix B, the five design examples
+  (chapter 12, pp. B-1 to B-90: an interior pier and a stub abutment on
+  natural soil, a stub abutment on structural fill, a full-height abutment
+  and an interior pier on rock), stored as B (introduction), B.n for each
+  example and B.n.5 to B.n.12 for its printed Steps 5 to 12 (Step 11a as
+  B.n.11.a; Example 4's footing-sizing Steps 10 and 11 for its three load
+  cases as B.4.10.a to B.4.11.c); Tables B1-1 to B5-1 and every
+  calculation line typed in from 200 dpi renders; the EMBANK output of
+  Figure B3-4 typed into its figure line. Chapter 11 is left for Appendix A
+  (structural fill specifications), not built. Kept as printed and noted: MY with (L + I) but L
+  alone in its numbers (p. B-6); Eqns. 5-10 and 5-11 cited for the ground
+  water factors, printed as Eqns. 5-9 and 5-10 (p. B-9), and Section 5.2
+  cited for settlement (5.3; p. B-7); 8070 k and 4729 k for kN (pp. B-14, B-15,
+  B-88); results a little off their own terms (164.1, 280.7, 0.0160 m, 338 kN,
+  1787 and 2645 kN-m, 1013 kN, 293.54 and 179.4 kN/m); (425.52)(2.28) for
+  a division (p. B-33); Figure B3-4 cited five times for the allowable
+  pressures of B3-5; ey = 0.53 m < 0.45 m "(No Good)" (p. B-55); 288 Pa
+  for kPa (p. B-80); Table B3-2 for B4-1 (p. B-81); (1/4)(4.3) = 1.01 for
+  1.075 (p. B-88); the rock settlement with Bf = 1 m for a 1.8-m footing
+  (p. B-89); shale ν = 0.14 where Table 5-13 gives a mean of 0.09 (p.
+  B-70) and granite 52 x 10⁶ kPa where Table 5-14 gives 52.67 (p. B-89).
+  The coded Table 5-1, 5-7, 5-12, 5-13, 5-14 and 5-15 lookups give the
+  values the examples read; Figure 5-19 within 2 and Figure 4-1 within 3.5
+  of the examples' readings.
+- **GEC-6**, new: Appendix C, Load and Resistance Factor Design (chapter
+  13, pp. C-1 to C-48): Sections C.1 to C.6 (LRFD against Service Load
+  Design, limit states, load combinations and factors, live load
+  surcharge, bearing, resistance factors, eccentricity, sliding, the design
+  steps), Eqns. C-1 to C-5 and Tables C-1 to C-6; Examples B-1 and B-3
+  re-worked by LRFD as LRFD Example C1 (C-1, the appendix's own name for
+  it, Steps C-1.5 to C-1.14) and LRFD Example 2 (C-2, Steps C-2.5 to
+  C-2.14, Step 12a as C-2.12.a), with Tables
+  C1-1, C1-2, C2-1, C2-2 and every calculation line typed in from 200 dpi
+  renders. The first of the two printed C.4.1 (active lateral earth
+  pressures, printed under C.3 before C.4) is stored as C.3.2 and says so;
+  the print has no C.4.4. Kept as printed and noted: Table C-6 citing
+  Section 5.4 for global stability (5.5) and Sections 6.4.3 and 6.4.4 for
+  bearing, eccentricity and sliding (no 6.4.4); Table C1-1's first row
+  labelled DW where the equations use DC (p. C-15); Dw defined as "(Df)"
+  and CWq taking 6.8 m where CWγ takes 9.1 m, both over 1.0 (p. C-21,
+  C-22); ez with "k" for kN (pp. C-26 to C-30); ey = 980 ÷ 10923 = 0.089
+  for 0.0897 (p. C-27); Vmin = 224 kN where Step 5 gives 150 kN (p. C-29);
+  γP for DW minimum 0 where Table C-3 gives 0.65 (p. C-35); Pv in kN·m/m
+  for kN/m (pp. C-40 to C-44); 518.3 ÷ 2.12 = 246.8 for 244.5 kPa (p.
+  C-41); γPmin labels on the maximum factors 1.25 and 1.35 (pp. C-43,
+  C-46). No lookup is coded for Appendix C's tables.
+- **GEC-6, more slips noted (values unchanged)**, found by the
+  independent check of the build: Examples 4 and 5 read Table 5-12 (p. 97)
+  in different columns, Cd = 1.83 being the Average value for L/B = 5 (p.
+  B-70) and 1.78 the Center value for L/B = 3, whose Average is 1.52 (p.
+  B-89); "Habut = (0.5)(5.24 m) = 2.62 m" for the footing width (pp. B-31,
+  B-53); 6.57 m, the B with which p. B-28 enters Figure 5-20, in a line
+  written with Bf (p. B-29); Table B1-3, nine of whose twelve settlements
+  are 1 mm above what Table B1-2's ratios give (p. B-12); Figure 5-7f, the
+  chart entered with the distance from the slope, cited for the readings
+  Example 2 takes from Figure 5-7c (p. B-43); 240 kPa for a 3.5-m footing,
+  about the 3-m value, where Figure B3-5 and Table B3-4 give about 219 (p.
+  B-52); "less than 35 mm" where the tolerable settlement is 38 mm (p.
+  B-61); Step 11c's sliding force without PLS = 24.0 kN, with which FS is
+  3.3, not 3.7 (p. B-81); in Appendix C, heq = 0.7 m for 5.24 m where
+  Table C-4 interpolates to 0.68 (p. C-34), and Step 12b's eccentricity
+  check without the live load surcharge, with which ey = 0.87 m, more than
+  Bf/4 = 0.8 m (p. C-45; its sliding check, p. C-48, leaves LS out too).
+  Figures B4-6 and B4-7 are listed under Steps 11a and 11b, whose pages
+  (B-76, B-79) print them.
+- **Micropile manual, Appendix D**: the pile-group sketch that p. D-9
+  draws beside the centroid table without a figure number is described in
+  Step 2's text (D.2), as p. D-17's cone sketch already was.
+- **GEC-7, Appendix C, one more slip noted**: p. 317 cites Figure 5.15
+  (p. 138, the bending mechanism in the initial facing) for DDEF, which
+  Figure 5.16 (p. 142) draws and p. 141 names.
 
-Tests: `tests/test_gec10_appendices_printed.py` (116).
+Tests: `tests/test_gec10_appendices_printed.py` (119),
+`tests/test_gec7_appendices_printed.py` (63),
+`tests/test_gec7_appendix_a_printed.py` (89),
+`tests/test_micropile_appendices_printed.py` (74),
+`tests/test_gec6_appendices_printed.py` (131).
 
 **DM 7.2 chapter text: key points, footnotes and table notes as printed
 (build of 2026-11-11/12, app BACKLOG REF-79).** Every summary,
