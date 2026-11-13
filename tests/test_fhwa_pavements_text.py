@@ -654,3 +654,32 @@ def test_degree_signs_and_exponents_as_printed():
     assert "thermal contraction 5x10^-6/°F" in text and "thermal expansion 5.5x10^-6/°F" in text
     assert "3.25x10^-5 ft/hr" in text and "1.57x10^4 psi" in text and "4.75x10^4 psi" in text
     assert not re.search(r"(?:\d|/|-|\s)o\s?[CFK]\b|x10-?\d", text)
+
+
+def test_captions_keep_the_printed_source_and_units():
+    # the List of Figures leaves out what a caption prints after its words
+    # (manifest "captions_as_printed", and text_fixes for 3-5 and 5-5): 86
+    # captions restored from the page, and Figure 8-9's, dropped, put back
+    text = "\n".join(s["body"] for n in BUILT for s in _chapter(n)["sections"])
+    for caption in (
+        "Figure 1-3. Some common variations of flexible pavement sections (NCHRP 1-37A, 2002).",
+        "Figure 5-25. Chart to modify modulus of subgrade reaction to consider effects of rigid "
+        "foundation near surface (within 10 ft) (AASHTO, 1993).",
+        "Figure 5-10. Influence of subgrade stiffness on critical pavement strains. (Elastic solution, "
+        "6 in./150 mm AC over 18 in./450 mm granular base.",
+        "Figure 8-11. Stress distributions under rollers over different foundations (after Rollings "
+        "and Rollings, 1996). (1 ton = 8.9 kPa",
+        "Figure 8-2. Process control, field density and moisture. (3.3 ft = 1 m)",
+        "Figure 3-5. Impact of base strength on pavement structural design design (AASHTO 93 Design "
+        "Guide: W18=10M, 85% reliability, So=0.4, ∆PSI=1.7, a1=0.44, m2=1, subgrade CBR=4).",
+        "Figure 5-5. Laboratory sieves for mechanical analysis of grain size distribution. Shown "
+        "(right to left) are sieve Nos. 3/8-in. (9.5-mm), No. 10 (2.0-mm), No. 40 (250-µm) and "
+        "No. 200 (750-µm)",
+        "Figure 8-8. Bulldozer (photo courtesy of Komatsu).\n\n"
+        "Figure 8-9. Motor grader (photo courtesy of Caterpillar)\n\nFigure 8-10.",
+    ):
+        assert caption in text, caption[:40]
+    # the conversions the restored captions print wrongly carry a note
+    assert text.count("1 pci = 284 MN/m3 [as printed; 1 pci = 0.271 MN/m³]") == 3
+    assert "8.9 kPa [as printed; a 2,000-lb ton is 8.9 kN]" in text
+    assert "[As printed; the No. 40 sieve opening is 425 µm" in text

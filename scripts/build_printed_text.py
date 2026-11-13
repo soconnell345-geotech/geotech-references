@@ -496,7 +496,8 @@ def _is_glyph_line(s: str) -> bool:
 
 
 def render_body(stream, start, end, pages, captions_on_page, eq_ids,
-                chapter="", figs=None, tables_on_page=frozenset(), eq_style=None):
+                chapter="", figs=None, tables_on_page=frozenset(), eq_style=None,
+                captions_as_printed=False):
     """The printed text of stream[start:end] as paragraphs, with page markers
     and equation markers; equation ids found are appended to ``eq_ids`` as
     (id, preceding words, page label). ``eq_style`` "parenthesized_dot"
@@ -596,7 +597,7 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
     flush()
     paras = [_clean_ws(p) for p in paras]
     paras = _drop_figure_lettering(paras, captions_on_page)
-    paras = [_cut_caption(p, figs or {}) for p in paras]
+    paras = [_cut_caption(p, figs or {}, captions_as_printed) for p in paras]
     text = "\n\n".join(p for p in paras if p)
     return text
 
@@ -623,9 +624,18 @@ def _drop_figure_lettering(paras, captions_on_page):
     return out
 
 
-def _cut_caption(para: str, figs: dict) -> str:
+#: What a printed caption adds after the words its List of Figures entry
+#: gives: a source or units in brackets, "(Coduto, 1999)." or ". (1 in. =
+#: 25 mm)" (FHWA-NHI-05-037 lists its figures without them).
+_CAPTION_TAIL = re.compile(r"\.?\s*\((?:[^()]|\([^()]*\))*\)\.?")
+
+
+def _cut_caption(para: str, figs: dict, keep_printed_tail: bool = False) -> str:
     """A figure caption paragraph ends where the List of Figures caption
-    ends; what follows it is the figure's own lettering."""
+    ends; what follows it is the figure's own lettering. With
+    ``keep_printed_tail`` (manifest ``"captions_as_printed": true``) the
+    one or two bracketed groups the page prints straight after those words
+    (the source, the unit conversions) stay in the caption."""
     m = re.match(rf"^((?:\[p\. [^\]]+\]\s*)?Figure\s+(\d{{1,2}})[-{_DASH}](\d{{1,3}})(?:([a-z])|\(([a-z])\))?"
                  r"(?:\s*\(Continued\))?[.:]\s)", para)
     num = m and f"{m.group(2)}-{m.group(3)}" + (m.group(4) or m.group(5) or "")
@@ -637,6 +647,12 @@ def _cut_caption(para: str, figs: dict) -> str:
     for w in re.finditer(r"\S+", para[m.end():]):
         end = m.end() + w.end()
         if _norm(para[m.end():end]).endswith(tail):
+            if keep_printed_tail:
+                for _ in range(2):
+                    t = _CAPTION_TAIL.match(para, end)
+                    if not t:
+                        break
+                    end = t.end()
             return para[:end]
     return para
 
@@ -995,7 +1011,8 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
             eq_ids: list = []
             body = render_body(stream, k, t, pages, captions_on_page, eq_ids,
                                chapter=str(n), figs=figs,
-                               tables_on_page=tables_on_page, eq_style=eq_style)
+                               tables_on_page=tables_on_page, eq_style=eq_style,
+                               captions_as_printed=bool(vol.get("captions_as_printed")))
             body = add_printed_tables(body, vol.get("printed_tables", []))
             if typed_tables:
                 body = add_typed_tables(body, typed_tables, tables_typed)

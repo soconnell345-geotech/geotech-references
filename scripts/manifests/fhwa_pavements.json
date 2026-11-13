@@ -22,6 +22,7 @@
       "equation_numbers": "parenthesized_dot",
       "title_lines": true,
       "headings_on_listed_page": true,
+      "captions_as_printed": true,
       "heading_overrides": {
         "2.2": {"number_as_printed": "2.2.", "title": "Questionaire on Geotechnical Practices in Pavement Design", "contents_title": "Questionnaire on Geotechncial Practices in Pavement Design"},
         "5.3.2": {"title": "Physical Property Determination", "contents_title": "Determination of Physical Properties"},
@@ -324,7 +325,12 @@
         {"page": "1-18", "find": " Table 1-2. Geotechnical influences on major distresses in rigid pavements.", "replace": "\n\nTable 1-2. Geotechnical influences on major distresses in rigid pavements."},
         {"page": "1-19", "find": " [p. 1-19] Table 1-3.", "replace": "\n\n[p. 1-19] Table 1-3."},
         {"page": "1-19", "find": " A major effect of the moisture/drainage, freeze/thaw", "replace": "\n\nA major effect of the moisture/drainage, freeze/thaw"},
-        {"page": "7-100", "find": "\n\nWick Drains $ 0.46 - 1.22/ft $ 0.60 - 1.20 Lightweight Fill Granular Tires-Wood Geofoam Foamed Concrete\n\n$ 2.30 - 16.10/yd3 $ 9.20 - 23.00/yd3 $ 26.75 - 50.00/yd3 $ 34.50 - 50.00/yd3\n\nVibrocompaction $ 4.60 - 7.60/ft $ 0.75 – 3.00 Dynamic Compaction $ 5.00 - 9.20/yd2 $ 0.75 - 1.50 MSE Walls $ 15.00 - 28.00/ft2\n\nRSS Slopes $ 10.00 - 24.00/ft2\n\nSoil Nail Walls $ 37.00 - 56.00/ft2\n\nStone Columns $ 12.20 - 18.30/ft $ 38 - 57 Deep Soil Mixing Dry w/lime-cement Wet w/cement\n\n$9.15/ft\n\n$ 46 $ 65 -115 Grouting Permeation Compaction Jet\n\n$ 20/ft + $ 2.65/Gallon\n\n$ 23 - 153 $ 150 - 210 Column Supported Embankments $ 81.50/yd2 + cost of column n/a", "replace": ""}
+        {"page": "7-100", "find": "\n\nWick Drains $ 0.46 - 1.22/ft $ 0.60 - 1.20 Lightweight Fill Granular Tires-Wood Geofoam Foamed Concrete\n\n$ 2.30 - 16.10/yd3 $ 9.20 - 23.00/yd3 $ 26.75 - 50.00/yd3 $ 34.50 - 50.00/yd3\n\nVibrocompaction $ 4.60 - 7.60/ft $ 0.75 – 3.00 Dynamic Compaction $ 5.00 - 9.20/yd2 $ 0.75 - 1.50 MSE Walls $ 15.00 - 28.00/ft2\n\nRSS Slopes $ 10.00 - 24.00/ft2\n\nSoil Nail Walls $ 37.00 - 56.00/ft2\n\nStone Columns $ 12.20 - 18.30/ft $ 38 - 57 Deep Soil Mixing Dry w/lime-cement Wet w/cement\n\n$9.15/ft\n\n$ 46 $ 65 -115 Grouting Permeation Compaction Jet\n\n$ 20/ft + $ 2.65/Gallon\n\n$ 23 - 153 $ 150 - 210 Column Supported Embankments $ 81.50/yd2 + cost of column n/a", "replace": ""},
+        {"page": "3-14", "find": "Figure 3-5. Impact of base strength on pavement structural design\n\n[p. 3-15] Notes:", "replace": "Figure 3-5. Impact of base strength on pavement structural design design (AASHTO 93 Design Guide: W18=10M, 85% reliability, So=0.4, ∆PSI=1.7, a1=0.44, m2=1, subgrade CBR=4).\n\n[p. 3-15] Notes:"},
+        {"page": "5-27", "find": "Figure 5-5. Laboratory sieves for mechanical analysis of grain size distribution.\n\nFigure 5-6.", "replace": "Figure 5-5. Laboratory sieves for mechanical analysis of grain size distribution. Shown (right to left) are sieve Nos. 3/8-in. (9.5-mm), No. 10 (2.0-mm), No. 40 (250-µm) and No. 200 (750-µm) and example soil particle sizes including (right to left): medium gravel, fine gravel, medium-coarse sand, silt, and dry clay (kaolin). [As printed; the No. 40 sieve opening is 425 µm (0.425 mm) and the No. 200 opening 75 µm (0.075 mm).]\n\nFigure 5-6."},
+        {"page": "8-25", "find": "Figure 8-8. Bulldozer (photo courtesy of Komatsu).\n\nFigure 8-10.", "replace": "Figure 8-8. Bulldozer (photo courtesy of Komatsu).\n\nFigure 8-9. Motor grader (photo courtesy of Caterpillar)\n\nFigure 8-10."},
+        {"page": "3-26", "find": "1 pci = 284 MN/m3)", "replace": "1 pci = 284 MN/m3 [as printed; 1 pci = 0.271 MN/m³])", "all": true},
+        {"page": "8-28", "find": "(1 ton = 8.9 kPa, 1 psi = 6.9 kPa)", "replace": "(1 ton = 8.9 kPa [as printed; a 2,000-lb ton is 8.9 kN], 1 psi = 6.9 kPa)"}
       ],
       "table_functions": {
         "4-9": ["geotech_references.fhwa_pavements.equations.cbr_from_dcp"],
