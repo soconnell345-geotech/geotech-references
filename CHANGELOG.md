@@ -35,6 +35,39 @@ replacement characters and runs of one mathematical letter, and, with the
 PDFs present, checks no symbol-font passage of the checked references is
 stored with the text-layer character.
 
+**Raised exponents, degree signs and signs drawn with a stroke (same
+review).** A text layer also gives a raised exponent or degree sign as an
+ordinary character ("1 x 10-8 cm/sec" for 1 x 10^-8, "230oF" for 230°F),
+and some pages set ≤, ≥ and ± as "<", ">" and "+" with a short stroke drawn
+under them, which the text layer leaves out. Every PDF was surveyed for
+raised spans and for those strokes, and the stored text compared with them;
+each place below was read off a render. Exponents are written with "^".
+
+- `fhwa_soils_foundations`: 48 exponents (chapters 2 and 5, Tables 5-9,
+  5-10 and 5-21 among them), 29 degree signs (chapters 2, 3, 5, 6, 8, 10),
+  and "k ≤ 1x10^-5 cm/s" (p. 5-9), "k ≥ 10^-3 cm/sec" (p. 5-62, twice),
+  "100 ± 5 °C" (p. 5-7), all through the manifest (`raised_o_degree`, and
+  `text_fixes` in Vol I), so a rebuild keeps them; three figure-catalog
+  descriptions that repeat the passages. Both volumes' manifests list the
+  SymbolMT characters (`symbol_fonts_checked`), and a test reads every
+  symbol-font character of both PDFs against the manifest.
+- `gec_10`: "B ≤ 5 ft" and "qu ≥ 10,000 psi" (10.3.4, pp. 10-7, 10-8),
+  "clear spacing ≥ 5 inches" (12.3.2, stored "over 5 inches").
+- `gec_13`: "Cu ≤ 3", "porosity ≥ 50%", "open area ≥ 4%", "≥ 50%
+  elongation" (9.8.3.2.1); permeabilities 1 x 10^-5 and 1 x 10^-6 to
+  1 x 10^-9 m/s (3.4.2.2); 400°F (8.2.5.6.2, 8.3.2.4 and two catalog rows,
+  stored "400 F").
+- `gec_4`: "Ns ≤ 4" (5.2.5, p. 55).
+- `dm7_1`: 8x10^-4 inches (1-5.3.2), less than 10^-3 and 10^-4 cm/sec
+  (3-2.7.1, 3-2.7.2), less 10^-8 cm/sec (6-3).
+- `gec_9`: Eq. A-43's coefficients, A = 3 (10^-7) (z + 1)^6.05 and the
+  exponents of B and C (A.6).
+- `ufc_flexible_practice`: 3.15x10^-4 inch (9-1.1).
+
+`tests/test_symbol_fonts.py` pins these places and scans every stored
+string for a power of ten in plain digits; three in `dm7_2` (UFC 3-220-20
+1-2.11, 3-7.4, B-7.4), left to another branch, are listed in the test.
+
 **The PDF reader is an input of a script build.** The manifest of each
 reference whose text `scripts/build_printed_text.py` reads off the PDF
 (`em_1905`, `fhwa_soils_foundations`) records the PyMuPDF version it was
