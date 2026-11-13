@@ -38,7 +38,7 @@ def coefficient_of_uniformity(D60: float, D10: float) -> float:
     Returns
     -------
     float
-        Coefficient of uniformity, Cu (dimensionless).
+        Coefficient of uniformity, Cu [dimensionless].
 
     Raises
     ------
@@ -48,7 +48,7 @@ def coefficient_of_uniformity(D60: float, D10: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-1, p. 15.
+    Chapter 1, Equation 1-1, printed p. 15 (pdf_page_index 42).
     """
     if D10 <= 0.0:
         raise ValueError("D10 must be positive.")
@@ -85,7 +85,7 @@ def coefficient_of_curvature(D60: float, D30: float, D10: float) -> float:
     Returns
     -------
     float
-        Coefficient of curvature, Cc (dimensionless).
+        Coefficient of curvature, Cc [dimensionless].
 
     Raises
     ------
@@ -95,7 +95,7 @@ def coefficient_of_curvature(D60: float, D30: float, D10: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-2, p. 16.
+    Chapter 1, Equation 1-2, printed p. 16 (pdf_page_index 43).
     """
     if D60 <= 0.0:
         raise ValueError("D60 must be positive.")
@@ -137,13 +137,13 @@ def aashto_group_index(F: float, LL: float, PI: float) -> float:
     Returns
     -------
     float
-        Group index, GI (dimensionless).  Returned as 0.0 if the
+        Group index, GI [no unit printed].  Returned as 0.0 if the
         calculated value is negative.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-3, p. 17.
+    Chapter 1, Equation 1-3, printed p. 17 (pdf_page_index 44).
     """
     term1 = (F - 35.0) * (0.2 + 0.005 * (LL - 40.0))
     term2 = 0.01 * (F - 15.0) * (PI - 10.0)
@@ -172,13 +172,13 @@ def aashto_group_index_a2(F: float, PI: float) -> float:
     Returns
     -------
     float
-        Group index, GI (dimensionless).  Returned as 0.0 if the
+        Group index, GI [no unit printed].  Returned as 0.0 if the
         calculated value is negative.
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-3, pp. 17-18.
+    Chapter 1, Equation 1-3, printed pp. 17-18 (pdf_page_index 44-45).
     """
     gi = 0.01 * (F - 15.0) * (PI - 10.0)
     return max(gi, 0.0)
@@ -215,9 +215,9 @@ def point_load_strength_index(
     Returns
     -------
     float
-        Point load strength index, Is(50) (stress units, e.g., MPa if
-        *P* is in kN and *d* is in mm: kN/mm^2 = GPa; typically reported
-        after unit conversion).
+        Point load strength index, Is(50) [consistent units (the unit of *P*
+        over the unit of *d* squared: kN and mm give kN/mm^2, which is GPa)].
+        It is usually reported in MPa, after conversion.
 
     Raises
     ------
@@ -227,7 +227,7 @@ def point_load_strength_index(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equations 1-4 and 1-5, p. 32.
+    Chapter 1, Equations 1-4 and 1-5, printed p. 32 (pdf_page_index 59).
     """
     if d <= 0.0:
         raise ValueError("d must be positive.")
@@ -254,7 +254,7 @@ def size_correction_factor(D_e: float) -> float:
     Returns
     -------
     float
-        Size correction factor, F (dimensionless).
+        Size correction factor, F [dimensionless].
 
     Raises
     ------
@@ -264,7 +264,7 @@ def size_correction_factor(D_e: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-5, p. 32.
+    Chapter 1, Equation 1-5, printed p. 32 (pdf_page_index 59).
     """
     if D_e < 0.0:
         raise ValueError("D_e must be non-negative.")
@@ -300,7 +300,7 @@ def expansion_index(delta_H: float, H_i: float) -> float:
     Returns
     -------
     float
-        Expansion index, EI (dimensionless).
+        Expansion index, EI [no unit printed].
 
     Raises
     ------
@@ -310,7 +310,7 @@ def expansion_index(delta_H: float, H_i: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 1, Equation 1-6, p. 40.
+    Chapter 1, Equation 1-6, printed p. 40 (pdf_page_index 67).
     """
     if H_i <= 0.0:
         raise ValueError("H_i must be positive.")

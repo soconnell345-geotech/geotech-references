@@ -32,7 +32,7 @@ def relative_compaction(gamma_d: float, gamma_d_max: float) -> float:
     Returns
     -------
     float
-        Relative compaction as a percentage (%).
+        Relative compaction as a percentage [percent].
 
     Raises
     ------
@@ -42,7 +42,7 @@ def relative_compaction(gamma_d: float, gamma_d_max: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-1, p. 141.
+    Chapter 3, Equation 3-1, printed p. 141 (pdf_page_index 168).
     """
     if gamma_d_max <= 0.0:
         raise ValueError("gamma_d_max must be positive.")
@@ -77,7 +77,7 @@ def relative_density_from_void_ratio(
     Returns
     -------
     float
-        Relative density as a percentage (%).
+        Relative density as a percentage [percent].
 
     Raises
     ------
@@ -87,7 +87,7 @@ def relative_density_from_void_ratio(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-2, p. 141.
+    Chapter 3, Equation 3-2, printed p. 141 (pdf_page_index 168).
     """
     if e_max <= e_min:
         raise ValueError("e_max must be greater than e_min.")
@@ -125,7 +125,7 @@ def relative_density_from_dry_density(
     Returns
     -------
     float
-        Relative density as a percentage (%).
+        Relative density as a percentage [percent].
 
     Raises
     ------
@@ -154,7 +154,7 @@ def relative_density_from_dry_density(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-2, p. 141.
+    Chapter 3, Equation 3-2, printed p. 141 (pdf_page_index 168).
     """
     if gamma_d <= 0.0:
         raise ValueError("gamma_d must be positive.")
@@ -190,7 +190,7 @@ def cyclic_stress_ratio(tau_cyc: float, sigma_v_eff: float) -> float:
     Returns
     -------
     float
-        Cyclic stress ratio (dimensionless).
+        Cyclic stress ratio [dimensionless].
 
     Raises
     ------
@@ -200,7 +200,7 @@ def cyclic_stress_ratio(tau_cyc: float, sigma_v_eff: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-3, p. 161.
+    Chapter 3, Equation 3-3, printed p. 161 (pdf_page_index 188).
     """
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
@@ -231,7 +231,7 @@ def load_increment_ratio(delta_sigma: float, sigma_0: float) -> float:
     Returns
     -------
     float
-        Load increment ratio (dimensionless).
+        Load increment ratio [dimensionless].
 
     Raises
     ------
@@ -241,7 +241,7 @@ def load_increment_ratio(delta_sigma: float, sigma_0: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-4, p. 165.
+    Chapter 3, Equation 3-4, printed p. 165 (pdf_page_index 192).
     """
     if sigma_0 <= 0.0:
         raise ValueError("sigma_0 must be positive.")
@@ -280,8 +280,9 @@ def hydraulic_conductivity_from_consolidation(
     Returns
     -------
     float
-        Hydraulic conductivity *k* (length / time, e.g., cm/s or ft/day).
-        Units depend on the consistent unit system used for the inputs.
+        Hydraulic conductivity *k* [consistent units (length / time, e.g., cm/s
+        or ft/day)]. Units depend on the consistent unit system used for the
+        inputs.
 
     Raises
     ------
@@ -297,7 +298,7 @@ def hydraulic_conductivity_from_consolidation(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 3, Equation 3-5, p. 170.
+    Chapter 3, Equation 3-5, printed p. 170 (pdf_page_index 197).
     """
     if c_v < 0.0:
         raise ValueError("c_v must be non-negative.")

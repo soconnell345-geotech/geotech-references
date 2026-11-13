@@ -40,7 +40,7 @@ def factor_of_safety(s: float, tau: float) -> float:
     Returns
     -------
     float
-        Factor of safety (dimensionless).
+        Factor of safety [dimensionless].
 
     Raises
     ------
@@ -50,7 +50,7 @@ def factor_of_safety(s: float, tau: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-1, p. 349.
+    Chapter 7, Equation 7-1, printed p. 349 (pdf_page_index 376).
     """
     if tau <= 0.0:
         raise ValueError("tau must be positive.")
@@ -86,8 +86,8 @@ def seepage_force(i: float, gamma_w: float) -> float:
     Returns
     -------
     float
-        Seepage force per unit volume (force / length^3, same unit system
-        as *gamma_w*).
+        Seepage force per unit volume [consistent units (force / length^3, same
+        unit system as *gamma_w*)].
 
     Raises
     ------
@@ -97,7 +97,7 @@ def seepage_force(i: float, gamma_w: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-2, p. 357.
+    Chapter 7, Equation 7-2, printed p. 357 (pdf_page_index 384).
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -139,8 +139,8 @@ def long_term_geosynthetic_strength(
     Returns
     -------
     float
-        Long-term tensile strength, Tal (force / length, same unit system
-        as *t_ult*).
+        Long-term tensile strength, Tal [consistent units (force / length, same
+        unit system as *t_ult*)].
 
     Raises
     ------
@@ -151,7 +151,7 @@ def long_term_geosynthetic_strength(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-3, p. 370.
+    Chapter 7, Equation 7-3, printed p. 370 (pdf_page_index 397).
     """
     if t_ult < 0.0:
         raise ValueError("t_ult must be non-negative.")
@@ -207,9 +207,9 @@ def geosynthetic_pullout_resistance(
     Returns
     -------
     float
-        Pullout resistance, Pr (force / length of wall, e.g., lb/ft or
-        kN/m).  Units depend on the consistent unit system used for the
-        inputs.
+        Pullout resistance, Pr [consistent units (force / length of wall, e.g.,
+        lb/ft or kN/m)].  Units depend on the consistent unit system used for
+        the inputs.
 
     Raises
     ------
@@ -220,7 +220,7 @@ def geosynthetic_pullout_resistance(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-4, p. 372.
+    Chapter 7, Equation 7-4, printed p. 372 (pdf_page_index 399).
     """
     if f_star < 0.0:
         raise ValueError("f_star must be non-negative.")
@@ -259,7 +259,7 @@ def coefficient_of_interaction(
     Returns
     -------
     float
-        Coefficient of interaction, Ci (dimensionless).
+        Coefficient of interaction, Ci [dimensionless].
 
     Raises
     ------
@@ -270,7 +270,7 @@ def coefficient_of_interaction(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-5, p. 372.
+    Chapter 7, Equation 7-5, printed p. 372 (pdf_page_index 399).
     """
     if phi_eff_deg <= 0.0 or phi_eff_deg >= 90.0:
         raise ValueError(
@@ -309,7 +309,7 @@ def pullout_resistance_factor(
     Returns
     -------
     float
-        Pullout resistance factor, F* (dimensionless).
+        Pullout resistance factor, F* [dimensionless].
 
     Raises
     ------
@@ -320,7 +320,7 @@ def pullout_resistance_factor(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 7, Equation 7-6, p. 372.
+    Chapter 7, Equation 7-6, printed p. 372 (pdf_page_index 399).
     """
     if c_i < 0.0:
         raise ValueError("c_i must be non-negative.")

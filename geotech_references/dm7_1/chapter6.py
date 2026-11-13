@@ -45,7 +45,7 @@ def total_hydraulic_head(u: float, gamma_w: float, z: float) -> float:
     Returns
     -------
     float
-        Total hydraulic head, h_t (length, e.g., ft or m).
+        Total hydraulic head, h_t [consistent units (length, e.g., ft or m)].
 
     Raises
     ------
@@ -55,7 +55,7 @@ def total_hydraulic_head(u: float, gamma_w: float, z: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-1, p. 284.
+    Chapter 6, Equation 6-1, printed p. 284 (pdf_page_index 311).
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -83,7 +83,7 @@ def hydraulic_gradient(h_L: float, L: float) -> float:
     Returns
     -------
     float
-        Hydraulic gradient, i (dimensionless).
+        Hydraulic gradient, i [no unit printed].
 
     Raises
     ------
@@ -93,7 +93,7 @@ def hydraulic_gradient(h_L: float, L: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-2, p. 285.
+    Chapter 6, Equation 6-2, printed p. 285 (pdf_page_index 312).
     """
     if L <= 0.0:
         raise ValueError("L must be positive.")
@@ -123,7 +123,8 @@ def darcy_flow_rate(k: float, i: float, A: float) -> float:
     Returns
     -------
     float
-        Volumetric flow rate, q (length^3/time, e.g., ft^3/s or m^3/s).
+        Volumetric flow rate, q [consistent units (length^3/time, e.g., ft^3/s
+        or m^3/s)].
 
     Raises
     ------
@@ -133,7 +134,7 @@ def darcy_flow_rate(k: float, i: float, A: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-3, p. 286.
+    Chapter 6, Equation 6-3, printed p. 286 (pdf_page_index 313).
     """
     if k < 0.0:
         raise ValueError("k must be non-negative.")
@@ -166,8 +167,8 @@ def darcy_flow_rate_per_unit_width(k: float, i: float, y: float) -> float:
     Returns
     -------
     float
-        Flow rate per unit length of the model (length^2/time, e.g.,
-        ft^2/s or m^2/s).
+        Flow rate per unit length of the model [consistent units
+        (length^2/time, e.g., ft^2/s or m^2/s)].
 
     Raises
     ------
@@ -177,7 +178,7 @@ def darcy_flow_rate_per_unit_width(k: float, i: float, y: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-4, p. 286.
+    Chapter 6, Equation 6-4, printed p. 286 (pdf_page_index 313).
     """
     if k < 0.0:
         raise ValueError("k must be non-negative.")
@@ -207,7 +208,8 @@ def discharge_velocity(k: float, i: float) -> float:
     Returns
     -------
     float
-        Discharge velocity, v_d (length/time, e.g., cm/s or ft/day).
+        Discharge velocity, v_d [consistent units (length/time, e.g., cm/s or
+        ft/day)].
 
     Raises
     ------
@@ -217,7 +219,7 @@ def discharge_velocity(k: float, i: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-5, p. 286.
+    Chapter 6, Equation 6-5, printed p. 286 (pdf_page_index 313).
     """
     if k < 0.0:
         raise ValueError("k must be non-negative.")
@@ -248,7 +250,8 @@ def seepage_velocity(v_d: float, n: float = None, e: float = None) -> float:
     Returns
     -------
     float
-        Seepage velocity, v_s (length/time, e.g., cm/s or ft/day).
+        Seepage velocity, v_s [consistent units (length/time, e.g., cm/s or
+        ft/day)].
 
     Raises
     ------
@@ -259,7 +262,7 @@ def seepage_velocity(v_d: float, n: float = None, e: float = None) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-6, p. 286.
+    Chapter 6, Equation 6-6, printed p. 286 (pdf_page_index 313).
     """
     if n is not None and e is not None:
         raise ValueError("Provide either n (porosity) or e (void ratio), not both.")
@@ -309,7 +312,7 @@ def laplace_check_2d(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-7, p. 287.
+    Chapter 6, Equation 6-7, printed p. 287 (pdf_page_index 314).
     """
     return abs(d2h_dx2 + d2h_dy2) <= tolerance
 
@@ -336,7 +339,7 @@ def anisotropic_transformation_factor(k_max: float, k_min: float) -> float:
     Returns
     -------
     float
-        Isotropic transformation factor, a (dimensionless).
+        Isotropic transformation factor, a [dimensionless].
 
     Raises
     ------
@@ -346,7 +349,7 @@ def anisotropic_transformation_factor(k_max: float, k_min: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-8, p. 289.
+    Chapter 6, Equation 6-8, printed p. 289 (pdf_page_index 316).
     """
     if k_max <= 0.0:
         raise ValueError("k_max must be positive.")
@@ -389,7 +392,8 @@ def flow_net_flow_rate(
     Returns
     -------
     float
-        Volumetric flow rate, q (length^3/time, e.g., ft^3/s or m^3/s).
+        Volumetric flow rate, q [consistent units (length^3/time, e.g., ft^3/s
+        or m^3/s)].
 
     Raises
     ------
@@ -399,7 +403,7 @@ def flow_net_flow_rate(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-9, p. 290.
+    Chapter 6, Equation 6-9, printed p. 290 (pdf_page_index 317).
     """
     if k <= 0.0:
         raise ValueError("k must be positive.")
@@ -433,8 +437,8 @@ def head_loss_per_drop(h_L: float, N_d: float) -> float:
     Returns
     -------
     float
-        Head loss per equipotential drop, delta_h_L (length, e.g.,
-        ft or m).
+        Head loss per equipotential drop, delta_h_L [consistent units (length,
+        e.g., ft or m)].
 
     Raises
     ------
@@ -444,7 +448,7 @@ def head_loss_per_drop(h_L: float, N_d: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-10, p. 291.
+    Chapter 6, Equation 6-10, printed p. 291 (pdf_page_index 318).
     """
     if N_d <= 0.0:
         raise ValueError("N_d must be positive.")
@@ -474,7 +478,8 @@ def pore_water_pressure(h_t: float, h_z: float, gamma_w: float) -> float:
     Returns
     -------
     float
-        Pore water pressure, u (force/length^2, e.g., psf or kPa).
+        Pore water pressure, u [consistent units (force/length^2, e.g., psf or
+        kPa)].
 
     Raises
     ------
@@ -484,7 +489,7 @@ def pore_water_pressure(h_t: float, h_z: float, gamma_w: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-11, p. 291.
+    Chapter 6, Equation 6-11, printed p. 291 (pdf_page_index 318).
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -521,7 +526,7 @@ def hydraulic_conductivity_effective_grain_size(
     Returns
     -------
     float
-        Hydraulic conductivity, k (cm/sec).
+        Hydraulic conductivity, k [cm/sec].
 
     Raises
     ------
@@ -531,7 +536,7 @@ def hydraulic_conductivity_effective_grain_size(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-12, p. 299.
+    Chapter 6, Equation 6-12, printed p. 299 (pdf_page_index 326).
     Kenney, T. C. et al. (1984).
     """
     if beta_alpha < 0.0:
@@ -585,7 +590,7 @@ def kozeny_carman_hydraulic_conductivity(
     Returns
     -------
     float
-        Hydraulic conductivity, k (cm/sec).
+        Hydraulic conductivity, k [cm/sec].
 
     Raises
     ------
@@ -597,7 +602,7 @@ def kozeny_carman_hydraulic_conductivity(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-13, p. 300.
+    Chapter 6, Equation 6-13, printed p. 300 (pdf_page_index 327).
     Carrier, W. D. (2003).
     """
     if S <= 0.0:
@@ -670,7 +675,7 @@ def kozeny_void_ratio_conductivity_ratio(
     Returns
     -------
     float
-        Ratio k1/k2 (dimensionless).
+        Ratio k1/k2 [dimensionless].
 
     Raises
     ------
@@ -686,7 +691,7 @@ def kozeny_void_ratio_conductivity_ratio(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-14, p. 300.
+    Chapter 6, Equation 6-14, printed p. 300 (pdf_page_index 327).
     Kozeny, J. (1927).
     """
     if e1 <= 0.0:
@@ -735,7 +740,7 @@ def geotextile_permeability_factor_of_safety(
     -------
     float
         Factor of safety for geotextile permeability, FS_g
-        (dimensionless).
+        [dimensionless].
 
     Raises
     ------
@@ -746,7 +751,7 @@ def geotextile_permeability_factor_of_safety(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 6, Equation 6-16, p. 325.
+    Chapter 6, Equation 6-16, printed p. 325 (pdf_page_index 352).
     """
     if k_s is None or k_s <= 0.0:
         raise ValueError("k_s (base soil hydraulic conductivity) must be positive.")
