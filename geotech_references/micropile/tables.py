@@ -480,7 +480,7 @@ _TABLE_5_3_SOIL_TYPES = {
     "sand_fine_loose": "Sand (some silt), fine, loose-medium dense",
     "sand_coarse_dense": "Sand (some silt/gravel), fine-coarse, medium-very dense",
     "gravel": "Gravel (some sand), medium-very dense",
-    "glacial_till": "Glacial Till (silt, sand, gravel, dense-very dense)",
+    "glacial_till": "Glacial Till (silt, sand, gravel), medium-very dense, cemented",
     "soft_shale": "Soft Shales",
     "hard_shale": "Slates and Hard Shales",
     "limestone": "Limestone",
