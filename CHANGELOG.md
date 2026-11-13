@@ -110,6 +110,43 @@ render and independently checked cell by cell.
   `build_figure_catalog.py` and `check_section_numbers.py` read that
   layout too.
 
+**DM 7.2 chapter text: section bodies in the print's own words (build of
+2026-11-12, app BACKLOG REF-94).** The 439 section bodies of the prologue
+and Chapters 2 to 7 of UFC 3-220-20 were condensed accounts written by hand,
+so some printed sentences were not stored. They are now rebuilt from the
+printed pages by the new `scripts/build_dm72_bodies.py` (no API; every
+hand-typed line, note and fix in `scripts/manifests/dm7_2_bodies.json`),
+heading to next heading, with "[p. N]" markers; every other field (ids,
+titles, summaries, key points, applicability, equations, figures, tables,
+links) is kept byte for byte. Printed sentences stored, by the measure
+used for the build: 4,238 of 5,182 (81.8%) before, 4,724 (91.2%) after
+(prologue 75.3 to 91.7%, chapters 2 to 7: 67.7 to 75.9, 77.3 to 89.2, 83.3
+to 95.4, 84.4 to 91.1, 86.9 to 94.7, 86.9 to 91.3%); what is left are cells
+of tables not typed in and lines the measure joins. Body text 728,493 to
+834,294 characters. Each of the 192 numbered equations is a line "[Eq. 5-32]
+formula" with the formula its checked entry states; nine whose entries
+describe them in words or leave out a printed condition or unit (Eqs. 5-1,
+5-2, 5-3, 5-10, 6-16 to 6-19, 6-74) were typed from the rendered page.
+Prose lines that carry a formula were read on the renders. The 45
+footnotes and 82 table notes stay at their marks; tables are given by
+caption and printed page; those the earlier bodies held typed in (the
+notations, the suggested reading, Table 4-7) are kept, checked against the
+print, and Tables P-2 to P-8, 3-10 and 3-11, which they held as condensed
+accounts, are typed in from the page. Numbered headings that have no
+section (5-4.10, 6-1.1 to 6-1.4 and others) keep their text in the section
+before, under the printed heading. 4-9 and 6-5.4.2, too large for one fetch
+with their equation entries, are stored with a lettered part (4-9.a,
+6-5.4.2.a). New notes beside print slips: Eq. 5-2 prints qult where the
+sentence before it and Eq. 5-3 give qgross (p. 275); the left side of Eq.
+4-11 printed KP (p. 190); "(see Table )" (p. 10); "confinings" (p. 172);
+the notation's Pn "Load at failure in" (p. 504); GEC 13 given GEC 12's
+number FHWA-NHI-16-009 (p. 507). Old sentences the print does not have (a
+paraphrase or a condensed table) were dropped; none held a number, limit or
+requirement the stored print lacks. Tests: `tests/test_dm7_2_printed_bodies.py`
+(the rebuild reproduces the committed files, printed sentences on their
+pages, no scattered formula pieces); body rows of
+`tests/test_dm7_2_text_equations.py` take the "[Eq. N]" form.
+
 **Build of 2026-11-12: every figure-catalog row stores the page number its
 page prints.** A helper quotes `printed_page` in its citations. The audit
 of all 33 catalogs (4,164 rows) found, and this build corrects: DM 7.2
