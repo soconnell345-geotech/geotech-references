@@ -871,7 +871,10 @@ def table_4_9_site_coefficient_fpga(site_class: str,
     site_class : str
         AASHTO site class: 'A', 'B', 'C', 'D', or 'E'.
     pga : float
-        Peak ground acceleration coefficient (Site Class B, in g).
+        Peak ground acceleration coefficient (Site Class B, in g), 0 or
+        more. The first and last columns are printed open-ended (GEC-7
+        "<= 0.25" / ">= 1.25"; GEC-12 Table 7-27 "< 0.1" / "> 0.5"), so a
+        PGA below the first or above the last takes that column.
 
     Returns
     -------
@@ -881,7 +884,7 @@ def table_4_9_site_coefficient_fpga(site_class: str,
     Raises
     ------
     ValueError
-        If site_class is F or not a site class.
+        If site_class is F or not a site class, or pga is negative.
     """
     key = site_class.upper().strip()
     if key == "F":
@@ -893,6 +896,9 @@ def table_4_9_site_coefficient_fpga(site_class: str,
             f"Unknown site_class '{site_class}'. Options: A, B, C, D, E"
         )
 
+    if pga < 0:
+        raise ValueError(f"pga must be 0 or more (in g), got {pga}")
+    # the first and last columns are printed open-ended (see the docstring)
     pga_held = max(0.1, min(0.5, pga))
     f_pga = _linterp(pga_held, _TABLE_4_9_PGA, _TABLE_4_9_FPGA[key])
     return {
@@ -931,8 +937,10 @@ def table_4_10_site_coefficient_fv(site_class: str,
     site_class : str
         AASHTO site class: 'A', 'B', 'C', 'D', or 'E'.
     s1 : float
-        Spectral acceleration at 1-second period (dimensionless, g units).
-        Values <= 0.1 use the first column; >= 0.5 use the last.
+        Spectral acceleration at 1-second period (dimensionless, g units),
+        0 or more. The table heads its first and last columns "S1 <= 0.1"
+        and "S1 >= 0.5" (p. 95, PDF page 135), printed open-ended: values
+        <= 0.1 use the first column; >= 0.5 use the last.
 
     Returns
     -------
@@ -943,7 +951,7 @@ def table_4_10_site_coefficient_fv(site_class: str,
     ------
     ValueError
         If site_class is F (the table's note (1): a site-specific dynamic
-        site response analysis) or not a site class.
+        site response analysis) or not a site class, or s1 is negative.
     """
     key = site_class.upper().strip()
     if key == "F":
@@ -955,6 +963,9 @@ def table_4_10_site_coefficient_fv(site_class: str,
             f"Unknown site_class '{site_class}'. Options: A, B, C, D, E"
         )
 
+    if s1 < 0:
+        raise ValueError(f"s1 must be 0 or more (in g), got {s1}")
+    # the first and last columns are printed open-ended (see the docstring)
     s1_clamped = max(0.1, min(0.5, s1))
     return _linterp(s1_clamped, _TABLE_4_10_S1, _TABLE_4_10_FV[key])
 

@@ -31,6 +31,11 @@ pages):
   and below 5.0 ft is refused (Table 4-4 prints 5.0, 10.0 and ">= 20.0"
   ft, p. 4-17); it held heq = 4.0 ft with a note. 0 still returns the
   whole table; taller than 20 ft still takes the open-ended 2.0 ft.
+- `gec_7.tables.table_4_9_site_coefficient_fpga` and
+  `table_4_10_site_coefficient_fv`: a negative PGA or S1 is refused. Their
+  end columns are printed open-ended ("S1 <= 0.1" / "S1 >= 0.5", p. 95;
+  Table 4.9 under GEC-12 Table 7-27's "< 0.1" / "> 0.5") and still take
+  the end column.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
