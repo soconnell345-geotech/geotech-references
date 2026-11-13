@@ -18,7 +18,22 @@ from geotech_references._retrieval import retrieve_section
 TEXT = pathlib.Path(__file__).resolve().parents[1] / "geotech_references" / "gec_13" / "text"
 
 # (table, section, printed page, rows, cells and rows, notes, print slips, caption on the page when the stored caption differs)
-CASES = [('2-3',
+CASES = [('2-2',
+  '2.3.1.1',
+  'p. 2-18',
+  4,
+  ['Installation Method; Method Options',
+   'Static; 1. Chain Driven* 2. Sprocket Driven* 3. Cable Pull-down* 4. Heavy Weight 5. Hydraulic Piston '
+   'Push',
+   'Vibratory; 1. Offset Hammer - full supported mandrel* 2. Direct Hammer - offset mandrel* 3. Inside '
+   'Mandrel with Enlarged Shoe',
+   'Jetting; 1. Covered Mandrel with Outside Jets 2. Jet Probe with No Covering Mandrel',
+   'System Combination; 1. Static with Vibratory* 2. Static with Jetting* 3. Vibratory with Jetting',
+   '1. Static with Vibratory* 2. Static with Jetting* 3. Vibratory with Jetting'],
+  ['* Currently used in the United States.'],
+  [],
+  None),
+ ('2-3',
   '2.6.2',
   'p. 2-51',
   3,
@@ -474,6 +489,22 @@ CASES = [('2-3',
    'for Loose]',
    '[as printed; Dense ends at 740 and Very Dense starts above 750]'],
   None),
+ ('4-9',
+  '4.3.5.1',
+  'p. 4-85',
+  5,
+  ['Category; Factors',
+   'In situ Material; • Type of Material • In situ Density • In situ Cementation',
+   'Backfill Material; • Type • Cost',
+   'Densification Requirements; • Load Bearing • Degree of Densification 1. Average relative density 2. '
+   'Minimum relative density',
+   'Project Requirements; • Size • Depth of Densification • Overburden • Type 1. Footing compaction 2. Area '
+   'compaction • Specifications • Location of Project 1. Labor and union considerations 2. Support equipment '
+   'availability 3. Weather - freezing weather conditions',
+   'Pricing; • Compaction Spacing • Unit Pricing 1. Linear foot 2. Cubic yard'],
+  [],
+  [],
+  None),
  ('4-10',
   '4.3.5.2',
   'p. 4-86',
@@ -630,6 +661,62 @@ CASES = [('2-3',
   [],
   ["[as printed; the 'unlimited' headroom is given as less than 36 feet]"],
   None),
+ ('8-8',
+  '8.2.7.4',
+  'p. 8-73',
+  2,
+  ['Pay Item Description; Quantity Range; Unit; Low Unit Price; High Unit Price; Factors Which May '
+   'Potentially Impact Costs',
+   'Mobilization; 1; LUMP SUM; $25,000; $150,000; Equipment mobilized includes: drill rig(s), compressor(s), '
+   'grout mixers, and pumps. Mobilization cost increases for distances greater than 500 miles. Phased '
+   'projects may require multiple mobilizations.',
+   'Jet Grouting; Greater than 500; CY; $100; $750; Grout cost is sensitive to the grout mixture '
+   'proportions, particularly the quantity of Portland cement required per cubic yard. Unit costs are far '
+   'higher for locations which have headroom constraints.',
+   'Grout cost is sensitive to the grout mixture proportions, particularly the quantity of Portland cement '
+   'required per cubic yard. Unit costs are far higher for locations which have headroom constraints.',
+   '$750',
+   '$100'],
+  [],
+  [],
+  None),
+ ('8-9',
+  '8.2.8.5.2',
+  'p. 8-82',
+  2,
+  ['(empty); Downstage; Upstage',
+   'Advantages; • Ground is consolidated from top down, aiding hole stability, packer seating, and allowing '
+   'successively higher pressures to be used with depth without fear of surface leakage. • Depth of hole '
+   'need not be pre-determined: grout take analyses may dictate changes from foreseen, and shortening or '
+   'lengthening of hole can be easily accommodated. • Stage length can be adapted to conditions as '
+   'encountered to allow “special” treatment.; • Drilling in one pass. • Grouting in one repetitive '
+   'operation without significant delays. • Less wasteful of materials. • Permits materials to be varied '
+   'readily. • Easier to control and program. • Stage length can be varied to treat “special” zones. • Often '
+   'cheaper, since net drilling output rate is higher.',
+   'Disadvantages; • Requires repeated moving of drilling rig and redrilling of set grout: therefore, '
+   'process is discontinuous and may be more time consuming. • Relatively wasteful of materials, and so '
+   'generally restricted to cement-based grouts. • May lead to significant hole deviation. • Collapsing '
+   'strata will prevent effective grouting of whole stage, unless circuit grouting method can be deployed. • '
+   'Weathered and/or highly variable strata problematical. • Packer may be difficult to seat in such '
+   'conditions.; • Grouted depth predetermined. • Hole may collapse before packer introduced or after '
+   'grouting starts, leading to stuck packers and incomplete treatment. • Grout may escape upwards into '
+   '(nongrouted) upper layers or the overlying dam, either by hydrofracture or bypassing packer. Smaller '
+   'fissures may not then be treated efficiently at depth. • Artesian conditions may pose problems. • '
+   'Weathered and/or highly variable strata problematical.',
+   '• Grouted depth predetermined. • Hole may collapse before packer introduced or after grouting starts, '
+   'leading to stuck packers and incomplete treatment. • Grout may escape upwards into (nongrouted) upper '
+   'layers or the overlying dam, either by hydrofracture or bypassing packer. Smaller fissures may not then '
+   'be treated efficiently at depth. • Artesian conditions may pose problems. • Weathered and/or highly '
+   'variable strata problematical.',
+   '• Requires repeated moving of drilling rig and redrilling of set grout: therefore, process is '
+   'discontinuous and may be more time consuming. • Relatively wasteful of materials, and so generally '
+   'restricted to cement-based grouts. • May lead to significant hole deviation. • Collapsing strata will '
+   'prevent effective grouting of whole stage, unless circuit grouting method can be deployed. • Weathered '
+   'and/or highly variable strata problematical. • Packer may be difficult to seat in such conditions.',
+   'Disadvantages'],
+  [],
+  [],
+  None),
  ('8-10',
   '8.3.2',
   'p. 8-111',
@@ -640,6 +727,42 @@ CASES = [('2-3',
    'Solution Grout: Polyurethane; High (> 400 cP); High; High; > $1.32; Penetrates large fissures',
    'Solution Grout: Acrylamides; Low (1.2 cP); High; Low; > $0.53; Penetrates very fine fissures',
    'Solution Grout: Acrylates; Low (1.2 cP); Low; Low; > $0.53; Penetrates very fine fissures'],
+  [],
+  [],
+  None),
+ ('8-11',
+  '8.3.2.3',
+  'p. 8-116',
+  4,
+  ['Type of Resin; Nature of Ground; Use/Application',
+   'Acrylic; Granular, very fine soils Finely fissured rock; • Waterproofing by mass treatment • Gas '
+   'tightening (mines, storage) • Strengthening up to 220 psi Strengthening of a granular medium subjected '
+   'to vibrations',
+   'Phenol; Granular, very fine soils; • Strengthening',
+   'Aminoplastic; Schists and coals; • Strengthening (by adherence to materials of organic origin)',
+   'Polyurethane; Large voids; • Formation of a foam that forms a barrier against running water (using '
+   'water-reactive resins) • Stabilization or localized filling (using two-component resins)',
+   '• Formation of a foam that forms a barrier against running water (using water-reactive resins) • '
+   'Stabilization or localized filling (using two-component resins)'],
+  [],
+  [],
+  None),
+ ('8-12',
+  '8.4.1.5',
+  'p. 8-119',
+  2,
+  ['Type of Risk; Causes',
+   'Schedule and Budget Risk; • Contractual issues between general and specialty contractor • Late notice to '
+   'proceed • Weather delays • Site access problems • Material supply and storage problems • Equipment '
+   'availability issues • Different site conditions',
+   'Geotechnical Issues and/or Poor Soil Conditions; • Slope instability • Settlement • Liquefaction • '
+   'Contamination • Problem soils, e.g., expansive clays • Impact on adjacent, existing structures',
+   '• Slope instability • Settlement • Liquefaction • Contamination • Problem soils, e.g., expansive clays • '
+   'Impact on adjacent, existing structures',
+   'Geotechnical Issues and/or Poor Soil Conditions',
+   '• Contractual issues between general and specialty contractor • Late notice to proceed • Weather delays '
+   '• Site access problems • Material supply and storage problems • Equipment availability issues • '
+   'Different site conditions'],
   [],
   [],
   None),
@@ -660,6 +783,75 @@ CASES = [('2-3',
    'water flow rate of 105 ft^3/s and a coefficient of permeability of 0.9 in./s, which a geotextile cannot '
    'have; the page gives nothing to correct them from]'],
   'PennDOT Minimum Required Properties for Polypropylene Geotextiles'),
+ ('9-1',
+  '9.1.0',
+  'p. 9-2',
+  5,
+  ['Stabilization Method; Soil Type; Improvement; Remarks',
+   'Thicker gravel; Silts and clays; None; Reduces dynamic stress level',
+   'Blending; Moderately plastic Low or non-plastic; None Improved gradation Reduced plasticity Reduced '
+   'breakage; Too difficult to mix',
+   'Geosynthetics; Silts and clays; Minimize disturbance Strength gain through consolidation; Fast, plus '
+   'provides long-term separation',
+   'Lightweight fill; Very weak silts, clays, peats; None Thermal barrier for frost protection; Fast, and '
+   'reduces dynamic stress level',
+   'Recycled material; Silts and clays; None; To replace or blend with gravel; may be lightweight'],
+  ['Source: Rollings and Rollings 1996'],
+  [],
+  None),
+ ('9-2',
+  '9.1.0',
+  'p. 9-3',
+  11,
+  ['Stabilization Method; Soil Type; Improvement; Remarks',
+   'Portland cement; High plasticity Coarse-grained; (empty); Less pronounced hydration of cement with high '
+   'plasticity soils Hydration of cement with coarse-grained soils',
+   'Lime; Coarse with fines; Same as for high plastic soils; Dependent on quantity of plastic fines',
+   'Lime-cement-fly ash; Same as lime; Same as lime; Covers broader range than lime or cement alone',
+   'Bituminous; Fines; None; Cannot mix',
+   'Other chemical admixtures; Plastic; Strength increase and volume stability; See vendor literature '
+   'Difficult to mix'],
+  ['Source: Rollings and Rollings 1996'],
+  [],
+  None),
+ ('9-3',
+  '9.1.0',
+  'p. 9-3',
+  2,
+  ['Stabilization Method; Soil Type; Improvement; Remarks',
+   'Improved drainage; Sand, silt and wet, low plastic clays; Decreased moisture, increased strength; '
+   'Requires time and grade for runoff',
+   'Partial and full encapsulation (e.g., with geomembranes); Plastic and collapsible; Reduced change in '
+   'moisture; Long-term moisture migration problem',
+   'Long-term moisture migration problem',
+   'Reduced change in moisture',
+   'Plastic and collapsible'],
+  ['Source: Rollings and Rollings 1996'],
+  [],
+  None),
+ ('9-4',
+  '9.1.3',
+  'p. 9-15',
+  12,
+  ['Stabilization Method; Increased Support; Uniform Subgrade Support; Improve Drainage; Frost Protection; '
+   'Reduce Subgrade Rutting Potential; Reduce Pumping/Erosion - PCC; Materials & Equipment Readily '
+   'Available; Prevent Base/Subgrade Mixing; Treats Highly Plastic Soils; Treats Granular Soils; Treats '
+   'Silts/Fine Sands; Treats Low PI Clays; Reduce Moisture; Reduce Swell; Potential Dust Problem; '
+   'Freeze-Thaw Deterioration; Leaching over Time; Design Procedure; Cost; Increased Excavation/Subcutting',
+   'More Gravel – Thicker Section; X; X; ?; X; X; X; X; (empty); X; X; X; X; (empty); (empty); (empty); '
+   '(empty); (empty); (empty); (empty); X',
+   'Lightweight Fill; (empty); X; (empty); X; (empty); (empty); (empty); (empty); X; (empty); X; X; (empty); '
+   '(empty); (empty); (empty); (empty); (empty); (empty); X',
+   'Cement Treatment; (empty); X; (empty); X; X; X; (empty); X; (empty); X; X; X; X; (empty); X; (empty); X; '
+   '(empty); (empty); (empty)',
+   'LCF Stabilization; (empty); X; (empty); X; X; X; (empty); X; (empty); X; (empty); (empty); X; (empty); '
+   'X; (empty); X; (empty); (empty); (empty)',
+   'Mechanical Stabilization – Compaction; X; X; (empty); (empty); X; (empty); X; (empty); (empty); X; X; '
+   '(empty); X; (empty); (empty); (empty); (empty); (empty); (empty); X'],
+  ['X=A benefit of the respective stabilization method. ?=A possible benefit of the respective stabilization '
+   'method'],
+  [],
+  None),
  ('9-5',
   '9.2.3.2.1',
   'p. 9-31',
