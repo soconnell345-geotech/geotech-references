@@ -139,8 +139,9 @@ the rendered pages:
   of working keeps its own line; the page footers of the examples are now
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
   E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
-  E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32) and E6 (pp. E6-1
-  to E6-9; p. E6-10 is blank). A long example
+  E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32), E6 (pp. E6-1
+  to E6-9; p. E6-10 is blank) and E7 (pp. E7-1 to E7-15; its general,
+  external and internal steps each number from 1, as printed). A long example
   is split into parts never between a caption and its typed-in table or
   figure lettering (E1's Table E1-7.5 had its caption in one part and its
   rows in the next) and never right after a step heading (E3, E4 and E5
@@ -184,7 +185,13 @@ the rendered pages:
   0.3748 in. for 0.374; "600 lb/lft" for Level 1's 1,300 lb/lft pullout
   load; Np = 1 + 1.4 = 2.4 at Level 1 where the line gives 1 + 1.23 = 2.2,
   and 0.87 at Level 2 for 0.71 (Nt governs both); "Ng, is 4.0" at Level 2
-  where 3 wires are selected.
+  where 3 wires are selected. In E7, "PVG" for PGV; "XTERNAL"; γf in the
+  M-O formula where the working has γb; the live load term of THF without
+  its (H)(KAE), with KAE = 0.4785, and taken at γEQ = 0.5 where Table E7-2
+  gives 1.00; "Table E4-6.2" for E7-4; e = 0.40L printed 6.60 ft where L =
+  18 ft gives 7.20; MRA = 898.03 in Table E7-5 where 878.05 + 2.25 × 9 =
+  898.30; "reduced by 80%" for reduced to 80 percent; 0.0 for 0.8 in
+  Table E7-7's Level 2 and σH = 0.44 there where Table E7-6 has 0.40.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

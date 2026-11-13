@@ -984,6 +984,143 @@ def test_appendix_e6_print_slips_noted():
     assert round((11.38 / 31.84) / 0.5, 2) == 0.71
 
 
+def test_appendix_e7_working_as_printed():
+    """Example E7, Example E4's wall under seismic loading: its formula
+    lines as typed in from pp. E7-3 to E7-11, and their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.7"]["title"] == "Segmental Precast Panel MSE Wall with Seismic Loading"
+    body = _e_body("E.7")
+    for line in (
+        "kmax = Fpga (PGA) = 1.00 (0.206 g) = 0.206 g",
+        "PGV (in/sec) = 38 Fv S1 = 38 (1.0) (0.177 g) = 6.726",
+        "α = 120% {1 + 0.01H [0.5 (Fv S1 / kmax) − 1]} = 120% {1 + 0.01 (25.64 ft) "
+        "[0.5 (1.0 × 0.177g / 0.206g) − 1]}",
+        "kav = α kmax = 1.024 (0.206g) = 0.211g",
+        "PAE = 0.5(KAE)γf h²",
+        "h = H + tan I (0.5H) / (1 − 0.5 tan I) ; where I is the backfill slope angle",
+        "KAE = cos²(φ′b − ξ − 90 + θ) / {cos ξ cos²(90 − θ) cos(δ + 90 − θ + ξ) "
+        "[1 + √( sin(φ′b + δ) sin(φ′b − ξ − I) / (cos(δ + 90 − θ + ξ) cos(I − 90 + θ)) )]²}",
+        "ξ = tan⁻¹ (kh / (1 − kv)) = tan⁻¹ (0.206 g / (1 - 0)) = 11.64",
+        "= 0.9008 / (0.7320 [1 + 0.6042]²) = 0.4782",
+        "PAE = 0.5(KAE)γb h² = 0.5 (0.4782)(125 lb/ft³)(25.64 ft)² = 19.65 k/lft",
+        "W = 25.64 ft (18 ft) (125 pcf) = 57.68 k/lft",
+        "PIR = 0.5(kav)(W) = 0.5 (0.211 g) (57.68 k/lft) = 6.09 k/lft",
+        "= 19.65 k/lft (cos 30°) + 6.09 k/lft + 0.5(0.25 ksf)(25.64 ft)(0.4785) =",
+        "ΣV = W + PAEsinδ = 57.68 k/lft + 19.65 k/lft (sin 30°) = 57.68 + 9.84 = 67.52 k/lft",
+        "CDRsliding = Rτ / THF = 38.98 k/lft / 24.64 k/lft = 1.58 > 1.0 ∴ O.K., and go to Step 11",
+        "σv = ΣV / (L − 2e)",
+        "Wa = [0.3H(H/2) + 0.5(0.3H)(H/2)] γr",
+        "Wa = [98.61 ft² + 49.31 ft²] 125 pcf = 18.49 k/lft",
+        "Tmd = Pi / n = 3.90 k/lft / 10 = 0.39 k/lft = 1.95 k/5 ft panel width",
+        "Ttotal = Tmax + Tmd",
+    ):
+        assert line in body, line
+    # the three step sequences (general, external, internal) keep their numbers
+    assert body.count("STEP 1. ") == 3 and body.count("STEP 2. ") == 3
+    r, H, L = math.radians, 25.64, 18.0
+    assert _near(38 * 1.0 * 0.177, 6.726, 0.0005)
+    alpha = 1.2 * (1 + 0.01 * H * (0.5 * (1.0 * 0.177 / 0.206) - 1))
+    assert round(alpha, 4) == 1.0245 and _near(1.024 * 0.206, 0.211, 0.0005)
+    xi = math.degrees(math.atan(0.206))
+    assert round(xi, 2) == 11.64
+    assert round(math.cos(r(18.36)) ** 2, 4) == 0.9008
+    assert round(math.cos(r(11.64)) * math.cos(r(41.64)), 4) == 0.7320
+    root = math.sqrt(math.sin(r(60)) * math.sin(r(18.36)) / math.cos(r(41.64)))
+    assert round(root, 4) == 0.6042
+    assert round(0.9008 / (0.7320 * 1.6042 ** 2), 4) == 0.4782
+    pae = 0.5 * 0.4782 * 0.125 * H ** 2
+    assert round(pae, 2) == 19.65
+    assert _near(H * L * 0.125, 57.68, 0.011) and round(0.5 * 0.211 * 57.68, 2) == 6.09
+    assert round(19.65 * math.cos(r(30)), 2) == 17.02
+    assert round(0.5 * 0.25 * H * 0.4785, 2) == 1.53
+    assert _near(17.02 + 6.09 + 1.53, 24.64, 0.001)
+    assert _near(57.68 + 19.65 * 0.5, 67.52, 0.016)
+    assert round(67.52 * math.tan(r(30)), 2) == 38.98 and round(38.98 / 24.64, 2) == 1.58
+    assert round(0.3 * H ** 2 / 2, 2) == 98.61 and round(0.15 * H ** 2 / 2, 2) == 49.31
+    assert round((98.61 + 49.31) * 0.125, 2) == 18.49
+    assert round(0.211 * 18.49, 2) == 3.90 and round(3.90 / 10 * 5, 2) == 1.95
+
+
+def test_appendix_e7_tables_typed_in():
+    body = _e_body("E.7")
+    rows = {row[0]: row for row in _typed_rows(body, "E7-4")}
+    va = rows["Total vertical load at base of MSE wall without LL, VA = V1"]
+    mra = rows["Resisting moments about Point A without LL surcharge = MRA = M1V1 + L (PAE sinδ)"]
+    moa = rows["Overturning moment, MOA (static + seismic)"]
+    ma = rows["Net moment about Point A = MA = MRA – MOA"]
+    a = rows["Location of the resultant force on base of MSE wall from Point A, "
+             "a = MA/(VA + PAE sinδ)"]
+    ecc = rows["Eccentricity at base of MSE wall, eL = L/2 – a"]
+    parts = [row for key, row in rows.items() if "overturning moment about" in key]
+    assert len(parts) == 3
+    assert _near(1.35 * 57.69, va[2]) and va[3] == "57.69"
+    for col in (2, 3):
+        assert _near(float(va[col]) * 9 + 18 * 9.84, mra[col], 0.011)
+        assert _near(sum(float(p[col]) for p in parts), moa[col], 0.001)
+        assert _near(float(mra[col]) - float(moa[col]), ma[col], 0.001)
+        assert _near(float(ma[col]) / (float(va[col]) + 9.84), a[col])
+        assert _near(9 - float(a[col]), ecc[col], 0.011)
+    assert round(19.65 * math.cos(math.radians(30)) * 25.64 / 2, 2) == 218.16
+    # the critical values: max overturning with min resisting
+    assert _near(696.33 - 343.17, 353.16, 0.001) and _near(353.16 / 67.52, 5.23)
+    assert round(0.4 * 18, 2) == 7.20
+    rows = {row[0]: row for row in _typed_rows(body, "E7-5")}
+    static = rows["Static Vertical load at base of MSE wall including LL on top, ΣV = R = V1 + VS"]
+    total = rows["Total vertical load at base of MSE wall without LL, VA = R = V1 + VS + PAE sinδ"]
+    mra = rows["Resisting moments about Point A = MRA = MV1 + MV5 + MPV"]
+    ma = rows["Net moment at Point A, MA = MRA - MOA"]
+    a = rows["Location of the resultant force on MSE block from Point A, a = (MRA – MOA)/VA"]
+    width = rows["Effective width of base of MSE wall, B' = L – 2e"]
+    stress = rows["Bearing stress due to MSE wall =ΣV/(B') = σv"]
+    assert _near(float(static[2]) - 77.88, 0.5 * 0.25 * 18, 0.001)
+    assert _near(float(static[2]) + 9.84, total[2], 0.001)
+    assert _near(float(mra[2]) - 343.17, ma[2], 0.001)
+    assert _near(float(ma[2]) / float(total[2]), a[2])
+    assert _near(18 - 2 * (9 - float(a[2])), width[2], 0.001)
+    assert _near(float(total[2]) / float(width[2]), stress[2])
+    assert round(10.50 / 0.65, 2) == 16.15
+    # Tables E7-6 and E7-7 against Example E4's Table E4-7.4, level by level
+    e4 = {row[0]: row for row in _typed_rows(_e_body("E.4"), "E4-7.4")}
+    pull = {row[0]: row for row in _typed_rows(body, "E7-7")}
+    rows = _typed_rows(body, "E7-6")
+    assert [row[0] for row in rows] == [str(n) for n in range(1, 11)]
+    for level, z, _, tmax, tmd, ttotal, tn, phi, mat, ng, cap, cdr in rows:
+        assert tmax == e4[level][3] and ng == e4[level][10] and z == e4[level][1]
+        assert mat == e4[level][11].split("+")[0]
+        assert _near(float(tmax) + float(tmd), ttotal, 0.001), level
+        assert _near(float(phi) * float(tn) * int(ng), cap), level
+        assert round(float(cap) / float(ttotal), 2) == float(cdr), level
+        p = pull[level]
+        assert p[3:6] == [tmax, tmd, ttotal] and p[6] == e4[level][6], level
+        seismic = float(p[6]) * 0.8 * 1.20 / 0.9 * 5
+        # four figures where the value passes 100 (104.85 printed 104.8)
+        assert abs(seismic - float(p[10])) < (0.06 if seismic > 100 else 0.006), level
+        assert round(float(p[10]) / float(ttotal), 2) == float(p[11]), level
+    assert pull["2"][7] == "0.0"
+
+
+def test_appendix_e7_print_slips_noted():
+    body = _e_body("E.7")
+    for note in (
+        'as printed, "PVG" here and in the heading of Step 4, for PGV',
+        'as printed, "XTERNAL" for EXTERNAL.',
+        "as printed, γf in this formula; the text below names γb",
+        "the first line leaves out the (H)(KAE) of the live load term",
+        "with KAE = 0.4785 where Step 6 gives 0.4782; and γEQ = 0.5 where Table E7-2 "
+        "gives γEQ = 1.00 for LS in Extreme Event I",
+        'as printed, "Table E4-6.2", which holds Example E4\'s static computations',
+        "as printed, e = 0.40L = 6.60 ft in the max and min columns",
+        "as printed, MRA = 898.03 k-ft/ft; Table E7-4's 878.05 plus the live load, "
+        "80.13 − 77.88 = 2.25 k/ft at L/2 = 9 ft, gives 898.30.",
+        'as printed, "reduced by 80%"; the sentence before and Table E7-7 reduce them '
+        "to 80 percent",
+        "as printed, 0.0 in Level 2's x 80% column",
+    ):
+        assert note in body, note
+    assert round(878.05 + 2.25 * 9, 2) == 898.30
+    assert round(11.25 * 0.8 * 1.20 / 0.9 * 5, 2) == 60.00
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():
