@@ -162,8 +162,8 @@
         "8-14",
         "8-15"
       ],
-      "applicability": "Bolted timber connection design, and any wood bearing/loading problem at an angle to the grain.",
-      "implemented_in": "fastenings.hankinson_bearing_strength, fastenings.yield_limit_lateral_strength"
+      "applicability": "Bolted timber connection design, and any wood bearing/loading problem at an angle to the grain. No function codes the bolt dowel bearing strengths, Eqs. 8-17 and 8-18; fastenings.yield_limit_lateral_strength takes nails and screws only and uses the nail equation, Eq. 8-3, so it does not cover bolts.",
+      "implemented_in": "fastenings.hankinson_bearing_strength"
     },
     {
       "section_id": "8-6",
