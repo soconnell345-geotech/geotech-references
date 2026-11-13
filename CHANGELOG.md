@@ -9,12 +9,17 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 reach everything it is told it has).** `reference_get` and
 `retrieve_section` now add, where there is something to say,
 `figures_held` (each listed figure: in the figure catalog, on several rows,
-filed as its whole figure or by its parts, or not held), `tables_held`
-(where each listed table's values are, from a `tables_catalog.json`; "not
-held" for a reference without one, which on this build is every
-reference) and `not_held` (the parts of the same document the body points
-to that the library does not hold, with a sentence in `note`). Both held
-maps come in a short form (`{"all": ...}`, or the exceptions plus
+filed as its whole figure or by its parts, or "not catalogued"),
+`tables_held` (where each listed table's values are, from its row in the
+reference's `tables_catalog.json`: "text: <section id>", "lookup:
+<function>" as `lookup_reference` takes it, "page: printed p. P
+(pdf_page_index N)", or "not catalogued" for a table with no row or a
+reference with no catalog, never "not held") and `not_held` (the parts of
+the same document the body points to that the library holds no text or
+catalog row for). The fetch's `note` says what each key and answer it
+carries means (left out when a fetch would pass 14,000 characters with
+it); the docstrings of both fetches list every answer. Both held maps
+come in a short form (`{"all": ...}`, or the exceptions plus
 `"others"`). The flags are worked out when the text database is built
 (new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
 figure and table catalogs join its source signature) and cost a fetch

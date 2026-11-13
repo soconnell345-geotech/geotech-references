@@ -174,11 +174,13 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
 
 
 def _source_paths(sources=None) -> list[Path]:
-    """The files the text database is built from: every chapter file and
-    the catalogs the reach flags read (:func:`._reach.catalog_paths`, there
-    or not, so adding one rebuilds too)."""
+    """The files the text database is built from: every chapter file, the
+    catalogs the reach flags read (:func:`._reach.catalog_paths`, there or
+    not, so adding one rebuilds too) and the module that works the flags
+    out, so a change of its rules rebuilds them."""
     sources = _iter_text_jsons() if sources is None else sources
-    return [jf for _, jf in sources] + _reach.catalog_paths()
+    return ([jf for _, jf in sources] + _reach.catalog_paths()
+            + [Path(_reach.__file__)])
 
 
 def _newest_source_mtime() -> float:
@@ -1394,7 +1396,31 @@ def reference_get(reference: str, section_id: str,
     dict
         Full section dict, plus ``parent_id``, ``under`` (the sections
         above it) and ``children`` (``section_id`` and ``title`` of each
-        section directly under it).
+        section directly under it). What the section names and points to
+        is answered (``_reach``, REF-92), each key only when it has
+        something in it, and ``note`` says what the keys and the answers
+        it carries mean:
+
+        - ``figures_held``: per figure its ``figures`` list names,
+          ``"catalog"`` (``figure_get`` finds it and gives its page),
+          ``"catalog (N rows: give figure_get the pdf_page_index)"``,
+          ``"catalog (as 5-5)"`` / ``"catalog (as parts ...)"`` (filed
+          under that number), or ``"not catalogued"`` (no figure catalog
+          row: ``figure_get`` cannot fetch it);
+        - ``tables_held``: per table its ``tables`` list names, where the
+          values are: ``"text: <section_id>"`` (typed in that section),
+          ``"lookup: <function>"`` (that function returns them;
+          ``lookup_reference`` takes the name), ``"page: printed p. P
+          (pdf_page_index N)"`` (only on the printed page; ``table_get``
+          gives it), or ``"not catalogued"`` (no table catalog row, or no
+          catalog: ``table_get`` cannot fetch it);
+        - ``not_held``: parts of the same document the body points to
+          that the library holds no text or catalog row for ("Appendix
+          D", "Chapter 12", "Eq. 4-11"), at most 15, then "and N more".
+
+        A page is readable only where the PDF is on the host. The held
+        maps come in a short form: ``{"all": answer}``, or the numbers
+        whose answer differs plus ``"others": answer``.
 
     Raises
     ------
@@ -1437,13 +1463,10 @@ def reference_get(reference: str, section_id: str,
             {"section_id": c["section_id"], "title": c["title"]}
             for c in _child_rows(conn, row["rowid"])]
         # what its figures, tables and pointers reach (2026-11-12)
-        reach = _reach.chapter_flags(conn, reference, row["chapter"])
-        out = _reach.add_flags(out, reach)
-        if include_subsections:
-            out = _retrieval.inline_subsections(
-                out, _reach.tree_with_flags(
-                    _subtree(conn, row["rowid"], {row["rowid"]}), reach))
-        out = _reach.with_not_held_note(out)
+        out = _reach.fetch_result(
+            out, _subtree(conn, row["rowid"], {row["rowid"]})
+            if include_subsections else None,
+            _reach.chapter_flags(conn, reference, row["chapter"]))
         # the section a chapter prints under the same number (GEC-13
         # chapter 1's printed 8.2.7 is 1.8.2.7), as retrieve_section says
         return _retrieval.with_printed_note(

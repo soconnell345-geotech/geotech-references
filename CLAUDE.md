@@ -474,21 +474,32 @@ figures and tables and points to other parts of its document, so
 has something in it (`_reach.py`):
 
 - **`figures_held`**: for each number the `figures` list names,
-  `"catalog"` (`figure_get` finds it), `"catalog (2 rows: give figure_get
-  the pdf_page_index)"`, `"catalog (as 5-5)"` (a part the catalog files
-  with its whole figure), `"catalog (as parts C14-3A, C14-3B)"`, or
-  `"not held"`.
+  `"catalog"` (`figure_get` finds it and its page), `"catalog (2 rows:
+  give figure_get the pdf_page_index)"`, `"catalog (as 5-5)"` (a part the
+  catalog files with its whole figure), `"catalog (as parts C14-3A,
+  C14-3B)"`, or `"not catalogued"` (no catalog row: `figure_get` cannot
+  fetch it).
 - **`tables_held`**: for each number the `tables` list names, where its
-  values are, from `<package>/tables_catalog.json` (rows `table_number`,
-  `caption`, `section_id`, `pdf_page_index`, `printed_page`, `values`
-  "text" | "lookup" | "page", `values_in`): `"text: <section ids>"`,
-  `"lookup: <function>"`, `"page: pdf_page_index N, printed p. P"`, or
-  `"not held"`. A reference with no table catalog says "not held" for
-  every table (all of them until the table catalogs are built).
+  values are, from its row in `<package>/tables_catalog.json` (see "Table
+  catalogs"): `"text: <section id>"` (typed in that section), `"lookup:
+  <function>"` (the function's name as `lookup_reference` takes it, the
+  row's `values_in` without its module), `"page: printed p. P
+  (pdf_page_index N)"` (only on the printed page; `table_get` gives it),
+  or `"not catalogued"`: no row for it, or no catalog for the reference
+  (`gec_14` prints no numbered table; `em_1905` has none yet). Never "not
+  held": a table with no row may still be described in the text. A row
+  that says "text" or "lookup" but names nothing answers with its page.
 - **`not_held`**: the parts of the same document the body points to that
-  the library does not hold ("Appendix D", "Chapter 12", "Eq. 4-11"), at
-  most 15 and then "and N more", with a sentence added to `note` saying
-  not to quote or cite them as read.
+  the library holds no text or catalog row for ("Appendix D", "Chapter
+  12", "Eq. 4-11"), at most 15 and then "and N more".
+
+The fetch's `note` says what each key and each answer it carries means
+(`_reach.reach_note`: one clause per answer kind present, "Pages are
+readable only where the PDF is on this host", and for `not_held` not to
+quote or cite those parts as read); the docstrings of `reference_get` and
+`retrieve_section` list every answer. A fetch that would pass 14,000
+characters with that note goes without it, the keys kept
+(`NOTE_BUDGET_CHARS`; dm7_2 4-9 would otherwise pass the app's 16,000).
 
 Both held maps come in a short form: `{"all": answer}` when every number
 has the same answer, else the numbers whose answer differs plus
@@ -500,8 +511,9 @@ it, an author and year before it, a number whose form is none of the
 document's own or that reads as a range, a number split across a line, a
 value after a list, and an appendix followed by its title (another
 report's contents) are left alone. The module docstring lists what counts
-as held. Inlined subsections carry their own keys, counted by the 12,000
-inlining rule.
+as held. Inlined subsections carry their own keys; the fetch's note
+explains them once. The text database's sources include `_reach.py`
+itself, so a change of the rules rebuilds the flags.
 
 The flags are worked out once, when the text database is built
 (`_reach.fill_reach_table`, table `section_reach`, about 1-2 s of the
@@ -514,13 +526,15 @@ figures and tables and the pointers not held.
 **Tests:** `tests/test_reach.py`: the rules on made-up text, the keys on a
 made-up local pack (with a table catalog) through both fetches, and across
 the library: every section has a body or sections under it; every listed
-figure and table has an answer; every `implemented_in` (section and
+figure and table has an answer; the two tables of the 2026-11-12 review
+(dm7_1 Table 5-6, gec_11 Table 4-7) answer with their lookups and a
+reference with no table catalog says "not catalogued"; every `implemented_in` (section and
 equation level) names a function the package has; every cross-reference
 key is `"<reference> Chapter N"` or `"<reference> Section <id>"` and
 resolves; every figure number held on several catalog rows is on distinct
 pages; the not-held counts stay at or under `tests/reach_baseline.json`
-(2026-11-12: 2 figures, 1,545 tables, 289 pointers; lower the file when a
-count drops); the flags keep fetch sizes in their limits; the wheel's
+(2026-11-12, with the table catalogs: 2 figures and 114 tables not
+catalogued, 285 pointers not held; lower the file when a count drops); the flags keep fetch sizes in their limits; the wheel's
 package data covers every data file the code reads.
 
 ## Lexical Query Expansion (recall lever)

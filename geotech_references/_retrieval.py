@@ -560,12 +560,10 @@ def _view_with_reach(reference: str, chapter, entries: list[dict], i: int,
     ``not_held``; :mod:`._reach`, 2026-11-12), read from the text search
     database. Without the database the view is returned as before."""
     from . import _reach
-    reach = _reach.flags_for(reference, chapter)
-    view = _reach.add_flags(section_view(entries, i), reach)
-    if include_subsections:
-        view = inline_subsections(
-            view, _reach.tree_with_flags(_subtree(entries, i), reach))
-    return _reach.with_not_held_note(view)
+    return _reach.fetch_result(
+        section_view(entries, i),
+        _subtree(entries, i) if include_subsections else None,
+        _reach.flags_for(reference, chapter))
 
 
 def retrieve_section(reference: str, section_id: str,
@@ -594,7 +592,32 @@ def retrieve_section(reference: str, section_id: str,
         The section's own fields (title, body, key_points, equations,
         ...) plus ``parent_id``, ``under`` (the sections above it,
         outermost first) and ``children`` (number and title of each
-        section directly under it).
+        section directly under it). What the section names and points to
+        is answered (:mod:`._reach`, REF-92, read from the text search
+        database; without it the fetch is as before), each key only when
+        it has something in it, and ``note`` says what the keys and the
+        answers it carries mean:
+
+        - ``figures_held``: per figure its ``figures`` list names,
+          ``"catalog"`` (``figure_get`` finds it and gives its page),
+          ``"catalog (N rows: give figure_get the pdf_page_index)"``,
+          ``"catalog (as 5-5)"`` / ``"catalog (as parts ...)"`` (filed
+          under that number), or ``"not catalogued"`` (no figure catalog
+          row: ``figure_get`` cannot fetch it);
+        - ``tables_held``: per table its ``tables`` list names, where the
+          values are: ``"text: <section_id>"`` (typed in that section),
+          ``"lookup: <function>"`` (that function returns them;
+          ``lookup_reference`` takes the name), ``"page: printed p. P
+          (pdf_page_index N)"`` (only on the printed page; ``table_get``
+          gives it), or ``"not catalogued"`` (no table catalog row, or no
+          catalog: ``table_get`` cannot fetch it);
+        - ``not_held``: parts of the same document the body points to
+          that the library holds no text or catalog row for ("Appendix
+          D", "Chapter 12", "Eq. 4-11"), at most 15, then "and N more".
+
+        A page is readable only where the PDF is on the host. The held
+        maps come in a short form: ``{"all": answer}``, or the numbers
+        whose answer differs plus ``"others": answer``.
 
     Raises
     ------

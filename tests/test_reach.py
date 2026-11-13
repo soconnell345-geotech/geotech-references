@@ -155,9 +155,9 @@ def test_figure_answers(tmp_path, monkeypatch):
     assert h.figure_flag("1-1(a)") == "catalog (as 1-1)"
     assert h.figure_flag("1-2").startswith("catalog (2 rows")
     assert h.figure_flag("1-3") == "catalog (as parts 1-3A, 1-3B)"
-    assert h.figure_flag("1-9") == "not held"
+    assert h.figure_flag("1-9") == "not catalogued"
     assert not h.has_tables_catalog
-    assert h.table_flag("1-1") == "not held"   # no table catalog
+    assert h.table_flag("1-1") == "not catalogued"   # no table catalog
     # pointers: a part of a held figure, a figure held by its parts
     assert _reach.pointers_not_held(
         "See Figure 1-1b, Figure 1-3 and Figure 1-9.", h) == ["Figure 1-9"]
@@ -166,13 +166,21 @@ def test_figure_answers(tmp_path, monkeypatch):
 def test_table_answers_from_a_catalog():
     row = {"table_number": "5-1", "values": "text", "values_in": ["5-3.2"]}
     assert _reach.table_values(row) == "text: 5-3.2"
+    # the name lookup_reference takes: values_in without its module
     assert _reach.table_values(
-        {"values": "lookup", "values_in": "dm7_1.chapter5.table_5_1"}
-    ) == "lookup: dm7_1.chapter5.table_5_1"
+        {"values": "lookup", "values_in": "chapter5.table_5_1"}
+    ) == "lookup: table_5_1"
     assert _reach.table_values(
         {"values": "page", "pdf_page_index": 41, "printed_page": "5-7"}
-    ) == "page: pdf_page_index 41, printed p. 5-7"
-    assert _reach.table_values({"values": None}) == "not held"
+    ) == "page: printed p. 5-7 (pdf_page_index 41)"
+    assert _reach.table_values(
+        {"values": "page", "pdf_page_index": 41, "printed_page": None}
+    ) == "page: pdf_page_index 41"
+    # a row that names no section or function answers with its page
+    assert _reach.table_values(
+        {"values": "text", "values_in": None, "pdf_page_index": 7}
+    ) == "page: pdf_page_index 7"
+    assert _reach.table_values({"values": None}) == "not catalogued"
 
 
 # ---------------------------------------------------------------------------
@@ -265,20 +273,28 @@ def test_a_fetched_section_says_what_it_reaches(reach_pack, fetch):
     get = (_retrieval_db.reference_get if fetch == "reference_get"
            else _retrieval.retrieve_section)
     sec = get(PID, "1.1")
-    assert sec["figures_held"] == {"1-1": "catalog", "1-2": "not held"}
+    assert sec["figures_held"] == {"1-1": "catalog", "1-2": "not catalogued"}
     assert sec["tables_held"] == {
         "1-1": "text: 1.1",
-        "1-2": "lookup: local_reach_manual.table_1_2",
-        "1-3": "page: pdf_page_index 1, printed p. 3",
-        "1-4": "not held"}
+        "1-2": "lookup: table_1_2",
+        "1-3": "page: printed p. 3 (pdf_page_index 1)",
+        "1-4": "not catalogued"}
     assert sec["not_held"] == ["Section 1.7"]
-    assert _reach.NOT_HELD_NOTE in sec["note"]
+    # the note says what each key and each answer it carries means
+    note = sec["note"]
+    assert _reach.NOT_HELD_NOTE in note and _reach.PAGE_NOTE in note
+    for meaning in [_reach.FIGURE_ANSWERS["catalog"],
+                    _reach.FIGURE_ANSWERS["not catalogued"]] + list(
+                        _reach.TABLE_ANSWERS.values()):
+        assert meaning in note, meaning
+    assert _reach.SHORT_NOTE not in note     # no short form here
     # another document's section, and a chapter it does not hold
     assert get(PID, "1.2")["not_held"] == ["Chapter 6"]
     # nothing to say: no keys
     wet = get(PID, "1.2.1")
     assert wet["not_held"] == ["Figure 1-9"]
     assert "figures_held" not in wet and "tables_held" not in wet
+    assert wet["note"] == _reach.NOT_HELD_NOTE
 
 
 @pytest.mark.parametrize("fetch", ["reference_get", "retrieve_section"])
@@ -289,8 +305,9 @@ def test_inlined_subsections_carry_their_flags(reach_pack, fetch):
     sub = sec["subsections"][0]
     assert sub["section_id"] == "1.2.1"
     assert sub["not_held"] == ["Figure 1-9"]
-    assert _reach.NOT_HELD_NOTE in sub["note"]
+    # the fetch's note explains the keys once, for the subsections too
     assert _reach.NOT_HELD_NOTE in sec["note"]
+    assert "note" not in sub
 
 
 def test_the_fetch_works_without_the_flags(reach_pack, monkeypatch):
@@ -351,12 +368,42 @@ def test_every_listed_figure_and_table_has_an_answer(library_db):
                 continue
             held = _reach.expand(flags.get(key, {}), numbers)
             for num, answer in held.items():
-                ok = (answer == _reach.NOT_HELD
+                ok = (answer == _reach.NOT_CATALOGUED
                       or answer.startswith(_reach.HELD_IN_CATALOG)
                       or answer.split(":")[0] in ("text", "lookup", "page"))
                 if key not in flags or not ok:
                     missing.append((ref, sid, num, answer))
     assert missing == []
+
+
+def _held(sec: dict, key: str = "tables_held") -> dict:
+    kind = "table" if key == "tables_held" else "figure"
+    return _reach.expand(sec.get(key, {}), _reach.listed_numbers(
+        sec.get(kind + "s"), kind))
+
+
+def test_listed_tables_answer_from_their_catalog_rows(library_db):
+    """The review's two tables are lookups; a reference with no table
+    catalog says "not catalogued", never "not held"."""
+    get = _retrieval_db.reference_get
+    assert _held(get("dm7_1", "5-5.4"))["5-6"] == \
+        "lookup: table_5_6_Calpha_Cc"
+    assert _held(get("gec_11", "4.4.5"))["4-7"] == \
+        "lookup: table_4_7_internal_resistance"
+    conn = sqlite3.connect(library_db)
+    try:
+        listed = [(ref, sid) for ref, sid, tabs in conn.execute(
+            "SELECT reference, section_id, tables_json FROM sections")
+            if _reach.listed_numbers(json.loads(tabs or "[]"), "table")]
+    finally:
+        conn.close()
+    uncatalogued = {ref for ref, _ in listed
+                    if not (PKG / ref / _reach.TABLES_CATALOG).exists()}
+    assert uncatalogued, "every reference with listed tables has a catalog"
+    for ref, sid in listed:
+        if ref in uncatalogued:
+            assert set(_held(get(ref, sid)).values()) == {
+                _reach.NOT_CATALOGUED}, (ref, sid)
 
 
 def _callable(path: str) -> bool:
@@ -458,11 +505,30 @@ def test_what_is_not_held_does_not_grow(library_db):
 # ---------------------------------------------------------------------------
 
 #: Section fetches over the library's 14,000-character budget from their
-#: own text, before the flags (2026-11-12; the app's cap is 16,000).
-OVER_BUDGET_BEFORE_FLAGS = {("dm7_2", "4-9"),
+#: own text, before the flags (2026-11-12; the app's cap is 16,000; em_1905
+#: C-2b came with the EM 1110-1-1905 build).
+OVER_BUDGET_BEFORE_FLAGS = {("dm7_2", "4-9"), ("em_1905", "C-2b"),
                             ("fhwa_soils_foundations", "6.6.3"),
                             ("fhwa_soils_foundations", "9.5.1.1")}
 BUDGET, APP_CAP = 14000, 16000
+#: The most the flags and the note's sentences on them add to a fetch.
+REACH_MAX_ADDED = 1200
+
+
+def _without_reach(sec: dict) -> dict:
+    """A fetch without the reach keys and the note's sentences on them."""
+    out = {k: v for k, v in sec.items()
+           if k not in ("figures_held", "tables_held", "not_held")}
+    note = str(sec.get("note") or "")
+    for said in (_reach.reach_note(sec), _reach.NOT_HELD_NOTE):
+        if said:
+            note = note.replace(said, "")
+    note = " ".join(note.split())
+    if note:
+        out["note"] = note
+    else:
+        out.pop("note", None)
+    return out
 
 
 def test_flags_keep_the_largest_fetches_in_their_limits(library_db):
@@ -487,11 +553,8 @@ def test_flags_keep_the_largest_fetches_in_their_limits(library_db):
             except KeyError:  # a number held twice
                 continue
             size = len(json.dumps(sec, default=str))
-            bare = len(json.dumps(
-                {k: v for k, v in sec.items()
-                 if k not in ("figures_held", "tables_held", "not_held")},
-                default=str))
-            assert size - bare <= 600, (ref, sid, size - bare)
+            bare = len(json.dumps(_without_reach(sec), default=str))
+            assert size - bare <= REACH_MAX_ADDED, (ref, sid, size - bare)
             assert size <= APP_CAP, (ref, sid, size)
             if size > BUDGET:
                 over.append((ref, sid))

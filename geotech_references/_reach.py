@@ -13,26 +13,32 @@ So every fetched section (``_retrieval_db.reference_get`` and
 
 - ``figures_held``: for the figure numbers its ``figures`` list names,
   ``"catalog"`` where a figure catalog row holds it as ``figure_get`` looks
-  it up; ``"catalog (2 rows: give figure_get the pdf_page_index)"`` for a
-  number on several rows; ``"catalog (as 5-5)"`` for a part the catalog
-  files with its whole figure, ``"catalog (as parts C14-3A, C14-3B)"`` for
-  a figure filed by its parts; or ``"not held"``;
+  it up (``figure_get`` gives the page; the page is readable only where
+  the PDF is on the host); ``"catalog (2 rows: give figure_get the
+  pdf_page_index)"`` for a number on several rows; ``"catalog (as 5-5)"``
+  for a part the catalog files with its whole figure, ``"catalog (as
+  parts C14-3A, C14-3B)"`` for a figure filed by its parts; or ``"not
+  catalogued"`` (no catalog row: ``figure_get`` cannot fetch it);
 - ``tables_held``: for the table numbers its ``tables`` list names, where
   the table's values are, from the reference's table catalog
   (``tables_catalog.json``, rows with ``table_number``, ``values`` "text" |
-  "lookup" | "page" and ``values_in``): ``"text: <section ids>"``,
-  ``"lookup: <function>"``, ``"page: pdf_page_index N, printed p. P"``
-  (readable where the PDF is present), or ``"not held"`` -- always ``"not
-  held"`` for a reference with no table catalog;
+  "lookup" | "page" and ``values_in``): ``"text: <section id>"`` (its
+  cells are typed in that section; ``reference_get`` it), ``"lookup:
+  <function>"`` (that function returns them; ``lookup_reference`` runs it
+  by this name), ``"page: printed p. P (pdf_page_index N)"`` (only on the
+  printed page: ``table_get`` gives it, readable only where the PDF is on
+  the host), or ``"not catalogued"`` (no catalog row, or no catalog for
+  the reference: ``table_get`` cannot fetch it);
 - ``not_held``: the parts of the SAME document its body points to that the
-  library does not hold (a section, chapter, appendix or annex, equation,
-  table or figure), at most :data:`NOT_HELD_MAX` and then "and N more",
-  with one sentence (:data:`NOT_HELD_NOTE`) in ``note``.
+  library holds no text or catalog row for (a section, chapter, appendix
+  or annex, equation, table or figure), at most :data:`NOT_HELD_MAX` and
+  then "and N more".
 
 Both held maps come in a short form (:func:`collapse`): ``{"all":
 answer}`` when every number has the same answer, else the numbers whose
 answer differs plus ``"others": <the commonest answer>``. A section listing
-60 figures would otherwise repeat "catalog" 60 times.
+60 figures would otherwise repeat "catalog" 60 times. The fetch's ``note``
+says what each key and each answer it carries means (:func:`reach_note`).
 
 A pointer is flagged only when it is certainly one into the same document
 and certainly not held. Not flagged: a pointer with another document named
@@ -74,11 +80,40 @@ FIGURES_CATALOG = "figures_catalog.json"
 TABLES_CATALOG = "tables_catalog.json"
 
 HELD_IN_CATALOG = "catalog"
+#: A listed figure or table with no catalog row (or no catalog).
+NOT_CATALOGUED = "not catalogued"
 NOT_HELD = "not held"
-#: The sentence a section with a ``not_held`` list adds to its ``note``.
+#: The sentence a fetch with a ``not_held`` list adds to its ``note``.
 NOT_HELD_NOTE = ("not_held names parts of this same document that the text "
-                 "points to and the library does not hold: do not quote or "
-                 "cite them as if they had been read.")
+                 "points to and that the library holds no text or catalog "
+                 "row for (a coded lookup may still return some of their "
+                 "values): do not quote or cite them as if they had been "
+                 "read.")
+#: What each answer of the held maps means, for the fetch's ``note``; only
+#: the answers a fetch carries are explained (:func:`reach_note`).
+FIGURE_ANSWERS = {
+    "catalog": "'catalog': figure_get finds it and its page",
+    "rows": "'N rows': give figure_get the pdf_page_index",
+    "as": "'as X': figure_get finds it as X",
+    NOT_CATALOGUED: "'not catalogued': no catalog row, figure_get cannot "
+                    "fetch it",
+}
+TABLE_ANSWERS = {
+    "text": "'text: S': typed in section S (reference_get)",
+    "lookup": "'lookup: F': function F returns them (lookup_reference)",
+    "page": "'page': only on that printed page (table_get)",
+    NOT_CATALOGUED: "'not catalogued': no catalog row, table_get cannot "
+                    "fetch it",
+}
+#: Said once when an answer names a page to read.
+PAGE_NOTE = "Pages are readable only where the PDF is on this host."
+#: Said when a held map names some numbers and gives the rest as "others".
+SHORT_NOTE = "'others' stands for every listed number not named."
+#: A fetch that would pass this many characters with :func:`reach_note`
+#: goes without it (the keys stay): the sections near or over the
+#: library's 14,000-character budget from their own text would otherwise
+#: pass it, or the app's 16,000-character cap (dm7_2 4-9).
+NOTE_BUDGET_CHARS = 14000
 #: The most entries one section's ``not_held`` lists.
 NOT_HELD_MAX = 15
 
@@ -384,7 +419,8 @@ class Holdings:
     def figure_flag(self, number: str) -> str:
         """``"catalog"`` when a catalog row holds the figure as
         ``figure_get`` looks it up; ``"catalog (as 5-5)"`` when the catalog
-        files the whole figure a part belongs to; else ``"not held"``."""
+        files the whole figure a part belongs to; else ``"not
+        catalogued"``."""
         keys = figure_keys(number)
         n = max((self.figure_rows.get(k, 0) for k in keys), default=0)
         if n > 1:
@@ -398,13 +434,14 @@ class Holdings:
         if keys[0] in self.figures.bases:
             parts = sorted(k for k in self.figure_rows if _base(k) == keys[0])
             return f"{HELD_IN_CATALOG} (as parts {', '.join(parts)})"
-        return NOT_HELD
+        return NOT_CATALOGUED
 
     def table_flag(self, number: str) -> str:
         """Where a table's values are, from the table catalog; ``"not
-        held"`` when the reference has no catalog or no row for it."""
+        catalogued"`` when the reference has no catalog or no row for
+        it."""
         row = self.table_rows.get(table_key(number))
-        return NOT_HELD if row is None else table_values(row)
+        return NOT_CATALOGUED if row is None else table_values(row)
 
     # -- pointers ----------------------------------------------------------
 
@@ -472,22 +509,28 @@ class Holdings:
 
 
 def table_values(row: dict) -> str:
-    """Where one table catalog row says the table's values are."""
+    """Where one table catalog row says the table's values are: ``"text:
+    <section id>"``, ``"lookup: <function>"`` (the name
+    ``lookup_reference`` takes: ``values_in`` without its module), or the
+    printed page, ``"page: printed p. P (pdf_page_index N)"``. A "text" or
+    "lookup" row that names nothing answers with its page; a row with no
+    page either answers ``"not catalogued"``."""
     values = row.get("values")
     where = row.get("values_in")
     if isinstance(where, (list, tuple)):
         where = ", ".join(str(w) for w in where if w not in (None, ""))
     where = str(where).strip() if where not in (None, "") else ""
-    if values in ("text", "lookup"):
-        return f"{values}: {where}" if where else values
-    if values == "page":
-        bits = []
-        if row.get("pdf_page_index") is not None:
-            bits.append(f"pdf_page_index {row['pdf_page_index']}")
-        if row.get("printed_page") not in (None, ""):
-            bits.append(f"printed p. {row['printed_page']}")
-        return "page: " + ", ".join(bits) if bits else "page"
-    return NOT_HELD
+    if values == "text" and where:
+        return f"text: {where}"
+    if values == "lookup" and where:
+        return "lookup: " + ", ".join(
+            w.strip().rpartition(".")[2] for w in where.split(","))
+    printed, index = row.get("printed_page"), row.get("pdf_page_index")
+    if printed not in (None, "") and index is not None:
+        return f"page: printed p. {printed} (pdf_page_index {index})"
+    if index is not None:
+        return f"page: pdf_page_index {index}"
+    return NOT_CATALOGUED
 
 
 # ---------------------------------------------------------------------------
@@ -623,7 +666,8 @@ def expand(short: dict[str, str], numbers: list[str]) -> dict[str, str]:
     given the numbers the section lists (in its order)."""
     if "all" in short:
         return {n: short["all"] for n in numbers}
-    return {n: short.get(n, short.get("others", NOT_HELD)) for n in numbers}
+    return {n: short.get(n, short.get("others", NOT_CATALOGUED))
+            for n in numbers}
 
 
 def listed_numbers(entries: list, kind: str) -> list[str]:
@@ -715,8 +759,7 @@ def chapter_flags(conn: sqlite3.Connection, reference: str,
 
 def add_flags(section: dict, table: dict[str, dict]) -> dict:
     """``section`` with the flags ``table`` (:func:`chapter_flags`) holds
-    for its number; the section itself when there are none. Called before
-    subsections are inlined, so the size rule counts the flags."""
+    for its number; the section itself when there are none."""
     flags = table.get(section.get("section_id"))
     if not flags:
         return section
@@ -725,29 +768,103 @@ def add_flags(section: dict, table: dict[str, dict]) -> dict:
     return out
 
 
-def with_not_held_note(section: dict) -> dict:
-    """``section`` with :data:`NOT_HELD_NOTE` added to its ``note`` when it
-    has a ``not_held`` list. Called after subsections are inlined (that
-    step can set the note)."""
-    if "not_held" not in section:
-        return section
-    out = dict(section)
-    out["note"] = (str(out.get("note") or "") + " " + NOT_HELD_NOTE).strip()
-    return out
-
-
 def tree_with_flags(sections: list[dict], table: dict[str, dict]
                     ) -> list[dict]:
-    """Subsections to be inlined, each with its flags and note, at every
-    level."""
+    """Subsections to be inlined, each with its flags, at every level (the
+    note of the fetch explains them once, :func:`with_notes`)."""
     out = []
     for sec in sections:
-        sec = with_not_held_note(add_flags(sec, table))
+        sec = add_flags(sec, table)
         if sec.get("subsections"):
             sec = dict(sec, subsections=tree_with_flags(sec["subsections"],
                                                         table))
         out.append(sec)
     return out
+
+
+def _figure_kind(answer: str) -> str:
+    if answer.startswith(f"{HELD_IN_CATALOG} (") and "rows" in answer:
+        return "rows"
+    if answer.startswith(f"{HELD_IN_CATALOG} (as"):
+        return "as"
+    return answer if answer in FIGURE_ANSWERS else ""
+
+
+def _table_kind(answer: str) -> str:
+    kind = answer.split(":", 1)[0]
+    return kind if kind in TABLE_ANSWERS else ""
+
+
+def reach_note(section: dict) -> str:
+    """The sentences a fetch's ``note`` gets for the keys it carries (at
+    its top or in an inlined subsection): what ``figures_held`` and
+    ``tables_held`` answer, each answer the fetch carries explained, and
+    :data:`NOT_HELD_NOTE` for ``not_held``. Empty when it carries none."""
+    figures: list[str] = []
+    tables: list[str] = []
+    short = has_not_held = False
+    for sec in [section] + list(_inlined(section.get("subsections"))):
+        for key, kinds, kind_of in (("figures_held", figures, _figure_kind),
+                                    ("tables_held", tables, _table_kind)):
+            held = sec.get(key) or {}
+            short = short or "others" in held
+            for answer in held.values():
+                kind = kind_of(str(answer))
+                if kind and kind not in kinds:
+                    kinds.append(kind)
+        has_not_held = has_not_held or "not_held" in sec
+    out = []
+    if figures:
+        out.append("figures_held, for each listed figure: "
+                   + "; ".join(FIGURE_ANSWERS[k] for k in FIGURE_ANSWERS
+                               if k in figures) + ".")
+    if tables:
+        out.append("tables_held, where each listed table's values are: "
+                   + "; ".join(TABLE_ANSWERS[k] for k in TABLE_ANSWERS
+                               if k in tables) + ".")
+    if short:
+        out.append(SHORT_NOTE)
+    if any(k in figures for k in ("catalog", "rows", "as")) \
+            or "page" in tables:
+        out.append(PAGE_NOTE)
+    if has_not_held:
+        out.append(NOT_HELD_NOTE)
+    return " ".join(out)
+
+
+def _inlined(sections):
+    for sec in sections or []:
+        yield sec
+        yield from _inlined(sec.get("subsections"))
+
+
+def with_notes(section: dict) -> dict:
+    """``section`` with :func:`reach_note` added to its ``note``, unless
+    the whole would pass :data:`NOTE_BUDGET_CHARS` (the keys then speak
+    for themselves)."""
+    note = reach_note(section)
+    if not note:
+        return section
+    out = dict(section)
+    out["note"] = (str(out.get("note") or "") + " " + note).strip()
+    if len(json.dumps(out, default=str)) > NOTE_BUDGET_CHARS:
+        return section
+    return out
+
+
+def fetch_result(view: dict, subtree: list[dict] | None,
+                 table: dict[str, dict]) -> dict:
+    """A fetched section as both fetches return it: ``view`` (the section
+    with ``parent_id``, ``under`` and ``children``) with its flags from
+    ``table`` (:func:`chapter_flags`); ``subtree`` (its subsections, None
+    when they were not asked for) inlined with theirs when they fit
+    (``_retrieval.inline_subsections``); and the ``note`` saying what the
+    keys and answers mean (:func:`reach_note`)."""
+    from ._retrieval import inline_subsections
+    out = add_flags(view, table)
+    if subtree is not None:
+        out = inline_subsections(out, tree_with_flags(subtree, table))
+    return with_notes(out)
 
 
 @functools.lru_cache(maxsize=256)
@@ -792,9 +909,9 @@ _CHECKED: dict[str, tuple[float, Path]] = {}
 
 
 def reach_counts() -> dict[str, dict[str, int]]:
-    """Per reference, how many listed figures and tables and how many
-    same-document pointers the library does not hold:
-    ``{reference: {"figures_not_held", "tables_not_held",
+    """Per reference, how many listed figures and tables are not
+    catalogued and how many same-document pointers the library does not
+    hold: ``{reference: {"figures_not_catalogued", "tables_not_catalogued",
     "pointers_not_held"}}``, from the text search database. The standing
     test (``tests/test_reach.py``) holds these to a baseline that may
     shrink, not grow."""
@@ -809,7 +926,7 @@ def reach_counts() -> dict[str, dict[str, int]]:
             "SELECT DISTINCT reference FROM sections ORDER BY reference")]
     finally:
         conn.close()
-    out = {ref: {"figures_not_held": 0, "tables_not_held": 0,
+    out = {ref: {"figures_not_catalogued": 0, "tables_not_catalogued": 0,
                  "pointers_not_held": 0} for ref in refs}
     for ref, figs, tabs, flags in rows:
         flags = json.loads(flags)
@@ -819,8 +936,8 @@ def reach_counts() -> dict[str, dict[str, int]]:
             if key in flags:
                 held = expand(flags[key], listed_numbers(
                     json.loads(listing or "[]"), kind))
-                counts[f"{kind}s_not_held"] += sum(
-                    v == NOT_HELD for v in held.values())
+                counts[f"{kind}s_not_catalogued"] += sum(
+                    v == NOT_CATALOGUED for v in held.values())
         for item in flags.get("not_held", []):
             more = re.fullmatch(r"and (\d+) more", item)
             counts["pointers_not_held"] += int(more.group(1)) if more else 1

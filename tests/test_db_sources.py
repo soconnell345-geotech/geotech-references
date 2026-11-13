@@ -20,6 +20,7 @@ from __future__ import annotations
 import os
 import shutil
 import sqlite3
+from pathlib import Path
 
 import pytest
 
@@ -67,10 +68,10 @@ def test_the_database_records_its_sources(private_dbs, kind):
     assert version == module._SCHEMA_VERSION
     paths = [_path_of(kind, s) for s in _sources(kind)]
     if kind == "text":
-        # the figure and table catalogs the reach flags read join the
-        # chapter files (2026-11-12)
+        # the figure and table catalogs the reach flags read, and the module
+        # with their rules, join the chapter files (2026-11-12)
         from geotech_references import _reach
-        paths += _reach.catalog_paths()
+        paths += _reach.catalog_paths() + [Path(_reach.__file__)]
     assert signature == _retrieval_db.source_state(paths)[1]
     assert not module._needs_rebuild(db)
 
