@@ -439,6 +439,54 @@ def test_appendix_e1_print_slips_noted():
     assert round(sigma) == 391 and round(sigma * 2.0) == 781
 
 
+def test_appendix_e2_working_as_printed():
+    """Example E2's bearing checks as typed in from pp. E2-3 to E2-10, and
+    their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.2"]["title"] == ("Bearing Check for Example E1 MSE Wall without "
+                                    "and with High Groundwater, and with a Sloping Toe")
+    body = _e_body("E.2")
+    for line in (
+        "F1 = ½ γb h² Kab = ½ (125 pcf) (29 ft)² (0.360) = 18,922 lb/lft = 18.92 k/lft",
+        "[p. E2-4] Step 6. Evaluate Bearing on Foundation",
+        "eb-ser = (178.51 k-ft + 36.98 k-ft − 0 − 30.36 k-ft − 42.57 k-ft) / 59.85 k "
+        "= 142.55 k-ft / 59.85 k = 2.38 ft",
+        "= 59.85 k/lft / 13.24 ft = 4.52 ksf",
+        "qn = cf Nc + 0.5 L' γf Nγ = 0 Nc + 0.5 (12.46ft) (125 pcf) (22.4) = 17.44 ksf",
+        "CDRStrength = qR / σV-F = 11.34 ksf / 6.55 ksf = 1.73 ∴O.K.",
+        "[p. E2-7] E2-2 CALCULATIONS WITH GROUNDWATER NEAR SURFACE",
+        "Cwγ = 0.5 + 0.5 (12 ft − 2 ft) / (20.69 ft − 2 ft) = 0.77",
+        "= 13,432 psf = 13.43 ksf",
+        "CDRStrength = qR / σV-F = 8.73 ksf / 6.55 ksf = 1.33 ∴O.K.",
+        "[p. E2-9] E2-3 CALCULATIONS WITH TOE SLOPE AND WITHOUT GROUNDWATER",
+        "qn = 0.5 L' γf Nγq = 0.5 (12.46 ft) (125 pcf) (18) = 14,017 psf = 14.02 ksf",
+        "CDRStrength = qR / σV-F = 9.11 ksf / 6.55 ksf = 1.39 ∴O.K.",
+    ):
+        assert line in body, line
+    # the Cw-gamma rows typed in from p. E2-7
+    assert "Dw | Cwγ\n0.0 | 0.5\nDf | 0.5\n> 1.5 L' + Df | 1.0" in body
+    e = (18.46 * 9.67 + 2.55 * 14.5 - 10.12 * 3 - (4.16 + 0.57) * 9) / 59.85
+    assert round(e, 2) == 2.38
+    assert round(59.85 / (18 - 2 * 2.38), 2) == 4.52
+    assert round(0.5 * 12.46 * 0.125 * 22.4, 2) == 17.44
+    assert round(0.65 * 17.44, 2) == 11.34 and round(11.34 / 6.55, 2) == 1.73
+    assert round(1.5 * (18 - 2 * 2.77) + 2, 2) == 20.69
+    assert round(0.5 + 0.5 * 10 / 18.69, 2) == 0.77
+    assert round(0.5 * 12.46 * 125 * 22.4 * 0.77) == 13432
+    assert round(0.65 * 13.43, 2) == 8.73 and round(8.73 / 6.55, 2) == 1.33
+    assert round(0.5 * 12.46 * 125 * 18) == 14018  # printed 14,017
+    assert round(0.65 * 14.02, 2) == 9.11 and round(9.11 / 6.55, 2) == 1.39
+
+
+def test_appendix_e2_print_slips_noted():
+    body = _e_body("E.2")
+    assert "E2-1 CALCULATIONS\n\n[Note: as printed, numbered E2-1, as is the introduction" in body
+    assert "the three terms shown add to 59.28 k/lft; 59.85 k/lft also takes in FV2" in body
+    assert round(45 + 10.12 + 4.16, 2) == 59.28 and round(59.28 + 0.57, 2) == 59.85
+    assert ('as printed, "Nγq = 20"; the value read from the figure on p. E2-9 and '
+            'used below is 18.') in body
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():
