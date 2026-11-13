@@ -24,6 +24,7 @@ examples embedded in the two figures (see ``flexible_w18_from_sn`` and
 """
 
 import math
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -58,6 +59,12 @@ def _flexible_log_w18(sn, zr, so, delta_psi, mr_psi):
     return term_reliability + term_sn + term_psi + term_mr
 
 
+@_u.labelled(
+    {"delta_psi": "no unit printed", "mr_psi": "psi",
+     "log10_w18": "18-kip ESAL (log10)", "sn": "no unit printed",
+     "so": "no unit printed", "w18": "18-kip ESAL", "zr": "no unit printed"},
+    printed_page="II-32", pdf_page_index=121,
+    si={"mr_psi": ("MPa", "psi")})
 def flexible_w18_from_sn(sn, zr, so, delta_psi, mr_psi) -> dict:
     """18-kip ESAL traffic a flexible SN can carry (Eq. of Fig. 3.1, forward).
 
@@ -85,12 +92,19 @@ def flexible_w18_from_sn(sn, zr, so, delta_psi, mr_psi) -> dict:
         po=4.2 is fixed by the AASHO Road Test and pt >= 1.5.
     mr_psi : float
         Effective roadbed soil resilient modulus (psi), > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'sn', 'zr', 'so', 'delta_psi', 'mr_psi', 'w18', 'log10_w18',
          'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -108,6 +122,10 @@ def flexible_w18_from_sn(sn, zr, so, delta_psi, mr_psi) -> dict:
     }
 
 
+@_u.labelled(
+    {"iterations": "count", "sn": "no unit printed", "w18": "18-kip ESAL"},
+    printed_page="II-32", pdf_page_index=121,
+    si={"mr_psi": ("MPa", "psi")})
 def flexible_sn_from_w18(w18, zr, so, delta_psi, mr_psi,
                          sn_bounds=(0.5, 25.0), tol=1e-7, max_iter=200) -> dict:
     """Required flexible structural number SN for a design W18 (bisection).
@@ -131,11 +149,18 @@ def flexible_sn_from_w18(w18, zr, so, delta_psi, mr_psi,
         Convergence tolerance on log10(W18) residual.
     max_iter : int, optional
         Maximum bisection iterations.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'sn', 'w18', 'iterations', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -229,6 +254,13 @@ def _rigid_log_w18(d, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci, pt):
     return term_reliability + term_d + term_psi + term_strength
 
 
+@_u.labelled(
+    {"delta_psi": "no unit printed", "d": "in",
+     "log10_w18": "18-kip ESAL (log10)", "so": "no unit printed",
+     "w18": "18-kip ESAL", "zr": "no unit printed"},
+    printed_page="II-45/46", pdf_page_index=[134, 135],
+    si={"d": ("mm", "in"), "sc_psi": ("MPa", "psi"), "ec_psi": ("MPa", "psi"),
+        "k_pci": ("MPa/m", "pci")})
 def rigid_w18_from_d(d, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
                      pt=2.5) -> dict:
     """18-kip ESAL traffic a rigid slab thickness D can carry (Fig. 3.7, forward).
@@ -269,12 +301,20 @@ def rigid_w18_from_d(d, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
         Terminal serviceability index used only in the strength-term
         exponent (4.22-0.32*pt); default 2.5 (matches delta_psi's pt when
         po=4.5, e.g. delta_psi=2.0 for pt=2.5).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        d in mm, sc_psi and ec_psi in MPa and k_pci in MPa/m, each converted
+        exactly to the printed unit (in, psi, pci) before the lookup runs as
+        printed.
 
     Returns
     -------
     dict
         {'d', 'zr', 'so', 'delta_psi', 'w18', 'log10_w18', 'equation',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -295,6 +335,11 @@ def rigid_w18_from_d(d, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
     }
 
 
+@_u.labelled(
+    {"iterations": "count", "d": "in", "w18": "18-kip ESAL"},
+    printed_page="II-45/46", pdf_page_index=[134, 135],
+    si={"sc_psi": ("MPa", "psi"), "ec_psi": ("MPa", "psi"),
+        "k_pci": ("MPa/m", "pci")})
 def rigid_d_from_w18(w18, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
                      pt=2.5, d_bounds=(4.0, 20.0), tol=1e-7,
                      max_iter=200) -> dict:
@@ -318,11 +363,18 @@ def rigid_d_from_w18(w18, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
         Bisection search bracket for D (inches). Default (4.0, 20.0).
     tol, max_iter : float, int, optional
         Bisection convergence controls.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        sc_psi and ec_psi in MPa and k_pci in MPa/m, each converted exactly to
+        the printed unit (psi, pci) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'d', 'w18', 'iterations', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -368,6 +420,11 @@ def rigid_d_from_w18(w18, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
 # printed II-35): SN = a1*D1 + a2*D2*m2 + a3*D3*m3
 # ============================================================================
 
+@_u.labelled(
+    {"a1": "dimensionless", "a2": "dimensionless", "a3": "dimensionless",
+     "d1": "in", "d2": "in", "d3": "in", "m2": "dimensionless",
+     "m3": "dimensionless", "sn": "no unit printed"},
+    si={"d1": ("mm", "in"), "d2": ("mm", "in"), "d3": ("mm", "in")})
 def structural_number(a1, d1, a2=0.0, d2=0.0, m2=1.0,
                       a3=0.0, d3=0.0, m3=1.0) -> dict:
     """Flexible pavement structural number from layer coefficients (Section 3.1.4).
@@ -387,12 +444,19 @@ def structural_number(a1, d1, a2=0.0, d2=0.0, m2=1.0,
     a3, d3, m3 : float, optional
         Subbase course layer coefficient, thickness (inches), and drainage
         coefficient. Default a3=d3=0 (no subbase), m3=1.0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        d1, d2 and d3 in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'sn', 'a1', 'd1', 'a2', 'd2', 'm2', 'a3', 'd3', 'm3', 'equation',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -413,6 +477,9 @@ def structural_number(a1, d1, a2=0.0, d2=0.0, m2=1.0,
     }
 
 
+@_u.labelled(
+    {"d1_min": "in", "d2_min": "in", "d3_min": "in",
+     "sn1_actual": "no unit printed", "sn1_2_actual": "no unit printed"})
 def minimum_layer_thicknesses(sn_over_base, sn_over_subbase, sn_over_roadbed,
                               a1, a2, m2, a3, m3) -> dict:
     """Minimum layer thicknesses from a layered SN analysis (Figure 3.2).
@@ -509,6 +576,9 @@ def minimum_layer_thicknesses(sn_over_base, sn_over_subbase, sn_over_roadbed,
 # (Section 2.3.5; pdf_page_index 109/111, printed II-20/22)
 # ============================================================================
 
+@_u.labelled(
+    {"ebs_psi": "psi", "a2": "dimensionless"},
+    si={"ebs_psi": ("MPa", "psi")})
 def layer_coefficient_a2_granular_base(ebs_psi) -> dict:
     """Granular base layer coefficient a2 from resilient modulus (printed eq.).
 
@@ -522,11 +592,18 @@ def layer_coefficient_a2_granular_base(ebs_psi) -> dict:
     ----------
     ebs_psi : float
         Granular base resilient modulus, psi, > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        ebs_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'ebs_psi', 'a2', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -543,6 +620,9 @@ def layer_coefficient_a2_granular_base(ebs_psi) -> dict:
     }
 
 
+@_u.labelled(
+    {"esb_psi": "psi", "a3": "dimensionless"},
+    si={"esb_psi": ("MPa", "psi")})
 def layer_coefficient_a3_granular_subbase(esb_psi) -> dict:
     """Granular subbase layer coefficient a3 from resilient modulus (printed eq.).
 
@@ -556,11 +636,18 @@ def layer_coefficient_a3_granular_subbase(esb_psi) -> dict:
     ----------
     esb_psi : float
         Granular subbase resilient modulus, psi, > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        esb_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'esb_psi', 'a3', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -585,6 +672,9 @@ def layer_coefficient_a3_granular_subbase(esb_psi) -> dict:
 #   MR_eff = (1.18e8 / uf_avg)^(1/2.32)
 # ============================================================================
 
+@_u.labelled(
+    {"mr_psi": "psi", "uf": "no unit printed"},
+    si={"mr_psi": ("MPa", "psi")})
 def relative_damage_uf(mr_psi) -> dict:
     """Relative damage uf for a seasonal roadbed resilient modulus (Fig. 2.3).
 
@@ -594,11 +684,18 @@ def relative_damage_uf(mr_psi) -> dict:
     ----------
     mr_psi : float
         Seasonal roadbed soil resilient modulus, psi, > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mr_psi', 'uf', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -615,6 +712,11 @@ def relative_damage_uf(mr_psi) -> dict:
     }
 
 
+@_u.labelled(
+    {"effective_mr_psi": "psi", "monthly_mr_psi": "psi", "n_seasons": "count",
+     "uf_avg": "no unit printed", "uf_sum": "no unit printed",
+     "uf_values": "no unit printed"},
+    si={"monthly_mr_psi": ("MPa", "psi")})
 def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
     """Effective roadbed soil resilient modulus from monthly seasonal values.
 
@@ -636,12 +738,19 @@ def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
     monthly_mr_psi : list of float
         Roadbed soil resilient modulus for each of the (typically 12)
         seasonal increments, psi. All values must be > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        monthly_mr_psi in MPa, each converted exactly to the printed unit (psi)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'monthly_mr_psi', 'uf_values', 'uf_sum', 'uf_avg',
          'effective_mr_psi', 'n_seasons', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -671,6 +780,7 @@ def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
     }
 
 
+@_u.labelled({"k_pci": "pci", "mr_psi": "psi"}, si={"mr_psi": ("MPa", "psi")})
 def modulus_subgrade_reaction_simple(mr_psi) -> dict:
     """Theoretical k-value from roadbed MR alone (no subbase/rigid foundation).
 
@@ -687,11 +797,18 @@ def modulus_subgrade_reaction_simple(mr_psi) -> dict:
     ----------
     mr_psi : float
         Roadbed soil resilient modulus, psi, > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mr_psi', 'k_pci', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -714,6 +831,9 @@ def modulus_subgrade_reaction_simple(mr_psi) -> dict:
 # Serviceability
 # ============================================================================
 
+@_u.labelled(
+    {"delta_psi": "no unit printed", "po": "no unit printed",
+     "pt": "no unit printed"})
 def design_serviceability_loss(po, pt) -> dict:
     """Design serviceability loss dPSI = po - pt (Section 2.2.1).
 
@@ -744,6 +864,9 @@ def design_serviceability_loss(po, pt) -> dict:
     }
 
 
+@_u.labelled(
+    {"n_stages": "count", "overall_reliability_pct": "percent",
+     "stage_reliability_pct": "percent"})
 def stage_reliability(overall_reliability_pct, n_stages) -> dict:
     """Required per-stage reliability to reach a compounded overall reliability.
 
@@ -800,6 +923,9 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
 # to the main SN/slab-thickness design (Part II Ch 4 low-volume roads).
 # ============================================================================
 
+@_u.labelled(
+    {"gl_in": "in",
+     "loaded_trucks_thousands": "count (thousands of loaded trucks)"})
 def aggregate_loss_truck_traffic(loaded_trucks_thousands) -> dict:
     """Total aggregate loss GL of an aggregate-surfaced road on sections with
     more than 50 percent truck traffic, AASHTO 1993 Section 2.2.3
@@ -846,6 +972,10 @@ def aggregate_loss_truck_traffic(loaded_trucks_thousands) -> dict:
     }
 
 
+@_u.labelled(
+    {"gl_in": "in", "grade_pct": "percent", "radius_ft": "ft",
+     "bladings": "count", "ladt": "no unit printed"},
+    si={"radius_ft": ("m", "ft")})
 def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
     """Aggregate loss GL of an aggregate-surfaced road from the Brazil study
     equation, AASHTO 1993 Section 2.2.3 (pdf_page_index 101, printed II-12);
@@ -871,12 +1001,19 @@ def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
         Average radius of curves, feet, > 0.
     grade_pct : float
         Absolute value of grade, percent.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        radius_ft in m, each converted exactly to the printed unit (ft) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'bladings', 'ladt', 'radius_ft', 'grade_pct', 'gl_in', 'equation',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -898,6 +1035,11 @@ def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
     }
 
 
+@_u.labelled(
+    {"agl_in_per_year": "in/yr", "grade_pct": "percent", "rainfall_in": "in",
+     "f": "no unit printed",
+     "traffic_thousands": "count (thousands of vehicles a year, both directions)"},
+    si={"rainfall_in": ("mm", "in")})
 def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
                                 gravel_type="lateritic") -> dict:
     """Annual aggregate loss AGL from the British study done in Kenya,
@@ -924,12 +1066,19 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
     gravel_type : str, optional
         'lateritic' (f=.037, default), 'quartzitic' (f=.043), 'volcanic'
         (f=.028), or 'coral' (f=.059), as printed.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        rainfall_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'traffic_thousands', 'rainfall_in', 'grade_pct', 'gravel_type',
          'f', 'agl_in_per_year', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------

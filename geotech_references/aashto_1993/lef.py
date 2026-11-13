@@ -72,6 +72,7 @@ Interpolation policy
 """
 
 import bisect
+from geotech_references import _units as _u
 
 _TABLES = {}
 
@@ -955,6 +956,10 @@ def _lookup(table, axle_load_kips, col_value, col_name):
     return lef, notes
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "d_in": "in", "lef": "dimensionless",
+     "pt": "no unit printed", "sn": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips"), "d_in": ("mm", "in")})
 def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
                             sn=None, d_in=None, pt=2.5) -> dict:
     """Axle load equivalency factor (LEF), bilinear interpolation over the
@@ -987,12 +992,19 @@ def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
         Terminal serviceability index. Must be EXACTLY 2.0, 2.5, or 3.0
         (the only values printed in Appendix D) -- default 2.5.
         Interpolating between serviceability levels is not supported.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN and d_in in mm, each converted exactly to the
+        printed unit (kips, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'pavement_type', 'axle_config', 'axle_load_kips', 'pt',
          'sn' or 'd_in', 'lef', 'table', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------

@@ -62,11 +62,12 @@ def test_rigid_tandem_d9_unchanged(load, lef_before):
 
 def test_return_keys_kept_and_table_added():
     r = tb.esal_flexible_single_axle(18.0)
+    # units, printed_page and pdf_page_index added by REF-78
     assert set(r) == {"axle_load_kips", "sn", "pt", "lef", "table",
-                      "reference"}
+                      "reference", "units", "printed_page", "pdf_page_index"}
     r = tb.esal_rigid_tandem_axle(36.0)
     assert set(r) == {"axle_load_kips", "d_in", "pt", "lef", "table",
-                      "reference"}
+                      "reference", "units", "printed_page", "pdf_page_index"}
 
 
 def test_spot_checks_off_the_printed_page():

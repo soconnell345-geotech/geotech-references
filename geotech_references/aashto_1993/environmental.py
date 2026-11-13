@@ -53,6 +53,7 @@ depths in feet).
 import math
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -98,6 +99,9 @@ _THETA_TIGHT = 0.04
 _THETA_MID = 0.5 * (_THETA_HIGH + _THETA_TIGHT)
 
 
+@_u.labelled(
+    {"moisture_supply_frac": "fraction", "soil_fabric_frac": "fraction",
+     "theta": "no unit printed"})
 def swell_rate_constant_theta(moisture_supply_frac, soil_fabric_frac) -> dict:
     """Swell rate constant theta from moisture supply and soil fabric (Fig. G.2).
 
@@ -283,6 +287,9 @@ def _vr_at(thickness_ft, h):
     return v_lo + (thickness_ft - t_lo) / (t_hi - t_lo) * (v_hi - v_lo)
 
 
+@_u.labelled(
+    {"thickness_ft": "ft", "vr_in": "in", "pi": "percent"},
+    si={"thickness_ft": ("m", "ft")})
 def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     """Potential vertical rise VR of natural soils (Figure G.3, read off the
     printed chart; see the section note above for how it was read).
@@ -316,12 +323,19 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
         printed G-1: "for thicknesses greater than 30 feet, use 30 feet");
         below 2 ft, the thinnest curve, ValueError is raised (REF-76; the
         2 ft curve used to be read, with a note).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_ft in m, each converted exactly to the printed unit (ft)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'pi', 'condition', 'thickness_ft', 'vr_in', 'below_chart',
          'chart_read', 'method', 'reference', 'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -395,6 +409,9 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
 # OR VR > 0.20 in).
 # ============================================================================
 
+@_u.labelled(
+    {"ps_pct": "percent", "thickness_ft": "ft", "vr_in": "in", "pi": "percent"},
+    si={"thickness_ft": ("m", "ft"), "vr_in": ("mm", "in")})
 def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
     """Swell probability screening rule (Appendix G.1 text, pdf_page_index 394-395).
 
@@ -415,12 +432,19 @@ def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
         Thickness of the swelling layer, feet.
     vr_in : float, optional
         Potential vertical rise (see ``potential_vertical_rise``), inches.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_ft in m and vr_in in mm, each converted exactly to the
+        printed unit (ft, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'pi', 'thickness_ft', 'vr_in', 'is_100_pct', 'ps_pct'?, 'reference',
          'note'?}. 'ps_pct' is only populated (100.0) when the rule fires.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -459,6 +483,11 @@ def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
 # than 0.20 inches (i.e. classified as "swelling" sections).
 # ============================================================================
 
+@_u.labelled(
+    {"n_sections": "count", "ps_design_pct": "percent",
+     "swelling_length_ft": "ft", "total_length_ft": "ft",
+     "vr_design_in": "in", "theta_design": "no unit printed"},
+    si={"sections[].length_ft": ("m", "ft"), "sections[].vr_in": ("mm", "in")})
 def weighted_swell_parameters(sections) -> dict:
     """Section-length-weighted swell design parameters (Table G.1 worksheet).
 
@@ -477,6 +506,11 @@ def weighted_swell_parameters(sections) -> dict:
           'theta' : float, optional -- swell rate constant for this section
               (see ``swell_rate_constant_theta``); sections without a
               theta are excluded from the theta weighted-average only.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        each sections entry's length_ft in m and each sections entry's vr_in in
+        mm, each converted exactly to the printed unit (ft, in) before the
+        lookup runs as printed.
 
     Returns
     -------
@@ -484,6 +518,9 @@ def weighted_swell_parameters(sections) -> dict:
         {'n_sections', 'total_length_ft', 'swelling_length_ft',
          'vr_design_in', 'theta_design'?, 'ps_design_pct', 'reference'}.
         'theta_design' is omitted if no section provides 'theta'.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -540,6 +577,10 @@ def weighted_swell_parameters(sections) -> dict:
 # solution dPSI_sw=0.3 (rounded to 1 decimal on the chart).
 # ============================================================================
 
+@_u.labelled(
+    {"ps_pct": "percent", "t_yr": "yr", "vr_in": "in",
+     "delta_psi_sw": "no unit printed", "theta": "no unit printed"},
+    si={"vr_in": ("mm", "in")})
 def swelling_serviceability_loss(vr_in, ps_pct, theta, t_yr) -> dict:
     """Serviceability loss due to roadbed swelling (Figure G.4, printed equation).
 
@@ -562,12 +603,19 @@ def swelling_serviceability_loss(vr_in, ps_pct, theta, t_yr) -> dict:
         (typically 0.04-0.20).
     t_yr : float
         Time since construction, years, >= 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        vr_in in mm, each converted exactly to the printed unit (in) before the
+        lookup runs as printed.
 
     Returns
     -------
     dict
         {'vr_in', 'ps_pct', 'theta', 't_yr', 'delta_psi_sw', 'equation',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -607,6 +655,9 @@ _FROST_MAX_LOSS_SLOPE = {
 _FROST_MAX_LOSS_ORDER = list(_FROST_MAX_LOSS_SLOPE)
 
 
+@_u.labelled(
+    {"delta_psi_max": "no unit printed", "depth_ft": "ft"},
+    si={"depth_ft": ("m", "ft")})
 def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
     """Maximum potential serviceability loss due to frost heave (Figure G.7).
 
@@ -627,12 +678,19 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         guide gives no rule; the function refuses there (REF-76; it used to
         extend the line with a note, to a loss of 6.0 at 12 ft, past the
         chart's 5 and Figure G.8's 3.0 scale for this value).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        depth_ft in m, each converted exactly to the printed unit (ft) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'drainage_quality', 'depth_ft', 'delta_psi_max', 'equation',
          'reference', 'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -687,6 +745,7 @@ _FROST_SUSCEPT_BOUNDARIES = [0.5, 1.0, 2.0, 4.0, 8.0]
 _FROST_SUSCEPT_LABELS = ["negligible", "very_low", "low", "medium", "high", "very_high"]
 
 
+@_u.labelled({"rate_mm_day": "mm/day"})
 def frost_susceptibility_classification(rate_mm_day) -> dict:
     """Frost susceptibility classification from average heave rate (Fig. G.6 bar).
 
@@ -740,6 +799,7 @@ _FROST_RATE_GROUP_RANGES = {
 }
 
 
+@_u.labelled({"rate_mm_day": "mm/day", "rate_range_mm_day": "mm/day"})
 def frost_heave_rate_group(uscs_group) -> dict:
     """Coarse frost heave rate estimate by USCS group (Figure G.6 chart read-off).
 
@@ -801,6 +861,9 @@ def frost_heave_rate_group(uscs_group) -> dict:
 # 1-e^-15~1.0 -> 0.6, not matching) -- resolved here as 0.02.
 # ============================================================================
 
+@_u.labelled(
+    {"delta_psi_max": "no unit printed", "pf_pct": "percent",
+     "phi_mm_day": "mm/day", "t_yr": "yr", "delta_psi_fh": "no unit printed"})
 def frost_heave_serviceability_loss(phi_mm_day, pf_pct, delta_psi_max, t_yr) -> dict:
     """Serviceability loss due to frost heave (Figure G.8, printed equation).
 
@@ -866,6 +929,10 @@ def frost_heave_serviceability_loss(phi_mm_day, pf_pct, delta_psi_max, t_yr) -> 
 # at every t, which the figure itself shows), not against a numeric anchor.
 # ============================================================================
 
+@_u.labelled(
+    {"t_yr": "yr", "delta_psi_fh": "no unit printed",
+     "delta_psi_sw": "no unit printed", "delta_psi_total": "no unit printed"},
+    si={"swelling.vr_in": ("mm", "in")})
 def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
     """Total (swelling + frost heave) serviceability loss at time t (Figure 2.2).
 
@@ -883,6 +950,10 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
         Spec dict with keys 'phi_mm_day', 'pf_pct', 'delta_psi_max' (see
         ``frost_heave_serviceability_loss``). Omit if frost heave is not
         applicable at this location.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        swelling's vr_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
@@ -890,6 +961,9 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
         {'t_yr', 'delta_psi_sw'?, 'delta_psi_fh'?, 'delta_psi_total',
          'reference'}. Component keys are included only when that spec was
          given.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -968,6 +1042,13 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
 # silently assumed.
 # ============================================================================
 
+@_u.labelled(
+    {"iteration": "count", "trial_period_yr": "yr",
+     "delta_psi_env": "no unit printed",
+     "delta_psi_traffic": "no unit printed", "w18_cumulative": "18-kip ESAL",
+     "corresponding_period_yr": "yr", "n_iterations": "count",
+     "performance_period_yr": "yr", "delta_psi_design": "no unit printed",
+     "max_performance_period_yr": "yr", "initial_trial_yr": "yr"})
 def performance_period_iteration(
     delta_psi_design, w18_fn, time_from_w18_fn,
     initial_trial_yr=None, max_performance_period_yr=None,

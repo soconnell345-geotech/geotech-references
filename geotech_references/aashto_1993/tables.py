@@ -13,6 +13,7 @@ says so explicitly and lists the digitized (x, y) anchor points.
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -27,6 +28,7 @@ _ZR_Z = [-0.000, -0.253, -0.524, -0.674, -0.841, -1.037, -1.282, -1.340,
         -3.090, -3.750]
 
 
+@_u.labelled({"reliability_pct": "percent", "zr": "no unit printed"})
 def standard_normal_deviate_zr(reliability_pct) -> dict:
     """Standard normal deviate ZR for a design reliability level (Table 4.1).
 
@@ -83,6 +85,8 @@ _FUNCTIONAL_CLASS_ALIASES = {
 }
 
 
+@_u.labelled(
+    {"reliability_max_pct": "percent", "reliability_min_pct": "percent"})
 def recommended_reliability(functional_class, area="urban") -> dict:
     """Suggested reliability range by functional classification (Table 2.2).
 
@@ -126,6 +130,10 @@ def recommended_reliability(functional_class, area="urban") -> dict:
     }
 
 
+@_u.labelled(
+    {"so_min": "no unit printed", "so_max": "no unit printed",
+     "so_with_traffic_variance": "no unit printed",
+     "so_without_traffic_variance": "no unit printed"})
 def overall_standard_deviation_range(pavement_type) -> dict:
     """Recommended overall standard deviation So range (Section 4.3).
 
@@ -168,6 +176,9 @@ def overall_standard_deviation_range(pavement_type) -> dict:
     return out
 
 
+@_u.labelled(
+    {"percent_unacceptable": "percent", "po_flexible": "no unit printed",
+     "po_rigid": "no unit printed", "pt": "no unit printed"})
 def terminal_serviceability_guidance(pt=None) -> dict:
     """Terminal serviceability index guidance (Section 2.2.1).
 
@@ -220,6 +231,9 @@ def terminal_serviceability_guidance(pt=None) -> dict:
 _DL_TABLE = {1: (100, 100), 2: (80, 100), 3: (60, 80), 4: (50, 75)}
 
 
+@_u.labelled(
+    {"dl_max_pct": "percent", "dl_min_pct": "percent",
+     "num_lanes_per_direction": "count"})
 def lane_distribution_factor(num_lanes_per_direction) -> dict:
     """Percent of 18-kip ESAL traffic in the design lane, by lane count.
 
@@ -250,6 +264,8 @@ def lane_distribution_factor(num_lanes_per_direction) -> dict:
     }
 
 
+@_u.labelled(
+    {"dd_default": "fraction", "dd_min": "fraction", "dd_max": "fraction"})
 def directional_distribution_default() -> dict:
     """Default directional distribution factor DD (Section 2.1.2).
 
@@ -285,6 +301,9 @@ _A1_EAC = [106000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
 _A1_VAL = [0.20, 0.252, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 
 
+@_u.labelled(
+    {"eac_psi": "psi", "a1": "dimensionless"},
+    si={"eac_psi": ("MPa", "psi")})
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     """Structural layer coefficient a1 of a dense-graded asphalt concrete
     surface course from its elastic modulus EAC at 68 F, AASHTO 1993
@@ -309,12 +328,19 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
         safe side (a1 rises with EAC, so a stiffer mix gets no more credit)
         and follows II-17: "Caution is recommended for modulus values above
         450,000 psi".
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        eac_psi in MPa, each converted exactly to the printed unit (psi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?,
         'out_of_range'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -392,6 +418,9 @@ def _a2_across(value, scale, what, unit):
     return scale[-1][1], None  # pragma: no cover
 
 
+@_u.labelled(
+    {"ucs_7day_psi": "psi", "a2": "dimensionless"},
+    si={"ucs_7day_psi": ("MPa", "psi")})
 def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     """Cement-treated base layer coefficient a2 vs 7-day UCS (Figure 2.8, chart).
 
@@ -404,11 +433,18 @@ def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     ucs_7day_psi : float
         7-day unconfined compressive strength of the cement-treated base
         (ASTM D 1633), psi. The printed scale's ticks run 200-1000 psi.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        ucs_7day_psi in MPa, each converted exactly to the printed unit (psi)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'ucs_7day_psi', 'a2', 'chart_read', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -427,6 +463,9 @@ def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     return out
 
 
+@_u.labelled(
+    {"marshall_stability_lb": "lb", "a2": "dimensionless"},
+    si={"marshall_stability_lb": ("N", "lb")})
 def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     """Bituminous-treated base layer coefficient a2 vs Marshall stability (Fig. 2.9, chart).
 
@@ -441,11 +480,18 @@ def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     marshall_stability_lb : float
         Marshall stability (AASHTO T 245 / ASTM D 1559), lb. The printed
         scale's labelled ticks used run 200-1800 lb.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        marshall_stability_lb in N, each converted exactly to the printed unit
+        (lb) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'marshall_stability_lb', 'a2', 'chart_read', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -478,6 +524,9 @@ _TABLE_2_3 = {
 _TABLE_2_3_K2 = {"base": (0.5, 0.7), "subbase": (0.4, 0.6)}
 
 
+@_u.labelled(
+    {"k1_min": "no unit printed", "k1_max": "no unit printed",
+     "k2_min": "no unit printed", "k2_max": "no unit printed"})
 def unbound_k1_k2(layer, moisture_condition) -> dict:
     """Typical k1/k2 ranges for unbound base/subbase MR = k1*theta^k2 (Table 2.3).
 
@@ -535,6 +584,7 @@ _TABLE_2_4 = {
 }
 
 
+@_u.labelled({"mi_min": "dimensionless", "mi_max": "dimensionless"})
 def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
     """Recommended mi values for modifying the layer coefficients of
     untreated base and subbase in flexible pavements, AASHTO 1993 Table 2.4
@@ -598,6 +648,7 @@ _TABLE_2_5 = {
 }
 
 
+@_u.labelled({"cd_min": "dimensionless", "cd_max": "dimensionless"})
 def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
     """Recommended values of drainage coefficient Cd for rigid pavement
     design, AASHTO 1993 Table 2.5 (pdf_page_index 115, printed II-26); returns the
@@ -641,6 +692,7 @@ def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
     }
 
 
+@_u.labelled({})
 def quality_of_drainage_definitions(quality=None) -> dict:
     """Quality-of-drainage definitions by water-removal time (Section 2.4.1).
 
@@ -703,6 +755,7 @@ _TABLE_2_6 = {
 }
 
 
+@_u.labelled({"j_min": "dimensionless", "j_max": "dimensionless"})
 def load_transfer_coefficient_j(pavement_type, shoulder_type,
                                 load_transfer_devices) -> dict:
     """Recommended load transfer coefficient J (Table 2.6).
@@ -777,6 +830,9 @@ _MIN_THICKNESS = [
 ]
 
 
+@_u.labelled(
+    {"aggregate_base_min_in": "in", "asphalt_concrete_min_in": "in",
+     "esal": "18-kip ESAL"})
 def minimum_layer_thickness(esal) -> dict:
     """Minimum practical asphalt concrete and aggregate base thickness (Section 3.1.4).
 
@@ -852,6 +908,10 @@ def _esal_from_lef(pavement_type, axle_config, axle_load_kips, sn, d_in, pt,
     return out
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "lef": "dimensionless",
+     "pt": "no unit printed", "sn": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips")})
 def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     """Load equivalency factor, flexible pavement, single axle (Tables D.1, D.4, D.7).
 
@@ -872,12 +932,19 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     pt : float, optional
         Terminal serviceability: exactly 2.0, 2.5 or 3.0, the values
         Appendix D prints. Default 2.5.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN, each converted exactly to the printed unit (kips)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference'}.
         'table' is the printed table number (e.g. 'Table D.4').
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -889,6 +956,10 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
                           pt, "sn")
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "lef": "dimensionless",
+     "pt": "no unit printed", "sn": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips")})
 def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     """Load equivalency factor, flexible pavement, tandem axle (Tables D.2, D.5, D.8).
 
@@ -906,12 +977,19 @@ def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
         refused outside. Default 5.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN, each converted exactly to the printed unit (kips)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference',
          'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -922,6 +1000,10 @@ def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
                           pt, "sn")
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "d_in": "in", "lef": "dimensionless",
+     "pt": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips"), "d_in": ("mm", "in")})
 def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     """Load equivalency factor, rigid pavement, single axle (Tables D.10, D.13, D.16).
 
@@ -940,12 +1022,19 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
         Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN and d_in in mm, each converted exactly to the
+        printed unit (kips, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'axle_load_kips', 'd_in', 'pt', 'lef', 'table', 'reference',
          'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -957,6 +1046,10 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
                           pt, "d_in")
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "d_in": "in", "lef": "dimensionless",
+     "pt": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips"), "d_in": ("mm", "in")})
 def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     """Load equivalency factor, rigid pavement, tandem axle (Tables D.11, D.14, D.17).
 
@@ -974,12 +1067,19 @@ def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
         refused outside. Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN and d_in in mm, each converted exactly to the
+        printed unit (kips, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'axle_load_kips', 'd_in', 'pt', 'lef', 'table', 'reference',
          'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
