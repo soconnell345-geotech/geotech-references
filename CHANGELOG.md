@@ -87,15 +87,24 @@ pages):
   (Figure 2.5's edge, printed II-18) a1 is still held at the 500,000 psi
   value, now with `out_of_range`: on the safe side, and II-17 cautions
   against moduli above 450,000 psi.
+- `aashto_1993.tables.layer_coefficient_a2_cement_treated` and
+  `layer_coefficient_a2_bituminous_treated`: a UCS above 1000 psi or a
+  Marshall stability above 1800 lb (the top labelled ticks of Figures 2.8
+  and 2.9, printed II-23 and II-24) is refused; a2 was held at the top
+  tick's value, with a note. II-22 gives no rule past the scales.
 - `ufc_pavement.tables.figure_10_1_k_on_base`: k on subgrade above 300 pci
   or a base thicker than 60 in (Figure 10-1's top curve and axis, printed
   p. 32) is refused; the edge was read, with a note. The message points to
   the plate-bearing test on the base (para 10-4) and Table 10-1 note 2's
   500 psi/in maximum (printed 31).
 - `ufc_pavement.tables.figure_e_vehicle_thickness`: passes below a chart's
-  lowest curve (1,000 on most of Figures E-2 to E-31) are refused, the
-  message giving that curve's thickness as the bound; the lowest curve was
-  read, with a note. Above the highest curve the extrapolation stays, as
+  lowest curve (1,000 on most of Figures E-2 to E-31, 10,000 on E-2, 100 on
+  E-31) still give that curve's thickness, now with `out_of_range` and a
+  note naming the curve and saying the manual prints none below it: on
+  every chart the thickness rises with the passes (checked on the rendered
+  charts and, by a test, on the traced curves), so the hold is not less
+  than fewer passes need. Where that curve is above the chart at the CBR
+  it is refused. Above the highest curve the extrapolation stays, as
   Table G-1 (printed 257) reads the passenger car at 20,000,000 passes; the
   note now gives the page.
 - `ufc_pavement.tables.figure_e_vehicle_allowable_passes`: a thickness more

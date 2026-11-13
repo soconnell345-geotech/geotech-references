@@ -357,8 +357,10 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
 # each chart (Fig. 2.8: 0.10 / 0.16 / 0.22 / 0.28; Fig. 2.9: 0.10 / 0.20 /
 # 0.30) mark a2 values, not ticks of the property scale.
 #
-# Below the lowest labelled tick the scale is not read (ValueError); above
-# the top tick a2 is held at the top tick's value with a note.
+# Outside the labelled ticks the scale is not read (ValueError): below the
+# lowest, and (REF-76) above the top one, where a2 used to be held at the
+# top tick's value with a note. The guide's text (II-22) gives no rule
+# beyond the scales.
 # ============================================================================
 
 # Figure 2.8 (pdf_page 112, printed II-23): 7-day UCS (psi) -> a2.
@@ -379,9 +381,11 @@ def _a2_across(value, scale, what, unit):
             "directly."
         )
     if value > hi:
-        return scale[-1][1], (
-            f"{what} {value} {unit} is above the printed scale's top tick "
-            f"({hi} {unit}); a2 = {scale[-1][1]} at {hi} {unit} used.")
+        raise ValueError(
+            f"{what} {value} {unit} is above the top labelled tick of the "
+            f"printed scale ({hi} {unit}); the chart gives no a2 there and "
+            "the guide's text no rule. Give the layer coefficient directly."
+        )
     for (x0, a0), (x1, a1) in zip(scale, scale[1:]):
         if x0 <= value <= x1:
             return a0 + (a1 - a0) * (value - x0) / (x1 - x0), None
@@ -404,13 +408,14 @@ def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     Returns
     -------
     dict
-        {'ucs_7day_psi', 'a2', 'chart_read', 'reference', 'note'?}.
+        {'ucs_7day_psi', 'a2', 'chart_read', 'reference'}.
 
     Raises
     ------
     ValueError
-        If the UCS is below the scale's lowest labelled tick (200 psi).
-        Above 1000 psi a2 is held at 0.250 with a note.
+        If the UCS is outside the scale's labelled ticks, 200-1000 psi
+        (printed II-23). Above 1000 psi a2 used to be held at 0.250 with
+        a note (REF-76).
     """
     a2, note = _a2_across(ucs_7day_psi, _A2_CEMENT_SCALE, "7-day UCS", "psi")
     out = {
@@ -440,13 +445,14 @@ def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     Returns
     -------
     dict
-        {'marshall_stability_lb', 'a2', 'chart_read', 'reference', 'note'?}.
+        {'marshall_stability_lb', 'a2', 'chart_read', 'reference'}.
 
     Raises
     ------
     ValueError
-        If the stability is below 200 lb. Above 1800 lb a2 is held at
-        0.320 with a note.
+        If the stability is outside the labelled ticks used, 200-1800 lb
+        (printed II-24). Above 1800 lb a2 used to be held at 0.320 with a
+        note (REF-76).
     """
     a2, note = _a2_across(marshall_stability_lb, _A2_BITUMINOUS_SCALE,
                           "Marshall stability", "lb")
