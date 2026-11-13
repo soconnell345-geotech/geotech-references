@@ -721,7 +721,9 @@ def minimum_construction_surcharge() -> dict:
         "min_depth_ft": 10.0,
         "reference": "Caltrans T&S Manual Section 5-1.01",
         "pdf_page": 83, "printed_page": "5-2",
-        "note": "Applied as a uniform 72 psf over the top 10 ft of the retained soil.",
+        "note": ("The 72 psf must be applied to a minimum depth of 10 ft (Hs) below the "
+                 "uppermost level of the soil retained by the shoring system (Section "
+                 "5-1.01, Figure 5-1)."),
     }
 
 

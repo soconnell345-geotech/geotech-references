@@ -1,0 +1,691 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 6,
+ "chapter_title": "Stress Distribution",
+ "sections": [
+  {
+   "section_id": "6-1",
+   "title": "Introduction",
+   "body": "[p. 123] When a load is applied by a foundation or similar external load, or when changes in the soils self-weight occurs, it influences the in situ stress within a soil mass. These changes in a soil’s stress state can result in volume changes. This chapter describes the analysis of stress distribution within the ground. Static loading conditions are assumed.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-1, printed p. 123."
+  },
+  {
+   "section_id": "6-2",
+   "title": "Consolidation deformation of soils",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-2, printed p. 123."
+  },
+  {
+   "section_id": "6-2a",
+   "title": "Prior to loading, the laterally restrained soil is in equilibrium",
+   "body": "[p. 123] Prior to loading, the laterally restrained soil is in equilibrium. When an increment of stress is applied to a saturated soil mass, it is assumed that all the external stress is first carried by the pore water pressure in the soil voids. As the pore water pressure dissipates, the stress is then gradually transferred to the soil skeleton, with an increase in effective stress equal to the same magnitude of stress as the pore water pressure decreases. The increase in effective stress results in a volume decrease. When the deformation ceases, the soil is assumed to be in equilibrium with the stress at this stable volume.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-2a, printed p. 123. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-2b",
+   "title": "Since the solids are incompressible and only the volume of voids filled with …",
+   "body": "[p. 123] Since the solids are incompressible and only the volume of voids filled with water changes, the deformation is a measure of the void ratio change. Consequently, the problem concerning settlement becomes an estimation of the void ratio versus the vertical effective stress (σ′z) behavior for the soil. Therefore, the significant stress is effective stress, not total stress, because the soil is in volumetric equilibrium only when the pore water pressures are dissipated.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-2b, printed p. 123. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-3",
+   "title": "Sources of stress",
+   "body": "[p. 123] Sources of stress are divided into two broad categories: geostatic and induced. To estimate foundation settlements, changes in both geostatic and induced stresses must be evaluated. Geostatic and induced stresses are discussed in paragraphs 6-4 and 6-6, respectively.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-3, printed p. 123."
+  },
+  {
+   "section_id": "6-4",
+   "title": "Geostatic stresses",
+   "body": "[p. 123] Stresses caused by gravity acting on the soil or rock mass are known as vertical geostatic stresses. These are naturally present in the ground and can be changed or altered through human activity (such as mass excavation, areal fill, dewatering).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-4, printed p. 123."
+  },
+  {
+   "section_id": "6-4a",
+   "title": "Total vertical stress",
+   "body": "[p. 123] Total vertical stress. The total vertical stress (or total overburden stress) is the normal stress acting on a horizontal plane at some depth within the soil. The total vertical stress (σz) at a particular depth is calculated by multiplying the thickness of all overlying layers by the total unit weight of each layer. The total stress may be divided into two parts: the effective normal stress and the pore water pressure. Total stress is calculated per equation 6-1.\n\n[p. 124] σz = ∑(i=1 to n) zi · γt,i [Eq. 6-1]\n\nwhere:\nσz = total vertical stress (tsf)\nzi = thickness of overlying layer, i (feet)\nγt,i = total unit weight of the overlying layer, i (tcf)\nn = number of layers above point of interest",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-1",
+     "description": "Equation 6-1, introduced by: \"Total stress is calculated per equation 6-1.\" (p. 124).",
+     "formula": "σz = ∑(i=1 to n) zi · γt,i",
+     "variables": {
+      "σz": "total vertical stress (tsf)",
+      "zi": "thickness of overlying layer, i (feet)",
+      "γt,i": "total unit weight of the overlying layer, i (tcf)",
+      "n": "number of layers above point of interest"
+     },
+     "source": "Typed in from p. 124.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-4a, printed pp. 123 to 124."
+  },
+  {
+   "section_id": "6-4b",
+   "title": "Pore water pressure",
+   "body": "[p. 124] Pore water pressure. The pressure in a saturated soil mass that occurs between soil particles (pores) is referred to as pore water pressure. As opposed to soil stresses, which are directional, pore water pressures are omnidirectional. Under hydrostatic conditions, the pore water pressure above a point is equivalent to the head of water above the point of interest times the unit weight of water.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-4b, printed p. 124."
+  },
+  {
+   "section_id": "6-4c",
+   "title": "Effective vertical stress concept",
+   "body": "[p. 124] Effective vertical stress concept. The portion of total vertical stress carried by the soil grains themselves (particle-to-particle contact) is the vertical effective stress (σ′v or σ′z). It is this stress component that controls both volume change deformation and the shear strength of soil, since normal and shear stresses are transmitted across grain-to-grain contacts. The vertical effective stress of a saturated soil is calculated using equation 6-2 by subtracting the pore water pressure at any point from the total vertical stress at the same point. If unsaturated, the pore water pressure is generally assumed to be zero. Compression, permeability, and shear strength of soils are influenced by effective stress.\n\nσ′v = σz − u [Eq. 6-2]\n\nwhere:\nσ′v = initial vertical effective stress (tsf), also denoted σ′zo\nσz = initial total vertical stress (tsf)\nu = γw · zw = pore pressure (tsf)\nγw = unit weight of water = 0.031 tcf (62.4 pcf)\nzw = depth below water table (feet)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-2",
+     "description": "Equation 6-2, introduced by: \"Compression, permeability, and shear strength of soils are influenced by effective stress.\" (p. 124).",
+     "formula": "σ′v = σz − u",
+     "variables": {
+      "σ′v": "initial vertical effective stress (tsf), also denoted σ′zo",
+      "σz": "initial total vertical stress (tsf)",
+      "u": "γw · zw = pore pressure (tsf)"
+     },
+     "source": "Typed in from p. 124.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-4c, printed p. 124."
+  },
+  {
+   "section_id": "6-5",
+   "title": "Initial state of stress and stress history",
+   "body": "[p. 124] The initial state of stress and stress history are principal factors in determining the settlement magnitude of shallow foundations. For shallow foundation support, the geotechnical site characterization process should include an assessment of the initial stress state and stress history. These initial stresses include estimates of the initial vertical effective stress (σ′zo) and preconsolidation stress (σ′p) of the soil. For sandy soils, preconsolidation stress could be more difficult to estimate due to difficulties in separating the effects of relative density from OCR.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5, printed p. 124."
+  },
+  {
+   "section_id": "6-5a",
+   "title": "Initial vertical effective stress",
+   "body": "[p. 125] Initial vertical effective stress. The initial vertical effective stress can be obtained from equation 6-2. The initial vertical effective stress should be determined prior to changes in geostatic stress conditions associated with recent site work (such as fill surcharge, dewatering).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5a, printed p. 125."
+  },
+  {
+   "section_id": "6-5b",
+   "title": "Preconsolidation stress",
+   "body": "[p. 125] Preconsolidation stress.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5b, printed p. 125."
+  },
+  {
+   "section_id": "6-5b(1)",
+   "title": "The preconsolidation stress (σ′p) is the maximum vertical effective stress to …",
+   "body": "[p. 125] The preconsolidation stress (σ′p) is the maximum vertical effective stress to which the in situ soil has been consolidated in the past and is the boundary between recompression and virgin consolidation. Mechanisms that influence preconsolidation stress include changes in total stress, changes in pore water pressure, changes in soil structure due to aging, and chemical weathering. The preconsolidation stress has great importance because it separates elastic and reversible deformations from inelastic and only partially irreversible deformations and marks the starting point of high compressibility. Where soils are subjected to pressures less than the preconsolidation stress, magnitudes of settlement are relatively less severe.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5b(1), printed p. 125. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-5b(2)",
+   "title": "Preconsolidation stress (σ′p) cannot be measured directly",
+   "body": "[p. 125] Preconsolidation stress (σ′p) cannot be measured directly; however, it can be estimated from oedometer test results. Commonly, the Casagrande and Schmertmann procedures are used (paragraph 7-9a(2)). Other methods for determining preconsolidation stress from oedometer data include Janbu (1969), Pacheco Silva (1970), Becker et al. (1987), Oikawa (1987), Burland (1990), and Boone (2010). These methods have in common the assumption of a change in soil stiffness from a stiffer to a softer response near the σ′p. Preconsolidation stress (σ′p) can also be estimated from empirical methods; however, the results are generally less reliable. Sample disturbance tends to decrease the apparent preconsolidation stress, reference paragraph 4-7a. Previous testing or geologic information should be used to validate estimates of σ′p.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5b(2), printed p. 125. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-5c",
+   "title": "Normally consolidated versus overconsolidated soils",
+   "body": "[p. 125] Normally consolidated versus overconsolidated soils. Soils are either normally consolidated or overconsolidated. If the current overburden pressure is equal to the preconsolidation stress (σ′p), the soil is normally consolidated (NC). If the preconsolidation stress (σ′p) is larger than the current vertical effective stress (σ′z), the soil is overconsolidated (OC). Soils cannot be underconsolidated. The term “underconsolidated” is a misnomer for soils that are “undergoing consolidation,” where the current effective overburden stress that is consolidating is equal to the preconsolidation stress (Fellenius 2009). The natural moisture content of a normally consolidated clay is usually closer to its liquid limit, while for an overconsolidated clay, it is usually closer to its plastic limit.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5c, printed p. 125."
+  },
+  {
+   "section_id": "6-5d",
+   "title": "Overconsolidation ratio and overconsolidation margin",
+   "body": "[p. 125] Overconsolidation ratio and overconsolidation margin. The degree of overconsolidation is expressed as the ratio of the maximum overburden pressure it has experienced in the past to the current overburden pressure as defined in equation 6-3, or the overconsolidation margin (σ′m) as defined in equation 6-4. The overconsolidation margin should be relatively constant throughout a stratum of the same geologic origin, but the OCR can vary as a function of depth. Therefore, knowing the overconsolidation margin (σ′m) and the initial vertical effective stress (σ′zo), one can estimate the [p. 126] preconsolidation stress at other depths in the same stratum of the same geologic origin. The state of stress is often quantified by the OCR and overconsolidation margin as indicated in Table 6-1.\n\nOCR = σ′p/σ′z   (Overconsolidation Ratio) [Eq. 6-3]\n\nσ′m = σ′p − σ′zo   (Overconsolidation Margin) [Eq. 6-4]\n\nwhere:\nOCR = overconsolidation ratio (dimensionless)\nσ′m = overconsolidation margin (tsf)\nσ′p = preconsolidation stress (tsf)\nσ′z = current vertical effective stress (tsf)\nσ′zo = initial vertical effective stress (tsf)\n\nTable 6-1 In situ state of stress based on overconsolidation ratio and overconsolidation margin (σ′m)\nDescription | State of Stress | OCR | σ′m (ksf)\nNormally consolidated | σ′z = σ′p | 1 | 0\nLightly Overconsolidated | σ′z < σ′p | 1 to 3 | 0 to 2.0\nModerately overconsolidated | σ′z < σ′p | 3 to 6 | 2.0 to 8.0\nHeavily overconsolidated | σ′z < σ′p | > 6 | > 8.0",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-3",
+     "description": "Equation 6-3, introduced by: \"The state of stress is often quantified by the OCR and overconsolidation margin as indicated in Table 6-1.\" (p. 126).",
+     "formula": "OCR = σ′p/σ′z   (Overconsolidation Ratio)",
+     "variables": {
+      "OCR": "overconsolidation ratio (dimensionless)",
+      "σ′p": "preconsolidation stress (tsf)",
+      "σ′z": "current vertical effective stress (tsf)"
+     },
+     "source": "Typed in from p. 126.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 6-4",
+     "description": "Equation 6-4, printed after Eq. 6-3 (p. 126).",
+     "formula": "σ′m = σ′p − σ′zo   (Overconsolidation Margin)",
+     "variables": {
+      "σ′m": "overconsolidation margin (tsf)",
+      "σ′p": "preconsolidation stress (tsf)",
+      "σ′zo": "initial vertical effective stress (tsf)"
+     },
+     "source": "Typed in from p. 126.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 6-1: In situ state of stress based on overconsolidation ratio and overconsolidation margin (σ′m)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-5d, printed pp. 125 to 126."
+  },
+  {
+   "section_id": "6-6",
+   "title": "Induced stresses",
+   "body": "[p. 126] Stress changes at depth caused by external loads applied on or near the surface (such as structural foundations, embankment loads) are known as induced stresses (Δσz). Induced stresses within the soil vary spatially, decreasing with distance from the center and depth of load application and must be determined to estimate settlement of shallow foundations. The distribution of vertical stress due to induced stresses can be approximated using elastic theory solutions, approximate methods, or numerical analyses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6, printed p. 126."
+  },
+  {
+   "section_id": "6-6a",
+   "title": "Bearing pressure and contact stress",
+   "body": "[p. 126] Bearing pressure and contact stress. When an external load (such as bearing pressure) is applied to a soil mass, a restoring force develops within the soil to resist deformation. The ratio of the restoring force (or soil reaction) between the foundation and soil that is perpendicular to the surface area over which the load is applied is known as contact stress. The total contact stress must equal the applied force if equilibrium exists; however, the contact stress is not distributed evenly. For isolated and spread footings, bearing pressure and the resulting contact stress are generally assumed uniform. For mats and large footings, contact stress distribution can have a more significant influence, reference paragraph 6-6a(3).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a, printed p. 126."
+  },
+  {
+   "section_id": "6-6a(1)",
+   "title": "Net bearing pressure",
+   "body": "[p. 127] Net bearing pressure. An alternative way to define bearing pressure is “net bearing pressure.” The net bearing pressure (q′) is the difference between the gross bearing pressure, q (or gross equivalent bearing pressure (qeq) for eccentrically loaded foundations) and the initial vertical effective stress at the bearing elevation of the footing (σ′zD). Net bearing pressure is calculated per equation 6-5. Gross and gross equivalent bearing pressure are defined in paragraph 5-2b. Therefore, the net bearing pressure can be defined as the increase in the vertical effective stress at the bearing elevation of the footing. Both the gross and net bearing pressures will produce the identical design if used consistently and correctly.\n\nq′ = q − σ′zD [Eq. 6-5]\n\nwhere:\nq′ = net bearing pressure (tsf)\nq = gross bearing pressure (tsf); use gross equivalent bearing pressure (qeq) for eccentrically loaded foundations\nσ′zD = initial vertical effective stress at the bearing elevation of the footing (tsf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-5",
+     "description": "Equation 6-5, introduced by: \"Both the gross and net bearing pressures will produce the identical design if used consistently and correctly.\" (p. 127).",
+     "formula": "q′ = q − σ′zD",
+     "variables": {
+      "q′": "net bearing pressure (tsf)",
+      "q": "gross bearing pressure (tsf); use gross equivalent bearing pressure (qeq) for eccentrically loaded foundations",
+      "σ′zD": "initial vertical effective stress at the bearing elevation of the footing (tsf)"
+     },
+     "source": "Typed in from p. 127.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(1), printed p. 127."
+  },
+  {
+   "section_id": "6-6a(2)",
+   "title": "Contact stress distribution",
+   "body": "[p. 127] Contact stress distribution. Contact stress distribution depends principally on foundation stiffness, soil stiffness, and loading condition. For a uniformly loaded and perfectly flexible foundation, the distribution of contact stress is also uniform regardless of soil type, see Figure 6-1a and Figure 6-1b. For a symmetrically loaded and perfectly rigid foundation, contact stress and stresses in the soil mass must be such to ensure strain compatibility, resulting in uniform settlement. This contact stress distribution will depend on the soil stiffness behavior illustrated in Figure 6-1c and Figure 6-1d. For soils that are linear elastic in behavior, contact stress and settlement behavior is expected to be similar to Figure 6-1b and Figure 6-1d. For soils with stiffness that is higher under higher stresses, behavior such as illustrated in Figure 6-1a and Figure 6-1c is expected.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(2), printed p. 127."
+  },
+  {
+   "section_id": "6-6a(3)",
+   "title": "Foundation rigidity",
+   "body": "[p. 127] Foundation rigidity.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(3), printed p. 127."
+  },
+  {
+   "section_id": "6-6a(3)(a)",
+   "title": "Induced stresses are typically computed using the theory of elasticity and …",
+   "body": "[p. 127] Induced stresses are typically computed using the theory of elasticity and assuming a perfectly flexible foundation. This assumption produces larger variations of deflections than expected, since nearly all foundations have some degree of rigidity. Stress variations as great as 20 to 30 percent between theoretical and field conditions could occur due to rigidity effects. To account for footing rigidity, empirical methods (that account for footing rigidity) can be used for estimating settlement. Alternatively, rigidity corrections (paragraph 6-6a(4)) can be applied.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(3)(a), printed p. 127. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-6a(3)(b)",
+   "title": "For mat foundations and some large footings that generally have more …",
+   "body": "[p. 127] For mat foundations and some large footings that generally have more flexibility than isolated footings, contact stress distribution can be of more significance due to bending moments and differential settlements that can develop. For these foundations, contact stress distribution should be determined using the design methods provided in Chapter 8 (especially when rigidity corrections should not be applied).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(3)(b), printed p. 127. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-6a(4)",
+   "title": "Foundation rigidity corrections",
+   "body": "[p. 128] Foundation rigidity corrections. The stress distribution variations due to rigidity effects are applicable only to stresses directly near the footing and are derived from and applicable to elastic half-space theory. At depth, the overall stress distribution bulb generally matches flexible loading assumptions as illustrated in Figure 6-2. In practice for conventional spread footing design, the nuance of the contact stress distribution is not required to be considered. In a special situation, if it is needed to more accurately predict soil stresses directly beneath a footing, additional details can be found in literature (for example, Das 2017; Coduto et al. 2016; Tsytovich 1976).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6a(4), printed p. 128."
+  },
+  {
+   "section_id": "6-6b",
+   "title": "Plane strain and axisymmetric stress distribution",
+   "body": "[p. 128] Plane strain and axisymmetric stress distribution. Footing shape will influence the induced stress distribution within the soil. Circular and approximately circular footings (such as square, octagonal) subjected to vertical loadings are assumed to have an axisymmetric stress distribution where the bearing pressures are dispersed laterally in all directions (see Figure 6-3a). Strip footings where the base length, L, is greater than 10 times the base width, B (L/B >10), are assumed to have a plane strain stress distribution where deformation occurs only in the planes perpendicular to the long axis (see Figure 6-3b). Rectangular footings with length-to-width ratios between 1 and 10 will have stress distributions varying linearly between the assumed axisymmetric and plane strain stress distributions.\n\nFigure 6-1. Theoretical contact stress and settlement distribution under uniform loading for (a) flexible foundation on sand, (b) flexible foundation on clay or elastic medium, (c) rigid foundation on sand, and (d) rigid foundation on clay or elastic medium (Das 2017)\n\n[p. 129] Figure 6-2. Isobars in soil under foundations (a) absolutely rigid foundation; (b) flexible foundation (Tsytovich 1976)\n\nFigure 6-3. Stress distribution due to induced load to depth of significant influence for (a) approximately circular (such as square footing), and (b) strip footing",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-1: Theoretical contact stress and settlement distribution under uniform loading for (a) flexible foundation on sand, (b) flexible foundation on clay or elastic medium, (c) rigid foundation on sand, and (d) rigid foundation on clay or elastic medium (Das 2017)",
+    "Figure 6-2: Isobars in soil under foundations (a) absolutely rigid foundation; (b) flexible foundation (Tsytovich 1976)",
+    "Figure 6-3: Stress distribution due to induced load to depth of significant influence for (a) approximately circular (such as square footing), and (b) strip footing"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6b, printed pp. 128 to 129."
+  },
+  {
+   "section_id": "6-6c",
+   "title": "Depth of significant influence due to induced stresses",
+   "body": "[p. 129] Depth of significant influence due to induced stresses. At a certain depth below a foundation, induced stresses have a negligible effect on foundation settlement. This generally occurs at a depth where the vertical stress increase from the induced load (Δq) is reduced to less than 10 percent of the stress intensity applied at the surface [p. 130] (specifically, < 0.1q). For square footings (or fills with a similar length-to-width ratio), the depth of significant influence is approximately twice the footing (or fill) width (2B) as illustrated in Figure 6-4a. For strip footings (or embankments with a length-to-width ratio ≥ 10), the depth of significant influence is approximately 6B.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6c, printed pp. 129 to 130."
+  },
+  {
+   "section_id": "6-6d",
+   "title": "Interference of adjacent foundations",
+   "body": "[p. 130] Interference of adjacent foundations.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6d, printed p. 130."
+  },
+  {
+   "section_id": "6-6d(1)",
+   "title": "When several foundations are spaced closely together, the stress isobars can …",
+   "body": "[p. 130] When several foundations are spaced closely together, the stress isobars can overlap and lead to interference. If several footings are spaced closely enough, the individual isobars can combine and merge into one large isobar as illustrated in Figure 6-4b. The effect of footing interference can lead to an increase in settlement for the same magnitude of load applied on each footing and a decrease in bearing capacity. Induced vertical stresses below foundations due to interference can be approximated using the principle of superposition (paragraph 6-6e(2)). Where the clear spacing (S) is less than 0.5B (for footings of similar size), maximum magnitudes of settlement and tilt should be expected.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6d(1), printed p. 130. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-6d(2)",
+   "title": "Foundation spacing is based on ULS and SLS requirements",
+   "body": "[p. 130] Foundation spacing is based on ULS and SLS requirements. Clear spacing (horizontal) between new footings should exceed 1.5 times the width of the larger footing to avoid significant stress interactions that can influence bearing capacity and settlement. Where new footings will be placed adjacent existing footings, induced stresses could result in unacceptable settlements due to footing interference and should be evaluated using the methods presented in this manual.\n\nFigure 6-4. (a) depth of significant influence for isolated square foundation, (b) depth of significant influence for closely spaced foundations",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-4: (a) depth of significant influence for isolated square foundation, (b) depth of significant influence for closely spaced foundations"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6d(2), printed p. 130. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-6e",
+   "title": "Computation of induced vertical stresses",
+   "body": "[p. 131] Computation of induced vertical stresses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6e, printed p. 131."
+  },
+  {
+   "section_id": "6-6e(1)",
+   "title": "Beneath foundation or uniformly loaded area",
+   "body": "[p. 131] Beneath foundation or uniformly loaded area. The induced vertical stress (Δσz) beneath a footing or uniformly loaded area should be computed in relation to the net bearing pressure (q − σ′zD) and influence factor (Iσ) per equation 6-6. The influence factor for vertical stress (Iσ) beneath a footing or uniformly loaded area can be determined from elastic solutions (for example, Boussinesq or Westergaard).\n\nΔσz = Iσ(q − σ′zD) [Eq. 6-6]\n\nwhere:\nΔσz = induced vertical stress (tsf)\nIσ = influence factor for vertical stress (dimensionless)\nq = gross bearing pressure (tsf)\nσ′zD = vertical effective stress (tsf), at the bearing elevation of the footing",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-6",
+     "description": "Equation 6-6, introduced by: \"The influence factor for vertical stress (Iσ) beneath a footing or uniformly loaded area can be determined from elastic solutions (for example, Boussinesq or Westergaard).\" (p. 131).",
+     "formula": "Δσz = Iσ(q − σ′zD)",
+     "variables": {
+      "Δσz": "induced vertical stress (tsf)",
+      "Iσ": "influence factor for vertical stress (dimensionless)",
+      "q": "gross bearing pressure (tsf)",
+      "σ′zD": "vertical effective stress (tsf), at the bearing elevation of the footing"
+     },
+     "notes": "The induced vertical stress beneath a footing or uniformly loaded area, from the net bearing pressure (q − σ′zD) and the influence factor (paragraph 6-6e(1)). The same equation is printed again, with this number, in Table 7-3, Step 7 (p. 161).",
+     "source": "Typed in from p. 131.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6e(1), printed p. 131."
+  },
+  {
+   "section_id": "6-6e(2)",
+   "title": "Principle of superposition",
+   "body": "[p. 131] Principle of superposition.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6e(2), printed p. 131."
+  },
+  {
+   "section_id": "6-6e(2)(a)",
+   "title": "Boussinesq and Westergaard chart solutions for computing the influence factor …",
+   "body": "[p. 131] Boussinesq and Westergaard chart solutions for computing the influence factor (Iσ) beneath the corner of a uniformly loaded rectangle are illustrated in Figure 6-8 and Figure 6-10, respectively. These figures can be used to determine the influence factor for vertical stress (Iσ) at the point within and beyond the footprint of the footing or uniformly loaded area using the principle of superposition as illustrated in Figure 6-5.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6e(2)(a), printed p. 131. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-6e(2)(b)",
+   "title": "Suitable sub-areas are chosen such that their sum is the loaded area causing …",
+   "body": "[p. 131] Suitable sub-areas are chosen such that their sum is the loaded area causing the stress, and each has the same corner over the point in question. For example, to determine the influence factor for vertical stress (Iσ) beneath the center of a footing, the footing is divided into four sub-areas, each a rectangle that is 1/4 of the larger one, and the individual influence factors, Iσ for these four smaller areas are summed to find Iσ for the larger rectangle at the location of the same corner in question. This principle is especially useful for determining the change in stress below and outside of loaded areas.\n\n[p. 132] Figure 6-5. Use of superposition to determine change in vertical stress",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-5: Use of superposition to determine change in vertical stress"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-6e(2)(b), printed pp. 131 to 132. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "6-7",
+   "title": "Elastic solutions for vertical stresses due to external loads",
+   "body": "[p. 132] The induced vertical stress due to an external load can be analyzed using elastic theory. According to elastic theory, it is assumed that constant ratios exist between stresses and strain. This assumption is appropriate for the estimation of foundation deformations when an adequate factor of safety is applied to the ultimate limit state failure modes (especially when shear stresses throughout the soil mass will be significantly below the shear strength of the soil). Estimation of in situ stresses presented in this chapter assume that elastic conditions prevail. With respect to these assumptions and the limitations of each method, the Boussinesq and Westergaard solutions satisfactorily compute the stresses within the soil for estimating settlements.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7, printed p. 132."
+  },
+  {
+   "section_id": "6-7a",
+   "title": "Boussinesq solution",
+   "body": "[p. 133] Boussinesq solution.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7a, printed p. 133."
+  },
+  {
+   "section_id": "6-7a(1)",
+   "title": "General",
+   "body": "[p. 133] General. Boussinesq (1885) developed a solution for stress distribution in a homogeneous and isotropic soil subjected to a concentrated load at the surface. The theory assumes an elastic foundation on an elastic medium (modulus, E constant). Also, the soil mass is assumed to be semi-infinite (extends all directions below a level surface), the soil obeys Hooke’s law, and the soil is weightless. For the Boussinesq solution, it is observed that the vertical stress decreases with the increase in depth from the ground surface and in distance from the axis of loading, expressed as an influence factor (Iσ). The Boussinesq stress distribution is illustrated in Figure 6-6 for an infinitely long and square area, and Figure 6-7 for a uniformly loaded circular area. The stress distribution below the corner of a uniformly loaded rectangular area is illustrated in Figure 6-8. Chart solutions for embankment loads based on Boussinesq are provided in paragraph 6-8.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7a(1), printed p. 133."
+  },
+  {
+   "section_id": "6-7a(2)",
+   "title": "Limitations of the Boussinesq theory",
+   "body": "[p. 133] Limitations of the Boussinesq theory. Boundary conditions can differ substantially from idealized conditions to invalidate solutions by elasticity theory. Elastic solutions such as the Boussinesq solution assumes a weightless material not subject to initial stress. Initial stress always exists in situ because of overburden weight of overlying soil, past stress history, and environmental effects such as desiccation. These initial stresses through Poisson’s ratio, nonlinear elastic modulus, and soil anisotropy significantly influence in situ stress and strain that occur through additional applied loads. Actual stresses beneath the center of shallow footings can exceed Boussinesq values by 15 to 30 percent in clays and 20 to 30 percent in sands.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7a(2), printed p. 133."
+  },
+  {
+   "section_id": "6-7b",
+   "title": "Westergaard solution",
+   "body": "[p. 133] Westergaard solution. Westergaard (1939) developed a stress/displacement theory for varved clays (clays with numerous horizontal seams of silt and fine sand). According to the theory, soils that are stratified with strong layers generally reinforce soft layers so that the resulting stress intensity at deeper depths are less than that formulated for an isotropic soil after the Boussinesq solution.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7b, printed p. 133."
+  },
+  {
+   "section_id": "6-7b(1)",
+   "title": "Comparison of Westergaard to Boussinesq",
+   "body": "[p. 133] Comparison of Westergaard to Boussinesq. The main effect is that Westergaard’s theory produces a lower stress directly below the center of a load as compared to Boussinesq; however, at a certain distance away from the center, stresses begin to exceed those calculated using Boussinesq. The Westergaard stress distribution is illustrated in Figure 6-9 for both an infinitely long and square area, and in Figure 6-10 for the corner of a uniformly loaded rectangular area. For a uniformly loaded square footing (with Poisson’s ratio, υ = 0), comparative values (to Boussinesq) are provided in Table 6-2.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7b(1), printed p. 133."
+  },
+  {
+   "section_id": "6-7b(2)",
+   "title": "Limitations of Westergaard theory",
+   "body": "[p. 133] Limitations of Westergaard theory. Soil is assumed to consist of a linear elastic material horizontally reinforced by inextensible membranes of negligible thickness and spaced very closely together. The Westergaard medium assumes isotropy with respect to the elastic modulus, E, but anisotropy with respect to shear modulus, G. Westergaard’s theory does not satisfy one of the necessary stress boundary conditions, which is that the surface (z = 0) should be free of shear stresses.\n\n[p. 134] Figure 6-6. Contours of induced vertical stress beneath a foundation in a semi-infinite elastic solid by the Boussinesq solution\n\n[p. 135] Figure 6-7. Influence factor (Iσ) for computing induced vertical stress beneath a uniformly loaded circular area for the Boussinesq solution (adapted from Foster and Ahlvin 1954)\n\n[p. 136] Figure 6-8. Influence factor (Iσ) for computing induced vertical stress beneath a corner of a uniformly loaded rectangular area for the Boussinesq solution (adapted from Fadum 1948)\n\n[p. 137] Figure 6-9. Contours of induced vertical stress beneath a foundation in a semi-infinite elastic solid by the Westergaard solution\n\n[p. 138] Figure 6-10. Influence factor (Iσ) for computing induced vertical stress beneath a corner of a uniformly loaded rectangular area for the Westergaard solution (adapted from Fadum 1948)\n\n[p. 139] Table 6-2 Comparison of influence factors (Iσ) beneath the center of a square uniformly loaded area (after Duncan and Buchignani 1976; assumes a Poisson’s ratio υ = 0)\n(Ftg. Width (B))/(Ftg. Depth (z)) | Iσ | Iσ\n | Boussinesq Theory | Westergaard Theory\n∞ | 1.0000 | 1.0000\n20 | 0.9992 | 0.9365\n16 | 0.9984 | 0.9199\n12 | 0.9968 | 0.8944\n10 | 0.9944 | 0.8734\n8 | 0.9892 | 0.8435\n6 | 0.9756 | 0.7926\n5 | 0.9604 | 0.7525\n4 | 0.9300 | 0.6971\n3.6 | 0.9096 | 0.6659\n3.2 | 0.8812 | 0.6309\n2.8 | 0.8408 | 0.5863\n2.4 | 0.7832 | 0.5328\n2.0 | 0.7008 | 0.4647\n1.8 | 0.6476 | 0.4246\n1.6 | 0.5844 | 0.3794\n1.4 | 0.5108 | 0.3291\n1.2 | 0.4276 | 0.2858\n1.0 | 0.3360 | 0.2165\n0.8 | 0.2410 | 0.1560\n0.6 | 0.1494 | 0.0999\n0.4 | 0.0716 | 0.0477\n0.2 | 0.0188 | 0.0127\n0 | 0.0000 | 0.0000",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-6: Contours of induced vertical stress beneath a foundation in a semi-infinite elastic solid by the Boussinesq solution",
+    "Figure 6-7: Influence factor (Iσ) for computing induced vertical stress beneath a uniformly loaded circular area for the Boussinesq solution (adapted from Foster and Ahlvin 1954)",
+    "Figure 6-8: Influence factor (Iσ) for computing induced vertical stress beneath a corner of a uniformly loaded rectangular area for the Boussinesq solution (adapted from Fadum 1948)",
+    "Figure 6-9: Contours of induced vertical stress beneath a foundation in a semi-infinite elastic solid by the Westergaard solution",
+    "Figure 6-10: Influence factor (Iσ) for computing induced vertical stress beneath a corner of a uniformly loaded rectangular area for the Westergaard solution (adapted from Fadum 1948)"
+   ],
+   "tables": [
+    "Table 6-2: Comparison of influence factors (Iσ) beneath the center of a square uniformly loaded area (after Duncan and Buchignani 1976; assumes a Poisson’s ratio υ = 0)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-7b(2), printed pp. 133 to 139."
+  },
+  {
+   "section_id": "6-8",
+   "title": "Stress increase due to embankment loads",
+   "body": "[p. 139] The induced vertical stress distribution under a non-uniform embankment load can also be analyzed using elastic solutions. However, the change in stress is complicated by embankment geometry (side slopes). Embankments are generalized into two categories: (1) those having an infinite length, which is represented as trapezoidal, and (2) those having a finite length with end slopes.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-8, printed p. 139."
+  },
+  {
+   "section_id": "6-8a",
+   "title": "Infinite embankment",
+   "body": "[p. 140] Infinite embankment. Osterberg (1957) developed a chart for determining the influence factor for an infinitely long sloping embankment (Figure 6-12) by integration of the Boussinesq equations. The influence factor (Iσ) and corresponding induced vertical stresses (Δσzfill) beneath the centerline of an infinite embankment with side slopes can be computed per equation 6-7, see also Figure 6-11. The influence factor is a function of the embankment dimensions. To determine the influence factor (Iσ) and corresponding Δσzfill at a location other than directly beneath the centerline of the embankment, the principle of superposition may be used.\n\nΔσzfill = 2Iσ · q [Eq. 6-7]\n\nwhere:\nΔσzfill = induced vertical stress (tsf), beneath centerline of embankment\nIσ = influence factor (dimensionless), beneath centerline of embankment, see Figure 6-12\nq = unit load of embankment (tsf), = γm · H, where γm = moist unit weight of embankment soil (tcf), and H = height of embankment at the centerline (ft)\n\nFigure 6-11. Influence values for vertical stress under embankment load of infinite length",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-7",
+     "description": "Equation 6-7, introduced by: \"To determine the influence factor (Iσ) and corresponding Δσzfill at a location other than directly beneath the centerline of the embankment, the principle of superposition may be used.\" (p. 140).",
+     "formula": "Δσzfill = 2Iσ · q",
+     "variables": {
+      "Δσzfill": "induced vertical stress (tsf), beneath centerline of embankment",
+      "Iσ": "influence factor (dimensionless), beneath centerline of embankment, see Figure 6-12",
+      "q": "unit load of embankment (tsf), = γm · H, where γm = moist unit weight of embankment soil (tcf), and H = height of embankment at the centerline (ft)"
+     },
+     "notes": "Beneath the centerline of an embankment; at other locations the principle of superposition may be used (paragraph 6-8a).",
+     "source": "Typed in from p. 140.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 6-11: Influence values for vertical stress under embankment load of infinite length"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-8a, printed p. 140."
+  },
+  {
+   "section_id": "6-8b",
+   "title": "Finite embankment",
+   "body": "[p. 140] Finite embankment. For finite embankments, the loading consists of two components: (1) the uniform areal load below the crest, and (2) the load under the sloping sections. The influence factor for the uniform areal load is determined using Figure 6-12, and is doubled since it is determined at the corner of the loaded area. The influence factor for the sloping portion is determined from Figure 6-13 and Figure 6-14.\n\n[p. 141] Figure 6-12. Influence chart for vertical stress embankment loading of infinite extent. Boussinesq case (Osterberg 1957)\n\n[p. 142] Figure 6-13. Influence chart beneath crest of slope (NAVFAC DM7.1 1982)\n\n[p. 143] Figure 6-14. Influence chart beneath toe of slope (NAVFAC 7.1 1982)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 6-12: Influence chart for vertical stress embankment loading of infinite extent. Boussinesq case (Osterberg 1957)",
+    "Figure 6-13: Influence chart beneath crest of slope (NAVFAC DM7.1 1982)",
+    "Figure 6-14: Influence chart beneath toe of slope (NAVFAC 7.1 1982)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-8b, printed pp. 140 to 143."
+  },
+  {
+   "section_id": "6-9",
+   "title": "Approximate methods for stress increase due to induced loads",
+   "body": "[p. 144] Approximate methods and formulas can be used to calculate stresses due to induced loads. The approximate methods for stress distribution produce reasonable results in most applications and are useful for understanding the principles of stress distribution and for checking results obtained from elastic solutions or numerical analyses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-9, printed p. 144."
+  },
+  {
+   "section_id": "6-9a",
+   "title": "Boussinesq approximate solution",
+   "body": "[p. 144] Boussinesq approximate solution. Approximate formulas based on the Boussinesq equations, equations 6-8 through 6-11, can be used to compute the influence factor (Iσ), beneath the center for the respective footing type. These equations produce the induced vertical stress (Δσz) beneath the footing per equation 6-6 within 5 percent of the Boussinesq solution (Poulos and Davis 1974).\n\nIσ = 1 − (1/(1 + (B/(2z))^2))^1.5   (Circular Loaded Area) [Eq. 6-8]\n\nIσ = 1 − (1/(1 + (B/(2z))^2))^1.76   (Square Loaded Area) [Eq. 6-9]\n\nIσ = 1 − (1/(1 + (B/(2z))^(1.38 + 0.62 (B/L))))^(2.60 − 0.84 (B/L))   (Rectangular Loaded Area) [Eq. 6-10]\n\nIσ = 1 − (1/(1 + (B/(2z))^1.38))^2.60   (Continuous (Strip) Loaded Area) [Eq. 6-11]\n\nwhere:\nIσ = influence factor beneath center of footing (dimensionless)\nz = depth (ft), from base of foundation to point within the soil mass, typically at the center point of each layer evaluated for settlement\nB = base width or diameter of footing (ft)\nL = base length of rectangular footing (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-8",
+     "description": "Equation 6-8, introduced by: \"These equations produce the induced vertical stress (Δσz) beneath the footing per equation 6-6 within 5 percent of the Boussinesq solution (Poulos and Davis 1974).\" (p. 144).",
+     "formula": "Iσ = 1 − (1/(1 + (B/(2z))^2))^1.5   (Circular Loaded Area)",
+     "variables": {
+      "Iσ": "influence factor beneath center of footing (dimensionless)",
+      "z": "depth (ft), from base of foundation to point within the soil mass, typically at the center point of each layer evaluated for settlement",
+      "B": "base width or diameter of footing (ft)"
+     },
+     "notes": "One of the equations that produce the induced vertical stress beneath the center of the footing, per equation 6-6, within 5 percent of the Boussinesq solution (Poulos and Davis 1974) (paragraph 6-9a).",
+     "source": "Typed in from p. 144.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 6-9",
+     "description": "Equation 6-9, printed after Eq. 6-8 (p. 144).",
+     "formula": "Iσ = 1 − (1/(1 + (B/(2z))^2))^1.76   (Square Loaded Area)",
+     "variables": {
+      "Iσ": "influence factor beneath center of footing (dimensionless)",
+      "z": "depth (ft), from base of foundation to point within the soil mass, typically at the center point of each layer evaluated for settlement",
+      "B": "base width or diameter of footing (ft)"
+     },
+     "notes": "Within 5 percent of the Boussinesq solution beneath the center of the footing (Poulos and Davis 1974) (paragraph 6-9a).",
+     "source": "Typed in from p. 144.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 6-10",
+     "description": "Equation 6-10, printed after Eq. 6-9 (p. 144).",
+     "formula": "Iσ = 1 − (1/(1 + (B/(2z))^(1.38 + 0.62 (B/L))))^(2.60 − 0.84 (B/L))   (Rectangular Loaded Area)",
+     "variables": {
+      "Iσ": "influence factor beneath center of footing (dimensionless)",
+      "z": "depth (ft), from base of foundation to point within the soil mass, typically at the center point of each layer evaluated for settlement",
+      "B": "base width or diameter of footing (ft)",
+      "L": "base length of rectangular footing (ft)"
+     },
+     "notes": "Within 5 percent of the Boussinesq solution beneath the center of the footing (Poulos and Davis 1974) (paragraph 6-9a).",
+     "source": "Typed in from p. 144.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 6-11",
+     "description": "Equation 6-11, printed after Eq. 6-10 (p. 144).",
+     "formula": "Iσ = 1 − (1/(1 + (B/(2z))^1.38))^2.60   (Continuous (Strip) Loaded Area)",
+     "variables": {
+      "Iσ": "influence factor beneath center of footing (dimensionless)",
+      "z": "depth (ft), from base of foundation to point within the soil mass, typically at the center point of each layer evaluated for settlement",
+      "B": "base width or diameter of footing (ft)"
+     },
+     "notes": "Within 5 percent of the Boussinesq solution beneath the center of the footing (Poulos and Davis 1974) (paragraph 6-9a).",
+     "source": "Typed in from p. 144.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-9a, printed p. 144."
+  },
+  {
+   "section_id": "6-9b",
+   "title": "Approximate 2:1 method",
+   "body": "[p. 144] Approximate 2:1 method. With increasing depth below the base of a foundation, the area over which the load is applied at the surface increases at a 2:1 ratio and the magnitude of the loading stress decreases correspondingly (see Figure 6-15). For [p. 145] example, the influence factor (Iσ) beneath the center of the loaded area for rectangular and circular footings is calculated per equation 6-12 and equation 6-13, respectively. The calculated influence factor can be used in equation 6-6 to calculate the induced vertical stresses (ΔσZ) at the respective depth.\n\nIσ = (B · L)/((B + z)(L + z))   (Rectangular Footing) [Eq. 6-12]\n\nIσ = B^2/(B + z)^2   (Circular Footing) [Eq. 6-13]\n\nwhere:\nIσ = influence factor beneath center of a rectangular footing (dimensionless)\nz = depth from base of foundation to point within the soil mass (ft), typically at the center point of each layer evaluated for settlement\nB = base width of rectangular footing or diameter of circular footing (ft)\nL = base length of rectangular footing (ft)\n\nFigure 6-15. Approximate stress distribution by the 2:1 stress distribution method",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-12",
+     "description": "Equation 6-12, introduced by: \"The calculated influence factor can be used in equation 6-6 to calculate the induced vertical stresses (ΔσZ) at the respective depth.\" (p. 145).",
+     "formula": "Iσ = (B · L)/((B + z)(L + z))   (Rectangular Footing)",
+     "variables": {
+      "Iσ": "influence factor beneath center of a rectangular footing (dimensionless)",
+      "z": "depth from base of foundation to point within the soil mass (ft), typically at the center point of each layer evaluated for settlement",
+      "B": "base width of rectangular footing or diameter of circular footing (ft)",
+      "L": "base length of rectangular footing (ft)"
+     },
+     "notes": "The approximate 2:1 method: the influence factor beneath the center of the loaded area (paragraph 6-9b); it can be used in equation 6-6.",
+     "source": "Typed in from p. 145.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 6-13",
+     "description": "Equation 6-13, printed after Eq. 6-12 (p. 145).",
+     "formula": "Iσ = B^2/(B + z)^2   (Circular Footing)",
+     "variables": {
+      "Iσ": "influence factor beneath center of a rectangular footing (dimensionless)",
+      "z": "depth from base of foundation to point within the soil mass (ft), typically at the center point of each layer evaluated for settlement",
+      "B": "base width of rectangular footing or diameter of circular footing (ft)"
+     },
+     "notes": "The approximate 2:1 method: the influence factor beneath the center of the loaded area (paragraph 6-9b); it can be used in equation 6-6.",
+     "source": "Typed in from p. 145.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 6-15: Approximate stress distribution by the 2:1 stress distribution method"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-9b, printed pp. 144 to 145."
+  },
+  {
+   "section_id": "6-9c",
+   "title": "Limitations of 2:1 method",
+   "body": "[p. 145] Limitations of 2:1 method. The 2:1 method is not based on soil mechanics. As compared to Boussinesq theory, the 2:1 method tends to underestimate vertical stresses, especially for square footings at depths less than about 1.5B, where load influence is more significant. The error involved is not considerable; however, it is unconservative, and therefore, should be used only for preliminary estimates of induced stress. The 2:1 method should not be used to estimate stresses outside of loaded area (such as superposition).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 6 (Stress Distribution), paragraph 6-9c, printed p. 145."
+  }
+ ]
+}

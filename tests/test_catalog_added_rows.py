@@ -302,3 +302,59 @@ def test_added_rows_are_found_by_their_captions():
     ]:
         hits = _figures_db.figure_search(query, reference=ref, limit=5)
         assert number in [h["figure_number"] for h in hits], (ref, query)
+
+
+def test_ec7_2_b4_and_b5_describe_their_own_figure():
+    """EN 1997-2 Figures B.4 and B.5 were added with one description for
+    both: a summary of all of Annex B.3 (high-rise, rafts, dams, piles), so a
+    search for the depth of investigation under dams found the tunnel and
+    excavation sketches first. Each now says what its figure shows and the
+    depth rule printed with it, read from the rendered pages: B.3(9) for
+    small tunnels and caverns (printed page 106) and B.3(10) for excavations
+    (printed page 107)."""
+    b4 = _figures_db.figure_get("eurocode_7_2", "B.4")["description"]
+    b5 = _figures_db.figure_get("eurocode_7_2", "B.5")["description"]
+    assert b4 != b5
+    assert "bAb < za < 2,0bAb" in b4
+    for rule in ("za ≥ 0,4h", "za ≥ (1,0H + 2,0) m", "za ≥ (t + 2,0) m",
+                 "za ≥ t + 5 m"):
+        assert rule in b5
+    for text in (b4, b5):
+        assert not re.search(r"\b(dams?|rafts?|piles?|high-rise)\b", text,
+                             re.IGNORECASE)
+
+    # Figure B.2 (Embankments and cuttings) is the one for dams, B.3(7) a)
+    found = [h["figure_number"] for h in _figures_db.figure_search(
+        "investigation depth dams", reference="eurocode_7_2")]
+    for number in ("B.4", "B.5"):
+        if number in found:
+            assert "B.2" in found
+            assert found.index("B.2") < found.index(number), found
+    found = [h["figure_number"] for h in _figures_db.figure_search(
+        "excavations", reference="eurocode_7_2")]
+    assert found and found[0] == "B.5", found
+
+
+# Every EN 1997-2 row: the PDF page that prints the figure's caption and the
+# page number printed on that page, both read on the rendered pages. The
+# rows built before 2026-11-10 stored the number one lower from Figure B.1
+# on (B.1 printed_page 104 on a page that prints 105), and a citation quotes
+# this field.
+EC7_2_PAGES = [
+    ("1.1", 16, 15), ("1.2", 17, 16),
+    ("B.1", 106, 105), ("B.2", 106, 105), ("B.3", 107, 106),
+    ("B.4", 107, 106), ("B.5", 108, 107), ("B.6", 109, 108),
+    ("B.7", 109, 108),
+    ("D.1", 114, 113), ("D.2", 120, 119), ("D.3", 121, 120),
+    ("E.1", 125, 124), ("G.1", 132, 131),
+    ("I.1", 135, 134), ("I.2", 135, 134), ("I.3", 136, 135),
+    ("I.4", 137, 136),
+    ("K.1", 141, 140), ("K.2", 142, 141), ("K.3", 143, 142),
+]
+
+
+def test_ec7_2_every_row_has_the_printed_page_of_its_page():
+    rows = json.loads((PKG / "eurocode_7_2" / "figures_catalog.json")
+                      .read_text(encoding="utf-8"))["figures"]
+    assert [(r["figure_number"], r["pdf_page_index"], r["printed_page"])
+            for r in rows] == EC7_2_PAGES
