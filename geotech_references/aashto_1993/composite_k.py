@@ -147,12 +147,12 @@ def loss_of_support_values(material=None) -> dict:
 # 1,100 -> 1,085; 160 -> 154; 230 -> 230; 410 -> 391), within 5 %, the
 # spread of the guide's own two reads of one point (400 and 410).
 #
-# Outside the printed curves: Dsb below 6 in, Esb below 15,000 psi or MR
-# below 1,000 psi raise ValueError (reading off the lowest curve would
-# overstate k); Dsb above 18 in, Esb above 1,000,000 psi or MR above
-# 20,000 psi use the nearest printed curve with a note (understates k); a
-# construction landing beyond the 2,000 pci diagonal is held at 2,000 pci
-# with a note.
+# Outside the printed curves the lookup raises ValueError (REF-76): Dsb
+# outside 6-18 in, Esb outside 15,000-1,000,000 psi, MR outside
+# 1,000-20,000 psi, or a construction landing beyond the 2,000 pci diagonal
+# or short of the 50 pci one. Reading off the nearest curve below the chart
+# would overstate k; above it, it would understate k, but the guide's text
+# gives no rule for either.
 # ============================================================================
 
 # Upper quadrant: heights of the nine Esb curves at each even Dsb gridline,
@@ -232,15 +232,16 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
     -------
     dict
         {'mr_psi', 'esb_psi', 'dsb_in', 'k_inf_pci', 'chart_read',
-        'method', 'reference', 'note'?}.
+        'method', 'reference'}.
 
     Raises
     ------
     ValueError
-        If an input is <= 0, or Dsb is below 6 in, Esb below 15,000 psi
-        or MR below 1,000 psi (below the printed curves; reading off the
-        lowest curve would overstate k). Above the printed curves the
-        nearest curve is used with a note (understates k).
+        If an input is <= 0, or Dsb, Esb or MR is outside Figure 3.3's
+        printed curves (Dsb 6-18 in, Esb 15,000-1,000,000 psi, MR
+        1,000-20,000 psi, printed II-39), or the construction lands beyond
+        the 2,000 pci diagonal or short of the 50 pci one: the chart gives
+        no k_inf there, and the guide's text no rule.
     """
     for name, val in (("mr_psi", mr_psi), ("esb_psi", esb_psi),
                       ("dsb_in", dsb_in)):
@@ -249,50 +250,55 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
     if dsb_in < _COMPK_DSB_RANGE[0]:
         raise ValueError(
             f"Subbase thickness {dsb_in} in is below Figure 3.3's printed "
-            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in); "
-            "read the chart and give k directly, or use the roadbed alone "
+            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in, "
+            "printed II-39); read the chart and give k directly, or use the "
+            "roadbed alone "
             "(equations.modulus_subgrade_reaction_simple)."
         )
     if esb_psi < _COMPK_ESB_RANGE[0]:
         raise ValueError(
             f"Subbase modulus {esb_psi} psi is below Figure 3.3's lowest "
-            f"printed curve ({_COMPK_ESB_RANGE[0]:,.0f} psi); give k directly "
-            "or use the roadbed alone."
+            f"printed curve ({_COMPK_ESB_RANGE[0]:,.0f} psi, printed II-39); "
+            "give k directly or use the roadbed alone."
         )
     if mr_psi < _COMPK_MR_RANGE[0]:
         raise ValueError(
             f"Roadbed modulus {mr_psi} psi is below Figure 3.3's lowest "
-            f"printed curve ({_COMPK_MR_RANGE[0]:,.0f} psi); give k directly."
+            f"printed curve ({_COMPK_MR_RANGE[0]:,.0f} psi, printed II-39); "
+            "give k directly."
         )
-    notes = []
-    dsb = dsb_in
-    if dsb > _COMPK_DSB_RANGE[1]:
-        dsb = _COMPK_DSB_RANGE[1]
-        notes.append(f"Dsb {dsb_in} in is above the printed scale; the "
-                     f"{_COMPK_DSB_RANGE[1]:g}-in gridline was used "
-                     "(understates k).")
-    esb = esb_psi
-    if esb > _COMPK_ESB_RANGE[1]:
-        esb = _COMPK_ESB_RANGE[1]
-        notes.append(f"Esb {esb_psi:,.0f} psi is above the highest printed "
-                     "curve; the 1,000,000-psi curve was used (understates k).")
-    mr = mr_psi
-    if mr > _COMPK_MR_RANGE[1]:
-        mr = _COMPK_MR_RANGE[1]
-        notes.append(f"MR {mr_psi:,.0f} psi is above the highest printed "
-                     "curve; the 20,000-psi curve was used (understates k).")
+    if dsb_in > _COMPK_DSB_RANGE[1]:
+        raise ValueError(
+            f"Subbase thickness {dsb_in} in is above Figure 3.3's printed "
+            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in, "
+            "printed II-39); the chart gives no k_inf there. Read the chart "
+            "and give k directly.")
+    if esb_psi > _COMPK_ESB_RANGE[1]:
+        raise ValueError(
+            f"Subbase modulus {esb_psi:,.0f} psi is above Figure 3.3's "
+            f"highest printed curve ({_COMPK_ESB_RANGE[1]:,.0f} psi, printed "
+            "II-39); the chart gives no k_inf there. Give k directly.")
+    if mr_psi > _COMPK_MR_RANGE[1]:
+        raise ValueError(
+            f"Roadbed modulus {mr_psi:,.0f} psi is above Figure 3.3's "
+            f"highest printed curve ({_COMPK_MR_RANGE[1]:,.0f} psi, printed "
+            "II-39); the chart gives no k_inf there. Give k directly.")
+    dsb, esb, mr = dsb_in, esb_psi, mr_psi
 
     y_e = _compk_curve_height(_COMPK_UPPER, _COMPK_ESB, dsb, esb)
     y_m = _compk_curve_height(_COMPK_LOWER, _COMPK_MR, dsb, mr)
     c = y_m + _compk_turning_c(y_m) - y_e
-    if c > _COMPK_K_C[-1]:
-        k_inf = float(_COMPK_K_LINES[-1])
-        notes.append("The construction lands beyond the highest drawn "
-                     "diagonal; k_inf held at 2,000 pci.")
-    else:
-        log_k = _linterp(c, list(_COMPK_K_C),
-                         [math.log10(k) for k in _COMPK_K_LINES])
-        k_inf = 10 ** log_k
+    if not _COMPK_K_C[0] <= c <= _COMPK_K_C[-1]:
+        edge = ("beyond the highest drawn diagonal, 2,000 pci"
+                if c > _COMPK_K_C[-1]
+                else "short of the lowest labelled diagonal, 50 pci")
+        raise ValueError(
+            f"Figure 3.3's construction for MR {mr_psi:,.0f} psi, Esb "
+            f"{esb_psi:,.0f} psi and Dsb {dsb_in:g} in lands {edge} (printed "
+            "II-39); the chart gives no k_inf there. Give k directly.")
+    log_k = _linterp(c, list(_COMPK_K_C),
+                     [math.log10(k) for k in _COMPK_K_LINES])
+    k_inf = 10 ** log_k
 
     out = {
         "mr_psi": mr_psi, "esb_psi": esb_psi, "dsb_in": dsb_in,
@@ -302,8 +308,6 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
                    "the chart's own construction)"),
         "reference": _FIG33_REF,
     }
-    if notes:
-        out["note"] = " ".join(notes)
     return out
 
 
@@ -383,7 +387,10 @@ _FIG34_K_BOTTOM = (17.6, 40.4, 108.6, 199.0, 296.7, 407.9, 514.6, 636.4,
 _FIG34_K_TOP = (76.1, 228.1, 620.9, 1115.2, 1629.0, 2215.4, 2838.8, 3512.0,
                 4173.0, 5710.2, 6959.2, 8321.8)
 _FIG34_Y = (1910.5, 464.5)
-_FIG34_MR_RANGE = (1169.0, 20_000.0)  # where all three curves are drawn
+_FIG34_MR_MAX = 20_000.0              # the MR axis's end
+# Each curve's lowest drawn MR: the 2-ft curve leaves the chart's top at
+# 1,169 psi; the 5-ft and 10-ft curves end at 1,073 and 1,083 psi.
+_FIG34_MR_MIN = {d: min(pt[0] for pt in c) for d, c in _FIG34_DSG_CURVES.items()}
 _FIG34_K_MAX = 2000.0                 # the k scale's right end
 _RIGIDCORR_DSG_LIMIT = 10.0
 
@@ -394,14 +401,17 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     across to the k_inf line, down to k.
 
     Dsg of 10 ft or more: no correction (II-37, step (4)). Outside the
-    drawn curves, the nearest curve or none, with a note; each choice
-    understates k:
+    drawn curves the lookup raises ValueError (REF-76; the guide's text
+    gives no rule there):
 
-    - Dsg below 2 ft uses the 2-ft curve;
-    - MR above 20,000 psi or below 1,169 psi (where the 2-ft curve leaves
-      the top) uses the curve's end;
-    - k_inf outside the drawn lines (50-1,400 pci) applies no correction;
-    - a k past the scale's 2,000 pci end is held at 2,000.
+    - Dsg below 2 ft, the shallowest curve (2, 5 and 10 ft are drawn);
+    - MR above 20,000 psi, the chart's edge, or below the lowest MR at
+      which the curves used are drawn: the 2-ft curve leaves the top at
+      1,169 psi, the 5-ft and 10-ft curves end at 1,073 and 1,083 psi. A
+      Dsg between two curves needs both (2-5 ft: 1,169 psi; 5-10 ft:
+      1,083 psi); a Dsg of 2 or 5 ft needs only its own curve;
+    - k_inf outside the drawn lines (50-1,400 pci);
+    - a construction landing past the k scale's 2,000 pci end.
 
     Parameters
     ----------
@@ -425,7 +435,8 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     Raises
     ------
     ValueError
-        If mr_psi, dsg_ft, or k_inf_pci <= 0.
+        If mr_psi, dsg_ft, or k_inf_pci <= 0, or an input is outside
+        Figure 3.4's drawn curves (above).
     """
     for name, val in (("mr_psi", mr_psi), ("dsg_ft", dsg_ft),
                       ("k_inf_pci", k_inf_pci)):
@@ -442,40 +453,53 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
                        "correction (II-37, step (4)).")
         return out
     if not _FIG34_K_INF[0] <= k_inf_pci <= _FIG34_K_INF[-1]:
-        out["k_pci"] = round(k_inf_pci, 1)
-        out["note"] = (f"k_inf {k_inf_pci:,.0f} pci is outside Figure 3.4's "
-                       "drawn lines (50-1,400 pci); no correction applied "
-                       "(understates k).")
-        return out
-    notes = []
+        raise ValueError(
+            f"k_inf {k_inf_pci:,.0f} pci is outside Figure 3.4's drawn k_inf "
+            "lines (50-1,400 pci, printed II-40); the chart gives no "
+            "correction there.")
+    if dsg_ft < 2:
+        raise ValueError(
+            f"Dsg {dsg_ft} ft is shallower than Figure 3.4's 2-ft curve, the "
+            "shallowest drawn (2, 5 and 10 ft, printed II-40); the chart "
+            "gives no k there.")
     dsg = dsg_ft
-    if dsg < 2:
-        dsg = 2.0
-        notes.append(f"Dsg {dsg_ft} ft is shallower than the 2-ft curve, "
-                     "the shallowest drawn; the 2-ft curve was used "
-                     "(understates k).")
+    if dsg in _FIG34_DSG_CURVES:
+        used = (next(d for d in _FIG34_DSG_CURVES if d == dsg),)
+    else:
+        used = (2, 5) if dsg < 5 else (5, 10)
+    mr_min = max(_FIG34_MR_MIN[d] for d in used)
+    if not mr_min <= mr_psi <= _FIG34_MR_MAX:
+        curves = " and ".join(f"{d}-ft" for d in used)
+        ends = "; ".join(
+            f"the {d}-ft curve {'leaves the top' if d == 2 else 'ends'} at "
+            f"{_FIG34_MR_MIN[d]:,.0f} psi" for d in used)
+        raise ValueError(
+            f"MR {mr_psi:,.0f} psi is outside {mr_min:,.0f}-"
+            f"{_FIG34_MR_MAX:,.0f} psi, where Figure 3.4's {curves} "
+            f"curve{'s are' if len(used) > 1 else ' is'} drawn for Dsg "
+            f"{dsg_ft:g} ft (printed II-40: the MR axis ends at 20,000 psi; "
+            f"{ends}); the chart gives no k there.")
     mr = mr_psi
-    if not _FIG34_MR_RANGE[0] <= mr <= _FIG34_MR_RANGE[1]:
-        mr = min(max(mr, _FIG34_MR_RANGE[0]), _FIG34_MR_RANGE[1])
-        notes.append(f"MR {mr_psi:,.0f} psi is past the drawn curves; read "
-                     f"at {mr:,.0f} psi (understates k).")
 
     def height(d):
         pts = _FIG34_DSG_CURVES[d][::-1]          # MR ascending
         return _linterp(mr, [p[0] for p in pts], [p[1] for p in pts])
-    lo, hi = (2, 5) if dsg <= 5 else (5, 10)
-    y = height(lo) + (height(hi) - height(lo)) * (dsg - lo) / (hi - lo)
+    if len(used) == 1:
+        y = height(used[0])
+    else:
+        lo, hi = used
+        y = height(lo) + (height(hi) - height(lo)) * (dsg - lo) / (hi - lo)
     frac = (_FIG34_Y[0] - y) / (_FIG34_Y[0] - _FIG34_Y[1])
     k_lines = [b + (t - b) * frac for b, t in zip(_FIG34_K_BOTTOM,
                                                   _FIG34_K_TOP)]
     k = _linterp(k_inf_pci, list(_FIG34_K_INF), k_lines)
     if k > _FIG34_K_MAX:
-        k = _FIG34_K_MAX
-        notes.append("The construction lands past the k scale's 2,000 pci "
-                     "end; k held at 2,000 pci.")
+        raise ValueError(
+            f"Figure 3.4's construction for MR {mr_psi:,.0f} psi, Dsg "
+            f"{dsg_ft:g} ft and k_inf {k_inf_pci:,.0f} pci lands past the k "
+            "scale's 2,000 pci end (printed II-40); the chart gives no k "
+            "there.")
     out["k_pci"] = round(k, 1)
-    if notes:
-        out["note"] = " ".join(notes)
     return out
 
 
@@ -527,6 +551,10 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 # asserted tolerances on both anchor sets.
 # ============================================================================
 
+_FIG35_D_RANGE = (6.0, 14.0)    # the slab-thickness curves drawn
+_FIG35_K_RANGE = (10.0, 2000.0)  # the composite k axis
+
+
 def relative_damage_rigid(d_in, k_pci) -> dict:
     """Seasonal relative damage u_r for a rigid slab, AASHTO 1993 Figure 3.5
     (pdf_page 130, printed II-41); returns u_r (dimensionless, the chart's
@@ -544,13 +572,20 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     column) to within 8% typical / 12.5% worst case -- see section
     docstring above for both anchor sets.
 
+    The closed form is used only on the chart (REF-76): Figure 3.5 draws
+    slab thicknesses 6, 7, 8, 9, 10, 12 and 14 in over a composite k axis
+    of 10 to 2,000 pci (printed II-41); a D or k outside them is refused
+    (the formula gave a number there, 0.0117 at D 3 in, with nothing to
+    say it was off the chart).
+
     Parameters
     ----------
     d_in : float
-        Projected/trial slab thickness, inches, > 0.
+        Projected/trial slab thickness, inches, 6 to 14 (the curves
+        drawn).
     k_pci : float
         Composite (or rigid-foundation-corrected) modulus of subgrade
-        reaction for the season, pci, > 0.
+        reaction for the season, pci, 10 to 2,000 (the chart's k axis).
 
     Returns
     -------
@@ -560,14 +595,23 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     Raises
     ------
     ValueError
-        If d_in or k_pci <= 0, or if D^0.75 <= 0.39*k^0.25 (the slab is too
-        thin / k too high -- off the digitized chart, undefined fractional
-        power of a non-positive base).
+        If d_in is outside 6-14 in or k_pci outside 10-2,000 pci (Figure
+        3.5's curves and k axis), or if D^0.75 <= 0.39*k^0.25.
     """
     if d_in <= 0:
         raise ValueError(f"d_in must be > 0, got {d_in}")
     if k_pci <= 0:
         raise ValueError(f"k_pci must be > 0, got {k_pci}")
+    if not _FIG35_D_RANGE[0] <= d_in <= _FIG35_D_RANGE[1]:
+        raise ValueError(
+            f"Slab thickness D = {d_in:g} in is outside Figure 3.5's curves, "
+            "D = 6, 7, 8, 9, 10, 12 and 14 in (printed II-41); the chart "
+            "gives no relative damage there.")
+    if not _FIG35_K_RANGE[0] <= k_pci <= _FIG35_K_RANGE[1]:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is outside Figure 3.5's composite k axis, "
+            "10 to 2,000 pci (printed II-41); the chart gives no relative "
+            "damage there.")
     base = d_in ** 0.75 - 0.39 * k_pci ** 0.25
     if base <= 0:
         raise ValueError(
@@ -615,12 +659,16 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
 #             points within 12%; the k=10 point (hardest to read
 #             precisely, near the chart's bottom-left corner) is off by
 #             16% -- flagged as this curve's main accuracy limitation.
-# Intermediate LS values are linearly interpolated between these 4 slopes
-# (clamped at LS=0/LS=3 for out-of-range inputs, via ``_linterp``).
+# Intermediate LS values are linearly interpolated between these 4 slopes.
+# LS outside 0-3 (the chart's LS = 0 and LS = 3.0 lines) is refused
+# (REF-76).
 # ============================================================================
 
 _LS_VALUES = [0.0, 1.0, 2.0, 3.0]
 _LS_SLOPES = [1.0, 0.8163, 0.605, 0.464]
+_FIG36_K_MAX = 2000.0      # the k axis's end (printed II-42)
+_FIG36_KC_MAX = 1000.0     # the corrected-k axis's top
+_FIG36_K_FIT_MIN = 10.0    # the lowest k the slopes were checked at
 
 # Read grid used ONLY for documentation/test verification (see section
 # docstring above) -- the slopes in _LS_SLOPES already reproduce these.
@@ -649,31 +697,75 @@ def k_loss_of_support(k_pci, ls) -> dict:
     section docstring above for every read pair and the achieved
     per-curve tolerance (~7% for LS=1/2, ~12-16% for LS=3).
 
+    The power law is used only on the chart (REF-76). Figure 3.6's k axis
+    runs from 1 pci (the corner, where the LS = 0 line starts) to 2,000
+    pci and its corrected-k axis from 1 to 1,000 pci (printed II-42). For
+    LS above 0 the function refuses:
+
+    - k above 2,000 pci, the axis end (k = 5,000 at LS 1 gave 1,045.8);
+    - k below 10 pci: the slopes were checked against the chart only at
+      the points read from 10 pci up, and below it the drawn LS = 3.0
+      line bends away from the power law (it meets the chart's 1 pci
+      floor at about k = 2.4, where the power law gives 1.5). This limit
+      is the library's reading, not a printed one;
+    - a corrected k above 1,000 pci, the top of the chart (possible for
+      LS below 0.5 with k near 2,000).
+
+    LS = 0 is no loss of support: k is returned unchanged for any k (the
+    chart's LS = 0 line is the 1:1 line).
+
     Parameters
     ----------
     k_pci : float
         Effective modulus of subgrade reaction before loss-of-support
-        correction, pci, > 0.
+        correction, pci, 10 to 2,000 for LS above 0 (above).
     ls : float
         Loss of support factor (see ``loss_of_support_values``, Table 2.7),
-        nominally 0-3. Values outside [0, 3] are clamped to the nearest
-        end slope.
+        0 to 3: Figure 3.6 draws the lines LS = 0, 1.0, 2.0 and 3.0
+        (printed II-42) and nothing past them.
 
     Returns
     -------
     dict
         {'k_pci', 'ls', 'k_corrected_pci', 'chart_read', 'equation',
-        'reference', 'note'?}.
+        'reference', 'print_note'}.
 
     Raises
     ------
     ValueError
-        If k_pci <= 0.
+        If k_pci <= 0, ls is outside 0-3, or (LS above 0) k_pci is outside
+        10-2,000 pci or the corrected k lands above 1,000 pci. Above LS = 3
+        the chart gives no line, and holding the LS = 3.0 line would give
+        a larger k than the trend; a negative LS is not a loss of support.
     """
     if k_pci <= 0:
         raise ValueError(f"k_pci must be > 0, got {k_pci}")
+    if not _LS_VALUES[0] <= ls <= _LS_VALUES[-1]:
+        raise ValueError(
+            f"ls = {ls} is outside Figure 3.6's lines, LS = 0, 1.0, 2.0 and "
+            "3.0 (printed II-42); the chart gives no correction there.")
+    if ls > 0 and k_pci > _FIG36_K_MAX:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is above Figure 3.6's k axis, which ends "
+            "at 2,000 pci (printed II-42); the chart gives no correction "
+            "there.")
+    if ls > 0 and k_pci < _FIG36_K_FIT_MIN:
+        raise ValueError(
+            f"k = {k_pci:,.4g} pci is below 10 pci. Figure 3.6's k axis "
+            "starts at 1 pci (printed II-42), but the slopes used here were "
+            "checked against the chart only from 10 pci up, and below it the "
+            "drawn LS = 3.0 line bends away from them (it meets the chart's "
+            "1 pci floor at about k = 2.4, where the power law gives 1.5). "
+            "The library refuses there (its reading, not a printed limit); "
+            "read the chart.")
     slope = _linterp(ls, _LS_VALUES, _LS_SLOPES)
     k_corrected = k_pci ** slope
+    if ls > 0 and k_corrected > _FIG36_KC_MAX:
+        raise ValueError(
+            f"The corrected k for k = {k_pci:,.4g} pci and LS = {ls:g} would "
+            f"be {k_corrected:,.0f} pci, above the top of Figure 3.6's "
+            "corrected-k axis, 1,000 pci (printed II-42); the chart gives no "
+            "correction there.")
     out = {
         "k_pci": k_pci, "ls": ls, "k_corrected_pci": round(k_corrected, 1),
         "chart_read": True,
@@ -685,8 +777,6 @@ def k_loss_of_support(k_pci, ls) -> dict:
                        "LS 1 and 2, 12-16 % for LS 3). Only LS = 1 at "
                        "k = 540 (170 pci) is a printed value (Table 3.3)."),
     }
-    if not (0.0 <= ls <= 3.0):
-        out["note"] = "ls outside the guide's plotted range [0, 3]; slope clamped to the nearest end."
     return out
 
 
@@ -719,9 +809,9 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     themselves differ by 2.5% for one point) and to
     ``k_rigid_foundation_correction`` (Figure 3.4 read off the chart,
     within -3.5 to +2.1% of the guide's reads at Dsg=5 ft), the two
-    chart reads stacking in each row. A Figure 3.3 or 3.4 note (an input
-    outside the printed curves) is carried on the period's row and in
-    ``notes``; a Figure 3.3 input below its curves raises ValueError.
+    chart reads stacking in each row. An input outside the printed curves
+    of Figure 3.3, 3.4 or 3.6 raises their ValueError (REF-76); a note
+    from them would be carried on the period's row and in ``notes``.
 
     Parameters
     ----------
@@ -748,7 +838,8 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
         relative-damage step (per the guide, this step is disregarded --
         and so is omitted here -- when dsg_ft is None or >= 10 ft).
     ls : float, optional
-        Loss of support factor (Table 2.7), default 0.0 (no correction).
+        Loss of support factor (Table 2.7), 0 to 3 (Figure 3.6's lines,
+        printed II-42), default 0.0 (no correction).
 
     Returns
     -------
@@ -763,8 +854,9 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     ------
     ValueError
         If seasonal is empty, slab_d_in <= 0, a period is missing
-        'mr_psi' or has mr_psi <= 0, a subbase input is below Figure 3.3's
-        printed curves, or the back-solved effective k would be
+        'mr_psi' or has mr_psi <= 0, an input is outside the printed
+        curves of Figure 3.3, 3.4 or 3.6, or the back-solved effective k
+        would be
         non-physical (average relative damage too large for this slab
         thickness).
     """
@@ -775,6 +867,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
 
     has_subbase = dsb_in is not None and dsb_in > 0
     rows = []
+    ks = []
     notes = []
     for i, period in enumerate(seasonal):
         if "mr_psi" not in period:
@@ -814,6 +907,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
 
         row["u_r"] = relative_damage_rigid(slab_d_in, k_for_ur)["u_r"]
         rows.append(row)
+        ks.append(k_for_ur)
 
     n = len(rows)
     ur_sum = sum(r["u_r"] for r in rows)
@@ -830,6 +924,11 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
             "non-physical. Increase slab_d_in or check the seasonal inputs."
         )
     k_effective = (base / 0.39) ** 4
+    # The average u_r lies between the periods' u_r, so the effective k lies
+    # between their k; u_r is rounded to 4 places, which can carry k_eff
+    # just past them (and past Figure 3.6's axis ends when they are on
+    # them). Hold it within the periods' k.
+    k_effective = min(max(k_effective, min(ks)), max(ks))
 
     ls_result = k_loss_of_support(k_effective, ls)
     k_corrected = ls_result["k_corrected_pci"]

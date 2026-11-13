@@ -32,15 +32,17 @@
       "section_title": "IBC Chapter 16 - Structural Design",
       "pdf_page_index": 32,
       "pages": [
-        32
+        32,
+        33,
+        34
       ],
       "printed_page": "11",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "risk_category_and_loads.table_2_2_note",
+      "values_in": "risk_category_and_loads.table_2_2_risk_category",
       "implemented_in": [
-        "risk_category_and_loads.table_2_2_note",
-        "risk_category_and_loads.table_2_2_risk_category"
+        "risk_category_and_loads.table_2_2_risk_category",
+        "risk_category_and_loads.table_2_2_note"
       ]
     },
     {
@@ -63,11 +65,11 @@
       "printed_page": "49",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "seismic_force_resisting_systems.list_table_3_1_systems",
+      "values_in": "seismic_force_resisting_systems.table_3_1_seismic_system",
       "implemented_in": [
+        "seismic_force_resisting_systems.table_3_1_seismic_system",
         "seismic_force_resisting_systems.list_table_3_1_systems",
-        "seismic_force_resisting_systems.table_3_1_footnote",
-        "seismic_force_resisting_systems.table_3_1_seismic_system"
+        "seismic_force_resisting_systems.table_3_1_footnote"
       ]
     },
     {
@@ -114,7 +116,9 @@
       "section_title": "Exemptions and Benchmark Buildings",
       "pdf_page_index": 99,
       "pages": [
-        99
+        99,
+        100,
+        101
       ],
       "printed_page": "78",
       "page_estimated": false,
@@ -125,8 +129,8 @@
       "table_number": "6-1",
       "caption": "Minimum Thickness of Masonry Walls 1,2",
       "chapter": 6,
-      "section_id": "6-5",
-      "section_title": "IBC Chapter 21 - Masonry",
+      "section_id": "6-5.3",
+      "section_title": "Section 2107 - Allowable Stress Design",
       "pdf_page_index": 115,
       "pages": [
         115
@@ -153,10 +157,10 @@
       "printed_page": "98",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "seismic_force_resisting_systems.list_table_7_1_systems",
+      "values_in": "seismic_force_resisting_systems.table_7_1_healthcare_seismic_system",
       "implemented_in": [
-        "seismic_force_resisting_systems.list_table_7_1_systems",
-        "seismic_force_resisting_systems.table_7_1_healthcare_seismic_system"
+        "seismic_force_resisting_systems.table_7_1_healthcare_seismic_system",
+        "seismic_force_resisting_systems.list_table_7_1_systems"
       ]
     },
     {
@@ -174,11 +178,11 @@
       "printed_page": "124",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "seismic_force_resisting_systems.list_table_b1_systems",
+      "values_in": "seismic_force_resisting_systems.table_b1_rc4_permitted_system",
       "implemented_in": [
+        "seismic_force_resisting_systems.table_b1_rc4_permitted_system",
         "seismic_force_resisting_systems.list_table_b1_systems",
-        "seismic_force_resisting_systems.table_b1_footnote",
-        "seismic_force_resisting_systems.table_b1_rc4_permitted_system"
+        "seismic_force_resisting_systems.table_b1_footnote"
       ]
     },
     {
@@ -243,15 +247,21 @@
       "section_title": "IBC Chapter 16 - Structural Design",
       "pdf_page_index": 174,
       "pages": [
-        174
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
       ],
       "printed_page": "153",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "risk_category_and_loads.list_table_e1_occupancies",
+      "values_in": "risk_category_and_loads.table_e1_live_load",
       "implemented_in": [
-        "risk_category_and_loads.list_table_e1_occupancies",
         "risk_category_and_loads.table_e1_live_load",
+        "risk_category_and_loads.list_table_e1_occupancies",
         "risk_category_and_loads.table_e1_note"
       ]
     },

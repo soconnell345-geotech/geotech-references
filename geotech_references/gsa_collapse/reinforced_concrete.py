@@ -155,8 +155,10 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     Parameters
     ----------
     rho_diff_over_rho_bal : float
-        (rho - rho') / rho_bal for the section, clamped to [0.0, 0.5] for
-        interpolation.
+        (rho - rho') / rho_bal for the section. The printed rows are
+        open-ended, "<= 0.0" and ">= 0.5" (Table 6, printed p. 39): below 0.0
+        the first is read, above 0.5 the second, and between them
+        the value is interpolated (footnote 1).
     transverse_reinf : str
         'C' (conforming) or 'NC' (nonconforming) -- footnote 4: conforming
         means hoops spaced <= d/3 within the flexural plastic hinge
@@ -182,6 +184,10 @@ def table_6_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf, vw_ra
     if key not in ("C", "NC"):
         raise ValueError("transverse_reinf must be 'C' or 'NC'")
     rho = max(0.0, min(0.5, rho_diff_over_rho_bal))
+    if vw_ratio < 0:
+        raise ValueError(
+            f"vw_ratio = V/(bw d sqrt(f'c)) must be >= 0 (a shear magnitude), "
+            f"got {vw_ratio}")
     vw = max(3.0, min(6.0, vw_ratio))
     row_3 = _TABLE_6_FLEXURE[(key, 3)]
     row_6 = _TABLE_6_FLEXURE[(key, 6)]
@@ -289,7 +295,10 @@ def table_7_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_rat
     Parameters
     ----------
     rho_diff_over_rho_bal : float
-        (rho - rho') / rho_bal, clamped to [0.0, 0.5].
+        (rho - rho') / rho_bal for the section. The printed rows are
+        open-ended, "<= 0.0" and ">= 0.5" (Table 7, printed p. 40): below 0.0
+        the first is read, above 0.5 the second, and between them
+        the value is interpolated (footnote 1).
     transverse_reinf : str
         'C' (conforming) or 'NC' (nonconforming).
     vw_ratio : float
@@ -309,6 +318,10 @@ def table_7_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_rat
     if key not in ("C", "NC"):
         raise ValueError("transverse_reinf must be 'C' or 'NC'")
     rho = max(0.0, min(0.5, rho_diff_over_rho_bal))
+    if vw_ratio < 0:
+        raise ValueError(
+            f"vw_ratio = V/(bw d sqrt(f'c)) must be >= 0 (a shear magnitude), "
+            f"got {vw_ratio}")
     vw = max(3.0, min(6.0, vw_ratio))
     row_3 = _TABLE_7_FLEXURE[(key, 3)]
     row_6 = _TABLE_7_FLEXURE[(key, 6)]
@@ -402,8 +415,11 @@ def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
     ----------
     vg_over_vo : float
         Ratio of gravity shear on the slab critical section (Vg, per ACI
-        318) to the direct punching shear strength (Vo, per ACI 318),
-        clamped to [0.2, 0.4].
+        318) to the direct punching shear strength (Vo, per ACI 318).
+        The printed rows are open-ended, "<= 0.2" and ">= 0.4"
+        (Table 8, printed p. 41): below 0.2 the first is read, above 0.4
+        the second, and between them the value is interpolated
+        (footnote 1). A negative ratio is refused.
     continuity_reinforcement : bool
         True ('Yes') if at least one main bottom bar (or, for
         post-tensioned slabs, one tendon) in each direction is effectively
@@ -418,6 +434,8 @@ def table_8_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
          'pdf_page': 53}
     """
     key = "yes" if continuity_reinforcement else "no"
+    if vg_over_vo < 0:
+        raise ValueError(f"vg_over_vo must be >= 0, got {vg_over_vo}")
     vg = max(0.2, min(0.4, vg_over_vo))
     row = _TABLE_8_FLEXURE[key]
     accept = _TABLE_8_ACCEPT[key]
@@ -489,7 +507,10 @@ def table_9_slab_flexure_mfactor(vg_over_vo, continuity_reinforcement):
     Parameters
     ----------
     vg_over_vo : float
-        Vg/Vo per ACI 318, clamped to [0.2, 0.4].
+        Vg/Vo per ACI 318. The printed rows are open-ended, "<= 0.2" and ">= 0.4"
+        (Table 9, printed p. 42): below 0.2 the first is read, above 0.4
+        the second, and between them the value is interpolated
+        (footnote 1). A negative ratio is refused.
     continuity_reinforcement : bool
         True ('Yes') or False ('No') per the continuity-reinforcement
         definition in ``table_8_slab_flexure_modeling``.
@@ -501,6 +522,8 @@ def table_9_slab_flexure_mfactor(vg_over_vo, continuity_reinforcement):
          'pdf_page': 54}
     """
     key = "yes" if continuity_reinforcement else "no"
+    if vg_over_vo < 0:
+        raise ValueError(f"vg_over_vo must be >= 0, got {vg_over_vo}")
     vg = max(0.2, min(0.4, vg_over_vo))
     row = _TABLE_9_FLEXURE[key]
     mp = _linterp(vg, [0.2, 0.4], [row["vg0.2"][0], row["vg0.4"][0]])

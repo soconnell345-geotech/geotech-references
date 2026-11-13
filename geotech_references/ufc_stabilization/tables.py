@@ -537,15 +537,17 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
     passing No. 200 of 0-25 and a percent passing No. 10 column.
 
     Select the final design content from the Marshall Stability Test
-    (Sec 3-4.4). Percent passing No. 200 below 0 is refused; above 25 (the
-    last printed row) the 25 row is returned with a note saying so.
+    (Sec 3-4.4). Percent passing No. 200 outside the printed rows, 0-25, is
+    refused (REF-76: above 25 the 25 row used to be returned, with a note).
+    Table 3-3 (printed p.25) recommends 2-30 % passing No. 200 for
+    bituminous-stabilized subgrades, but Table 3-5 stops at 25 and gives
+    no rule past it.
 
     Parameters
     ----------
     percent_passing_200 : float
-        Percent of the aggregate passing the No. 200 (0.075 mm) sieve.
-        Interpolated between the printed rows 0-25; above 25 held at the 25
-        row with a note.
+        Percent of the aggregate passing the No. 200 (0.075 mm) sieve,
+        0-25 (the printed rows), interpolated between them.
     percent_passing_no10 : float or str
         Percent passing the No. 10 (2 mm) sieve. The table's column axis is
         categorical, not continuously interpolated: pass a numeric value
@@ -556,19 +558,25 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
     -------
     dict
         {'percent_passing_200', 'percent_passing_no10_column',
-         'emulsified_asphalt_lb_per_100lb', 'note'?, 'reference',
-         'pdf_page'}.
+         'emulsified_asphalt_lb_per_100lb', 'reference', 'pdf_page'}.
 
     Raises
     ------
     ValueError
-        If percent_passing_200 < 0, or percent_passing_no10 is not < 50 or
-        one of 60/70/80/90/100 (or 'lt_50').
+        If percent_passing_200 is outside 0-25, or percent_passing_no10 is
+        not < 50 or one of 60/70/80/90/100 (or 'lt_50').
     """
     if percent_passing_200 < 0:
         raise ValueError(
             f"percent_passing_200 must be >= 0 (Table 3-5 rows run 0-25), "
             f"got {percent_passing_200}")
+    if percent_passing_200 > _TABLE_3_5_ROWS_P200[-1]:
+        raise ValueError(
+            f"Percent passing No. 200 = {percent_passing_200} is above Table "
+            "3-5's last row (25, printed p.27); the table gives no emulsified "
+            "asphalt content there, and Sec 3-4.4 says the bitumen required "
+            "increases with the finer sizes. Select the content from the "
+            "Marshall Stability Test (Sec 3-4.4).")
     if isinstance(percent_passing_no10, str) and percent_passing_no10.strip().lower() in ("lt_50", "<50"):
         col_key = "lt_50"
     else:
@@ -588,10 +596,6 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
         "percent_passing_no10_column": col_key,
         "emulsified_asphalt_lb_per_100lb": round(value, 3),
     }
-    if percent_passing_200 > _TABLE_3_5_ROWS_P200[-1]:
-        out["note"] = (
-            f"Percent passing No. 200 = {percent_passing_200} is above Table "
-            f"3-5's last row (25); the 25 row's value is returned.")
     out["reference"] = "UFC 3-250-11, Table 3-5, p.27"
     out["pdf_page"] = 34
     return out

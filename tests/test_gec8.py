@@ -35,6 +35,19 @@ class TestDDPileSideResistance:
         r = dd_pile_side_resistance_MPa(60.0, "dirty_rounded")
         assert r["fs_limited_MPa"] == pytest.approx(0.16, abs=0.001)
 
+    @pytest.mark.parametrize("soil, limit", [("dirty_rounded", 0.16),
+                                             ("clean_angular", 0.21)])
+    def test_above_n50_held_with_note(self, soil, limit):
+        # Eq. 5.29 is printed for N <= 50 (GEC-8 p. 84); the printed limit
+        # fs <= 0.16 / 0.21 MPa is reached at N = 32, so above 50 the
+        # limited fs is that limit, said in note and out_of_range (REF-76).
+        r = dd_pile_side_resistance_MPa(80.0, soil)
+        assert r["fs_limited_MPa"] == pytest.approx(limit, abs=0.001)
+        assert "N = 50" in r["out_of_range"] and "p. 84" in r["out_of_range"]
+        assert "N = 50 is used" in r["note"]
+        at_50 = dd_pile_side_resistance_MPa(50.0, soil)
+        assert "out_of_range" not in at_50 and "note" not in at_50
+
     def test_clean_angular_n20(self):
         r = dd_pile_side_resistance_MPa(20.0, "clean_angular")
         # fs = 0.005*20 + 0.05 = 0.15 MPa
@@ -224,6 +237,24 @@ class TestTable54PMultiplier:
         r = table_5_4_p_multiplier("3rd", 5.0, "clayey_silt")
         assert r["pm"] == pytest.approx(0.40, abs=0.001)
         assert "held" in r["basis"]
+        # REF-76: Table 5.4 (GEC-8 p. 112) prints Clayey Silt at 3B only; the
+        # held row is said in note and out_of_range.
+        assert "Clayey Silt" in r["out_of_range"]
+        assert "3B for every soil" in r["out_of_range"]
+        assert "safe" in r["note"]
+
+    def test_printed_or_interpolated_has_no_out_of_range(self):
+        for args in (("lead", 3.0, "clayey_silt"),
+                     ("lead", 4.0, "medium_dense_sand"),
+                     ("2nd", 5.0, "loose_medium_sand"),
+                     ("3rd", 3.0)):
+            r = table_5_4_p_multiplier(*args)
+            assert "out_of_range" not in r and "note" not in r
+
+    def test_sand_past_5b_held_with_note(self):
+        r = table_5_4_p_multiplier("2nd", 8.0, "loose_medium_sand")
+        assert r["pm"] == pytest.approx(0.85, abs=0.001)
+        assert "Loose M. Sand" in r["out_of_range"]
 
     def test_3b_only_soil_not_1_0_at_5b(self):
         # The old summary returned an unprinted Pm = 1.0 at 5B for every soil.
@@ -280,6 +311,8 @@ class TestGroupEfficiencyCohesionless:
         assert 0.65 < r["group_efficiency"] < 1.0
 
     def test_beyond_6d_caps_at_1(self):
+        # GEC-8 p. 90: "eta = 1.0 for a center-to-center spacing of 6.0
+        # diameters or more" (printed open-ended; REF-76 keeps it).
         r = table_group_efficiency_cohesionless(8.0)
         assert r["group_efficiency"] == pytest.approx(1.0, abs=0.01)
 

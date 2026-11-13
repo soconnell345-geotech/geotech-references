@@ -79,6 +79,37 @@ class TestAxialCompression:
         assert result["fcr"] == pytest.approx(0.044 * 10e9 * 0.02**2 / 0.1**2)
 
 
+class TestYlinenConstantPrintedRange:
+    """REF-76: Eq 9-28 defines c as a constant between 0 and 1 (printed
+    p. 9-14); Eqs 9-29 and 9-30 take the same c. Outside it the functions
+    used to return a number (or a math domain error)."""
+
+    def test_printed_values_answer(self):
+        for c in (0.8, 0.9, 0.957):
+            ylinen_strain(fc=30.0, stress=15.0, modulus_of_elasticity=10000.0, c=c)
+            ylinen_buckling_stress(30.0, 20.0, c=c)
+            built_up_column_capacity(30.0, 20.0, c=c, k_f=0.75)
+
+    @pytest.mark.parametrize("c", [0.0, 1.0, 1.2, -0.5])
+    def test_c_outside_refused(self, c):
+        with pytest.raises(ValueError, match=r"between 0 and 1 \(printed p. 9-14\)"):
+            ylinen_strain(fc=30.0, stress=15.0, modulus_of_elasticity=10000.0, c=c)
+        with pytest.raises(ValueError, match="between 0 and 1"):
+            ylinen_buckling_stress(30.0, 20.0, c=c)
+        with pytest.raises(ValueError, match="between 0 and 1"):
+            built_up_column_capacity(30.0, 20.0, c=c, k_f=0.6)
+
+    def test_stress_and_factor_outside_refused(self):
+        for f in (-1.0, 30.0, 31.0):
+            with pytest.raises(ValueError, match="0 <= f < Fc"):
+                ylinen_strain(fc=30.0, stress=f, modulus_of_elasticity=10000.0, c=0.8)
+        for kf in (0.0, 1.1):
+            with pytest.raises(ValueError, match="is reduced"):
+                built_up_column_capacity(30.0, 20.0, c=0.8, k_f=kf)
+        with pytest.raises(ValueError, match="fe must be > 0"):
+            ylinen_buckling_stress(30.0, 0.0)
+
+
 class TestPondingAndLateralTorsionalBuckling:
     def test_critical_ponding_spacing_fixed_gt_simple(self):
         simple = critical_ponding_spacing(10e9, 5e-5, 4.0, end_condition="simple")["s_cr"]

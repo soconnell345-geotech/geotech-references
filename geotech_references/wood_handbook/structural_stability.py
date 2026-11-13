@@ -142,6 +142,24 @@ def ylinen_critical_stress_fourth_power(fc, unbraced_length, radius_of_gyration_
             "equation": "9-27", "printed_page": "9-13", "pdf_page": 244}
 
 
+def _check_ylinen_c(c):
+    """Eq 9-28 defines c as "a constant between 0 and 1" (printed p. 9-14),
+    and Eqs 9-29 and 9-30 take the same c; refuse any other (REF-76)."""
+    if not 0.0 < c < 1.0:
+        raise ValueError(
+            f"c = {c} is outside 0 < c < 1: Eq 9-28 defines c as a constant "
+            "between 0 and 1 (printed p. 9-14), which Eqs 9-29 and 9-30 "
+            "take. The page gives c = 0.957 (agrees closely with the FPL "
+            "fourth-power formula), 0.8 (solid-sawn and glued-laminated "
+            "columns) and 0.9 (structural composite lumber).")
+
+
+def _check_positive(**values):
+    for name, v in values.items():
+        if not v > 0:
+            raise ValueError(f"{name} must be > 0, got {v}")
+
+
 def ylinen_strain(fc, stress, modulus_of_elasticity, c):
     """Eq 9-28: Ylinen (1956) nonlinear compressive stress-strain
     relationship used in place of Hooke's law for short-column analysis
@@ -158,14 +176,28 @@ def ylinen_strain(fc, stress, modulus_of_elasticity, c):
     modulus_of_elasticity : float
         E_L.
     c : float
-        Empirical constant, 0 < c < 1 (see ``ylinen_buckling_stress`` for
-        the printed guidance on c).
+        Empirical constant, 0 < c < 1: "a constant between 0 and 1"
+        (printed p. 9-14; see ``ylinen_buckling_stress`` for the printed
+        values).
 
     Returns
     -------
     dict
         {'strain', 'equation': '9-28', ...}
+
+    Raises
+    ------
+    ValueError
+        If c is outside 0 < c < 1, fc or modulus_of_elasticity is not
+        positive, or stress is outside 0 <= f < Fc (REF-76).
     """
+    _check_ylinen_c(c)
+    _check_positive(fc=fc, modulus_of_elasticity=modulus_of_elasticity)
+    if not 0.0 <= stress < fc:
+        raise ValueError(
+            f"stress f = {stress} is outside 0 <= f < Fc = {fc}: Eq 9-28 "
+            "(printed p. 9-14) relates compressive stress below the "
+            "compressive strength to strain (its log term needs f < Fc).")
     ratio = stress / fc
     strain = (fc / modulus_of_elasticity) * (c * ratio - (1.0 - c) * math.log(1.0 - ratio))
     return {"fc": fc, "stress": stress, "c": c, "strain": strain,
@@ -190,13 +222,21 @@ def ylinen_buckling_stress(fc, fe, c=0.957):
     fe : float
         fe, Euler buckling stress (Eq 9-25).
     c : float, optional
-        Empirical constant (default 0.957; see printed guidance above).
+        Empirical constant, 0 < c < 1 (Eq 9-28: "a constant between 0 and
+        1", printed p. 9-14); default 0.957 (see printed guidance above).
 
     Returns
     -------
     dict
         {'fcr', 'c', 'equation': '9-29', ...}
+
+    Raises
+    ------
+    ValueError
+        If c is outside 0 < c < 1, or fc or fe is not positive (REF-76).
     """
+    _check_ylinen_c(c)
+    _check_positive(fc=fc, fe=fe)
     term = (fc + fe) / (2.0 * c)
     fcr = term - math.sqrt(term**2 - fc * fe / c)
     return {"fc": fc, "fe": fe, "c": c, "fcr": fcr, "equation": "9-29",
@@ -222,16 +262,31 @@ def built_up_column_capacity(fc, fe, c, k_f):
     fe : float
         fe, Euler buckling stress (Eq 9-25) of the built-up section.
     c : float
-        Ylinen constant (see ``ylinen_buckling_stress``).
+        Ylinen constant, 0 < c < 1 (as defined for Eq 9-29; see
+        ``ylinen_buckling_stress``).
     k_f : float
         Built-up stability factor (0.75 bolts, 0.6 nails, per the printed
-        guidance).
+        guidance); 0 < Kf <= 1, since the page says Eq 9-29 "is reduced"
+        by it.
 
     Returns
     -------
     dict
         {'fcr', 'k_f', 'equation': '9-30', ...}
+
+    Raises
+    ------
+    ValueError
+        If c is outside 0 < c < 1, k_f outside 0 < Kf <= 1, or fc or fe is
+        not positive (REF-76).
     """
+    _check_ylinen_c(c)
+    _check_positive(fc=fc, fe=fe)
+    if not 0.0 < k_f <= 1.0:
+        raise ValueError(
+            f"k_f = {k_f} is outside 0 < Kf <= 1: Eq 9-29 \"is reduced\" by "
+            "the built-up stability factor (printed p. 9-14; Kf = 0.75 for "
+            "bolts, 0.6 for nails).")
     term = (fc + fe) / (2.0 * c)
     fcr = k_f * (term - math.sqrt(term**2 - fc * fe / c))
     return {"fc": fc, "fe": fe, "c": c, "k_f": k_f, "fcr": fcr,

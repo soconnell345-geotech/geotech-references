@@ -213,3 +213,30 @@ class TestTable44SlabOther:
         r = table_4_4_slab_other_mfactor("inadequate_embedment")
         assert r["m_primary"] == pytest.approx(3)
         assert r["m_secondary"] == pytest.approx(4)
+
+
+class TestOpenEndedRows:
+    """REF-76: Tables 4-1 to 4-4 print open-ended rows ("<= 0.0" / ">= 0.5",
+    "<= 3" / ">= 6", "<= 0.2" / ">= 0.4"; printed pp. 63-66), so past them
+    the end row is the printed value (rule 1). A negative shear ratio is
+    refused."""
+
+    def test_beyond_the_end_rows_reads_the_end_row(self):
+        assert table_4_1_beam_flexure_modeling(-0.3, "C", 1.0)["a"] == \
+            table_4_1_beam_flexure_modeling(0.0, "C", 3)["a"]
+        assert table_4_2_beam_flexure_mfactor(0.9, "NC", 9.0)["m_primary"] == \
+            table_4_2_beam_flexure_mfactor(0.5, "NC", 6)["m_primary"]
+        assert table_4_3_slab_flexure_modeling(0.1, True)["a"] == \
+            table_4_3_slab_flexure_modeling(0.2, True)["a"]
+        assert table_4_4_slab_flexure_mfactor(0.7, False)["m_secondary"] == \
+            table_4_4_slab_flexure_mfactor(0.4, False)["m_secondary"]
+
+    def test_negative_shear_ratio_refused(self):
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_4_1_beam_flexure_modeling(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_4_2_beam_flexure_mfactor(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_4_3_slab_flexure_modeling(-0.1, True)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_4_4_slab_flexure_mfactor(-0.1, True)

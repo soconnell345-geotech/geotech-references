@@ -560,17 +560,20 @@ class TestTable44:
         result = table_4_4_traffic_surcharge(15.0)
         assert result["h_eq_ft"] == 2.5
 
-    def test_short_wall(self):
-        """Below the 5.0 ft row the table has no row; the 5.0 ft row (4.0 ft)
-        is used and the result says so (gec-20)."""
-        result = table_4_4_traffic_surcharge(3.0)
-        assert result["h_eq_ft"] == 4.0
-        assert "no row below an abutment height of 5.0 ft" in result["note"]
+    # Table 4-4 (GEC-11 Vol I, p. 4-17, PDF page 159) prints abutment heights
+    # 5.0, 10.0 and ">= 20.0" ft: the last row is open-ended, the first is not.
+    @pytest.mark.parametrize("height", [4.99, 3.0, 0.5])
+    def test_short_wall_refused(self, height):
+        """Below the 5.0 ft row the table has no row and the text no rule
+        (REF-76; gec-20 had held the 5.0 ft row with a note)."""
+        with pytest.raises(ValueError, match="no value below 5.0 ft"):
+            table_4_4_traffic_surcharge(height)
 
     def test_tall_wall(self):
-        """Walls taller than 20 ft use 2.0 ft."""
+        """Walls taller than 20 ft use 2.0 ft (the open-ended >= 20.0 row)."""
         result = table_4_4_traffic_surcharge(30.0)
         assert result["h_eq_ft"] == 2.0
+        assert "note" not in result
 
 
 # ============================================================================
@@ -718,3 +721,12 @@ class TestTable47:
         results = table_4_7_internal_resistance("grid")
         assert len(results) == 1
         assert results[0]["static_phi"] == 0.65
+
+
+def test_table_4_4_negative_height_refused():
+    # REF-76 checker: a negative abutment height returned the whole table
+    # (the answer for 0); now refused.
+    from geotech_references.gec_11.tables import table_4_4_traffic_surcharge as f
+    assert "table" in f(0)
+    with pytest.raises(ValueError, match="negative.*p. 4-17"):
+        f(-5)

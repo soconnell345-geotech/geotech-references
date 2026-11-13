@@ -744,9 +744,11 @@ def test_listed_tables_answer_from_their_catalog_rows(library_db):
             if _reach.listed_numbers(json.loads(tabs or "[]"), "table")]
     finally:
         conn.close()
+    # since the catalogs of 2026-11-13 every reference that lists tables
+    # has one (em_1905 was the last without); the answer for a reference
+    # without one is checked on made-up rows in test_figure_answers
     uncatalogued = {ref for ref, _ in listed
                     if not (PKG / ref / _reach.TABLES_CATALOG).exists()}
-    assert uncatalogued, "every reference with listed tables has a catalog"
     for ref, sid in listed:
         if ref in uncatalogued:
             assert set(_held(get(ref, sid)).values()) == {
@@ -1088,9 +1090,13 @@ def test_what_is_not_held_does_not_grow(library_db):
 #: own text, before the flags (2026-11-12; the app's cap is 16,000; em_1905
 #: C-2b came with the EM 1110-1-1905 build; dm7_1 1-3.6, em_2104 3-3 and
 #: ufc_structural 3-7 and 4-2.2 with the text rebuilt from the print,
-#: merged from the integration branch at ad21502).
+#: merged from the integration branch at ad21502; fhwa_pavements 5.4.3.a
+#: and gec_10 A.2.b with build/tables at 90443d3, which holds integration
+#: 374bb4b).
 OVER_BUDGET_BEFORE_FLAGS = {("dm7_1", "1-3.6"), ("dm7_2", "4-9"),
                             ("em_1905", "C-2b"), ("em_2104", "3-3"),
+                            ("fhwa_pavements", "5.4.3.a"),
+                            ("gec_10", "A.2.b"),
                             ("fhwa_soils_foundations", "6.6.3"),
                             ("fhwa_soils_foundations", "9.5.1.1"),
                             ("ufc_structural", "3-7"),

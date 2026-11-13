@@ -1,0 +1,1925 @@
+{
+  "reference_id": "EM 1110-1-1905",
+  "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+  "package": "em_1905",
+  "volume": null,
+  "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+  "table_count": 109,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Minimum factors of safety for ultimate limit state",
+      "chapter": 2,
+      "section_id": "2-6b(1)",
+      "section_title": "Minimum factors of safety",
+      "pdf_page_index": 24,
+      "pages": [
+        24
+      ],
+      "printed_page": "10",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_2_1_minimum_factor_of_safety",
+      "implemented_in": [
+        "tables.table_2_1_minimum_factor_of_safety",
+        "equations.equation_5_23_factor_of_safety",
+        "equations.equation_5_36_uplift_factor_of_safety",
+        "equations.equation_5_4_effective_dimensions"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Differential settlement limits (deflection ratio) to avoid potential damages 1",
+      "chapter": 2,
+      "section_id": "2-7a(2)(d)",
+      "section_title": "Deflection ratio",
+      "pdf_page_index": 27,
+      "pages": [
+        27
+      ],
+      "printed_page": "13",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2-7a(2)(d)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "2-3",
+      "caption": "Differential settlement limits (angular distortion) to avoid potential damages 1",
+      "chapter": 2,
+      "section_id": "2-7a(2)(e)",
+      "section_title": "Angular distortion",
+      "pdf_page_index": 28,
+      "pages": [
+        28,
+        29
+      ],
+      "printed_page": "14",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2-7a(2)(e)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "2-4",
+      "caption": "Serviceability limits of tilt ω for some structures (Charles and Skinner 2004)",
+      "chapter": 2,
+      "section_id": "2-7a(2)(h)",
+      "section_title": "Tilt",
+      "pdf_page_index": 31,
+      "pages": [
+        31
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "2-5",
+      "caption": "Some typical loads on building foundations",
+      "chapter": 2,
+      "section_id": "2-10d",
+      "section_title": "Typical building foundation loads",
+      "pdf_page_index": 34,
+      "pages": [
+        34
+      ],
+      "printed_page": "20",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2-10d",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Unit weight and phase relationships",
+      "chapter": 3,
+      "section_id": "3-3",
+      "section_title": "Unit weight and phase relationships",
+      "pdf_page_index": 38,
+      "pages": [
+        38
+      ],
+      "printed_page": "24",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-2",
+      "caption": "General ranges of specific gravity",
+      "chapter": 3,
+      "section_id": "3-3a",
+      "section_title": "Specific gravity",
+      "pdf_page_index": 39,
+      "pages": [
+        39
+      ],
+      "printed_page": "25",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Typical values of unit weights for different soils γsat and γdry (Carter and Bentley 1991)",
+      "chapter": 3,
+      "section_id": "3-3b",
+      "section_title": "Unit weight and void ratio",
+      "pdf_page_index": 40,
+      "pages": [
+        40
+      ],
+      "printed_page": "26",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-3b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-4",
+      "caption": "Typical values of range of void ratio, dry unit weight, and saturated unit weight for natural soils (Kulhawy and Mayne 1990)",
+      "chapter": 3,
+      "section_id": "3-3b",
+      "section_title": "Unit weight and void ratio",
+      "pdf_page_index": 41,
+      "pages": [
+        41
+      ],
+      "printed_page": "27",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-3b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-5",
+      "caption": "Relative density (DR) of cohesionless soils",
+      "chapter": 3,
+      "section_id": "3-4b",
+      "section_title": "Coarse-grained sand and gravelly soils",
+      "pdf_page_index": 42,
+      "pages": [
+        42
+      ],
+      "printed_page": "28",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-4b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-6",
+      "caption": "Typical relative density and strength characteristics of silica sands (c′ = 0) at shallow depths",
+      "chapter": 3,
+      "section_id": "3-5a(2)",
+      "section_title": "With construction of the shallow foundation and structures, overburden stress …",
+      "pdf_page_index": 48,
+      "pages": [
+        48
+      ],
+      "printed_page": "34",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-5a(2)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-7",
+      "caption": "Typical undrained strength characteristics of clays 1",
+      "chapter": 3,
+      "section_id": "3-6d",
+      "section_title": "Typical undrained strength characteristics of clay",
+      "pdf_page_index": 55,
+      "pages": [
+        55
+      ],
+      "printed_page": "41",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-6d",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-8",
+      "caption": "Typical values of compression index (Cc)",
+      "chapter": 3,
+      "section_id": "3-7a",
+      "section_title": "Compression (Cc) and recompression index (Cr)",
+      "pdf_page_index": 60,
+      "pages": [
+        60
+      ],
+      "printed_page": "46",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-7a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-9",
+      "caption": "Empirical relationships for compression index (Cc) based on soil index properties",
+      "chapter": 3,
+      "section_id": "3-7a",
+      "section_title": "Compression (Cc) and recompression index (Cr)",
+      "pdf_page_index": 61,
+      "pages": [
+        61
+      ],
+      "printed_page": "47",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-7a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-10",
+      "caption": "Typical ranges of soil compressibility based on compression and recompression ratios (Cεc and Cεr)",
+      "chapter": 3,
+      "section_id": "3-7b",
+      "section_title": "Compression and recompression ratios",
+      "pdf_page_index": 61,
+      "pages": [
+        61
+      ],
+      "printed_page": "47",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-11",
+      "caption": "Typical values of coefficient of consolidation (Cv)",
+      "chapter": 3,
+      "section_id": "3-7c(1)",
+      "section_title": "Laboratory determination of Cv and correlations with liquid limit",
+      "pdf_page_index": 62,
+      "pages": [
+        62
+      ],
+      "printed_page": "48",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-12",
+      "caption": "Soil compressibility based on coefficient of secondary compression Cα (Mesri 1973)",
+      "chapter": 3,
+      "section_id": "3-7d(1)",
+      "section_title": "General",
+      "pdf_page_index": 64,
+      "pages": [
+        64
+      ],
+      "printed_page": "50",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-13",
+      "caption": "Empirical correlation between Cα/Cc for various types of soil (Mesri and Godlewski 1977)",
+      "chapter": 3,
+      "section_id": "3-7d(2)",
+      "section_title": "Compression index ratio, Cα/Cc",
+      "pdf_page_index": 65,
+      "pages": [
+        65
+      ],
+      "printed_page": "51",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-14",
+      "caption": "Range of Poisson's ratio (adapted from Coduto et al. 2016)",
+      "chapter": 3,
+      "section_id": "3-9a",
+      "section_title": "Poisson’s ratio",
+      "pdf_page_index": 71,
+      "pages": [
+        71
+      ],
+      "printed_page": "57",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-9a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-15",
+      "caption": "Elastic modulus of undrained clays (after Duncan and Buchagani 1976)",
+      "chapter": 3,
+      "section_id": "3-9b(1)(b)",
+      "section_title": "D’Appolonia et al",
+      "pdf_page_index": 73,
+      "pages": [
+        73
+      ],
+      "printed_page": "59",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-9b(1)(b)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-16",
+      "caption": "General range of modulus of elasticity (E) for sand (after Das 2017)",
+      "chapter": 3,
+      "section_id": "3-9b(4)(a)",
+      "section_title": "The elastic modulus for sand and gravel is best determined by in situ testing …",
+      "pdf_page_index": 74,
+      "pages": [
+        74
+      ],
+      "printed_page": "60",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-17",
+      "caption": "βo and β1 factors",
+      "chapter": 3,
+      "section_id": "3-9b(4)(b)",
+      "section_title": "Correlations with standard penetration test data",
+      "pdf_page_index": 75,
+      "pages": [
+        75
+      ],
+      "printed_page": "61",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3-9b(4)(b)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "3-18",
+      "caption": "Typical values of small-strain shear modulus (AASHTO LRFD Bridge Design Specifications)",
+      "chapter": 3,
+      "section_id": "3-9d(2)",
+      "section_title": "Shear strain modulus",
+      "pdf_page_index": 78,
+      "pages": [
+        78
+      ],
+      "printed_page": "64",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-1",
+      "caption": "Recommended thin-walled tube diameter",
+      "chapter": 4,
+      "section_id": "4-7a(1)(b)",
+      "section_title": "Recovery ratio",
+      "pdf_page_index": 84,
+      "pages": [
+        84
+      ],
+      "printed_page": "70",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-2",
+      "caption": "Sample quality designation versus strain (%) on reloading to σvo′ (Lunne et al. 2006)",
+      "chapter": 4,
+      "section_id": "4-7a(2)",
+      "section_title": "Sample quality",
+      "pdf_page_index": 85,
+      "pages": [
+        85
+      ],
+      "printed_page": "71",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-7a(2)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-3",
+      "caption": "Minimum recommended sample size for disturbed soils",
+      "chapter": 4,
+      "section_id": "4-7b",
+      "section_title": "Disturbed samples",
+      "pdf_page_index": 86,
+      "pages": [
+        86
+      ],
+      "printed_page": "72",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-4",
+      "caption": "Reference publications for in situ testing",
+      "chapter": 4,
+      "section_id": "4-10",
+      "section_title": "In situ testing",
+      "pdf_page_index": 88,
+      "pages": [
+        88
+      ],
+      "printed_page": "74",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-10",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-5",
+      "caption": "Typical energy correction (hammer efficiency) factors for standard penetration test N-values (NCEER 1998)",
+      "chapter": 4,
+      "section_id": "4-10a(3)",
+      "section_title": "Field procedures and hammer efficiency",
+      "pdf_page_index": 90,
+      "pages": [
+        90
+      ],
+      "printed_page": "76",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-10a(3)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-6",
+      "caption": "Field correction factors for standard penetration test N-value (adapted from NCEER 1998)",
+      "chapter": 4,
+      "section_id": "4-10a(3)",
+      "section_title": "Field procedures and hammer efficiency",
+      "pdf_page_index": 90,
+      "pages": [
+        90
+      ],
+      "printed_page": "76",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-10a(3)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-7",
+      "caption": "Common cone penetration test-measured and -interpreted parameters",
+      "chapter": 4,
+      "section_id": "4-10b(3)",
+      "section_title": "Soil behavior type",
+      "pdf_page_index": 93,
+      "pages": [
+        93
+      ],
+      "printed_page": "79",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-8",
+      "caption": "Soil behavior type based on cone penetration test soil behavior type index (Ic)",
+      "chapter": 4,
+      "section_id": "4-10b(3)",
+      "section_title": "Soil behavior type",
+      "pdf_page_index": 94,
+      "pages": [
+        94
+      ],
+      "printed_page": "80",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-10b(3)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-9",
+      "caption": "Flat plate dilatometer test (A, B, and C readings)",
+      "chapter": 4,
+      "section_id": "4-10c(3)",
+      "section_title": "Readings A and B corrections",
+      "pdf_page_index": 95,
+      "pages": [
+        95
+      ],
+      "printed_page": "81",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "4-10",
+      "caption": "Common values of net limit pressure ( P L ∗ ) and pressuremeter modulus ( E O ∗ ) (Briaud 1992)",
+      "chapter": 4,
+      "section_id": "4-10d(1)(f)",
+      "section_title": "Soil type based on pressuremeter data",
+      "pdf_page_index": 103,
+      "pages": [
+        103
+      ],
+      "printed_page": "89",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4-10d(1)(f)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "5-1",
+      "caption": "Shear strength for static design conditions",
+      "chapter": 5,
+      "section_id": "5-3",
+      "section_title": "Soil properties",
+      "pdf_page_index": 109,
+      "pages": [
+        109
+      ],
+      "printed_page": "95",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5-3",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "5-2",
+      "caption": "Drained bearing capacity and correction factors based on Flow Number N",
+      "chapter": 5,
+      "section_id": "5-5f",
+      "section_title": "Correction factors",
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": "107",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_2_aashto_shape_depth_factors",
+      "implemented_in": [
+        "tables.table_5_2_aashto_shape_depth_factors",
+        "tables.table_5_2_bearing_capacity_factors",
+        "tables.table_5_2_usace_shape_depth_factors",
+        "equations.equation_5_22_ultimate_bearing_capacity",
+        "equations.ultimate_bearing_capacity_drained"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "5-3",
+      "caption": "Drained bearing capacity inclination correction factors",
+      "chapter": 5,
+      "section_id": "5-5f",
+      "section_title": "Correction factors",
+      "pdf_page_index": 122,
+      "pages": [
+        122,
+        123
+      ],
+      "printed_page": "108",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5-5f",
+      "implemented_in": [
+        "tables.table_5_3_aashto_load_inclination_factors",
+        "tables.table_5_3_base_inclination_factors",
+        "tables.table_5_3_usace_ground_inclination_factors",
+        "tables.table_5_3_usace_load_inclination_factors",
+        "equations.ultimate_bearing_capacity_drained"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "5-4",
+      "caption": "Undrained (φ′ = 0) bearing capacity and correction factors",
+      "chapter": 5,
+      "section_id": "5-5f",
+      "section_title": "Correction factors",
+      "pdf_page_index": 123,
+      "pages": [
+        123
+      ],
+      "printed_page": "109",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_4_undrained_factors",
+      "implemented_in": [
+        "tables.table_5_4_undrained_factors",
+        "equations.ultimate_bearing_capacity_undrained"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "5-5",
+      "caption": "Uncorrected bearing capacity factor (k) using in situ tests (after FHWA-IP-89- 008; Mayne 2007a; Briaud 2013)",
+      "chapter": 5,
+      "section_id": "5-5i(4)",
+      "section_title": "In situ test bearing capacity equation correction factors",
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": "116",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5-5i(4)",
+      "implemented_in": [
+        "tables.table_5_5_in_situ_bearing_factor",
+        "equations.equation_5_25_in_situ_bearing_capacity"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "6-1",
+      "caption": "In situ state of stress based on overconsolidation ratio and overconsolidation margin (σm′)",
+      "chapter": 6,
+      "section_id": "6-5d",
+      "section_title": "Overconsolidation ratio and overconsolidation margin",
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": "126",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6-5d",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "6-2",
+      "caption": "Comparison of influence factors (Iσ) beneath the center of a square uniformly loaded area (after Duncan and Buchignani 1976; assumes a Poisson's ratio υ= 0)",
+      "chapter": 6,
+      "section_id": "6-7b(2)",
+      "section_title": "Limitations of Westergaard theory",
+      "pdf_page_index": 153,
+      "pages": [
+        153
+      ],
+      "printed_page": "139",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6-7b(2)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-1",
+      "caption": "Relations between various stress-strain parameters for confined compression (adapted from Lambe and Whitman 1969)",
+      "chapter": 7,
+      "section_id": "7-7b",
+      "section_title": "Relationship between stress-strain parameters for 1-D consolidation",
+      "pdf_page_index": 165,
+      "pages": [
+        165
+      ],
+      "printed_page": "151",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7-7b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-2",
+      "caption": "Procedure for determining settlement parameters from laboratory e-log-p curve (Casagrande 1936, and \"Simplified\" Schmertmann 1955, graphical procedures)",
+      "chapter": 7,
+      "section_id": "7-9a(2)",
+      "section_title": "Determining settlement parameters from laboratory e-log-p curve",
+      "pdf_page_index": 170,
+      "pages": [
+        170
+      ],
+      "printed_page": "156",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "settlement.equation_7_5_compression_indices",
+      "implemented_in": [
+        "settlement.equation_7_5_compression_indices"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-3",
+      "caption": "Procedure for estimating 1-D primary consolidation settlements from laboratory e-log-p curve",
+      "chapter": 7,
+      "section_id": "7-9c",
+      "section_title": "Procedure for estimating 1-D primary consolidation settlement from laboratory …",
+      "pdf_page_index": 174,
+      "pages": [
+        174,
+        175
+      ],
+      "printed_page": "160",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-4",
+      "caption": "Procedure for estimating settlements by Schmertmann's \"Ordinary\" dilatometer test method",
+      "chapter": 7,
+      "section_id": "7-10c(2)",
+      "section_title": "Schmertmann also developed a “Special” method which uses stress-history to …",
+      "pdf_page_index": 178,
+      "pages": [
+        178
+      ],
+      "printed_page": "164",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "settlement.equation_7_10_constrained_modulus_settlement",
+      "implemented_in": [
+        "settlement.equation_7_10_constrained_modulus_settlement"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-5",
+      "caption": "Procedure for estimating settlements using the Ménard and Rousseau pressuremeter test method",
+      "chapter": 7,
+      "section_id": "7-11c(2).a",
+      "section_title": "The estimation of settlement using the Ménard and Rousseau procedure is … (continued, pp. 168 to 171)",
+      "pdf_page_index": 182,
+      "pages": [
+        182,
+        183
+      ],
+      "printed_page": "168",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-6",
+      "caption": "Ménard's rheological factor (α) (Briaud 1992)",
+      "chapter": 7,
+      "section_id": "7-11c(2).a",
+      "section_title": "The estimation of settlement using the Ménard and Rousseau procedure is … (continued, pp. 168 to 171)",
+      "pdf_page_index": 184,
+      "pages": [
+        184
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7-11c(2).a",
+      "implemented_in": [
+        "tables.table_7_6_menard_rheological_factor",
+        "settlement.equation_7_11_menard_settlement"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-7",
+      "caption": "Correlations between measured cone tip resistance (qc) and standard penetration test N60 (Schmertmann 1970)",
+      "chapter": 7,
+      "section_id": "7-12b",
+      "section_title": "Equivalent Young’s modulus from standard penetration test N60",
+      "pdf_page_index": 186,
+      "pages": [
+        186
+      ],
+      "printed_page": "172",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7-12b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-8",
+      "caption": "Procedure for estimating settlement in cohesionless soils by Schmertmann's CPT method",
+      "chapter": 7,
+      "section_id": "7-12e",
+      "section_title": "Schmertmann procedure for estimating settlements using the cone penetration test",
+      "pdf_page_index": 189,
+      "pages": [
+        189
+      ],
+      "printed_page": "175",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-9",
+      "caption": "Procedure for estimating settlements by the Burland and Burbidge standard penetration test method",
+      "chapter": 7,
+      "section_id": "7-13h",
+      "section_title": "Burland and Burbidge procedure for estimating settlements using standard penetration test",
+      "pdf_page_index": 192,
+      "pages": [
+        192
+      ],
+      "printed_page": "178",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-10",
+      "caption": "Procedure for estimating settlements due to excavation rebound and subsequent recompression",
+      "chapter": 7,
+      "section_id": "7-15c",
+      "section_title": "Estimating settlements influenced by excavation rebound and subsequent recompression",
+      "pdf_page_index": 195,
+      "pages": [
+        195,
+        196
+      ],
+      "printed_page": "181",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "settlement.equation_7_38_void_ratio_change_settlement",
+      "implemented_in": [
+        "settlement.equation_7_38_void_ratio_change_settlement"
+      ],
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-11",
+      "caption": "Procedure for estimating time required for consolidation",
+      "chapter": 7,
+      "section_id": "7-18b",
+      "section_title": "Procedure for estimating time rate of settlement",
+      "pdf_page_index": 199,
+      "pages": [
+        199
+      ],
+      "printed_page": "185",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-12",
+      "caption": "Procedure for estimating coefficient of consolidation (Cv) from Casagrande's logarithm (log t) graphical method (see Figure 7-17)",
+      "chapter": 7,
+      "section_id": "7-18c",
+      "section_title": "Coefficient of consolidation",
+      "pdf_page_index": 200,
+      "pages": [
+        200
+      ],
+      "printed_page": "186",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-13",
+      "caption": "Procedure for estimating coefficient of consolidation (Cv) from Taylor's (1948) square-root-of-time method (see Figure 7-18)",
+      "chapter": 7,
+      "section_id": "7-18c",
+      "section_title": "Coefficient of consolidation",
+      "pdf_page_index": 202,
+      "pages": [
+        202
+      ],
+      "printed_page": "188",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "7-14",
+      "caption": "Procedure for estimating secondary compression settlement",
+      "chapter": 7,
+      "section_id": "7-19b",
+      "section_title": "Procedure for estimating secondary settlement",
+      "pdf_page_index": 204,
+      "pages": [
+        204
+      ],
+      "printed_page": "190",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "8-1",
+      "caption": "Procedure for Conventional (Rigid) Method",
+      "chapter": 8,
+      "section_id": "8-6a(6)",
+      "section_title": "Structural design steps",
+      "pdf_page_index": 213,
+      "pages": [
+        213
+      ],
+      "printed_page": "199",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "8-2",
+      "caption": "Procedure for the American Concrete Institute Approximately Flexible Method",
+      "chapter": 8,
+      "section_id": "8-6b(3)",
+      "section_title": "Structural design steps",
+      "pdf_page_index": 218,
+      "pages": [
+        218
+      ],
+      "printed_page": "204",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "8-3",
+      "caption": "Procedure for the Discrete Area Method",
+      "chapter": 8,
+      "section_id": "8-6c(2)(b)",
+      "section_title": "The results are used to develop a contour plan of a variable modulus of …",
+      "pdf_page_index": 221,
+      "pages": [
+        221,
+        222,
+        223
+      ],
+      "printed_page": "207",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "9-1",
+      "caption": "Liquefaction screening based on deposition and age (Youd and Perkins 1978)",
+      "chapter": 9,
+      "section_id": "9-7a(2)",
+      "section_title": "Geologic age and deposition",
+      "pdf_page_index": 231,
+      "pages": [
+        231
+      ],
+      "printed_page": "217",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "9-7a(2)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "9-2",
+      "caption": "Post-liquefaction residual strength relationships",
+      "chapter": 9,
+      "section_id": "9-9b",
+      "section_title": "Residual strength of soils susceptible to liquefaction",
+      "pdf_page_index": 234,
+      "pages": [
+        234
+      ],
+      "printed_page": "220",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "9-3",
+      "caption": "Procedure for estimating settlement of dry sand (Tokimatsu and Seed 1984)",
+      "chapter": 9,
+      "section_id": "9-11d",
+      "section_title": "Settlement of unsaturated cohesionless soils (dry sand)",
+      "pdf_page_index": 240,
+      "pages": [
+        240
+      ],
+      "printed_page": "226",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "9-4",
+      "caption": "Influence of earthquake magnitude on volumetric strain ratio for dry sands (after Tokimatsu and Seed 1984)",
+      "chapter": 9,
+      "section_id": "9-11d",
+      "section_title": "Settlement of unsaturated cohesionless soils (dry sand)",
+      "pdf_page_index": 242,
+      "pages": [
+        242
+      ],
+      "printed_page": "228",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "9-11d",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "9-5",
+      "caption": "Upper limit on lateral spreading horizontal ground displacements with accommodating design features, from ASCE 7",
+      "chapter": 9,
+      "section_id": "9-12b(2)",
+      "section_title": "Horizontal displacements due to lateral spreading for buildings supported on …",
+      "pdf_page_index": 246,
+      "pages": [
+        246
+      ],
+      "printed_page": "232",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "9-12b(2)",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "10-1",
+      "caption": "Some common problem ground conditions",
+      "chapter": 10,
+      "section_id": "10-1b",
+      "section_title": "Common problematic ground conditions are summarized in Table 10-1",
+      "pdf_page_index": 247,
+      "pages": [
+        247
+      ],
+      "printed_page": "233",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "10-2a",
+      "caption": "Typical characteristics of organic soils and peat 1",
+      "chapter": 10,
+      "section_id": "10-6a",
+      "section_title": "Characteristics",
+      "pdf_page_index": 253,
+      "pages": [
+        253
+      ],
+      "printed_page": "239",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10-6a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "10-2b",
+      "caption": "Typical characteristics of organic soils and peat 1",
+      "chapter": 10,
+      "section_id": "10-6a",
+      "section_title": "Characteristics",
+      "pdf_page_index": 254,
+      "pages": [
+        254
+      ],
+      "printed_page": "240",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10-6a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "10-3",
+      "caption": "Engineering behavior of organic soils (Edil and den Haan 1994)",
+      "chapter": 10,
+      "section_id": "10-6a",
+      "section_title": "Characteristics",
+      "pdf_page_index": 254,
+      "pages": [
+        254
+      ],
+      "printed_page": "240",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10-6a",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "11-1",
+      "caption": "Ground improvement categories and methods",
+      "chapter": 11,
+      "section_id": "11-4b",
+      "section_title": "Acceptance criteria",
+      "pdf_page_index": 261,
+      "pages": [
+        261
+      ],
+      "printed_page": "247",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "11-4b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-1a",
+      "caption": "Solution for undrained bearing capacity analysis (isolated footing)",
+      "chapter": null,
+      "section_id": "B-1b",
+      "section_title": "Given",
+      "pdf_page_index": 310,
+      "pages": [
+        310,
+        311
+      ],
+      "printed_page": "296",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-1b",
+      "caption": "Summary of calculations for Example B-1",
+      "chapter": null,
+      "section_id": "B-1c",
+      "section_title": "Discussion for Example B-1",
+      "pdf_page_index": 312,
+      "pages": [
+        312
+      ],
+      "printed_page": "298",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-1c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-2a",
+      "caption": "Solution for undrained bearing capacity analysis (continuous footing)",
+      "chapter": null,
+      "section_id": "B-2b",
+      "section_title": "Given",
+      "pdf_page_index": 313,
+      "pages": [
+        313
+      ],
+      "printed_page": "299",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-2b",
+      "caption": "Summary of calculations for Example B-2",
+      "chapter": null,
+      "section_id": "B-2c",
+      "section_title": "Discussion for Example B-2",
+      "pdf_page_index": 316,
+      "pages": [
+        316
+      ],
+      "printed_page": "302",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-2c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-3a",
+      "caption": "Solution for drained bearing capacity analysis, shear within surface layer",
+      "chapter": null,
+      "section_id": "B-3b",
+      "section_title": "Given",
+      "pdf_page_index": 317,
+      "pages": [
+        317
+      ],
+      "printed_page": "303",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-3b",
+      "caption": "Solution for undrained punch-through analysis",
+      "chapter": null,
+      "section_id": "B-3b",
+      "section_title": "Given",
+      "pdf_page_index": 321,
+      "pages": [
+        321
+      ],
+      "printed_page": "307",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-3c",
+      "caption": "Summary of calculations for Example B-3",
+      "chapter": null,
+      "section_id": "B-3c",
+      "section_title": "Discussion for Example B-3",
+      "pdf_page_index": 324,
+      "pages": [
+        324
+      ],
+      "printed_page": "310",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-4a",
+      "caption": "Solution for the end-of-construction phase (dewatered case)",
+      "chapter": null,
+      "section_id": "B-4b",
+      "section_title": "Given",
+      "pdf_page_index": 326,
+      "pages": [
+        326,
+        327
+      ],
+      "printed_page": "312",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-4b",
+      "caption": "Solution for the long-term water level case",
+      "chapter": null,
+      "section_id": "B-4b",
+      "section_title": "Given",
+      "pdf_page_index": 328,
+      "pages": [
+        328
+      ],
+      "printed_page": "314",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-4c",
+      "caption": "Summary of calculations for Example B-4",
+      "chapter": null,
+      "section_id": "B-4c",
+      "section_title": "Discussion for Example B-4",
+      "pdf_page_index": 329,
+      "pages": [
+        329
+      ],
+      "printed_page": "315",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-4c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-5a",
+      "caption": "Solution for the analysis of bearing capacity based on undrained strength",
+      "chapter": null,
+      "section_id": "B-5b",
+      "section_title": "Given",
+      "pdf_page_index": 331,
+      "pages": [
+        331,
+        332
+      ],
+      "printed_page": "317",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-5b",
+      "caption": "Solution for the bearing capacity analysis based on the pressuremeter",
+      "chapter": null,
+      "section_id": "B-5b",
+      "section_title": "Given",
+      "pdf_page_index": 333,
+      "pages": [
+        333
+      ],
+      "printed_page": "319",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-5c",
+      "caption": "Solution for punch-through analysis based on undrained strength",
+      "chapter": null,
+      "section_id": "B-5b",
+      "section_title": "Given",
+      "pdf_page_index": 334,
+      "pages": [
+        334
+      ],
+      "printed_page": "320",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-5d",
+      "caption": "Average safety factor from multiple methods",
+      "chapter": null,
+      "section_id": "B-5b",
+      "section_title": "Given",
+      "pdf_page_index": 335,
+      "pages": [
+        335
+      ],
+      "printed_page": "321",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-5e",
+      "caption": "Summary of calculations for Example B-5",
+      "chapter": null,
+      "section_id": "B-5c",
+      "section_title": "Discussion for Example B-5",
+      "pdf_page_index": 336,
+      "pages": [
+        336
+      ],
+      "printed_page": "322",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-6a",
+      "caption": "Solution for drained bearing capacity analysis within surface layer",
+      "chapter": null,
+      "section_id": "B-6b",
+      "section_title": "Given",
+      "pdf_page_index": 337,
+      "pages": [
+        337
+      ],
+      "printed_page": "323",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-6b",
+      "caption": "Solution for undrained punch-through analysis",
+      "chapter": null,
+      "section_id": "B-6b",
+      "section_title": "Given",
+      "pdf_page_index": 341,
+      "pages": [
+        341,
+        342
+      ],
+      "printed_page": "327",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-6c",
+      "caption": "Summary of calculations for Example B-6",
+      "chapter": null,
+      "section_id": "B-6c",
+      "section_title": "Discussion for Example B-6",
+      "pdf_page_index": 343,
+      "pages": [
+        343
+      ],
+      "printed_page": "329",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-6c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-7a",
+      "caption": "Solution for drained bearing capacity analysis within surface layer",
+      "chapter": null,
+      "section_id": "B-7b",
+      "section_title": "Given",
+      "pdf_page_index": 344,
+      "pages": [
+        344
+      ],
+      "printed_page": "330",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-7b",
+      "caption": "Solution for bearing capacity analysis based on in situ tests (PMT, CPT, SPT)",
+      "chapter": null,
+      "section_id": "B-7b",
+      "section_title": "Given",
+      "pdf_page_index": 349,
+      "pages": [
+        349,
+        350
+      ],
+      "printed_page": "335",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "B-7c",
+      "caption": "Summary of calculations for Example B-7",
+      "chapter": null,
+      "section_id": "B-7c",
+      "section_title": "Discussion for Example B-7",
+      "pdf_page_index": 351,
+      "pages": [
+        351
+      ],
+      "printed_page": "337",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7c",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-1",
+      "caption": "Solution for settlement of isolated footing on clay ( e -log-p method)",
+      "chapter": null,
+      "section_id": "C-1b",
+      "section_title": "Given",
+      "pdf_page_index": 354,
+      "pages": [
+        354
+      ],
+      "printed_page": "340",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-2",
+      "caption": "Solution for settlement due to superimposed foundation loads on clay ( e -log-p method)",
+      "chapter": null,
+      "section_id": "C-2b",
+      "section_title": "Given",
+      "pdf_page_index": 359,
+      "pages": [
+        359,
+        360,
+        361
+      ],
+      "printed_page": "345",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-2b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-3a",
+      "caption": "Solution for settlement of soft clay layer due to areal fill loading only",
+      "chapter": null,
+      "section_id": "C-3b",
+      "section_title": "Given",
+      "pdf_page_index": 368,
+      "pages": [
+        368,
+        369
+      ],
+      "printed_page": "354",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-3b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-3b",
+      "caption": "Solution for settlement of the soft clay layer due to areal fill plus footing loading",
+      "chapter": null,
+      "section_id": "C-3b",
+      "section_title": "Given",
+      "pdf_page_index": 370,
+      "pages": [
+        370
+      ],
+      "printed_page": "356",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-3b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-3c",
+      "caption": "Solution for time required to obtain 1 inch or less of settlement due to areal fill and foundation placed on soft clay (see Table 7-11)",
+      "chapter": null,
+      "section_id": "C-3b.a",
+      "section_title": "Given (continued, p. 359)",
+      "pdf_page_index": 373,
+      "pages": [
+        373
+      ],
+      "printed_page": "359",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-4",
+      "caption": "Solution for recompression settlement of isolated footing on clay ( e -log-p method)",
+      "chapter": null,
+      "section_id": "C-4b",
+      "section_title": "Given",
+      "pdf_page_index": 375,
+      "pages": [
+        375,
+        376
+      ],
+      "printed_page": "361",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-4b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-5",
+      "caption": "Solution for settlement of isolated footing on clay (pressuremeter test method) per Table 7-5",
+      "chapter": null,
+      "section_id": "C-5b",
+      "section_title": "Given",
+      "pdf_page_index": 380,
+      "pages": [
+        380,
+        381,
+        382
+      ],
+      "printed_page": "366",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-6a",
+      "caption": "Dilatometer test data for Example C-6",
+      "chapter": null,
+      "section_id": "C-6b",
+      "section_title": "Given",
+      "pdf_page_index": 384,
+      "pages": [
+        384
+      ],
+      "printed_page": "370",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-6b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-6b",
+      "caption": "Solution for settlement of isolated footing on mixed soils using the dilatometer test Incremental Constrained Modulus method per Table 7-4",
+      "chapter": null,
+      "section_id": "C-6b",
+      "section_title": "Given",
+      "pdf_page_index": 386,
+      "pages": [
+        386
+      ],
+      "printed_page": "372",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-6c",
+      "caption": "Solution for comparison of dilatometer constrained modulus MDMT with laboratory oedometer constrained modulus M per paragraph 7-10b",
+      "chapter": null,
+      "section_id": "C-6b",
+      "section_title": "Given",
+      "pdf_page_index": 389,
+      "pages": [
+        389
+      ],
+      "printed_page": "375",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-7a",
+      "caption": "In situ test data for Example C-7",
+      "chapter": null,
+      "section_id": "C-7b",
+      "section_title": "Given",
+      "pdf_page_index": 391,
+      "pages": [
+        391,
+        392
+      ],
+      "printed_page": "377",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C-7b",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-7b",
+      "caption": "Solution for dilatometer test Incremental Constrained Modulus method per Table 7-4",
+      "chapter": null,
+      "section_id": "C-7b",
+      "section_title": "Given",
+      "pdf_page_index": 393,
+      "pages": [
+        393
+      ],
+      "printed_page": "379",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-7c",
+      "caption": "Solution for settlement of isolated footing on sand using the Ménard and Rousseau pressuremeter test per Table 7-5",
+      "chapter": null,
+      "section_id": "C-7b.a",
+      "section_title": "Given (continued, pp. 381 to 387)",
+      "pdf_page_index": 395,
+      "pages": [
+        395,
+        396
+      ],
+      "printed_page": "381",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-7d",
+      "caption": "Solution for settlement of isolated footing on sand using Schmertmann's cone penetration test method",
+      "chapter": null,
+      "section_id": "C-7b.a",
+      "section_title": "Given (continued, pp. 381 to 387)",
+      "pdf_page_index": 398,
+      "pages": [
+        398
+      ],
+      "printed_page": "384",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "C-7e",
+      "caption": "Solution for settlement of isolated footing on sand using the Burland and Burbidge standard penetration test method for sands and gravels per Table 7-9",
+      "chapter": null,
+      "section_id": "C-7b.a",
+      "section_title": "Given (continued, pp. 381 to 387)",
+      "pdf_page_index": 400,
+      "pages": [
+        400
+      ],
+      "printed_page": "386",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-1",
+      "caption": "Unit of Angle Measure",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 402,
+      "pages": [
+        402
+      ],
+      "printed_page": "388",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-2",
+      "caption": "Units of Distance",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 402,
+      "pages": [
+        402
+      ],
+      "printed_page": "388",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-3",
+      "caption": "Units of Force",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 402,
+      "pages": [
+        402,
+        403
+      ],
+      "printed_page": "388",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-4",
+      "caption": "Units of Volume",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 403,
+      "pages": [
+        403
+      ],
+      "printed_page": "389",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-5",
+      "caption": "Units of Stress and Pressure",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 403,
+      "pages": [
+        403
+      ],
+      "printed_page": "389",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    },
+    {
+      "table_number": "D-6",
+      "caption": "Units of Unit Weight",
+      "chapter": null,
+      "section_id": "D",
+      "section_title": "Common Unit Conversion Factors",
+      "pdf_page_index": 404,
+      "pages": [
+        404
+      ],
+      "printed_page": "390",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D",
+      "pdf_path": "docs/EM_1110-1-1905_2025.pdf",
+      "volume": null
+    }
+  ]
+}

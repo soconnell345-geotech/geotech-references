@@ -16,7 +16,7 @@
       "pages": [
         31
       ],
-      "printed_page": null,
+      "printed_page": "30",
       "page_estimated": false,
       "values": "text",
       "values_in": "2.4.2.6"
@@ -31,7 +31,7 @@
       "pages": [
         32
       ],
-      "printed_page": null,
+      "printed_page": "31",
       "page_estimated": false,
       "values": "text",
       "values_in": "2.4.2.6"
@@ -46,7 +46,7 @@
       "pages": [
         47
       ],
-      "printed_page": null,
+      "printed_page": "46",
       "page_estimated": false,
       "values": "text",
       "values_in": "4.4.3"
@@ -61,7 +61,7 @@
       "pages": [
         115
       ],
-      "printed_page": null,
+      "printed_page": "114",
       "page_estimated": false,
       "values": "text",
       "values_in": "D.4",
@@ -79,7 +79,7 @@
       "pages": [
         116
       ],
-      "printed_page": null,
+      "printed_page": "115",
       "page_estimated": false,
       "values": "text",
       "values_in": "D.6",
@@ -95,9 +95,10 @@
       "section_title": "Example of a correlation between compressive resistance of a single pile and cone penetration resistance",
       "pdf_page_index": 116,
       "pages": [
-        116
+        116,
+        117
       ],
-      "printed_page": null,
+      "printed_page": "115",
       "page_estimated": false,
       "values": "text",
       "values_in": "D.6",
@@ -115,7 +116,7 @@
       "pages": [
         120
       ],
-      "printed_page": null,
+      "printed_page": "119",
       "page_estimated": false,
       "values": "text",
       "values_in": "D.7",
@@ -133,7 +134,7 @@
       "pages": [
         123
       ],
-      "printed_page": null,
+      "printed_page": "122",
       "page_estimated": false,
       "values": "text",
       "values_in": "E.2",
@@ -151,7 +152,7 @@
       "pages": [
         123
       ],
-      "printed_page": null,
+      "printed_page": "122",
       "page_estimated": false,
       "values": "text",
       "values_in": "E.2",
@@ -169,7 +170,7 @@
       "pages": [
         124
       ],
-      "printed_page": null,
+      "printed_page": "123",
       "page_estimated": false,
       "values": "text",
       "values_in": "E.3",
@@ -187,7 +188,7 @@
       "pages": [
         126
       ],
-      "printed_page": null,
+      "printed_page": "125",
       "page_estimated": false,
       "values": "text",
       "values_in": "F.1",
@@ -205,7 +206,7 @@
       "pages": [
         127
       ],
-      "printed_page": null,
+      "printed_page": "126",
       "page_estimated": false,
       "values": "text",
       "values_in": "F.2",
@@ -223,7 +224,7 @@
       "pages": [
         146
       ],
-      "printed_page": null,
+      "printed_page": "145",
       "page_estimated": false,
       "values": "text",
       "values_in": "L.4.1",
@@ -241,7 +242,7 @@
       "pages": [
         145
       ],
-      "printed_page": null,
+      "printed_page": "144",
       "page_estimated": false,
       "values": "text",
       "values_in": "L.2.4",
@@ -259,7 +260,7 @@
       "pages": [
         147
       ],
-      "printed_page": null,
+      "printed_page": "146",
       "page_estimated": false,
       "values": "text",
       "values_in": "L.4.1"
@@ -274,7 +275,7 @@
       "pages": [
         147
       ],
-      "printed_page": null,
+      "printed_page": "146",
       "page_estimated": false,
       "values": "text",
       "values_in": "L.4.1"
@@ -290,10 +291,11 @@
         151,
         152
       ],
-      "printed_page": null,
+      "printed_page": "150",
       "page_estimated": false,
       "values": "text",
-      "values_in": "M.1"
+      "values_in": "M.1",
+      "note": "Section M.1 restates each item of the checklist in fewer words; the page has its wording."
     },
     {
       "table_number": "M.3",
@@ -305,7 +307,7 @@
       "pages": [
         153
       ],
-      "printed_page": null,
+      "printed_page": "152",
       "page_estimated": false,
       "values": "text",
       "values_in": "M.3.1"
@@ -320,7 +322,7 @@
       "pages": [
         165
       ],
-      "printed_page": null,
+      "printed_page": "164",
       "page_estimated": false,
       "values": "text",
       "values_in": "P.2.2"
@@ -473,11 +475,12 @@
       ],
       "printed_page": "125",
       "page_estimated": false,
-      "values": "text",
-      "values_in": "F.1",
+      "values": "page",
+      "values_in": null,
       "implemented_in": [
         "tables.table_f1_density_index_from_n160"
-      ]
+      ],
+      "note": "Section F.1 types the table's cells, and tables.table_f1_density_index_from_n160 returns them, but neither gives its footnote a, the ratios the N-values of fine and of coarse sands are changed by. Read the footnote off the page."
     },
     {
       "table_number": "G.1",
@@ -561,7 +564,8 @@
       "printed_page": "162",
       "page_estimated": false,
       "values": "text",
-      "values_in": "O"
+      "values_in": "O",
+      "note": "Section O restates each item of the checklist in fewer words; the page has its wording."
     },
     {
       "table_number": "P.1",

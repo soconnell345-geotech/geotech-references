@@ -128,6 +128,39 @@ def test_appendix_a_print_slips_kept_and_noted():
     assert "(elevation -67 ft to elevation -268 ft) (as printed;" in _section("A.2.a")["body"]
     # p. A-21: the bracket evaluates to 18,935.8 kips
     assert "Pr = 18,936.8 kips >> 3,389.5 kips (as printed;" in _section("A.2.e")["body"]
+    # p. A-10: 0.41 x 2,266 = 929; p. A-11: 0.47 x 2,057 = 967
+    assert "= 936 psf *note that σ'v accounts for scour (as printed; 0.41 (2,266 psf) = 929 psf" \
+        in body
+    assert "0.47 (2,057 psf) = 976 psf (as printed; 0.47 (2,057 psf) = 967 psf" in body
+    # p. A-16: 60 ft from the shaft top is 22 ft below the scoured ground (p. A-15)
+    assert "which is 26 ft below the ground surface (below scour line) (as printed; p. A-15 " \
+           "puts the ground surface after scour 38 ft below the top of the shaft, and " \
+           "60 - 38 = 22 ft)" in _section("A.2.c")["body"]
+    # pp. A-17 and A-18: 30 percent in the text, one third in the resultants
+    assert "= 7,849.79 kip-ft (as printed; the text above combines 30 percent of the " \
+           "transverse demands" in _section("A.2.c")["body"]
+    # p. A-23: 0.50 x 0.90 x 812.8 = 365.76
+    assert "= 365.7 kips (as printed; 0.50 (0.90) (812.8) = 365.76)" in _section("A.2.f")["body"]
+
+
+def test_appendix_a_table_a5_cohesionless_total_noted():
+    # p. A-13: the five cohesionless layer rows of Spreadsheet A sum to
+    # 5,357,017 lb; the printed total 4,832,242 leaves out Layer 1 (524,776)
+    rows = [524_776, 2_449_741, 964_754, 574_507, 843_239]
+    assert sum(rows) == 5_357_017
+    assert abs(sum(rows) - rows[0] - 4_832_242) <= 1
+    # 4,832,242 + 2,626,566 + 2,473,062 lb = 9,932 kips as printed
+    assert round((4_832_242 + 2_626_566 + 2_473_062) / 1000) == 9_932
+    t = [t for t in _section("A.2.b")["tables"] if t.startswith("Table A-5:")][0]
+    for v in ("524,776, 2,449,741, 964,754, 574,507, 843,239",
+              "Σ 4,832,242 (as printed; the five layer values sum to 5,357,017 lb, and 4,832,242 "
+              "is that sum less Layer 1's 524,776 lb, so the 9,932-kip summation below is about "
+              "525 kips less than the rows give)",
+              "Summation of Factored Resistances = 9,932 kips"):
+        assert v in t
+    # the text on p. A-12 that cites the total carries the note too
+    assert "equals 9,932 kips (as printed; the cohesionless total of Table A-5 leaves out " \
+           "Layer 1" in _section("A.2.b")["body"]
 
 
 @pytest.mark.parametrize("sid,printed", [
@@ -354,6 +387,32 @@ def test_appendix_c_print_slips_kept_and_noted():
            "with B = 6 ft (72 in), D = 10 ft (120 in)" in a
     # p. C-13: QT and QT1 in Eq. C-42
     assert "Δw = (QT - QT1) (1 - ν²) / (Eb B) (C-42) (as printed" in _section("C.3.2")["body"]
+
+
+def test_appendix_c_figure_c4b_printed_as_a_copy_of_c3b():
+    # p. C-5: Figure C-4(b) repeats Figure C-3(b), the side load transfer
+    # curves for cohesionless soil; only C-4's caption and part (a) are base curves
+    body = _section("C.2")["body"]
+    assert "Figure C-4 is captioned the base load transfer curves, and its part (a), for " \
+           "cohesive soil, is a base curve, but its part (b) on p. C-5 is printed as a copy of " \
+           "Figure C-3(b), the side load transfer curves for cohesionless soil)" in body
+    assert "Figure C-4 the base load transfer curves)" not in body
+    fig = [f for f in _section("C.2")["figures"] if f.startswith("Figure C-4:")][0]
+    assert fig.endswith("(as printed; part (b) is a copy of Figure C-3(b), the side load "
+                        "transfer curves for cohesionless soil)")
+    from geotech_references import _figures_db
+    assert "copy of Figure C-3(b)" in _figures_db.figure_get("gec_10", "C-4")["read_notes"]
+
+
+def test_appendix_c_variable_lists_follow_the_page():
+    eqs = {e["id"]: e for s in _appendix(21)["sections"] for e in s["equations"]}
+    # p. C-1 defines A and E under Eq. C-2
+    v2 = eqs["Eq. C-2"]["variables"]
+    assert v2["A"] == "cross-sectional area of the shaft"
+    assert v2["E"] == "composite elastic modulus of the reinforced concrete shaft"
+    # Eq. C-17 (p. C-8) uses no L
+    assert "L" not in eqs["Eq. C-17"]["variables"]
+    assert set(eqs["Eq. C-17"]["variables"]) == {"Qc", "wc", "B", "F3", "F4", "Er"}
 
 
 def test_appendix_c_printed_sentences_keep_their_force():

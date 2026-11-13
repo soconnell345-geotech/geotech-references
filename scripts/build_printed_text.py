@@ -150,6 +150,9 @@ MAX_BODY_CHARS = 12000
 #: ... and so is one whose section, as JSON with its equations, figures
 #: and tables (a Greek letter is six characters there), is over this.
 MAX_SECTION_JSON_CHARS = 14000
+#: Room kept in a part measured with its own equations (``split_long``,
+#: ``own_equations``) for the table-lookup entries added after the split.
+OWN_EQUATIONS_MARGIN = 1500
 #: Army-layout volumes only: build although equations are not typed in yet
 #: or mathematics is unread (``--draft``), and each volume's build report.
 DRAFT = False
@@ -197,19 +200,109 @@ def _clean_ws(text: str) -> str:
 # reading the volume
 # ---------------------------------------------------------------------------
 
-def read_pages(pdf: Path) -> list[dict]:
+def _horizontal_strokes(page) -> list[tuple]:
+    """The short horizontal strokes and thin bars the page draws, each as
+    (x0, x1, y)."""
+    out = []
+    for d in page.get_drawings():
+        for it in d["items"]:
+            if it[0] == "l":
+                p, q = it[1], it[2]
+                if abs(p.y - q.y) < 0.6 and abs(p.x - q.x) > 0.5:
+                    out.append((min(p.x, q.x), max(p.x, q.x), (p.y + q.y) / 2))
+            elif it[0] in ("re", "qu"):
+                r = it[1] if it[0] == "re" else it[1].rect
+                if r.height < 1.6 and r.width > 0.5:
+                    out.append((r.x0, r.x1, (r.y0 + r.y1) / 2))
+    return out
+
+
+def _ruled_beneath(char: dict, size: float, strokes: list[tuple]) -> bool:
+    """Whether the page draws a rule of about the character's width just
+    beneath it: the way some manuals set the "or equal to" signs, a "<" or
+    ">" in type with a short rule drawn under it."""
+    x0, _, x1, _ = char["bbox"]
+    w, base = x1 - x0, char["origin"][1]
+    for sx0, sx1, sy in strokes:
+        sw = sx1 - sx0
+        if 0.45 * w <= sw <= 1.8 * w and min(sx1, x1) - max(sx0, x0) >= 0.5 * min(sw, w) \
+                and base - 0.25 * size <= sy <= base + 0.45 * size:
+            return True
+    return False
+
+
+def _page_text(page, symbol_fonts: dict | None = None, raised_o_degree: bool = False,
+               ruled_signs: bool = False) -> str:
+    """The page's text layer; with ``symbol_fonts`` ({font name: {character
+    as the text layer gives it: the glyph the page prints}}) each character
+    set in one of those fonts is replaced by the glyph it prints. A
+    WordPerfect symbol font gives its glyphs as ordinary characters ("$" for
+    the greater-or-equal sign in WP-MathA, "3" for a check mark in
+    Wingdings2). With ``raised_o_degree`` a lone raised "o" in a text font
+    (the page's degree sign, "77oF") is "°". With ``ruled_signs`` a "<" or
+    ">" in a text font with a rule of about its width drawn just beneath it
+    is "≤" or "≥" (``_ruled_beneath``). The text is built from the page's
+    spans, line by line, exactly as ``page.get_text()`` gives it."""
+    if not symbol_fonts and not raised_o_degree and not ruled_signs:
+        return page.get_text()
+    symbol_fonts = symbol_fonts or {}
+    strokes = None
+
+    def chars_text(s):
+        nonlocal strokes
+        out = []
+        for c in s["chars"]:
+            ch = c["c"]
+            if ch in "<>" and s["font"] not in symbol_fonts:
+                if strokes is None:
+                    strokes = _horizontal_strokes(page)
+                if _ruled_beneath(c, s["size"], strokes):
+                    ch = "≤" if ch == "<" else "≥"
+            out.append(ch)
+        return "".join(out)
+
+    def span_text(s):
+        text = chars_text(s) if ruled_signs else s["text"]
+        if s["font"] in symbol_fonts:
+            return "".join(symbol_fonts[s["font"]].get(c, c) for c in text)
+        if raised_o_degree and s["flags"] & 1 and text.strip() == "o":
+            return text.replace("o", "°")
+        return text
+
+    out = []
+    for block in page.get_text("rawdict" if ruled_signs else "dict",
+                               flags=fitz.TEXTFLAGS_TEXT)["blocks"]:
+        if block.get("type", 0) != 0:
+            continue
+        for line in block["lines"]:
+            out.append("".join(span_text(s) for s in line["spans"]) + "\n")
+    return "".join(out)
+
+
+def read_pages(pdf: Path, header_end=None, page_label=None,
+               symbol_fonts: dict | None = None, raised_o_degree: bool = False,
+               ruled_signs: bool = False) -> list[dict]:
     """Each page: ``label`` (printed page, e.g. '6-28') and its ``lines``
-    with the running header taken off."""
+    with the running header taken off. ``header_end`` and ``page_label``
+    (compiled patterns) replace ``_HEADER_END`` and ``_PAGE_LABEL`` for a
+    manual whose running header differs (manifest ``header_end`` and
+    ``page_label``); ``symbol_fonts``, ``raised_o_degree`` and
+    ``ruled_signs`` (manifest ``"symbol_fonts"``, ``"raised_o_degree"``,
+    ``"ruled_comparison_signs"``) give the glyphs the text layer loses
+    (``_page_text``)."""
+    header_end = header_end or _HEADER_END
+    page_label = page_label or _PAGE_LABEL
     pages = []
     with fitz.open(str(pdf)) as doc:
         for page in doc:
-            lines = [ln.strip() for ln in page.get_text().split("\n")]
+            lines = [ln.strip() for ln in
+                     _page_text(page, symbol_fonts, raised_o_degree, ruled_signs).split("\n")]
             label, cut = None, 0
             for k, ln in enumerate(lines[:12]):
-                m = _PAGE_LABEL.match(ln)
+                m = page_label.match(ln)
                 if m and label is None:
                     label = f"{m.group(1)}-{m.group(2)}"
-                if _HEADER_END.match(ln):
+                if header_end.match(ln):
                     cut = k + 1
                     break
             pages.append({"label": label, "lines": lines[cut:]})
@@ -266,6 +359,105 @@ def parse_list(pages: list[dict], heading: str) -> dict[str, dict]:
     return out
 
 
+#: A printed page in a contents or list column, alone on its line ("5-53").
+_LINE_PAGE = re.compile(rf"^(\d{{1,2}})\s*[-{_DASH}]\s*(\d{{1,3}})$")
+
+
+def parse_contents_lines(pages: list[dict], first: int, last: int,
+                         skip=None) -> list[dict]:
+    """The printed contents read line by line (manifest ``"contents_format":
+    "lines"``), for a manual whose contents print each heading's number,
+    title and page on lines of their own with no dotted leader (FHWA-NHI-05-037):
+    a numbered line starts an entry, its title may run on over the next
+    lines, and the printed page ("5-53", alone or at the end of a line) ends
+    it. A chapter's own line ("5.0 GEOTECHNICAL INPUTS ...", no page) and the
+    unnumbered sub-headings the contents also list ("Compaction 5-19") are
+    not entries: those headings stay in their numbered section's body.
+    Lines matching ``skip`` (a running header) are passed over."""
+    out, seen, cur = [], set(), None
+    for p in pages[first - 1:last]:
+        for raw in p["lines"]:
+            ln = _clean_ws(raw)
+            if not ln or (skip and skip.search(ln)):
+                continue
+            m = re.match(r"^(\d{1,2}\.\d{1,2}(?:\.\d{1,2}){0,3})(?:\s+(.*))?$", ln)
+            if m:
+                sid, rest = m.group(1), (m.group(2) or "").strip()
+                cur = None
+                if sid.endswith(".0") or sid in seen:
+                    continue
+                cur = {"sid": sid, "title": "", "page": None}
+                ln = rest
+                if not ln:
+                    continue
+            if cur is None:
+                continue
+            pm = _LINE_PAGE.match(ln)
+            if pm:
+                cur["page"] = (int(pm.group(1)), int(pm.group(2)))
+            else:
+                tm = re.match(rf"^(.*\S)\s+(\d{{1,2}})\s*[-{_DASH}]\s*(\d{{1,3}})$", ln)
+                if tm:
+                    cur["title"] = _clean_ws(cur["title"] + " " + tm.group(1))
+                    cur["page"] = (int(tm.group(2)), int(tm.group(3)))
+                else:
+                    cur["title"] = _clean_ws(cur["title"] + " " + ln)
+                    continue
+            if cur["title"]:
+                seen.add(cur["sid"])
+                out.append(cur)
+            cur = None
+    return out
+
+
+def parse_list_lines(pages: list[dict], heading: str, skip=None) -> dict[str, dict]:
+    """A List of Figures or Tables printed line by line, with no dotted
+    leader (manifest ``"list_format": "lines"``): the number ("5-34", alone
+    or before the caption's first words), the caption over one or more
+    lines, and the printed page alone on its line or at the end of the
+    caption's last line. Lines matching ``skip`` (a running header) are
+    passed over."""
+    start = None
+    for i, p in enumerate(pages[:60]):
+        if any(_clean_ws(ln).upper() == heading for ln in p["lines"]):
+            start = i
+            break
+    if start is None:
+        return {}
+    out, cur, begun = {}, None, False
+    for p in pages[start:start + 12]:
+        for raw in p["lines"]:
+            ln = _clean_ws(raw)
+            if not ln or (skip and skip.search(ln)):
+                continue
+            if ln.upper() == heading:
+                begun = True
+                continue
+            if not begun:
+                continue
+            if ln.upper().startswith("LIST OF"):
+                return out
+            if cur is None:
+                m = re.match(r"^(\d{1,2}-\d{1,3}[a-z]?)(?:\s+(.*))?$", ln)
+                if m:
+                    cur = {"num": m.group(1), "caption": (m.group(2) or "").strip()}
+                continue
+            pm = _LINE_PAGE.match(ln)
+            tm = re.match(rf"^(.*\S)\s+(\d{{1,2}})\s*[-{_DASH}]\s*(\d{{1,3}})$", ln)
+            if pm and cur["caption"]:
+                page = (int(pm.group(1)), int(pm.group(2)))
+            elif tm and not pm:
+                cur["caption"] = _clean_ws(cur["caption"] + " " + tm.group(1))
+                page = (int(tm.group(2)), int(tm.group(3)))
+            else:
+                cur["caption"] = _clean_ws(cur["caption"] + " " + ln)
+                continue
+            if cur["num"].split("-")[0] == str(page[0]):
+                out.setdefault(cur["num"], {"caption": cur["caption"], "page": page})
+            cur = None
+    return out
+
+
 # ---------------------------------------------------------------------------
 # sections
 # ---------------------------------------------------------------------------
@@ -288,8 +480,13 @@ def _heading_matches(rest: str, title: str) -> bool:
     return difflib.SequenceMatcher(None, a[:n], b[:n]).ratio() >= 0.8
 
 
-def locate_headings(stream, pages, entries, chapter_label_ok) -> list[int]:
-    """Position in ``stream`` of each entry's heading (-1 where not found)."""
+def locate_headings(stream, pages, entries, chapter_label_ok,
+                    not_before_listed_page=False) -> list[int]:
+    """Position in ``stream`` of each entry's heading (-1 where not found).
+    With ``not_before_listed_page`` (manifest ``"headings_on_listed_page":
+    true``) a heading is not looked for before the page the contents give,
+    so a chapter's opening outline that lists its sections by number and
+    title ("5.2.1 1993 AASHTO Design Guide") is not taken for the headings."""
     pos, cursor = [], 0
     for e in entries:
         found = -1
@@ -298,9 +495,13 @@ def locate_headings(stream, pages, entries, chapter_label_ok) -> list[int]:
             lab = _label_num(pages[i]["label"])
             if lab and lab[0] == e["page"][0] and lab[1] > e["page"][1] + 3:
                 break
-            if not ln.startswith(e["sid"]):
+            if (not_before_listed_page and lab and lab[0] == e["page"][0]
+                    and lab[1] < e["page"][1]):
                 continue
-            rest = ln[len(e["sid"]):]
+            number = e.get("number_as_printed", e["sid"])
+            if not ln.startswith(number):
+                continue
+            rest = ln[len(number):]
             if rest and not rest[0].isspace():
                 continue
             rest = rest.strip()
@@ -378,15 +579,37 @@ def _is_axis_ticks(values: list[float]) -> bool:
     return scales <= 3 and longest >= 4
 
 
+#: Equation numbers printed as "(5.10)" (manifest ``"equation_numbers":
+#: "parenthesized_dot"``, FHWA-NHI-05-037), alone on a line or at the end
+#: of the equation's last line.
+_EQ_NUMBER_DOT = re.compile(r"^\((\d{1,2}\.\d{1,3}[a-z]?)\)$")
+_TYPED_EQ_DOT = re.compile(r"^(.*\S)\s+\((\d{1,2}\.\d{1,3}[a-z]?)\)$")
+
+
+def _is_glyph_line(s: str) -> bool:
+    """A line of an equation object's glyphs ("1.18 10", "−", "k p"), not
+    a page marker or words."""
+    if s.startswith(("[p. ", "[Eq. ")):
+        return False
+    return len(s) <= 12 and not re.search(r"[A-Za-z]{4,}", s)
+
+
 def render_body(stream, start, end, pages, captions_on_page, eq_ids,
-                chapter="", figs=None, tables_on_page=frozenset()):
+                chapter="", figs=None, tables_on_page=frozenset(), eq_style=None,
+                captions_as_printed=False):
     """The printed text of stream[start:end] as paragraphs, with page markers
     and equation markers; equation ids found are appended to ``eq_ids`` as
-    (id, preceding words, page label)."""
+    (id, preceding words, page label). ``eq_style`` "parenthesized_dot"
+    reads equation numbers printed as "(5.10)" and leaves out the glyph
+    lines the equation object leaves just before its number."""
     paras, cur, last_page = [], [], None
     k = start
     prev_text = ""
     eq_at = None  # (page index, stream position) of the last line with "="
+    dot = eq_style == "parenthesized_dot"
+    eq_number_re = _EQ_NUMBER_DOT if dot else _EQ_NUMBER
+    typed_eq_re = _TYPED_EQ_DOT if dot else _TYPED_EQ
+    sep = "." if dot else "-"
 
     def flush():
         if cur:
@@ -394,7 +617,7 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             cur.clear()
 
     def is_number(m):
-        return bool(m) and m.group(1).split("-")[0] == chapter
+        return bool(m) and m.group(1).split(sep)[0] == chapter
 
     while k < end:
         i, ln = stream[k]
@@ -415,7 +638,7 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
                 run = [stream[t][1] for t in range(k, j) if stream[t][1]]
                 nums = [_EQ_NUMBER.match(x).group(1) for x in run
                         if is_number(_EQ_NUMBER.match(x))]
-                nxt = _EQ_NUMBER.match(stream[j][1]) if j < end else None
+                nxt = eq_number_re.match(stream[j][1]) if j < end else None
                 if is_number(nxt) and stream[j][0] == i:
                     nums.append(nxt.group(1))
                     j += 1
@@ -425,6 +648,9 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
                     cur.append(" ".join(run))
                     k = j
                     continue
+                if dot and nums:
+                    while cur and _is_glyph_line(cur[-1]):
+                        cur.pop()
                 for eq in nums:
                     cur.append(f"[Eq. {eq}]")
                     eq_ids.append((eq, prev_text, pages[i]["label"]))
@@ -435,8 +661,8 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             flush()
             k += 1
             continue
-        m = _TYPED_EQ.match(ln)
-        if (m and "=" in m.group(1) and m.group(2).split("-")[0] == chapter
+        m = typed_eq_re.match(ln)
+        if (m and ("=" in m.group(1) or dot) and m.group(2).split(sep)[0] == chapter
                 and not _REF_WORD.search(m.group(1))):
             eq = m.group(2)
             cur.append(f"{m.group(1)} [Eq. {eq}]")
@@ -445,14 +671,19 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
             eq_at = (i, k)
             k += 1
             continue
-        m = _EQ_NUMBER.match(ln)
+        m = eq_number_re.match(ln)
         # the number of an equation set over lines ("qt = Nt" / "tp" /
         # "9-13"), of one whose number is a line or two below it, or of
-        # the second of two equations numbered together ("6-2" / "6-3")
-        if (is_number(m) and eq_at and eq_at[0] == i
-                and k - eq_at[1] <= _EQ_NUMBER_REACH
+        # the second of two equations numbered together ("6-2" / "6-3");
+        # a parenthesized "(5.10)" alone on its line is a number wherever
+        # it stands
+        if (is_number(m) and (dot or (eq_at and eq_at[0] == i
+                                      and k - eq_at[1] <= _EQ_NUMBER_REACH))
                 and not _REF_WORD.search(prev_text)):
             eq = m.group(1)
+            if dot:
+                while cur and _is_glyph_line(cur[-1]):
+                    cur.pop()
             cur.append(f"[Eq. {eq}]")
             eq_ids.append((eq, prev_text, pages[i]["label"]))
             k += 1
@@ -465,7 +696,7 @@ def render_body(stream, start, end, pages, captions_on_page, eq_ids,
     flush()
     paras = [_clean_ws(p) for p in paras]
     paras = _drop_figure_lettering(paras, captions_on_page)
-    paras = [_cut_caption(p, figs or {}) for p in paras]
+    paras = [_cut_caption(p, figs or {}, captions_as_printed) for p in paras]
     text = "\n\n".join(p for p in paras if p)
     return text
 
@@ -492,9 +723,18 @@ def _drop_figure_lettering(paras, captions_on_page):
     return out
 
 
-def _cut_caption(para: str, figs: dict) -> str:
+#: What a printed caption adds after the words its List of Figures entry
+#: gives: a source or units in brackets, "(Coduto, 1999)." or ". (1 in. =
+#: 25 mm)" (FHWA-NHI-05-037 lists its figures without them).
+_CAPTION_TAIL = re.compile(r"\.?\s*\((?:[^()]|\([^()]*\))*\)\.?")
+
+
+def _cut_caption(para: str, figs: dict, keep_printed_tail: bool = False) -> str:
     """A figure caption paragraph ends where the List of Figures caption
-    ends; what follows it is the figure's own lettering."""
+    ends; what follows it is the figure's own lettering. With
+    ``keep_printed_tail`` (manifest ``"captions_as_printed": true``) the
+    one or two bracketed groups the page prints straight after those words
+    (the source, the unit conversions) stay in the caption."""
     m = re.match(rf"^((?:\[p\. [^\]]+\]\s*)?Figure\s+(\d{{1,2}})[-{_DASH}](\d{{1,3}})(?:([a-z])|\(([a-z])\))?"
                  r"(?:\s*\(Continued\))?[.:]\s)", para)
     num = m and f"{m.group(2)}-{m.group(3)}" + (m.group(4) or m.group(5) or "")
@@ -506,19 +746,38 @@ def _cut_caption(para: str, figs: dict) -> str:
     for w in re.finditer(r"\S+", para[m.end():]):
         end = m.end() + w.end()
         if _norm(para[m.end():end]).endswith(tail):
+            if keep_printed_tail:
+                for _ in range(2):
+                    t = _CAPTION_TAIL.match(para, end)
+                    if not t:
+                        break
+                    end = t.end()
             return para[:end]
     return para
 
 
-def split_long(sec: dict, limit: int = MAX_BODY_CHARS) -> list[dict]:
+def split_long(sec: dict, limit: int = MAX_BODY_CHARS, own_equations: bool = False) -> list[dict]:
     """A section whose body is over ``limit`` as the section (its first part)
     and parts lettered ``.a``, ``.b`` ... under it, each cut at a paragraph
     boundary. The letters are not printed: each part's title and
-    applicability say which printed pages of the section it holds."""
+    applicability say which printed pages of the section it holds.
+
+    With ``own_equations`` (manifest ``"split_own_equations": true``) a part
+    is measured with only the equations, figures and tables it prints, as it
+    is written, plus a margin for the table lookups added after the split;
+    without it every part is measured with the whole section's, as before,
+    which cuts a section with many typed equations into many small parts."""
     body = sec["body"]
     overhead = len(json.dumps(dict(sec, body="")))
 
     def fits(text):
+        if own_equations:
+            head = len(json.dumps(dict(
+                sec, body="",
+                equations=[e for e in sec["equations"] if f"[Eq. {e['id'][4:]}]" in text],
+                figures=_listed_in(sec["figures"], text),
+                tables=_listed_in(sec["tables"], text)))) + OWN_EQUATIONS_MARGIN
+            return len(text) <= limit and len(json.dumps(text)) + head <= MAX_SECTION_JSON_CHARS
         return (len(text) <= limit
                 and len(json.dumps(text)) + overhead <= MAX_SECTION_JSON_CHARS)
 
@@ -596,6 +855,47 @@ def add_printed_tables(body: str, printed: list[dict]) -> str:
     return body
 
 
+def add_typed_tables(body: str, typed: list[dict], applied: set) -> str:
+    """A table whose cells the text layer gives out of order, replaced by
+    its rows as typed in from the rendered page: the manifest's
+    ``typed_tables``, each ``{"number", "page", "from", "to", "rows"}``,
+    where ``from`` is the body text (as this builder writes it) the cells
+    follow, normally the end of the caption, and ``to`` the text they run
+    up to, kept (an empty ``to`` runs to the end of the paragraph). Each
+    table typed in is added to ``applied``."""
+    for t in typed:
+        a = body.find(t["from"])
+        if a < 0:
+            continue
+        a += len(t["from"])
+        if t.get("to"):
+            b = body.find(t["to"], a)
+        else:
+            b = body.find("\n\n", a)
+            b = len(body) if b < 0 else b
+        if b < 0:
+            continue
+        lead = "" if a and body[a - 1].isspace() else " "
+        body = (body[:a] + f"{lead}[Table {t['number']} as printed on p. {t['page']}, "
+                f"typed in from the page:] {t['rows']}"
+                + (" " if t.get("to") else "") + body[b:])
+        applied.add(t["number"])
+    return body
+
+
+def apply_text_fixes(body: str, fixes: list[dict], applied: set) -> str:
+    """The body with each of the manifest's ``text_fixes`` applied
+    (``{"page", "find", "replace"}``): where the text layer lost what the
+    page prints, most often a superscript ("10x106 ESALs" for 10x10^6), the
+    ``find`` text, as this builder writes it, becomes ``replace``, read off
+    the printed page. Each fix applied is added to ``applied`` by index."""
+    for k, f in enumerate(fixes):
+        if f["find"] in body:
+            body = body.replace(f["find"], f["replace"], 1 if not f.get("all") else -1)
+            applied.add(k)
+    return body
+
+
 def fix_printed_equations(body: str, printed: list[dict], applied: set) -> str:
     """The body with each manifest ``fix`` applied: where the text layer
     lost an equation (its glyphs taken for figure lettering) or put its
@@ -613,8 +913,72 @@ def fix_printed_equations(body: str, printed: list[dict], applied: set) -> str:
     return body
 
 
+def add_listed_captions(parts: list[dict], entries: list[dict], used: set) -> list[dict]:
+    """Each section part whose body holds a caption the build cannot list by
+    itself gets it in its ``figures`` or ``tables`` (manifest
+    ``"captions_listed": [{"kind", "number", "printed", "caption"}]``): a
+    caption printed with a dot ("Figure 4.4."), one the List of Figures or
+    Tables gives otherwise or leaves out ("Table 7-23a."), one whose number
+    the text layer sets on a line of its own. ``printed`` is how the body
+    starts the caption's paragraph, ``caption`` the words listed; the entry
+    goes in after the listed captions printed before it."""
+    for part in parts:
+        for k, e in enumerate(entries):
+            m = re.search(r"(?:^|\n\n|\] )" + re.escape(e["printed"]), part["body"])
+            if not m:
+                continue
+            key = "figures" if e["kind"] == "Figure" else "tables"
+            used.add(k)
+            if any(x.split(":")[0] == f"{e['kind']} {e['number']}" for x in part[key]):
+                continue
+
+            def at(item):
+                kind, num = item.split(":")[0].split(" ", 1)
+                c, _, rest = num.partition("-")
+                hit = re.search(rf"(?:^|\n\n|\] ){kind}\s+{c}[-{_DASH}]{re.escape(rest)}(?![\da-z])",
+                                part["body"])
+                return hit.start() if hit else -1
+
+            n_before = sum(at(x) < m.start() for x in part[key])
+            part[key].insert(n_before, f"{e['kind']} {e['number']}: {e['caption']}")
+    return parts
+
+
+def add_table_functions(parts: list[dict], functions: dict, linked: set) -> list[dict]:
+    """Each section part that prints a table the library computes gets an
+    entry in ``equations`` naming the function (manifest
+    ``"table_functions": {"5-34": ["geotech_references.pkg.mod.func", ...]}``),
+    so a reader of the text finds the lookup. Tables linked are added to
+    ``linked``."""
+    for part in parts:
+        for t in part["tables"]:
+            num = t.split(":")[0][len("Table "):]
+            for path in functions.get(num, []):
+                name = path.rsplit(".", 1)[1]
+                part["equations"].append({
+                    "id": f"Table {num} ({name})",
+                    "description": (f"Table {num} as a library lookup, {name}; "
+                                    "the function's notes say how it reads the table."),
+                    "implemented_in": path})
+                linked.add(num)
+    return parts
+
+
+def put_formulas_in_body(body: str, printed: list[dict]) -> str:
+    """The body with each typed formula written before its ``[Eq. N]``
+    marker (manifest ``"formulas_in_body": true``), so a reader of the
+    section sees the equation where the page prints it, not only in the
+    section's ``equations``. Glyphs the text layer left beside an equation
+    are taken out first by the entry's ``fix``."""
+    for p in printed:
+        marker = f"[Eq. {p['number']}]"
+        if p.get("formula") and marker in body:
+            body = body.replace(marker, f"{p['formula']} {marker}", 1)
+    return body
+
+
 def add_printed_equations(body: str, equations: list[dict], printed: list[dict],
-                          attached: set) -> list[dict]:
+                          attached: set, formulas_in_body: bool = False) -> list[dict]:
     """A section's ``equations`` in the order their ``[Eq. N]`` markers stand
     in ``body`` (a marker a fix put there gets an entry saying the equation
     is printed on the entry's page), each with the formula, the symbols and
@@ -632,12 +996,24 @@ def add_printed_equations(body: str, equations: list[dict], printed: list[dict],
                   "implemented_in": None}
         p = by_num.get(num)
         if p and p.get("formula"):
-            typed = {"id": eq["id"], "description": eq["description"],
+            description = eq["description"]
+            if p.get("description"):
+                description = p["description"]
+            elif formulas_in_body:
+                # the words before the formula as the body now prints it,
+                # not the glyphs the text layer left beside the equation
+                at = body.find(f"{p['formula']} [Eq. {num}]")
+                if at > 0:
+                    description = _typed_eq_description(body[max(0, at - 600):at], num,
+                                                        p["page"])
+            typed = {"id": eq["id"], "description": description,
                      "formula": p["formula"], "variables": p.get("variables", {})}
             if p.get("notes"):
                 typed["notes"] = p["notes"]
             typed["source"] = f"Typed in from p. {p['page']}."
-            typed["implemented_in"] = eq.get("implemented_in")
+            # the library function that computes it (manifest entry's
+            # "implemented_in"), else what the builder found (none)
+            typed["implemented_in"] = p.get("implemented_in", eq.get("implemented_in"))
             eq = typed
             attached.add(num)
         out.append(eq)
@@ -654,6 +1030,19 @@ def _eq_description(words: str, eq: str, label: str | None) -> str:
     return f"Equation {eq}, introduced by: \"{tail}\"{where}."
 
 
+def _typed_eq_description(words: str, eq: str, label: str) -> str:
+    """Like ``_eq_description``, but the sentence before the equation is cut
+    only where a sentence ends (". The"), not at the point of a number such
+    as "Equation (3.4)" (used with ``formulas_in_body``)."""
+    paras = [_clean_ws(re.sub(r"\[[^\]]*\]", " ", p)) for p in words.split("\n\n")]
+    paras = [p for p in paras if re.search(r"[A-Za-z]", p)] or [""]
+    tail = re.split(r"(?<=[a-z0-9)][.!?])\s+(?=[A-Z•])", paras[-1])[-1]
+    tail = re.sub(r"^(?:[•o]\s+)+", "", tail).strip()[-200:]
+    if len(tail) < 12:
+        return f"Equation {eq} as printed (p. {label})."
+    return f"Equation {eq}, introduced by: \"{tail}\" (p. {label})."
+
+
 def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, list]:
     if vol.get("layout") == "army":
         import printed_army_layout
@@ -662,11 +1051,43 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
         REPORTS[vol["volume_id"]] = book
         return chapters, []
     pdf = (manifest_dir / vol["pdf_path"]).resolve()
-    pages = read_pages(pdf)
+    # options for a manual laid out otherwise than FHWA NHI-06-088/089
+    # (FHWA-NHI-05-037); without them the build is as it was
+    opt = {k: re.compile(vol[k]) for k in ("header_end", "page_label", "front_matter_header")
+           if vol.get(k)}
+    pages = read_pages(pdf, opt.get("header_end"), opt.get("page_label"),
+                       {f: m for f, m in vol.get("symbol_fonts", {}).items() if m},
+                       bool(vol.get("raised_o_degree")),
+                       bool(vol.get("ruled_comparison_signs")))
     first, last = vol["contents_pages"]
-    entries = parse_contents(pages, first, last)
-    figs = parse_list(pages, "LIST OF FIGURES")
-    tabs = parse_list(pages, "LIST OF TABLES")
+    skip_line = opt.get("front_matter_header")
+    if vol.get("contents_format") == "lines":
+        entries = parse_contents_lines(pages, first, last, skip_line)
+    else:
+        entries = parse_contents(pages, first, last)
+    if vol.get("list_format") == "lines":
+        figs = parse_list_lines(pages, "LIST OF FIGURES", skip_line)
+        tabs = parse_list_lines(pages, "LIST OF TABLES", skip_line)
+    else:
+        figs = parse_list(pages, "LIST OF FIGURES")
+        tabs = parse_list(pages, "LIST OF TABLES")
+    # a caption the List of Figures or Tables words otherwise than the page
+    # ("rigid" for the printed "flexible"; manifest "list_captions_as_printed":
+    # {"Figure 6-5": "Summary of flexible pavement sections: ..."}) is listed,
+    # and matched to its page, in the page's words
+    for key, cap in vol.get("list_captions_as_printed", {}).items():
+        kind, num = key.split(" ", 1)
+        listed = figs if kind == "Figure" else tabs
+        if num not in listed:
+            raise ValueError(f"list_captions_as_printed: the List gives no {key}")
+        listed[num] = dict(listed[num], caption=cap)
+    eq_style = vol.get("equation_numbers")
+    typed_tables = vol.get("typed_tables", [])
+    tables_typed: set = set()
+    text_fixes = vol.get("text_fixes", [])
+    text_fixes_applied: set = set()
+    table_functions_linked: set = set()
+    captions_listed_used: set = set()
 
     # where each caption is printed: the page whose lines start with it
     printed_at: dict[tuple[str, str], list[int]] = {}
@@ -694,7 +1115,18 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
         stream = _stream(pages, ch["page_start"], ch["page_end"])
         ch_entries = [e for e in entries if e["sid"].split(".")[0] == str(n)
                       and e["sid"] != f"{n}.0"]
-        pos = locate_headings(stream, pages, ch_entries, None)
+        # a heading the page prints otherwise than the contents list it
+        # (manifest "heading_overrides": {sid: {"number_as_printed",
+        # "title"}}): found and titled as the page prints it
+        for e in ch_entries:
+            over = vol.get("heading_overrides", {}).get(e["sid"])
+            if over:
+                e.update({k: v for k, v in over.items()
+                          if k in ("number_as_printed", "title")})
+                if over.get("contents_title"):
+                    e["contents_title"] = over["contents_title"]
+        pos = locate_headings(stream, pages, ch_entries, None,
+                              bool(vol.get("headings_on_listed_page")))
         found = [(e, p) for e, p in zip(ch_entries, pos) if p >= 0]
         missing = [e["sid"] for e, p in zip(ch_entries, pos) if p < 0]
         # the chapter's opening text, before its first numbered section
@@ -716,6 +1148,12 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                     while k < t and not stream[k][1]:
                         k += 1
                     k += 1
+                    # a title printed over two or more lines (manifest
+                    # "title_lines": true): the lines the title holds
+                    if vol.get("title_lines"):
+                        while k < t and stream[k][1] and _norm(stream[k][1]) \
+                                and _norm(stream[k][1]) in _norm(h["title"]):
+                            k += 1
             else:
                 while k < t and (not stream[k][1] or stream[k][1].upper().startswith("CHAPTER")
                                  or _norm(stream[k][1]) in _norm(ch["title"])):
@@ -723,9 +1161,16 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
             eq_ids: list = []
             body = render_body(stream, k, t, pages, captions_on_page, eq_ids,
                                chapter=str(n), figs=figs,
-                               tables_on_page=tables_on_page)
+                               tables_on_page=tables_on_page, eq_style=eq_style,
+                               captions_as_printed=bool(vol.get("captions_as_printed")))
             body = add_printed_tables(body, vol.get("printed_tables", []))
+            if typed_tables:
+                body = add_typed_tables(body, typed_tables, tables_typed)
             body = fix_printed_equations(body, printed_eqs, fixes_applied)
+            if text_fixes:
+                body = apply_text_fixes(body, text_fixes, text_fixes_applied)
+            if vol.get("formulas_in_body"):
+                body = put_formulas_in_body(body, printed_eqs)
             # the printed pages the section runs over (a chapter's last,
             # blank page prints no number)
             labels = [pages[stream[q][0]]["label"] for q in range(s, t)
@@ -746,7 +1191,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 continue
             pages_txt = (f"p. {page_from}" if page_from == page_to
                          else f"pp. {page_from} to {page_to}")
-            sections.extend(split_long({
+            sections.extend(add_table_functions(add_listed_captions(split_long({
                 "section_id": h.get("printed_as", h["sid"]),
                 "title": title,
                 "body": body,
@@ -754,12 +1199,18 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 "equations": add_printed_equations(body, [
                     {"id": f"Eq. {eq}", "description": _eq_description(w, eq, lab),
                      "implemented_in": None}
-                    for eq, w, lab in _unique_eqs(eq_ids)], printed_eqs, eqs_attached),
+                    for eq, w, lab in _unique_eqs(eq_ids)], printed_eqs, eqs_attached,
+                    bool(vol.get("formulas_in_body"))),
                 "figures": sec_figs,
                 "tables": sec_tabs,
                 "applicability": (f"{vol['volume_id']}, Chapter {n} "
-                                  f"({ch['title']}), printed {pages_txt}."),
-            }))
+                                  f"({ch['title']}), printed {pages_txt}."
+                                  + (f" The contents list this section as "
+                                     f"\"{h['contents_title']}\"."
+                                     if h.get("contents_title") else "")),
+            }, own_equations=bool(vol.get("split_own_equations"))),
+                vol.get("captions_listed", []), captions_listed_used),
+                vol.get("table_functions", {}), table_functions_linked))
         chapters[n] = {
             "reference_id": vol["volume_id"],
             "reference_title": vol.get("volume_title", ""),
@@ -771,8 +1222,22 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
         }
     built = {ch["number"] for ch in vol["chapters"] if ch["number"] not in skip}
     problems = []
+    for t in typed_tables:
+        if int(t["number"].split("-")[0]) in built and t["number"] not in tables_typed:
+            problems.append(f"Table {t['number']}: typed_tables entry found no text to replace")
+    for k, f in enumerate(text_fixes):
+        ch_of = re.split(r"[-.]", f["page"])[0]
+        if ch_of.isdigit() and int(ch_of) in built and k not in text_fixes_applied:
+            problems.append(f"text_fixes {k} (p. {f['page']}): found no text to mend")
+    for k, e in enumerate(vol.get("captions_listed", [])):
+        if int(e["number"].split("-")[0]) in built and k not in captions_listed_used:
+            problems.append(f"captions_listed {e['kind']} {e['number']}: no section prints "
+                            f"\"{e['printed']}\" at a paragraph's start")
+    for num in vol.get("table_functions", {}):
+        if int(num.split("-")[0]) in built and num not in table_functions_linked:
+            problems.append(f"table_functions {num}: no section lists Table {num}")
     for e in printed_eqs:
-        if int(e["number"].split("-")[0]) not in built:
+        if int(re.split(r"[-.]", e["number"])[0]) not in built:
             continue
         fixes = e.get("fix") or []
         for k in range(len([fixes] if isinstance(fixes, dict) else fixes)):

@@ -41,11 +41,11 @@ geotech_references/           # Python package (pip install -e .)
     figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
-    text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction)
+    text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction) + Appendices B and C (chapters 12, 13; REF-85)
   gec_7/                       # FHWA-NHI-14-007 Soil Nail Walls
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
-    text/                      # Structured chapter JSON (ch 1-10, 164 sections; ch 1-5 rebuilt from the print, ch 6-10 checked against it, REF-04)
+    text/                      # Structured chapter JSON (ch 1-10, 164 sections; ch 1-5 rebuilt from the print, ch 6-10 checked against it, REF-04) + Appendices A, B and C (chapters 11, 12, 13; REF-85)
   gec_10/                      # FHWA-NHI-18-024 Drilled Shafts (2018 edition)
     tables.py, figures.py      # 2018 edition: Table 8-4/9-1/10-2/11-1, Figure 10-6, Eq 10-21/22
     text/                      # All 18 chapters (FHWA-NHI-18-024, ch 1-18) + Appendices A, B, C, G, H (chapters 19-21, 25, 26)
@@ -80,7 +80,7 @@ scripts/                       # Content generation tools (NOT installed with th
   build_table_catalog.py       # List of Tables + body captions + the sections' `tables` entries → <pkg>/tables_catalog.json (no API); each row's page, where its values are (text / lookup / page); `--verify` checks every row on its page (REF-86)
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
-  build_printed_text.py        # Chapter text + figure catalog read off the printed pages (no API): sections from the printed contents, bodies in the print's wording with [p. 6-28] markers, equation objects as [Eq. 9-5], figures/tables from the Lists of Figures/Tables. Manifest "text_build": "printed". Used for fhwa_soils_foundations (REF-29)
+  build_printed_text.py        # Chapter text + figure catalog read off the printed pages (no API): sections from the printed contents, bodies in the print's wording with [p. 6-28] markers, equation objects as [Eq. 9-5], figures/tables from the Lists of Figures/Tables. Manifest "text_build": "printed". Used for fhwa_soils_foundations (REF-29), fhwa_pavements (REF-82; its manifest turns on `symbol_fonts`, `raised_o_degree`, `ruled_comparison_signs`, `captions_as_printed`, `captions_listed` and `list_captions_as_printed`, each off unless a manifest sets it) and em_1905 (layout "army", handed to `printed_army_layout.py`)
   check_section_numbers.py     # Chapter JSON section numbers vs the printed PDF (outline + page headings; no API). --detail lists what needs a reader, --apply writes only definite renumberings (section_id values only). Test: tests/test_section_numbers.py (skips without the PDFs). REF-23
   eval_retrieval_gold.py       # recall@3/5/10 per expansion strategy on the hand-curated gold set retrieval_gold.json (54 cases, 17 references). REF-07
   eval_subsection_retrieval.py # 14 questions answered in a subsection (8 references): replays search -> fetch, reports recall@5 and characters read; --titles --save/--compare = the ranking guard (top-level sections found by their own title). Test: tests/test_subsection_retrieval.py. REF-24
@@ -142,14 +142,15 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
-| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
-| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30). Figure catalog 89 rows, 3.22 and Appendices A, B, C and G added 2026-11-10 (REF-84) |
+| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Appendix B (the five design examples, Tables B1-1 to B5-1, sections B.n.5 to B.n.12 as the print numbers the steps, Step 11a stored as B.n.11.a) built from the print 2026-11-12 (REF-85) as chapter 12 (`appendix_b.json`). Appendix C (LRFD: Sections C.1 to C.6, Eqns. C-1 to C-5, Tables C-1 to C-6, and Examples B-1 and B-3 re-worked as LRFD Examples C1 and C2, stored as C-1 and C-2 (the appendix's names for them) with Steps C-1.5 to C-1.14 and C-2.5 to C-2.14 as the print numbers the steps; the first printed C.4.1, under C.3, stored as C.3.2) built from the print 2026-11-12 (REF-85) as chapter 13 (`appendix_c.json`); chapter 11 left for Appendix A (structural fill specifications), not built. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
+| gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30). Appendices B (preliminary design charts, Equations B.1 to B.8) and C (design example, Tables C.1 to C.5, sections C.1 to C.8.b as the print numbers its steps) built from the print 2026-11-12 (REF-85) as chapters 12 and 13 (`appendix_b.json`, `appendix_c.json`); Appendix A (reinforcement property tables A.1a to A.7 and Figure A.1, every cell from 300 dpi renders; sections A.1 to A.7 named for the tables, the print numbers none) built from the print 2026-11-12 (REF-85) as chapter 11 (`appendix_a.json`); D-G (plans, specifications, similar technologies) not built. Figure catalog 89 rows, 3.22 and Appendices A, B, C and G added 2026-11-10 (REF-84) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 427 | All 18 chapters complete (ch 1-18); ch 6 and 8 rewritten from the print 2026-11-10 (REF-81): bodies in the print's wording with page markers, Tables 6-1 to 6-3 and 8-1 to 8-4 and Eq. 8-1 typed in from the page; printed 8.1 (Blocks 1 to 22) stored as 8.1 and parts 8.1.a to 8.1.d, the letters not printed. Appendices A, B, C, G and H built from the print 2026-11-10 (REF-85) as chapters 19, 20, 21, 25 and 26 (`appendix_a.json` ...): the design example, challenging geomaterials, axial load-deformation (Eqs. C-1 to C-42), alternative lateral models (Eqs. G-1 to G-20), post-grouted shafts; App D-F (specification, checklist, forms) not built, chapters 22-24 left for them |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |
 | gec_12 | FHWA-NHI-16-009 Driven Piles | 16 | 231 | All 18 chapters; Vol I (ch 1-8) body-only, its ch 7 top-level sections 7.1-7.10 rebuilt from the print (REF-04); Vol II (ch 9-18) with equations, figures and tables, checked against the print page by page (REF-04, 2026-10-30); Vol II appendices A-C not built |
 | gec_13 | FHWA-NHI-16-027 / -028 (Vols I / II) Ground Modification | 16 | 222 | All 10 printed chapters (Vol I ch 1-5, Vol II ch 6-10); ch 3-10 rebuilt from the print 2026-10-19 (REF-25); the DDC depth is Eq. 4-1 as printed (REF-63). Figure catalog 239 rows: chapters 2-5 and 7-10 (206 figures) added 2026-11-10, the catalog had held ch 1 and 6 only (REF-84) |
-| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete). Figure catalog 142 rows, the sample problems' S1-1 to S2-3 added 2026-11-10 (REF-84) |
+| micropile | FHWA-NHI-05-039 Micropile Design | 14 | 108 | 10 chapters (complete). Appendices D (Sample Problem No. 1, bridge abutment support, sections D and D.1 to D.10 as the print numbers its steps, Table S1-1) and E (Sample Problem No. 2, a laterally loaded micropile) built from the print 2026-11-12 (REF-85) as chapters 14 and 15 (`appendix_d.json`, `appendix_e.json`); chapters 11 to 13 left for Appendices A to C (Case 2 networks, LPILE output, guide specification), not built. Figure catalog 142 rows, the sample problems' S1-1 to S2-3 added 2026-11-10 (REF-84) |
 | fhwa_soils_foundations | FHWA NHI-06-088 / NHI-06-089 Soils and Foundations Reference Manual, Vols I-II (Dec 2006) | 0 | 15 | All 12 chapters (Vol I ch 1-7, Vol II ch 8-12; appendices A-E not built), 511 sections, 295 figures, 200 tagged equation numbers (formulas not typed in: app BACKLOG REF-38); read off the print by `scripts/build_printed_text.py` (REF-29): bodies are the print's own wording with page markers, no summaries or key points; 4 sections over 14,000 characters split into lettered parts (`9.2.a`), the letters not printed; Tables 4-8 and 10-1, printed as pictures, typed in from the page (manifest key `printed_tables`). Figure catalog 391 rows, Appendix A's 59 figures and D-10 added 2026-11-10 (REF-84) |
+| fhwa_pavements | FHWA-NHI-05-037 Geotechnical Aspects of Pavements (May 2006) | 24 | 141 (2026-11-12) | All 8 chapters, 200 sections, read off the print by `scripts/build_printed_text.py` (REF-82, 2026-11-10 to 12): bodies in the print's wording with page markers, no summaries or key points; Eqs. 3.1-3.10, 5.1-5.69 and 7.1-7.6 and every unnumbered formula line typed in from the rendered page; 48 tables typed in from the page (manifest key `typed_tables`), among them every table whose text-layer run put a row under the wrong label (5-32, 5-44, 5-58, 7-9, 7-10); sections over 14,000 characters in lettered parts (`7.6.5.a`), the letters not printed; figure catalog of 179 figures (REF-51), each caption the one printed under the figure, the List of Figures wording in `read_notes` where it differs; appendices A-F not built |
 | ufc_backfill | UFC 3-220-04FA Backfill (rebuilt from the print 2026-11-10) | 7 | 49 | - |
 | ufc_expansive | UFC 3-220-07 Expansive Soils (rebuilt from the print 2026-11-10; the printed heave methods of ch 4-5 built 2026-11-10, REF-91) | 14 | 79 | - |
 | ufc_pavement | UFC 3-250-01 Pavement Design for Roads and Parking Areas (rebuilt 2026-07 from the real document; no longer the UFC 3-260-02 airfield coding, audit done; Figure 10-1 traced from the chart 2026-11-10) | 53 | 397 | 21 chapters |
@@ -267,12 +268,22 @@ page-reading tool only knew the figure catalogs).
   `table_number` and `caption` as printed, `chapter`, `section_id` and
   `section_title` (the stored section that lists or prints it, or null),
   `pdf_page_index` (0-based page where the table starts), `pages` (every
-  page it is printed on), `printed_page`, and where its values are:
-  `values` = `"text"` (its cells are typed in a stored section's `tables`
-  entry or body; `values_in` is the section id), `"lookup"` (a coded
-  function returns it; `values_in` is `module.function`, and
-  `implemented_in` lists every such function) or `"page"` (only on the
-  printed page). A multi-volume manual's rows carry `pdf_path`, `volume` and
+  page it is printed on: the pages after the first that print its label
+  again, "(continued)", its caption or two of its column-head lines at
+  their top, or a ruled table carrying on the one that fills the foot of
+  the page before), `printed_page` (the label its own page prints, read
+  from the top and bottom bands or, on a page printed turned, the side
+  strips; never a year), and where its values are: `values` = `"text"`
+  (every cell its page prints is typed in a stored section's `tables`
+  entry or body: the builder's cell check, `coverage_ok`, 90 % of the
+  numbers and row labels and 80 % of the words but a ruled table's column
+  heads, six cells or more, or read against the render; `values_in` is the
+  section id), `"lookup"` (a coded function returns its values;
+  `values_in` is `module.function`, and `implemented_in` lists every such
+  function, the one returning values before one that lists keys or returns
+  a footnote) or `"page"` (only on the printed page; a section that
+  summarizes or types part of the table, or a function that codes part of
+  it, is named in the row's `note`). A multi-volume manual's rows carry `pdf_path`, `volume` and
   their volume's `reference_id`; `printed_as_picture` marks a table with no
   text layer on its page; `note` says what a reader of the page should know.
 - **Retrieve** (`_tables_db.py`, mirrors `_figures_db.py` function for
@@ -294,45 +305,59 @@ page-reading tool only knew the figure catalogs).
 - **Agent**: `agents/references_agent.py` exposes `table_search` and
   `table_get` beside `reference_search` and `reference_get`, at the same
   14,000-character size.
-- **Coverage (build of 2026-11-12)**: 30 references, 1,991 rows: 372
-  text, 285 lookup, 1,334 page. Rows (text/lookup/page): aashto_1993 29
-  (0/14/15), california_trenching 39 (0/7/32), dm7_1 139 (0/7/132), dm7_2
-  172 (3/16/153), em_2104 27 (0/10/17), em_2107 38 (0/4/34), eurocode_7_1
-  20 (0/18/2), eurocode_7_2 38 (38/0/0), fema_p2082 52 (0/3/49),
-  fhwa_pavements 154 (0/15/139), fhwa_soils_foundations 142 (2/0/140),
-  gec_10 47 (34/2/11), gec_11 118 (5/16/97), gec_12 262 (164/8/90), gec_13
-  82 (0/8/74), gec_4 23 (0/4/19), gec_5 127 (103/0/24), gec_6 50
-  (2/10/38), gec_7 66 (12/13/41), gec_8 15 (6/0/9), gec_9 24 (0/5/19),
-  gsa_collapse 30 (0/11/19), micropile 37 (3/13/21), ufc_collapse 29
-  (0/12/17), ufc_concrete_practice 16 (0/12/4), ufc_flexible_practice 39
-  (0/23/16), ufc_pavement 28 (0/17/11), ufc_stabilization 10 (0/10/0),
-  ufc_structural 14 (0/13/1), wood_handbook 124 (0/14/110). GEC-14 prints
-  no numbered table (no catalog). The AASHTO 1993 rows are the tables a
+- **Coverage (build of 2026-11-12, after the independent check)**: 31
+  references, 2,099 rows: 432 text (375 by the cell check, 57 read
+  against the render), 273 lookup, 1,394 page. Rows (text/lookup/page):
+  aashto_1993 29 (0/14/15), california_trenching 39 (0/7/32), dm7_1 139
+  (0/7/132), dm7_2 172 (18/16/138), em_1905 109 (52/6/51), em_2104 27
+  (0/10/17), em_2107 38 (0/4/34), eurocode_7_1 20 (0/18/2), eurocode_7_2
+  38 (37/0/1), fema_p2082 52 (0/3/49), fhwa_pavements 153 (0/14/139),
+  fhwa_soils_foundations 142 (2/0/140), gec_10 47 (29/2/16), gec_11 118
+  (1/15/102), gec_12 262 (148/8/106), gec_13 82 (0/8/74), gec_4 23
+  (0/4/19), gec_5 127 (91/0/36), gec_6 50 (13/3/34), gec_7 66 (10/13/43),
+  gec_8 15 (6/0/9), gec_9 24 (0/5/19), gsa_collapse 30 (0/11/19),
+  micropile 37 (25/5/7), ufc_collapse 29 (0/11/18), ufc_concrete_practice
+  16 (0/12/4), ufc_flexible_practice 39 (0/23/16), ufc_pavement 28
+  (0/17/11), ufc_stabilization 10 (0/10/0), ufc_structural 14 (0/13/1),
+  wood_handbook 124 (0/14/110). GEC-14 prints no numbered table (no
+  catalog). The AASHTO 1993 rows are the tables a
   section lists or a lookup codes; its other printed tables are not rows.
 - **Where the builder needs a person**: a row the scan cannot place (a
   scan with no text layer, a label the text layer garbles, a List of Tables
   caption that is not the page's, a sentence or contents line that cites a
   number) was checked on the rendered page and its page, caption or row
   written into the builder's `CONFIG` (`page_from_render`,
-  `caption_from_render`, `rows_from_renders`, `drop`, `notes`,
-  `not_printed`), with a comment saying what the render showed, so a re-run
-  gives the same catalog. The AASHTO 1993 Guide (no text layer) has every
-  row so placed. EN 1997-1 and -2 are scans with an OCR text layer
-  (`"ocr": True`: the label check reads "Table A.S" as A.5 and "Table H.l"
-  as H.1). A page whose captions are a list (four or more within two lines
-  of each other) or a List of Tables page loses to a later page that
-  prints the table. A function that cites a table in its opening paragraph
-  without returning its values is set aside in `NOT_IMPLEMENTED_BY`. PDFs
-  not in `docs/` (the Wood Handbook is not committed) are read from the
-  folder `GEOTECH_REFERENCES_DOCS` names.
+  `pages_from_render`, `caption_from_render`, `printed_from_render`,
+  `rows_from_renders`, `drop`, `notes`, `not_printed`), with a comment
+  saying what the render showed, so a re-run gives the same catalog. The
+  same goes for `values`: a section whose cells the check cannot count (a
+  checklist, symbols it does not read as words, a table of four cells) was
+  read against the render and named in `text_by_render`; one that
+  summarizes, paraphrases or types part of a table is left `"page"` with a
+  `note`, and `values` pins the kind where the check's count would pass a
+  section that still leaves something out (a footnote, a column, rows). The AASHTO 1993 Guide (no
+  text layer) has every row so placed. EN 1997-1 and -2 are scans with an
+  OCR text layer (`"ocr": True`: the label and caption checks read "Table
+  A.S" as A.5 and "Table H.l" as H.1). A page whose captions are a list
+  (four or more within two lines of each other) or a List of Tables page
+  loses to a later page that prints the table. A function that cites a
+  table without returning its values (one that applies a rule beside it,
+  computes the equation a procedure table steps through, or codes another
+  row's factors) is set aside in `NOT_IMPLEMENTED_BY`. PDFs not in
+  `docs/` (the Wood Handbook is not committed) are read from the folder
+  `GEOTECH_REFERENCES_DOCS` names.
 - **Verify**: `python scripts/build_table_catalog.py --verify <pkg>|all`
   lists the rows whose page does not print the label and the caption's
   first words, or is a contents page (a table printed as a picture, a scan;
   each such row was checked on the render). Tests:
   `tests/test_tables_db.py`, `tests/test_table_catalog_rows.py` (pinned row
   counts, every row on its page by the builder's rule with the
-  render-checked rows listed, every `values_in` resolves, every listed
-  table a row).
+  render-checked rows listed, every `values_in` resolves, every "text" row
+  passes the cell check or was read on the render, a "lookup" row names the
+  function returning the values, every listed table a row),
+  `tests/test_table_printed_pages.py` (every row's `printed_page` is the
+  label its page prints, the rows whose label the text layer does not give
+  listed with the label seen on the render).
 
 ## Section levels (REF-24): every section is addressable
 
@@ -455,13 +480,13 @@ returns exactly what it always did; the app passes 14,000.
   `words_not_found` and a sentence on the note, and an empty result names
   the scope searched, what was tried and the words nothing there holds.
 - **Section fetches are not shaped**: the largest fit by their data. On
-  2026-11-12 eight are over the 14,000 budget from their own text, before
+  2026-11-13 ten are over the 14,000 budget from their own text, before
   the reach flags (characters of `reference_get`, without the flags):
   dm7_2 4-9 (15,647), ufc_structural 3-7 (15,488), em_2104 3-3 (14,757),
   em_1905 C-2b (14,300), fhwa_soils_foundations 6.6.3 (14,272),
-  ufc_structural 4-2.2 (14,247), dm7_1 1-3.6 (14,228) and
-  fhwa_soils_foundations 9.5.1.1 (14,115); all are under the app's 16,000
-  cap.
+  ufc_structural 4-2.2 (14,247), dm7_1 1-3.6 (14,228), gec_10 A.2.b
+  (14,183), fhwa_soils_foundations 9.5.1.1 (14,115) and fhwa_pavements
+  5.4.3.a (14,099); all are under the app's 16,000 cap.
   `tests/test_reach.py` fails if the flags add more than 1,200 characters
   to a fetch (`REACH_MAX_ADDED`), if any fetch passes 16,000, or if
   another passes 14,000. The app's guard test walks
@@ -490,7 +515,7 @@ has something in it (`_reach.py`):
   row's `values_in` without its module), `"page: printed p. P
   (pdf_page_index N)"` (only on the printed page; `table_get` gives it),
   or `"not catalogued"`: no row for it, or no catalog for the reference
-  (`gec_14` prints no numbered table; `em_1905` has none yet). Never "not
+  (`gec_14` prints no numbered table). Never "not
   held": a table with no row may still be described in the text. A row
   that says "text" or "lookup" but names nothing answers with its page. A
   number on several rows answers from the rows numbered exactly as listed
@@ -589,10 +614,10 @@ key is `"<reference> Chapter N"` or `"<reference> Section <id>"` and
 resolves; every figure number held on several catalog rows is on distinct
 pages; nothing is not held that `tests/reach_baseline.json` does not
 list, item by item, so one fixed and one broken cannot cancel out
-(2026-11-12, after review item 4 and the merge of the integration branch
-at ad21502: 2 figures and 115 tables not catalogued, 343 pointers not
-held: 206 appendices, 52 sections, 26 equations, 36 chapters, 14 figures,
-9 tables; take an item out when it is fixed);
+(2026-11-13, after the merge of build/tables at 90443d3: 2 figures and 6
+tables not catalogued, 344 pointers not held: 207 appendices, 52
+sections, 26 equations, 36 chapters, 14 figures, 9 tables; take an item
+out when it is fixed);
 the flags keep fetch sizes in their limits; the wheel's package data
 covers every data file the code reads (its globs matched as setuptools
 reads them, '*' never crossing '/').
@@ -745,7 +770,7 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 ### The PDF reader is part of a script build
 
-A reference whose text a script reads off its PDF (`scripts/build_printed_text.py`; its manifest has `"text_build"`: today `em_1905` and `fhwa_soils_foundations`) depends on exactly what the PDF reader, PyMuPDF, returns, and two versions do not return the same thing on every page (PyMuPDF 2.x places a bar over a symbol differently from 1.27, for one). So the reader's version is an input of the build:
+A reference whose text a script reads off its PDF (`scripts/build_printed_text.py`; its manifest has `"text_build"`: today `em_1905`, `fhwa_pavements` and `fhwa_soils_foundations`) depends on exactly what the PDF reader, PyMuPDF, returns, and two versions do not return the same thing on every page (PyMuPDF 2.x places a bar over a symbol differently from 1.27, for one). So the reader's version is an input of the build:
 
 - Each such manifest records the version it was built with: `"built_with": {"pymupdf": "1.27.2.3"}`. All record the same one.
 - The test that rebuilds a reference's text and compares it with the committed files calls `require_build_reader(<manifest>)` (`tests/_build_reader.py`). Under another version it skips, and its reason names both versions and the `pip install pymupdf==...` that runs it. With `GEOTECH_REQUIRE_BUILD_READER=1` a different or missing reader fails instead. Every other test that reads a PDF runs under any reader.
