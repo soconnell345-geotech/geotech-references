@@ -70,6 +70,30 @@ PRINTED = [
     ("fhwa_soils_foundations", "9.15.7.4", "an angle of about 20° from the load axis", "about 20E"),
     # NHI-06-088 PDF p. 251, printed p. 5-1
     ("fhwa_soils_foundations", "5.0", "the project’s issues", "project=s"),
+    # --- signs the page completes with a drawn stroke, raised exponents and
+    # degree signs (manifest "text_fixes" and "raised_o_degree"):
+    # NHI-06-088 PDF p. 257, printed p. 5-7, Table 5-2 (turned): "+" with a
+    # stroke drawn under it, and a degree sign the text layer gives as "o"
+    ("fhwa_soils_foundations", "5.2", "Dry soil in oven at 100 ± 5 °C", "100 + 5 oC"),
+    # PDF p. 259, printed p. 5-9: "<" with a stroke under it, 10 raised to -5
+    ("fhwa_soils_foundations", "5.2", "(k ≤ 1x10^-5 cm/s)", "(k < 1x10-5"),
+    # PDF p. 312, printed p. 5-62: ">" with a stroke under it
+    ("fhwa_soils_foundations", "5.6.4", "(k ≥ 10^-3 cm/sec)", "(k > 10-3"),
+    ("fhwa_soils_foundations", "5.6.4", "valid only for k ≥ 10^-3 cm/sec", "k > 10-3"),
+    # PDF p. 309, printed p. 5-59
+    ("fhwa_soils_foundations", "5.6.2", "k ≤ 2 x 10^-5 ft/min (1 x 10^-6 cm/s)", "2 x 10-5 ft/min"),
+    # PDF p. 311, printed p. 5-61, Table 5-9
+    ("fhwa_soils_foundations", "5.6.3", "1 x 10^-6 to 1 x 10^-7 20 less than 1 x 10^-7 30",
+     "less than 1 x 10-7"),
+    # PDF p. 313, printed p. 5-63, Table 5-10
+    ("fhwa_soils_foundations", "5.6.4", "Portland cement concrete less than 10^-8", "less than 10-8"),
+    # PDF p. 344, printed p. 5-94, Table 5-21
+    ("fhwa_soils_foundations", "5.12", "Elastic Modulus, Ei (psi ×10^6)", "(psi ×106)"),
+    # PDF p. 61, printed p. 2-5; PDF p. 367, printed p. 6-17 (raised "o")
+    ("fhwa_soils_foundations", "2.1.2", "between 220 and 230°F (105 and 110°C)", "230oF"),
+    ("fhwa_soils_foundations", "6.4.3", "(12,000 lbs) (cos 20°) = 11,276 lbs", "(cos 20o)"),
+    # NHI-06-089 PDF p. 343, printed p. 10-53
+    ("fhwa_soils_foundations", "10.6", "cos 10°", "cos 10o"),
 ]
 
 #: (package, figure number, printed caption text now stored, text-layer form
@@ -247,6 +271,47 @@ def _raw_passages(pdf: Path, fonts: dict):
                     yield (pno + 1, "".join(x for x, _ in items),
                            re.compile(pat(left) + re.escape(c) + pat(right)))
             page = None
+
+
+#: Font-name prefixes of the text faces in FHWA NHI-06-088/089; every other
+#: font is a symbol font (LucidaConsole, LucidaSansUnicode, Courier and Tahoma
+#: set only spaces there).
+_SOILS_TEXT_FONTS = ("TimesNewRoman", "Arial", "CourierNew", "BookAntiqua", "Verdana", "ComicSansMS",
+                     "LucidaConsole", "LucidaSansUnicode", "Courier", "Tahoma")
+
+
+def test_every_soils_symbol_font_glyph_is_read_off_the_page():
+    # each character a symbol font sets in either soils volume is in the
+    # manifest's "symbol_fonts" (mapped in the build) or "symbol_fonts_checked"
+    # (the text layer already gives the printed glyph: SymbolMT's Greek, signs
+    # and the pieces of tall brackets in equation objects), every pair looked at
+    # on a 300 dpi crop; a glyph in neither, or a private-use character in any
+    # font, fails here
+    fitz = pytest.importorskip("fitz")
+    m = json.loads((MANIFESTS / "fhwa_soils_foundations.json").read_text(encoding="utf-8"))
+    n = 0
+    for vol in m["volumes"]:
+        pdf = (MANIFESTS / vol["pdf_path"]).resolve()
+        if not pdf.exists():
+            pytest.skip("PDF not checked out")
+        known = {}
+        for key in ("symbol_fonts", "symbol_fonts_checked"):
+            for f, cm in vol.get(key, {}).items():
+                known.setdefault(f, set()).update(cm)
+        unread = set()
+        with fitz.open(str(pdf)) as doc:
+            for page in doc:
+                for b in page.get_text("dict", flags=fitz.TEXTFLAGS_TEXT)["blocks"]:
+                    for ln in b["lines"]:
+                        for s in ln["spans"]:
+                            symbol = not s["font"].startswith(_SOILS_TEXT_FONTS)
+                            for c in s["text"]:
+                                if c != " " and (symbol or 0xE000 <= ord(c) <= 0xF8FF):
+                                    n += 1
+                                    if c not in known.get(s["font"], ()):
+                                        unread.add((s["font"], c))
+        assert not unread, (pdf.name, sorted(unread))
+    assert n > 1000
 
 
 @pytest.mark.parametrize("pkg", CHECKED)
