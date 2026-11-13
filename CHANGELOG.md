@@ -104,6 +104,17 @@ the rendered pages:
   strip, welded wire and bar mat tables typed in row by row (wire sizes
   W3.5 to W20, areas and diameters in both units, Fy/Fu, spacings). Noted
   as printed: W4.5's 0.239 in. diameter is given as 6.0 mm (6.07).
+- Appendix D (pp. D-1 to D-21; file chapter 15), the creep reduction
+  factor RFCR and Tal (after WSDOT T 925): Eqs. D-1, D.2-1, D.2-2 (the
+  extrapolation uncertainty factor (1.2)^(x-1)), D.3-1 and D.3-2 (the
+  confidence limits for comparing SIM with conventional data), D.4-1,
+  the unnumbered Tal = P95 / (RFID × RFD), the four figures' lettering
+  and the D.6.1 example (Tl = 56.0 kN/m, RFCR = 2.0). Noted as printed:
+  p. D-9's "12 to 15" does not follow from 0.05 to 0.18 decades per
+  degree; the text points to Equations "B.2-3", "B.2-1", "D.2-3" and
+  "D.4" for D.2-2 and D.3-1; on p. D-16 no equation follows "in
+  accordance with the following". A short last line now ends a paragraph
+  that the text layer runs together (Appendix B gains three breaks).
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups

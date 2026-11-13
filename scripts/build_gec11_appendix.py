@@ -71,6 +71,8 @@ _MARK = re.compile(r"\[p\. [^\]]+\]")
 #: The end of a paragraph's last line that ends it at a page break: a
 #: sentence's stop, a colon, a closing bracket of a typed-in note.
 _ENDS = re.compile(r"[.:;?!\]]\)?[\"”’]?$")
+#: The start of a line that can open a paragraph.
+_OPENS = re.compile(r"[A-Z0-9“\"•▪]")
 
 
 def _paragraphs(stream, pages) -> str:
@@ -82,6 +84,14 @@ def _paragraphs(stream, pages) -> str:
     paras, cur = [], []
     last_page, gap = None, False
     row = gt._ROW
+    # the width of a full line of text on each page: a paragraph's last
+    # line is shorter, which parts paragraphs the text layer runs together
+    width = {}
+    for i, ln in stream:
+        if 50 <= len(ln) <= 120 and row not in ln:
+            width.setdefault(i, []).append(len(ln))
+    width = {i: sorted(v)[len(v) // 2] for i, v in width.items() if len(v) >= 5}
+    prev = ""
 
     def flush():
         if cur:
@@ -108,7 +118,17 @@ def _paragraphs(stream, pages) -> str:
                 flush()
         elif gap:
             flush()
+        elif (i in width and 15 < len(prev) < 0.75 * width[i]
+              and _ENDS.search(prev) and _OPENS.match(ln)
+              and not prev.startswith("[")):
+            # a short line that ends a sentence ends its paragraph; in a
+            # list it ends the line ("Record the time to failure ...")
+            if not any(_ITEM.match(c) for c in cur):
+                flush()
+            elif not (_ITEM.match(ln) or ln.startswith(row)):
+                cur.append(row)
         gap = False
+        prev = ln
         # a replacement line that starts with a line break ("\nRFD = ...",
         # a list going on over a page) keeps it before the page marker
         if ln.startswith(row):

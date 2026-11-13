@@ -22,7 +22,7 @@ PKG = ROOT / "geotech_references" / "gec_11"
 PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
 #: Appendices built from the print so far, with the chapter number each
 #: file carries (the appendices follow chapter 11).
-BUILT = {"A": 12, "B": 13, "C": 14}
+BUILT = {"A": 12, "B": 13, "C": 14, "D": 15}
 
 
 def _appendix(letter):
@@ -271,6 +271,77 @@ def test_appendix_c_steel_dimensions_typed_in():
     # strips and bar mats 65/75 ksi
     assert "Fy/Fu: 65/80 ksi (450/550 MPa)" in body
     assert body.count("65/75 ksi (450/520 MPa)") == 2
+
+
+# --- Appendix D -------------------------------------------------------------
+
+def test_appendix_d_headings_as_printed():
+    secs = _sections("D")
+    titles = {sid: s["title"] for sid, s in secs.items() if "(continued" not in s["title"]}
+    assert titles == {
+        "D": "Determination of Creep Strength Reduction Factor, RFCR and "
+             "Determination Long-Term Allowable Strength, Tal",
+        "D.1": "Background",
+        "D.2": "Step-by-Step Procedures for Extrapolating Stress Rupture Data – "
+               "Conventional Method",
+        "D.3": "Procedures for Extrapolating Creep Rupture Data – Stepped "
+               "Isothermal Method (SIM)",
+        "D.4": "Determination of RFCR",
+        "D.5": 'Use of Creep Data from "Similar" Products and Evaluation of Product Lines',
+        "D.6": "Creep Extrapolation Examples Using Stress Rupture Data",
+        "D.6.1": "Stress Rupture Extrapolation Example",
+        "D.7": "Recommended Procedures to Determine Tal"}
+    assert "after WSDOT Standard Practice T 925" in secs["D"]["body"]
+    # the contents' page slips, said where the appendix is placed
+    assert 'on p. "E-16"' in secs["D"]["applicability"]
+
+
+def test_appendix_d_equations_as_printed():
+    eqs = {e["id"]: e for s in _appendix("D")["sections"] for e in s["equations"]}
+    assert {k: v["formula"] for k, v in eqs.items()} == {
+        "Eq. D-1": "RFCR = Tultlot / Tl",
+        "Eq. D.2-1": "tamb = (telev) (aT)",
+        "Eq. D.2-2": "Tl = Pcl / (1.2)^(x-1)",
+        "Eq. D.3-1": "log tL = log treg ± [tα,n-2 √(1/n + (P − P̄)² / Σ(Pi − P̄)²)] × σ",
+        "Eq. D.3-2": "σ = √({Σ[log ti − log t̄]² − {Σ[(Pi − P̄)(log ti − log t̄)]}² "
+                     "/ Σ(Pi − P̄)²} / (n − 2))",
+        "Eq. D.4-1": "RFCR = Tultlot / Tl"}
+    assert "log td – log tmax" in eqs["Eq. D.2-2"]["variables"]["x"]
+    body = "\n".join(s["body"] for s in _appendix("D")["sections"])
+    # p. D-10: the factor may go up to (1.4)^x; p. D-1: the tolerance is ±
+    assert "increased to as much as (1.4)^x if" in body
+    assert "maintained at ±3.6° F (2° C)" in body
+
+
+def test_appendix_d_example_arithmetic():
+    """D.6.1 (p. D-17): the creep limit load of 63.4 kN/m, 1.68 log cycles
+    beyond the data, and the lot strength of 110 kN/m."""
+    body = _sections("D")["D.6.1"]["body"]
+    assert "Tl = (63.4 kN/m) / (1.2)^(1.68 − 1) = 56.0 kN/m" in body
+    assert round(63.4 / 1.2 ** (1.68 - 1), 1) == 56.0
+    assert "RFCR = (110 kN/m) / (56.0 kN/m) = 2.0" in body
+    assert round(110 / 56.0, 1) == 2.0
+    # 1.68 log cycles short of 1,000,000 hours is about 21,000 hours, the
+    # last rupture point on Figure D.6-2
+    assert round(10 ** (6 - 1.68), -3) == 21000
+    assert "fifteen rupture points" in body and "labelled 63.4 there" in body
+
+
+def test_appendix_d_print_slips_noted():
+    body = "\n".join(s["body"] for s in _appendix("D")["sections"])
+    # p. D-9: 0.05 to 0.18 decades per degree over 10 degrees is not 12 to 15
+    assert "time shift factor of 12 to 15) and 0.05 to 0.12" in body
+    assert round(10 ** (0.05 * 10)) == 3 and round(10 ** (0.18 * 10)) == 63
+    assert 0.10 < math.log10(12) / 10 and math.log10(15) / 10 < 0.12
+    assert "gives time shift factors of about 3 to 63" in body
+    # the equations the text points to by other numbers
+    assert 'as printed, "Equation B.2-3"; this appendix has no such equation' in body
+    assert "Equation D.2-3 is then used to determine Tl. [Note: as printed;" in body
+    assert 'as printed, "Equation D.4"; the formula used is Equation D.2-2.' in body
+    assert "the equation is D.3-1 in this appendix" in body
+    # p. D-16: the equation that "the following" points to is not printed
+    assert "accordance with the following: [Note: as printed; no equation follows" in body
+    assert "Tal = P95 / (RFID × RFD)\n\nwhere,\nP95 = " in body
 
 
 # --- the build ------------------------------------------------------------
