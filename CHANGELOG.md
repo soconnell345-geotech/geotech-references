@@ -139,10 +139,15 @@ the rendered pages:
   of working keeps its own line; the page footers of the examples are now
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
   E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
-  E3-20) and E4 (pp. E4-1 to E4-19). A long example is split into parts
-  never between a caption and its typed-in table or figure lettering (E1's
-  Table E1-7.5 had its caption in one part and its rows in the next), and
-  a fix line "¶" ends a paragraph at the top of a page. Noted as printed: in
+  E3-20), E4 (pp. E4-1 to E4-19) and E5 (pp. E5-1 to E5-32). A long example
+  is split into parts never between a caption and its typed-in table or
+  figure lettering (E1's Table E1-7.5 had its caption in one part and its
+  rows in the next) and never right after a step heading (E3, E4 and E5
+  had parts ending with "6.1 Sliding Resistance ...", "STEP 9: ..." or
+  "STEP 7. ..."), and a fix line "¶" ends a paragraph at the top of a
+  page. Figures E5-3 and E5-4 carry labels in the page's text layer that
+  the printed page does not show (V4, V5, FA, B ...); their lettering is
+  typed from the rendered page and says so. Noted as printed: in
   E1, "F2" for FH2 in the sliding check; the bearing figure numbered
   E.1.6-1 again (the text calls it E1.6-3); "Step 6.a" for 6.2; the
   Service I bearing stress left blank; Table E1-7.1's strengths (6,000 to
@@ -160,6 +165,18 @@ the rendered pages:
   E1-6.3" for E4-6.3; "1.7Ka = 0.707" for 2.5Ka; a steel loss of 0.16
   mil/year/side where 0.47 is used; the W11 loss without its "/1000";
   "Tr = 5.14 k/wire (0.65)" where Tn is 5.17; Table E4-7.4's "φs(Tn)".
+  In E5, Table E5-4.4's MF2 (4.43, 25.21), the moments of F2 = 0.815 k/ft
+  where Step 2 gives 0.82; "anl" for awl in Table E5-6.3's critical
+  eccentricity; Table E5-7.1's overturning moment about Point B, written
+  "MFS3+MF3+MF4+MFA" and printed larger than that sum (666.03, 454.90,
+  448.67 where Table E5-7.3's 571.95, 389.77, 379.11 follow from Table
+  E5-4.4), on the safe side, and "about Point A" for MB-C; Table E5-7.3's
+  MOB row naming MFS2+MF3+MF4 though its values hold MFA; "6.4 Settlement
+  Analysis" for 7.4; "Article 3.116" for 3.11.6; 1.2Ka written 0.339 in
+  the Kr interpolation whose results are those of 0.340; the ΔσH lines
+  whose brackets do not pair; "(0.5 ft + 10.75 ft)0.6" for a division;
+  Table E5-8.3's "φs(Tn)"; "Table E-4-8.3" for E5-8.3 and 25.5 ft/2 =
+  "12.5 ft".
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

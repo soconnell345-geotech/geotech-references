@@ -74,14 +74,25 @@ def test_caption_kept_with_its_typed_table(letter):
                 s["section_id"], num)
 
 
+#: Formula lines printed with brackets that do not pair, each noted in the
+#: text (p. E5-26).
+PRINTED_UNPAIRED = {
+    "ΔσH(Z−) = [(2)(5.55 k/ft)/16.29 ft)][16.29 ft – 6.04 ft)/16.29 ft)] [1.00] = 0.43 ksf",
+    "ΔσH(Z+) = [(2)(5.55 k/ft)/16.29 ft)][16.29 ft – 8.50 ft)/16.29 ft)] [1.00] = 0.33 ksf",
+    "ΔσH(Z−) = [(2)(3.79 k/ft)/16.29 ft)][16.29 ft – 6.04 ft)/16.29 ft)] [1.50] = 0.44 ksf",
+    "ΔσH(Z+) = [(2)(3.79 k/ft)/16.29 ft)][16.29 ft – 8.50 ft)/16.29 ft)] [1.50] = 0.33 ksf",
+}
+
+
 @pytest.mark.parametrize("letter", sorted(BUILT))
 def test_no_scatter_patterns(letter):
     """A formula taken from the text layer that has come apart: a prime on
     its own, a lone number line above a formula, brackets that do not pair
-    on a formula line, a line of one or two glyphs."""
+    on a formula line (but for the lines printed so), a line of one or two
+    glyphs."""
     bad = []
     for s in _appendix(letter)["sections"]:
-        lines = s["body"].split("\n")
+        lines = [ln for ln in s["body"].split("\n") if ln not in PRINTED_UNPAIRED]
         for i, ln in enumerate(lines):
             if re.search(r"(?<=\s)['′’](?=\s)", ln):
                 bad.append((s["section_id"], ln[:60]))
@@ -417,7 +428,7 @@ def test_appendix_e1_working_as_printed():
 
 
 def _typed_rows(body, table):
-    block = body.split(f"[Table {table}, typed in from p. ")[1].split("\n\n")[0]
+    block = body.split(f"[Table {table}, typed in from p")[1].split("\n\n")[0]
     return [ln.split(" | ") for ln in block.split("\n")[2:] if " | " in ln]
 
 
@@ -678,6 +689,187 @@ def test_appendix_e4_print_slips_noted():
     assert "as printed, 5.14; Tn above is 5.17 k/wire, and 5.17 × 0.65 = 3.36." in body
     assert 'as printed, "φs(Tn)"; the factor applied, 0.65, is φt (Table E4-5.2).' in body
     assert round(2.5 * 0.283, 3) == 0.707 and round(1.7 * 0.283, 3) == 0.481
+
+
+def _near(a, b, tol=0.006):
+    return abs(float(a) - float(b)) <= tol
+
+
+def _cells(body, table):
+    """A typed table's rows with its blank cells kept (stored "| |")."""
+    return [[c.strip() for c in " | ".join(row).split("|")]
+            for row in _typed_rows(body, table)]
+
+
+def test_appendix_e5_working_as_printed():
+    """Example E5's formula lines as typed in from pp. E5-6 to E5-29, and
+    their arithmetic from the Step 2 values."""
+    secs = _sections("E")
+    assert secs["E.5"]["title"].startswith("Bridge Abutment Supported on Spread Footing")
+    body = _e_body("E.5")
+    for line in (
+        "Ka1 = (1 - sin34°)/(1 + sin34°) = 0.283",
+        "Ka3 = (1 - sin30°)/(1 + sin30°) = 0.333",
+        "V0 = (γ2)(h2+h3)(b5) | EV | b5/2 + (bf − b5) | b5/2 + (bf + cf − b5)",
+        "FA = F1 + F2 + FS1 | Based on each component | - | H (for external stability); "
+        "H – (L1/3) (for internal stability)",
+        "PnL = VA– hγ2(bf+cf)",
+        "Δσv-footing = PwL / [(bf − 2ef) + (cf + H/2)]",
+        "σv = ΣV / (L − 2eL)",
+        "σvmax = σv + Δσv-footing",
+        "σH = Kr [γr (Z + h + heqM) γP-EV + (Δσv-footing) γP-ES] + (ΔσH) γP-ES",
+        "z− = Z− + h = 6.04 ft + 10.35 ft = 16.39 ft",
+        "Δσv-footing = PwL / [(bf − 2ef) + (cf + Z/2)]",
+        "σH-footing(Z−) = [Kr(Z−)Δσv-footing(Z−)] γP-ES = (0.365)(1.29 ksf)(1.00) = 0.47 ksf",
+        "σH = 1.06 ksf + 0.12 ksf + 0.49 ksf + 0.39 ksf = 2.06 ksf",
+        "Tmax = (σH)(Atrib) = (2.06 ksf)(24.60 ft²) = 50.7 k/panel of 10 ft width",
+        "ER = (0.47 mil/year/side) (84 years) (2 sides) = 78.96 mils = 0.079 in., and",
+        "Pr = (1.0)(0.832)(2)(0.164 ft)(15.06 ft)(2.20 ksf) = 9.04 k/strip",
+        "Prr = φPr = (0.90)(9.04 k/strip) = 8.14 k/strip",
+    ):
+        assert line in body, line
+    r = math.radians
+    ka = (1 - math.sin(r(34))) / (1 + math.sin(r(34)))
+    assert round(ka, 3) == 0.283
+    # Table E5-4.3 and E5-4.4 from Step 2 (h = 10.35 ft, H = 25.5 ft, L = 26 ft)
+    h, H, L, g, gc = 10.35, 25.5, 26.0, 0.125, 0.150
+    assert _near(g * (3.85 + 5.00) * 5.25, 5.81) and _near(gc * 10.75 * 1.50, 2.42)
+    assert _near(gc * 4.00 * 3.85, 2.31) and _near(g * H * L, 82.88)
+    assert _near(g * h * L, 33.64) and _near(g * 2.96 * L, 9.62)
+    assert _near(0.5 * ka * g * h ** 2, 1.89) and _near(g * h * H / 3, 11.00)
+    assert _near(0.5 * g * H ** 2 / 3, 13.55) and _near(ka * g * 2.96 * h, 1.08)
+    # Tables E5-6.1 to E5-6.3, Strength I (max)
+    assert _near(1.5 * 6.53 + 1.75 * 5.60 + 4.43, 24.03)
+    assert _near(1.35 * 5.81 + 1.25 * (2.42 + 2.31 + 0.75 + 10.60), 27.94)
+    assert _near(1.5 * 1.89 + 1.75 * 1.08 + 0.82, 5.55)
+    assert _near(27.94 + 1.75 * (5.70 + 2.31), 41.96)
+    assert _near((0.5 + 8.16) * math.tan(r(45 + 34 / 2)), 16.29)
+    # Table E5-7.1: the net bridge load PwL; Table E5-7.3: its spread to the base
+    assert _near(h * 11.25 * g, 14.55) and _near(41.96 - 1.35 * 14.55 - 1.75 * 4.16, 15.03, 0.011)
+    assert _near(8.16 + 0.5 + H / 2, 21.41) and _near(15.03 / 21.41, 0.70)
+    # Step 8: Level 4, Strength I (max)
+    assert _near(0.340 + 3.61 * 0.141 / 20, 0.365, 0.001)
+    assert _near(0.365 * g * 16.39 * 1.35, 1.01, 0.01)
+    assert _near(15.03 / (8.16 + 0.5 + 6.04 / 2), 1.29) and _near(11.18 / (8.66 + 4.25), 0.87)
+    assert _near(2 * 5.55 / 16.29 * (16.29 - 6.04) / 16.29, 0.43)
+    assert _near(2 * 3.79 / 16.29 * (16.29 - 6.04) / 16.29 * 1.5, 0.44)
+    assert _near(2.06 * 24.60, 50.7, 0.05)
+    assert round(2 + (3.386 - 2 * 0.58) / 0.16) == 16
+    assert _near(0.47 * 84 * 2, 78.96) and _near(1.969 * 0.078, 0.154, 0.001)
+    assert _near(65 * 0.154, 10.00, 0.011) and _near(10.00 * 0.75, 7.50)
+    assert _near(0.675 + 2.38 * 1.325 / 20, 0.832, 0.001)
+    assert _near(H - 11.25 / 0.6, 6.75) and _near(L - 0.6 * (H - 7.27), 15.06)
+    pr = 0.832 * 2 * 0.164 * 15.06 * 2.20
+    assert _near(pr, 9.04) and _near(0.9 * pr, 8.14)
+    assert round(50.7 / 7.50, 1) == 6.8 and round(50.7 / 8.14, 1) == 6.2
+
+
+def test_appendix_e5_tables_typed_in():
+    body = _e_body("E.5")
+    # Tables E5-4.3 and E5-4.4: each moment is the force times its arm, to
+    # the rounding of the printed force and arm; F2's are noted in the text
+    def product(value, arm, m):
+        v, a = float(value), float(arm)
+        return abs(v * a - float(m)) <= 0.005 * (v + a) + 0.006
+
+    for force, value, arm_a, arm_b, _, m_a, m_b in (_cells(body, "E5-4.3")
+                                                     + _cells(body, "E5-4.4")[:-1]):
+        for arm, m in ((arm_a, m_a), (arm_b, m_b)):
+            if arm and force != "F2 =":
+                assert product(value, arm, m), force
+    # F2's moments are those of 0.815 k/ft, not Step 2's 0.82 (noted)
+    f2 = _cells(body, "E5-4.4")[1]
+    assert f2[0] == "F2 =" and f2[1] == "0.82"
+    assert round(0.815 * 5.43, 2) == float(f2[5]) and round(0.815 * 30.93, 2) == float(f2[6])
+    rows = {}
+    for row in _typed_rows(body, "E5-6.3"):
+        rows.setdefault(row[0], row)
+    ecc = rows["Eccentricity from center of footing, ef = 0.5*bf - awl"]
+    width = rows["Effective width of spread footing, bf'=bf -2ef ="]
+    stress = rows["Bearing stress, σv = VAb / (bf-2ef)"]
+    load = rows["Sum of vertical forces from the footing for bearing stress "
+                "analysis=VAb=V0+V1+V2+V3+DL+LL+VS1"]
+    cdr = rows["Capacity:Demand Ratio (CDR) = qR:σv"]
+    for col, q in ((2, 7.0), (3, 7.0), (4, 4.0)):
+        assert _near(10.75 - 2 * float(ecc[col]), width[col], 0.011)
+        assert _near(float(load[col]) / float(width[col]), stress[col])
+        assert round(q / float(stress[col]), 2) == float(cdr[col])
+    rows = {}
+    for row in _typed_rows(body, "E5-7.1"):
+        rows.setdefault(row[0], row)
+    mrb = rows["Resisting moments about Point B without LL surcharge= MRB =MV4+MV5+MPnL"]
+    mob = rows["Overturning moments about Point B = MOB = MFS3+MF3+MF4 +MFA (For MFA See Note 1)"]
+    vb = rows["Vertical load at base of MSE wall without LL, VB = V4+V5 + PnL"]
+    b = rows["Location of the resultant force on base of MSE wall from Point B, b =(MRB - MOB)/VB"]
+    for col in (2, 3, 4):
+        assert _near((float(mrb[col]) - float(mob[col])) / float(vb[col]), b[col])
+    # the sum the row names, from Table E5-4.4 and Table E5-5.1, is Table E5-7.3's
+    named = 1.75 * 27.09 + 1.5 * (140.21 + 115.15) + 5.55 * 25.5
+    assert abs(named - 571.95) < 0.1 and float(mob[2]) > named
+    rows = {}
+    for row in _typed_rows(body, "E5-7.3"):
+        rows.setdefault(row[0], row)
+    v = rows["Vertical load at base of MSE wall including LL on top, V = V4+V5+VS"]
+    ecc = rows["Eccentricity from center of wall, eL = 0.5*L – b"]
+    width = rows["Effective width of base of MSE wall, B' = L-2eL"]
+    wall = rows["Factored bearing stress due to MSE wall = V/(L-2eL)"]
+    bridge = rows["Bearing stress due to PwL"]
+    total = rows["Total bearing stress due to Component 1 + 2 = σvmax"]
+    cdr = rows["Capacity:Demand Ratio (CDR) = qR:σvmax"]
+    for col, q in ((2, 15.0), (3, 15.0), (4, 7.0)):
+        assert _near(26 - 2 * float(ecc[col]), width[col], 0.011)
+        assert _near(float(v[col]) / float(width[col]), wall[col])
+        assert _near(float(bridge[col]) + float(wall[col]), total[col], 0.011)
+        assert round(q / float(total[col]), 2) == float(cdr[col])
+    # Table E5-8.1: Svt = Z+ − Z−
+    for level, z, zm, zp, svt in _typed_rows(body, "E5-8.1"):
+        lo, hi = float(zm.split("=")[-1]), float(zp.split("=")[-1])
+        assert _near(hi - lo, svt, 0.001), level
+    svts = {row[0]: float(row[4]) for row in _typed_rows(body, "E5-8.1")}
+    # Table E5-8.3, every level
+    rows = _typed_rows(body, "E5-8.3")
+    assert [row[0] for row in rows] == [str(n) for n in range(1, 12)]
+    ka = math.tan(math.radians(45 - 34 / 2)) ** 2
+    tan_phi = math.tan(math.radians(34))
+    for (level, z, kr, sigma, tmax, fstar, le, ppr, ptn, n_p, n_t, n_g, sh) in rows:
+        zz = float(z) + 10.35
+        f = max(0.0, 20 - zz) / 20
+        assert _near(1.2 * ka + f * 0.5 * ka, kr, 0.0011), level
+        assert _near(tan_phi + f * (2.0 - tan_phi), fstar, 0.0011), level
+        z_dash = 25.5 - 11.25 / 0.6
+        assert _near(26 - (11.25 if float(z) <= z_dash else 0.6 * (25.5 - float(z))), le), level
+        pull = 0.9 * float(fstar) * 2 * 0.164 * float(le) * 0.125 * zz
+        assert abs(pull / float(ppr) - 1) < 0.01, level
+        assert abs(float(tmax) - 10 * svts[level] * float(sigma)) < 0.15, level
+        assert _near(float(tmax) / float(ppr), n_p, 0.06), level
+        assert _near(float(tmax) / float(ptn), n_t, 0.06), level
+        assert int(n_g) == math.ceil(max(float(tmax) / float(ppr), float(tmax) / 7.50)), level
+        assert _near(10 / int(n_g), sh, 0.051), level
+
+
+def test_appendix_e5_print_slips_noted():
+    body = _e_body("E.5")
+    for note in (
+        "as printed, MF2 = 4.43 and 25.21 k-ft/ft; with F2 = 0.82 k/ft as given in Step 2, "
+        "0.82 k/ft × 5.43 ft = 4.45",
+        'as printed, "anl" in the critical eccentricity row, which uses awl',
+        'The overturning-moment row prints "MFS3" (Table E5-4.4 has MFS2)',
+        "as printed, the overturning-moment row names MFS2+MF3+MF4, but its values also hold MFA",
+        "as printed, 6.4; this is the settlement analysis of the MSE wall, listed as 7.4",
+        'as printed, "Article 3.116"; the AASHTO article on surcharge loads, ES, is 3.11.6.',
+        "as printed, 0.339 for 1.2Ka in these lines, where Step 8.1 gives 1.2(0.283) = 0.340",
+        "as printed, the brackets of these ΔσH lines and of Method B's do not pair",
+        'as printed, "(0.5 ft + 10.75 ft)0.6"',
+        'as printed, "φs(Tn)"; the factor applied, 0.75, is φt (Table E5-5.2).',
+        "\"Table E-4-8.3\", for this example's Table E5-8.3, and 12.5 ft, where "
+        "25.5 ft/2 = 12.75 ft",
+    ):
+        assert note in body, note
+    assert round(0.82 * 5.43, 2) == 4.45 and round(0.82 * 30.93, 2) == 25.36
+    assert round(1.2 * 0.283, 3) == 0.340 and 25.5 / 2 == 12.75
+    # the lines the scatter test lets pass are in the text as printed
+    for line in PRINTED_UNPAIRED:
+        assert line in body.split("\n"), line
 
 
 # --- the build ------------------------------------------------------------

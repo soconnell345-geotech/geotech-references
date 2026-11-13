@@ -190,9 +190,15 @@ def _listed(body: str, kind: str) -> list[str]:
 
 
 #: Two characters in place of the blank line between a caption and its
-#: typed-in table or figure lettering while a long section is split, so
-#: no part ends with a caption whose table is in the next.
+#: typed-in table or figure lettering, and after a heading, while a long
+#: section is split, so no part ends with a caption whose table is in the
+#: next or with a heading whose text is in the next.
 _GLUE = "\x1f\x1f"
+
+#: A worked example's step or sub-step heading standing as its own
+#: paragraph ("STEP 7. EVALUATE ...", "6.2 Sliding Resistance at ...",
+#: "E5-2 PRACTICAL CONSIDERATIONS").
+_HEADING = re.compile(r"^(?:STEP \d+[.:]|\d+(?:\.\d+)+ [A-Z]|E\d+-\d+ [A-Z])")
 
 
 def _glue_captions(body: str) -> str:
@@ -203,10 +209,12 @@ def _glue_captions(body: str) -> str:
         cap = _CAPTION.match(prev.split("\n")[0])
         here = _MARK.sub("", p).strip()
         nxt = _CAPTION.match(here.split("\n")[0])
+        last = prev.split(_GLUE)[-1]
         if ((cap and cap.group(1) == "Table"
              and here.startswith(f"[Table {cap.group(2)}, typed in"))
                 or (nxt and nxt.group(1) == "Figure"
-                    and prev.startswith(f"[Figure {nxt.group(2)} lettering"))):
+                    and prev.startswith(f"[Figure {nxt.group(2)} lettering"))
+                or (len(last) < 130 and "\n" not in last and _HEADING.match(last))):
             out[-1] += _GLUE + p
         else:
             out.append(p)
@@ -217,7 +225,8 @@ def _split(sec: dict) -> list[dict]:
     """``build_printed_text.split_long``, each part listing the figures and
     tables whose captions it holds (the lettered appendix numbers are not
     the chapters' form). A caption stays in one part with its typed-in
-    table or figure lettering."""
+    table or figure lettering, and a step heading with the paragraph after
+    it."""
     parts = bpt.split_long(dict(sec, body=_glue_captions(sec["body"])))
     for p in parts:
         p["body"] = p["body"].replace(_GLUE, "\n\n")
