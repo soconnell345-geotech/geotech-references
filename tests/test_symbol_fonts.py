@@ -18,11 +18,14 @@ the printed signs; a hand-kept reference's text was corrected where it held
 the text-layer character.
 
 1. The printed sign is stored at a sample of the corrected places (every
-   comparison sign and ten others), with the PDF and printed page.
-2. A scan that needs no PDF: no stored text holds a private-use character
+   comparison sign and ten others, and three figure captions), with the PDF
+   and printed page.
+2. Scans that need no PDF: no stored text holds a private-use character
    (U+E000 to U+F8FF), the replacement character, a control character, or a
    Malayalam, Sinhala or Ethiopic letter (a Cambria Math bracket piece the
-   text layer names wrongly).
+   text layer names wrongly), and none holds three of the same mathematical
+   letter in a row (FHWA-NHI-16-009 Vol III's list of figures gave "ϕdyn" as
+   eight copies of U+1D719).
 3. With the PDFs present: on every page that uses a font of a reference's
    ``symbol_fonts``, no span's passage (the words either side of it on the
    page) is stored with the text-layer character where the page prints
@@ -67,6 +70,17 @@ PRINTED = [
     ("fhwa_soils_foundations", "9.15.7.4", "an angle of about 20° from the load axis", "about 20E"),
     # NHI-06-088 PDF p. 251, printed p. 5-1
     ("fhwa_soils_foundations", "5.0", "the project’s issues", "project=s"),
+]
+
+#: (package, figure number, printed caption text now stored, text-layer form
+#: it replaced) for figure-catalog captions; the comment gives the PDF page.
+CATALOG_PRINTED = [
+    # FHWA-IF-99-015 PDF p. 112, printed p. 91 (font TT284o00 gives "A")
+    ("gec_4", "44", "Chart for estimating β coefficient", "estimating A coefficient"),
+    # FHWA-NHI-16-009 Vol III PDF p. 66 and p. 67: Cambria Math's phi with a
+    # subscript came out as eight or ten copies of U+1D719
+    ("gec_12", "D-11", "2% of the piles, φdyn=0.80", "\U0001d719\U0001d719"),
+    ("gec_12", "D-14", "Nordlund Method static analysis, φstat=0.45", "\U0001d719\U0001d719"),
 ]
 
 #: Characters stored before this review in a reference another branch is
@@ -119,6 +133,30 @@ def test_printed_sign_is_stored(pkg, sid, printed, raw):
     text = json.dumps(secs, ensure_ascii=False)
     assert printed in text, (pkg, sid, printed)
     assert raw not in text, (pkg, sid, raw)
+
+
+@pytest.mark.parametrize("pkg, fig, printed, raw", CATALOG_PRINTED,
+                         ids=[f"{p}-{f}" for p, f, _, _ in CATALOG_PRINTED])
+def test_printed_caption_is_stored(pkg, fig, printed, raw):
+    data = json.loads((PKGS / pkg / "figures_catalog.json").read_text(encoding="utf-8"))
+    caps = [f["caption"] for f in data["figures"] if f.get("figure_number") == fig]
+    assert caps, (pkg, fig)
+    assert any(printed in c for c in caps), (pkg, fig, printed)
+    assert not any(raw in c for c in caps), (pkg, fig, raw)
+
+
+#: three or more of the same mathematical letter in a row: a text layer that
+#: gave one Cambria Math character for every glyph of a symbol and subscript
+_MATH_RUN = re.compile("([\U0001d400-\U0001d7ff])\\1\\1")
+
+
+def test_no_repeated_math_letter_stored():
+    found = []
+    for pkg_dir in sorted(p for p in PKGS.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        for fname, path, s in _strings(pkg_dir):
+            if _MATH_RUN.search(s):
+                found.append((pkg_dir.name, fname, path))
+    assert not found, found[:20]
 
 
 _ODD = re.compile("[-�\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f"
