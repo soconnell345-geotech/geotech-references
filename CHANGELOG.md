@@ -1396,8 +1396,7 @@ printed).
   cases as B.4.10.a to B.4.11.c); Tables B1-1 to B5-1 and every
   calculation line typed in from 200 dpi renders; the EMBANK output of
   Figure B3-4 typed into its figure line. Chapter 11 is left for Appendix A
-  (structural fill specifications) and chapter 13 for Appendix C (LRFD),
-  neither built yet. Kept as printed and noted: MY with (L + I) but L
+  (structural fill specifications), not built. Kept as printed and noted: MY with (L + I) but L
   alone in its numbers (p. B-6); Eqns. 5-10 and 5-11 cited for the ground
   water factors, printed as Eqns. 5-9 and 5-10 (p. B-9), and Section 5.2
   cited for settlement (5.3; p. B-7); 8070 k and 4729 k for kN (pp. B-14, B-15,
@@ -1412,11 +1411,33 @@ printed).
   The coded Table 5-1, 5-7, 5-12, 5-13, 5-14 and 5-15 lookups give the
   values the examples read; Figure 5-19 within 2 and Figure 4-1 within 3.5
   of the examples' readings.
+- **GEC-6**, new: Appendix C, Load and Resistance Factor Design (chapter
+  13, pp. C-1 to C-48): Sections C.1 to C.6 (LRFD against Service Load
+  Design, limit states, load combinations and factors, live load
+  surcharge, bearing, resistance factors, eccentricity, sliding, the design
+  steps), Eqns. C-1 to C-5 and Tables C-1 to C-6; Examples B-1 and B-3
+  re-worked by LRFD as LRFD Example C1 (C-1, the appendix's own name for
+  it, Steps C-1.5 to C-1.14) and LRFD Example 2 (C-2, Steps C-2.5 to
+  C-2.14, Step 12a as C-2.12.a), with Tables
+  C1-1, C1-2, C2-1, C2-2 and every calculation line typed in from 200 dpi
+  renders. The first of the two printed C.4.1 (active lateral earth
+  pressures, printed under C.3 before C.4) is stored as C.3.2 and says so;
+  the print has no C.4.4. Kept as printed and noted: Table C-6 citing
+  Section 5.4 for global stability (5.5) and Sections 6.4.3 and 6.4.4 for
+  bearing, eccentricity and sliding (no 6.4.4); Table C1-1's first row
+  labelled DW where the equations use DC (p. C-15); Dw defined as "(Df)"
+  and CWq taking 6.8 m where CWγ takes 9.1 m, both over 1.0 (p. C-21,
+  C-22); ez with "k" for kN (pp. C-26 to C-30); ey = 980 ÷ 10923 = 0.089
+  for 0.0897 (p. C-27); Vmin = 224 kN where Step 5 gives 150 kN (p. C-29);
+  γP for DW minimum 0 where Table C-3 gives 0.65 (p. C-35); Pv in kN·m/m
+  for kN/m (pp. C-40 to C-44); 518.3 ÷ 2.12 = 246.8 for 244.5 kPa (p.
+  C-41); γPmin labels on the maximum factors 1.25 and 1.35 (pp. C-43,
+  C-46). No lookup is coded for Appendix C's tables.
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),
 `tests/test_micropile_appendices_printed.py` (74),
-`tests/test_gec6_appendices_printed.py` (69).
+`tests/test_gec6_appendices_printed.py` (117).
 
 ## 1.6.0
 

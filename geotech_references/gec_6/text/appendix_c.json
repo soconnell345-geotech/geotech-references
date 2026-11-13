@@ -1,0 +1,509 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "chapter": 13,
+  "chapter_title": "Appendix C: Load and Resistance Factor Design",
+  "sections": [
+    {
+      "section_id": "C",
+      "title": "Load and Resistance Factor Design",
+      "body": "[p. C-1] This appendix provides a discussion of the design of shallow foundations for bridges using Load and Resistance Factor Design (LRFD) methodology, and is based on the AASHTO LRFD Bridge Design Specifications (1998). Design examples B-1 and B-3 are re-worked using LRFD methods and principles. The purpose of these examples is to show that designs completed using LRFD methodology are not radically different from those completed by SLD.\n\nIt should be noted that these examples are intended to convey one approach and process that can lead to a satisfactory design of bridge support on a shallow foundation. The examples should not be construed as representations of the only approach that can lead to a satisfactory design. Also note that the examples only check one or, at most, a few specific load cases. In practice, every complete design should consider all applicable load cases.\n\nEXAMPLE C-1: INTERIOR BRIDGE PIER ON A SPREAD FOOTING FOUNDED IN NATIVE SOIL\n\nThis example sizes the footing for an interior pier considering the LRFD Service I, Strength I and Extreme I limit states. The loads and ground conditions are the same as used in Example B-1.\n\nEXAMPLE C-2: STUB SEAT-TYPE ABUTMENT FOOTING IN COMPACTED STRUCTURAL FILL\n\nThis example sizes an abutment footing considering the LRFD Service I and Strength I limit states. The loads and ground conditions are the same as used in Example B-3.\n\nNote: Unless cited with a specific reference (e.g., AASHTO, 1996), the equation numbers in the examples refer to those in the main body of this Circular.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design (p. C-1), the opening text before Section C.1: the appendix discusses shallow foundation design for bridges by LRFD after the AASHTO LRFD Bridge Design Specifications (1998), re-works Design Examples B-1 and B-3 as Examples C-1 and C-2, and says the examples check only one or a few load cases; equation numbers in the examples refer to the main body of the Circular unless another reference is cited."
+    },
+    {
+      "section_id": "C.1",
+      "title": "Introduction",
+      "body": "[p. C-1] This section compares and contrasts the differences and similarities of Load and Resistance Factor Design (LRFD) methodology with Service Load Design (SLD) and explains how the geotechnical engineer must modify the design recommendations to make them usable for the structural engineer. It is not intended to provide comprehensive coverage on the background and application of LRFD to bridge design.\n\nThe reader should keep in mind that the fundamental theories and procedures used to calculate bearing capacity and settlement for shallow foundations are not different between LRFD and SLD. The differences come in the way the geotechnical engineer presents the design [p. C-2] recommendations and the way the structural engineer compares them to the factored load combinations.\n\nRecall that the “Standard Specifications” (AASHTO, 1996) were based on Service Level Design (SLD). In this design method, the stresses caused in members by design loads are compared to an allowable stress for the member. The allowable stress is determined by taking the nominal strength of the material (e.g., yield stress for steel) and applying a factor of safety. The allowable stress is also limited for serviceability considerations such as settlement. The following equation demonstrates the basic principle of the SLD method:\n\nΣQi = Rn / FS (Eqn. C-1)\n\nwhere: Qi is an applied load or stress\n\nRn is the resistance (e.g., strength or yield stress) of the member or material\n\nFS is the applied factor of safety\n\nThe allowable stress includes considerations for strength, fatigue, serviceability and settlement. The factors of safety used in the allowable stress method are derived from industry code writing groups such as ACI and AISC. Factors of safety for geotechnical engineering are derived from industry practice and performance observation. Typically, the factors of safety for structural materials are in the range of 1.7, while the geotechnical factors of safety for foundations are from 2 to 3. These factors of safety are not derived based on probability theory. They are based on observation, full-scale tests, theory and judgment. Factors of safety adopted in the design codes are then agreed upon by committee consensus.\n\nThe allowable stress method has some limitations in that the variability in the strengths of the materials and the variability in the different loads are all combined into a single safety factor. For example, truck live loads have a much greater variability than the dead load of the structure, but a single factor of safety implies that the variability of all loads are similar.\n\nThe goal of LRFD methodology is to statistically account for the variability of the individual loads and resistances computed for design. Most of the AASHTO specification was calibrated based on the data available through NCHRP Project 12-33 (Nowak, 1992). Because not much data existed for calibrating the foundation (geotechnical) portion of the specification, some of the resistance factors for foundations and most of the resistance factors for walls were back-fit to match the existing SLD levels of reliability. The basic equation for the LRFD method is:\n\nΣ ηiγiQi ≤ φRn = Rr (Eqn. C-2)\n\nwhere: ηi is a factor that includes the effects of ductility, redundancy and importance\n\nγi is the load factor for a particular load\n\nQi is a service level load\n\nφ is the resistance factor\n\nRn is the nominal resistance\n\nRr is the factored resistance\n\n[p. C-3] Note that the load and resistance factors in the AASHTO (1998) LRFD Specification were calibrated with ηi equal to 1.0. The use of ηi other than 1.0 will therefore result in factored loads that are not consistent with the calibration, and should be done with caution or in accordance with the policies and procedures of the owner agency.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-1",
+          "description": "Basic principle of Service Load Design (SLD): the applied loads against the resistance divided by a factor of safety",
+          "formula": "ΣQi = Rn / FS",
+          "variables": {
+            "Qi": "an applied load or stress",
+            "Rn": "the resistance (e.g., strength or yield stress) of the member or material",
+            "FS": "the applied factor of safety"
+          },
+          "source": "Typed in from p. C-2 (PDF page 250, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-2",
+          "description": "Basic equation of the Load and Resistance Factor Design (LRFD) method",
+          "formula": "Σ ηiγiQi ≤ φRn = Rr",
+          "variables": {
+            "ηi": "a factor that includes the effects of ductility, redundancy and importance",
+            "γi": "the load factor for a particular load",
+            "Qi": "a service level load",
+            "φ": "the resistance factor",
+            "Rn": "the nominal resistance",
+            "Rr": "the factored resistance"
+          },
+          "source": "Typed in from p. C-2 (PDF page 250, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.1 INTRODUCTION (pp. C-1 to C-3): how Load and Resistance Factor Design (LRFD) differs from Service Load Design (SLD) for shallow foundations of bridges; the SLD principle (Eqn. C-1) and the basic LRFD equation (Eqn. C-2) with the factors ηi, γi and φ, calibrated with ηi = 1.0."
+    },
+    {
+      "section_id": "C.2",
+      "title": "Limit States",
+      "body": "[p. C-3] A “limit state,” as defined by the AASHTO 1998 specification, is a condition beyond which the bridge or component ceases to satisfy the provisions for which it was designed. To meet the limit states applied to a design, the above equation must be satisfied for each limit state. The limit states are described in Table C-1. The descriptions of these limit states and the design conditions they consider can be compared with the load groups used in SLD (see Table 6-2 in the main text).\n\n[Table C-1]\n\n[p. C-4] The AASHTO (1998) LRFD specification is very explicit regarding the different limit states that have to be considered in design. The LRFD strength limit states are similar to the AASHTO (1996) “Standard Specifications” for factored Load Groups I through VI, and the extreme limit states are similar to the factored Load Groups VII through IX. However, the “Standard Specifications” (AASHTO, 1996) do not include the explicit service (deformation) checks for all design elements that are included throughout the LRFD specifications (AASHTO, 1998).\n\n[Diagram: SLD Deformations ↔ LRFD Service; SLD Capacity ↔ LRFD Strength]",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C-1: LRFD Limit States (p. C-3) - columns: Limit State; Description. Strength; The structure is checked for enough strength and stability to resist the loads imparted on it. | Strength I; Load combination with normal vehicles using the bridge without wind | Strength II; Load combination with permit vehicles using the bridge without wind | Strength III; Load combination with maximum winds and no vehicles | Strength IV; In this load case, large spans create large dead-to-live load effects. This load case need be used only where the dead-to-live load ratio is above about 7.0. | Strength V; Load combination with normal vehicles using the bridge with wind | Extreme Event; Load combinations relating to ice load, collision by vessels and vehicles, and to certain hydraulic events and earthquakes, whose recurrence interval exceeds the design life of the structure. The structure needs to survive these events. Some of these events need to be checked in the scoured condition. | Extreme Event I; Load combination for seismic loading | Extreme Event II; Load combination relating to ice load, collision by vessels and vehicles, and certain hydraulic events | Service; This is a check so that crack widths, deflections and other conditions do not jeopardize the life of the structure. | Service I; Load combination with normal vehicles and wind | Service II; Load combination for slip-critical steel connections | Service III; Load combination to control cracks in prestressed concrete structures | Fatigue; Fatigue and fracture load combination using a special fatigue vehicle"
+      ],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.2 LIMIT STATES (pp. C-3 to C-4): the AASHTO (1998) LRFD limit states (Table C-1: Strength I to V, Extreme Event I and II, Service I to III, Fatigue) compared with the SLD load groups."
+    },
+    {
+      "section_id": "C.3",
+      "title": "Loads and Load Combinations",
+      "body": "[p. C-4] The AASHTO LRFD specifications prescribe the procedures used to compute loads and detail how to factor and combine the loads for comparing to the factored resistance. The load combinations and load factors per Table 3.4.1-1 (AASHTO, 1998) are shown in Table C-2.\n\n[Table C-2]\n\n[p. C-5] Per the specification, the larger of the two load factor values for TU, SH and CR should be used for deformations, and the smaller values for all other effects.\n\nTable C-3 shows the load factors for permanent loads (γP) per Table 3.4.1-2 (AASHTO, 1998).\n\n[Table C-3]\n\n[p. C-6] γTG and γSE are to be determined on a project-by-project basis. Traditionally, they are usually taken as zero for the design of open girders and multiple steel box girders. However, the specification proposes to use 0.0 at the strength and extreme limit states, 1.0 at the service limit state without live load, and 0.5 at the service limit state when live load is considered.\n\nγEQ is a load factor applied to live load effects when considering earthquake loads and is supposed to be determined on a project specific basis. Traditionally this has been taken as zero. However, commentary to the specification suggests that 0.5 may be more appropriate when considering the possibility of a partial live load combined with seismic loads.\n\nFor foundation design not all of the above load cases will apply. The following load cases will generally apply to the design of foundations:\n\n• Strength I\n\n• Strength II (although with the new live loading being applied, this load case may not be necessary)\n\n• Strength III\n\n• Strength IV (this will only control for long-span structures where creep, shrinkage and temperature effects become significant)\n\n• Strength V\n\n• Extreme I\n\n• Service I\n\nNote that maximum and minimum load factors can be applied for any given foundation. Usually, the maximum load factors will be used to find the maximum soil pressures, while the minimum load factors will be used to check stability of a foundation.\n\nIndividual loads also have numerous different maximum and minimum effects. A good example of this is live load (LL). Live load effects on a foundation will include a loading case with maximum vertical load and two loading cases with maximum moments in the orthogonal directions. These all need to be checked when sizing and designing a shallow foundation. There are also configurations for which minimum live load effects can cause uplift at foundations. These also need to be included in the design of the foundation.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C-2: LRFD Load Combinations and Load Factors (AASHTO, 1998) (pp. C-4, C-5) - columns: Load Combination, Limit State; DC, DD, DW, EH, EV, ES; LL, IM, CE, BR, PL, LS, EL; WA; WS; WL; FR; TU, CR, SH; TG; SE; then, use one of these at a time, EQ; IC; CT; CV. Strength I (unless noted); γP; 1.75; 1.00; -; -; 1.00; 0.50/1.20; γTG; γSE; -; -; -; - | Strength II; γP; 1.35; 1.00; -; -; 1.00; 0.50/1.20; γTG; γSE; -; -; -; - | Strength III; γP; -; 1.00; 1.40; -; 1.00; 0.50/1.20; γTG; γSE; -; -; -; - | Strength IV, EH, EV, ES, DW, DC only; γP, 1.50; -; 1.00; -; -; 1.00; 0.50/1.20; -; -; -; -; -; - | Strength V; γP; 1.35; 1.00; 0.40; 1.0; 1.00; 0.50/1.20; γTG; γSE; -; -; -; - | Extreme Event I; γP; γEQ; 1.00; -; -; 1.00; -; -; -; 1.00; -; -; - | Extreme Event II; γP; 0.50; 1.00; -; -; 1.00; -; -; -; -; 1.00; 1.00; 1.00 | Service I; 1.00; 1.00; 1.00; 0.30; 1.0; 1.00; 1.00/1.20; γTG; γSE; -; -; -; - | Service II; 1.00; 1.30; 1.00; -; -; 1.00; 1.00/1.20; -; -; -; -; -; - | Service III; 1.00; 0.80; 1.00; -; -; 1.00; 1.00/1.20; γTG; γSE; -; -; -; - | Fatigue, LL, IM & CE only; -; 0.75; -; -; -; -; -; -; -; -; -; -; -. Notation printed below the table (p. C-5). For permanent loads: DD = downdrag; DC = dead load of structural components and nonstructural attachments; DW = dead load of wearing surfaces and utilities; EH = horizontal earth pressure load; EL = accumulated locked-in effects resulting from the construction process (not usually important for foundation design); ES = earth surcharge load; EV = vertical pressure from dead load of earth fill. For transient loads: BR = vehicular braking force; CE = vehicular centrifugal force; CR = creep; CT = vehicular collision force (not usually important for foundation design); CV = vessel collision force (only important over navigable waterways); EQ = earthquake; FR = friction (usually applies only with respect to forces from bearing assemblies); IC = ice load; IM = vehicular dynamic load allowance (This is zero for the buried portions of structures. So for most foundations, this is zero.); LL = vehicular live load; LS = live load surcharge; PL = pedestrian live load; SE = settlement; SH = shrinkage; TG = temperature gradient (not usually a factor for foundations); TU = uniform temperature; WA = water load and stream pressure; WL = wind on live load; WS = wind load on structure",
+        "Table C-3: Load Factors for Permanent Loads (p. C-5) - columns: Type of Load; Load Factor γP, Maximum; Minimum. DC: Component and Attachment; 1.25; 0.90 | DD: Downdrag; 1.80; 0.45 | DW: Wearing Surfaces and Utilities; 1.50; 0.65 | EH: Horizontal Earth Pressure, Active; 1.50; 0.90 | EH, At-Rest; 1.35; 0.90 | EL: Locked-in Erection Stresses; 1.00; 1.00 | EV: Vertical Earth Pressure, Retaining Walls and Abutments; 1.35; 1.00 | EV, Rigid Buried Structure; 1.30; 0.90 | EV, Rigid Frames; 1.35; 0.90 | EV, Flexible Buried Structures other than Metal Box Culverts; 1.95; 0.90 | EV, Flexible Metal Box Culverts; 1.50; 0.90 | ES: Earth Surcharge; 1.50; 0.75"
+      ],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.3 LOADS AND LOAD COMBINATIONS (pp. C-4 to C-6): the LRFD load combinations and load factors (Table C-2, after AASHTO 1998 Table 3.4.1-1), the load factors for permanent loads γP, maximum and minimum (Table C-3), γTG, γSE and γEQ, the load cases that generally apply to foundations, and when maximum or minimum load factors are used."
+    },
+    {
+      "section_id": "C.3.1",
+      "title": "Live Load Surcharge",
+      "body": "[p. C-6] The live load surcharge under the LRFD methodology is also modeled as an equivalent soil surcharge behind the wall or abutment. However, the equivalent height of soil to use in calculating the live load surcharge varies as a function of the height of the wall and can be computed according Table C-4. The lateral load due to live load surcharge is then calculated and applied according to Section 6.3.\n\n[p. C-7] [Table C-4]",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C-4: Live Load Surcharge (p. C-7) - columns: Wall Height (m); heq (m). 1.5; 1.2 | 3.0; 0.9 | 6 or higher; 0.6"
+      ],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.3.1 Live Load Surcharge (pp. C-6 to C-7): the live load surcharge as an equivalent height of soil, heq, by wall height (Table C-4), applied as in Section 6.3."
+    },
+    {
+      "section_id": "C.3.2",
+      "title": "Active Lateral Earth Pressures",
+      "body": "[p. C-7] Under LRFD methodology, the application of active lateral earth pressures on abutments and retaining walls is at four-tenths the height of the abutment (0.4 x Habut) to account for backfill compaction effects.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4.1 Active Lateral Earth Pressures (p. C-7): the resultant of active lateral earth pressure on abutments and retaining walls applied at 0.4 Habut for backfill compaction. Printed as C.4.1 (as printed; it falls under C.3, before C.4, and the section after C.4 is also numbered C.4.1); stored as C.3.2 so each number is unique."
+    },
+    {
+      "section_id": "C.4",
+      "title": "Geotechnical Design",
+      "body": "[p. C-7] Computations of bearing capacity and settlement of shallow foundations under LRFD methodology use the same procedures and equations as used in SLD. These are described in Chapter 5.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4 GEOTECHNICAL DESIGN (p. C-7): bearing capacity and settlement under LRFD are computed by the SLD procedures of Chapter 5."
+    },
+    {
+      "section_id": "C.4.1",
+      "title": "Service Limit State Bearing Stress",
+      "body": "[p. C-7] The service limit state checks in LRFD ensure that deflections and movements under normal bridge loads are within tolerable limits. For shallow foundations, service limit state considerations will be controlled by settlement computations. The procedures in Section 5.3 should be used to estimate settlement of footings as a function of the effective footing width, B′f. This information can be plotted as the nominal bearing resistance for the service limit state on a graph, or tabulated, for use by the structural engineer in sizing the footing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4.1 Service Limit State Bearing Stress (p. C-7): the service limit state controlled by settlement: settlement as a function of effective footing width B′f plotted or tabulated as the nominal bearing resistance."
+    },
+    {
+      "section_id": "C.4.2",
+      "title": "Strength and Extreme Limit State Bearing Resistance",
+      "body": "[p. C-7] For shallow foundations, the nominal bearing resistance at the strength and extreme limit states is usually taken as the ultimate bearing capacity computed using the procedures in Section 5.2. It is generally convenient to plot or tabulate the computed values as a function of effective footing width, B′f. The geotechnical engineer should also recommend the resistance factor to apply to the nominal bearing resistance for performing the strength limit state checks.\n\nIt is not unusual for geotechnical engineers to initially feel uncomfortable with the magnitude of the ultimate bearing capacity that is computed. These bearing capacities are generally much larger than the allowable bearing capacities associated with Service Load Design. The geotechnical engineer should be aware that applying too much conservative judgment at this point could result in overconservative designs. Good communication with the structural engineer will help prevent designs being unnecessarily controlled by the strength limit state due to an overly conservative nominal bearing resistance. The geotechnical engineer should keep in mind that the load combinations in the strength limit state are multiplied by load factors that are larger than 1.0.\n\n[p. C-8] Note that presumptive bearing capacities include combined consideration of settlement and bearing capacity. For normally consolidated soils (e.g., not IGMs or rock), use of presumptive values for strength and extreme limit state checks will frequently result in grossly over-conservative designs, since they are generally controlled by settlement, which is a service limit state consideration. There is no rational approach to obtaining service and extreme limit state nominal bearing resistance. Increasing the presumptive values with arbitrary factors for use in strength and extreme limit state design checks is unwise and could be unsafe.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4.2 Strength and Extreme Limit State Bearing Resistance (pp. C-7 to C-8): the ultimate bearing capacity as the nominal bearing resistance at the strength and extreme limit states, the recommended resistance factor, over-conservative judgment, and why presumptive bearing values should not be used or increased for these checks."
+    },
+    {
+      "section_id": "C.4.3",
+      "title": "Resistance Factors",
+      "body": "[p. C-8] Resistance factors for the service and extreme limit states are nearly always taken as 1.0. Resistance factors for the strength limit state are less than 1.0 and are a function of the method used to compute the nominal (ultimate) bearing capacity.\n\nTable C-5 presents the strength limit state resistance factors recommended by AASHTO for shallow foundations.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4.3 Resistance Factors (p. C-8): resistance factors of 1.0 at the service and extreme limit states; strength limit state factors below 1.0 by method (Table C-5)."
+    },
+    {
+      "section_id": "C.4.5",
+      "title": "Global Stability",
+      "body": "[p. C-8] When the location of a shallow foundation can contribute to the instability of a slope, such as an abutment constructed in an approach fill, the overall, or global, stability of the slope should be checked. It is important to note that limit equilibrium methods are by far the most expedient method for evaluating slope stability. An important prerequisite of limit equilibrium methods is that the solutions are based on failure, or ultimate, stresses. It is recommended that this be done at the Service I limit state using unfactored loads and resistances. That is, the loads applied by the footing that are acting to destabilize the slope should be unfactored working loads. Classic limit equilibrium methods, as described in Section 5.5, should be used to calculate the factor of safety of the slope. All slopes supporting footings should have a global factor of safety of at least 1.5.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.4.5 Global Stability (p. C-8): global stability of a slope carrying a footing checked at the Service I limit state with unfactored loads and resistances by limit equilibrium (Section 5.5), global factor of safety at least 1.5. The print numbers no Section C.4.4."
+    },
+    {
+      "section_id": "C.5",
+      "title": "Shallow Foundation Design",
+      "body": "[p. C-8] The structural engineer will use the nominal bearing resistances provided by the geotechnical engineer to size the footing and perform all the necessary limit state checks.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.5 SHALLOW FOUNDATION DESIGN (p. C-8): the structural engineer's use of the nominal bearing resistances to size the footing and make the limit state checks."
+    },
+    {
+      "section_id": "C.5.1",
+      "title": "Sizing the Footing",
+      "body": "[p. C-8] Since settlement considerations frequently control the size and design of shallow foundations, it is generally expedient to size the footing at the service limit state and then check to see that the nominal bearing resistances are below the factored resistance at the strength and extreme limit state.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.5.1 Sizing the Footing (p. C-8): sizing the footing at the service limit state, then checking the strength and extreme limit states."
+    },
+    {
+      "section_id": "C.5.2",
+      "title": "Bearing Stresses",
+      "body": "[p. C-8] Once an initial sizing of the footing is made, all applicable limit states should be checked to ensure that the applied bearing stress is below the factored resistance at that limit state.\n\n[p. C-9] [Table C-5]",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C-5: Resistance Factors for Strength Limit State for Shallow Foundations (Modified after Table 10.5.5-1, AASHTO, 1998) (p. C-9) - columns: Method/Soil/Condition; Resistance Factor. Bearing Capacity, Sand: semiempirical procedure using SPT data; 0.45 | Sand, semiempirical procedure using CPT data; 0.55 | Sand, rational method, using φf estimated from SPT data; 0.35 | Sand, rational method, using φf estimated from CPT data; 0.45 | Bearing Capacity, Clay: semiempirical procedure using CPT data; 0.50 | Clay, rational method, using shear resistance measured in lab tests; 0.60 | Clay, rational method, using shear resistance measured in field vane tests; 0.60 | Clay, rational method, using shear resistance estimated from CPT data; 0.50 | Bearing Capacity, Rock: semiempirical procedure, Carter and Kulhawy (1988); 0.60 | Bearing Capacity, Plate Load Test; 0.55 | Sliding, φT, precast concrete placed on sand, using φf estimated from SPT data; 0.90 | precast concrete placed on sand, using φf estimated from CPT data; 0.90 | concrete cast-in-place on sand, using φf estimated from SPT data; 0.80 | concrete cast-in-place on sand, using φf estimated from CPT data; 0.80 | clay (where shear resistance is less than 0.5 times normal pressure), using shear resistance measured in lab tests; 0.85 | clay (less than 0.5 times normal pressure), using shear resistance measured in field tests; 0.85 | clay (less than 0.5 times normal pressure), using shear resistance estimated form CPT data; 0.80 | clay (where the resistance is greater than 0.5 times normal pressure); 0.85 | soil on soil; 1.0 | Passive Pressure, φep, passive earth pressure component of sliding resistance; 0.50"
+      ],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.5.2 Bearing Stresses (pp. C-8 to C-9): applied bearing stress below the factored resistance at each limit state; the resistance factors of Table C-5 (bearing and sliding, by method and soil)."
+    },
+    {
+      "section_id": "C.5.3",
+      "title": "Eccentricity",
+      "body": "[p. C-10] The check for overturning potential is also performed by determining the eccentricity of the resultant load under maximum overturning conditions. This usually occurs using the minimum load factors for resisting loads. The maximum eccentricity of the loads determined with the minimum load factors should be less than one-fourth of the corresponding footing dimension, B or L, on soil and less than three-eights of the corresponding footing dimension, B or L, on rock. Note that these permissible ranges differ from those used in Service Load Design.\n\nEccentricity is computed using the procedure and equations in Section 6.4.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.5.3 Eccentricity (p. C-10): the overturning check by eccentricity with minimum load factors on resisting loads: less than one-fourth of B or L on soil and three-eighths on rock."
+    },
+    {
+      "section_id": "C.5.4",
+      "title": "Sliding",
+      "body": "[p. C-10] Sliding of the footing is checked to make sure that lateral loads do not make the footing move. The lateral capacity of the footing due to lateral loads is:\n\nQR = ϕTQT+ϕepQep (Eqn. C-3, after AASHTO 1998 Eqn. 10.6.3.3-1)\n\nwhere: QR is the factored resistance\n\nϕT is the resistance factor for shear resistance between the footing base and the soil\n\nQT is the nominal shear resistance between soil and foundation\n\nϕep is the resistance factor for passive soil resistance\n\nQep is the nominal passive resistance\n\nAs in Service Load Design, it is customary to neglect or reduce the passive resistance for the same reasons discussed in Section 5.4.\n\nFor cohesionless soils in which the concrete is cast against the soil:\n\nQT = Pv tan φ (Eqn. C-4, after AASHTO 1998 Eqn. 10.6.3.3-2)\n\nFor cohesionless soils where the concrete is precast use:\n\nQT = Pv(0.8)tan φ (Eqn. C-5, after AASHTO 1998 Eqn. 10.6.3.3-2)\n\nwhere: QT = Nominal sliding resistance\n\nφ = Internal friction angle of soil\n\nPv = Applied vertical force\n\nNote that these equations inherently account for the lower sliding resistance resulting from precast (formed) concrete. The associated resistance factors in Table C-5 must therefore be used with these equations. For a footing bearing directly on cohesive soils the sliding resistance is equal to the undrained shear strength of the soil or one-half the vertical stress, whichever is less.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-3",
+          "description": "Factored sliding resistance of a footing (after AASHTO 1998 Eqn. 10.6.3.3-1)",
+          "formula": "QR = φTQT+φepQep",
+          "variables": {
+            "QR": "the factored resistance",
+            "φT": "the resistance factor for shear resistance between the footing base and the soil",
+            "QT": "the nominal shear resistance between soil and foundation",
+            "φep": "the resistance factor for passive soil resistance",
+            "Qep": "the nominal passive resistance"
+          },
+          "source": "Typed in from p. C-10 (PDF page 258, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-4",
+          "description": "Nominal sliding resistance for cohesionless soils in which the concrete is cast against the soil (after AASHTO 1998 Eqn. 10.6.3.3-2)",
+          "formula": "QT = Pv tan φ",
+          "variables": {
+            "QT": "nominal sliding resistance",
+            "φ": "internal friction angle of soil",
+            "Pv": "applied vertical force"
+          },
+          "source": "Typed in from p. C-10 (PDF page 258, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-5",
+          "description": "Nominal sliding resistance for cohesionless soils where the concrete is precast (after AASHTO 1998 Eqn. 10.6.3.3-2, as printed)",
+          "formula": "QT = Pv(0.8)tan φ",
+          "variables": {
+            "QT": "nominal sliding resistance",
+            "φ": "internal friction angle of soil",
+            "Pv": "applied vertical force"
+          },
+          "source": "Typed in from p. C-10 (PDF page 258, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.5.4 Sliding (p. C-10): the factored sliding resistance QR = φTQT + φepQep (Eqn. C-3), QT = Pv tan φ for concrete cast against cohesionless soil (Eqn. C-4) and Pv(0.8)tan φ for precast concrete (Eqn. C-5), passive resistance neglected or reduced, and footings on cohesive soil."
+    },
+    {
+      "section_id": "C.6",
+      "title": "Design Process Flow Chart",
+      "body": "[p. C-10] The LRFD design process for a bridge supported on shallow foundations includes the steps shown in Table C-6 and in the LRFD design process flow chart, Figure C-1.\n\n[p. C-11] [Table C-6]",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C-1: LRFD Design Process Flow Chart – Bridge Shallow Foundations"
+      ],
+      "tables": [
+        "Table C-6: Steps in LRFD Design Process for Bridge Supported on Shallow Foundations (p. C-11) - columns: Step; LRFD Design Activity; Responsible Disciplines. 1.; Develop preliminary bridge layout. The desired bridge type, size and location will be established. Span lengths and pier locations will be defined, considering geometrical and environmental constraints.; Structural, in coordination with general civil and environmental considerations and geotechnical for approach stability | 2.; Determine the shallow foundation feasibility based on review of existing geologic and subsurface data. Competent bearing material must be present within a reasonable distance from the ground surface. A preliminary assessment of approach embankment stability should be conducted to evaluate potential impacts to abutment locations and span lengths. (Section 4.1).; Geotechnical, in coordination with structural, general and environmental | 3.; A site reconnaissance with the structural and general civil engineer should be completed at this stage to evaluate constructability of foundation types (Section 4.2).; Geotechnical, in coordination with structural, general and environmental | 4.; Determine the depth of the footing so that it will not be susceptible to scour potential or frost (Section 6.2).; Hydraulic, with geologic input from geotechnical | 5.; Determine the loads applied to the footing (Section 6.3).; Structural | 6.; Determine the design soil properties from the subsurface exploration and laboratory testing program (Sections 4.3 and 4.4).; Geotechnical | 7.; Calculate the nominal bearing resistance, based on effective footing width, B′f (Section 5.2) at the strength and extreme limit states.; Geotechnical | 8.; Calculate the nominal bearing resistance based on effective footing dimensions at the service limit state (Section 5.3).; Geotechnical | 9.; Calculate the sliding and passive soil resistance at the strength and extreme limit state (Section 5.4).; Geotechnical | 10.; When overall stability of the footing may govern the design (e.g., footings on or near slopes), perform a global stability analysis of the footing using service (unfactored) loads (Section 5.4) (as printed; global stability is Section 5.5).; Geotechnical | 11.; Size the footing dimensions at the service limit state (Section 6.4.1).; Structural | 12.; Check the bearing pressure, maximum eccentricity and sliding at the strength limit state (Sections 6.4.3 and 6.4.4) (as printed; Chapter 6 has no Section 6.4.4: overturning and eccentricity are 6.4.1, bearing stress 6.4.2 and sliding 6.4.3).; Structural | 13.; Check the bearing pressure, maximum eccentricity and sliding at the extreme limit state (Sections 6.4.3 and 6.4.4) (as printed; see Step 12).; Structural | 14.; Complete the structural design of the footing using factored loads according to the concrete section of the specification (AASHTO, 1998).; Structural"
+      ],
+      "applicability": "Appendix C, Load and Resistance Factor Design, printed Section C.6 DESIGN PROCESS FLOW CHART (pp. C-10 to C-11): the steps of LRFD design of a bridge on shallow foundations, who performs each (Table C-6) and the flow chart, Figure C-1."
+    },
+    {
+      "section_id": "C-1",
+      "title": "LRFD Example C1: Interior Bridge Pier on Spread Footing",
+      "body": "[p. C-13] (Note: This example uses the same given geometry, loading and subsurface conditions as Example 1 in Appendix B, which was worked using Service Load Design criteria.)\n\nGiven:\n\n• Subsurface profile at the interior bridge pier is shown in Figure C1-1.\n\n• There is no scour potential at this site.\n\n• Frost penetration depth is 0.6 m (2 ft).\n\n• Tolerable settlement is 38 mm (1.5 in).\n\n• The direction conventions are shown in Figure C1-2.\n\nFind:\n\n• Size the footing based on Load and Resistance Factor Design at the Service I, Strength I and Extreme I limit states (Table C-2). Assume factor, η, = 1.0.\n\n[p. C-14] Solution:\n\nThe solution can be obtained by following the step-by-step process shown in Figure C-1, Design Process Flow Chart.\n\nSteps 1 through 4 – Preliminary bridge layout, review of existing geologic and subsurface data, site reconnaissance, scour and frost potential:\n\nThe structural, hydraulics and geotechnical engineers completed these steps. The required design information is provided in the problem given statement.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C1-1: Subsurface Profile",
+        "Figure C1-2: Sign Conventions and Loading Directions"
+      ],
+      "tables": [],
+      "applicability": "Appendix C, LRFD Example C1 (pp. C-13 to C-14), printed heading LRFD EXAMPLE C1: INTERIOR BRIDGE PIER ON SPREAD FOOTING: an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states. Given, Find, and Steps 1 through 4 (preliminary layout, existing data, reconnaissance, scour and frost); the calculation steps follow as their own sections."
+    },
+    {
+      "section_id": "C-1.5",
+      "title": "Example C-1, Step 5 – Determine the loads applied to the footing",
+      "body": "[p. C-14] The structural engineer has calculated and provided the values shown in Table C1-1.\n\n[p. C-15] [Table C1-1]\n\nLoads for Service I Limit State:\n\nThe general equation for this set of loads and limit state is:\n\nΣ ηiγiQi = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)] (after Eqn. 3.4.1-1, AASHTO, 1998)\n\nAt the Service I limit state, all load factors are 1.0 except for wind on the structure (WS), which is taken as 0.3, and earthquake, which is an extreme limit state load and is not included in service limit state checks (Table 3.4.1-1, AASHTO, 1998). Also note that the AASHTO specifications provide for taking the vehicular dynamic load allowance (impact) as zero for design of substructures. We will also take the factor, η, to be 1.0. Assume the effect of footing self-weight is negligible. So the Service I limit state loads are as follows:\n\nAxial loads:\n\nP = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nP = 1.0[1.0 (6400 kN) + 1.0 (1670 kN) + 1.0(0 kN) + 0.3(884 kN) + 1.0 (18 kN) + 0(1671 kN)]\n\nP = 8353 kN\n\nShear:\n\nV = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nV = 1.0[1.0 (167 kN) + 1.0 (42 kN) + 1.0(0 kN) + 0.3(49 kN) + 1.0 (4 kN) + 0(804 kN)]\n\nV = 228 kN\n\n[p. C-16] Moment in the Z direction:\n\nMZ = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nMZ = 1.0[1.0 (211 kN-m) + 1.0 (409 kN-m) + 1.0(0 kN-m) + 0.3(89 kN-m) + 1.0 (7 kN-m) + 0(1675 kN-m)]\n\nMZ = 654 kN-m\n\nMoment in the Y direction:\n\nMY = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nMY = 1.0[1.0 (748 kN-m) + 1.0 (196.5 kN-m) + 1.0(0 kN-m) + 0.3(226 kN-m) + 1.0 (26 kN-m) + 0(5546 kN-m)]\n\nMY = 1038 kN-m\n\nLoads for Strength I Limit State:\n\nAt the strength limit state, all load factors for the dead load components will be taken as minimums or maximums, depending on whether the load acts to stabilize or destabilize the footing. For this set of loads, the following load factors, γP, will be applied for the various design checks:\n\nFor checking bearing resistance: γP = γmax = 1.25\n\nFor checking sliding: γP = γmin = 0.9\n\nFor checking eccentricity: γP = γmin = 0.9\n\nNote that the AASHTO specifications provide for taking the vehicular dynamic load allowance (impact) as zero for design of substructures. Also assume that the effect of footing self-weight is negligible. The minimum load cases will conservatively ignore live load. So the Strength I limit state loads are as follows:\n\nAxial loads:\n\nPmax = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nPmax = 1.0[1.25 (6400 kN) + 1.75 (1670 kN) + 1.0(0 kN) + 0(884 kN) + 0 (18 kN) + 0(1671 kN)]\n\nPmax = 10923 kN\n\n[p. C-17] Pmin = 1.0[0.9 (6400 kN) + 1.75 (0 kN) + 1.0(0 kN) + 0(884 kN) + 0 (18 kN) + 0(1671 kN)]\n\nPmin = 5760 kN\n\nShear:\n\nVmax = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nVmax = 1.0[1.25 (167 kN) + 1.75 (42 kN) + 1.0(0 kN) + 0(49 kN) + 0 (4 kN) + 0(804 kN)]\n\nVmax = 282 kN\n\nVmin = 1.0[0.9 (167 kN) + 1.75 (0 kN) + 1.0(0 kN) + 0(49 kN) + 0 (4 kN) + 0(804 kN)]\n\nVmin = 150 kN\n\nMoment in the Z direction:\n\nMZmax = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nMZmax = 1.0[1.25 (211 kN-m) + 1.75 (409 kN-m) + 1.0(0 kN-m) + 0(89 kN-m) + 0 (7 kN-m) + 0(1675 kN-m)]\n\nMZmax = 980 kN-m\n\nMZmin = 1.0[0.9 (211 kN-m) + 1.75 (0 kN-m) + 1.0(0 kN-m) + 0(89 kN-m) + 0 (7 kN-m) + 0(1675 kN-m)]\n\nMZmin = 190 kN-m\n\nMoment in the Y direction:\n\nMYmax = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nMYmax = 1.0[1.25 (748 kN-m) + 1.75 (196.5 kN-m) + 1.0(0 kN-m) + 0(226 kN-m) + 0 (26 kN-m) + 0(5546 kN-m)]\n\nMYmax = 1279 kN-m\n\nMYmin = 1.0[0.9 (748 kN-m) + 1.75 (0 kN-m) + 1.0(0 kN-m) + 0(226 kN-m) + 0 (26 kN-m) + 0(5546 kN-m)]\n\nMYmin = 673 kN-m\n\n[p. C-18] Loads for Extreme I Limit State:\n\nAt the extreme limit state, all load factors for the dead load components will be taken as maximums, since the dynamic model used maximum factored loads to compute the earthquake forces. The designer should be consistent with respect to application of load factors. A separate check using earthquake loads computed using minimum load factors should also be performed. For the set of loads in this example, the following load factors, γP, will be applied for the various design checks:\n\nFor checking bearing resistance: γP = γmax = 1.25\n\nFor checking sliding: γP = γmax = 1.25\n\nFor checking eccentricity: γP = γmax = 1.25\n\nThe AASHTO commentary suggests that the load factor for live load at the extreme limit state, γEQ, should be taken as 0.5. This does not reflect current practice; therefore, γEQ for live load will be taken as zero.\n\nNote that the AASHTO specifications provide for taking the vehicular dynamic load allowance (impact) as zero for design of substructures. Also assume that the effect of footing self-weight is negligible. So the Extreme I limit state loads are as follows:\n\nAxial loads for evaluating bearing stress (seismic force acting downward):\n\nPEmax = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nPEmax = 1.0[1.25 (6400 kN) + 0 (1670 kN) + 1.0(0 kN) + 0(884 kN) + 0 (18 kN) + 1.0(1671 kN)]\n\nPEmax = 9671 kN\n\nAxial loads for evaluating eccentricity and sliding (seismic force acting upward):\n\nPEmin = 1.0[1.25 (6400 kN) + 0 (1670 kN) + 1.0(0 kN) + 0(884 kN) + 0 (18 kN) - 1.0(1671 kN)]\n\nPEmin = 6329 kN\n\nShear:\n\nVE = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nVE = 1.0[1.25 (167 kN) + 0 (42 kN) + 1.0(0 kN) + 0(49 kN) + 0 (4 kN) + 1.0(804 kN)]\n\nVE = 1013 kN\n\n[p. C-19] Moment in the Z direction:\n\nMZE = η[γP (DC) + γLL (LL) + γIM (IM) + γWS (WS) + γWL (WL) + γEQ (EQ)]\n\nMZE = 1.0[1.25 (211 kN-m) + 0 (409 kN-m) + 1.0(0 kN-m) + 0(89 kN-m) + 0 (7 kN-m) + 1.0(1675 kN-m)]\n\nMZE = 1939 kN-m\n\nMoment in the Y direction:\n\nMYE = 1.0[1.25 (748 kN-m) + 0 (196.5 kN-m) + 1.0(0 kN-m) + 0(226 kN-m) + 0 (26 kN-m) + 1.0(5546 kN-m)]\n\nMYE = 6481 kN-m",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C1-1: Loads at Column Base (p. C-15) - columns: Load; Axial, P (kN); Shear, V (kN); Moment, MZ (kN-m); Moment, MY (kN-m). Dead load components (DW) (as printed; the load equations use DC, the dead load of components, for this row); 6400; 167; 211; 748 | Live load (LL); 1670; 42; 409; 196.5 | Vehicular dynamic load allowance (IM); 315; 8; 77; 37 | Wind on structure (WS); 884; 49; 89; 226 | Wind on live load (WL); 18; 4; 7; 26 | Earthquake (EQ); 1671; 804; 1675; 5546"
+      ],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 5 – Determine the loads applied to the footing (pp. C-14 to C-19)."
+    },
+    {
+      "section_id": "C-1.6",
+      "title": "Example C-1, Step 6 – Conduct Field Exploration and Laboratory Testing",
+      "body": "[p. C-19] This step is complete, and the subsurface data are shown in a drawing at the pier location, Figure C1-1. Because of the granular nature of the soils encountered in the boring, laboratory testing was limited to soil classifications and moisture content. The foundation design will be based largely on design parameters correlated to the soil classifications and the SPT N-values. Compute the initial vertical effective stresses at the midpoint of each layer:\n\nLayer 2:\n\nσ'vo2 = 3.35 m(19.6 kN/m³) = 65.7 kPa\n\nLayer 3a:\n\nσ'vo3a = 6.75 m(19.6 kN/m³) = 132 kPa\n\nLayer 3b:\n\nσ'vo3b = 10.6 m(19.6 kN/m³) - 1.5 m(9.8 kN/m³) = 193 kPa\n\nLayer 4:\n\nσ'vo4 = 13.6 m(19.6 kN/m³) - 4.5 m(9.8 kN/m³) = 222 kPa\n\nThe effective stress diagram for the profile at the pier location is plotted in Figure C1-3.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C1-3: Effective Stress Diagram"
+      ],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 6 – Conduct Field Exploration and Laboratory Testing (p. C-19)."
+    },
+    {
+      "section_id": "C-1.7",
+      "title": "Example C-1, Step 7 – Calculate nominal bearing resistance at the strength and extreme limit state",
+      "body": "[p. C-20] The general equation for bearing capacity is:\n\nqult = cNcscbc + qNqCWqsqbqdq + 0.5γBfNγCWγsγbγ (Eqn. 5-14)\n\nThe first term goes to zero since the foundation materials are granular and noncohesive, so the cohesion term, c, is zero.\n\nFor the interior pier, we will assume that the footing is essentially rectangular (L/B < 5). Recall that the shape and inclination factors should not be applied together (see discussion in Section 5.2). Since the effect of the shape factors is significant for rectangular footings, and considering the inclination resulting from the relatively small shear load component (V), we will only apply the shape factors as follows:\n\nsγ = 1 - 0.4 Bf/Lf (Table 5-2)\n\nsγ = 0.6\n\nAssume the effect of eccentricity is small for now, so Bf ≅ Lf\n\nA design friction angle associated with Layer 2 is needed to calculate sq. The geotechnical engineer has recommended that the footing be cast against the firm, undisturbed soil of Unit 2. Unit 2 is 2.1 m thick and overlies denser material at depth, so the properties of Unit 2 will govern [p. C-21] the footing design. From Figure C1-1, the average uncorrected SPT N-value for this layer is 20. From Figure C1-3, the average vertical effective stress in Layer 2 is 65.7 kPa (about 1.4 ksf). Entering Figure 4-1 with a blowcount of 20 and a vertical effective stress of 1.4 ksf, a relative density, DR, of about 75 percent is read. Entering Figure 4-2 with this relative density for silty sand (Unified Soil Classification ‘SM’), a friction angle of 35 degrees is selected for computing bearing capacity.\n\nsq = 1 + (Bf/Lf) tan φ (Table 5-2)\n\nsq = 1 + (1/1) tan(35°)\n\nsq = 1.7\n\nSince this footing will be level, there is no effect of inclination of the base, so:\n\nbγ = bq = 1.0 (Table 5-5)\n\nSince the overburden materials above the footing are cohesive soils, the correction factor to account for shearing resistance of the material above the bearing elevation, dq, should be set equal to 1.0:\n\ndq = 1.0 (Table 5-4)\n\nCalculate the effect of the footing embedment, q. Apply judgment; recognize that minimal excavation is necessary to remove all of the medium stiff, lean clay; thus avoiding any low strength or compressibility characteristics associated with this material. Therefore, select Df = 2.3 m to bear below Unit 1:\n\nIn this case, q is only a function of the depth of bearing.\n\nq = σ'vo = γ'Df where: γ' = γbulk = 19.6 kN/m³\n\nq = (19.6 kN/m³)(2.3 m)\n\nq = 45.1 kPa\n\nCheck ground water effect:\n\nDepth of ground water table below the bearing depth:\n\nDf = Depth of footing = 2.3 m Assumes a 0.9-m-thick footing and 1.4-m cover\n\nDw = Depth of ground water below the ground surface (Df) (as printed; the symbol defined is Dw) = 9.1 m\n\n[p. C-22] Conservatively estimate the footing width with an upper bound value of Bf = 6 m.\n\nCalculate ground water correction factors, CWγ and CWq:\n\nCWγ = 0.5 + 0.5 (DW / (1.5Bf + Df)) ≤ 1.0 (Eqn. 5-9)\n\nCWγ = 0.5 + 0.5 (9.1 / (1.5(6) + 2.3)) = 0.9\n\nCWq = 0.5 + 0.5 (DW / Df) ≤ 1.0 (Eqn. 5-10)\n\nCWq = 0.5 + 0.5 (6.8 / 2.3) = 2.0 (as printed; 6.8 m = 9.1 m - 2.3 m, the depth of the water below the footing base, where the line above takes DW = 9.1 m; either value gives more than 1.0) ; Use CWq = 1.0\n\nFrom Table 5-1, the bearing capacity factors, Nγ and Nq, are 48.0 and 33.3, respectively, for a friction angle of 35 degrees in Layer 2.\n\nSo the equation for nominal bearing resistance at the strength and extreme limit states is:\n\nqult = 0.5γBfNγCWγsγbγ + qNqCWqsqbqdq\n\nqult = 0.5 (19.6 kN/m³)(Bf)(48.0)(0.9)(0.6)(1.0) + 45.1 kPa (33.3)(1.0)(1.7)(1.0)(1.0)\n\nqult = 254Bf + 2553 kPa\n\nSince the nominal bearing resistance was computed using a soil friction angle correlated to SPT N-values, a resistance factor of ϕ = 0.35 should be applied to resistances computed using this equation when checking strength limit states per Table C-5 (from AASHTO (1998) Table 10.5.5-1).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 7 – Calculate nominal bearing resistance at the strength and extreme limit state (pp. C-20 to C-22)."
+    },
+    {
+      "section_id": "C-1.8",
+      "title": "Example C-1, Step 8 – Calculate the nominal bearing resistance at the service limit state",
+      "body": "[p. C-22] Calculate stress increase at the midpoint of each soil layer using the 2-on-1 stress distribution method for various footing widths; say Bf = 3, 4.6 and 6.1 m, as a function of the stress applied by the footing, q:\n\nΔσV/q = Bf · Lf /(Bf + Z)(Lf + Z) (Figure 5-12)\n\nbut Bf ≅ Lf, so:\n\nΔσV/q = Bf² /(Bf + Z)²\n\n[p. C-23] Layer 2 with midpoint of layer @ Z = 1.05 m below base of footing:\n\nΔσV2/q = 3² /(3 + 1.05)² = 0.55\n\nLayer 3a with midpoint of layer @ Z = 4.45 m below base of footing:\n\nΔσV3a/q = 3² /(3 + 4.45)² = 0.16\n\nLayer 3b with midpoint of layer @ Z = 8.3 m below base of footing:\n\nΔσV3b/q = 3² /(3 + 8.3)² = 0.07\n\nLayer 4 with midpoint of layer @ Z = 11.3 m below base of footing:\n\nΔσV4/q = 3² /(3 + 11.3)² = 0.04\n\nPerform similar calculations for Bf = 4.6 m and Bf = 6.1 m and tabulate:\n\n[Table C1-2]\n\nFor these footing widths, determine the stress that would need to be applied by footing in order to generate 38 mm of settlement using the Hough method. These stresses will be plotted as a function of footing width to generate the nominal bearing resistance at the service limit state for a deformation (settlement) criterion of 38 mm.\n\nGeneral equation:\n\nΔH = H(1/C') log[(σ'vo + Δσv)/σ'vo] (Eqn. 5-24)\n\nCorrect SPT blowcounts to account for overburden pressure, N′, for each layer, and enter Figure 5-19 to obtain bearing capacity factor, C′:\n\n[p. C-24] Layer 2:\n\nNavg = 20\nN′/N = 1.2 (from Figure 5-18)\nN′ = 24\nC′ = 65 (from Figure 5-19 for silty Sand)\n\nLayer 3a:\n\nNavg = 40\nN′/N = 0.9 (from Figure 5-18)\nN′ = 36\nC′ = 120 (from Figure 5-19 for well-graded Sand)\n\nLayer 3b:\n\nNavg = 43\nN′/N = 0.7 (from Figure 5-18)\nN′ = 30\nC′ = 102 (from Figure 5-19 for well-graded Sand)\n\nLayer 4:\n\nNavg = 40\nN′/N = 0.66 (from Figure 5-18)\nN′ = 26\nC′ =110 (from Figure 5-19 for clean, uniform Sand)\n\nCalculate settlement in each layer and sum the settlements to find the applied stress required to yield a total settlement of 38 mm at a footing width of 3 m. This is an iterative process.\n\nLayer 2:\n\nΔH2 = H2(1/C') log[(σ'vo + Δσv)/σ'vo]\n\nΔH2 = 2.1 m(1/65) log[(65.7 kPa + 0.55(600 kPa))/65.7 kPa)]\n\nΔH2 = 0.025 m = 25 mm\n\nLayer 3a:\n\nΔH3a = H3a(1/C') log[(σ'vo + Δσv)/σ'vo]\n\nΔH3a = 4.7 m(1/120) log[(132 kPa + 0.16(600 kPa))/132 kPa)]\n\nΔH3a = 0.009 m = 9 mm\n\nLayer 3b:\n\nΔH3b = H3(1/C') log[(σ'vo + Δσv)/σ'vo]\n\nΔH3b = 3.0 m(1/102) log[(193 kPa + 0.07(600 kPa))/193 kPa)]\n\nΔH3b = 0.003 m = 3 mm\n\n[p. C-25] Layer 4:\n\nΔH4 = H4(1/C') log[(σ'vo + Δσv)/σ'vo]\n\nΔH4 = 3 m(1/110) log[(222 kPa + 0.04(600 kPa))/222 kPa)]\n\nΔH4 = 0.001 m = 1 mm\n\nΣΔHi = 25 mm + 9 mm + 3 mm + 1 mm = 38 mm\n\nRepeat this process for several footing widths over the expected range of footing dimensions – say, 1.5 to 7 m (a spreadsheet or computer tool can make these iterative calculations rapidly). Plot the results as a function of effective footing width as shown in Figure C1-4.\n\nThe geotechnical engineer should provide this chart and the equation for computing nominal resistances at the strength limit state, with the corresponding resistance factor (Step 7), to the structural designer for sizing of the footing. Note that the nominal resistance shown in Figure C1-4 is only applicable for service limit state design checks because it was developed with a serviceability limitation (e.g., maximum permissible settlement of 38 mm). The resistance factor associated with nominal resistances obtained from Figure C1-4 is 1.0.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C1-4: Nominal Bearing Resistance vs. Effective Footing Width at Service-I Limit State"
+      ],
+      "tables": [
+        "Table C1-2: Stress Increase with Depth as Function of Footing Width and Stress Applied by the Footing (q) (p. C-23) - columns: Soil Layer; Depth Range (m); Stress Increase, Δσv, for Bf = 3 m; Bf = 4.6 m; Bf = 6.1 m. 2; 2.3 – 4.4; 0.55q; 0.66q; 0.73q | 3a; 4.4 – 9.1; 0.16q; 0.26q; 0.33q | 3b; 9.1 – 12.1; 0.07q; 0.13q; 0.18q | 4; 12.1 – 15.1; 0.04q; 0.08q; 0.12q"
+      ],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 8 – Calculate the nominal bearing resistance at the service limit state (pp. C-22 to C-25)."
+    },
+    {
+      "section_id": "C-1.9",
+      "title": "Example C-1, Step 9 – Calculate nominal sliding and passive soil resistance at the strength and extreme limit state",
+      "body": "[p. C-26] The footing will bear in the Unit 2 soils. The friction angle of 35 degrees selected in Step 7 will be used to compute sliding resistance.\n\nThe equation for calculating sliding resistance of concrete footings cast against the soil is:\n\nQT = Pv tan φ (Eqn. C-4)\n\nThe ultimate, or nominal, sliding resistance is:\n\nQT = Pv tan 35° = 0.7(Pv)\n\nThe resistance factor associated with strength limit state checks is ϕ = 0.8 (Table 10.5.5-1, AASHTO, 1998).\n\nSince the sliding resistance will develop at strain levels much lower than that needed to develop passive pressures against the side of the footing, passive pressure will be ignored unless it is found that sliding resistance governs the design of the footing. The geotechnical engineer should provide this equation and the assumptions regarding use of passive pressures to the structural engineer for checking the footing’s sliding resistance at the strength and extreme limit states.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 9 – Calculate nominal sliding and passive soil resistance at the strength and extreme limit state (p. C-26)."
+    },
+    {
+      "section_id": "C-1.10",
+      "title": "Example C-1, Step 10 – Check global stability of the footing",
+      "body": "[p. C-26] The geotechnical engineer has determined that since this is an interior pier with level ground conditions, global stability is not a concern.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 10 – Check global stability of the footing (p. C-26)."
+    },
+    {
+      "section_id": "C-1.11",
+      "title": "Example C-1, Step 11 – Size the footing at the service limit state",
+      "body": "[p. C-26] First determine the eccentricity of the loads applied to the footing in both directions. This will be used to find the effective footing dimensions, B′f and L′f.\n\ney = MZ ÷ P\n\ney = 654 kN-m ÷ 8353 kN = 0.078 m\n\nez = MY ÷ P\n\nez = 1038 kN-m ÷ 8353 k (as printed, for kN) = 0.124 m\n\nEstimate trial footing dimensions. Try 5-m-by-5-m footing and calculate effective footing dimensions. The smaller will be used to enter Figure C1-4 to determine the nominal bearing resistance at the service limit state.\n\nB′f = Bf - 2ey (Eqn. 6-6)\n\nB′f = 5 m - 2(0.078 m) = 4.844 m\n\n[p. C-27] L′f = Lf - 2ez (Eqn. 6-7)\n\nL′f = 5 m - 2(0.124 m) = 4.752 m\n\nSince L′f is less than B′f, use L′f = 4.752 m to check nominal bearing resistance at the service limit state. From Figure C1-4, the nominal bearing resistance for this effective footing dimension is about 390 kPa. Compute applied bearing stress over effective footing area, A′:\n\nA′ = B′f · L′f = (4.844 m)(4.752 m) = 23.0 m²\n\nqapplied = P ÷ A′ = 8353 kN ÷ 23.0 m² = 363 kPa\n\nThis is less than 390 kPa from Figure C1-4 for settlement less than 38 mm. Use 5-m-by-5-m footing to perform the rest of the design checks.\n\nCheck assumption to neglect self-weight of footing, assuming a footing thickness of 1 m:\n\nWftg = Vftg(γconcrete - γsoil)\n\nWftg = (5 m)(5 m)(1 m)(23.5 kN/m³ - 19.6 kN/m³) = 98 kN\n\nThis should be less than about 1 to 2 percent of the axial load applied to the footing, or:\n\n2%P = 0.02(8353 kN) = 167 kN (OK)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 11 – Size the footing at the service limit state (pp. C-26 to C-27)."
+    },
+    {
+      "section_id": "C-1.12",
+      "title": "Example C-1, Step 12 – Check the bearing pressure, maximum eccentricity and sliding at the strength limit state",
+      "body": "[p. C-27] Bearing Pressure:\n\nCompute effective footing dimensions and bearing area using maximum load factors applied to the dead load components:\n\ney = MZmax ÷ Pmax\n\ney = 980 kN-m ÷ 10923 kN = 0.089 m (as printed; 980 ÷ 10923 = 0.0897)\n\nez = MYmax ÷ Pmax\n\nez = 1279 kN-m ÷ 10923 k (as printed, for kN) = 0.117 m\n\nB′f = Bf - 2ey (Eqn. 6-6)\n\nB′f = 5 m - 2(0.089 m) = 4.82 m\n\nL′f = Lf - 2ez (Eqn. 6-7)\n\nL′f = 5 m - 2(0.117 m) = 4.766 m\n\n[p. C-28] A′ = B′f · L′f = (4.82 m)(4.766 m) = 23.0 m²\n\nqapplied = P ÷ A′ = 10923 kN ÷ 23.0 m² = 475 kPa\n\nNominal bearing resistance at this effective footing width (use L′f as minimum value):\n\nqult = 254B′f + 2553 kPa\n\nqult = 254(4.766 m) + 2553 kPa = 3764 kPa\n\nThe factored resistance at the strength limit state is then:\n\nQR = φ(qult) = 0.35(3764 kPa)\n\nQR = 1317 kPa\n\nThis is greater than qapplied = 475 kPa (OK)\n\nMaximum eccentricity:\n\nThe maximum eccentricity in any direction should be less than one-fourth of the actual footing dimension (AASHTO, 1998). The maximum eccentricity is evaluated using the minimum load factor combination:\n\ney = MZmin ÷ Pmin\n\ney = 190 kN-m ÷ 5760 kN = 0.033 m\n\nez = MYmin ÷ Pmin\n\nez = 673 kN-m ÷ 5760 k (as printed, for kN) = 0.117 m\n\n(1/4)Bf = (1/4)Lf = (1/4)(5 m) = 1.25 m\n\ney < ez < 1.25 m (OK)\n\nSliding:\n\nThe factored horizontal shear force must be less than the factored nominal sliding resistance. This is evaluated using minimum load factors. The equation for QT is provided in Step 9. Passive resistance is ignored, so Qep is zero.\n\nQR = φTQT+φepQep (Eqn. C-3)\n\nQR = 0.8(0.7(5760 kN)) = 3226 kN\n\n[p. C-29] Vmin = 224 kN (as printed; Step 5 gives Vmin = 150 kN and Vmax = 282 kN) < 3226 kN (OK)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 12 – Check the bearing pressure, maximum eccentricity and sliding at the strength limit state (pp. C-27 to C-29)."
+    },
+    {
+      "section_id": "C-1.13",
+      "title": "Example C-1, Step 13 – Check the bearing pressure, maximum eccentricity and sliding at the extreme limit state",
+      "body": "[p. C-29] Bearing Pressure:\n\nCompute effective footing dimensions and bearing area using maximum load factors applied to the dead load components:\n\ney = MZE ÷ PEmax\n\ney = 1939 kN-m ÷ 9671 kN = 0.200 m\n\nez = MYE ÷ PEmax\n\nez = 6481 kN-m ÷ 9671 k (as printed, for kN) = 0.670 m\n\nB′f = Bf - 2ey (Eqn. 6-6)\n\nB′f = 5 m - 2(0.200 m) = 4.60 m\n\nL′f = Lf - 2ez (Eqn. 6-7)\n\nL′f = 5 m - 2(0.670 m) = 3.66 m\n\nA′ = B′f · L′f = (4.60 m)(3.66 m) = 16.8 m²\n\nqapplied = PEmax ÷ A′ = 9671 kN ÷ 16.8 m² = 576 kPa\n\nNominal bearing resistance at this effective footing width (use either B′f or L′f as minimum value):\n\nqult = 254B′f + 2553 kPa\n\nqult = 254(3.66 m) + 2553 kPa = 3483 kPa\n\nThe factored resistance at the extreme limit state is then:\n\nQR = φ(qult) = 1.0(3483 kPa)\n\nQR = 3483 kPa\n\nThis is greater than qapplied = 576 kPa (OK)\n\n[p. C-30] Maximum eccentricity:\n\nThe maximum eccentricity in any direction should be less than one-fourth of the actual footing dimension. The maximum eccentricity is evaluated using the minimum load factor combination:\n\ney = MZE ÷ PEmin\n\ney = 1939 kN-m ÷ 6329 kN = 0.306 m\n\nez = MYE ÷ PEmin\n\nez = 6481 kN-m ÷ 6329 k (as printed, for kN) = 1.024 m\n\n(1/4)Bf = (1/4)Lf = (1/4)(5 m) = 1.25 m\n\ney < ez < 1.25 m (OK)\n\nSliding:\n\nThe factored horizontal shear force must be less than the factored nominal sliding resistance. This is evaluated using minimum load factors:\n\nQR = φTQT+φepQep (Eqn. C-3)\n\nQR = 1.0(0.7(6329 kN)) = 4430 kN\n\nVE = 1013 kN < 4430 kN (OK)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 13 – Check the bearing pressure, maximum eccentricity and sliding at the extreme limit state (pp. C-29 to C-30)."
+    },
+    {
+      "section_id": "C-1.14",
+      "title": "Example C-1, Step 14 – Complete structural design of footing",
+      "body": "[p. C-30] The structural engineer completes this step.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-1 (an interior bridge pier on a 5-m-by-5-m spread footing founded in native silty sand over sand (Example B-1 re-worked by LRFD), checked at the Service I, Strength I and Extreme I limit states), printed heading Step 14 – Complete structural design of footing (p. C-30)."
+    },
+    {
+      "section_id": "C-2",
+      "title": "LRFD Example 2 (Example C-2): Stub Seat-Type Bridge Abutment on Structural Fill",
+      "body": "[p. C-31] (Note: This example uses the same given geometry, loading and subsurface conditions as Example 3 in Appendix B, which was solved using Service Load Design criteria.)\n\nGiven:\n\n• A seat-type abutment on a spread footing is proposed for a bridge.\n\n• The footing length is L = 25.0 m (82 ft).\n\n• The foundation soils and abutment dimensions are shown in Figure C2-1.\n\n• Frost penetration depth is 0.6 m (2 ft).\n\n• Tolerable settlement is 38 mm (1.5 in).\n\n• Abutment loading symbols are shown in Figure C2-2.\n\nFind:\n\n• Size the footing based on Load and Resistance Factor Design at the Service I and Strength I states. Assume that the importance factor, η, = 1.0. Check for overturning and sliding.\n\n[p. C-33] Solution:\n\nSteps 1 through 4 – Preliminary bridge layout, review of existing geologic and subsurface data, site reconnaissance, scour and frost potential:\n\nThe structural, hydraulic and geotechnical engineers completed these steps. The required design information is provided in the problem-given statement.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C2-1: Approach Embankment and Foundation",
+        "Figure C2-2: Direction and Load Conventions per LRFD Methodology"
+      ],
+      "tables": [],
+      "applicability": "Appendix C, LRFD Example 2 (Example C-2) (pp. C-31 to C-33), printed heading LRFD EXAMPLE 2: STUB SEAT-TYPE BRIDGE ABUTMENT ON STRUCTURAL FILL: a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states. Given, Find, and Steps 1 through 4 (preliminary layout, existing data, reconnaissance, scour and frost); the calculation steps follow as their own sections."
+    },
+    {
+      "section_id": "C-2.5",
+      "title": "Example C-2, Step 5 – Determine the loads",
+      "body": "[p. C-33] Moments are taken about the toe of the footing. The sense of the moment is positive if counterclockwise (resisting moments) and negative if clockwise (overturning moments).\n\nLoads from the girders:\n\nThe structural engineer has calculated and provided the values shown in Table C2-1.\n\n[Table C2-1]\n\nThe shear load is computed as the force transmitted through the bearings due to rib shortening, shrinkage and temperature and is considered in both Strength I and Service I states. The moments calculated are due to the vertical and shear loads and are taken about the toe of the footing.\n\nDead loads of the abutment components (per m of abutment wall):\n\nDead loads of the abutment components, and the moments caused by these loads about the toe of the footing, were calculated as part of Service Load Design Example 3 (Appendix B). These values are valid for the unfactored loads of the LRFD design and are listed in Table C2-2.\n\nLoads from approach fill:\n\nLoads from the approach fill, and the moments caused by these loads about the toe of the footing, were calculated as part of Service Load Design Example 3 (Appendix B). These values remain valid for the LRFD solution, with the exception of the horizontal earth pressure for the live load surcharge, PLS, and the moment due to active lateral earth pressure (Mtoe due to EH).\n\nHorizontal earth pressure from live load surcharge:\n\n[p. C-34] From Table C-4, heq = 0.7 m for a wall height of 5.24 m, and:\n\nPLS = (Kaγheq)Habut = (0.26)(19.6 kN/m³)(0.70 m)(5.24 m) = 18.69 kN/m\n\narmLS = (0.5)Habut = (0.5)(5.24 m) = 2.62 m\n\nMz = -PLS · armLS = -(18.69 kN/m)(2.62 m) = -48.97 kN·m/m\n\nMoment due to active lateral earth pressure:\n\nThe code (AASHTO, 1998) specifies application of the resultant due to lateral earth pressure at 0.4 times the height of the abutment, Habut, due to the effects of backfill compaction. Therefore:\n\nMtoe = 0.4(PA)(Habut) = 0.4(-69.96 kN/m)(5.24 m) = -146.6 kN·m/m\n\nThe loads and moments computed above are summarized in Table C2-2, along with values that are unchanged from Service Load Design Example 3 (Appendix B).\n\n[Table C2-2]\n\n[p. C-35] Loads for Service I Limit State:\n\nThe general equation for this set of loads and limit states is:\n\nΣ ηiγiQi = η[γP (DC) + γP (DW) + γP (EV) + γP (EH) + γLL (LL) + γLL (LS) + γTU (TU) + γCR (CR) + γSH (SH)]\n\nAt the service limit state, all load factors except those for uniform temperature, creep and shrinkage are 1.0. At the service limit state, the load factors γTU, γCR and γSH for force effects are all equal to 1.0.\n\nLoads for Strength I Limit State:\n\nAt the strength limit state, all load factors for the dead load components will be taken as minimums or maximums, depending on whether the load acts to stabilize or destabilize the footing. At the strength limit state, the load factors γTU, γCR and γSH for force effects are all equal to 0.5.\n\nFor this set of loads, the following load factors, γP, will be applied for the various design checks:\n\nFor checking bearing resistance: γP for DC = γmax = 1.25, γP for DW = γmax = 1.50, γP for EV = γmax = 1.35, γLL = 1.75, γLS = 1.75\n\nFor checking sliding: γP for DC = γmin = 0.90, γP for DW = γmin = 0 (as printed; Table C-3 gives 0.65 as the minimum for DW), γP for EV = γmin = 1.00, γP for EH = γmax = 1.50, γLL = 0, γLS = 1.75, γTU,CR,SH = γmax = 0.5\n\nFor checking eccentricity: γP for DC = γmin = 0.90, γP for DW = γmin = 0, γP for EV = γmin = 1.00, γP for EH = γmax = 1.50, γLL = 0, γLS = 1.75, γTU,CR,SH = γmax = 0.5",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table C2-1: Loads from Girders (p. C-33) - columns: Load; Axial, P (kN); Shear, V (kN); Moment, MZ (kN•m). Dead load of components, P (DC); 5233; -; 7274 | Dead load of wearing surfaces, P (DW); 446; -; 620 | Vehicular live load, P (LL); 1538; -; 2138 | Shear loads from bearing pads, V (TU+CR+SH); -; 1047; -3392",
+        "Table C2-2: Loads of Abutment Components and Horizontal Earth Pressures (p. C-34) - columns: Load; Vertical (kN/m); Horizontal (kN/m); Moment, Mtoe (kN•m/m). Weight of stem, Wstem (DC); 57.29; -; 84.79 | Weight of footing, Wf (DC); 10.81Bf; -; 5.41Bf² | Weight of soil over toe, Wtoe (EV); -; -; - | Weight of soil over heel, Wh (EV); (93.69)(Bf–1.73); -; (93.69)(Bf–1.73)*(0.865+0.5Bf) | Active earth pressure load, PA (EH); -; 69.96; -146.6 | Horizontal earth load from live load surcharge, PLS (LS); -; 18.69; -48.97. Note: Bf = width of footing in meters."
+      ],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 5 – Determine the loads (pp. C-33 to C-35)."
+    },
+    {
+      "section_id": "C-2.6",
+      "title": "Example C-2, Step 6 – Conduct field exploration and laboratory testing",
+      "body": "[p. C-36] This step is complete and the subsurface data are shown in Figure C2-1. The initial vertical effective stresses are the same as computed for Service Load Design Example 3 (Appendix B) and are not repeated here.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 6 – Conduct field exploration and laboratory testing (p. C-36)."
+    },
+    {
+      "section_id": "C-2.7",
+      "title": "Example C-2, Step 7 – Calculate nominal bearing resistance at the strength limit state",
+      "body": "[p. C-36] The ultimate bearing capacity was calculated for this abutment in Service Load Design Example 3 (Appendix B). The ultimate bearing capacity for effective footing widths of 3, 4, and 5 m were 1414 kPa, 869 kPa, and 605 kPa. Due to the eccentric load effects, it will be useful to plot a few more values for smaller effective footing widths. Using the same methods used in the Service Load Design Example 3 (Appendix B) for effective footing widths of 2 and 2.5 meters:\n\nLf/Bf = 25.0 m / 2.0 m = 12.5 > 5\n\nsγ = 1, bγ = 1, and CWγ = 1\n\nDf/Bf = 1.37 m/2 m = 0.685\n\nBy interpolation, for Df/Bf = 0.685,\n\nNγq = 17 + (0.685)(80 - 17) ≅ 60\n\nAnd:\n\nqult = 0.5γBfNγqCWγsγbγ = (0.5)(20.5 kN/m³)(2.0)(60)(1)(1)(1) = 1230 kPa\n\nSimilarly, for 2.5 m:\n\nDf/Bf = 1.37 m/2.5 m = 0.548\n\nBy interpolation, for Df/Bf = 0.548,\n\nNγq = 17 + (0.548)(80 - 17) ≅ 51.5\n\nAnd:\n\n[p. C-37] qult = 0.5γBfNγqCWγsγbγ = (0.5)(20.5 kN/m³)(2.5)(51.5)(1)(1)(1) = 1320 kPa\n\nThe results are plotted in Figure C2-3. As discussed in Example 3, the pressure bulb for effective footing widths greater than about 3 m begins to extend into the upper foundation silt layer, reducing the bearing capacity, and producing the shape of curve shown in Figure C2-3.\n\nSince the nominal bearing resistance was computed using a soil friction angle correlated to SPT N-values, a resistance factor of ϕ = 0.35 should be applied to resistances from Figure C2-3 when checking strength limit states.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C2-3: Nominal Stress versus Effective Footing Width at Strength 1 Limit State"
+      ],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 7 – Calculate nominal bearing resistance at the strength limit state (pp. C-36 to C-37)."
+    },
+    {
+      "section_id": "C-2.8",
+      "title": "Example C-2, Step 8 – Calculate the nominal bearing resistance at the service limit state",
+      "body": "[p. C-37] Settlement estimates were made for effective footing widths of 3 m, 4 m, and 5 m, as part of the Service Load Design Example 3. The estimated settlement for various combinations of footing widths and applied load were used to estimate the bearing pressure resulting in 38 mm of settlement for each footing width. The process was repeated for several footing widths over the expected range of footing dimensions (a spreadsheet or other computer tool can make these calculations rapidly). The results are plotted as a function of effective footing width, as shown in Figure C2-4.\n\n[p. C-38] The geotechnical engineer should provide both charts of nominal resistances at the strength and service limit states (e.g. Figures C2-3 and C2-4) to the structural designer for sizing of the footing.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure C2-4: Nominal Bearing Resistance versus Effective Footing Width at Service-1 Limit State"
+      ],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 8 – Calculate the nominal bearing resistance at the service limit state (pp. C-37 to C-38)."
+    },
+    {
+      "section_id": "C-2.9",
+      "title": "Example C-2, Step 9 – Calculate nominal sliding and passive soil resistance at the strength limit state",
+      "body": "[p. C-38] The footing concrete will be poured on compacted structural fill. Thus the friction angle δ to be used in the sliding analysis of the footing will be:\n\nδ = φ′ = 38°\n\nThe equation for calculating sliding resistance of concrete footings cast against the soil is:\n\nQT = Pv tan φ\n\nThe ultimate, or nominal, sliding resistance is:\n\nQT = 0.78(Pv)\n\nThe resistance factor associated with strength limit state checks is ϕ = 0.8 (Table 10.5.5-1, AASHTO, 1998).\n\n[p. C-39] The passive resistance of the soil in front of the footing will be ignored.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 9 – Calculate nominal sliding and passive soil resistance at the strength limit state (pp. C-38 to C-39)."
+    },
+    {
+      "section_id": "C-2.10",
+      "title": "Example C-2, Step 10 – Check global stability of the footing",
+      "body": "[p. C-39] The geotechnical engineer has determined that the global stability is satisfactory (see Service Load Design Example 3).",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 10 – Check global stability of the footing (p. C-39)."
+    },
+    {
+      "section_id": "C-2.11",
+      "title": "Example C-2, Step 11 – Size the footing at the service limit state under full loading",
+      "body": "[p. C-39] Select a trial footing width, say Bf = 3.2 m.\n\nCheck bearing resistance for Bf = 3.2 m:\n\nAnalyze for 1 m of abutment width. Under the service limit state the load factors are taken as 1.0.\n\nFrom Table C2-1, the loads and moments due to the loads of the superstructure are:\n\nPv girders = η[γP (DC) + γP (DW) + γLL (LL)] = 1.0[1.0(DC) + 1.0(DW) + 1.0(LL)] = DC + DW + LL = (5233 + 446 + 1538) kN / 25 m = 288.7 kN/m\n\nMtoe girders = η[γP (DC) + γP (DW) + γLL (LL) + 1.0(TU) + 1.0(CR) + 1.0(SH)] = 1.0[1.0(DC) + 1.0(DW) + 1.0(LL) + 1.0(TU + CR + SH)] = ((7274 + 620 + 2138) kN·m + 1.0(-3392) kN·m) / 25 m = 265.6 kN·m/m\n\nFrom Table C2-2, the loads and moments due to abutment components are:\n\nPv abut = η[γP (DC) + γP (EV)] = 1.0[1.0(DC) + 1.0(EV)] = 57.29 + 10.81Bf + (93.69)(Bf - 1.73) = 57.29 + (10.81)(3.2) + (93.69)(3.2 - 1.73) = 229.6 kN/m\n\n[p. C-40] Mtoe abut = η[γP (DC) + γP (EV) + γP (EH) + γLS(LS)] = 1.0[1.0(DC) + 1.0(EV) + 1.0(EH) + 1.0(LS)] = 84.79 + 5.41Bf² + (93.69)(Bf - 1.73)(0.865 + 0.5Bf) - 146.6 - 48.97 = 84.79 + (5.41)(3.2)² + (93.69)(3.2 - 1.73)(0.865 + (0.5)(3.2)) - 146.6 - 48.97 = 284.1 kN·m/m\n\nThe total loads and moments are:\n\nPv = Pv girders + Pv abut = 288.7 kN/m + 229.6 kN/m = 518.3 kN·m/m (as printed, for kN/m)\n\nMtoe = Mtoe girders + Mtoe abut = 265.6 kN·m/m + 284.1 kN·m/m = 549.7 kN·m/m\n\nThe arm of the resultant is:\n\narmR = Mtoe / Pv = (549.7 kN·m/m)/(518.3 kN/m) = 1.06 m\n\nThe eccentricity, ey, is\n\ney = Bf/2 - armR = 3.2 m/2 - 1.06 m = 1.6 m - 1.06 m = 0.54 m\n\nCheck bearing stress for effective footing area:\n\nB′f = Bf - 2ey = 3.2 m - (2)(0.54 m) = 2.12 m\n\n[p. C-41] qapplied = Pv/B′f = (518.3 kN/m)/(2.12 m) = 246.8 kPa (as printed; 518.3 ÷ 2.12 = 244.5 kPa)\n\nThis is less than 295 kPa from Figure C2-4 for settlement less than 38 mm and B′f = 2.12 m. Use 3.2 m footing to perform the rest of the design checks.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 11 – Size the footing at the service limit state under full loading (pp. C-39 to C-41)."
+    },
+    {
+      "section_id": "C-2.12.a",
+      "title": "Example C-2, Step 12a – Check the bearing pressure, maximum eccentricity and sliding at the Strength I limit state under full loading",
+      "body": "[p. C-41] Check maximum eccentricity for Bf = 3.2 m:\n\nFrom Table C2-1, resisting loads are multiplied by minimum factors and driving loads are multiplied by maximum factors. At the strength limit state, the load factors γTU, γCR and γSH for force effects are all equal to 0.5.\n\nThe loads and moments due to the superstructure are:\n\nPv girders = η[γPmin (DC) + γPmin (DW) + γLL(LL)] = 1.0[0.9(DC) + 0(DW) + 0(LL)] = 0.9(DC) + 0(DW) + 0(LL) = (0.9(5233) + 0(446) + 0(1538)) kN / 25 m = 188.4 kN/m\n\nMtoe girders = η[γPmin(DC) + γPmin (DW) + γLL (LL) + 0.5(TU) + 0.5(CR) + 0.5(SH)] = 1.0[0.9(DC) + 0(DW) + 0(LL) + 0.5(TU + CR + SH)] = (0.9(7274) + 0(620) + 0(2138) + 0.5(-3392)) kN·m / 25 m = 194.0 kN·m/m\n\nFrom Table C2-2, the loads and moments due to abutment components are:\n\nPv abut = η[γPmin (DC) + γPmin(EV)] = 1.0[0.9(DC) + 1.00(EV)] = 0.9(57.29 + 10.81Bf) + (93.69)(Bf - 1.73) = 0.9(57.29) + 0.9(10.81)(3.2) + (93.69)(3.2 - 1.73) = 220.4 kN/m\n\n[p. C-42] Mtoe abut = η[γPmin (DC) + γPmin (EV) + γPmax (EH) + γLS(LS)] = 1.0[0.9(DC) + 1.0(EV) + 1.5(EH) + 1.75(LS)] = 0.9(84.79 + 5.41Bf²) + 1.0[(93.69)(Bf - 1.73)(0.865 + (0.5)(Bf))] - 1.5(146.6) - 1.75(48.97) = 0.9(84.79) + 0.9(5.41)(3.2)² + (93.69)(3.2 - 1.73)(0.865 + (0.5)(3.2)) - 1.5(146.6) - 1.75(48.97) = 160.1 kN·m/m\n\nThe total loads and moments are:\n\nPv = Pv girders + Pv abut = 188.4 kN/m + 220.4 kN/m = 408.8 kN·m/m (as printed, for kN/m)\n\nMtoe = Mtoe girders + Mtoe abut = 194.0 kN·m/m + 160.1 kN·m/m = 354.1 kN·m/m\n\nThe arm of the resultant is:\n\narmR = Mtoe / Pv = (354.1 kN·m/m)/(408.8 kN/m) = 0.866 m\n\nAnd the eccentricity, ey, is:\n\ney = Bf/2 - armR = 3.2 m/2 - 0.866 m = 1.6 m - 0.866 m = 0.73 m\n\nThe eccentricity should be in the middle half of the footing, or:\n\nBf/4 = (3.2 m)/4 = 0.8 m\n\nSince ey < Bf/4, Bf = 3.2 m satisfies the eccentricity (overturning) requirement.\n\n[p. C-43] Check bearing stress for effective footing area:\n\nCompute B′f using maximum load factors. At the strength limit state, the load factors γTU, γCR and γSH for force effects are all equal to 0.5.\n\nPv girders = η[γPmax (DC) + γPmax (DW) + γLL(LL)] = 1.0[1.25(DC) + 1.5(DW) + 1.75(LL)] = (1.25(5233) + 1.5(446) + 1.75(1538)) kN / 25 m = 396.1 kN/m\n\nMtoe girders = η[γPmax(DC) + γPmax (DW) + γLL (LL) + 0.5(TU) + 0.5(CR) + 0.5(SH)] = 1.0[1.25(DC) + 1.5(DW) + 1.75(LL) + 0.5(TU + CR + SH)] = (1.25(7274) + 1.5(620) + 1.75(2138) + 0.5(-3392)) kN·m / 25 m = 482.7 kN·m/m\n\nPv abut = η[γPmax (DC) + γPmax (EV)] = 1.0[1.25(DC) + 1.35(EV)] = 1.25(57.29 + 10.81Bf) + 1.35(93.69)(Bf - 1.73) = 1.25(57.29) + 1.25(10.81)(3.2) + 1.35(93.69)(3.2 - 1.73) = 300.8 kN/m\n\nMtoe abut = η[γPmin (DC) + γPmin (EV) + γPmax (EH) + γLS(LS)] (as printed; the factors used, 1.25 and 1.35, are the maximums) = 1.0[1.25(DC) + 1.35(EV) + 1.5(EH) + 1.75(LS)] = 1.25(84.79 + 5.41Bf²) + 1.35[(93.69)(Bf - 1.73)(0.865 + (0.5)(Bf))] - 1.5(146.6) - 1.75(48.97) = 1.25(84.79) + 1.25(5.41)(3.2)² + 1.35[(93.69)(3.2 - 1.73)(0.865 + (0.5)(3.2))] - 1.5(146.6) - 1.75(48.97) = 328.0 kN·m/m\n\n[p. C-44] The total loads and moments are:\n\nPv = Pv girders + Pv abut = 396.1 kN/m + 300.8 kN/m = 696.9 kN·m/m (as printed, for kN/m)\n\nMtoe = Mtoe girders + Mtoe abut = 482.7 kN·m/m + 328.0 kN·m/m = 810.7 kN·m/m\n\nThe arm of the resultant is:\n\narmR = Mtoe / Pv = (810.7 kN·m/m)/(696.9 kN/m) = 1.163 m\n\nThe eccentricity, ey, is:\n\ney = Bf/2 - armR = 3.2 m/2 - 1.163 m = 1.6 m - 1.163 m = 0.44 m\n\nAnd the effective footing width is:\n\nB′f = Bf - 2ey = 3.2 m - 2(0.44 m) = 3.2 m - 0.88 m = 2.32 m\n\nSo the applied stress is:\n\nqapplied = Pv/B′f = 696.9 kN/2.32 m = 300 kPa\n\nFrom Figure C2-3, the nominal bearing resistance at the strength limit state for an effective footing width of 2.32 m is about 1300 kPa. Applying a resistance factor of 0.35, the factored resistance at the strength limit state is:\n\n[p. C-45] QR = φ(qult) = 0.35(1300 kPa) = 455 kPa ≥ qapplied (OK)\n\nCheck sliding:\n\nThe factored horizontal shear force must be less than the factored nominal sliding resistance. This is evaluated using minimum load factors:\n\nQR = φTQT+φepQep (Eqn. C-3)\n\nQR = 0.8(0.78(408.8 kN)) = 255.1 kN\n\nVmax = 1.5(EH) + 1.75(LS) + 0.5(TU + SH + CR) = 1.5(69.96) + 1.75(18.69) + 0.5(1047/25) = 158.6 kN < 255.1 kN (OK)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 12a – Check the bearing pressure, maximum eccentricity and sliding at the Strength I limit state under full loading (pp. C-41 to C-45)."
+    },
+    {
+      "section_id": "C-2.12.b",
+      "title": "Example C-2, Step 12b – Check the bearing pressure, maximum eccentricity and sliding at the Strength I limit state without the bridge loading from the girders",
+      "body": "[p. C-45] Check maximum eccentricity for Bf = 3.2 m:\n\nFrom Table C2-2, considering that resisting loads are multiplied by minimum factors and driving loads are multiplied by maximum factors, the loads and moments due to abutment components are:\n\nPv abut = η[γPmin (DC) + γPmin(EV)] = 1.0[0.9(DC) + 1.00(EV)] = 0.9(57.29 + 10.81Bf) + (93.69)(Bf - 1.73) = 0.9(57.29) + 0.9(10.81)(3.2) + (93.69)(3.2 - 1.73) = 220.4 kN/m\n\nMtoe abut = η[γPmin (DC) + γPmin(EV) + γPmax(EH)] = 1.0[0.9(DC) + 1.0(EV) + 1.5(EH)] = 0.9(84.79 + 5.41Bf²) + 1.0(93.69)(Bf - 1.73)(0.865 + 0.5Bf) - 1.5(146.6) = 0.9(84.79) + 0.9(5.41)(3.2)² + (93.69)(3.2 - 1.73)(0.865 + 0.5(3.2)) - 1.5(146.6) = 245.8 kN·m/m\n\n[p. C-46] The arm of the resultant is:\n\narmR = Mtoe abut / Pv abut = (245.8 kN·m/m)/(220.4 kN/m) = 1.12 m\n\nThe eccentricity, ey, is:\n\ney = Bf/2 - armR = 3.2 m/2 - 1.12 m = 1.6 m - 1.12 m = 0.48 m\n\nThe eccentricity should be in the middle half of the footing, or:\n\nBf/4 = (3.2 m)/4 = 0.8 m\n\nSince ey < Bf/4, Bf = 3.2 m satisfies the eccentricity (overturning) requirement.\n\nCheck bearing stress for effective footing area:\n\nPv abut = η[γPmax (DC) + γPmax (EV)] = 1.0[1.25(DC) + 1.35(EV)] = 1.25(57.29 + 10.81Bf) + 1.35(93.69)(Bf - 1.73) = 1.25(57.29) + 1.25(10.81)(3.2) + 1.35(93.69)(3.2 - 1.73) = 300.8 kN/m\n\nMtoe abut = η[γPmin (DC) + γPmin (EV) + γPmax (EH) + γLS(LS)] (as printed; the factors used, 1.25 and 1.35, are the maximums) = 1.0[1.25(DC) + 1.35(EV) + 1.5(EH) + 1.75(LS)] = 1.25(84.79 + 5.41Bf²) + 1.35[(93.69)(Bf - 1.73)(0.865 + (0.5)(Bf))] - 1.5(146.6) - 1.75(48.97) = 1.25(84.79) + 1.25(5.41)(3.2)² + 1.35[(93.69)(3.2 - 1.73)(0.865 + (0.5)(3.2))] - 1.5(146.6) - 1.75(48.97) = 328.0 kN·m/m\n\n[p. C-47] The arm of the resultant is:\n\narmR = Mtoe abut / Pv abut = (328.0 kN·m/m)/(300.8 kN/m) = 1.090 m\n\nThe eccentricity, ey, is:\n\ney = Bf/2 - armR = 3.2 m/2 - 1.09 m = 1.6 m - 1.09 m = 0.51 m\n\nAnd the effective footing width is:\n\nB′f = Bf - 2ey = 3.2 m - 2(0.51 m) = 3.2 m - 1.02 m = 2.18 m\n\nSo the applied stress is:\n\nqapplied = Pv/B′f = 300.8 kN/2.18 m = 138 kPa\n\nFrom Figure C2-3, the nominal bearing resistance at the strength limit state for an effective footing width of 2.18 m is about 1260 kPa. Applying a resistance factor of 0.35, the factored resistance at the strength limit state is:\n\nQR = φ(qult) = 0.35(1260 kPa) = 441 kPa ≥ qapplied (OK)\n\nCheck sliding:\n\nThe factored horizontal shear force must be less than the factored nominal sliding resistance. This is evaluated using minimum load factors:\n\nQR = φTQT+φepQep (Eqn. C-3)\n\n[p. C-48] QR = 0.8(0.78(220.4 kN)) = 137.5 kN\n\nVmax = 1.5(EH) = 1.5(69.96) = 104.9 kN < 137.5 kN (OK)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 12b – Check the bearing pressure, maximum eccentricity and sliding at the Strength I limit state without the bridge loading from the girders (pp. C-45 to C-48)."
+    },
+    {
+      "section_id": "C-2.13",
+      "title": "Example C-2, Step 13 – Check the bearing pressure, eccentricity and sliding at the extreme limit state",
+      "body": "[p. C-48] This step is skipped in this example. See Example C-1 for an extreme limit state design check.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 13 – Check the bearing pressure, eccentricity and sliding at the extreme limit state (p. C-48)."
+    },
+    {
+      "section_id": "C-2.14",
+      "title": "Example C-2, Step 14 – Perform the structural design of the footing",
+      "body": "[p. C-48] The structural engineer performs this step.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Appendix C, Example C-2 (a stub seat-type abutment on a 3.2-m-wide spread footing in compacted structural fill (Example B-3 re-worked by LRFD), checked at the Service I and Strength I limit states), printed heading Step 14 – Perform the structural design of the footing (p. C-48)."
+    }
+  ]
+}
