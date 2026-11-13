@@ -25,7 +25,10 @@ manifest's ``appendices`` (in the Volume II entry of
   ``find`` and optional ``through`` lines, which are taken out); the text
   before the first is the section numbered with the letter alone;
 * ``printed_equations``: the equations the appendix numbers (and those it
-  prints again from a chapter, with a note), as the chapters'.
+  prints again from a chapter, with a note), as the chapters';
+* ``layout``: ``"examples"`` for Appendix E's worked examples, where a line
+  of working ("FH1 = F1 cos I = 18.46 k/lft") and the examples' list marks
+  keep their own lines.
 
 Each body is the page's lines, a paragraph wherever the text layer leaves
 a blank line, with ``[p. B-3]`` where each printed page starts. Nothing is
@@ -59,8 +62,10 @@ bpt = gt.bpt
 MANIFEST = SCRIPTS / "manifests" / f"{gt.PACKAGE}.json"
 TEXT_DIR = gt.PKG / gt.PACKAGE / "text"
 
-#: A caption paragraph: "Figure B-1. ...", "Table E1-3. ...", "Figure D.2-1. ...".
-_CAPTION = re.compile(r"^(?:\[p\. [^\]]+\]\s*)?(Figure|Table)\s+([A-F][\d.]*-\d+[a-z]?)\.\s+(.+)$")
+#: A caption paragraph: "Figure B-1. ...", "Table E1-3. ...", "Figure D.2-1. ...",
+#: "Table E1-5.1. ...", "Table E0. ...".
+_CAPTION = re.compile(r"^(?:\[p\. [^\]]+\]\s*)?(Figure|Table)\s+"
+                      r"([A-F](?:[\d.]*-\d+(?:\.\d+)?|\d+)[a-z]?)\.\s+(.+)$")
 #: A line that starts a list item, a step or a note, which keeps its own
 #: line in the paragraph ("1.  Determine index ...", "a.  Wide width ...",
 #: "iv.  The temperature ...", "• Using ...", "Step 4:", "Note: ...").
@@ -74,14 +79,26 @@ _ENDS = re.compile(r"[.:;?!\]]\)?[\"”’]?$")
 #: The start of a line that can open a paragraph.
 _OPENS = re.compile(r"[A-Z0-9“\"•▪]")
 
+#: With the manifest's ``"layout": "examples"`` (Appendix E's worked
+#: examples), these lines keep their own line too: a line of working that
+#: starts with a quantity and an equals sign ("FH1 = F1 cos I = ...",
+#: "e = 3.80 ≤ 4.50 ft", "where Kab = ..."), and the examples' list marks,
+#: a sub-bullet printed as "o", a square bullet with no space after it and
+#: a numbered step "1)".
+_WORKING = re.compile(r"^\S{1,14}(?:\s\S{1,8})?\s*[=≤≥<>]\s")
+_EXAMPLE_ITEM = re.compile(r"^(?:o\s|▪|\d{1,2}\)\s|[a-h]\)\s|STEP \d{1,2}\b|Step \d{1,2}\b)")
 
-def _paragraphs(stream, pages) -> str:
+
+def _paragraphs(stream, pages, examples: bool = False) -> str:
     """The lines of ``stream`` ((page index, line) pairs) as paragraphs, a
     ``[p. N]`` marker where each printed page's text starts. Blank lines
     part paragraphs on a page; across a page break the paragraph goes on
     unless the text before it ends a sentence, or is a caption, a typed
-    table or a note in brackets."""
+    table or a note in brackets. With ``examples``, lines of working and
+    the examples' list marks keep their own lines (``_WORKING``,
+    ``_EXAMPLE_ITEM``)."""
     paras, cur = [], []
+    was_working = False
     last_page, gap = None, False
     row = gt._ROW
     # the width of a full line of text on each page: a paragraph's last
@@ -140,6 +157,10 @@ def _paragraphs(stream, pages) -> str:
             flush()
         elif _ITEM.match(ln) and cur:
             cur.append(row)
+        elif examples and cur and (was_working or _WORKING.match(ln)
+                                   or _EXAMPLE_ITEM.match(ln)):
+            cur.append(row)
+        was_working = examples and bool(_WORKING.match(ln))
         if mark:
             cur.append(mark)
         cur.append(ln)
@@ -203,7 +224,7 @@ def build_appendix(app: dict, vol: dict, pages: list[dict]) -> dict:
     sections = []
     vol_name = "I" if vol["volume"] == 1 else "II"
     for (s, head), (t, _) in zip(starts, starts[1:]):
-        body = _paragraphs(stream[s:t], pages)
+        body = _paragraphs(stream[s:t], pages, app.get("layout") == "examples")
         # a heading with no text before the next (B.4, then B.4.1) is on
         # its heading's page
         labels = (re.findall(r"\[p\. ([^\]]+)\]", body)

@@ -22,7 +22,7 @@ PKG = ROOT / "geotech_references" / "gec_11"
 PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
 #: Appendices built from the print so far, with the chapter number each
 #: file carries (the appendices follow chapter 11).
-BUILT = {"A": 12, "B": 13, "C": 14, "D": 15}
+BUILT = {"A": 12, "B": 13, "C": 14, "D": 15, "E": 16}
 
 
 def _appendix(letter):
@@ -77,6 +77,8 @@ def test_no_scatter_patterns(letter):
                 bad.append((s["section_id"], f"glyph line {ln!r}"))
             if "=" in ln and re.search(r"[+\-−×/÷^√Σ]", ln):
                 t = re.sub(r"\[(?:p|Eq)\. [^\]]+\]", "", ln)
+                # a numbered step ("2)  Calculate ...") is not a bracket
+                t = re.sub(r"^\s*\d{1,2}\)\s", "", t)
                 for a, b in ("()", "[]", "{}"):
                     if t.count(a) != t.count(b):
                         bad.append((s["section_id"], f"{a}{b} in {ln[:70]!r}"))
@@ -344,6 +346,97 @@ def test_appendix_d_print_slips_noted():
     # p. D-16: the equation that "the following" points to is not printed
     assert "accordance with the following: [Note: as printed; no equation follows" in body
     assert "Tal = P95 / (RFID × RFD)\n\nwhere,\nP95 = " in body
+
+
+# --- Appendix E -------------------------------------------------------------
+
+def _e_body(example=None):
+    secs = _appendix("E")["sections"]
+    if example:
+        secs = [s for s in secs if s["section_id"] == example
+                or s["section_id"].startswith(example + ".")]
+    return "\n".join(s["body"] for s in secs)
+
+
+def test_appendix_e_headings_as_printed():
+    secs = _sections("E")
+    assert secs["E"]["title"] == "Example Calculations"
+    assert secs["E.1"]["title"] == ("MBW Unit Faced, MSE Wall with Broken Backslope "
+                                    "and Live Load Surcharge, Reinforced with Geogrids")
+    assert "Broken Back Sloping Fill" in secs["E.1"]["applicability"]
+    assert secs["E"]["tables"] == ["Table E0: Summary of Example Problems"]
+    # the parts of a long example say they are not printed sections
+    assert "the letter is not printed" in secs["E.1.a"]["applicability"]
+
+
+def test_appendix_e1_working_as_printed():
+    """Example E1's formula lines as typed in from the pages, and their
+    arithmetic (pp. E1-4 to E1-13)."""
+    body = _e_body("E.1")
+    for line in (
+        "Γ = [1 + √( sin(φ′b + δ) sin(φ′b − β) / (sin(θ − δ) sin(θ + β)) )]²",
+        "Kab = sin²(θ + φ′b) / [Γ sin²θ sin(θ − δ)] = sin²(90 + 30) / "
+        "[2.133 sin²(90) sin(90 − 12.7)] = 0.360",
+        "F1 = ½ γb h² Kab = ½ (125 pcf) (29 ft)² (0.360) = 18.92 k/lft",
+        "Rr = [γEV (V1 + V2) + γEH (FV1) + γLS (FV2)] × μ",
+        "CDRS = Rr / Pd = 36.0 k/lft / 32.15 k/lft = 1.12 ∴O.K.",
+        "= 237.00 k-ft / 62.36 k = 3.80 ft",
+        "= 226.36 k-ft / 81.65 k = 2.77 ft",
+        "qV-F = 81.65 k/lft / [18 ft − 2(2.77 ft)] = 6.55 ksf",
+        "Ka = tan²(45 − φ′r/2) = tan²(45 − 34/2) = 0.283",
+        "Seq = (½) 0.7H tanβ = (½) 0.7 (20 ft) tan 26.6 = 3.51 ft",
+        "Le ≥ TMAX / (φ F* α σv C Rc) ≥ 3 ft (1 m)",
+    ):
+        assert line in body, line
+    r = math.radians
+    s = math.sin
+    gamma = (1 + math.sqrt(s(r(42.7)) * s(r(17.3)) / (s(r(77.3)) * s(r(102.7))))) ** 2
+    assert round(gamma, 3) == 2.133
+    assert round(s(r(120)) ** 2 / (2.133 * s(r(77.3))), 3) == 0.360
+    assert round(0.5 * 0.125 * 29 ** 2 * 0.360, 2) == 18.92
+    assert round(1.50 * 18.46 + 1.75 * 2.55, 2) == 32.15
+    assert round((55.12 + 6.24 + 1.75 * 0.57) * 0.577, 1) == 36.0
+    assert round(237.00 / 62.36, 2) == 3.80 and round(226.36 / 81.65, 2) == 2.77
+    assert round(81.65 / (18 - 2 * 2.77), 2) == 6.55
+    assert round(math.tan(r(28)) ** 2, 3) == 0.283
+    assert round(0.5 * 0.7 * 20 * math.tan(r(26.6)), 2) == 3.51
+
+
+def _typed_rows(body, table):
+    block = body.split(f"[Table {table}, typed in from p. ")[1].split("\n\n")[0]
+    return [ln.split(" | ") for ln in block.split("\n")[2:] if " | " in ln]
+
+
+def test_appendix_e1_tables_typed_in():
+    body = _e_body("E.1")
+    # Table E1-7.4: CDR = Tr / TMAX on every row
+    rows = _typed_rows(body, "E1-7.4")
+    assert len(rows) == 11
+    for layer, z, sv, tmax, grade, tr, cdr in rows:
+        assert round(float(tr.replace(",", "")) / float(tmax), 2) == float(cdr), layer
+    # Table E1-7.5: CDR = available / required Le
+    for row in _typed_rows(body, "E1-7.5"):
+        assert abs(float(row[3]) / float(row[6]) / float(row[7]) - 1) < 0.03, row[0]
+    # Table E1-7.6: the factored connection strength is 0.90 Talc
+    for row in _typed_rows(body, "E1-7.6"):
+        talc = float(row[2])
+        assert row[3].startswith(str(round(0.9 * talc))), row[0]
+    # Table E1-7.3: Tal = Tult / (RFID x RFCR x RFD), Tr = 0.90 Tal
+    assert round(3000 / (1.3 * 1.85 * 1.15)) == 1085
+    assert round(9000 / (1.2 * 1.85 * 1.15)) == 3525 and round(0.9 * 9000 / (1.2 * 1.85 * 1.15)) == 3173
+
+
+def test_appendix_e1_print_slips_noted():
+    body = _e_body("E.1")
+    assert 'as printed, "F2" in the second line; the value used, 2.55 k/lft, is FH2' in body
+    assert "this figure is numbered E.1.6-1" in body
+    assert 'as printed, "Step 6.a"; the eccentricity check is Step 6.2.' in body
+    assert "limit state is ___ ksf. [Note: as printed, the value is left blank.]" in body
+    assert "works with Tult = 3,000, 6,000 and 9,000 lb/ft" in body
+    assert "the σH column is not the stress the TMAX column was worked from" in body
+    # the worked layer 3 of Table E1-7.2: sigma_H = 391 lb/ft2, TMAX = 781 lb/lft
+    sigma = 0.283 * 125 * (4.67 + 3.51) * 1.35
+    assert round(sigma) == 391 and round(sigma * 2.0) == 781
 
 
 # --- the build ------------------------------------------------------------

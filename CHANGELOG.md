@@ -130,6 +130,20 @@ the rendered pages:
   "D.4" for D.2-2 and D.3-1; on p. D-16 no equation follows "in
   accordance with the following". A short last line now ends a paragraph
   that the text layer runs together (Appendix B gains three breaks).
+- Appendix E (file chapter 16), the worked examples: section E (pp. E-1,
+  E-2, Table E0) and one section per example, E.1 to E.10 as the contents
+  number them, titled as the example's own heading; a long example is
+  split into lettered parts. Every line of working is typed in from the
+  page with its arithmetic recomputed, the tables row by row, and the
+  figures' lettering. With the manifest's `"layout": "examples"` a line
+  of working keeps its own line; the page footers of the examples are now
+  read as footers (their page labels, `[p. E1-4]`). Built so far: Example
+  E1 (pp. E1-1 to E1-20). Noted as printed: "F2" for FH2 in the sliding
+  check; the bearing figure numbered E.1.6-1 again (the text calls it
+  E1.6-3); "Step 6.a" for 6.2; the Service I bearing stress left blank;
+  Table E1-7.1's strengths (6,000 to 12,000 lb/ft) against Table E1-7.3's
+  (3,000 to 9,000); Table E1-7.2's σH column, which is not the stress its
+  TMAX column was worked from.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

@@ -363,12 +363,14 @@ def _join_hyphens(lines: list[str]) -> list[str]:
 
 
 #: Lines of the running footer after its "FHWA NHI-10-02x" line, in any
-#: order: the chapter ("3 – Soil Reinforcement Principles") or appendix
-#: ("Appendix B – Pullout & Connection Strengths"), the short title, the
-#: page and the date.
+#: order: the chapter ("3 – Soil Reinforcement Principles"), appendix
+#: ("Appendix B – Pullout & Connection Strengths") or Appendix E example
+#: ("Example E1 –  Broken Backslope & Traffic", "RSS Design Examples"), the
+#: short title, the page and the date.
 _FOOTER_PART = re.compile(
     rf"^(?:\d{{1,2}}\s*[{_DASH}-]\s*\D.*|MSE Walls and RSS\s*[{_DASH}-]\s*Vol I{{1,2}}"
     rf"|Appendix [A-F](?:\.\d{{1,2}})?\s*[{_DASH}-]\s*\D.*"
+    rf"|Example E\d{{1,2}}\s*[{_DASH}-]\s*\D.*|RSS Design Examples"
     rf"|November 2009|Table of Contents)$")
 
 
