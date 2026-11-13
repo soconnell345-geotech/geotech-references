@@ -198,7 +198,7 @@ class TestKRigidFoundationCorrection:
 
     def test_outside_the_drawn_curves_refused(self):
         # REF-76: Figure 3.4 (printed II-40) draws Dsg 2, 5 and 10 ft, MR to
-        # 20,000 psi (all three curves from 1,169 psi), k_inf lines 50-1,400
+        # 20,000 psi (the 2-ft curve from 1,169 psi), k_inf lines 50-1,400
         # pci and a k scale to 2,000 pci. Each case used to be read at the
         # nearest curve, or uncorrected, with a note; now refused.
         ok = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=2.0, k_inf_pci=230)
@@ -209,15 +209,35 @@ class TestKRigidFoundationCorrection:
             ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=1500)
         with pytest.raises(ValueError, match="50-1,400 pci"):
             ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=40)
-        with pytest.raises(ValueError, match="1,169-20,000 psi"):
+        with pytest.raises(ValueError, match="1,073-20,000 psi"):
             ck.k_rigid_foundation_correction(mr_psi=25000, dsg_ft=5.0, k_inf_pci=1000)
         with pytest.raises(ValueError, match="1,169-20,000 psi"):
-            ck.k_rigid_foundation_correction(mr_psi=1100, dsg_ft=5.0, k_inf_pci=100)
+            ck.k_rigid_foundation_correction(mr_psi=1100, dsg_ft=3.0, k_inf_pci=100)
         with pytest.raises(ValueError, match="2,000 pci end"):
             ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=2.0, k_inf_pci=1400)
         # the edges themselves are read
         ck.k_rigid_foundation_correction(mr_psi=1169, dsg_ft=9.0, k_inf_pci=50)
         ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=9.0, k_inf_pci=50)
+
+    def test_lower_mr_limit_follows_the_curves_used(self):
+        # Checker finding on REF-76: Figure 3.4 (printed II-40) draws the
+        # 5-ft and 10-ft curves down to 1,073 and 1,083 psi; only the 2-ft
+        # curve leaves the top at 1,169. A Dsg of 5-10 ft was refused below
+        # 1,169 psi for the 2-ft curve's sake.
+        r = ck.k_rigid_foundation_correction(mr_psi=1100, dsg_ft=7.0, k_inf_pci=230)
+        assert r["k_pci"] > 230
+        ck.k_rigid_foundation_correction(mr_psi=1083, dsg_ft=7.0, k_inf_pci=230)
+        ck.k_rigid_foundation_correction(mr_psi=1073, dsg_ft=5.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="1,083-20,000 psi.*5-ft and 10-ft"):
+            ck.k_rigid_foundation_correction(mr_psi=1080, dsg_ft=7.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="1,073-20,000 psi.*5-ft curve is"):
+            ck.k_rigid_foundation_correction(mr_psi=1070, dsg_ft=5.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="2-ft curve leaves the top at 1,169"):
+            ck.k_rigid_foundation_correction(mr_psi=1150, dsg_ft=4.0, k_inf_pci=230)
+        # a Dsg on a curve reads that curve alone; between, the pair
+        on5 = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=230)
+        near = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=4.999, k_inf_pci=230)
+        assert near["k_pci"] == pytest.approx(on5["k_pci"], abs=0.2)
 
     def test_dsg_at_or_beyond_10ft_disregards_correction(self):
         r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=10.0, k_inf_pci=230)

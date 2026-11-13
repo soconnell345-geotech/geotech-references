@@ -385,7 +385,10 @@ _FIG34_K_BOTTOM = (17.6, 40.4, 108.6, 199.0, 296.7, 407.9, 514.6, 636.4,
 _FIG34_K_TOP = (76.1, 228.1, 620.9, 1115.2, 1629.0, 2215.4, 2838.8, 3512.0,
                 4173.0, 5710.2, 6959.2, 8321.8)
 _FIG34_Y = (1910.5, 464.5)
-_FIG34_MR_RANGE = (1169.0, 20_000.0)  # where all three curves are drawn
+_FIG34_MR_MAX = 20_000.0              # the MR axis's end
+# Each curve's lowest drawn MR: the 2-ft curve leaves the chart's top at
+# 1,169 psi; the 5-ft and 10-ft curves end at 1,073 and 1,083 psi.
+_FIG34_MR_MIN = {d: min(pt[0] for pt in c) for d, c in _FIG34_DSG_CURVES.items()}
 _FIG34_K_MAX = 2000.0                 # the k scale's right end
 _RIGIDCORR_DSG_LIMIT = 10.0
 
@@ -400,9 +403,11 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     gives no rule there):
 
     - Dsg below 2 ft, the shallowest curve (2, 5 and 10 ft are drawn);
-    - MR above 20,000 psi, the chart's edge, or below 1,169 psi, where
-      the 2-ft curve leaves the top (the range over which all three
-      curves are drawn);
+    - MR above 20,000 psi, the chart's edge, or below the lowest MR at
+      which the curves used are drawn: the 2-ft curve leaves the top at
+      1,169 psi, the 5-ft and 10-ft curves end at 1,073 and 1,083 psi. A
+      Dsg between two curves needs both (2-5 ft: 1,169 psi; 5-10 ft:
+      1,083 psi); a Dsg of 2 or 5 ft needs only its own curve;
     - k_inf outside the drawn lines (50-1,400 pci);
     - a construction landing past the k scale's 2,000 pci end.
 
@@ -456,20 +461,32 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
             "shallowest drawn (2, 5 and 10 ft, printed II-40); the chart "
             "gives no k there.")
     dsg = dsg_ft
-    if not _FIG34_MR_RANGE[0] <= mr_psi <= _FIG34_MR_RANGE[1]:
+    if dsg in _FIG34_DSG_CURVES:
+        used = (next(d for d in _FIG34_DSG_CURVES if d == dsg),)
+    else:
+        used = (2, 5) if dsg < 5 else (5, 10)
+    mr_min = max(_FIG34_MR_MIN[d] for d in used)
+    if not mr_min <= mr_psi <= _FIG34_MR_MAX:
+        curves = " and ".join(f"{d}-ft" for d in used)
+        ends = "; ".join(
+            f"the {d}-ft curve {'leaves the top' if d == 2 else 'ends'} at "
+            f"{_FIG34_MR_MIN[d]:,.0f} psi" for d in used)
         raise ValueError(
-            f"MR {mr_psi:,.0f} psi is outside {_FIG34_MR_RANGE[0]:,.0f}-"
-            f"{_FIG34_MR_RANGE[1]:,.0f} psi, where all three of Figure 3.4's "
-            "Dsg curves are drawn (printed II-40: the MR axis ends at "
-            "20,000 psi and the 2-ft curve leaves the chart at 1,169 psi); "
-            "the chart gives no k there.")
+            f"MR {mr_psi:,.0f} psi is outside {mr_min:,.0f}-"
+            f"{_FIG34_MR_MAX:,.0f} psi, where Figure 3.4's {curves} "
+            f"curve{'s are' if len(used) > 1 else ' is'} drawn for Dsg "
+            f"{dsg_ft:g} ft (printed II-40: the MR axis ends at 20,000 psi; "
+            f"{ends}); the chart gives no k there.")
     mr = mr_psi
 
     def height(d):
         pts = _FIG34_DSG_CURVES[d][::-1]          # MR ascending
         return _linterp(mr, [p[0] for p in pts], [p[1] for p in pts])
-    lo, hi = (2, 5) if dsg <= 5 else (5, 10)
-    y = height(lo) + (height(hi) - height(lo)) * (dsg - lo) / (hi - lo)
+    if len(used) == 1:
+        y = height(used[0])
+    else:
+        lo, hi = used
+        y = height(lo) + (height(hi) - height(lo)) * (dsg - lo) / (hi - lo)
     frac = (_FIG34_Y[0] - y) / (_FIG34_Y[0] - _FIG34_Y[1])
     k_lines = [b + (t - b) * frac for b, t in zip(_FIG34_K_BOTTOM,
                                                   _FIG34_K_TOP)]

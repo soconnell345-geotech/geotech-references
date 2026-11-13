@@ -76,9 +76,14 @@ pages):
   diagonal (Figure 3.3, printed II-39) is refused; the nearest curve was
   read, with a note.
 - `aashto_1993.composite_k.k_rigid_foundation_correction`: Dsg below 2 ft,
-  MR outside 1,169-20,000 psi, k_inf outside 50-1,400 pci, or a k past the
-  2,000 pci scale end (Figure 3.4, printed II-40) is refused; the nearest
-  curve was read, or no correction applied, with a note.
+  MR above 20,000 psi or below where the curves used are drawn, k_inf
+  outside 50-1,400 pci, or a k past the 2,000 pci scale end (Figure 3.4,
+  printed II-40) is refused; the nearest curve was read, or no correction
+  applied, with a note. The lower MR limit follows the curves the Dsg
+  needs: the 2-ft curve leaves the top at 1,169 psi, the 5-ft and 10-ft
+  curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
+  1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
+  every Dsg).
 - `aashto_1993.composite_k.k_loss_of_support` (and
   `effective_modulus_subgrade_reaction`, which calls these three): LS
   outside 0-3 (Figure 3.6's lines, printed II-42) is refused; LS = 3 or 0
