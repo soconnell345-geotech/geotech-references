@@ -116,6 +116,20 @@ def test_base_modulus_relation_note():
     assert "show k2 is the exponent of θ (p. II-20)" in b
 
 
+def test_layer_coefficients_in_two_parts():
+    # pp. II-17 to II-24: Section 2.3.5 in two parts, split at the run-in heading of p. II-21
+    assert body("II-2.3.5.a").startswith("[p. II-21] Granular Subbase Layers.")
+    assert "Granular Subbase Layers." not in body("II-2.3.5")
+    assert "letter is not printed" in sec("II-2.3.5.a")["applicability"]
+    eqs = {e["id"]: e for p in ("II-2.3.5", "II-2.3.5.a") for e in sec(p)["equations"]}
+    assert eqs["SN = sum(ai*Di)"]["variables"]["Di"] == "thickness of layer i"
+    assert "EBS" in eqs["a2 = 0.249*log10(EBS) - 0.977"]["variables"]
+    assert "ESB" in eqs["a3 = 0.227*log10(ESB) - 0.839"]["variables"]
+    assert "a2 = 0.14, EBS = 30,000 psi" in " ".join(sec("II-2.3.5")["key_points"])
+    assert "a3 = 0.11, ESB = 15,000 psi" in " ".join(sec("II-2.3.5.a")["key_points"])
+    assert [f[:10] for f in sec("II-2.3.5.a")["figures"]] == ["Figure 2.7", "Figure 2.8", "Figure 2.9"]
+
+
 # --- Part II, chapter 3 ---------------------------------------------------------
 
 def test_table_3_1_performance_period_iterations():
