@@ -487,6 +487,92 @@ def test_appendix_e2_print_slips_noted():
             'used below is 18.') in body
 
 
+def test_appendix_e3_working_as_printed():
+    """Example E3's formula lines as typed in from pp. E3-3 to E3-18, and
+    their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.3"]["title"] == ("Segmental Precast Panel MSE Wall with Sloping "
+                                    "Backfill Surcharge")
+    body = _e_body("E.3")
+    for line in (
+        "Ka = sin²(θ + φ′f) / [Γ sin²θ sin(θ − δ)]",
+        "Γ = [1 + √( sin(φ′f + δ) sin(φ′f − β) / (sin(θ − δ) sin(θ + β)) )]²",
+        "= [1 + √( (0.834)(0.060) / ((0.894)(0.894)) )]² = 1.563",
+        "= 0.750 / [(1.563)(1.0)(0.894)] = 0.537",
+        "For this example problem, tanβ = 0.5, and h = 30 ft + 24 ft (0.5) = 42.00 ft.",
+        "σv = ΣV / (L − 2eL)",
+        "ΔH = (tan β)(0.3H) / (1 − 0.3 tan β)",
+        "Zp-ave = Z + 0.5(La tanβ + L tanβ) = Z + 0.5 tanβ (La + L)",
+        "σH = Kr (γr Z) γP-EV + Kr (γr S) γP-EV = Kr [γr (Z + S) γP-EV]",
+        "Tmax = (σh)(Atrib) = (0.99 ksf)(12.50 ft²) = 12.37 k for panel of 5-ft width",
+        "Tn = 65 ksi (0.200 in²) = 13.00 k/strip",
+        "ΔH = (tanβ)(0.3H) / (1 − 0.3tanβ) = (0.5)(0.3 x 30 ft) / [1 − 0.3(0.5)] = 5.29 ft",
+        "Pr = (1.0)(1.420)(2)(0.164 ft)(13.41 ft)(2.175 ksf) = 13.58 k/strip",
+        "Prr = φPr = (0.90)(13.58 k/strip) = 12.23 k/strip",
+    ):
+        assert line in body, line
+    r, s = math.radians, math.sin
+    gamma = (1 + math.sqrt(s(r(56.56)) * s(r(3.44)) / (s(r(63.44)) * s(r(116.56))))) ** 2
+    assert round(gamma, 3) == 1.563
+    assert round(0.750 / (1.563 * 0.894), 3) == 0.537  # with the printed roundings
+    beta = math.atan(0.5)  # the 2H:1V backslope
+    ft = 0.5 * 0.125 * 42 ** 2 * 0.537
+    assert round(ft * math.sin(beta), 2) == 26.48 and round(ft * math.cos(beta), 2) == 52.95
+    assert round(0.125 * 30 * 24, 2) == 90.00 and round(0.5 * 24 * 12 * 0.125, 2) == 18.00
+    assert round(math.tan(r(28)) ** 2, 3) == 0.283
+    assert round(1.2 + math.log10(7.0), 3) == 2.045
+    assert round(0.340 + 12.5 * 0.141 / 20, 3) == 0.428
+    assert round(0.5 * 0.7 * 30 * math.tan(r(26.56)) * 0.125, 3) == 0.656
+    assert round(2 + (3.386 - 2 * 0.58) / 0.16) == 16
+    assert round(0.47 * 59 * 2, 2) == 55.46 and round(1.969 * 0.102, 2) == 0.20
+    assert round(0.5 * 0.3 * 30 / (1 - 0.15), 2) == 5.29
+    assert round(8.75 + 0.25 * (10.59 + 24.00), 2) == 17.40
+    assert round(0.675 + 11.25 * 1.325 / 20, 3) == 1.420
+    pr = 1.420 * 2 * 0.164 * 13.41 * 2.175
+    assert round(pr, 2) == 13.58 and round(0.9 * pr, 2) == 12.23
+
+
+def test_appendix_e3_tables_typed_in():
+    body = _e_body("E.3")
+    # Table E3-6.3: B' = L - 2eL and sigma_v = sum V / B'
+    rows = {}
+    for row in _typed_rows(body, "E3-6.3"):
+        rows.setdefault(row[0], row)  # the critical-values rows repeat labels
+    total = rows["Total vertical load at base of MSE wall, ΣV = R = VAb1+VAb2"]
+    ecc = rows["Eccentricity at base of MSE wall, eL = 0.5*L – a"]
+    width = rows["Effective width of base of MSE wall, B' = L-2eL"]
+    stress = rows["Bearing stress due to MSE wall =ΣV/(L-2eL) = σv"]
+    for col in (2, 3, 4):
+        assert abs(24 - 2 * float(ecc[col]) - float(width[col])) <= 0.011
+        assert round(float(total[col]) / float(width[col]), 2) == float(stress[col])
+    # Table E3-7.3, every level
+    rows = _typed_rows(body, "E3-7.3")
+    assert [row[0] for row in rows] == [str(n) for n in range(1, 13)]
+    for (level, z, zp, sigma, tmax, fstar, le, ppr, ptn,
+         n_p, n_t, n_g, sh) in rows:
+        z, zp, tmax, le = float(z), float(zp), float(tmax), float(le)
+        assert abs(z + 0.25 * (48 - le) - zp) <= 0.0051, level
+        f = 0.675 + max(0.0, 20 - z) * 1.325 / 20
+        assert abs(f - float(fstar)) < 0.0015, level
+        pull = 0.9 * float(fstar) * 2 * (1.969 / 12) * le * 0.125 * zp
+        assert abs(pull / float(ppr) - 1) < 0.01, level
+        assert abs(tmax - 12.5 * float(sigma)) < 0.07, level
+        assert round(tmax / 9.75, 1) == float(n_t) and round(tmax / float(ppr), 1) == float(n_p)
+        assert int(n_g) >= max(2, math.ceil(max(float(n_p), float(n_t))))
+        assert round(5 / int(n_g), 2) == float(sh), level
+
+
+def test_appendix_e3_print_slips_noted():
+    body = _e_body("E.3")
+    assert 'as printed, "Table E4-7.1"; the table is E3-7.1' in body
+    assert 'as printed, "18.76" in Level 8' in body
+    assert "as printed, γP-ES here; the factor used, 1.35, is γP-EV" in body
+    assert "as printed, 13.13 k; Section 7.3 (p. E3-16) gives Tmax = 12.37 k" in body
+    assert 'as printed, "dim" under Zp-ave, a depth in ft, and "φs(Tn)"' in body
+    assert 'as printed, "Step 8"; the long-form calculations are in Step 7' in body
+    assert "as printed, γr in FTV and FTH; Figure E3-2 has FT = ½ γf h² Kaf" in body
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():

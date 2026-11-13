@@ -138,7 +138,8 @@ the rendered pages:
   figures' lettering. With the manifest's `"layout": "examples"` a line
   of working keeps its own line; the page footers of the examples are now
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
-  E1 (pp. E1-1 to E1-20) and E2 (pp. E2-1 to E2-10). Noted as printed: in
+  E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10) and E3 (pp. E3-1 to
+  E3-20). Noted as printed: in
   E1, "F2" for FH2 in the sliding check; the bearing figure numbered
   E.1.6-1 again (the text calls it E1.6-3); "Step 6.a" for 6.2; the
   Service I bearing stress left blank; Table E1-7.1's strengths (6,000 to
@@ -146,7 +147,12 @@ the rendered pages:
   column, which is not the stress its TMAX column was worked from. In E2,
   "E2-1 CALCULATIONS" numbered like the introduction; the service bearing
   load's three terms, which add to 59.28 k/lft where 59.85 (with FV2) is
-  used; "Nγq = 20" where 18 is read from the figure and used.
+  used; "Nγq = 20" where 18 is read from the figure and used. In E3, γr
+  in Table E3-4.1's and E3-4.2's FTV and FTH where Figure E3-2 has γf (both
+  125 pcf); "Table E4-7.1" for E3-7.1; "18.76" in its Level 8; γP-ES for
+  γP-EV in one line; Tmax = 13.13 k at Level 4 in Section 7.6 where 7.3
+  gives 12.37 k; Table E3-7.3's "dim" under Zp-ave and "φs(Tn)" for the
+  tensile resistance; "Step 8" for the long-form calculations of Step 7.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
