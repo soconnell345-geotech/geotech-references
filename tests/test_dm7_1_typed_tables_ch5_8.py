@@ -212,7 +212,7 @@ CASES = {
         "Steady-state seepage under maximum reservoir level (during a probably maximum flood)",
         "Rapid drawdown from normal water surface to inactive water surface; 1.3",
         "probable maximum flood); 1.2",
-        "Other; Effective or undrained; Drawdown at maximum outlet capacity (inoperable internal drainage; unusual drawdown); 1.2",
+        "Other; Effective or undrained; Drawdown at maximum outlet capacity (inoperable internal drainage, unusual drawdown); 1.2",
         "overall stability during construction).; 1.3"]),
     "Table 7-4": ("7-9.2", "(p. 368)", [
         "Slope < 1.2H:1V (θ < 40°) and H < 70 ft;", "4 in / 100, No. 4 / 20-100, No. 40 / 0-60, No. 200 / 0-50",
@@ -231,7 +231,7 @@ CASES = {
     "Table 7-6": ("7-9.5", "(p. 373)", [
         "Method of Including Reinforcement Strength; Factor of Safety Equation",
         "Method A (Active); F = shear strength / (shear stress required for equilibrum − reinforcement resistance)",
-        "[as printed; 'equilibrum' for equilibrium]",
+        "[as printed, 'equilibrum' for equilibrium]",
         "Method B (Passive); F = (soil strength+reinforcement resistance) / (shear stress required for equilibrium)"]),
     "Table 7-7": ("7-9.5", "(p. 374)", [
         "1; Draw a scaled cross section of the slope",
@@ -279,9 +279,9 @@ CASES = {
         "Less than 1; 0 – 0.1", "1; 0.10 – 0.25", "1 to 1.5; 0.26 – 0.50", "3; 0.51 – 1.00", "6; 1.00 – 4.00",
         "Greater than 6; > 4.00"]),
     "Table 8-10": ("8-3.4", "(p. 428)", [
-        "Very soft; < 2; 300 [as printed;", "; -; < 250", "Soft; 2 – 4; 300 – 600; 250 – 500; 250 – 500",
+        "Very soft; < 2; 300 [as printed,", "; -; < 250", "Soft; 2 – 4; 300 – 600; 250 – 500; 250 – 500",
         "Medium; 4 – 8; 600 – 1200; 500 – 1000; 500 – 1000", "Stiff; 8 – 15; 1200 – 2400; 1000 – 2000; 1000 – 2000",
-        "Very stiff; 15 – 30; 2400 [as printed;", "Hard; > 30; > 4500; > 4000; > 4000"]),
+        "Very stiff; 15 – 30; 2400 [as printed,", "Hard; > 30; > 4500; > 4000; > 4000"]),
     "Table 8-11": ("8-3.5", "(p. 429)", [
         "(su/σ′v)OC = (su/σ′v)NC (0.5KD)^1.25 ≈ 0.22(0.5KD)^1.25; Marchetti (1980)",
         "(su/σ′v)OC = 0.35(0.47KD)^1.14; Kamei and Iwasaki (1995)", "su = 0.018ED; Iwasaki and Kamei (1994)",
@@ -298,14 +298,14 @@ CASES = {
         "Cc = 0.009(LL − 10); Undisturbed clay of sensitivity less than 4. Reliability 30%; Terzaghi et al. (1996)",
         "Cc = 1.15(e0 − 0.91); All clays (Lower limit); Nishida (1956)",
         "Cc = 0.85(wn/100)^(3/2); Finnish muds and clays; Helenelund (1951)",
-        "Cc = 0.135PI; Remolded clays; Wroth and Wood (1978)", "Cc = 0.005PI·Gs; ; [as printed;",
+        "Cc = 0.135PI; Remolded clays; Wroth and Wood (1978)", "Cc = 0.005PI·Gs; ; [as printed,",
         "Cc = 0.5((1 + e0)/Gs)^2.4; Saturated clay; Al-Khafaji and Andersland (1992)",
         "Cc = 0.141Gs^1.2((1 + e0)/Gs)^2.382; Soils from nine states in USA; Rendon-Herrero (1983)"]),
     "Table 8-14": ("8-4.1.2", "(p. 434)", [
         "Cr = 0.0045LL; Marine clays of Southeast Asia; Cox (1968)", "Cr = 0.208e0 + 0.0083; Chicago clays; Peck and Reed (1954)",
         "Cr = 0.0043wnδVm; Marine clays of Southeast Asia; Cox (1968)",
         "Cr = 0.0039wn + 0.013 for wn < 100%; French clays; Vidalie (1977)", "Cr = PI/370; Remolded clays; Wroth and Wood (1978)",
-        "Cr = 0.0033(e0wn + 12.5168) ) [as printed;",
+        "Cr = 0.0033(e0wn + 12.5168) ) [as printed,",
         "Cr = 0.135(e0 + 0.01LL − 0.002wn − 0.06); Clays for Greece and USA; Azzouz et al. (1976)"]),
     "Table 8-15": ("8-4.2", "(p. 441)", [
         "Cεc = Cc / (1+e0) at Dr = 0%", "Medium to coarse sand (SW & SP); 0.010; 0.008; 0.006; 0.005; 0.003; 0.002",
@@ -332,7 +332,7 @@ CASES = {
         "Very soft; 5 – 50; ", "Soft; 50 – 200; 15 – 40", "Medium; 200 – 500; 40 - 80",
         "Stiff or silty; 500 – 1000; 80 – 200", "Sandy; 250 – 2000; ", "Clay shale; 1000 – 2000; "]),
     "Table 8-20": ("8-5.3", "(p. 453)", [
-        "Normalized Drained Young’s Modulus (Eu / Pa) [as printed;",
+        "Normalized Drained Young’s Modulus (Eu / Pa) [as printed,",
         "Loose; 100 – 200; 275 – 550; 100 – 250", "Medium; 200 – 500; 550 – 700; 250 – 1000",
         "Dense; 500 – 1000; 700 – 1100; 1000 – 2000", "Silty sand; ---; ---; 250 – 2000"]),
     "Table 8-21": ("8-5.3.1", "(p. 453)", [

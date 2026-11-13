@@ -4,6 +4,8 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**DM 7.1 chapters 5 to 8, the printed tables (REF-97, REF-116).** The printed tables of chapters 5 to 8 (Tables 5-1 to 8-28) are typed into the chapter text and were checked cell by cell against the print by an independent reader. The table catalog now answers "text" for them (58 of the 139 dm7_1 rows), so a host without the PDFs can quote their values. Table 4-3's second page (PDF page index 223) and Table 6-4's second page (326) are listed.
+
 **Result units and pages, wave 1a (REF-78): the pavement references and
 EM 1110-2-2104.** The 269 lookups of `aashto_1993`, `ufc_pavement`,
 `fhwa_pavements`, `ufc_flexible_practice`, `ufc_concrete_practice`,
