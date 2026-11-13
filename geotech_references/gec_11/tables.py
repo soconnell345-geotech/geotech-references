@@ -992,7 +992,7 @@ _TABLE_4_6_NC_NOTE = (
     "reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc "
     "cells to the printed decimal; the two that differ (phi 10: 8.345 against "
     "the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last "
-    "digit, as rounding twice would give. Straight-line interpolation between "
+    "digit, as rounding in steps would give. Straight-line interpolation between "
     "the printed neighbours would give 68.4"
 )
 
@@ -1042,7 +1042,7 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc
     cells to the printed decimal; the two that differ (phi 10: 8.345 against
     the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last
-    digit, as rounding twice would give. Straight-line interpolation between
+    digit, as rounding in steps would give. Straight-line interpolation between
     the printed neighbours would give 68.4. The result carries that note
     (key ``note``) for the full table, for phi = 39 and for any phi between
     38 and 40, where the interpolation uses the phi = 39 row.

@@ -15,6 +15,9 @@ Of the five a checker found differing from the print, Tables 2-1, 4-4 and
   diameters) carries the printed footnote "* For bar mats fabricated from
   uncoated steel wire."; the thicker strip row says the page prints
   "> ¼ in." (the library puts an exact ¼ in. there); every row a reference.
+- `table_4_6_bearing_capacity_factors` and the chapter 4 note on Table
+  4-6: the two Nc cells 0.1 off are "as rounding in steps would give" (it
+  said "rounding twice").
 
 **GEC-11 (FHWA-NHI-10-024 / -025, November 2009) chapter text rebuilt from
 the print (build, REF-80).** The 11 chapter files were a condensed

@@ -742,7 +742,7 @@ class TestTable46:
             "reproduces all 46 printed Nq cells and 43 of the other 45 printed "
             "Nc cells to the printed decimal",
             "phi 10: 8.345 against the printed 8.4; phi 23: 18.049 against 18.1",
-            "0.1 off in the last digit, as rounding twice would give",
+            "0.1 off in the last digit, as rounding in steps would give",
             "Straight-line interpolation between the printed neighbours would "
             "give 68.4",
         ):
