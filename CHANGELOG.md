@@ -1368,6 +1368,157 @@ and caption below was read off the rendered print.
   - Chapters filled in: GEC-7 and GEC-8 rows had none, and GEC-4 rows had
     their own figure number as the chapter.
 
+**Build of 2026-11-10: FHWA-NHI-05-037 Geotechnical Aspects of Pavements,
+chapter text read off the print (app backlog REF-82).** The stored text was
+23 hand-written sections in chapters 3, 4, 5, 7 and 8, ten of them wrong in
+substance, several under section numbers that are other subjects in the
+print. `scripts/build_printed_text.py` now reads this manual
+(manifest `fhwa_pavements.json`, `"text_build": "printed"`): every numbered
+heading of the printed contents is a section with its printed number and
+title, the body in the print's own wording with a `[p. 5-53]` marker where
+each printed page starts, and each figure and table listed under the section
+that prints it. Chapters rebuilt so far: 1 (Introduction, 15 sections) and 2
+(State Agencies, 2 sections; the host agency's questionnaire), neither
+stored before; 3 (Geotechnical Issues in Pavement Design and Performance,
+13 printed sections, was 5 paraphrased ones), with Eqs. 3.1 to 3.10 typed in
+from the page and written where the page prints them. Two are typed as
+printed with a note: Eq. 3.5 prints 7.3 log(D + 1) where Eqs. 3.3 and 3.9
+print 7.35, and Eq. 3.9 prints 1.64x10^7 where Eqs. 3.3 and 3.5 print
+1.624×10^7. Chapter 4 (Geotechnical Exploration and Testing, 23 printed
+sections, was 3): the stored 4.5.5 gave the DCP relation CBR = 292/DCP^1.12
+and ASTM D6951 and D4429, which that section does not print; the relation is
+printed in Table 4-9 (p. 4-39, after the 4.5.6 heading) with two more for
+clays and no unit, and the text now says so and points to `cbr_from_dcp`'s
+note (mm per blow). The stored 4.7.3 discussed Table 4-14; the printed 4.7.3
+is Subsurface Profile and Table 4-14 is in 4.7.2, now typed in from pp. 4-65
+and 4-66 with the silts, clays and peat rows. The lookup
+`table_4_14_soil_as_pavement_material` held only the gravel and sand rows,
+one row each for GM and SM, and said the printed table covered gravels and
+sands only; it now holds all 17 printed rows, every cell as printed (GM and
+SM each as a "d" and a "u" row, ML to OH and Pt from p. 4-66), with each
+row's major division and page; "GM" or "SM" alone returns both of its rows,
+and the page's footnote on the d/u split comes with them. The
+SPT correction in Table 4-8 keeps the number the page gives it, (5-1).
+Chapters 5 to 8 followed (2026-11-11 and 12), so all eight printed chapters
+are built, 200 sections in all: 5 (Geotechnical Inputs for Pavement Design,
+39 sections, was 5) with Eqs. 5.1 to 5.69 typed in from the page; 6
+(Pavement Structural Design and Performance, 25 sections), not stored
+before, with the 1993 AASHTO example calculations typed in (pp. 6-5, 6-22,
+6-32, 6-42); 7 (Design Details and Construction Conditions Requiring Special
+Design Attention, the title on the chapter's first page, where the contents
+print "Subgrade" for "Construction"; 49 sections, was 3) with Eqs. 7.1 to
+7.6 and the second "Eq. 7-5" of p. 7-42; 8 (Construction and Design
+Verification for Unbound Pavement Materials, 24 sections, was 5). Sections
+over 14,000 characters are stored in lettered parts (5.2.2.a, 6.2.2.a,
+7.6.5.a, 8.4.4.a and others), the letters not printed. Tables the text layer
+scrambles are typed in from the rendered page: 4-14, 5-3 to 5-6, 5-8, 5-18,
+5-24, 5-28, 5-30, 5-34, 5-35, 5-41, 5-49 to 5-54, 5-56, 5-57, 6-5, 6-8, 6-10,
+7-1 to 7-3, 7-11 to 7-13, 7-16, 7-19 to 7-21, 8-1, 8-3 (printed "Table 8.3")
+and 8-4. Table 7-18 is printed as a picture and is not typed; Tables 7-5 to
+7-10, 7-14, 7-15, 7-17, 7-22, 7-23a/b, 8-2, 8-5 and 8-6 keep the text
+layer's row order. Every formula line of chapters 1 to 8 was read against
+the rendered page, and a new test fails on the patterns the text layer
+leaves where it scatters a formula (an isolated prime, lone digits beside an
+equals sign, "= = =", a formula line whose brackets do not pair, a sentence
+repeated back to back). Appendices A to F (Terminology, the Main Highway
+example project, the 1993 AASHTO and NCHRP 1-37A design methods, the boring
+log key, admixture content for subgrade stabilization) are not built.
+Statements that changed in substance:
+
+- Eq. 3.5's last term is typed with the page's brackets,
+  (4.22 – 0.32pt)[log(Sc/215.63J)(...)]; the stored form took the log of the
+  whole product, which is Eq. 3.9's form.
+- 4.5.4: the two FWD back-calculation relations (d0 from Ep and MR, p. 4-21;
+  MR = 0.24P/(dr r) with r ≥ 0.7ae, and ae, p. 4-22), which the text layer
+  dropped, leaving only their symbol lists, are typed in.
+- The stored 5.3.3 was Compaction Characteristics: the printed 5.3.3 is
+  Problem Soil Identification (Tables 5-23 to 5-25, swell and collapse), and
+  compaction (Tables 5-15, 5-16, 5-18) is in 5.3.2. The stored 5.4.7 was
+  Swell and Collapse Potential: the printed 5.4.7 is Interface Friction. The
+  stored 5.5 was Drainage Inputs: the printed 5.5 is Thermo-Hydraulic
+  Properties, with the drainage coefficients (Tables 5-49, 5-50) in 5.5.1.
+- The stored 7.4 was Stabilization (Lime, Cement, Asphalt) and
+  Geosynthetics: the printed 7.4 is Compaction; stabilization is printed in
+  7.6 (7.6.3 to 7.6.5) and treated bases in 7.3. 7.2 keeps its subject under
+  its printed title, Subsurface Water and Drainage Requirements, and 7.5.6
+  under Frost-Susceptible Soils.
+- 7.5.6, Table 7-12: all silts, very fine silty sands and clays with PI
+  under 12 are frost group F4. The stored text put clays and all silts in F3
+  and only varved sediments in F4. The lookup `table_7_12_frost_susceptibility`
+  had six rows one group lower than the page (gravelly soils 10-20 % fines in
+  F1; gravelly soils over 20 % and sands over 15 % in F2; all silts, very
+  fine silty sands and clays with PI under 12 in F3), so it returned silts
+  as "High" where the page prints "Very high". It now returns every cell as
+  printed, in the page's order, with the page's dash where no percentage is
+  given and its "Varied clays" noted (the varved clays of p. 7-52 are
+  probably meant).
+- The stored 8.4.5 was Chemical Stabilization and Base/Subbase Construction:
+  the printed 8.4.5 is Stabilization, and base and subbase construction is
+  8.4.6. Table 8.3 (the five example soils of 8.3.2) is typed in with their
+  limits, gradation, density, classes and resilient modulus constants.
+- Typed as printed, each with a note naming the page: Eq. 5.15 (1000 + 555R)
+  beside Table 5-34 (1155 + 555R); Eq. 5.17 (ES and EBS); the bound of Eq.
+  5.34; Eq. 5.39's (3/4)(OCR/OCRmax); Eq. 5.65 (9.7e^–4); Eq. 5.66 (haev and
+  have); Table 5-18's A-6 "10.30"; Table 5-57's 1 m/s = 3.25 ft/s; p. 6-42's
+  SN1 = 5.67 – 0.91 = 4.76 where SN is 5.76; Eq. 7.2's S1 (the text prints
+  Sl); Eq. 7.5's unclosed bracket; p. 7-26's "0.13 ft3/day (6 ft3/day)";
+  slips in Table 7-20; Table 8.3's K1 "10 387"; p. 4-59's boring log key "in
+  Appendix D" (it is Appendix E) and p. 8-9's lime pH test "in Appendix E"
+  (it is Appendix F).
+
+The script gains options a manifest opts into
+(`contents_format` and `list_format` "lines", `header_end`, `page_label`,
+`front_matter_header`, `equation_numbers` "parenthesized_dot",
+`title_lines`, `headings_on_listed_page`, `heading_overrides`,
+`typed_tables`, `text_fixes`, `formulas_in_body`, `table_functions`, and
+`implemented_in` and `description` on a `printed_equations` entry); without
+them it builds as before (the Soils and
+Foundations rebuild test is unchanged).
+
+**FHWA-NHI-05-037 chapter text and figure catalog: fixes from the build's
+independent check (2026-11-12).** Each was read from the rendered page.
+- Signs: the manual sets ≥, ≤, ✓, the Table 7-11 symbols, list bullets and
+  table dashes in symbol fonts whose text layer gives other characters ("$"
+  for ≥, "#" for ≤, "3" for ✓). The build now reads them through a table
+  checked against the page (manifest `symbol_fonts`, with `symbol_fonts_checked`
+  for the characters that need no mapping) and reads a raised "o" as a degree
+  sign (`raised_o_degree`); a test fails on any symbol-font character the
+  table does not cover. Exponents and degree signs the text layer flattened
+  are as printed.
+- Tables typed in again from the page: 1-1 to 1-3 (each X under its own
+  column), 4-13 (every row and note, note e's formulas), 7-23a and 7-23b
+  (each cost on its own method's line).
+- Captions: the build had cut the sources and unit conversions after a
+  caption; they are back (`captions_as_printed`), with notes where the
+  printed conversion is wrong (1 pci = 0.271 MN/m³, not 284; a 2,000-lb ton
+  is 8.9 kN, not kPa; Figure 5-5's sieve openings). Nine captions printed in
+  a section but missing from its list are listed (`captions_listed`). Each
+  section's list gives the caption the page prints where the List of Figures
+  or Tables words it otherwise, 37 of them (`list_captions_as_printed`):
+  Figures 6-5 and 6-6 are flexible pavement sections, not rigid; Figure 5-11
+  is granular base stiffness, not subgrade; Figure 5-22 is a3, not a2; Table
+  6-21 has bedrock at 4 ft, not 3 ft.
+- Figure catalog: its captions were already the page's; 22 rows where the
+  List of Figures differs quote it in `read_notes`, Figure 8-11's caption is
+  complete, and the printed slips above are noted there too.
+- Rows under their printed labels: Table 5-44 (layer coefficients for
+  existing pavements) prints each material once, beside the first row of its
+  group, and the text layer had put the stabilized base coefficients under
+  AC Surface and the granular 0.10-0.14 under Stabilized Base. It and Tables
+  5-32, 5-58, 7-9 and 7-10, mis-assigned the same way, are typed in from the
+  page with the label on every row; the other 92 tables not typed in were
+  each checked on a render.
+- Ruled signs: the manual also sets ≥ and ≤ as ">" or "<" with a short rule
+  drawn beneath. The build reads them (`ruled_comparison_signs`): Table
+  5-16's eight "≥ 95" cells, Table 7-5's "≥ 50%" heads and note, and Table
+  5-8's first hierarchy sign (was [?]).
+- "ψ ≥ 0.1 sec^-1" (pp. 7-30, 7-76) keeps its raised -1, the only negative
+  exponent printed after a unit.
+- Table 4-13's SANDS head is kept as printed, with a note that it overlaps
+  the GRAVELS head.
+- The new manifest keys are off unless a manifest sets them; only
+  fhwa_pavements does.
+
 **Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
 Shaft Design Process) rewritten from the print (app backlog REF-81).** The
 review found 9 of the 12 sections of chapter 6 and 2 of the 3 of chapter 8

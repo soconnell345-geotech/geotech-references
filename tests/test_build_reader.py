@@ -20,7 +20,7 @@ SCRIPT_BUILT = sorted(
 
 
 def test_the_script_built_references():
-    assert SCRIPT_BUILT == ["em_1905", "fhwa_soils_foundations"]
+    assert SCRIPT_BUILT == ["em_1905", "fhwa_pavements", "fhwa_soils_foundations"]
 
 
 @pytest.mark.parametrize("manifest", SCRIPT_BUILT)
