@@ -511,9 +511,52 @@ def test_figure_text_typed_in_from_the_page():
             "(2 tan(φ′ + β)) + FH.") in body
     assert "a. φp = 0.90 for L/H > 0.4 b. φp = 0.65 for L/H ≤ 0.4" in body
     assert "10 tan(φ′ + β) Case 3" not in body
+    # Figure 6-14's Case 2 as printed, with the note derived from Case 1,
+    # and the notes printed inside the figure (p. 6-25)
+    assert ("the printed Case 2 has + FV where this gives + 10 FV over the same "
+            "denominator, so it divides FV by 10 and understates Tmax") in body
+    assert "Case 3 does follow from Case 1 with LW = H tan β." in body
+    assert ("1. For extensible reinforcements, ψ = 45+φ/2; for inextensible "
+            "reinforcements, ψ = 59 degrees. 2. Assume tension crack development "
+            "and neglect forces N2 and S2. 3. Assume upper wedge (shown as gray) "
+            "is in equilibrium.") in body
     # Figure 6-16's dimensions (p. 6-28)
     assert "Lt = 0.8 H min; Lb = Greater of 0.3H or 5 ft" in secs["6.6"]["body"]
     assert "Lt 3 ft min H" not in secs["6.6"]["body"]
+    # Figure 6-2's labels include H'/2 (p. 6-4)
+    assert "H'; H'/2 (printed twice); d;" in secs["6.1.1"]["body"]
+    # Figure 4-10's footnote, printed under the chart (p. 4-37)
+    assert ("its asterisk marks the Geosynthetics line:] *Does not apply to "
+            "polymer strip reinforcement") in secs["4.4.7.c"]["body"]
+    # Figure 4-6 (p. 4-18): the page prints it after the 4.4.6 heading, with
+    # three labels; the overprinted copies of its labels are left out
+    assert secs["4.4.5"]["figures"] == []
+    assert secs["4.4.6"]["figures"] == [
+        "Figure 4-6: Potential external failure mechanisms for a MSE wall"]
+    assert ("[Figure 4-6 labels, as printed on p. 4-18:] Sliding; Limiting "
+            "Eccentricity; Bearing.") in secs["4.4.6"]["body"]
+    assert "(Overturning)" not in secs["4.4.5"]["body"] + secs["4.4.6"]["body"]
+    # Figure 8-10's conversion label as printed, noted (p. 8-29)
+    assert ("1 kPa = 0.145 lb/ft2, 1 m = 3.28 ft. [Note on the label: as printed; "
+            "0.145 is lb/in²") in secs["8.7.4"]["body"]
+
+
+def test_slips_and_breaks_mended_or_noted():
+    secs = _sections()
+    eqs = {e["id"]: e for s in secs.values() for e in s["equations"]}
+    # Table S3 (p. 10-50): the Class 3 puncture cell repeats the tear cell
+    assert ("[Note on the table: the Class 3 puncture cell prints 40 lb (180 N), "
+            "the same values as the Class 3 trapezoidal tear cell above it; kept "
+            "as printed.]") in secs["10.10.3"]["body"]
+    # p. 10-18 prints one paragraph through "will be allowed. EDIT NOTE"
+    assert "No other design method will be allowed. EDIT NOTE:" in secs["10.9"]["body"]
+    # Eq. 4-22's where list (p. 4-28) names no table
+    assert eqs["Eq. 4-22"]["variables"]["Nc and Nγ"] == \
+        "dimensionless bearing capacity coefficients"
+    # Eq. 9-1's D keeps its parenthetical (p. 9-7)
+    assert eqs["Eq. 9-1"]["variables"]["D"].endswith(
+        "(i.e. assumed to act in a horizontal plane intersecting the failure "
+        "surface at H/3 above the slope base)")
 
 
 def test_lookups_linked_from_the_section_that_prints_the_table():
@@ -635,6 +678,11 @@ def test_no_scatter_patterns_in_the_bodies():
             for a, b in ("()", "[]", "{}"):
                 if t.count(a) != t.count(b):
                     bad.append(f"{sid}: {a}{b} unpaired in {ln[:80]!r}")
+        # hidden, overprinted copies of a figure's lettering: the same word
+        # three or more times in a row (p. 4-18 held eight "Sliding")
+        bad += [f"{sid}: word repeated {m.group(0)[:60]!r}"
+                for m in re.finditer(r"\b(\w[\w()'’.-]*)(?:\s+\1\b){2,}", body)
+                if m.group(1).strip("_")]
         prev = None
         for ln in lines:
             cells = [c.strip() for c in ln.split(" | ")] if " | " in ln else None

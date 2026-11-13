@@ -94,7 +94,7 @@
      "variables": {
       "TS": "the sum of the required tensile force per unit width of reinforcement (considering rupture and pullout) in all reinforcement layers intersecting the failure surface",
       "MD": "driving moment about the center of the failure circle",
-      "D": "the moment arm of TS about the center of failure circle = radius of circle R for continuous, sheet type extensible reinforcement (i.e., assumed to act tangentially to the circle) = radius of circle R for continuous, sheet type inextensible reinforcement (e.g., wire mesh reinforcement) to account for normal stress increase on adjacent soil = vertical distance, Y, to the centroid of TS for discrete element, strip type reinforcement. Assume H/3 above slope base for preliminary calculations",
+      "D": "the moment arm of TS about the center of failure circle = radius of circle R for continuous, sheet type extensible reinforcement (i.e., assumed to act tangentially to the circle) = radius of circle R for continuous, sheet type inextensible reinforcement (e.g., wire mesh reinforcement) to account for normal stress increase on adjacent soil = vertical distance, Y, to the centroid of TS for discrete element, strip type reinforcement. Assume H/3 above slope base for preliminary calculations (i.e. assumed to act in a horizontal plane intersecting the failure surface at H/3 above the slope base)",
       "FSU": "unreinforced slope safety factor",
       "FSR": "target minimum slope factor of safety which is applied to both the soil and reinforcement",
       "TS-MAX": "the largest TS calculated and establishes the total design tension"

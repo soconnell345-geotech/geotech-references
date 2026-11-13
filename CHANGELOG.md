@@ -46,6 +46,21 @@ Stored statements that changed in substance, the unsafe ones first:
   the printed cells, interpolated values rounded to one decimal; at phi =
   39 it returns 67.9 for the printed Nc = 37.9, a correction the page
   does not print, and says so.
+- `figure_4_10_kr_ka_ratio` (Figure 4-10, p. 4-37): every result carries
+  the footnote printed under the chart, "*Does not apply to polymer strip
+  reinforcement" (its asterisk marks the Geosynthetics line), and a polymer
+  strip is refused with it. The footnote is in the stored text too.
+- 4.4.5 (p. 4-18) held about 60 words of hidden, overprinted copies of
+  Figure 4-6's lettering ("Sliding" eight times, "(Overturning)" twelve);
+  they are gone, the three printed labels are kept, and Figure 4-6 is
+  listed under 4.4.6, where the page prints it. No other chapter page has
+  hidden text of this kind.
+
+UNSAFE SIDE as printed, with a note: Figure 6-14 Case 2 (p. 6-25, section
+6.5) has + FV where putting LW = 0.3H into the printed Case 1 gives
++ 10 FV over the same denominator, so it divides FV by 10 and understates
+Tmax; Case 3 follows from Case 1. No lookup codes Figure 6-14. The notes
+printed inside Figure 6-14 are typed in.
 
 Stored as printed, each with a note: Eq. 4-26 (p. 4-36) prints its bracket
 without the square that Eqs. 4-2 and 4-3 give with no wall friction and
@@ -57,7 +72,9 @@ the run of its column; returned as printed); the alignment tolerances on
 p. 11-26 give 6 mm per m for
 1/2 inch per 10 ft (about 4) and 15 for 2 inches (about 17); Table 5 of
 the example MSE wall specification (p. 10-30) gives AASHTO T 26 for
-gradation where Table 6 gives T 27. Section ids: none removed; 101 added,
+gradation where Table 6 gives T 27; Figure 8-10 (p. 8-29) labels 1 kPa =
+0.145 lb/ft2 (0.145 is lb/in2); in Table S3 (p. 10-50) the Class 3
+puncture cell repeats the Class 3 tear cell's 40 lb (180 N). Section ids: none removed; 101 added,
 the printed subsections the condensed files left out (2.1.1, 3.2.1,
 4.4.8.a, 8.7.1, 10.4.1, 10.10.1, ...) and lettered parts of sections too
 long for the reference tools (1.2.a, 3.4.2.a, 4.4.6.c.a, 5.3.3.a, 7.1.1.a,
