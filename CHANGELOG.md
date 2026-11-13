@@ -110,6 +110,10 @@ pages):
   axis) are unchanged; the note and docstrings now give the basis (G-7,
   printed 264, reads 0.93 at 20 million passes; cover cannot be less than
   none).
+- `ufc_stabilization.tables.table_3_5_emulsified_asphalt_requirements`:
+  percent passing No. 200 above 25 (Table 3-5's last row, UFC 3-250-11
+  printed p. 27) is refused; the 25 row was returned, with a note, though
+  Sec 3-4.4 says the bitumen required increases with the finer sizes.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8

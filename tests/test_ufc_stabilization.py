@@ -248,14 +248,17 @@ class TestTable35:
 
     def test_last_row_and_above_range(self):
         # Table 3-5, UFC 3-250-11 PDF 35 (pdf_page 34), printed 27: the last
-        # row is 25 (6.2 at < 50, 7.3 at 100); above it the 25 row is held
-        # with a note; below 0 is refused.
+        # row is 25 (6.2 at < 50, 7.3 at 100). Above it is refused (REF-76;
+        # the 25 row used to be held with a note): Sec 3-4.4 says the bitumen
+        # needed rises with the fines. Below 0 is refused.
         r = table_3_5_emulsified_asphalt_requirements(25, 100)
         assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(7.3)
         assert "note" not in r
-        r = table_3_5_emulsified_asphalt_requirements(30, "<50")
-        assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(6.2)
-        assert "above Table 3-5's last row" in r["note"]
+        with pytest.raises(ValueError, match=r"above Table 3-5's last row "
+                           r"\(25, printed p.27\)"):
+            table_3_5_emulsified_asphalt_requirements(30, "<50")
+        with pytest.raises(ValueError, match="above Table 3-5"):
+            table_3_5_emulsified_asphalt_requirements(25.01, 100)
         with pytest.raises(ValueError):
             table_3_5_emulsified_asphalt_requirements(-1, 100)
 
