@@ -1680,6 +1680,59 @@ KP,h 2.47 against the printed 2.4), and scans every dm7_2 chapter file for
 the scatter the text layer leaves in formulas (isolated primes, empty or
 unbalanced brackets, runs of single letters or digits, repeated table rows).
 
+**Structural references' chapter text rewritten from the print (REF-83,
+2026-11-10 to 2026-11-12).** The stored text of UFC 3-301-01, EM
+1110-2-2104, EM 1110-2-2107, UFC 4-023-03 and the Wood Handbook
+(chapters 8 and 9; chapters 4 and 5 named items only) was partly
+paraphrase. UFC 3-301-01, EM 1110-2-2104 and UFC 4-023-03 bodies are now
+the print's own wording with [p. N] markers; every equation, formula
+line and typed table was read from the rendered page; key points restate
+printed sentences; code-module notes are out of the text. No Python
+changed.
+
+Statements that could have led to a less safe design:
+
+- UFC 3-301-01 3-6: collector elements in SDC C-F were said to use load
+  combinations without the overstrength factor; the print replaces only
+  Item (c) of ASCE 7 12.10.2.1 and its exception (p. 58).
+- UFC 3-301-01 3-7: the masonry-anchor option multiplies QE by Omega-op,
+  not Omega-o (p. 61).
+- UFC 3-301-01 7-2: four irregularities are prohibited (horizontal 1b,
+  vertical 1b, 5a and 5b), not "two of four" (p. 100); walls retaining
+  earth keep "plus the difference in earth pressures"; 7-3's elevator
+  rail load is the car plus 40 percent of its rated load.
+- EM 1110-2-2107 4.1: the alpha = 0.90 list is printed (normally
+  submerged HSS that are hard to inspect; brackish water or seawater);
+  the text said no list was printed.
+- Wood Handbook 8: the nail dowel bearing equation (Eq. 8-3) was said
+  to serve all dowel fasteners; bolts and lag screws use Eq. 8-17/8-18
+  (p. 8-19), which perpendicular to grain give lower bearing strengths
+  for bolts of 1/2 in. and larger.
+
+Other corrections: UFC 3-301-01 2-4.6 vertical lift fabric doors (the
+700-year ban is for aircraft maintenance hangars), the healthcare
+chapters' scope ("having emergency surgery or emergency treatment
+facilities"), 4-4's high-wind trigger conditions, an unprinted wind
+turbine and Section 2109 item removed; EM 1110-2-2104 Eq 3-2's
+principal load factor is gamma_pr (the text said gamma_pu), 2-2 cites
+paragraph 3-4 (not 3-5), the No. 4 bars at 12 in. are "generally, for
+ease of placement", Eq 3-1's L_ni; Wood Handbook Eq. 9-41 and 9-24 as
+printed with notes, and the worked examples of pp. 9-10 and 9-12 in the
+print's words; UFC 4-023-03 2-2.4.3 and 3-2.5 as printed.
+
+Typed in from the rendered pages: UFC 3-301-01 Tables 2-1, 2-2, 4-1(a),
+4-1(b), 6-1, 7-1 (Tables 3-1 and 4-2 are not, and the bodies say so);
+EM 1110-2-2104 Eqs 3-1 to 5-4 and Tables 2-1 to 3-4; EM 1110-2-2107
+Table 4.1; UFC 4-023-03 Tables 2-1, 2-2, 3-2 to 3-5. Print slips are
+stored as printed with a "Print note". Section ids added: ufc_structural
+2-7.2, em_2104 3-2.f (3-2's load definitions; 3-2 printed is over
+14,000 characters), em_2107 4.2.3 and 6.1.3. New tests:
+`test_ufc_structural_text_equations.py`, `test_em_2104_text_equations.py`,
+`test_em_2107_text_equations.py`, `test_ufc_collapse_text_equations.py`,
+`test_wood_handbook_text_equations.py`, and
+`test_text_scatter_patterns.py` (loose primes, a lone digit before a
+formula, unpaired brackets, a sentence repeated in consecutive rows).
+
 ## 1.6.0
 
 **Local reference packs (REF-64).** A deployment can add its own references
