@@ -648,6 +648,61 @@ def test_tables_7_23a_and_7_23b_typed_from_the_page():
     assert "Grouting Permeation Compaction Jet" not in body
 
 
+def _typed_row_list(body, number, page):
+    """Every row of a table typed in from the page, as lists of cells (a
+    table whose first column repeats, as a group label does)."""
+    label = f"[Table {number} as printed on p. {page}, typed in from the page:] "
+    lines = body.split(label)[1].split("\n\n")[0].split("\n")
+    return [[c.strip() for c in r.split("|")] for r in lines if not r.startswith("[")]
+
+
+def test_table_5_44_each_row_under_its_printed_material():
+    # p. 5-66 prints each material once, beside the first row of its group;
+    # the text layer gave each label before its group's LAST row, so the top
+    # AC rows had no material and the stabilized base rows read under AC
+    sec = _sections(5)["5.4.5.a"]
+    rows = _typed_row_list(sec["body"], "5-44", "5-66")
+    assert rows[0] == ["Material", "Surface Condition", "Coefficient"]
+    assert [(r[0], r[2]) for r in rows[1:]] == [
+        ("AC Surface", "0.35 – 0.40"), ("AC Surface", "0.25 – 0.35"), ("AC Surface", "0.20 – 0.30"),
+        ("AC Surface", "0.14 – 0.20"), ("AC Surface", "0.08 – 0.15"),
+        ("Stabilized Base", "0.20 – 0.35"), ("Stabilized Base", "0.15 – 0.25"),
+        ("Stabilized Base", "0.15 – 0.20"), ("Stabilized Base", "0.10 – 0.20"),
+        ("Stabilized Base", "0.08 – 0.15"),
+        ("Granular Base/Subbase", "0.10 – 0.14"), ("Granular Base/Subbase", "0.00 – 0.10")]
+    assert rows[1][1].startswith("Little or no alligator cracking")
+    assert rows[3][1].startswith(">10% low-severity") and "<10 percent medium-severity" in rows[3][1]
+    assert rows[11][1].startswith("No evidence of pumping")
+    assert [t.split(":")[0] for t in sec["tables"]] == ["Table 5-44"]
+    assert sec["body"].startswith("[p. 5-66] Table 5-44. Suggested layer coefficients")
+
+
+def test_tables_with_a_label_printed_once_for_its_rows():
+    # each label printed once for a group of rows, which the text layer gave
+    # among or after its rows: every row under its printed label
+    rows = _typed_row_list(_sections(5)["5.4.3.a"]["body"], "5-32", "5-51")
+    ug, es = "Unbound Granular Base and Subbase Layers", "Embankment and Subgrade Soils"
+    assert [(r[0], r[2]) for r in rows[1:7]] == [
+        (ug, "1.43"), (ug, "1.32"), (ug, "0.62"), (es, "0.75"), (es, "0.52"), (es, "0.35")]
+    assert rows[4][1].startswith("Embankment or subgrade soil below a stabilized subbase")
+    rows = _typed_row_list(_sections(5)["5.5.2.b"]["body"], "5-58", "5-106")
+    k, q = "Dry Thermal Conductivity, K", "Dry Heat Capacity, Q"
+    assert [(r[0], r[1]) for r in rows[1:7]] == [(k, "1"), (k, "2"), (k, "3"), (q, "1"), (q, "2"), (q, "3")]
+    assert rows[4][2] == "Direct measurement (ASTM D 2766)."
+    assert "A-7-6 0.09 – 0.17, 0.12" in rows[3][2]
+    body = _sections(7)["7.3.3"]["body"]
+    for number, page in (("7-9", "7-36"), ("7-10", "7-37")):
+        rows = _typed_row_list(body, number, page)
+        assert [r[0] for r in rows[1:4]] == ["Aggregate"] * 3
+        assert [r[1][:3] for r in rows[1:4]] == ["(a)", "(b)", "(c)"]
+        assert rows[-1][0] == "Permeability"
+    rows = _typed_row_list(body, "7-9", "7-36")
+    assert rows[2][2] == "AASHTO T 96" and rows[4][0] == "AC content"
+    rows = _typed_row_list(body, "7-10", "7-37")
+    assert rows[2][2] == "AASHTO T 96-94" and rows[4][0] == "Cement"
+    assert rows[-1][1] == "Minimum mix permeability: (300 m/day) 1,000 ft/day."
+
+
 def test_degree_signs_and_exponents_as_printed():
     # the page raises an "o" for the degree sign and the exponents of the
     # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
