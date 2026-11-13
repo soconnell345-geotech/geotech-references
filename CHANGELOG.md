@@ -27,6 +27,10 @@ pages):
 - `gec_10.tables.table_10_2_nc_base_clay`: su below 500 psf is refused
   (Table 10-2 prints 500, 1,000 and ">= 2,000" psf, p. 10-19); it held
   N*c = 6.5. Above 2,000 psf the open-ended row still gives 9.0.
+- `gec_11.tables.table_4_4_traffic_surcharge`: an abutment height above 0
+  and below 5.0 ft is refused (Table 4-4 prints 5.0, 10.0 and ">= 20.0"
+  ft, p. 4-17); it held heq = 4.0 ft with a note. 0 still returns the
+  whole table; taller than 20 ft still takes the open-ended 2.0 ft.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
