@@ -44,6 +44,9 @@ pages):
   printed rows (3B for every soil, 5B also for M. Dense Sand and Loose M.
   Sand, p. 112) still holds the widest printed row, now with `note` and
   `out_of_range`; holding is on the low side (p. 111).
+- `gec_9.tables.table_7_1_p_multiplier`: beyond 5B (Table 7-1 prints 3B
+  and 5B, p. 104) the 5B row is still held, now with `out_of_range` beside
+  its `note`; holding is on the low side (p. 102).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8

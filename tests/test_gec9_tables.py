@@ -122,6 +122,17 @@ class TestTable71PMuliplier:
         assert "no row beyond 5B" in result["note"]
         assert "note" not in table_7_1_p_multiplier("3rd", 5.0)
         assert "note" not in table_7_1_p_multiplier("2nd", 4.0)
+
+    def test_beyond_5b_out_of_range_key(self):
+        # REF-76: Table 7-1 (GEC-9 p. 104) prints 3B and 5B; beyond 5B the 5B
+        # row is held, on the low side (p. 102: Pm decreases as spacing
+        # decreases), and out_of_range names the printed limit.
+        result = table_7_1_p_multiplier("2nd", 7.0)
+        assert result["pm"] == 0.85
+        assert "5B" in result["out_of_range"] and "p. 104" in result["out_of_range"]
+        assert "safe" in result["note"]
+        assert "out_of_range" not in table_7_1_p_multiplier("2nd", 5.0)
+        assert "out_of_range" not in table_7_1_p_multiplier("3rd", 3.5)
         assert table_7_1_p_multiplier("lead", 3.0)["print_notes"][2].startswith(
             "(3) Interpolation may be used")
 

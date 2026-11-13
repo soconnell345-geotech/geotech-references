@@ -153,8 +153,11 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
     to all subsurface conditions (soil type does not significantly affect Pm).
     The table prints spacings 3B and 5B; note (3): "Interpolation may be
     used for other spacing between 3B and 5B". Beyond 5B the 5B row is
-    used and the result says so (rows 2 and 3 still reduce at 5B: 0.85
-    and 0.7). Below 3B the table has no row and the call is refused.
+    used and the result says so in ``note`` and ``out_of_range`` (rows 2
+    and 3 still reduce at 5B: 0.85 and 0.7). That is on the low side:
+    "p-multipliers decrease significantly when foundation element spacing
+    decreases" (p. 102), so the 5B row is no higher than a wider spacing
+    would give. Below 3B the table has no row and the call is refused.
 
     Parameters
     ----------
@@ -171,7 +174,7 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
     dict
         {'row_position': str, 'spacing_over_b': float,
          'pm': float, 'notes': str, 'print_notes': list,
-         'note': str (beyond 5B only)}
+         'note': str and 'out_of_range': str (beyond 5B only)}
 
     Raises
     ------
@@ -236,7 +239,11 @@ def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
         out["note"] = (
             "Table 7-1 prints spacings 3B and 5B and allows interpolation "
             "between them (note 3); it has no row beyond 5B, and the 5B "
-            "row is used.")
+            "row is used. P-multipliers decrease as spacing decreases "
+            "(p. 102), so the 5B row is on the low (safe) side.")
+        out["out_of_range"] = (
+            f"spacing_over_b = {spacing_over_b:g} is beyond 5B, the widest "
+            "spacing GEC-9 Table 7-1 prints (p. 104).")
     return out
 
 
