@@ -59,6 +59,39 @@ Pages are printed page numbers.
   Table 6-5 (6-3.3); Table 8-12 rows (8-4.1.1).
   Test: `tests/test_dm7_1_text_equations.py`.
 
+**Build of 2026-11-12: every dm7_1 summary, key point and applicability
+field checked against the print (app BACKLOG REF-79).** 3,168 fields in
+chapters 1-8 were read against the printed pages and 784 changed: claims
+the print does not make removed, "must" and "only" brought back to the
+print's "should", "may" and "typically", limits and attributions the old
+text dropped restored, and a few statements that said the opposite of the
+print corrected (8-1 called the 16% one-standard-deviation probability one
+of "underestimation"; 8-5.2.2 said Eu/su rises with OCR, which Figure 8-51
+shows falling; 5-5.1 said "saturated" where the print, on significant
+immediate settlement, says "unsaturated" (p. 236); 7-10.8.7 stated as a present requirement what FHWA (1998)
+needed when it appeared). Key points restate printed sentences only; ids
+are unchanged. Pages are printed page numbers.
+
+- The 14 page footnotes now sit in the bodies at their marks as
+  "[Footnote n: ...]" (pp. 3, 89, 142-165, 234, 237, 366, 424), and 33
+  table notes and table footnotes as "[Note to Table x: ...]" or
+  "[Footnote A to Table x: ...]" (chapters 1-8).
+- Printed text the bodies left out is restored: the 6-5.3 subsections
+  printed under repeated numbers (Retaining Wall Drainage to Relief Wells,
+  pp. 330-338, with Figures 6-22 and 6-24 to 6-30), the 7-8 passage on
+  well- and poorly-defined conditions (p. 366), 5-6.3 on Km, 5-9 on
+  hydrocompression, 8-2.1.3's correction factor R and Figure 8-11, and
+  shorter passages in chapters 5-8.
+- Print slips kept as printed with a note: plane failure condition 3,
+  "φʹ < ΨF" (p. 380), and the wedge condition "ΨFi > ΨFi > φʹ" (p. 381;
+  the body had corrected it silently); "either suffusion or suffusion"
+  (p. 306); Eq. 5-28 labelled "(5-5-28)" (p. 268); Table 5-8 Km's
+  "(1−νs)²" (p. 260); Table 8-7 "LI = liquid index" (p. 423); 8-5.2.2's
+  "undrained shear modulus" for the Eu/su of Figure 8-51 (p. 450).
+- 7-5.2 no longer lists Figure 7-1 (printed in 7-2); Table 5-8 is listed
+  under 5-6.3, where it is printed.
+  Test: `tests/test_dm7_1_build_keypoints.py`.
+
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
 that returned a value the print does not support now return the printed

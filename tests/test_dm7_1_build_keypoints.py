@@ -85,7 +85,7 @@ def test_key_point_reads_as_printed(ch, sid, phrase, absent):
 
 
 # p. 236: immediate settlement may be significant for unsaturated or heavily
-# overconsolidated clay (the old text named only one of the two).
+# overconsolidated clay (the old text said "saturated").
 def test_immediate_settlement_applicability_names_both_cases():
     assert "unsaturated or heavily overconsolidated clay" in _sec(5, "5-5.1")["applicability"]
 

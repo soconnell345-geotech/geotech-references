@@ -31,7 +31,7 @@ geotech_references/           # Python package (pip install -e .)
   _query_expansion.py          # Synonym query-expansion recall lever for reference_search/figure_search; EXPANSION_STRATEGY off/fill/rerank/auto (env GEOTECH_RETRIEVAL_EXPANSION, default auto), EXPANSION_PIN (env GEOTECH_RETRIEVAL_PIN, default 1). See "Lexical Query Expansion" below.
   dm7_1/                       # UFS 3-220-10 Soil Mechanics (DM 7.1), 16 Jan 2026 (8 chapters)
     chapter1.py ... chapter8.py
-    text/                      # Structured chapter JSON (8 chapters, 465 sections = every printed section, 2026-04-07; every equation checked against the rendered page and stated as printed, the 7 missing sections added and the table formulas of ch 5, 6, 8 checked 2026-11-10, REF-79, tests/test_dm7_1_text_equations.py)
+    text/                      # Structured chapter JSON (8 chapters, 465 sections = every printed section, 2026-04-07; every equation checked against the rendered page and stated as printed, the 7 missing sections added and the table formulas of ch 5, 6, 8 checked 2026-11-10, REF-79, tests/test_dm7_1_text_equations.py; every summary, key point and applicability field checked against the print, the 14 page footnotes and 33 table notes put in the bodies, 2026-11-12, tests/test_dm7_1_build_keypoints.py)
     figures_catalog.json       # 223 figures (number, caption, page, text-enriched description)
   dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
