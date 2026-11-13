@@ -1,0 +1,130 @@
+{
+  "reference_id": "FHWA-NHI-05-039",
+  "reference_title": "Micropile Design and Construction",
+  "chapter": 14,
+  "chapter_title": "Appendix D: Sample Problem No. 1, Bridge Foundation Abutment Support",
+  "sections": [
+    {
+      "section_id": "D",
+      "title": "Sample Problem No. 1 – Bridge Abutment Foundation Support",
+      "body": "[p. D-1] The following sample problem illustrates the design of foundation support for a bridge abutment using micropiles. This sample problem is intended to illustrate the quantification of typical abutment loads and the design of a micropile foundation for non-seismic load groups. In the example, seismic loads are provided and the example could be repeated using these loads. Practitioners typically follow different procedures around the United States in the design of bridge abutments, and therefore this sample problem is not intended to depict a “standard abutment” or a “standard abutment design procedure.” For simplicity, this example problem considers only a portion of the longitudinal forces and no transverse forces. Abutment designs, which include wind or seismic forces, for example, would have transverse as well as longitudinal forces. This example also does not illustrate construction load cases (e.g., full backfill prior to girder placement) that need to be incorporated into actual designs.\n\nProblem Statement\n\nThe structure is a simply supported, single-span bridge, 30 meters long, supported on concrete retaining abutments. The superstructure consists of 5 AASHTO Type IV precast - prestressed concrete girders with a cast-in-place concrete deck.\n\nThe bridge abutment length is 10.5 meters. The abutment wall backfill material is medium dense sand with an angle of internal friction of 35 degrees and a unit weight of 17.5 kN/m³. The unit weight of the concrete is 23.6 kN/m³. Figure S1-1 shows the dimensions of the abutment. The pile details are shown on Figure S1-2.\n\nA summary of loading applied to the bridge abutment is shown in Figure S1-3. All load values are per 1-meter length of the abutment. The seismic site coefficient is 0.1 g.\n\nThe foundation soil conditions are described in the boring log contained in Figure S1-4. These soils consist of 2.5 meters of loose sandy gravel underlain by moderately compressible soft, brown, fine sandy silt, which is 1.5 meters thick. The silt is underlain by dense to very dense gravel with cobbles and boulders that extends to a maximum depth of 30 meters. Ground water is 4 meters below the top of footing. Type B3 (pressure grouted through the casing during casing withdrawal) micropiles will be used. The bond length will be formed in the dense gravel.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure S1-1: Sample Problem No. 1 - Abutment Section Detail (unless noted, all length dimensions in mm)",
+        "Figure S1-2: Sample Problem No. 1 – Pile Details",
+        "Figure S1-3: Sample Problem No. 1 – Summary of Abutment Loads (legend as printed: DC = Dead load of concrete abutment; DS = Dead load of soil; VDL = 178.70 kN/m (dead load from bridge structure); VLL = 73.00 kN/m (live load from bridge structure); HL = Earth pressure due to live load surcharge VL; VL = Live load surcharge = 0.6 m thick equivalent soil surcharge (not included in this example); PE = Active earth pressure; PEQ = Seismic earth pressure; IA = 30.9 kN/m (seismic inertia force of concrete abutment and soil weight); IS = 26.8 kN/m (seismic inertia force of the superstructure); dimensions drawn: h = 5250, h/2 = 2625, h/3 = 1750, 0.6h = 3150)",
+        "Figure S1-4: Sample Problem No. 1 – Soil Boring Log"
+      ],
+      "tables": [],
+      "applicability": "Appendix D (pp. D-1 to D-5), printed heading SAMPLE PROBLEM NO. 1 – BRIDGE ABUTMENT FOUNDATION SUPPORT: the purpose and limits of the example and the problem statement (a 30-m single-span bridge on a 10.5-m abutment, backfill and soil conditions, Type B3 micropiles bonded in dense gravel); Figures S1-1 to S1-4."
+    },
+    {
+      "section_id": "D.1",
+      "title": "Step 1 – Abutment Design Loads",
+      "body": "[p. D-6] The magnitude and point of application for the active earth pressure, earth pressure due to live load surcharge, and seismic earth pressure is determined in this section. Calculations for the remaining components of the abutment loading are not included. The magnitude, point of application, and resulting moment on the abutment for the entire load components are summarized in Table S1-1. The moments are taken about the center point of the base of the abutment footing.\n\nActive Earth Pressure - PE\n\nSoil internal friction angle φ = 35 degrees\n\nUnit weight of soil γsoil = 17.5 kN/m³\n\nCoefficient of active soil pressure Ka = tan²[45° - φ/2] = 0.271\n\nKa γsoil = 4.74 kN/m³\n\nResultant load PE = 0.5 × 4.74 kN/m³ × (5.25m)² = 65.32 kN/m\n\nMoment about centroid 65.32 kN/m × 5.25m/3 = 114.31 kN-m/m\n\nEarth Pressure Due to Live Load Surcharge - HL\n\nSurcharge pressure Ka × γsoil × 0.6m = 2.84 kPa\n\nSurcharge load 2.84 kN × 5.25m = 14.91 kN/m\n\nMoment about centroid 14.91 kN/m × 5.25m/2 = 39.1 kNm/m\n\n[p. D-7] [Table S1-1]\n\nSeismic Earth Pressure - PEQ\n\nSee “Seismic Design of Bridges - Design Example No. 3\" Publication No. FHWA-SA-97-008 for a description of the following Mononobe - Okabe lateral seismic earth over pressure and the seismic inertia forces from the abutment self-weight and the soil resting on the abutment footing.\n\nSeismic acceleration coefficient: A = 0.10\n\nSeismic coefficients kh = 1.5 × A = 0.15 and kv = 0 (assumed value)\n\nReference AASHTO Sec. 6.4.3 (A) Div. 1A.\n\nSlope of soil face: β = 0°\n\n[p. D-8] Backfill slope angle: i = 0°\n\nFriction angle between soil and abutment: δ = ½ φ = 17.5°\n\nSeismic inertia angle θ = tan⁻¹[kh / (1 - kv)] = 8.53°\n\nSeismic earth pressure coefficient\n\nΨ = [1 + √(sin(φ + δ) × sin(φ - θ - i) / (cos(δ + β + θ) × cos(i - β)))]² = 2.65\n\nKAE = [cos²(φ - θ) / (Ψ × cos(θ) × cos(θ + δ))] = 0.34\n\nSeismic earth pressure KAE γsoil = 5.95 kN/m³\n\nResultant seismic force PEQ = [0.5 × 5.95 kN/m³ × (5.25m)²] - PE = 16.68 kN/m\n\nSince this force is at angle δ to the horizontal,\n\nPEQ-H = 16.68 kN/m (cos δ) = 15.91 kN/m\n\nTo be conservative, neglect the vertical portion of PEQ over the footing heel.\n\nSeismic Inertia Forces\n\nIA = kh (DC + DS) = 0.15 × (97.0 + 108.68) = 30.9 kN/m\n\nIS = kh (VDL) = 0.15 × 178.70 = 26.8 kN/m\n\nMoment about centroid: 16.68 kN/m × 0.6 × 5.25m = 52.54 kNm/m (as printed; Table S1-1 gives the moment of the horizontal component, PEQ-H: 15.91 × 3.15 = 50.12 kN-m)",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [
+        "Table S1-1: Sample Problem No. 1- Summary of Abutment Loads Per Meter Length (p. D-7) - columns: Load; Description; Type; Load Fx (kN); Load Fy (kN); Moment Arm X (m); Moment Arm Y (m); Moment* M (kN-m); — = cell left blank. Dc; Dead load of concrete abutment; D; —; 97.00; 0.27; —; 26.19 | DS; Dead load of soil; E; —; 108.68; -0.55; —; -59.77 | VDL; Dead load from bridge superstructure; D; —; 178.70; 0.58; —; 103.65 | VLL; Live load from bridge superstructure; L; —; 73.00; 0.58; —; 42.34 | HL; Earth pressure due to live load surcharge; L; 14.91; —; —; 2.63; 39.13 (as printed; 14.91 × 2.625 = 39.14, and 14.91 × 2.63 = 39.21) | PE; Earth pressure; E; 65.32; —; —; 1.75; 114.31 | PEQ-H; Seismic earth pressure; EQ; 15.91; —; —; 3.15; 50.12 | IA; Seismic inertial force of concrete & soil weight; EQ; 30.9; —; —; 2.35; 72.50 | IS; Seismic inertial force of the superstructure; EQ; 26.8; —; —; 3.55; 95.14. *Moment is calculated about the center of the footing at its base."
+      ],
+      "applicability": "Printed STEP 1 (pp. D-6 to D-8): active earth pressure PE, the live load surcharge HL, the Mononobe-Okabe seismic earth pressure PEQ and the seismic inertia forces IA and IS, with the loads and moments of Table S1-1."
+    },
+    {
+      "section_id": "D.2",
+      "title": "Step 2 – Determine Pile Design Loads per Meter Length",
+      "body": "[p. D-9] The Group I loads per AASHTO Table 3.22.1A are calculated from the abutment loads shown in Table 5-4 (as printed; the abutment loads are in Table S1-1).\n\nFy = sum of vertical loads\n\nFx = sum of horizontal loads\n\nM = sum of moments about the center of the footing at its base.\n\nFy = DC + DS + VDL + VLL\n\nFy = 97.0 + 108.7 + 178.7 + 73.0 = 457.4 kN/m\n\nFx = HL + PE\n\nFx = 15.0 + 65.3 = 80.3 kN/m (as printed; Table S1-1 gives HL = 14.91 kN, and 14.91 + 65.32 = 80.23)\n\nM = DC + DS + VDL + VLL + HL + PE\n\nM = 26.2 - 59.8 + 103.7 + 42.3 + 39.3 + 114.3 = 266.0 kN/m (as printed; Table S1-1 gives 39.13 for HL, and its six moments sum to 265.85)\n\nDetermine Pile Group Properties Per Meter Length\n\nSketch (not numbered in the print): the pile footing in section, with Fy and M at the Pile Footing ℄ and Fx; the Pile Group ℄, e = 185 mm from it; Front Piles spaced at 1500 mm, drawn battered at 20°; Rear Piles spaced at 2250 mm; dimensions 300, 925, 925 and 300, 1850 between the piles, 2450 overall\n\nCentroid of Pile Group (from front pile)\n\nFront piles: 1/1.5 × 0.0 = 0.0\n\nRear piles: 1/2.25 × 1.85 = 0.822\n\nSum: 1.111; 0.822\n\nSo centroid is (0.822/1.111) = 0.74 m from front pile.\n\n[p. D-10] e = 1.85/2 - 0.74 = 0.185 m\n\nPile Group I about centroid\n\nI = 1/1.5 (0.74)² + 1/2.25 (1.11)² = 0.9127\n\nRear Pile Vertical Load = [Fy/1.111 - (M - Fy e) 1.11 / 0.9127]\n\nFront Pile Vertical Load = [Fy/1.111 + (M - Fy e) 0.74 / 0.9127]\n\nGroup I Pile Design Loads\n\nRear Pile Vertical Load = [457.4/1.111 - [266 - 457.4 × 0.185] 1.11 / 0.9127] = 191 kN\n\nFront Pile Vertical Load = [457.4/1.111 + [266 - 457.4 × 0.185] 0.74 / 0.9127] = 559 kN\n\nFront Pile Axial Load = 559 / cos(20°) = 595 kN compression\n\n(Controlling Group 1, non-seismic, axial design load per pile)\n\nA more refined analysis would utilize the vertical stiffness of the batter pile.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 2 (pp. D-9 to D-10): the Group I sums Fy, Fx and M, the pile group centroid, eccentricity and moment of inertia per meter, and the rear and front pile loads (595 kN axial on the battered front pile)."
+    },
+    {
+      "section_id": "D.3",
+      "title": "Step 3 – Evaluate Allowable Structural Capacity of Cased Length",
+      "body": "[p. D-11] A single pile design is used that can support the maximum compression load that acts on the front row of battered piles.\n\nFor the permanent casing reinforcement, a yield strength of 241 MPa is used for design. To maintain strain compatibility between the reinforcing bar and casing in the upper pile length, a yield strength (Fy-steel) of 241 MPa is used for both members. The use of a higher strength casing, such as API N80 (Fy = 552 MPa) would greatly increase the structural capacity of this section of the pile. These calculations do not address the capacity of the casing joint.\n\nIf the project incorporated a larger number of piles, savings could be realized by the use of separate designs for the front and rear piles. For example, a smaller casing size and a shorter bond length may be used on the rear piles due to the lower required capacity. The use of separate designs could increase the amount of load testing required at the start of the project, which the potential savings on a larger piling job could support. Consideration must also be given to maintaining simple pile construction. Mixing different reinforcing sizes and pile depths can occasionally lead to errors during pile installation. Also, if the overall stiffness (load versus pile top deflection) of the pile is changed, then the centroid and load per pile must be reevaluated.\n\nPile Cased Length Allowable Load\n\nMaterial dimensions and properties\n\nCasing - Use 141 mm outside diameter x 9.5 mm wall thickness.\n\nReduce outside diameter by 1.6 mm to account for corrosion.\n\nCasing outside diameter ODcasing = 141 mm - 2 x 1.6 mm = 137.8 mm\n\nPile casing inside diameter IDcasing = 141 mm - 2 x 9.5 mm = 122 mm\n\nPile casing steel area Acasing = π/4 [OD²casing - ID²casing] = 3,224 mm²\n\nCasing yield strength Fy-casing = 241 MPa\n\n[p. D-12] Radius of gyration rcasing = √(OD² + ID²) / 4 = 46 mm\n\nReinforcing bar - Use 43 mm grade 520 steel reinforcing bar.\n\nBar area Abar = 1,452 mm²\n\nBar steel yield strength Fy-bar = 520 MPa\n\nGrout area Agrout = π/4 ID²casing - Abar = 10,240 mm²\n\nGrout compressive strength f′c-grout = 34.5 MPa\n\nFor strain compatibility between casing and rebar, use for steel yield stress:\n\nFy-steel = the minimum of Fy-bar and Fy casing = 241 MPa\n\nAllowable Tension Load\n\nPt-allowable = 0.55 Fy-steel (Abar + Acasing) = 620 kN\n\nAllowable Compression Load\n\nPc-allowable = [0.4 f′c-grout × Agrout + 0.47 Fy-steel (Abar + Acasing)] = 671 kN",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 3 (pp. D-11 to D-12): the 141 mm x 9.5 mm casing with 1.6 mm corrosion loss, the 43 mm Grade 520 bar, Fy-steel = 241 MPa for strain compatibility, and the allowable tension and compression loads of the cased length (Eqs. 5-1 and 5-2)."
+    },
+    {
+      "section_id": "D.4",
+      "title": "Step 4 – Evaluate Allowable Structural Capacity of Uncased Length",
+      "body": "[p. D-12] Pile Uncased Length Allowable Load\n\nMaterial dimensions and properties\n\nSoil conditions and the method of pile installation can affect the resulting diameter of the pile bond length. For this example, assume a drill-hole diameter of 50 mm greater than the casing outside diameter (OD).\n\n[p. D-13] Using a casing OD = 141mm\n\nTherefore, Grout Db = 141 mm + 50 mm = 191 mm (0.191 m)\n\nBond length grout area Agrout = π/4 D²b - Abar = 27,200 mm²\n\nAllowable Tension Load\n\nPt-allowable = 0.55 Fy-bar × Abar = (0.55 × 520 MPa × 1,452 mm²) = 415 kN\n\nAllowable Compression Load\n\nPc-allowable = (0.4 f′c × Agrout + 0.47 Fy-bar × Abar)\n\nPc-allowable = (0.4 × 34.5 MPa × 27,200 mm² + 0.47 × 520 MPa × 1,452 mm²) = 730 kN",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 4 (pp. D-12 to D-13): the 191 mm bond length grout diameter and the allowable tension and compression loads of the uncased length (Eqs. 5-7 and 5-8)."
+    },
+    {
+      "section_id": "D.5",
+      "title": "Step 5 – Evaluate Allowable Geotechnical Capacity",
+      "body": "[p. D-13] Allowable Load – Geotechnical Capacity\n\nThe micropile bond length will be located in the dense to very dense sandy gravel with cobbles and boulders starting approximately 3.35 m below the bottom of footing elevation. The pile bond length shall be installed using a Type B pressure grouting methodology.\n\nFrom Table 5-3 select an ultimate unit grout-to-ground bond strength α bond = 265 kPa. This represents an approximate average value for gravels.\n\nThe controlling non-seismic micropile loading is 595 kN per pile. Therefore, an allowable geotechnical bond load PG-allowable ≥ 595 kN/pile must be provided to support the structural loading.\n\nProvide: PG-allowable ≥ 595 kN/pile\n\nCompute the bond length, Lb, required to provide PG-allowable as follows:\n\n[p. D-14] Lb = PG-allowable × FS / (αbond × π × Db)\n\nLb = 595 kN × 2.0 / (265 kPa × π × 0.191 m) = 7.48 m\n\nSelect Bond Length = 7.5 m\n\nPG-allowable = 265 kPa / 2.0 × 3.14 × 0.191m × 7.5m = 596 kN",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 5 (pp. D-13 to D-14): the bond strength from Table 5-3 (265 kPa in gravel, Type B grouting), the bond length for FS = 2.0 (Eq. 5-10) and the allowable geotechnical load."
+    },
+    {
+      "section_id": "D.6",
+      "title": "Step 6 – Verify Allowable Loads",
+      "body": "[p. D-14] The controlling axial design load for the pile is 595 kN (compression). The summary of the pile allowable loads is:\n\nStructural Upper Cased Length = 671 kN (compression)\n\nStructural Lower Uncased Length = 730 kN (compression)\n\nGeotechnical Bond Length = 596 kN (compression)\n\nThe allowable loads are all greater than the 595 kN design load, therefore the pile axial design is OK.\n\nThe controlling lateral design load is 80.3 kN/m. Check to see if the batter piles carry lateral loads. The front row of piles are battered at 20° from vertical and each pile carries the following ratio of the vertical pile load as a lateral resisting load.\n\nLateral resisting load = 559 kN × tan(20°) = 204 kN per pile\n\nThe lateral design load per pile = 80.3 kN/m × (1.5m) = 120 kN per pile\n\nThe lateral resisting load is greater than the lateral design load therefore the pile lateral design is OK.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 6 (p. D-14): the allowable loads against the 595 kN design load, and the lateral resistance of the battered front piles against the lateral design load."
+    },
+    {
+      "section_id": "D.7",
+      "title": "Step 7 – Estimate Micropile Settlement",
+      "body": "[p. D-15] Settlements resulting from consolidation of soil layers below the micropile group are not anticipated as these soils are not cohesive in nature. Herein, elastic settlements are calculated.\n\nCasing Length Elastic Stiffness\n\nFront pile batter angle Φbatter = 20°\n\nMax pile length from footing to top of gravel Lupper = 3.35 m / cos(Φbatter) = 3.6 m\n\nCasing insertion into bond length Linsert = 1.0 m\n\nPile casing length Lcasing = Lupper + Linsert = 4.6 m\n\nSteel modulus of elasticity Esteel = 200,000 MPa\n\nGrout modulus of elasticity Egrout = 31,000 MPa\n\nArea of Grout Agrout = 10,240 mm²\n\nAsteel = Abar + Acasing = 1,452 mm² + 3,224 mm² = 4,676 mm²\n\nPile compression stiffness value\n\nEAcased length = Agrout × Egrout + Asteel × Esteel = 1,252,000 kN (as printed; 10,240 × 31,000 + 4,676 × 200,000 N gives 1,252,640 kN)\n\nUncased Length Elastic Stiffness\n\nPile uncased length (bond length) Lb = 7.5 m\n\nAsteel = Abar = 1,452 mm²\n\nAgrout = 27,200 mm²\n\nPile compression stiffness value\n\n[p. D-16] EAuncased length = Agrout × Egrout + Asteel × Esteel = 1,133,000 kN (as printed; 27,200 × 31,000 + 1,452 × 200,000 N gives 1,133,600 kN)\n\nElastic Displacement\n\nElastic displacement (cased length)\n\nΔtelastic = Pcompression × Lcasing / AEcased length = 595 kN × 4.6 m / 1,252,000 kN = 2.2 mm\n\nElastic displacement (uncased length)\n\nΔtelastic = Pcompression × Lb / AEuncased length = 595 kN × (1/2 × 7.5 m) / 1,133,000 kN = 2.0 mm",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 7 (pp. D-15 to D-16): the axial stiffness of the cased and uncased lengths and their elastic displacements."
+    },
+    {
+      "section_id": "D.8",
+      "title": "Step 8 – Micropile to Footing Connection Design",
+      "body": "[p. D-16] Design calculations are completed for the detail shown in Figure S1-5 for connection of the pile top to the abutment footing.\n\nRequired Design Loads and Dimensions\n\nGroup I service load, compression Pc-service = 595 kN\n\nAbutment concrete compressive strength f’c = 27.6 MPa\n\nCasing outside diameter ODcasing = 141 mm\n\nPile area Areapile = π/4 OD²casing = 15,615 mm²\n\n[p. D-17] Required Plate Area\n\nAssume a 254 mm square plate Areaplate = Plate²width = 64,516mm²\n\nCheck Cone Shear\n\nSketch (not numbered in the print): 400 mm cover depth; d1 = 286 mm; d2 = 286 + 2 x 400 = 1,086 mm; Pcone allowable; slopes 1:1\n\nPcone allowable ≥ Pc-service = 595 kN\n\n[p. D-18] Equivalent diameter for 254 mm² plate, = √(4 × 254² / π) = 286mm (as printed; √(4 × 254² / π) = 286.6)\n\nACP = π/4 [d2² - d1²] = π/4 [1086² - 286²] = 862,053 mm²\n\nUse ACI 349 Appendix B for cone shear\n\nPcone design strength = 4 φ √(f′c psiCP) x Acp (as printed)\n\n= 4 φ √(f′c psi (6.89476) kPa/psi) x Acp\n\n= 10.5 φ √(f′c) kPa × ACP\n\nPcone nominal strength = 10.5 φ √(f′c) kPa × ACP (as printed; the line below leaves φ out, and φ enters through FS = LF/φ)\n\n= 10.5 √(27.6 mPa) (1000kPa / mPa) × ACP × 10⁻⁶\n\n= 1,504 kN\n\nPcome allowable = Pcome noninal strength / FS (as printed)\n\nFS = LF / φ\n\nLF = Combined load factor = γ [BD QD + BL QL + BE QE] / [QD + QL + QE]\n\nWhere: γ = 1.3; BD = 1; BL = 1.67; BE = 1.3\n\nand with QD = 0.62; QL = 0.16; QE = 0.22\n\n[p. D-19] QD / (QD + QL + QE) = 0.62\n\nQL / (QD + QL + QE) = 0.16\n\nQE / (QD + QL + QE) = 0.22\n\nLF = 1.3 [1.0 × 0.62 + 1.67 × 0.16 + 1.3 × 0.22] = 1.53\n\nφ = 0.65 for unreinforced shear cone per ACI 349 Appendix B\n\nFS = 1.53 / 0.65 = 2.35\n\nPcone allowable = 1,504 kN / 2.35 = 640 kN > 594.6 kN .... OK\n\nNote – edge distance limitations and other requirements of ACI 349 Appendix B must be satisfied.\n\nRequired Plate Thickness\n\nActual bearing stress, compression Bearingcompression = Pc-service / Areaplate = 9.22 MPa\n\nPlate bending moment for 10 mm width\n\nMmax = 10 mm × 1/2 [(Platewidth - ODcasing) / 2]² × Bearingcompression = 0.147 kNm\n\nNote - use of this cantilever moment was determined to be a conservative approximation of the maximum moment in the plate due to a compression pile load by comparison to a [p. D-20] more accurate formula shown in Roark and Young (1975). Plate bending from a tension pile load or with different plate support details must be further analyzed.\n\nAllowable bending stress - Fy = 345 MPa and Fb = 0.55Fy\n\nNote - Allowable stresses should be increased by the appropriate % factor (AASHTO Table 3.22.1A column 14) depending on which load group produces controlling load condition. For this example, the Group I load produces the controlling condition (% = 100%).\n\nSx-req = Mmax / Fb = 775mm³\n\nRequired plate thickness - treq = √(6 Sx-req / 10 mm) = 21.6 mm\n\nUse 254 mm square x 25.4 mm thick top plate.\n\nRequired Weld Size:\n\nTensile strength of E70 electrode, Fuweld = 483 MPa\n\nMinimum tensile strength of connected parts (ASTM A53 Grade B Casing)\n\nFupart = 414 MPa\n\nFillet weld strength ΦF = 0.27 Fupart = 111.8 MPa\n\nTop weld size tweld-top = 6.35mm\n\nStiffener plate size tstiff = 12.7 mm Wstiff = 100 mm Lstiff = 150 mm\n\nTop weld strength Lweld = π ODcasimg - 4 tstiff + 8 Wstiff = 1,190 mm\n\nTop weld strength\n\nPweld-top = 0.707 tweld-top Φ F Lweld = 598 kN > 595 kN . . . OK\n\n[p. D-21] Stiffener plate side weld dimensions tweld-side = 6.35mm\n\nLweld = 8 Lstiff = 1,200 mm\n\nStiffener plate side weld strength\n\nPweld-side = 0.707 tweld-side ΦFweld Lweld = 603 kN (as printed; 0.707 × 6.35 × 111.8 × 1,200 = 602,305 N, 602 kN)\n\n> 0.707 tweld-top ΦF × 8 Wstiff = 402 kN . . . . OK\n\nUse 6.35 mm fillet weld for welding top and stiffener plates.\n\nNote - this example ignored bending stresses on the welds which is considered appropriate for a compression pile load with the weld details shown. Weld bending stress must be analyzed for other conditions.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure S1-5: Pile Top to Abutment Footing Connection Detail"
+      ],
+      "tables": [],
+      "applicability": "Printed STEP 8 (pp. D-16 to D-21): the pile top connection of Figure S1-5: bearing plate area, concrete cone shear by ACI 349 Appendix B, plate thickness, and the top and stiffener plate welds."
+    },
+    {
+      "section_id": "D.9",
+      "title": "Step 9 – Check Structural Capacity to Resist Test Loads",
+      "body": "[p. D-21] The controlling axial design load for the pile is 595 kN (compression).\n\nVerification Test Load = 2.0 × Design Load\n\n= 2.0 × 595 kN = 1,190 kN\n\nProof Test Load = 1.6 × Design Load\n\n= 1.6 × 595 kN = 952 kN\n\n[p. D-22] Cased Length: OD* = 141mm; ID = 122 mm (9.5 mm wall); Acasing = 3,925 mm²; Fy-casing = 241 MPa (use for casing and bar); Abar = 1,452 mm²; Fy-bar = 520 MPa; Agrout = 10,240 mm²; f’c-grout = 34.5 MPa\n\nUncased Length: Agrout = 27,200 mm²; f’c-grout = 34.5 MPa; Abar = 1,452 mm²; Fy-bar = 520 MPa\n\n* Do not reduce by 1.6 mm for corrosion.\n\nPile Cased Length Allowable Load\n\nPc-allowable = [0.68 f′c-grout Agrout + Fy-casing / 1.25 (Abar + Acasing)]\n\nPc-allowable = [0.68 × 34.5MPa × 10,240 mm² + 241MPa / 1.25 (1,452 mm² + 3,925 mm²)] = 1,277 kN\n\nPile Uncased Length Allowable Load\n\nPc-allowable = 0.68 f′c-grout Agrout + 0.80 Fy-bar Abar\n\nPc-allowable = 0.68 × 34.5 MPa × 27,200 mm² + 0.80 × 520 MPa × 1,452 mm² = 1,242 kN\n\nThe design pile is OK for the proof test at 952 kN and the verification test at 1,190 kN.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed STEP 9 (pp. D-21 to D-22): verification (2.0 x design load) and proof (1.6 x design load) test loads against the structural capacity of the cased and uncased lengths."
+    },
+    {
+      "section_id": "D.10",
+      "title": "Step 10 – Prepare Drawings",
+      "body": "[p. D-22] The following detail drawings (Figures S1-6 and S1-7) show the pile design.",
+      "key_points": [],
+      "equations": [],
+      "figures": [
+        "Figure S1-6: Page 1 of Sample Problem No.1 – Working Drawing Submittal",
+        "Figure S1-7: Page 2 of Sample Problem No. 1 – Working Drawing Submittal"
+      ],
+      "tables": [],
+      "applicability": "Printed STEP 10 (pp. D-22 to D-24): the working drawings, Figures S1-6 and S1-7 (drawing sheets, not stored as text)."
+    }
+  ]
+}

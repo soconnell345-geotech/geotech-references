@@ -562,14 +562,21 @@ def ultimate_bearing_capacity_drained(method: str, phi_deg: float, c: float,
     V : float
         Vertical load, kips (used for the load inclination).
     theta_deg : float or None
-        Direction of H from the side of length L, degrees; needed by the
-        AASHTO method when H > 0.
+        Direction of H from the side of length L, degrees, 0 to 90 (Figure
+        5-9). None unless method='aashto' (or 'fhwa') and H > 0, where the
+        AASHTO load inclination factors need it and None is refused; a
+        value given with the USACE method or with H = 0 is ignored, not
+        checked.
     alpha_b_deg : float
         Base inclination, degrees; 0 for a flat base.
     alpha_g_deg : float
         Ground inclination, degrees; 0 for level ground.
     d_g : float or None
-        Distance to the slope, ft; needed when alpha_g > 0 (USACE only).
+        Distance from the footing edge to the edge of the slope, ft, 0 or
+        more. None unless alpha_g > 0 (USACE), where the ground inclination
+        factors need it and None is refused; a value given with alpha_g = 0
+        is ignored, not checked. With alpha_g > 0 the AASHTO/FHWA method is
+        refused whatever d_g is (its ground factors are not printed here).
 
     Returns
     -------
@@ -701,14 +708,20 @@ def ultimate_bearing_capacity_undrained(method: str, su: float, q0: float,
     V : float
         Vertical load, kips.
     theta_deg : float or None
-        Direction of H from the side of length L, degrees; needed by the
-        AASHTO method when H > 0.
+        Direction of H from the side of length L, degrees, 0 to 90 (Figure
+        5-9). None unless method='aashto' (or 'fhwa') and H > 0, where the
+        AASHTO ic needs it and None is refused; a value given with the
+        USACE method or with H = 0 is ignored, not checked.
     alpha_b_deg : float
         Base inclination, degrees.
     alpha_g_deg : float
         Ground inclination, degrees.
     d_g : float or None
-        Distance to the slope, ft; needed when alpha_g > 0 (USACE only).
+        Distance from the footing edge to the edge of the slope, ft, 0 or
+        more. None unless alpha_g > 0 (USACE), where gc needs it and None is
+        refused; a value given with alpha_g = 0 is ignored, not checked.
+        With alpha_g > 0 the AASHTO/FHWA method is refused whatever d_g is
+        (its ground factors are not printed here).
 
     Returns
     -------

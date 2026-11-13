@@ -9,17 +9,23 @@
       "section_id": "5-0",
       "title": "Chapter Overview",
       "summary": "Material-specific steel requirements; Appendix E demonstrates them on a 4-story building. Composite portions use the other applicable material chapter.",
-      "body": "This chapter provides the specific requirements for designing a structural steel building to resist progressive collapse. Appendix E demonstrates the application of the structural steel design requirements for a 4-story building. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter for those elements/portions.",
-      "key_points": ["Validated in part via Appendix E's Table E-3 (Table 3-4 LIF anchor)"],
+      "body": "[p. 67] This chapter provides the specific requirements for designing a structural steel building to resist progressive collapse. Appendix E demonstrates the application of the structural steel design requirements for a 4-story building. If composite construction with other materials is employed, use the design guidance from the appropriate material chapter in this UFC for those structural elements or portions of the structure. Note that the combination of design requirements (TF, AP, and ELR) will depend upon the Risk Category of the buildings, as defined in Section 2-2.",
+      "key_points": [
+        "Appendix E demonstrates the structural steel requirements for a 4-story building (p. 67)",
+        "Composite construction: use the appropriate material chapter for those elements (p. 67)"
+      ],
       "equations": [], "figures": [], "tables": [],
       "applicability": "Chapter roadmap."
     },
     {
       "section_id": "5-1",
       "title": "Material Properties for Structural Steel",
-      "summary": "Over-strength factors from ASCE 41 Table 9-3 -- not reprinted in this UFC.",
-      "body": "Apply the appropriate over-strength factors to the calculation of the design strengths for both Tie Forces and the Alternate Path method. The over-strength factors are provided in ASCE 41 Table 9-3, Factors to Translate Lower-Bound Steel Properties to Expected Strength Steel Properties.",
-      "key_points": ["Over-strength source: ASCE 41 Table 9-3"],
+      "summary": "Apply over-strength factors for both Tie Forces and Alternate Path; the paragraph prints ASCE 41 'Table 5-3 Factors to Translate Lower-Bound Steel Properties to Expected Strength Steel Properties' (Sections 3-1.2 and 3-2.3 cite Table 9-3 for structural steel).",
+      "body": "[p. 67] Apply the appropriate over-strength factors to the calculation of the design strengths for both Tie Forces and the Alternate Path method. The over-strength factors are provided in ASCE 41 in Table 5-3 Factors to Translate Lower-Bound Steel Properties to Expected Strength Steel Properties. (Print note: Sections 3-1.2 and 3-2.3 give ASCE 41 Table 9-3 for structural steel; this paragraph prints Table 5-3.)",
+      "key_points": [
+        "Over-strength factors apply to the design strengths for Tie Forces and the Alternate Path method (p. 67)",
+        "Printed source: ASCE 41 Table 5-3; Sections 3-1.2 and 3-2.3 give Table 9-3 for structural steel (p. 14, 30, 67)"
+      ],
       "equations": [], "figures": [], "tables": [],
       "applicability": "Feeds QCE determination for steel Tie Force and Alternate Path calculations."
     },
@@ -27,7 +33,7 @@
       "section_id": "5-2",
       "title": "Strength Reduction Factor Phi for Structural Steel",
       "summary": "Phi comes from AISC 360, by component/limit state.",
-      "body": "For Alternate Path and Tie Force methods, use the appropriate strength reduction factor Phi specified in ANSI/AISC 360 Specifications for Structural Steel Buildings for the component and behavior under consideration. If steel components can be proven capable of carrying the required tie strengths while undergoing 0.20-rad rotation, use the appropriate Phi for each limit state considered.",
+      "body": "[p. 67] For Alternate Path and Tie Force methods, use the appropriate strength reduction factor Φ specified in ANSI/AISC 360 Specifications for Structural Steel Buildings for the component and behavior under consideration. If steel components can be proven capable of carrying the required longitudinal, transverse, and peripheral tie strength while undergoing rotations of 0.20-rad (11.3-deg), use the appropriate strength reduction factor Φ for each limit state considered.",
       "key_points": ["Phi source: AISC 360"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "General Phi-factor pointer for steel."
@@ -36,7 +42,7 @@
       "section_id": "5-3",
       "title": "Tie Force Requirements for Steel",
       "summary": "Apply the material-independent Section 3-1 Tie Force method for framed steel buildings; no steel-specific modification is printed.",
-      "body": "Apply the Tie Force requirements in Section 3-1, where applicable, for framed steel buildings.",
+      "body": "[p. 67] Apply the Tie Force requirements in Section 3-1, where applicable, for framed steel buildings.",
       "key_points": ["Pure pointer to Section 3-1, no steel-specific modification"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "Steel Tie Force design."
@@ -45,7 +51,7 @@
       "section_id": "5-4",
       "title": "Alternate Path Method for Steel",
       "summary": "General procedure per Section 3-2 (5-4.1); beam and beam-to-column connection strength/rotational capacity per ASCE 41 as modified by 5-4.3 (5-4.2).",
-      "body": "General (5-4.1): use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. Connection Rotational Capacity (5-4.2): the design strength and rotational capacities of beams and beam-to-column connections shall be determined per ASCE 41, as modified by the acceptance criteria in Paragraph 5-4.3.",
+      "body": "[p. 67] 5-4.1 General. Use the Alternate Path method in Section 3-2, where applicable, to verify that the structure can bridge over removed elements. 5-4.2 Connection Rotational Capacity. The design strength and rotational capacities of the beams and beam-to-column connections shall be determined with the guidance found in ASCE 41, as modified with the acceptance criteria provided in Paragraph 5-4.3.",
       "key_points": ["AP method: Section 3-2 general procedure", "Connection capacities: ASCE 41 as modified by Section 5-4.3"],
       "equations": [], "figures": [], "tables": [],
       "applicability": "The steel-specific application of the general Alternate Path method."
@@ -54,7 +60,7 @@
       "section_id": "5-4.3",
       "title": "Modeling and Acceptance Criteria for Structural Steel",
       "summary": "Use ASCE 41 Chapter 9 Life-Safety criteria generally, EXCEPT: (1) beams in flexure or flexure+axial-tension use Collapse Prevention values, (2) columns with P/PCL>0.5 are force-controlled with a P-M interaction cap of unity, and (3) the FR/PR connections listed in this UFC's OWN Tables 5-1/5-2 use those printed values instead of ASCE 41 Tables 9-5/9-6/9-7.",
-      "body": "With the exception of the connections and elements discussed below, use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from ASCE 41 Chapter 9 for primary and secondary components; use ASCE 41's modeling parameters and guidance for the analytical model. Columns under high axial load (P/PCL > 0.5) shall be considered force-controlled, with P and M taken at their maximum analysis values and the P-M interaction equation not exceeding unity; for P/PCL <= 0.5, use the interaction equation with M as deformation-controlled and P as force-controlled. Nonlinear and linear acceptance criteria shall meet the Life Safety values of ASCE 41 Tables 9-5, 9-6, and 9-7, EXCEPT: (1) beams subjected to flexure or flexure-plus-axial-tension use Collapse Prevention values for primary and secondary elements, and (2) the Fully/Partially Restrained connections listed in this UFC's Tables 5-1/5-2 use the values given there. For the Double Angles PR connection, expected flexural strength is determined for each of the three listed limit states by accepted analytical procedures; for the Simple Shear Tab, expected flexural strength is the smallest strength from limit-state analysis (bolt shear, weld failure, block shear, bearing, plate flexure, etc.).",
+      "body": "[p. 68] With the exception of the connections and elements discussed later in this section, use the modeling parameters, nonlinear acceptance criteria and linear m-factors for the Life Safety condition from Chapter 9 of ASCE 41 for primary and secondary components. Use the modeling parameters and guidance, including definitions of stiffness, to create the analytical model. Columns under high axial load (P/PCL > 0.5) shall be considered force-controlled, with the considered loads (P and M) equal to the maximum loads from the analysis. The P-M interaction equation shall not exceed unity. For P/PCL ≤ 0.5, the interaction equation shall be used with the moment considered as deformation-controlled and the axial force as force-controlled. Nonlinear and linear acceptance criteria for structural steel components shall meet the Life Safety condition for primary and secondary elements provided in Tables 9-5, 9-6 and 9-7 of ASCE 41, except as follows: 1. For beams subjected to flexure or flexure plus axial tension, use the Collapse Prevention values for primary and secondary elements. 2. For the Fully Restrained (FR) and Partially Restrained (PR) connections listed in Tables 5-1 and 5-2 in this UFC, use the specified plastic rotations, modeling parameters and m-factors, as given. For the Double Angles PR connection, the expected flexural strength shall be determined for each of the three limit states listed in Tables 5-1 and 5-2, using accepted analytical procedures. For the Simple Shear Tab, the expected flexural strength will be taken as the smallest flexural strength determined with limit state analysis for bolt shear, weld failure, block shear, bearing, plate flexure or other limit states as appropriate. [p. 69] Table 5-1 (Acceptance Criteria for Linear Static Modeling of Steel Frame Connections) notes: (1) Refer to Section 3-2.4 for determination of Primary and Secondary classification (2) d = depth of beam, inch (3) dbg = depth of bolt group, inch. [p. 70] Table 5-2 (Modeling Parameters and Acceptance Criteria for Nonlinear Modeling of Steel Frame Connections) notes: (1) Refer to Figure 3-7 for definition of nonlinear modeling parameters a, b, and c (2) Refer to Section 3-2.4 for determination of Primary and Secondary classification (3) d = depth of beam, inch (4) dbg = depth of bolt group, inch.",
       "key_points": [
         "P/PCL>0.5 columns: force-controlled, P-M interaction capped at unity",
         "P/PCL<=0.5 columns: M deformation-controlled, P force-controlled",
@@ -81,10 +87,10 @@
       "section_id": "5-5",
       "title": "Enhanced Local Resistance Requirements for Steel",
       "summary": "Apply Section 3-3's material-independent ELR procedure to framed and load-bearing wall steel buildings.",
-      "body": "Apply the Enhanced Local Resistance requirements in Section 3-3, where applicable, for framed and load-bearing wall steel buildings.",
+      "body": "[p. 68] Apply the Enhanced Local Resistance requirements in Section 3-3, where applicable, for framed and load-bearing wall steel buildings.",
       "key_points": ["ELR for steel: pure pointer to Section 3-3"],
       "equations": [], "figures": [], "tables": [],
-      "applicability": "Steel ELR design, validated in part by Appendix E."
+      "applicability": "Steel Enhanced Local Resistance design."
     }
   ]
 }

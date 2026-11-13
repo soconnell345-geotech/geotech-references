@@ -1,0 +1,111 @@
+{
+  "reference_id": "FHWA-NHI-14-007",
+  "reference_title": "Soil Nail Walls Reference Manual",
+  "volume": 1,
+  "chapter": 12,
+  "chapter_title": "Appendix B: Charts for Preliminary Design",
+  "sections": [
+    {
+      "section_id": "B",
+      "title": "Charts for Preliminary Design",
+      "body": "[p. 295] Design charts were developed using the computer program SNAIL to help estimate lengths and maximum tensile forces of soil nails for typical conditions in design. The charts were developed for ranges of the angle of backslope (β) and the effective friction angle (φs) of the retained soils. The bond strength and other parameters need to be selected before using the charts. The charts are expected to provide reasonable estimates for the conditions and assumptions indicated. However, the charts should not replace the use of soil nail design computer programs for more complex conditions and for other drastically different conditions.\n\nThe following assumptions were made:\n\n• face batter, α = 0\n\n• nail inclination, i = 15\n\n• normalized cohesion, c* = c′/γs H = 0.02\n\n• factor of safety for overall stability, FSOS = 1.35\n\n• drill hole diameter, DDH = 4 in.\n\n1. Select the following parameters (Figure B.1) using consistent units before using the charts:\n\n• wall height (H)\n\n• angle of backslope (β)\n\n• vertical and horizontal spacing of soil nails (SV and SH)\n\n2. Select the following properties and parameters for the retained soil using consistent units:\n\n[p. 296] • unit weight (γs)\n\n• effective friction angle (φs)\n\n• cohesion, (c)\n\n• bond strength (qU)\n\n• Factor of safety for pullout (FSPO, usually 2.0).\n\n3. Select the appropriate chart corresponding to β = 0, 10, or 30 degrees (Figures B.2 through B.4).\n\n4. Calculate the normalized bond resistance (µ) as defined below and enter µ in the horizontal axis of the chart for both parts (a) and (b).\n\nμ = qU DDH / (FSPO γs SH SV) (Equation B.1: Normalized bond resistance.)\n\n5. Select the appropriate curve for φs. Interpolate between φs = 27, 31, 35 or 39 degrees as needed.\n\n6. Obtain the normalized soil nail length (L/H) required to achieve FSOS = 1.35 from part (a), and the normalized maximum tensile force (tmax) from part (b). Interpolate between Figures B.2 through B.4 if needed. Note that only sufficiently high values of φs will achieve the selected FSOS for relatively large values of β.\n\n7. Calculate the soil nail length (L) by multiplying the normalized soil nail length (L/H) read from the chart by H (in feet).\n\n8. Calculate the soil nail maximum force (Tmax) by multiplying tmax read from the chart by γs, H, SV and SH.\n\n9. If necessary, correct L/H for values of FSOS, c*, and DDH (in inches) other than those assumed.\n\nL/H (corrected) = C1L × C2L × C3L × L/H (from charts) (Equation B.2: Corrected normalized length.)\n\nWhere:\n\nC1L = 1.50 - 0.15 DDH + 0.0065 DDH² (Equation B.3: Length correction factor for drill hole diameter.)\n\n[p. 297] C2L = -4.0 c* + 1.09 ≥ 0.85 (Equation B.4: Length correction correction factor for cohesion.) (\"correction correction\" as printed)\n\nC3L = 0.52 FSOS + 0.30 ≥ 1.0 (Equation B.5: Length correction factor for factor of safety.)\n\n10. If necessary, correct tmax for values of FSOS, c*, and DDH (in inches) other than those assumed.\n\ntmax (corrected) = C1F × C2F × tmax (from charts) (Equation B.6: Corrected normalized maximum force.)\n\nC1F = -0.3 + 0.4 DDH - 0.017 DDH² (Equation B.7: Load correction for drill hole diameter)\n\nC2F = -4.0 c* + 1.09 ≥ 0.85 (Equation B.8: Load correction for cohesion.)",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. B.1",
+          "description": "Normalized bond resistance (entered on the horizontal axis of the chart, parts (a) and (b))",
+          "formula": "μ = qU DDH / (FSPO γs SH SV)",
+          "variables": {
+            "qU": "bond strength",
+            "DDH": "drill hole diameter",
+            "FSPO": "factor of safety for pullout, usually 2.0",
+            "γs": "unit weight of the retained soil",
+            "SH, SV": "horizontal and vertical spacing of soil nails"
+          },
+          "source": "Typed in from p. 296 (PDF page 336, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.2",
+          "description": "Corrected normalized length",
+          "formula": "L/H (corrected) = C1L × C2L × C3L × L/H (from charts)",
+          "variables": {
+            "L/H (from charts)": "normalized soil nail length read from part (a) of the chart",
+            "C1L, C2L, C3L": "Eqs. B.3 to B.5"
+          },
+          "source": "Typed in from p. 296 (PDF page 336, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.3",
+          "description": "Length correction factor for drill hole diameter",
+          "formula": "C1L = 1.50 - 0.15 DDH + 0.0065 DDH²",
+          "variables": {
+            "DDH": "drill hole diameter, in inches (step 9); the charts assume DDH = 4 in."
+          },
+          "source": "Typed in from p. 296 (PDF page 336, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.4",
+          "description": "Length correction correction factor for cohesion (\"correction correction\" as printed)",
+          "formula": "C2L = -4.0 c* + 1.09 ≥ 0.85",
+          "variables": {
+            "c*": "normalized cohesion, c* = c′/γs H; the charts assume c* = 0.02"
+          },
+          "source": "Typed in from p. 297 (PDF page 337, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.5",
+          "description": "Length correction factor for factor of safety",
+          "formula": "C3L = 0.52 FSOS + 0.30 ≥ 1.0",
+          "variables": {
+            "FSOS": "factor of safety for overall stability; the charts assume FSOS = 1.35"
+          },
+          "source": "Typed in from p. 297 (PDF page 337, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.6",
+          "description": "Corrected normalized maximum force",
+          "formula": "tmax (corrected) = C1F × C2F × tmax (from charts)",
+          "variables": {
+            "tmax (from charts)": "normalized maximum tensile force read from part (b) of the chart",
+            "C1F, C2F": "Eqs. B.7 and B.8"
+          },
+          "source": "Typed in from p. 297 (PDF page 337, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.7",
+          "description": "Load correction for drill hole diameter",
+          "formula": "C1F = -0.3 + 0.4 DDH - 0.017 DDH²",
+          "variables": {
+            "DDH": "drill hole diameter, in inches (step 9); the charts assume DDH = 4 in."
+          },
+          "source": "Typed in from p. 297 (PDF page 337, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. B.8",
+          "description": "Load correction for cohesion",
+          "formula": "C2F = -4.0 c* + 1.09 ≥ 0.85",
+          "variables": {
+            "c*": "normalized cohesion, c* = c′/γs H; the charts assume c* = 0.02"
+          },
+          "source": "Typed in from p. 297 (PDF page 337, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure B.1: Illustration. Conditions for calculations with charts",
+        "Figure B.2: Chart. Batter = 0 deg. - Backslope 0 deg",
+        "Figure B.3: Chart. Batter = 0 deg. - Backslope 10 deg",
+        "Figure B.4: Chart. Batter = 0 deg. - Backslope 30 deg"
+      ],
+      "tables": [],
+      "applicability": "Appendix B (pp. 295 to 300): the SNAIL design charts for a preliminary estimate of soil nail length and maximum tensile force (Figures B.2 to B.4, backslope 0, 10 and 30 degrees), the assumptions they were developed for, the ten steps for using them, and the corrections for other drill hole diameters, cohesion and factors of safety (Equations B.1 to B.8)."
+    }
+  ]
+}

@@ -13,6 +13,7 @@ from pathlib import Path
 import pytest
 
 from geotech_references import _figures_db, _retrieval, _retrieval_db
+from tests._build_reader import require_build_reader
 
 REF = "fhwa_soils_foundations"
 ROOT = Path(__file__).resolve().parents[1]
@@ -245,8 +246,9 @@ def test_equation_numbers_the_text_layer_lost_are_marked():
 def test_rebuild_reproduces_the_committed_text():
     # the formulas live in the manifest (printed_equations), so a rebuild
     # keeps them; the figure catalog is left out (REF-51 edited it after the
-    # build, and --text-only leaves it alone)
-    pytest.importorskip("fitz")
+    # build, and --text-only leaves it alone); it runs under the PDF reader
+    # the manifest records
+    require_build_reader(REF)
     for _, pdf, _ in VOLUMES.values():
         if not (DOCS / pdf).exists():
             pytest.skip("PDF not checked out")

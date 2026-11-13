@@ -30,10 +30,37 @@ jobs:
     strategy:
       # One Python version failing must not cancel the other's run.
       fail-fast: false
+      # The two jobs differ on purpose, in the PDF reader (PyMuPDF).
+      #
+      # The chapter text of a script-built reference (scripts/
+      # build_printed_text.py; each such manifest has "text_build") is read
+      # off its PDF, and two PyMuPDF versions do not return the same thing
+      # on every page. So the reader's version is an input of the build:
+      # each script-built manifest records it ("built_with": {"pymupdf":
+      # ...}), and the test that rebuilds the text and compares it with the
+      # committed files runs only under that version (tests/_build_reader.py).
+      #
+      # - 3.10, the floor the package declares: the recorded reader, and
+      #   GEOTECH_REQUIRE_BUILD_READER=1, so the rebuild tests run and must
+      #   pass; a different reader there is a failure, never a skip.
+      # - 3.12, what the hosts the library runs on have: the newest reader;
+      #   the rebuild tests skip with their reason, and every other test,
+      #   those that read the PDFs included, is proven under it.
+      #
+      # To move the build reader on purpose: install the new version,
+      # rebuild every script-built reference (python
+      # scripts/build_printed_text.py <package>), read each difference in
+      # the chapter files against the rendered page, and in one commit
+      # record the new version in every script-built manifest and in the
+      # pin below (tests/test_build_reader.py checks they agree).
       matrix:
-        # 3.10 is the floor the package declares; 3.12 is what the hosts
-        # the library runs on have.
-        python-version: ["3.10", "3.12"]
+        include:
+          - python-version: "3.10"
+            pymupdf: "pymupdf==1.27.2.3"
+            require-build-reader: "1"
+          - python-version: "3.12"
+            pymupdf: "pymupdf"
+            require-build-reader: ""
 
     steps:
       - uses: actions/checkout@v5
@@ -44,13 +71,14 @@ jobs:
 
       - name: Install the package, the plot extra, the PDF reader and pytest
         # PyMuPDF is not a dependency of the package: the tests that read
-        # the printed manuals in docs/ need it and skip without it. The
+        # the printed manuals in docs/ need it and skip without it; which
+        # version each job installs is set in the matrix above. The
         # annotate plugin puts each failing test's message on the run, where
         # it can be read without signing in.
         run: |
           pip install --upgrade pip
           pip install -e ".[plot]"
-          pip install pytest pymupdf pytest-github-actions-annotate-failures
+          pip install pytest "${{ matrix.pymupdf }}" pytest-github-actions-annotate-failures
 
       - name: What is installed
         run: |
@@ -61,4 +89,6 @@ jobs:
       - name: Run tests
         # One process, as the suite is run before a merge: the shared search
         # databases are built once at the start of the run.
-        run: python -m pytest -q --tb=short --durations=15 -p no:cacheprovider
+        env:
+          GEOTECH_REQUIRE_BUILD_READER: ${{ matrix.require-build-reader }}
+        run: python -m pytest -q --tb=short --durations=15 -p no:cacheprovider -rs
