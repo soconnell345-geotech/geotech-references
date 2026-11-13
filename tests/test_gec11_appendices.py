@@ -22,7 +22,7 @@ PKG = ROOT / "geotech_references" / "gec_11"
 PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
 #: Appendices built from the print so far, with the chapter number each
 #: file carries (the appendices follow chapter 11).
-BUILT = {"A": 12, "B": 13}
+BUILT = {"A": 12, "B": 13, "C": 14}
 
 
 def _appendix(letter):
@@ -247,6 +247,30 @@ def test_appendix_b_figures_listed_with_their_lettering():
     assert ("F* = Fq αβ if passive resistance controls pullout capacity (grids "
             "if St ≥ Sopt.)") in secs["B.2"]["body"]
     assert "α = F*m / F*peak" in secs["B.2"]["body"]
+
+
+# --- Appendix C -------------------------------------------------------------
+
+def test_appendix_c_steel_dimensions_typed_in():
+    body = _sections("C")["C"]["body"]
+    rows = re.findall(r"^(W[\d.]+\*?) \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \| ([\d.]+)$",
+                      body, re.M)
+    # eleven welded wire sizes and four bar mat sizes (p. C-1)
+    assert len(rows) == 15
+    assert ("W4.5*", "0.045", "0.239", "29.0", "6.0") in rows
+    assert "*Typical min. size for permanent walls" in body
+    # each diameter is the area's circle; the metric cells convert the inch
+    # cells (W4.5's 6.07 mm printed 6.0, noted)
+    for name, a_in, d_in, a_mm, d_mm in rows:
+        assert abs(math.sqrt(4 * float(a_in) / math.pi) - float(d_in)) < 0.0006, name
+        assert abs(float(a_in) * 645.16 - float(a_mm)) < 0.6, name
+        if name != "W4.5*":
+            assert abs(float(d_in) * 25.4 - float(d_mm)) < 0.051, name
+    assert "W4.5's diameter of 0.239 in. is 6.07 mm; printed 6.0." in body
+    # the yield and tensile strengths as printed: welded wire 65/80 ksi,
+    # strips and bar mats 65/75 ksi
+    assert "Fy/Fu: 65/80 ksi (450/550 MPa)" in body
+    assert body.count("65/75 ksi (450/520 MPa)") == 2
 
 
 # --- the build ------------------------------------------------------------

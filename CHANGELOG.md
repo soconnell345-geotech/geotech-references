@@ -100,6 +100,10 @@ the rendered pages:
   years (670,000 hrs)" (p. B-10; about 657,000), and Figure B-5's line
   through the test data, y = 0.1132x + 1068.2 (tan 6.5 degrees), where
   the text uses tan 6 degrees (pp. B-16, B-17).
+- Appendix C (p. C-1; file chapter 14), steel soil reinforcements: the
+  strip, welded wire and bar mat tables typed in row by row (wire sizes
+  W3.5 to W20, areas and diameters in both units, Fy/Fu, spacings). Noted
+  as printed: W4.5's 0.239 in. diameter is given as 6.0 mm (6.07).
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
