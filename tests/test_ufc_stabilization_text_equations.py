@@ -3,7 +3,9 @@
 Pins the text set from the printed pages of docs/ufc_3_250_11_2020.pdf (build of
 2026-11-10, app BACKLOG REF-83). Each section body now holds its printed text,
 with printed sub-paragraphs that have no section of their own kept in their
-parent with their numbers. Printed page = PDF page - 8. Where the page prints a
+parent with their numbers; the three sections too long for one search row
+(4-1.4, 4-2.2, 4-4.2) hold their full text in lettered parts (2026-11-12).
+Printed page = PDF page - 8. Where the page prints a
 slip, the text keeps what is printed and says so; those notes are pinned too.
 """
 from __future__ import annotations
@@ -142,15 +144,69 @@ def test_frost_cutoff_and_temperatures():
     assert "Do not stabilize soils to improve the strength at the expense" in kps("2-2.2")
 
 
+#: The three sections whose printed text is over one row of reference_query
+#: (13,300 characters): each holds its full printed text in lettered parts
+#: split at printed sub-paragraph headings, the original number the first part
+#: (2026-11-12; the letters are the library's, not printed).
+LETTERED = {
+    "4-1.4": (["4-1.4", "4-1.4.a", "4-1.4.b"],
+              ["4-1.4.1 Preparation.", "4-1.4.2 Processing.", "4-1.4.2.1 Handling and Spreading Cement.",
+               "4-1.4.2.2 Mixing and Applying Water.", "4-1.4.2.3 Central Mixing Plant.", "4-1.4.3 Compaction.",
+               "4-1.4.4 Finishing.", "4-1.4.5 Curing.", "4-1.4.6 Construction Joints.",
+               "4-1.4.7 Multiple-Layer Construction."]),
+    "4-2.2": (["4-2.2", "4-2.2.a"],
+              ["4-2.2.1 Soil Preparation.", "4-2.2.2 Lime Application."]
+              + [f"4-2.2.2.{i} " for i in range(1, 10)]
+              + ["4-2.2.3 Pulverization and Mixing."] + [f"4-2.2.3.{i} " for i in range(1, 6)]
+              + ["4-2.2.4 Compaction.", "4-2.2.5 Curing."]),
+    "4-4.2": (["4-4.2", "4-4.2.a"],
+              ["4-4.2.1 Windrows.", "4-4.2.2 Determining Liquid Stabilizer Application Rate.",
+               "4-4.2.3 Control of Liquid Stabilizers.", "4-4.2.4 Mixing.", "4-4.2.4.1 Travel Plant Mixing.",
+               "4-4.2.4.2 Rotary Mixing.", "4-4.2.4.3 Blade Mixing.", "4-4.2.5 Aeration.",
+               "4-4.2.5.1 Emulsified Asphalts and Polymers.", "4-4.2.5.2 Cutback Asphalt Mixes.",
+               "4-4.2.6 Spreading and Compacting."]),
+}
+
+
+@pytest.mark.parametrize("sid", sorted(LETTERED))
+def test_long_sections_hold_their_full_text_in_lettered_parts(sid):
+    ids, headings = LETTERED[sid]
+    assert [c["section_id"] for c in sec(sid)["children"]] == ids[1:]
+    for part in ids[1:]:
+        assert body(part).startswith("4-"), part  # each later part opens at a printed heading
+        assert "letter is not printed" in sec(part)["applicability"], part
+    full = " ".join(body(p) for p in ids)
+    assert "[...]" not in full
+    at = [full.find(h) for h in headings]
+    assert -1 not in at and at == sorted(at), dict(zip(headings, at))
+    for p in ids:
+        assert len(body(p)) <= 13000, p
+
+
 def test_soil_cement_construction_limits():
-    # PDF pp. 40-47 (printed 32-39), verbatim extract of 4-1.4
-    b = body("4-1.4")
-    assert "do not allow more than 60 minutes to elapse between the start of moist-mixing and the start of compaction" in b
-    assert "Haul time is usually limited to 30 minutes" in b
+    # PDF pp. 40-47 (printed 32-39): 4-1.4 in three parts (4-1.4, 4-1.4.a, 4-1.4.b)
+    b, ba, bb = body("4-1.4"), body("4-1.4.a"), body("4-1.4.b")
     assert "100 percent of the soil-cement mixture will pass a 1 inch (25 mm) sieve and a minimum of 80 percent will pass a No. 4" in b
-    assert "Construct all layers to be less than 4 inches (100 mm) thick. [As printed (p. 39).]" in b
-    assert "Do not construct the edge slope steeper than 2:1" in b
-    assert "[...]" in b and len(b) <= 14000
+    assert "do not allow more than 60 minutes to elapse between the start of moist-mixing and the start of compaction" in ba
+    assert "Haul time is usually limited to 30 minutes" in ba
+    assert "Construct all layers to be less than 4 inches (100 mm) thick. [As printed (p. 39).]" in bb
+    assert "Do not construct the edge slope steeper than 2:1" in bb
+    # printed sentences the extracts of 2026-11-10 and 2026-11-12 left out
+    assert "Use compressed air of 2- to 4-lb/in.2 pressure to prevent arching of cement in the silo and the surge tank." in b
+    assert "For grids, space the bags at approximately equal transverse and longitudinal intervals" in b
+    assert "Less preferable is the use of one piece of spreading equipment operating one lane at a time" in ba
+    assert "Scratching may be done on all soil-cement mixtures except those containing appreciable quantities of gravel." in bb
+    assert "Heavy three-wheeled steel rollers can be used to compact coarse granular materials" in bb
+
+
+def test_lime_and_mixed_in_place_restored_sentences():
+    # PDF pp. 50-57 and 59-63 (printed 42-49, 51-55)
+    assert "It has greater bulk density for smaller-sized silos." in body("4-2.2")
+    assert "The added heat when slurry is made from quicklime speeds the drying action" in body("4-2.2")
+    assert "The exception to excess watering is in cool, damp weather when evaporation is at a minimum." in body("4-2.2.a")
+    assert '"pulverization and mixing to the satisfaction of the engineer" clause is employed' in body("4-2.2.a")
+    assert "Carry as much material in a roll as possible ahead of the blade" in body("4-4.2")
+    assert "at a rate of approximately 0.10 gal/sq yd (0.45 liter/sq m)" in body("4-4.2.a")
 
 
 def test_lime_deep_stabilization_restored():
@@ -164,13 +220,13 @@ def test_lime_deep_stabilization_restored():
     assert "routine" not in k and "airfield" not in k
     assert "8- to 9-in" in k and "frost-susceptible" in k
     assert "horizontal seams" in k
-    assert "do not use deep mixing techniques routinely for airfield projects" in body("4-2.2")
-    assert "Do not use deep mixing techniques routinely for airfield projects" in kps("4-2.2")
+    assert "do not use deep mixing techniques routinely for airfield projects" in body("4-2.2.a")
+    assert "Do not use deep mixing techniques routinely for airfield projects" in kps("4-2.2.a")
 
 
 def test_lime_compaction_and_curing():
-    # PDF pp. 56-57 (printed 48-49)
-    b = body("4-2.2")
+    # PDF pp. 56-57 (printed 48-49), in the second part of 4-2.2
+    b = body("4-2.2.a")
     assert "at least 95 percent of ASTM D698" in b and "90 percent for bases for roads and non-traffic areas" in b
     assert "0.10 to 0.25 gal/sq yd (0.45 to 1.13 liter/sq m)" in b
 
