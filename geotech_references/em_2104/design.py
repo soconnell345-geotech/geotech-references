@@ -4,7 +4,7 @@ direction).
 Given a required nominal Mn/Pn, solve directly for the reinforcement area
 (As, As') -- the complement of ``flexure_axial.py``'s Appendix B
 INVESTIGATION equations (given As/As', find capacity). Printed pages per the
-1 Nov 2023 edition (pdf_page = printed_page + 5).
+1 Nov 2023 edition (pdf_page_index = printed_page + 5).
 
 Verified against Appendix D-3 (singly reinforced retaining-wall stem design,
 As = 0.43 sq in), Appendix D-5 Step 3 (coastal-floodwall stem, As = 2.73 sq
@@ -52,11 +52,11 @@ def kd_table_d1(rho_over_rho_b, beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     -------
     dict
         {'kd', 'rho_over_rho_b', 'table': 'D-1', 'printed_page': '73',
-         'pdf_page': 78}
+         'pdf_page_index': 78}
     """
     kd = rho_over_rho_b * beta1 * es * ec / (es * ec + fy)
     return {"kd": kd, "rho_over_rho_b": rho_over_rho_b, "table": "D-1",
-            "printed_page": "73", "pdf_page": 78}
+            "printed_page": "73", "pdf_page_index": 78}
 
 
 def minimum_effective_depth(mn, b, fc_prime, kd):
@@ -84,10 +84,10 @@ def minimum_effective_depth(mn, b, fc_prime, kd):
     Returns
     -------
     dict
-        {'dd', 'equation': 'D-5', 'printed_page': '71', 'pdf_page': 76}
+        {'dd', 'equation': 'D-5', 'printed_page': '71', 'pdf_page_index': 76}
     """
     dd = math.sqrt(mn / (0.85 * fc_prime * kd * b * (1 - kd / 2.0)))
-    return {"dd": dd, "equation": "D-5", "printed_page": "71", "pdf_page": 76}
+    return {"dd": dd, "equation": "D-5", "printed_page": "71", "pdf_page_index": 76}
 
 
 def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
@@ -127,12 +127,12 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
     -------
     dict
         {'ad', 'mdl' (the print's M_DS), 'equation': 'D-6/D-7', 'printed_page': '72',
-         'pdf_page': 77}
+         'pdf_page_index': 77}
     """
     ad = kd * d
     mdl = 0.85 * fc_prime * ad * b * (d - ad / 2.0) - (d - h / 2.0) * pn
     return {"ad": ad, "mdl": mdl, "equation": "D-6/D-7",
-            "printed_page": "72", "pdf_page": 77}
+            "printed_page": "72", "pdf_page_index": 77}
 
 
 def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
@@ -175,7 +175,7 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
     -------
     dict
         {'ku', 'as_required', 'equation': 'D-8/D-9', 'printed_page': '72',
-         'pdf_page': 77}
+         'pdf_page_index': 77}
     """
     radicand = 1 - (mn + pn * (d - h / 2.0)) / (0.425 * fc_prime * b * d ** 2)
     if radicand < 0:
@@ -187,7 +187,7 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
     as_required = (0.85 * fc_prime * ku * b * d - pn) / fy
     return {
         "ku": ku, "as_required": as_required, "equation": "D-8/D-9",
-        "printed_page": "72", "pdf_page": 77,
+        "printed_page": "72", "pdf_page_index": 77,
     }
 
 
@@ -291,7 +291,7 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
         "kd": kd, "ad": ad, "mdl": mdl, "fs_prime": fs_prime,
         "as_prime_required": as_prime, "as_required": as_required,
         "equation": "D-3/D-4/D-6/D-7", "printed_page": "70-72",
-        "pdf_page": "75-77", "limit_governs": fs_raw > fy,
+        "pdf_page_index": [75, 76, 77], "limit_governs": fs_raw > fy,
     }
     if fs_raw > fy:
         out["fs_prime_unlimited"] = fs_raw

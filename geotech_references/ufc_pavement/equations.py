@@ -4,7 +4,7 @@ Pavement Design for Roads and Parking Areas (14 November
 2016). Covers roads and parking areas -- NOT airfields
 (airfields are UFC 3-260-02; a separate, distinct DoD manual). All numbers
 below are traced to a rendered page of ``docs/ufc_3_250_01_2016.pdf`` (0-based
-fitz page index cited in each docstring as ``pdf_page``; the printed page is
+fitz page index cited in each docstring as ``pdf_page_index``; the printed page is
 also given).
 
 UNITS: this UFC is US-customary native (in, psi, pci, lb) -- values are kept
@@ -22,7 +22,7 @@ G-1/G-2/G-3/G-4).
 Primary design tool is PCASE software; the printed design curves (Appendix E
 flexible, Appendix F rigid) and the equations below are the documented
 non-PCASE fallback ("Design charts have been prepared using PCASE and can be
-used in lieu of PCASE", Ch 4, pdf_page 28).
+used in lieu of PCASE", Ch 4, pdf_page_index 28).
 
 Every printed closed-form equation in the document (Eq 13-1, 15-1..15-4,
 17-1, 20-1..20-23) is reproduced here VERBATIM and, where the document
@@ -35,7 +35,7 @@ import math
 
 # ============================================================================
 # Mixed traffic -> equivalent 18-kip ESAL passes (Chapter 4, Section 4-3.3;
-# pdf_page 30-31, printed 10-11; worked examples Appendix G, G-1, pdf_page
+# pdf_page_index 30-31, printed 10-11; worked examples Appendix G, G-1, pdf_page_index
 # 275-277, printed 256-258, Tables G-1/G-2)
 #
 # Procedure (verbatim from the guide): for each vehicle in the mix, determine
@@ -62,7 +62,7 @@ def mixed_traffic_equivalent_esal(vehicles) -> dict:
     equivalent passes of the controlling vehicle via the ratio of allowable
     passes.
 
-    Verified against the guide's printed Table G-1 (pdf_page 276, printed
+    Verified against the guide's printed Table G-1 (pdf_page_index 276, printed
     257): 4-vehicle mix (18-kip ESAL controlling, 1,000,000 design passes,
     16.4 in required; 5-axle truck 100,000 design passes/15.8 in required/
     252,915 allowable passes at 16.4 in) -> equivalent passes of the 18-kip
@@ -147,15 +147,15 @@ def mixed_traffic_equivalent_esal(vehicles) -> dict:
         "rows": rows,
         "total_equivalent_esal_passes": round(total, 0),
         "reference": (
-            "UFC 3-250-01, Section 4-3.3 (pdf_page 30, printed 10); worked "
-            "example Table G-1 (pdf_page 276, printed 257)"
+            "UFC 3-250-01, Section 4-3.3 (pdf_page_index 30, printed 10); worked "
+            "example Table G-1 (pdf_page_index 276, printed 257)"
         ),
     }
 
 
 # ============================================================================
 # Stabilized layer equivalency (Chapter 9, Section 9-5.1, Table 9-1;
-# pdf_page 46, printed 27; worked examples Appendix G, G-4, pdf_page 279-280,
+# pdf_page_index 46, printed 27; worked examples Appendix G, G-4, pdf_page_index 279-280,
 # printed 260-261)
 #
 #   t_stab = t_conventional / E
@@ -175,7 +175,7 @@ def stabilized_layer_thickness_in(conventional_thickness_in, equivalency_factor)
     stabilization -- see ``note``).
 
     Verified against the guide's printed worked example (Appendix G, G-4.1,
-    pdf_page 279, printed 260): conventional base = 4 in, E = 1.15 ->
+    pdf_page_index 279, printed 260): conventional base = 4 in, E = 1.15 ->
     t_stab = 4 / 1.15 = 3.48 in (printed "3.5 in"); and G-4.2: conventional
     subbase = 18 in, E = 2.30 -> t_stab = 18 / 2.30 = 7.83 in (printed
     "7.3 in" for a re-based 16.9 in subbase after the base-course excess
@@ -223,14 +223,14 @@ def stabilized_layer_thickness_in(conventional_thickness_in, equivalency_factor)
         ),
         "equation": "t_stab = t_conventional / E",
         "reference": (
-            "UFC 3-250-01, Section 9-5.1 (pdf_page 46, printed 27); "
-            "Appendix G, G-4 (pdf_page 279, printed 260)"
+            "UFC 3-250-01, Section 9-5.1 (pdf_page_index 46, printed 27); "
+            "Appendix G, G-4 (pdf_page_index 279, printed 260)"
         ),
     }
 
 
 # ============================================================================
-# Free-draining material requirement (Chapter 19, Section 19-7; pdf_page
+# Free-draining material requirement (Chapter 19, Section 19-7; pdf_page_index
 # 100-101, printed 81-82)
 # ============================================================================
 
@@ -285,14 +285,14 @@ def free_draining_layer_required(bound_layer_thickness_in, design_freezing_index
             "sieve; limits DFI at the bottom of the bound base to ~20 "
             "degree-F-days."
         ),
-        "reference": "UFC 3-250-01, Section 19-7 (pdf_page 100, printed 81)",
+        "reference": "UFC 3-250-01, Section 19-7 (pdf_page_index 100, printed 81)",
     }
 
 
 # ============================================================================
 # Plain concrete pavement on a stabilized soil foundation (Chapter 13,
-# Eq. 13-1; pdf_page 57, printed 38; worked example Appendix G, G-5.2,
-# pdf_page 282, printed 263)
+# Eq. 13-1; pdf_page_index 57, printed 38; worked example Appendix G, G-5.2,
+# pdf_page_index 282, printed 263)
 #
 #   ho = [ hd^1.4 - (0.0063 * Ef^(1/3) * hs)^1.4 ]^(1/1.4)
 # ============================================================================
@@ -309,7 +309,7 @@ def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> d
     modulus) = 4,000,000 psi (printed in the guide).
 
     Verified EXACTLY against the guide's printed worked example (Appendix G,
-    G-5.2, pdf_page 282, printed 263): hd = 8.3 in, Ef = 650,000 psi,
+    G-5.2, pdf_page_index 282, printed 263): hd = 8.3 in, Ef = 650,000 psi,
     hs = 6 in -> ho = 6.6 in (printed "This calculation results in a
     thickness ho = 6.6 in").
 
@@ -359,8 +359,8 @@ def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> d
         "ho_in": round(ho, 2),
         "equation": "ho = [hd^1.4 - (0.0063*Ef^(1/3)*hs)^1.4]^(1/1.4)",
         "reference": (
-            "UFC 3-250-01, Eq. 13-1 (pdf_page 57, printed 38); verified vs. "
-            "Appendix G, G-5.2 (pdf_page 282, printed 263): "
+            "UFC 3-250-01, Eq. 13-1 (pdf_page_index 57, printed 38); verified vs. "
+            "Appendix G, G-5.2 (pdf_page_index 282, printed 263): "
             "hd=8.3, Ef=650000, hs=6 -> ho=6.6 in"
         ),
     }
@@ -368,7 +368,7 @@ def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> d
 
 # ============================================================================
 # Rigid pavement overlay design (Chapter 15, Section 15-4.2.1, Eq. 15-1/2/3;
-# pdf_page 65-66, printed 46-47; worked example Appendix G, G-7, pdf_page
+# pdf_page_index 65-66, printed 46-47; worked example Appendix G, G-7, pdf_page_index
 # 283-284, printed 264-265)
 # ============================================================================
 
@@ -381,7 +381,7 @@ def rigid_overlay_fully_bonded(hd_in, he_in) -> dict:
     overlay thickness of 2.0-5.0 in; used primarily to correct a surface
     problem (e.g. scaling), not as a structural upgrade.
 
-    Verified EXACTLY against Appendix G, G-7.1 (pdf_page 283, printed 264):
+    Verified EXACTLY against Appendix G, G-7.1 (pdf_page_index 283, printed 264):
     hd = 8.1 in, hE = 6 in -> ho = 2.1 in (printed exactly).
 
     Parameters
@@ -415,7 +415,7 @@ def rigid_overlay_fully_bonded(hd_in, he_in) -> dict:
         "ho_in_min_2": round(max(ho, 2.0), 2),
         "equation": "ho = hd - hE",
         "reference": (
-            "UFC 3-250-01, Eq. 15-1 (pdf_page 65, printed 46); verified vs. "
+            "UFC 3-250-01, Eq. 15-1 (pdf_page_index 65, printed 46); verified vs. "
             "Appendix G, G-7.1: hd=8.1, hE=6 -> ho=2.1 in"
         ),
     }
@@ -429,7 +429,7 @@ def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
     Used when the overlay is placed directly on the existing pavement with
     no special effort to achieve (or break) bond.
 
-    Verified EXACTLY against Appendix G, G-7.2 (pdf_page 283-284, printed
+    Verified EXACTLY against Appendix G, G-7.2 (pdf_page_index 283-284, printed
     264-265): hd=8.1, he=8.1 (same flexural strength/k/traffic as the
     overlay design, so he=hd numerically), hE=6, C=1.0 -> ho=3.7 in
     (printed exactly).
@@ -483,7 +483,7 @@ def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
         "ho_in": round(ho, 2), "ho_in_min_6": round(max(ho, 6.0), 2),
         "equation": "ho = [hd^1.4 - C*((hd/he)*hE)^1.4]^(1/1.4)",
         "reference": (
-            "UFC 3-250-01, Eq. 15-2 (pdf_page 65, printed 46); verified vs. "
+            "UFC 3-250-01, Eq. 15-2 (pdf_page_index 65, printed 46); verified vs. "
             "Appendix G, G-7.2: hd=he=8.1, hE=6, C=1.0 -> ho=3.7 in"
         ),
     }
@@ -498,7 +498,7 @@ def rigid_overlay_non_bonded(hd_in, he_in, hE_in, c) -> dict:
     reinforced pavement, or an existing plain pavement with C <= 0.35, or
     when overlay joints cannot practically match existing joints.
 
-    Verified EXACTLY against Appendix G, G-7.3 (pdf_page 284, printed 265):
+    Verified EXACTLY against Appendix G, G-7.3 (pdf_page_index 284, printed 265):
     hd=8.1, he=8.1, hE=6, C=1.0 -> ho=5.4 in (printed exactly).
 
     Parameters
@@ -537,7 +537,7 @@ def rigid_overlay_non_bonded(hd_in, he_in, hE_in, c) -> dict:
         "ho_in": round(ho, 2), "ho_in_min_6": round(max(ho, 6.0), 2),
         "equation": "ho = sqrt[hd^2 - C*((hd/he)*hE)^2]",
         "reference": (
-            "UFC 3-250-01, Eq. 15-3 (pdf_page 65, printed 46); verified vs. "
+            "UFC 3-250-01, Eq. 15-3 (pdf_page_index 65, printed 46); verified vs. "
             "Appendix G, G-7.3: hd=he=8.1, hE=6, C=1.0 -> ho=5.4 in"
         ),
     }
@@ -554,7 +554,7 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
     use bituminous-with-base-course when to is large enough to include a 4 in
     base course, else all-bituminous).
 
-    Verified EXACTLY against Appendix G, G-7.4 (pdf_page 284, printed 265):
+    Verified EXACTLY against Appendix G, G-7.4 (pdf_page_index 284, printed 265):
     F=0.93 (from Figure 15-1), hd=8.1, C=1.0, hE=6 -> to = 3.0*(0.93*8.1 -
     1.0*6) = 4.6 in (printed exactly).
 
@@ -602,7 +602,7 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
         "to_in": round(to, 2), "to_in_min_4": round(max(to, 4.0), 2),
         "equation": "to = 3.0 * (F*hd - C*hE)",
         "reference": (
-            "UFC 3-250-01, Eq. 15-4 (pdf_page 68, printed 49); verified vs. "
+            "UFC 3-250-01, Eq. 15-4 (pdf_page_index 68, printed 49); verified vs. "
             "Appendix G, G-7.4: F=0.93, hd=8.1, C=1.0, hE=6 -> to=4.6 in"
         ),
         "note": (
@@ -616,7 +616,7 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
 
 # ============================================================================
 # Reinforced concrete pavement -- max allowable slab length for a general
-# steel yield strength (Chapter 17, Eq. 17-1; pdf_page 81, printed 62)
+# steel yield strength (Chapter 17, Eq. 17-1; pdf_page_index 81, printed 62)
 #
 #   L = [0.00047 * hr * (fs*S)^2]^(1/3)
 # ============================================================================
@@ -631,7 +631,7 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
     must still be capped at 75 ft (25 m) per Section 17-1.4, regardless of
     thickness or steel percentage/yield.
 
-    Verified EXACTLY against Appendix G, G-6 (pdf_page 282, printed 263):
+    Verified EXACTLY against Appendix G, G-6 (pdf_page_index 282, printed 263):
     hr=7 in, fs=60,000 psi, S=0.10% -> L=49 ft (printed exactly); and
     hr=6 in, S=0.30% -> L=97 ft raw (printed exactly, before the 75 ft cap
     is applied per the guide's own text).
@@ -672,7 +672,7 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
         "l_ft_capped": round(min(l_ft, 75.0), 1),
         "equation": "L = [0.00047 * hr * (fs*S)^2]^(1/3)",
         "reference": (
-            "UFC 3-250-01, Eq. 17-1 (pdf_page 81, printed 62); verified vs. "
+            "UFC 3-250-01, Eq. 17-1 (pdf_page_index 81, printed 62); verified vs. "
             "Appendix G, G-6: hr=7,S=0.10%->L=49 ft; hr=6,S=0.30%->L=97 ft "
             "raw (both exact)"
         ),
@@ -680,7 +680,7 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
 
 
 # ============================================================================
-# Subsurface drainage design (Chapter 20; pdf_page 111-134, printed 92-115)
+# Subsurface drainage design (Chapter 20; pdf_page_index 111-134, printed 92-115)
 # ============================================================================
 
 def darcy_flow_rate(k, i, area) -> dict:
@@ -716,13 +716,13 @@ def darcy_flow_rate(k, i, area) -> dict:
     return {
         "k": k, "i": i, "area": area, "velocity": v, "flow_rate": q,
         "equation": "v = k*i;  Q = k*i*A",
-        "reference": "UFC 3-250-01, Eq. 20-1/20-2 (pdf_page 111, printed 92)",
+        "reference": "UFC 3-250-01, Eq. 20-1/20-2 (pdf_page_index 111, printed 92)",
     }
 
 
 def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
     """Coefficient of permeability k by Taylor's equation, UFC 3-250-01
-    Eq. 20-3 (pdf_page 112, printed 93); returns k in the inputs' consistent
+    Eq. 20-3 (pdf_page_index 112, printed 93); returns k in the inputs' consistent
     units. Eq. 20-3 is printed with (1-e) in the denominator,
     k = Ds^2 * C * (gamma*e^3 / (mu*(1-e))); this function computes it with
     (1+e), k = C * Ds^2 * (gamma/mu) * [e^3 / (1+e)], as it was coded
@@ -764,7 +764,7 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
         "ds_mm": ds_mm, "c": c, "gamma": gamma, "mu": mu, "e": e,
         "k": k,
         "equation": "k = C * Ds^2 * (gamma/mu) * [e^3/(1+e)]",
-        "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page 112, printed 93)",
+        "reference": "UFC 3-250-01, Eq. 20-3 (pdf_page_index 112, printed 93)",
         "note": (
             "Eq. 20-3 as printed (printed p. 93) has (1-e) in the "
             "denominator, k = Ds^2*C*(gamma*e^3/(mu*(1-e))); this function "
@@ -775,7 +775,7 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
 
 
 def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
-    """Effective porosity ne of a soil, UFC 3-250-01 Eq. 20-4 (pdf_page 113,
+    """Effective porosity ne of a soil, UFC 3-250-01 Eq. 20-4 (pdf_page_index 113,
     printed 94); returns ne as a decimal fraction (dimensionless).
 
         ne = 1 - [gamma_d / (Gs * gamma_w)] * (1 + Gs * We)
@@ -832,13 +832,13 @@ def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
         "water_unit_weight": water_unit_weight, "we": we,
         "effective_porosity": round(ne, 4),
         "equation": "ne = 1 - [gamma_d / (Gs * gamma_w)] * (1 + Gs * We)",
-        "reference": "UFC 3-250-01, Eq. 20-4 (pdf_page 113, printed 94)",
+        "reference": "UFC 3-250-01, Eq. 20-4 (pdf_page_index 113, printed 94)",
     }
 
 
 def effective_horizontal_permeability(layers) -> dict:
     """Weighted-average effective horizontal permeability of a layered
-    pavement section (Chapter 20, Eq. 20-5; pdf_page 114, printed 95).
+    pavement section (Chapter 20, Eq. 20-5; pdf_page_index 114, printed 95).
 
         k = sum(k_i * d_i) / sum(d_i)
 
@@ -871,13 +871,13 @@ def effective_horizontal_permeability(layers) -> dict:
     return {
         "layers": list(layers), "k_effective": k_eff,
         "equation": "k = sum(k_i*d_i) / sum(d_i)",
-        "reference": "UFC 3-250-01, Eq. 20-5 (pdf_page 114, printed 95)",
+        "reference": "UFC 3-250-01, Eq. 20-5 (pdf_page_index 114, printed 95)",
     }
 
 
 def drainage_layer_storage_capacity(ne, h) -> dict:
     """Storage capacity of a drainage layer, 85%-availability basis
-    (Chapter 20, Eq. 20-7; pdf_page 116, printed 97).
+    (Chapter 20, Eq. 20-7; pdf_page_index 116, printed 97).
 
         qs = 0.85 * ne * h
 
@@ -908,13 +908,13 @@ def drainage_layer_storage_capacity(ne, h) -> dict:
     return {
         "ne": ne, "h": h, "qs": qs,
         "equation": "qs = 0.85 * ne * h",
-        "reference": "UFC 3-250-01, Eq. 20-7 (pdf_page 116, printed 97)",
+        "reference": "UFC 3-250-01, Eq. 20-7 (pdf_page_index 116, printed 97)",
     }
 
 
 def drainage_layer_drainable_flow(t, k, i, h, length) -> dict:
     """Water draining from the layer during the rain event (Chapter 20,
-    Eq. 20-8; pdf_page 116, printed 97).
+    Eq. 20-8; pdf_page_index 116, printed 97).
 
         qd = (t * k * i * h) / (2 * L)
 
@@ -947,13 +947,13 @@ def drainage_layer_drainable_flow(t, k, i, h, length) -> dict:
     return {
         "t": t, "k": k, "i": i, "h": h, "length": length, "qd": qd,
         "equation": "qd = (t*k*i*h) / (2*L)",
-        "reference": "UFC 3-250-01, Eq. 20-8 (pdf_page 116, printed 97)",
+        "reference": "UFC 3-250-01, Eq. 20-8 (pdf_page_index 116, printed 97)",
     }
 
 
 def time_for_50pct_drainage(ne, d, i, k) -> dict:
     """Time for 50 percent drainage T50 of a base/subbase layer, UFC 3-250-01
-    Eq. 20-11 (pdf_page 117, printed 98); returns t50 in the time unit of k.
+    Eq. 20-11 (pdf_page_index 117, printed 98); returns t50 in the time unit of k.
 
         T50 = (ne * D) / (2 * i * k)
 
@@ -992,13 +992,13 @@ def time_for_50pct_drainage(ne, d, i, k) -> dict:
     return {
         "ne": ne, "d": d, "i": i, "k": k, "t50": t50,
         "equation": "T50 = (ne*D) / (2*i*k)",
-        "reference": "UFC 3-250-01, Eq. 20-11 (pdf_page 117, printed 98)",
+        "reference": "UFC 3-250-01, Eq. 20-11 (pdf_page_index 117, printed 98)",
     }
 
 
 def time_for_85pct_drainage(ne, d, i, k) -> dict:
     """Time for 85 percent drainage T85 of a drainage layer, UFC 3-250-01
-    Eq. 20-12 (pdf_page 117, printed 98); returns t85 in the time unit of k.
+    Eq. 20-12 (pdf_page_index 117, printed 98); returns t85 in the time unit of k.
 
         T85 = (ne * D) / (i * k)
 
@@ -1029,7 +1029,7 @@ def time_for_85pct_drainage(ne, d, i, k) -> dict:
     return {
         "ne": ne, "d": d, "i": i, "k": k, "t85": t85,
         "equation": "T85 = (ne*D) / (i*k)",
-        "reference": "UFC 3-250-01, Eq. 20-12 (pdf_page 117, printed 98)",
+        "reference": "UFC 3-250-01, Eq. 20-12 (pdf_page_index 117, printed 98)",
         "note": (
             "T85 is about twice T50 (Eq. 20-11 has 2*i*k in the "
             "denominator). The page gives the drainage-layer criterion as "
@@ -1041,7 +1041,7 @@ def time_for_85pct_drainage(ne, d, i, k) -> dict:
 
 def drainage_path_length(lt, it, ie) -> dict:
     """Length of the drainage path from transverse/longitudinal slope
-    geometry (Chapter 20, Eq. 20-13; pdf_page 118, printed 99).
+    geometry (Chapter 20, Eq. 20-13; pdf_page_index 118, printed 99).
 
         L = Lt * sqrt(1 + (ie/it)^2)
 
@@ -1075,13 +1075,13 @@ def drainage_path_length(lt, it, ie) -> dict:
     return {
         "lt": lt, "it": it, "ie": ie, "length": round(length, 3),
         "equation": "L = Lt * sqrt(1 + (ie/it)^2)",
-        "reference": "UFC 3-250-01, Eq. 20-13 (pdf_page 118, printed 99)",
+        "reference": "UFC 3-250-01, Eq. 20-13 (pdf_page_index 118, printed 99)",
     }
 
 
 def drainage_path_slope(it, ie) -> dict:
     """Resultant slope of the drainage path (Chapter 20, Eq. 20-14;
-    pdf_page 118, printed 99).
+    pdf_page_index 118, printed 99).
 
         i = sqrt(it^2 + ie^2)
 
@@ -1110,13 +1110,13 @@ def drainage_path_slope(it, ie) -> dict:
     return {
         "it": it, "ie": ie, "i": round(i, 5),
         "equation": "i = sqrt(it^2 + ie^2)",
-        "reference": "UFC 3-250-01, Eq. 20-14 (pdf_page 118, printed 99)",
+        "reference": "UFC 3-250-01, Eq. 20-14 (pdf_page_index 118, printed 99)",
     }
 
 
 def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> dict:
     """Estimate the coefficient of permeability of a granular material from
-    gradation (Chapter 20, Eq. 20-15/20-16; pdf_page 125, printed 106).
+    gradation (Chapter 20, Eq. 20-15/20-16; pdf_page_index 125, printed 106).
 
         k (mm/sec) = 217.5 * D10^1.478 * n^6.654 / P200^0.597
         k (ft/day) = 6.214e5 * D10^1.478 * n^6.654 / P200^0.597
@@ -1166,13 +1166,13 @@ def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> d
         "d10_mm": d10_mm, "n": n, "p200_pct": p200_pct,
         "k": k, "units": units,
         "equation": eq,
-        "reference": "UFC 3-250-01, Eq. 20-15/20-16 (pdf_page 125, printed 106)",
+        "reference": "UFC 3-250-01, Eq. 20-15/20-16 (pdf_page_index 125, printed 106)",
     }
 
 
 def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
     """Required thickness H of a drainage layer for the design storm,
-    UFC 3-250-01 Eq. 20-17 (pdf_page 126, printed 107); returns h in the
+    UFC 3-250-01 Eq. 20-17 (pdf_page_index 126, printed 107); returns h in the
     length unit of L and R (ft or m).
 
         H = (2*F*R*L*t) / [(1.7*ne*L) + (k*i*t)]
@@ -1221,13 +1221,13 @@ def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
         "f": f, "r": r, "length": length, "t": t, "ne": ne, "k": k, "i": i,
         "h": h,
         "equation": "H = (2*F*R*L*t) / [(1.7*ne*L) + (k*i*t)]",
-        "reference": "UFC 3-250-01, Eq. 20-17 (pdf_page 126, printed 107)",
+        "reference": "UFC 3-250-01, Eq. 20-17 (pdf_page_index 126, printed 107)",
     }
 
 
 def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
     """Required thickness H of a drainage layer for long drainage paths,
-    UFC 3-250-01 Eq. 20-18 (pdf_page 126, printed 107); returns h in the
+    UFC 3-250-01 Eq. 20-18 (pdf_page_index 126, printed 107); returns h in the
     length unit of R (ft or m), units as in Eq. 20-17.
 
         H = (F*R*t) / (0.85*ne)
@@ -1264,13 +1264,13 @@ def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
     return {
         "f": f, "r": r, "t": t, "ne": ne, "h": h,
         "equation": "H = (F*R*t) / (0.85*ne)",
-        "reference": "UFC 3-250-01, Eq. 20-18 (pdf_page 126, printed 107)",
+        "reference": "UFC 3-250-01, Eq. 20-18 (pdf_page_index 126, printed 107)",
     }
 
 
 def collector_drain_flow(h, i, k, units="ft_day") -> dict:
     """Water entering the collector system from a one-sided drainage layer
-    (Chapter 20, Eq. 20-20/20-21; pdf_page 133, printed 114).
+    (Chapter 20, Eq. 20-20/20-21; pdf_page_index 133, printed 114).
 
         Q (mm^3/sec per mm) = 1000 * H * i * k
         Q (ft^3/day per ft) = H * i * k
@@ -1312,14 +1312,14 @@ def collector_drain_flow(h, i, k, units="ft_day") -> dict:
     return {
         "h": h, "i": i, "k": k, "q_per_unit_length": q, "units": units,
         "equation": eq,
-        "reference": "UFC 3-250-01, Eq. 20-20/20-21 (pdf_page 133, printed 114)",
+        "reference": "UFC 3-250-01, Eq. 20-20/20-21 (pdf_page_index 133, printed 114)",
         "note": "Double for a collector receiving flow from both sides.",
     }
 
 
 def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
     """Full-flow capacity of a circular collector pipe, Manning equation
-    (Chapter 20, Eq. 20-22/20-23; pdf_page 134, printed 115).
+    (Chapter 20, Eq. 20-22/20-23; pdf_page_index 134, printed 115).
 
         Q (ft^3/s) = (1.486/n) * A * (d/4)^(2/3) * s^(1/2)     [US units]
         Q (m^3/s)  = (1.0/n)   * A * (d/4)^(2/3) * s^(1/2)     [SI units]
@@ -1368,12 +1368,12 @@ def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
         "n": n, "d": d_ft, "s": s, "area": round(area, 4),
         "q": round(q, 4), "units": units,
         "equation": eq,
-        "reference": "UFC 3-250-01, Eq. 20-22/20-23 (pdf_page 134, printed 115)",
+        "reference": "UFC 3-250-01, Eq. 20-22/20-23 (pdf_page_index 134, printed 115)",
     }
 
 
 # ============================================================================
-# Appendix D -- insulated pavements (frost protection); pdf_page 204-205,
+# Appendix D -- insulated pavements (frost protection); pdf_page_index 204-205,
 # printed 184-185. Figures D-1/D-2/D-3 are nomographic (no printed closed
 # form) -- catalogued for figure read-off. The two explicit relations
 # printed in the text are given below.
@@ -1381,7 +1381,7 @@ def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
 
 def insulation_initial_temperature_differential(mean_annual_soil_temp_f) -> dict:
     """Initial temperature differential Vo for insulated-pavement frost
-    design (Appendix D, Section D-3; pdf_page 204, printed 185).
+    design (Appendix D, Section D-3; pdf_page_index 204, printed 185).
 
         Vo = mean_annual_soil_temp_F - 32
 
@@ -1404,13 +1404,13 @@ def insulation_initial_temperature_differential(mean_annual_soil_temp_f) -> dict
         "mean_annual_soil_temp_f": mean_annual_soil_temp_f,
         "vo_f": round(vo, 1),
         "equation": "Vo = mean_annual_soil_temp_F - 32",
-        "reference": "UFC 3-250-01, Appendix D, Section D-3 (pdf_page 204, printed 185)",
+        "reference": "UFC 3-250-01, Appendix D, Section D-3 (pdf_page_index 204, printed 185)",
     }
 
 
 def insulation_mean_soil_temperature_estimate(mean_annual_air_temp_f) -> dict:
     """Approximate mean annual soil temperature from mean annual air
-    temperature (Appendix D, Section D-3; pdf_page 204, printed 185).
+    temperature (Appendix D, Section D-3; pdf_page_index 204, printed 185).
 
         T_soil ~= T_air + 7 (degrees F)
 
@@ -1430,7 +1430,7 @@ def insulation_mean_soil_temperature_estimate(mean_annual_air_temp_f) -> dict:
         "mean_annual_air_temp_f": mean_annual_air_temp_f,
         "mean_annual_soil_temp_f_estimate": round(t_soil, 1),
         "equation": "T_soil ~= T_air + 7 (deg F)",
-        "reference": "UFC 3-250-01, Appendix D, Section D-3 (pdf_page 204, printed 185)",
+        "reference": "UFC 3-250-01, Appendix D, Section D-3 (pdf_page_index 204, printed 185)",
         "note": (
             "Approximation only, used when no direct soil-temperature "
             "record is available; an n-factor of 0.75 applies for "

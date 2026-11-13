@@ -17,7 +17,7 @@ from geotech_references._interpolation import _linterp
 
 # ============================================================================
 # Table 4.1: Standard Normal Deviate (ZR) vs Reliability Level
-# (Part I, Section 4.2.3; pdf_page 83, printed I-62)
+# (Part I, Section 4.2.3; pdf_page_index 83, printed I-62)
 # ============================================================================
 
 _ZR_R = [50, 60, 70, 75, 80, 85, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
@@ -58,13 +58,13 @@ def standard_normal_deviate_zr(reliability_pct) -> dict:
     zr = _linterp(reliability_pct, _ZR_R, _ZR_Z)
     return {
         "reliability_pct": reliability_pct, "zr": round(zr, 3),
-        "reference": "AASHTO 1993 Guide, Table 4.1 (pdf_page 83, printed I-62)",
+        "reference": "AASHTO 1993 Guide, Table 4.1 (pdf_page_index 83, printed I-62)",
     }
 
 
 # ============================================================================
 # Table 2.2: Suggested Levels of Reliability for Various Functional
-# Classifications (Part II, Section 2.1.3; pdf_page 98, printed II-9)
+# Classifications (Part II, Section 2.1.3; pdf_page_index 98, printed II-9)
 # ============================================================================
 
 _TABLE_2_2 = {
@@ -122,7 +122,7 @@ def recommended_reliability(functional_class, area="urban") -> dict:
     return {
         "functional_class": canonical, "area": a,
         "reliability_min_pct": lo, "reliability_max_pct": hi,
-        "reference": "AASHTO 1993 Guide, Table 2.2 (pdf_page 98, printed II-9)",
+        "reference": "AASHTO 1993 Guide, Table 2.2 (pdf_page_index 98, printed II-9)",
     }
 
 
@@ -163,7 +163,7 @@ def overall_standard_deviation_range(pavement_type) -> dict:
         raise ValueError(f"pavement_type must be 'flexible' or 'rigid', got '{pavement_type}'")
     out.update({
         "pavement_type": key,
-        "reference": "AASHTO 1993 Guide, Section 4.3 (pdf_page 83, printed I-62)",
+        "reference": "AASHTO 1993 Guide, Section 4.3 (pdf_page_index 83, printed I-62)",
     })
     return out
 
@@ -201,7 +201,7 @@ def terminal_serviceability_guidance(pt=None) -> dict:
     ]
     base = {
         "po_flexible": 4.2, "po_rigid": 4.5,
-        "reference": "AASHTO 1993 Guide, Section 2.2.1 (pdf_page 99, printed II-10)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.1 (pdf_page_index 99, printed II-10)",
     }
     if pt is None:
         base["rows"] = rows
@@ -214,7 +214,7 @@ def terminal_serviceability_guidance(pt=None) -> dict:
 
 
 # ============================================================================
-# Traffic distribution (Section 2.1.2; pdf_page 97-98, printed II-8/9)
+# Traffic distribution (Section 2.1.2; pdf_page_index 97-98, printed II-8/9)
 # ============================================================================
 
 _DL_TABLE = {1: (100, 100), 2: (80, 100), 3: (60, 80), 4: (50, 75)}
@@ -246,7 +246,7 @@ def lane_distribution_factor(num_lanes_per_direction) -> dict:
     lo, hi = _DL_TABLE[key]
     return {
         "num_lanes_per_direction": n, "dl_min_pct": lo, "dl_max_pct": hi,
-        "reference": "AASHTO 1993 Guide, Section 2.1.2 (pdf_page 98, printed II-9)",
+        "reference": "AASHTO 1993 Guide, Section 2.1.2 (pdf_page_index 98, printed II-9)",
     }
 
 
@@ -263,7 +263,7 @@ def directional_distribution_default() -> dict:
     """
     return {
         "dd_default": 0.5, "dd_min": 0.3, "dd_max": 0.7,
-        "reference": "AASHTO 1993 Guide, Section 2.1.2 (pdf_page 98, printed II-9)",
+        "reference": "AASHTO 1993 Guide, Section 2.1.2 (pdf_page_index 98, printed II-9)",
     }
 
 
@@ -271,7 +271,7 @@ def directional_distribution_default() -> dict:
 # Figure 2.5: Structural layer coefficient a1 for dense-graded asphalt
 # concrete surface course vs elastic (resilient) modulus EAC at 68F.
 # CHART READ-OFF (no printed closed-form equation): digitized at dpi 150/240
-# (pdf_page 107, printed II-18). Anchor points from the printed curve
+# (pdf_page_index 107, printed II-18). Anchor points from the printed curve
 # (solid to about EAC 450,000 psi; dashed beyond to the 500,000 psi edge;
 # II-17: "Caution is recommended for modulus values above 450,000 psi").
 # Re-read 2026-11-10 (review pave-11) from a 400-dpi render, gridline-
@@ -288,7 +288,7 @@ _A1_VAL = [0.20, 0.252, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     """Structural layer coefficient a1 of a dense-graded asphalt concrete
     surface course from its elastic modulus EAC at 68 F, AASHTO 1993
-    Figure 2.5 (pdf_page 107, printed II-18); returns a1 (per inch).
+    Figure 2.5 (pdf_page_index 107, printed II-18); returns a1 (per inch).
 
     Chart-read-off (interpolated), NOT a printed closed-form equation.
     Digitized anchor points (EAC psi -> a1): 106000->0.20, 150000->0.252,
@@ -330,7 +330,7 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
     a1 = _linterp(eac_psi, _A1_EAC, _A1_VAL)
     out = {
         "eac_psi": eac_psi, "a1": round(a1, 3), "chart_read": True,
-        "reference": "AASHTO 1993 Guide, Figure 2.5 (pdf_page 107, printed II-18)",
+        "reference": "AASHTO 1993 Guide, Figure 2.5 (pdf_page_index 107, printed II-18)",
     }
     if eac_psi > 450000:
         out["note"] = ("EAC > 450,000 psi: the curve is dashed here, and "
@@ -363,10 +363,10 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
 # beyond the scales.
 # ============================================================================
 
-# Figure 2.8 (pdf_page 112, printed II-23): 7-day UCS (psi) -> a2.
+# Figure 2.8 (pdf_page_index 112, printed II-23): 7-day UCS (psi) -> a2.
 _A2_CEMENT_SCALE = ((200, 0.126), (400, 0.155), (600, 0.188), (800, 0.220),
                     (1000, 0.250))
-# Figure 2.9 (pdf_page 113, printed II-24): Marshall stability (lb) -> a2.
+# Figure 2.9 (pdf_page_index 113, printed II-24): Marshall stability (lb) -> a2.
 _A2_BITUMINOUS_SCALE = ((200, 0.126), (400, 0.161), (600, 0.180),
                         (800, 0.204), (1000, 0.230), (1200, 0.250),
                         (1400, 0.275), (1600, 0.300), (1800, 0.320))
@@ -420,7 +420,7 @@ def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     a2, note = _a2_across(ucs_7day_psi, _A2_CEMENT_SCALE, "7-day UCS", "psi")
     out = {
         "ucs_7day_psi": ucs_7day_psi, "a2": round(a2, 3), "chart_read": True,
-        "reference": "AASHTO 1993 Guide, Figure 2.8 (pdf_page 112, printed II-23)",
+        "reference": "AASHTO 1993 Guide, Figure 2.8 (pdf_page_index 112, printed II-23)",
     }
     if note:
         out["note"] = note
@@ -459,7 +459,7 @@ def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     out = {
         "marshall_stability_lb": marshall_stability_lb, "a2": round(a2, 3),
         "chart_read": True,
-        "reference": "AASHTO 1993 Guide, Figure 2.9 (pdf_page 113, printed II-24)",
+        "reference": "AASHTO 1993 Guide, Figure 2.9 (pdf_page_index 113, printed II-24)",
     }
     if note:
         out["note"] = note
@@ -468,7 +468,7 @@ def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
 
 # ============================================================================
 # Table 2.3: Typical k1, k2 for Unbound Base and Subbase Materials
-# (MR = k1*theta^k2); pdf_page 109, printed II-20
+# (MR = k1*theta^k2); pdf_page_index 109, printed II-20
 # ============================================================================
 
 _TABLE_2_3 = {
@@ -513,14 +513,14 @@ def unbound_k1_k2(layer, moisture_condition) -> dict:
     return {
         "layer": lk, "moisture_condition": mk,
         "k1_min": k1_lo, "k1_max": k1_hi, "k2_min": k2_lo, "k2_max": k2_hi,
-        "reference": "AASHTO 1993 Guide, Table 2.3 (pdf_page 109, printed II-20)",
+        "reference": "AASHTO 1993 Guide, Table 2.3 (pdf_page_index 109, printed II-20)",
     }
 
 
 # ============================================================================
 # Table 2.4: Recommended mi Values for Modifying Structural Layer
 # Coefficients of Untreated Base/Subbase in Flexible Pavements
-# (pdf_page 114, printed II-25)
+# (pdf_page_index 114, printed II-25)
 # ============================================================================
 
 _SATURATION_COLS = ["<1%", "1-5%", "5-25%", ">25%"]
@@ -538,7 +538,7 @@ _TABLE_2_4 = {
 def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
     """Recommended mi values for modifying the layer coefficients of
     untreated base and subbase in flexible pavements, AASHTO 1993 Table 2.4
-    (pdf_page 114, printed II-25); returns the printed range as mi_min and
+    (pdf_page_index 114, printed II-25); returns the printed range as mi_min and
     mi_max (dimensionless).
 
     Modifies the base/subbase layer coefficients in the SN equation
@@ -579,13 +579,13 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "mi_min": lo, "mi_max": hi,
-        "reference": "AASHTO 1993 Guide, Table 2.4 (pdf_page 114, printed II-25)",
+        "reference": "AASHTO 1993 Guide, Table 2.4 (pdf_page_index 114, printed II-25)",
     }
 
 
 # ============================================================================
 # Table 2.5: Recommended Values of Drainage Coefficient Cd, Rigid Pavements
-# (pdf_page 115, printed II-26)
+# (pdf_page_index 115, printed II-26)
 # ============================================================================
 
 # Each cell as printed, "high-low" (e.g. "1.25-1.20"): (high, low).
@@ -600,7 +600,7 @@ _TABLE_2_5 = {
 
 def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
     """Recommended values of drainage coefficient Cd for rigid pavement
-    design, AASHTO 1993 Table 2.5 (pdf_page 115, printed II-26); returns the
+    design, AASHTO 1993 Table 2.5 (pdf_page_index 115, printed II-26); returns the
     printed range as cd_min and cd_max (dimensionless).
 
     AASHO Road Test conditions correspond to Cd=1.0 (quality 'fair').
@@ -637,7 +637,7 @@ def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "cd_min": lo, "cd_max": hi,
-        "reference": "AASHTO 1993 Guide, Table 2.5 (pdf_page 115, printed II-26)",
+        "reference": "AASHTO 1993 Guide, Table 2.5 (pdf_page_index 115, printed II-26)",
     }
 
 
@@ -666,7 +666,7 @@ def quality_of_drainage_definitions(quality=None) -> dict:
         {"quality": "poor", "water_removed_within": "1 month"},
         {"quality": "very_poor", "water_removed_within": "water will not drain"},
     ]
-    ref = "AASHTO 1993 Guide, Section 2.4.1 (pdf_page 111, printed II-22)"
+    ref = "AASHTO 1993 Guide, Section 2.4.1 (pdf_page_index 111, printed II-22)"
     if quality is None:
         return {"rows": rows, "note": "AASHO Road Test drainage = 'fair'.",
                 "reference": ref}
@@ -684,7 +684,7 @@ def quality_of_drainage_definitions(quality=None) -> dict:
 
 # ============================================================================
 # Table 2.6: Recommended Load Transfer Coefficient J for Various Pavement
-# Types and Design Conditions (pdf_page 115, printed II-26)
+# Types and Design Conditions (pdf_page_index 115, printed II-26)
 # ============================================================================
 
 _TABLE_2_6 = {
@@ -757,13 +757,13 @@ def load_transfer_coefficient_j(pavement_type, shoulder_type,
         "pavement_type": pk, "shoulder_type": sk,
         "load_transfer_devices": bool(load_transfer_devices),
         "j_min": lo, "j_max": hi,
-        "reference": "AASHTO 1993 Guide, Table 2.6 (pdf_page 115, printed II-26)",
+        "reference": "AASHTO 1993 Guide, Table 2.6 (pdf_page_index 115, printed II-26)",
     }
 
 
 # ============================================================================
 # Minimum practical layer thicknesses by traffic level
-# (Section 3.1.4; pdf_page 124, printed II-35)
+# (Section 3.1.4; pdf_page_index 124, printed II-35)
 # ============================================================================
 
 _MIN_THICKNESS = [
@@ -804,7 +804,7 @@ def minimum_layer_thickness(esal) -> dict:
                 "esal": esal, "asphalt_concrete_min_in": ac_min,
                 "aggregate_base_min_in": base_min,
                 "reference": ("AASHTO 1993 Guide, Section 3.1.4 "
-                             "(pdf_page 124, printed II-35)"),
+                             "(pdf_page_index 124, printed II-35)"),
             }
             if note:
                 out["note"] = note
@@ -856,8 +856,8 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     """Load equivalency factor, flexible pavement, single axle (Tables D.1, D.4, D.7).
 
     Bilinear interpolation over the printed Appendix D table for the given
-    pt: Table D.1 (pt = 2.0, pdf_page 362, printed D-3), D.4 (pt = 2.5,
-    pdf_page 365, printed D-6) or D.7 (pt = 3.0, pdf_page 368, printed D-9);
+    pt: Table D.1 (pt = 2.0, pdf_page_index 362, printed D-3), D.4 (pt = 2.5,
+    pdf_page_index 365, printed D-6) or D.7 (pt = 3.0, pdf_page_index 368, printed D-9);
     see ``lef.load_equivalency_factor``.
 
     Parameters
@@ -892,8 +892,8 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
 def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     """Load equivalency factor, flexible pavement, tandem axle (Tables D.2, D.5, D.8).
 
-    Table D.2 (pt = 2.0, pdf_page 363, printed D-4), D.5 (pt = 2.5,
-    pdf_page 366, printed D-7) or D.8 (pt = 3.0, pdf_page 369, printed
+    Table D.2 (pt = 2.0, pdf_page_index 363, printed D-4), D.5 (pt = 2.5,
+    pdf_page_index 366, printed D-7) or D.8 (pt = 3.0, pdf_page_index 369, printed
     D-10); see ``esal_flexible_single_axle``.
 
     Parameters
@@ -925,8 +925,8 @@ def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
 def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     """Load equivalency factor, rigid pavement, single axle (Tables D.10, D.13, D.16).
 
-    Table D.10 (pt = 2.0, pdf_page 371, printed D-12), D.13 (pt = 2.5,
-    pdf_page 374, printed D-15) or D.16 (pt = 3.0, pdf_page 377, printed
+    Table D.10 (pt = 2.0, pdf_page_index 371, printed D-12), D.13 (pt = 2.5,
+    pdf_page_index 374, printed D-15) or D.16 (pt = 3.0, pdf_page_index 377, printed
     D-18); see ``lef.load_equivalency_factor``.
 
     Parameters
@@ -960,8 +960,8 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
 def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     """Load equivalency factor, rigid pavement, tandem axle (Tables D.11, D.14, D.17).
 
-    Table D.11 (pt = 2.0, pdf_page 372, printed D-13), D.14 (pt = 2.5,
-    pdf_page 375, printed D-16) or D.17 (pt = 3.0, pdf_page 378, printed
+    Table D.11 (pt = 2.0, pdf_page_index 372, printed D-13), D.14 (pt = 2.5,
+    pdf_page_index 375, printed D-16) or D.17 (pt = 3.0, pdf_page_index 378, printed
     D-19); see ``esal_rigid_single_axle``.
 
     Parameters

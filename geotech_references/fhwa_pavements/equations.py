@@ -7,7 +7,7 @@ stress-dependent (bulk-stress) granular Mr model; CBR from DCP; the seasonal
 effective-Mr relative-damage relationship. Units follow the source (Mr in psi,
 CBR/R in percent). Each function cites the source equation/table and page.
 
-``pdf_page`` values are 0-based fitz page indices into
+``pdf_page_index`` values are 0-based fitz page indices into
 ``docs/FHWA-NHI-05-037 - Geotech Pavements.pdf`` (add 1 for a PDF viewer);
 ``printed_page`` is the manual's own page number (e.g. "5-53").
 
@@ -65,7 +65,7 @@ def resilient_modulus_from_cbr(cbr, units: str = "psi") -> dict:
         "cbr": cbr, "mr": round(mr, 1), "units": u,
         "equation": "Mr(psi)=2555*CBR^0.64 (Mr(MPa)=17.6*CBR^0.64)",
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
-        "pdf_page": 230, "printed_page": "5-53",
+        "pdf_page_index": 230, "printed_page": "5-53",
         "note": "Preferred Mr-CBR correlation; NOT the older Mr=1500*CBR (Eq. 5.13).",
     }
 
@@ -101,7 +101,7 @@ def resilient_modulus_from_cbr_aashto93(cbr) -> dict:
         "cbr": cbr, "mr_psi": round(1500.0 * cbr, 1),
         "equation": "Mr(psi) = 1500 * CBR  (CBR <= 10)",
         "reference": "FHWA-NHI-05-037 Eq. 5.13 (Heukelom & Klomp 1962 / 1993 AASHTO)",
-        "pdf_page": 226, "printed_page": "5-49",
+        "pdf_page_index": 226, "printed_page": "5-49",
         "note": ("Legacy 1993 AASHTO subgrade form; NCHRP 1-37A recommends "
                  "AGAINST it. Prefer Mr = 2555*CBR^0.64."),
     }
@@ -158,7 +158,7 @@ def resilient_modulus_from_r_value(r_value, units: str = "psi") -> dict:
         "r_value": r_value, "mr": round(mr, 1), "units": u,
         "equation": "Mr(psi)=1155+555*R (Mr(MPa)=8.0+3.8*R)",
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
-        "pdf_page": 230, "printed_page": "5-53",
+        "pdf_page_index": 230, "printed_page": "5-53",
         "note": ("Recommended subgrade form Eq. 5.15 is Mr(psi)=1000+555*R; the "
                  "general 1993 AASHTO form is Mr=A+B*R, A=772-1155, B=369-555."),
     }
@@ -225,7 +225,7 @@ def cbr_from_dcp(dcp_mm_per_blow) -> dict:
         "equation": "CBR = 292 / DCP^1.12  (DCP in mm/blow)",
         "print_note": _DCP_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (ASTM D6951)",
-        "pdf_page": 230, "printed_page": "5-53",
+        "pdf_page_index": 230, "printed_page": "5-53",
         "note": "Feed the CBR into resilient_modulus_from_cbr to estimate Mr.",
     }
 
@@ -265,7 +265,7 @@ def resilient_modulus_from_dcp(dcp_mm_per_blow, units: str = "psi") -> dict:
         "equation": "CBR=292/DCP^1.12 (DCP in mm/blow) -> Mr=2555*CBR^0.64 (psi)",
         "print_note": _DCP_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (ASTM D6951; NCHRP 1-37A)",
-        "pdf_page": 230, "printed_page": "5-53",
+        "pdf_page_index": 230, "printed_page": "5-53",
     }
 
 
@@ -327,7 +327,7 @@ def cbr_from_plasticity_gradation(p200, pi) -> dict:
         "equation": "CBR = 75 / (1 + 0.728*wPI), wPI = P200*PI (P200 a decimal)",
         "print_note": _P200_PRINT_NOTE,
         "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
-        "pdf_page": 230, "printed_page": "5-53",
+        "pdf_page_index": 230, "printed_page": "5-53",
         "note": "Feed the CBR into resilient_modulus_from_cbr to estimate Mr.",
     }
 
@@ -377,7 +377,7 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
         "mr_psi": round(mr, 1),
         "equation": "Mr = k1 * theta^k2  (theta = sigma1+sigma2+sigma3, psi)",
         "reference": "FHWA-NHI-05-037 Eq. 5.9 (AASHTO 1993 / NCHRP 1-37A)",
-        "pdf_page": 221, "printed_page": "5-44",
+        "pdf_page_index": 221, "printed_page": "5-44",
         "note": ("Typical k1/k2 ranges for Eq. 5.9: Table 5-30 (p. 5-46); "
                  "Table 5-39 (p. 5-60) for Eq. 5.17. Suggested theta: base "
                  "Table 5-41, subbase Table 5-43."),
@@ -421,7 +421,7 @@ def seasonal_relative_damage(mr_psi) -> dict:
         "mr_psi": mr_psi, "relative_damage_uf": round(uf, 4),
         "equation": "uf = 1.18e8 * Mr^(-2.32)",
         "reference": "FHWA-NHI-05-037 Eq. 5.11 (1993 AASHTO seasonal effective Mr)",
-        "pdf_page": 223, "printed_page": "5-46",
+        "pdf_page_index": 223, "printed_page": "5-46",
         "note": ("Average uf over the seasons, then Eq. 5.12 gives the "
                  "effective design Mr: Mr = 3015 * uf_avg^(-0.431) "
                  "(effective_subgrade_modulus_from_relative_damage)."),
@@ -459,7 +459,7 @@ def effective_subgrade_modulus_from_relative_damage(uf_avg) -> dict:
         "uf_avg": uf_avg, "mr_effective_psi": round(mr, 1),
         "equation": "Mr = 3015 * uf_avg^(-0.431)  (Eq. 5.12)",
         "reference": "FHWA-NHI-05-037 Eq. 5.12 (1993 AASHTO seasonal effective Mr)",
-        "pdf_page": 223, "printed_page": "5-46",
+        "pdf_page_index": 223, "printed_page": "5-46",
     }
 
 
@@ -553,6 +553,6 @@ def backcalculated_to_design_modulus(mr_backcalculated_psi, basis: str,
         "basis": b, "layer": layer_out,
         "equation": "Mr_design = C * Mr_backcalculated",
         "reference": "FHWA-NHI-05-037 Table 5-31 commentary (see also Table 5-32)",
-        "pdf_page": 225, "printed_page": "5-48 to 5-49",
+        "pdf_page_index": 225, "printed_page": "5-48 to 5-49",
         "note": note,
     }

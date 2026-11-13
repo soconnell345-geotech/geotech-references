@@ -4,7 +4,7 @@ Digitized tables from UFC 3-250-11 (30 Nov 2020 edition). Follows the DM7/GEC
 pattern: private data with ``_TABLE_*`` prefix, public lookup functions with
 string-matched keys (``.strip().lower()`` normalization), ``ValueError`` on
 bad keys listing valid options. Page citations are the 0-based fitz page
-index of ``docs/ufc_3_250_11_2020.pdf`` (cited as ``pdf_page``) plus the
+index of ``docs/ufc_3_250_11_2020.pdf`` (cited as ``pdf_page_index``) plus the
 printed page number; ``pdf_page_index = printed_page + 7`` throughout this
 document (verified at printed pp. 1, 8, 13, 63, 69, 75).
 
@@ -18,7 +18,7 @@ from geotech_references._interpolation import _linterp
 # ============================================================================
 # Table 2-1: Minimum Unconfined Compressive Strength for Cement-, Lime-,
 # Lime-Cement-, and Lime-Cement-Fly-Ash-Stabilized Soils (printed p.10,
-# pdf_page 17). Footnote a: UCS at 7 days for cement, 28 days for lime/LF/LCF.
+# pdf_page_index 17). Footnote a: UCS at 7 days for cement, 28 days for lime/LF/LCF.
 # ============================================================================
 
 _TABLE_2_1 = {
@@ -46,7 +46,7 @@ def table_2_1_min_ucs_requirements(layer: str, pavement_type: str) -> dict:
     -------
     dict
         {'layer', 'pavement_type', 'min_ucs_psi', 'min_ucs_mpa',
-         'test_age_note', 'reference', 'pdf_page'}.
+         'test_age_note', 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -65,12 +65,12 @@ def table_2_1_min_ucs_requirements(layer: str, pavement_type: str) -> dict:
         "min_ucs_psi": row["psi"], "min_ucs_mpa": row["mpa"],
         "test_age_note": "UCS at 7 days for cement stabilization, 28 days for lime/LF/LCF stabilization",
         "reference": "UFC 3-250-11, Table 2-1, p.10",
-        "pdf_page": 17,
+        "pdf_page_index": 17,
     }
 
 
 # ============================================================================
-# Table 2-2: Durability Requirements (printed p.11, pdf_page 18)
+# Table 2-2: Durability Requirements (printed p.11, pdf_page_index 18)
 # ============================================================================
 
 _TABLE_2_2 = {
@@ -93,7 +93,7 @@ def table_2_2_durability_requirements(soil_type: str) -> dict:
     Returns
     -------
     dict
-        {'soil_type', 'max_weight_loss_pct', 'reference', 'pdf_page'}.
+        {'soil_type', 'max_weight_loss_pct', 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -107,13 +107,13 @@ def table_2_2_durability_requirements(soil_type: str) -> dict:
         "soil_type": key,
         "max_weight_loss_pct": _TABLE_2_2[key],
         "reference": "UFC 3-250-11, Table 2-2, p.11",
-        "pdf_page": 18,
+        "pdf_page_index": 18,
     }
 
 
 # ============================================================================
 # Table 2-3: Guide for Selecting a Stabilizing Additive (printed p.13,
-# pdf_page 20). Area keys correspond to Figure 2-1's gradation-triangle
+# pdf_page_index 20). Area keys correspond to Figure 2-1's gradation-triangle
 # areas (a chart read-off, catalogued for vision read-off in
 # figures_catalog.json -- NOT reproduced numerically here; the user reads
 # percent passing No. 200 and percent sand [No.4-No.200] off the triangle to
@@ -237,7 +237,7 @@ def table_2_3_additive_selection_guide(area: str) -> dict:
         the source), 'restriction_ll_pi' (raw text, numbered items align
         with 'stabilizers' list positions when multi-line), 'restriction_pass_200',
         'remark', 'footnotes' (dict of the (a)/(b)/(c) footnote texts
-        referenced by this area), 'reference', 'pdf_page'}.
+        referenced by this area), 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -258,13 +258,13 @@ def table_2_3_additive_selection_guide(area: str) -> dict:
         "footnotes": dict(_TABLE_2_3_FOOTNOTES),
         "footnote_c_note": ("The held 2020 edition prints footnote (c) of Table 2-3 (printed 13) as 'PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve', with no divisor. The form used is that of the edition it replaced, UFC 3-250-11 of 16 January 2004 (TM 5-822-14, 1994), Table 2-1 footnote b (printed 2-3): PI <= 20 + (50 - percent passing No. 200 sieve)/4. For 10 percent passing the two read 30 (used) and 60 (2020 text as printed). Use equations.equation_cement_pi_limit_table_2_3."),
         "reference": "UFC 3-250-11, Table 2-3, p.13",
-        "pdf_page": 20,
+        "pdf_page_index": 20,
     }
 
 
 # ============================================================================
 # Table 3-1: Gradation Requirements for Cement-Stabilized Base and Subbase
-# Courses (printed p.15, pdf_page 22)
+# Courses (printed p.15, pdf_page_index 22)
 # ============================================================================
 
 _TABLE_3_1 = {
@@ -312,7 +312,7 @@ def table_3_1_cement_gradation(course_type: str, sieve: str = "") -> dict:
     if not sieve:
         return {
             "course_type": ct, "gradation": dict(row),
-            "reference": "UFC 3-250-11, Table 3-1, p.15", "pdf_page": 22,
+            "reference": "UFC 3-250-11, Table 3-1, p.15", "pdf_page_index": 22,
         }
     key = sieve.strip().lower().replace(" ", "").replace(".", "").replace("inch", "in")
     key = key.replace("15in", "1.5in").replace("075in", "0.75in")
@@ -324,12 +324,12 @@ def table_3_1_cement_gradation(course_type: str, sieve: str = "") -> dict:
         "course_type": ct, "sieve": key,
         "sieve_label": _TABLE_3_1_SIEVE_LABELS[key],
         "percent_passing_range": row[key],
-        "reference": "UFC 3-250-11, Table 3-1, p.15", "pdf_page": 22,
+        "reference": "UFC 3-250-11, Table 3-1, p.15", "pdf_page_index": 22,
     }
 
 
 # ============================================================================
-# Table 3-2: Cement Requirements for Various Soils (printed p.17, pdf_page 24)
+# Table 3-2: Cement Requirements for Various Soils (printed p.17, pdf_page_index 24)
 # ============================================================================
 
 _TABLE_3_2 = {
@@ -359,7 +359,7 @@ def table_3_2_cement_content_by_soil(uscs_class: str) -> dict:
     Returns
     -------
     dict
-        {'uscs_class', 'initial_cement_content_pct', 'reference', 'pdf_page'}.
+        {'uscs_class', 'initial_cement_content_pct', 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -373,13 +373,13 @@ def table_3_2_cement_content_by_soil(uscs_class: str) -> dict:
         "uscs_class": key.upper(),
         "initial_cement_content_pct": _TABLE_3_2[key],
         "reference": "UFC 3-250-11, Table 3-2, p.17",
-        "pdf_page": 24,
+        "pdf_page_index": 24,
     }
 
 
 # ============================================================================
 # Table 3-3: Recommended Gradations for Bituminous-Stabilized Subgrade
-# Materials (printed p.25, pdf_page 32)
+# Materials (printed p.25, pdf_page_index 32)
 # ============================================================================
 
 _TABLE_3_3 = {
@@ -415,7 +415,7 @@ def table_3_3_bituminous_subgrade_gradation(sieve: str = "") -> dict:
     if not sieve:
         return {
             "gradation": dict(_TABLE_3_3),
-            "reference": "UFC 3-250-11, Table 3-3, p.25", "pdf_page": 32,
+            "reference": "UFC 3-250-11, Table 3-3, p.25", "pdf_page_index": 32,
         }
     key = sieve.strip().lower().replace(" ", "").replace("inch", "in")
     if key not in _TABLE_3_3:
@@ -423,13 +423,13 @@ def table_3_3_bituminous_subgrade_gradation(sieve: str = "") -> dict:
     return {
         "sieve": key, "sieve_label": _TABLE_3_3_SIEVE_LABELS[key],
         "percent_passing_range": _TABLE_3_3[key],
-        "reference": "UFC 3-250-11, Table 3-3, p.25", "pdf_page": 32,
+        "reference": "UFC 3-250-11, Table 3-3, p.25", "pdf_page_index": 32,
     }
 
 
 # ============================================================================
 # Table 3-4: Recommended Gradations for Bituminous-Stabilized Base and
-# Subbase Materials (printed p.25, pdf_page 32). Values are (nominal, +/-
+# Subbase Materials (printed p.25, pdf_page_index 32). Values are (nominal, +/-
 # tolerance) percent passing; "100" = exactly 100; None = not applicable
 # (max size smaller than this sieve).
 # ============================================================================
@@ -496,7 +496,7 @@ def table_3_4_bituminous_base_subbase_gradation(max_size: str, sieve: str = "") 
         return {
             "max_size": ms,
             "gradation": {s: _fmt(col[s]) for s in _SIEVE_ORDER},
-            "reference": "UFC 3-250-11, Table 3-4, p.25", "pdf_page": 32,
+            "reference": "UFC 3-250-11, Table 3-4, p.25", "pdf_page_index": 32,
         }
     key = sieve.strip().lower().replace(" ", "").replace("inch", "in")
     if key not in col:
@@ -507,12 +507,12 @@ def table_3_4_bituminous_base_subbase_gradation(max_size: str, sieve: str = "") 
         "percent_passing_nominal": None if val is None else val[0],
         "tolerance_pct": None if val is None else val[1],
         "range": _fmt(val),
-        "reference": "UFC 3-250-11, Table 3-4, p.25", "pdf_page": 32,
+        "reference": "UFC 3-250-11, Table 3-4, p.25", "pdf_page_index": 32,
     }
 
 
 # ============================================================================
-# Table 3-5: Emulsified Asphalt Requirements (printed p.27, pdf_page 34).
+# Table 3-5: Emulsified Asphalt Requirements (printed p.27, pdf_page_index 34).
 # lb of emulsified asphalt per 100 lb dry aggregate, by percent passing
 # No. 200 sieve (row, interpolated) and percent passing No. 10 sieve
 # (column, categorical: <50/60/70/80/90/100 -- no interpolation across
@@ -532,7 +532,7 @@ _TABLE_3_5_COLS = {
 
 def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percent_passing_no10) -> dict:
     """Emulsified asphalt requirement, UFC 3-250-11 Table 3-5 (printed p.27,
-    pdf_page 34); returns pounds of emulsified asphalt per 100 pounds of dry
+    pdf_page_index 34); returns pounds of emulsified asphalt per 100 pounds of dry
     aggregate (the printed kg per 45 kg is the same ratio) for a percent
     passing No. 200 of 0-25 and a percent passing No. 10 column.
 
@@ -558,7 +558,7 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
     -------
     dict
         {'percent_passing_200', 'percent_passing_no10_column',
-         'emulsified_asphalt_lb_per_100lb', 'reference', 'pdf_page'}.
+         'emulsified_asphalt_lb_per_100lb', 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -597,12 +597,12 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
         "emulsified_asphalt_lb_per_100lb": round(value, 3),
     }
     out["reference"] = "UFC 3-250-11, Table 3-5, p.27"
-    out["pdf_page"] = 34
+    out["pdf_page_index"] = 34
     return out
 
 
 # ============================================================================
-# Table 3-6: Swell Potential of Soils (printed p.30, pdf_page 37)
+# Table 3-6: Swell Potential of Soils (printed p.30, pdf_page_index 37)
 # ============================================================================
 
 # As printed (PDF 38, printed p.30): LL > 60 / PI > 35 High; LL 50-60 /
@@ -614,7 +614,7 @@ _TABLE_3_6_SEVERITY = {"low": 0, "marginal": 1, "high": 2}
 
 def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> dict:
     """Swell potential of soils, UFC 3-250-11 Table 3-6 (printed p.30,
-    pdf_page 37); returns 'high', 'marginal' or 'low' from the liquid limit
+    pdf_page_index 37); returns 'high', 'marginal' or 'low' from the liquid limit
     and plasticity index (percent).
 
     The table prints LL and PI bands together (LL > 60 and PI > 35 High;
@@ -636,7 +636,7 @@ def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> d
     dict
         {'liquid_limit', 'plasticity_index', 'll_category', 'pi_category',
          'potential_swell' (the more severe of the two), 'reference',
-         'pdf_page'}.
+         'pdf_page_index'}.
 
     Raises
     ------
@@ -664,13 +664,13 @@ def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> d
         "ll_category": ll_cat, "pi_category": pi_cat,
         "potential_swell": governing,
         "reference": "UFC 3-250-11, Table 3-6, p.30",
-        "pdf_page": 37,
+        "pdf_page_index": 37,
     }
 
 
 # ============================================================================
 # Table A-1: Equivalency Factors for Stabilized Material (printed p.63,
-# pdf_page 70). "Not used for base course material" (*) -> base=None.
+# pdf_page_index 70). "Not used for base course material" (*) -> base=None.
 # ============================================================================
 
 _TABLE_A1 = {
@@ -724,7 +724,7 @@ _A1_CLASS_MAP = {
 }
 _A1_CLASS_MAP["lime_cement_fly_ash"] = dict(_A1_CLASS_MAP["lime"])
 
-# Sec A-1.1 (printed p.63, pdf_page 70), as printed.
+# Sec A-1.1 (printed p.63, pdf_page_index 70), as printed.
 _A1_CONDITIONS = (
     "To qualify for application of equivalency factors, ensure the "
     "stabilized layer meets appropriate strength and durability requirements "
@@ -736,7 +736,7 @@ _A1_CONDITIONS = (
 
 def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     """Equivalency factors for stabilized material, UFC 3-250-11 Table A-1
-    (printed p.63, pdf_page 70); returns the base and subbase factors
+    (printed p.63, pdf_page_index 70); returns the base and subbase factors
     (dimensionless) and the two conditions Sec A-1.1 sets on using them
     (the layer meets this UFC's strength and durability requirements; the
     cement content is limited to 4 percent by weight or less).
@@ -767,7 +767,7 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     dict
         {'stabilizer_type', 'soil_class', 'soil_group', 'base_factor'
          (None if "(*) Not used for base course material"), 'subbase_factor',
-         'conditions' (Sec A-1.1, as printed), 'reference', 'pdf_page'}.
+         'conditions' (Sec A-1.1, as printed), 'reference', 'pdf_page_index'}.
 
     Raises
     ------
@@ -791,5 +791,5 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
         "base_factor": row["base"], "subbase_factor": row["subbase"],
         "conditions": list(_A1_CONDITIONS),
         "reference": "UFC 3-250-11, Table A-1, p.63",
-        "pdf_page": 70,
+        "pdf_page_index": 70,
     }

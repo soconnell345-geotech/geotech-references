@@ -82,7 +82,7 @@ class TestTable32DeleteriousMaterialLimit:
         assert r["limit_pct_mass"] == 0.5
 
     def test_footnotes_2_and_3(self):
-        # Table 3-2, UFC 3-250-04 PDF 33 (pdf_page 32), printed 15:
+        # Table 3-2, UFC 3-250-04 PDF 33 (pdf_page_index 32), printed 15:
         # footnote 2 raises the minus-No. 200 limit to 1.5 percent for
         # crushed aggregates with crusher-dust fines; footnote 3 exempts
         # blast-furnace slag coarse aggregate from the lightweight limit.
@@ -298,7 +298,7 @@ class TestDowelBarTolerances:
 # ============================================================================
 
 class TestTable91MaximumJointSpacing:
-    # Table 9-1 "Maximum Joint Spacing", UFC 3-250-04 PDF 122 (pdf_page 121),
+    # Table 9-1 "Maximum Joint Spacing", UFC 3-250-04 PDF 122 (pdf_page_index 121),
     # printed 104: < 9 in 12.5-15 ft (3.8-4.6 m), footnote 1: 10-15 ft
     # (3.0-4.6 m) for roads and parking lots; 9-12 in 15-20 ft (4.6-6 m);
     # > 12 in 20 ft (6 m). The range is a range of the MAXIMUM spacing.

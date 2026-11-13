@@ -7,7 +7,7 @@ phi*Mn) at a given load eccentricity. Covers: eccentricity ratio (Eq 4-1/
 load-contour check (Eq 4-4/4-5), and the full Appendix B derivation chain
 for singly reinforced (B-1 to B-21), doubly reinforced (B-22 to B-39),
 tension-plus-flexure (B-40 to B-48), and pure-flexure (B-49 to B-53)
-members. Printed pages per the 1 Nov 2023 edition (pdf_page = printed_page+5).
+members. Printed pages per the 1 Nov 2023 edition (pdf_page_index = printed_page+5).
 
 For the complementary DESIGN direction (given a required Mn/Pn, solve
 directly for As/As'), see ``design.py`` (Appendix D-2).
@@ -206,12 +206,12 @@ def eccentricity_ratio(mu, pu, d, h):
     -------
     dict
         {'e_prime', 'e_prime_over_d', 'equation': '4-1/4-2',
-         'printed_page': '29-30', 'pdf_page': '34-35'}
+         'printed_page': '29-30', 'pdf_page_index': [34, 35]}
     """
     e_prime = mu / pu + (d - h / 2.0)
     return {
         "e_prime": e_prime, "e_prime_over_d": e_prime / d,
-        "equation": "4-1/4-2", "printed_page": "29-30", "pdf_page": "34-35",
+        "equation": "4-1/4-2", "printed_page": "29-30", "pdf_page_index": [34, 35],
     }
 
 
@@ -237,10 +237,10 @@ def balanced_strain_kb(beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     Returns
     -------
     dict
-        {'kb', 'equation': '4-3', 'printed_page': '30', 'pdf_page': 35}
+        {'kb', 'equation': '4-3', 'printed_page': '30', 'pdf_page_index': 35}
     """
     kb = beta1 * es * ec / (es * ec + fy)
-    return {"kb": kb, "equation": "4-3", "printed_page": "30", "pdf_page": 35}
+    return {"kb": kb, "equation": "4-3", "printed_page": "30", "pdf_page_index": 35}
 
 
 def bresler_biaxial_check(mux, phi_m0x, muy, phi_m0y, member_shape="rectangular"):
@@ -272,7 +272,7 @@ def bresler_biaxial_check(mux, phi_m0x, muy, phi_m0y, member_shape="rectangular"
     -------
     dict
         {'lhs', 'k', 'adequate' (bool), 'equation': '4-5',
-         'printed_page': '33', 'pdf_page': 38}
+         'printed_page': '33', 'pdf_page_index': 38}
     """
     k = 1.5 if member_shape == "rectangular" else 1.75
     if member_shape not in ("rectangular", "square_or_circular"):
@@ -283,7 +283,7 @@ def bresler_biaxial_check(mux, phi_m0x, muy, phi_m0y, member_shape="rectangular"
     lhs = (mux / phi_m0x) ** k + (muy / phi_m0y) ** k
     return {
         "lhs": lhs, "k": k, "adequate": lhs <= 1.0, "equation": "4-5",
-        "printed_page": "33", "pdf_page": 38,
+        "printed_page": "33", "pdf_page_index": 38,
     }
 
 
@@ -315,11 +315,11 @@ def max_axial_capacity_singly(phi, fc_prime, ag, as_, fy):
     Returns
     -------
     dict
-        {'phi_pn_max', 'equation': 'B-1', 'printed_page': '42', 'pdf_page': 47}
+        {'phi_pn_max', 'equation': 'B-1', 'printed_page': '42', 'pdf_page_index': 47}
     """
     phi_pn_max = 0.8 * phi * (0.85 * fc_prime * (ag - as_) + fy * as_)
     return {"phi_pn_max": phi_pn_max, "equation": "B-1",
-            "printed_page": "42", "pdf_page": 47}
+            "printed_page": "42", "pdf_page_index": 47}
 
 
 def balanced_eccentricity_singly(kb, rho, fy, fc_prime):
@@ -348,11 +348,11 @@ def balanced_eccentricity_singly(kb, rho, fy, fc_prime):
     -------
     dict
         {'eb_prime_over_d', 'equation': 'B-10', 'printed_page': '43',
-         'pdf_page': 48}
+         'pdf_page_index': 48}
     """
     eb_over_d = (2 * kb - kb ** 2) / (2 * kb - rho * fy / (0.425 * fc_prime))
     return {"eb_prime_over_d": eb_over_d, "equation": "B-10",
-            "printed_page": "43", "pdf_page": 48}
+            "printed_page": "43", "pdf_page_index": 48}
 
 
 def tension_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime, b, d, h, phi):
@@ -405,7 +405,7 @@ def tension_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime, b, d, 
     return {
         "ku": ku, "phi_pn": phi_pn, "phi_mn": phi_mn,
         "equation": "B-11/B-13/B-16", "printed_page": "43-44",
-        "pdf_page": "48-49",
+        "pdf_page_index": [48, 49],
     }
 
 
@@ -518,7 +518,7 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
     out = {
         "ku": ku, "fs": fs, "phi_pn": phi_pn, "phi_mn": phi_mn,
         "equation": "B-17/B-18/B-19/B-21", "printed_page": "44",
-        "pdf_page": "49", "limit_governs": False,
+        "pdf_page_index": 49, "limit_governs": False,
     }
     if fs_raw >= -fy:
         return out
@@ -549,7 +549,7 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
         "ku": ku_eq, "fs": -fy, "phi_pn": phi_pn_eq,
         "phi_mn": phi_pn_eq * (e_prime_over_d - (1 - h / (2 * d))) * d,
         "equation": "B-2/B-5/B-17/B-18/B-19", "printed_page": "42-44",
-        "pdf_page": "47-49", "limit_governs": True,
+        "pdf_page_index": [47, 48, 49], "limit_governs": True,
         "ku_cubic": ku, "fs_unlimited": fs_raw, "phi_pn_cubic": phi_pn,
         "note": (
             f"Eq B-19 gives fs = {fs_raw:.4g} ksi at the root of Eq B-21 "
@@ -600,12 +600,12 @@ def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
     -------
     dict
         {'phi_pn_max', 'equation': 'B-22', 'printed_page': '45',
-         'pdf_page': 50}
+         'pdf_page_index': 50}
     """
     steel_area = (rho + rho_prime) * bd
     phi_pn_max = 0.8 * phi * (0.85 * fc_prime * (ag - steel_area) + fy * steel_area)
     return {"phi_pn_max": phi_pn_max, "equation": "B-22",
-            "printed_page": "45", "pdf_page": 50}
+            "printed_page": "45", "pdf_page_index": 50}
 
 
 def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
@@ -689,7 +689,7 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
         )
     fs_prime, note = _yield_bounded(raw, fy, "fs'", printed)
     out = {"fs_prime": fs_prime, "equation": eq,
-           "printed_page": "46-48", "pdf_page": "51-53",
+           "printed_page": "46-48", "pdf_page_index": [51, 52, 53],
            "limit_governs": note is not None}
     if note:
         out["fs_prime_unlimited"] = raw
@@ -746,7 +746,7 @@ def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
     eb_over_d = numerator / denominator
     out = {
         "eb_prime_over_d": eb_over_d, "fs_prime_at_kb": fs_prime,
-        "equation": "B-28", "printed_page": "45", "pdf_page": 50,
+        "equation": "B-28", "printed_page": "45", "pdf_page_index": 50,
         "limit_governs": fsr["limit_governs"],
     }
     if fsr["limit_governs"]:
@@ -861,7 +861,7 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     out = {
         "ku": ku, "fs_prime": fs_prime, "phi_pn": phi_pn, "phi_mn": phi_mn,
         "equation": "B-29/B-30/B-33", "printed_page": "46-47",
-        "pdf_page": "51-52", "limit_governs": False,
+        "pdf_page_index": [51, 52], "limit_governs": False,
     }
     if not fsr["limit_governs"]:
         return out
@@ -1067,7 +1067,7 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
         return {
             "ku": ku, "fs": fs, "fs_prime": fs_prime, "phi_pn": phi_pn,
             "phi_mn": phi_mn, "equation": "B-34/B-35/B-36/B-37/B-39",
-            "printed_page": "47-48", "pdf_page": "52-53",
+            "printed_page": "47-48", "pdf_page_index": [52, 53],
             "limit_governs": False,
         }
 
@@ -1122,7 +1122,7 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
         "ku": ku_eq, "fs": fs, "fs_prime": fy, "phi_pn": phi_pn,
         "phi_mn": phi_pn * (e_prime_over_d - (1 - h / (2 * d))) * d,
         "equation": "B-23/B-24/B-34/B-35/B-36", "printed_page": "45-48",
-        "pdf_page": "50-53", "limit_governs": True,
+        "pdf_page_index": [50, 51, 52, 53], "limit_governs": True,
         "ku_cubic": ku, "fs_prime_unlimited": fsp_raw,
         "phi_pn_cubic": phi_pn_cubic,
     }
@@ -1163,11 +1163,11 @@ def max_axial_tension_capacity(phi, rho, rho_prime, fy, bd):
     -------
     dict
         {'phi_pn_max', 'equation': 'B-40', 'printed_page': '48',
-         'pdf_page': 53}
+         'pdf_page_index': 53}
     """
     phi_pn_max = 0.8 * phi * (rho + rho_prime) * fy * bd
     return {"phi_pn_max": phi_pn_max, "equation": "B-40",
-            "printed_page": "48", "pdf_page": 53}
+            "printed_page": "48", "pdf_page_index": 53}
 
 
 def tension_flexure_eccentricity_range(h, d):
@@ -1197,11 +1197,11 @@ def tension_flexure_eccentricity_range(h, d):
     -------
     dict
         {'lower_bound', 'upper_bound', 'equation': 'B-41',
-         'printed_page': '48', 'pdf_page': 53}
+         'printed_page': '48', 'pdf_page_index': 53}
     """
     upper = 1 - h / (2 * d)
     return {"lower_bound": 0.0, "upper_bound": upper, "equation": "B-41",
-            "printed_page": "48", "pdf_page": 53}
+            "printed_page": "48", "pdf_page_index": 53}
 
 
 def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime):
@@ -1226,12 +1226,12 @@ def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime)
     Returns
     -------
     dict
-        {'ku', 'equation': 'B-42', 'printed_page': '50', 'pdf_page': 55}
+        {'ku', 'equation': 'B-42', 'printed_page': '50', 'pdf_page_index': 55}
     """
     term = e_prime_over_d - 1
     radicand = term ** 2 + (rho * fy / (0.425 * fc_prime)) * e_prime_over_d
     ku = -term - math.sqrt(radicand)
-    return {"ku": ku, "equation": "B-42", "printed_page": "50", "pdf_page": 55}
+    return {"ku": ku, "equation": "B-42", "printed_page": "50", "pdf_page_index": 55}
 
 
 def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
@@ -1264,7 +1264,7 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
     -------
     dict
         {'ku', 'fs_prime', 'equation': 'B-44/B-45/B-46/B-48',
-         'printed_page': '50-51', 'pdf_page': '55-56', 'note'}
+         'printed_page': '50-51', 'pdf_page_index': [55, 56], 'note'}
     """
     e = e_prime_over_d
     dpr = dprime_over_d
@@ -1274,7 +1274,7 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
     return {
         "ku": ku, "fs_prime": fs_prime,
         "equation": "B-44/B-45/B-46/B-48", "printed_page": "50-51",
-        "pdf_page": "55-56",
+        "pdf_page_index": [55, 56],
         "note": ("phi*Pn = phi*(rho*fy + rho'*fs')*b*d and "
                  "phi*Mn = phi*Pn*[(1-h/(2d)) - e'/d]*d -- multiply by the "
                  "section's b*d directly; ku and fs' above are dimensionless/"
@@ -1304,11 +1304,11 @@ def pure_tension_capacity(phi, as_, as_prime, fy):
     Returns
     -------
     dict
-        {'phi_pn', 'equation': 'B-43', 'printed_page': '50', 'pdf_page': 55}
+        {'phi_pn', 'equation': 'B-43', 'printed_page': '50', 'pdf_page_index': 55}
     """
     phi_pn = phi * (as_ + as_prime) * fy
     return {"phi_pn": phi_pn, "equation": "B-43", "printed_page": "50",
-            "pdf_page": 55}
+            "pdf_page_index": 55}
 
 
 # ============================================================================
@@ -1350,12 +1350,12 @@ def pure_flexure_singly(as_, fy, fc_prime, b, d, phi=None):
     -------
     dict
         {'a', 'mn', 'phi_mn' (if phi given), 'equation': 'B-49/B-50',
-         'printed_page': '51', 'pdf_page': 56}
+         'printed_page': '51', 'pdf_page_index': 56}
     """
     a = as_ * fy / (0.85 * fc_prime * b)
     mn = as_ * fy * (d - a / 2.0)
     out = {"a": a, "mn": mn, "equation": "B-49/B-50",
-           "printed_page": "51", "pdf_page": 56}
+           "printed_page": "51", "pdf_page_index": 56}
     if phi is not None:
         out["phi_mn"] = phi * mn
     return out
@@ -1457,7 +1457,7 @@ def pure_flexure_doubly(as_, as_prime, fc_prime, fy, b, d, dprime, beta1=None,
     out = {
         "a": a, "c": c, "fs_prime": fs_prime,
         "compression_steel_yields": yields, "mn": mn,
-        "equation": "B-51/B-52/B-53", "printed_page": "51", "pdf_page": 56,
+        "equation": "B-51/B-52/B-53", "printed_page": "51", "pdf_page_index": 56,
     }
     if phi is not None:
         out["phi_mn"] = phi * mn

@@ -26,7 +26,7 @@ from geotech_references.ufc_pavement.equations import reinforced_pavement_max_sl
 
 
 # ============================================================================
-# Table 4-1: Representative Subgrade Categories (Chapter 4, pdf_page 30,
+# Table 4-1: Representative Subgrade Categories (Chapter 4, pdf_page_index 30,
 # printed 11)
 #
 # Used for mixed-traffic calculations in lieu of a specific CBR or k value.
@@ -70,14 +70,14 @@ _TABLE_4_1 = {
 
 def table_4_1_subgrade_category(cbr) -> dict:
     """Classify subgrade strength category for mixed-traffic design
-    (Table 4-1, pdf_page 30, printed 11).
+    (Table 4-1, pdf_page_index 30, printed 11).
 
     Assigns subgrade category A-D based on CBR for use in mixed-traffic
     equivalency calculations (Chapter 4). For final single-vehicle
     thickness design use the specific CBR/k, not just the category.
 
     Verified against the guide's own printed example (Appendix G, G-1,
-    pdf_page 275): CBR = 4 -> category D, representative CBR = 3.
+    pdf_page_index 275): CBR = 4 -> category D, representative CBR = 3.
 
     Parameters
     ----------
@@ -109,14 +109,14 @@ def table_4_1_subgrade_category(cbr) -> dict:
     row = _TABLE_4_1[cat]
     return {
         "category": cat, "cbr": cbr, **row,
-        "reference": "UFC 3-250-01, Table 4-1 (pdf_page 30, printed 11)",
+        "reference": "UFC 3-250-01, Table 4-1 (pdf_page_index 30, printed 11)",
     }
 
 
 # ============================================================================
 # Table 5-1 / Table 21-2: Depth of Compaction for Select Materials and
-# Subgrades (CBR <= 20) (Chapter 5, pdf_page 33, printed 14) and Aggregate
-# Surfaces (Chapter 21, pdf_page 143, printed 124). Same structure, different
+# Subgrades (CBR <= 20) (Chapter 5, pdf_page_index 33, printed 14) and Aggregate
+# Surfaces (Chapter 21, pdf_page_index 143, printed 124). Same structure, different
 # printed values -- shared lookup helper below.
 # ============================================================================
 
@@ -126,7 +126,7 @@ _COMPACTION_ESAL_BINS = [
     15_500, 67_500, 295_000, 1_300_000, 5_700_000,
     25_000_000, 112_000_000, 500_000_000, 2_200_000_000, float("inf"),
 ]
-# Rigid column of Table 5-1 (pdf_page 33, printed 14), as printed:
+# Rigid column of Table 5-1 (pdf_page_index 33, printed 14), as printed:
 _COMPACTION_ESAL_BINS_RIGID = [
     1_300, 1_500, 34_000, 343_000, 2_100_000,
     9_200_000, 37_000_000, 105_000_000, 290_000_000, float("inf"),
@@ -146,7 +146,7 @@ _TABLE_5_1_COHESIONLESS = [
     (20, 34, 47, 59, 77),
 ]
 
-# Table 21-2 (aggregate surfaces; pdf_page 143, printed 124): cohesive soils
+# Table 21-2 (aggregate surfaces; pdf_page_index 143, printed 124): cohesive soils
 # at 100/95/90/85/80 %, cohesionless soils at 100/95/90/85 % (no 80 column).
 _TABLE_21_2_COHESIVE = [
     (2, 4, 6, 7, 9), (3, 5, 7, 9, 11), (3, 5, 8, 10, 13), (3, 6, 9, 12, 14),
@@ -192,7 +192,7 @@ def _compaction_depth_lookup(passes, density_pct, soil_type, table,
 def table_5_1_compaction_depth(passes, density_pct, soil_type,
                                pavement_type) -> dict:
     """Depth of compaction for select materials and subgrades (CBR <= 20),
-    UFC 3-250-01 Table 5-1 (pdf_page 33, printed 14); returns depth_in, the
+    UFC 3-250-01 Table 5-1 (pdf_page_index 33, printed 14); returns depth_in, the
     depth in inches from the pavement surface to which the given percent
     compaction is required, for a flexible or a rigid pavement.
 
@@ -243,13 +243,13 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type,
     return {
         "passes": passes, "density_pct": density_pct, "soil_type": key,
         "pavement_type": ptype, "depth_in": depth,
-        "reference": "UFC 3-250-01, Table 5-1 (pdf_page 33, printed 14)",
+        "reference": "UFC 3-250-01, Table 5-1 (pdf_page_index 33, printed 14)",
     }
 
 
 def table_21_2_aggregate_compaction_depth(passes, density_pct, soil_type) -> dict:
     """Compaction depth requirements for aggregate surfaces, UFC 3-250-01
-    Table 21-2 (pdf_page 143, printed 124); returns depth_in, the depth in
+    Table 21-2 (pdf_page_index 143, printed 124); returns depth_in, the depth in
     inches from the surface of the aggregate road (not the subgrade) to
     which the given percent compaction is required.
 
@@ -287,13 +287,13 @@ def table_21_2_aggregate_compaction_depth(passes, density_pct, soil_type) -> dic
     return {
         "passes": passes, "density_pct": density_pct, "soil_type": key,
         "depth_in": depth,
-        "reference": "UFC 3-250-01, Table 21-2 (pdf_page 143, printed 124)",
+        "reference": "UFC 3-250-01, Table 21-2 (pdf_page_index 143, printed 124)",
     }
 
 
 # ============================================================================
 # Table 6-1: Maximum Permissible Design Values for Subbases and Select
-# Materials (Chapter 6, pdf_page 36, printed 17)
+# Materials (Chapter 6, pdf_page_index 36, printed 17)
 # ============================================================================
 
 _TABLE_6_1 = {
@@ -329,7 +329,7 @@ _TABLE_6_1 = {
 
 def table_6_1_subbase_permissible_values(design_cbr) -> dict:
     """Maximum permissible design values for subbases/select materials
-    (Table 6-1, Chapter 6; pdf_page 36, printed 17).
+    (Table 6-1, Chapter 6; pdf_page_index 36, printed 17).
 
     Parameters
     ----------
@@ -357,13 +357,13 @@ def table_6_1_subbase_permissible_values(design_cbr) -> dict:
     row = _TABLE_6_1[key]
     return {
         "design_cbr": key, **row,
-        "reference": "UFC 3-250-01, Table 6-1 (pdf_page 36, printed 17)",
+        "reference": "UFC 3-250-01, Table 6-1 (pdf_page_index 36, printed 17)",
     }
 
 
 # ============================================================================
 # Table 7-1: Design CBR Values for Base Course Materials (Chapter 7,
-# pdf_page 39, printed 20)
+# pdf_page_index 39, printed 20)
 # ============================================================================
 
 _TABLE_7_1_BASE = {
@@ -378,7 +378,7 @@ _TABLE_7_1_BASE = {
 
 def table_7_1_base_design_cbr(material_type) -> dict:
     """Design CBR for flexible pavement base course materials (Table 7-1,
-    Chapter 7; pdf_page 39, printed 20).
+    Chapter 7; pdf_page_index 39, printed 20).
 
     Do not use laboratory CBR tests for base course materials; these values
     are assigned from service performance records.
@@ -409,13 +409,13 @@ def table_7_1_base_design_cbr(material_type) -> dict:
     row = _TABLE_7_1_BASE[key]
     return {
         "material_type": key, **row,
-        "reference": "UFC 3-250-01, Table 7-1 (pdf_page 39, printed 20)",
+        "reference": "UFC 3-250-01, Table 7-1 (pdf_page_index 39, printed 20)",
     }
 
 
 # ============================================================================
 # Table 7-2: Minimum Thickness of Flexible Pavement Sections (Chapter 7,
-# pdf_page 40, printed 21)
+# pdf_page_index 40, printed 21)
 # ============================================================================
 
 _TABLE_7_2_ESAL_BINS = [
@@ -436,7 +436,7 @@ _TABLE_7_2_CBR50 = [
 
 def table_7_2_min_thickness(esal, base_cbr) -> dict:
     """Minimum flexible pavement section thickness (Table 7-2, Chapter 7;
-    pdf_page 40, printed 21). Applies when PCASE use is mandatory.
+    pdf_page_index 40, printed 21). Applies when PCASE use is mandatory.
 
     Parameters
     ----------
@@ -488,13 +488,13 @@ def table_7_2_min_thickness(esal, base_cbr) -> dict:
             "surface treatments; use >= 3 in surface for tire pressure "
             ">= 100 psi"
         ),
-        "reference": "UFC 3-250-01, Table 7-2 (pdf_page 40, printed 21)",
+        "reference": "UFC 3-250-01, Table 7-2 (pdf_page_index 40, printed 21)",
     }
 
 
 # ============================================================================
 # Table 9-1: Equivalency Factors for Stabilized Material (Chapter 9,
-# pdf_page 46, printed 27)
+# pdf_page_index 46, printed 27)
 # ============================================================================
 
 _TABLE_9_1 = {
@@ -560,7 +560,7 @@ _STABILIZER_ALIASES = {
 
 def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dict:
     """Equivalency factor for stabilized material, UFC 3-250-01 Table 9-1
-    (pdf_page 46, printed 27); returns the factor E, the inches of
+    (pdf_page_index 46, printed 27); returns the factor E, the inches of
     conventional base or subbase that 1 in of the stabilized material
     replaces (t_stab = t_conventional / E).
 
@@ -571,7 +571,7 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
     cracking (para 9-5.1, same page).
 
     Verified against the guide's printed examples (Appendix G, G-4.1/G-4.2,
-    pdf_page 279-280): cement-stabilized base E = 1.15, subbase E = 2.30.
+    pdf_page_index 279-280): cement-stabilized base E = 1.15, subbase E = 2.30.
 
     Parameters
     ----------
@@ -636,13 +636,13 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
             f"1 in of this stabilized {layer_key} replaces {e} in of "
             "conventional material; t_stab = t_conventional / E"
         ),
-        "reference": "UFC 3-250-01, Table 9-1 (pdf_page 46, printed 27)",
+        "reference": "UFC 3-250-01, Table 9-1 (pdf_page_index 46, printed 27)",
     }
 
 
 # ============================================================================
 # Table 10-1: Modulus of Soil Reaction k (psi/in) for Rigid Pavement Design
-# (Chapter 10, pdf_page 50, printed 31)
+# (Chapter 10, pdf_page_index 50, printed 31)
 # ============================================================================
 
 _TABLE_10_1 = {
@@ -666,7 +666,7 @@ _USCS_TO_GROUP_10_1 = {
 
 def table_10_1_k_subgrade(uscs_group, moisture_pct) -> dict:
     """Typical modulus of soil reaction k for rigid pavement design
-    (Table 10-1, Chapter 10; pdf_page 50, printed 31).
+    (Table 10-1, Chapter 10; pdf_page_index 50, printed 31).
 
     Guidance values only, at 90-95% ASTM D1557 dry density; field
     plate-bearing tests are preferred for final design.
@@ -720,7 +720,7 @@ def table_10_1_k_subgrade(uscs_group, moisture_pct) -> dict:
             "if density < 90% (min 25 psi/in), max 500 psi/in if > 95%; use "
             "field plate-bearing tests for final design."
         ),
-        "reference": "UFC 3-250-01, Table 10-1 (pdf_page 50, printed 31)",
+        "reference": "UFC 3-250-01, Table 10-1 (pdf_page_index 50, printed 31)",
     }
 
 
@@ -954,7 +954,7 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
 
 # ============================================================================
 # Table 15 condition factor C for overlay design (Chapter 15, Sections
-# 15-3.2/15-3.3; pdf_page 63-64, printed 44-45)
+# 15-3.2/15-3.3; pdf_page_index 63-64, printed 44-45)
 # ============================================================================
 
 _TABLE_15_C = {
@@ -982,7 +982,7 @@ _TABLE_15_C = {
 
 def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
     """Condition factor C for rigid/flexible overlay design (Sections
-    15-3.2/15-3.3, Chapter 15; pdf_page 63-64, printed 44-45).
+    15-3.2/15-3.3, Chapter 15; pdf_page_index 63-64, printed 44-45).
 
     Parameters
     ----------
@@ -1024,14 +1024,14 @@ def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
         "description": options[c],
         "valid_values": sorted(options, reverse=True),
         "reference": (
-            "UFC 3-250-01, Section 15-3.2/15-3.3 (pdf_page 63-64, printed 44-45)"
+            "UFC 3-250-01, Section 15-3.2/15-3.3 (pdf_page_index 63-64, printed 44-45)"
         ),
     }
 
 
 # ============================================================================
 # Figure 15-1: Factor for Projecting Cracking in a Flexible Pavement
-# (Chapter 15, pdf_page 69, printed 50)
+# (Chapter 15, pdf_page_index 69, printed 50)
 #
 # CHART READ along each printed curve (pave-01, 2026-11-10). The chart is a
 # 594 x 648 px image embedded in the PDF (1-based PDF page 70); each of the
@@ -1045,7 +1045,7 @@ def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
 # 32 px gaps were cut out of traced stretches and bridged the same way;
 # linear interpolation between the tabulated points stays within 0.0034 of
 # the trace. Stated tolerance: 0.005 on F. Checks: k = 100 at 10,000,000
-# passes reads 0.930, and Appendix G G-7 (pdf_page 283, printed 264) reads
+# passes reads 0.930, and Appendix G G-7 (pdf_page_index 283, printed 264) reads
 # 0.93 for k = 100 at 20 million passes.
 # ============================================================================
 
@@ -1159,7 +1159,7 @@ _FIG_15_1_CURVES = {
 
 def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
     """Factor F for projecting cracking in a flexible pavement, UFC 3-250-01
-    Figure 15-1 (pdf_page 69, printed 50); returns F (dimensionless, 0.4-1.0).
+    Figure 15-1 (pdf_page_index 69, printed 50); returns F (dimensionless, 0.4-1.0).
 
     F projects the cracking expected in the existing rigid (base) pavement
     during the design life of a flexible overlay; it enters the overlay
@@ -1247,7 +1247,7 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
             "read along each printed curve, within 0.005 on F; k = 100 at "
             "10,000,000 passes reads 0.930 (Appendix G G-7: 0.93 at 20 "
             "million)"),
-        "reference": "UFC 3-250-01, Figure 15-1 (pdf_page 69, printed 50)",
+        "reference": "UFC 3-250-01, Figure 15-1 (pdf_page_index 69, printed 50)",
     }
     if note:
         out["note"] = note
@@ -1256,12 +1256,12 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
 
 # ============================================================================
 # Table 16-1: Allowable Spacing of Longitudinal and Transverse Contraction
-# Joints (Chapter 16, pdf_page 73, printed 54)
+# Joints (Chapter 16, pdf_page_index 73, printed 54)
 # ============================================================================
 
 def table_16_1_joint_spacing(thickness_in) -> dict:
     """Allowable spacing of longitudinal/transverse contraction joints
-    (Table 16-1, Chapter 16; pdf_page 73, printed 54).
+    (Table 16-1, Chapter 16; pdf_page_index 73, printed 54).
 
     Parameters
     ----------
@@ -1299,13 +1299,13 @@ def table_16_1_joint_spacing(thickness_in) -> dict:
             "pavements is 20 ft (6.1 m) regardless of thickness; keep "
             "length/width within 25% of each other."
         ),
-        "reference": "UFC 3-250-01, Table 16-1 (pdf_page 73, printed 54)",
+        "reference": "UFC 3-250-01, Table 16-1 (pdf_page_index 73, printed 54)",
     }
 
 
 # ============================================================================
 # Table 16-2: Dowel Size and Spacing for Construction, Contraction, and
-# Expansion Joints (Chapter 16, pdf_page 74, printed 55)
+# Expansion Joints (Chapter 16, pdf_page_index 74, printed 55)
 # ============================================================================
 
 _TABLE_16_2 = [
@@ -1317,7 +1317,7 @@ _TABLE_16_2 = [
 
 def table_16_2_dowel_size(thickness_in) -> dict:
     """Dowel size/length/spacing for construction, contraction, and
-    expansion joints (Table 16-2, Chapter 16; pdf_page 74, printed 55).
+    expansion joints (Table 16-2, Chapter 16; pdf_page_index 74, printed 55).
 
     Parameters
     ----------
@@ -1350,12 +1350,12 @@ def table_16_2_dowel_size(thickness_in) -> dict:
         row = _TABLE_16_2[2][2]
     return {
         "thickness_in": thickness_in, **row,
-        "reference": "UFC 3-250-01, Table 16-2 (pdf_page 74, printed 55)",
+        "reference": "UFC 3-250-01, Table 16-2 (pdf_page_index 74, printed 55)",
     }
 
 
 # ============================================================================
-# Figure 14-1: Reinforced Rigid Pavement Design (Chapter 14, pdf_page 60,
+# Figure 14-1: Reinforced Rigid Pavement Design (Chapter 14, pdf_page_index 60,
 # printed 41)
 #
 # The figure is a nomograph of parallel vertical scales: a straight line
@@ -1447,7 +1447,7 @@ _FIG_14_1_S_TICKS = [
 
 def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
     """Figure 14-1 (reinforced rigid pavement design nomograph, UFC
-    3-250-01 printed 41, pdf_page 60) with Eq. 17-1: the reinforced concrete
+    3-250-01 printed 41, pdf_page_index 60) with Eq. 17-1: the reinforced concrete
     pavement thickness hr (in.), the steel area As (sq in. per ft of
     width), the transverse steel percentage and the maximum slab length L
     (ft) for a plain concrete design thickness hd (in.) and a longitudinal
@@ -1560,8 +1560,8 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
             "by Eq. 17-1"
         ),
         "reference": (
-            "UFC 3-250-01, Figure 14-1 (pdf_page 60, printed 41) + Eq. 17-1 "
-            "(pdf_page 81, printed 62); checked vs. the figure's dashed "
+            "UFC 3-250-01, Figure 14-1 (pdf_page_index 60, printed 41) + Eq. 17-1 "
+            "(pdf_page_index 81, printed 62); checked vs. the figure's dashed "
             "example and Appendix G, G-6 (printed 264)"
         ),
     }
@@ -1577,7 +1577,7 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
 
 
 # ============================================================================
-# Table 19-1: Modes of Distress in Pavements (Chapter 19, pdf_page 87,
+# Table 19-1: Modes of Distress in Pavements (Chapter 19, pdf_page_index 87,
 # printed 68) -- descriptive lookup, no numeric design value.
 # ============================================================================
 
@@ -1598,7 +1598,7 @@ _TABLE_19_1 = {
 
 def table_19_1_distress_modes(distress_mode) -> dict:
     """Modes of distress in pavements and their causative factors
-    (Table 19-1, Chapter 19; pdf_page 87, printed 68). Descriptive lookup
+    (Table 19-1, Chapter 19; pdf_page_index 87, printed 68). Descriptive lookup
     (no numeric design value).
 
     Parameters
@@ -1623,15 +1623,15 @@ def table_19_1_distress_modes(distress_mode) -> dict:
         )
     return {
         "distress_mode": key, **_TABLE_19_1[key],
-        "reference": "UFC 3-250-01, Table 19-1 (pdf_page 87, printed 68)",
+        "reference": "UFC 3-250-01, Table 19-1 (pdf_page_index 87, printed 68)",
     }
 
 
 # ============================================================================
-# Table 19-2: Frost Design Soil Classification (Chapter 19, pdf_page 89,
+# Table 19-2: Frost Design Soil Classification (Chapter 19, pdf_page_index 89,
 # printed 70). The rows as printed: frost group, subgroup, kind of soil,
 # percentage finer than 0.02 mm by weight, and the typical USCS types.
-# Para 19-2 (pdf_page 86, printed 67): "For frost design purposes, soils
+# Para 19-2 (pdf_page_index 86, printed 67): "For frost design purposes, soils
 # are divided into eight groups as shown in Table 19-2", listed in about the
 # order of increasing susceptibility to frost heave.
 # ============================================================================
@@ -1658,7 +1658,7 @@ _TABLE_19_2_ROWS = (
     ("F4", "d", "Varved clays and other fine-grained, banded sediments",
      None, ("CL", "CL-ML")),
 )
-# Table 20-2 (Chapter 20's drainage table, para 20-3.3.4; pdf_page 124,
+# Table 20-2 (Chapter 20's drainage table, para 20-3.3.4; pdf_page_index 124,
 # printed 105) prints these dual symbols that Table 19-2 does not. They are
 # named in the refusal, never used to classify.
 _TABLE_20_2_EXTRA_ROWS = (
@@ -1674,9 +1674,9 @@ _TABLE_20_2_EXTRA_ROWS = (
 # order) as GM-GC, SM-SC and ML-CL.
 _USCS_ORDER_ALIASES = {"GC-GM": "GM-GC", "SC-SM": "SM-SC", "ML-CL": "CL-ML"}
 _FROST_GROUPS = ("NFS", "PFS", "S1", "S2", "F1", "F2", "F3", "F4")
-_TABLE_19_2_REF = "UFC 3-250-01, Table 19-2 (pdf_page 89, printed 70)"
-_TABLE_20_2_REF = "UFC 3-250-01, Table 20-2 (pdf_page 124, printed 105)"
-_PARA_19_2_2_REF = "UFC 3-250-01, para 19-2.2 (pdf_page 87, printed 68)"
+_TABLE_19_2_REF = "UFC 3-250-01, Table 19-2 (pdf_page_index 89, printed 70)"
+_TABLE_20_2_REF = "UFC 3-250-01, Table 20-2 (pdf_page_index 124, printed 105)"
+_PARA_19_2_2_REF = "UFC 3-250-01, para 19-2.2 (pdf_page_index 87, printed 68)"
 
 
 def _t192_range_text(rng):
@@ -1692,7 +1692,7 @@ def _t192_label(row):
 
 def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
                                     frost_group=None) -> dict:
-    """Frost design soil classification (Table 19-2, Chapter 19; pdf_page 89,
+    """Frost design soil classification (Table 19-2, Chapter 19; pdf_page_index 89,
     printed 70), as printed.
 
     Groups NFS, PFS, S1, S2 and F1-F4. Each row prints a kind of soil, a
@@ -1715,7 +1715,7 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
     - CL: F3 (c) "Clays, PI > 12"; F4 (c) also prints "Clays, PI > 12" for
       CL and CL-ML, and F4 (d) varved clays. All take index 3.5.
     - GC at 20 % or less, SC at 15 % or less, or either without a
-      percentage: not in a row of the table; para 19-2.2 (pdf_page 87,
+      percentage: not in a row of the table; para 19-2.2 (pdf_page_index 87,
       printed 68) says "Occasionally, GC or SC materials may occur within
       the F2 group, although they normally fall into the F3 category", so
       F3 is returned with ``listed_in_table`` False.
@@ -1736,7 +1736,7 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
     frost_group : str, optional
         A frost group set by other means (a laboratory frost test, as
         footnote *** asks for PFS soils, or the Government Civil
-        Engineer's classification, para 19-2.4, pdf_page 89, printed 70).
+        Engineer's classification, para 19-2.4, pdf_page_index 89, printed 70).
         When given it is returned as the group, with a note; the table is
         not consulted.
 
@@ -1787,7 +1787,7 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
             raise ValueError(
                 f"Table 19-2, the frost design table (para 19-2), does not "
                 f"list {sym}. Table 20-2, Chapter 20's drainage table (para "
-                f"20-3.3.4, pdf_page 124, printed 105), prints it under "
+                f"20-3.3.4, pdf_page_index 124, printed 105), prints it under "
                 f"{printed}, but it is not the frost design "
                 f"classification. {lab}"
             )
@@ -1819,7 +1819,7 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
                     description=(f"{sym}: normally F3 (para 19-2.2); not in "
                                  "a row of Table 19-2 at this percentage"),
                     listed_in_table=False, also_printed=["F2"],
-                    note=(f"{why} Para 19-2.2 (pdf_page 87, printed 68): "
+                    note=(f"{why} Para 19-2.2 (pdf_page_index 87, printed 68): "
                           "\"Occasionally, GC or SC materials may occur "
                           "within the F2 group, although they normally fall "
                           "into the F3 category.\" F3 is returned. "
@@ -1897,12 +1897,12 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
 
 # ============================================================================
 # Table 19-3: Frost-Area Soil Support Indexes for Subgrade Soils, Flexible
-# Pavement Design (Chapter 19, pdf_page 99, printed 80)
+# Pavement Design (Chapter 19, pdf_page_index 99, printed 80)
 # ============================================================================
 
 def table_19_3_frost_support_index(frost_group) -> dict:
     """Frost-area soil support index for flexible pavement design
-    (Table 19-3, Chapter 19; pdf_page 99, printed 80).
+    (Table 19-3, Chapter 19; pdf_page_index 99, printed 80).
 
     Used as if it were a CBR value when entering the Appendix E design
     curves for the reduced subgrade strength method; not measurable by CBR
@@ -1944,13 +1944,13 @@ def table_19_3_frost_support_index(frost_group) -> dict:
             "subgrade strength method; weighted annual average, not "
             "measurable by CBR test."
         ),
-        "reference": "UFC 3-250-01, Table 19-3 (pdf_page 99, printed 80)",
+        "reference": "UFC 3-250-01, Table 19-3 (pdf_page_index 99, printed 80)",
     }
 
 
 # ============================================================================
 # Figure 19-5: Design Depth of Non-frost Susceptible Base for Limited
-# Subgrade Frost Penetration (Chapter 19, pdf_page 98, printed 79)
+# Subgrade Frost Penetration (Chapter 19, pdf_page_index 98, printed 79)
 #
 # Para 19-5.3 (printed 74-75): c = a - p; r = water content of subgrade /
 # water content of base; "Enter Figure 19-5 with C as the abscissa and, at
@@ -1970,7 +1970,7 @@ def table_19_3_frost_support_index(frost_group) -> dict:
 #
 # Checked against the three printed reads: the figure's own example (c =
 # 32 in, r = 2.0 -> "B = 21", "S = 5.2"; read 21.1 and 5.3) and G-8.11
-# (pdf_page 286, printed 267: r = 3, c = 38.5 -> b = 22 in, "about 5.5 in"
+# (pdf_page_index 286, printed 267: r = 3, c = 38.5 -> b = 22 in, "about 5.5 in"
 # into the subgrade; read 21.8 and 5.4). G-8.9 (same page: r = 3, c = 42)
 # prints b = 26 in with "about 6 in" into the subgrade; the r = 3.0 line
 # reads 23.8 in and s 5.9 in, and 26 in would give s = 6.5 in, so the
@@ -1989,7 +1989,7 @@ _FIG_19_5_C_MAX = 80.0   # the chart's right frame
 
 def figure_19_5_design_base_thickness(c_in, r) -> dict:
     """Design NFS base thickness for the limited subgrade frost penetration
-    method (Figure 19-5, Chapter 19; pdf_page 98, printed 79), read off the
+    method (Figure 19-5, Chapter 19; pdf_page_index 98, printed 79), read off the
     drawn r lines (see the section note above).
 
         b = m(r) * c + q(r)  (each drawn line);  s = b / 4
@@ -2045,7 +2045,7 @@ def figure_19_5_design_base_thickness(c_in, r) -> dict:
         "chart_read": True,
         "method": ("the drawn r lines read off the print (straight-line "
                    "fits, 0.07-0.11 in rms); linear in r between lines"),
-        "reference": "UFC 3-250-01, Figure 19-5 (pdf_page 98, printed 79)",
+        "reference": "UFC 3-250-01, Figure 19-5 (pdf_page_index 98, printed 79)",
     }
     if note:
         out["note"] = note
@@ -2054,7 +2054,7 @@ def figure_19_5_design_base_thickness(c_in, r) -> dict:
 
 # ============================================================================
 # Figure 19-6: Frost-Area Index of Reaction for Design of Rigid Roads and
-# Parking Areas (Chapter 19, pdf_page 101, printed 82)
+# Parking Areas (Chapter 19, pdf_page_index 101, printed 82)
 #
 # Three straight lines (F1 and S1, F2 and S2, F3 and F4) of frost-area
 # index of reaction (psi/in, left scale; MN/m2/m on the right) against
@@ -2066,7 +2066,7 @@ def figure_19_5_design_base_thickness(c_in, r) -> dict:
 # the frame, which the 5 in gridlines confirm within 0.08 in) and fitted as
 # k = m*t + q: residual 0.2-0.3 psi/in rms, under 1.5 at worst. F1 and S1
 # leaves through the top (400 psi/in) at 36.5 in, F2 and S2 at 49.8 in.
-# Checked against G-8.12 (pdf_page 287, printed 268): F3 and F4 under 8 in
+# Checked against G-8.12 (pdf_page_index 287, printed 268): F3 and F4 under 8 in
 # of base -> 50 psi/in (read 49.5).
 # ============================================================================
 
@@ -2083,7 +2083,7 @@ _FIG_19_6_T_MIN = 4.0
 
 def figure_19_6_frost_area_index_of_reaction(base_thickness_in, frost_group) -> dict:
     """Frost-area index of reaction for rigid pavement design in frost areas
-    (Figure 19-6, Chapter 19; pdf_page 101, printed 82), read off the three
+    (Figure 19-6, Chapter 19; pdf_page_index 101, printed 82), read off the three
     drawn lines (see the section note above). Para 19-6.2 (printed 81): used
     "as if they were moduli of reaction, k, and have the same units".
 
@@ -2132,15 +2132,15 @@ def figure_19_6_frost_area_index_of_reaction(base_thickness_in, frost_group) -> 
         "index_of_reaction_kPa_mm": round(k * 0.271, 1),
         "chart_read": True,
         "reference": (
-            "UFC 3-250-01, Figure 19-6 (pdf_page 101, printed 82); checked "
-            "against Appendix G, G-8.12 (pdf_page 287, printed 268)"
+            "UFC 3-250-01, Figure 19-6 (pdf_page_index 101, printed 82); checked "
+            "against Appendix G, G-8.12 (pdf_page_index 287, printed 268)"
         ),
     }
 
 
 # ============================================================================
 # Table 20-1: Coefficient of Permeability for Sand and Gravel Materials
-# (Chapter 20, pdf_page 113, printed 94)
+# (Chapter 20, pdf_page_index 113, printed 94)
 # ============================================================================
 
 _TABLE_20_1 = [
@@ -2151,7 +2151,7 @@ _TABLE_20_1 = [
 
 def table_20_1_permeability_estimate(pct_passing_no200) -> dict:
     """Estimated permeability of sand/gravel drainage material vs. percent
-    passing the No. 200 sieve (Table 20-1, Chapter 20; pdf_page 113, printed
+    passing the No. 200 sieve (Table 20-1, Chapter 20; pdf_page_index 113, printed
     94).
 
     Parameters
@@ -2177,7 +2177,7 @@ def table_20_1_permeability_estimate(pct_passing_no200) -> dict:
                 "pct_passing_no200": pct_passing_no200,
                 "permeability_mm_per_sec": mm_s,
                 "permeability_ft_per_min": ft_min,
-                "reference": "UFC 3-250-01, Table 20-1 (pdf_page 113, printed 94)",
+                "reference": "UFC 3-250-01, Table 20-1 (pdf_page_index 113, printed 94)",
             }
     raise ValueError(
         f"pct_passing_no200 must be one of {[p for p, _, _ in _TABLE_20_1]}, "
@@ -2186,7 +2186,7 @@ def table_20_1_permeability_estimate(pct_passing_no200) -> dict:
 
 
 # ============================================================================
-# Table 20-2: Frost Susceptible Soils (Chapter 20, pdf_page 124, printed
+# Table 20-2: Frost Susceptible Soils (Chapter 20, pdf_page_index 124, printed
 # 105) -- Chapter 20's own printed frost-group table (distinct in coverage
 # from Table 19-2: does not enumerate NFS/PFS/S1/S2, only F1-F4).
 # ============================================================================
@@ -2214,7 +2214,7 @@ _TABLE_20_2 = {
 
 def table_20_2_frost_susceptible_soils(frost_group) -> dict:
     """Frost susceptible soil groups per Chapter 20's own printed table
-    (Table 20-2; pdf_page 124, printed 105).
+    (Table 20-2; pdf_page_index 124, printed 105).
 
     Parameters
     ----------
@@ -2245,13 +2245,13 @@ def table_20_2_frost_susceptible_soils(frost_group) -> dict:
         )
     return {
         "frost_group": key, **_TABLE_20_2[key],
-        "reference": "UFC 3-250-01, Table 20-2 (pdf_page 124, printed 105)",
+        "reference": "UFC 3-250-01, Table 20-2 (pdf_page_index 124, printed 105)",
     }
 
 
 # ============================================================================
 # Table 20-8: Coefficient of Roughness for Different Types of Pipe
-# (Chapter 20, pdf_page 135, printed 116)
+# (Chapter 20, pdf_page_index 135, printed 116)
 # ============================================================================
 
 _TABLE_20_8 = {
@@ -2262,7 +2262,7 @@ _TABLE_20_8 = {
 
 def table_20_8_pipe_roughness(pipe_type) -> dict:
     """Manning roughness coefficient by pipe material (Table 20-8, Chapter
-    20; pdf_page 135, printed 116). For use with ``pipe_capacity_manning``.
+    20; pdf_page_index 135, printed 116). For use with ``pipe_capacity_manning``.
 
     Parameters
     ----------
@@ -2287,13 +2287,13 @@ def table_20_8_pipe_roughness(pipe_type) -> dict:
         )
     return {
         "pipe_type": key, "n": _TABLE_20_8[key],
-        "reference": "UFC 3-250-01, Table 20-8 (pdf_page 135, printed 116)",
+        "reference": "UFC 3-250-01, Table 20-8 (pdf_page_index 135, printed 116)",
     }
 
 
 # ============================================================================
 # Table 21-1: Gradation for Aggregate Surface Courses (Chapter 21,
-# pdf_page 140, printed 121)
+# pdf_page_index 140, printed 121)
 # ============================================================================
 
 _TABLE_21_1 = {
@@ -2306,7 +2306,7 @@ _TABLE_21_1 = {
 
 def table_21_1_aggregate_gradation(gradation_no) -> dict:
     """Gradation limits for aggregate surface courses (Table 21-1,
-    Chapter 21; pdf_page 140, printed 121). Percent passing ranges
+    Chapter 21; pdf_page_index 140, printed 121). Percent passing ranges
     (min, max) by sieve; percent finer than 0.02 mm must not exceed 3%
     (printed note).
 
@@ -2332,13 +2332,13 @@ def table_21_1_aggregate_gradation(gradation_no) -> dict:
         "gradation_no": int(gradation_no),
         "pct_passing": _TABLE_21_1[key],
         "note": "Percent finer than 0.02 mm must not exceed 3%.",
-        "reference": "UFC 3-250-01, Table 21-1 (pdf_page 140, printed 121)",
+        "reference": "UFC 3-250-01, Table 21-1 (pdf_page_index 140, printed 121)",
     }
 
 
 # ============================================================================
 # Figure E-1: Single Axle, Dual-Tire Load, Flexible Pavement Design Curve
-# (Appendix E, pdf_page 211, printed 192) -- the general-purpose 18-kip ESAL
+# (Appendix E, pdf_page_index 211, printed 192) -- the general-purpose 18-kip ESAL
 # design curve used throughout the guide's own worked examples.
 #
 # CHART READ off the printed curves (REF-58, from the GM-298 read of
@@ -2352,10 +2352,10 @@ def table_21_1_aggregate_gradation(gradation_no) -> dict:
 # linear in log(passes) between curves.
 #
 # Checked against every Figure E-1 read printed in Appendix G: G-1
-# (pdf_page 275, printed 256) CBR 3 at 1,000,000 passes 16.4 in (read
+# (pdf_page_index 275, printed 256) CBR 3 at 1,000,000 passes 16.4 in (read
 # 16.4) and CBR 4 at 1,395,400 passes 14 in (13.9); G-3 (pdf_pages
 # 277-279, printed 258-260) at 5,000,000 passes CBR 10 7.8 in (7.8), CBR 7
-# 9.8 (9.8), CBR 4 14.5 (14.5), CBR 25 3.4 (3.4). G-8.10 (pdf_page 286,
+# 9.8 (9.8), CBR 4 14.5 (14.5), CBR 25 3.4 (3.4). G-8.10 (pdf_page_index 286,
 # printed 267) says CBR 3.5 at 1,200,000 passes gives 16 in; the curves
 # give 15.1 there.
 # ============================================================================
@@ -2409,7 +2409,7 @@ def _fig_e1_on_curve(passes, cbr):
 
 def figure_e1_flexible_thickness(cbr, passes) -> dict:
     """Required thickness of cover (in) above a layer of this CBR, for an
-    18,000-lb single-axle dual-tire ESAL (Figure E-1, Appendix E; pdf_page
+    18,000-lb single-axle dual-tire ESAL (Figure E-1, Appendix E; pdf_page_index
     211, printed 192), read along the printed curves (see the section note
     above).
 
@@ -2469,7 +2469,7 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
             "read along each printed curve (about 0.05 in a pixel); every "
             "Appendix G read of it (G-1, G-3) reproduced within 0.1 in; "
             "interpolated in log(passes) between curves"),
-        "reference": "UFC 3-250-01, Figure E-1 (pdf_page 211, printed 192)",
+        "reference": "UFC 3-250-01, Figure E-1 (pdf_page_index 211, printed 192)",
     }
     if thickness <= 0.0:
         out["note"] = (
@@ -2481,7 +2481,7 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
 
 # ============================================================================
 # Figures E-2 to E-31: the flexible design curves of the thirty vehicles in
-# Appendix E (pdf_page 210 + N for Figure E-N, printed 191 + N). Each chart
+# Appendix E (pdf_page_index 210 + N for Figure E-N, printed 191 + N). Each chart
 # gives the thickness of cover above a layer of a given CBR for four or
 # five pass levels of one vehicle, on a log CBR axis from 1 to 100, and
 # prints its own curve legend and gross weight.
@@ -2510,7 +2510,7 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
 # throughout (up to 7 and 11 in thin), and Figure E-15's frame top is 15 in
 # (the 14 in gridline sits below it), not 14.
 #
-# Checked against Appendix G, Table G-1 (pdf_page 276, printed 257), at
+# Checked against Appendix G, Table G-1 (pdf_page_index 276, printed 257), at
 # CBR 3: the 5-axle truck at 100,000 passes reads 15.6 in (printed 15.8),
 # the 3-axle truck at 500,000 reads 12.7 (12.8), the passenger car at
 # 20,000,000 reads 6.1 by extrapolating past its 10,000,000 curve (6.1; the
@@ -3457,7 +3457,7 @@ _VEHICLES_E = {v["key"]: fig for fig, v in _FIGURES_E.items()}
 
 def _figure_e_ref(fig):
     n = int(fig.split("-")[1])
-    return (f"UFC 3-250-01, Figure {fig} (pdf_page {210 + n}, "
+    return (f"UFC 3-250-01, Figure {fig} (pdf_page_index {210 + n}, "
             f"printed {191 + n})")
 
 
@@ -3714,9 +3714,9 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
 
 # ============================================================================
 # Figure F-1: Rigid Pavement Design Curve -- Single Axle, Dual Tire Load
-# (Appendix F; pdf_page 243, printed 224). CHART READ off the print.
+# (Appendix F; pdf_page_index 243, printed 224). CHART READ off the print.
 #
-# Worked as para 13-3 (pdf_page 56, printed 37) says: from the 28-day
+# Worked as para 13-3 (pdf_page_index 56, printed 37) says: from the 28-day
 # flexural strength across to the k curve, down (or up) to the pass-level
 # line, across to the thickness scale.
 #
@@ -3732,8 +3732,8 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
 # in log(passes).
 #
 # Checked against every Figure F-1 read printed in Appendix G: G-7
-# (pdf_page 283, printed 264) 650 psi, k 100, 20,000,000 passes 8.1 in
-# (read 8.1); G-8.11 (pdf_page 286, printed 267) 650 psi, k 325, 1,200,000
+# (pdf_page_index 283, printed 264) 650 psi, k 100, 20,000,000 passes 8.1 in
+# (read 8.1); G-8.11 (pdf_page_index 286, printed 267) 650 psi, k 325, 1,200,000
 # passes 6.3 in (6.3); G-8.12 (pdf_pages 286-287) 650 psi, k 50, 1,200,000
 # passes "a pavement slab 8 in thick" (7.8, 8 in once rounded up).
 # ============================================================================
@@ -3741,7 +3741,7 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
 _FIG_F1_Y1000, _FIG_F1_Y100 = 51.0, 660.0
 _FIG_F1_PX_T = (_FIG_F1_Y100 - _FIG_F1_Y1000) / 8.0   # px per inch
 _FIG_F1_R_STEP = 25.0
-_FIG_F1_K_MAX = 500.0   # Table 10-1 note 2 (pdf_page 50, printed 31): "a k
+_FIG_F1_K_MAX = 500.0   # Table 10-1 note 2 (pdf_page_index 50, printed 31): "a k
 #                         of 500 psi/in will be the maximum used for design"
 
 # k (pci) -> x (chart px) of the k curve at R = 1000, 975, ... psi, down to
@@ -3807,7 +3807,7 @@ def _fig_f1_bracket(values, v):
 
 def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
     """Required plain-concrete slab thickness (in) for an 18,000-lb
-    single-axle dual-tire load (Figure F-1, Appendix F; pdf_page 243,
+    single-axle dual-tire load (Figure F-1, Appendix F; pdf_page_index 243,
     printed 224), read off the printed chart as para 13-3 works it (see
     the section note above).
 
@@ -3854,7 +3854,7 @@ def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
     if k > _FIG_F1_K_MAX:
         notes.append(
             f"k {k_psi_in:g} pci taken as {_FIG_F1_K_MAX:g} pci, the maximum "
-            "used for design (Table 10-1 note 2, pdf_page 50, printed 31).")
+            "used for design (Table 10-1 note 2, pdf_page_index 50, printed 31).")
         k = _FIG_F1_K_MAX
     if flexural_psi is None or not 100.0 <= flexural_psi <= 1000.0:
         raise ValueError(
@@ -3902,7 +3902,7 @@ def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
     if below:
         notes.append(
             f"Figure F-1 reads {t:.1f} in, under its 4 in scale; 4.0 is "
-            "returned (the 6 in minimum slab of para 13-3, pdf_page 56, "
+            "returned (the 6 in minimum slab of para 13-3, pdf_page_index 56, "
             "printed 37, governs).")
         t = 4.0
     out = {
@@ -3915,7 +3915,7 @@ def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
             "every Appendix G read of it (G-7, G-8.11, G-8.12) reproduced; "
             "interpolated in log(k) and log(passes) between the drawn "
             "curves and lines"),
-        "reference": "UFC 3-250-01, Figure F-1 (pdf_page 243, printed 224)",
+        "reference": "UFC 3-250-01, Figure F-1 (pdf_page_index 243, printed 224)",
     }
     if notes:
         out["note"] = " ".join(notes)

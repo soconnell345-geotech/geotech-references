@@ -20,13 +20,13 @@ Units follow the source document, which is SI-primary with US-customary given
 parenthetically (mm, L/m2, degrees C); every function returns BOTH the SI and
 the US-customary value so callers can use either.
 
-NOTE ON TABLE NUMBERING: the printed "List of Tables" (front matter, pdf_page
+NOTE ON TABLE NUMBERING: the printed "List of Tables" (front matter, pdf_page_index
 11) and the in-body table captions disagree for Tables 2-13 through 2-16 --
 the body actually presents Table 2-13 = "Properties of Cellulose Fibers"
-(pdf_page 65, printed p.52), Table 2-14 = "Properties of Mineral Fibers"
-(pdf_page 66, printed p.53), Table 2-15 = "SMA Gradation Guideline" (pdf_page
+(pdf_page_index 65, printed p.52), Table 2-14 = "Properties of Mineral Fibers"
+(pdf_page_index 66, printed p.53), Table 2-15 = "SMA Gradation Guideline" (pdf_page_index
 70, printed p.57), Table 2-16 = "Recommended SMA Coarse and Fine Aggregate
-Properties" (pdf_page 71, printed p.58) -- the reverse of what the front-matter
+Properties" (pdf_page_index 71, printed p.58) -- the reverse of what the front-matter
 List of Tables claims. This module cites the IN-BODY (authoritative) numbering
 throughout.
 """
@@ -34,7 +34,7 @@ throughout.
 
 # ============================================================================
 # Table 2-1: Aggregate Gradations for HMA Pavements
-# (Section 2-1.2; pdf_page 17, printed p.4)
+# (Section 2-1.2; pdf_page_index 17, printed p.4)
 # ============================================================================
 
 _TABLE_2_1_SIEVES_MM = [25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.60, 0.30, 0.15, 0.075]
@@ -96,7 +96,7 @@ def table_2_1_gradation_hma(gradation, sieve_mm=None) -> dict:
             f"Unknown gradation '{gradation}'. Use: {', '.join(_TABLE_2_1)}"
         )
     row = _TABLE_2_1[key]
-    ref = "UFC 3-250-03, Table 2-1 (pdf_page 17, printed p.4)"
+    ref = "UFC 3-250-03, Table 2-1 (pdf_page_index 17, printed p.4)"
     if sieve_mm is None:
         return {
             "gradation": key, "nominal_max_size_mm": row["nominal_max_size_mm"],
@@ -131,7 +131,7 @@ def table_2_1_gradation_hma(gradation, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 2-3: Asphalt Binder Base Grade Selection Criteria Based on Pavement
-# Temperature Index (PTI) (Section 2-3.1.4.1; pdf_page 29, printed p.16)
+# Temperature Index (PTI) (Section 2-3.1.4.1; pdf_page_index 29, printed p.16)
 # ============================================================================
 
 _TABLE_2_3 = [
@@ -174,14 +174,14 @@ def table_2_3_asphalt_grade_by_pti(pti_c) -> dict:
                 "pti_c": pti_c, "pti_f": round(pti_f, 1),
                 "temperature_region": region,
                 "asphalt_cement_selection_criteria": criteria,
-                "reference": "UFC 3-250-03, Table 2-3 (pdf_page 29, printed p.16)",
+                "reference": "UFC 3-250-03, Table 2-3 (pdf_page_index 29, printed p.16)",
             }
     raise AssertionError("unreachable")  # pragma: no cover
 
 
 # ============================================================================
 # Table 2-5: Asphalt Cement Selection Criteria Based on Design Air-Freezing
-# Index (DFI) (Section 2-3.1.4.3; pdf_page 32, printed p.19)
+# Index (DFI) (Section 2-3.1.4.3; pdf_page_index 32, printed p.19)
 # ============================================================================
 
 
@@ -221,13 +221,13 @@ def table_2_5_asphalt_grade_by_freezing_index(dfi_c) -> dict:
         "dfi_c": dfi_c, "dfi_f": round(dfi_f, 1),
         "temperature_region": region,
         "asphalt_cement_selection_criteria": criteria,
-        "reference": "UFC 3-250-03, Table 2-5 (pdf_page 32, printed p.19)",
+        "reference": "UFC 3-250-03, Table 2-5 (pdf_page_index 32, printed p.19)",
     }
 
 
 # ============================================================================
 # Table 2-7: Minimum Percent Voids in Mineral Aggregate (VMA)
-# (Section 2-4.2.6/2-4.2.10; pdf_page 49, printed p.36)
+# (Section 2-4.2.6/2-4.2.10; pdf_page_index 49, printed p.36)
 # ============================================================================
 
 _TABLE_2_7 = {
@@ -271,14 +271,14 @@ def table_2_7_minimum_vma(gradation) -> dict:
     row = _TABLE_2_7[key]
     return {
         "gradation": key, **row,
-        "reference": "UFC 3-250-03, Table 2-7 (pdf_page 49, printed p.36)",
+        "reference": "UFC 3-250-03, Table 2-7 (pdf_page_index 49, printed p.36)",
     }
 
 
 # ============================================================================
 # Table 2-8: Design Criteria (Marshall mix design -- optimum-AC determination
 # and mix-acceptability criteria, by mix type and compaction level)
-# (Section 2-4.2.6/2-4.2.10; pdf_page 52, printed p.39)
+# (Section 2-4.2.6/2-4.2.10; pdf_page_index 52, printed p.39)
 # ============================================================================
 
 # Section 2: acceptability criteria. Section 1 (procedure for determining
@@ -337,7 +337,7 @@ _TABLE_2_8 = {
 
 def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> dict:
     """Design criteria for HMA and sand asphalt by mix type and compaction,
-    UFC 3-250-03 Table 2-8 (pdf_page 52, printed p.39); returns Section 2's
+    UFC 3-250-03 Table 2-8 (pdf_page_index 52, printed p.39); returns Section 2's
     mix-acceptability criteria (stability, flow, VTM, VMA, VFA) and
     Section 1's percent VTM for determining the optimum asphalt content.
 
@@ -384,7 +384,7 @@ def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> d
             f"{sorted(_TABLE_2_8.keys())}"
         )
     row = _TABLE_2_8[key]
-    ref = "UFC 3-250-03, Table 2-8 (pdf_page 52, printed p.39)"
+    ref = "UFC 3-250-03, Table 2-8 (pdf_page_index 52, printed p.39)"
     if property is None:
         out = {"mix_type": mt, "compaction": cp, **row, "reference": ref}
         return out
@@ -409,7 +409,7 @@ def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> d
 
 # ============================================================================
 # Table 2-12: Aggregate Gradation for PFCs (Porous Friction Course)
-# (Section 2-5.1.1; pdf_page 64, printed p.51)
+# (Section 2-5.1.1; pdf_page_index 64, printed p.51)
 # ============================================================================
 
 _TABLE_2_12_SIEVES_MM = [19.0, 12.5, 9.5, 4.75, 2.36, 0.60, 0.075]
@@ -458,7 +458,7 @@ def table_2_12_pfc_gradation(gradation, sieve_mm=None) -> dict:
             f"Unknown gradation '{gradation}'. Use: {', '.join(_TABLE_2_12)}"
         )
     row = _TABLE_2_12[key]
-    ref = "UFC 3-250-03, Table 2-12 (pdf_page 64, printed p.51)"
+    ref = "UFC 3-250-03, Table 2-12 (pdf_page_index 64, printed p.51)"
     if sieve_mm is None:
         return {
             "gradation": key, "nominal_max_size_mm": row["nominal_max_size_mm"],
@@ -488,7 +488,7 @@ def table_2_12_pfc_gradation(gradation, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 2-15 (in-body numbering): SMA Gradation Guideline
-# (Section 2-6.1.1; pdf_page 70, printed p.57)
+# (Section 2-6.1.1; pdf_page_index 70, printed p.57)
 # ============================================================================
 
 _TABLE_2_15_SIEVES_MM = [19.0, 12.7, 9.5, 4.75, 2.36, 0.60, 0.30, 0.075]
@@ -520,7 +520,7 @@ def table_2_15_sma_gradation(sieve_mm=None) -> dict:
     ValueError
         If sieve_mm is not a tabulated size.
     """
-    ref = "UFC 3-250-03, Table 2-15 (pdf_page 70, printed p.57)"
+    ref = "UFC 3-250-03, Table 2-15 (pdf_page_index 70, printed p.57)"
     if sieve_mm is None:
         return {
             "bands": [
@@ -546,7 +546,7 @@ def table_2_15_sma_gradation(sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 2-17: SMA Mix Design Requirements (after NAPA 1995)
-# (Section 2-6.2.2; pdf_page 72, printed p.59)
+# (Section 2-6.2.2; pdf_page_index 72, printed p.59)
 # ============================================================================
 
 _TABLE_2_17 = {
@@ -581,7 +581,7 @@ def table_2_17_sma_mix_design_requirements(parameter=None) -> dict:
     ValueError
         If parameter is given but unrecognized.
     """
-    ref = "UFC 3-250-03, Table 2-17 (pdf_page 72, printed p.59)"
+    ref = "UFC 3-250-03, Table 2-17 (pdf_page_index 72, printed p.59)"
     if parameter is None:
         return {**_TABLE_2_17, "reference": ref}
     key_map = {
@@ -613,22 +613,22 @@ _SPRAY_RATES = {
     "prime_coat": {
         "rate_l_per_m2": (0.45, 1.13), "rate_gal_per_yd2": (0.10, 0.25),
         "basis": "residual asphalt",
-        "reference": "UFC 3-250-03, Section 3-2.2 (pdf_page 80, printed p.67)",
+        "reference": "UFC 3-250-03, Section 3-2.2 (pdf_page_index 80, printed p.67)",
     },
     "tack_coat": {
         "rate_l_per_m2": (0.23, 0.68), "rate_gal_per_yd2": (0.05, 0.15),
         "basis": "residual asphalt",
-        "reference": "UFC 3-250-03, Section 3-3.2 (pdf_page 82, printed p.69)",
+        "reference": "UFC 3-250-03, Section 3-3.2 (pdf_page_index 82, printed p.69)",
     },
     "fog_seal": {
         "rate_l_per_m2": (0.14, 0.36), "rate_gal_per_yd2": (0.03, 0.08),
         "basis": "residual asphalt",
-        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page 84, printed p.71)",
+        "reference": "UFC 3-250-03, Section 3-4.2 (pdf_page_index 84, printed p.71)",
     },
     "rejuvenator": {
         "rate_l_per_m2": (0.18, 0.9), "rate_gal_per_yd2": (0.04, 0.2),
         "basis": "total liquid",
-        "reference": "UFC 3-250-03, Section 3-5.3 (pdf_page 85, printed p.72)",
+        "reference": "UFC 3-250-03, Section 3-5.3 (pdf_page_index 85, printed p.72)",
         "sand_cover_kg_per_m2": (0.27, 0.54), "sand_cover_lb_per_yd2": (0.5, 1.0),
         "sand_cover_note": ("Only when used as a rejuvenator-sealer; sand-sized "
                             "aggregate cover for initial skid resistance."),
@@ -673,7 +673,7 @@ def spray_application_rate(application_type) -> dict:
 
 # ============================================================================
 # Table 3-2: Tack Coat Materials and Spray Application Temperatures
-# (Section 3-3.1; pdf_page 82, printed p.69)
+# (Section 3-3.1; pdf_page_index 82, printed p.69)
 # ============================================================================
 
 _TABLE_3_2 = {
@@ -741,13 +741,13 @@ def table_3_2_tack_coat_temperature(material_type, grade) -> dict:
         "material_type": mt, "grade": gr,
         "temp_c_min": c_min, "temp_c_max": c_max,
         "temp_f_min": f_min, "temp_f_max": f_max,
-        "reference": "UFC 3-250-03, Table 3-2 (pdf_page 82, printed p.69)",
+        "reference": "UFC 3-250-03, Table 3-2 (pdf_page_index 82, printed p.69)",
     }
 
 
 # ============================================================================
 # Table 4-2: Gradations for Single Bituminous Surface Treatment (SBST)
-# (Section 4-2.1.2; pdf_page 91, printed p.78)
+# (Section 4-2.1.2; pdf_page_index 91, printed p.78)
 # ============================================================================
 
 _TABLE_4_2_SIEVES_MM = [25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18]
@@ -791,7 +791,7 @@ def table_4_2_gradation_sbst(designation, sieve_mm=None) -> dict:
             f"Unknown designation '{designation}'. Use: {', '.join(_TABLE_4_2)}"
         )
     row = _TABLE_4_2[key]
-    ref = "UFC 3-250-03, Table 4-2 (pdf_page 91, printed p.78)"
+    ref = "UFC 3-250-03, Table 4-2 (pdf_page_index 91, printed p.78)"
     if sieve_mm is None:
         return {
             "designation": key, "astm_d448_no": row["astm_d448_no"],
@@ -824,7 +824,7 @@ def table_4_2_gradation_sbst(designation, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 4-3: Gradations for Double Bituminous Surface Treatment (DBST)
-# (Section 4-2.1.2; pdf_page 91, printed p.78)
+# (Section 4-2.1.2; pdf_page_index 91, printed p.78)
 # ============================================================================
 
 _TABLE_4_3_SIEVES_MM = [25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.30]
@@ -877,7 +877,7 @@ def table_4_3_gradation_dbst(designation, sieve_mm=None) -> dict:
             f"Unknown designation '{designation}'. Use: {', '.join(_TABLE_4_3)}"
         )
     row = _TABLE_4_3[key]
-    ref = "UFC 3-250-03, Table 4-3 (pdf_page 91, printed p.78)"
+    ref = "UFC 3-250-03, Table 4-3 (pdf_page_index 91, printed p.78)"
     if sieve_mm is None:
         return {
             "designation": key, "astm_d448_no": row["astm_d448_no"],
@@ -912,7 +912,7 @@ def table_4_3_gradation_dbst(designation, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 4-4: Slurry Seal Aggregate Gradations
-# (Section 4-3.2.2; pdf_page 95, printed p.82)
+# (Section 4-3.2.2; pdf_page_index 95, printed p.82)
 # ============================================================================
 
 _TABLE_4_4_SIEVES_MM = [9.5, 4.75, 2.36, 1.18, 0.60, 0.30, 0.15, 0.075]
@@ -957,7 +957,7 @@ def table_4_4_slurry_seal_gradation(type_, sieve_mm=None) -> dict:
             f"Unknown type_ '{type_}'. Use: {', '.join(_TABLE_4_4)}"
         )
     bands = _TABLE_4_4[key]
-    ref = "UFC 3-250-03, Table 4-4 (pdf_page 95, printed p.82)"
+    ref = "UFC 3-250-03, Table 4-4 (pdf_page_index 95, printed p.82)"
     if sieve_mm is None:
         return {
             "type": key,
@@ -988,7 +988,7 @@ def table_4_4_slurry_seal_gradation(type_, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 4-5: Fuel-Resistant Sealer (FRS) Minimum Application Rates and
-# Corresponding Aggregate Gradations (Section 4-4.4.1; pdf_page 99, printed p.86)
+# Corresponding Aggregate Gradations (Section 4-4.4.1; pdf_page_index 99, printed p.86)
 # ============================================================================
 
 _TABLE_4_5_SIEVES_MM = [1.18, 0.85, 0.60, 0.425, 0.30, 0.212, 0.15, 0.106]
@@ -1045,7 +1045,7 @@ def table_4_5_frs_application_rate(gradation, sieve_mm=None) -> dict:
             f"Unknown gradation '{gradation}'. Use: {', '.join(_TABLE_4_5)}"
         )
     row = _TABLE_4_5[key]
-    ref = "UFC 3-250-03, Table 4-5 (pdf_page 99, printed p.86)"
+    ref = "UFC 3-250-03, Table 4-5 (pdf_page_index 99, printed p.86)"
     base = {"gradation": key, "min_rate_l_per_m2": row["min_rate_l_per_m2"],
             "min_rate_gal_per_yd2": row["min_rate_gal_per_yd2"]}
     if sieve_mm is None:
@@ -1074,7 +1074,7 @@ def table_4_5_frs_application_rate(gradation, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 4-7: Gradation Types for Micro-Surfacing
-# (Section 4-5.2.3; pdf_page 102, printed p.89)
+# (Section 4-5.2.3; pdf_page_index 102, printed p.89)
 # ============================================================================
 
 _TABLE_4_7 = {
@@ -1112,7 +1112,7 @@ def table_4_7_micro_surfacing_gradation(type_, sieve_mm=None) -> dict:
     if key not in _TABLE_4_7:
         raise ValueError(f"Unknown type_ '{type_}'. Use: {', '.join(_TABLE_4_7)}")
     bands = _TABLE_4_7[key]
-    ref = "UFC 3-250-03, Table 4-7 (pdf_page 102, printed p.89)"
+    ref = "UFC 3-250-03, Table 4-7 (pdf_page_index 102, printed p.89)"
     if sieve_mm is None:
         return {
             "type": key,
@@ -1138,7 +1138,7 @@ def table_4_7_micro_surfacing_gradation(type_, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 6-1: Typical Aggregate Gradations for Plant-Mix Cold-Laid Asphalt
-# Mixtures (Section 6-5.1.2; pdf_page 115, printed p.102)
+# Mixtures (Section 6-5.1.2; pdf_page_index 115, printed p.102)
 # ============================================================================
 
 _TABLE_6_1_SIEVES_MM = [12.5, 9.5, 4.75, 2.36, 1.18, 0.60, 0.30, 0.15, 0.075]
@@ -1197,7 +1197,7 @@ def table_6_1_cold_mix_gradation(mix_type, column, sieve_mm=None) -> dict:
     if col not in table:
         raise ValueError(f"column must be one of {sorted(table.keys())}, got {col}")
     bands = table[col]
-    ref = "UFC 3-250-03, Table 6-1 (pdf_page 115, printed p.102)"
+    ref = "UFC 3-250-03, Table 6-1 (pdf_page_index 115, printed p.102)"
     is_dense = mt == "dense_graded"
     key1, key2 = ("percent_passing_center", "percent_passing_tolerance") if is_dense else \
                  ("percent_passing_min", "percent_passing_max")
@@ -1228,7 +1228,7 @@ def table_6_1_cold_mix_gradation(mix_type, column, sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 6-2: Selection of Asphalt Type and Grade for cold-mix asphalt
-# (Section 6-5.1.2; pdf_page 116, printed p.103)
+# (Section 6-5.1.2; pdf_page_index 116, printed p.103)
 # ============================================================================
 
 # As printed: kerosene for a mix used immediately, with the amount for a mix
@@ -1275,7 +1275,7 @@ _TABLE_6_2_CLIMATE_BOUNDS = {"cold": (None, 16), "moderate": (16, 27), "hot": (2
 
 def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     """Selection of asphalt type and grade for cold-mix asphalt by climate,
-    UFC 3-250-03 Table 6-2 (pdf_page 116, printed p.103); returns the
+    UFC 3-250-03 Table 6-2 (pdf_page_index 116, printed p.103); returns the
     kerosene to add to asphalt cement (liters/metric ton and gallons/ton of
     mix; for a mix used immediately and, footnote 1, for one stockpiled for
     future use), the cutback asphalt grades and the emulsified asphalt
@@ -1312,13 +1312,13 @@ def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
         "climate": key, "temp_c_range": _TABLE_6_2_CLIMATE_BOUNDS[key],
         **_TABLE_6_2[key],
         "notes": dict(_TABLE_6_2_NOTES),
-        "reference": "UFC 3-250-03, Table 6-2 (pdf_page 116, printed p.103)",
+        "reference": "UFC 3-250-03, Table 6-2 (pdf_page_index 116, printed p.103)",
     }
 
 
 # ============================================================================
 # Table 6-3: Selection of Optimum Asphalt Content (cold-mix asphalt)
-# (Section 6-5.1.3.3; pdf_page 117, printed p.104)
+# (Section 6-5.1.3.3; pdf_page_index 117, printed p.104)
 # ============================================================================
 
 _TABLE_6_3 = {
@@ -1351,7 +1351,7 @@ def table_6_3_cold_mix_optimum_ac_selection(property_=None) -> dict:
     ValueError
         If property_ is given but unrecognized.
     """
-    ref = "UFC 3-250-03, Table 6-3 (pdf_page 117, printed p.104)"
+    ref = "UFC 3-250-03, Table 6-3 (pdf_page_index 117, printed p.104)"
     if property_ is None:
         return {**_TABLE_6_3, "reference": ref}
     key_map = {"unit_weight": "unit_weight", "vtm": "vtm_pct", "vfa": "vfa_pct"}
@@ -1363,7 +1363,7 @@ def table_6_3_cold_mix_optimum_ac_selection(property_=None) -> dict:
 
 # ============================================================================
 # Table 6-4: Mixing Temperatures for Asphalt Materials (cold-mix asphalt)
-# (Section 6-5.2.1; pdf_page 118, printed p.105)
+# (Section 6-5.2.1; pdf_page_index 118, printed p.105)
 # ============================================================================
 
 _TABLE_6_4 = {
@@ -1415,13 +1415,13 @@ def table_6_4_mixing_temperature(material_type, grade) -> dict:
         "material_type": mt, "grade": gr,
         "temp_c_min": c_min, "temp_c_max": c_max,
         "temp_f_min": f_min, "temp_f_max": f_max,
-        "reference": "UFC 3-250-03, Table 6-4 (pdf_page 118, printed p.105)",
+        "reference": "UFC 3-250-03, Table 6-4 (pdf_page_index 118, printed p.105)",
     }
 
 
 # ============================================================================
 # Table 7-2: Gradation Limits for Open-Graded Asphalt Mixture (RMP)
-# (Section 7-2.1.1; pdf_page 123, printed p.110)
+# (Section 7-2.1.1; pdf_page_index 123, printed p.110)
 # ============================================================================
 
 _TABLE_7_2_SIEVES_MM = [19.0, 12.5, 9.5, 4.75, 2.36, 0.60, 0.075]
@@ -1449,7 +1449,7 @@ def table_7_2_ogam_gradation(sieve_mm=None) -> dict:
     ValueError
         If sieve_mm is not a tabulated size.
     """
-    ref = "UFC 3-250-03, Table 7-2 (pdf_page 123, printed p.110)"
+    ref = "UFC 3-250-03, Table 7-2 (pdf_page_index 123, printed p.110)"
     if sieve_mm is None:
         return {
             "bands": [
@@ -1473,7 +1473,7 @@ def table_7_2_ogam_gradation(sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 7-3: Aggregate Gradation for Slurry Grout (RMP)
-# (Section 7-2.2.1; pdf_page 124, printed p.111)
+# (Section 7-2.2.1; pdf_page_index 124, printed p.111)
 # ============================================================================
 
 _TABLE_7_3_SIEVES_MM = [1.18, 0.60, 0.075]
@@ -1501,7 +1501,7 @@ def table_7_3_slurry_grout_gradation(sieve_mm=None) -> dict:
     ValueError
         If sieve_mm is not a tabulated size.
     """
-    ref = "UFC 3-250-03, Table 7-3 (pdf_page 124, printed p.111)"
+    ref = "UFC 3-250-03, Table 7-3 (pdf_page_index 124, printed p.111)"
     if sieve_mm is None:
         return {
             "bands": [
@@ -1525,7 +1525,7 @@ def table_7_3_slurry_grout_gradation(sieve_mm=None) -> dict:
 
 # ============================================================================
 # Table 7-4: Resin Modified Cement Slurry Grout Mixture Proportions (RMP)
-# (Section 7-3.2; pdf_page 126, printed p.113)
+# (Section 7-3.2; pdf_page_index 126, printed p.113)
 # ============================================================================
 
 _TABLE_7_4 = {
@@ -1559,7 +1559,7 @@ def table_7_4_grout_mix_proportions(material=None) -> dict:
     ValueError
         If material is given but unrecognized.
     """
-    ref = "UFC 3-250-03, Table 7-4 (pdf_page 126, printed p.113)"
+    ref = "UFC 3-250-03, Table 7-4 (pdf_page_index 126, printed p.113)"
     if material is None:
         return {**_TABLE_7_4, "reference": ref}
     key = str(material).strip().lower().replace(" ", "_")
@@ -1574,7 +1574,7 @@ def table_7_4_grout_mix_proportions(material=None) -> dict:
 
 # ============================================================================
 # Table 7-5: Slurry Grout Viscosity (RMP)
-# (Section 7-3.2; pdf_page 127, printed p.114)
+# (Section 7-3.2; pdf_page_index 127, printed p.114)
 # ============================================================================
 
 _TABLE_7_5 = {
@@ -1611,13 +1611,13 @@ def table_7_5_grout_viscosity(time_elapsed) -> dict:
     lo, hi = _TABLE_7_5[key]
     return {
         "time_elapsed": key, "marsh_cone_seconds_min": lo, "marsh_cone_seconds_max": hi,
-        "reference": "UFC 3-250-03, Table 7-5 (pdf_page 127, printed p.114)",
+        "reference": "UFC 3-250-03, Table 7-5 (pdf_page_index 127, printed p.114)",
     }
 
 
 # ============================================================================
 # Table B-1: Factors Used in Calculating Surface Area of Slurry Seal Aggregate
-# (Appendix B-1.2.1; pdf_page 137, printed p.124)
+# (Appendix B-1.2.1; pdf_page_index 137, printed p.124)
 # ============================================================================
 
 _TABLE_B1_SIEVES_MM = [9.5, 4.75, 2.36, 1.18, 0.60, 0.30, 0.15, 0.075]
@@ -1661,5 +1661,5 @@ def table_b1_surface_area_factor(sieve_mm) -> dict:
     return {
         "sieve_mm": sieve_mm, "sieve_label": _TABLE_B1_SIEVE_LABELS[idx],
         "factor_m2_per_kg": m2_kg, "factor_ft2_per_lb": ft2_lb,
-        "reference": "UFC 3-250-03, Table B-1 (pdf_page 137, printed p.124)",
+        "reference": "UFC 3-250-03, Table B-1 (pdf_page_index 137, printed p.124)",
     }

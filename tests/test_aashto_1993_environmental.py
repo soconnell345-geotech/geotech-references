@@ -2,13 +2,13 @@
 serviceability-loss procedure (Appendix G, Figure 2.2, Table 3.1).
 
 Anchors: the guide's own printed worked examples -- Figure G.2's nomograph
-note (theta~0.10, pdf_page 396, printed G-3), Figure G.3's printed worked
-example (PI=50, Optimum, 2 ft -> VR=0.83in EXACT by construction, pdf_page
+note (theta~0.10, pdf_page_index 396, printed G-3), Figure G.3's printed worked
+example (PI=50, Optimum, 2 ft -> VR=0.83in EXACT by construction, pdf_page_index
 397, printed G-4), Figure G.4's printed nomograph equation and example
-(dPSI_sw=0.3, pdf_page 400, printed G-7), Figure G.7's printed example
-(dPSI_MAX=2.0 EXACT, pdf_page 403, printed G-10), Figure G.8's printed
-nomograph equation and example (dPSI_FH=0.47, pdf_page 404, printed G-11),
-and Table 3.1's fully-worked 3-row iteration example (pdf_page 123, printed
+(dPSI_sw=0.3, pdf_page_index 400, printed G-7), Figure G.7's printed example
+(dPSI_MAX=2.0 EXACT, pdf_page_index 403, printed G-10), Figure G.8's printed
+nomograph equation and example (dPSI_FH=0.47, pdf_page_index 404, printed G-11),
+and Table 3.1's fully-worked 3-row iteration example (pdf_page_index 123, printed
 II-34), reproduced here via directly-injected column-3/5/6 callables (see
 ``performance_period_iteration``'s docstring for why the guide's own
 SN=4.4/reliability narrative could not be independently chained through).
@@ -80,7 +80,7 @@ class TestPotentialVerticalRise:
         (60, 1.80), (62, 1.86), (65, 2.00), (67, 2.20), (71, 2.60),
     ])
     def test_appendix_h_table_h1(self, pi, vr_printed):
-        # Table H.1 (pdf_page 408, printed H-3): optimum moisture, roadbed
+        # Table H.1 (pdf_page_index 408, printed H-3): optimum moisture, roadbed
         # thickness > 30 ft; the guide's own reads scatter about 0.1 in
         # about the chart (PI 60's 1.80 sits above its neighbours' trend).
         r = env.potential_vertical_rise(pi, "optimum", 40)
@@ -130,7 +130,7 @@ class TestPotentialVerticalRise:
         assert v12 == pytest.approx((v10 + v15) / 2, abs=0.002)
 
     def test_thickness_above_30_uses_30(self):
-        # G.1 (pdf_page 394, printed G-1): "for thicknesses greater than
+        # G.1 (pdf_page_index 394, printed G-1): "for thicknesses greater than
         # 30 feet, use 30 feet".
         r30 = env.potential_vertical_rise(50, "optimum", 30)
         r40 = env.potential_vertical_rise(50, "optimum", 40)
@@ -400,7 +400,7 @@ class TestTotalEnvironmentalLoss:
 # ============================================================================
 
 class TestPerformancePeriodIteration:
-    """Reproduces the guide's own printed 3-row example (pdf_page 123,
+    """Reproduces the guide's own printed 3-row example (pdf_page_index 123,
     printed II-34) exactly via directly-injected column-3/5/6 callables
     (env_loss_fn / w18_fn / time_from_w18_fn), since the guide's own prose
     around Table 3.1 could not be independently chained through the

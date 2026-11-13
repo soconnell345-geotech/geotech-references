@@ -2,15 +2,15 @@
 reaction procedure (Table 3.2 worksheet, Figures 3.3-3.6, Table 2.7).
 
 Anchors: the guide's own printed worked examples -- Figure 3.3's standalone
-example (pdf_page 128, printed II-39: Dsb=6in, Esb=20,000psi, MR=7,000psi ->
-k_inf=400 pci), Figure 3.4's standalone example (pdf_page 129, printed
+example (pdf_page_index 128, printed II-39: Dsb=6in, Esb=20,000psi, MR=7,000psi ->
+k_inf=400 pci), Figure 3.4's standalone example (pdf_page_index 129, printed
 II-40: MR=4,000psi, Dsg=5ft, k_inf=230pci -> k=300pci) PLUS three more
 exact (MR, k_inf, k) triples recovered from the fully-worked Table 3.3
-seasonal example (pdf_page 132, printed II-43: 6in granular subbase, depth
+seasonal example (pdf_page_index 132, printed II-43: 6in granular subbase, depth
 to rigid foundation 5ft, projected slab 9in, LS=1.0 -> effective k=540pci,
 LS-corrected k=170pci), plus direct chart reads on Figures 3.5/3.6 (multiple
 points per curve, documented in composite_k.py's section docstrings) and
-Table 2.7 (pdf_page 116, printed II-27).
+Table 2.7 (pdf_page_index 116, printed II-27).
 """
 
 import pytest
@@ -55,7 +55,7 @@ class TestLossOfSupportValues:
 
 class TestCompositeKSubbase:
     """Figure 3.3 read off the printed chart (REF-58). Anchors: Figure
-    3.3's own example and the four Table 3.3 rows (pdf_page 132, printed
+    3.3's own example and the four Table 3.3 rows (pdf_page_index 132, printed
     II-43), all at Dsb=6in; the guide's own two reads of one point (400 and
     410 pci) differ by 2.5%, which sets the tolerance."""
 
@@ -276,9 +276,9 @@ class TestKRigidFoundationCorrection:
 
 class TestRelativeDamageRigid:
     """Two independent anchor sets: (1) all four rows of the guide's Table
-    3.3 worked example, D=9in throughout (pdf_page 132, printed II-43),
+    3.3 worked example, D=9in throughout (pdf_page_index 132, printed II-43),
     validating the k-dependence; (2) six direct chart reads at D=6-14in
-    (pdf_page 130), all at a shared low-k reference column, validating the
+    (pdf_page_index 130), all at a shared low-k reference column, validating the
     D-dependence away from the D=9in anchors."""
 
     def test_jan_feb_dec_row(self):
@@ -298,7 +298,7 @@ class TestRelativeDamageRigid:
         assert r["u_r"] == pytest.approx(0.60, abs=0.01)
 
     def test_result_says_chart_not_equation(self):
-        # Figure 3.5, aashto1993.pdf PDF 131 (pdf_page 130), printed II-41,
+        # Figure 3.5, aashto1993.pdf PDF 131 (pdf_page_index 130), printed II-41,
         # is a chart and prints no equation (review pave-28).
         r = ck.relative_damage_rigid(d_in=9.0, k_pci=540)
         assert "prints no equation" in r["print_note"]
@@ -371,7 +371,7 @@ class TestKLossOfSupport:
     includes the guide's exact printed Table 3.3 value at k=540."""
 
     def test_result_says_slopes_are_a_fit(self):
-        # Figure 3.6, aashto1993.pdf PDF 132 (pdf_page 131), printed II-42,
+        # Figure 3.6, aashto1993.pdf PDF 132 (pdf_page_index 131), printed II-42,
         # is a chart; the slopes are fitted to chart reads (review pave-28).
         r = ck.k_loss_of_support(k_pci=540, ls=2.0)
         assert "prints no equation" in r["print_note"]
@@ -450,7 +450,7 @@ class TestKLossOfSupport:
 # ============================================================================
 
 class TestEffectiveModulusSubgradeReaction:
-    """Reproduces the guide's fully-worked Table 3.3 example (pdf_page 132,
+    """Reproduces the guide's fully-worked Table 3.3 example (pdf_page_index 132,
     printed II-43): 6in granular subbase, depth to rigid foundation 5ft,
     projected slab thickness 9in, LS=1.0 -> printed effective k=540 pci,
     LS-corrected k=170 pci. With Figure 3.4 anchored to 4 exact Table 3.3

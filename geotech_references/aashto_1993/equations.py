@@ -4,7 +4,7 @@ Part II, Chapter 3 (Highway Pavement Structural Design) and supporting
 sections of Part II, Chapter 2 (Design Requirements) and Part I, Chapter 4
 (Reliability). All numbers are traced to a rendered page of
 ``docs/aashto1993.pdf`` (0-based fitz page index cited in each docstring as
-``pdf_page``; the printed guide page, e.g. "II-32", is also given).
+``pdf_page_index``; the printed guide page, e.g. "II-32", is also given).
 
 UNITS: this guide is US-customary native (psi, pci, inches, kips) -- values
 are kept in source units per repo convention (GEC-12 precedent); SI notes are
@@ -15,8 +15,8 @@ Two headline equations are the AASHO-Road-Test-derived empirical design
 equations (log W18 as a function of pavement structural capacity, reliability,
 and serviceability loss):
 
-- Flexible pavements (Figure 3.1, pdf_page 121, printed II-32)
-- Rigid pavements (Figure 3.7, pdf_page 134, printed II-45)
+- Flexible pavements (Figure 3.1, pdf_page_index 121, printed II-32)
+- Rigid pavements (Figure 3.7, pdf_page_index 134, printed II-45)
 
 Both were algebraically verified against the guide's own printed worked
 examples embedded in the two figures (see ``flexible_w18_from_sn`` and
@@ -27,7 +27,7 @@ import math
 
 
 # ============================================================================
-# Flexible pavement design equation (Figure 3.1; pdf_page 121, printed II-32)
+# Flexible pavement design equation (Figure 3.1; pdf_page_index 121, printed II-32)
 #
 #   log10(W18) = ZR*So + 9.36*log10(SN+1) - 0.20
 #                + [log10(dPSI/(4.2-1.5))] / [0.40 + 1094/(SN+1)^5.19]
@@ -66,7 +66,7 @@ def flexible_w18_from_sn(sn, zr, so, delta_psi, mr_psi) -> dict:
                  + 2.32*log10(MR) - 8.07
 
     Verified against the guide's printed worked example (Figure 3.1,
-    pdf_page 121, printed II-32): SN=5.0, ZR=-1.645 (R=95%), So=0.35,
+    pdf_page_index 121, printed II-32): SN=5.0, ZR=-1.645 (R=95%), So=0.35,
     MR=5000 psi, dPSI=1.9 -> W18 ~ 5.0-5.2e6 (printed solution 5x10^6;
     the guide's own SN=5.0 is itself a nomograph read-off rounded to 0.1).
 
@@ -175,7 +175,7 @@ def flexible_sn_from_w18(w18, zr, so, delta_psi, mr_psi,
 
 
 # ============================================================================
-# Rigid pavement design equation (Figure 3.7; pdf_page 134, printed II-45)
+# Rigid pavement design equation (Figure 3.7; pdf_page_index 134, printed II-45)
 #
 #   log10(W18) = ZR*So + 7.35*log10(D+1) - 0.06
 #                + [log10(dPSI/(4.5-1.5))] / [1 + 1.624e7/(D+1)^8.46]
@@ -239,7 +239,7 @@ def rigid_w18_from_d(d, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
                                           / [215.63*J*(D^0.75-18.42/(Ec/k)^0.25)] }
 
     Verified against the guide's printed worked example (Figure 3.7,
-    pdf_page 134-135, printed II-45/46): D=10.0 in, k=72 pci, Ec=5e6 psi,
+    pdf_page_index 134-135, printed II-45/46): D=10.0 in, k=72 pci, Ec=5e6 psi,
     Sc'=650 psi, J=3.2, Cd=1.0, So=0.29, ZR=-1.645 (R=95%), dPSI=1.7 ->
     W18 ~ 4.9-6.2e6 (printed solution 5.1e6; D=10.0 itself is a nomograph
     read-off "nearest half-inch").
@@ -364,7 +364,7 @@ def rigid_d_from_w18(w18, zr, so, delta_psi, sc_psi, cd, j, ec_psi, k_pci,
 
 
 # ============================================================================
-# Structural number composition (Section 2.3.5 / 3.1.4; pdf_page 118,
+# Structural number composition (Section 2.3.5 / 3.1.4; pdf_page_index 124,
 # printed II-35): SN = a1*D1 + a2*D2*m2 + a3*D3*m3
 # ============================================================================
 
@@ -409,7 +409,7 @@ def structural_number(a1, d1, a2=0.0, d2=0.0, m2=1.0,
         "a1": a1, "d1": d1, "a2": a2, "d2": d2, "m2": m2,
         "a3": a3, "d3": d3, "m3": m3,
         "equation": "SN = a1*D1 + a2*D2*m2 + a3*D3*m3",
-        "reference": "AASHTO 1993 Guide, Section 3.1.4 (pdf_page 118, printed II-35)",
+        "reference": "AASHTO 1993 Guide, Section 3.1.4 (pdf_page_index 124, printed II-35)",
     }
 
 
@@ -495,7 +495,7 @@ def minimum_layer_thicknesses(sn_over_base, sn_over_subbase, sn_over_roadbed,
         "sn1_2_actual": round(sn1_2_actual, 3),
         "equation": ("D1>=SN1/a1; D2>=(SN2-SN1*)/(a2*m2); "
                      "D3>=(SN3-(SN1*+SN2*))/(a3*m3)"),
-        "reference": "AASHTO 1993 Guide, Figure 3.2 (pdf_page 125, printed II-36)",
+        "reference": "AASHTO 1993 Guide, Figure 3.2 (pdf_page_index 125, printed II-36)",
     }
     if notes:
         out["notes"] = notes
@@ -506,7 +506,7 @@ def minimum_layer_thicknesses(sn_over_base, sn_over_subbase, sn_over_roadbed,
 # Layer coefficient regressions -- PRINTED closed-form fits (not chart
 # read-offs) for the granular base (a2) and granular subbase (a3)
 # coefficients, given as text equations alongside Figures 2.6/2.7.
-# (Section 2.3.5; pdf_page 109/111, printed II-20/22)
+# (Section 2.3.5; pdf_page_index 109/111, printed II-20/22)
 # ============================================================================
 
 def layer_coefficient_a2_granular_base(ebs_psi) -> dict:
@@ -539,7 +539,7 @@ def layer_coefficient_a2_granular_base(ebs_psi) -> dict:
     return {
         "ebs_psi": ebs_psi, "a2": round(a2, 4),
         "equation": "a2 = 0.249*log10(EBS) - 0.977",
-        "reference": "AASHTO 1993 Guide, Section 2.3.5 (pdf_page 109, printed II-20)",
+        "reference": "AASHTO 1993 Guide, Section 2.3.5 (pdf_page_index 109, printed II-20)",
     }
 
 
@@ -573,13 +573,13 @@ def layer_coefficient_a3_granular_subbase(esb_psi) -> dict:
     return {
         "esb_psi": esb_psi, "a3": round(a3, 4),
         "equation": "a3 = 0.227*log10(ESB) - 0.839",
-        "reference": "AASHTO 1993 Guide, Section 2.3.5 (pdf_page 111, printed II-22)",
+        "reference": "AASHTO 1993 Guide, Section 2.3.5 (pdf_page_index 111, printed II-22)",
     }
 
 
 # ============================================================================
 # Effective roadbed soil resilient modulus (Section 2.3.1; Figure 2.3/2.4;
-# pdf_page 103-104, printed II-14/15)
+# pdf_page_index 103-104, printed II-14/15)
 #
 #   uf = 1.18e8 * MR^-2.32          (relative damage for a seasonal MR)
 #   MR_eff = (1.18e8 / uf_avg)^(1/2.32)
@@ -611,7 +611,7 @@ def relative_damage_uf(mr_psi) -> dict:
     return {
         "mr_psi": mr_psi, "uf": uf,
         "equation": "uf = 1.18e8 * MR^-2.32",
-        "reference": "AASHTO 1993 Guide, Figure 2.3 (pdf_page 103, printed II-14)",
+        "reference": "AASHTO 1993 Guide, Figure 2.3 (pdf_page_index 103, printed II-14)",
     }
 
 
@@ -624,7 +624,7 @@ def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
     serviceability criteria (per the guide's own caveat).
 
     Checked against the guide's printed worked example (Figure 2.4,
-    pdf_page 104, printed II-15): monthly MR (psi) =
+    pdf_page_index 104, printed II-15): monthly MR (psi) =
     [20000,20000,2500,4000,4000,7000,7000,7000,7000,7000,4000,20000]. The
     printed equation gives uf 0.0124 / 1.544 / 0.519 / 0.142, sum 3.846,
     average 0.3205, effective MR 4,923 psi; the example reads uf off the
@@ -667,7 +667,7 @@ def effective_roadbed_resilient_modulus(monthly_mr_psi) -> dict:
         "equation": ("uf=1.18e8*MR^-2.32; MR_eff = "
                      "(1.18e8/mean(uf))^(1/2.32)"),
         "reference": ("AASHTO 1993 Guide, Figure 2.3/2.4 "
-                     "(pdf_page 103-104, printed II-14/15)"),
+                     "(pdf_page_index 103-104, printed II-14/15)"),
     }
 
 
@@ -681,7 +681,7 @@ def modulus_subgrade_reaction_simple(mr_psi) -> dict:
     present, and/or a shallow rigid foundation) the guide's iterative
     Table 3.2 / Figures 3.3-3.6 process is required (not digitized here --
     it is a 4-nomograph seasonal-weighting procedure; see the printed guide,
-    pdf_page 128-133).
+    pdf_page_index 128-133).
 
     Parameters
     ----------
@@ -704,7 +704,7 @@ def modulus_subgrade_reaction_simple(mr_psi) -> dict:
     return {
         "mr_psi": mr_psi, "k_pci": round(k, 1),
         "equation": "k (pci) = MR (psi) / 19.4",
-        "reference": "AASHTO 1993 Guide, Section 3.2.2 (pdf_page 133, printed II-44)",
+        "reference": "AASHTO 1993 Guide, Section 3.2.2 (pdf_page_index 133, printed II-44)",
         "note": ("Theoretical relation for a slab bearing directly on the "
                  "roadbed (no subbase, no shallow rigid foundation)."),
     }
@@ -740,7 +740,7 @@ def design_serviceability_loss(po, pt) -> dict:
         raise ValueError(f"pt ({pt}) must be < po ({po})")
     return {
         "po": po, "pt": pt, "delta_psi": round(po - pt, 3),
-        "reference": "AASHTO 1993 Guide, Section 2.2.1 (pdf_page 99, printed II-10)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.1 (pdf_page_index 99, printed II-10)",
     }
 
 
@@ -753,7 +753,7 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
     + planned overlay(s)), so each stage must be designed to a higher
     reliability than the desired overall value.
 
-    Verified against the guide's printed example (Section 4.5, pdf_page 84,
+    Verified against the guide's printed example (Section 4.5, pdf_page_index 84,
     printed I-63): overall R=95% desired with 2 stages -> per-stage R =
     (0.95)^(1/2) = 97.5%; also the reverse-direction example: two 90%
     stages compound to 0.90*0.90 = 81%.
@@ -790,12 +790,12 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
         "n_stages": n_stages,
         "stage_reliability_pct": round(r_stage_frac * 100.0, 2),
         "equation": "R_stage = (R_overall)^(1/n)  (fractions)",
-        "reference": "AASHTO 1993 Guide, Eq. 4.5.1 (pdf_page 84, printed I-63)",
+        "reference": "AASHTO 1993 Guide, Eq. 4.5.1 (pdf_page_index 84, printed I-63)",
     }
 
 
 # ============================================================================
-# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page 101,
+# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page_index 101,
 # printed II-12) -- rutting/aggregate-loss models. Low-priority / secondary
 # to the main SN/slab-thickness design (Part II Ch 4 low-volume roads).
 # ============================================================================
@@ -803,7 +803,7 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
 def aggregate_loss_truck_traffic(loaded_trucks_thousands) -> dict:
     """Total aggregate loss GL of an aggregate-surfaced road on sections with
     more than 50 percent truck traffic, AASHTO 1993 Section 2.2.3
-    (pdf_page 101, printed II-12); returns gl_in, total aggregate loss in
+    (pdf_page_index 101, printed II-12); returns gl_in, total aggregate loss in
     inches.
 
         GL = 0.12 + 0.1223(LT)
@@ -842,13 +842,13 @@ def aggregate_loss_truck_traffic(loaded_trucks_thousands) -> dict:
         "equation": "GL (in) = 0.12 + 0.1223(LT)",
         "source": ("sections with more than 50 percent truck traffic, limited "
                    "data (Guide refs 15, 16)"),
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page_index 101, printed II-12)",
     }
 
 
 def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
     """Aggregate loss GL of an aggregate-surfaced road from the Brazil study
-    equation, AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12);
+    equation, AASHTO 1993 Section 2.2.3 (pdf_page_index 101, printed II-12);
     returns gl_in, inches lost during the period considered.
 
         GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)
@@ -894,14 +894,14 @@ def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
         "grade_pct": grade_pct, "gl_in": round(gl, 3),
         "equation": "GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)",
         "source": "Brazil study of typical rural sections (Guide refs 15, 16)",
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page_index 101, printed II-12)",
     }
 
 
 def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
                                 gravel_type="lateritic") -> dict:
     """Annual aggregate loss AGL from the British study done in Kenya,
-    AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12); returns
+    AASHTO 1993 Section 2.2.3 (pdf_page_index 101, printed II-12); returns
     agl_in_per_year, inches per year (multiply by the years of the
     performance period for the total gravel loss).
 
@@ -957,5 +957,5 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
                      "(4.2+0.092T+0.889R^2+1.88VC)"),
         "print_note": ("The scan drops decimal points; ' 092T' is read as "
                        ".092T and f ' 037' as .037 (lateritic), as typeset."),
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page_index 101, printed II-12)",
     }

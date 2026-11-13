@@ -4,11 +4,11 @@
 Maximum service stresses (Table 3-3), the alternate single-load-factor
 serviceability method (Table 3-4), reinforcement limits (paragraph 3-6), and
 minimum wall thickness (paragraph 3-7). Printed pages per the 1 Nov 2023
-edition (pdf_page = printed_page + 5).
+edition (pdf_page_index = printed_page + 5).
 """
 
 # ============================================================================
-# Table 3-3 -- Maximum service stresses (printed p. 26, pdf_page 31)
+# Table 3-3 -- Maximum service stresses (printed p. 26, pdf_page_index 31)
 # ============================================================================
 
 _TABLE_3_3 = {
@@ -52,7 +52,7 @@ def table_3_3_max_service_stress(category, action="flexure_shear"):
         )
     return {
         "category": category, "action": action, "fs_ksi": fs_ksi,
-        "fs_mpa": fs_mpa, "table": "3-3", "printed_page": "26", "pdf_page": 31,
+        "fs_mpa": fs_mpa, "table": "3-3", "printed_page": "26", "pdf_page_index": 31,
     }
 
 
@@ -95,7 +95,7 @@ def table_3_4_single_load_factor(category, action="flexure_shear"):
         )
     return {
         "category": category, "action": action, "factor": row[action],
-        "table": "3-4", "printed_page": "26", "pdf_page": 31,
+        "table": "3-4", "printed_page": "26", "pdf_page_index": 31,
         "note": "Applies only for fy = 60,000 psi (414 MPa).",
     }
 
@@ -121,18 +121,18 @@ def single_load_factor_design_moment(m_service, category, action="flexure_shear"
     Returns
     -------
     dict
-        {'m_service', 'factor', 'mu', 'printed_page': '26', 'pdf_page': 31}
+        {'m_service', 'factor', 'mu', 'printed_page': '26', 'pdf_page_index': 31}
     """
     tbl = table_3_4_single_load_factor(category, action)
     mu = tbl["factor"] * m_service
     return {
         "m_service": m_service, "factor": tbl["factor"], "mu": mu,
-        "printed_page": "26", "pdf_page": 31,
+        "printed_page": "26", "pdf_page_index": 31,
     }
 
 
 # ============================================================================
-# Paragraph 3-6 -- Reinforcement limits (printed p. 27, pdf_page 32)
+# Paragraph 3-6 -- Reinforcement limits (printed p. 27, pdf_page_index 32)
 # ============================================================================
 
 def max_reinforcement_ratio(rho_b):
@@ -149,12 +149,12 @@ def max_reinforcement_ratio(rho_b):
     Returns
     -------
     dict
-        {'rho_b', 'rho_max', 'printed_page': '27', 'pdf_page': 32}
+        {'rho_b', 'rho_max', 'printed_page': '27', 'pdf_page_index': 32}
     """
     return {
         "rho_b": rho_b, "rho_max": 0.50 * rho_b,
         "reference": "EM 1110-2-2104 paragraph 3-6 (mandatory)",
-        "printed_page": "27", "pdf_page": 32,
+        "printed_page": "27", "pdf_page_index": 32,
     }
 
 
@@ -174,17 +174,17 @@ def deflection_control_reinforcement_ratio(rho_b):
     Returns
     -------
     dict
-        {'rho_b', 'rho_deflection_limit', 'printed_page': '27', 'pdf_page': 32}
+        {'rho_b', 'rho_deflection_limit', 'printed_page': '27', 'pdf_page_index': 32}
     """
     return {
         "rho_b": rho_b, "rho_deflection_limit": 0.25 * rho_b,
         "reference": "EM 1110-2-2104 paragraph 3-4b(2) (recommended)",
-        "printed_page": "27", "pdf_page": 32,
+        "printed_page": "27", "pdf_page_index": 32,
     }
 
 
 # ============================================================================
-# Paragraph 3-7 -- Minimum thickness of walls (printed p. 27, pdf_page 32)
+# Paragraph 3-7 -- Minimum thickness of walls (printed p. 27, pdf_page_index 32)
 # ============================================================================
 
 def min_wall_thickness(height_ft, thickness_in=None):
@@ -219,7 +219,7 @@ def min_wall_thickness(height_ft, thickness_in=None):
         "height_governed_min_in": height_min, "governing_min_in": governing_min,
         "both_faces_required_at_in": 10.0,
         "reference": "EM 1110-2-2104 paragraph 3-7",
-        "printed_page": "27", "pdf_page": 32,
+        "printed_page": "27", "pdf_page_index": 32,
     }
     if thickness_in is not None:
         out["thickness_in"] = thickness_in

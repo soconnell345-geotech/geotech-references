@@ -161,7 +161,7 @@ _LIFT_THICKNESS = {
                     "for most sheepsfoot and pneumatic-tired rollers. "
                     "Cohesive soils placed in approximately 10-inch loose "
                     "lifts will compact to approximately 6 inches."),
-        "page": "5-1, 5-2", "pdf_page": "28-29",
+        "page": "5-1, 5-2", "pdf_page_index": [28, 29],
     },
     "cohesionless_sheepsfoot_or_pneumatic": {
         "loose_lift_in": "approximately 8", "compacted_lift_in": "6",
@@ -170,14 +170,14 @@ _LIFT_THICKNESS = {
                     "for most sheepsfoot and pneumatic-tired rollers. ... "
                     "cohesionless soils placed in approximately 8-inch base "
                     "lifts will compact to 6 inches."),
-        "page": "5-1, 5-2", "pdf_page": "28-29",
+        "page": "5-1, 5-2", "pdf_page_index": [28, 29],
     },
     "cohesionless_heavy_vibratory": {
         "loose_lift_in": "about 12 to 15", "compacted_lift_in": None,
         "printed": ("Adequate compaction can be achieved in cohesionless "
                     "materials of about 12- to 15-inch loose-lift thickness "
                     "if heavy vibratory equipment is used."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 29,
     },
     "confined_clean_cohesionless": {
         "loose_lift_in": "4 to 6", "compacted_lift_in": None,
@@ -185,7 +185,7 @@ _LIFT_THICKNESS = {
                     "material is used, a loose-lift thickness of 4 to 6 "
                     "inches and a vibratory plate or walk-behind, dual-drum "
                     "vibratory roller for compaction is recommended."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 29,
     },
     "confined_cohesive": {
         "loose_lift_in": "not more than 4", "compacted_lift_in": None,
@@ -196,7 +196,7 @@ _LIFT_THICKNESS = {
                     "wood rammers, or single air tampers (commonly referred "
                     "to as \"powder puffs\" or \"pogo sticks\") do not "
                     "produce sufficient compaction."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 29,
     },
 }
 _LIFT_NOTE = (
@@ -267,7 +267,7 @@ _EQUIPMENT = {
 _MATERIAL_CATEGORIES = {
     "coarse_grained": {
         "uscs": ["GW", "GP", "GM", "GC", "SW", "SP", "SM", "SC"],
-        "paragraph": "3-3d(1)", "page": "3-5", "pdf_page": "22",
+        "paragraph": "3-3d(1)", "page": "3-5", "pdf_page_index": 22,
         "printed": (
             "Coarse-grained soils include gravelly and sandy soils and range "
             "from clayey sands (SC) through the well-graded gravels of "
@@ -288,7 +288,7 @@ _MATERIAL_CATEGORIES = {
     },
     "fine_grained_low_to_medium_plasticity": {
         "uscs": ["CL", "ML"],
-        "paragraph": "3-3d(2)", "page": "3-5, 3-6", "pdf_page": "22-23",
+        "paragraph": "3-3d(2)", "page": "3-5, 3-6", "pdf_page_index": [22, 23],
         "printed": (
             "Inorganic clays (CL) of low to medium plasticity ... and "
             "inorganic silts and very fine sands (ML) of low plasticity ... "
@@ -310,7 +310,7 @@ _MATERIAL_CATEGORIES = {
     },
     "marginal_fine_grained_high_plasticity": {
         "uscs": ["CH", "MH", "OH"],
-        "paragraph": "3-3d(5)(a)", "page": "3-6", "pdf_page": "23",
+        "paragraph": "3-3d(5)(a)", "page": "3-6", "pdf_page_index": 23,
         "printed": (
             "Marginal materials are these materials that because of either "
             "their poor compaction, consolidation, or swelling "
@@ -529,7 +529,7 @@ def table_backfill_material_classification(uscs_class):
         "paragraph": row["paragraph"],
         "printed": row["printed"],
         "reference": (f"{_REF}, para {row['paragraph']}, printed p. "
-                      f"{row['page']} (PDF {row['pdf_page']})"),
+                      f"{row['page']} (PDF {row['pdf_page_index']})"),
     }
 
 
@@ -581,7 +581,7 @@ def table_maximum_lift_thickness(case):
         "printed": row["printed"],
         "note": _LIFT_NOTE,
         "reference": (f"{_REF}, para 5-1b(3), printed p. {row['page']} "
-                      f"(PDF {row['pdf_page']})"),
+                      f"(PDF {row['pdf_page_index']})"),
     }
 
 

@@ -29,7 +29,7 @@ from geotech_references._interpolation import _linterp
 
 # ============================================================================
 # Table 3-1: Categorization of Weather Severity
-# (Section 3-7.1; pdf_page 31, printed p.14)
+# (Section 3-7.1; pdf_page_index 31, printed p.14)
 # ============================================================================
 
 _WEATHER_SEVERITY_ROWS = [
@@ -79,13 +79,13 @@ def table_3_1_weather_severity(air_freezing_index, avg_monthly_precip_in) -> dic
             "In poorly drained areas, treat weather as severe even if "
             "these criteria indicate moderate (Table 3-1, Note 2)."
         ),
-        "reference": "UFC 3-250-04, Table 3-1 (pdf_page 31, printed p.14)",
+        "reference": "UFC 3-250-04, Table 3-1 (pdf_page_index 31, printed p.14)",
     }
 
 
 # ============================================================================
 # Table 3-2: Deleterious Material Limits in Airfield Aggregates - Percent
-# Mass (Section 3-7.1; pdf_page 32-33, printed p.15-16)
+# Mass (Section 3-7.1; pdf_page_index 32-33, printed p.15-16)
 # ============================================================================
 
 _TABLE_3_2 = {
@@ -134,7 +134,7 @@ _TABLE_3_2_ALIASES = {
 
 def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
     """Deleterious material limit in airfield aggregates, percent mass,
-    UFC 3-250-04 Table 3-2 (pdf_page 32, printed p.15); returns the printed
+    UFC 3-250-04 Table 3-2 (pdf_page_index 32, printed p.15); returns the printed
     limit and, for material finer than No. 200 and lightweight particles,
     the footnote that changes it (footnote 2: raised to 1.5 percent for
     crushed aggregates whose fines are crusher dust essentially free from
@@ -195,13 +195,13 @@ def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
     }
     if key in _TABLE_3_2_FOOTNOTES:
         out["footnote"] = _TABLE_3_2_FOOTNOTES[key]
-    out["reference"] = "UFC 3-250-04, Table 3-2 (pdf_page 32, printed p.15)"
+    out["reference"] = "UFC 3-250-04, Table 3-2 (pdf_page_index 32, printed p.15)"
     return out
 
 
 # ============================================================================
 # Table 3-3: Testing Time Required (ASR / freeze-thaw)
-# (Section 3-8.2; pdf_page 36, printed p.19)
+# (Section 3-8.2; pdf_page_index 36, printed p.19)
 # ============================================================================
 
 _TABLE_3_3 = {
@@ -251,13 +251,13 @@ def table_3_3_aggregate_test_time(test_method) -> dict:
     return {
         "test_method": key,
         "time_for_result": _TABLE_3_3[key]["time_for_result"],
-        "reference": "UFC 3-250-04, Table 3-3 (pdf_page 36, printed p.19)",
+        "reference": "UFC 3-250-04, Table 3-3 (pdf_page_index 36, printed p.19)",
     }
 
 
 # ============================================================================
 # Table 3-4: Types and Uses of Portland Cements (ASTM C150/CRD-C 201)
-# (Section 3-9.2; pdf_page 37, printed p.20)
+# (Section 3-9.2; pdf_page_index 37, printed p.20)
 # ============================================================================
 
 _TABLE_3_4 = {
@@ -298,7 +298,7 @@ def table_3_4_portland_cement_type(cement_type) -> dict:
     return {
         "cement_type": key,
         "application": _TABLE_3_4[key],
-        "reference": "UFC 3-250-04, Table 3-4 (pdf_page 37, printed p.20)",
+        "reference": "UFC 3-250-04, Table 3-4 (pdf_page_index 37, printed p.20)",
     }
 
 
@@ -319,7 +319,7 @@ def _normalize_cement_type(cement_type) -> str:
 
 # ============================================================================
 # Table 3-5: Types of Blended Cements (ASTM C595/CRD-C 203)
-# (Section 3-9.3; pdf_page 37, printed p.20)
+# (Section 3-9.3; pdf_page_index 37, printed p.20)
 # ============================================================================
 
 _TABLE_3_5 = {
@@ -378,13 +378,13 @@ def table_3_5_blended_cement_type(cement_type) -> dict:
     return {
         "cement_type": key,
         "composition": _TABLE_3_5[key],
-        "reference": "UFC 3-250-04, Table 3-5 (pdf_page 37, printed p.20)",
+        "reference": "UFC 3-250-04, Table 3-5 (pdf_page_index 37, printed p.20)",
     }
 
 
 # ============================================================================
 # Table 3-6: Types of Hydraulic Cements (ASTM C1157/CRD-C 271)
-# (Section 3-9.4; pdf_page 38, printed p.21)
+# (Section 3-9.4; pdf_page_index 38, printed p.21)
 # ============================================================================
 
 _TABLE_3_6 = {
@@ -430,13 +430,13 @@ def table_3_6_hydraulic_cement_type(cement_type) -> dict:
     return {
         "cement_type": key,
         "use": _TABLE_3_6[key],
-        "reference": "UFC 3-250-04, Table 3-6 (pdf_page 38, printed p.21)",
+        "reference": "UFC 3-250-04, Table 3-6 (pdf_page_index 38, printed p.21)",
     }
 
 
 # ============================================================================
 # Table 3-7: Grades of GGBF Slag (ASTM C989/CRD-C 205)
-# (Section 3-9.5.6; pdf_page 39, printed p.22)
+# (Section 3-9.5.6; pdf_page_index 39, printed p.22)
 # ============================================================================
 
 _TABLE_3_7 = {
@@ -476,13 +476,13 @@ def table_3_7_ggbf_slag_grade(grade) -> dict:
     return {
         "grade": key,
         "properties": _TABLE_3_7[key],
-        "reference": "UFC 3-250-04, Table 3-7 (pdf_page 39, printed p.22)",
+        "reference": "UFC 3-250-04, Table 3-7 (pdf_page_index 39, printed p.22)",
     }
 
 
 # ============================================================================
 # Table 3-8: Types of Admixtures (ASTM C494/CRD-C 87)
-# (Section 3-10.1.1; pdf_page 40, printed p.23)
+# (Section 3-10.1.1; pdf_page_index 40, printed p.23)
 # ============================================================================
 
 _TABLE_3_8 = {
@@ -526,13 +526,13 @@ def table_3_8_admixture_type(admixture_type) -> dict:
     return {
         "admixture_type": key,
         "use": _TABLE_3_8[key],
-        "reference": "UFC 3-250-04, Table 3-8 (pdf_page 40, printed p.23)",
+        "reference": "UFC 3-250-04, Table 3-8 (pdf_page_index 40, printed p.23)",
     }
 
 
 # ============================================================================
 # Table 8-1: Types of Dowel Bar Misalignment and Impact on Performance
-# (Section 8-5.2.1; pdf_page 94, printed p.77)
+# (Section 8-5.2.1; pdf_page_index 94, printed p.77)
 # ============================================================================
 
 _TABLE_8_1 = {
@@ -578,14 +578,14 @@ def table_8_1_dowel_misalignment_impact(misalignment_type) -> dict:
         "affects_spalling": row["spalling"],
         "affects_cracking": row["cracking"],
         "affects_load_transfer": row["load_transfer"],
-        "reference": "UFC 3-250-04, Table 8-1 (pdf_page 94, printed p.77)",
+        "reference": "UFC 3-250-04, Table 8-1 (pdf_page_index 94, printed p.77)",
     }
 
 
 # ============================================================================
 # Dowel bar installation tolerances (inline lookups, no formal table number)
 # Section 8-5.2.1.1 (alignment), 8-5.2.1.4 (corner clearance), 8-5.2.3
-# (drilled hole oversize); pdf_page 92-93, printed p.75-76
+# (drilled hole oversize); pdf_page_index 92-93, printed p.75-76
 # ============================================================================
 
 
@@ -606,7 +606,7 @@ def dowel_bar_alignment_tolerance() -> dict:
         "horizontal_longitudinal_translation_in": 0.625,
         "vertical_translation_mm": 13, "vertical_translation_in": 0.5,
         "reference": (
-            "UFC 3-250-04, Section 8-5.2.1.1 (pdf_page 93, printed p.76)"
+            "UFC 3-250-04, Section 8-5.2.1.1 (pdf_page_index 93, printed p.76)"
         ),
     }
 
@@ -626,7 +626,7 @@ def dowel_bar_corner_clearance() -> dict:
         "minimum_mm": 150, "minimum_in": 6.0,
         "preferred_mm": 300, "preferred_in": 12.0,
         "reference": (
-            "UFC 3-250-04, Section 8-5.2.1.4 (pdf_page 93, printed p.76)"
+            "UFC 3-250-04, Section 8-5.2.1.4 (pdf_page_index 93, printed p.76)"
         ),
     }
 
@@ -648,14 +648,14 @@ def dowel_bar_drilled_hole_oversize() -> dict:
         "oversize_min_mm": 3, "oversize_max_mm": 6,
         "oversize_min_in": 0.125, "oversize_max_in": 0.25,
         "reference": (
-            "UFC 3-250-04, Section 8-5.2.3 (pdf_page 95, printed p.78)"
+            "UFC 3-250-04, Section 8-5.2.3 (pdf_page_index 95, printed p.78)"
         ),
     }
 
 
 # ============================================================================
 # Table 9-1: Maximum Joint Spacing
-# (Section 9-3.2.1; pdf_page 121, printed p.104)
+# (Section 9-3.2.1; pdf_page_index 121, printed p.104)
 # ============================================================================
 
 _TABLE_9_1 = [
@@ -672,7 +672,7 @@ _TABLE_9_1_ROADS = ((10, 15), (3.0, 4.6))
 
 def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield") -> dict:
     """Maximum joint spacing by slab thickness, UFC 3-250-04 Table 9-1
-    (pdf_page 121, printed p.104); returns the printed range of the MAXIMUM
+    (pdf_page_index 121, printed p.104); returns the printed range of the MAXIMUM
     joint spacing (max_joint_spacing_low_ft to max_joint_spacing_high_ft,
     and in m as printed).
 
@@ -720,13 +720,13 @@ def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield")
         "thickness_row": label,
         "max_joint_spacing_low_ft": lo_ft, "max_joint_spacing_high_ft": hi_ft,
         "max_joint_spacing_low_m": lo_m, "max_joint_spacing_high_m": hi_m,
-        "reference": "UFC 3-250-04, Table 9-1 (pdf_page 121, printed p.104)",
+        "reference": "UFC 3-250-04, Table 9-1 (pdf_page_index 121, printed p.104)",
     }
 
 
 # ============================================================================
 # Edge slump tolerance (inline lookup, no formal table number)
-# Section 8-11 / 10-5.1; pdf_page 100-101 / 141, printed p.83-84 / 124
+# Section 8-11 / 10-5.1; pdf_page_index 100-101 / 141, printed p.83-84 / 124
 # ============================================================================
 
 
@@ -746,14 +746,14 @@ def edge_slump_tolerance() -> dict:
         "absolute_max_mm": 10, "absolute_max_in": 0.375,
         "reference": (
             "UFC 3-250-04, Sections 8-11 and 10-5.1 "
-            "(pdf_page 100 and 141, printed p.83 and 124)"
+            "(pdf_page_index 100 and 141, printed p.83 and 124)"
         ),
     }
 
 
 # ============================================================================
 # Table D-1: Early Age Cracking Types/Possible Causes/Investigation
-# (Appendix D, Section D-1; pdf_page 164-165, printed p.147-148)
+# (Appendix D, Section D-1; pdf_page_index 164-165, printed p.147-148)
 # ============================================================================
 
 _TABLE_D_1 = {
@@ -875,13 +875,13 @@ def table_d1_cracking_causes(crack_type) -> dict:
     return {
         "crack_type": key,
         "possible_causes": list(_TABLE_D_1[key]),
-        "reference": "UFC 3-250-04, Table D-1 (pdf_page 164, printed p.147)",
+        "reference": "UFC 3-250-04, Table D-1 (pdf_page_index 164, printed p.147)",
     }
 
 
 # ============================================================================
 # Table E-1: Recommended Combined RCC Gradation
-# (Appendix E, Section E-5.1; pdf_page 168, printed p.151)
+# (Appendix E, Section E-5.1; pdf_page_index 168, printed p.151)
 # ============================================================================
 
 _RCC_GRADATION_SIEVES_MM = [25, 19, 12.5, 9.5, 4.75, 2.36, 1.18, 0.60, 0.30, 0.15, 0.075]
@@ -917,7 +917,7 @@ def table_e1_rcc_gradation(sieve_mm=None) -> dict:
     ValueError
         If sieve_mm is given but does not match a tabulated sieve size.
     """
-    ref = "UFC 3-250-04, Table E-1 (pdf_page 168, printed p.151)"
+    ref = "UFC 3-250-04, Table E-1 (pdf_page_index 168, printed p.151)"
     if sieve_mm is None:
         rows = [
             {

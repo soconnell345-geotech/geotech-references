@@ -3,7 +3,7 @@
 Shear strength for one-way slabs/walls without shear reinforcement
 (Eq 5-1), special straight members such as box culverts and gate wells
 (Eq 5-2/5-3), and curved members (Eq 5-4). Printed pages per the 1 Nov 2023
-edition (pdf_page = printed_page + 5).
+edition (pdf_page_index = printed_page + 5).
 
 DEVIATION FROM CURRENT ACI 318-19: Chapter 5 deliberately keeps the
 PRE-ACI-318-19 shear-capacity equations for members without shear
@@ -57,7 +57,7 @@ def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
     Returns
     -------
     dict
-        {'vc', 'equation': '5-1', 'printed_page': '35', 'pdf_page': 40}
+        {'vc', 'equation': '5-1', 'printed_page': '35', 'pdf_page_index': 40}
     """
     if unit == "us":
         coeff = 2.0 * math.sqrt(fc_prime)
@@ -66,7 +66,7 @@ def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
     else:
         raise ValueError(f"unit must be 'us' or 'si', got {unit!r}")
     vc = (coeff + nu / (6.0 * ag)) * b * d
-    return {"vc": vc, "equation": "5-1", "printed_page": "35", "pdf_page": 40}
+    return {"vc": vc, "equation": "5-1", "printed_page": "35", "pdf_page_index": 40}
 
 
 # ============================================================================
@@ -116,7 +116,7 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
     dict
         {'vc', 'vc_limit_1' (Eq 5-3 first form), 'vc_limit_abs' (10*sqrt(fc')*b*d),
          'vc_governing', 'ln_over_d', 'applicable' (bool, ln/d in [1.25, 9]),
-         'equation': '5-2/5-3', 'printed_page': '37-38', 'pdf_page': '42-43'}
+         'equation': '5-2/5-3', 'printed_page': '37-38', 'pdf_page_index': [42, 43]}
     """
     ln_over_d = ln / d
     sqrt_fc = math.sqrt(fc_prime)
@@ -128,7 +128,7 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
         "vc": vc, "vc_limit_1": vc_limit_1, "vc_limit_abs": vc_limit_abs,
         "vc_governing": vc_governing, "ln_over_d": ln_over_d,
         "applicable": 1.25 <= ln_over_d <= 9 and fc_prime <= 6000,
-        "equation": "5-2/5-3", "printed_page": "37-38", "pdf_page": "42-43",
+        "equation": "5-2/5-3", "printed_page": "37-38", "pdf_page_index": [42, 43],
     }
 
 
@@ -172,7 +172,7 @@ def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
     dict
         {'vc', 'vc_limit_abs', 'vc_governing', 'applicable' (bool or None
          if radius not given), 'equation': '5-4', 'printed_page': '38',
-         'pdf_page': 43}
+         'pdf_page_index': 43}
     """
     sqrt_fc = math.sqrt(fc_prime)
     vc = 4 * sqrt_fc * math.sqrt(1 + nu / (4 * ag * sqrt_fc)) * b * d
@@ -182,7 +182,7 @@ def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
     return {
         "vc": vc, "vc_limit_abs": vc_limit_abs, "vc_governing": vc_governing,
         "applicable": applicable, "equation": "5-4", "printed_page": "38",
-        "pdf_page": 43,
+        "pdf_page_index": 43,
     }
 
 
@@ -219,7 +219,7 @@ def table_g1_shear_coefficient(thickness_in):
     -------
     dict
         {'thickness_in', 'coefficient', 'table': 'G-1', 'printed_page': '125',
-         'pdf_page': 130}
+         'pdf_page_index': 130}
     """
     if thickness_in not in _TABLE_G_1:
         raise ValueError(
@@ -229,5 +229,5 @@ def table_g1_shear_coefficient(thickness_in):
         )
     return {
         "thickness_in": thickness_in, "coefficient": _TABLE_G_1[thickness_in],
-        "table": "G-1", "printed_page": "125", "pdf_page": 130,
+        "table": "G-1", "printed_page": "125", "pdf_page_index": 130,
     }

@@ -2,9 +2,9 @@
 and frost heave environmental serviceability-loss procedure.
 
 Appendix G ("Treatment of Roadbed Swelling and/or Frost Heave in Design",
-pdf_page 394-404, printed G-1 to G-11) plus the supporting Part II pieces
-that consume it: Figure 2.2 (pdf_page 100, printed II-11, the conceptual
-cumulative-environmental-loss-vs-time curve) and Table 3.1 (pdf_page 123,
+pdf_page_index 394-404, printed G-1 to G-11) plus the supporting Part II pieces
+that consume it: Figure 2.2 (pdf_page_index 100, printed II-11, the conceptual
+cumulative-environmental-loss-vs-time curve) and Table 3.1 (pdf_page_index 123,
 printed II-34, the iterative performance-period worksheet in Section 3.1.3
 "Roadbed Swelling and Frost Heave"). All page numbers are 0-based ``fitz``
 page indices into ``docs/aashto1993.pdf`` (fully scanned, no text layer,
@@ -57,7 +57,7 @@ from geotech_references._interpolation import _linterp
 
 # ============================================================================
 # G.1 Roadbed Swelling -- Figure G.2: Nomograph for Estimating Swell Rate
-# Constant, theta (pdf_page 396, printed G-3). CHART READ-OFF (alignment
+# Constant, theta (pdf_page_index 396, printed G-3). CHART READ-OFF (alignment
 # nomograph reconstruction).
 #
 # The chart is a straight-line "alignment chart": a left vertical scale
@@ -77,7 +77,7 @@ from geotech_references._interpolation import _linterp
 # degenerates only at the single point a=1,b=0, i.e. A and B both sitting
 # exactly on the diagonal's own two corners, where the limit t->0.5 is used).
 #
-# This reproduces the guide's own worked example (note d.4, pdf_page 396):
+# This reproduces the guide's own worked example (note d.4, pdf_page_index 396):
 # points A, B illustrating the METHOD are read (visually, from the
 # rendered chart) at approximately moisture_frac=0.21, fabric_frac=0.50 ->
 # t=0.61 -> theta=0.10, matching the guide's printed "read 0.10" (the guide
@@ -162,13 +162,13 @@ def swell_rate_constant_theta(moisture_supply_frac, soil_fabric_frac) -> dict:
         "chart_read": True,
         "equation": ("t=(1-moisture_frac)/(1+fabric_frac-moisture_frac); "
                      "theta = 0.20 - 0.16*t"),
-        "reference": "AASHTO 1993 Guide, Figure G.2 (pdf_page 396, printed G-3)",
+        "reference": "AASHTO 1993 Guide, Figure G.2 (pdf_page_index 396, printed G-3)",
     }
 
 
 # ============================================================================
 # G.1 Roadbed Swelling -- Figure G.3: Chart for Estimating the Approximate
-# Potential Vertical Rise VR of Natural Soils (pdf_page 397, printed G-4).
+# Potential Vertical Rise VR of Natural Soils (pdf_page_index 397, printed G-4).
 # CHART READ-OFF of a two-panel chart printed turned on the page: a LEFT
 # panel (Plasticity Index 0-80 against an unlabelled shared height, one
 # curve per moisture condition) feeds a RIGHT panel (the same height
@@ -190,12 +190,12 @@ def swell_rate_constant_theta(moisture_supply_frac, soil_fabric_frac) -> dict:
 # Checked against the guide's own reads: the chart's printed example (PI
 # 50, average conditions, 5 ft -> 0.83 in; the dashed construction is
 # drawn at 0.86 on the printed VR scale) reads 0.85; Appendix H Table H.1
-# (pdf_page 408, printed H-3: optimum, roadbed > 30 ft) PI 38 / 46 / 48 /
+# (pdf_page_index 408, printed H-3: optimum, roadbed > 30 ft) PI 38 / 46 / 48 /
 # 51 / 56 / 60 / 62 / 65 / 67 / 71 -> 0.28 / 0.70 / 0.82 / 1.04 / 1.34 /
 # 1.80 / 1.86 / 2.00 / 2.20 / 2.60 in, all reproduced within 0.15 in, and
 # PI 15 and 19 -> 0.00 (below where the optimum curve starts).
 #
-# The G.1 text (pdf_page 394, printed G-1) says "for thicknesses greater
+# The G.1 text (pdf_page_index 394, printed G-1) says "for thicknesses greater
 # than 30 feet, use 30 feet"; the chart's "Greater than 30 ft" curve lies
 # on the 30 ft curve up to VR about 3.3 in and runs up to 0.08 in under it
 # at the top edge, so the 30 ft curve is used, as the text says.
@@ -312,7 +312,7 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     thickness_ft : float
         Thickness of the swelling roadbed layer, feet, 2 or more. The
         chart's curves run 2-30 ft (interpolated linearly between them);
-        above 30 ft the 30 ft curve is used, as G.1 says (pdf_page 394,
+        above 30 ft the 30 ft curve is used, as G.1 says (pdf_page_index 394,
         printed G-1: "for thicknesses greater than 30 feet, use 30 feet");
         below 2 ft, the thinnest curve, ValueError is raised (REF-76; the
         2 ft curve used to be read, with a note).
@@ -349,7 +349,7 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     if t > 30.0:
         t = 30.0
         notes.append("Thickness above 30 ft: the 30 ft curve is used, as "
-                     "G.1 says (pdf_page 394, printed G-1).")
+                     "G.1 says (pdf_page_index 394, printed G-1).")
     curve = _VR_CONDITION_CURVES[key]
     pi_lo, h_lo = curve[0]
     pi_hi, h_hi = curve[-1]
@@ -381,7 +381,7 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
                    f"{_VR_CONDITION_NAMES[key]} curve, across to the "
                    f"{t:g} ft thickness curve (linear between printed "
                    "curves), down to VR"),
-        "reference": "AASHTO 1993 Guide, Figure G.3 (pdf_page 397, printed G-4)",
+        "reference": "AASHTO 1993 Guide, Figure G.3 (pdf_page_index 397, printed G-4)",
     }
     if notes:
         out["note"] = " ".join(notes)
@@ -389,14 +389,14 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
 
 
 # ============================================================================
-# G.1 Roadbed Swelling -- swell probability guidance (text, pdf_page 394-395,
+# G.1 Roadbed Swelling -- swell probability guidance (text, pdf_page_index 394-395,
 # printed G-1/G-2; not a chart). Printed rule: probability of swelling at a
 # given location = 100% if PI (AASHTO T 90) > 30 AND (layer thickness > 2 ft
 # OR VR > 0.20 in).
 # ============================================================================
 
 def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
-    """Swell probability screening rule (Appendix G.1 text, pdf_page 394-395).
+    """Swell probability screening rule (Appendix G.1 text, pdf_page_index 394-395).
 
     The guide's printed rule: swell probability at a given location is
     considered 100 percent if the roadbed soil plasticity index (AASHTO
@@ -435,7 +435,7 @@ def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
     out = {
         "pi": pi, "thickness_ft": thickness_ft, "vr_in": vr_in,
         "is_100_pct": is_100,
-        "reference": "AASHTO 1993 Guide, Appendix G.1 (pdf_page 394-395, printed G-1/G-2)",
+        "reference": "AASHTO 1993 Guide, Appendix G.1 (pdf_page_index 394-395, printed G-1/G-2)",
     }
     if is_100:
         out["ps_pct"] = 100.0
@@ -451,9 +451,9 @@ def swell_probability_guidance(pi, thickness_ft=None, vr_in=None) -> dict:
 
 # ============================================================================
 # Table G.1: worksheet for section-length-weighted swell design parameters
-# (pdf_page 398, printed G-5). Not a chart -- a blank field-data form; the
+# (pdf_page_index 398, printed G-5). Not a chart -- a blank field-data form; the
 # computational content is the weighted-average procedure described in the
-# surrounding text (pdf_page 399, printed G-6): VR and theta are
+# surrounding text (pdf_page_index 399, printed G-6): VR and theta are
 # length-weighted averages across ALL sections, while swell probability Ps
 # is the length-weighted percent of TOTAL project length having VR greater
 # than 0.20 inches (i.e. classified as "swelling" sections).
@@ -519,7 +519,7 @@ def weighted_swell_parameters(sections) -> dict:
         "swelling_length_ft": round(swelling_length, 2),
         "vr_design_in": round(vr_weighted_sum / total_length, 4),
         "ps_design_pct": round(100.0 * swelling_length / total_length, 2),
-        "reference": "AASHTO 1993 Guide, Table G.1 (pdf_page 398, printed G-5)",
+        "reference": "AASHTO 1993 Guide, Table G.1 (pdf_page_index 398, printed G-5)",
     }
     if theta_length_sum > 0:
         out["theta_design"] = round(theta_weighted_sum / theta_length_sum, 4)
@@ -528,7 +528,7 @@ def weighted_swell_parameters(sections) -> dict:
 
 # ============================================================================
 # G.1 Roadbed Swelling -- Figure G.4: Chart for Estimating Serviceability
-# Loss Due to Roadbed Swelling (pdf_page 400, printed G-7). PRINTED EQUATION
+# Loss Due to Roadbed Swelling (pdf_page_index 400, printed G-7). PRINTED EQUATION
 # (not a chart read-off -- the nomograph solves this closed form, given
 # directly on the page):
 #
@@ -546,7 +546,7 @@ def swelling_serviceability_loss(vr_in, ps_pct, theta, t_yr) -> dict:
         dPSI_sw = 0.00335 * VR * Ps * (1 - e^(-theta*t))
 
     Verified EXACTLY against the guide's own printed worked example (Figure
-    G.4, pdf_page 400, printed G-7): t=15 yr, theta=0.10, Ps=60%, VR=2 in ->
+    G.4, pdf_page_index 400, printed G-7): t=15 yr, theta=0.10, Ps=60%, VR=2 in ->
     dPSI_sw=0.3123, printed solution 0.3 (chart rounds to 1 decimal).
 
     Parameters
@@ -587,13 +587,13 @@ def swelling_serviceability_loss(vr_in, ps_pct, theta, t_yr) -> dict:
         "vr_in": vr_in, "ps_pct": ps_pct, "theta": theta, "t_yr": t_yr,
         "delta_psi_sw": round(delta_psi, 4),
         "equation": "dPSI_sw = 0.00335 * VR * Ps * (1 - e^(-theta*t))  (Ps in percent)",
-        "reference": "AASHTO 1993 Guide, Figure G.4 (pdf_page 400, printed G-7)",
+        "reference": "AASHTO 1993 Guide, Figure G.4 (pdf_page_index 400, printed G-7)",
     }
 
 
 # ============================================================================
 # G.2 Frost Heave -- Figure G.7: Graph for Estimating Maximum Serviceability
-# Loss Due to Frost Heave (pdf_page 403, printed G-10). Straight lines
+# Loss Due to Frost Heave (pdf_page_index 403, printed G-10). Straight lines
 # through the origin, one per drainage quality (Table 2.7-style categories:
 # Excellent/Good/Fair/Poor/Very Poor). Slopes read directly off the chart's
 # right edge (depth=10 ft): 1.0/2.0/3.0/4.0/5.0 -> slopes 0.10/0.20/0.30/
@@ -614,7 +614,7 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         slope: excellent=0.10, good=0.20, fair=0.30, poor=0.40, very_poor=0.50
 
     Verified EXACTLY against the guide's own printed worked example (Figure
-    G.7, pdf_page 403, printed G-10): drainage_quality='poor', depth_ft=5 ->
+    G.7, pdf_page_index 403, printed G-10): drainage_quality='poor', depth_ft=5 ->
     dPSI_MAX=2.0 (printed "(2.0)"/"(5 feet)" dashed-line annotation).
 
     Parameters
@@ -657,14 +657,14 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         "drainage_quality": key, "depth_ft": depth_ft,
         "delta_psi_max": round(slope * depth_ft, 3),
         "equation": "dPSI_MAX = slope(drainage_quality) * depth_ft",
-        "reference": "AASHTO 1993 Guide, Figure G.7 (pdf_page 403, printed G-10)",
+        "reference": "AASHTO 1993 Guide, Figure G.7 (pdf_page_index 403, printed G-10)",
     }
     return out
 
 
 # ============================================================================
 # G.2 Frost Heave -- Figure G.6: Chart for Estimating Frost Heave Rate for a
-# Roadbed Soil, Part II (pdf_page 402, printed G-9). Two pieces:
+# Roadbed Soil, Part II (pdf_page_index 402, printed G-9). Two pieces:
 #
 # (1) The printed "Frost Susceptibility Classifications" bar (Negligible /
 #     Very Low / Low / Medium / High / Very High) vs Average Rate of Heave,
@@ -723,7 +723,7 @@ def frost_susceptibility_classification(rate_mm_day) -> dict:
         "rate_mm_day": rate_mm_day, "classification": _FROST_SUSCEPT_LABELS[idx],
         "chart_read": True,
         "reference": ("AASHTO 1993 Guide, Figure G.6 classification bar "
-                     "(pdf_page 402, printed G-9)"),
+                     "(pdf_page_index 402, printed G-9)"),
     }
 
 
@@ -780,7 +780,7 @@ def frost_heave_rate_group(uscs_group) -> dict:
         "rate_mm_day": round(mid, 2),
         "classification": frost_susceptibility_classification(mid)["classification"],
         "chart_read": True,
-        "reference": "AASHTO 1993 Guide, Figure G.6 (pdf_page 402, printed G-9)",
+        "reference": "AASHTO 1993 Guide, Figure G.6 (pdf_page_index 402, printed G-9)",
         "note": ("Coarse per-group range read from the chart's irregular "
                 "polygon regions, not a function of percent fines -- "
                 "treat as a rough screening estimate, +/-50%."),
@@ -789,7 +789,7 @@ def frost_heave_rate_group(uscs_group) -> dict:
 
 # ============================================================================
 # G.2 Frost Heave -- Figure G.8: Chart for Estimating Serviceability Loss
-# Due to Frost Heave (pdf_page 404, printed G-11). PRINTED EQUATION:
+# Due to Frost Heave (pdf_page_index 404, printed G-11). PRINTED EQUATION:
 #
 #   dPSI_FH = 0.01 * P_F * dPSI_MAX * [1 - e^(-0.02*phi*t)]
 #
@@ -807,7 +807,7 @@ def frost_heave_serviceability_loss(phi_mm_day, pf_pct, delta_psi_max, t_yr) -> 
         dPSI_FH = 0.01 * P_F * dPSI_MAX * [1 - e^(-0.02*phi*t)]
 
     Verified EXACTLY against the guide's own printed worked example (Figure
-    G.8, pdf_page 404, printed G-11): t=15 yr, phi=5 mm/day, P_F=30%,
+    G.8, pdf_page_index 404, printed G-11): t=15 yr, phi=5 mm/day, P_F=30%,
     dPSI_MAX=2.0 -> dPSI_FH=0.4661, printed solution 0.47.
 
     Parameters
@@ -850,13 +850,13 @@ def frost_heave_serviceability_loss(phi_mm_day, pf_pct, delta_psi_max, t_yr) -> 
         "delta_psi_max": delta_psi_max, "t_yr": t_yr,
         "delta_psi_fh": round(delta_psi, 4),
         "equation": "dPSI_FH = 0.01 * P_F * dPSI_MAX * [1 - e^(-0.02*phi*t)]  (P_F in percent)",
-        "reference": "AASHTO 1993 Guide, Figure G.8 (pdf_page 404, printed G-11)",
+        "reference": "AASHTO 1993 Guide, Figure G.8 (pdf_page_index 404, printed G-11)",
     }
 
 
 # ============================================================================
 # Figure 2.2: A Conceptual Example of the Environmental Serviceability Loss
-# Versus Time Graph (pdf_page 100, printed II-11). Purely additive: total
+# Versus Time Graph (pdf_page_index 100, printed II-11). Purely additive: total
 # environmental loss at time t is the sum of the swelling and frost-heave
 # components (each independently evaluated via the Figure G.4/G.8 equations
 # above). Figure 2.2 itself is explicitly labeled "conceptual" -- its curve
@@ -917,14 +917,14 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
         out["delta_psi_fh"] = fh["delta_psi_fh"]
         total += fh["delta_psi_fh"]
     out["delta_psi_total"] = round(total, 4)
-    out["reference"] = "AASHTO 1993 Guide, Figure 2.2 (pdf_page 100, printed II-11)"
+    out["reference"] = "AASHTO 1993 Guide, Figure 2.2 (pdf_page_index 100, printed II-11)"
     return out
 
 
 # ============================================================================
 # Table 3.1: Example of Process Used to Predict the Performance Period of an
 # Initial Pavement Structure Considering Swelling and/or Frost Heave
-# (pdf_page 123, printed II-34; Section 3.1.3 "Roadbed Swelling and Frost
+# (pdf_page_index 123, printed II-34; Section 3.1.3 "Roadbed Swelling and Frost
 # Heave"). The printed 6-column worksheet, per iteration:
 #   (1) iteration number
 #   (2) trial performance period, t (years) -- designer's estimate
@@ -952,7 +952,7 @@ def total_environmental_loss(t_yr, swelling=None, frost=None) -> dict:
 #   year, "about 8 years". Table H.2 (printed H-7) converges after one
 #   iteration: 13 and 13.2, "about 13 years".
 #
-# NOTE (transparency): the guide's OWN prose around Table 3.1 (pdf_page
+# NOTE (transparency): the guide's OWN prose around Table 3.1 (pdf_page_index
 # 123-124, printed II-33/34) describes a companion worked example (R=95%,
 # MR=5,000 psi, po=4.4, pt=2.5 -> dPSI=1.9, 15-yr/5x10^6-ESAL initial
 # pavement -> "maximum SN...is 4.4") that this module could NOT reconcile
@@ -1119,7 +1119,7 @@ def performance_period_iteration(
         "performance_period_yr": round(period, 2),
         "delta_psi_design": delta_psi_design,
         "note": note,
-        "reference": "AASHTO 1993 Guide, Table 3.1 (pdf_page 123, printed II-34)",
+        "reference": "AASHTO 1993 Guide, Table 3.1 (pdf_page_index 123, printed II-34)",
     }
 
 

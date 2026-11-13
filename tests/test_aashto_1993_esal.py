@@ -71,8 +71,8 @@ def test_return_keys_kept_and_table_added():
 
 def test_spot_checks_off_the_printed_page():
     # Read off the rendered scan of docs/aashto1993.pdf:
-    # Table D.4 (pdf_page 365, printed D-6), SN = 5: 12 kips 189 -> 0.189,
-    # 30 kips 7 0 -> 7.0; Table D.5 (pdf_page 366, printed D-7), SN = 5:
+    # Table D.4 (pdf_page_index 365, printed D-6), SN = 5: 12 kips 189 -> 0.189,
+    # 30 kips 7 0 -> 7.0; Table D.5 (pdf_page_index 366, printed D-7), SN = 5:
     # 36 kips 1 38 -> 1.38, SN = 3 at 40 kips 2 06 -> 2.06.
     assert tb.esal_flexible_single_axle(12.0)["lef"] == 0.189
     assert tb.esal_flexible_single_axle(30.0)["lef"] == 7.0

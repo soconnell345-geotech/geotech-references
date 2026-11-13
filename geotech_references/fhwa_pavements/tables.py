@@ -115,7 +115,7 @@ def table_5_35_default_resilient_modulus(soil_class: str = "",
     if sc in ("", "ALL"):
         out = {
             "reference": "FHWA-NHI-05-037 Table 5-35 (NCHRP 1-37A, 2004)",
-            "table": "5-35", "pdf_page": 231, "printed_page": "5-54",
+            "table": "5-35", "pdf_page_index": 231, "printed_page": "5-54",
             "note": ("Mr in psi at unsoaked optimum moisture/density "
                      "(NCHRP 1-37A Level 3 defaults). Multiply by 0.069 for MPa."),
         }
@@ -144,7 +144,7 @@ def table_5_35_default_resilient_modulus(soil_class: str = "",
         )
     row.update({
         "reference": "FHWA-NHI-05-037 Table 5-35 (NCHRP 1-37A, 2004)",
-        "table": "5-35", "pdf_page": 231, "printed_page": "5-54",
+        "table": "5-35", "pdf_page_index": 231, "printed_page": "5-54",
         "note": "Mr in psi at unsoaked optimum moisture/density. x0.069 -> MPa.",
     })
     return row
@@ -261,7 +261,7 @@ def table_5_34_resilient_modulus_correlations(property: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
-            "table": "5-34", "pdf_page": 230, "printed_page": "5-53",
+            "table": "5-34", "pdf_page_index": 230, "printed_page": "5-53",
             "rows": [_row(k) for k in _TABLE_5_34],
             "note": ("Correlations are in rough order of preference; Mr-from-CBR "
                      "is most preferred. NCHRP 1-37A recommends AGAINST the older "
@@ -275,7 +275,7 @@ def table_5_34_resilient_modulus_correlations(property: str = "") -> dict:
         )
     out = _row(mapped)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-34 (NCHRP 1-37A, 2004)",
-                "table": "5-34", "pdf_page": 230, "printed_page": "5-53"})
+                "table": "5-34", "pdf_page_index": 230, "printed_page": "5-53"})
     return out
 
 
@@ -333,7 +333,7 @@ def table_5_28_typical_cbr(soil_class: str = "") -> dict:
     if sc in ("", "ALL"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-28 (USACE, 1953)",
-            "table": "5-28", "pdf_page": 216, "printed_page": "5-39",
+            "table": "5-28", "pdf_page_index": 216, "printed_page": "5-39",
             "rows": rows,
             "note": "Field CBR (%). AASHO Road Test: base CBR ~ 100, subbase ~ 30.",
         }
@@ -346,7 +346,7 @@ def table_5_28_typical_cbr(soil_class: str = "") -> dict:
     return {
         "soil_class": sc, "cbr_min": lo, "cbr_max": hi,
         "reference": "FHWA-NHI-05-037 Table 5-28 (USACE, 1953)",
-        "table": "5-28", "pdf_page": 216, "printed_page": "5-39",
+        "table": "5-28", "pdf_page_index": 216, "printed_page": "5-39",
     }
 
 
@@ -492,7 +492,7 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
                 "printed_page": page}
 
     ref = {"reference": "FHWA-NHI-05-037 Table 4-14 (NCHRP 1-37A)",
-           "table": "4-14", "pdf_page": 166, "printed_page": "4-65 to 4-66"}
+           "table": "4-14", "pdf_page_index": 166, "printed_page": "4-65 to 4-66"}
     k = _t414_key(soil_class)
     if k in ("", "ALL"):
         return {**ref, "rows": [_row(t) for t in _TABLE_4_14],
@@ -515,7 +515,7 @@ def table_4_14_soil_as_pavement_material(soil_class: str = "") -> dict:
         )
     out = _row(rows[k])
     out.update({**ref, "printed_page": out["printed_page"],
-                "pdf_page": 166 if out["printed_page"] == "4-65" else 167})
+                "pdf_page_index": 166 if out["printed_page"] == "4-65" else 167})
     if k.startswith(("GM", "SM")):
         out["footnote"] = _TABLE_4_14_FOOTNOTE
     if k in ("GM-U", "SM-U", "OL"):
@@ -600,7 +600,7 @@ def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
     if fg in ("", "ALL"):
         return {
             "reference": "FHWA-NHI-05-037 Table 7-12 (NCHRP 1-37A)",
-            "table": "7-12", "pdf_page": 411, "printed_page": "7-60",
+            "table": "7-12", "pdf_page_index": 411, "printed_page": "7-60",
             "rows": rows,
             "note": ("Increasing frost susceptibility F1 < F2 < F3 < F4. The "
                      "USACE uses a >= 3% finer-than-0.02 mm threshold for a frost-"
@@ -617,7 +617,7 @@ def table_7_12_frost_susceptibility(frost_group: str = "") -> dict:
         "degree_of_frost_susceptibility": entries[0]["degree_of_frost_susceptibility"],
         "entries": entries,
         "reference": "FHWA-NHI-05-037 Table 7-12 (NCHRP 1-37A)",
-        "table": "7-12", "pdf_page": 411, "printed_page": "7-60",
+        "table": "7-12", "pdf_page_index": 411, "printed_page": "7-60",
         "print_note": _TABLE_7_12_PRINT_NOTE,
     }
 
@@ -661,7 +661,7 @@ def _drainage_lookup(data, quality, table_no, coeff_key, label):
     if qk in ("", "all"):
         return {
             "reference": f"FHWA-NHI-05-037 Table {table_no} (AASHTO, 1993)",
-            "table": table_no, "pdf_page": 264, "printed_page": "5-87",
+            "table": table_no, "pdf_page_index": 264, "printed_page": "5-87",
             "saturation_columns": list(_DRAINAGE_COLS),
             "rows": [_row(q) for q in data],
             "note": (f"{label}. Columns are the % of time the pavement structure "
@@ -674,7 +674,7 @@ def _drainage_lookup(data, quality, table_no, coeff_key, label):
         )
     out = _row(qk)
     out.update({"reference": f"FHWA-NHI-05-037 Table {table_no} (AASHTO, 1993)",
-                "table": table_no, "pdf_page": 264, "printed_page": "5-87",
+                "table": table_no, "pdf_page_index": 264, "printed_page": "5-87",
                 "saturation_columns": list(_DRAINAGE_COLS)})
     return out
 
@@ -772,11 +772,11 @@ def table_7_4_drainage_quality_definitions() -> dict:
     Returns
     -------
     dict
-        {'reference', 'table', 'pdf_page', 'printed_page', 'rows': [...]}
+        {'reference', 'table', 'pdf_page_index', 'printed_page', 'rows': [...]}
     """
     return {
         "reference": "FHWA-NHI-05-037 Table 7-4 (AASHTO, 1993)",
-        "table": "7-4", "pdf_page": 360, "printed_page": "7-9",
+        "table": "7-4", "pdf_page_index": 360, "printed_page": "7-9",
         "rows": [{"quality_of_drainage": q, "water_removed_within": w}
                  for q, w in _TABLE_7_4],
         "note": "Based on 50% time-to-drain.",
@@ -857,7 +857,7 @@ def table_5_56_permeability_soils(soil_description: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-56 (Coduto, 1999)",
-            "table": "5-56", "pdf_page": 281, "printed_page": "5-104",
+            "table": "5-56", "pdf_page_index": 281, "printed_page": "5-104",
             "rows": rows,
         }
     match = next((r for r in rows if r["soil_description"].lower() == key), None)
@@ -868,7 +868,7 @@ def table_5_56_permeability_soils(soil_description: str = "") -> dict:
         )
     out = dict(match)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-56 (Coduto, 1999)",
-                "table": "5-56", "pdf_page": 281, "printed_page": "5-104"})
+                "table": "5-56", "pdf_page_index": 281, "printed_page": "5-104"})
     return out
 
 
@@ -901,7 +901,7 @@ def table_5_57_permeability_highway_materials(material: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-57 (Carter & Bentley, 1991)",
-            "table": "5-57", "pdf_page": 282, "printed_page": "5-105",
+            "table": "5-57", "pdf_page_index": 282, "printed_page": "5-105",
             "rows": rows,
             "note": "1 m/s = 3.25 ft/s.",
             "footnotes": _TABLE_5_57_FOOTNOTES,
@@ -915,7 +915,7 @@ def table_5_57_permeability_highway_materials(material: str = "") -> dict:
         )
     out = dict(match)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-57 (Carter & Bentley, 1991)",
-                "table": "5-57", "pdf_page": 282, "printed_page": "5-105"})
+                "table": "5-57", "pdf_page_index": 282, "printed_page": "5-105"})
     if out["material"] == "Bituminous concrete":
         out["footnote"] = _TABLE_5_57_FOOTNOTES[1]
     return out
@@ -976,7 +976,7 @@ def table_5_24_swell_potential_holtz_gibbs(potential: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-24 (Holtz & Gibbs, 1956)",
-            "table": "5-24", "pdf_page": 210, "printed_page": "5-33",
+            "table": "5-24", "pdf_page_index": 210, "printed_page": "5-33",
             "rows": rows,
             "note": "Probable expansion is % total volume change under 6.9 kPa (1 psi).",
         }
@@ -989,7 +989,7 @@ def table_5_24_swell_potential_holtz_gibbs(potential: str = "") -> dict:
         )
     out = dict(match)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-24 (Holtz & Gibbs, 1956)",
-                "table": "5-24", "pdf_page": 210, "printed_page": "5-33"})
+                "table": "5-24", "pdf_page_index": 210, "printed_page": "5-33"})
     return out
 
 
@@ -1023,7 +1023,7 @@ def table_7_17_swell_potential_ll_pi(potential: str = "") -> dict:
     if key in ("", "all"):
         return {
             "reference": "FHWA-NHI-05-037 Table 7-17 (Army & Air Force, 1994)",
-            "table": "7-17", "pdf_page": 430, "printed_page": "7-79",
+            "table": "7-17", "pdf_page_index": 430, "printed_page": "7-79",
             "rows": rows,
             "note": ("Soils that swell > 3% are expansive for pavement purposes; "
                      "lime treatment may be appropriate."),
@@ -1035,7 +1035,7 @@ def table_7_17_swell_potential_ll_pi(potential: str = "") -> dict:
         )
     out = dict(match)
     out.update({"reference": "FHWA-NHI-05-037 Table 7-17 (Army & Air Force, 1994)",
-                "table": "7-17", "pdf_page": 430, "printed_page": "7-79"})
+                "table": "7-17", "pdf_page_index": 430, "printed_page": "7-79"})
     return out
 
 
@@ -1104,7 +1104,7 @@ def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
     if sc in ("", "ALL"):
         return {
             "reference": "FHWA-NHI-05-037 Table 5-18 (Carter & Bentley, 1991)",
-            "table": "5-18", "pdf_page": 201, "printed_page": "5-24",
+            "table": "5-18", "pdf_page_index": 201, "printed_page": "5-24",
             "rows": [_row(k) for k in _TABLE_5_18],
             "print_note": _TABLE_5_18_A6_NOTE,
         }
@@ -1114,7 +1114,7 @@ def table_5_18_compaction_aashto(soil_class: str = "") -> dict:
         )
     out = _row(sc)
     out.update({"reference": "FHWA-NHI-05-037 Table 5-18 (Carter & Bentley, 1991)",
-                "table": "5-18", "pdf_page": 201, "printed_page": "5-24"})
+                "table": "5-18", "pdf_page_index": 201, "printed_page": "5-24"})
     if sc == "A-6":
         out["print_note"] = _TABLE_5_18_A6_NOTE
     return out
@@ -1154,11 +1154,11 @@ def table_7_15_geosynthetic_stabilization_criteria() -> dict:
     Returns
     -------
     dict
-        {'reference', 'table', 'pdf_page', 'printed_page', 'rows': [...]}
+        {'reference', 'table', 'pdf_page_index', 'printed_page', 'rows': [...]}
     """
     return {
         "reference": "FHWA-NHI-05-037 Table 7-15 (FHWA HI-95-038)",
-        "table": "7-15", "pdf_page": 425, "printed_page": "7-74",
+        "table": "7-15", "pdf_page_index": 425, "printed_page": "7-74",
         "rows": [{"condition": c, "related_measures": m} for c, m in _TABLE_7_15],
         "low_strength_triggers": {"cu_psi_max": 13, "cbr_max": 3, "mr_psi_max": 4500},
         "note": ("Geosynthetic stabilization combines separation, filtration, and "

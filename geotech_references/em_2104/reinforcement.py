@@ -3,7 +3,7 @@
 Minimum clear cover (Table 2-1), tension butt-splice longitudinal stagger
 (Table 2-2), and temperature/shrinkage reinforcement (Table 2-3 + paragraph
 2-9 min/max per-face limits). Printed pages cited per the 1 Nov 2023 edition
-(pdf_page = printed_page + 5).
+(pdf_page_index = printed_page + 5).
 """
 
 import math
@@ -18,7 +18,7 @@ _BAR_AREA_IN2 = {
 
 
 # ============================================================================
-# Table 2-1 -- Minimum clear cover (printed p. 5, pdf_page 10)
+# Table 2-1 -- Minimum clear cover (printed p. 5, pdf_page_index 10)
 # ============================================================================
 
 _TABLE_2_1 = {
@@ -58,7 +58,7 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
     -------
     dict
         {'concrete_section', 'min_cover_in', 'min_cover_cm', 'governs_by',
-         'table': '2-1', 'printed_page': '5', 'pdf_page': 10}
+         'table': '2-1', 'printed_page': '5', 'pdf_page_index': 10}
     """
     if concrete_section not in _TABLE_2_1:
         raise ValueError(
@@ -90,7 +90,7 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
         "min_cover_in": round(cover_in, 3),
         "min_cover_cm": round(cover_in * 2.54, 3),
         "governs_by": governs_by,
-        "table": "2-1", "printed_page": "5", "pdf_page": 10,
+        "table": "2-1", "printed_page": "5", "pdf_page_index": 10,
     }
 
 
@@ -111,7 +111,7 @@ def table_2_2_splice_stagger(bar_size):
     dict
         {'bar_size', 'category' ('<=No.11' or '>No.11'), 'stagger_rule',
          'min_stagger_ft' (None for <=No.11, governed by ACI 318-19 lap
-         length instead), 'table': '2-2', 'printed_page': '6', 'pdf_page': 11}
+         length instead), 'table': '2-2', 'printed_page': '6', 'pdf_page_index': 11}
 
     Notes
     -----
@@ -125,7 +125,7 @@ def table_2_2_splice_stagger(bar_size):
             "stagger_rule": "ACI 318-19 required lap length",
             "min_stagger_ft": None,
             "note": "No more than half of bars spliced at any one section.",
-            "table": "2-2", "printed_page": "6", "pdf_page": 11,
+            "table": "2-2", "printed_page": "6", "pdf_page_index": 11,
         }
     return {
         "bar_size": bar_size, "category": ">No.11",
@@ -133,7 +133,7 @@ def table_2_2_splice_stagger(bar_size):
         "min_stagger_ft": 5.0, "min_stagger_m": 1.5,
         "note": "No more than half of bars spliced at any one section. "
                 "Bars > No. 11 must be butt spliced (not lap spliced).",
-        "table": "2-2", "printed_page": "6", "pdf_page": 11,
+        "table": "2-2", "printed_page": "6", "pdf_page_index": 11,
     }
 
 
@@ -155,7 +155,7 @@ def table_2_3_temp_shrinkage_ratio(joint_spacing_ft):
     -------
     dict
         {'joint_spacing_ft', 'min_ratio', 'band', 'table': '2-3',
-         'printed_page': '7', 'pdf_page': 12}
+         'printed_page': '7', 'pdf_page_index': 12}
     """
     if joint_spacing_ft < 0:
         raise ValueError(f"joint_spacing_ft must be >= 0, got {joint_spacing_ft}")
@@ -167,7 +167,7 @@ def table_2_3_temp_shrinkage_ratio(joint_spacing_ft):
         ratio, band = 0.005, "> 40 ft (12 m)"
     return {
         "joint_spacing_ft": joint_spacing_ft, "min_ratio": ratio,
-        "band": band, "table": "2-3", "printed_page": "7", "pdf_page": 12,
+        "band": band, "table": "2-3", "printed_page": "7", "pdf_page_index": 12,
     }
 
 
@@ -223,5 +223,5 @@ def shrinkage_temperature_reinforcement(joint_spacing_ft, gross_thickness_in,
         "as_per_face_in2": round(as_per_face, 4),
         "governs_by": governs_by, "unit_width_in": unit_width_in,
         "reference": "EM 1110-2-2104 paragraph 2-9", "printed_page": "6-7",
-        "pdf_page": "11-12",
+        "pdf_page_index": [11, 12],
     }
