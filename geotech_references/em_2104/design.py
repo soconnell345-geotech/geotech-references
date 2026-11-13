@@ -61,7 +61,7 @@ def kd_table_d1(rho_over_rho_b, beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
 
 def minimum_effective_depth(mn, b, fc_prime, kd):
     """Table D-1 / Eq D-5: minimum effective depth dd at a target
-    reinforcement ratio (printed p. 73).
+    reinforcement ratio (printed p. 71).
 
         dd = sqrt( Mn / (0.85*fc'*Kd*b*(1 - Kd/2)) )
 
@@ -84,10 +84,10 @@ def minimum_effective_depth(mn, b, fc_prime, kd):
     Returns
     -------
     dict
-        {'dd', 'equation': 'D-5', 'printed_page': '73', 'pdf_page': 78}
+        {'dd', 'equation': 'D-5', 'printed_page': '71', 'pdf_page': 76}
     """
     dd = math.sqrt(mn / (0.85 * fc_prime * kd * b * (1 - kd / 2.0)))
-    return {"dd": dd, "equation": "D-5", "printed_page": "73", "pdf_page": 78}
+    return {"dd": dd, "equation": "D-5", "printed_page": "71", "pdf_page": 76}
 
 
 def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
