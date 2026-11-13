@@ -128,6 +128,13 @@ PRINTED = [
      "(10-7) (z + 1)6.05"),
     # UFC 3-250-03 PDF p. 137, printed p. 123
     ("ufc_flexible_practice", "9-1.1", "8 microns (3.15x10^-4 inch)", "3.15x10-4"),
+    # UFC 3-220-20 PDF p. 65, printed p. 27; PDF p. 206, printed p. 168
+    ("dm7_2", "1-2.11", "Peats have a high permeability (10^-3 cm/sec)", "(10-3 cm"),
+    ("dm7_2", "3-7.4", "ranges from 3×10^-6 to 5×10^-5 1/psf", "3×10-6"),
+    # UFC 3-220-20 PDF p. 694, printed p. 656, Table B-39: the page prints
+    # "2.4 x 10-6" with the -6 on the line; the value is 2.4 x 10^-6
+    ("dm7_2", "B-7.4", "/ 2.4 x 10^-6 (the page prints the -6 on the line, not raised) / 0%",
+     "2.4 x 10-6 /"),
 ]
 
 #: (package, figure number, printed caption text now stored, text-layer form
@@ -248,15 +255,9 @@ _PLAIN_POWER = [
     re.compile(r"×10\d(?![\d^])"),
 ]
 
-#: Plain powers of ten in references left to other branches (2026-11-12):
-#: UFC 3-220-20 prints 10^-3 (p. 1-2.11), 3×10^-6 to 5×10^-5 (3-7.4) and
-#: 2.4 x 10^-6 (B-7.4) with raised exponents; an entry goes when that text is
-#: corrected.
-KNOWN_PLAIN_POWERS = {
-    ("dm7_2", "appendix_b.json", "sections/58/tables/0"): 1,
-    ("dm7_2", "chapter03.json", "sections/63/body"): 2,
-    ("dm7_2", "prologue.json", "sections/28/body"): 1,
-}
+#: Plain powers of ten left in stored text on purpose: none (UFC 3-220-20's
+#: three were corrected 2026-11-12).
+KNOWN_PLAIN_POWERS = {}
 
 
 def test_no_power_of_ten_stored_as_plain_digits():
