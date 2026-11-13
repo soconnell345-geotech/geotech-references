@@ -22,7 +22,7 @@ PKG = ROOT / "geotech_references" / "gec_11"
 PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
 #: Appendices built from the print so far, with the chapter number each
 #: file carries (the appendices follow chapter 11).
-BUILT = {"B": 13}
+BUILT = {"A": 12, "B": 13}
 
 
 def _appendix(letter):
@@ -81,6 +81,49 @@ def test_no_scatter_patterns(letter):
                     if t.count(a) != t.count(b):
                         bad.append((s["section_id"], f"{a}{b} in {ln[:70]!r}"))
     assert bad == []
+
+
+# --- Appendix A -------------------------------------------------------------
+
+def test_appendix_a_headings_and_notation():
+    secs = _sections("A")
+    assert {sid: s["title"] for sid, s in secs.items()} == {
+        "A.1": "Load Notation", "A.2": "Load Combinations",
+        "A.3": "Load Factors for Permanent Loads"}
+    body = secs["A.1"]["body"]
+    # p. A-2, as printed ("due shrinkage")
+    assert "\nSH = Force effects due shrinkage\nTransient Loads\nBR = " in body
+    # ten permanent and seventeen transient loads
+    assert body.count(" = ") == 27
+
+
+def test_appendix_a_tables_typed_in():
+    secs = _sections("A")
+    rows = {r.split(" | ")[0]: r.split(" | ")[1:]
+            for r in secs["A.2"]["body"].split("\n") if " | " in r}
+    assert len(rows) == 13
+    # p. A-3: 13 columns after the limit state
+    assert all(len(v) == 13 for v in rows.values())
+    assert rows["STRENGTH I (unless noted)"][:3] == ["γp", "1.75", "1.00"]
+    assert rows["EXTREME EVENT I"][1] == "γEQ"
+    assert rows["SERVICE IV"][-1] == "(blank)"
+    # p. A-4: the lambda method row (the letter is drawn, not in the text)
+    assert "DD: Downdrag: Piles, λ Method | 1.05 | 0.30" in secs["A.3"]["body"]
+
+
+def test_appendix_a_agrees_with_the_chapter_4_lookups():
+    """Tables 4-1 and 4-2 (p. 4-4) give a subset of the appendix's AASHTO
+    tables; the lookups that code them agree with pp. A-3 and A-4."""
+    from geotech_references.gec_11 import tables
+    body = _sections("A")["A.3"]["body"]
+    names = {"DC": "DC: Component and Attachments",
+             "EH Active": "EH: Horizontal Earth Pressure: Active",
+             "EV Overall Stability": "EV: Vertical Earth Pressure: Overall Stability",
+             "EV Retaining Walls": "EV: Vertical Earth Pressure: Retaining Walls and Abutments",
+             "ES": "ES: Earth Surcharge"}
+    for r in tables.table_4_2_permanent_load_factors():
+        lo = "N/A" if r["gamma_min"] is None else f"{r['gamma_min']:.2f}"
+        assert f"{names[r['load_type']]} | {r['gamma_max']:.2f} | {lo}" in body
 
 
 # --- Appendix B -------------------------------------------------------------

@@ -88,6 +88,10 @@ file, `text/appendix_b.json` and so on, the print's words with `[p. B-3]`
 markers and every formula line, table and figure lettering typed in from
 the rendered pages:
 
+- Appendix A (pp. A-1 to A-4; file chapter 12), LRFD load notation, the
+  load combination table (AASHTO 2007 Table 3.4.1-1) and the permanent
+  load factors (Table 3.4.1-2), typed in row by row; they agree with the
+  chapter 4 lookups for Tables 4-1 and 4-2.
 - Appendix B (pp. B-1 to B-18; file chapter 13), pullout resistance
   factors and MBW unit-geosynthetic connection strength: sections B to
   B.4.2, Eqs. B-1 to B-4 (and Eqs. 4-41 and 4-43 printed again), Table

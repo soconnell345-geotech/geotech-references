@@ -654,6 +654,10 @@ def apply_fix_lines(pages: list[dict], fixes: list[dict], pad: bool = True) -> N
             raise ValueError(f"fix_lines: {f['through']!r} not after {f['find']!r} "
                              f"on PDF page {f['pdf_page']}")
         j = lines.index(f["through"], i) if f.get("through") else i
+        if f.get("through") and f.get("last"):
+            # to the page's last such line (a table whose cells end in a
+            # run of dashes)
+            j = len(lines) - 1 - lines[::-1].index(f["through"])
         rep = f["replace"] if isinstance(f["replace"], list) else [f["replace"]]
         # a line break inside a replacement ("\n", the rows of a table typed
         # in from the page) is kept through the body's white-space clean-up
