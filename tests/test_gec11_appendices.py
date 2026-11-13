@@ -128,8 +128,7 @@ def test_appendix_a_agrees_with_the_chapter_4_lookups():
         assert f"{names[r['load_type']]} | {r['gamma_max']:.2f} | {lo}" in body
     # Table 4-1: its four rows against Table 3.4.1-1 (p. A-3), column by
     # column: DC ... ES, LL ... LS, EQ and CT
-    typed = _sections("A")["A.2"]["body"].split("
-")
+    typed = _sections("A")["A.2"]["body"].split("\n")
     a3 = {ln.split(" | ")[0]: ln.split(" | ") for ln in typed if " | " in ln}
     label = {"Strength I": "STRENGTH I (unless noted)", "Extreme Event I": "EXTREME EVENT I",
              "Extreme Event II": "EXTREME EVENT II", "Service I": "SERVICE I"}
@@ -155,12 +154,65 @@ def test_appendix_b_headings_as_printed():
         "B.2": "Experimental Procedures to Determine F* and α",
         "B.3": ("Connection Resistance and Strength of Partial and Full Friction "
                 "Segmental Block/Reinforcement Facing Connections"),
-        "B.4": "Connection Resistance Defined with Short-Term Testing",
         "B.4.1": "Protocol",
         "B.4.2": "Example Calculation",
     }
     # the contents list a B.5 References that the pages do not print
     assert "no B.5 is printed" in secs["B"]["applicability"]
+    # B.4's heading (p. B-12) has no text before B.4.1: no empty section
+    # for it; its subsections carry the heading
+    for sid in ("B.4.1", "B.4.2"):
+        assert ("Printed under B.4 Connection Resistance Defined with Short-Term "
+                "Testing (p. B-12)") in secs[sid]["applicability"]
+    assert "CONNECTION RESISTANCE DEFINED" not in secs["B.3"]["body"]
+
+
+def test_no_empty_appendix_section():
+    """A section with no text of its own ranks high for its title and
+    gives nothing (B.4 ranked second for "connection strength MBW
+    geosynthetic")."""
+    for letter in BUILT:
+        for s in _appendix(letter)["sections"]:
+            own = re.sub(r"\[p\. [^\]]+\]", "", s["body"]).strip()
+            assert len(own) > 150, (letter, s["section_id"])
+
+
+def test_appendix_pointer_slips_noted_and_paragraphs_as_printed():
+    """Pointers the pages print to tables or equations that are not
+    there, each kept with a note; paragraphs the text layer ran together
+    or into a list's last item, parted as on the page."""
+    B, D = _sections("B"), _sections("D")
+    assert ("in particular Table 5. [Note: as printed; in this manual Section 3.3 is "
+            "Reinforced Soil Concepts, and the pullout design parameters are in "
+            "Section 3.4.2, Table 3-6.]") in B["B"]["body"]
+    assert ("Table 5, Chapter 3 [Note: as printed; Chapter 3 gives them in Table 3-6, "
+            "Section 3.4.2.], with α") in B["B.1"]["body"]
+    assert ('(see Equation D.1): [Note: as printed, "Equation D.1"; the equation is D-1 '
+            "(p. D-2), printed again as D.4-1 (p. D-14).]") in D["D.6.1"]["body"]
+    assert ("Table 3-9 (RFD). [Note: as printed; in Chapter 3, Table 3-9 is Installation "
+            "Damage Reduction Factors, and the table of polymers' resistance to specific "
+            "environments is Table 3-10.]") in D["D.7"]["body"]
+    # what the notes say of Chapter 3
+    ch3 = {s["section_id"]: s for s in json.loads(
+        (PKG / "text" / "chapter03.json").read_text(encoding="utf-8"))["sections"]}
+    assert ch3["3.3"]["title"] == "Reinforced Soil Concepts"
+    assert any(x.startswith("Table 3-6:") for x in ch3["3.4.2"]["tables"])
+    assert any(x.startswith("Table 3-9: Installation Damage") for x in ch3["3.5.2.b"]["tables"])
+    assert any(x.startswith("Table 3-10: Anticipated Resistance of Polymers to Specific "
+                            "Environments") for x in ch3["3.5.2.d"]["tables"])
+    # paragraphs as printed
+    assert "reduction factor RFD. This reduction factor should be based" in B["B.3"]["body"]
+    assert D["D.1"]["body"].count(
+        "\n\nConsidering that typical design lives for permanent MSE structures") == 2
+    for sid, start in (("D.1", "Since the primary focus of creep evaluation"),
+                       ("D.1", "It is well known that temperature accelerates"),
+                       ("D.1", "The ability to accelerate creep with temperature"),
+                       ("D.2", "It is recommended that creep strain be measured"),
+                       ("D.2", "Any evidence of such changes, particularly"),
+                       ("D.5", "Similarly, for extension of the creep data"),
+                       ("D.7", "The four step approach provided above"),
+                       ("D.7", "Once the reduction factors are determined, then Tal")):
+        assert "\n\n" + start in D[sid]["body"], (sid, start)
 
 
 def test_appendix_b_sentences_with_their_pages():

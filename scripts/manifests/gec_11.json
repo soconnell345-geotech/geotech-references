@@ -803,9 +803,8 @@
            {"sid": "B.1", "title": "Empirical Procedures to Determine F* and α", "pdf_page": 199, "find": "B.1", "through": "EMPIRICAL PROCEDURES TO DETERMINE F* AND α"},
            {"sid": "B.2", "title": "Experimental Procedures to Determine F* and α", "pdf_page": 200, "find": "B.2EXPERIMENTAL PROCEDURES TO DETERMINE F* AND α"},
            {"sid": "B.3", "title": "Connection Resistance and Strength of Partial and Full Friction Segmental Block/Reinforcement Facing Connections", "pdf_page": 203, "find": "B.3", "through": "CONNECTIONS"},
-           {"sid": "B.4", "title": "Connection Resistance Defined with Short-Term Testing", "pdf_page": 210, "find": "B.4CONNECTION RESISTANCE DEFINED WITH SHORT-TERM TESTING"},
-           {"sid": "B.4.1", "title": "Protocol", "pdf_page": 210, "find": "B.4.1 Protocol"},
-           {"sid": "B.4.2", "title": "Example Calculation", "pdf_page": 212, "find": "B.4.2 Example Calculation"}
+           {"sid": "B.4.1", "title": "Protocol", "pdf_page": 210, "find": "B.4.1 Protocol", "note": "Printed under B.4 Connection Resistance Defined with Short-Term Testing (p. B-12), a heading with no text of its own before B.4.1; the library gives B.4 no section of its own, so B.4.1 and B.4.2 are listed under Appendix B."},
+           {"sid": "B.4.2", "title": "Example Calculation", "pdf_page": 212, "find": "B.4.2 Example Calculation", "note": "Printed under B.4 Connection Resistance Defined with Short-Term Testing (p. B-12), a heading with no text of its own before B.4.1; the library gives B.4 no section of its own."}
          ],
          "printed_equations": [
            {"number": "B-1", "page": "B-6", "formula": "CRcr = Tcrc / Tlot",
@@ -868,7 +867,11 @@
            {"pdf_page": 215, "find": "1068 + N tan6", "through": "1.15", "replace": ["", "Talc = (Tult × CRcr) / RFD = [Tult−MARV × (1068 + N tan 6°) / (2.09 (Tult−MARV))] / 1.15 = 444 + 0.044 N", ""]},
            {"pdf_page": 215, "find": "Define limits of applicability", "replace": "Define limits of applicability\n"},
            {"pdf_page": 216, "find": "AA MBW Unit - Type XX, Grade II Ge ogrid", "through": "AA MBW unit and Type XX, Grade II geogrid.", "replace": ["", "[Figure B-5 lettering, typed in from p. B-18:] AA MBW Unit - Type XX, Grade II Geogrid; Connection Rupture Strength; Ultimate Connection Strength (lb/ft, 0 to 1800; Normal Pressure (lb/ft), 0 to 6000; Test Data; Design Line; Linear (Test Data); Linear (Design Line).\ny = 0.1132x + 1068.2 (by the test data line); y = 0.044x + 444 (by the design line).\n[Note: as printed. A least-squares line through the eight peak capacities in the table on p. B-16 gives y = 0.1132x + 1068.2, the figure's line; 0.1132 is tan 6.5°, where the text (pp. B-16 and B-17) writes Tultconn = 1068 + N tan 6° (tan 6° = 0.105) and builds Talc = 444 + 0.044 N on it.]", "", "Figure B-5. Laboratory test data and the nominal long-term connection strength lines for AA MBW unit and Type XX, Grade II geogrid."]},
-           {"pdf_page": 216, "find": "Practical Considerations", "replace": ["Practical Considerations", ""]}
+           {"pdf_page": 216, "find": "Practical Considerations", "replace": ["Practical Considerations", ""]},
+           {"pdf_page": 199, "find": "using the procedures provided herein and in Section 3.3, in particular Table 5.  It should be", "replace": "using the procedures provided herein and in Section 3.3, in particular Table 5. [Note: as printed; in this manual Section 3.3 is Reinforced Soil Concepts, and the pullout design parameters are in Section 3.4.2, Table 3-6.]  It should be"},
+           {"pdf_page": 200, "find": "each of these parameters is provided in Table 5, Chapter 3, with α estimated analytically", "replace": "each of these parameters is provided in Table 5, Chapter 3 [Note: as printed; Chapter 3 gives them in Table 3-6, Section 3.4.2.], with α estimated analytically"},
+           {"pdf_page": 204, "find": "reduction factor RFD.", "through": "This reduction factor should be based on the durability of the", "replace": "reduction factor RFD.  This reduction factor should be based on the durability of the"},
+           {"pdf_page": 210, "find": "B.4CONNECTION RESISTANCE DEFINED WITH SHORT-TERM TESTING", "replace": []}
          ]},
         {"letter": "C", "number": 14,
          "title": "Steel Soil Reinforcements",
@@ -939,7 +942,19 @@
            {"pdf_page": 235, "find": "Tultlot", "through": "Tl", "replace": ["", "RFCR = Tultlot / Tl", ""]},
            {"pdf_page": 236, "find": "Figure D.6-1 Wide width load-strain data for PET geosynthetic at 20 C.", "replace": ["[Figure D.6-1, typed in from p. D-18 (a scanned plot):] Load (kN/m), 0 to 120, against Strain (%), 0 to 15; one load-strain curve rising to a peak of about 110 kN/m (read from the plot; the text gives 110 kN/m) near 10 % strain, then falling off.", "", "Figure D.6-1. Wide width load-strain data for PET geosynthetic at 20 C.", ""]},
            {"pdf_page": 237, "find": "Figure D.6-2 Stress rupture data for PET geosynthetic at 20 C.", "replace": ["[Figure D.6-2, typed in from p. D-19 (a scanned plot):] Load (KN/m), 10 to 100 on a log scale, against Time to Rupture (hrs), 1 to 1000000 on a log scale; fifteen rupture points (squares) from about 7 hours, near 85 kN/m, to roughly 20,000 hours, near 67 kN/m (read from the plot; the text's 1.68 log cycles to 1,000,000 hours puts the last point at about 21,000 hours); a straight regression line through them, extended to 1000000 hours and labelled 63.4 there.", "", "Figure D.6-2. Stress rupture data for PET geosynthetic at 20 C.", ""]},
-           {"pdf_page": 237, "find": "The AASHTO LRFD Bridge Design Specifications provide minimum requirements for the", "replace": ["", "The AASHTO LRFD Bridge Design Specifications provide minimum requirements for the"]}
+           {"pdf_page": 237, "find": "The AASHTO LRFD Bridge Design Specifications provide minimum requirements for the", "replace": ["", "The AASHTO LRFD Bridge Design Specifications provide minimum requirements for the"]},
+           {"pdf_page": 220, "find": "Considering that typical design lives for permanent MSE structures are 75 years or more,", "replace": ["", "Considering that typical design lives for permanent MSE structures are 75 years or more,"]},
+           {"pdf_page": 220, "find": "Since the primary focus of creep evaluation in current practice is at rupture, only", "replace": ["", "Since the primary focus of creep evaluation in current practice is at rupture, only"]},
+           {"pdf_page": 221, "find": "Considering that typical design lives for permanent MSE structures are 75 years or more,", "replace": ["", "Considering that typical design lives for permanent MSE structures are 75 years or more,"]},
+           {"pdf_page": 221, "find": "It is well known that temperature accelerates many chemical and physical processes in a", "replace": ["", "It is well known that temperature accelerates many chemical and physical processes in a"]},
+           {"pdf_page": 221, "find": "The ability to accelerate creep with temperature for polyolefins such as polypropylene (PP)", "replace": ["", "The ability to accelerate creep with temperature for polyolefins such as polypropylene (PP)"]},
+           {"pdf_page": 223, "find": "It is recommended that creep strain be measured as well as time to rupture, since the creep", "replace": ["", "It is recommended that creep strain be measured as well as time to rupture, since the creep"]},
+           {"pdf_page": 227, "find": "Any evidence of such changes, particularly in accelerated tests, should lead to the exclusion", "replace": ["", "Any evidence of such changes, particularly in accelerated tests, should lead to the exclusion"]},
+           {"pdf_page": 233, "find": "Similarly, for extension of the creep data obtained on one product in the product line (i.e., the", "replace": ["", "Similarly, for extension of the creep data obtained on one product in the product line (i.e., the"]},
+           {"pdf_page": 235, "find": "as follows (see Equation D.1):", "replace": "as follows (see Equation D.1): [Note: as printed, \"Equation D.1\"; the equation is D-1 (p. D-2), printed again as D.4-1 (p. D-14).]"},
+           {"pdf_page": 238, "find": "special soil conditions that may affect aging, such as summarized in Table 3-9 (RFD).", "replace": "special soil conditions that may affect aging, such as summarized in Table 3-9 (RFD). [Note: as printed; in Chapter 3, Table 3-9 is Installation Damage Reduction Factors, and the table of polymers' resistance to specific environments is Table 3-10.]"},
+           {"pdf_page": 239, "find": "The four step approach provided above is also applicable to specifically target the", "replace": ["", "The four step approach provided above is also applicable to specifically target the"]},
+           {"pdf_page": 239, "find": "Once the reduction factors are determined, then Tal can be determined in accordance with", "replace": ["", "Once the reduction factors are determined, then Tal can be determined in accordance with"]}
          ]}
       ]
     }

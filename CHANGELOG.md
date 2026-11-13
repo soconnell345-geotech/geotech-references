@@ -127,7 +127,9 @@ the rendered pages:
   chapter 4 lookups for Tables 4-1 and 4-2.
 - Appendix B (pp. B-1 to B-18; file chapter 13), pullout resistance
   factors and MBW unit-geosynthetic connection strength: sections B to
-  B.4.2, Eqs. B-1 to B-4 (and Eqs. 4-41 and 4-43 printed again), Table
+  B.3, B.4.1 and B.4.2 (the B.4 heading, p. B-12, prints no text before
+  B.4.1, so it has no section; B.4.1 and B.4.2 name it), Eqs. B-1 to B-4
+  (and Eqs. 4-41 and 4-43 printed again), Table
   B-1, the connection test protocol and the worked example (data table,
   CRcr and Talc = 444 + 0.044 N, recomputed). Noted as printed: "75
   years (670,000 hrs)" (p. B-10; about 657,000), and Figure B-5's line
@@ -148,6 +150,14 @@ the rendered pages:
   "D.4" for D.2-2 and D.3-1; on p. D-16 no equation follows "in
   accordance with the following". A short last line now ends a paragraph
   that the text layer runs together (Appendix B gains three breaks).
+- Pointers the appendices print to the wrong place carry a note (check
+  of the appendices): "Section 3.3, in particular Table 5" and "Table 5,
+  Chapter 3" (pp. B-1, B-2; the pullout parameters are Table 3-6,
+  Section 3.4.2), "Equation D.1" (p. D-17; Eq. D-1) and "Table 3-9
+  (RFD)" (p. D-20; the polymers' environments table is Table 3-10).
+  Paragraphs run together or into a list's last item are parted as
+  printed (D.1, D.2, D.5, D.7), and the break after "RFD." that p. B-6
+  does not print is gone.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
