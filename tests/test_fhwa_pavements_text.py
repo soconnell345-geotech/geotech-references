@@ -562,6 +562,34 @@ def test_comparison_signs_as_printed():
     assert not found, found
 
 
+def test_table_4_13_typed_from_the_page():
+    body = _sections(4)["4.7.2"]["body"]
+    assert "[Table 4-13 as printed on p. 4-63, typed in from the page:]" in body
+    rows = body.split("[Table 4-13 as printed on p. 4-63, typed in from the page:] ")[1]
+    rows = [r.strip() for r in rows.split("\n\n")[0].split("\n")]
+    cells = [[c.strip() for c in r.split("|")] for r in rows]
+    # one line per group symbol, every cell where the page prints it
+    assert [c[3] for c in cells[1:]] == [
+        "GW", "GP", "GM", "GC", "SW", "SP", "SM", "SC", "CL", "ML", "OL", "CH", "MH", "OH", "Pt"]
+    assert all(len(c) == 5 for c in cells)
+    assert rows[1] == ("GRAVELS More than 50% of coarse fraction retained on No. 4 sieve | "
+                       "CLEAN GRAVELS Less than 5% fines | CU ≥ 4 and 1 ≤ CC ≤ 3(e) | GW | "
+                       "Well-graded Gravel")
+    assert rows[5].endswith("| CU ≥ 6 and 1 ≤ CC ≤ 3(e) | SW | Well-graded Sand(i)")
+    # the GP and SP criteria print a CC no soil has; kept, and said
+    assert "CU ≤ 4 and 1 ≥ CC ≥ 3(e) [as printed; no value of CC is both ≤ 1 and ≥ 3] | GP" in rows[2]
+    assert "| PI > 7 and plots on or above \"A\" line(j) | CL | Lean Clay(k,l,m)" in rows[9]
+    assert "(Liquid limit - ovendried)/(Liquid limit – not dried) < 0.75 | OL" in rows[11]
+    assert rows[15].endswith("| Pt | Peat and Muskeg")
+    # the notes of p. 4-64, note e with the formulas the text layer dropped
+    assert ("e. CU = D60/D10 = Uniformity Coefficient (also UC)\n"
+            "CC = (D30)^2/((D10)(D60)) = Coefficient of Curvature\n"
+            "f. If soil contains ≥ 15% sand") in body
+    assert "c. Gravels with 5 – 12% fines require dual symbols:\nGW-GM well-graded gravel with silt\n" in body
+    assert "q. Pl plots below “A” line." in body
+    assert "Uniformity Coefficient alsoUC" not in body
+
+
 def test_degree_signs_and_exponents_as_printed():
     # the page raises an "o" for the degree sign and the exponents of the
     # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
