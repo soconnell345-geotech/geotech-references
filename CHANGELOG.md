@@ -4,6 +4,49 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+## 1.7.0
+
+Released 2026-11-13. This release is the review of 2026-11-10 to 2026-11-13:
+the lookups and the stored text of the reviewed references were compared
+with the printed pages, what differed was corrected, and three things were
+added. The entries below give each change with its page.
+
+**What a caller will notice**
+
+- **Values.** Several hundred lookups and stored equations now give what the
+  manual prints. Some of the earlier values were on the unsafe side; each
+  corrected value is named below with its printed page.
+- **A lookup outside its printed range refuses.** It raises `ValueError`
+  naming the printed range where it used to extrapolate or hold the end
+  value without saying so (REF-76, below).
+- **An unknown reference name or chapter is an error**, not an empty result,
+  and a section number names one section (core fixes, below).
+- **New reference: EM 1110-1-1905**, Geotechnical Design of Shallow
+  Foundations on Soils (`em_1905`): 66 functions, chapter text, figures and
+  tables.
+- **New: table catalogs.** `table_search`, `table_get`, `resolve_table_pdf`
+  and `list_indexed_tables` (`geotech_references._tables_db`, and the
+  `references_agent`): for 31 references, each printed table's page and
+  where its values are, in a stored section, in a function, or only on the
+  page.
+- **New: a fetched section says what it can reach.** `reference_get` and
+  `retrieve_section` add `figures_held`, `tables_held` and `not_held`, so a
+  caller knows which of the figures, tables and pointers a section names
+  the library holds, and which it does not.
+- **Text rebuilt from the print**: GEC-11 (11 chapters and Appendices A to
+  D), FHWA-NHI-05-037, parts of UFS 3-220-10 (DM 7.1), EN 1997-1 and
+  EN 1997-2, the Caltrans trenching manual, FEMA P-2082 and GEC-10; signs
+  that a PDF's text layer loses (≤, ≥, ±, powers of ten, degree signs) are
+  stored as the page prints them.
+- **A script-built reference records the PDF reader it was built with**
+  (PyMuPDF 1.27.2.3); its rebuild tests run only under that reader.
+
+**FHWA micropile manual, Table 5-3 (p. 5-21): the glacial till row is named
+as printed.** `table_5_3_alpha_bond` described the row as "dense-very
+dense"; the page prints "Glacial Till (silt, sand, gravel) (medium-very
+dense, cemented)". The bond values were right and are unchanged (found by
+the independent check of the table catalogs, 2026-11-13).
+
 **Reach build of 2026-11-12: a fetched section says what it can reach
 (app BACKLOG REF-92, the owner's acceptance test: the references helper can
 reach everything it is told it has).** `reference_get` and

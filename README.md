@@ -92,6 +92,12 @@ for section in results:
     print(section["title"], "-", section["body"][:100])
 ```
 
+### Tables and what a section can reach
+
+Every numbered table of 31 references has a catalog row saying where its values are: typed into a stored section (`"text"`), returned by a function (`"lookup"`), or only on the printed page (`"page"`, with the PDF page to read). Search and fetch rows with `geotech_references._tables_db.table_search` and `table_get`; `resolve_table_pdf` gives the page of a PDF held in `docs/`.
+
+A fetched section (`_retrieval_db.reference_get`, `_retrieval.retrieve_section`) says which of the figures, tables and pointers it names the library holds: `figures_held`, `tables_held` and `not_held`.
+
 ### Local reference packs
 
 A deployment can add its own references in the library's structured format, kept outside this package and its public repository. Point `GEOTECH_REFERENCES_PACKS` at a pack folder (or a folder of packs) and text search, section fetches and figure lookup cover it beside the built-in references. Make and check a pack with `python -m geotech_references.packs new|check|list|index`; `python -m geotech_references.packs schema` prints the chapter-file schema. The format, the print-fidelity rules and where packs live on each host are in [`docs/REFERENCE_PACKS.md`](https://github.com/soconnell345-geotech/geotech-references/blob/main/docs/REFERENCE_PACKS.md).
