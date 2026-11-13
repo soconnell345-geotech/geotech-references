@@ -118,6 +118,11 @@ pages):
   or the concrete strain not positive is refused (they set the -fy..fy
   bound on the tension steel stress, the yield limit Eqs B-31 and B-37
   print for fs', printed pp. 47-48).
+- `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
+  unchanged past the end rows, which are printed open-ended ("<= 0.0" /
+  ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as
+  the docstrings now say; a negative shear ratio (vw_ratio, vg_over_vo) is
+  refused.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
