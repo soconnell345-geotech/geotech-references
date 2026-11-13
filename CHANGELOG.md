@@ -4,6 +4,57 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Result units and pages, wave 1a (REF-78): the pavement references and
+EM 1110-2-2104.** The 269 lookups of `aashto_1993`, `ufc_pavement`,
+`fhwa_pavements`, `ufc_flexible_practice`, `ufc_concrete_practice`,
+`ufc_backfill`, `ufc_expansive`, `ufc_stabilization` and `em_2104`:
+
+- **Every dict result says what its numbers are and where they are
+  printed.** It carries `units` (`{key: unit}` for every key that holds a
+  number at any depth; empty when none does), `printed_page` (the label as
+  printed) and `pdf_page_index` (0-based, as the catalogs; a list when the
+  item spans pages). Units are as printed: `dimensionless` only where the
+  print calls the number a factor, ratio or coefficient, `no unit printed`
+  where it gives none, and percent or fraction always said. The one lookup
+  that returns a bare number, `em_2104.aci_beta1`, keeps its float and gives
+  the unit in its Returns line and the page in References. No return type
+  changed; `reference` stays a string. The shared code is the new
+  `geotech_references._units`.
+- **`pdf_page` is now `pdf_page_index`, the same 0-based value** (the one
+  renamed key). Page spans stored as strings (`"28-29"`) are now lists of
+  ints.
+- **New: `unit_system="SI"` on 90 US-unit lookups** (`aashto_1993` 31,
+  `ufc_pavement` 17, `em_2104` 28, `ufc_expansive` 8, `fhwa_pavements` 3,
+  `ufc_concrete_practice` 2, `ufc_stabilization` 1), keyword-only, default
+  `"US"` (unchanged). With `"SI"` the inputs the docstring names are taken in
+  SI units and converted exactly to the printed unit before the lookup runs
+  as printed; the result stays in the printed units and adds `unit_system`
+  and `converted_inputs`. A US-unit equation given an SI number inside its
+  range otherwise answers believably and wrongly: `flexible_sn_from_w18` with
+  MR 50,000 meant as kPa, or `table_9_1_maximum_joint_spacing(200)` meant as
+  mm. Not given it: lookups in consistent units, lookups with their own unit
+  selector (`unit=` / `units=`), and `ufc_expansive.eq_4_1_van_der_merwe_heave`,
+  whose printed method works in whole 1-ft increments.
+- **`units` is a dict, not a string**, in `ufc_pavement`
+  `granular_permeability_estimate`, `collector_drain_flow` and
+  `pipe_capacity_manning`, and `fhwa_pavements` `resilient_modulus_from_cbr`,
+  `resilient_modulus_from_r_value` and `resilient_modulus_from_dcp` (for
+  example `{"cbr": "percent", "mr": "MPa"}`).
+- **Pages corrected, each checked on its page.**
+  `aashto_1993.structural_number` cites printed II-35 (pdf_page_index 124;
+  it gave 118, printed II-29). The "PDF N" citations of `ufc_backfill`,
+  `ufc_expansive`, `ufc_pavement`, `ufc_concrete_practice` and
+  `ufc_stabilization`, and `ufc_backfill`'s stored row pages, were the PDF
+  viewer's 1-based page; they now read `pdf_page_index` N-1.
+  `ufc_stabilization.equation_cutback_asphalt_content_estimate` gives
+  [32, 33] (the equation is on printed 25, its symbols on 26);
+  `fhwa_pavements.backcalculated_to_design_modulus` [225, 226] and
+  `table_4_14_soil_as_pavement_material`'s listing [166, 167]. The AASHTO
+  chapter text drops its approximate `pdf_page_index ~N-M` ranges (the
+  printed pages stay).
+- **Docstring:** `ufc_pavement.collector_drain_flow` said "per mm" where the
+  print (p. 114) gives the flow per m.
+
 ## 1.7.0
 
 Released 2026-11-13. This release is the review of 2026-11-10 to 2026-11-13:
