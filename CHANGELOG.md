@@ -606,8 +606,18 @@ No stored statement changed; the package keeps no chapter text.
 **Build: the pavement references' chapter text read against the print
 (app backlog REF-83).** Summaries and key points that said more than the
 page, or put a stronger word on it, now restate the printed sentence;
-equations were checked on the rendered pages. No section was renumbered
-and no lookup changed.
+equations were checked on the rendered pages. No lookup changed. Only
+AASHTO 1993 changed section ids (listed under it below). Every line that
+carries a formula, in text and in worked examples, was then read again
+from a 200 dpi render and stored as typeset, because formulas taken from
+the text layer had been found scrambled: 29 numbered formula lines and 6
+unnumbered passages in UFC 3-250-01, the 6 formulas and 2 worked examples
+of UFC 3-250-11, and every formula line of the rebuilt AASHTO chapters,
+typed from the renders as they were built. `tests/test_pavement_text_scatter.py` (15
+tests) looks in all three references for the signs a text-layer formula
+leaves: a prime cut loose, a lone number line above a formula, a bracket
+that does not pair, a sentence repeated in a body or down a table's rows.
+It found none. Each printed case it allows was checked on the page.
 
 - **UFC 3-250-01 (`ufc_pavement`, 21 chapters, 317 sections; 130
   sections changed: 95 summaries, 102 key-point lists, 21 bodies, 8
@@ -631,7 +641,11 @@ and no lookup changed.
   definition and hE in Eq. 15-4; 17-2 "paragraph 15-5" for joint sealing
   (16-5); 20-3.4.3 "equation 7-17"; 20-3.4.4 "become saturated"; Eqs.
   20-15 (mm/sec, 217.5) and 20-16 (ft/day, 6.214 x 10^5), which differ by
-  a factor of about 10 once converted. `tests/test_ufc_pavement_text_equations.py`
+  a factor of about 10 once converted. The filter criteria of 20-2.5.2
+  and 20-2.5.3 had been rearranged as products ("D15(filter) <= 5*D85");
+  they are stored as the ratios printed on p. 101 ((15 percent size of
+  drainage or filter material) / (85 percent size of material to be
+  drained) <= 5, and so on). `tests/test_ufc_pavement_text_equations.py`
   pins the equations, limits and notes (38 tests).
 - **UFC 3-250-11 (`ufc_stabilization`, 8 files, 101 sections; 85 sections
   changed: 57 bodies, 38 summaries, 71 key-point lists, 2 equation lists,
@@ -651,11 +665,49 @@ and no lookup changed.
   (one allows Pavements DWG authorization, one does not and adds lime).
   Print slips kept with notes: 4-1.4.7 "construct all layers to be less
   than 4 inches thick"; 4-2.1 "6 to 12 inches (130 to 300 mm)"; A-1.2.1 and
-  A-1.2.2 millimetre arithmetic; A-2 pH 12.1 against 2-1.2.1's 12.0; A-3.1
+  A-1.2.2 millimetre arithmetic, and in both "0.52 inches * 2.3 = 1.12
+  inches" (it is 1.196; the next steps carry 1.12); A-2 pH 12.1 against
+  2-1.2.1's 12.0; A-3.1
   dilution "to 50 ml" then "take 100 ml" (the factor 411.6 fits 500 ml);
   A-3.1 oven-dry weight expression malformed; A-3.2 prints only a numeric
   example with "x 0.0338 percent" for "= 0.0338 percent".
   `tests/test_ufc_stabilization_text_equations.py` pins them (28 tests).
+- **AASHTO 1993 (`aashto_1993`, 11 chapter files, 44 sections before, 74
+  now).** The stored text was a paraphrase holding statements the Guide
+  does not print (Part I ch 5's "14 major considerations enumerated in the
+  Preface"; II-1.2's chart solutions "somewhat less precise than the
+  corresponding computer solution"; 4.5's "98.3% per stage"). Bodies are
+  now the Guide's own words read from 200 and 300 dpi renders of the scan,
+  with [p. II-56] page markers: all of Part II chapters 1 to 4 (pp. II-3 to
+  II-86) and Part I's held sections (1.1, 1.2, 1.9, 2.1, 3.1 to 3.3, 3.9,
+  4.1 to 4.5, chapter 5; the other Part I sections, e.g. 1.3 to 1.8 and 3.4
+  to 3.8, are not held). Tables are typed cell by cell (Part I Table 4.1;
+  Part II Tables 2.1 to 2.10, 3.1 to 3.9, 4.1 to 4.10 with 4.8(a), 4.8(b),
+  4.9(a) and 4.9(b), and the unnumbered tables), figures described from
+  the renders, equations typed from them (all seven of 3.9.1 to 3.9.7,
+  where one was stored as words; the CRCP nomograph equations; DBS = D̄BS
+  + (0.5 × GL)). Parts III and IV are stubs that say so and list their
+  contents with pages. III keeps the remaining-life equations where the
+  print has them (Section 5.3.3, p. III-89: RL, CF, SNeff); the old stub put
+  RL in Chapter 4 and gave "Deff = CF*D", which is not printed there. IV no
+  longer says mechanistic procedures were "not incorporated"; p. IV-4 says
+  the Guide uses them indirectly. Ids: I-5.1 renamed I-5 (chapter 5 numbers
+  no sections); II-4.1 removed (its heading has no text of its own); added
+  I-3.2, I-3.3, II-1.3, II-1.4, II-2, II-2.1.4, II-2.5.1, II-2.5.2, II-3,
+  II-3.1, II-3.2, II-3.3.1 to II-3.3.3, II-3.4.1, II-3.4.2.a, II-3.4.2.b,
+  II-3.4.3, II-3.5.1 to II-3.5.6, II-4, II-4.1.1, II-4.1.2, II-4.2 and
+  II-4.2.1 to II-4.2.3. The one printed Section 3.4.2 is stored in two
+  lettered parts, the letters not printed, to keep each body under 14,000
+  characters. implemented_in: Eq. 4.2.3 no longer points at
+  `tables.standard_normal_deviate_zr` (a Table 4.1 lookup), nor
+  MR = k1θ^k2 at `tables.unbound_k1_k2` (it returns k1 and k2); SN on
+  II-2.4.1, ΔPSITR and the mean ur now point at the functions that compute
+  them (each opened). Print slips kept with notes, e.g. the "t = 1" limit of
+  the sum in Eq. 3.9.3 (p. I-50), δ(NTwt) (p. I-57), no closing parenthesis
+  after "1 1/4 inch" (p. II-25), "D/φ/²" in Nmin and Nmax (p. II-56), k-value
+  ranges that leave 350 to 400 pci unassigned (p. II-81), Table 4.7's
+  2.7-3.3 against Table 4.6's 2.9-3.1 (p. II-80).
+  `tests/test_aashto_1993_text.py` pins them (20 tests).
 
 **Fixes from the 2026-11-10 review of the core layer.** Every page, number
 and caption below was read off the rendered print.
