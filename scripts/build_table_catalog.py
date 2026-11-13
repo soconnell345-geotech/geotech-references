@@ -542,6 +542,22 @@ def _parse_bare(lines: list[str]) -> list[dict]:
 CONFIG: dict[str, dict] = {
     # every chapter opens with its own contents and List of Tables
     "gec_13": {"list_all": True},
+    # DM 7.1 (read against the renders 2026-11-13): chapters 5 to 8 type
+    # their printed tables into the chapter text (REF-97). Three are right
+    # on the page, but the cell check cannot count them: Table 6-2 is
+    # drawings (its three rows are typed as text), Table 6-12's text layer
+    # splits D15 and D85 from their subscripts, and the text layer of
+    # printed p. 441 has "Table 8-16." as a citation in the body of the
+    # text, which the scan takes for the caption (the caption printed over
+    # the table is the list's). Table 6-4 runs on to PDF page 326 (printed
+    # p. 299), where its shell column continues; Table 4-3 (REF-116) has
+    # its values on PDF pages 222 and 223.
+    "dm7_1": {
+        "text_by_render": {"6-2": "6-2.6.2", "6-12": "6-5.3.1",
+                           "8-16": "8-4.2"},
+        "caption_from_render": {
+            "8-16": "Compressibility Data for Six Sands (Been et al. 1987)"},
+        "pages_from_render": {"6-4": [325, 326], "4-3": [222, 223]}},
     # Table 6-38 is printed on PDF page 503 (printed 466) under Figure 6-25;
     # the scan took a page that cites it (read off the render)
     "dm7_2": {"page_from_render": {"6-38": 503}},
