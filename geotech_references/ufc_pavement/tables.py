@@ -1358,124 +1358,222 @@ def table_16_2_dowel_size(thickness_in) -> dict:
 # Figure 14-1: Reinforced Rigid Pavement Design (Chapter 14, pdf_page 60,
 # printed 41)
 #
+# The figure is a nomograph of parallel vertical scales: a straight line
+# through the plain concrete thickness hd and the steel percentage S meets
+# the reinforced concrete thickness scale at hr (paragraph 14-2.1, printed
+# 40: "draw a straight line from the value of hd to the value selected for
+# either the reinforced concrete pavement thickness hr or the percentage of
+# reinforcing steel S"). The manual prints no equation for it, so the
+# lookup lays that line on the page. Re-traced 2026-11-12 (it had been
+# coded as hr = hd less a reduction taken from Appendix G's example at hd
+# 7.9 in, which read 4 to 23 percent thick at hd 12 to 30 in).
+#
+# Below are the three scales as drawn on printed 41: each scale's x and the
+# y of every tick on it, in points from the page's top left corner, y
+# downward (the page is line art, so these are the print's own tick
+# positions; checked on a 300 dpi render). The hr and hd scales have a
+# labelled tick at every inch from 6 to 30 and an unlabelled one at each
+# half inch; the S scale is labelled 0.05, 0.06, 0.07, 0.075, 0.08 to 0.20
+# by 0.01, then 0.25 to 0.50 by 0.05 with four unlabelled ticks between
+# (0.01 apart). Values between ticks are interpolated linearly.
+#
+# Checks against the print: the dashed example line drawn on the figure
+# crosses hd at 16.9, S at 0.10 and hr at 15.0, and the lookup gives 15.04
+# there (As 0.181 and L 63.4 ft, where the line crosses the As and L scales
+# near 0.185 and 64). Appendix G-6 (printed 264) reads S 0.10 % for hd 7.9
+# in reduced to 7 in: the lookup gives 6.97 in. Its second reading, S 0.30
+# % for 6 in:
+# the line through hd 7.9 and S 0.30 meets the hr scale 4.5 points below
+# its 6 in end tick (0.09 in of thickness), where paragraph 14-3's 6 in
+# minimum (printed 42) governs.
+#
 # L (max allowable slab length) is computed EXACTLY via the general Eq. 17-1
-# closed form (verified in equations.py). The thickness-reduction leg
-# (hr as a function of hd and S, at fs=60,000 psi) has no printed closed
-# form; digitized here from the guide's own two worked-example anchors
-# (Appendix G, G-6, pdf_page 282, printed 263): hd=7.9 in ->
-# (S=0.10% -> hr=7 in), (S=0.30% -> hr=6 in). Linear interpolation on S is
-# used between/around these two verified points; treat hr for S or hd far
-# from this anchored range as approximate (use PCASE or
-# ``read_reference_figure`` for other conditions). As (steel area) is the
-# chart's own printed definition (not a chart read): As = (S/100)*12*hr.
-# Transverse steel percentage is half the longitudinal percentage (printed
-# rule, Section 14-2.1).
+# closed form (verified in equations.py). As (steel area) is the chart's own
+# printed definition (not a chart read): As = (S/100)*12*hr. Transverse
+# steel percentage is half the longitudinal percentage (printed rule,
+# Section 14-2.1).
 # ============================================================================
 
-_FIG_14_1_S_PCT = [0.10, 0.30]
-_FIG_14_1_DELTA_IN = [0.9, 1.9]  # hd - hr at hd=7.9in, verified
+_FIG_14_1_SCALE_X = {"hr": 118.40, "hd": 185.33, "s": 489.57}
+
+# (hr in inches, y)
+_FIG_14_1_HR_TICKS = [
+    (6.0, 652.28), (6.5, 627.94), (7.0, 605.12), (7.5, 583.31),
+    (8.0, 563.54), (8.5, 544.27), (9.0, 526.27), (9.5, 508.77),
+    (10.0, 492.80), (10.5, 477.84), (11.0, 462.88), (11.5, 447.92),
+    (12.0, 434.99), (12.5, 422.57), (13.0, 410.91), (13.5, 398.48),
+    (14.0, 387.07), (14.5, 374.65), (15.0, 366.03), (15.5, 354.62),
+    (16.0, 345.75), (16.5, 335.61), (17.0, 326.73), (17.5, 316.59),
+    (18.0, 308.73), (18.5, 300.11), (19.0, 292.76), (19.5, 283.63),
+    (20.0, 276.53), (20.5, 267.91), (21.0, 260.81), (21.5, 253.21),
+    (22.0, 246.36), (22.5, 238.75), (23.0, 232.92), (23.5, 225.82),
+    (24.0, 219.49), (24.5, 212.89), (25.0, 207.57), (25.5, 200.47),
+    (26.0, 194.64), (26.5, 188.30), (27.0, 183.23), (27.5, 176.64),
+    (28.0, 172.07), (28.5, 165.74), (29.0, 161.17), (29.5, 155.09),
+    (30.0, 151.03),
+]
+# (hd in inches, y)
+_FIG_14_1_HD_TICKS = [
+    (6.0, 658.62), (6.5, 639.10), (7.0, 619.83), (7.5, 602.09),
+    (8.0, 586.11), (8.5, 570.14), (9.0, 554.93), (9.5, 541.49),
+    (10.0, 527.55), (10.5, 515.12), (11.0, 503.21), (11.5, 491.29),
+    (12.0, 480.14), (12.5, 469.99), (13.0, 459.85), (13.5, 449.97),
+    (14.0, 440.59), (14.5, 431.46), (15.0, 422.58), (15.5, 413.96),
+    (16.0, 405.60), (16.5, 397.74), (17.0, 389.88), (17.5, 382.02),
+    (18.0, 374.41), (18.5, 367.82), (19.0, 361.23), (19.5, 354.38),
+    (20.0, 348.05), (20.5, 341.71), (21.0, 335.37), (21.5, 329.54),
+    (22.0, 323.45), (22.5, 318.13), (23.0, 311.54), (23.5, 306.47),
+    (24.0, 301.40), (24.5, 296.33), (25.0, 291.51), (25.5, 285.68),
+    (26.0, 280.61), (26.5, 276.04), (27.0, 270.72), (27.5, 266.15),
+    (28.0, 261.34), (28.5, 257.28), (29.0, 252.46), (29.5, 247.90),
+    (30.0, 243.34),
+]
+# (S in percent, y)
+_FIG_14_1_S_TICKS = [
+    (0.05, 654.30), (0.06, 618.05), (0.07, 585.34), (0.075, 571.15),
+    (0.08, 558.22), (0.09, 533.12), (0.10, 511.57), (0.11, 491.54),
+    (0.12, 473.03), (0.13, 456.05), (0.14, 440.58), (0.15, 425.88),
+    (0.16, 412.95), (0.17, 399.76), (0.18, 387.85), (0.19, 376.95),
+    (0.20, 366.55), (0.21, 355.65), (0.22, 346.27), (0.23, 337.65),
+    (0.24, 328.27), (0.25, 320.41), (0.26, 311.28), (0.27, 304.19),
+    (0.28, 297.09), (0.29, 289.48), (0.30, 282.64), (0.31, 276.04),
+    (0.32, 269.96), (0.33, 263.37), (0.34, 256.78), (0.35, 250.95),
+    (0.36, 244.86), (0.37, 239.54), (0.38, 233.71), (0.39, 228.13),
+    (0.40, 223.56), (0.41, 217.99), (0.42, 212.16), (0.43, 207.34),
+    (0.44, 203.28), (0.45, 198.47), (0.46, 194.16), (0.47, 189.34),
+    (0.48, 184.78), (0.49, 180.21), (0.50, 176.16),
+]
 
 
 def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
-    """Reinforced concrete pavement design (Figure 14-1 + Eq. 17-1,
-    Chapter 14; pdf_page 60, printed 41).
+    """Figure 14-1 (reinforced rigid pavement design nomograph, UFC
+    3-250-01 printed 41, pdf_page 60) with Eq. 17-1: the reinforced concrete
+    pavement thickness hr (in.), the steel area As (sq in. per ft of
+    width), the transverse steel percentage and the maximum slab length L
+    (ft) for a plain concrete design thickness hd (in.) and a longitudinal
+    steel percentage S (%).
 
-    Returns the reinforced pavement thickness hr, steel area As, transverse
-    steel percentage, and maximum allowable slab length L for a given plain
-    concrete design thickness hd and longitudinal steel percentage S.
+    hr is read as the nomograph is used (paragraph 14-2.1, printed 40): a
+    straight line through hd on the plain concrete scale and S on the S
+    scale, carried to the reinforced concrete scale. The scales and their
+    ticks are laid out as drawn on the page; the manual prints no equation
+    for the figure. Read to about 0.1 in. Checks against the print: the
+    dashed example drawn on the figure (hd 16.9 in, S 0.10 %) reads hr 15.0
+    in; Appendix G-6 (printed 264) has hd 7.9 in reduced to 7 in by S 0.10 %
+    (this lookup: 6.97 in) and to 6 in by S 0.30 %.
 
-    L is computed EXACTLY (Eq. 17-1, generalizes to any fs). hr is
-    interpolated from the guide's own two worked-example points (both at
-    hd=7.9 in: S=0.10% -> hr=7 in; S=0.30% -> hr=6 in -- Appendix G, G-6)
-    and is only reliable near that hd; for other hd or precise design, read
-    Figure 14-1 directly (``read_reference_figure``) or use PCASE.
+    Where the line meets the reinforced concrete scale below its 6 in end
+    (a thin slab or a high S; hd 7.9 in with S 0.30 % is 0.09 in below it),
+    hr is 6 in, the minimum thickness of reinforced concrete pavement
+    (paragraph 14-3, printed 42); the result then has
+    ``minimum_thickness_governs`` True and a note.
 
-    Verified EXACTLY (hr, L) at hd=7.9, S=0.10, fs=60000 -> hr=7 in, L=49 ft;
-    and hd=7.9, S=0.30, fs=60000 -> hr=6 in, L=97 ft raw (75 ft capped).
+    L is computed from Eq. 17-1 (any fs; the figure's L scale is for 60,000
+    psi) and As = (S/100) x 12 x hr; with hr 7 in and S 0.10 % L = 49 ft,
+    and with 6 in and 0.30 % L = 97 ft, 75 ft capped, as Appendix G-6
+    prints.
 
-    Refused (REF-76): hd outside the plain-concrete scale, 6-30 in; an hr
-    outside the reinforced-concrete scale, 6-30 in (printed 41); and S
-    outside 0.10-0.30 %, the two worked examples the reduction hd - hr is
-    taken from. The S scale runs 0.05-0.50 %, but the reduction there is
-    not read: it used to be held at its end value (0.9 in below S 0.10,
-    which gives a thinner hr than less steel would; 1.9 in above 0.30).
-    The As scale (0.10-1.00 sq in/ft) is not checked: As = S x 12 x hr is
-    computed, and the manual's own example at S 0.10 gives 0.084.
+    Refused (REF-76): hd outside the plain concrete scale, 6-30 in, and S
+    outside the S scale, 0.05-0.50 % (printed 41). The As scale (0.10-1.00
+    sq in/ft) is not checked: As is computed, and the manual's own example
+    at S 0.10 % gives 0.084.
 
     Parameters
     ----------
     hd_in : float
         Design thickness of plain concrete pavement, inches, 6 to 30 (the
-        plain-concrete scale of Figure 14-1).
+        plain concrete scale of Figure 14-1).
     s_pct : float
-        Percent of longitudinal reinforcing steel, 0.10 to 0.30 (above;
-        Figure 14-1's S scale runs 0.05-0.50).
+        Percent of longitudinal reinforcing steel, 0.05 to 0.50 (the S
+        scale of Figure 14-1), e.g. 0.10 for 0.10 %.
     fs_psi : float, optional
-        Yield strength of the reinforcing steel, psi. Default 60,000 (the
-        value built into the printed nomograph).
+        Yield strength of the reinforcing steel, psi, used for L only.
+        Default 60,000 (the value built into the printed nomograph).
 
     Returns
     -------
     dict
         {'hd_in', 's_pct', 'fs_psi', 'hr_in', 'as_sq_in_per_ft',
          'transverse_s_pct', 'l_ft_raw', 'l_ft_capped', 'chart_read',
-         'reference'}. ``hr_in`` is chart-read (approximate); ``l_ft_raw``/
-         ``l_ft_capped`` are exact (Eq. 17-1).
+         'minimum_thickness_governs', 'tolerance', 'reference'}, with
+         'note' where the 6 in minimum governs. ``hr_in`` is chart-read;
+         ``l_ft_raw`` / ``l_ft_capped`` follow from it by Eq. 17-1.
 
     Raises
     ------
     ValueError
-        If fs_psi <= 0, hd_in is outside 6-30 in, s_pct is outside 0.05-0.50
-        (the S scale) or 0.10-0.30 (the worked examples), or hr falls
-        outside 6-30 in.
+        If fs_psi <= 0, hd_in is outside 6-30 in or s_pct is outside
+        0.05-0.50.
     """
     if hd_in <= 0:
         raise ValueError(f"hd_in must be > 0, got {hd_in}")
     if fs_psi <= 0:
         raise ValueError(f"fs_psi must be > 0, got {fs_psi}")
     if not (0.05 <= s_pct <= 0.50):
-        raise ValueError(f"s_pct must be in [0.05, 0.50], got {s_pct}")
+        raise ValueError(
+            f"s_pct = {s_pct:g} is outside Figure 14-1's S scale, 0.05 to "
+            "0.50 % (printed 41). Paragraph 14-3 (printed 42): no reduction "
+            "of the plain concrete thickness for less than 0.05 % "
+            "longitudinal steel, and none beyond the figure's reading at "
+            "0.5 % whatever the steel used.")
     if not 6.0 <= hd_in <= 30.0:
         raise ValueError(
             f"hd = {hd_in:g} in is outside Figure 14-1's plain-concrete "
             "thickness scale, 6 to 30 in (printed 41); the nomograph gives "
             "no hr there.")
-    if not _FIG_14_1_S_PCT[0] <= s_pct <= _FIG_14_1_S_PCT[-1]:
-        raise ValueError(
-            f"S = {s_pct:g} % is outside 0.10-0.30 %: the reduction hd - hr "
-            "is taken from the manual's two worked examples (Appendix G, "
-            "G-6: S 0.10 % gives 0.9 in, S 0.30 % gives 1.9 in, at hd 7.9 "
-            "in), and the library does not read it past them. Figure 14-1's "
-            "S scale runs 0.05-0.50 % (printed 41): read the nomograph.")
 
-    delta = _linterp(s_pct, _FIG_14_1_S_PCT, _FIG_14_1_DELTA_IN)
-    hr = max(hd_in - delta, 0.5 * hd_in)  # sanity floor; chart never halves hd
-    if not 6.0 <= round(hr, 2) <= 30.0:
+    # The straight line through (x_hd, y at hd) and (x_s, y at S), carried
+    # to the hr scale's x.
+    x = _FIG_14_1_SCALE_X
+    y_hd = _linterp(hd_in, [t[0] for t in _FIG_14_1_HD_TICKS],
+                    [t[1] for t in _FIG_14_1_HD_TICKS])
+    y_s = _linterp(s_pct, [t[0] for t in _FIG_14_1_S_TICKS],
+                   [t[1] for t in _FIG_14_1_S_TICKS])
+    y_hr = y_hd + (y_hd - y_s) * (x["hd"] - x["hr"]) / (x["s"] - x["hd"])
+    y_6_in, y_30_in = _FIG_14_1_HR_TICKS[0][1], _FIG_14_1_HR_TICKS[-1][1]
+    if y_hr < y_30_in:
         raise ValueError(
-            f"hr = {hr:.2f} in (hd {hd_in:g} in less {delta:.2f} in at S "
-            f"{s_pct:g} %) is outside Figure 14-1's reinforced-concrete "
-            "thickness scale, 6 to 30 in (printed 41); the nomograph gives "
-            "no hr there.")
+            f"the line through hd = {hd_in:g} in and S = {s_pct:g} % meets "
+            "Figure 14-1's reinforced-concrete thickness scale above its 30 "
+            "in end (printed 41); the nomograph gives no hr there.")
+    below_scale = y_hr > y_6_in
+    if below_scale:
+        hr = 6.0
+    else:
+        hr = _linterp(y_hr, [t[1] for t in reversed(_FIG_14_1_HR_TICKS)],
+                      [t[0] for t in reversed(_FIG_14_1_HR_TICKS)])
     as_sq_in_ft = (s_pct / 100.0) * 12.0 * hr
 
     l_result = reinforced_pavement_max_slab_length(hr, fs_psi, s_pct)
 
-    return {
+    out = {
         "hd_in": hd_in, "s_pct": s_pct, "fs_psi": fs_psi,
         "hr_in": round(hr, 2),
         "as_sq_in_per_ft": round(as_sq_in_ft, 3),
         "transverse_s_pct": round(s_pct / 2.0, 3),
         "l_ft_raw": l_result["l_ft_raw"], "l_ft_capped": l_result["l_ft_capped"],
         "chart_read": True,
+        "minimum_thickness_governs": below_scale,
         "tolerance": (
-            "hr interpolated from 2 verified points at hd=7.9 in "
-            "(Appendix G, G-6); L is exact (Eq. 17-1)"
+            "hr read off the nomograph's drawn scales (ticks every half "
+            "inch, linear between them), about 0.1 in; L follows from hr "
+            "by Eq. 17-1"
         ),
         "reference": (
             "UFC 3-250-01, Figure 14-1 (pdf_page 60, printed 41) + Eq. 17-1 "
-            "(pdf_page 81, printed 62); verified vs. Appendix G, G-6"
+            "(pdf_page 81, printed 62); checked vs. the figure's dashed "
+            "example and Appendix G, G-6 (printed 264)"
         ),
     }
+    if below_scale:
+        out["note"] = (
+            f"The line through hd = {hd_in:g} in and S = {s_pct:g} % meets "
+            "Figure 14-1's reinforced concrete thickness scale below its 6 "
+            "in end (printed 41). The minimum thickness of reinforced "
+            "concrete pavement is 6 in (paragraph 14-3, printed 42), so hr "
+            "= 6 in; a line from hd through hr = 6 in gives the smaller S "
+            "that this thickness needs.")
+    return out
 
 
 # ============================================================================

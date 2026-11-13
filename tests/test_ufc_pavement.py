@@ -813,10 +813,65 @@ class TestFigure14_1:
         assert r["l_ft_raw"] == pytest.approx(49, abs=0.5)
 
     def test_verified_s_030(self):
-        # Appendix G, G-6: hd=7.9, S=0.30 -> hr=6, L=97 raw, capped 75
+        # Appendix G, G-6 (printed 264): hd=7.9, S=0.30 -> hr=6, L=97 raw,
+        # capped 75. On the nomograph the line meets the hr scale just
+        # below its 6 in end, so paragraph 14-3's 6 in minimum (printed 42)
+        # gives the 6 in, and the result says so.
         r = figure_14_1_reinforced_pavement_design(7.9, 0.30)
-        assert r["hr_in"] == pytest.approx(6.0, abs=0.1)
+        assert r["hr_in"] == 6.0
+        assert r["l_ft_raw"] == pytest.approx(97, abs=0.5)
         assert r["l_ft_capped"] == 75.0
+        assert r["minimum_thickness_governs"] is True
+        assert "paragraph 14-3, printed 42" in r["note"]
+
+    def test_nomograph_read_at_five_points(self):
+        # Figure 14-1 (printed 41, ufc_3_250_01_2016.pdf page 61) read off a
+        # 300 dpi render with a straight line through hd and S = 0.10 %, the S of
+        # the dashed example drawn on the figure: hr 7.05, 10.65, 15.1,
+        # 21.4, 26.9 in at hd 8, 12, 17, 24, 30 in. The function coded as
+        # hd less a fixed reduction gave 7.1, 11.1, 16.1, 23.1, 29.1.
+        for hd, hr in ((8, 7.05), (12, 10.65), (17, 15.1), (24, 21.4),
+                       (30, 26.9)):
+            r = figure_14_1_reinforced_pavement_design(hd, 0.10)
+            assert r["hr_in"] == pytest.approx(hr, abs=0.06)
+            assert r["minimum_thickness_governs"] is False and "note" not in r
+        # the dashed example as drawn: hd 16.9, S 0.10 -> hr 15.0; the
+        # line crosses the As scale near 0.185 and the L scale near 64 ft
+        r = figure_14_1_reinforced_pavement_design(16.9, 0.10)
+        assert r["hr_in"] == pytest.approx(15.0, abs=0.06)
+        assert r["as_sq_in_per_ft"] == pytest.approx(0.185, abs=0.005)
+        assert r["l_ft_raw"] == pytest.approx(64, abs=1)
+        # other steel percentages, across the S scale (0.05 to 0.50 %)
+        for hd, s, hr in ((10, 0.05, 9.8), (12, 0.20, 9.6), (20, 0.30, 15.15),
+                          (30, 0.30, 22.85), (17, 0.50, 11.95),
+                          (30, 0.50, 21.2)):
+            r = figure_14_1_reinforced_pavement_design(hd, s)
+            assert r["hr_in"] == pytest.approx(hr, abs=0.06)
+
+    def test_nomograph_line_worked_by_hand(self):
+        # hd 17 in is the tick at y 389.88 on the hd scale (x 185.33), S
+        # 0.10 % the tick at y 511.57 on the S scale (x 489.57); the line
+        # through them reaches the hr scale (x 118.40) at y 363.11, between
+        # its 15 in tick (366.03) and 15.5 in tick (354.62). Points on
+        # printed 41, y downward.
+        y = 389.88 + (389.88 - 511.57) * (185.33 - 118.40) / (489.57 - 185.33)
+        assert y == pytest.approx(363.11, abs=0.01)
+        hr = 15.0 + 0.5 * (366.03 - y) / (366.03 - 354.62)
+        r = figure_14_1_reinforced_pavement_design(17.0, 0.10)
+        assert hr == pytest.approx(15.13, abs=0.005)
+        assert r["hr_in"] == pytest.approx(hr, abs=0.006)
+
+    def test_more_steel_or_less_plain_thickness_never_thickens(self):
+        prev = None
+        for s in (0.05, 0.075, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50):
+            hr = figure_14_1_reinforced_pavement_design(20.0, s)["hr_in"]
+            assert prev is None or hr < prev
+            prev = hr
+        prev = None
+        for hd in (6, 8, 10.3, 14, 19.7, 25, 30):
+            hr = figure_14_1_reinforced_pavement_design(hd, 0.15)["hr_in"]
+            assert hr <= hd and (prev is None or hr >= prev)
+            prev = hr
 
     def test_transverse_half_longitudinal(self):
         r = figure_14_1_reinforced_pavement_design(7.9, 0.10)
@@ -833,19 +888,34 @@ class TestFigure14_1:
 
     def test_off_the_nomograph_refused(self):
         # REF-76 (fit sweep): Figure 14-1 (printed 41) scales hd and hr 6-30
-        # in; the reduction hd - hr is known only between the worked
-        # examples' S 0.10 and 0.30 %, and used to be held past them.
+        # in and S 0.05-0.50 %. Since the nomograph was re-traced the whole
+        # S scale is read (it was refused outside the worked examples' 0.10
+        # to 0.30 %).
         figure_14_1_reinforced_pavement_design(30.0, 0.10)
         figure_14_1_reinforced_pavement_design(7.9, 0.20)
         for hd in (5.9, 30.1, 40.0):
             with pytest.raises(ValueError, match="plain-concrete thickness "
                                r"scale, 6 to 30 in \(printed 41\)"):
                 figure_14_1_reinforced_pavement_design(hd, 0.10)
-        with pytest.raises(ValueError, match="reinforced-concrete thickness"):
-            figure_14_1_reinforced_pavement_design(6.5, 0.10)
-        for s_pct in (0.05, 0.09, 0.31, 0.50):
-            with pytest.raises(ValueError, match="worked examples"):
+        for s_pct in (0.04, 0.049, 0.51, 1.0):
+            with pytest.raises(ValueError, match=r"S scale, 0.05 to 0.50 % "
+                               r"\(printed 41\)"):
                 figure_14_1_reinforced_pavement_design(10.0, s_pct)
+        for s_pct in (0.05, 0.09, 0.31, 0.50):
+            figure_14_1_reinforced_pavement_design(10.0, s_pct)
+
+    def test_below_the_reinforced_scale_is_the_6_in_minimum(self):
+        # A line that meets the hr scale below its 6 in end (it was
+        # refused): paragraph 14-3 (printed 42) sets the minimum thickness
+        # of reinforced concrete pavement at 6 in.
+        for hd, s in ((6.5, 0.10), (6.0, 0.05), (7.0, 0.50)):
+            r = figure_14_1_reinforced_pavement_design(hd, s)
+            assert r["hr_in"] == 6.0 and r["minimum_thickness_governs"] is True
+            assert "below its 6 in end (printed 41)" in r["note"]
+        # just above it: hd 9 in, S 0.50 % reads 6.3 in
+        r = figure_14_1_reinforced_pavement_design(9.0, 0.50)
+        assert r["hr_in"] == pytest.approx(6.3, abs=0.06)
+        assert r["minimum_thickness_governs"] is False
 
 
 class TestDistressModes:

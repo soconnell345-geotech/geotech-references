@@ -111,12 +111,22 @@ pages):
   penetration beyond the chart's 10 ft axis is refused; the line used to be
   extended with a note (very poor at 12 ft: 6.0, past the chart's 5).
 - `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
-  14-1, printed 41, coded as hr = hd - reduction(S) from the two worked
-  examples): hd outside the plain-concrete scale (6-30 in), an hr outside
-  the reinforced-concrete scale (6-30 in), and S outside the worked
-  examples' 0.10-0.30 % are refused. The reduction used to be held at its
-  end value past them (below S 0.10 that gives a thinner hr than less steel
-  would), and hd 3 in gave hr 2.1.
+  14-1, printed 41): re-traced from the page. The figure is a nomograph (a
+  straight line through the plain concrete thickness hd and the steel
+  percentage S meets the reinforced thickness scale at hr); it had been
+  coded as hd less a reduction taken from Appendix G's example at hd 7.9
+  in, which read too thick away from that thickness. At S 0.10 %, hd 12 /
+  17 / 24 / 30 in now give hr 10.65 / 15.1 / 21.4 / 26.9 in (were 11.1 /
+  16.1 / 23.1 / 29.1; the figure's own dashed example is hd 16.9 in, hr
+  15.0 in); at S 0.30 % and hd 30 in, 22.85 in (was 28.1). hd 7.9 in at
+  S 0.10 % still reads 7.0 in (Appendix G-6). As and L follow the new hr.
+  The whole S scale, 0.05-0.50 %, is now read (0.05-0.10 and 0.30-0.50
+  were refused, the reduction not being known there). Still refused: hd
+  outside the plain-concrete scale (6-30 in) and S outside 0.05-0.50 %;
+  hd 3 in used to give hr 2.1. Where the line meets the reinforced scale
+  below its 6 in end, hr is the 6 in minimum of paragraph 14-3 (printed
+  42), with `minimum_thickness_governs` and a note (the manual's own
+  example, hd 7.9 in at S 0.30 % for 6 in, lands 0.09 in below the end).
 - `aashto_1993.composite_k.relative_damage_rigid` (Figure 3.5, printed
   II-41, coded as a closed form fitted to the chart): D outside the curves
   drawn (6-14 in) or k outside the k axis (10-2,000 pci) is refused; the
