@@ -140,8 +140,9 @@ the rendered pages:
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
   E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
   E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32), E6 (pp. E6-1
-  to E6-9; p. E6-10 is blank) and E7 (pp. E7-1 to E7-15; its general,
-  external and internal steps each number from 1, as printed). A long example
+  to E6-9; p. E6-10 is blank), E7 (pp. E7-1 to E7-15; its general,
+  external and internal steps each number from 1, as printed) and E8 (pp.
+  E8-1 to E8-7). A long example
   is split into parts never between a caption and its typed-in table or
   figure lettering (E1's Table E1-7.5 had its caption in one part and its
   rows in the next) and never right after a step heading (E3, E4 and E5
@@ -191,7 +192,12 @@ the rendered pages:
   gives 1.00; "Table E4-6.2" for E7-4; e = 0.40L printed 6.60 ft where L =
   18 ft gives 7.20; MRA = 898.03 in Table E7-5 where 878.05 + 2.25 × 9 =
   898.30; "reduced by 80%" for reduced to 80 percent; 0.0 for 0.8 in
-  Table E7-7's Level 2 and σH = 0.44 there where Table E7-6 has 0.40.
+  Table E7-7's Level 2 and σH = 0.44 there where Table E7-6 has 0.40. In
+  E8, "Figure 9-11c" and "Figure 9-11b" (Chapter 9 has none; the
+  surfaces are Figure E8-1c and E8-1b); a second "a." for part b of Step
+  6; 3120 lb/ft "(46.5 kN/m)" for 45.5; "the previous two examples" for
+  E8 and E9. The text layer of p. E8-7 leaves out "the software
+  developer's web page:", which the page prints.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

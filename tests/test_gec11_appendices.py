@@ -1121,6 +1121,66 @@ def test_appendix_e7_print_slips_noted():
     assert round(11.25 * 0.8 * 1.20 / 0.9 * 5, 2) == 60.00
 
 
+def test_appendix_e8_working_as_printed():
+    """Example E8, the reinforced soil slope for a road widening: its
+    formula lines as typed in from pp. E8-2 to E8-7, and their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.8"]["title"] == "Reinforced Soil Slope Design – Road Widening"
+    body = _e_body("E.8")
+    for line in (
+        "• γd = 121 lb/ft³ (19 kN/m³), ωopt = 15%, cu = 2000 psf (96 kPa), φ′ = 28°, and c′ = 0",
+        "No. 200 (0.075 mm) | 25",
+        "Ts = (1.3 − FSU) MD / R",
+        "φf = tan⁻¹ (tan φr / FSR) = tan⁻¹ (tan 33° / 1.3) = 26.5°",
+        "= 16.5 ft + (200 psf ÷ 133 lb/ft³) + 0.3 ft = 18.3 ft (5.6 m)",
+        "TS-MAX = 0.5 K γr H′² = 0.5(0.14)(133 lb/ft³)(18.3 ft)² = 3120 lb/ft (46.5 kN/m)",
+        "Tmax = TS-MAX / N = 3400 lb/ft / 12 = 283 lb/ft",
+        "FS = Le F* α σv C / Tmax = 4.6 ft (0.67 tan 33°)(0.6)(0.67 ft × 133 lb/ft³ "
+        "+ 200 psf)(2) / 283 lb/ft",
+        "φ′f = tan⁻¹ (tan 28° / 1.3) = 22.2°",
+        "LB = 18.3 ft (0.96) = 17.6 ft (5.4 m)",
+        "LT = 18.3 ft (0.52) = 9.5 ft (2.9 m)",
+        'For R = 41 ft, Md = 340 kip-ft/ft',
+        "step-by-step tutorial of this example is located on the software developer's "
+        "web page: http://www.geoprograms.com/.",
+    ):
+        assert line in body, line
+    r = math.radians
+
+    def phi_f(phi):
+        return math.degrees(math.atan(math.tan(r(phi)) / 1.3))
+
+    assert round(phi_f(33), 1) == 26.5 and round(phi_f(28), 1) == 22.2
+    # Figure E8-1c's surface: (FSR − FSU) MD / R
+    assert round((1.3 - 0.89) * 340 / 41, 2) == 3.40
+    h_dash = 16.5 + 200 / 133 + 0.3
+    assert round(h_dash, 1) == 18.3
+    assert round(0.5 * 0.14 * 133 * 18.3 ** 2, -1) == 3120
+    assert round(16.5 / 1.33, 1) == 12.4 and round(3400 / 12) == 283
+    assert round(9.5 - 4.9, 1) == 4.6
+    fs = 4.6 * 0.67 * math.tan(r(33)) * 0.6 * (0.67 * 133 + 200) * 2 / 283
+    assert 2.4 <= fs < 2.5
+    assert round(18.3 * 0.96, 1) == 17.6 and round(18.3 * 0.52, 1) == 9.5
+    assert round((17.4 + 9.5) / 2, 1) in (13.4, 13.5)
+    lbft_to_knm = 4.448222 / 0.3048 / 1000
+    assert round(3400 * lbft_to_knm, 1) == 49.6 and round(284 * lbft_to_knm, 2) == 4.14
+
+
+def test_appendix_e8_print_slips_noted():
+    body = _e_body("E.8")
+    for note in (
+        'as printed, "Figure 9-11c"; Chapter 9 has no Figure 9-11',
+        'as printed, a second "a."; this is part b of the step.',
+        "as printed, 46.5 kN/m; 3120 lb/ft is 45.5 kN/m",
+        'as printed, "Figure 9-11b", for Figure E8-1b.',
+        'as printed, "the previous two examples"; the reinforced soil slope examples '
+        "are E8 and E9",
+    ):
+        assert note in body, note
+    lbft_to_knm = 4.448222 / 0.3048 / 1000
+    assert round(3120 * lbft_to_knm, 1) == 45.5
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():
