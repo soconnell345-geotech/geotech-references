@@ -25,16 +25,22 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   path (as read it gave 12.2 days, not the printed 152.8); Example C-7,
   Steps 6 and 7 (p. 384); Eq. 7-10 as quoted in Examples C-6 and C-7; the
   equivalent bearing pressure of Example B-2 (p. 301). A total or
-  sub-heading beside a table stands once, not on every row. Sixteen more
+  sub-heading beside a table stands once, not on every row. Seventeen more
   slips of the print are kept as printed with a note: Examples B-1, B-4
   (the clay's unit weight printed 0.133 kcf in Table B-4a, Steps 1 and 3,
   where Figure B-4 and Table B-4c give 0.113 kcf, from which the printed
-  qo and qult follow), B-5, B-6, C-2, C-3, C-6 and C-7 (Table C-7b, Step
+  qo and qult follow), B-5, B-6, B-7 (Table B-7b, Step 4: the CPT's four
+  q*t measurements printed "of 17 ksf", the pressuremeter's value, where
+  the line below lists 200, 200, 320 and 200 ksf, geometric mean 225 ksf),
+  C-2, C-3, C-6 and C-7 (Table C-7b, Step
   7: the 25 rows total 0.343 in, printed 0.034 in), Table 3-15, the symbol
   list of Eqs. 8-27 and 8-28, Table 3-8 (σv with a raised semicolon, the
   evident reading σ′v; a stress given in pcf) and Tables D-3 and D-6.
-  Table C-7c's note says that its printed ratios are what pne = 16.0 tsf
-  gives, the geometric mean of the P*L values within 1.5B. Table 4-10's E*0
+  Table C-7c's note says that every input it states (pne, αd = 0.5, αc =
+  0.33, Step 12's exponent 0.5) matches 8.5 tsf, Example B-7's Layer 1
+  value, which its Given names, and that only its printed results (9.5,
+  4.9, 0.015 ft) match pne = 16.0 tsf, the geometric mean of the P*L
+  values within 1.5B, which the page never prints. Table 4-10's E*0
   (the text layer holds a capital O) and "not applicable" in Example B-2
   (the text layer holds a space for the math font's b, p. 299) are typed
   in, and a test looks for any other word broken by a space; a subscript

@@ -240,6 +240,9 @@ def test_worked_example_slips_kept_with_a_note():
         ("C-2b", "| 0.16 | 0.28 | 0.020\n[Note (not printed): Table C-2, Step 7b (p. 348)"),
         ("C-3b", "| 22.5 | 28.5 | 0.03 | 0.02\n[Note (not printed): Table C-3b, Step 7a"),
         ("C-6b", "| 264 | 23.9 | 199\n[Note (not printed): Table C-6a (p. 370)"),
+        ("B-7b", "four q*t measurements of 17 ksf (Row 9).\n[Note (not printed): Table "
+                 "B-7b, Step 4 (p. 335): the four q*t measurements are 200, 200, 320 and "
+                 "200 ksf"),
         ("C-7b", "Step 7 | ∑ δc = 0.034 inches\n[Note (not printed): Table C-7b, Step 7 (p. 380)"),
         ("3-9b(1)(b)", "2 | PI > 50 | 115 to 75\n[Note (not printed): Table 3-15 (p. 59)"),
         ("8-6b(3)", "My = distance ratio as shown on Figure 8-7 (dimensionless)\n"
@@ -282,12 +285,18 @@ def test_example_c7_dmt_rows_total_0_343_inches():
         H, M, dsz, d = float(r[3]), float(r[4]), float(r[6]), float(r[7])
         assert abs(dsz / M * H * 12 - d) <= 0.0006, r
     assert "total 0.343 in, not 0.034 in" in body
-    # Table C-7c, Step 10 (p. 382): the printed ratios are 152 and 78 tsf over
-    # 16.0 tsf, the geometric mean of the P*L values within 1.5B (8.5, 30.2)
+    # Table C-7c, Step 10 (p. 382): every input stated matches Example B-7's
+    # pne, 8.5 tsf (the Given, p. 376, names B-7); only the printed ratios
+    # match 16.0 tsf, the geometric mean of the P*L values within 1.5B (8.5,
+    # 30.2), which the page never prints
     pne = (8.5 * 30.2) ** 0.5
     assert (round(152 / pne, 1), round(78 / pne, 1)) == (9.5, 4.9)
     assert (round(152 / 8.5, 1), round(78 / 8.5, 1)) == (17.9, 9.2)
-    assert "152 and 78 over 16.0 tsf" in _retrieval.retrieve_section(REF, "C-7b.a")["body"]
+    c7a = _retrieval.retrieve_section(REF, "C-7b.a")["body"]
+    assert "the Given (p. 376) takes the bearing capacity from Example B-7" in c7a
+    assert "Example B-7's Layer 1 value (p. 335)" in c7a
+    assert "Every input stated here matches 8.5 tsf" in c7a
+    assert "match pne = 16.0 tsf, which the page never prints" in c7a
 
 
 def test_appendix_formula_lines_as_printed():
