@@ -420,6 +420,37 @@ def test_inlined_subsections_carry_their_flags(reach_pack, fetch):
     assert "note" not in sub
 
 
+def _sized_view(size: int):
+    """A made-up section and its one subsection whose fetch, inlined and
+    without flags, is ``size`` characters."""
+    view = {"section_id": "9.1", "title": "Made up", "body": "",
+            "children": [{"section_id": "9.1.1", "title": "Made up"}]}
+    sub = [{"section_id": "9.1.1", "title": "Made up", "body": "Made up."}]
+    view["body"] = "x" * (size - len(json.dumps(dict(view, subsections=sub))))
+    return view, sub
+
+
+def test_the_flags_do_not_stop_subsections_from_inlining():
+    """Review item 5: the 12,000 inlining rule counts the content without
+    the flags; the whole, flags and note included, must fit 14,000."""
+    view, sub = _sized_view(11900)
+    few = {"9.1.1": {"not_held": [f"Section 9.{k}" for k in range(2, 17)]}}
+    out = _reach.fetch_result(view, sub, few)
+    assert out["subsections"][0]["not_held"]
+    assert _reach.NOT_HELD_NOTE in out["note"]
+    assert 12000 < len(json.dumps(out, default=str)) <= 14000
+    many = {"9.1.1": {"tables_held": {
+        f"9-{k}": f"page: printed p. {k} (pdf_page_index {k})"
+        for k in range(80)}}}
+    out = _reach.fetch_result(view, sub, many)
+    assert "subsections" not in out
+    assert "with them and what they reach" in out["note"]
+    over, sub = _sized_view(12100)
+    out = _reach.fetch_result(over, sub, few)
+    assert "subsections" not in out
+    assert "over the 12,000-character limit" in out["note"]
+
+
 def test_the_fetch_works_without_the_flags(reach_pack, monkeypatch):
     """A database that cannot be built leaves the chapter-file fetch as it
     was before the flags."""

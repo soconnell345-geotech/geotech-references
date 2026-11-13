@@ -23,7 +23,10 @@ come in a short form (`{"all": ...}`, or the exceptions plus
 `"others"`). A catalog that cannot be read (a file nested 200,000 deep
 raised RecursionError and stopped every text database build) answers "not
 catalogued" and is named in the problems; the pack readers catch
-RecursionError and MemoryError too (`_packs.JSON_ERRORS`). The flags are worked out when the text database is built
+RecursionError and MemoryError too (`_packs.JSON_ERRORS`). Subsections are
+inlined by the 12,000 rule counted on the content without the flags,
+provided the whole fits 14,000 with them (twelve fetches that fitted had
+stopped inlining). The flags are worked out when the text database is built
 (new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
 figure and table catalogs join its source signature) and cost a fetch
 nothing; search hits are unchanged. Shared functions changed:

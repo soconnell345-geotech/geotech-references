@@ -512,7 +512,11 @@ document's own or that reads as a range, a number split across a line, a
 value after a list, and an appendix followed by its title (another
 report's contents) are left alone. The module docstring lists what counts
 as held. Inlined subsections carry their own keys; the fetch's note
-explains them once. The text database's sources include `_reach.py`
+explains them once. Whether they are inlined is decided on the content
+without the flags (the 12,000 rule as before), provided the whole result
+with the flags and the note fits 14,000 (`INLINE_WITH_FLAGS_MAX_CHARS`;
+counting the flags in the 12,000 had stopped twelve fetches that fitted,
+review item 5). The text database's sources include `_reach.py`
 itself, so a change of the rules rebuilds the flags.
 
 A catalog the flags cannot read (not JSON, not UTF-8, nested past the

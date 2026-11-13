@@ -897,14 +897,39 @@ def fetch_result(view: dict, subtree: list[dict] | None,
     """A fetched section as both fetches return it: ``view`` (the section
     with ``parent_id``, ``under`` and ``children``) with its flags from
     ``table`` (:func:`chapter_flags`); ``subtree`` (its subsections, None
-    when they were not asked for) inlined with theirs when they fit
-    (``_retrieval.inline_subsections``); and the ``note`` saying what the
-    keys and answers mean (:func:`reach_note`)."""
+    when they were not asked for) inlined with theirs; and the ``note``
+    saying what the keys and answers mean (:func:`reach_note`).
+
+    Whether the subsections are inlined is decided on the content without
+    the flags, by the 12,000-character rule as before them
+    (``_retrieval.inline_subsections``), provided the whole result with
+    the flags and the note still fits :data:`INLINE_WITH_FLAGS_MAX_CHARS`
+    (2026-11-12 review, item 5: counting the flags in the 12,000 had
+    stopped twelve fetches that fitted from inlining)."""
     from ._retrieval import inline_subsections
     out = add_flags(view, table)
-    if subtree is not None:
-        out = inline_subsections(out, tree_with_flags(subtree, table))
+    if subtree is None:
+        return with_notes(out)
+    bare = inline_subsections(view, subtree)
+    if "subsections" in bare:
+        trial = with_notes(dict(out, subsections=tree_with_flags(subtree,
+                                                                 table)))
+        size = len(json.dumps(trial, default=str))
+        if size <= INLINE_WITH_FLAGS_MAX_CHARS:
+            return trial
+        out = dict(out, note=(
+            f"Subsections not inlined: with them and what they reach this "
+            f"section is {size:,} characters, over the "
+            f"{INLINE_WITH_FLAGS_MAX_CHARS:,}-character limit. Fetch the "
+            "one you need by its section_id from 'children'."))
+    elif bare.get("note") != view.get("note"):
+        out = dict(out, note=bare["note"])  # over the 12,000 without flags
     return with_notes(out)
+
+
+#: The most a fetch with its subsections inlined may come to with the
+#: flags and their note (the library's budget; the app's cap is 16,000).
+INLINE_WITH_FLAGS_MAX_CHARS = 14000
 
 
 @functools.lru_cache(maxsize=256)

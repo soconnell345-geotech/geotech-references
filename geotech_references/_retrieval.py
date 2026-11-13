@@ -582,7 +582,8 @@ def retrieve_section(reference: str, section_id: str,
     include_subsections : bool, optional
         Inline the sections under it as ``subsections`` (each with its
         own subsections), as long as the whole result stays within
-        :data:`SUBSECTIONS_INLINE_MAX_CHARS`; past that they stay listed
+        :data:`SUBSECTIONS_INLINE_MAX_CHARS`, counted without the reach
+        flags, and within 14,000 with them; past that they stay listed
         in ``children`` and a ``note`` says so. Default False: only
         ``children`` (numbers and titles) is given.
 
