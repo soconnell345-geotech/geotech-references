@@ -398,6 +398,22 @@ class TestEquationCutbackAsphaltContentEstimate:
         with pytest.raises(ValueError):
             equation_cutback_asphalt_content_estimate(-1, 20, 30, 40, 0)
 
+    def test_fractions_must_add_to_100(self):
+        # REF-76: printed p. 26 defines a, b, c, d as the four sieve
+        # fractions of the whole mineral aggregate. Cumulative percents
+        # passing (60, 40, 20 for No. 50/100/200) or decimals used to give
+        # a content with nothing said.
+        with pytest.raises(ValueError, match=r"a \+ b \+ c \+ d = 160, not 100"):
+            equation_cutback_asphalt_content_estimate(40, 60, 40, 20, 0)
+        with pytest.raises(ValueError, match="not 100"):
+            equation_cutback_asphalt_content_estimate(0.1, 0.2, 0.3, 0.4, 0)
+        with pytest.raises(ValueError, match="not 100"):
+            equation_cutback_asphalt_content_estimate(150, 0, 0, 0, 0)
+        # within 1 of 100 (rounded gradations) is taken
+        r = equation_cutback_asphalt_content_estimate(10, 20, 30, 40.6, 0)
+        assert r["cutback_asphalt_pct"] == pytest.approx(
+            0.02 * 10 + 0.07 * 20 + 0.15 * 30 + 0.20 * 40.6, abs=1e-3)
+
 
 # ============================================================================
 # Equation: Table 2-3 footnote (c) PI limit

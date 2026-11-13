@@ -117,8 +117,12 @@ def equation_cutback_asphalt_content_estimate(
     Raises
     ------
     ValueError
-        If percent_solvent >= 100 (division by zero/negative) or any input
-        is negative.
+        If percent_solvent >= 100 (division by zero/negative), any input
+        is negative, or a, b, c and d do not add to 100 within 1 (REF-76:
+        printed p. 26 defines them as the percents of the mineral aggregate
+        in four sieve fractions that together hold all of it, so a
+        cumulative percent passing given for b, c or d, or a fraction given
+        as a decimal, used to return a content with nothing said).
     """
     a, b, c, d, s = (percent_retained_no50, percent_no50_to_no100,
                      percent_no100_to_no200, percent_passing_no200,
@@ -128,6 +132,15 @@ def equation_cutback_asphalt_content_estimate(
             raise ValueError(f"{name} must be >= 0, got {val}")
     if s >= 100:
         raise ValueError(f"percent_solvent (S) must be < 100, got {s}")
+    total = a + b + c + d
+    if abs(total - 100.0) > 1.0:
+        raise ValueError(
+            f"a + b + c + d = {total:g}, not 100: UFC 3-250-11 (printed p. "
+            "26) defines them as the percents of the mineral aggregate "
+            "retained on the No. 50 sieve, passing No. 50 and retained on "
+            "No. 100, passing No. 100 and retained on No. 200, and passing "
+            "No. 200, which together hold all of it. Give each fraction "
+            "(not the cumulative percent passing), in percent.")
     p = (0.02 * a + 0.07 * b + 0.15 * c + 0.20 * d) / (100 - s) * 100
     return {
         "a": a, "b": b, "c": c, "d": d, "s": s,

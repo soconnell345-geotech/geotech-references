@@ -47,6 +47,11 @@ pages):
 - `gec_9.tables.table_7_1_p_multiplier`: beyond 5B (Table 7-1 prints 3B
   and 5B, p. 104) the 5B row is still held, now with `out_of_range` beside
   its `note`; holding is on the low side (p. 102).
+- `gec_9.tables.table_a1_k_stiff_clay` and `table_a2_epsilon50_stiff_clay`:
+  Ca outside 0.5-4 ton/ft2 (the columns Tables A-1 and A-2 print, p. 222)
+  is refused; the end column was returned, with a note. The message gives
+  the ton/ft2 conversion (a Ca of 100 given in kPa read 2,000 pci) and
+  points to Appendix A.1 for soft clay.
 - `eurocode_7_2.tables.table_d3_pile_base_resistance`: qc above 25 MPa is
   refused (Table D.3 prints qc = 10, 15, 20 and 25 MPa, p. 115; it
   returned the 25 column with a note).
@@ -123,6 +128,11 @@ pages):
   percent passing No. 200 above 25 (Table 3-5's last row, UFC 3-250-11
   printed p. 27) is refused; the 25 row was returned, with a note, though
   Sec 3-4.4 says the bitumen required increases with the finer sizes.
+- `ufc_stabilization.equations.equation_cutback_asphalt_content_estimate`:
+  a, b, c and d that do not add to 100 within 1 are refused; printed p. 26
+  defines them as the four sieve fractions of the whole mineral aggregate,
+  and cumulative percents passing or decimals returned a content with
+  nothing said.
 - `em_2104.flexure_axial.compression_controlled_capacity_doubly`: fy, Es
   or the concrete strain not positive is refused (they set the -fy..fy
   bound on the tension steel stress, the yield limit Eqs B-31 and B-37
