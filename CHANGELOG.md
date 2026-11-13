@@ -74,6 +74,18 @@ render and independently checked cell by cell.
   for formula pieces put back in the wrong places (a prime alone, a lone
   number above a formula, a number doubled from a stacked fraction, a
   subscript spaced off its symbol, brackets that do not pair).
+- The rebuild gives the same chapter files under PyMuPDF 1.27 and 2.1.
+  Under 2.x the rebuild had failed on GitHub at two typed passages
+  (Examples C-3 and C-7), and its text differed in five sections: PyMuPDF
+  2.x gives the bar set over a symbol in the equation font (N̅60, σ̅′zo,
+  h̅, c̅v; 26 bars on pp. 176-178, 186, 188, 359, 386 and 387) a box of no width at
+  the symbol's right edge, or its subscript's, where 1.27 gave the bar's
+  ink over the symbol, so the bar went over the wrong letter (N6̅0, σz̅′o)
+  or stood apart (h ̅, cv ̅). The reader now puts such a bar on its
+  symbol: the character the text layer lists before it, passing over a
+  subscript. Both versions list the bar in that place. The words the two
+  versions read are the same. 1.27 also reads 156 doubled spaces that 2.1
+  reads as single spaces, which changes no text.
 - Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
   5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
   `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and

@@ -186,6 +186,19 @@ class Row:
         return sum(i.math for i in base) / len(base) if base else 0.0
 
 
+def _mark_base(chars: list[Ch], size: float, y: float) -> Ch | None:
+    """The symbol a mark of the equation font (a bar, U+0305) is set over:
+    the last character before it in the text layer, passing over the
+    smaller characters of a subscript or superscript set after the symbol;
+    None if there is none on its line."""
+    for c in reversed(chars[-4:]):
+        if abs(c.y - y) > size:
+            return None
+        if c.size >= 0.85 * size:
+            return c
+    return None
+
+
 def page_chars(page) -> tuple[list[Ch], list[tuple[float, float]]]:
     """Every upright character of a page, and where its spaces sit (x, y)."""
     chars, spaces = [], []
@@ -208,6 +221,20 @@ def page_chars(page) -> tuple[list[Ch], list[tuple[float, float]]]:
                         # an accent set as its own character ("Hete" + accent
                         # + "nyi") belongs on the letter before it
                         chars[-1].t = unicodedata.normalize("NFC", chars[-1].t + ch)
+                        continue
+                    base = _mark_base(chars, s["size"], c["origin"][1]) \
+                        if unicodedata.combining(ch) and math else None
+                    if base is not None:
+                        # a bar set over a symbol in the equation font (the
+                        # c̅ of c̅v, p. 359) takes its symbol's place: the
+                        # text layer lists it after the symbol, or after the
+                        # symbol's subscript, but where it puts the bar's box
+                        # depends on the reader's version (PyMuPDF 1.27: the
+                        # ink, over the symbol; 2.x: no width, where the pen
+                        # stands after the symbol or its subscript)
+                        chars.append(Ch(plain_char(ch, font), base.x0, base.x1, base.y,
+                                        base.top, base.bot, s["size"], math,
+                                        "Bold" in font, "Italic" in font))
                         continue
                     chars.append(Ch(plain_char(ch, font), x0, x1, c["origin"][1],
                                     top, bot, s["size"], math,
