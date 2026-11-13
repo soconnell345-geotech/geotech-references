@@ -4,6 +4,19 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**The PDF reader is an input of a script build.** The manifest of each
+reference whose text `scripts/build_printed_text.py` reads off the PDF
+(`em_1905`, `fhwa_soils_foundations`) records the PyMuPDF version it was
+built with (`"built_with": {"pymupdf": "1.27.2.3"}`). The two tests that
+rebuild the text and compare it with the committed files run only under
+that version (`tests/_build_reader.py`). Under another version they skip,
+naming both versions; with `GEOTECH_REQUIRE_BUILD_READER=1` they fail
+instead. On GitHub the Python 3.10 job installs the recorded reader with
+that variable set, and the Python 3.12 job the newest reader, where the
+rebuilds skip and every other test runs. `tests/test_build_reader.py`
+checks that every script-built manifest records the same version and that
+the workflow pins it. No package code or stored text changed.
+
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
 chapter text was being rebuilt from the print; each was read from a 300 dpi
@@ -74,6 +87,18 @@ render and independently checked cell by cell.
   for formula pieces put back in the wrong places (a prime alone, a lone
   number above a formula, a number doubled from a stacked fraction, a
   subscript spaced off its symbol, brackets that do not pair).
+- The rebuild gives the same chapter files under PyMuPDF 1.27 and 2.1.
+  Under 2.x the rebuild had failed on GitHub at two typed passages
+  (Examples C-3 and C-7), and its text differed in five sections: PyMuPDF
+  2.x gives the bar set over a symbol in the equation font (N̅60, σ̅′zo,
+  h̅, c̅v; 26 bars on pp. 176-178, 186, 188, 359, 386 and 387) a box of no width at
+  the symbol's right edge, or its subscript's, where 1.27 gave the bar's
+  ink over the symbol, so the bar went over the wrong letter (N6̅0, σz̅′o)
+  or stood apart (h ̅, cv ̅). The reader now puts such a bar on its
+  symbol: the character the text layer lists before it, passing over a
+  subscript. Both versions list the bar in that place. The words the two
+  versions read are the same. 1.27 also reads 156 doubled spaces that 2.1
+  reads as single spaces, which changes no text.
 - Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
   5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
   `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
@@ -99,7 +124,10 @@ render and independently checked cell by cell.
   examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
   kept as printed in the text, each with a note giving what the inputs
   give, and the tests pin what the inputs give. The tests run Appendix B
-  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. Every input
+  that may be None says when to pass None: theta_deg unless the AASHTO
+  method has H > 0, d_g unless alpha_g > 0 (USACE); a value given where it
+  is not needed is ignored, not checked. The equations
   of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
 - Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
   are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
