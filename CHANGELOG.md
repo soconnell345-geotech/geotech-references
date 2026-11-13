@@ -138,8 +138,11 @@ the rendered pages:
   figures' lettering. With the manifest's `"layout": "examples"` a line
   of working keeps its own line; the page footers of the examples are now
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
-  E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10) and E3 (pp. E3-1 to
-  E3-20). Noted as printed: in
+  E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
+  E3-20) and E4 (pp. E4-1 to E4-19). A long example is split into parts
+  never between a caption and its typed-in table or figure lettering (E1's
+  Table E1-7.5 had its caption in one part and its rows in the next), and
+  a fix line "¶" ends a paragraph at the top of a page. Noted as printed: in
   E1, "F2" for FH2 in the sliding check; the bearing figure numbered
   E.1.6-1 again (the text calls it E1.6-3); "Step 6.a" for 6.2; the
   Service I bearing stress left blank; Table E1-7.1's strengths (6,000 to
@@ -153,6 +156,10 @@ the rendered pages:
   γP-EV in one line; Tmax = 13.13 k at Level 4 in Section 7.6 where 7.3
   gives 12.37 k; Table E3-7.3's "dim" under Zp-ave and "φs(Tn)" for the
   tensile resistance; "Step 8" for the long-form calculations of Step 7.
+  In E4, Table 3.11.6.4-1 for heq where Step 2 cites 3.11.6.4-2; "Table
+  E1-6.3" for E4-6.3; "1.7Ka = 0.707" for 2.5Ka; a steel loss of 0.16
+  mil/year/side where 0.47 is used; the W11 loss without its "/1000";
+  "Tr = 5.14 k/wire (0.65)" where Tn is 5.17; Table E4-7.4's "φs(Tn)".
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

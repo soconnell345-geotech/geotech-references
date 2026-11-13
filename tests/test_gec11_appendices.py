@@ -61,6 +61,20 @@ def test_every_section_carries_its_printed_pages(letter):
 
 
 @pytest.mark.parametrize("letter", sorted(BUILT))
+def test_caption_kept_with_its_typed_table(letter):
+    """A long section is split into parts, never between a caption and its
+    typed-in table or figure lettering; no paragraph mark is left over."""
+    for s in _appendix(letter)["sections"]:
+        assert "¶" not in s["body"], s["section_id"]
+        for num in re.findall(r"\[Table (\S+), typed in from p\.", s["body"]):
+            assert re.search(rf"(?:^|\n\n|\] )Table {re.escape(num)}\. ", s["body"]), (
+                s["section_id"], num)
+        for num in re.findall(r"\[Figure (\S+) lettering, typed in", s["body"]):
+            assert re.search(rf"(?:^|\n\n|\] )Figure {re.escape(num)}\. ", s["body"]), (
+                s["section_id"], num)
+
+
+@pytest.mark.parametrize("letter", sorted(BUILT))
 def test_no_scatter_patterns(letter):
     """A formula taken from the text layer that has come apart: a prime on
     its own, a lone number line above a formula, brackets that do not pair
@@ -571,6 +585,99 @@ def test_appendix_e3_print_slips_noted():
     assert 'as printed, "dim" under Zp-ave, a depth in ft, and "φs(Tn)"' in body
     assert 'as printed, "Step 8"; the long-form calculations are in Step 7' in body
     assert "as printed, γr in FTV and FTH; Figure E3-2 has FT = ½ γf h² Kaf" in body
+
+
+def test_appendix_e4_working_as_printed():
+    """Example E4's formula lines as typed in from pp. E4-3 to E4-17, and
+    their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.4"]["title"].startswith("Segmental Precast Panel MSE Wall with Level Backfill")
+    body = _e_body("E.4")
+    for line in (
+        "Kar = (1 - sin34°)/(1 + sin34°) = 0.283",
+        "Kaf = (1 - sin30°)/(1 + sin30°) = 0.333",
+        "F1 = ½(Kaf)(γf)H² | EH | H/3",
+        "σv = ΣV / (L − 2eL)",
+        "σH = Kr (γr Z) γP-EV + Kr (γr heq) γP-EV = Kr [γr (Z + heq) γP-EV]",
+        "Tmax = (σh)(Atrib) = (1.02 ksf)(12.50 ft²) = 12.75 k/panel of 5-ft width",
+        "For W15 wires\nD75 = 0.437 in. – (0.47 mil/year/side) (59 years) (2 sides)/1000 "
+        "= 0.437 in. – 0.056 in.\nD75 = 0.381 in.",
+        "equal to (π)(0.381 in.)²/4 = 0.1142 in²/wire",
+        "Tn = 65 ksi (0.1142 in²) = 7.42 k/wire.",
+        "F* = 0.623 + (20.00 ft – 9.37 ft)(1.246 – 0.623)/20 ft = 0.955",
+        "Pr = (1.0)(0.955)(2)(1.00 ft)(10.31 ft)(1.171 ksf) = 23.06 k/ft",
+        "Prr = φPr = (0.90)(23.06 k/ft) = 20.75 k/ft",
+        "Np = 1 + (Tmax/Prr)/(Sl) = 1 + [(12.75 k/panel of 5 ft width)/(20.75 k/ft)]/(0.5 ft) = 2.2",
+    ):
+        assert line in body, line
+    s = math.sin
+    r = math.radians
+    assert round((1 - s(r(34))) / (1 + s(r(34))), 3) == 0.283
+    h = 23.64 + 2.0
+    assert round(0.125 * h * 18, 2) == 57.69 and round(0.125 * 2 * 18, 2) == 4.50
+    f1, f2 = 0.5 * 0.333 * 0.125 * h ** 2, 0.333 * 0.125 * 2 * h
+    assert round(f1, 2) == 13.68 and round(f2, 2) == 2.13
+    assert round(1.5 * f1 + 1.75 * f2, 2) == 24.26 and round(0.9 * f1 + 1.75 * f2, 2) == 16.05
+    assert round(math.tan(r(30)) * 1.35 * 57.69, 2) == 44.96
+    assert round(0.340 + 11.88 * 0.367 / 20, 3) == 0.558
+    assert round(0.558 * 0.125 * 8.12 * 1.35, 2) == 0.76
+    assert abs(0.47 * 59 * 2 / 1000 - 0.056) < 0.001 and round(0.437 - 0.056, 3) == 0.381
+    assert round(65 * 0.1142, 2) == 7.42 and round(7.42 * 0.65, 2) == 4.82
+    assert round(65 * 0.0795, 2) == 5.17 and round(5.17 * 0.65, 2) == 3.36
+    assert round(18 - 0.3 * h, 2) == 10.31
+    pr = 0.955 * 2 * 1.00 * 10.31 * 1.171
+    assert round(pr, 2) == 23.06 and round(0.9 * pr, 2) == 20.75
+    assert round(12.75 / 3.36, 1) == 3.8 and round(1 + (12.75 / 20.75) / 0.5, 1) == 2.2
+
+
+def test_appendix_e4_tables_typed_in():
+    body = _e_body("E.4")
+    rows = {}
+    for row in _typed_rows(body, "E4-6.3"):
+        rows.setdefault(row[0], row)
+    total = rows["Vertical load at base of MSE wall including LL on top, ΣV = R = V1 + VS"]
+    ecc = rows["Eccentricity from center of wall base, eL = 0.5*L – a"]
+    width = rows["Effective width of base of MSE wall, B' = L-2eL"]
+    stress = rows["Bearing stress due to MSE wall =ΣV/(L-2eL) = σv"]
+    resist = rows["Bearing resistance, (qnf-str for strength) or (qnf-ser for service) (given)"]
+    cdr = rows["Capacity:Demand Ratio (CDR) = qnf:σv"]
+    for col in (2, 3, 4):
+        assert abs(18 - 2 * float(ecc[col]) - float(width[col])) <= 0.011
+        assert abs(float(total[col]) / float(width[col]) - float(stress[col])) <= 0.006
+        assert round(float(resist[col]) / float(stress[col]), 2) == float(cdr[col])
+    # Table E4-7.4, every level; the transverse wire spacing from Table E4-7.3
+    rows = _typed_rows(body, "E4-7.4")
+    assert [row[0] for row in rows] == [str(n) for n in range(1, 11)]
+    h = 25.64
+    for (level, z, sigma, tmax, fstar, le, ppr, ptn, n_p, n_t, n_g, mat) in rows:
+        n = int(level)
+        st, wire, step = ((6, "W11", "0.5'") if n <= 4 else (12, "W15", "1'") if n <= 7
+                          else (18, "W15", "1.5'"))
+        z, tmax, le = float(z), float(tmax), float(le)
+        f = 0.374 / st * (10 + 10 * max(0.0, 20 - z) / 20)
+        assert abs(f - float(fstar)) < 0.0015, level
+        la = 0.3 * h if z <= h / 2 else 0.6 * (h - z)
+        assert abs(18 - la - le) < 0.006, level
+        pull = 0.9 * float(fstar) * 2 * 1.0 * le * 0.125 * z
+        assert abs(pull / float(ppr) - 1) < 0.01, level
+        svt = 3.12 if n == 1 else 2.52 if n == 10 else 2.50
+        assert abs(tmax - 5 * svt * float(sigma)) < 0.07, level
+        assert abs(1 + 2 * tmax / float(ppr) - float(n_p)) <= 0.06, level
+        assert abs(tmax / float(ptn) - float(n_t)) <= 0.06, level
+        assert int(n_g) == math.ceil(max(float(n_p), float(n_t))), level
+        assert mat == f"{n_g}{wire}+W11x{step}", level
+
+
+def test_appendix_e4_print_slips_noted():
+    body = _e_body("E.4")
+    assert "as printed, Table 3.11.6.4-1 here; Step 2 cites Table 3.11.6.4-2" in body
+    assert 'as printed, "Table E1-6.3"; the table is E4-6.3' in body
+    assert 'as printed, "1.7Ka = 0.707"; 0.707 is 2.5Ka' in body
+    assert "Steel loss = 0.16 mil/year/side [Note: as printed, 0.16; the rate used below is 0.47" in body
+    assert 'as printed, without the "/1000" of the W15 line.' in body
+    assert "as printed, 5.14; Tn above is 5.17 k/wire, and 5.17 × 0.65 = 3.36." in body
+    assert 'as printed, "φs(Tn)"; the factor applied, 0.65, is φt (Table E4-5.2).' in body
+    assert round(2.5 * 0.283, 3) == 0.707 and round(1.7 * 0.283, 3) == 0.481
 
 
 # --- the build ------------------------------------------------------------

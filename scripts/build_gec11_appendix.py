@@ -19,7 +19,8 @@ manifest's ``appendices`` (in the Volume II entry of
   caption as one line, "Figure B-1. ..." (a caption paragraph lists the
   figure or table under its section); a figure's lettering, where it says
   something the text does not, as ``[Figure B-1 lettering, typed in from
-  p. B-4:] ...``;
+  p. B-4:] ...``; a replacement line that is only "¶" ends the paragraph
+  before it, also at the top of a page;
 * ``sections``: each printed heading under the appendix's own (``sid``,
   ``title`` as printed, in title case, ``pdf_page`` and the heading's
   ``find`` and optional ``through`` lines, which are taken out); the text
@@ -33,7 +34,8 @@ manifest's ``appendices`` (in the Volume II entry of
 Each body is the page's lines, a paragraph wherever the text layer leaves
 a blank line, with ``[p. B-3]`` where each printed page starts. Nothing is
 summarised: ``key_points`` is empty. A section over the reference tools'
-size is split into lettered parts (``build_printed_text.split_long``).
+size is split into lettered parts (``build_printed_text.split_long``),
+never between a caption and its typed-in table or figure lettering.
 
 Usage::
 
@@ -86,6 +88,10 @@ _OPENS = re.compile(r"[A-Z0-9“\"•▪]")
 #: a sub-bullet printed as "o", a square bullet with no space after it and
 #: a numbered step "1)".
 _WORKING = re.compile(r"^\S{1,14}(?:\s\S{1,8})?\s*[=≤≥<>]\s")
+#: A replacement line of ``fix_lines`` that is only this ends the paragraph
+#: before it, also where a page starts (a heading at the top of a page
+#: after a list that does not end a sentence); the print has no such line.
+PARAGRAPH = "¶"
 _EXAMPLE_ITEM = re.compile(r"^(?:o\s|▪|\d{1,2}\)\s|[a-h]\)\s|STEP \d{1,2}\b|Step \d{1,2}\b)")
 
 
@@ -124,6 +130,11 @@ def _paragraphs(stream, pages, examples: bool = False) -> str:
 
     for i, ln in stream:
         if not ln.strip():
+            gap = True
+            continue
+        if ln == PARAGRAPH:
+            # a fix's own paragraph break, which holds at a page break
+            flush()
             gap = True
             continue
         mark = None
@@ -178,11 +189,38 @@ def _listed(body: str, kind: str) -> list[str]:
     return out
 
 
+#: Two characters in place of the blank line between a caption and its
+#: typed-in table or figure lettering while a long section is split, so
+#: no part ends with a caption whose table is in the next.
+_GLUE = "\x1f\x1f"
+
+
+def _glue_captions(body: str) -> str:
+    paras = body.split("\n\n")
+    out = paras[:1]
+    for p in paras[1:]:
+        prev = _MARK.sub("", out[-1]).strip()
+        cap = _CAPTION.match(prev.split("\n")[0])
+        here = _MARK.sub("", p).strip()
+        nxt = _CAPTION.match(here.split("\n")[0])
+        if ((cap and cap.group(1) == "Table"
+             and here.startswith(f"[Table {cap.group(2)}, typed in"))
+                or (nxt and nxt.group(1) == "Figure"
+                    and prev.startswith(f"[Figure {nxt.group(2)} lettering"))):
+            out[-1] += _GLUE + p
+        else:
+            out.append(p)
+    return "\n\n".join(out)
+
+
 def _split(sec: dict) -> list[dict]:
     """``build_printed_text.split_long``, each part listing the figures and
     tables whose captions it holds (the lettered appendix numbers are not
-    the chapters' form)."""
-    parts = bpt.split_long(sec)
+    the chapters' form). A caption stays in one part with its typed-in
+    table or figure lettering."""
+    parts = bpt.split_long(dict(sec, body=_glue_captions(sec["body"])))
+    for p in parts:
+        p["body"] = p["body"].replace(_GLUE, "\n\n")
     if len(parts) > 1:
         for p in parts:
             p["figures"] = _listed(p["body"], "Figure")
