@@ -342,6 +342,26 @@ def test_example_2_anchor():
     assert (5.1 - y) * 12 == pytest.approx(14, abs=0.5)
 
 
+def test_example_2_table_b12_slip_kept_with_note():
+    # Table B-12 row 12 (p. 617) prints 10.1 − 4 = 7.1; 10.1 − 4 is 6.1. The printed
+    # 26,306, 3.93 ft and "about 14 inches" stay as printed, each with a note.
+    s = SEC["B-2.7"]
+    table = _table("B-2.7", "B-12")
+    assert "10.1 − 4 = 7.1 / 3705(7.1) = 26,306" in table and "= 3.93 ft (p. 617)" in table
+    assert "10.1 − 4 is 6.1" in table and "3705(6.1) = 22,601" in table
+    assert "the tierod is located about 14 inches higher than the ideal location." in s["body"]
+    assert "3.93 ft above the base as printed" in s["key_points"][4]
+    assert "3.93 ft, as printed" in s["summary"]
+    for text in (table, s["body"], s["key_points"][4], s["summary"]):
+        assert "10.1 − 4 = 7.1" in text and "3.54 ft" in text and "19 in" in text
+    # with 6.1: yresultant = 3.54 ft; the tierod at 5.1 ft is about 1.56 ft (19 inches) above it
+    assert 3705 * 6.1 == pytest.approx(22601, abs=1)
+    y = (22601 + 10128 + 1109) / (3705 + 5064 + 792)
+    assert y == pytest.approx(3.54, abs=0.005)
+    assert 5.1 - y == pytest.approx(1.56, abs=0.005)
+    assert (5.1 - y) * 12 == pytest.approx(19, abs=0.5)
+
+
 def test_example_2_dm7_2_lookups():
     from geotech_references.dm7_2.chapter4 import (
         figure_4_36_moment_reduction, log_spiral_passive_coefficient,
@@ -621,6 +641,31 @@ def test_example_6_dm7_2_lookups():
         pytest.approx(18, abs=0.5)
 
 
+def test_example_6_cross_references_kept_with_notes():
+    # Example 6 (pp. 646-650) cites Table 6-29, Table 6-31 and Equation 6-71; in this
+    # manual those are the tension factors of safety (p. 435), drilled shaft settlement
+    # (p. 444) and the cap's mobilized passive resistance (p. 467). The content cited is
+    # Table 6-34 (p. 461), Table 6-36 (p. 462) and Equation 6-70 (p. 463).
+    cases = [("B-6.3.2", "Table 6-29", "Table 6-34", "p. 461"),
+             ("B-6.3.4", "Table 6-31", "Table 6-36", "p. 462"),
+             ("B-6.3.6", "Equation 6-71", "6-70", "p. 463")]
+    for sid, printed, holds, page in cases:
+        s = SEC[sid]
+        fields = [s["body"], s["summary"]] + ([] if sid == "B-6.3.2" else [s["key_points"][1]])
+        for text in fields:
+            assert printed in text and "as printed" in text.lower(), (sid, text[:60])
+            assert holds in text and page in text, (sid, text[:60])
+    assert ("Table 6-29 in this manual is Recommended Minimum Factors of Safety for Tension "
+            "Loading, p. 435") in SEC["B-6.3.2"]["body"]
+    assert ("Table 6-31 in this manual is Relationships for Normalized Drilled Shaft Settlement "
+            "vs Normalized Loading, p. 444") in SEC["B-6.3.4"]["body"]
+    assert ("Equation 6-71 in this manual is the mobilized passive resistance of the pile cap, "
+            "p. 467") in SEC["B-6.3.6"]["body"]
+    with_eq = [s for s in APX["sections"] if "6-71" in s["applicability"]]
+    assert len(with_eq) == 11
+    assert all("Eq. 6-70, p. 463" in s["applicability"] for s in with_eq)
+
+
 # ---------------------------------------------------------------------------
 # Example 7 – reliability analysis of a retaining wall (pp. 651-659)
 # ---------------------------------------------------------------------------
@@ -691,6 +736,9 @@ def test_example_7_sliding_derivatives_and_beta():
 
     base = dict(gc=150.0, gt=140.0, mu=0.55, qs=250.0, ka=0.25, h=18.0)
     assert g() == pytest.approx(0.58, abs=0.005)
+    # p. 654 prints H³ in g(x); the key point and summary give H² and say so
+    for text in (SEC["B-7.3"]["summary"], SEC["B-7.3"]["key_points"][1]):
+        assert "0.5γtKaH²) − 1 (" in text and "H³" in text
     printed = {"gc": 3.157e-3, "mu": 2.88, "qs": -1.05e-3, "ka": -6.336, "h": -0.1614}
     derivs = {k: d(k, base[k] * 1e-5) for k in base}
     for k, v in printed.items():
