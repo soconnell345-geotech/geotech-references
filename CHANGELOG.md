@@ -4,6 +4,44 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Reach build of 2026-11-12: a fetched section says what it can reach
+(app BACKLOG REF-92, the owner's acceptance test: the references helper can
+reach everything it is told it has).** `reference_get` and
+`retrieve_section` now add, where there is something to say,
+`figures_held` (each listed figure: in the figure catalog, on several rows,
+filed as its whole figure or by its parts, or not held), `tables_held`
+(where each listed table's values are, from a `tables_catalog.json`; "not
+held" for a reference without one, which on this build is every
+reference) and `not_held` (the parts of the same document the body points
+to that the library does not hold, with a sentence in `note`). Both held
+maps come in a short form (`{"all": ...}`, or the exceptions plus
+`"others"`). The flags are worked out when the text database is built
+(new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
+figure and table catalogs join its source signature) and cost a fetch
+nothing; search hits are unchanged. Shared functions changed:
+`_retrieval_db._fill_db`, `_needs_rebuild`, `_newest_source_mtime` (via the
+new `_source_paths`) and `reference_get`; `_retrieval.retrieve_section`
+(via the new `_view_with_reach`). On this build 289 same-document pointers
+are not held: 172 to appendices that are not built (most in UFC 3-250-01,
+GEC-7, GEC-10, UFC 3-250-04, UFC 4-023-03 and GEC-6; the EM 1110-2-2104
+appendices are held as lookups only), 51 sections, 24 equations, 15
+tables, 14 figures and 13 chapters (EM 1110-2-2107 chapters 12-15 among
+them), some of them pointers the print itself gets wrong; 2 listed figures
+are not in their catalogs. `tests/test_reach.py` holds these counts to
+`tests/reach_baseline.json` (they may shrink, not grow) and checks that
+every `implemented_in` names a function the package has, cross-references
+name the manuals' own sections, every figure number can be fetched, and
+the wheel ships every data file the code reads (`*/tables_catalog.json`
+added to the package data). Also: figure listings in dm7_1 7-6.1 to 7-6.3,
+gec_11 5.1.1 and ufc_flexible_practice 2-4.2.6 to 2-4.2.13 name the
+figures as the catalog holds them (Figure 7-7 (a)-(c), 5-1 (a) to (d),
+2-6a to 2-6f, as printed); wood_handbook 5-3 names its one lookup; GEC-12
+chapter 7 cross-references point at the manual's own sections instead of
+app modules; `ufc_flexible_practice.equations.slurry_seal_surface_area`
+takes sieve sizes as text or as [size, percent] pairs (a JSON tool call
+was refused); `aashto_1993.environmental.performance_period_iteration`
+says it needs Python functions (`needs_python_callables = True`).
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,

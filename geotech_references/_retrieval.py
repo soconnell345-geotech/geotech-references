@@ -550,6 +550,21 @@ def section_view(entries: list[dict], i: int,
     return out
 
 
+def _view_with_reach(reference: str, chapter, entries: list[dict], i: int,
+                     include_subsections: bool) -> dict:
+    """:func:`section_view` with what the section's figures, tables and
+    same-document pointers reach (``figures_held``, ``tables_held``,
+    ``not_held``; :mod:`._reach`, 2026-11-12), read from the text search
+    database. Without the database the view is returned as before."""
+    from . import _reach
+    reach = _reach.flags_for(reference, chapter)
+    view = _reach.add_flags(section_view(entries, i), reach)
+    if include_subsections:
+        view = inline_subsections(
+            view, _reach.tree_with_flags(_subtree(entries, i), reach))
+    return _reach.with_not_held_note(view)
+
+
 def retrieve_section(reference: str, section_id: str,
                      include_subsections: bool = False) -> dict:
     """Get a specific section by its ID, at any level (e.g. '7.2',
@@ -621,9 +636,10 @@ def retrieve_section(reference: str, section_id: str,
             (chapter, entries[i]["section"].get("title", ""))
             for chapter, entries, i in held]))
     if held:
-        _, entries, i = held[0]
+        chapter, entries, i = held[0]
         return with_printed_note(
-            section_view(entries, i, include_subsections), reference,
+            _view_with_reach(reference, chapter, entries, i,
+                             include_subsections), reference,
             prefixed_matches(reference, section_id, titles))
 
     raise KeyError(

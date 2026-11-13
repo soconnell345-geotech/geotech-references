@@ -58,6 +58,7 @@ from typing import Any
 
 from . import _atomic_db
 from . import _packs
+from . import _reach
 from . import _query_expansion as _qe
 from . import _retrieval
 
@@ -71,7 +72,10 @@ _DB_NAME = "geotech_references_fts.sqlite"
 #: 4 = each row's ``reference_id``, its chapter file's report number, so a
 #: search scoped to a volume's own number searches that volume (2026-11-10
 #: review follow-up).
-_SCHEMA_VERSION = 4
+#: 5 = a ``section_reach`` table: what each section's figures, tables and
+#: same-document pointers reach (:mod:`._reach`, 2026-11-12); the figure
+#: and table catalogs join the source signature.
+_SCHEMA_VERSION = 5
 
 _INDEXED_COLUMNS = (
     "title",
@@ -168,8 +172,16 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
     return out
 
 
+def _source_paths(sources=None) -> list[Path]:
+    """The files the text database is built from: every chapter file and
+    the catalogs the reach flags read (:func:`._reach.catalog_paths`, there
+    or not, so adding one rebuilds too)."""
+    sources = _iter_text_jsons() if sources is None else sources
+    return [jf for _, jf in sources] + _reach.catalog_paths()
+
+
 def _newest_source_mtime() -> float:
-    return source_state([jf for _, jf in _iter_text_jsons()])[0]
+    return source_state(_source_paths())[0]
 
 
 #: ``(PRAGMA user_version, source signature)`` per (database path, file
@@ -253,7 +265,7 @@ def _needs_rebuild(db_path: Path) -> bool:
     alone missed (2026-11-10 review, core-11)."""
     if not db_path.exists():
         return True
-    newest, signature = source_state([jf for _, jf in _iter_text_jsons()])
+    newest, signature = source_state(_source_paths())
     if db_path.stat().st_mtime < newest:
         return True
     version, built_from = db_meta(db_path)
@@ -325,7 +337,7 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     sources = _iter_text_jsons()
     # taken before the files are read: one changed during the build makes
     # the next check build again
-    signature = source_state([jf for _, jf in sources])[1]
+    signature = source_state(_source_paths(sources))[1]
     write_build_meta(cur, signature, _SCHEMA_VERSION)
     for reference, jf in sources:
         try:
@@ -350,6 +362,7 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         FROM sections
         """
     )
+    _reach.fill_reach_table(cur)
 
 
 def unreadable_source(path: Path, error: Exception) -> RuntimeError:
@@ -1422,9 +1435,14 @@ def reference_get(reference: str, section_id: str,
         out["children"] = [
             {"section_id": c["section_id"], "title": c["title"]}
             for c in _child_rows(conn, row["rowid"])]
+        # what its figures, tables and pointers reach (2026-11-12)
+        reach = _reach.chapter_flags(conn, reference, row["chapter"])
+        out = _reach.add_flags(out, reach)
         if include_subsections:
             out = _retrieval.inline_subsections(
-                out, _subtree(conn, row["rowid"], {row["rowid"]}))
+                out, _reach.tree_with_flags(
+                    _subtree(conn, row["rowid"], {row["rowid"]}), reach))
+        out = _reach.with_not_held_note(out)
         # the section a chapter prints under the same number (GEC-13
         # chapter 1's printed 8.2.7 is 1.8.2.7), as retrieve_section says
         return _retrieval.with_printed_note(

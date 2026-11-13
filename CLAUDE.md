@@ -23,6 +23,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval.py                # Reference text retrieval (load, search, retrieve by section) at every section level; section_entries() = the one section tree both layers use; fit_hits() / fit_record() shape a result to a caller's max_chars. See "Section levels" and "Results that fit a size limit" below.
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
+  _reach.py                    # What a fetched section can reach (REF-92): figures_held / tables_held / not_held, worked out when the text database is built (table section_reach). See "What a fetched section can reach" below.
   _atomic_db.py                # Both search databases are built under a temporary name beside the real one and moved in with os.replace, so no process reads a half-built file; concurrent first calls each build their own copy (REF-56)
   _packs.py                    # Local reference packs (REF-64): GEOTECH_REFERENCES_PACKS folders indexed beside the built-ins; ids local_*; PDFs by bare file name only; a pack file the indexes cannot take is skipped (SAVEPOINT per file) and named in problems()
   packs.py                     # python -m geotech_references.packs new | check | list | index | schema; the format is docs/REFERENCE_PACKS.md
@@ -223,8 +224,11 @@ giving coverage of figures that have not been hand-digitized into `figures.py`.
   query-expansion + an OR-of-terms recall fallback — see "Lexical Query Expansion";
   a figure printed over several pages is one hit listing its `pages`, and
   each hit carries its volume's `reference_id`),
-  `figure_get(reference, figure_number)`, `resolve_pdf(...)`
-  → `(pdf_abs_path, page_index)`, `list_indexed_figures()`.
+  `figure_get(reference, figure_number, pdf_page_index=None)`,
+  `resolve_pdf(..., pdf_page_index=None)` → `(pdf_abs_path, page_index)`,
+  `list_indexed_figures()`. A number on several catalog rows (a figure over
+  several pages, or one the print uses twice) is refused with each row's
+  page and caption until `pdf_page_index` says which.
 - **Read off** (in GeotechStaffEngineer): the `read_reference_figure` vision tool
   renders the resolved page at 220 DPI and asks the engine to read the value(s).
   Results are **read-off estimates** to be verified, not exact digitized values.
@@ -258,11 +262,14 @@ its own (`7.3.2.1` under `7.3` where there is no `7.3.2`) — and both layers us
   7.2.1.3.1, not only 7.2. Rows carry `parent_rowid`, `depth`, `parents_json`
   and `reference_id` (the chapter file's report number, so a search scoped
   by a volume's number keeps to that volume, `_retrieval_db.search_scope`);
-  `PRAGMA user_version` = `_SCHEMA_VERSION` (4), and a database built by an
+  `PRAGMA user_version` = `_SCHEMA_VERSION` (5 since the `section_reach`
+  table, 2026-11-12), and a database built by an
   older version is rebuilt on first use whatever its mtime. Both databases
   keep a `build_meta` table with the signature of their source files (path,
   size, mtime of each), so a chapter file or catalog deleted, added or
   restored with an older date also rebuilds (2026-11-10 review, core-11).
+  The text database's sources include every figure and table catalog the
+  reach flags read, there or not (`_reach.catalog_paths`).
 - **Results say where a section sits.** Search hits (both layers) carry
   `parent_id` and `under` (`"7.2 Strength Limit States > 7.2.1 Nominal Axial
   ..."`). `reference_get` / `retrieve_section` work on any number and add
@@ -360,11 +367,74 @@ returns exactly what it always did; the app passes 14,000.
   every word has no mark. With `max_chars` the dict adds `matched`,
   `words_not_found` and a sentence on the note, and an empty result names
   the scope searched, what was tried and the words nothing there holds.
-- **Section fetches are not shaped**: the largest (`reference_get` dm7_1
-  1-3.6, 13,783; `retrieve_section` gec_12 8.5.2, 13,074) fit by their data.
-  The app's guard test walks every reference method and fails if that
-  changes (`funhouse_agent/tests/test_reference_result_sizes.py`).
+- **Section fetches are not shaped**: the largest fit by their data. On
+  2026-11-12 three are over the 14,000 budget from their own text, before
+  the reach flags: `reference_get` dm7_2 4-9 (15,662 characters; 15,744
+  with its flags), fhwa_soils_foundations 6.6.3 (14,272) and 9.5.1.1
+  (14,115); all are under the app's 16,000 cap. `tests/test_reach.py`
+  fails if the flags add more than 600 characters to a fetch, if any fetch
+  passes 16,000, or if another passes 14,000. The app's guard test walks
+  every reference method and fails if that changes
+  (`funhouse_agent/tests/test_reference_result_sizes.py`).
 - **Tests:** `tests/test_result_size.py`.
+
+## What a fetched section can reach (REF-92, 2026-11-12)
+
+The owner's acceptance test for the reference release: the references
+helper can reach everything it is told it has. A fetched section names
+figures and tables and points to other parts of its document, so
+`reference_get` and `retrieve_section` add three keys, each only when it
+has something in it (`_reach.py`):
+
+- **`figures_held`**: for each number the `figures` list names,
+  `"catalog"` (`figure_get` finds it), `"catalog (2 rows: give figure_get
+  the pdf_page_index)"`, `"catalog (as 5-5)"` (a part the catalog files
+  with its whole figure), `"catalog (as parts C14-3A, C14-3B)"`, or
+  `"not held"`.
+- **`tables_held`**: for each number the `tables` list names, where its
+  values are, from `<package>/tables_catalog.json` (rows `table_number`,
+  `caption`, `section_id`, `pdf_page_index`, `printed_page`, `values`
+  "text" | "lookup" | "page", `values_in`): `"text: <section ids>"`,
+  `"lookup: <function>"`, `"page: pdf_page_index N, printed p. P"`, or
+  `"not held"`. A reference with no table catalog says "not held" for
+  every table (all of them until the table catalogs are built).
+- **`not_held`**: the parts of the same document the body points to that
+  the library does not hold ("Appendix D", "Chapter 12", "Eq. 4-11"), at
+  most 15 and then "and N more", with a sentence added to `note` saying
+  not to quote or cite them as read.
+
+Both held maps come in a short form: `{"all": answer}` when every number
+has the same answer, else the numbers whose answer differs plus
+`"others": <the commonest answer>` (`_reach.collapse`; `_reach.expand`
+gives the full map back from the section's own list). A pointer is flagged
+only when it is certainly one into the same document and certainly not
+held: another document named just before it or "of / in / from" one after
+it, an author and year before it, a number whose form is none of the
+document's own or that reads as a range, a number split across a line, a
+value after a list, and an appendix followed by its title (another
+report's contents) are left alone. The module docstring lists what counts
+as held. Inlined subsections carry their own keys, counted by the 12,000
+inlining rule.
+
+The flags are worked out once, when the text database is built
+(`_reach.fill_reach_table`, table `section_reach`, about 1-2 s of the
+build), and read back on each fetch; `retrieve_section` reads them from
+that database too (checking at most every 2 s that it is current), and
+works as before if the database cannot be built. Search hits are
+unchanged. `_reach.reach_counts()` gives, per reference, the listed
+figures and tables and the pointers not held.
+
+**Tests:** `tests/test_reach.py`: the rules on made-up text, the keys on a
+made-up local pack (with a table catalog) through both fetches, and across
+the library: every section has a body or sections under it; every listed
+figure and table has an answer; every `implemented_in` (section and
+equation level) names a function the package has; every cross-reference
+key is `"<reference> Chapter N"` or `"<reference> Section <id>"` and
+resolves; every figure number held on several catalog rows is on distinct
+pages; the not-held counts stay at or under `tests/reach_baseline.json`
+(2026-11-12: 2 figures, 1,545 tables, 289 pointers; lower the file when a
+count drops); the flags keep fetch sizes in their limits; the wheel's
+package data covers every data file the code reads.
 
 ## Lexical Query Expansion (recall lever)
 
