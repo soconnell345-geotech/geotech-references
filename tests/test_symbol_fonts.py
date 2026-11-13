@@ -66,6 +66,8 @@ PRINTED = [
      "when T = 0E"),
     # NHI-06-089 PDF p. 275, printed p. 9-165
     ("fhwa_soils_foundations", "9.15.7.2", "time interval of 2½ minutes", "of 22 minutes"),
+    ("fhwa_soils_foundations", "9.15.7.2", "immediately after, 2½ minutes after, and 5 minutes",
+     "after, 22 minutes"),
     # NHI-06-089 PDF p. 277, printed p. 9-167
     ("fhwa_soils_foundations", "9.15.7.4", "an angle of about 20° from the load axis", "about 20E"),
     # NHI-06-088 PDF p. 251, printed p. 5-1
