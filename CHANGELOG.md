@@ -4,6 +4,9 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+- **EM 1110-2-2104: page citations corrected from the page (app BACKLOG REF-98, part 1).**
+  Six citations pointed at the wrong printed page and now give the page that prints the equation: Eq B-22 (p. 45, was 44), Eq B-42 and Eq B-43 (p. 50, was 49), Eqs B-44 to B-48 (pp. 50-51, was 49-50), Eq D-5 (p. 71, was 73), and the ACI 318-19 resistance-factor comment (p. 121, was 118); the `pdf_page` values moved with them. No value, factor or formula changed. 56 citations were checked against the pages, 50 were already right.
+
 **The PDF reader is an input of a script build.** The manifest of each
 reference whose text `scripts/build_printed_text.py` reads off the PDF
 (`em_1905`, `fhwa_soils_foundations`) records the PyMuPDF version it was
