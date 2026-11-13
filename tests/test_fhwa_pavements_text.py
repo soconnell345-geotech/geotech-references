@@ -625,6 +625,27 @@ def test_tables_1_1_to_1_3_typed_from_the_page():
     assert "\n\nA major effect of the moisture/drainage, freeze/thaw" in sec["body"]
 
 
+def test_tables_7_23a_and_7_23b_typed_from_the_page():
+    body = _sections(7)["7.6.8"]["body"]
+    a = _typed_rows(body, "7-23a", "7-99")
+    b = _typed_rows(body, "7-23b", "7-100")
+    assert a["Method"] == ["Unit Cost", "Cost of Treated Volume $/m³"]
+    assert b["Method"] == ["Unit Cost", "Cost of Treated Volume $/yd³"]
+    # each cost on its own method's line: the grouting unit cost is printed
+    # on the permeation line, the treated-volume costs on compaction and jet
+    assert a["Permeation"] == ["$ 65.00/m + $ 0.70/Liter", ""]
+    assert a["Compaction"] == ["", "$ 30 - 200"] and a["Jet"] == ["", "$ 200 - 275"]
+    assert b["Permeation"] == ["$ 20/ft + $ 2.65/Gallon", ""]
+    assert b["Compaction"] == ["", "$ 23 - 153"] and b["Jet"] == ["", "$ 150 - 210"]
+    assert a["Dry w/lime-cement"][1] == "$ 60" and a["Wet w/cement"] == ["", "$ 85 -150"]
+    assert a["Dry w/lime-cement"][0].startswith("$30.00/m [printed on this line")
+    assert a["Geofoam"] == ["$ 35.00 - 65.00/m³", ""]
+    assert a["Stone Columns"] == ["$ 40.00 - 60.00/m", "$ 50 - 75"]
+    assert b["Vibrocompaction"] == ["$ 4.60 - 7.60/ft", "$ 0.75 – 3.00"]
+    assert b["Column Supported Embankments"] == ["$ 81.50/yd² + cost of column", "n/a"]
+    assert "Grouting Permeation Compaction Jet" not in body
+
+
 def test_degree_signs_and_exponents_as_printed():
     # the page raises an "o" for the degree sign and the exponents of the
     # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
