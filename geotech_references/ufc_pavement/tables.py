@@ -120,10 +120,16 @@ def table_4_1_subgrade_category(cbr) -> dict:
 # printed values -- shared lookup helper below.
 # ============================================================================
 
-# ESAL bins: upper bound exclusive except last (inf)
+# ESAL bins as printed "< n" (upper bound exclusive), the last ">= n".
+# Flexible column of Table 5-1 and the only column of Table 21-2:
 _COMPACTION_ESAL_BINS = [
     15_500, 67_500, 295_000, 1_300_000, 5_700_000,
     25_000_000, 112_000_000, 500_000_000, 2_200_000_000, float("inf"),
+]
+# Rigid column of Table 5-1 (pdf_page 33, printed 14), as printed:
+_COMPACTION_ESAL_BINS_RIGID = [
+    1_300, 1_500, 34_000, 343_000, 2_100_000,
+    9_200_000, 37_000_000, 105_000_000, 290_000_000, float("inf"),
 ]
 
 # Table 5-1: rows = (cohesive depths @ 100/95/90/85/80%, cohesionless depths @ same)
@@ -140,11 +146,12 @@ _TABLE_5_1_COHESIONLESS = [
     (20, 34, 47, 59, 77),
 ]
 
-# Table 21-2 (aggregate surfaces): only 4 density levels printed (100/95/90/85)
+# Table 21-2 (aggregate surfaces; pdf_page 143, printed 124): cohesive soils
+# at 100/95/90/85/80 %, cohesionless soils at 100/95/90/85 % (no 80 column).
 _TABLE_21_2_COHESIVE = [
-    (2, 4, 6, 7), (3, 5, 7, 9), (3, 5, 8, 10), (3, 6, 9, 12),
-    (4, 7, 10, 13), (4, 7, 11, 15), (4, 8, 12, 16), (5, 9, 13, 18),
-    (5, 10, 15, 20), (6, 11, 17, 22),
+    (2, 4, 6, 7, 9), (3, 5, 7, 9, 11), (3, 5, 8, 10, 13), (3, 6, 9, 12, 14),
+    (4, 7, 10, 13, 16), (4, 7, 11, 15, 18), (4, 8, 12, 16, 20),
+    (5, 9, 13, 18, 22), (5, 10, 15, 20, 25), (6, 11, 17, 22, 27),
 ]
 _TABLE_21_2_COHESIONLESS = [
     (4, 7, 10, 13), (5, 8, 12, 16), (5, 10, 14, 18), (6, 11, 16, 21),
@@ -153,21 +160,25 @@ _TABLE_21_2_COHESIONLESS = [
 ]
 
 
-def _compaction_depth_lookup(passes, density_pct, soil_type, table):
+def _compaction_depth_lookup(passes, density_pct, soil_type, table,
+                             bins=_COMPACTION_ESAL_BINS):
     idx = None
-    for i, upper in enumerate(_COMPACTION_ESAL_BINS):
-        if passes <= upper:
+    for i, upper in enumerate(bins):
+        if passes < upper:
             idx = i
             break
     if idx is None:
-        idx = len(_COMPACTION_ESAL_BINS) - 1
+        idx = len(bins) - 1
 
     if table == "5-1":
         density_levels = (100, 95, 90, 85, 80)
         rows = _TABLE_5_1_COHESIVE if soil_type == "cohesive" else _TABLE_5_1_COHESIONLESS
+    elif soil_type == "cohesive":
+        density_levels = (100, 95, 90, 85, 80)
+        rows = _TABLE_21_2_COHESIVE
     else:
         density_levels = (100, 95, 90, 85)
-        rows = _TABLE_21_2_COHESIVE if soil_type == "cohesive" else _TABLE_21_2_COHESIONLESS
+        rows = _TABLE_21_2_COHESIONLESS
 
     if density_pct not in density_levels:
         raise ValueError(
@@ -178,13 +189,19 @@ def _compaction_depth_lookup(passes, density_pct, soil_type, table):
     return rows[idx][col]
 
 
-def table_5_1_compaction_depth(passes, density_pct, soil_type) -> dict:
-    """Depth of compaction for select materials/subgrades, CBR <= 20
-    (Table 5-1, Chapter 5; pdf_page 33, printed 14).
+def table_5_1_compaction_depth(passes, density_pct, soil_type,
+                               pavement_type) -> dict:
+    """Depth of compaction for select materials and subgrades (CBR <= 20),
+    UFC 3-250-01 Table 5-1 (pdf_page 33, printed 14); returns depth_in, the
+    depth in inches from the pavement surface to which the given percent
+    compaction is required, for a flexible or a rigid pavement.
 
-    Returns the depth (measured from the pavement surface) at which the
-    given percent compaction (of ASTM D1557 maximum density) is required to
-    resist densification under the design traffic.
+    The table has one column of traffic for flexible and one for rigid
+    pavements (passes of an 18,000-lb ESAL): flexible < 15,500, < 67,500,
+    < 295,000, < 1.3 million ... >= 2,200 million; rigid < 1,300, < 1,500,
+    < 34,000, < 343,000 ... >= 290 million. Each bound is printed "<", so a
+    value equal to a bound falls in the next row. The table gives no
+    default column, so pavement_type is required.
 
     Parameters
     ----------
@@ -192,47 +209,61 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type) -> dict:
         Equivalent passes of an 18,000-lb (8,200-kg) ESAL over the design
         life. Must be > 0.
     density_pct : int
-        Target percent compaction: 100, 95, 90, 85, or 80.
+        Percent compaction (of ASTM D1557 maximum density): 100, 95, 90, 85,
+        or 80.
     soil_type : str
         'cohesive' (PI > 5, LL > 25) or 'cohesionless' (PI <= 5, LL <= 25).
+    pavement_type : str
+        'flexible' or 'rigid': which printed traffic column to use
+        (required; the table prints both and gives no default).
 
     Returns
     -------
     dict
-        {'passes', 'density_pct', 'soil_type', 'depth_in', 'reference'}.
+        {'passes', 'density_pct', 'soil_type', 'pavement_type', 'depth_in',
+         'reference'}.
 
     Raises
     ------
     ValueError
         If passes <= 0, density_pct is not one of the printed levels, or
-        soil_type is not recognized.
+        soil_type or pavement_type is not recognized.
     """
     if passes <= 0:
         raise ValueError(f"passes must be > 0, got {passes}")
     key = soil_type.lower().strip()
     if key not in ("cohesive", "cohesionless"):
         raise ValueError(f"soil_type must be 'cohesive' or 'cohesionless', got '{soil_type}'")
-    depth = _compaction_depth_lookup(passes, density_pct, key, "5-1")
+    ptype = str(pavement_type).lower().strip()
+    if ptype not in ("flexible", "rigid"):
+        raise ValueError(
+            f"pavement_type must be 'flexible' or 'rigid', got '{pavement_type}'")
+    bins = _COMPACTION_ESAL_BINS_RIGID if ptype == "rigid" else _COMPACTION_ESAL_BINS
+    depth = _compaction_depth_lookup(passes, density_pct, key, "5-1", bins)
     return {
         "passes": passes, "density_pct": density_pct, "soil_type": key,
-        "depth_in": depth,
+        "pavement_type": ptype, "depth_in": depth,
         "reference": "UFC 3-250-01, Table 5-1 (pdf_page 33, printed 14)",
     }
 
 
 def table_21_2_aggregate_compaction_depth(passes, density_pct, soil_type) -> dict:
-    """Depth of compaction for aggregate-surfaced roads (Table 21-2,
-    Chapter 21; pdf_page 143, printed 124). Same structure as Table 5-1;
-    depths are measured from the surface of the aggregate road, not the
-    subgrade surface.
+    """Compaction depth requirements for aggregate surfaces, UFC 3-250-01
+    Table 21-2 (pdf_page 143, printed 124); returns depth_in, the depth in
+    inches from the surface of the aggregate road (not the subgrade) to
+    which the given percent compaction is required.
+
+    Traffic bins are printed "< 15,500" ... ">= 2,200 million" passes; a
+    value equal to a bound falls in the next row.
 
     Parameters
     ----------
     passes : float
         Equivalent passes of an 18,000-lb (8,200-kg) ESAL. Must be > 0.
     density_pct : int
-        Target percent compaction: 100, 95, 90, or 85 (no 80% row printed
-        for aggregate surfaces).
+        Percent compaction: 100, 95, 90, 85 or 80 for cohesive soils; 100,
+        95, 90 or 85 for cohesionless soils (the print has no 80 column for
+        them).
     soil_type : str
         'cohesive' (PI > 5, LL > 25) or 'cohesionless' (PI <= 5, LL <= 25).
 
@@ -467,7 +498,16 @@ def table_7_2_min_thickness(esal, base_cbr) -> dict:
 # ============================================================================
 
 _TABLE_9_1 = {
-    ("asphalt", "all"): {"base": 1.15, "subbase": 2.30},
+    # Asphalt-stabilized, as printed: three rows by material.
+    ("asphalt", "all_bituminous_concrete"): {"base": 1.15, "subbase": 2.30},
+    ("asphalt", "gw"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gp"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gm"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "gc"): {"base": 1.00, "subbase": 2.00},
+    ("asphalt", "sw"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sp"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sm"): {"base": None, "subbase": 1.50},
+    ("asphalt", "sc"): {"base": None, "subbase": 1.50},
     ("cement", "gw"): {"base": 1.15, "subbase": 2.30},
     ("cement", "gp"): {"base": 1.15, "subbase": 2.30},
     ("cement", "sw"): {"base": 1.15, "subbase": 2.30},
@@ -519,12 +559,16 @@ _STABILIZER_ALIASES = {
 
 
 def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dict:
-    """Equivalency factor for stabilized pavement material (Table 9-1,
-    Chapter 9; pdf_page 46, printed 27).
+    """Equivalency factor for stabilized material, UFC 3-250-01 Table 9-1
+    (pdf_page 46, printed 27); returns the factor E, the inches of
+    conventional base or subbase that 1 in of the stabilized material
+    replaces (t_stab = t_conventional / E).
 
-    1 in of stabilized material replaces E inches of conventional base or
-    subbase (t_stab = t_conventional / E). Cement content is limited to
-    <= 4% by weight to prevent reflective cracking.
+    Asphalt-stabilized rows as printed: all-bituminous concrete 1.15 base /
+    2.30 subbase; GW, GP, GM, GC 1.00 / 2.00; SW, SP, SM, SC subbase 1.50
+    only (* not used for base course material). The cement content must be
+    limited to 4 percent by weight or less to prevent excessive reflective
+    cracking (para 9-5.1, same page).
 
     Verified against the guide's printed examples (Appendix G, G-4.1/G-4.2,
     pdf_page 279-280): cement-stabilized base E = 1.15, subbase E = 2.30.
@@ -535,8 +579,9 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
         'asphalt', 'cement', 'lime', 'lime_cement_flyash',
         'unbound_crushed_stone', or 'unbound_aggregate'.
     uscs_class : str
-        USCS classification of the soil to be stabilized (e.g. 'CL', 'SM').
-        Ignored for 'asphalt', 'unbound_crushed_stone', 'unbound_aggregate'.
+        USCS classification of the soil to be stabilized (e.g. 'CL', 'SM'),
+        or 'all-bituminous concrete' for that asphalt row. Ignored for
+        'unbound_crushed_stone' and 'unbound_aggregate'.
     layer_type : str
         'base' or 'subbase'.
 
@@ -563,9 +608,11 @@ def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dic
     if layer_key not in ("base", "subbase"):
         raise ValueError(f"layer_type must be 'base' or 'subbase', got '{layer_type}'")
 
-    all_stabs = {"asphalt", "unbound_crushed_stone", "unbound_aggregate"}
+    all_stabs = {"unbound_crushed_stone", "unbound_aggregate"}
     if stab_resolved in all_stabs:
         uscs_key = "all"
+    elif stab_resolved == "asphalt" and "bituminous" in uscs_class.lower():
+        uscs_key = "all_bituminous_concrete"
     else:
         simple = uscs_class.lower().strip().split("-")[0].strip()
         uscs_key = _USCS_TO_GROUP_9_1.get(simple, simple)
@@ -679,84 +726,224 @@ def table_10_1_k_subgrade(uscs_group, moisture_pct) -> dict:
 
 # ============================================================================
 # Figure 10-1: Effect of Base Course Thickness on Modulus of Soil Reaction
-# for Non-frost Conditions (Chapter 10, pdf_page 51, printed 32)
+# for Non-frost Conditions (Chapter 10; PDF page 52, printed 32)
 #
-# CHART READ digitization: family of 7 curves (k on subgrade = 25, 50, 75,
-# 100, 150, 200, 300 psi/in), each giving the "effective" k on top of the
-# base course vs. base course thickness (0-60 in), all approaching ~500
-# psi/in near t=60 in. Anchor points read visually off the rendered chart
-# (no printed worked-example anchor was found for this specific figure);
-# treat as an engineering estimate, tolerance approximately +/-15%. Prefer a
-# field plate-bearing test on top of the base, or ``read_reference_figure``
-# on the source figure, for final design.
+# Traced from the chart (pave-22, 2026-11-10). The earlier table, read by
+# eye at 10 in. steps, was up to 29 % low at mid thicknesses and up to 39 %
+# high for the 25 to 75 pci curves under bases thinner than about 10 in.
+# (their S-shaped start). The chart is one embedded image (1431 x 1453 px,
+# about 220 dpi on the page), read at that native resolution (rendering the
+# page finer only resamples it). Calibration on the chart's own gridlines:
+# the scan is turned about 0.25 degrees, so each gridline was fitted as a
+# straight line (scatter 0.3 to 0.5 px); one uniform scale fits the seven
+# thickness lines (0 to 60 in.) within 0.07 in. and one log scale fits the
+# nine k lines (20 to 500 pci) within 0.7 % of k; readings are taken
+# piecewise between neighbouring gridlines. 1 px is 0.26 % of k up the
+# chart and 0.055 in. across it. Each of the seven curves was traced column
+# by column (about 1,000 readings per curve); where a curve shares a dark
+# run with a gridline, a label or another curve, its centre is read from
+# its free edge (that rule, tried where the centre is known, errs up to
+# 0.54 % of k at the 95th percentile). A local quadratic (+-1 in.) through
+# the readings gives the stored values; it lies within 1.0 % of every
+# reading (0.35 % of the clean ones). Stored every 0.5 in. to 6 in., every
+# 1 in. to 20 in. and every 2 in. to 60 in., where linear interpolation on
+# log k stays within 0.28 % of the smooth trace. Each curve starts on its
+# own gridline at t = 0 (k on base = k on subgrade). Check: the 200 curve
+# passes through the gridline crossing (10 in., 300 pci); the table gives
+# 299.7. Stated tolerance: 1 % of k on the curves. Exception: the 200 curve
+# beyond 55 in. and the 300 curve beyond 57 in. run together with the 150
+# curve and the frame (500 pci) and cannot be seen apart; there they are
+# extrapolated from their last 3 in. and held between the 150 curve and 500,
+# so within 2 %.
 # ============================================================================
 
-_FIG_10_1_THICKNESS = [0, 10, 20, 30, 40, 50, 60]
+_FIG_10_1_THICKNESS = [
+    0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 7, 8, 9, 10, 11,
+    12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 32, 34, 36,
+    38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+]
 _FIG_10_1_CURVES = {
-    25: [25, 65, 105, 150, 195, 260, 330],
-    50: [50, 100, 150, 195, 240, 300, 370],
-    75: [75, 130, 180, 225, 270, 330, 400],
-    100: [100, 160, 210, 255, 300, 360, 420],
-    150: [150, 210, 260, 305, 350, 400, 460],
-    200: [200, 255, 300, 345, 390, 440, 480],
-    300: [300, 350, 390, 425, 455, 480, 500],
+    25: [
+        25.0, 25.0, 25.2, 25.6, 26.1, 26.7, 27.5, 28.4, 29.5, 30.8,
+        32.4, 34.2, 36.3, 40.8, 45.2, 50.0, 55.3, 61.0, 66.8, 72.8,
+        79.3, 85.6, 92.0, 98.5, 105.3, 112.3, 119.5, 134.3, 148.7,
+        162.5, 175.9, 189.2, 201.4, 213.4, 225.3, 237.3, 248.0, 259.1,
+        269.9, 280.8, 290.9, 302.1, 312.2, 322.9, 333.4, 344.0, 353.1,
+    ],
+    50: [
+        50.0, 50.0, 50.3, 50.8, 51.6, 52.7, 54.2, 55.9, 58.0, 60.5,
+        63.3, 66.8, 70.8, 78.9, 87.0, 95.2, 103.7, 112.0, 120.2, 128.3,
+        137.1, 145.8, 153.9, 162.2, 170.8, 179.0, 187.2, 203.8, 220.2,
+        236.2, 249.4, 262.7, 274.8, 286.7, 297.8, 308.4, 318.5, 328.0,
+        337.2, 345.9, 353.7, 362.1, 370.1, 377.9, 385.6, 393.2, 400.9,
+    ],
+    75: [
+        75.0, 75.3, 76.6, 78.2, 80.0, 82.3, 84.7, 87.3, 90.5, 94.3,
+        98.5, 103.1, 107.9, 117.9, 127.9, 138.2, 148.5, 159.0, 169.2,
+        179.5, 189.8, 199.5, 208.0, 216.6, 225.3, 233.3, 240.9, 256.7,
+        272.2, 287.1, 300.2, 313.4, 325.1, 336.6, 346.8, 356.4, 365.5,
+        374.3, 382.1, 390.0, 397.4, 404.6, 410.9, 416.8, 423.1, 428.7,
+        432.2,
+    ],
+    100: [
+        100.0, 101.8, 104.4, 107.4, 111.0, 115.1, 119.6, 124.3, 129.4,
+        134.5, 139.6, 144.9, 150.4, 161.8, 172.8, 183.7, 194.4, 204.3,
+        213.6, 223.0, 232.5, 241.6, 250.4, 259.9, 269.2, 277.9, 286.4,
+        303.6, 318.9, 333.4, 346.3, 358.9, 369.8, 380.2, 390.1, 399.1,
+        406.9, 414.0, 421.2, 428.3, 434.3, 440.3, 446.6, 452.3, 457.3,
+        462.5, 467.0,
+    ],
+    150: [
+        150.0, 155.8, 161.3, 166.6, 171.9, 177.1, 182.2, 187.0, 191.9,
+        196.9, 201.3, 205.6, 210.3, 219.7, 228.9, 237.9, 246.9, 256.0,
+        265.0, 273.7, 283.1, 291.5, 299.9, 308.5, 317.8, 326.4, 334.8,
+        350.5, 365.2, 378.9, 391.5, 404.4, 414.2, 424.0, 432.5, 440.0,
+        446.4, 452.9, 458.5, 463.9, 468.3, 473.3, 477.1, 480.8, 484.1,
+        486.8, 489.7,
+    ],
+    200: [
+        200.0, 204.3, 210.0, 215.6, 221.4, 227.0, 232.5, 237.8, 242.8,
+        247.8, 252.7, 257.7, 262.7, 272.5, 281.8, 290.5, 299.7, 308.6,
+        317.0, 325.2, 333.1, 340.6, 347.3, 354.2, 361.3, 368.4, 375.1,
+        388.1, 400.4, 410.7, 420.0, 429.0, 437.1, 444.4, 451.4, 456.5,
+        461.3, 466.4, 470.6, 474.7, 478.7, 481.8, 484.8, 487.3, 490.0,
+        491.9, 493.4,
+    ],
+    300: [
+        300.0, 304.2, 307.3, 310.4, 313.6, 316.7, 319.7, 322.6, 325.6,
+        328.4, 331.2, 334.0, 336.8, 342.2, 347.3, 352.4, 357.7, 363.3,
+        368.8, 373.6, 379.2, 384.2, 389.4, 394.7, 400.3, 405.4, 410.2,
+        419.1, 427.5, 434.9, 441.2, 447.6, 452.9, 457.9, 462.3, 466.0,
+        469.6, 473.3, 476.9, 479.9, 482.5, 485.4, 488.7, 490.7, 493.4,
+        496.3, 499.8,
+    ],
 }
 _FIG_10_1_SUBGRADE_K = sorted(_FIG_10_1_CURVES)
+_FIG_10_1_NOTE = (
+    "NOTE: k measured on subgrade or base course with 30-in.-diam bearing "
+    "plate. Base course is constructed of high-quality material. This "
+    "relationship has been developed from results of plate bearing tests on "
+    "the surface of base courses constructed on a range of subgrade "
+    "strengths.")
+
+
+def _fig_10_1_log_k_on_curve(k_curve, t):
+    """log10 k on base along one drawn curve at thickness t (0-60 in.),
+    linear in t between the stored points."""
+    import bisect
+    import math
+    ts, ks = _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[k_curve]
+    i = min(max(bisect.bisect_right(ts, t) - 1, 0), len(ts) - 2)
+    t0, t1 = ts[i], ts[i + 1]
+    l0, l1 = math.log10(ks[i]), math.log10(ks[i + 1])
+    return l0 + (t - t0) / (t1 - t0) * (l1 - l0)
 
 
 def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
-    """Effective modulus of soil reaction on top of a base course
-    (Figure 10-1, Chapter 10; pdf_page 51, printed 32). CHART READ,
-    approximate (see module note, tolerance ~+/-15%).
+    """Effective modulus of soil reaction k on top of a base course, psi/in,
+    for non-frost conditions, from UFC 3-250-01 Figure 10-1 (printed p. 32,
+    PDF 52): read off the chart's curves for k measured on the subgrade
+    (25, 50, 75, 100, 150, 200 and 300 psi/in) at the base course
+    thickness (0 to 60 in.). Paragraph 10-4 (printed p. 30-31): "Where a
+    base course is used under the pavement, the k value on top of the
+    base (also known as the effective k value) is used to determine the
+    pavement thickness. The plate-bearing test may be run on top of the
+    base, or Figure 10-1 may be used ... It is good practice to confirm
+    adequacy of the k on top of the base from Figure 10-1 by running a
+    field plate-load test."
+
+    The chart's note: "k measured on subgrade or base course with
+    30-in.-diam bearing plate. Base course is constructed of high-quality
+    material. This relationship has been developed from results of plate
+    bearing tests on the surface of base courses constructed on a range of
+    subgrade strengths."
+
+    Values on a drawn curve are traced from the chart (within 1 % of k;
+    2 % for the 200 curve beyond 55 in. and the 300 curve beyond 57 in.,
+    where those curves run together with the 150 curve and the frame; see
+    the module note). Along a curve, log k is interpolated linearly in
+    thickness between the stored points (every 0.5 to 2 in.). Between two
+    curves, log k on base is interpolated linearly in log k on subgrade at
+    the same thickness. That rule is the library's: the chart does not say
+    how to read between its curves (predicting a drawn curve from the
+    curves either side of it this way errs by up to about 6 %, so a value
+    between curves is less certain than one on a curve).
 
     Parameters
     ----------
     k_subgrade_psi_in : float
-        Modulus of subgrade reaction measured (or estimated, Table 10-1) on
-        the subgrade, psi/in. Interpolated within 25-300 psi/in; clamped at
-        the endpoints outside that range.
+        Modulus of soil reaction measured (or estimated, Table 10-1) on
+        the subgrade, psi/in, 25 to 300 (the drawn curves). Below 25
+        refused; above 300 the 300 curve is used, with a note (it then
+        understates k on the base).
     base_thickness_in : float
-        Thickness of base course above the subgrade, inches. Clamped to
-        0-60 in (the plotted range).
+        Thickness of base course above the subgrade, inches, 0 to 60 (the
+        chart's axis). Above 60 in the 60 in value is used, with a note.
 
     Returns
     -------
     dict
         {'k_subgrade_psi_in', 'base_thickness_in', 'k_on_base_psi_in',
-         'chart_read', 'tolerance', 'reference'}.
+         'chart_read', 'tolerance', 'interpolation', 'chart_note',
+         'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If k_subgrade_psi_in or base_thickness_in is negative.
+        If k_subgrade_psi_in is below 25 psi/in (the lowest drawn curve)
+        or base_thickness_in is negative.
+
+    Example: k on subgrade 100 psi/in under 10 in. of base gives 194.4
+    psi/in; 200 under 10 in. gives 299.7 (the chart's curve passes through
+    300 there).
     """
-    if k_subgrade_psi_in < 0:
-        raise ValueError(f"k_subgrade_psi_in must be >= 0, got {k_subgrade_psi_in}")
+    import math
+    if k_subgrade_psi_in < _FIG_10_1_SUBGRADE_K[0]:
+        raise ValueError(
+            f"k_subgrade_psi_in {k_subgrade_psi_in} is below Figure 10-1's "
+            "lowest curve (k on subgrade = 25 pci); the chart covers 25-300.")
     if base_thickness_in < 0:
         raise ValueError(f"base_thickness_in must be >= 0, got {base_thickness_in}")
 
+    notes = []
+    if base_thickness_in > 60:
+        notes.append(f"Base thickness {base_thickness_in:g} in is past Figure "
+                     "10-1's axis (0-60 in); the 60 in value is used.")
+    if k_subgrade_psi_in > _FIG_10_1_SUBGRADE_K[-1]:
+        notes.append(f"k on subgrade {k_subgrade_psi_in:g} pci is above Figure "
+                     "10-1's top curve (300 pci); the 300 curve is used, which "
+                     "understates k on the base.")
     t = min(max(base_thickness_in, 0), 60)
-    ks = min(max(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[0]), _FIG_10_1_SUBGRADE_K[-1])
+    ks = min(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[-1])
 
-    # Interpolate along thickness for each bracketing subgrade-k curve, then
-    # interpolate between the two curves.
     lower_k = max(k for k in _FIG_10_1_SUBGRADE_K if k <= ks)
     upper_k = min(k for k in _FIG_10_1_SUBGRADE_K if k >= ks)
-    val_lower = _linterp(t, _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[lower_k])
+    log_lower = _fig_10_1_log_k_on_curve(lower_k, t)
     if upper_k == lower_k:
-        k_on_base = val_lower
+        log_k = log_lower
+        how = f"on the {lower_k} pci curve"
     else:
-        val_upper = _linterp(t, _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[upper_k])
-        frac = (ks - lower_k) / (upper_k - lower_k)
-        k_on_base = val_lower + frac * (val_upper - val_lower)
+        log_upper = _fig_10_1_log_k_on_curve(upper_k, t)
+        frac = (math.log10(ks) - math.log10(lower_k)) / (
+            math.log10(upper_k) - math.log10(lower_k))
+        log_k = log_lower + frac * (log_upper - log_lower)
+        how = (f"between the {lower_k} and {upper_k} pci curves: log k on "
+               "base interpolated linearly in log k on subgrade (the "
+               "library's rule; the chart gives none)")
 
     return {
         "k_subgrade_psi_in": k_subgrade_psi_in,
         "base_thickness_in": base_thickness_in,
-        "k_on_base_psi_in": round(k_on_base, 1),
+        "k_on_base_psi_in": round(10 ** log_k, 1),
         "chart_read": True,
-        "tolerance": "approximate, visual read-off of the rendered chart, ~+/-15%",
-        "reference": "UFC 3-250-01, Figure 10-1 (pdf_page 51, printed 32)",
+        "tolerance": (
+            "traced from the chart: within 1 % of k on a drawn curve (2 % for "
+            "the 200 curve beyond 55 in. and the 300 curve beyond 57 in.); "
+            "less certain between curves"),
+        "interpolation": how,
+        "chart_note": _FIG_10_1_NOTE,
+        "reference": "UFC 3-250-01, Figure 10-1, printed p. 32 (PDF 52)",
+        **({"note": " ".join(notes)} if notes else {}),
     }
 
 
@@ -841,91 +1028,203 @@ def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
 # Figure 15-1: Factor for Projecting Cracking in a Flexible Pavement
 # (Chapter 15, pdf_page 69, printed 50)
 #
-# CHART READ digitization: F (0.4-1.0, y-axis) vs. log10(passes of an 18-kip
-# ESAL) (100-10,000,000), a family of curves parameterized by the existing
-# rigid pavement's k value (psi/in: 25, 50, 100, 150, 200, 250, 300, 350,
-# 400, 450, 500). Anchored at k=100, passes=2e7 -> F=0.93 (Appendix G, G-7,
-# pdf_page 283, printed 264 -- the ONLY input the worked example gives
-# explicitly); intermediate points are visual read-offs of the rendered
-# chart. Treat as approximate (~+/-0.05 on F); prefer
-# ``read_reference_figure`` on the source figure for final design.
+# CHART READ along each printed curve (pave-01, 2026-11-10). The chart is a
+# 594 x 648 px image embedded in the PDF (1-based PDF page 70); each of the
+# eleven k curves (25 to 500 psi/in) was traced column by column from that
+# image, calibrated on its own gridlines (F 0.4-1.0 every 0.1; passes 100 to
+# 10,000,000 on the printed log grid), and F read every 0.1 in
+# log10(passes). Measured: trace scatter at most 0.001 on F (0.9 px; 1 px =
+# 0.0011 F); where a curve passes under its label box (13 of the 0.2-decade
+# points, e.g. k = 200 at 6,300 passes) it is bridged by a quadratic through
+# the traced points on both sides, which erred by at most 0.005 on F when
+# 32 px gaps were cut out of traced stretches and bridged the same way;
+# linear interpolation between the tabulated points stays within 0.0034 of
+# the trace. Stated tolerance: 0.005 on F. Checks: k = 100 at 10,000,000
+# passes reads 0.930, and Appendix G G-7 (pdf_page 283, printed 264) reads
+# 0.93 for k = 100 at 20 million passes.
 # ============================================================================
 
-_FIG_15_1_LOG_PASSES = [2, 3, 4, 5, 6, 7]  # log10(passes): 100 .. 1e7
+_FIG_15_1_LOG_PASSES = [round(2.0 + 0.1 * i, 1) for i in range(51)]  # 100 .. 1e7
+# Where each curve begins (log10 passes, F): at the chart's left edge (100
+# passes) for k = 25, 50 and 100, else at its printed lower end.
+_FIG_15_1_START = {
+    25: (2.0, 0.812),
+    50: (2.0, 0.652),
+    100: (2.0, 0.408),
+    150: (2.161, 0.401),
+    200: (2.467, 0.443),
+    250: (2.467, 0.401),
+    300: (2.941, 0.465),
+    350: (2.963, 0.405),
+    400: (3.156, 0.401),
+    450: (3.446, 0.409),
+    500: (3.934, 0.46),
+}
 _FIG_15_1_CURVES = {
-    25: [0.82, 0.90, 0.955, 0.97, 0.975, 0.98],
-    50: [0.66, 0.83, 0.90, 0.94, 0.955, 0.96],
-    100: [0.46, 0.72, 0.85, 0.90, 0.92, 0.93],
-    150: [None, 0.55, 0.77, 0.85, 0.885, 0.90],
-    200: [None, 0.40, 0.68, 0.80, 0.85, 0.875],
-    250: [None, None, 0.58, 0.75, 0.815, 0.85],
-    300: [None, None, 0.47, 0.69, 0.78, 0.82],
-    350: [None, None, None, 0.62, 0.74, 0.79],
-    400: [None, None, None, 0.53, 0.69, 0.76],
-    450: [None, None, None, 0.42, 0.63, 0.72],
-    500: [None, None, None, None, 0.57, 0.68],
+    25: [
+        0.812, 0.824, 0.836, 0.848, 0.859, 0.870, 0.880, 0.889, 0.898,
+        0.908, 0.915, 0.923, 0.930, 0.936, 0.941, 0.945, 0.949, 0.953,
+        0.957, 0.960, 0.963, 0.966, 0.967, 0.969, 0.970, 0.971, 0.972,
+        0.973, 0.973, 0.976, 0.976, 0.977, 0.977, 0.978, 0.978, 0.978,
+        0.978, 0.978, 0.979, 0.979, 0.979, 0.980, 0.980, 0.980, 0.980,
+        0.980, 0.980, 0.980, 0.980, 0.980, 0.980
+    ],
+    50: [
+        0.652, 0.676, 0.696, 0.717, 0.737, 0.756, 0.775, 0.791, 0.809,
+        0.827, 0.843, 0.859, 0.873, 0.882, 0.891, 0.899, 0.904, 0.911,
+        0.918, 0.924, 0.929, 0.932, 0.936, 0.941, 0.943, 0.945, 0.947,
+        0.949, 0.951, 0.952, 0.954, 0.955, 0.956, 0.957, 0.958, 0.958,
+        0.959, 0.959, 0.959, 0.960, 0.960, 0.960, 0.960, 0.961, 0.961,
+        0.961, 0.961, 0.961, 0.961, 0.961, 0.961
+    ],
+    100: [
+        0.408, 0.451, 0.485, 0.518, 0.550, 0.583, 0.612, 0.639, 0.668,
+        0.699, 0.726, 0.748, 0.770, 0.788, 0.804, 0.818, 0.830, 0.842,
+        0.854, 0.864, 0.874, 0.880, 0.886, 0.893, 0.897, 0.902, 0.905,
+        0.908, 0.910, 0.914, 0.916, 0.918, 0.919, 0.921, 0.922, 0.923,
+        0.924, 0.925, 0.926, 0.927, 0.927, 0.928, 0.928, 0.929, 0.929,
+        0.929, 0.929, 0.929, 0.929, 0.929, 0.930
+    ],
+    150: [
+        None, None, 0.407, 0.430, 0.452, 0.479, 0.513, 0.545, 0.579,
+        0.616, 0.647, 0.675, 0.702, 0.725, 0.746, 0.764, 0.779, 0.794,
+        0.809, 0.821, 0.833, 0.841, 0.849, 0.858, 0.863, 0.868, 0.873,
+        0.877, 0.881, 0.885, 0.888, 0.890, 0.892, 0.895, 0.896, 0.897,
+        0.898, 0.899, 0.899, 0.902, 0.902, 0.904, 0.904, 0.905, 0.905,
+        0.905, 0.905, 0.905, 0.905, 0.905, 0.906
+    ],
+    200: [
+        None, None, None, None, None, 0.452, 0.483, 0.514, 0.545, 0.580,
+        0.608, 0.637, 0.664, 0.690, 0.712, 0.731, 0.747, 0.763, 0.779,
+        0.794, 0.807, 0.817, 0.825, 0.835, 0.841, 0.847, 0.853, 0.858,
+        0.863, 0.866, 0.870, 0.872, 0.873, 0.877, 0.879, 0.880, 0.881,
+        0.883, 0.883, 0.885, 0.885, 0.886, 0.886, 0.888, 0.889, 0.889,
+        0.889, 0.889, 0.889, 0.889, 0.890
+    ],
+    250: [
+        None, None, None, None, None, 0.408, 0.435, 0.461, 0.488, 0.518,
+        0.545, 0.577, 0.608, 0.636, 0.661, 0.684, 0.704, 0.722, 0.741,
+        0.758, 0.775, 0.787, 0.798, 0.809, 0.818, 0.824, 0.831, 0.838,
+        0.843, 0.849, 0.853, 0.858, 0.860, 0.864, 0.865, 0.867, 0.869,
+        0.870, 0.871, 0.872, 0.874, 0.876, 0.876, 0.877, 0.878, 0.878,
+        0.878, 0.879, 0.879, 0.879, 0.879
+    ],
+    300: [
+        None, None, None, None, None, None, None, None, None, None,
+        0.482, 0.513, 0.546, 0.576, 0.604, 0.628, 0.650, 0.672, 0.694,
+        0.715, 0.734, 0.749, 0.761, 0.774, 0.785, 0.794, 0.801, 0.809,
+        0.816, 0.822, 0.828, 0.831, 0.835, 0.840, 0.842, 0.844, 0.846,
+        0.848, 0.849, 0.852, 0.853, 0.855, 0.855, 0.856, 0.857, 0.857,
+        0.857, 0.858, 0.858, 0.859, 0.859
+    ],
+    350: [
+        None, None, None, None, None, None, None, None, None, None,
+        0.418, 0.447, 0.480, 0.511, 0.540, 0.567, 0.590, 0.614, 0.638,
+        0.662, 0.683, 0.701, 0.715, 0.730, 0.744, 0.754, 0.762, 0.771,
+        0.779, 0.787, 0.793, 0.798, 0.802, 0.806, 0.809, 0.812, 0.814,
+        0.816, 0.818, 0.820, 0.822, 0.823, 0.824, 0.826, 0.827, 0.827,
+        0.827, 0.828, 0.828, 0.829, 0.829
+    ],
+    400: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, 0.412, 0.441, 0.471, 0.497, 0.521, 0.548, 0.574, 0.599,
+        0.623, 0.644, 0.662, 0.677, 0.691, 0.704, 0.713, 0.725, 0.733,
+        0.742, 0.749, 0.754, 0.758, 0.764, 0.767, 0.769, 0.773, 0.775,
+        0.778, 0.780, 0.782, 0.783, 0.784, 0.784, 0.785, 0.786, 0.786,
+        0.788, 0.788, 0.789, 0.789
+    ],
+    450: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, 0.421, 0.445, 0.472, 0.501, 0.529, 0.555,
+        0.575, 0.594, 0.613, 0.629, 0.643, 0.654, 0.666, 0.676, 0.686,
+        0.694, 0.701, 0.706, 0.712, 0.716, 0.718, 0.722, 0.724, 0.727,
+        0.729, 0.731, 0.732, 0.734, 0.735, 0.735, 0.736, 0.736, 0.738,
+        0.738, 0.739, 0.739
+    ],
+    500: [
+        None, None, None, None, None, None, None, None, None, None, None,
+        None, None, None, None, None, None, None, None, None, 0.477,
+        0.499, 0.520, 0.541, 0.559, 0.574, 0.587, 0.600, 0.610, 0.620,
+        0.629, 0.636, 0.643, 0.649, 0.654, 0.658, 0.661, 0.663, 0.666,
+        0.668, 0.671, 0.672, 0.674, 0.675, 0.675, 0.676, 0.677, 0.677,
+        0.677, 0.678, 0.678
+    ],
 }
 
 
 def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
-    """Factor F for projecting cracking in a flexible overlay of a rigid
-    base pavement (Figure 15-1, Chapter 15; pdf_page 69, printed 50).
-    CHART READ, approximate (see module note).
+    """Factor F for projecting cracking in a flexible pavement, UFC 3-250-01
+    Figure 15-1 (pdf_page 69, printed 50); returns F (dimensionless, 0.4-1.0).
 
-    Verified anchor: k=100 psi/in, passes=20,000,000 -> F=0.93 (Appendix G,
-    G-7, matches this digitization's k=100 curve at log10(passes)=7.3,
-    interpolated between the 0.92 @ 1e6 and 0.93 @ 1e7 tabulated points).
+    F projects the cracking expected in the existing rigid (base) pavement
+    during the design life of a flexible overlay; it enters the overlay
+    equation 15-4 (printed 49). Read off the printed curves (see the section
+    note above; tolerance 0.005 on F), linear in log10(passes) along a curve
+    and linear in k between curves.
 
     Parameters
     ----------
     passes : float
-        Design traffic, passes of an 18-kip (8,164-kg) ESAL. Must be >= 100.
+        Design traffic, passes of an 8,164-kg (18-kip) ESAL. Must be at least
+        each curve's printed start: 100 for k = 25-100 psi/in, rising to
+        about 8,600 for k = 500. Above 10,000,000 (the chart's right edge)
+        F is held at its 10,000,000 value, with a note.
     k_existing_psi_in : float
-        Modulus of subgrade reaction k of the existing rigid pavement's
-        foundation, psi/in. Interpolated within the tabulated 25-500 psi/in
-        range; a curve is undefined (raises) below its own printed starting
-        passes level.
+        k-value of the existing rigid pavement, psi/in. Must be within the
+        printed curves, 25-500 psi/in.
 
     Returns
     -------
     dict
         {'passes', 'k_existing_psi_in', 'f', 'chart_read', 'tolerance',
-         'reference'}.
+         'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If passes < 100, or k_existing_psi_in is outside 25-500 psi/in.
+        If k_existing_psi_in is outside 25-500 psi/in, or passes is below
+        where the printed curve (or either curve bracketing k) begins.
     """
-    if passes < 100:
-        raise ValueError(f"passes must be >= 100, got {passes}")
     if not (25 <= k_existing_psi_in <= 500):
         raise ValueError(
-            f"k_existing_psi_in must be in [25, 500], got {k_existing_psi_in}"
+            f"k_existing_psi_in must be in [25, 500] psi/in (Figure 15-1's "
+            f"curves), got {k_existing_psi_in}"
         )
-    log_passes = min(max(math.log10(passes), 2), 7)
+    if passes is None or passes <= 0:
+        raise ValueError(f"passes must be > 0, got {passes}")
+    log_p = math.log10(passes)
+    note = None
+    if log_p > 7.0:
+        note = (f"{passes:,.0f} passes is beyond Figure 15-1's right edge "
+                "(10,000,000); F is held at its 10,000,000-pass value, where "
+                "the curves are flat (Appendix G G-7 reads 0.93 for k = 100 "
+                "at 20 million passes).")
+        log_p = 7.0
 
     ks = sorted(_FIG_15_1_CURVES)
     lower_k = max(k for k in ks if k <= k_existing_psi_in)
     upper_k = min(k for k in ks if k >= k_existing_psi_in)
 
-    def _interp_curve(k):
-        xs, ys = [], []
+    def _on_curve(k):
+        start_lp, start_f = _FIG_15_1_START[k]
+        if log_p < start_lp - 1e-9:
+            return None
+        xs, ys = [start_lp], [start_f]
         for x, y in zip(_FIG_15_1_LOG_PASSES, _FIG_15_1_CURVES[k]):
-            if y is not None:
+            if y is not None and x > start_lp + 1e-9:
                 xs.append(x)
                 ys.append(y)
-        if not xs or log_passes < xs[0]:
-            return None
-        return _linterp(log_passes, xs, ys)
+        return _linterp(log_p, xs, ys)
 
-    f_lower = _interp_curve(lower_k)
-    f_upper = _interp_curve(upper_k) if upper_k != lower_k else f_lower
+    f_lower = _on_curve(lower_k)
+    f_upper = _on_curve(upper_k) if upper_k != lower_k else f_lower
     if f_lower is None or f_upper is None:
+        k_short = lower_k if f_lower is None else upper_k
+        start = 10 ** _FIG_15_1_START[k_short][0]
         raise ValueError(
-            f"passes={passes:g} is below the plotted range for k="
-            f"{k_existing_psi_in} psi/in on Figure 15-1 (curve starts at "
-            "higher passes for stiffer foundations)."
+            f"passes={passes:g} is below where Figure 15-1's k={k_short} "
+            f"curve begins (about {start:,.0f} passes, F "
+            f"{_FIG_15_1_START[k_short][1]:.2f}); the chart gives no F there."
         )
     if upper_k == lower_k:
         f = f_lower
@@ -933,12 +1232,18 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
         frac = (k_existing_psi_in - lower_k) / (upper_k - lower_k)
         f = f_lower + frac * (f_upper - f_lower)
 
-    return {
+    out = {
         "passes": passes, "k_existing_psi_in": k_existing_psi_in,
         "f": round(f, 3), "chart_read": True,
-        "tolerance": "approximate, ~+/-0.05 on F; verified anchor k=100,passes=2e7->F=0.93",
+        "tolerance": (
+            "read along each printed curve, within 0.005 on F; k = 100 at "
+            "10,000,000 passes reads 0.930 (Appendix G G-7: 0.93 at 20 "
+            "million)"),
         "reference": "UFC 3-250-01, Figure 15-1 (pdf_page 69, printed 50)",
     }
+    if note:
+        out["note"] = note
+    return out
 
 
 # ============================================================================
@@ -959,10 +1264,11 @@ def table_16_1_joint_spacing(thickness_in) -> dict:
     -------
     dict
         {'thickness_in', 'spacing_range_ft', 'max_spacing_ft', 'note',
-         'reference'}. ``max_spacing_ft`` is capped at 20 ft (the absolute
-         DoD maximum for transverse contraction joints regardless of
-         thickness), and further to 20 ft/6 m in regions with design
-         freezing index < 1,800 degree-days (else per Section 16-2.1.3).
+         'reference'}. ``max_spacing_ft`` is capped at 20 ft (the table's
+         footnote: the maximum spacing of transverse contraction joints for
+         DoD pavements is 20 ft (6.1 m)). Para 16-2.1.3 (same page): in
+         regions where the design freezing index is 1,800 or more degree
+         days the maximum spacing should be 20 ft (6 m).
 
     Raises
     ------

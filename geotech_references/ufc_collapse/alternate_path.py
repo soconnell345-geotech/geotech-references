@@ -289,8 +289,14 @@ def _gravity_load_extreme_event(d, l=0.0, s=0.0):
     different multipliers) throughout the AP method: 1.2D + (0.5L or
     0.2S). Internal helper; L and S are not combined -- pass whichever
     governs (live or snow) as *l* or *s*, not both nonzero, per the
-    printed equations.
+    printed equations (e.g. Eq 3-10, UFC_4-023-03.pdf pdf 60 / printed
+    44). Both nonzero is refused: 1.2D + 0.5L + 0.2S is not a printed
+    combination.
     """
+    if l and s:
+        raise ValueError(
+            "UFC 4-023-03 gives 1.2 D + (0.5 L or 0.2 S): pass the live load L or the "
+            "snow load S, whichever applies, not both")
     return 1.2 * d + 0.5 * l + 0.2 * s
 
 

@@ -226,91 +226,144 @@ def table_2_1_classification(type_letter: str, subtype: int = 1) -> dict:
 
 
 # ============================================================================
-# Table 4-2: Standard Reinforcing Bar Dimensions and Yield Strengths
-# ASTM A615 / A706 rebar.  Areas and diameters are standard ASTM values.
+# Table 4-2: Dimensions, Yield, and Ultimate Strengths for Standard
+# Reinforcing Bars. FHWA-NHI-05-039, p. 4-27 (PDF page 83), read off the
+# rendered page:
+#
+#   Steel Grade   Rebar Size, mm (in)   Area, mm2 (in.2)   Yield Strength, kN (kip)
+#   Grade 420(1)  19 (#6)               284 (0.44)         117 (26)
+#                 22 (#7)               387 (0.60)         160 (36)
+#                 25 (#8)               510 (0.79)         211 (47)
+#   Grade 520(2)  19 (#6)               284 (0.44)         147 (33)
+#                 22 (#7)               387 (0.60)         200 (45)
+#                 25 (#8)               510 (0.79)         264 (59)
+#                 29 (#9)               645 (1.0)          334 (75
+#                 32 (#10)              819 (1.27)         424 (95)
+#                 36 (#11)              1006 (1.56)        520 (117)
+#                 43 (#14)              1452 (2.25)        751 (169)
+#                 57 (#18)              2581 (4.0)         1335 (3000)
+#   Grade 550(3)  63 (2.5 in)           3168 (4.91)        1747 (393)
+#
+# Notes (1)-(3): fy = 420 MPa (60 ksi), fu = 620 MPa (92 ksi); fy = 520 MPa
+# (75 ksi), fu = 690 MPa (102 ksi); fy = 550 MPa (80 ksi), fu = 700 MPa
+# (104 ksi). The #18 row prints "1335 (3000)" kip; 1335 kN is 300 kip.
 # ============================================================================
 
-_TABLE_4_2_BARS = {
-    # bar_size: {diameter_mm, area_mm2}
-    "#6":  {"diameter_mm": 19.1, "area_mm2": 284},
-    "#7":  {"diameter_mm": 22.2, "area_mm2": 387},
-    "#8":  {"diameter_mm": 25.4, "area_mm2": 510},
-    "#9":  {"diameter_mm": 28.7, "area_mm2": 645},
-    "#10": {"diameter_mm": 32.3, "area_mm2": 819},
-    "#11": {"diameter_mm": 35.8, "area_mm2": 1006},
-    "#14": {"diameter_mm": 43.0, "area_mm2": 1452},
-    "#18": {"diameter_mm": 57.3, "area_mm2": 2581},
+# grade: {bar_size: (diameter_mm, area_mm2, yield_kn)}, all as printed
+_TABLE_4_2 = {
+    420: {
+        "#6": (19, 284, 117),
+        "#7": (22, 387, 160),
+        "#8": (25, 510, 211),
+    },
+    520: {
+        "#6": (19, 284, 147),
+        "#7": (22, 387, 200),
+        "#8": (25, 510, 264),
+        "#9": (29, 645, 334),
+        "#10": (32, 819, 424),
+        "#11": (36, 1006, 520),
+        "#14": (43, 1452, 751),
+        "#18": (57, 2581, 1335),
+    },
+    550: {
+        "2.5in": (63, 3168, 1747),
+    },
 }
 
-# Available grades and their yield stress (MPa)
-_TABLE_4_2_GRADES = {
-    420: {"fy_mpa": 420, "available": ["#6", "#7", "#8"]},
-    520: {"fy_mpa": 520, "available": [
-        "#6", "#7", "#8", "#9", "#10", "#11", "#14", "#18"
-    ]},
-    550: {"fy_mpa": 550, "available": ["#14", "#18"]},
-}
+# (fy_mpa, fu_mpa) from the table's notes (1)-(3)
+_TABLE_4_2_GRADES = {420: (420, 620), 520: (520, 690), 550: (550, 700)}
+
+_TABLE_4_2_SIZE_ALIASES = {"2.5": "2.5in", "2.5in": "2.5in", "2.5in.": "2.5in",
+                           "63": "2.5in", "63mm": "2.5in"}
+
+_TABLE_4_2_REFERENCE = ("FHWA-NHI-05-039, Table 4-2 Dimensions, Yield, and "
+                        "Ultimate Strengths for Standard Reinforcing Bars, "
+                        "p. 4-27")
 
 
 def table_4_2_rebar_properties(bar_size: str,
                                grade: int = 520) -> dict:
-    """Reinforcing bar properties for micropile design (Table 4-2).
+    """Reinforcing bar size (mm), area (mm2) and yield strength (kN) as printed in FHWA-NHI-05-039 Table 4-2, p. 4-27.
 
-    Returns cross-sectional area, nominal diameter, and yield strength
-    for standard ASTM reinforcing bars used in micropiles.
+    The table prints Grade 420 for #6 to #8, Grade 520 for #6 to #18 and
+    Grade 550 for one bar, 63 mm (2.5 in). The yield strength is the
+    table's own column, not area times fy. A bar the table does not print
+    in the grade asked for is refused.
 
     Parameters
     ----------
     bar_size : str
-        Bar designation, e.g., '#10', '#14', '#18'.
+        Bar designation as printed: '#6', '#7', '#8', '#9', '#10', '#11',
+        '#14', '#18', or '2.5in' (the 63 mm Grade 550 bar).
     grade : int
         Steel grade in MPa: 420, 520, or 550.  Default 520.
 
     Returns
     -------
     dict
-        Keys: bar_size, grade_mpa, diameter_mm, area_mm2, yield_kn.
+        Keys: bar_size, grade_mpa, diameter_mm, area_mm2, yield_kn (all as
+        printed), fu_mpa (the grade's tensile strength, table notes),
+        reference.
 
     Raises
     ------
     ValueError
-        If bar_size or grade is invalid, or bar not available in that grade.
+        If bar_size or grade is invalid, or the table does not print that
+        bar in that grade.
     """
-    size = bar_size.strip().upper()
-    if not size.startswith("#"):
-        size = "#" + size
-    if size not in _TABLE_4_2_BARS:
+    raw = bar_size.strip().lower().replace(" ", "")
+    if raw in _TABLE_4_2_SIZE_ALIASES:
+        size = _TABLE_4_2_SIZE_ALIASES[raw]
+    else:
+        size = raw.upper()
+        if not size.startswith("#"):
+            size = "#" + size
+    all_sizes = []
+    for rows in _TABLE_4_2.values():
+        for k in rows:
+            if k not in all_sizes:
+                all_sizes.append(k)
+    if size not in all_sizes:
         raise ValueError(
             f"Unknown bar size '{bar_size}'. "
-            f"Valid sizes: {', '.join(sorted(_TABLE_4_2_BARS.keys()))}"
+            f"Valid sizes: {', '.join(all_sizes)}"
         )
-    if grade not in _TABLE_4_2_GRADES:
+    if grade not in _TABLE_4_2:
         raise ValueError(
             f"Unknown grade {grade}. Valid grades: 420, 520, 550"
         )
-    grade_info = _TABLE_4_2_GRADES[grade]
-    if size not in grade_info["available"]:
+    rows = _TABLE_4_2[grade]
+    if size not in rows:
+        printed_in = [str(g) for g, r in _TABLE_4_2.items() if size in r]
         raise ValueError(
-            f"Bar {size} not available in Grade {grade}. "
-            f"Available: {', '.join(grade_info['available'])}"
+            f"Bar {size} not available in Grade {grade}: Table 4-2 "
+            f"(p. 4-27) prints Grade {grade} for {', '.join(rows)} only. "
+            f"{size} is printed in Grade {', '.join(printed_in)}."
         )
 
-    bar = _TABLE_4_2_BARS[size]
-    fy = grade_info["fy_mpa"]
-    yield_kn = round(bar["area_mm2"] * fy / 1000, 1)
-
+    diameter, area, yield_kn = rows[size]
+    fy, fu = _TABLE_4_2_GRADES[grade]
     return {
         "bar_size": size,
         "grade_mpa": fy,
-        "diameter_mm": bar["diameter_mm"],
-        "area_mm2": bar["area_mm2"],
+        "diameter_mm": diameter,
+        "area_mm2": area,
         "yield_kn": yield_kn,
+        "fu_mpa": fu,
+        "reference": _TABLE_4_2_REFERENCE,
     }
 
 
 # ============================================================================
-# Table 4-5: Pipe Dimensions and Yield Strengths
-# API N-80 (Fy = 552 MPa) and ASTM A519/A106 (Fy = 248 MPa)
+# Table 4-5: Dimensions and Yield Strength of Common Micropile Pipe Types and
+# Sizes (p. 4-33, PDF page 89). The table prints OD, wall, area and yield
+# strength in kN (kip) per pipe, and no Fy column. Note (3): API N-80 Fy =
+# 552 MPa (80 ksi). Note (4): ASTM A519 & A106 Fy = "241 MPa (36 ksi)"; 36 ksi
+# is 248.2 MPa, which the printed yield strengths imply (1,540/6,208 = 248.1,
+# 1,890/7,600 = 248.7, 3,190/12,850 = 248.2; 1,270/5,067 = 250.6). fy_mpa
+# 248 for A519/A106 is derived from the note's 36 ksi (lead's ruling,
+# 2026-11-10).
 # ============================================================================
 
 _TABLE_4_5_API_N80 = [
@@ -331,12 +384,22 @@ _TABLE_4_5_ASTM_A519 = [
 ]
 
 
+_TABLE_4_5_A519_FY_NOTE = (
+    "Table 4-5 (p. 4-33) prints no Fy column. Note (4) reads \"Nominal yield "
+    "stress for ASTM A519 & A106 steel is Fy = 241 MPa (36 ksi).\" 36 ksi is "
+    "248 MPa, which the table's printed yield strengths imply (1,540 kN / "
+    "6,208 mm2 = 248.1 MPa; 1,890 / 7,600 = 248.7; 3,190 / 12,850 = 248.2; "
+    "the 139.7 x 12.7 row's printed 1,270 kN / 5,067 mm2 implies 250.6 "
+    "MPa); 248 is returned. The printed yield strengths (kN) are returned "
+    "as printed.")
+
+
 def table_4_5_pipe_properties(od_mm: float,
                               wall_mm: float = 0.0,
                               steel_type: str = "n80") -> dict:
-    """Pipe dimensions and yield strength for micropile casing (Table 4-5).
+    """Dimensions, area (mm2) and yield strength (kN) of a micropile casing pipe, FHWA-NHI-05-039 Table 4-5 (p. 4-33), with the nominal yield stress fy_mpa from the table's notes: 552 MPa for API N-80 (note 3) and 248 MPa for ASTM A519/A106, derived from note (4)'s 36 ksi; note (4) prints "241 MPa (36 ksi)" and the A519/A106 results carry a print_note.
 
-    Looks up the closest matching pipe size from the table.
+    Looks up the printed pipe size (OD within 1 mm, wall within 0.5 mm).
 
     Parameters
     ----------
@@ -345,14 +408,16 @@ def table_4_5_pipe_properties(od_mm: float,
     wall_mm : float
         Wall thickness in mm.  If 0, returns all pipes with that OD.
     steel_type : str
-        'n80' for API N-80 (Fy=552 MPa) or 'a519' for ASTM A519/A106
-        (Fy=248 MPa).  Case-insensitive.
+        'n80' for API N-80 (Fy = 552 MPa, note 3) or 'a519' for ASTM
+        A519/A106 (Fy = 248 MPa, from note 4's 36 ksi; the note prints
+        "241 MPa (36 ksi)").  Case-insensitive.
 
     Returns
     -------
     dict or list of dict
-        Pipe properties: od_mm, wall_mm, area_mm2, yield_kn, fy_mpa.
-        Returns a list if wall_mm=0 and multiple sizes match.
+        Pipe properties: od_mm, wall_mm, area_mm2, yield_kn, fy_mpa,
+        fy_basis, steel_type, and print_note for A519/A106. Returns a list
+        if wall_mm=0 and multiple sizes match.
 
     Raises
     ------
@@ -376,14 +441,21 @@ def table_4_5_pipe_properties(od_mm: float,
         if abs(od - od_mm) < 1.0:
             if wall_mm > 0 and abs(wall - wall_mm) > 0.5:
                 continue
-            matches.append({
+            row = {
                 "od_mm": od,
                 "wall_mm": wall,
                 "area_mm2": area,
                 "yield_kn": yld,
                 "fy_mpa": fy,
                 "steel_type": "API N-80" if fy == 552 else "ASTM A519/A106",
-            })
+            }
+            if fy == 552:
+                row["fy_basis"] = "Table 4-5 note (3): Fy = 552 MPa (80 ksi)"
+            else:
+                row["fy_basis"] = ("Table 4-5 note (4)'s 36 ksi (248.2 MPa); "
+                                   "the note prints 241 MPa (36 ksi)")
+                row["print_note"] = _TABLE_4_5_A519_FY_NOTE
+            matches.append(row)
 
     if not matches:
         valid_ods = sorted({od for od, *_ in table})
@@ -646,38 +718,58 @@ def table_5_7_epsilon_50(consistency: str) -> float:
 
 
 # ============================================================================
-# Table 5-8: Representative Values of epsilon_50 for Stiff Clays
-# (refined by undrained shear strength range)
+# Table 5-8: Values of epsilon_50 for stiff clays (after Reese et al. 2005)
+# FHWA-NHI-05-039, p. 5-56 (PDF page 148), read off the rendered page:
+#
+#   Undrained shear strength (kPa)   (psi)          epsilon_50
+#   50 - 100                         7.3 - 14.5     0.007
+#   100 - 200                        14.5 - 29.0    0.005
+#   300 - 400                        43.5 - 58.1    0.004
+#
+# The table prints three ranges, each with one value, and no row for 200 to
+# 300 kPa.
 # ============================================================================
-
-_TABLE_5_8_SU = [50, 100, 200, 300, 400]
-_TABLE_5_8_EPS = [0.007, 0.005, 0.004, 0.004, 0.004]
 
 
 def table_5_8_epsilon_50_stiff(su_kpa: float) -> float:
-    """Epsilon_50 for stiff clays by undrained shear strength (Table 5-8).
+    """Strain epsilon_50 (dimensionless) for a stiff clay of undrained shear strength su, as printed in FHWA-NHI-05-039 Table 5-8, p. 5-56.
 
-    Provides more refined epsilon_50 values for stiff to hard clays
-    based on undrained shear strength.
+    The table (after Reese et al. 2005) gives one value for each range of
+    undrained shear strength: 50 to 100 kPa 0.007, 100 to 200 kPa 0.005,
+    300 to 400 kPa 0.004. The printed value of the range is returned; the
+    table gives ranges, so nothing is interpolated. It prints no row
+    for 200 to 300 kPa, and a strength there is refused. A strength of
+    exactly 100 kPa, on the edge of two ranges, takes the 100 to 200 value.
 
     Parameters
     ----------
     su_kpa : float
-        Undrained shear strength in kPa.  Range 50 to 400.
+        Undrained shear strength in kPa, 50 to 200 or 300 to 400.
 
     Returns
     -------
     float
-        Interpolated epsilon_50 value.
+        epsilon_50 of the printed range holding su_kpa.
 
     Raises
     ------
     ValueError
-        If su_kpa is outside the valid range.
+        If su_kpa is outside 50 to 400 kPa, or between 200 and 300 kPa,
+        where the table prints no row.
     """
     if su_kpa < 50 or su_kpa > 400:
-        raise ValueError(f"su_kpa must be 50-400, got {su_kpa}")
-    return _linterp(su_kpa, _TABLE_5_8_SU, _TABLE_5_8_EPS)
+        raise ValueError(
+            f"su_kpa must be 50-400 (Table 5-8, p. 5-56), got {su_kpa}")
+    if 200 < su_kpa < 300:
+        raise ValueError(
+            f"su_kpa = {su_kpa}: Table 5-8 (p. 5-56) prints no row between "
+            "200 and 300 kPa (its ranges are 50-100, 100-200 and 300-400 "
+            "kPa: epsilon_50 0.007, 0.005 and 0.004)")
+    if su_kpa < 100:
+        return 0.007
+    if su_kpa <= 200:
+        return 0.005
+    return 0.004
 
 
 # ============================================================================
@@ -726,14 +818,22 @@ def table_5_9_soil_modulus_k_sand(density: str,
 
 
 # ============================================================================
-# Table 5-10: Soil Modulus k for Clays (kPa/m)
-# Static and cyclic loading values.
+# Table 5-10: Soil-modulus parameter (k) for clays (after Reese et al., 2005)
+# FHWA-NHI-05-039, p. 5-56 (PDF page 148). Static and cyclic k in kPa/m.
+# The Cyclic columns print "-" for Soft and Medium clay: no value.
+#
+#   Consistency  su (kPa)    Static (kPa/m)  Cyclic (kPa/m)
+#   Soft         12 - 24     8,140           -
+#   Medium       24 - 48     27,150          -
+#   Stiff        48 - 96     136,000         54,300
+#   Very Stiff   96 - 192    271,000         108,500
+#   Hard         192 - 383   543,000         217,000
 # ============================================================================
 
 _TABLE_5_10 = {
-    # consistency: {loading: k_kpa_per_m}
-    "soft": {"static": 8140, "cyclic": 8140},
-    "medium": {"static": 27150, "cyclic": 27150},
+    # consistency: {loading: k_kpa_per_m}; None = the print's "-"
+    "soft": {"static": 8140, "cyclic": None},
+    "medium": {"static": 27150, "cyclic": None},
     "stiff": {"static": 136000, "cyclic": 54300},
     "very_stiff": {"static": 271000, "cyclic": 108500},
     "hard": {"static": 543000, "cyclic": 217000},
@@ -742,7 +842,12 @@ _TABLE_5_10 = {
 
 def table_5_10_soil_modulus_k_clay(consistency: str,
                                    loading: str = "static") -> float:
-    """Soil modulus k for clays for p-y curves (Table 5-10).
+    """Soil-modulus parameter k for clays, in kPa/m, for p-y curves, as printed in FHWA-NHI-05-039 Table 5-10, p. 5-56.
+
+    Static: soft 8,140, medium 27,150, stiff 136,000, very stiff 271,000,
+    hard 543,000 kPa/m. Cyclic: stiff 54,300, very stiff 108,500, hard
+    217,000 kPa/m. The table prints "-" for the cyclic k of soft and medium
+    clay, so those two are refused.
 
     Parameters
     ----------
@@ -760,7 +865,8 @@ def table_5_10_soil_modulus_k_clay(consistency: str,
     Raises
     ------
     ValueError
-        If consistency or loading is not recognized.
+        If consistency or loading is not recognized, or for the cyclic k
+        of soft or medium clay, which the table does not print.
     """
     c = consistency.strip().lower().replace(" ", "_")
     lo = loading.strip().lower()
@@ -774,25 +880,59 @@ def table_5_10_soil_modulus_k_clay(consistency: str,
         raise ValueError(
             f"Unknown loading '{loading}'. Valid: static, cyclic"
         )
-    return float(_TABLE_5_10[c][lo])
+    k = _TABLE_5_10[c][lo]
+    if k is None:
+        raise ValueError(
+            f"Table 5-10 (p. 5-56) prints no cyclic k for {c} clay (the "
+            "Cyclic columns show '-' for Soft and Medium); its static k is "
+            f"{_TABLE_5_10[c]['static']} kPa/m")
+    return float(k)
 
 
 # ============================================================================
 # Table 5-11: Fixity Guidance for Micropile-to-Footing Connections
 # ============================================================================
 
+# FHWA-NHI-05-039, p. 5-58 (PDF page 150), the three columns as printed.
+_TABLE_5_11_NOTE = (
+    "(1) Guidance provided assumes that footing itself is restrained. For "
+    "example, if only one row of piles in direction of loading then 0% "
+    "fixity should be assumed (Table 5-11 footnote, printed on the 50 % and "
+    "100 % columns)."
+)
+
 _TABLE_5_11 = {
     0:   {"fixity_pct": 0,   "embedment_mm": 300,
-          "description": "Pinned connection (minimal moment transfer)"},
+          "embedment_limit": "300 mm (12 in.) or less",
+          "description": (
+              "0 % Fixity (Pinned Head Condition): Casing embedment of "
+              "300 mm (12 in.) or less, or Reinforcing bar embedment with or "
+              "without bearing plate, or Any detail where top of micropile "
+              "embedment is at or below the level of the bottom "
+              "reinforcement of the footing")},
     50:  {"fixity_pct": 50,  "embedment_mm": 450,
-          "description": "Partially fixed connection"},
+          "embedment_limit": "450 mm (18 in.)",
+          "description": (
+              "50 % Fixity: Casing embedment of 450 mm (18 in.), or Shear "
+              "connection between casing and existing footing with minimum "
+              "casing embedment of 450 mm (18 in.)"),
+          "note": _TABLE_5_11_NOTE},
     100: {"fixity_pct": 100, "embedment_mm": 600,
-          "description": "Fully fixed connection (requires additional detailing)"},
+          "embedment_limit": "600 mm (24 in.) or more",
+          "description": (
+              "100 % Fixity (Fixed Head Condition): Casing embedment of "
+              "600 mm (24 in.) or more"),
+          "note": _TABLE_5_11_NOTE},
 }
 
 
 def table_5_11_fixity(fixity_pct: int) -> dict:
-    """Fixity guidance for micropile-to-footing connections (Table 5-11).
+    """Casing embedment (mm) for 0, 50 or 100 % head fixity of a micropile-footing connection, in the words of FHWA-NHI-05-039 Table 5-11, p. 5-58.
+
+    0 %: casing embedment of 300 mm or less (or the two other details the
+    table lists); 50 %: 450 mm; 100 %: 600 mm or more. ``embedment_mm`` is
+    the printed number and ``embedment_limit`` says whether it is a
+    maximum, a value or a minimum.
 
     Parameters
     ----------
@@ -802,7 +942,8 @@ def table_5_11_fixity(fixity_pct: int) -> dict:
     Returns
     -------
     dict
-        Keys: fixity_pct, embedment_mm, description.
+        Keys: fixity_pct, embedment_mm, embedment_limit, description (the
+        column as printed); note (the table's footnote) for 50 and 100.
 
     Raises
     ------
@@ -838,6 +979,31 @@ _TABLE_5_12 = {
     "gravel_loose": (29000, 76000),
     "gravel_medium_dense": (76000, 96000),
     "gravel_dense": (96000, 192000),
+}
+
+# Table 5-12, p. 5-69 (PDF page 161): in the two sand rows below the kPa
+# column disagrees with the ksf column printed beside it. Elsewhere the kPa
+# is the ksf converted and rounded (kPa/ksf 47.5 to 48.3; 1 ksf = 47.88
+# kPa), and the table prints the same kPa wherever a ksf value recurs: 600
+# ksf as 29,000 (fine sand dense, sand loose, gravel loose), 1,000 as 48,000
+# (clay medium stiff, very stiff), 1,600 as 76,000 (gravel loose, medium
+# dense). The values held for the two sand rows are those printed kPa
+# values of their ksf ends: 29,000 - 48,000 and 48,000 - 76,000.
+_TABLE_5_12_PRINT_NOTES = {
+    "sand_medium_dense": (
+        "Table 5-12 (p. 5-69) prints '29,000 - 96,000 (600 - 1,000)' for "
+        "this row, kPa (ksf): the upper kPa value disagrees with the ksf "
+        "beside it. The value here, 29,000 - 48,000 kPa, is the kPa the "
+        "table prints for 600 and 1,000 ksf in its other rows (fine sand "
+        "dense, sand loose, gravel loose; clay medium stiff and very "
+        "stiff); 600 and 1,000 ksf are 28,728 and 47,880 kPa."),
+    "sand_dense": (
+        "Table 5-12 (p. 5-69) prints '96,000 - 76,000 (1,000 - 1,600)' for "
+        "this row, kPa (ksf): the lower kPa value disagrees with the ksf "
+        "beside it. The value here, 48,000 - 76,000 kPa, is the kPa the "
+        "table prints for 1,000 and 1,600 ksf in its other rows (clay "
+        "medium stiff and very stiff; gravel loose and medium dense); "
+        "1,000 and 1,600 ksf are 47,880 and 76,608 kPa."),
 }
 
 _TABLE_5_12_DESCRIPTIONS = {
@@ -897,12 +1063,15 @@ def table_5_12_elastic_modulus(soil_type: str) -> dict:
             )
 
     lo, hi = _TABLE_5_12[key]
-    return {
+    out = {
         "soil_type": key,
         "description": _TABLE_5_12_DESCRIPTIONS[key],
         "es_min_kpa": lo,
         "es_max_kpa": hi,
     }
+    if key in _TABLE_5_12_PRINT_NOTES:
+        out["note"] = _TABLE_5_12_PRINT_NOTES[key]
+    return out
 
 
 # ============================================================================

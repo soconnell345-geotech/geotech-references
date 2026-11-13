@@ -795,15 +795,70 @@ def stage_reliability(overall_reliability_pct, n_stages) -> dict:
 
 
 # ============================================================================
-# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page 102,
-# printed II-13) -- rutting/aggregate-loss models. Low-priority / secondary
+# Aggregate-surfaced road performance (Section 2.2.2/2.2.3; pdf_page 101,
+# printed II-12) -- rutting/aggregate-loss models. Low-priority / secondary
 # to the main SN/slab-thickness design (Part II Ch 4 low-volume roads).
 # ============================================================================
 
-def aggregate_loss_army_corps(bladings, ladt, radius_ft, grade_pct) -> dict:
-    """Aggregate loss for an aggregate-surfaced road (US Army/road-grading model).
+def aggregate_loss_truck_traffic(loaded_trucks_thousands) -> dict:
+    """Total aggregate loss GL of an aggregate-surfaced road on sections with
+    more than 50 percent truck traffic, AASHTO 1993 Section 2.2.3
+    (pdf_page 101, printed II-12); returns gl_in, total aggregate loss in
+    inches.
+
+        GL = 0.12 + 0.1223(LT)
+
+    The Guide's first equation: "an example of a prediction equation
+    developed with limited data on sections experiencing greater than 50
+    percent truck traffic (15, 16)"; GL = total aggregate loss in inches,
+    LT = number of loaded trucks in thousands. The scan drops decimal
+    points ("0 12 + 0 1223(LT)"); read as typeset. The page adds: "there
+    are serious drawbacks with all the equations shown here", local
+    aggregate-loss information should be used whenever possible.
+
+    Parameters
+    ----------
+    loaded_trucks_thousands : float
+        Number of loaded trucks, thousands, >= 0.
+
+    Returns
+    -------
+    dict
+        {'loaded_trucks_thousands', 'gl_in', 'equation', 'source',
+         'reference'}.
+
+    Raises
+    ------
+    ValueError
+        If loaded_trucks_thousands is negative.
+    """
+    if loaded_trucks_thousands < 0:
+        raise ValueError(
+            f"loaded_trucks_thousands must be >= 0, got {loaded_trucks_thousands}")
+    gl = 0.12 + 0.1223 * loaded_trucks_thousands
+    return {
+        "loaded_trucks_thousands": loaded_trucks_thousands,
+        "gl_in": round(gl, 3),
+        "equation": "GL (in) = 0.12 + 0.1223(LT)",
+        "source": ("sections with more than 50 percent truck traffic, limited "
+                   "data (Guide refs 15, 16)"),
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
+    }
+
+
+def aggregate_loss_brazil(bladings, ladt, radius_ft, grade_pct) -> dict:
+    """Aggregate loss GL of an aggregate-surfaced road from the Brazil study
+    equation, AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12);
+    returns gl_in, inches lost during the period considered.
 
         GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)
+
+    The Guide gives this as "a second equation, which was developed from a
+    recent study in Brazil on typical rural sections" (refs 15, 16). Named
+    aggregate_loss_army_corps until 2026-11-10 (review pave-27; it is not a
+    US Army model). The page's first equation is aggregate_loss_truck_traffic.
+    The scan drops decimal points; read as typeset: "( 0045LADT" is
+    0.0045*LADT.
 
     Parameters
     ----------
@@ -838,15 +893,25 @@ def aggregate_loss_army_corps(bladings, ladt, radius_ft, grade_pct) -> dict:
         "bladings": bladings, "ladt": ladt, "radius_ft": radius_ft,
         "grade_pct": grade_pct, "gl_in": round(gl, 3),
         "equation": "GL (in) = (B/25.4) / (0.0045*LADT + 3380.6/R + 0.467*G)",
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 102, printed II-13)",
+        "source": "Brazil study of typical rural sections (Guide refs 15, 16)",
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
     }
 
 
 def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
                                 gravel_type="lateritic") -> dict:
-    """Annual aggregate (gravel) loss, Kenya study model (low-truck-traffic roads).
+    """Annual aggregate loss AGL from the British study done in Kenya,
+    AASHTO 1993 Section 2.2.3 (pdf_page 101, printed II-12); returns
+    agl_in_per_year, inches per year (multiply by the years of the
+    performance period for the total gravel loss).
 
-        AGL = [T^2/(T^2+50)] * f * (4.2 + 0.92*T + 0.889*R^2 + 1.88*VC)
+        AGL = [T^2/(T^2+50)] * f * (4.2 + 0.092*T + 0.889*R^2 + 1.88*VC)
+
+    The scan drops decimal points, leaving a space where each point was
+    ("4 2" is 4.2, "0 889R" is 0.889R): " 092T" is read as .092T and
+    f's " 037" as .037, a reading of the print, not a judgment. Until
+    2026-11-10 the code read f as 0.37 etc. (ten times the printed .037)
+    and the traffic term as 0.92T (review pave-27).
 
     Parameters
     ----------
@@ -857,8 +922,8 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
     grade_pct : float
         Average percentage gradient of the road.
     gravel_type : str, optional
-        'lateritic' (f=0.37, default), 'quartzitic' (f=0.43), 'volcanic'
-        (f=0.28), or 'coral' (f=0.59).
+        'lateritic' (f=.037, default), 'quartzitic' (f=.043), 'volcanic'
+        (f=.028), or 'coral' (f=.059), as printed.
 
     Returns
     -------
@@ -871,8 +936,8 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
     ValueError
         If gravel_type is unrecognized.
     """
-    f_table = {"lateritic": 0.37, "quartzitic": 0.43, "volcanic": 0.28,
-              "coral": 0.59}
+    f_table = {"lateritic": 0.037, "quartzitic": 0.043, "volcanic": 0.028,
+              "coral": 0.059}
     key = str(gravel_type).strip().lower()
     if key not in f_table:
         raise ValueError(
@@ -883,12 +948,14 @@ def annual_aggregate_loss_kenya(traffic_thousands, rainfall_in, grade_pct,
     t = traffic_thousands
     r = rainfall_in
     vc = grade_pct
-    agl = (t ** 2 / (t ** 2 + 50)) * f * (4.2 + 0.92 * t + 0.889 * r ** 2
+    agl = (t ** 2 / (t ** 2 + 50)) * f * (4.2 + 0.092 * t + 0.889 * r ** 2
                                           + 1.88 * vc)
     return {
         "traffic_thousands": t, "rainfall_in": r, "grade_pct": vc,
         "gravel_type": key, "f": f, "agl_in_per_year": round(agl, 3),
         "equation": ("AGL = [T^2/(T^2+50)] * f * "
-                     "(4.2+0.92T+0.889R^2+1.88VC)"),
-        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 102, printed II-13)",
+                     "(4.2+0.092T+0.889R^2+1.88VC)"),
+        "print_note": ("The scan drops decimal points; ' 092T' is read as "
+                       ".092T and f ' 037' as .037 (lateritic), as typeset."),
+        "reference": "AASHTO 1993 Guide, Section 2.2.3 (pdf_page 101, printed II-12)",
     }

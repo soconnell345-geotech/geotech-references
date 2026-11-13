@@ -279,8 +279,6 @@ def test_appendix_d_headings_as_printed():
     secs = _sections("D")
     titles = {sid: s["title"] for sid, s in secs.items() if "(continued" not in s["title"]}
     assert titles == {
-        "D": "Determination of Creep Strength Reduction Factor, RFCR and "
-             "Determination Long-Term Allowable Strength, Tal",
         "D.1": "Background",
         "D.2": "Step-by-Step Procedures for Extrapolating Stress Rupture Data – "
                "Conventional Method",
@@ -291,9 +289,13 @@ def test_appendix_d_headings_as_printed():
         "D.6": "Creep Extrapolation Examples Using Stress Rupture Data",
         "D.6.1": "Stress Rupture Extrapolation Example",
         "D.7": "Recommended Procedures to Determine Tal"}
-    assert "after WSDOT Standard Practice T 925" in secs["D"]["body"]
-    # the contents' page slips, said where the appendix is placed
-    assert 'on p. "E-16"' in secs["D"]["applicability"]
+    # the title page's credit line is said where the appendix is placed
+    # (the appendix's title page holds no text of its own)
+    assert "after WSDOT Standard Practice T 925" in secs["D.1"]["applicability"]
+    assert _appendix("D")["chapter_title"].startswith(
+        "Appendix D: Determination of Creep Strength Reduction Factor, RFCR")
+    # the contents' page slips, said on the section they are about
+    assert 'on p. "E-16"' in secs["D.6"]["applicability"]
 
 
 def test_appendix_d_equations_as_printed():

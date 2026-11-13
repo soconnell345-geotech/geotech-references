@@ -638,6 +638,7 @@
     {
       "volume": 2,
       "volume_id": "FHWA-NHI-10-025",
+      "reference_id": "FHWA-NHI-10-025",
       "volume_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume II",
       "pdf_path": "../../docs/GEC 11 VOL 2.pdf",
       "contents_pages": [7, 10],
@@ -879,14 +880,13 @@
         {"letter": "D", "number": 15,
          "title": "Determination of Creep Strength Reduction Factor, RFCR and Determination Long-Term Allowable Strength, Tal",
          "page_start": 219, "page_end": 240,
-         "note": "The contents list D.6 and D.6.1 on p. \"E-16\" and a D.7 \"References\" on p. \"E-20\"; the pages print D.6 on p. D-16, D.7 Recommended Procedures to Determine Tal on p. D-19, and no references. P. D-22 is blank.",
          "sections": [
-           {"sid": "D.1", "title": "Background", "pdf_page": 219, "find": "D.1", "through": "BACKGROUND"},
+           {"sid": "D.1", "title": "Background", "pdf_page": 219, "find": "D.1", "through": "BACKGROUND", "note": "The appendix is printed \"(after WSDOT Standard Practice T 925, Standard Practice for Determination of Long-Term Strength for Geosynthetic Reinforcement)\" under its title on p. D-1."},
            {"sid": "D.2", "title": "Step-by-Step Procedures for Extrapolating Stress Rupture Data – Conventional Method", "pdf_page": 223, "find": "D.2", "through": "RUPTURE DATA – CONVENTIONAL METHOD"},
            {"sid": "D.3", "title": "Procedures for Extrapolating Creep Rupture Data – Stepped Isothermal Method (SIM)", "pdf_page": 228, "find": "D.3", "through": "STEPPED ISOTHERMAL METHOD (SIM)"},
            {"sid": "D.4", "title": "Determination of RFCR", "pdf_page": 231, "find": "D.4", "through": "DETERMINATION OF RFCR"},
            {"sid": "D.5", "title": "Use of Creep Data from \"Similar\" Products and Evaluation of Product Lines", "pdf_page": 232, "find": "D.5", "through": "OF PRODUCT LINES"},
-           {"sid": "D.6", "title": "Creep Extrapolation Examples Using Stress Rupture Data", "pdf_page": 234, "find": "D.6", "through": "CREEP EXTRAPOLATION EXAMPLES USING STRESS RUPTURE DATA"},
+           {"sid": "D.6", "title": "Creep Extrapolation Examples Using Stress Rupture Data", "pdf_page": 234, "find": "D.6", "through": "CREEP EXTRAPOLATION EXAMPLES USING STRESS RUPTURE DATA", "note": "The contents list D.6 and D.6.1 on p. \"E-16\" and a D.7 \"References\" on p. \"E-20\"; the pages print D.6 on p. D-16, D.7 Recommended Procedures to Determine Tal on p. D-19, and no references. P. D-22 is blank."},
            {"sid": "D.6.1", "title": "Stress Rupture Extrapolation Example", "pdf_page": 234, "find": "D.6.1 Stress Rupture Extrapolation Example"},
            {"sid": "D.7", "title": "Recommended Procedures to Determine Tal", "pdf_page": 237, "find": "D.7", "through": "RECOMMENDED PROCEDURES TO DETERMINE Tal"}
          ],
@@ -907,7 +907,7 @@
             "notes": "Equation D-1 (p. D-2) printed again."}
          ],
          "fix_lines": [
-           {"pdf_page": 219, "find": "APPENDIX D", "through": "DETERMINATION LONG-TERM ALLOWABLE STRENGTH, Tal", "replace": ""},
+           {"pdf_page": 219, "find": "APPENDIX D", "through": "of Long-Term Strength for Geosynthetic Reinforcement)", "replace": ""},
            {"pdf_page": 219, "find": "requires that the testing temperature be maintained at +3.6° F (2° C). For some polymers,", "replace": "requires that the testing temperature be maintained at ±3.6° F (2° C). For some polymers,"},
            {"pdf_page": 220, "find": "Tultlot", "through": "Tl", "replace": ["", "RFCR = Tultlot / Tl [Eq. D-1]", ""]},
            {"pdf_page": 224, "find": "0", "through": "factors for time-temperature superposition.", "replace": ["[Figure D.2-1 lettering, typed in from p. D-6:] Load Level, P (%), 0 to 100, against Time to Rupture, t (hrs), 1 to 1,000,000 on a log scale; rupture points and a straight envelope for each of three temperatures, T1 (top envelope), T2 and T3 (bottom), with T1 < T2 < T3; aT2 and aT3 marked as the horizontal (time) shifts between the T2 and T3 points and the T1 envelope.", "", "Figure D.2-1. Typical stress rupture data for geosynthetics and the determination of shift factors for time-temperature superposition.", ""]},

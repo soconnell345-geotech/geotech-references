@@ -57,7 +57,7 @@
       "section_id": "4.5.5",
       "title": "In-Situ Strength Tests (DCP, CBR, SPT, CPT)",
       "summary": "In-situ tests provide strength/stiffness for pavement design. The Dynamic Cone Penetrometer (DCP, ASTM D6951) gives a penetration index converted to CBR (CBR = 292/DCP^1.12) and then to Mr. Field CBR (ASTM D4429), SPT, and CPT are also used. The DCP is a rapid, low-cost field strength profiler well suited to pavements.",
-      "body": "Several in-situ tests characterize subgrade and unbound-layer strength/stiffness for pavement design. The Dynamic Cone Penetrometer (DCP, ASTM D6951) drives a cone with a standard hammer and reports a penetration index (in./blow); the index correlates to CBR by CBR = 292/DCP^1.12, and the estimated CBR is then converted to resilient modulus (Table 5-34). The DCP is rapid, inexpensive, and gives a continuous shallow strength profile, making it especially useful for pavement subgrades and for construction QC. Field CBR is measured directly per ASTM D4429. The Standard Penetration Test (SPT) and Cone Penetration Test (CPT) provide deeper-profile strength and stratigraphy. These in-situ measures feed the same Mr correlations used for laboratory data.",
+      "body": "Several in-situ tests characterize subgrade and unbound-layer strength/stiffness for pavement design. The Dynamic Cone Penetrometer (DCP, ASTM D6951) drives a cone with a standard hammer and reports a penetration index (DPI); the index correlates to CBR by CBR = 292/DCP^1.12 for gravel, sand, and silt (Webster et al., 1994; Table 4-9), and the estimated CBR is then converted to resilient modulus (Table 5-34). The DCP is rapid, inexpensive, and gives a continuous shallow strength profile, making it especially useful for pavement subgrades and for construction QC. Field CBR is measured directly per ASTM D4429. The Standard Penetration Test (SPT) and Cone Penetration Test (CPT) provide deeper-profile strength and stratigraphy. These in-situ measures feed the same Mr correlations used for laboratory data.",
       "key_points": [
         "DCP (ASTM D6951): penetration index -> CBR = 292/DCP^1.12 -> Mr",
         "Field CBR per ASTM D4429; SPT and CPT for deeper profiling",
@@ -67,7 +67,7 @@
       "equations": [
         {
           "id": "Table 5-34 (DCP)",
-          "description": "CBR from the Dynamic Cone Penetrometer index: CBR = 292/DCP^1.12 (ASTM D6951).",
+          "description": "CBR from the Dynamic Cone Penetrometer index: CBR = 292/DCP^1.12 (ASTM D6951). Table 4-9 prints no unit and Table 5-34 prints in./blow; the function takes mm/blow (TM 3-34.48-2 Figure G-11; WES GL-92-3).",
           "implemented_in": "geotech_references.fhwa_pavements.equations.cbr_from_dcp"
         }
       ],

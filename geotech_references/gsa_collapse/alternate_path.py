@@ -540,8 +540,14 @@ def _gravity_load_extreme_event(d, l=0.0, s=0.0):
     governs (live or snow) as *l* or *s*, not both nonzero, per the
     printed equations. Live load L must already reflect the live-load
     reduction of Section 3.2.3, capped at 50 psf / 2.4 kN/m2 (printed
-    pp. 21-22).
+    pp. 21-22). Both L and S nonzero is refused: the print gives "(0.5 L
+    or 0.2 S)" (e.g. Eq 3.3, GSA_Alternate_Path_2016.pdf pdf 34 / printed
+    21), and 1.2D + 0.5L + 0.2S is not a printed combination.
     """
+    if l and s:
+        raise ValueError(
+            "the GSA guidelines give 1.2 D + (0.5 L or 0.2 S): pass the live load L or "
+            "the snow load S, whichever applies, not both")
     return 1.2 * d + 0.5 * l + 0.2 * s
 
 

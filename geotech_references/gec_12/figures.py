@@ -456,6 +456,26 @@ _FIG_7_9_PILE_TYPES = {
 }
 
 
+# Other names of ONE curve. 'pile', 'taper' and 'monotube' fit more than one
+# curve and are refused.
+_FIG_7_9_ALIASES = {
+    "pipe": "pipe_pile", "pipe_piles": "pipe_pile",
+    "timber_pile": "timber", "timber_piles": "timber",
+    "precast": "precast_concrete", "concrete": "precast_concrete",
+    "precast_concrete_pile": "precast_concrete",
+    "precast_concrete_piles": "precast_concrete",
+    "step_taper": "raymond_step_taper",
+    "raymond_step_taper_piles": "raymond_step_taper",
+    "uniform_taper": "raymond_uniform_taper",
+    "raymond_uniform_taper_piles": "raymond_uniform_taper",
+    "h": "h_pile", "h_piles": "h_pile", "hpile": "h_pile",
+    "augercast": "h_pile", "augercast_pile": "h_pile",
+    "augercast_piles": "h_pile",
+    "monotube_taper": "monotube_tapered",
+    "tapered_monotube": "monotube_tapered",
+}
+
+
 def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
     """delta/phi for a pile type at displaced volume V (Figure 7-9).
 
@@ -468,7 +488,8 @@ def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
         'precast_concrete' (c), 'raymond_step_taper' (d),
         'raymond_uniform_taper' (e), 'h_pile' (f, H-piles and augercast
         piles), 'monotube_tapered' (g, the tapered portion of monotube
-        piles).
+        piles). The key must name one curve: 'pile', 'taper' or 'monotube'
+        alone is refused.
     V : float
         Displaced soil volume per unit pile length (ft^3/ft): 0.3 to 1.9
         on curves a to e and g, 0.08 to 0.52 on curve f.
@@ -484,18 +505,15 @@ def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
         If pile type is not recognized, or V is outside its curve.
     """
     key = pile_type.lower().strip().replace(" ", "_").replace("-", "_")
+    key = _FIG_7_9_ALIASES.get(key, key)
 
     entry = _FIG_7_9_PILE_TYPES.get(key)
     if entry is None:
-        # Partial match
-        for k, v in _FIG_7_9_PILE_TYPES.items():
-            if key in k or k in key:
-                entry = v
-                break
-    if entry is None:
         raise ValueError(
-            f"Unknown pile type '{pile_type}'. "
-            f"Available: {', '.join(_FIG_7_9_PILE_TYPES.keys())}"
+            f"'{pile_type}' does not name one curve of Figure 7-9. Curves "
+            "(key: curve, as printed): "
+            + "; ".join(f"{k}: {v['curve']}, {v['description']}"
+                        for k, v in _FIG_7_9_PILE_TYPES.items())
         )
 
     vs = entry["V"]

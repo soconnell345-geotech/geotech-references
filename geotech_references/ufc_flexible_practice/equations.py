@@ -455,7 +455,7 @@ def slurry_seal_corrected_surface_area(surface_area_m2_per_kg,
     csa = surface_area_m2_per_kg * 2.65 / apparent_sg_aggregate
     return {
         "csa_m2_per_kg": round(csa, 3),
-        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page 137, printed p.124)",
+        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page 136, printed p.123)",
     }
 
 

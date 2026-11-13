@@ -256,6 +256,12 @@ class TestRelativeDamageRigid:
         r = ck.relative_damage_rigid(d_in=9.0, k_pci=540)
         assert r["u_r"] == pytest.approx(0.60, abs=0.01)
 
+    def test_result_says_chart_not_equation(self):
+        # Figure 3.5, aashto1993.pdf PDF 131 (pdf_page 130), printed II-41,
+        # is a chart and prints no equation (review pave-28).
+        r = ck.relative_damage_rigid(d_in=9.0, k_pci=540)
+        assert "prints no equation" in r["print_note"]
+
     # Chart reads at D=6,7,8,10,12,14in, all at the same reference k-column
     # (k~25.234 pci, back-solved from the D=9 read at that same column --
     # see composite_k.py's Figure 3.5 section docstring for the read
@@ -309,6 +315,13 @@ class TestKLossOfSupport:
     """Each LS curve's slope is fit to MULTIPLE (k, k_corrected) points
     read directly off the chart (not a single anchor); LS=1.0's read set
     includes the guide's exact printed Table 3.3 value at k=540."""
+
+    def test_result_says_slopes_are_a_fit(self):
+        # Figure 3.6, aashto1993.pdf PDF 132 (pdf_page 131), printed II-42,
+        # is a chart; the slopes are fitted to chart reads (review pave-28).
+        r = ck.k_loss_of_support(k_pci=540, ls=2.0)
+        assert "prints no equation" in r["print_note"]
+        assert "fit" in r["print_note"]
 
     def test_ls_zero_is_identity(self):
         r = ck.k_loss_of_support(k_pci=540, ls=0.0)

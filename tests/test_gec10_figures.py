@@ -61,10 +61,38 @@ class TestFigure106AlphaClay:
         alpha = figure_10_6_alpha_clay(500)
         assert abs(alpha - 0.334) < 0.002
 
-    def test_asymptote_large_su(self):
-        """Very high su → alpha approaches 0.30."""
-        alpha = figure_10_6_alpha_clay(10000)
-        assert abs(alpha - 0.30) < 0.002
+    def test_refusal_message_not_rounded_onto_an_end(self):
+        """Just outside the curve the message must not print the ratio as
+        the end it is outside of (independent check)."""
+        for su in (25.33, 506.7):
+            with pytest.raises(ValueError) as e:
+                figure_10_6_alpha_clay(su)
+            msg = str(e.value)
+            shown = msg.split("su(CIUC)/pa = ")[1].split(",")[0]
+            assert not (0.25 <= float(shown) <= 5.0), msg
+
+    def test_large_su_refused(self):
+        """su 10,000 kPa (su/pa 98.7) is far past Figure 10-6's curve, which
+        ends at su/pa 5.0; it returned 0.302 (lead's ruling G3)."""
+        with pytest.raises(ValueError, match="outside the curve"):
+            figure_10_6_alpha_clay(10000)
+
+    def test_curve_ends_as_drawn(self):
+        """GEC-10 Figure 10-6, p. 10-17 (PDF page 297), read at 300 dpi: the
+        Eq. 10-18 curve runs from su(CIUC)/pa 0.25 (alpha 0.988 read; 0.98
+        by Eq. 10-18) to 5.0 (alpha 0.339 read; 0.334). Refused outside it,
+        with the range and page named (lead's ruling G3). su/pa 0.1 gave
+        alpha 2.0."""
+        assert figure_10_6_alpha_clay(0.25 * _PA) == pytest.approx(0.98)
+        assert figure_10_6_alpha_clay(5.0 * _PA) == pytest.approx(0.334)
+        assert figure_10_6_alpha_clay(0.26 * _PA) == pytest.approx(
+            0.30 + 0.17 / 0.26)
+        assert figure_10_6_alpha_clay(4.9 * _PA) == pytest.approx(
+            0.30 + 0.17 / 4.9)
+        for ratio in (0.24, 0.1, 5.1):
+            with pytest.raises(ValueError, match=r"Figure 10-6 \(p. 10-17\)"
+                               r".*0.25 to 5.0 \(25.3 to 506.6 kPa\)"):
+                figure_10_6_alpha_clay(ratio * _PA)
 
     def test_zero_su_raises(self):
         with pytest.raises(ValueError):
@@ -107,6 +135,18 @@ class TestSuUuToCiuc:
         with pytest.raises(ValueError):
             su_uu_to_ciuc(50, 0)
 
+    def test_no_strength_refused(self):
+        """FHWA-NHI-18-024 Eq. 10-17, p. 10-16 (PDF page 296): at su(UU) =
+        10 kPa and sigma'vo = 700 kPa the right-hand side is -0.010, and it
+        returned -1030 kPa (review finding gec-14). It is zero at
+        su/sigma'vo = 0.0149; at and below that the relation is refused."""
+        with pytest.raises(ValueError, match="no strength"):
+            su_uu_to_ciuc(10, 700)
+        with pytest.raises(ValueError, match="0.0149"):
+            su_uu_to_ciuc(1.0, 100.0)
+        # Just above the zero the relation still answers (made-up values).
+        assert su_uu_to_ciuc(2.0, 100.0) > 2.0
+
 
 class TestSuUcToCiuc:
     """Equation 10-16: su_UC / su_CIUC = 0.893 + 0.513 * log10(su_UC / σ'v0)."""
@@ -129,6 +169,14 @@ class TestSuUcToCiuc:
         with pytest.raises(ValueError):
             su_uc_to_ciuc(50, 0)
 
+    def test_no_strength_refused(self):
+        """Eq. 10-16, p. 10-16: the right-hand side is zero at su(UC)/
+        sigma'vo = 0.0182; below it the relation gave a negative strength
+        and is refused (gec-14)."""
+        with pytest.raises(ValueError, match="0.0182"):
+            su_uc_to_ciuc(1.5, 100.0)
+        assert su_uc_to_ciuc(2.0, 100.0) > 2.0
+
 
 # ============================================================================
 # Equation 10-21: Rock socket side resistance, normal conditions
@@ -150,6 +198,24 @@ class TestEquation1021RockSocketSide:
     def test_roughened_condition_label(self):
         result = equation_10_21_rock_socket_side(1000.0, C=1.9)
         assert result["condition"] == "artificially roughened"
+
+    def test_c_quoted_from_the_page(self):
+        """pp. 10-21 to 10-22 (PDF pages 301-302): "Regression analysis of
+        the available load test data by Kulhawy and Prakoso (2007) suggests
+        a mean value of C = 1.9 with use of Equation 10-22 for roughened
+        sockets. It is strongly recommended that load tests or local
+        experience be used to verify values of C greater than 1.0." C
+        appears only in Eq. 10-21, where the library applies it (lead's
+        ruling G2). Every result quotes the page; C above 1.0 adds the
+        recommendation as a note."""
+        r = equation_10_21_rock_socket_side(1000.0)
+        assert "with use of Equation 10-22 for roughened sockets" in r["print_note"]
+        assert "C appears only in Equation 10-21" in r["print_note"]
+        assert "note" not in r
+        r = equation_10_21_rock_socket_side(1000.0, C=1.9)
+        assert "load tests or local experience" in r["note"]
+        assert r["f_sn_kpa"] == pytest.approx(1.9 * _PA * math.sqrt(1000.0 / _PA), abs=0.01)
+        assert "note" not in equation_10_21_rock_socket_side(1000.0, C=0.8)
 
     def test_higher_c_gives_higher_resistance(self):
         r1 = equation_10_21_rock_socket_side(5000.0, C=1.0)
@@ -226,9 +292,14 @@ class TestEquation1022CavingRockSide:
             assert key in result
 
     def test_rqd_below_minimum_clamped(self):
-        """RQD below table minimum (20%) should return the minimum αE value."""
+        """FHWA-NHI-18-024 Table 10-3, p. 10-21 (PDF page 301) prints no row
+        below RQD 20; the RQD 20 row (0.45) is used and the result says so
+        (review finding gec-43). At RQD 20 itself there is no note."""
         result = equation_10_22_caving_rock_side(1000.0, 10, "closed")
         assert abs(result["alpha_E"] - 0.45) < 0.01
+        assert "no row below RQD 20" in result["note"]
+        assert "note" not in equation_10_22_caving_rock_side(1000.0, 20, "open")
+        assert equation_10_22_caving_rock_side(1000.0, 50, "open")["alpha_E"] == 0.55
 
     def test_zero_qu_raises(self):
         with pytest.raises(ValueError):

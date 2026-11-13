@@ -123,6 +123,111 @@ class TestTable52PrFlexible:
         assert r["c"] == pytest.approx(0.4)
 
 
+class TestDepthInInchesAndRange:
+    """struct-04: Tables 5-1/5-2 print the m-factors and plastic rotations
+    as c0 - c1 d and c0 - c1 dbg, with "d = depth of beam, inch" and
+    "dbg = depth of bolt group, inch" (UFC_4-023-03.pdf pdf 85-86 /
+    printed 69-70, footnotes 2-3 and 3-4). The result names the inch unit;
+    an entry whose printed expression is <= 0 at that depth is None with a
+    note, and a depth at which every entry of the row is <= 0 is refused."""
+
+    def test_wuf_m_factors_at_30_in(self):
+        # WUF: 4.3 - 0.083d primary, 4.3 - 0.048d secondary (printed p. 69)
+        r = table_5_1_fr_connection_mfactor("wuf", d=30)
+        assert r["m_primary"] == pytest.approx(4.3 - 0.083 * 30)  # 1.81
+        assert r["m_secondary"] == pytest.approx(4.3 - 0.048 * 30)  # 2.86
+        assert r["d_units"] == "in"
+        assert "note" not in r
+
+    def test_depth_in_mm_is_refused(self):
+        # 762 (a 30 in beam typed in mm): 4.3 - 0.083 x 762 = -59.0
+        with pytest.raises(ValueError, match="inches"):
+            table_5_1_fr_connection_mfactor("wuf", d=762)
+        with pytest.raises(ValueError, match="positive"):
+            table_5_1_fr_connection_mfactor("wuf", d=0)
+
+    def test_m_below_one_returned_with_note(self):
+        # WUF at d = 45 in: primary 4.3 - 0.083 x 45 = 0.565 (the print gives
+        # no lower limit), secondary 4.3 - 0.048 x 45 = 2.14
+        r = table_5_1_fr_connection_mfactor("wuf", d=45)
+        assert r["m_primary"] == pytest.approx(0.565)
+        assert r["m_secondary"] == pytest.approx(2.14)
+        assert "m_primary below 1" in r["note"]
+
+    def test_constant_row_any_depth(self):
+        # Double angles, tension in bolt: 1.5 / 4 printed as constants
+        r = table_5_1_pr_flexible_connection_mfactor("double_angles", dbg=40, limit_state="tension_in_bolt")
+        assert (r["m_primary"], r["m_secondary"]) == (1.5, 4.0)
+        assert r["dbg_units"] == "in"
+
+    def test_rotations_at_24_in_and_refused_past_zero(self):
+        # WUF a = 0.0284 - 0.0004d, b = 0.043 - 0.0006d (printed p. 70)
+        r = table_5_2_fr_connection_modeling("wuf", d=24)
+        assert r["a"] == pytest.approx(0.0284 - 0.0004 * 24)  # 0.0188
+        assert r["b"] == pytest.approx(0.043 - 0.0006 * 24)  # 0.0286
+        assert r["d_units"] == "in"
+        # a reaches zero at d = 71 in
+        with pytest.raises(ValueError, match="plastic rotation"):
+            table_5_2_fr_connection_modeling("wuf", d=80)
+
+    def test_bolt_group_rotations(self):
+        # Double angles, shear in bolt: a = 0.0502 - 0.0015dbg, secondary
+        # acceptance 0.0503 - 0.0011dbg (printed p. 70)
+        r = table_5_2_pr_flexible_connection_modeling("double_angles", dbg=12, limit_state="shear_in_bolt")
+        assert r["a"] == pytest.approx(0.0502 - 0.0015 * 12)  # 0.0322
+        assert r["secondary_acceptance"] == pytest.approx(0.0503 - 0.0011 * 12)  # 0.0371
+        # a reaches zero at dbg = 33.5 in; 305 is a 12 in group typed in mm
+        with pytest.raises(ValueError, match="inches"):
+            table_5_2_pr_flexible_connection_modeling("double_angles", dbg=305, limit_state="shear_in_bolt")
+
+    def test_wuf_secondary_m_returned_where_primary_is_not(self):
+        # WUF (printed p. 69): primary 4.3 - 0.083d is zero at d = 51.8 in,
+        # secondary 4.3 - 0.048d at d = 89.6 in. Between them the secondary
+        # m-factor is printed and returned; the primary is None.
+        both = table_5_1_fr_connection_mfactor("wuf", d=51.0)
+        assert both["m_primary"] == pytest.approx(4.3 - 0.083 * 51.0)  # 0.067
+        r = table_5_1_fr_connection_mfactor("wuf", d=52.0)
+        assert r["m_primary"] is None
+        assert r["m_secondary"] == pytest.approx(4.3 - 0.048 * 52.0)  # 1.804
+        assert "m_primary is None" in r["note"]
+        assert "4.3 - 0.083 d" in r["note"] and "d < 51.8 in" in r["note"]
+        r = table_5_1_fr_connection_mfactor("wuf", d=89.0)
+        assert r["m_primary"] is None
+        assert r["m_secondary"] == pytest.approx(4.3 - 0.048 * 89.0)  # 0.028
+        assert "m_secondary below 1" in r["note"]
+        with pytest.raises(ValueError, match="no entry of this row"):
+            table_5_1_fr_connection_mfactor("wuf", d=90.0)
+
+    def test_double_angles_flexure_primary_where_secondary_is_not(self):
+        # Flexure in angles (printed p. 69): primary 8.9 - 0.193dbg is zero
+        # at dbg = 46.1 in, secondary 13.0 - 0.290dbg at 44.8 in.
+        r = table_5_1_pr_flexible_connection_mfactor("double_angles", dbg=45.5,
+                                                     limit_state="flexure_in_angles")
+        assert r["m_secondary"] is None
+        assert r["m_primary"] == pytest.approx(8.9 - 0.193 * 45.5)  # 0.1185
+        assert "dbg < 44.8 in" in r["note"]
+
+    def test_wuf_rotations_b_returned_where_a_is_not(self):
+        # WUF (printed p. 70): a = 0.0284 - 0.0004d zero at d = 71.0 in,
+        # b = 0.043 - 0.0006d at d = 71.7 in.
+        r = table_5_2_fr_connection_modeling("wuf", d=71.3)
+        assert r["a"] is None and r["primary_acceptance"] is None
+        assert r["b"] == pytest.approx(0.043 - 0.0006 * 71.3)  # 0.00022
+        assert r["secondary_acceptance"] == r["b"]
+        assert "a is None" in r["note"] and "d < 71.0 in" in r["note"]
+        with pytest.raises(ValueError, match="no entry of this row"):
+            table_5_2_fr_connection_modeling("wuf", d=72.0)
+
+    def test_bolt_group_secondary_acceptance_past_the_others(self):
+        # Double angles, shear in bolt (printed p. 70): a zero at dbg = 33.5
+        # in, b at 32.7 in, secondary acceptance 0.0503 - 0.0011dbg at 45.7.
+        r = table_5_2_pr_flexible_connection_modeling("double_angles", dbg=34,
+                                                      limit_state="shear_in_bolt")
+        assert r["a"] is None and r["b"] is None and r["primary_acceptance"] is None
+        assert r["secondary_acceptance"] == pytest.approx(0.0503 - 0.0011 * 34)  # 0.0129
+        assert "b is None" in r["note"]
+
+
 class TestTableC1ConnectionTypes:
     def test_reduced_beam_section_is_fr(self):
         r = table_c1_connection_type("reduced_beam_section")

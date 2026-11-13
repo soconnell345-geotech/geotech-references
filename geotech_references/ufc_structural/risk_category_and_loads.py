@@ -226,10 +226,13 @@ def table_2_2_note(note_id):
 # ============================================================================
 
 def wind_speed_conversion_asd(v):
-    """Eq 16-18a: converts basic (strength-level) wind speed to an
-    allowable-stress-design wind speed (printed p. 19).
+    """Eq 16-18a: allowable-stress-design wind speed Vasd, in the unit of
+    the basic (strength-level) wind speed V (printed p. 19).
 
-        Vasd = sqrt(0.6*V)
+        Vasd = sqrt(0.6) * V
+
+    The radical covers 0.6 only, as typeset (V = 150 mph gives Vasd =
+    116.2 mph).
 
     Parameters
     ----------
@@ -242,16 +245,20 @@ def wind_speed_conversion_asd(v):
         {'v', 'v_asd', 'equation': '16-18a', 'printed_page': '19',
          'pdf_page': 40}
     """
-    v_asd = (0.6 * v) ** 0.5
+    v_asd = 0.6 ** 0.5 * v
     return {"v": v, "v_asd": v_asd, "equation": "16-18a",
             "printed_page": "19", "pdf_page": 40}
 
 
 def wind_speed_conversion_fastest_mile(v):
-    """Eq 16-18b: converts basic wind speed to a fastest-mile wind speed
-    (printed p. 19).
+    """Eq 16-18b: fastest-mile wind speed Vfm, mph, from the basic wind
+    speed V in mph (printed p. 19).
 
-        Vfm = (sqrt(0.6*V) - 10.5) / 1.05
+        Vfm = (sqrt(0.6) * V - 10.5) / 1.05
+
+    The radical covers 0.6 only, as typeset (V = 150 mph gives Vfm =
+    100.7 mph). The page prints 10.5 with no unit and gives no unit for
+    V; this function reads V in mph, and 10.5 then carries V's unit.
 
     Parameters
     ----------
@@ -264,7 +271,7 @@ def wind_speed_conversion_fastest_mile(v):
         {'v', 'v_fm', 'equation': '16-18b', 'printed_page': '19',
          'pdf_page': 40}
     """
-    v_fm = ((0.6 * v) ** 0.5 - 10.5) / 1.05
+    v_fm = (0.6 ** 0.5 * v - 10.5) / 1.05
     return {"v": v, "v_fm": v_fm, "equation": "16-18b",
             "printed_page": "19", "pdf_page": 40}
 

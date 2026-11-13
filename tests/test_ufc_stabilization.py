@@ -246,6 +246,19 @@ class TestTable35:
         with pytest.raises(ValueError):
             table_3_5_emulsified_asphalt_requirements(10, 65)
 
+    def test_last_row_and_above_range(self):
+        # Table 3-5, UFC 3-250-11 PDF 35 (pdf_page 34), printed 27: the last
+        # row is 25 (6.2 at < 50, 7.3 at 100); above it the 25 row is held
+        # with a note; below 0 is refused.
+        r = table_3_5_emulsified_asphalt_requirements(25, 100)
+        assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(7.3)
+        assert "note" not in r
+        r = table_3_5_emulsified_asphalt_requirements(30, "<50")
+        assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(6.2)
+        assert "above Table 3-5's last row" in r["note"]
+        with pytest.raises(ValueError):
+            table_3_5_emulsified_asphalt_requirements(-1, 100)
+
 
 # ============================================================================
 # Table 3-6: Swell potential
@@ -263,6 +276,23 @@ class TestTable36:
     def test_marginal_swell(self):
         r = table_3_6_swell_potential(55, 28)
         assert r["potential_swell"] == "marginal"
+
+    def test_band_edges_as_printed(self):
+        # Table 3-6, UFC 3-250-11 PDF 38 (pdf_page 37), printed 30: LL > 60,
+        # PI > 35 High; LL 50-60, PI 25-35 Marginal; LL < 50, PI < 25 Low.
+        r = table_3_6_swell_potential(60, 35)
+        assert (r["ll_category"], r["pi_category"]) == ("marginal", "marginal")
+        assert r["potential_swell"] == "marginal"
+        r = table_3_6_swell_potential(50, 25)
+        assert r["potential_swell"] == "marginal"
+        r = table_3_6_swell_potential(60.5, 35.5)
+        assert r["potential_swell"] == "high"
+        r = table_3_6_swell_potential(49.9, 24.9)
+        assert r["potential_swell"] == "low"
+
+    def test_negative_input_raises_value_error(self):
+        with pytest.raises(ValueError):
+            table_3_6_swell_potential(-5, 10)
 
     def test_conservative_governs_on_disagreement(self):
         # High LL but low PI: the more severe category should govern.
@@ -301,6 +331,15 @@ class TestTableA1:
         r = table_a1_equivalency_factors("unbound", "crushed_stone")
         assert r["base_factor"] == 1.00
         assert r["subbase_factor"] == 2.00
+
+    def test_conditions_of_sec_a_1_1(self):
+        # Sec A-1.1, UFC 3-250-11 PDF 71 (pdf_page 70), printed 63: "Limit
+        # the cement content to 4 percent by weight or less to prevent
+        # excessive reflective cracking."
+        r = table_a1_equivalency_factors("cement", "gm")
+        assert (r["base_factor"], r["subbase_factor"]) == (1.00, 2.00)
+        assert any("4 percent by weight or less" in c for c in r["conditions"])
+        assert any("strength and durability" in c for c in r["conditions"])
 
     def test_invalid_stabilizer_type(self):
         with pytest.raises(ValueError):
@@ -363,13 +402,29 @@ class TestEquationCutbackAsphaltContentEstimate:
 
 class TestEquationCementPiLimitTable23:
     def test_worked_narrative_example(self):
-        # Sec 2-1.5.2: 25% passing No.200 -> PI limit 45; PI=9 < 45 so cement qualifies.
+        # Table 2-3 footnote (c), UFC 3-250-11 (2020) PDF 21 (pdf_page 20),
+        # printed 13, prints "PI <= 20 + 50 - percent passing No. 200";
+        # the form used is the 2004 edition's Table 2-1 footnote b, PDF 12,
+        # printed 2-3: PI <= 20 + (50 - percent passing No. 200 sieve)/4.
+        # The Sec 2-1.5.2 example soil (25 percent passing, PI 9; printed
+        # p.8-9) prints no value; it says only that PI 9 is under the limit.
         r = equation_cement_pi_limit_table_2_3(25)
-        assert r["pi_limit"] == 45
+        assert r["pi_limit"] == pytest.approx(26.25)
+        assert 9 < r["pi_limit"]
+        assert "(50 - percent passing No. 200 sieve)/4" in r["equation"]
+        assert "printed p.13" in r["reference"]
+        assert "2004" in r["reference"]
 
-    def test_zero_percent_passing(self):
-        r = equation_cement_pi_limit_table_2_3(0)
-        assert r["pi_limit"] == 70
+    def test_printed_form_at_more_points(self):
+        # 20 + (50 - P200)/4 at P200 0, 10 and 50 (2004 print, printed 2-3).
+        assert equation_cement_pi_limit_table_2_3(0)["pi_limit"] == pytest.approx(32.5)
+        assert equation_cement_pi_limit_table_2_3(10)["pi_limit"] == pytest.approx(30.0)
+        assert equation_cement_pi_limit_table_2_3(50)["pi_limit"] == pytest.approx(20.0)
+
+    def test_print_note_names_both_editions(self):
+        note = equation_cement_pi_limit_table_2_3(10)["print_note"]
+        assert "2020" in note and "2004" in note
+        assert "30" in note and "60" in note
 
     def test_invalid_range(self):
         with pytest.raises(ValueError):

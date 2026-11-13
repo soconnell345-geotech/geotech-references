@@ -272,45 +272,70 @@ def directional_distribution_default() -> dict:
 # concrete surface course vs elastic (resilient) modulus EAC at 68F.
 # CHART READ-OFF (no printed closed-form equation): digitized at dpi 150/240
 # (pdf_page 107, printed II-18). Anchor points from the printed curve
-# (solid to EAC~420,000-450,000 psi; dashed extrapolation beyond, per the
-# guide's own caution against modulus values above 450,000 psi).
+# (solid to about EAC 450,000 psi; dashed beyond to the 500,000 psi edge;
+# II-17: "Caution is recommended for modulus values above 450,000 psi").
+# Re-read 2026-11-10 (review pave-11) from a 400-dpi render, gridline-
+# calibrated: the curve begins on the a1 = 0.20 line at about 106,000 psi
+# (was taken as 100,000) and reads 0.252 at 150,000 (was 0.26); the other
+# anchors agree with the trace within 0.004.
 # ============================================================================
 
-_A1_EAC = [100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
+_A1_EAC = [106000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
           500000]
-_A1_VAL = [0.20, 0.26, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
+_A1_VAL = [0.20, 0.252, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 
 
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
-    """Asphalt concrete surface course layer coefficient a1 (Figure 2.5, chart).
+    """Structural layer coefficient a1 of a dense-graded asphalt concrete
+    surface course from its elastic modulus EAC at 68 F, AASHTO 1993
+    Figure 2.5 (pdf_page 107, printed II-18); returns a1 (per inch).
 
     Chart-read-off (interpolated), NOT a printed closed-form equation.
-    Digitized anchor points (EAC psi -> a1): 100000->0.20, 150000->0.26,
+    Digitized anchor points (EAC psi -> a1): 106000->0.20, 150000->0.252,
     200000->0.30, 250000->0.335, 300000->0.365, 350000->0.39, 400000->0.42,
-    450000->0.44, 500000->0.465 (dashed/extrapolated beyond ~420,000 psi
-    in the source chart).
+    450000->0.44, 500000->0.465. The printed curve is drawn from about
+    106,000 psi (a1 0.20) to the chart's 500,000 psi edge, dashed past
+    about 450,000 psi; II-17: "Caution is recommended for modulus values
+    above 450,000 psi".
 
     Parameters
     ----------
     eac_psi : float
-        Asphalt concrete elastic (resilient) modulus at 68 F, psi.
-        Values below 100,000 psi are off the printed chart (clamped to the
-        chart's a1=0.20 floor by the interpolator); values above 450,000
-        psi are on the guide's own cautioned dashed-extrapolation segment.
+        Asphalt concrete elastic (resilient) modulus at 68 F, psi. The
+        printed curve begins at about 106,000 psi (a1 0.20): below that the
+        lookup refuses. Above 450,000 psi the curve is dashed (noted);
+        above 500,000 psi, the chart's edge, a1 is held at its 500,000 psi
+        value, with a note.
 
     Returns
     -------
     dict
         {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?}.
+
+    Raises
+    ------
+    ValueError
+        If eac_psi is below about 106,000 psi, where Figure 2.5's curve
+        begins.
     """
+    if eac_psi is None or eac_psi < _A1_EAC[0]:
+        raise ValueError(
+            f"EAC {eac_psi} psi is below where Figure 2.5's curve begins: "
+            "the chart draws a1 for EAC from about 106,000 psi (a1 0.20) to "
+            "500,000 psi (printed II-18); it gives no a1 below that.")
     a1 = _linterp(eac_psi, _A1_EAC, _A1_VAL)
     out = {
         "eac_psi": eac_psi, "a1": round(a1, 3), "chart_read": True,
         "reference": "AASHTO 1993 Guide, Figure 2.5 (pdf_page 107, printed II-18)",
     }
     if eac_psi > 450000:
-        out["note"] = ("EAC > 450,000 psi: guide cautions this is beyond the "
-                       "reliable chart range (dashed extrapolation).")
+        out["note"] = ("EAC > 450,000 psi: the curve is dashed here, and "
+                       "II-17 says 'Caution is recommended for modulus "
+                       "values above 450,000 psi' (stiffer mixes are more "
+                       "susceptible to thermal and fatigue cracking).")
+    if eac_psi > _A1_EAC[-1]:
+        out["note"] += (" EAC is past the chart's 500,000 psi edge; a1 is "
+                        "held at its 500,000 psi value.")
     return out
 
 
@@ -487,6 +512,7 @@ def unbound_k1_k2(layer, moisture_condition) -> dict:
 
 _SATURATION_COLS = ["<1%", "1-5%", "5-25%", ">25%"]
 
+# Each cell as printed, "high-low" (e.g. "1.40-1.35"): (high, low).
 _TABLE_2_4 = {
     "excellent": [(1.40, 1.35), (1.35, 1.30), (1.30, 1.20), (1.20, 1.20)],
     "good": [(1.35, 1.25), (1.25, 1.15), (1.15, 1.00), (1.00, 1.00)],
@@ -497,7 +523,10 @@ _TABLE_2_4 = {
 
 
 def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
-    """Drainage modifier mi for untreated base/subbase, flexible (Table 2.4).
+    """Recommended mi values for modifying the layer coefficients of
+    untreated base and subbase in flexible pavements, AASHTO 1993 Table 2.4
+    (pdf_page 114, printed II-25); returns the printed range as mi_min and
+    mi_max (dimensionless).
 
     Modifies the base/subbase layer coefficients in the SN equation
     (SN = a1*D1 + a2*D2*m2 + a3*D3*m3). AASHO Road Test conditions
@@ -533,7 +562,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_4[qk][idx]
+    hi, lo = _TABLE_2_4[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "mi_min": lo, "mi_max": hi,
@@ -546,6 +575,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
 # (pdf_page 115, printed II-26)
 # ============================================================================
 
+# Each cell as printed, "high-low" (e.g. "1.25-1.20"): (high, low).
 _TABLE_2_5 = {
     "excellent": [(1.25, 1.20), (1.20, 1.15), (1.15, 1.10), (1.10, 1.10)],
     "good": [(1.20, 1.15), (1.15, 1.10), (1.10, 1.00), (1.00, 1.00)],
@@ -556,7 +586,9 @@ _TABLE_2_5 = {
 
 
 def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
-    """Drainage coefficient Cd for rigid pavement design (Table 2.5).
+    """Recommended values of drainage coefficient Cd for rigid pavement
+    design, AASHTO 1993 Table 2.5 (pdf_page 115, printed II-26); returns the
+    printed range as cd_min and cd_max (dimensionless).
 
     AASHO Road Test conditions correspond to Cd=1.0 (quality 'fair').
 
@@ -588,7 +620,7 @@ def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_5[qk][idx]
+    hi, lo = _TABLE_2_5[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "cd_min": lo, "cd_max": hi,

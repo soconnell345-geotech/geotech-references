@@ -116,7 +116,7 @@
       "body": "The use of stabilized soil layers within a flexible pavement provides the opportunity to reduce the overall thickness of pavement structure required to support a given load. The design of pavement containing stabilized soil layers requires the application of equivalency factors to a layer or layers of a conventionally designed pavement. To qualify for application of equivalency factors, the stabilized layer must meet appropriate strength and durability requirements set forth in UFC 3-250-11. An equivalency factor represents the number of inches (millimeters) of a conventional base or subbase which can be replaced by 1 in (25 mm) of stabilized material. Equivalency factors for stabilized materials are determined as shown in Table 9-1. The cement content must be limited to 4 percent by weight or less to prevent excessive reflective cracking. Selection of an equivalency factor from the tabulation is dependent upon the classification of the soil to be stabilized.",
       "key_points": [
         "t_stab = t_conventional / E; E from Table 9-1 by stabilizer type + USCS class + layer (base/subbase).",
-        "Table 9-1 examples: asphalt-stabilized base E=1.15 / subbase E=2.30; cement-stabilized GW/GP/SW/SP base E=1.15; lime-stabilized fine-grained subbase E=1.00."
+        "Table 9-1 examples: all-bituminous concrete base E=1.15 / subbase E=2.30 (asphalt-stabilized GW/GP/GM/GC 1.00/2.00, SW/SP/SM/SC subbase 1.50); cement-stabilized GW/GP/SW/SP base E=1.15; lime-stabilized fine-grained subbase E=1.00."
       ],
       "equations": [
         {"id": "N/A (Table 9-1 ratio, not numbered)", "description": "t_stab = t_conventional / E.", "implemented_in": "geotech_references.ufc_pavement.equations.stabilized_layer_thickness_in"}

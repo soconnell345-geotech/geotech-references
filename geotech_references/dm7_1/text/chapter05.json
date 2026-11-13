@@ -236,7 +236,7 @@
       "section_id": "5-3.1",
       "title": "Basic Formulation",
       "summary": "Defines the fundamental equation for settlement (Eq. 5-4): settlement s equals the sum of vertical strain εz,i times layer thickness Hi over all n compressible layers. Establishes that settlement equals the change in total thickness of underlying soil, and introduces notation for foundation geometry (B, L, q0) used throughout the chapter.",
-      "body": "At the most basic level, settlement at the ground surface is equal to the change in thickness of the soil underlying a load. The change in thickness (∆H) divided by the initial thickness (H) is equal to the vertical strain (engineering strain). Thus, settlement (s) is the sum of the vertical strain (εz) caused by ∆σz for each compressible soil layer multiplied by the initial thickness of each layer, or:\n\ns = ΣHi = Σεz,i · Hi  (5-4)\n\nwhere: Hi = thickness of each layer in same units as s.\n\nMost settlement calculations can be split into a component related to the vertical strain and a component related to the initial layer thickness. This concept can be used to understand the calculation procedures at a deeper level.\n\nMany of the settlement prediction methods in this chapter use foundation geometry to define influence factors or to select the appropriate procedure. The shortest dimension of the foundation or loaded area will be designated as B while the longest dimension is L. The applied stress at the base of the foundation is indicated by q0.",
+      "body": "At the most basic level, settlement at the ground surface is equal to the change in thickness of the soil underlying a load. The change in thickness (∆H) divided by the initial thickness (H) is equal to the vertical strain (engineering strain). Thus, settlement (s) is the sum of the vertical strain (εz) caused by ∆σz for each compressible soil layer multiplied by the initial thickness of each layer, or:\n\ns = ΔH = Σ(i=1..n) εz,i · Hi  (5-4)\n\nwhere: Hi = thickness of each layer in same units as s.\n\nMost settlement calculations can be split into a component related to the vertical strain and a component related to the initial layer thickness. This concept can be used to understand the calculation procedures at a deeper level.\n\nMany of the settlement prediction methods in this chapter use foundation geometry to define influence factors or to select the appropriate procedure. The shortest dimension of the foundation or loaded area will be designated as B while the longest dimension is L. The applied stress at the base of the foundation is indicated by q0.",
       "key_points": [
         "Settlement s = Σ(εz,i × Hi), summing vertical strain times thickness for each compressible layer (Eq. 5-4).",
         "Vertical strain εz is induced by the change in vertical stress ∆σz at each layer.",
@@ -246,7 +246,7 @@
       "equations": [
         {
           "id": "Eq. 5-4",
-          "description": "Settlement s equals the summation of vertical strain εz,i multiplied by layer thickness Hi for each of n compressible soil layers: s = Σ(εz,i · Hi).",
+          "description": "Settlement equals the change in thickness: s = ΔH = Σ(i=1..n) εz,i · Hi, the vertical strain εz,i of each of the n compressible soil layers multiplied by the layer's initial thickness Hi.",
           "implemented_in": "geotech_references.dm7_1.chapter5.settlement_from_strain"
         }
       ],
@@ -346,19 +346,19 @@
       "section_id": "5-4.1.2",
       "title": "Schmertmann Method",
       "summary": "Describes the Schmertmann Method for computing settlement of coarse-grained soils using a strain influence factor (Iz) distribution with depth, coupled with layer moduli derived from CPT or SPT. Presents equations for total settlement (Eq. 5-7), embedment correction C1 (Eq. 5-8), and time correction C2 (Eq. 5-9). Provides CPT-to-Es multipliers and SPT-based Es correlations via Table 5-3.",
-      "body": "The Schmertmann Method is a common approach for the calculation of settlement for coarse-grained soils. This method uses typical patterns of vertical strain below a rigid foundation along with estimates of modulus based on either CPT or SPT. The variation of the strain influence factor (Iz) with depth is based on observations from model scale tests as well as numerical simulations. As shown in Figure 5-7, Iz increases with depth below the loaded area up to a peak value (Izp) and then decreases to zero at a depth of 2B for square footings and 4B for continuous footings. The magnitude of Izp is a function of the applied load and the effective vertical stress (σʹzp) at the depth of the peak influence factor.\n\nThe compressibility of the coarse-grained soil is incorporated through layer moduli estimated from CPT or SPT results. The soil profile immediately below the foundation is divided into layers with relatively constant cone tip bearing resistance, qc (or SPT blow count). Schmertmann et al. (1978) recommend that CPT qc values should be multiplied by 2.5 to obtain Es for axisymmetric (L=B) conditions. Similarly, CPT qc values should be multiplied by 3.5 to obtain Es for plane strain (L/B > 10) conditions.\n\nSchmertmann (1970) provided multipliers to estimate qc from SPT blow count, N. Robertson and Cabal (2014) found a similar correlation between CPT and SPT. Table 5-3 combines the SPT-CPT correlation with the qc–Es correlation to provide approximate correlation between N60 and Es. The general values in Table 5-3 can be replaced by regional correlations that follow the principles provided in Schmertmann (1970) and Robertson et al. (1983).\n\nThe settlement (s) is then calculated for n layers as:\n\ns = C1·C2·(q0 – σʹz0) · Σ[(Iz,i / Es,i)·Δzi]  (Eq. 5-7)\n\nwhere:\nC1 = coefficient to correct for the effects of embedment,\nC2 = coefficient to correct for the effects of time,\nq0 = applied foundation pressure,\nσʹz0 = the existing vertical effective stress at the bottom of the foundation,\nIz,i = the average strain influence factor for the layer,\nEs,i = the layer modulus, and\nΔzi = the layer thickness.\n\nThe correction for foundation embedment is found from:\n\nC1 = 1 – 0.5·(σʹz0 / (q0 – σʹz0)) ≥ 0.5  (Eq. 5-8)\n\nThe correction for time (t) in years after initial loading is:\n\nC2 = 1 + 0.2·log(t / 0.1yr)  (Eq. 5-9)",
+      "body": "The Schmertmann Method is a common approach for the calculation of settlement for coarse-grained soils. This method uses typical patterns of vertical strain below a rigid foundation along with estimates of modulus based on either CPT or SPT. The variation of the strain influence factor (Iz) with depth is based on observations from model scale tests as well as numerical simulations. As shown in Figure 5-7, Iz increases with depth below the loaded area up to a peak value (Izp) and then decreases to zero at a depth of 2B for square footings and 4B for continuous footings. The magnitude of Izp is a function of the applied load and the effective vertical stress (σʹzp) at the depth of the peak influence factor.\n\nThe compressibility of the coarse-grained soil is incorporated through layer moduli estimated from CPT or SPT results. The soil profile immediately below the foundation is divided into layers with relatively constant cone tip bearing resistance, qc (or SPT blow count). Schmertmann et al. (1978) recommend that CPT qc values should be multiplied by 2.5 to obtain Es for axisymmetric (L=B) conditions. Similarly, CPT qc values should be multiplied by 3.5 to obtain Es for plane strain (L/B > 10) conditions.\n\nSchmertmann (1970) provided multipliers to estimate qc from SPT blow count, N. Robertson and Cabal (2014) found a similar correlation between CPT and SPT. Table 5-3 combines the SPT-CPT correlation with the qc–Es correlation to provide approximate correlation between N60 and Es. The general values in Table 5-3 can be replaced by regional correlations that follow the principles provided in Schmertmann (1970) and Robertson et al. (1983).\n\nThe settlement (s) is then calculated for n layers as:\n\ns = C1·C2·(q0 – σʹz0) · Σ(i=1..n) [(Iz,i / Es,i)·zi]  (Eq. 5-7)\n\nwhere:\nC1 = coefficient to correct for the effects of embedment,\nC1 = coefficient to correct for the effects of time, [As printed; Equation 5-9 gives this time correction as C2.]\nq0 = applied foundation pressure,\nσʹz0 = the existing vertical effective stress at the bottom of the foundation,\nIz,i = the average strain influence factor for the layer,\nEs,i = the layer modulus, and\nzi = the layer thickness.\n\nThe correction for foundation embedment is found from:\n\nC1 = 1 – 0.5·(σʹz0 / (q0 – σʹz0)) ≥ 0.5  (Eq. 5-8)\n\nThe correction for time (t) in years after initial loading is:\n\nC2 = 1 + 0.2·log(t / 0.1yr)  (Eq. 5-9)",
       "key_points": [
         "The strain influence factor Iz peaks at depth then decreases to zero at 2B (square) or 4B (strip) below the foundation.",
         "CPT qc is multiplied by 2.5 (axisymmetric, L=B) or 3.5 (plane strain, L/B>10) to obtain layer modulus Es.",
         "Table 5-3 provides direct SPT N60-to-Es correlations combining the SPT-CPT and qc-Es relationships.",
-        "Total settlement is computed by Eq. 5-7, summing (Iz/Es)·Δz over all layers, scaled by C1 and C2.",
+        "Total settlement is computed by Eq. 5-7, summing (Iz,i/Es,i)·zi over all n layers, scaled by C1 and C2.",
         "C1 (Eq. 5-8) corrects for foundation embedment; minimum value is 0.5.",
         "C2 (Eq. 5-9) corrects for time-dependent creep; increases logarithmically with years after loading."
       ],
       "equations": [
         {
           "id": "Eq. 5-7",
-          "description": "Schmertmann settlement equation: s = C1·C2·(q0–σʹz0)·Σ[(Iz,i/Es,i)·Δzi], summing strain influence factor over n layers with embedment and time corrections.",
+          "description": "Schmertmann settlement equation: s = C1·C2·(q0–σʹz0)·Σ(i=1..n)[(Iz,i/Es,i)·zi], zi the layer thickness,, summing strain influence factor over n layers with embedment and time corrections.",
           "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_settlement"
         },
         {
@@ -431,13 +431,7 @@
         "Both creep factors share the same mathematical form; larger applied loads result in smaller Ct because creep is a smaller proportion of total settlement.",
         "Total settlement at time t equals the short-term settlement multiplied by Ct."
       ],
-      "equations": [
-        {
-          "id": "Eq. 5-9",
-          "description": "Time correction (creep) factor for Schmertmann Method: C2 = 1 + 0.2·log(t/0.1yr), where t is time in years after initial loading. Also referenced in Section 5-4.2 as applicable to other methods.",
-          "implemented_in": "geotech_references.dm7_1.chapter5.schmertmann_time_correction"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 5-9"
       ],
@@ -728,13 +722,7 @@
         "Field-derived cv values typically capture effects missed in lab tests (3D drainage, natural fabric, sample disturbance).",
         "Figure 5-22 provides a worked example comparing lab and field cv determination."
       ],
-      "equations": [
-        {
-          "id": "Eq. 5-15",
-          "description": "Time factor for vertical drainage: Tv = cv·t / Hdr²; used to back-calculate cv from field pore pressure dissipation data.",
-          "implemented_in": "geotech_references.dm7_1.chapter5.time_factor_vertical"
-        }
-      ],
+      "equations": [],
       "figures": [
         "Figure 5-17 Degree of Compression and Excess Pore Pressure (Contours Indicate the Time Factor)",
         "Figure 5-22 Determination of cv from Lab and Field Data"
@@ -796,7 +784,7 @@
         },
         {
           "id": "Eq. 5-19",
-          "description": "(force-injected from source text)",
+          "description": "Mesri (1973) approximation for clays, silts, and organic soils: Cεα ≈ 10⁻⁴ · wn, where wn is the natural water content in percent. (The equation label is printed as (5-5-19).)",
           "implemented_in": "geotech_references.dm7_1.chapter5.modified_secondary_compression_index_from_wn"
         }
       ],
@@ -807,6 +795,21 @@
         "Table 5-6"
       ],
       "applicability": "Applies when estimating secondary compression (creep) settlement in fine-grained soils (clays, silts, organic soils, peat) after the end of primary consolidation."
+    },
+    {
+      "section_id": "5-5.5",
+      "title": "Organic Soils and Peat",
+      "summary": "States that settlement of organic soils and peat can be calculated with the procedures for inorganic fine-grained soils; primary consolidation tends to occur more rapidly because of their relatively high hydraulic conductivity, and large secondary compression contributes a significant portion of the total settlement.",
+      "body": "Settlement of organic soils and peat can be calculated using the procedures for inorganic fine-grained soils. Primary consolidation tends to occur more rapidly in these soils due to their relatively high hydraulic conductivity. Large secondary compression is typically measured and contributes a significant portion of the total settlement.",
+      "key_points": [
+        "Settlement of organic soils and peat can be calculated using the procedures for inorganic fine-grained soils.",
+        "Primary consolidation tends to occur more rapidly in these soils due to their relatively high hydraulic conductivity.",
+        "Large secondary compression is typically measured and contributes a significant portion of the total settlement."
+      ],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Applies when estimating the settlement of organic soils and peat."
     },
     {
       "section_id": "5-6",
@@ -970,7 +973,7 @@
       "section_id": "5-7.3",
       "title": "Preconsolidation by Surcharge",
       "summary": "Explains use of surcharge loading to induce primary consolidation and secondary compression before construction, with governing equations (Eq. 5-20 and 5-21) for the required degree of consolidation under the surcharge. Covers limitations including time, cost, and potential shear failure at surcharge edges. References Figures 5-27 and 5-28 for graphical solutions and worked examples.",
-      "body": "A surcharge causes some or all of the consolidation to occur prior to construction. This method works well for fill beneath paved areas, for large floor loadings, and for structures with relatively light column loads. For heavier structures, improvement by surcharging may not be sufficient to provide adequate bearing resistance. In this case, a portion of the surficial layer of the compressible soil may need to be replaced with a more rigid compacted fill or reinforced fill.\n\nA portion of the predicted consolidation and secondary compression can be removed by surcharging as illustrated in Figure 5-27. The calculations in this figure assume that the time rate of consolidation is the same under both the surcharge load and the final load. This should be approximately true provided the coefficient of consolidation is not significantly different under the two loading conditions. In order to eliminate the settlement due to primary consolidation under the final load, the degree of consolidation required under the surcharge (U+fs) is:\n\n(Eq. 5-20)\n\nwhere: qf = final applied load, qs = additional surcharge load, and σ′z0 = initial vertical effective stress at midpoint of the consolidating layer.\n\nIf some amount of secondary compression must also be removed by surcharging, the required degree of consolidation becomes:\n\n(Eq. 5-21)\n\nwhere: qf = final applied load, qs = additional surcharge load, σ′z0 = initial vertical effective stress at midpoint of the consolidating layer, Cα/Cc = ratio of secondary to primary compression indices, tp = time required for primary consolidation, and t = time after loading for which secondary compression is considered.\n\nAn example of the calculations for the surcharge approach is provided in Figure 5-28. The major limitations of the surcharge method are time and cost. The time required for consolidation to occur may not fit within the construction schedule. Use of vertical drains as described in the following section can alleviate this difficulty. In soft soils, shear failure can be induced at the edge of the surcharge. This should be considered using slope stability methods (Chapter 7) or bearing capacity theory (DM 7.2).",
+      "body": "A surcharge causes some or all of the consolidation to occur prior to construction. This method works well for fill beneath paved areas, for large floor loadings, and for structures with relatively light column loads. For heavier structures, improvement by surcharging may not be sufficient to provide adequate bearing resistance. In this case, a portion of the surficial layer of the compressible soil may need to be replaced with a more rigid compacted fill or reinforced fill.\n\nA portion of the predicted consolidation and secondary compression can be removed by surcharging as illustrated in Figure 5-27. The calculations in this figure assume that the time rate of consolidation is the same under both the surcharge load and the final load. This should be approximately true provided the coefficient of consolidation is not significantly different under the two loading conditions. In order to eliminate the settlement due to primary consolidation under the final load, the degree of consolidation required under the surcharge (Ūf+s) is:\n\nŪf+s = log[1 + qf/σ′z0] / log[1 + (qf/σ′z0)·(1 + qs/qf)]   (Eq. 5-20)\n\nwhere: qf = final applied load, qs = additional surcharge load, and σ′z0 = initial vertical effective stress at midpoint of the consolidating layer.\n\nIf some amount of secondary compression must also be removed by surcharging, the required degree of consolidation becomes:\n\nŪf+s = [log(1 + qf/σ′z0) + (Cα/Cc)·log(t/tp)] / log[1 + (qf/σ′z0)·(1 + qs/qf)]   (Eq. 5-21)\n\nwhere: qf = final applied load, qs = additional surcharge load, σ′z0 = initial vertical effective stress at midpoint of the consolidating layer, Cα/Cc = ratio of secondary to primary compression indices, tp = time required for primary consolidation, and t = time after loading for which secondary compression is considered.\n\nAn example of the calculations for the surcharge approach is provided in Figure 5-28. The major limitations of the surcharge method are time and cost. The time required for consolidation to occur may not fit within the construction schedule. Use of vertical drains as described in the following section can alleviate this difficulty. In soft soils, shear failure can be induced at the edge of the surcharge. This should be considered using slope stability methods (Chapter 7) or bearing capacity theory (DM 7.2).",
       "key_points": [
         "Surcharge loading induces primary consolidation and secondary compression before construction, reducing post-construction settlement.",
         "Eq. 5-20 gives required degree of consolidation under surcharge to eliminate primary consolidation settlement under the final load.",
@@ -983,12 +986,12 @@
       "equations": [
         {
           "id": "Eq. 5-20",
-          "description": "Required degree of consolidation under surcharge (U+fs) to eliminate primary consolidation settlement under the final load, as a function of final load (qf), additional surcharge (qs), and initial vertical effective stress (σ′z0).",
+          "description": "Degree of consolidation required under the surcharge to eliminate the settlement due to primary consolidation under the final load: Ūf+s = log[1 + qf/σ′z0] / log[1 + (qf/σ′z0)·(1 + qs/qf)], where qf is the final applied load, qs the additional surcharge load, and σ′z0 the initial vertical effective stress at the midpoint of the consolidating layer.",
           "implemented_in": "geotech_references.dm7_1.chapter5.surcharge_degree_of_consolidation"
         },
         {
           "id": "Eq. 5-21",
-          "description": "Required degree of consolidation under surcharge when secondary compression must also be removed, incorporating the ratio of secondary to primary compression indices (Cα/Cc), time for primary consolidation (tp), and time after loading (t).",
+          "description": "Degree of consolidation required under the surcharge when some secondary compression must also be removed: Ūf+s = [log(1 + qf/σ′z0) + (Cα/Cc)·log(t/tp)] / log[1 + (qf/σ′z0)·(1 + qs/qf)], where Cα/Cc is the ratio of secondary to primary compression indices, tp the time required for primary consolidation, and t the time after loading for which secondary compression is considered.",
           "implemented_in": "geotech_references.dm7_1.chapter5.surcharge_degree_of_consolidation_with_secondary"
         }
       ],
@@ -1003,7 +1006,7 @@
       "section_id": "5-7.4",
       "title": "Vertical Drains",
       "summary": "Details the theory and design of vertical drains (especially PVDs) to accelerate consolidation by shortening drainage paths and exploiting horizontal hydraulic conductivity. Presents equations for radial time factor (Eq. 5-22), drain spacing factor (Eq. 5-23), equivalent PVD drain diameter (Eq. 5-24), smear factor (Eq. 5-25), and well resistance factor (Eq. 5-26), with references to design charts in Figures 5-29 through 5-32.",
-      "body": "Vertical drains are constructed or inserted vertically through compressible soil layers. The drains intercept horizontal water flow. The water is then transmitted to a drainage layer at the surface and/or to underlying coarse-grained soil, depending on the drainage conditions. The drains are typically installed in triangular or square patterns as shown in Figure 5-29 with spacing ranging from 3 to 6.5 feet. Drains typically shorten the maximum drainage path to 8 feet or less. While vertical drains were constructed mostly of sand prior to the 1980s, current practice is to use drains comprised of a plastic core encased in geotextile fabric, typically referred to as prefabricated vertical drains (PVD). For detailed information on PVD materials and drain construction practices, see FHWA (2017).\n\nIn addition to shortening the drainage path, vertical drains take advantage of the higher hydraulic conductivity and coefficient of consolidation often found in horizontal direction in many soils. While the vertical coefficient of consolidation can be measured in laboratory tests or estimated based on index tests (see Chapters 3 and 8), the horizontal coefficient of consolidation (ch) is rarely measured directly. More often, ch is assumed to be about 1.5 to 4 times higher than cv, depending on the amount of horizontal layering present. Higher ratios of ch to cv are encountered when layers of silt and sand are present. Asaoka (1978) presents a method for determining ch from field measurements on a test fill.\n\nMany analytical and numerical methods have been proposed for radial drainage theory, most based on Barron (1948). The differences in the methods tend to have less effect on predictions of consolidation rate than the uncertainty and variability in ch. Using the calculation method presented by FHWA (2017), the time factor (Tr) for a desired degree of radial consolidation (Ur) is found by:\n\n(Eq. 5-22)\n\nwhere: Fn = factor related to drain spacing, Fs = factor related to soil disturbance (smear), and Fr = factor related to well resistance in the drain.\n\nIf smear and well resistance are ignored, Fs and Fr are set equal to zero.\n\nFigure 5-29 illustrates the relationship between the drain configuration and the effective drainage diameter, dc. The drain spacing is often expressed in terms of the ratio (n) between the drainage diameter and the diameter of the well, dw. The drainage factor (Fn) is equal to:\n\nFn = [n²/(n² − 1)]·ln(n) − (3n² − 1)/(4n²) ≈ ln(n) − 0.75  (Eq. 5-23)\n\nwhere: n = ratio of dc to dw. The error in the approximation is less than 10% for n greater than 4 and less than 1% for n greater than 12.\n\nMost PVDs have a rectangular cross section while the solutions to radial consolidation problem assume a circular drain. Hansbo (1979) found that the equivalent drain diameter can be approximated as:\n\n(Eq. 5-24)\n\nwhere: a and b = PVD dimensions. Values of dw for modern PVDs range from 1.5 to 5.5 inches. A diameter of 2 inches is commonly used, which results in n values in the range of 20 to 50 for typical drain spacing.\n\nGiven the uncertainties with the measurement or estimation of soil properties, the effects of soil disturbance or smear around the drains and drain resistance are often ignored (FHWA 2017). Smear tends to be important mostly for drains in high plasticity clays or sensitive soils, or where ch has been directly and accurately measured. In order to account for smear, the soil disturbance factor (Fs) can be calculated as:\n\n(Eq. 5-25)\n\nwhere: kh = hydraulic conductivity of the soil layer, ks = hydraulic conductivity of the disturbed zone, and s = ratio of the diameter of the disturbed zone to the diameter of the drain.\n\nResistance to water flow within the drain can also decrease the effectiveness of vertical drains. If desired, this effect can be estimated by:\n\nFr = π·z·(2Lm − z)·kh/qw  (Eq. 5-26)\n\nwhere: z = depth along the drain, Lm = maximum distance water must flow through the drain, and qw = discharge capacity of the drain.",
+      "body": "Vertical drains are constructed or inserted vertically through compressible soil layers. The drains intercept horizontal water flow. The water is then transmitted to a drainage layer at the surface and/or to underlying coarse-grained soil, depending on the drainage conditions. The drains are typically installed in triangular or square patterns as shown in Figure 5-29 with spacing ranging from 3 to 6.5 feet. Drains typically shorten the maximum drainage path to 8 feet or less. While vertical drains were constructed mostly of sand prior to the 1980s, current practice is to use drains comprised of a plastic core encased in geotextile fabric, typically referred to as prefabricated vertical drains (PVD). For detailed information on PVD materials and drain construction practices, see FHWA (2017).\n\nIn addition to shortening the drainage path, vertical drains take advantage of the higher hydraulic conductivity and coefficient of consolidation often found in horizontal direction in many soils. While the vertical coefficient of consolidation can be measured in laboratory tests or estimated based on index tests (see Chapters 3 and 8), the horizontal coefficient of consolidation (ch) is rarely measured directly. More often, ch is assumed to be about 1.5 to 4 times higher than cv, depending on the amount of horizontal layering present. Higher ratios of ch to cv are encountered when layers of silt and sand are present. Asaoka (1978) presents a method for determining ch from field measurements on a test fill.\n\nMany analytical and numerical methods have been proposed for radial drainage theory, most based on Barron (1948). The differences in the methods tend to have less effect on predictions of consolidation rate than the uncertainty and variability in ch. Using the calculation method presented by FHWA (2017), the time factor (Tr) for a desired degree of radial consolidation (Ūr) is found by:\n\nTr = (1/8)·(Fn + Fs + Fr)·ln[1 / (1 − Ūr)]  (Eq. 5-22)\n\nwhere: Fn = factor related to drain spacing, Fs = factor related to soil disturbance (smear), and Fr = factor related to well resistance in the drain.\n\nIf smear and well resistance are ignored, Fs and Fr are set equal to zero.\n\nFigure 5-29 illustrates the relationship between the drain configuration and the effective drainage diameter, dc. The drain spacing is often expressed in terms of the ratio (n) between the drainage diameter and the diameter of the well, dw. The drainage factor (Fn) is equal to:\n\nFn = [n²/(n² − 1)]·ln(n) − (3n² − 1)/(4n²) ≈ ln(n) − 0.75  (Eq. 5-23)\n\nwhere: n = ratio of dc to dw. The error in the approximation is less than 10% for n greater than 4 and less than 1% for n greater than 12.\n\nMost PVDs have a rectangular cross section while the solutions to radial consolidation problem assume a circular drain. Hansbo (1979) found that the equivalent drain diameter can be approximated as:\n\ndw = 2(a + b) / π  (Eq. 5-24)\n\nwhere: a and b = PVD dimensions. Values of dw for modern PVDs range from 1.5 to 5.5 inches. A diameter of 2 inches is commonly used, which results in n values in the range of 20 to 50 for typical drain spacing.\n\nGiven the uncertainties with the measurement or estimation of soil properties, the effects of soil disturbance or smear around the drains and drain resistance are often ignored (FHWA 2017). Smear tends to be important mostly for drains in high plasticity clays or sensitive soils, or where ch has been directly and accurately measured. In order to account for smear, the soil disturbance factor (Fs) can be calculated as:\n\nFs ≈ (kh / ks)·ln(s)  (Eq. 5-25)\n\nwhere: kh = hydraulic conductivity of the soil layer, ks = hydraulic conductivity of the disturbed zone, and s = ratio of the diameter of the disturbed zone to the diameter of the drain.\n\nResistance to water flow within the drain can also decrease the effectiveness of vertical drains. If desired, this effect can be estimated by:\n\nFr = π·z·(2Lm − z)·kh/qw  (Eq. 5-26)\n\nwhere: z = depth along the drain, Lm = maximum distance water must flow through the drain, and qw = discharge capacity of the drain.",
       "key_points": [
         "PVDs (plastic core with geotextile fabric) are the current standard, replacing sand drains; typical spacing is 3–6.5 ft, reducing max drainage path to ≤8 ft.",
         "ch is typically assumed 1.5–4× cv; higher ratios occur when silt/sand interlayers are present.",
@@ -1017,7 +1020,7 @@
       "equations": [
         {
           "id": "Eq. 5-22",
-          "description": "Radial time factor Tr for a desired degree of radial consolidation Ur, incorporating drain spacing factor Fn, smear factor Fs, and well resistance factor Fr.",
+          "description": "Time factor for a desired degree of radial consolidation Ūr (FHWA 2017): Tr = (1/8)·(Fn + Fs + Fr)·ln[1 / (1 − Ūr)], where Fn is the factor related to drain spacing, Fs the factor related to soil disturbance (smear), and Fr the factor related to well resistance in the drain.",
           "implemented_in": "geotech_references.dm7_1.chapter5.figure_5_30_Tr"
         },
         {
@@ -1032,7 +1035,7 @@
         },
         {
           "id": "Eq. 5-25",
-          "description": "Soil disturbance (smear) factor Fs, approximated as ln(s) × (kh/ks), where s is the ratio of disturbed zone diameter to drain diameter and kh/ks is the hydraulic conductivity ratio.",
+          "description": "Soil disturbance (smear) factor: Fs ≈ (kh / ks)·ln(s), where kh is the hydraulic conductivity of the soil layer, ks the hydraulic conductivity of the disturbed zone, and s the ratio of the diameter of the disturbed zone to the diameter of the drain.",
           "implemented_in": "geotech_references.dm7_1.chapter5.smear_factor"
         },
         {
@@ -1055,7 +1058,7 @@
       "section_id": "5-7.4.1",
       "title": "Combination of Vertical and Horizontal Drainage Effects",
       "summary": "Presents the Carrillo (1942) method for combining radial (horizontal) and vertical drainage contributions to compute the total combined degree of consolidation (Uc). The governing equation (Eq. 5-27) shows that Uc is not simply additive but uses a multiplicative complement of the individual degrees of consolidation.",
-      "body": "Prediction of the degree of consolidation from vertical drainage can be combined with the effects of horizontal drainage to vertical drains using the method proposed by Carrillo (1942). The combined degree of consolidation (Uc) in percent is:\n\n(Eq. 5-27)\n\nwhere: Ur = degree of consolidation for radial drainage, and Uz = degree of consolidation for vertical drainage.",
+      "body": "Prediction of the degree of consolidation from vertical drainage can be combined with the effects of horizontal drainage to vertical drains using the method proposed by Carrillo (1942). The combined degree of consolidation (Ūc) in percent is:\n\nŪc = 100 − (100 − Ūr)(100 − Ūz) / 100  (Eq. 5-27)\n\nwhere: Ūr = degree of consolidation for radial drainage, and Ūz = degree of consolidation for vertical drainage.",
       "key_points": [
         "Carrillo (1942) method combines radial and vertical drainage effects without simple addition.",
         "Eq. 5-27: Uc = 100 − [(100 − Ur)(100 − Uz)/100], expressed as percent.",
@@ -1065,7 +1068,7 @@
       "equations": [
         {
           "id": "Eq. 5-27",
-          "description": "Combined degree of consolidation Uc (%) accounting for both radial drainage (Ur) and vertical drainage (Uz) using the Carrillo (1942) method.",
+          "description": "Combined degree of consolidation in percent (Carrillo 1942): Ūc = 100 − (100 − Ūr)(100 − Ūz) / 100, where Ūr is the degree of consolidation for radial drainage and Ūz the degree of consolidation for vertical drainage.",
           "implemented_in": "geotech_references.dm7_1.chapter5.combined_degree_of_consolidation"
         }
       ],
@@ -1077,7 +1080,7 @@
       "section_id": "5-7.4.2",
       "title": "Vertical Drain Design",
       "summary": "Describes the design procedure for selecting drain type, spacing, and construction procedures based on available time, target consolidation degree, and soil properties. Uses Eq. 5-22 or Figures 5-30/5-31 to determine radial time factor Tr, then Eq. 5-28 to compute required effective drain diameter dc. Figure 5-32 provides a direct design chart for drain spacing selection.",
-      "body": "Vertical drain design involves the selection of the appropriate drain type, drain spacing, and construction procedures based on the time available for consolidation, design degree of consolidation for that time period, and soil properties. The appropriate time factor for radial drainage (Tr) can be determined from Equation 5-22 or from Figure 5-30 or Figure 5-31. Figure 5-30 plots the relationship between Ur and Tr for a range of drain spacing for three smear conditions. Figure 5-31 provides solutions for gradual loading and radial drainage. From Tr and the time available for consolidation (t) the required effective drain diameter (dc) can be calculated as:\n\n(Eq. 5-28)\n\nwhere: ch = coefficient of consolidation in the horizontal direction.\n\nAn alternative approach is provided in the design chart in Figure 5-32. This chart allows the spacing to be selected directly based on the other properties and variables. Other drain design considerations include stability against foundation failure and provision of adequate flow in the surface drainage blanket. An example of vertical drain design is provided in Figure 5-33.",
+      "body": "Vertical drain design involves the selection of the appropriate drain type, drain spacing, and construction procedures based on the time available for consolidation, design degree of consolidation for that time period, and soil properties. The appropriate time factor for radial drainage (Tr) can be determined from Equation 5-22 or from Figure 5-30 or Figure 5-31. Figure 5-30 plots the relationship between Ur and Tr for a range of drain spacing for three smear conditions. Figure 5-31 provides solutions for gradual loading and radial drainage. From Tr and the time available for consolidation (t) the required effective drain diameter (dc) can be calculated as:\n\ndc = √(ch · t / Tr)  (Eq. 5-28)\n\nwhere: ch = coefficient of consolidation in the horizontal direction.\n\nAn alternative approach is provided in the design chart in Figure 5-32. This chart allows the spacing to be selected directly based on the other properties and variables. Other drain design considerations include stability against foundation failure and provision of adequate flow in the surface drainage blanket. An example of vertical drain design is provided in Figure 5-33.",
       "key_points": [
         "Design inputs: time available for consolidation, target degree of consolidation, and horizontal coefficient of consolidation ch.",
         "Tr is determined from Eq. 5-22 or graphically from Figures 5-30 (smear conditions) or 5-31 (gradual loading).",
@@ -1087,11 +1090,6 @@
         "Figure 5-33 provides a worked design example."
       ],
       "equations": [
-        {
-          "id": "Eq. 5-22",
-          "description": "Radial time factor Tr used in vertical drain design to determine the required time factor for a target degree of radial consolidation (referenced from Section 5-7.4).",
-          "implemented_in": "geotech_references.dm7_1.chapter5.figure_5_30_Tr"
-        },
         {
           "id": "Eq. 5-28",
           "description": "Required effective drain diameter dc calculated from the radial time factor Tr, available consolidation time t, and horizontal coefficient of consolidation ch: dc = √(ch × t / Tr).",
