@@ -23,6 +23,8 @@ table_4_6_bearing_capacity_factors  Table 4-6  Bearing capacity factors (Nc, Nq,
 table_4_7_internal_resistance       Table 4-7  Internal stability resistance factors
 """
 
+from decimal import ROUND_HALF_UP, Decimal
+
 from .._interpolation import _linterp
 
 
@@ -461,6 +463,13 @@ def table_3_6_pullout_parameters(reinforcement: str = "") -> list:
 # Table 3-7: Minimum Galvanization Thickness
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 3-7, p. 3-26 (after AASHTO M 111 and ASTM
+# A123): Strip "< ¼ in." 3.4 mils (85 μm), Strip "> ¼ in." 3.9 mils
+# (100 μm), "Wire*" all diameters 3.4 mils (85 μm), with the footnote
+# "* For bar mats fabricated from uncoated steel wire."
+_TABLE_3_7_REF = "FHWA-NHI-10-024, Table 3-7, p. 3-26"
+_TABLE_3_7_WIRE_FOOTNOTE = "* For bar mats fabricated from uncoated steel wire."
+
 _TABLE_3_7 = [
     {
         "component": "Strip reinforcement (thickness < 1/4 in)",
@@ -468,27 +477,41 @@ _TABLE_3_7 = [
         "thickness_um": 85,
     },
     {
-        "component": "Strip reinforcement (thickness >= 1/4 in)",
+        "component": "Strip reinforcement (thickness > 1/4 in)",
         "thickness_mils": 3.9,
         "thickness_um": 100,
+        "print_note": ("Table 3-7 (p. 3-26) prints this row \"> ¼ in.\" and "
+                       "the other \"< ¼ in.\"; a strip exactly ¼ in. thick "
+                       "is in neither, and the library puts it in this row, "
+                       "the thicker coating."),
     },
     {
-        "component": "Wire reinforcement (all sizes)",
+        "component": "Wire reinforcement (all diameters)",
         "thickness_mils": 3.4,
         "thickness_um": 85,
+        "footnote": _TABLE_3_7_WIRE_FOOTNOTE,
     },
 ]
 
 
 def table_3_7_galvanization() -> list:
-    """Return minimum galvanization thickness from GEC-11 Table 3-7.
+    """Minimum galvanization thickness by steel thickness, GEC-11 Table 3-7 (FHWA-NHI-10-024 Vol I, p. 3-26, after AASHTO M 111 and ASTM A123).
+
+    As printed: strip "< ¼ in. (6.4 mm)" 3.4 mils (85 μm), strip "> ¼ in.
+    (6.4 mm)" 3.9 mils (100 μm), and "Wire*", all diameters, 3.4 mils
+    (85 μm), with the footnote "* For bar mats fabricated from uncoated
+    steel wire." (the wire row carries it as ``footnote``). A strip exactly
+    ¼ in. thick is in neither printed strip row; the rows are labelled as
+    printed ("< 1/4 in", "> 1/4 in"), and the library puts a strip exactly
+    ¼ in. thick in the 3.9 mil row and says so (``print_note``).
 
     Returns
     -------
     list of dict
-        Galvanization thickness by component type.
+        component, thickness_mils, thickness_um, reference; footnote on
+        the wire row, print_note on the thicker strip row.
     """
-    return list(_TABLE_3_7)
+    return [dict(r, reference=_TABLE_3_7_REF) for r in _TABLE_3_7]
 
 
 # ============================================================================
@@ -677,45 +700,77 @@ def table_3_11_pet_durability(product: str = "") -> list:
 # Table 4-1: LRFD Load Combinations
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 4-1, p. 4-4 (PDF page 146): where the table
+# prints a dash, the cell is the dash, not 0.0 (the print gives no factor
+# there; the checker of 2026-11-12 found the dashes coded as 0.0).
+_DASH = "–"
+_TABLE_4_1_DASH_NOTE = (
+    "'–' is the cell as printed in Table 4-1 (p. 4-4): the table gives no "
+    "load factor for that load in that limit state. EQ and CT are headed "
+    "'use one of these at a time'.")
+#: Three rows' ``notes`` are the library's words: neither volume prints them
+#: (the independent check of 2026-11-12 searched both); the result says so.
+_LIBRARY_NOTE = (" [the library's description of this limit state; Table 4-1 "
+                 "(p. 4-4) prints no note for this row]")
+
 _TABLE_4_1 = [
     {
         "limit_state": "Strength I",
         "EH_ES_EV": "gamma_p",
         "LL_LS": 1.75,
-        "EQ": 0.0,
-        "CT": 0.0,
-        "notes": "Normal gravity loading",
+        "EQ": _DASH,
+        "CT": _DASH,
+        "notes": "Normal gravity loading" + _LIBRARY_NOTE,
+        "notes_source": "library",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Extreme Event I",
         "EH_ES_EV": "gamma_p",
         "LL_LS": "gamma_EQ",
         "EQ": 1.00,
-        "CT": 0.0,
+        "CT": _DASH,
         "notes": ("gamma_EQ = load factor for live load applied "
                   "simultaneously with seismic loads (Table 4-1 note)"),
+        "notes_source": "printed",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Extreme Event II",
         "EH_ES_EV": "gamma_p",
         "LL_LS": 0.50,
-        "EQ": 0.0,
+        "EQ": _DASH,
         "CT": 1.00,
-        "notes": "Vehicle collision on traffic barrier",
+        "notes": "Vehicle collision on traffic barrier" + _LIBRARY_NOTE,
+        "notes_source": "library",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Service I",
         "EH_ES_EV": 1.00,
         "LL_LS": 1.00,
-        "EQ": 0.0,
-        "CT": 0.0,
-        "notes": "Settlement and lateral deformation check",
+        "EQ": _DASH,
+        "CT": _DASH,
+        "notes": "Settlement and lateral deformation check" + _LIBRARY_NOTE,
+        "notes_source": "library",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
 ]
 
 
 def table_4_1_load_combinations(limit_state: str = "") -> list:
-    """Look up LRFD load combinations from GEC-11 Table 4-1.
+    """Look up LRFD load combinations from GEC-11 Table 4-1 (FHWA-NHI-10-024 Vol I, p. 4-4).
+
+    The cells are as printed: numbers; ``"gamma_p"`` and ``"gamma_EQ"`` for
+    the printed gamma-p (load factor for permanent loading, Table 4-2) and
+    gamma-EQ (load factor for live load applied simultaneously with seismic
+    loads); and ``"–"`` where the table prints a dash, since it gives no
+    factor for that load in that limit state (it is not turned into 0.0).
+    EQ and CT are headed "use one of these at a time". ``notes`` is the
+    library's description of each limit state, except Extreme Event I's,
+    which is the printed note on gamma-EQ; ``notes_source`` says which
+    ("library" or "printed"), and each library description says in its
+    own words that Table 4-1 prints no note for that row.
 
     Parameters
     ----------
@@ -725,7 +780,8 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
     Returns
     -------
     list of dict
-        Load factor combinations by limit state.
+        Load factor combinations by limit state, each with ``print_note``
+        and ``notes_source``.
     """
     if not limit_state:
         return list(_TABLE_4_1)
@@ -937,35 +993,89 @@ _TABLE_4_6_PHI = [
     41, 42, 43, 44, 45,
 ]
 
+# The cells as printed on p. 4-29 (one decimal; Nc = 5.14 at phi = 0), except
+# Nc at phi = 39: the page prints 37.9 and the library returns 67.9 (the
+# owner's rule: where the print looks wrong the library decides and states
+# both forms; the basis is in _TABLE_4_6_NC_NOTE). The manual prints no
+# equations for the factors.
 _TABLE_4_6_NC = [
-    5.14, 5.38, 5.63, 5.90, 6.19, 6.49, 6.81, 7.16, 7.53, 7.92, 8.35,
-    8.80, 9.28, 9.81, 10.37, 10.98, 11.63, 12.34, 13.10, 13.93, 14.83,
-    15.82, 16.88, 18.05, 19.32, 20.72, 22.25, 23.94, 25.80, 27.86, 30.14,
-    32.67, 35.49, 38.64, 42.16, 46.12, 50.59, 55.63, 61.35, 67.87, 75.31,
-    83.86, 93.71, 105.11, 118.37, 133.88,
+    5.14, 5.4, 5.6, 5.9, 6.2, 6.5, 6.8, 7.2, 7.5, 7.9, 8.4,
+    8.8, 9.3, 9.8, 10.4, 11.0, 11.6, 12.3, 13.1, 13.9, 14.8,
+    15.8, 16.9, 18.1, 19.3, 20.7, 22.3, 23.9, 25.8, 27.9, 30.1,
+    32.7, 35.5, 38.6, 42.2, 46.1, 50.6, 55.6, 61.4, 67.9, 75.3,
+    83.9, 93.7, 105.1, 118.4, 133.9,
 ]
 
+_TABLE_4_6_NC_NOTE = (
+    "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be right "
+    "between 61.4 at 38 and 75.3 at 40. This function returns 67.9. That "
+    "value is NOT printed in the manual. It is what the relation "
+    "Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2), "
+    "gives at 39 (67.87). The manual does not print that relation; it names "
+    "AASHTO (2007) Table 10.6.3.1.2a-1 as the table's source. The relation "
+    "reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc "
+    "cells to the printed decimal; the two that differ (phi 10: 8.345 against "
+    "the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last "
+    "digit, as rounding in steps would give. Straight-line interpolation between "
+    "the printed neighbours would give 68.4"
+)
+
 _TABLE_4_6_NQ = [
-    1.00, 1.09, 1.20, 1.31, 1.43, 1.57, 1.72, 1.88, 2.06, 2.25, 2.47,
-    2.71, 2.97, 3.26, 3.59, 3.94, 4.34, 4.77, 5.26, 5.80, 6.40,
-    7.07, 7.82, 8.66, 9.60, 10.66, 11.85, 13.20, 14.72, 16.44, 18.40,
-    20.63, 23.18, 26.09, 29.44, 33.30, 37.75, 42.92, 48.93, 55.96, 64.20,
-    73.90, 85.38, 99.02, 115.31, 134.88,
+    1.0, 1.1, 1.2, 1.3, 1.4, 1.6, 1.7, 1.9, 2.1, 2.3, 2.5,
+    2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.8, 5.3, 5.8, 6.4,
+    7.1, 7.8, 8.7, 9.6, 10.7, 11.9, 13.2, 14.7, 16.4, 18.4,
+    20.6, 23.2, 26.1, 29.4, 33.3, 37.8, 42.9, 48.9, 56.0, 64.2,
+    73.9, 85.4, 99.0, 115.3, 134.9,
 ]
 
 _TABLE_4_6_NGAMMA = [
-    0.00, 0.07, 0.15, 0.24, 0.34, 0.45, 0.57, 0.71, 0.86, 1.03, 1.22,
-    1.44, 1.69, 1.97, 2.29, 2.65, 3.06, 3.53, 4.07, 4.68, 5.39,
-    6.20, 7.13, 8.20, 9.44, 10.88, 12.54, 14.47, 16.72, 19.34, 22.40,
-    25.99, 30.22, 35.19, 41.06, 48.03, 56.31, 66.19, 78.03, 92.25, 109.41,
-    130.22, 155.55, 186.54, 224.64, 271.76,
+    0.0, 0.1, 0.2, 0.2, 0.3, 0.5, 0.6, 0.7, 0.9, 1.0, 1.2,
+    1.4, 1.7, 2.0, 2.3, 2.7, 3.1, 3.5, 4.1, 4.7, 5.4,
+    6.2, 7.1, 8.2, 9.4, 10.9, 12.5, 14.5, 16.7, 19.3, 22.4,
+    25.9, 30.2, 35.2, 41.1, 48.0, 56.3, 66.2, 78.0, 92.3, 109.4,
+    130.2, 155.6, 186.5, 224.6, 271.8,
 ]
+
+_TABLE_4_6_NGAMMA_NOTE = (
+    "Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within the run of "
+    "its column (22.4 at 30, 30.2 at 32); this function returns the printed "
+    "25.9, not corrected"
+)
+
+
+def _round_1(x: float) -> float:
+    """Round to one decimal, halves up, as the table is printed."""
+    return float(Decimal(repr(round(x, 9))).quantize(Decimal("0.1"),
+                                                      rounding=ROUND_HALF_UP))
 
 
 def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     """Look up bearing capacity factors from GEC-11 Table 4-6.
 
-    Interpolates for non-integer friction angles.
+    The values are the cells of Table 4-6 as printed on p. 4-29, to one
+    decimal (Nc = 5.14 at phi = 0); the manual prints no equations for the
+    factors. A whole-degree phi returns its row; any other phi is
+    interpolated between rows and rounded to one decimal, like the table.
+
+    Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be right
+    between 61.4 at 38 and 75.3 at 40. This function returns 67.9. That
+    value is NOT printed in the manual. It is what the relation
+    Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2),
+    gives at 39 (67.87). The manual does not print that relation; it names
+    AASHTO (2007) Table 10.6.3.1.2a-1 as the table's source. The relation
+    reproduces all 46 printed Nq cells and 43 of the other 45 printed Nc
+    cells to the printed decimal; the two that differ (phi 10: 8.345 against
+    the printed 8.4; phi 23: 18.049 against 18.1) are 0.1 off in the last
+    digit, as rounding in steps would give. Straight-line interpolation between
+    the printed neighbours would give 68.4. The result carries that note
+    (key ``note``) for the full table, for phi = 39 and for any phi between
+    38 and 40, where the interpolation uses the phi = 39 row.
+
+    Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within the run of
+    its column (22.4 at 30, 30.2 at 32); this function returns the printed
+    25.9, not corrected. The result carries that note for the full table,
+    for phi = 31 and for any phi between 30 and 32. The full table's note
+    gives both.
 
     Parameters
     ----------
@@ -985,23 +1095,33 @@ def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
                     _TABLE_4_6_PHI, _TABLE_4_6_NC, _TABLE_4_6_NQ, _TABLE_4_6_NGAMMA
                 )
             ],
-            "reference": "FHWA-NHI-10-024, Table 4-6",
+            "note": _TABLE_4_6_NGAMMA_NOTE + ". " + _TABLE_4_6_NC_NOTE,
+            "reference": "FHWA-NHI-10-024, Table 4-6, p. 4-29",
         }
 
     if phi_deg < 0 or phi_deg > 45:
         raise ValueError("phi_deg must be between 0 and 45 degrees")
 
-    nc = _linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NC)
-    nq = _linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NQ)
-    ng = _linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NGAMMA)
+    if float(phi_deg).is_integer():
+        i = int(phi_deg)
+        nc, nq, ng = _TABLE_4_6_NC[i], _TABLE_4_6_NQ[i], _TABLE_4_6_NGAMMA[i]
+    else:
+        nc = _round_1(_linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NC))
+        nq = _round_1(_linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NQ))
+        ng = _round_1(_linterp(phi_deg, _TABLE_4_6_PHI, _TABLE_4_6_NGAMMA))
 
-    return {
+    result = {
         "phi_deg": phi_deg,
-        "Nc": round(nc, 2),
-        "Nq": round(nq, 2),
-        "Ngamma": round(ng, 2),
-        "reference": "FHWA-NHI-10-024, Table 4-6",
+        "Nc": nc,
+        "Nq": nq,
+        "Ngamma": ng,
+        "reference": "FHWA-NHI-10-024, Table 4-6, p. 4-29",
     }
+    if 30 < phi_deg < 32:
+        result["note"] = _TABLE_4_6_NGAMMA_NOTE
+    elif 38 < phi_deg < 40:
+        result["note"] = _TABLE_4_6_NC_NOTE
+    return result
 
 
 # ============================================================================

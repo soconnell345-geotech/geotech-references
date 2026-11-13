@@ -196,11 +196,12 @@ def test_the_broadest_search_fits(ref):
 # ---------------------------------------------------------------------------
 
 def test_a_missing_number_names_what_is_near_it_in_plain_retrieval():
-    # GEC-12 7.2.1.6 is not printed; GEC-11 4.4 is printed but held only
-    # through its children
+    # GEC-12 7.2.1.6 is not printed; EN 1997-1 2.4.7 is printed but held
+    # only through its clauses (GEC-11 4.4, the case here before, has held
+    # its printed heading since the 2026-11 rebuild from the print)
     for ref, sid, near in (
             ("gec_12", "7.2.1.6", "nearest section above it: 7.2.1 "),
-            ("gec_11", "4.4", "sections numbered under it: 4.4.1 ")):
+            ("eurocode_7_1", "2.4.7", "sections numbered under it: 2.4.7.1 ")):
         with pytest.raises(KeyError) as e:
             _retrieval.retrieve_section(ref, sid)
         msg = str(e.value)

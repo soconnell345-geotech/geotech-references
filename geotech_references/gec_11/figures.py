@@ -38,6 +38,13 @@ _FIG_4_10_TYPES = {
     },
 }
 
+#: The footnote printed under the chart (p. 4-37); its asterisk marks the
+#: Geosynthetics line.
+_FIG_4_10_FOOTNOTE = (
+    "Figure 4-10 (p. 4-37) prints under the chart: \"*Does not apply to "
+    "polymer strip reinforcement\"; the asterisk marks the Geosynthetics line"
+)
+
 _TYPE_ALIASES = {
     "geosynthetic": "geosynthetic",
     "geogrid": "geosynthetic",
@@ -62,6 +69,11 @@ def figure_4_10_kr_ka_ratio(
     relates the lateral earth pressure coefficient at the reinforcement
     level to the active earth pressure coefficient.
 
+    Figure 4-10 (p. 4-37) prints under the chart: "*Does not apply to
+    polymer strip reinforcement"; the asterisk marks the Geosynthetics line.
+    Every result carries that sentence as ``note``, and a reinforcement
+    type naming polymer (e.g. 'polymer_strip') is refused with it.
+
     The figure (FHWA-NHI-10-024 Vol I, p. 4-37, PDF page 179) draws the
     depth axis open below 20 ft (6 m), and the text (p. 4-35) says the
     metallic ratio falls "to a constant value 20 ft (6 m) below" the top
@@ -85,12 +97,18 @@ def figure_4_10_kr_ka_ratio(
     Raises
     ------
     ValueError
-        If depth is negative or reinforcement type is unknown.
+        If depth is negative, the reinforcement type is unknown, or it is
+        a polymer strip (the figure's footnote).
     """
     if depth_m < 0:
         raise ValueError("depth_m must be >= 0")
 
     key = reinforcement_type.lower().strip()
+    if "polymer" in key:
+        raise ValueError(
+            f"{_FIG_4_10_FOOTNOTE}: no Kr/Ka for '{reinforcement_type}' is "
+            "read from this figure."
+        )
     resolved = _TYPE_ALIASES.get(key)
     if resolved is None:
         valid = sorted(set(_TYPE_ALIASES.keys()))
@@ -115,5 +133,6 @@ def figure_4_10_kr_ka_ratio(
         "kr_ka_ratio": round(kr_ka, 3),
         "reinforcement_type": resolved,
         "description": data["description"],
+        "note": _FIG_4_10_FOOTNOTE,
         "reference": "FHWA-NHI-10-024, Figure 4-10",
     }

@@ -321,9 +321,31 @@ class TestTable37:
 
     def test_strip_thick(self):
         results = table_3_7_galvanization()
-        thick = [r for r in results if ">= 1/4" in r["component"]]
+        thick = [r for r in results if "> 1/4" in r["component"]]
         assert len(thick) == 1
         assert thick[0]["thickness_um"] == 100
+        # the label says what p. 3-26 prints ("> ¼ in."); the exact ¼ in.
+        # case is the library's, said in print_note
+        assert thick[0]["component"] == "Strip reinforcement (thickness > 1/4 in)"
+        assert not any(">=" in r["component"] for r in results)
+        assert '"> ¼ in."' in thick[0]["print_note"]
+        assert "exactly ¼ in. thick is in neither" in thick[0]["print_note"]
+
+    def test_wire_row_carries_its_footnote(self):
+        """p. 3-26: "Wire*" (all diameters) with "* For bar mats fabricated
+        from uncoated steel wire.", the footnote as typed in the chapter
+        text."""
+        import json
+        from pathlib import Path
+        wire = [r for r in table_3_7_galvanization() if "Wire" in r["component"]]
+        assert len(wire) == 1 and wire[0]["thickness_mils"] == 3.4
+        assert wire[0]["footnote"] == "* For bar mats fabricated from uncoated steel wire."
+        assert all(r["reference"].endswith("Table 3-7, p. 3-26")
+                   for r in table_3_7_galvanization())
+        ch3 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter03.json"
+        body = ch3.read_text(encoding="utf-8")
+        assert ("Wire* | All diameters | 3.4 mils (85 μm)\\n" + wire[0]["footnote"]) in body
 
 
 # ============================================================================
@@ -474,6 +496,40 @@ class TestTable41:
         assert "simultaneously with seismic loads" in row["notes"]
         with pytest.raises(ValueError, match="Service I"):
             table_4_1_load_combinations("strength ii")
+
+    def test_cells_as_printed_dashes_kept(self):
+        """Every cell agrees with Table 4-1 as typed in from p. 4-4 (the
+        chapter text): the printed dashes are dashes, not 0.0."""
+        import json
+        from pathlib import Path
+        ch4 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter04.json"
+        body = "\n".join(s["body"] for s in json.loads(
+            ch4.read_text(encoding="utf-8"))["sections"])
+        typed = body.split("[Table 4-1, typed in from p. 4-4, row by row:]\n")[1]
+        rows = [ln.split(" | ") for ln in typed.split("\n")[1:5]]
+        sym = {"γp": "gamma_p", "γEQ": "gamma_EQ", "–": "–"}
+        for printed, row in zip(rows, table_4_1_load_combinations()):
+            assert printed[0] == row["limit_state"].upper()
+            for cell, key in zip(printed[1:], ("EH_ES_EV", "LL_LS", "EQ", "CT")):
+                expect = sym[cell] if cell in sym else float(cell)
+                assert row[key] == expect, (row["limit_state"], key)
+            assert "use one of these at a time" in row["print_note"]
+        assert sum(r[k] == "–" for r in table_4_1_load_combinations()
+                   for k in ("EQ", "CT")) == 6
+
+    def test_unprinted_row_notes_say_they_are_the_librarys(self):
+        """Table 4-1 (p. 4-4) prints a note only on gamma_EQ (Extreme Event
+        I); the other three rows' notes are the library's words, and the
+        result says so, not only the docstring."""
+        rows = {r["limit_state"]: r for r in table_4_1_load_combinations()}
+        assert rows["Extreme Event I"]["notes_source"] == "printed"
+        assert "library" not in rows["Extreme Event I"]["notes"]
+        for ls in ("Strength I", "Extreme Event II", "Service I"):
+            assert rows[ls]["notes_source"] == "library"
+            assert rows[ls]["notes"].endswith(
+                "[the library's description of this limit state; Table 4-1 "
+                "(p. 4-4) prints no note for this row]"), ls
 
 
 # ============================================================================
@@ -630,33 +686,109 @@ class TestTable46:
         assert len(result["table"]) == 46
 
     def test_phi_0(self):
+        """Row 0 as printed on p. 4-29 (Nc to two decimals there)."""
         result = table_4_6_bearing_capacity_factors(0)
-        assert result["Nc"] == pytest.approx(5.14, abs=0.01)
-        assert result["Nq"] == pytest.approx(1.0, abs=0.01)
-        assert result["Ngamma"] == pytest.approx(0.0, abs=0.01)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (5.14, 1.0, 0.0)
 
     def test_phi_30(self):
+        """Row 30 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(30)
-        assert result["Nc"] == pytest.approx(30.14, abs=0.1)
-        assert result["Nq"] == pytest.approx(18.4, abs=0.1)
-        assert result["Ngamma"] == pytest.approx(22.4, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (30.1, 18.4, 22.4)
 
     def test_phi_45(self):
+        """Row 45 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(45)
-        assert result["Nc"] == pytest.approx(133.88, abs=0.5)
-        assert result["Nq"] == pytest.approx(134.88, abs=0.5)
-        assert result["Ngamma"] == pytest.approx(271.76, abs=1.0)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (133.9, 134.9, 271.8)
 
     def test_interpolation(self):
-        """phi=32.5 should interpolate between 32 and 33."""
+        """phi = 32.5 lies between the printed rows 32 (35.5, 23.2, 30.2) and
+        33 (38.6, 26.1, 35.2); the result is rounded to one decimal."""
         result = table_4_6_bearing_capacity_factors(32.5)
-        assert 35.49 < result["Nc"] < 38.64 or result["Nc"] == pytest.approx(37.065, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (37.1, 24.7, 32.7)
+        result = table_4_6_bearing_capacity_factors(38.5)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (64.7, 52.5, 85.2)
+
+    def test_cells_are_the_typed_table(self):
+        """Every cell equals the typed Table 4-6 in the chapter text (p. 4-29)
+        except Nc at phi = 39 (printed 37.9, the library's 67.9)."""
+        import json
+        import pathlib
+        from geotech_references.gec_11 import tables
+        path = pathlib.Path(tables.__file__).parent / "text" / "chapter04.json"
+        sections = json.loads(path.read_text(encoding="utf-8"))["sections"]
+        body = next(s["body"] for s in sections if s["section_id"] == "4.4.6.c")
+        head = "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n"
+        lines = body.split(head, 1)[1].split("\n")[:46]
+        printed = {int(r.split(" | ")[0]): [float(v) for v in r.split(" | ")[1:]]
+                   for r in lines}
+        assert sorted(printed) == list(range(46))
+        differ = []
+        for row in table_4_6_bearing_capacity_factors()["table"]:
+            got = [row["Nc"], row["Nq"], row["Ngamma"]]
+            if got != printed[row["phi_deg"]]:
+                differ.append((row["phi_deg"], got, printed[row["phi_deg"]]))
+        assert differ == [(39, [67.9, 56.0, 92.3], [37.9, 56.0, 92.3])]
 
     def test_out_of_range_raises(self):
         with pytest.raises(ValueError, match="between 0 and 45"):
             table_4_6_bearing_capacity_factors(-5)
         with pytest.raises(ValueError, match="between 0 and 45"):
             table_4_6_bearing_capacity_factors(50)
+
+    def test_phi_39_misprint_note(self):
+        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup returns 67.9 and
+        says, wherever the phi = 39 row is used, that 67.9 is not printed and
+        where it comes from.
+
+        The counts in the note were measured on 2026-11-12 by a script
+        comparing the relation Nq = e^(pi tan phi) tan^2(45 + phi/2),
+        Nc = (Nq - 1) cot(phi) with the printed cells, each rounded half up
+        to the printed decimal: Nq 46 of 46; Nc 43 of 46 (phi 39: 67.867
+        against the printed 37.9; phi 10: 8.345 against 8.4; phi 23: 18.049
+        against 18.1). Midpoint of the printed neighbours 61.4 and 75.3:
+        68.35."""
+        result = table_4_6_bearing_capacity_factors(39)
+        assert result["Nc"] == 67.9
+        note = result["note"]
+        for phrase in (
+            "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be "
+            "right between 61.4 at 38 and 75.3 at 40",
+            "This function returns 67.9",
+            "That value is NOT printed in the manual",
+            "Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2), "
+            "gives at 39 (67.87)",
+            "The manual does not print that relation; it names AASHTO (2007) "
+            "Table 10.6.3.1.2a-1 as the table's source",
+            "reproduces all 46 printed Nq cells and 43 of the other 45 printed "
+            "Nc cells to the printed decimal",
+            "phi 10: 8.345 against the printed 8.4; phi 23: 18.049 against 18.1",
+            "0.1 off in the last digit, as rounding in steps would give",
+            "Straight-line interpolation between the printed neighbours would "
+            "give 68.4",
+        ):
+            assert phrase in note, phrase
+        assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
+        for phi in (30, 38, 40):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
+
+    def test_phi_31_ngamma_note(self):
+        """p. 4-29 prints Ngamma = 25.9 at phi = 31; the lookup returns it
+        uncorrected and says so wherever the phi = 31 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within "
+                "the run of its column (22.4 at 30, 30.2 at 32); this function "
+                "returns the printed 25.9, not corrected")
+        result = table_4_6_bearing_capacity_factors(31)
+        assert result["Ngamma"] == 25.9
+        assert result["note"] == note
+        assert table_4_6_bearing_capacity_factors(30.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(31.5)["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
+        for phi in (30, 32, 35):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
 
     def test_increasing_with_phi(self):
         """All factors should increase with friction angle."""

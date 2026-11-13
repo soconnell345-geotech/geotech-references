@@ -151,14 +151,12 @@ CATALOG_PRINTED = [
     ("gec_12", "D-14", "Nordlund Method static analysis, φstat=0.45", "\U0001d719\U0001d719"),
 ]
 
-#: Characters stored before this review in a reference another branch is
-#: rebuilding: (package, file, JSON path) -> count. GEC-11's catalog caption
-#: of Figure 4-5 holds U+F071 and U+F0B0 (the Symbol font's θ and degree
-#: sign, "wall batters, θ, greater than 100°"); GEC-11 was left to its
-#: rebuild (2026-11-12), and the entry goes when that lands.
-KNOWN_ODD = {
-    ("gec_11", "figures_catalog.json", "figures/38/caption"): 2,
-}
+#: Stored strings allowed to hold such characters: (package, file, JSON path)
+#: -> count. None: the one entry, GEC-11's catalog caption of Figure 4-5
+#: (U+F071 and U+F0B0, the Symbol font's θ and degree sign), went when the
+#: GEC-11 rebuild landed with the caption as printed, "wall batters, θ,
+#: greater than 100°" (2026-11-13).
+KNOWN_ODD = {}
 
 
 def _strings(pkg_dir: Path):

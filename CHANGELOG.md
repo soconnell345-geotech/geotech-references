@@ -84,6 +84,154 @@ rebuilds skip and every other test runs. `tests/test_build_reader.py`
 checks that every script-built manifest records the same version and that
 the workflow pins it. No package code or stored text changed.
 
+**GEC-11 lookups compared with the page after the review merge (REF-80).**
+Of the five a checker found differing from the print, Tables 2-1, 4-4 and
+4-7 were already as printed on the integration branch; the others:
+- `table_4_1_load_combinations` (p. 4-4): the printed dashes are returned
+  as "–", not 0.0 (Strength I EQ and CT, Extreme Event I CT, Extreme
+  Event II EQ, Service I EQ and CT), each row with a `print_note`; a test
+  checks every cell against the table as typed in the chapter text and
+  against Appendix A's Table 3.4.1-1 (p. A-3). The notes of Strength I,
+  Extreme Event II and Service I, which neither volume prints, say in the
+  result that they are the library's description (`notes_source`
+  "library"; Extreme Event I's printed gamma-EQ note is "printed").
+- `table_3_7_galvanization` (p. 3-26): the wire row ("Wire*", all
+  diameters) carries the printed footnote "* For bar mats fabricated from
+  uncoated steel wire."; the strip rows are labelled as printed ("< 1/4
+  in", "> 1/4 in"; the thicker one read ">= 1/4 in") and the thicker one
+  says the library puts an exact ¼ in. there; every row a reference.
+- `table_4_6_bearing_capacity_factors` and the chapter 4 note on Table
+  4-6: the two Nc cells 0.1 off are "as rounding in steps would give" (it
+  said "rounding twice").
+
+**GEC-11 (FHWA-NHI-10-024 / -025, November 2009) chapter text rebuilt from
+the print (build, REF-80).** The 11 chapter files were a condensed
+paraphrase, 183 sections, with content the print does not carry; the
+review of 2026-11-10 found substantive errors in 16 of the 40 sections it
+checked. They are now read off the printed pages by
+`scripts/build_gec11_text.py` (manifest `scripts/manifests/gec_11.json`):
+284 sections at every printed level, each body the print's own words with
+`[p. 4-21]` markers, every numbered equation (3-1 to 7-20b in Vol I; 8-1,
+8-2, 9-1 to 9-9 and 9-14 to 9-17 in Vol II, which prints no 9-10 to 9-13)
+typed in from the rendered pages, the design tables, the example
+specifications' tables (chapter 10) and the inspection checklists
+(chapter 11) typed in row by row; no summaries or key points. A test scans
+every body for a formula that came apart in the text layer (a parted
+prime, a lone number above a formula, unpaired brackets, a sentence
+repeated in table rows). The appendices are in the next paragraph.
+Stored statements that changed in substance, the unsafe ones first:
+
+- 9.2.6, Eq. 9-1 (p. 9-7): the required tension was stored as
+  TS = (FSR - FSU) MD / (FSR D); printed TS = (FSR - FSU) MD / D. The
+  stored value was two thirds of the printed one at FSR = 1.5.
+- 7.1.2 and 7.1.3, Eqs. 7-16 to 7-18 (pp. 7-12, 7-13): the seismic
+  pullout and connection checks were stored without the printed 0.8 on
+  F* and on phi, which overstated the resistance.
+- 3.4.2 (p. 3-16): "alpha default 1.0 is conservative"; printed 0.8 for
+  geogrids and 0.6 for geotextiles. Eq. 3-2 has no Rc term.
+- 3.5.1, Eqs. 3-10 and 3-11a/b (p. 3-22) and Figure 3-5 (p. 3-24): stored
+  Tn = 0.86 b Ec Fy and Tn = Ac Fu; printed Ec = En - ER, Tal = Fy Ac / b
+  and Ptal = Fy Ac (the yield stress, never Fu), phi = 0.65 for steel
+  grids on a rigid facing (stored 0.75).
+- 5.3.3, Eq. 5-4 (p. 5-26): stored O95 <= D85; printed AOS <= B D85, with
+  B from 0.5 to 2 by soil (stricter where B is under 1).
+- Values with no printed source are gone: differential settlement limits
+  1/500 and 1/50 (2.7), "RF = 3.5" (4.5), a deadline and a CDR
+  requirement (4.1.1).
+- 10.9 (p. 10-26): tie strips to ASTM A1101 Grade 50, as printed (stored
+  A1011).
+- `table_4_6_bearing_capacity_factors` (Table 4-6, p. 4-29) held
+  two-decimal values the manual does not print (the page prints the table
+  to one decimal and gives no equations for the factors). It now returns
+  the printed cells, interpolated values rounded to one decimal; at phi =
+  39 it returns 67.9 for the printed Nc = 37.9, a correction the page
+  does not print, and says so.
+- `figure_4_10_kr_ka_ratio` (Figure 4-10, p. 4-37): every result carries
+  the footnote printed under the chart, "*Does not apply to polymer strip
+  reinforcement" (its asterisk marks the Geosynthetics line), and a polymer
+  strip is refused with it. The footnote is in the stored text too.
+- 4.4.5 (p. 4-18) held about 60 words of hidden, overprinted copies of
+  Figure 4-6's lettering ("Sliding" eight times, "(Overturning)" twelve);
+  they are gone, the three printed labels are kept, and Figure 4-6 is
+  listed under 4.4.6, where the page prints it. No other chapter page has
+  hidden text of this kind.
+
+UNSAFE SIDE as printed, with a note: Figure 6-14 Case 2 (p. 6-25, section
+6.5) has + FV where putting LW = 0.3H into the printed Case 1 gives
++ 10 FV over the same denominator, so it divides FV by 10 and understates
+Tmax; Case 3 follows from Case 1. No lookup codes Figure 6-14. The notes
+printed inside Figure 6-14 are typed in.
+
+Stored as printed, each with a note: Eq. 4-26 (p. 4-36) prints its bracket
+without the square that Eqs. 4-2 and 4-3 give with no wall friction and
+beta = 0 (the printed form gives the larger Ka); Figure 9-4 (p. 9-8)
+prints FSR = FSU + (TS + D) / MD where Eq. 9-1 gives TS D; Table 4-6
+prints Nc = 37.9 at phi = 39 (`table_4_6_bearing_capacity_factors`
+returns 67.9 there and says so) and Ngamma = 25.9 at phi = 31 (within
+the run of its column; returned as printed); the alignment tolerances on
+p. 11-26 give 6 mm per m for
+1/2 inch per 10 ft (about 4) and 15 for 2 inches (about 17); Table 5 of
+the example MSE wall specification (p. 10-30) gives AASHTO T 26 for
+gradation where Table 6 gives T 27; Figure 8-10 (p. 8-29) labels 1 kPa =
+0.145 lb/ft2 (0.145 is lb/in2); in Table S3 (p. 10-50) the Class 3
+puncture cell repeats the Class 3 tear cell's 40 lb (180 N). Section ids: none removed; 101 added,
+the printed subsections the condensed files left out (2.1.1, 3.2.1,
+4.4.8.a, 8.7.1, 10.4.1, 10.10.1, ...) and lettered parts of sections too
+long for the reference tools (1.2.a, 3.4.2.a, 4.4.6.c.a, 5.3.3.a, 7.1.1.a,
+9.2.6.a, 10.9.a to 10.9.f, 11.1.2.a, 11.3.5.a; the letters are not
+printed).
+
+**GEC-11 Volume II appendices read off the print (build, REF-85).** The
+library held none of them. `scripts/build_gec11_appendix.py` (the
+`appendices` of the Volume II manifest entry) builds each into its own
+file, `text/appendix_b.json` and so on, the print's words with `[p. B-3]`
+markers and every formula line, table and figure lettering typed in from
+the rendered pages:
+
+- Appendix A (pp. A-1 to A-4; file chapter 12), LRFD load notation, the
+  load combination table (AASHTO 2007 Table 3.4.1-1) and the permanent
+  load factors (Table 3.4.1-2), typed in row by row; they agree with the
+  chapter 4 lookups for Tables 4-1 and 4-2.
+- Appendix B (pp. B-1 to B-18; file chapter 13), pullout resistance
+  factors and MBW unit-geosynthetic connection strength: sections B to
+  B.3, B.4.1 and B.4.2 (the B.4 heading, p. B-12, prints no text before
+  B.4.1, so it has no section; B.4.1 and B.4.2 name it), Eqs. B-1 to B-4
+  (and Eqs. 4-41 and 4-43 printed again), Table
+  B-1, the connection test protocol and the worked example (data table,
+  CRcr and Talc = 444 + 0.044 N, recomputed). Noted as printed: "75
+  years (670,000 hrs)" (p. B-10; about 657,000), and Figure B-5's line
+  through the test data, y = 0.1132x + 1068.2 (tan 6.5 degrees), where
+  the text uses tan 6 degrees (pp. B-16, B-17).
+- Appendix C (p. C-1; file chapter 14), steel soil reinforcements: the
+  strip, welded wire and bar mat tables typed in row by row (wire sizes
+  W3.5 to W20, areas and diameters in both units, Fy/Fu, spacings). Noted
+  as printed: W4.5's 0.239 in. diameter is given as 6.0 mm (6.07).
+- Appendix D (pp. D-1 to D-21; file chapter 15), the creep reduction
+  factor RFCR and Tal (after WSDOT T 925): Eqs. D-1, D.2-1, D.2-2 (the
+  extrapolation uncertainty factor (1.2)^(x-1)), D.3-1 and D.3-2 (the
+  confidence limits for comparing SIM with conventional data), D.4-1,
+  the unnumbered Tal = P95 / (RFID × RFD), the four figures' lettering
+  and the D.6.1 example (Tl = 56.0 kN/m, RFCR = 2.0). Noted as printed:
+  p. D-9's "12 to 15" does not follow from 0.05 to 0.18 decades per
+  degree; the text points to Equations "B.2-3", "B.2-1", "D.2-3" and
+  "D.4" for D.2-2 and D.3-1; on p. D-16 no equation follows "in
+  accordance with the following". A short last line now ends a paragraph
+  that the text layer runs together (Appendix B gains three breaks).
+- Pointers the appendices print to the wrong place carry a note (check
+  of the appendices): "Section 3.3, in particular Table 5" and "Table 5,
+  Chapter 3" (pp. B-1, B-2; the pullout parameters are Table 3-6,
+  Section 3.4.2), "Equation D.1" (p. D-17; Eq. D-1) and "Table 3-9
+  (RFD)" (p. D-20; the polymers' environments table is Table 3-10).
+  Paragraphs run together or into a list's last item are parted as
+  printed (D.1, D.2, D.5, D.7), and the break after "RFD." that p. B-6
+  does not print is gone.
+
+GEC-11 signs the text layer lost (check of the rebuild): the pages print
+± as an underlined plus, read as "+": "60 ± 5" (p. 3-42) and "¾ ±1/8-inch"
+(p. 4-58) now as printed; p. 10-25's "¾+1/8 inch", underlined and shaded
+as a whole, keeps its "+" with a note. Figure 4-5's catalog caption held
+the symbol font's codes where the page prints θ and °; it now holds them.
+
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
 chapter text was being rebuilt from the print; each was read from a 300 dpi
