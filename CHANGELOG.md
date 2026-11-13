@@ -137,15 +137,14 @@ the rendered pages:
   page with its arithmetic recomputed, the tables row by row, and the
   figures' lettering. With the manifest's `"layout": "examples"` a line
   of working keeps its own line; the page footers of the examples are now
-  read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
-  E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
+  read as footers (their page labels, `[p. E1-4]`). All ten examples are
+  built: E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
   E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32), E6 (pp. E6-1
   to E6-9; p. E6-10 is blank), E7 (pp. E7-1 to E7-15; its general,
   external and internal steps each number from 1, as printed), E8 (pp.
-  E8-1 to E8-7) and E9 (pp. E9-1 to E9-9; its SI values in parentheses
-  are those of its own SI working, not conversions, and a note says so).
-  A long example
-  is split into parts never between a caption and its typed-in table or
+  E8-1 to E8-7), E9 (pp. E9-1 to E9-9; its SI values in parentheses are
+  those of its own SI working, not conversions, and a note says so) and
+  E10 (pp. E10-1 to E10-4). A long example is split into parts never between a caption and its typed-in table or
   figure lettering (E1's Table E1-7.5 had its caption in one part and its
   rows in the next) and never right after a step heading (E3, E4 and E5
   had parts ending with "6.1 Sliding Resistance ...", "STEP 9: ..." or
@@ -208,7 +207,10 @@ the rendered pages:
   squeezing check after an undrained strength of 2080 psf; 57 Ft on the
   figure where the text has 56 ft; "Design Example 2". The text layer of
   pp. E9-1 and E9-3 cuts lines at the right margin; those paragraphs are
-  typed from the rendered page.
+  typed from the rendered page. In E10, 24 in. "(800 mm)" for the doubled
+  spacing (800 mm is 31.5 in.; Example E8's 16 in. doubled is 32 in.);
+  γ = 134 lb/ft³ for Example E8's 133; "Example 1" for the F* and α of
+  Example E9; "16,5 ft"; cH with H = 16.4 ft where it is 16.5.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

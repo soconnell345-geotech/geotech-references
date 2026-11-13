@@ -1257,6 +1257,67 @@ def test_appendix_e9_print_slips_noted():
     assert round(14827 * kn_per_kip, -1) == 65950 and round(66.7 * kn_per_kip / 0.3048) == 973
 
 
+def test_appendix_e10_working_as_printed():
+    """Example E10, the facing stability of Example E8's slope with
+    intermediate layers: Eq. 9-8 and its working, pp. E10-1 to E10-4."""
+    secs = _sections("E")
+    assert secs["E.10"]["title"] == "Reinforced Soil Slope Design – Facing Stability Calculation"
+    body = _e_body("E.10")
+    for line in (
+        "(0.06) 16.5 ft = 1 ft",
+        "F.S. = [c′H + (γg − γw) H z cos²β tanφ′ + Fg (cosβ sinβ + sin²β tanφ′)] / "
+        "(γg H z cosβ sinβ)",
+        "T = (0.8 tan 33°) (0.66) [½ (134 lb/ft³) (z)] (2) (z)",
+        "T = 46 z² lb/ft",
+        "@ 2.0 ft – Fg = 6 (184 lb/ft) + 6 (184 lb/ft) = 2208 lb/ft",
+        "F.S. = [717 lb/ft² z + Fg (0.82)] / (1105 lb/ft² z)",
+        "F.S. = [688 lb/ft² + 717 lb/ft² z + Fg (0.82)] / (1105 lb/ft² z)",
+        "F.S. = [688 lb/ft² + 385 lb/ft² z + Fg (0.82)] / (1105 lb/ft² z)",
+    ):
+        assert line in body, line
+    # Eq. 9-8 as Chapter 9 prints it
+    ch9 = "\n".join(s["body"] for s in json.loads(
+        (PKG / "text" / "chapter09.json").read_text(encoding="utf-8"))["sections"])
+    assert ("F.S. = [c′ H + (γg − γw) H z cos²β tan φ′ + Fg (cosβ sinβ + sin²β tan φ′)] / "
+            "(γg H z cosβ sinβ) [Eq. 9-8]") in ch9
+    r = math.radians
+    t33, c45, s45 = math.tan(r(33)), math.cos(r(45)), math.sin(r(45))
+    assert round(0.06 * 16.5) == 1
+    coef = 0.8 * t33 * 0.66 * 0.5 * 134 * 2
+    assert round(coef) == 46
+    assert [round(46 * z * z) for z in (0.5, 1.0, 2.0)] in ([12, 46, 184], [11, 46, 184])
+    assert round(coef * 0.25) == 11
+    assert [12 * t for t in (11, 46, 184)] == [132, 552, 2208]
+    assert int(134 * 16.5 * c45 ** 2 * t33) == 717 and int(134 * 16.5 * c45 * s45) == 1105
+    assert round(c45 * s45 + s45 ** 2 * t33, 2) == 0.82
+    assert int(72 * 16.5 * c45 ** 2 * t33) == 385
+
+    def fs(c, a, z, fg):
+        return (c + a * z + fg * 0.82) / (1105 * z)
+
+    cases = ((0.5, 132), (1.0, 552), (2.0, 2208))
+    assert [round(fs(0, 717, z, fg), 2) for z, fg in cases][0] == 0.84
+    assert [round(fs(0, 717, z, fg), 1) for z, fg in cases][1:] == [1.1, 1.5]
+    assert [round(fs(688, 717, z, fg), 1) for z, fg in cases] == [2.1, 1.7, 1.8]
+    assert [round(fs(688, 385, z, fg), 1) for z, fg in cases] == [1.8, 1.4, 1.5]
+    assert int(42 * 16.4) == 688
+
+
+def test_appendix_e10_print_slips_noted():
+    body = _e_body("E.10")
+    for note in (
+        "as printed, 24 in. (800 mm) twice; 800 mm is 31.5 in., and doubling Example E8's "
+        "16 in. (400 mm) spacing gives 32 in.",
+        "as printed, 134 lb/ft³; Example E8's fill, whose slope this is, is 133 lb/ft³.",
+        'as printed, "Example 1"; the values used below, F* = 0.8 tan φ and α = 0.66, are '
+        "those of Example E9 (Step 6f)",
+        'as printed, "16,5 ft" in the denominator, for 16.5 ft.',
+        "as printed, 16.4 ft; H is 16.5 ft above (42 psf × 16.5 ft = 693 lb/ft).",
+    ):
+        assert note in body, note
+    assert round(800 / 25.4, 1) == 31.5 and round(42 * 16.5) == 693
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():
