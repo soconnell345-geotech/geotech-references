@@ -18,6 +18,7 @@ from pathlib import Path
 import pytest
 
 from geotech_references import _figures_db, _retrieval, _retrieval_db
+from tests._build_reader import require_build_reader
 
 REF = "em_1905"
 ROOT = Path(__file__).resolve().parents[1]
@@ -629,8 +630,8 @@ def test_bar_over_a_symbol_read_the_same_by_both_reader_versions():
 
 def test_rebuild_reproduces_the_committed_text():
     # the formulas, passages and Table 4-10 live in the manifest, so a
-    # rebuild keeps them
-    pytest.importorskip("fitz")
+    # rebuild keeps them; it runs under the PDF reader the manifest records
+    require_build_reader(REF)
     if not PDF.exists():
         pytest.skip("PDF not checked out")
     import sys
