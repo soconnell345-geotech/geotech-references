@@ -21,6 +21,12 @@ pages):
   it took the D = 10b curve. Case 1's "D < 10b" and every case's "D > 20b"
   / "D > 40b" curve are open-ended as printed and still read past their
   label. D/b <= 0 is refused.
+- `gec_10.figures.equation_10_22_caving_rock_side`: RQD below 20 is
+  refused (Table 10-3 prints RQD 20 to 100, p. 10-21); it held the RQD 20
+  row (alpha_E 0.45) with a note, which overstates alpha_E there.
+- `gec_10.tables.table_10_2_nc_base_clay`: su below 500 psf is refused
+  (Table 10-2 prints 500, 1,000 and ">= 2,000" psf, p. 10-19); it held
+  N*c = 6.5. Above 2,000 psf the open-ended row still gives 9.0.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8

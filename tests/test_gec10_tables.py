@@ -286,13 +286,17 @@ class TestTable102NcBaseClay:
         result = table_10_2_nc_base_clay(2000)
         assert abs(result["nc_star"] - 9.0) < 0.01
 
-    def test_su_above_2000_clamped_to_90(self):
+    # Table 10-2 (GEC-10, p. 10-19, PDF page 299) prints su 500, 1,000 and
+    # ">= 2,000" psf: the last row is open-ended, the first is not.
+    def test_su_above_2000_takes_the_open_ended_row(self):
         result = table_10_2_nc_base_clay(5000)
         assert abs(result["nc_star"] - 9.0) < 0.01
+        assert ">= 2,000" in result["note"]
 
-    def test_su_low_clamped_to_65(self):
-        result = table_10_2_nc_base_clay(100)
-        assert abs(result["nc_star"] - 6.5) < 0.01
+    @pytest.mark.parametrize("su", [499.0, 250.0, 100.0])
+    def test_su_below_500_refused(self, su):
+        with pytest.raises(ValueError, match="no value below 500 psf"):
+            table_10_2_nc_base_clay(su)
 
     def test_interpolation_su750(self):
         """750 psf is halfway between 500 and 1000; Nc* should be ~7.25."""
