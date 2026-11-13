@@ -663,28 +663,27 @@ class TestFigure10_1:
         with pytest.raises(ValueError, match="lowest curve"):
             figure_10_1_k_on_base(24.99, 10)
         assert "note" not in figure_10_1_k_on_base(300, 10)
-        r = figure_10_1_k_on_base(300.01, 10)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
-        assert "300 curve is used" in r["note"]
+        with pytest.raises(ValueError, match="top curve"):
+            figure_10_1_k_on_base(300.01, 10)
         assert "note" not in figure_10_1_k_on_base(100, 60)
-        r = figure_10_1_k_on_base(100, 60.01)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
-        assert "60 in value is used" in r["note"]
+        with pytest.raises(ValueError, match="past Figure 10-1's axis"):
+            figure_10_1_k_on_base(100, 60.01)
         assert "note" not in figure_10_1_k_on_base(100, 0)
         with pytest.raises(ValueError, match=">= 0"):
             figure_10_1_k_on_base(100, -0.01)
 
     def test_printed_range(self):
-        # Below the lowest curve is refused; past the top or the axis is
-        # held, noted.
+        # REF-76: outside the drawn curves (25-300 pci) and the axis (0-60
+        # in) the chart gives no k and the text no rule: refused. Past the
+        # top curve and the axis the edge used to be read, with a note.
         with pytest.raises(ValueError, match="lowest curve"):
             figure_10_1_k_on_base(20, 10)
-        r = figure_10_1_k_on_base(400, 10)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
-        assert "300 curve is used" in r["note"]
-        r = figure_10_1_k_on_base(100, 70)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
-        assert "60 in value is used" in r["note"]
+        with pytest.raises(ValueError, match=r"top curve \(300 pci"):
+            figure_10_1_k_on_base(400, 10)
+        with pytest.raises(ValueError, match="500 psi/in"):
+            figure_10_1_k_on_base(400, 10)
+        with pytest.raises(ValueError, match=r"0-60 in, printed p. 32"):
+            figure_10_1_k_on_base(100, 70)
         assert "note" not in figure_10_1_k_on_base(100, 30)
 
     def test_result_carries_the_chart_note_and_page(self):
@@ -739,6 +738,8 @@ class TestFigure15_1:
         r = figure_15_1_cracking_projection_factor(20_000_000, 100)
         assert r["f"] == pytest.approx(0.93, abs=0.005)
         assert "held" in r["note"]
+        # The hold is the guide's own (rule 2): the note quotes G-7's page.
+        assert "printed 264" in r["note"] and "0.93" in r["note"]
 
     def test_between_curves_linear_in_k(self):
         r = figure_15_1_cracking_projection_factor(100_000, 250)
@@ -812,10 +813,65 @@ class TestFigure14_1:
         assert r["l_ft_raw"] == pytest.approx(49, abs=0.5)
 
     def test_verified_s_030(self):
-        # Appendix G, G-6: hd=7.9, S=0.30 -> hr=6, L=97 raw, capped 75
+        # Appendix G, G-6 (printed 264): hd=7.9, S=0.30 -> hr=6, L=97 raw,
+        # capped 75. On the nomograph the line meets the hr scale just
+        # below its 6 in end, so paragraph 14-3's 6 in minimum (printed 42)
+        # gives the 6 in, and the result says so.
         r = figure_14_1_reinforced_pavement_design(7.9, 0.30)
-        assert r["hr_in"] == pytest.approx(6.0, abs=0.1)
+        assert r["hr_in"] == 6.0
+        assert r["l_ft_raw"] == pytest.approx(97, abs=0.5)
         assert r["l_ft_capped"] == 75.0
+        assert r["minimum_thickness_governs"] is True
+        assert "paragraph 14-3, printed 42" in r["note"]
+
+    def test_nomograph_read_at_five_points(self):
+        # Figure 14-1 (printed 41, ufc_3_250_01_2016.pdf page 61) read off a
+        # 300 dpi render with a straight line through hd and S = 0.10 %, the S of
+        # the dashed example drawn on the figure: hr 7.05, 10.65, 15.1,
+        # 21.4, 26.9 in at hd 8, 12, 17, 24, 30 in. The function coded as
+        # hd less a fixed reduction gave 7.1, 11.1, 16.1, 23.1, 29.1.
+        for hd, hr in ((8, 7.05), (12, 10.65), (17, 15.1), (24, 21.4),
+                       (30, 26.9)):
+            r = figure_14_1_reinforced_pavement_design(hd, 0.10)
+            assert r["hr_in"] == pytest.approx(hr, abs=0.06)
+            assert r["minimum_thickness_governs"] is False and "note" not in r
+        # the dashed example as drawn: hd 16.9, S 0.10 -> hr 15.0; the
+        # line crosses the As scale near 0.185 and the L scale near 64 ft
+        r = figure_14_1_reinforced_pavement_design(16.9, 0.10)
+        assert r["hr_in"] == pytest.approx(15.0, abs=0.06)
+        assert r["as_sq_in_per_ft"] == pytest.approx(0.185, abs=0.005)
+        assert r["l_ft_raw"] == pytest.approx(64, abs=1)
+        # other steel percentages, across the S scale (0.05 to 0.50 %)
+        for hd, s, hr in ((10, 0.05, 9.8), (12, 0.20, 9.6), (20, 0.30, 15.15),
+                          (30, 0.30, 22.85), (17, 0.50, 11.95),
+                          (30, 0.50, 21.2)):
+            r = figure_14_1_reinforced_pavement_design(hd, s)
+            assert r["hr_in"] == pytest.approx(hr, abs=0.06)
+
+    def test_nomograph_line_worked_by_hand(self):
+        # hd 17 in is the tick at y 389.88 on the hd scale (x 185.33), S
+        # 0.10 % the tick at y 511.57 on the S scale (x 489.57); the line
+        # through them reaches the hr scale (x 118.40) at y 363.11, between
+        # its 15 in tick (366.03) and 15.5 in tick (354.62). Points on
+        # printed 41, y downward.
+        y = 389.88 + (389.88 - 511.57) * (185.33 - 118.40) / (489.57 - 185.33)
+        assert y == pytest.approx(363.11, abs=0.01)
+        hr = 15.0 + 0.5 * (366.03 - y) / (366.03 - 354.62)
+        r = figure_14_1_reinforced_pavement_design(17.0, 0.10)
+        assert hr == pytest.approx(15.13, abs=0.005)
+        assert r["hr_in"] == pytest.approx(hr, abs=0.006)
+
+    def test_more_steel_or_less_plain_thickness_never_thickens(self):
+        prev = None
+        for s in (0.05, 0.075, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50):
+            hr = figure_14_1_reinforced_pavement_design(20.0, s)["hr_in"]
+            assert prev is None or hr < prev
+            prev = hr
+        prev = None
+        for hd in (6, 8, 10.3, 14, 19.7, 25, 30):
+            hr = figure_14_1_reinforced_pavement_design(hd, 0.15)["hr_in"]
+            assert hr <= hd and (prev is None or hr >= prev)
+            prev = hr
 
     def test_transverse_half_longitudinal(self):
         r = figure_14_1_reinforced_pavement_design(7.9, 0.10)
@@ -829,6 +885,37 @@ class TestFigure14_1:
     def test_s_out_of_range_raises(self):
         with pytest.raises(ValueError, match="s_pct"):
             figure_14_1_reinforced_pavement_design(7.9, 0.60)
+
+    def test_off_the_nomograph_refused(self):
+        # REF-76 (fit sweep): Figure 14-1 (printed 41) scales hd and hr 6-30
+        # in and S 0.05-0.50 %. Since the nomograph was re-traced the whole
+        # S scale is read (it was refused outside the worked examples' 0.10
+        # to 0.30 %).
+        figure_14_1_reinforced_pavement_design(30.0, 0.10)
+        figure_14_1_reinforced_pavement_design(7.9, 0.20)
+        for hd in (5.9, 30.1, 40.0):
+            with pytest.raises(ValueError, match="plain-concrete thickness "
+                               r"scale, 6 to 30 in \(printed 41\)"):
+                figure_14_1_reinforced_pavement_design(hd, 0.10)
+        for s_pct in (0.04, 0.049, 0.51, 1.0):
+            with pytest.raises(ValueError, match=r"S scale, 0.05 to 0.50 % "
+                               r"\(printed 41\)"):
+                figure_14_1_reinforced_pavement_design(10.0, s_pct)
+        for s_pct in (0.05, 0.09, 0.31, 0.50):
+            figure_14_1_reinforced_pavement_design(10.0, s_pct)
+
+    def test_below_the_reinforced_scale_is_the_6_in_minimum(self):
+        # A line that meets the hr scale below its 6 in end (it was
+        # refused): paragraph 14-3 (printed 42) sets the minimum thickness
+        # of reinforced concrete pavement at 6 in.
+        for hd, s in ((6.5, 0.10), (6.0, 0.05), (7.0, 0.50)):
+            r = figure_14_1_reinforced_pavement_design(hd, s)
+            assert r["hr_in"] == 6.0 and r["minimum_thickness_governs"] is True
+            assert "below its 6 in end (printed 41)" in r["note"]
+        # just above it: hd 9 in, S 0.50 % reads 6.3 in
+        r = figure_14_1_reinforced_pavement_design(9.0, 0.50)
+        assert r["hr_in"] == pytest.approx(6.3, abs=0.06)
+        assert r["minimum_thickness_governs"] is False
 
 
 class TestDistressModes:
@@ -1366,7 +1453,12 @@ class TestFigureEVehicleCurves:
 
     @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
     def test_thickness_nondecreasing_with_passes(self, vehicle):
-        r_few = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000)
+        # From the chart's lowest curve (10,000 passes on E-2): fewer are
+        # refused (REF-76).
+        from geotech_references.ufc_pavement.tables import (
+            _FIGURES_E, _resolve_vehicle_figure)
+        lowest = min(_FIGURES_E[_resolve_vehicle_figure(vehicle)]["curves"])
+        r_few = figure_e_vehicle_thickness(vehicle, cbr=10, passes=lowest)
         r_many = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000_000)
         assert r_many["thickness_in"] >= r_few["thickness_in"]
 
@@ -1411,10 +1503,56 @@ class TestFigureEVehicleOffTheChart:
         assert r["thickness_in"] == 0.0
 
     def test_below_the_lowest_curve(self):
+        # Ruling 41 (REF-76): below a chart's lowest curve that curve's
+        # thickness is given with out_of_range and a note; thickness rises
+        # with passes on every chart, so it is the safe side.
+        at_lowest = figure_e_vehicle_thickness("E-28", 5, 1e3)
+        assert "note" not in at_lowest and "out_of_range" not in at_lowest
         few = figure_e_vehicle_thickness("E-28", 5, 500)
-        assert few["thickness_in"] == \
-            figure_e_vehicle_thickness("E-28", 5, 1e3)["thickness_in"]
-        assert "below" in few["note"]
+        assert few["thickness_in"] == at_lowest["thickness_in"]
+        assert few["out_of_range"] is True
+        assert "lowest curve is for 1,000 passes" in few["note"]
+        assert "prints no curve below it" in few["note"]
+        assert "not less than" in few["note"]
+        # E-31's lowest curve is 100 passes, E-2's 10,000.
+        assert "100 passes" in figure_e_vehicle_thickness(
+            "E-31", 10, 50)["note"]
+        assert figure_e_vehicle_thickness("passenger_car", 3, 1_000)[
+            "out_of_range"] is True
+        # Where the lowest curve is above the chart there is nothing to give.
+        with pytest.raises(ValueError, match="lowest curve of Figure E-16 "
+                           r"\(1,000 passes"):
+            figure_e_vehicle_thickness("E-16", 1.5, 500)
+        # Past the end of an E-30 curve that stops above the axis: refused.
+        with pytest.raises(ValueError, match="ends at CBR"):
+            figure_e_vehicle_thickness("E-30", 95, 500)
+
+    def test_thickness_rises_with_passes_on_every_chart(self):
+        # The basis of ruling 41: no curve for more passes lies below one
+        # for fewer, at any CBR, on any of Figures E-2 to E-31.
+        from geotech_references.ufc_pavement.tables import (
+            _FIGURES_E, _fig_e_on_curve)
+        for fig, data in _FIGURES_E.items():
+            levels = sorted(data["curves"])
+            for i in range(0, 401, 4):
+                cbr = 10 ** (i / 200)
+                prev = None
+                for p in levels:
+                    try:
+                        t = _fig_e_on_curve(fig, p, cbr)
+                    except ValueError:
+                        continue
+                    t = float("inf") if t is None else t
+                    if prev is not None:
+                        assert t >= prev - 1e-9, (fig, cbr, p)
+                    prev = t
+
+    def test_above_the_highest_curve_as_table_g1(self):
+        # Rule 2: Table G-1 (printed 257) reads the passenger car at
+        # 20,000,000 passes by extrapolating past its 10,000,000 curve.
+        r = figure_e_vehicle_thickness("passenger_car", 3, 20_000_000)
+        assert r["thickness_in"] == pytest.approx(6.1, abs=0.05)
+        assert "Table G-1 (printed 257)" in r["note"]
 
 
 class TestFigureEVehicleAllowablePasses:
@@ -1433,14 +1571,27 @@ class TestFigureEVehicleAllowablePasses:
         assert math.log10(r["allowable_passes"]) == pytest.approx(
             math.log10(3e4), abs=0.001)
 
-    def test_clamped_below_min_curve(self):
-        r = figure_e_vehicle_allowable_passes(
-            "passenger_car", cbr=7, thickness_in=0.01)
-        assert r["clamped"] == "below_min_passes_curve"
-        assert r["allowable_passes"] == 10_000  # passenger_car's min printed level
+    def test_under_the_lowest_curve_refused(self):
+        # REF-76: under the lowest curve the allowable passes are fewer
+        # than its passes, by how many the chart does not say; they used
+        # to be returned as the lowest curve's passes (overstated).
+        from geotech_references.ufc_pavement.tables import _fig_e_on_curve
+        with pytest.raises(ValueError, match="under Figure E-2's lowest "
+                           "curve"):
+            figure_e_vehicle_allowable_passes(
+                "passenger_car", cbr=7, thickness_in=0.01)
         # Every E-16 curve is above the chart at CBR 1.5.
-        assert figure_e_vehicle_allowable_passes(
-            "E-16", 1.5, 45)["clamped"] == "below_min_passes_curve"
+        with pytest.raises(ValueError, match="every curve at this CBR is "
+                           "above the chart"):
+            figure_e_vehicle_allowable_passes("E-16", 1.5, 45)
+        # On the lowest curve, as read to 0.1 in, its passes are given.
+        t_lo = _fig_e_on_curve("E-2", 10_000, 7)
+        for t in (t_lo, t_lo - 0.04):
+            r = figure_e_vehicle_allowable_passes("passenger_car", 7, t)
+            assert r["allowable_passes"] == 10_000  # E-2's lowest curve
+            assert r["clamped"] == "below_min_passes_curve"
+        with pytest.raises(ValueError):
+            figure_e_vehicle_allowable_passes("passenger_car", 7, t_lo - 0.06)
 
     def test_clamped_above_max_curve(self):
         r = figure_e_vehicle_allowable_passes(
@@ -1504,3 +1655,14 @@ def test_printed_title_is_on_the_cover():
     with fitz.open(str(pdf)) as doc:
         cover = " ".join(doc[0].get_text().split()).lower()
     assert PRINTED_TITLE.lower() in cover
+
+
+def test_refusal_messages_name_the_page():
+    # REF-76 checker: these refusals named the range but not the page.
+    from geotech_references.ufc_pavement import tables as t
+    with pytest.raises(ValueError, match="printed p. 32"):
+        t.figure_10_1_k_on_base(20, 10)
+    with pytest.raises(ValueError, match=r"1-100, printed 193"):
+        t.figure_e_vehicle_allowable_passes("E-2", 0.5, 10)
+    with pytest.raises(ValueError, match="10,000 passes, printed 193"):
+        t.figure_e_vehicle_allowable_passes("E-2", 5, 0.5)

@@ -102,7 +102,13 @@ def table_5_4_p_multiplier(
     are also printed at 5B (1.0, .85, .70), and between 3B and 5B their
     Pm is taken linearly between the two printed rows.  A spacing wider
     than a soil's printed rows holds its widest printed row, and every
-    value returned states its basis.
+    value returned states its basis; the result then carries ``note`` and
+    ``out_of_range`` naming the printed spacings.  Holding is on the low
+    side: p. 111 gives Pm < 1 for closely spaced piles, from the
+    shadowing of the rows ahead, and the two soils printed at 5B rise
+    from their 3B values there (to 1.0, .85, .70), so the held Pm is
+    lower than the wider spacing would give and the computed deflections
+    and moments larger.
 
     With no soil type, ``pm`` is the lowest Pm over the table's soils for
     the row, each soil read at that spacing as its basis says (printed,
@@ -129,7 +135,8 @@ def table_5_4_p_multiplier(
     dict
         {'row_position': str, 'spacing_over_b': float, 'soil_type': str,
          'pm': float, 'basis': str, 'rows': list, 'notes': str,
-         'source': str}
+         'source': str}, plus 'note' and 'out_of_range' when a row is held
+        past its widest printed spacing.
 
     Raises
     ------
@@ -195,6 +202,24 @@ def table_5_4_p_multiplier(
                  + lowest["reference"] + ": " + lowest["basis"]
                  + "); give soil_type for one soil")
 
+    held = list(dict.fromkeys(e["soil_type"] for e in rows
+                              if "held" in e["basis"]))
+    extra = {}
+    if held:
+        extra = {
+            "note": (
+                "Table 5.4 prints no Pm at this spacing for "
+                + ", ".join(held) + "; the widest printed row is held. "
+                "Pm < 1 comes from close spacing (p. 111) and the soils "
+                "printed at 5B rise from their 3B values, so the held Pm "
+                "is on the low (safe) side."),
+            "out_of_range": (
+                f"spacing_over_b = {spacing_over_b:g} is wider than Table "
+                "5.4's printed spacings (GEC-8 p. 112: 3B for every soil, "
+                "5B also for M. Dense Sand and Loose M. Sand) for "
+                + ", ".join(held) + "."),
+        }
+
     return {
         "row_position": row_key,
         "spacing_over_b": spacing_over_b,
@@ -210,6 +235,7 @@ def table_5_4_p_multiplier(
             "recommended for design."
         ),
         "source": "GEC-8 Table 5.4, p. 112 (Section 5.6.3, pp. 111-113)",
+        **extra,
     }
 
 
@@ -233,11 +259,12 @@ def table_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
     """Axial group efficiency for CFA piles in cohesionless soils.
 
     Per AASHTO (2002) Section 10.8.3.9.3 (drilled shaft provisions
-    applied to conventional CFA piles).  Regardless of cap contact
-    with the ground:
+    applied to conventional CFA piles), as GEC-8 p. 90 (PDF page 113)
+    quotes it.  Regardless of cap contact with the ground:
 
         η = 0.65 at 2.5D center-to-center spacing
-        η = 1.0 at 6.0D center-to-center spacing
+        η = 1.0 at 6.0D center-to-center spacing "or more" (printed
+        open-ended, so a wider spacing takes 1.0)
         Linear interpolation between 2.5D and 6.0D.
 
     For DD pile groups in cohesionless soils, η ≈ 1.0 (similar to

@@ -125,22 +125,30 @@ class TestCompositeKSubbase:
         with pytest.raises(ValueError, match="lowest"):
             ck.composite_k_subbase(mr_psi=800, esb_psi=20000, dsb_in=6.0)
 
-    def test_out_of_range_esb_flagged(self):
-        r = ck.composite_k_subbase(mr_psi=7000, esb_psi=2000000, dsb_in=6.0)
-        assert "note" in r
-        top = ck.composite_k_subbase(mr_psi=7000, esb_psi=1000000, dsb_in=6.0)
-        assert r["k_inf_pci"] == top["k_inf_pci"]
+    # REF-76: Figure 3.3 (printed II-39) draws Dsb 6-18 in, Esb curves
+    # 15,000-1,000,000 psi, MR curves 1,000-20,000 psi and k_inf diagonals
+    # 50-2,000 pci; above them the nearest curve used to be read with a
+    # note. The guide gives no rule there, so they are refused.
+    def test_esb_above_printed_curves_refused(self):
+        assert "note" not in ck.composite_k_subbase(
+            mr_psi=7000, esb_psi=1000000, dsb_in=6.0)
+        with pytest.raises(ValueError, match="1,000,000 psi, printed II-39"):
+            ck.composite_k_subbase(mr_psi=7000, esb_psi=2000000, dsb_in=6.0)
 
-    def test_out_of_range_dsb_flagged(self):
-        r = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=25.0)
-        assert "note" in r
-        top = ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=18.0)
-        assert r["k_inf_pci"] == top["k_inf_pci"]
+    def test_dsb_above_printed_scale_refused(self):
+        ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=18.0)
+        with pytest.raises(ValueError, match="6-18 in, printed II-39"):
+            ck.composite_k_subbase(mr_psi=7000, esb_psi=20000, dsb_in=25.0)
 
-    def test_beyond_highest_diagonal_held_at_2000(self):
-        r = ck.composite_k_subbase(mr_psi=20000, esb_psi=1000000, dsb_in=18.0)
-        assert r["k_inf_pci"] == 2000.0
-        assert "2,000" in r["note"]
+    def test_mr_above_printed_curves_refused(self):
+        ck.composite_k_subbase(mr_psi=20000, esb_psi=20000, dsb_in=6.0)
+        with pytest.raises(ValueError, match="20,000 psi, printed II-39"):
+            ck.composite_k_subbase(mr_psi=25000, esb_psi=20000, dsb_in=6.0)
+
+    def test_beyond_highest_diagonal_refused(self):
+        with pytest.raises(ValueError, match="beyond the highest drawn "
+                           "diagonal, 2,000 pci"):
+            ck.composite_k_subbase(mr_psi=20000, esb_psi=1000000, dsb_in=18.0)
 
     def test_invalid_mr_raises(self):
         with pytest.raises(ValueError):
@@ -182,21 +190,54 @@ class TestKRigidFoundationCorrection:
     def test_k_inf_lines_fan_out(self):
         # Made-up inputs: the correction grows with k_inf (the lines fan
         # out), which a multiplier per MR cannot show.
+        # (k_inf 800 at Dsg 3 ft lands past the k scale's 2,000 pci end and
+        # is refused since REF-76; 500 lands at about 1,090.)
         lo = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=3.0, k_inf_pci=100)["k_pci"]
-        hi = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=3.0, k_inf_pci=800)["k_pci"]
-        assert hi / 800 > lo / 100 > 1
+        hi = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=3.0, k_inf_pci=500)["k_pci"]
+        assert hi / 500 > lo / 100 > 1
 
-    def test_outside_the_drawn_curves(self):
-        r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=1.0, k_inf_pci=230)
-        assert r["k_pci"] == ck.k_rigid_foundation_correction(
-            mr_psi=4000, dsg_ft=2.0, k_inf_pci=230)["k_pci"]
-        assert "2-ft curve" in r["note"]
-        r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=1500)
-        assert r["k_pci"] == 1500 and "no correction" in r["note"]
-        r = ck.k_rigid_foundation_correction(mr_psi=25000, dsg_ft=5.0, k_inf_pci=1000)
-        assert "past the drawn curves" in r["note"]
-        r = ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=2.0, k_inf_pci=1400)
-        assert r["k_pci"] == 2000 and "2,000 pci" in r["note"]
+    def test_outside_the_drawn_curves_refused(self):
+        # REF-76: Figure 3.4 (printed II-40) draws Dsg 2, 5 and 10 ft, MR to
+        # 20,000 psi (the 2-ft curve from 1,169 psi), k_inf lines 50-1,400
+        # pci and a k scale to 2,000 pci. Each case used to be read at the
+        # nearest curve, or uncorrected, with a note; now refused.
+        ok = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=2.0, k_inf_pci=230)
+        assert "note" not in ok
+        with pytest.raises(ValueError, match="2-ft curve"):
+            ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=1.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="50-1,400 pci, printed II-40"):
+            ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=1500)
+        with pytest.raises(ValueError, match="50-1,400 pci"):
+            ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=40)
+        with pytest.raises(ValueError, match="1,073-20,000 psi"):
+            ck.k_rigid_foundation_correction(mr_psi=25000, dsg_ft=5.0, k_inf_pci=1000)
+        with pytest.raises(ValueError, match="1,169-20,000 psi"):
+            ck.k_rigid_foundation_correction(mr_psi=1100, dsg_ft=3.0, k_inf_pci=100)
+        with pytest.raises(ValueError, match="2,000 pci end"):
+            ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=2.0, k_inf_pci=1400)
+        # the edges themselves are read
+        ck.k_rigid_foundation_correction(mr_psi=1169, dsg_ft=9.0, k_inf_pci=50)
+        ck.k_rigid_foundation_correction(mr_psi=20000, dsg_ft=9.0, k_inf_pci=50)
+
+    def test_lower_mr_limit_follows_the_curves_used(self):
+        # Checker finding on REF-76: Figure 3.4 (printed II-40) draws the
+        # 5-ft and 10-ft curves down to 1,073 and 1,083 psi; only the 2-ft
+        # curve leaves the top at 1,169. A Dsg of 5-10 ft was refused below
+        # 1,169 psi for the 2-ft curve's sake.
+        r = ck.k_rigid_foundation_correction(mr_psi=1100, dsg_ft=7.0, k_inf_pci=230)
+        assert r["k_pci"] > 230
+        ck.k_rigid_foundation_correction(mr_psi=1083, dsg_ft=7.0, k_inf_pci=230)
+        ck.k_rigid_foundation_correction(mr_psi=1073, dsg_ft=5.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="1,083-20,000 psi.*5-ft and 10-ft"):
+            ck.k_rigid_foundation_correction(mr_psi=1080, dsg_ft=7.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="1,073-20,000 psi.*5-ft curve is"):
+            ck.k_rigid_foundation_correction(mr_psi=1070, dsg_ft=5.0, k_inf_pci=230)
+        with pytest.raises(ValueError, match="2-ft curve leaves the top at 1,169"):
+            ck.k_rigid_foundation_correction(mr_psi=1150, dsg_ft=4.0, k_inf_pci=230)
+        # a Dsg on a curve reads that curve alone; between, the pair
+        on5 = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=5.0, k_inf_pci=230)
+        near = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=4.999, k_inf_pci=230)
+        assert near["k_pci"] == pytest.approx(on5["k_pci"], abs=0.2)
 
     def test_dsg_at_or_beyond_10ft_disregards_correction(self):
         r = ck.k_rigid_foundation_correction(mr_psi=4000, dsg_ft=10.0, k_inf_pci=230)
@@ -212,7 +253,7 @@ class TestKRigidFoundationCorrection:
         assert k_shallow > k_deep > 230
 
     def test_correction_always_increases_k(self):
-        for dsg in (1, 3, 5, 7, 9):
+        for dsg in (2, 3, 5, 7, 9):  # Dsg 1 ft is refused since REF-76
             r = ck.k_rigid_foundation_correction(mr_psi=6000, dsg_ft=dsg, k_inf_pci=300)
             assert r["k_pci"] >= 300
 
@@ -306,6 +347,19 @@ class TestRelativeDamageRigid:
         with pytest.raises(ValueError):
             ck.relative_damage_rigid(d_in=1.0, k_pci=5000)
 
+    def test_outside_the_chart_refused(self):
+        # REF-76 (fit sweep): Figure 3.5 (printed II-41) draws D = 6-14 in
+        # over a k axis of 10-2,000 pci; the closed form gave numbers past
+        # them (D 3 in: 0.0117) with nothing to say so.
+        ck.relative_damage_rigid(d_in=6.0, k_pci=2000)
+        ck.relative_damage_rigid(d_in=14.0, k_pci=10)
+        for d in (5.9, 14.1, 3.0):
+            with pytest.raises(ValueError, match="6, 7, 8, 9, 10, 12 and 14 in"):
+                ck.relative_damage_rigid(d_in=d, k_pci=100)
+        for k in (9.9, 2001, 5000):
+            with pytest.raises(ValueError, match="10 to 2,000 pci"):
+                ck.relative_damage_rigid(d_in=9.0, k_pci=k)
+
 
 # ============================================================================
 # k_loss_of_support (Figure 3.6)
@@ -357,15 +411,38 @@ class TestKLossOfSupport:
         k_at_1_5 = ck.k_loss_of_support(k_pci=540, ls=1.5)["k_corrected_pci"]
         assert k_at_2 < k_at_1_5 < k_at_1
 
-    def test_out_of_range_ls_clamped_and_flagged(self):
-        r = ck.k_loss_of_support(k_pci=540, ls=4.0)
-        assert "note" in r
-        r0 = ck.k_loss_of_support(k_pci=540, ls=3.0)
-        assert r["k_corrected_pci"] == pytest.approx(r0["k_corrected_pci"], rel=1e-6)
+    def test_out_of_range_ls_refused(self):
+        # REF-76: Figure 3.6 (printed II-42) draws LS = 0, 1.0, 2.0 and 3.0.
+        # LS = 4 used to take the LS = 3.0 line (a larger k than the trend)
+        # with a note; a negative LS took LS = 0.
+        assert "note" not in ck.k_loss_of_support(k_pci=540, ls=3.0)
+        assert "note" not in ck.k_loss_of_support(k_pci=540, ls=0.0)
+        for ls in (4.0, 3.01, -0.5):
+            with pytest.raises(ValueError, match="LS = 0, 1.0, 2.0 and 3.0 "
+                               r"\(printed II-42\)"):
+                ck.k_loss_of_support(k_pci=540, ls=ls)
 
     def test_invalid_k_raises(self):
         with pytest.raises(ValueError):
             ck.k_loss_of_support(k_pci=0, ls=1.0)
+
+    def test_outside_the_chart_refused(self):
+        # REF-76 checker: Figure 3.6's k axis ends at 2,000 pci and its
+        # corrected-k axis at 1,000 (printed II-42); k = 5,000 at LS 1 gave
+        # 1,045.8. Below 10 pci the fitted slopes leave the drawn LS = 3.0
+        # line (the library's reading). LS = 0 is no correction at any k.
+        with pytest.raises(ValueError, match="ends at 2,000 pci"):
+            ck.k_loss_of_support(k_pci=5000, ls=1.0)
+        with pytest.raises(ValueError, match="ends at 2,000 pci"):
+            ck.k_loss_of_support(k_pci=2001, ls=3.0)
+        with pytest.raises(ValueError, match="below 10 pci.*its reading"):
+            ck.k_loss_of_support(k_pci=3, ls=3.0)
+        with pytest.raises(ValueError, match="above the top.*1,000 pci"):
+            ck.k_loss_of_support(k_pci=1800, ls=0.25)
+        assert ck.k_loss_of_support(k_pci=2000, ls=1.0)["k_corrected_pci"] < 1000
+        assert ck.k_loss_of_support(k_pci=10, ls=3.0)["k_corrected_pci"] > 1
+        for k in (3, 1500, 5000):
+            assert ck.k_loss_of_support(k_pci=k, ls=0.0)["k_corrected_pci"] == k
 
 
 # ============================================================================
@@ -456,15 +533,21 @@ class TestEffectiveModulusSubgradeReaction:
         # different esb per period -> different composite k despite same MR
         assert r["rows"][0]["composite_k_pci"] != r["rows"][1]["composite_k_pci"]
 
-    def test_figure_3_3_note_carried_to_row_and_result(self):
+    def test_figure_3_3_above_curves_refused_in_worksheet(self):
+        # REF-76: a season above Figure 3.3's curves used to carry a note;
+        # composite_k_subbase now refuses it, and the worksheet passes the
+        # refusal on. So does an LS outside Figure 3.6's 0-3.
         seasonal = [{"mr_psi": 7000, "esb_psi": 2000000},
                     {"mr_psi": 7000, "esb_psi": 20000}]
-        r = ck.effective_modulus_subgrade_reaction(
-            seasonal=seasonal, slab_d_in=9.0, dsb_in=6.0,
-        )
-        assert "highest printed curve" in r["rows"][0]["note"]
-        assert "note" not in r["rows"][1]
-        assert r["notes"] == [r["rows"][0]["note"]]
+        with pytest.raises(ValueError, match="highest printed curve"):
+            ck.effective_modulus_subgrade_reaction(
+                seasonal=seasonal, slab_d_in=9.0, dsb_in=6.0,
+            )
+        with pytest.raises(ValueError, match="Figure 3.6"):
+            ck.effective_modulus_subgrade_reaction(
+                seasonal=[{"mr_psi": 7000, "esb_psi": 20000}],
+                slab_d_in=9.0, dsb_in=6.0, ls=3.5,
+            )
 
     def test_subbase_below_printed_curves_raises(self):
         with pytest.raises(ValueError, match="Dsb scale"):
@@ -494,3 +577,12 @@ class TestEffectiveModulusSubgradeReaction:
             ck.effective_modulus_subgrade_reaction(
                 seasonal=[{"mr_psi": -100}], slab_d_in=9.0,
             )
+
+
+def test_lower_refusals_name_the_page():
+    # REF-76 checker: Figure 3.3's refusals below its scales lacked the page.
+    for kw in (dict(dsb_in=2, esb_psi=20000, mr_psi=7000),
+               dict(dsb_in=6, esb_psi=10000, mr_psi=7000),
+               dict(dsb_in=6, esb_psi=20000, mr_psi=500)):
+        with pytest.raises(ValueError, match="printed II-39"):
+            ck.composite_k_subbase(**kw)

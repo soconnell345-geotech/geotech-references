@@ -819,19 +819,27 @@ def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     3.0 and 2.0 ft) and is interpolated linearly between them, as p. 4-17
     says. It is for abutments with traffic running perpendicular to the
     wall; walls parallel to traffic take heq = 2.0 ft (p. 4-16), and every
-    result says so. Below 5.0 ft, where the table has no row, the 5.0 ft
-    row is used with a note.
+    result says so. The ">= 20.0" ft row is printed open-ended, so taller
+    abutments take 2.0 ft. Below 5.0 ft the table has no row and the text
+    gives no rule (heq rises as the abutment gets lower), so the function
+    refuses.
 
     Parameters
     ----------
     abutment_height_ft : float
-        Abutment height in feet. If 0, returns the full table.
+        Abutment height in feet, 5.0 or more. If 0, returns the full table.
 
     Returns
     -------
     dict
         abutment_height_ft, h_eq_ft, applies_to, print_note, the table and
-        the reference (and a note below 5.0 ft).
+        the reference.
+
+    Raises
+    ------
+    ValueError
+        If abutment_height_ft is negative, or above 0 and below 5.0 ft
+        (Table 4-4's first row).
     """
     table = [
         {"abutment_height_ft": d, "h_eq_ft": h}
@@ -839,23 +847,27 @@ def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     ]
     out = {"applies_to": _TABLE_4_4_APPLIES, "print_note": _TABLE_4_4_NOTE}
 
-    if abutment_height_ft <= 0:
+    if abutment_height_ft < 0:
+        raise ValueError(
+            f"abutment_height_ft={abutment_height_ft:g} is negative; Table 4-4 "
+            "(GEC-11 Vol I, p. 4-17) prints heq for abutment heights of 5.0 "
+            "ft and more (0 returns the whole table).")
+    if abutment_height_ft == 0:
         return dict(out, table=table, reference=_TABLE_4_4_REF)
 
-    note = None
-    if abutment_height_ft < 5.0:
-        h_eq = 4.0
-        note = ("Table 4-4 prints no row below an abutment height of 5.0 ft; "
-                "the 5.0 ft row is used.")
-    elif abutment_height_ft >= 20.0:
+    if abutment_height_ft < _TABLE_4_4_DEPTHS_FT[0]:
+        raise ValueError(
+            f"abutment_height_ft={abutment_height_ft:g} is below Table 4-4 "
+            "(GEC-11 Vol I, p. 4-17), which prints heq for abutment heights "
+            "of 5.0, 10.0 and >= 20.0 ft; the table gives no value below "
+            "5.0 ft.")
+    if abutment_height_ft >= 20.0:
         h_eq = 2.0
     else:
         h_eq = _linterp(abutment_height_ft, _TABLE_4_4_DEPTHS_FT, _TABLE_4_4_HEQ_FT)
 
     out = dict({"abutment_height_ft": abutment_height_ft,
                 "h_eq_ft": round(h_eq, 2)}, **out)
-    if note:
-        out["note"] = note
     out["table"] = table
     out["reference"] = _TABLE_4_4_REF
     return out

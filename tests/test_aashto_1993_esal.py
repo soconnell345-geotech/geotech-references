@@ -13,20 +13,23 @@ from geotech_references.aashto_1993 import lef
 from geotech_references.aashto_1993 import tables as tb
 
 # (axle load kips, LEF) returned before REF-12 at SN = 5 / D = 9 in, pt = 2.5.
-FS = [(1, 0.0002), (2, 0.0002), (3, 0.0011), (7, 0.022), (9, 0.061),
+# REF-76: the loads outside the printed rows (1 kip; 55 and 95 kips), which
+# were pinned at the end rows' values, are now refused (see
+# test_load_outside_printed_rows_refused below).
+FS = [(2, 0.0002), (3, 0.0011), (7, 0.022), (9, 0.061),
       (12, 0.189), (15, 0.4915), (18, 1.0), (21, 1.845), (25, 3.56),
       (30, 7.0), (33, 10.05), (41, 23.35), (47, 40.85), (49, 48.75),
-      (50, 53), (55, 53)]
-FT = [(1, 0.0), (2, 0.0), (3, 0.0001), (9, 0.005), (17, 0.062),
+      (50, 53)]
+FT = [(2, 0.0), (3, 0.0001), (9, 0.005), (17, 0.062),
       (25, 0.312), (33, 0.9735), (36, 1.38), (45, 3.275), (57, 7.9),
-      (67, 14.55), (79, 27.6), (89, 44.7), (90, 46.8), (95, 46.8)]
-RS = [(1, 0.0002), (2, 0.0002), (3, 0.0011), (7, 0.021), (9, 0.057),
+      (67, 14.55), (79, 27.6), (89, 44.7), (90, 46.8)]
+RS = [(2, 0.0002), (3, 0.0011), (7, 0.021), (9, 0.057),
       (12, 0.176), (15, 0.4725), (18, 1.0), (21, 1.955), (25, 4.015),
       (30, 8.28), (33, 12.15), (41, 29.25), (47, 52.05), (49, 62.3),
-      (50, 67.8), (55, 67.8)]
-RT = [(1, 0.0001), (2, 0.0001), (3, 0.0003), (9, 0.009), (17, 0.1075),
+      (50, 67.8)]
+RT = [(2, 0.0001), (3, 0.0003), (9, 0.009), (17, 0.1075),
       (25, 0.533), (33, 1.705), (36, 2.43), (45, 6.005), (57, 15.25),
-      (67, 29.45), (79, 59.3), (89, 100.0), (90, 105), (95, 105)]
+      (67, 29.45), (79, 59.3), (89, 100.0), (90, 105)]
 
 
 @pytest.mark.parametrize("load,lef_before", FS)
@@ -107,11 +110,27 @@ def test_flexible_tandem_and_rigid_single_other_columns():
         "Table D.10"
 
 
-def test_clamped_column_carries_lef_note():
-    r = tb.esal_flexible_single_axle(18.0, sn=7.0)
-    assert "note" in r and "clamped" in r["note"]
-    r = tb.esal_rigid_single_axle(60.0)
-    assert "note" in r and "clamped" in r["note"]
+def test_load_outside_printed_rows_refused():
+    # REF-76: Appendix D prints single-axle rows 2-50 kips and tandem rows
+    # 2-90 kips (Tables D.4, D.5, D.13, D.14, printed D-6, D-7, D-15,
+    # D-16); outside them the end row used to be returned with a note.
+    for call, load in ((tb.esal_flexible_single_axle, 55.0),
+                       (tb.esal_flexible_single_axle, 1.0),
+                       (tb.esal_flexible_tandem_axle, 95.0),
+                       (tb.esal_rigid_single_axle, 60.0),
+                       (tb.esal_rigid_tandem_axle, 1.0)):
+        with pytest.raises(ValueError, match="outside the printed rows of "
+                           "Table D"):
+            call(load)
+
+
+def test_column_outside_printed_table_refused():
+    # SN = 1-6 and D = 6-14 in are the printed columns.
+    with pytest.raises(ValueError, match="sn=7 is outside the printed "
+                       "columns of Table D.4"):
+        tb.esal_flexible_single_axle(18.0, sn=7.0)
+    with pytest.raises(ValueError, match="d_in=15 is outside"):
+        tb.esal_rigid_tandem_axle(18.0, d_in=15.0)
 
 
 @pytest.mark.parametrize("call,kw", [

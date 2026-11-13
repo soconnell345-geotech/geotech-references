@@ -248,14 +248,17 @@ class TestTable35:
 
     def test_last_row_and_above_range(self):
         # Table 3-5, UFC 3-250-11 PDF 35 (pdf_page 34), printed 27: the last
-        # row is 25 (6.2 at < 50, 7.3 at 100); above it the 25 row is held
-        # with a note; below 0 is refused.
+        # row is 25 (6.2 at < 50, 7.3 at 100). Above it is refused (REF-76;
+        # the 25 row used to be held with a note): Sec 3-4.4 says the bitumen
+        # needed rises with the fines. Below 0 is refused.
         r = table_3_5_emulsified_asphalt_requirements(25, 100)
         assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(7.3)
         assert "note" not in r
-        r = table_3_5_emulsified_asphalt_requirements(30, "<50")
-        assert r["emulsified_asphalt_lb_per_100lb"] == pytest.approx(6.2)
-        assert "above Table 3-5's last row" in r["note"]
+        with pytest.raises(ValueError, match=r"above Table 3-5's last row "
+                           r"\(25, printed p.27\)"):
+            table_3_5_emulsified_asphalt_requirements(30, "<50")
+        with pytest.raises(ValueError, match="above Table 3-5"):
+            table_3_5_emulsified_asphalt_requirements(25.01, 100)
         with pytest.raises(ValueError):
             table_3_5_emulsified_asphalt_requirements(-1, 100)
 
@@ -394,6 +397,22 @@ class TestEquationCutbackAsphaltContentEstimate:
     def test_negative_input(self):
         with pytest.raises(ValueError):
             equation_cutback_asphalt_content_estimate(-1, 20, 30, 40, 0)
+
+    def test_fractions_must_add_to_100(self):
+        # REF-76: printed p. 26 defines a, b, c, d as the four sieve
+        # fractions of the whole mineral aggregate. Cumulative percents
+        # passing (60, 40, 20 for No. 50/100/200) or decimals used to give
+        # a content with nothing said.
+        with pytest.raises(ValueError, match=r"a \+ b \+ c \+ d = 160, not 100"):
+            equation_cutback_asphalt_content_estimate(40, 60, 40, 20, 0)
+        with pytest.raises(ValueError, match="not 100"):
+            equation_cutback_asphalt_content_estimate(0.1, 0.2, 0.3, 0.4, 0)
+        with pytest.raises(ValueError, match="not 100"):
+            equation_cutback_asphalt_content_estimate(150, 0, 0, 0, 0)
+        # within 1 of 100 (rounded gradations) is taken
+        r = equation_cutback_asphalt_content_estimate(10, 20, 30, 40.6, 0)
+        assert r["cutback_asphalt_pct"] == pytest.approx(
+            0.02 * 10 + 0.07 * 20 + 0.15 * 30 + 0.20 * 40.6, abs=1e-3)
 
 
 # ============================================================================

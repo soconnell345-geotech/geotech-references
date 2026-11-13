@@ -160,6 +160,258 @@ checked against the page that prints the heading (4,407 sections; EN
 GEC-13 ranges started on the wrong page and now start on the heading's
 page (7.1.2.1 pp. 7-1 to 7-4, 9.7.4 pp. 9-110 to 9-111).
 
+**Lookups outside their printed range (app BACKLOG REF-76).** A lookup
+given an input past the end of its printed table or chart no longer
+returns the edge value with nothing said. Where the print gives an
+open-ended row or curve ("D > 40b", ">= 6") the edge value stays and the
+docstring says so; where the manual's text says what to do beyond the
+range, the lookup does that and says so; otherwise it raises `ValueError`
+naming the printed range, the page and the value given. In-range values
+are unchanged. Functions whose out-of-range behaviour changed (printed
+pages):
+
+- `gec_12.figures.figure_7_17_adhesion`: D/b outside 10 to 40 is refused
+  (curves D = 10b and D = 40b only, p. 248); it was held at 10 or 40.
+- `gec_12.figures.figure_7_18_adhesion_factor`: D/b below 10 in Cases 2
+  and 3 is refused (their shallowest curve is printed "D = 10b", p. 249);
+  it took the D = 10b curve. Case 1's "D < 10b" and every case's "D > 20b"
+  / "D > 40b" curve are open-ended as printed and still read past their
+  label. D/b <= 0 is refused.
+- `gec_10.figures.equation_10_22_caving_rock_side`: RQD below 20 is
+  refused (Table 10-3 prints RQD 20 to 100, p. 10-21); it held the RQD 20
+  row (alpha_E 0.45) with a note, which overstates alpha_E there.
+- `gec_10.tables.table_10_2_nc_base_clay`: su below 500 psf is refused
+  (Table 10-2 prints 500, 1,000 and ">= 2,000" psf, p. 10-19); it held
+  N*c = 6.5. Above 2,000 psf the open-ended row still gives 9.0.
+- `gec_11.tables.table_4_4_traffic_surcharge`: an abutment height above 0
+  and below 5.0 ft is refused (Table 4-4 prints 5.0, 10.0 and ">= 20.0"
+  ft, p. 4-17); it held heq = 4.0 ft with a note. 0 still returns the
+  whole table; taller than 20 ft still takes the open-ended 2.0 ft.
+- `gec_7.tables.table_4_9_site_coefficient_fpga` and
+  `table_4_10_site_coefficient_fv`: a negative PGA or S1 is refused. Their
+  end columns are printed open-ended ("S1 <= 0.1" / "S1 >= 0.5", p. 95;
+  Table 4.9 under GEC-12 Table 7-27's "< 0.1" / "> 0.5") and still take
+  the end column.
+- `gec_8.equations.dd_pile_side_resistance_MPa`: N above 50 (Eq. 5.29 is
+  printed for N <= 50, p. 84) is still held at 50, now with `note` and
+  `out_of_range`; the printed limit fs <= 0.16 / 0.21 MPa, reached at
+  N = 32, governs the limited fs, so the value does not change.
+- `gec_8.tables.table_5_4_p_multiplier`: a spacing wider than a soil's
+  printed rows (3B for every soil, 5B also for M. Dense Sand and Loose M.
+  Sand, p. 112) still holds the widest printed row, now with `note` and
+  `out_of_range`; holding is on the low side (p. 111).
+- `gec_9.tables.table_7_1_p_multiplier`: beyond 5B (Table 7-1 prints 3B
+  and 5B, p. 104) the 5B row is still held, now with `out_of_range` beside
+  its `note`; holding is on the low side (p. 102).
+- `gec_9.tables.table_a1_k_stiff_clay` and `table_a2_epsilon50_stiff_clay`:
+  Ca outside 0.5-4 ton/ft2 (the columns Tables A-1 and A-2 print, p. 222)
+  is refused; the end column was returned, with a note. The message gives
+  the ton/ft2 conversion (a Ca of 100 given in kPa read 2,000 pci) and
+  points to Appendix A.1 for soft clay.
+- `eurocode_7_2.tables.table_d3_pile_base_resistance`: qc above 25 MPa is
+  refused (Table D.3 prints qc = 10, 15, 20 and 25 MPa, p. 115; it
+  returned the 25 column with a note).
+- `eurocode_7_2.tables.table_d4_pile_shaft_resistance`: a negative qc is
+  refused; the last row is printed ">= 15" MPa (p. 116) and kept.
+- `eurocode_7_2.tables.table_e2_pmt_shape_coefficients`: L/B above 20 is
+  refused (Table E.2 prints Circle, Square, L/B = 2, 3, 5 and 20, p. 122;
+  it returned the L/B = 20 column, whose coefficients are the lowest of a
+  rising trend).
+- `eurocode_7_2.tables.table_f3_phi_from_density_index`: a density index
+  above 100 % is refused (Table F.3 rows ID = 40 to 100 %, p. 126; it
+  returned the 100 % row with a note).
+- `eurocode_7_2.tables.table_l2_min_mass_sieving`: unchanged; the docstring
+  states the open-ended last row "<= 2" mm, 100 g (p. 145).
+- `aashto_1993.lef.load_equivalency_factor` (and the four `tables.esal_*`
+  lookups that read it): a load outside the printed rows (2-50 kips single,
+  2-90 kips tandem and triple), an SN outside 1-6 or a D outside 6-14 in
+  (Tables D.1-D.18, printed D-3 to D-20) is refused; the end row or column
+  was read, with a note.
+- `aashto_1993.composite_k.composite_k_subbase`: Dsb above 18 in, Esb above
+  1,000,000 psi, MR above 20,000 psi, or a construction past the 2,000 pci
+  diagonal (Figure 3.3, printed II-39) is refused; the nearest curve was
+  read, with a note.
+- `aashto_1993.composite_k.k_rigid_foundation_correction`: Dsg below 2 ft,
+  MR above 20,000 psi or below where the curves used are drawn, k_inf
+  outside 50-1,400 pci, or a k past the 2,000 pci scale end (Figure 3.4,
+  printed II-40) is refused; the nearest curve was read, or no correction
+  applied, with a note. The lower MR limit follows the curves the Dsg
+  needs: the 2-ft curve leaves the top at 1,169 psi, the 5-ft and 10-ft
+  curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
+  1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
+  every Dsg).
+- `wood_handbook.structural_deformation.torsional_constant_rectangular`
+  and `structural_stress.torsional_shear_stress_rectangular` (Figures 9-9
+  and 9-15 coded as polynomials in b/h): a non-positive h or b is refused;
+  a negative b, or two negatives passing the b <= h check, put b/h off the
+  curves' 0-1 axis and gave a number.
+- `wood_handbook.structural_stability.ylinen_strain`,
+  `ylinen_buckling_stress` and `built_up_column_capacity`: c outside 0 < c
+  < 1 is refused (Eq 9-28 defines c as "a constant between 0 and 1",
+  printed p. 9-14, and Eqs 9-29 and 9-30 take the same c; the page gives
+  0.957, 0.8 and 0.9). Also refused: a stress outside 0 <= f < Fc in Eq
+  9-28, Kf outside 0 < Kf <= 1 in Eq 9-30 (the page says Eq 9-29 "is
+  reduced" by it), and a non-positive Fc, fe or E.
+- `gec_11.tables.table_4_4_traffic_surcharge`: a negative abutment height
+  is refused (it returned the whole table, the answer for 0). Refusal
+  messages that named a range without its page now name it
+  (`aashto_1993.composite_k.composite_k_subbase` below Figure 3.3's scales,
+  `ufc_pavement.tables.figure_10_1_k_on_base` below the 25 pci curve,
+  `figure_e_vehicle_allowable_passes`). Wording that said more than the
+  page: the UFC 3-250-11 Table 3-5 docstring no longer says the 25 row
+  would understate content past it (the table's columns do not all rise
+  with fines), and the Caltrans timber-shoring note no longer gives a
+  20 ft limit the page does not print beside PA = mH + 72.
+- `aashto_1993.environmental.max_serviceability_loss_frost` (Figure G.7,
+  printed G-10, five straight lines read off the chart): a depth of frost
+  penetration beyond the chart's 10 ft axis is refused; the line used to be
+  extended with a note (very poor at 12 ft: 6.0, past the chart's 5).
+- `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
+  14-1, printed 41): re-traced from the page. The figure is a nomograph (a
+  straight line through the plain concrete thickness hd and the steel
+  percentage S meets the reinforced thickness scale at hr); it had been
+  coded as hd less a reduction taken from Appendix G's example at hd 7.9
+  in, which read too thick away from that thickness. At S 0.10 %, hd 12 /
+  17 / 24 / 30 in now give hr 10.65 / 15.1 / 21.4 / 26.9 in (were 11.1 /
+  16.1 / 23.1 / 29.1; the figure's own dashed example is hd 16.9 in, hr
+  15.0 in); at S 0.30 % and hd 30 in, 22.85 in (was 28.1). hd 7.9 in at
+  S 0.10 % still reads 7.0 in (Appendix G-6). As and L follow the new hr.
+  The whole S scale, 0.05-0.50 %, is now read (0.05-0.10 and 0.30-0.50
+  were refused, the reduction not being known there). Still refused: hd
+  outside the plain-concrete scale (6-30 in) and S outside 0.05-0.50 %;
+  hd 3 in used to give hr 2.1. Where the line meets the reinforced scale
+  below its 6 in end, hr is the 6 in minimum of paragraph 14-3 (printed
+  42), with `minimum_thickness_governs` and a note (the manual's own
+  example, hd 7.9 in at S 0.30 % for 6 in, lands 0.09 in below the end).
+- `aashto_1993.composite_k.relative_damage_rigid` (Figure 3.5, printed
+  II-41, coded as a closed form fitted to the chart): D outside the curves
+  drawn (6-14 in) or k outside the k axis (10-2,000 pci) is refused; the
+  formula gave numbers there with nothing to say so (D 3 in: 0.0117).
+- `aashto_1993.composite_k.k_loss_of_support` (Figure 3.6, printed II-42, a
+  power law fitted to the chart), for LS above 0: k above the axis end,
+  2,000 pci (k 5,000 at LS 1 gave 1,045.8), a corrected k above the chart's
+  top, 1,000 pci, and k below 10 pci are refused. The last is the library's
+  reading: the slopes were checked against the chart only from 10 pci up,
+  and below it the drawn LS = 3.0 line bends away from the power law (at k
+  about 2.4 the chart gives 1 pci, the power law 1.5). LS = 0 returns k
+  unchanged at any k. `effective_modulus_subgrade_reaction` holds its
+  back-solved k within the periods' k (rounding of u_r could carry it just
+  past them, and so past an axis end).
+- `aashto_1993.composite_k.k_loss_of_support` (and
+  `effective_modulus_subgrade_reaction`, which calls these three): LS
+  outside 0-3 (Figure 3.6's lines, printed II-42) is refused; LS = 3 or 0
+  was used, with a note.
+- `aashto_1993.environmental.potential_vertical_rise`: a layer thinner than
+  2 ft (Figure G.3's thinnest curve, printed G-4) is refused (the 2 ft curve
+  was read, with a note); a negative PI is refused. Below the condition
+  curve's start VR stays 0.00, as Table H.1 (printed H-3) prints it for PI
+  15 and 19; the note now cites it.
+- `aashto_1993.tables.layer_coefficient_a1_asphalt`: above 500,000 psi
+  (Figure 2.5's edge, printed II-18) a1 is still held at the 500,000 psi
+  value, now with `out_of_range`: on the safe side, and II-17 cautions
+  against moduli above 450,000 psi.
+- `aashto_1993.tables.layer_coefficient_a2_cement_treated` and
+  `layer_coefficient_a2_bituminous_treated`: a UCS above 1000 psi or a
+  Marshall stability above 1800 lb (the top labelled ticks of Figures 2.8
+  and 2.9, printed II-23 and II-24) is refused; a2 was held at the top
+  tick's value, with a note. II-22 gives no rule past the scales.
+- `ufc_pavement.tables.figure_10_1_k_on_base`: k on subgrade above 300 pci
+  or a base thicker than 60 in (Figure 10-1's top curve and axis, printed
+  p. 32) is refused; the edge was read, with a note. The message points to
+  the plate-bearing test on the base (para 10-4) and Table 10-1 note 2's
+  500 psi/in maximum (printed 31).
+- `ufc_pavement.tables.figure_e_vehicle_thickness`: passes below a chart's
+  lowest curve (1,000 on most of Figures E-2 to E-31, 10,000 on E-2, 100 on
+  E-31) still give that curve's thickness, now with `out_of_range` and a
+  note naming the curve and saying the manual prints none below it: on
+  every chart the thickness rises with the passes (checked on the rendered
+  charts and, by a test, on the traced curves), so the hold is not less
+  than fewer passes need. Where that curve is above the chart at the CBR
+  it is refused. Above the highest curve the extrapolation stays, as
+  Table G-1 (printed 257) reads the passenger car at 20,000,000 passes; the
+  note now gives the page.
+- `ufc_pavement.tables.figure_e_vehicle_allowable_passes`: a thickness more
+  than 0.05 in under the lowest curve, or where every curve is above the
+  chart, is refused; the lowest curve's passes were returned
+  (`clamped='below_min_passes_curve'`), which overstates them. Above the
+  highest curve `clamped='above_max_passes_curve'` stays (Table G-1's
+  "Unlimited").
+- `ufc_pavement.tables.figure_15_1_cracking_projection_factor` (F held at
+  the 10,000,000-pass value past the chart's edge) and
+  `figure_e1_flexible_thickness` (0.0 past the CBR where a curve meets the
+  axis) are unchanged; the note and docstrings now give the basis (G-7,
+  printed 264, reads 0.93 at 20 million passes; cover cannot be less than
+  none).
+- `ufc_stabilization.tables.table_3_5_emulsified_asphalt_requirements`:
+  percent passing No. 200 above 25 (Table 3-5's last row, UFC 3-250-11
+  printed p. 27) is refused; the 25 row was returned, with a note, though
+  Sec 3-4.4 says the bitumen required increases with the finer sizes.
+- `ufc_stabilization.equations.equation_cutback_asphalt_content_estimate`:
+  a, b, c and d that do not add to 100 within 1 are refused; printed p. 26
+  defines them as the four sieve fractions of the whole mineral aggregate,
+  and cumulative percents passing or decimals returned a content with
+  nothing said.
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`: fy, Es
+  or the concrete strain not positive is refused (they set the -fy..fy
+  bound on the tension steel stress, the yield limit Eqs B-31 and B-37
+  print for fs', printed pp. 47-48). The same for
+  `compression_controlled_capacity_singly` (fs held at -fy) and
+  `design.design_doubly_reinforced` (fs' held at fy).
+  `compression_steel_stress_at_ku`, which bounds fs' for the doubly
+  reinforced functions, also refuses ku or beta1 not positive, beta1 above
+  1, d'/d outside 0 to 1, and for Eq B-31 ku not below beta1 (its
+  denominator).
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`, the
+  lead's ruling 42: fs' from Eq B-37 came back above yield (75.7 ksi with
+  fy 60 for e'/d 0.8). B-37 prints only fs' (>= -fy) (printed p. 48), and
+  the cubic that gives ku (Eq B-39) is derived with the compression steel
+  not yielded. Where B-37 is above fy at the cubic's root the function now
+  holds fs' at fy and solves the manual's own equilibrium equations, Eqs
+  B-23 and B-24 (printed p. 45), again for ku. For rho 0.01, rho' 0.01,
+  d'/d 0.1, fy 60 ksi, f'c 4 ksi, b 12 in, d 20 in, h 24 in, phi 0.65:
+  phi Pn 396.0 kips at e'/d 0.8 (was 424.8), 524.6 at 0.65 (was 566.6),
+  695.5 at 0.5 (was 749.1). With Grade 60 steel and d'/d below 0.18 this
+  is every compression-controlled section. The result gives
+  `limit_governs` True, the cubic's root as `ku_cubic`, B-37 there as
+  `fs_prime_unlimited`, the capacity by the printed equations as
+  `phi_pn_cubic`, and a note saying this is the library's reading. Where
+  the tension steel has yielded (Eq B-36 above fy at the root) the section
+  is controlled by tension and the call is refused, naming
+  `tension_controlled_capacity_doubly`; fs was held at fy with nothing
+  said.
+- `em_2104.flexure_axial.tension_controlled_capacity_doubly`: the same gap
+  on the other side of the balanced point. Where Eq B-31's fs' is above fy
+  at the root of Eq B-33 (near the balanced eccentricity, and only for
+  d'/d below 0.18 with Grade 60 steel) fs' is still held at fy as the page
+  prints (p. 47), and ku is now solved again from Eq B-32 (p. 47) with
+  fs' = fy: the section above at 1.02 times its balanced e'/d, phi 0.9,
+  gives 355.9 kips (was 352.9). At the balanced e'/d the two doubly
+  reinforced functions now return the same ku (kb) and capacity. A
+  section that is not controlled by tension is refused there.
+- `em_2104.flexure_axial.compression_controlled_capacity_singly`: Eq B-19
+  above fy at the root of Eq B-21 (the tension steel has yielded, the
+  section is controlled by tension) is refused, naming
+  `tension_controlled_capacity_singly`; B-21's ku came back with fs above
+  yield. Below -fy, the bound the page prints (p. 44), fs = -fy and ku is
+  solved again from Eqs B-2 and B-5 (p. 42): one layer at mid-depth, fy
+  40 ksi, e'/d 0.05 gives 640.1 kips (was 639.7). Its page is cited as 44
+  (was 44-45: Eqs B-17 to B-21 are all on p. 44).
+- `em_2104` functions whose ku or stress-block depth is given, not solved
+  with the steel taken elastic, still hold fs' at fy with `limit_governs`,
+  `fs_prime_unlimited` and a note, and stay in balance:
+  `compression_steel_stress_at_ku`, `balanced_eccentricity_doubly` (ku =
+  kb) and `design.design_doubly_reinforced` (ad = Kd d).
+  `design.design_doubly_reinforced` also refuses an fs' that is not
+  positive (ad <= beta1 d': the compression steel is in tension and Eq D-4
+  gave a negative As').
+- `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
+  unchanged past the end rows, which are printed open-ended ("<= 0.0" /
+  ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as
+  the docstrings now say; a negative shear ratio (vw_ratio, vg_over_vo) is
+  refused.
+- `gsa_collapse.reinforced_concrete` Tables 6 to 9 flexure lookups: the
+  same (open-ended rows printed pp. 39-42; negative shear ratios refused).
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,
@@ -408,7 +660,8 @@ Results that now say more, with the same numbers:
   printed column (25 MPa) and that column was used, and
   `table_f3_phi_from_density_index` says when it interpolated between
   printed rows (the table prints no interpolation rule) or used the
-  ID = 100 % row for a higher ID.
+  ID = 100 % row for a higher ID. (Both cases past the last column or row
+  are now refused: see "Lookups outside their printed range" above.)
 - `site_class_from_vs30` gives an estimated velocity no class in the Site
   Class B or A range (Sections 20.2.4 and 20.2.5 require a measured
   velocity for those classes) and says why.

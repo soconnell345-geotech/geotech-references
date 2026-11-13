@@ -122,6 +122,17 @@ class TestTable71PMuliplier:
         assert "no row beyond 5B" in result["note"]
         assert "note" not in table_7_1_p_multiplier("3rd", 5.0)
         assert "note" not in table_7_1_p_multiplier("2nd", 4.0)
+
+    def test_beyond_5b_out_of_range_key(self):
+        # REF-76: Table 7-1 (GEC-9 p. 104) prints 3B and 5B; beyond 5B the 5B
+        # row is held, on the low side (p. 102: Pm decreases as spacing
+        # decreases), and out_of_range names the printed limit.
+        result = table_7_1_p_multiplier("2nd", 7.0)
+        assert result["pm"] == 0.85
+        assert "5B" in result["out_of_range"] and "p. 104" in result["out_of_range"]
+        assert "safe" in result["note"]
+        assert "out_of_range" not in table_7_1_p_multiplier("2nd", 5.0)
+        assert "out_of_range" not in table_7_1_p_multiplier("3rd", 3.5)
         assert table_7_1_p_multiplier("lead", 3.0)["print_notes"][2].startswith(
             "(3) Interpolation may be used")
 
@@ -232,19 +243,18 @@ class TestTableA1KStiffClay:
         with pytest.raises(ValueError):
             table_a1_k_stiff_clay(-0.5, "static")
 
-    def test_outside_printed_columns_says_so(self):
+    def test_outside_printed_columns_refused(self):
         """FHWA-HIF-18-031 Table A-1, p. 222 (PDF page 226): Ca columns 0.5 - 1,
         1 - 2 and 2 - 4 ton/ft2. Ca 0.3 answered 500 pci and Ca 100 (kPa
-        passed as ton/ft2) 2,000 pci from the end columns unsaid (gec-25);
-        the values stand, with a note. Inside 0.5 - 4 there is no note."""
-        low = table_a1_k_stiff_clay(0.3, "static")
-        assert low["k_pci"] == 500.0
-        assert "0.5 - 1 column is used" in low["note"]
-        high = table_a1_k_stiff_clay(100.0, "cyclic")
-        assert high["k_pci"] == 800.0
-        assert "2 - 4 column is used" in high["note"]
+        passed as ton/ft2) 2,000 pci from the end columns (gec-25 added a
+        note); REF-76: refused, the guide giving no rule there."""
+        with pytest.raises(ValueError, match=r"outside the columns Table A-1 prints"):
+            table_a1_k_stiff_clay(0.3, "static")
+        with pytest.raises(ValueError, match=r"95\.8 kPa"):
+            table_a1_k_stiff_clay(100.0, "cyclic")
+        assert table_a1_k_stiff_clay(4.0, "static")["k_pci"] == 2000.0
+        assert table_a1_k_stiff_clay(0.5, "cyclic")["k_pci"] == 200.0
         assert "note" not in table_a1_k_stiff_clay(4.0, "static")
-        assert "note" not in table_a1_k_stiff_clay(0.5, "static")
 
     def test_invalid_loading(self):
         with pytest.raises(ValueError):
@@ -284,11 +294,14 @@ class TestTableA2Epsilon50StiffClay:
         with pytest.raises(ValueError):
             table_a2_epsilon50_stiff_clay(0.0)
 
-    def test_outside_printed_columns_says_so(self):
-        """Table A-2, p. 222: same Ca columns as Table A-1 (gec-25)."""
-        result = table_a2_epsilon50_stiff_clay(6.0)
-        assert result["epsilon_50"] == 0.004
-        assert "Table A-2 prints Ca of 0.5 - 1, 1 - 2 and 2 - 4" in result["note"]
+    def test_outside_printed_columns_refused(self):
+        """Table A-2, p. 222: same Ca columns as Table A-1 (gec-25; REF-76)."""
+        with pytest.raises(ValueError, match=r"outside the columns Table A-2 prints"):
+            table_a2_epsilon50_stiff_clay(6.0)
+        with pytest.raises(ValueError, match="no epsilon_50 there"):
+            table_a2_epsilon50_stiff_clay(0.4)
+        assert table_a2_epsilon50_stiff_clay(4.0)["epsilon_50"] == 0.004
+        assert table_a2_epsilon50_stiff_clay(0.5)["epsilon_50"] == 0.007
         assert "note" not in table_a2_epsilon50_stiff_clay(1.5)
 
 
