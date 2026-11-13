@@ -145,7 +145,9 @@ _ALT = re.compile(r"Equations?((?:\d{1,2}-\d{1,3}[a-z]?|\d{1,2}[a-z]|,|and)+)"
 _ALT_NUM = re.compile(r"(\d{1,2}-\d{1,3}[a-z]?|\d{1,2}[a-z])")
 #: The first line of the running footer.
 _FOOTER = re.compile(r"^FHWA\s+NHI-10-02[45]$")
-_PAGE_LABEL = re.compile(rf"^(\d{{1,2}}|[A-F])\s*[-{_DASH}]\s*(\d{{1,3}})$")
+#: A printed page number: "3 – 22", an appendix's "B–1", or a page of one
+#: of Appendix E's examples, "E1 – 19".
+_PAGE_LABEL = re.compile(rf"^(\d{{1,2}}|[A-F]\d{{0,2}})\s*[-{_DASH}]\s*(\d{{1,3}})$")
 #: A contents entry, its page after a dotted leader or straight after it.
 _CONTENTS = re.compile(
     rf"(?<![\w.])(\d{{1,2}}(?:\.\d{{1,2}}){{1,3}}(?:\.[a-z])?)\s+"
@@ -289,13 +291,17 @@ def _alt_numbers(text: str) -> list[str]:
     return out
 
 
-def read_pages(pdf: Path) -> list[dict]:
+def read_pages(pdf: Path, only: range | None = None) -> list[dict]:
     """Each page: ``label`` (printed page, e.g. '3-22'), its ``lines`` with
     the footer taken off and each equation object as ``[Eq. N]`` lines, and
-    ``equations`` (the numbers marked on it)."""
+    ``equations`` (the numbers marked on it). With ``only`` (1-based PDF
+    pages), the other pages are left empty."""
     pages = []
     with fitz.open(str(pdf)) as doc:
-        for page in doc:
+        for n, page in enumerate(doc, 1):
+            if only is not None and n not in only:
+                pages.append({"label": None, "lines": [], "equations": []})
+                continue
             alt = _page_lines(page, False, False)
             raw = _page_lines(page, True, False)
             lines = _page_lines(page, True, True)
@@ -357,10 +363,12 @@ def _join_hyphens(lines: list[str]) -> list[str]:
 
 
 #: Lines of the running footer after its "FHWA NHI-10-02x" line, in any
-#: order: the chapter ("3 – Soil Reinforcement Principles"), the short
-#: title, the page and the date.
+#: order: the chapter ("3 – Soil Reinforcement Principles") or appendix
+#: ("Appendix B – Pullout & Connection Strengths"), the short title, the
+#: page and the date.
 _FOOTER_PART = re.compile(
     rf"^(?:\d{{1,2}}\s*[{_DASH}-]\s*\D.*|MSE Walls and RSS\s*[{_DASH}-]\s*Vol I{{1,2}}"
+    rf"|Appendix [A-F](?:\.\d{{1,2}})?\s*[{_DASH}-]\s*\D.*"
     rf"|November 2009|Table of Contents)$")
 
 
@@ -629,10 +637,12 @@ def _split(sec: dict, split_ids: dict) -> list[dict]:
     return parts
 
 
-def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
-    pdf = (manifest_dir / vol["pdf_path"]).resolve()
-    pages = read_pages(pdf)
-    for f in vol.get("fix_lines", []):
+def apply_fix_lines(pages: list[dict], fixes: list[dict], pad: bool = True) -> None:
+    """The manifest's ``fix_lines`` applied to the read pages, in order.
+    With ``pad`` (the chapters), a run of lines replaced by fewer leaves
+    blank lines behind it; without (the appendices), it does not, since
+    a blank line there parts paragraphs."""
+    for f in fixes:
         lines = pages[f["pdf_page"] - 1]["lines"]
         if f["find"] not in lines:
             raise ValueError(f"fix_lines: {f['find']!r} not on PDF page {f['pdf_page']}")
@@ -640,12 +650,21 @@ def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
         # with "through": the lines from "find" to that line, the text
         # layer's pieces of equations set inside a figure, give way to
         # the typed text
+        if f.get("through") and f["through"] not in lines[i:]:
+            raise ValueError(f"fix_lines: {f['through']!r} not after {f['find']!r} "
+                             f"on PDF page {f['pdf_page']}")
         j = lines.index(f["through"], i) if f.get("through") else i
         rep = f["replace"] if isinstance(f["replace"], list) else [f["replace"]]
         # a line break inside a replacement ("\n", the rows of a table typed
         # in from the page) is kept through the body's white-space clean-up
         rep = [r.replace("\n", _ROW) for r in rep]
-        lines[i:j + 1] = rep + [""] * (j - i)
+        lines[i:j + 1] = rep + ([""] * (j - i) if pad else [])
+
+
+def build_volume(vol: dict, manifest_dir: Path, only: set[int] | None = None):
+    pdf = (manifest_dir / vol["pdf_path"]).resolve()
+    pages = read_pages(pdf)
+    apply_fix_lines(pages, vol.get("fix_lines", []))
     entries = parse_contents(pages, *vol["contents_pages"])
     figs, tabs = parse_lists(pages, *vol["lists_pages"])
     headings = vol.get("headings", {})

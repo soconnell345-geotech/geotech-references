@@ -18,7 +18,7 @@ specifications' tables (chapter 10) and the inspection checklists
 (chapter 11) typed in row by row; no summaries or key points. A test scans
 every body for a formula that came apart in the text layer (a parted
 prime, a lone number above a formula, unpaired brackets, a sentence
-repeated in table rows). Appendices A to F are not built (REF-85).
+repeated in table rows). The appendices are in the next paragraph.
 Stored statements that changed in substance, the unsafe ones first:
 
 - 9.2.6, Eq. 9-1 (p. 9-7): the required tension was stored as
@@ -80,6 +80,22 @@ the printed subsections the condensed files left out (2.1.1, 3.2.1,
 long for the reference tools (1.2.a, 3.4.2.a, 4.4.6.c.a, 5.3.3.a, 7.1.1.a,
 9.2.6.a, 10.9.a to 10.9.f, 11.1.2.a, 11.3.5.a; the letters are not
 printed).
+
+**GEC-11 Volume II appendices read off the print (build, REF-85).** The
+library held none of them. `scripts/build_gec11_appendix.py` (the
+`appendices` of the Volume II manifest entry) builds each into its own
+file, `text/appendix_b.json` and so on, the print's words with `[p. B-3]`
+markers and every formula line, table and figure lettering typed in from
+the rendered pages:
+
+- Appendix B (pp. B-1 to B-18; file chapter 13), pullout resistance
+  factors and MBW unit-geosynthetic connection strength: sections B to
+  B.4.2, Eqs. B-1 to B-4 (and Eqs. 4-41 and 4-43 printed again), Table
+  B-1, the connection test protocol and the worked example (data table,
+  CRcr and Talc = 444 + 0.044 N, recomputed). Noted as printed: "75
+  years (670,000 hrs)" (p. B-10; about 657,000), and Figure B-5's line
+  through the test data, y = 0.1132x + 1068.2 (tan 6.5 degrees), where
+  the text uses tan 6 degrees (pp. B-16, B-17).
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
