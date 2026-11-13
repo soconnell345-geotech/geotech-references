@@ -33,6 +33,7 @@ not EM 1110-2-2104 content.
 """
 
 import math
+from geotech_references import _units as _u
 
 try:
     import numpy as _np
@@ -52,6 +53,7 @@ DEFAULT_ES_KSI = 29000.0
 DEFAULT_EC = 0.003
 
 
+@_u.labelled({}, si={"fc_prime": ("MPa", "ksi")}, si_fixed={"unit": 'ksi'})
 def aci_beta1(fc_prime, unit="ksi"):
     """ACI 318-19 Table 22.2.2.4.3 beta_1 factor (dimensionless, 0.65 to
     0.85) from f'c given in ksi (default) or psi; not reprinted in this
@@ -66,11 +68,21 @@ def aci_beta1(fc_prime, unit="ksi"):
         gives 0.65 where 28 MPa (4.06 ksi) gives 0.847.
     unit : str, optional
         'ksi' (default) or 'psi'.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime in MPa, each converted exactly to the printed unit (ksi)
+        before the lookup runs as printed.
 
     Returns
     -------
     float
-        beta_1 (0.65 to 0.85).
+        beta_1 [dimensionless], 0.65 to 0.85.
+        With unit_system='SI' the value is the same, as above.
+
+    References
+    ----------
+    EM 1110-2-2104 paragraph 4-1d(4), printed p. 30 (pdf_page_index 35),
+    which takes beta_1 as ACI 318-19 specifies (Table 22.2.2.4.3).
     """
     fc_psi = fc_prime * 1000.0 if unit == "ksi" else fc_prime
     if fc_psi <= 4000.0:
@@ -181,6 +193,10 @@ def _bisect_ku(g, lo, hi):
 # Chapter 4 -- eccentricity, balanced strain factor, biaxial bending
 # ============================================================================
 
+@_u.labelled(
+    {"e_prime": "in", "e_prime_over_d": "dimensionless"},
+    si={"mu": ("kN-m", "kip-in"), "pu": ("kN", "kips"), "d": ("mm", "in"),
+        "h": ("mm", "in")})
 def eccentricity_ratio(mu, pu, d, h):
     """Eq 4-1/4-2: eccentricity of axial load e' (in., measured from the
     centroid of tension reinforcement) and its ratio e'/d (dimensionless)
@@ -201,12 +217,19 @@ def eccentricity_ratio(mu, pu, d, h):
         tension reinforcement, in.
     h : float
         Overall thickness of the section, in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mu in kN-m, pu in kN and d and h in mm, each converted exactly to the
+        printed unit (kip-in, kips, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'e_prime', 'e_prime_over_d', 'equation': '4-1/4-2',
          'printed_page': '29-30', 'pdf_page_index': [34, 35]}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     e_prime = mu / pu + (d - h / 2.0)
     return {
@@ -215,6 +238,9 @@ def eccentricity_ratio(mu, pu, d, h):
     }
 
 
+@_u.labelled(
+    {"kb": "dimensionless"},
+    si={"fy": ("MPa", "ksi"), "es": ("MPa", "ksi")})
 def balanced_strain_kb(beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     """Eq 4-3 (= Eq B-7): kb, the ratio of stress-block depth to effective
     depth at the balanced strain condition (dimensionless), from fy in ksi
@@ -233,16 +259,24 @@ def balanced_strain_kb(beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
         Steel modulus of elasticity Es, ksi (default 29,000 ksi).
     ec : float, optional
         Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy and es in MPa, each converted exactly to the printed unit (ksi)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'kb', 'equation': '4-3', 'printed_page': '30', 'pdf_page_index': 35}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     kb = beta1 * es * ec / (es * ec + fy)
     return {"kb": kb, "equation": "4-3", "printed_page": "30", "pdf_page_index": 35}
 
 
+@_u.labelled({"k": "no unit printed", "lhs": "dimensionless"})
 def bresler_biaxial_check(mux, phi_m0x, muy, phi_m0y, member_shape="rectangular"):
     """Eq 4-5: Bresler load-contour biaxial-bending design check; returns
     the dimensionless left-hand side and whether it is <= 1.0 (printed
@@ -291,6 +325,10 @@ def bresler_biaxial_check(mux, phi_m0x, muy, phi_m0y, member_shape="rectangular"
 # Appendix B-2 -- Singly reinforced, flexure + axial compression (Fig B-1)
 # ============================================================================
 
+@_u.labelled(
+    {"phi_pn_max": "kips"},
+    si={"fc_prime": ("MPa", "ksi"), "ag": ("mm^2", "in^2"),
+        "as_": ("mm^2", "in^2"), "fy": ("MPa", "ksi")})
 def max_axial_capacity_singly(phi, fc_prime, ag, as_, fy):
     """Eq B-1: maximum design axial load strength phi*Pn(max), kips, for
     tied, singly reinforced members, from strengths in ksi and areas in
@@ -311,17 +349,25 @@ def max_axial_capacity_singly(phi, fc_prime, ag, as_, fy):
         Area of tension reinforcement As, sq in.
     fy : float
         Specified yield strength of reinforcement, ksi.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime and fy in MPa and ag and as_ in mm^2, each converted exactly
+        to the printed unit (ksi, in^2) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'phi_pn_max', 'equation': 'B-1', 'printed_page': '42', 'pdf_page_index': 47}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     phi_pn_max = 0.8 * phi * (0.85 * fc_prime * (ag - as_) + fy * as_)
     return {"phi_pn_max": phi_pn_max, "equation": "B-1",
             "printed_page": "42", "pdf_page_index": 47}
 
 
+@_u.labelled({"eb_prime_over_d": "dimensionless"})
 def balanced_eccentricity_singly(kb, rho, fy, fc_prime):
     """Eq B-10: balanced eccentricity ratio eb'/d (dimensionless) for a
     singly reinforced member (printed p. 43).
@@ -355,6 +401,10 @@ def balanced_eccentricity_singly(kb, rho, fy, fc_prime):
             "printed_page": "43", "pdf_page_index": 48}
 
 
+@_u.labelled(
+    {"ku": "dimensionless", "phi_mn": "kip-in", "phi_pn": "kips"},
+    si={"fy": ("MPa", "ksi"), "fc_prime": ("MPa", "ksi"), "b": ("mm", "in"),
+        "d": ("mm", "in"), "h": ("mm", "in")})
 def tension_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime, b, d, h, phi):
     """Eq B-16, B-11, B-13: design capacity phi*Pn (kips) and phi*Mn
     (kip-in.) of a singly reinforced, tension-controlled member
@@ -391,11 +441,18 @@ def tension_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime, b, d, 
     phi : float
         Strength reduction factor (ACI 318-19; 0.90 tension-controlled,
         ``PHI_TENSION_CONTROLLED``).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy and fc_prime in MPa and b, d and h in mm, each converted exactly to
+        the printed unit (ksi, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'ku', 'phi_pn', 'phi_mn', 'equation': 'B-11/B-13/B-16', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     term = e_prime_over_d - 1
     radicand = term ** 2 + rho * fy * e_prime_over_d / (0.425 * fc_prime)
@@ -409,6 +466,12 @@ def tension_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime, b, d, 
     }
 
 
+@_u.labelled(
+    {"fs": "ksi", "fs_unlimited": "ksi", "ku": "dimensionless",
+     "ku_cubic": "dimensionless", "phi_mn": "kip-in", "phi_pn": "kips",
+     "phi_pn_cubic": "kips", "fs_prime": "ksi", "fs_prime_unlimited": "ksi"},
+    si={"fy": ("MPa", "ksi"), "fc_prime": ("MPa", "ksi"), "b": ("mm", "in"),
+        "d": ("mm", "in"), "h": ("mm", "in"), "es": ("MPa", "ksi")})
 def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
                                             b, d, h, phi, beta1,
                                             es=DEFAULT_ES_KSI, ec=DEFAULT_EC,
@@ -474,6 +537,10 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
     kb : float, optional
         Balanced ku (``balanced_strain_kb``), dimensionless; picks the root
         of the cubic above kb.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy, fc_prime and es in MPa and b, d and h in mm, each converted exactly
+        to the printed unit (ksi, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -482,6 +549,9 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
          'equation': 'B-17/B-18/B-19/B-21', ...}; where fs is held at -fy
         also 'ku_cubic', 'fs_unlimited', 'phi_pn_cubic' and 'note', and
         'equation' names B-2 and B-5 in place of B-21.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -571,6 +641,10 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
 # Appendix B-3 -- Doubly reinforced, flexure + axial compression (Fig B-2)
 # ============================================================================
 
+@_u.labelled(
+    {"phi_pn_max": "kips"},
+    si={"fc_prime": ("MPa", "ksi"), "ag": ("mm^2", "in^2"),
+        "fy": ("MPa", "ksi"), "bd": ("mm^2", "in^2")})
 def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
     """Eq B-22: maximum design axial load strength phi*Pn(max), kips, for
     tied, doubly reinforced members, from strengths in ksi and areas in
@@ -595,12 +669,19 @@ def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
         Specified yield strength of reinforcement, ksi.
     bd : float
         Product of width b and effective depth d, sq in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime and fy in MPa and ag and bd in mm^2, each converted exactly to
+        the printed unit (ksi, in^2) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'phi_pn_max', 'equation': 'B-22', 'printed_page': '45',
          'pdf_page_index': 50}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     steel_area = (rho + rho_prime) * bd
     phi_pn_max = 0.8 * phi * (0.85 * fc_prime * (ag - steel_area) + fy * steel_area)
@@ -608,6 +689,9 @@ def max_axial_capacity_doubly(phi, fc_prime, ag, rho, rho_prime, fy, bd):
             "printed_page": "45", "pdf_page_index": 50}
 
 
+@_u.labelled(
+    {"fs_prime": "ksi", "fs_prime_unlimited": "ksi"},
+    si={"fy": ("MPa", "ksi"), "es": ("MPa", "ksi")})
 def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
                                     es=DEFAULT_ES_KSI, ec=DEFAULT_EC,
                                     regime="tension_controlled"):
@@ -642,6 +726,20 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
     regime : str, optional
         'tension_controlled' (Eq B-31, uses Es*epsilon_y; default) or
         'compression_controlled' (Eq B-37, uses Es*ec).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy and es in MPa, each converted exactly to the printed unit (ksi)
+        before the lookup runs as printed.
+
+    Returns
+    -------
+    dict
+        {'fs_prime' (ksi), 'equation', 'printed_page': '46-48',
+         'pdf_page_index': [51, 52, 53], 'limit_governs' (bool)}; where a
+        bound governs also 'fs_prime_unlimited' (ksi) and 'note'.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -697,6 +795,10 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
     return out
 
 
+@_u.labelled(
+    {"eb_prime_over_d": "dimensionless", "fs_prime_at_kb": "ksi",
+     "fs_prime_unlimited": "ksi"},
+    si={"fy": ("MPa", "ksi"), "fc_prime": ("MPa", "ksi"), "es": ("MPa", "ksi")})
 def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
                                   fc_prime, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     """Eq B-28: balanced eccentricity ratio eb'/d (dimensionless) for a
@@ -729,11 +831,18 @@ def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
         Steel modulus of elasticity Es, ksi (default 29,000 ksi).
     ec : float, optional
         Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy, fc_prime and es in MPa, each converted exactly to the printed unit
+        (ksi) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'eb_prime_over_d', 'fs_prime_at_kb', 'equation': 'B-28', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     fsr = compression_steel_stress_at_ku(
         kb, dprime_over_d, beta1, fy, es, ec, regime="tension_controlled",
@@ -755,6 +864,12 @@ def balanced_eccentricity_doubly(kb, beta1, dprime_over_d, rho, rho_prime, fy,
     return out
 
 
+@_u.labelled(
+    {"fs_prime": "ksi", "fs_prime_unlimited": "ksi", "ku": "dimensionless",
+     "ku_cubic": "dimensionless", "phi_mn": "kip-in", "phi_pn": "kips",
+     "phi_pn_cubic": "kips", "fs": "ksi", "fs_unlimited": "ksi"},
+    si={"fy": ("MPa", "ksi"), "fc_prime": ("MPa", "ksi"), "b": ("mm", "in"),
+        "d": ("mm", "in"), "h": ("mm", "in"), "es": ("MPa", "ksi")})
 def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
                                         rho_prime, fy, fc_prime, beta1,
                                         b, d, h, phi, es=DEFAULT_ES_KSI,
@@ -828,6 +943,10 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     kb : float, optional
         Balanced ku (``balanced_strain_kb``), dimensionless; picks the root
         of the cubic below kb.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy, fc_prime and es in MPa and b, d and h in mm, each converted exactly
+        to the printed unit (ksi, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -836,6 +955,9 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
          'equation': 'B-29/B-30/B-33', ...}; where fs' is held at fy also
         'ku_cubic', 'fs_prime_unlimited', 'phi_pn_cubic' and 'note', and
         'equation' names B-32 in place of B-33.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -926,6 +1048,12 @@ def tension_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     return out
 
 
+@_u.labelled(
+    {"fs": "ksi", "fs_prime": "ksi", "fs_prime_unlimited": "ksi",
+     "ku": "dimensionless", "ku_cubic": "dimensionless", "phi_mn": "kip-in",
+     "phi_pn": "kips", "phi_pn_cubic": "kips", "fs_unlimited": "ksi"},
+    si={"fy": ("MPa", "ksi"), "fc_prime": ("MPa", "ksi"), "b": ("mm", "in"),
+        "d": ("mm", "in"), "h": ("mm", "in"), "es": ("MPa", "ksi")})
 def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
                                             rho_prime, fy, fc_prime, beta1,
                                             b, d, h, phi, es=DEFAULT_ES_KSI,
@@ -1006,6 +1134,10 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     kb : float, optional
         Balanced ku (``balanced_strain_kb``), dimensionless; picks the root
         of the cubic above kb.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy, fc_prime and es in MPa and b, d and h in mm, each converted exactly
+        to the printed unit (ksi, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -1015,6 +1147,9 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
         fy also 'ku_cubic', 'fs_prime_unlimited', 'phi_pn_cubic' and 'note'
         ('fs_unlimited' too if fs is held at -fy), and 'equation' names
         B-23 and B-24 in place of B-37 and B-39.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1138,6 +1273,9 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
 # Appendix B-4 -- Flexural and tensile capacity (Fig B-3)
 # ============================================================================
 
+@_u.labelled(
+    {"phi_pn_max": "kips"},
+    si={"fy": ("MPa", "ksi"), "bd": ("mm^2", "in^2")})
 def max_axial_tension_capacity(phi, rho, rho_prime, fy, bd):
     """Eq B-40 (= Eq B-43, converted to a design limit): maximum design
     axial tension strength phi*Pn(max), kips, 80 percent of the strength at
@@ -1158,18 +1296,26 @@ def max_axial_tension_capacity(phi, rho, rho_prime, fy, bd):
         Specified yield strength of reinforcement, ksi.
     bd : float
         Product of width b and effective depth d, sq in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy in MPa and bd in mm^2, each converted exactly to the printed unit
+        (ksi, in^2) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'phi_pn_max', 'equation': 'B-40', 'printed_page': '48',
          'pdf_page_index': 53}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     phi_pn_max = 0.8 * phi * (rho + rho_prime) * fy * bd
     return {"phi_pn_max": phi_pn_max, "equation": "B-40",
             "printed_page": "48", "pdf_page_index": 53}
 
 
+@_u.labelled({"lower_bound": "dimensionless", "upper_bound": "dimensionless"})
 def tension_flexure_eccentricity_range(h, d):
     """Eq B-41: the eccentricity-ratio range (dimensionless bounds on e'/d)
     within which BOTH reinforcement layers are in tension (the tensile
@@ -1204,6 +1350,7 @@ def tension_flexure_eccentricity_range(h, d):
             "printed_page": "48", "pdf_page_index": 53}
 
 
+@_u.labelled({"ku": "dimensionless"})
 def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime):
     """Eq B-42: ku (dimensionless) for a tensile load with e'/d < 0, no
     compression reinforcement (or c <= d'), designed per paragraph B-2e
@@ -1234,6 +1381,9 @@ def tension_controlled_by_compression_side_ku(e_prime_over_d, rho, fy, fc_prime)
     return {"ku": ku, "equation": "B-42", "printed_page": "50", "pdf_page_index": 55}
 
 
+@_u.labelled(
+    {"fs_prime": "ksi", "ku": "dimensionless"},
+    si={"fy": ("MPa", "ksi")})
 def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
                                      rho_prime, fy):
     """Eq B-48, B-46, B-44, B-45: ku (dimensionless) and the second-layer
@@ -1259,12 +1409,19 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
         Second-layer reinforcement ratio As'/(b d), dimensionless.
     fy : float
         Specified yield strength of reinforcement, ksi.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy in MPa, each converted exactly to the printed unit (ksi) before the
+        lookup runs as printed.
 
     Returns
     -------
     dict
         {'ku', 'fs_prime', 'equation': 'B-44/B-45/B-46/B-48',
          'printed_page': '50-51', 'pdf_page_index': [55, 56], 'note'}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     e = e_prime_over_d
     dpr = dprime_over_d
@@ -1282,6 +1439,10 @@ def tension_between_layers_capacity(e_prime_over_d, dprime_over_d, rho,
     }
 
 
+@_u.labelled(
+    {"phi_pn": "kips"},
+    si={"as_": ("mm^2", "in^2"), "as_prime": ("mm^2", "in^2"),
+        "fy": ("MPa", "ksi")})
 def pure_tension_capacity(phi, as_, as_prime, fy):
     """Eq B-43: design axial tension strength phi*Pn, kips, at zero
     eccentricity (printed p. 50), before the Eq B-40 0.8 design cap is
@@ -1300,11 +1461,18 @@ def pure_tension_capacity(phi, as_, as_prime, fy):
         Area of the second (compression-face) reinforcement As', sq in.
     fy : float
         Specified yield strength of reinforcement, ksi.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        as_ and as_prime in mm^2 and fy in MPa, each converted exactly to the
+        printed unit (in^2, ksi) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'phi_pn', 'equation': 'B-43', 'printed_page': '50', 'pdf_page_index': 55}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     phi_pn = phi * (as_ + as_prime) * fy
     return {"phi_pn": phi_pn, "equation": "B-43", "printed_page": "50",
@@ -1315,6 +1483,10 @@ def pure_tension_capacity(phi, as_, as_prime, fy):
 # Appendix B-5, B-6 -- Pure flexure
 # ============================================================================
 
+@_u.labelled(
+    {"a": "in", "mn": "kip-in", "phi_mn": "kip-in"},
+    si={"as_": ("mm^2", "in^2"), "fy": ("MPa", "ksi"),
+        "fc_prime": ("MPa", "ksi"), "b": ("mm", "in"), "d": ("mm", "in")})
 def pure_flexure_singly(as_, fy, fc_prime, b, d, phi=None):
     """Eq B-49, B-50: nominal flexural capacity Mn, kip-in. (and phi*Mn
     when phi is given), with the stress-block depth a, in., for tension
@@ -1345,12 +1517,20 @@ def pure_flexure_singly(as_, fy, fc_prime, b, d, phi=None):
     phi : float, optional
         Strength reduction factor (ACI 318-19; 0.90 tension-controlled);
         if given, 'phi_mn' is returned too.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        as_ in mm^2, fy and fc_prime in MPa and b and d in mm, each converted
+        exactly to the printed unit (in^2, ksi, in) before the lookup runs as
+        printed.
 
     Returns
     -------
     dict
         {'a', 'mn', 'phi_mn' (if phi given), 'equation': 'B-49/B-50',
          'printed_page': '51', 'pdf_page_index': 56}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     a = as_ * fy / (0.85 * fc_prime * b)
     mn = as_ * fy * (d - a / 2.0)
@@ -1361,6 +1541,12 @@ def pure_flexure_singly(as_, fy, fc_prime, b, d, phi=None):
     return out
 
 
+@_u.labelled(
+    {"a": "in", "c": "in", "fs_prime": "ksi", "mn": "kip-in",
+     "phi_mn": "kip-in"},
+    si={"as_": ("mm^2", "in^2"), "as_prime": ("mm^2", "in^2"),
+        "fc_prime": ("MPa", "ksi"), "fy": ("MPa", "ksi"), "b": ("mm", "in"),
+        "d": ("mm", "in"), "dprime": ("mm", "in"), "es": ("MPa", "ksi")})
 def pure_flexure_doubly(as_, as_prime, fc_prime, fy, b, d, dprime, beta1=None,
                          es=DEFAULT_ES_KSI, ec=DEFAULT_EC, phi=None):
     """Eq B-51, B-52, B-53: nominal flexural capacity Mn, kip-in. (and
@@ -1418,12 +1604,20 @@ def pure_flexure_doubly(as_, as_prime, fc_prime, fy, b, d, dprime, beta1=None,
     phi : float, optional
         Strength reduction factor (ACI 318-19; 0.90 tension-controlled);
         if given, 'phi_mn' is returned too.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        as_ and as_prime in mm^2, fc_prime, fy and es in MPa and b, d and
+        dprime in mm, each converted exactly to the printed unit (in^2, ksi,
+        in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'a', 'c', 'fs_prime', 'compression_steel_yields' (bool), 'mn',
          'phi_mn' (if phi given), 'equation': 'B-51/B-52/B-53', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     if beta1 is None:
         beta1 = aci_beta1(fc_prime)

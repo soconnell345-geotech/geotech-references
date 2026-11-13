@@ -15,6 +15,7 @@ default.
 """
 
 import math
+from geotech_references import _units as _u
 
 # ============================================================================
 # Table 3-1 -- Loads on hydraulic structures (printed p. 17, pdf_page_index 22)
@@ -45,6 +46,7 @@ TABLE_3_1_LOADS = {
 }
 
 
+@_u.labelled({})
 def table_3_1_load_inventory(load_id=None):
     """Table 3-1: loads on hydraulic structures, and their duration category
     (permanent Lp / temporary Lt / dynamic Ld) (printed p. 17).
@@ -119,6 +121,7 @@ PRINCIPAL_LOAD_CONDITIONS = {
 }
 
 
+@_u.labelled({"gamma_p": "dimensionless"})
 def table_3_2_permanent_load_factor(load_id, effect="add"):
     """Table 3-2 permanent load factor gamma_p (printed pp. 24-25).
 
@@ -151,6 +154,7 @@ def table_3_2_permanent_load_factor(load_id, effect="add"):
     }
 
 
+@_u.labelled({"factor": "dimensionless"})
 def table_3_2_load_factor(load_id, category, role="principal"):
     """Table 3-2 principal/companion load factor for a temporary or dynamic
     load (printed pp. 24-25).
@@ -210,6 +214,9 @@ def table_3_2_load_factor(load_id, category, role="principal"):
 # (printed pp. 21-22, pdf_page_index 26-27)
 # ============================================================================
 
+@_u.labelled(
+    {"phi": "dimensionless", "phi_rn": "consistent units",
+     "rn_nominal": "consistent units", "u_demand": "consistent units"})
 def required_strength_check(u_demand, phi, rn_nominal):
     """Eq 3-1: required strength check, sum(gamma_i * Lni) <= phi*Rn
     (printed p. 21).
@@ -237,6 +244,9 @@ def required_strength_check(u_demand, phi, rn_nominal):
     }
 
 
+@_u.labelled(
+    {"companion_sum": "consistent units", "permanent_sum": "consistent units",
+     "principal_contribution": "consistent units", "u": "consistent units"})
 def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None):
     """Eq 3-2: general LRFD load-combination equation (printed p. 22).
 
@@ -279,6 +289,7 @@ def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None)
 # Eq 3-3, 3-4, 3-5 -- Earthquake load combinations (printed p. 26, pdf_page_index 31)
 # ============================================================================
 
+@_u.labelled({"eq_factor": "dimensionless", "u": "consistent units"})
 def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
                                  method="standard_obe"):
     """Eq 3-3/3-4/3-5: earthquake load combination U, in the unit of the
@@ -360,6 +371,7 @@ _TABLE_F_2 = {
 }
 
 
+@_u.labelled({"beta": "no unit printed"})
 def table_f2_target_reliability(structure_class, load_path):
     """Table F-2: target reliability index beta for a 100-year service life
     (Appendix F commentary, printed p. 119).
@@ -392,6 +404,7 @@ def table_f2_target_reliability(structure_class, load_path):
     }
 
 
+@_u.labelled({"beta": "no unit printed", "pf": "fraction"})
 def probability_of_failure_from_beta(beta):
     """Pf ~= Phi(-beta), the standard-normal-deviate approximation of
     probability of failure from reliability index beta (Appendix F

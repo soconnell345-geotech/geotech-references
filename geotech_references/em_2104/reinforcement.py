@@ -7,6 +7,7 @@ Minimum clear cover (Table 2-1), tension butt-splice longitudinal stagger
 """
 
 import math
+from geotech_references import _units as _u
 
 # Standard ASTM A615 reinforcing bar areas (sq in), used only to apply the
 # min/max No.4 / No.9 per-face bounds of paragraph 2-9a/b. Not printed in
@@ -30,6 +31,9 @@ _TABLE_2_1 = {
 }
 
 
+@_u.labelled(
+    {"min_cover_cm": "cm", "min_cover_in": "in"},
+    si={"aggregate_size_in": ("mm", "in"), "bar_diameter_in": ("mm", "in")})
 def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
                          bar_diameter_in=None):
     """Table 2-1: minimum clear cover to reinforcement (printed p. 5).
@@ -53,12 +57,19 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
         Maximum reinforcement diameter, in.; if given, the minimum is also
         checked against the table note, cover >= 2.5 x maximum
         reinforcement diameter.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        aggregate_size_in and bar_diameter_in in mm, each converted exactly to
+        the printed unit (in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'concrete_section', 'min_cover_in', 'min_cover_cm', 'governs_by',
          'table': '2-1', 'printed_page': '5', 'pdf_page_index': 10}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     if concrete_section not in _TABLE_2_1:
         raise ValueError(
@@ -98,6 +109,9 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
 # Table 2-2 -- Longitudinal stagger of tension butt splices (printed p. 6)
 # ============================================================================
 
+@_u.labelled(
+    {"bar_size": "no unit printed", "min_stagger_ft": "ft",
+     "min_stagger_m": "m"})
 def table_2_2_splice_stagger(bar_size):
     """Table 2-2: longitudinal stagger of tension butt splices (printed p. 6).
 
@@ -141,6 +155,9 @@ def table_2_2_splice_stagger(bar_size):
 # Table 2-3 -- Minimum shrinkage/temperature reinforcement ratio (printed p. 7)
 # ============================================================================
 
+@_u.labelled(
+    {"joint_spacing_ft": "ft", "min_ratio": "dimensionless"},
+    si={"joint_spacing_ft": ("m", "ft")})
 def table_2_3_temp_shrinkage_ratio(joint_spacing_ft):
     """Table 2-3: minimum shrinkage/temperature reinforcement ratio by
     control-joint spacing, Grade 60 (printed p. 7).
@@ -150,12 +167,19 @@ def table_2_3_temp_shrinkage_ratio(joint_spacing_ft):
     joint_spacing_ft : float
         Length between control joints (monolith joints, expansion joints,
         contraction joints, construction joints), ft.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        joint_spacing_ft in m, each converted exactly to the printed unit (ft)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'joint_spacing_ft', 'min_ratio', 'band', 'table': '2-3',
          'printed_page': '7', 'pdf_page_index': 12}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     if joint_spacing_ft < 0:
         raise ValueError(f"joint_spacing_ft must be >= 0, got {joint_spacing_ft}")
@@ -171,6 +195,12 @@ def table_2_3_temp_shrinkage_ratio(joint_spacing_ft):
     }
 
 
+@_u.labelled(
+    {"as_per_face_in2": "in^2", "as_per_face_raw_in2": "in^2",
+     "as_total_in2": "in^2", "joint_spacing_ft": "ft",
+     "ratio": "dimensionless", "unit_width_in": "in"},
+    si={"joint_spacing_ft": ("m", "ft"), "gross_thickness_in": ("mm", "in"),
+        "unit_width_in": ("mm", "in")})
 def shrinkage_temperature_reinforcement(joint_spacing_ft, gross_thickness_in,
                                          unit_width_in=12.0):
     """Required shrinkage/temperature steel area per face (paragraph 2-9,
@@ -194,6 +224,11 @@ def shrinkage_temperature_reinforcement(joint_spacing_ft, gross_thickness_in,
         Gross section thickness, in.
     unit_width_in : float, optional
         Design strip width, in. Default 12 in. (per-foot basis).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        joint_spacing_ft in m and gross_thickness_in and unit_width_in in mm,
+        each converted exactly to the printed unit (ft, in) before the lookup
+        runs as printed.
 
     Returns
     -------
@@ -201,6 +236,9 @@ def shrinkage_temperature_reinforcement(joint_spacing_ft, gross_thickness_in,
         {'ratio' (Table 2-3), 'as_total_in2', 'as_per_face_in2' (clamped to
          the No.4/No.9-at-12in bounds), 'governs_by', 'unit_width_in',
          'reference': 'EM 1110-2-2104 paragraph 2-9', 'printed_page': '6-7'}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     tbl = table_2_3_temp_shrinkage_ratio(joint_spacing_ft)
     ratio = tbl["min_ratio"]

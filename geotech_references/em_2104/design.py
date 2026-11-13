@@ -16,12 +16,16 @@ which checks an EXISTING design via the Appendix B investigation path in
 import math
 
 from .flexure_axial import DEFAULT_ES_KSI, DEFAULT_EC
+from geotech_references import _units as _u
 
 
 # ============================================================================
 # Eq D-1 to D-9, Table D-1 -- singly reinforced design (printed pp. 69-73)
 # ============================================================================
 
+@_u.labelled(
+    {"kd": "dimensionless", "rho_over_rho_b": "dimensionless"},
+    si={"fy": ("MPa", "ksi"), "es": ("MPa", "ksi")})
 def kd_table_d1(rho_over_rho_b, beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
     """Table D-1's general Kd formula (printed p. 73): Kd, the ku value
     (dimensionless) at a target reinforcement ratio given as a fraction of
@@ -47,18 +51,29 @@ def kd_table_d1(rho_over_rho_b, beta1, fy, es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
         Steel modulus of elasticity Es, ksi (default 29,000 ksi).
     ec : float, optional
         Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fy and es in MPa, each converted exactly to the printed unit (ksi)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'kd', 'rho_over_rho_b', 'table': 'D-1', 'printed_page': '73',
          'pdf_page_index': 78}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     kd = rho_over_rho_b * beta1 * es * ec / (es * ec + fy)
     return {"kd": kd, "rho_over_rho_b": rho_over_rho_b, "table": "D-1",
             "printed_page": "73", "pdf_page_index": 78}
 
 
+@_u.labelled(
+    {"dd": "in"},
+    si={"mn": ("kN-m", "kip-in"), "b": ("mm", "in"),
+        "fc_prime": ("MPa", "ksi")})
 def minimum_effective_depth(mn, b, fc_prime, kd):
     """Table D-1 / Eq D-5: minimum effective depth dd at a target
     reinforcement ratio (printed p. 71).
@@ -80,16 +95,27 @@ def minimum_effective_depth(mn, b, fc_prime, kd):
         Concrete compressive strength, ksi.
     kd : float
         From ``kd_table_d1`` (or a Table D-1 tabulated value).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mn in kN-m, b in mm and fc_prime in MPa, each converted exactly to the
+        printed unit (kip-in, in, ksi) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'dd', 'equation': 'D-5', 'printed_page': '71', 'pdf_page_index': 76}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     dd = math.sqrt(mn / (0.85 * fc_prime * kd * b * (1 - kd / 2.0)))
     return {"dd": dd, "equation": "D-5", "printed_page": "71", "pdf_page_index": 76}
 
 
+@_u.labelled(
+    {"ad": "in", "mdl": "kip-in"},
+    si={"fc_prime": ("MPa", "ksi"), "b": ("mm", "in"), "d": ("mm", "in"),
+        "h": ("mm", "in"), "pn": ("kN", "kips")})
 def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
     """Eq D-6, D-7: M_DS, kip-in. (returned as 'mdl'), the maximum bending
     moment a member may
@@ -122,12 +148,19 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
     pn : float, optional
         Nominal axial load Pn, kips; positive for compression, negative for
         tension (default 0, pure flexure).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime in MPa, b, d and h in mm and pn in kN, each converted exactly
+        to the printed unit (ksi, in, kips) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'ad', 'mdl' (the print's M_DS), 'equation': 'D-6/D-7', 'printed_page': '72',
          'pdf_page_index': 77}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     ad = kd * d
     mdl = 0.85 * fc_prime * ad * b * (d - ad / 2.0) - (d - h / 2.0) * pn
@@ -135,6 +168,11 @@ def max_moment_at_rho_limit(fc_prime, kd, b, d, h, pn=0.0):
             "printed_page": "72", "pdf_page_index": 77}
 
 
+@_u.labelled(
+    {"as_required": "in^2", "ku": "dimensionless"},
+    si={"mn": ("kN-m", "kip-in"), "pn": ("kN", "kips"), "d": ("mm", "in"),
+        "h": ("mm", "in"), "b": ("mm", "in"), "fc_prime": ("MPa", "ksi"),
+        "fy": ("MPa", "ksi")})
 def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
     """Eq D-8, D-9: direct design of a singly reinforced member: the
     required tension reinforcement area As, sq in., and Ku
@@ -170,12 +208,20 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
         Specified concrete compressive strength f'c, ksi.
     fy : float
         Specified yield strength of reinforcement, ksi.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mn in kN-m, pn in kN, d, h and b in mm and fc_prime and fy in MPa, each
+        converted exactly to the printed unit (kip-in, kips, in, ksi) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'ku', 'as_required', 'equation': 'D-8/D-9', 'printed_page': '72',
          'pdf_page_index': 77}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     radicand = 1 - (mn + pn * (d - h / 2.0)) / (0.425 * fc_prime * b * d ** 2)
     if radicand < 0:
@@ -195,6 +241,13 @@ def design_singly_reinforced(mn, pn, d, h, b, fc_prime, fy):
 # Eq D-3, D-4 -- doubly reinforced design (printed pp. 70-71)
 # ============================================================================
 
+@_u.labelled(
+    {"ad": "in", "as_prime_required": "in^2", "as_required": "in^2",
+     "fs_prime": "ksi", "fs_prime_unlimited": "ksi", "kd": "dimensionless",
+     "mdl": "kip-in"},
+    si={"mn": ("kN-m", "kip-in"), "pn": ("kN", "kips"), "d": ("mm", "in"),
+        "dprime": ("mm", "in"), "h": ("mm", "in"), "b": ("mm", "in"),
+        "fc_prime": ("MPa", "ksi"), "fy": ("MPa", "ksi"), "es": ("MPa", "ksi")})
 def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
                               rho_over_rho_b=0.25, beta1=None,
                               es=DEFAULT_ES_KSI, ec=DEFAULT_EC):
@@ -249,12 +302,20 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
         Steel modulus of elasticity Es, ksi (default 29,000 ksi).
     ec : float, optional
         Maximum usable concrete strain, 0.003 (paragraph 4-1d(1)).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mn in kN-m, pn in kN, d, dprime, h and b in mm and fc_prime, fy and es
+        in MPa, each converted exactly to the printed unit (kip-in, kips, in,
+        ksi) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'kd', 'mdl' (M_DS), 'fs_prime', 'as_prime_required', 'as_required',
          'equation': 'D-3/D-4/D-6/D-7', ...}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     from .flexure_axial import aci_beta1
     # REF-76: fs' is held at fy below; an fy, Es or ec no steel or

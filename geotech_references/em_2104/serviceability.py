@@ -7,6 +7,8 @@ minimum wall thickness (paragraph 3-7). Printed pages per the 1 Nov 2023
 edition (pdf_page_index = printed_page + 5).
 """
 
+from geotech_references import _units as _u
+
 # ============================================================================
 # Table 3-3 -- Maximum service stresses (printed p. 26, pdf_page_index 31)
 # ============================================================================
@@ -19,6 +21,7 @@ _TABLE_3_3 = {
 }
 
 
+@_u.labelled({"fs_ksi": "ksi", "fs_mpa": "MPa"})
 def table_3_3_max_service_stress(category, action="flexure_shear"):
     """Table 3-3: maximum service (unfactored) reinforcement stress,
     all steel grades (printed p. 26).
@@ -66,6 +69,7 @@ _TABLE_3_4 = {
 }
 
 
+@_u.labelled({"factor": "dimensionless"})
 def table_3_4_single_load_factor(category, action="flexure_shear"):
     """Table 3-4: single-load factor for the alternate serviceability
     design method, fy = 60,000 psi (414 MPa) only (printed p. 26).
@@ -100,6 +104,9 @@ def table_3_4_single_load_factor(category, action="flexure_shear"):
     }
 
 
+@_u.labelled(
+    {"factor": "dimensionless", "m_service": "consistent units",
+     "mu": "consistent units"})
 def single_load_factor_design_moment(m_service, category, action="flexure_shear"):
     """Nominal design moment/force via the alternate serviceability (single
     load factor) method (paragraph 3-4a(2), Table 3-4; printed p. 26).
@@ -135,6 +142,7 @@ def single_load_factor_design_moment(m_service, category, action="flexure_shear"
 # Paragraph 3-6 -- Reinforcement limits (printed p. 27, pdf_page_index 32)
 # ============================================================================
 
+@_u.labelled({"rho_b": "dimensionless", "rho_max": "dimensionless"})
 def max_reinforcement_ratio(rho_b):
     """Mandatory maximum tension reinforcement ratio, 0.50*rho_b, for all
     load cases, to ensure a ductile failure mode (paragraph 3-6, printed
@@ -158,6 +166,8 @@ def max_reinforcement_ratio(rho_b):
     }
 
 
+@_u.labelled(
+    {"rho_b": "dimensionless", "rho_deflection_limit": "dimensionless"})
 def deflection_control_reinforcement_ratio(rho_b):
     """Recommended (not mandatory) deflection-control tension reinforcement
     ratio limit, 0.25*rho_b (paragraph 3-4b(2), printed p. 27).
@@ -187,6 +197,11 @@ def deflection_control_reinforcement_ratio(rho_b):
 # Paragraph 3-7 -- Minimum thickness of walls (printed p. 27, pdf_page_index 32)
 # ============================================================================
 
+@_u.labelled(
+    {"absolute_min_in": "in", "both_faces_required_at_in": "in",
+     "governing_min_in": "in", "height_ft": "ft",
+     "height_governed_min_in": "in", "thickness_in": "in"},
+    si={"height_ft": ("m", "ft"), "thickness_in": ("mm", "in")})
 def min_wall_thickness(height_ft, thickness_in=None):
     """Minimum wall thickness and both-faces-reinforcement requirement
     (paragraph 3-7, printed p. 27).
@@ -202,6 +217,10 @@ def min_wall_thickness(height_ft, thickness_in=None):
     thickness_in : float, optional
         A candidate/trial thickness to check against the rules. If omitted,
         only the governing minimum is returned.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        height_ft in m and thickness_in in mm, each converted exactly to the
+        printed unit (ft, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -210,6 +229,9 @@ def min_wall_thickness(height_ft, thickness_in=None):
          (12.0 if height_ft > 10 else None), 'governing_min_in',
          'both_faces_required_at_in' (10.0), and, if thickness_in given,
          'thickness_in', 'adequate' (bool), 'both_faces_required' (bool)}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     absolute_min = 8.0
     height_min = 12.0 if height_ft > 10.0 else None

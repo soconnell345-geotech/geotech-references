@@ -22,12 +22,14 @@ given in SI form and is implemented with an optional ``unit`` switch.
 """
 
 import math
+from geotech_references import _units as _u
 
 
 # ============================================================================
 # Eq 5-1 -- one-way slabs/walls without shear reinforcement (printed p. 35)
 # ============================================================================
 
+@_u.labelled({"vc": "lb"})
 def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
     """Eq 5-1: nominal shear capacity Vc of a one-way slab/wall section
     without shear reinforcement, lbs from f'c in psi (unit='us', default)
@@ -66,13 +68,19 @@ def shear_capacity_one_way_slab(fc_prime, nu, ag, b, d, unit="us"):
     else:
         raise ValueError(f"unit must be 'us' or 'si', got {unit!r}")
     vc = (coeff + nu / (6.0 * ag)) * b * d
-    return {"vc": vc, "equation": "5-1", "printed_page": "35", "pdf_page_index": 40}
+    return {"vc": vc, "units": {"vc": "lb" if unit == "us" else "N"},
+            "equation": "5-1", "printed_page": "35", "pdf_page_index": 40}
 
 
 # ============================================================================
 # Eq 5-2, 5-3 -- special straight members (printed pp. 37-38)
 # ============================================================================
 
+@_u.labelled(
+    {"ln_over_d": "dimensionless", "vc": "lb", "vc_governing": "lb",
+     "vc_limit_1": "lb", "vc_limit_abs": "lb"},
+    si={"fc_prime": ("MPa", "psi"), "ln": ("mm", "in"), "nu": ("kN", "lb"),
+        "ag": ("mm^2", "in^2"), "b": ("mm", "in"), "d": ("mm", "in")})
 def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
     """Eq 5-2 with the Eq 5-3 upper limits: nominal shear capacity Vc, lbs,
     of special straight members (box-culvert sections, gate wells, similar
@@ -110,6 +118,11 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
         Section width, in.
     d : float
         Effective depth, in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime in MPa, ln, b and d in mm, nu in kN and ag in mm^2, each
+        converted exactly to the printed unit (psi, in, lb, in^2) before the
+        lookup runs as printed.
 
     Returns
     -------
@@ -117,6 +130,9 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
         {'vc', 'vc_limit_1' (Eq 5-3 first form), 'vc_limit_abs' (10*sqrt(fc')*b*d),
          'vc_governing', 'ln_over_d', 'applicable' (bool, ln/d in [1.25, 9]),
          'equation': '5-2/5-3', 'printed_page': '37-38', 'pdf_page_index': [42, 43]}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     ln_over_d = ln / d
     sqrt_fc = math.sqrt(fc_prime)
@@ -136,6 +152,11 @@ def shear_capacity_special_straight_member(fc_prime, ln, nu, ag, b, d):
 # Eq 5-4 -- curved members (printed p. 38)
 # ============================================================================
 
+@_u.labelled(
+    {"vc": "lb", "vc_governing": "lb", "vc_limit_abs": "lb"},
+    si={"fc_prime": ("MPa", "psi"), "nu": ("kN", "lb"),
+        "ag": ("mm^2", "in^2"), "b": ("mm", "in"), "d": ("mm", "in"),
+        "radius": ("mm", "in")})
 def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
     """Eq 5-4: nominal shear capacity Vc, lbs, at points of maximum shear
     for uniformly loaded, curved, cast-in-place members with R/d > 2.25
@@ -166,6 +187,11 @@ def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
     radius : float, optional
         Radius of curvature to the member centerline, in. If given, the
         R/d > 2.25 applicability check is included in the result.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fc_prime in MPa, nu in kN, ag in mm^2 and b, d and radius in mm, each
+        converted exactly to the printed unit (psi, lb, in^2, in) before the
+        lookup runs as printed.
 
     Returns
     -------
@@ -173,6 +199,9 @@ def shear_capacity_curved_member(fc_prime, nu, ag, b, d, radius=None):
         {'vc', 'vc_limit_abs', 'vc_governing', 'applicable' (bool or None
          if radius not given), 'equation': '5-4', 'printed_page': '38',
          'pdf_page_index': 43}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     sqrt_fc = math.sqrt(fc_prime)
     vc = 4 * sqrt_fc * math.sqrt(1 + nu / (4 * ag * sqrt_fc)) * b * d
@@ -197,6 +226,9 @@ _TABLE_G_1 = {
 }
 
 
+@_u.labelled(
+    {"coefficient": "no unit printed", "thickness_in": "in"},
+    si={"thickness_in": ("mm", "in")})
 def table_g1_shear_coefficient(thickness_in):
     """Table G-1: ACI 318-19's shear coefficient 8*lambda_s*rho_w^(1/3) at
     rho_w = 0.25*rho_b, fc' = 4,000 psi, fy = 60,000 psi, cover = 3 in, for
@@ -214,12 +246,19 @@ def table_g1_shear_coefficient(thickness_in):
         Member thickness, in. Must be one of the 10 tabulated values
         (12, 24, ..., 120); this is a printed lookup table, not an
         interpolation formula.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'thickness_in', 'coefficient', 'table': 'G-1', 'printed_page': '125',
          'pdf_page_index': 130}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     if thickness_in not in _TABLE_G_1:
         raise ValueError(
