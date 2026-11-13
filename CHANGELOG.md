@@ -9,7 +9,7 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 - Chapter text read off the print: chapters 1-12, and Appendices B
   (design examples, ultimate limit states), C (design examples,
-  settlement) and D (unit conversion factors) as chapters 13-15; 778
+  settlement) and D (unit conversion factors) as chapters 13-15; 779
   sections, each body in the print's own wording with page markers, and
   all 213 numbered equations typed in from the rendered page with their
   symbols and units. Figure catalog: all 136 figures, each on the page
@@ -25,17 +25,26 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   path (as read it gave 12.2 days, not the printed 152.8); Example C-7,
   Steps 6 and 7 (p. 384); Eq. 7-10 as quoted in Examples C-6 and C-7; the
   equivalent bearing pressure of Example B-2 (p. 301). A total or
-  sub-heading beside a table stands once, not on every row. Eight more
-  slips of the print are kept as printed with a note (Examples B-1, B-4,
-  B-5, B-6, C-2 and C-6, Table 3-15, the symbol list of Eqs. 8-27 and
-  8-28). Table 3-8's σ′v (the page sets a raised semicolon for the prime)
-  and Table 4-10's E*0 (the text layer holds a capital O) are typed in; the
+  sub-heading beside a table stands once, not on every row. Sixteen more
+  slips of the print are kept as printed with a note: Examples B-1, B-4
+  (the clay's unit weight printed 0.133 kcf in Table B-4a, Steps 1 and 3,
+  where Figure B-4 and Table B-4c give 0.113 kcf, from which the printed
+  qo and qult follow), B-5, B-6, C-2, C-3, C-6 and C-7 (Table C-7b, Step
+  7: the 25 rows total 0.343 in, printed 0.034 in), Table 3-15, the symbol
+  list of Eqs. 8-27 and 8-28, Table 3-8 (σv with a raised semicolon, the
+  evident reading σ′v; a stress given in pcf) and Tables D-3 and D-6.
+  Table C-7c's note says that its printed ratios are what pne = 16.0 tsf
+  gives, the geometric mean of the P*L values within 1.5B. Table 4-10's E*0
+  (the text layer holds a capital O) and "not applicable" in Example B-2
+  (the text layer holds a space for the math font's b, p. 299) are typed
+  in, and a test looks for any other word broken by a space; a subscript
+  inside a word in the text font stays in it (CKoU, Figure 3-9); the
   symbol lists of Eqs. 3-17, 7-3b, 7-4, 7-6, 7-11, 7-12 and 8-2 give every
   symbol the formula prints; an equation printed straight after another
   is described as printed after it, not by the other's formula (Eq. 5-3);
   the Figure List keeps a word broken after its own hyphen whole
   ("per-inch", "1-D"); a split leaves room for the notes placed after it
-  (C-2b is in two parts). A test looks through every chapter
+  (C-2b and C-3b are each in two parts). A test looks through every chapter
   for formula pieces put back in the wrong places (a prime alone, a lone
   number above a formula, a number doubled from a stacked fraction, a
   subscript spaced off its symbol, brackets that do not pair).
