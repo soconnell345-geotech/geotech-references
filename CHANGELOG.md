@@ -199,6 +199,92 @@ Pages are printed page numbers.
   Table 6-5 (6-3.3); Table 8-12 rows (8-4.1.1).
   Test: `tests/test_dm7_1_text_equations.py`.
 
+**Build of 2026-11-12: every dm7_1 summary, key point and applicability
+field checked against the print (app BACKLOG REF-79).** 3,168 fields in
+chapters 1-8 were read against the printed pages and 784 changed: claims
+the print does not make removed, "must" and "only" brought back to the
+print's "should", "may" and "typically", limits and attributions the old
+text dropped restored, and a few statements that said the opposite of the
+print corrected (8-1 called the 16% one-standard-deviation probability one
+of "underestimation"; 8-5.2.2 said Eu/su rises with OCR, which Figure 8-51
+shows falling; 5-5.1 said "saturated" where the print, on significant
+immediate settlement, says "unsaturated" (p. 236); 7-10.8.7 stated as a present requirement what FHWA (1998)
+needed when it appeared). Key points restate printed sentences only; ids
+are unchanged. Pages are printed page numbers.
+
+- The 14 page footnotes now sit in the bodies at their marks as
+  "[Footnote n: ...]" (pp. 3, 89, 142-165, 234, 237, 366, 424), and 35
+  table notes and table footnotes as "[Note to Table x: ...]" or
+  "[Footnote A to Table x: ...]" (chapters 1-8).
+- Printed text the bodies left out is restored: the 6-5.3 subsections
+  printed under repeated numbers (Retaining Wall Drainage to Relief Wells,
+  pp. 330-338, with Figures 6-22 and 6-24 to 6-30), the 7-8 passage on
+  well- and poorly-defined conditions (p. 366), 5-6.3 on Km, 5-9 on
+  hydrocompression, 8-2.1.3's correction factor R and Figure 8-11, and
+  shorter passages in chapters 5-8.
+- Print slips kept as printed with a note: plane failure condition 3,
+  "φʹ < ΨF" (p. 380), and the wedge condition "ΨFi > ΨFi > φʹ" (p. 381;
+  the body had corrected it silently); "either suffusion or suffusion"
+  (p. 306); Eq. 5-28 labelled "(5-5-28)" (p. 268); Table 5-8 Km's
+  "(1−νs)²" (p. 260); Table 8-7 "LI = liquid index" (p. 423); 8-5.2.2's
+  "undrained shear modulus" for the Eu/su of Figure 8-51 (p. 450).
+- 7-5.2 no longer lists Figure 7-1 (printed in 7-2); Table 5-8 is listed
+  under 5-6.3, where it is printed.
+- Equation where-lists: every printed "where:" list was compared with its
+  equation entry and section body. 21 entries that lacked a printed
+  definition now carry the whole printed list in `variables`, in the
+  print's words with its unit conditions (Eq. 2-1; Eqs. 5-12 and 5-13;
+  Eqs. 8-1 to 8-5, 8-7, 8-8, 8-10 to 8-15, 8-17, 8-29, 8-30, 8-32 and
+  8-35), e.g. Eq. 8-7 "Pa = atmospheric pressure in same units as vertical
+  stress and qc" (p. 400) and Eq. 8-32 "Pa = atmospheric pressure (same
+  units as Mds and σʹv)" (p. 442). Eq. 8-7 carries the same note on
+  qt = qc + u·(1+a) as Eq. 8-25. The 8-7.3 body gives the where-lists of
+  Eqs. 8-42 and 8-43 in the print's words ("k = hydraulic conductivity in
+  m/s", pp. 462-463).
+- Also restored: the cyclic DSS failure definition and the sentence after
+  it in 3-2.5.1.1 (p. 162); six figure pointers, each at its printed
+  place: 2-9.1.1 (Figure 2-14, p. 98), 2-9.1.2 (2-17), 2-9.3.1.1 (2-18,
+  and 2-19 on p. 105), 2-9.3.1.2 (2-20, p. 106) and 2-10.2 (2-25a); the
+  printed lead-in to Eq. 2-2.
+- Table notes the bodies still lacked: Table 5-2, "Correlations provide
+  values of Es in ksf units." (5-4.1.1, p. 231), the only unit printed for
+  its Es correlations; Table 1-22, "A" preferred and "B" alternate method
+  (1-5.4.2, p. 49). Table 5-8's two Km formulas are now in 5-6.3's
+  `equations` as printed (p. 260), with (1−νs)² and, for rectangular mats,
+  (1−νm)², and a note saying so; until now no Km formula was stored.
+  The table, "after Brown 1969, Frazer and Wardle 1976", prints these
+  two forms only, so it is complete; those papers are not held here.
+- Key points brought back to the print: UU results "should always" be
+  interpreted with φ = 0 (3-2.4.2.2, p. 153; was "must"); Eq. 8-16 is
+  Carter and Bentley's (2016) fit to Gibson's (1953) trend line, and the
+  "within 5%" is theirs (8-2.2.2, p. 413; was credited to Gibson); the
+  Figure 5-27 method "can also be used" with vertical drains, no equations
+  named (5-7.4.3, p. 271); under Method A, Td "should be divided by" FR of
+  at least 1.3 (7-9.5, p. 373; was "requires"). Print slips kept with a
+  note: "Buchiagnani" (Table 5-4, p. 234; 5-10, p. 279; Buchignani
+  elsewhere) and "pore pressured" (3-2.4.1.3, p. 148, stored silently
+  corrected until now). 1-3.2.2.1's note gives p. 12 (was 11).
+- Where-lists: Eq. 5-14 carries its printed "σʹp = preconsolidation
+  stress" (p. 241); Eq. 8-35's description no longer gives wn "(in %)",
+  a unit the page does not print (p. 446), and says the library function
+  takes percent; the 8-7.3 list for Eq. 8-44 reads "unit weight of the
+  water" and "specific gravity of the solids" as printed (p. 463). 2-9.1.1
+  keeps "As shown in Figure 2-14" and the print's "includes of an" with a
+  note (p. 98).
+- Force words: the 287 summary, key point and applicability sentences
+  holding must, required, requires, only, cannot, always or never were
+  matched to the printed sentences they restate (190 found; 125 with the
+  same words printed) and the other 162 read against the body or page.
+  35 now carry the print's own modality, e.g. ponded water "can be
+  considered" as a layer, while including it "is imperative" (4-2.1.1,
+  p. 179); water "does not sustain" shear stress (4-2.1.2, p. 180); the
+  lack of a roof "prevents the progression of a pipe" (6-4.2, p. 304);
+  "It is often necessary" to stabilize slopes (7-7, p. 364); Table 6-8
+  assesses "if further investigation is required" (6-5.1, p. 307).
+  Applicability lines that say where a section applies are unchanged.
+  Eq. 8-7's note gives p. 427 for Eq. 8-25 (was 426).
+  Test: `tests/test_dm7_1_build_keypoints.py`.
+
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
 that returned a value the print does not support now return the printed
@@ -1605,6 +1691,59 @@ examples' inputs (all agree except Table B-5 layer 2, where Eq. 4-12 gives
 KP,h 2.47 against the printed 2.4), and scans every dm7_2 chapter file for
 the scatter the text layer leaves in formulas (isolated primes, empty or
 unbalanced brackets, runs of single letters or digits, repeated table rows).
+
+**Structural references' chapter text rewritten from the print (REF-83,
+2026-11-10 to 2026-11-12).** The stored text of UFC 3-301-01, EM
+1110-2-2104, EM 1110-2-2107, UFC 4-023-03 and the Wood Handbook
+(chapters 8 and 9; chapters 4 and 5 named items only) was partly
+paraphrase. UFC 3-301-01, EM 1110-2-2104 and UFC 4-023-03 bodies are now
+the print's own wording with [p. N] markers; every equation, formula
+line and typed table was read from the rendered page; key points restate
+printed sentences; code-module notes are out of the text. No Python
+changed.
+
+Statements that could have led to a less safe design:
+
+- UFC 3-301-01 3-6: collector elements in SDC C-F were said to use load
+  combinations without the overstrength factor; the print replaces only
+  Item (c) of ASCE 7 12.10.2.1 and its exception (p. 58).
+- UFC 3-301-01 3-7: the masonry-anchor option multiplies QE by Omega-op,
+  not Omega-o (p. 61).
+- UFC 3-301-01 7-2: four irregularities are prohibited (horizontal 1b,
+  vertical 1b, 5a and 5b), not "two of four" (p. 100); walls retaining
+  earth keep "plus the difference in earth pressures"; 7-3's elevator
+  rail load is the car plus 40 percent of its rated load.
+- EM 1110-2-2107 4.1: the alpha = 0.90 list is printed (normally
+  submerged HSS that are hard to inspect; brackish water or seawater);
+  the text said no list was printed.
+- Wood Handbook 8: the nail dowel bearing equation (Eq. 8-3) was said
+  to serve all dowel fasteners; bolts and lag screws use Eq. 8-17/8-18
+  (p. 8-19), which perpendicular to grain give lower bearing strengths
+  for bolts of 1/2 in. and larger.
+
+Other corrections: UFC 3-301-01 2-4.6 vertical lift fabric doors (the
+700-year ban is for aircraft maintenance hangars), the healthcare
+chapters' scope ("having emergency surgery or emergency treatment
+facilities"), 4-4's high-wind trigger conditions, an unprinted wind
+turbine and Section 2109 item removed; EM 1110-2-2104 Eq 3-2's
+principal load factor is gamma_pr (the text said gamma_pu), 2-2 cites
+paragraph 3-4 (not 3-5), the No. 4 bars at 12 in. are "generally, for
+ease of placement", Eq 3-1's L_ni; Wood Handbook Eq. 9-41 and 9-24 as
+printed with notes, and the worked examples of pp. 9-10 and 9-12 in the
+print's words; UFC 4-023-03 2-2.4.3 and 3-2.5 as printed.
+
+Typed in from the rendered pages: UFC 3-301-01 Tables 2-1, 2-2, 4-1(a),
+4-1(b), 6-1, 7-1 (Tables 3-1 and 4-2 are not, and the bodies say so);
+EM 1110-2-2104 Eqs 3-1 to 5-4 and Tables 2-1 to 3-4; EM 1110-2-2107
+Table 4.1; UFC 4-023-03 Tables 2-1, 2-2, 3-2 to 3-5. Print slips are
+stored as printed with a "Print note". Section ids added: ufc_structural
+2-7.2, em_2104 3-2.f (3-2's load definitions; 3-2 printed is over
+14,000 characters), em_2107 4.2.3 and 6.1.3. New tests:
+`test_ufc_structural_text_equations.py`, `test_em_2104_text_equations.py`,
+`test_em_2107_text_equations.py`, `test_ufc_collapse_text_equations.py`,
+`test_wood_handbook_text_equations.py`, and
+`test_text_scatter_patterns.py` (loose primes, a lone digit before a
+formula, unpaired brackets, a sentence repeated in consecutive rows).
 
 ## 1.6.0
 
