@@ -17,6 +17,8 @@ from pathlib import Path
 
 import pytest
 
+from tests._build_reader import require_build_reader
+
 ROOT = Path(__file__).resolve().parents[1]
 PKG = ROOT / "geotech_references" / "gec_11"
 PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
@@ -349,9 +351,10 @@ def test_appendix_d_print_slips_noted():
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():
-    pytest.importorskip("fitz")
     if not PDF.exists():
         pytest.skip("PDF not checked out")
+    # The reader's version is an input of the build (tests/_build_reader.py).
+    require_build_reader("gec_11")
     import sys
     sys.path.insert(0, str(ROOT / "scripts"))
     try:
