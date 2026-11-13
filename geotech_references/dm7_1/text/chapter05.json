@@ -208,7 +208,7 @@
       "key_points": [
         "The methods in Chapter 4 should be used to evaluate Δσz at the required depths within the compressible soil layer.",
         "Wide surcharge loads produce approximately uniform Δσz throughout the compressible layer.",
-        "Most loads produce Δσz varying with both depth and lateral distance from the load; the engineer must select critical evaluation points.",
+        "Most loads produce Δσz varying with both depth and lateral distance from the load; it is the responsibility of the engineer to determine the critical locations at which settlement will be evaluated.",
         "Selection of critical settlement evaluation locations is an engineering judgment responsibility."
       ],
       "equations": [],
@@ -479,7 +479,7 @@
       "body": "Primary consolidation occurs as water flows from saturated soil and the excess pore water pressures caused by loading are able to dissipate. The magnitude of primary consolidation settlement can be predicted with reasonable accuracy when the soil's preconsolidation stress can be determined reliably and when the change in total stress can be accurately predicted. Settlement calculations involving recompression of overconsolidated soils tend to have the largest percent error. The amount of error for overconsolidated soils is related heavily to the quality of the samples used for consolidation tests, which affects the accuracy of the predicted recompression index and preconsolidation stress.",
       "key_points": [
         "Primary consolidation occurs as excess pore water pressures dissipate following loading of saturated soil.",
-        "Prediction accuracy requires reliable preconsolidation stress and accurate change in total stress.",
+        "Primary consolidation settlement can be predicted with reasonable accuracy when the preconsolidation stress can be determined reliably and the change in total stress can be accurately predicted.",
         "Settlement calculations involving recompression of overconsolidated soils tend to have the largest percent error, related heavily to the quality of the samples (accuracy of Cr and σʹp)."
       ],
       "equations": [],
@@ -996,7 +996,7 @@
       "key_points": [
         "Permanent basement excavation offsets structural weight, reducing net stress on compressible soils (compensated/floating foundation).",
         "Works best when a stronger surface layer overlies a compressible stratum.",
-        "If structure weight ≤ excavated soil weight, settlement is only due to recompression, not virgin consolidation.",
+        "If the weight of the structure is equal to or less than the weight of the excavated material, the total settlement will be the result of recompression of the compressible strata.",
         "If the groundwater is significantly lowered by dewatering, the heave and subsequent recompression will be reduced because of negative excess pore pressures in the soil.",
         "σz-red equals total vertical stress (if groundwater returns to original level) or effective vertical stress (if permanently lowered) at foundation level.",
         "Settlement predictions use standard methods from Sections 5-3 to 5-5 applied to the net vertical stress."
@@ -1264,7 +1264,7 @@
       "body": "More rigorous predictions of one-dimensional swelling consider the vertical strain that results both from changes in total stress and from changes in suction. These methods require measurement of the soil's stress-strain relationship, often at different levels of controlled suction. Suction-controlled oedometer tests and coefficient of linear extensibility tests are two means to obtain this data.\n\nA variety of methods have been developed to predict the swelling strain caused by changes in total stress and changes in suction (or water content). Terzaghi et al. (1996) describes how the swelling process can be described in a manner analogous to consolidation. Vanapalli and Lu (2012) summarize many different methods to account for the stress-strain-suction relationship in the calculation of vertical strain based on the results of one-dimensional swell pressure measurements, suction-controlled oedometer tests, and coefficient of linear extensibility tests. Some of the methods also require measurement of matric suction as a function of water content. Terzaghi et al. (1996) also emphasizes that the deterioration of the clay structure during swelling often leads to a significant amount of time-dependent secondary swelling.\n\nWhile theoretically sound, predictions of swell based on stress-strain-suction relationships are usually impractical. The amount of swell predicted by these methods is heavily dependent on soil moisture conditions at the start of construction, which cannot be accurately predicted during the design phase. In addition, the advanced soil testing required to use these methods is typically unavailable.",
       "key_points": [
         "Stress-strain-suction methods predict swelling strain from both total stress changes and suction (or water content) changes; Terzaghi et al. (1996) describe swelling in a manner analogous to consolidation.",
-        "Required testing includes suction-controlled oedometer tests and coefficient of linear extensibility tests, which are often unavailable in practice.",
+        "Suction-controlled oedometer tests and coefficient of linear extensibility tests are two means to obtain the data; the advanced soil testing required to use these methods is typically unavailable.",
         "Clay structure deterioration during swelling can produce significant time-dependent secondary swelling (Terzaghi et al. 1996).",
         "Despite theoretical soundness, these methods are usually impractical because initial soil moisture conditions at start of construction cannot be reliably predicted."
       ],

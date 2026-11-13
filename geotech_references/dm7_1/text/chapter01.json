@@ -87,7 +87,7 @@
       "key_points": [
         "Visual description involves sensory observation (vision, touch, smell) of soil characteristics.",
         "Soil identification means determining soil type without specialized equipment — typically done in the field per ASTM D2488.",
-        "Formal soil classification requires specialized equipment and testing, following a standard classification system.",
+        "Formal soil classification involves using specialized equipment and tests to classify the soil using a standard classification system.",
         "These procedures follow the corresponding ASTM standard available for this purpose; visual description and identification are based on ASTM D2488."
       ],
       "equations": [],
@@ -275,7 +275,7 @@
     {
       "section_id": "1-3.3",
       "title": "Unified Soil Classification System (ASTM D2487)",
-      "summary": "Introduces the USCS as the most common engineering soil classification system per ASTM D2487. Covers the three major divisions (coarse-grained, fine-grained, highly organic) and 15 soil groups, and specifies the required lab data — grain-size distribution (ASTM D6913) and Atterberg limits (ASTM D4318) — needed to classify soils using this system.",
+      "summary": "Introduces the USCS as the most common engineering soil classification system per ASTM D2487. Covers the three major divisions (coarse-grained, fine-grained, highly organic) and 15 soil groups, and the lab data that should be known to use this system: the grain-size distribution (ASTM D6913) and the liquid limit and plasticity index (ASTM D4318).",
       "body": "The unified soil classification system (USCS) is the most common classification system used for soils in the engineering community. This section is based on the USCS as presented in ASTM D2487. This classification system consists of three major soil divisions: coarse-grained soils, fine-grained soils, and highly organic soils, which are further subdivided into 15 soil groups. To use this soil classification system the grain-size distribution (ASTM D6913) of the minus 3-inch (75-mm) material, and the liquid limit and plasticity index (ASTM D4318) of the minus No. 40 (425-μm) sieve material should be known. The various groups used in this classification system have been divided to correlate in a general way with the engineering behavior of soils.\n\nThe grain-size distribution is needed for soils with 10% or more coarse-grained particles and it can be estimated for soils with less than 10% coarse-grained particles. The liquid limit and plasticity index are required for soils with 15% or more fines and the plasticity can be estimated for soils with 5% to less than 15% fines as described in Section 1-3.2.2.1. For soils with less than 5% fines, the plasticity is not needed.",
       "key_points": [
         "USCS (ASTM D2487) is the most widely used engineering soil classification system, covering 3 major divisions and 15 soil groups.",
@@ -587,7 +587,7 @@
       "body": "The Rock Quality Designation (RQD) is only for NX size core samples and is computed by summing the lengths of all pieces of core equal to or longer than 4 inches and dividing by the total length of the coring run. The resultant is multiplied by 100 to get RQD in percent. It is necessary to distinguish between natural fractures and those caused by the drilling or recovery operations. The fresh, irregular breaks should be ignored and the pieces counted as intact lengths. Depending on the engineering requirements of the project, breaks induced along highly anisotropic planes, such as foliation or bedding, may be counted as natural fractures. A qualitative relationship between RQD, velocity index, and rock mass quality is presented in Table 1-16. The velocity index is defined as the square of the ratio of the in situ to laboratory or intact compressional wave velocities.",
       "key_points": [
         "RQD applies only to NX size core samples; pieces ≥4 inches are summed and divided by total run length, then multiplied by 100.",
-        "Drilling-induced fractures (fresh, irregular breaks) are ignored; only natural fractures count.",
+        "Natural fractures must be distinguished from those caused by drilling or recovery; the fresh, irregular breaks should be ignored and the pieces counted as intact lengths.",
         "Breaks along highly anisotropic planes (foliation, bedding) may be counted as natural fractures depending on project requirements.",
         "Velocity index = (V_field / V_lab)²; correlates with RQD to indicate rock mass quality.",
         "RQD quality ratings (Table 1-16): 0–25% Very Poor, 25–50% Poor, 50–75% Fair, 75–90% Good, 90–100% Excellent."

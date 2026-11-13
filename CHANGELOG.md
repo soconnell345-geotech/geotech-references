@@ -120,6 +120,18 @@ are unchanged. Pages are printed page numbers.
   note: "Buchiagnani" (Table 5-4, p. 234; 5-10, p. 279; Buchignani
   elsewhere) and "pore pressured" (3-2.4.1.3, p. 148, stored silently
   corrected until now). 1-3.2.2.1's note gives p. 12 (was 11).
+- Force words: the 287 summary, key point and applicability sentences
+  holding must, required, requires, only, cannot, always or never were
+  matched to the printed sentences they restate (190 found; 125 with the
+  same words printed) and the other 162 read against the body or page.
+  35 now carry the print's own modality, e.g. ponded water "can be
+  considered" as a layer, while including it "is imperative" (4-2.1.1,
+  p. 179); water "does not sustain" shear stress (4-2.1.2, p. 180); the
+  lack of a roof "prevents the progression of a pipe" (6-4.2, p. 304);
+  "It is often necessary" to stabilize slopes (7-7, p. 364); Table 6-8
+  assesses "if further investigation is required" (6-5.1, p. 307).
+  Applicability lines that say where a section applies are unchanged.
+  Eq. 8-7's note gives p. 427 for Eq. 8-25 (was 426).
   Test: `tests/test_dm7_1_build_keypoints.py`.
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and

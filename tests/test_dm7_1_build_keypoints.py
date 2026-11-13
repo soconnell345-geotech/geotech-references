@@ -83,6 +83,15 @@ KEY_POINTS = [
     # p. 373: Td "should be divided by a factor of safety for geosynthetic strength (FR) of at least 1.3"
     (7, "7-9.5", "should be divided by a factor of safety for geosynthetic strength (FR) of at least 1.3",
      ("requires FR",)),
+    # Force-word sweep: the print's own modality
+    # p. 179: including ponded water "is imperative"; as a layer it "can be considered"
+    (4, "4-2.1.1", "it can be considered by adding a layer", ("must be included as a layer",)),
+    # p. 180: "the water does not sustain shear stress"
+    (4, "4-2.1.2", "the water does not sustain shear stress", ("cannot sustain",)),
+    # p. 304: "the lack of a "roof" prevents the progression of a pipe"
+    (6, "6-4.2", "the lack of a roof prevents the progression of a pipe", ("a pipe cannot form",)),
+    # p. 364: "It is often necessary to increase the factor of safety of existing slopes"
+    (7, "7-7", "It is often necessary to increase the factor of safety", ("Slope stabilization is required",)),
 ]
 
 

@@ -88,11 +88,11 @@
     {
       "section_id": "4-2.1.1",
       "title": "Total Vertical Stress",
-      "summary": "Defines total vertical stress (overburden stress) as the normal stress on a horizontal plane at depth, calculated by summing the product of layer thickness and total unit weight for all overlying materials. Ponded water must be included as a layer with unit weight of water. Illustrated by Figure 4-1.",
+      "summary": "Defines total vertical stress (overburden stress) as the normal stress on a horizontal plane at depth, calculated by summing the product of layer thickness and total unit weight for all overlying materials. Ponded water must be included in calculations of total vertical stress; it can be considered as a layer with the unit weight of water. Illustrated by Figure 4-1.",
       "body": "The total vertical stress (or overburden stress) is the normal stress acting on a horizontal plane at some depth within the soil. The total vertical stress, σv, at a particular depth is calculated by multiplying the thickness (zi) of all overlying materials by the total unit weight (γt,i) of each material:\n\nσv = Σ(zi · γt,i)   (4-1)\n\nIt is imperative to include the weight of water resting on the ground surface (i.e., ponded water) in calculations of total vertical stress. Ponded water can be considered by adding a layer to the total stress calculations with thickness equal to the water depth and unit weight equal to the unit weight of water.\n\nThe calculation of total vertical stress is illustrated in Figure 4-1.",
       "key_points": [
         "Total vertical stress σv = Σ(zi · γt,i), summing thickness × total unit weight for each overlying layer.",
-        "Ponded water must be included as a layer with thickness = water depth and unit weight = unit weight of water.",
+        "It is imperative to include ponded water in calculations of total vertical stress; it can be considered by adding a layer with thickness equal to the water depth and unit weight equal to the unit weight of water.",
         "This is the overburden stress on a horizontal plane at a given depth.",
         "Figure 4-1 illustrates the calculation for hydrostatic conditions."
       ],
@@ -119,7 +119,7 @@
         "Velocity head is typically ignored in geotechnical applications; total head = pressure head + elevation head.",
         "Hydrostatic condition: water is static, total head is constant, pressure head = depth below water table.",
         "For flowing water: flow net or seepage analysis required; pressure head = total head − elevation head.",
-        "Pore water pressure acts equally in all directions (water cannot sustain shear stress); orientation is irrelevant.",
+        "Water pressures act in all directions equally because the water does not sustain shear stress; for this reason, orientation of the pore water pressure is not important.",
         "Pore water pressure is also called neutral stress in older literature."
       ],
       "equations": [
@@ -140,7 +140,7 @@
       "body": "The effective vertical stress (σʹv) is found by subtracting the pore water pressure at any point from the total vertical stress at the same point\n\nσʹv = σv − u   (4-3).",
       "key_points": [
         "Effective vertical stress σ'v = σv − u (total vertical stress minus pore water pressure).",
-        "Must be evaluated at the same point for both total stress and pore pressure."
+        "The effective vertical stress (σʹv) is found by subtracting the pore water pressure at any point from the total vertical stress at the same point."
       ],
       "equations": [
         {
@@ -273,7 +273,7 @@
       "body": "The Boussinesq and related solutions assume the soil is a homogeneous, elastic material in which continuity is maintained and static equilibrium is satisfied. The applied load is completely flexible and is applied at the surface of the material. For embankment loading, the load is strictly vertical and no shear stress is applied to the foundation by the embankment. As discussed in Section 4-2.1.5, the stress distribution below a rigid foundation is not uniform and may not conform to the assumptions of the Boussinesq solutions.\n\nLoads with a length to width ratio (L/B) of at least five are commonly assumed to result in plane strain conditions, at least near the middle of the length. Under plane strain, deformation only occurs perpendicular to the long axis of the load and the changes in stress do not depend on the elastic properties of the material.\n\nThe Boussinesq solutions are not typically applicable to the calculation of shear stress for conditions where shear stress is becoming critical. In this case, the soil is approaching a state of plastic equilibrium and the assumption of elasticity no longer applies. In such cases, stability analysis methods, such as those in Chapter 7 and in DM 7.2, should be used.",
       "key_points": [
         "The Boussinesq and related solutions assume the soil is a homogeneous, elastic material in which continuity is maintained and static equilibrium is satisfied.",
-        "Applied loads must be completely flexible and applied at the ground surface.",
+        "The applied load is completely flexible and is applied at the surface of the material.",
         "Embankment loads are assumed strictly vertical with no shear stress applied to the foundation.",
         "Loads with L/B of at least five are commonly assumed to result in plane strain conditions, at least near the middle of the length; under plane strain the changes in stress do not depend on the elastic properties of the material.",
         "The Boussinesq solutions are not typically applicable to the calculation of shear stress where shear stress is becoming critical (soil approaching plastic equilibrium); stability analysis methods, such as those in Chapter 7 and DM 7.2, should be used.",
@@ -947,7 +947,7 @@
       "summary": "Introduces numerical methods for stresses in soil. The analytical and chart-based solutions in the chapter are an excellent starting point, but their applicability is limited by their constraints and assumptions and they struggle to model complex subsurface profiles and loading conditions. Computer programs and numerical solutions are an important part of geotechnical engineering practice; the section gives a brief overview of their application to stresses.",
       "body": "The analytical and chart-based solutions presented in this chapter are an excellent starting point for evaluation of stresses within a soil mass. However, their applicability is limited by the constraints and assumptions of each. These methods also struggle to effectively model complex subsurface profiles and loading conditions.\n\nComputer programs and numerical solutions are an important part of geotechnical engineering practice. This section provides a brief overview of the application of numerical methods to the evaluation of stresses.",
       "key_points": [
-        "Analytical and chart-based solutions are useful starting points but are limited by their assumptions and cannot easily model complex subsurface profiles or loading conditions.",
+        "Analytical and chart-based solutions are useful starting points but are limited by their assumptions and struggle to effectively model complex subsurface profiles and loading conditions.",
         "Computer programs and numerical solutions are an important part of geotechnical engineering practice; the finite element and finite difference methods are the most common in geotechnical engineering.",
         "Finite element method (FEM) is somewhat more popular than finite difference for stress analysis problems.",
         "Calculation of accurate stresses via FEA is relatively straightforward; accurate deformation prediction requires significantly more expertise."
@@ -1024,7 +1024,7 @@
         "Maintain a uniform mesh with consistent element shapes, especially in zones of interest.",
         "Use elements with an appropriate aspect ratio, preferably longest to shortest dimension less than or equal to five.",
         "Keep the element size as small as practical; a maximum element height of approximately 1 to 2% of the height of the problem domain is preferred.",
-        "Always include boundary water pressures from impounded water in the model."
+        "Remember to include the boundary water pressures from any impounded water present in the model."
       ],
       "equations": [],
       "figures": [],
