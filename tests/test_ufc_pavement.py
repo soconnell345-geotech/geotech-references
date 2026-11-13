@@ -663,28 +663,27 @@ class TestFigure10_1:
         with pytest.raises(ValueError, match="lowest curve"):
             figure_10_1_k_on_base(24.99, 10)
         assert "note" not in figure_10_1_k_on_base(300, 10)
-        r = figure_10_1_k_on_base(300.01, 10)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
-        assert "300 curve is used" in r["note"]
+        with pytest.raises(ValueError, match="top curve"):
+            figure_10_1_k_on_base(300.01, 10)
         assert "note" not in figure_10_1_k_on_base(100, 60)
-        r = figure_10_1_k_on_base(100, 60.01)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
-        assert "60 in value is used" in r["note"]
+        with pytest.raises(ValueError, match="past Figure 10-1's axis"):
+            figure_10_1_k_on_base(100, 60.01)
         assert "note" not in figure_10_1_k_on_base(100, 0)
         with pytest.raises(ValueError, match=">= 0"):
             figure_10_1_k_on_base(100, -0.01)
 
     def test_printed_range(self):
-        # Below the lowest curve is refused; past the top or the axis is
-        # held, noted.
+        # REF-76: outside the drawn curves (25-300 pci) and the axis (0-60
+        # in) the chart gives no k and the text no rule: refused. Past the
+        # top curve and the axis the edge used to be read, with a note.
         with pytest.raises(ValueError, match="lowest curve"):
             figure_10_1_k_on_base(20, 10)
-        r = figure_10_1_k_on_base(400, 10)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(300, 10)["k_on_base_psi_in"]
-        assert "300 curve is used" in r["note"]
-        r = figure_10_1_k_on_base(100, 70)
-        assert r["k_on_base_psi_in"] == figure_10_1_k_on_base(100, 60)["k_on_base_psi_in"]
-        assert "60 in value is used" in r["note"]
+        with pytest.raises(ValueError, match=r"top curve \(300 pci"):
+            figure_10_1_k_on_base(400, 10)
+        with pytest.raises(ValueError, match="500 psi/in"):
+            figure_10_1_k_on_base(400, 10)
+        with pytest.raises(ValueError, match=r"0-60 in, printed p. 32"):
+            figure_10_1_k_on_base(100, 70)
         assert "note" not in figure_10_1_k_on_base(100, 30)
 
     def test_result_carries_the_chart_note_and_page(self):
@@ -739,6 +738,8 @@ class TestFigure15_1:
         r = figure_15_1_cracking_projection_factor(20_000_000, 100)
         assert r["f"] == pytest.approx(0.93, abs=0.005)
         assert "held" in r["note"]
+        # The hold is the guide's own (rule 2): the note quotes G-7's page.
+        assert "printed 264" in r["note"] and "0.93" in r["note"]
 
     def test_between_curves_linear_in_k(self):
         r = figure_15_1_cracking_projection_factor(100_000, 250)
@@ -1366,7 +1367,12 @@ class TestFigureEVehicleCurves:
 
     @pytest.mark.parametrize("vehicle", _ALL_E_VEHICLES)
     def test_thickness_nondecreasing_with_passes(self, vehicle):
-        r_few = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000)
+        # From the chart's lowest curve (10,000 passes on E-2): fewer are
+        # refused (REF-76).
+        from geotech_references.ufc_pavement.tables import (
+            _FIGURES_E, _resolve_vehicle_figure)
+        lowest = min(_FIGURES_E[_resolve_vehicle_figure(vehicle)]["curves"])
+        r_few = figure_e_vehicle_thickness(vehicle, cbr=10, passes=lowest)
         r_many = figure_e_vehicle_thickness(vehicle, cbr=10, passes=1_000_000)
         assert r_many["thickness_in"] >= r_few["thickness_in"]
 
@@ -1411,10 +1417,26 @@ class TestFigureEVehicleOffTheChart:
         assert r["thickness_in"] == 0.0
 
     def test_below_the_lowest_curve(self):
-        few = figure_e_vehicle_thickness("E-28", 5, 500)
-        assert few["thickness_in"] == \
-            figure_e_vehicle_thickness("E-28", 5, 1e3)["thickness_in"]
-        assert "below" in few["note"]
+        # REF-76: the guide gives no rule below a chart's lowest curve; it
+        # used to be read on that curve, with a note. The error gives the
+        # lowest curve's thickness as the bound.
+        at_lowest = figure_e_vehicle_thickness("E-28", 5, 1e3)
+        assert "note" not in at_lowest
+        with pytest.raises(ValueError, match="below the lowest curve of "
+                           "Figure E-28") as e:
+            figure_e_vehicle_thickness("E-28", 5, 500)
+        assert f"reads {at_lowest['thickness_in']:.1f} in" in str(e.value)
+        assert "printed 219" in str(e.value)
+        # Where the lowest curve has no reading the bound is left out.
+        with pytest.raises(ValueError, match="no thickness there.$"):
+            figure_e_vehicle_thickness("E-30", 95, 500)
+
+    def test_above_the_highest_curve_as_table_g1(self):
+        # Rule 2: Table G-1 (printed 257) reads the passenger car at
+        # 20,000,000 passes by extrapolating past its 10,000,000 curve.
+        r = figure_e_vehicle_thickness("passenger_car", 3, 20_000_000)
+        assert r["thickness_in"] == pytest.approx(6.1, abs=0.05)
+        assert "Table G-1 (printed 257)" in r["note"]
 
 
 class TestFigureEVehicleAllowablePasses:
@@ -1433,14 +1455,27 @@ class TestFigureEVehicleAllowablePasses:
         assert math.log10(r["allowable_passes"]) == pytest.approx(
             math.log10(3e4), abs=0.001)
 
-    def test_clamped_below_min_curve(self):
-        r = figure_e_vehicle_allowable_passes(
-            "passenger_car", cbr=7, thickness_in=0.01)
-        assert r["clamped"] == "below_min_passes_curve"
-        assert r["allowable_passes"] == 10_000  # passenger_car's min printed level
+    def test_under_the_lowest_curve_refused(self):
+        # REF-76: under the lowest curve the allowable passes are fewer
+        # than its passes, by how many the chart does not say; they used
+        # to be returned as the lowest curve's passes (overstated).
+        from geotech_references.ufc_pavement.tables import _fig_e_on_curve
+        with pytest.raises(ValueError, match="under Figure E-2's lowest "
+                           "curve"):
+            figure_e_vehicle_allowable_passes(
+                "passenger_car", cbr=7, thickness_in=0.01)
         # Every E-16 curve is above the chart at CBR 1.5.
-        assert figure_e_vehicle_allowable_passes(
-            "E-16", 1.5, 45)["clamped"] == "below_min_passes_curve"
+        with pytest.raises(ValueError, match="every curve at this CBR is "
+                           "above the chart"):
+            figure_e_vehicle_allowable_passes("E-16", 1.5, 45)
+        # On the lowest curve, as read to 0.1 in, its passes are given.
+        t_lo = _fig_e_on_curve("E-2", 10_000, 7)
+        for t in (t_lo, t_lo - 0.04):
+            r = figure_e_vehicle_allowable_passes("passenger_car", 7, t)
+            assert r["allowable_passes"] == 10_000  # E-2's lowest curve
+            assert r["clamped"] == "below_min_passes_curve"
+        with pytest.raises(ValueError):
+            figure_e_vehicle_allowable_passes("passenger_car", 7, t_lo - 0.06)
 
     def test_clamped_above_max_curve(self):
         r = figure_e_vehicle_allowable_passes(

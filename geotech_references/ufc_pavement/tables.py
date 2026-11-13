@@ -873,25 +873,27 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     ----------
     k_subgrade_psi_in : float
         Modulus of soil reaction measured (or estimated, Table 10-1) on
-        the subgrade, psi/in, 25 to 300 (the drawn curves). Below 25
-        refused; above 300 the 300 curve is used, with a note (it then
-        understates k on the base).
+        the subgrade, psi/in, 25 to 300 (the drawn curves).
     base_thickness_in : float
         Thickness of base course above the subgrade, inches, 0 to 60 (the
-        chart's axis). Above 60 in the 60 in value is used, with a note.
+        chart's axis).
 
     Returns
     -------
     dict
         {'k_subgrade_psi_in', 'base_thickness_in', 'k_on_base_psi_in',
          'chart_read', 'tolerance', 'interpolation', 'chart_note',
-         'reference', 'note'?}.
+         'reference'}.
 
     Raises
     ------
     ValueError
-        If k_subgrade_psi_in is below 25 psi/in (the lowest drawn curve)
-        or base_thickness_in is negative.
+        If k_subgrade_psi_in is outside 25-300 psi/in (the drawn curves)
+        or base_thickness_in is outside 0-60 in (the axis): the chart
+        gives no k on the base there, and the text no rule (REF-76; above
+        300 pci and past 60 in the edge used to be read, with a note).
+        Table 10-1 note 2 (printed 31) caps any k used for design at 500
+        psi/in.
 
     Example: k on subgrade 100 psi/in under 10 in. of base gives 194.4
     psi/in; 200 under 10 in. gives 299.7 (the chart's curve passes through
@@ -904,17 +906,20 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
             "lowest curve (k on subgrade = 25 pci); the chart covers 25-300.")
     if base_thickness_in < 0:
         raise ValueError(f"base_thickness_in must be >= 0, got {base_thickness_in}")
-
-    notes = []
     if base_thickness_in > 60:
-        notes.append(f"Base thickness {base_thickness_in:g} in is past Figure "
-                     "10-1's axis (0-60 in); the 60 in value is used.")
+        raise ValueError(
+            f"Base thickness {base_thickness_in:g} in is past Figure 10-1's "
+            "axis (0-60 in, printed p. 32); the chart gives no k on the base "
+            "there. Run a plate-bearing test on the base (para 10-4).")
     if k_subgrade_psi_in > _FIG_10_1_SUBGRADE_K[-1]:
-        notes.append(f"k on subgrade {k_subgrade_psi_in:g} pci is above Figure "
-                     "10-1's top curve (300 pci); the 300 curve is used, which "
-                     "understates k on the base.")
-    t = min(max(base_thickness_in, 0), 60)
-    ks = min(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[-1])
+        raise ValueError(
+            f"k on subgrade {k_subgrade_psi_in:g} pci is above Figure 10-1's "
+            "top curve (300 pci, printed p. 32); the chart gives no k on the "
+            "base there. Run a plate-bearing test on the base (para 10-4); "
+            "Table 10-1 note 2 (printed 31) makes 500 psi/in the maximum k "
+            "used for design.")
+    t = base_thickness_in
+    ks = k_subgrade_psi_in
 
     lower_k = max(k for k in _FIG_10_1_SUBGRADE_K if k <= ks)
     upper_k = min(k for k in _FIG_10_1_SUBGRADE_K if k >= ks)
@@ -943,7 +948,6 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
         "interpolation": how,
         "chart_note": _FIG_10_1_NOTE,
         "reference": "UFC 3-250-01, Figure 10-1, printed p. 32 (PDF 52)",
-        **({"note": " ".join(notes)} if notes else {}),
     }
 
 
@@ -1168,7 +1172,8 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
         Design traffic, passes of an 8,164-kg (18-kip) ESAL. Must be at least
         each curve's printed start: 100 for k = 25-100 psi/in, rising to
         about 8,600 for k = 500. Above 10,000,000 (the chart's right edge)
-        F is held at its 10,000,000 value, with a note.
+        F is held at its 10,000,000 value, with a note, as the guide's G-7
+        example does (printed 264: 0.93 for k = 100 at 20 million passes).
     k_existing_psi_in : float
         k-value of the existing rigid pavement, psi/in. Must be within the
         printed curves, 25-500 psi/in.
@@ -1197,8 +1202,10 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
     if log_p > 7.0:
         note = (f"{passes:,.0f} passes is beyond Figure 15-1's right edge "
                 "(10,000,000); F is held at its 10,000,000-pass value, where "
-                "the curves are flat (Appendix G G-7 reads 0.93 for k = 100 "
-                "at 20 million passes).")
+                "the curves are flat, as the guide's own example does "
+                "(Appendix G G-7, printed 264: \"The factor for projecting "
+                "cracking ... is 0.93 from Figure 15-1\" for k = 100 at 20 "
+                "million passes).")
         log_p = 7.0
 
     ks = sorted(_FIG_15_1_CURVES)
@@ -2287,7 +2294,9 @@ def figure_e1_flexible_thickness(cbr, passes) -> dict:
         Subgrade (or frost-area soil support index, Table 19-3) CBR, >= 1
         (the chart's CBR axis runs 1-100). Past the CBR where a curve
         meets the axis the thickness is 0.0 (no cover needed over that
-        layer).
+        layer), with a note; every curve meets the axis by CBR 35, so a
+        CBR above the axis's 100 reads 0.0 too: the curve lies on the
+        axis and the cover cannot be less than none.
     passes : float
         Design passes of an 18,000-lb (8,200-kg) single-axle, dual-tire
         ESAL, 10-10,000,000 (the printed curves). Between curves the
@@ -3363,17 +3372,17 @@ def _fig_e_thickness(fig, cbr, passes):
     levels = sorted(_FIGURES_E[fig]["curves"])
     note = None
     if passes <= levels[0]:
-        if passes < levels[0]:
-            note = (f"{passes:,.0f} passes is below Figure {fig}'s lowest "
-                    f"curve ({levels[0]:,}); read on that curve (the safe "
-                    "side).")
-        return _fig_e_on_curve(fig, levels[0], cbr), note
+        # figure_e_vehicle_thickness refuses passes below the lowest curve
+        # (REF-76); the bisection of figure_e_vehicle_allowable_passes
+        # starts on it.
+        return _fig_e_on_curve(fig, levels[0], cbr), None
     if passes > levels[-1]:
         lo, hi = levels[-2], levels[-1]
         note = (f"{passes:,.0f} passes is above Figure {fig}'s highest "
                 f"curve ({hi:,}); extrapolated in log(passes) from its two "
-                "highest curves, as Table G-1 reads the passenger car at "
-                "20,000,000 passes (6.1 in).")
+                "highest curves, as the guide's Table G-1 (printed 257) "
+                "reads the passenger car at 20,000,000 passes (6.1 in; its "
+                "10,000,000 curve is at 6.0).")
     else:
         hi = next(p for p in levels if p >= passes)
         lo = max(p for p in levels if p <= passes)
@@ -3399,13 +3408,19 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
         Vehicle key (e.g. ``"passenger_car"``, ``"truck_3_axle"``) or its
         figure number (e.g. ``"E-2"``, ``"e26"``).
     cbr : float
-        CBR of the layer, 1-100 (log axis).
+        CBR of the layer, 1-100 (log axis). Past the CBR where a curve
+        meets the axis the thickness is 0.0, above 100 too: the curve lies
+        on the axis and the cover cannot be less than none.
     passes : float
         Passes of this vehicle (its own legend, not 18-kip passes). Between
-        curves the thickness is interpolated in log(passes); below the
-        lowest curve that curve is read, and above the highest it is
-        extrapolated in log(passes) from the two highest (as Table G-1
-        does), each with a note.
+        curves the thickness is interpolated in log(passes); above the
+        highest it is extrapolated in log(passes) from the two highest, as
+        the guide's Table G-1 (printed 257) does for the passenger car at
+        20,000,000 passes, with a note. Below the lowest curve (1,000
+        passes on most charts) it is refused (REF-76; that curve used to
+        be read, with a note): the guide gives no rule there. The error
+        gives the lowest curve's thickness, which fewer passes need no
+        more than.
 
     Returns
     -------
@@ -3417,9 +3432,10 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
     Raises
     ------
     ValueError
-        If the vehicle is not recognized; passes is not positive; the CBR
-        is below 1; the thickness is above the chart's top; or the CBR is
-        past the end of a curve that stops above the axis (Figure E-30).
+        If the vehicle is not recognized; passes is not positive or is
+        below the chart's lowest curve; the CBR is below 1; the thickness
+        is above the chart's top; or the CBR is past the end of a curve
+        that stops above the axis (Figure E-30).
     """
     fig = _resolve_vehicle_figure(vehicle)
     if cbr is None or cbr < 1.0:
@@ -3428,6 +3444,20 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
     if passes is None or passes <= 0:
         raise ValueError(f"passes must be > 0, got {passes}")
     data = _FIGURES_E[fig]
+    lowest = min(data["curves"])
+    if passes < lowest:
+        try:
+            t_low = _fig_e_on_curve(fig, lowest, cbr)
+        except ValueError:
+            t_low = None
+        bound = (f" At CBR {cbr:g} that curve reads {t_low:.1f} in; fewer "
+                 "passes need no more than that." if t_low is not None
+                 else "")
+        raise ValueError(
+            f"{passes:,.0f} passes is below the lowest curve of Figure {fig} "
+            f"({lowest:,} passes of the {data['caption']}, "
+            f"{_figure_e_ref(fig)}); the chart gives no thickness there."
+            + bound)
     t, note = _fig_e_thickness(fig, cbr, passes)
     if t is None:
         raise ValueError(
@@ -3479,17 +3509,21 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
         {'vehicle', 'figure', 'cbr', 'thickness_in', 'allowable_passes',
          'chart_read', 'reference', 'clamped'?}. At or above the thickness
          of the vehicle's highest curve the passes are past the chart
-         (``clamped='above_max_passes_curve'``, that curve's passes; Table
-         G-1 calls them unlimited); at or below its lowest curve, or where
-         every curve is above the chart, they are fewer than that curve's
-         (``clamped='below_min_passes_curve'``, that curve's passes).
+         (``clamped='above_max_passes_curve'``, that curve's passes); the
+         guide's Table G-1 (printed 257) calls them "Unlimited". On the
+         lowest curve, as read to 0.1 in (up to 0.05 in under it), the
+         passes are that curve's (``clamped='below_min_passes_curve'``).
 
     Raises
     ------
     ValueError
         If the vehicle is not recognized; the CBR is below 1; thickness_in
-        is not positive; or thickness_in is above the chart's top where the
-        curves at this CBR are off the chart.
+        is not positive; thickness_in is above the chart's top where the
+        curves at this CBR are off the chart; or thickness_in is more than
+        0.05 in under the lowest curve, or every curve at this CBR is above
+        the chart (REF-76): the allowable passes are then fewer than the
+        lowest curve's, and the chart does not say how many (they used to
+        be returned as the lowest curve's passes, which overstates them).
     """
     fig = _resolve_vehicle_figure(vehicle)
     if cbr is None or cbr < 1.0:
@@ -3513,7 +3547,14 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
             f"{thickness_in:g} in is above Figure {fig}'s "
             f"{data['y_max_in']:g} in top, where its curves at CBR {cbr:g} "
             "are off the chart.")
-    if t_lo is None or thickness_in <= t_lo:
+    if t_lo is None or thickness_in < t_lo - 0.05:
+        where = ("every curve at this CBR is above the chart" if t_lo is None
+                 else f"the lowest curve reads {t_lo:.1f} in at this CBR")
+        raise ValueError(
+            f"{thickness_in:g} in is under Figure {fig}'s lowest curve "
+            f"({levels[0]:,} passes; {where}): the allowable passes are "
+            "fewer than that, and the chart does not say how many.")
+    if thickness_in <= t_lo:
         return dict(base, allowable_passes=levels[0],
                     clamped="below_min_passes_curve")
     lo, hi = math.log10(levels[0]), math.log10(levels[-1])

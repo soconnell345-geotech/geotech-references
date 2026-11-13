@@ -87,6 +87,29 @@ pages):
   (Figure 2.5's edge, printed II-18) a1 is still held at the 500,000 psi
   value, now with `out_of_range`: on the safe side, and II-17 cautions
   against moduli above 450,000 psi.
+- `ufc_pavement.tables.figure_10_1_k_on_base`: k on subgrade above 300 pci
+  or a base thicker than 60 in (Figure 10-1's top curve and axis, printed
+  p. 32) is refused; the edge was read, with a note. The message points to
+  the plate-bearing test on the base (para 10-4) and Table 10-1 note 2's
+  500 psi/in maximum (printed 31).
+- `ufc_pavement.tables.figure_e_vehicle_thickness`: passes below a chart's
+  lowest curve (1,000 on most of Figures E-2 to E-31) are refused, the
+  message giving that curve's thickness as the bound; the lowest curve was
+  read, with a note. Above the highest curve the extrapolation stays, as
+  Table G-1 (printed 257) reads the passenger car at 20,000,000 passes; the
+  note now gives the page.
+- `ufc_pavement.tables.figure_e_vehicle_allowable_passes`: a thickness more
+  than 0.05 in under the lowest curve, or where every curve is above the
+  chart, is refused; the lowest curve's passes were returned
+  (`clamped='below_min_passes_curve'`), which overstates them. Above the
+  highest curve `clamped='above_max_passes_curve'` stays (Table G-1's
+  "Unlimited").
+- `ufc_pavement.tables.figure_15_1_cracking_projection_factor` (F held at
+  the 10,000,000-pass value past the chart's edge) and
+  `figure_e1_flexible_thickness` (0.0 past the CBR where a curve meets the
+  axis) are unchanged; the note and docstrings now give the basis (G-7,
+  printed 264, reads 0.93 at 20 million passes; cover cannot be less than
+  none).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
