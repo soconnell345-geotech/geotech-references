@@ -123,6 +123,8 @@ pages):
   ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as
   the docstrings now say; a negative shear ratio (vw_ratio, vg_over_vo) is
   refused.
+- `gsa_collapse.reinforced_concrete` Tables 6 to 9 flexure lookups: the
+  same (open-ended rows printed pp. 39-42; negative shear ratios refused).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
