@@ -208,8 +208,13 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
       1. Kd, M_DS at the target rho/rho_b (``kd_table_d1``,
          ``max_moment_at_rho_limit``).
       2. Compression-steel stress fs' at ad = Kd*d, from strain
-         compatibility (paragraph D-2b): fs' = (ad - beta1*d')*ec*Es/ad
-         (capped at fy).
+         compatibility (paragraph D-2b, printed p. 71): fs' =
+         (ad - beta1*d')*ec*Es/ad, which the page prints with no bound;
+         held at fy by the library (``limit_governs``, ``fs_prime_unlimited``
+         and a note when it governs), and refused where it is not positive
+         (the compression steel not in compression: D-4 gives no As'). ad
+         is set by the target ratio, not solved for, so with fs' at fy
+         Eqs D-3 and D-4 still balance the section's forces and moments.
       3. As' = (Mn - M_DS) / [fs'*(d - d')]                      [Eq D-4]
       4. As = (0.85*fc'*Kd*b*d - Pn + As'*fs') / fy                [Eq D-3]
 
@@ -252,6 +257,11 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
          'equation': 'D-3/D-4/D-6/D-7', ...}
     """
     from .flexure_axial import aci_beta1
+    # REF-76: fs' is held at fy below; an fy, Es or ec no steel or
+    # concrete has is refused rather than used as that bound.
+    for name, val in (("fy", fy), ("es", es), ("ec", ec)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
     if beta1 is None:
         beta1 = aci_beta1(fc_prime)
     kd_result = kd_table_d1(rho_over_rho_b, beta1, fy, es, ec)
@@ -265,13 +275,29 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
             "is adequate; use design_singly_reinforced instead."
         )
 
-    fs_prime = min(fy, (ad - beta1 * dprime) * ec * es / ad)
+    fs_raw = (ad - beta1 * dprime) * ec * es / ad
+    if fs_raw <= 0:
+        raise ValueError(
+            f"fs' = (ad - beta1*d') ec Es / ad = {fs_raw:.4g} ksi at ad = "
+            f"{ad:.4g} in. (printed p. 71): the compression steel is not in "
+            "compression, so Eq D-4 gives no As' (the library's reading: D-4 "
+            "asks the compression steel to carry Mn - M_DS). Use a deeper "
+            "section or a smaller d'.")
+    fs_prime = min(fy, fs_raw)
     as_prime = (mn - mdl) / (fs_prime * (d - dprime))
     as_required = (0.85 * fc_prime * kd * b * d - pn + as_prime * fs_prime) / fy
 
-    return {
+    out = {
         "kd": kd, "ad": ad, "mdl": mdl, "fs_prime": fs_prime,
         "as_prime_required": as_prime, "as_required": as_required,
         "equation": "D-3/D-4/D-6/D-7", "printed_page": "70-72",
-        "pdf_page": "75-77",
+        "pdf_page": "75-77", "limit_governs": fs_raw > fy,
     }
+    if fs_raw > fy:
+        out["fs_prime_unlimited"] = fs_raw
+        out["note"] = (
+            f"fs' = {fs_raw:.4g} ksi from (ad - beta1*d') ec Es / ad (printed "
+            f"p. 71), which prints no bound; the library holds it at fy = "
+            f"{fy:g} ksi (steel carries no more than yield; the library's "
+            "reading).")
+    return out

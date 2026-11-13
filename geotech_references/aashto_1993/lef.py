@@ -59,12 +59,11 @@ slab thickness D in inches). LEF itself is dimensionless.
 
 Interpolation policy
 ---------------------
-- Axle load: linear interpolation between the printed load rows; loads
-  outside the printed range are CLAMPED to the nearest printed endpoint
-  (with a ``note`` in the returned dict).
+- Axle load: linear interpolation between the printed load rows; a load
+  outside the printed rows is REFUSED (ValueError naming the table and its
+  rows; REF-76: it used to be clamped to the nearest row with a note).
 - SN (flexible) / D (rigid): linear interpolation between the printed
-  columns; values outside the printed column range are CLAMPED to the
-  nearest printed endpoint (with a ``note``).
+  columns; a value outside the printed columns is REFUSED likewise.
 - Terminal serviceability pt: EXACT match only, one of 2.0, 2.5, 3.0 (the
   only three values printed in Appendix D). Interpolating between
   serviceability levels is not physically well-posed from table data alone
@@ -907,7 +906,7 @@ _add(18, "rigid", "triple", 3.0, _TWIN_LOADS, _RIGID_COLS, [
 
 
 def _interp1d(x, xs, ys):
-    """Linear interpolation of ys(xs) at x; x is assumed already clamped
+    """Linear interpolation of ys(xs) at x; x is assumed already checked
     into [xs[0], xs[-1]] by the caller."""
     if x <= xs[0]:
         return ys[0]
@@ -925,30 +924,31 @@ def _interp1d(x, xs, ys):
 def _lookup(table, axle_load_kips, col_value, col_name):
     """Bilinear interpolation: first across the printed columns (SN or D)
     for every printed load row, then across the printed load rows.
-    Returns (lef, notes)."""
+    Returns (lef, notes). A load or SN/D outside the printed rows or
+    columns raises ValueError (REF-76): the tables end there and Appendix D
+    prints no rule beyond them."""
     loads = table["loads"]
     columns = table["columns"]
     rows = table["rows"]
     notes = []
+    where = (f"Table D.{table['table_num']} (printed "
+             f"{table['printed_page']})")
 
     load = axle_load_kips
     if load < loads[0] or load > loads[-1]:
-        clamped = min(max(load, loads[0]), loads[-1])
-        notes.append(
+        raise ValueError(
             f"axle_load_kips={axle_load_kips:g} is outside the printed "
-            f"table range [{loads[0]}, {loads[-1]}] kips; clamped to "
-            f"{clamped:g}."
+            f"rows of {where}, {loads[0]:g}-{loads[-1]:g} kips; the table "
+            "gives no LEF there."
         )
-        load = clamped
 
     col = col_value
     if col < columns[0] or col > columns[-1]:
-        clamped = min(max(col, columns[0]), columns[-1])
-        notes.append(
-            f"{col_name}={col_value:g} is outside the printed table range "
-            f"[{columns[0]}, {columns[-1]}]; clamped to {clamped:g}."
+        raise ValueError(
+            f"{col_name}={col_value:g} is outside the printed columns of "
+            f"{where}, {columns[0]:g}-{columns[-1]:g}; the table gives no "
+            "LEF there."
         )
-        col = clamped
 
     col_values_per_load = [_interp1d(col, columns, row) for row in rows]
     lef = _interp1d(load, loads, col_values_per_load)
@@ -972,16 +972,17 @@ def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
         'single', 'tandem', or 'triple'.
     axle_load_kips : float
         Axle (group) load, kips, > 0. Single-axle tables are printed for
-        2-50 kips; tandem/triple tables for 2-90 kips. Loads outside the
-        printed range are clamped to the nearest endpoint (see 'note').
+        2-50 kips; tandem/triple tables for 2-90 kips. A load outside the
+        printed rows is refused (REF-76; it used to be read at the nearest
+        row, with a note).
     sn : float, optional
         Pavement structural number (flexible only), required when
-        pavement_type='flexible'. Printed columns are SN=1-6; values
-        outside that range are clamped (see 'note').
+        pavement_type='flexible'. Printed columns are SN=1-6; a value
+        outside them is refused.
     d_in : float, optional
         PCC slab thickness, inches (rigid only), required when
-        pavement_type='rigid'. Printed columns are D=6-14 in; values
-        outside that range are clamped (see 'note').
+        pavement_type='rigid'. Printed columns are D=6-14 in; a value
+        outside them is refused.
     pt : float, optional
         Terminal serviceability index. Must be EXACTLY 2.0, 2.5, or 3.0
         (the only values printed in Appendix D) -- default 2.5.
@@ -991,17 +992,16 @@ def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
     -------
     dict
         {'pavement_type', 'axle_config', 'axle_load_kips', 'pt',
-         'sn' or 'd_in', 'lef', 'table', 'reference', 'note'?}.
-        'note' is present only when a load/sn/d_in fell outside the
-        printed range and was clamped.
+         'sn' or 'd_in', 'lef', 'table', 'reference'}.
 
     Raises
     ------
     ValueError
         If pavement_type/axle_config is unrecognized, pt is not exactly
         one of 2.0/2.5/3.0, axle_load_kips <= 0, sn/d_in is missing or
-        <= 0 for the given pavement_type, or the wrong one of sn/d_in is
-        supplied for the given pavement_type.
+        <= 0 for the given pavement_type, the wrong one of sn/d_in is
+        supplied for the given pavement_type, or the load or sn/d_in is
+        outside the printed table's rows or columns.
     """
     pavement_key = str(pavement_type).strip().lower()
     if pavement_key not in ("flexible", "rigid"):

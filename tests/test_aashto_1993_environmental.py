@@ -101,9 +101,14 @@ class TestPotentialVerticalRise:
         assert vmin > vavg > vopt
 
     def test_below_curve_start_gives_zero_with_note(self):
+        # REF-76 rule 2: the guide's own Table H.1 (printed H-3) prints VR
+        # 0.00 for PI 15 and 19 below the optimum curve's start (PI 33.3);
+        # the note says so. A negative PI is refused.
         r = env.potential_vertical_rise(25, "optimum", 5)
         assert r["vr_in"] == 0.0
-        assert "starts" in r["note"]
+        assert "starts" in r["note"] and "Table H.1 (printed H-3)" in r["note"]
+        with pytest.raises(ValueError, match="pi must be 0 or more"):
+            env.potential_vertical_rise(-5, "optimum", 5)
 
     def test_past_curve_top_raises(self):
         # The minimum-moisture curve leaves the top of the chart at PI
@@ -132,11 +137,14 @@ class TestPotentialVerticalRise:
         assert r40["vr_in"] == pytest.approx(r30["vr_in"])
         assert "30 ft" in r40["note"]
 
-    def test_thickness_below_2_uses_2_with_note(self):
-        r1 = env.potential_vertical_rise(50, "average", 1)
+    def test_thickness_below_2_refused(self):
+        # REF-76: Figure G.3 (printed G-4) draws thickness curves 2-30 ft;
+        # below 2 ft the 2 ft curve used to be read with a note. The guide
+        # gives no rule there (G.1 gives one only above 30 ft), so refused.
         r2 = env.potential_vertical_rise(50, "average", 2)
-        assert r1["vr_in"] == pytest.approx(r2["vr_in"])
-        assert "overstates" in r1["note"]
+        assert "note" not in r2
+        with pytest.raises(ValueError, match="thinnest curve, 2 ft"):
+            env.potential_vertical_rise(50, "average", 1)
 
     def test_unknown_condition_raises(self):
         with pytest.raises(ValueError):
@@ -263,6 +271,15 @@ class TestMaxServiceabilityLossFrost:
     def test_negative_depth_raises(self):
         with pytest.raises(ValueError):
             env.max_serviceability_loss_frost("good", -1)
+
+    def test_beyond_the_depth_axis_refused(self):
+        # REF-76 (fit sweep): Figure G.7's depth axis ends at 10 ft (printed
+        # G-10); the line used to be extended with a note (12 ft very poor:
+        # 6.0, past the chart's 5).
+        assert env.max_serviceability_loss_frost("very_poor", 10)["delta_psi_max"] == 5.0
+        for d in (10.1, 12, 60):
+            with pytest.raises(ValueError, match=r"0 to 10 ft \(printed G-10\)"):
+                env.max_serviceability_loss_frost("very_poor", d)
 
 
 # ============================================================================

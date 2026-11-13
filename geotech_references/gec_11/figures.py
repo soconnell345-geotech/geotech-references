@@ -74,6 +74,12 @@ def figure_4_10_kr_ka_ratio(
     Every result carries that sentence as ``note``, and a reinforcement
     type naming polymer (e.g. 'polymer_strip') is refused with it.
 
+    The figure (FHWA-NHI-10-024 Vol I, p. 4-37, PDF page 179) draws the
+    depth axis open below 20 ft (6 m), and the text (p. 4-35) says the
+    metallic ratio falls "to a constant value 20 ft (6 m) below" the top
+    and the geosynthetic ratio is a constant: any depth below 6 m takes
+    1.2 (metallic) or 1.0 (geosynthetic), as printed.
+
     Parameters
     ----------
     depth_m : float

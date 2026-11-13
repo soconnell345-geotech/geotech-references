@@ -291,15 +291,19 @@ class TestEquation1022CavingRockSide:
                     "rqd_pct", "joint_condition"):
             assert key in result
 
-    def test_rqd_below_minimum_clamped(self):
-        """FHWA-NHI-18-024 Table 10-3, p. 10-21 (PDF page 301) prints no row
-        below RQD 20; the RQD 20 row (0.45) is used and the result says so
-        (review finding gec-43). At RQD 20 itself there is no note."""
-        result = equation_10_22_caving_rock_side(1000.0, 10, "closed")
-        assert abs(result["alpha_E"] - 0.45) < 0.01
-        assert "no row below RQD 20" in result["note"]
-        assert "note" not in equation_10_22_caving_rock_side(1000.0, 20, "open")
+    def test_rqd_below_minimum_refused(self):
+        """FHWA-NHI-18-024 Table 10-3, p. 10-21 (PDF page 301) prints RQD 20
+        to 100 and the text gives no rule below 20; alpha_E falls with RQD,
+        so the RQD 20 row is not a safe stand-in and RQD below 20 is
+        refused (REF-76; review finding gec-43 had held it with a note)."""
+        for rqd in (19.9, 10, 0):
+            with pytest.raises(ValueError, match="RQD 20 to 100"):
+                equation_10_22_caving_rock_side(1000.0, rqd, "closed")
+        # In range unchanged: the printed rows.
+        assert equation_10_22_caving_rock_side(1000.0, 20, "open")["alpha_E"] == 0.45
+        assert equation_10_22_caving_rock_side(1000.0, 20, "closed")["alpha_E"] == 0.45
         assert equation_10_22_caving_rock_side(1000.0, 50, "open")["alpha_E"] == 0.55
+        assert "note" not in equation_10_22_caving_rock_side(1000.0, 20, "open")
 
     def test_zero_qu_raises(self):
         with pytest.raises(ValueError):

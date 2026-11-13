@@ -467,6 +467,11 @@ def torsional_constant_rectangular(h, b):
     dict
         {'h', 'b', 'b_over_h', 'phi', 'k', 'equation': '9-11', ...}
     """
+    if not (b > 0 and h > 0):
+        raise ValueError(
+            f"h and b are cross-section dimensions and must be > 0, got h={h}, "
+            f"b={b} (REF-76: a negative b, or two negatives, gave a b/h off "
+            "the 0-1 axis of the Figure 9-9 / 9-15 curve and a number)")
     if b > h:
         raise ValueError("b must be <= h (b is the smaller cross-section dimension)")
     b_over_h = b / h

@@ -88,6 +88,16 @@ class TestFigure410:
         with pytest.raises(ValueError, match="must be >= 0"):
             figure_4_10_kr_ka_ratio(-1.0)
 
+    @pytest.mark.parametrize("depth", [6.0, 20.0, 35.0, 100.0])
+    def test_constant_below_6_m_as_printed(self, depth):
+        """Figure 4-10 (GEC-11 Vol I, p. 4-37) draws the depth axis open below
+        20 ft (6 m); the text (p. 4-35) says the metallic ratio is constant
+        below it and the geosynthetic ratio constant throughout (REF-76:
+        kept, rule 1)."""
+        assert figure_4_10_kr_ka_ratio(depth, "metal_strip")["kr_ka_ratio"] == 1.2
+        assert figure_4_10_kr_ka_ratio(depth, "metal_bar_mat")["kr_ka_ratio"] == 1.2
+        assert figure_4_10_kr_ka_ratio(depth, "geosynthetic")["kr_ka_ratio"] == 1.0
+
     def test_unknown_type_raises(self):
         with pytest.raises(ValueError, match="Unknown reinforcement_type"):
             figure_4_10_kr_ka_ratio(3.0, "unknown_type")

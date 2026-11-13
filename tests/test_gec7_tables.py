@@ -416,6 +416,16 @@ class TestTable49:
         with pytest.raises(ValueError):
             table_4_9_site_coefficient_fpga("G", 0.5)
 
+    def test_open_ended_columns_kept_negative_refused(self):
+        """REF-76: the first and last columns are printed open-ended (GEC-7
+        p. 94 "<= 0.25" / ">= 1.25"; GEC-12 Vol I Table 7-27, p. 380, "< 0.1"
+        / "> 0.5"), so a PGA past them takes that column; a negative PGA is
+        not an acceleration and is refused."""
+        assert table_4_9_site_coefficient_fpga("E", 0.0)["F_pga"] == 2.5
+        assert table_4_9_site_coefficient_fpga("E", 2.0)["F_pga"] == 0.9
+        with pytest.raises(ValueError, match="pga must be 0 or more"):
+            table_4_9_site_coefficient_fpga("D", -0.1)
+
 
 # ============================================================================
 # Table 4.10: Site Coefficient F_v
@@ -440,6 +450,15 @@ class TestTable410:
     def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
             table_4_10_site_coefficient_fv("F", 0.3)
+
+    def test_open_ended_columns_kept_negative_refused(self):
+        """REF-76: Table 4.10 (GEC-7 p. 95, PDF page 135) heads its end
+        columns "S1 <= 0.1" and "S1 >= 0.5", printed open-ended; a negative
+        S1 is refused."""
+        assert table_4_10_site_coefficient_fv("D", 0.0) == 2.4
+        assert table_4_10_site_coefficient_fv("D", 1.5) == 1.5
+        with pytest.raises(ValueError, match="s1 must be 0 or more"):
+            table_4_10_site_coefficient_fv("D", -0.2)
 
     def test_cites_as_printed(self):
         """Table 4.10, p. 95, is headed '(Kavazanjian 2011)'; the docstring

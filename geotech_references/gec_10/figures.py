@@ -287,10 +287,12 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
     qu_kpa : float
         Mean uniaxial compressive strength of intact rock in kPa.  Must be positive.
     rqd_pct : float
-        Rock Quality Designation as a percentage (0–100).  Table 10-3
-        (p. 10-21) prints RQD 100, 70, 50, 30 and 20; between rows alpha_E
-        is interpolated linearly, and below 20 the 20 row is used, with a
-        note in the result.
+        Rock Quality Designation as a percentage, 20 to 100.  Table 10-3
+        (p. 10-21, PDF page 301) prints RQD 100, 70, 50, 30 and 20;
+        between rows alpha_E is interpolated linearly.  Below RQD 20 the
+        table has no row and the text gives no rule, so the function
+        refuses (holding the RQD 20 row would overstate alpha_E, which
+        falls with RQD).
     joint_condition : str
         Discontinuity condition: 'closed' (tight joints) or 'open'
         (open or gouge-filled joints).  Default 'closed'.
@@ -304,12 +306,18 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
     Raises
     ------
     ValueError
-        If inputs are out of range.
+        If qu_kpa is not positive, rqd_pct is outside 20 to 100 (Table
+        10-3's rows), or joint_condition is unknown.
     """
     if qu_kpa <= 0:
         raise ValueError(f"qu_kpa must be positive, got {qu_kpa}")
     if not (0 <= rqd_pct <= 100):
         raise ValueError(f"rqd_pct must be 0–100, got {rqd_pct}")
+    if rqd_pct < _TABLE_10_3_RQD[0]:
+        raise ValueError(
+            f"rqd_pct={rqd_pct:g} is below Table 10-3 (GEC-10, p. 10-21), "
+            "which prints alpha_E for RQD 20 to 100; the table gives no "
+            "value below RQD 20.")
 
     jc = joint_condition.lower().strip()
     if jc not in ("closed", "open"):
@@ -319,12 +327,7 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
 
     table = _TABLE_10_3_AE_CLOSED if jc == "closed" else _TABLE_10_3_AE_OPEN
 
-    note = None
-    if rqd_pct < _TABLE_10_3_RQD[0]:
-        alpha_e = table[0]
-        note = ("Table 10-3 prints no row below RQD 20; the RQD 20 row's "
-                "alpha_E is used.")
-    elif rqd_pct >= _TABLE_10_3_RQD[-1]:
+    if rqd_pct >= _TABLE_10_3_RQD[-1]:
         alpha_e = table[-1]
     else:
         alpha_e = _linterp(rqd_pct, _TABLE_10_3_RQD, table)
@@ -339,6 +342,4 @@ def equation_10_22_caving_rock_side(qu_kpa: float,
         "rqd_pct": rqd_pct,
         "joint_condition": jc,
     }
-    if note:
-        out["note"] = note
     return out

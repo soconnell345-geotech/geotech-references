@@ -460,9 +460,9 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
 
     The table prints the columns qc = 10, 15, 20 and 25 MPa and the note
     "Intermediate values may be interpolated linearly." pb is interpolated
-    between those columns. Below qc = 10 MPa the table prints nothing and
-    the lookup raises. Above 25 MPa the qc = 25 value is returned (the
-    table prints no column above 25), and the result says so in 'note'.
+    between those columns. Below qc = 10 MPa and above qc = 25 MPa the
+    table prints nothing (its last column is "qc = 25", not open-ended,
+    and the text of D.6 gives no rule beyond it), and the lookup raises.
 
     Parameters
     ----------
@@ -470,8 +470,8 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
         Normalised settlement s/Ds; s/Db.  Tabulated at 0.02, 0.03, and
         0.10 (0.10 = sg, the ultimate settlement of the pile head).
     qc_mpa : float
-        Average cone penetration resistance qc (CPT), in MPa.  Must be
-        at least 10.
+        Average cone penetration resistance qc (CPT), in MPa, from 10 to
+        25.
     enlarged_base : bool
         If True, multiply the result by 0.75 per the table note ("In the
         case of cast in-situ piles with pile base enlargement, the values
@@ -480,14 +480,14 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
     Returns
     -------
     dict
-        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance, MPa),
-        and note when qc is above 25 MPa (the qc = 25 column was used).
+        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance,
+        MPa).
 
     Raises
     ------
     ValueError
         If settlement_ratio is not one of 0.02, 0.03, 0.10, or qc_mpa is
-        below 10 MPa, the first printed column.
+        below 10 MPa or above 25 MPa, the first and last printed columns.
     """
     ratios = sorted(_TABLE_D3.keys())
     if settlement_ratio not in _TABLE_D3:
@@ -495,9 +495,10 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
             f"settlement_ratio must be one of {ratios} (tabulated values), "
             f"got {settlement_ratio}"
         )
-    if qc_mpa < _TABLE_D3_QC[0]:
+    if qc_mpa < _TABLE_D3_QC[0] or qc_mpa > _TABLE_D3_QC[-1]:
+        side = "below the first" if qc_mpa < _TABLE_D3_QC[0] else "above the last"
         raise ValueError(
-            f"qc_mpa={qc_mpa} is below the first printed column of "
+            f"qc_mpa={qc_mpa} is {side} printed column of "
             f"EN 1997-2:2007 Table D.3 (printed p. 115): the table gives the "
             f"unit base resistance for qc = 10, 15, 20 and 25 MPa only."
         )
@@ -509,33 +510,38 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
         "qc_mpa": qc_mpa,
         "pb_mpa": round(pb, 4),
     }
-    if qc_mpa > _TABLE_D3_QC[-1]:
-        result["note"] = (
-            f"qc_mpa={qc_mpa} is above the last printed column of "
-            f"EN 1997-2:2007 Table D.3 (qc = 25 MPa, printed p. 115): the "
-            f"table prints no value above 25 MPa, and the qc = 25 column "
-            f"was used."
-        )
     return result
 
 
-_TABLE_D4_QC = [0, 5, 10, 15]  # MPa (>15 clamped to 15's value)
+_TABLE_D4_QC = [0, 5, 10, 15]  # MPa; the last row is printed ">= 15"
 _TABLE_D4_PS = [0.0, 0.040, 0.080, 0.120]
 
 
 def table_d4_pile_shaft_resistance(qc_mpa: float) -> dict:
     """Unit shaft resistance of cast in-situ piles in coarse soil (Table D.4).
 
+    EN 1997-2:2007 Annex D.6, Table D.4 (printed p. 116) prints qc = 0, 5,
+    10 and ">= 15" MPa, with ps = 0, 0.040, 0.080 and 0.120 MPa, and the
+    note "Intermediate values may be interpolated linearly". The last row
+    is printed open-ended, so qc above 15 MPa takes 0.120 MPa.
+
     Parameters
     ----------
     qc_mpa : float
-        Average cone penetration resistance, in MPa.
+        Average cone penetration resistance, in MPa, 0 or more.
 
     Returns
     -------
     dict
         Keys: qc_mpa, ps_mpa (unit shaft resistance).
+
+    Raises
+    ------
+    ValueError
+        If qc_mpa is negative.
     """
+    if qc_mpa < 0:
+        raise ValueError(f"qc_mpa must be 0 or more, got {qc_mpa}")
     ps = _linterp(qc_mpa, _TABLE_D4_QC, _TABLE_D4_PS)
     return {"qc_mpa": qc_mpa, "ps_mpa": round(ps, 4)}
 
@@ -773,10 +779,17 @@ _TABLE_E2_LAMBDA_C = {"circle": [1.0, 1.0, 1.0, 1.0, 1.0],
 def table_e2_pmt_shape_coefficients(lb_ratio: float, shape: str = "square") -> dict:
     """Shape coefficients for settlement of spread foundations from PMT (Table E.2).
 
+    EN 1997-2:2007 Annex E.2, Table E.2 (printed p. 122) prints the columns
+    Circle, Square, L/B = 2, 3, 5 and 20; between them the coefficients are
+    interpolated linearly. Above L/B = 20 the table prints nothing and the
+    lookup raises: both coefficients rise with L/B, so holding the L/B = 20
+    column would give a smaller settlement than the trend.
+
     Parameters
     ----------
     lb_ratio : float
-        Foundation length-to-width ratio L/B (1 = circle/square).
+        Foundation length-to-width ratio L/B (1 = circle/square), from 1
+        to 20.
     shape : str
         'circle' or 'square' (rectangular foundations use the square
         column per the standard's simplified table).  Ignored for
@@ -790,13 +803,19 @@ def table_e2_pmt_shape_coefficients(lb_ratio: float, shape: str = "square") -> d
     Raises
     ------
     ValueError
-        If shape is not 'circle' or 'square', or lb_ratio < 1.
+        If shape is not 'circle' or 'square', or lb_ratio < 1 or > 20.
     """
     sh = shape.strip().lower()
     if sh not in _TABLE_E2_LAMBDA_L:
         raise ValueError(f"Unknown shape '{shape}'. Use circle or square")
     if lb_ratio < 1:
         raise ValueError(f"lb_ratio must be >= 1, got {lb_ratio}")
+    if lb_ratio > _TABLE_E2_LB[-1]:
+        raise ValueError(
+            f"lb_ratio={lb_ratio} is above L/B = 20, the last column of "
+            f"EN 1997-2:2007 Table E.2 (printed p. 122), which prints Circle, "
+            f"Square, L/B = 2, 3, 5 and 20 only."
+        )
     lambda_l = _linterp(lb_ratio, _TABLE_E2_LB, _TABLE_E2_LAMBDA_L[sh])
     lambda_c = _linterp(lb_ratio, _TABLE_E2_LB, _TABLE_E2_LAMBDA_C[sh])
     return {
@@ -1047,14 +1066,14 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     The table prints the rows ID = 40, 60, 80 and 100 % for fine, medium
     and coarse sand, each uniform or well-graded. Between two printed rows
     the value is interpolated linearly (the table itself prints no
-    interpolation rule), and above ID = 100 % the 100 % row is used; the
-    result says which in 'note'. Below ID = 40 % the table prints nothing
-    and the lookup raises. ID is in percent: 60, not 0.6.
+    interpolation rule), and the result says so in 'note'. Below ID = 40 %
+    the table prints nothing and the lookup raises; above 100 % is not a
+    density index and is refused. ID is in percent: 60, not 0.6.
 
     Parameters
     ----------
     density_index_pct : float
-        Density index ID, in percent.  Must be at least 40.
+        Density index ID, in percent, from 40 to 100.
     grain_size : str
         'fine', 'medium', or 'coarse'.
     grading : str
@@ -1065,13 +1084,13 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     dict
         Keys: density_index_pct, grain_size, grading, phi_deg (degrees;
         interpolated between printed rows), and note when the value was
-        interpolated or the ID = 100 % row was used for a higher ID.
+        interpolated.
 
     Raises
     ------
     ValueError
         If grain_size/grading is not recognized, or density_index_pct is
-        below 40, the first printed row.
+        below 40, the first printed row, or above 100.
     """
     gs = grain_size.strip().lower()
     gr = grading.strip().lower().replace(" ", "_").replace("-", "_")
@@ -1088,6 +1107,12 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
             f"table gives phi' for ID = 40, 60, 80 and 100 % only. ID is in "
             f"percent (60, not 0.6)."
         )
+    if density_index_pct > _TABLE_F3_ID[-1]:
+        raise ValueError(
+            f"density_index_pct={density_index_pct} is above 100 %: a density "
+            f"index is at most 100 %, the last printed row of EN 1997-2:2007 "
+            f"Table F.3 (printed p. 126)."
+        )
     phi = _linterp(density_index_pct, _TABLE_F3_ID, _TABLE_F3[key])
     result = {
         "density_index_pct": density_index_pct,
@@ -1095,13 +1120,7 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
         "grading": gr,
         "phi_deg": round(phi, 2),
     }
-    if density_index_pct > _TABLE_F3_ID[-1]:
-        result["note"] = (
-            f"density_index_pct={density_index_pct} is above the last "
-            f"printed row of EN 1997-2:2007 Table F.3 (ID = 100 %, printed "
-            f"p. 126): the ID = 100 % row was used."
-        )
-    elif density_index_pct not in _TABLE_F3_ID:
+    if density_index_pct not in _TABLE_F3_ID:
         result["note"] = (
             f"Interpolated linearly between the printed rows of "
             f"EN 1997-2:2007 Table F.3 (ID = 40, 60, 80 and 100 %, printed "
@@ -1343,9 +1362,11 @@ def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
     ----------
     largest_particle_mm : float
         Largest particle diameter present in significant proportion
-        (10% or more by dry mass), in mm.  Must be > 0 and at most 75 mm;
-        up to 2 mm the print gives 100 g, and between printed sizes the
-        mass is interpolated linearly.
+        (10% or more by dry mass), in mm.  Must be > 0 and at most 75 mm
+        (the first printed row, EN 1997-2:2007 Table L.2, printed p. 145).
+        The last row is printed open-ended, "<= 2" mm, 100 g, so any size
+        up to 2 mm takes 100 g; between printed sizes the mass is
+        interpolated linearly.
 
     Returns
     -------
