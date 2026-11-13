@@ -1,0 +1,1649 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 7,
+ "chapter_title": "Settlement",
+ "sections": [
+  {
+   "section_id": "7-1",
+   "title": "Introduction",
+   "body": "[p. 146] Stresses induced by foundation loads generate strain in the soil, resulting in vertical deformation of the soil, referred to as settlement. Foundation settlement can also result from changes in geostatic stress conditions, such as lowering of the groundwater table or the addition of fill. Guidance for estimating the settlement beneath shallow foundations due to changes in the soil’s vertical effective stress and under constant loads due to creep are provided in this chapter in addition to foundation settlement influenced by excavation rebound. Static foundation loading conditions are assumed in this chapter. Settlement due to earthquake loading is addressed in Chapter 9.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-1, printed p. 146."
+  },
+  {
+   "section_id": "7-2",
+   "title": "Bearing pressure limitations",
+   "body": "[p. 146] Settlement estimations are performed using the design loads described in paragraph 2-10, with adjustments to foundation size and bearing depth until a satisfactory gross or gross equivalent bearing pressure (q or qeq), is obtained that produces tolerable settlement requirements. The methods presented are generally associated with vertical movements between 1 and 5 percent of the footing width. If estimated settlements exceed 5 percent of the footing width, the gross or gross equivalent bearing pressure should be reduced. The gross or gross equivalent bearing pressure (q or qeq) used in settlement estimates must not exceed the ultimate bearing capacity (qult) divided by an adequate factor of safety. Gross and gross equivalent bearing pressures are defined in paragraph 5-2b.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-2, printed p. 146."
+  },
+  {
+   "section_id": "7-3",
+   "title": "Components of settlement",
+   "body": "[p. 146] The total amount of settlement and how fast the settlement will occur is of interest in the design of foundations. The total settlement (δT) below a foundation, which is the response of effective stress applied to the soil, is the sum of the three components described by equation 7-1. Settlement estimates computed by the various methods in this chapter will be designated as settlement (δ), in lieu of distinguishing between immediate (δi) and primary consolidation (δc) settlement. Secondary settlement (δs) is considered separately.\n\nδT = δi + δc + δs [Eq. 7-1]\n\nwhere:\nδT = total settlement (inches)\nδi = immediate or distortion settlement (inches)\nδc = primary consolidation settlement (inches)\nδs = secondary settlement or creep (inches)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-1",
+     "description": "Equation 7-1, introduced by: \"Secondary settlement (δs) is considered separately.\" (p. 146).",
+     "formula": "δT = δi + δc + δs",
+     "variables": {
+      "δT": "total settlement (inches)",
+      "δi": "immediate or distortion settlement (inches)",
+      "δc": "primary consolidation settlement (inches)",
+      "δs": "secondary settlement or creep (inches)"
+     },
+     "source": "Typed in from p. 146.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-3, printed p. 146."
+  },
+  {
+   "section_id": "7-3a",
+   "title": "Immediate or distortion settlement",
+   "body": "[p. 146] Immediate or distortion settlement. For sand, immediate settlement (δi) is due to both volume change and distortion of the sand beneath the foundation load. For [p. 147] saturated clay immediate settlement is due only to distortion; but for unsaturated clay, both distortion and volume change contribute to the immediate settlement. Some authors use the term “elastic settlement” and “immediate settlement” interchangeably. Immediate settlements generally occur within a period of about 7 days (Bowles 1996). Calculations of immediate settlement in cohesionless soils is complicated by a nonlinear stiffness that depends on the state of stress but may be estimated using elastic theory. Since the immediate settlement of clays is relatively small compared to primary consolidation settlement, it is often ignored.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-3a, printed pp. 146 to 147."
+  },
+  {
+   "section_id": "7-3b",
+   "title": "Primary consolidation settlement",
+   "body": "[p. 147] Primary consolidation settlement. Primary consolidation settlement (δc) is the reduction in volume of soil due to an increase in effective stress from a reduction in the void ratio. Frequently, when engineers discuss consolidation settlement, they are referring to the expulsion of water of a fine-grain soil due to the application of a load, however the definition is broader and applies to coarse-grained soils as well as unsaturated, fine-grained soils that undergo void reduction due to an increase in effective stress. All soils can experience consolidation settlement when subjected to an increase in the effective stress. Since primary consolidation settlement results in a change in volume caused by an increase in effective stress in a drained condition, the drained soil properties should be used in computing the consolidation settlements in both sands and clays.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-3b, printed p. 147."
+  },
+  {
+   "section_id": "7-3c",
+   "title": "Secondary compression settlement",
+   "body": "[p. 147] Secondary compression settlement. Secondary compression settlement (δs), also known as creep, is the reduction in volume of a soil mass caused by the application of a sustained load to the mass and due principally to the adjustment of the internal structure of the soil mass after most of the load has been transferred from the soil water to the soil solids (ASTM D653). Soils susceptible to significant secondary compression include highly compressible, high-plasticity soft clay and silt, and soil containing organic matter such as peat or Muskeg, which are typically too soft and unpredictable to support shallow foundations.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-3c, printed p. 147."
+  },
+  {
+   "section_id": "7-4",
+   "title": "Accuracy of settlement estimates",
+   "body": "[p. 147] Experience shows that predictions of settlement are reasonable and typically within 50 percent of actual settlements for many soil types. Time rates of settlement based on laboratory tests and empirical correlations may not be representative of the field because time rates are influenced by in situ fissures, existence of high-permeable sand or low-permeable bentonite seams, impervious boundaries, and non-uniform soil parameters as well as the time of construction. Accuracy of settlement estimates of secondary compression can be influenced by sample disturbance and variations within the soil profile. Sample disturbance tends to decrease the coefficient of secondary compression in the range of virgin compression.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-4, printed p. 147."
+  },
+  {
+   "section_id": "7-5",
+   "title": "Soil parameters for estimating settlement",
+   "body": "[p. 147] Soil parameters for estimating settlement can be obtained from the results of (1) laboratory soil oedometer tests, or (2) correlations with in situ test results, to include the constrained modulus, M, from the flat plate DMT; equivalent soil modulus, (Es), from the [p. 148] CPT; the PMT modulus, (E0), from the PMT; or relationships between compressibility and SPT N60 values.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-5, printed pp. 147 to 148."
+  },
+  {
+   "section_id": "7-5a",
+   "title": "Laboratory consolidation tests",
+   "body": "[p. 148] Laboratory consolidation tests. Oedometer tests may be used to estimate the magnitude and rate of both primary and secondary settlement. The 1-D consolidation test (oedometer test) using incremental loading (ASTM D2435) is commonly used. Most of the existing empirical information on void ratio versus effective stress relationships of soft clays, including data on recompression (Cr), compression index, (Cc), and preconsolidation pressure (σ′p) originate from the incremental loading test. Continuous controlled-strain axial compression testing (ASTM D4186) may also be performed. Controlled-strain compression is typically referred to as constant rate of strain (CRS) testing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-5a, printed p. 148."
+  },
+  {
+   "section_id": "7-5b",
+   "title": "In situ test correlations and strain rate effects",
+   "body": "[p. 148] In situ test correlations and strain rate effects. For important projects or where better estimates of foundation settlement are needed, correlations obtained from in situ “deformation” tests (such as DMT, PMT) that measure soil stiffness are preferred in lieu of penetration tests.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-5b, printed p. 148."
+  },
+  {
+   "section_id": "7-5b(1)",
+   "title": "Penetration tests",
+   "body": "[p. 148] Penetration tests. “Penetration” tests, such as the CPT and SPT strain the soil to failure (such as large shear strains greater than 10^(−1)), resulting in poor correlations with the constrained modulus (M) needed for estimating settlements at intermediate strain levels (Failmezger 2021). Where CPT testing is used, the constrained modulus should be correlated with the small-strain shear modulus (Gmax) and corrected cone tip resistance (qt) when calibrated with the constrained modulus computed from the DMT for the site-specific soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-5b(1), printed p. 148."
+  },
+  {
+   "section_id": "7-5b(2)",
+   "title": "Deformation tests",
+   "body": "[p. 148] Deformation tests. “Deformation” tests statically deform the soil at intermediate strain levels (such as shear strains between 10^(−5) to 10^(−3)), resulting in better correlations with the constrained deformation modulus and pressuremeter modulus as illustrated in Figure 7-1.\n\n[p. 149] Figure 7-1. Variation of shear modulus with shear strain for various in situ tests as they pertain to deformation (settlement) and bearing capacity analysis (adapted from Mayne 2001)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-1: Variation of shear modulus with shear strain for various in situ tests as they pertain to deformation (settlement) and bearing capacity analysis (adapted from Mayne 2001)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-5b(2), printed pp. 148 to 149."
+  },
+  {
+   "section_id": "7-6",
+   "title": "Consolidation behavior of sands and clays",
+   "body": "[p. 149] The fundamental difference between the consolidation of non-plastic silts and granular soils (such as sands and gravels) versus fine-grained cohesive soils (such as clays and plastic silts) is the rate at which the pore water dissipates from the soil under an increase in vertical effective stress. Consolidation (sometimes referred to as compression) in sands typically occurs during or soon after construction, whereas saturated clays typically compress for months, years, or decades, depending on soil permeability and the length of the flow path for dissipation of excess pore pressures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-6, printed p. 149."
+  },
+  {
+   "section_id": "7-7",
+   "title": "Stress-strain models for one-dimensional consolidation settlement",
+   "body": "[p. 149] Consolidation settlements are estimated based on 1-D strain conditions, also referred to as 1-D or confined compression, which can be simulated in the laboratory on relatively undisturbed or laboratory-compacted samples using an oedometer. Since the soil is constrained laterally during the consolidation test, the vertical stress is related to the vertical strain by the constrained modulus (M) as illustrated in Figure 7-2a. The soil-constrained modulus is usually considered a secant stiffness value, which means it represents the slope of the stress-strain curve between a small range of strain levels, where the stress-strain curve is represented by a straight line. However, it can also be approximated as a tangent stiffness value (or tangent line to the stress-strain curve) at a certain level of deformation.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-7, printed p. 149."
+  },
+  {
+   "section_id": "7-7a",
+   "title": "Stress-strain plots of oedometer tests",
+   "body": "[p. 149] Stress-strain plots of oedometer tests. Two common plots are the vertical effective stress (σ′z) versus strain (εz) with arithmetic scales for both axes as illustrated in Figure 7-2a and strain (εz), or void ratio (e) versus the logarithm of vertical effective [p. 150] stress (σ′z), also commonly referred to as the e-log-p curve, as illustrated in Figure 7-2b. Both the e-log-p (e-log-p method) and the linear σ′z versus strain εz (incremental modulus method) curves are used for estimating settlements per paragraphs 7-9 and 7-10, respectively.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-7a, printed pp. 149 to 150."
+  },
+  {
+   "section_id": "7-7b",
+   "title": "Relationship between stress-strain parameters for 1-D consolidation",
+   "body": "[p. 150] Relationship between stress-strain parameters for 1-D consolidation. As illustrated in Figure 7-2a, the 1-D constrained modulus (M) can be defined as the secant modulus of the stress-strain curve (Lambe and Whitman 1969) per equation 7-2. Values of Cc, Cr, and e0 can be determined from the e-log-p curve as illustrated in Figure 7-2b. Since the constrained modulus is the inverse of the coefficient of volume compressibility, values of M, Cc, or Cr, and e0 can be related by using equations 7-3a through 7-4. However, Figure 7-2a shows that mv depends on vertical effective stress. For 1-D consolidation, other relations between stress-strain parameters are provided in Table 7-1.\n\nM = Δσ′z/Δεz = 1/mv [Eq. 7-2]\n\nwhere:\nM = constrained modulus in the range of loading (tsf); also denoted D′\nΔσ′z = vertical effective stress increment (tsf)\nΔεz = unit deformation of the sample (in/in); also Δe/(1 + eo)\n\nNormally Consolidated: σ′z ≥ σ′p:   M = (1 + e0) Δσ′z/([log(σ′f/σ′z)] Cc) [Eq. 7-3a]\n\nOverconsolidated: σ′f < σ′p:   M = (1 + e0) Δσ′z/([log(σ′f/σ′z)] CR) [Eq. 7-3b]\n\nNormally Consolidated to Overconsolidated: σ′z < σ′p and σ′f > σ′p:   M = (1 + e0) Δσ′z/([log(σ′p/σ′z)] CR + [log(σ′f/σ′p)] CC) [Eq. 7-4]\n\nwhere:\nM = constrained modulus in the range of loading (tsf); also denoted D′\ne0 = initial void ratio (dimensionless)\nΔσ′z = vertical effective stress increment (tsf)\nσ′f = final vertical effective stress (tsf)\n[p. 151]\nσ′z = vertical effective stress (tsf)\nCc = compression index (dimensionless)\nCr = recompression index (dimensionless)\nσ′p = preconsolidation stress (tsf)\n\nTable 7-1 Relations between various stress-strain parameters for confined compression (adapted from Lambe and Whitman 1969)\n | Constrained Modulus, M | Coefficient of Volume Change, mv | Coefficient of Compressibility, av | Compression Index, Cc\nConstrained modulus, M | M = (Δσ′z)/(Δεz) | M = 1/mv | M = (1 + eo)/av | M = ((1 + eo)σ′za)/(0.434 Cc)\nCoefficient of volume change, mv | mv = 1/M | mv = (Δεz)/(Δσ′z) | mv = av/(1 + eo) | mv = (0.434Cc)/((1 + eo)σ′za)\nCoefficient of compressibility, av | av = (1 + eo)/M | av = (1 + eo)mv | av = −(Δe)/(Δσ′z) | av = (0.434Cc)/σ′za\nCompression index, Cc | Cc = ((1 + eo)σ′za)/(0.434 M) | Cc = ((1 + eo)σ′za · mv)/0.434 | Cc = (av · σ′za)/0.434 | Cc = −(Δe)/(Δlog σ′z)\nNotes:\ne0 denotes the initial void ratio.\nσ′za denotes the average of the initial and final stresses.\n\n[p. 152] Figure 7-2. (a) Vertical strain (εz) versus vertical effective stress (σ′z) with arithmetic scales – soil stiffens as stress increases; (b) void ratio (e) versus the logarithm of vertical effective stress (σ′z) (both figures adapted from Holtz et al. 2011)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-2",
+     "description": "Equation 7-2, introduced by: \"For 1-D consolidation, other relations between stress-strain parameters are provided in Table 7-1.\" (p. 150).",
+     "formula": "M = Δσ′z/Δεz = 1/mv",
+     "variables": {
+      "M": "constrained modulus in the range of loading (tsf); also denoted D′",
+      "Δσ′z": "vertical effective stress increment (tsf)",
+      "Δεz": "unit deformation of the sample (in/in); also Δe/(1 + eo)"
+     },
+     "source": "Typed in from p. 150.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-3a",
+     "description": "Equation 7-3a, introduced by: \"also Δe/(1 + eo)\" (p. 150).",
+     "formula": "Normally Consolidated: σ′z ≥ σ′p:   M = (1 + e0) Δσ′z/([log(σ′f/σ′z)] Cc)",
+     "variables": {
+      "M": "constrained modulus in the range of loading (tsf); also denoted D′",
+      "e0": "initial void ratio (dimensionless)",
+      "Δσ′z": "vertical effective stress increment (tsf)",
+      "σ′f": "final vertical effective stress (tsf)",
+      "σ′z": "vertical effective stress (tsf)",
+      "Cc": "compression index (dimensionless)",
+      "σ′p": "preconsolidation stress (tsf)"
+     },
+     "source": "Typed in from p. 150.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-3b",
+     "description": "Equation 7-3b, printed after Eq. 7-3a (p. 150).",
+     "formula": "Overconsolidated: σ′f < σ′p:   M = (1 + e0) Δσ′z/([log(σ′f/σ′z)] CR)",
+     "variables": {
+      "M": "constrained modulus in the range of loading (tsf); also denoted D′",
+      "e0": "initial void ratio (dimensionless)",
+      "Δσ′z": "vertical effective stress increment (tsf)",
+      "σ′f": "final vertical effective stress (tsf)",
+      "σ′z": "vertical effective stress (tsf)",
+      "CR": "recompression index (dimensionless) (the list of symbols, p. 151, prints Cr; the formula prints CR)",
+      "σ′p": "preconsolidation stress (tsf)"
+     },
+     "source": "Typed in from p. 150.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-4",
+     "description": "Equation 7-4, printed after Eq. 7-3b (p. 150).",
+     "formula": "Normally Consolidated to Overconsolidated: σ′z < σ′p and σ′f > σ′p:   M = (1 + e0) Δσ′z/([log(σ′p/σ′z)] CR + [log(σ′f/σ′p)] CC)",
+     "variables": {
+      "M": "constrained modulus in the range of loading (tsf); also denoted D′",
+      "e0": "initial void ratio (dimensionless)",
+      "Δσ′z": "vertical effective stress increment (tsf)",
+      "σ′f": "final vertical effective stress (tsf)",
+      "σ′z": "vertical effective stress (tsf)",
+      "CR": "recompression index (dimensionless) (the list of symbols, p. 151, prints Cr; the formula prints CR)",
+      "CC": "compression index (dimensionless) (the list of symbols, p. 151, prints Cc; the formula prints CC)",
+      "σ′p": "preconsolidation stress (tsf)"
+     },
+     "source": "Typed in from p. 150.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-2: (a) Vertical strain (εz) versus vertical effective stress (σ′z) with arithmetic scales – soil stiffens as stress increases; (b) void ratio (e) versus the logarithm of vertical effective stress (σ′z) (both figures adapted from Holtz et al. 2011)"
+   ],
+   "tables": [
+    "Table 7-1: Relations between various stress-strain parameters for confined compression (adapted from Lambe and Whitman 1969)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-7b, printed pp. 150 to 152."
+  },
+  {
+   "section_id": "7-8",
+   "title": "Settlement prediction methods",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-8, printed p. 153."
+  },
+  {
+   "section_id": "7-8a",
+   "title": "1-D consolidation settlements",
+   "body": "[p. 153] 1-D consolidation settlements. 1-D consolidation settlements can be estimated using either the constrained modulus (M) from the plot of vertical effective stress versus strain with arithmetic scales for both axes as illustrated in Figure 7-2a, or parameters obtained from the e-log-p curve as illustrated in Figure 7-2b. Both plots are developed based on the results of laboratory oedometer (consolidation) tests performed on relatively undisturbed cohesive samples or sometimes on compacted remolded materials.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-8a, printed p. 153."
+  },
+  {
+   "section_id": "7-8b",
+   "title": "Constrained modulus from in situ tests",
+   "body": "[p. 153] Constrained modulus from in situ tests. Due to the difficulty in obtaining undisturbed samples and corresponding high degree of sample disturbance associated with granular soils (such as sands and gravels), oedometer tests are not usually performed on these materials. The constrained modulus (M) may be obtained from in situ DMT tests for all soil types to compute 1-D consolidation settlements. Settlements can also be estimated based on the results of in situ tests conducted in both fine-grained cohesive and cohesionless materials.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-8b, printed p. 153."
+  },
+  {
+   "section_id": "7-8c",
+   "title": "Fine-grained cohesive materials",
+   "body": "[p. 153] Fine-grained cohesive materials. The e-log-p method, Incremental Constrained Modulus method, or the PMT method should be used for estimating settlements in fine-grained materials, such as clays and plastic silts. Where undisturbed laboratory oedometer tests are performed adjacent to DMT tests within the same material, the constrained modulus (M), obtained from the oedometer test, and the DMT test can be compared (see paragraph 7-10b). Large differences in results could indicate poor sample quality or uncertainty between test results.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-8c, printed p. 153."
+  },
+  {
+   "section_id": "7-8d",
+   "title": "Cohesionless materials",
+   "body": "[p. 153] Cohesionless materials. The Incremental Constrained Modulus method, PMT method, Schmertmann’s CPT method, or Burland and Burbidge SPT method may be used for estimating settlements in cohesionless materials such as sands, gravels, and non-plastic silts. Other SPT methods available in literature are discussed in Lutenegger and Degroot (1995) and Das and Sivakugan (2007) and may be used if experience has shown good results. Settlements estimated by methods using data from the CPT and SPT “penetration” tests tend to overpredict settlements. The accuracy and reliability of settlement estimates using SPT and CPT data are described in paragraph 7-14.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-8d, printed p. 153."
+  },
+  {
+   "section_id": "7-9",
+   "title": "The e-log-p method",
+   "body": "[p. 153] The e-log-p method uses the void ratio (e) versus vertical effective stress (σ′z) curve as illustrated in Figure 7-2b, from the results of oedometer tests to estimate settlements. The e-log-p method is appropriate for normally consolidated to lightly overconsolidated soft to medium-stiff sedimentary clays. For other natural soils, the Incremental Constrained Modulus method (paragraph 7-10) is more appropriate.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9, printed p. 153."
+  },
+  {
+   "section_id": "7-9a",
+   "title": "Laboratory e-log-p curve",
+   "body": "[p. 153] Laboratory e-log-p curve. To estimate 1-D primary consolidation settlement from the laboratory e-log-p curve, the preconsolidation stress (σ′p) may be estimated using the Casagrande (1936) graphical procedure or other suitable method. Using the Casagrande procedure, a “simplified” correction (Schmertmann 1955) to the virgin [p. 154] compression curve can be made to reduce the effects of sample disturbance. The correction adjusts the laboratory curve to approximate the field virgin compression curve, referred to as the compression index (Cc). The recompression index (Cr), initial void ratio (e0), and the initial vertical effective stress (σ′zo) are also used to reconstruct the field virgin compression curve. Once the preconsolidation stress is estimated, the overconsolidation margin (equation 6-4) may be used to calculate values of the preconsolidation stress at other depths in the same stratum, provided it is of the same geologic origin.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a, printed pp. 153 to 154."
+  },
+  {
+   "section_id": "7-9a(1)",
+   "title": "Description of e-log-p field virgin compression versus laboratory consolidation curves",
+   "body": "[p. 154] Description of e-log-p field virgin compression versus laboratory consolidation curves. The stress-strain history of a sedimentary clay during deposition, sampling, and reloading in the laboratory consolidation test is illustrated in Figure 7-3. It is from these observations that Casagrande developed his graphical procedure for defining the preconsolidation stress (σ′p) and Schmertmann developed a graphical procedure to evaluate the slope of the field virgin compression Curve OAD, for determining the compression index (Cc). Casagrande’s and Schmertmann’s graphical procedures are described in paragraph 7-9a(2). Characteristics of the e-log-p field compression and laboratory consolidation curves are described as follows:",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1), printed p. 154."
+  },
+  {
+   "section_id": "7-9a(1)(a)",
+   "title": "Line OA represents the relationship between the void ratio (e) and logarithm …",
+   "body": "[p. 154] Line OA represents the relationship between the void ratio (e) and logarithm vertical effective stress (σ′z) of a particular element in the ground during deposition. The element has been consolidated to Point A.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1)(a), printed p. 154. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9a(1)(b)",
+   "title": "During sampling, the overburden is removed and the sample swells, or rebounds …",
+   "body": "[p. 154] During sampling, the overburden is removed and the sample swells, or rebounds, as illustrated by the dashed Curve AB.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1)(b), printed p. 154. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9a(1)(c)",
+   "title": "Following removal of the sample from the Shelby tube and insertion into the …",
+   "body": "[p. 154] Following removal of the sample from the Shelby tube and insertion into the oedometer ring, the sample is reloaded along Curve BCD, referred to as the laboratory consolidation test curve. The laboratory consolidation test Curve BCD eventually converges with the field virgin compression Curve OAD beyond Point D at a void ratio of 0.42e0.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1)(c), printed p. 154. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9a(1)(d)",
+   "title": "As disturbance of the sample increases, the laboratory consolidation test curve …",
+   "body": "[p. 154] As disturbance of the sample increases, the laboratory consolidation test curve flattens, moving away from Point C in the direction of the arrow toward Point C′, resulting in the Curve BC′D making it difficult to estimate the preconsolidation stress (σ′p).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1)(d), printed p. 154. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9a(1)(e)",
+   "title": "After a specified stress is reached, the specimen is rebounded along path DE …",
+   "body": "[p. 154] After a specified stress is reached, the specimen is rebounded along path DE, followed by reconsolidation of the specimen along Curve EF, eventually converging with the field virgin compression Curve OAD beyond Point D.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(1)(e), printed p. 154. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9a(2)",
+   "title": "Determining settlement parameters from laboratory e-log-p curve",
+   "body": "[p. 154] Determining settlement parameters from laboratory e-log-p curve. Settlement parameters to be used in the estimation of 1-D primary consolidation can be obtained from the laboratory e-log-p curve. To correct for sample disturbance, the Casagrande 1936, and “Simplified” Schmertmann 1955, procedures discussed in Table 7-2 and Figure 7-4 can be used. However, the sample quality designation should be very good to excellent, per Table 4-2.\n\n[p. 155] Figure 7-3. Laboratory e-log-p curve of sedimentary clay illustrating deposition, sampling (unloading), and reconsolidation in oedometer (adapted from Holtz et al. 2011)\n\n[p. 156] Table 7-2 Procedure for determining settlement parameters from laboratory e-log-p curve (Casagrande 1936, and “Simplified” Schmertmann 1955, graphical procedures)\nStep 1 | Point B is plotted, which represents the effective stress and void ratio existing in the field at the sample location. The effective stress is usually the computed overburden pressure\n(σ′zo). If the clay is not permitted to swell during storage, the field void ratio is the computed saturated initial void ratio (e0) of the consolidation test sample.\nStep 2 | Because Point B represents the initial conditions for field compression, a perfect stress transfer from field to sampler to consolidometer would result in a test beginning with a constant e0-line to Point B.\nStep 3 | The value of preconsolidation stress (σ′p) is then determined by Casagrande’s graphical procedure (Step 4). A constant stress line, x-x, is constructed at the chosen preconsolidation stress (σ′p).\nCasagrande 1936, graphical construction procedure:\n(1) Plot Point C at the point of maximum radius of curvature (visually approximated) along the laboratory consolidation test curve. (2) Draw a horizontal line from Point C. (3) Draw a line tangent to the laboratory consolidation curve through Point C. (4) Draw the bisector between the horizontal and tangent lines. (5) Plot Point D at the intersection of the laboratory virgin compression line with the bisector. Point D indicates the maximum past pressure referred to as the preconsolidation stress (σ′p).\nStep 4 | The geologic rebound is constructed parallel to the laboratory rebound, goes through Point B, and intersects line x-x at the Point F. For a normally consolidated soil where σ′p equals\nσ′zo, Point F will be identical to Point B without a Cr rebound curve.\nStep 5 | The initial laboratory virgin slope is extended as a straight line until it intersects the 42% e0-line at Point G”. The line G”-F is then constructed; this line represents the position and slope of the upper part of the estimated true virgin curve.\nStep 6 | A recompression curve is estimated for the geologic rebound line B-F. This curve probably merges with the estimated true initial virgin slope in such a manner that the graphical construction (Casagrande 1936) at the point of sharpest curvature will yield the preconsolidation point.\nStep 7 | Calculate the Recompression Index (Cr) per equation 7-5 which is the mean slope of the rebound-reconsolidation curve. Compute the mean slope between Points H and G of the rebound-reconsolidation curve (semilogarithmic plot).\nStep 8 | If the soil is overconsolidated (σ′zo < σ′p), calculate the compression index (Cc) using equation 7-6 (i.e. slope of the reconstructed field virgin compression curve.)\nStep 9 | Compute the overconsolidation margin (σ′m) per equation 6-4.\n\n[p. 157] Figure 7-4. Example of reconstruction of the field virgin consolidation curve for overconsolidated soil using the “simplified” Schmertmann 1955, procedure\n\nCr = (eH − eG)/log10(σ′zG/σ′zH)   (Recompression Index, Cr) [Eq. 7-5]\n\nwhere:\nCr = recompression index (slope of the recompression curve)\neH = void ratio at point of reload (Point H)\neG = void ratio at intersection of unload-reload loop (Point G)\nσ′zG = vertical effective stress at Point G (tsf)\nσ′zH = vertical effective stress at Point H (tsf)\n\n[p. 158] Cc = (eF − eG′)/log10(σ′zG′/σ′zF)   (Compression Index, Cc) [Eq. 7-6]\n\nwhere:\nCc = compression index (slope of the reconstructed field virgin compression curve)\neF = void ratio at preconsolidation pressure on reconstructed curve (Point F)\neG\" = void ratio at intersection of unload-reload loop (Point G)\nσ′G\" = vertical effective stress at Point G′; one-log cycle from Point F (tsf)\nσ′F = vertical effective stress at Point F (tsf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-5",
+     "description": "Equation 7-5, introduced by: \"Example of reconstruction of the field virgin consolidation curve for overconsolidated soil using the “simplified” Schmertmann 1955, procedure\" (p. 157).",
+     "formula": "Cr = (eH − eG)/log10(σ′zG/σ′zH)   (Recompression Index, Cr)",
+     "variables": {
+      "Cr": "recompression index (slope of the recompression curve)",
+      "eH": "void ratio at point of reload (Point H)",
+      "eG": "void ratio at intersection of unload-reload loop (Point G)",
+      "σ′zG": "vertical effective stress at Point G (tsf)",
+      "σ′zH": "vertical effective stress at Point H (tsf)"
+     },
+     "notes": "From the reconstructed field consolidation curve (the simplified Schmertmann 1955 procedure, Figure 7-4); the points G and H are on that figure.",
+     "source": "Typed in from p. 157.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-6",
+     "description": "Equation 7-6, introduced by: \"where: Cr = recompression index (slope of the recompression curve) eH = void ratio at point of reload (Point H) eG = void ratio at intersection of unload-reload loop (Point G) σ′zG = vertical effective stress at Point G (tsf) σ′zH = ...\" (p. 158).",
+     "formula": "Cc = (eF − eG′)/log10(σ′zG′/σ′zF)   (Compression Index, Cc)",
+     "variables": {
+      "Cc": "compression index (slope of the reconstructed field virgin compression curve)",
+      "eF": "void ratio at preconsolidation pressure on reconstructed curve (Point F)",
+      "eG′": "void ratio at intersection of unload-reload loop (Point G) (the list of symbols prints eG″; the formula prints eG′)",
+      "σ′zG′": "vertical effective stress at Point G′; one-log cycle from Point F (tsf) (the list of symbols prints σ′G″; the formula prints σ′zG′)",
+      "σ′zF": "vertical effective stress at Point F (tsf) (the list of symbols prints σ′F; the formula prints σ′zF)"
+     },
+     "notes": "From the reconstructed field virgin consolidation curve (the simplified Schmertmann 1955 procedure, Figure 7-4); the points F and G′ are on that figure.",
+     "source": "Typed in from p. 158.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-3: Laboratory e-log-p curve of sedimentary clay illustrating deposition, sampling (unloading), and reconsolidation in oedometer (adapted from Holtz et al. 2011)",
+    "Figure 7-4: Example of reconstruction of the field virgin consolidation curve for overconsolidated soil using the “simplified” Schmertmann 1955, procedure"
+   ],
+   "tables": [
+    "Table 7-2: Procedure for determining settlement parameters from laboratory e-log-p curve (Casagrande 1936, and “Simplified” Schmertmann 1955, graphical procedures)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9a(2), printed pp. 154 to 158."
+  },
+  {
+   "section_id": "7-9b",
+   "title": "Normally consolidated versus overconsolidated soil",
+   "body": "[p. 158] Normally consolidated versus overconsolidated soil. At stresses less than the preconsolidation stress, soil will be relatively less compressible and its stress-strain, or e-log-p, behavior follows the recompression curve. At stresses greater than the preconsolidation stress, soil is more compressible and its stress-strain, or e-log-p, behavior follows the virgin curve.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9b, printed p. 158."
+  },
+  {
+   "section_id": "7-9b(1)",
+   "title": "Normally consolidated soil",
+   "body": "[p. 158] Normally consolidated soil. For normally consolidated soils, where the loading occurs along the reconstructed field virgin compressive curve as illustrated in Figure 7-5, the settlements are estimated per equation 7-7.\n\nFigure 7-5. Typical e-log-p consolidation curve for normally consolidated soil\n\n[p. 159] δc = ∑ (Cc/(1 + e0)) H · log(σ′zf/σ′zo)   (Normally consolidated soil where σ′zo ≈ σ′p) [Eq. 7-7]\n\nwhere:\nδc = primary consolidation settlement (inches)\nCc = compression index (dimensionless)\ne0 = initial void ratio (dimensionless)\nH = thickness of soil layer (ft)\nσ′zo = initial vertical effective stress at midpoint of soil layer, see paragraph 6-5a (tsf)\nσ′zf = final vertical effective stress at midpoint of soil layer = σ′zo + Δσz (tsf)\nΔσz = induced vertical stresses at the midpoint of soil layer, see paragraph 6-6 (tsf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-7",
+     "description": "Equation 7-7, introduced by: \"Typical e-log-p consolidation curve for normally consolidated soil\" (p. 159).",
+     "formula": "δc = ∑ (Cc/(1 + e0)) H · log(σ′zf/σ′zo)   (Normally consolidated soil where σ′zo ≈ σ′p)",
+     "variables": {
+      "δc": "primary consolidation settlement (inches)",
+      "Cc": "compression index (dimensionless)",
+      "e0": "initial void ratio (dimensionless)",
+      "H": "thickness of soil layer (ft)",
+      "σ′zo": "initial vertical effective stress at midpoint of soil layer, see paragraph 6-5a (tsf)",
+      "σ′zf": "final vertical effective stress at midpoint of soil layer = σ′zo + Δσz (tsf)"
+     },
+     "source": "Typed in from p. 159.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-5: Typical e-log-p consolidation curve for normally consolidated soil"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9b(1), printed pp. 158 to 159."
+  },
+  {
+   "section_id": "7-9b(2)",
+   "title": "Overconsolidated soil",
+   "body": "[p. 159] Overconsolidated soil. For overconsolidated soils, where all the loading occurs along the rebound-recompression curve, settlements are estimated per equation 7-8. For overconsolidated soils, where part of the loading occurs along the rebound-recompression curve and part along the reconstructed field virgin compression curve, settlements are estimated per equation 7-9. Like normally consolidated soils, settlements can be significant when σ′zf > σ′p as the slope of the virgin compressive curve (Cr), is greater than the slope of the rebound-reconsolidation curve (Cr). See Figure 7-6.\n\nFigure 7-6. Typical e-log-p consolidation curve for overconsolidated soil\n\n[p. 160] δc = ∑ (Cr/(1 + e0)) H · log(σ′zf/σ′zo)   (Overconsolidated Soil where σ′zf < σ′p) [Eq. 7-8]\n\nδc = ∑ [(Cr/(1 + e0)) H · log(σ′p/σ′zo) + (Cc/(1 + e0)) H · log(σ′zf/σ′p)]   (Overconsolidated Soil where σ′z0 < σ′p < σ′zf) [Eq. 7-9]\n\nwhere:\nδc = primary consolidation settlement (inches)\nCc = compression index (dimensionless)\ne0 = initial void ratio (dimensionless)\nH = thickness of soil layer (ft)\nσ′zo = initial vertical effective stress at midpoint of soil layer (tsf), see paragraph 6-5a\nσ′zf = final vertical effective stress at midpoint of soil layer = σ′zo + Δσz (tsf)\nΔσz = induced vertical stress (Δσz) at the midpoint of each soil layer (tsf), see paragraph 6-6\nCr = recompression index (dimensionless)\nσ′p = preconsolidation stress at midpoint of soil layer (tsf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-8",
+     "description": "Equation 7-8, introduced by: \"Typical e-log-p consolidation curve for overconsolidated soil\" (p. 160).",
+     "formula": "δc = ∑ (Cr/(1 + e0)) H · log(σ′zf/σ′zo)   (Overconsolidated Soil where σ′zf < σ′p)",
+     "variables": {
+      "δc": "primary consolidation settlement (inches)",
+      "e0": "initial void ratio (dimensionless)",
+      "H": "thickness of soil layer (ft)",
+      "σ′zo": "initial vertical effective stress at midpoint of soil layer (tsf), see paragraph 6-5a",
+      "σ′zf": "final vertical effective stress at midpoint of soil layer = σ′zo + Δσz (tsf)",
+      "Cr": "recompression index (dimensionless)",
+      "σ′p": "preconsolidation stress at midpoint of soil layer (tsf)"
+     },
+     "source": "Typed in from p. 160.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-9",
+     "description": "Equation 7-9, printed after Eq. 7-8 (p. 160).",
+     "formula": "δc = ∑ [(Cr/(1 + e0)) H · log(σ′p/σ′zo) + (Cc/(1 + e0)) H · log(σ′zf/σ′p)]   (Overconsolidated Soil where σ′z0 < σ′p < σ′zf)",
+     "variables": {
+      "δc": "primary consolidation settlement (inches)",
+      "Cc": "compression index (dimensionless)",
+      "e0": "initial void ratio (dimensionless)",
+      "H": "thickness of soil layer (ft)",
+      "σ′zo": "initial vertical effective stress at midpoint of soil layer (tsf), see paragraph 6-5a",
+      "σ′zf": "final vertical effective stress at midpoint of soil layer = σ′zo + Δσz (tsf)",
+      "Cr": "recompression index (dimensionless)",
+      "σ′p": "preconsolidation stress at midpoint of soil layer (tsf)"
+     },
+     "source": "Typed in from p. 160.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-6: Typical e-log-p consolidation curve for overconsolidated soil"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9b(2), printed pp. 159 to 160."
+  },
+  {
+   "section_id": "7-9c",
+   "title": "Procedure for estimating 1-D primary consolidation settlement from laboratory …",
+   "body": "[p. 160] Procedure for estimating 1-D primary consolidation settlement from laboratory e-log-p curves. The estimation of 1-D primary consolidation settlements from the laboratory e-log-p curves is shown in Table 7-3.\n\nTable 7-3 Procedure for estimating 1-D primary consolidation settlements from laboratory e-log-p curve\nStep 1 | Determine eo, σ′m, σ′p, Cc, Cr for each soil strata as illustrated in Figure 7-4 and Table 7-2. Empirical correlations for OCR, Cc, Cr,can be used when lab testing is not available.\nStep 2 | Divide the soil beneath the foundation into layers where the soil parameters are constant. The top layer should be at the base of the foundation and the bottom layer should be at a minimum depth of two times the footing width 2B below the base of axisymmetric or rectangular footings, and six times the footing width 6B below the base of strip footings, or until the increase in the induced vertical stress (Δσz) is negligible resulting in small acceptable increases in settlement, whichever is deeper.\nSince strains are nonlinear, multiple thinner layers will result in more accurate estimations of settlements. Layer thickness may be increased with depth. The number and thickness of layers should be adjusted to account for changes in soil properties.\nStep 3 | Compute the initial vertical effective stress (σ′zo) at the midpoint of each layer reference paragraph 6-5a.\nStep 4 | From the overconsolidation margin (σ′m) computed for each soil strata, compute the preconsolidation stress (σ′p) at the midpoint of each layer per equation 6-4.\nStep 5 | Compute the gross bearing pressure (q) or gross equivalent bearing pressure (qeq) for eccentrically loaded foundations per paragraph 5-2b.\n[p. 161]\nStep 6 | Compute the vertical effective stress at the bearing elevation of the footing (σ′zD).\nStep 7 | Compute the influence factor (Iσ) for vertical stress per paragraph 6-7 and the corresponding induced vertical stress (Δσz) at the midpoint of each layer per equation 6-6.\nΔσz = Iσ(q − σ′zD) [Eq. 6-6]\nwhere:\nσ′zD = vertical effective stress at bearing elevation (tsf) from Step 6\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nStep 8 | Compute the final vertical effective stress (σ′zf) at the midpoint of each layer per\nσ′zf = σ′zo + Δσz.\nwhere:\nσ′z0 = initial vertical effective stress at the midpoint of each layer (tsf) from Step 3\nΔσz = induced vertical stress at the midpoint of each layer (tsf) from Step 7\nStep 9 | Estimate the settlement of each layer using equations 7-7 through 7-9 as applicable. Sum the settlements of the soil layers within the zone of influence described in Step 2.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 6-6",
+     "description": "Equation 6-6 as printed (p. 131).",
+     "formula": "Δσz = Iσ(q − σ′zD)",
+     "variables": {
+      "Δσz": "induced vertical stress (tsf)",
+      "Iσ": "influence factor for vertical stress (dimensionless)",
+      "q": "gross bearing pressure (tsf)",
+      "σ′zD": "vertical effective stress (tsf), at the bearing elevation of the footing"
+     },
+     "notes": "The induced vertical stress beneath a footing or uniformly loaded area, from the net bearing pressure (q − σ′zD) and the influence factor (paragraph 6-6e(1)). The same equation is printed again, with this number, in Table 7-3, Step 7 (p. 161).",
+     "source": "Typed in from p. 131.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 7-3: Procedure for estimating 1-D primary consolidation settlements from laboratory e-log-p curve"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9c, printed pp. 160 to 161. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-9d",
+   "title": "Corrections",
+   "body": "[p. 161] Corrections. The settlement calculation method presented in Table 7-3 applies to consolidation or volume change settlement under a perfectly flexible loaded area, for 1-D compression only. Corrections due to foundation rigidity are discussed in paragraph 6-6a(3). To account for 3-D and related overconsolidation effects, the Skempton and Bjerrum (1957) correction can also be applied as outlined in UFC 3-220-10.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-9d, printed p. 161."
+  },
+  {
+   "section_id": "7-10",
+   "title": "Incremental Constrained Modulus method",
+   "body": "[p. 161] The Incremental Constrained Modulus method utilizes the constrained (secant) modulus (M) obtained from the results of laboratory oedometer tests, as illustrated by the σ′z versus εz curve in Figure 7-2a, or from in situ testing such as the CPT or DMT for estimating settlements. Because of the low- to medium-strain level of the soil during testing (Figure 7-1), the DMT is often the preferred deformation test method where speed, economy, and accuracy are desired in obtaining the constrained modulus.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10, printed p. 161."
+  },
+  {
+   "section_id": "7-10a",
+   "title": "Constrained modulus from dilatometer",
+   "body": "[p. 161] Constrained modulus from dilatometer. The DMT constrained modulus (M or MDMT) can be calculated per paragraph 3-9c(2). MDMT is defined as the vertical, drained, confined (1-D) tangent modulus at the pre-insertion in situ vertical effective stress (σ′vo) as shown in Figure 7-7 and is comparable with the secant constrained modulus (M) obtained from high-quality laboratory oedometer tests.\n\n[p. 162] Figure 7-7. Definition of dilatometer test constrained (tangent) modulus, MDMT",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-7: Definition of dilatometer test constrained (tangent) modulus, MDMT"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10a, printed pp. 161 to 162."
+  },
+  {
+   "section_id": "7-10b",
+   "title": "Comparison between M obtained from dilatometer and oedometer",
+   "body": "[p. 162] Comparison between M obtained from dilatometer and oedometer. The constrained modulus can be obtained from laboratory 1-D oedometer tests on very good or better samples or DMT data. Comparisons between M determined by DMT and high-quality oedometer testing is illustrated in Figure 7-8 (a and b). For routine practice, both methods are considered reasonably accurate and good agreement can be achieved between predicted versus measured settlements.\n\n[p. 163] Figure 7-8. Comparison between M obtained from dilatometer test and high-quality oedometers from a) Tokyo Bay clay, Komatsugawa site, Japan (Iwasaki et al. 1991); and b) Onsoy clay, Norway (Lacasse 1986)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-8: Comparison between M obtained from dilatometer test and high-quality oedometers from a) Tokyo Bay clay, Komatsugawa site, Japan (Iwasaki et al. 1991); and b) Onsoy clay, Norway (Lacasse 1986)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10b, printed pp. 162 to 163."
+  },
+  {
+   "section_id": "7-10c",
+   "title": "Estimating settlement by Incremental Constrained Modulus method using dilatometer",
+   "body": "[p. 163] Estimating settlement by Incremental Constrained Modulus method using dilatometer.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10c, printed p. 163."
+  },
+  {
+   "section_id": "7-10c(1)",
+   "title": "Induced vertical stress (Δσz) and settlement can be calculated as illustrated …",
+   "body": "[p. 163] Induced vertical stress (Δσz) and settlement can be calculated as illustrated in Figure 7-9, using the techniques discussed in paragraphs 6-6 and 6-7 and using equation 7-10. The Incremental Constrained Modulus method using MDMT is based on the settlement modulus concept developed by Janbu (1963, 1967). Settlement estimates using the MDMT values can be calculated per Schmertmann’s “Ordinary” method as described in Table 7-4.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10c(1), printed p. 163. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-10c(2)",
+   "title": "Schmertmann also developed a “Special” method which uses stress-history to …",
+   "body": "[p. 163] Schmertmann also developed a “Special” method which uses stress-history to modify the predicted constrained modulus. The “Ordinary” method predicts settlement based on the DMT modulus alone; whereas the “Special” method uses stress-history to modify the predicted constrained modulus. Settlements calculated from the “Ordinary” method are typically within 10 percent of the “Special” method for normal soils. For very soft or loose soils, the “Special” method typically results in reduced settlement, reference Schmertmann (1986).\n\n[p. 164] Figure 7-9. Illustration of constrained modulus (MDMT) and change in induced vertical stress (Δσz) from dilatometer test beneath a footing (adapted from Marchetti 1997)\n\nδ = ∑ (Iσ(q − σ′zD)/M) H = ∑ (Δσz/M) H [Eq. 7-10]\n\nwhere:\nδ = settlement (inches)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nσ′zD = vertical effective stress at the bearing elevation of the footing (tsf)\nIσ = influence factor for vertical stress per paragraph 6-7 (dimensionless)\nΔσz = induced vertical stress at the midpoint of each layer per equation 6-6 (tsf)\nM = constrained modulus for given soil layer (tsf)\nH = thickness of soil layer (ft)\n\nTable 7-4 Procedure for estimating settlements by Schmertmann’s “Ordinary” dilatometer test method\nStep 1 | Obtain the constrained modulus (M) as a function of depth from DMT data.\nStep 2 | Divide the soil beneath the foundation into layers equal to depths in which the constrained modulus was obtained, typically 8-inch layers for DMT tests.\nThe top layer should be at the base of the foundation and the bottom layer should be at a minimum depth of two times the footing widths 2B below the base of axisymmetric or rectangular footings, and six times the footing width 6B below the base of strip footings, or until the increase in the induced vertical stress (Δσz) is negligible, resulting in small acceptable increases in settlement, whichever is deeper.\nStep 3 | Assign a constrained modulus (M) for each layer, reference paragraph 3-9c(2).\n[p. 165]\nStep 4 | Compute the gross bearing pressure (q), or gross equivalent bearing pressure (qeq) for eccentrically loaded foundations (tsf) per paragraph 5-2b.\nStep 5 | Compute the vertical effective stress at the bearing elevation of the footing (σ′zD).\nStep 6 | Compute the influence factor (Iσ) for vertical stress per paragraph 6-7 and the corresponding induced vertical stress (Δσz) at the midpoint of each layer per equation 6-6, Δσz = Iσ(q − σ′zD).\nwhere:\nσ′zD = vertical effective stress at bearing elevation (tsf) from Step 5\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nStep 7 | Estimate the settlement of each layer using equation 7-10 as applicable. Sum the settlements for each layer within the zone of influence described in Step 2.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-10",
+     "description": "Equation 7-10, introduced by: \"Illustration of constrained modulus (MDMT) and change in induced vertical stress (Δσz) from dilatometer test beneath a footing (adapted from Marchetti 1997)\" (p. 164).",
+     "formula": "δ = ∑ (Iσ(q − σ′zD)/M) H = ∑ (Δσz/M) H",
+     "variables": {
+      "δ": "settlement (inches)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "Iσ": "influence factor for vertical stress per paragraph 6-7 (dimensionless)",
+      "Δσz": "induced vertical stress at the midpoint of each layer per equation 6-6 (tsf)",
+      "M": "constrained modulus for given soil layer (tsf)",
+      "H": "thickness of soil layer (ft)"
+     },
+     "source": "Typed in from p. 164.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-9: Illustration of constrained modulus (MDMT) and change in induced vertical stress (Δσz) from dilatometer test beneath a footing (adapted from Marchetti 1997)"
+   ],
+   "tables": [
+    "Table 7-4: Procedure for estimating settlements by Schmertmann’s “Ordinary” dilatometer test method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10c(2), printed pp. 163 to 165. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-10d",
+   "title": "Corrections",
+   "body": "[p. 165] Corrections. The Schmertmann (1986) “Ordinary” method applies to primary consolidation or volume change settlement of soil under a perfectly flexible loaded area, in 1-D compression only. Schmertmann (1986) does not recommend a correction for foundation rigidity, 3-D effects, creep, or aging for the DMT method, as these are often assumed to cancel each other. Marchetti (1997) also recommends not to account for 3-D effects, as the differences in settlement between 1-D and 3-D are small and the uncertainties associated with 3-D analysis reduce the precision of the settlement computation. Reference Schmertmann (1986) for a discussion of these corrections.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-10d, printed p. 165."
+  },
+  {
+   "section_id": "7-11",
+   "title": "Ménard and Rousseau pressuremeter method",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11, printed p. 165."
+  },
+  {
+   "section_id": "7-11a",
+   "title": "Shear and volumetric deformation",
+   "body": "[p. 165] Shear and volumetric deformation. The theoretical background of the Ménard and Rousseau PMT method is composed of two settlement components: (1) settlement from the shear deformation (undrained) arising from the deviatoric strain tensor, and (2) settlement resulting from the volumetric deformation (consolidation) arising from the spherical strain tensor.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11a, printed p. 165."
+  },
+  {
+   "section_id": "7-11b",
+   "title": "Vertical strain distribution",
+   "body": "[p. 165] Vertical strain distribution. The vertical strain distribution, (εz), versus depth for both strain tensors are illustrated in Figure 7-10. The deviatoric strain, (εd), is significant to a depth of two footing widths, 2B, below the footing bearing elevation, whereas the spherical strain, (εc), decreases rapidly with depth indicating that consolidation settlement is prevalent at shallow depths, on the order of one-half the footing width, B/2, below the footing bearing elevation. Therefore, for a wide footing over a thin compressible layer, the volumetric (consolidation) settlement will dominate, whereas for footings on deep relatively uniform deposits, the deviatoric settlement will dominate.\n\n[p. 166] q′ = net bearing pressure (ksf)\nq = gross bearing pressure at base of footing (ksf)\nσ′zD = vertical effective stress at bearing elevation of footing at depth, D\nG = shear modulus\nεz = vertical strain\nεd = deviatoric strain\nεc = spherical strain\n\nFigure 7-10. Strain distribution versus depth (adapted from Baguelin and Shields 1978)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-10: Strain distribution versus depth (adapted from Baguelin and Shields 1978)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11b, printed pp. 165 to 166."
+  },
+  {
+   "section_id": "7-11c",
+   "title": "Ménard and Rousseau method for estimating settlements using the pressuremeter",
+   "body": "[p. 166] Ménard and Rousseau method for estimating settlements using the pressuremeter.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11c, printed p. 166."
+  },
+  {
+   "section_id": "7-11c(1)",
+   "title": "Equation 7-11 is the semi-empirical PMT settlement equation proposed by Ménard …",
+   "body": "[p. 166] Equation 7-11 is the semi-empirical PMT settlement equation proposed by Ménard and Rousseau (1962), and is valid for footings bearing on deep, relatively uniform deposits. Equation 7-12 is used for estimating settlements when a soft/loose layer is encountered within a depth of two footing widths, 2B, below the base of axisymmetric or rectangular footings, and six times the footing width, 6B, below the base of strip footings, or until the increase in the induced vertical stress (Δσz), is negligible, resulting in small acceptable increases in settlement, whichever is deeper.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11c(1), printed p. 166. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-11c(2)",
+   "title": "The estimation of settlement using the Ménard and Rousseau procedure is …",
+   "body": "[p. 166] The estimation of settlement using the Ménard and Rousseau procedure is described in Table 7-5. Steps 1 through 12 are for footings bearing on deep, relatively uniform deposits. Steps 1 through 17 are for estimating settlements when a soft/loose layer is encountered within a depth of 2B and 6B below the footing bearing elevation for axisymmetric and plane strain (strip) footings, respectively.\n\n[p. 167] δ = deviatoric settlement + spherical (consolidation) settlement:   δ = [(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]   (General Equation (Deep Relatively Uniform Deposits)) [Eq. 7-11]\n\nδ = deviatoric settlement + spherical (consolidation) settlement + soft/loose layer settlement:   δ = [[(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]] + [∑ αL (1/EL − 1/Ed) Iσ (q − σ′zD) H]   (Soft Layer Within 2B) [Eq. 7-12]\n\nwhere:\nδ = settlement (feet)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nσ′zD = vertical effective stress at the bearing elevation of the footing (tsf)\nIσ = influence factor for vertical stress per paragraph 6-7 (dimensionless)\nEd = average pressuremeter modulus within the zone of the deviatoric tensor per equation 7-14 (tsf) to a depth of 8B below the footing bearing elevation (tsf)\nEc = average pressuremeter modulus within the zone of the spherical tensor to a depth of B/2below the footing bearing elevation (tsf)\nEL = average pressuremeter modulus of the soft/loose layer per the harmonic mean, equation 7-15 (tsf)\nH = thickness of soft layer (feet)\nB = base width of footing (feet)\nB0 = reference footing width = 2.0 ft\nλd = shape factor for deviatoric term per Figure 7-11 (dimensionless)\nλc = shape factor for spherical term per Figure 7-11 (dimensionless)\n∝d = rheological factors for deviatoric term per (dimensionless)\n∝c = rheological factors for spherical term per Table 7-6 (dimensionless)\n∝L = rheological factors for soft/loose layer per Table 7-6 (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-11",
+     "description": "Equation 7-11, introduced by: \"Steps 1 through 17 are for estimating settlements when a soft/loose layer is encountered within a depth of 2B and 6B below the footing bearing elevation for axisymmetric and plane strain (strip) footings, respectively.\" (p. 167).",
+     "formula": "δ = deviatoric settlement + spherical (consolidation) settlement:   δ = [(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]   (General Equation (Deep Relatively Uniform Deposits))",
+     "variables": {
+      "δ": "settlement (feet)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "Ed": "average pressuremeter modulus within the zone of the deviatoric tensor per equation 7-14 (tsf) to a depth of 8B below the footing bearing elevation (tsf)",
+      "Ec": "average pressuremeter modulus within the zone of the spherical tensor to a depth of B/2below the footing bearing elevation (tsf)",
+      "B": "base width of footing (feet)",
+      "B0": "reference footing width = 2.0 ft",
+      "λd": "shape factor for deviatoric term per Figure 7-11 (dimensionless)",
+      "λc": "shape factor for spherical term per Figure 7-11 (dimensionless)",
+      "αd": "rheological factors for deviatoric term per (dimensionless) (as printed, no table named after 'per'; the list of symbols sets it as ∝d, the formula as αd; Table 7-6 gives the rheological factors)",
+      "∝c": "rheological factors for spherical term per Table 7-6 (dimensionless)"
+     },
+     "notes": "The print sets the rheological factor of the second term with a proportional-to sign, ∝c, and the exponent of the first as αd; Table 7-6 gives the rheological factors.",
+     "source": "Typed in from p. 167.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-12",
+     "description": "Equation 7-12, printed after Eq. 7-11 (p. 167).",
+     "formula": "δ = deviatoric settlement + spherical (consolidation) settlement + soft/loose layer settlement:   δ = [[(2/(9Ed)) (q − σ′zD) B0 (λd B/B0)^αd] + [(∝c/(9Ec)) (q − σ′zD) λc · B]] + [∑ αL (1/EL − 1/Ed) Iσ (q − σ′zD) H]   (Soft Layer Within 2B)",
+     "variables": {
+      "δ": "settlement (feet)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "Iσ": "influence factor for vertical stress per paragraph 6-7 (dimensionless)",
+      "Ed": "average pressuremeter modulus within the zone of the deviatoric tensor per equation 7-14 (tsf) to a depth of 8B below the footing bearing elevation (tsf)",
+      "Ec": "average pressuremeter modulus within the zone of the spherical tensor to a depth of B/2below the footing bearing elevation (tsf)",
+      "EL": "average pressuremeter modulus of the soft/loose layer per the harmonic mean, equation 7-15 (tsf)",
+      "H": "thickness of soft layer (feet)",
+      "B": "base width of footing (feet)",
+      "B0": "reference footing width = 2.0 ft",
+      "λd": "shape factor for deviatoric term per Figure 7-11 (dimensionless)",
+      "λc": "shape factor for spherical term per Figure 7-11 (dimensionless)",
+      "αd": "rheological factors for deviatoric term per (dimensionless) (as printed, no table named after 'per'; the list of symbols sets it as ∝d, the formula as αd; Table 7-6 gives the rheological factors)",
+      "∝c": "rheological factors for spherical term per Table 7-6 (dimensionless)",
+      "αL": "rheological factors for soft/loose layer per Table 7-6 (dimensionless) (the list of symbols sets it as ∝L; the formula prints αL)"
+     },
+     "notes": "The print sets the rheological factor of the second term with a proportional-to sign, ∝c; Table 7-6 gives the rheological factors.",
+     "source": "Typed in from p. 167.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-11c(2), printed pp. 166 to 171. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-11c(2).a",
+   "title": "The estimation of settlement using the Ménard and Rousseau procedure is … (continued, pp. 168 to 171)",
+   "body": "[p. 168] Table 7-5 Procedure for estimating settlements using the Ménard and Rousseau pressuremeter test method\nStep 1 | Calculate the pressuremeter modulus (Eo), reference paragraph 4-10d(4) for discussion of in situ test parameters. Designing beyond the yield pressure (Py) is not recommended. If it needs to be done, then the modulus used should be the secant modulus related to the line joining the beginning of the straight line in the PMT curve to the point corresponding to the pressure applied in the geotechnical problem.\nStep 2 | Compute the ultimate bearing capacity (qult) per paragraph 5-5.\nStep 3 | Compute the gross bearing pressure (q) or gross equivalent bearing pressure (qeq) for eccentrically loaded foundations (tsf) per paragraph 5-2b.\nStep 4 | Apply a factor of safety to Step 2 per Table 2-1 and choose the lesser of the values of Steps 2 and 3 for use in equation 7-11 or 7-12.\nStep 5 | Compute the vertical effective stress at the footing bearing elevation (σ′zD).\nStep 6 | Divide the soil beneath the foundation into 16 elementary layers of 0.5B thickness to a depth of 8B below the foundation and combine these sixteen elementary layers into five distinct layers, E1, E2, E3/4/5, E6/7/8, and E9/16, as illustrated in Figure 7-12.\nStep 7 | Compute the average pressuremeter modulus (Ek) of each of the five combined distinct layers by the harmonic mean technique, equation 7-13.\nEk = n/(1/E1 + 1/E2 + ⋯+ 1/En) [Eq. 7-13]\nwhere:\nEk = average pressuremeter modulus of the distinct k^th layer per harmonic mean (tsf)\nn = number of E0, values within a given layer\nE1, E2, En = PMT modus values, E0, within distinct k^th layer (tsf)\nIf a pressuremeter data is not available at deeper layers, estimate the modulus of these deeper layers based on other data available at the site. For example, if the modulus is increasing with depth but no modulus data is available for layers 9 through 16, estimate the modulus data from Layer 8 or Layers 9 through 16 at other test locations, if applicable.\nStep 8 | Compute the average pressuremeter modulus (Ek) within the zone of influence of the spherical tensor (Ec) to a depth of 0.5B (first layer) below the footing bearing elevation. Therefore, Ec = E1 from Step 7.\nStep 9 | Compute the equivalent distortion modulus (Ed) within the zone of influence of the deviatoric tensor to a depth of 8B (16 layers beneath the footing bearing elevation described in Step 6) per equation 7-14.\n1/Ed = (1/4)(1/E1 + 1/(0.85E2) + 1/(E3/4/5) + 1/(2.5E6/7/8) + 1/(2.5E9/16)) [Eq. 7-14]\nwhere:\nEd = equivalent distortion modulus (Ed) within the zone of influence of the deviatoric tensor to a depth of 8B. E1, E2, E3/4/5, E6/7/8, and E9/16 are computed by the harmonic mean method from Step 7\nStep 10 | Obtain the rheological factors from Table 7-6. Rheological factors (∝d and ∝c) are a function of the soil type and state of consolidation from the ratio of Ed/pne and Ec/pne, respectively. pne is the equivalent net limit pressure within the shear zone per equation 5-24 in tsf units.\n[p. 169]\nStep 11 | Obtain the deviatoric and spherical shape factors (λd and λc), from Figure 7-11. The shape factors are a function of the footing base length to width ratio (L/B). For a round footing λd and λc are equal to 1.\nStep 12 | Estimate the settlement per equation 7-11.\nStep 13 | If a soft/loose layer is encountered within a depth of 2B or 6B below the footing bearing elevation for an axisymmetric or strip footing, respectively, compute the average pressuremeter modulus of each of the soft/loose layers by the harmonic mean technique per equation 7-15.\nEL = n/(1/E1 + 1/E2 + ⋯1/En) [Eq. 7-15]\nwhere:\nEL = average PMT modulus of soft/loose layer per harmonic mean (tsf)\nE1, E2, En = PMT modulus values (E0) within distinct soft/loose layer (tsf)\nn = number of E0 values within a given layer\nStep 14 | Compute the influence factor (Iσ) for vertical stress per paragraph 6-7 and the corresponding induced vertical stress (Δσz) at the midpoint of the soft/loose layers per equation 6-6, Δσz = Iσ(q − σ′zD). q is the value per Step 4.\nStep 15 | Compute the equivalent net limit pressure (pne) within the soft/loose layer per\nequation 5-24.\ns = pne = ʸ√(P*L1 × P*L2 × … P*Ly) [Eq. 5-24]\nwhere:\ns = equivalent in situ testing parameter indicative of soil strength, in this case for the PMT\nP*L = net limit pressure = PL − Po (ksf); see also equation 4-17\npne = equivalent net limit pressure in the shear zone (ksf)\nP*L1 = 1st measured value of P*L within the bearing capacity shear zone (ksf)\nP*L2 = 2nd measured value of P*L within the bearing capacity shear zone (ksf) P*Ly = y^th measured value of P*L within the bearing capacity shear zone (ksf)\nStep 16 | Obtain the rheological factor (∝L) from Table 7-6. ∝L is a function of the soil type and state of consolidation from the ratio of EL/pne.\nStep 17 | Estimate the settlement per equation 7-12.\n\n[p. 170] Table 7-6 Ménard’s rheological factor (α) (Briaud 1992)\nSoil Type | Peat | Clay | Silt | Sand | Sand and Gravel\nSoil Type | E/P*L | α | E/P*L | α | E/P*L | α | E/P*L | α | E/P*L | α\nOver-consolidated | – | – | >16 | 1 | >14 | 2/3 | >12 | 1/2 | >10 | 1/3\nNormally consolidated | For all values | 1 | 9 to 16 | 2/3 | 8 to 14 | 1/2 | 7 to 12 | 1/3 | 6 to 10 | 1/4\nWeathered and/or remolded | – | – | 7 to 9 | 1/2 | – | 1/2 | – | 1/3 | – | 1/4\nRock | Extremely Fractured | Other | Slightly Fractured or Extremely Weathered\nRock | α = 1/3 | α = 1/2 | α = 2/3\nNotes:\nE = Ec, Ed, and EL as applicable (tsf), P*L = net limit pressure (tsf)\nα = αC, αd, αL rheological factors per Ec/pne, Ed/pne, and EL/pne, respectively (dimensionless)\n\nFigure 7-11. Ménard’s shape factors (λd and λc) for deviatoric and spherical terms, respectively (Briaud 1992)\n\n[p. 171] Figure 7-12. Decomposition of the soil into layers for settlement analysis (adapted from Briaud 1992)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-13",
+     "description": "Equation 7-13 as printed (p. 168).",
+     "formula": "Ek = n/(1/E1 + 1/E2 + ⋯+ 1/En)",
+     "variables": {
+      "Ek": "average pressuremeter modulus of the distinct k^th layer per harmonic mean (tsf)",
+      "n": "number of E0, values within a given layer",
+      "E1, E2, En": "PMT modus values, E0, within distinct k^th layer (tsf)"
+     },
+     "notes": "The harmonic mean technique (Table 7-5, Step 7).",
+     "source": "Typed in from p. 168.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-14",
+     "description": "Equation 7-14 as printed (p. 168).",
+     "formula": "1/Ed = (1/4)(1/E1 + 1/(0.85E2) + 1/(E3/4/5) + 1/(2.5E6/7/8) + 1/(2.5E9/16))",
+     "variables": {
+      "Ed": "equivalent distortion modulus (Ed) within the zone of influence of the deviatoric tensor to a depth of 8B. E1, E2, E3/4/5, E6/7/8, and E9/16 are computed by the harmonic mean method from Step 7"
+     },
+     "notes": "The subscripts 3/4/5, 6/7/8 and 9/16 name the combined layers E3/4/5, E6/7/8 and E9/16 of Figure 7-12 (Table 7-5, Steps 6 and 9).",
+     "source": "Typed in from p. 168.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-15",
+     "description": "Equation 7-15 as printed (p. 169).",
+     "formula": "EL = n/(1/E1 + 1/E2 + ⋯1/En)",
+     "variables": {
+      "EL": "average PMT modulus of soft/loose layer per harmonic mean (tsf)",
+      "E1, E2, En": "PMT modulus values (E0) within distinct soft/loose layer (tsf)",
+      "n": "number of E0 values within a given layer"
+     },
+     "notes": "As printed, with no plus sign before the last term of the denominator (compare equation 7-13). The harmonic mean of the soft/loose layer (Table 7-5, Step 13).",
+     "source": "Typed in from p. 169.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-24",
+     "description": "Equation 5-24 as printed (p. 114).",
+     "formula": "s = pne = ʸ√(P*L1 × P*L2 × … P*Ly)",
+     "variables": {
+      "s": "equivalent in situ testing parameter indicative of soil strength, in this case for the PMT",
+      "pne": "equivalent net limit pressure in the shear zone (ksf)",
+      "P*L1": "1st measured value of P*L within the bearing capacity shear zone (ksf)",
+      "P*L2": "2nd measured value of P*L within the bearing capacity shear zone (ksf)",
+      "P*Ly": "y^th measured value of P*L within the bearing capacity shear zone (ksf)",
+      "y": "the number of measured values of P*L within the bearing capacity shear zone (the index of the root)"
+     },
+     "notes": "The geometric mean for net pressuremeter limit pressure; similar expressions would be used for N60e · pref and qn (paragraph 5-5i(2)). The same equation is printed again, with this number, in Table 7-5, Step 15 (p. 169).",
+     "source": "Typed in from p. 114.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-11: Ménard’s shape factors (λd and λc) for deviatoric and spherical terms, respectively (Briaud 1992)",
+    "Figure 7-12: Decomposition of the soil into layers for settlement analysis (adapted from Briaud 1992)"
+   ],
+   "tables": [
+    "Table 7-5: Procedure for estimating settlements using the Ménard and Rousseau pressuremeter test method",
+    "Table 7-6: Ménard’s rheological factor (α) (Briaud 1992)"
+   ],
+   "applicability": "Part 2 of paragraph 7-11c(2) (pp. 168 to 171); the letter is not printed, the section is split here to fit the reference tools."
+  },
+  {
+   "section_id": "7-12",
+   "title": "Schmertmann’s cone penetration test method for cohesionless soils",
+   "body": "[p. 171] Schmertmann’s method (Schmertmann 1970, and Schmertmann et al. 1978) was developed for estimating settlements in granular materials based on the results of the CPT. Schmertmann’s method utilizes a strain distribution factor in lieu of a stress distribution factor. The analysis assumes that the distribution of vertical strain is compatible with a linear elastic half-space subjected to a uniform pressure and is calibrated with empirical data.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12, printed p. 171."
+  },
+  {
+   "section_id": "7-12a",
+   "title": "Equivalent Young’s modulus from cone penetrometer test",
+   "body": "[p. 171] Equivalent Young’s modulus from cone penetrometer test. An equivalent Young’s modulus (Es) is computed from the measured tip resistance (qc), obtained from the CPT. The equivalent Young’s modulus was calibrated with footing load tests, and therefore, includes 3-D stress effects from the footings. Since the stiffness of the soil is approximately 40 percent greater for plane strain compared to axisymmetric loadings, the equivalent Young’s modulus (Es) is computed by equation 7-16 for square and [p. 172] axisymmetric footings and equation 7-17 for strip footings with a footing length-to-width ratio greater than 10. These equations were developed for young (< 100 years), normally consolidated, clean silica sands, and are generally conservative. For intermediate conditions (length to width ratios between 1 and 10), the equivalent Young’s modulus (Es) can be interpolated.\n\nEs = 2.5qc   (Axisymmetric Footings) [Eq. 7-16]\n\nEs = 3.5qc   (Plane Strain Footings) [Eq. 7-17]\n\nwhere:\nEs = equivalent Young’s modulus (tsf)\nqc = measured cone tip resistance from CPT (tsf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-16",
+     "description": "Equation 7-16, introduced by: \"For intermediate conditions (length to width ratios between 1 and 10), the equivalent Young’s modulus (Es) can be interpolated.\" (p. 172).",
+     "formula": "Es = 2.5qc   (Axisymmetric Footings)",
+     "variables": {
+      "Es": "equivalent Young’s modulus (tsf)",
+      "qc": "measured cone tip resistance from CPT (tsf)"
+     },
+     "notes": "Printed twice with this number: on p. 172 with equation 7-17, and again on p. 173 between the list of symbols of equation 7-18 and equation 7-19.",
+     "source": "Typed in from p. 172.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-17",
+     "description": "Equation 7-17, printed after Eq. 7-16 (p. 172).",
+     "formula": "Es = 3.5qc   (Plane Strain Footings)",
+     "variables": {
+      "Es": "equivalent Young’s modulus (tsf)",
+      "qc": "measured cone tip resistance from CPT (tsf)"
+     },
+     "source": "Typed in from p. 172.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12a, printed pp. 171 to 172."
+  },
+  {
+   "section_id": "7-12b",
+   "title": "Equivalent Young’s modulus from standard penetration test N60",
+   "body": "[p. 172] Equivalent Young’s modulus from standard penetration test N60. The equivalent Young’s modulus (Es) can also be calculated from SPT N60 correlations as illustrated in Table 7-7. Because of the shortcomings inherent in the SPT, there is large scatter in correlating the SPT N60 data with the measured cone tip resistance (qc). Therefore, CPT correlations should be used where available. The SPT correlations should not be corrected for depth or for the groundwater table.\n\nTable 7-7 Correlations between measured cone tip resistance (qc) and standard penetration test N60 (Schmertmann 1970)\nSoil Type | Approximate Es Value (ksf)\nSoil Type | Axisymmetric (L = B) | Plane Strain (L/B > 10)\nSilt, sandy silt, slightly cohesive silt-sand mixtures | 10N60 | 14N60\nClean fine to medium sand, and slightly silty sand | 17.5N60 | 24.5N60\nCoarse sand and sand with little gravel | 25N60 | 35N60\nSandy gravel | 30N60 | 42N60",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 7-7: Correlations between measured cone tip resistance (qc) and standard penetration test N60 (Schmertmann 1970)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12b, printed p. 172."
+  },
+  {
+   "section_id": "7-12c",
+   "title": "Strain influence factors",
+   "body": "[p. 172] Strain influence factors. Schmertmann found that the maximum vertical strains do not occur directly at the bottom of the footing, as is the case for the induced vertical stress (Δσz), but instead occur at a depth of B/2 below the bearing elevation for square and circular “axisymmetric” footings, and at a depth of B below the bearing elevation for strip “plane strain” footings as illustrated in Figure 7-13, where B is the base width of the footing. The peak strain influence factor (Izp), is computed per equation 7-18. The vertical strains extend to a depth of 2B and 4B for axisymmetric and plane strain footings, respectively. The vertical strain influence factor (Iz), at a given depth (z), is computed by equations 7-19 through 23. For other footing shapes, values of L/H are interpolated.\n\n[p. 173] Figure 7-13. Rigid footing strain influence factor (Schmertmann et al. 1978)\n\nIzp = 0.5 + 0.1√((q − σ′zD)/σ′zp) [Eq. 7-18]\n\nwhere:\nIzp = peak strain influence factor (dimensionless)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nσ′zD = vertical effective stress at the bearing elevation of the footing (tsf)\nσ′zp = vertical effective stress at the depth of peak strain influence factor (tsf), (D + B/2 for axisymmetric footings and D + B for plane strain footings)\n\nEs = 2.5qc   (Axisymmetric Footings) [Eq. 7-16]\n\nIza = 0.1 + (z/B)(2 · Izp − 0.2)   (Axisymmetric Footings for z = 0 to B/2) [Eq. 7-19]\n\n[p. 174] Iza = 0.667 · Izp (2 − z/B)   (Axisymmetric Footings for z = B/2 to 2B) [Eq. 7-20]\n\nIzc = 0.2 + (z/B)(Izp − 0.2)   (Plane Strain Footings for z = 0 to B) [Eq. 7-21]\n\nIzc = 0.331 · Izp (4 − z/B)   (Plane Strain Footings for z = B to 4B) [Eq. 7-22]\n\nIzr = Iza + 0.111 (Izc − Iza)(L/B − 1)   (Rectangular Footings) [Eq. 7-23]\n\nwhere:\nz = depth from bottom of footing to midpoint of layer (ft)\nIzp = peak strain influence factor (dimensionless)\nIza = strain influence factor for axisymmetric footings (dimensionless)\nIzc = strain influence factor for plane strain footings (dimensionless)\nIzr = strain influence factor for rectangular footings (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-18",
+     "description": "Equation 7-18, introduced by: \"Rigid footing strain influence factor (Schmertmann et al. 1978)\" (p. 173).",
+     "formula": "Izp = 0.5 + 0.1√((q − σ′zD)/σ′zp)",
+     "variables": {
+      "Izp": "peak strain influence factor (dimensionless)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "σ′zp": "vertical effective stress at the depth of peak strain influence factor (tsf), (D + B/2 for axisymmetric footings and D + B for plane strain footings)"
+     },
+     "source": "Typed in from p. 173.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-16",
+     "description": "Equation 7-16, introduced by: \"or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf) σ′zD = vertical effective stress at the bearing elevation of the footing (tsf) σ′zp = vertical effective stress at the depth of peak strain ...\" (p. 172).",
+     "formula": "Es = 2.5qc   (Axisymmetric Footings)",
+     "variables": {
+      "Es": "equivalent Young’s modulus (tsf)",
+      "qc": "measured cone tip resistance from CPT (tsf)"
+     },
+     "notes": "Printed twice with this number: on p. 172 with equation 7-17, and again on p. 173 between the list of symbols of equation 7-18 and equation 7-19.",
+     "source": "Typed in from p. 172.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-19",
+     "description": "Equation 7-19, printed after Eq. 7-16 (p. 173).",
+     "formula": "Iza = 0.1 + (z/B)(2 · Izp − 0.2)   (Axisymmetric Footings for z = 0 to B/2)",
+     "variables": {
+      "z": "depth from bottom of footing to midpoint of layer (ft)",
+      "Izp": "peak strain influence factor (dimensionless)",
+      "Iza": "strain influence factor for axisymmetric footings (dimensionless)"
+     },
+     "source": "Typed in from p. 173.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-20",
+     "description": "Equation 7-20, printed after Eq. 7-19 (p. 174).",
+     "formula": "Iza = 0.667 · Izp (2 − z/B)   (Axisymmetric Footings for z = B/2 to 2B)",
+     "variables": {
+      "z": "depth from bottom of footing to midpoint of layer (ft)",
+      "Izp": "peak strain influence factor (dimensionless)",
+      "Iza": "strain influence factor for axisymmetric footings (dimensionless)"
+     },
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-21",
+     "description": "Equation 7-21, printed after Eq. 7-20 (p. 174).",
+     "formula": "Izc = 0.2 + (z/B)(Izp − 0.2)   (Plane Strain Footings for z = 0 to B)",
+     "variables": {
+      "z": "depth from bottom of footing to midpoint of layer (ft)",
+      "Izp": "peak strain influence factor (dimensionless)",
+      "Izc": "strain influence factor for plane strain footings (dimensionless)"
+     },
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-22",
+     "description": "Equation 7-22, printed after Eq. 7-21 (p. 174).",
+     "formula": "Izc = 0.331 · Izp (4 − z/B)   (Plane Strain Footings for z = B to 4B)",
+     "variables": {
+      "z": "depth from bottom of footing to midpoint of layer (ft)",
+      "Izp": "peak strain influence factor (dimensionless)",
+      "Izc": "strain influence factor for plane strain footings (dimensionless)"
+     },
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-23",
+     "description": "Equation 7-23, printed after Eq. 7-22 (p. 174).",
+     "formula": "Izr = Iza + 0.111 (Izc − Iza)(L/B − 1)   (Rectangular Footings)",
+     "variables": {
+      "Iza": "strain influence factor for axisymmetric footings (dimensionless)",
+      "Izc": "strain influence factor for plane strain footings (dimensionless)",
+      "Izr": "strain influence factor for rectangular footings (dimensionless)"
+     },
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-13: Rigid footing strain influence factor (Schmertmann et al. 1978)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12c, printed pp. 172 to 174."
+  },
+  {
+   "section_id": "7-12d",
+   "title": "Empirical embedment and creep correction factors",
+   "body": "[p. 174] Empirical embedment and creep correction factors. The empirical correction factor (C1) is used to account for strain relief from embedment per equation 7-24. Traditionally, time rate of settlement in sand is not considered; however, it is observed in many published settlement records. The empirical correction factor (C2) can be calculated from equation 7-25 for time, t ≥ 0.1 years and is typically computed for t = 50 years resulting in C2 = 1.54. For t < 0.1 years, C2 = 1.0.\n\nC1 = 1 − 0.5 (σ′zD/(q − σ′zD)) ≥ 0.5 [Eq. 7-24]\n\nC2 = 1 + 0.2 log10(t/0.1)   for t ≥ 0.1 year [Eq. 7-25]\n\nwhere:\nC1 = embedment correction factor (dimensionless)\nσ′zD = vertical effective stress at the bearing elevation of the footing (tsf)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)\nC2 = creep correction factor (dimensionless)\nt = time after foundation loading (years)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-24",
+     "description": "Equation 7-24, introduced by: \"For t < 0.1 years, C2 = 1.0.\" (p. 174).",
+     "formula": "C1 = 1 − 0.5 (σ′zD/(q − σ′zD)) ≥ 0.5",
+     "variables": {
+      "C1": "embedment correction factor (dimensionless)",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf)"
+     },
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-25",
+     "description": "Equation 7-25, introduced by: \"For t < 0.1 years, C2 = 1.0.\" (p. 174).",
+     "formula": "C2 = 1 + 0.2 log10(t/0.1)   for t ≥ 0.1 year",
+     "variables": {
+      "C2": "creep correction factor (dimensionless)",
+      "t": "time after foundation loading (years)"
+     },
+     "notes": "Typically computed for t = 50 years, resulting in C2 = 1.54; for t < 0.1 years, C2 = 1.0 (paragraph 7-12d).",
+     "source": "Typed in from p. 174.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12d, printed p. 174."
+  },
+  {
+   "section_id": "7-12e",
+   "title": "Schmertmann procedure for estimating settlements using the cone penetration test",
+   "body": "[p. 174] Schmertmann procedure for estimating settlements using the cone penetration test. The estimation of settlements using the Schmertmann CPT method is calculated per equation 7-26 and as described in Table 7-8.\n\n[p. 175] δ = C1 · C2(q − σ′zD) ∑[(Iz · H)/Es] [Eq. 7-26]\n\nwhere:\nδ = settlement (ft)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf).\nσ′zD = vertical effective stress at the bearing elevation of the footing (tsf)\nIz = strain influence value per equations 7-19 through 7-23 depending on footing type (Iza, Izc, Izr) (dimensionless)\nEs = equivalent Young’s modulus (tsf)\nH = thickness of soil layer (ft)\nC1 = embedment correction factor per equation 7-24 (dimensionless)\nC2 = creep correction factor per equation 7-25 (dimensionless)\n\nTable 7-8 Procedure for estimating settlement in cohesionless soils by Schmertmann’s CPT method\nStep 1 | Obtain the measured tip resistance (qc) obtained from the CPT test or SPT N60 values obtained from the SPT test.\nStep 2 | Calculate the equivalent Young’s modulus (Es) per equations 7-16 and 7-17 or Table 7-7. Divide the soil beneath the bearing elevation into layers depending on the variation in Es versus depth.\nStep 3 | Compute the gross or gross equivalent bearing pressure (q or qeq) at the base of the footing per paragraph 5-2b. The gross bearing pressure (q) must be less than or equal to the ultimate bearing capacity (qult) divided by the factor of safety.\nStep 4 | Compute the vertical effective stress at the footing bearing elevation (σ′zD).\nStep 5 | Based on the footing type (axisymmetric or plane strain) and footing width, develop the strain influence factor diagram below the base of the footing per Figure 7-13.\nStep 6 | Compute the peak strain influence factor (Izp) per equation 7-18.\nStep 7 | Compute embedment and creep correction factors per equations 7-24 and 7-25.\nStep 8 | Produce a table for each layer, use the strain influence factor diagram per Figure 7-13:\na. the number of the layer\nb. depth of the layer (feet)\nc. depth below footing (midpoint of layer), z (feet)\nd. thickness of soil layer, H feet)\ne. qc (tsf) or N60 values\nf. Es (tsf)\ng. strain influence factor (Iz) depending on footing type (Iza, Izc, Izr)\nh. (Iz · H)/Es (feet)\nStep 9 | Compute the vertical strain influence factor (Iz) at the midpoint of each layer per equations 7-19 through 7-23 depending on footing type.\nStep 10 | Compute (Iz · H)/Es at the midpoint of each layer and sum for the soil layers within the strain influence factor diagram per Figure 7-13.\n[p. 176]\nStep 11 | Compute settlement per equation 7-26.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-26",
+     "description": "Equation 7-26, introduced by: \"The estimation of settlements using the Schmertmann CPT method is calculated per equation 7-26 and as described in Table 7-8.\" (p. 175).",
+     "formula": "δ = C1 · C2(q − σ′zD) ∑[(Iz · H)/Es]",
+     "variables": {
+      "δ": "settlement (ft)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by factor of safety, whichever is less (tsf).",
+      "σ′zD": "vertical effective stress at the bearing elevation of the footing (tsf)",
+      "Iz": "strain influence value per equations 7-19 through 7-23 depending on footing type (Iza, Izc, Izr) (dimensionless)",
+      "Es": "equivalent Young’s modulus (tsf)",
+      "H": "thickness of soil layer (ft)",
+      "C1": "embedment correction factor per equation 7-24 (dimensionless)",
+      "C2": "creep correction factor per equation 7-25 (dimensionless)"
+     },
+     "source": "Typed in from p. 175.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 7-8: Procedure for estimating settlement in cohesionless soils by Schmertmann’s CPT method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-12e, printed pp. 174 to 176."
+  },
+  {
+   "section_id": "7-13",
+   "title": "Burland and Burbidge SPT method for sands and gravels",
+   "body": "[p. 176] Burland and Burbidge (1985) presented a semi-empirical method using N60 values from SPT to compute settlements in granular soils. This method was based on the results of over 200 records of observed settlements of various footing sizes, tanks, and embankments on sands and gravels. The method accounts for several factors, to include shape and depth of foundation, depth of water table, grain size, and time. The following empirical equations are based on these observations.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13, printed p. 176."
+  },
+  {
+   "section_id": "7-13a",
+   "title": "Influence depth",
+   "body": "[p. 176] Influence depth. The depth of influence (ZI) is the thickness of sand and gravel beneath the foundation bearing elevation that is influenced by the loading from the foundation. ZI is defined by equation 7-27 and is valid only when N60 increases or is constant with depth. Where N60 decreases with depth (ZI) may be assumed as 2B or to the bottom of the loose layer, whichever is less.\n\nZI = 1.43B^0.7 [Eq. 7-27]\n\nwhere:\nZI = depth of influence (ft)\nB = footing width (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-27",
+     "description": "Equation 7-27, introduced by: \"Where N60 decreases with depth (ZI) may be assumed as 2B or to the bottom of the loose layer, whichever is less.\" (p. 176).",
+     "formula": "ZI = 1.43B^0.7",
+     "variables": {
+      "ZI": "depth of influence (ft)",
+      "B": "footing width (ft)"
+     },
+     "notes": "Valid only when N60 increases or is constant with depth; where N60 decreases with depth, ZI may be assumed as 2B or to the bottom of the loose layer, whichever is less (paragraph 7-13a).",
+     "source": "Typed in from p. 176.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13a, printed p. 176."
+  },
+  {
+   "section_id": "7-13b",
+   "title": "Soil compressibility index",
+   "body": "[p. 176] Soil compressibility index. The compressibility of soil can be represented by the soil compressibility index (Ic) as defined by equation 7-28.\n\nIc = 0.35/(N̅60)^1.4 [Eq. 7-28]\n\nwhere:\nIc = soil compressibility index (tsf^(-1))\nN̅60 = arithmetic mean of the measured N60 values within the depth of influence, ZI",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-28",
+     "description": "Equation 7-28, introduced by: \"The compressibility of soil can be represented by the soil compressibility index (Ic) as defined by equation 7-28.\" (p. 176).",
+     "formula": "Ic = 0.35/(N̅60)^1.4",
+     "variables": {
+      "Ic": "soil compressibility index (tsf^(-1))",
+      "N̅60": "arithmetic mean of the measured N60 values within the depth of influence, ZI"
+     },
+     "source": "Typed in from p. 176.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13b, printed p. 176."
+  },
+  {
+   "section_id": "7-13c",
+   "title": "The arithmetic mean (N̅60)",
+   "body": "[p. 176] The arithmetic mean (N̅60). The arithmetic mean of the measured SPT N60 values measured within a depth of influence (ZI) should not be corrected for effective overburden pressure. However, due to the possibility of dilation during driving of the split-spoon in dense or very dense, fine saturated sands, N60 > 15 blows per foot should be corrected per equation 4-7 prior to computing N̅60 for equation 7-28. In addition, N60 values may be increased by 25 percent (multiplied by 1.25) for gravel or sandy gravel prior to computing N̅60.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13c, printed p. 176. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-13d",
+   "title": "Settlement equations for axisymmetric footings (L/B =1)",
+   "body": "[p. 176] Settlement equations for axisymmetric footings (L/B =1). Estimate settlements for normally and overconsolidated granular soils per equations 7-29 through 7-31.\n\n[p. 177] Δ = C1 · C2 · C3 · (q + σ̅′zo) · ZI · Ic   (Normally Consolidated Granular Soil, σ̅′zo = σ′p) [Eq. 7-29]\n\nδ = C1 · C2 · C3 (q + σ̅′zo) ZI (Ic/3)   (Overconsolidated Granular Soil, (q + σ̅′zo) ≤ σ′p) [Eq. 7-30]\n\nδ = C1 · C2 · C3 [(q + σ̅′z0) − (2/3) σ′p] ZI · Ic   (Overconsolidated Granular Soil, (q + σ̅′zo) > σ′p) [Eq. 7-31]\n\nwhere:\nδ = settlement (ft)\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by the factor of safety, whichever is less (tsf)\nσ̅′zo = initial average vertical effective stress within depth of influence (ZI) beneath the footing, (tsf)\nσ′p = preconsolidation stress (tsf)\nZI = depth of influence (ft) per equation 7-27\nIc = soil compressibility index (tsf^(-1)) per equation 7-28\nC1 = shape correction factor per equation 7-32\nC2 = layer thickness correction factor per equation 7-33\nC3 = time-dependent factor per equation 7-34",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-29",
+     "description": "Equation 7-29, introduced by: \"Estimate settlements for normally and overconsolidated granular soils per equations 7-29 through 7-31.\" (p. 177).",
+     "formula": "Δ = C1 · C2 · C3 · (q + σ̅′zo) · ZI · Ic   (Normally Consolidated Granular Soil, σ̅′zo = σ′p)",
+     "variables": {
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by the factor of safety, whichever is less (tsf)",
+      "σ̅′zo": "initial average vertical effective stress within depth of influence (ZI) beneath the footing, (tsf)",
+      "σ′p": "preconsolidation stress (tsf)",
+      "ZI": "depth of influence (ft) per equation 7-27",
+      "Ic": "soil compressibility index (tsf^(-1)) per equation 7-28",
+      "C1": "shape correction factor per equation 7-32",
+      "C2": "layer thickness correction factor per equation 7-33",
+      "C3": "time-dependent factor per equation 7-34",
+      "Δ": "as printed; the list of symbols under equations 7-29 to 7-31 has δ = settlement (ft), the left side of equations 7-30 and 7-31"
+     },
+     "source": "Typed in from p. 177.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-30",
+     "description": "Equation 7-30, printed after Eq. 7-29 (p. 177).",
+     "formula": "δ = C1 · C2 · C3 (q + σ̅′zo) ZI (Ic/3)   (Overconsolidated Granular Soil, (q + σ̅′zo) ≤ σ′p)",
+     "variables": {
+      "δ": "settlement (ft)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by the factor of safety, whichever is less (tsf)",
+      "σ̅′zo": "initial average vertical effective stress within depth of influence (ZI) beneath the footing, (tsf)",
+      "σ′p": "preconsolidation stress (tsf)",
+      "ZI": "depth of influence (ft) per equation 7-27",
+      "Ic": "soil compressibility index (tsf^(-1)) per equation 7-28",
+      "C1": "shape correction factor per equation 7-32",
+      "C2": "layer thickness correction factor per equation 7-33",
+      "C3": "time-dependent factor per equation 7-34"
+     },
+     "source": "Typed in from p. 177.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-31",
+     "description": "Equation 7-31, printed after Eq. 7-30 (p. 177).",
+     "formula": "δ = C1 · C2 · C3 [(q + σ̅′z0) − (2/3) σ′p] ZI · Ic   (Overconsolidated Granular Soil, (q + σ̅′zo) > σ′p)",
+     "variables": {
+      "δ": "settlement (ft)",
+      "q": "use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by the factor of safety, whichever is less (tsf)",
+      "σ̅′zo": "initial average vertical effective stress within depth of influence (ZI) beneath the footing, (tsf)",
+      "σ′p": "preconsolidation stress (tsf)",
+      "ZI": "depth of influence (ft) per equation 7-27",
+      "Ic": "soil compressibility index (tsf^(-1)) per equation 7-28",
+      "C1": "shape correction factor per equation 7-32",
+      "C2": "layer thickness correction factor per equation 7-33",
+      "C3": "time-dependent factor per equation 7-34"
+     },
+     "source": "Typed in from p. 177.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13d, printed pp. 176 to 177. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "7-13e",
+   "title": "Shape correction factor",
+   "body": "[p. 177] Shape correction factor. Settlements estimated by equations 7-29 through 7-31 are for axisymmetric footings (L/B = 1). For rectangular footings, the shape correction factor (C1) is computed per equation 7-32. For axisymmetric footings, use C1 = 1. For strip footings where L/B tends to infinity, use C1 = 1.56.\n\nC1 = [1.25 (L/B)/((L/B) + 0.25)]^2 ≥ 1 [Eq. 7-32]",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-32",
+     "description": "Equation 7-32, introduced by: \"For strip footings where L/B tends to infinity, use C1 = 1.56.\" (p. 177).",
+     "formula": "C1 = [1.25 (L/B)/((L/B) + 0.25)]^2 ≥ 1",
+     "variables": {},
+     "notes": "Equations 7-29 through 7-31 are for axisymmetric footings (L/B = 1): use C1 = 1; for strip footings where L/B tends to infinity, use C1 = 1.56 (paragraph 7-13e).",
+     "source": "Typed in from p. 177.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13e, printed p. 177."
+  },
+  {
+   "section_id": "7-13f",
+   "title": "Layer thickness correction factor",
+   "body": "[p. 177] Layer thickness correction factor. When the thickness of the granular layer (Hs), below the foundation is less than the zone of influence (ZI), a layer thickness correction factor (C2), is computed per equation 7-33.\n\nC2 = (Hs/ZI)(2 − Hs/ZI) ≤ 1 [Eq. 7-33]\n\nwhere:\nHs = thickness of the granular layer below base of foundation (ft)\nZI = footing zone of influence (ft) per equation 7-27",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-33",
+     "description": "Equation 7-33, introduced by: \"When the thickness of the granular layer (Hs), below the foundation is less than the zone of influence (ZI), a layer thickness correction factor (C2), is computed per equation 7-33.\" (p. 177).",
+     "formula": "C2 = (Hs/ZI)(2 − Hs/ZI) ≤ 1",
+     "variables": {
+      "Hs": "thickness of the granular layer below base of foundation (ft)",
+      "ZI": "footing zone of influence (ft) per equation 7-27"
+     },
+     "source": "Typed in from p. 177.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13f, printed p. 177."
+  },
+  {
+   "section_id": "7-13g",
+   "title": "Time-dependent factor",
+   "body": "[p. 178] Time-dependent factor. The time-dependent factor (C3), is computed per equation 7-34. R3 accounts for the time-dependent settlement within the first 3 years and Rt accounts for the time-dependent settlement that takes place after the first three years at a slower rate. For static loads, conservative values of R3 equal to 0.3 and Rt equal to 0.2 may be assumed, resulting in C3 = 1.5 for 30 years. For fluctuating loads such as bridges, conservative values of R3 equal to 0.7 and Rt equal to 0.8 may be assumed, resulting in C3 = 2.5 for 30 years.\n\nC3 = 1 + R3 + Rt · log10(t/3) [Eq. 7-34]\n\nwhere:\nC3 = time-dependent factor\nR3 = time-dependent factor for first 3 years after foundation loading\nRt = time-dependent factor after first 3 years after foundation loading\nt = time after foundation loading (years)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-34",
+     "description": "Equation 7-34, introduced by: \"For fluctuating loads such as bridges, conservative values of R3 equal to 0.7 and Rt equal to 0.8 may be assumed, resulting in C3 = 2.5 for 30 years.\" (p. 178).",
+     "formula": "C3 = 1 + R3 + Rt · log10(t/3)",
+     "variables": {
+      "C3": "time-dependent factor",
+      "R3": "time-dependent factor for first 3 years after foundation loading",
+      "Rt": "time-dependent factor after first 3 years after foundation loading",
+      "t": "time after foundation loading (years)"
+     },
+     "source": "Typed in from p. 178.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13g, printed p. 178."
+  },
+  {
+   "section_id": "7-13h",
+   "title": "Burland and Burbidge procedure for estimating settlements using standard penetration test",
+   "body": "[p. 178] Burland and Burbidge procedure for estimating settlements using standard penetration test. The Burland and Burbidge procedure for estimating settlements using SPT N60 values is described in Table 7-9.\n\nTable 7-9 Procedure for estimating settlements by the Burland and Burbidge standard penetration test method\nStep 1 | Obtain SPT N60 values from SPT tests. Correct N60 values greater than 15 bpf in very fine and silty sands located below the groundwater table per equation 4-7. For gravels or sandy gravels, multiply N60 values by 1.25.\nStep 2 | Compute the gross or gross equivalent bearing pressure (q or qeq) at the base of the footing per paragraph 5-2b. The gross bearing pressure (q) must be less than or equal to the ultimate bearing capacity (qult) divided by the factor of safety.\nStep 3 | Compute depth of influence (ZI) per equation 7-27. If N60 values decrease with depth, ZI = 2B or to the bottom of the loose layer, whichever occurs first.\nStep 4 | Compute the arithmetic mean of the measured N60 values measured within the depth of influence (ZI).\nStep 5 | Compute the soil compressibility index (Ic) per equation 7-28.\nStep 6 | Compute shape (C1), layer thickness (C2), and time-dependent (C3) factors per equations 7-32, 7-33 and 7-34.\nStep 7 | Compute the average initial vertical effective stress (σ̅′zo) within depth of influence (ZI).\nStep 8 | Compute the preconsolidation stress (σ′p) from available laboratory, in situ testing methods, or from N60 data (see paragraph 3-7e).\nStep 9 | Estimate settlements per equations 7-29, 7-30 or 7-31 as applicable.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 7-9: Procedure for estimating settlements by the Burland and Burbidge standard penetration test method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-13h, printed p. 178."
+  },
+  {
+   "section_id": "7-14",
+   "title": "Other empirical methods for cohesionless soils using standard and cone penetration tests",
+   "body": "[p. 179] Many methods are available for estimating settlements in cohesionless soils. CSANDSET (Technical Report ITL-91-1) details 15 different methodologies involving SPT or CPT for estimating settlements in cohesionless soils. Tan and Duncan (1991) evaluated the accuracy and reliability of 12 SPT-based methods and the Schmertmann CPT method using more than 90 cases (Figure 7-14). The general results of this study highlight the fact that (1) most of the penetration methods used to calculate settlement of foundations on cohesionless soils tend to overpredict, and (2) the most accurate of these methods will make a “reliably” conservative estimate of settlement (greater than or equal to the actual value) about half the time. Where it is critical not to exceed the calculated settlement, methods with a higher reliability should be used.\n\nFigure 7-14. Comparison of settlement calculation methods for cohesionless soils using standard penetration test and cone penetration test (after Tan and Duncan 1991)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-14: Comparison of settlement calculation methods for cohesionless soils using standard penetration test and cone penetration test (after Tan and Duncan 1991)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-14, printed p. 179."
+  },
+  {
+   "section_id": "7-15",
+   "title": "Settlements influenced by excavation rebound in cohesive soils",
+   "body": "[p. 179] The removal of overburden above cohesive soils, such as from an excavation for a basement, reduces the loading on the soils beneath the excavation. This reduction in load and effective stress can lead to some elastic rebound of the cohesive soils below the excavation bottom prior to recompression from foundation loading. Total settlement should account for excavation rebound and recompression and can be evaluated using laboratory consolidation data as shown in Figure 7-15.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-15, printed p. 179."
+  },
+  {
+   "section_id": "7-15a",
+   "title": "Floating foundations",
+   "body": "[p. 180] Floating foundations. When the stress from the loading of the new foundations is less than or equal to the removal of the overburden, the structure is termed to be “fully floating,” and when the building loading is partially compensated by relief of the overburden, the building is termed to be “partially floating.” The technique of floating the foundation reduces the net bearing pressure (contact stress) of the foundation, therefore, reducing settlements.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-15a, printed p. 180."
+  },
+  {
+   "section_id": "7-15b",
+   "title": "Soil rebound from excavation",
+   "body": "[p. 180] Soil rebound from excavation. When floating the foundation (whether fully or partially), the net bearing pressure of the foundation will occur along the recompression portion of the laboratory consolidation curve; similar to placing the structure on a preconsolidated soil.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-15b, printed p. 180."
+  },
+  {
+   "section_id": "7-15c",
+   "title": "Estimating settlements influenced by excavation rebound and subsequent recompression",
+   "body": "[p. 180] Estimating settlements influenced by excavation rebound and subsequent recompression. A procedure for estimating the settlement of a foundation constructed on a normally consolidated cohesive soil following excavation rebound and subsequent recompression from foundation loading is provided in Table 7-10. Field evidence shows that the rate of heave is usually faster and of less magnitude than predicted. Based on a study of 43 building sites, the field heave typically amounted to about one-third of the computed heave. This is because only a very small fraction of settlement is due to elastic deformation of the soil grains. Where excavations are large and are open for a substantial time before foundation loadings are applied, the actual heave could be closer to the computed heave.\n\nFigure 7-15. Example of e-log-p curve for several soil samples obtained at different depths prior to unloading and reloading; σ′zo = initial vertical effective stress prior to excavation and dewatering, σ′zExc = vertical effective stress following excavation and dewatering, σ′zf = final vertical effective stress due to foundation load\n\n[p. 181] Table 7-10 Procedure for estimating settlements due to excavation rebound and subsequent recompression\nStep 1 | Conduct laboratory oedometer tests for the compressible layers. Example oedometer test data is illustrated in Figure 7-15.\nA. The first unload increment should occur at the initial vertical effective stress (σ′zo) where the sample was obtained in the ground prior to the excavation and lowering of the groundwater table (per Step 2). The sample is then unloaded to the vertical effective\nstress following the excavation and lowering of groundwater table (σ′zexc) per Step 6.\nB. The soil is then reloaded beyond the final vertical effective stress (σ′zf) per Step 9.\nStep 2 | Compute the initial vertical effective stress (σ′zo) prior to the excavation and lowering of the groundwater table at the midpoint of each layer.\nStep 3 | If the water table is to be lowered (for example, to the base of the excavation for construction of foundations), compute vertical effective stress following the lowering of groundwater table (σ′zgw) at the midpoint of each layer. Note that σ′zgw = σ′zo when no groundwater is present to be lowered.\nStep 4 | Compute stress relief (q′exc) due to the excavation per equation 7-35 following drawdown of the water table.\nq′exc = γt · D [Eq. 7-35]\nwhere:\nq′exc = stress relief due to excavation (tsf)\nD = depth of excavation (ft)\nγt = total unit weight of the soil removed (tcf)\nStep 5 | Compute the vertical stress influence factor (Iσ) and corresponding unloaded vertical stress (Δσzexc) from the excavation at the midpoint of each layer per equation 7-36.\nΔσzexc = Iσ(q′exc) [Eq. 7-36]\nwhere:\nΔσzexc = unloaded vertical stress (tsf)\nIσ = influence factor for vertical stress per paragraph 6-7 (dimensionless)\nq′exc = stress relief due to excavation per equation 7-35 (tsf)\nStep 6 | Compute the vertical effective stress following the excavation and lowering of groundwater table (σ′zexc) at the midpoint of each layer per equation 7-37.\nσ′zexc = σ′zgw − Δσzexc [Eq. 7-37]\nwhere:\nσ′zexc = vertical effective stress (tsf), after excavation and dewatering\nσ′zgw = vertical effective stress (tsf), after dewatering\nΔσzexc = unloaded vertical stress due to excavation (tsf)\n[p. 182]\nStep 7 | Compute rebound (R) equation 7-38 for each stratum from the results of the oedometer tests.\nR = H (Δe/(1 + ezo)) [Eq. 7-38]\nwhere:\nR = vertical effective stress (tsf), after excavation and dewatering\nH = vertical effective stress (tsf), after dewatering\nezo = void ratio (dimensionless) at initial vertical effective stress (σ′zo) prior to excavation and dewatering\nezexc = void ratio (dimensionless) at vertical effective stress following the excavation and lowering of groundwater (σ′zexc)\nΔe = ezo − ezexc\nStep 8 | Compute the gross bearing pressure (q) or gross equivalent bearing pressure (qeq) for eccentrically loaded foundations (tsf) per paragraph 5-2b.\nStep 9 | Compute the vertical effective stress at the bearing elevation of the footing (σ′zD) at depth (D) (depth includes depth of excavation + depth of footing embedment).\nStep 10 | Compute the vertical stress influence factor (Iσ) per paragraph 6-7 and the corresponding induced vertical stress (ΔσZ) beneath the footing at the midpoint of each layer per equation 6-6, Δσz = Iσ(q − σ′zD).\nwhere:\nσ′zD = vertical effective stress at bearing elevation (tsf) from Step 9\nq = use either the gross or gross equivalent bearing pressure (tsf), whichever is applicable; or the ultimate bearing capacity (qult) divided by the factor of safety,\nwhichever is less (tsf)\nStep 11 | Compute the final vertical effective stress (σ′zf) at the midpoint of each layer to a depth of the footing the zone of influence per equation 7-39.\nσ′zf = σ′zo + Δσz [Eq. 7-39]\nwhere:\nσ′zf = final vertical effective stress (tsf)\nσ′zo = initial vertical effective stress (tsf) from Step 2\nΔσz = induced vertical stress beneath the footing (tsf) from Step 10\n[p. 183]\nStep 12 | Estimate the settlement due to the recompression of the soil per equation 7-40 for each stratum from the results of the oedometer tests.\nδr = H (Δe/(1 + ezexc)) [Eq. 7-40]\nwhere:\nδr = settlement due to recompression of soil (ft)\nH = thickness of soil layer (ft)\nezExc = void ratio (dimensionless) at vertical effective stress following the excavation and lowering of groundwater σ′zexc\nezf = void ratio (dimensionless) at final vertical effective stress from the footing (σ′zf)\nΔe = ezExc − ezf",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-35",
+     "description": "Equation 7-35 as printed (p. 181).",
+     "formula": "q′exc = γt · D",
+     "variables": {
+      "q′exc": "stress relief due to excavation (tsf)",
+      "D": "depth of excavation (ft)",
+      "γt": "total unit weight of the soil removed (tcf)"
+     },
+     "source": "Typed in from p. 181.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-36",
+     "description": "Equation 7-36 as printed (p. 181).",
+     "formula": "Δσzexc = Iσ(q′exc)",
+     "variables": {
+      "Δσzexc": "unloaded vertical stress (tsf)",
+      "Iσ": "influence factor for vertical stress per paragraph 6-7 (dimensionless)",
+      "q′exc": "stress relief due to excavation per equation 7-35 (tsf)"
+     },
+     "source": "Typed in from p. 181.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-37",
+     "description": "Equation 7-37 as printed (p. 181).",
+     "formula": "σ′zexc = σ′zgw − Δσzexc",
+     "variables": {
+      "σ′zexc": "vertical effective stress (tsf), after excavation and dewatering",
+      "σ′zgw": "vertical effective stress (tsf), after dewatering",
+      "Δσzexc": "unloaded vertical stress due to excavation (tsf)"
+     },
+     "source": "Typed in from p. 181.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-38",
+     "description": "Equation 7-38 as printed (p. 182).",
+     "formula": "R = H (Δe/(1 + ezo))",
+     "variables": {
+      "R": "vertical effective stress (tsf), after excavation and dewatering",
+      "H": "vertical effective stress (tsf), after dewatering",
+      "ezo": "void ratio (dimensionless) at initial vertical effective stress (σ′zo) prior to excavation and dewatering",
+      "Δe": "ezo − ezexc"
+     },
+     "notes": "As printed, the list of symbols under the equation (Table 7-10, Step 7) gives both R and H as a 'vertical effective stress (tsf)'; the step itself says 'Compute rebound (R) equation 7-38 for each stratum from the results of the oedometer tests'.",
+     "source": "Typed in from p. 182.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-39",
+     "description": "Equation 7-39 as printed (p. 182).",
+     "formula": "σ′zf = σ′zo + Δσz",
+     "variables": {
+      "σ′zf": "final vertical effective stress (tsf)",
+      "σ′zo": "initial vertical effective stress (tsf) from Step 2",
+      "Δσz": "induced vertical stress beneath the footing (tsf) from Step 10"
+     },
+     "source": "Typed in from p. 182.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-40",
+     "description": "Equation 7-40 as printed (p. 183).",
+     "formula": "δr = H (Δe/(1 + ezexc))",
+     "variables": {
+      "δr": "settlement due to recompression of soil (ft)",
+      "H": "thickness of soil layer (ft)",
+      "Δe": "ezExc − ezf"
+     },
+     "source": "Typed in from p. 183.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-15: Example of e-log-p curve for several soil samples obtained at different depths prior to unloading and reloading; σ′zo = initial vertical effective stress prior to excavation and dewatering, σ′zExc = vertical effective stress following excavation and dewatering, σ′zf = final vertical effective stress due to foundation load"
+   ],
+   "tables": [
+    "Table 7-10: Procedure for estimating settlements due to excavation rebound and subsequent recompression"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-15c, printed pp. 180 to 183."
+  },
+  {
+   "section_id": "7-16",
+   "title": "Settlements beneath fill",
+   "body": "[p. 183] Primary settlement beneath new fill is due to the induced vertical stress across the compressible layers from the footing (Δσz), and from the weight of the fill (Δσfill). Settlements below fill, with or without footings, can be estimated using either the results from laboratory oedometer tests or in situ testing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-16, printed p. 183."
+  },
+  {
+   "section_id": "7-16a",
+   "title": "Estimating settlements due to fill weight only",
+   "body": "[p. 183] Estimating settlements due to fill weight only. Since the base of fill is non-rigid and has length and/or width dimension greater than a conventional structure footing, settlements should be estimated at the center and the edges of the fill. The influence factor for vertical stress (Iσ), and corresponding induced vertical stress from the fill (Δσzfill), for the estimation of settlements at the edge and center of the fill should be computed per paragraph 6-8.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-16a, printed p. 183."
+  },
+  {
+   "section_id": "7-16b",
+   "title": "Estimating settlements due to fill plus footing loading",
+   "body": "[p. 183] Estimating settlements due to fill plus footing loading. Where footings are to be constructed in conjunction with the placement of fill, the induced vertical stresses at the center of the compressible layer are the summation of the induced vertical stress from the weight of the fill (Δσzfill), plus the induced vertical stress from the footing (Δσz). The influence factor for vertical stress (Iσ), and corresponding induced vertical stresses from the fill and foundation are computed at the midpoint of each layer per paragraph 6-8.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-16b, printed p. 183."
+  },
+  {
+   "section_id": "7-17",
+   "title": "Within-fill settlement",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-17, printed p. 183."
+  },
+  {
+   "section_id": "7-17a",
+   "title": "General",
+   "body": "[p. 183] General. Settlements that occur within compacted fills due to self-weight plus any induced vertical stresses from footings are referred to as “within-fill” settlements. In service, the fill may be altered with time due to environmental changes (such as wetting), resulting in changes in compressibility behavior. During the compaction process, densification is achieved by air void reduction at constant water content. The amount of within-fill settlement will depend primarily on the magnitude of the induced vertical stresses from footings, lift thickness, compaction water content, the degree of compaction, and on the mode of compaction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-17a, printed p. 183."
+  },
+  {
+   "section_id": "7-17b",
+   "title": "Estimating within-fill settlement",
+   "body": "[p. 184] Estimating within-fill settlement. For compacted soils, within-fill settlements (resulting from the fill weight alone) will typically vary between 0.5 to 4.0 percent of the total fill height for confining pressures less than about 50 psi (approximately 100 ft). Within-fill settlement due to induced vertical stresses from footings can be estimated using the constrained modulus or e-log-p data obtained from oedometer tests conducted on laboratory compacted soil samples or from in situ testing (such as DMT) after the fill has been placed.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-17b, printed p. 184."
+  },
+  {
+   "section_id": "7-18",
+   "title": "Time rate of consolidation settlement",
+   "body": "[p. 184] Where fill placement or surcharge is required prior to the placement of foundations, time rate of consolidation settlement can be evaluated to calculate when foundations can be placed so that tolerable settlements are not exceeded. In addition, the time rate of settlement beneath a foundation without fill could also be of interest. Reference Holtz et al. (2011), for an in-depth discussion on the time rate of consolidation.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18, printed p. 184."
+  },
+  {
+   "section_id": "7-18a",
+   "title": "Average degree of primary consolidation settlement",
+   "body": "[p. 184] Average degree of primary consolidation settlement. In some cases, the average degree or percent consolidation of a soil layer is needed. The average degree of consolidation, U%, (also referred to as percent consolidation) for a compressible layer is directly related to the primary consolidation settlement at a given time after loading (δct) as shown in equation 7-41. The time (t) required to achieve the average degree of primary consolidation (U%) under a given pressure is expressed by equation 7-42. The relationship between the average degree of consolidation U% and the dimensionless time factor (Tv) is provided in Figure 7-16.\n\nδct = (U%/100) δc [Eq. 7-41]\n\nwhere:\nδct = primary consolidation settlement at time, t (inches)\nU% = average degree (or percent) of primary consolidation at time, t (percentage)\nδc = primary consolidation settlement per equations 7-7 through 7-9 (inches)\n\nt = (Tv · Hdr^2)/Cv [Eq. 7-42]\n\nwhere:\nt = time required for a given percentage of consolidation after loading (days)\nTv = dimensionless time factor for consolidation due to vertical drainage per Figure 7-16.\nHdr = longest distance to drainage boundary (ft); Hdr = one-half compressible layer thickness (H) for two-directional drainage (drainage from top and bottom surface); Hdr = compressible layer thickness (H) for one-directional drainage (drainage from one surface)\n[p. 185]\nCv = coefficient of consolidation (ft^2/day) per paragraph 7-18c\n\nFigure 7-16. Average degree of consolidation (U%) versus time factor (Tv) for linear distribution of excess pore water pressure with depth",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-41",
+     "description": "Equation 7-41, introduced by: \"The relationship between the average degree of consolidation U% and the dimensionless time factor (Tv) is provided in Figure 7-16.\" (p. 184).",
+     "formula": "δct = (U%/100) δc",
+     "variables": {
+      "δct": "primary consolidation settlement at time, t (inches)",
+      "U%": "average degree (or percent) of primary consolidation at time, t (percentage)",
+      "δc": "primary consolidation settlement per equations 7-7 through 7-9 (inches)"
+     },
+     "source": "Typed in from p. 184.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-42",
+     "description": "Equation 7-42, introduced by: \"where: δct = primary consolidation settlement at time, t (inches) U% = average degree (or percent) of primary consolidation at time, t (percentage) δc = primary consolidation settlement per equations 7-7 through 7-9 (inches)\" (p. 184).",
+     "formula": "t = (Tv · Hdr^2)/Cv",
+     "variables": {
+      "t": "time required for a given percentage of consolidation after loading (days)",
+      "Tv": "dimensionless time factor for consolidation due to vertical drainage per Figure 7-16.",
+      "Hdr": "longest distance to drainage boundary (ft); Hdr = one-half compressible layer thickness (H) for two-directional drainage (drainage from top and bottom surface); Hdr = compressible layer thickness (H) for one-directional drainage (drainage from one surface)",
+      "Cv": "coefficient of consolidation (ft^2/day) per paragraph 7-18c"
+     },
+     "source": "Typed in from p. 184.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-16: Average degree of consolidation (U%) versus time factor (Tv) for linear distribution of excess pore water pressure with depth"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18a, printed pp. 184 to 185."
+  },
+  {
+   "section_id": "7-18b",
+   "title": "Procedure for estimating time rate of settlement",
+   "body": "[p. 185] Procedure for estimating time rate of settlement. The procedure for estimating the time required to achieve a specific percent of consolidation (or the percent consolidation for given time) is described in Table 7-11.\n\nTable 7-11 Procedure for estimating time required for consolidation\nStep 1 | Estimate primary consolidation (δc or δ) of each compressible layer per paragraphs 7-9, 7-10, or 7-11.\nStep 2 | Determine coefficient of consolidation (Cv) from in situ test methods or from laboratory consolidation test data per Table 7-12 or Table 7-13. Select the appropriate value of Cv based on the final vertical effective stress (σ′zf) at the midpoint of each compressible layer per Step 8 of Table 7-3. Preliminary estimates of coefficient of consolidation (Cv) may be made from empirical correlations.\nStep 3 | Compute the time (t) to achieve the specific percent of consolidation (U%) per equation 7-42 and Figure 7-16. Also, the percent consolidation U% for a specific time (t) can be computed by rearranging equation 7-42, solving for Tv and obtaining U% per Figure 7-16.\nStep 4 | To determine the time (t) and percent consolidation (U%) for a specific consolidation settlement at time (δct), first compute U% per equation 7-41, then compute time (t) per\nStep 3.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 7-11: Procedure for estimating time required for consolidation"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18b, printed p. 185."
+  },
+  {
+   "section_id": "7-18c",
+   "title": "Coefficient of consolidation",
+   "body": "[p. 185] Coefficient of consolidation. The coefficient of consolidation (Cv) can be estimated from either in situ tests or from laboratory oedometer time-deformation data. Two methods include: (1) logarithm-of-time method (log t) proposed by Casagrande and [p. 186] Fadum (1940), or (2) the square-root-of-time method (√t) proposed by Taylor (1948) per Table 7-12 and Table 7-13, respectively. The √t method typically results in higher values of Cv. Therefore, performing both methods will provide an upper and lower bound. The table procedures are performed for each applied stress increment conducted during the laboratory oedometer test, resulting in a separate Cv value for each stress increment. Approximate correlations of Cv with liquid limit are illustrated in Figure 3-12. The coefficient of consolidation (Cv) will generally increase with increasing permeability and decreasing compressibility.\n\nTable 7-12 Procedure for estimating coefficient of consolidation (Cv) from Casagrande’s logarithm (log t) graphical method (see Figure 7-17)\nStep 1 | Measure initial specimen height (h0). Measure dial reading (d) as a function of time (t). Determine final specimen height (hf) at end of stress increment. Plot the dial readings versus time (hf) for sample deformation for the given stress increment on semi-log paper.\nStep 2 | Plot Points P and Q on the upper portion of the consolidation curve which correspond to time t1 and t2, respectively. t2 = 4t1.\nStep 3 | The difference of the dial readings between P and Q is equal to x. Locate Point R, which is at a distance, x above Point P.\nStep 4 | Draw the horizontal line RS. The dial reading corresponding to this line is d0, which corresponds to 0% consolidation.\nStep 5 | Project the straight-line portions of the primary consolidation and the flatter portion toward the end of the consolidation curve to intersect at T. The dial reading corresponding to T is\nd100 (that is, 100 percent primary consolidation). The sample deformation beyond t100 is due to secondary compression.\nStep 6 | Determine the Point V on the consolidation curve, which corresponds to a dial reading of\n(d0+d100)/2 = d50. The time corresponding to the Point V is t50 (50 percent consolidation).\nStep 7 | Compute the coefficient of consolidation (Cv), per equation 7-43.\nCv = T50 (Hdr)^2/t50 [Eq. 7-43]\nwhere:\nCv = coefficient of consolidation (in^2/day)\nT50 = dimensionless time factor at 50 percent consolidation = 0.197\nt50 = time at 50 percent consolidation from Step 6 (days)\nHdr = longest distance to drainage boundary (inches). The standard oedometer test specimen has two-way drainage; therefore, Hdr = h̅ / 2 (inches), see Step 1.\nh̅ = avg. specimen height during stress increment = 0.5(h0 + hf) (inches), see Step 1\n\n[p. 187] Figure 7-17. Determination of t50 by the Casagrande method for a given stress increment\n\n[p. 188] Table 7-13 Procedure for estimating coefficient of consolidation (Cv) from Taylor’s (1948) square-root-of-time method (see Figure 7-18)\nStep 1 | Measure initial specimen height (h0). Measure dial reading (d) as a function of time (t). Determine final specimen height (hf) at end of stress increment. Plot the dial readings versus corresponding square-root-of time (√t).\nStep 2 | Project a line backward from the consolidation curve back to Point P (zero time) to define\nd0. Point P may be slightly lower than the initial dial reading d0, observed in the laboratory due to immediate compression of the specimen.\nStep 3 | Draw the tangent PQ to the early portion of the plot.\nStep 4 | Draw a line PR such that OR = (1.15) (OQ).\nStep 5 | Obtain √t90 (square-root-time for 90 percent consolidation) as the absisca of Point S.\nStep 6 | Compute the coefficient of consolidation (Cv) per equation 7-44.\nCv = T90 (Hdr)^2/t90 [Eq. 7-44]\nwhere:\nCv = coefficient of consolidation (in^2/day)\nT90 = dimensionless time factor at 90 percent consolidation = 0.848\nt90 = time at 90 percent consolidation from Step 1 (days)\nHdr = longest distance to drainage boundary (inches). The standard oedometer test specimen has two-way drainage; therefore, Hdr = h̅ / 2 (inches), see Step 1.\nh̅ = avg. specimen height during stress increment = 0.5(h0 + hf) (inches), see Step 1\n\nFigure 7-18. Determination of t90 by the Taylor Method for a given stress increment",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-43",
+     "description": "Equation 7-43 as printed (p. 186).",
+     "formula": "Cv = T50 (Hdr)^2/t50",
+     "variables": {
+      "Cv": "coefficient of consolidation (in^2/day)",
+      "T50": "dimensionless time factor at 50 percent consolidation = 0.197",
+      "t50": "time at 50 percent consolidation from Step 6 (days)",
+      "Hdr": "longest distance to drainage boundary (inches). The standard oedometer test specimen has two-way drainage; therefore, Hdr = h̅ / 2 (inches), see Step 1."
+     },
+     "source": "Typed in from p. 186.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-44",
+     "description": "Equation 7-44 as printed (p. 188).",
+     "formula": "Cv = T90 (Hdr)^2/t90",
+     "variables": {
+      "Cv": "coefficient of consolidation (in^2/day)",
+      "T90": "dimensionless time factor at 90 percent consolidation = 0.848",
+      "t90": "time at 90 percent consolidation from Step 1 (days)",
+      "Hdr": "longest distance to drainage boundary (inches). The standard oedometer test specimen has two-way drainage; therefore, Hdr = h̅ / 2 (inches), see Step 1."
+     },
+     "source": "Typed in from p. 188.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 7-17: Determination of t50 by the Casagrande method for a given stress increment",
+    "Figure 7-18: Determination of t90 by the Taylor Method for a given stress increment"
+   ],
+   "tables": [
+    "Table 7-12: Procedure for estimating coefficient of consolidation (Cv) from Casagrande’s logarithm (log t) graphical method (see Figure 7-17)",
+    "Table 7-13: Procedure for estimating coefficient of consolidation (Cv) from Taylor’s (1948) square-root-of-time method (see Figure 7-18)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18c, printed pp. 185 to 188."
+  },
+  {
+   "section_id": "7-18d",
+   "title": "Accuracy of time rate of settlement estimates",
+   "body": "[p. 189] Accuracy of time rate of settlement estimates. Time rates of settlement based on laboratory tests, in situ tests, and empirical correlations might not be representative of the field because time rates are influenced by in situ fissures, existence of high-permeable sand or low-permeable bentonite seams, impervious boundaries, and non-uniform soil parameters, as well as the rate of construction. In time rate computations, the drainage distance is squared, leading to a significant influence on time rate of settlement estimates that can often exceed significant changes in Cv.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18d, printed p. 189."
+  },
+  {
+   "section_id": "7-18e",
+   "title": "Reducing settlement time",
+   "body": "[p. 189] Reducing settlement time. The most common methods to accelerate settlement and reduce the time to achieve the settlement are: (1) application of a surcharge greater than the loading to be subjected to the underlying soil by the footing or permanent fill, (2) installation of vertical wick drains into the foundation soils, or (3) or a combination of the two.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-18e, printed p. 189."
+  },
+  {
+   "section_id": "7-19",
+   "title": "Estimation of secondary compression settlement",
+   "body": "[p. 189] Research suggests that secondary compression can occur simultaneously with consolidation settlement. However, the approach generally adopted, and presented in this manual, assumes that it occurs after consolidation (after primary consolidation and at constant vertical effective stress with no subsequent change in pore water pressure).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-19, printed p. 189."
+  },
+  {
+   "section_id": "7-19a",
+   "title": "Coefficient of secondary compression",
+   "body": "[p. 189] Coefficient of secondary compression. The coefficient of secondary compression (C∝) is the slope of the void ratio-logarithm time plot for time exceeding that required for 100 percent of primary consolidation (t100). t100 is arbitrarily established as the intersection of the tangent to the curve at the point of inflection with the tangent to the straight-line portion representing a secondary time effect as illustrated in Figure 7-19 for a given stress increment. The coefficient of secondary compression (Cα) can also be approximated for different soils based on correlations with the compression index (Cc) or natural moisture content, reference paragraph 3-7d.\n\n[p. 190] Figure 7-19. Oedometer void ratio—logarithm time plot for determination of Cα",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 7-19: Oedometer void ratio—logarithm time plot for determination of Cα"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-19a, printed pp. 189 to 190."
+  },
+  {
+   "section_id": "7-19b",
+   "title": "Procedure for estimating secondary settlement",
+   "body": "[p. 190] Procedure for estimating secondary settlement. The procedure for estimating secondary settlement is described in Table 7-14.\n\nTable 7-14 Procedure for estimating secondary compression settlement\nStep 1 | From the plot of the dial readings vs log-time plot completed in Step 1 of Table 7-12, plot void ratio (e) versus log-time t on semi-log paper as illustrated in Figure 7-19. For each dial reading (d) per elapsed time (t) the corresponding void ratio (e) is computed per equation 7-45.\ne = ((H0 − Hs) − (d0 − dt))/Hs [Eq. 7-45]\nwhere:\ne = void ratio at dt\nHo = original height of lab specimen (inches)\nHs = height of solids = H0/(1 + e0) (inches)\nd0 = initial dial reading 10^(−4) inches)\ndt = dial reading at time, t (10^(−4) inches)\nStep 2 | Project the straight-line portions of the primary consolidation and the flatter portion toward the end of the consolidation curve to intersect each other. The dial reading corresponding to the intersection is d100 (100 percent primary consolidation). The sample deformation beyond t100 is due to secondary compression.\n[p. 191]\nStep 3 | Calculate coefficient of secondary compression (Cα) slope of the void ratio-logarithm time plot for time exceeding that required for 100 percent of primary consolidation (t100) per equation 7-46.\nCα = (e1 − e2)/log10(t2 lab/t1 lab) [Eq. 7-46]\nwhere:\nCα = coefficient of secondary compression\nt1lab = time after secondary compression begins, typically at t100 (minutes)\nt2lab = arbitrary time typically at one log cycle greater than t100 along the secondary compression straight line portion of the dial reading versus log time curve which occurs after primary consolidation is completed (minutes)\ne1 = void ratio corresponding to t1lab (dimensionless)\ne2 = void ratio corresponding to t2lab (dimensionless)\nStep 4 | Estimate secondary settlement per equation 7-47.\nδs = (C∝/(1 + ep)) H · log10(t2/t1) [Eq. 7-47]\nwhere:\nδs = secondary compression (feet)\nt1 = time to complete primary consolidation in the consolidating layer in the field equation 7-42 (minutes)\nt2 = service life of the structure or any other time of interest (minutes)\nC∝ = coefficient of secondary compression per Step 3\nep = void ratio at the time of complete primary consolidation in the test specimen of the compressible layer (dimensionless)\nH = thickness of compressible layer in field being evaluated (feet)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 7-45",
+     "description": "Equation 7-45, introduced by: \"The procedure for estimating secondary settlement is described in Table 7-14.\" (p. 190).",
+     "formula": "e = ((H0 − Hs) − (d0 − dt))/Hs",
+     "variables": {
+      "e": "void ratio at dt",
+      "Hs": "height of solids = H0/(1 + e0) (inches)",
+      "d0": "initial dial reading 10^(−4) inches)",
+      "dt": "dial reading at time, t (10^(−4) inches)"
+     },
+     "source": "Typed in from p. 190.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-46",
+     "description": "Equation 7-46 as printed (p. 191).",
+     "formula": "Cα = (e1 − e2)/log10(t2 lab/t1 lab)",
+     "variables": {
+      "Cα": "coefficient of secondary compression",
+      "e1": "void ratio corresponding to t1lab (dimensionless)",
+      "e2": "void ratio corresponding to t2lab (dimensionless)"
+     },
+     "source": "Typed in from p. 191.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 7-47",
+     "description": "Equation 7-47 as printed (p. 191).",
+     "formula": "δs = (C∝/(1 + ep)) H · log10(t2/t1)",
+     "variables": {
+      "δs": "secondary compression (feet)",
+      "t1": "time to complete primary consolidation in the consolidating layer in the field equation 7-42 (minutes)",
+      "t2": "service life of the structure or any other time of interest (minutes)",
+      "C∝": "coefficient of secondary compression per Step 3",
+      "ep": "void ratio at the time of complete primary consolidation in the test specimen of the compressible layer (dimensionless)",
+      "H": "thickness of compressible layer in field being evaluated (feet)"
+     },
+     "notes": "The print sets the coefficient of secondary compression as C∝ here (a proportional-to sign) and as Cα in equation 7-46.",
+     "source": "Typed in from p. 191.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 7-14: Procedure for estimating secondary compression settlement"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-19b, printed pp. 190 to 191."
+  },
+  {
+   "section_id": "7-20",
+   "title": "Numerical methods",
+   "body": "[p. 191] Numerous commercially available software (SigmaW, Plaxis, OPTUM, etc.) are available to compute stress distribution, settlement, and time rate of settlement for variably loaded and irregular shapes, and for soils with variable stiffness properties. The analytical and chart-based solutions presented in Chapter 6 and the methods for estimating settlement in Chapter 7 are better suited for less complex subsurface profiles and loading conditions and are limited by the constraints and assumptions of each. Where more complex loading or subsurface conditions are encountered, the methods presented in Chapters 6 and 7 can be used as a first order approximation to the numerical methods considering more simpler loading and subsurface conditions. Reference UFC 3-220-10 for additional information regarding numerical solutions for stresses in soils and numerical analysis types.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 7 (Settlement), paragraph 7-20, printed p. 191."
+  }
+ ]
+}

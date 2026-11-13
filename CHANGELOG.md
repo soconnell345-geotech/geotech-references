@@ -44,6 +44,134 @@ page-reading tool knew (it knew only the figure catalogs).
 - No lookup function changed. Tests: `tests/test_tables_db.py`,
   `tests/test_table_catalog_rows.py`, two in `tests/test_references_agent.py`.
 
+**FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
+corrected from the page (app BACKLOG REF-93).** Found while the manual's
+chapter text was being rebuilt from the print; each was read from a 300 dpi
+render and independently checked cell by cell.
+
+- `table_7_12_frost_susceptibility` returned six rows one frost group LOWER
+  than Table 7-12 (p. 7-60) prints, the unsafe side: gravelly soils with 10
+  to 20 percent fines F1 (printed F2) and with over 20 percent F2 (printed
+  F3); sands, except very fine silty sands, with over 15 percent F2 (printed
+  F3); all silts F3 "High" (printed F4 "Very high"); very fine silty sands
+  and clays with PI under 12 F3 (printed F4). The other four rows were
+  right. The percent-finer column is the page's 0.075 mm.
+- `table_4_14_soil_as_pavement_material` holds all 17 printed rows (it held
+  10): the GM and SM "u" rows and ML, CL, OL, MH, CH, OH and Pt (p. 4-66).
+- `table_5_57_permeability_highway_materials` cites p. 5-105 (was 5-103)
+  and returns the table's footnotes.
+- `table_5_18_compaction_aashto`: the A-6 optimum moisture cell is printed
+  "10.30"; the function returns 10 to 30 percent and says what the page
+  prints.
+
+**EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils
+(U.S. Army Corps of Engineers, 31 July 2025), as package `em_1905`.**
+
+- Chapter text read off the print: chapters 1-12, and Appendices B
+  (design examples, ultimate limit states), C (design examples,
+  settlement) and D (unit conversion factors) as chapters 13-15; 779
+  sections, each body in the print's own wording with page markers, and
+  all 213 numbered equations typed in from the rendered page with their
+  symbols and units. Figure catalog: all 136 figures, each on the page
+  that prints its caption.
+- Build: each of the 475 formula lines of Appendices B and C was read
+  against the rendered page. The 40 the placement rules had read wrongly
+  (a power left off, a denominator stacked on a line of its own,
+  subscripts spaced off their symbols, two lines run into one, "pf" where
+  the page prints "bpf") are typed in from the page in the manifest
+  (`printed_passages`), each checked by its letters and digits, and each
+  result recomputed from the line as stored. Among them: Example C-3,
+  Step 4 (p. 359), whose time line had lost the square on the drainage
+  path (as read it gave 12.2 days, not the printed 152.8); Example C-7,
+  Steps 6 and 7 (p. 384); Eq. 7-10 as quoted in Examples C-6 and C-7; the
+  equivalent bearing pressure of Example B-2 (p. 301). A total or
+  sub-heading beside a table stands once, not on every row. Seventeen more
+  slips of the print are kept as printed with a note: Examples B-1, B-4
+  (the clay's unit weight printed 0.133 kcf in Table B-4a, Steps 1 and 3,
+  where Figure B-4 and Table B-4c give 0.113 kcf, from which the printed
+  qo and qult follow), B-5, B-6, B-7 (Table B-7b, Step 4: the CPT's four
+  q*t measurements printed "of 17 ksf", the pressuremeter's value, where
+  the line below lists 200, 200, 320 and 200 ksf, geometric mean 225 ksf),
+  C-2, C-3, C-6 and C-7 (Table C-7b, Step
+  7: the 25 rows total 0.343 in, printed 0.034 in), Table 3-15, the symbol
+  list of Eqs. 8-27 and 8-28, Table 3-8 (σv with a raised semicolon, the
+  evident reading σ′v; a stress given in pcf) and Tables D-3 and D-6.
+  Table C-7c's note says that every input it states (pne, αd = 0.5, αc =
+  0.33, Step 12's exponent 0.5) matches 8.5 tsf, Example B-7's Layer 1
+  value, which its Given names, and that only its printed results (9.5,
+  4.9, 0.015 ft) match pne = 16.0 tsf, the geometric mean of the P*L
+  values within 1.5B, which the page never prints. Table 4-10's E*0
+  (the text layer holds a capital O) and "not applicable" in Example B-2
+  (the text layer holds a space for the math font's b, p. 299) are typed
+  in, and a test looks for any other word broken by a space; a subscript
+  inside a word in the text font stays in it (CKoU, Figure 3-9); the
+  symbol lists of Eqs. 3-17, 7-3b, 7-4, 7-6, 7-11, 7-12 and 8-2 give every
+  symbol the formula prints; an equation printed straight after another
+  is described as printed after it, not by the other's formula (Eq. 5-3);
+  the Figure List keeps a word broken after its own hyphen whole
+  ("per-inch", "1-D"); a split leaves room for the notes placed after it
+  (C-2b and C-3b are each in two parts). A test looks through every chapter
+  for formula pieces put back in the wrong places (a prime alone, a lone
+  number above a formula, a number doubled from a stacked fraction, a
+  subscript spaced off its symbol, brackets that do not pair).
+- Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
+  5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
+  `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
+  `figures` (the table printed on Figure 7-16). Each returns a dict with
+  `units`, `source` (the printed page), `valid_for` and `notes`, and
+  raises ValueError outside what the print covers. A limit printed as part
+  of a relation is applied as printed (USACE dc <= 1.5, AASHTO dq <= 1.4,
+  Pa,d >= 0, C1 >= 0.5): the limited value comes back with the formula's
+  value beside it and `limit_governs`. sigma'p < sigma'zo, outside the
+  conditions printed beside Eqs. 7-7 to 7-9 (pp. 159-160), is refused, the
+  message naming them and the page. Some refusals rest on no printed
+  condition, and their messages and docstrings say they are the library's
+  reading: beta > phi' (Table 5-3, USACE), tan(beta) > 1 (Table 5-3,
+  AASHTO), t < 3 years (Eq. 7-34; p. 178 says only that R3 covers the
+  first 3 years), a void ratio that rises (Eqs. 7-5, 7-6, 7-46) and q <
+  sigma'zD in the settlement equations. A correction factor of Tables 5-3
+  and 5-4 that computes negative is refused with its value, one of exactly
+  zero returned with a note; Eqs. 6-5 and 6-6 return a negative net
+  pressure flagged `net_negative`. Eq. 7-43 returns Cv in in^2/day and
+  ft^2/day; Eq. 7-42 takes ft^2/day (`cv_ft2_per_day`). Eqs. 5-34/5-35
+  keep the printed 2c'd without the square root of K (noted); Eqs. 7-7 to
+  7-10 return feet and inches, as the examples convert. The worked
+  examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
+  kept as printed in the text, each with a note giving what the inputs
+  give, and the tests pin what the inputs give. The tests run Appendix B
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
+- Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
+  are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
+  parents in both retrieval layers; the existing ids give the same
+  results.
+- Scripts: `scripts/printed_army_layout.py` reads manuals in the Army
+  layout for `build_printed_text.py` (manifest layout "army");
+  `build_figure_catalog.py` and `check_section_numbers.py` read that
+  layout too.
+
+**Build of 2026-11-12: every figure-catalog row stores the page number its
+page prints.** A helper quotes `printed_page` in its citations. The audit
+of all 33 catalogs (4,164 rows) found, and this build corrects: DM 7.2
+Figures B-1 to B-24 three pages low; the edition year stored as the page in
+GEC-5 (13 rows), GEC-10 (8) and GEC-11 (5); the micropile manual's 142 rows
+cut to the number after the dash (now "1-4", "D-3", "E-5"); UFC 3-220-07
+Figure 6-7 on 6-8, not 6-9; GEC-12 Figure D-99 on PDF index 231, its own
+page. The 1,328 rows that had no printed page now have one, read from each
+page's footer or header and checked on renders (a seeded sample of 12 and
+every chapter or appendix boundary per reference): GEC-10 372, GEC-5 336,
+GEC-13 239, GEC-11 137, GEC-4 90, GEC-6 86, EN 1997-1 23, GEC-8 20,
+UFC 3-220-04FA 14, FHWA-NHI-05-037 6, GEC-14 5. Values are integers where
+the page prints only digits, otherwise the label as printed ("4-12",
+"A2-37", "A1"). New `tests/test_catalog_printed_pages.py`: every row has a
+printed page and none is a year, and every row's page prints it (69 rows on
+scanned or turned pages pinned to the label seen on a render). The
+first-page marker of every section in 13 references' chapter text was also
+checked against the page that prints the heading (4,407 sections; EN
+1997-1 and the Caltrans manual cite pages only inside the text); two
+GEC-13 ranges started on the wrong page and now start on the heading's
+page (7.1.2.1 pp. 7-1 to 7-4, 9.7.4 pp. 9-110 to 9-111).
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,
@@ -1445,6 +1573,66 @@ printed).
   socket, 2,500 psi).
 
 Tests: `tests/test_gec10_appendices_printed.py` (116).
+
+**DM 7.2 chapter text: key points, footnotes and table notes as printed
+(build of 2026-11-11/12, app BACKLOG REF-79).** Every summary,
+applicability and key point of the prologue (Chapter 1) and Chapters 2 to 7
+was read against the printed sentences of its section; those that said
+"must" or "required" where the print says "should" or "may", dropped a
+printed condition, widened a limit, or stated something the print does not
+were brought to the print (chapter 6: 139 of 770 fields; chapter 7: 42 of
+283; earlier chapters in their own commits). Statements that changed a design
+reading include: consolidation settlement under permanent loads "only" (the
+print adds a reasonable fraction of transient live load, 6-5.8); the Table
+6-26 group efficiency reductions (stored as applying mainly to CFAs and
+micropiles; the print reduces drilled shafts in coarse-grained soil, CFAs,
+and driven piles, DDPs and micropiles in soft clay, 6-5.5); the 0.1 to 0.9
+resistance factors are the generic values of the Figure 7-23 example, not a
+range for pile design (7-4.5.3); the COV of very small samples "must" be
+taken from Table 7-4 (7-4.1.1). Section bodies that stopped at a page foot
+now carry the printed rest: 2-4.2.2 (p. 72, water levels should be
+monitored; the wall type must suit the groundwater), 3-4.5.4 (p. 142,
+flooding trench backfill is not recommended), 3-5.6 (p. 155), 4-7.7 (p. 252,
+soil nail wall design), 6-4.5 (p. 399), 6-5.3.1 (p. 409, the API unit
+resistance limits); 6-5.4.2 (pp. 416-417) has the printed Tomlinson
+paragraphs it had condensed, and 6-7.2 two printed sentences on Davisson's C
+and depth to fixity. Notes beside two print slips: p. 476 cites "Equation
+5-81" for Eq. 6-79; p. 538 prints "N(1,0)" for the standard normal. The 45
+numbered footnotes are in the bodies at their marks as "[Footnote n: ...]"
+(prologue 6, chapters 2-7: 6, 5, 10, 2, 11, 5; seven had been stored as a
+loose "Note:" paragraph or run into the text), and 82 table notes the
+library did not hold are stored after the paragraph that cites their table
+as "[Table 6-26 note A: ...]" (chapter 2: 10, 3: 7, 5: 4, 6: 58, 7: 3);
+the notes that carry formulas (Tables 2-4, 3-11, 3-12, 5-8, 6-10, 6-19,
+6-20, 6-31, 6-46) were typed from the rendered page. Footnote 23 keeps the
+printed "LFRD" with a note. No section ids changed. Tests:
+`tests/test_dm7_2_footnotes.py`.
+
+**DM 7.2 Appendix B: all seven verification examples from the print (app
+BACKLOG REF-85).** `dm7_2/text/appendix_b.json` held Example 3 alone; it
+now holds the appendix introduction (new section `B`, p. 596) and Examples
+1, 2, 4, 5, 6 and 7 (pp. 596-659: cantilever and anchored cut walls, mat
+settlement, pile group capacity and settlement, pile group lateral load,
+retaining wall reliability), 60 sections in the print's wording with page
+marks and the labels of each figure. Every formula line (112) and every cell
+of Tables B-1 to B-42 was typed from the rendered page, not the PDF text
+layer, whose formula lines read as valid but wrong formulas. Print slips are
+kept as printed with a note beside them, among them: p. 599 "2,240B - 4560"
+for -7,840; Table B-4 with the overturning and sliding outcomes swapped;
+p. 611 "11,400 lb/ft" (1.2 x 9,568 is 11,500); p. 636 "1500 + 470 = 1976";
+the Example 5 block expression lettering L and Z the other way round from
+Eq. 6-38; p. 650 "259 kips" in a line whose 26 ft-kip needs 265; Example 7's
+derivative of the sliding limit state with respect to the backfill unit
+weight, which leaves out the unit weight in the active force (the full
+derivative gives beta about 1.76 against the printed 1.64); Table B-39's
+"0.390" for 0.039; Table B-41's Point Estimate beta 1.45 where the text
+gives 1.48. The chapter title is "Appendix B: Verification Examples". Tests:
+`tests/test_dm7_2_appendix_b.py` recomputes the printed numbers from the
+printed equations and stored cells, runs the dm7_2 functions on the
+examples' inputs (all agree except Table B-5 layer 2, where Eq. 4-12 gives
+KP,h 2.47 against the printed 2.4), and scans every dm7_2 chapter file for
+the scatter the text layer leaves in formulas (isolated primes, empty or
+unbalanced brackets, runs of single letters or digits, repeated table rows).
 
 ## 1.6.0
 

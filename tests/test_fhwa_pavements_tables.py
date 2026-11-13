@@ -381,12 +381,72 @@ class TestSoilAsPavementMaterial:
         r = table_4_14_soil_as_pavement_material("SC")
         assert "Poor" in r["subgrade_strength"]
 
-    def test_full_table_eight_classes(self):
-        assert len(table_4_14_soil_as_pavement_material()["rows"]) == 8
+    def test_every_cell_as_printed(self):
+        """Table 4-14, pp. 4-65 and 4-66 (PDF pages 167, 168), every cell
+        from 300 dpi renders. Before 2026-11-12 the lookup held only the ten
+        gravel and sand rows less GM u and SM u."""
+        printed = [
+            ("GW", "Well-graded gravels or gravel-sand mixtures, little or no fines",
+             "Excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GP", "Poorly graded gravels or gravel-sand mixtures, little or no fines",
+             "Good to excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GM-d", "Silty gravels, gravel-sand silt mixtures",
+             "Good to excellent", "Slight to medium", "Very slight", "Fair to poor"),
+            ("GM-u", "Silty gravels, gravel-sand silt mixtures",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("GC", "Clayey gravels, gravel-sand-clay mixture",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("SW", "Well-graded sands or gravelly sands, little or no fines",
+             "Good", "None to very slight", "Almost none", "Excellent"),
+            ("SP", "Poorly graded sands or gravelly sands, little or no fines",
+             "Fair to good", "None to very slight", "Almost none", "Excellent"),
+            ("SM-d", "Silty sands, sand-silt mixtures",
+             "Fair to good", "Slight to high", "Very slight", "Fair to poor"),
+            ("SM-u", "Silty sands, sand-silt mixtures",
+             "Fair", "Slight to high", "Slight to medium", "Poor to practically impervious"),
+            ("SC", "Clayey sands, sand-clay mixtures",
+             "Poor to fair", "Slight to high", "Slight to medium",
+             "Poor to practically impervious"),
+            ("ML", "Inorganic silts & very fine sand, rock flour, silty or clayey fine sand "
+                   "or clayey silts with slight plasticity",
+             "Poor to Fair", "Medium to Very High", "Slight to medium", "Fair to Poor"),
+            ("CL", "Inorganic clays of low to medium plasticity, gravelly clays, sandy "
+                   "clays, silty clays, lean clays",
+             "Poor to Fair", "Medium to High", "Slight to medium", "Practically Impervious"),
+            ("OL", "Organic silts & organic silt-clays or low plasticity",
+             "Poor", "Medium to High", "Medium to high", "Poor"),
+            ("MH", "Inorganic silts, micaceous or diatomaceous fine sand or silty soils, "
+                   "elastic silts",
+             "Poor", "Medium to Very High", "High", "Fair to Poor"),
+            ("CH", "Inorganic clays of high plasticity, fat clays",
+             "Poor to Fair", "Medium to Very High", "High", "Practically Impervious"),
+            ("OH", "Organic clays of medium to high plasticity, organic silts",
+             "Poor to Very Poor", "Medium", "High", "Practically Impervious"),
+            ("Pt", "Peat & other highly organic soils",
+             "Not Suitable", "Slight", "Very high", "Fair to Poor"),
+        ]
+        rows = table_4_14_soil_as_pavement_material()["rows"]
+        got = [(r["soil_class"], r["name"], r["subgrade_strength"],
+                r["potential_frost_action"], r["compressibility_expansion"],
+                r["drainage"]) for r in rows]
+        assert got == printed
+        pages = [r["printed_page"] for r in rows]
+        assert pages == ["4-65"] * 10 + ["4-66"] * 7
 
-    def test_fine_grained_not_in_table_raises(self):
+    def test_gm_alone_gives_both_rows(self):
+        r = table_4_14_soil_as_pavement_material("GM")
+        assert [x["soil_class"] for x in r["sub_rows"]] == ["GM-d", "GM-u"]
+        assert table_4_14_soil_as_pavement_material("sm u")["subgrade_strength"] == "Fair"
+
+    def test_fine_grained_and_peat(self):
+        ch = table_4_14_soil_as_pavement_material("CH")
+        assert ch["drainage"] == "Practically Impervious"
+        assert ch["printed_page"] == "4-66" and ch["pdf_page"] == 167
+        assert table_4_14_soil_as_pavement_material("Pt")["subgrade_strength"] == "Not Suitable"
+
+    def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
-            table_4_14_soil_as_pavement_material("CH")
+            table_4_14_soil_as_pavement_material("XX")
 
 
 # ===================================================================
@@ -403,10 +463,36 @@ class TestFrostSusceptibility:
         r = table_7_12_frost_susceptibility("F4")
         assert r["degree_of_frost_susceptibility"] == "Very high"
 
-    def test_f3_includes_silts(self):
-        r = table_7_12_frost_susceptibility("F3")
-        joined = " ".join(e["type_of_soil"] for e in r["entries"])
-        assert "silt" in joined.lower()
+    def test_every_cell_as_printed(self):
+        """Table 7-12, p. 7-60 (PDF page 412), every cell from a 300 dpi
+        render, in the page's order. Before 2026-11-12 six rows sat one group
+        lower than the page (all silts were F3 "High")."""
+        printed = [
+            ("F1", "Negligible to low", "Gravelly soils", "3-10", "GC, GP, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Gravelly soils", "10-20", "GM, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Sands", "3-15", "SW, SP, SM, SW-SM, SP-SM"),
+            ("F3", "High", "Gravelly Soils", "Greater than 20", "GM-GC"),
+            ("F3", "High", "Sands, except very fine silty sands", "Greater than 15",
+             "SM, SC"),
+            ("F3", "High", "Clays PI>12", "—", "CL, CH"),
+            ("F4", "Very high", "All Silts", "—", "ML-MH"),
+            ("F4", "Very high", "Very Fine Silty Sands", "Greater than 15", "SM"),
+            ("F4", "Very high", "Clays PI<12", "—", "CL, CL-ML"),
+            ("F4", "Very high", "Varied clays and other fine grained, banded sediments",
+             "—", "CL, ML, SM, CH"),
+        ]
+        rows = table_7_12_frost_susceptibility()["rows"]
+        got = [(r["frost_group"], r["degree_of_frost_susceptibility"], r["type_of_soil"],
+                r["percent_finer_0p075mm"], r["typical_classification"]) for r in rows]
+        assert got == printed
+
+    def test_silts_are_f4_very_high(self):
+        r = table_7_12_frost_susceptibility("F4")
+        soils = [e["type_of_soil"] for e in r["entries"]]
+        assert soils[:3] == ["All Silts", "Very Fine Silty Sands", "Clays PI<12"]
+        f3 = [e["type_of_soil"] for e in table_7_12_frost_susceptibility("F3")["entries"]]
+        assert not any("silt" in s.lower() and "except" not in s for s in f3)
+        assert "Varied clays" in r["print_note"]
 
     def test_full_table(self):
         rows = table_7_12_frost_susceptibility()["rows"]
@@ -477,6 +563,28 @@ class TestPermeability:
     def test_soils_full_table(self):
         assert len(table_5_56_permeability_soils()["rows"]) == 8
 
+    def test_highway_materials_every_cell_and_page(self):
+        """Table 5-57 is printed on p. 5-105 (PDF page 283, 0-based 282),
+        read from a 300 dpi render; it was cited at p. 5-103 before
+        2026-11-12."""
+        printed = [
+            ("Uniformly graded coarse aggregate", "0.4 - 4e-3"),
+            ("Well-graded aggregate without fines", "4e-3 - 4e-5"),
+            ("Concrete sand, low dust content", "7e-4 - 7e-6"),
+            ("Concrete sand, high dust content", "7e-6 - 7e-8"),
+            ("Silty and clayey sands", "1e-7 - 1e-9"),
+            ("Compacted silt", "7e-8 - 7e-10"),
+            ("Compacted clay", "< 1e-9"),
+            ("Bituminous concrete", "4e-5 - 4e-8"),
+            ("Portland cement concrete", "< 1e-10"),
+        ]
+        r = table_5_57_permeability_highway_materials()
+        assert [(x["material"], x["k_m_s"]) for x in r["rows"]] == printed
+        assert (r["printed_page"], r["pdf_page"]) == ("5-105", 282)
+        assert "3.28 ft" in r["print_note"]
+        bit = table_5_57_permeability_highway_materials("bituminous concrete")
+        assert bit["printed_page"] == "5-105" and "10^-10" in bit["footnote"]
+
     def test_bad_soil_raises(self):
         with pytest.raises(ValueError):
             table_5_56_permeability_soils("moon rock")
@@ -524,6 +632,28 @@ class TestCompaction:
 
     def test_full_table_seven_classes(self):
         assert len(table_5_18_compaction_aashto()["rows"]) == 7
+
+    def test_every_cell_as_printed(self):
+        """Table 5-18, p. 5-24 (PDF page 202), from a 300 dpi render. The A-6
+        optimum moisture content is printed "10.30"; every other cell is a
+        range, so it is read as 10-30 and the result says so."""
+        printed = [
+            ("A-1", "Well-graded gravel/sand mixtures", 115, 134, 18.1, 21.1, 5, 15),
+            ("A-2", "Silty or clayey gravel and sand", 109, 134, 17.2, 21.1, 9, 18),
+            ("A-3", "Poorly-graded sands", 100, 119, 15.7, 18.6, 5, 12),
+            ("A-4", "Low plasticity silty sands and gravels", 94, 125, 14.7, 19.6, 10, 20),
+            ("A-5", "Diatomaceous or micaceous silts", 84, 100, 13.2, 15.7, 20, 35),
+            ("A-6", "Plastic clay, sandy clay", 94, 119, 14.7, 18.6, 10, 30),
+            ("A-7", "Highly plastic clay", 81, 115, 12.7, 18.1, 15, 35),
+        ]
+        rows = table_5_18_compaction_aashto()["rows"]
+        got = [(r["aashto_class"], r["description"], r["dry_unit_weight_pcf_min"],
+                r["dry_unit_weight_pcf_max"], r["dry_unit_weight_knm3_min"],
+                r["dry_unit_weight_knm3_max"], r["optimum_moisture_content_pct_min"],
+                r["optimum_moisture_content_pct_max"]) for r in rows]
+        assert got == printed
+        assert '"10.30"' in table_5_18_compaction_aashto("A-6")["print_note"]
+        assert "print_note" not in table_5_18_compaction_aashto("A-5")
 
     def test_bad_class_raises(self):
         with pytest.raises(ValueError):

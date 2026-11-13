@@ -60,6 +60,7 @@ from . import _atomic_db
 from . import _packs
 from . import _query_expansion as _qe
 from . import _retrieval
+from . import _schema
 
 _PACKAGE_DIR = Path(__file__).parent
 _DB_NAME = "geotech_references_fts.sqlite"
@@ -1461,11 +1462,17 @@ def _nearby(conn: sqlite3.Connection, reference: str,
         if r is not None:
             above = (r["section_id"], r["title"])
             break
+    # in the Army layout (EM 1110-1-1905) '5-5a' is numbered under '5-5',
+    # '5-5a(2)' under '5-5a', '2-7a(2)(c)1' under '2-7a(2)(c)'
+    army = ("" if not _schema.ARMY_ID.match(section_id) or section_id[-2:-1] == "."
+            else f"{section_id}[a-z]*" if section_id[-1].isdigit()
+            else f"{section_id}[(]*" if section_id[-1].isalpha()
+            else f"{section_id}[(0-9]*")
     below = conn.execute(
         "SELECT section_id, title FROM sections WHERE reference = ? "
-        "AND (section_id LIKE ? OR section_id LIKE ?) ORDER BY rowid "
-        "LIMIT 8",
-        (reference, f"{section_id}.%", f"{section_id}-%"),
+        "AND (section_id LIKE ? OR section_id LIKE ?"
+        + (" OR section_id GLOB ?" if army else "") + ") ORDER BY rowid LIMIT 8",
+        (reference, f"{section_id}.%", f"{section_id}-%") + ((army,) if army else ()),
     ).fetchall()
     lettered = conn.execute(
         "SELECT section_id, title FROM sections WHERE reference = ? "

@@ -1,0 +1,890 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 8,
+ "chapter_title": "Mat Foundations",
+ "sections": [
+  {
+   "section_id": "8-1",
+   "title": "Introduction",
+   "body": "[p. 192] This chapter presents considerations and methods for design of common mat foundations. Mats may be uniform or variable in thickness and are generally designed to carry the entire load of the superstructure to limit differential movements. Mat foundations have a complex soil-structure interaction in which the soil and mat deflections and stiffness are interdependent, and both influence the mat design. Soil reaction and the corresponding bending moments and shear forces in the mat and mat settlements (both total and differential) are often of primary importance in design.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-1, printed p. 192."
+  },
+  {
+   "section_id": "8-2",
+   "title": "Considerations for use",
+   "body": "[p. 192] Mat foundations are commonly used for single-family homes, larger commercial structures (such as multi-story offices), parking garage structures, basements, pumping stations, and as equipment foundations. Typical reasons to choose mat foundations include more even distribution of structure settlement, need to span different foundation conditions, need to limit bearing pressures, need to resist hydrostatic uplift by balancing mat weight with hydrostatic pressures, need to resist or distribute expansive soil pressures and movements, and general constructability. In some situations, mat foundations are chosen to mitigate differential movement caused by seismically induced ground settlement or potential strength loss. The choice between a conventional spread footing design and mat design approach is generally made when footings become large and take up more than 30 percent of the plan area of the structure.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-2, printed p. 192."
+  },
+  {
+   "section_id": "8-3",
+   "title": "Mat foundation design methods",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3, printed p. 192."
+  },
+  {
+   "section_id": "8-3a",
+   "title": "Design methods",
+   "body": "[p. 192] Design methods. Analysis methods should be carefully coordinated between the project geotechnical and structural engineers. Structural design approaches include closed-form analytical methods based on Conventional (Rigid) or ACI Approximately Flexible assumptions regarding the mat, or more rigorous soil-structure interaction (SSI) modeling using structural numerical finite difference, finite element, or finite grid models (ACI 336.2R).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3a, printed p. 192."
+  },
+  {
+   "section_id": "8-3a(1)",
+   "title": "The SSI methods are characterized as pseudo-coupled or fully coupled as …",
+   "body": "[p. 192] The SSI methods are characterized as pseudo-coupled or fully coupled as discussed in paragraphs 8-3c(1) and 8-3c(2). In both flexible and pseudo-coupled SSI methods, the foundation soil support is represented as vertical springs having a stiffness called the modulus of subgrade reaction (Ks).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3a(1), printed p. 192. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-3a(2)",
+   "title": "In fully coupled SSI modeling, fundamental engineering properties of the soil …",
+   "body": "[p. 192] In fully coupled SSI modeling, fundamental engineering properties of the soil are used directly in the analysis. The method chosen by the designer should be based on the project details such that the design method assumptions are appropriate for the project. Analyses that consider flexural deflections in the mat and the resulting non-uniform soil bearing pressure usually produce more accurate estimates of the flexural stress in the mat and result in more reliable designs.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3a(2), printed p. 192. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-3b",
+   "title": "Rigid and ACI Approximately Flexible foundation analyses",
+   "body": "[p. 193] Rigid and ACI Approximately Flexible foundation analyses. In the Rigid and ACI Approximately Flexible mat design methods, soil support is modeled as continuous vertical springs that act independently in a vertical direction to support the mat bearing pressure, based on work by Winkler (1867). Typically, a single value of modulus of subgrade reaction is used and the 3-D stress distribution in the soil mass is not specifically considered, meaning the springs are considered uncoupled.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3b, printed p. 193."
+  },
+  {
+   "section_id": "8-3c",
+   "title": "Soil-structure interaction modeling",
+   "body": "[p. 193] Soil-structure interaction modeling. The soil support in numerical soil-structure modeling (SSI) models can be modeled using pseudo-coupled or coupled approaches.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3c, printed p. 193."
+  },
+  {
+   "section_id": "8-3c(1)",
+   "title": "Pseudo-coupled",
+   "body": "[p. 193] Pseudo-coupled.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3c(1), printed p. 193."
+  },
+  {
+   "section_id": "8-3c(1)(a)",
+   "title": "It is common practice to perform SSI in a pseudo-coupled approach, in which …",
+   "body": "[p. 193] It is common practice to perform SSI in a pseudo-coupled approach, in which soil support is modeled by the modulus of subgrade reaction and is approximated iteratively using the Discrete Area Method (Ulrich 1988). In pseudo-coupled mat analyses, separate geotechnical and structural analysis are performed in an iterative process until the structure and geotechnical models converge on a solution where the ground deflection magnitude and shape closely match the structure deformation deflection magnitude and shape. The analysis type is “pseudo-coupled,” since the geotechnical analyses considers the coupled relationships of 3-D stress distributions in the soil mass to develop simplified uncoupled vertical modulus of subgrade reaction spring constants for input into the structural design.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3c(1)(a), printed p. 193. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-3c(1)(b)",
+   "title": "Figure 8-1 illustrates the difference between coupled and uncoupled springs",
+   "body": "[p. 193] Figure 8-1 illustrates the difference between coupled and uncoupled springs. In a pseudo-coupled analysis, the geotechnical portion of the analysis considers the coupled behavior of the ground (Figure 8-1b) and simplifies the behavior as uncoupled springs for use in the structural analysis (Figure 8-1a).\n\n[p. 194] Figure 8-1. Coupled vs uncoupled soil springs as illustrated (ACI 336.2R)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 8-1: Coupled vs uncoupled soil springs as illustrated (ACI 336.2R)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3c(1)(b), printed pp. 193 to 194. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-3c(2)",
+   "title": "Fully-coupled",
+   "body": "[p. 194] Fully-coupled. For fully-coupled soil-structure interaction numerical models, various constitutive soil and structural models may be used to more rigorously model the soil-structure system directly in a single model. This approach is uncommon due to the computational effort and the limited benefit to design, and because the modeler needs significant expertise in both the structural design, soil mechanics, and numerical modeling. For common mat design, pseudo-coupled analysis is adequate. Bowles (1996) has noted that the value of fully-coupled analyses to common mat design has not been demonstrated. A full discussion of the parameters required for fully-coupled SSI modeling is beyond the scope of this chapter.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3c(2), printed p. 194."
+  },
+  {
+   "section_id": "8-3d",
+   "title": "Light structure mats",
+   "body": "[p. 194] Light structure mats. In lightly loaded structures (such as single-family homes), conventionally reinforced mats and post-tensioned mat foundations are sometimes selected as the foundation type and are used to resist and distribute expansive soil pressures and reduce differential movement to the superstructure caused by soil shrinkage or swelling pressures acting on the structure. These mats are generally uniform in thickness or ribbed, in which there is a grid of thickened beam sections. The Post-Tension Institute (PTI) has published prescriptive methods for mat design based on generalized climatic conditions and the soil shrinkage and swelling properties (Aalami and Bommer 1999). USACE Technical Report ITL-88-1 provides design procedures for conventionally reinforced mats as well as similar post-tension guidance as provided by PTI for post-tension mat design on expansive soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-3d, printed p. 194."
+  },
+  {
+   "section_id": "8-4",
+   "title": "Modulus of subgrade reaction",
+   "body": "[p. 194] Modulus of subgrade reaction (also denoted coefficient of soil subgrade reaction) is a model parameter specific to the structure being modeled and depends on bearing [p. 195] pressure magnitude and distribution (which depends on the structural mat stiffness), mat geometry, and the soil properties. It is defined by equation 8-1 as the bearing pressure divided by the soil settlement at a given point (x,y) as illustrated in Figure 8-2. A common unit of expression is lb/in^2/in. The notation ks(x,y) denotes the modulus of subgrade reaction at a specific plan coordinate. The modulus of subgrade reaction is not a soil property. Some references name this term as the “coefficient of soil subgrade reaction.” The term “modulus of subgrade reaction” used in this document has different meaning than that proposed by Vesic (1961), and the two cannot be used interchangeably.\n\nks(x,y) = q(x,y)/Δ(x,y) [Eq. 8-1]\n\nwhere:\nks(x,y) = modulus of subgrade reaction at coordinate (x, y) (lb/in^2/in)\nq(x,y) = bearing pressure at coordinate (x,y) (lb/in^2)\nΔ(x,y) = soil settlement at coordinate (x,y) (in)\n\nFigure 8-2. Mat bearing pressure (q) and ground settlement (Δ)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-1",
+     "description": "Equation 8-1, introduced by: \"Some references name this term as the “coefficient of soil subgrade reaction.” The term “modulus of subgrade reaction” used in this document has different meaning than that proposed by Vesic (1961), and the two cannot be used ...\" (p. 195).",
+     "formula": "ks(x,y) = q(x,y)/Δ(x,y)",
+     "variables": {
+      "ks(x,y)": "modulus of subgrade reaction at coordinate (x, y) (lb/in^2/in)",
+      "q(x,y)": "bearing pressure at coordinate (x,y) (lb/in^2)",
+      "Δ(x,y)": "soil settlement at coordinate (x,y) (in)"
+     },
+     "notes": "The term 'modulus of subgrade reaction' used in this manual has a different meaning than that proposed by Vesic (1961), and the two cannot be used interchangeably (paragraph 8-4).",
+     "source": "Typed in from p. 195.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 8-2: Mat bearing pressure (q) and ground settlement (Δ)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-4, printed pp. 194 to 195."
+  },
+  {
+   "section_id": "8-4a",
+   "title": "Application",
+   "body": "[p. 195] Application. For uncoupled and pseudo-coupled analyses, the soil supporting the mat is modeled as a vertically oriented, linear-elastic, Winkler-type spring, with the stiffness represented by the modulus of subgrade reaction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-4a, printed p. 195."
+  },
+  {
+   "section_id": "8-4b",
+   "title": "Plate load test values",
+   "body": "[p. 195] Plate load test values.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-4b, printed p. 195."
+  },
+  {
+   "section_id": "8-4b(1)",
+   "title": "Terzaghi (1955) and other publications reported values from plate load tests",
+   "body": "[p. 195] Terzaghi (1955) and other publications reported values from plate load tests. The reported values are often identified as k1 or k0.3, corresponding to 1 ft and 0.3-meter plate load tests and are primarily useful in pavement and lightly loaded slab-on-grade designs where wheel loading areas are similar in size to a plate load test. These values are different than ks values used for structural mat designs, as ks is a model parameter and specific to each structure and foundation condition.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-4b(1), printed p. 195. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-4b(2)",
+   "title": "Several different researchers have proposed different methods to use the plate …",
+   "body": "[p. 195] Several different researchers have proposed different methods to use the plate load test modulus to calculate a ks suitable for building mat designs. Such approaches make many simplifications regarding soil uniformity and elastic behavior and mat [p. 196] behavior that can introduce error. Sources of error include soil variability and material properties that vary with depth, variable in situ stress conditions and stress history, and potentially incorrect assumptions regarding the soil stress distribution. The simplified approaches to estimate a ks for mat foundation design from textbook k1 or k0.3 should only be used for preliminary analyses.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-4b(2), printed pp. 195 to 196. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-5",
+   "title": "Allowable bearing capacity",
+   "body": "[p. 196] Allowable bearing capacity of the soil is calculated for the mat foundation following the bearing capacity analysis methods of Chapter 5 and safety factors presented in Table 8-1. General bearing capacity is checked considering the full mat geometry and total mat loads distributed over the mat.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-5, printed p. 196."
+  },
+  {
+   "section_id": "8-5a",
+   "title": "The general bearing capacity is relatively insensitive to the precise shape of …",
+   "body": "[p. 196] The general bearing capacity is relatively insensitive to the precise shape of the bearing pressure, and it is uncommon that re-evaluation of bearing capacity is required after the final bearing pressure distribution is determined. General, local, and punching shear considerations should be examined in the bearing capacity analysis. Local bearing capacity considerations may not be significant for mat foundations in deep excavations where the excavation wall is at the mat edge; however, general, local, and punching shear considerations could be critical on projects where stratigraphy is layered with strata of major differences in strength, or on projects where the excavation wall does not extend to the mat edge and there are high lateral loads (Ulrich 1995).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-5a, printed p. 196. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-5b",
+   "title": "Bearing capacity is rarely a controlling factor in mat foundations on sands and …",
+   "body": "[p. 196] Bearing capacity is rarely a controlling factor in mat foundations on sands and gravels but is more often critical for fine-grained soils. Bearing pressures under a mat foundation are not typically uniform. Sometimes local bearing pressures exceed allowable pressures calculated. In this situation, the bearing pressure under this local condition, typically at a wall or column load, should be checked considering the high-pressure area as its own footing, with the surrounding bearing pressure of the mat beyond higher pressure applied as a surcharge load in the bearing pressure equation. Often these locally higher bearing pressures have acceptable factors of safety.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-5b, printed p. 196. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-6",
+   "title": "Geotechnical aspects of mat design methods",
+   "body": "[p. 196] Summaries of the Conventional (Rigid), ACI Approximately Flexible, and Discrete Area mat design methods are discussed in paragraphs 8-6a, 8-6b and 8-6c, respectively, with focus on the geotechnical aspects of the design. The Discrete Area Method may be used to estimate the modulus of subgrade reaction for mat designs. For simple loading conditions and generally small mats, the Conventional (Rigid) or ACI Approximately Flexible design methods are generally adequate and often more expedient.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6, printed p. 196."
+  },
+  {
+   "section_id": "8-6a",
+   "title": "Conventional (Rigid) Method",
+   "body": "[p. 196] Conventional (Rigid) Method.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a, printed p. 196."
+  },
+  {
+   "section_id": "8-6a(1)",
+   "title": "General",
+   "body": "[p. 196] General. Rigid mats can be used as foundations for many kinds of projects, and are often used to support heavy machines, above-ground fuel tanks, and other similar structures. Rigid mats are designed such that the mat is so stiff that no differential settlement occurs between load concentrations relative to the mat, although the mat [p. 197] might experience tilting if the load resultant is eccentric from the mat center, or the foundation support is uneven.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(1), printed pp. 196 to 197."
+  },
+  {
+   "section_id": "8-6a(2)",
+   "title": "Application of Conventional (Rigid) Method",
+   "body": "[p. 197] Application of Conventional (Rigid) Method. The conventional method (Teng 1962; Bowles 1974) is the same as a conventional multi-column footing design extended in 2-D. The conventional method should be used only when (1) the variation in spacing of the columns and variation in the column loads is less than 20 percent, and (2) the column spacing is less than 1.75λ (ACI 336.2R); the stiffness evaluation factor (λ) is calculated per equation 8-2. The ACI Approximately Flexible Method or numerical methods should be used if the assumptions of the conventional method are not met.\n\nλ = ⁴√(ks/(4EI)) [Eq. 8-2]\n\nwhere:\nλ = stiffness evaluation factor (in^(-1))\nks = modulus of subgrade reaction (lb/in^2/in)\nE = Young’s modulus of mat material (lb/in^2)\nI = moment of inertia of mat strip width (distance between column lines) (in^4)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-2",
+     "description": "Equation 8-2, introduced by: \"The ACI Approximately Flexible Method or numerical methods should be used if the assumptions of the conventional method are not met.\" (p. 197).",
+     "formula": "λ = ⁴√(ks/(4EI))",
+     "variables": {
+      "λ": "stiffness evaluation factor (in^(-1))",
+      "ks": "modulus of subgrade reaction (lb/in^2/in)",
+      "E": "Young’s modulus of mat material (lb/in^2)",
+      "I": "moment of inertia of mat strip width (distance between column lines) (in^4)"
+     },
+     "notes": "The fourth root. The stiffness evaluation factor of the conventional (rigid) method (paragraph 8-6a(2)).",
+     "source": "Typed in from p. 197.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(2), printed p. 197."
+  },
+  {
+   "section_id": "8-6a(3)",
+   "title": "Conventional (Rigid) Method assumptions",
+   "body": "[p. 197] Conventional (Rigid) Method assumptions. Key assumptions made in the conventional method include:",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(3), printed p. 197."
+  },
+  {
+   "section_id": "8-6a(3)(a)",
+   "title": "The mat is infinitely rigid, and therefore, mat-ground bearing pressures are …",
+   "body": "[p. 197] The mat is infinitely rigid, and therefore, mat-ground bearing pressures are not influenced by deformations in the mat,",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(3)(a), printed p. 197. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-6a(3)(b)",
+   "title": "The bearing pressure below the mat follows a planar distribution where the …",
+   "body": "[p. 197] The bearing pressure below the mat follows a planar distribution where the centroid of the bearing pressure coincides with the line of action of the resultant force of the superstructure loads acting on the mat as shown in Figure 8-3, and",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(3)(b), printed p. 197. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-6a(3)(c)",
+   "title": "The modulus of subgrade reaction can be simplified to a single constant value …",
+   "body": "[p. 197] The modulus of subgrade reaction can be simplified to a single constant value that independently deforms solely based on vertical pressure (such as uncoupled).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(3)(c), printed p. 197. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-6a(4)",
+   "title": "Limitations of the Conventional (Rigid) Method",
+   "body": "[p. 197] Limitations of the Conventional (Rigid) Method. Due to the inherent flexibility of most mats, the conventional method could lead to erroneous estimates of mat bending moments. Some authors have recommended the conventional method be discontinued (Horvath 2002) due to general availability of better computational methods such as the Discrete Area Method.\n\n[p. 198] Figure 8-3. Conventional (Rigid) Method planar distribution of bearing pressure",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 8-3: Conventional (Rigid) Method planar distribution of bearing pressure"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(4), printed pp. 197 to 198."
+  },
+  {
+   "section_id": "8-6a(5)",
+   "title": "Conventional (Rigid) Method steps",
+   "body": "[p. 198] Conventional (Rigid) Method steps. The mat design should begin with calculation of allowable bearing capacity and estimation of a uniform modulus of subgrade reaction (ks). Allowable bearing capacity (qa) should be calculated according to paragraph 5-5, and the applied bearing pressure should be verified to be less than allowable. The settlement estimate should be made as would be made for a spread footing using service loads (see paragraph 2-10c). Different estimates of ks for immediate and long-term settlement (consolidation) may be required, depending on the soil and loading conditions. The modulus of subgrade reaction (ks) is used to verify relative mat rigidity per equation 8-2.\n\nks = q/Δ [Eq. 8-3]\n\nwhere:\nks = modulus of subgrade reaction (lb/in^2/in)\nΔ = estimated settlement (in)\nq = unfactored applied bearing pressure (psi)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-3",
+     "description": "Equation 8-3, introduced by: \"The modulus of subgrade reaction (ks) is used to verify relative mat rigidity per equation 8-2.\" (p. 198).",
+     "formula": "ks = q/Δ",
+     "variables": {
+      "ks": "modulus of subgrade reaction (lb/in^2/in)",
+      "Δ": "estimated settlement (in)",
+      "q": "unfactored applied bearing pressure (psi)"
+     },
+     "source": "Typed in from p. 198.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(5), printed p. 198."
+  },
+  {
+   "section_id": "8-6a(6)",
+   "title": "Structural design steps",
+   "body": "[p. 198] Structural design steps. Using the calculated modulus of subgrade reaction and allowable bearing pressure, the structural engineer follows a 7-step procedure to design the mat foundation. Geotechnical engineers should be familiar with the design steps to understand how the geotechnical parameters being provided are used in the structure design. The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\n\n[p. 199] Table 8-1 Procedure for Conventional (Rigid) Method\nStep 1 | Determine the line of action location for each of the column loads applied to the mat. For columns loading a mat, the loads are summed to calculate the total applied load as show in equation 8-4. Eccentricity from the x and y axes are calculated using equations 8-5 through 8-8.\nQt = ∑(n=1 to i) Qn [Eq. 8-4]\nx′ = (∑(1 to i) Qn · xn)/Qt [Eq. 8-5]\ny′ = (∑(1 to i) Qn · yn)/Qt [Eq. 8-6]\nex = x′ − B/2 [Eq. 8-7]\ney = y′ − B/2 [Eq. 8-8]\nwhere:\nQt = total applied load (lbs)\ni = number of columns\nQn = individual column load for column n (lbs)\nx′ = location of resultant relative to the neutral location, x-axis (ft)\ny′ = location of resultant relative to the neutral location, y-axis (ft)\nxn = x-coordinate for column n (ft)\nyn = y-coordinate for column n (ft)\nex = eccentricity from neutral axis about x-axis (ft)\ney = eccentricity from neutral axis about y-axis (ft)\nB = width of strip (ft)\n[p. 200]\nStep 2 | The mat bearing pressures (q) at points (x,y) beneath the mat are checked and compared to the allowable bearing pressures using equation 8-9. The bearing pressures must be less than the allowable bearing pressure.\nq = Qt/A ± (Mx/Ix)y ± (My/Iy)x [Eq. 8-9]\nIx = (B · L^3)/12 [Eq. 8-10]\nIy = (L · B^3)/12 [Eq. 8-11]\nMx = Qt · ey [Eq. 8-12]\nMy = Qt · ex [Eq. 8-13]\nwhere:\nq = applied bearing pressure (psf)\nQt = total load (lbs)\nA = area of mat (ft^2)\nMx = moment of the column loads about x-axis (ft-lbs)\nMy = moment of the columns loads about y-axis (ft-lbs)\nIx = moment of inertia about x-axis (ft^4)\nIy = moment of inertia about y-axis (ft^4)\nx = x-coordinate for column n (ft)\ny = y-coordinate for column n (ft)\nB = width of strip (ft)\nL = length of strip (ft)\nex = eccentricity from neutral axis about x-axis (ft)\ney = eccentricity from neutral axis about y-axis (ft)\nStep 3 | Proportion the mat thickness to resist column punching and shear failure.\n[p. 201]\nStep 4 | Divide the mat into strips in both the x and y directions. The width of a strip is notated as B1 and the length as B as illustrated in Figure 8-4. The Q-values in Figure 8-3 represent column loads distributed throughout the mat. In practice, strip edges are generally set to bisect column lines, simplifying the analysis with loads centered on the strip.\nFigure 8-4. Rigid mat divided into strips\n[p. 202]\nStep 5 | For each strip, calculate the modified column loads by determination of the total loads on the strip (Qs), equation 8-14, average bearing pressure on the strip (qav), equation 8-15, average load on the strip (Qav), equation 8-16, average modified bearing pressure (qavmod), equations 8-17, and modification factor (F), equation 8-18.\nQs = ∑(1 to i) Qm [Eq. 8-14]\nqav = Qs/(B · B1) [Eq. 8-15]\nQav = (Qs + B · B1 · qav)/2 [Eq. 8-16]\nqavmod = Qav/(B · B1) [Eq. 8-17]\nF = Qav/Qs [Eq. 8-18]\nwhere:\nQs = total load on strip (lbs)\ni = number of columns\nQm = one of i column loads on the strip (lbs)\nqav = average bearing pressure (psf)\nB = length of mat strip (ft)\nB1 = width of mat strip (ft)\nQav = average column load (lbs)\nqavmod = average modified bearing pressure (psf)\nF = modification factor (unitless)\nStep 6 | Shear and moment loading diagrams for the strip are drawn with each column load multiplied by the factor (F), and the bearing pressure uniformly applied as (qavmod). The highlighted strip from Figure 8-4 is selected for illustration on the mat strip loading diagram (Figure 8-5). Due to the simplifications required for the rigid mat design procedure, moment diagrams may not fully close to zero at each end.\nFigure 8-5. Mat strip loading diagram\nStep 7 | Design the mat (such as dimensions, concrete properties, and reinforcing) for the shear and moments calculated.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-4",
+     "description": "Equation 8-4, introduced by: \"The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\" (p. 199).",
+     "formula": "Qt = ∑(n=1 to i) Qn",
+     "variables": {
+      "Qt": "total applied load (lbs)",
+      "i": "number of columns",
+      "Qn": "individual column load for column n (lbs)"
+     },
+     "source": "Typed in from p. 199.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-5",
+     "description": "Equation 8-5, introduced by: \"The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\" (p. 199).",
+     "formula": "x′ = (∑(1 to i) Qn · xn)/Qt",
+     "variables": {
+      "Qt": "total applied load (lbs)",
+      "i": "number of columns",
+      "Qn": "individual column load for column n (lbs)",
+      "x′": "location of resultant relative to the neutral location, x-axis (ft)",
+      "xn": "x-coordinate for column n (ft)"
+     },
+     "source": "Typed in from p. 199.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-6",
+     "description": "Equation 8-6, introduced by: \"The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\" (p. 199).",
+     "formula": "y′ = (∑(1 to i) Qn · yn)/Qt",
+     "variables": {
+      "Qt": "total applied load (lbs)",
+      "i": "number of columns",
+      "Qn": "individual column load for column n (lbs)",
+      "y′": "location of resultant relative to the neutral location, y-axis (ft)",
+      "yn": "y-coordinate for column n (ft)"
+     },
+     "source": "Typed in from p. 199.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-7",
+     "description": "Equation 8-7, introduced by: \"The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\" (p. 199).",
+     "formula": "ex = x′ − B/2",
+     "variables": {
+      "x′": "location of resultant relative to the neutral location, x-axis (ft)",
+      "ex": "eccentricity from neutral axis about x-axis (ft)",
+      "B": "width of strip (ft)"
+     },
+     "source": "Typed in from p. 199.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-8",
+     "description": "Equation 8-8, introduced by: \"The mat is designed into strips for evaluation, and the design procedure is summarized in Table 8-1.\" (p. 199).",
+     "formula": "ey = y′ − B/2",
+     "variables": {
+      "y′": "location of resultant relative to the neutral location, y-axis (ft)",
+      "ey": "eccentricity from neutral axis about y-axis (ft)",
+      "B": "width of strip (ft)"
+     },
+     "notes": "As printed, with B/2, the same term as in equation 8-7.",
+     "source": "Typed in from p. 199.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-9",
+     "description": "Equation 8-9 as printed (p. 200).",
+     "formula": "q = Qt/A ± (Mx/Ix)y ± (My/Iy)x",
+     "variables": {
+      "q": "applied bearing pressure (psf)",
+      "Qt": "total load (lbs)",
+      "A": "area of mat (ft^2)",
+      "Mx": "moment of the column loads about x-axis (ft-lbs)",
+      "My": "moment of the columns loads about y-axis (ft-lbs)",
+      "Ix": "moment of inertia about x-axis (ft^4)",
+      "Iy": "moment of inertia about y-axis (ft^4)",
+      "x": "x-coordinate for column n (ft)",
+      "y": "y-coordinate for column n (ft)"
+     },
+     "source": "Typed in from p. 200.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-10",
+     "description": "Equation 8-10 as printed (p. 200).",
+     "formula": "Ix = (B · L^3)/12",
+     "variables": {
+      "Ix": "moment of inertia about x-axis (ft^4)",
+      "B": "width of strip (ft)",
+      "L": "length of strip (ft)"
+     },
+     "source": "Typed in from p. 200.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-11",
+     "description": "Equation 8-11 as printed (p. 200).",
+     "formula": "Iy = (L · B^3)/12",
+     "variables": {
+      "Iy": "moment of inertia about y-axis (ft^4)",
+      "B": "width of strip (ft)",
+      "L": "length of strip (ft)"
+     },
+     "source": "Typed in from p. 200.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-12",
+     "description": "Equation 8-12 as printed (p. 200).",
+     "formula": "Mx = Qt · ey",
+     "variables": {
+      "Qt": "total load (lbs)",
+      "Mx": "moment of the column loads about x-axis (ft-lbs)",
+      "ey": "eccentricity from neutral axis about y-axis (ft)"
+     },
+     "source": "Typed in from p. 200.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-13",
+     "description": "Equation 8-13 as printed (p. 200).",
+     "formula": "My = Qt · ex",
+     "variables": {
+      "Qt": "total load (lbs)",
+      "My": "moment of the columns loads about y-axis (ft-lbs)",
+      "ex": "eccentricity from neutral axis about x-axis (ft)"
+     },
+     "source": "Typed in from p. 200.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-14",
+     "description": "Equation 8-14 as printed (p. 202).",
+     "formula": "Qs = ∑(1 to i) Qm",
+     "variables": {
+      "Qs": "total load on strip (lbs)",
+      "i": "number of columns",
+      "Qm": "one of i column loads on the strip (lbs)"
+     },
+     "source": "Typed in from p. 202.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-15",
+     "description": "Equation 8-15 as printed (p. 202).",
+     "formula": "qav = Qs/(B · B1)",
+     "variables": {
+      "Qs": "total load on strip (lbs)",
+      "qav": "average bearing pressure (psf)",
+      "B": "length of mat strip (ft)",
+      "B1": "width of mat strip (ft)"
+     },
+     "source": "Typed in from p. 202.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-16",
+     "description": "Equation 8-16 as printed (p. 202).",
+     "formula": "Qav = (Qs + B · B1 · qav)/2",
+     "variables": {
+      "Qs": "total load on strip (lbs)",
+      "qav": "average bearing pressure (psf)",
+      "B": "length of mat strip (ft)",
+      "B1": "width of mat strip (ft)",
+      "Qav": "average column load (lbs)"
+     },
+     "source": "Typed in from p. 202.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-17",
+     "description": "Equation 8-17 as printed (p. 202).",
+     "formula": "qavmod = Qav/(B · B1)",
+     "variables": {
+      "B": "length of mat strip (ft)",
+      "B1": "width of mat strip (ft)",
+      "Qav": "average column load (lbs)",
+      "qavmod": "average modified bearing pressure (psf)"
+     },
+     "source": "Typed in from p. 202.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-18",
+     "description": "Equation 8-18 as printed (p. 202).",
+     "formula": "F = Qav/Qs",
+     "variables": {
+      "Qs": "total load on strip (lbs)",
+      "Qav": "average column load (lbs)",
+      "F": "modification factor (unitless)"
+     },
+     "source": "Typed in from p. 202.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 8-4: Rigid mat divided into strips",
+    "Figure 8-5: Mat strip loading diagram"
+   ],
+   "tables": [
+    "Table 8-1: Procedure for Conventional (Rigid) Method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6a(6), printed pp. 198 to 202."
+  },
+  {
+   "section_id": "8-6b",
+   "title": "ACI Approximate Flexible Method",
+   "body": "[p. 203] ACI Approximate Flexible Method. For simple structures that have variable column loading, or for mats that are insufficiently stiff to be considered rigid, the ACI Approximately Flexible Method may be used to estimate developed moments and shears in the mat. This method is presented in ACI 336.2R, described in Bowles (1996), and adapted herein.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6b, printed p. 203."
+  },
+  {
+   "section_id": "8-6b(1)",
+   "title": "Limitations",
+   "body": "[p. 203] Limitations. The assumptions made in this method can introduce error due to the assumption of a single value of modulus of subgrade reaction. For larger structures, computational finite grid, finite difference, or finite element methods should be used for full design of flexible mats.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6b(1), printed p. 203."
+  },
+  {
+   "section_id": "8-6b(2)",
+   "title": "ACI Approximately Flexible Method assumptions",
+   "body": "[p. 203] ACI Approximately Flexible Method assumptions. This method is based on theory of plates on an elastic foundation and makes the key assumptions that the foundation behaves as liner-elastic springs that are infinitely small and independent (such as uncoupled); the springs can resist both tension and compression; and the modulus of subgrade reaction can be simplified as a single uniform spring constant as shown in Figure 8-6. Like the conventional method procedure, the geotechnical engineer should calculate the allowable soil bearing capacity (qa), estimate settlement (Δ), and approximate a soil modulus of subgrade reaction (ks) in the same manner as described for the conventional method.\n\nFigure 8-6. Principles of American Concrete Institute Approximate Flexible Method",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 8-6: Principles of American Concrete Institute Approximate Flexible Method"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6b(2), printed p. 203."
+  },
+  {
+   "section_id": "8-6b(3)",
+   "title": "Structural design steps",
+   "body": "[p. 203] Structural design steps. The five design steps shown in Table 8-2 are typically performed by the structural designer in the ACI Approximately Flexible Method.\n\n[p. 204] Table 8-2 Procedure for the American Concrete Institute Approximately Flexible Method\nStep 1 | Establish the thickness of the proposed mat required to resist punching and shearing at critical locations.\nStep 2 | Calculate the mat rigidity (D) per equation 8-19.\nD = (EC · t^3)/(12(1 − μC^2)) [Eq. 8-19]\nwhere:\nD = flexural rigidity of the mat (lb-ft)\nEC = Young’s modulus of mat material (psf)\nt^3 = thickness of mat (ft)\nμc = Poisson’s ratio of mat (for concrete, use 0.15)\nStep 3 | Compute the radius of effective stiffness (L)\nL = ⁴√(D/ks) [Eq. 8-20]\nwhere:\nL = radius of effective stiffness (ft)\nD = flexural rigidity of the mat (lb-ft)\nks = modulus of subgrade reaction (psf/ft)\n[p. 205]\nStep 4 | Compute moments, shear, and deflection in the mat for each column load (P). The structural calculations are based on mat rigidity (D), radius of effective stiffness (L), and Z-factors obtained from chart solutions by Hetényi (1946) and shown on Figure 8-7. The equations 8-21 through 8-26 for moments, shear, and displacement are developed in polar coordinates. The equations for moments can be transformed to cartesian coordinates for design of x and y direction reinforcing design as shown on equations 8-27 and 8-28 where θ is the angle from x-axis. When load columns have overlapping radius of influence (L), principles of superposition can be applied to obtain the net effects. At mat edges where L extends past the edge, calculate the edge moment and shear, and apply edge loads with the opposite sign to balance the column load.\nFigure 8-7. Z-factors for American Concrete Institute Approximately Flexible mat design procedure for use with equations 8-21 to 8-28 (Hetényi 1946)\n[p. 206]\n | Mr = −(P/4)[Z4 − ((1 − μc)/x) Z′3] [Eq. 8-21]\nMt = (P/4)[μc · Z4 + ((1 − μc)/x) Z′3] [Eq. 8-22]\nΔH = (P · L^2)/(8D)   (Vertical Displacement) [Eq. 8-23]\nΔh = ((P · L^2)/(4D)) Z3   (At Distance r from Load) [Eq. 8-24]\nV = −(P/(4L)) Z′4   (Shear) [Eq. 8-25]\nx = r/L [Eq. 8-26]\nMx = Mr cos^2 θ + Mt sin^2 θ [Eq. 8-27]\nMy = Mr sin^2 θ + Mt cos^2 θ [Eq. 8-28]\nwhere:\nMr = radial moment at a distance, r from point load P (lb-ft)\nP = column load (lbf)\nZ4 = Z4-factor from Figure 8-7 (unitless), function of Z-value and x\nZ′4 = Z′4-factor from Figure 8-7 (unitless), function of Z-value and x\nμc = Poisson’s ratio of mat material (unitless)\nZ′3 = Z′3-factor from Figure 8-7 (unitless), function of Z-value and x\nZ3 = Z3-factor from Figure 8-7 (unitless), function of Z-value and x\nx = distance ratio (r/L) shown in Figure 8-7 (dimensionless)\nMt = tangential moment (lb-ft)\nΔH = vertical displacement at column (ft)\nL = radius of effective stiffness (dimensionless), equation 8-20\nD = flexural rigidity of the mat (lb-ft), equation 8-19\nΔh = vertical displacement at distance r (ft) from load P\nV = shear per unit width (lbf/ft) at distance r (ft) from load P\nx = distance ratio as shown on Figure 8-7\nr = radial distance from the column load (ft)\nMx = Mr expressed in rectangular coordinate system\nθ = angle in radians from the x axis passing through the column load\nMy = distance ratio as shown on Figure 8-7 (dimensionless)\n[Note (not printed): Eqs. 8-27 and 8-28 (p. 206): the list defines My with the words it gives x, the distance ratio of Figure 8-7; in Eq. 8-28 My is Mr and Mt expressed in the rectangular coordinate system, as Mx is in Eq. 8-27. The words above are as printed.]\nStep 5 | Proportion the mat.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-19",
+     "description": "Equation 8-19, introduced by: \"The five design steps shown in Table 8-2 are typically performed by the structural designer in the ACI Approximately Flexible Method.\" (p. 204).",
+     "formula": "D = (EC · t^3)/(12(1 − μC^2))",
+     "variables": {
+      "D": "flexural rigidity of the mat (lb-ft)",
+      "EC": "Young’s modulus of mat material (psf)",
+      "t^3": "thickness of mat (ft)",
+      "t": "thickness of mat (ft) (the list of symbols prints it as t^3)",
+      "μC": "Poisson's ratio of mat (for concrete, use 0.15) (printed μc in the list of symbols)"
+     },
+     "source": "Typed in from p. 204.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-20",
+     "description": "Equation 8-20, introduced by: \"gner in the ACI Approximately Flexible Method.\" (p. 204).",
+     "formula": "L = ⁴√(D/ks)",
+     "variables": {
+      "L": "radius of effective stiffness (ft)",
+      "D": "flexural rigidity of the mat (lb-ft)",
+      "ks": "modulus of subgrade reaction (psf/ft)"
+     },
+     "notes": "The fourth root.",
+     "source": "Typed in from p. 204.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-21",
+     "description": "Equation 8-21 as printed (p. 206).",
+     "formula": "Mr = −(P/4)[Z4 − ((1 − μc)/x) Z′3]",
+     "variables": {
+      "Mr": "radial moment at a distance, r from point load P (lb-ft)",
+      "P": "column load (lbf)",
+      "Z4": "Z4-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "μc": "Poisson’s ratio of mat material (unitless)",
+      "Z′3": "Z′3-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "x": "distance ratio as shown on Figure 8-7"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-22",
+     "description": "Equation 8-22 as printed (p. 206).",
+     "formula": "Mt = (P/4)[μc · Z4 + ((1 − μc)/x) Z′3]",
+     "variables": {
+      "P": "column load (lbf)",
+      "Z4": "Z4-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "μc": "Poisson’s ratio of mat material (unitless)",
+      "Z′3": "Z′3-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "x": "distance ratio as shown on Figure 8-7",
+      "Mt": "tangential moment (lb-ft)"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-23",
+     "description": "Equation 8-23 as printed (p. 206).",
+     "formula": "ΔH = (P · L^2)/(8D)   (Vertical Displacement)",
+     "variables": {
+      "P": "column load (lbf)",
+      "ΔH": "vertical displacement at column (ft)",
+      "L": "radius of effective stiffness (dimensionless), equation 8-20",
+      "D": "flexural rigidity of the mat (lb-ft), equation 8-19"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-24",
+     "description": "Equation 8-24 as printed (p. 206).",
+     "formula": "Δh = ((P · L^2)/(4D)) Z3   (At Distance r from Load)",
+     "variables": {
+      "P": "column load (lbf)",
+      "Z3": "Z3-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "L": "radius of effective stiffness (dimensionless), equation 8-20",
+      "D": "flexural rigidity of the mat (lb-ft), equation 8-19",
+      "Δh": "vertical displacement at distance r (ft) from load P",
+      "r": "radial distance from the column load (ft)"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-25",
+     "description": "Equation 8-25 as printed (p. 206).",
+     "formula": "V = −(P/(4L)) Z′4   (Shear)",
+     "variables": {
+      "P": "column load (lbf)",
+      "Z′4": "Z′4-factor from Figure 8-7 (unitless), function of Z-value and x",
+      "L": "radius of effective stiffness (dimensionless), equation 8-20",
+      "V": "shear per unit width (lbf/ft) at distance r (ft) from load P"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-26",
+     "description": "Equation 8-26 as printed (p. 206).",
+     "formula": "x = r/L",
+     "variables": {
+      "x": "distance ratio as shown on Figure 8-7",
+      "L": "radius of effective stiffness (dimensionless), equation 8-20",
+      "r": "radial distance from the column load (ft)"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-27",
+     "description": "Equation 8-27 as printed (p. 206).",
+     "formula": "Mx = Mr cos^2 θ + Mt sin^2 θ",
+     "variables": {
+      "Mr": "radial moment at a distance, r from point load P (lb-ft)",
+      "Mt": "tangential moment (lb-ft)",
+      "Mx": "Mr expressed in rectangular coordinate system",
+      "θ": "angle in radians from the x axis passing through the column load"
+     },
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-28",
+     "description": "Equation 8-28 as printed (p. 206).",
+     "formula": "My = Mr sin^2 θ + Mt cos^2 θ",
+     "variables": {
+      "Mr": "radial moment at a distance, r from point load P (lb-ft)",
+      "Mt": "tangential moment (lb-ft)",
+      "θ": "angle in radians from the x axis passing through the column load",
+      "My": "distance ratio as shown on Figure 8-7 (dimensionless)"
+     },
+     "notes": "As printed, the list of symbols (p. 206) defines My as 'distance ratio as shown on Figure 8-7 (dimensionless)', the words it gives x two lines above; in Eq. 8-28 My is Mr and Mt expressed in the rectangular coordinate system, as Mx is in Eq. 8-27.",
+     "source": "Typed in from p. 206.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 8-7: Z-factors for American Concrete Institute Approximately Flexible mat design procedure for use with equations 8-21 to 8-28 (Hetényi 1946)"
+   ],
+   "tables": [
+    "Table 8-2: Procedure for the American Concrete Institute Approximately Flexible Method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6b(3), printed pp. 203 to 206."
+  },
+  {
+   "section_id": "8-6c",
+   "title": "Numerical design methods",
+   "body": "[p. 207] Numerical design methods.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6c, printed p. 207."
+  },
+  {
+   "section_id": "8-6c(1)",
+   "title": "Non-Rigid Mat Foundations",
+   "body": "[p. 207] Non-Rigid Mat Foundations. For non-rigid mat foundation designs, numerical finite grid, finite difference, or finite element computation routines should be used to determine the moments and shears in the mat and proportion the mat and design reinforcement. Numerical design methods require the input of the modulus of subgrade reaction, which is determined using the Discrete Area Method described in paragraph 8-6c(2). Details of the formulation of these numerical methods are beyond the scope of this chapter and are available in several commercially available software programs. Bowles (1996) or other publications may be referenced for the details regarding numerical formulation and details on the implementation of elements and boundary conditions. The ACI Approximately Flexible Method should be used to check reasonableness of numerical methods, and for preliminary mat thickness sizing.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6c(1), printed p. 207."
+  },
+  {
+   "section_id": "8-6c(2)",
+   "title": "Discrete Area Method",
+   "body": "[p. 207] Discrete Area Method.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6c(2), printed p. 207."
+  },
+  {
+   "section_id": "8-6c(2)(a)",
+   "title": "The Discrete Area Method may be used to estimate the soil modulus of subgrade …",
+   "body": "[p. 207] The Discrete Area Method may be used to estimate the soil modulus of subgrade reaction for input into a numerical structural analysis of the mat foundation in a pseudo-coupled mat design approach. To use this method, the structural and geotechnical engineers perform separate parallel analyses. The structural engineer analyzes a mat supported by several independent springs; however, allows a different stiffness of each spring. The geotechnical engineer analyzes an elastic continuum with “discrete areas” of mat loading pressure to model stress distribution and ground deformation within the soil mass supporting the mat. The modulus of subgrade reaction is calculated by taking the mat bearing pressure divided by the settlement and is calculated at points throughout the mat area.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6c(2)(a), printed p. 207. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-6c(2)(b)",
+   "title": "The results are used to develop a contour plan of a variable modulus of …",
+   "body": "[p. 207] The results are used to develop a contour plan of a variable modulus of subgrade reaction. Limitations of the analysis include assumptions about soil stress distribution, limitations of the structural numerical model, assumptions regarding soil properties, and limitations in the size of the discrete areas that can be practically modeled. The general steps in the Discrete Area Method iterative process between the structural engineer and the geotechnical engineer are described by Ulrich (1988) and adapted as shown in Table 8-3.\n\nTable 8-3 Procedure for the Discrete Area Method\nStep 1 | The geotechnical engineer provides the allowable bearing pressure for the mat foundation based on rigid assumptions and the methods described in Chapter 8.5. Factors of safety should follow Table 2-1. If bearing pressures are near allowable limits, this step should be revisited with the final estimated bearing pressures. Often the bearing pressures are well below the allowable limits, and no additional analysis is necessary.\nStep 2 | The structural engineer proportions the mat thickness to satisfy general and local bearing capacity and punching requirements.\n[p. 208]\nStep 3 | The mat design continues using the numerical structural methods for determining internal mat stresses. For the first iteration of the numerical structural model, the geotechnical engineer provides a single modulus of subgrade reaction based on a calculated settlement for an idealized, uniform pressure on the soil. The bearing pressure used is simply the total loading from columns and walls divided by the total area of the mat.\nStep 4 | The structural engineer provides output of the mat/ground interaction analysis, including calculations of mat deflection and bearing pressures. The bearing pressure output is then idealized into discrete areas, modeled using the average pressure of the area. The discrete areas typically include corner areas, edge areas, center mat areas, and areas around large, concentrated loads (multiple columns or wall loads), but will generally be much larger than the structural analysis grids.\nThe more areas modeled; the more computational difficulty is imposed on the geotechnical analysis. Limiting the number of discrete areas to 15 to 20 often results in reasonable convergence of the calculations. If the iterative mat design process does not result in reasonable mat deformation and ground settlement convergence, the discrete areas may need to be smaller, especially in areas of high rates of pressure change.\nSome geotechnical software programs are designed to allow direct importing of bearing pressure grided data from structure analysis software and allow very fine discrete areas, however, the computational effort for many discrete areas can be very high. Figure 8-8 illustrates an example discretization of the mat bearing pressure areas selected for geotechnical stress distribution and analysis, labeled A1 through A13, with white boundaries. The black gridlines are structural analysis elements.\nFigure 8-8. Example of area discretization of mat bearing pressure contours from structural analysis, plan view (Computers and Structures, Inc., SAP2000 computer software output, ksf); the mat is 110 ft square\n[p. 209]\nStep 5 | After the mat areas are divided into discrete areas and associated average bearing pressures are calculated, the soil stress distribution and settlement of the ground due to the applied contact pressures is calculated.\nStresses and ground deformations are calculated in a 3-D grid across and below the mat, with each grid location stress and settlement calculation considering the applied pressures of each discrete area by principle of superposition and as described in equations 8-29 and 8-30. equation 8-30 is typically truncated at depths where settlement or stresses below are negligible to the design.\nStress distribution and soil settlement models should be selected based on the site ground conditions and behavior. For example, for clays under sustained loads, the strain should be calculated using consolidation theory. For immediate settlement, strains may be calculated using elastic modulus soil parameters. Typically, computer programs are used to perform this work, although chart or analytical solutions may be used; however, such calculations are tedious. A profile plot of vertical stresses caused by the mat calculated at 2-ft soil grid locations is shown on Figure 8-9.\nΔσxyz = ∑(n=1 to i) Δσxyz f(An) [Eq. 8-29]\nρxy = ∑(z=0 to ∞) εxyz · l [Eq. 8-30]\nwhere:\nΔσxyz = total increase in vertical stress at point (x,y,z) (ksf)\ni = number of loads\nΔσxyz f(An) = increase in vertical stress at point (x,y,z) due to discrete area load (An) (ksf)\nρxy = ground settlement at plan location (x,y) (ft)\nz = depth below mat (ft)\nεxyz = vertical strain at (x,y,z) due increase in vertical stress (Δσxyz)\nl = element length in z-direction (ft)\nFigure 8-9. Example profile plot of increase in vertical soil stresses (psf, unlabeled) beneath the center (left) and edge (right) of a 110-ft-wide mat using Matlab v7.1 software; corresponds to mat bearing pressures shown in Figure 8-8\n[p. 210]\nStep 6 | The modulus of subgrade reaction is calculated at each plan grid point (x,y) by equation 8-30, and a contour plan of modulus of subgrade reaction is developed and input into the structural analysis. Figure 8-10 illustrates the calculation of modulus of subgrade reaction.\nFigure 8-10. Determination of modulus of subgrade reaction contours: (a) is the mat bearing pressure calculated using SAP2000, (b) is a contour plan of settlement, and (c) is a contour plan of modulus of subgrade reaction, both plotted with Matlab v7.1\n[p. 211]\nStep 7 | The structural analysis is performed again with an updated modulus of subgrade reaction, and the estimated mat contact pressure and estimated settlement are plotted. If the mat deflections and bearing pressures are significantly different than was calculated at the end of Step 3, then Steps 4, 5, 6, and 7 are repeated until convergence is reached.\nConvergence is usually achieved in about 3 iterations with differences between the structural and geotechnical estimates of displacement on the order of 0.1 inch. For a uniformly loaded mat of uniform stiffness on an elastic foundation, the settlement along the edges and corners will be about 1/2 and 1/4 of the maximum settlement at the center of the mat, respectively. The corresponding ks will vary accordingly, and at the edges and corners will be about 2 and 4 times the ks calculated at the center of the mat, respectively.\nThe flow chart in Figure 8-11 illustrates the iteratives steps for designing a mat foundation and how the structural and geotechnical engineers (SE and GE, respectively) work together to complete a mat design.\nFigure 8-11. Flow chart of iterative steps in the Discrete Area Method\nfor determination of modulus of subgrade reaction",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-29",
+     "description": "Equation 8-29 as printed (p. 209).",
+     "formula": "Δσxyz = ∑(n=1 to i) Δσxyz f(An)",
+     "variables": {
+      "Δσxyz": "total increase in vertical stress at point (x,y,z) (ksf)",
+      "i": "number of loads",
+      "Δσxyz f(An)": "increase in vertical stress at point (x,y,z) due to discrete area load (An) (ksf)"
+     },
+     "source": "Typed in from p. 209.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 8-30",
+     "description": "Equation 8-30 as printed (p. 209).",
+     "formula": "ρxy = ∑(z=0 to ∞) εxyz · l",
+     "variables": {
+      "ρxy": "ground settlement at plan location (x,y) (ft)",
+      "z": "depth below mat (ft)",
+      "εxyz": "vertical strain at (x,y,z) due increase in vertical stress (Δσxyz)",
+      "l": "element length in z-direction (ft)"
+     },
+     "source": "Typed in from p. 209.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 8-8: Example of area discretization of mat bearing pressure contours from structural analysis, plan view (Computers and Structures, Inc., SAP2000 computer software output, ksf); the mat is 110 ft square",
+    "Figure 8-9: Example profile plot of increase in vertical soil stresses (psf, unlabeled) beneath the center (left) and edge (right) of a 110-ft-wide mat using Matlab v7.1 software; corresponds to mat bearing pressures shown in Figure 8-8",
+    "Figure 8-10: Determination of modulus of subgrade reaction contours: (a) is the mat bearing pressure calculated using SAP2000, (b) is a contour plan of settlement, and (c) is a contour plan of modulus of subgrade reaction, both plotted with Matlab v7.1",
+    "Figure 8-11: Flow chart of iterative steps in the Discrete Area Method for determination of modulus of subgrade reaction"
+   ],
+   "tables": [
+    "Table 8-3: Procedure for the Discrete Area Method"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-6c(2)(b), printed pp. 207 to 211. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "8-7",
+   "title": "Ground improvement considerations",
+   "body": "[p. 211] Ground improvement methods such as aggregate piers, soil-cement mixing, grouting, or other methods are improvement techniques sometimes used to increase the soil stiffness properties. Ground improvement that incorporates isolated stiff elements (such as piles, aggregate piers) complicate the stress distribution and settlement distribution in the soil mass. Locally stiff areas will result in concentrated mat supports and highly variable modulus of subgrade reaction for structural analysis. Geotechnical software capable of modeling vertically oriented stiff elements is recommended to estimate the improved soil mass deformation response in determination of the ground settlement and modulus of subgrade reaction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-7, printed p. 211."
+  },
+  {
+   "section_id": "8-8",
+   "title": "Performance monitoring",
+   "body": "[p. 212] Mat designs should be supplemented by the observational method as described by Ulrich (1995) to collect data regarding mat settlement to help evaluate the structural performance and inform future designs. The mat performance should be monitored both during construction and post-construction to evaluate the performance. During construction, the building construction activities should be recorded to understand when new floors are added to the building, stockpiles are moved, or other loading changes occur. Geotechnical monitoring can include settlement plates installed at the soil/mat boundary, piezometers to monitor ground pore pressure dissipation, and floor level surveys to evaluate concrete mat defections and differential movement. For very tall buildings, monitoring of structural components should also be considered due to structural interactions of columns with mat.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-8, printed p. 212."
+  },
+  {
+   "section_id": "8-9",
+   "title": "Basement mat considerations",
+   "body": "[p. 212] Mat foundations are commonly used where a basement for a large structure is planned. The removed load of the basement excavation is largely balanced by the building load. Unloading and rebound need to be considered in understanding the soil settlement under the new building loads as discussed in paragraph 7-15. If minimal rebound is anticipated or will be re-compressed before the mat cures, the mat average bearing pressure is assumed as the net pressure as defined in equation 8-31. In addition to distributing the building loads, the mat foundation also provides a water barrier for the basement.\n\nQnet = ([Ws + Wm] − Wexc)/A [Eq. 8-31]\n\nwhere:\nQnet = net pressure (psf)\nWs = weight of structure (lbs)\nWm = weight of mat (lbs)\nWexc = weight of soil (lbs)\nA = mat area (ft^2)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 8-31",
+     "description": "Equation 8-31, introduced by: \"In addition to distributing the building loads, the mat foundation also provides a water barrier for the basement.\" (p. 212).",
+     "formula": "Qnet = ([Ws + Wm] − Wexc)/A",
+     "variables": {
+      "Qnet": "net pressure (psf)",
+      "Ws": "weight of structure (lbs)",
+      "Wm": "weight of mat (lbs)",
+      "Wexc": "weight of soil (lbs)",
+      "A": "mat area (ft^2)"
+     },
+     "source": "Typed in from p. 212.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 8 (Mat Foundations), paragraph 8-9, printed p. 212."
+  }
+ ]
+}
