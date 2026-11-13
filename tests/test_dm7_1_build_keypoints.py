@@ -160,3 +160,24 @@ def test_each_footnote_stored_once():
                 if k:
                     seen[n] = seen.get(n, 0) + k
     assert seen == {n: 1 for n in range(1, 15)}, seen
+
+
+# Table notes the bodies lacked until the review of 2026-11-12.
+TABLE_NOTES = [
+    (5, "5-4.1.1", "[Note to Table 5-2: Correlations provide values of Es in ksf units.]"),  # p. 231
+    (1, "1-5.4.2", '[Notes to Table 1-22: "A" means preferred method and "B" alternate method'
+                   ' based on the 2020 version of the standard.]'),  # p. 49
+]
+
+
+@pytest.mark.parametrize("ch,sid,note", TABLE_NOTES, ids=[c[1] for c in TABLE_NOTES])
+def test_table_note_in_body(ch, sid, note):
+    assert note in _sec(ch, sid)["body"]
+
+
+# p. 260: Table 5-8 prints (1−νs)² in both Km formulas and (1−νm)² under the rectangular one.
+def test_table_5_8_km_formulas_as_printed():
+    eqs = {e["id"]: e for e in _sec(5, "5-6.3")["equations"]}
+    assert eqs["Table 5-8 (Circular)"]["formula"] == "Km = 8 · [Em·(1−νs)² / Es] · (tm³ / B³)"
+    assert eqs["Table 5-8 (Rectangular)"]["formula"] == (
+        "Km = (4/3) · [Em·(1−νs)² / (Es·(1−νm)²)] · (tm³ / B³)")

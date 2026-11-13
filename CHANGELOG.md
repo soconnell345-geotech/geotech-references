@@ -73,7 +73,7 @@ needed when it appeared). Key points restate printed sentences only; ids
 are unchanged. Pages are printed page numbers.
 
 - The 14 page footnotes now sit in the bodies at their marks as
-  "[Footnote n: ...]" (pp. 3, 89, 142-165, 234, 237, 366, 424), and 33
+  "[Footnote n: ...]" (pp. 3, 89, 142-165, 234, 237, 366, 424), and 35
   table notes and table footnotes as "[Note to Table x: ...]" or
   "[Footnote A to Table x: ...]" (chapters 1-8).
 - Printed text the bodies left out is restored: the 6-5.3 subsections
@@ -102,8 +102,14 @@ are unchanged. Pages are printed page numbers.
   Eqs. 8-42 and 8-43 in the print's words ("k = hydraulic conductivity in
   m/s", pp. 462-463).
 - Also restored: the cyclic DSS failure definition and the sentence after
-  it in 3-2.5.1.1 (p. 162); four figure pointers in 2-9.1.2, 2-9.3.1.1 and
+  it in 3-2.5.1.1 (p. 162); three figure pointers in 2-9.1.2, 2-9.3.1.1 and
   2-10.2 (Figures 2-17, 2-18, 2-25a); the printed lead-in to Eq. 2-2.
+- Table notes the bodies still lacked: Table 5-2, "Correlations provide
+  values of Es in ksf units." (5-4.1.1, p. 231), the only unit printed for
+  its Es correlations; Table 1-22, "A" preferred and "B" alternate method
+  (1-5.4.2, p. 49). Table 5-8's two Km formulas are now in 5-6.3's
+  `equations` as printed (p. 260), with (1−νs)² and, for rectangular mats,
+  (1−νm)², and a note saying so; until now no Km formula was stored.
   Test: `tests/test_dm7_1_build_keypoints.py`.
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and

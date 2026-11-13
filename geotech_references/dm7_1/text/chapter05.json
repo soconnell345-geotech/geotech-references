@@ -313,7 +313,7 @@
       "section_id": "5-4.1.1",
       "title": "Elastic Method",
       "summary": "Presents the elastic settlement equation (Eq. 5-5) for coarse-grained soils modeled as an elastic medium, defining influence factors µ0 and µ1 from Figure 5-6. Discusses the role of the (1-ν²) term, appropriate H/B ratios (4–5B critical depth), and selection of Es from Table 5-2 using average SPT N60 values. Includes a correction formula (Eq. 5-6) for dense saturated silty sands.",
-      "body": "If the soil supporting a load is idealized as an elastic medium with a modulus equal to Es and Poisson's ratio of ν, the resulting settlement (s) is:\n\ns = q0 · B · µ0 · µ1 / Es  (Eq. 5-5)\n\nwhere:\nq0 = stress applied by load,\nB = width of the applied load,\nµ0 = influence factor associated with embedment of the load, and\nµ1 = influence factor associated with the problem geometry and Poisson's ratio.\n\nSome sources report Equation 5-5 with a (1-ν²) term. This term is often combined with the influence factors directly. When using charts and tables for µ1, the engineer must check carefully to determine whether or not the (1-ν²) term has been included and what value of ν has been assumed, if appropriate.\n\nThe influence factors, µ1 and µ0, can be found using Figure 5-6 for the ratios of L/B, H/B, and D/B represented by the problem geometry. Note that H/B ratios can theoretically be very high, when a significant depth of soil is present below a loaded area. However, based on the concept of critical depth (see Section 4-2.1.5), the zone that contributes to settlement typically has a thickness of 4B to 5B below the loaded area. The use of H/B ratios greater than 4 to 5 may overestimate settlement.\n\nThe settlement predicted by Equation 5-5 will be directly related to the value of Es, which is a difficult parameter to measure or obtain. General guidance for the selection of Es for coarse-grained soils is provided in Table 5-2. Most of the correlations summarized in this table are based on the results of Standard Penetration Test (SPT) blow counts. An average SPT value (Nʹ) is used to predict settlement in coarse-grained soils. In most cases, Nʹ is equal the average N60 value from the bottom of the loaded area to a depth of B below the load. In dense, saturated silty sands, the value of NʹSM is calculated as:\n\nNʹSM = 15 + 0.5(Nʹ - 15)  (Eq. 5-6)\n\nwhere:\nNʹ = average N60 value.",
+      "body": "If the soil supporting a load is idealized as an elastic medium with a modulus equal to Es and Poisson's ratio of ν, the resulting settlement (s) is:\n\ns = q0 · B · µ0 · µ1 / Es  (Eq. 5-5)\n\nwhere:\nq0 = stress applied by load,\nB = width of the applied load,\nµ0 = influence factor associated with embedment of the load, and\nµ1 = influence factor associated with the problem geometry and Poisson's ratio.\n\nSome sources report Equation 5-5 with a (1-ν²) term. This term is often combined with the influence factors directly. When using charts and tables for µ1, the engineer must check carefully to determine whether or not the (1-ν²) term has been included and what value of ν has been assumed, if appropriate.\n\nThe influence factors, µ1 and µ0, can be found using Figure 5-6 for the ratios of L/B, H/B, and D/B represented by the problem geometry. Note that H/B ratios can theoretically be very high, when a significant depth of soil is present below a loaded area. However, based on the concept of critical depth (see Section 4-2.1.5), the zone that contributes to settlement typically has a thickness of 4B to 5B below the loaded area. The use of H/B ratios greater than 4 to 5 may overestimate settlement.\n\nThe settlement predicted by Equation 5-5 will be directly related to the value of Es, which is a difficult parameter to measure or obtain. General guidance for the selection of Es for coarse-grained soils is provided in Table 5-2. Most of the correlations summarized in this table are based on the results of Standard Penetration Test (SPT) blow counts. An average SPT value (Nʹ) is used to predict settlement in coarse-grained soils. In most cases, Nʹ is equal the average N60 value from the bottom of the loaded area to a depth of B below the load. In dense, saturated silty sands, the value of NʹSM is calculated as:\n\nNʹSM = 15 + 0.5(Nʹ - 15)  (Eq. 5-6)\n\nwhere:\nNʹ = average N60 value.\n\n[Note to Table 5-2: Correlations provide values of Es in ksf units.]",
       "key_points": [
         "Elastic settlement is calculated as s = q0·B·µ0·µ1/Es (Eq. 5-5), where µ0 and µ1 are influence factors from Figure 5-6.",
         "Some formulations include a (1-ν²) term combined into the influence factors; engineers must verify which convention a chart uses.",
@@ -917,7 +917,37 @@
         "Predictions of differential settlement are often less accurate than those for total or average settlement, especially for mat foundations.",
         "Mat behavior can be estimated with the mat stiffness factor Km (Table 5-8): flexible for Km ≤ 0.08 (circular) or ≤ 0.05 (rectangular), rigid for Km ≥ 5 (circular) or ≥ 10 (rectangular); flexible mats settle differentially, rigid mats tend to settle uniformly."
       ],
-      "equations": [],
+      "equations": [
+        {
+          "id": "Table 5-8 (Circular)",
+          "description": "Mat stiffness factor for a circular mat: Km = 8 · [Em·(1−νs)² / Es] · (tm³ / B³); flexible for Km ≤ 0.08, intermediate for 0.08 ≤ Km ≤ 5, rigid for 5 ≤ Km.",
+          "formula": "Km = 8 · [Em·(1−νs)² / Es] · (tm³ / B³)",
+          "variables": {
+            "Em": "modulus of elasticity of mat",
+            "Es": "modulus of elasticity of soil",
+            "νs": "Poisson’s ratio of soil",
+            "tm": "thickness of mat",
+            "B": "diameter or width of mat (least dimension)"
+          },
+          "notes": "Typed as printed in Table 5-8 (p. 260), with (1−νs)² in the numerator. The forms in Brown (1969) and Frazer and Wardle (1976) were not checked.",
+          "implemented_in": null
+        },
+        {
+          "id": "Table 5-8 (Rectangular)",
+          "description": "Mat stiffness factor for a rectangular mat: Km = (4/3) · [Em·(1−νs)² / (Es·(1−νm)²)] · (tm³ / B³); flexible for Km ≤ 0.05, intermediate for 0.05 ≤ Km ≤ 10, rigid for 10 ≤ Km.",
+          "formula": "Km = (4/3) · [Em·(1−νs)² / (Es·(1−νm)²)] · (tm³ / B³)",
+          "variables": {
+            "Em": "modulus of elasticity of mat",
+            "νm": "Poisson’s ratio of mat",
+            "Es": "modulus of elasticity of soil",
+            "νs": "Poisson’s ratio of soil",
+            "tm": "thickness of mat",
+            "B": "diameter or width of mat (least dimension)"
+          },
+          "notes": "Typed as printed in Table 5-8 (p. 260), with (1−νs)² in the numerator and (1−νm)² in the denominator. The forms in Brown (1969) and Frazer and Wardle (1976) were not checked.",
+          "implemented_in": null
+        }
+      ],
       "figures": [],
       "tables": [
         "Table 5-8"
