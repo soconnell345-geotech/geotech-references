@@ -72,6 +72,17 @@ KEY_POINTS = [
     (8, "8-3.5", "KD = horizontal stress index from dilatometer", ("must be derived",)),
     # p. 450: Figure 8-51 plots Eu/su falling with OCR; the text says "undrained shear modulus"
     (8, "8-5.2.2", "the text prints 'undrained shear modulus'", ("higher Eu/su",)),
+    # p. 153: "should always be interpreted with a φ = 0 failure envelope"
+    (3, "3-2.4.2.2", "should always be interpreted with a φ = 0 failure envelope", ("must always",)),
+    # p. 413: Eq. 8-16 is Carter and Bentley's (2016) fit to Gibson's trend line; the 5% is theirs
+    (8, "8-2.2.2", "Carter and Bentley (2016) approximate its trend line by Eq. 8-16",
+     ("Gibson (1953) Eq. 8-16",)),
+    # p. 271: the Figure 5-27 method "can also be used"; the print names no equations
+    (5, "5-7.4.3", "The method presented in Figure 5-27 can also be used with vertical drains.",
+     ("applies directly", "Eq. 5-20")),
+    # p. 373: Td "should be divided by a factor of safety for geosynthetic strength (FR) of at least 1.3"
+    (7, "7-9.5", "should be divided by a factor of safety for geosynthetic strength (FR) of at least 1.3",
+     ("requires FR",)),
 ]
 
 

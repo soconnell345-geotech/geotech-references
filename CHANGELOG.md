@@ -110,6 +110,16 @@ are unchanged. Pages are printed page numbers.
   (1-5.4.2, p. 49). Table 5-8's two Km formulas are now in 5-6.3's
   `equations` as printed (p. 260), with (1−νs)² and, for rectangular mats,
   (1−νm)², and a note saying so; until now no Km formula was stored.
+- Key points brought back to the print: UU results "should always" be
+  interpreted with φ = 0 (3-2.4.2.2, p. 153; was "must"); Eq. 8-16 is
+  Carter and Bentley's (2016) fit to Gibson's (1953) trend line, and the
+  "within 5%" is theirs (8-2.2.2, p. 413; was credited to Gibson); the
+  Figure 5-27 method "can also be used" with vertical drains, no equations
+  named (5-7.4.3, p. 271); under Method A, Td "should be divided by" FR of
+  at least 1.3 (7-9.5, p. 373; was "requires"). Print slips kept with a
+  note: "Buchiagnani" (Table 5-4, p. 234; 5-10, p. 279; Buchignani
+  elsewhere) and "pore pressured" (3-2.4.1.3, p. 148, stored silently
+  corrected until now). 1-3.2.2.1's note gives p. 12 (was 11).
   Test: `tests/test_dm7_1_build_keypoints.py`.
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
