@@ -272,6 +272,15 @@ class TestMaxServiceabilityLossFrost:
         with pytest.raises(ValueError):
             env.max_serviceability_loss_frost("good", -1)
 
+    def test_beyond_the_depth_axis_refused(self):
+        # REF-76 (fit sweep): Figure G.7's depth axis ends at 10 ft (printed
+        # G-10); the line used to be extended with a note (12 ft very poor:
+        # 6.0, past the chart's 5).
+        assert env.max_serviceability_loss_frost("very_poor", 10)["delta_psi_max"] == 5.0
+        for d in (10.1, 12, 60):
+            with pytest.raises(ValueError, match=r"0 to 10 ft \(printed G-10\)"):
+                env.max_serviceability_loss_frost("very_poor", d)
+
 
 # ============================================================================
 # frost_susceptibility_classification (Figure G.6 bar)

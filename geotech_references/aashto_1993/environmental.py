@@ -622,9 +622,11 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
     drainage_quality : str
         One of 'excellent', 'good', 'fair', 'poor', 'very_poor'.
     depth_ft : float
-        Depth of frost penetration, feet, >= 0 (chart digitized over 0-10 ft;
-        the relation is a straight line through the origin so extrapolation
-        beyond 10 ft is a modeling choice, flagged with a note).
+        Depth of frost penetration, feet, 0 to 10: Figure G.7's depth axis
+        (printed G-10). Beyond 10 ft the lines end at the frame and the
+        guide gives no rule; the function refuses there (REF-76; it used to
+        extend the line with a note, to a loss of 6.0 at 12 ft, past the
+        chart's 5 and Figure G.8's 3.0 scale for this value).
 
     Returns
     -------
@@ -635,7 +637,7 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
     Raises
     ------
     ValueError
-        If drainage_quality is unrecognized or depth_ft < 0.
+        If drainage_quality is unrecognized or depth_ft is outside 0-10 ft.
     """
     key = str(drainage_quality).strip().lower().replace(" ", "_")
     if key not in _FROST_MAX_LOSS_SLOPE:
@@ -645,6 +647,11 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         )
     if depth_ft < 0:
         raise ValueError(f"depth_ft must be >= 0, got {depth_ft}")
+    if depth_ft > 10.0:
+        raise ValueError(
+            f"Depth of frost penetration {depth_ft:g} ft is beyond Figure "
+            "G.7's depth axis, 0 to 10 ft (printed G-10); the chart gives no "
+            "serviceability loss there.")
     slope = _FROST_MAX_LOSS_SLOPE[key]
     out = {
         "drainage_quality": key, "depth_ft": depth_ft,
@@ -652,8 +659,6 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         "equation": "dPSI_MAX = slope(drainage_quality) * depth_ft",
         "reference": "AASHTO 1993 Guide, Figure G.7 (pdf_page 403, printed G-10)",
     }
-    if depth_ft > 10.0:
-        out["note"] = "depth_ft > 10 ft, beyond the digitized chart range -- linear extrapolation."
     return out
 
 

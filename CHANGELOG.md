@@ -96,6 +96,10 @@ pages):
   0.957, 0.8 and 0.9). Also refused: a stress outside 0 <= f < Fc in Eq
   9-28, Kf outside 0 < Kf <= 1 in Eq 9-30 (the page says Eq 9-29 "is
   reduced" by it), and a non-positive Fc, fe or E.
+- `aashto_1993.environmental.max_serviceability_loss_frost` (Figure G.7,
+  printed G-10, five straight lines read off the chart): a depth of frost
+  penetration beyond the chart's 10 ft axis is refused; the line used to be
+  extended with a note (very poor at 12 ft: 6.0, past the chart's 5).
 - `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
   14-1, printed 41, coded as hr = hd - reduction(S) from the two worked
   examples): hd outside the plain-concrete scale (6-30 in), an hr outside
