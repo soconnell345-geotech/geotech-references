@@ -6,6 +6,8 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 **DM 7.1 chapters 5 to 8, the printed tables (REF-97, REF-116).** The printed tables of chapters 5 to 8 (Tables 5-1 to 8-28) are typed into the chapter text and were checked cell by cell against the print by an independent reader. The table catalog now answers "text" for them (58 of the 139 dm7_1 rows), so a host without the PDFs can quote their values. Table 4-3's second page (PDF page index 223) and Table 6-4's second page (326) are listed.
 
+**DM 7.1 chapters 1 to 4, the printed tables (REF-97).** The printed tables of chapters 1 to 4 are typed into the chapter text and were checked cell by cell against the print by an independent reader; the format faults it found are fixed (a printed semicolon inside a cell is a comma, every row holds as many cells as its table has columns, Table 2-14's rows are separated). The table catalog now answers "text" for them (90 of the 139 dm7_1 rows, 32 more), so a host without the PDFs can quote their values. Tables 1-3 and 4-13 are read against the render; Table 4-6's second page (PDF page index 229) is listed.
+
 **DM 7.2 is cited as UFS 3-220-20, 26 March 2026 (REF-75).** Every `dm7_2` lookup, chapter text file, agent entry and manifest now names the manual UFS 3-220-20 (26 March 2026), the text and pages of UFC 3-220-20 (16 January 2025); the text, pages, values and `pdf_page_index` are unchanged. Eq. 4-28 says it prints on p. 222 in the UFS (p. 221 in the 2025 UFC), and the Sec. 6-5.8.2 text carries a note that the UFS refers to Eq. 6-46 where the 2025 UFC printed Eq. 6-51.
 
 **Result units and pages, wave 1a (REF-78): the pavement references and
