@@ -94,6 +94,38 @@ PRINTED = [
     ("fhwa_soils_foundations", "6.4.3", "(12,000 lbs) (cos 20°) = 11,276 lbs", "(cos 20o)"),
     # NHI-06-089 PDF p. 343, printed p. 10-53
     ("fhwa_soils_foundations", "10.6", "cos 10°", "cos 10o"),
+    # --- hand-kept references: a sign the page completes with a stroke drawn
+    # under it, stored as the bare sign; a raised exponent or degree sign
+    # stored as plain characters:
+    # FHWA-NHI-18-024 PDF pp. 287-288, printed pp. 10-7, 10-8
+    ("gec_10", "10.3.4", "common socket diameter B ≤ 5 ft", "B < 5 ft"),
+    ("gec_10", "10.3.4", "(e.g., qu ≥ 10,000 psi)", "qu > 10,000"),
+    # FHWA-NHI-18-024 PDF p. 368, printed p. 12-6: "clear spacing (≥ 5 inches)"
+    ("gec_10", "12.3.2", "with clear spacing ≥ 5 inches", "over 5 inches"),
+    # FHWA-NHI-16-028 PDF pp. 430-431, printed pp. 9-122, 9-123
+    ("gec_13", "9.8.3.2.1", "for Cu ≤ 3 use", "Cu < 3"),
+    ("gec_13", "9.8.3.2.1", "nonwoven porosity ≥ 50%", "porosity > 50%"),
+    ("gec_13", "9.8.3.2.1", "woven percent open area ≥ 4%", "area > 4%"),
+    ("gec_13", "9.8.3.2.1", "(Class 1, < 50% / ≥ 50% elongation)", "/ > 50%"),
+    # FHWA-IF-99-015 PDF p. 76, printed p. 55
+    ("gec_4", "5.2.5", "stiff to hard fissured clays (Ns ≤ 4)", "fissured clays (Ns < 4)"),
+    # FHWA-NHI-16-027 PDF pp. 182, 184, printed pp. 3-32, 3-34
+    ("gec_13", "3.4.2.2", "permeability 1 x 10^-5 m/s", "1 x 10-5"),
+    ("gec_13", "3.4.2.2", "k 1 x 10^-6 to 1 x 10^-9 m/s", "1 x 10-9"),
+    # FHWA-NHI-16-028 PDF p. 176, printed p. 8-30; p. 201, printed p. 8-55
+    ("gec_13", "8.2.3.2.1", "'0.04 ≤ k ≤ 4 × 10^-4'", "<= k <="),
+    ("gec_13", "8.2.5.6.2", "Bitumen pumps easily above 400°F", "400 F"),
+    # UFS 3-220-10 PDF p. 71, printed p. 43; p. 197, printed p. 169; p. 324,
+    # printed p. 296 (the page prints "less 10-8", no "than")
+    ("dm7_1", "1-5.3.2", "finer than 0.02 mm (8x10^-4 inches)", "8x10-4"),
+    ("dm7_1", "3-2.7.1", "conductivity less than 10^-3 cm/sec", "10-3 cm"),
+    ("dm7_1", "3-2.7.2", "conductivity less than 10^-4 cm/sec", "10-4 cm"),
+    ("dm7_1", "6-3", "range from less 10^-8 cm/sec", "10-8 cm"),
+    # FHWA-HIF-18-031 PDF p. 236, printed p. 232 (Eq. A-43's coefficients)
+    ("gec_9", "A.6", "A = 3 (10^-7) (z + 1)^6.05; B = 2.80 (z + 1)^0.11; and C = 2.85 (z + 1)^-0.41",
+     "(10-7) (z + 1)6.05"),
+    # UFC 3-250-03 PDF p. 137, printed p. 123
+    ("ufc_flexible_practice", "9-1.1", "8 microns (3.15x10^-4 inch)", "3.15x10-4"),
 ]
 
 #: (package, figure number, printed caption text now stored, text-layer form
@@ -199,6 +231,40 @@ def test_no_private_use_or_control_characters_stored():
             if n:
                 found[(pkg_dir.name, fname, path)] = n
     assert found == KNOWN_ODD
+
+
+#: A power of ten whose exponent the page prints raised, stored as plain
+#: digits ("1 x 10-8 cm/sec" for 1 x 10^-8, "psi ×106" for psi ×10^6): the
+#: text layer gives a raised exponent as ordinary characters, and the stored
+#: number reads a thousand or a million times off. These forms are not a
+#: range or a figure number; the library writes an exponent with "^".
+_PLAIN_POWER = [
+    re.compile(r"(?<![\w^.,])\d+(?:[.,]\d+)?\s?[x×]\s?10[-−–]\d{1,2}(?![\d^.,])"),
+    re.compile(r"(?:than|≈|<|>|≤|≥)\s?10[-−–]\d{1,2}\s?(?:cm|mm|m|in|ft)(?!\w)"),
+    re.compile(r"(?<![\w.^\-–−])10[-−–]\d{1,2}\s?(?:cm|mm|m|in|ft)/(?:s|sec)\b"),
+    re.compile(r"\(10[-−–]\d\)"),
+    re.compile(r"×10\d(?![\d^])"),
+]
+
+#: Plain powers of ten in references left to other branches (2026-11-12):
+#: UFC 3-220-20 prints 10^-3 (p. 1-2.11), 3×10^-6 to 5×10^-5 (3-7.4) and
+#: 2.4 x 10^-6 (B-7.4) with raised exponents; an entry goes when that text is
+#: corrected.
+KNOWN_PLAIN_POWERS = {
+    ("dm7_2", "appendix_b.json", "sections/58/tables/0"): 1,
+    ("dm7_2", "chapter03.json", "sections/63/body"): 2,
+    ("dm7_2", "prologue.json", "sections/28/body"): 1,
+}
+
+
+def test_no_power_of_ten_stored_as_plain_digits():
+    found = {}
+    for pkg_dir in sorted(p for p in PKGS.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        for fname, path, s in _strings(pkg_dir):
+            n = sum(len(rx.findall(s)) for rx in _PLAIN_POWER)
+            if n:
+                found[(pkg_dir.name, fname, path)] = n
+    assert found == KNOWN_PLAIN_POWERS
 
 
 # ---------------------------------------------------------------------------
