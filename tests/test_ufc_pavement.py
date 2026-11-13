@@ -1417,19 +1417,49 @@ class TestFigureEVehicleOffTheChart:
         assert r["thickness_in"] == 0.0
 
     def test_below_the_lowest_curve(self):
-        # REF-76: the guide gives no rule below a chart's lowest curve; it
-        # used to be read on that curve, with a note. The error gives the
-        # lowest curve's thickness as the bound.
+        # Ruling 41 (REF-76): below a chart's lowest curve that curve's
+        # thickness is given with out_of_range and a note; thickness rises
+        # with passes on every chart, so it is the safe side.
         at_lowest = figure_e_vehicle_thickness("E-28", 5, 1e3)
-        assert "note" not in at_lowest
-        with pytest.raises(ValueError, match="below the lowest curve of "
-                           "Figure E-28") as e:
-            figure_e_vehicle_thickness("E-28", 5, 500)
-        assert f"reads {at_lowest['thickness_in']:.1f} in" in str(e.value)
-        assert "printed 219" in str(e.value)
-        # Where the lowest curve has no reading the bound is left out.
-        with pytest.raises(ValueError, match="no thickness there.$"):
+        assert "note" not in at_lowest and "out_of_range" not in at_lowest
+        few = figure_e_vehicle_thickness("E-28", 5, 500)
+        assert few["thickness_in"] == at_lowest["thickness_in"]
+        assert few["out_of_range"] is True
+        assert "lowest curve is for 1,000 passes" in few["note"]
+        assert "prints no curve below it" in few["note"]
+        assert "not less than" in few["note"]
+        # E-31's lowest curve is 100 passes, E-2's 10,000.
+        assert "100 passes" in figure_e_vehicle_thickness(
+            "E-31", 10, 50)["note"]
+        assert figure_e_vehicle_thickness("passenger_car", 3, 1_000)[
+            "out_of_range"] is True
+        # Where the lowest curve is above the chart there is nothing to give.
+        with pytest.raises(ValueError, match="lowest curve of Figure E-16 "
+                           r"\(1,000 passes"):
+            figure_e_vehicle_thickness("E-16", 1.5, 500)
+        # Past the end of an E-30 curve that stops above the axis: refused.
+        with pytest.raises(ValueError, match="ends at CBR"):
             figure_e_vehicle_thickness("E-30", 95, 500)
+
+    def test_thickness_rises_with_passes_on_every_chart(self):
+        # The basis of ruling 41: no curve for more passes lies below one
+        # for fewer, at any CBR, on any of Figures E-2 to E-31.
+        from geotech_references.ufc_pavement.tables import (
+            _FIGURES_E, _fig_e_on_curve)
+        for fig, data in _FIGURES_E.items():
+            levels = sorted(data["curves"])
+            for i in range(0, 401, 4):
+                cbr = 10 ** (i / 200)
+                prev = None
+                for p in levels:
+                    try:
+                        t = _fig_e_on_curve(fig, p, cbr)
+                    except ValueError:
+                        continue
+                    t = float("inf") if t is None else t
+                    if prev is not None:
+                        assert t >= prev - 1e-9, (fig, cbr, p)
+                    prev = t
 
     def test_above_the_highest_curve_as_table_g1(self):
         # Rule 2: Table G-1 (printed 257) reads the passenger car at

@@ -3372,9 +3372,9 @@ def _fig_e_thickness(fig, cbr, passes):
     levels = sorted(_FIGURES_E[fig]["curves"])
     note = None
     if passes <= levels[0]:
-        # figure_e_vehicle_thickness refuses passes below the lowest curve
-        # (REF-76); the bisection of figure_e_vehicle_allowable_passes
-        # starts on it.
+        # Below the lowest curve figure_e_vehicle_thickness gives that
+        # curve's thickness with out_of_range (ruling 41); the bisection of
+        # figure_e_vehicle_allowable_passes starts on it.
         return _fig_e_on_curve(fig, levels[0], cbr), None
     if passes > levels[-1]:
         lo, hi = levels[-2], levels[-1]
@@ -3417,25 +3417,28 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
         highest it is extrapolated in log(passes) from the two highest, as
         the guide's Table G-1 (printed 257) does for the passenger car at
         20,000,000 passes, with a note. Below the lowest curve (1,000
-        passes on most charts) it is refused (REF-76; that curve used to
-        be read, with a note): the guide gives no rule there. The error
-        gives the lowest curve's thickness, which fewer passes need no
-        more than.
+        passes on most charts) that curve's thickness is given, with
+        ``out_of_range`` and a note (the lead's ruling 41 on REF-76): the
+        manual prints no curve there, but on every chart the thickness
+        rises with the passes (checked on the rendered charts and the
+        traced curves), so it is not less than fewer passes need. Where
+        that curve is above the chart at this CBR it is refused.
 
     Returns
     -------
     dict
         {'vehicle', 'figure', 'caption', 'cbr', 'passes', 'thickness_in',
-         'chart_read', 'tolerance', 'reference', 'note'?}. 0.0 where the
-         CBR lies past the point where the curve meets the axis.
+         'chart_read', 'tolerance', 'reference', 'out_of_range'?,
+         'note'?}. 0.0 where the CBR lies past the point where the curve
+         meets the axis.
 
     Raises
     ------
     ValueError
-        If the vehicle is not recognized; passes is not positive or is
-        below the chart's lowest curve; the CBR is below 1; the thickness
-        is above the chart's top; or the CBR is past the end of a curve
-        that stops above the axis (Figure E-30).
+        If the vehicle is not recognized; passes is not positive; the CBR
+        is below 1; the thickness is above the chart's top (for passes
+        below the lowest curve: that curve is); or the CBR is past the end
+        of a curve that stops above the axis (Figure E-30).
     """
     fig = _resolve_vehicle_figure(vehicle)
     if cbr is None or cbr < 1.0:
@@ -3445,26 +3448,28 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
         raise ValueError(f"passes must be > 0, got {passes}")
     data = _FIGURES_E[fig]
     lowest = min(data["curves"])
-    if passes < lowest:
-        try:
-            t_low = _fig_e_on_curve(fig, lowest, cbr)
-        except ValueError:
-            t_low = None
-        bound = (f" At CBR {cbr:g} that curve reads {t_low:.1f} in; fewer "
-                 "passes need no more than that." if t_low is not None
-                 else "")
-        raise ValueError(
-            f"{passes:,.0f} passes is below the lowest curve of Figure {fig} "
-            f"({lowest:,} passes of the {data['caption']}, "
-            f"{_figure_e_ref(fig)}); the chart gives no thickness there."
-            + bound)
+    below = passes < lowest
+    # Below the lowest curve _fig_e_thickness reads that curve.
     t, note = _fig_e_thickness(fig, cbr, passes)
+    if t is None and below:
+        raise ValueError(
+            f"At CBR {cbr:g} the lowest curve of Figure {fig} ({lowest:,} "
+            f"passes of the {data['caption']}) is above the chart's "
+            f"{data['y_max_in']:g} in, and the manual prints no curve for "
+            f"fewer passes ({passes:,.0f}); the chart gives no thickness.")
     if t is None:
         raise ValueError(
             f"At CBR {cbr:g} and {passes:,.0f} passes the {data['caption']} "
             f"needs more than Figure {fig}'s {data['y_max_in']:g} in (the "
             "curve is above the chart); use a stronger layer or fewer "
             "passes.")
+    if below:
+        note = (
+            f"Figure {fig}'s lowest curve is for {lowest:,} passes of the "
+            f"{data['caption']}; the manual prints no curve below it. The "
+            f"thickness given is that curve's, which is not less than a "
+            f"curve for {passes:,.0f} passes would give: on every chart of "
+            "Figures E-2 to E-31 the thickness rises with the passes.")
     out = {
         "vehicle": data["key"],
         "figure": fig,
@@ -3478,6 +3483,8 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
             "px); interpolated in log(passes) between curves"),
         "reference": _figure_e_ref(fig),
     }
+    if below:
+        out["out_of_range"] = True
     if note:
         out["note"] = note
     return out
