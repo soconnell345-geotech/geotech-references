@@ -95,6 +95,38 @@ def test_fine_grained_strength_applicability_has_no_unprinted_scope():
     assert "first-time" not in _sec(8, "8-2.2")["applicability"]
 
 
+def _variables(ch, sid, eq_id):
+    hits = [e for e in _sec(ch, sid)["equations"] if e["id"] == eq_id]
+    assert len(hits) == 1, (sid, eq_id, len(hits))
+    return hits[0].get("variables", {})
+
+
+# (chapter, section, equation, symbol, printed definition in its where-list)
+WHERE_LISTS = [
+    (2, "2-9.1.2", "Eq. 2-1", "D", "diameter of the vane"),  # p. 101
+    (5, "5-5.2.2", "Eq. 5-12", "σ'z0", "initial vertical stress at the midpoint of the soil layer or sublayer"),  # p. 241
+    (5, "5-5.2.2", "Eq. 5-12", "Δσz", "change in vertical stress at layer midpoint"),  # p. 241
+    (8, "8-2.1.3", "Eq. 8-7", "Pa", "atmospheric pressure in same units as vertical stress and qc"),  # p. 400
+    (8, "8-2.1.3", "Eq. 8-8", "σ′v", "effective vertical stress in same units as qc"),  # p. 402
+    (8, "8-2.1.4", "Eq. 8-10", "p0", "corrected pressure required to initiate movement of the membrane against the soil"),  # p. 406
+    (8, "8-2.2.1", "Eq. 8-15", "Pa", "atmospheric pressure in same units as stress"),  # p. 411
+    (8, "8-4.1.2", "Eq. 8-30", "eL", "void ratio at water content equal to the liquid limit"),  # p. 439
+    (8, "8-4.3", "Eq. 8-32", "Pa", "atmospheric pressure (same units as Mds and σ′v)"),  # p. 442
+]
+
+
+@pytest.mark.parametrize("ch,sid,eq_id,sym,definition", WHERE_LISTS,
+                         ids=[f"{c[2]}-{c[3]}" for c in WHERE_LISTS])
+def test_equation_where_list_as_printed(ch, sid, eq_id, sym, definition):
+    assert _variables(ch, sid, eq_id).get(sym) == definition
+
+
+# p. 162: the cyclic DSS failure definition closes 3-2.5.1.1.
+def test_cyclic_dss_failure_definition_in_body():
+    assert ("Failure is defined as a pore pressure ratio of 100% or a limiting cyclic shear strain."
+            in _sec(3, "3-2.5.1.1")["body"])
+
+
 # (chapter, section, footnote number, start of the printed footnote)
 FOOTNOTES = [
     (1, "1-2.1", 1, "In this context, unconsolidated means that the particles have not lithified into rock"),  # p. 3

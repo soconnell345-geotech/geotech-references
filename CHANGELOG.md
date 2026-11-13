@@ -90,6 +90,20 @@ are unchanged. Pages are printed page numbers.
   "undrained shear modulus" for the Eu/su of Figure 8-51 (p. 450).
 - 7-5.2 no longer lists Figure 7-1 (printed in 7-2); Table 5-8 is listed
   under 5-6.3, where it is printed.
+- Equation where-lists: every printed "where:" list was compared with its
+  equation entry and section body. 21 entries that lacked a printed
+  definition now carry the whole printed list in `variables`, in the
+  print's words with its unit conditions (Eq. 2-1; Eqs. 5-12 and 5-13;
+  Eqs. 8-1 to 8-5, 8-7, 8-8, 8-10 to 8-15, 8-17, 8-29, 8-30, 8-32 and
+  8-35), e.g. Eq. 8-7 "Pa = atmospheric pressure in same units as vertical
+  stress and qc" (p. 400) and Eq. 8-32 "Pa = atmospheric pressure (same
+  units as Mds and σʹv)" (p. 442). Eq. 8-7 carries the same note on
+  qt = qc + u·(1+a) as Eq. 8-25. The 8-7.3 body gives the where-lists of
+  Eqs. 8-42 and 8-43 in the print's words ("k = hydraulic conductivity in
+  m/s", pp. 462-463).
+- Also restored: the cyclic DSS failure definition and the sentence after
+  it in 3-2.5.1.1 (p. 162); four figure pointers in 2-9.1.2, 2-9.3.1.1 and
+  2-10.2 (Figures 2-17, 2-18, 2-25a); the printed lead-in to Eq. 2-2.
   Test: `tests/test_dm7_1_build_keypoints.py`.
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and

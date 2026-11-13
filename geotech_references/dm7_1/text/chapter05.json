@@ -537,12 +537,21 @@
         {
           "id": "Eq. 5-12",
           "description": "Primary consolidation settlement for normally consolidated soil: sc = Cεc · H · log[(σ'z0 + Δσz) / σ'z0]",
-          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_nc"
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_nc",
+          "variables": {
+            "Cεc": "modified compression index",
+            "σ'z0": "initial vertical stress at the midpoint of the soil layer or sublayer",
+            "Δσz": "change in vertical stress at layer midpoint",
+            "H": "initial thickness of the soil layer or sublayer"
+          }
         },
         {
           "id": "Eq. 5-13",
           "description": "Primary consolidation settlement for overconsolidated soil with final stress ≤ σ'p: sc = Cεr · H · log[(σ'z0 + Δσz) / σ'z0]",
-          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_recompression"
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_recompression",
+          "variables": {
+            "Cεr": "modified recompression index"
+          }
         },
         {
           "id": "Eq. 5-14",
