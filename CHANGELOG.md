@@ -139,7 +139,8 @@ the rendered pages:
   of working keeps its own line; the page footers of the examples are now
   read as footers (their page labels, `[p. E1-4]`). Built so far: Examples
   E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
-  E3-20), E4 (pp. E4-1 to E4-19) and E5 (pp. E5-1 to E5-32). A long example
+  E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32) and E6 (pp. E6-1
+  to E6-9; p. E6-10 is blank). A long example
   is split into parts never between a caption and its typed-in table or
   figure lettering (E1's Table E1-7.5 had its caption in one part and its
   rows in the next) and never right after a step heading (E3, E4 and E5
@@ -176,7 +177,14 @@ the rendered pages:
   the Kr interpolation whose results are those of 0.340; the ΔσH lines
   whose brackets do not pair; "(0.5 ft + 10.75 ft)0.6" for a division;
   Table E5-8.3's "φs(Tn)"; "Table E-4-8.3" for E5-8.3 and 25.5 ft/2 =
-  "12.5 ft".
+  "12.5 ft". In E6, "Section E6-2" for practical considerations the example
+  does not have; "Table E4-5.1" for E6-5.1; "φt = 1.0" for the pullout
+  factor in Table E6-5.2; "EQ 4-34" for Eq. 4-30; σH lines whose brackets
+  do not pair; Z+ = 3.12 ft at Level 2 where Table E6-7.1 gives 5.62; t =
+  0.3748 in. for 0.374; "600 lb/lft" for Level 1's 1,300 lb/lft pullout
+  load; Np = 1 + 1.4 = 2.4 at Level 1 where the line gives 1 + 1.23 = 2.2,
+  and 0.87 at Level 2 for 0.71 (Nt governs both); "Ng, is 4.0" at Level 2
+  where 3 wires are selected.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

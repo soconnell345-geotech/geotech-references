@@ -81,6 +81,11 @@ PRINTED_UNPAIRED = {
     "ΔσH(Z+) = [(2)(5.55 k/ft)/16.29 ft)][16.29 ft – 8.50 ft)/16.29 ft)] [1.00] = 0.33 ksf",
     "ΔσH(Z−) = [(2)(3.79 k/ft)/16.29 ft)][16.29 ft – 6.04 ft)/16.29 ft)] [1.50] = 0.44 ksf",
     "ΔσH(Z+) = [(2)(3.79 k/ft)/16.29 ft)][16.29 ft – 8.50 ft)/16.29 ft)] [1.50] = 0.33 ksf",
+    # Example E6, pp. E6-4 and E6-5
+    "σH(Z-) = Kr(z-) [γr (Z(z-) + heq ] γP-EV = (0.707)[ 125 pcf (0 + 2)](1.35) = 239 psf",
+    "σH-soil(Z+) = Kr(z+) [γr (Z(z+) + heq ] γP-EV = (0.650)[ 125 pcf (3.12 + 2)](1.35) = 562 psf",
+    "σH(Z-) = Kr(z-) [γr (Z(z-) + heq ] γP-EV = (0.650)[ 125 pcf (3.12 + 2)](1.35) = 562 psf",
+    "σH-soil(Z+) = Kr(z+) [γr (Z(z+) + heq ] γP-EV = (0.604)[ 125 pcf (5.62 + 2)](1.35) = 777 psf",
 }
 
 
@@ -869,7 +874,114 @@ def test_appendix_e5_print_slips_noted():
     assert round(1.2 * 0.283, 3) == 0.340 and 25.5 / 2 == 12.75
     # the lines the scatter test lets pass are in the text as printed
     for line in PRINTED_UNPAIRED:
-        assert line in body.split("\n"), line
+        if line.startswith("ΔσH"):
+            assert line in body.split("\n"), line
+
+
+def test_appendix_e6_working_as_printed():
+    """Example E6, the traffic barrier impact on Example E4's wall: its
+    formula lines as typed in from pp. E6-1 to E6-9, and their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.6"]["title"].startswith("Traffic Barrier Impact Loading on Segmental")
+    body = _e_body("E.6")
+    for line in (
+        "Kar = (1 - sin34°)/(1 + sin34°) = 0.283",
+        "Atrib = (wp)(Svt)",
+        "Tmax = σH Atrib + γCT (TCT)",
+        "At Z+ = 3.12 ft, Kr(z+)= 0.340 + (20.00 ft – 3.12 ft)(0.707-0.340)/20.00 ft = 0.650",
+        "σH = 0.5(239 psf + 562 psf) = 400 psf",
+        "Tmax-R = (σH)(Atrib) + γCT (2,300 wp) = (400 psf)(15.60 ft²) + 1.0 [2,300 lb/ft (5 ft)]",
+        "= 6,240 + 11,500 = 17.74 k/panel of 5-ft width",
+        "Tmax-R = (σH)(Atrib) + γCT (600 wp) = (670 psf)(12.50 ft²) + 1.0 [600 lb/ft (5 ft)]",
+        "Tn = 65 ksi (0.0795 in²) = 5.17 k/wire.",
+        "Pr = α(F*)(2b)(Le)[(σv)(γP-EV)]",
+        "F* = 0.623 + (20.00 ft – 1.87 ft)(1.247 – 0.623)/20 ft = 1.189",
+        "Pr = (1.0)(1.189)(2)(1.00 ft)(18 ft)(484 psf) = 20,717 lb/ft",
+        "Tmax-PO = (σH)(Atrib) + γCT (1,300 wp) = (400 psf)(15.60 ft²) + 1.0 [1,300 lb/ft (5 ft)]",
+        "Pr = (1.0)(1.111)(2)(1.00 ft)(18 ft)(796 psf) = 31,836 lb/ft",
+        "Np = 1 + (Tmax-PO/Prr)/(Sl)",
+    ):
+        assert line in body, line
+    # the lines the scatter test lets pass are in the text as printed
+    for line in PRINTED_UNPAIRED:
+        if line.startswith("σH"):
+            assert line in body.split("\n"), line
+    r = math.radians
+    ka = (1 - math.sin(r(34))) / (1 + math.sin(r(34)))
+    assert round(ka, 3) == 0.283
+    assert round(2.5 * 0.283, 3) == 0.707 and round(1.2 * 0.283, 3) == 0.340
+
+    def kr(z):
+        return 0.340 + (20 - z) * (0.707 - 0.340) / 20
+
+    # Table E6-7.1
+    rows = _cells(body, "E6-7.1")
+    assert [row[0] for row in rows] == ["1", "2", "3"]
+    assert _near(1.87 + 0.5 * (4.37 - 1.87), 3.12, 0.001)
+    assert _near(4.37 + 0.5 * (6.87 - 4.37), 5.62, 0.001)
+    assert rows[0][4] == "3.12" and rows[1][4] == "2.50"
+    # Level 1 (Z− = 0, Z+ = 3.12 ft) and Level 2 (Z− = 3.12 ft, Z+ = 5.62 ft)
+    g = 125
+    assert round(kr(3.12), 3) == 0.650 and round(kr(5.62), 3) == 0.604
+    assert round(0.707 * g * 2 * 1.35) == 239 and round(0.650 * g * 5.12 * 1.35) == 562
+    assert round(0.604 * g * 7.62 * 1.35) == 777
+    assert round(0.5 * (239 + 562)) == 400 and round(0.5 * (562 + 777)) == 670
+    assert round(400 * 3.12 * 5.00 + 2300 * 5) == 17740
+    assert round(670 * 2.50 * 5.00 + 600 * 5) == 11375
+    assert round(400 * 3.12 * 5.00 + 1300 * 5) == 12740
+    # Step 7.4 and 7.5
+    assert round(65 * 0.0795, 2) == 5.17
+    t_st = 0.374 / 6
+    assert round(t_st, 4) == 0.0623
+    assert round(20 * t_st, 3) == 1.247 and round(10 * t_st, 3) == 0.623
+
+    def fstar(z):
+        return 0.623 + (20 - z) * (1.247 - 0.623) / 20
+
+    assert round(fstar(1.87), 3) == 1.189 and round(fstar(4.37), 3) == 1.111
+    assert round(g * (1.87 + 2)) == 484 and round(g * (4.37 + 2)) == 796
+    assert abs(1.189 * 2 * 1.00 * 18 * 484 - 20717) < 1
+    assert abs(1.111 * 2 * 1.00 * 18 * 796 - 31836) < 1
+    # Step 7.6
+    assert round(17.74 / 5.17, 1) == 3.4 and round(11.38 / 5.17, 1) == 2.2
+    assert math.ceil(17.74 / 5.17) == 4 and math.ceil(11.38 / 5.17) == 3
+
+
+def test_appendix_e6_tables_typed_in():
+    body = _e_body("E.6")
+
+    def rows_of(table):
+        # every row, those printed with a blank first cell ("| 7.3 ...") too
+        block = body.split(f"[Table {table}, typed in from p")[1].split("\n\n")[0]
+        return [[c.strip() for c in ln.split("|")] for ln in block.split("\n")[2:]]
+
+    assert rows_of("E6-1")[0] == ["4", "Estimate unfactored loads"]
+    assert [row[0] for row in rows_of("E6-1")] == ["4", "5", "7", "", "", "", "", "8"]
+    assert rows_of("E6-1")[3][1].startswith("7.3 Calculate horizontal stress")
+    assert rows_of("E6-5.1")[1] == ["Extreme II", "γP = 1.35", "0.50", "1.00"]
+    rows = rows_of("E6-5.2")
+    assert [row[2] for row in rows] == ["φt = 0.65", "φt = 1.0", "φp = 0.90", "φt = 1.0"]
+    assert [row[3] for row in rows] == ["Table 11.5.6-1", "Article 11.5.7"] * 2
+
+
+def test_appendix_e6_print_slips_noted():
+    body = _e_body("E.6")
+    for note in (
+        "as printed; Example E6 has no Section E6-2",
+        'as printed, "Table E4-5.1"; the table is E6-5.1, below.',
+        'as printed, "φt = 1.0" in the pullout row; the pullout resistance factor is φp',
+        'as printed, "EQ 4-34": the relation is Chapter 4\'s Eq. 4-30',
+        "as printed, Z+ = 3.12 ft; Table E6-7.1 gives Z+ = 5.62 ft at Level 2",
+        "as printed, 0.3748 in.; the diameter given above is 0.374 in.",
+        'as printed, "600 lb/lft" in the line above; the pullout impact load at Level 1 '
+        "is 1,300 lb/lft",
+        "as printed, 1.4 and 2.4; (12.74/20.72)/0.5 = 1.23, which gives Np = 2.2.",
+        "as printed, 0.87; (11.38/31.84)/0.5 = 0.71, and 1 + 0.71 = 1.7 as printed.",
+        'as printed, "Ng, is 4.0"; here Nt = 2.2 governs, and 3 wires are selected.',
+    ):
+        assert note in body, note
+    assert round(1 + (12.74 / 20.72) / 0.5, 1) == 2.2
+    assert round((11.38 / 31.84) / 0.5, 2) == 0.71
 
 
 # --- the build ------------------------------------------------------------
