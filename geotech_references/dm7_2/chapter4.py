@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Chapter 4: Analysis of Walls and Retaining Structures
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4: Analysis of Walls and Retaining Structures
 
 Equations 4-1 through 4-31 covering at-rest earth pressure, Rankine active
 and passive earth pressures, earth pressure distributions and loads, Coulomb
@@ -9,8 +9,8 @@ base pressure distributions for rigid gravity walls, allowable passive
 resistance, and flexible retaining structure analysis.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures,
-    16 January 2025
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 """
 
 import math
@@ -56,7 +56,7 @@ def at_rest_earth_pressure_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-1,
     printed p. 176 (pdf_page_index 213).
     """
     if sigma_z_eff <= 0.0:
@@ -97,7 +97,7 @@ def at_rest_coefficient_mayne_kulhawy(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-2,
     printed p. 177 (pdf_page_index 214). Mayne, P.W. and Kulhawy, F.H. (1982).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -139,7 +139,7 @@ def rankine_active_pressure_coefficient(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-3,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-3,
     printed p. 178 (pdf_page_index 215).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -174,7 +174,7 @@ def rankine_passive_pressure_coefficient(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-4,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-4,
     printed p. 178 (pdf_page_index 215).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -208,7 +208,7 @@ def rankine_Ka_Kp_reciprocal(Ka: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-5,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-5,
     printed p. 178 (pdf_page_index 215).
     """
     if Ka <= 0.0:
@@ -257,7 +257,7 @@ def rankine_active_horizontal_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-6,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-6,
     printed p. 178 (pdf_page_index 215).
     """
     if Ka <= 0.0:
@@ -301,7 +301,7 @@ def rankine_passive_horizontal_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-7,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-7,
     printed p. 178 (pdf_page_index 215).
     """
     if Kp <= 0.0:
@@ -350,7 +350,7 @@ def active_earth_pressure_resultant(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-8,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-8,
     printed p. 181 (pdf_page_index 218).
     """
     if Ka < 0.0:
@@ -399,7 +399,7 @@ def passive_earth_pressure_resultant(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-9,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-9,
     printed p. 181 (pdf_page_index 218).
     """
     if Kp < 0.0:
@@ -469,7 +469,7 @@ def coulomb_active_earth_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-10,
     printed p. 186 (pdf_page_index 223). Coulomb, C.A. (1776).
     """
     if gamma < 0.0:
@@ -553,7 +553,7 @@ def coulomb_active_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-10,
     printed p. 186 (pdf_page_index 223).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -646,7 +646,7 @@ def coulomb_passive_earth_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-11,
     printed p. 190 (pdf_page_index 227).
     """
     if gamma < 0.0:
@@ -734,7 +734,7 @@ def coulomb_passive_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-11,
     printed p. 190 (pdf_page_index 227).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -812,7 +812,7 @@ def log_spiral_passive_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-12,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-12,
     printed p. 191 (pdf_page_index 228). Caquot, A. and Kerisel, J. (1948).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -846,7 +846,7 @@ def equivalent_fluid_unit_weight(
     K: float,
 ) -> float:
     """Equivalent fluid unit weight gamma_eq (in the unit of gamma),
-    Equation 4-13 of UFC 3-220-20, gamma_eq = gamma K, from the backfill
+    Equation 4-13 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025), gamma_eq = gamma K, from the backfill
     unit weight and an at-rest or active earth pressure coefficient.
     The manual limits the method: "their use should be limited to walls
     that are less than 20 feet tall" (PDF p. 233, printed p. 195).  The
@@ -881,7 +881,7 @@ def equivalent_fluid_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-13,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-13,
     printed p. 195 (pdf_page_index 232).
     """
     if gamma < 0.0:
@@ -929,7 +929,7 @@ def horizontal_earth_pressure_with_surcharge(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-14,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-14,
     printed p. 196 (pdf_page_index 233).
     """
     if z < 0.0:
@@ -997,7 +997,7 @@ def mononobe_okabe_active_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-15,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-15,
     printed p. 214 (pdf_page_index 251). Mononobe, N. and Matsuo, H. (1929);
     Okabe, S. (1924).
     """
@@ -1085,7 +1085,7 @@ def mononobe_okabe_active_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-16,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-16,
     printed p. 215 (pdf_page_index 252).
     """
     if gamma < 0.0:
@@ -1104,7 +1104,7 @@ def seed_whitman_dynamic_increment(
 ) -> float:
     """Dynamic earth pressure force increment Delta P_AE (force per unit
     length of wall, in the units of gamma H^2), Equation 4-17 of
-    UFC 3-220-20, Delta P_AE = (3/8) kh gamma H^2 (Seed and Whitman 1970).
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Delta P_AE = (3/8) kh gamma H^2 (Seed and Whitman 1970).
     The manual gives it for a horizontal backfill, vertical wall face and
     no wall friction, and says "This simplified approach is limited to
     cases where the backfill is horizontal and the wall height is less
@@ -1141,7 +1141,7 @@ def seed_whitman_dynamic_increment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-17 and Figure 4-25,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-17 and Figure 4-25,
     printed p. 215 (pdf_page_index 252).
     Seed, H.B. and Whitman, R.V. (1970).
     """
@@ -1197,7 +1197,7 @@ def wood_nonyielding_seismic_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-18,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-18,
     printed p. 217 (pdf_page_index 254). Wood, J.H. (1973).
     """
     if gamma < 0.0:
@@ -1254,7 +1254,7 @@ def hydrodynamic_water_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-19,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-19,
     printed p. 217 (pdf_page_index 254).
     """
     if gamma_w < 0.0:
@@ -1308,7 +1308,7 @@ def hydrodynamic_water_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-20,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-20,
     printed p. 218 (pdf_page_index 255). Kramer, S.L. (1996).
     """
     if gamma_w < 0.0:
@@ -1371,7 +1371,7 @@ def seismic_psi_low_permeability(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-21,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-21,
     printed p. 218 (pdf_page_index 255). Kramer, S.L. (1996).
     """
     if gamma_sat <= gamma_w:
@@ -1426,7 +1426,7 @@ def seismic_adjusted_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-22,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-22,
     printed p. 218 (pdf_page_index 255).
     """
     if gamma_sat <= gamma_w:
@@ -1478,7 +1478,7 @@ def base_pressure_max_trapezoidal(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-23,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-23,
     printed p. 221 (pdf_page_index 258).
     """
     if B <= 0.0:
@@ -1526,7 +1526,7 @@ def base_pressure_min_trapezoidal(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-24,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-24,
     printed p. 221 (pdf_page_index 258).
     """
     if B <= 0.0:
@@ -1572,7 +1572,7 @@ def base_pressure_max_triangular(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-25,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-25,
     printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
@@ -1608,7 +1608,7 @@ def effective_base_width_triangular(x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-26,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-26,
     printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
@@ -1646,7 +1646,7 @@ def base_pressure_uniform(R: float, x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-27,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-27,
     printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
@@ -1681,8 +1681,8 @@ def effective_base_width_uniform(x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-28,
-    printed p. 221 (pdf_page_index 258).
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-28,
+    printed p. 221 (pdf_page_index 258) in the 2025 UFC; printed p. 222 in UFS 3-220-20.
     """
     if x0 <= 0.0:
         raise ValueError("x0 must be positive.")
@@ -1732,7 +1732,7 @@ def allowable_passive_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-29,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-29,
     printed p. 232 (pdf_page_index 269).
     """
     if Pp < 0.0:
@@ -1776,7 +1776,7 @@ def allowable_friction_angle(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-30,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-30,
     printed p. 232 (pdf_page_index 269).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -1841,7 +1841,7 @@ def relative_flexibility_anchored_bulkhead(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-31,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Equation 4-31,
     printed p. 235 (pdf_page_index 272). Rowe, P.W. (1952).
     """
     if H <= 0.0:
@@ -1887,7 +1887,7 @@ _FIG_4_36_NOTE_2 = (
 
 def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
     """Rowe's moment reduction factor M_DESIGN / M_MAX (dimensionless) for
-    a flexible anchored bulkhead, Figure 4-36 of UFC 3-220-20, from the
+    a flexible anchored bulkhead, Figure 4-36 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025), from the
     flexibility number rho in in^2/lb and the soil the wall penetrates.
 
     The figure prints the equation of each curve: very dense
@@ -1930,7 +1930,7 @@ def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Figure 4-36 (Rowe's Moment
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 4, Figure 4-36 (Rowe's Moment
     Reduction Factors for Flexible Walls), printed p. 236 (pdf_page_index 273).
     """
     key = soil_type.lower().strip().replace("-", "_").replace(" ", "_")
@@ -1952,7 +1952,7 @@ def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
 
 def plot_figure_4_36(rho=None, soil_type=None, ax=None, show=True,
                       **kwargs):
-    """Draw the two curves of UFC 3-220-20 Figure 4-36(a), Rowe's moment
+    """Draw the two curves of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) Figure 4-36(a), Rowe's moment
     reduction factor M_DESIGN / M_MAX against the flexibility number rho
     (5 to 200 in^2/lb, log scale), from the equations the figure prints.
 

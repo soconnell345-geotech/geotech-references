@@ -6,7 +6,7 @@
 > a list in this file. Backlog, TODO and "follow-up" notes further down are
 > history (owner's rule, 2026-10-12).
 
-Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFS 3-220-10 (DM 7.1, 16 January 2026) and UFC 3-220-20 (DM 7.2, 16 January 2025), the successors to NAVFAC DM 7.01/7.02, FHWA GEC series, and other standards.
+Standalone geotechnical reference library: digitized equations, figures, tables, and structured reference text from UFS 3-220-10 (DM 7.1, 16 January 2026) and UFS 3-220-20 (DM 7.2, 26 March 2026, the text and pages of UFC 3-220-20, 16 January 2025), the successors to NAVFAC DM 7.01/7.02, FHWA GEC series, and other standards.
 
 **Two complementary components per reference:**
 1. **Python lookup scripts** (`tables.py`, `figures.py`, sometimes `equations.py`) — Digitized design charts, tables, and equations as callable functions. Written manually by Claude Code from the source PDFs.
@@ -35,7 +35,7 @@ geotech_references/           # Python package (pip install -e .)
     chapter1.py ... chapter8.py
     text/                      # Structured chapter JSON (8 chapters, 465 sections = every printed section, 2026-04-07; every equation checked against the rendered page and stated as printed, the 7 missing sections added and the table formulas of ch 5, 6, 8 checked 2026-11-10, REF-79, tests/test_dm7_1_text_equations.py; every summary, key point and applicability field checked against the print, the 14 page footnotes and 35 table notes put in the bodies, 2026-11-12, tests/test_dm7_1_build_keypoints.py)
     figures_catalog.json       # 223 figures (number, caption, page, text-enriched description)
-  dm7_2/                       # UFC 3-220-20 Foundations & Earth Structures (7 chapters)
+  dm7_2/                       # UFS 3-220-20 (= UFC 3-220-20, 2025) Foundations & Earth Structures (7 chapters)
     prologue.py, chapter2.py ... chapter7.py
     text/                      # Structured chapter JSON (prologue + 6 chapters, 439 sections, plus appendix B with all seven verification examples typed from the rendered pages, 60 sections, REF-85, tests/test_dm7_2_appendix_b.py; equations point-fixed to the print 2026-11-10, REF-79, tests/test_dm7_2_text_equations.py; key points/summaries/applicability read against the print and the 45 footnotes + 82 table notes stored at their marks 2026-11-12, tests/test_dm7_2_footnotes.py; bodies condense the print in places, so some printed sentences are not stored)
     figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
@@ -693,7 +693,7 @@ the GeotechStaffEngineer HANDOFF P6); image embeddings remain rejected.
   group (drained c' is another quantity), `ultimate bearing` (allowable
   bearing fired it), the settlement group (immediate settlement fired
   consolidation settlement; GEC-6/GEC-8 print "compression settlement" for
-  sand), `load-transfer curve` from t-z (UFC 3-220-20 Sec. 6-5.8.4.2 uses it
+  sand), `load-transfer curve` from t-z (UFS 3-220-20 (2026; = UFC 3-220-20, 2025) Sec. 6-5.8.4.2 uses it
   for t-z and q-z) and `active resistance` (printed nowhere, not a term).
   `tip resistance` stays in end bearing (FHWA-NHI-06-089 Sec. 9.1.2 and
   GEC-10 Sec. 10.1 print it for the shaft or pile base); "cone tip
