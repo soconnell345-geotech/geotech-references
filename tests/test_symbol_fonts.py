@@ -1,11 +1,13 @@
 """Signs set in symbol fonts are stored as the page prints them.
 
 Several source PDFs set their signs in symbol fonts (WordPerfect's WP MathA,
-WP Greek Century and WP Typographic Symbols, Wingdings, Symbol), and a PDF's
+WP Greek Century and WP Typographic Symbols, Wingdings, Symbol, and the
+one-page TrueType subsets of FHWA-IF-99-015 named TT...o00), and a PDF's
 text layer can give such a glyph as an ordinary character: FHWA NHI-06-088
 prints "with ≤ 12 percent fines" and its text layer gives "with # 12 percent
 fines"; "40 ± 20" comes out "40"20"; NHI-06-089's "ω = 0°" comes out
-"T = 0E". Chapter text read off a text layer kept those characters.
+"T = 0E"; FHWA-IF-99-015's "(OCR ≤ 4)" comes out "(OCR@4)". Chapter text
+read off a text layer kept those characters.
 
 Each reference's manifest (``scripts/manifests/<package>.json``, per volume
 where it has volumes) carries ``symbol_fonts``: {font name: {text-layer
@@ -142,7 +144,7 @@ def test_no_private_use_or_control_characters_stored():
 # ---------------------------------------------------------------------------
 
 #: References whose stored text was checked span by span against the page.
-CHECKED = ["fhwa_soils_foundations"]
+CHECKED = ["fhwa_soils_foundations", "gec_4"]
 
 _DASH = "-‐‑‒–—―−"
 _SQ = "'‘’"
