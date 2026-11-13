@@ -998,6 +998,16 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     else:
         figs = parse_list(pages, "LIST OF FIGURES")
         tabs = parse_list(pages, "LIST OF TABLES")
+    # a caption the List of Figures or Tables words otherwise than the page
+    # ("rigid" for the printed "flexible"; manifest "list_captions_as_printed":
+    # {"Figure 6-5": "Summary of flexible pavement sections: ..."}) is listed,
+    # and matched to its page, in the page's words
+    for key, cap in vol.get("list_captions_as_printed", {}).items():
+        kind, num = key.split(" ", 1)
+        listed = figs if kind == "Figure" else tabs
+        if num not in listed:
+            raise ValueError(f"list_captions_as_printed: the List gives no {key}")
+        listed[num] = dict(listed[num], caption=cap)
     eq_style = vol.get("equation_numbers")
     typed_tables = vol.get("typed_tables", [])
     tables_typed: set = set()
