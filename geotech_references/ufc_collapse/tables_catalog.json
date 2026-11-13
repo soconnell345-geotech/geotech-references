@@ -55,11 +55,8 @@
       ],
       "printed_page": "33",
       "page_estimated": false,
-      "values": "lookup",
-      "values_in": "alternate_path.classify_action",
-      "implemented_in": [
-        "alternate_path.classify_action"
-      ]
+      "values": "page",
+      "values_in": null
     },
     {
       "table_number": "3-2",
@@ -256,10 +253,10 @@
       "printed_page": "111",
       "page_estimated": false,
       "values": "lookup",
-      "values_in": "structural_steel.list_table_c1_connection_types",
+      "values_in": "structural_steel.table_c1_connection_type",
       "implemented_in": [
-        "structural_steel.list_table_c1_connection_types",
-        "structural_steel.table_c1_connection_type"
+        "structural_steel.table_c1_connection_type",
+        "structural_steel.list_table_c1_connection_types"
       ]
     },
     {

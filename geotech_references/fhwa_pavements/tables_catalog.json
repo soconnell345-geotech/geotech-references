@@ -4,7 +4,7 @@
   "package": "fhwa_pavements",
   "volume": null,
   "pdf_path": "docs/FHWA-NHI-05-037 - Geotech Pavements.pdf",
-  "table_count": 154,
+  "table_count": 153,
   "tables": [
     {
       "table_number": "1-1",
@@ -851,15 +851,17 @@
       "section_title": "Resilient Modulus (MR)",
       "pdf_page_index": 225,
       "pages": [
-        225
+        225,
+        226
       ],
       "printed_page": "5-48",
       "page_estimated": false,
-      "values": "lookup",
-      "values_in": "equations.backcalculated_to_design_modulus",
+      "values": "page",
+      "values_in": null,
       "implemented_in": [
         "equations.backcalculated_to_design_modulus"
-      ]
+      ],
+      "note": "equations.backcalculated_to_design_modulus codes the factors of the table's Commentary row (p. 5-49); its other rows are read off the pages."
     },
     {
       "table_number": "5-32",
@@ -1047,7 +1049,7 @@
       "pages": [
         241
       ],
-      "printed_page": null,
+      "printed_page": "5-64",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -1062,7 +1064,7 @@
       "pages": [
         243
       ],
-      "printed_page": null,
+      "printed_page": "5-66",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -1188,7 +1190,7 @@
       "pages": [
         274
       ],
-      "printed_page": null,
+      "printed_page": "5-97",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -1266,7 +1268,7 @@
       "pages": [
         282
       ],
-      "printed_page": null,
+      "printed_page": "5-105",
       "page_estimated": false,
       "values": "lookup",
       "values_in": "tables.table_5_57_permeability_highway_materials",
@@ -1387,7 +1389,9 @@
       "section_title": null,
       "pdf_page_index": 305,
       "pages": [
-        305
+        305,
+        306,
+        307
       ],
       "printed_page": "6-10",
       "page_estimated": false,
@@ -1462,7 +1466,9 @@
       "section_title": null,
       "pdf_page_index": 312,
       "pages": [
-        312
+        312,
+        313,
+        314
       ],
       "printed_page": "6-17",
       "page_estimated": false,
@@ -1752,7 +1758,7 @@
       "pages": [
         384
       ],
-      "printed_page": null,
+      "printed_page": "7-33",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2008,23 +2014,6 @@
       "values_in": null
     },
     {
-      "table_number": "7-23",
-      "caption": "Comparative costs of ground improvement methods",
-      "chapter": 7,
-      "section_id": null,
-      "section_title": null,
-      "pdf_page_index": 450,
-      "pages": [
-        450,
-        451
-      ],
-      "printed_page": "7-99",
-      "page_estimated": false,
-      "values": "page",
-      "values_in": null,
-      "note": "Printed as Table 7-23a (SI units, PDF page 450) and Table 7-23b (U.S. customary units, PDF page 451)."
-    },
-    {
       "table_number": "8-1",
       "caption": "Typical material properties measured for construction",
       "chapter": 8,
@@ -2064,7 +2053,7 @@
       "pages": [
         470
       ],
-      "printed_page": null,
+      "printed_page": "8-11",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2124,7 +2113,7 @@
       "pages": [
         181
       ],
-      "printed_page": null,
+      "printed_page": "5-4",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2139,7 +2128,7 @@
       "pages": [
         345
       ],
-      "printed_page": null,
+      "printed_page": "6-50",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2154,7 +2143,7 @@
       "pages": [
         450
       ],
-      "printed_page": null,
+      "printed_page": "7-99",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2169,7 +2158,7 @@
       "pages": [
         451
       ],
-      "printed_page": null,
+      "printed_page": "7-100",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2184,7 +2173,7 @@
       "pages": [
         544
       ],
-      "printed_page": null,
+      "printed_page": "B-27",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2197,9 +2186,10 @@
       "section_title": null,
       "pdf_page_index": 545,
       "pages": [
-        545
+        545,
+        546
       ],
-      "printed_page": null,
+      "printed_page": "B-28",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2214,7 +2204,7 @@
       "pages": [
         546
       ],
-      "printed_page": null,
+      "printed_page": "B-29",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2229,7 +2219,7 @@
       "pages": [
         547
       ],
-      "printed_page": null,
+      "printed_page": "B-30",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2244,7 +2234,7 @@
       "pages": [
         550
       ],
-      "printed_page": null,
+      "printed_page": "C-3",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2259,7 +2249,7 @@
       "pages": [
         551
       ],
-      "printed_page": null,
+      "printed_page": "C-4",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2274,7 +2264,7 @@
       "pages": [
         552
       ],
-      "printed_page": null,
+      "printed_page": "C-5",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2289,7 +2279,7 @@
       "pages": [
         557
       ],
-      "printed_page": null,
+      "printed_page": "C-10",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2304,7 +2294,7 @@
       "pages": [
         564
       ],
-      "printed_page": null,
+      "printed_page": "D-5",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2319,7 +2309,7 @@
       "pages": [
         579
       ],
-      "printed_page": null,
+      "printed_page": "D-20",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2334,7 +2324,7 @@
       "pages": [
         592
       ],
-      "printed_page": null,
+      "printed_page": "F-3",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2349,7 +2339,7 @@
       "pages": [
         596
       ],
-      "printed_page": null,
+      "printed_page": "F-7",
       "page_estimated": false,
       "values": "page",
       "values_in": null
@@ -2364,7 +2354,7 @@
       "pages": [
         597
       ],
-      "printed_page": null,
+      "printed_page": "F-8",
       "page_estimated": false,
       "values": "page",
       "values_in": null

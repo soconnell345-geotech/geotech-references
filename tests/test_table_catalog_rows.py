@@ -16,6 +16,11 @@
 * Every ``values_in`` resolves: a "text" row's section exists (and its
   ``tables`` entry or body names the table), a "lookup" row's
   ``module.function`` is a function of the reference.
+* ``values`` never promises cells that are not there: a "text" row's
+  section types the numbers, row labels and words its page prints (the
+  builder's ``cell_coverage``), unless read against the render; a "lookup"
+  row names the function that returns the values, not one that lists the
+  table's keys or returns a footnote.
 * Every table a stored section lists (its ``tables`` field) is a row,
   except the entries in LISTED_NOT_PRINTED, each a number the manual cites
   and does not print (searched for in the PDF).
@@ -45,8 +50,9 @@ import build_table_catalog as builder  # noqa: E402
 #: Rows per reference (scripts/build_table_catalog.py, 2026-11-12).
 ROW_COUNTS = {
     "aashto_1993": 29, "california_trenching": 39, "dm7_1": 139,
-    "dm7_2": 172, "em_2104": 27, "em_2107": 38, "eurocode_7_1": 20,
-    "eurocode_7_2": 38, "fema_p2082": 52, "fhwa_pavements": 154,
+    "dm7_2": 172, "em_1905": 109, "em_2104": 27, "em_2107": 38,
+    "eurocode_7_1": 20, "eurocode_7_2": 38, "fema_p2082": 52,
+    "fhwa_pavements": 153,
     "fhwa_soils_foundations": 142, "gec_10": 47, "gec_11": 118,
     "gec_12": 262, "gec_13": 82, "gec_4": 23, "gec_5": 127, "gec_6": 50,
     "gec_7": 66, "gec_8": 15, "gec_9": 24, "gsa_collapse": 30,
@@ -72,9 +78,6 @@ RENDER_CHECKED = {
     ("eurocode_7_2", "E.1", 122),
     # the text layer drops the captions' symbols (Drd, Dm)
     ("fema_p2082", "C17.2-4", 483), ("fema_p2082", "C17.2-5", 483),
-    # printed as Table 7-23a (SI) and 7-23b (US); the text layer does not
-    # give the caption's first words
-    ("fhwa_pavements", "7-23", 450),
 }
 
 #: (reference, section id, table number as listed) of ``tables`` entries
@@ -203,6 +206,66 @@ def test_every_values_in_resolves(ref):
             f = getattr(importlib.import_module(
                 f"geotech_references.{ref}.{mod}"), fn)
             assert callable(f), (ref, num, path)
+
+
+def _volume_cfg(ref, row):
+    vols = builder._load_manifest(ref).get("volumes") or [None]
+    idx = next((i for i, v in enumerate(vols)
+                if v and v.get("volume") == row.get("volume")), 0)
+    return builder._cfg(ref, idx)
+
+
+@pytest.mark.parametrize("ref", CATALOGS)
+def test_a_text_row_types_every_cell_its_page_prints(ref):
+    """``values`` never promises cells that are not there: a "text" row's
+    section carries the numbers, row labels and words of the table as its
+    page prints them (``coverage_ok``: 90 % of the numbers and row labels,
+    80 % of the words but a ruled table's column heads, six cells or more),
+    or was read against the render (``text_by_render``)."""
+    fitz = pytest.importorskip("fitz")
+    cat = _catalog(ref)
+    rows = [t for t in cat["tables"] if t["values"] == "text"]
+    if not rows:
+        return
+    sections = builder.text_sections(ref)
+    docs, short = {}, []
+    try:
+        for t in rows:
+            num, cfg = t["table_number"], _volume_cfg(ref, t)
+            if cfg.get("text_by_render", {}).get(num) == t["values_in"] \
+                    or cfg.get("values", {}).get(num):
+                continue
+            rel = t.get("pdf_path") or cat["pdf_path"]
+            if rel not in docs:
+                p = _pdf(rel)
+                docs[rel] = fitz.open(str(p)) if p else None
+            if docs[rel] is None:
+                pytest.skip(f"{rel} not found")
+            secs = builder._row_sections(sections, num, t.get("volume"))
+            sec = next(s for s in builder.typed_sections(cfg, num, secs)
+                       if s["section_id"] == t["values_in"])
+            region = builder.table_region(docs[rel], t["pages"], num,
+                                          bool(cfg.get("ocr")))
+            cov = builder.cell_coverage(region, builder.typed_text(sec))
+            if not builder.coverage_ok(cov):
+                short.append((num, t["values_in"], cov["cov"], cov["wall"]))
+    finally:
+        for d in docs.values():
+            if d is not None:
+                d.close()
+    assert not short, f"{ref}: text rows short of their page's cells {short}"
+
+
+@pytest.mark.parametrize("ref", CATALOGS)
+def test_a_lookup_row_names_the_function_that_returns_the_values(ref):
+    """Not the one that lists the table's keys or returns a footnote, where
+    a function returning its values is among ``implemented_in``."""
+    for t in _catalog(ref)["tables"]:
+        if t["values"] != "lookup":
+            continue
+        values = [p for p in t["implemented_in"] if not builder._helper_function(p)]
+        if values:
+            assert t["values_in"] in values, (ref, t["table_number"], t["values_in"])
 
 
 @pytest.mark.parametrize("ref", CATALOGS)
