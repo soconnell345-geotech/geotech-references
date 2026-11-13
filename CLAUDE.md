@@ -24,6 +24,7 @@ geotech_references/           # Python package (pip install -e .)
   _retrieval_db.py             # SQLite FTS5 retrieval layer — reference_search / reference_get / reference_query (v1.2.0); one row per section at every level (REF-24)
   _figures_db.py               # SQLite FTS5 figure-catalog retrieval — figure_search / figure_get / resolve_pdf
   _reach.py                    # What a fetched section can reach (REF-92): figures_held / tables_held / not_held, worked out when the text database is built (table section_reach). See "What a fetched section can reach" below.
+  _tables_db.py                # SQLite FTS5 table-catalog retrieval — table_search / table_get / resolve_table_pdf / list_indexed_tables (REF-86; see "Table catalogs")
   _atomic_db.py                # Both search databases are built under a temporary name beside the real one and moved in with os.replace, so no process reads a half-built file; concurrent first calls each build their own copy (REF-56)
   _packs.py                    # Local reference packs (REF-64): GEOTECH_REFERENCES_PACKS folders indexed beside the built-ins; ids local_*; PDFs by bare file name only; a pack file the indexes cannot take is skipped (SAVEPOINT per file) and named in problems()
   packs.py                     # python -m geotech_references.packs new | check | list | index | schema; the format is docs/REFERENCE_PACKS.md
@@ -76,6 +77,7 @@ geotech_references/           # Python package (pip install -e .)
     tables.py                  # 5 tables (frost susceptibility, reduction, aircraft, layers, subgrade)
 scripts/                       # Content generation tools (NOT installed with the package)
   build_figure_catalog.py      # PDF "List of Figures" → <pkg>/figures_catalog.json (no API; PyMuPDF text parse). Resolves each figure to its PDF page via caption-search; enriches descriptions from chapter text. Run: python scripts/build_figure_catalog.py dm7_1 dm7_2; `--add-missing <pkg>` adds the printed figures a catalog lacks without changing its rows (REF-84)
+  build_table_catalog.py       # List of Tables + body captions + the sections' `tables` entries → <pkg>/tables_catalog.json (no API); each row's page, where its values are (text / lookup / page); `--verify` checks every row on its page (REF-86)
   build_chapter_text.py        # DEPRECATED: PDF → chapter JSON pipeline (Anthropic API); discontinued — too costly ($20/reference on DM7). Chapter JSON files are now authored manually by Claude Code across sessions.
   audit_chapter_text.py        # Validate generated JSON (schema, eq coverage, implemented_in links)
   build_printed_text.py        # Chapter text + figure catalog read off the printed pages (no API): sections from the printed contents, bodies in the print's wording with [p. 6-28] markers, equation objects as [Eq. 9-5], figures/tables from the Lists of Figures/Tables. Manifest "text_build": "printed". Used for fhwa_soils_foundations (REF-29)
@@ -247,6 +249,90 @@ for one printed turned. 428 rows were added this way on 2026-11-10 (REF-08,
 REF-84): `gec_5` 349 rows, `gec_13` 239, `fhwa_soils_foundations` 391,
 `gec_6` 86, `gec_4` 90, `gec_7` 89, `micropile` 142, `eurocode_7_2` 21.
 Tests: `tests/test_catalog_added_rows.py`.
+
+## Table catalogs (REF-86, REF-34)
+
+Every printed table can be found and its page resolved for reading, as a
+figure can. Before this a section's `tables` field listed tables by title
+whose values the helper could not reach (an audit of 2026-11-10 counted 294
+listed tables not typed into any body, not coded and not readable, since the
+page-reading tool only knew the figure catalogs).
+
+- **Catalog** (`<pkg>/tables_catalog.json`, committed; package data): built
+  by `scripts/build_table_catalog.py <pkg>|all` (no API; PyMuPDF text
+  layer) from the printed List of Tables where there is one, the captions
+  printed on body pages, and every `tables` entry of a stored section. The
+  envelope is the figure catalog's (`reference_id`, `reference_title`,
+  `package`, `volume`, `pdf_path`, `table_count`, `tables`). Each row:
+  `table_number` and `caption` as printed, `chapter`, `section_id` and
+  `section_title` (the stored section that lists or prints it, or null),
+  `pdf_page_index` (0-based page where the table starts), `pages` (every
+  page it is printed on), `printed_page`, and where its values are:
+  `values` = `"text"` (its cells are typed in a stored section's `tables`
+  entry or body; `values_in` is the section id), `"lookup"` (a coded
+  function returns it; `values_in` is `module.function`, and
+  `implemented_in` lists every such function) or `"page"` (only on the
+  printed page). A multi-volume manual's rows carry `pdf_path`, `volume` and
+  their volume's `reference_id`; `printed_as_picture` marks a table with no
+  text layer on its page; `note` says what a reader of the page should know.
+- **Retrieve** (`_tables_db.py`, mirrors `_figures_db.py` function for
+  function, same lazy FTS5 database with the atomic build, source signature
+  and scope rules): `table_search(query, reference=None, chapter=None,
+  limit=5, offset=0, max_chars=None)` over number, caption and section
+  title (BM25, synonym expansion and OR fallback, `match` marks, one hit per
+  table with `pages` when it runs on, `reference_id` on each hit; an
+  unknown reference or chapter, `dm7`, or a loose name is refused naming
+  the choices; `max_chars` fits the result as `fit_hits` does);
+  `table_get(reference, table_number, pdf_page_index=None, max_chars=None)`
+  (a leading "Table" and any dash tolerated, '.' and '-' read alike when the
+  number as given is not filed; a number held twice needs the page of the
+  one wanted, any of its pages; adds `how_to_read`, one sentence on where
+  the values are); `resolve_table_pdf(reference, table_number,
+  pdf_page_index=None)` -> `(pdf_abs_path, page_index)` (the
+  `GEOTECH_REFERENCES_DOCS` folder when set); `list_indexed_tables()` (rows
+  per reference and how many are text, lookup and page).
+- **Agent**: `agents/references_agent.py` exposes `table_search` and
+  `table_get` beside `reference_search` and `reference_get`, at the same
+  14,000-character size.
+- **Coverage (build of 2026-11-12)**: 30 references, 1,991 rows: 372
+  text, 285 lookup, 1,334 page. Rows (text/lookup/page): aashto_1993 29
+  (0/14/15), california_trenching 39 (0/7/32), dm7_1 139 (0/7/132), dm7_2
+  172 (3/16/153), em_2104 27 (0/10/17), em_2107 38 (0/4/34), eurocode_7_1
+  20 (0/18/2), eurocode_7_2 38 (38/0/0), fema_p2082 52 (0/3/49),
+  fhwa_pavements 154 (0/15/139), fhwa_soils_foundations 142 (2/0/140),
+  gec_10 47 (34/2/11), gec_11 118 (5/16/97), gec_12 262 (164/8/90), gec_13
+  82 (0/8/74), gec_4 23 (0/4/19), gec_5 127 (103/0/24), gec_6 50
+  (2/10/38), gec_7 66 (12/13/41), gec_8 15 (6/0/9), gec_9 24 (0/5/19),
+  gsa_collapse 30 (0/11/19), micropile 37 (3/13/21), ufc_collapse 29
+  (0/12/17), ufc_concrete_practice 16 (0/12/4), ufc_flexible_practice 39
+  (0/23/16), ufc_pavement 28 (0/17/11), ufc_stabilization 10 (0/10/0),
+  ufc_structural 14 (0/13/1), wood_handbook 124 (0/14/110). GEC-14 prints
+  no numbered table (no catalog). The AASHTO 1993 rows are the tables a
+  section lists or a lookup codes; its other printed tables are not rows.
+- **Where the builder needs a person**: a row the scan cannot place (a
+  scan with no text layer, a label the text layer garbles, a List of Tables
+  caption that is not the page's, a sentence or contents line that cites a
+  number) was checked on the rendered page and its page, caption or row
+  written into the builder's `CONFIG` (`page_from_render`,
+  `caption_from_render`, `rows_from_renders`, `drop`, `notes`,
+  `not_printed`), with a comment saying what the render showed, so a re-run
+  gives the same catalog. The AASHTO 1993 Guide (no text layer) has every
+  row so placed. EN 1997-1 and -2 are scans with an OCR text layer
+  (`"ocr": True`: the label check reads "Table A.S" as A.5 and "Table H.l"
+  as H.1). A page whose captions are a list (four or more within two lines
+  of each other) or a List of Tables page loses to a later page that
+  prints the table. A function that cites a table in its opening paragraph
+  without returning its values is set aside in `NOT_IMPLEMENTED_BY`. PDFs
+  not in `docs/` (the Wood Handbook is not committed) are read from the
+  folder `GEOTECH_REFERENCES_DOCS` names.
+- **Verify**: `python scripts/build_table_catalog.py --verify <pkg>|all`
+  lists the rows whose page does not print the label and the caption's
+  first words, or is a contents page (a table printed as a picture, a scan;
+  each such row was checked on the render). Tests:
+  `tests/test_tables_db.py`, `tests/test_table_catalog_rows.py` (pinned row
+  counts, every row on its page by the builder's rule with the
+  render-checked rows listed, every `values_in` resolves, every listed
+  table a row).
 
 ## Section levels (REF-24): every section is addressable
 

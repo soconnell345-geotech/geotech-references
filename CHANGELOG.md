@@ -168,6 +168,45 @@ checked against the page that prints the heading (4,407 sections; EN
 1997-1 and the Caltrans manual cite pages only inside the text); two
 GEC-13 ranges started on the wrong page and now start on the heading's
 page (7.1.2.1 pp. 7-1 to 7-4, 9.7.4 pp. 9-110 to 9-111).
+**Table catalogs: every printed table a section lists can be found and its
+page read (app BACKLOG REF-86, REF-34; build of 2026-11-12).** Before this a
+section's `tables` field named tables whose values the references helper
+could not reach: not typed into the text, not coded, and not on any page the
+page-reading tool knew (it knew only the figure catalogs).
+
+- `geotech_references/<pkg>/tables_catalog.json` for 30 references,
+  1,991 rows (package data). Each row gives the table's number and caption
+  as printed, its chapter, the section that lists it, the PDF page it
+  starts on and every page it runs on, the printed page, and where its
+  values are: `"text"` (typed in a stored section, 372 rows), `"lookup"` (a
+  coded function, 285 rows) or `"page"` (only on the printed page, 1,334
+  rows). Built by `scripts/build_table_catalog.py` from the List of Tables,
+  the captions on body pages and every section's `tables` entries; no API.
+  The AASHTO 1993 Guide (a scan with no text layer) has a row for each of
+  the 29 tables a section lists or a lookup codes, each placed on the
+  render; its other printed tables are not rows. GEC-14 prints no numbered
+  table and has no catalog.
+- `table_search`, `table_get`, `resolve_table_pdf` and `list_indexed_tables`
+  (`geotech_references/_tables_db.py`), the figure layer's rules for scope,
+  matching, sizes and rebuilds; `agents/references_agent.py` exposes
+  `table_search` and `table_get`.
+- Every row was checked on its page: the label and the caption's first
+  words in the page's text, and not a contents page
+  (`build_table_catalog.py --verify all`). The 33 rows the text layer
+  cannot confirm (the 29 AASHTO 1993 tables, a garbled label, captions
+  whose symbols the text layer drops) were checked on the rendered page,
+  and so was a seeded sample of 80 rows across the references. Captions
+  whose Greek letters the text layer gives as private-use characters or
+  drops (FEMA P-2082 Tables 19.3-2, 19.3-3, C16.4-4, C22-7; GEC-11 Table
+  4-7) are as the render prints them.
+- What the renders found and the catalog records: GEC-10's List of Tables
+  numbers the TIP table 16-4 and lists a 16-3 the manual does not print
+  (the TIP table is printed as Table 16-3); UFC 3-250-03's list gives Tables
+  2-13 to 2-16 the captions of other tables; GEC-5 prints Table 5-15 under
+  another caption than its list; FHWA-NHI-05-037 prints Table 7-23 as 7-23a
+  and 7-23b. Each such row carries a `note`.
+- No lookup function changed. Tests: `tests/test_tables_db.py`,
+  `tests/test_table_catalog_rows.py`, two in `tests/test_references_agent.py`.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8

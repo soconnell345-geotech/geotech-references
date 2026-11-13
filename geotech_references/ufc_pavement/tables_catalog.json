@@ -1,0 +1,481 @@
+{
+  "reference_id": "UFC 3-250-01",
+  "reference_title": "Pavement Design for Roads and Parking Areas",
+  "package": "ufc_pavement",
+  "volume": null,
+  "pdf_path": "docs/ufc_3_250_01_2016.pdf",
+  "table_count": 28,
+  "tables": [
+    {
+      "table_number": "4-1",
+      "caption": "Representative Subgrade Categories",
+      "chapter": 4,
+      "section_id": "4-3.3",
+      "section_title": "Mixed Traffic",
+      "pdf_page_index": 30,
+      "pages": [
+        30
+      ],
+      "printed_page": "11",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_1_subgrade_category",
+      "implemented_in": [
+        "tables.table_4_1_subgrade_category"
+      ]
+    },
+    {
+      "table_number": "5-1",
+      "caption": "Depth of Compaction for Select Materials and Subgrades (CBR 1 ≤ 20)",
+      "chapter": 5,
+      "section_id": "5-2",
+      "section_title": "Compaction",
+      "pdf_page_index": 33,
+      "pages": [
+        33
+      ],
+      "printed_page": "14",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_1_compaction_depth",
+      "implemented_in": [
+        "tables.table_5_1_compaction_depth"
+      ]
+    },
+    {
+      "table_number": "6-1",
+      "caption": "Maximum Permissible Design Values for Subbases and Select Materials",
+      "chapter": 6,
+      "section_id": "6-2.1",
+      "section_title": "Select Materials",
+      "pdf_page_index": 36,
+      "pages": [
+        36
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_6_1_subbase_permissible_values",
+      "implemented_in": [
+        "tables.table_6_1_subbase_permissible_values"
+      ]
+    },
+    {
+      "table_number": "7-1",
+      "caption": "Design CBR Values",
+      "chapter": 7,
+      "section_id": "7-4",
+      "section_title": "Selection of Design CBR",
+      "pdf_page_index": 39,
+      "pages": [
+        39
+      ],
+      "printed_page": "20",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_7_1_base_design_cbr",
+      "implemented_in": [
+        "tables.table_7_1_base_design_cbr"
+      ]
+    },
+    {
+      "table_number": "7-2",
+      "caption": "Minimum Thickness of Flexible Pavement Sections",
+      "chapter": 7,
+      "section_id": "7-5",
+      "section_title": "Minimum Thickness",
+      "pdf_page_index": 40,
+      "pages": [
+        40
+      ],
+      "printed_page": "21",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_7_2_min_thickness",
+      "implemented_in": [
+        "tables.table_7_2_min_thickness"
+      ]
+    },
+    {
+      "table_number": "9-1",
+      "caption": "Equivalency Factors for Stabilized Material",
+      "chapter": 9,
+      "section_id": "9-2.2",
+      "section_title": "Stabilized Soil Layers",
+      "pdf_page_index": 46,
+      "pages": [
+        46
+      ],
+      "printed_page": "27",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_9_1_equivalency_factor",
+      "implemented_in": [
+        "tables.table_9_1_equivalency_factor"
+      ]
+    },
+    {
+      "table_number": "10-1",
+      "caption": "Modulus of Soil Reaction (psi/in)*",
+      "chapter": 10,
+      "section_id": "10-4",
+      "section_title": "Determination of Modulus of Subgrade Reaction",
+      "pdf_page_index": 50,
+      "pages": [
+        50
+      ],
+      "printed_page": "31",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_10_1_k_subgrade",
+      "implemented_in": [
+        "tables.table_10_1_k_subgrade"
+      ]
+    },
+    {
+      "table_number": "16-1",
+      "caption": "Allowable Spacing of Longitudinal and Transverse Contraction Joints",
+      "chapter": 16,
+      "section_id": "16-2.1.3",
+      "section_title": "Spacing of Transverse Contraction Joints",
+      "pdf_page_index": 73,
+      "pages": [
+        73
+      ],
+      "printed_page": "54",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_16_1_joint_spacing",
+      "implemented_in": [
+        "tables.table_16_1_joint_spacing"
+      ]
+    },
+    {
+      "table_number": "16-2",
+      "caption": "Dowel Size and Spacing for Construction, Contraction, and Expansion Joints",
+      "chapter": 16,
+      "section_id": "16-2.1.5.1",
+      "section_title": "Transverse Joints (Doweled/Tied)",
+      "pdf_page_index": 74,
+      "pages": [
+        74
+      ],
+      "printed_page": "55",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_16_2_dowel_size",
+      "implemented_in": [
+        "tables.table_16_2_dowel_size"
+      ]
+    },
+    {
+      "table_number": "19-1",
+      "caption": "Modes of Distress in Pavements",
+      "chapter": 19,
+      "section_id": "19-1",
+      "section_title": "General",
+      "pdf_page_index": 87,
+      "pages": [
+        87
+      ],
+      "printed_page": "68",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_19_1_distress_modes",
+      "implemented_in": [
+        "tables.table_19_1_distress_modes"
+      ]
+    },
+    {
+      "table_number": "19-2",
+      "caption": "Frost Design Soil Classification*",
+      "chapter": 19,
+      "section_id": "19-2",
+      "section_title": "Frost-Susceptibility Classification",
+      "pdf_page_index": 89,
+      "pages": [
+        89
+      ],
+      "printed_page": "70",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_19_2_frost_classification",
+      "implemented_in": [
+        "tables.table_19_2_frost_classification"
+      ]
+    },
+    {
+      "table_number": "19-3",
+      "caption": "Frost-Area Soil Support Indexes for Subgrade Soils for Flexible Pavement Design",
+      "chapter": 19,
+      "section_id": "19-6.1",
+      "section_title": "Thickness of Flexible Pavements (Reduced Subgrade Strength)",
+      "pdf_page_index": 99,
+      "pages": [
+        99
+      ],
+      "printed_page": "80",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_19_3_frost_support_index",
+      "implemented_in": [
+        "tables.table_19_3_frost_support_index"
+      ]
+    },
+    {
+      "table_number": "20-1",
+      "caption": "Coefficient of Permeability for Sand and Gravel Materials (Coefficient of 55)",
+      "chapter": 20,
+      "section_id": "20-2.2.3",
+      "section_title": "Effect of Grain Size and Void Ratio",
+      "pdf_page_index": 113,
+      "pages": [
+        113
+      ],
+      "printed_page": "94",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_20_1_permeability_estimate",
+      "implemented_in": [
+        "tables.table_20_1_permeability_estimate"
+      ]
+    },
+    {
+      "table_number": "20-2",
+      "caption": "Frost Susceptible Soils",
+      "chapter": 20,
+      "section_id": "20-3.3.4",
+      "section_title": "Frost Susceptible Soils",
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "105",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_20_2_frost_susceptible_soils",
+      "implemented_in": [
+        "tables.table_20_2_frost_susceptible_soils"
+      ]
+    },
+    {
+      "table_number": "20-3",
+      "caption": "Gradations of Materials for Drainage Layers and Choke Stone",
+      "chapter": 20,
+      "section_id": "20-3.6",
+      "section_title": "Material Properties for Drainage Layers",
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": "111",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20-4",
+      "caption": "Properties of Materials for Drainage Layers",
+      "chapter": 20,
+      "section_id": "20-3.6",
+      "section_title": "Material Properties for Drainage Layers",
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": "111",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20-5",
+      "caption": "Material Gradations for Drainage Layers",
+      "chapter": 20,
+      "section_id": "20-3.6",
+      "section_title": "Material Properties for Drainage Layers",
+      "pdf_page_index": 131,
+      "pages": [
+        131
+      ],
+      "printed_page": "112",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20-6",
+      "caption": "Criteria for Granular Separation Layer",
+      "chapter": 20,
+      "section_id": "20-2.6.1",
+      "section_title": "Requirements for Separation Layers",
+      "pdf_page_index": 131,
+      "pages": [
+        131
+      ],
+      "printed_page": "112",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20-7",
+      "caption": "Criteria for Filter Fabric to be Used as a Separation Layer",
+      "chapter": 20,
+      "section_id": "20-3.6.2",
+      "section_title": "Filter Fabric for Separation Layer",
+      "pdf_page_index": 132,
+      "pages": [
+        132
+      ],
+      "printed_page": "113",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20-8",
+      "caption": "Coefficient of Roughness for Different Types of Pipe",
+      "chapter": 20,
+      "section_id": "20-5.2.3",
+      "section_title": "Pipe Size and Slopes",
+      "pdf_page_index": 135,
+      "pages": [
+        135
+      ],
+      "printed_page": "116",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_20_8_pipe_roughness",
+      "implemented_in": [
+        "tables.table_20_8_pipe_roughness"
+      ]
+    },
+    {
+      "table_number": "20-9",
+      "caption": "Criteria for Fabrics Used in Trench Construction",
+      "chapter": 20,
+      "section_id": "20-5.3.3",
+      "section_title": "Geotextiles in the Trench",
+      "pdf_page_index": 136,
+      "pages": [
+        136
+      ],
+      "printed_page": "117",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "21",
+      "caption": "1 Gradation for Aggregate Surface Courses",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": "121",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "21-2",
+      "caption": "Compaction Depth Requirements for Aggregate Surfaces",
+      "chapter": 21,
+      "section_id": "21-6",
+      "section_title": "Compaction Requirements",
+      "pdf_page_index": 143,
+      "pages": [
+        143
+      ],
+      "printed_page": "124",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_21_2_aggregate_compaction_depth",
+      "implemented_in": [
+        "tables.table_21_2_aggregate_compaction_depth"
+      ]
+    },
+    {
+      "table_number": "G-1",
+      "caption": "Example of Mixed Traffic Calculations for a Flexible Pavement",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 276,
+      "pages": [
+        276
+      ],
+      "printed_page": "257",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "G-2",
+      "caption": "Example of Mixed Traffic Calculations with the 5-axle Truck as Controlling Vehicle",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 277,
+      "pages": [
+        277
+      ],
+      "printed_page": "258",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "G-3",
+      "caption": "Mixed Traffic with M1A2 Tank, 63,049 kg (139,000 lb) as Controlling Vehicle Non-Stabilized Foundation",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 282,
+      "pages": [
+        282
+      ],
+      "printed_page": "263",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "G-4",
+      "caption": "Mixed Traffic with M1A2, 63,049 kg (139,000 lb) as Controlling Vehicle Stabilized Foundation",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 283,
+      "pages": [
+        283
+      ],
+      "printed_page": "264",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "21-1",
+      "caption": "Gradation for Aggregate Surface Courses",
+      "chapter": 21,
+      "section_id": "21-3",
+      "section_title": "Thickness Criteria (Non-Frost Areas)",
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_21_1_aggregate_gradation",
+      "implemented_in": [
+        "tables.table_21_1_aggregate_gradation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+  "reference_id": "EN 1997-1:2004",
+  "reference_title": "Eurocode 7: Geotechnical Design - Part 1: General Rules",
+  "package": "eurocode_7_1",
+  "volume": null,
+  "pdf_path": "docs/eurocode_7_-_geotechnical_designen.1997.1.2004.pdf",
+  "table_count": 20,
+  "tables": [
+    {
+      "table_number": "A.1",
+      "caption": "Partial factors on actions (γF)",
+      "chapter": null,
+      "section_id": "2.4.7.2",
+      "section_title": "Verification of static equilibrium",
+      "pdf_page_index": 129,
+      "pages": [
+        129
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_1_equ_actions",
+      "implemented_in": [
+        "tables.table_a_1_equ_actions"
+      ]
+    },
+    {
+      "table_number": "A.2",
+      "caption": "Partial factors for soil parameters (γM)",
+      "chapter": null,
+      "section_id": "2.4.7.2",
+      "section_title": "Verification of static equilibrium",
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_2_equ_soil_parameters",
+      "implemented_in": [
+        "tables.table_a_2_equ_soil_parameters"
+      ]
+    },
+    {
+      "table_number": "A.3",
+      "caption": "Partial factors on actions (γF) or the effects of actions (γE)",
+      "chapter": null,
+      "section_id": "2.4.7.3.2",
+      "section_title": "Design effects of actions",
+      "pdf_page_index": 131,
+      "pages": [
+        131
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_3_str_geo_actions",
+      "implemented_in": [
+        "tables.table_a_3_str_geo_actions"
+      ]
+    },
+    {
+      "table_number": "A.4",
+      "caption": "Partial factors for soil parameters (γM)",
+      "chapter": null,
+      "section_id": "2.4.7.3.2",
+      "section_title": "Design effects of actions",
+      "pdf_page_index": 131,
+      "pages": [
+        131
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_4_str_geo_soil_parameters",
+      "implemented_in": [
+        "tables.table_a_4_str_geo_soil_parameters"
+      ]
+    },
+    {
+      "table_number": "A.6",
+      "caption": "Partial resistance factors (γR) for driven piles",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_6_driven_pile_resistance",
+      "implemented_in": [
+        "tables.table_a_6_driven_pile_resistance"
+      ]
+    },
+    {
+      "table_number": "A.7",
+      "caption": "Partial resistance factors (γR) for bored piles",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_7_bored_pile_resistance",
+      "implemented_in": [
+        "tables.table_a_7_bored_pile_resistance"
+      ]
+    },
+    {
+      "table_number": "A.8",
+      "caption": "Partial resistance factors (γR) for continuous flight auger (CFA) piles",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_8_cfa_pile_resistance",
+      "implemented_in": [
+        "tables.table_a_8_cfa_pile_resistance"
+      ]
+    },
+    {
+      "table_number": "A.11",
+      "caption": "Correlation factors ξ to derive characteristic values from dynamic impact tests (n - number of tested piles)",
+      "chapter": null,
+      "section_id": "7.6.2",
+      "section_title": "Compressive ground resistance",
+      "pdf_page_index": 135,
+      "pages": [
+        135
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_11_correlation_dynamic_impact_test",
+      "implemented_in": [
+        "tables.table_a_11_correlation_dynamic_impact_test"
+      ]
+    },
+    {
+      "table_number": "A.9",
+      "caption": "Correlation factors ξ to derive characteristic values from static pile load tests (n - number of tested piles)",
+      "chapter": null,
+      "section_id": "7.6.2",
+      "section_title": "Compressive ground resistance",
+      "pdf_page_index": 134,
+      "pages": [
+        134
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_9_correlation_static_load_test",
+      "implemented_in": [
+        "tables.table_a_9_correlation_static_load_test"
+      ]
+    },
+    {
+      "table_number": "A.10",
+      "caption": "Correlation factors ξ to derive characteristic values from ground test results (n - the number of profiles of tests)",
+      "chapter": null,
+      "section_id": "7.6.2",
+      "section_title": "Compressive ground resistance",
+      "pdf_page_index": 134,
+      "pages": [
+        134
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_10_correlation_ground_test",
+      "implemented_in": [
+        "tables.table_a_10_correlation_ground_test"
+      ]
+    },
+    {
+      "table_number": "A.12",
+      "caption": "Partial resistance factors (γR) for pre-stressed anchorages",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 135,
+      "pages": [
+        135
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_12_anchorage_resistance",
+      "implemented_in": [
+        "tables.table_a_12_anchorage_resistance"
+      ]
+    },
+    {
+      "table_number": "A.13",
+      "caption": "Partial resistance factors (γR) for retaining structures",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 136,
+      "pages": [
+        136
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_13_retaining_structure_resistance",
+      "implemented_in": [
+        "tables.table_a_13_retaining_structure_resistance"
+      ]
+    },
+    {
+      "table_number": "A.14",
+      "caption": "Partial resistance factors (γR) for slopes and overall stability",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 136,
+      "pages": [
+        136
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_14_slope_stability_resistance",
+      "implemented_in": [
+        "tables.table_a_14_slope_stability_resistance"
+      ]
+    },
+    {
+      "table_number": "A.15",
+      "caption": "Partial factors on actions (γF)",
+      "chapter": null,
+      "section_id": "2.4.7.4",
+      "section_title": "Verification procedure and partial factors for uplift",
+      "pdf_page_index": 137,
+      "pages": [
+        137
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_15_upl_actions",
+      "implemented_in": [
+        "tables.table_a_15_upl_actions"
+      ]
+    },
+    {
+      "table_number": "A.16",
+      "caption": "Partial factors for soil parameters and resistances",
+      "chapter": null,
+      "section_id": "2.4.7.4",
+      "section_title": "Verification procedure and partial factors for uplift",
+      "pdf_page_index": 138,
+      "pages": [
+        138
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_16_upl_soil_resistance",
+      "implemented_in": [
+        "tables.table_a_16_upl_soil_resistance"
+      ]
+    },
+    {
+      "table_number": "A.17",
+      "caption": "Partial factors on actions (γF)",
+      "chapter": null,
+      "section_id": "2.4.7.5",
+      "section_title": "Verification of resistance to failure by heave due to seepage of water in the ground",
+      "pdf_page_index": 138,
+      "pages": [
+        138
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_17_hyd_actions",
+      "implemented_in": [
+        "tables.table_a_17_hyd_actions"
+      ]
+    },
+    {
+      "table_number": "C.1",
+      "caption": "Ratios va/h for non-cohesive soils",
+      "chapter": null,
+      "section_id": "15-3",
+      "section_title": "Annex C.3: Movements to mobilise earth pressures",
+      "pdf_page_index": 155,
+      "pages": [
+        155
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.2",
+      "caption": "Ratios vp/h and v/h for 0.5σp for non-cohesive soils",
+      "chapter": null,
+      "section_id": "15-3",
+      "section_title": "Annex C.3: Movements to mobilise earth pressures",
+      "pdf_page_index": 156,
+      "pages": [
+        156
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "G.1",
+      "caption": "Grouping of weak and broken rocks",
+      "chapter": null,
+      "section_id": "6.5.2.4",
+      "section_title": "Bearing resistance - Prescriptive method using presumed bearing resistance",
+      "pdf_page_index": 164,
+      "pages": [
+        164
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_g_1_rock_group",
+      "implemented_in": [
+        "tables.table_g_1_rock_group"
+      ]
+    },
+    {
+      "table_number": "A.5",
+      "caption": "Partial resistance factors (γR) for spread foundations",
+      "chapter": null,
+      "section_id": "2.4.7.3.3",
+      "section_title": "Design resistances",
+      "pdf_page_index": 132,
+      "pages": [
+        132
+      ],
+      "printed_page": "131",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a_5_spread_foundation_resistance",
+      "implemented_in": [
+        "tables.table_a_5_spread_foundation_resistance"
+      ]
+    }
+  ]
+}

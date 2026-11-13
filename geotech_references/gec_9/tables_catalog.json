@@ -1,0 +1,385 @@
+{
+  "reference_id": "FHWA-HIF-18-031",
+  "reference_title": "Design, Analysis, and Testing of Laterally Loaded Deep Foundations that Support Transportation Facilities",
+  "package": "gec_9",
+  "volume": null,
+  "pdf_path": "docs/GEC 9.pdf",
+  "table_count": 24,
+  "tables": [
+    {
+      "table_number": "3-1",
+      "caption": "Geotechnical parameters for analysis of laterally loaded deep foundations in soils",
+      "chapter": 3,
+      "section_id": "3.2.1",
+      "section_title": "Soil Geotechnical Design Parameters",
+      "pdf_page_index": 35,
+      "pages": [
+        35
+      ],
+      "printed_page": "32",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-2",
+      "caption": "Geotechnical parameters for analysis of laterally loaded deep foundations in rock",
+      "chapter": 3,
+      "section_id": "3.2.2",
+      "section_title": "Rock Geotechnical Design Parameters",
+      "pdf_page_index": 35,
+      "pages": [
+        35
+      ],
+      "printed_page": "32",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Minimum number of exploration points and depth requirements for deep foundations subject to lateral loads (modified from AASHTO 2014 and Loehr et al. 2016)",
+      "chapter": 3,
+      "section_id": "3.3.1",
+      "section_title": "Subsurface Exploration Program Requirements",
+      "pdf_page_index": 36,
+      "pages": [
+        36
+      ],
+      "printed_page": "33",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-1",
+      "caption": "Resistance factors for lateral Geotechnical and Strength Limit State (from Brown et al. 2010)",
+      "chapter": 4,
+      "section_id": "4.3",
+      "section_title": "Strength Limit State for Laterally Loaded Foundations",
+      "pdf_page_index": 47,
+      "pages": [
+        47
+      ],
+      "printed_page": "44",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_1_lateral_resistance_factor",
+      "implemented_in": [
+        "tables.table_4_1_lateral_resistance_factor"
+      ]
+    },
+    {
+      "table_number": "7-1",
+      "caption": "P-multipliers for analysis of groups of deep foundation elements (from AASHTO 2014, originally modified from Hannigan et al. 2006)",
+      "chapter": 7,
+      "section_id": "7.2.2.2",
+      "section_title": "Recommendations for P-multipliers",
+      "pdf_page_index": 107,
+      "pages": [
+        107
+      ],
+      "printed_page": "104",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_7_1_p_multiplier",
+      "implemented_in": [
+        "tables.table_7_1_p_multiplier"
+      ]
+    },
+    {
+      "table_number": "8-1",
+      "caption": "Seismic zones (Hannigan et al. 2016)",
+      "chapter": 8,
+      "section_id": "8.3.1",
+      "section_title": "Equivalent Static Seismic Force",
+      "pdf_page_index": 122,
+      "pages": [
+        122
+      ],
+      "printed_page": "119",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "9-1",
+      "caption": "Friction Angle for Dissimilar Materials",
+      "chapter": 9,
+      "section_id": "9.2",
+      "section_title": "Earth Pressures",
+      "pdf_page_index": 132,
+      "pages": [
+        132
+      ],
+      "printed_page": "129",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "10-1a",
+      "caption": "Percent of residual load on soil mass between shafts [d = 1 foot]",
+      "chapter": 10,
+      "section_id": "10.3.3",
+      "section_title": "Liang and Zeng (2002) Method",
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": "137",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "10-1b",
+      "caption": "Percent of residual load on soil mass between shafts [d = 2 feet]",
+      "chapter": 10,
+      "section_id": "10.3.3",
+      "section_title": "Liang and Zeng (2002) Method",
+      "pdf_page_index": 141,
+      "pages": [
+        141
+      ],
+      "printed_page": "138",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "10-1c",
+      "caption": "Percent of residual load on soil mass between shafts [d = 3 feet]",
+      "chapter": 10,
+      "section_id": "10.3.3",
+      "section_title": "Liang and Zeng (2002) Method",
+      "pdf_page_index": 141,
+      "pages": [
+        141
+      ],
+      "printed_page": "138",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "11-2",
+      "caption": "Minimum yield strengths for permanent steel casing",
+      "chapter": 11,
+      "section_id": "11.3.4",
+      "section_title": "Casings",
+      "pdf_page_index": 151,
+      "pages": [
+        151
+      ],
+      "printed_page": "148",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "11-3",
+      "caption": "Minimum cover for unprotected main reinforcing steel (in)",
+      "chapter": 11,
+      "section_id": "11.3.7",
+      "section_title": "Concrete Cover and Cage Centering Devices",
+      "pdf_page_index": 154,
+      "pages": [
+        154
+      ],
+      "printed_page": "151",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "A-1",
+      "caption": "Representative values of k for stiff clays (Reese et al. 1975)",
+      "chapter": null,
+      "section_id": "A.2",
+      "section_title": "P-Y Curve for Stiff Clay with Free Water (Reese et al. 1975)",
+      "pdf_page_index": 225,
+      "pages": [
+        225
+      ],
+      "printed_page": "222",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a1_k_stiff_clay",
+      "implemented_in": [
+        "tables.table_a1_k_stiff_clay"
+      ]
+    },
+    {
+      "table_number": "A-2",
+      "caption": "Representative values of ε50 for stiff clays (Reese et al. 1975)",
+      "chapter": null,
+      "section_id": "A.2",
+      "section_title": "P-Y Curve for Stiff Clay with Free Water (Reese et al. 1975)",
+      "pdf_page_index": 225,
+      "pages": [
+        225
+      ],
+      "printed_page": "222",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a2_epsilon50_stiff_clay",
+      "implemented_in": [
+        "tables.table_a2_epsilon50_stiff_clay"
+      ]
+    },
+    {
+      "table_number": "A-3",
+      "caption": "Representative values of k for sand under static and cyclic loading",
+      "chapter": null,
+      "section_id": "A.4",
+      "section_title": "P-Y Curve for Sands (Reese et al. 1974)",
+      "pdf_page_index": 231,
+      "pages": [
+        231
+      ],
+      "printed_page": "228",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a3_k_sand",
+      "implemented_in": [
+        "tables.table_a3_k_sand"
+      ]
+    },
+    {
+      "table_number": "B-2",
+      "caption": "Factored loads",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 240,
+      "pages": [
+        240
+      ],
+      "printed_page": "237",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-3",
+      "caption": "Interpreted soil parameters",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 246,
+      "pages": [
+        246
+      ],
+      "printed_page": "243",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-4",
+      "caption": "P-multipliers",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 248,
+      "pages": [
+        248
+      ],
+      "printed_page": "245",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-5",
+      "caption": "Factored loads",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 248,
+      "pages": [
+        248
+      ],
+      "printed_page": "245",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-1",
+      "caption": "DOTs referencing various design topics regarding lateral loading",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 271,
+      "pages": [
+        271
+      ],
+      "printed_page": "268",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-2",
+      "caption": "Summary of head fixity literature review",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 272,
+      "pages": [
+        272
+      ],
+      "printed_page": "269",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-3",
+      "caption": "List of lateral analysis software",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 283,
+      "pages": [
+        283
+      ],
+      "printed_page": "280",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-1",
+      "caption": "Interpreted soil parameters",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 239,
+      "pages": [
+        239
+      ],
+      "printed_page": "236",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "11-1",
+      "caption": "Effective length factors, K (after AASHTO 2014)",
+      "chapter": 11,
+      "section_id": "11.2.1",
+      "section_title": "Effective Length and Buckling",
+      "pdf_page_index": 149,
+      "pages": [
+        149
+      ],
+      "printed_page": "146",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}
