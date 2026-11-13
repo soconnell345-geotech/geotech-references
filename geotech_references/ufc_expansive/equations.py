@@ -2,9 +2,9 @@
 
 From UFC 3-220-07, Foundations in Expansive Soils (the reproduced
 TM 5-818-7), docs/ufc_3_220_07.pdf: total swell as the area under the
-per cent swell versus depth curve, Figure 5-4 (printed p. 5-7, PDF 42),
+per cent swell versus depth curve, Figure 5-4 (printed p. 5-7, pdf_page_index 41),
 the four relations of Table 4-2, "Other Empirical Methods for
-Prediction of Potential Heave" (printed p. 4-3, PDF 33), Van Der Merwe's
+Prediction of Potential Heave" (printed p. 4-3, pdf_page_index 32), Van Der Merwe's
 total heave, Eq. 4-1 with Figure 4-1 (printed p. 4-1 to 4-2), the
 potential vertical heave from void ratios, Eq. 5-2 (p. 5-2), the
 equilibrium pore water pressure profiles, Eqs. 5-3 to 5-5 (p. 5-3 to
@@ -18,10 +18,11 @@ is printed in this manual.
 """
 
 import math
+from geotech_references import _units as _u
 
 _REF = "UFC 3-220-07 (TM 5-818-7)"
 _M_TO_FT = 1.0 / 0.3048
-_T42 = f"{_REF}, Table 4-2, printed p. 4-3 (PDF 33)"
+_T42 = f"{_REF}, Table 4-2, printed p. 4-3 (pdf_page_index 32)"
 _T42_NOTE = ("Table 4-2 footnote a: Sp = percent swell; LL = liquid limit in "
              "percent; PI = plasticity index in percent; wo = initial water "
              "content in percent; H = depth of soil in feet.")
@@ -32,9 +33,12 @@ def _nonneg(name, v):
         raise ValueError(f"{name} must be >= 0, got {v}")
 
 
+@_u.labelled(
+    {"initial_water_content": "percent", "liquid_limit": "percent",
+     "log_sp": "no unit printed", "potential_swell_pct": "percent"})
 def table_4_2_swell_vijayvergiya_ghazzaly(liquid_limit, initial_water_content):
     """Potential swell Sp (percent) by Vijayvergiya and Ghazzaly, UFC 3-220-07
-    Table 4-2 (printed p. 4-3, PDF 33), from initial water content to
+    Table 4-2 (printed p. 4-3, pdf_page_index 32), from initial water content to
     saturation for 0.1-tsf surcharge pressure.
 
     As printed::
@@ -75,9 +79,12 @@ def table_4_2_swell_vijayvergiya_ghazzaly(liquid_limit, initial_water_content):
     }
 
 
+@_u.labelled(
+    {"initial_water_content": "percent", "log_sp": "no unit printed",
+     "plasticity_index": "percent", "potential_swell_pct": "percent"})
 def table_4_2_swell_schneider_poor(plasticity_index, initial_water_content):
     """Potential swell Sp (percent) by Schneider and Poor, UFC 3-220-07
-    Table 4-2 (printed p. 4-3, PDF 33), for no fill or weight on the
+    Table 4-2 (printed p. 4-3, pdf_page_index 32), for no fill or weight on the
     swelling soil to saturation.
 
     As printed::
@@ -135,10 +142,15 @@ def _weighted_suction(name, v):
     return w
 
 
+@_u.labelled(
+    {"final_weighted_suction": "consistent units",
+     "initial_weighted_suction": "consistent units",
+     "potential_swell_pct": "percent",
+     "suction_compression_index": "no unit printed"})
 def table_4_2_swell_mckeen_lytton(suction_compression_index,
                                   final_suction, initial_suction):
     """Potential swell Sp (percent) by the McKeen-Lytton method (by McKeen),
-    UFC 3-220-07 Table 4-2 (printed p. 4-3, PDF 33), from the suction
+    UFC 3-220-07 Table 4-2 (printed p. 4-3, pdf_page_index 32), from the suction
     compression index and the final and initial weighted in situ suctions.
 
     As printed::
@@ -187,9 +199,13 @@ def table_4_2_swell_mckeen_lytton(suction_compression_index,
     }
 
 
+@_u.labelled(
+    {"depth_ft": "ft", "initial_water_content": "percent",
+     "plasticity_index": "percent", "potential_swell_pct": "percent"},
+    si={"depth_ft": ("m", "ft")})
 def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
     """Potential swell Sp (percent) by Johnson, UFC 3-220-07 Table 4-2
-    (printed p. 4-3, PDF 33), for 1 psi surcharge pressure to saturation;
+    (printed p. 4-3, pdf_page_index 32), for 1 psi surcharge pressure to saturation;
     H is the depth of soil in feet. In the PI <= 40 form the scan renders
     the two operators before 0.0432PIwo and 0.01215PIH as "="; they are
     read as minus signs (a judgment call, review pave-13), and the two
@@ -216,6 +232,10 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
         H, depth of soil, feet.
     initial_water_content : float
         wo, percent.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        depth_ft in m, each converted exactly to the printed unit (ft) before
+        the lookup runs as printed.
 
     Returns
     -------
@@ -224,6 +244,9 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
         condition, equation, note, print_note, reference, and the inputs.
         A negative value is returned as computed, and the note says it is
         not a predicted shrinkage.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -269,11 +292,14 @@ def table_4_2_swell_johnson(plasticity_index, depth_ft, initial_water_content):
     }
 
 
+@_u.labelled(
+    {"layer_heaves_mm": "mm", "number_of_layers": "count",
+     "total_heave_ft": "ft", "total_heave_mm": "mm"})
 def heave_prediction_mm(layers):
     """Total swell (heave) of a soil profile, mm, as the sum of each
     layer's per cent swell times its thickness: the stepwise form of
     UFC 3-220-07 Figure 5-4, "Approximate method for computing foundation
-    swell" (printed p. 5-7, PDF 42).
+    swell" (printed p. 5-7, pdf_page_index 41).
 
     Figure 5-4 (A), procedure for estimating total swell, as printed:
     "3. Compute swell in terms of per cent of original specimen height and
@@ -332,7 +358,7 @@ def heave_prediction_mm(layers):
         "layer_heaves_mm": layer_heaves,
         "number_of_layers": len(layers),
         "reference": (f"{_REF}, Figure 5-4 (A) step 4, printed p. 5-7 "
-                      "(PDF 42)"),
+                      "(pdf_page_index 41)"),
     }
 
 
@@ -355,10 +381,13 @@ def _whole_feet(name, v):
     return int(round(v))
 
 
+@_u.labelled(
+    {"D": "ft", "F": "dimensionless", "depth_ft": "ft", "heave_in": "in",
+     "pe_in_per_ft": "in/ft", "total_heave_in": "in"})
 def eq_4_1_van_der_merwe_heave(layers):
     """Total heave at the ground surface, inches, by Van Der Merwe's
     method, UFC 3-220-07 Eq. 4-1 with Figure 4-1 (printed p. 4-1 to 4-2,
-    PDF 31-32): the sum over 1-foot depth increments of the surcharge
+    pdf_page_index 30-31): the sum over 1-foot depth increments of the surcharge
     reduction factor F = 10^(-D/20) times the potential expansiveness PE
     (inch/foot) read off Figure 4-1 from each soil's PI and clay fraction.
 
@@ -439,7 +468,7 @@ def eq_4_1_van_der_merwe_heave(layers):
             _figure_4_1_trace_note(),
         ],
         "source": (f"{_REF}, Eq. 4-1 and Figure 4-1, para 4-1c, printed "
-                   "p. 4-1 to 4-2 (PDF 31-32)"),
+                   "p. 4-1 to 4-2 (pdf_page_index 30-31)"),
     }
 
 
@@ -448,10 +477,17 @@ def _figure_4_1_trace_note():
     return "Figure 4-1: " + _FIG_4_1_TRACE
 
 
+@_u.labelled(
+    {"DELTA": "fraction", "depth_increment_ft": "ft",
+     "final_void_ratio": "dimensionless", "heave_ft": "ft",
+     "initial_void_ratio": "dimensionless", "percent_swell": "percent",
+     "sum_delta": "fraction", "vertical_swell_fraction": "fraction",
+     "vertical_swell_fraction_given": "fraction"},
+    si={"depth_increment_ft": ("m", "ft")})
 def eq_5_2_potential_vertical_heave(elements, depth_increment_ft,
                                     vertical_swell_fraction):
     """Potential vertical heave at the bottom of the foundation, feet,
-    UFC 3-220-07 Eq. 5-2 (printed p. 5-2, PDF 37): N times the depth
+    UFC 3-220-07 Eq. 5-2 (printed p. 5-2, pdf_page_index 36): N times the depth
     increment DX times the sum, over the elements from the bottom of the
     foundation to the bottom of the profile, of each element's volumetric
     swell (e_f - e_o)/(1 + e_o).
@@ -490,6 +526,10 @@ def eq_5_2_potential_vertical_heave(elements, depth_increment_ft,
         DX, feet, > 0.
     vertical_swell_fraction : float
         N, from 1/3 to 1 (para 5-3a); 0.33 up to 1/3 is taken as 1/3.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        depth_increment_ft in m, each converted exactly to the printed unit
+        (ft) before the lookup runs as printed.
 
     Returns
     -------
@@ -497,6 +537,9 @@ def eq_5_2_potential_vertical_heave(elements, depth_increment_ft,
         Keys: heave_ft, elements (list: DELTA, percent_swell),
         sum_delta, depth_increment_ft, vertical_swell_fraction (the N
         used), vertical_swell_fraction_given, equation, notes, source.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -555,7 +598,7 @@ def eq_5_2_potential_vertical_heave(elements, depth_increment_ft,
         "vertical_swell_fraction_given": n_given,
         "equation": "delta_H = N * DX * sum (e_f(i) - e_o(i)) / (1 + e_o(i))",
         "notes": notes,
-        "source": f"{_REF}, Eq. 5-2, para 5-4a, printed p. 5-2 (PDF 37)",
+        "source": f"{_REF}, Eq. 5-2, para 5-4a, printed p. 5-2 (pdf_page_index 36)",
     }
 
 
@@ -568,12 +611,18 @@ _PROFILES = {
 }
 
 
+@_u.labelled(
+    {"active_zone_depth_ft": "ft", "depth_ft": "ft",
+     "gamma_w_tcf": "ton/ft^3", "pore_water_pressure_at_xa_tsf": "tsf",
+     "pore_water_pressure_tsf": "tsf"},
+    si={"depth_ft": ("m", "ft"), "active_zone_depth_ft": ("m", "ft"),
+        "pore_water_pressure_at_xa_tsf": ("kPa", "tsf")})
 def eq_5_3_to_5_5_equilibrium_pore_water_pressure(
         profile, depth_ft, active_zone_depth_ft=None,
         pore_water_pressure_at_xa_tsf=None):
     """Equilibrium (final) pore water pressure u_w, tons per square foot,
     at depth X in the active zone, UFC 3-220-07 Eqs. 5-3 to 5-5 (printed
-    p. 5-3 to 5-4, PDF 38-39), for the saturated (Method 1), hydrostatic I
+    p. 5-3 to 5-4, pdf_page_index 37-38), for the saturated (Method 1), hydrostatic I
     (Method 2) or hydrostatic II (Method 3) profile of Figure 5-1; u_w is
     the pore water pressure Eq. 5-9 subtracts to give the final effective
     pressure for Eq. 5-8.
@@ -609,12 +658,20 @@ def eq_5_3_to_5_5_equilibrium_pore_water_pressure(
         depth of the water table, para 5-4c(1)).
     pore_water_pressure_at_xa_tsf : float, optional
         u_wa, tons per square foot, <= 0; required for Method 3.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        depth_ft and active_zone_depth_ft in m and
+        pore_water_pressure_at_xa_tsf in kPa, each converted exactly to the
+        printed unit (ft, tsf) before the lookup runs as printed.
 
     Returns
     -------
     dict
         Keys: pore_water_pressure_tsf, profile, method, depth_ft,
         active_zone_depth_ft, gamma_w_tcf, equation, note, source.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -680,13 +737,23 @@ def eq_5_3_to_5_5_equilibrium_pore_water_pressure(
                  "will likely be predicted if the hydrostatic II profile "
                  "occurs."),
         "source": (f"{_REF}, Eqs. 5-3 to 5-5 and Figure 5-1, para 5-4b(2), "
-                   "printed p. 5-3 to 5-4 (PDF 38-39)"),
+                   "printed p. 5-3 to 5-4 (pdf_page_index 37-38)"),
     }
 
 
+@_u.labelled(
+    {"final_effective_pressure_tsf": "tsf", "heave_ft": "ft",
+     "layer": "no unit printed", "layers": "no unit printed",
+     "percent_swell": "percent", "pore_water_pressure_tsf": "tsf",
+     "thickness_ft": "ft", "total_heave_ft": "ft", "total_heave_in": "in",
+     "value_tsf": "tsf"},
+    si={"layers[].thickness_ft": ("m", "ft"),
+        "layers[].swell_pressure_tsf": ("kPa", "tsf"),
+        "layers[].total_vertical_pressure_tsf": ("kPa", "tsf"),
+        "layers[].pore_water_pressure_tsf": ("kPa", "tsf")})
 def eq_5_8_consolidometer_heave(layers):
     """Heave from consolidometer swell tests, feet, UFC 3-220-07 Eq. 5-8
-    with the final effective pressure of Eq. 5-9 (printed p. 5-5, PDF 40):
+    with the final effective pressure of Eq. 5-9 (printed p. 5-5, pdf_page_index 39):
     for each expansive layer, its thickness times the swell index over
     (1 + e_o) times log(swell pressure / final vertical effective
     pressure), summed over the layers.
@@ -745,6 +812,13 @@ def eq_5_8_consolidometer_heave(layers):
         pore_water_pressure_tsf (u_w; when left out or None, taken as 0,
         the saturated profile of Eq. 5-3, which para 5-4b(2)(a) says
         should be used if other information is not available).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        each layers entry's thickness_ft in m and each layers entry's
+        swell_pressure_tsf, each layers entry's total_vertical_pressure_tsf and
+        each layers entry's pore_water_pressure_tsf in kPa, each converted
+        exactly to the printed unit (ft, tsf) before the lookup runs as
+        printed.
 
     Returns
     -------
@@ -757,6 +831,9 @@ def eq_5_8_consolidometer_heave(layers):
         layer, reason); pore_water_pressure_assumed (layers taken as
         u_w = 0 with the page's sentence, or None); equation, notes,
         source.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -853,5 +930,5 @@ def eq_5_8_consolidometer_heave(layers):
                      "sigma'_v = sigma_v - u_w"),
         "notes": notes,
         "source": (f"{_REF}, Eqs. 5-8 and 5-9, para 5-4e(1), printed p. 5-5 "
-                   "(PDF 40); symbols of Figure 4-2, printed p. 4-4 (PDF 34)"),
+                   "(pdf_page_index 39); symbols of Figure 4-2, printed p. 4-4 (pdf_page_index 33)"),
     }

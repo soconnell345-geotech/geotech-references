@@ -18,7 +18,7 @@ Usage::
 
     cls = table_swell_potential_classification(plasticity_index=30)
     # {'classification': 'marginal', 'potential_swell_pct': '0.5-1.5', ...,
-    #  'reference': '... Table 4-1, printed p. 4-1 (PDF 31)'}
+    #  'reference': '... Table 4-1, printed p. 4-1 (pdf_page_index 30)'}
 
     void = table_grade_beam_void_space(predicted_total_heave_in=4)
     # {'void_space_low_in': 8.0, 'void_space_high_in': 12.0, ...}

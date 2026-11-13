@@ -13,7 +13,7 @@ Usage::
 
     req = table_compaction_requirements("open_area")
     # {'application': 'open_area', 'min_compaction_pct': 90, ...,
-    #  'reference': '... para 5-1b(4), printed p. 5-2 (PDF 29)'}
+    #  'reference': '... para 5-1b(4), printed p. 5-2 (pdf_page_index 28)'}
 
     crit = table_5_1_compaction_criteria("CL", "compacted")
     # equipment, coverages and compacted lift thickness (in.) as printed

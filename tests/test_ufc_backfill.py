@@ -1,7 +1,7 @@
 """Tests for geotech_references.ufc_backfill (UFC 3-220-04FA, 16 January 2004,
 the reproduced TM 5-818-4/AFM 88-5, Chap. 5; docs/ufc_3_220_04fa_2004.pdf).
 
-Values are the printed ones; each test names the PDF page (1-based) and the
+Values are the printed ones; each test names the pdf_page_index (0-based) and the
 printed page. Rebuilt 2026-11-10 (review pave-06, pave-14): the earlier
 ASTM D698 compaction table, millimetre lift table, drain table, Broms
 pressure equation and filter ratios are not in this manual and were removed.
@@ -28,7 +28,7 @@ from geotech_references.ufc_backfill.equations import (
 
 
 class TestCompactionRequirements:
-    """table_compaction_requirements: para 5-1b(4), PDF 29, printed p. 5-2."""
+    """table_compaction_requirements: para 5-1b(4), pdf_page_index 28, printed p. 5-2."""
 
     def test_open_area_90(self):
         r = table_compaction_requirements("open_area")
@@ -68,7 +68,7 @@ class TestCompactionRequirements:
 
 
 class TestTable51CompactionCriteria:
-    """table_5_1_compaction_criteria: Table 5-1, PDF 30, printed p. 5-3."""
+    """table_5_1_compaction_criteria: Table 5-1, pdf_page_index 29, printed p. 5-3."""
 
     def test_pervious_compacted(self):
         r = table_5_1_compaction_criteria("pervious", "compacted")
@@ -128,7 +128,7 @@ class TestTable51CompactionCriteria:
 
 
 class TestBackfillMaterialClassification:
-    """table_backfill_material_classification: para 3-3d, PDF 22-23,
+    """table_backfill_material_classification: para 3-3d, pdf_page_index 21-22,
     printed p. 3-5 and 3-6."""
 
     def test_gw_coarse_grained(self):
@@ -187,7 +187,7 @@ class TestBackfillMaterialClassification:
 
 
 class TestMaximumLiftThickness:
-    """table_maximum_lift_thickness: para 5-1b(3), PDF 28-29, printed
+    """table_maximum_lift_thickness: para 5-1b(3), pdf_page_index 27-28, printed
     p. 5-1 and 5-2."""
 
     def test_cohesive_sheepsfoot_or_pneumatic(self):
@@ -221,7 +221,7 @@ class TestMaximumLiftThickness:
 
 
 class TestCompactionEquipmentSelection:
-    """table_compaction_equipment_selection: para 5-1b(2), PDF 28, printed
+    """table_compaction_equipment_selection: para 5-1b(2), pdf_page_index 27, printed
     p. 5-1."""
 
     def test_gravels(self):
@@ -253,7 +253,7 @@ class TestCompactionEquipmentSelection:
 
 
 class TestFigure25CompactionInducedPressure:
-    """figure_2_5_compaction_induced_lateral_pressure: Figure 2-5a, PDF 14,
+    """figure_2_5_compaction_induced_lateral_pressure: Figure 2-5a, pdf_page_index 13,
     printed p. 2-7."""
 
     def test_ten_ton_smooth_wheel_roller(self):
@@ -286,7 +286,7 @@ class TestFigure25CompactionInducedPressure:
 
 class TestRelativeCompactionCheck:
     """relative_compaction_check: degree of compaction as a percent of
-    maximum dry density (para 5-1b(4), PDF 29, printed p. 5-2)."""
+    maximum dry density (para 5-1b(4), pdf_page_index 28, printed p. 5-2)."""
 
     def test_passes(self):
         r = relative_compaction_check(18.0, 19.0, 95.0)
