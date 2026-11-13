@@ -128,6 +128,9 @@ PRINTED = [
      "(10-7) (z + 1)6.05"),
     # UFC 3-250-03 PDF p. 137, printed p. 123
     ("ufc_flexible_practice", "9-1.1", "8 microns (3.15x10^-4 inch)", "3.15x10-4"),
+    # FHWA-NHI-05-037 PDF p. 78, printed p. 3-24: "+" with a stroke drawn
+    # under it (manifest text_fixes)
+    ("fhwa_pavements", "3.5.2.a", "cost index varying by about ±20% over", "about +20%"),
     # UFC 3-220-20 PDF p. 65, printed p. 27; PDF p. 206, printed p. 168
     ("dm7_2", "1-2.11", "Peats have a high permeability (10^-3 cm/sec)", "(10-3 cm"),
     ("dm7_2", "3-7.4", "ranges from 3×10^-6 to 5×10^-5 1/psf", "3×10-6"),
