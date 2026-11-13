@@ -36,6 +36,14 @@ pages):
   end columns are printed open-ended ("S1 <= 0.1" / "S1 >= 0.5", p. 95;
   Table 4.9 under GEC-12 Table 7-27's "< 0.1" / "> 0.5") and still take
   the end column.
+- `gec_8.equations.dd_pile_side_resistance_MPa`: N above 50 (Eq. 5.29 is
+  printed for N <= 50, p. 84) is still held at 50, now with `note` and
+  `out_of_range`; the printed limit fs <= 0.16 / 0.21 MPa, reached at
+  N = 32, governs the limited fs, so the value does not change.
+- `gec_8.tables.table_5_4_p_multiplier`: a spacing wider than a soil's
+  printed rows (3B for every soil, 5B also for M. Dense Sand and Loose M.
+  Sand, p. 112) still holds the widest printed row, now with `note` and
+  `out_of_range`; holding is on the low side (p. 111).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
