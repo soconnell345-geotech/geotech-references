@@ -313,7 +313,7 @@ page-reading tool only knew the figure catalogs).
   (0/10/17), em_2107 38 (0/4/34), eurocode_7_1 20 (0/18/2), eurocode_7_2
   38 (37/0/1), fema_p2082 52 (0/3/49), fhwa_pavements 153 (44/4/105),
   fhwa_soils_foundations 142 (2/0/140), gec_10 47 (29/2/16), gec_11 118
-  (26/7/85), gec_12 262 (148/8/106), gec_13 82 (0/8/74), gec_4 23
+  (26/7/85), gec_12 262 (148/8/106), gec_13 82 (60/8/14), gec_4 23
   (0/4/19), gec_5 127 (91/0/36), gec_6 50 (40/3/7), gec_7 66 (23/13/30),
   gec_8 15 (6/0/9), gec_9 24 (0/5/19), gsa_collapse 30 (0/11/19),
   micropile 37 (26/5/6), ufc_collapse 29 (0/11/18), ufc_concrete_practice

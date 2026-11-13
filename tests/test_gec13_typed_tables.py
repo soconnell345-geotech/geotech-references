@@ -50,9 +50,9 @@ CASES = [('2-2',
   '2.7.1.4',
   'p. 2-53',
   4,
-  ['Area; Estimated Linear feet; Estimated No',
-   'of PVDs; Installed Linear feet; Installed No. of PVDs; No. of Days to Install. 3; 231,000; 6,600; '
-   '129,494; 5,850; 9',
+  ['Area; Estimated Linear feet; Estimated No. of PVDs; Installed Linear feet; Installed No. of PVDs; No. of '
+   'Days to Install',
+   '3; 231,000; 6,600; 129,494; 5,850; 9',
    '2; 374,000; 9,350; 234,192; 8,111; 13',
    '8; 85,750; 2,450; 74,391; 2,367; 4',
    'Total; 690,750; 18,400; 438,077; 16,328; 26',
@@ -64,9 +64,9 @@ CASES = [('2-2',
   '2.7.3.4',
   'p. 2-62',
   1,
-  ['Area; Estimated No',
-   'of PVDs; Estimated Length of PVDs incl. Cut-Offs; Estimated Linear Feet of PVDs; Installed Linear Feet; '
-   'No. of Installed PVDs; No. of Days to Install. 1; 12,468; 37; 461,316; 446,840; 12,468; 20',
+  ['Area; Estimated No. of PVDs; Estimated Length of PVDs incl. Cut-Offs; Estimated Linear Feet of PVDs; '
+   'Installed Linear Feet; No. of Installed PVDs; No. of Days to Install',
+   '1; 12,468; 37; 461,316; 446,840; 12,468; 20',
    '20',
    '12,468',
    '446,840',
@@ -146,7 +146,7 @@ CASES = [('2-2',
    'could affect the density and compressive strength. Saturation by water should be prevented by '
    'construction of a drainage blanket and drains.',
    'Construction Considerations; A staging area is required for batching, mixing, and placing on site. The '
-   'foamed concrete is very fluid; formwork should be tight to avoid flow of the mix through joints or gaps '
+   'foamed concrete is very fluid, formwork should be tight to avoid flow of the mix through joints or gaps '
    'in the forms. Polyethylene film may be used to prevent leakage. If the foamed concrete is placed in a '
    'confined area, forms are not necessary, as the fluid mix will flow to completely fill the void. The lift '
    'thickness should not exceed 4 feet, as the heat of hydration would have an adverse effect on the foam. '
@@ -172,7 +172,7 @@ CASES = [('2-2',
    'Design Parameters; Dry Density: 21 to 53 pcf loose and 30-73 pcf compacted, with various of gradations '
    'and reporting sources Angle of Shearing Resistance: 19° to 30° Cohesion Intercept: 100 to 230 psf, use 0 '
    'for design Compressibility: 5 to 40 percent vertical strain over a range of 200 to 4,200 psf vertical '
-   'stress Permeability: 0.5 to 60 cm/sec Type A Gradation (ASTM D6270): 8-inch maximum dimension; 100% '
+   'stress Permeability: 0.5 to 60 cm/sec Type A Gradation (ASTM D6270): 8-inch maximum dimension, 100% '
    'passing 4-inch, a minimum of 95% passing 3-inch, a maximum of 50% passing the 1.5-inch, and a maximum of '
    '5% passing the 0.2-inch sieve Coefficient of Lateral Earth Pressure: 0.25 to 0.47',
    'Environmental Considerations; The design considerations listed below address minimizing leachate '
@@ -262,7 +262,7 @@ CASES = [('2-2',
   'p. 3-34',
   4,
   ['Item; Guideline',
-   'Design Parameters; Density Range, Compacted: 70 to 90 pcf Shear Strength: 33° to 40°, c = 0, for Type F; '
+   'Design Parameters; Density Range, Compacted: 70 to 90 pcf Shear Strength: 33° to 40°, c = 0, for Type F, '
    'Class C is self-hardening, so the shear strength will vary as it cures Permeability: Range of 1 x 10^-6 '
    'to 1 x 10^-9 m/s Compressibility: Cc = 0.05 to 0.37, Ccr = 0.006 to 0.04 Grain Size Range: 0.005 to '
    '0.074 mm Specific Gravity: 1.9 to 2.5 Atterberg Limits: Non-plastic',
@@ -353,14 +353,14 @@ CASES = [('2-2',
   1,
   ['Material; Material Cost/yd^3 FOB at source; Delivered Material Cost/yd^3 FOB at Project; In-Place '
    'Cost/yd^3',
-   'EPS-block geofoam; $40 to $80; $40 to $80; $40 to $100 [as printed; Table 3-12 on the same page prints '
+   'EPS-block geofoam; $40 to $80; $40 to $80; $40 to $100 [as printed, Table 3-12 on the same page prints '
    '$40 to $60 at source and $60 to $125 delivered for EPS-block geofoam]',
    'Table 3-12 on the same page prints $40 to $60 at source and $60 to $125 delivered for EPS-block geofoam]',
    '$40 to $100 [as printed',
    '$40 to $80',
    'EPS-block geofoam'],
   [],
-  ['[as printed; Table 3-12 on the same page prints $40 to $60 at source and $60 to $125 delivered for '
+  ['[as printed, Table 3-12 on the same page prints $40 to $60 at source and $60 to $125 delivered for '
    'EPS-block geofoam]'],
   None),
  ('3-12',
@@ -468,9 +468,9 @@ CASES = [('2-2',
    '10 to 20; Good',
    '20 to 30; Fair',
    '30 to 40; Poor',
-   '>50; Unsuitable [as printed; the rows leave suitability numbers from 40 to 50 without a rating]'],
+   '>50; Unsuitable [as printed, the rows leave suitability numbers from 40 to 50 without a rating]'],
   ['Source: Brown 1977'],
-  ['[as printed; the rows leave suitability numbers from 40 to 50 without a rating]'],
+  ['[as printed, the rows leave suitability numbers from 40 to 50 without a rating]'],
   None),
  ('4-8',
   '4.3.3.1',
@@ -482,12 +482,12 @@ CASES = [('2-2',
    'Dry Unit Weight (pcf); < 90; 90 to 100; 100 to 115; 115 to 130; > 130',
    'Cyclic Stress Ratio Causing Liquefaction**; < 0.04; > 0.04 to 0.12; > 0.12 to 0.33; > 0.33 to 0.40; '
    '(empty)',
-   'Shear Wave Velocity (ft/s)***; < 400; 400 to 525; 525 to 650; 650 to 740; > 750 [as printed; Dense ends '
+   'Shear Wave Velocity (ft/s)***; < 400; 400 to 525; 525 to 650; 650 to 740; > 750 [as printed, Dense ends '
    'at 740 and Very Dense starts above 750]'],
   ['* Normally consolidated sand.', '** Seed et al. 1983.', '*** Debats and Sims 1997'],
-  ["[as printed; the page shows '30 to 3235', and the cells beside it, '< 30' and '35 to 40', leave 30 to 35 "
+  ["[as printed, the page shows '30 to 3235', and the cells beside it, '< 30' and '35 to 40', leave 30 to 35 "
    'for Loose]',
-   '[as printed; Dense ends at 740 and Very Dense starts above 750]'],
+   '[as printed, Dense ends at 740 and Very Dense starts above 750]'],
   None),
  ('4-9',
   '4.3.5.1',
@@ -603,9 +603,9 @@ CASES = [('2-2',
    'Delvo; 0.8 quarts (Liters); (empty); (empty)',
    'Sodium silicate; (empty); (empty); 45 quarts (Liters)',
    'Grout hole positions; 1 – 3; 4 – 7; 8 – 12'],
-  ['[as printed; each volume is one number for both quarts and liters, and the page prints no note for the '
+  ['[as printed, each volume is one number for both quarts and liters, and the page prints no note for the '
    "asterisk on 'Grouting material*']"],
-  ['[as printed; each volume is one number for both quarts and liters, and the page prints no note for the '
+  ['[as printed, each volume is one number for both quarts and liters, and the page prints no note for the '
    "asterisk on 'Grouting material*']"],
   None),
  ('8-3',
@@ -651,7 +651,7 @@ CASES = [('2-2',
   '8.2.7.4',
   'p. 8-72',
   2,
-  ["Description; Unlimited Headroom (< 36 feet) [as printed; the 'unlimited' headroom is given as less than "
+  ["Description; Unlimited Headroom (< 36 feet) [as printed, the 'unlimited' headroom is given as less than "
    '36 feet]; Restricted Headroom (10 feet to 13 feet)',
    'Underpinning and excavation support 3.0 to 3.6 feet diameter per/yard of depth; $95 – $550; $490 – $650',
    'Seepage control 3.0 to 3.6 ft. diameter per/yard of depth; $30 – $115; $30 – $200',
@@ -659,7 +659,7 @@ CASES = [('2-2',
    '$30 – $115',
    'Seepage control 3.0 to 3.6 ft. diameter per/yard of depth'],
   [],
-  ["[as printed; the 'unlimited' headroom is given as less than 36 feet]"],
+  ["[as printed, the 'unlimited' headroom is given as less than 36 feet]"],
   None),
  ('8-8',
   '8.2.7.4',
@@ -776,12 +776,12 @@ CASES = [('2-2',
    'Trapezoidal Tear Strength; ASTM D4522; lbf; 130 Warp – 130 Fill',
    'Coefficient of Permeability; ASTM D4491; in./s; 0.9',
    'Porosity; ASTM D737; in.^3/min/in.^2; 300'],
-  ["[as printed; the units are the page's, among them a thickness of 23 in., a weight of 7.5 lbs./ft., a "
+  ["[as printed, the units are the page's, among them a thickness of 23 in., a weight of 7.5 lbs./ft., a "
    'water flow rate of 105 ft^3/s and a coefficient of permeability of 0.9 in./s, which a geotextile cannot '
-   'have; the page gives nothing to correct them from]'],
-  ["[as printed; the units are the page's, among them a thickness of 23 in., a weight of 7.5 lbs./ft., a "
+   'have, the page gives nothing to correct them from]'],
+  ["[as printed, the units are the page's, among them a thickness of 23 in., a weight of 7.5 lbs./ft., a "
    'water flow rate of 105 ft^3/s and a coefficient of permeability of 0.9 in./s, which a geotextile cannot '
-   'have; the page gives nothing to correct them from]'],
+   'have, the page gives nothing to correct them from]'],
   'PennDOT Minimum Required Properties for Polypropylene Geotextiles'),
  ('9-1',
   '9.1.0',
@@ -795,7 +795,7 @@ CASES = [('2-2',
    'provides long-term separation',
    'Lightweight fill; Very weak silts, clays, peats; None Thermal barrier for frost protection; Fast, and '
    'reduces dynamic stress level',
-   'Recycled material; Silts and clays; None; To replace or blend with gravel; may be lightweight'],
+   'Recycled material; Silts and clays; None; To replace or blend with gravel, may be lightweight'],
   ['Source: Rollings and Rollings 1996'],
   [],
   None),
@@ -869,10 +869,11 @@ CASES = [('2-2',
    'Survivability; Grab Strength; D4632; lb (N); 250 (1100); 157 (700)',
    'Survivability; Sewn Seam Strength^3; D4632; lb (N); 220 (990); 140 (630)',
    'Survivability; Puncture Strength; D6241; lb (N); 495 (2200); 309 (1375)',
-   'Drainage and Filtration^4; Apparent Opening Size; D4751; mm; < 0.6 for < 50% passing No. 200 sieve; < '
-   '0.3 for > 50% passing No. 200 sieve (both elongation columns)',
-   'Drainage and Filtration^4; Permittivity; D4491; sec^-1; > 0.02 and > Permittivity of soil (both '
-   'elongation columns)'],
+   'Drainage and Filtration^4; Apparent Opening Size; D4751; mm; < 0.6 for < 50% passing No. 200 sieve, < '
+   '0.3 for > 50% passing No. 200 sieve; < 0.6 for < 50% passing No. 200 sieve, < 0.3 for > 50% passing No. '
+   '200 sieve',
+   'Drainage and Filtration^4; Permittivity; D4491; sec^-1; > 0.02 and > Permittivity of soil; > 0.02 and > '
+   'Permittivity of soil'],
   ['Source: FHWA 2008 (after AASHTO 2014a, but pre-2008 version of these AASHTO specifications).',
    '1 Default geotextile selection. The engineer may specify a Class 3 geotextile for moderate survivability '
    'conditions, see AASHTO M 288.',
@@ -898,9 +899,11 @@ CASES = [('2-2',
    'Survivability; Sewn Seam Strength^3; D4632; lb (N); 280 (1260); 180 (810)',
    'Survivability; Puncture Strength; D6241; lb (N); 620 (2750); 433 (1925)',
    'Drainage and Filtration^4; Apparent Opening Size; D4751; mm; < 0.43 for < 50% passing No. 200 sieve, < '
-   '0.3 for > 50% passing No. 200 sieve (both elongation columns)',
+   '0.3 for > 50% passing No. 200 sieve; < 0.43 for < 50% passing No. 200 sieve, < 0.3 for > 50% passing No. '
+   '200 sieve',
    'Drainage and Filtration^4; Permittivity; D4491; sec^-1; 0.5 for < 15% passing No. 200 sieve, 0.2 for 15 '
-   'to 50% passing No. 200 sieve, 0.1 for > 50% passing No. 200 sieve (both elongation columns)'],
+   'to 50% passing No. 200 sieve, 0.1 for > 50% passing No. 200 sieve; 0.5 for < 15% passing No. 200 sieve, '
+   '0.2 for 15 to 50% passing No. 200 sieve, 0.1 for > 50% passing No. 200 sieve'],
   ['Source: AASHTO 2014a.',
    '1 Default geotextile selection. The engineer may specify a Class 2 geotextile for moderate survivability '
    'conditions (see Table 9-9). [as printed; Table 9-9, p. 9-69, is the pavement design parameters for '
@@ -968,7 +971,7 @@ CASES = [('2-2',
   ['Property; ASTM Test Method; Units; Geotextile Class 1 and Elongation < 50%; Geotextile Class 1 and '
    'Elongation ≥ 50%; Geotextile Class 2 and Elongation < 50%; Geotextile Class 2 and Elongation ≥ 50%',
    'Grab Strength; D4632; lb; 315; 200; 250; 157',
-   'Seam Strength; D4632; lb; 260 [as printed; Table 9-7, p. 9-55, prints 280 (1260) for the sewn seam '
+   'Seam Strength; D4632; lb; 260 [as printed, Table 9-7, p. 9-55, prints 280 (1260) for the sewn seam '
    'strength of the same class and elongation]; 180; 220; 140',
    'Tear Strength; D4533; lb; 110; 80; 90; 56',
    'Puncture Strength; D6241; lb; 620; 433; 495; 309',
@@ -977,7 +980,7 @@ CASES = [('2-2',
   ['Source: AASHTO 2014a.',
    'Note: Elongation measured in accordance with ASTM D4632 with < 50% typical of woven geotextiles and > '
    '50% typical of nonwoven geotextiles.'],
-  ['[as printed; Table 9-7, p. 9-55, prints 280 (1260) for the sewn seam strength of the same class and '
+  ['[as printed, Table 9-7, p. 9-55, prints 280 (1260) for the sewn seam strength of the same class and '
    'elongation]'],
   None),
  ('10-1',
@@ -989,8 +992,8 @@ CASES = [('2-2',
    'Design Requirements: Mechanical; Tension creep; Tension creep',
    'Design Requirements: Hydraulic; Permeability; Permeability',
    'Constructability Requirements; Tear resistance; Trapezoidal tear',
-   "Longevity; Soil compatibility (where required); Chemical, Biological [printed 'Chemical; Biological' in "
-   'one cell]'],
+   'Longevity; Soil compatibility (where required); Chemical, Biological [printed in one cell, with a '
+   'semicolon between the two words]'],
   [],
   [],
   None),
@@ -1142,8 +1145,10 @@ def test_cells_first_and_last_rows(case):
     assert len(cells) >= 5
     for cell in cells:
         assert cell in entry, (table, cell)
-    rows = entry.split(" - columns: ", 1)[1].split(". ", 1)[1]
-    assert rows.startswith(cells[1])
+    # The header ends where the first row begins (the print's own heads hold '. ',
+    # as in 'No. of PVDs', so no split at the first '. ' can find it).
+    assert entry.index(cells[0]) < entry.index(cells[1])
+    rows = entry[entry.index(cells[1]):]
     assert rows.count(" | ") >= n_rows - 1
 
 
@@ -1188,3 +1193,19 @@ def test_checks_the_tables_allow():
     # Table 4-6: eight vibrators, eight columns each.
     rows = _entry("4-6", "4.3.2.1").split("Dynamic Force kN. ", 1)[1].split(". Notes:")[0].split(" | ")
     assert len(rows) == 8 and all(len(r.split("; ")) == 8 for r in rows)
+
+
+def test_table_9_6_apparent_opening_size_in_both_elongation_columns():
+    # The print's AOS cell holds both criteria in each elongation column.
+    entry = _entry("9-6", "9.3.3.2.1")
+    row = next(r for r in entry.split(" | ") if "Apparent Opening Size" in r)
+    cells = row.split(". Notes:")[0].split("; ")
+    assert len(cells) == 6
+    both = "< 0.6 for < 50% passing No. 200 sieve, < 0.3 for > 50% passing No. 200 sieve"
+    assert cells[4] == cells[5] == both
+    # Permittivity (9-6) and AOS and permittivity (9-7) are printed across both columns too.
+    for table, section, name in (("9-6", "9.3.3.2.1", "Permittivity"), ("9-7", "9.3.3.2.2", "Apparent Opening Size"),
+                                 ("9-7", "9.3.3.2.2", "Permittivity")):
+        row = next(r for r in _entry(table, section).split(" | ") if f"Filtration^4; {name};" in r)
+        cells = row.split(". Notes:")[0].rstrip(".").split("; ")
+        assert len(cells) == 6 and cells[4] == cells[5], (table, name)
