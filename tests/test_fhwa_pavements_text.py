@@ -533,3 +533,40 @@ def test_chapter_8_tables_typed_from_the_page():
     assert "Abrasion² | 1 per material type" in s8["8.3"]["body"]
     text = "\n".join(s["body"] for s in _chapter(8)["sections"])
     assert "above 4.4°C (40°F)" in text and "o C" not in text
+
+
+#: a comparison sign the text layer gives in its symbol-font code, "≥" as
+#: "$" and "≤" as "#" ("CU $4 and 1#CC #3e", "contains $ 15%", "AOS # D85");
+#: money ("$ 1.50 - 4.00/m", "$14,250/$8,200") and sieve or number signs
+#: ("#200", "# of passes") do not match
+_COMPARISON_GLYPH = re.compile(
+    r"\w[$#]|[$#][A-Za-z]|[$#]\s?\d+(?:\.\d+)?\s?(?:%|and\b|or\b)"
+    r"|\b(?:contains|Pl|PI|AOS|CU|CC)\s?[$#]|[$#]\s?D\d")
+
+
+def test_comparison_signs_as_printed():
+    body = _sections(4)["4.7.2"]["body"]
+    # Table 4-13 (p. 4-63) and its notes f, i, l, m and n (p. 4-64)
+    for crit in ("CU ≥ 4 and 1 ≤ CC ≤ 3", "CU ≤ 4 and 1 ≥ CC ≥ 3",
+                 "CU ≥ 6 and 1 ≤ CC ≤ 3", "CU ≤ 6 and 1 ≥ CC ≥ 3"):
+        assert crit in body, crit
+    assert "If soil contains ≥ 15% sand" in body and "If soil contains ≥ 15% gravel" in body
+    assert "If soil contains ≥ 30% plus No. 200, predominantly sand" in body
+    assert "If soil contains ≥ 30% plus No. 200, predominantly gravel" in body
+    assert "n. Pl ≥ 4 and plots on or above" in body
+    # the filter criterion for pumping-susceptible soils (p. 7-30)
+    assert "A conservative (smaller) AOS ≤ D85 subgrade is advised" in _sections(7)["7.2.16"]["body"]
+    found = [(s["section_id"], s["body"][max(0, m.start() - 30):m.end() + 30])
+             for n in BUILT for s in _chapter(n)["sections"]
+             for m in _COMPARISON_GLYPH.finditer(s["body"])]
+    assert not found, found
+
+
+def test_degree_signs_and_exponents_as_printed():
+    # the page raises an "o" for the degree sign and the exponents of the
+    # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
+    text = "\n".join(s["body"] for n in BUILT for s in _chapter(n)["sections"])
+    assert "Pen @ 77°F" in text and "Reference temperature 70°F" in text
+    assert "thermal contraction 5x10^-6/°F" in text and "thermal expansion 5.5x10^-6/°F" in text
+    assert "3.25x10^-5 ft/hr" in text and "1.57x10^4 psi" in text and "4.75x10^4 psi" in text
+    assert not re.search(r"(?:\d|/|-|\s)o\s?[CFK]\b|x10-?\d", text)
