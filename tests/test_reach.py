@@ -20,7 +20,6 @@ wording copied from a manual) and on a made-up local pack.
 
 from __future__ import annotations
 
-import fnmatch
 import functools
 import importlib
 import json
@@ -79,6 +78,19 @@ def test_the_short_form_and_back():
     assert _reach.expand({"all": "not held"}, list(same)) == same
     two = {"1-1": "catalog", "1-2": "not held"}
     assert _reach.collapse(two) == two
+    # a tie for the commonest answer goes to the first in sorted order
+    tie = {"1-1": "b", "1-2": "b", "1-3": "a", "1-4": "a"}
+    assert _reach.collapse(tie) == {"1-1": "b", "1-2": "b", "others": "a"}
+    assert _reach.collapse(dict(reversed(tie.items()))) == {
+        "1-2": "b", "1-1": "b", "others": "a"}
+
+
+def test_a_fetch_shows_fifteen_pointers_and_how_many_more():
+    flags = {"not_held": [f"Section 9.{k}" for k in range(20)]}
+    shown = _reach.add_flags({"section_id": "9.1"}, {"9.1": flags})
+    assert shown["not_held"][:15] == flags["not_held"][:15]
+    assert shown["not_held"][15:] == ["and 5 more"]
+    assert len(flags["not_held"]) == 20      # the stored list is whole
 
 
 def _rows(sections, chapter=1, title="Made-Up Chapter"):
@@ -166,6 +178,36 @@ def test_figure_answers(tmp_path, monkeypatch):
     # pointers: a part of a held figure, a figure held by its parts
     assert _reach.pointers_not_held(
         "See Figure 1-1b, Figure 1-3 and Figure 1-9.", h) == ["Figure 1-9"]
+
+
+def test_a_number_on_several_table_rows(tmp_path, monkeypatch):
+    """Rows numbered exactly as listed win ('.' and '-' are read alike
+    only when none is); of those, the row filed under the listing section,
+    else the first; the answer says it is one of several."""
+    folder = tmp_path / "local_madeup"
+    folder.mkdir()
+    (folder / "tables_catalog.json").write_text(json.dumps({"tables": [
+        {"table_number": "1-1", "section_id": "1.2", "values": "page",
+         "pdf_page_index": 3, "printed_page": "1-4"},
+        {"table_number": "1.1", "section_id": "1.2", "values": "page",
+         "pdf_page_index": 9, "printed_page": "1-2"},
+        {"table_number": "2-1", "section_id": "2.1", "values": "text",
+         "values_in": "2.1", "pdf_page_index": 11},
+        {"table_number": "2-1", "section_id": "2.2", "values": "page",
+         "pdf_page_index": 12, "printed_page": "2-5"}]}), encoding="utf-8")
+    monkeypatch.setattr(_reach, "reference_dir", lambda ref: folder)
+    h = _reach.Holdings("local_madeup", _rows([{"section_id": "1.2"}]))
+    assert h.table_flag("1-1") == "page: printed p. 1-4 (pdf_page_index 3)"
+    assert h.table_flag("1.1") == "page: printed p. 1-2 (pdf_page_index 9)"
+    assert h.table_flag("2-1", "2.2") == (
+        "page: printed p. 2-5 (pdf_page_index 12) (one of 2 rows numbered "
+        "2-1: table_get needs pdf_page_index 12)")
+    assert h.table_flag("2-1", "9.9") == (
+        "text: 2.1 (one of 2 rows numbered 2-1: table_get needs "
+        "pdf_page_index 11)")
+    assert h.table_flag("2.1").startswith("text: 2.1 (one of 2 rows")
+    sec = _reach.with_notes({"tables_held": {"2-1": h.table_flag("2-1")}})
+    assert _reach.ROWS_NOTE in sec["note"]
 
 
 def test_table_answers_from_a_catalog():
@@ -644,6 +686,8 @@ def table_problem(reference: str, number: str, answer: str,
     :data:`NOT_CHECKED`). ``section_text(reference, section_id)`` gives a
     section's body and tables entries as text, or None when there is no
     such section."""
+    # a number on several rows: the mark after the answer names the page
+    answer = re.sub(r" \(one of \d+ rows numbered .*\)$", "", answer)
     kind, _, where = answer.partition(": ")
     if kind == "text" and where:
         for sid in where.split(", "):
@@ -853,17 +897,18 @@ def test_every_figure_number_can_be_fetched():
 
 
 def test_what_is_not_held_does_not_grow(library_db):
-    """Per reference: listed figures and tables and same-document pointers
-    not held. A count above the baseline fails (something the helper is
-    told about cannot be reached); one below it should be written into
-    tests/reach_baseline.json."""
+    """Per reference, item by item: listed figures and tables not
+    catalogued and same-document pointers not held. An item not in the
+    baseline fails (something the helper is told about cannot be
+    reached), even when another item was fixed; an item gone from the
+    library should be taken out of tests/reach_baseline.json."""
     baseline = json.loads(BASELINE.read_text(encoding="utf-8"))
-    now = _reach.reach_counts()
-    grew = [(ref, key, baseline.get(ref, {}).get(key, 0), n)
-            for ref, counts in now.items() for key, n in counts.items()
-            if n > baseline.get(ref, {}).get(key, 0)]
-    assert grew == [], ("not held grew (reference, count, baseline, now): "
-                        f"{grew}")
+    new = [(ref, key, item)
+           for ref, items in _reach.reach_items().items()
+           for key, listed in items.items()
+           for item in sorted(set(listed)
+                              - set(baseline.get(ref, {}).get(key, [])))]
+    assert new == [], f"not in the baseline (reference, kind, item): {new}"
 
 
 # ---------------------------------------------------------------------------
@@ -937,8 +982,23 @@ def _package_data_globs() -> list[str]:
     return data["tool"]["setuptools"]["package-data"]["geotech_references"]
 
 
+def _glob_re(pattern: str) -> re.Pattern:
+    """A package-data glob as setuptools reads it: '*' and '?' never match
+    '/' (fnmatch's do, so 'a/*.json' matched 'a/b/c.json')."""
+    out = ""
+    for ch in pattern:
+        out += {"*": "[^/]*", "?": "[^/]"}.get(ch, re.escape(ch))
+    return re.compile(out + r"\Z")
+
+
 def _shipped(rel: str, globs: list[str]) -> bool:
-    return any(fnmatch.fnmatch(rel, g) for g in globs)
+    return any(_glob_re(g).match(rel) for g in globs)
+
+
+def test_the_wheel_pattern_stays_within_a_folder():
+    assert _shipped("dm7_1/text/chapter1.json", ["*/text/*.json"])
+    assert not _shipped("dm7_1/text/old/chapter1.json", ["*/text/*.json"])
+    assert not _shipped("a/b/tables_catalog.json", ["*/tables_catalog.json"])
 
 
 def test_the_wheel_ships_every_data_file_the_code_reads():

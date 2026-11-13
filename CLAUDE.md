@@ -488,7 +488,12 @@ has something in it (`_reach.py`):
   or `"not catalogued"`: no row for it, or no catalog for the reference
   (`gec_14` prints no numbered table; `em_1905` has none yet). Never "not
   held": a table with no row may still be described in the text. A row
-  that says "text" or "lookup" but names nothing answers with its page.
+  that says "text" or "lookup" but names nothing answers with its page. A
+  number on several rows answers from the rows numbered exactly as listed
+  ('.' and '-' read alike only when none is: GEC-11's Volume I Table 1-1
+  and Volume II Table 1.1 stay apart), of those the row filed under the
+  listing section, else the first in the catalog, and says so: "(one of 2
+  rows numbered 2-1: table_get needs pdf_page_index 12)".
 - **`not_held`**: the parts of the same document the body points to that
   the library holds no text or catalog row for ("Appendix D", "Chapter
   12", "Eq. 4-11"), at most 15 and then "and N more".
@@ -503,8 +508,9 @@ characters with that note goes without it, the keys kept
 
 Both held maps come in a short form: `{"all": answer}` when every number
 has the same answer, else the numbers whose answer differs plus
-`"others": <the commonest answer>` (`_reach.collapse`; `_reach.expand`
-gives the full map back from the section's own list). A pointer is flagged
+`"others": <the commonest answer>`, a tie going to the first answer in
+sorted order (`_reach.collapse`; `_reach.expand` gives the full map back
+from the section's own list). A pointer is flagged
 only when it is certainly one into the same document and certainly not
 held: another document named just before it or "of / in / from" one after
 it, an author and year before it, a number whose form is none of the
@@ -529,12 +535,14 @@ readers of both databases and of `_packs` catch the same errors
 (`_packs.JSON_ERRORS`: OSError, ValueError, RecursionError, MemoryError).
 
 The flags are worked out once, when the text database is built
-(`_reach.fill_reach_table`, table `section_reach`, about 1-2 s of the
-build), and read back on each fetch; `retrieve_section` reads them from
+(`_reach.fill_reach_table`, table `section_reach`, 2.4 to 3.1 s of the
+build as measured on 2026-11-12), and read back on each fetch; `retrieve_section` reads them from
 that database too (checking at most every 2 s that it is current), and
 works as before if the database cannot be built. Search hits are
-unchanged. `_reach.reach_counts()` gives, per reference, the listed
-figures and tables and the pointers not held.
+unchanged. The whole `not_held` list is stored; a fetch shows 15.
+`_reach.reach_items()` gives, per reference, each listed figure and table
+not catalogued and each pointer not held ("<section_id>: <item>");
+`reach_counts()` their numbers.
 
 **Tests:** `tests/test_reach.py`: the rules on made-up text, the keys on a
 made-up local pack (with a table catalog) through both fetches, and across
@@ -552,10 +560,13 @@ reference with no table catalog says "not catalogued"; every `implemented_in` (s
 equation level) names a function the package has; every cross-reference
 key is `"<reference> Chapter N"` or `"<reference> Section <id>"` and
 resolves; every figure number held on several catalog rows is on distinct
-pages; the not-held counts stay at or under `tests/reach_baseline.json`
+pages; nothing is not held that `tests/reach_baseline.json` does not
+list, item by item, so one fixed and one broken cannot cancel out
 (2026-11-12, with the table catalogs: 2 figures and 114 tables not
-catalogued, 285 pointers not held; lower the file when a count drops); the flags keep fetch sizes in their limits; the wheel's
-package data covers every data file the code reads.
+catalogued, 285 pointers not held; take an item out when it is fixed);
+the flags keep fetch sizes in their limits; the wheel's package data
+covers every data file the code reads (its globs matched as setuptools
+reads them, '*' never crossing '/').
 
 ## Lexical Query Expansion (recall lever)
 

@@ -109,6 +109,9 @@ TABLE_ANSWERS = {
 PAGE_NOTE = "Pages are readable only where the PDF is on this host."
 #: Said when a held map names some numbers and gives the rest as "others".
 SHORT_NOTE = "'others' stands for every listed number not named."
+#: Said when a table answer comes from one of several rows of its number.
+ROWS_NOTE = ("'one of N rows': the catalog has N tables so numbered; the "
+             "answer is the one filed under this section, else the first.")
 #: A fetch that would pass this many characters with :func:`reach_note`
 #: goes without it (the keys stay): the sections near or over the
 #: library's 14,000-character budget from their own text would otherwise
@@ -422,11 +425,12 @@ class Holdings:
         tabs = (_catalog_rows(folder / TABLES_CATALOG, "tables")
                 if folder else None)
         self.has_tables_catalog = tabs is not None
-        self.table_rows: dict[str, dict] = {}
+        # every row of a number, in catalog order ('.' and '-' alike)
+        self.table_rows: dict[str, list[dict]] = {}
         for t in tabs or []:
             num = t.get("table_number")
             if isinstance(num, (str, int)) and str(num).strip():
-                self.table_rows.setdefault(table_key(str(num)), t)
+                self.table_rows.setdefault(table_key(str(num)), []).append(t)
                 self.tables.add(table_key(str(num)))
                 self.table_shapes.add(_shape(str(num)))
 
@@ -474,12 +478,31 @@ class Holdings:
             return f"{HELD_IN_CATALOG} (as parts {', '.join(parts)})"
         return NOT_CATALOGUED
 
-    def table_flag(self, number: str) -> str:
+    def table_flag(self, number: str, section_id: str | None = None) -> str:
         """Where a table's values are, from the table catalog; ``"not
-        catalogued"`` when the reference has no catalog or no row for
-        it."""
-        row = self.table_rows.get(table_key(number))
-        return NOT_CATALOGUED if row is None else table_values(row)
+        catalogued"`` when the reference has no catalog or no row for it.
+
+        A number on several rows (GEC-11 prints a Table 1-1 in Volume I and
+        a Table 1.1 in Volume II, read alike) answers from the rows numbered
+        exactly as the section lists it; of those, the row filed under the
+        listing section ``section_id``, else the first in the catalog. When
+        more than one row was left the answer says so: "(one of 2 rows
+        numbered 1-1: table_get needs pdf_page_index 32)"."""
+        rows = self.table_rows.get(table_key(number), [])
+        if not rows:
+            return NOT_CATALOGUED
+        exact = [r for r in rows
+                 if _exact_table(str(r.get("table_number"))) ==
+                 _exact_table(number)]
+        rows = exact or rows
+        here = [r for r in rows if r.get("section_id") == section_id]
+        row = (here or rows)[0]
+        answer = table_values(row)
+        if len(rows) > 1 and answer != NOT_CATALOGUED:
+            page = row.get("pdf_page_index")
+            answer += (f" (one of {len(rows)} rows numbered {number}: "
+                       f"table_get needs pdf_page_index {page})")
+        return answer
 
     # -- pointers ----------------------------------------------------------
 
@@ -544,6 +567,16 @@ class Holdings:
                 return None
             return any(self.figures.holds(k) for k in figure_keys(number))
         return None
+
+
+def _exact_table(number: str) -> str:
+    """A table number as table_get first looks it up: no "Table", no
+    spaces, dashes as '-', a bracketed part letter plain, upper case; '.'
+    and '-' kept apart (GEC-11's Table 1-1 and Table 1.1 are two
+    tables)."""
+    s = re.sub(r"\s+", "", _dashes(number))
+    s = re.sub(r"^(?i:tables?)\.?", "", s)
+    return re.sub(r"\(([A-Za-z])\)$", r"\1", s).upper()
 
 
 def table_values(row: dict) -> str:
@@ -690,7 +723,8 @@ def collapse(held: dict[str, str]) -> dict[str, str]:
     if not held:
         return held
     values = list(held.values())
-    common = max(set(values), key=values.count)
+    # a tie goes to the first answer in sorted order, not to hash order
+    common = max(sorted(set(values)), key=values.count)
     n = values.count(common)
     if n == len(values):
         return {"all": common}
@@ -730,17 +764,26 @@ def section_flags(row: sqlite3.Row, holdings: Holdings,
         json.loads(row["figures_json"] or "[]"), "figure")}
     if figs:
         out["figures_held"] = collapse(figs) if short else figs
-    tabs = {num: holdings.table_flag(num) for num in listed_numbers(
-        json.loads(row["tables_json"] or "[]"), "table")}
+    tabs = {num: holdings.table_flag(num, row["section_id"])
+            for num in listed_numbers(json.loads(row["tables_json"] or "[]"),
+                                      "table")}
     if tabs:
         out["tables_held"] = collapse(tabs) if short else tabs
+    # the whole list is stored; a fetch shows NOT_HELD_MAX (add_flags)
     missing = pointers_not_held(row["body"] or "", holdings)
     if missing:
-        if len(missing) > NOT_HELD_MAX:
-            missing = missing[:NOT_HELD_MAX] + [
-                f"and {len(missing) - NOT_HELD_MAX} more"]
         out["not_held"] = missing
     return out
+
+
+def _shown(flags: dict) -> dict:
+    """``flags`` as a fetch shows them: ``not_held`` cut to
+    :data:`NOT_HELD_MAX` entries and "and N more"."""
+    missing = flags.get("not_held")
+    if not missing or len(missing) <= NOT_HELD_MAX:
+        return flags
+    return dict(flags, not_held=missing[:NOT_HELD_MAX] + [
+        f"and {len(missing) - NOT_HELD_MAX} more"])
 
 
 def fill_reach_table(cur: sqlite3.Cursor) -> None:
@@ -804,7 +847,7 @@ def add_flags(section: dict, table: dict[str, dict]) -> dict:
     if not flags:
         return section
     out = dict(section)
-    out.update(copy.deepcopy(flags))  # the table may be a cached one
+    out.update(copy.deepcopy(_shown(flags)))  # the table may be cached
     return out
 
 
@@ -842,12 +885,13 @@ def reach_note(section: dict) -> str:
     :data:`NOT_HELD_NOTE` for ``not_held``. Empty when it carries none."""
     figures: list[str] = []
     tables: list[str] = []
-    short = has_not_held = False
+    short = has_not_held = rows = False
     for sec in [section] + list(_inlined(section.get("subsections"))):
         for key, kinds, kind_of in (("figures_held", figures, _figure_kind),
                                     ("tables_held", tables, _table_kind)):
             held = sec.get(key) or {}
             short = short or "others" in held
+            rows = rows or any(" (one of " in str(v) for v in held.values())
             for answer in held.values():
                 kind = kind_of(str(answer))
                 if kind and kind not in kinds:
@@ -864,6 +908,8 @@ def reach_note(section: dict) -> str:
                                if k in tables) + ".")
     if short:
         out.append(SHORT_NOTE)
+    if rows:
+        out.append(ROWS_NOTE)
     if any(k in figures for k in ("catalog", "rows", "as")) \
             or "page" in tables:
         out.append(PAGE_NOTE)
@@ -973,40 +1019,52 @@ CHECK_SECONDS = 2.0
 _CHECKED: dict[str, tuple[float, Path]] = {}
 
 
-def reach_counts() -> dict[str, dict[str, int]]:
-    """Per reference, how many listed figures and tables are not
-    catalogued and how many same-document pointers the library does not
-    hold: ``{reference: {"figures_not_catalogued", "tables_not_catalogued",
-    "pointers_not_held"}}``, from the text search database. The standing
-    test (``tests/test_reach.py``) holds these to a baseline that may
-    shrink, not grow."""
+def reach_items() -> dict[str, dict[str, list[str]]]:
+    """Per reference, what a fetch tells the helper of that it cannot
+    reach, item by item: ``{reference: {"figures_not_catalogued": [...],
+    "tables_not_catalogued": [...], "pointers_not_held": [...]}}``, each
+    item "<section_id>: <number or pointer>", sorted, from the text search
+    database. The standing test (``tests/test_reach.py``) holds them to
+    ``tests/reach_baseline.json`` item by item, so one fixed and one
+    broken cannot cancel out (2026-11-12 review, item 6)."""
     from . import _retrieval_db
     conn = _retrieval_db._ro_connect()
     try:
         rows = conn.execute(
-            "SELECT s.reference, s.figures_json, s.tables_json, r.reach_json "
-            "FROM sections s JOIN section_reach r ON r.sec_rowid = s.rowid "
-            "ORDER BY s.rowid").fetchall()
+            "SELECT s.reference, s.section_id, s.figures_json, s.tables_json,"
+            " r.reach_json FROM sections s JOIN section_reach r "
+            "ON r.sec_rowid = s.rowid ORDER BY s.rowid").fetchall()
         refs = [r[0] for r in conn.execute(
             "SELECT DISTINCT reference FROM sections ORDER BY reference")]
     finally:
         conn.close()
-    out = {ref: {"figures_not_catalogued": 0, "tables_not_catalogued": 0,
-                 "pointers_not_held": 0} for ref in refs}
-    for ref, figs, tabs, flags in rows:
+    out = {ref: {"figures_not_catalogued": [], "tables_not_catalogued": [],
+                 "pointers_not_held": []} for ref in refs}
+    for ref, sid, figs, tabs, flags in rows:
         flags = json.loads(flags)
-        counts = out[ref]
+        items = out[ref]
         for key, listing, kind in (("figures_held", figs, "figure"),
                                    ("tables_held", tabs, "table")):
             if key in flags:
                 held = expand(flags[key], listed_numbers(
                     json.loads(listing or "[]"), kind))
-                counts[f"{kind}s_not_catalogued"] += sum(
-                    v == NOT_CATALOGUED for v in held.values())
-        for item in flags.get("not_held", []):
-            more = re.fullmatch(r"and (\d+) more", item)
-            counts["pointers_not_held"] += int(more.group(1)) if more else 1
+                items[f"{kind}s_not_catalogued"] += [
+                    f"{sid}: {num}" for num, v in held.items()
+                    if v == NOT_CATALOGUED]
+        items["pointers_not_held"] += [f"{sid}: {label}"
+                                       for label in flags.get("not_held", [])]
+    for items in out.values():
+        for key in items:
+            items[key] = sorted(set(items[key]))
     return out
+
+
+def reach_counts() -> dict[str, dict[str, int]]:
+    """Per reference, how many listed figures and tables are not
+    catalogued and how many same-document pointers the library does not
+    hold (the lengths of :func:`reach_items`)."""
+    return {ref: {key: len(v) for key, v in items.items()}
+            for ref, items in reach_items().items()}
 
 
 def all_flags() -> dict[tuple, dict]:

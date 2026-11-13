@@ -1,162 +1,597 @@
 {
  "aashto_1993": {
-  "figures_not_catalogued": 1,
-  "pointers_not_held": 12,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [
+   "IV: 1.1"
+  ],
+  "pointers_not_held": [
+   "I-1.1: Appendix A",
+   "I-1.1: Figure 1.1",
+   "I-1.9: Appendix E",
+   "I-3.1: Appendix B",
+   "I-3.9: Eq. 3.9.3",
+   "I-4.3: Table EE.4",
+   "II-2.1.2: Appendix D",
+   "II-3.1.1: Appendix H",
+   "II-3.1.2: Appendix H",
+   "II-3.2.2: Appendix L",
+   "III: Appendix N",
+   "IV: Figure 1.1"
+  ],
+  "tables_not_catalogued": []
  },
  "california_trenching": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 21,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "10-2: Section 10-1",
+   "10-5: Section 10-1",
+   "12-2: Eq. A-2-10",
+   "12-2: Eq. A-2-11",
+   "12-2: Eq. A-2-13",
+   "12-2: Eq. A-2-18",
+   "12-2: Eq. A-2-19",
+   "12-2: Eq. A-2-2",
+   "12-2: Eq. A-2-3",
+   "12-3: Eq. A-3-21",
+   "12-3: Eq. A-3-26",
+   "12-3: Section 4-5.03",
+   "2-3.04: Appendix B",
+   "2-3.04: Table B-1",
+   "3-6: Section 3-8",
+   "4-3: Eq. 4-3-24",
+   "4-5: Eq. 4-5-5",
+   "4-5: Eq. 4-5-6",
+   "4-6: Section 4-3.03",
+   "6-2: Appendix E",
+   "7-5: Section 4-1"
+  ],
+  "tables_not_catalogued": []
  },
  "dm7_1": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "7-9.5: Appendix B"
+  ],
+  "tables_not_catalogued": []
  },
  "dm7_2": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 4,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "6-2.1: Section 6-1.3",
+   "6-7.3: Eq. 5-81",
+   "B-5.4: Section 1-7.3",
+   "P-2.2.2: Eq. A-1"
+  ],
+  "tables_not_catalogued": []
  },
  "em_1905": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 109
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1-3: Appendix A"
+  ],
+  "tables_not_catalogued": [
+   "10-1b: 10-1",
+   "10-6a: 10-2a",
+   "10-6a: 10-2b",
+   "10-6a: 10-3",
+   "11-4b: 11-1",
+   "2-10d: 2-5",
+   "2-6b(1): 2-1",
+   "2-7a(2)(d): 2-2",
+   "2-7a(2)(e): 2-3",
+   "2-7a(2)(h): 2-4",
+   "3-3: 3-1",
+   "3-3a: 3-2",
+   "3-3b: 3-3",
+   "3-3b: 3-4",
+   "3-4b: 3-5",
+   "3-5a(2): 3-6",
+   "3-6d: 3-7",
+   "3-7a: 3-8",
+   "3-7a: 3-9",
+   "3-7b: 3-10",
+   "3-7c(1): 3-11",
+   "3-7d(1): 3-12",
+   "3-7d(2): 3-13",
+   "3-9a: 3-14",
+   "3-9b(1)(b): 3-15",
+   "3-9b(4)(a): 3-16",
+   "3-9b(4)(b): 3-17",
+   "3-9d(2): 3-18",
+   "4-10: 4-4",
+   "4-10a(3): 4-5",
+   "4-10a(3): 4-6",
+   "4-10b(3): 4-7",
+   "4-10b(3): 4-8",
+   "4-10c(3): 4-9",
+   "4-10d(1)(f): 4-10",
+   "4-7a(1)(b): 4-1",
+   "4-7a(2): 4-2",
+   "4-7b: 4-3",
+   "5-3: 5-1",
+   "5-5f: 5-2",
+   "5-5f: 5-3",
+   "5-5f: 5-4",
+   "5-5i(4): 5-5",
+   "6-5d: 6-1",
+   "6-7b(2): 6-2",
+   "7-10c(2): 7-4",
+   "7-11c(2).a: 7-5",
+   "7-11c(2).a: 7-6",
+   "7-12b: 7-7",
+   "7-12e: 7-8",
+   "7-13h: 7-9",
+   "7-15c: 7-10",
+   "7-18b: 7-11",
+   "7-18c: 7-12",
+   "7-18c: 7-13",
+   "7-19b: 7-14",
+   "7-7b: 7-1",
+   "7-9a(2): 7-2",
+   "7-9c: 7-3",
+   "8-6a(6): 8-1",
+   "8-6b(3): 8-2",
+   "8-6c(2)(b): 8-3",
+   "9-11d: 9-3",
+   "9-11d: 9-4",
+   "9-12b(2): 9-5",
+   "9-7a(2): 9-1",
+   "9-9b: 9-2",
+   "B-1b: B-1a",
+   "B-1c: B-1b",
+   "B-2b: B-2a",
+   "B-2c: B-2b",
+   "B-3b: B-3a",
+   "B-3b: B-3b",
+   "B-3c: B-3c",
+   "B-4b: B-4a",
+   "B-4b: B-4b",
+   "B-4c: B-4c",
+   "B-5b: B-5a",
+   "B-5b: B-5b",
+   "B-5b: B-5c",
+   "B-5b: B-5d",
+   "B-5c: B-5e",
+   "B-6b: B-6a",
+   "B-6b: B-6b",
+   "B-6c: B-6c",
+   "B-7b: B-7a",
+   "B-7b: B-7b",
+   "B-7c: B-7c",
+   "C-1b: C-1",
+   "C-2b: C-2",
+   "C-3b.a: C-3c",
+   "C-3b: C-3a",
+   "C-3b: C-3b",
+   "C-4b: C-4",
+   "C-5b: C-5",
+   "C-6b: C-6a",
+   "C-6b: C-6b",
+   "C-6b: C-6c",
+   "C-7b.a: C-7c",
+   "C-7b.a: C-7d",
+   "C-7b.a: C-7e",
+   "C-7b: C-7a",
+   "C-7b: C-7b",
+   "D: D-1",
+   "D: D-2",
+   "D: D-3",
+   "D: D-4",
+   "D: D-5",
+   "D: D-6"
+  ]
  },
  "em_2104": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 8,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1-3: Appendix A",
+   "3-3: Appendix E",
+   "3-4: Appendix D",
+   "3-8: Appendix E",
+   "4-1: Appendix B",
+   "4-2: Appendix C-4",
+   "4-3: Appendix C-5",
+   "5-2: Appendix G"
+  ],
+  "tables_not_catalogued": []
  },
  "em_2107": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 6,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.4: Appendix A",
+   "2.3: Chapter 12",
+   "2.3: Chapter 13",
+   "2.3: Chapter 14",
+   "2.3: Chapter 15",
+   "4.4: Appendix D"
+  ],
+  "tables_not_catalogued": []
  },
  "eurocode_7_1": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 0,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [],
+  "tables_not_catalogued": []
  },
  "eurocode_7_2": {
-  "figures_not_catalogued": 1,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [
+   "C: C.1"
+  ],
+  "pointers_not_held": [
+   "C: Figure C.1"
+  ],
+  "tables_not_catalogued": []
  },
  "fema_p2082": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 25,
-  "tables_not_catalogued": 1
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "11.4.3: Section 11.3",
+   "11.4.3: Section 11.4.7",
+   "11.4.4: Section 12.14",
+   "11.4.4: Section 12.14.8.1",
+   "11.4.5: Figure 22-14",
+   "11.4.5: Figure 22-17",
+   "11.4.5: Section 11.4.7",
+   "11.6: Section 11.2",
+   "11.6: Section 12.14",
+   "11.6: Section 12.14.8.1",
+   "11.6: Section 12.3",
+   "11.8: Section 11.4.7",
+   "19.3.1: Section 12.3.1.3",
+   "21.1: Section 11.4.6",
+   "21.1: Section 11.4.7",
+   "21.2.3: Section 11.4.7",
+   "21.2.3: Section 20.3.3",
+   "21.2: Section 11.4.7",
+   "21.4: Eq. 12.8-4",
+   "21.4: Eq. 12.8-5",
+   "21.4: Eq. 12.8-6",
+   "21.4: Eq. 15.4-1",
+   "21.4: Eq. 15.4-2",
+   "21.4: Eq. 15.4-3",
+   "21.4: Eq. 15.4-4"
+  ],
+  "tables_not_catalogued": [
+   "11.5: 1.5-2"
+  ]
  },
  "fhwa_pavements": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "8.4.5: Appendix E"
+  ],
+  "tables_not_catalogued": []
  },
  "fhwa_soils_foundations": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 12,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.1: Appendix A",
+   "1.3: Appendix A",
+   "3.0: Appendix A",
+   "5.5.2.1: Appendix B",
+   "6.6.2.1: Appendix D",
+   "6.8: Appendix D",
+   "7.5.2.1: Table 7-6a",
+   "7.7.2: Appendix A",
+   "8.1.2: Appendix C",
+   "9.12.1: Section 9.10.2.3",
+   "9.5.5.1: Table 9-20",
+   "9.9.2.2: Section 9.9.11"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_10": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 17,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.5: Appendix D",
+   "10.3.7: Appendix D",
+   "13.3.3.3: Section 13.3.2.1",
+   "14.10: Appendix D",
+   "14.11: Appendix D",
+   "14.1: Appendix D",
+   "14.3: Appendix D",
+   "14.6: Appendix D",
+   "14.7: Appendix D",
+   "14.9: Appendix D",
+   "15.4: Appendix E",
+   "18.2: Appendix D",
+   "3.6: Appendix F",
+   "7.4: Appendix D",
+   "9.3.5: Section 9.2.5",
+   "A.2.b: Figure 10-40",
+   "A.2.c: Section 12.3.3.1"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_11": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 6,
-  "tables_not_catalogued": 1
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "3.5.2: Appendix D",
+   "3.6: Section 2.8.3",
+   "4.1.2: Appendix F",
+   "4.4.3: Section 2.8.3",
+   "7.1.1: Section 4.5.6",
+   "8.2: Appendix F"
+  ],
+  "tables_not_catalogued": [
+   "10.2: 10.2"
+  ]
  },
  "gec_12": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 4,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "17.1: Section 14.5.2.1",
+   "9.2.4: Section 9.2.1",
+   "D.22.2.1: Section 7.2.3.2.1",
+   "D.34.2: Section 7.2.3.2.1"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_13": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "6.4.9: Figure 6-16"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_14": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "4.1-4.5: Appendix C"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_4": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 0,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [],
+  "tables_not_catalogued": []
  },
  "gec_5": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 0,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [],
+  "tables_not_catalogued": []
  },
  "gec_6": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 12,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "2.7.1: Appendix A",
+   "2.7.2: Appendix A",
+   "5.2.10: Appendix A",
+   "5.2.3.6: Appendix A",
+   "5.2.6: Appendix B",
+   "5.2.6: Appendix C",
+   "5.3.3.1: Appendix B",
+   "5.3.4: Appendix C",
+   "6.0: Appendix B",
+   "6.0: Appendix C",
+   "6.5: Appendix C",
+   "9.1.2: Appendix A"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_7": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 18,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.3: Appendix G",
+   "1.6: Appendix C",
+   "3.2.6: Appendix A",
+   "3.3.6: Appendix A",
+   "4.8: Section 6.10.14",
+   "5.6.3: Appendix C",
+   "5.9.2: Figure 5.20",
+   "6.3.7: Appendix A",
+   "6.5.4: Section 5.7.7",
+   "6.6.4: Appendix A",
+   "6.6.5: Appendix A",
+   "6.6.6: Appendix A",
+   "8.1: Appendix E",
+   "8.1: Appendix F",
+   "8.3: Appendix E",
+   "8.3: Appendix F",
+   "9.3.7: Appendix E",
+   "9.3.7: Appendix F"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_8": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 11,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.3: Chapter 9",
+   "1.4: Appendix A",
+   "1.4: Appendix B",
+   "1.4: Chapter 9",
+   "5.1: Appendix A",
+   "5.3.1.2: Appendix A",
+   "5.3.2.2: Appendix A",
+   "5.3: Appendix A",
+   "5.5.3: Appendix A",
+   "5.8.1: Appendix B",
+   "6.6.4: Appendix B"
+  ],
+  "tables_not_catalogued": []
  },
  "gec_9": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 22,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.3: Appendix E",
+   "1.4: Appendix B",
+   "1.4: Appendix C",
+   "1.4: Appendix D",
+   "1.4: Appendix E",
+   "10.3.5: Section 5.5.4.2",
+   "11.3.5: Section 5.10.11.3",
+   "11.5.2: Eq. 11-58",
+   "12.1: Appendix D",
+   "12.4: Appendix C",
+   "4.2: Eq. 4-1",
+   "5.2.2: Section 5.3.1",
+   "5.3: Section 5.3.1",
+   "5.3: Section 5.3.2",
+   "5.3: Section 5.3.3",
+   "6.3.4: Appendix E",
+   "6.3: Appendix C",
+   "6.4.1: Appendix E",
+   "6.5.2: Appendix B",
+   "8.3.1: Section 3.10.3.1",
+   "8.3.1: Section 3.10.3.2",
+   "8.3.1: Section 3.10.3.3"
+  ],
+  "tables_not_catalogued": []
  },
  "gsa_collapse": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 15,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1.7: Appendix A",
+   "3.1: Figure 3.1",
+   "3.1: Figure 3.2",
+   "3.1: Figure 3.3",
+   "3.1: Figure 3.4",
+   "3.1: Figure 3.5",
+   "3.1: Figure 3.6",
+   "3.2.11.5: Appendix C",
+   "3.2.12.5: Appendix C",
+   "3.2.1: Chapter 10",
+   "3.2.1: Chapter 11",
+   "3.2.1: Chapter 12",
+   "3.2.1: Chapter 9",
+   "4: Appendix D",
+   "5: Appendix E"
+  ],
+  "tables_not_catalogued": []
  },
  "micropile": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 4,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "6.1: Appendix A",
+   "6.7.6: Appendix B",
+   "9.6: Appendix C-1",
+   "9.6: Appendix C-2"
+  ],
+  "tables_not_catalogued": []
  },
  "ufc_collapse": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 15,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1-5: Appendix A",
+   "1-9: Appendix C-11",
+   "2-1: Appendix C",
+   "3-1.5: Section 3-1.4.1.1",
+   "3-1.5: Section 3-1.4.1.2",
+   "3-2.11.1.2: Section 3-2.11.2.2",
+   "3-2.11.5: Appendix C",
+   "3-2.12.5: Appendix C",
+   "3-3.1.2: Appendix D",
+   "3-3.1.2: Appendix E",
+   "3-3.5.1: Appendix C-7.1",
+   "4-0: Appendix D",
+   "5-0: Appendix E",
+   "7-0: Appendix F",
+   "7-3: Appendix C-10.1"
+  ],
+  "tables_not_catalogued": []
  },
  "ufc_concrete_practice": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 12,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1-5: Appendix E",
+   "1-6: Appendix F",
+   "1-7: Appendix G",
+   "12-1: Appendix A",
+   "13-1: Appendix B",
+   "16-1: Appendix E",
+   "17-1: Appendix F",
+   "17-2: Appendix F",
+   "18-1: Appendix G",
+   "3-11.4: Appendix B",
+   "3-6: Appendix A",
+   "9-10: Appendix D"
+  ],
+  "tables_not_catalogued": []
  },
  "ufc_flexible_practice": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 2,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "6-5.1.3: Table 6-7",
+   "6-5.2.1: Table 6-8"
+  ],
+  "tables_not_catalogued": []
  },
  "ufc_pavement": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 41,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "1-4: Appendix A",
+   "1-5: Appendix C",
+   "13-3: Appendix F",
+   "13-4: Appendix H",
+   "13-5: Appendix F",
+   "13-5: Appendix G",
+   "13-6: Appendix F",
+   "13-7: Appendix F",
+   "14-1.3.1: Appendix C",
+   "14-4: Appendix G",
+   "14-5: Appendix C",
+   "15-10: Appendix G",
+   "15-4.2.1: Appendix F",
+   "15-5.1: Appendix F",
+   "15-7.2: Appendix F",
+   "16-1: Appendix C",
+   "16-2.1.5.2: Appendix C",
+   "16-2: Appendix C",
+   "17-1: Appendix C",
+   "18-3: Appendix F",
+   "19-10: Appendix D",
+   "19-13: Appendix D",
+   "19-14: Appendix G",
+   "19-6.1: Appendix E",
+   "19-9.4: Appendix C",
+   "19-9.6: Appendix C",
+   "20-1.4: Appendix C",
+   "20-1: Appendix A",
+   "20-2.3.5: Appendix C",
+   "20-5.3.1: Appendix C",
+   "21-8: Appendix G",
+   "3-4: Appendix E",
+   "4-3.3: Appendix G",
+   "4-3: Appendix E",
+   "4-3: Appendix F",
+   "4-4: Appendix G",
+   "5-3: Appendix G",
+   "9-10: Appendix E",
+   "9-4: Appendix E",
+   "9-4: Appendix G",
+   "9-6: Appendix G"
+  ],
+  "tables_not_catalogued": []
  },
  "ufc_stabilization": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 0,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [],
+  "tables_not_catalogued": []
  },
  "ufc_structural": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 11,
-  "tables_not_catalogued": 0
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "2-4.4: Section 3-7.6",
+   "2-4.7: Section 3-5.3",
+   "2-7: Appendix G",
+   "3-5: Chapter 13",
+   "3-6: Appendix B",
+   "3-6: Eq. 12.10-2",
+   "3-7: Appendix C",
+   "3-7: Appendix D",
+   "3-8: Chapter 12",
+   "4-2.2: Table 2-3",
+   "4-2.3: Table 3-3"
+  ],
+  "tables_not_catalogued": []
  },
  "wood_handbook": {
-  "figures_not_catalogued": 0,
-  "pointers_not_held": 1,
-  "tables_not_catalogued": 3
+  "figures_not_catalogued": [],
+  "pointers_not_held": [
+   "5-10: Chapter 14"
+  ],
+  "tables_not_catalogued": [
+   "5-3: 5-3",
+   "5-3: 5-4",
+   "5-4: 5-5"
+  ]
  }
 }

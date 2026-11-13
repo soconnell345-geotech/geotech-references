@@ -26,7 +26,11 @@ catalogued" and is named in the problems; the pack readers catch
 RecursionError and MemoryError too (`_packs.JSON_ERRORS`). Subsections are
 inlined by the 12,000 rule counted on the content without the flags,
 provided the whole fits 14,000 with them (twelve fetches that fitted had
-stopped inlining). The flags are worked out when the text database is built
+stopped inlining). A table number on several catalog rows answers from
+the row numbered exactly as listed and filed under the listing section,
+and says it is one of several; a tie in the short form goes to the first
+answer in sorted order; the baseline lists each item not held, so a new
+one fails even when another was fixed. The flags are worked out when the text database is built
 (new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
 figure and table catalogs join its source signature) and cost a fetch
 nothing; search hits are unchanged. Shared functions changed:
