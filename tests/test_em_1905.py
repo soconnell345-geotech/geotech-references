@@ -18,6 +18,7 @@ from pathlib import Path
 import pytest
 
 from geotech_references import _figures_db, _retrieval, _retrieval_db
+from tests._build_reader import require_build_reader
 
 REF = "em_1905"
 ROOT = Path(__file__).resolve().parents[1]
@@ -589,10 +590,48 @@ def test_manifest_formulas_match_the_text():
     assert n == 213
 
 
+def test_bar_over_a_symbol_read_the_same_by_both_reader_versions():
+    # p. 359, c̅v: the text layer lists the bar after the subscript v.
+    # PyMuPDF 1.27 gives the bar's box as its ink, over the c; 2.x gives it
+    # no width, at v's right edge, with v's baseline. The reader puts the
+    # bar on its symbol either way.
+    pytest.importorskip("fitz")
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import printed_army_layout as reader
+    finally:
+        sys.path.remove(str(ROOT / "scripts"))
+
+    def char(c, x0, x1, y, size):
+        return {"c": c, "bbox": (x0, y - 0.8 * size, x1, y + 0.2 * size), "origin": (x0, y)}
+
+    def page(bar_x0, bar_x1, bar_y):
+        spans = [
+            {"font": "CambriaMath", "size": 9.96, "chars": [char("c", 126.86, 131.25, 182.3, 9.96)]},
+            {"font": "CambriaMath", "size": 6.96, "chars": [char("v", 131.30, 135.31, 184.34, 6.96)]},
+            {"font": "CambriaMath", "size": 9.96, "chars": [
+                char("̅", bar_x0, bar_x1, bar_y, 9.96),
+                char(" ", bar_x1, 138.5, 182.3, 9.96), char("=", 138.5, 145.94, 182.3, 9.96),
+                char("2", 150.0, 155.0, 182.3, 9.96)]}]
+
+        class Page:
+            def get_text(self, kind):
+                assert kind == "rawdict"
+                return {"blocks": [{"type": 0, "lines": [{"dir": (1.0, 0.0), "spans": spans}]}]}
+        return Page()
+
+    read = []
+    for bar in ((128.54, 134.19, 182.3), (135.31, 135.31, 184.34)):   # 1.27, 2.x
+        chars, spaces = reader.page_chars(page(*bar))
+        read.append([reader.linear(r, spaces) for r in reader.rows_of(chars, [], spaces, [])])
+    assert read[0] == read[1] == ["c̅v = 2"]
+
+
 def test_rebuild_reproduces_the_committed_text():
     # the formulas, passages and Table 4-10 live in the manifest, so a
-    # rebuild keeps them
-    pytest.importorskip("fitz")
+    # rebuild keeps them; it runs under the PDF reader the manifest records
+    require_build_reader(REF)
     if not PDF.exists():
         pytest.skip("PDF not checked out")
     import sys

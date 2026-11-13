@@ -165,9 +165,15 @@ class TestLayerCoefficientA1:
             tb.layer_coefficient_a1_asphalt(80000)
 
     def test_past_chart_edge_held_with_note(self):
+        # REF-76 rule 3 (held, safe side, with the text): Figure 2.5
+        # (printed II-18) ends at 500,000 psi; a1 rises with EAC, and II-17
+        # says "Caution is recommended for modulus values above 450,000
+        # psi", so the 500,000 psi value is held with out_of_range.
         r = tb.layer_coefficient_a1_asphalt(600000)
         assert r["a1"] == tb.layer_coefficient_a1_asphalt(500000)["a1"]
         assert "held" in r["note"]
+        assert "500,000 psi" in r["out_of_range"] and "II-18" in r["out_of_range"]
+        assert "out_of_range" not in tb.layer_coefficient_a1_asphalt(500000)
 
 
 class TestLayerCoefficientA2Cement:
@@ -191,10 +197,12 @@ class TestLayerCoefficientA2Cement:
         with pytest.raises(ValueError, match="lowest labelled tick"):
             tb.layer_coefficient_a2_cement_treated(150)
 
-    def test_above_top_tick_held_with_note(self):
-        r = tb.layer_coefficient_a2_cement_treated(1200)
-        assert r["a2"] == pytest.approx(0.25, abs=0.003)
-        assert "top tick" in r["note"]
+    def test_above_top_tick_refused(self):
+        # REF-76: the UCS scale's labelled ticks end at 1000 psi (II-23) and
+        # II-22 gives no rule past them; a2 used to be held at 0.25.
+        assert "note" not in tb.layer_coefficient_a2_cement_treated(1000)
+        with pytest.raises(ValueError, match=r"top labelled tick .*1000 psi"):
+            tb.layer_coefficient_a2_cement_treated(1200)
 
 
 class TestLayerCoefficientA2Bituminous:
@@ -213,10 +221,11 @@ class TestLayerCoefficientA2Bituminous:
         with pytest.raises(ValueError, match="lowest labelled tick"):
             tb.layer_coefficient_a2_bituminous_treated(100)
 
-    def test_above_top_tick_held_with_note(self):
-        r = tb.layer_coefficient_a2_bituminous_treated(2000)
-        assert r["a2"] == pytest.approx(0.32, abs=0.003)
-        assert "top tick" in r["note"]
+    def test_above_top_tick_refused(self):
+        # REF-76: labelled ticks end at 1800 lb (II-24); no rule past them.
+        assert "note" not in tb.layer_coefficient_a2_bituminous_treated(1800)
+        with pytest.raises(ValueError, match=r"top labelled tick .*1800 lb"):
+            tb.layer_coefficient_a2_bituminous_treated(2000)
 
 
 class TestUnboundK1K2:

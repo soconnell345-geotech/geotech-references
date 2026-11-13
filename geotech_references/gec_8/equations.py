@@ -49,7 +49,11 @@ def dd_pile_side_resistance_MPa(
     spt_n : float
         SPT-N60 (blows per 300 mm, 60% hammer efficiency, not depth
         corrected) at the depth of interest. The equation is printed for
-        N ≤ 50; above 50, N = 50 is used and the result says so.
+        N ≤ 50 (p. 84). Above 50, N = 50 is used and the result says so
+        in ``note`` and ``out_of_range``: the printed limit on fs (0.16
+        or 0.21 MPa, p. 84) is reached at N = 32 for both soil types, so
+        ``fs_limited_MPa`` is that printed limit whatever N above 50 is,
+        and holding N at 50 cannot raise it.
     soil_type : str
         Soil gradation type: 'dirty_rounded' or 'clean_angular'.
 
@@ -58,7 +62,8 @@ def dd_pile_side_resistance_MPa(
     dict
         {'spt_n': float, 'soil_type': str, 'ws_MPa': float,
          'fs_MPa': float, 'limiting_fs_MPa': float,
-         'fs_limited_MPa': float, 'source': str}
+         'fs_limited_MPa': float, 'print_note': str, 'source': str},
+        plus 'note' and 'out_of_range' when spt_n is above 50.
 
     Raises
     ------
@@ -114,7 +119,13 @@ def dd_pile_side_resistance_MPa(
         "source": "GEC-8 Section 5.4.2, Eq. 5.29, pp. 83-84 (NeSmith 2002)",
     }
     if spt_n > 50.0:
-        out["note"] = ("Eq. 5.29 is printed for N <= 50; N = 50 is used.")
+        out["note"] = (
+            "Eq. 5.29 is printed for N <= 50; N = 50 is used. The printed "
+            f"limit fs <= {params['fs_limit']} MPa (p. 84), reached at "
+            "N = 32, governs fs_limited_MPa.")
+        out["out_of_range"] = (
+            f"spt_n = {spt_n:g} is above N = 50, the end of Eq. 5.29's "
+            "printed range (GEC-8 p. 84).")
     return out
 
 

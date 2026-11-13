@@ -307,3 +307,30 @@ class TestColumnShearClassification:
     def test_reclassified_as_force_controlled(self):
         r = column_deformation_controlled_shear_check(vp=70.0, vo=100.0)
         assert r["assumed_deformation_controlled"] is False
+
+
+class TestOpenEndedRows:
+    """REF-76: Tables 6 to 9 print open-ended rows ("<= 0.0" / ">= 0.5",
+    "<= 3" / ">= 6", "<= 0.2" / ">= 0.4"; printed pp. 39-42), so past them
+    the end row is the printed value (rule 1). A negative shear ratio is
+    refused."""
+
+    def test_beyond_the_end_rows_reads_the_end_row(self):
+        assert table_6_beam_flexure_modeling(-0.3, "C", 1.0)["a"] == \
+            table_6_beam_flexure_modeling(0.0, "C", 3)["a"]
+        assert table_7_beam_flexure_mfactor(0.9, "NC", 9.0)["m_primary"] == \
+            table_7_beam_flexure_mfactor(0.5, "NC", 6)["m_primary"]
+        assert table_8_slab_flexure_modeling(0.1, True)["a"] == \
+            table_8_slab_flexure_modeling(0.2, True)["a"]
+        assert table_9_slab_flexure_mfactor(0.7, False)["m_secondary"] == \
+            table_9_slab_flexure_mfactor(0.4, False)["m_secondary"]
+
+    def test_negative_shear_ratio_refused(self):
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_6_beam_flexure_modeling(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_7_beam_flexure_mfactor(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_8_slab_flexure_modeling(-0.1, True)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_9_slab_flexure_mfactor(-0.1, True)

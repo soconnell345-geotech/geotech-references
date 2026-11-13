@@ -74,6 +74,86 @@ page-reading tool knew (it knew only the figure catalogs).
   `tests/test_table_catalog_rows.py`, `tests/test_table_printed_pages.py`,
   two in `tests/test_references_agent.py`.
 
+- **EM 1110-2-2104: page citations corrected from the page (app BACKLOG REF-98, part 1).**
+  Six citations pointed at the wrong printed page and now give the page that prints the equation: Eq B-22 (p. 45, was 44), Eq B-42 and Eq B-43 (p. 50, was 49), Eqs B-44 to B-48 (pp. 50-51, was 49-50), Eq D-5 (p. 71, was 73), and the ACI 318-19 resistance-factor comment (p. 121, was 118); the `pdf_page` values moved with them. No value, factor or formula changed. 56 citations were checked against the pages, 50 were already right.
+
+**Signs set in symbol fonts stored as the page prints them (2026-11-12
+review).** A PDF's text layer can give a glyph of a symbol font as an
+ordinary character ("with ≤ 12 percent fines" comes out "with # 12
+percent fines"). Every PDF in `docs/` was surveyed for such fonts, each
+font-and-character pair read off 300 dpi renders, and the stored text
+compared with the page span by span. Three references held text-layer
+characters:
+
+- `fhwa_soils_foundations` (FHWA NHI-06-088/089, built by
+  `scripts/build_printed_text.py`): 111 characters in six chapters and 2 in
+  the figure catalog. The WordPerfect fonts WP MathA, WP Greek Century and
+  WP Typographic Symbols gave "#" for ≤ (4.1.4.1, "≤ 12 percent fines",
+  twice), "." for ≈ (5.4.6.1, Cc ≈ 0.5 Gs), '"' for ± (89 places in the
+  tables of 5.4.6.3 and 5.8.4), "T = 0E" for "ω = 0°" (Tables 9-6(a) and
+  (b)), "22 minutes" for 2½ minutes (9.15.7.2), "20E" for 20° (9.15.7.4),
+  ")" for Δ, and quotes and bullets. The mapping is in the manifest
+  (`symbol_fonts`, per volume), so a rebuild keeps the printed signs.
+- `gec_4` (FHWA-IF-99-015): the catalog caption of Figure 44 said "A
+  coefficient" for β (a one-page TrueType subset). Its chapter text, written
+  from the print, already spelled every sign right ("OCR <= 4", "D >= 5B").
+- `gec_12` (FHWA-NHI-16-009 Vol III): eight catalog captions (Figures D-11
+  to D-14, D-88 to D-91) ended in eight or ten copies of U+1D719 where the
+  page prints ϕdyn or ϕstat; now φdyn and φstat.
+
+The other references' symbol-font characters print as stored, or are not
+stored (bracket pieces, bullets). `tests/test_symbol_fonts.py` pins the
+corrected places, scans every reference for private-use, control and
+replacement characters and runs of one mathematical letter, and, with the
+PDFs present, checks no symbol-font passage of the checked references is
+stored with the text-layer character.
+
+**Raised exponents, degree signs and signs drawn with a stroke (same
+review).** A text layer also gives a raised exponent or degree sign as an
+ordinary character ("1 x 10-8 cm/sec" for 1 x 10^-8, "230oF" for 230°F),
+and some pages set ≤, ≥ and ± as "<", ">" and "+" with a short stroke drawn
+under them, which the text layer leaves out. Every PDF was surveyed for
+raised spans and for those strokes, and the stored text compared with them;
+each place below was read off a render. Exponents are written with "^".
+
+- `fhwa_soils_foundations`: 48 exponents (chapters 2 and 5, Tables 5-9,
+  5-10 and 5-21 among them), 29 degree signs (chapters 2, 3, 5, 6, 8, 10),
+  and "k ≤ 1x10^-5 cm/s" (p. 5-9), "k ≥ 10^-3 cm/sec" (p. 5-62, twice),
+  "100 ± 5 °C" (p. 5-7), all through the manifest (`raised_o_degree`, and
+  `text_fixes` in Vol I), so a rebuild keeps them; three figure-catalog
+  descriptions that repeat the passages. Both volumes' manifests list the
+  SymbolMT characters (`symbol_fonts_checked`), and a test reads every
+  symbol-font character of both PDFs against the manifest.
+- `gec_10`: "B ≤ 5 ft" and "qu ≥ 10,000 psi" (10.3.4, pp. 10-7, 10-8),
+  "clear spacing ≥ 5 inches" (12.3.2, stored "over 5 inches").
+- `gec_13`: "Cu ≤ 3", "porosity ≥ 50%", "open area ≥ 4%", "≥ 50%
+  elongation" (9.8.3.2.1); permeabilities 1 x 10^-5 and 1 x 10^-6 to
+  1 x 10^-9 m/s (3.4.2.2); 400°F (8.2.5.6.2, 8.3.2.4 and two catalog rows,
+  stored "400 F").
+- `gec_4`: "Ns ≤ 4" (5.2.5, p. 55).
+- `dm7_1`: 8x10^-4 inches (1-5.3.2), less than 10^-3 and 10^-4 cm/sec
+  (3-2.7.1, 3-2.7.2), less 10^-8 cm/sec (6-3).
+- `gec_9`: Eq. A-43's coefficients, A = 3 (10^-7) (z + 1)^6.05 and the
+  exponents of B and C (A.6).
+- `ufc_flexible_practice`: 3.15x10^-4 inch (9-1.1).
+
+`tests/test_symbol_fonts.py` pins these places and scans every stored
+string for a power of ten in plain digits; three in `dm7_2` (UFC 3-220-20
+1-2.11, 3-7.4, B-7.4), left to another branch, are listed in the test.
+
+**The PDF reader is an input of a script build.** The manifest of each
+reference whose text `scripts/build_printed_text.py` reads off the PDF
+(`em_1905`, `fhwa_soils_foundations`) records the PyMuPDF version it was
+built with (`"built_with": {"pymupdf": "1.27.2.3"}`). The two tests that
+rebuild the text and compare it with the committed files run only under
+that version (`tests/_build_reader.py`). Under another version they skip,
+naming both versions; with `GEOTECH_REQUIRE_BUILD_READER=1` they fail
+instead. On GitHub the Python 3.10 job installs the recorded reader with
+that variable set, and the Python 3.12 job the newest reader, where the
+rebuilds skip and every other test runs. `tests/test_build_reader.py`
+checks that every script-built manifest records the same version and that
+the workflow pins it. No package code or stored text changed.
+
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
 chapter text was being rebuilt from the print; each was read from a 300 dpi
@@ -144,6 +224,18 @@ render and independently checked cell by cell.
   for formula pieces put back in the wrong places (a prime alone, a lone
   number above a formula, a number doubled from a stacked fraction, a
   subscript spaced off its symbol, brackets that do not pair).
+- The rebuild gives the same chapter files under PyMuPDF 1.27 and 2.1.
+  Under 2.x the rebuild had failed on GitHub at two typed passages
+  (Examples C-3 and C-7), and its text differed in five sections: PyMuPDF
+  2.x gives the bar set over a symbol in the equation font (N̅60, σ̅′zo,
+  h̅, c̅v; 26 bars on pp. 176-178, 186, 188, 359, 386 and 387) a box of no width at
+  the symbol's right edge, or its subscript's, where 1.27 gave the bar's
+  ink over the symbol, so the bar went over the wrong letter (N6̅0, σz̅′o)
+  or stood apart (h ̅, cv ̅). The reader now puts such a bar on its
+  symbol: the character the text layer lists before it, passing over a
+  subscript. Both versions list the bar in that place. The words the two
+  versions read are the same. 1.27 also reads 156 doubled spaces that 2.1
+  reads as single spaces, which changes no text.
 - Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
   5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
   `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
@@ -169,7 +261,10 @@ render and independently checked cell by cell.
   examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
   kept as printed in the text, each with a note giving what the inputs
   give, and the tests pin what the inputs give. The tests run Appendix B
-  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. Every input
+  that may be None says when to pass None: theta_deg unless the AASHTO
+  method has H > 0, d_g unless alpha_g > 0 (USACE); a value given where it
+  is not needed is ignored, not checked. The equations
   of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
 - Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
   are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
@@ -201,6 +296,258 @@ checked against the page that prints the heading (4,407 sections; EN
 1997-1 and the Caltrans manual cite pages only inside the text); two
 GEC-13 ranges started on the wrong page and now start on the heading's
 page (7.1.2.1 pp. 7-1 to 7-4, 9.7.4 pp. 9-110 to 9-111).
+
+**Lookups outside their printed range (app BACKLOG REF-76).** A lookup
+given an input past the end of its printed table or chart no longer
+returns the edge value with nothing said. Where the print gives an
+open-ended row or curve ("D > 40b", ">= 6") the edge value stays and the
+docstring says so; where the manual's text says what to do beyond the
+range, the lookup does that and says so; otherwise it raises `ValueError`
+naming the printed range, the page and the value given. In-range values
+are unchanged. Functions whose out-of-range behaviour changed (printed
+pages):
+
+- `gec_12.figures.figure_7_17_adhesion`: D/b outside 10 to 40 is refused
+  (curves D = 10b and D = 40b only, p. 248); it was held at 10 or 40.
+- `gec_12.figures.figure_7_18_adhesion_factor`: D/b below 10 in Cases 2
+  and 3 is refused (their shallowest curve is printed "D = 10b", p. 249);
+  it took the D = 10b curve. Case 1's "D < 10b" and every case's "D > 20b"
+  / "D > 40b" curve are open-ended as printed and still read past their
+  label. D/b <= 0 is refused.
+- `gec_10.figures.equation_10_22_caving_rock_side`: RQD below 20 is
+  refused (Table 10-3 prints RQD 20 to 100, p. 10-21); it held the RQD 20
+  row (alpha_E 0.45) with a note, which overstates alpha_E there.
+- `gec_10.tables.table_10_2_nc_base_clay`: su below 500 psf is refused
+  (Table 10-2 prints 500, 1,000 and ">= 2,000" psf, p. 10-19); it held
+  N*c = 6.5. Above 2,000 psf the open-ended row still gives 9.0.
+- `gec_11.tables.table_4_4_traffic_surcharge`: an abutment height above 0
+  and below 5.0 ft is refused (Table 4-4 prints 5.0, 10.0 and ">= 20.0"
+  ft, p. 4-17); it held heq = 4.0 ft with a note. 0 still returns the
+  whole table; taller than 20 ft still takes the open-ended 2.0 ft.
+- `gec_7.tables.table_4_9_site_coefficient_fpga` and
+  `table_4_10_site_coefficient_fv`: a negative PGA or S1 is refused. Their
+  end columns are printed open-ended ("S1 <= 0.1" / "S1 >= 0.5", p. 95;
+  Table 4.9 under GEC-12 Table 7-27's "< 0.1" / "> 0.5") and still take
+  the end column.
+- `gec_8.equations.dd_pile_side_resistance_MPa`: N above 50 (Eq. 5.29 is
+  printed for N <= 50, p. 84) is still held at 50, now with `note` and
+  `out_of_range`; the printed limit fs <= 0.16 / 0.21 MPa, reached at
+  N = 32, governs the limited fs, so the value does not change.
+- `gec_8.tables.table_5_4_p_multiplier`: a spacing wider than a soil's
+  printed rows (3B for every soil, 5B also for M. Dense Sand and Loose M.
+  Sand, p. 112) still holds the widest printed row, now with `note` and
+  `out_of_range`; holding is on the low side (p. 111).
+- `gec_9.tables.table_7_1_p_multiplier`: beyond 5B (Table 7-1 prints 3B
+  and 5B, p. 104) the 5B row is still held, now with `out_of_range` beside
+  its `note`; holding is on the low side (p. 102).
+- `gec_9.tables.table_a1_k_stiff_clay` and `table_a2_epsilon50_stiff_clay`:
+  Ca outside 0.5-4 ton/ft2 (the columns Tables A-1 and A-2 print, p. 222)
+  is refused; the end column was returned, with a note. The message gives
+  the ton/ft2 conversion (a Ca of 100 given in kPa read 2,000 pci) and
+  points to Appendix A.1 for soft clay.
+- `eurocode_7_2.tables.table_d3_pile_base_resistance`: qc above 25 MPa is
+  refused (Table D.3 prints qc = 10, 15, 20 and 25 MPa, p. 115; it
+  returned the 25 column with a note).
+- `eurocode_7_2.tables.table_d4_pile_shaft_resistance`: a negative qc is
+  refused; the last row is printed ">= 15" MPa (p. 116) and kept.
+- `eurocode_7_2.tables.table_e2_pmt_shape_coefficients`: L/B above 20 is
+  refused (Table E.2 prints Circle, Square, L/B = 2, 3, 5 and 20, p. 122;
+  it returned the L/B = 20 column, whose coefficients are the lowest of a
+  rising trend).
+- `eurocode_7_2.tables.table_f3_phi_from_density_index`: a density index
+  above 100 % is refused (Table F.3 rows ID = 40 to 100 %, p. 126; it
+  returned the 100 % row with a note).
+- `eurocode_7_2.tables.table_l2_min_mass_sieving`: unchanged; the docstring
+  states the open-ended last row "<= 2" mm, 100 g (p. 145).
+- `aashto_1993.lef.load_equivalency_factor` (and the four `tables.esal_*`
+  lookups that read it): a load outside the printed rows (2-50 kips single,
+  2-90 kips tandem and triple), an SN outside 1-6 or a D outside 6-14 in
+  (Tables D.1-D.18, printed D-3 to D-20) is refused; the end row or column
+  was read, with a note.
+- `aashto_1993.composite_k.composite_k_subbase`: Dsb above 18 in, Esb above
+  1,000,000 psi, MR above 20,000 psi, or a construction past the 2,000 pci
+  diagonal (Figure 3.3, printed II-39) is refused; the nearest curve was
+  read, with a note.
+- `aashto_1993.composite_k.k_rigid_foundation_correction`: Dsg below 2 ft,
+  MR above 20,000 psi or below where the curves used are drawn, k_inf
+  outside 50-1,400 pci, or a k past the 2,000 pci scale end (Figure 3.4,
+  printed II-40) is refused; the nearest curve was read, or no correction
+  applied, with a note. The lower MR limit follows the curves the Dsg
+  needs: the 2-ft curve leaves the top at 1,169 psi, the 5-ft and 10-ft
+  curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
+  1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
+  every Dsg).
+- `wood_handbook.structural_deformation.torsional_constant_rectangular`
+  and `structural_stress.torsional_shear_stress_rectangular` (Figures 9-9
+  and 9-15 coded as polynomials in b/h): a non-positive h or b is refused;
+  a negative b, or two negatives passing the b <= h check, put b/h off the
+  curves' 0-1 axis and gave a number.
+- `wood_handbook.structural_stability.ylinen_strain`,
+  `ylinen_buckling_stress` and `built_up_column_capacity`: c outside 0 < c
+  < 1 is refused (Eq 9-28 defines c as "a constant between 0 and 1",
+  printed p. 9-14, and Eqs 9-29 and 9-30 take the same c; the page gives
+  0.957, 0.8 and 0.9). Also refused: a stress outside 0 <= f < Fc in Eq
+  9-28, Kf outside 0 < Kf <= 1 in Eq 9-30 (the page says Eq 9-29 "is
+  reduced" by it), and a non-positive Fc, fe or E.
+- `gec_11.tables.table_4_4_traffic_surcharge`: a negative abutment height
+  is refused (it returned the whole table, the answer for 0). Refusal
+  messages that named a range without its page now name it
+  (`aashto_1993.composite_k.composite_k_subbase` below Figure 3.3's scales,
+  `ufc_pavement.tables.figure_10_1_k_on_base` below the 25 pci curve,
+  `figure_e_vehicle_allowable_passes`). Wording that said more than the
+  page: the UFC 3-250-11 Table 3-5 docstring no longer says the 25 row
+  would understate content past it (the table's columns do not all rise
+  with fines), and the Caltrans timber-shoring note no longer gives a
+  20 ft limit the page does not print beside PA = mH + 72.
+- `aashto_1993.environmental.max_serviceability_loss_frost` (Figure G.7,
+  printed G-10, five straight lines read off the chart): a depth of frost
+  penetration beyond the chart's 10 ft axis is refused; the line used to be
+  extended with a note (very poor at 12 ft: 6.0, past the chart's 5).
+- `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
+  14-1, printed 41): re-traced from the page. The figure is a nomograph (a
+  straight line through the plain concrete thickness hd and the steel
+  percentage S meets the reinforced thickness scale at hr); it had been
+  coded as hd less a reduction taken from Appendix G's example at hd 7.9
+  in, which read too thick away from that thickness. At S 0.10 %, hd 12 /
+  17 / 24 / 30 in now give hr 10.65 / 15.1 / 21.4 / 26.9 in (were 11.1 /
+  16.1 / 23.1 / 29.1; the figure's own dashed example is hd 16.9 in, hr
+  15.0 in); at S 0.30 % and hd 30 in, 22.85 in (was 28.1). hd 7.9 in at
+  S 0.10 % still reads 7.0 in (Appendix G-6). As and L follow the new hr.
+  The whole S scale, 0.05-0.50 %, is now read (0.05-0.10 and 0.30-0.50
+  were refused, the reduction not being known there). Still refused: hd
+  outside the plain-concrete scale (6-30 in) and S outside 0.05-0.50 %;
+  hd 3 in used to give hr 2.1. Where the line meets the reinforced scale
+  below its 6 in end, hr is the 6 in minimum of paragraph 14-3 (printed
+  42), with `minimum_thickness_governs` and a note (the manual's own
+  example, hd 7.9 in at S 0.30 % for 6 in, lands 0.09 in below the end).
+- `aashto_1993.composite_k.relative_damage_rigid` (Figure 3.5, printed
+  II-41, coded as a closed form fitted to the chart): D outside the curves
+  drawn (6-14 in) or k outside the k axis (10-2,000 pci) is refused; the
+  formula gave numbers there with nothing to say so (D 3 in: 0.0117).
+- `aashto_1993.composite_k.k_loss_of_support` (Figure 3.6, printed II-42, a
+  power law fitted to the chart), for LS above 0: k above the axis end,
+  2,000 pci (k 5,000 at LS 1 gave 1,045.8), a corrected k above the chart's
+  top, 1,000 pci, and k below 10 pci are refused. The last is the library's
+  reading: the slopes were checked against the chart only from 10 pci up,
+  and below it the drawn LS = 3.0 line bends away from the power law (at k
+  about 2.4 the chart gives 1 pci, the power law 1.5). LS = 0 returns k
+  unchanged at any k. `effective_modulus_subgrade_reaction` holds its
+  back-solved k within the periods' k (rounding of u_r could carry it just
+  past them, and so past an axis end).
+- `aashto_1993.composite_k.k_loss_of_support` (and
+  `effective_modulus_subgrade_reaction`, which calls these three): LS
+  outside 0-3 (Figure 3.6's lines, printed II-42) is refused; LS = 3 or 0
+  was used, with a note.
+- `aashto_1993.environmental.potential_vertical_rise`: a layer thinner than
+  2 ft (Figure G.3's thinnest curve, printed G-4) is refused (the 2 ft curve
+  was read, with a note); a negative PI is refused. Below the condition
+  curve's start VR stays 0.00, as Table H.1 (printed H-3) prints it for PI
+  15 and 19; the note now cites it.
+- `aashto_1993.tables.layer_coefficient_a1_asphalt`: above 500,000 psi
+  (Figure 2.5's edge, printed II-18) a1 is still held at the 500,000 psi
+  value, now with `out_of_range`: on the safe side, and II-17 cautions
+  against moduli above 450,000 psi.
+- `aashto_1993.tables.layer_coefficient_a2_cement_treated` and
+  `layer_coefficient_a2_bituminous_treated`: a UCS above 1000 psi or a
+  Marshall stability above 1800 lb (the top labelled ticks of Figures 2.8
+  and 2.9, printed II-23 and II-24) is refused; a2 was held at the top
+  tick's value, with a note. II-22 gives no rule past the scales.
+- `ufc_pavement.tables.figure_10_1_k_on_base`: k on subgrade above 300 pci
+  or a base thicker than 60 in (Figure 10-1's top curve and axis, printed
+  p. 32) is refused; the edge was read, with a note. The message points to
+  the plate-bearing test on the base (para 10-4) and Table 10-1 note 2's
+  500 psi/in maximum (printed 31).
+- `ufc_pavement.tables.figure_e_vehicle_thickness`: passes below a chart's
+  lowest curve (1,000 on most of Figures E-2 to E-31, 10,000 on E-2, 100 on
+  E-31) still give that curve's thickness, now with `out_of_range` and a
+  note naming the curve and saying the manual prints none below it: on
+  every chart the thickness rises with the passes (checked on the rendered
+  charts and, by a test, on the traced curves), so the hold is not less
+  than fewer passes need. Where that curve is above the chart at the CBR
+  it is refused. Above the highest curve the extrapolation stays, as
+  Table G-1 (printed 257) reads the passenger car at 20,000,000 passes; the
+  note now gives the page.
+- `ufc_pavement.tables.figure_e_vehicle_allowable_passes`: a thickness more
+  than 0.05 in under the lowest curve, or where every curve is above the
+  chart, is refused; the lowest curve's passes were returned
+  (`clamped='below_min_passes_curve'`), which overstates them. Above the
+  highest curve `clamped='above_max_passes_curve'` stays (Table G-1's
+  "Unlimited").
+- `ufc_pavement.tables.figure_15_1_cracking_projection_factor` (F held at
+  the 10,000,000-pass value past the chart's edge) and
+  `figure_e1_flexible_thickness` (0.0 past the CBR where a curve meets the
+  axis) are unchanged; the note and docstrings now give the basis (G-7,
+  printed 264, reads 0.93 at 20 million passes; cover cannot be less than
+  none).
+- `ufc_stabilization.tables.table_3_5_emulsified_asphalt_requirements`:
+  percent passing No. 200 above 25 (Table 3-5's last row, UFC 3-250-11
+  printed p. 27) is refused; the 25 row was returned, with a note, though
+  Sec 3-4.4 says the bitumen required increases with the finer sizes.
+- `ufc_stabilization.equations.equation_cutback_asphalt_content_estimate`:
+  a, b, c and d that do not add to 100 within 1 are refused; printed p. 26
+  defines them as the four sieve fractions of the whole mineral aggregate,
+  and cumulative percents passing or decimals returned a content with
+  nothing said.
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`: fy, Es
+  or the concrete strain not positive is refused (they set the -fy..fy
+  bound on the tension steel stress, the yield limit Eqs B-31 and B-37
+  print for fs', printed pp. 47-48). The same for
+  `compression_controlled_capacity_singly` (fs held at -fy) and
+  `design.design_doubly_reinforced` (fs' held at fy).
+  `compression_steel_stress_at_ku`, which bounds fs' for the doubly
+  reinforced functions, also refuses ku or beta1 not positive, beta1 above
+  1, d'/d outside 0 to 1, and for Eq B-31 ku not below beta1 (its
+  denominator).
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`, the
+  lead's ruling 42: fs' from Eq B-37 came back above yield (75.7 ksi with
+  fy 60 for e'/d 0.8). B-37 prints only fs' (>= -fy) (printed p. 48), and
+  the cubic that gives ku (Eq B-39) is derived with the compression steel
+  not yielded. Where B-37 is above fy at the cubic's root the function now
+  holds fs' at fy and solves the manual's own equilibrium equations, Eqs
+  B-23 and B-24 (printed p. 45), again for ku. For rho 0.01, rho' 0.01,
+  d'/d 0.1, fy 60 ksi, f'c 4 ksi, b 12 in, d 20 in, h 24 in, phi 0.65:
+  phi Pn 396.0 kips at e'/d 0.8 (was 424.8), 524.6 at 0.65 (was 566.6),
+  695.5 at 0.5 (was 749.1). With Grade 60 steel and d'/d below 0.18 this
+  is every compression-controlled section. The result gives
+  `limit_governs` True, the cubic's root as `ku_cubic`, B-37 there as
+  `fs_prime_unlimited`, the capacity by the printed equations as
+  `phi_pn_cubic`, and a note saying this is the library's reading. Where
+  the tension steel has yielded (Eq B-36 above fy at the root) the section
+  is controlled by tension and the call is refused, naming
+  `tension_controlled_capacity_doubly`; fs was held at fy with nothing
+  said.
+- `em_2104.flexure_axial.tension_controlled_capacity_doubly`: the same gap
+  on the other side of the balanced point. Where Eq B-31's fs' is above fy
+  at the root of Eq B-33 (near the balanced eccentricity, and only for
+  d'/d below 0.18 with Grade 60 steel) fs' is still held at fy as the page
+  prints (p. 47), and ku is now solved again from Eq B-32 (p. 47) with
+  fs' = fy: the section above at 1.02 times its balanced e'/d, phi 0.9,
+  gives 355.9 kips (was 352.9). At the balanced e'/d the two doubly
+  reinforced functions now return the same ku (kb) and capacity. A
+  section that is not controlled by tension is refused there.
+- `em_2104.flexure_axial.compression_controlled_capacity_singly`: Eq B-19
+  above fy at the root of Eq B-21 (the tension steel has yielded, the
+  section is controlled by tension) is refused, naming
+  `tension_controlled_capacity_singly`; B-21's ku came back with fs above
+  yield. Below -fy, the bound the page prints (p. 44), fs = -fy and ku is
+  solved again from Eqs B-2 and B-5 (p. 42): one layer at mid-depth, fy
+  40 ksi, e'/d 0.05 gives 640.1 kips (was 639.7). Its page is cited as 44
+  (was 44-45: Eqs B-17 to B-21 are all on p. 44).
+- `em_2104` functions whose ku or stress-block depth is given, not solved
+  with the steel taken elastic, still hold fs' at fy with `limit_governs`,
+  `fs_prime_unlimited` and a note, and stay in balance:
+  `compression_steel_stress_at_ku`, `balanced_eccentricity_doubly` (ku =
+  kb) and `design.design_doubly_reinforced` (ad = Kd d).
+  `design.design_doubly_reinforced` also refuses an fs' that is not
+  positive (ad <= beta1 d': the compression steel is in tension and Eq D-4
+  gave a negative As').
+- `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
+  unchanged past the end rows, which are printed open-ended ("<= 0.0" /
+  ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as
+  the docstrings now say; a negative shear ratio (vw_ratio, vg_over_vo) is
+  refused.
+- `gsa_collapse.reinforced_concrete` Tables 6 to 9 flexure lookups: the
+  same (open-ended rows printed pp. 39-42; negative shear ratios refused).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
@@ -256,6 +603,92 @@ Pages are printed page numbers.
   soils (6-5.3.2); filter Cu, D100F and fines (6-5.3.1); void ratio in
   Table 6-5 (6-3.3); Table 8-12 rows (8-4.1.1).
   Test: `tests/test_dm7_1_text_equations.py`.
+
+**Build of 2026-11-12: every dm7_1 summary, key point and applicability
+field checked against the print (app BACKLOG REF-79).** 3,168 fields in
+chapters 1-8 were read against the printed pages and 784 changed: claims
+the print does not make removed, "must" and "only" brought back to the
+print's "should", "may" and "typically", limits and attributions the old
+text dropped restored, and a few statements that said the opposite of the
+print corrected (8-1 called the 16% one-standard-deviation probability one
+of "underestimation"; 8-5.2.2 said Eu/su rises with OCR, which Figure 8-51
+shows falling; 5-5.1 said "saturated" where the print, on significant
+immediate settlement, says "unsaturated" (p. 236); 7-10.8.7 stated as a present requirement what FHWA (1998)
+needed when it appeared). Key points restate printed sentences only; ids
+are unchanged. Pages are printed page numbers.
+
+- The 14 page footnotes now sit in the bodies at their marks as
+  "[Footnote n: ...]" (pp. 3, 89, 142-165, 234, 237, 366, 424), and 35
+  table notes and table footnotes as "[Note to Table x: ...]" or
+  "[Footnote A to Table x: ...]" (chapters 1-8).
+- Printed text the bodies left out is restored: the 6-5.3 subsections
+  printed under repeated numbers (Retaining Wall Drainage to Relief Wells,
+  pp. 330-338, with Figures 6-22 and 6-24 to 6-30), the 7-8 passage on
+  well- and poorly-defined conditions (p. 366), 5-6.3 on Km, 5-9 on
+  hydrocompression, 8-2.1.3's correction factor R and Figure 8-11, and
+  shorter passages in chapters 5-8.
+- Print slips kept as printed with a note: plane failure condition 3,
+  "φʹ < ΨF" (p. 380), and the wedge condition "ΨFi > ΨFi > φʹ" (p. 381;
+  the body had corrected it silently); "either suffusion or suffusion"
+  (p. 306); Eq. 5-28 labelled "(5-5-28)" (p. 268); Table 5-8 Km's
+  "(1−νs)²" (p. 260); Table 8-7 "LI = liquid index" (p. 423); 8-5.2.2's
+  "undrained shear modulus" for the Eu/su of Figure 8-51 (p. 450).
+- 7-5.2 no longer lists Figure 7-1 (printed in 7-2); Table 5-8 is listed
+  under 5-6.3, where it is printed.
+- Equation where-lists: every printed "where:" list was compared with its
+  equation entry and section body. 21 entries that lacked a printed
+  definition now carry the whole printed list in `variables`, in the
+  print's words with its unit conditions (Eq. 2-1; Eqs. 5-12 and 5-13;
+  Eqs. 8-1 to 8-5, 8-7, 8-8, 8-10 to 8-15, 8-17, 8-29, 8-30, 8-32 and
+  8-35), e.g. Eq. 8-7 "Pa = atmospheric pressure in same units as vertical
+  stress and qc" (p. 400) and Eq. 8-32 "Pa = atmospheric pressure (same
+  units as Mds and σʹv)" (p. 442). Eq. 8-7 carries the same note on
+  qt = qc + u·(1+a) as Eq. 8-25. The 8-7.3 body gives the where-lists of
+  Eqs. 8-42 and 8-43 in the print's words ("k = hydraulic conductivity in
+  m/s", pp. 462-463).
+- Also restored: the cyclic DSS failure definition and the sentence after
+  it in 3-2.5.1.1 (p. 162); six figure pointers, each at its printed
+  place: 2-9.1.1 (Figure 2-14, p. 98), 2-9.1.2 (2-17), 2-9.3.1.1 (2-18,
+  and 2-19 on p. 105), 2-9.3.1.2 (2-20, p. 106) and 2-10.2 (2-25a); the
+  printed lead-in to Eq. 2-2.
+- Table notes the bodies still lacked: Table 5-2, "Correlations provide
+  values of Es in ksf units." (5-4.1.1, p. 231), the only unit printed for
+  its Es correlations; Table 1-22, "A" preferred and "B" alternate method
+  (1-5.4.2, p. 49). Table 5-8's two Km formulas are now in 5-6.3's
+  `equations` as printed (p. 260), with (1−νs)² and, for rectangular mats,
+  (1−νm)², and a note saying so; until now no Km formula was stored.
+  The table, "after Brown 1969, Frazer and Wardle 1976", prints these
+  two forms only, so it is complete; those papers are not held here.
+- Key points brought back to the print: UU results "should always" be
+  interpreted with φ = 0 (3-2.4.2.2, p. 153; was "must"); Eq. 8-16 is
+  Carter and Bentley's (2016) fit to Gibson's (1953) trend line, and the
+  "within 5%" is theirs (8-2.2.2, p. 413; was credited to Gibson); the
+  Figure 5-27 method "can also be used" with vertical drains, no equations
+  named (5-7.4.3, p. 271); under Method A, Td "should be divided by" FR of
+  at least 1.3 (7-9.5, p. 373; was "requires"). Print slips kept with a
+  note: "Buchiagnani" (Table 5-4, p. 234; 5-10, p. 279; Buchignani
+  elsewhere) and "pore pressured" (3-2.4.1.3, p. 148, stored silently
+  corrected until now). 1-3.2.2.1's note gives p. 12 (was 11).
+- Where-lists: Eq. 5-14 carries its printed "σʹp = preconsolidation
+  stress" (p. 241); Eq. 8-35's description no longer gives wn "(in %)",
+  a unit the page does not print (p. 446), and says the library function
+  takes percent; the 8-7.3 list for Eq. 8-44 reads "unit weight of the
+  water" and "specific gravity of the solids" as printed (p. 463). 2-9.1.1
+  keeps "As shown in Figure 2-14" and the print's "includes of an" with a
+  note (p. 98).
+- Force words: the 287 summary, key point and applicability sentences
+  holding must, required, requires, only, cannot, always or never were
+  matched to the printed sentences they restate (190 found; 125 with the
+  same words printed) and the other 162 read against the body or page.
+  35 now carry the print's own modality, e.g. ponded water "can be
+  considered" as a layer, while including it "is imperative" (4-2.1.1,
+  p. 179); water "does not sustain" shear stress (4-2.1.2, p. 180); the
+  lack of a roof "prevents the progression of a pipe" (6-4.2, p. 304);
+  "It is often necessary" to stabilize slopes (7-7, p. 364); Table 6-8
+  assesses "if further investigation is required" (6-5.1, p. 307).
+  Applicability lines that say where a section applies are unchanged.
+  Eq. 8-7's note gives p. 427 for Eq. 8-25 (was 426).
+  Test: `tests/test_dm7_1_build_keypoints.py`.
 
 **Review of 2026-11-10: Eurocode 7 Parts 1 and 2, the Caltrans Trenching and
 Shoring Manual and FEMA P-2082 checked against the printed pages.** Lookups
@@ -364,7 +797,8 @@ Results that now say more, with the same numbers:
   printed column (25 MPa) and that column was used, and
   `table_f3_phi_from_density_index` says when it interpolated between
   printed rows (the table prints no interpolation rule) or used the
-  ID = 100 % row for a higher ID.
+  ID = 100 % row for a higher ID. (Both cases past the last column or row
+  are now refused: see "Lookups outside their printed range" above.)
 - `site_class_from_vs30` gives an estimated velocity no class in the Site
   Class B or A range (Sections 20.2.4 and 20.2.5 require a measured
   velocity for those classes) and says why.
@@ -1071,6 +1505,157 @@ and caption below was read off the rendered print.
   - Chapters filled in: GEC-7 and GEC-8 rows had none, and GEC-4 rows had
     their own figure number as the chapter.
 
+**Build of 2026-11-10: FHWA-NHI-05-037 Geotechnical Aspects of Pavements,
+chapter text read off the print (app backlog REF-82).** The stored text was
+23 hand-written sections in chapters 3, 4, 5, 7 and 8, ten of them wrong in
+substance, several under section numbers that are other subjects in the
+print. `scripts/build_printed_text.py` now reads this manual
+(manifest `fhwa_pavements.json`, `"text_build": "printed"`): every numbered
+heading of the printed contents is a section with its printed number and
+title, the body in the print's own wording with a `[p. 5-53]` marker where
+each printed page starts, and each figure and table listed under the section
+that prints it. Chapters rebuilt so far: 1 (Introduction, 15 sections) and 2
+(State Agencies, 2 sections; the host agency's questionnaire), neither
+stored before; 3 (Geotechnical Issues in Pavement Design and Performance,
+13 printed sections, was 5 paraphrased ones), with Eqs. 3.1 to 3.10 typed in
+from the page and written where the page prints them. Two are typed as
+printed with a note: Eq. 3.5 prints 7.3 log(D + 1) where Eqs. 3.3 and 3.9
+print 7.35, and Eq. 3.9 prints 1.64x10^7 where Eqs. 3.3 and 3.5 print
+1.624×10^7. Chapter 4 (Geotechnical Exploration and Testing, 23 printed
+sections, was 3): the stored 4.5.5 gave the DCP relation CBR = 292/DCP^1.12
+and ASTM D6951 and D4429, which that section does not print; the relation is
+printed in Table 4-9 (p. 4-39, after the 4.5.6 heading) with two more for
+clays and no unit, and the text now says so and points to `cbr_from_dcp`'s
+note (mm per blow). The stored 4.7.3 discussed Table 4-14; the printed 4.7.3
+is Subsurface Profile and Table 4-14 is in 4.7.2, now typed in from pp. 4-65
+and 4-66 with the silts, clays and peat rows. The lookup
+`table_4_14_soil_as_pavement_material` held only the gravel and sand rows,
+one row each for GM and SM, and said the printed table covered gravels and
+sands only; it now holds all 17 printed rows, every cell as printed (GM and
+SM each as a "d" and a "u" row, ML to OH and Pt from p. 4-66), with each
+row's major division and page; "GM" or "SM" alone returns both of its rows,
+and the page's footnote on the d/u split comes with them. The
+SPT correction in Table 4-8 keeps the number the page gives it, (5-1).
+Chapters 5 to 8 followed (2026-11-11 and 12), so all eight printed chapters
+are built, 200 sections in all: 5 (Geotechnical Inputs for Pavement Design,
+39 sections, was 5) with Eqs. 5.1 to 5.69 typed in from the page; 6
+(Pavement Structural Design and Performance, 25 sections), not stored
+before, with the 1993 AASHTO example calculations typed in (pp. 6-5, 6-22,
+6-32, 6-42); 7 (Design Details and Construction Conditions Requiring Special
+Design Attention, the title on the chapter's first page, where the contents
+print "Subgrade" for "Construction"; 49 sections, was 3) with Eqs. 7.1 to
+7.6 and the second "Eq. 7-5" of p. 7-42; 8 (Construction and Design
+Verification for Unbound Pavement Materials, 24 sections, was 5). Sections
+over 14,000 characters are stored in lettered parts (5.2.2.a, 6.2.2.a,
+7.6.5.a, 8.4.4.a and others), the letters not printed. Tables the text layer
+scrambles are typed in from the rendered page: 4-14, 5-3 to 5-6, 5-8, 5-18,
+5-24, 5-28, 5-30, 5-34, 5-35, 5-41, 5-49 to 5-54, 5-56, 5-57, 6-5, 6-8, 6-10,
+7-1 to 7-3, 7-11 to 7-13, 7-16, 7-19 to 7-21, 8-1, 8-3 (printed "Table 8.3")
+and 8-4. Table 7-18 is printed as a picture and is not typed; Tables 7-5 to
+7-10, 7-14, 7-15, 7-17, 7-22, 7-23a/b, 8-2, 8-5 and 8-6 keep the text
+layer's row order. Every formula line of chapters 1 to 8 was read against
+the rendered page, and a new test fails on the patterns the text layer
+leaves where it scatters a formula (an isolated prime, lone digits beside an
+equals sign, "= = =", a formula line whose brackets do not pair, a sentence
+repeated back to back). Appendices A to F (Terminology, the Main Highway
+example project, the 1993 AASHTO and NCHRP 1-37A design methods, the boring
+log key, admixture content for subgrade stabilization) are not built.
+Statements that changed in substance:
+
+- Eq. 3.5's last term is typed with the page's brackets,
+  (4.22 – 0.32pt)[log(Sc/215.63J)(...)]; the stored form took the log of the
+  whole product, which is Eq. 3.9's form.
+- 4.5.4: the two FWD back-calculation relations (d0 from Ep and MR, p. 4-21;
+  MR = 0.24P/(dr r) with r ≥ 0.7ae, and ae, p. 4-22), which the text layer
+  dropped, leaving only their symbol lists, are typed in.
+- The stored 5.3.3 was Compaction Characteristics: the printed 5.3.3 is
+  Problem Soil Identification (Tables 5-23 to 5-25, swell and collapse), and
+  compaction (Tables 5-15, 5-16, 5-18) is in 5.3.2. The stored 5.4.7 was
+  Swell and Collapse Potential: the printed 5.4.7 is Interface Friction. The
+  stored 5.5 was Drainage Inputs: the printed 5.5 is Thermo-Hydraulic
+  Properties, with the drainage coefficients (Tables 5-49, 5-50) in 5.5.1.
+- The stored 7.4 was Stabilization (Lime, Cement, Asphalt) and
+  Geosynthetics: the printed 7.4 is Compaction; stabilization is printed in
+  7.6 (7.6.3 to 7.6.5) and treated bases in 7.3. 7.2 keeps its subject under
+  its printed title, Subsurface Water and Drainage Requirements, and 7.5.6
+  under Frost-Susceptible Soils.
+- 7.5.6, Table 7-12: all silts, very fine silty sands and clays with PI
+  under 12 are frost group F4. The stored text put clays and all silts in F3
+  and only varved sediments in F4. The lookup `table_7_12_frost_susceptibility`
+  had six rows one group lower than the page (gravelly soils 10-20 % fines in
+  F1; gravelly soils over 20 % and sands over 15 % in F2; all silts, very
+  fine silty sands and clays with PI under 12 in F3), so it returned silts
+  as "High" where the page prints "Very high". It now returns every cell as
+  printed, in the page's order, with the page's dash where no percentage is
+  given and its "Varied clays" noted (the varved clays of p. 7-52 are
+  probably meant).
+- The stored 8.4.5 was Chemical Stabilization and Base/Subbase Construction:
+  the printed 8.4.5 is Stabilization, and base and subbase construction is
+  8.4.6. Table 8.3 (the five example soils of 8.3.2) is typed in with their
+  limits, gradation, density, classes and resilient modulus constants.
+- Typed as printed, each with a note naming the page: Eq. 5.15 (1000 + 555R)
+  beside Table 5-34 (1155 + 555R); Eq. 5.17 (ES and EBS); the bound of Eq.
+  5.34; Eq. 5.39's (3/4)(OCR/OCRmax); Eq. 5.65 (9.7e^–4); Eq. 5.66 (haev and
+  have); Table 5-18's A-6 "10.30"; Table 5-57's 1 m/s = 3.25 ft/s; p. 6-42's
+  SN1 = 5.67 – 0.91 = 4.76 where SN is 5.76; Eq. 7.2's S1 (the text prints
+  Sl); Eq. 7.5's unclosed bracket; p. 7-26's "0.13 ft3/day (6 ft3/day)";
+  slips in Table 7-20; Table 8.3's K1 "10 387"; p. 4-59's boring log key "in
+  Appendix D" (it is Appendix E) and p. 8-9's lime pH test "in Appendix E"
+  (it is Appendix F).
+
+The script gains options a manifest opts into
+(`contents_format` and `list_format` "lines", `header_end`, `page_label`,
+`front_matter_header`, `equation_numbers` "parenthesized_dot",
+`title_lines`, `headings_on_listed_page`, `heading_overrides`,
+`typed_tables`, `text_fixes`, `formulas_in_body`, `table_functions`, and
+`implemented_in` and `description` on a `printed_equations` entry); without
+them it builds as before (the Soils and
+Foundations rebuild test is unchanged).
+
+**FHWA-NHI-05-037 chapter text and figure catalog: fixes from the build's
+independent check (2026-11-12).** Each was read from the rendered page.
+- Signs: the manual sets ≥, ≤, ✓, the Table 7-11 symbols, list bullets and
+  table dashes in symbol fonts whose text layer gives other characters ("$"
+  for ≥, "#" for ≤, "3" for ✓). The build now reads them through a table
+  checked against the page (manifest `symbol_fonts`, with `symbol_fonts_checked`
+  for the characters that need no mapping) and reads a raised "o" as a degree
+  sign (`raised_o_degree`); a test fails on any symbol-font character the
+  table does not cover. Exponents and degree signs the text layer flattened
+  are as printed.
+- Tables typed in again from the page: 1-1 to 1-3 (each X under its own
+  column), 4-13 (every row and note, note e's formulas), 7-23a and 7-23b
+  (each cost on its own method's line).
+- Captions: the build had cut the sources and unit conversions after a
+  caption; they are back (`captions_as_printed`), with notes where the
+  printed conversion is wrong (1 pci = 0.271 MN/m³, not 284; a 2,000-lb ton
+  is 8.9 kN, not kPa; Figure 5-5's sieve openings). Nine captions printed in
+  a section but missing from its list are listed (`captions_listed`). Each
+  section's list gives the caption the page prints where the List of Figures
+  or Tables words it otherwise, 37 of them (`list_captions_as_printed`):
+  Figures 6-5 and 6-6 are flexible pavement sections, not rigid; Figure 5-11
+  is granular base stiffness, not subgrade; Figure 5-22 is a3, not a2; Table
+  6-21 has bedrock at 4 ft, not 3 ft.
+- Figure catalog: its captions were already the page's; 22 rows where the
+  List of Figures differs quote it in `read_notes`, Figure 8-11's caption is
+  complete, and the printed slips above are noted there too.
+- Rows under their printed labels: Table 5-44 (layer coefficients for
+  existing pavements) prints each material once, beside the first row of its
+  group, and the text layer had put the stabilized base coefficients under
+  AC Surface and the granular 0.10-0.14 under Stabilized Base. It and Tables
+  5-32, 5-58, 7-9 and 7-10, mis-assigned the same way, are typed in from the
+  page with the label on every row; the other 92 tables not typed in were
+  each checked on a render.
+- Ruled signs: the manual also sets ≥ and ≤ as ">" or "<" with a short rule
+  drawn beneath. The build reads them (`ruled_comparison_signs`): Table
+  5-16's eight "≥ 95" cells, Table 7-5's "≥ 50%" heads and note, and Table
+  5-8's first hierarchy sign (was [?]).
+- "ψ ≥ 0.1 sec^-1" (pp. 7-30, 7-76) keeps its raised -1, the only negative
+  exponent printed after a unit.
+- Table 4-13's SANDS head is kept as printed, with a note that it overlaps
+  the GRAVELS head.
+- The new manifest keys are off unless a manifest sets them; only
+  fhwa_pavements does.
+
 **Build of 2026-11-10: GEC-10 chapters 6 (Rebar Cages) and 8 (Drilled
 Shaft Design Process) rewritten from the print (app backlog REF-81).** The
 review found 9 of the 12 sections of chapter 6 and 2 of the 3 of chapter 8
@@ -1601,8 +2186,142 @@ printed).
   Table A-7's axial 1,836,420 against 2,673.42 kips in the text, and p. C-10's
   example (a 2-ft socket, 870 psi, 1,751 kips) against Figure C-6 (a 6-ft
   socket, 2,500 psi).
+- **GEC-10, more slips noted (values unchanged)**: Table A-5's cohesionless
+  total (p. A-13) leaves out Layer 1, so the Extreme Event I summation of
+  9,932 kips is about 525 kips under its rows; 0.41 x 2,266 = 929 (p.
+  A-10, printed 936) and 0.47 x 2,057 = 967 (p. A-11, printed 976); 26 ft
+  below the scoured ground where 60 - 38 = 22 (p. A-16); 30 percent of the
+  transverse demands in the text and one third in the resultants (pp. A-17
+  and A-18); 365.76 printed 365.7 (p. A-23). Figure C-4(b) (p. C-5) is a
+  copy of Figure C-3(b), the side curves for cohesionless soil: the
+  appendix note, the figure line and the catalog row's `read_notes` say so.
+  Eq. C-2's variables gain A and E (p. C-1); Eq. C-17's lose L.
+- **GEC-7 (FHWA-NHI-14-007)**, new: Appendix B, charts for preliminary
+  design (chapter 12, section B, pp. 295 to 300: the charts' assumptions,
+  the ten steps and Equations B.1 to B.8, the corrections for drill hole
+  diameter, cohesion and factor of safety); Appendix C, the design example
+  (chapter 13, sections C and C.1 to C.8.b as the print numbers its steps,
+  "4.a/b/c/d" stored as C.4.a; Tables C.1 to C.5 and every calculation line
+  of the LRFD checks). Appendices D to G (example plans, two
+  specifications, similar technologies) are not built. Kept as printed and noted: φOS = 1/1.51 ~
+  0.60 (p. 308; 0.66, Table C.2 gives 0.65); the initial-facing punching
+  CDR 1.58 (p. 315; 1.60); the headed-stud CDR 1.42 (p. 317; 1.41) and its
+  RFS for RFH (p. 316); and DDEF = 0.8 H = 20 ft for sandy soil (p. 317),
+  where Table 5.12 (p. 141) gives C = 1.25 for sandy soil and 0.8 for
+  weathered rock and stiff soil; Table C.3's head thickness tSH = 0.31 in.
+  for the ½ x 4⅛ stud, where Table A.7 gives 0.28 (hc = 4.8 in. either way).
+- **GEC-7**, new: Appendix A, Reinforcement Characteristics (chapter 11,
+  pp. 285 to 293): the manufacturer's-availability note and the property
+  tables of solid-threaded bars (Tables A.1a to A.1c, Grades 60, 75 and
+  150), CTS/Titan, MAI and GEO-Drill hollow bars (Tables A.2 to A.4),
+  welded-wire mesh (A.5), reinforcing bars (A.6) and headed studs (A.7,
+  with Figure A.1), every cell typed in from 300 dpi renders with the units,
+  sources and notes as printed. The appendix prints no section numbers:
+  sections A.1 to A.7 are named for the tables they hold. Kept as printed
+  and noted: Table A.1c's ultimate loads 57 and 400 kips where the area
+  times 150 ksi gives 55.5 and 387 (p. 287); Table A.2's yield loads, which
+  divided by the areas run from 76.6 to 91.4 ksi against its note's 87 ksi
+  (p. 288); Table A.3's R51L outer diameter 1.50 in., where the other rows
+  give the designation's number in mm (51 mm, 2.0 in.; p. 289); Table A.7's
+  three ⅞ in. rows, whose ratio columns (2.5, 0.73) agree with a shaft
+  diameter of 0.88 in., not the printed 0.86 (p. 293). No gec_7 lookup
+  holds any of these values.
+- **Micropile manual (FHWA-NHI-05-039)**, new: Appendix D, Sample Problem
+  No. 1, bridge abutment support (chapter 14, sections D and D.1 to D.10
+  as the print numbers its steps: abutment loads with Table S1-1, pile
+  loads, structural capacity of the cased and uncased lengths, bond length,
+  settlement, the pile top connection, test loads); Appendix E, Sample
+  Problem No. 2, a laterally loaded micropile (chapter 15, section E:
+  combined stress checks and the moment limit at a casing joint). The
+  legend of Figure S1-3, which carries the given loads, is stored with the
+  figure. Not built: Appendices A to C (Case 2 networks for slope
+  stabilization, LPILE output, guide specification; chapters 11 to 13 left
+  for them), the LPILE output of pp. E-7 to E-30 and the drawings of pp.
+  D-23 and D-24. Kept as printed and noted: Table 5-4 cited for the loads
+  of Table S1-1, Fx = 15.0 + 65.3 and M with 39.3 where Table S1-1 gives
+  14.91 kN and 39.13 kN-m (p. D-9); the moment of PEQ, 52.54, where Table
+  S1-1 lists 50.12 for PEQ-H (p. D-8); EA 1,252,000 and 1,133,000 kN for
+  1,252,640 and 1,133,600 (pp. D-15, D-16); 286 mm for 286.6 (p. D-18);
+  603 kN for 602 (p. D-21); the cone's nominal strength line carrying φ
+  (p. D-18); Acasing, Icasing, Pc-allowable and Mmax(joint) of pp. E-1 and
+  E-4 (0.00863 for 0.008624 m², 2,479 for 2,479.6 kN, 19.2 for 19.1 kN-m).
+- **GEC-6 (FHWA-SA-02-054)**, new: Appendix B, the five design examples
+  (chapter 12, pp. B-1 to B-90: an interior pier and a stub abutment on
+  natural soil, a stub abutment on structural fill, a full-height abutment
+  and an interior pier on rock), stored as B (introduction), B.n for each
+  example and B.n.5 to B.n.12 for its printed Steps 5 to 12 (Step 11a as
+  B.n.11.a; Example 4's footing-sizing Steps 10 and 11 for its three load
+  cases as B.4.10.a to B.4.11.c); Tables B1-1 to B5-1 and every
+  calculation line typed in from 200 dpi renders; the EMBANK output of
+  Figure B3-4 typed into its figure line. Chapter 11 is left for Appendix A
+  (structural fill specifications), not built. Kept as printed and noted: MY with (L + I) but L
+  alone in its numbers (p. B-6); Eqns. 5-10 and 5-11 cited for the ground
+  water factors, printed as Eqns. 5-9 and 5-10 (p. B-9), and Section 5.2
+  cited for settlement (5.3; p. B-7); 8070 k and 4729 k for kN (pp. B-14, B-15,
+  B-88); results a little off their own terms (164.1, 280.7, 0.0160 m, 338 kN,
+  1787 and 2645 kN-m, 1013 kN, 293.54 and 179.4 kN/m); (425.52)(2.28) for
+  a division (p. B-33); Figure B3-4 cited five times for the allowable
+  pressures of B3-5; ey = 0.53 m < 0.45 m "(No Good)" (p. B-55); 288 Pa
+  for kPa (p. B-80); Table B3-2 for B4-1 (p. B-81); (1/4)(4.3) = 1.01 for
+  1.075 (p. B-88); the rock settlement with Bf = 1 m for a 1.8-m footing
+  (p. B-89); shale ν = 0.14 where Table 5-13 gives a mean of 0.09 (p.
+  B-70) and granite 52 x 10⁶ kPa where Table 5-14 gives 52.67 (p. B-89).
+  The coded Table 5-1, 5-7, 5-12, 5-13, 5-14 and 5-15 lookups give the
+  values the examples read; Figure 5-19 within 2 and Figure 4-1 within 3.5
+  of the examples' readings.
+- **GEC-6**, new: Appendix C, Load and Resistance Factor Design (chapter
+  13, pp. C-1 to C-48): Sections C.1 to C.6 (LRFD against Service Load
+  Design, limit states, load combinations and factors, live load
+  surcharge, bearing, resistance factors, eccentricity, sliding, the design
+  steps), Eqns. C-1 to C-5 and Tables C-1 to C-6; Examples B-1 and B-3
+  re-worked by LRFD as LRFD Example C1 (C-1, the appendix's own name for
+  it, Steps C-1.5 to C-1.14) and LRFD Example 2 (C-2, Steps C-2.5 to
+  C-2.14, Step 12a as C-2.12.a), with Tables
+  C1-1, C1-2, C2-1, C2-2 and every calculation line typed in from 200 dpi
+  renders. The first of the two printed C.4.1 (active lateral earth
+  pressures, printed under C.3 before C.4) is stored as C.3.2 and says so;
+  the print has no C.4.4. Kept as printed and noted: Table C-6 citing
+  Section 5.4 for global stability (5.5) and Sections 6.4.3 and 6.4.4 for
+  bearing, eccentricity and sliding (no 6.4.4); Table C1-1's first row
+  labelled DW where the equations use DC (p. C-15); Dw defined as "(Df)"
+  and CWq taking 6.8 m where CWγ takes 9.1 m, both over 1.0 (p. C-21,
+  C-22); ez with "k" for kN (pp. C-26 to C-30); ey = 980 ÷ 10923 = 0.089
+  for 0.0897 (p. C-27); Vmin = 224 kN where Step 5 gives 150 kN (p. C-29);
+  γP for DW minimum 0 where Table C-3 gives 0.65 (p. C-35); Pv in kN·m/m
+  for kN/m (pp. C-40 to C-44); 518.3 ÷ 2.12 = 246.8 for 244.5 kPa (p.
+  C-41); γPmin labels on the maximum factors 1.25 and 1.35 (pp. C-43,
+  C-46). No lookup is coded for Appendix C's tables.
+- **GEC-6, more slips noted (values unchanged)**, found by the
+  independent check of the build: Examples 4 and 5 read Table 5-12 (p. 97)
+  in different columns, Cd = 1.83 being the Average value for L/B = 5 (p.
+  B-70) and 1.78 the Center value for L/B = 3, whose Average is 1.52 (p.
+  B-89); "Habut = (0.5)(5.24 m) = 2.62 m" for the footing width (pp. B-31,
+  B-53); 6.57 m, the B with which p. B-28 enters Figure 5-20, in a line
+  written with Bf (p. B-29); Table B1-3, nine of whose twelve settlements
+  are 1 mm above what Table B1-2's ratios give (p. B-12); Figure 5-7f, the
+  chart entered with the distance from the slope, cited for the readings
+  Example 2 takes from Figure 5-7c (p. B-43); 240 kPa for a 3.5-m footing,
+  about the 3-m value, where Figure B3-5 and Table B3-4 give about 219 (p.
+  B-52); "less than 35 mm" where the tolerable settlement is 38 mm (p.
+  B-61); Step 11c's sliding force without PLS = 24.0 kN, with which FS is
+  3.3, not 3.7 (p. B-81); in Appendix C, heq = 0.7 m for 5.24 m where
+  Table C-4 interpolates to 0.68 (p. C-34), and Step 12b's eccentricity
+  check without the live load surcharge, with which ey = 0.87 m, more than
+  Bf/4 = 0.8 m (p. C-45; its sliding check, p. C-48, leaves LS out too).
+  Figures B4-6 and B4-7 are listed under Steps 11a and 11b, whose pages
+  (B-76, B-79) print them.
+- **Micropile manual, Appendix D**: the pile-group sketch that p. D-9
+  draws beside the centroid table without a figure number is described in
+  Step 2's text (D.2), as p. D-17's cone sketch already was.
+- **GEC-7, Appendix C, one more slip noted**: p. 317 cites Figure 5.15
+  (p. 138, the bending mechanism in the initial facing) for DDEF, which
+  Figure 5.16 (p. 142) draws and p. 141 names.
 
-Tests: `tests/test_gec10_appendices_printed.py` (116).
+Tests: `tests/test_gec10_appendices_printed.py` (119),
+`tests/test_gec7_appendices_printed.py` (63),
+`tests/test_gec7_appendix_a_printed.py` (89),
+`tests/test_micropile_appendices_printed.py` (74),
+`tests/test_gec6_appendices_printed.py` (131).
 
 **DM 7.2 chapter text: key points, footnotes and table notes as printed
 (build of 2026-11-11/12, app BACKLOG REF-79).** Every summary,
@@ -1663,6 +2382,59 @@ examples' inputs (all agree except Table B-5 layer 2, where Eq. 4-12 gives
 KP,h 2.47 against the printed 2.4), and scans every dm7_2 chapter file for
 the scatter the text layer leaves in formulas (isolated primes, empty or
 unbalanced brackets, runs of single letters or digits, repeated table rows).
+
+**Structural references' chapter text rewritten from the print (REF-83,
+2026-11-10 to 2026-11-12).** The stored text of UFC 3-301-01, EM
+1110-2-2104, EM 1110-2-2107, UFC 4-023-03 and the Wood Handbook
+(chapters 8 and 9; chapters 4 and 5 named items only) was partly
+paraphrase. UFC 3-301-01, EM 1110-2-2104 and UFC 4-023-03 bodies are now
+the print's own wording with [p. N] markers; every equation, formula
+line and typed table was read from the rendered page; key points restate
+printed sentences; code-module notes are out of the text. No Python
+changed.
+
+Statements that could have led to a less safe design:
+
+- UFC 3-301-01 3-6: collector elements in SDC C-F were said to use load
+  combinations without the overstrength factor; the print replaces only
+  Item (c) of ASCE 7 12.10.2.1 and its exception (p. 58).
+- UFC 3-301-01 3-7: the masonry-anchor option multiplies QE by Omega-op,
+  not Omega-o (p. 61).
+- UFC 3-301-01 7-2: four irregularities are prohibited (horizontal 1b,
+  vertical 1b, 5a and 5b), not "two of four" (p. 100); walls retaining
+  earth keep "plus the difference in earth pressures"; 7-3's elevator
+  rail load is the car plus 40 percent of its rated load.
+- EM 1110-2-2107 4.1: the alpha = 0.90 list is printed (normally
+  submerged HSS that are hard to inspect; brackish water or seawater);
+  the text said no list was printed.
+- Wood Handbook 8: the nail dowel bearing equation (Eq. 8-3) was said
+  to serve all dowel fasteners; bolts and lag screws use Eq. 8-17/8-18
+  (p. 8-19), which perpendicular to grain give lower bearing strengths
+  for bolts of 1/2 in. and larger.
+
+Other corrections: UFC 3-301-01 2-4.6 vertical lift fabric doors (the
+700-year ban is for aircraft maintenance hangars), the healthcare
+chapters' scope ("having emergency surgery or emergency treatment
+facilities"), 4-4's high-wind trigger conditions, an unprinted wind
+turbine and Section 2109 item removed; EM 1110-2-2104 Eq 3-2's
+principal load factor is gamma_pr (the text said gamma_pu), 2-2 cites
+paragraph 3-4 (not 3-5), the No. 4 bars at 12 in. are "generally, for
+ease of placement", Eq 3-1's L_ni; Wood Handbook Eq. 9-41 and 9-24 as
+printed with notes, and the worked examples of pp. 9-10 and 9-12 in the
+print's words; UFC 4-023-03 2-2.4.3 and 3-2.5 as printed.
+
+Typed in from the rendered pages: UFC 3-301-01 Tables 2-1, 2-2, 4-1(a),
+4-1(b), 6-1, 7-1 (Tables 3-1 and 4-2 are not, and the bodies say so);
+EM 1110-2-2104 Eqs 3-1 to 5-4 and Tables 2-1 to 3-4; EM 1110-2-2107
+Table 4.1; UFC 4-023-03 Tables 2-1, 2-2, 3-2 to 3-5. Print slips are
+stored as printed with a "Print note". Section ids added: ufc_structural
+2-7.2, em_2104 3-2.f (3-2's load definitions; 3-2 printed is over
+14,000 characters), em_2107 4.2.3 and 6.1.3. New tests:
+`test_ufc_structural_text_equations.py`, `test_em_2104_text_equations.py`,
+`test_em_2107_text_equations.py`, `test_ufc_collapse_text_equations.py`,
+`test_wood_handbook_text_equations.py`, and
+`test_text_scatter_patterns.py` (loose primes, a lone digit before a
+formula, unpaired brackets, a sentence repeated in consecutive rows).
 
 ## 1.6.0
 

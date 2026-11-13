@@ -375,16 +375,19 @@ def table_10_2_nc_base_clay(su_psf: float) -> dict:
         qBN = (2/3)[1 + (1/6)(D/B)] x N*c x su
 
     Table 10-2 prints su 500, 1,000 and >= 2,000 psf (N*c 6.5, 8.0, 9.0)
-    and allows linear interpolation between them; below 500 psf the 500
-    row is used (the note says so).
+    and allows linear interpolation between them (p. 10-19, PDF page 299).
+    The ">= 2,000" row is printed open-ended, so su above 2,000 psf takes
+    9.0. Below 500 psf the table has no row and the text gives no rule
+    (N*c falls with su), so the function refuses.
 
     Resistance factor (Table 8-4): φ = 0.40 (compression).
 
     Parameters
     ----------
     su_psf : float
-        Mean undrained shear strength at the base in lb/ft² (psf).  Must be
-        positive.  Values above 2,000 psf return N*c = 9.0.
+        Mean undrained shear strength at the base in lb/ft² (psf), 500 or
+        more.  Values above 2,000 psf return N*c = 9.0 (the printed
+        ">= 2,000" row).
 
     Returns
     -------
@@ -395,17 +398,24 @@ def table_10_2_nc_base_clay(su_psf: float) -> dict:
     Raises
     ------
     ValueError
-        If su_psf is not positive.
+        If su_psf is not positive, or is below 500 psf (Table 10-2's
+        first row).
     """
     if su_psf <= 0:
         raise ValueError(f"su_psf must be positive, got {su_psf}")
+    if su_psf < _TABLE_10_2_SU_PSF[1]:
+        raise ValueError(
+            f"su_psf={su_psf:g} is below Table 10-2 (GEC-10, p. 10-19), "
+            "which prints N*c for su of 500, 1,000 and >= 2,000 psf; the "
+            "table gives no value below 500 psf.")
 
     if su_psf >= _TABLE_10_2_SU_PSF[-1]:
         nc = _TABLE_10_2_NC[-1]
-        note = "su >= 2000 psf; N*c = 9.0 (maximum value per Table 10-2)"
-    elif su_psf <= _TABLE_10_2_SU_PSF[1]:
+        note = ("su >= 2000 psf; N*c = 9.0 (Table 10-2's row printed "
+                "'>= 2,000', p. 10-19)")
+    elif su_psf == _TABLE_10_2_SU_PSF[1]:
         nc = _TABLE_10_2_NC[1]
-        note = "su <= 500 psf; N*c = 6.5 (minimum tabulated value)"
+        note = "su = 500 psf; N*c = 6.5 (printed row of Table 10-2)"
     else:
         nc = _linterp(su_psf, _TABLE_10_2_SU_PSF, _TABLE_10_2_NC)
         note = "interpolated from Table 10-2"
@@ -450,7 +460,8 @@ def table_11_1_p_multiplier(row_position: str,
 
     Values recommended by Brown et al. (1987, 2001) and tabulated in Table
     11-1.  Input the center-to-center shaft spacing divided by shaft diameter.
-    Pm = 1.0 for all rows at spacing ≥ 6D.
+    Pm = 1.0 for all rows at spacing ≥ 6D: the table's last column is
+    printed open-ended, "≥ 6D" (FHWA-NHI-18-024, p. 11-17, PDF page 351).
 
     Parameters
     ----------

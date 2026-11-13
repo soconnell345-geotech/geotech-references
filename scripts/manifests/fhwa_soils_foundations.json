@@ -3,6 +3,7 @@
   "reference_title": "Soils and Foundations Reference Manual",
   "package": "fhwa_soils_foundations",
   "text_build": "printed",
+  "built_with": {"pymupdf": "1.27.2.3"},
   "volumes": [
     {
       "volume": 1,
@@ -10,6 +11,55 @@
       "volume_title": "Soils and Foundations Reference Manual – Volume I",
       "pdf_path": "../../docs/FHWA NHI-06-088 Soils and Foundations Vol 1.pdf",
       "contents_pages": [13, 20],
+      "symbol_fonts": {
+        "WP-MathA": {"\"": "±", "#": "≤", ".": "≈"},
+        "WP-GreekCentury": {")": "Δ"},
+        "WPTypographicSymbols": {"=": "’", "@": "”", "A": "“"},
+        "Wingdings-Regular": {"\u0083": "▪"}
+      },
+      "symbol_fonts_checked": {
+        "SymbolMT": {
+          "(": "(", ")": ")", "+": "+", ",": ",", ".": ".", "0": "0", "2": "2", "3": "3", "4": "4", "5": "5",
+          "6": "6", "=": "=", ">": ">", "°": "°", "±": "±", "µ": "µ", "×": "×", "Σ": "Σ", "α": "α", "β": "β",
+          "γ": "γ", "δ": "δ", "ε": "ε", "θ": "θ", "λ": "λ", "ν": "ν", "ρ": "ρ", "σ": "σ", "τ": "τ", "φ": "φ",
+          "•": "•", "′": "′", "″": "″", "∆": "∆", "∑": "∑", "−": "−", "≅": "≅", "≈": "≈", "≤": "≤",
+          "⎛": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎜": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎝": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎞": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎟": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎠": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎡": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎢": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎣": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎤": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎥": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎦": "a piece of a tall bracket or parenthesis in an equation object"
+        }
+      },
+      "raised_o_degree": true,
+      "ruled_comparison_signs": true,
+      "text_fixes": [
+        {"page": "2-9", "find": "from 10-3 mm to 10-6 mm", "replace": "from 10^-3 mm to 10^-6 mm"},
+        {"page": "5-9", "find": "(k < 1x10-5 cm/s)", "replace": "(k ≤ 1x10^-5 cm/s)"},
+        {"page": "5-13", "find": "µ = 10-3 mm; Å : Angstrom = 10-7 mm", "replace": "µ = 10^-3 mm; Å : Angstrom = 10^-7 mm"},
+        {"page": "5-36", "find": "(cm2/s x 10-4)", "replace": "(cm2/s x 10^-4)"},
+        {"page": "5-40", "find": "colloidal (10-3 mm to 10-6 mm)", "replace": "colloidal (10^-3 mm to 10^-6 mm)"},
+        {"page": "5-59", "find": "k ≤ 2 x 10-5 ft/min (1 x 10-6 cm/s)", "replace": "k ≤ 2 x 10^-5 ft/min (1 x 10^-6 cm/s)"},
+        {"page": "5-59", "find": "greater than 2x10-2 ft/min (1x10-3 cm/s)", "replace": "greater than 2x10^-2 ft/min (1x10^-3 cm/s)"},
+        {"page": "5-61", "find": "equal to 2x10-2 ft/min (1x10-3 cm/sec)", "replace": "equal to 2x10^-2 ft/min (1x10^-3 cm/sec)"},
+        {"page": "5-61", "find": "less than 2x10-5 ft/min (1x10-6 cm/sec)", "replace": "less than 2x10^-5 ft/min (1x10^-6 cm/sec)"},
+        {"page": "5-61", "find": "1 x 10-8 cm/sec", "replace": "1 x 10^-8 cm/sec", "all": true},
+        {"page": "5-61", "find": "1 x 10-3 to 1 x 10-4 2 1 x 10-4 to 1 x 10-5 5 1 x 10-5 to 1 x 10-6 10 1 x 10-6 to 1 x 10-7 20 less than 1 x 10-7 30", "replace": "1 x 10^-3 to 1 x 10^-4 2 1 x 10^-4 to 1 x 10^-5 5 1 x 10^-5 to 1 x 10^-6 10 1 x 10^-6 to 1 x 10^-7 20 less than 1 x 10^-7 30"},
+        {"page": "5-62", "find": "(k ≥ 10-3 cm/sec)", "replace": "(k ≥ 10^-3 cm/sec)"},
+        {"page": "5-62", "find": "valid only for k ≥ 10-3 cm/sec", "replace": "valid only for k ≥ 10^-3 cm/sec"},
+        {"page": "5-63", "find": "40 - 4x10-1 Well-graded aggregate without fines 4x10-1 - 4x10-3 Concrete sand, low dust content 7x10-2 - 7x10-4 Concrete sand, high dust content 7x10-4 - 7x10-6 Silty and clayey sands 10-5 - 10-7 Compacted silt 7x10-6 - 7x10-8 Compacted clay Less than 10-7 Bituminous concrete (new pavements)* 4x10-3 - 4x10-6 Portland cement concrete less than 10-8 * Values as low as 10-8 have", "replace": "40 - 4x10^-1 Well-graded aggregate without fines 4x10^-1 - 4x10^-3 Concrete sand, low dust content 7x10^-2 - 7x10^-4 Concrete sand, high dust content 7x10^-4 - 7x10^-6 Silty and clayey sands 10^-5 - 10^-7 Compacted silt 7x10^-6 - 7x10^-8 Compacted clay Less than 10^-7 Bituminous concrete (new pavements)* 4x10^-3 - 4x10^-6 Portland cement concrete less than 10^-8 * Values as low as 10^-8 have"},
+        {"page": "5-82", "find": "1 ft/yr ≈ 10-6 cm/sec", "replace": "1 ft/yr ≈ 10^-6 cm/sec"},
+        {"page": "5-94", "find": "(psi ×106)", "replace": "(psi ×10^6)", "all": true},
+        {"page": "5-7", "find": "100 + 5 oC", "replace": "100 ± 5 °C"},
+        {"page": "5-7", "find": "110 oC (230º F)", "replace": "110 °C (230º F)"},
+        {"page": "5-7", "find": "440 oC (824º F)", "replace": "440 °C (824º F)"}
+      ],
       "printed_tables": [
         {"number": "4-8", "caption_start": "Basic USCS soil designations", "rows": "Coarse-Grained Soils (0 to 50 percent passing the 200 sieve); Fine-Grained Soils (50 to 100 %). Coarse-grained, 0 to 5 % passing (“Clean”): Gravel GW, GP; Sand SW, SP. 5 to 12 % passing: Borderline (“Clean/Dirty”). 12 to 50 % passing (“Dirty”): Gravel GM, GC; Sand SM, SC. Fine-grained: Silt ML, MH, OH; Clay CL, CH, OL. Soil Type: G = Gravel, S = Sand, M = Silt, C = Clay, O = Organics."}
       ],
@@ -46,6 +96,36 @@
       "volume_title": "Soils and Foundations Reference Manual – Volume II",
       "pdf_path": "../../docs/FHWA NHI-06-089 Soils and Foundations Vol 2.pdf",
       "contents_pages": [13, 18],
+      "symbol_fonts": {
+        "WP-MathA": {"E": "°"},
+        "WP-GreekCentury": {"\"": "α", ")": "Δ", "N": "φ", "T": "ω", "m": "ϒ"},
+        "WPTypographicSymbols": {"2": "½"},
+        "Wingdings-Regular": {"9": "✔", "¾": "➢"},
+        "TimesNewRomanPS-BoldMT": {"\uf02a": ""}
+      },
+      "symbol_fonts_checked": {
+        "SymbolMT": {
+          "(": "(", ")": ")", "+": "+", ",": ",", "0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+          "6": "6", "7": "7", "9": "9", "<": "<", "=": "=", ">": ">", "°": "°", "±": "±", "×": "×", "Σ": "Σ",
+          "α": "α", "β": "β", "γ": "γ", "δ": "δ", "η": "η", "ν": "ν", "π": "π", "σ": "σ", "τ": "τ", "φ": "φ",
+          "ψ": "ψ", "ω": "ω", "ϕ": "ϕ", "•": "•", "′": "′", "″": "″", "Ω": "Ω", "→": "→", "∆": "∆", "∑": "∑",
+          "−": "−", "√": "√", "∞": "∞", "∴": "∴", "∼": "∼", "≅": "≅", "≈": "≈", "≠": "≠", "≤": "≤", "≥": "≥",
+          "⎛": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎜": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎝": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎞": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎟": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎠": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎡": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎢": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎣": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎤": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎥": "a piece of a tall bracket or parenthesis in an equation object",
+          "⎦": "a piece of a tall bracket or parenthesis in an equation object"
+        }
+      },
+      "raised_o_degree": true,
+      "ruled_comparison_signs": true,
       "printed_tables": [
         {"number": "10-1", "caption_start": "Wall friction and adhesion", "rows": "Interface Materials | Friction Factor, tan δ | Friction angle, δ degrees. Mass concrete on the following foundation materials: Clean sound rock | 0.70 | 35. Clean gravel, gravel sand mixtures, coarse sand | 0.55 to 0.60 | 29 to 31. Clean fine to medium sand, silty medium to coarse sand, silty or clayey gravel | 0.45 to 0.55 | 24 to 29. Clean fine sand, silty or clayey fine to medium sand | 0.35 to 0.45 | 19 to 24. Fine sandy silt, nonplastic silt | 0.30 to 0.35 | 17 to 19. Very stiff and hard residual or preconsolidated clay | 0.40 to 0.50 | 22 to 26. Medium stiff and stiff clay and silty clay (Masonry on foundation materials has same friction factor) | 0.30 to 0.35 | 17 to 19. Steel sheet piles against the following soils: Clean gravel, gravel-sand mixtures, well-graded rock fill with spalls | 0.40 | 22. Clean sand, silty sand-gravel mixtures, single size hard rock fill | 0.30 | 17. Silty sand, gravel or sand mixed with silt or clay | 0.25 | 14. Fine sandy silt, nonplastic silt | 0.20 | 11. Formed concrete or concrete sheet piling against the following soils: Clean gravel, gravel-sand mixture, well-graded rock fill with spalls | 0.40 to 0.50 | 22 to 26. Clean sand, silty sand-gravel mixture, single size hard rock fill | 0.30 to 0.40 | 17 to 22. Silty sand, gravel or sand mixed with silt or clay | 0.30 | 17. Fine sandy silt, nonplastic silt | 0.25 | 14. Various structural materials: Masonry on masonry, igneous and metamorphic rocks: Dressed soft rock on dressed soft rock | 0.70 | 35. Dressed hard rock on dressed soft rock | 0.65 | 33. Dressed hard rock on dressed hard rock | 0.55 | 29. Masonry on wood (cross grain) | 0.50 | 26. Steel on steel at sheet pile interlocks | 0.30 | 17. Interface Materials (Cohesion) | Adhesion ca (kPa). Very soft cohesive soil (0 - 12 kPa) | 0 - 12. Soft cohesive soil (12 - 24 kPa) | 12 - 24. Medium stiff cohesive soil (24 - 48 kPa) | 24 - 36. Stiff cohesive soil (48 - 96 kPa) | 36 - 45. Very stiff cohesive soil (96 - 192 kPa) | 45 - 62."}
       ],
