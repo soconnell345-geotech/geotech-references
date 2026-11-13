@@ -4,6 +4,37 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Signs set in symbol fonts stored as the page prints them (2026-11-12
+review).** A PDF's text layer can give a glyph of a symbol font as an
+ordinary character ("with ≤ 12 percent fines" comes out "with # 12
+percent fines"). Every PDF in `docs/` was surveyed for such fonts, each
+font-and-character pair read off 300 dpi renders, and the stored text
+compared with the page span by span. Three references held text-layer
+characters:
+
+- `fhwa_soils_foundations` (FHWA NHI-06-088/089, built by
+  `scripts/build_printed_text.py`): 111 characters in six chapters and 2 in
+  the figure catalog. The WordPerfect fonts WP MathA, WP Greek Century and
+  WP Typographic Symbols gave "#" for ≤ (4.1.4.1, "≤ 12 percent fines",
+  twice), "." for ≈ (5.4.6.1, Cc ≈ 0.5 Gs), '"' for ± (89 places in the
+  tables of 5.4.6.3 and 5.8.4), "T = 0E" for "ω = 0°" (Tables 9-6(a) and
+  (b)), "22 minutes" for 2½ minutes (9.15.7.2), "20E" for 20° (9.15.7.4),
+  ")" for Δ, and quotes and bullets. The mapping is in the manifest
+  (`symbol_fonts`, per volume), so a rebuild keeps the printed signs.
+- `gec_4` (FHWA-IF-99-015): the catalog caption of Figure 44 said "A
+  coefficient" for β (a one-page TrueType subset). Its chapter text, written
+  from the print, already spelled every sign right ("OCR <= 4", "D >= 5B").
+- `gec_12` (FHWA-NHI-16-009 Vol III): eight catalog captions (Figures D-11
+  to D-14, D-88 to D-91) ended in eight or ten copies of U+1D719 where the
+  page prints ϕdyn or ϕstat; now φdyn and φstat.
+
+The other references' symbol-font characters print as stored, or are not
+stored (bracket pieces, bullets). `tests/test_symbol_fonts.py` pins the
+corrected places, scans every reference for private-use, control and
+replacement characters and runs of one mathematical letter, and, with the
+PDFs present, checks no symbol-font passage of the checked references is
+stored with the text-layer character.
+
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
 chapter text was being rebuilt from the print; each was read from a 300 dpi
