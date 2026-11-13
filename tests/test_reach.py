@@ -4,7 +4,10 @@ reach audit; the owner's acceptance test for the reference release).
 A fetched section names figures and tables and points to other parts of
 its document. These tests check, across the whole library, that what a
 section names is held or flagged (``figures_held``, ``tables_held``,
-``not_held``; :mod:`geotech_references._reach`), that every function a
+``not_held``; :mod:`geotech_references._reach`), that every answer reaches
+what it says (a figure ``figure_get`` fetches, a function
+``lookup_reference`` runs, a section that prints the table, a page inside
+its PDF), that every function a
 chapter file says implements something exists, that cross-references name
 the manuals' own content, that every figure number can be fetched, and that
 the wheel ships every data file the code reads. ``tests/reach_baseline.json``
@@ -18,6 +21,7 @@ wording copied from a manual) and on a made-up local pack.
 from __future__ import annotations
 
 import fnmatch
+import functools
 import importlib
 import json
 import os
@@ -28,7 +32,8 @@ from pathlib import Path
 
 import pytest
 
-from geotech_references import _packs, _reach, _retrieval, _retrieval_db
+from geotech_references import (_figures_db, _packs, _reach, _retrieval,
+                                _retrieval_db, _tables_db)
 
 ROOT = Path(__file__).resolve().parent.parent
 PKG = ROOT / "geotech_references"
@@ -404,6 +409,231 @@ def test_listed_tables_answer_from_their_catalog_rows(library_db):
         if ref in uncatalogued:
             assert set(_held(get(ref, sid)).values()) == {
                 _reach.NOT_CATALOGUED}, (ref, sid)
+
+
+# ---------------------------------------------------------------------------
+# Each answer reaches its target (2026-11-12 review, item 2)
+# ---------------------------------------------------------------------------
+# Whether a ``figures_held`` / ``tables_held`` answer reaches what it says
+# (2026-11-12 review of the reach build, item 2): the standing test in
+# ``tests/test_reach.py`` runs every answer of the library through these.
+#
+# - ``"catalog"`` (and its forms): ``figure_get`` returns the figure (by its
+#   page for a number on several rows, under the number given for "as");
+# - ``"lookup: F"``: ``lookup_reference`` has a callable F for that package
+#   (the agent's own registry);
+# - ``"text: S"``: section S exists and its body or its tables entries print
+#   the table's label;
+# - ``"page: ... (pdf_page_index N)"``: ``resolve_table_pdf`` gives page N and
+#   it is inside the PDF, where the PDF is on this machine;
+# - ``"not catalogued"``: ``figure_get`` / ``table_get`` cannot fetch it.
+
+#: An answer whose target could not be looked at here (the PDF is not on
+#: this machine, or PyMuPDF is not installed).
+NOT_CHECKED = "not checked"
+
+@functools.lru_cache(maxsize=None)
+def _registry(reference: str) -> dict:
+    from agents import references_agent
+    return references_agent._load_reference(reference)[0]
+
+
+@functools.lru_cache(maxsize=None)
+def _figure_pages(reference: str) -> dict[str, list]:
+    data = json.loads((PKG / reference / _reach.FIGURES_CATALOG).read_text(
+        encoding="utf-8"))
+    out: dict[str, list] = {}
+    for row in data["figures"] if isinstance(data, dict) else data:
+        key = _reach._dashes(str(row.get("figure_number") or "")).upper()
+        out.setdefault(key, []).append(row.get("pdf_page_index"))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def _page_count(pdf: str) -> int | None:
+    try:
+        import fitz
+    except ImportError:
+        return None
+    with fitz.open(pdf) as doc:
+        return doc.page_count
+
+
+def figure_problem(reference: str, number: str, answer: str) -> str | None:
+    """Why ``answer`` for figure ``number`` is not true, or None."""
+    get = _figures_db.figure_get
+    try:
+        if answer == _reach.HELD_IN_CATALOG:
+            get(reference, number)
+            return None
+        rows = re.fullmatch(r"catalog \((\d+) rows: .*\)", answer)
+        if rows:
+            pages = next((p for k in _reach.figure_keys(number)
+                          for p in [_figure_pages(reference).get(k)] if p),
+                         [])
+            if len(pages) != int(rows.group(1)):
+                return f"{len(pages)} catalog rows, not {rows.group(1)}"
+            for page in pages:
+                get(reference, number, pdf_page_index=page)
+            return None
+        parts = re.fullmatch(r"catalog \(as parts (.+)\)", answer)
+        if parts:
+            for part in parts.group(1).split(", "):
+                get(reference, part)
+            return None
+        whole = re.fullmatch(r"catalog \(as (.+)\)", answer)
+        if whole:
+            get(reference, whole.group(1))
+            return None
+    except (KeyError, LookupError, ValueError) as e:
+        return f"figure_get fails: {e}"
+    if answer == _reach.NOT_CATALOGUED:
+        try:
+            get(reference, number)
+        except (KeyError, LookupError):
+            return None
+        return "figure_get finds it"
+    return f"not an answer: {answer!r}"
+
+
+def _label_re(number: str) -> re.Pattern:
+    parts = re.split(r"[-.]", _reach._dashes(number))
+    return re.compile(r"(?i)\btables?\s*" + r"\s*[-.]\s*".join(
+        re.escape(p) for p in parts) + r"(?![\d])")
+
+
+def table_problem(reference: str, number: str, answer: str,
+                  section_text) -> str | None:
+    """Why ``answer`` for table ``number`` is not true, or None (or
+    :data:`NOT_CHECKED`). ``section_text(reference, section_id)`` gives a
+    section's body and tables entries as text, or None when there is no
+    such section."""
+    kind, _, where = answer.partition(": ")
+    if kind == "text" and where:
+        for sid in where.split(", "):
+            text = section_text(reference, sid)
+            if text is None:
+                return f"no section {sid}"
+            if not _label_re(number).search(_reach._dashes(text)):
+                return f"section {sid} does not print Table {number}"
+        return None
+    if kind == "lookup" and where:
+        for name in where.split(", "):
+            if not callable(_registry(reference).get(name)):
+                return f"lookup_reference has no {name} in {reference}"
+        return None
+    if kind == "page":
+        index = re.search(r"pdf_page_index (\d+)", where)
+        if not index:
+            return "no pdf_page_index"
+        try:
+            pdf, page = _tables_db.resolve_table_pdf(
+                reference, number, pdf_page_index=int(index.group(1)))
+        except FileNotFoundError:
+            return NOT_CHECKED
+        except (KeyError, LookupError, ValueError) as e:
+            return f"table_get fails: {e}"
+        if page != int(index.group(1)):
+            return f"resolve_table_pdf gives page {page}"
+        count = _page_count(str(pdf))
+        if count is None:
+            return NOT_CHECKED
+        if not 0 <= page < count:
+            return f"page {page} is not in the PDF ({count} pages)"
+        return None
+    if answer == _reach.NOT_CATALOGUED:
+        try:
+            _tables_db.table_get(reference, number)
+        except (KeyError, LookupError):
+            return None
+        return "table_get finds it"
+    return f"not an answer: {answer!r}"
+
+
+def _section_text(conn: sqlite3.Connection):
+    """A function giving a section's body and tables entries as text, or
+    None when the reference holds no such section."""
+    @functools.lru_cache(maxsize=None)
+    def text(reference: str, section_id: str):
+        row = conn.execute(
+            "SELECT body, tables_json FROM sections WHERE reference = ? AND "
+            "section_id = ?", (reference, section_id)).fetchone()
+        return None if row is None else (row[0] or "") + "\n" + (row[1] or "")
+    return text
+
+
+def _answers(conn: sqlite3.Connection) -> dict[tuple, list]:
+    """``{(reference, kind, number, answer): [section ids]}`` for every
+    answer the library's fetches give."""
+    out: dict[tuple, list] = {}
+    for ref, sid, figs, tabs, flags in conn.execute(
+            "SELECT s.reference, s.section_id, s.figures_json, s.tables_json,"
+            " r.reach_json FROM sections s JOIN section_reach r "
+            "ON r.sec_rowid = s.rowid ORDER BY s.rowid"):
+        flags = json.loads(flags)
+        for key, listing, kind in (("figures_held", figs, "figure"),
+                                   ("tables_held", tabs, "table")):
+            if key in flags:
+                for num, answer in _reach.expand(flags[key], _reach.listed_numbers(
+                        json.loads(listing or "[]"), kind)).items():
+                    out.setdefault((ref, kind, num, answer), []).append(sid)
+    return out
+
+
+def test_every_answer_reaches_its_target(library_db):
+    """A "catalog" figure is fetched by figure_get, a "lookup" function is
+    one lookup_reference runs, a "text" section exists and prints the
+    table's label, a "page" is inside its PDF (where the PDF is here), and
+    "not catalogued" is something figure_get / table_get cannot fetch."""
+    conn = sqlite3.connect(library_db)
+    try:
+        text = _section_text(conn)
+        bad, kinds, not_checked = [], {}, 0
+        for (ref, kind, num, answer), sids in _answers(conn).items():
+            why = (figure_problem(ref, num, answer) if kind == "figure"
+                   else table_problem(ref, num, answer, text))
+            if why == NOT_CHECKED:
+                not_checked += 1
+            elif why:
+                bad.append((ref, sids[0], kind, num, answer, why))
+            else:
+                label = f"{kind} {answer.split(':')[0].split(' (')[0]}"
+                kinds[label] = kinds.get(label, 0) + 1
+    finally:
+        conn.close()
+    assert bad == []
+    # every kind of answer was looked at
+    for label in ("figure catalog", "table text", "table lookup",
+                  "table page", "table not catalogued"):
+        assert kinds.get(label, 0) > 0, (label, kinds, not_checked)
+
+
+@pytest.mark.parametrize("row", [
+    {"table_number": "5-6", "values": "lookup",
+     "values_in": "dm7_1.no_such_lookup"},
+    {"table_number": "5-6", "values": "text", "values_in": "5-99.99"},
+    {"table_number": "5-6", "values": "page", "pdf_page_index": 99999,
+     "printed_page": "254"},
+])
+def test_a_catalog_row_with_a_wrong_target_fails_the_check(library_db, row):
+    """The review's probes: a catalog row pointing at a function or a
+    section that does not exist, or at a page the table is not on, gives
+    an answer the target check refuses."""
+    conn = sqlite3.connect(library_db)
+    try:
+        why = table_problem("dm7_1", "5-6", _reach.table_values(row),
+                            _section_text(conn))
+    finally:
+        conn.close()
+    assert why not in (None, NOT_CHECKED), row
+
+
+def test_a_figure_answer_with_a_wrong_target_fails_the_check(library_db):
+    assert figure_problem("dm7_1", "99-99", "catalog")
+    assert figure_problem("dm7_1", "4-1", "not catalogued")
+    assert figure_problem("dm7_1", "4-1", "catalog (as 99-99)")
+    assert figure_problem("dm7_1", "4-1", "catalog (3 rows: give figure_get "
+                                          "the pdf_page_index)")
 
 
 def _callable(path: str) -> bool:

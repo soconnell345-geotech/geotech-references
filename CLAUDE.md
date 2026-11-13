@@ -526,7 +526,14 @@ figures and tables and the pointers not held.
 **Tests:** `tests/test_reach.py`: the rules on made-up text, the keys on a
 made-up local pack (with a table catalog) through both fetches, and across
 the library: every section has a body or sections under it; every listed
-figure and table has an answer; the two tables of the 2026-11-12 review
+figure and table has an answer, and every answer reaches its target
+(review item 2: a "catalog" figure is fetched by `figure_get`, by its page
+for one on several rows; a "lookup" function is in `lookup_reference`'s
+registry for the package; a "text" section exists and prints the table's
+label in its body or tables entries; a "page" is inside its PDF where the
+PDF is on the machine, through `resolve_table_pdf`; "not catalogued" is a
+number `figure_get` / `table_get` cannot fetch; a catalog row pointing at
+`dm7_1.no_such_lookup` or at section `5-99.99` fails it); the two tables of the 2026-11-12 review
 (dm7_1 Table 5-6, gec_11 Table 4-7) answer with their lookups and a
 reference with no table catalog says "not catalogued"; every `implemented_in` (section and
 equation level) names a function the package has; every cross-reference
