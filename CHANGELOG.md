@@ -112,6 +112,8 @@ are unchanged. Pages are printed page numbers.
   (1-5.4.2, p. 49). Table 5-8's two Km formulas are now in 5-6.3's
   `equations` as printed (p. 260), with (1−νs)² and, for rectangular mats,
   (1−νm)², and a note saying so; until now no Km formula was stored.
+  The table, "after Brown 1969, Frazer and Wardle 1976", prints these
+  two forms only, so it is complete; those papers are not held here.
 - Key points brought back to the print: UU results "should always" be
   interpreted with φ = 0 (3-2.4.2.2, p. 153; was "must"); Eq. 8-16 is
   Carter and Bentley's (2016) fit to Gibson's (1953) trend line, and the

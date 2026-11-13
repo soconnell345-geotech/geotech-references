@@ -222,3 +222,7 @@ def test_table_5_8_km_formulas_as_printed():
     assert eqs["Table 5-8 (Circular)"]["formula"] == "Km = 8 · [Em·(1−νs)² / Es] · (tm³ / B³)"
     assert eqs["Table 5-8 (Rectangular)"]["formula"] == (
         "Km = (4/3) · [Em·(1−νs)² / (Es·(1−νm)²)] · (tm³ / B³)")
+    # p. 260: the table prints these two forms only (after Brown 1969, Frazer and Wardle 1976)
+    assert sorted(k for k in eqs if k.startswith("Table 5-8")) == [
+        "Table 5-8 (Circular)", "Table 5-8 (Rectangular)"]
+    assert all("prints two forms only" in eqs[k]["notes"] for k in eqs if k.startswith("Table 5-8"))
