@@ -47,6 +47,20 @@ pages):
 - `gec_9.tables.table_7_1_p_multiplier`: beyond 5B (Table 7-1 prints 3B
   and 5B, p. 104) the 5B row is still held, now with `out_of_range` beside
   its `note`; holding is on the low side (p. 102).
+- `eurocode_7_2.tables.table_d3_pile_base_resistance`: qc above 25 MPa is
+  refused (Table D.3 prints qc = 10, 15, 20 and 25 MPa, p. 115; it
+  returned the 25 column with a note).
+- `eurocode_7_2.tables.table_d4_pile_shaft_resistance`: a negative qc is
+  refused; the last row is printed ">= 15" MPa (p. 116) and kept.
+- `eurocode_7_2.tables.table_e2_pmt_shape_coefficients`: L/B above 20 is
+  refused (Table E.2 prints Circle, Square, L/B = 2, 3, 5 and 20, p. 122;
+  it returned the L/B = 20 column, whose coefficients are the lowest of a
+  rising trend).
+- `eurocode_7_2.tables.table_f3_phi_from_density_index`: a density index
+  above 100 % is refused (Table F.3 rows ID = 40 to 100 %, p. 126; it
+  returned the 100 % row with a note).
+- `eurocode_7_2.tables.table_l2_min_mass_sieving`: unchanged; the docstring
+  states the open-ended last row "<= 2" mm, 100 g (p. 145).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
@@ -210,7 +224,8 @@ Results that now say more, with the same numbers:
   printed column (25 MPa) and that column was used, and
   `table_f3_phi_from_density_index` says when it interpolated between
   printed rows (the table prints no interpolation rule) or used the
-  ID = 100 % row for a higher ID.
+  ID = 100 % row for a higher ID. (Both cases past the last column or row
+  are now refused: see "Lookups outside their printed range" above.)
 - `site_class_from_vs30` gives an estimated velocity no class in the Site
   Class B or A range (Sections 20.2.4 and 20.2.5 require a measured
   velocity for those classes) and says why.

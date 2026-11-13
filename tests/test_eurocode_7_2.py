@@ -221,16 +221,16 @@ class TestTableD3D4:
             for qc, pb in zip([10, 15, 20, 25], row):
                 assert table_d3_pile_base_resistance(ratio, qc)["pb_mpa"] == pytest.approx(pb)
 
-    def test_base_resistance_above_last_printed_column_says_so(self):
-        # Table D.3 (PDF p. 117, printed p. 115) prints the columns qc = 10,
-        # 15, 20, 25 MPa only. Above 25 the qc = 25 column is still returned
-        # (2,25 at s/Db 0,03; 4,00 at 0,10), now with a note.
-        r = table_d3_pile_base_resistance(0.03, 40)
-        assert r["pb_mpa"] == pytest.approx(2.25)
-        assert "qc = 25 column" in r["note"] and "printed p. 115" in r["note"]
-        r = table_d3_pile_base_resistance(0.10, 40)
-        assert r["pb_mpa"] == pytest.approx(4.00)
-        assert "note" in r
+    def test_base_resistance_above_last_printed_column_is_refused(self):
+        # REF-76: Table D.3 (PDF p. 117, printed p. 115) prints the columns
+        # qc = 10, 15, 20, 25 MPa only, the last not open-ended, and D.6 gives
+        # no rule beyond it. Above 25 the qc = 25 column used to be returned
+        # with a note (2,25 at s/Db 0,03; 4,00 at 0,10); it is now refused.
+        for qc in (25.001, 40):
+            with pytest.raises(ValueError, match="above the last printed column"
+                               ".*printed p. 115"):
+                table_d3_pile_base_resistance(0.03, qc)
+        assert table_d3_pile_base_resistance(0.10, 25)["pb_mpa"] == pytest.approx(4.00)
         for qc in (10, 17.5, 25):
             assert "note" not in table_d3_pile_base_resistance(0.10, qc)
 
@@ -248,8 +248,18 @@ class TestTableD3D4:
         assert r["ps_mpa"] == pytest.approx(0.080)
 
     def test_shaft_resistance_clamped_high(self):
+        # Table D.4 (printed p. 116) prints the last row ">= 15" MPa, 0,120:
+        # open-ended, kept (REF-76).
         r = table_d4_pile_shaft_resistance(20)
         assert r["ps_mpa"] == pytest.approx(0.120)
+
+    def test_shaft_resistance_negative_qc_refused(self):
+        # REF-76: the first printed row is qc = 0; a negative qc is not a
+        # cone resistance and used to return 0.
+        assert table_d4_pile_shaft_resistance(0)["ps_mpa"] == 0
+        assert table_d4_pile_shaft_resistance(7.5)["ps_mpa"] == pytest.approx(0.060)
+        with pytest.raises(ValueError, match="qc_mpa must be 0 or more"):
+            table_d4_pile_shaft_resistance(-1)
 
 
 # ============================================================================
@@ -338,6 +348,16 @@ class TestTableE2E3E4:
     def test_shape_coefficients_below_one_raises(self):
         with pytest.raises(ValueError):
             table_e2_pmt_shape_coefficients(0.5, "square")
+
+    def test_shape_coefficients_above_20_refused(self):
+        # REF-76: Table E.2 (printed p. 122) prints Circle, Square, L/B = 2,
+        # 3, 5 and 20, the last not open-ended. L/B = 40 used to return the
+        # L/B = 20 column (2.65 / 1.5), lower than the rising trend.
+        with pytest.raises(ValueError, match="above L/B = 20.*printed p. 122"):
+            table_e2_pmt_shape_coefficients(40, "square")
+        with pytest.raises(ValueError, match="L/B = 20"):
+            table_e2_pmt_shape_coefficients(20.5, "circle")
+        assert table_e2_pmt_shape_coefficients(12.5, "square")["lambda_c"] == pytest.approx(1.45)
 
     def test_rheological_factor_sand_dense(self):
         r = table_e3_pmt_rheological_factor("sand_dense")
@@ -432,11 +452,17 @@ class TestTableF1F2F3:
         r = table_f3_phi_from_density_index(70, "medium", "uniform")
         assert r["phi_deg"] == pytest.approx(39.5)     # between 38 and 41
         assert "prints no interpolation rule" in r["note"]
-        r = table_f3_phi_from_density_index(120, "medium", "uniform")
-        assert r["phi_deg"] == pytest.approx(43)       # the ID = 100 % row
-        assert "ID = 100 % row was used" in r["note"]
         for id_pct in (40, 60, 80, 100):
             assert "note" not in table_f3_phi_from_density_index(id_pct, "medium", "uniform")
+
+    def test_phi_from_id_above_100_refused(self):
+        # REF-76: a density index is at most 100 %, the last printed row of
+        # Table F.3 (printed p. 126). ID = 120 % used to return the 100 % row
+        # (43 deg, medium uniform) with a note; it is now refused.
+        assert table_f3_phi_from_density_index(100, "medium", "uniform")["phi_deg"] == 43
+        for id_pct in (100.001, 120):
+            with pytest.raises(ValueError, match="above 100 %.*printed p. 126"):
+                table_f3_phi_from_density_index(id_pct, "medium", "uniform")
 
     def test_phi_from_id_below_first_printed_row_is_refused(self):
         # The first printed row is ID = 40 %. ID = 10 % used to return the
@@ -543,6 +569,14 @@ class TestTableL1L2:
             table_l2_min_mass_sieving(0)
         with pytest.raises(ValueError):
             table_l2_min_mass_sieving(80)
+
+    def test_min_mass_sieving_last_row_open_ended(self):
+        # Table L.2 (printed p. 145) prints the last row "<= 2" mm, 100 g:
+        # open-ended, kept (REF-76); the first row is 75 mm, above it refused.
+        for d in (0.075, 0.5, 2):
+            assert table_l2_min_mass_sieving(d)["mms_kg"] == pytest.approx(0.1)
+        assert "<= 2" in table_l2_min_mass_sieving.__doc__
+        assert "p. 145" in table_l2_min_mass_sieving.__doc__
 
 
 # ============================================================================
