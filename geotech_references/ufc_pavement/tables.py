@@ -23,6 +23,7 @@ import math
 
 from geotech_references._interpolation import _linterp
 from geotech_references.ufc_pavement.equations import reinforced_pavement_max_slab_length
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -68,6 +69,9 @@ _TABLE_4_1 = {
 }
 
 
+@_u.labelled(
+    {"cbr": "percent", "representative_cbr": "percent",
+     "representative_k_kPa_mm": "kPa/mm", "representative_k_psi_in": "psi/in"})
 def table_4_1_subgrade_category(cbr) -> dict:
     """Classify subgrade strength category for mixed-traffic design
     (Table 4-1, pdf_page_index 30, printed 11).
@@ -189,6 +193,7 @@ def _compaction_depth_lookup(passes, density_pct, soil_type, table,
     return rows[idx][col]
 
 
+@_u.labelled({"density_pct": "percent", "depth_in": "in", "passes": "count"})
 def table_5_1_compaction_depth(passes, density_pct, soil_type,
                                pavement_type) -> dict:
     """Depth of compaction for select materials and subgrades (CBR <= 20),
@@ -247,6 +252,7 @@ def table_5_1_compaction_depth(passes, density_pct, soil_type,
     }
 
 
+@_u.labelled({"density_pct": "percent", "depth_in": "in", "passes": "count"})
 def table_21_2_aggregate_compaction_depth(passes, density_pct, soil_type) -> dict:
     """Compaction depth requirements for aggregate surfaces, UFC 3-250-01
     Table 21-2 (pdf_page_index 143, printed 124); returns depth_in, the depth in
@@ -327,6 +333,10 @@ _TABLE_6_1 = {
 }
 
 
+@_u.labelled(
+    {"design_cbr": "percent", "max_liquid_limit": "percent",
+     "max_pct_passing_no10": "percent", "max_pct_passing_no200": "percent",
+     "max_plasticity_index": "percent", "max_size_in": "in"})
 def table_6_1_subbase_permissible_values(design_cbr) -> dict:
     """Maximum permissible design values for subbases/select materials
     (Table 6-1, Chapter 6; pdf_page_index 36, printed 17).
@@ -376,6 +386,7 @@ _TABLE_7_1_BASE = {
 }
 
 
+@_u.labelled({"design_cbr": "percent"})
 def table_7_1_base_design_cbr(material_type) -> dict:
     """Design CBR for flexible pavement base course materials (Table 7-1,
     Chapter 7; pdf_page_index 39, printed 20).
@@ -434,6 +445,10 @@ _TABLE_7_2_CBR50 = [
 ]
 
 
+@_u.labelled(
+    {"base_cbr": "percent", "base_in": "in", "base_mm": "mm",
+     "esal": "18-kip ESAL", "surface_in": "in", "surface_mm": "mm",
+     "total_in": "in", "total_mm": "mm"})
 def table_7_2_min_thickness(esal, base_cbr) -> dict:
     """Minimum flexible pavement section thickness (Table 7-2, Chapter 7;
     pdf_page_index 40, printed 21). Applies when PCASE use is mandatory.
@@ -558,6 +573,7 @@ _STABILIZER_ALIASES = {
 }
 
 
+@_u.labelled({"equivalency_factor": "dimensionless"})
 def table_9_1_equivalency_factor(stabilizer_type, uscs_class, layer_type) -> dict:
     """Equivalency factor for stabilized material, UFC 3-250-01 Table 9-1
     (pdf_page_index 46, printed 27); returns the factor E, the inches of
@@ -664,6 +680,8 @@ _USCS_TO_GROUP_10_1 = {
 }
 
 
+@_u.labelled(
+    {"k_kPa_mm": "kPa/mm", "k_psi_in": "psi/in", "moisture_pct": "percent"})
 def table_10_1_k_subgrade(uscs_group, moisture_pct) -> dict:
     """Typical modulus of soil reaction k for rigid pavement design
     (Table 10-1, Chapter 10; pdf_page_index 50, printed 31).
@@ -839,10 +857,15 @@ def _fig_10_1_log_k_on_curve(k_curve, t):
     return l0 + (t - t0) / (t1 - t0) * (l1 - l0)
 
 
+@_u.labelled(
+    {"base_thickness_in": "in", "k_on_base_psi_in": "psi/in",
+     "k_subgrade_psi_in": "psi/in"},
+    si={"k_subgrade_psi_in": ("MPa/m", "psi/in"),
+        "base_thickness_in": ("mm", "in")})
 def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     """Effective modulus of soil reaction k on top of a base course, psi/in,
     for non-frost conditions, from UFC 3-250-01 Figure 10-1 (printed p. 32,
-    PDF 52): read off the chart's curves for k measured on the subgrade
+    pdf_page_index 51): read off the chart's curves for k measured on the subgrade
     (25, 50, 75, 100, 150, 200 and 300 psi/in) at the base course
     thickness (0 to 60 in.). Paragraph 10-4 (printed p. 30-31): "Where a
     base course is used under the pavement, the k value on top of the
@@ -877,6 +900,11 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     base_thickness_in : float
         Thickness of base course above the subgrade, inches, 0 to 60 (the
         chart's axis).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        k_subgrade_psi_in in MPa/m and base_thickness_in in mm, each converted
+        exactly to the printed unit (psi/in, in) before the lookup runs as
+        printed.
 
     Returns
     -------
@@ -884,6 +912,9 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
         {'k_subgrade_psi_in', 'base_thickness_in', 'k_on_base_psi_in',
          'chart_read', 'tolerance', 'interpolation', 'chart_note',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -948,7 +979,7 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
             "less certain between curves"),
         "interpolation": how,
         "chart_note": _FIG_10_1_NOTE,
-        "reference": "UFC 3-250-01, Figure 10-1, printed p. 32 (PDF 52)",
+        "reference": "UFC 3-250-01, Figure 10-1, printed p. 32 (pdf_page_index 51)",
     }
 
 
@@ -980,6 +1011,7 @@ _TABLE_15_C = {
 }
 
 
+@_u.labelled({"c": "dimensionless", "valid_values": "dimensionless"})
 def table_15_condition_factor(overlay_type, existing_pavement_type, c) -> dict:
     """Condition factor C for rigid/flexible overlay design (Sections
     15-3.2/15-3.3, Chapter 15; pdf_page_index 63-64, printed 44-45).
@@ -1157,6 +1189,9 @@ _FIG_15_1_CURVES = {
 }
 
 
+@_u.labelled(
+    {"f": "dimensionless", "k_existing_psi_in": "psi/in", "passes": "count"},
+    si={"k_existing_psi_in": ("MPa/m", "psi/in")})
 def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
     """Factor F for projecting cracking in a flexible pavement, UFC 3-250-01
     Figure 15-1 (pdf_page_index 69, printed 50); returns F (dimensionless, 0.4-1.0).
@@ -1178,12 +1213,19 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
     k_existing_psi_in : float
         k-value of the existing rigid pavement, psi/in. Must be within the
         printed curves, 25-500 psi/in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        k_existing_psi_in in MPa/m, each converted exactly to the printed unit
+        (psi/in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'passes', 'k_existing_psi_in', 'f', 'chart_read', 'tolerance',
          'reference', 'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1259,6 +1301,9 @@ def figure_15_1_cracking_projection_factor(passes, k_existing_psi_in) -> dict:
 # Joints (Chapter 16, pdf_page_index 73, printed 54)
 # ============================================================================
 
+@_u.labelled(
+    {"max_spacing_ft": "ft", "spacing_range_ft": "ft", "thickness_in": "in"},
+    si={"thickness_in": ("mm", "in")})
 def table_16_1_joint_spacing(thickness_in) -> dict:
     """Allowable spacing of longitudinal/transverse contraction joints
     (Table 16-1, Chapter 16; pdf_page_index 73, printed 54).
@@ -1267,6 +1312,10 @@ def table_16_1_joint_spacing(thickness_in) -> dict:
     ----------
     thickness_in : float
         Pavement thickness, inches. Must be > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
@@ -1277,6 +1326,9 @@ def table_16_1_joint_spacing(thickness_in) -> dict:
          DoD pavements is 20 ft (6.1 m)). Para 16-2.1.3 (same page): in
          regions where the design freezing index is 1,800 or more degree
          days the maximum spacing should be 20 ft (6 m).
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1315,6 +1367,10 @@ _TABLE_16_2 = [
 ]
 
 
+@_u.labelled(
+    {"max_dowel_spacing_in": "in", "min_dowel_length_in": "in",
+     "thickness_in": "in"},
+    si={"thickness_in": ("mm", "in")})
 def table_16_2_dowel_size(thickness_in) -> dict:
     """Dowel size/length/spacing for construction, contraction, and
     expansion joints (Table 16-2, Chapter 16; pdf_page_index 74, printed 55).
@@ -1323,12 +1379,19 @@ def table_16_2_dowel_size(thickness_in) -> dict:
     ----------
     thickness_in : float
         Pavement thickness, inches. Must be in (0, 15].
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'thickness_in', 'min_dowel_length_in', 'max_dowel_spacing_in',
          'dowel', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1445,6 +1508,11 @@ _FIG_14_1_S_TICKS = [
 ]
 
 
+@_u.labelled(
+    {"as_sq_in_per_ft": "in^2/ft", "fs_psi": "psi", "hd_in": "in",
+     "hr_in": "in", "l_ft_capped": "ft", "l_ft_raw": "ft", "s_pct": "percent",
+     "transverse_s_pct": "percent"},
+    si={"fs_psi": ("MPa", "psi"), "hd_in": ("mm", "in")})
 def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
     """Figure 14-1 (reinforced rigid pavement design nomograph, UFC
     3-250-01 printed 41, pdf_page_index 60) with Eq. 17-1: the reinforced concrete
@@ -1489,6 +1557,10 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
     fs_psi : float, optional
         Yield strength of the reinforcing steel, psi, used for L only.
         Default 60,000 (the value built into the printed nomograph).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fs_psi in MPa and hd_in in mm, each converted exactly to the printed
+        unit (psi, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -1498,6 +1570,9 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
          'minimum_thickness_governs', 'tolerance', 'reference'}, with
          'note' where the 6 in minimum governs. ``hr_in`` is chart-read;
          ``l_ft_raw`` / ``l_ft_capped`` follow from it by Eq. 17-1.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1596,6 +1671,7 @@ _TABLE_19_1 = {
 }
 
 
+@_u.labelled({})
 def table_19_1_distress_modes(distress_mode) -> dict:
     """Modes of distress in pavements and their causative factors
     (Table 19-1, Chapter 19; pdf_page_index 87, printed 68). Descriptive lookup
@@ -1690,6 +1766,7 @@ def _t192_label(row):
     return f"{row[0]} ({row[1]})" if row[1] else row[0]
 
 
+@_u.labelled({"finer_0_02mm_pct": "percent"})
 def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
                                     frost_group=None) -> dict:
     """Frost design soil classification (Table 19-2, Chapter 19; pdf_page_index 89,
@@ -1900,6 +1977,7 @@ def table_19_2_frost_classification(uscs_class, finer_than_0_02mm_pct=None,
 # Pavement Design (Chapter 19, pdf_page_index 99, printed 80)
 # ============================================================================
 
+@_u.labelled({"soil_support_index": "no unit printed"})
 def table_19_3_frost_support_index(frost_group) -> dict:
     """Frost-area soil support index for flexible pavement design
     (Table 19-3, Chapter 19; pdf_page_index 99, printed 80).
@@ -1987,6 +2065,9 @@ _FIG_19_5_LINES = {
 _FIG_19_5_C_MAX = 80.0   # the chart's right frame
 
 
+@_u.labelled(
+    {"b_in": "in", "c_in": "in", "r": "dimensionless",
+     "r_used": "dimensionless", "s_in": "in"})
 def figure_19_5_design_base_thickness(c_in, r) -> dict:
     """Design NFS base thickness for the limited subgrade frost penetration
     method (Figure 19-5, Chapter 19; pdf_page_index 98, printed 79), read off the
@@ -2081,6 +2162,9 @@ _FIG_19_6_GROUPS = {"F1": "F1_S1", "S1": "F1_S1", "F2": "F2_S2",
 _FIG_19_6_T_MIN = 4.0
 
 
+@_u.labelled(
+    {"base_thickness_in": "in", "index_of_reaction_kPa_mm": "kPa/mm",
+     "index_of_reaction_psi_in": "psi/in"})
 def figure_19_6_frost_area_index_of_reaction(base_thickness_in, frost_group) -> dict:
     """Frost-area index of reaction for rigid pavement design in frost areas
     (Figure 19-6, Chapter 19; pdf_page_index 101, printed 82), read off the three
@@ -2149,6 +2233,9 @@ _TABLE_20_1 = [
 ]
 
 
+@_u.labelled(
+    {"pct_passing_no200": "percent", "permeability_ft_per_min": "ft/min",
+     "permeability_mm_per_sec": "mm/s"})
 def table_20_1_permeability_estimate(pct_passing_no200) -> dict:
     """Estimated permeability of sand/gravel drainage material vs. percent
     passing the No. 200 sieve (Table 20-1, Chapter 20; pdf_page_index 113, printed
@@ -2212,6 +2299,7 @@ _TABLE_20_2 = {
 }
 
 
+@_u.labelled({})
 def table_20_2_frost_susceptible_soils(frost_group) -> dict:
     """Frost susceptible soil groups per Chapter 20's own printed table
     (Table 20-2; pdf_page_index 124, printed 105).
@@ -2260,6 +2348,7 @@ _TABLE_20_8 = {
 }
 
 
+@_u.labelled({"n": "no unit printed"})
 def table_20_8_pipe_roughness(pipe_type) -> dict:
     """Manning roughness coefficient by pipe material (Table 20-8, Chapter
     20; pdf_page_index 135, printed 116). For use with ``pipe_capacity_manning``.
@@ -2304,6 +2393,10 @@ _TABLE_21_1 = {
 }
 
 
+@_u.labelled(
+    {"1_in": "percent", "3_8_in": "percent",
+     "gradation_no": "no unit printed", "no10": "percent", "no200": "percent",
+     "no4": "percent", "no40": "percent"})
 def table_21_1_aggregate_gradation(gradation_no) -> dict:
     """Gradation limits for aggregate surface courses (Table 21-1,
     Chapter 21; pdf_page_index 140, printed 121). Percent passing ranges
@@ -2407,6 +2500,7 @@ def _fig_e1_on_curve(passes, cbr):
                     [p[1] for p in pts])
 
 
+@_u.labelled({"cbr": "percent", "passes": "count", "thickness_in": "in"})
 def figure_e1_flexible_thickness(cbr, passes) -> dict:
     """Required thickness of cover (in) above a layer of this CBR, for an
     18,000-lb single-axle dual-tire ESAL (Figure E-1, Appendix E; pdf_page_index
@@ -3530,6 +3624,7 @@ def _fig_e_thickness(fig, cbr, passes):
     return t_lo + f * (t_hi - t_lo), note
 
 
+@_u.labelled({"cbr": "percent", "passes": "count", "thickness_in": "in"})
 def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
     """Thickness of cover (in) above a layer of this CBR for this many
     passes of one Appendix E vehicle, read off its chart (Figures E-2 to
@@ -3623,6 +3718,9 @@ def figure_e_vehicle_thickness(vehicle, cbr, passes) -> dict:
     return out
 
 
+@_u.labelled(
+    {"allowable_passes": "count", "cbr": "percent", "thickness_in": "in"},
+    si={"thickness_in": ("mm", "in")})
 def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
                                       tol=1e-6, max_iter=60) -> dict:
     """Allowable passes of one Appendix E vehicle on this thickness over a
@@ -3642,6 +3740,10 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
         (default 0.000001).
     max_iter : int, optional
         Maximum bisection steps (default 60).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        thickness_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
@@ -3653,6 +3755,9 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
          guide's Table G-1 (printed 257) calls them "Unlimited". On the
          lowest curve, as read to 0.1 in (up to 0.05 in under it), the
          passes are that curve's (``clamped='below_min_passes_curve'``).
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -3805,6 +3910,10 @@ def _fig_f1_bracket(values, v):
     return lo, hi
 
 
+@_u.labelled(
+    {"flexural_psi": "psi", "k_psi_in": "psi/in", "passes": "count",
+     "thickness_in": "in"},
+    si={"flexural_psi": ("MPa", "psi"), "k_psi_in": ("MPa/m", "psi/in")})
 def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
     """Required plain-concrete slab thickness (in) for an 18,000-lb
     single-axle dual-tire load (Figure F-1, Appendix F; pdf_page_index 243,
@@ -3828,6 +3937,10 @@ def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
     passes : float
         Design equivalent 18,000-lb single-axle, dual-tire passes,
         1,000-50,000,000 (the printed pass-level lines).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        flexural_psi in MPa and k_psi_in in MPa/m, each converted exactly to
+        the printed unit (psi, psi/in) before the lookup runs as printed.
 
     Returns
     -------
@@ -3836,6 +3949,9 @@ def figure_f1_rigid_thickness(flexural_psi, k_psi_in, passes) -> dict:
          'below_chart', 'chart_read', 'tolerance', 'reference', 'note'?}.
         A reading under the chart's 4 in is returned as 4.0 with
         ``below_chart`` set (para 13-3's 6 in minimum slab governs).
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------

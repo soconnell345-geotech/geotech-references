@@ -1467,7 +1467,8 @@ class TestFigureEVehicleCurves:
         r = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
         assert set(r) == {"vehicle", "figure", "caption", "cbr", "passes",
                           "thickness_in", "chart_read", "tolerance",
-                          "reference"}
+                          "reference", "units", "printed_page",
+                          "pdf_page_index"}
         assert r["thickness_in"] > 0
 
 

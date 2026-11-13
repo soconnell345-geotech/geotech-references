@@ -31,6 +31,7 @@ hand and confirmed to match the printed answer -- see individual docstrings.
 """
 
 import math
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -51,6 +52,12 @@ import math
 # ============================================================================
 
 
+@_u.labelled(
+    {"allowable_passes_at_controlling": "count",
+     "controlling_thickness_in": "in", "design_passes": "count",
+     "equivalent_passes": "count", "ratio": "dimensionless",
+     "required_thickness_in": "in",
+     "total_equivalent_esal_passes": "count (18-kip ESAL passes)"})
 def mixed_traffic_equivalent_esal(vehicles) -> dict:
     """Convert a mixed-traffic vehicle mix to equivalent passes of the
     controlling vehicle (Chapter 4, Section 4-3.3).
@@ -161,6 +168,10 @@ def mixed_traffic_equivalent_esal(vehicles) -> dict:
 #   t_stab = t_conventional / E
 # ============================================================================
 
+@_u.labelled(
+    {"conventional_thickness_in": "in", "equivalency_factor": "dimensionless",
+     "stabilized_thickness_in": "in"},
+    si={"conventional_thickness_in": ("mm", "in")})
 def stabilized_layer_thickness_in(conventional_thickness_in, equivalency_factor) -> dict:
     """Stabilized layer thickness from a conventional design (Section 9-5.1).
 
@@ -190,12 +201,19 @@ def stabilized_layer_thickness_in(conventional_thickness_in, equivalency_factor)
     equivalency_factor : float
         Equivalency factor from Table 9-1 (``table_9_1_equivalency_factor``).
         Must be > 0. Typical range 1.0-2.3.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        conventional_thickness_in in mm, each converted exactly to the printed
+        unit (in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'conventional_thickness_in', 'equivalency_factor',
          'stabilized_thickness_in', 'note', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -234,6 +252,11 @@ def stabilized_layer_thickness_in(conventional_thickness_in, equivalency_factor)
 # 100-101, printed 81-82)
 # ============================================================================
 
+@_u.labelled(
+    {"bound_layer_thickness_in": "in", "design_freezing_index": "degF-days",
+     "min_free_draining_layer_in": "in", "threshold_thickness_in": "in"},
+    si={"bound_layer_thickness_in": ("mm", "in"),
+        "design_freezing_index": ("degC-days", "degF-days")})
 def free_draining_layer_required(bound_layer_thickness_in, design_freezing_index) -> dict:
     """Check the UFC 3-250-01 frost free-draining-layer requirement (19-7).
 
@@ -252,6 +275,11 @@ def free_draining_layer_required(bound_layer_thickness_in, design_freezing_index
     design_freezing_index : float
         Design air freezing index, degree-Fahrenheit-days (average of the
         three coldest years in 30, or coldest winter in 10). Must be > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        bound_layer_thickness_in in mm and design_freezing_index in degC-days,
+        each converted exactly to the printed unit (in, degF-days) before the
+        lookup runs as printed.
 
     Returns
     -------
@@ -259,6 +287,9 @@ def free_draining_layer_required(bound_layer_thickness_in, design_freezing_index
         {'required': bool, 'bound_layer_thickness_in', 'threshold_thickness_in',
          'design_freezing_index', 'min_free_draining_layer_in', 'note',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -297,6 +328,9 @@ def free_draining_layer_required(bound_layer_thickness_in, design_freezing_index
 #   ho = [ hd^1.4 - (0.0063 * Ef^(1/3) * hs)^1.4 ]^(1/1.4)
 # ============================================================================
 
+@_u.labelled(
+    {"ef_psi": "psi", "hd_in": "in", "ho_in": "in", "hs_in": "in"},
+    si={"ef_psi": ("MPa", "psi"), "hd_in": ("mm", "in"), "hs_in": ("mm", "in")})
 def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> dict:
     """Required plain-concrete overlay thickness over a stabilized soil layer
     (Chapter 13, Eq. 13-1).
@@ -324,11 +358,18 @@ def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> d
         H / AASHTO MEPDG procedure). Must be > 0.
     hs_in : float
         Thickness of the stabilized layer, inches. Must be > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        ef_psi in MPa and hd_in and hs_in in mm, each converted exactly to the
+        printed unit (psi, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'hd_in', 'ef_psi', 'hs_in', 'ho_in', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -372,6 +413,9 @@ def plain_concrete_thickness_on_stabilized_foundation(hd_in, ef_psi, hs_in) -> d
 # 283-284, printed 264-265)
 # ============================================================================
 
+@_u.labelled(
+    {"hd_in": "in", "he_in": "in", "ho_in": "in", "ho_in_min_2": "in"},
+    si={"hd_in": ("mm", "in"), "he_in": ("mm", "in")})
 def rigid_overlay_fully_bonded(hd_in, he_in) -> dict:
     """Fully bonded plain-concrete rigid overlay thickness (Eq. 15-1).
 
@@ -393,12 +437,19 @@ def rigid_overlay_fully_bonded(hd_in, he_in) -> dict:
         Thickness of the existing plain concrete pavement, or the equivalent
         plain-concrete thickness (from ``figure_14_1_reinforced_pavement_design``
         if the existing pavement is reinforced), inches.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        hd_in and he_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'hd_in', 'he_in', 'ho_in', 'ho_in_min_2', 'equation', 'reference'}.
         ``ho_in_min_2`` clamps to the 2 in minimum for fully bonded overlays.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -421,6 +472,10 @@ def rigid_overlay_fully_bonded(hd_in, he_in) -> dict:
     }
 
 
+@_u.labelled(
+    {"c": "dimensionless", "hE_in": "in", "hd_in": "in", "he_in": "in",
+     "ho_in": "in", "ho_in_min_6": "in"},
+    si={"hE_in": ("mm", "in"), "hd_in": ("mm", "in"), "he_in": ("mm", "in")})
 def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
     """Partially bonded plain-concrete rigid overlay thickness (Eq. 15-2).
 
@@ -450,6 +505,10 @@ def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
     c : float
         Condition factor for the existing pavement (1.00, 0.75, or 0.35;
         see ``table_15_condition_factor``).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        hE_in, hd_in and he_in in mm, each converted exactly to the printed
+        unit (in) before the lookup runs as printed.
 
     Returns
     -------
@@ -457,6 +516,9 @@ def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
         {'hd_in', 'he_in', 'hE_in', 'c', 'ho_in', 'ho_in_min_6', 'equation',
          'reference'}. ``ho_in_min_6`` clamps to the 6 in minimum for
          partially bonded/non-bonded overlays.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -489,6 +551,10 @@ def rigid_overlay_partially_bonded(hd_in, he_in, hE_in, c) -> dict:
     }
 
 
+@_u.labelled(
+    {"c": "dimensionless", "hE_in": "in", "hd_in": "in", "he_in": "in",
+     "ho_in": "in", "ho_in_min_6": "in"},
+    si={"hE_in": ("mm", "in"), "hd_in": ("mm", "in"), "he_in": ("mm", "in")})
 def rigid_overlay_non_bonded(hd_in, he_in, hE_in, c) -> dict:
     """Non-bonded plain-concrete rigid overlay thickness (Eq. 15-3).
 
@@ -505,12 +571,19 @@ def rigid_overlay_non_bonded(hd_in, he_in, hE_in, c) -> dict:
     ----------
     hd_in, he_in, hE_in, c : float
         Same as ``rigid_overlay_partially_bonded``.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        hE_in, hd_in and he_in in mm, each converted exactly to the printed
+        unit (in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'hd_in', 'he_in', 'hE_in', 'c', 'ho_in', 'ho_in_min_6', 'equation',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -543,6 +616,10 @@ def rigid_overlay_non_bonded(hd_in, he_in, hE_in, c) -> dict:
     }
 
 
+@_u.labelled(
+    {"c": "dimensionless", "f": "dimensionless", "hE_in": "in", "hd_in": "in",
+     "to_in": "in", "to_in_min_4": "in"},
+    si={"hE_in": ("mm", "in"), "hd_in": ("mm", "in")})
 def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
     """Flexible (bituminous) overlay thickness over an existing rigid base
     pavement (Chapter 15, Section 15-7.2, Eq. 15-4).
@@ -572,6 +649,10 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
         Thickness of the existing plain concrete pavement, or the
         equivalent plain-concrete thickness (Figure 14-1) if reinforced,
         inches.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        hE_in and hd_in in mm, each converted exactly to the printed unit (in)
+        before the lookup runs as printed.
 
     Returns
     -------
@@ -580,6 +661,9 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
          'reference'}. ``to_in_min_4`` clamps negative/small results to the
          4 in minimum all-bituminous strengthening overlay thickness (the
          guide explicitly notes the raw equation can go negative).
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -621,6 +705,10 @@ def flexible_overlay_of_rigid_thickness(f, hd_in, c, hE_in) -> dict:
 #   L = [0.00047 * hr * (fs*S)^2]^(1/3)
 # ============================================================================
 
+@_u.labelled(
+    {"fs_psi": "psi", "hr_in": "in", "l_ft_capped": "ft", "l_ft_raw": "ft",
+     "s_pct": "percent"},
+    si={"fs_psi": ("MPa", "psi"), "hr_in": ("mm", "in")})
 def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
     """Max allowable reinforced-concrete slab length/width (Eq. 17-1).
 
@@ -645,6 +733,10 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
         psi is the value built into Figure 14-1).
     s_pct : float
         Percent of longitudinal reinforcing steel. Must be > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        fs_psi in MPa and hr_in in mm, each converted exactly to the printed
+        unit (psi, in) before the lookup runs as printed.
 
     Returns
     -------
@@ -652,6 +744,9 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
         {'hr_in', 'fs_psi', 's_pct', 'l_ft_raw', 'l_ft_capped', 'equation',
          'reference'}. ``l_ft_capped`` applies the 75 ft absolute maximum
          (Section 17-1.4).
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -683,6 +778,10 @@ def reinforced_pavement_max_slab_length(hr_in, fs_psi, s_pct) -> dict:
 # Subsurface drainage design (Chapter 20; pdf_page_index 111-134, printed 92-115)
 # ============================================================================
 
+@_u.labelled(
+    {"area": "consistent units", "flow_rate": "consistent units",
+     "i": "no unit printed", "k": "consistent units",
+     "velocity": "consistent units"})
 def darcy_flow_rate(k, i, area) -> dict:
     """Darcy's law: rate of flow through a cross-sectional area (Eq. 20-1/2).
 
@@ -720,6 +819,10 @@ def darcy_flow_rate(k, i, area) -> dict:
     }
 
 
+@_u.labelled(
+    {"c": "dimensionless", "ds_mm": "mm", "e": "dimensionless",
+     "gamma": "consistent units", "k": "consistent units",
+     "mu": "consistent units"})
 def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
     """Coefficient of permeability k by Taylor's equation, UFC 3-250-01
     Eq. 20-3 (pdf_page_index 112, printed 93); returns k in the inputs' consistent
@@ -774,6 +877,10 @@ def taylor_permeability(ds_mm, c, gamma, mu, e) -> dict:
     }
 
 
+@_u.labelled(
+    {"dry_density": "consistent units", "effective_porosity": "fraction",
+     "gs": "dimensionless", "water_unit_weight": "consistent units",
+     "we": "fraction"})
 def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
     """Effective porosity ne of a soil, UFC 3-250-01 Eq. 20-4 (pdf_page_index 113,
     printed 94); returns ne as a decimal fraction (dimensionless).
@@ -836,6 +943,7 @@ def effective_porosity(dry_density, gs, water_unit_weight, we) -> dict:
     }
 
 
+@_u.labelled({"k_effective": "consistent units", "layers": "consistent units"})
 def effective_horizontal_permeability(layers) -> dict:
     """Weighted-average effective horizontal permeability of a layered
     pavement section (Chapter 20, Eq. 20-5; pdf_page_index 114, printed 95).
@@ -875,6 +983,8 @@ def effective_horizontal_permeability(layers) -> dict:
     }
 
 
+@_u.labelled(
+    {"h": "consistent units", "ne": "fraction", "qs": "consistent units"})
 def drainage_layer_storage_capacity(ne, h) -> dict:
     """Storage capacity of a drainage layer, 85%-availability basis
     (Chapter 20, Eq. 20-7; pdf_page_index 116, printed 97).
@@ -912,6 +1022,10 @@ def drainage_layer_storage_capacity(ne, h) -> dict:
     }
 
 
+@_u.labelled(
+    {"h": "consistent units", "i": "no unit printed", "k": "consistent units",
+     "length": "consistent units", "qd": "consistent units",
+     "t": "consistent units"})
 def drainage_layer_drainable_flow(t, k, i, h, length) -> dict:
     """Water draining from the layer during the rain event (Chapter 20,
     Eq. 20-8; pdf_page_index 116, printed 97).
@@ -951,6 +1065,9 @@ def drainage_layer_drainable_flow(t, k, i, h, length) -> dict:
     }
 
 
+@_u.labelled(
+    {"d": "consistent units", "i": "no unit printed", "k": "consistent units",
+     "ne": "fraction", "t50": "consistent units"})
 def time_for_50pct_drainage(ne, d, i, k) -> dict:
     """Time for 50 percent drainage T50 of a base/subbase layer, UFC 3-250-01
     Eq. 20-11 (pdf_page_index 117, printed 98); returns t50 in the time unit of k.
@@ -996,6 +1113,9 @@ def time_for_50pct_drainage(ne, d, i, k) -> dict:
     }
 
 
+@_u.labelled(
+    {"d": "consistent units", "i": "no unit printed", "k": "consistent units",
+     "ne": "fraction", "t85": "consistent units"})
 def time_for_85pct_drainage(ne, d, i, k) -> dict:
     """Time for 85 percent drainage T85 of a drainage layer, UFC 3-250-01
     Eq. 20-12 (pdf_page_index 117, printed 98); returns t85 in the time unit of k.
@@ -1039,6 +1159,9 @@ def time_for_85pct_drainage(ne, d, i, k) -> dict:
     }
 
 
+@_u.labelled(
+    {"ie": "no unit printed", "it": "no unit printed",
+     "length": "consistent units", "lt": "consistent units"})
 def drainage_path_length(lt, it, ie) -> dict:
     """Length of the drainage path from transverse/longitudinal slope
     geometry (Chapter 20, Eq. 20-13; pdf_page_index 118, printed 99).
@@ -1079,6 +1202,8 @@ def drainage_path_length(lt, it, ie) -> dict:
     }
 
 
+@_u.labelled(
+    {"i": "no unit printed", "ie": "no unit printed", "it": "no unit printed"})
 def drainage_path_slope(it, ie) -> dict:
     """Resultant slope of the drainage path (Chapter 20, Eq. 20-14;
     pdf_page_index 118, printed 99).
@@ -1114,6 +1239,9 @@ def drainage_path_slope(it, ie) -> dict:
     }
 
 
+@_u.labelled(
+    {"d10_mm": "mm", "k": "consistent units", "n": "fraction",
+     "p200_pct": "percent"})
 def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> dict:
     """Estimate the coefficient of permeability of a granular material from
     gradation (Chapter 20, Eq. 20-15/20-16; pdf_page_index 125, printed 106).
@@ -1164,12 +1292,18 @@ def granular_permeability_estimate(d10_mm, n, p200_pct, units="mm_per_sec") -> d
         )
     return {
         "d10_mm": d10_mm, "n": n, "p200_pct": p200_pct,
-        "k": k, "units": units,
+        "k": k,
+        "units": {"d10_mm": "mm", "n": "fraction", "p200_pct": "percent",
+                  "k": "mm/s" if units == "mm_per_sec" else "ft/day"},
         "equation": eq,
         "reference": "UFC 3-250-01, Eq. 20-15/20-16 (pdf_page_index 125, printed 106)",
     }
 
 
+@_u.labelled(
+    {"f": "dimensionless", "h": "ft (or m, as L)", "i": "dimensionless",
+     "k": "ft/hr (or m/hr)", "length": "ft (or m)", "ne": "fraction",
+     "r": "ft/hr (or m/hr)", "t": "hr"})
 def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
     """Required thickness H of a drainage layer for the design storm,
     UFC 3-250-01 Eq. 20-17 (pdf_page_index 126, printed 107); returns h in the
@@ -1225,6 +1359,9 @@ def drainage_layer_thickness_required(f, r, length, t, ne, k, i) -> dict:
     }
 
 
+@_u.labelled(
+    {"f": "dimensionless", "h": "ft (or m, as R)", "ne": "fraction",
+     "r": "ft/hr (or m/hr)", "t": "hr"})
 def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
     """Required thickness H of a drainage layer for long drainage paths,
     UFC 3-250-01 Eq. 20-18 (pdf_page_index 126, printed 107); returns h in the
@@ -1268,11 +1405,14 @@ def drainage_layer_thickness_simplified(f, r, t, ne) -> dict:
     }
 
 
+@_u.labelled(
+    {"h": "consistent units", "i": "no unit printed", "k": "consistent units",
+     "q_per_unit_length": "consistent units"})
 def collector_drain_flow(h, i, k, units="ft_day") -> dict:
     """Water entering the collector system from a one-sided drainage layer
     (Chapter 20, Eq. 20-20/20-21; pdf_page_index 133, printed 114).
 
-        Q (mm^3/sec per mm) = 1000 * H * i * k
+        Q (mm^3/sec per m) = 1000 * H * i * k
         Q (ft^3/day per ft) = H * i * k
 
     Double the result if the collector receives flow from both sides.
@@ -1280,11 +1420,12 @@ def collector_drain_flow(h, i, k, units="ft_day") -> dict:
     Parameters
     ----------
     h : float
-        Thickness of the drainage layer.
+        Thickness of the drainage layer, ft ('ft_day') or mm ('mm_sec').
     i : float
         Slope of the drainage layer (dimensionless).
     k : float
-        Permeability of the drainage layer.
+        Permeability of the drainage layer, ft/day ('ft_day') or mm/sec
+        ('mm_sec').
     units : str, optional
         'ft_day' (default, Eq. 20-21) or 'mm_sec' (Eq. 20-20).
 
@@ -1310,13 +1451,20 @@ def collector_drain_flow(h, i, k, units="ft_day") -> dict:
     else:
         raise ValueError(f"units must be 'ft_day' or 'mm_sec', got '{units}'")
     return {
-        "h": h, "i": i, "k": k, "q_per_unit_length": q, "units": units,
+        "h": h, "i": i, "k": k, "q_per_unit_length": q,
+        "units": ({"h": "mm", "i": "no unit printed", "k": "mm/s",
+                   "q_per_unit_length": "mm^3/s/m"} if units == "mm_sec" else
+                  {"h": "ft", "i": "no unit printed", "k": "ft/day",
+                   "q_per_unit_length": "ft^3/day/ft"}),
         "equation": eq,
         "reference": "UFC 3-250-01, Eq. 20-20/20-21 (pdf_page_index 133, printed 114)",
         "note": "Double for a collector receiving flow from both sides.",
     }
 
 
+@_u.labelled(
+    {"area": "consistent units", "d": "consistent units",
+     "n": "no unit printed", "q": "consistent units", "s": "no unit printed"})
 def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
     """Full-flow capacity of a circular collector pipe, Manning equation
     (Chapter 20, Eq. 20-22/20-23; pdf_page_index 134, printed 115).
@@ -1366,7 +1514,11 @@ def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
     q = (coeff / n) * area * (d_ft / 4) ** (2 / 3) * s ** 0.5
     return {
         "n": n, "d": d_ft, "s": s, "area": round(area, 4),
-        "q": round(q, 4), "units": units,
+        "q": round(q, 4),
+        "units": ({"n": "no unit printed", "d": "ft", "s": "no unit printed",
+                   "area": "ft^2", "q": "ft^3/s"} if units == "us" else
+                  {"n": "no unit printed", "d": "m", "s": "no unit printed",
+                   "area": "m^2", "q": "m^3/s"}),
         "equation": eq,
         "reference": "UFC 3-250-01, Eq. 20-22/20-23 (pdf_page_index 134, printed 115)",
     }
@@ -1379,6 +1531,9 @@ def pipe_capacity_manning(n, d_ft, s, units="us") -> dict:
 # printed in the text are given below.
 # ============================================================================
 
+@_u.labelled(
+    {"mean_annual_soil_temp_f": "degF", "vo_f": "degF"},
+    si={"mean_annual_soil_temp_f": ("degC", "degF")})
 def insulation_initial_temperature_differential(mean_annual_soil_temp_f) -> dict:
     """Initial temperature differential Vo for insulated-pavement frost
     design (Appendix D, Section D-3; pdf_page_index 204, printed 185).
@@ -1393,11 +1548,18 @@ def insulation_initial_temperature_differential(mean_annual_soil_temp_f) -> dict
     ----------
     mean_annual_soil_temp_f : float
         Mean annual soil temperature, degrees Fahrenheit.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mean_annual_soil_temp_f in degC, each converted exactly to the printed
+        unit (degF) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mean_annual_soil_temp_f', 'vo_f', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     vo = mean_annual_soil_temp_f - 32
     return {
@@ -1408,6 +1570,10 @@ def insulation_initial_temperature_differential(mean_annual_soil_temp_f) -> dict
     }
 
 
+@_u.labelled(
+    {"mean_annual_air_temp_f": "degF",
+     "mean_annual_soil_temp_f_estimate": "degF"},
+    si={"mean_annual_air_temp_f": ("degC", "degF")})
 def insulation_mean_soil_temperature_estimate(mean_annual_air_temp_f) -> dict:
     """Approximate mean annual soil temperature from mean annual air
     temperature (Appendix D, Section D-3; pdf_page_index 204, printed 185).
@@ -1418,12 +1584,19 @@ def insulation_mean_soil_temperature_estimate(mean_annual_air_temp_f) -> dict:
     ----------
     mean_annual_air_temp_f : float
         Mean annual air temperature, degrees Fahrenheit.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mean_annual_air_temp_f in degC, each converted exactly to the printed
+        unit (degF) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mean_annual_air_temp_f', 'mean_annual_soil_temp_f_estimate',
          'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     t_soil = mean_annual_air_temp_f + 7
     return {
