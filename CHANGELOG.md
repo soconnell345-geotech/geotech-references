@@ -84,6 +84,13 @@ pages):
   curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
   1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
   every Dsg).
+- `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
+  14-1, printed 41, coded as hr = hd - reduction(S) from the two worked
+  examples): hd outside the plain-concrete scale (6-30 in), an hr outside
+  the reinforced-concrete scale (6-30 in), and S outside the worked
+  examples' 0.10-0.30 % are refused. The reduction used to be held at its
+  end value past them (below S 0.10 that gives a thinner hr than less steel
+  would), and hd 3 in gave hr 2.1.
 - `aashto_1993.composite_k.relative_damage_rigid` (Figure 3.5, printed
   II-41, coded as a closed form fitted to the chart): D outside the curves
   drawn (6-14 in) or k outside the k axis (10-2,000 pci) is refused; the

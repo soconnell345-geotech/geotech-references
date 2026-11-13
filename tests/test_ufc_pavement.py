@@ -831,6 +831,22 @@ class TestFigure14_1:
         with pytest.raises(ValueError, match="s_pct"):
             figure_14_1_reinforced_pavement_design(7.9, 0.60)
 
+    def test_off_the_nomograph_refused(self):
+        # REF-76 (fit sweep): Figure 14-1 (printed 41) scales hd and hr 6-30
+        # in; the reduction hd - hr is known only between the worked
+        # examples' S 0.10 and 0.30 %, and used to be held past them.
+        figure_14_1_reinforced_pavement_design(30.0, 0.10)
+        figure_14_1_reinforced_pavement_design(7.9, 0.20)
+        for hd in (5.9, 30.1, 40.0):
+            with pytest.raises(ValueError, match="plain-concrete thickness "
+                               r"scale, 6 to 30 in \(printed 41\)"):
+                figure_14_1_reinforced_pavement_design(hd, 0.10)
+        with pytest.raises(ValueError, match="reinforced-concrete thickness"):
+            figure_14_1_reinforced_pavement_design(6.5, 0.10)
+        for s_pct in (0.05, 0.09, 0.31, 0.50):
+            with pytest.raises(ValueError, match="worked examples"):
+                figure_14_1_reinforced_pavement_design(10.0, s_pct)
+
 
 class TestDistressModes:
     def test_cracking(self):

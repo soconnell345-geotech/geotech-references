@@ -1392,13 +1392,23 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
     Verified EXACTLY (hr, L) at hd=7.9, S=0.10, fs=60000 -> hr=7 in, L=49 ft;
     and hd=7.9, S=0.30, fs=60000 -> hr=6 in, L=97 ft raw (75 ft capped).
 
+    Refused (REF-76): hd outside the plain-concrete scale, 6-30 in; an hr
+    outside the reinforced-concrete scale, 6-30 in (printed 41); and S
+    outside 0.10-0.30 %, the two worked examples the reduction hd - hr is
+    taken from. The S scale runs 0.05-0.50 %, but the reduction there is
+    not read: it used to be held at its end value (0.9 in below S 0.10,
+    which gives a thinner hr than less steel would; 1.9 in above 0.30).
+    The As scale (0.10-1.00 sq in/ft) is not checked: As = S x 12 x hr is
+    computed, and the manual's own example at S 0.10 gives 0.084.
+
     Parameters
     ----------
     hd_in : float
-        Design thickness of plain concrete pavement, inches. Must be > 0.
+        Design thickness of plain concrete pavement, inches, 6 to 30 (the
+        plain-concrete scale of Figure 14-1).
     s_pct : float
-        Percent of longitudinal reinforcing steel. Must be in [0.05, 0.50]
-        (the plotted range of Figure 14-1's S scale).
+        Percent of longitudinal reinforcing steel, 0.10 to 0.30 (above;
+        Figure 14-1's S scale runs 0.05-0.50).
     fs_psi : float, optional
         Yield strength of the reinforcing steel, psi. Default 60,000 (the
         value built into the printed nomograph).
@@ -1414,7 +1424,9 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
     Raises
     ------
     ValueError
-        If hd_in <= 0, fs_psi <= 0, or s_pct is outside [0.05, 0.50].
+        If fs_psi <= 0, hd_in is outside 6-30 in, s_pct is outside 0.05-0.50
+        (the S scale) or 0.10-0.30 (the worked examples), or hr falls
+        outside 6-30 in.
     """
     if hd_in <= 0:
         raise ValueError(f"hd_in must be > 0, got {hd_in}")
@@ -1422,9 +1434,27 @@ def figure_14_1_reinforced_pavement_design(hd_in, s_pct, fs_psi=60_000) -> dict:
         raise ValueError(f"fs_psi must be > 0, got {fs_psi}")
     if not (0.05 <= s_pct <= 0.50):
         raise ValueError(f"s_pct must be in [0.05, 0.50], got {s_pct}")
+    if not 6.0 <= hd_in <= 30.0:
+        raise ValueError(
+            f"hd = {hd_in:g} in is outside Figure 14-1's plain-concrete "
+            "thickness scale, 6 to 30 in (printed 41); the nomograph gives "
+            "no hr there.")
+    if not _FIG_14_1_S_PCT[0] <= s_pct <= _FIG_14_1_S_PCT[-1]:
+        raise ValueError(
+            f"S = {s_pct:g} % is outside 0.10-0.30 %: the reduction hd - hr "
+            "is taken from the manual's two worked examples (Appendix G, "
+            "G-6: S 0.10 % gives 0.9 in, S 0.30 % gives 1.9 in, at hd 7.9 "
+            "in), and the library does not read it past them. Figure 14-1's "
+            "S scale runs 0.05-0.50 % (printed 41): read the nomograph.")
 
     delta = _linterp(s_pct, _FIG_14_1_S_PCT, _FIG_14_1_DELTA_IN)
     hr = max(hd_in - delta, 0.5 * hd_in)  # sanity floor; chart never halves hd
+    if not 6.0 <= round(hr, 2) <= 30.0:
+        raise ValueError(
+            f"hr = {hr:.2f} in (hd {hd_in:g} in less {delta:.2f} in at S "
+            f"{s_pct:g} %) is outside Figure 14-1's reinforced-concrete "
+            "thickness scale, 6 to 30 in (printed 41); the nomograph gives "
+            "no hr there.")
     as_sq_in_ft = (s_pct / 100.0) * 12.0 * hr
 
     l_result = reinforced_pavement_max_slab_length(hr, fs_psi, s_pct)
