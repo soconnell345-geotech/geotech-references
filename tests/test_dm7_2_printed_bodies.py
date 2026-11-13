@@ -20,6 +20,7 @@ from pathlib import Path
 import pytest
 
 from geotech_references import _retrieval, _retrieval_db
+from tests._build_reader import require_build_reader
 
 REF = "dm7_2"
 ROOT = Path(__file__).resolve().parents[1]
@@ -482,13 +483,46 @@ def _builder():
 
 def test_rebuild_reproduces_the_committed_bodies():
     # the typed formula lines, notes and kept tables live in the manifest,
-    # so a rebuild from the PDF gives the committed files back
+    # so a rebuild from the PDF gives the committed files back, under the
+    # PDF reader the manifest records (tests/_build_reader.py)
+    require_build_reader("dm7_2_bodies")
     builder = _builder()
     chapters, report = builder.build_chapters(sorted(BUILT))
     assert report == [], report
     for stem, data in chapters.items():
         committed = (TEXT / f"{stem}.json").read_text(encoding="utf-8")
         assert builder.chapter_json(data) == committed, stem
+
+
+# --- symbols a text layer loses ---------------------------------------------
+# The PDF sets brace and bracket pieces of its equation objects in the Symbol
+# font's private-use area (U+F8EB to U+F8FB) and a few table marks in
+# Wingdings and MT Extra; none of them belongs in a body. A raised span is
+# stored as a superscript character ("10⁻³") or, where Unicode has none, as
+# "^(...)" (a decimal exponent, "mm^(0.45)"); an ordinal, a degree sign or a
+# registered mark printed raised is stored as plain text ("19th", "30°").
+
+@pytest.mark.parametrize("stem", sorted(p.stem for p in TEXT.glob("*.json")))
+def test_no_private_use_or_replacement_character_in_a_body(stem):
+    bad = [f"{s['section_id']}: {m.group(0)!r} in {s['body'][max(0, m.start() - 30):m.end() + 10]!r}"
+           for s in _chapter(stem)["sections"]
+           for m in re.finditer(r"[-�]", s.get("body", ""))]
+    assert bad == []
+
+
+@pytest.mark.parametrize("stem", sorted(BUILT))
+def test_raised_ordinals_and_degree_signs_stored_as_printed(stem):
+    bad = [f"{sid}: {m.group(0)!r}" for sid, s in _sections(stem).items()
+           for m in re.finditer(r"\^\((?:th|st|nd|rd|o|O|®)\)|\d ?\^\(", s["body"])
+           if not re.match(r"\d ?\^\(\d+\.\d+\)", m.group(0) + s["body"][m.end():m.end() + 8])]
+    assert bad == []
+    secs = _sections(stem)
+    if stem == "chapter02":
+        assert "every 5th pile" in secs["2-4.3.1"]["body"]       # p. 72
+    if stem == "chapter05":
+        assert "angle of 30° from" in secs["5-2.5"]["body"]      # p. 281
+    if stem == "chapter02":
+        assert "about 10⁻³ cm/sec" in secs["2-6.2"]["body"]      # p. 99
 
 
 # --- scatter patterns (build rule 2a) ---------------------------------------

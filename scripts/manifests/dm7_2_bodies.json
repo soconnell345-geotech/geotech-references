@@ -1,6 +1,10 @@
 {
  "_about": "Manifest of scripts/build_dm72_bodies.py (app BACKLOG REF-94): UFC 3-220-20 section bodies from the printed pages. Keys: chapters (PDF pages, stop_headings, built), footnotes and table_notes (the strings the earlier bodies held, read against the print), equation_formulas (the words of each checked equations entry that are its formula), formulas (unnumbered formula lines typed in from a 300 dpi render, key printed-page@height), lines (prose lines typed in from the render), typed_tables and typed_blocks (tables the earlier bodies held typed in, kept), notes (the earlier bodies' notes on the print's slips, put back after the same words), fixes (each with its page and why).",
  "package": "dm7_2",
+ "text_build": "printed bodies (scripts/build_dm72_bodies.py)",
+ "built_with": {
+  "pymupdf": "1.27.2.3"
+ },
  "pdf": "ufc_3_220_20_2025.pdf",
  "page_offset": 38,
  "chapters": {
@@ -707,6 +711,18 @@
    "find": "γ ʹ = effective unit weight",
    "replace": "γʹ = effective unit weight",
    "why": "p. 458: the prime is set on the gamma; the text layer parts them."
+  },
+  {
+   "section": "2-4.3.1",
+   "find": "every 5^(th) pile",
+   "replace": "every 5th pile",
+   "why": "p. 72 prints the ordinal's th raised."
+  },
+  {
+   "section": "2-4.4",
+   "find": "the mid-20^(th) century",
+   "replace": "the mid-20th century",
+   "why": "p. 76 prints the ordinal's th raised."
   }
  ],
  "row_kinds": {

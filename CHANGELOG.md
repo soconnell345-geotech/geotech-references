@@ -170,9 +170,26 @@ sentence before it and Eq. 5-3 give qgross (p. 275); the left side of Eq.
 the notation's Pn "Load at failure in" (p. 504); GEC 13 given GEC 12's
 number FHWA-NHI-16-009 (p. 507). Old sentences the print does not have (a
 paraphrase or a condensed table) were dropped; none held a number, limit or
-requirement the stored print lacks. Tests: `tests/test_dm7_2_printed_bodies.py`
-(the rebuild reproduces the committed files, printed sentences on their
-pages, no scattered formula pieces); body rows of
+requirement the stored print lacks. The manifest records the PDF reader the
+bodies were built with (`"built_with": {"pymupdf": "1.27.2.3"}`, with
+`"text_build"`, so `tests/test_build_reader.py` checks it). The symbols a
+text layer can lose were checked on the body pages: of the PDF's fonts
+(Arial, Times New Roman, Symbol, Courier New for the "o" sub-bullets, and
+Calibri, Wingdings, MT Extra, Cambria Math, Corbel in tables and the
+notation), the PDF's 587 private-use characters are the Symbol font's
+brace and bracket pieces in equation objects, Wingdings check marks in
+table cells and one MT Extra degree ring (the prologue's example, typed
+from the page as "20.6°"), none in a stored row; the 109 raised spans of
+stored rows (footnote marks, powers of ten such as 10⁻³ and 2.1×10⁻³ yr⁻¹,
+2⁻ⁿ, N*c, ordinals, a degree sign, a registered mark) were compared with
+300 dpi renders, and the 11 spans PyMuPDF flags as superscript at full size
+are subscripted symbols (su, δe, yt), rightly left in line. Two ordinals of
+chapter 2 stored as "5^(th)" and "mid-20^(th)" are now "5th" and "20th";
+"#200 sieve", "#18" bars and "$10,000" are printed so. Tests:
+`tests/test_dm7_2_printed_bodies.py` (the rebuild reproduces the committed
+files under the recorded reader, printed sentences on their pages, no
+scattered formula pieces, no private-use or replacement character in any
+DM 7.2 body, no raised ordinal or degree sign left as "^(...)"); body rows of
 `tests/test_dm7_2_text_equations.py` take the "[Eq. N]" form.
 
 **Build of 2026-11-12: every figure-catalog row stores the page number its

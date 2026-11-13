@@ -49,7 +49,8 @@ jobs:
       #
       # To move the build reader on purpose: install the new version,
       # rebuild every script-built reference (python
-      # scripts/build_printed_text.py <package>), read each difference in
+      # scripts/build_printed_text.py <package>, and python
+      # scripts/build_dm72_bodies.py for DM 7.2), read each difference in
       # the chapter files against the rendered page, and in one commit
       # record the new version in every script-built manifest and in the
       # pin below (tests/test_build_reader.py checks they agree).
