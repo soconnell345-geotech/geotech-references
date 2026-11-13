@@ -105,3 +105,12 @@ class TestDesignDoublyReinforced:
                                       h=34.0, b=12.0, fc_prime=4.0, fy=60.0)
         assert r["as_required"] > 0
         assert r["as_prime_required"] > 0
+
+    def test_non_physical_bound_refused(self):
+        # REF-76: fs' is held at fy; fy, Es or ec not positive is refused.
+        for kw in ({"fy": -60.0}, {"es": 0.0}, {"ec": -0.003}):
+            args = dict(mn=8000.0, pn=0.0, d=30.0, dprime=3.0, h=34.0,
+                        b=12.0, fc_prime=4.0, fy=60.0)
+            args.update(kw)
+            with pytest.raises(ValueError, match="must be > 0"):
+                design_doubly_reinforced(**args)

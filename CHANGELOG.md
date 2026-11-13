@@ -136,7 +136,13 @@ pages):
 - `em_2104.flexure_axial.compression_controlled_capacity_doubly`: fy, Es
   or the concrete strain not positive is refused (they set the -fy..fy
   bound on the tension steel stress, the yield limit Eqs B-31 and B-37
-  print for fs', printed pp. 47-48).
+  print for fs', printed pp. 47-48). The same for
+  `compression_controlled_capacity_singly` (fs held at -fy) and
+  `design.design_doubly_reinforced` (fs' held at fy).
+  `compression_steel_stress_at_ku`, which bounds fs' for the doubly
+  reinforced functions, also refuses ku or beta1 not positive, beta1 above
+  1, d'/d outside 0 to 1, and for Eq B-31 ku not below beta1 (its
+  denominator).
 - `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
   unchanged past the end rows, which are printed open-ended ("<= 0.0" /
   ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as

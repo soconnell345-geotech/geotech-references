@@ -252,6 +252,11 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
          'equation': 'D-3/D-4/D-6/D-7', ...}
     """
     from .flexure_axial import aci_beta1
+    # REF-76: fs' is held at fy below; an fy, Es or ec no steel or
+    # concrete has is refused rather than used as that bound.
+    for name, val in (("fy", fy), ("es", es), ("ec", ec)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
     if beta1 is None:
         beta1 = aci_beta1(fc_prime)
     kd_result = kd_table_d1(rho_over_rho_b, beta1, fy, es, ec)

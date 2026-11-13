@@ -408,7 +408,15 @@ def compression_controlled_capacity_singly(e_prime_over_d, rho, fy, fc_prime,
     -------
     dict
         {'ku', 'fs', 'phi_pn', 'phi_mn', 'equation': 'B-17/B-18/B-19/B-21', ...}
+
+    Raises
+    ------
+    ValueError
+        If fy, es or ec is not positive (REF-76: fs is held at -fy).
     """
+    for name, val in (("fy", fy), ("es", es), ("ec", ec)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
     esec = es * ec
     coeffs = [
         1.0,
@@ -495,7 +503,35 @@ def compression_steel_stress_at_ku(ku, dprime_over_d, beta1, fy,
     regime : str, optional
         'tension_controlled' (Eq B-31, uses Es*epsilon_y; default) or
         'compression_controlled' (Eq B-37, uses Es*ec).
+
+    Raises
+    ------
+    ValueError
+        REF-76: fs' is bounded at fy (B-31, printed p. 47) or -fy (B-37,
+        printed p. 48), so an input no section can have is refused rather
+        than bounded: fy, es, ec, ku or beta1 not positive; beta1 above 1;
+        d'/d outside 0 to 1 (the compression steel lies between the
+        compression face and the tension steel); and for B-31, ku not below
+        beta1 (its denominator; the neutral axis would be at or below the
+        tension steel).
     """
+    for name, val in (("fy", fy), ("es", es), ("ec", ec), ("ku", ku),
+                      ("beta1", beta1)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
+    if beta1 > 1.0:
+        raise ValueError(f"beta1 must be at most 1 (ACI 318-19 beta_1 is "
+                         f"0.65 to 0.85), got {beta1}")
+    if not 0.0 < dprime_over_d < 1.0:
+        raise ValueError(
+            f"dprime_over_d must be between 0 and 1 (d' is the depth of the "
+            f"compression steel, d that of the tension steel), got "
+            f"{dprime_over_d}")
+    if regime == "tension_controlled" and ku >= beta1:
+        raise ValueError(
+            f"Eq B-31 needs ku below beta1 (its denominator beta1 - ku; the "
+            f"neutral axis above the tension steel), got ku={ku}, "
+            f"beta1={beta1}")
     if regime == "tension_controlled":
         ey = fy / es
         fs_prime = (ku - beta1 * dprime_over_d) / (beta1 - ku) * es * ey

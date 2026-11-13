@@ -32,6 +32,7 @@ from geotech_references.em_2104.flexure_axial import (
     pure_tension_capacity,
     pure_flexure_singly,
     pure_flexure_doubly,
+    compression_steel_stress_at_ku,
 )
 
 
@@ -184,6 +185,40 @@ class TestDoublyReinforcedCompressionControlled:
         for kw in ({"fy": 0.0}, {"fy": -60.0}, {"es": 0.0}, {"ec": -0.003}):
             with pytest.raises(ValueError, match="must be > 0"):
                 self._call(**kw)
+
+
+class TestCompressionSteelStressInputs:
+    """REF-76: fs' is bounded at fy (B-31, printed p. 47) and -fy (B-37,
+    printed p. 48); inputs no section has are refused, not bounded."""
+
+    def test_physical_inputs_unchanged(self):
+        r = compression_steel_stress_at_ku(0.3, 0.15, 0.85, 60.0)
+        assert r["fs_prime"] == pytest.approx(
+            (0.3 - 0.85 * 0.15) / (0.85 - 0.3) * 60.0)
+        r = compression_steel_stress_at_ku(0.6, 0.15, 0.85, 60.0,
+                                           regime="compression_controlled")
+        assert r["fs_prime"] == pytest.approx(
+            max(-60.0, 29000.0 * 0.003 * (0.6 - 0.85 * 0.15) / 0.6))
+
+    @pytest.mark.parametrize("kw, words", [
+        ({"dprime_over_d": 30.0}, "between 0 and 1"),
+        ({"dprime_over_d": 0.0}, "between 0 and 1"),
+        ({"fy": -60.0}, "fy must be > 0"),
+        ({"ku": 0.0}, "ku must be > 0"),
+        ({"beta1": 1.2}, "at most 1"),
+        ({"ku": 0.9}, "ku below beta1"),
+    ])
+    def test_non_physical_refused(self, kw, words):
+        args = dict(ku=0.3, dprime_over_d=0.15, beta1=0.85, fy=60.0)
+        args.update(kw)
+        with pytest.raises(ValueError, match=words):
+            compression_steel_stress_at_ku(**args)
+
+    def test_singly_compression_controlled_refuses_bad_bound(self):
+        with pytest.raises(ValueError, match="fy must be > 0"):
+            compression_controlled_capacity_singly(
+                e_prime_over_d=0.5, rho=0.01, fy=-60.0, fc_prime=4.0, b=12.0,
+                d=20.0, h=24.0, phi=0.65, beta1=0.85)
 
 
 class TestPureFlexureSingly_AppendixC2:
