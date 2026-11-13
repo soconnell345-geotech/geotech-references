@@ -1502,6 +1502,18 @@ def find_lookups(package: str, rows: list[dict]) -> dict[str, list[str]]:
     return out
 
 
+def _plain_call(dotted: str) -> bool:
+    """False for a function that takes Python functions as inputs (it
+    carries ``needs_python_callables``): a caller with plain values cannot
+    run it, so it is not where a reader finds a table's values."""
+    mod, _, name = dotted.rpartition(".")
+    try:
+        fn = getattr(importlib.import_module(mod), name)
+    except (ImportError, AttributeError):
+        return True
+    return not getattr(fn, "needs_python_callables", False)
+
+
 def _short_path(package: str, dotted: str) -> str:
     """'geotech_references.gec_10.tables.table_8_4' -> 'tables.table_8_4'."""
     prefix = f"geotech_references.{package}."
@@ -2127,7 +2139,9 @@ def build_catalog(package: str, audit: "dict | None" = None,
                     cap = _plain_math(title)
                     break
         impl = [_short_path(package, p) for p in lookups.get(num, [])]
-        values, values_in = choose_values(rc, num, secs, impl,
+        plain = [_short_path(package, p) for p in lookups.get(num, [])
+                 if _plain_call(p)]
+        values, values_in = choose_values(rc, num, secs, plain,
                                           r.get("_coverage"))
         pages = [p["pdf_page_index"] for p in r.get("_pages") or []]
         rec = {
@@ -2154,6 +2168,10 @@ def build_catalog(package: str, audit: "dict | None" = None,
         if r.get("picture") or num in rc.get("pictures", ()):
             rec["printed_as_picture"] = True
         note = r.get("note") or rc.get("notes", {}).get(num)
+        if not note and values == "page" and impl and not plain:
+            note = (f"{impl[0]} codes this table for a Python caller: it "
+                    "takes functions as inputs, so a call with plain values "
+                    "cannot run it. Read the table off the page.")
         if not note and values == "page" and rc.get("dump_note"):
             # the body holds the text layer's cells of this table
             head = _norm(" ".join(re.findall(r"[A-Za-z0-9]+", cap)[:3]))

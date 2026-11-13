@@ -317,9 +317,9 @@ def test_a_number_on_several_table_rows(tmp_path, monkeypatch):
     assert h.table_flag("1.1") == "page: printed p. 1-2 (pdf_page_index 9)"
     assert h.table_flag("2-1", "2.2") == (
         "page: printed p. 2-5 (pdf_page_index 12) (one of 2 rows numbered "
-        "2-1: table_get needs pdf_page_index 12)")
+        "2-1: this row is at pdf_page_index 12)")
     assert h.table_flag("2-1", "9.9") == (
-        "text: 2.1 (one of 2 rows numbered 2-1: table_get needs "
+        "text: 2.1 (one of 2 rows numbered 2-1: this row is at "
         "pdf_page_index 11)")
     assert h.table_flag("2.1").startswith("text: 2.1 (one of 2 rows")
     sec = _reach.with_notes({"tables_held": {"2-1": h.table_flag("2-1")}})
@@ -1199,3 +1199,39 @@ def test_the_wheel_ships_every_data_file_the_code_reads():
                  f"dm7_1/{_reach.FIGURES_CATALOG}",
                  f"dm7_1/{_reach.TABLES_CATALOG}", "chapter_schema.json"):
         assert _shipped(name, globs), name
+
+
+def test_table_answers_name_no_tool_a_host_may_lack():
+    """``lookup_reference`` and ``table_get`` are this repository's agent
+    wrapper's names; the app's helper has other tools, and an older app
+    has no table tool at all."""
+    said = list(_reach.TABLE_ANSWERS.values()) + [
+        _tables_db.table_get("aashto_1993", "2.2")["how_to_read"]]
+    for text in said:
+        assert "lookup_reference" not in text, text
+        assert "table_get" not in text, text
+
+
+def test_no_lookup_row_names_a_function_plain_values_cannot_call():
+    """A function that takes Python functions as inputs
+    (``needs_python_callables``) is not where a reader finds a table's
+    values: its row is a page row that names it in a note."""
+    bad, n = [], 0
+    for cat in sorted(PKG.glob("*/tables_catalog.json")):
+        data = json.loads(cat.read_text(encoding="utf-8"))
+        rows = data["tables"] if isinstance(data, dict) else data
+        for row in rows:
+            if row.get("values") != "lookup":
+                continue
+            for path in str(row.get("values_in") or "").split(","):
+                n += 1
+                mod, _, name = (f"geotech_references.{cat.parent.name}."
+                                f"{path.strip()}").rpartition(".")
+                fn = getattr(importlib.import_module(mod), name)
+                if getattr(fn, "needs_python_callables", False):
+                    bad.append((cat.parent.name, row["table_number"], path))
+    assert n > 200
+    assert bad == []
+    row = _tables_db.table_get("aashto_1993", "3.1")
+    assert row["values"] == "page"
+    assert "performance_period_iteration" in row["note"]

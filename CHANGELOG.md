@@ -47,6 +47,22 @@ dense"; the page prints "Glacial Till (silt, sand, gravel) (medium-very
 dense, cemented)". The bond values were right and are unchanged (found by
 the independent check of the table catalogs, 2026-11-13).
 
+**What a fetch says about a table names no tool, and a function that takes
+Python functions is not a table's lookup (found while wiring the app's
+references helper, 2026-11-13).** The note of a fetched section said a
+lookup answer is called with `lookup_reference` and a page answer read
+with `table_get`, and `table_get`'s `how_to_read` named
+`lookup_reference`: names of this repository's own agent wrapper, which
+another host (the app) does not have. The note now says where the values
+are and leaves the tool to the host ("function F of this reference
+returns them", "only on that printed page"); a number on several rows
+answers "this row is at pdf_page_index N". AASHTO 1993 Table 3.1 was a
+`"lookup"` row naming `environmental.performance_period_iteration`, which
+takes Python functions as inputs (`needs_python_callables`), so no call
+with plain values can run it: the catalog builder no longer counts such a
+function as a table's lookup, and the row is a `"page"` row whose note
+names the function. `tests/test_reach.py` checks both.
+
 **Reach build of 2026-11-12: a fetched section says what it can reach
 (app BACKLOG REF-92, the owner's acceptance test: the references helper can
 reach everything it is told it has).** `reference_get` and
@@ -137,8 +153,8 @@ page-reading tool knew (it knew only the figure catalogs).
   as printed, its chapter, the section that lists it, the PDF page it
   starts on and every page it runs on, the printed page, and where its
   values are: `"text"` (every cell its page prints typed in a stored
-  section, 542 rows), `"lookup"` (a coded function returns them, 255 rows)
-  or `"page"` (only on the printed page, 1,302 rows). A table typed into the
+  section, 542 rows), `"lookup"` (a coded function returns them, 254 rows)
+  or `"page"` (only on the printed page, 1,303 rows). A table typed into the
   text that also has a function is a `"text"` row that names the function
   (`implemented_in`). Built by `scripts/build_table_catalog.py` from the List of Tables,
   the captions on body pages and every section's `tables` entries; no API.

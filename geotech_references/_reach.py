@@ -105,7 +105,11 @@ NOT_HELD_NOTE = ("not_held names parts of this same document that the text "
                  "values): do not quote or cite them as if they had been "
                  "read.")
 #: What each answer of the held maps means, for the fetch's ``note``; only
-#: the answers a fetch carries are explained (:func:`reach_note`).
+#: the answers a fetch carries are explained (:func:`reach_note`). The table
+#: answers name no tool: a host calls a coded function and reads a table's
+#: page with tools of its own names, and a host without them must not be
+#: told it has them (``reference_get`` and ``figure_get`` are names every
+#: host of this library has).
 FIGURE_ANSWERS = {
     "catalog": "'catalog': figure_get finds it and its page",
     "rows": "'N rows': give figure_get the pdf_page_index",
@@ -115,10 +119,9 @@ FIGURE_ANSWERS = {
 }
 TABLE_ANSWERS = {
     "text": "'text: S': typed in section S (reference_get)",
-    "lookup": "'lookup: F': function F returns them (lookup_reference)",
-    "page": "'page': only on that printed page (table_get)",
-    NOT_CATALOGUED: "'not catalogued': no catalog row, table_get cannot "
-                    "fetch it",
+    "lookup": "'lookup: F': function F of this reference returns them",
+    "page": "'page': only on that printed page",
+    NOT_CATALOGUED: "'not catalogued': the table catalog has no row for it",
 }
 #: Said once when an answer names a page to read.
 PAGE_NOTE = "Pages are readable only where the PDF is on this host."
@@ -585,7 +588,7 @@ class Holdings:
         exactly as the section lists it; of those, the row filed under the
         listing section ``section_id``, else the first in the catalog. When
         more than one row was left the answer says so: "(one of 2 rows
-        numbered 1-1: table_get needs pdf_page_index 32)"."""
+        numbered 1-1: this row is at pdf_page_index 32)"."""
         rows = self.table_rows.get(table_key(number), [])
         if not rows:
             return NOT_CATALOGUED
@@ -599,7 +602,7 @@ class Holdings:
         if len(rows) > 1 and answer != NOT_CATALOGUED:
             page = row.get("pdf_page_index")
             answer += (f" (one of {len(rows)} rows numbered {number}: "
-                       f"table_get needs pdf_page_index {page})")
+                       f"this row is at pdf_page_index {page})")
         note = row.get("note")
         if (answer.startswith("page:") and isinstance(note, str)
                 and NOTE_SECTION_RE.search(note)):

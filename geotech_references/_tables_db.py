@@ -430,8 +430,8 @@ def _how_to_read(rec: dict) -> str:
         return (f"Its cells are typed in section {rec['values_in']} of "
                 f"{rec['reference']} (reference_get).")
     if rec["values"] == VALUES_LOOKUP:
-        return (f"A coded lookup returns it: {rec['values_in']} "
-                f"(lookup_reference on {rec['reference']}).")
+        return (f"A coded lookup of {rec['reference']} returns it: "
+                f"{rec['values_in']}.")
     pages = rec.get("pages") or [rec["pdf_page_index"]]
     where = ("page index " + str(pages[0]) if len(pages) == 1 else
              "page indexes " + ", ".join(str(p) for p in pages))

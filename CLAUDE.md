@@ -307,8 +307,8 @@ page-reading tool only knew the figure catalogs).
   14,000-character size.
 - **Coverage (build of 2026-11-13, on the text as merged)**: 31
   references, 2,099 rows: 542 text (485 by the cell check, 57 read
-  against the render), 255 lookup, 1,302 page. Rows (text/lookup/page):
-  aashto_1993 29 (0/14/15), california_trenching 39 (0/7/32), dm7_1 139
+  against the render), 254 lookup, 1,303 page. Rows (text/lookup/page):
+  aashto_1993 29 (0/13/16), california_trenching 39 (0/7/32), dm7_1 139
   (0/7/132), dm7_2 172 (18/16/138), em_1905 109 (52/6/51), em_2104 27
   (0/10/17), em_2107 38 (0/4/34), eurocode_7_1 20 (0/18/2), eurocode_7_2
   38 (37/0/1), fema_p2082 52 (0/3/49), fhwa_pavements 153 (44/4/105),
@@ -522,7 +522,10 @@ has something in it (`_reach.py`):
   ('.' and '-' read alike only when none is: GEC-11's Volume I Table 1-1
   and Volume II Table 1.1 stay apart), of those the row filed under the
   listing section, else the first in the catalog, and says so: "(one of 2
-  rows numbered 2-1: table_get needs pdf_page_index 12)". A page answer
+  rows numbered 2-1: this row is at pdf_page_index 12)". The answers and
+  the note name no tool for a table (a host calls a coded function and
+  reads a page with tools of its own names; a host without them must not
+  be told it has them). A page answer
   whose row has a `note` naming the section that holds part of the table
   (`_reach.NOTE_SECTION_RE`) carries the note: "page: printed p. 3-22
   (pdf_page_index 125); note: Section 3.5.1 carries this table's cells
