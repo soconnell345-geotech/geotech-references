@@ -679,45 +679,67 @@ def table_3_11_pet_durability(product: str = "") -> list:
 # Table 4-1: LRFD Load Combinations
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 4-1, p. 4-4 (PDF page 146): where the table
+# prints a dash, the cell is the dash, not 0.0 (the print gives no factor
+# there; the checker of 2026-11-12 found the dashes coded as 0.0).
+_DASH = "–"
+_TABLE_4_1_DASH_NOTE = (
+    "'–' is the cell as printed in Table 4-1 (p. 4-4): the table gives no "
+    "load factor for that load in that limit state. EQ and CT are headed "
+    "'use one of these at a time'.")
+
 _TABLE_4_1 = [
     {
         "limit_state": "Strength I",
         "EH_ES_EV": "gamma_p",
         "LL_LS": 1.75,
-        "EQ": 0.0,
-        "CT": 0.0,
+        "EQ": _DASH,
+        "CT": _DASH,
         "notes": "Normal gravity loading",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Extreme Event I",
         "EH_ES_EV": "gamma_p",
         "LL_LS": "gamma_EQ",
         "EQ": 1.00,
-        "CT": 0.0,
+        "CT": _DASH,
         "notes": ("gamma_EQ = load factor for live load applied "
                   "simultaneously with seismic loads (Table 4-1 note)"),
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Extreme Event II",
         "EH_ES_EV": "gamma_p",
         "LL_LS": 0.50,
-        "EQ": 0.0,
+        "EQ": _DASH,
         "CT": 1.00,
         "notes": "Vehicle collision on traffic barrier",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
         "limit_state": "Service I",
         "EH_ES_EV": 1.00,
         "LL_LS": 1.00,
-        "EQ": 0.0,
-        "CT": 0.0,
+        "EQ": _DASH,
+        "CT": _DASH,
         "notes": "Settlement and lateral deformation check",
+        "print_note": _TABLE_4_1_DASH_NOTE,
     },
 ]
 
 
 def table_4_1_load_combinations(limit_state: str = "") -> list:
-    """Look up LRFD load combinations from GEC-11 Table 4-1.
+    """Look up LRFD load combinations from GEC-11 Table 4-1 (FHWA-NHI-10-024 Vol I, p. 4-4).
+
+    The cells are as printed: numbers; ``"gamma_p"`` and ``"gamma_EQ"`` for
+    the printed gamma-p (load factor for permanent loading, Table 4-2) and
+    gamma-EQ (load factor for live load applied simultaneously with seismic
+    loads); and ``"–"`` where the table prints a dash, since it gives no
+    factor for that load in that limit state (it is not turned into 0.0).
+    EQ and CT are headed "use one of these at a time". ``notes`` is the
+    library's description of each limit state, except Extreme Event I's,
+    which is the printed note on gamma-EQ.
 
     Parameters
     ----------
@@ -727,7 +749,7 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
     Returns
     -------
     list of dict
-        Load factor combinations by limit state.
+        Load factor combinations by limit state, each with ``print_note``.
     """
     if not limit_state:
         return list(_TABLE_4_1)

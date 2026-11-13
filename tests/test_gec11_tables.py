@@ -475,6 +475,27 @@ class TestTable41:
         with pytest.raises(ValueError, match="Service I"):
             table_4_1_load_combinations("strength ii")
 
+    def test_cells_as_printed_dashes_kept(self):
+        """Every cell agrees with Table 4-1 as typed in from p. 4-4 (the
+        chapter text): the printed dashes are dashes, not 0.0."""
+        import json
+        from pathlib import Path
+        ch4 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter04.json"
+        body = "\n".join(s["body"] for s in json.loads(
+            ch4.read_text(encoding="utf-8"))["sections"])
+        typed = body.split("[Table 4-1, typed in from p. 4-4, row by row:]\n")[1]
+        rows = [ln.split(" | ") for ln in typed.split("\n")[1:5]]
+        sym = {"γp": "gamma_p", "γEQ": "gamma_EQ", "–": "–"}
+        for printed, row in zip(rows, table_4_1_load_combinations()):
+            assert printed[0] == row["limit_state"].upper()
+            for cell, key in zip(printed[1:], ("EH_ES_EV", "LL_LS", "EQ", "CT")):
+                expect = sym[cell] if cell in sym else float(cell)
+                assert row[key] == expect, (row["limit_state"], key)
+            assert "use one of these at a time" in row["print_note"]
+        assert sum(r[k] == "–" for r in table_4_1_load_combinations()
+                   for k in ("EQ", "CT")) == 6
+
 
 # ============================================================================
 # Table 4-2: Permanent Load Factors

@@ -4,6 +4,14 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**GEC-11 lookups compared with the page after the review merge (REF-80).**
+Of the five a checker found differing from the print, Tables 2-1, 4-4 and
+4-7 were already as printed on the integration branch; the others:
+- `table_4_1_load_combinations` (p. 4-4): the printed dashes are returned
+  as "–", not 0.0 (Strength I EQ and CT, Extreme Event I CT, Extreme
+  Event II EQ, Service I EQ and CT), each row with a `print_note`; a test
+  checks every cell against the table as typed in the chapter text.
+
 **GEC-11 (FHWA-NHI-10-024 / -025, November 2009) chapter text rebuilt from
 the print (build, REF-80).** The 11 chapter files were a condensed
 paraphrase, 183 sections, with content the print does not carry; the
