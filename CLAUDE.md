@@ -39,7 +39,7 @@ geotech_references/           # Python package (pip install -e .)
     figures_catalog.json       # 252 figures (incl. P-* prologue, B-* appendix; e.g. Fig 4-12 log-spiral Ka/Kp)
   gec_6/                       # FHWA-SA-02-054 Shallow Foundations
     tables.py, figures.py
-    text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction)
+    text/                      # Structured chapter JSON (10 chapters, body-only — manifest ready for full-schema re-extraction) + Appendix B (chapter 12; REF-85)
   gec_7/                       # FHWA-NHI-14-007 Soil Nail Walls
     tables.py                  # 13 table lookup functions (bond, pullout, resistance factors, seismic)
     figures.py                 # 2 figure lookup functions (friction angle vs SPT, basal heave Nc)
@@ -139,7 +139,7 @@ Tests: the tests in each package's own test files (`tests/test_gec6_*.py`, `test
 
 | Module | Reference | Functions | Tests | Text Chapters |
 |--------|-----------|-----------|-------|---------------|
-| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
+| gec_6 | FHWA-SA-02-054 Shallow Foundations | 13 | 121 | 10 chapters body-only; manifest ready. Appendix B (the five design examples, Tables B1-1 to B5-1, sections B.n.5 to B.n.12 as the print numbers the steps, Step 11a stored as B.n.11.a) built from the print 2026-11-12 (REF-85) as chapter 12 (`appendix_b.json`); chapter 11 left for Appendix A (structural fill specifications), not built. Figure catalog 86 rows, Appendices B and C's 29 figures added 2026-11-10 (REF-84) |
 | gec_7 | FHWA-NHI-14-007 Soil Nail Walls | 15 | 101 | All 10 chapters with equations, figures and tables; ch 1-5 rebuilt from the print, ch 6-10 checked against the print page by page (REF-04, 2026-10-30). Appendices B (preliminary design charts, Equations B.1 to B.8) and C (design example, Tables C.1 to C.5, sections C.1 to C.8.b as the print numbers its steps) built from the print 2026-11-12 (REF-85) as chapters 12 and 13 (`appendix_b.json`, `appendix_c.json`); chapter 11 left for Appendix A (reinforcement tables); D-G (plans, specifications, similar technologies) not built. Figure catalog 89 rows, 3.22 and Appendices A, B, C and G added 2026-11-10 (REF-84) |
 | gec_10 | FHWA-NHI-18-024 Drilled Shafts (2018) | 12 | 427 | All 18 chapters complete (ch 1-18); ch 6 and 8 rewritten from the print 2026-11-10 (REF-81): bodies in the print's wording with page markers, Tables 6-1 to 6-3 and 8-1 to 8-4 and Eq. 8-1 typed in from the page; printed 8.1 (Blocks 1 to 22) stored as 8.1 and parts 8.1.a to 8.1.d, the letters not printed. Appendices A, B, C, G and H built from the print 2026-11-10 (REF-85) as chapters 19, 20, 21, 25 and 26 (`appendix_a.json` ...): the design example, challenging geomaterials, axial load-deformation (Eqs. C-1 to C-42), alternative lateral models (Eqs. G-1 to G-20), post-grouted shafts; App D-F (specification, checklist, forms) not built, chapters 22-24 left for them |
 | gec_11 | FHWA-NHI-10-024 MSE Walls & Slopes | 17 | 136 | All 11 chapters complete (ch 1-11) |

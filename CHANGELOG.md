@@ -1387,10 +1387,36 @@ printed).
   603 kN for 602 (p. D-21); the cone's nominal strength line carrying φ
   (p. D-18); Acasing, Icasing, Pc-allowable and Mmax(joint) of pp. E-1 and
   E-4 (0.00863 for 0.008624 m², 2,479 for 2,479.6 kN, 19.2 for 19.1 kN-m).
+- **GEC-6 (FHWA-SA-02-054)**, new: Appendix B, the five design examples
+  (chapter 12, pp. B-1 to B-90: an interior pier and a stub abutment on
+  natural soil, a stub abutment on structural fill, a full-height abutment
+  and an interior pier on rock), stored as B (introduction), B.n for each
+  example and B.n.5 to B.n.12 for its printed Steps 5 to 12 (Step 11a as
+  B.n.11.a; Example 4's footing-sizing Steps 10 and 11 for its three load
+  cases as B.4.10.a to B.4.11.c); Tables B1-1 to B5-1 and every
+  calculation line typed in from 200 dpi renders; the EMBANK output of
+  Figure B3-4 typed into its figure line. Chapter 11 is left for Appendix A
+  (structural fill specifications) and chapter 13 for Appendix C (LRFD),
+  neither built yet. Kept as printed and noted: MY with (L + I) but L
+  alone in its numbers (p. B-6); Eqns. 5-10 and 5-11 cited for the ground
+  water factors, printed as Eqns. 5-9 and 5-10 (p. B-9), and Section 5.2
+  cited for settlement (5.3; p. B-7); 8070 k and 4729 k for kN (pp. B-14, B-15,
+  B-88); results a little off their own terms (164.1, 280.7, 0.0160 m, 338 kN,
+  1787 and 2645 kN-m, 1013 kN, 293.54 and 179.4 kN/m); (425.52)(2.28) for
+  a division (p. B-33); Figure B3-4 cited five times for the allowable
+  pressures of B3-5; ey = 0.53 m < 0.45 m "(No Good)" (p. B-55); 288 Pa
+  for kPa (p. B-80); Table B3-2 for B4-1 (p. B-81); (1/4)(4.3) = 1.01 for
+  1.075 (p. B-88); the rock settlement with Bf = 1 m for a 1.8-m footing
+  (p. B-89); shale ν = 0.14 where Table 5-13 gives a mean of 0.09 (p.
+  B-70) and granite 52 x 10⁶ kPa where Table 5-14 gives 52.67 (p. B-89).
+  The coded Table 5-1, 5-7, 5-12, 5-13, 5-14 and 5-15 lookups give the
+  values the examples read; Figure 5-19 within 2 and Figure 4-1 within 3.5
+  of the examples' readings.
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),
-`tests/test_micropile_appendices_printed.py` (74).
+`tests/test_micropile_appendices_printed.py` (74),
+`tests/test_gec6_appendices_printed.py` (69).
 
 ## 1.6.0
 
