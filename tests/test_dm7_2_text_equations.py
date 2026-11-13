@@ -86,8 +86,10 @@ PRINTED = [
     ("chapter04.json", "4-9", "Table 4-7, Slippage between Sheeting and Cell Fill",
      "F = [3B(PW + PA)tanδ + PP·HB] / (PW·H + PA·He)", None),
     ("chapter04.json", "4-9", "Table 4-7, Shear Failure on Centerline of Cell", "Q = 3M / (2B)", None),
-    # Eq. 5-5 to 5-7, PDF p. 314-315 (printed 276-277): absolute values
-    ("chapter05.json", "5-2.3", "body", "|eB| ≤ B/6  or  |eL| ≤ L/6", None),
+    # Eq. 5-5 to 5-7, PDF p. 314-315 (printed 276-277): absolute values (the
+    # bodies print each numbered equation as "[Eq. 5-5]" and the formula its
+    # checked entry states, REF-94)
+    ("chapter05.json", "5-2.3", "body", "[Eq. 5-5] |eB| ≤ B/6 or |eL| ≤ L/6", None),
     ("chapter05.json", "5-2.3", "body", "6|eB|/B + 6|eL|/L ≤ 1", "eB/B + eL/L ≤ 1/6"),
     ("chapter05.json", "5-2.3", "body", "(1 ± 6|eB|/B ± 6|eL|/L)", None),
     ("chapter05.json", "5-2.3", "Eq. 5-6", "6|eB|/B + 6|eL|/L ≤ 1", None),
@@ -96,10 +98,10 @@ PRINTED = [
     ("chapter05.json", "5-3.3.3", "Eq. 5-21", "(1 + sc + dc − ic − bc − gc)", "+ ic"),
     ("chapter05.json", "5-3.3.3", "kp", "(1 + sc + dc − ic − bc − gc)", "+ ic"),
     # Eq. 5-34, PDF p. 359 (printed 321), in 5-4.2.1
-    ("chapter05.json", "5-4.2.1", "body", "λ = ⁴√[ ks·B / (4Ec·I) ]", None),
+    ("chapter05.json", "5-4.2.1", "body", "[Eq. 5-34] λ = ⁴√[ks·B/(4Ec·I)]", None),
     ("chapter05.json", "5-4.2.1", "Eq. 5-34", "λ = ⁴√[ks·B/(4Ec·I)]", None),
     # Eq. 5-39, PDF p. 368 (printed 330)
-    ("chapter05.json", "5-4.5.4", "body", "ksc = s·ks / (s + sc) = q / [ q·(B/Es)·µ0·µ1 + sc ]", None),
+    ("chapter05.json", "5-4.5.4", "body", "[Eq. 5-39] ksc = s·ks/(s + sc) = q/[q·(B/Es)·µ0·µ1 + sc]", None),
     ("chapter05.json", "5-4.5.4", "Eq. 5-39", "ksc = s·ks/(s + sc)", "q0"),
     # Table 5-22, PDF p. 397-398 (printed 359-360): eleven soil rows
     ("chapter05.json", "5-6.4", "kp", "eleven problem soil types", "seven"),

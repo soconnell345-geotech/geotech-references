@@ -30,7 +30,10 @@ How a page is read (PyMuPDF text layer, one column, single font family):
   stored as ``[Eq. 7-5]`` followed by the formula as the section's checked
   ``equations`` entry states it (the manifest's ``equation_formulas`` names
   the words of the entry that are the formula; the build checks they are in
-  the entry, so the two cannot disagree). A group with no number is an
+  the entry, so the two cannot disagree; where an entry describes the
+  equation in words only, the formula is typed in from a render of the page
+  and says so: ``{"formula": ..., "read": "render, p. 275"}``). A group
+  with no number is an
   unnumbered formula line, typed in from a 300 dpi render of the page
   (manifest ``formulas``, keyed by printed page and height); the build stops
   if one is not typed in;
@@ -725,7 +728,9 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
                 if same_page and gap is not None and gap < 6 and not _item_start(text, row) \
                         and not _where_item(text, ptext) and not back:
                     new_para = False
-                elif not same_page and _continues(prow, ptext, row, text):
+                elif not same_page and _continues(prow, ptext, row, text) \
+                        and not _where_item(text, ptext):
+                    # (a where-list's line on the next page keeps its own line, p. 312)
                     new_para = False
                 elif same_page and gap is not None and gap >= 6 and _continues(prow, ptext, row, text) \
                         and deferred_pending(deferred):
@@ -753,6 +758,10 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
             if f is None:
                 report.append(f"{sid}: no equation_formulas entry for {eid}")
                 f = "?"
+            elif isinstance(f, dict):
+                # an entry that describes the equation in words: the formula
+                # typed in from the rendered page ({"formula", "read"})
+                f = f["formula"]
             elif ent is not None and f not in ent["description"]:
                 report.append(f"{sid}: formula for {eid} is not in its equations entry")
             flush()

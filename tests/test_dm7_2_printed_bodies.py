@@ -25,12 +25,14 @@ REF = "dm7_2"
 ROOT = Path(__file__).resolve().parents[1]
 TEXT = ROOT / "geotech_references" / REF / "text"
 PDF = ROOT / "docs" / "ufc_3_220_20_2025.pdf"
+MANIFEST = ROOT / "scripts" / "manifests" / "dm7_2_bodies.json"
 #: Chapters whose bodies are rebuilt from the print so far, with their PDF pages.
 BUILT = {
     "prologue": (39, 92),
     "chapter02": (93, 144),
     "chapter03": (145, 212),
     "chapter04": (213, 310),
+    "chapter05": (311, 401),
     "chapter07": (546, 595),
 }
 #: sha256 of every section's fields other than ``body`` (json, sorted keys),
@@ -104,6 +106,8 @@ def test_parts_say_what_they_continue(stem):
 @pytest.mark.parametrize("stem", sorted(BUILT))
 def test_numbered_equations_marked_with_their_checked_formula(stem):
     secs = _sections(stem)
+    typed = {k: v["formula"] for k, v in json.loads(MANIFEST.read_text(encoding="utf-8"))
+             ["equation_formulas"].items() if isinstance(v, dict)}
     for sid, s in secs.items():
         if _PART.search(sid):
             continue
@@ -120,7 +124,9 @@ def test_numbered_equations_marked_with_their_checked_formula(stem):
             formula = m.group(1)
             if formula not in e["description"]:
                 # the formula, then a note in brackets ("[left side printed εb]")
-                formula = re.sub(r" \[[a-z][^\]]*\]$", "", formula)
+                formula = re.sub(r" \[[A-Za-z][^\]]*\]$", "", formula)
+            if typed.get(e["id"]) == formula:
+                continue  # the entry describes it in words; typed from the render
             assert formula in e["description"], (sid, e["id"], m.group(1))
 
 
@@ -137,6 +143,14 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("chapter05", "5-3.7", 316,
+     "The asperity angle (i) usually ranges from 10 to 15°."),
+    ("chapter05", "5-3.7", 317,
+     "For Equation 5-32, the RQD should be evaluated to a depth of B below the footing and should "
+     "be expressed as a decimal, not a percentage."),
+    ("chapter05", "5-3.7", 317,
+     "A factor of safety of 3 to 4 is recommended to calculate qall,net from qʹult for rock "
+     "foundations."),
     ("chapter04", "4-2.1", 177,
      "For simple calculations, K0 is often assumed to be equal to 0.5."),
     ("chapter04", "4-3.2", 191,
@@ -274,6 +288,30 @@ def test_prologue_as_printed():
     assert "Intentionally" not in secs["P-4"]["body"]
     assert "GEOTECHNICAL DESIGN IN PROBLEM SOILS" not in secs["P-4"]["body"]
     assert secs["1-4"]["body"].startswith("[p. 54] Variable | Definition")
+
+
+def test_chapter_5_as_printed():
+    secs = _sections("chapter05")
+    b = secs["5-2.2"]["body"]
+    # entries that describe Eqs. 5-1 to 5-3 in words: the formulas typed from the render
+    assert "[Eq. 5-1] qgross = (QDL+LL + WF + WS) / A" in b
+    assert "[p. 276] [Eq. 5-3] qnet = qgross − σzD ≈ " in b
+    # the print's qult in Eq. 5-2 kept and noted (p. 275)
+    assert "[Eq. 5-2] qnet = qult − σzD [As printed on p. 275: qult;" in b
+    assert "[Eq. 5-10] qunif = (QLL+DL + WF + WS) / (B'·L')" in secs["5-2.3"]["body"]
+    # a where-list line on the next page keeps its own line (p. 312)
+    assert ("H1 = thickness of top layer below bearing elevation,\n[p. 312] c1, c2 = undrained "
+            "cohesion") in secs["5-3.6.3"]["body"]
+    # 5-4.10 and 5-5.2.1, which have no sections, under their printed headings
+    assert "[p. 335] 5-4.10 Two- or Three-Dimensional Problems." in secs["5-4.9"]["body"]
+    assert "5-5.2.1 Applications." in secs["5-5.2"]["body"]
+    # the notation with its last seven rows (p. 363), the reading after it
+    n = secs["5-7"]["body"]
+    assert n.startswith("[p. 360] Variable | Definition")
+    assert "[p. 363] φ | Total stress friction angle" in n
+    assert n.endswith("Ψc, Ψq, Ψγ | Lumped bearing capacity factors used to correct for complicating factors")
+    assert secs["5-8"]["body"].startswith("[p. 363] Bearing capacity of soil:")
+    assert "Variable definitions" not in secs["5-8"]["body"]
 
 
 def test_chapter_4_as_printed():
@@ -416,8 +454,11 @@ _PRIMES = (re.compile(r"(?<=\s)['′’ʹ](?=\s)"), re.compile(r"\(['′’ʹ]\)
 _OPS = re.compile(r"[+\-−×·*/÷^√Σ²³½]")
 _ENUM = re.compile(r"(?:^|(?<=[.:;•\]] )|(?<=\s)(?=\d{1,2}\)\s[A-Z]))"
                    r"(?:\d{1,2}|[a-zA-Z]|[ivx]{1,4})\)(?=\s)")
-#: brackets the page itself leaves unpaired (checked on the render)
-_PRINTED_UNPAIRED: set = set()
+#: brackets the page itself leaves unpaired (checked on the render): captions
+#: that letter their parts "a) ... b) ..." (pp. 300, 320, 321)
+_PRINTED_UNPAIRED = {("5-3.4.2", "Figure 5-9 Bearing Capacity Factors"),
+                     ("5-4.2", "Figure 5-26 Idealized Distribution"),
+                     ("5-4.3", "Figure 5-27 Idealized Distribution")}
 #: a prime the page itself sets alone: "the prime symbol (ʹ)" (p. 2)
 _PRINTED_PRIMES = {("P-2.1", "the prime symbol (ʹ)")}
 

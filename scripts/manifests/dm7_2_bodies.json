@@ -37,7 +37,7 @@
     311,
     401
    ],
-   "built": false
+   "built": true
   },
   "chapter06": {
    "pages": [
@@ -303,22 +303,34 @@
   "Eq. 4-29": "PP,allow = PP / F",
   "Eq. 4-30": "φ′allow = arctan(tan φ′ / F)",
   "Eq. 4-31": "ρ = (H + D)⁴ / EI",
-  "Eq. 5-1": "Gross bearing pressure: total load (structural load + foundation weight + overlying soil weight) divided by bearing area A",
-  "Eq. 5-2": "Net bearing pressure: gross bearing pressure minus existing vertical overburden pressure at the foundation bearing elevation",
-  "Eq. 5-3": "Net bearing pressure approximation when foundation and backfill unit weights equal existing soil unit weight",
+  "Eq. 5-1": {
+   "formula": "qgross = (QDL+LL + WF + WS) / A",
+   "read": "render, p. 275"
+  },
+  "Eq. 5-2": {
+   "formula": "qnet = qult − σzD",
+   "read": "render, p. 275"
+  },
+  "Eq. 5-3": {
+   "formula": "qnet = qgross − σzD ≈ (QDL+LL + WF + WS) / A − (WF + WS) / A = QDL+LL / A",
+   "read": "render, p. 276"
+  },
   "Eq. 5-4": "e = M/Q",
-  "Eq. 5-5": "Middle-third rule for one-way eccentricity: |eB| ≤ B/6 or |eL| ≤ L/6",
-  "Eq. 5-6": "Kern criterion for two-way eccentricity: 6|eB|/B + 6|eL|/L ≤ 1",
+  "Eq. 5-5": "|eB| ≤ B/6 or |eL| ≤ L/6",
+  "Eq. 5-6": "6|eB|/B + 6|eL|/L ≤ 1",
   "Eq. 5-7": "q_corner = q_gross·(1 ± 6|eB|/B ± 6|eL|/L)",
   "Eq. 5-8": "B' = B - 2*eB",
   "Eq. 5-9": "L' = L - 2*eL",
-  "Eq. 5-10": "Equivalent uniform bearing pressure for eccentrically loaded rectangular foundation using reduced equivalent dimensions B' and L'",
+  "Eq. 5-10": {
+   "formula": "qunif = (QLL+DL + WF + WS) / (B'·L')",
+   "read": "render, p. 277"
+  },
   "Eq. 5-11": "L' = sqrt{ [2·r²·cos⁻¹(ex/r) − 2·ex·sqrt(r² − ex²)] · [sqrt(r² − ex²) / (r − ex)] }",
   "Eq. 5-12": "B' = L' · (r − ex) / sqrt(r² − ex²)",
   "Eq. 5-13": "q_all,gross = q_ult / F_BC",
-  "Eq. 5-14": "Net allowable bearing pressure: q_all,net ≤ q_ult/F_BC - sigma_zD, subtracting overburden pressure from factored ultimate capacity (Peck et al. 1974)",
+  "Eq. 5-14": "q_all,net ≤ q_ult/F_BC - sigma_zD",
   "Eq. 5-15": "qult = cʹ·Nc·Ψc + σʹzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ",
-  "Eq. 5-16": "qult = c·Nc·Ψc + σzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ, using undrained cohesion c, undrained friction angle φ, total unit weight γ, and total vertical stress σzD at bearing elevation",
+  "Eq. 5-16": "qult = c·Nc·Ψc + σzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ",
   "Eq. 5-17": "qult = su·Nc·Ψc + σzD·Ψq",
   "Eq. 5-18": "Ψc = sc · dc · ic · bc · gc",
   "Eq. 5-19": "Ψq = sq · dq · iq · bq · gq",
@@ -327,7 +339,7 @@
   "Eq. 5-22": "NS = γ·H / su",
   "Eq. 5-23": "NS = γ·H / c′",
   "Eq. 5-24": "Nc = 5.14 + (k·B / su0)",
-  "Eq. 5-25": "Nc,m,r = Nc,m,c·(B/L) + Nc,m,s·(1 - B/L), interpolating between circular (Nc,m,c) and strip (Nc,m,s) factors by B/L ratio",
+  "Eq. 5-25": "Nc,m,r = Nc,m,c·(B/L) + Nc,m,s·(1 - B/L)",
   "Eq. 5-26": "H2 = (2B − H1) · (c1 + tan φ1) / (c2 + tan φ2)",
   "Eq. 5-27": "cave = (H1·c1 + H2·c2) / (H1 + H2)",
   "Eq. 5-28": "φave = arctan[(H1·tan φ1 + H2·tan φ2) / (H1 + H2)]",
@@ -477,6 +489,11 @@
    "section": "4-3.1",
    "after": "KP = passive earth pressure force.",
    "text": "[As printed on p. 190: \"KP\"; the left side of Eq. 4-11 is PP]"
+  },
+  {
+   "section": "5-2.2",
+   "after": "[Eq. 5-2] qnet = qult − σzD",
+   "text": "[As printed on p. 275: qult; the sentence before it and Eq. 5-3 give the gross bearing pressure, qgross]"
   }
  ],
  "formulas": {},
@@ -600,6 +617,18 @@
    "find": "Cases for φ ʹ = δ = 30°",
    "replace": "Cases for φʹ = δ = 30°",
    "why": "Figure 4-11's caption (p. 191): the text layer parts the prime from the φ."
+  },
+  {
+   "section": "5-4.9",
+   "find": "[p. 335] Two- or Three-Dimensional Problems.",
+   "replace": "[p. 335] 5-4.10 Two- or Three-Dimensional Problems.",
+   "why": "p. 335: the heading's number is drawn, not in the text layer (the print's outline numbers it)."
+  },
+  {
+   "section": "5-2.5",
+   "find": "angle of 30^(o) from",
+   "replace": "angle of 30° from",
+   "why": "p. 281 prints a raised o for the degree sign."
   }
  ],
  "row_kinds": {
@@ -671,6 +700,18 @@
    "after": "",
    "text": "[p. 271] Topic | Reference\nAnchored Bulkheads | United States Steel (USS). 1984. Steel Sheet Piling Design Manual.\nApparent Earth Pressures | FHWA. 1999. Ground Anchors and Anchored Systems. Geotechnical Engineering Circular No. 4. Publication FHWA-IF-99-015. Federal Highway Administration, Washington, D.C.\nGround Anchors | (same as above)\nSoil Nail Walls | (same as above)\nMechanically Stabilized Earth Walls | FHWA. 2009. Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volumes I and II, FHWA-NHI-10-024 and FHWA-NHI-10-025. Federal Highway Administration, Washington, D.C.\nCofferdams | USACE. 1989. Design of Sheet Pile Cellular Structures, Cofferdams, and Retaining Structures, EM 1110-2-2503. Department of the Army, CECW-EP, 186 pp.",
    "why": "The suggested reading is printed as a table (topic, reference; p. 271); the earlier body held it typed in."
+  },
+  {
+   "section": "5-7",
+   "after": "",
+   "text": "[p. 360] Variable | Definition\nbc, bq, bγ | Bearing capacity factors to account for sloping base conditions\nc | Total stress cohesion intercept\ncʹ | Effective stress cohesion intercept\nc* | Reduced cohesion intercept to account for the effects of local and punching shear\ndc, dq, dγ | Bearing capacity factors to account for foundation embedment depth\nDr | Relative density\ne | Eccentricity\nEʹ·Ib | Flexural stiffness of a structure\nEc | Young’s modulus of concrete\nEs | Elastic modulus of soil\nEʹs | Effective or drained modulus of soil\nEus | Undrained modulus of soil\nFBC | Factor of safety against bearing capacity failure\ngc, gq, gγ | Bearing capacity factors to account for sloping ground conditions\nGs | Specific gravity of solids\nGSI | Geological Strength Index\nh | Depth of structure below groundwater level for design against hydrostatic uplift\nH | Horizontal load\n[p. 361] I | Moment of inertia\nic, iq, iγ | Bearing capacity factors to account for load inclination\nK | Equivalent spring stiffness\nkp | Modulus of subgrade reaction from plate load test\nKr | Relative stiffness factor\nks | Modulus of subgrade reaction\nksc | Modulus of subgrade reaction reduced for time-dependent settlement\nKs | Punching shear coefficient\nKP | Passive earth pressure coefficient\nL | Width of structure for design against hydrostatic uplift\nLL | Liquid limit\nM | Applied moment\nN | Standard Penetration Test blow count\nN1(60) | Standard Penetration Test blow count corrected for overburden and energy\nN60 | Standard Penetration Test blow count corrected for energy\nNc, Nq, Nγ | Bearing capacity factors\nNc,m,s, Nc,m,c | Modified bearing capacity factors for strip and continuous footings\nOCR | Overconsolidation ratio\nPI | Plasticity index\nPP | Resultant force from passive earth pressure\nQ | Gross vertical load\nq | Contact pressure\nqall,gross | Gross allowable bearing pressure\nqall,net | Net allowable bearing pressure\nqc | Cone penetration test tip resistance\nQDL+LL | Structural dead load plus live load\nqnet | Net bearing pressure\nqult | Ultimate bearing capacity\n[p. 362] qʹult | Reduced ultimate bearing capacity\nqunif | Equivalent uniform bearing pressure\nR.C. | Relative compaction\nRCslope | Reduction coefficient for bearing capacity of foundations near slopes\nRQD | Rock quality designation\ns | Settlement\nsc | Consolidation settlement\nsg | Stress applied at grout-tendon interface\nsg,all | Allowable stress for grout-tendon interface\nsr,all | Allowable bond strength for ground anchors\nsr,ult | Strength of grout-rock interface\nss,all | Allow stress for grout-rock interface\nsc, sq, sγ | Bearing capacity factors to account for foundation shape\nsu | Undrained shear strength\nU | Hydrostatic uplift force\nUCS | Unconfined compressive strength\nV | Shear load\nW1 | Weight of structure\nW2 | Weight of enclosed soil mass\nWf | Weight of foundation\nWs | Weight of soil overlying foundation\nα | Bearing capacity failure plane angle\nβ | Angle of sloping ground\n∆σz,ave | Average change in vertical stress below a mat foundation\nγ | Total unit weight\nγʹ | Bouyant or effective unit weight\nγd | Dry unit weight\nγw | Unit weight of water\n[p. 363] φ | Total stress friction angle\nφʹ | Drained or effective stress friction angle\nφ∗ | Reduced friction angle to account for the effects of local and punching shear\nφrf | Rock fracture friction angle including the effects of asperities\nν | Poisson’s ratio\nσvD | Effective vertical stress at the foundation bearing elevation\nΨc, Ψq, Ψγ | Lumped bearing capacity factors used to correct for complicating factors",
+   "why": "The notation is printed as a table with no number (pp. 360-363); the earlier bodies held it typed in (its last seven rows, p. 363, in 5-8's body), checked against the print; the print's spelling kept."
+  },
+  {
+   "section": "5-8",
+   "after": "",
+   "text": "[p. 363] Bearing capacity of soil:\n- Meyerhof, G. G. 1951. \"The ultimate bearing capacity of foudations.\" Geotechnique, 2(4), 301-332.\n- Vesić, A. S. 1973. \"Analysis of ultimate loads of shallow foundations.\" Journal of the Soil Mechanics and Foundations Division, 99(1), 45-73.\n- Brinch Hansen, J. 1970. A Revised and Extended Formula for Bearing Capacity, Bulletin No. 28. Danish Geotechnical Institute, Copenhagen.\n\nBearing capacity of rock:\n- Stagg, K. G. and Zienkiewicz, O. C. 1968. Rock Mechanics in Engineering Practice. John Wiley & Sons, New York, 442 pp.\n\nMat foundations:\n- American Concrete Institute (ACI). 2002. Suggested Analysis and Design Procedures for Combined Footings and Mats, ACI 336.2R-88, ACI.\n\nAnchors for foundations:\n- FHWA. 1999. Ground Anchors and Anchored Systems. Geotechnical Engineering Circular No. 4. Publication FHWA-IF-99-015. Federal Highway Administration, Washington, D.C.\n\nFoundations in expansive soils:\n- Chen, F.H. 1988. Foundations on Expansive Soils. 2nd Edition, Elsevier Science Publications, New York, NY.\n\nFoundations in collapsible soils:\n- Houston, S. L., Houston, W. N., Zapata, C. E., and Lawrence, C. 2001. \"Geotechnical engineering practice for collapsible soils.\" Unsaturated soil concepts and their application in geotechnical practice, 333-355.",
+   "why": "The suggested reading is printed as a table (topic, reference; p. 363); the earlier body held it typed in, topic by topic."
   }
  ],
  "headings_as_text": {
@@ -678,7 +719,9 @@
   "108@177": "'Types of Fills and Applications.' (p. 108), a bold heading with no number and no section in the chapter file: kept as a paragraph of 3-1.2.",
   "267@90": "4-9.1 Cell Deformations (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading.",
   "267@173": "4-9.2 Cell Fill (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading.",
-  "267@315": "4-9.3 Cofferdam Drainage (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading."
+  "267@315": "4-9.3 Cofferdam Drainage (p. 267) has no section in the chapter file; its text stays in 4-9's body under its printed heading.",
+  "335@90": "5-4.10 Two- or Three-Dimensional Problems (p. 335) has no section in the chapter file; its text stays in 5-4.9's body under its printed heading.",
+  "339@679": "5-5.2.1 Applications (p. 339) has no section in the chapter file; its text stays in 5-5.2's body under its printed heading."
  },
  "typed_tables_why": {
   "Table P-2 to P-8": "Text tables (method, guidance) printed pp. 9-17; the earlier bodies held condensed accounts of them, so they are typed in from the page: words from the text layer, row by row between the table's rules, read against the render; the formulas of Table P-6 typed from the render.",
