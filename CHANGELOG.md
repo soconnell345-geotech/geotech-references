@@ -55,6 +55,46 @@ EM 1110-2-2104.** The 269 lookups of `aashto_1993`, `ufc_pavement`,
 - **Docstring:** `ufc_pavement.collector_drain_flow` said "per mm" where the
   print (p. 114) gives the flow per m.
 
+**Result units and pages, wave 1b (REF-78): DM 7.1, DM 7.2, the micropile
+manual and GEC-6, 9, 10, 11 and 12.** The 469 lookups of `dm7_1`, `dm7_2`,
+`micropile`, `gec_6`, `gec_9`, `gec_10`, `gec_11` and `gec_12`, by the same
+rules as wave 1a:
+
+- **63 dict results, and each row of a list of rows, carry `units`,
+  `printed_page` and `pdf_page_index`.** A result keyed by its table's cases
+  (`micropile` Tables 5-4 and 5-5, Figure 5-23 with `section="all"`) carries
+  the three keys beside its cases.
+- **The 399 bare results keep their types and are labelled where the app
+  reads them**: the unit in brackets in the first sentence of the Returns
+  text, and `printed p. X (pdf_page_index N)` in the first 160 characters of
+  the References. Every DM 7.1 and DM 7.2 page citation now reads that way
+  (DM 7.2 mixed PDF viewer pages and printed pages under a plain "p. N");
+  the 22 bare numbers of `micropile`, `gec_6`, `gec_10` and `gec_12` gain a
+  References section. The 15 tuples of `dm7_2` name each element as its own
+  Returns entry (`hansen_depth_factors`: `dc`, `dq`, `d_gamma`; the three
+  reliability methods: `mu_g`, `sigma_g`, `beta`, `p_u`). The 7 `plot_*`
+  functions are left as they are.
+- **New: `unit_system="SI"` on 4 US-unit lookups** an SI number would pass
+  unnoticed: `gec_12.figure_7_10_to_13_kd` and `figure_7_9_delta_phi_ratio`
+  (V in m^3/m), `gec_11.table_4_4_traffic_surcharge` (abutment height in m)
+  and `gec_10.table_10_2_nc_base_clay` (su in kPa). Bare numbers in US units
+  cannot take it (their label is fixed) and say their units instead:
+  `dm7_2` `scaled_distance`, `peak_particle_velocity`,
+  `confinement_factor_from_blast_data`, `relative_flexibility_anchored_bulkhead`,
+  `driving_stress_limit_concrete_tension` and `meyerhof_group_settlement`.
+- **Pages corrected, each checked on its page.** `dm7_2`
+  `alpha_method_unit_shaft_resistance` (Eq. 6-8) is on printed 414,
+  pdf_page_index 451 (it cited p. 453), and `rock_socket_unit_base_resistance`
+  (Eq. 6-36) on printed 430, pdf_page_index 467 (it cited p. 469). The
+  `dm7_2` prologue's "p. 40" to "p. 54" and chapter 7's "p. 571" to
+  "pp. 578-579" were PDF viewer pages: they are printed 2 to 16 and 533 to
+  541.
+- **Docstring:** `dm7_1.point_load_strength_index` said "MPa if P is in kN
+  and d is in mm: kN/mm^2 = GPa"; kN and mm give kN/mm^2, which is GPa.
+- `_units.labelled` labels a list of row dicts row by row; the unit
+  vocabulary adds `blows`, `bpf`, `ohm`, `um`, `mil(s)` and `radian(s)`, and
+  the exact factors add m^3/m to ft^3/ft.
+
 ## 1.7.0
 
 Released 2026-11-13. This release is the review of 2026-11-10 to 2026-11-13:
