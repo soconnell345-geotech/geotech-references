@@ -349,6 +349,19 @@ def test_a_page_row_passes_on_a_note_naming_where_cells_are(tmp_path,
     assert _reach.ROW_NOTE_NOTE in sec["note"]
     plain = _reach.with_notes({"tables_held": {"3-2": h.table_flag("3-2")}})
     assert _reach.ROW_NOTE_NOTE not in str(plain.get("note"))
+    # one note on several answers of a fetch is written once
+    held = {"3-1": "page: a; note: Section 3.4 has it", "3-2": "page: b",
+            "3-5": "page: c; note: Section 3.4 has it",
+            "3-6": "page: d; note: Section 3.5 has it"}
+    assert _reach.one_note_each(held) == {
+        "3-1": "page: a; note: Section 3.4 has it", "3-2": "page: b",
+        "3-5": "page: c; note: as for 3-1",
+        "3-6": "page: d; note: Section 3.5 has it"}
+    # the section ids a note can name
+    assert _reach.NOTE_SECTION_RE.findall(
+        "Section B-2.7 types some; Section D.34.3.a has; Section A types; "
+        "Section 5-5a(2) restates; Section 9.2.a. Sections show Section "
+        "Applicability") == ["B-2.7", "D.34.3.a", "A", "5-5a(2)", "9.2.a"]
     # the answer check reads past the note and checks the section it names
     stored = {"3.4": "Table 3-1 ..."}
     assert table_problem("local_madeup", "3-9",
@@ -835,8 +848,7 @@ def table_problem(reference: str, number: str, answer: str,
     such section."""
     # a page row's note: the section it names must be there
     answer, _, note = answer.partition("; note: ")
-    for sid in re.findall(r"\b[Ss]ections?\s+([A-Z]?\d+(?:[.-]\d+)*[a-z]?)",
-                          note):
+    for sid in _reach.NOTE_SECTION_RE.findall(note):
         if section_text(reference, sid) is None:
             return f"the note names section {sid}, which is not stored"
     # a number on several rows: the mark after the answer names the page

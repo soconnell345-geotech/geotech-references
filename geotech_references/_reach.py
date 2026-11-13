@@ -125,13 +125,20 @@ SHORT_NOTE = "'others' stands for every listed number not named."
 #: Said when a table answer comes from one of several rows of its number.
 ROWS_NOTE = ("'one of N rows': the catalog has N tables so numbered; the "
              "answer is the one filed under this section, else the first.")
+#: Put between a page answer and its catalog row's note.
+ROW_NOTE_MARK = "; note: "
 #: Said when a page answer carries its catalog row's note.
 ROW_NOTE_NOTE = ("'; note: ...' after a page answer is the catalog's note: "
                  "the section it names holds part of the table's cells; "
-                 "read the rest off the page.")
-#: A catalog note that says where part of a "page" table's cells are typed:
-#: it names a section, or says what is typed.
-_NOTE_NAMES_PART = re.compile(r"\b(?:[Ss]ections?\s+[A-Z]?\d|typed)")
+                 "read the rest off the page ('as for N': the note given "
+                 "for table N).")
+#: A catalog note that names the section holding part of a "page" table
+#: ("Section 3.5.1 carries this table's cells ...", "Section B-2.7 types
+#: some of this table's cells ..."); group 1 is the section id: 3.5.1,
+#: B-2.7, B-4c, D.34.3.a, 5-5a(2), or an appendix's letter alone.
+NOTE_SECTION_RE = re.compile(
+    r"\b[Ss]ections?\s+((?:[A-Z][-.]?)?\d+(?:[.-]\d+)*(?:\.?[a-z])?"
+    r"(?:\(\d+\)|\([a-z]\))*|[A-Z])(?![\w-])")
 #: A fetch that would pass this many characters with :func:`reach_note`
 #: goes without it (the keys stay): the sections near or over the
 #: library's 14,000-character budget from their own text would otherwise
@@ -593,10 +600,10 @@ class Holdings:
                        f"table_get needs pdf_page_index {page})")
         note = row.get("note")
         if (answer.startswith("page:") and isinstance(note, str)
-                and _NOTE_NAMES_PART.search(note)):
+                and NOTE_SECTION_RE.search(note)):
             # where part of the cells are typed ("Section 3.5.1 carries
             # this table's cells as the PDF text layer gives them ...")
-            answer += f"; note: {' '.join(note.split())}"
+            answer += ROW_NOTE_MARK + " ".join(note.split())
         return answer
 
     # -- pointers ----------------------------------------------------------
@@ -1048,6 +1055,23 @@ def collapse(held: dict[str, str]) -> dict[str, str]:
     return out
 
 
+def one_note_each(held: dict[str, str]) -> dict[str, str]:
+    """``held`` with each catalog note written once: a later answer
+    carrying the same note as an earlier one ends "; note: as for <the
+    earlier number>" (GEC-12 D.19 lists four tables whose rows carry one
+    150-character note)."""
+    first: dict[str, str] = {}
+    out: dict[str, str] = {}
+    for num, answer in held.items():
+        head, mark, note = str(answer).partition(ROW_NOTE_MARK)
+        if mark and note in first:
+            answer = f"{head}{mark}as for {first[note]}"
+        elif mark:
+            first[note] = num
+        out[num] = answer
+    return out
+
+
 def expand(short: dict[str, str], numbers: list[str]) -> dict[str, str]:
     """The ``{number: answer}`` map a :func:`collapse` short form stands for,
     given the numbers the section lists (in its order)."""
@@ -1081,7 +1105,7 @@ def section_flags(row: sqlite3.Row, holdings: Holdings,
             for num in listed_numbers(json.loads(row["tables_json"] or "[]"),
                                       "table")}
     if tabs:
-        out["tables_held"] = collapse(tabs) if short else tabs
+        out["tables_held"] = one_note_each(collapse(tabs)) if short else tabs
     # the whole list is stored; a fetch shows NOT_HELD_MAX (add_flags)
     missing = pointers_not_held(row["body"] or "", holdings,
                                 str(row["section_id"] or ""))
@@ -1207,7 +1231,7 @@ def reach_note(section: dict) -> str:
             held = sec.get(key) or {}
             short = short or "others" in held
             rows = rows or any(" (one of " in str(v) for v in held.values())
-            row_notes = row_notes or any("; note: " in str(v)
+            row_notes = row_notes or any(ROW_NOTE_MARK in str(v)
                                          for v in held.values())
             for answer in held.values():
                 kind = kind_of(str(answer))

@@ -494,12 +494,14 @@ has something in it (`_reach.py`):
   and Volume II Table 1.1 stay apart), of those the row filed under the
   listing section, else the first in the catalog, and says so: "(one of 2
   rows numbered 2-1: table_get needs pdf_page_index 12)". A page answer
-  whose row has a `note` saying a section holds part of the table (it names
-  a section, or says what is typed) carries the note: "page: printed p.
-  3-22 (pdf_page_index 125); note: Section 3.5.1 carries this table's
-  cells ..."; the note's other kinds (a caption the List of Tables gives
-  differently) are not passed on, and `test_every_answer_reaches_its_target`
-  checks that the section a note names is stored.
+  whose row has a `note` naming the section that holds part of the table
+  (`_reach.NOTE_SECTION_RE`) carries the note: "page: printed p. 3-22
+  (pdf_page_index 125); note: Section 3.5.1 carries this table's cells
+  ..."; a later answer in the same fetch with the same note says "; note:
+  as for 3-4a" (`one_note_each`). Notes of other kinds (a caption the List
+  of Tables gives differently) are not passed on, and
+  `test_every_answer_reaches_its_target` checks that the section a note
+  names is stored.
 - **`not_held`**: the parts of the same document the body points to that
   the library holds no text or catalog row for ("Appendix D", "Chapter
   12", "Eq. 4-11"), at most 15 and then "and N more".
