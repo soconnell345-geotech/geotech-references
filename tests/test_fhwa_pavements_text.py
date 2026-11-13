@@ -711,6 +711,11 @@ def test_degree_signs_and_exponents_as_printed():
     assert "thermal contraction 5x10^-6/°F" in text and "thermal expansion 5.5x10^-6/°F" in text
     assert "3.25x10^-5 ft/hr" in text and "1.57x10^4 psi" in text and "4.75x10^4 psi" in text
     assert not re.search(r"(?:\d|/|-|\s)o\s?[CFK]\b|x10-?\d", text)
+    # the permittivity criterion's raised -1 (pp. 7-30, 7-76); the only
+    # negative exponent the page raises after a unit
+    assert text.count("ψ ≥ 0.1 sec^-1") == 2
+    assert not re.search(r"\b(?:sec|s|day|hr|min|m|ft)-[123]\b(?![-–\d])", text), \
+        re.findall(r".{20}\b(?:sec|s|day|hr|min|m|ft)-[123]\b(?![-–\d]).{10}", text)
 
 
 #: The fonts the manual sets its text in; every other font is a symbol font.
