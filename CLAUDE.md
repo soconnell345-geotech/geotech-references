@@ -513,6 +513,15 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 4. When adding equations, follow existing patterns in the relevant chapter file
 5. Check `qc_progress.json` for `implementation_gaps` before authoring new functions — the QC agent flags figures/tables that need Python implementations but don't have them yet
 
+### The PDF reader is part of a script build
+
+A reference whose text a script reads off its PDF (`scripts/build_printed_text.py`; its manifest has `"text_build"`: today `em_1905` and `fhwa_soils_foundations`) depends on exactly what the PDF reader, PyMuPDF, returns, and two versions do not return the same thing on every page (PyMuPDF 2.x places a bar over a symbol differently from 1.27, for one). So the reader's version is an input of the build:
+
+- Each such manifest records the version it was built with: `"built_with": {"pymupdf": "1.27.2.3"}`. All record the same one.
+- The test that rebuilds a reference's text and compares it with the committed files calls `require_build_reader(<manifest>)` (`tests/_build_reader.py`). Under another version it skips, and its reason names both versions and the `pip install pymupdf==...` that runs it. With `GEOTECH_REQUIRE_BUILD_READER=1` a different or missing reader fails instead. Every other test that reads a PDF runs under any reader.
+- On GitHub (`.github/workflows/tests.yml`) the Python 3.10 job installs the recorded version with that variable set, so the rebuilds run and must pass. The Python 3.12 job installs the newest PyMuPDF, where the rebuilds skip and everything else is tested under the newest reader.
+- To move to a new reader: install it, rebuild every script-built reference, read each difference in the chapter files against the rendered page, and record the new version in every script-built manifest and in the workflow's pin, all in one commit. `tests/test_build_reader.py` checks that the manifests and the pin agree.
+
 ## Environment
 
 - Python 3.10+ (developed on 3.14.3)
