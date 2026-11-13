@@ -1,0 +1,596 @@
+{
+  "reference_id": "EM 1110-2-2107",
+  "reference_title": "EM 1110-2-2107, Design of Hydraulic Steel Structures (USACE, 1 August 2022)",
+  "package": "em_2107",
+  "volume": null,
+  "pdf_path": "docs/EM 1110-2-2107_2022.pdf",
+  "table_count": 38,
+  "tables": [
+    {
+      "table_number": "3.1",
+      "caption": "Target Reliability for 100-Year Service Life, β",
+      "chapter": 3,
+      "section_id": "3.2",
+      "section_title": "Design Philosophy",
+      "pdf_page_index": 19,
+      "pages": [
+        19
+      ],
+      "printed_page": "11",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "design_basis.table_3_1_target_reliability",
+      "implemented_in": [
+        "design_basis.table_3_1_target_reliability"
+      ]
+    },
+    {
+      "table_number": "4.1",
+      "caption": "Minimum Load Factors",
+      "chapter": 4,
+      "section_id": "4.3",
+      "section_title": "Load Factors and Load Combinations",
+      "pdf_page_index": 35,
+      "pages": [
+        35
+      ],
+      "printed_page": "27",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "loads.table_4_1_load_factor",
+      "implemented_in": [
+        "loads.table_4_1_load_factor",
+        "loads.table_4_1_permanent_load_factor",
+        "fatigue_fracture.fatigue_load_factor",
+        "loads.fatigue_serviceability_load_factor",
+        "loads.principal_load_condition_factor"
+      ]
+    },
+    {
+      "table_number": "4.2",
+      "caption": "ac vs Height to Width",
+      "chapter": 4,
+      "section_id": "4.4",
+      "section_title": "Earthquake",
+      "pdf_page_index": 39,
+      "pages": [
+        39
+      ],
+      "printed_page": "31",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "seismic_amplification.table_4_2_scale_factor",
+      "implemented_in": [
+        "seismic_amplification.table_4_2_scale_factor"
+      ]
+    },
+    {
+      "table_number": "C.1",
+      "caption": "Variable Descriptions",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 330,
+      "pages": [
+        330
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.2",
+      "caption": "Diagonal Variables for Lock 27 Miter Gate",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 343,
+      "pages": [
+        343
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.3",
+      "caption": "Values Used to Find X-Bar",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 344,
+      "pages": [
+        344
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.4",
+      "caption": "Relevant Dimensions for Lock 27 Miter Gate, All Values in Inches",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 345,
+      "pages": [
+        345
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.5",
+      "caption": "Dimensions Used to Find Vertical Position of Centroid",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 345,
+      "pages": [
+        345
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.6",
+      "caption": "Calculating the Moment of Inertia for Lock 27",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 346,
+      "pages": [
+        346
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.7",
+      "caption": "Locating the Shear Center for Lock 27",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 347,
+      "pages": [
+        347
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.8",
+      "caption": "Calculating J for Lock 27",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 348,
+      "pages": [
+        348
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.9",
+      "caption": "Loads Considered for Diagonal Design",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 349,
+      "pages": [
+        349
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.10",
+      "caption": "Calculation of A' for Lock 27",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 350,
+      "pages": [
+        350
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.11",
+      "caption": "Change in Stress for Both Diagonals",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 351,
+      "pages": [
+        351
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.12",
+      "caption": "Stress Configuration for Diagonals of Lock 27",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 352,
+      "pages": [
+        352
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.13",
+      "caption": "Unfactored Loads Considered for Diagonal Design",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 353,
+      "pages": [
+        353
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.14",
+      "caption": "Computation of Modified Polar Moment of Inertia J",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 378,
+      "pages": [
+        378
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.15",
+      "caption": "Computation of Distance Y",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 379,
+      "pages": [
+        379
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.16",
+      "caption": "Computation of Distance X",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 379,
+      "pages": [
+        379
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.17",
+      "caption": "Computation of Torque-Area",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 380,
+      "pages": [
+        380
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.18",
+      "caption": "Computation of Constant Q",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 381,
+      "pages": [
+        381
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.19",
+      "caption": "Stresses in Diagonals During Normal Operation",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 382,
+      "pages": [
+        382
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.20",
+      "caption": "Computation of Elasticity Constant Q",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 384,
+      "pages": [
+        384
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.21",
+      "caption": "Computation of Modified Polar Moment of Inertia J",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 385,
+      "pages": [
+        385
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.22",
+      "caption": "Computation of Distance X for Vertically Framed Gate",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 388,
+      "pages": [
+        388
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.23",
+      "caption": "Computation of Diagonal Stresses",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 392,
+      "pages": [
+        392
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C.24",
+      "caption": "Computation of Dead Load Shear in Buckle Plates",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 393,
+      "pages": [
+        393
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D.1",
+      "caption": "Measured Amplification Factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 397,
+      "pages": [
+        397
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "seismic_amplification.table_d1_measured_amplification",
+      "implemented_in": [
+        "seismic_amplification.table_d1_measured_amplification"
+      ]
+    },
+    {
+      "table_number": "D.2",
+      "caption": "Comparison of Pseudo-Dynamic and Finite Element Modeling",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 403,
+      "pages": [
+        403
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D.3",
+      "caption": "Scale Factor for Three Dam Heights",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 406,
+      "pages": [
+        406
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E.1",
+      "caption": "Return Period Versus Pool Elevation",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 421,
+      "pages": [
+        421
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.1",
+      "caption": "Example Tainter Gate Loads",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 446,
+      "pages": [
+        446
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.2",
+      "caption": "Data for Computing Side Seal Friction Forces",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 447,
+      "pages": [
+        447
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.3",
+      "caption": "Hydrostatic Loads by Integration Per Foot of Gate Length",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 448,
+      "pages": [
+        448
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.4",
+      "caption": "Vertical Hydrostatic Loads by Projection Per Foot of Gate Length",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 450,
+      "pages": [
+        450
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.5",
+      "caption": "Vertical Hydrostatic Loads by Iteration Per Foot of Gate Length",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 450,
+      "pages": [
+        450
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.6",
+      "caption": "Vertical Hydrostatic Loads by Iteration Per Foot of Gate Length",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 451,
+      "pages": [
+        451
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.7",
+      "caption": "Comparison of Vertical Hydrostatic Loads by Iteration",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 451,
+      "pages": [
+        451
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}

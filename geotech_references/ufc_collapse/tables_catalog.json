@@ -1,0 +1,491 @@
+{
+  "reference_id": "UFC 4-023-03",
+  "reference_title": "UFC 4-023-03, Design of Buildings to Resist Progressive Collapse (DoD, dated 14 July 2009, as amended through Change 4, 10 June 2024)",
+  "package": "ufc_collapse",
+  "volume": null,
+  "pdf_path": "docs/UFC_4-023-03.pdf",
+  "table_count": 29,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Risk Categories",
+      "chapter": 2,
+      "section_id": "2-1",
+      "section_title": "Risk Category Determination",
+      "pdf_page_index": 22,
+      "pages": [
+        22
+      ],
+      "printed_page": "7",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "applicability.table_2_1_risk_category",
+      "implemented_in": [
+        "applicability.table_2_1_risk_category"
+      ]
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Risk Categories and Design Requirements",
+      "chapter": 2,
+      "section_id": "2-2",
+      "section_title": "Design Requirements",
+      "pdf_page_index": 23,
+      "pages": [
+        23
+      ],
+      "printed_page": "8",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "applicability.table_2_2_design_requirements",
+      "implemented_in": [
+        "applicability.table_2_2_design_requirements",
+        "applicability.rc4_tie_force_minimum_exempt"
+      ]
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Examples of Deformation Controlled and Force Controlled Actions, from ASCE 41",
+      "chapter": 3,
+      "section_id": "3-2.5",
+      "section_title": "Force and Deformation Controlled Actions",
+      "pdf_page_index": 48,
+      "pages": [
+        48
+      ],
+      "printed_page": "33",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.classify_action",
+      "implemented_in": [
+        "alternate_path.classify_action"
+      ]
+    },
+    {
+      "table_number": "3-2",
+      "caption": "Calculation of Component Capacities for Nonlinear Static and Nonlinear Dynamic Procedures",
+      "chapter": 3,
+      "section_id": "3-2.8",
+      "section_title": "Component Force and Deformation Capacities",
+      "pdf_page_index": 49,
+      "pages": [
+        49
+      ],
+      "printed_page": "34",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Calculation of Component Capacities for the Linear Static Procedure",
+      "chapter": 3,
+      "section_id": "3-2.8",
+      "section_title": "Component Force and Deformation Capacities",
+      "pdf_page_index": 49,
+      "pages": [
+        49
+      ],
+      "printed_page": "34",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-4",
+      "caption": "Load Increase Factors for Linear Static Analysis",
+      "chapter": 3,
+      "section_id": "3-2.11.5",
+      "section_title": "Load Increase Factor",
+      "pdf_page_index": 61,
+      "pages": [
+        61
+      ],
+      "printed_page": "46",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.table_3_4_load_increase_factor",
+      "implemented_in": [
+        "alternate_path.table_3_4_load_increase_factor"
+      ]
+    },
+    {
+      "table_number": "3-5",
+      "caption": "Dynamic Increase Factors for Nonlinear Static Analysis",
+      "chapter": 3,
+      "section_id": "3-2.12.5",
+      "section_title": "Dynamic Increase Factor for NSP",
+      "pdf_page_index": 67,
+      "pages": [
+        67
+      ],
+      "printed_page": "52",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.table_3_5_dynamic_increase_factor",
+      "implemented_in": [
+        "alternate_path.table_3_5_dynamic_increase_factor"
+      ]
+    },
+    {
+      "table_number": "4-1",
+      "caption": "Nonlinear Modeling Parameters and Acceptance Criteria for Reinforced Concrete Beams (Replacement for Table 10-7 in ASCE 41)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 78,
+      "pages": [
+        78
+      ],
+      "printed_page": "63",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_4_1_beam_flexure_modeling",
+      "implemented_in": [
+        "reinforced_concrete.table_4_1_beam_flexure_modeling",
+        "reinforced_concrete.table_4_1_beam_other_modeling"
+      ]
+    },
+    {
+      "table_number": "4-2",
+      "caption": "Acceptance Criteria for Linear Models of Reinforced Concrete Beams (Replacement for Table 10-11 in ASCE 41)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 79,
+      "pages": [
+        79
+      ],
+      "printed_page": "64",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_4_2_beam_flexure_mfactor",
+      "implemented_in": [
+        "reinforced_concrete.table_4_2_beam_flexure_mfactor",
+        "reinforced_concrete.table_4_2_beam_other_mfactor"
+      ]
+    },
+    {
+      "table_number": "4-3",
+      "caption": "Modeling Parameters and Acceptance Criteria for Nonlinear Models of Two-Way Slabs and Slab-Column Connections (Replacement for Table 6-14 in ASCE 41)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 80,
+      "pages": [
+        80
+      ],
+      "printed_page": "65",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_4_3_slab_flexure_modeling",
+      "implemented_in": [
+        "reinforced_concrete.table_4_3_slab_flexure_modeling",
+        "reinforced_concrete.table_4_3_slab_other_modeling"
+      ]
+    },
+    {
+      "table_number": "4-4",
+      "caption": "Acceptance Criteria for Linear Models of Two-Way Slabs and Slab- Column Connections (Replacement for Table 6-15 in ASCE 41)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 81,
+      "pages": [
+        81
+      ],
+      "printed_page": "66",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_4_4_slab_flexure_mfactor",
+      "implemented_in": [
+        "reinforced_concrete.table_4_4_slab_flexure_mfactor",
+        "reinforced_concrete.table_4_4_slab_other_mfactor"
+      ]
+    },
+    {
+      "table_number": "5-1",
+      "caption": "Acceptance Criteria for Linear Static Modeling of Steel Frame Connections",
+      "chapter": 5,
+      "section_id": "5-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Structural Steel",
+      "pdf_page_index": 84,
+      "pages": [
+        84
+      ],
+      "printed_page": "69",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.table_5_1_fr_connection_mfactor",
+      "implemented_in": [
+        "structural_steel.table_5_1_fr_connection_mfactor",
+        "structural_steel.table_5_1_pr_flexible_connection_mfactor",
+        "structural_steel.table_5_1_pr_stiff_connection_mfactor"
+      ]
+    },
+    {
+      "table_number": "5-2",
+      "caption": "Modeling Parameters and Acceptance Criteria for Nonlinear Modeling of Steel Frame Connections",
+      "chapter": 5,
+      "section_id": "5-4.3",
+      "section_title": "Modeling and Acceptance Criteria for Structural Steel",
+      "pdf_page_index": 85,
+      "pages": [
+        85
+      ],
+      "printed_page": "70",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.table_5_2_fr_connection_modeling",
+      "implemented_in": [
+        "structural_steel.table_5_2_fr_connection_modeling",
+        "structural_steel.table_5_2_pr_flexible_connection_modeling",
+        "structural_steel.table_5_2_pr_stiff_connection_modeling"
+      ]
+    },
+    {
+      "table_number": "C-1",
+      "caption": "Steel Frame Beam-to-Column Connection Types",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 126,
+      "pages": [
+        126
+      ],
+      "printed_page": "111",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.list_table_c1_connection_types",
+      "implemented_in": [
+        "structural_steel.list_table_c1_connection_types",
+        "structural_steel.table_c1_connection_type"
+      ]
+    },
+    {
+      "table_number": "D-1",
+      "caption": "Load Calculations for w F",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D-2",
+      "caption": "Tie Force Calculations",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 142,
+      "pages": [
+        142
+      ],
+      "printed_page": "127",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-1",
+      "caption": "Deformation Controlled Column Calculations",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 152,
+      "pages": [
+        152
+      ],
+      "printed_page": "137",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-2",
+      "caption": "Component m Factors for Primary Deformation Controlled Actions",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 153,
+      "pages": [
+        153
+      ],
+      "printed_page": "138",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-3",
+      "caption": "Load Increase Factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 153,
+      "pages": [
+        153
+      ],
+      "printed_page": "138",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-4",
+      "caption": "Deformation Controlled Column Calculations",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 160,
+      "pages": [
+        160
+      ],
+      "printed_page": "145",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-5",
+      "caption": "Beam Hinge Properties",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 175,
+      "pages": [
+        175
+      ],
+      "printed_page": "160",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-6",
+      "caption": "Fully Restrained Connection Hinge Properties",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 176,
+      "pages": [
+        176
+      ],
+      "printed_page": "161",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-7",
+      "caption": "Shear Tab Partially Restrained Connection Hinge Properties",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 177,
+      "pages": [
+        177
+      ],
+      "printed_page": "162",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-8",
+      "caption": "Column Hinge Properties for Removal of Column 1",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 178,
+      "pages": [
+        178
+      ],
+      "printed_page": "163",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-9",
+      "caption": "Column Hinge Properties for Removal of Column 2",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 179,
+      "pages": [
+        179
+      ],
+      "printed_page": "164",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-10",
+      "caption": "Column Hinge Properties for Removal of Column 3",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 180,
+      "pages": [
+        180
+      ],
+      "printed_page": "165",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-11",
+      "caption": "Moment Frame Size Comparison",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 185,
+      "pages": [
+        185
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-12",
+      "caption": "Perimeter Column Size Comparison",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 185,
+      "pages": [
+        185
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-13",
+      "caption": "Frame Weight Comparison",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 185,
+      "pages": [
+        185
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}

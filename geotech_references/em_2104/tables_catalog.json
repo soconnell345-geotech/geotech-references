@@ -1,0 +1,448 @@
+{
+  "reference_id": "EM 1110-2-2104",
+  "reference_title": "EM 1110-2-2104, Strength Design for Reinforced Concrete Hydraulic Structures (USACE, dated 1 November 2023, published 8 January 2025)",
+  "package": "em_2104",
+  "volume": null,
+  "pdf_path": "docs/EM_1110-2-2104_2025.pdf",
+  "table_count": 27,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Minimum clear distance from the edge of the reinforcement to the surface of the concrete",
+      "chapter": 2,
+      "section_id": "2-7",
+      "section_title": "Concrete protection for reinforcement",
+      "pdf_page_index": 10,
+      "pages": [
+        10
+      ],
+      "printed_page": "5",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforcement.table_2_1_min_cover",
+      "implemented_in": [
+        "reinforcement.table_2_1_min_cover"
+      ]
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Longitudinal stagger of tension butt splices",
+      "chapter": 2,
+      "section_id": "2-8",
+      "section_title": "Splicing",
+      "pdf_page_index": 11,
+      "pages": [
+        11
+      ],
+      "printed_page": "6",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforcement.table_2_2_splice_stagger",
+      "implemented_in": [
+        "reinforcement.table_2_2_splice_stagger"
+      ]
+    },
+    {
+      "table_number": "2-3",
+      "caption": "Minimum shrinkage and temperature reinforcement ratios for various joint spacings",
+      "chapter": 2,
+      "section_id": "2-9",
+      "section_title": "Temperature and shrinkage reinforcement",
+      "pdf_page_index": 12,
+      "pages": [
+        12
+      ],
+      "printed_page": "7",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforcement.table_2_3_temp_shrinkage_ratio",
+      "implemented_in": [
+        "reinforcement.table_2_3_temp_shrinkage_ratio"
+      ]
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Loads on hydraulic structures",
+      "chapter": 3,
+      "section_id": "3-2",
+      "section_title": "Loads",
+      "pdf_page_index": 22,
+      "pages": [
+        22
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "loads.table_3_1_load_inventory",
+      "implemented_in": [
+        "loads.table_3_1_load_inventory"
+      ]
+    },
+    {
+      "table_number": "3-2",
+      "caption": "Minimum load factors for strength design",
+      "chapter": 3,
+      "section_id": "3-3",
+      "section_title": "Strength design",
+      "pdf_page_index": 29,
+      "pages": [
+        29
+      ],
+      "printed_page": "24",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "loads.table_3_2_load_factor",
+      "implemented_in": [
+        "loads.table_3_2_load_factor",
+        "loads.table_3_2_permanent_load_factor"
+      ]
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Maximum service stresses",
+      "chapter": 3,
+      "section_id": "3-4",
+      "section_title": "Serviceability design",
+      "pdf_page_index": 31,
+      "pages": [
+        31
+      ],
+      "printed_page": "26",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "serviceability.table_3_3_max_service_stress",
+      "implemented_in": [
+        "serviceability.table_3_3_max_service_stress"
+      ]
+    },
+    {
+      "table_number": "3-4",
+      "caption": "Single-load factors for approximating serviceability design with f y = 60,000 psi (414 MPa)",
+      "chapter": 3,
+      "section_id": "3-4",
+      "section_title": "Serviceability design",
+      "pdf_page_index": 31,
+      "pages": [
+        31
+      ],
+      "printed_page": "26",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "serviceability.table_3_4_single_load_factor",
+      "implemented_in": [
+        "serviceability.table_3_4_single_load_factor",
+        "serviceability.single_load_factor_design_moment"
+      ]
+    },
+    {
+      "table_number": "C-1",
+      "caption": "Moment capacity of a beam with tension steel only and of a beam with the addition of compression steel",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 62,
+      "pages": [
+        62
+      ],
+      "printed_page": "57",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D-1",
+      "caption": "Minimum effective depth",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 78,
+      "pages": [
+        78
+      ],
+      "printed_page": "73",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "design.kd_table_d1",
+      "implemented_in": [
+        "design.kd_table_d1",
+        "design.minimum_effective_depth"
+      ]
+    },
+    {
+      "table_number": "D-2",
+      "caption": "Design example of coastal floodwall",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 85,
+      "pages": [
+        85
+      ],
+      "printed_page": "80",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D-3a",
+      "caption": "Loads and load combinations according to paragraph E-5",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 87,
+      "pages": [
+        87
+      ],
+      "printed_page": "82",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D-3b",
+      "caption": "Design water levels",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 88,
+      "pages": [
+        88
+      ],
+      "printed_page": "83",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D-4",
+      "caption": "Factored loads for the predetermined governing Load Case 1",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 89,
+      "pages": [
+        89
+      ],
+      "printed_page": "84",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-1",
+      "caption": "Load names",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 97,
+      "pages": [
+        97
+      ],
+      "printed_page": "92",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-2",
+      "caption": "Load combinations for an earth retaining wall",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 98,
+      "pages": [
+        98
+      ],
+      "printed_page": "93",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-3",
+      "caption": "Load combinations for an inland floodwall",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 99,
+      "pages": [
+        99
+      ],
+      "printed_page": "94",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-4",
+      "caption": "Load combinations for a coastal floodwall",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 101,
+      "pages": [
+        101
+      ],
+      "printed_page": "96",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-5",
+      "caption": "Load combinations for an intake tower",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 103,
+      "pages": [
+        103
+      ],
+      "printed_page": "98",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-6",
+      "caption": "Load combinations for a navigation lock wall",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 107,
+      "pages": [
+        107
+      ],
+      "printed_page": "102",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-7",
+      "caption": "Load combinations for a navigation lock gate monolith",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 110,
+      "pages": [
+        110
+      ],
+      "printed_page": "105",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-8",
+      "caption": "Load combinations for a navigation lock approach wall (for approach walls that also retain fill, see paragraph E-2 for additional load cases)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 112,
+      "pages": [
+        112
+      ],
+      "printed_page": "107",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-9",
+      "caption": "Load combinations for spillway approach channel walls",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 114,
+      "pages": [
+        114
+      ],
+      "printed_page": "109",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-10",
+      "caption": "Load combinations for spillway chute slab walls",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 117,
+      "pages": [
+        117
+      ],
+      "printed_page": "112",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E-11",
+      "caption": "Load combinations for spillway stilling basin walls",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 119,
+      "pages": [
+        119
+      ],
+      "printed_page": "114",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F-1",
+      "caption": "Commentary on Chapter 3",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 122,
+      "pages": [
+        122
+      ],
+      "printed_page": "117",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F-2",
+      "caption": "Target reliability for 100-year service life, β",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "119",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "loads.table_f2_target_reliability",
+      "implemented_in": [
+        "loads.table_f2_target_reliability"
+      ]
+    },
+    {
+      "table_number": "G-1",
+      "caption": "Shear coefficient for ρρ ww = 0.25 ρρ bb",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "shear.table_g1_shear_coefficient",
+      "implemented_in": [
+        "shear.table_g1_shear_coefficient"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "reference_id": "FEMA P-2082-1",
+  "reference_title": "2020 NEHRP Recommended Seismic Provisions for New Buildings and Other Structures",
+  "package": "fema_p2082",
+  "volume": null,
+  "pdf_path": "docs/fema_p2082_2020_nehrp.pdf",
+  "table_count": 52,
+  "tables": [
+    {
+      "table_number": "12.3-2",
+      "caption": "Vertical Structural Irregularities",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 66,
+      "pages": [
+        66
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "11.6-1",
+      "caption": "Seismic Design Category Based on Short-Period Response Acceleration",
+      "chapter": 11,
+      "section_id": "11.6",
+      "section_title": "Seismic Design Category",
+      "pdf_page_index": 56,
+      "pages": [
+        56
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.sdc_from_sds",
+      "implemented_in": [
+        "tables.sdc_from_sds",
+        "tables.seismic_design_category"
+      ]
+    },
+    {
+      "table_number": "11.6-2",
+      "caption": "Seismic Design Category Based on 1-s Period Response Acceleration",
+      "chapter": 11,
+      "section_id": "11.6",
+      "section_title": "Seismic Design Category",
+      "pdf_page_index": 56,
+      "pages": [
+        56
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.sdc_from_sd1",
+      "implemented_in": [
+        "tables.sdc_from_sd1"
+      ]
+    },
+    {
+      "table_number": "11.9-1",
+      "caption": "Values of Vertical Coefficient C v",
+      "chapter": 11,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 59,
+      "pages": [
+        59
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "12.2-1",
+      "caption": "Design Coefficients and Factors for Seismic Force-Resisting Systems",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 61,
+      "pages": [
+        61
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "12.3-1",
+      "caption": "Horizontal Structural Irregularities",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 64,
+      "pages": [
+        64
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "12.10-1",
+      "caption": "Diaphragm Design Force Reduction Factor, R s",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 71,
+      "pages": [
+        71
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "12.12-1",
+      "caption": "ALLOWABLE STORY",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 74,
+      "pages": [
+        74
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "12.14-1",
+      "caption": "Design Coefficients and Factors for Seismic Force-Resisting Systems for Simplified Design Procedures",
+      "chapter": 12,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 75,
+      "pages": [
+        75
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "13.5-1",
+      "caption": "Coefficients for Architectural Components",
+      "chapter": 13,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 85,
+      "pages": [
+        85
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "13.6-1",
+      "caption": "Seismic Coefficients for Mechanical and Electrical Components",
+      "chapter": 13,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 88,
+      "pages": [
+        88
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "19.3-1",
+      "caption": "Effective Shear Wave Velocity Ratio (",
+      "chapter": 19,
+      "section_id": "19.3.2",
+      "section_title": "Effective Damping Ratio of the Soil-Structure System",
+      "pdf_page_index": 117,
+      "pages": [
+        117
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "19.3-2",
+      "caption": "Effective Shear Modulus Ratio (G/G0)",
+      "chapter": 19,
+      "section_id": "19.3.3",
+      "section_title": "Radiation Damping for Rectangular Foundations",
+      "pdf_page_index": 119,
+      "pages": [
+        119
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "19.3-3",
+      "caption": "Soil Hysteretic Damping Ratio, βs",
+      "chapter": 19,
+      "section_id": "19.3.5",
+      "section_title": "Soil Hysteretic Damping",
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "20.2-1",
+      "caption": "Site classification",
+      "chapter": 20,
+      "section_id": "20.1",
+      "section_title": "Site Classification",
+      "pdf_page_index": 123,
+      "pages": [
+        123
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.site_class_from_vs30",
+      "implemented_in": [
+        "tables.site_class_from_vs30",
+        "tables.site_class_table"
+      ]
+    },
+    {
+      "table_number": "21.2-1",
+      "caption": "Deterministic Lower Limit Values of MCE R Response Spectra and PGA G (g)",
+      "chapter": 21,
+      "section_id": "21.2.3",
+      "section_title": "Site-Specific MCER Response Spectrum",
+      "pdf_page_index": 129,
+      "pages": [
+        129
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C12.2-1",
+      "caption": "Summary of Conditions for OMFs and IMFs in Structures Assigned to Seismic Design Category D, E, or F (Refer to the Standard for Additional Requirements)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 191,
+      "pages": [
+        191
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C12.10-1",
+      "caption": "Diaphragm Design Performance Targets",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 248,
+      "pages": [
+        248
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C12.10-2",
+      "caption": "Diaphragm Force Reduction Factors,",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 249,
+      "pages": [
+        249
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C13.5-1",
+      "caption": "Summary of Requirements for Acoustical Tile or Lay-in Panel Ceilings",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 314,
+      "pages": [
+        314
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C14.5.2.2",
+      "caption": "Typical Connection Details",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 385,
+      "pages": [
+        385
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C15.5-1",
+      "caption": "Value Selection Example for Steel OMF Pipe Racks",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 413,
+      "pages": [
+        413
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C15.8-1",
+      "caption": "Usage of Reference Documents in Conjunction with Section 15.4.1",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 440,
+      "pages": [
+        440
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-1",
+      "caption": "Likelihood of Observing Collapses in 11 Analyses, Given Various",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 459,
+      "pages": [
+        459
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-2",
+      "caption": "Likelihood of Observing Collapses in 11 Analyses, Given Various",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 460,
+      "pages": [
+        460
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-3a",
+      "caption": "Assumed Variability and Uncertainty Values for Component Force Demand",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 464,
+      "pages": [
+        464
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-3b",
+      "caption": "Assumed Variability and Uncertainty Values for Component Force Capacity",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 465,
+      "pages": [
+        465
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-4",
+      "caption": "Required Ratios of λ/φ to Achieve the 10% Collapse Probability Objective",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 465,
+      "pages": [
+        465
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-5a",
+      "caption": "Assumed Variability and Uncertainty Values for Component Deformation Demand",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 469,
+      "pages": [
+        469
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C16.4-5b",
+      "caption": "Assumed Variability and Uncertainty Values for Component Deformation Capacity",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 469,
+      "pages": [
+        469
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-1",
+      "caption": "Performance Expected for Minor, Moderate, and Major Earthquakes",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 476,
+      "pages": [
+        476
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-2",
+      "caption": "Values of Static Residual Displacement, D rm",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 481,
+      "pages": [
+        481
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-3",
+      "caption": "Values of Static Residual Displacement, D r (in.), for Various Isolated Periods, T (s), and Yield/Friction Levels,",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 482,
+      "pages": [
+        482
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-4",
+      "caption": "Permanent Residual Displacement, Drd, for a Maximum Earthquake Displacement, Dm, of 10 in. (250 mm)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 483,
+      "pages": [
+        483
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-5",
+      "caption": "Permanent Residual Displacements, Drd, for a Maximum Earthquake Displacement, Dm, of 20 in. (500 mm)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 483,
+      "pages": [
+        483
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-6",
+      "caption": "Default Upper and Lower Bound Multipliers for Unknown Manufacturers",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 487,
+      "pages": [
+        487
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.2-7",
+      "caption": "Default Upper and Lower Bound Multipliers for Quality Manufacturers",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 489,
+      "pages": [
+        489
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.5-1",
+      "caption": "Comparison of Elastic Design Base Shears between ASCE 7-10 and 7-16",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 497,
+      "pages": [
+        497
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.5-2",
+      "caption": "Comparison of \"Strongly Bilinear\" and \"Weakly Bilinear\" Isolation Systems",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 501,
+      "pages": [
+        501
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C17.6-1",
+      "caption": "Analysis Cases for Establishing Amplification Factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 503,
+      "pages": [
+        503
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C18.3-1",
+      "caption": "Analysis Cases for Establishing Amplification Factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 522,
+      "pages": [
+        522
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C18.7-1",
+      "caption": "Values of Damping Coefficient,",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 528,
+      "pages": [
+        528
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C20.3-1",
+      "caption": "Coefficients for estimation of shear wave velocity in local model applicable to California (after Brandenberg et al., 2010)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 547,
+      "pages": [
+        547
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C20.3-2",
+      "caption": "Coefficients for estimation of shear wave velocity from CPT data. Hegazy and Mayne (2006) and Andrus et al. (2007) are not region-specific; McGann et al. (2015) is specific to Christchurch, NZ",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 548,
+      "pages": [
+        548
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C21.2.2-1",
+      "caption": "Examples of scenario earthquake from hazard deaggregations at a site in San Jose, California",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 554,
+      "pages": [
+        554
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-1",
+      "caption": "Modifications to MCE R and MCE G ground motions from ASCE/SEI 7-16 to these Provisions based on Project '17 recommendations",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 562,
+      "pages": [
+        562
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-2",
+      "caption": "Latitudes and Longitudes at which MCE R and MCE G Ground Motions and corresponding Seismic Design Categories from these Provisions , ASCE/SEI 7-16, and ASCE/SEI 7-10 are Compared in Tables C22-3 through C22-6",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 566,
+      "pages": [
+        566
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-3",
+      "caption": "Comparison of short-period MCE R spectral response acceleration values from these Provisions , ASCE/SEI 7-16 , and ASCE/SEI 7-10 . The S MS values are for the default site class",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 569,
+      "pages": [
+        569
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-4",
+      "caption": "Comparison of 1.0-second MCE R spectral response acceleration values from these Provisions , ASCE/SEI 7-16 , and ASCE/SEI 7-10 . The S M1 values are for the default site class. The ASCE/SEI 7-16 S M1 values include the 1.5 multiplier of the applicable Section 11.4.8 exception",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 571,
+      "pages": [
+        571
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-5",
+      "caption": "Comparison of MCE G peak ground acceleration values from these Provisions , ASCE/SEI 7-16 , and ASCE/SEI 7-10 . The PGA M values are for the default site class. The 2020 Provisions have replaced the notation PGA of ASCE/SEI 7-10 and ASCE/SEI 7-16 with \" PGA M for Site Class BC,\" abbreviated here as \" PGA .\"",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 573,
+      "pages": [
+        573
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-6",
+      "caption": "Comparison of seismic design categories from these Provisions , ASCE/SEI 7-16 , and ASCE/SEI 7-10 , for the default site class and risk categories I, II, or III. The \"SDC S \" categories are determined from Table 11.6-1 (\"Seismic Design Category Based on Short-Period Response Acceleration Parameter\") alone, but only where S 1 < 0.75g",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 575,
+      "pages": [
+        575
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C22-7",
+      "caption": "Examples of 84th-percentile ground motions (abbreviated 84th GM) calculated using epsilons from hazard deaggregations (ε) and the corresponding probabilistic ground motions, at a site class BC location in San Jose, California",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 577,
+      "pages": [
+        577
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "reference_id": "UFC 3-250-11",
+  "reference_title": "Soil Stabilization and Modification for Pavements",
+  "package": "ufc_stabilization",
+  "volume": null,
+  "pdf_path": "docs/ufc_3_250_11_2020.pdf",
+  "table_count": 10,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Minimum Unconfined Compressive Strength for Cement-, Lime-, Lime- Cement, and Lime-Cement-Fly Ash-Stabilized Soils",
+      "chapter": 2,
+      "section_id": "2-3",
+      "section_title": "Thickness Reduction for Base and Subbase Courses",
+      "pdf_page_index": 17,
+      "pages": [
+        17
+      ],
+      "printed_page": "10",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_2_1_min_ucs_requirements",
+      "implemented_in": [
+        "tables.table_2_1_min_ucs_requirements"
+      ]
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Durability Requirements",
+      "chapter": 2,
+      "section_id": "2-3",
+      "section_title": "Thickness Reduction for Base and Subbase Courses",
+      "pdf_page_index": 18,
+      "pages": [
+        18
+      ],
+      "printed_page": "11",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_2_2_durability_requirements",
+      "implemented_in": [
+        "tables.table_2_2_durability_requirements"
+      ]
+    },
+    {
+      "table_number": "2-3",
+      "caption": "Guide for Selecting a Stabilizing Additive",
+      "chapter": 2,
+      "section_id": "2-1.5.1",
+      "section_title": "Candidate Stabilizers",
+      "pdf_page_index": 20,
+      "pages": [
+        20
+      ],
+      "printed_page": "13",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "equations.equation_cement_pi_limit_table_2_3",
+      "implemented_in": [
+        "equations.equation_cement_pi_limit_table_2_3",
+        "tables.table_2_3_additive_selection_guide"
+      ]
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Gradation Requirements for Cement-Stabilized Base and Subbase Courses",
+      "chapter": 3,
+      "section_id": "3-1.3",
+      "section_title": "Gradation Requirements (Cement)",
+      "pdf_page_index": 22,
+      "pages": [
+        22
+      ],
+      "printed_page": "15",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_1_cement_gradation",
+      "implemented_in": [
+        "tables.table_3_1_cement_gradation"
+      ]
+    },
+    {
+      "table_number": "3-2",
+      "caption": "Cement Requirements for Various Soils",
+      "chapter": 3,
+      "section_id": "3-1.5",
+      "section_title": "Cement Content for Stabilized Soil",
+      "pdf_page_index": 24,
+      "pages": [
+        24
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_2_cement_content_by_soil",
+      "implemented_in": [
+        "tables.table_3_2_cement_content_by_soil"
+      ]
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Recommended Gradations for Bituminous-Stabilized Subgrade Materials",
+      "chapter": 3,
+      "section_id": "3-4.3",
+      "section_title": "Soil Gradation (Bituminous)",
+      "pdf_page_index": 32,
+      "pages": [
+        32
+      ],
+      "printed_page": "25",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_3_bituminous_subgrade_gradation",
+      "implemented_in": [
+        "tables.table_3_3_bituminous_subgrade_gradation"
+      ]
+    },
+    {
+      "table_number": "3-4",
+      "caption": "Recommended Gradations for Bituminous-Stabilized Base and Subbase Materials",
+      "chapter": 3,
+      "section_id": "3-4.3",
+      "section_title": "Soil Gradation (Bituminous)",
+      "pdf_page_index": 32,
+      "pages": [
+        32
+      ],
+      "printed_page": "25",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_4_bituminous_base_subbase_gradation",
+      "implemented_in": [
+        "tables.table_3_4_bituminous_base_subbase_gradation"
+      ]
+    },
+    {
+      "table_number": "3-5",
+      "caption": "Emulsified Asphalt Requirements",
+      "chapter": 3,
+      "section_id": "3-4.4",
+      "section_title": "Mix Design (Bituminous)",
+      "pdf_page_index": 34,
+      "pages": [
+        34
+      ],
+      "printed_page": "27",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_5_emulsified_asphalt_requirements",
+      "implemented_in": [
+        "tables.table_3_5_emulsified_asphalt_requirements"
+      ]
+    },
+    {
+      "table_number": "3-6",
+      "caption": "Swell Potential of Soils",
+      "chapter": 3,
+      "section_id": "3-5.3",
+      "section_title": "Lime Treatment of Expansive Soils",
+      "pdf_page_index": 37,
+      "pages": [
+        37
+      ],
+      "printed_page": "30",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_3_6_swell_potential",
+      "implemented_in": [
+        "tables.table_3_6_swell_potential"
+      ]
+    },
+    {
+      "table_number": "A-1",
+      "caption": "Equivalency Factors for Stabilized Material",
+      "chapter": null,
+      "section_id": "A-1.1",
+      "section_title": "Equivalency Factors",
+      "pdf_page_index": 70,
+      "pages": [
+        70
+      ],
+      "printed_page": "63",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_a1_equivalency_factors",
+      "implemented_in": [
+        "tables.table_a1_equivalency_factors"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,790 @@
+{
+  "reference_id": "FHWA-SA-02-054",
+  "reference_title": "Shallow Foundations",
+  "package": "gec_6",
+  "volume": null,
+  "pdf_path": "docs/GEC 6.pdf",
+  "table_count": 50,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "RESULTS OF ONE-DIMENSIONAL CONSOLIDATION TESTS, I-5 KALAMA INTERCHANGE",
+      "chapter": 2,
+      "section_id": "2.7.1",
+      "section_title": "Case History No. 1: I-5 Kalama Interchange, Washington",
+      "pdf_page_index": 18,
+      "pages": [
+        18
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-2",
+      "caption": "SETTLEMENT DATA - AFTER COMPLETION OF BRIDGE DECK, I-5 KALAMA INTERCHANGE",
+      "chapter": 2,
+      "section_id": "2.7.1",
+      "section_title": "Case History No. 1: I-5 Kalama Interchange, Washington",
+      "pdf_page_index": 20,
+      "pages": [
+        20
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-1",
+      "caption": "SOIL PROPERTIES CORRELATED WITH STANDARD PENETRATION TEST VALUES*",
+      "chapter": 4,
+      "section_id": "4.3.1",
+      "section_title": "Standard Penetration Test",
+      "pdf_page_index": 38,
+      "pages": [
+        38
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_1_spt_soil_properties",
+      "implemented_in": [
+        "tables.table_4_1_spt_soil_properties"
+      ]
+    },
+    {
+      "table_number": "4-2",
+      "caption": "SUMMARY OF COMMONLY USED IN SITU AND LABORATORY TESTING FOR FOOTINGS ON ROCK OR IGMS (AFTER ARMAN ET AL., 1997)",
+      "chapter": 4,
+      "section_id": "4.3.4",
+      "section_title": "Rock and IGM Mass Characterization",
+      "pdf_page_index": 45,
+      "pages": [
+        45
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-3",
+      "caption": "WEIGHT-VOLUME RELATIONSHIPS, DIMENSIONLESS RATIOS AND FUNCTIONAL RELATIONSHIPS",
+      "chapter": 4,
+      "section_id": "4.4.1",
+      "section_title": "Phase and Volume Relationships",
+      "pdf_page_index": 47,
+      "pages": [
+        47
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-1",
+      "caption": "BEARING CAPACITY FACTORS (AASHTO, 1996)",
+      "chapter": 5,
+      "section_id": "5.2.2",
+      "section_title": "Bearing Capacity Equation Formulations",
+      "pdf_page_index": 59,
+      "pages": [
+        59
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_1_bearing_capacity_factors",
+      "implemented_in": [
+        "tables.table_5_1_bearing_capacity_factors"
+      ]
+    },
+    {
+      "table_number": "5-2",
+      "caption": "SHAPE CORRECTION FACTORS (AASHTO 1996)",
+      "chapter": 5,
+      "section_id": "5.2.3.1",
+      "section_title": "Footing Shape",
+      "pdf_page_index": 61,
+      "pages": [
+        61
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-3",
+      "caption": "CORRECTION FACTOR FOR LOCATION",
+      "chapter": 5,
+      "section_id": "5.2.3.2",
+      "section_title": "Location of the Ground Water Table",
+      "pdf_page_index": 62,
+      "pages": [
+        62
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-4",
+      "caption": "DEPTH CORRECTION FACTOR (BRINCH HANSEN, 1970)",
+      "chapter": 5,
+      "section_id": "5.2.3.3",
+      "section_title": "Embedment Depth",
+      "pdf_page_index": 62,
+      "pages": [
+        62
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_4_depth_correction_factor",
+      "implemented_in": [
+        "tables.table_5_4_depth_correction_factor"
+      ]
+    },
+    {
+      "table_number": "5-5",
+      "caption": "INCLINED BASE CORRECTION FACTOR (BRINCH HANSEN, 1970)",
+      "chapter": 5,
+      "section_id": "5.2.3.5",
+      "section_title": "Inclined Base",
+      "pdf_page_index": 65,
+      "pages": [
+        65
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.2.3.5"
+    },
+    {
+      "table_number": "5-6",
+      "caption": "ALLOWABLE BEARING PRESSURES FOR FRESH ROCK OF VARIOUS TYPES 1,2,3,4 (GOODMAN, 1989)",
+      "chapter": 5,
+      "section_id": "5.2.7.2",
+      "section_title": "Rock",
+      "pdf_page_index": 72,
+      "pages": [
+        72
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-7",
+      "caption": "PRESUMPTIVE VALUES OF ALLOWABLE BEARING PRESSURES FOR SPREAD FOUNDATIONS ON ROCK (MODIFIED AFTER NAVFAC, 1986b)",
+      "chapter": 5,
+      "section_id": "5.2.7.2",
+      "section_title": "Rock",
+      "pdf_page_index": 73,
+      "pages": [
+        73
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_7_presumptive_bearing_rock",
+      "implemented_in": [
+        "tables.table_5_7_presumptive_bearing_rock"
+      ]
+    },
+    {
+      "table_number": "5-8",
+      "caption": "ALLOWABLE BEARING PRESSURES FOR SPREAD FOUNDATIONS ON ROCK IN NEW YORK CITY (NEW YORK CITY BUILDING CODE, 2001)",
+      "chapter": 5,
+      "section_id": "5.2.7.2",
+      "section_title": "Rock",
+      "pdf_page_index": 74,
+      "pages": [
+        74
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-9",
+      "caption": "SUGGESTED VALUES OF ALLOWABLE BEARING CAPACITY (PECK ET AL., 1974)",
+      "chapter": 5,
+      "section_id": "5.2.7.2",
+      "section_title": "Rock",
+      "pdf_page_index": 75,
+      "pages": [
+        75
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_9_rqd_bearing_capacity",
+      "implemented_in": [
+        "tables.table_5_9_rqd_bearing_capacity"
+      ]
+    },
+    {
+      "table_number": "5-10",
+      "caption": "PRESUMPTIVE BEARING CAPACITY VALUES FOR FOOTINGS CONSTRUCTED ON COMPACTED STRUCTURAL FILLS",
+      "chapter": 5,
+      "section_id": "5.2.10",
+      "section_title": "Allowable Bearing Capacities on Compacted Structural Fills",
+      "pdf_page_index": 77,
+      "pages": [
+        77
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_10_fill_bearing_capacity",
+      "implemented_in": [
+        "tables.table_5_10_fill_bearing_capacity"
+      ]
+    },
+    {
+      "table_number": "5-11",
+      "caption": "CORRELATIONS FOR COMPRESSION INDEX, C C",
+      "chapter": 5,
+      "section_id": "5.3.3",
+      "section_title": "Footings on Cohesive Soils",
+      "pdf_page_index": 88,
+      "pages": [
+        88
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.3.3"
+    },
+    {
+      "table_number": "5-12",
+      "caption": "SHAPE AND RIGIDITY FACTORS, C d , FOR CALCULATING SETTLEMENTS OF POINTS ON LOADED AREAS AT THE SURFACE OF AN ELASTIC HALF SPACE WITH INFINITE DEPTH (AFTER WINTERKORN & FANG, 1975)",
+      "chapter": 5,
+      "section_id": "5.3.6",
+      "section_title": "Footings on IGMs and Rock",
+      "pdf_page_index": 102,
+      "pages": [
+        102
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_12_shape_rigidity_factor",
+      "implemented_in": [
+        "tables.table_5_12_shape_rigidity_factor"
+      ]
+    },
+    {
+      "table_number": "5-13",
+      "caption": "SUMMARY OF POISSON'S RATIO FOR INTACT ROCK (AASHTO, MODIFIED AFTER KULHAWY, 1978)",
+      "chapter": 5,
+      "section_id": "5.3.6",
+      "section_title": "Footings on IGMs and Rock",
+      "pdf_page_index": 102,
+      "pages": [
+        102
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_13_poissons_ratio_rock",
+      "implemented_in": [
+        "tables.table_5_13_poissons_ratio_rock"
+      ]
+    },
+    {
+      "table_number": "5-14",
+      "caption": "SUMMARY OF YOUNG'S MODULUS FOR INTACT ROCK (MODIFIED AFTER KULHAWY, 1978)",
+      "chapter": 5,
+      "section_id": "5.3.6",
+      "section_title": "Footings on IGMs and Rock",
+      "pdf_page_index": 103,
+      "pages": [
+        103
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_14_youngs_modulus_rock",
+      "implemented_in": [
+        "tables.table_5_14_youngs_modulus_rock"
+      ]
+    },
+    {
+      "table_number": "5-15",
+      "caption": "ULTIMATE FRICTION FACTORS FOR DISSIMILAR MATERIALS (NAVFAC, 1986B)",
+      "chapter": 5,
+      "section_id": "5.4",
+      "section_title": "Sliding and Lateral Stability",
+      "pdf_page_index": 104,
+      "pages": [
+        104
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_15_friction_factor",
+      "implemented_in": [
+        "tables.table_5_15_friction_factor"
+      ]
+    },
+    {
+      "table_number": "6-1",
+      "caption": "STEPS IN DESIGN PROCESS FOR BRIDGE SUPPORTED ON SHALLOW FOUNDATIONS",
+      "chapter": 6,
+      "section_id": "6.1",
+      "section_title": "Design Process and Flow Chart",
+      "pdf_page_index": 109,
+      "pages": [
+        109
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-2",
+      "caption": "SERVICE LOAD DESIGN LOAD GROUPS",
+      "chapter": 6,
+      "section_id": "6.3",
+      "section_title": "Loads",
+      "pdf_page_index": 117,
+      "pages": [
+        117
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B1-1",
+      "caption": "LOADS AT COLUMN BASE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 162,
+      "pages": [
+        162
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B1-2",
+      "caption": "STRESS INCREASE WITH DEPTH AS FUNCTION OF FOOTING WIDTH",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 168,
+      "pages": [
+        168
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B1-3",
+      "caption": "SETTLEMENT AS A FUNCTION OF APPLIED STRESS AND FOOTING WIDTH",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 169,
+      "pages": [
+        169
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B1-4",
+      "caption": "SETTLEMENT-LIMITED ALLOWABLE BEARING CAPACITIES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 170,
+      "pages": [
+        170
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B2-1",
+      "caption": "LOADS FROM SUPERSTRUCTURE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 176,
+      "pages": [
+        176
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B2-2",
+      "caption": "LOADS OF ABUTMENT COMPONENTS AND HORIZONTAL EARTH PRESSURES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 179,
+      "pages": [
+        179
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B2-3",
+      "caption": "STRESS INCREASE DUE TO BRIDGE LOADING",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 184,
+      "pages": [
+        184
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B2-4",
+      "caption": "SETTLEMENTS DUE TO VARIOUS FOOTING PRESSURES AND WIDTHS",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 186,
+      "pages": [
+        186
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B2-5",
+      "caption": "SETTLEMENT-LIMITED ALLOWABLE BEARING CAPACITIES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 187,
+      "pages": [
+        187
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B3-1",
+      "caption": "LOADS FROM GIRDERS",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 194,
+      "pages": [
+        194
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B3-2",
+      "caption": "LOADS OF ABUTMENT COMPONENTS AND HORIZONTAL EARTH PRESSURES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 197,
+      "pages": [
+        197
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B3-3",
+      "caption": "STRESS INCREASE DUE TO BRIDGE LOADING",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 204,
+      "pages": [
+        204
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B3-4",
+      "caption": "SETTLEMENTS DUE TO BRIDGE LOADING",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 208,
+      "pages": [
+        208
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B4-1",
+      "caption": "LOADS AT SUPERSTRUCTURE BASE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 221,
+      "pages": [
+        221
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B4-2",
+      "caption": "STRESS INCREASE WITH DEPTH AS FUNCTION OF FOOTING WIDTH",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 225,
+      "pages": [
+        225
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B4-3",
+      "caption": "SETTLEMENT AS A FUNCTION OF APPLIED STRESS AND FOOTING WIDTH",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 227,
+      "pages": [
+        227
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B4-4",
+      "caption": "SETTLEMENT-LIMITED ALLOWABLE BEARING CAPACITIES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 228,
+      "pages": [
+        228
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B5-1",
+      "caption": "LOADS AT COLUMN BASE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 242,
+      "pages": [
+        242
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-1",
+      "caption": "LRFD LIMIT STATES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 250,
+      "pages": [
+        250
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-2",
+      "caption": "LRFD LOAD COMBINATIONS AND LOAD FACTORS (AASHTO, 1998)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 251,
+      "pages": [
+        251
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-3",
+      "caption": "LOAD FACTORS FOR PERMANENT LOADS",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 252,
+      "pages": [
+        252
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-4",
+      "caption": "LIVE LOAD SURCHARGE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 254,
+      "pages": [
+        254
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-5",
+      "caption": "RESISTANCE FACTORS FOR STRENGTH LIMIT STATE FOR SHALLOW FOUNDATIONS (MODIFIED AFTER TABLE 10.5.5-1, AASHTO, 1998)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 256,
+      "pages": [
+        256
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C-6",
+      "caption": "STEPS IN LRFD DESIGN PROCESS FOR BRIDGE SUPPORTED ON SHALLOW FOUNDATIONS",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 258,
+      "pages": [
+        258
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C1-1",
+      "caption": "LOADS AT COLUMN BASE",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 262,
+      "pages": [
+        262
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C1-2",
+      "caption": "STRESS INCREASE WITH DEPTH AS FUNCTION OF FOOTING WIDTH AND STRESS APPLIED BY THE FOOTING (q)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 270,
+      "pages": [
+        270
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C2-1",
+      "caption": "LOADS FROM GIRDERS",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 280,
+      "pages": [
+        280
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C2-2",
+      "caption": "LOADS OF ABUTMENT COMPONENTS AND HORIZONTAL EARTH PRESSURES",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 281,
+      "pages": [
+        281
+      ],
+      "printed_page": null,
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}
