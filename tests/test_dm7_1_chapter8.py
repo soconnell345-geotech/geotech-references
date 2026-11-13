@@ -1712,7 +1712,9 @@ class TestTable86StarkHussain:
     @pytest.mark.parametrize("cf_range, sigma, c0, c1, c2, c3", PRINTED)
     def test_printed_row(self, cf_range, sigma, c0, c1, c2, c3):
         result = table_8_6_stark_hussain(cf_range, sigma)
-        assert result == {"c0": c0, "c1": c1, "c2": c2, "c3": c3}
+        values = {k: v for k, v in result.items()
+                  if k not in ("units", "printed_page", "pdf_page_index")}
+        assert values == {"c0": c0, "c1": c1, "c2": c2, "c3": c3}
 
     def test_sixteen_rows(self):
         from geotech_references.dm7_1 import chapter8

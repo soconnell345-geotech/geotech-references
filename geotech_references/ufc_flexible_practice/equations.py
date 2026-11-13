@@ -6,20 +6,20 @@ the genuinely lookup-worthy tables and ``text/`` for the full chapter
 narrative). A few places in the source, however, carry real closed-form
 formulas worth digitizing:
 
-- Section 2-4.2.3.1 "Proportioning of Stockpile Samples" (pdf_page 39,
+- Section 2-4.2.3.1 "Proportioning of Stockpile Samples" (pdf_page_index 39,
   printed p.26) -- the Fuller-Thompson 0.45-power maximum-density gradation
   curve, used to combine/check stockpile and hot-bin aggregate gradations.
 - Section 2-4.2.8.1 "Equations Used for Calculation of Mixture Properties"
-  (pdf_page 49, printed p.36) -- the standard Marshall/Superpave volumetric
+  (pdf_page_index 49, printed p.36) -- the standard Marshall/Superpave volumetric
   mixture-property relationships (bulk specific gravity, air voids, voids
   in mineral aggregate, voids filled with asphalt).
-- Section 7-3.1 (pdf_page 125-126, printed p.112-113) -- the French
+- Section 7-3.1 (pdf_page_index 125-126, printed p.112-113) -- the French
   "estimated optimum asphalt content" procedure used to seed the Resin
   Modified Pavement (RMP) open-graded mixture's Marshall trial asphalt
   contents, plus the same air-voids relationship applied to RMP specimens
   where volume is measured geometrically (pi/4 * D^2 * H) rather than by
   water displacement.
-- Appendix B, Section B-1.2 "Surface Area Design Method" (pdf_page 136-138,
+- Appendix B, Section B-1.2 "Surface Area Design Method" (pdf_page_index 136-138,
   printed p.123-125) -- the slurry-seal/micro-surfacing asphalt-content
   design procedure (surface area -> corrected surface area -> asphalt for
   film thickness -> total asphalt required, Equations B-1/B-2/B-3).
@@ -32,10 +32,10 @@ the text layer, and cross-checked against the source's own worked example in
 Section B-1.4.3):
 
 The printed Equation B-1 metric coefficient reads "0.99941" (confirmed by
-rendering pdf_page 136 as an image -- not an OCR artifact). Substituting the
+rendering pdf_page_index 136 as an image -- not an OCR artifact). Substituting the
 source's own worked-example numbers (CSA=8.310 m2/kg, t=8 micrometers,
 SGA=1.028) into the metric form with that coefficient gives SAA = 68.3,
-but the source's own worked example (Section B-1.4.3, pdf_page 140) states
+but the source's own worked example (Section B-1.4.3, pdf_page_index 140) states
 the answer is SAA = 6.83 -- almost exactly a factor of 10 different. The
 parallel US-customary form (coefficient 0.02047) DOES reproduce the source's
 stated 6.83 exactly from the equivalent ft2/lb inputs, and 0.02047 * 4.882
@@ -47,8 +47,12 @@ recorded here for anyone auditing against the PDF directly.
 """
 
 import math
+from geotech_references import _units as _u
 
 
+@_u.labelled(
+    {"max_particle_size_mm": "mm", "n": "no unit printed",
+     "percent_passing": "percent", "sieve_size_mm": "mm"})
 def fuller_thompson_max_density_passing(sieve_size_mm, max_particle_size_mm,
                                         n=0.45):
     """Fuller-Thompson maximum-density gradation curve, percent passing (Section 2-4.2.3.1).
@@ -101,10 +105,11 @@ def fuller_thompson_max_density_passing(sieve_size_mm, max_particle_size_mm,
         "max_particle_size_mm": max_particle_size_mm,
         "n": n,
         "percent_passing": round(p, 2),
-        "reference": "UFC 3-250-03, Section 2-4.2.3.1 (pdf_page 39, printed p.26)",
+        "reference": "UFC 3-250-03, Section 2-4.2.3.1 (pdf_page_index 39, printed p.26)",
     }
 
 
+@_u.labelled({"gmb": "dimensionless"})
 def bulk_specific_gravity_gmb(wt_dry_air, wt_ssd, wt_submerged):
     """Bulk specific gravity of a compacted mixture, Gmb (Section 2-4.2.8.1).
 
@@ -138,10 +143,11 @@ def bulk_specific_gravity_gmb(wt_dry_air, wt_ssd, wt_submerged):
     gmb = wt_dry_air / (wt_ssd - wt_submerged)
     return {
         "gmb": round(gmb, 4),
-        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page 49, printed p.36)",
+        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page_index 49, printed p.36)",
     }
 
 
+@_u.labelled({"gmb": "dimensionless", "volume_cc": "cm^3"})
 def bulk_specific_gravity_gmb_geometric(wt_dry_air, diameter, height):
     """Bulk specific gravity from measured specimen geometry (Section 7-3.1, RMP).
 
@@ -182,10 +188,11 @@ def bulk_specific_gravity_gmb_geometric(wt_dry_air, diameter, height):
     return {
         "gmb": round(gmb, 4),
         "volume_cc": round(volume, 2),
-        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page 126, printed p.113)",
+        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page_index 126, printed p.113)",
     }
 
 
+@_u.labelled({"vv_percent": "percent"})
 def air_voids_vtm(gmb, gmm):
     """Air voids in total mix, Vv / VTM, percent (Section 2-4.2.8.1).
 
@@ -216,10 +223,11 @@ def air_voids_vtm(gmb, gmm):
     vv = 100.0 * (1.0 - gmb / gmm)
     return {
         "vv_percent": round(vv, 2),
-        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page 49, printed p.36)",
+        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page_index 49, printed p.36)",
     }
 
 
+@_u.labelled({"vma_percent": "percent"})
 def voids_in_mineral_aggregate_vma(gmb, gsb, pb):
     """Voids in mineral aggregate, VMA, percent of total mixture volume (Section 2-4.2.8.1).
 
@@ -254,10 +262,11 @@ def voids_in_mineral_aggregate_vma(gmb, gsb, pb):
     vma = 100.0 - (gmb * (1.0 - pb) / gsb) * 100.0
     return {
         "vma_percent": round(vma, 2),
-        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page 49, printed p.36)",
+        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page_index 49, printed p.36)",
     }
 
 
+@_u.labelled({"vfa_percent": "percent"})
 def voids_filled_with_asphalt_vfa(vma_percent, vv_percent):
     """Voids filled with asphalt, VFA, percent of VMA (Section 2-4.2.8.1).
 
@@ -288,10 +297,11 @@ def voids_filled_with_asphalt_vfa(vma_percent, vv_percent):
     vfa = 100.0 * (vma_percent - vv_percent) / vma_percent
     return {
         "vfa_percent": round(vfa, 2),
-        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page 49, printed p.36)",
+        "reference": "UFC 3-250-03, Section 2-4.2.8.1 (pdf_page_index 49, printed p.36)",
     }
 
 
+@_u.labelled({"sigma": "no unit printed"})
 def rmp_specific_surface_area(pct_retained_no4, pct_passing_no4_retained_no30,
                               pct_passing_no30_retained_no200,
                               pct_passing_no200):
@@ -325,17 +335,20 @@ def rmp_specific_surface_area(pct_retained_no4, pct_passing_no4_retained_no30,
              + 7.2 * pct_passing_no30_retained_no200 + 135.0 * pct_passing_no200)
     return {
         "sigma": round(sigma, 3),
-        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page 125, printed p.112)",
+        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page_index 125, printed p.112)",
     }
 
 
+@_u.labelled(
+    {"alpha": "no unit printed", "optimum_asphalt_content_pct": "percent",
+     "sigma": "no unit printed"})
 def rmp_optimum_asphalt_content(sigma, apparent_sg_combined_aggregate):
     """RMP open-graded mixture estimated optimum asphalt content (Section 7-3.1, French method).
 
     Seeds the trial asphalt contents (typically the estimate +/- two 0.2-0.4
     percent increments) used for the Marshall specimen evaluation of the RMP
     open-graded asphalt mixture. Verified directly against the printed page
-    (pdf_page 125): a worked example of 4.2 percent optimum content leading
+    (pdf_page_index 125): a worked example of 4.2 percent optimum content leading
     to trial contents 3.8/4.0/4.2/4.4/4.6 percent is given immediately after
     this formula in the source.
 
@@ -375,7 +388,7 @@ def rmp_optimum_asphalt_content(sigma, apparent_sg_combined_aggregate):
         "alpha": round(alpha, 4),
         "sigma": sigma,
         "optimum_asphalt_content_pct": round(oac, 2),
-        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page 125, printed p.112)",
+        "reference": "UFC 3-250-03, Section 7-3.1 (pdf_page_index 125, printed p.112)",
     }
 
 
@@ -415,6 +428,7 @@ def _sieve_pairs(pct_passing_by_sieve_mm) -> list[tuple[float, float]]:
     return out
 
 
+@_u.labelled({"surface_area_m2_per_kg": "m^2/kg"})
 def slurry_seal_surface_area(pct_passing_by_sieve_mm):
     """Total surface area of slurry-seal job aggregate, SA (Appendix B-1.2.1).
 
@@ -459,10 +473,11 @@ def slurry_seal_surface_area(pct_passing_by_sieve_mm):
         sa += (pct_passing / 100.0) * factor
     return {
         "surface_area_m2_per_kg": round(sa, 3),
-        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page 137, printed p.124)",
+        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page_index 137, printed p.124)",
     }
 
 
+@_u.labelled({"csa_m2_per_kg": "m^2/kg"})
 def slurry_seal_corrected_surface_area(surface_area_m2_per_kg,
                                        apparent_sg_aggregate):
     """Corrected surface area of slurry-seal aggregate, CSA (Appendix B-1.2.1).
@@ -495,10 +510,11 @@ def slurry_seal_corrected_surface_area(surface_area_m2_per_kg,
     csa = surface_area_m2_per_kg * 2.65 / apparent_sg_aggregate
     return {
         "csa_m2_per_kg": round(csa, 3),
-        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page 136, printed p.123)",
+        "reference": "UFC 3-250-03, Section B-1.2.1 (pdf_page_index 136, printed p.123)",
     }
 
 
+@_u.labelled({"saa_pct": "percent"})
 def slurry_seal_asphalt_for_film_thickness(csa_m2_per_kg, film_thickness_um,
                                            sg_asphalt):
     """Asphalt content to coat aggregate to a target film thickness, SAA (Equation B-1).
@@ -509,7 +525,7 @@ def slurry_seal_asphalt_for_film_thickness(csa_m2_per_kg, film_thickness_um,
 
         SAA = CSA * t * 0.099941 * SGa
 
-    NOTE: the source PDF prints this metric coefficient as "0.99941" (pdf_page
+    NOTE: the source PDF prints this metric coefficient as "0.99941" (pdf_page_index
     136), but that value does not reproduce the source's own worked example
     (Section B-1.4.3: CSA=8.310, t=8, SGA=1.028 -> stated SAA=6.83). The
     corrected coefficient 0.099941 (verified against both the worked example
@@ -540,13 +556,14 @@ def slurry_seal_asphalt_for_film_thickness(csa_m2_per_kg, film_thickness_um,
     saa = csa_m2_per_kg * film_thickness_um * 0.099941 * sg_asphalt
     return {
         "saa_pct": round(saa, 3),
-        "reference": "UFC 3-250-03, Equation B-1 (pdf_page 136, printed p.123)",
+        "reference": "UFC 3-250-03, Equation B-1 (pdf_page_index 136, printed p.123)",
         "note": ("Uses corrected coefficient 0.099941; the source PDF prints "
                 "0.99941, which does not reproduce its own worked example -- "
                 "see module docstring."),
     }
 
 
+@_u.labelled({"ar_pct": "percent"})
 def slurry_seal_total_asphalt_required(saa_pct, ka_pct):
     """Total asphalt required for a slurry seal mixture, AR (Equations B-2/B-3).
 
@@ -576,5 +593,5 @@ def slurry_seal_total_asphalt_required(saa_pct, ka_pct):
     ar = saa_pct + ka_pct
     return {
         "ar_pct": round(ar, 3),
-        "reference": "UFC 3-250-03, Equations B-2/B-3 (pdf_page 138, printed p.125)",
+        "reference": "UFC 3-250-03, Equations B-2/B-3 (pdf_page_index 138, printed p.125)",
     }

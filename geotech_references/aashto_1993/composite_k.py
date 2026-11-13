@@ -18,7 +18,7 @@ files" rule):
     rendering that index shows Table 3.2 (printed II-38), while Figure 3.3
     itself (printed II-39, confirmed here) is at index 128.
   - ``equations.modulus_subgrade_reaction_simple``'s docstring cites
-    "pdf_page 129, printed II-44"; index 129 renders as Figure 3.4 (printed
+    "pdf_page_index 129, printed II-44"; index 129 renders as Figure 3.4 (printed
     II-40), while Section 3.2.2 (printed II-44) is actually at index 133.
 
 Docs/PDF source: fully scanned (no text layer, no vector drawings -- a
@@ -48,11 +48,12 @@ import math
 
 from geotech_references._interpolation import _linterp
 from geotech_references.aashto_1993.equations import modulus_subgrade_reaction_simple
+from geotech_references import _units as _u
 
 
 # ============================================================================
 # Table 2.7: Typical Ranges of Loss of Support (LS) Factors for Various
-# Types of Materials (Section 2.4.3; pdf_page 116, printed II-27).
+# Types of Materials (Section 2.4.3; pdf_page_index 116, printed II-27).
 # Straight transcription (not a chart read). "E" in the printed table is
 # the general symbol for elastic/resilient modulus of the material.
 # ============================================================================
@@ -69,6 +70,9 @@ _TABLE_2_7 = {
 _MATERIAL_ORDER = list(_TABLE_2_7)  # preserves the printed table's row order
 
 
+@_u.labelled(
+    {"e_max_psi": "psi", "e_min_psi": "psi", "ls_min": "dimensionless",
+     "ls_max": "dimensionless"})
 def loss_of_support_values(material=None) -> dict:
     """Typical loss-of-support (LS) factor ranges by material type (Table 2.7).
 
@@ -93,7 +97,7 @@ def loss_of_support_values(material=None) -> dict:
     ValueError
         If material is given but unrecognized.
     """
-    ref = "AASHTO 1993 Guide, Table 2.7 (pdf_page 116, printed II-27)"
+    ref = "AASHTO 1993 Guide, Table 2.7 (pdf_page_index 116, printed II-27)"
     if material is None:
         rows = []
         for name in _MATERIAL_ORDER:
@@ -119,7 +123,7 @@ def loss_of_support_values(material=None) -> dict:
 # ============================================================================
 # Figure 3.3: Chart for Estimating Composite Modulus of Subgrade Reaction,
 # k(infinity), Assuming a Semi-Infinite Subgrade Depth
-# (pdf_page 128, printed II-39). CHART READ-OFF.
+# (pdf_page_index 128, printed II-39). CHART READ-OFF.
 #
 # A 3-variable (Dsb, Esb, MR), 4-quadrant nomograph with a turning line:
 # up from Dsb to the Esb curve and across; up from the same Dsb to the MR
@@ -143,7 +147,7 @@ def loss_of_support_values(material=None) -> dict:
 # Esb and MR are interpolated between curves in log(Esb), log(MR); Dsb
 # linearly between gridlines. Checked against the five printed anchors,
 # all at Dsb = 6 in: the figure's own example (Esb 20,000, MR 7,000 -> 400;
-# read 391) and the four Table 3.3 rows (pdf_page 132, printed II-43:
+# read 391) and the four Table 3.3 rows (pdf_page_index 132, printed II-43:
 # 1,100 -> 1,085; 160 -> 154; 230 -> 230; 410 -> 391), within 5 %, the
 # spread of the guide's own two reads of one point (400 and 410).
 #
@@ -190,7 +194,7 @@ _COMPK_K_C = (69.5, 190.5, 312.0, 380.5, 433.5, 480.5, 515.5, 557.0, 600.5,
 _COMPK_ESB_RANGE = (15000.0, 1000000.0)
 _COMPK_MR_RANGE = (1000.0, 20000.0)
 _COMPK_DSB_RANGE = (6.0, 18.0)
-_FIG33_REF = "AASHTO 1993 Guide, Figure 3.3 (pdf_page 128, printed II-39)"
+_FIG33_REF = "AASHTO 1993 Guide, Figure 3.3 (pdf_page_index 128, printed II-39)"
 
 
 def _compk_turning_c(y):
@@ -207,9 +211,13 @@ def _compk_curve_height(table, labels, dsb, value):
     return _linterp(dsb, [float(d) for d in ds], heights)
 
 
+@_u.labelled(
+    {"dsb_in": "in", "esb_psi": "psi", "k_inf_pci": "pci", "mr_psi": "psi"},
+    si={"mr_psi": ("MPa", "psi"), "esb_psi": ("MPa", "psi"),
+        "dsb_in": ("mm", "in")})
 def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
     """Composite modulus of subgrade reaction k_inf, semi-infinite subgrade
-    depth, read off Figure 3.3 (pdf_page 128, printed II-39) by the chart's
+    depth, read off Figure 3.3 (pdf_page_index 128, printed II-39) by the chart's
     own construction (see the section note above for how it was read).
 
     Checked against the guide's five printed reads, all at Dsb = 6 in
@@ -227,12 +235,19 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
         curves 15,000-1,000,000 psi.
     dsb_in : float
         Subbase thickness, inches. Printed scale 6-18 in.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi and esb_psi in MPa and dsb_in in mm, each converted exactly to
+        the printed unit (psi, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'mr_psi', 'esb_psi', 'dsb_in', 'k_inf_pci', 'chart_read',
         'method', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -314,7 +329,7 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
 # ============================================================================
 # Figure 3.4: Chart to Modify Modulus of Subgrade Reaction to Consider
 # Effects of Rigid Foundation Near Surface (within 10 feet)
-# (pdf_page 129, printed II-40). CHART READ off the print.
+# (pdf_page_index 129, printed II-40). CHART READ off the print.
 #
 # The chart's construction: up from MR to the Dsg curve (2, 5 and 10 ft are
 # drawn), across to the k_inf line (50 to 1,400 pci are drawn), down to k.
@@ -331,7 +346,7 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
 # gridlines, and the example's own arrows (MR 4,000) confirm the MR scale.
 # Between curves k is linear in Dsg; between lines, linear in k_inf.
 #
-# Checked against the example (read 303) and Table 3.3 (pdf_page 132,
+# Checked against the example (read 303) and Table 3.3 (pdf_page_index 132,
 # printed II-43; all at Dsg 5 ft): k_inf 1,100 / 160 / 230 / 410 ->
 # printed 1,350 / 230 / 300 / 540, read 1,378 / 222 / 303 / 539 (-3.5 to
 # +2.1 %).
@@ -340,7 +355,7 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
 # of the surface of the subgrade"; at 10 ft or more none is applied.
 # ============================================================================
 
-_FIG34_REF = "AASHTO 1993 Guide, Figure 3.4 (pdf_page 129, printed II-40)"
+_FIG34_REF = "AASHTO 1993 Guide, Figure 3.4 (pdf_page_index 129, printed II-40)"
 
 # Left half: the three Dsg curves as (MR psi, height in scan pixels,
 # downward), thinned to within 0.5 px of the traced ink. The frame runs
@@ -395,6 +410,10 @@ _FIG34_K_MAX = 2000.0                 # the k scale's right end
 _RIGIDCORR_DSG_LIMIT = 10.0
 
 
+@_u.labelled(
+    {"dsg_ft": "ft", "k_inf_pci": "pci", "k_pci": "pci", "mr_psi": "psi"},
+    si={"mr_psi": ("MPa", "psi"), "dsg_ft": ("m", "ft"),
+        "k_inf_pci": ("MPa/m", "pci")})
 def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
     """k on a rigid foundation (bedrock) within 10 ft, from Figure 3.4 as
     printed (see the section note above): up from MR to the Dsg curve,
@@ -425,12 +444,20 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
         semi-infinite subgrade depth, pci, > 0 (see
         ``composite_k_subbase`` /
         ``equations.modulus_subgrade_reaction_simple``).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        mr_psi in MPa, dsg_ft in m and k_inf_pci in MPa/m, each converted
+        exactly to the printed unit (psi, ft, pci) before the lookup runs as
+        printed.
 
     Returns
     -------
     dict
         {'mr_psi', 'dsg_ft', 'k_inf_pci', 'k_pci', 'chart_read', 'method',
         'reference', 'note'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -505,7 +532,7 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 
 # ============================================================================
 # Figure 3.5: Chart for Estimating Relative Damage to Rigid Pavements Based
-# on Slab Thickness and Underlying Support (pdf_page 130, printed II-41).
+# on Slab Thickness and Underlying Support (pdf_page_index 130, printed II-41).
 # CHART READ-OFF -- NO printed closed-form equation appears on or near this
 # page in this guide (only the nomograph itself, with curves for D=6-14 in
 # vs composite/corrected k-value, 10-2000 pci).
@@ -520,7 +547,7 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 # of chart-based evidence to good tolerance:
 #
 # (1) ALL FOUR rows of the guide's OWN printed Table 3.3 worked example
-#     (pdf_page 132, printed II-43; D=9 in throughout), to within 0.6%:
+#     (pdf_page_index 132, printed II-43; D=9 in throughout), to within 0.6%:
 #   D=9, k=1,350 pci -> u_r=0.35 (printed);  computed 0.3518 (+0.5%)
 #   D=9, k=  230 pci -> u_r=0.86 (printed);  computed 0.8593 (-0.1%)
 #   D=9, k=  300 pci -> u_r=0.78 (printed);  computed 0.7787 (-0.2%)
@@ -529,7 +556,7 @@ def k_rigid_foundation_correction(mr_psi, dsg_ft, k_inf_pci) -> dict:
 #   validate the k-dependence, not the D-dependence.)
 #
 # (2) Direct chart reads at D values FAR from the D=9 anchors above
-#     (D=6, 7, 8, 10, 12, 14 in), read off Figure 3.5 itself (pdf_page
+#     (D=6, 7, 8, 10, 12, 14 in), read off Figure 3.5 itself (pdf_page_index
 #     130, printed II-41) at a shared reference k-column (back-solved
 #     from the D=9 relationship to k~25 pci, using the guide's own
 #     "Projected Slab Thickness" hash-mark labels that identify exactly
@@ -555,9 +582,12 @@ _FIG35_D_RANGE = (6.0, 14.0)    # the slab-thickness curves drawn
 _FIG35_K_RANGE = (10.0, 2000.0)  # the composite k axis
 
 
+@_u.labelled(
+    {"d_in": "in", "k_pci": "pci", "u_r": "no unit printed"},
+    si={"d_in": ("mm", "in"), "k_pci": ("MPa/m", "pci")})
 def relative_damage_rigid(d_in, k_pci) -> dict:
     """Seasonal relative damage u_r for a rigid slab, AASHTO 1993 Figure 3.5
-    (pdf_page 130, printed II-41); returns u_r (dimensionless, the chart's
+    (pdf_page_index 130, printed II-41); returns u_r (dimensionless, the chart's
     "Relative Damage" divided by 100). Figure 3.5 is a chart (u against
     composite k for slab thicknesses 6-14 in) and prints no equation; this
     function computes a closed form fitted to it (a judgment call kept as
@@ -586,11 +616,18 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
     k_pci : float
         Composite (or rigid-foundation-corrected) modulus of subgrade
         reaction for the season, pci, 10 to 2,000 (the chart's k axis).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        d_in in mm and k_pci in MPa/m, each converted exactly to the printed
+        unit (in, pci) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'d_in', 'k_pci', 'u_r', 'chart_read', 'equation', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -627,27 +664,27 @@ def relative_damage_rigid(d_in, k_pci) -> dict:
                        "equation; u_r is a closed form fitted to it (Table "
                        "3.3's four rows within 0.6 %, chart reads at D 6-14 "
                        "in within 12.5 %)."),
-        "reference": "AASHTO 1993 Guide, Figure 3.5 (pdf_page 130, printed II-41)",
+        "reference": "AASHTO 1993 Guide, Figure 3.5 (pdf_page_index 130, printed II-41)",
     }
 
 
 # ============================================================================
 # Figure 3.6: Correction of Effective Modulus of Subgrade Reaction for
-# Potential Loss of Subbase Support (pdf_page 131, printed II-42).
+# Potential Loss of Subbase Support (pdf_page_index 131, printed II-42).
 # CHART READ-OFF.
 #
 # All 4 printed LS curves (LS=0, 1.0, 2.0, 3.0) are straight lines through
 # the (1,1) origin in log-log space, i.e. pure power laws
 # k_corrected = k^slope(LS). Rather than anchoring each slope to a single
 # point, MULTIPLE (k, k_corrected) pairs were read directly along each
-# curve (pdf_page 131), and the slope below is the one that reproduces
+# curve (pdf_page_index 131), and the slope below is the one that reproduces
 # ALL of them to a stated tolerance (asserted in
 # ``tests/test_aashto_1993_composite_k.py``):
 #   LS=0   -- slope=1.0 exact, by definition (no loss of support -> no
 #             correction; also the chart's own visible 1:1 identity line).
 #   LS=1.0 -- read pairs: (k=10,kc=7), (50,24), (100,43),
 #             (540,170)<-EXACT anchor from the guide's Table 3.3 worked
-#             example (pdf_page 132, printed II-43), (2000,495)<-chart
+#             example (pdf_page_index 132, printed II-43), (2000,495)<-chart
 #             edge read. slope=0.8163 (solved from the exact 540->170
 #             anchor) reproduces all 5 points within 7%.
 #   LS=2.0 -- read pairs: (10,4), (50,10), (100,16), (2000,105), all
@@ -679,9 +716,12 @@ _LS_READ_POINTS = {
 }
 
 
+@_u.labelled(
+    {"k_corrected_pci": "pci", "k_pci": "pci", "ls": "dimensionless"},
+    si={"k_pci": ("MPa/m", "pci")})
 def k_loss_of_support(k_pci, ls) -> dict:
     """Effective modulus of subgrade reaction corrected for potential loss
-    of subbase support, AASHTO 1993 Figure 3.6 (pdf_page 131, printed
+    of subbase support, AASHTO 1993 Figure 3.6 (pdf_page_index 131, printed
     II-42); returns k_corrected_pci, pci. Figure 3.6 is a chart (four LS
     lines on log-log axes) and prints no equation; this function computes
     a power law whose slopes are fitted to points read off the chart (a
@@ -723,12 +763,19 @@ def k_loss_of_support(k_pci, ls) -> dict:
         Loss of support factor (see ``loss_of_support_values``, Table 2.7),
         0 to 3: Figure 3.6 draws the lines LS = 0, 1.0, 2.0 and 3.0
         (printed II-42) and nothing past them.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        k_pci in MPa/m, each converted exactly to the printed unit (pci) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'k_pci', 'ls', 'k_corrected_pci', 'chart_read', 'equation',
         'reference', 'print_note'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -770,7 +817,7 @@ def k_loss_of_support(k_pci, ls) -> dict:
         "k_pci": k_pci, "ls": ls, "k_corrected_pci": round(k_corrected, 1),
         "chart_read": True,
         "equation": "k_corrected = k_pci^slope(LS)  (slope=1.0,0.8163,0.605,0.464 at LS=0,1,2,3; each fit to multiple chart-read points)",
-        "reference": "AASHTO 1993 Guide, Figure 3.6 (pdf_page 131, printed II-42)",
+        "reference": "AASHTO 1993 Guide, Figure 3.6 (pdf_page_index 131, printed II-42)",
         "print_note": ("Figure 3.6 (printed II-42) is a chart and prints no "
                        "equation; the slopes are a fit to points read off "
                        "its LS = 1, 2 and 3 lines (within about 7 % for "
@@ -782,10 +829,22 @@ def k_loss_of_support(k_pci, ls) -> dict:
 
 # ============================================================================
 # Table 3.2: Table for Estimating Effective Modulus of Subgrade Reaction
-# (pdf_page 127, printed II-38) -- the 8-step worksheet orchestrator.
-# Fully worked example: Table 3.3 (pdf_page 132, printed II-43).
+# (pdf_page_index 127, printed II-38) -- the 8-step worksheet orchestrator.
+# Fully worked example: Table 3.3 (pdf_page_index 132, printed II-43).
 # ============================================================================
 
+@_u.labelled(
+    {"composite_k_pci": "pci", "dsb_in": "in", "dsg_ft": "ft",
+     "effective_k_pci": "pci", "esb_psi": "psi",
+     "k_corrected_for_loss_of_support_pci": "pci",
+     "k_rigid_foundation_pci": "pci", "mr_psi": "psi", "n_periods": "count",
+     "period": "count", "slab_d_in": "in", "ls": "dimensionless",
+     "u_r": "no unit printed", "ur_avg": "no unit printed",
+     "ur_sum": "no unit printed"},
+    si={"seasonal[].mr_psi": ("MPa", "psi"),
+        "seasonal[].esb_psi": ("MPa", "psi"), "slab_d_in": ("mm", "in"),
+        "dsb_in": ("mm", "in"), "esb_psi": ("MPa", "psi"),
+        "dsg_ft": ("m", "ft")})
 def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
                                         esb_psi=None, dsg_ft=None, ls=0.0) -> dict:
     """Table 3.2 worksheet: seasonal composite k -> effective design k (pci).
@@ -798,7 +857,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     effective k from the average u_r (closed-form inverse of the Figure
     3.5 relation), and applies the loss-of-support correction (Figure 3.6).
 
-    Verified against the guide's fully-worked Table 3.3 example (pdf_page
+    Verified against the guide's fully-worked Table 3.3 example (pdf_page_index
     132, printed II-43): 12 monthly periods (6 in granular subbase, depth
     to rigid foundation 5 ft, projected slab thickness 9 in, LS=1.0) ->
     printed effective k=540 pci, LS-corrected k=170 pci. This module
@@ -840,6 +899,12 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
     ls : float, optional
         Loss of support factor (Table 2.7), 0 to 3 (Figure 3.6's lines,
         printed II-42), default 0.0 (no correction).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        each seasonal entry's mr_psi, each seasonal entry's esb_psi and esb_psi
+        in MPa, slab_d_in and dsb_in in mm and dsg_ft in m, each converted
+        exactly to the printed unit (psi, in, ft) before the lookup runs as
+        printed.
 
     Returns
     -------
@@ -849,6 +914,9 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
         'ur_sum', 'ur_avg', 'effective_k_pci',
         'k_corrected_for_loss_of_support_pci', 'ls', 'slab_d_in', 'dsb_in',
         'esb_psi', 'dsg_ft', 'equation', 'reference', 'notes'?}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -950,7 +1018,7 @@ def effective_modulus_subgrade_reaction(seasonal, slab_d_in, dsb_in=None,
                     "-> relative damage u_r (Fig. 3.5) -> average u_r -> "
                     "back-solved effective k -> loss-of-support correction "
                     "(Fig. 3.6)"),
-        "reference": "AASHTO 1993 Guide, Table 3.2 (pdf_page 127, printed II-38)",
+        "reference": "AASHTO 1993 Guide, Table 3.2 (pdf_page_index 127, printed II-38)",
     }
     if notes:
         out["notes"] = notes

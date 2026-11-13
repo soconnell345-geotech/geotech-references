@@ -5,12 +5,12 @@ PROVENANCE NOTE (read this first): the closed-form AASHO Road Test equations
 used to derive the printed LEF tables are NOT in this Guide. Appendix D's
 introduction says "Appendix MM of Volume 2 presents the AASHO Road Test-based
 equations that were used to generate these tables. It also provides some
-support for extending the tables to tridem axle loadings." (pdf_page 361,
+support for extending the tables to tridem axle loadings." (pdf_page_index 361,
 printed D-2) -- but that "Volume 2" is a carried-over citation to the 1986
 edition's separate research-appendix volume; the 1993 Guide (this document)
 is a SINGLE volume (title page and front matter carry no volume designation;
-the Appendices list, pdf_page 19 printed xvii, runs A through N with no
-Appendix MM). The full extent of Appendix D (pdf_page 360-384, printed D-1
+the Appendices list, pdf_page_index 19 printed xvii, runs A through N with no
+Appendix MM). The full extent of Appendix D (pdf_page_index 360-384, printed D-1
 through D-25) was read page-by-page to confirm no equation is printed
 anywhere in it. So this module implements the axle load
 equivalency factor as BILINEAR INTERPOLATION directly over the full printed
@@ -20,7 +20,7 @@ number below is transcribed from a specific rendered page of
 formula.
 
 Table layout (all 18 tables share the same page arithmetic): Table D.N is at
-pdf_page 361+N (0-based fitz index), printed page D-(N+2). Table numbering
+pdf_page_index 361+N (0-based fitz index), printed page D-(N+2). Table numbering
 (confirmed against each table's own printed caption, not assumed):
 
     pt=2.0: D.1  D.2  D.3  (flexible single/tandem/triple)
@@ -72,6 +72,7 @@ Interpolation policy
 """
 
 import bisect
+from geotech_references import _units as _u
 
 _TABLES = {}
 
@@ -82,7 +83,7 @@ def _add(table_num, pavement, axle_config, pt, loads, columns, rows):
         assert len(r) == len(columns), (table_num, r)
     _TABLES[(pavement, axle_config, pt)] = {
         "table_num": table_num,
-        "pdf_page": 361 + table_num,
+        "pdf_page_index": 361 + table_num,
         "printed_page": f"D-{table_num + 2}",
         "loads": loads,
         "columns": columns,
@@ -97,7 +98,7 @@ _RIGID_COLS = [6, 7, 8, 9, 10, 11, 12, 13, 14]         # D, inches
 
 
 # ============================================================================
-# Table D.1: Flexible, Single, pt=2.0 (pdf_page 362, printed D-3)
+# Table D.1: Flexible, Single, pt=2.0 (pdf_page_index 362, printed D-3)
 # ============================================================================
 _add(1, "flexible", "single", 2.0, _SINGLE_LOADS, _FLEX_COLS, [
     [0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002],
@@ -128,7 +129,7 @@ _add(1, "flexible", "single", 2.0, _SINGLE_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.2: Flexible, Tandem, pt=2.0 (pdf_page 363, printed D-4)
+# Table D.2: Flexible, Tandem, pt=2.0 (pdf_page_index 363, printed D-4)
 # ============================================================================
 _add(2, "flexible", "tandem", 2.0, _TWIN_LOADS, _FLEX_COLS, [
     [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
@@ -179,7 +180,7 @@ _add(2, "flexible", "tandem", 2.0, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.3: Flexible, Triple, pt=2.0 (pdf_page 364, printed D-5)
+# Table D.3: Flexible, Triple, pt=2.0 (pdf_page_index 364, printed D-5)
 # ============================================================================
 _add(3, "flexible", "triple", 2.0, _TWIN_LOADS, _FLEX_COLS, [
     [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
@@ -230,7 +231,7 @@ _add(3, "flexible", "triple", 2.0, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.4: Flexible, Single, pt=2.5 (pdf_page 365, printed D-6)
+# Table D.4: Flexible, Single, pt=2.5 (pdf_page_index 365, printed D-6)
 # Cross-validated exactly against tables.py _ESAL_D4_SN5_SINGLE (SN=5 column).
 # ============================================================================
 _add(4, "flexible", "single", 2.5, _SINGLE_LOADS, _FLEX_COLS, [
@@ -262,7 +263,7 @@ _add(4, "flexible", "single", 2.5, _SINGLE_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.5: Flexible, Tandem, pt=2.5 (pdf_page 366, printed D-7)
+# Table D.5: Flexible, Tandem, pt=2.5 (pdf_page_index 366, printed D-7)
 # Cross-validated exactly against tables.py _ESAL_D5_SN5_TANDEM (SN=5 column).
 # ============================================================================
 _add(5, "flexible", "tandem", 2.5, _TWIN_LOADS, _FLEX_COLS, [
@@ -314,7 +315,7 @@ _add(5, "flexible", "tandem", 2.5, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.6: Flexible, Triple, pt=2.5 (pdf_page 367, printed D-8)
+# Table D.6: Flexible, Triple, pt=2.5 (pdf_page_index 367, printed D-8)
 # ============================================================================
 _add(6, "flexible", "triple", 2.5, _TWIN_LOADS, _FLEX_COLS, [
     [0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000],
@@ -365,7 +366,7 @@ _add(6, "flexible", "triple", 2.5, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.7: Flexible, Single, pt=3.0 (pdf_page 368, printed D-9)
+# Table D.7: Flexible, Single, pt=3.0 (pdf_page_index 368, printed D-9)
 # ============================================================================
 _add(7, "flexible", "single", 3.0, _SINGLE_LOADS, _FLEX_COLS, [
     [0.0008, 0.0009, 0.0006, 0.0003, 0.0002, 0.0002],
@@ -396,7 +397,7 @@ _add(7, "flexible", "single", 3.0, _SINGLE_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.8: Flexible, Tandem, pt=3.0 (pdf_page 369, printed D-10)
+# Table D.8: Flexible, Tandem, pt=3.0 (pdf_page_index 369, printed D-10)
 # ============================================================================
 _add(8, "flexible", "tandem", 3.0, _TWIN_LOADS, _FLEX_COLS, [
     [0.0002, 0.0002, 0.0001, 0.0001, 0.0000, 0.0000],
@@ -447,7 +448,7 @@ _add(8, "flexible", "tandem", 3.0, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.9: Flexible, Triple, pt=3.0 (pdf_page 370, printed D-11)
+# Table D.9: Flexible, Triple, pt=3.0 (pdf_page_index 370, printed D-11)
 # ============================================================================
 _add(9, "flexible", "triple", 3.0, _TWIN_LOADS, _FLEX_COLS, [
     [0.0001, 0.0001, 0.0001, 0.0000, 0.0000, 0.0000],
@@ -498,7 +499,7 @@ _add(9, "flexible", "triple", 3.0, _TWIN_LOADS, _FLEX_COLS, [
 ])
 
 # ============================================================================
-# Table D.10: Rigid, Single, pt=2.0 (pdf_page 371, printed D-12)
+# Table D.10: Rigid, Single, pt=2.0 (pdf_page_index 371, printed D-12)
 # ============================================================================
 _add(10, "rigid", "single", 2.0, _SINGLE_LOADS, _RIGID_COLS, [
     [0.0002] * 9,
@@ -529,7 +530,7 @@ _add(10, "rigid", "single", 2.0, _SINGLE_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.11: Rigid, Tandem, pt=2.0 (pdf_page 372, printed D-13)
+# Table D.11: Rigid, Tandem, pt=2.0 (pdf_page_index 372, printed D-13)
 # ============================================================================
 _add(11, "rigid", "tandem", 2.0, _TWIN_LOADS, _RIGID_COLS, [
     [0.0001] * 9,
@@ -580,7 +581,7 @@ _add(11, "rigid", "tandem", 2.0, _TWIN_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.12: Rigid, Triple, pt=2.0 (pdf_page 373, printed D-14)
+# Table D.12: Rigid, Triple, pt=2.0 (pdf_page_index 373, printed D-14)
 # NOTE: the load=74 kip, D=9in cell is a scan defect in the source PDF (a
 # smudge in place of a digit, confirmed unreadable even at a 600 dpi crop
 # render). The value below (15.8) is a linear interpolation between the
@@ -637,7 +638,7 @@ _add(12, "rigid", "triple", 2.0, _TWIN_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.13: Rigid, Single, pt=2.5 (pdf_page 374, printed D-15)
+# Table D.13: Rigid, Single, pt=2.5 (pdf_page_index 374, printed D-15)
 # Cross-validated exactly against tables.py _ESAL_D13_D9_SINGLE (D=9in column).
 # ============================================================================
 _add(13, "rigid", "single", 2.5, _SINGLE_LOADS, _RIGID_COLS, [
@@ -669,7 +670,7 @@ _add(13, "rigid", "single", 2.5, _SINGLE_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.14: Rigid, Tandem, pt=2.5 (pdf_page 375, printed D-16)
+# Table D.14: Rigid, Tandem, pt=2.5 (pdf_page_index 375, printed D-16)
 # Cross-validated exactly against tables.py _ESAL_D14_D9_TANDEM (D=9in column).
 # ============================================================================
 _add(14, "rigid", "tandem", 2.5, _TWIN_LOADS, _RIGID_COLS, [
@@ -721,7 +722,7 @@ _add(14, "rigid", "tandem", 2.5, _TWIN_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.15: Rigid, Triple, pt=2.5 (pdf_page 376, printed D-17)
+# Table D.15: Rigid, Triple, pt=2.5 (pdf_page_index 376, printed D-17)
 # ============================================================================
 _add(15, "rigid", "triple", 2.5, _TWIN_LOADS, _RIGID_COLS, [
     [0.0001] * 9,
@@ -772,7 +773,7 @@ _add(15, "rigid", "triple", 2.5, _TWIN_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.16: Rigid, Single, pt=3.0 (pdf_page 377, printed D-18)
+# Table D.16: Rigid, Single, pt=3.0 (pdf_page_index 377, printed D-18)
 # ============================================================================
 _add(16, "rigid", "single", 3.0, _SINGLE_LOADS, _RIGID_COLS, [
     [0.0003, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002, 0.0002],
@@ -803,7 +804,7 @@ _add(16, "rigid", "single", 3.0, _SINGLE_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.17: Rigid, Tandem, pt=3.0 (pdf_page 378, printed D-19)
+# Table D.17: Rigid, Tandem, pt=3.0 (pdf_page_index 378, printed D-19)
 # ============================================================================
 _add(17, "rigid", "tandem", 3.0, _TWIN_LOADS, _RIGID_COLS, [
     [0.0001] * 9,
@@ -854,7 +855,7 @@ _add(17, "rigid", "tandem", 3.0, _TWIN_LOADS, _RIGID_COLS, [
 ])
 
 # ============================================================================
-# Table D.18: Rigid, Triple, pt=3.0 (pdf_page 379, printed D-20)
+# Table D.18: Rigid, Triple, pt=3.0 (pdf_page_index 379, printed D-20)
 # ============================================================================
 _add(18, "rigid", "triple", 3.0, _TWIN_LOADS, _RIGID_COLS, [
     [0.0001] * 9,
@@ -955,6 +956,10 @@ def _lookup(table, axle_load_kips, col_value, col_name):
     return lef, notes
 
 
+@_u.labelled(
+    {"axle_load_kips": "kips", "d_in": "in", "lef": "dimensionless",
+     "pt": "no unit printed", "sn": "no unit printed"},
+    si={"axle_load_kips": ("kN", "kips"), "d_in": ("mm", "in")})
 def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
                             sn=None, d_in=None, pt=2.5) -> dict:
     """Axle load equivalency factor (LEF), bilinear interpolation over the
@@ -987,12 +992,19 @@ def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
         Terminal serviceability index. Must be EXACTLY 2.0, 2.5, or 3.0
         (the only values printed in Appendix D) -- default 2.5.
         Interpolating between serviceability levels is not supported.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        axle_load_kips in kN and d_in in mm, each converted exactly to the
+        printed unit (kips, in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'pavement_type', 'axle_config', 'axle_load_kips', 'pt',
          'sn' or 'd_in', 'lef', 'table', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -1066,7 +1078,7 @@ def load_equivalency_factor(pavement_type, axle_config, axle_load_kips,
         "table": f"Table D.{table['table_num']}",
         "reference": (
             f"AASHTO 1993 Guide, Table D.{table['table_num']} "
-            f"(pdf_page {table['pdf_page']}, printed {table['printed_page']})"
+            f"(pdf_page_index {table['pdf_page_index']}, printed {table['printed_page']})"
         ),
     }
     if pavement_key == "flexible":

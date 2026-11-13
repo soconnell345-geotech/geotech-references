@@ -13,10 +13,12 @@ tables (an ASTM D698 compaction table, nine-equipment millimetre lift
 thicknesses, drain thicknesses and slopes) were not printed in this manual.
 """
 
+from geotech_references import _units as _u
+
 _REF = "UFC 3-220-04FA (TM 5-818-4/AFM 88-5, Chap. 5), 16 January 2004"
 
 # ---------------------------------------------------------------------------
-# Paragraph 5-1b(4) Density requirements (PDF 29, printed p. 5-2)
+# Paragraph 5-1b(4) Density requirements (pdf_page_index 28, printed p. 5-2)
 # ---------------------------------------------------------------------------
 
 _DENSITY_REQUIREMENTS = {
@@ -56,7 +58,7 @@ _DENSITY_NOTE = (
     "be commensurate with the allowable lateral pressure on the structure.")
 
 # ---------------------------------------------------------------------------
-# Table 5-1 Summary of Compaction Criteria (PDF 30, printed p. 5-3)
+# Table 5-1 Summary of Compaction Criteria (pdf_page_index 29, printed p. 5-3)
 # ---------------------------------------------------------------------------
 
 _T51_GROUP_TYPES = {
@@ -150,7 +152,7 @@ _T51_FOOTNOTES = {
 }
 
 # ---------------------------------------------------------------------------
-# Paragraph 5-1b(3) Lift thickness (PDF 28-29, printed p. 5-1 and 5-2)
+# Paragraph 5-1b(3) Lift thickness (pdf_page_index 27-28, printed p. 5-1 and 5-2)
 # ---------------------------------------------------------------------------
 
 _LIFT_THICKNESS = {
@@ -161,7 +163,7 @@ _LIFT_THICKNESS = {
                     "for most sheepsfoot and pneumatic-tired rollers. "
                     "Cohesive soils placed in approximately 10-inch loose "
                     "lifts will compact to approximately 6 inches."),
-        "page": "5-1, 5-2", "pdf_page": "28-29",
+        "page": "5-1, 5-2", "pdf_page_index": [27, 28],
     },
     "cohesionless_sheepsfoot_or_pneumatic": {
         "loose_lift_in": "approximately 8", "compacted_lift_in": "6",
@@ -170,14 +172,14 @@ _LIFT_THICKNESS = {
                     "for most sheepsfoot and pneumatic-tired rollers. ... "
                     "cohesionless soils placed in approximately 8-inch base "
                     "lifts will compact to 6 inches."),
-        "page": "5-1, 5-2", "pdf_page": "28-29",
+        "page": "5-1, 5-2", "pdf_page_index": [27, 28],
     },
     "cohesionless_heavy_vibratory": {
         "loose_lift_in": "about 12 to 15", "compacted_lift_in": None,
         "printed": ("Adequate compaction can be achieved in cohesionless "
                     "materials of about 12- to 15-inch loose-lift thickness "
                     "if heavy vibratory equipment is used."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 28,
     },
     "confined_clean_cohesionless": {
         "loose_lift_in": "4 to 6", "compacted_lift_in": None,
@@ -185,7 +187,7 @@ _LIFT_THICKNESS = {
                     "material is used, a loose-lift thickness of 4 to 6 "
                     "inches and a vibratory plate or walk-behind, dual-drum "
                     "vibratory roller for compaction is recommended."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 28,
     },
     "confined_cohesive": {
         "loose_lift_in": "not more than 4", "compacted_lift_in": None,
@@ -196,7 +198,7 @@ _LIFT_THICKNESS = {
                     "wood rammers, or single air tampers (commonly referred "
                     "to as \"powder puffs\" or \"pogo sticks\") do not "
                     "produce sufficient compaction."),
-        "page": "5-2", "pdf_page": "29",
+        "page": "5-2", "pdf_page_index": 28,
     },
 }
 _LIFT_NOTE = (
@@ -207,7 +209,7 @@ _LIFT_NOTE = (
 
 # ---------------------------------------------------------------------------
 # Paragraph 5-1b(2) Compaction equipment, backfill material, and zones
-# (PDF 28, printed p. 5-1)
+# (pdf_page_index 27, printed p. 5-1)
 # ---------------------------------------------------------------------------
 
 _EQUIPMENT = {
@@ -261,13 +263,13 @@ _EQUIPMENT = {
 }
 
 # ---------------------------------------------------------------------------
-# Paragraph 3-3d Types of backfill material (PDF 22-23, printed p. 3-5, 3-6)
+# Paragraph 3-3d Types of backfill material (pdf_page_index 21-22, printed p. 3-5, 3-6)
 # ---------------------------------------------------------------------------
 
 _MATERIAL_CATEGORIES = {
     "coarse_grained": {
         "uscs": ["GW", "GP", "GM", "GC", "SW", "SP", "SM", "SC"],
-        "paragraph": "3-3d(1)", "page": "3-5", "pdf_page": "22",
+        "paragraph": "3-3d(1)", "page": "3-5", "pdf_page_index": 21,
         "printed": (
             "Coarse-grained soils include gravelly and sandy soils and range "
             "from clayey sands (SC) through the well-graded gravels of "
@@ -288,7 +290,7 @@ _MATERIAL_CATEGORIES = {
     },
     "fine_grained_low_to_medium_plasticity": {
         "uscs": ["CL", "ML"],
-        "paragraph": "3-3d(2)", "page": "3-5, 3-6", "pdf_page": "22-23",
+        "paragraph": "3-3d(2)", "page": "3-5, 3-6", "pdf_page_index": [21, 22],
         "printed": (
             "Inorganic clays (CL) of low to medium plasticity ... and "
             "inorganic silts and very fine sands (ML) of low plasticity ... "
@@ -310,7 +312,7 @@ _MATERIAL_CATEGORIES = {
     },
     "marginal_fine_grained_high_plasticity": {
         "uscs": ["CH", "MH", "OH"],
-        "paragraph": "3-3d(5)(a)", "page": "3-6", "pdf_page": "23",
+        "paragraph": "3-3d(5)(a)", "page": "3-6", "pdf_page_index": 22,
         "printed": (
             "Marginal materials are these materials that because of either "
             "their poor compaction, consolidation, or swelling "
@@ -329,7 +331,7 @@ _MATERIAL_CATEGORIES = {
 }
 
 # ---------------------------------------------------------------------------
-# Figure 2-5a Maximum induced lateral pressures (PDF 14, printed p. 2-7)
+# Figure 2-5a Maximum induced lateral pressures (pdf_page_index 13, printed p. 2-7)
 # ---------------------------------------------------------------------------
 
 # equipment -> (critical depth Dc, ft; critical lateral pressure (sigma_H)c, psf)
@@ -348,13 +350,22 @@ def _key(text):
     return str(text).strip().lower().replace("-", "_").replace(" ", "_")
 
 
+def _index_text(index):
+    """A row's pdf_page_index as cited: ``21`` or ``21-22``."""
+    if isinstance(index, list):
+        return f"{index[0]}-{index[-1]}"
+    return str(index)
+
+
 # ---------------------------------------------------------------------------
 # Public lookup functions
 # ---------------------------------------------------------------------------
 
+@_u.labelled(
+    {"max_compaction_pct": "percent", "min_compaction_pct": "percent"})
 def table_compaction_requirements(application):
     """Density requirement for backfill as a percent of CE 55 maximum dry
-    density, UFC 3-220-04FA paragraph 5-1b(4) (printed p. 5-2, PDF 29);
+    density, UFC 3-220-04FA paragraph 5-1b(4) (printed p. 5-2, pdf_page_index 28);
     returns min_compaction_pct and max_compaction_pct (percent of CE 55
     maximum dry density by MIL-STD-621; max None where the print gives only
     a minimum) with the printed sentence.
@@ -396,13 +407,14 @@ def table_compaction_requirements(application):
         "basis": "percent of CE 55 maximum dry density (MIL-STD-621)",
         "printed": row["printed"],
         "note": _DENSITY_NOTE,
-        "reference": f"{_REF}, para 5-1b(4), printed p. 5-2 (PDF 29)",
+        "reference": f"{_REF}, para 5-1b(4), printed p. 5-2 (pdf_page_index 28)",
     }
 
 
+@_u.labelled({})
 def table_5_1_compaction_criteria(soil_group, compaction="compacted"):
     """Summary of compaction criteria, UFC 3-220-04FA Table 5-1 (printed
-    p. 5-3, PDF 30); returns the printed degree of compaction and, for each
+    p. 5-3, pdf_page_index 29); returns the printed degree of compaction and, for each
     typical piece of equipment, the number of passes or coverages and the
     compacted lift thickness in inches, with the placement water content,
     field control, note and footnotes.
@@ -469,13 +481,14 @@ def table_5_1_compaction_criteria(soil_group, compaction="compacted"):
         "field_control": row["field_control"],
         "note": _T51_NOTE,
         "footnotes": {k: _T51_FOOTNOTES[k] for k in ["a"] + used},
-        "reference": f"{_REF}, Table 5-1, printed p. 5-3 (PDF 30)",
+        "reference": f"{_REF}, Table 5-1, printed p. 5-3 (pdf_page_index 29)",
     }
 
 
+@_u.labelled({})
 def table_backfill_material_classification(uscs_class):
     """Backfill category of a USCS soil group as UFC 3-220-04FA paragraph
-    3-3d describes it (printed p. 3-5 and 3-6, PDF 22-23); returns the
+    3-3d describes it (printed p. 3-5 and 3-6, pdf_page_index 21-22); returns the
     category (coarse-grained; fine-grained of low to medium plasticity;
     marginal fine-grained of high plasticity) and the printed text on its
     suitability as backfill.
@@ -485,7 +498,7 @@ def table_backfill_material_classification(uscs_class):
     and fine-grained soils of high plasticity, of which "the only soil type
     ... that might be considered suitable as backfill is inorganic clay
     (CH)". Table 3-1, which the text cites, "Typical Engineering Properties
-    of Compacted Materials", is printed on p. 3-3 (PDF 20); this package
+    of Compacted Materials", is printed on p. 3-3 (pdf_page_index 19); this package
     does not code it. Groups the paragraph does not place (OL, Pt) are
     refused.
 
@@ -529,13 +542,17 @@ def table_backfill_material_classification(uscs_class):
         "paragraph": row["paragraph"],
         "printed": row["printed"],
         "reference": (f"{_REF}, para {row['paragraph']}, printed p. "
-                      f"{row['page']} (PDF {row['pdf_page']})"),
+                      f"{row['page']} (pdf_page_index "
+                      f"{_index_text(row['pdf_page_index'])})"),
+        "printed_page": row["page"],
+        "pdf_page_index": row["pdf_page_index"],
     }
 
 
+@_u.labelled({})
 def table_maximum_lift_thickness(case):
     """Loose-lift thickness, inches, UFC 3-220-04FA paragraph 5-1b(3)
-    (printed p. 5-1 and 5-2, PDF 28-29); returns the printed loose-lift
+    (printed p. 5-1 and 5-2, pdf_page_index 27-28); returns the printed loose-lift
     (and, where printed, compacted-lift) thickness for the material,
     equipment and zone.
 
@@ -581,13 +598,16 @@ def table_maximum_lift_thickness(case):
         "printed": row["printed"],
         "note": _LIFT_NOTE,
         "reference": (f"{_REF}, para 5-1b(3), printed p. {row['page']} "
-                      f"(PDF {row['pdf_page']})"),
+                      f"(pdf_page_index {_index_text(row['pdf_page_index'])})"),
+        "printed_page": row["page"],
+        "pdf_page_index": row["pdf_page_index"],
     }
 
 
+@_u.labelled({})
 def table_compaction_equipment_selection(soil_type, zone="open"):
     """Compaction equipment for a backfill material and zone, UFC 3-220-04FA
-    paragraph 5-1b(2) (printed p. 5-1, PDF 28); returns the printed
+    paragraph 5-1b(2) (printed p. 5-1, pdf_page_index 27); returns the printed
     recommendation.
 
     Materials as printed: coarse-grained soils with slight plasticity
@@ -628,13 +648,17 @@ def table_compaction_equipment_selection(soil_type, zone="open"):
         "soil_type": key[0],
         "zone": key[1],
         "printed": _EQUIPMENT[key],
-        "reference": f"{_REF}, para 5-1b(2), printed p. 5-1 (PDF 28)",
+        "reference": f"{_REF}, para 5-1b(2), printed p. 5-1 (pdf_page_index 27)",
     }
 
 
+@_u.labelled(
+    {"critical_depth_ft": "ft", "critical_depth_m": "m",
+     "critical_lateral_pressure_kPa": "kPa",
+     "critical_lateral_pressure_psf": "psf"})
 def figure_2_5_compaction_induced_lateral_pressure(equipment):
     """Maximum lateral pressure induced by compaction against a vertical
-    wall, UFC 3-220-04FA Figure 2-5a (printed p. 2-7, PDF 14); returns the
+    wall, UFC 3-220-04FA Figure 2-5a (printed p. 2-7, pdf_page_index 13); returns the
     printed critical depth Dc (ft) and critical lateral pressure (sigma_H)c
     (psf), with SI conversions.
 
@@ -684,5 +708,5 @@ def figure_2_5_compaction_induced_lateral_pressure(equipment):
             "Lateral pressure in excess of active pressure induced by "
             "compaction; the diagram assumes the equipment can operate to "
             "within 6 inches of the wall (para 2-3d(2), p. 2-6)."),
-        "reference": f"{_REF}, Figure 2-5a, printed p. 2-7 (PDF 14)",
+        "reference": f"{_REF}, Figure 2-5a, printed p. 2-7 (pdf_page_index 13)",
     }

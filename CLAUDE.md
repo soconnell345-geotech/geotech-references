@@ -108,7 +108,7 @@ references/                    # (legacy) source PDFs (git-ignored)
 
 ## Key Conventions
 
-- **All units SI**: meters, kPa, kN, degrees (GEC-12 figures use original units: ksf, tsf, ft)
+- **Units as printed**: a lookup takes and returns the units its manual prints: SI for most, US customary for AASHTO 1993, the UFC pavement manuals, FHWA pavements and EM 1110-2-2104 (GEC-12 figures: ksf, tsf, ft). A dict result names them in `units`, with `printed_page` and `pdf_page_index` (0-based); a bare number's docstring gives its [unit] and page. A US-unit lookup that an SI number would silently fool takes `unit_system="SI"`. Shared code: `geotech_references/_units.py` (REF-78; done for the pavement references, EM 2104, DM 7.1, DM 7.2, the micropile manual and GEC-6, 9, 10, 11 and 12, other packages to follow)
 - **No external dependencies** beyond Python stdlib + numpy/scipy (optional matplotlib for plots)
 - **Function naming**: `figure_X_Y_*()` for figures, `table_X_Y_*()` for tables — matches reference numbering
 - **Private data**: `_TABLE_*`, `_FIG_*` prefixed dicts/lists

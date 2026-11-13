@@ -4,7 +4,7 @@ Load inventory (Table 3-1), the full load-factor table (Table 3-2), the
 general LRFD strength-design equations (Eq 3-1/3-2), the three earthquake
 load combinations (Eq 3-3/3-4/3-5), and the Appendix F commentary target-
 reliability table (Table F-2). Printed pages per the 1 Nov 2023 edition
-(pdf_page = printed_page + 5).
+(pdf_page_index = printed_page + 5).
 
 This manual's load factors are NOT identical to ACI 318-19 / ASCE 7 --
 paragraph 1-7d: "The load factors resemble those shown in ACI 318-19 but are
@@ -15,9 +15,10 @@ default.
 """
 
 import math
+from geotech_references import _units as _u
 
 # ============================================================================
-# Table 3-1 -- Loads on hydraulic structures (printed p. 17, pdf_page 22)
+# Table 3-1 -- Loads on hydraulic structures (printed p. 17, pdf_page_index 22)
 # ============================================================================
 
 TABLE_3_1_LOADS = {
@@ -45,6 +46,7 @@ TABLE_3_1_LOADS = {
 }
 
 
+@_u.labelled({})
 def table_3_1_load_inventory(load_id=None):
     """Table 3-1: loads on hydraulic structures, and their duration category
     (permanent Lp / temporary Lt / dynamic Ld) (printed p. 17).
@@ -61,18 +63,18 @@ def table_3_1_load_inventory(load_id=None):
     """
     if load_id is None:
         return {"loads": dict(TABLE_3_1_LOADS), "table": "3-1",
-                "printed_page": "17", "pdf_page": 22}
+                "printed_page": "17", "pdf_page_index": 22}
     if load_id not in TABLE_3_1_LOADS:
         raise ValueError(f"Unknown load_id {load_id!r}; see TABLE_3_1_LOADS")
     row = dict(TABLE_3_1_LOADS[load_id])
     row.update({"load_id": load_id, "table": "3-1",
-                "printed_page": "17", "pdf_page": 22})
+                "printed_page": "17", "pdf_page_index": 22})
     return row
 
 
 # ============================================================================
 # Table 3-2 -- Minimum load factors for strength design
-# (printed pp. 24-25, pdf_page 29-30)
+# (printed pp. 24-25, pdf_page_index 29-30)
 # ============================================================================
 
 # Permanent load factors, gamma_p (paragraph 3-3d, printed p. 22, pdf 27).
@@ -119,6 +121,7 @@ PRINCIPAL_LOAD_CONDITIONS = {
 }
 
 
+@_u.labelled({"gamma_p": "dimensionless"})
 def table_3_2_permanent_load_factor(load_id, effect="add"):
     """Table 3-2 permanent load factor gamma_p (printed pp. 24-25).
 
@@ -147,10 +150,11 @@ def table_3_2_permanent_load_factor(load_id, effect="add"):
         )
     return {
         "load_id": load_id, "effect": effect, "gamma_p": row[effect],
-        "table": "3-2", "printed_page": "24-25", "pdf_page": "29-30",
+        "table": "3-2", "printed_page": "24-25", "pdf_page_index": [29, 30],
     }
 
 
+@_u.labelled({"factor": "dimensionless"})
 def table_3_2_load_factor(load_id, category, role="principal"):
     """Table 3-2 principal/companion load factor for a temporary or dynamic
     load (printed pp. 24-25).
@@ -201,15 +205,18 @@ def table_3_2_load_factor(load_id, category, role="principal"):
     return {
         "load_id": load_id, "category": category, "role": role,
         "factor": factor, "table": "3-2", "printed_page": "24-25",
-        "pdf_page": "29-30",
+        "pdf_page_index": [29, 30],
     }
 
 
 # ============================================================================
 # Eq 3-1, 3-2 -- Required strength / general LRFD load combination
-# (printed pp. 21-22, pdf_page 26-27)
+# (printed pp. 21-22, pdf_page_index 26-27)
 # ============================================================================
 
+@_u.labelled(
+    {"phi": "dimensionless", "phi_rn": "consistent units",
+     "rn_nominal": "consistent units", "u_demand": "consistent units"})
 def required_strength_check(u_demand, phi, rn_nominal):
     """Eq 3-1: required strength check, sum(gamma_i * Lni) <= phi*Rn
     (printed p. 21).
@@ -233,10 +240,13 @@ def required_strength_check(u_demand, phi, rn_nominal):
     return {
         "u_demand": u_demand, "phi": phi, "rn_nominal": rn_nominal,
         "phi_rn": phi_rn, "adequate": u_demand <= phi_rn,
-        "equation": "3-1", "printed_page": "21", "pdf_page": 26,
+        "equation": "3-1", "printed_page": "21", "pdf_page_index": 26,
     }
 
 
+@_u.labelled(
+    {"companion_sum": "consistent units", "permanent_sum": "consistent units",
+     "principal_contribution": "consistent units", "u": "consistent units"})
 def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None):
     """Eq 3-2: general LRFD load-combination equation (printed p. 22).
 
@@ -260,7 +270,7 @@ def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None)
     -------
     dict
         {'u', 'permanent_sum', 'principal_contribution', 'companion_sum',
-         'equation': '3-2', 'printed_page': '22', 'pdf_page': 27}
+         'equation': '3-2', 'printed_page': '22', 'pdf_page_index': 27}
     """
     permanent_sum = sum(v * g for v, g in permanent_terms)
     lpu, gpu = principal_term
@@ -271,14 +281,15 @@ def load_combination_lrfd(permanent_terms, principal_term, companion_terms=None)
         "u": u, "permanent_sum": permanent_sum,
         "principal_contribution": principal_contribution,
         "companion_sum": companion_sum,
-        "equation": "3-2", "printed_page": "22", "pdf_page": 27,
+        "equation": "3-2", "printed_page": "22", "pdf_page_index": 27,
     }
 
 
 # ============================================================================
-# Eq 3-3, 3-4, 3-5 -- Earthquake load combinations (printed p. 26, pdf_page 31)
+# Eq 3-3, 3-4, 3-5 -- Earthquake load combinations (printed p. 26, pdf_page_index 31)
 # ============================================================================
 
+@_u.labelled({"eq_factor": "dimensionless", "u": "consistent units"})
 def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
                                  method="standard_obe"):
     """Eq 3-3/3-4/3-5: earthquake load combination U, in the unit of the
@@ -316,7 +327,7 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     -------
     dict
         {'u', 'eq_factor', 'equation', 'permanent_sum_basis',
-         'printed_page': '26', 'pdf_page': 31}
+         'printed_page': '26', 'pdf_page_index': 31}
     """
     companion_terms = companion_terms or []
     if method == "standard_obe":
@@ -344,7 +355,7 @@ def earthquake_load_combination(permanent_sum, eq_load, companion_terms=None,
     return {
         "u": u, "eq_factor": eq_factor, "equation": equation,
         "permanent_sum_basis": basis,
-        "printed_page": "26", "pdf_page": 31,
+        "printed_page": "26", "pdf_page_index": 31,
     }
 
 
@@ -360,6 +371,7 @@ _TABLE_F_2 = {
 }
 
 
+@_u.labelled({"beta": "no unit printed"})
 def table_f2_target_reliability(structure_class, load_path):
     """Table F-2: target reliability index beta for a 100-year service life
     (Appendix F commentary, printed p. 119).
@@ -388,10 +400,11 @@ def table_f2_target_reliability(structure_class, load_path):
     return {
         "structure_class": structure_class, "load_path": load_path,
         "beta": _TABLE_F_2[key], "table": "F-2",
-        "printed_page": "119", "pdf_page": 124,
+        "printed_page": "119", "pdf_page_index": 124,
     }
 
 
+@_u.labelled({"beta": "no unit printed", "pf": "fraction"})
 def probability_of_failure_from_beta(beta):
     """Pf ~= Phi(-beta), the standard-normal-deviate approximation of
     probability of failure from reliability index beta (Appendix F
@@ -405,7 +418,7 @@ def probability_of_failure_from_beta(beta):
     Returns
     -------
     dict
-        {'beta', 'pf', 'printed_page': '120', 'pdf_page': 125}
+        {'beta', 'pf', 'printed_page': '120', 'pdf_page_index': 125}
     """
     pf = 0.5 * math.erfc(beta / math.sqrt(2.0))
-    return {"beta": beta, "pf": pf, "printed_page": "120", "pdf_page": 125}
+    return {"beta": beta, "pf": pf, "printed_page": "120", "pdf_page_index": 125}

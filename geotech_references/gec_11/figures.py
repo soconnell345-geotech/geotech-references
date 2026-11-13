@@ -9,6 +9,7 @@ figure_4_10_kr_ka_ratio   Figure 4-10  Kr/Ka ratio vs depth by reinforcement typ
 """
 
 from .._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -59,6 +60,9 @@ _TYPE_ALIASES = {
 }
 
 
+@_u.labelled(
+    {"depth_m": "m", "kr_ka_ratio": "dimensionless"},
+    printed_page="4-37", pdf_page_index=178)
 def figure_4_10_kr_ka_ratio(
     depth_m: float,
     reinforcement_type: str = "geosynthetic",

@@ -37,9 +37,9 @@ def undrained_shear_strength_vane(T_max: float, D: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength from the vane shear test, *s_u,fv*
-        (stress, e.g., psf, Pa, or kPa).  Units depend on the
-        consistent unit system used for the inputs.
+        Undrained shear strength from the vane shear test, *s_u,fv* [consistent
+        units (stress, e.g., psf, Pa, or kPa)].  Units depend on the consistent
+        unit system used for the inputs.
 
     Raises
     ------
@@ -56,8 +56,8 @@ def undrained_shear_strength_vane(T_max: float, D: float) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 2, Section 2-9.1.2, Equation 2-1, p. 101.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 2, Section
+    2-9.1.2, Equation 2-1, printed p. 101 (pdf_page_index 128).
     """
     if D <= 0.0:
         raise ValueError("D must be positive.")
@@ -91,7 +91,7 @@ def sensitivity_vane(s_u_fv: float, s_ur_fv: float) -> float:
     Returns
     -------
     float
-        Sensitivity from the vane shear test, *S_t,fv* (dimensionless).
+        Sensitivity from the vane shear test, *S_t,fv* [no unit printed].
 
     Raises
     ------
@@ -107,8 +107,8 @@ def sensitivity_vane(s_u_fv: float, s_ur_fv: float) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 2, Section 2-9.1.2, Equation 2-2, p. 101.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 2, Section
+    2-9.1.2, Equation 2-2, printed p. 101 (pdf_page_index 128).
     """
     if s_ur_fv <= 0.0:
         raise ValueError("s_ur_fv must be positive.")
@@ -148,7 +148,7 @@ def corrected_undrained_shear_strength_vane(
     -------
     float
         Corrected undrained shear strength for field conditions,
-        *s_u,field* (same stress unit as *s_u_fv*).
+        *s_u,field* [consistent units (same stress unit as *s_u_fv*)].
 
     Raises
     ------
@@ -164,8 +164,8 @@ def corrected_undrained_shear_strength_vane(
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 2, Section 2-9.1.2, Equation 2-3, p. 102.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 2, Section
+    2-9.1.2, Equation 2-3, printed p. 102 (pdf_page_index 129).
     """
     if s_u_fv < 0.0:
         raise ValueError("s_u_fv must be non-negative.")

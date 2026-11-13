@@ -134,7 +134,7 @@ class TestLaneDistribution:
 
 class TestLayerCoefficientA1:
     def test_100k_psi(self):
-        # Figure 2.5, PDF 108 (pdf_page 107), printed II-18: the curve starts
+        # Figure 2.5, PDF 108 (pdf_page_index 107), printed II-18: the curve starts
         # on the a1 = 0.20 line at about 106,000 psi (re-read 2026-11-10;
         # was taken as 100,000) and reads 0.252 at 150,000 (was 0.26).
         assert tb.layer_coefficient_a1_asphalt(106000)["a1"] == pytest.approx(0.20, abs=0.005)
@@ -158,7 +158,7 @@ class TestLayerCoefficientA1:
             prev = a1
 
     def test_below_curve_start_refused(self):
-        # Figure 2.5, aashto1993.pdf PDF 108 (pdf_page 107), printed II-18:
+        # Figure 2.5, aashto1993.pdf PDF 108 (pdf_page_index 107), printed II-18:
         # the curve begins at about EAC 106,000 psi, a1 0.20. Below it the
         # chart gives nothing (was silently 0.20).
         with pytest.raises(ValueError, match="curve begins"):
@@ -177,7 +177,7 @@ class TestLayerCoefficientA1:
 
 
 class TestLayerCoefficientA2Cement:
-    """Figure 2.8 (pdf_page 112, printed II-23): a2 read straight across
+    """Figure 2.8 (pdf_page_index 112, printed II-23): a2 read straight across
     from the UCS scale's labelled ticks. The 800 psi tick sits on the
     printed 0.22 dashed line; 200 psi reads about 0.126 (between the 0.12
     and 0.14 ticks), 1000 psi about 0.25."""
@@ -206,7 +206,7 @@ class TestLayerCoefficientA2Cement:
 
 
 class TestLayerCoefficientA2Bituminous:
-    """Figure 2.9 (pdf_page 113, printed II-24): the 1600 lb tick sits on
+    """Figure 2.9 (pdf_page_index 113, printed II-24): the 1600 lb tick sits on
     the printed 0.30 dashed line and 1200 lb at 0.25; the 0.20 dashed line
     falls just below the 800 lb tick (800 lb reads about 0.204)."""
 
@@ -251,7 +251,7 @@ class TestUnboundK1K2:
 # ============================================================================
 
 class TestDrainageMiFlexible:
-    # Table 2.4, aashto1993.pdf PDF 115 (pdf_page 114), printed II-25; cells
+    # Table 2.4, aashto1993.pdf PDF 115 (pdf_page_index 114), printed II-25; cells
     # printed high-low ("1.15-1.05"): mi_min is the low value.
     def test_fair_default_aashto_road_test(self):
         r = tb.drainage_mi_flexible("fair", "1-5%")
@@ -276,7 +276,7 @@ class TestDrainageMiFlexible:
 
 
 class TestDrainageCdRigid:
-    # Table 2.5, PDF 116 (pdf_page 115), printed II-26; cells printed
+    # Table 2.5, PDF 116 (pdf_page_index 115), printed II-26; cells printed
     # high-low ("1.10-1.00"): cd_min is the low value.
     def test_fair_1_5pct(self):
         r = tb.drainage_cd_rigid("fair", "1-5%")
@@ -435,7 +435,7 @@ class TestEsalRigidTandemAxle:
 
 class TestFlexibleDesignEquation:
     """Verified against the guide's own printed worked example (Figure 3.1,
-    pdf_page 121, printed II-32): W18=5e6, R=95% (ZR=-1.645), So=0.35,
+    pdf_page_index 121, printed II-32): W18=5e6, R=95% (ZR=-1.645), So=0.35,
     MR=5000 psi, dPSI=1.9 -> printed solution SN=5.0."""
 
     ZR_95 = -1.645
@@ -493,7 +493,7 @@ class TestFlexibleDesignEquation:
 
 class TestRigidDesignEquation:
     """Verified against the guide's own printed worked example (Figure 3.7,
-    pdf_page 134-135, printed II-45/46): k=72pci, Ec=5e6psi, Sc'=650psi,
+    pdf_page_index 134-135, printed II-45/46): k=72pci, Ec=5e6psi, Sc'=650psi,
     J=3.2, Cd=1.0, So=0.29, R=95% (ZR=-1.645), dPSI=1.7, W18=5.1e6 ->
     printed solution D=10.0 in (nearest half-inch)."""
 
@@ -632,7 +632,7 @@ class TestRelativeDamageUf:
 
 
 class TestEffectiveRoadbedResilientModulus:
-    """Guide's fully worked 12-month example (Figure 2.4, pdf_page 104,
+    """Guide's fully worked 12-month example (Figure 2.4, pdf_page_index 104,
     printed II-15): monthly MR = [20000,20000,2500,4000,4000,7000,7000,
     7000,7000,7000,4000,20000] psi -> sum(uf)=3.72, avg uf=0.31, effective
     MR=5,000 psi, with each uf read off the Figure 2.3 scale (0.01 / 1.51 /
@@ -727,7 +727,7 @@ class TestStageReliability:
 # ============================================================================
 
 class TestAggregateLossTruckTraffic:
-    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page_index 101), printed II-12:
     # the first equation, GL = 0.12 + 0.1223(LT), > 50 % truck traffic.
     def test_printed_equation(self):
         assert eq.aggregate_loss_truck_traffic(0)["gl_in"] == pytest.approx(0.12)
@@ -742,7 +742,7 @@ class TestAggregateLossTruckTraffic:
 
 
 class TestAggregateLossArmyCorps:
-    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page_index 101), printed II-12:
     # the Brazil-study equation GL = (B/25.4)/(.0045LADT + 3380.6/R + .467G).
     # The function is aggregate_loss_brazil (was aggregate_loss_army_corps).
     def test_basic(self):

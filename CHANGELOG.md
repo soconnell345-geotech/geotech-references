@@ -4,6 +4,117 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Result units and pages, wave 1a (REF-78): the pavement references and
+EM 1110-2-2104.** The 269 lookups of `aashto_1993`, `ufc_pavement`,
+`fhwa_pavements`, `ufc_flexible_practice`, `ufc_concrete_practice`,
+`ufc_backfill`, `ufc_expansive`, `ufc_stabilization` and `em_2104`:
+
+- **Every dict result says what its numbers are and where they are
+  printed.** It carries `units` (`{key: unit}` for every key that holds a
+  number at any depth; empty when none does), `printed_page` (the label as
+  printed) and `pdf_page_index` (0-based, as the catalogs; a list when the
+  item spans pages). Units are as printed: `dimensionless` only where the
+  print calls the number a factor, ratio or coefficient, `no unit printed`
+  where it gives none, and percent or fraction always said. The one lookup
+  that returns a bare number, `em_2104.aci_beta1`, keeps its float and gives
+  the unit in its Returns line and the page in References. No return type
+  changed; `reference` stays a string. The shared code is the new
+  `geotech_references._units`.
+- **`pdf_page` is now `pdf_page_index`, the same 0-based value** (the one
+  renamed key). Page spans stored as strings (`"28-29"`) are now lists of
+  ints.
+- **New: `unit_system="SI"` on 90 US-unit lookups** (`aashto_1993` 31,
+  `ufc_pavement` 17, `em_2104` 28, `ufc_expansive` 8, `fhwa_pavements` 3,
+  `ufc_concrete_practice` 2, `ufc_stabilization` 1), keyword-only, default
+  `"US"` (unchanged). With `"SI"` the inputs the docstring names are taken in
+  SI units and converted exactly to the printed unit before the lookup runs
+  as printed; the result stays in the printed units and adds `unit_system`
+  and `converted_inputs`. A US-unit equation given an SI number inside its
+  range otherwise answers believably and wrongly: `flexible_sn_from_w18` with
+  MR 50,000 meant as kPa, or `table_9_1_maximum_joint_spacing(200)` meant as
+  mm. Not given it: lookups in consistent units, lookups with their own unit
+  selector (`unit=` / `units=`), and `ufc_expansive.eq_4_1_van_der_merwe_heave`,
+  whose printed method works in whole 1-ft increments.
+- **`units` is a dict, not a string**, in `ufc_pavement`
+  `granular_permeability_estimate`, `collector_drain_flow` and
+  `pipe_capacity_manning`, and `fhwa_pavements` `resilient_modulus_from_cbr`,
+  `resilient_modulus_from_r_value` and `resilient_modulus_from_dcp` (for
+  example `{"cbr": "percent", "mr": "MPa"}`).
+- **Pages corrected, each checked on its page.**
+  `aashto_1993.structural_number` cites printed II-35 (pdf_page_index 124;
+  it gave 118, printed II-29). The "PDF N" citations of `ufc_backfill`,
+  `ufc_expansive`, `ufc_pavement`, `ufc_concrete_practice` and
+  `ufc_stabilization`, and `ufc_backfill`'s stored row pages, were the PDF
+  viewer's 1-based page; they now read `pdf_page_index` N-1.
+  `ufc_stabilization.equation_cutback_asphalt_content_estimate` gives
+  [32, 33] (the equation is on printed 25, its symbols on 26);
+  `fhwa_pavements.backcalculated_to_design_modulus` [225, 226] and
+  `table_4_14_soil_as_pavement_material`'s listing [166, 167]. The AASHTO
+  chapter text drops its approximate `pdf_page_index ~N-M` ranges (the
+  printed pages stay).
+- **Docstring:** `ufc_pavement.collector_drain_flow` said "per mm" where the
+  print (p. 114) gives the flow per m.
+
+**Result units and pages, wave 1b (REF-78): DM 7.1, DM 7.2, the micropile
+manual and GEC-6, 9, 10, 11 and 12.** The 469 lookups of `dm7_1`, `dm7_2`,
+`micropile`, `gec_6`, `gec_9`, `gec_10`, `gec_11` and `gec_12`, by the same
+rules as wave 1a:
+
+- **63 dict results, and each row of a list of rows, carry `units`,
+  `printed_page` and `pdf_page_index`.** A result keyed by its table's cases
+  (`micropile` Tables 5-4 and 5-5, Figure 5-23 with `section="all"`) carries
+  the three keys beside its cases.
+- **The 399 bare results keep their types and are labelled where the app
+  reads them**: the unit in brackets in the first sentence of the Returns
+  text, and `printed p. X (pdf_page_index N)` in the first 160 characters of
+  the References. Every DM 7.1 and DM 7.2 page citation now reads that way
+  (DM 7.2 mixed PDF viewer pages and printed pages under a plain "p. N");
+  the 22 bare numbers of `micropile`, `gec_6`, `gec_10` and `gec_12` gain a
+  References section. The 15 tuples of `dm7_2` name each element as its own
+  Returns entry (`hansen_depth_factors`: `dc`, `dq`, `d_gamma`; the three
+  reliability methods: `mu_g`, `sigma_g`, `beta`, `p_u`). The 7 `plot_*`
+  functions are left as they are.
+- **New: `unit_system="SI"` on 4 US-unit lookups** an SI number would pass
+  unnoticed: `gec_12.figure_7_10_to_13_kd` and `figure_7_9_delta_phi_ratio`
+  (V in m^3/m), `gec_11.table_4_4_traffic_surcharge` (abutment height in m)
+  and `gec_10.table_10_2_nc_base_clay` (su in kPa). Four `dm7_2` bare floats
+  take it too, converting only their inputs (the result keeps its printed
+  unit, said in the Returns line): `scaled_distance` (D in m, W in kg),
+  `relative_flexibility_anchored_bulkhead` (H, D in mm, E in MPa, I in
+  mm^4/m), `driving_stress_limit_concrete_tension` (MPa) and
+  `meyerhof_group_settlement` (Q_d in kN, B and L in m); new exact pairs
+  kg to lb and mm^4/m to in^4/ft in `_units`. Not given it:
+  `peak_particle_velocity` (K is an empirical coefficient valid only in
+  ft, lb and in/sec, with no exact SI form) and
+  `confinement_factor_from_blast_data` (its K result is that same empirical
+  coefficient, and SD's unit depends on beta), and van der Merwe (whole 1-ft
+  increments).
+- **Micropile results gain three keys beside their cases.** In Tables 5-4
+  and 5-5 and Figure 5-23 (`section="all"`) the results now carry `units`,
+  `printed_page` and `pdf_page_index` next to their case keys, so code that
+  loops over the cases must skip those three keys.
+- **Silent wrong answers fixed.** `em_2104.aci_beta1` read any unit other than
+  'ksi' as psi (`unit='MPa'` with 50 gave 0.85, not 0.69, in 1.7.0 too); it
+  now accepts 'psi', 'ksi' and 'MPa' and raises ValueError for any other
+  unit. `ufc_expansive.table_active_zone_depth` under `unit_system="SI"`
+  converted only the suction, so groundwater at 5 m read as 5 ft; it now also
+  converts `depth_to_groundwater_ft` and `shaft_base_diameter_ft` from m.
+- **Labels:** `ufc_stabilization.equation_cement_content_modifying_soils` B and
+  C are "fraction" (the print says "expressed as a decimal", p. 16);
+  `dm7_2.volumetric_strain` and `gec_9` epsilon_50 are "fraction".
+- **Pages corrected, each checked on its page.** `dm7_2`
+  `alpha_method_unit_shaft_resistance` (Eq. 6-8) is on printed 414,
+  pdf_page_index 451 (it cited p. 453), and `rock_socket_unit_base_resistance`
+  (Eq. 6-36) on printed 430, pdf_page_index 467 (it cited p. 469). The
+  `dm7_2` prologue's "p. 40" to "p. 54" and chapter 7's "p. 571" to
+  "pp. 578-579" were PDF viewer pages: they are printed 2 to 16 and 533 to
+  541.
+- **Docstring:** `dm7_1.point_load_strength_index` said "MPa if P is in kN
+  and d is in mm: kN/mm^2 = GPa"; kN and mm give kN/mm^2, which is GPa.
+- `_units.labelled` labels a list of row dicts row by row; the unit
+  vocabulary adds `blows`, `bpf`, `ohm`, `um`, `mil(s)` and `radian(s)`, and
+  the exact factors add m^3/m to ft^3/ft.
+
 ## 1.7.0
 
 Released 2026-11-13. This release is the review of 2026-11-10 to 2026-11-13:

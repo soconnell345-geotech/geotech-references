@@ -53,9 +53,9 @@ CASES = [
 def test_cited_printed_page_is_pinned(what, call, expected, labels):
     r = call()
     assert r["printed_page"] == expected
-    pdf = r["pdf_page"]
+    pdf = r["pdf_page_index"]
     first = int(expected.split("-")[0]) + OFFSET
-    assert str(pdf).split("-")[0] == str(first)
+    assert (pdf[0] if isinstance(pdf, list) else pdf) == first
 
 
 def test_resistance_factor_comment_cites_p_121():

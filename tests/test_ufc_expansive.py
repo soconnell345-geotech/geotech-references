@@ -1,12 +1,12 @@
 """Tests for geotech_references.ufc_expansive (UFC 3-220-07, TM 5-818-7).
 
-Expected values are read off docs/ufc_3_220_07.pdf (PDF page 1-based):
-Table 4-1 PDF 31 (printed 4-1); para 5-4c PDF 39 (printed 5-4);
-Figure 5-4 PDF 42 (printed 5-7); Table 6-1 PDF 44 (printed 6-2);
-para 6-4, Grade beams, PDF 58 (printed 6-16); Eq. 4-1 and Figure 4-1
-PDF 31-32 (printed 4-1 to 4-2); Figure 4-2 PDF 34 (printed 4-4); Eq. 5-2
-PDF 37 (printed 5-2); Eqs. 5-3 to 5-5 PDF 38-39 (printed 5-3 to 5-4);
-Eqs. 5-8 and 5-9 PDF 40 (printed 5-5).
+Expected values are read off docs/ufc_3_220_07.pdf (pdf_page_index, 0-based):
+Table 4-1 pdf_page_index 30 (printed 4-1); para 5-4c pdf_page_index 38 (printed 5-4);
+Figure 5-4 pdf_page_index 41 (printed 5-7); Table 6-1 pdf_page_index 43 (printed 6-2);
+para 6-4, Grade beams, pdf_page_index 57 (printed 6-16); Eq. 4-1 and Figure 4-1
+pdf_page_index 30-31 (printed 4-1 to 4-2); Figure 4-2 pdf_page_index 33 (printed 4-4); Eq. 5-2
+pdf_page_index 36 (printed 5-2); Eqs. 5-3 to 5-5 pdf_page_index 37-38 (printed 5-3 to 5-4);
+Eqs. 5-8 and 5-9 pdf_page_index 39 (printed 5-5).
 
 Rebuilt 2026-11-10 (review pave-07, pave-13): activity_index,
 free_swell_percent, swell_pressure_kPa and pier_minimum_embedment_m were
@@ -41,7 +41,7 @@ from geotech_references.ufc_expansive.tables import (
 
 
 class TestHeavePrediction:
-    """heave_prediction_mm: Figure 5-4 (A) step 4, PDF 42 (printed 5-7)."""
+    """heave_prediction_mm: Figure 5-4 (A) step 4, pdf_page_index 41 (printed 5-7)."""
 
     def test_printed_example(self):
         # Figure 5-4: "Total swell = 1/2 x (8.2 - 1.0) x 2.8/100 = 0.10 ft";
@@ -108,7 +108,7 @@ class TestHeavePrediction:
 
 class TestTable42:
     """Table 4-2 Other Empirical Methods for Prediction of Potential Heave,
-    PDF 33 (printed 4-3); expected values worked by hand from the printed
+    pdf_page_index 32 (printed 4-3); expected values worked by hand from the printed
     relations at made-up inputs."""
 
     def test_vijayvergiya_ghazzaly(self):
@@ -171,7 +171,7 @@ class TestTable42:
 
 
 class TestVanDerMerwe:
-    """Eq. 4-1 with Figure 4-1, PDF 31-32 (printed 4-1 to 4-2):
+    """Eq. 4-1 with Figure 4-1, pdf_page_index 30-31 (printed 4-1 to 4-2):
     delta_H = sum_{D=1}^{n} F * PE, F = 10^(-D/20); PE = 0, 1/4, 1/2, 1
     inch/foot. Expected values worked by hand at made-up soils."""
 
@@ -230,7 +230,7 @@ class TestVanDerMerwe:
 
 
 class TestPotentialVerticalHeaveEq52:
-    """Eq. 5-2, PDF 37 (printed 5-2): delta_H = N DX sum (ef - eo)/(1 + eo)."""
+    """Eq. 5-2, pdf_page_index 36 (printed 5-2): delta_H = N DX sum (ef - eo)/(1 + eo)."""
 
     def test_one_element_is_figure_4_2(self):
         # Figure 4-2 (printed 4-4): Sp/100 = delta_H/H = (e1 - eo)/(1 + eo).
@@ -268,7 +268,7 @@ class TestPotentialVerticalHeaveEq52:
 
 
 class TestEquilibriumPoreWaterPressure:
-    """Eqs. 5-3 to 5-5, PDF 38-39 (printed 5-3 to 5-4); gamma_w 0.0312 tcf."""
+    """Eqs. 5-3 to 5-5, pdf_page_index 37-38 (printed 5-3 to 5-4); gamma_w 0.0312 tcf."""
 
     def test_saturated(self):
         r = eq_5_3_to_5_5_equilibrium_pore_water_pressure("saturated", 5)
@@ -297,7 +297,7 @@ class TestEquilibriumPoreWaterPressure:
 
 
 class TestConsolidometerHeaveEq58:
-    """Eqs. 5-8 and 5-9, PDF 40 (printed 5-5):
+    """Eqs. 5-8 and 5-9, pdf_page_index 39 (printed 5-5):
     delta_H/H = cs/(1 + eo) log(sigma_s/sigma'_v), sigma'_v = sigma_v - u_w.
     Figure 5-4's example prints measured per cent swells, not c_s, e_o
     and sigma_s, so these values are worked by hand."""
@@ -394,7 +394,7 @@ class TestConsolidometerHeaveEq58:
 
 
 class TestSwellPotentialClassification:
-    """table_swell_potential_classification: Table 4-1, PDF 31 (printed 4-1).
+    """table_swell_potential_classification: Table 4-1, pdf_page_index 30 (printed 4-1).
 
     Low: Sp <0.5 %, LL <50, PI <25, suction <1.5 tsf; Marginal: 0.5-1.5,
     50-60, 25-35, 1.5-4.0; High: >1.5, >60, >35, >4.0.
@@ -484,7 +484,7 @@ class TestSwellPotentialClassification:
 
 
 class TestActiveZoneDepth:
-    """table_active_zone_depth: para 5-4c, PDF 39 (printed 5-4)."""
+    """table_active_zone_depth: para 5-4c, pdf_page_index 38 (printed 5-4)."""
 
     def test_moist_profile_10_ft(self):
         # 5-4c(2)(a): 10 feet for moist profiles (suction < 4 tsf)
@@ -544,7 +544,7 @@ class TestActiveZoneDepth:
 
 
 class TestFoundationSelection:
-    """table_foundation_selection: Table 6-1, PDF 44 (printed 6-2)."""
+    """table_foundation_selection: Table 6-1, pdf_page_index 43 (printed 6-2)."""
 
     def test_half_inch_shallow(self):
         r = table_foundation_selection(predicted_differential_movement_in=0.5)
@@ -606,7 +606,7 @@ class TestFoundationSelection:
 
 
 class TestGradeBeamVoidSpace:
-    """table_grade_beam_void_space: para 6-4, Grade beams, PDF 58 (printed
+    """table_grade_beam_void_space: para 6-4, Grade beams, pdf_page_index 57 (printed
     6-16): "6 to 12 inches or 2 times the predicted total heave ...
     (whichever is larger)"."""
 

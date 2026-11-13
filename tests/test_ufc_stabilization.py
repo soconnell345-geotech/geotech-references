@@ -247,7 +247,7 @@ class TestTable35:
             table_3_5_emulsified_asphalt_requirements(10, 65)
 
     def test_last_row_and_above_range(self):
-        # Table 3-5, UFC 3-250-11 PDF 35 (pdf_page 34), printed 27: the last
+        # Table 3-5, UFC 3-250-11 PDF 35 (pdf_page_index 34), printed 27: the last
         # row is 25 (6.2 at < 50, 7.3 at 100). Above it is refused (REF-76;
         # the 25 row used to be held with a note): Sec 3-4.4 says the bitumen
         # needed rises with the fines. Below 0 is refused.
@@ -281,7 +281,7 @@ class TestTable36:
         assert r["potential_swell"] == "marginal"
 
     def test_band_edges_as_printed(self):
-        # Table 3-6, UFC 3-250-11 PDF 38 (pdf_page 37), printed 30: LL > 60,
+        # Table 3-6, UFC 3-250-11 PDF 38 (pdf_page_index 37), printed 30: LL > 60,
         # PI > 35 High; LL 50-60, PI 25-35 Marginal; LL < 50, PI < 25 Low.
         r = table_3_6_swell_potential(60, 35)
         assert (r["ll_category"], r["pi_category"]) == ("marginal", "marginal")
@@ -336,7 +336,7 @@ class TestTableA1:
         assert r["subbase_factor"] == 2.00
 
     def test_conditions_of_sec_a_1_1(self):
-        # Sec A-1.1, UFC 3-250-11 PDF 71 (pdf_page 70), printed 63: "Limit
+        # Sec A-1.1, UFC 3-250-11 PDF 71 (pdf_page_index 70), printed 63: "Limit
         # the cement content to 4 percent by weight or less to prevent
         # excessive reflective cracking."
         r = table_a1_equivalency_factors("cement", "gm")
@@ -421,7 +421,7 @@ class TestEquationCutbackAsphaltContentEstimate:
 
 class TestEquationCementPiLimitTable23:
     def test_worked_narrative_example(self):
-        # Table 2-3 footnote (c), UFC 3-250-11 (2020) PDF 21 (pdf_page 20),
+        # Table 2-3 footnote (c), UFC 3-250-11 (2020) PDF 21 (pdf_page_index 20),
         # printed 13, prints "PI <= 20 + 50 - percent passing No. 200";
         # the form used is the 2004 edition's Table 2-1 footnote b, PDF 12,
         # printed 2-3: PI <= 20 + (50 - percent passing No. 200 sieve)/4.

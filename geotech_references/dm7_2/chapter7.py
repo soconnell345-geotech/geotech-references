@@ -33,7 +33,7 @@ def sample_mean(x: Sequence[float]) -> float:
     Returns
     -------
     float
-        Sample mean.
+        Sample mean [consistent units (the unit of the data)].
 
     Raises
     ------
@@ -42,7 +42,8 @@ def sample_mean(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1, p. 548.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    printed p. 510 (pdf_page_index 547).
     """
     n = len(x)
     if n == 0:
@@ -66,7 +67,8 @@ def sample_variance(x: Sequence[float]) -> float:
     Returns
     -------
     float
-        Unbiased sample variance.
+        Unbiased sample variance [consistent units (the square of the unit of
+        the data)].
 
     Raises
     ------
@@ -75,7 +77,8 @@ def sample_variance(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1, p. 548.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    printed p. 510 (pdf_page_index 547).
     """
     n = len(x)
     if n < 2:
@@ -100,11 +103,12 @@ def sample_standard_deviation(x: Sequence[float]) -> float:
     Returns
     -------
     float
-        Sample standard deviation.
+        Sample standard deviation [consistent units (the unit of the data)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1, p. 548.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    printed p. 510 (pdf_page_index 547).
     """
     return math.sqrt(sample_variance(x))
 
@@ -126,7 +130,7 @@ def coefficient_of_variation(x: Sequence[float]) -> float:
     Returns
     -------
     float
-        Coefficient of variation (dimensionless).
+        Coefficient of variation [dimensionless].
 
     Raises
     ------
@@ -135,7 +139,8 @@ def coefficient_of_variation(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1, p. 548.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    printed p. 510 (pdf_page_index 547).
     """
     x_bar = sample_mean(x)
     if x_bar == 0.0:
@@ -160,7 +165,7 @@ def coefficient_of_variation_from_params(std_dev: float, mean: float) -> float:
     Returns
     -------
     float
-        Coefficient of variation (dimensionless).
+        Coefficient of variation [dimensionless].
 
     Raises
     ------
@@ -169,7 +174,8 @@ def coefficient_of_variation_from_params(std_dev: float, mean: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1, p. 548.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    printed p. 510 (pdf_page_index 547).
     """
     if std_dev < 0.0:
         raise ValueError("std_dev must be non-negative.")
@@ -209,7 +215,7 @@ def cumulative_mass_function(pmf_values: Sequence[float],
     Returns
     -------
     float
-        Cumulative probability F_X(x_i).
+        Cumulative probability F_X(x_i) [fraction].
 
     Raises
     ------
@@ -220,7 +226,8 @@ def cumulative_mass_function(pmf_values: Sequence[float],
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-1, p. 553.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-1,
+    printed p. 515 (pdf_page_index 552).
     """
     n = len(pmf_values)
     if n == 0:
@@ -279,7 +286,7 @@ def cumulative_density_function(
     Returns
     -------
     float
-        Cumulative probability F_X(x0).
+        Cumulative probability F_X(x0) [fraction].
 
     Raises
     ------
@@ -289,7 +296,8 @@ def cumulative_density_function(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-2, p. 553.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-2,
+    printed p. 515 (pdf_page_index 552).
     """
     if n_steps < 1:
         raise ValueError("n_steps must be at least 1.")
@@ -333,7 +341,8 @@ def pdf_from_cdf(
     Returns
     -------
     float
-        Estimated probability density f_X(x).
+        Estimated probability density f_X(x) [consistent units (1 / the unit of
+        x)].
 
     Raises
     ------
@@ -342,7 +351,8 @@ def pdf_from_cdf(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-3, p. 555.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-3,
+    printed p. 517 (pdf_page_index 554).
     """
     if dx <= 0.0:
         raise ValueError("dx must be positive.")
@@ -383,7 +393,7 @@ def probability_over_interval(
     Returns
     -------
     float
-        Probability that X falls within [x1, x2].
+        Probability that X falls within [x1, x2] [fraction].
 
     Raises
     ------
@@ -392,7 +402,8 @@ def probability_over_interval(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-4, p. 555.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-4,
+    printed p. 517 (pdf_page_index 554).
     """
     if x2 < x1:
         raise ValueError("x2 must be greater than or equal to x1.")
@@ -439,7 +450,7 @@ def combined_cov(cov_w: float, cov_e: float, cov_t: float) -> float:
     -------
     float
         Combined coefficient of variation of the geotechnical
-        parameter (dimensionless).
+        parameter [dimensionless].
 
     Raises
     ------
@@ -448,7 +459,8 @@ def combined_cov(cov_w: float, cov_e: float, cov_t: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-5, p. 562.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-5,
+    printed p. 524 (pdf_page_index 561).
     """
     if cov_w < 0.0:
         raise ValueError("cov_w must be non-negative.")
@@ -491,7 +503,8 @@ def std_dev_from_range(hcv: float, lcv: float, n: float = 6.0) -> float:
     Returns
     -------
     float
-        Estimated standard deviation (same unit as *hcv* and *lcv*).
+        Estimated standard deviation [consistent units (same unit as *hcv* and
+        *lcv*)].
 
     Raises
     ------
@@ -500,7 +513,8 @@ def std_dev_from_range(hcv: float, lcv: float, n: float = 6.0) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-6, p. 568.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-6,
+    printed p. 530 (pdf_page_index 567).
     """
     if hcv <= lcv:
         raise ValueError("hcv must be greater than lcv.")
@@ -536,7 +550,7 @@ def reliability_index(mu_g: float, sigma_g: float) -> float:
     Returns
     -------
     float
-        Reliability index beta (dimensionless).
+        Reliability index beta [no unit printed].
 
     Raises
     ------
@@ -545,7 +559,8 @@ def reliability_index(mu_g: float, sigma_g: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-7, p. 571.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-7,
+    printed p. 533 (pdf_page_index 570).
     """
     if sigma_g <= 0.0:
         raise ValueError("sigma_g must be positive.")
@@ -582,7 +597,8 @@ def fosm_mean(
     Returns
     -------
     float
-        Mean value of the limit state function.
+        Mean value of the limit state function [consistent units (the unit of
+        g)].
 
     Raises
     ------
@@ -591,7 +607,8 @@ def fosm_mean(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-8, p. 571.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-8,
+    printed p. 533 (pdf_page_index 570).
     """
     if len(means) == 0:
         raise ValueError("means must contain at least one value.")
@@ -633,7 +650,8 @@ def fosm_variance_analytical(
     Returns
     -------
     float
-        Estimated variance of the limit state function.
+        Estimated variance of the limit state function [consistent units (the
+        square of the unit of g)].
 
     Raises
     ------
@@ -643,7 +661,8 @@ def fosm_variance_analytical(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-9, p. 572.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-9,
+    printed p. 534 (pdf_page_index 571).
     """
     n = len(partial_derivatives)
     if n == 0:
@@ -701,7 +720,8 @@ def fosm_central_difference(
     Returns
     -------
     float
-        Central difference delta_g_i for the specified variable.
+        Central difference delta_g_i for the specified variable [consistent
+        units (the unit of g)].
 
     Raises
     ------
@@ -711,7 +731,8 @@ def fosm_central_difference(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-10, p. 573.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-10,
+    printed p. 535 (pdf_page_index 572).
     """
     n = len(means)
     if n == 0:
@@ -767,7 +788,8 @@ def fosm_variance_numerical(
     Returns
     -------
     float
-        Estimated variance of the limit state function.
+        Estimated variance of the limit state function [consistent units (the
+        square of the unit of g)].
 
     Raises
     ------
@@ -777,7 +799,8 @@ def fosm_variance_numerical(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-11, p. 573.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-11,
+    printed p. 535 (pdf_page_index 572).
     """
     n = len(means)
     if n == 0:
@@ -822,7 +845,7 @@ def reliability_index_lognormal(mu_g: float, sigma_g: float) -> float:
     Returns
     -------
     float
-        Lognormal reliability index (dimensionless).
+        Lognormal reliability index [no unit printed].
 
     Raises
     ------
@@ -831,7 +854,8 @@ def reliability_index_lognormal(mu_g: float, sigma_g: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-12, p. 573.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-12,
+    printed p. 535 (pdf_page_index 572).
     """
     if mu_g <= 0.0:
         raise ValueError("mu_g must be positive for lognormal distribution.")
@@ -878,7 +902,8 @@ def point_estimate_mean(
     Returns
     -------
     float
-        Estimated mean of the limit state function.
+        Estimated mean of the limit state function [consistent units (the unit
+        of g)].
 
     Raises
     ------
@@ -893,7 +918,8 @@ def point_estimate_mean(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-13, p. 574.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-13,
+    printed p. 536 (pdf_page_index 573).
     """
     n = len(means)
     if n == 0:
@@ -953,7 +979,8 @@ def point_estimate_variance(
     Returns
     -------
     float
-        Estimated variance of the limit state function.
+        Estimated variance of the limit state function [consistent units (the
+        square of the unit of g)].
 
     Raises
     ------
@@ -963,7 +990,8 @@ def point_estimate_variance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-14, p. 574.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-14,
+    printed p. 536 (pdf_page_index 573).
     """
     n = len(means)
     if n == 0:
@@ -1016,7 +1044,7 @@ def rate_of_exceedance(return_period: float) -> float:
     Returns
     -------
     float
-        Annual rate of exceedance (1/years).
+        Annual rate of exceedance [1/years].
 
     Raises
     ------
@@ -1025,7 +1053,8 @@ def rate_of_exceedance(return_period: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-15, p. 586.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-15,
+    printed p. 548 (pdf_page_index 585).
     """
     if return_period <= 0.0:
         raise ValueError("return_period must be positive.")
@@ -1061,7 +1090,7 @@ def rate_of_exceedance_from_probability(
     Returns
     -------
     float
-        Annual rate of exceedance lambda(y*) (1/years).
+        Annual rate of exceedance lambda(y*) [1/years].
 
     Raises
     ------
@@ -1081,7 +1110,8 @@ def rate_of_exceedance_from_probability(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-16, p. 587.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-16,
+    printed p. 549 (pdf_page_index 586).
     """
     if prob_exceedance <= 0.0 or prob_exceedance >= 1.0:
         raise ValueError("prob_exceedance must be in the range (0, 1).")
@@ -1116,11 +1146,12 @@ def probability_of_failure_normal(beta: float) -> float:
     Returns
     -------
     float
-        Probability of unsatisfactory performance (failure).
+        Probability of unsatisfactory performance (failure) [fraction].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Section 7-4.2, p. 571.
+    UFC 3-220-20, 16 Jan 2025, Chapter 7, Section 7-4.2,
+    printed p. 533 (pdf_page_index 570).
     """
     return 0.5 * math.erfc(beta / math.sqrt(2.0))
 
@@ -1154,12 +1185,12 @@ def first_order_second_moment(
 
     Returns
     -------
-    tuple of (float, float, float, float)
-        - mu_g : Mean of the limit state function.
-        - sigma_g : Standard deviation of the limit state function.
-        - beta : Reliability index.
-        - p_u : Probability of unsatisfactory performance
-          (assuming normal distribution of g(X)).
+    mu_g, sigma_g : float
+        Mean and standard deviation of g(X) [consistent units].
+    beta : float
+        Reliability index [no unit printed].
+    p_u : float
+        Probability of unsatisfactory performance [fraction], for g(X) normal.
 
     Raises
     ------
@@ -1170,7 +1201,7 @@ def first_order_second_moment(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 7, Equations 7-8, 7-10,
-    7-11, 7-7, pp. 571-573.
+    7-11, 7-7, printed pp. 533-535 (pdf_page_index 570-572).
     """
     mu_g = fosm_mean(g_func, means)
     var_g = fosm_variance_numerical(g_func, means, std_devs)
@@ -1205,12 +1236,12 @@ def point_estimate_method(
 
     Returns
     -------
-    tuple of (float, float, float, float)
-        - mu_g : Mean of the limit state function.
-        - sigma_g : Standard deviation of the limit state function.
-        - beta : Reliability index.
-        - p_u : Probability of unsatisfactory performance
-          (assuming normal distribution of g(X)).
+    mu_g, sigma_g : float
+        Mean and standard deviation of g(X) [consistent units].
+    beta : float
+        Reliability index [no unit printed].
+    p_u : float
+        Probability of unsatisfactory performance [fraction], for g(X) normal.
 
     Raises
     ------
@@ -1226,7 +1257,7 @@ def point_estimate_method(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 7, Equations 7-13, 7-14, 7-7,
-    pp. 574.
+    printed p. 536 (pdf_page_index 573).
     """
     mu_g = point_estimate_mean(g_func, means, std_devs)
     var_g = point_estimate_variance(g_func, means, std_devs)
@@ -1273,12 +1304,12 @@ def monte_carlo_simulation(
 
     Returns
     -------
-    tuple of (float, float, float, float)
-        - mu_g : Mean of g(X) from the simulation.
-        - sigma_g : Standard deviation of g(X) from the simulation.
-        - beta : Reliability index (mu_g / sigma_g).
-        - p_u : Probability of unsatisfactory performance (fraction
-          of trials with g(X) < 0).
+    mu_g, sigma_g : float
+        Mean and standard deviation of g(X) [consistent units].
+    beta : float
+        Reliability index [no unit printed].
+    p_u : float
+        Fraction of trials with g(X) < 0 [fraction].
 
     Raises
     ------
@@ -1298,7 +1329,7 @@ def monte_carlo_simulation(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 7, Section 7-4.2.4,
-    pp. 578-579.
+    printed pp. 540-541 (pdf_page_index 577-578).
     """
     import random as _random
 

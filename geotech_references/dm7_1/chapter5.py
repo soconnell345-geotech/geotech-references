@@ -40,7 +40,7 @@ def overconsolidation_ratio(sigma_p: float, sigma_z0: float) -> float:
     Returns
     -------
     float
-        Overconsolidation ratio (dimensionless).
+        Overconsolidation ratio [dimensionless].
 
     Raises
     ------
@@ -50,7 +50,7 @@ def overconsolidation_ratio(sigma_p: float, sigma_z0: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-1, p. 224.
+    Chapter 5, Equation 5-1, printed p. 224 (pdf_page_index 251).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -93,8 +93,8 @@ def undrained_shear_strength_from_ocr(
     Returns
     -------
     float
-        Estimated undrained shear strength *s_u* (same stress unit as
-        *sigma_z0*).
+        Estimated undrained shear strength *s_u* [consistent units (same stress
+        unit as *sigma_z0*)].
 
     Raises
     ------
@@ -104,7 +104,7 @@ def undrained_shear_strength_from_ocr(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-2, p. 225.
+    Chapter 5, Equation 5-2, printed p. 225 (pdf_page_index 252).
     """
     if usr_nc < 0.0:
         raise ValueError("usr_nc must be non-negative.")
@@ -146,8 +146,8 @@ def preconsolidation_stress_from_su(
     Returns
     -------
     float
-        Estimated preconsolidation stress *sigma_p* (same stress unit as
-        *su*).
+        Estimated preconsolidation stress *sigma_p* [consistent units (same
+        stress unit as *su*)].
 
     Raises
     ------
@@ -157,7 +157,7 @@ def preconsolidation_stress_from_su(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-3, p. 226.
+    Chapter 5, Equation 5-3, printed p. 226 (pdf_page_index 253).
     """
     if usr_nc <= 0.0:
         raise ValueError("usr_nc must be positive.")
@@ -194,7 +194,7 @@ def settlement_from_strain(
     Returns
     -------
     float
-        Total settlement *s* (same length unit as *H*).
+        Total settlement *s* [consistent units (same length unit as *H*)].
 
     Raises
     ------
@@ -205,7 +205,7 @@ def settlement_from_strain(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-4, p. 227.
+    Chapter 5, Equation 5-4, printed p. 227 (pdf_page_index 254).
     """
     if len(epsilon_z) != len(H):
         raise ValueError("epsilon_z and H must have the same length.")
@@ -251,7 +251,7 @@ def immediate_settlement(
     Returns
     -------
     float
-        Immediate settlement *s* (same length unit as *B*).
+        Immediate settlement *s* [consistent units (same length unit as *B*)].
 
     Raises
     ------
@@ -268,7 +268,7 @@ def immediate_settlement(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-5, p. 229.
+    Chapter 5, Equation 5-5, printed p. 229 (pdf_page_index 256).
     """
     if Es <= 0.0:
         raise ValueError("Es must be positive.")
@@ -305,7 +305,8 @@ def corrected_spt_silty_sand(N_prime: float) -> float:
     Returns
     -------
     float
-        Corrected blow count *N'_SM* (blows/ft or blows/300 mm).
+        Corrected blow count *N'_SM* [consistent units (blows/ft or blows/300
+        mm)].
 
     Raises
     ------
@@ -322,7 +323,7 @@ def corrected_spt_silty_sand(N_prime: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-6, p. 229.
+    Chapter 5, Equation 5-6, printed p. 229 (pdf_page_index 256).
     """
     if N_prime < 0.0:
         raise ValueError("N_prime must be non-negative.")
@@ -375,7 +376,7 @@ def schmertmann_settlement(
     Returns
     -------
     float
-        Settlement *s* (same length unit as *dz*).
+        Settlement *s* [consistent units (same length unit as *dz*)].
 
     Raises
     ------
@@ -386,7 +387,7 @@ def schmertmann_settlement(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-7, p. 232.
+    Chapter 5, Equation 5-7, printed p. 232 (pdf_page_index 259).
     """
     if not (len(Iz) == len(Es) == len(dz)):
         raise ValueError("Iz, Es, and dz must have the same length.")
@@ -426,7 +427,7 @@ def schmertmann_embedment_correction(
     Returns
     -------
     float
-        Embedment correction factor *C1* (dimensionless), minimum 0.5.
+        Embedment correction factor *C1* [dimensionless], minimum 0.5.
 
     Raises
     ------
@@ -437,7 +438,7 @@ def schmertmann_embedment_correction(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-8, p. 232.
+    Chapter 5, Equation 5-8, printed p. 232 (pdf_page_index 259).
     """
     net = q0 - sigma_z0
     if net <= 0.0:
@@ -470,7 +471,7 @@ def schmertmann_time_correction(t_years: float) -> float:
     Returns
     -------
     float
-        Time correction factor *C2* (dimensionless).
+        Time correction factor *C2* [dimensionless].
 
     Raises
     ------
@@ -482,7 +483,7 @@ def schmertmann_time_correction(t_years: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-9, p. 232.
+    Chapter 5, Equation 5-9, printed p. 232 (pdf_page_index 259).
     """
     if t_years <= 0.0:
         raise ValueError("t_years must be positive.")
@@ -519,7 +520,7 @@ def modified_recompression_index(Cr: float, e0: float) -> float:
     Returns
     -------
     float
-        Modified recompression index *C_epsilon_r* (dimensionless).
+        Modified recompression index *C_epsilon_r* [no unit printed].
 
     Raises
     ------
@@ -530,7 +531,7 @@ def modified_recompression_index(Cr: float, e0: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-10, p. 239.
+    Chapter 5, Equation 5-10, printed p. 239 (pdf_page_index 266).
     """
     if e0 <= -1.0:
         raise ValueError("e0 must be greater than -1.")
@@ -563,7 +564,7 @@ def modified_compression_index(Cc: float, e0: float) -> float:
     Returns
     -------
     float
-        Modified compression index *C_epsilon_c* (dimensionless).
+        Modified compression index *C_epsilon_c* [no unit printed].
 
     Raises
     ------
@@ -574,7 +575,7 @@ def modified_compression_index(Cc: float, e0: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-11, p. 239.
+    Chapter 5, Equation 5-11, printed p. 239 (pdf_page_index 266).
     """
     if e0 <= -1.0:
         raise ValueError("e0 must be greater than -1.")
@@ -619,7 +620,8 @@ def primary_consolidation_settlement_nc(
     Returns
     -------
     float
-        Primary consolidation settlement *s_c* (same length unit as *H*).
+        Primary consolidation settlement *s_c* [consistent units (same length
+        unit as *H*)].
 
     Raises
     ------
@@ -630,7 +632,7 @@ def primary_consolidation_settlement_nc(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-12, p. 241.
+    Chapter 5, Equation 5-12, printed p. 241 (pdf_page_index 268).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -676,7 +678,8 @@ def primary_consolidation_settlement_oc_recompression(
     Returns
     -------
     float
-        Primary consolidation settlement *s_c* (same length unit as *H*).
+        Primary consolidation settlement *s_c* [consistent units (same length
+        unit as *H*)].
 
     Raises
     ------
@@ -687,7 +690,7 @@ def primary_consolidation_settlement_oc_recompression(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-13, p. 241.
+    Chapter 5, Equation 5-13, printed p. 241 (pdf_page_index 268).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -745,7 +748,8 @@ def primary_consolidation_settlement_oc_beyond(
     Returns
     -------
     float
-        Primary consolidation settlement *s_c* (same length unit as *H*).
+        Primary consolidation settlement *s_c* [consistent units (same length
+        unit as *H*)].
 
     Raises
     ------
@@ -756,7 +760,7 @@ def primary_consolidation_settlement_oc_beyond(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-14, p. 241.
+    Chapter 5, Equation 5-14, printed p. 241 (pdf_page_index 268).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -804,7 +808,7 @@ def time_factor_vertical(cv: float, t: float, Hdr: float) -> float:
     Returns
     -------
     float
-        Time factor *T_v* (dimensionless).
+        Time factor *T_v* [dimensionless].
 
     Raises
     ------
@@ -814,7 +818,7 @@ def time_factor_vertical(cv: float, t: float, Hdr: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-15, p. 245.
+    Chapter 5, Equation 5-15, printed p. 245 (pdf_page_index 272).
     """
     if Hdr <= 0.0:
         raise ValueError("Hdr must be positive.")
@@ -858,7 +862,8 @@ def equivalent_layer_thickness(
     Returns
     -------
     float
-        Equivalent thickness *H'_n* (same length unit as *Hn*).
+        Equivalent thickness *H'_n* [consistent units (same length unit as
+        *Hn*)].
 
     Raises
     ------
@@ -868,7 +873,7 @@ def equivalent_layer_thickness(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-16, p. 251.
+    Chapter 5, Equation 5-16, printed p. 251 (pdf_page_index 278).
     """
     if cv_n <= 0.0:
         raise ValueError("cv_n must be positive.")
@@ -902,7 +907,8 @@ def total_transformed_thickness(H_prime: List[float]) -> float:
     Returns
     -------
     float
-        Total transformed thickness *H'_t* (same length unit as *H_prime*).
+        Total transformed thickness *H'_t* [consistent units (same length unit
+        as *H_prime*)].
 
     Raises
     ------
@@ -912,7 +918,7 @@ def total_transformed_thickness(H_prime: List[float]) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-17, p. 251.
+    Chapter 5, Equation 5-17, printed p. 251 (pdf_page_index 278).
     """
     if len(H_prime) == 0:
         raise ValueError("At least one layer must be provided.")
@@ -959,7 +965,8 @@ def secondary_compression_settlement(
     Returns
     -------
     float
-        Secondary compression settlement *s_s* (same length unit as *H0*).
+        Secondary compression settlement *s_s* [consistent units (same length
+        unit as *H0*)].
 
     Raises
     ------
@@ -969,7 +976,7 @@ def secondary_compression_settlement(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-18, p. 254.
+    Chapter 5, Equation 5-18, printed p. 254 (pdf_page_index 281).
     """
     if tp <= 0.0:
         raise ValueError("tp must be positive.")
@@ -1002,7 +1009,7 @@ def modified_secondary_compression_index_from_wn(wn: float) -> float:
     -------
     float
         Estimated modified secondary compression index *C_epsilon_alpha*
-        (dimensionless).
+        [no unit printed].
 
     Raises
     ------
@@ -1012,7 +1019,7 @@ def modified_secondary_compression_index_from_wn(wn: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-19, p. 254.
+    Chapter 5, Equation 5-19, printed p. 254 (pdf_page_index 281).
     """
     if wn < 0.0:
         raise ValueError("wn must be non-negative.")
@@ -1052,7 +1059,7 @@ def surcharge_degree_of_consolidation(
     Returns
     -------
     float
-        Required degree of consolidation *U_f+s* (decimal form, 0 to 1).
+        Required degree of consolidation *U_f+s* [fraction], 0 to 1.
 
     Raises
     ------
@@ -1063,7 +1070,7 @@ def surcharge_degree_of_consolidation(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-20, p. 263.
+    Chapter 5, Equation 5-20, printed p. 263 (pdf_page_index 290).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -1130,7 +1137,7 @@ def surcharge_degree_of_consolidation_with_secondary(
     Returns
     -------
     float
-        Required degree of consolidation *U_f+s* (decimal form, 0 to 1).
+        Required degree of consolidation *U_f+s* [fraction], 0 to 1.
 
     Raises
     ------
@@ -1140,7 +1147,7 @@ def surcharge_degree_of_consolidation_with_secondary(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-21, p. 263.
+    Chapter 5, Equation 5-21, printed p. 263 (pdf_page_index 290).
     """
     if sigma_z0 <= 0.0:
         raise ValueError("sigma_z0 must be positive.")
@@ -1195,7 +1202,7 @@ def time_factor_radial(
     Returns
     -------
     float
-        Time factor for radial drainage *T_r* (dimensionless).
+        Time factor for radial drainage *T_r* [dimensionless].
 
     Raises
     ------
@@ -1205,7 +1212,7 @@ def time_factor_radial(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-22, p. 266.
+    Chapter 5, Equation 5-22, printed p. 266 (pdf_page_index 293).
     """
     if Ur < 0.0 or Ur >= 1.0:
         raise ValueError("Ur must be in the range [0, 1).")
@@ -1249,7 +1256,7 @@ def drain_spacing_factor(n: float, approximate: bool = True) -> float:
     Returns
     -------
     float
-        Drain spacing factor *Fn* (dimensionless).
+        Drain spacing factor *Fn* [dimensionless].
 
     Raises
     ------
@@ -1259,7 +1266,7 @@ def drain_spacing_factor(n: float, approximate: bool = True) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-23, p. 267.
+    Chapter 5, Equation 5-23, printed p. 267 (pdf_page_index 294).
     """
     if n <= 1.0:
         raise ValueError("n must be greater than 1.")
@@ -1295,8 +1302,8 @@ def equivalent_drain_diameter(a: float, b: float) -> float:
     Returns
     -------
     float
-        Equivalent drain diameter *d_w* (same length unit as *a*).
-        Typical values range from 1.5 to 5.5 inches for modern PVDs.
+        Equivalent drain diameter *d_w* [consistent units (same length unit as
+        *a*)]. Typical values range from 1.5 to 5.5 inches for modern PVDs.
 
     Raises
     ------
@@ -1306,7 +1313,7 @@ def equivalent_drain_diameter(a: float, b: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-24, p. 267.
+    Chapter 5, Equation 5-24, printed p. 267 (pdf_page_index 294).
     """
     if a < 0.0:
         raise ValueError("a must be non-negative.")
@@ -1346,7 +1353,7 @@ def smear_factor(kh: float, ks: float, s: float) -> float:
     Returns
     -------
     float
-        Smear factor *Fs* (dimensionless).
+        Smear factor *Fs* [dimensionless].
 
     Raises
     ------
@@ -1357,7 +1364,7 @@ def smear_factor(kh: float, ks: float, s: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-25, p. 267.
+    Chapter 5, Equation 5-25, printed p. 267 (pdf_page_index 294).
     """
     if ks <= 0.0:
         raise ValueError("ks must be positive.")
@@ -1403,7 +1410,7 @@ def well_resistance_factor(
     Returns
     -------
     float
-        Well resistance factor *Fr* (dimensionless).
+        Well resistance factor *Fr* [dimensionless].
 
     Raises
     ------
@@ -1413,7 +1420,7 @@ def well_resistance_factor(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-26, p. 268.
+    Chapter 5, Equation 5-26, printed p. 268 (pdf_page_index 295).
     """
     if qw <= 0.0:
         raise ValueError("qw must be positive.")
@@ -1449,7 +1456,7 @@ def combined_degree_of_consolidation(Uz: float, Ur: float) -> float:
     Returns
     -------
     float
-        Combined degree of consolidation *Uc* (percent, 0 to 100).
+        Combined degree of consolidation *Uc* [percent], 0 to 100.
 
     Raises
     ------
@@ -1459,7 +1466,7 @@ def combined_degree_of_consolidation(Uz: float, Ur: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-27, p. 268.
+    Chapter 5, Equation 5-27, printed p. 268 (pdf_page_index 295).
     """
     if not (0.0 <= Uz <= 100.0):
         raise ValueError("Uz must be between 0 and 100.")
@@ -1498,8 +1505,8 @@ def required_drain_diameter(ch: float, t: float, Tr: float) -> float:
     Returns
     -------
     float
-        Required effective drain diameter *dc* (same length unit as used
-        in *ch*).
+        Required effective drain diameter *dc* [consistent units (same length
+        unit as used in *ch*)].
 
     Raises
     ------
@@ -1509,7 +1516,7 @@ def required_drain_diameter(ch: float, t: float, Tr: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equation 5-28, p. 268.
+    Chapter 5, Equation 5-28, printed p. 268 (pdf_page_index 295).
     """
     if Tr <= 0.0:
         raise ValueError("Tr must be positive.")
@@ -1551,7 +1558,7 @@ def figure_5_16_U_from_Tv(Tv: float) -> float:
     Returns
     -------
     float
-        Average degree of consolidation U (percent, 0 to ~100).
+        Average degree of consolidation U [percent], 0 to ~100.
 
     Raises
     ------
@@ -1561,7 +1568,7 @@ def figure_5_16_U_from_Tv(Tv: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-16, p. 245.
+    Chapter 5, Figure 5-16, printed p. 245 (pdf_page_index 272).
     Terzaghi, K. (1943). Theoretical Soil Mechanics.
     """
     if Tv < 0.0:
@@ -1592,7 +1599,7 @@ def figure_5_16_Tv_from_U(U: float) -> float:
     Returns
     -------
     float
-        Time factor Tv (dimensionless).
+        Time factor Tv [dimensionless].
 
     Raises
     ------
@@ -1602,7 +1609,7 @@ def figure_5_16_Tv_from_U(U: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-16, p. 245.
+    Chapter 5, Figure 5-16, printed p. 245 (pdf_page_index 272).
     Terzaghi, K. (1943). Theoretical Soil Mechanics.
     """
     if U < 0.0 or U >= 100.0:
@@ -1645,12 +1652,13 @@ def figure_5_30_Tr(
     Returns
     -------
     float
-        Radial time factor Tr (dimensionless).
+        Radial time factor Tr [dimensionless].
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Equations 5-22 and 5-23, pp. 266-267; Figure 5-30, p. 269.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 5, Equations
+    5-22 and 5-23, printed pp. 266-267 (pdf_page_index 293-294); Figure 5-30,
+    printed p. 269 (pdf_page_index 296).
     """
     Fn = drain_spacing_factor(n, approximate=approximate)
     return time_factor_radial(Ur, Fn, Fs, Fr)
@@ -1689,7 +1697,7 @@ def table_5_6_Calpha_Cc(soil_type: str) -> float:
     Returns
     -------
     float
-        Typical Calpha / Cc ratio (dimensionless), the central value of
+        Typical Calpha / Cc ratio [dimensionless], the central value of
         the printed "value +/- 0.01".
 
     Raises
@@ -1699,8 +1707,8 @@ def table_5_6_Calpha_Cc(soil_type: str) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Table 5-6, p. 254 (after Terzaghi et al. 1996).
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 5, Table 5-6,
+    printed p. 254 (pdf_page_index 281) (after Terzaghi et al. 1996).
     """
     key = soil_type.lower().strip()
     if key not in _TABLE_5_6_CALPHA_CC:
@@ -1747,7 +1755,7 @@ def figure_5_6_mu0(D_over_B: float) -> float:
     Returns
     -------
     float
-        Influence factor mu0 (dimensionless, 0.859 to 1.0).
+        Influence factor mu0 [dimensionless], 0.859 to 1.0.
 
     Raises
     ------
@@ -1757,8 +1765,8 @@ def figure_5_6_mu0(D_over_B: float) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-6(b), p. 230 (after Burland 1970).
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 5, Figure
+    5-6(b), printed p. 230 (pdf_page_index 257) (after Burland 1970).
     """
     if D_over_B < 0.0:
         raise ValueError("D_over_B must be non-negative.")
@@ -1880,7 +1888,7 @@ def figure_5_6_mu1(
     Returns
     -------
     float
-        Influence factor mu1 (dimensionless).
+        Influence factor mu1 [dimensionless].
 
     Raises
     ------
@@ -1891,8 +1899,8 @@ def figure_5_6_mu1(
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 5, Figure 5-6(a), p. 230 (after Giroud 1972).
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 5, Figure
+    5-6(a), printed p. 230 (pdf_page_index 257) (after Giroud 1972).
     """
     if abs(nu - 0.5) > 1e-9:
         raise ValueError(

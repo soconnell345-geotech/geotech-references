@@ -443,7 +443,7 @@ class TestCompactionDepth:
             table_5_1_compaction_depth(0, 95, "cohesive", "flexible")
 
     def test_table_5_1_rigid_column(self):
-        # Table 5-1, UFC 3-250-01 PDF 34 (pdf_page 33), printed 14: rigid
+        # Table 5-1, UFC 3-250-01 PDF 34 (pdf_page_index 33), printed 14: rigid
         # column < 1,300 / < 1,500 / < 34,000 / < 343,000 / ... >= 290 million.
         r = table_5_1_compaction_depth(1_000_000, 95, "cohesive", "rigid")
         assert r["depth_in"] == 12      # < 2.1 million row (flexible 11)
@@ -467,7 +467,7 @@ class TestCompactionDepth:
             1_300, 95, "cohesionless", "rigid")["depth_in"] == 15
 
     def test_table_21_2_basic(self):
-        # Table 21-2, PDF 144 (pdf_page 143), printed 124.
+        # Table 21-2, PDF 144 (pdf_page_index 143), printed 124.
         r = table_21_2_aggregate_compaction_depth(1_000_000, 95, "cohesionless")
         assert r["depth_in"] == 11
 
@@ -534,7 +534,7 @@ class TestMinThickness:
 
 
 class TestEquivalencyFactor:
-    # Table 9-1, UFC 3-250-01 PDF 47 (pdf_page 46), printed 27. Asphalt-
+    # Table 9-1, UFC 3-250-01 PDF 47 (pdf_page_index 46), printed 27. Asphalt-
     # stabilized: all-bituminous concrete 1.15/2.30; GW, GP, GM, GC
     # 1.00/2.00; SW, SP, SM, SC */1.50 (* not used for base course).
     def test_asphalt_base(self):
@@ -712,7 +712,7 @@ class TestConditionFactor:
 
 
 class TestFigure15_1:
-    # Figure 15-1, UFC 3-250-01 PDF page 70 (pdf_page 69), printed 50: F
+    # Figure 15-1, UFC 3-250-01 PDF page 70 (pdf_page_index 69), printed 50: F
     # read along each printed curve; measured tolerance 0.005 on F.
     PRINT = {  # k psi/in: {passes: F read off the printed curve}
         25: {100: 0.812, 10_000: 0.963, 10_000_000: 0.980},
@@ -929,7 +929,7 @@ class TestDistressModes:
 
 
 class TestFrostClassification:
-    """Table 19-2 (pdf_page 89, printed 70) as printed: a soil the table
+    """Table 19-2 (pdf_page_index 89, printed 70) as printed: a soil the table
     does not list is refused, not given a group."""
 
     @pytest.mark.parametrize("uscs,group,sub", [
@@ -998,7 +998,7 @@ class TestFrostClassification:
         assert r["also_printed"] == ["F3 (b)"]
 
     def test_gc_sc_below_their_rows_follow_para_19_2_2(self):
-        # Para 19-2.2 (pdf_page 87, printed 68): GC or SC "normally fall
+        # Para 19-2.2 (pdf_page_index 87, printed 68): GC or SC "normally fall
         # into the F3 category", occasionally F2.
         r = table_19_2_frost_classification("SC", 10.0)
         assert r["frost_group"] == "F3"
@@ -1007,7 +1007,7 @@ class TestFrostClassification:
         assert table_19_2_frost_classification("GC")["frost_group"] == "F3"
 
     def test_gc_10_to_20_is_f3_naming_table_20_2s_f2(self):
-        # Table 20-2 (pdf_page 124, printed 105) prints GC 10-20 % under
+        # Table 20-2 (pdf_page_index 124, printed 105) prints GC 10-20 % under
         # F2; para 19-2.2 says GC normally falls in F3.
         r = table_19_2_frost_classification("GC", 15.0)
         assert r["frost_group"] == "F3"
@@ -1069,9 +1069,9 @@ class TestFrostSupportIndex:
             table_19_3_frost_support_index("NFS")
 
     def test_reference_page(self):
-        # Table 19-3 is on pdf_page 99, printed 80.
+        # Table 19-3 is on pdf_page_index 99, printed 80.
         r = table_19_3_frost_support_index("F2")
-        assert "pdf_page 99, printed 80" in r["reference"]
+        assert "pdf_page_index 99, printed 80" in r["reference"]
 
 
 class TestFigure19_5:
@@ -1080,7 +1080,7 @@ class TestFigure19_5:
         r = figure_19_5_design_base_thickness(32, 2.0)
         assert r["b_in"] == pytest.approx(21.0, abs=0.2)
         assert r["s_in"] == pytest.approx(5.2, abs=0.15)
-        assert "pdf_page 98, printed 79" in r["reference"]
+        assert "pdf_page_index 98, printed 79" in r["reference"]
 
     def test_g811(self):
         # G-8.11 (printed 267): r = 3, c = 38.5 -> b = 22 in, "about 5.5 in"
@@ -1121,7 +1121,7 @@ class TestFigure19_6:
         # G-8.12 (printed 268): F3 and F4 under 8 in of base -> 50 psi/in.
         r = figure_19_6_frost_area_index_of_reaction(8, "F3_F4")
         assert r["index_of_reaction_psi_in"] == pytest.approx(50, abs=0.6)
-        assert "pdf_page 101, printed 82" in r["reference"]
+        assert "pdf_page_index 101, printed 82" in r["reference"]
 
     def test_the_three_lines(self):
         # Made-up thickness; the lines as drawn, at 20 in of base.
@@ -1323,7 +1323,7 @@ class TestFigureF1:
 # ============================================================================
 # Appendix E vehicle curves (E-2..E-31): figure_e_vehicle_thickness /
 # figure_e_vehicle_allowable_passes, every printed curve traced (GM-303).
-# Anchors: Appendix G Table G-1 (pdf_page 276, printed 257) at CBR 3; the
+# Anchors: Appendix G Table G-1 (pdf_page_index 276, printed 257) at CBR 3; the
 # other values are made up and test the reading rules only.
 # ============================================================================
 
@@ -1361,7 +1361,7 @@ class TestFigureEVehicleTableG1:
         assert r["thickness_in"] == pytest.approx(6.1, abs=0.05)
         assert "extrapolated" in r["note"]
         assert r["reference"] == \
-            "UFC 3-250-01, Figure E-2 (pdf_page 212, printed 193)"
+            "UFC 3-250-01, Figure E-2 (pdf_page_index 212, printed 193)"
 
     def test_truck_5_axle_allowable_at_16_4_in(self):
         # Printed 252,915 (PCASE); the curves give 312,351-365,297 for
@@ -1467,7 +1467,8 @@ class TestFigureEVehicleCurves:
         r = figure_e_vehicle_thickness(vehicle, cbr=10, passes=100_000)
         assert set(r) == {"vehicle", "figure", "caption", "cbr", "passes",
                           "thickness_in", "chart_read", "tolerance",
-                          "reference"}
+                          "reference", "units", "printed_page",
+                          "pdf_page_index"}
         assert r["thickness_in"] > 0
 
 

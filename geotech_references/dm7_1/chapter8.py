@@ -22,6 +22,7 @@ import math
 from typing import List, Tuple
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 # ============================================================================
 # SECTION 8-2.1: EFFECTIVE STRESS FRICTION ANGLE -- COARSE-GRAINED SOILS
@@ -51,7 +52,7 @@ def spt_n_correction_for_pore_pressure(n60: float) -> float:
     -------
     float
         Blow count corrected for dynamic pore pressure effects, N'
-        (blows/ft).
+        [blows/ft].
 
     Raises
     ------
@@ -61,7 +62,7 @@ def spt_n_correction_for_pore_pressure(n60: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-1, p. 396.
+    Chapter 8, Equation 8-1, printed p. 396 (pdf_page_index 423).
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -89,7 +90,7 @@ def spt_friction_angle_roads(n60: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -100,7 +101,7 @@ def spt_friction_angle_roads(n60: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-2, p. 397.
+    Chapter 8, Equation 8-2, printed p. 397 (pdf_page_index 424).
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -131,7 +132,7 @@ def spt_friction_angle_buildings(n60: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -142,7 +143,7 @@ def spt_friction_angle_buildings(n60: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-3, p. 397.
+    Chapter 8, Equation 8-3, printed p. 397 (pdf_page_index 424).
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -186,7 +187,7 @@ def spt_friction_angle_kulhawy_mayne(
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -198,7 +199,7 @@ def spt_friction_angle_kulhawy_mayne(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-4, p. 398.
+    Chapter 8, Equation 8-4, printed p. 398 (pdf_page_index 425).
     """
     if n60 < 0.0:
         raise ValueError("n60 must be non-negative.")
@@ -247,7 +248,7 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -258,7 +259,7 @@ def spt_friction_angle_wolff(n1_60: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-5, p. 399.
+    Chapter 8, Equation 8-5, printed p. 399 (pdf_page_index 426).
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
@@ -290,7 +291,7 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -301,7 +302,7 @@ def spt_friction_angle_hatanaka_uchida(n1_60: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-6, p. 399.
+    Chapter 8, Equation 8-6, printed p. 399 (pdf_page_index 426).
     """
     if n1_60 < 0.0:
         raise ValueError("n1_60 must be non-negative.")
@@ -346,7 +347,7 @@ def cpt_friction_angle_mayne(
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -357,7 +358,7 @@ def cpt_friction_angle_mayne(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-7, p. 400.
+    Chapter 8, Equation 8-7, printed p. 400 (pdf_page_index 427).
     """
     if qt <= 0.0:
         raise ValueError("qt must be positive.")
@@ -395,7 +396,7 @@ def cpt_friction_angle_robertson_campanella(
     Returns
     -------
     float
-        Drained (effective stress) friction angle, phi' (degrees).
+        Drained (effective stress) friction angle, phi' [degrees].
 
     Raises
     ------
@@ -407,7 +408,7 @@ def cpt_friction_angle_robertson_campanella(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-8, p. 402.
+    Chapter 8, Equation 8-8, printed p. 402 (pdf_page_index 429).
     Robertson and Campanella (1983); Robertson and Cabal (2014).
     """
     if qc <= 0.0:
@@ -443,7 +444,7 @@ def cpt_oc_nc_resistance_ratio(ocr: float, beta: float) -> float:
     Returns
     -------
     float
-        Ratio R = qc,OC / qc,NC (dimensionless).
+        Ratio R = qc,OC / qc,NC [dimensionless].
 
     Raises
     ------
@@ -453,7 +454,7 @@ def cpt_oc_nc_resistance_ratio(ocr: float, beta: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-9, p. 403.
+    Chapter 8, Equation 8-9, printed p. 403 (pdf_page_index 430).
     """
     if ocr < 1.0:
         raise ValueError("ocr must be >= 1.0.")
@@ -490,7 +491,7 @@ def dmt_horizontal_stress_index(
     Returns
     -------
     float
-        Horizontal stress index, KD (dimensionless).
+        Horizontal stress index, KD [no unit printed].
 
     Raises
     ------
@@ -500,7 +501,7 @@ def dmt_horizontal_stress_index(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-10, p. 406.
+    Chapter 8, Equation 8-10, printed p. 406 (pdf_page_index 433).
     """
     if sigma_v_eff <= 0.0:
         raise ValueError("sigma_v_eff must be positive.")
@@ -525,7 +526,7 @@ def dmt_friction_angle_upper_bound(kd: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -535,7 +536,7 @@ def dmt_friction_angle_upper_bound(kd: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-11, p. 406.
+    Chapter 8, Equation 8-11, printed p. 406 (pdf_page_index 433).
     """
     denom = 0.236 + 0.066 * kd
     if denom <= 0.0:
@@ -566,7 +567,7 @@ def dmt_friction_angle_lower_bound(kd: float) -> float:
     Returns
     -------
     float
-        Effective stress friction angle, phi' (degrees).
+        Effective stress friction angle, phi' [degrees].
 
     Raises
     ------
@@ -576,7 +577,7 @@ def dmt_friction_angle_lower_bound(kd: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-12, p. 406.
+    Chapter 8, Equation 8-12, printed p. 406 (pdf_page_index 433).
     """
     if kd <= 0.0:
         raise ValueError("kd must be positive.")
@@ -611,7 +612,7 @@ def fully_softened_friction_angle(pi: float) -> float:
     Returns
     -------
     float
-        Fully softened friction angle, phi'FS (degrees).
+        Fully softened friction angle, phi'FS [degrees].
 
     Raises
     ------
@@ -622,7 +623,7 @@ def fully_softened_friction_angle(pi: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-13, p. 407.
+    Chapter 8, Equation 8-13, printed p. 407 (pdf_page_index 434).
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -655,8 +656,8 @@ def secant_friction_angle_shear_strength(
     Returns
     -------
     float
-        Effective stress shear strength, s (same stress units as
-        *sigma_ff_eff*).
+        Effective stress shear strength, s [consistent units (same stress units
+        as *sigma_ff_eff*)].
 
     Raises
     ------
@@ -667,7 +668,7 @@ def secant_friction_angle_shear_strength(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-14, p. 411.
+    Chapter 8, Equation 8-14, printed p. 411 (pdf_page_index 438).
     """
     if sigma_ff_eff < 0.0:
         raise ValueError("sigma_ff_eff must be non-negative.")
@@ -702,8 +703,8 @@ def power_function_shear_strength(
     Returns
     -------
     float
-        Effective stress shear strength, s (same stress units as
-        *sigma_ff_eff*).
+        Effective stress shear strength, s [consistent units (same stress units
+        as *sigma_ff_eff*)].
 
     Raises
     ------
@@ -713,7 +714,7 @@ def power_function_shear_strength(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-15, p. 411.
+    Chapter 8, Equation 8-15, printed p. 411 (pdf_page_index 438).
     """
     if sigma_ff_eff < 0.0:
         raise ValueError("sigma_ff_eff must be non-negative.")
@@ -740,7 +741,7 @@ def residual_friction_angle_gibson(pi: float) -> float:
     Returns
     -------
     float
-        Residual friction angle, phi'r (degrees).
+        Residual friction angle, phi'r [degrees].
 
     Raises
     ------
@@ -751,7 +752,7 @@ def residual_friction_angle_gibson(pi: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-16, p. 413.
+    Chapter 8, Equation 8-16, printed p. 413 (pdf_page_index 440).
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -792,7 +793,7 @@ def residual_friction_angle_stark_hussain(
     Returns
     -------
     float
-        Residual friction angle, phi'r (degrees).
+        Residual friction angle, phi'r [degrees].
 
     Raises
     ------
@@ -802,7 +803,7 @@ def residual_friction_angle_stark_hussain(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-17, Table 8-6, p. 417.
+    Chapter 8, Equation 8-17, Table 8-6, printed p. 417 (pdf_page_index 444).
     """
     if ll < 0.0:
         raise ValueError("ll must be non-negative.")
@@ -832,7 +833,7 @@ def undrained_strength_ratio_skempton(pi: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength ratio, su/sigma'v (dimensionless).
+        Undrained shear strength ratio, su/sigma'v [dimensionless].
 
     Raises
     ------
@@ -842,7 +843,7 @@ def undrained_strength_ratio_skempton(pi: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-18, p. 419.
+    Chapter 8, Equation 8-18, printed p. 419 (pdf_page_index 446).
     """
     if pi < 0.0:
         raise ValueError("pi must be non-negative.")
@@ -868,7 +869,7 @@ def undrained_strength_ratio_hansbo(ll: float) -> float:
     -------
     float
         Undrained shear strength ratio for NC clay, su/sigma'v
-        (dimensionless).
+        [dimensionless].
 
     Raises
     ------
@@ -878,7 +879,7 @@ def undrained_strength_ratio_hansbo(ll: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-19, p. 420.
+    Chapter 8, Equation 8-19, printed p. 420 (pdf_page_index 447).
     """
     if ll < 0.0:
         raise ValueError("ll must be non-negative.")
@@ -915,7 +916,7 @@ def undrained_strength_ratio_oc(
     -------
     float
         Undrained shear strength ratio for OC clay, (su/sigma'v)_OC
-        (dimensionless).
+        [dimensionless].
 
     Raises
     ------
@@ -925,7 +926,7 @@ def undrained_strength_ratio_oc(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-20, p. 424.
+    Chapter 8, Equation 8-20, printed p. 424 (pdf_page_index 451).
     """
     if su_sigma_v_nc < 0.0:
         raise ValueError("su_sigma_v_nc must be non-negative.")
@@ -952,8 +953,8 @@ def undrained_strength_from_preconsolidation(sigma_p_eff: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength, su (same stress units as
-        *sigma_p_eff*).
+        Undrained shear strength, su [consistent units (same stress units as
+        *sigma_p_eff*)].
 
     Raises
     ------
@@ -963,7 +964,7 @@ def undrained_strength_from_preconsolidation(sigma_p_eff: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-21, p. 425.
+    Chapter 8, Equation 8-21, printed p. 425 (pdf_page_index 452).
     """
     if sigma_p_eff < 0.0:
         raise ValueError("sigma_p_eff must be non-negative.")
@@ -992,7 +993,7 @@ def undrained_strength_ratio_acu_from_icu(su_sigma_v_icu: float) -> float:
     -------
     float
         Undrained strength ratio from CK0U triaxial compression tests,
-        (su/sigma'v)_ACU (dimensionless).
+        (su/sigma'v)_ACU [dimensionless].
 
     Raises
     ------
@@ -1002,7 +1003,7 @@ def undrained_strength_ratio_acu_from_icu(su_sigma_v_icu: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-22, p. 426.
+    Chapter 8, Equation 8-22, printed p. 426 (pdf_page_index 453).
     """
     if su_sigma_v_icu < 0.0:
         raise ValueError("su_sigma_v_icu must be non-negative.")
@@ -1031,7 +1032,8 @@ def cpt_undrained_strength_nc(qc: float, nc: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength, su (same stress units as *qc*).
+        Undrained shear strength, su [consistent units (same stress units as
+        *qc*)].
 
     Raises
     ------
@@ -1041,7 +1043,7 @@ def cpt_undrained_strength_nc(qc: float, nc: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-23, p. 426.
+    Chapter 8, Equation 8-23, printed p. 426 (pdf_page_index 453).
     """
     if qc < 0.0:
         raise ValueError("qc must be non-negative.")
@@ -1076,7 +1078,8 @@ def cpt_undrained_strength_nk(
     Returns
     -------
     float
-        Undrained shear strength, su (same stress units as *qc*).
+        Undrained shear strength, su [consistent units (same stress units as
+        *qc*)].
 
     Raises
     ------
@@ -1086,7 +1089,7 @@ def cpt_undrained_strength_nk(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-24, p. 427.
+    Chapter 8, Equation 8-24, printed p. 427 (pdf_page_index 454).
     """
     if nk <= 0.0:
         raise ValueError("nk must be positive.")
@@ -1119,7 +1122,8 @@ def cpt_undrained_strength_nkt(
     Returns
     -------
     float
-        Undrained shear strength, su (same stress units as *qt*).
+        Undrained shear strength, su [consistent units (same stress units as
+        *qt*)].
 
     Raises
     ------
@@ -1129,7 +1133,7 @@ def cpt_undrained_strength_nkt(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-25, p. 427.
+    Chapter 8, Equation 8-25, printed p. 427 (pdf_page_index 454).
     """
     if nkt <= 0.0:
         raise ValueError("nkt must be positive.")
@@ -1164,7 +1168,7 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength, su (kPa).
+        Undrained shear strength, su [kPa].
 
     Raises
     ------
@@ -1174,8 +1178,8 @@ def spt_undrained_strength_stroud_butler(n: float, pi: float) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-26 and Figure 8-31, p. 428.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 8, Equation
+    8-26 and Figure 8-31, printed p. 428 (pdf_page_index 455).
     """
     if n < 0.0:
         raise ValueError("n must be non-negative.")
@@ -1214,7 +1218,7 @@ def intrinsic_compression_index(e_star_100: float, e_star_1000: float) -> float:
     Returns
     -------
     float
-        Intrinsic compression index, C*c (dimensionless).
+        Intrinsic compression index, C*c [dimensionless].
 
     Raises
     ------
@@ -1224,7 +1228,7 @@ def intrinsic_compression_index(e_star_100: float, e_star_1000: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-27, p. 439.
+    Chapter 8, Equation 8-27, printed p. 439 (pdf_page_index 466).
     """
     result = e_star_100 - e_star_1000
     if result <= 0.0:
@@ -1257,7 +1261,7 @@ def void_index(e: float, e_star_100: float, c_star_c: float) -> float:
     Returns
     -------
     float
-        Void index, Iv (dimensionless).
+        Void index, Iv [dimensionless].
 
     Raises
     ------
@@ -1267,7 +1271,7 @@ def void_index(e: float, e_star_100: float, c_star_c: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-28, p. 439.
+    Chapter 8, Equation 8-28, printed p. 439 (pdf_page_index 466).
     """
     if c_star_c <= 0.0:
         raise ValueError("c_star_c must be positive.")
@@ -1293,7 +1297,7 @@ def intrinsic_void_ratio_at_100kpa(e_l: float) -> float:
     Returns
     -------
     float
-        Intrinsic void ratio at 100 kPa, e*100 (dimensionless).
+        Intrinsic void ratio at 100 kPa, e*100 [dimensionless].
 
     Raises
     ------
@@ -1303,7 +1307,7 @@ def intrinsic_void_ratio_at_100kpa(e_l: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-29, p. 439.
+    Chapter 8, Equation 8-29, printed p. 439 (pdf_page_index 466).
     """
     if e_l < 0.0:
         raise ValueError("e_l must be non-negative.")
@@ -1328,7 +1332,7 @@ def intrinsic_compression_index_from_el(e_l: float) -> float:
     Returns
     -------
     float
-        Intrinsic compression index, C*c (dimensionless).
+        Intrinsic compression index, C*c [dimensionless].
 
     Raises
     ------
@@ -1338,7 +1342,7 @@ def intrinsic_compression_index_from_el(e_l: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-30, p. 439.
+    Chapter 8, Equation 8-30, printed p. 439 (pdf_page_index 466).
     """
     if e_l < 0.0:
         raise ValueError("e_l must be non-negative.")
@@ -1370,7 +1374,8 @@ def constrained_modulus_linear(m: float, sigma_v_eff: float) -> float:
     Returns
     -------
     float
-        Constrained modulus, Mds (same stress units as *sigma_v_eff*).
+        Constrained modulus, Mds [consistent units (same stress units as
+        *sigma_v_eff*)].
 
     Raises
     ------
@@ -1380,7 +1385,7 @@ def constrained_modulus_linear(m: float, sigma_v_eff: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-31, p. 442.
+    Chapter 8, Equation 8-31, printed p. 442 (pdf_page_index 469).
     """
     if m < 0.0:
         raise ValueError("m must be non-negative.")
@@ -1414,7 +1419,8 @@ def constrained_modulus_nonlinear(
     Returns
     -------
     float
-        Constrained modulus, Mds (same stress units as *sigma_v_eff*).
+        Constrained modulus, Mds [consistent units (same stress units as
+        *sigma_v_eff*)].
 
     Raises
     ------
@@ -1425,7 +1431,7 @@ def constrained_modulus_nonlinear(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-32, p. 442.
+    Chapter 8, Equation 8-32, printed p. 442 (pdf_page_index 469).
     """
     if m < 0.0:
         raise ValueError("m must be non-negative.")
@@ -1460,7 +1466,8 @@ def constrained_modulus_spt(f: float, n: float, pa: float) -> float:
     Returns
     -------
     float
-        Constrained modulus, Mds (same stress units as *pa*).
+        Constrained modulus, Mds [consistent units (same stress units as
+        *pa*)].
 
     Raises
     ------
@@ -1470,7 +1477,7 @@ def constrained_modulus_spt(f: float, n: float, pa: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-33, p. 442.
+    Chapter 8, Equation 8-33, printed p. 442 (pdf_page_index 469).
     """
     if f < 0.0:
         raise ValueError("f must be non-negative.")
@@ -1502,7 +1509,8 @@ def constrained_modulus_cpt(alpha: float, qc: float) -> float:
     Returns
     -------
     float
-        Constrained modulus, Mds (same stress units as *qc*).
+        Constrained modulus, Mds [consistent units (same stress units as
+        *qc*)].
 
     Raises
     ------
@@ -1512,7 +1520,7 @@ def constrained_modulus_cpt(alpha: float, qc: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-34, p. 445.
+    Chapter 8, Equation 8-34, printed p. 445 (pdf_page_index 472).
     """
     if alpha < 0.0:
         raise ValueError("alpha must be non-negative.")
@@ -1545,7 +1553,7 @@ def secondary_compression_ratio(wn: float) -> float:
     -------
     float
         Modified secondary compression ratio, C_epsilon_alpha
-        (dimensionless strain / log cycle of time).
+        [dimensionless (strain per log cycle of time)].
 
     Raises
     ------
@@ -1555,7 +1563,7 @@ def secondary_compression_ratio(wn: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-35, p. 446.
+    Chapter 8, Equation 8-35, printed p. 446 (pdf_page_index 473).
     """
     if wn < 0.0:
         raise ValueError("wn must be non-negative.")
@@ -1592,8 +1600,8 @@ def drained_youngs_modulus_from_undrained(
     Returns
     -------
     float
-        Young's modulus for drained conditions, E (same stress units
-        as *eu*).
+        Young's modulus for drained conditions, E [consistent units (same
+        stress units as *eu*)].
 
     Raises
     ------
@@ -1603,7 +1611,7 @@ def drained_youngs_modulus_from_undrained(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-36, p. 449.
+    Chapter 8, Equation 8-36, printed p. 449 (pdf_page_index 476).
     """
     if eu < 0.0:
         raise ValueError("eu must be non-negative.")
@@ -1639,7 +1647,7 @@ def cbr_from_dcp_power(a_coeff: float, dcp: float, x: float) -> float:
     Returns
     -------
     float
-        California Bearing Ratio, CBR (%).
+        California Bearing Ratio, CBR [percent].
 
     Raises
     ------
@@ -1649,7 +1657,7 @@ def cbr_from_dcp_power(a_coeff: float, dcp: float, x: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-37, Table 8-24, p. 456.
+    Chapter 8, Equation 8-37, Table 8-24, printed p. 456 (pdf_page_index 483).
     """
     if a_coeff < 0.0:
         raise ValueError("a_coeff must be non-negative.")
@@ -1678,7 +1686,7 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     Returns
     -------
     float
-        California Bearing Ratio, CBR (%).
+        California Bearing Ratio, CBR [percent].
 
     Raises
     ------
@@ -1690,7 +1698,7 @@ def cbr_from_dcp_nazzal(dcp: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-38, p. 456.
+    Chapter 8, Equation 8-38, printed p. 456 (pdf_page_index 483).
     """
     if dcp <= 0.0:
         raise ValueError("dcp must be positive.")
@@ -1727,7 +1735,7 @@ def cbr_from_spt(n: float) -> float:
     Returns
     -------
     float
-        California Bearing Ratio, CBR (%).
+        California Bearing Ratio, CBR [percent].
 
     Raises
     ------
@@ -1738,8 +1746,9 @@ def cbr_from_spt(n: float) -> float:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-39, p. 457; Figure 8-57, p. 458.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 8, Equation
+    8-39, printed p. 457 (pdf_page_index 484); Figure 8-57,
+    printed p. 458 (pdf_page_index 485).
     """
     if n <= 0.0:
         raise ValueError("n must be positive.")
@@ -1785,7 +1794,7 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
     Returns
     -------
     float
-        Hydraulic conductivity, k (cm/s).
+        Hydraulic conductivity, k [cm/s].
 
     Raises
     ------
@@ -1797,7 +1806,7 @@ def hydraulic_conductivity_hazen(d10: float, c: float = 1.0) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-40, p. 458.
+    Chapter 8, Equation 8-40, printed p. 458 (pdf_page_index 485).
     """
     if d10 <= 0.0:
         raise ValueError("d10 must be positive.")
@@ -1857,7 +1866,7 @@ def hydraulic_conductivity_kozeny_carman(
     Returns
     -------
     float
-        Hydraulic conductivity, k (cm/s).
+        Hydraulic conductivity, k [cm/s].
 
     Raises
     ------
@@ -1869,7 +1878,7 @@ def hydraulic_conductivity_kozeny_carman(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-41, p. 462.
+    Chapter 8, Equation 8-41, printed p. 462 (pdf_page_index 489).
     """
     if e < 0.0:
         raise ValueError("e must be non-negative.")
@@ -1943,7 +1952,7 @@ def hydraulic_conductivity_carrier_beckman(
     Returns
     -------
     float
-        Hydraulic conductivity, k (m/s).
+        Hydraulic conductivity, k [m/s].
 
     Raises
     ------
@@ -1955,7 +1964,7 @@ def hydraulic_conductivity_carrier_beckman(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-42, p. 462.
+    Chapter 8, Equation 8-42, printed p. 462 (pdf_page_index 489).
     """
     if e < 0.0:
         raise ValueError("e must be non-negative.")
@@ -2020,7 +2029,7 @@ def hydraulic_conductivity_benson_landfill(
     Returns
     -------
     float
-        Hydraulic conductivity, k (m/s).
+        Hydraulic conductivity, k [m/s].
 
     Raises
     ------
@@ -2052,7 +2061,7 @@ def hydraulic_conductivity_benson_landfill(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-43, p. 463.
+    Chapter 8, Equation 8-43, printed p. 463 (pdf_page_index 490).
     Benson et al. (1994).
     """
     if gamma_d <= 0.0:
@@ -2136,7 +2145,7 @@ def hydraulic_conductivity_benson_trast(
     Returns
     -------
     float
-        Hydraulic conductivity, k (m/s), with the initial degree of
+        Hydraulic conductivity, k [m/s], with the initial degree of
         saturation entered in percent.
 
     Raises
@@ -2176,7 +2185,7 @@ def hydraulic_conductivity_benson_trast(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-44, p. 463.
+    Chapter 8, Equation 8-44, printed p. 463 (pdf_page_index 490).
     Benson and Trast (1995).
     """
     if gamma_d <= 0.0:
@@ -2241,7 +2250,7 @@ def shear_wave_velocity_spt(
     Returns
     -------
     float
-        Shear wave velocity, Vs (m/s).
+        Shear wave velocity, Vs [m/s].
 
     Raises
     ------
@@ -2250,8 +2259,8 @@ def shear_wave_velocity_spt(
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Equation 8-45, Tables 8-26 and 8-27, pp. 464-465.
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 8, Equation
+    8-45, Tables 8-26 and 8-27, printed pp. 464-465 (pdf_page_index 491-492).
     """
     if b < 0.0:
         raise ValueError("b must be non-negative.")
@@ -2291,6 +2300,10 @@ _TABLE_8_6_STARK_HUSSAIN = {
 }
 
 
+@_u.labelled(
+    {"c0": "no unit printed", "c1": "no unit printed",
+     "c2": "no unit printed", "c3": "no unit printed"},
+    printed_page="417", pdf_page_index=444)
 def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     """Coefficients C0 to C3 of Equation 8-17 (residual friction angle in degrees from liquid limit in %), Table 8-6 "Coefficients for Stark and Hussain (2013) Residual Friction Angle Correlation".
 
@@ -2325,7 +2338,7 @@ def table_8_6_stark_hussain(cf_range: str, sigma_n_range: str) -> dict:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Table 8-6, p. 417.
+    Chapter 8, Table 8-6, printed p. 417 (pdf_page_index 444).
     Stark & Hussain (2013).
     """
     key = (cf_range.lower().strip(), sigma_n_range.lower().strip())
@@ -2403,6 +2416,7 @@ _TABLE_8_9_SHANSEP_M = {
 }
 
 
+@_u.labelled({"m": "no unit printed"}, printed_page="425", pdf_page_index=452)
 def table_8_9_shansep_m(soil: str) -> dict:
     """Exponent m (dimensionless) of Equation 8-20, (su/sigma'v)OC = (su/sigma'v)NC * OCR^m, by source and soil, Table 8-9 "Typical Values of m".
 
@@ -2449,7 +2463,7 @@ def table_8_9_shansep_m(soil: str) -> dict:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Table 8-9, p. 425.
+    Chapter 8, Table 8-9, printed p. 425 (pdf_page_index 452).
     """
     key = soil.lower().strip()
     if key not in _TABLE_8_9_SHANSEP_M:
@@ -2509,6 +2523,9 @@ _TABLE_8_24_CBR_DCP = {
 }
 
 
+@_u.labelled(
+    {"a": "no unit printed", "x": "no unit printed"},
+    printed_page="456", pdf_page_index=483)
 def table_8_24_cbr_dcp(source: str) -> dict:
     """Coefficient A and exponent x of CBR = A * DCP^x (DCP in mm/blow), Table 8-24 "CBR Correlations with DCP".
 
@@ -2550,7 +2567,7 @@ def table_8_24_cbr_dcp(source: str) -> dict:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Table 8-24, p. 456.
+    Chapter 8, Table 8-24, printed p. 456 (pdf_page_index 483).
     """
     key = source.lower().strip()
     if key not in _TABLE_8_24_CBR_DCP:
@@ -2604,7 +2621,7 @@ def figure_8_46_f(pi: float) -> float:
     Returns
     -------
     float
-        Coefficient f (dimensionless).
+        Coefficient f [dimensionless].
 
     Raises
     ------
@@ -2615,7 +2632,7 @@ def figure_8_46_f(pi: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 8, Figure 8-46, p. 444.
+    Chapter 8, Figure 8-46, printed p. 444 (pdf_page_index 471).
     Stroud, M.A. (1974).
     """
     if pi < 0.0:

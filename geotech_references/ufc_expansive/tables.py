@@ -14,12 +14,14 @@ five-class swell table, climate active-zone depths, swell-class foundation
 table and millimetre grade-beam voids were not printed in this manual.
 """
 
+from geotech_references import _units as _u
+
 _REF = "UFC 3-220-07 (TM 5-818-7)"
 _FT_TO_M = 0.3048
 _IN_TO_MM = 25.4
 
 # ---------------------------------------------------------------------------
-# Table 4-1 WES Classification of Potential Swell (PDF 31, printed p. 4-1)
+# Table 4-1 WES Classification of Potential Swell (pdf_page_index 30, printed p. 4-1)
 # ---------------------------------------------------------------------------
 
 # classification -> printed ranges (potential swell Sp %, LL %, PI %,
@@ -57,7 +59,7 @@ def _band(value, low_below, high_above):
 
 
 # ---------------------------------------------------------------------------
-# Table 6-1 Foundation Systems (PDF 44, printed p. 6-2)
+# Table 6-1 Foundation Systems (pdf_page_index 43, printed p. 6-2)
 # ---------------------------------------------------------------------------
 
 _SHALLOW = {
@@ -112,13 +114,17 @@ def _thin_mat(mat):
 # Public lookup functions
 # ---------------------------------------------------------------------------
 
+@_u.labelled(
+    {"liquid_limit": "percent", "natural_soil_suction_tsf": "tsf",
+     "plasticity_index": "percent"},
+    si={"natural_soil_suction_tsf": ("kPa", "tsf")})
 def table_swell_potential_classification(
     plasticity_index=None,
     liquid_limit=None,
     natural_soil_suction_tsf=None,
 ):
     """WES classification of potential swell, UFC 3-220-07 Table 4-1
-    (printed p. 4-1, PDF 31); returns 'low', 'marginal' or 'high' with the
+    (printed p. 4-1, pdf_page_index 30); returns 'low', 'marginal' or 'high' with the
     printed potential swell Sp (percent potential vertical heave).
 
     Table 4-1 as printed: Low, Sp < 0.5 %, LL < 50, PI < 25, natural soil
@@ -136,6 +142,10 @@ def table_swell_potential_classification(
         Liquid limit (%).
     natural_soil_suction_tsf : float, optional
         Natural soil suction, tons per square foot.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        natural_soil_suction_tsf in kPa, each converted exactly to the printed
+        unit (tsf) before the lookup runs as printed.
 
     Returns
     -------
@@ -143,6 +153,9 @@ def table_swell_potential_classification(
         Keys: classification, potential_swell_pct (the printed range),
         by_property (each given property's row), printed_row, note,
         reference, and the inputs given.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -170,17 +183,22 @@ def table_swell_potential_classification(
         "by_property": by_prop,
         "printed_row": dict(_TABLE_4_1[worst]),
         "note": _TABLE_4_1_NOTE,
-        "reference": f"{_REF}, Table 4-1, printed p. 4-1 (PDF 31)",
+        "reference": f"{_REF}, Table 4-1, printed p. 4-1 (pdf_page_index 30)",
     }
     result.update(given)
     return result
 
 
+@_u.labelled(
+    {"active_zone_depth_ft": "ft", "active_zone_depth_m": "m"},
+    si={"natural_soil_suction_tsf": ("kPa", "tsf"),
+        "depth_to_groundwater_ft": ("m", "ft"),
+        "shaft_base_diameter_ft": ("m", "ft")})
 def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
                             depth_to_groundwater_ft=None,
                             shaft_base_diameter_ft=None):
     """Depth of the active zone Xa, feet below the base of the foundation,
-    UFC 3-220-07 paragraph 5-4c (printed p. 5-4, PDF 39); returns the
+    UFC 3-220-07 paragraph 5-4c (printed p. 5-4, pdf_page_index 38); returns the
     printed estimate with a conversion to metres.
 
     As printed: (1) for groundwater levels less than 20 feet in clay soil,
@@ -206,12 +224,20 @@ def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
     shaft_base_diameter_ft : float, optional
         If given, the deep-groundwater Xa is not less than 3 times it
         (printed under 5-4c(2)(a)).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        natural_soil_suction_tsf in kPa, depth_to_groundwater_ft in m and
+        shaft_base_diameter_ft in m, each converted exactly to the printed
+        unit (tsf, ft) before the lookup runs as printed.
 
     Returns
     -------
     dict
         Keys: active_zone_depth_ft, active_zone_depth_m (conversion),
         basis, reference.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -267,14 +293,17 @@ def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
         "active_zone_depth_ft": xa,
         "active_zone_depth_m": round(xa * _FT_TO_M, 3),
         "basis": basis,
-        "reference": f"{_REF}, para 5-4c, printed p. 5-4 (PDF 39)",
+        "reference": f"{_REF}, para 5-4c, printed p. 5-4 (pdf_page_index 38)",
     }
 
 
+@_u.labelled(
+    {"predicted_differential_movement_in": "in"},
+    si={"predicted_differential_movement_in": ("mm", "in")})
 def table_foundation_selection(predicted_differential_movement_in=None,
                                effective_plasticity_index=None):
     """Foundation systems for expansive soils, UFC 3-220-07 Table 6-1
-    (printed p. 6-2, PDF 44); returns the printed systems that apply to the
+    (printed p. 6-2, pdf_page_index 43); returns the printed systems that apply to the
     predicted differential movement (inches) or effective plasticity index,
     with the printed remarks and, for stiffened thin mats, beam depth and
     spacing.
@@ -297,6 +326,10 @@ def table_foundation_selection(predicted_differential_movement_in=None,
     effective_plasticity_index : float, optional
         Effective (or average) PI of the top 15 ft (Figure 6-1). Used when
         no movement is given.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        predicted_differential_movement_in in mm, each converted exactly to the
+        printed unit (in) before the lookup runs as printed.
 
     Returns
     -------
@@ -304,6 +337,9 @@ def table_foundation_selection(predicted_differential_movement_in=None,
         Keys: predicted_differential_movement_in or
         effective_plasticity_index, systems (list of dicts as printed),
         reference.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -351,13 +387,18 @@ def table_foundation_selection(predicted_differential_movement_in=None,
         systems.append(_thin_mat(row))
     systems.extend(dict(s) for s in _NO_LIMIT)
     out["systems"] = systems
-    out["reference"] = f"{_REF}, Table 6-1, printed p. 6-2 (PDF 44)"
+    out["reference"] = f"{_REF}, Table 6-1, printed p. 6-2 (pdf_page_index 43)"
     return out
 
 
+@_u.labelled(
+    {"predicted_total_heave_in": "in", "void_space_high_in": "in",
+     "void_space_high_mm": "mm", "void_space_low_in": "in",
+     "void_space_low_mm": "mm"},
+    si={"predicted_total_heave_in": ("mm", "in")})
 def table_grade_beam_void_space(predicted_total_heave_in=None):
     """Void space beneath grade beams spanning between shafts, UFC 3-220-07
-    paragraph 6-4, Grade beams (printed p. 6-16, PDF 58); returns the
+    paragraph 6-4, Grade beams (printed p. 6-16, pdf_page_index 57); returns the
     printed rule "6 to 12 inches or 2 times the predicted total heave of
     soil located above the base of the shaft foundation (whichever is
     larger)" and, given the heave, the void in inches.
@@ -372,6 +413,10 @@ def table_grade_beam_void_space(predicted_total_heave_in=None):
     predicted_total_heave_in : float, optional
         Predicted total heave of the soil above the base of the shaft
         foundation, inches.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        predicted_total_heave_in in mm, each converted exactly to the printed
+        unit (in) before the lookup runs as printed.
 
     Returns
     -------
@@ -379,6 +424,9 @@ def table_grade_beam_void_space(predicted_total_heave_in=None):
         Keys: void_space_low_in, void_space_high_in, void_space_low_mm,
         void_space_high_mm (conversions), predicted_total_heave_in, printed,
         reference.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -403,12 +451,12 @@ def table_grade_beam_void_space(predicted_total_heave_in=None):
             "... Grade beams resting on the soil without void spaces are "
             "subject to distortion from uplift pressure of swelling "
             "foundation soil and are not recommended."),
-        "reference": f"{_REF}, para 6-4, Grade beams, printed p. 6-16 (PDF 58)",
+        "reference": f"{_REF}, para 6-4, Grade beams, printed p. 6-16 (pdf_page_index 57)",
     }
 
 
 # ---------------------------------------------------------------------------
-# Figure 4-1 Van Der Merwe potential expansiveness (PDF 32, printed p. 4-2)
+# Figure 4-1 Van Der Merwe potential expansiveness (pdf_page_index 31, printed p. 4-2)
 # ---------------------------------------------------------------------------
 
 #: PE (inch/foot of depth) per level, para 4-1c (p. 4-1 to 4-2): "assumed
@@ -444,9 +492,12 @@ _FIG_4_1_TRACE = (
     "70 on both axes; no value is drawn beyond it.")
 
 
+@_u.labelled(
+    {"clay_fraction_pct": "percent", "pe_in_per_ft": "in/ft",
+     "plasticity_index": "percent"})
 def figure_4_1_potential_expansiveness(plasticity_index, clay_fraction_pct):
     """Potential expansiveness PE (inch per foot of depth) for Van Der
-    Merwe's method, UFC 3-220-07 Figure 4-1 (printed p. 4-2, PDF 32), from
+    Merwe's method, UFC 3-220-07 Figure 4-1 (printed p. 4-2, pdf_page_index 31), from
     the PI and the clay fraction (percent finer than 2 microns) of the
     whole sample; returns the level (low, medium, high or very high) and
     PE = 0, 1/4, 1/2 or 1 inch/foot.
@@ -508,5 +559,5 @@ def figure_4_1_potential_expansiveness(plasticity_index, clay_fraction_pct):
         "level": level,
         "pe_in_per_ft": _FIG_4_1_PE[level],
         "trace_note": _FIG_4_1_TRACE,
-        "source": f"{_REF}, Figure 4-1 and para 4-1c, printed p. 4-2 (PDF 32)",
+        "source": f"{_REF}, Figure 4-1 and para 4-1c, printed p. 4-2 (pdf_page_index 31)",
     }

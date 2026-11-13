@@ -45,7 +45,8 @@ def mohr_coulomb_drained(c_prime: float, sigma_prime: float,
     Returns
     -------
     float
-        Shear strength *s* on the failure plane (same stress unit as inputs).
+        Shear strength *s* on the failure plane [consistent units (same stress
+        unit as inputs)].
 
     Raises
     ------
@@ -55,7 +56,7 @@ def mohr_coulomb_drained(c_prime: float, sigma_prime: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-1, p. 40.
+    Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if phi_prime_deg < 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be in the range [0, 90).")
@@ -88,7 +89,8 @@ def mohr_coulomb_undrained_partial(c: float, sigma: float,
     Returns
     -------
     float
-        Shear strength *s* on the failure plane (same stress unit as inputs).
+        Shear strength *s* on the failure plane [consistent units (same stress
+        unit as inputs)].
 
     Raises
     ------
@@ -98,7 +100,7 @@ def mohr_coulomb_undrained_partial(c: float, sigma: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-1, p. 40.
+    Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if phi_deg < 0.0 or phi_deg >= 90.0:
         raise ValueError("phi_deg must be in the range [0, 90).")
@@ -126,7 +128,8 @@ def mohr_coulomb_undrained_saturated(c: float) -> float:
     Returns
     -------
     float
-        Undrained shear strength *s_u* (same stress unit as *c*).
+        Undrained shear strength *s_u* [consistent units (same stress unit as
+        *c*)].
 
     Raises
     ------
@@ -136,7 +139,7 @@ def mohr_coulomb_undrained_saturated(c: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-1, p. 40.
+    Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if c < 0.0:
         raise ValueError("c (undrained shear strength) must be non-negative.")
@@ -179,7 +182,8 @@ def power_function_shear_strength(a: float, b: float,
     Returns
     -------
     float
-        Shear strength *s* (same stress unit as *sigma_prime*).
+        Shear strength *s* [consistent units (same stress unit as
+        *sigma_prime*)].
 
     Raises
     ------
@@ -189,7 +193,7 @@ def power_function_shear_strength(a: float, b: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Equation P-1, p. 42.
+    Prologue P, Equation P-1, printed p. 4 (pdf_page_index 41).
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -237,8 +241,8 @@ def power_function_undrained_strength(a_u: float, b_u: float,
     Returns
     -------
     float
-        Undrained shear strength *s_u* (same stress unit as
-        *sigma_1_con*).
+        Undrained shear strength *s_u* [consistent units (same stress unit as
+        *sigma_1_con*)].
 
     Raises
     ------
@@ -248,7 +252,7 @@ def power_function_undrained_strength(a_u: float, b_u: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Equation P-2, p. 42.
+    Prologue P, Equation P-2, printed p. 4 (pdf_page_index 41).
     """
     if a_u <= 0.0:
         raise ValueError("a_u must be positive.")
@@ -299,7 +303,8 @@ def three_parameter_power_function(a: float, b: float, t: float,
     Returns
     -------
     float
-        Shear strength *s* (same stress unit as *sigma_prime*).
+        Shear strength *s* [consistent units (same stress unit as
+        *sigma_prime*)].
 
     Raises
     ------
@@ -310,7 +315,7 @@ def three_parameter_power_function(a: float, b: float, t: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Equation P-3, p. 42.
+    Prologue P, Equation P-3, printed p. 4 (pdf_page_index 41).
     Jiang, J.-C., Baker, R., and Yamagami, T. (2003).
     """
     if a <= 0.0:
@@ -372,7 +377,7 @@ def equivalent_friction_angle(a: float, b: float,
     Returns
     -------
     float
-        Equivalent friction angle *phi'_EQ* (degrees).
+        Equivalent friction angle *phi'_EQ* [degrees].
 
     Raises
     ------
@@ -383,7 +388,7 @@ def equivalent_friction_angle(a: float, b: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Figure P-4, p. 44.
+    Prologue P, Figure P-4, printed p. 6 (pdf_page_index 43).
     """
     if sigma_prime_high <= sigma_prime_low:
         raise ValueError(
@@ -433,7 +438,8 @@ def equivalent_cohesion(a: float, b: float,
     Returns
     -------
     float
-        Equivalent cohesion intercept *c'_EQ* (same stress unit as inputs).
+        Equivalent cohesion intercept *c'_EQ* [consistent units (same stress
+        unit as inputs)].
 
     Raises
     ------
@@ -444,7 +450,7 @@ def equivalent_cohesion(a: float, b: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Figure P-4, p. 44.
+    Prologue P, Figure P-4, printed p. 6 (pdf_page_index 43).
     """
     if sigma_prime_high <= sigma_prime_low:
         raise ValueError(
@@ -490,7 +496,7 @@ def power_function_dimensional_to_normalized(
     Returns
     -------
     float
-        Normalized (dimensionless) power function parameter *a*.
+        Normalized power function parameter *a* [no unit printed].
 
     Raises
     ------
@@ -501,7 +507,7 @@ def power_function_dimensional_to_normalized(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Figure P-5, p. 45.
+    Prologue P, Figure P-5, printed p. 7 (pdf_page_index 44).
     """
     if a_dim <= 0.0:
         raise ValueError("a_dim must be positive.")
@@ -539,7 +545,8 @@ def power_function_normalized_to_dimensional(
     Returns
     -------
     float
-        Dimensional power function parameter *A*.
+        Dimensional power function parameter *A* [consistent units (the stress
+        unit of p_a to the power 1 - b)].
 
     Raises
     ------
@@ -550,7 +557,7 @@ def power_function_normalized_to_dimensional(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Figure P-5, p. 45.
+    Prologue P, Figure P-5, printed p. 7 (pdf_page_index 44).
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -585,7 +592,7 @@ def usr_icu_triaxial(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Undrained strength ratio (dimensionless).
+        Undrained strength ratio [dimensionless].
 
     Raises
     ------
@@ -595,7 +602,7 @@ def usr_icu_triaxial(phi_prime_deg: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-6, p. 54.
+    Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be in the range (0, 90).")
@@ -623,7 +630,7 @@ def usr_acu_triaxial(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Undrained strength ratio (dimensionless).
+        Undrained strength ratio [dimensionless].
 
     Raises
     ------
@@ -633,7 +640,7 @@ def usr_acu_triaxial(phi_prime_deg: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-6, p. 54.
+    Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be in the range (0, 90).")
@@ -661,7 +668,7 @@ def usr_dss(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Undrained strength ratio (dimensionless).
+        Undrained strength ratio [dimensionless].
 
     Raises
     ------
@@ -671,7 +678,7 @@ def usr_dss(phi_prime_deg: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Prologue P, Table P-6, PDF p. 54 (printed p. 16).
+    Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be in the range (0, 90).")

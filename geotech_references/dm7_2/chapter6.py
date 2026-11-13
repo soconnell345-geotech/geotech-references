@@ -15,6 +15,7 @@ import math
 from typing import List, Tuple
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ===========================================================================
@@ -42,7 +43,7 @@ def critical_scour_velocity(D50: float) -> float:
     Returns
     -------
     float
-        Critical velocity (m/s).
+        Critical velocity [m/s].
 
     Raises
     ------
@@ -52,9 +53,9 @@ def critical_scour_velocity(D50: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-1, PDF p. 409
-    (printed p. 371); Glossary, "Sand-sized – Particle size between
-    0.075 mm and 4.75 mm", PDF p. 719 (printed p. 681).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-1,
+    printed p. 371 (pdf_page_index 408); Glossary, "Sand-sized – Particle size
+    between 0.075 mm and 4.75 mm", printed p. 681 (pdf_page_index 718).
     """
     if D50 <= 0.0:
         raise ValueError("D50 must be positive.")
@@ -92,7 +93,7 @@ def pile_impedance(E: float, A: float, c: float) -> float:
     Returns
     -------
     float
-        Pile impedance (force * time / length).
+        Pile impedance [consistent units (force * time / length)].
 
     Raises
     ------
@@ -101,7 +102,8 @@ def pile_impedance(E: float, A: float, c: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-2, p. 426.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-2,
+    printed p. 388 (pdf_page_index 425).
     """
     if E <= 0.0:
         raise ValueError("E must be positive.")
@@ -132,11 +134,12 @@ def nominal_axial_resistance(R_s: float, R_b: float) -> float:
     Returns
     -------
     float
-        Total nominal resistance (force).
+        Total nominal resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-3, p. 444.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-3,
+    printed p. 406 (pdf_page_index 443).
     """
     return R_s + R_b
 
@@ -159,11 +162,12 @@ def nominal_shaft_resistance(
     Returns
     -------
     float
-        Nominal shaft resistance (force).
+        Nominal shaft resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-4, p. 444.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-4,
+    printed p. 406 (pdf_page_index 443).
     """
     return sum(f_s * A_s for f_s, A_s in segments)
 
@@ -184,11 +188,12 @@ def nominal_base_resistance(q_b: float, A_b: float) -> float:
     Returns
     -------
     float
-        Nominal base resistance (force).
+        Nominal base resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-5, p. 444.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-5,
+    printed p. 406 (pdf_page_index 443).
     """
     return q_b * A_b
 
@@ -214,11 +219,12 @@ def beta_coefficient(K: float, delta_deg: float) -> float:
     Returns
     -------
     float
-        Beta coefficient (dimensionless).
+        Beta coefficient [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-6, p. 449.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-6,
+    printed p. 411 (pdf_page_index 448).
     """
     if K < 0.0:
         raise ValueError("K must be non-negative.")
@@ -243,11 +249,12 @@ def beta_method_unit_shaft_resistance(
     Returns
     -------
     float
-        Unit shaft resistance (stress).
+        Unit shaft resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-7, p. 450.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-7,
+    printed p. 412 (pdf_page_index 449).
     """
     return beta * sigma_z_eff
 
@@ -272,11 +279,12 @@ def alpha_method_unit_shaft_resistance(alpha: float, s_u: float) -> float:
     Returns
     -------
     float
-        Unit shaft resistance (stress).
+        Unit shaft resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-8, p. 453.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-8,
+    printed p. 414 (pdf_page_index 451).
     """
     return alpha * s_u
 
@@ -300,11 +308,12 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless).
+        Adhesion factor alpha [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-9, printed p. 416 (PDF p. 454).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-9,
+    printed p. 416 (pdf_page_index 453).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -333,12 +342,12 @@ def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless), capped at 1.0.
+        Adhesion factor alpha [dimensionless], capped at 1.0.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-10, PDF p. 456
-    (printed p. 418).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-10,
+    printed p. 418 (pdf_page_index 455).
     """
     if s_u_ICU <= 0.0:
         raise ValueError("s_u_ICU must be positive.")
@@ -363,11 +372,12 @@ def su_ICU_from_UC(s_u_UC: float, OCR: float) -> float:
     Returns
     -------
     float
-        Equivalent ICU undrained strength (stress).
+        Equivalent ICU undrained strength [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-11, p. 456.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-11,
+    printed p. 418 (pdf_page_index 455).
     """
     if OCR <= 0.0:
         raise ValueError("OCR must be positive.")
@@ -390,11 +400,12 @@ def su_ICU_from_UU(s_u_UU: float, OCR: float) -> float:
     Returns
     -------
     float
-        Equivalent ICU undrained strength (stress).
+        Equivalent ICU undrained strength [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-12, p. 456.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-12,
+    printed p. 418 (pdf_page_index 455).
     """
     if OCR <= 0.0:
         raise ValueError("OCR must be positive.")
@@ -415,11 +426,12 @@ def su_ICU_from_DSS(s_u_DSS: float) -> float:
     Returns
     -------
     float
-        Equivalent ICU undrained strength (stress).
+        Equivalent ICU undrained strength [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-13, p. 456.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-13,
+    printed p. 418 (pdf_page_index 455).
     """
     return 1.43 * s_u_DSS
 
@@ -445,12 +457,12 @@ def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless).
+        Adhesion factor alpha [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-14, PDF p. 456
-    (printed p. 418).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-14,
+    printed p. 418 (pdf_page_index 455).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -486,7 +498,7 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless).
+        Adhesion factor alpha [dimensionless].
 
     Raises
     ------
@@ -496,8 +508,8 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-15, PDF p. 457
-    (printed p. 419).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-15,
+    printed p. 419 (pdf_page_index 456).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -542,12 +554,12 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless), capped at 1.0.
+        Adhesion factor alpha [dimensionless], capped at 1.0.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-16 and 6-17, PDF
-    p. 457 (printed p. 419).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-16 and 6-17,
+    printed p. 419 (pdf_page_index 456).
     """
     if sigma_z_eff <= 0.0:
         raise ValueError("sigma_z_eff must be positive.")
@@ -580,12 +592,12 @@ def alpha_API_from_OCR(OCR: float) -> float:
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless), capped at 1.0.
+        Adhesion factor alpha [dimensionless], capped at 1.0.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-18 and 6-19, PDF
-    p. 458 (printed p. 420).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-18 and 6-19,
+    printed p. 420 (pdf_page_index 457).
     """
     if OCR <= 0.0:
         raise ValueError("OCR must be positive.")
@@ -618,12 +630,12 @@ def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
     Returns
     -------
     float
-        Unit base resistance (stress).
+        Unit base resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-20, PDF p. 459
-    (printed p. 421).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-20,
+    printed p. 421 (pdf_page_index 458).
     """
     return N_q * sigma_zD_eff
 
@@ -658,7 +670,7 @@ def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nq (dimensionless), at most 200.
+        Bearing capacity factor Nq [dimensionless], at most 200.
 
     Raises
     ------
@@ -668,9 +680,9 @@ def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-17 (Base Resistance
-    Factors for Drained Conditions based on Soil Type and Friction
-    Angle), PDF p. 459 (printed p. 421).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-17,
+    printed p. 421 (pdf_page_index 458): Base Resistance Factors for Drained
+    Conditions based on Soil Type and Friction Angle.
     """
     if phi_deg <= 0.0 or phi_deg >= 90.0:
         raise ValueError("phi_deg must be between 0 and 90 degrees.")
@@ -710,12 +722,12 @@ def unit_base_resistance_vesic_drained(
     Returns
     -------
     float
-        Unit base resistance (stress).
+        Unit base resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-21, PDF p. 459
-    (printed p. 421).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-21,
+    printed p. 421 (pdf_page_index 458).
     """
     return N_q_star * sigma_m_eff
 
@@ -745,12 +757,12 @@ def mean_effective_stress(
     Returns
     -------
     float
-        Mean effective stress (stress).
+        Mean effective stress [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-22, PDF p. 460
-    (printed p. 422).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-22,
+    printed p. 422 (pdf_page_index 459).
     """
     phi_rad = math.radians(phi_deg)
     return (1.0 - 2.0 / 3.0 * math.sin(phi_rad)) * sigma_zD_eff
@@ -780,12 +792,12 @@ def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
     Returns
     -------
     float
-        Modified bearing capacity factor N*q (dimensionless).
+        Modified bearing capacity factor N*q [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-23, PDF p. 460
-    (printed p. 422).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-23,
+    printed p. 422 (pdf_page_index 459).
     """
     if I_rr <= 0.0:
         raise ValueError("I_rr must be positive.")
@@ -820,11 +832,12 @@ def rigidity_index(E: float, nu: float, sigma_m_eff: float,
     Returns
     -------
     float
-        Rigidity index (dimensionless).
+        Rigidity index [no unit printed].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-24, p. 460.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-24,
+    printed p. 422 (pdf_page_index 459).
     """
     phi_rad = math.radians(phi_deg)
     denom = (1.0 + 2.0 * nu) * sigma_m_eff * math.tan(phi_rad)
@@ -849,11 +862,12 @@ def reduced_rigidity_index(I_r: float, epsilon_v: float) -> float:
     Returns
     -------
     float
-        Reduced rigidity index (dimensionless).
+        Reduced rigidity index [no unit printed].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-25, p. 460.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-25,
+    printed p. 422 (pdf_page_index 459).
     """
     return I_r / (1.0 + I_r * epsilon_v)
 
@@ -877,11 +891,12 @@ def volumetric_strain(q_b_app: float, E_s: float, F_nu: float) -> float:
     Returns
     -------
     float
-        Volumetric strain (dimensionless).
+        Volumetric strain [fraction] (a decimal, a ratio of stresses; the print gives no percent).
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-26, p. 461.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-26,
+    printed p. 423 (pdf_page_index 460).
     """
     if E_s <= 0.0:
         raise ValueError("E_s must be positive.")
@@ -908,11 +923,12 @@ def unit_base_resistance_undrained(N_c_star: float, s_u: float) -> float:
     Returns
     -------
     float
-        Unit base resistance (stress).
+        Unit base resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-27, p. 461.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-27,
+    printed p. 423 (pdf_page_index 460).
     """
     return N_c_star * s_u
 
@@ -931,11 +947,12 @@ def vesic_Nc_star(I_rr: float) -> float:
     Returns
     -------
     float
-        Modified bearing capacity factor N*c (dimensionless).
+        Modified bearing capacity factor N*c [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-28, p. 461.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-28,
+    printed p. 423 (pdf_page_index 460).
     """
     if I_rr <= 0.0:
         raise ValueError("I_rr must be positive.")
@@ -958,11 +975,12 @@ def undrained_rigidity_index(E_u: float, s_u: float) -> float:
     Returns
     -------
     float
-        Rigidity index (dimensionless).
+        Rigidity index [no unit printed].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-29, p. 461.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-29,
+    printed p. 423 (pdf_page_index 460).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -991,12 +1009,12 @@ def Nc_star_FHWA_from_Ir(I_r: float) -> float:
     Returns
     -------
     float
-        N*c (dimensionless), at most 9.
+        N*c [dimensionless], at most 9.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-30, PDF p. 462
-    (printed p. 424).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-30,
+    printed p. 424 (pdf_page_index 461).
     """
     if I_r <= 0.0:
         raise ValueError("I_r must be positive.")
@@ -1029,7 +1047,7 @@ def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
     Returns
     -------
     float
-        N*c (dimensionless), at most 9.
+        N*c [dimensionless], at most 9.
 
     Raises
     ------
@@ -1038,8 +1056,8 @@ def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-31, PDF p. 462
-    (printed p. 424).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-31,
+    printed p. 424 (pdf_page_index 461).
     """
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
@@ -1088,7 +1106,7 @@ def lcpc_unit_shaft_resistance(
     Returns
     -------
     float
-        Unit side resistance (stress), at most Pa (fp/Pa).
+        Unit side resistance [consistent units (stress)], at most Pa (fp/Pa).
 
     Raises
     ------
@@ -1098,8 +1116,9 @@ def lcpc_unit_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-32, PDF p. 463
-    (printed p. 425); Table 6-22, PDF p. 465 (printed p. 427).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-32,
+    printed p. 425 (pdf_page_index 462); Table 6-22,
+    printed p. 427 (pdf_page_index 464).
     """
     if k_s <= 0.0:
         raise ValueError("k_s must be positive.")
@@ -1145,12 +1164,12 @@ def lcpc_unit_base_resistance(
     Returns
     -------
     float
-        Unit base resistance (stress).
+        Unit base resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-33, PDF p. 463
-    (printed p. 425).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-33,
+    printed p. 425 (pdf_page_index 462).
     """
     if k_t <= 0.0:
         raise ValueError("k_t must be positive.")
@@ -1183,11 +1202,12 @@ def micropile_shaft_resistance(
     Returns
     -------
     float
-        Nominal side resistance (force).
+        Nominal side resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-34, p. 466.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-34,
+    printed p. 428 (pdf_page_index 465).
     """
     if b <= 0.0:
         raise ValueError("b must be positive.")
@@ -1222,11 +1242,12 @@ def rock_socket_unit_shaft_resistance(
     Returns
     -------
     float
-        Unit side resistance (stress).
+        Unit side resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-35, p. 468.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-35,
+    printed p. 430 (pdf_page_index 467).
     """
     if P_a <= 0.0:
         raise ValueError("P_a must be positive.")
@@ -1252,11 +1273,12 @@ def rock_socket_unit_base_resistance(
     Returns
     -------
     float
-        Unit base resistance (stress).
+        Unit base resistance [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-36, p. 469.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-36,
+    printed p. 430 (pdf_page_index 467).
     """
     return N_cr_star * q_u
 
@@ -1287,11 +1309,12 @@ def group_axial_capacity(
     Returns
     -------
     float
-        Factored axial capacity of the group (force).
+        Factored axial capacity of the group [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-37, p. 469.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-37,
+    printed p. 431 (pdf_page_index 468).
     """
     return min(n * eta_g * R_r, R_r_gblock)
 
@@ -1323,11 +1346,12 @@ def block_failure_resistance(
     Returns
     -------
     float
-        Nominal block failure resistance (force).
+        Nominal block failure resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-38, p. 471.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-38,
+    printed p. 433 (pdf_page_index 470).
     """
     return 2.0 * Z * (B + L) * f_s1 + B * L * s_u2 * N_c
 
@@ -1357,12 +1381,13 @@ def block_failure_Nc(B: float, L: float, Z: float) -> float:
     Returns
     -------
     float
-        Nc (dimensionless), capped at 9.
+        Nc [dimensionless], capped at 9.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-39, PDF p. 471
-    (printed p. 433); Appendix B Example 5, PDF p. 676 (printed p. 638).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-39,
+    printed p. 433 (pdf_page_index 470); Appendix B Example 5,
+    printed p. 638 (pdf_page_index 675).
     """
     if L <= 0.0:
         raise ValueError("L must be positive.")
@@ -1407,12 +1432,12 @@ def group_uplift_capacity(
     Returns
     -------
     float
-        Combined factored uplift capacity (force).
+        Combined factored uplift capacity [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-40, PDF p. 473
-    (printed p. 435).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-40,
+    printed p. 435 (pdf_page_index 472).
     """
     individual = n * (R_r_s + W_r_e) + W_r_e_cap
     return min(individual, R_r_ublock)
@@ -1444,12 +1469,12 @@ def uplift_block_volume(B: float, L: float, Z: float) -> float:
     Returns
     -------
     float
-        Volume of the block (length^3).
+        Volume of the block [consistent units (length^3)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-41, PDF p. 474
-    (printed p. 436).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-41,
+    printed p. 436 (pdf_page_index 473).
     """
     return B * L * Z + Z ** 2 / 4.0 * (B + L) + Z ** 3 / 12.0
 
@@ -1483,11 +1508,12 @@ def uplift_block_weight_undrained(
     Returns
     -------
     float
-        Effective weight of the block (force).
+        Effective weight of the block [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-42, p. 474.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-42,
+    printed p. 436 (pdf_page_index 473).
     """
     return B * L * (Z1 * gamma_m + Z2 * gamma_b) + W_cap
 
@@ -1516,11 +1542,12 @@ def uplift_block_capacity_undrained(
     Returns
     -------
     float
-        Nominal block uplift capacity (force).
+        Nominal block uplift capacity [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-43, p. 474.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-43,
+    printed p. 436 (pdf_page_index 473).
     """
     return 2.0 * Z * (B + L) * s_u_avg + W_e_g
 
@@ -1551,11 +1578,12 @@ def elastic_compression_pile(
     Returns
     -------
     float
-        Elastic compression (length).
+        Elastic compression [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-45, p. 479.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-45,
+    printed p. 441 (pdf_page_index 478).
     """
     if A_p <= 0.0:
         raise ValueError("A_p must be positive.")
@@ -1564,6 +1592,7 @@ def elastic_compression_pile(
     return delta_Q * Z / (A_p * E_p)
 
 
+@_u.labelled({}, si={"Q_d": ("kN", "kips"), "B": ("m", "ft"), "L": ("m", "ft")})
 def meyerhof_group_settlement(
     Q_d: float, B: float, L: float, N1_60: float, I_f: float
 ) -> float:
@@ -1585,15 +1614,21 @@ def meyerhof_group_settlement(
         Average overburden-corrected N value within B below base (blows/ft).
     I_f : float
         Influence factor (dimensionless, from Equation 6-47).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        Q_d in kN, B and L in m, each converted exactly to the printed unit
+        (kips, ft) before the equation runs as printed.
 
     Returns
     -------
     float
-        Estimated settlement (inches).
+        Estimated settlement [inches].  With unit_system='SI' the result is
+        still in inches.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-46, p. 480.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-46,
+    printed p. 442 (pdf_page_index 479).
     """
     if N1_60 <= 0.0:
         raise ValueError("N1_60 must be positive.")
@@ -1624,12 +1659,12 @@ def meyerhof_influence_factor(Z: float, B: float) -> float:
     Returns
     -------
     float
-        Influence factor (dimensionless), from 0.5 to 1.
+        Influence factor [dimensionless], from 0.5 to 1.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-47, PDF p. 480
-    (printed p. 442).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-47,
+    printed p. 442 (pdf_page_index 479).
     """
     if B <= 0.0:
         raise ValueError("B must be positive.")
@@ -1667,12 +1702,12 @@ def drilled_shaft_base_resistance_at_4pct(
     Returns
     -------
     float
-        Base resistance at 4% displacement (force).
+        Base resistance at 4% displacement [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-48, PDF p. 481
-    (printed p. 443).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-48,
+    printed p. 443 (pdf_page_index 480).
     """
     if soil_type == "fine":
         return R_b
@@ -1705,12 +1740,12 @@ def equivalent_footing_width(B: float, z2: float) -> float:
     Returns
     -------
     float
-        Equivalent footing width (length).
+        Equivalent footing width [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-49, PDF p. 483
-    (printed p. 445).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-49,
+    printed p. 445 (pdf_page_index 482).
     """
     return B + z2 / 2.0
 
@@ -1734,12 +1769,12 @@ def equivalent_footing_length(L: float, z2: float) -> float:
     Returns
     -------
     float
-        Equivalent footing length (length).
+        Equivalent footing length [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-50, PDF p. 483
-    (printed p. 445).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-50,
+    printed p. 445 (pdf_page_index 482).
     """
     return L + z2 / 2.0
 
@@ -1766,12 +1801,12 @@ def stress_change_2V1H(
     Returns
     -------
     float
-        Change in total vertical stress (stress).
+        Change in total vertical stress [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-51, PDF p. 483
-    (printed p. 445).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-51,
+    printed p. 445 (pdf_page_index 482).
     """
     denom = (B_prime + z_prime) * (L_prime + z_prime)
     if denom <= 0.0:
@@ -1804,11 +1839,12 @@ def stress_change_neutral_plane(
     Returns
     -------
     float
-        Total stress change (stress).
+        Total stress change [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-52, p. 486.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-52,
+    printed p. 448 (pdf_page_index 485).
     """
     return stress_change_2V1H(Q, B_prime, L_prime, z_prime) + delta_sigma_other
 
@@ -1841,11 +1877,12 @@ def settlement_clay(
     Returns
     -------
     float
-        Settlement (length).
+        Settlement [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-53, p. 486.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-53,
+    printed p. 448 (pdf_page_index 485).
     """
     if sigma_z0_eff <= 0.0:
         raise ValueError("sigma_z0_eff must be positive.")
@@ -1891,11 +1928,12 @@ def settlement_sand_elastic(
     Returns
     -------
     float
-        Settlement (length).
+        Settlement [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-54, p. 487.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-54,
+    printed p. 449 (pdf_page_index 486).
     """
     if E_s <= 0.0:
         raise ValueError("E_s must be positive.")
@@ -1923,11 +1961,12 @@ def broms_factored_load(P_dead: float, P_live: float) -> float:
     Returns
     -------
     float
-        Factored ultimate lateral load (force).
+        Factored ultimate lateral load [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-55, p. 494.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-55,
+    printed p. 456 (pdf_page_index 493).
     """
     return 1.5 * P_dead + 2.0 * P_live
 
@@ -1948,11 +1987,12 @@ def broms_factored_moment(M_dead: float, M_live: float) -> float:
     Returns
     -------
     float
-        Factored ultimate moment (force*length).
+        Factored ultimate moment [consistent units (force*length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-56, p. 494.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-56,
+    printed p. 456 (pdf_page_index 493).
     """
     return 1.5 * M_dead + 2.0 * M_live
 
@@ -1971,11 +2011,12 @@ def broms_factored_su(s_u: float) -> float:
     Returns
     -------
     float
-        Factored undrained shear strength (stress).
+        Factored undrained shear strength [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-57, p. 494.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-57,
+    printed p. 456 (pdf_page_index 493).
     """
     return 0.75 * s_u
 
@@ -1994,11 +2035,12 @@ def broms_factored_phi(phi_deg: float) -> float:
     Returns
     -------
     float
-        Factored friction angle (degrees).
+        Factored friction angle [degrees].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-58, p. 494.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-58,
+    printed p. 456 (pdf_page_index 493).
     """
     return math.degrees(math.atan(0.75 * math.tan(math.radians(phi_deg))))
 
@@ -2023,11 +2065,12 @@ def broms_undrained_f(P_t_ult: float, s_u_star: float, b: float) -> float:
     Returns
     -------
     float
-        Length f (length).
+        Length f [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-59, p. 494.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-59,
+    printed p. 456 (pdf_page_index 493).
     """
     if s_u_star <= 0.0:
         raise ValueError("s_u_star must be positive.")
@@ -2061,11 +2104,12 @@ def broms_undrained_g(
     Returns
     -------
     float
-        Length g (length).
+        Length g [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-60, p. 495.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-60,
+    printed p. 457 (pdf_page_index 494).
     """
     numerator = M_t_ult + P_t_ult * (1.5 * b + 0.5 * f)
     denominator = 2.25 * b * s_u_star
@@ -2092,11 +2136,12 @@ def broms_undrained_Zmin(b: float, f: float, g: float) -> float:
     Returns
     -------
     float
-        Minimum pile length (length).
+        Minimum pile length [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-61, p. 495.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-61,
+    printed p. 457 (pdf_page_index 494).
     """
     return 1.5 * b + f + g
 
@@ -2123,11 +2168,12 @@ def broms_drained_passive(
     Returns
     -------
     float
-        Passive resistance (force).
+        Passive resistance [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-62, p. 495.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-62,
+    printed p. 457 (pdf_page_index 494).
     """
     return 1.5 * gamma_eff * b * K_P * Z_min ** 2
 
@@ -2167,11 +2213,12 @@ def broms_drained_Zmin(
     Returns
     -------
     float
-        Minimum pile length (length).
+        Minimum pile length [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-63, p. 496.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-63,
+    printed p. 458 (pdf_page_index 495).
     """
     denom = gamma_eff * b * K_P
     if denom <= 0.0:
@@ -2207,11 +2254,12 @@ def broms_drained_zero_shear_depth(
     Returns
     -------
     float
-        Depth of zero shear f (length).
+        Depth of zero shear f [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-64, p. 496.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-64,
+    printed p. 458 (pdf_page_index 495).
     """
     denom = 1.5 * gamma_eff * b * K_P
     if denom <= 0.0:
@@ -2247,11 +2295,12 @@ def broms_drained_max_moment(
     Returns
     -------
     float
-        Maximum moment (force*length).
+        Maximum moment [consistent units (force*length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-65, p. 497.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-65,
+    printed p. 459 (pdf_page_index 496).
     """
     return M_t_ult + P_t_ult * f - gamma_eff * b * K_P * f ** 3 / 2.0
 
@@ -2284,11 +2333,12 @@ def clm_deflection_from_load(
     Returns
     -------
     float
-        Lateral deflection at pile top (length).
+        Lateral deflection at pile top [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-66, p. 500.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-66,
+    printed p. 462 (pdf_page_index 499).
     """
     if P_c <= 0.0:
         raise ValueError("P_c must be positive.")
@@ -2319,11 +2369,12 @@ def clm_load_from_deflection(
     Returns
     -------
     float
-        Applied load (force).
+        Applied load [consistent units (force)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-67, p. 500.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-67,
+    printed p. 462 (pdf_page_index 499).
     """
     if a <= 0.0 or b <= 0.0:
         raise ValueError("a and b must be positive.")
@@ -2354,11 +2405,12 @@ def clm_deflection_from_moment(
     Returns
     -------
     float
-        Lateral deflection at pile top (length).
+        Lateral deflection at pile top [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-68, p. 500.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-68,
+    printed p. 462 (pdf_page_index 499).
     """
     if M_c <= 0.0:
         raise ValueError("M_c must be positive.")
@@ -2389,11 +2441,12 @@ def clm_moment_from_deflection(
     Returns
     -------
     float
-        Applied moment (force*length).
+        Applied moment [consistent units (force*length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-69, p. 500.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-69,
+    printed p. 462 (pdf_page_index 499).
     """
     if a <= 0.0 or b <= 0.0:
         raise ValueError("a and b must be positive.")
@@ -2424,11 +2477,12 @@ def clm_max_moment(
     Returns
     -------
     float
-        Maximum moment (force*length).
+        Maximum moment [consistent units (force*length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-70, p. 501.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-70,
+    printed p. 463 (pdf_page_index 500).
     """
     if P_c <= 0.0:
         raise ValueError("P_c must be positive.")
@@ -2464,12 +2518,13 @@ def mobilized_passive_resistance(
     Returns
     -------
     float
-        Mobilized passive resistance (force), capped at P_P_ult.
+        Mobilized passive resistance [consistent units (force)], capped at
+        P_P_ult.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-71, PDF p. 505
-    (printed p. 467).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-71,
+    printed p. 467 (pdf_page_index 504).
     """
     if P_P_ult <= 0.0:
         raise ValueError("P_P_ult must be positive.")
@@ -2501,11 +2556,12 @@ def driving_stress_limit_steel(phi_da: float, f_y: float) -> float:
     Returns
     -------
     float
-        Maximum allowable driving stress (stress).
+        Maximum allowable driving stress [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-72, p. 507.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-72,
+    printed p. 469 (pdf_page_index 506).
     """
     return phi_da * 0.9 * f_y
 
@@ -2530,15 +2586,18 @@ def driving_stress_limit_concrete_compression(
     Returns
     -------
     float
-        Maximum allowable compressive driving stress (stress).
+        Maximum allowable compressive driving stress [consistent units
+        (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-73, p. 508.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-73,
+    printed p. 470 (pdf_page_index 507).
     """
     return phi_da * (0.85 * f_c_prime - f_pe)
 
 
+@_u.labelled({}, si={"f_c_prime": ("MPa", "ksi"), "f_pe": ("MPa", "ksi")})
 def driving_stress_limit_concrete_tension(
     phi_da: float, f_c_prime: float, f_pe: float
 ) -> float:
@@ -2555,15 +2614,21 @@ def driving_stress_limit_concrete_tension(
         Design compressive strength of concrete (ksi).
     f_pe : float
         Effective prestress (ksi).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        f_c_prime and f_pe in MPa, each converted exactly to the printed unit
+        (ksi) before the equation runs as printed.
 
     Returns
     -------
     float
-        Maximum allowable tensile driving stress (ksi).
+        Maximum allowable tensile driving stress [ksi].  With
+        unit_system='SI' the result is still in ksi.
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-74, p. 508.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-74,
+    printed p. 470 (pdf_page_index 507).
     """
     return phi_da * (0.095 * math.sqrt(f_c_prime) + f_pe)
 
@@ -2584,11 +2649,12 @@ def driving_stress_limit_timber(phi_da: float, f_cto: float) -> float:
     Returns
     -------
     float
-        Maximum allowable driving stress (stress).
+        Maximum allowable driving stress [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-75, p. 508.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-75,
+    printed p. 470 (pdf_page_index 507).
     """
     return phi_da * 2.6 * f_cto
 
@@ -2626,12 +2692,12 @@ def depth_to_fixity_undrained(
     Returns
     -------
     float
-        Depth to fixity (length).
+        Depth to fixity [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-76, PDF p. 512
-    (printed p. 474).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-76,
+    printed p. 474 (pdf_page_index 511).
     """
     if b <= 0.0 or k_h <= 0.0:
         raise ValueError("b and k_h must be positive.")
@@ -2654,11 +2720,12 @@ def undrained_subgrade_modulus(C: float, s_u: float) -> float:
     Returns
     -------
     float
-        Soil modulus E_s = b*k_h (stress).
+        Soil modulus E_s = b*k_h [consistent units (stress)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-77, p. 512.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-77,
+    printed p. 474 (pdf_page_index 511).
     """
     return C * s_u
 
@@ -2683,11 +2750,12 @@ def depth_to_fixity_drained(
     Returns
     -------
     float
-        Depth to fixity (length).
+        Depth to fixity [consistent units (length)].
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-78, p. 513.
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-78,
+    printed p. 475 (pdf_page_index 512).
     """
     if n_h <= 0.0:
         raise ValueError("n_h must be positive.")
@@ -2731,8 +2799,8 @@ def drag_force_check(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-80 and Figure 6-26,
-    PDF p. 516 (printed p. 478); Appendix B Example 5, PDF p. 678
-    (printed p. 640).
+    printed p. 478 (pdf_page_index 515); Appendix B Example 5,
+    printed p. 640 (pdf_page_index 677).
     """
     demand = 1.25 * Q_d + 1.10 * (Q_np - Q_d)
     return demand <= P_r
@@ -2772,7 +2840,7 @@ def table_6_18_Fnu(poisson_ratio: float, pile_shape: str) -> float:
     Returns
     -------
     float
-        Strain factor F_nu (dimensionless), for
+        Strain factor F_nu [dimensionless], for
         epsilon_v = F_nu q_b,app / E_s (``volumetric_strain``).
 
     Raises
@@ -2784,7 +2852,7 @@ def table_6_18_Fnu(poisson_ratio: float, pile_shape: str) -> float:
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-18 (Factors for
-    Approximating Volumetric Strain), PDF p. 461 (printed p. 423).
+    Approximating Volumetric Strain), printed p. 423 (pdf_page_index 460).
     """
     shape = pile_shape.lower().strip()
     if shape not in _TABLE_6_18_FNU:
@@ -2953,7 +3021,7 @@ def table_6_21_ks(soil_type: str, group: str) -> float:
     Returns
     -------
     float
-        Side resistance factor ks (dimensionless, 30 to 300).
+        Side resistance factor ks [dimensionless], 30 to 300.
 
     Raises
     ------
@@ -2962,9 +3030,9 @@ def table_6_21_ks(soil_type: str, group: str) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-21 (Side Resistance
-    Factor), PDF p. 465 (printed p. 427); groups on PDF p. 463 (printed
-    p. 425).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-21 (Side Resistance Factor),
+    printed p. 427 (pdf_page_index 464); groups on
+    printed p. 425 (pdf_page_index 462).
     """
     row = _lcpc_soil_row(soil_type, "Table 6-21")
     return float(_TABLE_6_21_KS[row][_lcpc_group(group, "Table 6-21")])
@@ -3006,7 +3074,7 @@ def table_6_22_fp(
     Returns
     -------
     float
-        fp/Pa (dimensionless, 0.15 to 1.5): the maximum unit side
+        fp/Pa [dimensionless], 0.15 to 1.5: the maximum unit side
         resistance divided by atmospheric pressure.
 
     Raises
@@ -3017,7 +3085,7 @@ def table_6_22_fp(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-22 (Maximum Unit Side
-    Resistance), PDF p. 465 (printed p. 427).
+    Resistance), printed p. 427 (pdf_page_index 464).
     """
     row = _lcpc_soil_row(soil_type, "Table 6-22")
     value, careful = _TABLE_6_22_FP_OVER_PA[row][
@@ -3058,7 +3126,7 @@ def table_6_23_kt(soil_type: str, group: str) -> float:
     Returns
     -------
     float
-        Base bearing factor kt (dimensionless, 0.2 to 0.55).
+        Base bearing factor kt [dimensionless], 0.2 to 0.55.
 
     Raises
     ------
@@ -3068,7 +3136,7 @@ def table_6_23_kt(soil_type: str, group: str) -> float:
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-23 (Base Bearing
-    Factor), PDF p. 465 (printed p. 427).
+    Factor), printed p. 427 (pdf_page_index 464).
     """
     row = _lcpc_soil_row(soil_type, "Table 6-23")
     return _TABLE_6_23_KT[row][_lcpc_group(group, "Table 6-23", merged=True)]
@@ -3097,6 +3165,9 @@ _TABLE_6_36_EQUATIONS = {
 }
 
 
+@_u.labelled(
+    {"a": "no unit printed", "n": "no unit printed"},
+    printed_page="462", pdf_page_index=499)
 def table_6_36_clm(soil_type: str, ratio: str, fixity: str) -> dict:
     """Constant a and exponent n (both dimensionless) of the Characteristic
     Load Method deflection equations, Table 6-36 of UFC 3-220-20 (after
@@ -3133,9 +3204,9 @@ def table_6_36_clm(soil_type: str, ratio: str, fixity: str) -> dict:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-36 (Constants for Load
-    and Moment Deflection Equations) and Equations 6-66 to 6-69, PDF
-    p. 500 (printed p. 462).
+    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-36 (Constants for Load and
+    Moment Deflection Equations) and Equations 6-66 to 6-69,
+    printed p. 462 (pdf_page_index 499).
     """
     key = (
         soil_type.lower().strip(),
@@ -3167,6 +3238,9 @@ _TABLE_6_37_CLM = {
 }
 
 
+@_u.labelled(
+    {"a": "no unit printed", "n": "no unit printed"},
+    printed_page="464", pdf_page_index=501)
 def table_6_37_clm(soil_type: str, fixity: str) -> dict:
     """Coefficient a and exponent n (both dimensionless) for the maximum
     moment by the Characteristic Load Method, Table 6-37 of UFC 3-220-20,
@@ -3200,8 +3274,8 @@ def table_6_37_clm(soil_type: str, fixity: str) -> dict:
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-37 (Coefficients for
-    Estimating the Maximum Moment), PDF p. 502 (printed p. 464);
-    Equation 6-70, PDF p. 501 (printed p. 463).
+    Estimating the Maximum Moment), printed p. 464 (pdf_page_index 501);
+    Equation 6-70, printed p. 463 (pdf_page_index 500).
     """
     key = (soil_type.lower().strip(), str(fixity).lower().strip())
     if key not in _TABLE_6_37_CLM:

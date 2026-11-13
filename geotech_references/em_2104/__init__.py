@@ -5,7 +5,7 @@ Design for Reinforced Concrete Hydraulic Structures" (RCHS), dated 1 November
 2023, published 8 January 2025 (the current edition; supersedes the
 30 November 2016 edition). All docstring citations use the PRINTED page of
 this edition (e.g. "printed p. 42"); the 0-based PDF page index used to
-resolve figures is ``pdf_page = printed_page + 5``.
+resolve figures is ``pdf_page_index = printed_page + 5``.
 
 This manual amends/supplements ACI 318-19 for reinforced concrete hydraulic
 structures (RCHS) -- stilling basins, floodwalls, intake towers, lock walls

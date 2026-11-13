@@ -12,6 +12,7 @@ Reference:
 
 import math
 from typing import List, Tuple
+from geotech_references import _units as _u
 
 
 # ---------------------------------------------------------------------------
@@ -43,7 +44,7 @@ def total_vertical_stress(
     -------
     float
         Total vertical stress at the base of the lowest layer
-        (psf or kPa, depending on input units).
+        [consistent units (psf or kPa, as the inputs)].
 
     Raises
     ------
@@ -53,7 +54,7 @@ def total_vertical_stress(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-1, p. 179.
+    Chapter 4, Equation 4-1, printed p. 179 (pdf_page_index 206).
     """
     sigma_v = 0.0
     for z_i, gamma_t_i in layers:
@@ -87,7 +88,7 @@ def pore_water_pressure(h_p: float, gamma_w: float) -> float:
     Returns
     -------
     float
-        Pore water pressure (psf or kPa, depending on input units).
+        Pore water pressure [consistent units (psf or kPa, as the inputs)].
 
     Raises
     ------
@@ -97,7 +98,7 @@ def pore_water_pressure(h_p: float, gamma_w: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-2, p. 179.
+    Chapter 4, Equation 4-2, printed p. 179 (pdf_page_index 206).
     """
     if gamma_w <= 0.0:
         raise ValueError("gamma_w must be positive.")
@@ -124,12 +125,12 @@ def effective_vertical_stress(sigma_v: float, u: float) -> float:
     Returns
     -------
     float
-        Effective vertical stress (psf or kPa).
+        Effective vertical stress [consistent units (psf or kPa)].
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-3, p. 181.
+    Chapter 4, Equation 4-3, printed p. 181 (pdf_page_index 208).
     """
     return sigma_v - u
 
@@ -154,7 +155,7 @@ def effective_horizontal_stress(K: float, sigma_v_eff: float) -> float:
     Returns
     -------
     float
-        Effective horizontal stress (psf or kPa).
+        Effective horizontal stress [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -164,7 +165,7 @@ def effective_horizontal_stress(K: float, sigma_v_eff: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-4, p. 181.
+    Chapter 4, Equation 4-4, printed p. 181 (pdf_page_index 208).
     """
     if K < 0.0:
         raise ValueError("K must be non-negative.")
@@ -191,12 +192,12 @@ def total_horizontal_stress(sigma_h_eff: float, u: float) -> float:
     Returns
     -------
     float
-        Total horizontal stress (psf or kPa).
+        Total horizontal stress [consistent units (psf or kPa)].
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-5, p. 181.
+    Chapter 4, Equation 4-5, printed p. 181 (pdf_page_index 208).
     """
     return sigma_h_eff + u
 
@@ -236,7 +237,8 @@ def boussinesq_point_load(Q: float, x: float, y: float, z: float) -> float:
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa, depending on input units).
+        Change in vertical stress [consistent units (psf or kPa, as the
+        inputs)].
 
     Raises
     ------
@@ -246,7 +248,7 @@ def boussinesq_point_load(Q: float, x: float, y: float, z: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 185.
+    Chapter 4, Table 4-2, printed p. 185 (pdf_page_index 212).
     """
     if z <= 0.0:
         raise ValueError("z must be positive.")
@@ -282,7 +284,7 @@ def boussinesq_line_load(P: float, x: float, z: float) -> float:
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -292,7 +294,7 @@ def boussinesq_line_load(P: float, x: float, z: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 185.
+    Chapter 4, Table 4-2, printed p. 185 (pdf_page_index 212).
     """
     if z <= 0.0:
         raise ValueError("z must be positive.")
@@ -330,7 +332,7 @@ def boussinesq_strip_load(
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Notes
     -----
@@ -340,7 +342,7 @@ def boussinesq_strip_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 185.
+    Chapter 4, Table 4-2, printed p. 185 (pdf_page_index 212).
     """
     return (q0 / math.pi) * (
         alpha + math.sin(alpha) * math.cos(alpha + 2.0 * gamma_angle)
@@ -386,7 +388,8 @@ def boussinesq_rectangular_load(
     Returns
     -------
     float
-        Change in vertical stress beneath the corner (psf or kPa).
+        Change in vertical stress beneath the corner [consistent units (psf or
+        kPa)].
 
     Raises
     ------
@@ -396,7 +399,7 @@ def boussinesq_rectangular_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 185.
+    Chapter 4, Table 4-2, printed p. 185 (pdf_page_index 212).
     """
     if x <= 0.0:
         raise ValueError("x must be positive.")
@@ -436,7 +439,7 @@ def boussinesq_circular_load(q0: float, r: float, z: float) -> float:
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -446,7 +449,7 @@ def boussinesq_circular_load(q0: float, r: float, z: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 186.
+    Chapter 4, Table 4-2, printed p. 186 (pdf_page_index 213).
     """
     if r <= 0.0:
         raise ValueError("r must be positive.")
@@ -500,7 +503,7 @@ def boussinesq_triangular_load(
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Notes
     -----
@@ -509,7 +512,7 @@ def boussinesq_triangular_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 186.
+    Chapter 4, Table 4-2, printed p. 186 (pdf_page_index 213).
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -558,7 +561,7 @@ def boussinesq_slope_load(
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Notes
     -----
@@ -567,7 +570,7 @@ def boussinesq_slope_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 186.
+    Chapter 4, Table 4-2, printed p. 186 (pdf_page_index 213).
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -614,7 +617,7 @@ def boussinesq_terrace_load(
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     Notes
     -----
@@ -623,7 +626,7 @@ def boussinesq_terrace_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 186.
+    Chapter 4, Table 4-2, printed p. 186 (pdf_page_index 213).
     """
     if a <= 0.0:
         raise ValueError("a must be positive.")
@@ -668,12 +671,12 @@ def boussinesq_semi_infinite_load(
     Returns
     -------
     float
-        Change in vertical stress (psf or kPa).
+        Change in vertical stress [consistent units (psf or kPa)].
 
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-2, p. 186.
+    Chapter 4, Table 4-2, printed p. 186 (pdf_page_index 213).
     """
     if R <= 0.0:
         raise ValueError("R must be positive.")
@@ -710,7 +713,7 @@ def rigid_pipe_trench_load(
     Returns
     -------
     float
-        Dead load per unit length of pipe (lb/ft or kN/m).
+        Dead load per unit length of pipe [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -720,7 +723,7 @@ def rigid_pipe_trench_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-6, p. 195.
+    Chapter 4, Equation 4-6, printed p. 195 (pdf_page_index 222).
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -761,7 +764,7 @@ def trench_load_coefficient(
     Returns
     -------
     float
-        Trench load coefficient *C_d* (dimensionless).
+        Trench load coefficient *C_d* [dimensionless].
 
     Raises
     ------
@@ -793,7 +796,7 @@ def trench_load_coefficient(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-7, p. 195.
+    Chapter 4, Equation 4-7, printed p. 195 (pdf_page_index 222).
     """
     if H <= 0.0:
         raise ValueError("H must be positive.")
@@ -836,7 +839,8 @@ def flexible_pipe_trench_load(
     Returns
     -------
     float
-        Dead load per unit length of flexible pipe (lb/ft or kN/m).
+        Dead load per unit length of flexible pipe [consistent units (lb/ft or
+        kN/m)].
 
     Raises
     ------
@@ -874,7 +878,7 @@ def flexible_pipe_trench_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-8, p. 197.
+    Chapter 4, Equation 4-8, printed p. 197 (pdf_page_index 224).
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -909,7 +913,7 @@ def flexible_pipe_prism_load(
     Returns
     -------
     float
-        Prism load per unit length of pipe (lb/ft or kN/m).
+        Prism load per unit length of pipe [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -919,7 +923,7 @@ def flexible_pipe_prism_load(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-9, p. 198.
+    Chapter 4, Equation 4-9, printed p. 198 (pdf_page_index 225).
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -964,7 +968,7 @@ def undrained_stability_factor(
     Returns
     -------
     float
-        Undrained stability factor N_crit (dimensionless).
+        Undrained stability factor N_crit [dimensionless].
 
     Raises
     ------
@@ -974,7 +978,7 @@ def undrained_stability_factor(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-10, p. 204.
+    Chapter 4, Equation 4-10, printed p. 204 (pdf_page_index 231).
     """
     if s_u <= 0.0:
         raise ValueError("s_u must be positive.")
@@ -1003,7 +1007,7 @@ def shaft_critical_depth_clay(s_u: float, gamma_t: float) -> float:
     Returns
     -------
     float
-        Critical unsupported depth (ft or m).
+        Critical unsupported depth [consistent units (ft or m)].
 
     Raises
     ------
@@ -1013,7 +1017,7 @@ def shaft_critical_depth_clay(s_u: float, gamma_t: float) -> float:
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-11, p. 210.
+    Chapter 4, Equation 4-11, printed p. 210 (pdf_page_index 237).
     """
     if s_u < 0.0:
         raise ValueError("s_u must be non-negative.")
@@ -1049,8 +1053,8 @@ def shaft_horizontal_pressure_clay(
     Returns
     -------
     float
-        Ultimate horizontal pressure on the shaft lining (psf or kPa).
-        May be negative if the shear strength exceeds the effective
+        Ultimate horizontal pressure on the shaft lining [consistent units (psf
+        or kPa)]. May be negative if the shear strength exceeds the effective
         overburden, indicating no net pressure on the lining.
 
     Raises
@@ -1061,7 +1065,7 @@ def shaft_horizontal_pressure_clay(
     References
     ----------
     UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Equation 4-12, p. 211.
+    Chapter 4, Equation 4-12, printed p. 211 (pdf_page_index 238).
     """
     if gamma_eff <= 0.0:
         raise ValueError("gamma_eff must be positive.")
@@ -1097,6 +1101,10 @@ _TABLE_4_3_TRENCH_FILL = {
 }
 
 
+@_u.labelled(
+    {"K": "dimensionless", "K_mu_prime": "dimensionless", "gamma_pcf": "pcf",
+     "mu_prime": "dimensionless"},
+    printed_page="195-196", pdf_page_index=[222, 223])
 def table_4_3_trench_fill(fill_type: str) -> dict:
     """Unit weight (pcf), lateral earth pressure coefficient K, coefficient of friction mu' and K x mu' (dimensionless) of a trench fill, Table 4-3 "Recommended Values for Trench Load Coefficient (after Moser 1990)".
 
@@ -1134,8 +1142,8 @@ def table_4_3_trench_fill(fill_type: str) -> dict:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-3, pp. 195-196 (after Moser 1990).
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 4, Table 4-3,
+    printed pp. 195-196 (pdf_page_index 222-223) (after Moser 1990).
     """
     key = fill_type.lower().strip()
     if key not in _TABLE_4_3_TRENCH_FILL:
@@ -1211,8 +1219,8 @@ def table_4_9_tunnel_behavior(N_crit_range: str, soil_type: str) -> str:
 
     References
     ----------
-    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026,
-    Chapter 4, Table 4-9, p. 205 (after FHWA 2009).
+    UFS 3-220-10, Soil Mechanics (DM 7.1), 16 Jan 2026, Chapter 4, Table 4-9,
+    printed p. 205 (pdf_page_index 232) (after FHWA 2009).
     """
     soil = soil_type.lower().strip()
     if soil not in _TABLE_4_9_TUNNEL_BEHAVIOR:

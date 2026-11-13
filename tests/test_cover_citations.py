@@ -280,11 +280,17 @@ def test_dm7_1_equation_pages_are_the_2026_printed_pages():
 
     cites = []
     for f in sorted((PKG / "dm7_1").glob("chapter*.py")):
-        cites += [(f.name, eq, int(p)) for eq, p in re.findall(
-            r"Equation (\d+-\d+), pp?\. (\d+)", f.read_text(encoding="utf-8"))]
+        # "Equation 1-3, printed p. 17 (pdf_page_index 44)" (REF-78)
+        cites += [(f.name, eq, int(p), idx) for eq, p, idx in re.findall(
+            r"Equation (\d+-\d+),\s+(?:printed\s+)?pp?\.\s+(\d+)"
+            r"(?:-\d+)?(?:\s+\(pdf_page_index\s+(\d+))?",
+            f.read_text(encoding="utf-8"))]
     assert len(cites) > 100
     wrong = []
-    for name, eq, p in cites:
+    for name, eq, p, idx in cites:
+        if idx and printed(int(idx)) != p:
+            wrong.append((name, eq, p, f"pdf_page_index {idx} prints "
+                          f"{printed(int(idx))}"))
         label = re.compile(r"\(\s*(?:5-)?%s\s*\)" % re.escape(eq)
                            if eq in ("5-19", "5-28")
                            else r"\(\s*%s\s*\)" % re.escape(eq))

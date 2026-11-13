@@ -34,7 +34,7 @@ from geotech_references.aashto_1993.lef import load_equivalency_factor, _TABLES
 # ============================================================================
 # 1. Grid-point reproduction: 18 tables x 4 (load, column) points each.
 # Each expected value is read directly off the rendered printed page (see
-# lef.py table comments for pdf_page/printed_page citations).
+# lef.py table comments for pdf_page_index/printed_page citations).
 # ============================================================================
 
 GRID_POINTS = [

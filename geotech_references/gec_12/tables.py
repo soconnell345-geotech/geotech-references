@@ -6,6 +6,7 @@ of Driven Pile Foundations. Follows the DM7 pattern: private data with
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 # ============================================================================
 # Table 7-1: Resistance Factors for Static Analysis Methods
@@ -53,13 +54,19 @@ def table_7_1_resistance_factor_static(method: str,
     Returns
     -------
     float or None
-        Resistance factor phi_stat. None means no AASHTO-specified
-        factor; use the field verification method factor phi_dyn instead.
+        Resistance factor phi_stat [dimensionless]. None means no
+        AASHTO-specified factor; use the field verification method factor
+        phi_dyn instead.
 
     Raises
     ------
     ValueError
         If method or condition is not recognized.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Table 7-1,
+    printed p. 224 (pdf_page_index 269).
     """
     method_key = method.lower().strip().replace("-", "_").replace(" ", "_")
     cond = condition.lower().strip()
@@ -208,12 +215,17 @@ def table_7_2_resistance_factor_field(method: str) -> float:
     Returns
     -------
     float
-        Resistance factor phi_dyn of that row.
+        Resistance factor phi_dyn of that row [dimensionless].
 
     Raises
     ------
     ValueError
         If method does not name one row of the table.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Table 7-2,
+    printed p. 226 (pdf_page_index 271).
     """
     query = " ".join(method.lower().strip().rstrip(".").split())
     key = _TABLE_7_2_ALIASES.get(query, query.replace(" ", "_").replace("-", "_"))
@@ -243,6 +255,11 @@ _TABLE_7_9 = {
 }
 
 
+@_u.labelled(
+    {"beta_max": "dimensionless", "beta_min": "dimensionless",
+     "nt_max": "dimensionless", "nt_min": "dimensionless", "phi_max": "deg",
+     "phi_min": "deg"},
+    printed_page="256", pdf_page_index=301)
 def table_7_9_beta_nt_coefficients(soil_type: str) -> dict:
     """Approximate range of beta and Nt coefficients (Table 7-9).
 
@@ -305,6 +322,10 @@ _TABLE_7_10_PRINTED_BB = {
 }
 
 
+@_u.labelled(
+    {"Ab_ksf": "ksf", "Bb_ksf_per_bpf": "ksf/bpf",
+     "Bb_printed_ksf_per_bpf": "ksf/bpf", "Fvs": "dimensionless"},
+    printed_page="260", pdf_page_index=305)
 def table_7_10_brown_method_factors(loading: str = "compression",
                                     installation: str = "impact",
                                     soil_type: str = "clay_to_sand") -> dict:
@@ -427,12 +448,17 @@ def table_7_11_eslami_fellenius_cs(soil_type: str) -> float:
     Returns
     -------
     float
-        Cs value in percent.
+        Cs value [percent].
 
     Raises
     ------
     ValueError
         If soil_type does not name one row of the table.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Table 7-11,
+    printed p. 261 (pdf_page_index 306).
     """
     key = soil_type.lower().strip().replace(" ", "_").replace("-", "_")
     key = _TABLE_7_11_ALIASES.get(key, key)
@@ -506,6 +532,11 @@ _TABLE_7_16_REFERENCE = ("FHWA-NHI-16-009 (GEC-12) Vol I, Table 7-16 Soil "
                          "Setup Factors (after Rausche et al. 1996), p. 299")
 
 
+@_u.labelled(
+    {"percent_of_database": "percent", "range_max": "dimensionless",
+     "range_min": "dimensionless", "recommended": "dimensionless",
+     "sites": "count"},
+    printed_page="299", pdf_page_index=344)
 def table_7_16_soil_setup_factor(soil_type: str) -> dict:
     """Soil setup factor (dimensionless: range and recommended value) for the predominant soil type along the pile shaft, one row of GEC-12 Table 7-16 (FHWA-NHI-16-009 Vol I, p. 299, after Rausche et al. 1996).
 
@@ -573,6 +604,9 @@ _TABLE_7_3 = [
 ]
 
 
+@_u.labelled(
+    {"phi_stat": "dimensionless"},
+    printed_page="228", pdf_page_index=273)
 def table_7_3_static_analysis_methods(soil_type: str = "") -> list[dict]:
     """Summary of static analysis methods for nominal resistance (Table 7-3).
 
@@ -627,6 +661,10 @@ _TABLE_7_8_DENSITY_MAP = {
 }
 
 
+@_u.labelled(
+    {"Nq": "dimensionless", "delta_deg": "deg", "fs_limit_ksf": "ksf",
+     "qp_limit_ksf": "ksf"},
+    printed_page="253", pdf_page_index=298)
 def table_7_8_api_design_parameters(delta_deg: float) -> dict:
     """API design parameters for cohesionless siliceous soil (Table 7-8).
 

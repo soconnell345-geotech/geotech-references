@@ -8,6 +8,7 @@ AASHTO default of 1.0 (see Section 8.1 and Table 9-1).
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -178,6 +179,7 @@ _TABLE_8_4_ALIASES = {
 }
 
 
+@_u.labelled({"phi": "dimensionless"}, printed_page="8-14", pdf_page_index=221)
 def table_8_4_resistance_factor(method: str) -> dict:
     """Resistance factor phi for one row of GEC-10 Table 8-4 Resistance Factors for LRFD Design of Drilled Shafts (FHWA-NHI-18-024, p. 8-14); the key must name one printed row.
 
@@ -237,6 +239,9 @@ _TABLE_8_4_CATEGORIES = ("lateral", "compression_side", "uplift_side",
                          "structural", "service", "extreme")
 
 
+@_u.labelled(
+    {"phi": "dimensionless", "phi_max": "dimensionless"},
+    printed_page="8-14", pdf_page_index=221)
 def table_8_4_by_category(category: str) -> list:
     """All rows of GEC-10 Table 8-4 (FHWA-NHI-18-024, p. 8-14) in one of the library's categories, each with its resistance factor phi.
 
@@ -296,6 +301,7 @@ _TABLE_9_1 = {
 }
 
 
+@_u.labelled({"phi": "dimensionless"}, printed_page="9-22", pdf_page_index=247)
 def table_9_1_lateral_resistance_factor(method: str) -> dict:
     """Resistance factor phi for geotechnical strength of laterally loaded drilled shafts by the p-y method, GEC-10 Table 9-1 (FHWA-NHI-18-024, p. 9-22); the key must name one of its three rows.
 
@@ -361,6 +367,10 @@ _TABLE_10_2_SU_PSF = [0.0, 500.0, 1000.0, 2000.0]
 _TABLE_10_2_NC     = [6.50,  6.50,   8.00,   9.00]
 
 
+@_u.labelled(
+    {"nc_star": "dimensionless", "su_psf": "psf"},
+    printed_page="10-19", pdf_page_index=298,
+    si={"su_psf": ("kPa", "psf")})
 def table_10_2_nc_base_clay(su_psf: float) -> dict:
     """Bearing capacity factor N*c (dimensionless) for drilled shaft base resistance in cohesive soil from the undrained shear strength in psf, GEC-10 Table 10-2 (FHWA-NHI-18-024, p. 10-19).
 
@@ -388,12 +398,19 @@ def table_10_2_nc_base_clay(su_psf: float) -> dict:
         Mean undrained shear strength at the base in lb/ft² (psf), 500 or
         more.  Values above 2,000 psf return N*c = 9.0 (the printed
         ">= 2,000" row).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        su_psf in kPa, each converted exactly to the printed unit (psf) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         {'su_psf': float, 'nc_star': float,
          'note': str}
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -450,6 +467,9 @@ _TABLE_11_1 = {
 }
 
 
+@_u.labelled(
+    {"pm": "dimensionless", "spacing_over_d": "dimensionless"},
+    printed_page="11-17", pdf_page_index=350)
 def table_11_1_p_multiplier(row_position: str,
                               spacing_over_d: float) -> dict:
     """P-multiplier Pm for lateral group analysis (Table 11-1).
@@ -554,6 +574,9 @@ _GROUP_EFF_REFERENCE = (
     "citing AASHTO (2017a) 10.8.3.6.3 (no Table 11-2 is printed)")
 
 
+@_u.labelled(
+    {"eta": "no unit printed", "spacing_over_d": "dimensionless"},
+    printed_page="11-6", pdf_page_index=339)
 def table_11_2_group_efficiency_cohesionless(spacing_over_d: float) -> dict:
     """Group efficiency eta for the axial resistance of drilled shafts in cohesionless soil with the cap not in contact with the ground, from GEC-10 Section 11.4.1.2 (FHWA-NHI-18-024, p. 11-6, citing AASHTO 10.8.3.6.3); GEC-10 has no Table 11-2, the name is kept.
 

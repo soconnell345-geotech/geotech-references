@@ -327,7 +327,9 @@ class TestTable54:
 
     def test_all_conditions(self):
         r = table_5_4_group_efficiency()
-        assert len(r) == 5
+        cases = [k for k in r if k not in ("units", "printed_page",
+                                          "pdf_page_index")]
+        assert len(cases) == 5
         assert "cap_firm_contact" in r
 
     def test_firm_contact(self):

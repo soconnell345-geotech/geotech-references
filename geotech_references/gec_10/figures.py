@@ -12,6 +12,7 @@ GeotechStaffEngineer's drilled_shaft and lateral_pile modules.
 import math
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 _PA_KPA = 101.325  # atmospheric pressure, kPa
 
@@ -55,12 +56,17 @@ def figure_10_6_alpha_clay(su_ciuc_kpa: float) -> float:
     Returns
     -------
     float
-        Adhesion factor α (dimensionless).
+        Adhesion factor α [dimensionless].
 
     Raises
     ------
     ValueError
         If su_ciuc_kpa / pa is outside 0.25 to 5.0.
+
+    References
+    ----------
+    FHWA-NHI-18-024 (GEC-10), Figure 10-6,
+    printed p. 10-17 (pdf_page_index 296).
     """
     ratio = su_ciuc_kpa / _PA_KPA
     if not (_FIG_10_6_RATIO[0] <= ratio <= _FIG_10_6_RATIO[1]):
@@ -128,13 +134,18 @@ def su_uu_to_ciuc(su_uu_kpa: float, sigma_v0_kpa: float) -> float:
     Returns
     -------
     float
-        CIUC-equivalent undrained shear strength in kPa.
+        CIUC-equivalent undrained shear strength [kPa].
 
     Raises
     ------
     ValueError
         If inputs are not positive, or su(UU)/sigma'vo is 0.0149 or less,
         where Eq. 10-17 gives a ratio of zero or less (no strength).
+
+    References
+    ----------
+    FHWA-NHI-18-024 (GEC-10), Equation 10-17,
+    printed p. 10-16 (pdf_page_index 295).
     """
     return _ciuc_from(su_uu_kpa, sigma_v0_kpa, 0.911, 0.499, "10-17", "UU")
 
@@ -154,13 +165,18 @@ def su_uc_to_ciuc(su_uc_kpa: float, sigma_v0_kpa: float) -> float:
     Returns
     -------
     float
-        CIUC-equivalent undrained shear strength in kPa.
+        CIUC-equivalent undrained shear strength [kPa].
 
     Raises
     ------
     ValueError
         If inputs are not positive, or su(UC)/sigma'vo is 0.0182 or less,
         where Eq. 10-16 gives a ratio of zero or less (no strength).
+
+    References
+    ----------
+    FHWA-NHI-18-024 (GEC-10), Equation 10-16,
+    printed p. 10-16 (pdf_page_index 295).
     """
     return _ciuc_from(su_uc_kpa, sigma_v0_kpa, 0.893, 0.513, "10-16", "UC")
 
@@ -182,6 +198,10 @@ _EQ_10_21_C_PRINT_NOTE = (
     "Equation 10-21; the library applies C to Eq. 10-21.")
 
 
+@_u.labelled(
+    {"C": "dimensionless", "f_sn_kpa": "kPa", "f_sn_mpa": "MPa",
+     "qu_kpa": "kPa", "qu_mpa": "MPa"},
+    printed_page="10-20", pdf_page_index=299)
 def equation_10_21_rock_socket_side(qu_kpa: float, C: float = 1.0) -> dict:
     """Unit side resistance f_SN (kPa and MPa) of a rock socket, GEC-10 Eq. 10-21 (FHWA-NHI-18-024, p. 10-20), f_SN/pa = C sqrt(qu/pa), C = 1.0 by default. For roughened sockets pp. 10-21 to 10-22 print: "Regression analysis of the available load test data by Kulhawy and Prakoso (2007) suggests a mean value of C = 1.9 with use of Equation 10-22 for roughened sockets. It is strongly recommended that load tests or local experience be used to verify values of C greater than 1.0." The page names Equation 10-22, but C appears only in Equation 10-21; the library applies C here (lead's ruling G2, 2026-11-10).
 
@@ -264,6 +284,10 @@ _TABLE_10_3_AE_CLOSED = [0.45, 0.50, 0.60, 0.85, 1.00]
 _TABLE_10_3_AE_OPEN   = [0.45, 0.50, 0.55, 0.55, 0.85]
 
 
+@_u.labelled(
+    {"alpha_E": "dimensionless", "f_sn_kpa": "kPa", "f_sn_mpa": "MPa",
+     "qu_kpa": "kPa", "rqd_pct": "percent"},
+    printed_page="10-21", pdf_page_index=300)
 def equation_10_22_caving_rock_side(qu_kpa: float,
                                      rqd_pct: float,
                                      joint_condition: str = "closed") -> dict:

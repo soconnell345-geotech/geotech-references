@@ -96,7 +96,7 @@ class TestDefaultResilientModulus:
     def test_cites_table_and_page(self):
         r = table_5_35_default_resilient_modulus("A-1-a")
         assert r["table"] == "5-35"
-        assert r["pdf_page"] == 231
+        assert r["pdf_page_index"] == 231
 
     def test_bad_class_raises(self):
         with pytest.raises(ValueError):
@@ -139,7 +139,7 @@ class TestMrFromCbr:
         # Mr = 17.6 * 10^0.64 = 76.8 MPa
         r = resilient_modulus_from_cbr(10, units="mpa")
         assert r["mr"] == pytest.approx(17.6 * 10 ** 0.64, abs=0.1)
-        assert r["units"] == "mpa"
+        assert r["units"]["mr"] == "MPa"
 
     def test_zero_cbr_raises(self):
         with pytest.raises(ValueError):
@@ -441,7 +441,7 @@ class TestSoilAsPavementMaterial:
     def test_fine_grained_and_peat(self):
         ch = table_4_14_soil_as_pavement_material("CH")
         assert ch["drainage"] == "Practically Impervious"
-        assert ch["printed_page"] == "4-66" and ch["pdf_page"] == 167
+        assert ch["printed_page"] == "4-66" and ch["pdf_page_index"] == 167
         assert table_4_14_soil_as_pavement_material("Pt")["subgrade_strength"] == "Not Suitable"
 
     def test_unknown_class_raises(self):
@@ -580,7 +580,7 @@ class TestPermeability:
         ]
         r = table_5_57_permeability_highway_materials()
         assert [(x["material"], x["k_m_s"]) for x in r["rows"]] == printed
-        assert (r["printed_page"], r["pdf_page"]) == ("5-105", 282)
+        assert (r["printed_page"], r["pdf_page_index"]) == ("5-105", 282)
         assert "3.28 ft" in r["print_note"]
         bit = table_5_57_permeability_highway_materials("bituminous concrete")
         assert bit["printed_page"] == "5-105" and "10^-10" in bit["footnote"]

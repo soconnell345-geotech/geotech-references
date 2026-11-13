@@ -3,7 +3,7 @@
 From UFC 3-220-04FA, Backfill for Subsurface Structures, 16 January 2004
 (the reproduced TM 5-818-4/AFM 88-5, Chap. 5). The manual states density
 requirements as a percent of CE 55 maximum dry density (paragraph 5-1b(4),
-printed p. 5-2, PDF 29).
+printed p. 5-2, pdf_page_index 28).
 
 Rebuilt 2026-11-10 (review pave-14): the Broms (1971) compaction-pressure
 equation and the filter ratios that were here are not printed in this
@@ -12,7 +12,12 @@ manual (it gives compaction-induced pressure only as Figure 2-5, now
 filter design to TM 5-818-5, paragraph 2-3c, printed p. 2-6).
 """
 
+from geotech_references import _units as _u
 
+
+@_u.labelled(
+    {"deficit_pct": "percent", "relative_compaction_pct": "percent",
+     "required_pct": "percent"})
 def relative_compaction_check(
     dry_density_kN_per_m3,
     max_dry_density_kN_per_m3,
@@ -21,7 +26,7 @@ def relative_compaction_check(
     """Degree of compaction, percent = field dry density / maximum dry
     density x 100, checked against a required percent; UFC 3-220-04FA states
     its density requirements as a percent of CE 55 maximum dry density by
-    MIL-STD-621 (paragraph 5-1b(4), printed p. 5-2, PDF 29).
+    MIL-STD-621 (paragraph 5-1b(4), printed p. 5-2, pdf_page_index 28).
 
     Paragraph 5-1b(4) as printed: 90 percent in open areas where structures
     will not be constructed; 95 to 100 percent for cohesionless soils and
@@ -77,5 +82,5 @@ def relative_compaction_check(
                   ">= 95 cohesive beneath structures, 95-100 drainage "
                   "blankets and filters"),
         "reference": ("UFC 3-220-04FA (TM 5-818-4/AFM 88-5, Chap. 5), "
-                      "16 January 2004, para 5-1b(4), printed p. 5-2 (PDF 29)"),
+                      "16 January 2004, para 5-1b(4), printed p. 5-2 (pdf_page_index 28)"),
     }
