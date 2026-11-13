@@ -32,7 +32,8 @@ def dry_unit_weight(gamma_t: float, w: float) -> float:
     Returns
     -------
     float
-        Dry unit weight (pcf or kN/m^3), in the same units as *gamma_t*.
+        Dry unit weight [consistent units (pcf or kN/m^3)], in the same units
+        as *gamma_t*.
 
     Raises
     ------
@@ -42,7 +43,7 @@ def dry_unit_weight(gamma_t: float, w: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-1, p. 147.
+    Chapter 3, Equation 3-1, printed p. 109 (pdf_page_index 146).
     """
     if gamma_t <= 0.0:
         raise ValueError("gamma_t must be positive.")
@@ -93,7 +94,8 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     Returns
     -------
     float
-        Dry unit weight (pcf or kN/m^3), in the same units as *gamma_w*.
+        Dry unit weight [consistent units (pcf or kN/m^3)], in the same units
+        as *gamma_w*.
 
     Raises
     ------
@@ -104,7 +106,7 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-2, p. 147.
+    Chapter 3, Equation 3-2, printed p. 109 (pdf_page_index 146).
     """
     if S <= 0.0 or S > 100.0:
         raise ValueError("S must be in the range (0, 100].")
@@ -142,7 +144,7 @@ def relative_compaction(gamma_d_field: float, gamma_d_max: float) -> float:
     Returns
     -------
     float
-        Relative compaction as a percentage (%).
+        Relative compaction as a percentage [percent].
 
     Raises
     ------
@@ -153,7 +155,7 @@ def relative_compaction(gamma_d_field: float, gamma_d_max: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-3, p. 149.
+    Chapter 3, Equation 3-3, printed p. 111 (pdf_page_index 148).
     """
     if gamma_d_max <= 0.0:
         raise ValueError("gamma_d_max must be positive.")
@@ -190,8 +192,8 @@ def relative_water_content(w_field: float, w_opt: float) -> float:
     Returns
     -------
     float
-        Relative water content as a percentage (%).  Positive means wet of
-        optimum; negative means dry of optimum.
+        Relative water content as a percentage [percent].  Positive means wet
+        of optimum; negative means dry of optimum.
 
     Raises
     ------
@@ -201,8 +203,8 @@ def relative_water_content(w_field: float, w_opt: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-4, PDF p. 150 (printed p. 112); Table 3-11,
-    footnote A, PDF p. 182 (printed p. 144).
+    Chapter 3, Equation 3-4, printed p. 112 (pdf_page_index 149); Table 3-11,
+    footnote A, printed p. 144 (pdf_page_index 181).
     """
     if w_field < 0.0:
         raise ValueError("w_field must be non-negative.")
@@ -238,7 +240,7 @@ def relative_density_from_void_ratio(
     Returns
     -------
     float
-        Relative density as a percentage (%).
+        Relative density as a percentage [percent].
 
     Raises
     ------
@@ -248,7 +250,7 @@ def relative_density_from_void_ratio(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-5, p. 151.
+    Chapter 3, Equation 3-5, printed p. 113 (pdf_page_index 150).
     """
     if e_max <= e_min:
         raise ValueError("e_max must be greater than e_min.")
@@ -286,7 +288,7 @@ def relative_density_from_dry_unit_weight(
     Returns
     -------
     float
-        Relative density as a percentage (%).
+        Relative density as a percentage [percent].
 
     Raises
     ------
@@ -297,7 +299,7 @@ def relative_density_from_dry_unit_weight(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-5, p. 151.
+    Chapter 3, Equation 3-5, printed p. 113 (pdf_page_index 150).
     """
     if gamma_d_field <= 0.0:
         raise ValueError("gamma_d_field must be positive.")
@@ -340,8 +342,8 @@ def oversize_corrected_water_content(
     Returns
     -------
     float
-        Combined water content of the finer and oversize fractions as a
-        decimal.
+        Combined water content of the finer and oversize fractions [fraction
+        (not percent)].
 
     Raises
     ------
@@ -352,7 +354,7 @@ def oversize_corrected_water_content(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-6, p. 161.
+    Chapter 3, Equation 3-6, printed p. 123 (pdf_page_index 160).
     """
     if P_C < 0.0 or P_C > 1.0:
         raise ValueError("P_C must be in the range [0, 1].")
@@ -402,7 +404,8 @@ def oversize_corrected_dry_unit_weight(
     -------
     float
         Combined dry unit weight of the finer and oversize fractions
-        (pcf or kN/m^3), in the same units as *gamma_dF* and *gamma_w*.
+        [consistent units (pcf or kN/m^3)], in the same units as *gamma_dF* and
+        *gamma_w*.
 
     Raises
     ------
@@ -413,7 +416,7 @@ def oversize_corrected_dry_unit_weight(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-7, p. 162.
+    Chapter 3, Equation 3-7, printed p. 124 (pdf_page_index 161).
     """
     if gamma_dF <= 0.0:
         raise ValueError("gamma_dF must be positive.")
@@ -465,7 +468,8 @@ def borrow_volume_from_waste_weight(
     Returns
     -------
     float
-        Total borrow volume required (same volume unit as *V_F*).
+        Total borrow volume required [consistent units (same volume unit as
+        *V_F*)].
 
     Raises
     ------
@@ -476,7 +480,7 @@ def borrow_volume_from_waste_weight(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-8, p. 173.
+    Chapter 3, Equation 3-8, printed p. 135 (pdf_page_index 172).
     """
     if V_F < 0.0:
         raise ValueError("V_F must be non-negative.")
@@ -518,7 +522,8 @@ def borrow_volume_from_waste_fraction(
     Returns
     -------
     float
-        Total borrow volume required (same volume unit as *V_F*).
+        Total borrow volume required [consistent units (same volume unit as
+        *V_F*)].
 
     Raises
     ------
@@ -529,8 +534,8 @@ def borrow_volume_from_waste_fraction(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-9, PDF p. 173 (printed p. 135); example in
-    Figure 3-13, PDF p. 174 (printed p. 136).
+    Chapter 3, Equation 3-9, printed p. 135 (pdf_page_index 172); example in
+    Figure 3-13, printed p. 136 (pdf_page_index 173).
     """
     if V_F < 0.0:
         raise ValueError("V_F must be non-negative.")
@@ -576,7 +581,7 @@ def shrinkage_factor(
     Returns
     -------
     float
-        Shrinkage factor (dimensionless), defined as (V_B - V_F) / V_F.
+        Shrinkage factor [dimensionless], defined as (V_B - V_F) / V_F.
         Positive means shrinkage; negative means bulking.
 
     Raises
@@ -587,7 +592,7 @@ def shrinkage_factor(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 3, Equation 3-10, PDF p. 173 (printed p. 135).
+    Chapter 3, Equation 3-10, printed p. 135 (pdf_page_index 172).
     """
     if gamma_d_F <= 0.0:
         raise ValueError("gamma_d_F must be positive.")

@@ -45,7 +45,7 @@ def at_rest_earth_pressure_coefficient(
     Returns
     -------
     float
-        At-rest earth pressure coefficient, K0 (dimensionless).
+        At-rest earth pressure coefficient, K0 [dimensionless].
 
     Raises
     ------
@@ -54,7 +54,8 @@ def at_rest_earth_pressure_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-1, p. 176.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-1,
+    printed p. 176 (pdf_page_index 213).
     """
     if sigma_z_eff <= 0.0:
         raise ValueError("sigma_z_eff must be positive.")
@@ -85,7 +86,7 @@ def at_rest_coefficient_mayne_kulhawy(
     Returns
     -------
     float
-        At-rest earth pressure coefficient, K0 (dimensionless).
+        At-rest earth pressure coefficient, K0 [dimensionless].
 
     Raises
     ------
@@ -94,8 +95,8 @@ def at_rest_coefficient_mayne_kulhawy(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-2, p. 177.
-    Mayne, P.W. and Kulhawy, F.H. (1982).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-2,
+    printed p. 177 (pdf_page_index 214). Mayne, P.W. and Kulhawy, F.H. (1982).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -127,7 +128,7 @@ def rankine_active_pressure_coefficient(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Rankine active earth pressure coefficient, KA (dimensionless).
+        Rankine active earth pressure coefficient, KA [dimensionless].
 
     Raises
     ------
@@ -136,7 +137,8 @@ def rankine_active_pressure_coefficient(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-3, p. 178.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-3,
+    printed p. 178 (pdf_page_index 215).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -161,7 +163,7 @@ def rankine_passive_pressure_coefficient(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Rankine passive earth pressure coefficient, KP (dimensionless).
+        Rankine passive earth pressure coefficient, KP [dimensionless].
 
     Raises
     ------
@@ -170,7 +172,8 @@ def rankine_passive_pressure_coefficient(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-4, p. 178.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-4,
+    printed p. 178 (pdf_page_index 215).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -194,7 +197,7 @@ def rankine_Ka_Kp_reciprocal(Ka: float) -> float:
     Returns
     -------
     float
-        Passive earth pressure coefficient, KP (dimensionless).
+        Passive earth pressure coefficient, KP [dimensionless].
 
     Raises
     ------
@@ -203,7 +206,8 @@ def rankine_Ka_Kp_reciprocal(Ka: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-5, p. 178.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-5,
+    printed p. 178 (pdf_page_index 215).
     """
     if Ka <= 0.0:
         raise ValueError("Ka must be positive.")
@@ -241,7 +245,8 @@ def rankine_active_horizontal_stress(
     Returns
     -------
     float
-        Horizontal effective stress for active condition (psf or kPa).
+        Horizontal effective stress for active condition [consistent units (psf
+        or kPa)].
 
     Raises
     ------
@@ -250,7 +255,8 @@ def rankine_active_horizontal_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-6, p. 178.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-6,
+    printed p. 178 (pdf_page_index 215).
     """
     if Ka <= 0.0:
         raise ValueError("Ka must be positive.")
@@ -283,7 +289,8 @@ def rankine_passive_horizontal_stress(
     Returns
     -------
     float
-        Horizontal effective stress for passive condition (psf or kPa).
+        Horizontal effective stress for passive condition [consistent units
+        (psf or kPa)].
 
     Raises
     ------
@@ -292,7 +299,8 @@ def rankine_passive_horizontal_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-7, p. 178.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-7,
+    printed p. 178 (pdf_page_index 215).
     """
     if Kp <= 0.0:
         raise ValueError("Kp must be positive.")
@@ -331,7 +339,7 @@ def active_earth_pressure_resultant(
     -------
     float
         Active earth pressure resultant force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -340,7 +348,8 @@ def active_earth_pressure_resultant(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-8, p. 181.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-8,
+    printed p. 181 (pdf_page_index 218).
     """
     if Ka < 0.0:
         raise ValueError("Ka must be non-negative.")
@@ -379,7 +388,7 @@ def passive_earth_pressure_resultant(
     -------
     float
         Passive earth pressure resultant force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -388,7 +397,8 @@ def passive_earth_pressure_resultant(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-9, p. 181.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-9,
+    printed p. 181 (pdf_page_index 218).
     """
     if Kp < 0.0:
         raise ValueError("Kp must be non-negative.")
@@ -447,7 +457,7 @@ def coulomb_active_earth_pressure(
     -------
     float
         Coulomb active earth pressure force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -457,8 +467,8 @@ def coulomb_active_earth_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10, p. 186.
-    Coulomb, C.A. (1776).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10,
+    printed p. 186 (pdf_page_index 223). Coulomb, C.A. (1776).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -532,7 +542,7 @@ def coulomb_active_coefficient(
     Returns
     -------
     float
-        Coulomb active earth pressure coefficient, KA (dimensionless).
+        Coulomb active earth pressure coefficient, KA [dimensionless].
 
     Raises
     ------
@@ -541,7 +551,8 @@ def coulomb_active_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10, p. 186.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-10,
+    printed p. 186 (pdf_page_index 223).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -623,7 +634,7 @@ def coulomb_passive_earth_pressure(
     -------
     float
         Coulomb passive earth pressure force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -633,7 +644,8 @@ def coulomb_passive_earth_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11, p. 190.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11,
+    printed p. 190 (pdf_page_index 227).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -711,7 +723,7 @@ def coulomb_passive_coefficient(
     Returns
     -------
     float
-        Coulomb passive earth pressure coefficient, KP (dimensionless).
+        Coulomb passive earth pressure coefficient, KP [dimensionless].
 
     Raises
     ------
@@ -720,7 +732,8 @@ def coulomb_passive_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11, p. 190.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-11,
+    printed p. 190 (pdf_page_index 227).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -788,7 +801,7 @@ def log_spiral_passive_coefficient(
     Returns
     -------
     float
-        Log spiral passive earth pressure coefficient, KP (dimensionless).
+        Log spiral passive earth pressure coefficient, KP [dimensionless].
 
     Raises
     ------
@@ -797,8 +810,8 @@ def log_spiral_passive_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-12, p. 191.
-    Caquot, A. and Kerisel, J. (1948).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-12,
+    printed p. 191 (pdf_page_index 228). Caquot, A. and Kerisel, J. (1948).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -857,7 +870,7 @@ def equivalent_fluid_unit_weight(
     Returns
     -------
     float
-        Equivalent fluid unit weight (pcf or kN/m^3).
+        Equivalent fluid unit weight [consistent units (pcf or kN/m^3)].
 
     Raises
     ------
@@ -866,8 +879,8 @@ def equivalent_fluid_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-13, PDF p. 233
-    (printed p. 195).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-13,
+    printed p. 195 (pdf_page_index 232).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -905,7 +918,7 @@ def horizontal_earth_pressure_with_surcharge(
     Returns
     -------
     float
-        Horizontal earth pressure at depth z (psf or kPa).
+        Horizontal earth pressure at depth z [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -914,7 +927,8 @@ def horizontal_earth_pressure_with_surcharge(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-14, p. 196.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-14,
+    printed p. 196 (pdf_page_index 233).
     """
     if z < 0.0:
         raise ValueError("z must be non-negative.")
@@ -971,7 +985,7 @@ def mononobe_okabe_active_coefficient(
     Returns
     -------
     float
-        Seismic active earth pressure coefficient, KAE (dimensionless).
+        Seismic active earth pressure coefficient, KAE [dimensionless].
 
     Raises
     ------
@@ -981,8 +995,9 @@ def mononobe_okabe_active_coefficient(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-15, p. 214.
-    Mononobe, N. and Matsuo, H. (1929); Okabe, S. (1924).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-15,
+    printed p. 214 (pdf_page_index 251). Mononobe, N. and Matsuo, H. (1929);
+    Okabe, S. (1924).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -1059,7 +1074,7 @@ def mononobe_okabe_active_force(
     -------
     float
         Total seismic active earth pressure force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -1068,7 +1083,8 @@ def mononobe_okabe_active_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-16, p. 215.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-16,
+    printed p. 215 (pdf_page_index 252).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -1114,7 +1130,7 @@ def seed_whitman_dynamic_increment(
     -------
     float
         Dynamic earth pressure force increment per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -1124,7 +1140,7 @@ def seed_whitman_dynamic_increment(
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-17 and Figure 4-25,
-    PDF p. 253 (printed p. 215).
+    printed p. 215 (pdf_page_index 252).
     Seed, H.B. and Whitman, R.V. (1970).
     """
     if gamma < 0.0:
@@ -1170,7 +1186,7 @@ def wood_nonyielding_seismic_force(
     -------
     float
         Seismic earth pressure force increment per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -1179,8 +1195,8 @@ def wood_nonyielding_seismic_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-18, p. 217.
-    Wood, J.H. (1973).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-18,
+    printed p. 217 (pdf_page_index 254). Wood, J.H. (1973).
     """
     if gamma < 0.0:
         raise ValueError("gamma must be non-negative.")
@@ -1227,7 +1243,7 @@ def hydrodynamic_water_pressure(
     Returns
     -------
     float
-        Hydrodynamic water pressure at depth z (psf or kPa).
+        Hydrodynamic water pressure at depth z [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -1236,7 +1252,8 @@ def hydrodynamic_water_pressure(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-19, p. 217.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-19,
+    printed p. 217 (pdf_page_index 254).
     """
     if gamma_w < 0.0:
         raise ValueError("gamma_w must be non-negative.")
@@ -1280,7 +1297,7 @@ def hydrodynamic_water_force(
     -------
     float
         Resultant hydrodynamic water force per unit length of wall
-        (lb/ft or kN/m).
+        [consistent units (lb/ft or kN/m)].
 
     Raises
     ------
@@ -1289,8 +1306,8 @@ def hydrodynamic_water_force(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-20, p. 218.
-    Kramer, S.L. (1996).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-20,
+    printed p. 218 (pdf_page_index 255). Kramer, S.L. (1996).
     """
     if gamma_w < 0.0:
         raise ValueError("gamma_w must be non-negative.")
@@ -1343,7 +1360,7 @@ def seismic_psi_low_permeability(
     Returns
     -------
     float
-        Modified seismic inertia angle psi (radians).
+        Modified seismic inertia angle psi [radians].
 
     Raises
     ------
@@ -1352,8 +1369,8 @@ def seismic_psi_low_permeability(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-21, p. 218.
-    Kramer, S.L. (1996).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-21,
+    printed p. 218 (pdf_page_index 255). Kramer, S.L. (1996).
     """
     if gamma_sat <= gamma_w:
         raise ValueError("gamma_sat must be greater than gamma_w.")
@@ -1398,7 +1415,7 @@ def seismic_adjusted_unit_weight(
     -------
     float
         Adjusted unit weight for seismic earth pressure calculation
-        (pcf or kN/m^3).
+        [consistent units (pcf or kN/m^3)].
 
     Raises
     ------
@@ -1407,7 +1424,8 @@ def seismic_adjusted_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-22, p. 218.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-22,
+    printed p. 218 (pdf_page_index 255).
     """
     if gamma_sat <= gamma_w:
         raise ValueError("gamma_sat must be greater than gamma_w.")
@@ -1448,7 +1466,7 @@ def base_pressure_max_trapezoidal(
     Returns
     -------
     float
-        Maximum base pressure at the toe (psf or kPa).
+        Maximum base pressure at the toe [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -1458,7 +1476,8 @@ def base_pressure_max_trapezoidal(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-23, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-23,
+    printed p. 221 (pdf_page_index 258).
     """
     if B <= 0.0:
         raise ValueError("B must be positive.")
@@ -1496,7 +1515,7 @@ def base_pressure_min_trapezoidal(
     Returns
     -------
     float
-        Minimum base pressure at the heel (psf or kPa).
+        Minimum base pressure at the heel [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -1505,7 +1524,8 @@ def base_pressure_min_trapezoidal(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-24, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-24,
+    printed p. 221 (pdf_page_index 258).
     """
     if B <= 0.0:
         raise ValueError("B must be positive.")
@@ -1541,7 +1561,7 @@ def base_pressure_max_triangular(
     Returns
     -------
     float
-        Maximum base pressure at the toe (psf or kPa).
+        Maximum base pressure at the toe [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -1550,7 +1570,8 @@ def base_pressure_max_triangular(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-25, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-25,
+    printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
         raise ValueError("x0 must be positive (x0 = B/2 - e).")
@@ -1576,7 +1597,7 @@ def effective_base_width_triangular(x0: float) -> float:
     Returns
     -------
     float
-        Width of base under compression (ft or m).
+        Width of base under compression [consistent units (ft or m)].
 
     Raises
     ------
@@ -1585,7 +1606,8 @@ def effective_base_width_triangular(x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-26, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-26,
+    printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
         raise ValueError("x0 must be positive.")
@@ -1613,7 +1635,7 @@ def base_pressure_uniform(R: float, x0: float) -> float:
     Returns
     -------
     float
-        Uniform base pressure (psf or kPa).
+        Uniform base pressure [consistent units (psf or kPa)].
 
     Raises
     ------
@@ -1622,7 +1644,8 @@ def base_pressure_uniform(R: float, x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-27, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-27,
+    printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
         raise ValueError("x0 must be positive.")
@@ -1647,7 +1670,7 @@ def effective_base_width_uniform(x0: float) -> float:
     Returns
     -------
     float
-        Width of base under compression (ft or m).
+        Width of base under compression [consistent units (ft or m)].
 
     Raises
     ------
@@ -1656,7 +1679,8 @@ def effective_base_width_uniform(x0: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-28, p. 221.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-28,
+    printed p. 221 (pdf_page_index 258).
     """
     if x0 <= 0.0:
         raise ValueError("x0 must be positive.")
@@ -1696,7 +1720,8 @@ def allowable_passive_resistance(
     Returns
     -------
     float
-        Allowable passive earth pressure force (lb/ft or kN/m).
+        Allowable passive earth pressure force [consistent units (lb/ft or
+        kN/m)].
 
     Raises
     ------
@@ -1705,7 +1730,8 @@ def allowable_passive_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-29, p. 232.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-29,
+    printed p. 232 (pdf_page_index 269).
     """
     if Pp < 0.0:
         raise ValueError("Pp must be non-negative.")
@@ -1739,7 +1765,7 @@ def allowable_friction_angle(
     Returns
     -------
     float
-        Allowable friction angle (degrees).
+        Allowable friction angle [degrees].
 
     Raises
     ------
@@ -1748,7 +1774,8 @@ def allowable_friction_angle(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-30, p. 232.
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-30,
+    printed p. 232 (pdf_page_index 269).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError("phi_prime_deg must be between 0 and 90 degrees.")
@@ -1795,8 +1822,8 @@ def relative_flexibility_anchored_bulkhead(
     Returns
     -------
     float
-        Relative flexibility (flexibility number) rho, in in^2/lb per
-        running foot of wall, the abscissa of Figure 4-36.
+        Relative flexibility (flexibility number) rho [in^2/lb (per running
+        foot of wall)], the abscissa of Figure 4-36.
 
     Raises
     ------
@@ -1805,8 +1832,8 @@ def relative_flexibility_anchored_bulkhead(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-31, p. 235.
-    Rowe, P.W. (1952).
+    UFC 3-220-20, 16 Jan 2025, Chapter 4, Equation 4-31,
+    printed p. 235 (pdf_page_index 272). Rowe, P.W. (1952).
     """
     if H <= 0.0:
         raise ValueError("H must be positive.")
@@ -1881,7 +1908,7 @@ def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
     Returns
     -------
     float
-        M_DESIGN / M_MAX (dimensionless), where M_MAX is the maximum
+        M_DESIGN / M_MAX [dimensionless], where M_MAX is the maximum
         positive moment in the sheeting from the free earth support
         analysis and M_DESIGN the moment to design the sheeting for.
 
@@ -1895,7 +1922,7 @@ def figure_4_36_moment_reduction(rho: float, soil_type: str) -> float:
     References
     ----------
     UFC 3-220-20, 16 Jan 2025, Chapter 4, Figure 4-36 (Rowe's Moment
-    Reduction Factors for Flexible Walls), PDF p. 274 (printed p. 236).
+    Reduction Factors for Flexible Walls), printed p. 236 (pdf_page_index 273).
     """
     key = soil_type.lower().strip().replace("-", "_").replace(" ", "_")
     if key not in _FIG_4_36_CURVES:

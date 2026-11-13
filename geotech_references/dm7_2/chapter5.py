@@ -15,6 +15,7 @@ Reference:
 
 import math
 from typing import Tuple
+from geotech_references import _units as _u
 
 
 # ===========================================================================
@@ -49,7 +50,8 @@ def gross_bearing_pressure(
     Returns
     -------
     float
-        Gross bearing pressure (psf, kPa, or consistent stress unit).
+        Gross bearing pressure [consistent units (psf, kPa or another stress
+        unit)].
 
     Raises
     ------
@@ -58,7 +60,8 @@ def gross_bearing_pressure(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-1, p. 275.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-1,
+    printed p. 275 (pdf_page_index 312).
     """
     if A <= 0.0:
         raise ValueError("Bearing surface area A must be positive.")
@@ -87,11 +90,12 @@ def net_bearing_pressure_from_ultimate(
     Returns
     -------
     float
-        Net bearing pressure (same stress unit).
+        Net bearing pressure [consistent units (same stress unit)].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-2, p. 275.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-2,
+    printed p. 275 (pdf_page_index 312).
     """
     return q_ult - sigma_zD
 
@@ -117,7 +121,8 @@ def net_bearing_pressure(Q_DL_LL: float, A: float) -> float:
     Returns
     -------
     float
-        Net bearing pressure (psf, kPa, or consistent stress unit).
+        Net bearing pressure [consistent units (psf, kPa or another stress
+        unit)].
 
     Raises
     ------
@@ -126,7 +131,8 @@ def net_bearing_pressure(Q_DL_LL: float, A: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-3, p. 276.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-3,
+    printed p. 276 (pdf_page_index 313).
     """
     if A <= 0.0:
         raise ValueError("Bearing surface area A must be positive.")
@@ -158,7 +164,7 @@ def eccentricity(M: float, Q: float) -> float:
     Returns
     -------
     float
-        Eccentricity (ft, m, or consistent length unit).
+        Eccentricity [consistent units (ft, m or another length unit)].
 
     Raises
     ------
@@ -167,7 +173,8 @@ def eccentricity(M: float, Q: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-4, p. 276.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-4,
+    printed p. 276 (pdf_page_index 313).
     """
     if Q <= 0.0:
         raise ValueError("Gross vertical load Q must be positive.")
@@ -197,7 +204,8 @@ def check_eccentricity_one_direction(e: float, dimension: float) -> bool:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-5, p. 276.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-5,
+    printed p. 276 (pdf_page_index 313).
     """
     if dimension <= 0.0:
         raise ValueError("Foundation dimension must be positive.")
@@ -239,13 +247,20 @@ def check_eccentricity_two_directions(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-6, p. 276.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-6,
+    printed p. 276 (pdf_page_index 313).
     """
     if B <= 0.0 or L <= 0.0:
         raise ValueError("Foundation dimensions B and L must be positive.")
     return (6.0 * abs(e_B) / B + 6.0 * abs(e_L) / L) <= 1.0
 
 
+@_u.labelled(
+    {"q1": "consistent units (the unit of q_gross)",
+     "q2": "consistent units (the unit of q_gross)",
+     "q3": "consistent units (the unit of q_gross)",
+     "q4": "consistent units (the unit of q_gross)"},
+    printed_page="277", pdf_page_index=314)
 def corner_bearing_pressure(
     q_gross: float, e_B: float, e_L: float, B: float, L: float
 ) -> dict:
@@ -291,7 +306,8 @@ def corner_bearing_pressure(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-7, p. 277.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-7,
+    printed p. 277 (pdf_page_index 314).
     """
     if B <= 0.0 or L <= 0.0:
         raise ValueError("Foundation dimensions B and L must be positive.")
@@ -329,7 +345,7 @@ def effective_foundation_width(B: float, e_B: float) -> float:
     Returns
     -------
     float
-        Effective foundation width B' (ft, m).
+        Effective foundation width B' [consistent units (ft, m)].
 
     Raises
     ------
@@ -338,7 +354,8 @@ def effective_foundation_width(B: float, e_B: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-8, p. 277.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-8,
+    printed p. 277 (pdf_page_index 314).
     """
     B_prime = B - 2.0 * abs(e_B)
     if B_prime <= 0.0:
@@ -367,7 +384,7 @@ def effective_foundation_length(L: float, e_L: float) -> float:
     Returns
     -------
     float
-        Effective foundation length L' (ft, m).
+        Effective foundation length L' [consistent units (ft, m)].
 
     Raises
     ------
@@ -376,7 +393,8 @@ def effective_foundation_length(L: float, e_L: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-9, p. 277.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-9,
+    printed p. 277 (pdf_page_index 314).
     """
     L_prime = L - 2.0 * abs(e_L)
     if L_prime <= 0.0:
@@ -413,7 +431,7 @@ def equivalent_uniform_bearing_pressure(
     Returns
     -------
     float
-        Equivalent uniform bearing pressure (psf, kPa).
+        Equivalent uniform bearing pressure [consistent units (psf, kPa)].
 
     Raises
     ------
@@ -422,7 +440,8 @@ def equivalent_uniform_bearing_pressure(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-10, p. 277.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-10,
+    printed p. 277 (pdf_page_index 314).
     """
     if B_prime <= 0.0 or L_prime <= 0.0:
         raise ValueError("Effective dimensions B' and L' must be positive.")
@@ -455,7 +474,7 @@ def circular_effective_length(r: float, e_x: float) -> float:
     Returns
     -------
     float
-        Equivalent length L' (ft, m).
+        Equivalent length L' [consistent units (ft, m)].
 
     Raises
     ------
@@ -469,8 +488,8 @@ def circular_effective_length(r: float, e_x: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-11,
-    PDF p. 315 (printed p. 277); Figure 5-1(b), PDF p. 316 (printed
-    p. 278).
+    printed p. 277 (pdf_page_index 314); Figure 5-1(b),
+    printed p. 278 (pdf_page_index 315).
     """
     if r <= 0.0:
         raise ValueError("Radius r must be positive.")
@@ -507,7 +526,7 @@ def circular_effective_width(r: float, e_x: float, L_prime: float) -> float:
     Returns
     -------
     float
-        Equivalent width B' (ft, m).
+        Equivalent width B' [consistent units (ft, m)].
 
     Raises
     ------
@@ -517,7 +536,7 @@ def circular_effective_width(r: float, e_x: float, L_prime: float) -> float:
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-12,
-    PDF p. 316 (printed p. 278).
+    printed p. 278 (pdf_page_index 315).
     """
     if r <= 0.0:
         raise ValueError("Radius r must be positive.")
@@ -553,7 +572,8 @@ def gross_allowable_bearing_pressure(q_ult: float, F_BC: float) -> float:
     Returns
     -------
     float
-        Gross allowable bearing pressure (same stress unit as *q_ult*).
+        Gross allowable bearing pressure [consistent units (same stress unit as
+        *q_ult*)].
 
     Raises
     ------
@@ -562,7 +582,8 @@ def gross_allowable_bearing_pressure(q_ult: float, F_BC: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-13, p. 279.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-13,
+    printed p. 279 (pdf_page_index 316).
     """
     if F_BC <= 0.0:
         raise ValueError("Factor of safety F_BC must be positive.")
@@ -593,7 +614,7 @@ def net_allowable_bearing_pressure(
     Returns
     -------
     float
-        Net allowable bearing pressure (same stress unit).
+        Net allowable bearing pressure [consistent units (same stress unit)].
 
     Raises
     ------
@@ -602,7 +623,8 @@ def net_allowable_bearing_pressure(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-14, p. 279.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-14,
+    printed p. 279 (pdf_page_index 316).
     """
     if F_BC <= 0.0:
         raise ValueError("Factor of safety F_BC must be positive.")
@@ -663,11 +685,12 @@ def ultimate_bearing_capacity_drained(
     Returns
     -------
     float
-        Ultimate bearing capacity (psf, kPa).
+        Ultimate bearing capacity [consistent units (psf, kPa)].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-15, p. 288.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-15,
+    printed p. 288 (pdf_page_index 325).
     """
     return (
         c_prime * Nc * psi_c
@@ -724,11 +747,12 @@ def ultimate_bearing_capacity_undrained_unsaturated(
     Returns
     -------
     float
-        Ultimate bearing capacity (psf, kPa).
+        Ultimate bearing capacity [consistent units (psf, kPa)].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-16, p. 288.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-16,
+    printed p. 288 (pdf_page_index 325).
     """
     return (
         c * Nc * psi_c
@@ -771,11 +795,12 @@ def ultimate_bearing_capacity_undrained_saturated(
     Returns
     -------
     float
-        Ultimate bearing capacity (psf, kPa).
+        Ultimate bearing capacity [consistent units (psf, kPa)].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-17, p. 288.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-17,
+    printed p. 288 (pdf_page_index 325).
     """
     return s_u * Nc * psi_c + sigma_zD * psi_q
 
@@ -816,11 +841,12 @@ def lumped_correction_factor_c(
     Returns
     -------
     float
-        Lumped correction factor psi_c (dimensionless).
+        Lumped correction factor psi_c [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-18, p. 293.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-18,
+    printed p. 293 (pdf_page_index 330).
     """
     return sc * dc * ic * bc * gc
 
@@ -856,11 +882,12 @@ def lumped_correction_factor_q(
     Returns
     -------
     float
-        Lumped correction factor psi_q (dimensionless).
+        Lumped correction factor psi_q [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-19, p. 293.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-19,
+    printed p. 293 (pdf_page_index 330).
     """
     return sq * dq * iq * bq * gq
 
@@ -897,11 +924,12 @@ def lumped_correction_factor_gamma(
     Returns
     -------
     float
-        Lumped correction factor psi_gamma (dimensionless).
+        Lumped correction factor psi_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-20, p. 293.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-20,
+    printed p. 293 (pdf_page_index 330).
     """
     return s_gamma * d_gamma * i_gamma * b_gamma * g_gamma
 
@@ -948,11 +976,12 @@ def hansen_correction_factor_c_phi0(
     Returns
     -------
     float
-        Brinch Hansen correction factor psi_c for phi = 0 (dimensionless).
+        Brinch Hansen correction factor psi_c for phi = 0 [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-21, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-21,
+    printed p. 295 (pdf_page_index 332).
     """
     return 1.0 + sc + dc - ic - bc - gc
 
@@ -983,7 +1012,7 @@ def stability_number_undrained(gamma: float, H: float, s_u: float) -> float:
     Returns
     -------
     float
-        Stability number N_S (dimensionless).
+        Stability number N_S [no unit printed].
 
     Raises
     ------
@@ -992,7 +1021,8 @@ def stability_number_undrained(gamma: float, H: float, s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-22, p. 297.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-22,
+    printed p. 297 (pdf_page_index 334).
     """
     if s_u <= 0.0:
         raise ValueError("Undrained shear strength s_u must be positive.")
@@ -1021,7 +1051,7 @@ def stability_number_drained(gamma: float, H: float, c_prime: float) -> float:
     Returns
     -------
     float
-        Stability number N_S (dimensionless).
+        Stability number N_S [no unit printed].
 
     Raises
     ------
@@ -1030,7 +1060,8 @@ def stability_number_drained(gamma: float, H: float, c_prime: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-23, p. 299.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-23,
+    printed p. 299 (pdf_page_index 336).
     """
     if c_prime <= 0.0:
         raise ValueError("Effective cohesion c' must be positive.")
@@ -1068,7 +1099,7 @@ def bearing_capacity_factor_Nc_increasing_su(
     Returns
     -------
     float
-        Modified bearing capacity factor Nc (dimensionless).
+        Modified bearing capacity factor Nc [dimensionless].
 
     Raises
     ------
@@ -1077,7 +1108,8 @@ def bearing_capacity_factor_Nc_increasing_su(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-24, p. 307.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-24,
+    printed p. 307 (pdf_page_index 344).
     """
     if s_u0 <= 0.0:
         raise ValueError("Surface undrained shear strength s_u0 must be positive.")
@@ -1125,7 +1157,7 @@ def modified_Nc_rectangular_layered_clay(
     -------
     float
         Modified bearing capacity factor Nc,m,r for rectangular footing
-        (dimensionless).
+        [dimensionless].
 
     Raises
     ------
@@ -1134,7 +1166,8 @@ def modified_Nc_rectangular_layered_clay(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-25, p. 309.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-25,
+    printed p. 309 (pdf_page_index 346).
     """
     if L <= 0.0:
         raise ValueError("Foundation length L must be positive.")
@@ -1191,8 +1224,8 @@ def second_layer_thickness(
     Returns
     -------
     float
-        Thickness of the second layer H2 (ft, m), the unit of *B* and
-        *H1*.
+        Thickness of the second layer H2 [consistent units (ft, m)], the unit
+        of *B* and *H1*.
 
     Raises
     ------
@@ -1202,8 +1235,8 @@ def second_layer_thickness(
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-26,
-    PDF p. 349 (printed p. 311); example in Figure 5-20, PDF p. 350
-    (printed p. 312).
+    printed p. 311 (pdf_page_index 348); example in Figure 5-20,
+    printed p. 312 (pdf_page_index 349).
     """
     denominator = c2 + math.tan(math.radians(phi2_deg))
     if denominator == 0.0:
@@ -1239,7 +1272,7 @@ def average_cohesion_mixed_layers(
     Returns
     -------
     float
-        Average cohesion c_ave (psf, kPa).
+        Average cohesion c_ave [consistent units (psf, kPa)].
 
     Raises
     ------
@@ -1248,7 +1281,8 @@ def average_cohesion_mixed_layers(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-27, p. 312.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-27,
+    printed p. 312 (pdf_page_index 349).
     """
     total_H = H1 + H2
     if total_H <= 0.0:
@@ -1283,7 +1317,7 @@ def average_friction_angle_mixed_layers(
     Returns
     -------
     float
-        Average friction angle phi_ave (degrees).
+        Average friction angle phi_ave [degrees].
 
     Raises
     ------
@@ -1292,7 +1326,8 @@ def average_friction_angle_mixed_layers(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-28, p. 312.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-28,
+    printed p. 312 (pdf_page_index 349).
     """
     total_H = H1 + H2
     if total_H <= 0.0:
@@ -1326,11 +1361,12 @@ def rock_bearing_capacity_factor_Nc(phi_rf_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nc for rock (dimensionless).
+        Bearing capacity factor Nc for rock [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-29, p. 317.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-29,
+    printed p. 317 (pdf_page_index 354).
     """
     angle = math.radians(45.0 + phi_rf_deg / 2.0)
     return 5.0 * math.tan(angle) ** 4
@@ -1353,11 +1389,12 @@ def rock_bearing_capacity_factor_Nq(phi_rf_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nq for rock (dimensionless).
+        Bearing capacity factor Nq for rock [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-30, p. 317.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-30,
+    printed p. 317 (pdf_page_index 354).
     """
     angle = math.radians(45.0 + phi_rf_deg / 2.0)
     return math.tan(angle) ** 6
@@ -1379,11 +1416,12 @@ def rock_bearing_capacity_factor_Ngamma(Nq: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor N_gamma for rock (dimensionless).
+        Bearing capacity factor N_gamma for rock [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-31, p. 317.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-31,
+    printed p. 317 (pdf_page_index 354).
     """
     return Nq + 1.0
 
@@ -1410,7 +1448,7 @@ def rock_reduced_ultimate_bearing_capacity(
     Returns
     -------
     float
-        Reduced ultimate bearing capacity (psf, kPa).
+        Reduced ultimate bearing capacity [consistent units (psf, kPa)].
 
     Raises
     ------
@@ -1419,7 +1457,8 @@ def rock_reduced_ultimate_bearing_capacity(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-32, p. 317.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-32,
+    printed p. 317 (pdf_page_index 354).
     """
     if RQD < 0.0 or RQD > 1.0:
         raise ValueError("RQD must be between 0 and 1 (decimal, not percent).")
@@ -1456,7 +1495,7 @@ def relative_stiffness_factor(
     Returns
     -------
     float
-        Relative stiffness factor Kr (dimensionless).
+        Relative stiffness factor Kr [dimensionless].
 
     Raises
     ------
@@ -1465,7 +1504,8 @@ def relative_stiffness_factor(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-33, p. 320.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-33,
+    printed p. 320 (pdf_page_index 357).
     """
     if Es <= 0.0:
         raise ValueError("Soil modulus Es must be positive.")
@@ -1507,7 +1547,7 @@ def foundation_stiffness_factor(
     Returns
     -------
     float
-        Stiffness factor lambda (1/length).
+        Stiffness factor lambda [consistent units (1/length)].
 
     Raises
     ------
@@ -1516,7 +1556,8 @@ def foundation_stiffness_factor(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-34, p. 321.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-34,
+    printed p. 321 (pdf_page_index 358).
     """
     if ks <= 0.0:
         raise ValueError("Subgrade modulus ks must be positive.")
@@ -1553,7 +1594,7 @@ def modulus_of_subgrade_reaction(q: float, s: float) -> float:
     Returns
     -------
     float
-        Modulus of subgrade reaction ks (force/length^3).
+        Modulus of subgrade reaction ks [consistent units (force/length^3)].
 
     Raises
     ------
@@ -1562,7 +1603,8 @@ def modulus_of_subgrade_reaction(q: float, s: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-35, p. 323.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-35,
+    printed p. 323 (pdf_page_index 360).
     """
     if s <= 0.0:
         raise ValueError("Settlement s must be positive.")
@@ -1601,7 +1643,8 @@ def subgrade_modulus_from_plate_load_test(
     Returns
     -------
     float
-        Estimated modulus of subgrade reaction ks (force/length^3).
+        Estimated modulus of subgrade reaction ks [consistent units
+        (force/length^3)].
 
     Raises
     ------
@@ -1610,7 +1653,8 @@ def subgrade_modulus_from_plate_load_test(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-36, p. 324.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-36,
+    printed p. 324 (pdf_page_index 361).
     """
     if Bp <= 0.0 or B <= 0.0:
         raise ValueError("Plate width Bp and foundation width B must be positive.")
@@ -1648,7 +1692,8 @@ def subgrade_modulus_from_elastic_parameters(
     Returns
     -------
     float
-        Estimated modulus of subgrade reaction ks (force/length^3).
+        Estimated modulus of subgrade reaction ks [consistent units
+        (force/length^3)].
 
     Raises
     ------
@@ -1657,7 +1702,8 @@ def subgrade_modulus_from_elastic_parameters(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-37, p. 325.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-37,
+    printed p. 325 (pdf_page_index 362).
     """
     if B <= 0.0:
         raise ValueError("Foundation width B must be positive.")
@@ -1693,7 +1739,7 @@ def poissons_ratio_from_friction_angle(phi_prime_deg: float) -> float:
     Returns
     -------
     float
-        Drained Poisson's ratio (dimensionless).
+        Drained Poisson's ratio [dimensionless].
 
     Raises
     ------
@@ -1702,7 +1748,8 @@ def poissons_ratio_from_friction_angle(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-38, p. 329.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-38,
+    printed p. 329 (pdf_page_index 366).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
         raise ValueError(
@@ -1745,7 +1792,7 @@ def subgrade_modulus_time_dependent(
     Returns
     -------
     float
-        Reduced subgrade modulus ksc (force/length^3).
+        Reduced subgrade modulus ksc [consistent units (force/length^3)].
 
     Raises
     ------
@@ -1754,7 +1801,8 @@ def subgrade_modulus_time_dependent(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-39, p. 330.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-39,
+    printed p. 330 (pdf_page_index 367).
     """
     total = s + sc
     if total <= 0.0:
@@ -1787,7 +1835,7 @@ def winkler_spring_stiffness(ks: float, A_cont: float) -> float:
     Returns
     -------
     float
-        Winkler spring stiffness K (force/length).
+        Winkler spring stiffness K [consistent units (force/length)].
 
     Raises
     ------
@@ -1796,7 +1844,8 @@ def winkler_spring_stiffness(ks: float, A_cont: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-40, p. 330.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-40,
+    printed p. 330 (pdf_page_index 367).
     """
     if ks < 0.0:
         raise ValueError("Subgrade modulus ks must be non-negative.")
@@ -1838,7 +1887,8 @@ def subgrade_modulus_coupling(
     Returns
     -------
     float
-        Modulus of subgrade reaction at interior point i (force/length^3).
+        Modulus of subgrade reaction at interior point i [consistent units
+        (force/length^3)].
 
     Raises
     ------
@@ -1847,7 +1897,8 @@ def subgrade_modulus_coupling(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-41, p. 332.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-41,
+    printed p. 332 (pdf_page_index 369).
     """
     if sigma_z_ave_i <= 0.0:
         raise ValueError(
@@ -1886,7 +1937,8 @@ def floating_mat_net_pressure(
     Returns
     -------
     float
-        Net bearing pressure for settlement analysis (psf, kPa).
+        Net bearing pressure for settlement analysis [consistent units (psf,
+        kPa)].
 
     Raises
     ------
@@ -1895,7 +1947,8 @@ def floating_mat_net_pressure(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-42, p. 334.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Equation 5-42,
+    printed p. 334 (pdf_page_index 371).
     """
     if A_mat <= 0.0:
         raise ValueError("Mat area A_mat must be positive.")
@@ -1940,12 +1993,12 @@ def meyerhof_hansen_Nq(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nq (dimensionless).
+        Bearing capacity factor Nq [dimensionless].
 
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2 / Table 5-6 /
-    Table 5-8, pp. 289-296.
+    Table 5-8, printed pp. 289-296 (pdf_page_index 326-333).
     """
     phi = math.radians(phi_deg)
     return math.tan(math.pi / 4.0 + phi / 2.0) ** 2 * math.exp(
@@ -1971,12 +2024,12 @@ def meyerhof_hansen_Nc(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nc (dimensionless).
+        Bearing capacity factor Nc [dimensionless].
 
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2 / Table 5-6 /
-    Table 5-8, pp. 289-296.
+    Table 5-8, printed pp. 289-296 (pdf_page_index 326-333).
     """
     if phi_deg == 0.0:
         return 5.14
@@ -1999,11 +2052,12 @@ def meyerhof_Ngamma(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor N_gamma (dimensionless).
+        Bearing capacity factor N_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6, p. 294.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
+    printed p. 294 (pdf_page_index 331).
     """
     Nq = meyerhof_hansen_Nq(phi_deg)
     return (Nq - 1.0) * math.tan(math.radians(1.4 * phi_deg))
@@ -2023,11 +2077,12 @@ def hansen_Ngamma(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor N_gamma (dimensionless).
+        Bearing capacity factor N_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     Nq = meyerhof_hansen_Nq(phi_deg)
     return 1.5 * (Nq - 1.0) * math.tan(math.radians(phi_deg))
@@ -2057,11 +2112,12 @@ def terzaghi_Nc(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nc (dimensionless).
+        Bearing capacity factor Nc [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2, p. 289.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2,
+    printed p. 289 (pdf_page_index 326).
     """
     if phi_deg == 0.0:
         return 5.7
@@ -2088,11 +2144,12 @@ def terzaghi_Nq(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor Nq (dimensionless).
+        Bearing capacity factor Nq [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2, p. 289.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2,
+    printed p. 289 (pdf_page_index 326).
     """
     if phi_deg == 0.0:
         return 1.0
@@ -2121,7 +2178,7 @@ def terzaghi_Ngamma(phi_deg: float) -> float:
     Returns
     -------
     float
-        Bearing capacity factor N_gamma (dimensionless).
+        Bearing capacity factor N_gamma [dimensionless].
 
     Notes
     -----
@@ -2130,7 +2187,8 @@ def terzaghi_Ngamma(phi_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2, p. 289.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-2,
+    printed p. 289 (pdf_page_index 326).
     """
     if phi_deg == 0.0:
         return 0.0
@@ -2158,8 +2216,12 @@ def terzaghi_shape_factors(
 
     Returns
     -------
-    tuple of float
-        (sc, sq, s_gamma) shape factors.
+    sc : float
+        Shape factor s_c [dimensionless].
+    sq : float
+        Shape factor s_q [dimensionless].
+    s_gamma : float
+        Shape factor s_gamma [dimensionless].
 
     Raises
     ------
@@ -2168,7 +2230,8 @@ def terzaghi_shape_factors(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-5, p. 294.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-5,
+    printed p. 294 (pdf_page_index 331).
     """
     shape_lower = shape.lower().strip()
     if shape_lower in ("continuous", "strip"):
@@ -2223,8 +2286,12 @@ def meyerhof_shape_factors(
 
     Returns
     -------
-    tuple of float
-        (sc, sq, s_gamma) shape factors.
+    sc : float
+        Shape factor s_c [dimensionless].
+    sq : float
+        Shape factor s_q [dimensionless].
+    s_gamma : float
+        Shape factor s_gamma [dimensionless].
 
     Raises
     ------
@@ -2234,7 +2301,7 @@ def meyerhof_shape_factors(
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
-    PDF p. 332 (printed p. 294).
+    printed p. 294 (pdf_page_index 331).
     """
     _meyerhof_table_5_6_rows(phi_deg, "shape")
     Kp = _Kp(phi_deg)
@@ -2273,8 +2340,12 @@ def meyerhof_depth_factors(
 
     Returns
     -------
-    tuple of float
-        (dc, dq, d_gamma) depth factors.
+    dc : float
+        Depth factor d_c [dimensionless].
+    dq : float
+        Depth factor d_q [dimensionless].
+    d_gamma : float
+        Depth factor d_gamma [dimensionless].
 
     Raises
     ------
@@ -2285,7 +2356,7 @@ def meyerhof_depth_factors(
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
-    PDF p. 332 (printed p. 294).
+    printed p. 294 (pdf_page_index 331).
     """
     _meyerhof_table_5_6_rows(phi_deg, "depth")
     if B <= 0.0:
@@ -2319,8 +2390,12 @@ def meyerhof_inclination_factors(
 
     Returns
     -------
-    tuple of float
-        (ic, iq, i_gamma) inclination factors.
+    ic : float
+        Inclination factor i_c [dimensionless].
+    iq : float
+        Inclination factor i_q [dimensionless].
+    i_gamma : float
+        Inclination factor i_gamma [dimensionless].
 
     Raises
     ------
@@ -2329,7 +2404,8 @@ def meyerhof_inclination_factors(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6, p. 294.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-6,
+    printed p. 294 (pdf_page_index 331).
     """
     theta = math.radians(theta_deg)
     ic = (1.0 - 2.0 * theta / math.pi) ** 2
@@ -2378,13 +2454,16 @@ def hansen_shape_factors_phi0(
 
     Returns
     -------
-    tuple of float
-        (sc, sq) where sq = 0 (no correction for q factor in phi=0).
-        sc = 0.2 * (B/L).
+    sc : float
+        Shape factor s_c = 0.2 (B/L) [dimensionless].
+    sq : float
+        Shape factor s_q [dimensionless], 0 (no correction for the q term at
+        phi = 0).
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7,
+    printed p. 295 (pdf_page_index 332).
     """
     if L <= 0.0:
         raise ValueError("Foundation length L must be positive.")
@@ -2408,11 +2487,12 @@ def hansen_depth_factor_phi0(Df: float, B: float) -> float:
     Returns
     -------
     float
-        Depth factor dc for phi = 0.
+        Depth factor dc for phi = 0 [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7,
+    printed p. 295 (pdf_page_index 332).
     """
     k = _hansen_k(Df, B)
     return 0.4 * k
@@ -2438,7 +2518,7 @@ def hansen_inclination_factor_phi0(
     Returns
     -------
     float
-        Inclination factor ic for phi = 0.
+        Inclination factor ic for phi = 0 [dimensionless].
 
     Raises
     ------
@@ -2447,7 +2527,8 @@ def hansen_inclination_factor_phi0(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7,
+    printed p. 295 (pdf_page_index 332).
     """
     if A_prime <= 0.0 or Ca <= 0.0:
         raise ValueError("A_prime and Ca must be positive.")
@@ -2471,11 +2552,12 @@ def hansen_base_factor_phi0(eta_rad: float) -> float:
     Returns
     -------
     float
-        Base inclination factor bc for phi = 0.
+        Base inclination factor bc for phi = 0 [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7,
+    printed p. 295 (pdf_page_index 332).
     """
     return eta_rad / (math.pi / 2.0 + 1.0)
 
@@ -2494,11 +2576,12 @@ def hansen_ground_factor_phi0(beta_rad: float) -> float:
     Returns
     -------
     float
-        Ground inclination factor gc for phi = 0.
+        Ground inclination factor gc for phi = 0 [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7, p. 295.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-7,
+    printed p. 295 (pdf_page_index 332).
     """
     return beta_rad / (math.pi / 2.0 + 1.0)
 
@@ -2524,12 +2607,17 @@ def hansen_shape_factors(
 
     Returns
     -------
-    tuple of float
-        (sc, sq, s_gamma) shape factors.
+    sc : float
+        Shape factor s_c [dimensionless].
+    sq : float
+        Shape factor s_q [dimensionless].
+    s_gamma : float
+        Shape factor s_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     if L <= 0.0:
         raise ValueError("Foundation length L must be positive.")
@@ -2559,12 +2647,17 @@ def hansen_depth_factors(
 
     Returns
     -------
-    tuple of float
-        (dc, dq, d_gamma) depth factors.  d_gamma is always 1.0.
+    dc : float
+        Depth factor d_c [dimensionless].
+    dq : float
+        Depth factor d_q [dimensionless].
+    d_gamma : float
+        Depth factor d_gamma [dimensionless], always 1.0.
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     k = _hansen_k(Df, B)
     phi = math.radians(phi_deg)
@@ -2615,12 +2708,17 @@ def hansen_inclination_factors(
 
     Returns
     -------
-    tuple of float
-        (ic, iq, i_gamma) inclination factors.
+    ic : float
+        Inclination factor i_c [dimensionless].
+    iq : float
+        Inclination factor i_q [dimensionless].
+    i_gamma : float
+        Inclination factor i_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     if phi_deg <= 0.0:
         raise ValueError("Use hansen_inclination_factor_phi0 for phi = 0.")
@@ -2663,12 +2761,15 @@ def hansen_base_factors(
 
     Returns
     -------
-    tuple of float
-        (bq, b_gamma) base inclination factors.
+    bq : float
+        Base inclination factor b_q [dimensionless].
+    b_gamma : float
+        Base inclination factor b_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     tan_phi = math.tan(math.radians(phi_deg))
     bq = math.exp(-2.0 * eta_rad * tan_phi)
@@ -2695,12 +2796,15 @@ def hansen_ground_factors(beta_deg: float) -> Tuple[float, float]:
 
     Returns
     -------
-    tuple of float
-        (gq, g_gamma) ground inclination factors.
+    gq : float
+        Ground inclination factor g_q [dimensionless].
+    g_gamma : float
+        Ground inclination factor g_gamma [dimensionless].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8, p. 296.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-8,
+    printed p. 296 (pdf_page_index 333).
     """
     tan_beta = math.tan(math.radians(beta_deg))
     gq = (1.0 - 0.5 * tan_beta) ** 5
@@ -2736,12 +2840,15 @@ def local_shear_terzaghi(
 
     Returns
     -------
-    tuple of float
-        (c_star, phi_star_deg) reduced cohesion and friction angle (degrees).
+    c_star : float
+        Reduced cohesion c* [consistent units (the unit of c_prime)].
+    phi_star_deg : float
+        Reduced friction angle phi* [degrees].
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-4, p. 291.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-4,
+    printed p. 291 (pdf_page_index 328).
     """
     c_star = 0.67 * c_prime
     phi_star = math.degrees(
@@ -2777,8 +2884,10 @@ def local_shear_vesic(
 
     Returns
     -------
-    tuple of float
-        (c_star, phi_star_deg) reduced cohesion and friction angle (degrees).
+    c_star : float
+        Reduced cohesion c* [consistent units (the unit of c_prime)].
+    phi_star_deg : float
+        Reduced friction angle phi* [degrees].
 
     Raises
     ------
@@ -2787,7 +2896,8 @@ def local_shear_vesic(
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-4, p. 291.
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Table 5-4,
+    printed p. 291 (pdf_page_index 328).
     """
     if Dr < 0.0 or Dr > 1.0:
         raise ValueError("Relative density Dr must be between 0 and 1.")
@@ -3057,6 +3167,10 @@ def _fig_5_18_lookup(which, ratio, depth_ratio):
     }
 
 
+@_u.labelled(
+    {"N_cm": "dimensionless", "N_cm_drawn_curve": "dimensionless",
+     "N_cm_reduced_10_percent": "dimensionless"},
+    printed_page="310", pdf_page_index=347)
 def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> dict:
     """Modified bearing capacity factor N_c,m,s (dimensionless) for a strip
     footing on two layers of clay, Figure 5-18(a) of UFC 3-220-20 (after
@@ -3115,14 +3229,19 @@ def figure_5_18a_Ncm_strip(cu2_over_cu1: float, H_over_B: float) -> dict:
 
     References
     ----------
-    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Figure 5-18(a)
-    (Modified Bearing Capacity Factors for Two-Layer Clay Stratigraphy),
-    PDF p. 348 (printed p. 310); text on PDF p. 347 (printed p. 309);
-    worked example in Figure 5-19, PDF p. 349 (printed p. 311).
+    UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Figure 5-18(a) (Modified
+    Bearing Capacity Factors for Two-Layer Clay Stratigraphy),
+    printed p. 310 (pdf_page_index 347); text on
+    printed p. 309 (pdf_page_index 346); worked example in Figure 5-19,
+    printed p. 311 (pdf_page_index 348).
     """
     return _fig_5_18_lookup("a", cu2_over_cu1, H_over_B)
 
 
+@_u.labelled(
+    {"N_cm": "dimensionless", "N_cm_reduced_10_percent": "dimensionless",
+     "N_cm_drawn_curve": "dimensionless"},
+    printed_page="310", pdf_page_index=347)
 def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> dict:
     """Modified bearing capacity factor N_c,m,c (dimensionless, shape
     factor included) for a circular footing on two layers of clay, Figure
@@ -3179,8 +3298,9 @@ def figure_5_18b_Ncm_circular(cu2_over_cu1: float, H_over_B: float) -> dict:
     References
     ----------
     UFC 3-220-20, Foundations, 16 Jan 2025, Chapter 5, Figure 5-18(b),
-    PDF p. 348 (printed p. 310); text on PDF p. 347 (printed p. 309);
-    worked example in Figure 5-19, PDF p. 349 (printed p. 311).
+    printed p. 310 (pdf_page_index 347); text on
+    printed p. 309 (pdf_page_index 346); worked example in Figure 5-19,
+    printed p. 311 (pdf_page_index 348).
     """
     return _fig_5_18_lookup("b", cu2_over_cu1, H_over_B)
 

@@ -41,9 +41,9 @@ def critical_depth_vertical_cut_clay(s_u: float, gamma_t: float) -> float:
     Returns
     -------
     float
-        Critical depth *H_crit* of the vertical cut (length, e.g.,
-        ft or m).  Units depend on the consistent unit system used
-        for the inputs.
+        Critical depth *H_crit* of the vertical cut [consistent units (length,
+        e.g., ft or m)].  Units depend on the consistent unit system used for
+        the inputs.
 
     Raises
     ------
@@ -60,8 +60,8 @@ def critical_depth_vertical_cut_clay(s_u: float, gamma_t: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-2.2.1, Equation 2-1, p. 94.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-2.2.1, Equation 2-1, printed p. 56 (pdf_page_index 93).
     """
     if s_u < 0.0:
         raise ValueError("s_u must be non-negative.")
@@ -107,7 +107,7 @@ def normalized_wall_stiffness(
     Returns
     -------
     float
-        Normalized wall stiffness *K_wall* (dimensionless).
+        Normalized wall stiffness *K_wall* [no unit printed].
 
     Raises
     ------
@@ -124,7 +124,7 @@ def normalized_wall_stiffness(
     References
     ----------
     UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-4.3, Equation 2-2, p. 111.
+    Chapter 2, Section 2-4.3, Equation 2-2, printed p. 73 (pdf_page_index 110).
     Mana, A.I. and Clough, G.W. (1981).
     """
     if E <= 0.0:
@@ -169,7 +169,7 @@ def angular_distortion(
     Returns
     -------
     float
-        Angular distortion *beta* (dimensionless, radians).
+        Angular distortion *beta* [radians].
 
     Raises
     ------
@@ -187,8 +187,8 @@ def angular_distortion(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-4.4.3, Equation 2-3, p. 122.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-4.4.3, Equation 2-3, printed p. 84 (pdf_page_index 121).
     """
     if d_b <= 0.0:
         raise ValueError("d_b must be positive.")
@@ -227,7 +227,7 @@ def horizontal_strain(
     Returns
     -------
     float
-        Horizontal strain *epsilon_h* (dimensionless).
+        Horizontal strain *epsilon_h* [no unit printed].
 
     Raises
     ------
@@ -246,8 +246,8 @@ def horizontal_strain(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-4.4.3, Equation 2-4, p. 122.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-4.4.3, Equation 2-4, printed p. 84 (pdf_page_index 121).
     """
     if d_b <= 0.0:
         raise ValueError("d_b must be positive.")
@@ -285,8 +285,8 @@ def movement_stiff_clay_sand(
     Returns
     -------
     float
-        Estimated horizontal or vertical movement *delta_i* at the
-        point of interest (same length unit as *delta_m*).  Returns
+        Estimated horizontal or vertical movement *delta_i* at the point of
+        interest [consistent units (same length unit as *delta_m*)].  Returns
         0.0 if *d_i* >= *d_0*.
 
     Raises
@@ -304,8 +304,8 @@ def movement_stiff_clay_sand(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-4.4.3, Equation 2-5, p. 122.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-4.4.3, Equation 2-5, printed p. 84 (pdf_page_index 121).
     """
     if delta_m < 0.0:
         raise ValueError("delta_m must be non-negative.")
@@ -349,8 +349,8 @@ def movement_soft_to_medium_clay(
     Returns
     -------
     float
-        Estimated horizontal or vertical movement *delta_i* at the
-        point of interest (same length unit as *delta_m*).  Returns
+        Estimated horizontal or vertical movement *delta_i* at the point of
+        interest [consistent units (same length unit as *delta_m*)].  Returns
         0.0 if *d_i* > 1.5*H.
 
     Raises
@@ -370,8 +370,8 @@ def movement_soft_to_medium_clay(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-4.4.3, Equation 2-6, p. 123.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-4.4.3, Equation 2-6, printed p. 85 (pdf_page_index 122).
     """
     if delta_m < 0.0:
         raise ValueError("delta_m must be non-negative.")
@@ -413,9 +413,9 @@ def scaled_distance(D: float, W: float, beta: float = 0.5) -> float:
     Returns
     -------
     float
-        Scaled distance *SD* (ft/lb^beta).  The scaled distance is not
-        dimensionally correct and requires use of the indicated units
-        (ft and lb).
+        Scaled distance *SD* [ft/lb^0.5 (ft/lb^0.33 when beta = 0.33)].  The
+        scaled distance is not dimensionally correct and requires use of the
+        indicated units (ft and lb).
 
     Raises
     ------
@@ -433,9 +433,9 @@ def scaled_distance(D: float, W: float, beta: float = 0.5) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-5.3.1, Equation 2-7, p. 132.
-    USBM (1971), Oriard (1987).
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-5.3.1, Equation 2-7, printed p. 94 (pdf_page_index 131). USBM
+    (1971), Oriard (1987).
     """
     if D < 0.0:
         raise ValueError("D must be non-negative.")
@@ -470,8 +470,8 @@ def peak_particle_velocity(K: float, SD: float) -> float:
     Returns
     -------
     float
-        Peak particle velocity *PPV* (in/sec when using the standard
-        empirical units).
+        Peak particle velocity *PPV* [in/sec], with SD in ft/lb^beta (the
+        printed empirical units).
 
     Raises
     ------
@@ -489,8 +489,8 @@ def peak_particle_velocity(K: float, SD: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-5.3.1, Equation 2-8, p. 132.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-5.3.1, Equation 2-8, printed p. 94 (pdf_page_index 131).
     """
     if K <= 0.0:
         raise ValueError("K must be positive.")
@@ -521,7 +521,7 @@ def confinement_factor_from_blast_data(PPV: float, SD: float) -> float:
     Returns
     -------
     float
-        Confinement factor *K* (dimensionless, empirical).  Typical
+        Confinement factor *K* [dimensionless], empirical.  Typical
         range: lower bound = 20, upper bound = 242, average = 150.
 
     Raises
@@ -540,8 +540,8 @@ def confinement_factor_from_blast_data(PPV: float, SD: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-5.3.1, Equation 2-9, p. 132.
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-5.3.1, Equation 2-9, printed p. 94 (pdf_page_index 131).
     """
     if PPV < 0.0:
         raise ValueError("PPV must be non-negative.")
@@ -580,9 +580,9 @@ def inverse_specific_resistance_sheet_piling(
     Returns
     -------
     float
-        Inverse specific resistance *rho* (length/time, e.g.,
-        cm/sec).  Typical values range from about 1e-3 cm/sec for
-        unsealed joints to about 1e-9 cm/sec for sealed joints.
+        Inverse specific resistance *rho* [consistent units (length/time, e.g.,
+        cm/sec)].  Typical values range from about 1e-3 cm/sec for unsealed
+        joints to about 1e-9 cm/sec for sealed joints.
 
     Raises
     ------
@@ -607,9 +607,9 @@ def inverse_specific_resistance_sheet_piling(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
-    Chapter 2, Section 2-6.2, Equation 2-10, p. 136.
-    European Standard EN 12063 (1999).
+    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    Section 2-6.2, Equation 2-10, printed p. 98 (pdf_page_index 135). European
+    Standard EN 12063 (1999).
     """
     if q < 0.0:
         raise ValueError("q must be non-negative.")
