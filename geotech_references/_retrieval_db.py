@@ -58,6 +58,7 @@ from typing import Any
 
 from . import _atomic_db
 from . import _packs
+from . import _reach
 from . import _query_expansion as _qe
 from . import _retrieval
 from . import _schema
@@ -72,7 +73,10 @@ _DB_NAME = "geotech_references_fts.sqlite"
 #: 4 = each row's ``reference_id``, its chapter file's report number, so a
 #: search scoped to a volume's own number searches that volume (2026-11-10
 #: review follow-up).
-_SCHEMA_VERSION = 4
+#: 5 = a ``section_reach`` table: what each section's figures, tables and
+#: same-document pointers reach (:mod:`._reach`, 2026-11-12); the figure
+#: and table catalogs join the source signature.
+_SCHEMA_VERSION = 5
 
 _INDEXED_COLUMNS = (
     "title",
@@ -169,8 +173,18 @@ def _iter_text_jsons() -> list[tuple[str, Path]]:
     return out
 
 
+def _source_paths(sources=None) -> list[Path]:
+    """The files the text database is built from: every chapter file, the
+    catalogs the reach flags read (:func:`._reach.catalog_paths`, there or
+    not, so adding one rebuilds too) and the module that works the flags
+    out, so a change of its rules rebuilds them."""
+    sources = _iter_text_jsons() if sources is None else sources
+    return ([jf for _, jf in sources] + _reach.catalog_paths()
+            + [Path(_reach.__file__)])
+
+
 def _newest_source_mtime() -> float:
-    return source_state([jf for _, jf in _iter_text_jsons()])[0]
+    return source_state(_source_paths())[0]
 
 
 #: ``(PRAGMA user_version, source signature)`` per (database path, file
@@ -254,7 +268,7 @@ def _needs_rebuild(db_path: Path) -> bool:
     alone missed (2026-11-10 review, core-11)."""
     if not db_path.exists():
         return True
-    newest, signature = source_state([jf for _, jf in _iter_text_jsons()])
+    newest, signature = source_state(_source_paths())
     if db_path.stat().st_mtime < newest:
         return True
     version, built_from = db_meta(db_path)
@@ -326,12 +340,12 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     sources = _iter_text_jsons()
     # taken before the files are read: one changed during the build makes
     # the next check build again
-    signature = source_state([jf for _, jf in sources])[1]
+    signature = source_state(_source_paths(sources))[1]
     write_build_meta(cur, signature, _SCHEMA_VERSION)
     for reference, jf in sources:
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as e:
+        except _packs.JSON_ERRORS as e:
             if jf in pack_files:
                 continue  # named in _packs.problems()
             raise unreadable_source(jf, e) from e
@@ -351,6 +365,7 @@ def _fill_db(conn: sqlite3.Connection) -> None:
         FROM sections
         """
     )
+    _reach.fill_reach_table(cur)
 
 
 def unreadable_source(path: Path, error: Exception) -> RuntimeError:
@@ -1372,7 +1387,8 @@ def reference_get(reference: str, section_id: str,
     include_subsections : bool, optional
         Inline the sections under it as ``subsections`` (each with its
         own), as long as the whole result stays within
-        ``_retrieval.SUBSECTIONS_INLINE_MAX_CHARS`` (12,000) characters;
+        ``_retrieval.SUBSECTIONS_INLINE_MAX_CHARS`` (12,000) characters,
+        counted without the reach flags, and within 14,000 with them;
         past that they stay listed in ``children`` and a ``note`` says
         so. Default False.
 
@@ -1381,7 +1397,31 @@ def reference_get(reference: str, section_id: str,
     dict
         Full section dict, plus ``parent_id``, ``under`` (the sections
         above it) and ``children`` (``section_id`` and ``title`` of each
-        section directly under it).
+        section directly under it). What the section names and points to
+        is answered (``_reach``, REF-92), each key only when it has
+        something in it, and ``note`` says what the keys and the answers
+        it carries mean:
+
+        - ``figures_held``: per figure its ``figures`` list names,
+          ``"catalog"`` (``figure_get`` finds it and gives its page),
+          ``"catalog (N rows: give figure_get the pdf_page_index)"``,
+          ``"catalog (as 5-5)"`` / ``"catalog (as parts ...)"`` (filed
+          under that number), or ``"not catalogued"`` (no figure catalog
+          row: ``figure_get`` cannot fetch it);
+        - ``tables_held``: per table its ``tables`` list names, where the
+          values are: ``"text: <section_id>"`` (typed in that section),
+          ``"lookup: <function>"`` (that function returns them;
+          ``lookup_reference`` takes the name), ``"page: printed p. P
+          (pdf_page_index N)"`` (only on the printed page; ``table_get``
+          gives it), or ``"not catalogued"`` (no table catalog row, or no
+          catalog: ``table_get`` cannot fetch it);
+        - ``not_held``: parts of the same document the body points to
+          that the library holds no text or catalog row for ("Appendix
+          D", "Chapter 12", "Eq. 4-11"), at most 15, then "and N more".
+
+        A page is readable only where the PDF is on the host. The held
+        maps come in a short form: ``{"all": answer}``, or the numbers
+        whose answer differs plus ``"others": answer``.
 
     Raises
     ------
@@ -1423,9 +1463,11 @@ def reference_get(reference: str, section_id: str,
         out["children"] = [
             {"section_id": c["section_id"], "title": c["title"]}
             for c in _child_rows(conn, row["rowid"])]
-        if include_subsections:
-            out = _retrieval.inline_subsections(
-                out, _subtree(conn, row["rowid"], {row["rowid"]}))
+        # what its figures, tables and pointers reach (2026-11-12)
+        out = _reach.fetch_result(
+            out, _subtree(conn, row["rowid"], {row["rowid"]})
+            if include_subsections else None,
+            _reach.chapter_flags(conn, reference, row["chapter"]))
         # the section a chapter prints under the same number (GEC-13
         # chapter 1's printed 8.2.7 is 1.8.2.7), as retrieve_section says
         return _retrieval.with_printed_note(
@@ -1621,7 +1663,9 @@ def list_indexed_references() -> list[dict[str, Any]]:
     could be indexed, is listed too, with no sections and its ``problems``
     (2026-11-10 review, core-10: they were left out without a word). A
     folder the setting names that is not there is listed the same way,
-    under the folder as written.
+    under the folder as written. A built-in reference whose figure or
+    table catalog the reach flags cannot read carries ``problems`` too
+    (:func:`._reach.catalog_problems`).
     """
     conn = _ro_connect()
     try:
@@ -1650,6 +1694,11 @@ def list_indexed_references() -> list[dict[str, Any]]:
         if len(titles.get(r["reference"], [])) > 1:
             r["reference_titles"] = titles[r["reference"]]
     listed = {r["reference"]: r for r in rows}
+    # a built-in figure or table catalog the reach flags cannot read
+    # (2026-11-12; a pack's is in _packs.problems)
+    for key, problems in _reach.catalog_problems().items():
+        if key in listed and not key.startswith(_packs.PACK_PREFIX):
+            listed[key]["problems"] = problems
     for key, problems in _packs.problems_by_pack().items():
         if key in listed:
             listed[key]["problems"] = problems

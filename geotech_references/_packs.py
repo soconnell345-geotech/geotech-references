@@ -54,6 +54,12 @@ PACKS_ENV = "GEOTECH_REFERENCES_PACKS"
 PACK_PREFIX = "local_"
 PACK_FILE = "pack.json"
 CATALOG_NAME = "figures_catalog.json"
+TABLES_CATALOG_NAME = "tables_catalog.json"
+#: What reading and parsing a broken or hostile JSON file can raise: a
+#: missing or locked file, bad UTF-8 or JSON, nesting deeper than the
+#: parser's recursion limit ("[" * 200000), or no memory for it (2026-11-12
+#: review of the reach build, item 3).
+JSON_ERRORS = (OSError, ValueError, RecursionError, MemoryError)
 
 
 def bare_file_name(value) -> bool:
@@ -126,7 +132,7 @@ def _scan() -> tuple[list[tuple[str, Path]], list[tuple[str, str]]]:
                 builtins = builtin_ids()
             try:
                 data = read_pack_json(folder)
-            except (OSError, ValueError) as e:
+            except JSON_ERRORS as e:
                 problems.append((key_of(folder), f"{folder}: pack.json "
                                  f"unreadable ({e}); skipped"))
                 continue
@@ -254,6 +260,17 @@ def catalog_problem(data) -> str | None:
     return None
 
 
+def tables_catalog_problem(data) -> str | None:
+    """Why the reach flags skip a pack's table catalog (its tables then
+    answer "not catalogued"), or None."""
+    if not isinstance(data, (dict, list)):
+        return "not a JSON object"
+    tables = data.get("tables", []) if isinstance(data, dict) else data
+    if not isinstance(tables, list):
+        return f"'tables' is {_kind(tables)}, not a list"
+    return None
+
+
 def index_pack_file(cur, path: Path, index) -> None:
     """Run ``index()``, the INSERTs of one pack file, under a SAVEPOINT on
     cursor ``cur``. A file that fails anyway is rolled back and named in
@@ -280,11 +297,16 @@ def _file_problems() -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     files = [(pid, jf, chapter_problem) for pid, jf in text_jsons()]
     files += [(pid, cat, catalog_problem) for pid, cat in catalogs()]
+    # the reach flags read a pack's table catalog (2026-11-12)
+    files += [(pid, folder / TABLES_CATALOG_NAME, tables_catalog_problem)
+              for pid, folder in packs()
+              if (folder / TABLES_CATALOG_NAME).is_file()]
     for pid, path, problem in files:
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as e:
-            out.append((pid, f"{path}: not readable JSON ({e}); skipped"))
+        except JSON_ERRORS as e:
+            out.append((pid, f"{path}: not readable JSON "
+                        f"({type(e).__name__}: {str(e)[:200]}); skipped"))
             continue
         why = problem(data)
         if why is None and str(path) in _INDEX_FAILURES:
@@ -350,7 +372,7 @@ def pack_records() -> list[dict]:
     for pid, folder in packs():
         try:
             meta = read_pack_json(folder)
-        except (OSError, ValueError):
+        except JSON_ERRORS:
             meta = {}
         h = hashlib.sha256()
         files = []

@@ -379,6 +379,42 @@ def rmp_optimum_asphalt_content(sigma, apparent_sg_combined_aggregate):
     }
 
 
+def _sieve_pairs(pct_passing_by_sieve_mm) -> list[tuple[float, float]]:
+    """``(sieve size in mm, percent passing)`` pairs from a dict keyed by
+    number or by text, or from a list of ``[size, percent]`` pairs, each
+    size as a float (so ``"0.60"`` reads as 0.6, the tabulated 0.60)."""
+    if isinstance(pct_passing_by_sieve_mm, dict):
+        items = list(pct_passing_by_sieve_mm.items())
+    elif isinstance(pct_passing_by_sieve_mm, (list, tuple)):
+        items = []
+        for pair in pct_passing_by_sieve_mm:
+            if not isinstance(pair, (list, tuple)) or len(pair) != 2:
+                raise ValueError(
+                    "pct_passing_by_sieve_mm as a list takes [size_mm, "
+                    f"percent_passing] pairs, got {pair!r}")
+            items.append(tuple(pair))
+    else:
+        raise ValueError(
+            "pct_passing_by_sieve_mm must be a dict of sieve size (mm) to "
+            "percent passing, or a list of [size_mm, percent_passing] "
+            f"pairs, got {type(pct_passing_by_sieve_mm).__name__}")
+    out: list[tuple[float, float]] = []
+    seen: set[float] = set()
+    for size, pct in items:
+        try:
+            size_mm = float(size)
+            pct_passing = float(pct)
+        except (TypeError, ValueError):
+            raise ValueError(
+                f"sieve size and percent passing must be numbers, got "
+                f"{size!r}: {pct!r}") from None
+        if size_mm in seen:
+            raise ValueError(f"sieve {size!r} mm is given twice")
+        seen.add(size_mm)
+        out.append((size_mm, pct_passing))
+    return out
+
+
 def slurry_seal_surface_area(pct_passing_by_sieve_mm):
     """Total surface area of slurry-seal job aggregate, SA (Appendix B-1.2.1).
 
@@ -392,11 +428,14 @@ def slurry_seal_surface_area(pct_passing_by_sieve_mm):
 
     Parameters
     ----------
-    pct_passing_by_sieve_mm : dict
-        Mapping of sieve size (mm, matching
+    pct_passing_by_sieve_mm : dict or list
+        Percent passing (0-100) by sieve size (mm, matching
         ``tables.table_b1_surface_area_factor`` keys: 9.5, 4.75, 2.36,
-        1.18, 0.60, 0.30, 0.15, 0.075) to percent passing that sieve
-        (0-100).
+        1.18, 0.60, 0.30, 0.15, 0.075), given as a dict keyed by the size
+        as a number (``{9.5: 100, ...}``) or as text (``{"9.5": 100,
+        "0.60": 52.0}``, the form a JSON object arrives in), or as a list
+        of ``[size, percent passing]`` pairs (``[[9.5, 100], ...]``). The
+        result is the same in every form.
 
     Returns
     -------
@@ -406,15 +445,16 @@ def slurry_seal_surface_area(pct_passing_by_sieve_mm):
     Raises
     ------
     ValueError
-        If pct_passing_by_sieve_mm is empty or contains an untabulated
-        sieve size.
+        If pct_passing_by_sieve_mm is empty, is not one of the forms
+        above, names a sieve twice ("0.6" and "0.60") or contains an
+        untabulated sieve size.
     """
     from .tables import table_b1_surface_area_factor
 
     if not pct_passing_by_sieve_mm:
         raise ValueError("pct_passing_by_sieve_mm must not be empty")
     sa = 0.0
-    for sieve_mm, pct_passing in pct_passing_by_sieve_mm.items():
+    for sieve_mm, pct_passing in _sieve_pairs(pct_passing_by_sieve_mm):
         factor = table_b1_surface_area_factor(sieve_mm)["factor_m2_per_kg"]
         sa += (pct_passing / 100.0) * factor
     return {

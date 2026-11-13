@@ -780,6 +780,33 @@ class TestSlurrySealSurfaceAreaMethod:
         with pytest.raises(ValueError):
             slurry_seal_surface_area({1.0: 50})
 
+    def test_surface_area_takes_the_json_forms(self):
+        """A JSON object's keys arrive as text, and a list of pairs is the
+        other JSON form: both give the number-keyed result (2026-11-12:
+        the helper's JSON call was refused, "got 9.5")."""
+        import json
+        plain = slurry_seal_surface_area(self.PCT_PASSING)
+        as_json = json.loads(json.dumps(self.PCT_PASSING))
+        assert all(isinstance(k, str) for k in as_json)
+        assert slurry_seal_surface_area(as_json) == plain
+        pairs = json.loads(json.dumps(
+            [[k, v] for k, v in self.PCT_PASSING.items()]))
+        assert slurry_seal_surface_area(pairs) == plain
+        # "0.60" and "0.6" both name the tabulated 0.60 sieve
+        texts = {"9.5": 100, "0.6": 52.0}
+        assert slurry_seal_surface_area(texts) == slurry_seal_surface_area(
+            {9.5: 100, 0.60: 52.0})
+
+    def test_surface_area_refuses_a_sieve_given_twice_or_a_bad_shape(self):
+        with pytest.raises(ValueError, match="twice"):
+            slurry_seal_surface_area({"0.6": 50, "0.60": 50})
+        with pytest.raises(ValueError, match="pairs"):
+            slurry_seal_surface_area([[9.5, 100, 1]])
+        with pytest.raises(ValueError, match="numbers"):
+            slurry_seal_surface_area({"No. 4": 99.5})
+        with pytest.raises(ValueError):
+            slurry_seal_surface_area("9.5: 100")
+
     def test_corrected_surface_area(self):
         sa = slurry_seal_surface_area(self.PCT_PASSING)["surface_area_m2_per_kg"]
         r = slurry_seal_corrected_surface_area(sa, 2.96)

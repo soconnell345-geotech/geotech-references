@@ -24,8 +24,7 @@
       "figures": [],
       "tables": [],
       "cross_references": {
-        "axial_pile": "Fundamental Rn = Rs + Rp equation (Eq 7-2 through 7-5) directly implemented in axial_pile module",
-        "wave_equation": "Dynamic method resistance factors (phi = 0.65 for wave equation, 0.65-0.80 for dynamic testing)"
+        "gec_12 Chapter 12": "pp. 211-212: A pile drivability analysis requires combining the geotechnical aspects detailed in this chapter with the wave equation analysis procedures described in Chapter 12."
       },
       "applicability": "Introduction to static analysis for driven pile resistance and deformation; see the subsections for the methods.",
       "subsections": [
@@ -777,10 +776,8 @@
       "figures": [],
       "tables": [],
       "cross_references": {
-        "settlement": "Group settlement methods (Meyerhof, equivalent footing, Janbu) relate to settlement module concepts",
-        "downdrag": "Neutral plane method for downdrag settlement directly implemented in downdrag module",
-        "lateral_pile": "p-y method and p-multipliers for group lateral analysis implemented in lateral_pile module",
-        "pile_group": "Group settlement and lateral group effects implemented in pile_group module"
+        "gec_12 Section 7.3.5": "p. 308: Settlement methods are covered in Section 7.3.5.",
+        "gec_12 Section 7.3.7": "p. 308: Lateral loading from the structure or earthen elements is covered in Section 7.3.7."
       },
       "applicability": "Service limit state (deformation) checks for driven piles; see the subsections for the methods.",
       "subsections": [
@@ -1305,9 +1302,6 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "cross_references": {
-        "seismic_geotech": "Site classification (Table 7-26) and seismic response analysis directly implemented in seismic_geotech module"
-      },
       "applicability": "Extreme event limit state checks for driven piles; see the subsections.",
       "subsections": [
         {
@@ -1509,9 +1503,6 @@
       "tables": [
         "Table 7-32: Summary of Load and Resistance Information (Q = 200 kips, phi_dyn = 0.65, Rn = 308 kips, Rscour = 50 kips, Rrelax = 154 kips, Rndr = 512 kips) (p. 390)"
       ],
-      "cross_references": {
-        "wave_equation": "Rndr is the target resistance for wave equation bearing graph analysis in the wave_equation module"
-      },
       "applicability": "Setting the required nominal driving resistance for contract driving criteria."
     },
     {
@@ -1531,9 +1522,6 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "cross_references": {
-        "wave_equation": "Wave equation drivability analysis is directly implemented in the wave_equation module (bearing_graph and drivability functions)"
-      },
       "applicability": "Requirement and basis for drivability analysis at the design stage; see the subsections for factors and methods.",
       "subsections": [
         {
@@ -1575,7 +1563,10 @@
           ],
           "equations": [],
           "figures": [],
-          "tables": []
+          "tables": [],
+          "cross_references": {
+            "gec_12 Section 12.5.3": "p. 395: An example of a wave equation drivability assessment is presented in Section 12.5.3."
+          }
         }
       ]
     },
@@ -1602,7 +1593,7 @@
       ],
       "tables": [],
       "cross_references": {
-        "pile_group": "Batter pile group analysis extends the rigid cap group analysis in pile_group module"
+        "gec_12 Section 7.3.7.5": "p. 396: Wilson et al. (2006) noted that the analysis for a pile group containing batter piles is similar to the procedures described earlier in Section 7.3.7.5, with the exceptions listed on pp. 396-397."
       },
       "applicability": "Design and construction checks for groups with batter piles."
     },

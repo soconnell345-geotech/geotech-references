@@ -410,6 +410,13 @@ class TestPerformancePeriodIteration:
     W18 = {1.17: 2.0e6, 1.27: 2.3e6, 1.34: 2.6e6}
     TIME = {2.0e6: 6.3, 2.3e6: 7.2, 2.6e6: 8.2}
 
+    def test_says_it_needs_python_callables(self):
+        # w18_fn / time_from_w18_fn are functions: no JSON call can supply
+        # them, so a tool list leaves it out (2026-11-12 reach audit)
+        assert env.performance_period_iteration.needs_python_callables is True
+        assert "NEEDS PYTHON CALLABLES" in (
+            env.performance_period_iteration.__doc__)
+
     @staticmethod
     def _nearest(table, key):
         return table[min(table, key=lambda k: abs(k - key))]

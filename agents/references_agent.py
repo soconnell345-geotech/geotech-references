@@ -550,6 +550,80 @@ def reference_get(reference: str, section_id: str) -> str:
 
 
 @function
+def table_search(query: str, reference: str = "", chapter: int = 0,
+                 limit: int = 5, offset: int = 0) -> str:
+    """
+    Find a printed table by its caption, number or the section that lists it,
+    in the table catalogs of every reference (REF-86). Each hit says where the
+    table's values are: "text" (typed in a stored section: reference_get with
+    values_in), "lookup" (a coded function: lookup_reference with values_in)
+    or "page" (only on the printed page: render pdf_page_index and read it).
+
+    Parameters:
+        query: FTS5 MATCH query over table numbers, captions and section
+            titles (plain words AND-matched with porter stemming; quotes for
+            phrases, OR for alternatives).
+        reference: Optional reference to scope to: its id ('dm7_2'), another
+            spelling ('GEC-10'), or a report number its rows carry. Empty
+            string searches all references.
+        chapter: Optional chapter number to scope to; 0 means no filter.
+        limit: Max hits (default 5, capped at 50).
+        offset: Hits to skip, for the next page (the note gives it).
+
+    Returns:
+        JSON object: "hits" (each with reference, reference_title,
+        reference_id, table_number, caption, chapter, section_id,
+        pdf_page_index, printed_page, values, values_in, and "pages" for a
+        table over several pages, "match" on a hit that does not hold every
+        word), "shown", and a "note" saying how to get more. On error,
+        {"error": ...}.
+    """
+    try:
+        from geotech_references import _tables_db
+        ref = reference if reference else None
+        ch = int(chapter) if chapter else None
+        out = _tables_db.table_search(
+            query, reference=ref, chapter=ch, limit=limit,
+            offset=int(offset or 0), max_chars=SEARCH_MAX_CHARS)
+        return json.dumps(out, default=str)
+    except Exception as e:
+        return json.dumps({"error": f"{type(e).__name__}: {str(e)}"})
+
+
+@function
+def table_get(reference: str, table_number: str,
+              pdf_page_index: int = -1) -> str:
+    """
+    Fetch the catalog row of one printed table: its caption, chapter, the
+    section that lists it, the PDF and page(s) it is printed on, and where its
+    values are ("values", "values_in", and a one-sentence "how_to_read").
+
+    Parameters:
+        reference: Reference id (e.g. 'dm7_2', 'gec_10'), or another spelling
+            or report number of it.
+        table_number: Table number as printed (e.g. '6-11', 'A.7', 'C-2a');
+            a leading 'Table ' is tolerated.
+        pdf_page_index: Only for a number the catalog holds more than once
+            (the error names each page): any page of the table wanted. -1
+            (default) means not given.
+
+    Returns:
+        JSON dict with the row, or {"error": "..."} if not found.
+    """
+    try:
+        from geotech_references import _tables_db
+        page = None if pdf_page_index is None or int(pdf_page_index) < 0 \
+            else int(pdf_page_index)
+        return json.dumps(_tables_db.table_get(
+            reference, table_number, pdf_page_index=page,
+            max_chars=SEARCH_MAX_CHARS), default=str)
+    except KeyError as e:
+        return json.dumps({"error": str(e).strip("\"'")})
+    except Exception as e:
+        return json.dumps({"error": f"{type(e).__name__}: {str(e)}"})
+
+
+@function
 def reference_query(sql: str) -> str:
     """
     Run a read-only SELECT against the reference text database.

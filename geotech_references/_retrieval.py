@@ -553,6 +553,19 @@ def section_view(entries: list[dict], i: int,
     return out
 
 
+def _view_with_reach(reference: str, chapter, entries: list[dict], i: int,
+                     include_subsections: bool) -> dict:
+    """:func:`section_view` with what the section's figures, tables and
+    same-document pointers reach (``figures_held``, ``tables_held``,
+    ``not_held``; :mod:`._reach`, 2026-11-12), read from the text search
+    database. Without the database the view is returned as before."""
+    from . import _reach
+    return _reach.fetch_result(
+        section_view(entries, i),
+        _subtree(entries, i) if include_subsections else None,
+        _reach.flags_for(reference, chapter))
+
+
 def retrieve_section(reference: str, section_id: str,
                      include_subsections: bool = False) -> dict:
     """Get a specific section by its ID, at any level (e.g. '7.2',
@@ -569,7 +582,8 @@ def retrieve_section(reference: str, section_id: str,
     include_subsections : bool, optional
         Inline the sections under it as ``subsections`` (each with its
         own subsections), as long as the whole result stays within
-        :data:`SUBSECTIONS_INLINE_MAX_CHARS`; past that they stay listed
+        :data:`SUBSECTIONS_INLINE_MAX_CHARS`, counted without the reach
+        flags, and within 14,000 with them; past that they stay listed
         in ``children`` and a ``note`` says so. Default False: only
         ``children`` (numbers and titles) is given.
 
@@ -579,7 +593,32 @@ def retrieve_section(reference: str, section_id: str,
         The section's own fields (title, body, key_points, equations,
         ...) plus ``parent_id``, ``under`` (the sections above it,
         outermost first) and ``children`` (number and title of each
-        section directly under it).
+        section directly under it). What the section names and points to
+        is answered (:mod:`._reach`, REF-92, read from the text search
+        database; without it the fetch is as before), each key only when
+        it has something in it, and ``note`` says what the keys and the
+        answers it carries mean:
+
+        - ``figures_held``: per figure its ``figures`` list names,
+          ``"catalog"`` (``figure_get`` finds it and gives its page),
+          ``"catalog (N rows: give figure_get the pdf_page_index)"``,
+          ``"catalog (as 5-5)"`` / ``"catalog (as parts ...)"`` (filed
+          under that number), or ``"not catalogued"`` (no figure catalog
+          row: ``figure_get`` cannot fetch it);
+        - ``tables_held``: per table its ``tables`` list names, where the
+          values are: ``"text: <section_id>"`` (typed in that section),
+          ``"lookup: <function>"`` (that function returns them;
+          ``lookup_reference`` takes the name), ``"page: printed p. P
+          (pdf_page_index N)"`` (only on the printed page; ``table_get``
+          gives it), or ``"not catalogued"`` (no table catalog row, or no
+          catalog: ``table_get`` cannot fetch it);
+        - ``not_held``: parts of the same document the body points to
+          that the library holds no text or catalog row for ("Appendix
+          D", "Chapter 12", "Eq. 4-11"), at most 15, then "and N more".
+
+        A page is readable only where the PDF is on the host. The held
+        maps come in a short form: ``{"all": answer}``, or the numbers
+        whose answer differs plus ``"others": answer``.
 
     Raises
     ------
@@ -624,9 +663,10 @@ def retrieve_section(reference: str, section_id: str,
             (chapter, entries[i]["section"].get("title", ""))
             for chapter, entries, i in held]))
     if held:
-        _, entries, i = held[0]
+        chapter, entries, i = held[0]
         return with_printed_note(
-            section_view(entries, i, include_subsections), reference,
+            _view_with_reach(reference, chapter, entries, i,
+                             include_subsections), reference,
             prefixed_matches(reference, section_id, titles))
 
     raise KeyError(

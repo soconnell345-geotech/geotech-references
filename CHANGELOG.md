@@ -4,6 +4,157 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**Reach build of 2026-11-12: a fetched section says what it can reach
+(app BACKLOG REF-92, the owner's acceptance test: the references helper can
+reach everything it is told it has).** `reference_get` and
+`retrieve_section` now add, where there is something to say,
+`figures_held` (each listed figure: in the figure catalog, on several rows,
+filed as its whole figure or by its parts, or "not catalogued"),
+`tables_held` (where each listed table's values are, from its row in the
+reference's `tables_catalog.json`: "text: <section id>", "lookup:
+<function>" as `lookup_reference` takes it, "page: printed p. P
+(pdf_page_index N)", or "not catalogued" for a table with no row or a
+reference with no catalog, never "not held") and `not_held` (the parts of
+the same document the body points to that the library holds no text or
+catalog row for). The fetch's `note` says what each key and answer it
+carries means (left out when a fetch would pass 14,000 characters with
+it); the docstrings of both fetches list every answer. Both held maps
+come in a short form (`{"all": ...}`, or the exceptions plus
+`"others"`). A catalog that cannot be read (a file nested 200,000 deep
+raised RecursionError and stopped every text database build) answers "not
+catalogued" and is named in the problems; the pack readers catch
+RecursionError and MemoryError too (`_packs.JSON_ERRORS`). Subsections are
+inlined by the 12,000 rule counted on the content without the flags,
+provided the whole fits 14,000 with them (twelve fetches that fitted had
+stopped inlining). A table number on several catalog rows answers from
+the row numbered exactly as listed and filed under the listing section,
+and says it is one of several; a page answer carries its row's `note`
+where the note names the section that holds part of the table, once per
+fetch ("as for N" after that); a tie in the short form goes to the first
+answer in sorted order; the baseline lists each item not held, so a new
+one fails even when another was fixed. Pointers not flagged that should
+have been (the review's undercount): an id's tail answers for a printed
+number only in the references declared so (GEC-13, AASHTO 1993), so
+em_2107's "See Chapter 8" is flagged; the look-back for another
+document's name stops at a sentence or clause end; "Chapter 1 of DM 7.2"
+and "of Chapter 7" are this document; a document's own list of its
+appendices, lower-case "appendix", numbered appendices, chapter ranges
+("Chapters 9-16") and an unheld appendix's equations ("Eq D.9") are read;
+a "Table 4-3" in a reference that also prints a "Table 1" is no longer
+read as a range. Rules added so these do not flag other documents' parts:
+a number given to another document stays its for the rest of the body; a
+citation's year is no sentence end; a chapter past the last UFC 3-301-01
+prints is another document's; I and O inside a letter range; a
+subsection of the section being read that has no row; every number of a
+combined equation entry ("Equations 3-3 through 3-9") is held; a part
+numbered in a chapter the body gave to another document, where this one
+holds no such chapter ("Chapters 9 to 11 of ASCE 41 ... Tables 9-3"). 2
+figures and 6 tables not catalogued, 344 pointers not held (285 before
+the review's item 4, 333 after it, every change checked; the integration
+branch's rebuilt EM 1110-2-2104, EM 1110-2-2107, UFC 3-301-01, UFC
+4-023-03 and Wood Handbook text then added 24 and removed 14, and the
+FHWA-NHI-05-037 text and the GEC-6, GEC-7 and micropile appendices of
+build/tables at 90443d3 added 18 and removed 17, each read in its
+sentence; the corrected table catalogs leave 6 listed tables without a
+row, from 115). The flags are worked out when the text database is built
+(new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
+figure and table catalogs join its source signature) and cost a fetch
+nothing; search hits are unchanged. Shared functions changed:
+`_retrieval_db._fill_db`, `_needs_rebuild`, `_newest_source_mtime` (via the
+new `_source_paths`) and `reference_get`; `_retrieval.retrieve_section`
+(via the new `_view_with_reach`). Of the 344 same-document pointers not
+held, 207 are to appendices that are not built (most in UFC 3-250-01,
+FHWA-NHI-05-037, GEC-10, EM 1110-2-2104, UFC 3-250-04 and GEC-9; the
+EM 1110-2-2104 appendices are held as lookups only), 52 to sections, 26 to equations, 36
+to chapters (EM 1110-2-2107 chapters 8-16 among them), 14 to figures and
+9 to tables, some of them pointers the print itself gets wrong.
+`tests/test_reach.py` holds each item to `tests/reach_baseline.json` (one
+may be taken out, none added) and checks that
+every `implemented_in` names a function the package has, cross-references
+name the manuals' own sections, every figure number can be fetched, and
+the wheel ships every data file the code reads (`*/tables_catalog.json`
+added to the package data). Also: figure listings in dm7_1 7-6.1 to 7-6.3,
+gec_11 5.1.1 and ufc_flexible_practice 2-4.2.6 to 2-4.2.13 name the
+figures as the catalog holds them (Figure 7-7 (a)-(c), 5-1 (a) to (d),
+2-6a to 2-6f, as printed); wood_handbook 5-3 names its one lookup; GEC-12
+chapter 7 cross-references point at the manual's own sections instead of
+app modules; `ufc_flexible_practice.equations.slurry_seal_surface_area`
+takes sieve sizes as text or as [size, percent] pairs (a JSON tool call
+was refused); `aashto_1993.environmental.performance_period_iteration`
+says it needs Python functions (`needs_python_callables = True`).
+
+**Table catalogs: every printed table a section lists can be found and its
+page read (app BACKLOG REF-86, REF-34; build of 2026-11-12).** Before this a
+section's `tables` field named tables whose values the references helper
+could not reach: not typed into the text, not coded, and not on any page the
+page-reading tool knew (it knew only the figure catalogs).
+
+- `geotech_references/<pkg>/tables_catalog.json` for 31 references,
+  2,099 rows (package data). Each row gives the table's number and caption
+  as printed, its chapter, the section that lists it, the PDF page it
+  starts on and every page it runs on, the printed page, and where its
+  values are: `"text"` (every cell its page prints typed in a stored
+  section, 542 rows), `"lookup"` (a coded function returns them, 255 rows)
+  or `"page"` (only on the printed page, 1,302 rows). A table typed into the
+  text that also has a function is a `"text"` row that names the function
+  (`implemented_in`). Built by `scripts/build_table_catalog.py` from the List of Tables,
+  the captions on body pages and every section's `tables` entries; no API.
+  The AASHTO 1993 Guide (a scan with no text layer) has a row for each of
+  the 29 tables a section lists or a lookup codes, each placed on the
+  render; its other printed tables are not rows. GEC-14 prints no numbered
+  table and has no catalog.
+- `table_search`, `table_get`, `resolve_table_pdf` and `list_indexed_tables`
+  (`geotech_references/_tables_db.py`), the figure layer's rules for scope,
+  matching, sizes and rebuilds; `agents/references_agent.py` exposes
+  `table_search` and `table_get`.
+- Every row was checked on its page: the label and the caption's first
+  words in the page's text, and not a contents page
+  (`build_table_catalog.py --verify all`). The 32 rows the text layer
+  cannot confirm (the 29 AASHTO 1993 tables, a garbled label, captions
+  whose symbols the text layer drops) were checked on the rendered page,
+  and so was a seeded sample of 80 rows across the references. Captions
+  whose Greek letters the text layer gives as private-use characters or
+  drops (FEMA P-2082 Tables 19.3-2, 19.3-3, C16.4-4, C22-7; GEC-11 Table
+  4-7) are as the render prints them.
+- What the renders found and the catalog records: GEC-10's List of Tables
+  numbers the TIP table 16-4 and lists a 16-3 the manual does not print
+  (the TIP table is printed as Table 16-3); UFC 3-250-03's list gives Tables
+  2-13 to 2-16 the captions of other tables; GEC-5 prints Table 5-15 under
+  another caption than its list. Each such row carries a `note`.
+  FHWA-NHI-05-037's list names a Table 7-23 printed only as Tables 7-23a
+  (SI units) and 7-23b (U.S. customary units), which are the rows.
+- `values` never promises cells that are not there (independent check of
+  the first build): a row is `"text"` only where its section types every
+  cell its page prints, by the builder's count of the numbers, row labels
+  and words in the table's region of the page (375 rows) or read against
+  the render (57). A section that summarizes, paraphrases or types part of
+  a table leaves the row `"page"`, with a `note` saying what the section
+  holds (78 page rows carry one). A `"lookup"` row names the function that
+  returns the values; functions that cite a table without returning its
+  contents are set aside: UFC 4-023-03's `classify_action` (the Section
+  3-2.5 rule beside Table 3-1), EM 1110-1-1905's Eq. 7-43 and Eq. 7-7
+  functions (Tables 7-12 and 7-13 are the steps of reading cv off a test
+  curve, Table C-1 a worked example), and FHWA-NHI-05-037's
+  `backcalculated_to_design_modulus`, which codes the factors of Table
+  5-31's Commentary row (that row is `"page"` with a note).
+- Every row's `printed_page` is the label its own page prints (the first
+  build left 551 rows with none and gave 46 the List of Tables' page
+  instead of the one the table is printed on: 41 of UFC 3-220-20's
+  Appendix B tables two or three pages low, five a page off); the 49 rows
+  whose label the text layer does not give were read on the render
+  (`tests/test_table_printed_pages.py`).
+- Pages a table runs onto: besides its label printed again, "(continued)"
+  or its caption at the page's top, the column heads printed again, and a
+  ruled table carrying on the one that fills the foot of the page before
+  with no other caption on the page; 45 rows of the first build gained
+  pages (EM 1110-1-1905's catalog is new), among them UFC
+  3-301-01 Table E-1 (seven pages), UFS 3-220-10 Tables B-1 and C-1 (14 and
+  12) and FEMA P-2082 Table C13.5-1 (seven). Each run-on page was checked
+  on the render, and a sample of the column-head ones.
+- No lookup function changed. Tests: `tests/test_tables_db.py`,
+  `tests/test_table_catalog_rows.py`, `tests/test_table_printed_pages.py`,
+  two in `tests/test_references_agent.py`.
+
 - **EM 1110-2-2104: page citations corrected from the page (app BACKLOG REF-98, part 1).**
   Six citations pointed at the wrong printed page and now give the page that prints the equation: Eq B-22 (p. 45, was 44), Eq B-42 and Eq B-43 (p. 50, was 49), Eqs B-44 to B-48 (pp. 50-51, was 49-50), Eq D-5 (p. 71, was 73), and the ACI 318-19 resistance-factor comment (p. 121, was 118); the `pdf_page` values moved with them. No value, factor or formula changed. 56 citations were checked against the pages, 50 were already right.
 

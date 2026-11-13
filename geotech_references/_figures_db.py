@@ -155,7 +155,7 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     for cat_path in sources:
         try:
             data = json.loads(cat_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as e:
+        except _packs.JSON_ERRORS as e:
             if cat_path in pack_of:
                 continue  # named in _packs.problems()
             raise unreadable_source(cat_path, e) from e

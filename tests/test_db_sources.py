@@ -20,6 +20,7 @@ from __future__ import annotations
 import os
 import shutil
 import sqlite3
+from pathlib import Path
 
 import pytest
 
@@ -66,8 +67,33 @@ def test_the_database_records_its_sources(private_dbs, kind):
     version, signature = _retrieval_db.db_meta(db)
     assert version == module._SCHEMA_VERSION
     paths = [_path_of(kind, s) for s in _sources(kind)]
+    if kind == "text":
+        # the figure and table catalogs the reach flags read, and the module
+        # with their rules, join the chapter files (2026-11-12)
+        from geotech_references import _reach
+        paths += _reach.catalog_paths() + [Path(_reach.__file__)]
     assert signature == _retrieval_db.source_state(paths)[1]
     assert not module._needs_rebuild(db)
+
+
+def test_a_table_catalog_added_rebuilds_the_text_database(private_dbs,
+                                                          monkeypatch,
+                                                          tmp_path):
+    """The reach flags read the table catalogs, so adding one (there was
+    none) rebuilds the text database even with an older date."""
+    from geotech_references import _reach
+    db = _ensure("text")
+    real = _reach.catalog_paths()
+    missing = [p for p in real if not p.exists()]
+    assert missing, "every reference has every catalog: nothing to add"
+    added = tmp_path / "tables_catalog.json"
+    added.write_text('{"tables": []}', encoding="utf-8")
+    os.utime(added, (1.0, 1.0))
+    monkeypatch.setattr(_reach, "catalog_paths",
+                        lambda: [added if p == missing[0] else p
+                                 for p in real])
+    assert db.stat().st_mtime >= _retrieval_db._newest_source_mtime()
+    assert _retrieval_db._needs_rebuild(db)
 
 
 @pytest.mark.parametrize("kind", ["text", "figures"])
