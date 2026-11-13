@@ -58,9 +58,9 @@
       ],
       "figures": [],
       "tables": [
-        "Table 8-1: Common Steel Pipe Pile Grades and Yield Stress (p. 429)",
-        "Table 8-2: Common Steel H-pile Grades and Yield Stress (p. 429)",
-        "Table 8-3: Timber Pile Compression Stress and Elastic Modulus Reference Values (after AASHTO 2014) (p. 430)"
+        "Table 8-1: Common Steel Pipe Pile Grades and Yield Stress (p. 429) - columns: Designation/Grade; Yield Stress, Fy, ksi. ASTM A-252 Grade 2; 35 | ASTM A-252 Grade 3; 45 | ASTM A-252 Grade 3 (Mod); 50-80",
+        "Table 8-2: Common Steel H-pile Grades and Yield Stress (p. 429) - columns: Designation/Grade; Yield Stress, Fy, ksi. A-36; 36 | ASTM A-572-50; 50 | ASTM A-572-60; 60",
+        "Table 8-3: Timber Pile Compression Stress and Elastic Modulus Reference Values (after AASHTO 2014) (p. 430) - columns: Species; Fco, ksi; Eo, ksi. Pacific Coast Douglas-Fir; 1.25; 1500 | Red Oak; 1.10; 1250 | Red Pine; 0.90; 1280 | Southern Pine; 1.20; 1500"
       ],
       "applicability": "Material property selection for steel, concrete, and timber driven piles."
     },
@@ -148,7 +148,7 @@
       ],
       "figures": [],
       "tables": [
-        "Table 8-4: Rate of Increase of Soil Modulus with Depth for Sands (ksi/ft) (after AASHTO 2014) (p. 436)"
+        "Table 8-4: Rate of Increase of Soil Modulus with Depth for Sands (ksi/ft) (after AASHTO 2014) (p. 436) - columns: Consistency; Dry or Moist; Submerged. Loose; 0.417; 0.208 | Medium; 1.110; 0.556 | Dense; 2.780; 1.390"
       ],
       "applicability": "Preliminary fixity depth estimation for partially embedded piles subject to lateral loads or scour."
     },
@@ -194,8 +194,8 @@
       ],
       "figures": [],
       "tables": [
-        "Table 8-5: Resistance Factors During Pile Driving (p. 438)",
-        "Table 8-6: Structural Limit Resistance Factors for Piles in Compression (p. 438)"
+        "Table 8-5: Resistance Factors During Pile Driving (p. 438) - columns: Resistance Determination Method; Pile Drivability Resistance Factor. Steel Piles (AASHTO 6.5.4.2); φda = 1.0 | Concrete Piles (AASHTO 5.5.4.2); φda = 1.0 | Timber Piles (AASHTO 8.5.4.2); φda = 1.15",
+        "Table 8-6: Structural Limit Resistance Factors for Piles in Compression (p. 438) - columns: Pile Material; Design Resistance (the print's heading line, then its indented line); Resistance Factor. Steel (AASHTO 6.5.4.2); Axial - Good driving conditions where pile tip is not necessary: H-piles; φc = 0.60 | Steel (AASHTO 6.5.4.2); Axial - Good driving conditions where pile tip is not necessary: Pipe Piles; φc = 0.70 | Steel (AASHTO 6.5.4.2); Axial -Pile is subject to damage due to severe driving conditions where pile tip is necessary: H-piles; φc = 0.50 | Steel (AASHTO 6.5.4.2); Axial -Pile is subject to damage due to severe driving conditions where pile tip is necessary: Pipe Piles; φc = 0.60 | Steel (AASHTO 6.5.4.2); Combined Axial and Flexural for Undamaged Piles: Axial – H-piles; φc = 0.70 | Steel (AASHTO 6.5.4.2); Combined Axial and Flexural for Undamaged Piles: Axial – Pipe Piles; φc = 0.80 | Steel (AASHTO 6.5.4.2); Combined Axial and Flexural for Undamaged Piles: Flexure – Both Pile Types; φf = 1.00 | Steel (AASHTO 6.5.4.2); Shear; φv = 1.00 | Concrete (AASHTO 5.5.4.2); Tension Controlled: Reinforced Concrete; φc = 0.90 | Concrete (AASHTO 5.5.4.2); Tension Controlled: Prestressed Concrete; φc = 1.00 | Concrete (AASHTO 5.5.4.2); Compression Controlled: Prestressed Concrete; φc = 0.75 | Timber (AASHTO 8.5.4.2); Compression Parallel to Grain; φc = 0.90 | Timber (AASHTO 8.5.4.2); Flexure; φf = 0.85 | Timber (AASHTO 8.5.4.2); Shear; φv = 0.75"
       ],
       "applicability": "LRFD resistance factor selection for structural design of all driven pile types."
     },
@@ -218,8 +218,8 @@
       ],
       "figures": [],
       "tables": [
-        "Table 8-7: Reference Design Values for Timber Piles, ksi (after AASHTO 2014) (p. 439)",
-        "Table 8-8: Time Effect Factors (after AASHTO 2014) (p. 439)"
+        "Table 8-7: Reference Design Values for Timber Piles, ksi (after AASHTO 2014) (p. 439) - columns: Species; Fco; Fbo; Fvo; Eo. Pacific Coast Douglas-Fir^1; 1.25; 2.45; 0.115; 1500 | Red Oak^2; 1.10; 2.45; 0.135; 1250 | Red Pine^3; 0.90; 1.90; 0.085; 1280 | Southern Pine^4; 1.20; 2.40; 0.110; 1500. Notes: ^1 Use Douglas Fir-Latch reference values for connection design. [as printed; the page shows \"Douglas Fir-Latch\", a species name the manual prints nowhere else on this page] ^2 Northern and Southern Red Oak. ^3 United States grown Red Pine. Use Northern Pine reference values for connection design. ^4 Reference strengths apply to Lobololly, Longleaf, Shortleaf and Slash Pine. [as printed; the page spells \"Lobololly\"] Where: Fco = reference value for compression stress parallel to grain (ksi). Fbo = reference value for strength in flexure (ksi). Fvo = reference value for strength in shear (ksi). Eo = reference value elastic modulus (ksi).",
+        "Table 8-8: Time Effect Factors (after AASHTO 2014) (p. 439) - columns: Limit State; Cλ. Strength I; 0.8 | Strength II; 1.0 | Strength III; 1.0 | Strength IV; 0.6 | Extreme Event I; 1.0"
       ],
       "applicability": "Structural design of timber driven piles per AASHTO (2014) Article 8."
     },
