@@ -521,9 +521,9 @@
       "section_id": "20-2.5.2",
       "title": "Piping Criteria",
       "summary": "Filter/drainage-material 15% size <= 5x the drained material's 85% size, AND filter/drainage-material 50% size <= 25x the drained material's 50% size; for clean clays without sand/silt, the 15% size may be up to 0.4mm and d50 is disregarded.",
-      "body": "The criteria for preventing movement of particles from the soil or granular material to be drained into the drainage material are: 15 percent size of drainage or filter material <= 5 x 85 percent size of material to be drained; and 50 percent size of drainage or filter material <= 25 x 50 percent size of material to be drained. The criteria given above are used when protecting all soils except clays without sand or silt particles. For these soils, the 15 percent size of drainage or filter material may be as great as 0.4 mm and the d50 criteria will be disregarded.",
+      "body": "The criteria for preventing movement of particles from the soil or granular material to be drained into the drainage material are: (15 percent size of drainage or filter material) / (85 percent size of material to be drained) <= 5; and (50 percent size of drainage or filter material) / (50 percent size of material to be drained) <= 25. The criteria given above are used when protecting all soils except clays without sand or silt particles. For these soils, the 15 percent size of drainage or filter material may be as great as 0.4 mm and the d50 criteria will be disregarded.",
       "key_points": [
-        "Piping criteria: D15(filter) <= 5*D85(drained soil); D50(filter) <= 25*D50(drained soil)."
+        "(15 percent size of drainage or filter material) / (85 percent size of material to be drained) <= 5; and (50 percent size of drainage or filter material) / (50 percent size of material to be drained) <= 25."
       ],
       "equations": [],
       "figures": [],
@@ -534,9 +534,9 @@
       "section_id": "20-2.5.3",
       "title": "Permeability Requirements (Filters)",
       "summary": "Filter/drainage-material 15% size >= 5x the drained material's 15% size (ensures enough filter permeability to avoid hydrostatic buildup).",
-      "body": "To assure that the filter material is sufficiently permeable to permit passage of water without hydrostatic pressure buildup, the following requirement should be met: 15 percent size of filter material >= 5 x 15 percent size of material to be drained.",
+      "body": "To assure that the filter material is sufficiently permeable to permit passage of water without hydrostatic pressure buildup, the following requirement should be met: (15 percent size of filter material) / (15 percent size of material to be drained) >= 5.",
       "key_points": [
-        "Permeability criterion: D15(filter) >= 5*D15(drained soil)."
+        "To assure that the filter material is sufficiently permeable to permit passage of water without hydrostatic pressure buildup, the following requirement should be met: (15 percent size of filter material) / (15 percent size of material to be drained) >= 5."
       ],
       "equations": [],
       "figures": [],
