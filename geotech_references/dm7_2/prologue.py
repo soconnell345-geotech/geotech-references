@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Prologue P: Shear Strength for Geotechnical Design
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Prologue P: Shear Strength for Geotechnical Design
 
 Equations from Tables P-1 and P-6, and Equations P-1, P-2, and P-3 covering
 Mohr-Coulomb failure criteria, two-parameter and three-parameter power
@@ -8,8 +8,8 @@ functions, equivalent Mohr-Coulomb parameter conversion, and undrained
 strength ratio (USR) correlations for low-plasticity silts.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures,
-    16 January 2025
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 """
 
 import math
@@ -55,7 +55,7 @@ def mohr_coulomb_drained(c_prime: float, sigma_prime: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if phi_prime_deg < 0.0 or phi_prime_deg >= 90.0:
@@ -99,7 +99,7 @@ def mohr_coulomb_undrained_partial(c: float, sigma: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if phi_deg < 0.0 or phi_deg >= 90.0:
@@ -138,7 +138,7 @@ def mohr_coulomb_undrained_saturated(c: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-1, printed p. 2 (pdf_page_index 39).
     """
     if c < 0.0:
@@ -192,7 +192,7 @@ def power_function_shear_strength(a: float, b: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Equation P-1, printed p. 4 (pdf_page_index 41).
     """
     if a <= 0.0:
@@ -251,7 +251,7 @@ def power_function_undrained_strength(a_u: float, b_u: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Equation P-2, printed p. 4 (pdf_page_index 41).
     """
     if a_u <= 0.0:
@@ -314,7 +314,7 @@ def three_parameter_power_function(a: float, b: float, t: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Equation P-3, printed p. 4 (pdf_page_index 41).
     Jiang, J.-C., Baker, R., and Yamagami, T. (2003).
     """
@@ -387,7 +387,7 @@ def equivalent_friction_angle(a: float, b: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Figure P-4, printed p. 6 (pdf_page_index 43).
     """
     if sigma_prime_high <= sigma_prime_low:
@@ -449,7 +449,7 @@ def equivalent_cohesion(a: float, b: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Figure P-4, printed p. 6 (pdf_page_index 43).
     """
     if sigma_prime_high <= sigma_prime_low:
@@ -506,7 +506,7 @@ def power_function_dimensional_to_normalized(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Figure P-5, printed p. 7 (pdf_page_index 44).
     """
     if a_dim <= 0.0:
@@ -556,7 +556,7 @@ def power_function_normalized_to_dimensional(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Figure P-5, printed p. 7 (pdf_page_index 44).
     """
     if a <= 0.0:
@@ -601,7 +601,7 @@ def usr_icu_triaxial(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -639,7 +639,7 @@ def usr_acu_triaxial(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:
@@ -650,7 +650,7 @@ def usr_acu_triaxial(phi_prime_deg: float) -> float:
 def usr_dss(phi_prime_deg: float) -> float:
     """Undrained strength ratio USR = su / sigma'_vc (dimensionless) in
     direct simple shear (DSS) for in situ nonplastic and low-plasticity
-    silt, Table P-6 of UFC 3-220-20: USR = sin phi' - 0.5 sin^2 phi'.
+    silt, Table P-6 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): USR = sin phi' - 0.5 sin^2 phi'.
 
     The table gives it for zero excess pore pressure at failure and
     c' = 0, under "Correlations", which it rates "marginally
@@ -677,7 +677,7 @@ def usr_dss(phi_prime_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Prologue P, Table P-6, printed p. 16 (pdf_page_index 53).
     """
     if phi_prime_deg <= 0.0 or phi_prime_deg >= 90.0:

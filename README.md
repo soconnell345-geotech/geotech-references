@@ -31,7 +31,7 @@ Function counts are the public functions defined in each package's modules (coun
 | Module | Reference | Functions |
 |--------|-----------|-----------|
 | `dm7_1` | UFS 3-220-10 Soil Mechanics (DM 7.1), 16 January 2026 | 147 |
-| `dm7_2` | UFC 3-220-20 Foundations and Earth Structures (DM 7.2) | 246 |
+| `dm7_2` | UFS 3-220-20 (26 March 2026; the text and pages of UFC 3-220-20, 16 January 2025) Foundations and Earth Structures (DM 7.2) | 246 |
 
 ### FHWA geotechnical manuals and micropiles (142 functions)
 

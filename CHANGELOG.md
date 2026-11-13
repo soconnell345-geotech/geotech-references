@@ -4,6 +4,8 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**DM 7.2 is cited as UFS 3-220-20, 26 March 2026 (REF-75).** Every `dm7_2` lookup, chapter text file, agent entry and manifest now names the manual UFS 3-220-20 (26 March 2026), the text and pages of UFC 3-220-20 (16 January 2025); the text, pages, values and `pdf_page_index` are unchanged. Eq. 4-28 says it prints on p. 222 in the UFS (p. 221 in the 2025 UFC), and the Sec. 6-5.8.2 text carries a note that the UFS refers to Eq. 6-46 where the 2025 UFC printed Eq. 6-51.
+
 **Result units and pages, wave 1a (REF-78): the pavement references and
 EM 1110-2-2104.** The 269 lookups of `aashto_1993`, `ufc_pavement`,
 `fhwa_pavements`, `ufc_flexible_practice`, `ufc_concrete_practice`,

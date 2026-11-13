@@ -1,5 +1,5 @@
 """
-UFC 3-220-20 Foundations and Earth Structures (DM 7.2), 16 January 2025
+UFS 3-220-20 Foundations and Earth Structures (DM 7.2), 26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 
 Chapters, as titled on each chapter's first page (PDF page; printed page =
 PDF page - 38):
