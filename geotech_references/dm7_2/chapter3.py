@@ -63,9 +63,15 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     .. math::
         \\gamma_d = \\frac{\\gamma_w \\, S}{\\frac{w}{100} + \\frac{S}{G_s}}
 
-    as printed (p. 147), with *w* in percent and S read as a decimal
-    fraction (the print does not state its unit; this function takes S in
-    percent and divides it by 100). Dividing through by S:
+    as printed (printed p. 109, PDF p. 147), with *w* "water content
+    (percentage)". The same page defines S as "the percentage of the void
+    space filled with water", but the printed form gives the dry unit
+    weight only with S as a decimal fraction (w/100 and S/Gs must be on
+    one scale): at S = 100 %, w = 20 % and Gs = 2.70 it gives 167.6 pcf
+    with S entered as 100 and 109.4 pcf with S entered as 1.0 (a print
+    conflict, noted in the chapter text). This function takes S in
+    percent, as the page defines it, and
+    divides it by 100 before applying the form. Dividing through by S:
 
     .. math::
         \\gamma_d = \\frac{\\gamma_w}{\\frac{w}{S} + \\frac{1}{G_s}}

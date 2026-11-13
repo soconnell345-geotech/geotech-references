@@ -35,6 +35,8 @@ import os
 import re
 from pathlib import Path
 
+from ._schema import army_prefixes, numbered_under
+
 # Base directory for reference packages
 _PACKAGE_DIR = Path(__file__).parent
 
@@ -416,9 +418,10 @@ def _count_under(entries: list[dict], i: int) -> int:
 def id_prefixes(section_id: str) -> list[str]:
     """The numbers above a section number, nearest first:
     ``'4-2.1.3'`` -> ``['4-2.1', '4-2', '4']``, ``'3.5.2.f'`` ->
-    ``['3.5.2', '3.5', '3']``."""
-    out: list[str] = []
-    sid = str(section_id or "")
+    ``['3.5.2', '3.5', '3']``; a manual in the Army layout
+    (EM 1110-1-1905), ``'5-5a(1)(a)'`` -> ``['5-5a(1)', '5-5a', '5-5', '5']``."""
+    out: list[str] = army_prefixes(section_id)
+    sid = out[-1] if out else str(section_id or "")
     while True:
         m = _LAST_PART_RE.search(sid)
         if not m or m.start() == 0:
@@ -777,8 +780,7 @@ def _nearby(ref_dir: Path, section_id: str, reference: str = "") -> str:
     above = next(((pid, titles[pid]) for pid in id_prefixes(section_id)
                   if pid in titles), None)
     below = [(sid, title) for sid, title in numbered
-             if sid.startswith(f"{section_id}.")
-             or sid.startswith(f"{section_id}-")][:8]
+             if numbered_under(section_id, sid)][:8]
     return nearby_note(above, below, lettered_matches(section_id, numbered),
                        prefixed_matches(reference, section_id, titles),
                        reference)
