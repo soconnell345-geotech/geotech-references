@@ -1769,6 +1769,9 @@ printed).
   Bf/4 = 0.8 m (p. C-45; its sliding check, p. C-48, leaves LS out too).
   Figures B4-6 and B4-7 are listed under Steps 11a and 11b, whose pages
   (B-76, B-79) print them.
+- **Micropile manual, Appendix D**: the pile-group sketch that p. D-9
+  draws beside the centroid table without a figure number is described in
+  Step 2's text (D.2), as p. D-17's cone sketch already was.
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),

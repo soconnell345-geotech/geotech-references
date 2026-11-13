@@ -330,6 +330,13 @@ def test_appendix_d_figures():
             for s in _appendix(14)["sections"] if s["figures"]}
     assert figs == {"D": ["Figure S1-1", "Figure S1-2", "Figure S1-3", "Figure S1-4"],
                     "D.8": ["Figure S1-5"], "D.10": ["Figure S1-6", "Figure S1-7"]}
+    # p. D-9 draws the pile group beside the centroid table without a figure number
+    assert "Determine Pile Group Properties Per Meter Length\n\nSketch (not numbered in the " \
+           "print): the pile footing in section, with Fy and M at the Pile Footing ℄ and Fx; " \
+           "the Pile Group ℄, e = 185 mm from it; Front Piles spaced at 1500 mm, drawn " \
+           "battered at 20°; Rear Piles spaced at 2250 mm; dimensions 300, 925, 925 and 300, " \
+           "1850 between the piles, 2450 overall\n\nCentroid of Pile Group" in _section("D.2")["body"]
+    assert 300 + 925 + 925 + 300 == 2450 and 925 - 740 == 185   # centroid 0.74 m from the front pile
     s13 = _section("D")["figures"][2]
     # the figure's legend carries the given loads (p. D-4)
     assert "VDL = 178.70 kN/m (dead load from bridge structure)" in s13
