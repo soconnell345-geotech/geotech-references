@@ -463,6 +463,13 @@ def table_3_6_pullout_parameters(reinforcement: str = "") -> list:
 # Table 3-7: Minimum Galvanization Thickness
 # ============================================================================
 
+# FHWA-NHI-10-024 Vol I, Table 3-7, p. 3-26 (after AASHTO M 111 and ASTM
+# A123): Strip "< ¼ in." 3.4 mils (85 μm), Strip "> ¼ in." 3.9 mils
+# (100 μm), "Wire*" all diameters 3.4 mils (85 μm), with the footnote
+# "* For bar mats fabricated from uncoated steel wire."
+_TABLE_3_7_REF = "FHWA-NHI-10-024, Table 3-7, p. 3-26"
+_TABLE_3_7_WIRE_FOOTNOTE = "* For bar mats fabricated from uncoated steel wire."
+
 _TABLE_3_7 = [
     {
         "component": "Strip reinforcement (thickness < 1/4 in)",
@@ -473,24 +480,37 @@ _TABLE_3_7 = [
         "component": "Strip reinforcement (thickness >= 1/4 in)",
         "thickness_mils": 3.9,
         "thickness_um": 100,
+        "print_note": ("Table 3-7 (p. 3-26) prints this row \"> ¼ in.\" and "
+                       "the other \"< ¼ in.\"; a strip exactly ¼ in. thick "
+                       "is in neither, and the library puts it in this row, "
+                       "the thicker coating."),
     },
     {
-        "component": "Wire reinforcement (all sizes)",
+        "component": "Wire reinforcement (all diameters)",
         "thickness_mils": 3.4,
         "thickness_um": 85,
+        "footnote": _TABLE_3_7_WIRE_FOOTNOTE,
     },
 ]
 
 
 def table_3_7_galvanization() -> list:
-    """Return minimum galvanization thickness from GEC-11 Table 3-7.
+    """Minimum galvanization thickness by steel thickness, GEC-11 Table 3-7 (FHWA-NHI-10-024 Vol I, p. 3-26, after AASHTO M 111 and ASTM A123).
+
+    As printed: strip "< ¼ in. (6.4 mm)" 3.4 mils (85 μm), strip "> ¼ in.
+    (6.4 mm)" 3.9 mils (100 μm), and "Wire*", all diameters, 3.4 mils
+    (85 μm), with the footnote "* For bar mats fabricated from uncoated
+    steel wire." (the wire row carries it as ``footnote``). A strip exactly
+    ¼ in. thick is in neither printed strip row; the library puts it in
+    the 3.9 mil row and says so (``print_note``).
 
     Returns
     -------
     list of dict
-        Galvanization thickness by component type.
+        component, thickness_mils, thickness_um, reference; footnote on
+        the wire row, print_note on the thicker strip row.
     """
-    return list(_TABLE_3_7)
+    return [dict(r, reference=_TABLE_3_7_REF) for r in _TABLE_3_7]
 
 
 # ============================================================================

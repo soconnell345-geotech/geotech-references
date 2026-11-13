@@ -324,6 +324,24 @@ class TestTable37:
         thick = [r for r in results if ">= 1/4" in r["component"]]
         assert len(thick) == 1
         assert thick[0]["thickness_um"] == 100
+        # p. 3-26 prints "> ¼ in."; the exact ¼ in. case is the library's
+        assert '"> ¼ in."' in thick[0]["print_note"]
+
+    def test_wire_row_carries_its_footnote(self):
+        """p. 3-26: "Wire*" (all diameters) with "* For bar mats fabricated
+        from uncoated steel wire.", the footnote as typed in the chapter
+        text."""
+        import json
+        from pathlib import Path
+        wire = [r for r in table_3_7_galvanization() if "Wire" in r["component"]]
+        assert len(wire) == 1 and wire[0]["thickness_mils"] == 3.4
+        assert wire[0]["footnote"] == "* For bar mats fabricated from uncoated steel wire."
+        assert all(r["reference"].endswith("Table 3-7, p. 3-26")
+                   for r in table_3_7_galvanization())
+        ch3 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter03.json"
+        body = ch3.read_text(encoding="utf-8")
+        assert ("Wire* | All diameters | 3.4 mils (85 μm)\\n" + wire[0]["footnote"]) in body
 
 
 # ============================================================================

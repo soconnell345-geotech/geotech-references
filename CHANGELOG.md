@@ -11,6 +11,10 @@ Of the five a checker found differing from the print, Tables 2-1, 4-4 and
   as "–", not 0.0 (Strength I EQ and CT, Extreme Event I CT, Extreme
   Event II EQ, Service I EQ and CT), each row with a `print_note`; a test
   checks every cell against the table as typed in the chapter text.
+- `table_3_7_galvanization` (p. 3-26): the wire row ("Wire*", all
+  diameters) carries the printed footnote "* For bar mats fabricated from
+  uncoated steel wire."; the thicker strip row says the page prints
+  "> ¼ in." (the library puts an exact ¼ in. there); every row a reference.
 
 **GEC-11 (FHWA-NHI-10-024 / -025, November 2009) chapter text rebuilt from
 the print (build, REF-80).** The 11 chapter files were a condensed
