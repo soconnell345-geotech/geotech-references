@@ -53,7 +53,7 @@ def test_twelve_chapters_and_appendices_b_to_d():
     assert titles[13].startswith("Appendix B: Design Examples")
     assert titles[14] == "Appendix C: Design Examples: Settlement for Static Analysis"
     assert titles[15] == "Appendix D: Common Unit Conversion Factors"
-    assert sum(len(c["sections"]) for c in chapters) == 778
+    assert sum(len(c["sections"]) for c in chapters) == 779
 
 
 def test_every_section_carries_its_printed_pages():
@@ -173,11 +173,16 @@ def test_table_typed_in_from_the_page():
     assert "E*O" not in body
 
 
-def test_table_3_8_note_reads_sigma_v_prime():
-    # Table 3-8 (p. 46) sets a raised semicolon where the prime of σ′v stands
+def test_table_3_8_as_printed_with_a_note():
+    # Table 3-8 (p. 46) prints σ with the subscript v and a raised semicolon
+    # over it, and the stress in pcf: stored as printed, a note gives the
+    # evident reading
     body = _retrieval.retrieve_section(REF, "3-7a")["body"]
-    assert body.count("For σ′v = 2,000 to 8,000 pcf") == 3
-    assert "^(;)" not in body
+    assert body.count("For σv^(;) = 2,000 to 8,000 pcf") == 3
+    assert "σ′v = 2,000" not in body
+    assert "| 0.20 | EM 1110-1-1904; For σv^(;) = 2,000 to 8,000 pcf\n[Note (not " \
+        "printed): Table 3-8 (p. 46)" in body
+    assert "the evident reading is σ′v" in body and "a stress is in psf" in body
 
 
 def test_print_quirk_kept_as_printed():
@@ -224,27 +229,74 @@ def test_worked_example_slips_kept_with_a_note():
     c3 = _retrieval.retrieve_section(REF, "C-3b")["body"]
     assert "to a depth of 25.0 ft per Step 2.\n[Note (not printed): Table C-3b" in c3
     # slips found when every appendix formula line was read against the page
-    noted = {
-        "B-1b": "= 7 ft = 49 ft^2 (Row 3)\n[Note (not printed): Table B-1a, Step 1 (p. 296)",
-        "B-4b": "= 0.226 ksf (Row 6)\n[Note (not printed): Table B-4a, Step 3 (p. 312)",
-        "B-5b": "= 9.9/3 = 3.3 ≥ 3 OK ü\n[Note (not printed): Table B-5a, Step 9 (p. 321)",
-        "B-6b": "tan(1.4 · 31°)\n[Note (not printed): Table B-6a, Step 4 (p. 325)",
-        "C-2b": "= 0.45 tsf\n[Note (not printed): Table C-2, Step 5 (p. 345)",
-        "C-6b": "| 264 | 23.9 | 199\n[Note (not printed): Table C-6a (p. 370)",
-        "3-9b(1)(b)": "2 | PI > 50 | 115 to 75\n[Note (not printed): Table 3-15 (p. 59)",
-        "8-6b(3)": "My = distance ratio as shown on Figure 8-7 (dimensionless)\n"
-                   "[Note (not printed): Eqs. 8-27 and 8-28 (p. 206)",
-    }
-    for sid, place in noted.items():
+    noted = [
+        ("B-1b", "= 7 ft = 49 ft^2 (Row 3)\n[Note (not printed): Table B-1a, Step 1 (p. 296)"),
+        ("B-4b", "= 0.226 ksf (Row 6)\n[Note (not printed): Table B-4a, Step 3 (p. 312)"),
+        ("B-4b", "γ = 0.133 kcf (Row 5)\n[Note (not printed): Table B-4a, Step 1 (p. 312)"),
+        ("B-5b", "= 9.9/3 = 3.3 ≥ 3 OK ü\n[Note (not printed): Table B-5d (p. 321)"),
+        ("B-6b", "tan(1.4 · 31°)\n[Note (not printed): Table B-6a, Step 5 (p. 325)"),
+        ("B-6b", "Nc = 2π = 5.14 (Row 10)\n[Note (not printed): Table B-6b, Step 3 (p. 327)"),
+        ("C-2b", "= 0.45 tsf\n[Note (not printed): Table C-2, Step 5 (p. 345)"),
+        ("C-2b", "| 0.16 | 0.28 | 0.020\n[Note (not printed): Table C-2, Step 7b (p. 348)"),
+        ("C-3b", "| 22.5 | 28.5 | 0.03 | 0.02\n[Note (not printed): Table C-3b, Step 7a"),
+        ("C-6b", "| 264 | 23.9 | 199\n[Note (not printed): Table C-6a (p. 370)"),
+        ("C-7b", "Step 7 | ∑ δc = 0.034 inches\n[Note (not printed): Table C-7b, Step 7 (p. 380)"),
+        ("3-9b(1)(b)", "2 | PI > 50 | 115 to 75\n[Note (not printed): Table 3-15 (p. 59)"),
+        ("8-6b(3)", "My = distance ratio as shown on Figure 8-7 (dimensionless)\n"
+                    "[Note (not printed): Eqs. 8-27 and 8-28 (p. 206)"),
+        ("D", "kN | k | 0.2248\n[Note (not printed): Table D-3 (p. 388): k is the kip"),
+        ("D", "ton (short)/yd^2 | kg/m^3 | 1186.553\n[Note (not printed): Table D-6 (p. 390)"),
+    ]
+    for sid, place in noted:
         assert place in _retrieval.retrieve_section(REF, sid)["body"], sid
+
+
+def test_example_b4_unit_weight_note_follows_the_given_data():
+    # Figure B-4 (p. 311) and Table B-4c, Row 5 (p. 315) give the clay 0.113
+    # kcf; Steps 1 and 3 (p. 312) print 0.133. The printed qo and qult follow
+    # from 0.113, and the note says the 0.133 is the slip
+    b4 = _retrieval.retrieve_section(REF, "B-4b")["body"]
+    assert "the 0.133 kcf printed here and in Step 1 is the slip" in b4
+    assert "0.226 ksf is 0.113 kcf · 2 ft" in b4 and "0.266" not in b4.replace(
+        "(0.133 kcf · 2 ft would be 0.266 ksf)", "")
+    assert "5 | γ (kcf) | 0.113 | 0.113" in _retrieval.retrieve_section(REF, "B-4c")["body"]
+    q0 = 0.113 * 2
+    assert round(q0, 3) == 0.226
+    assert round(1.2 * 1.06 * 0.85 * 5.14 + q0, 2) == 5.78     # USACE, Row 14
+    assert round(1.2 * 1.0 * 0.85 * 5.14 + q0, 2) == 5.47      # FHWA, Row 14
+
+
+def test_example_c7_dmt_rows_total_0_343_inches():
+    # Table C-7b, Step 7 (p. 380): the print gives the sum 0.034 in; its 25
+    # rows total 0.343 in (the tenfold slip of Table C-6b's 0.081 against
+    # 0.812), kept as printed with a note
+    body = _retrieval.retrieve_section(REF, "C-7b")["body"]
+    table = body[body.index("Step 7 | Estimate the settlement"):body.index("Step 7 | ∑ δc")]
+    rows = [ln.split(" | ") for ln in table.split("\n")
+            if re.match(r"Step 7 \| ″ \| \d", ln)]
+    assert len(rows) == 25
+    assert all(len(r) == 8 for r in rows)
+    assert round(sum(float(r[-1]) for r in rows), 3) == 0.343
+    # each row's δ = Δσz/M · H · 12 to the printed three places
+    for r in rows:
+        H, M, dsz, d = float(r[3]), float(r[4]), float(r[6]), float(r[7])
+        assert abs(dsz / M * H * 12 - d) <= 0.0006, r
+    assert "total 0.343 in, not 0.034 in" in body
+    # Table C-7c, Step 10 (p. 382): the printed ratios are 152 and 78 tsf over
+    # 16.0 tsf, the geometric mean of the P*L values within 1.5B (8.5, 30.2)
+    pne = (8.5 * 30.2) ** 0.5
+    assert (round(152 / pne, 1), round(78 / pne, 1)) == (9.5, 4.9)
+    assert (round(152 / 8.5, 1), round(78 / 8.5, 1)) == (17.9, 9.2)
+    assert "152 and 78 over 16.0 tsf" in _retrieval.retrieve_section(REF, "C-7b.a")["body"]
 
 
 def test_appendix_formula_lines_as_printed():
     # worked-example lines the placement rules read wrongly, typed in from the
     # rendered page (manifest printed_passages); each result follows from the
     # line as stored
-    c3 = _retrieval.retrieve_section(REF, "C-3b")["body"]
-    # Step 4 (p. 359): the drainage path squared; without the power the line
+    c3 = _retrieval.retrieve_section(REF, "C-3b.a")["body"]
+    # Table C-3c, Step 4 (p. 359, in the part split off C-3b to make room
+    # for its notes): the drainage path squared; without the power the line
     # gives 12.2 days, not the printed 152.8
     assert "\nt = (Tv · Hdr^2)/Cv = (0.403 ((25 ft)/2)^2)/(0.412 ft^2/day) = 152.8 days" in c3
     assert round(0.403 * (25 / 2) ** 2 / 0.412, 1) == 152.8
@@ -270,6 +322,49 @@ def test_appendix_formula_lines_as_printed():
     assert "N̅60 = (12 + 15 + 14)/3 = 14 bpf" in c7a
     # "14.7 k–ips" (p. 314) is the word kips
     assert "(80 kips + 14.7 kips)/(49 ft^2)" in _retrieval.retrieve_section(REF, "B-4b")["body"]
+
+
+#: two words the print sets side by side that the broken-word check would
+#: otherwise take for one word broken by a space
+NOT_BROKEN = {("of", "ten"), ("a", "round"), ("line", "rs")}
+
+
+def test_no_word_broken_by_a_space():
+    # p. 299 sets "not applicable" in the math font, whose b the text layer
+    # holds as a space (typed in, manifest printed_passages); a subscript
+    # inside a word in the text font stays in it (CKoU, Figure 3-9, p. 43).
+    # No stored word is broken by a space standing in it or for one of its
+    # letters: "x y" where x or y is printed nowhere else in the text and
+    # x + y, or x + one letter + y, is printed whole
+    assert "length L= L = L′ = not applicable (Row 2)" in \
+        _retrieval.retrieve_section(REF, "B-2b")["body"]
+    fig = _retrieval.retrieve_section(REF, "3-6f(2)")
+    assert "consolidated-undrained (CKoU) direct simple shear" in fig["body"]
+    assert all("CKo U" not in f for f in fig["figures"])
+    bodies = [s["body"] for c in _chapters() for s in c["sections"]]
+    assert _broken_words(bodies) == []
+    # the check finds the broken word it was written for
+    assert _broken_words(bodies + ["= not applica le (Row 2)"]) == \
+        [("applica le", ["applicable"])]
+
+
+def _broken_words(bodies: list[str]) -> list[tuple[str, list[str]]]:
+    words: dict[str, int] = {}
+    for b in bodies:
+        for w in re.findall(r"[A-Za-z]+", b):
+            words[w.lower()] = words.get(w.lower(), 0) + 1
+    pair = re.compile(r"(?<![A-Za-z])([A-Za-z]+) (?=([A-Za-z]+)(?![A-Za-z]))")
+    found = []
+    for b in bodies:
+        for m in pair.finditer(b):
+            a, z = m.group(1).lower(), m.group(2).lower()
+            if min(words[a], words[z]) > 2 or (a, z) in NOT_BROKEN:
+                continue
+            whole = [w for w in [a + z] + [a + c + z for c in "abcdefghijklmnopqrstuvwxyz"]
+                     if words.get(w, 0) >= 2]
+            if whole:
+                found.append((m.group(0) + m.group(2), whole))
+    return found
 
 
 #: a formula line the scatter check passes because the page prints it so

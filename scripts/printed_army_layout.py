@@ -606,8 +606,12 @@ def linear(row: Row, spaces, radicals=()) -> str:
             body = text.replace("\x02", "").replace("\x03", "")
             out += ("\x02" if "\x02" in text else "") + body \
                 + ("\x03" if "\x03" in text else "")
+            # a symbol set straight after a subscript starts a new factor;
+            # in the text font a subscript inside a word stays in it (CKoU,
+            # p. 43)
             if nxt is not None and nxt.role == "base" and nxt.t[:1].isalnum() \
                     and body[-1:].isalnum() \
+                    and (its[-1].math or nxt.math) \
                     and not _space_between(its[-1], nxt, row.y, spaces):
                 out += " "
         else:
