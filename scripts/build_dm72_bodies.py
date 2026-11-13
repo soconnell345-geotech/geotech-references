@@ -149,16 +149,34 @@ class Row:
     def __init__(self, lines):
         self.lines = sorted([ln for ln in lines if not ln.get("attached")],
                             key=lambda ln: ln["bbox"][0])
-        self.spans = [s for ln in self.lines for s in ln["spans"] if s["text"]]
+        # left to right within a line too: the text layer gives the u of
+        # "su" before the s on p. 56 (a blank goes by its right end, as the
+        # one after the γ of "γt" starts under the γ)
+        def place(s):
+            return s["bbox"][0] if s["text"].strip() else s["bbox"][2] - 0.5
+
+        self.spans = [s for ln in self.lines
+                      for s in sorted(ln["spans"], key=place) if s["text"]]
+        put: list[int] = []  # ids of the spans put back in
+
+        def centre(s):
+            return (s["bbox"][0] + s["bbox"][2]) / 2
+
         for ln in lines:
             if ln.get("attached"):
                 for a in ln["spans"]:
                     if not a["text"].strip():
                         continue
                     k = 0
-                    while k < len(self.spans) and self.spans[k]["bbox"][2] <= a["bbox"][0] + 1.5:
+                    # past the spans that end before it, and past one put
+                    # back earlier whose middle is left of its middle (the
+                    # Vm set under the δ's right side)
+                    while k < len(self.spans) and (
+                            self.spans[k]["bbox"][2] <= a["bbox"][0] + 1.5
+                            or (id(self.spans[k]) in put and centre(self.spans[k]) < centre(a))):
                         k += 1
                     self.spans.insert(k, a)
+                    put.append(id(a))
         self.lines = sorted(lines, key=lambda ln: ln["bbox"][0])
         self.x0 = min(ln["bbox"][0] for ln in self.lines)
         self.y0 = min(ln["bbox"][1] for ln in self.lines)
@@ -209,21 +227,28 @@ def _rows(page) -> tuple[list[Row], list]:
             groups.append([ln])
     # a subscript or superscript the text layer gives as a line of its own
     # (the R of "TR", p. 549) goes back into the prose line it is set in
+    # and so does a symbol set in the Symbol font on the line's baseline
+    # (the δ of "δVm = 2%·H", p. 82)
     text_groups = [g for g in groups if _is_text_line(g[0])]
     keep = []
     for g in groups:
-        if not _is_text_line(g[0]) and all(s["size"] < 9 for ln in g for s in ln["spans"]
-                                            if s["text"].strip()):
+        sizes = [s["size"] for ln in g for s in ln["spans"] if s["text"].strip()]
+        if not _is_text_line(g[0]) and sizes and max(sizes) < 13.5:
             x0 = min(ln["bbox"][0] for ln in g)
             y0 = min(ln["bbox"][1] for ln in g)
             y1 = max(ln["bbox"][3] for ln in g)
+            small = max(sizes) < 9
             host = None
             for tg in text_groups:
                 tx0 = min(ln["bbox"][0] for ln in tg)
                 tx1 = max(ln["bbox"][2] for ln in tg)
                 ty0 = min(ln["bbox"][1] for ln in tg)
                 ty1 = max(ln["bbox"][3] for ln in tg)
-                if tx0 - 2 < x0 < tx1 + 2 and y0 < ty1 - 1 and y1 > ty0 + 1:
+                if not tx0 - 2 < x0 < tx1 + 2 or _equation_word(tg):
+                    continue
+                over = min(y1, ty1) - max(y0, ty0)
+                if (small and y0 < ty1 - 1 and y1 > ty0 + 1) or \
+                        (over > 0.6 * min(y1 - y0, ty1 - ty0) and abs(y0 - ty0) < 3):
                     host = tg
                     break
             if host is not None:
@@ -234,6 +259,13 @@ def _rows(page) -> tuple[list[Row], list]:
     rows = [Row(g) for g in keep]
     rows.sort(key=lambda r: (r.y0, r.x0))
     return rows, images
+
+
+def _equation_word(group) -> bool:
+    """A short Arial word set inside an equation object ("for" in Eq. 2-6)."""
+    text = "".join(s["text"] for ln in group for s in ln.get("spans", [])).strip()
+    x0 = min(ln["bbox"][0] for ln in group)
+    return x0 > 150 and len(text) <= 15 and not _EQNUM.match(text)
 
 
 def _baseline(ln) -> float:
@@ -284,7 +316,17 @@ def row_text(row: Row, foot_marks: set[int], marks_out: list) -> str:
 
 # --- classifying the rows of a page -------------------------------------------
 
-def classify(rows: list[Row], images: list, pno: int) -> None:
+_FEET: set | None = None
+
+
+def classify(rows: list[Row], images: list, pno: int, feet: set | None = None) -> None:
+    """Give each row its kind (running, caption, figtext, eqnum, heading,
+    prose, small, math, math+eqnum, footnote, footnote+)."""
+    global _FEET
+    if feet is None:
+        if _FEET is None:
+            _FEET = {int(k) for k in load_manifest().get("footnotes", {})}
+        feet = _FEET
     for r in rows:
         if r.y0 < 60 or r.y0 > 735:
             r.kind = "running"
@@ -312,6 +354,13 @@ def classify(rows: list[Row], images: list, pno: int) -> None:
             r.kind = "math"
             continue
         r.kind = "small"
+    # a short word set inside an equation object ("for" in Eq. 2-6) is part
+    # of it
+    for k, r in enumerate(rows):
+        if r.kind == "prose" and _equation_word(r.lines):
+            near = [x for x in rows[max(0, k - 2):k + 3] if x is not r]
+            if any(x.kind in ("math", "eqnum") for x in near):
+                r.kind = "math"
     # an equation number set at the end of a line of glyphs comes as one row
     for r in rows:
         if r.kind in ("math", "small") and re.search(r"\(\s*[PB1-7]-\d+[a-z]?\s*\)\s*[.,;:]?\s*$", r.raw):
@@ -336,23 +385,28 @@ def classify(rows: list[Row], images: list, pno: int) -> None:
             for r in run:
                 r.kind = "small"
         k = j
-    # footnotes: Arial 10 pt rows at the foot of the page, the first opening
-    # with a small raised number
-    prose_bottom = max((r.y1 for r in rows if r.kind in ("prose", "heading")), default=0)
+    # footnotes: rows at the foot of the page (Arial 10 pt, a few in 12 pt),
+    # the first opening at the left margin with a small number in Arial
+    # that is one of the manual's footnotes; the rows after it to the
+    # running footer are its text
     for i, r in enumerate(rows):
-        if r.kind == "small" and r.y0 > 600 and r.y0 >= prose_bottom - 1:
-            first = [s for s in r.spans if s["text"].strip()]
-            if first and first[0]["size"] < 8 and first[0]["text"].strip().isdigit() \
-                    and _is_arial(first[0]["font"]):
-                r.kind = "footnote"
-                for r2 in rows[i + 1:]:
-                    if r2.kind == "small" and r2.y0 < 735:
-                        f2 = [s for s in r2.spans if s["text"].strip()]
-                        if f2 and f2[0]["size"] < 8 and f2[0]["text"].strip().isdigit():
-                            r2.kind = "footnote"
-                        else:
-                            r2.kind = "footnote+"
+        if r.kind in ("running", "footnote", "footnote+") or r.y0 < 560 or r.x0 > 80:
+            continue
+        if _footnote_start(r, feet):
+            r.kind = "footnote"
+            for r2 in rows[i + 1:]:
+                if r2.kind == "running":
+                    continue
+                r2.kind = "footnote" if _footnote_start(r2, feet) else "footnote+"
+            break
     _ = pno
+
+
+def _footnote_start(r: Row, feet: set) -> bool:
+    first = [s for s in r.spans if s["text"].strip()]
+    return bool(first) and first[0]["size"] < 9 and _is_arial(first[0]["font"]) \
+        and first[0]["text"].strip().isdigit() and int(first[0]["text"].strip()) in feet \
+        and len(first) > 1
 
 
 def _heading_like(r: Row) -> bool:
@@ -524,7 +578,8 @@ def split_sections(toks: list[tuple], sections: list[dict], stem: str, man: dict
                 continue
             if cur is None:
                 continue  # the chapter's title, before its first section
-            report.append(f"{stem}: bold line kept as text in {cur}: {t[1][:70]!r} ({t[4]})")
+            if t[4] not in man.get("headings_as_text", {}):
+                report.append(f"{stem}: bold line kept as text in {cur}: {t[1][:70]!r} ({t[4]})")
             t = ("prose",) + t[1:]
         if cur:
             out[cur].append(t)
@@ -533,10 +588,17 @@ def split_sections(toks: list[tuple], sections: list[dict], stem: str, man: dict
     return out
 
 
+def _item_start(text: str, row) -> bool:
+    """A list item starts here: a bullet ("•"), or the hollow "o" of a
+    second-level list set at its indent."""
+    return text.startswith(("•", "", "▪", "■")) or (
+        text.startswith("o ") and row is not None and row.x0 > 85)
+
+
 def _continues(prev_row, prev_text: str, row, text: str) -> bool:
     """Whether a paragraph runs on from prev_row to row (across a page, a
     figure or a table, or a gap)."""
-    if text.startswith(("•", "")):
+    if _item_start(text, row):
         return False
     if text[:1].islower():
         return True
@@ -596,7 +658,7 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
                 prow, ptext = prev
                 same_page = prow is not None and getattr(prow, "_page", None) == page
                 gap = row.y0 - prow.y1 if same_page else None
-                if same_page and gap is not None and gap < 6 and not text.startswith("•") \
+                if same_page and gap is not None and gap < 6 and not _item_start(text, row) \
                         and not _where_item(text, ptext):
                     new_para = False
                 elif not same_page and _continues(prow, ptext, row, text):
@@ -707,7 +769,13 @@ def deferred_pending(deferred) -> bool:
 
 
 def _where_item(text: str, prev_text: str) -> bool:
-    """A line of a "where" list ("COVw = coefficient of ...") starts a line."""
+    """A line of a "where" list ("COVw = coefficient of ...") starts a line;
+    a line that opens with a word of the sentence ("of Kwall = 10 to 50",
+    p. 76) does not."""
+    first = text.split(" ", 1)[0]
+    if first in ("of", "to", "in", "at", "by", "is", "as", "for", "and", "or", "the", "with",
+                 "from", "on", "be", "than", "that", "a", "an"):
+        return False
     return bool(re.match(r"^\S{1,14}(?: \S{1,8})?\s?[=≈]\s", text)) and not prev_text.rstrip().endswith(("=", "+", "−", "-"))
 
 

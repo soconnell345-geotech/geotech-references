@@ -16,7 +16,7 @@
     93,
     144
    ],
-   "built": false
+   "built": true
   },
   "chapter03": {
    "pages": [
@@ -253,19 +253,19 @@
   "Eq. P-2": "su = au·Pa·(σ'1,con/Pa)^bu",
   "Eq. A-3": "s = a·Pa·(σʹ/Pa + t)^b",
   "Eq. 2-1": "Hcrit = 4su / γt",
-  "Eq. 2-2": "Normalized wall stiffness Kwall = EI / (γt × h⁴)",
+  "Eq. 2-2": "Kwall = EI / (γt × h⁴)",
   "Eq. 2-3": "β = (δVi − δVj) / db",
   "Eq. 2-4": "εh = (δHi − δHj) / db",
   "Eq. 2-5": "δi = δm · ((d0 − di) / d0)",
-  "Eq. 2-6": "δi = δm for 0 ≤ di ≤ 0.75H",
-  "Eq. 2-7": "Scaled distance SD = D / W^β",
-  "Eq. 2-8": "Peak particle velocity PPV = K · SD^(−1.6)",
+  "Eq. 2-6": "δi = δm for 0 ≤ di ≤ 0.75H; δi = δm · ((1.5H − di) / 0.75H) for 0.75H ≤ di ≤ 1.5H",
+  "Eq. 2-7": "SD = D / W^β",
+  "Eq. 2-8": "PPV = K · SD^(−1.6)",
   "Eq. 2-9": "K = PPV / SD^(−1.6)",
   "Eq. 2-10": "ρ = q·γw / Δp",
   "Eq. 3-1": "γd = Ws/Vt = γt / (1 + w/100)",
   "Eq. 3-2": "γd = γw·S / (w/100 + S/Gs)",
-  "Eq. 3-3": "R.C",
-  "Eq. 3-4": "Relative water content, printed as Δw = wopt − wfield (Equation 3-4, PDF p. 150, printed p. 112)",
+  "Eq. 3-3": "R.C. = (γd,field / γd,max) × 100%",
+  "Eq. 3-4": "Δw = wopt − wfield (Equation 3-4, PDF p. 150, printed p. 112)",
   "Eq. 3-5": "Dr = [(emax − e)/(emax − emin)] × 100% = [(γd,field − γd,min)/(γd,max − γd,min)] × (γd,max/γd,field) × 100%, expressed in both void ratio and dry unit weight forms",
   "Eq. 3-6": "wT = PC·wC + PF·wF",
   "Eq. 3-7": "γdT = (γdF·GsC·γw)/(γdF·PC + GsC·γw·PF)",
@@ -286,9 +286,9 @@
   "Eq. 4-12": "ln(Kp) = ln[(1 + sin φʹ)/(1 − sin φʹ)] · [1.443·(δ/φʹ)·sin φʹ + 1]",
   "Eq. 4-13": "γeq = K · γ",
   "Eq. 4-14": "σh = γeq · z + K · q",
-  "Eq. 4-15": "Seismic active earth pressure coefficient KAE as a function of backfill friction angle φ', backfill slope β, wall slope θ, interface friction angle δ, and seismic angle ψ = tan⁻¹(kh/(1−kv))",
-  "Eq. 4-16": "Total seismic active earth pressure force PAE = (γ·H²/2)·(1 − kv)·KAE",
-  "Eq. 4-17": "Dynamic earth pressure force component ΔPAE = (3/8) · kh · γ · H², for horizontal backfill, vertical wall face, no wall friction, and wall height < 20 ft (Seed and Whitman 1970 simplification)",
+  "Eq. 4-15": "ψ = tan⁻¹(kh/(1−kv))",
+  "Eq. 4-16": "PAE = (γ·H²/2)·(1 − kv)·KAE",
+  "Eq. 4-17": "ΔPAE = (3/8) · kh · γ · H², for horizontal backfill, vertical wall face, no wall friction, and wall height < 20 ft (Seed and Whitman 1970 simplification)",
   "Eq. 4-18": "ΔPE = kh · γ · H² (Wood 1973), added to static pressure to obtain total applied force",
   "Eq. 4-19": "pw = 0.875 · kh · γw · √(H·z)",
   "Eq. 4-20": "Pw = (7/12) · kh · γw · H²",
@@ -303,12 +303,12 @@
   "Eq. 4-29": "PP,allow = PP / F",
   "Eq. 4-30": "φ′allow = arctan(tan φ′ / F), providing a factor of safety on shear strength",
   "Eq. 4-31": "ρ = (H + D)⁴ / EI",
-  "Eq. 5-1": "total load (structural load + foundation weight + overlying soil weight) divided by bearing area A",
-  "Eq. 5-2": "gross bearing pressure minus existing vertical overburden pressure at the foundation bearing elevation",
+  "Eq. 5-1": "Gross bearing pressure: total load (structural load + foundation weight + overlying soil weight) divided by bearing area A",
+  "Eq. 5-2": "Net bearing pressure: gross bearing pressure minus existing vertical overburden pressure at the foundation bearing elevation",
   "Eq. 5-3": "Net bearing pressure approximation when foundation and backfill unit weights equal existing soil unit weight",
   "Eq. 5-4": "e = M/Q",
-  "Eq. 5-5": "|eB| ≤ B/6 or |eL| ≤ L/6",
-  "Eq. 5-6": "6|eB|/B + 6|eL|/L ≤ 1",
+  "Eq. 5-5": "Middle-third rule for one-way eccentricity: |eB| ≤ B/6 or |eL| ≤ L/6",
+  "Eq. 5-6": "Kern criterion for two-way eccentricity: 6|eB|/B + 6|eL|/L ≤ 1",
   "Eq. 5-7": "q_corner = q_gross·(1 ± 6|eB|/B ± 6|eL|/L)",
   "Eq. 5-8": "B' = B - 2*eB",
   "Eq. 5-9": "L' = L - 2*eL",
@@ -316,7 +316,7 @@
   "Eq. 5-11": "L' = sqrt{ [2·r²·cos⁻¹(ex/r) − 2·ex·sqrt(r² − ex²)] · [sqrt(r² − ex²) / (r − ex)] }",
   "Eq. 5-12": "B' = L' · (r − ex) / sqrt(r² − ex²)",
   "Eq. 5-13": "q_all,gross = q_ult / F_BC",
-  "Eq. 5-14": "q_all,net ≤ q_ult/F_BC - sigma_zD, subtracting overburden pressure from factored ultimate capacity (Peck et al. 1974)",
+  "Eq. 5-14": "Net allowable bearing pressure: q_all,net ≤ q_ult/F_BC - sigma_zD, subtracting overburden pressure from factored ultimate capacity (Peck et al. 1974)",
   "Eq. 5-15": "qult = cʹ·Nc·Ψc + σʹzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ",
   "Eq. 5-16": "qult = c·Nc·Ψc + σzD·Nq·Ψq + 0.5·γ·B·Nγ·Ψγ, using undrained cohesion c, undrained friction angle φ, total unit weight γ, and total vertical stress σzD at bearing elevation",
   "Eq. 5-17": "qult = su·Nc·Ψc + σzD·Ψq",
@@ -355,11 +355,11 @@
   "Eq. 6-8": "fs = Cα = α·su",
   "Eq. 6-9": "α = 0.28·(su/Pa)^(-0.44), fit to Tomlinson (1994) curve for pile penetration 10b into stiff clay beneath soft clay",
   "Eq. 6-10": "α = 0.3 + 0.17·(Pa/su,ICU) ≤ 1, based on ICU triaxial undrained strength",
-  "Eq. 6-11": "su,ICU ≈ 1.74·su,UC·OCR^(-0.25)",
-  "Eq. 6-12": "su,ICU ≈ 1.68·su,UU·OCR^(-0.25)",
-  "Eq. 6-13": "su,ICU ≈ 1.43·su,DSS",
+  "Eq. 6-11": "Conversion of UC undrained strength to ICU equivalent: su,ICU ≈ 1.74·su,UC·OCR^(-0.25)",
+  "Eq. 6-12": "Conversion of UU undrained strength to ICU equivalent: su,ICU ≈ 1.68·su,UU·OCR^(-0.25)",
+  "Eq. 6-13": "Conversion of DSS undrained strength to ICU equivalent: su,ICU ≈ 1.43·su,DSS",
   "Eq. 6-14": "α = 0.4·(1 - 0.12·ln(su/Pa)), for soils with clay fraction ≥ 50% and OCR between 3 and 5",
-  "Eq. 6-15": "Alpha factor for CFAs in mixed alluvial/loessial deposits (Coleman and Arcement 2002), printed as α = 0.53·(su/Pa) with no exponent (Equation 6-15, PDF p. 457, printed p. 419), valid for su/Pa from 0.24 to 1.42",
+  "Eq. 6-15": "α = 0.53·(su/Pa) with no exponent (Equation 6-15, PDF p. 457, printed p. 419), valid for su/Pa from 0.24 to 1.42",
   "Eq. 6-16": "α = 0.5·(su/σ'z)^(-0.5), capped at 1.0 when su/σ'z < 0.25",
   "Eq. 6-17": "α = 0.5·(su/σ'z)^(-0.25)",
   "Eq. 6-18": "α = 1.07·OCR^(-0.4)",
@@ -382,8 +382,8 @@
   "Eq. 6-35": "fs = C·Pa·(qu/Pa)^n",
   "Eq. 6-36": "qb = N*cr·qu",
   "Eq. 6-37": "Rr,g = min(n · ηg · Rr, Rr,gblock)",
-  "Eq. 6-38": "Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc, combining side shaft resistance and base bearing capacity",
-  "Eq. 6-39": "Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9, per Brinch-Hansen (1957)",
+  "Eq. 6-38": "Rn,gblock = 2·Z·(B+L)·fs,1 + B·L·su,2·Nc, combining side shaft resistance and base bearing capacity.",
+  "Eq. 6-39": "Nc = 5(1 + 0.2·B/L)(1 + 0.2·Z/B) ≤ 9, per Brinch-Hansen (1957).",
   "Eq. 6-40": "Rr,gu = min(n(Rr,s + Wr,e) + Wr,e,cap, Rr,ublock)",
   "Eq. 6-41": "Vblock = B·L·Z + (Z²/4)·(B + L) + Z³/12, for uniform soil profile with 4V:1H slope",
   "Eq. 6-42": "We,g = γm·B·L·Z1 + γb·B·L·Z2 + Wcap, accounting for moist and buoyant unit weights",
@@ -392,7 +392,7 @@
   "Eq. 6-45": "δe = ΔQ·Z / (Ap·Ep)",
   "Eq. 6-46": "δs = ((Qd/(B·L))·√B / N̄1,60)·If",
   "Eq. 6-47": "If = max(1 - Z/(12·B), 0.5)",
-  "Eq. 6-48": "Rʹb = Rb for fine-grained (cohesive) soils",
+  "Eq. 6-48": "Rʹb = Rb for fine-grained (cohesive) soils; Rʹb = 0.71·Rb for coarse-grained (cohesionless) soils",
   "Eq. 6-49": "Bʹ = B + z2/2",
   "Eq. 6-50": "Lʹ = L + z2/2",
   "Eq. 6-51": "Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ))",
@@ -414,17 +414,17 @@
   "Eq. 6-67": "Pt = Pc·(yt/(a·b))^(1/n)",
   "Eq. 6-68": "yt/b = a·(Mt/Mc)^n",
   "Eq. 6-69": "Mt = Mc·(yt/(a·b))^(1/n)",
-  "Eq. 6-70": "Mmax/Mc ≈ a·(Pt/Pc)^n, using coefficients from Table 6-37",
-  "Eq. 6-71": "Mobilized passive resistance of an embedded pile cap as a fraction of fully-mobilized passive resistance, using a hyperbolic load-displacement relationship",
-  "Eq. 6-72": "σdr ≤ (0.9)(φda)(fy)",
-  "Eq. 6-73": "σdr,comp ≤ φda(0.85f'c − fpe)",
-  "Eq. 6-74": "σdr,tensile ≤ φda(0.095√f'c + fpe), in ksi",
-  "Eq. 6-75": "σdr ≤ φda(2.6)(fcto)",
+  "Eq. 6-70": "Maximum bending moment in pile due to applied lateral load Pt: Mmax/Mc ≈ a·(Pt/Pc)^n, using coefficients from Table 6-37",
+  "Eq. 6-71": "PP,mob/PP,ult = y/(0.85·y + 0.006·Hcap) ≤ 1",
+  "Eq. 6-72": "AASHTO (2020) limit for maximum compressive driving stress in steel piles: σdr ≤ (0.9)(φda)(fy)",
+  "Eq. 6-73": "AASHTO (2020) limit for maximum compressive driving stress in concrete piles: σdr,comp ≤ φda(0.85f'c − fpe)",
+  "Eq. 6-74": "AASHTO (2020) limit for maximum tensile driving stress in concrete piles: σdr,tensile ≤ φda(0.095√f'c + fpe), in ksi",
+  "Eq. 6-75": "AASHTO (2020) limit for maximum compressive and tensile driving stress in timber piles: σdr ≤ φda(2.6)(fcto)",
   "Eq. 6-76": "Zf = √2 * (Ep*Ip / (b*kh))^0.25",
   "Eq. 6-77": "Es = b*kh = C*su",
   "Eq. 6-78": "Zf = 1.8*(Ep*Ip/nh)^0.2",
   "Eq. 6-79": "tcap = Pui/12 + 30",
-  "Eq. 6-80": "1.25·Qd + 1.10·(Qnp - Qd) ≤ Pr",
+  "Eq. 6-80": "Structural limit state check with drag force, using the load factor of 1.10 on the drag force that FHWA (2016) reports from one state transportation agency: 1.25·Qd + 1.10·(Qnp - Qd) ≤ Pr",
   "Eq. 7-1": "F_X(x_i) = P_X(X ≤ x_i) = Σ (j = 1 to i) P_X(x_i)",
   "Eq. 7-2": "F_X(x_0) = P(X ≤ x_0) = integral from –∞ to x_0 of f_X(x) dx",
   "Eq. 7-3": "f_X(x) = d/dx [F_X(x)]",
@@ -462,6 +462,16 @@
    "section": "7-4.2.4",
    "after": "of β = 4.26 (Pu = 0.0001) would require at least 10⁶ trials.",
    "text": "[Note, not printed (build check, 2026-11-10): a standard normal distribution gives β = 3.72 at Pu = 1×10⁻⁴, and β = 4.26 at about Pu = 1×10⁻⁵.]"
+  },
+  {
+   "section": "2-4.4.3",
+   "after": "[Eq. 2-4] εh = (δHi − δHj) / db",
+   "text": "[left side printed εb]"
+  },
+  {
+   "section": "2-4.4.3",
+   "after": "δHi, δHj = estimated settlements",
+   "text": "[As printed on p. 84: \"settlements\"; δHi and δHj are the horizontal movements at the two points (notation, p. 105)]"
   }
  ],
  "formulas": {},
@@ -479,6 +489,18 @@
    "find": "provided in Table 7 1.",
    "replace": "provided in Table 7-1.",
    "why": "p. 509 prints \"Table 7 1\": the hyphen is missing on the page (a blank where Word's non-breaking hyphen was); put back so the reference can be found."
+  },
+  {
+   "section": "2-4.4.2",
+   "find": "δVm= 2%·H is a reasonable",
+   "replace": "δVm = 2%·H is a reasonable",
+   "why": "p. 82 sets δVm as an equation object; the text layer gives no space before the \"=\" that the page shows."
+  },
+  {
+   "section": "2-4.4.3",
+   "find": "desired horizontal (δΗi)",
+   "replace": "desired horizontal (δHi)",
+   "why": "p. 85 sets the H of δHi in the Symbol font, which the text layer gives as the Greek capital Eta; the page shows the H of horizontal (δHi in Eq. 2-4)."
   }
  ],
  "row_kinds": {},
@@ -491,6 +513,21 @@
    "after": "",
    "text": "[p. 555] Variable | Definition\na, b | Limits of uniform distribution\naʹ | Tensile stress intercept of the Mohr Coulomb failure envelope\nCF | Clay fraction\ncov(x,y) | Covariance of variables x and y\nCOVX | Coefficient of variation of x\nE(X) | Expected value of a variable\nED | Dilatometer modulus\nEi | Intact rock modulus\nEm | Rock mass modulus\nF | Factor of safety\ng(X) | Limit state function\nGSI | Geological strength index\nHCV | Highest conceivable value\nIs50 | Point load index\nk | Hydraulic conductivity\nkD | Horizontal stress index from dilatometer\nLCV | Lowest conceivable value\nMk | kth moment about the mean\nN, n | Number of items\nN | Standard Penetration Test blow count\np | Probability of success in binomial trial\nPI | Plasticity index\nPu | Probability of unsatisfactory performance\nQ | Rock mass quality index\nQn | Nominal load\nqc | Cone penetration resistance\nqt | Cone penetration resistance corrected for pore pressure effects\n[p. 556] R | Return period\nRn | Nominal resistance\nrx | Range of a variable\nrxy | Sample correlation coefficient\nRQD | Rock quality designation\nRMR | Rock mass rating\ns | Sample standard deviation\ns2 | Sample variance\nsu | Undrained shear strength\nt | Time\nTR | Exposure period\nw | Water content\nx | Sample mean\nxmax | Maximum value\nxmin | Minimum value\nxP | Percentile value for which a fraction of the data, P, are smaller\nz | Depth below the ground surface\nβ | Reliability index\nδh, δv | Scale of fluctuation in the horizontal and vertical directions\nφ | Resistance factor for LRFD\nφʹ | Effective stress friction angle\nγ | Load factor for LRFD\nγτ | Total unit weight\nγδ | Dry unit weight\nλ | Rate for Poisson and exponential distributions\nµ | Population mean\nσ | Population standard deviation\nσ2 | Population variance\n[p. 557] σci | Unconfined compressive strength of rock",
    "why": "The notation is printed as a table with no number (pp. 555-557); the earlier body held it typed in and checked; the last row (σci, p. 557) is added from the page."
+  },
+  {
+   "section": "2-8",
+   "after": "",
+   "text": "[p. 104] Variable | Definition\nB | Excavation or trench width\nB1 | Width of zone adjacent to excavation in clay that contributes to basal instability\nBs | Width of surcharge adjacent to excavation\nD | Embedded depth of wall below base of excavation\nd, di | Distance from excavation to a point of interest\nd0 | Typical distance from excavation at which no movement occurs\ndb | Distance separating two points on a structure for calculation of distortion or strain\nE | Young's modulus\nEs | Elastic modulus of soil\nFBH | Factor of safety against basal heave\n[p. 105] GSI | Geological strength index\nh, havg | Vertical spacing of support system braces or anchors\nH | Excavation depth\nHcrit | Critical vertical excavation depth in clay for undrained conditions\nI | Second moment of inertia\nIs(50) | Point load strength index of rock\nK | Confinement factor for blasting calculations\nKA | Lateral earth pressure coefficient for active conditions\nK0 | Lateral earth pressure coefficient for at-rest conditions\nKwall | Normalized wall stiffness\nN | Number of interlocks in a sheet pile retaining wall\nNγ | Bearing capacity factor\nPA | Active earth pressure force\nPʹH | Unbalanced earth force on embedded section of excavation retaining wall\nPPV | Peak particle velocity\nq | Discharge or flow rate of water per unit height along a sheet pile interlock\nQ | Total water flow into an excavation\nS | Spacing of structural elements for combined sheet pile walls\nSD | Scaled distance for blasting calculations\nsu | Undrained shear strength\nsu,b | Undrained shear strength below base of excavation\nsu,d | Undrained shear strength along embedded section of wall\nsu,h | Undrained shear strength above base of excavation\nW | Weight of blasting charge\nw | Gravimetric water content\nα | Adhesion factor between fine-grained soil and retaining structure\nβ | Angular distortion of a structure caused by differential movement\nδH, δHi, δHm | Horizontal movement of the ground adjacent to an excavation; m indicates maximum\n[p. 106] ∆p | Differential water pressure between the excavation and retained soil for sheet pile seepage\nδV, δVi, δVm | Vertical movement of the ground adjacent to an excavation; m indicates maximum\nεb | Horizontal strain of a structure caused by differential movement\nγ, γt | Moist or total unit weight\nγw | Unit weight of water\nφʹ | Drained or effective stress friction angle\nρ | Specific resistance of sheet pile interlocks to seepage\nσʹh | Effective horizontal stress",
+   "why": "The notation is printed as a table with no number (pp. 104-106); the earlier bodies held it typed in (its last eight rows, p. 106, in 2-9's body), checked against the print."
+  },
+  {
+   "section": "2-9",
+   "after": "",
+   "text": "[p. 106] Excavation Safety and Shoring:\nOccupational Safety and Health Administration (OSHA). 2020. CFR Part 1926, Subpart P, Excavations, with Appendices A - F. https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartP.\n\nDeep Excavations:\nFHWA. 2008. Earth Retaining Structures, FHWA NHI-07-071. U.S. Department of Transportation, Federal Highway Administration, Washington, DC.\nClough, G. W., and O'Rourke, T. D. 1990. \"Construction Induced Movements of In situ Walls.\" Proc. of Conf. on Design and Performance of Earth Retaining Structures. ASCE Geotechnical Special Publication No. 25.\n\nDry Docks and Groundwater Control:\nMazurkiewicz, B.K. 1980. Design and Construction of Dry Docks. Trans Tech Publications, Rockport, MA.\nUSACE. 1983. Dewatering and Groundwater Control, TM 5/818-5/AFM 88-5. Department of the Army, Washington, DC.\n\nDewatering:\nMansur, C. and Kaufman, R. 1961. \"Dewatering.\" Foundation Engineering, Ed. Leonards, McGraw Hill, 514 pp.\nCedergren, H. 1997. Seepage, Drainage, and Flow Nets, 3rd Ed., Wiley-Interscience, 496 pp.",
+   "why": "The suggested reading is printed as a table (topic, reference; p. 106); the earlier body held it typed in, topic by topic, as printed."
   }
- ]
+ ],
+ "headings_as_text": {
+  "66@90": "2-3.3.5 Steel Shoring (p. 66) has no section in the chapter file; its text stays in 2-3.3.4's body under its printed heading."
+ }
 }

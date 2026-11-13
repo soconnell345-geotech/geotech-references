@@ -27,6 +27,7 @@ TEXT = ROOT / "geotech_references" / REF / "text"
 PDF = ROOT / "docs" / "ufc_3_220_20_2025.pdf"
 #: Chapters whose bodies are rebuilt from the print so far, with their PDF pages.
 BUILT = {
+    "chapter02": (93, 144),
     "chapter07": (546, 595),
 }
 #: sha256 of every section's fields other than ``body`` (json, sorted keys),
@@ -109,7 +110,11 @@ def test_numbered_equations_marked_with_their_checked_formula(stem):
                 continue
             m = re.search(re.escape(f"[{e['id']}] ") + r"([^\n]*)", body)
             assert m, (sid, e["id"])
-            assert m.group(1) in e["description"], (sid, e["id"], m.group(1))
+            formula = m.group(1)
+            if formula not in e["description"]:
+                # the formula, then a note in brackets ("[left side printed εb]")
+                formula = re.sub(r" \[[a-z][^\]]*\]$", "", formula)
+            assert formula in e["description"], (sid, e["id"], m.group(1))
 
 
 @pytest.mark.parametrize("stem", sorted(BUILT))
@@ -125,6 +130,29 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("chapter02", "2-3.3", 59,
+     "Protective measures are also required for some excavations at any point less than "
+     "5 feet deep where there is evidence of a potential cave-in as determined by a "
+     "competent person."),
+    ("chapter02", "2-3.3.2", 61,
+     "Excavations up to 2 feet below the shield are permitted when the shield is designed "
+     "to resist the forces for the full depth of the trench."),
+    ("chapter02", "2-3.3.4", 64,
+     "A maximum of two feet of soil surcharge adjacent to the trench and a maximum "
+     "equipment surcharge of 20,000 lb are assumed in the design."),
+    ("chapter02", "2-4.3.3", 73,
+     "A factor of safety of at least 1.5 should be used against basal heave failure as "
+     "discussed by Mana and Clough (1981)."),
+    ("chapter02", "2-4.3.3", 76,
+     "Stiffer concrete diaphragm walls often have normalized wall stiffness greater than 100."),
+    ("chapter02", "2-4.4.2", 82,
+     "When excavation support walls are flexible and the factor of safety against basal "
+     "heave is less than 1.5, δVm = 2%·H is a reasonable assumption."),
+    ("chapter02", "2-5.3.1", 94,
+     "The scaled distance is not correct dimensionally and requires use of the indicated units."),
+    ("chapter02", "2-6.2", 99,
+     "Tests on vinyl sheet piling indicate ρ ranging from 10⁻⁵ cm/sec for unsealed joints "
+     "in tension to about 10⁻¹⁰ cm/sec for sealed joints."),
     ("chapter07", "7-1.1", 508,
      "A primary purpose of this chapter is to familiarize the engineer with common "
      "applications of probability in geotechnical engineering."),
@@ -160,6 +188,28 @@ def test_printed_sentences_with_their_pages(stem, sid, page, sentence):
     assert i >= 0, sid
     marks = re.findall(r"\[p\. (\d+)\]", body[:i])
     assert marks and int(marks[-1]) == page, (sid, marks[-1:])
+
+
+def test_chapter_2_as_printed():
+    secs = _sections("chapter02")
+    # the where-list of Eq. 2-1 with its subscripts in place (p. 56)
+    assert ("[Eq. 2-1] Hcrit = 4su / γt\n\nwhere:\nsu = undrained shear strength and\n"
+            "γt = total or moist unit weight of the clay.") in secs["2-2.2.1"]["body"]
+    # Eq. 2-6 in both its pieces (p. 85)
+    assert ("[Eq. 2-6] δi = δm for 0 ≤ di ≤ 0.75H; δi = δm · ((1.5H − di) / 0.75H) "
+            "for 0.75H ≤ di ≤ 1.5H") in secs["2-4.4.3"]["body"]
+    # the second-level list of 2-1 as printed, one item to a line
+    assert "include:\n\no Open cut excavations,\n\no Trenching," in secs["2-1"]["body"]
+    # the print's slips noted where they are (pp. 84)
+    assert "[Eq. 2-4] εh = (δHi − δHj) / db [left side printed εb]" in secs["2-4.4.3"]["body"]
+    assert "estimated settlements [As printed on p. 84" in secs["2-4.4.3"]["body"]
+    # 2-3.3.5 Steel Shoring has no section here: its text stays in 2-3.3.4
+    assert "[p. 66] 2-3.3.5 Steel Shoring.\n\nSteel sheeting and bracing" in secs["2-3.3.4"]["body"]
+    # the notation table whole (pp. 104-106) and the reading list in 2-9
+    assert secs["2-8"]["body"].startswith("[p. 104] Variable | Definition\nB | Excavation")
+    assert "[p. 106] ∆p | Differential water pressure" in secs["2-8"]["body"]
+    assert secs["2-9"]["body"].startswith("[p. 106] Excavation Safety and Shoring:\n")
+    assert "Variable definitions" not in secs["2-9"]["body"]
 
 
 def test_chapter_7_as_printed():
