@@ -10,7 +10,7 @@ pip install geotech-references
 
 ## Overview
 
-This package provides 1,231 digitized functions from 33 reference packages, turning published figures, tables, and equations into callable Python code. 31 of the 33 packages also carry structured chapter text (see Text Retrieval below).
+This package provides 1,300 digitized functions from 34 reference packages, turning published figures, tables, and equations into callable Python code. 32 of the 34 packages also carry structured chapter text (see Text Retrieval below).
 
 ```python
 from geotech_references.dm7_1.chapter1 import table_1_4_uscs_classification
@@ -33,7 +33,7 @@ Function counts are the public functions defined in each package's modules (coun
 | `dm7_1` | UFS 3-220-10 Soil Mechanics (DM 7.1), 16 January 2026 | 147 |
 | `dm7_2` | UFC 3-220-20 Foundations and Earth Structures (DM 7.2) | 246 |
 
-### FHWA geotechnical manuals and micropiles (144 functions)
+### FHWA geotechnical manuals and micropiles (142 functions)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
@@ -43,16 +43,16 @@ Function counts are the public functions defined in each package's modules (coun
 | `gec_7` | Soil Nail Walls (FHWA-NHI-14-007) | 15 |
 | `gec_8` | Design and Construction of Continuous Flight Auger Piles (FHWA-HIF-07-03) | 5 |
 | `gec_9` | Laterally Loaded Deep Foundations (FHWA-HIF-18-031) | 5 |
-| `gec_10` | Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024, 2018) | 12 |
+| `gec_10` | Drilled Shafts: Construction Procedures and Design Methods (FHWA-NHI-18-024, 2018) | 11 |
 | `gec_11` | MSE Walls and Reinforced Soil Slopes (FHWA-NHI-10-024, -025) | 17 |
 | `gec_12` | Design and Construction of Driven Pile Foundations (FHWA-NHI-16-009) | 16 |
 | `gec_13` | Ground Modification Methods (FHWA-NHI-16-027 / -028, Vols I / II) | 16 |
 | `gec_14` | Assuring Quality in Geotechnical Reporting Documents (FHWA-HIF-17-016) | - |
 | `micropile` | Micropile Design and Construction (FHWA-NHI-05-039) | 14 |
 | `fhwa_soils_foundations` | Soils and Foundations Reference Manual, Volumes I and II (FHWA-NHI-06-088, -089) | - |
-| `fhwa_pavements` | Geotechnical Aspects of Pavements (FHWA-NHI-05-037) | 25 |
+| `fhwa_pavements` | Geotechnical Aspects of Pavements (FHWA-NHI-05-037) | 24 |
 
-### Other geotechnical and seismic references (118 functions)
+### Other geotechnical and seismic references (184 functions)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
@@ -60,18 +60,19 @@ Function counts are the public functions defined in each package's modules (coun
 | `fema_p2082` | 2020 NEHRP Recommended Seismic Provisions (FEMA P-2082-1) | 12 |
 | `eurocode_7_1` | EN 1997-1:2004 Eurocode 7, Part 1: General Rules | 31 |
 | `eurocode_7_2` | EN 1997-2:2007 Eurocode 7, Part 2: Ground Investigation and Testing | 43 |
+| `em_1905` | EM 1110-1-1905 Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025) | 66 |
 
-### UFC pavement, soils and structural criteria (576 functions)
+### UFC pavement, soils and structural criteria (581 functions)
 
 | Module | Reference | Functions |
 |--------|-----------|-----------|
-| `ufc_backfill` | UFC 3-220-04N Backfill for Subsurface Structures | 8 |
-| `ufc_expansive` | UFC 3-220-07 Foundations in Expansive Soils | 9 |
+| `ufc_backfill` | UFC 3-220-04FA Backfill for Subsurface Structures | 7 |
+| `ufc_expansive` | UFC 3-220-07 Foundations in Expansive Soils | 14 |
 | `ufc_pavement` | UFC 3-250-01 Pavement Design for Roads and Parking Areas | 53 |
 | `ufc_stabilization` | UFC 3-250-11 Soil Stabilization and Modification for Pavements | 17 |
 | `ufc_flexible_practice` | UFC 3-250-03 Standard Practice Manual for Flexible Pavements | 36 |
 | `ufc_concrete_practice` | UFC 3-250-04 Standard Practice for Concrete Pavements | 18 |
-| `aashto_1993` | AASHTO Guide for Design of Pavement Structures, 1993 | 52 |
+| `aashto_1993` | AASHTO Guide for Design of Pavement Structures, 1993 | 53 |
 | `ufc_structural` | UFC 3-301-01 Structural Engineering | 66 |
 | `ufc_collapse` | UFC 4-023-03 Design of Buildings to Resist Progressive Collapse | 77 |
 | `gsa_collapse` | GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance | 63 |
@@ -81,7 +82,7 @@ Function counts are the public functions defined in each package's modules (coun
 
 ### Text Retrieval
 
-Structured chapter text is available for 31 of the 33 packages (all but `ufc_backfill` and `ufc_expansive`). List them with `geotech_references._retrieval_db.list_indexed_references()`:
+Structured chapter text is available for 32 of the 34 packages (all but `ufc_backfill` and `ufc_expansive`). List them with `geotech_references._retrieval_db.list_indexed_references()`:
 
 ```python
 from geotech_references._retrieval import search_sections
@@ -90,6 +91,12 @@ results = search_sections("gec_12", "pile setup")
 for section in results:
     print(section["title"], "-", section["body"][:100])
 ```
+
+### Tables and what a section can reach
+
+Every numbered table of 31 references has a catalog row saying where its values are: typed into a stored section (`"text"`), returned by a function (`"lookup"`), or only on the printed page (`"page"`, with the PDF page to read). Search and fetch rows with `geotech_references._tables_db.table_search` and `table_get`; `resolve_table_pdf` gives the page of a PDF held in `docs/`.
+
+A fetched section (`_retrieval_db.reference_get`, `_retrieval.retrieve_section`) says which of the figures, tables and pointers it names the library holds: `figures_held`, `tables_held` and `not_held`.
 
 ### Local reference packs
 

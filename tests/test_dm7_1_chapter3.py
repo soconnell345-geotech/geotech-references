@@ -133,6 +133,30 @@ class TestRelativeDensityFromDryDensity:
         result = relative_density_from_dry_density(100.0, 110.0, 90.0)
         assert result == pytest.approx(55.0, rel=1e-4)
 
+    def test_equals_the_void_ratio_form_as_eq_3_2_states(self):
+        # Eq. 3-2, PDF p. 169 (printed p. 141), sets the density form equal
+        # to (e_max - e)/(e_max - e_min) * 100%. With e = Gs*gamma_w/gamma_d
+        # - 1 (Gs = 2.65, gamma_w = 9.81; gamma_d 16, max 18, min 14):
+        # e = 0.62478, e_min = 0.44425, e_max = 0.85689
+        # void-ratio form: (0.85689 - 0.62478)/(0.85689 - 0.44425) = 56.25%
+        # density form with gamma_d - gamma_d-min: (18/16)(2/4) = 56.25%
+        # (as printed, with gamma_d - gamma_d-max: (18/16)(-2/4) = -56.25%,
+        # which cannot equal the void-ratio form)
+        gs_gw = 2.65 * 9.81
+        e, e_min, e_max = gs_gw / 16.0 - 1.0, gs_gw / 18.0 - 1.0, gs_gw / 14.0 - 1.0
+        from_void_ratio = relative_density_from_void_ratio(e, e_max, e_min)
+        from_density = relative_density_from_dry_density(16.0, 18.0, 14.0)
+        assert from_density == pytest.approx(56.25, abs=1e-9)
+        assert from_void_ratio == pytest.approx(from_density, abs=1e-9)
+
+    def test_docstring_gives_the_printed_and_coded_forms(self):
+        doc = relative_density_from_dry_density.__doc__
+        first = doc.strip().splitlines()[0]
+        assert "where the manual prints gamma_d - gamma_d-max" in first
+        assert "PDF p. 169, printed p. 141" in doc
+        assert "[(gamma_d - gamma_d-max) / (gamma_d-max - gamma_d-min)]" in doc
+        assert "[(gamma_d - gamma_d-min) / (gamma_d-max - gamma_d-min)]" in doc
+
     def test_raises_gamma_d_zero(self):
         with pytest.raises(ValueError, match="gamma_d must be positive"):
             relative_density_from_dry_density(0.0, 120.0, 95.0)

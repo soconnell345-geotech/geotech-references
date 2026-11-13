@@ -233,14 +233,18 @@ def gable_bent_tie_rod_force_range():
     """Paragraph A-2.1: the horizontal thrust force range above which tie
     rods (rather than hairpin bars) are usually the cost-effective choice
     for resisting metal-building gable-bent column-base reactions (printed
-    p. 105).
+    p. 105). The print reads "40 to 50 kips (118 kN to 222 kN)"; 40 kips is
+    178 kN (50 kips = 222 kN checks), so the printed 118 kN is a misprint.
+    ``min_force_kn`` keeps the printed 118 and the result says so.
 
     Returns
     -------
     dict
         {'min_force_kips': 40, 'max_force_kips': 50, 'min_force_kn': 118,
-         'max_force_kn': 222, 'paragraph': 'A-2.1', 'printed_page': '105',
-         'pdf_page': 126}
+         'max_force_kn': 222, 'note', 'paragraph': 'A-2.1',
+         'printed_page': '105', 'pdf_page': 126}
     """
     return {"min_force_kips": 40, "max_force_kips": 50, "min_force_kn": 118,
-            "max_force_kn": 222, "paragraph": "A-2.1", "printed_page": "105", "pdf_page": 126}
+            "max_force_kn": 222,
+            "note": "printed '118 kN' for 40 kips; 40 kips = 178 kN (misprint in the source)",
+            "paragraph": "A-2.1", "printed_page": "105", "pdf_page": 126}

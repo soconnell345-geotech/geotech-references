@@ -271,43 +271,32 @@ class TestStructuralInvariants:
 # ============================================================================
 
 class TestClamping:
-    def test_load_below_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("flexible", "single", 2, sn=5.0, pt=2.5)
-        below = load_equivalency_factor("flexible", "single", 0.5, sn=5.0, pt=2.5)
-        assert below["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in below
-        assert "clamped" in below["note"]
+    # REF-76: Tables D.1-D.18 print loads 2-50 kips (single) / 2-90 kips
+    # (tandem, triple), SN = 1-6 and D = 6-14 in (e.g. Table D.4, printed
+    # D-6). Outside them the end row or column used to be read with a note;
+    # LEF is not monotonic in SN and rises steeply with load, so refused.
+    def test_load_below_range_refused(self):
+        assert "note" not in load_equivalency_factor(
+            "flexible", "single", 2, sn=5.0, pt=2.5)
+        with pytest.raises(ValueError, match="2-50 kips"):
+            load_equivalency_factor("flexible", "single", 0.5, sn=5.0, pt=2.5)
 
-    def test_load_above_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("rigid", "tandem", 90, d_in=9.0, pt=2.5)
-        above = load_equivalency_factor("rigid", "tandem", 150, d_in=9.0, pt=2.5)
-        assert above["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in above
-        assert "clamped" in above["note"]
+    def test_load_above_range_refused(self):
+        assert "note" not in load_equivalency_factor(
+            "rigid", "tandem", 90, d_in=9.0, pt=2.5)
+        with pytest.raises(ValueError, match="2-90 kips"):
+            load_equivalency_factor("rigid", "tandem", 150, d_in=9.0, pt=2.5)
 
-    def test_sn_below_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("flexible", "single", 18, sn=1.0, pt=2.5)
-        below = load_equivalency_factor("flexible", "single", 18, sn=0.2, pt=2.5)
-        assert below["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in below
+    def test_sn_outside_range_refused(self):
+        for sn in (0.2, 9.0):
+            with pytest.raises(ValueError, match="columns of Table D.4 "
+                               r"\(printed D-6\), 1-6"):
+                load_equivalency_factor("flexible", "single", 18, sn=sn, pt=2.5)
 
-    def test_sn_above_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("flexible", "single", 18, sn=6.0, pt=2.5)
-        above = load_equivalency_factor("flexible", "single", 18, sn=9.0, pt=2.5)
-        assert above["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in above
-
-    def test_d_in_below_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("rigid", "single", 18, d_in=6.0, pt=2.5)
-        below = load_equivalency_factor("rigid", "single", 18, d_in=4.0, pt=2.5)
-        assert below["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in below
-
-    def test_d_in_above_range_clamps_and_notes(self):
-        exact = load_equivalency_factor("rigid", "single", 18, d_in=14.0, pt=2.5)
-        above = load_equivalency_factor("rigid", "single", 18, d_in=20.0, pt=2.5)
-        assert above["lef"] == pytest.approx(exact["lef"], abs=1e-9)
-        assert "note" in above
+    def test_d_in_outside_range_refused(self):
+        for d in (4.0, 20.0):
+            with pytest.raises(ValueError, match="6-14"):
+                load_equivalency_factor("rigid", "single", 18, d_in=d, pt=2.5)
 
     def test_interpolation_between_printed_sn_columns(self):
         """SN=4.5 should fall strictly between the SN=4 and SN=5 curves."""

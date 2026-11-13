@@ -13,6 +13,8 @@ against the source PDF (worked examples and printed tables):
 Units are the manual's native US customary units (psf, pcf, tsf, ft, deg).
 """
 
+import math
+
 import pytest
 
 from geotech_references.california_trenching.tables import (
@@ -139,6 +141,32 @@ class TestGranularProperties:
     def test_bad_density(self):
         with pytest.raises(ValueError):
             table_3_1_granular_properties("squishy")
+
+    def test_every_printed_row(self):
+        # Table 3-1, Properties of Granular Soils (PDF p. 43, printed p. 3-5).
+        # Columns: friction angle (deg), unit weight moist (pcf), unit weight
+        # submerged (pcf). An open-ended cell is (None, x) or (x, None).
+        printed = {
+            "very loose": ((None, 28), (None, 100), (None, 60)),    # <28, <100, <60
+            "loose": ((28, 30), (95, 125), (55, 65)),
+            "medium dense": ((31, 36), (110, 130), (60, 70)),
+            "dense": ((37, 41), (110, 140), (65, 85)),
+            "very dense": ((41, None), (130, None), (75, None)),   # >41, >130, >75
+        }
+        for density, (phi, moist, submerged) in printed.items():
+            r = table_3_1_granular_properties(density)
+            assert (r["friction_angle_min_deg"], r["friction_angle_max_deg"]) == phi
+            assert (r["unit_weight_moist_pcf_min"], r["unit_weight_moist_pcf_max"]) == moist
+            assert (r["unit_weight_submerged_pcf_min"],
+                    r["unit_weight_submerged_pcf_max"]) == submerged
+
+    def test_very_loose_row_in_the_whole_table(self):
+        # The Very Loose row used to read moist: none, submerged: 60 to 100.
+        row = table_3_1_granular_properties()["rows"][0]
+        assert row["apparent_density"] == "Very Loose"
+        assert row["unit_weight_moist_pcf_max"] == 100
+        assert row["unit_weight_submerged_pcf_max"] == 60
+        assert row["unit_weight_submerged_pcf_min"] is None
 
 
 class TestSimplifiedSoilValues:
@@ -319,6 +347,22 @@ class TestMaxAllowableSlopeAngle:
         assert r["degenerate"] is True
         assert r["beta_max_deg"] == pytest.approx(20.0, abs=0.1)
 
+    def test_the_result_note_opens_with_the_caution(self):
+        # Eq. 4-5-2 (PDF p. 73, printed p. 4-22) as typeset adds sigma_x (a
+        # stress) to 1/2 sin(2 phi) (a number) and, under the root, a stress
+        # term to stress-squared terms. The caution used to sit at the end
+        # of a long note; it now opens it, in both forms of the result.
+        r = max_allowable_slope_angle(30, 200, 120, 20)
+        assert r["note"].startswith("CAUTION: Eq. 4-5-2 is not dimensionally consistent")
+        assert "slope stability analysis" in r["note"][:420]
+        r = max_allowable_slope_angle(30, 200, 120, 20, beta_deg=35)
+        assert r["note"].startswith("CAUTION: Eq. 4-5-2 is not dimensionally consistent")
+
+    def test_the_printed_equations_are_still_solved_as_before(self):
+        # No change to the numbers: the lookup is left as the print.
+        assert max_allowable_slope_angle(30, 200, 120, 20)["beta_max_deg"] == pytest.approx(40.52, abs=0.01)
+        assert max_allowable_slope_angle(30, 0, 120, 20)["beta_max_deg"] == pytest.approx(30.0, abs=0.01)
+
     def test_single_point_check(self):
         # Evaluating at a supplied beta returns the Eq. 4-5-1 RHS and whether
         # the inequality is satisfied at that beta.
@@ -340,6 +384,10 @@ class TestSurcharge:
         r = minimum_construction_surcharge()
         assert r["sigma_h_psf"] == 72.0
         assert r["min_depth_ft"] == 10.0
+        # p. 5-2: "applied to a minimum depth of 10 feet (Hs) below the uppermost
+        # level of the soil retained by the shoring system" (a minimum, not the top 10 ft only).
+        assert "minimum depth of 10 ft (Hs)" in r["note"]
+        assert "top 10 ft" not in r["note"]
 
 
 # ===================================================================
@@ -411,6 +459,48 @@ class TestHeave:
         with pytest.raises(ValueError):
             heave_factor_of_safety(0, 7.6, 120, 30, 15)
 
+    def test_no_driving_force_gives_null_not_infinity(self):
+        # Eq. 10-3-2 (PDF p. 225, printed p. 10-16): Q = W + (0.7B)q - S with
+        # W = gamma H (0.7B) and S = cH. c 5000 psf, H 10 ft, B 15 ft:
+        # W = 12,600, S = 50,000 plf, so Q is negative and FS = QU/Q
+        # (Eq. 10-3-5, printed p. 10-19) has no value. "fs" used to be
+        # float("inf"), which is not valid JSON.
+        import json
+        r = heave_factor_of_safety(5000, 7.6, 120, 10, 15)
+        assert r["weight_W_plf"] == pytest.approx(12600.0)
+        assert r["cohesion_resistance_S_plf"] == pytest.approx(50000.0)
+        assert r["driving_force_Q_plf"] < 0
+        assert r["fs"] is None
+        assert r["adequate"] is True
+        assert "has no value" in r["note"]
+        assert "Infinity" not in json.dumps(r, allow_nan=False)
+
+    def test_adequacy_is_tested_on_the_unrounded_ratio(self):
+        # Eq. 10-3-5 (PDF p. 228, printed p. 10-19): FS = QU/Q >= 1.5.
+        # c 100 psf, Nc 7.5, H 10 ft, B 10 ft (0.7B = 7 ft): QU = 5,250 plf.
+        # gamma 64.299 pcf: Q = 64.299 x 10 x 7 - 100 x 10 = 3,500.93,
+        # QU/Q = 1.49960, which reports as 1.5 and is not adequate.
+        for gamma in (64.299, 64.29, 64.3):
+            r = heave_factor_of_safety(100, 7.5, gamma, 10, 10)
+            ratio = 5250.0 / (gamma * 10 * 7 - 1000.0)
+            assert 1.4995 < ratio < 1.5
+            assert r["fs"] == pytest.approx(1.5)
+            assert r["adequate"] is False
+        # just above: gamma 64.28 -> QU/Q = 1.50017
+        r = heave_factor_of_safety(100, 7.5, 64.28, 10, 10)
+        assert 5250.0 / (64.28 * 70 - 1000.0) > 1.5
+        assert r["adequate"] is True
+
+    def test_factor_of_safety_from_the_printed_equations(self):
+        # Eqs. 10-3-2, 10-3-3, 10-3-5 with made-up values: c 500 psf, Nc 7.6,
+        # gamma 120 pcf, H 30 ft, B 15 ft, q 300 psf.
+        # W = 120 x 30 x 10.5 = 37,800; S = 500 x 30 = 15,000;
+        # Q = 37,800 + 10.5 x 300 - 15,000 = 25,950; QU = 500 x 7.6 x 10.5 = 39,900
+        r = heave_factor_of_safety(500, 7.6, 120, 30, 15, surcharge_psf=300)
+        assert r["driving_force_Q_plf"] == pytest.approx(25950.0)
+        assert r["fs"] == pytest.approx(39900.0 / 25950.0, abs=1e-3)
+        assert r["adequate"] is True
+
 
 # ===================================================================
 # STRUCTURAL / PILE-WIDTH / FS SUMMARY (Chapters 6, 7)
@@ -463,6 +553,16 @@ class TestStructural:
         assert any("embedment" in k.lower() and v == 1.3 for k, v in items.items())
         assert any("heave" in k.lower() and v == 1.5 for k, v in items.items())
 
+    def test_anchor_block_factor_of_safety_is_2(self):
+        # Section 10-2 (PDF p. 213, printed p. 10-4): "a safety factor of 2
+        # is recommended for all anchor blocks". The summary used to say 1.5.
+        reqs = factor_of_safety_requirements()["requirements"]
+        anchor = [r for r in reqs if "anchor block" in r["item"].lower()]
+        assert len(anchor) == 1
+        assert anchor[0]["fs"] == 2.0
+        assert "safety factor of 2 is recommended for all anchor blocks" in anchor[0]["basis"]
+        assert "10-4" in anchor[0]["basis"]
+
 
 # ===================================================================
 # TEXT RETRIEVAL — chapter JSON
@@ -490,3 +590,103 @@ class TestTextRetrieval:
         from geotech_references import _retrieval
         chs = {c["chapter"] for c in _retrieval.list_chapters("california_trenching")}
         assert {2, 3, 4, 6, 7, 8, 10}.issubset(chs)
+
+
+# ===================================================================
+# Review fixes of 2026-11-10 (ec7-11, ec7-16, ec7-18)
+# ===================================================================
+
+
+class TestWallFrictionConcreteGroups:
+    def test_bare_concrete_is_refused(self):
+        # Table 4-2 (PDF p. 66, printed p. 4-15) prints two concrete groups:
+        # "Mass concrete on the following foundation materials" and "Formed
+        # or precast concrete or concrete sheet piling against the following
+        # soils". "concrete" alone used to return the mass concrete group.
+        with pytest.raises(ValueError, match="formed or precast concrete"):
+            table_4_2_wall_friction("concrete")
+
+    def test_the_two_concrete_groups_as_printed(self):
+        mass = table_4_2_wall_friction("mass concrete")["rows"]
+        formed = table_4_2_wall_friction("formed or precast concrete")["rows"]
+        # Mass concrete: clean gravel, gravel-sand mixtures, coarse sand 29 to 31
+        gravel = [r for r in mass if r["interface"].startswith("Clean gravel")][0]
+        assert (gravel["delta_min_deg"], gravel["delta_max_deg"]) == (29, 31)
+        # Formed or precast concrete: clean gravel ... rock fill with spalls 22 to 26
+        gravel = [r for r in formed if r["interface"].startswith("Clean gravel")][0]
+        assert (gravel["delta_min_deg"], gravel["delta_max_deg"]) == (22, 26)
+        # Formed or precast concrete, the four printed rows: 22 to 26, 17 to 22, 17, 14
+        assert [(r["delta_min_deg"], r["delta_max_deg"]) for r in formed] == [
+            (22, 26), (17, 22), (17, 17), (14, 14)]
+
+
+class TestAtRestK0AsPrinted:
+    def test_normally_consolidated_sloping_backfill(self):
+        # Eq. 4-3-14 (PDF p. 60, printed p. 4-9): K0 = (1 - sin phi)(1 - sin beta)
+        r = at_rest_k0(30, beta_deg=20)
+        assert r["equation"] == "4-3-14"
+        assert r["k0"] == pytest.approx(0.5 * (1 - math.sin(math.radians(20))), abs=1e-4)
+
+    def test_over_consolidated_level_backfill(self):
+        # Eq. 4-3-15 (printed p. 4-9): K0 = (1 - sin phi)(OCR)^sin phi
+        r = at_rest_k0(30, ocr=2.0)
+        assert r["equation"] == "4-3-15"
+        assert r["k0"] == pytest.approx(0.5 * 2 ** 0.5, abs=1e-4)
+
+    def test_over_consolidated_with_a_slope_is_refused(self):
+        # Eq. 4-3-15 is printed "for over-consolidated soils, level backfill,
+        # and a vertical wall". beta 20 with OCR 2 used to return 0.7071
+        # with beta echoed and not used.
+        with pytest.raises(ValueError, match="level backfill"):
+            at_rest_k0(30, beta_deg=20, ocr=2.0)
+
+
+class TestCohesiveAepNeedsItsInputs:
+    def test_stiff_envelope_needs_the_factor(self):
+        # Eq. 8-3-2 (PDF p. 156, printed p. 8-5): sigma_a = 0.2(gamma)(H) to
+        # 0.4(gamma)(H), the factor by "best engineering judgment". The
+        # factor used to default to 0.3, which the manual does not print.
+        with pytest.raises(ValueError, match="480.0 to 960.0 psf"):
+            aep_cohesive_max_ordinate(120, 20, ns=3)
+        assert aep_cohesive_max_ordinate(120, 20, ns=3, factor=0.2)["sigma_a_psf"] == pytest.approx(480.0)
+        assert aep_cohesive_max_ordinate(120, 20, ns=3, factor=0.4)["sigma_a_psf"] == pytest.approx(960.0)
+
+    def test_transition_takes_the_larger_and_needs_both(self):
+        # Printed p. 8-6: "For soils with 4 < Ns < 6, use the larger sigma_a
+        # from Equations 8-3-2 and 8-3-3". Without Ka the stiff value alone
+        # used to be returned.
+        with pytest.raises(ValueError, match="larger sigma_a"):
+            aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.3)
+        with pytest.raises(ValueError, match="factor is required"):
+            aep_cohesive_max_ordinate(120, 20, ns=5, ka=0.5)
+        r = aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.3, ka=0.5)
+        assert r["sigma_a_8_3_2_psf"] == pytest.approx(720.0)
+        assert r["sigma_a_8_3_3_psf"] == pytest.approx(1200.0)
+        assert r["sigma_a_psf"] == pytest.approx(1200.0)
+        r = aep_cohesive_max_ordinate(120, 20, ns=5, factor=0.4, ka=0.25)
+        assert r["sigma_a_psf"] == pytest.approx(960.0)
+
+    def test_soft_envelope_needs_no_factor(self):
+        # Eq. 8-3-3 (PDF p. 157, printed p. 8-6): sigma_a = Ka gamma H
+        r = aep_cohesive_max_ordinate(120, 20, ns=7, ka=0.4)
+        assert r["sigma_a_psf"] == pytest.approx(960.0)
+        assert r["printed_page"] == "8-6"
+
+
+class TestPrintedPagesOfEquations:
+    def test_rankine_pages(self):
+        # Eqs. 4-3-11 and 4-3-12 are on printed p. 4-8 (PDF p. 59), Eq. 4-3-16
+        # on p. 4-10 (PDF p. 61), Eq. 4-3-19 on p. 4-11 (PDF p. 62). pdf_page
+        # is the 0-based page index, as elsewhere in this package.
+        assert rankine_ka(30)["printed_page"] == "4-8"
+        sloping = rankine_ka(30, beta_deg=20)
+        assert (sloping["equation"], sloping["printed_page"], sloping["pdf_page"]) == ("4-3-16", "4-10", 60)
+        assert rankine_kp(30)["printed_page"] == "4-8"
+        sloping = rankine_kp(30, beta_deg=10)
+        assert (sloping["equation"], sloping["printed_page"], sloping["pdf_page"]) == ("4-3-19", "4-11", 61)
+
+    def test_tension_crack_page_and_equation(self):
+        # Eq. 4-4-13 (PDF p. 70, printed p. 4-19): hcr = 2c sqrt(Ka) / (gamma Ka)
+        r = tension_crack_depth(500, 120, 0.36)
+        assert r["hcr_ft"] == pytest.approx(2 * 500 * 0.6 / (120 * 0.36), abs=1e-3)
+        assert (r["printed_page"], r["pdf_page"]) == ("4-19", 69)

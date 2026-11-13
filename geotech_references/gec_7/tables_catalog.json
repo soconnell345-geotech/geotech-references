@@ -1,0 +1,1043 @@
+{
+  "reference_id": "FHWA-NHI-14-007",
+  "reference_title": "Soil Nail Walls Reference Manual",
+  "package": "gec_7",
+  "volume": null,
+  "pdf_path": "docs/GEC 7.pdf",
+  "table_count": 66,
+  "tables": [
+    {
+      "table_number": "3.1a",
+      "caption": "Hydraulic Rotary Auger Methods for Drilling Competent Soils or Weathered Rock (Modified from Elias and Juran 1991)",
+      "chapter": 3,
+      "section_id": "3.3.3",
+      "section_title": "Drilling of Nail Holes",
+      "pdf_page_index": 89,
+      "pages": [
+        89
+      ],
+      "printed_page": "50",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 3.3.3 summarizes this table in a sentence; read its entries off the page."
+    },
+    {
+      "table_number": "3.1b",
+      "caption": "Hydraulic Air and Water Rotary Methods for Drilling Competent Soils, Rock, or Mixed Ground Conditions (Pneumatic Down the Hole Hammer Available) (Modified from Elias and Juran 1991)",
+      "chapter": 3,
+      "section_id": "3.3.3",
+      "section_title": "Drilling of Nail Holes",
+      "pdf_page_index": 90,
+      "pages": [
+        90
+      ],
+      "printed_page": "51",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3.1c",
+      "caption": "Pneumatic Rotary (Top Hole Hammer) Methods for Drilling Non-Caving Competent Soils or Rock (Modified from Elias and Juran 1991)",
+      "chapter": 3,
+      "section_id": "3.3.3",
+      "section_title": "Drilling of Nail Holes",
+      "pdf_page_index": 90,
+      "pages": [
+        90
+      ],
+      "printed_page": "51",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.1a",
+      "caption": "Procedures and Laboratory Tests for Soils - Classification",
+      "chapter": 4,
+      "section_id": "4.4.2",
+      "section_title": "Soil Classification and Index Tests",
+      "pdf_page_index": 111,
+      "pages": [
+        111
+      ],
+      "printed_page": "72",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.1b",
+      "caption": "Procedures and Laboratory Tests for Soils - Index Parameters",
+      "chapter": 4,
+      "section_id": "4.4.2",
+      "section_title": "Soil Classification and Index Tests",
+      "pdf_page_index": 111,
+      "pages": [
+        111
+      ],
+      "printed_page": "72",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.1c",
+      "caption": "Procedures and Laboratory Tests for Soils - Shear Strength Tests",
+      "chapter": 4,
+      "section_id": "4.4.2",
+      "section_title": "Soil Classification and Index Tests",
+      "pdf_page_index": 112,
+      "pages": [
+        112
+      ],
+      "printed_page": "73",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.2a",
+      "caption": "Correlations between SPT N-values, CPT, and Friction Angle of Cohesionless Soils - SPT",
+      "chapter": 4,
+      "section_id": "4.5.4",
+      "section_title": "Shear Strength",
+      "pdf_page_index": 117,
+      "pages": [
+        117
+      ],
+      "printed_page": "78",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_2a_spt_soil_properties",
+      "implemented_in": [
+        "tables.table_4_2a_spt_soil_properties"
+      ]
+    },
+    {
+      "table_number": "4.2b",
+      "caption": "Correlations between SPT N-values, CPT, and Friction Angle of Cohesionless Soils - CPT",
+      "chapter": 4,
+      "section_id": "4.5.4",
+      "section_title": "Shear Strength",
+      "pdf_page_index": 117,
+      "pages": [
+        117
+      ],
+      "printed_page": "78",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.3a",
+      "caption": "Elastic Properties of Soils Based on Soil Type (after AASHTO 2014)",
+      "chapter": 4,
+      "section_id": "4.5.5",
+      "section_title": "Compressibility and Modulus",
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": "82",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_3a_elastic_properties",
+      "implemented_in": [
+        "tables.table_4_3a_elastic_properties"
+      ]
+    },
+    {
+      "table_number": "4.3b",
+      "caption": "Elastic Properties of Soils Based on SPT N-values (after AASHTO 2014)",
+      "chapter": 4,
+      "section_id": "4.5.5",
+      "section_title": "Compressibility and Modulus",
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": "82",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_3b_elastic_modulus_spt",
+      "implemented_in": [
+        "tables.table_4_3b_elastic_modulus_spt"
+      ]
+    },
+    {
+      "table_number": "4.3c",
+      "caption": "Elastic Properties of Soils Based on CPT Cone Tip Resistance (q c ) (after AASHTO 2014)",
+      "chapter": 4,
+      "section_id": "4.5.5",
+      "section_title": "Compressibility and Modulus",
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": "82",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.4a",
+      "caption": "Estimated Bond Strength for Soil Nails in Coarse-Grained Soils (Modified after Elias and Juran 1991)",
+      "chapter": 4,
+      "section_id": "4.5.6",
+      "section_title": "Bond Strength",
+      "pdf_page_index": 123,
+      "pages": [
+        123
+      ],
+      "printed_page": "84",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_4a_bond_strength_coarse",
+      "implemented_in": [
+        "tables.table_4_4a_bond_strength_coarse"
+      ]
+    },
+    {
+      "table_number": "4.4b",
+      "caption": "Estimated Bond Strength for Soil Nails in Fine-Grained Soils (Modified after Elias and Juran 1991)",
+      "chapter": 4,
+      "section_id": "4.5.6",
+      "section_title": "Bond Strength",
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "85",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_4b_bond_strength_fine",
+      "implemented_in": [
+        "tables.table_4_4b_bond_strength_fine"
+      ]
+    },
+    {
+      "table_number": "4.5",
+      "caption": "Estimated Bond Strength for Soil Nails in Rock - Drilling Method: Rotary Drilled (Modified after Elias and Juran 1991)",
+      "chapter": 4,
+      "section_id": "4.5.6",
+      "section_title": "Bond Strength",
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "85",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_5_bond_strength_rock",
+      "implemented_in": [
+        "tables.table_4_5_bond_strength_rock"
+      ]
+    },
+    {
+      "table_number": "4.6",
+      "caption": "Presumptive Ultimate Values of Soil Nail Pullout Resistance per Unit Length (1) (Modified after Sabatini et al. 1999)",
+      "chapter": 4,
+      "section_id": "4.5.6",
+      "section_title": "Bond Strength",
+      "pdf_page_index": 125,
+      "pages": [
+        125
+      ],
+      "printed_page": "86",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_6_pullout_resistance",
+      "implemented_in": [
+        "tables.table_4_6_pullout_resistance"
+      ]
+    },
+    {
+      "table_number": "4.7",
+      "caption": "Laboratory Test Standards",
+      "chapter": 4,
+      "section_id": "4.7.3",
+      "section_title": "Testing of Corrosion Potential in Soil",
+      "pdf_page_index": 127,
+      "pages": [
+        127
+      ],
+      "printed_page": "88",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.8",
+      "caption": "Definition of Site Classes (Kavazanjian et al. 2011)",
+      "chapter": 4,
+      "section_id": "4.9",
+      "section_title": "Seismic Data",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": "94",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4.9",
+      "caption": "Site Coefficient F PGA (Kavazanjian et al. 2011)",
+      "chapter": 4,
+      "section_id": "4.9",
+      "section_title": "Seismic Data",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": "94",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_9_site_coefficient_fpga",
+      "implemented_in": [
+        "tables.table_4_9_site_coefficient_fpga"
+      ]
+    },
+    {
+      "table_number": "4.10",
+      "caption": "Site Coefficient F v (Kavazanjian 2011)",
+      "chapter": 4,
+      "section_id": "4.9",
+      "section_title": "Seismic Data",
+      "pdf_page_index": 134,
+      "pages": [
+        134
+      ],
+      "printed_page": "95",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_10_site_coefficient_fv",
+      "implemented_in": [
+        "tables.table_4_10_site_coefficient_fv"
+      ]
+    },
+    {
+      "table_number": "5.1",
+      "caption": "Minimum Recommended Factors of Safety for the Design of Soil Nail Walls Using the ASD Method (1)",
+      "chapter": 5,
+      "section_id": "5.3.2",
+      "section_title": "Allowable Stress Design (ASD)",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "108",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_1_factors_of_safety",
+      "implemented_in": [
+        "tables.table_5_1_factors_of_safety"
+      ]
+    },
+    {
+      "table_number": "5.2",
+      "caption": "Load Factors and Load Combinations Based on AASHTO (2014)",
+      "chapter": 5,
+      "section_id": "5.4.2",
+      "section_title": "Load Factors",
+      "pdf_page_index": 151,
+      "pages": [
+        151
+      ],
+      "printed_page": "112",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.3",
+      "caption": "Load Factors, γ p , for Permanent Loads",
+      "chapter": 5,
+      "section_id": "5.4.2",
+      "section_title": "Load Factors",
+      "pdf_page_index": 152,
+      "pages": [
+        152
+      ],
+      "printed_page": "113",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_3_load_factors_permanent",
+      "implemented_in": [
+        "tables.table_5_3_load_factors_permanent"
+      ]
+    },
+    {
+      "table_number": "5.4",
+      "caption": "Resistance Factors for Overall Stability",
+      "chapter": 5,
+      "section_id": "5.6.5",
+      "section_title": "Resistance Factors for Overall Stability",
+      "pdf_page_index": 160,
+      "pages": [
+        160
+      ],
+      "printed_page": "121",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_resistance_factors",
+      "implemented_in": [
+        "tables.table_5_resistance_factors"
+      ]
+    },
+    {
+      "table_number": "5.5",
+      "caption": "Resistance Factors for Basal Heave",
+      "chapter": 5,
+      "section_id": "5.6.6",
+      "section_title": "Basal Heave",
+      "pdf_page_index": 164,
+      "pages": [
+        164
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.6",
+      "caption": "Resistance Factors for Pullout",
+      "chapter": 5,
+      "section_id": "5.7.2",
+      "section_title": "Nail Pullout Resistance",
+      "pdf_page_index": 165,
+      "pages": [
+        165
+      ],
+      "printed_page": "126",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.7",
+      "caption": "Resistance Factors for Lateral Sliding",
+      "chapter": 5,
+      "section_id": "5.7.3",
+      "section_title": "Lateral Sliding Stability",
+      "pdf_page_index": 170,
+      "pages": [
+        170
+      ],
+      "printed_page": "131",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.8",
+      "caption": "Resistance Factors for Tendon in Tension",
+      "chapter": 5,
+      "section_id": "5.8.1",
+      "section_title": "Nail Tensile Resistance",
+      "pdf_page_index": 170,
+      "pages": [
+        170
+      ],
+      "printed_page": "131",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.9",
+      "caption": "Resistance Factors for Flexure Resistance at Facing",
+      "chapter": 5,
+      "section_id": "5.8.3",
+      "section_title": "Facing Flexural Strength Limit State",
+      "pdf_page_index": 178,
+      "pages": [
+        178
+      ],
+      "printed_page": "139",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.10",
+      "caption": "Resistance Factors for Punching Shear at Facing",
+      "chapter": 5,
+      "section_id": "5.8.4",
+      "section_title": "Punching Shear Strength Limit State",
+      "pdf_page_index": 178,
+      "pages": [
+        178
+      ],
+      "printed_page": "139",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.11",
+      "caption": "Resistance Factors for Headed Stud in Tension in Final Facings",
+      "chapter": 5,
+      "section_id": "5.8.5",
+      "section_title": "Headed Stud in Tension in Final Facing",
+      "pdf_page_index": 179,
+      "pages": [
+        179
+      ],
+      "printed_page": "140",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5.12",
+      "caption": "Values of ( δ h /H) i and C as Functions of Soil Conditions",
+      "chapter": 5,
+      "section_id": "5.9.2",
+      "section_title": "Soil Nail Wall Displacements",
+      "pdf_page_index": 180,
+      "pages": [
+        180
+      ],
+      "printed_page": "141",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_12_wall_displacement",
+      "implemented_in": [
+        "tables.table_5_12_wall_displacement"
+      ]
+    },
+    {
+      "table_number": "6.1",
+      "caption": "Main Steps - Initial Design Considerations",
+      "chapter": 6,
+      "section_id": "6.1.1",
+      "section_title": "Overview",
+      "pdf_page_index": 182,
+      "pages": [
+        182
+      ],
+      "printed_page": "143",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6.2",
+      "caption": "Main Steps - Design",
+      "chapter": 6,
+      "section_id": "6.1.1",
+      "section_title": "Overview",
+      "pdf_page_index": 183,
+      "pages": [
+        183
+      ],
+      "printed_page": "144",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6.3",
+      "caption": "Resistance Factors for Soil Nail Wall Design",
+      "chapter": 6,
+      "section_id": "6.4",
+      "section_title": "Step 5 Select Resistance Factors",
+      "pdf_page_index": 194,
+      "pages": [
+        194,
+        195
+      ],
+      "printed_page": "155",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 6.4 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "6.4",
+      "caption": "Nomenclature for Cross-Sectional Area per Unit Width of Facing Reinforcement",
+      "chapter": 6,
+      "section_id": "6.6.5",
+      "section_title": "Step 7d Verify Facing Bending/Flexural Resistance",
+      "pdf_page_index": 205,
+      "pages": [
+        205
+      ],
+      "printed_page": "166",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6.5",
+      "caption": "Factor C F",
+      "chapter": 6,
+      "section_id": "6.6.5",
+      "section_title": "Step 7d Verify Facing Bending/Flexural Resistance",
+      "pdf_page_index": 209,
+      "pages": [
+        209
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.6.5"
+    },
+    {
+      "table_number": "6.6",
+      "caption": "Nominal Flexure Resistance, R FF (Initial Facing)",
+      "chapter": 6,
+      "section_id": "6.6.5",
+      "section_title": "Step 7d Verify Facing Bending/Flexural Resistance",
+      "pdf_page_index": 210,
+      "pages": [
+        210
+      ],
+      "printed_page": "171",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.6.5"
+    },
+    {
+      "table_number": "6.7a",
+      "caption": "Facing Resistance - Shear Punching, R FP (Initial Facing)",
+      "chapter": 6,
+      "section_id": "6.6.6",
+      "section_title": "Step 7e Verify Facing Punching Shear Resistance",
+      "pdf_page_index": 215,
+      "pages": [
+        215
+      ],
+      "printed_page": "176",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.6.6"
+    },
+    {
+      "table_number": "6.7b",
+      "caption": "Facing Resistance - Shear Punching, R FP (Final Facing)",
+      "chapter": 6,
+      "section_id": "6.6.6",
+      "section_title": "Step 7e Verify Facing Punching Shear Resistance",
+      "pdf_page_index": 215,
+      "pages": [
+        215
+      ],
+      "printed_page": "176",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.6.6"
+    },
+    {
+      "table_number": "6.8",
+      "caption": "Headed Stud Resistance in Tension, R FH (Final Facing)",
+      "chapter": 6,
+      "section_id": "6.6.7",
+      "section_title": "Step 7f Verify Facing Headed Stud Resistance",
+      "pdf_page_index": 217,
+      "pages": [
+        217
+      ],
+      "printed_page": "178",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.6.7"
+    },
+    {
+      "table_number": "6.9",
+      "caption": "Maximum Values of Apparent Cohesion to Use with Mononobe-Okabe Method (NCHRP 2008)",
+      "chapter": 6,
+      "section_id": "6.8.5",
+      "section_title": "Alternative Evaluation of Seismic Effects on Overall Stability",
+      "pdf_page_index": 227,
+      "pages": [
+        227
+      ],
+      "printed_page": "188",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7.1",
+      "caption": "Relative Effect of Resistivity on Corrosion Potential/Aggressiveness (from NCHRP 1978)",
+      "chapter": 7,
+      "section_id": "7.5.1",
+      "section_title": "Conditions Promoting Corrosion",
+      "pdf_page_index": 250,
+      "pages": [
+        250
+      ],
+      "printed_page": "211",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7.5.1"
+    },
+    {
+      "table_number": "7.2",
+      "caption": "Criteria for Assessing Ground Corrosion Potential",
+      "chapter": 7,
+      "section_id": "7.5.2",
+      "section_title": "Criteria for Assessing Ground Corrosion Potential",
+      "pdf_page_index": 250,
+      "pages": [
+        250
+      ],
+      "printed_page": "211",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7.5.2"
+    },
+    {
+      "table_number": "7.3",
+      "caption": "Corrosion Protection Levels for Soil Nails",
+      "chapter": 7,
+      "section_id": "7.7.2",
+      "section_title": "Selection Procedure",
+      "pdf_page_index": 258,
+      "pages": [
+        258
+      ],
+      "printed_page": "219",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "9.1",
+      "caption": "Load Schedule in Verification Tests",
+      "chapter": 9,
+      "section_id": "9.4.3",
+      "section_title": "Details of Verification Testing",
+      "pdf_page_index": 288,
+      "pages": [
+        288
+      ],
+      "printed_page": "249",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "9.4.3"
+    },
+    {
+      "table_number": "9.2",
+      "caption": "Load Schedule in Proof Tests",
+      "chapter": 9,
+      "section_id": "9.4.4",
+      "section_title": "Details of Proof Tests",
+      "pdf_page_index": 294,
+      "pages": [
+        294
+      ],
+      "printed_page": "255",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "9.4.4"
+    },
+    {
+      "table_number": "10.1",
+      "caption": "Nominal Bond Strength of Soil Nails in Granular Soils (after Cadden et al. 2010)",
+      "chapter": 10,
+      "section_id": "10.3",
+      "section_title": "Bond Strength",
+      "pdf_page_index": 305,
+      "pages": [
+        305
+      ],
+      "printed_page": "266",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.3"
+    },
+    {
+      "table_number": "A.1a",
+      "caption": "Properties of Solid-Threaded Bars - Grade 60",
+      "chapter": null,
+      "section_id": "A.1",
+      "section_title": "Properties of Solid-Threaded Bars (Tables A.1a, A.1b and A.1c)",
+      "pdf_page_index": 325,
+      "pages": [
+        325
+      ],
+      "printed_page": "286",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.1"
+    },
+    {
+      "table_number": "A.1b",
+      "caption": "Properties of Solid-Threaded Bars - Grade 75",
+      "chapter": null,
+      "section_id": "A.1",
+      "section_title": "Properties of Solid-Threaded Bars (Tables A.1a, A.1b and A.1c)",
+      "pdf_page_index": 325,
+      "pages": [
+        325
+      ],
+      "printed_page": "286",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.1"
+    },
+    {
+      "table_number": "A.1c",
+      "caption": "Properties of Solid-Threaded Bars - Grade 150",
+      "chapter": null,
+      "section_id": "A.1",
+      "section_title": "Properties of Solid-Threaded Bars (Tables A.1a, A.1b and A.1c)",
+      "pdf_page_index": 326,
+      "pages": [
+        326
+      ],
+      "printed_page": "287",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.1"
+    },
+    {
+      "table_number": "A.2",
+      "caption": "Properties of Hollow Bars",
+      "chapter": null,
+      "section_id": "A.2",
+      "section_title": "Properties of Hollow Bars, CTS/Titan Bar Type (Table A.2)",
+      "pdf_page_index": 327,
+      "pages": [
+        327
+      ],
+      "printed_page": "288",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.2"
+    },
+    {
+      "table_number": "A.3",
+      "caption": "Properties of Hollow Bars",
+      "chapter": null,
+      "section_id": "A.3",
+      "section_title": "Properties of Hollow Bars, MAI Bar Type (Table A.3)",
+      "pdf_page_index": 328,
+      "pages": [
+        328
+      ],
+      "printed_page": "289",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.3"
+    },
+    {
+      "table_number": "A.4",
+      "caption": "Properties of Hollow Bars",
+      "chapter": null,
+      "section_id": "A.4",
+      "section_title": "Properties of Hollow Bars, GEO-Drill Bar Type (Table A.4)",
+      "pdf_page_index": 329,
+      "pages": [
+        329
+      ],
+      "printed_page": "290",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.4"
+    },
+    {
+      "table_number": "A.5",
+      "caption": "Welded-Wire Mesh (1)",
+      "chapter": null,
+      "section_id": "A.5",
+      "section_title": "Welded-Wire Mesh (Table A.5)",
+      "pdf_page_index": 330,
+      "pages": [
+        330
+      ],
+      "printed_page": "291",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.5"
+    },
+    {
+      "table_number": "A.6",
+      "caption": "Reinforcing Bars",
+      "chapter": null,
+      "section_id": "A.6",
+      "section_title": "Reinforcing Bars (Table A.6)",
+      "pdf_page_index": 331,
+      "pages": [
+        331
+      ],
+      "printed_page": "292",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A.6"
+    },
+    {
+      "table_number": "A.7",
+      "caption": "Headed-Studs",
+      "chapter": null,
+      "section_id": "A.7",
+      "section_title": "Headed-Studs (Table A.7)",
+      "pdf_page_index": 332,
+      "pages": [
+        332
+      ],
+      "printed_page": "293",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section A.7 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "C.1",
+      "caption": "Summary of Factors of Safety for Use with the ASD Method",
+      "chapter": null,
+      "section_id": "C.5",
+      "section_title": "Step 5: Selection of Resistance Factors",
+      "pdf_page_index": 344,
+      "pages": [
+        344
+      ],
+      "printed_page": "305",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C.5"
+    },
+    {
+      "table_number": "C.2",
+      "caption": "Summary of Resistance Factors for LRFD Verifications",
+      "chapter": null,
+      "section_id": "C.5",
+      "section_title": "Step 5: Selection of Resistance Factors",
+      "pdf_page_index": 344,
+      "pages": [
+        344
+      ],
+      "printed_page": "305",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C.5"
+    },
+    {
+      "table_number": "C.3",
+      "caption": "Summary of Properties of Soil Nail Components",
+      "chapter": null,
+      "section_id": "C.6.a",
+      "section_title": "Verify Internal Stability",
+      "pdf_page_index": 346,
+      "pages": [
+        346
+      ],
+      "printed_page": "307",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C.6.a"
+    },
+    {
+      "table_number": "C.4",
+      "caption": "Summary of Stability Analysis from SNAP-2",
+      "chapter": null,
+      "section_id": "C.6.a",
+      "section_title": "Verify Internal Stability",
+      "pdf_page_index": 347,
+      "pages": [
+        347
+      ],
+      "printed_page": "308",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C.6.a"
+    },
+    {
+      "table_number": "C.5",
+      "caption": "Summary of Nail Loads from SNAP-2",
+      "chapter": null,
+      "section_id": "C.6.a",
+      "section_title": "Verify Internal Stability",
+      "pdf_page_index": 348,
+      "pages": [
+        348
+      ],
+      "printed_page": "309",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "C.6.a"
+    },
+    {
+      "table_number": "E.1",
+      "caption": "Verification Test Loading Schedule",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 393,
+      "pages": [
+        393
+      ],
+      "printed_page": "354",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E.2",
+      "caption": "Proof Test Loading Schedule",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 395,
+      "pages": [
+        395
+      ],
+      "printed_page": "356",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E.3",
+      "caption": "Construction Tolerances for Shotcrete Facing",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 399,
+      "pages": [
+        399
+      ],
+      "printed_page": "360",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E.4",
+      "caption": "Pay Items",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 402,
+      "pages": [
+        402
+      ],
+      "printed_page": "363",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "F.1",
+      "caption": "Construction Tolerances for Shotcrete Facing",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 419,
+      "pages": [
+        419
+      ],
+      "printed_page": "380",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}

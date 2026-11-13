@@ -60,6 +60,14 @@ class TestTable6SoilAnchorTransferLoad:
         with pytest.raises(ValueError, match="Unknown density"):
             table_6_soil_anchor_transfer_load("sand", "very_dense")
 
+    def test_very_stiff_refused(self):
+        """FHWA-IF-99-015 Table 6, p. 71 (PDF page 92): the silt-clay row
+        prints Stiff (10-20) 30 kN/m and Hard (21-40) 60 kN/m only. 'very
+        stiff' was answered from the Hard row (review finding gec-30)."""
+        for word in ("very stiff", "very_stiff"):
+            with pytest.raises(ValueError, match="hard.*stiff|stiff.*hard"):
+                table_6_soil_anchor_transfer_load("silt_clay_mixture", word)
+
     def test_spt_range_returned(self):
         r = table_6_soil_anchor_transfer_load("sand_and_gravel", "loose")
         assert r["spt_range"] == "4-10"
@@ -95,13 +103,26 @@ class TestTable7BondStressRock:
         r = table_7_bond_stress_rock("granite")
         assert r["rock_type"] == "granite_basalt"
 
-    def test_limestone_alias(self):
-        r = table_7_bond_stress_rock("limestone")
-        assert r["rock_type"] == "soft_limestone"
+    def test_limestone_and_shale_refused(self):
+        """Table 7, p. 73 (PDF page 94) prints dolomitic and soft limestone,
+        slates and hard shales and soft shales: 'limestone' and 'shale'
+        name two rows each and were answered from the weaker one (review
+        finding gec-39)."""
+        for word in ("limestone", "shale"):
+            with pytest.raises(ValueError, match="Unknown rock_type"):
+                table_7_bond_stress_rock(word)
+        assert table_7_bond_stress_rock("slates and hard shales")[
+            "bond_stress_max_MPa"] == 1.4
 
-    def test_recommended_fs(self):
-        r = table_7_bond_stress_rock("granite_basalt")
-        assert r["recommended_FS"] == 3.0
+    def test_no_factor_of_safety_in_table(self):
+        """Table 7 prints no factor of safety; recommended_FS 3.0 on every
+        row (soft shales, chalk, marl too) is gone, and the result quotes
+        p. 74 (PDF page 95): 3.0 on Table 8 in competent rock, 2.0 for
+        intermediate geomaterials (review finding gec-38)."""
+        r = table_7_bond_stress_rock("soft_shales")
+        assert "recommended_FS" not in r
+        assert "factor of safety of 2.0" in r["print_note"]
+        assert "0.5 to 5.0 MPa" in r["print_note"]
 
     def test_invalid_raises(self):
         with pytest.raises(ValueError, match="Unknown rock_type"):
@@ -188,17 +209,36 @@ class TestTable8RockAnchorTransferLoad:
         r = table_8_rock_anchor_transfer_load("soft_shales")
         assert r["ultimate_transfer_load_kN_per_m"] == 150
 
-    def test_fs_3(self):
-        r = table_8_rock_anchor_transfer_load("granite_basalt")
-        assert r["factor_of_safety"] == 3.0
-
-    def test_allowable_correct(self):
-        r = table_8_rock_anchor_transfer_load("granite_basalt")
-        assert r["allowable_load_per_m_kN"] == pytest.approx(730 / 3.0, abs=0.5)
+    def test_both_printed_factors_of_safety_on_every_row(self):
+        """GEC-4 p. 74 (PDF page 95): FS 3.0 "in competent rock"; FS 2.0 for
+        weak rocks such as clay shales, "intermediate geomaterials" of
+        unconfined compressive strength 0.5 to 5.0 MPa. Table 8 assigns
+        neither to a row and prints no strength, so each row returns both
+        (lead). Every row returned 3.0 alone, soft shales included."""
+        for rock, q in (("granite_basalt", 730), ("soft_shales", 150),
+                        ("slates_hard_shales", 360)):
+            r = table_8_rock_anchor_transfer_load(rock)
+            opts = {o["factor_of_safety"]: o for o in r["factor_of_safety_options"]}
+            assert set(opts) == {3.0, 2.0}
+            assert opts[3.0]["allowable_load_per_m_kN"] == pytest.approx(q / 3.0, abs=0.05)
+            assert opts[2.0]["allowable_load_per_m_kN"] == pytest.approx(q / 2.0, abs=0.05)
+            assert "competent rock" in opts[3.0]["applies_to"]
+            assert "0.5 to 5.0 MPa" in opts[2.0]["applies_to"]
+            assert "factor_of_safety" not in r
+            assert "dividing by a factor of safety of 3.0" in r["print_note"]
+            assert "should use a factor of safety of 2.0" in r["print_note"]
+        assert table_8_rock_anchor_transfer_load("soft_shales")[
+            "rock_type_printed"] == "Soft Shales"
 
     def test_granite_alias(self):
         r = table_8_rock_anchor_transfer_load("granite")
         assert r["ultimate_transfer_load_kN_per_m"] == 730
+
+    def test_limestone_and_shale_refused(self):
+        """Table 8, p. 74: 'limestone' and 'shale' name two rows each (gec-39)."""
+        for word in ("limestone", "shale"):
+            with pytest.raises(ValueError, match="Unknown rock_type"):
+                table_8_rock_anchor_transfer_load(word)
 
     def test_harder_rock_higher_capacity(self):
         r1 = table_8_rock_anchor_transfer_load("soft_shales")
@@ -244,3 +284,18 @@ class TestTable20CorrosionProtection:
     def test_invalid_raises(self):
         with pytest.raises(ValueError, match="Unknown protection_class"):
             table_20_corrosion_protection("class_iii")
+
+    def test_words_as_printed(self):
+        """Table 20, p. 131 (PDF page 152), 'modified after PTI, 1996': the
+        anchorage is '1. Trumpet' for both classes and the Class I bond
+        length 'Grout-filled encapsulation or / Fusion-bonded epoxy'. The
+        code said 'with watertight weld' and 'Corrugated HDPE or
+        polypropylene', which the table does not print (gec-39)."""
+        one = table_20_corrosion_protection("class_i")
+        two = table_20_corrosion_protection("class_ii")
+        assert one["anchorage"] == ["Trumpet", "Cover if exposed"]
+        assert two["anchorage"] == ["Trumpet", "Cover if exposed"]
+        assert one["bond_length"] == ["Grout-filled encapsulation or",
+                                      "Fusion-bonded epoxy"]
+        assert two["bond_length"] == ["Grout"]
+        assert "modified after PTI, 1996" in one["source"]

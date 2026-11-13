@@ -11,18 +11,13 @@ four ASCE 41 tables with this UFC's own Tables 4-1 through 4-4 (Section
 Table 4-3/4-4 for two-way slabs and slab-column connections (replacing
 ASCE 41 Tables 6-14/6-15).
 
-NOTE on table structure (flag for lead visual check): Tables 4-1 and 4-3
-print BOTH the nonlinear modeling parameters (a, b, c) and a set of
-"Acceptance Criteria" plastic-rotation values for Primary/Secondary
-components; as extracted, the acceptance-criteria values are IDENTICAL to
-modeling parameters a (primary) and b (secondary) in every row. This
-package transcribes the table literally as extracted (acceptance columns
-carry the same numeric values); it is plausible by design (this UFC's
-combined table serves both nonlinear modeling AND acceptance-criteria
-purposes for its single Life-Safety-equivalent performance target) but
-has not been independently confirmed against the printed page layout --
-verify against printed pp. 63, 65 if precise acceptance-criteria columns
-distinct from a/b are needed.
+Tables 4-1 and 4-3 print BOTH the nonlinear modeling parameters (a, b, c)
+and separate "Acceptance Criteria" plastic rotations for Primary and
+Secondary components. In Table 4-1 (printed p. 63) the acceptance values
+equal a and b for the flexure rows (i) only; rows ii-iv print smaller
+acceptance values (e.g. shear, stirrups <= d/2: a 0.0030, b 0.02,
+acceptance 0.002 / 0.01). Table 4-3 (printed p. 65) prints its own
+acceptance values in every row. Both are transcribed as printed.
 """
 
 from .._interpolation import _linterp
@@ -64,37 +59,65 @@ _TABLE_4_1_FLEXURE = {
     ("NC", 6): {"rho0": (0.025, 0.03, 0.2), "rho5": (0.013, 0.02, 0.2)},
 }
 
+# Rows ii-iv print acceptance criteria that DIFFER from a and b (rendered
+# page, pdf 79 / printed 63): primary 0.002 / secondary 0.01 or 0.005, and
+# 0.01 / 0.02 for inadequate embedment.
 _TABLE_4_1_OTHER = {
-    "shear_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.2},
-    "shear_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.2},
-    "development_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.0},
-    "development_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.0},
-    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2},
+    "shear_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.2, "primary": 0.002, "secondary": 0.01},
+    "shear_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.2, "primary": 0.002, "secondary": 0.005},
+    "development_stirrup_le_d2": {"a": 0.0030, "b": 0.02, "c": 0.0, "primary": 0.002, "secondary": 0.01},
+    "development_stirrup_gt_d2": {"a": 0.0030, "b": 0.01, "c": 0.0, "primary": 0.002, "secondary": 0.005},
+    "inadequate_embedment": {"a": 0.015, "b": 0.03, "c": 0.2, "primary": 0.01, "secondary": 0.02},
 }
+
+# The shear ratio V / (bw d sqrt(f'c)) heading Tables 4-1(i) and 4-2(i) is
+# printed without a unit. Its rows (<= 3, >= 6) are psi-unit values: the
+# GSA guideline's worked example of the same table (GSA_Alternate_Path_2016
+# .pdf pdf 114 / printed D12) computes it as 222 kips / (36 in x 22.5 in x
+# sqrt(5000 psi)) = 3.88. A ratio computed with N, mm and MPa is 1/12.04 of
+# the psi value and would always land in the "<= 3" row.
+VW_RATIO_UNITS = "psi units: V in lb, bw and d in inches, f'c in psi"
+
+
+def _vw_ratio_row(vw_ratio):
+    """Name the unit of vw_ratio and the printed row(s) it was read in."""
+    if vw_ratio <= 3.0:
+        row = "<= 3 (printed row)"
+    elif vw_ratio >= 6.0:
+        row = ">= 6 (printed row)"
+    else:
+        row = "interpolated between the printed 3 and 6 rows (footnote 1)"
+    return {"vw_ratio": vw_ratio, "vw_ratio_units": VW_RATIO_UNITS, "vw_ratio_row": row}
 
 
 def table_4_1_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf,
                                      vw_ratio, condition_governs="minimum"):
-    """Table 4-1(i): nonlinear modeling parameters (a, b, c) and
-    acceptance-criteria plastic rotations for a reinforced-concrete beam
-    controlled by FLEXURE (printed p. 63, replaces ASCE 41 Table 10-7).
-    Linear interpolation between the printed grid points is permitted
-    (footnote 1) and performed here over rho_diff_over_rho_bal in
-    [0.0, 0.5] and vw_ratio in [3, 6].
+    """UFC 4-023-03 Table 4-1(i): nonlinear modeling parameters a, b
+    (plastic rotation, radians) and c (residual strength ratio) and the
+    acceptance-criteria plastic rotations (radians) for a reinforced-
+    concrete beam controlled by FLEXURE (printed p. 63, replaces ASCE 41
+    Table 10-7). vw_ratio = V / (bw d sqrt(f'c)) must be in psi units
+    (V lb, bw and d in., f'c psi). Linear interpolation between the
+    printed grid points is permitted (footnote 1) and performed here over
+    rho_diff_over_rho_bal in [0.0, 0.5] and vw_ratio in [3, 6].
 
     Parameters
     ----------
     rho_diff_over_rho_bal : float
-        (rho - rho') / rho_bal for the section, clamped to [0.0, 0.5] for
-        interpolation.
+        (rho - rho') / rho_bal for the section. The printed rows are
+        open-ended, "<= 0.0" and ">= 0.5" (Table 4-1, printed p. 63): below 0.0
+        the first is read, above 0.5 the second, and between them
+        the value is interpolated (footnote 1).
     transverse_reinf : str
         'C' (conforming) or 'NC' (nonconforming) -- see footnote 4:
         conforming means hoops spaced <= d/3 within the plastic hinge
         region, and (for moderate/high ductility demand) Vs >= 3/4 of the
         design shear.
     vw_ratio : float
-        V / (bw * d * sqrt(f'c)) [psi units, f'c in psi], clamped to
-        [3, 6] for interpolation.
+        V / (bw * d * sqrt(f'c)) in psi units: V in lb, bw and d in
+        inches, f'c in psi (a ratio computed with N, mm and MPa must be
+        multiplied by 12.04). Below 3 the printed "<= 3" row is used,
+        above 6 the ">= 6" row.
     condition_governs : str, optional
         Unused placeholder for future multi-condition minimum-governs
         logic (footnote 3: when multiple i-iv conditions occur, use the
@@ -104,13 +127,18 @@ def table_4_1_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf,
     -------
     dict
         {'a', 'b', 'c' (residual strength ratio), 'primary_acceptance'
-        (=a per the as-extracted table), 'secondary_acceptance' (=b),
-        'table': '4-1', 'printed_page': '63', 'pdf_page': 78}
+        (= a, as printed for the flexure rows), 'secondary_acceptance'
+        (= b), 'vw_ratio', 'vw_ratio_units', 'vw_ratio_row' (the printed
+        row(s) read), 'table': '4-1', 'printed_page': '63', 'pdf_page': 78}
     """
     key = transverse_reinf.upper().strip()
     if key not in ("C", "NC"):
         raise ValueError("transverse_reinf must be 'C' or 'NC'")
     rho = max(0.0, min(0.5, rho_diff_over_rho_bal))
+    if vw_ratio < 0:
+        raise ValueError(
+            f"vw_ratio = V/(bw d sqrt(f'c)) must be >= 0 (a shear magnitude), "
+            f"got {vw_ratio}")
     vw = max(3.0, min(6.0, vw_ratio))
     row_3 = _TABLE_4_1_FLEXURE[(key, 3)]
     row_6 = _TABLE_4_1_FLEXURE[(key, 6)]
@@ -127,13 +155,20 @@ def table_4_1_beam_flexure_modeling(rho_diff_over_rho_bal, transverse_reinf,
     b = _linterp(vw, [3.0, 6.0], [b3, b6])
     c = _linterp(vw, [3.0, 6.0], [c3, c6])
     return {"a": a, "b": b, "c": c, "primary_acceptance": a, "secondary_acceptance": b,
+            **_vw_ratio_row(vw_ratio),
             "table": "4-1", "printed_page": "63", "pdf_page": 78}
 
 
 def table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
-    """Table 4-1(ii-iv): nonlinear modeling parameters for RC beams
-    controlled by SHEAR, inadequate development/splicing, or inadequate
-    embedment into the beam-column joint (printed p. 63).
+    """UFC 4-023-03 Table 4-1(ii-iv): nonlinear modeling parameters a, b
+    (plastic rotation, radians) and c (residual strength ratio) and the
+    acceptance-criteria plastic rotations (radians, primary and secondary)
+    for an RC beam controlled by SHEAR, inadequate development/splicing,
+    or inadequate embedment into the beam-column joint (printed p. 63).
+
+    For these rows the printed acceptance criteria are NOT a and b:
+    shear or development, stirrups <= d/2: primary 0.002, secondary 0.01;
+    stirrups > d/2: 0.002 and 0.005; inadequate embedment: 0.01 and 0.02.
 
     Parameters
     ----------
@@ -159,7 +194,7 @@ def table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=True):
         raise ValueError("condition must be 'shear', 'development', or 'inadequate_embedment'")
     row = _TABLE_4_1_OTHER[key]
     return {"a": row["a"], "b": row["b"], "c": row["c"],
-            "primary_acceptance": row["a"], "secondary_acceptance": row["b"],
+            "primary_acceptance": row["primary"], "secondary_acceptance": row["secondary"],
             "table": "4-1", "printed_page": "63", "pdf_page": 78}
 
 
@@ -185,30 +220,43 @@ _TABLE_4_2_OTHER = {
 
 
 def table_4_2_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_ratio):
-    """Table 4-2(i): linear-model m-factors for an RC beam controlled by
-    FLEXURE, primary and secondary components (printed p. 64, replaces
-    ASCE 41 Table 10-11). Bilinear interpolation over
-    rho_diff_over_rho_bal in [0.0, 0.5] and vw_ratio in [3, 6] (footnote 1).
+    """UFC 4-023-03 Table 4-2(i): linear-model m-factors (dimensionless)
+    for an RC beam controlled by FLEXURE, primary and secondary components
+    (printed p. 64, replaces ASCE 41 Table 10-11). vw_ratio = V / (bw d
+    sqrt(f'c)) must be in psi units (V lb, bw and d in., f'c psi).
+    Bilinear interpolation over rho_diff_over_rho_bal in [0.0, 0.5] and
+    vw_ratio in [3, 6] (footnote 1).
 
     Parameters
     ----------
     rho_diff_over_rho_bal : float
-        (rho - rho') / rho_bal, clamped to [0.0, 0.5].
+        (rho - rho') / rho_bal for the section. The printed rows are
+        open-ended, "<= 0.0" and ">= 0.5" (Table 4-2, printed p. 64): below 0.0
+        the first is read, above 0.5 the second, and between them
+        the value is interpolated (footnote 1).
     transverse_reinf : str
         'C' (conforming) or 'NC' (nonconforming).
     vw_ratio : float
-        V / (bw * d * sqrt(f'c)), clamped to [3, 6].
+        V / (bw * d * sqrt(f'c)) in psi units: V in lb, bw and d in
+        inches, f'c in psi (a ratio computed with N, mm and MPa must be
+        multiplied by 12.04). Below 3 the printed "<= 3" row is used,
+        above 6 the ">= 6" row.
 
     Returns
     -------
     dict
-        {'m_primary', 'm_secondary', 'table': '4-2', 'printed_page': '64',
-         'pdf_page': 79}
+        {'m_primary', 'm_secondary', 'vw_ratio', 'vw_ratio_units',
+         'vw_ratio_row' (the printed row(s) read), 'table': '4-2',
+         'printed_page': '64', 'pdf_page': 79}
     """
     key = transverse_reinf.upper().strip()
     if key not in ("C", "NC"):
         raise ValueError("transverse_reinf must be 'C' or 'NC'")
     rho = max(0.0, min(0.5, rho_diff_over_rho_bal))
+    if vw_ratio < 0:
+        raise ValueError(
+            f"vw_ratio = V/(bw d sqrt(f'c)) must be >= 0 (a shear magnitude), "
+            f"got {vw_ratio}")
     vw = max(3.0, min(6.0, vw_ratio))
     row_3 = _TABLE_4_2_FLEXURE[(key, 3)]
     row_6 = _TABLE_4_2_FLEXURE[(key, 6)]
@@ -222,7 +270,8 @@ def table_4_2_beam_flexure_mfactor(rho_diff_over_rho_bal, transverse_reinf, vw_r
     mp6, ms6 = _at_vw(row_6)
     m_primary = _linterp(vw, [3.0, 6.0], [mp3, mp6])
     m_secondary = _linterp(vw, [3.0, 6.0], [ms3, ms6])
-    return {"m_primary": m_primary, "m_secondary": m_secondary, "table": "4-2",
+    return {"m_primary": m_primary, "m_secondary": m_secondary,
+            **_vw_ratio_row(vw_ratio), "table": "4-2",
             "printed_page": "64", "pdf_page": 79}
 
 
@@ -292,8 +341,11 @@ def table_4_3_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
     ----------
     vg_over_vo : float
         Ratio of gravity shear on the slab critical section (Vg, per ACI
-        318) to the direct punching shear strength (Vo, per ACI 318),
-        clamped to [0.2, 0.4].
+        318) to the direct punching shear strength (Vo, per ACI 318).
+        The printed rows are open-ended, "<= 0.2" and ">= 0.4"
+        (Table 4-3, printed p. 65): below 0.2 the first is read, above 0.4
+        the second, and between them the value is interpolated
+        (footnote 1). A negative ratio is refused.
     continuity_reinforcement : bool
         True ('Yes') if at least one main bottom bar (or, for
         post-tensioned slabs, one tendon) in each direction is
@@ -307,6 +359,8 @@ def table_4_3_slab_flexure_modeling(vg_over_vo, continuity_reinforcement):
          'printed_page': '65', 'pdf_page': 80}
     """
     key = "yes" if continuity_reinforcement else "no"
+    if vg_over_vo < 0:
+        raise ValueError(f"vg_over_vo must be >= 0, got {vg_over_vo}")
     vg = max(0.2, min(0.4, vg_over_vo))
     row = _TABLE_4_3_FLEXURE[key]
     accept = _TABLE_4_3_ACCEPT[key]
@@ -367,7 +421,10 @@ def table_4_4_slab_flexure_mfactor(vg_over_vo, continuity_reinforcement):
     Parameters
     ----------
     vg_over_vo : float
-        Vg/Vo per ACI 318, clamped to [0.2, 0.4].
+        Vg/Vo per ACI 318. The printed rows are open-ended, "<= 0.2" and ">= 0.4"
+        (Table 4-4, printed p. 66): below 0.2 the first is read, above 0.4
+        the second, and between them the value is interpolated
+        (footnote 1). A negative ratio is refused.
     continuity_reinforcement : bool
         True ('Yes') or False ('No') per the continuity-reinforcement
         definition in ``table_4_3_slab_flexure_modeling``.
@@ -379,6 +436,8 @@ def table_4_4_slab_flexure_mfactor(vg_over_vo, continuity_reinforcement):
          'pdf_page': 81}
     """
     key = "yes" if continuity_reinforcement else "no"
+    if vg_over_vo < 0:
+        raise ValueError(f"vg_over_vo must be >= 0, got {vg_over_vo}")
     vg = max(0.2, min(0.4, vg_over_vo))
     row = _TABLE_4_4_FLEXURE[key]
     mp = _linterp(vg, [0.2, 0.4], [row["vg0.2"][0], row["vg0.4"][0]])

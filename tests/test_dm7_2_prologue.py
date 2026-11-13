@@ -161,19 +161,19 @@ class TestPowerFunctionShearStrength:
 
     def test_a_zero_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            power_function_shear_strength(0.0, 0.8, 1000.0)
+            power_function_shear_strength(0.0, 0.8, 1000.0, 2116.0)
 
     def test_a_negative_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            power_function_shear_strength(-0.5, 0.8, 1000.0)
+            power_function_shear_strength(-0.5, 0.8, 1000.0, 2116.0)
 
     def test_b_zero_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_shear_strength(0.8, 0.0, 1000.0)
+            power_function_shear_strength(0.8, 0.0, 1000.0, 2116.0)
 
     def test_b_negative_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_shear_strength(0.8, -0.1, 1000.0)
+            power_function_shear_strength(0.8, -0.1, 1000.0, 2116.0)
 
     def test_pa_zero_raises(self):
         with pytest.raises(ValueError, match="p_a must be positive"):
@@ -185,7 +185,7 @@ class TestPowerFunctionShearStrength:
 
     def test_sigma_negative_raises(self):
         with pytest.raises(ValueError, match="sigma_prime must be non-negative"):
-            power_function_shear_strength(0.8, 0.9, -100.0)
+            power_function_shear_strength(0.8, 0.9, -100.0, 2116.0)
 
 
 # ===========================================================================
@@ -214,19 +214,19 @@ class TestPowerFunctionUndrainedStrength:
 
     def test_a_u_zero_raises(self):
         with pytest.raises(ValueError, match="a_u must be positive"):
-            power_function_undrained_strength(0.0, 0.8, 1000.0)
+            power_function_undrained_strength(0.0, 0.8, 1000.0, 2116.0)
 
     def test_a_u_negative_raises(self):
         with pytest.raises(ValueError, match="a_u must be positive"):
-            power_function_undrained_strength(-0.3, 0.8, 1000.0)
+            power_function_undrained_strength(-0.3, 0.8, 1000.0, 2116.0)
 
     def test_b_u_zero_raises(self):
         with pytest.raises(ValueError, match="b_u must be positive"):
-            power_function_undrained_strength(0.3, 0.0, 1000.0)
+            power_function_undrained_strength(0.3, 0.0, 1000.0, 2116.0)
 
     def test_b_u_negative_raises(self):
         with pytest.raises(ValueError, match="b_u must be positive"):
-            power_function_undrained_strength(0.3, -0.1, 1000.0)
+            power_function_undrained_strength(0.3, -0.1, 1000.0, 2116.0)
 
     def test_pa_zero_raises(self):
         with pytest.raises(ValueError, match="p_a must be positive"):
@@ -238,7 +238,7 @@ class TestPowerFunctionUndrainedStrength:
 
     def test_sigma_negative_raises(self):
         with pytest.raises(ValueError, match="sigma_1_con must be non-negative"):
-            power_function_undrained_strength(0.3, 0.85, -500.0)
+            power_function_undrained_strength(0.3, 0.85, -500.0, 2116.0)
 
 
 # ===========================================================================
@@ -271,23 +271,23 @@ class TestThreeParameterPowerFunction:
 
     def test_a_zero_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            three_parameter_power_function(0.0, 0.9, 0.1, 1000.0)
+            three_parameter_power_function(0.0, 0.9, 0.1, 1000.0, 2116.0)
 
     def test_a_negative_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            three_parameter_power_function(-0.5, 0.9, 0.1, 1000.0)
+            three_parameter_power_function(-0.5, 0.9, 0.1, 1000.0, 2116.0)
 
     def test_b_zero_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            three_parameter_power_function(0.8, 0.0, 0.1, 1000.0)
+            three_parameter_power_function(0.8, 0.0, 0.1, 1000.0, 2116.0)
 
     def test_b_negative_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            three_parameter_power_function(0.8, -0.1, 0.1, 1000.0)
+            three_parameter_power_function(0.8, -0.1, 0.1, 1000.0, 2116.0)
 
     def test_t_negative_raises(self):
         with pytest.raises(ValueError, match="t must be non-negative"):
-            three_parameter_power_function(0.8, 0.9, -0.1, 1000.0)
+            three_parameter_power_function(0.8, 0.9, -0.1, 1000.0, 2116.0)
 
     def test_pa_zero_raises(self):
         with pytest.raises(ValueError, match="p_a must be positive"):
@@ -334,11 +334,11 @@ class TestEquivalentFrictionAngle:
 
     def test_high_equals_low_raises(self):
         with pytest.raises(ValueError, match="sigma_prime_high must be greater"):
-            equivalent_friction_angle(0.8, 0.85, 1000.0, 1000.0)
+            equivalent_friction_angle(0.8, 0.85, 1000.0, 1000.0, 2116.0)
 
     def test_high_less_than_low_raises(self):
         with pytest.raises(ValueError, match="sigma_prime_high must be greater"):
-            equivalent_friction_angle(0.8, 0.85, 2000.0, 500.0)
+            equivalent_friction_angle(0.8, 0.85, 2000.0, 500.0, 2116.0)
 
 
 # ===========================================================================
@@ -362,11 +362,11 @@ class TestEquivalentCohesion:
 
     def test_high_equals_low_raises(self):
         with pytest.raises(ValueError, match="sigma_prime_high must be greater"):
-            equivalent_cohesion(0.8, 0.85, 1000.0, 1000.0)
+            equivalent_cohesion(0.8, 0.85, 1000.0, 1000.0, 2116.0)
 
     def test_high_less_than_low_raises(self):
         with pytest.raises(ValueError, match="sigma_prime_high must be greater"):
-            equivalent_cohesion(0.8, 0.85, 2000.0, 500.0)
+            equivalent_cohesion(0.8, 0.85, 2000.0, 500.0, 2116.0)
 
 
 # ===========================================================================
@@ -389,19 +389,19 @@ class TestPowerFunctionDimensionalToNormalized:
 
     def test_a_dim_zero_raises(self):
         with pytest.raises(ValueError, match="a_dim must be positive"):
-            power_function_dimensional_to_normalized(0.0, 0.8)
+            power_function_dimensional_to_normalized(0.0, 0.8, 2116.0)
 
     def test_a_dim_negative_raises(self):
         with pytest.raises(ValueError, match="a_dim must be positive"):
-            power_function_dimensional_to_normalized(-1.0, 0.8)
+            power_function_dimensional_to_normalized(-1.0, 0.8, 2116.0)
 
     def test_b_zero_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_dimensional_to_normalized(2.5, 0.0)
+            power_function_dimensional_to_normalized(2.5, 0.0, 2116.0)
 
     def test_b_negative_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_dimensional_to_normalized(2.5, -0.5)
+            power_function_dimensional_to_normalized(2.5, -0.5, 2116.0)
 
     def test_pa_zero_raises(self):
         with pytest.raises(ValueError, match="p_a must be positive"):
@@ -440,19 +440,19 @@ class TestPowerFunctionNormalizedToDimensional:
 
     def test_a_zero_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            power_function_normalized_to_dimensional(0.0, 0.8)
+            power_function_normalized_to_dimensional(0.0, 0.8, 2116.0)
 
     def test_a_negative_raises(self):
         with pytest.raises(ValueError, match="a must be positive"):
-            power_function_normalized_to_dimensional(-0.5, 0.8)
+            power_function_normalized_to_dimensional(-0.5, 0.8, 2116.0)
 
     def test_b_zero_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_normalized_to_dimensional(0.6, 0.0)
+            power_function_normalized_to_dimensional(0.6, 0.0, 2116.0)
 
     def test_b_negative_raises(self):
         with pytest.raises(ValueError, match="b must be positive"):
-            power_function_normalized_to_dimensional(0.6, -0.5)
+            power_function_normalized_to_dimensional(0.6, -0.5, 2116.0)
 
     def test_pa_zero_raises(self):
         with pytest.raises(ValueError, match="p_a must be positive"):
@@ -547,28 +547,37 @@ class TestUsrAcuTriaxial:
 
 # ===========================================================================
 # usr_dss  (Table P-6)
-#   USR = sin(phi') - 0.5 * sin(2*phi')
+#   USR = sin(phi') - 0.5 * sin^2(phi')
+#   UFC 3-220-20 Table P-6, PDF p. 54 (printed p. 16): the 2 is a
+#   superscript on "sin" (sine squared), not the argument 2*phi'.
 # ===========================================================================
 
 class TestUsrDss:
 
     def test_phi_30(self):
-        # sin(30) - 0.5*sin(60) = 0.5 - 0.5*0.8660 = 0.5 - 0.4330 = 0.06699
+        # sin(30) - 0.5*sin^2(30) = 0.5 - 0.5*0.25 = 0.375
         result = usr_dss(30.0)
-        assert result == pytest.approx(0.06698729810778065, rel=1e-4)
+        assert result == pytest.approx(0.375, rel=1e-9)
 
     def test_phi_45(self):
-        # sin(45) - 0.5*sin(90) = 0.7071 - 0.5*1.0 = 0.2071
+        # sin(45) - 0.5*sin^2(45) = 0.70711 - 0.5*0.5 = 0.45711
         result = usr_dss(45.0)
-        assert result == pytest.approx(0.20710678118654757, rel=1e-4)
+        assert result == pytest.approx(0.4571067811865476, rel=1e-9)
 
     def test_phi_small(self):
-        # phi=10 deg
-        # sin(10) - 0.5*sin(20)
-        phi_rad = math.radians(10.0)
-        expected = math.sin(phi_rad) - 0.5 * math.sin(2.0 * phi_rad)
+        # phi=10 deg: sin(10) - 0.5*sin^2(10) = 0.173648 - 0.015077 = 0.158571
         result = usr_dss(10.0)
-        assert result == pytest.approx(expected, rel=1e-4)
+        assert result == pytest.approx(0.158571, abs=1e-6)
+
+    def test_not_sine_of_twice_the_angle(self):
+        # The old reading sin(phi') - 0.5*sin(2*phi') gives 0.0670 at 30 deg.
+        assert usr_dss(30.0) != pytest.approx(0.0670, abs=1e-3)
+
+    def test_below_acu_triaxial(self):
+        # Table P-6: ACU triaxial USR = sin(phi'); DSS subtracts 0.5 sin^2.
+        for phi in (20.0, 28.0, 36.0):
+            s = math.sin(math.radians(phi))
+            assert usr_dss(phi) == pytest.approx(usr_acu_triaxial(phi) - 0.5 * s * s, rel=1e-12)
 
     def test_phi_zero_raises(self):
         with pytest.raises(ValueError, match="phi_prime_deg must be in the range"):
@@ -585,3 +594,42 @@ class TestUsrDss:
     def test_phi_above_90_raises(self):
         with pytest.raises(ValueError, match="phi_prime_deg must be in the range"):
             usr_dss(120.0)
+
+
+# ===========================================================================
+# Atmospheric pressure is required (no psf default), and the print's own
+# example: UFC 3-220-20 Figure P-4, PDF p. 44 (printed p. 6): a = 0.5,
+# b = 0.8, Pa = 2116 psf, sigma' from 2000 to 4000 psf gives s = 1011 and
+# 1761 psf, c' = 261 psf and phi' = 20.6 degrees.
+# ===========================================================================
+
+class TestAtmosphericPressureRequired:
+
+    @pytest.mark.parametrize("call", [
+        lambda: power_function_shear_strength(0.5, 0.8, 100.0),
+        lambda: power_function_undrained_strength(0.3, 0.85, 100.0),
+        lambda: three_parameter_power_function(0.5, 0.8, 0.1, 100.0),
+        lambda: equivalent_friction_angle(0.5, 0.8, 100.0, 200.0),
+        lambda: equivalent_cohesion(0.5, 0.8, 100.0, 200.0),
+        lambda: power_function_dimensional_to_normalized(2.5, 0.8),
+        lambda: power_function_normalized_to_dimensional(0.6, 0.8),
+    ])
+    def test_left_out_is_refused(self, call):
+        with pytest.raises(TypeError, match="p_a"):
+            call()
+
+    def test_figure_p4_shear_strengths(self):
+        assert power_function_shear_strength(0.5, 0.8, 2000.0, 2116.0) == pytest.approx(1011.0, abs=0.5)
+        assert power_function_shear_strength(0.5, 0.8, 4000.0, 2116.0) == pytest.approx(1761.0, abs=0.5)
+
+    def test_figure_p4_equivalent_envelope(self):
+        # The print works from the rounded strengths (1761 - 1011)/2000 and
+        # shows 20.6; unrounded the angle is 20.55.
+        assert equivalent_friction_angle(0.5, 0.8, 2000.0, 4000.0, 2116.0) == pytest.approx(20.6, abs=0.1)
+        assert equivalent_cohesion(0.5, 0.8, 2000.0, 4000.0, 2116.0) == pytest.approx(261.0, abs=1.0)
+
+    def test_si_numbers_with_si_pressure(self):
+        # Made-up SI case: the same envelope in kPa needs Pa in kPa.
+        s = power_function_shear_strength(0.5, 0.8, 100.0, 101.325)
+        assert s == pytest.approx(0.5 * 101.325 * (100.0 / 101.325) ** 0.8, rel=1e-12)
+        assert s == pytest.approx(50.13, abs=0.01)

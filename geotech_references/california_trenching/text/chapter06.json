@@ -8,14 +8,14 @@
     {
       "section_id": "6-2",
       "title": "Allowable Working Stresses (Timber and Steel)",
-      "summary": "Shoring is reviewed by Allowable Stress Design (ASD). Timber uses the NDS (2018) reference values with adjustment factors (duration CD, wet service CM, etc.); the Falsework Manual Chapter 5 guides timber analysis. Structural steel is assumed ASTM A36 unless identified, with allowable stresses per the AISC Steel Construction Manual (ASD); members in compression are checked as pinned-end columns and heavily loaded elements for web yielding/crippling. Railroad shoring uses AREMA allowables.",
-      "body": "It is Structure Construction practice to review trenching/shoring by Allowable Stress Design (ASD). For timber shoring, reference the Falsework Manual Chapter 5 and use the National Design Specification for Wood Construction (NDS, 2018) reference design values with applicable adjustment factors. The Cal/OSHA CSO Appendix C timber tables define minimum member sizes for cuts not exceeding 20 ft with minimum surcharge. For steel, unless otherwise identified assume ASTM Grade A36; allowable stresses must not exceed the current AISC Steel Construction Manual limits. When lagging bears on the front flange of a wide-flange/HP soldier pile the full length may be assumed laterally supported for compression-flange buckling; lagging on the back side requires a compression-flange-buckling check (reduced allowable Fb). Members strictly in compression use the AISC ASD allowable axial stress with pinned ends; elements carrying large point loads are reviewed for web yielding and web crippling. Railroads have different allowable-stress requirements (AREMA Manual, Chapter 9).",
+      "summary": "Structure Construction reviews trenching and shoring by Allowable Stress Design (ASD). Timber: reference the Falsework Manual, Chapter 5, Analysis; the current NDS is used for timber connections (Section 6-1). Shoring adjacent to railroads is designed and reviewed to the railroad's requirements (Guidelines for Temporary Shoring, based primarily on AREMA Chapter 7, Timber Structures; Chapter 9 of this manual). Steel: assume ASTM A36 unless identified; allowable stress must not exceed the current AISC Steel Construction Manual limit; compression members as pinned-end columns; large point loads reviewed for web yielding and crippling.",
+      "body": "It is Structure Construction practice to review trenching and shoring by Allowable Stress Design (ASD), as specified in the Standard Specifications for falsework design and the AREMA Manual for Railway Engineering (Section 6-1). For aluminum and concrete members use the latest acceptable national standard; for timber connections use the current National Design Specification for Wood Construction (NDS) (Section 6-1). Timber (6-2.01): for timber shoring analysis, reference the Falsework Manual, Chapter 5, Analysis, for guidance on allowable working stress values. Shoring adjacent to railroads is to be designed and reviewed in accordance with railroad requirements, found in the railroad's Guidelines for Temporary Shoring, which is based primarily on the AREMA manual, Chapter 7, Timber Structures, Appendix 4, Temporary Structures; Chapter 9, Railroads, of this manual gives additional details. Cal/OSHA CSO 1541.1 Appendix C defines minimum timber member sizes (uprights, walers, cross bracing) for excavations not exceeding 20 ft in depth and only with the minimum surcharge; member substitutions require manufactured members of equivalent strength (Appendix E shows some alternatives). Steel (6-2.02): unless otherwise identified, assume ASTM Grade A36; the maximum allowable stress for an identified grade must not exceed the limit in the current AISC Steel Construction Manual. When lagging is placed against the front flange of W or HP sections, the entire length may be assumed laterally supported for compression-flange buckling (the best practice for placement of lagging); lagging on the back side requires a compression-flange-buckling check, and Fb could be reduced significantly (compact / non-compact / partially compact). For steel members (excluding sheet piles) use the ASD requirements of the AISC manual: (1) check the Contractor's system against the steel standard the Contractor is using; (2) members strictly in compression: allowable axial stress per AISC with pinned ends; (3) elements carrying large point loads should be reviewed for web yielding and web crippling (Falsework Manual 5-4.07, 5-4.08; AISC J10); (4) bolted connections per the most current AISC manual. Railroads have different allowable stress requirements; see Chapter 9, Railroad.",
       "key_points": [
         "Shoring is reviewed by Allowable Stress Design (ASD)",
-        "Timber: NDS (2018) reference values with adjustment factors (CD, CM, Ct, etc.)",
-        "Steel: assume ASTM A36 unless identified; allowables per the AISC Steel Construction Manual",
-        "Compression members checked as pinned-end columns; large point loads -> web yielding/crippling",
-        "Railroad shoring uses AREMA allowable stresses (Chapter 9)"
+        "Timber: reference the Falsework Manual, Chapter 5, Analysis; timber connections per the current NDS",
+        "Steel: assume ASTM A36 unless identified; allowable stress not to exceed the current AISC Steel Construction Manual",
+        "Compression members checked as pinned-end columns; large point loads reviewed for web yielding/crippling",
+        "Railroad shoring: the railroad's Guidelines for Temporary Shoring (AREMA Chapter 7, Timber Structures); see Chapter 9"
       ],
       "equations": [],
       "figures": [],
@@ -26,12 +26,12 @@
       "section_id": "6-4",
       "title": "Overstress",
       "summary": "Short-term increases to allowable stresses are permitted up to 133 percent (a 1.33 factor), EXCEPT when the excavation is in place more than 90 days, dynamic loadings are present (pile driving, traffic), the excavation is adjacent to railroads, or horizontal struts are being analyzed.",
-      "body": "Short-term increases to allowable stresses are allowed to a maximum of 133 percent (a 1.33 overstress factor), except in the following situations: (1) excavations in place more than 90 days; (2) dynamic loadings are present (pile driving, traffic, etc.); (3) excavations are adjacent to railroads; and (4) analyzing horizontal struts. In those cases the standard (un-increased) allowable stresses govern.",
+      "body": "Short-term increases to allowable stresses are allowed (to a maximum of 133 percent) except in the following situations when: (1) excavations are in place more than 90 days; (2) dynamic loadings are present (pile driving, traffic, etc.); (3) excavations are adjacent to railroads; (4) analyzing horizontal struts.",
       "key_points": [
-        "Short-term overstress up to 133% (factor 1.33) is generally permitted",
-        "NOT permitted if the excavation is in place more than 90 days",
-        "NOT permitted with dynamic loadings (pile driving, traffic)",
-        "NOT permitted adjacent to railroads or when analyzing horizontal struts"
+        "Short-term increases to allowable stresses are allowed to a maximum of 133%",
+        "Not allowed for excavations in place more than 90 days",
+        "Not allowed where dynamic loadings are present (pile driving, traffic, etc.)",
+        "Not allowed for excavations adjacent to railroads or when analyzing horizontal struts"
       ],
       "equations": [
         {
@@ -47,19 +47,19 @@
     {
       "section_id": "6-5",
       "title": "Lagging",
-      "summary": "Soil arching redistributes pressure from the lagging center to the stiffer soldier piles, so the lagging design load may be taken as 0.6 times the calculated earth pressure, with a maximum of about 400 psf when no surcharge is present. Without arching (e.g. adjacent to existing facilities or railroads), no reduction applies and surcharge effects are analyzed separately. FHWA recommended minimum rough-cut timber thicknesses are in Table 6-2 by soil group and clear span.",
-      "body": "Lateral soil movement within the failure wedge induces soil arching behind the lagging, redistributing pressure away from the lagging center toward the much stiffer soldier-pile supports. Because of this, the lagging design load may be taken as 0.6 times the theoretical or calculated earth pressure (lagging design load = 0.6 * shoring design load). Studies show a maximum lagging pressure of about 400 psf should be expected when surcharges are not affecting the system. Without soil arching, the pressure redistribution does not occur and reduced lagging loads should not be considered (e.g. excavations adjacent to existing facilities, including railroads); surcharge effects on lagging are analyzed separately. The FHWA published recommended minimum rough-cut Douglas-fir lagging thicknesses (Table 6-2) for Competent, Difficult, and Potentially Dangerous soil groupings by depth and clear span, valid where soil arching can develop.",
+      "summary": "Soil arching redistributes pressure from the lagging center to the stiffer soldier piles, so the design load on the lagging may be taken as 0.6 times the calculated earth pressure; studies have shown a maximum lagging pressure of 400 psf should be expected when surcharges are not affecting the system. Without soil arching, reduced lagging loads should not be considered. Table 6-2 (FHWA) gives minimum rough-cut timber lagging thicknesses by soil group and clear span where arching can develop; it should not be used adjacent to existing facilities, including railroads, and lagging with surcharges is analyzed separately.",
+      "body": "Lagging is placed between the flanges of W or HP piles; installing lagging behind the back flange is not recommended because the arching action of the supported soil will be destroyed and the compression flange's unsupported length affected. Voids behind lagging should be filled with compacted material; lagging may be spaced up to 1-1/2 inches apart to permit seepage. For the arching effect to occur, the backside of the soldier pile must bear against the soil (Figure 6-1). Lateral soil movement within the failure wedge induces soil arching behind the lagging, redistributing pressure away from the lagging center toward the much stiffer soldier-pile support. Because of this, the design load on the lagging may be taken as 0.6 times the theoretical or calculated earth pressure (lagging design load = 0.6 (shoring design load)). Studies have shown that a maximum lagging pressure of 400 psf should be expected when surcharges are not affecting the system (maximum lagging load may be 400 psf when no surcharges are present). Without soil arching, the pressure redistribution would not occur, and reduced lagging loads should not be considered. Lagging stress analysis follows Falsework Manual Section 5-2, Timber Members. Table 6-2 lists FHWA recommended minimum thicknesses of construction grade rough cut Douglas fir lagging for Competent, Difficult and Potentially Dangerous soils (for the last, the appropriateness of lagging is questionable) by depth and clear span. The tabular values may be used where soil arching behind the lagging can develop; they should not be used for excavations adjacent to existing facilities, including railroads. Analyze the lagging used in conjunction with surcharges separately.",
       "key_points": [
         "Lagging design load = 0.6 * calculated earth pressure (soil arching reduction)",
-        "Maximum lagging load ~ 400 psf when no surcharge is present",
-        "No reduction where arching cannot develop (adjacent to existing facilities/railroads)",
+        "Maximum lagging load may be 400 psf when no surcharges are present",
+        "Without soil arching, reduced lagging loads should not be considered",
         "Analyze surcharge effects on lagging separately",
-        "Table 6-2: FHWA recommended minimum rough-cut timber lagging thickness by soil group and span"
+        "Table 6-2 (FHWA) lagging thicknesses: where arching can develop; not for excavations adjacent to existing facilities, including railroads"
       ],
       "equations": [
         {
           "id": "Lagging design load",
-          "description": "Lagging design load = 0.6 * calculated earth pressure (arching), capped at ~400 psf with no surcharge.",
+          "description": "Lagging design load = 0.6 (shoring design load) where soil arching develops; maximum lagging load may be 400 psf when no surcharges are present.",
           "implemented_in": "geotech_references.california_trenching.tables.lagging_design_load"
         }
       ],

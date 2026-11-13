@@ -2,109 +2,163 @@
 
 Digitized figures from FHWA-NHI-05-039, Micropile Design & Construction.
 Follows the DM7 pattern: private data with ``_FIG_*`` prefix, public
-lookup functions with ``_linterp`` interpolation.
+lookup functions.
 
-Currently contains Figure 5-23 limiting lateral modulus values, which are
-derived from Eq. 5-29 for common micropile casing and bar sections.
+Currently contains Figure 5-23, the limiting lateral reaction modulus for
+buckling of common micropile casings, bars and hollow bars.
 """
-
-from geotech_references._interpolation import _linterp
 
 
 # ============================================================================
 # Figure 5-23: Limiting Lateral Modulus Values for Various Micropile
 # Materials (after Cadden and Gomez, 2002)
+# FHWA-NHI-05-039, p. 5-70 (PDF page 162). A bar chart; every bar carries its
+# value in psi, printed above it. The values below are those printed numbers,
+# read off the rendered page, left to right:
 #
-# Bar chart of limiting Es (psi → converted to kPa) for buckling
-# evaluation.  Computed from Eq. 5-29: Es_limit = 1 / [(4I/A^2)(E/Fy^2)]
+#   5.5"x0.36" 80 ksi casing   97     #10 Bar  610     30/16   295
+#   7"x0.5" 80 ksi casing     105     #11 Bar  610     32/20   253
+#   7"x0.73" 80 ksi casing    159     #14 Bar  610     40/20   310
+#   9.625"x0.47" 80 ksi casing 71     #18 Bar  610     52/26   343
+#   5 1/2-inch casing          27     #20 Bar  610     73/53   165
+#   6 5/8-inch casing          23     #28 Bar  610     103/51  350
+#   8-inch casing              19
+#   10 3/4-inch casing         17
 #
-# Two categories: casings and reinforcing bars.
-# Values digitized from bar chart in Figure 5-23.
+# The figure prints no steel grade for the four plain casings or the bars,
+# and no word "hollow" for the last six; the `_a519` in four keys is this
+# library's name for those casings, kept because callers use it.
 # ============================================================================
 
-# Limiting Es in kPa (converted from psi × 6.895)
+_PSI_TO_KPA = 6.894757
+
+# key: (label as printed under the bar, limiting Es in psi as printed)
 _FIG_5_23_CASING = {
-    # label: (description, es_limit_kpa)
-    "5.5x0.36_n80": ("5.5in × 0.36in wall, API N-80 (80 ksi)",
-                      669),    # 97 psi
-    "7x0.5_n80": ("7in × 0.5in wall, API N-80 (80 ksi)",
-                   724),       # 105 psi
-    "9.625x0.47_n80": ("9.625in × 0.47in wall, API N-80 (80 ksi)",
-                        1096),  # 159 psi
-    "5.5_a519": ("5.5in casing, ASTM A519 (36 ksi)", 186),   # 27 psi
-    "6.625_a519": ("6-5/8in casing, ASTM A519 (36 ksi)", 159),  # 23 psi
-    "8_a519": ("8in casing, ASTM A519 (36 ksi)", 131),       # 19 psi
-    "10.75_a519": ("10-3/4in casing, ASTM A519 (36 ksi)", 117),  # 17 psi
+    "5.5x0.36_n80": ('5.5"x0.36" 80 ksi casing', 97),
+    "7x0.5_n80": ('7"x0.5" 80 ksi casing', 105),
+    "7x0.73_n80": ('7"x0.73" 80 ksi casing', 159),
+    "9.625x0.47_n80": ('9.625"x0.47" 80 ksi casing', 71),
+    "5.5_a519": ("5 1/2-inch casing", 27),
+    "6.625_a519": ("6 5/8-inch casing", 23),
+    "8_a519": ("8-inch casing", 19),
+    "10.75_a519": ("10 3/4-inch casing", 17),
 }
 
 _FIG_5_23_BAR = {
-    # label: (description, es_limit_kpa)
-    "#10": ("#10 Reinforcing Bar (Grade 520)", 4207),   # 610 psi
-    "#11": ("#11 Reinforcing Bar (Grade 520)", 4207),
-    "#14": ("#14 Reinforcing Bar (Grade 520)", 4207),
-    "#18": ("#18 Reinforcing Bar (Grade 520)", 4207),
-    "#28": ("#28 Reinforcing Bar (Grade 520)", 4207),
+    "#10": ("#10 Bar", 610),
+    "#11": ("#11 Bar", 610),
+    "#14": ("#14 Bar", 610),
+    "#18": ("#18 Bar", 610),
+    "#20": ("#20 Bar", 610),
+    "#28": ("#28 Bar", 610),
 }
 
 _FIG_5_23_HOLLOW_BAR = {
-    # label: (description, es_limit_kpa)
-    "30/16": ("Hollow Bar 30/16", 2034),   # 295 psi
-    "32/20": ("Hollow Bar 32/20", 1745),   # 253 psi
-    "40/20": ("Hollow Bar 40/20", 2138),   # 310 psi
-    "52/26": ("Hollow Bar 52/26", 2365),   # 343 psi
-    "73/53": ("Hollow Bar 73/53", 2414),   # 350 psi
-    "103/51": ("Hollow Bar 103/51", 1138),  # 165 psi
+    "30/16": ("30/16", 295),
+    "32/20": ("32/20", 253),
+    "40/20": ("40/20", 310),
+    "52/26": ("52/26", 343),
+    "73/53": ("73/53", 165),
+    "103/51": ("103/51", 350),
 }
+
+# Other spellings of one printed bar. Anything not a key above or listed
+# here is refused: '5.5' or '10' alone could be a casing or a bar.
+_FIG_5_23_ALIASES = {
+    "5.5x0.36": "5.5x0.36_n80",
+    "7x0.5": "7x0.5_n80",
+    "7x0.73": "7x0.73_n80",
+    "9.625x0.47": "9.625x0.47_n80",
+    "6.625": "6.625_a519",
+    "10.75": "10.75_a519",
+    "#10bar": "#10",
+    "#11bar": "#11",
+    "#14bar": "#14",
+    "#18bar": "#18",
+    "#20bar": "#20",
+    "#28bar": "#28",
+}
+
+_FIG_5_23_REFERENCE = ("FHWA-NHI-05-039, Figure 5-23 Limiting Lateral Modulus "
+                       "Values for Various Micropile Materials (after Cadden "
+                       "and Gomez, 2002), p. 5-70")
+
+_FIG_5_23_RULE = (
+    "If Es LIMIT is less than the measured or assumed soil modulus Es, "
+    "buckling does not need to be considered further; if Es LIMIT is greater "
+    "than Es, buckling should be evaluated further (FHWA-NHI-05-039, p. 5-68)."
+)
+
+
+def _fig_5_23_entry(key, label, psi):
+    return {
+        "section": key,
+        "description": label,
+        "es_limit_kpa": int(round(psi * _PSI_TO_KPA)),
+        "es_limit_psi": psi,
+    }
 
 
 def figure_5_23_limiting_lateral_modulus(section: str) -> dict:
-    """Limiting lateral modulus Es for micropile buckling (Figure 5-23).
+    """Limiting lateral reaction modulus Es LIMIT for micropile buckling, in kPa and in psi as printed (FHWA-NHI-05-039 Figure 5-23, p. 5-70); buckling needs no further check when Es LIMIT is LESS than the soil's Es.
 
-    If the actual soil modulus Es is less than this limiting value,
-    buckling does not control and need not be evaluated further.
-    Values are from Cadden and Gomez (2002), based on Eq. 5-29.
+    Figure 5-23 (after Cadden and Gomez, 2002) is a bar chart of the limiting
+    lateral reaction modulus of Eq. 5-29 for eight casings, six bars and six
+    hollow bars; each bar carries its value in psi. Page 5-68: "if the
+    Es LIMIT value is less than the measured or assumed soil modulus, Es,
+    then the geotechnical and structural strength of the micropile will
+    control the micropile capacity and buckling does not need to be
+    considered further. If the Es LIMIT value is greater than Es, buckling
+    should be evaluated further." Tables 5-12 and 5-13 give ranges of Es.
 
     Parameters
     ----------
     section : str
-        Micropile section identifier.  Examples:
-        Casings: '5.5x0.36_n80', '7x0.5_n80', '5.5_a519', '8_a519'
-        Bars: '#10', '#14', '#18'
-        Hollow bars: '30/16', '73/53', '103/51'
-        Use '' or 'all' to get all values.
+        One printed bar of the figure. Casings: '5.5x0.36_n80', '7x0.5_n80',
+        '7x0.73_n80', '9.625x0.47_n80' (the 80 ksi casings), '5.5_a519',
+        '6.625_a519', '8_a519', '10.75_a519' (the plain 5 1/2, 6 5/8, 8 and
+        10 3/4 inch casings). Bars: '#10', '#11', '#14', '#18', '#20', '#28'.
+        Hollow bars: '30/16', '32/20', '40/20', '52/26', '73/53', '103/51'.
+        A key must name one bar; a partial key such as '5.5' is refused.
+        Use '' or 'all' to get every bar.
 
     Returns
     -------
     dict
-        Keys: section, description, es_limit_kpa.
-        If section='all', returns dict of all sections grouped by category.
+        section, description (the label printed under the bar),
+        es_limit_kpa (the printed psi converted at 6.894757 kPa/psi),
+        es_limit_psi (as printed), rule, reference. If section is '' or
+        'all', a dict of all sections grouped as casings, bars, hollow_bars,
+        with rule and reference.
 
     Raises
     ------
     ValueError
-        If section is not recognized.
+        If section does not name one printed bar.
     """
     key = section.strip().lower().replace(" ", "")
 
     if not key or key == "all":
         result = {"casings": {}, "bars": {}, "hollow_bars": {}}
-        for k, (desc, es) in _FIG_5_23_CASING.items():
-            result["casings"][k] = {"description": desc, "es_limit_kpa": es}
-        for k, (desc, es) in _FIG_5_23_BAR.items():
-            result["bars"][k] = {"description": desc, "es_limit_kpa": es}
-        for k, (desc, es) in _FIG_5_23_HOLLOW_BAR.items():
-            result["hollow_bars"][k] = {"description": desc, "es_limit_kpa": es}
+        for group, table in (("casings", _FIG_5_23_CASING),
+                             ("bars", _FIG_5_23_BAR),
+                             ("hollow_bars", _FIG_5_23_HOLLOW_BAR)):
+            for k, (label, psi) in table.items():
+                entry = _fig_5_23_entry(k, label, psi)
+                del entry["section"]
+                result[group][k] = entry
+        result["rule"] = _FIG_5_23_RULE
+        result["reference"] = _FIG_5_23_REFERENCE
         return result
 
-    # Search all categories
+    key = _FIG_5_23_ALIASES.get(key, key)
     for table in (_FIG_5_23_CASING, _FIG_5_23_BAR, _FIG_5_23_HOLLOW_BAR):
-        for k, (desc, es) in table.items():
-            if k.lower() == key or key in k.lower():
-                return {
-                    "section": k,
-                    "description": desc,
-                    "es_limit_kpa": es,
-                }
+        if key in table:
+            label, psi = table[key]
+            entry = _fig_5_23_entry(key, label, psi)
+            entry["rule"] = _FIG_5_23_RULE
+            entry["reference"] = _FIG_5_23_REFERENCE
+            return entry
 
     all_keys = (
         list(_FIG_5_23_CASING.keys()) +
@@ -112,6 +166,6 @@ def figure_5_23_limiting_lateral_modulus(section: str) -> dict:
         list(_FIG_5_23_HOLLOW_BAR.keys())
     )
     raise ValueError(
-        f"Unknown section '{section}'. "
-        f"Valid sections: {', '.join(all_keys)}"
+        f"Unknown section '{section}'. Figure 5-23 (p. 5-70) has one bar for "
+        f"each of: {', '.join(all_keys)}"
     )

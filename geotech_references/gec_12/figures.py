@@ -456,6 +456,26 @@ _FIG_7_9_PILE_TYPES = {
 }
 
 
+# Other names of ONE curve. 'pile', 'taper' and 'monotube' fit more than one
+# curve and are refused.
+_FIG_7_9_ALIASES = {
+    "pipe": "pipe_pile", "pipe_piles": "pipe_pile",
+    "timber_pile": "timber", "timber_piles": "timber",
+    "precast": "precast_concrete", "concrete": "precast_concrete",
+    "precast_concrete_pile": "precast_concrete",
+    "precast_concrete_piles": "precast_concrete",
+    "step_taper": "raymond_step_taper",
+    "raymond_step_taper_piles": "raymond_step_taper",
+    "uniform_taper": "raymond_uniform_taper",
+    "raymond_uniform_taper_piles": "raymond_uniform_taper",
+    "h": "h_pile", "h_piles": "h_pile", "hpile": "h_pile",
+    "augercast": "h_pile", "augercast_pile": "h_pile",
+    "augercast_piles": "h_pile",
+    "monotube_taper": "monotube_tapered",
+    "tapered_monotube": "monotube_tapered",
+}
+
+
 def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
     """delta/phi for a pile type at displaced volume V (Figure 7-9).
 
@@ -468,7 +488,8 @@ def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
         'precast_concrete' (c), 'raymond_step_taper' (d),
         'raymond_uniform_taper' (e), 'h_pile' (f, H-piles and augercast
         piles), 'monotube_tapered' (g, the tapered portion of monotube
-        piles).
+        piles). The key must name one curve: 'pile', 'taper' or 'monotube'
+        alone is refused.
     V : float
         Displaced soil volume per unit pile length (ft^3/ft): 0.3 to 1.9
         on curves a to e and g, 0.08 to 0.52 on curve f.
@@ -484,18 +505,15 @@ def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
         If pile type is not recognized, or V is outside its curve.
     """
     key = pile_type.lower().strip().replace(" ", "_").replace("-", "_")
+    key = _FIG_7_9_ALIASES.get(key, key)
 
     entry = _FIG_7_9_PILE_TYPES.get(key)
     if entry is None:
-        # Partial match
-        for k, v in _FIG_7_9_PILE_TYPES.items():
-            if key in k or k in key:
-                entry = v
-                break
-    if entry is None:
         raise ValueError(
-            f"Unknown pile type '{pile_type}'. "
-            f"Available: {', '.join(_FIG_7_9_PILE_TYPES.keys())}"
+            f"'{pile_type}' does not name one curve of Figure 7-9. Curves "
+            "(key: curve, as printed): "
+            + "; ".join(f"{k}: {v['curve']}, {v['description']}"
+                        for k, v in _FIG_7_9_PILE_TYPES.items())
         )
 
     vs = entry["V"]
@@ -585,8 +603,11 @@ def figure_7_17_adhesion(su_ksf: float, D_over_b: float = 10.0,
         Undrained shear strength (ksf): 0.25 to 3.45 for concrete, timber
         and corrugated steel piles, 0.25 to 3.05 for smooth steel piles.
     D_over_b : float
-        Ratio of pile embedment D to pile diameter b.
-        Interpolated between D/b=10 and D/b=40.  Clamped to this range.
+        Ratio of pile embedment D to pile diameter b, 10 to 40: the
+        figure draws the curves D = 10b and D = 40b only (GEC-12 Vol I,
+        printed p. 248, PDF page 294), and Ca is interpolated linearly
+        between them. Outside 10 to 40 the figure has no curve and the
+        text (p. 246) gives no rule, so the function refuses.
         Below su = 1.0 ksf the solid D = 40b curve is not drawn and the
         one solid curve is read.
     pile_surface : str
@@ -601,7 +622,8 @@ def figure_7_17_adhesion(su_ksf: float, D_over_b: float = 10.0,
     Raises
     ------
     ValueError
-        If su_ksf is outside the curves, or pile surface is unknown.
+        If su_ksf is outside the curves, D_over_b is outside 10 to 40, or
+        pile surface is unknown.
     """
     surface = pile_surface.lower().strip()
     if surface in ("concrete", "timber", "corrugated"):
@@ -621,7 +643,13 @@ def figure_7_17_adhesion(su_ksf: float, D_over_b: float = 10.0,
             "overconsolidated clays (Section 7.2.1.3.3)."
         )
 
-    D_b = max(10.0, min(40.0, D_over_b))
+    if not 10.0 <= D_over_b <= 40.0:
+        raise ValueError(
+            f"D_over_b={D_over_b:g} is outside Figure 7-17, which draws "
+            "curves for D = 10b and D = 40b only (GEC-12 Vol I, p. 248); "
+            "the figure gives no adhesion outside D/b 10 to 40."
+        )
+    D_b = D_over_b
     ca_d10 = _linterp(su_ksf, s10, c10)
     ca_d40 = ca_d10 if su_ksf < s40[0] else _linterp(su_ksf, s40, c40)
 
@@ -711,8 +739,12 @@ def figure_7_18_adhesion_factor(
     design, prefer figure_7_17_adhesion().
 
     Linear in su along each curve, then linear in D/b between the
-    bracketing curves; D/b outside the curves takes the nearest curve
-    (the legends' "D < 10b", "D > 20b" and "D > 40b").
+    bracketing curves. The legends print the shallowest curve of Case 1
+    as "D < 10b" and the deepest curve of each case as "D > 40b" (Cases
+    1 and 3) or "D > 20b" (Case 2) (GEC-12 Vol I, printed p. 249, PDF
+    page 295), so D/b past them takes that curve. Cases 2 and 3 print
+    their shallowest curve as "D = 10b": below D/b = 10 they have no
+    curve and the function refuses.
 
     Parameters
     ----------
@@ -722,7 +754,8 @@ def figure_7_18_adhesion_factor(
         (D > 20b) in Case 2; 0.5 to 5.0 in Case 3.
     D_over_b : float
         Ratio of pile penetration into the stiff clay to pile diameter
-        (Case 3: from the ground surface).
+        (Case 3: from the ground surface), > 0; at least 10 in Cases 2
+        and 3.
     stratigraphy : str
         Soil stratigraphy case:
         - 'sand_over_stiff_clay' (Case 1): sand/gravel overlying stiff clay
@@ -737,7 +770,8 @@ def figure_7_18_adhesion_factor(
     Raises
     ------
     ValueError
-        If su_ksf is outside the curves read, or stratigraphy is invalid.
+        If su_ksf is outside the curves read, D_over_b is not positive or
+        is below 10 in Case 2 or 3, or stratigraphy is invalid.
     """
     case = stratigraphy.lower().strip().replace(" ", "_").replace("-", "_")
     case = _FIG_7_18_ALIASES.get(case, case)
@@ -747,8 +781,16 @@ def figure_7_18_adhesion_factor(
             "'sand_over_stiff_clay', 'soft_over_stiff_clay', "
             "or 'stiff_clay_only'."
         )
+    if D_over_b <= 0:
+        raise ValueError(f"D_over_b must be positive, got {D_over_b:g}.")
 
     curves = _FIG_7_18_CASES[case]
+    if case != "sand_over_stiff_clay" and D_over_b < curves[0][0]:
+        raise ValueError(
+            f"D_over_b={D_over_b:g} is below Figure 7-18's {case} curves, "
+            "whose shallowest is printed 'D = 10b' (GEC-12 Vol I, p. 249); "
+            "the figure gives no adhesion factor below D/b = 10 in this case."
+        )
     if D_over_b <= curves[0][0]:
         used = [(1.0, curves[0])]
     elif D_over_b >= curves[-1][0]:

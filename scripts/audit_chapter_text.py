@@ -21,7 +21,8 @@ included):
      must point to a real, importable function (fully qualified,
      ``geotech_references.<ref>.<module>.<function>``)
   4. Section ID format (``SECTION_ID``: dot, UFC hyphen-then-dot, prologue,
-     a combined range, GEC-11's lettered level "3.5.2.a")
+     a combined range, GEC-11's lettered level "3.5.2.a", a split part of a
+     lettered section "4.4.6.c.a")
   5. Key points: at most 12, each <= 300 chars (a section may have none)
   6. Body floor: a section with no subsections has a body of at least a
      sentence (20 chars), or a summary or key points that say what a

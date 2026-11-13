@@ -46,10 +46,13 @@ def table_2_1_min_cover(concrete_section, aggregate_size_in=None,
         (same but > 12 in. and < 24 in. thick, 3 in.), or
         ``'formed_le_12in'`` (<= 12 in. thick -- per ACI 318-19, not
         specified numerically in this manual).
-    aggregate_size_in, bar_diameter_in : float, optional
-        If given, the governing minimum is also checked against the note:
-        cover >= 1.5x max aggregate size and >= 2.5x max reinforcement
-        diameter.
+    aggregate_size_in : float, optional
+        Maximum aggregate size, in.; if given, the minimum is also checked
+        against the table note, cover >= 1.5 x maximum aggregate size.
+    bar_diameter_in : float, optional
+        Maximum reinforcement diameter, in.; if given, the minimum is also
+        checked against the table note, cover >= 2.5 x maximum
+        reinforcement diameter.
 
     Returns
     -------
@@ -173,11 +176,15 @@ def shrinkage_temperature_reinforcement(joint_spacing_ft, gross_thickness_in,
     """Required shrinkage/temperature steel area per face (paragraph 2-9,
     printed pp. 6-7).
 
-    Per paragraph 2-9a the area (from Table 2-3's ratio x gross section, half
-    in each face) must be no less than the equivalent of No. 4 bars at 12 in.
-    o.c. in each face; per 2-9b it need not exceed the equivalent of No. 9
-    bars at 12 in. o.c. in each face (thicker sections are mass concrete,
-    paragraph 2-9h, and are governed by thermal studies instead).
+    Per paragraph 2-9a the area is Table 2-3's ratio x gross section, half
+    in each face, and "Generally, for ease of placement, temperature and
+    shrinkage reinforcement will be no less than No. 4 bars at 12 in.
+    (30 cm) in each face" (printed pp. 6-7): the print states the No. 4 at
+    12 in. floor as general practice, not as a requirement; this function
+    applies it as a floor and says so in ``governs_by``. Per 2-9b the area
+    need not exceed the equivalent of No. 9 bars at 12 in. o.c. in each
+    face (thicker sections are mass concrete, paragraph 2-9h, and are
+    governed by thermal studies instead).
 
     Parameters
     ----------

@@ -83,12 +83,14 @@ def fatigue_check_required(dead_load_compressive_stress, live_load_tensile_stres
 
 
 # ============================================================================
-# Paragraph 5.2.1.2 -- fracture-critical-member redundancy strength check
+# Paragraph 5.2.1.1 (with 5.2.1.3) -- fracture-critical-member redundancy
+# strength check
 # (printed p. 35, pdf_page 43)
 # ============================================================================
 
 def fracture_critical_redundancy_check(q_demand_unfactored_sum, rn_nominal, fy):
-    """Paragraph 5.2.1.2: the refined-analysis strength check used to show a
+    """Paragraph 5.2.1.1 (strength limit state; used under 5.2.1.3, refined
+    analyses): the strength check used to show a
     member need not be treated as fracture critical because the structure
     retains adequate strength/stability with that member assumed fractured
     (printed p. 35).

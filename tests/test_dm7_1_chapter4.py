@@ -532,6 +532,69 @@ class TestBoussinesqSemiInfiniteLoad:
 
 
 # ===================================================================
+# Table 4-2 stress diagrams: where the angles are measured
+# PDF p. 214 (printed p. 186). The diagrams draw beta from the horizontal
+# through the point (+x direction) round to the line from the point to the
+# toe or edge of the load, and alpha between two such lines. With the
+# angles taken that way the equations give the known limits below; with
+# beta from the vertical they do not.
+# ===================================================================
+
+class TestTable42AngleDefinitions:
+
+    def test_semi_infinite_below_the_edge(self):
+        # Point straight below the edge of the load (x = 0): the line R
+        # is vertical, so beta = pi/2 from the horizontal, and the stress
+        # is half the load.
+        result = boussinesq_semi_infinite_load(100.0, 0.0, 2.0, 2.0, math.pi / 2.0)
+        assert result == pytest.approx(50.0, abs=1e-9)
+
+    def test_semi_infinite_far_under_the_load(self):
+        # Shallow point far in under the load: beta close to pi, stress
+        # close to the full load.
+        x, z = 100.0, 1.0
+        beta = math.pi - math.atan2(z, x)
+        R = math.hypot(x, z)
+        result = boussinesq_semi_infinite_load(100.0, x, z, R, beta)
+        assert result == pytest.approx(100.0, abs=0.01)
+
+    def test_semi_infinite_far_outside_the_load(self):
+        # Shallow point far outside the load (x negative): beta close to
+        # zero, stress close to zero.
+        x, z = -100.0, 1.0
+        beta = math.pi - math.atan2(z, x)
+        R = math.hypot(x, z)
+        result = boussinesq_semi_infinite_load(100.0, x, z, R, beta)
+        assert result == pytest.approx(0.0, abs=0.01)
+
+    def test_slope_far_under_the_load(self):
+        # Shallow point far from the toe of q = q0 (x/a): the stress is
+        # close to the load above it, q0 x / a = 100 * 100 / 10 = 1000.
+        x, z, a = 100.0, 1.0, 10.0
+        beta = math.pi - math.atan2(z, x)
+        result = boussinesq_slope_load(100.0, x, z, a, beta)
+        assert result == pytest.approx(1000.0, abs=0.01)
+
+    def test_terrace_far_under_the_level_part(self):
+        # Shallow point far in under the level part: stress close to q0.
+        # beta from the horizontal to the line to the top of the slope
+        # (x = a); alpha between the lines to the toe and to the top.
+        x, z, a = 100.0, 1.0, 10.0
+        beta = math.pi - math.atan2(z, x - a)
+        alpha = math.atan2(z, x - a) - math.atan2(z, x)
+        result = boussinesq_terrace_load(100.0, x, a, alpha, beta)
+        assert result == pytest.approx(100.0, abs=0.01)
+
+    def test_triangular_under_the_apex(self):
+        # Symmetrical triangle a = b = 2, point under the apex (x = 2) at
+        # depth 2: each half subtends atan(2/2) = pi/4, and
+        # sigma_z = (q0/pi) [2 (pi/4)/2 + (2/2)(pi/4)] = q0 / 2
+        result = boussinesq_triangular_load(
+            100.0, 2.0, 2.0, 2.0, math.pi / 4.0, math.pi / 4.0)
+        assert result == pytest.approx(50.0, abs=1e-9)
+
+
+# ===================================================================
 # rigid_pipe_trench_load  (Equation 4-6)
 # W_d = C_d * gamma_t * B_d^2
 # ===================================================================
@@ -571,16 +634,48 @@ class TestRigidPipeTrenchLoad:
 
 class TestTrenchLoadCoefficient:
 
+    # Eq. 4-7, PDF p. 223 (printed p. 195), is printed as
+    #   Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')
+    # The function evaluates the exponent -2 K mu' (H/Bd) and says so in
+    # its docstring: with the printed exponent, Eq. 4-6 gives half the
+    # weight of the backfill when the wall friction is zero. These tests
+    # pin the evaluated form and record the printed one. The review of
+    # 2026-11-10 kept the coded form; the library's owner is to revisit it.
+
     def test_basic(self):
         # H=10, B_d=3, K=0.33, mu'=0.55
         # exponent = -2*0.33*0.55*10/3 = -2*0.1815*10/3 = -3.63/3 = -1.21
         # C_d = (1 - exp(-1.21)) / (2*0.33*0.55) = (1 - 0.29820) / 0.3630
         # = 0.70180 / 0.3630 = 1.9333
-        H, B_d, K, mu_prime = 10.0, 3.0, 0.33, 0.55
-        exponent = -2.0 * K * mu_prime * H / B_d
-        expected = (1.0 - math.exp(exponent)) / (2.0 * K * mu_prime)
-        result = trench_load_coefficient(H, B_d, K, mu_prime)
-        assert result == pytest.approx(expected, rel=1e-4)
+        # (as printed: (1 - exp(-0.605)) / 0.3630 = 1.2505)
+        result = trench_load_coefficient(10.0, 3.0, 0.33, 0.55)
+        assert result == pytest.approx(1.9333, abs=1e-4)
+
+    def test_table_4_3_dry_sand(self):
+        # H/Bd = 2, K = 0.33, mu' = 0.5 (Table 4-3, dry sand)
+        # C_d = (1 - exp(-0.66)) / 0.33 = (1 - 0.51685) / 0.33 = 1.4641
+        # (as printed: (1 - exp(-0.33)) / 0.33 = 0.8517)
+        result = trench_load_coefficient(2.0, 1.0, 0.33, 0.5)
+        assert result == pytest.approx(1.4641, abs=1e-4)
+
+    def test_no_friction_limit_is_the_weight_of_the_backfill(self):
+        # As K mu' goes to zero C_d tends to H/Bd, so Wd = Cd gamma Bd^2
+        # (Eq. 4-6) tends to gamma H Bd, the weight of the backfill in
+        # the trench. (As printed the limit is H/(2 Bd), half of it.)
+        result = trench_load_coefficient(6.0, 2.0, 1e-6, 1e-3)
+        assert result == pytest.approx(3.0, rel=1e-6)
+
+    def test_docstring_gives_the_printed_form(self):
+        doc = trench_load_coefficient.__doc__
+        assert "Cd = [1 - e^(-K mu' (H/Bd))] / (2 K mu')" in doc
+        assert "Cd = [1 - e^(-2 K mu' (H/Bd))] / (2 K mu')" in doc
+        assert "PDF p. 223, printed p. 195" in doc
+        assert "misprint" not in doc
+
+    def test_docstring_first_line_says_it_differs_from_the_print(self):
+        # The first line is what a caller sees of a function in a listing.
+        first = trench_load_coefficient.__doc__.strip().splitlines()[0]
+        assert "coded differently from Equation 4-7 as printed" in first
 
     def test_shallow_trench(self):
         # Very small H/B_d => C_d approaches H/B_d (limit of exponential)
@@ -630,10 +725,39 @@ class TestTrenchLoadCoefficient:
 
 class TestFlexiblePipeTrenchLoad:
 
+    # Eq. 4-8, PDF p. 225 (printed p. 197), is printed as
+    #   Wc = Cd gamma_t Bc D
+    # with Bc and D both defined as the pipe's outside diameter (also the
+    # notation list, PDF p. 244, printed p. 216). The function multiplies
+    # by the trench width B_d in place of Bc and says so in its docstring.
+    # These tests pin the evaluated form and record the printed one. The
+    # review of 2026-11-10 kept the coded form; the library's owner is to
+    # revisit it.
+
     def test_basic(self):
         # C_d=1.5, gamma_t=120, B_d=3, D=2 => W_c = 1.5*120*3*2 = 1080 lb/ft
+        # (as printed, Bc = D = 2: 1.5*120*2*2 = 720 lb/ft)
         result = flexible_pipe_trench_load(1.5, 120.0, 3.0, 2.0)
         assert result == pytest.approx(1080.0, rel=1e-4)
+
+    def test_trench_as_wide_as_the_pipe_agrees_with_the_printed_form(self):
+        # B_d = D = 2: 1.5*120*2*2 = 720 lb/ft either way
+        result = flexible_pipe_trench_load(1.5, 120.0, 2.0, 2.0)
+        assert result == pytest.approx(720.0, rel=1e-4)
+
+    def test_docstring_gives_the_printed_form(self):
+        doc = flexible_pipe_trench_load.__doc__
+        assert "Wc = Cd * gamma_t * Bc * D" in doc
+        assert "Wc = Cd * gamma_t * Bd * D" in doc
+        assert "PDF p. 225, printed p. 197" in doc
+        # the notation list's definitions, PDF p. 244 (printed p. 216)
+        assert 'Bc "Diameter of a' in doc
+        assert 'Bd "Width of trench in' in doc
+        assert "misprint" not in doc
+
+    def test_docstring_first_line_says_it_differs_from_the_print(self):
+        first = flexible_pipe_trench_load.__doc__.strip().splitlines()[0]
+        assert "coded differently from Equation 4-8 as printed" in first
 
     def test_unit_values(self):
         result = flexible_pipe_trench_load(1.0, 1.0, 1.0, 1.0)
@@ -815,66 +939,114 @@ class TestShaftHorizontalPressureClay:
 
 # ===================================================================
 # table_4_3_trench_fill  (Table 4-3)
-# Returns dict with K and mu_prime for trench fill material types
+# Returns one printed row: unit weight (pcf), K, mu', K x mu'
 # ===================================================================
 
 class TestTable43TrenchFill:
 
-    def test_granular(self):
-        result = table_4_3_trench_fill("granular_no_cohesion")
-        assert result["K"] == pytest.approx(0.165, rel=1e-4)
-        assert result["mu_prime"] == pytest.approx(0.700, rel=1e-4)
+    # Table 4-3 "Recommended Values for Trench Load Coefficient (after
+    # Moser 1990)" as printed, PDF pp. 223-224 (printed pp. 195-196):
+    # all six rows (unit weight pcf, K, mu', K x mu').
+    PRINTED = [
+        ("partially_compacted_moist_topsoil", 90.0, 0.33, 0.5, 0.17),
+        ("saturated_topsoil", 110.0, 0.37, 0.4, 0.15),
+        ("partially_compacted_moist_clay", 100.0, 0.33, 0.4, 0.13),
+        ("saturated_clay", 120.0, 0.37, 0.3, 0.11),
+        ("dry_sand", 100.0, 0.33, 0.5, 0.17),
+        ("saturated_sand", 120.0, 0.33, 0.5, 0.17),
+    ]
 
-    def test_saturated_clay(self):
-        result = table_4_3_trench_fill("saturated_clay")
-        assert result["K"] == pytest.approx(0.110, rel=1e-4)
-        assert result["mu_prime"] == pytest.approx(0.260, rel=1e-4)
+    @pytest.mark.parametrize("fill, gamma, K, mu, k_mu", PRINTED)
+    def test_printed_row(self, fill, gamma, K, mu, k_mu):
+        result = table_4_3_trench_fill(fill)
+        assert result["gamma_pcf"] == gamma
+        assert result["K"] == K
+        assert result["mu_prime"] == mu
+        assert result["K_mu_prime"] == k_mu
 
-    def test_ordinary_clay(self):
-        result = table_4_3_trench_fill("ordinary_clay")
-        assert result["K"] == pytest.approx(0.130, rel=1e-4)
-        assert result["mu_prime"] == pytest.approx(0.400, rel=1e-4)
+    @pytest.mark.parametrize("fill, gamma, K, mu, k_mu", PRINTED)
+    def test_printed_product_agrees_with_its_factors(self, fill, gamma, K, mu, k_mu):
+        # The K x mu' column is the product of the two columns before it,
+        # to the two figures printed.
+        assert K * mu == pytest.approx(k_mu, abs=0.006)
+
+    def test_six_rows(self):
+        from geotech_references.dm7_1 import chapter4
+        assert len(chapter4._TABLE_4_3_TRENCH_FILL) == 6
+
+    def test_soil_type_as_printed(self):
+        assert table_4_3_trench_fill("saturated_topsoil")["soil_type"] == "Saturated top soil"
 
     def test_returns_copy(self):
         # Modifying returned dict doesn't affect source
-        result1 = table_4_3_trench_fill("sand_gravel")
+        result1 = table_4_3_trench_fill("dry_sand")
         result1["K"] = 999.0
-        result2 = table_4_3_trench_fill("sand_gravel")
-        assert result2["K"] == pytest.approx(0.150, rel=1e-4)
+        assert table_4_3_trench_fill("dry_sand")["K"] == 0.33
 
     def test_case_insensitive(self):
-        # Case insensitive lookup
-        result = table_4_3_trench_fill("Sand_Gravel")
-        assert result["K"] == pytest.approx(0.150, rel=1e-4)
-        assert result["mu_prime"] == pytest.approx(0.500, rel=1e-4)
+        result = table_4_3_trench_fill(" Dry_Sand ")
+        assert result["K"] == 0.33
+        assert result["mu_prime"] == 0.5
 
     def test_unknown_raises(self):
         with pytest.raises(ValueError, match="Unknown fill_type"):
             table_4_3_trench_fill("gravel")
 
+    def test_rows_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table, none of which is a row of Table 4-3.
+        for fill in ["granular_no_cohesion", "sand_gravel", "ordinary_clay"]:
+            with pytest.raises(ValueError, match="Unknown fill_type"):
+                table_4_3_trench_fill(fill)
+
 
 # ===================================================================
 # table_4_9_tunnel_behavior  (Table 4-9)
-# Returns description string for tunnel behavior based on N_crit range
+# Returns the printed ground behavior for a soil type and Ncrit row
 # ===================================================================
 
 class TestTable49TunnelBehavior:
 
-    def test_low_range(self):
-        result = table_4_9_tunnel_behavior("1-2")
-        assert "Stable" in result or "stable" in result
+    # Table 4-9 "Ground Behavior for Clayey Fine-Grained Soils and Silty
+    # Sand (after FHWA 2009)" as printed, PDF p. 233 (printed p. 205):
+    # all seven rows.
+    @pytest.mark.parametrize("n_crit, soil, behavior", [
+        ("1", "clayey_fine_grained", "Stable"),
+        ("2 to 3", "clayey_fine_grained", "Small amount of creep"),
+        ("4 to 5", "clayey_fine_grained",
+         "Creeping, usually slow enough to permit tunneling"),
+        ("6", "clayey_fine_grained",
+         "May experience general shear failure. Clay likely to invade "
+         "tail space too quickly to handle."),
+        ("0.25 to 0.33", "silty_sand_above_water_table", "Firm"),
+        ("0.33 to 0.5", "silty_sand_above_water_table", "Slow raveling"),
+        ("0.5 to 1", "silty_sand_above_water_table", "Raveling"),
+    ])
+    def test_printed_row(self, n_crit, soil, behavior):
+        assert table_4_9_tunnel_behavior(n_crit, soil) == behavior
 
-    def test_high_range(self):
-        result = table_4_9_tunnel_behavior(">7")
-        assert "Very severe" in result or "very severe" in result
+    def test_hyphen_form_of_a_range(self):
+        assert table_4_9_tunnel_behavior("2-3", "clayey_fine_grained") == (
+            "Small amount of creep")
+        assert table_4_9_tunnel_behavior("0.5-1", "Silty_Sand_Above_Water_Table") == (
+            "Raveling")
 
-    def test_middle(self):
-        result = table_4_9_tunnel_behavior("4-5")
-        assert "face support" in result or "Face support" in result
-
-    def test_unknown_raises(self):
+    def test_unknown_range_raises(self):
         with pytest.raises(ValueError, match="Unknown N_crit_range"):
-            table_4_9_tunnel_behavior("0-1")
+            table_4_9_tunnel_behavior("0-1", "clayey_fine_grained")
+
+    def test_unknown_soil_raises(self):
+        with pytest.raises(ValueError, match="Unknown soil_type"):
+            table_4_9_tunnel_behavior("1", "gravel")
+
+    def test_rows_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table that are not rows of Table 4-9.
+        for n_crit in ["1-2", "3-4", "5-6", "6-7", ">7"]:
+            with pytest.raises(ValueError, match="Unknown N_crit_range"):
+                table_4_9_tunnel_behavior(n_crit, "clayey_fine_grained")
+
+    def test_sand_row_is_not_a_clay_row(self):
+        with pytest.raises(ValueError, match="Unknown N_crit_range"):
+            table_4_9_tunnel_behavior("0.5 to 1", "clayey_fine_grained")
 
 
 # ===========================================================================
@@ -884,32 +1056,35 @@ class TestTable49TunnelBehavior:
 class TestTable43Integration:
     """Chain table_4_3_trench_fill → trench_load_coefficient → rigid_pipe_trench_load."""
 
-    def test_granular_fill_pipeline(self):
-        # Typical: 3m deep trench, 1m wide, granular fill, gamma=18 kN/m3
-        props = table_4_3_trench_fill("granular_no_cohesion")
+    # Table 4-3, PDF pp. 223-224 (printed pp. 195-196); Eq. 4-6 and 4-7,
+    # PDF p. 223 (printed p. 195). trench_load_coefficient evaluates the
+    # exponent -2 K mu' H/Bd; the manual prints it without the 2 (see the
+    # function's docstring and TestTrenchLoadCoefficient).
+
+    def test_dry_sand_pipeline(self):
+        # 3 m of cover, trench 1 m wide, dry sand: K = 0.33, mu' = 0.5
+        props = table_4_3_trench_fill("dry_sand")
         C_d = trench_load_coefficient(3.0, 1.0, props["K"], props["mu_prime"])
-        # C_d = (1 - exp(-2*0.165*0.700*3.0/1.0)) / (2*0.165*0.700)
-        #     = (1 - exp(-0.693)) / 0.231 = (1 - 0.500) / 0.231 = 2.165
-        assert C_d > 0.0
-        assert C_d < 10.0  # physically reasonable
+        # C_d = (1 - exp(-2*0.33*0.5*3.0/1.0)) / (2*0.33*0.5)
+        #     = (1 - exp(-0.99)) / 0.33 = (1 - 0.37158) / 0.33 = 1.9043
+        assert C_d == pytest.approx(1.9043, abs=1e-4)
         load = rigid_pipe_trench_load(C_d, 18.0, 1.0)
-        # Wc = C_d * gamma * Bd^2 = 2.165 * 18 * 1 = 38.97 kN/m
-        assert load > 0.0
-        assert load == pytest.approx(C_d * 18.0 * 1.0, rel=1e-6)
+        # Wd = C_d * gamma * Bd^2 = 1.9043 * 18 * 1 = 34.28 kN/m
+        assert load == pytest.approx(34.28, abs=0.01)
 
     def test_saturated_clay_fill(self):
-        # Saturated clay: K=0.110, mu'=0.260
+        # Saturated clay: K = 0.37, mu' = 0.3; H = 5, Bd = 2
         props = table_4_3_trench_fill("saturated_clay")
         C_d = trench_load_coefficient(5.0, 2.0, props["K"], props["mu_prime"])
-        # Higher trench, wider => C_d should be moderate
-        assert C_d > 0.0
-        # Verify C_d is less than H/Bd (free-field limit)
+        # C_d = (1 - exp(-2*0.37*0.3*2.5)) / (2*0.37*0.3) = 1.9186
+        assert C_d == pytest.approx(1.9186, abs=1e-4)
+        # Less than H/Bd, the weight of the backfill with no wall friction
         assert C_d < 5.0 / 2.0
 
     def test_all_fill_types_produce_valid_Cd(self):
-        # All 5 fill types should give valid C_d for same geometry
-        for fill in ["granular_no_cohesion", "sand_gravel", "saturated_topsoil",
-                      "ordinary_clay", "saturated_clay"]:
+        # Every row gives a C_d between zero and H/Bd for the same geometry
+        from geotech_references.dm7_1 import chapter4
+        for fill in chapter4._TABLE_4_3_TRENCH_FILL:
             props = table_4_3_trench_fill(fill)
             C_d = trench_load_coefficient(4.0, 1.5, props["K"], props["mu_prime"])
             assert 0.0 < C_d < 4.0 / 1.5, f"Failed for {fill}: C_d={C_d}"

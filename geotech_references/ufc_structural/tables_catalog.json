@@ -1,0 +1,287 @@
+{
+  "reference_id": "UFC 3-301-01",
+  "reference_title": "UFC 3-301-01, Structural Engineering (DoD, dated 11 April 2023, as amended through Change 4, 3 June 2025)",
+  "package": "ufc_structural",
+  "volume": null,
+  "pdf_path": "docs/UFC_3-301-01_2023_c4.pdf",
+  "table_count": 14,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Wind Induced Deflection Limits for Framing Supporting Exterior Wall Finishes a,b",
+      "chapter": 2,
+      "section_id": "2-4",
+      "section_title": "IBC Chapter 16 - Structural Design",
+      "pdf_page_index": 31,
+      "pages": [
+        31
+      ],
+      "printed_page": "10",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "risk_category_and_loads.table_2_1_wind_deflection_limit",
+      "implemented_in": [
+        "risk_category_and_loads.table_2_1_wind_deflection_limit"
+      ]
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Risk Category of Buildings and Other Structures",
+      "chapter": 2,
+      "section_id": "2-4",
+      "section_title": "IBC Chapter 16 - Structural Design",
+      "pdf_page_index": 32,
+      "pages": [
+        32,
+        33,
+        34
+      ],
+      "printed_page": "11",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "risk_category_and_loads.table_2_2_risk_category",
+      "implemented_in": [
+        "risk_category_and_loads.table_2_2_risk_category",
+        "risk_category_and_loads.table_2_2_note"
+      ]
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Replacement for ASCE 7-22 Table 12.2-1, Design Coefficients and Factors for Basic Seismic Force-Resisting Systems",
+      "chapter": 3,
+      "section_id": "3-6",
+      "section_title": "ASCE 7-22 Chapter 12 - Seismic Design Requirements for Building Structures",
+      "pdf_page_index": 70,
+      "pages": [
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "printed_page": "49",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "seismic_force_resisting_systems.table_3_1_seismic_system",
+      "implemented_in": [
+        "seismic_force_resisting_systems.table_3_1_seismic_system",
+        "seismic_force_resisting_systems.list_table_3_1_systems",
+        "seismic_force_resisting_systems.table_3_1_footnote"
+      ]
+    },
+    {
+      "table_number": "4-1a",
+      "caption": "Structural Performance Objectives 1,2",
+      "chapter": 4,
+      "section_id": "4-2.2",
+      "section_title": "Performance Objectives for Evaluation and Retrofit using ASCE 41-17",
+      "pdf_page_index": 93,
+      "pages": [
+        93
+      ],
+      "printed_page": "72",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "evaluation_retrofit.table_4_1a_structural_performance_objective",
+      "implemented_in": [
+        "evaluation_retrofit.table_4_1a_structural_performance_objective"
+      ]
+    },
+    {
+      "table_number": "4-1b",
+      "caption": "Nonstructural Performance Objectives 1,2,3",
+      "chapter": 4,
+      "section_id": "4-2.2",
+      "section_title": "Performance Objectives for Evaluation and Retrofit using ASCE 41-17",
+      "pdf_page_index": 95,
+      "pages": [
+        95
+      ],
+      "printed_page": "74",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "evaluation_retrofit.table_4_1b_nonstructural_performance_objective",
+      "implemented_in": [
+        "evaluation_retrofit.table_4_1b_nonstructural_performance_objective"
+      ]
+    },
+    {
+      "table_number": "4-2",
+      "caption": "Replacement for ASCE/SEI 41-17 Tables 3-2 and 3-3 for Benchmark Buildings",
+      "chapter": 4,
+      "section_id": "4-2.3",
+      "section_title": "Exemptions and Benchmark Buildings",
+      "pdf_page_index": 99,
+      "pages": [
+        99,
+        100,
+        101
+      ],
+      "printed_page": "78",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-1",
+      "caption": "Minimum Thickness of Masonry Walls 1,2",
+      "chapter": 6,
+      "section_id": "6-5.3",
+      "section_title": "Section 2107 - Allowable Stress Design",
+      "pdf_page_index": 115,
+      "pages": [
+        115
+      ],
+      "printed_page": "94",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "healthcare_modifications.table_6_1_masonry_wall_thickness",
+      "implemented_in": [
+        "healthcare_modifications.table_6_1_masonry_wall_thickness"
+      ]
+    },
+    {
+      "table_number": "7-1",
+      "caption": "Replacement for ASCE 7-22 Table 12.2-1 Design Coefficients and Factors for Basic Seismic Force-Resisting Systems",
+      "chapter": 7,
+      "section_id": "7-2",
+      "section_title": "ASCE 7-16 Chapter 12 - Seismic Design Requirements for Building Structures",
+      "pdf_page_index": 119,
+      "pages": [
+        119,
+        120
+      ],
+      "printed_page": "98",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "seismic_force_resisting_systems.table_7_1_healthcare_seismic_system",
+      "implemented_in": [
+        "seismic_force_resisting_systems.table_7_1_healthcare_seismic_system",
+        "seismic_force_resisting_systems.list_table_7_1_systems"
+      ]
+    },
+    {
+      "table_number": "B-1",
+      "caption": "Permitted Systems for Risk Category IV Buildings Designed Using Alternate Procedure of Chapter 3",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 145,
+      "pages": [
+        145,
+        146,
+        147
+      ],
+      "printed_page": "124",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "seismic_force_resisting_systems.table_b1_rc4_permitted_system",
+      "implemented_in": [
+        "seismic_force_resisting_systems.table_b1_rc4_permitted_system",
+        "seismic_force_resisting_systems.list_table_b1_systems",
+        "seismic_force_resisting_systems.table_b1_footnote"
+      ]
+    },
+    {
+      "table_number": "C-1",
+      "caption": "Maximum Span for Rigid Pipe with Pinned-Pinned Conditions, L",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 159,
+      "pages": [
+        159
+      ],
+      "printed_page": "138",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "nonstructural_seismic.table_c1_pipe_span",
+      "implemented_in": [
+        "nonstructural_seismic.table_c1_pipe_span"
+      ]
+    },
+    {
+      "table_number": "C-2",
+      "caption": "Maximum Span for Rigid Pipe with Fixed-Pinned Condition, L",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 160,
+      "pages": [
+        160
+      ],
+      "printed_page": "139",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "nonstructural_seismic.table_c2_pipe_span",
+      "implemented_in": [
+        "nonstructural_seismic.table_c2_pipe_span"
+      ]
+    },
+    {
+      "table_number": "C-3",
+      "caption": "Maximum Span for Rigid Pipe with Fixed-Fixed Condition, L",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 161,
+      "pages": [
+        161
+      ],
+      "printed_page": "140",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "nonstructural_seismic.table_c3_pipe_span",
+      "implemented_in": [
+        "nonstructural_seismic.table_c3_pipe_span"
+      ]
+    },
+    {
+      "table_number": "E-1",
+      "caption": "Minimum Uniformly Distributed Live Loads and Minimum Concentrated Live Loads a",
+      "chapter": null,
+      "section_id": "2-4",
+      "section_title": "IBC Chapter 16 - Structural Design",
+      "pdf_page_index": 174,
+      "pages": [
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "printed_page": "153",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "risk_category_and_loads.table_e1_live_load",
+      "implemented_in": [
+        "risk_category_and_loads.table_e1_live_load",
+        "risk_category_and_loads.list_table_e1_occupancies",
+        "risk_category_and_loads.table_e1_note"
+      ]
+    },
+    {
+      "table_number": "G-1",
+      "caption": "Comparison of GFRP and steel material properties",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 206,
+      "pages": [
+        206
+      ],
+      "printed_page": "185",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "gfrp.table_g1_material_property",
+      "implemented_in": [
+        "gfrp.table_g1_material_property"
+      ]
+    }
+  ]
+}

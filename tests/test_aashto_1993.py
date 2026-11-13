@@ -134,7 +134,14 @@ class TestLaneDistribution:
 
 class TestLayerCoefficientA1:
     def test_100k_psi(self):
-        assert tb.layer_coefficient_a1_asphalt(100000)["a1"] == pytest.approx(0.20, abs=0.01)
+        # Figure 2.5, PDF 108 (pdf_page 107), printed II-18: the curve starts
+        # on the a1 = 0.20 line at about 106,000 psi (re-read 2026-11-10;
+        # was taken as 100,000) and reads 0.252 at 150,000 (was 0.26).
+        assert tb.layer_coefficient_a1_asphalt(106000)["a1"] == pytest.approx(0.20, abs=0.005)
+        assert tb.layer_coefficient_a1_asphalt(150000)["a1"] == pytest.approx(0.252, abs=0.005)
+        assert tb.layer_coefficient_a1_asphalt(125000)["a1"] == pytest.approx(0.224, abs=0.005)
+        with pytest.raises(ValueError, match="106,000"):
+            tb.layer_coefficient_a1_asphalt(100000)
 
     def test_200k_psi(self):
         assert tb.layer_coefficient_a1_asphalt(200000)["a1"] == pytest.approx(0.30, abs=0.01)
@@ -145,10 +152,28 @@ class TestLayerCoefficientA1:
 
     def test_monotonic_increasing(self):
         prev = 0
-        for eac in (100000, 200000, 300000, 400000, 500000):
+        for eac in (110000, 200000, 300000, 400000, 500000):
             a1 = tb.layer_coefficient_a1_asphalt(eac)["a1"]
             assert a1 > prev
             prev = a1
+
+    def test_below_curve_start_refused(self):
+        # Figure 2.5, aashto1993.pdf PDF 108 (pdf_page 107), printed II-18:
+        # the curve begins at about EAC 106,000 psi, a1 0.20. Below it the
+        # chart gives nothing (was silently 0.20).
+        with pytest.raises(ValueError, match="curve begins"):
+            tb.layer_coefficient_a1_asphalt(80000)
+
+    def test_past_chart_edge_held_with_note(self):
+        # REF-76 rule 3 (held, safe side, with the text): Figure 2.5
+        # (printed II-18) ends at 500,000 psi; a1 rises with EAC, and II-17
+        # says "Caution is recommended for modulus values above 450,000
+        # psi", so the 500,000 psi value is held with out_of_range.
+        r = tb.layer_coefficient_a1_asphalt(600000)
+        assert r["a1"] == tb.layer_coefficient_a1_asphalt(500000)["a1"]
+        assert "held" in r["note"]
+        assert "500,000 psi" in r["out_of_range"] and "II-18" in r["out_of_range"]
+        assert "out_of_range" not in tb.layer_coefficient_a1_asphalt(500000)
 
 
 class TestLayerCoefficientA2Cement:
@@ -172,10 +197,12 @@ class TestLayerCoefficientA2Cement:
         with pytest.raises(ValueError, match="lowest labelled tick"):
             tb.layer_coefficient_a2_cement_treated(150)
 
-    def test_above_top_tick_held_with_note(self):
-        r = tb.layer_coefficient_a2_cement_treated(1200)
-        assert r["a2"] == pytest.approx(0.25, abs=0.003)
-        assert "top tick" in r["note"]
+    def test_above_top_tick_refused(self):
+        # REF-76: the UCS scale's labelled ticks end at 1000 psi (II-23) and
+        # II-22 gives no rule past them; a2 used to be held at 0.25.
+        assert "note" not in tb.layer_coefficient_a2_cement_treated(1000)
+        with pytest.raises(ValueError, match=r"top labelled tick .*1000 psi"):
+            tb.layer_coefficient_a2_cement_treated(1200)
 
 
 class TestLayerCoefficientA2Bituminous:
@@ -194,10 +221,11 @@ class TestLayerCoefficientA2Bituminous:
         with pytest.raises(ValueError, match="lowest labelled tick"):
             tb.layer_coefficient_a2_bituminous_treated(100)
 
-    def test_above_top_tick_held_with_note(self):
-        r = tb.layer_coefficient_a2_bituminous_treated(2000)
-        assert r["a2"] == pytest.approx(0.32, abs=0.003)
-        assert "top tick" in r["note"]
+    def test_above_top_tick_refused(self):
+        # REF-76: labelled ticks end at 1800 lb (II-24); no rule past them.
+        assert "note" not in tb.layer_coefficient_a2_bituminous_treated(1800)
+        with pytest.raises(ValueError, match=r"top labelled tick .*1800 lb"):
+            tb.layer_coefficient_a2_bituminous_treated(2000)
 
 
 class TestUnboundK1K2:
@@ -223,14 +251,16 @@ class TestUnboundK1K2:
 # ============================================================================
 
 class TestDrainageMiFlexible:
+    # Table 2.4, aashto1993.pdf PDF 115 (pdf_page 114), printed II-25; cells
+    # printed high-low ("1.15-1.05"): mi_min is the low value.
     def test_fair_default_aashto_road_test(self):
-        # AASHO Road Test conditions = 'fair' drainage; mi should bracket 1.0
         r = tb.drainage_mi_flexible("fair", "1-5%")
-        assert r["mi_min"] == 1.15 and r["mi_max"] == 1.05
+        assert r["mi_min"] == 1.05 and r["mi_max"] == 1.15
+        assert r["mi_min"] <= r["mi_max"]
 
     def test_excellent_lt1pct(self):
         r = tb.drainage_mi_flexible("excellent", "<1%")
-        assert r["mi_min"] == 1.40 and r["mi_max"] == 1.35
+        assert r["mi_min"] == 1.35 and r["mi_max"] == 1.40
 
     def test_very_poor_gt25pct(self):
         r = tb.drainage_mi_flexible("very_poor", ">25%")
@@ -246,13 +276,19 @@ class TestDrainageMiFlexible:
 
 
 class TestDrainageCdRigid:
+    # Table 2.5, PDF 116 (pdf_page 115), printed II-26; cells printed
+    # high-low ("1.10-1.00"): cd_min is the low value.
     def test_fair_1_5pct(self):
         r = tb.drainage_cd_rigid("fair", "1-5%")
-        assert r["cd_min"] == 1.10 and r["cd_max"] == 1.00
+        assert r["cd_min"] == 1.00 and r["cd_max"] == 1.10
 
     def test_excellent_lt1pct(self):
         r = tb.drainage_cd_rigid("excellent", "<1%")
-        assert r["cd_min"] == 1.25 and r["cd_max"] == 1.20
+        assert r["cd_min"] == 1.20 and r["cd_max"] == 1.25
+
+    def test_poor_5_25pct(self):
+        r = tb.drainage_cd_rigid("poor", "5-25%")
+        assert (r["cd_min"], r["cd_max"]) == (0.80, 0.90)
 
 
 class TestQualityOfDrainageDefinitions:
@@ -690,29 +726,62 @@ class TestStageReliability:
 # equations.py: aggregate-surfaced road models
 # ============================================================================
 
+class TestAggregateLossTruckTraffic:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # the first equation, GL = 0.12 + 0.1223(LT), > 50 % truck traffic.
+    def test_printed_equation(self):
+        assert eq.aggregate_loss_truck_traffic(0)["gl_in"] == pytest.approx(0.12)
+        assert eq.aggregate_loss_truck_traffic(10)["gl_in"] == pytest.approx(1.343)
+        r = eq.aggregate_loss_truck_traffic(50)
+        assert r["gl_in"] == pytest.approx(6.235)
+        assert "printed II-12" in r["reference"]
+
+    def test_negative_raises(self):
+        with pytest.raises(ValueError):
+            eq.aggregate_loss_truck_traffic(-1)
+
+
 class TestAggregateLossArmyCorps:
+    # Section 2.2.3, aashto1993.pdf PDF 102 (pdf_page 101), printed II-12:
+    # the Brazil-study equation GL = (B/25.4)/(.0045LADT + 3380.6/R + .467G).
+    # The function is aggregate_loss_brazil (was aggregate_loss_army_corps).
     def test_basic(self):
-        r = eq.aggregate_loss_army_corps(bladings=6, ladt=200, radius_ft=1000,
-                                         grade_pct=3)
-        assert r["gl_in"] > 0
+        r = eq.aggregate_loss_brazil(bladings=6, ladt=200, radius_ft=1000,
+                                     grade_pct=3)
+        assert r["gl_in"] == pytest.approx(
+            (6 / 25.4) / (0.0045 * 200 + 3380.6 / 1000 + 0.467 * 3), abs=1e-3)
+        assert "Brazil" in r["source"]
+        assert "printed II-12" in r["reference"]
 
     def test_invalid_radius_raises(self):
         with pytest.raises(ValueError):
-            eq.aggregate_loss_army_corps(bladings=6, ladt=200, radius_ft=0,
-                                         grade_pct=3)
+            eq.aggregate_loss_brazil(bladings=6, ladt=200, radius_ft=0,
+                                     grade_pct=3)
+
+    def test_old_name_gone(self):
+        assert not hasattr(eq, "aggregate_loss_army_corps")
 
 
 class TestAnnualAggregateLossKenya:
+    # Same page: AGL = [T^2/(T^2+50)] x f(4.2 + .092T + 0.889R^2 + 1.88VC);
+    # the scan drops decimal points, a space where each was (" 092T" =
+    # .092T; f " 037" = .037, was read as 0.37).
     def test_lateritic_default(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,
                                            grade_pct=5)
-        assert r["f"] == 0.37
-        assert r["agl_in_per_year"] > 0
+        assert r["f"] == 0.037
+        expected = (4 / 54) * 0.037 * (4.2 + 0.092 * 2 + 0.889 * 900 + 1.88 * 5)
+        assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
+        assert r["agl_in_per_year"] == pytest.approx(2.231, abs=1e-3)
+        r = eq.annual_aggregate_loss_kenya(traffic_thousands=20, rainfall_in=2,
+                                           grade_pct=1)
+        expected = (400 / 450) * 0.037 * (4.2 + 0.092 * 20 + 0.889 * 4 + 1.88)
+        assert r["agl_in_per_year"] == pytest.approx(expected, abs=1e-3)
 
     def test_coral(self):
         r = eq.annual_aggregate_loss_kenya(traffic_thousands=2, rainfall_in=30,
                                            grade_pct=5, gravel_type="coral")
-        assert r["f"] == 0.59
+        assert r["f"] == 0.059
 
     def test_invalid_gravel_type_raises(self):
         with pytest.raises(ValueError):

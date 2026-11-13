@@ -63,17 +63,20 @@ def performance_factor(override=None):
     """Paragraph 4.1.1: the HSS performance factor alpha, applied to AISC
     resistance factors (printed p. 17).
 
-        alpha = 1.0, except alpha = 0.90 "for the following structures"
+        alpha = 1.0, except alpha = 0.90 for the structures of 4.1.1.1
+        and 4.1.1.2
 
-    NOTE -- source-document gap: paragraph 4.1.1's sentence "The value of
-    alpha is 1.0 except for the following structures where alpha must be
-    0.90" is not followed by any enumerated list on the printed page (the
-    paragraph ends there; paragraph 4.1.2 "Design for Corrosion" follows
-    immediately). This is not a text-extraction artifact -- verified
-    directly against the PDF's raw text spans. There is no printed
-    criterion in this manual for auto-selecting alpha = 0.90, so this
-    function does not attempt to guess one; pass ``override=0.90``
-    explicitly when the engineer has determined the reduced value applies.
+    Paragraph 4.1.1 prints "The value of alpha is 1.0 except for the
+    following structures where alpha must be 0.90" and then lists them:
+    4.1.1.1, HSS where inspection and maintenance are difficult because the
+    HSS is normally submerged and removal causes disruption of a larger
+    project (examples: Tainter valves and leaves of vertical lift gates that
+    are normally submerged and infrequently dewatered); 4.1.1.2, HSS in
+    brackish water or seawater. (Read off the rendered p. 17; the page's
+    text layer does not carry the two numbered paragraphs, which is why an
+    earlier note here called the list missing.) This function does not
+    classify the structure: pass ``override=0.90`` when one of those two
+    cases applies.
 
     Returns
     -------
@@ -112,11 +115,11 @@ TABLE_4_1_TEMPORARY_DYNAMIC = {
     "L": {"serviceability_fatigue": 1.0, "companion": 1.0,
           "usual": None, "unusual": 1.6, "extreme": None, "note": "footnote 4, from ASCE 7-22"},
     "T": {"serviceability_fatigue": 1.0, "companion": 1.0,
-          "usual": None, "unusual": None, "extreme": None,
-          "note": ("Table 4.1's compact printed cell for T is ambiguous; paragraph "
-                    "4.3.4.4 states the T principal load factor directly as gamma_pr "
-                    "= 1.2 (min), not banded by usual/unusual/extreme -- see "
-                    "``principal_load_factor_self_straining``.")},
+          "usual": 1.2, "unusual": 1.2, "extreme": 1.2,
+          "note": ("companion 1.0 footnote 4; principal 1.2 with footnote 4 is ONE "
+                    "merged cell spanning the Usual, Unusual and Extreme columns "
+                    "(printed p. 27); paragraph 4.3.4.4 states gamma_pr = 1.2 (min), "
+                    "see ``principal_load_factor_self_straining``.")},
     "F": {"serviceability_fatigue": 1.0, "companion": 1.4,
           "usual": None, "unusual": None, "extreme": None,
           "note": "companion-only, footnote-free (paragraph 4.3.5): gamma_c = 1.4 applied to friction coefficients."},

@@ -619,7 +619,7 @@
         "Field N without corrections, limited to 100 bpf, in Eq 4.2",
         "Site Class F: site-specific dynamic site response analysis",
         "PGA_D = FPGA PGA (Eq 4.3, Table 4.9); S_D1 = Fv S1 (Eq 4.4, Table 4.10)",
-        "Site Class D FPGA: 1.6 at PGA <= 0.25 to 1.0 at >= 1.25; Fv: 2.4 at S1 <= 0.1 to 1.5 at >= 0.5",
+        "Site Class D FPGA: 1.6 to 1.0 under the printed columns PGA <= 0.25 to >= 1.25 (GEC-12 Vol I Table 7-27, p. 380, prints the same values under PGA < 0.1 to > 0.5, which the library's lookup uses); Fv: 2.4 at S1 <= 0.1 to 1.5 at >= 0.5",
         "PGA_D is the seismic coefficient input; S_D1 modifies it for deformation (Chapter 6)"
       ],
       "equations": [
@@ -683,7 +683,7 @@
         {
           "table_id": "Table 4.9",
           "title": "Site Coefficient FPGA",
-          "description": "FPGA by site class for PGA <= 0.25 to >= 1.25. Kavazanjian et al. (2011).",
+          "description": "FPGA by site class, columns headed PGA <= 0.25 to >= 1.25 as printed (the Ss values that head GEC-12's Fa table, Table 7-28); GEC-12 Vol I Table 7-27 (p. 380) prints the same values under PGA < 0.1, 0.2, 0.3, 0.4, > 0.5, which table_4_9_site_coefficient_fpga uses. Kavazanjian et al. (2011).",
           "page": 94
         },
         {

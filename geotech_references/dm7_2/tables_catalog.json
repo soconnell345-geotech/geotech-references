@@ -1,0 +1,2669 @@
+{
+  "reference_id": "UFC 3-220-20",
+  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "package": "dm7_2",
+  "volume": 2,
+  "pdf_path": "docs/ufc_3_220_20_2025.pdf",
+  "table_count": 172,
+  "tables": [
+    {
+      "table_number": "P-1",
+      "caption": "Effective Stress and Total Stress Shear Strength Parameters and Associated Equation for Calculating Shear Strength on the Failure Plane",
+      "chapter": 0,
+      "section_id": "P-2.1",
+      "section_title": "Mohr-Coulomb Failure Criteria",
+      "pdf_page_index": 39,
+      "pages": [
+        39
+      ],
+      "printed_page": "2",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "prologue.mohr_coulomb_drained",
+      "implemented_in": [
+        "prologue.mohr_coulomb_drained",
+        "prologue.mohr_coulomb_undrained_partial",
+        "prologue.mohr_coulomb_undrained_saturated"
+      ]
+    },
+    {
+      "table_number": "P-2",
+      "caption": "Shear Strength Methods for In situ Coarse-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.1",
+      "section_title": "In situ Deposit of Coarse-Grained Soil (Sand to Gravel)",
+      "pdf_page_index": 46,
+      "pages": [
+        46
+      ],
+      "printed_page": "9",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "P-3",
+      "caption": "Shear Strength Methods for Engineered Coarse-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.2",
+      "section_title": "Engineered Deposit of Coarse-Grained Soil (Sand to Gravel)",
+      "pdf_page_index": 47,
+      "pages": [
+        47
+      ],
+      "printed_page": "10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "P-4",
+      "caption": "Undrained Shear Strength Methods for In situ Fine-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.3.1",
+      "section_title": "Undrained Shear Strength - In situ Deposit of Fine-Grained Soil",
+      "pdf_page_index": 49,
+      "pages": [
+        49
+      ],
+      "printed_page": "12",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "P-5",
+      "caption": "Drained Shear Strength Methods for In situ Fine-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.3.2",
+      "section_title": "Drained Strength - In situ Deposit of Fine-Grained Soil",
+      "pdf_page_index": 52,
+      "pages": [
+        52
+      ],
+      "printed_page": "15",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "P-6",
+      "caption": "Strength Methods for In situ Nonplastic and Low Plasticity Silt",
+      "chapter": 0,
+      "section_id": "P-3.3.3",
+      "section_title": "In situ Deposit of Nonplastic or Low Plasticity Silt",
+      "pdf_page_index": 53,
+      "pages": [
+        53
+      ],
+      "printed_page": "16",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "prologue.usr_acu_triaxial",
+      "implemented_in": [
+        "prologue.usr_acu_triaxial",
+        "prologue.usr_dss",
+        "prologue.usr_icu_triaxial"
+      ]
+    },
+    {
+      "table_number": "P-7",
+      "caption": "Undrained Shear Strength Methods for Engineered Fine-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.4",
+      "section_title": "Engineered Deposit of Fine-Grained Soil",
+      "pdf_page_index": 54,
+      "pages": [
+        54
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "P-8",
+      "caption": "Drained Shear Strength Methods for Engineered Fine-Grained Soil",
+      "chapter": 0,
+      "section_id": "P-3.4",
+      "section_title": "Engineered Deposit of Fine-Grained Soil",
+      "pdf_page_index": 54,
+      "pages": [
+        54
+      ],
+      "printed_page": "17",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "1-1",
+      "caption": "Sensitivity categories (after Rosenqvist 1953)",
+      "chapter": 1,
+      "section_id": "1-2.4",
+      "section_title": "Sensitive or Quick Clays",
+      "pdf_page_index": 60,
+      "pages": [
+        60
+      ],
+      "printed_page": "23",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "1-2",
+      "caption": "List of Technologies Included in GeoTechTools and GEC 13",
+      "chapter": 1,
+      "section_id": "1-3",
+      "section_title": "Specialty Geotechnical Construction Methods",
+      "pdf_page_index": 71,
+      "pages": [
+        71
+      ],
+      "printed_page": "34",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "1-3",
+      "caption": "Technologies Used to Address Basic Goals of Soil Improvement (after FHWA 2017)",
+      "chapter": 1,
+      "section_id": "1-3",
+      "section_title": "Specialty Geotechnical Construction Methods",
+      "pdf_page_index": 72,
+      "pages": [
+        72
+      ],
+      "printed_page": "35",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "1-4",
+      "caption": "Soil Types and Foundation Conditions for Different Technologies (after FHWA 2017)",
+      "chapter": 1,
+      "section_id": "1-3",
+      "section_title": "Specialty Geotechnical Construction Methods",
+      "pdf_page_index": 73,
+      "pages": [
+        73
+      ],
+      "printed_page": "36",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-1",
+      "caption": "Soil Types (after OSHA CFR Part 1926, Subpart P, Appendix A)",
+      "chapter": 2,
+      "section_id": "2-3.3.1",
+      "section_title": "OSHA Soil Types",
+      "pdf_page_index": 97,
+      "pages": [
+        97
+      ],
+      "printed_page": "60",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-2",
+      "caption": "Aluminum Hydraulic Shoring - Soil Types A and B, No Walers (after OSHA 2020 Appendix D, Tables D-1.1 and D-1.2)",
+      "chapter": 2,
+      "section_id": "2-3.3.3",
+      "section_title": "Hydraulic Shoring",
+      "pdf_page_index": 98,
+      "pages": [
+        98
+      ],
+      "printed_page": "61",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-3",
+      "caption": "Aluminum Hydraulic Shoring - Soil Types B and C with Wales (after OSHA 2020 Appendix D, Tables D-1.3 and D-1.4)",
+      "chapter": 2,
+      "section_id": "2-3.3.3",
+      "section_title": "Hydraulic Shoring",
+      "pdf_page_index": 99,
+      "pages": [
+        99
+      ],
+      "printed_page": "62",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-4",
+      "caption": "Minimum Requirements for Timber Trench Shoring (after OSHA 2020)",
+      "chapter": 2,
+      "section_id": "2-3.3.4",
+      "section_title": "Timber Shoring",
+      "pdf_page_index": 102,
+      "pages": [
+        102
+      ],
+      "printed_page": "65",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-5",
+      "caption": "Types of Walls and Factors Involved with Selection",
+      "chapter": 2,
+      "section_id": "2-4.1",
+      "section_title": "Types of Wall and Support Systems",
+      "pdf_page_index": 105,
+      "pages": [
+        105
+      ],
+      "printed_page": "68",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-6",
+      "caption": "Factors Influencing the Selection of Support Systems",
+      "chapter": 2,
+      "section_id": "2-4.1",
+      "section_title": "Types of Wall and Support Systems",
+      "pdf_page_index": 107,
+      "pages": [
+        107
+      ],
+      "printed_page": "70",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-7",
+      "caption": "Influence of Soil Conditions on Selection of Deep Excavation Wall and Support Systems",
+      "chapter": 2,
+      "section_id": "2-4.2.1",
+      "section_title": "Influence of Soil Type",
+      "pdf_page_index": 108,
+      "pages": [
+        108
+      ],
+      "printed_page": "71",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-8",
+      "caption": "Typical Settlement and Horizontal Movement Relative to Height (after Clough and O'Rourke 1990)",
+      "chapter": 2,
+      "section_id": "2-4.4",
+      "section_title": "Ground Movements Adjacent to Deep Excavations",
+      "pdf_page_index": 115,
+      "pages": [
+        115
+      ],
+      "printed_page": "78",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-9",
+      "caption": "Some Common Methods of Underpinning",
+      "chapter": 2,
+      "section_id": "2-4.4.3",
+      "section_title": "Prediction of Damage to Adjacent Structures",
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "87",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-10",
+      "caption": "Construction Considerations for Deep Excavation Support Systems",
+      "chapter": 2,
+      "section_id": "2-4.5",
+      "section_title": "Construction Considerations",
+      "pdf_page_index": 127,
+      "pages": [
+        127,
+        128
+      ],
+      "printed_page": "90",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-11",
+      "caption": "Methods of Groundwater Control",
+      "chapter": 2,
+      "section_id": "2-6",
+      "section_title": "GROUNDWATER CONTROL",
+      "pdf_page_index": 137,
+      "pages": [
+        137
+      ],
+      "printed_page": "100",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-12",
+      "caption": "Problem Soil Considerations for Sloped Open Cut Excavations (after Clough and Davidson 1977)",
+      "chapter": 2,
+      "section_id": "2-7",
+      "section_title": "Problem Soils and Excavations",
+      "pdf_page_index": 140,
+      "pages": [
+        140
+      ],
+      "printed_page": "103",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2-13",
+      "caption": "Problem Soil Considerations for Deep, Supported Excavations",
+      "chapter": 2,
+      "section_id": "2-7",
+      "section_title": "Problem Soils and Excavations",
+      "pdf_page_index": 141,
+      "pages": [
+        141
+      ],
+      "printed_page": "104",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Typical Compaction Properties and Hydraulic Conductivity based on USCS (after USACE 1960)",
+      "chapter": 3,
+      "section_id": "3-3",
+      "section_title": "Fill Materials",
+      "pdf_page_index": 157,
+      "pages": [
+        157
+      ],
+      "printed_page": "120",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-2",
+      "caption": "Relative Desirability of Soils for Compacted Fill based on USCS Classification (after USBR 1998)",
+      "chapter": 3,
+      "section_id": "3-3",
+      "section_title": "Fill Materials",
+      "pdf_page_index": 159,
+      "pages": [
+        159
+      ],
+      "printed_page": "122",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-3",
+      "caption": "Applicability of Testing Methods by USCS Classification",
+      "chapter": 3,
+      "section_id": "3-3.3",
+      "section_title": "Laboratory Characterization of Fill Materials",
+      "pdf_page_index": 162,
+      "pages": [
+        162
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-4",
+      "caption": "Stress and Particle Effects on the Shear Strength of Rock Fill",
+      "chapter": 3,
+      "section_id": "3-3.3.3",
+      "section_title": "Rock Fill",
+      "pdf_page_index": 164,
+      "pages": [
+        164
+      ],
+      "printed_page": "127",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-5",
+      "caption": "Typical Properties of Common Recycled Fill Materials (after Soleimanbeigi et al. 2014, Soleimanbeigi and Edil 2015, DiGioia and Nuzzo 1972, Masad et al. 1996)",
+      "chapter": 3,
+      "section_id": "3-3.4.1",
+      "section_title": "Recycled Fill Materials",
+      "pdf_page_index": 165,
+      "pages": [
+        165
+      ],
+      "printed_page": "128",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-6",
+      "caption": "Common Lightweight Fill Materials (after FHWA 2017, Arulrajah et al. 2015)",
+      "chapter": 3,
+      "section_id": "3-3.4.2",
+      "section_title": "Lightweight Fill Materials",
+      "pdf_page_index": 166,
+      "pages": [
+        166
+      ],
+      "printed_page": "129",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-7",
+      "caption": "Fill Transport Methods and Haul Distances (after Coduto et al. 2011)",
+      "chapter": 3,
+      "section_id": "3-4.3.1",
+      "section_title": "Methods",
+      "pdf_page_index": 171,
+      "pages": [
+        171
+      ],
+      "printed_page": "134",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-8",
+      "caption": "Equipment Type Summary",
+      "chapter": 3,
+      "section_id": "3-4.4.2",
+      "section_title": "Types of Equipment",
+      "pdf_page_index": 176,
+      "pages": [
+        176
+      ],
+      "printed_page": "139",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-9",
+      "caption": "Applicability of Compaction Equipment to Different Soil Types",
+      "chapter": 3,
+      "section_id": "3-4.4.2",
+      "section_title": "Types of Equipment",
+      "pdf_page_index": 177,
+      "pages": [
+        177
+      ],
+      "printed_page": "140",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-10",
+      "caption": "Simple Compaction Control Methods for Field Engineers (after TRB 1990, USACE 1995a)",
+      "chapter": 3,
+      "section_id": "3-5",
+      "section_title": "Control of Compacted Fills",
+      "pdf_page_index": 180,
+      "pages": [
+        180
+      ],
+      "printed_page": "143",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-11",
+      "caption": "Typical Compaction Specifications for Soil with Appreciable Fines",
+      "chapter": 3,
+      "section_id": "3-5.1",
+      "section_title": "Compaction Requirements",
+      "pdf_page_index": 181,
+      "pages": [
+        181
+      ],
+      "printed_page": "144",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-12",
+      "caption": "Compaction Control Criteria for Compacted Earth Dams (after USBR 1987)",
+      "chapter": 3,
+      "section_id": "3-5.1",
+      "section_title": "Compaction Requirements",
+      "pdf_page_index": 182,
+      "pages": [
+        182
+      ],
+      "printed_page": "145",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-13",
+      "caption": "Comparison of Common Compaction Control Test Methods",
+      "chapter": 3,
+      "section_id": "3-5.3",
+      "section_title": "Compaction Control Tests",
+      "pdf_page_index": 185,
+      "pages": [
+        185
+      ],
+      "printed_page": "148",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-14",
+      "caption": "Control Testing Requirements for Different Types of Fill (after Hilf 1991, USBR 1998, USACE 1995a, Sowers 1979)",
+      "chapter": 3,
+      "section_id": "3-5.3.2",
+      "section_title": "Control Test Frequency",
+      "pdf_page_index": 186,
+      "pages": [
+        186
+      ],
+      "printed_page": "149",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-15",
+      "caption": "Statistical Approach to the Selection of Mean Relative Compaction Requirements",
+      "chapter": 3,
+      "section_id": "3-5.6",
+      "section_title": "Intelligent Compaction Systems",
+      "pdf_page_index": 191,
+      "pages": [
+        191
+      ],
+      "printed_page": "154",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-16",
+      "caption": "Erosion Resistance Categories (after USBR and USACE 2019)",
+      "chapter": 3,
+      "section_id": "3-6.6",
+      "section_title": "Earth Dam Embankments",
+      "pdf_page_index": 199,
+      "pages": [
+        199
+      ],
+      "printed_page": "162",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-17",
+      "caption": "Dispersive Tendency from Double Hydrometer, Pinhole and Crumb Tests (after ASTM D4221, D4647, D 6572)",
+      "chapter": 3,
+      "section_id": "3-6.6",
+      "section_title": "Earth Dam Embankments",
+      "pdf_page_index": 201,
+      "pages": [
+        201
+      ],
+      "printed_page": "164",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-18",
+      "caption": "Methods of Underwater Fill Placement (after Johnson et al. 1972)",
+      "chapter": 3,
+      "section_id": "3-7.5",
+      "section_title": "Underwater Fill",
+      "pdf_page_index": 206,
+      "pages": [
+        206
+      ],
+      "printed_page": "169",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "3-19",
+      "caption": "Problem Soil Considerations for Earthwork",
+      "chapter": 3,
+      "section_id": "3-8",
+      "section_title": "PROBLEM SOILS AND EARTHWORK",
+      "pdf_page_index": 207,
+      "pages": [
+        207
+      ],
+      "printed_page": "170",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-1",
+      "caption": "Interface Friction Angles and Adhesion Values for Wall/Soil Interfaces",
+      "chapter": 4,
+      "section_id": "4-2.6",
+      "section_title": "Wall/Soil Interface Friction Angle",
+      "pdf_page_index": 221,
+      "pages": [
+        221
+      ],
+      "printed_page": "184",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-2",
+      "caption": "Comparison of K A and K P Values for Earth Pressure Methods ( β = θ =0 ° )",
+      "chapter": 4,
+      "section_id": "4-3.2",
+      "section_title": "Log Spiral Method",
+      "pdf_page_index": 231,
+      "pages": [
+        231
+      ],
+      "printed_page": "194",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-3",
+      "caption": "Equivalent Fluid Unit Weights for At-Rest and Active Conditions for Horizontal and Sloping Backfills (after Kim et al. 1991)",
+      "chapter": 4,
+      "section_id": "4-3.3",
+      "section_title": "Presumptive Earth Pressure Coefficients and Equivalent Fluid Pressures",
+      "pdf_page_index": 232,
+      "pages": [
+        232
+      ],
+      "printed_page": "195",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-4",
+      "caption": "Adjustment Factors for Earth Pressures Induced by Compaction with Rollers (after Duncan et al. 1991)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Earth Pressures Due to Compaction",
+      "pdf_page_index": 248,
+      "pages": [
+        248
+      ],
+      "printed_page": "211",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-5",
+      "caption": "Adjustment Factors for Earth Pressures Induced by Compaction with Vibratory Plates",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Earth Pressures Due to Compaction",
+      "pdf_page_index": 249,
+      "pages": [
+        249
+      ],
+      "printed_page": "212",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-6",
+      "caption": "Adjustment Factors for Earth Pressures Induced by Compaction with Rammer Plates (after Duncan et al. 1991)",
+      "chapter": 4,
+      "section_id": "4-4.3",
+      "section_title": "Earth Pressures Due to Compaction",
+      "pdf_page_index": 250,
+      "pages": [
+        250
+      ],
+      "printed_page": "213",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-7",
+      "caption": "Modes of Failure and Design Details for Sheet Pile Cofferdams",
+      "chapter": 4,
+      "section_id": "4-9",
+      "section_title": "CELLULAR COFFERDAM DESIGN",
+      "pdf_page_index": 301,
+      "pages": [
+        301,
+        302,
+        303
+      ],
+      "printed_page": "264",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "4-8",
+      "caption": "Problem Soil Considerations for Retaining Structures",
+      "chapter": 4,
+      "section_id": "4-10",
+      "section_title": "Problem Soils and Retaining Walls",
+      "pdf_page_index": 305,
+      "pages": [
+        305
+      ],
+      "printed_page": "268",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-1",
+      "caption": "Presumptive Allowable Bearing Pressures ( B > 3 ft) (after NRCS 2022, Das 2022)",
+      "chapter": 5,
+      "section_id": "5-2.5",
+      "section_title": "Presumptive Allowable Bearing Pressure",
+      "pdf_page_index": 319,
+      "pages": [
+        319
+      ],
+      "printed_page": "282",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-2",
+      "caption": "Bearing Capacity Factors, N c , N q , and N γ",
+      "chapter": 5,
+      "section_id": "5-3.1.2",
+      "section_title": "Calculation of Ultimate Bearing Capacity",
+      "pdf_page_index": 326,
+      "pages": [
+        326
+      ],
+      "printed_page": "289",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.hansen_Ngamma",
+      "implemented_in": [
+        "chapter5.hansen_Ngamma",
+        "chapter5.meyerhof_Ngamma",
+        "chapter5.meyerhof_hansen_Nc",
+        "chapter5.meyerhof_hansen_Nq",
+        "chapter5.terzaghi_Nc",
+        "chapter5.terzaghi_Ngamma",
+        "chapter5.terzaghi_Nq"
+      ]
+    },
+    {
+      "table_number": "5-3",
+      "caption": "Suitability of Terzaghi, Meyerhof, and Brinch Hansen Methods to Calculate q ult (after Bowles 1996)",
+      "chapter": 5,
+      "section_id": "5-3.1.2",
+      "section_title": "Calculation of Ultimate Bearing Capacity",
+      "pdf_page_index": 328,
+      "pages": [
+        328
+      ],
+      "printed_page": "291",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-4",
+      "caption": "Bearing Capacity Methods for Local Shear",
+      "chapter": 5,
+      "section_id": "5-3.1.3",
+      "section_title": "Bearing Capacity Corrections for Local and Punching Shear",
+      "pdf_page_index": 328,
+      "pages": [
+        328
+      ],
+      "printed_page": "291",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.local_shear_terzaghi",
+      "implemented_in": [
+        "chapter5.local_shear_terzaghi",
+        "chapter5.local_shear_vesic"
+      ]
+    },
+    {
+      "table_number": "5-5",
+      "caption": "Shape Factors for the Terzaghi Upper Bound Method",
+      "chapter": 5,
+      "section_id": "5-3.3.1",
+      "section_title": "Terzaghi (1943) Method",
+      "pdf_page_index": 331,
+      "pages": [
+        331
+      ],
+      "printed_page": "294",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.terzaghi_shape_factors",
+      "implemented_in": [
+        "chapter5.terzaghi_shape_factors"
+      ]
+    },
+    {
+      "table_number": "5-6",
+      "caption": "Bearing and Correction Factors for the Meyerhof (1963) Method",
+      "chapter": 5,
+      "section_id": "5-3.3.2",
+      "section_title": "Meyerhof (1963) Method",
+      "pdf_page_index": 331,
+      "pages": [
+        331
+      ],
+      "printed_page": "294",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.meyerhof_Ngamma",
+      "implemented_in": [
+        "chapter5.meyerhof_Ngamma",
+        "chapter5.meyerhof_depth_factors",
+        "chapter5.meyerhof_inclination_factors",
+        "chapter5.meyerhof_shape_factors"
+      ]
+    },
+    {
+      "table_number": "5-7",
+      "caption": "Bearing and Correction Factors for the Brinch Hansen (1970) Method - φ = 0",
+      "chapter": 5,
+      "section_id": "5-3.3.3",
+      "section_title": "Brinch Hansen (1970) Method",
+      "pdf_page_index": 332,
+      "pages": [
+        332
+      ],
+      "printed_page": "295",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.hansen_base_factor_phi0",
+      "implemented_in": [
+        "chapter5.hansen_base_factor_phi0",
+        "chapter5.hansen_depth_factor_phi0",
+        "chapter5.hansen_ground_factor_phi0",
+        "chapter5.hansen_inclination_factor_phi0",
+        "chapter5.hansen_shape_factors_phi0"
+      ]
+    },
+    {
+      "table_number": "5-8",
+      "caption": "Bearing and Correction Factors for the Brinch Hansen (1970) Method - φ ʹ > 0",
+      "chapter": 5,
+      "section_id": "5-3.3.3",
+      "section_title": "Brinch Hansen (1970) Method",
+      "pdf_page_index": 333,
+      "pages": [
+        333
+      ],
+      "printed_page": "296",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter5.hansen_Ngamma",
+      "implemented_in": [
+        "chapter5.hansen_Ngamma",
+        "chapter5.hansen_base_factors",
+        "chapter5.hansen_depth_factors",
+        "chapter5.hansen_ground_factors",
+        "chapter5.hansen_inclination_factors",
+        "chapter5.hansen_shape_factors"
+      ]
+    },
+    {
+      "table_number": "5-9",
+      "caption": "Bearing Capacity Reduction Coefficients for Foundations Near Slopes in Undrained Conditions (after Leshchinsky and Xie 2017)",
+      "chapter": 5,
+      "section_id": "5-3.4.1",
+      "section_title": "Saturated Undrained Conditions",
+      "pdf_page_index": 335,
+      "pages": [
+        335
+      ],
+      "printed_page": "298",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-10",
+      "caption": "Bearing Capacity Reduction Coefficients for Foundations Near Slopes in Saturated Drained Conditions (after Leshchinsky and Xie 2017)",
+      "chapter": 5,
+      "section_id": "5-3.4.2",
+      "section_title": "Drained Conditions",
+      "pdf_page_index": 336,
+      "pages": [
+        336
+      ],
+      "printed_page": "299",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-11",
+      "caption": "Values of Bearing Capacity Factor, N ms , for Strip Footings (after Brown and Meyerhof 1969, Meyerhof and Hanna 1978, Merifield et al. 1999, and Zhu 2004)",
+      "chapter": 5,
+      "section_id": "5-3.6.2",
+      "section_title": "Case 2: Undrained, Layered Clay",
+      "pdf_page_index": 347,
+      "pages": [
+        347
+      ],
+      "printed_page": "310",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-12",
+      "caption": "Range of Properties for Rock Types (after Wyllie and Norrish 1996 and Bowles 1996)",
+      "chapter": 5,
+      "section_id": "5-3.7",
+      "section_title": "Bearing Capacity of Rock",
+      "pdf_page_index": 354,
+      "pages": [
+        354
+      ],
+      "printed_page": "317",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-13",
+      "caption": "Typical Modulus of Subgrade Reaction Values (after Bowles 1996)",
+      "chapter": 5,
+      "section_id": "5-4.5",
+      "section_title": "Modulus of Subgrade Reaction",
+      "pdf_page_index": 361,
+      "pages": [
+        361
+      ],
+      "printed_page": "324",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-14",
+      "caption": "Typical Soil Moduli (after Bowles 1996)",
+      "chapter": 5,
+      "section_id": "5-4.5.3",
+      "section_title": "Estimating Elastic Parameters, Es and ν",
+      "pdf_page_index": 364,
+      "pages": [
+        364
+      ],
+      "printed_page": "327",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-15",
+      "caption": "Correlations for the Drained Modulus of Coarse-Grained Soils with SPT and CPT (after FHWA 2002a, Duncan and Bursey 2007, Coduto 2015, McGregor and Duncan 1998)",
+      "chapter": 5,
+      "section_id": "5-4.5.3",
+      "section_title": "Estimating Elastic Parameters, Es and ν",
+      "pdf_page_index": 365,
+      "pages": [
+        365
+      ],
+      "printed_page": "328",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-16",
+      "caption": "Typical Values of Poisson's Ratio (after Bowles 1996)",
+      "chapter": 5,
+      "section_id": "5-4.5.3",
+      "section_title": "Estimating Elastic Parameters, Es and ν",
+      "pdf_page_index": 366,
+      "pages": [
+        366
+      ],
+      "printed_page": "329",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-17",
+      "caption": "Vertical Pressure Profiles for Selected Points Beneath a Foundation Mat (after ACI 2002)",
+      "chapter": 5,
+      "section_id": "5-4.8",
+      "section_title": "Indirect Method to Allowing Coupling",
+      "pdf_page_index": 371,
+      "pages": [
+        371
+      ],
+      "printed_page": "334",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-18",
+      "caption": "Methods of Foundation Dampproofing and Waterproofing",
+      "chapter": 5,
+      "section_id": "5-5.1.4",
+      "section_title": "Dampproofing and Waterproofing Requirements",
+      "pdf_page_index": 376,
+      "pages": [
+        376
+      ],
+      "printed_page": "339",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-19",
+      "caption": "Presumptive Average Ultimate Bond Stress for Anchor Grout/Rock Interfaces with Gravity Grouting (After PTI 1996, in FHWA 1999)",
+      "chapter": 5,
+      "section_id": "5-5.2.2",
+      "section_title": "Rock Anchors",
+      "pdf_page_index": 380,
+      "pages": [
+        380
+      ],
+      "printed_page": "343",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-20",
+      "caption": "Presumptive Average Ultimate Bond Stress for Anchor Grout/Soil Interfaces with Gravity Grouting (After PTI 1996 in FHWA 1999)",
+      "chapter": 5,
+      "section_id": "5-5.2.3",
+      "section_title": "Soil Anchors",
+      "pdf_page_index": 382,
+      "pages": [
+        382
+      ],
+      "printed_page": "345",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-21",
+      "caption": "Classification of Collapse (after ASTM D 5333, Jennings and Knight 1975)",
+      "chapter": 5,
+      "section_id": "5-6.3.3",
+      "section_title": "Estimation of Collapse Settlements",
+      "pdf_page_index": 395,
+      "pages": [
+        395
+      ],
+      "printed_page": "358",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "5-22",
+      "caption": "Problem Soil Considerations for Shallow Foundations",
+      "chapter": 5,
+      "section_id": "5-6.4",
+      "section_title": "Other Problem Soils",
+      "pdf_page_index": 396,
+      "pages": [
+        396,
+        397
+      ],
+      "printed_page": "359",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-1",
+      "caption": "Organization of Chapter 6",
+      "chapter": 6,
+      "section_id": "6-1",
+      "section_title": "INTRODUCTION",
+      "pdf_page_index": 402,
+      "pages": [
+        402
+      ],
+      "printed_page": "365",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-2",
+      "caption": "Site and Project Considerations for Deep Foundations",
+      "chapter": 6,
+      "section_id": "6-2.2",
+      "section_title": "Site and Project Considerations",
+      "pdf_page_index": 407,
+      "pages": [
+        407
+      ],
+      "printed_page": "370",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-3",
+      "caption": "Conditions that Pose a Heightened Risk of Foundation Deterioration (after AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-2.2.2",
+      "section_title": "Deterioration",
+      "pdf_page_index": 411,
+      "pages": [
+        411
+      ],
+      "printed_page": "374",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-4",
+      "caption": "Guidance for Minimum Center-to-Center Spacing",
+      "chapter": 6,
+      "section_id": "6-2.4.1",
+      "section_title": "Minimum Spacing",
+      "pdf_page_index": 414,
+      "pages": [
+        414
+      ],
+      "printed_page": "377",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-5",
+      "caption": "Deep Foundation Construction Tolerances",
+      "chapter": 6,
+      "section_id": "6-2.4.2",
+      "section_title": "Placement and Alignment Tolerances",
+      "pdf_page_index": 414,
+      "pages": [
+        414
+      ],
+      "printed_page": "377",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-6",
+      "caption": "Summary of Timber Piles and Steel H-Piles",
+      "chapter": 6,
+      "section_id": "6-3",
+      "section_title": "FOUNDATION TYPES",
+      "pdf_page_index": 417,
+      "pages": [
+        417
+      ],
+      "printed_page": "380",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-7",
+      "caption": "Summary of Steel Pipe Piles and Concrete Piles",
+      "chapter": 6,
+      "section_id": "6-3",
+      "section_title": "FOUNDATION TYPES",
+      "pdf_page_index": 418,
+      "pages": [
+        418
+      ],
+      "printed_page": "381",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-8",
+      "caption": "Summary of Drilled Shafts and Continuous Flight Auger Columns",
+      "chapter": 6,
+      "section_id": "6-3",
+      "section_title": "FOUNDATION TYPES",
+      "pdf_page_index": 419,
+      "pages": [
+        419
+      ],
+      "printed_page": "382",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-9",
+      "caption": "Summary of Drilled Displacement Columns and Helical Piles",
+      "chapter": 6,
+      "section_id": "6-3",
+      "section_title": "FOUNDATION TYPES",
+      "pdf_page_index": 420,
+      "pages": [
+        420
+      ],
+      "printed_page": "383",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-10",
+      "caption": "Summary of Material Properties of Foundation Materials",
+      "chapter": 6,
+      "section_id": "6-3.3",
+      "section_title": "Summary of Material Properties",
+      "pdf_page_index": 421,
+      "pages": [
+        421
+      ],
+      "printed_page": "384",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-11",
+      "caption": "Recommended Strength Limit State Resistance Factors for Axial Compressive Resistance Evaluated by SCA (AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-5.4",
+      "section_title": "Static Axial Capacity in Compression for Single Elements",
+      "pdf_page_index": 447,
+      "pages": [
+        447
+      ],
+      "printed_page": "410",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-12",
+      "caption": "Recommended Minimum Factors of Safety for Compressive Loading",
+      "chapter": 6,
+      "section_id": "6-5.4",
+      "section_title": "Static Axial Capacity in Compression for Single Elements",
+      "pdf_page_index": 448,
+      "pages": [
+        448
+      ],
+      "printed_page": "411",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-13",
+      "caption": "Ratio of Shaft Friction Earth Pressure Coefficient to At-Rest Earth Pressure Coefficient",
+      "chapter": 6,
+      "section_id": "6-5.4.1",
+      "section_title": "Shaft Resistance in Drained Conditions – Beta Method",
+      "pdf_page_index": 449,
+      "pages": [
+        449
+      ],
+      "printed_page": "412",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-14",
+      "caption": "Interface Friction Angle Ratios for Evaluating Shaft Friction",
+      "chapter": 6,
+      "section_id": "6-5.4.1",
+      "section_title": "Shaft Resistance in Drained Conditions – Beta Method",
+      "pdf_page_index": 449,
+      "pages": [
+        449
+      ],
+      "printed_page": "412",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-15",
+      "caption": "Guidance for Estimating β",
+      "chapter": 6,
+      "section_id": "6-5.4.1",
+      "section_title": "Shaft Resistance in Drained Conditions – Beta Method",
+      "pdf_page_index": 451,
+      "pages": [
+        451
+      ],
+      "printed_page": "414",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-16",
+      "caption": "Influence of Clay Consistency on α for Driven Piles (Tomlinson 1994)",
+      "chapter": 6,
+      "section_id": "6-5.4.2",
+      "section_title": "Shaft Resistance for Saturated, Undrained Soils – Alpha Method",
+      "pdf_page_index": 453,
+      "pages": [
+        453
+      ],
+      "printed_page": "416",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-17",
+      "caption": "Base Resistance Factors for Drained Conditions based on Soil Type and Friction Angle (after Fellenius 2021, Cheng 2004)",
+      "chapter": 6,
+      "section_id": "6-5.4.3.1",
+      "section_title": "Base Resistance for Drained Conditions – Semi-Empirical",
+      "pdf_page_index": 458,
+      "pages": [
+        458
+      ],
+      "printed_page": "421",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.cheng_Nq",
+      "implemented_in": [
+        "chapter6.cheng_Nq"
+      ]
+    },
+    {
+      "table_number": "6-18",
+      "caption": "Factors for Approximating Volumetric Strain",
+      "chapter": 6,
+      "section_id": "6-5.4.3.2",
+      "section_title": "Base Resistance for Drained Conditions – Vesic",
+      "pdf_page_index": 460,
+      "pages": [
+        460
+      ],
+      "printed_page": "423",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_18_Fnu",
+      "implemented_in": [
+        "chapter6.table_6_18_Fnu"
+      ]
+    },
+    {
+      "table_number": "6-19",
+      "caption": "Correlations Between SPT N Values and Nominal Shaft Resistance",
+      "chapter": 6,
+      "section_id": "6-5.4.4",
+      "section_title": "SPT and CPT-based SCA Methods",
+      "pdf_page_index": 463,
+      "pages": [
+        463
+      ],
+      "printed_page": "426",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-20",
+      "caption": "Correlations Between SPT N values and Nominal Base Resistance",
+      "chapter": 6,
+      "section_id": "6-5.4.4",
+      "section_title": "SPT and CPT-based SCA Methods",
+      "pdf_page_index": 463,
+      "pages": [
+        463
+      ],
+      "printed_page": "426",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-21",
+      "caption": "Side Resistance Factor (after Bustamante and Gianeselli 1982)",
+      "chapter": 6,
+      "section_id": "6-5.4.4",
+      "section_title": "SPT and CPT-based SCA Methods",
+      "pdf_page_index": 464,
+      "pages": [
+        464
+      ],
+      "printed_page": "427",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_21_ks",
+      "implemented_in": [
+        "chapter6.table_6_21_ks"
+      ]
+    },
+    {
+      "table_number": "6-22",
+      "caption": "Maximum Unit Side Resistance (after Bustamante and Gianeselli 1982)",
+      "chapter": 6,
+      "section_id": "6-5.4.4",
+      "section_title": "SPT and CPT-based SCA Methods",
+      "pdf_page_index": 464,
+      "pages": [
+        464
+      ],
+      "printed_page": "427",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_22_fp",
+      "implemented_in": [
+        "chapter6.table_6_22_fp"
+      ]
+    },
+    {
+      "table_number": "6-23",
+      "caption": "Base Bearing Factor (after Bustamante and Gianeselli 1982)",
+      "chapter": 6,
+      "section_id": "6-5.4.4",
+      "section_title": "SPT and CPT-based SCA Methods",
+      "pdf_page_index": 464,
+      "pages": [
+        464
+      ],
+      "printed_page": "427",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_23_kt",
+      "implemented_in": [
+        "chapter6.table_6_23_kt"
+      ]
+    },
+    {
+      "table_number": "6-24",
+      "caption": "Typical Nominal Unit Grout-to-Ground Bond Strengths (FHWA 2005)",
+      "chapter": 6,
+      "section_id": "6-5.4.5",
+      "section_title": "Micropiles",
+      "pdf_page_index": 465,
+      "pages": [
+        465
+      ],
+      "printed_page": "428",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-25",
+      "caption": "Joint Modification Factors, α E , for Unstable Rock (after FHWA 1999)",
+      "chapter": 6,
+      "section_id": "6-5.4.6.2",
+      "section_title": "Drilled Shafts",
+      "pdf_page_index": 467,
+      "pages": [
+        467
+      ],
+      "printed_page": "430",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-26",
+      "caption": "Group Efficiency Factor for Groups of Elements",
+      "chapter": 6,
+      "section_id": "6-5.5",
+      "section_title": "Static Axial Capacity in Compression for Groups of Elements",
+      "pdf_page_index": 469,
+      "pages": [
+        469
+      ],
+      "printed_page": "432",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-27",
+      "caption": "Recommended Strength Limit State Resistance Factors for Block Failure (AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-5.5",
+      "section_title": "Static Axial Capacity in Compression for Groups of Elements",
+      "pdf_page_index": 470,
+      "pages": [
+        470
+      ],
+      "printed_page": "433",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-28",
+      "caption": "Recommended Strength Limit State Uplift Resistance Factors (AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-5.6",
+      "section_title": "Uplift Capacity",
+      "pdf_page_index": 471,
+      "pages": [
+        471
+      ],
+      "printed_page": "434",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-29",
+      "caption": "Recommended Minimum Factors of Safety for Tension Loading",
+      "chapter": 6,
+      "section_id": "6-5.6",
+      "section_title": "Uplift Capacity",
+      "pdf_page_index": 472,
+      "pages": [
+        472
+      ],
+      "printed_page": "435",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-30",
+      "caption": "Guidance for Consideration of Down Drag",
+      "chapter": 6,
+      "section_id": "6-5.7",
+      "section_title": "Negative Skin Friction",
+      "pdf_page_index": 474,
+      "pages": [
+        474
+      ],
+      "printed_page": "437",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-31",
+      "caption": "Relationships for Normalized Drilled Shaft Settlement vs Normalized Loading",
+      "chapter": 6,
+      "section_id": "6-5.8.3",
+      "section_title": "Empirical Method for Drilled Shaft Settlement",
+      "pdf_page_index": 481,
+      "pages": [
+        481
+      ],
+      "printed_page": "444",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-32",
+      "caption": "Guidance for Locating the Equivalent Footing",
+      "chapter": 6,
+      "section_id": "6-5.8.4.1",
+      "section_title": "Empirical Selection of Equivalent Footing",
+      "pdf_page_index": 484,
+      "pages": [
+        484
+      ],
+      "printed_page": "447",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-33",
+      "caption": "Recommended Factors for Lateral Geotechnical Resistance (after FHWA 2018b)",
+      "chapter": 6,
+      "section_id": "6-6.3",
+      "section_title": "Lateral Analysis of Batter Piles",
+      "pdf_page_index": 491,
+      "pages": [
+        491
+      ],
+      "printed_page": "454",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-34",
+      "caption": "Equations for Characteristic Parameters (Clarke and Duncan 2002)",
+      "chapter": 6,
+      "section_id": "6-6.4.3",
+      "section_title": "Characteristic Load Method",
+      "pdf_page_index": 498,
+      "pages": [
+        498
+      ],
+      "printed_page": "461",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-35",
+      "caption": "R I Values for Circular Reinforced Concrete Section",
+      "chapter": 6,
+      "section_id": "6-6.4.3",
+      "section_title": "Characteristic Load Method",
+      "pdf_page_index": 499,
+      "pages": [
+        499
+      ],
+      "printed_page": "462",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-36",
+      "caption": "Constants for Load and Moment Deflection Equations (after Brettmann and Duncan 1996)",
+      "chapter": 6,
+      "section_id": "6-6.4.3",
+      "section_title": "Characteristic Load Method",
+      "pdf_page_index": 499,
+      "pages": [
+        499
+      ],
+      "printed_page": "462",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_36_clm",
+      "implemented_in": [
+        "chapter6.table_6_36_clm"
+      ]
+    },
+    {
+      "table_number": "6-37",
+      "caption": "Coefficients for Estimating the Maximum Moment",
+      "chapter": 6,
+      "section_id": "6-6.4.3",
+      "section_title": "Characteristic Load Method",
+      "pdf_page_index": 501,
+      "pages": [
+        501
+      ],
+      "printed_page": "464",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter6.table_6_37_clm",
+      "implemented_in": [
+        "chapter6.table_6_37_clm"
+      ]
+    },
+    {
+      "table_number": "6-38",
+      "caption": "p-Multipliers to Account for Group Effects in Design (after AASHTO 2020, Mokwa 1999)",
+      "chapter": 6,
+      "section_id": "6-6.5",
+      "section_title": "Groups of Vertical Piles",
+      "pdf_page_index": 503,
+      "pages": [
+        503
+      ],
+      "printed_page": "466",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-39",
+      "caption": "AASHTO (2020) Resistance Factors During Pile Driving",
+      "chapter": 6,
+      "section_id": "6-7.1.1",
+      "section_title": "Driving Stresses",
+      "pdf_page_index": 506,
+      "pages": [
+        506
+      ],
+      "printed_page": "469",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-40",
+      "caption": "Yield Stress and Driving Stress Limit for Common Steel Piles",
+      "chapter": 6,
+      "section_id": "6-7.1.1.1",
+      "section_title": "Steel Piles",
+      "pdf_page_index": 507,
+      "pages": [
+        507
+      ],
+      "printed_page": "470",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-41",
+      "caption": "Allowable Stresses Parallel to the Grain for Treated Timber Graded in Accordance with ASTM D25 (AWPI 2002)",
+      "chapter": 6,
+      "section_id": "6-7.1.1.3",
+      "section_title": "Timber Piles",
+      "pdf_page_index": 508,
+      "pages": [
+        508
+      ],
+      "printed_page": "471",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-42",
+      "caption": "Resistance Factors for Structural Strength Limit State (AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-7.1.2",
+      "section_title": "Structural Resistance for Static Design",
+      "pdf_page_index": 509,
+      "pages": [
+        509
+      ],
+      "printed_page": "472",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-43",
+      "caption": "Recommended Allowable Stresses for Typical Foundation Materials (ICC 2015)",
+      "chapter": 6,
+      "section_id": "6-7.1.2",
+      "section_title": "Structural Resistance for Static Design",
+      "pdf_page_index": 510,
+      "pages": [
+        510
+      ],
+      "printed_page": "473",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-44",
+      "caption": "Rate ( n h ) of Increase in Subgrade Modulus with Depth for Sands (AASHTO 2020)",
+      "chapter": 6,
+      "section_id": "6-7.2",
+      "section_title": "Buckling",
+      "pdf_page_index": 512,
+      "pages": [
+        512
+      ],
+      "printed_page": "475",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-45",
+      "caption": "Recommended Strength Limit State Resistance Factors for Axial Loading based on Static and Dynamic Testing",
+      "chapter": 6,
+      "section_id": "6-8.1",
+      "section_title": "Introduction",
+      "pdf_page_index": 517,
+      "pages": [
+        517
+      ],
+      "printed_page": "480",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-46",
+      "caption": "Interpretation of Failure Load from Static Load Tests",
+      "chapter": 6,
+      "section_id": "6-8.3",
+      "section_title": "Interpretation of Axial Compressive Load Tests",
+      "pdf_page_index": 521,
+      "pages": [
+        521
+      ],
+      "printed_page": "484",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-47",
+      "caption": "Common Dynamic Methods Based on Wave Mechanics",
+      "chapter": 6,
+      "section_id": "6-9",
+      "section_title": "Dynamic Methods of Analysis and Testing",
+      "pdf_page_index": 523,
+      "pages": [
+        523
+      ],
+      "printed_page": "486",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-48",
+      "caption": "Strength Limit State Resistance Factors for Axial Loading based on Rapid Load Testing (after McVay et al. 2013, FHWA 2018a)",
+      "chapter": 6,
+      "section_id": "6-9.7",
+      "section_title": "Rapid Load Tests",
+      "pdf_page_index": 534,
+      "pages": [
+        534
+      ],
+      "printed_page": "497",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "6-49",
+      "caption": "Problem Soil Considerations for Deep Foundations",
+      "chapter": 6,
+      "section_id": "6-11",
+      "section_title": "PROBLEM SOILS AND DEEP FOUNDATIONS",
+      "pdf_page_index": 538,
+      "pages": [
+        538
+      ],
+      "printed_page": "501",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-1",
+      "caption": "Common Statistics",
+      "chapter": 7,
+      "section_id": "7-2.1",
+      "section_title": "Statistics",
+      "pdf_page_index": 547,
+      "pages": [
+        547
+      ],
+      "printed_page": "510",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "chapter7.coefficient_of_variation",
+      "implemented_in": [
+        "chapter7.coefficient_of_variation",
+        "chapter7.coefficient_of_variation_from_params",
+        "chapter7.sample_mean",
+        "chapter7.sample_standard_deviation",
+        "chapter7.sample_variance"
+      ]
+    },
+    {
+      "table_number": "7-2",
+      "caption": "Probabilistic Terminology (after Ayyub and McCuen 2016, Baecher and Christian 2003)",
+      "chapter": 7,
+      "section_id": "7-2.3.1",
+      "section_title": "Concepts and Terminology",
+      "pdf_page_index": 550,
+      "pages": [
+        550
+      ],
+      "printed_page": "513",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-3",
+      "caption": "Properties of Random Variables",
+      "chapter": 7,
+      "section_id": "7-2.3.3",
+      "section_title": "Probability and Cumulative Distributions",
+      "pdf_page_index": 554,
+      "pages": [
+        554
+      ],
+      "printed_page": "517",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-4",
+      "caption": "Typical Combined COV for Common Geotechnical Parameters (after Phoon and Kulhawy 1999a,b; Sleep and Duncan 2014, FHWA 2001, Guan et al. 2001)",
+      "chapter": 7,
+      "section_id": "7-3.1.5",
+      "section_title": "Combined Uncertainty Effects",
+      "pdf_page_index": 563,
+      "pages": [
+        563
+      ],
+      "printed_page": "526",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-5",
+      "caption": "Reliability Analysis Methods",
+      "chapter": 7,
+      "section_id": "7-4.2",
+      "section_title": "Reliability Analysis",
+      "pdf_page_index": 571,
+      "pages": [
+        571
+      ],
+      "printed_page": "534",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-6",
+      "caption": "Comparison of Ultimate Limit State Design Methodologies (after Kulhawy 2017)",
+      "chapter": 7,
+      "section_id": "7-4.5",
+      "section_title": "Load and Resistance Factor Design (LRFD)",
+      "pdf_page_index": 587,
+      "pages": [
+        587
+      ],
+      "printed_page": "550",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "7-7",
+      "caption": "Resistance Factors based on Fitting Directly to ASD rather than Reliability Theory (after FHWA 2001)",
+      "chapter": 7,
+      "section_id": "7-4.5.2",
+      "section_title": "LRFD Calibration",
+      "pdf_page_index": 589,
+      "pages": [
+        589
+      ],
+      "printed_page": "552",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-1",
+      "caption": "Forces and Moments for Wall Stability Analysis",
+      "chapter": null,
+      "section_id": "B-1.3",
+      "section_title": "Evaluation of Forces and Moments.",
+      "pdf_page_index": 638,
+      "pages": [
+        638
+      ],
+      "printed_page": "601",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-2",
+      "caption": "Implicit Solution for Footing Width with Desired F BC",
+      "chapter": null,
+      "section_id": "B-1.6",
+      "section_title": "Bearing capacity",
+      "pdf_page_index": 640,
+      "pages": [
+        640
+      ],
+      "printed_page": "603",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-1.6"
+    },
+    {
+      "table_number": "B-3",
+      "caption": "Summary of Minimum Footing Widths Meeting Stability Requirements",
+      "chapter": null,
+      "section_id": "B-1.7",
+      "section_title": "Conclusions from the Analysis.",
+      "pdf_page_index": 641,
+      "pages": [
+        641
+      ],
+      "printed_page": "604",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-4",
+      "caption": "Summary of Stability Checks for Example 1",
+      "chapter": null,
+      "section_id": "B-1.7",
+      "section_title": "Conclusions from the Analysis.",
+      "pdf_page_index": 642,
+      "pages": [
+        642
+      ],
+      "printed_page": "605",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-5",
+      "caption": "Earth Pressure Coefficients Used in the Design",
+      "chapter": null,
+      "section_id": "B-2.3",
+      "section_title": "Calculation of Lateral Pressures and Forces.",
+      "pdf_page_index": 645,
+      "pages": [
+        645
+      ],
+      "printed_page": "608",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-2.3"
+    },
+    {
+      "table_number": "B-6",
+      "caption": "Summary of Lateral Pressure and Force Calculations",
+      "chapter": null,
+      "section_id": "B-2.3",
+      "section_title": "Calculation of Lateral Pressures and Forces.",
+      "pdf_page_index": 646,
+      "pages": [
+        646
+      ],
+      "printed_page": "609",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-7",
+      "caption": "Summary of Moment Calculations",
+      "chapter": null,
+      "section_id": "B-2.4",
+      "section_title": "Embedment of Sheet Pile and Tie Rod Force.",
+      "pdf_page_index": 647,
+      "pages": [
+        647
+      ],
+      "printed_page": "610",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-8",
+      "caption": "Calculation of the Maximum Bending Moment in the Sheet Pile",
+      "chapter": null,
+      "section_id": "B-2.6",
+      "section_title": "Location of Maximum Moment.",
+      "pdf_page_index": 650,
+      "pages": [
+        650
+      ],
+      "printed_page": "613",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-9",
+      "caption": "Properties of the PZ-22 Hot Rolled Steel Sheet Pile",
+      "chapter": null,
+      "section_id": "B-2.6",
+      "section_title": "Location of Maximum Moment.",
+      "pdf_page_index": 650,
+      "pages": [
+        650
+      ],
+      "printed_page": "613",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-10",
+      "caption": "Calculation of Net Allowable Anchor Resistance",
+      "chapter": null,
+      "section_id": "B-2.7",
+      "section_title": "Design of Continuous Anchor.",
+      "pdf_page_index": 653,
+      "pages": [
+        653
+      ],
+      "printed_page": "616",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-11",
+      "caption": "Summary of Anchor Design",
+      "chapter": null,
+      "section_id": "B-2.7",
+      "section_title": "Design of Continuous Anchor.",
+      "pdf_page_index": 654,
+      "pages": [
+        654
+      ],
+      "printed_page": "617",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-12",
+      "caption": "Calculation of the Elevation of the Resultant Force",
+      "chapter": null,
+      "section_id": "B-2.7",
+      "section_title": "Design of Continuous Anchor.",
+      "pdf_page_index": 654,
+      "pages": [
+        654
+      ],
+      "printed_page": "617",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-2.7"
+    },
+    {
+      "table_number": "B-13",
+      "caption": "Summary of Anchored Bulkhead Design Example",
+      "chapter": null,
+      "section_id": "B-2.8",
+      "section_title": "Conclusions from the Analysis.",
+      "pdf_page_index": 654,
+      "pages": [
+        654
+      ],
+      "printed_page": "617",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-14",
+      "caption": "Design Properties of Overconsolidated Clay",
+      "chapter": null,
+      "section_id": "B-3.1",
+      "section_title": "Description of the Problem.",
+      "pdf_page_index": 655,
+      "pages": [
+        655
+      ],
+      "printed_page": "618",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-15",
+      "caption": "Bearing Capacity Factors for the Example 3",
+      "chapter": null,
+      "section_id": "B-3.3",
+      "section_title": "Bearing Capacity Equations.",
+      "pdf_page_index": 656,
+      "pages": [
+        656
+      ],
+      "printed_page": "619",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.3"
+    },
+    {
+      "table_number": "B-16",
+      "caption": "Meyerhof Corrections for Footing Shape and Depth",
+      "chapter": null,
+      "section_id": "B-3.4",
+      "section_title": "Footing 1 – Located Far from the Top of the Slope.",
+      "pdf_page_index": 658,
+      "pages": [
+        658
+      ],
+      "printed_page": "621",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.4"
+    },
+    {
+      "table_number": "B-17",
+      "caption": "Brinch Hansen Corrections for Footing Shape and Depth",
+      "chapter": null,
+      "section_id": "B-3.4",
+      "section_title": "Footing 1 – Located Far from the Top of the Slope.",
+      "pdf_page_index": 659,
+      "pages": [
+        659
+      ],
+      "printed_page": "622",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.4"
+    },
+    {
+      "table_number": "B-18",
+      "caption": "Interpolation of Bearing Capacity Factors for Sloping Conditions",
+      "chapter": null,
+      "section_id": "B-3.5",
+      "section_title": "Footing 2 – Located Close to the Top of the Slope.",
+      "pdf_page_index": 661,
+      "pages": [
+        661
+      ],
+      "printed_page": "624",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.5"
+    },
+    {
+      "table_number": "B-19",
+      "caption": "Corrections for Footing Shape, Depth, and Ground Inclination (Brinch Hansen 1970)",
+      "chapter": null,
+      "section_id": "B-3.6",
+      "section_title": "Footing 3 – Located on the Slope.",
+      "pdf_page_index": 662,
+      "pages": [
+        662
+      ],
+      "printed_page": "625",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.6"
+    },
+    {
+      "table_number": "B-20",
+      "caption": "Iterative Sizing of Footing 3",
+      "chapter": null,
+      "section_id": "B-3.6",
+      "section_title": "Footing 3 – Located on the Slope.",
+      "pdf_page_index": 663,
+      "pages": [
+        663
+      ],
+      "printed_page": "626",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.6"
+    },
+    {
+      "table_number": "B-21",
+      "caption": "Summary of Bearing Capacity Analyses - Example 3",
+      "chapter": null,
+      "section_id": "B-3.7",
+      "section_title": "Conclusions from the Analysis.",
+      "pdf_page_index": 663,
+      "pages": [
+        663
+      ],
+      "printed_page": "626",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-3.7"
+    },
+    {
+      "table_number": "B-22",
+      "caption": "Subsurface Profile",
+      "chapter": null,
+      "section_id": "B-4.1",
+      "section_title": "Description of the Problem.",
+      "pdf_page_index": 664,
+      "pages": [
+        664
+      ],
+      "printed_page": "627",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-4.1"
+    },
+    {
+      "table_number": "B-23",
+      "caption": "Calculated Vertical Stresses, OCR , and Modulus at Layer Midpoints",
+      "chapter": null,
+      "section_id": "B-4.3",
+      "section_title": "Immediate Settlement.",
+      "pdf_page_index": 667,
+      "pages": [
+        667
+      ],
+      "printed_page": "630",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-24",
+      "caption": "Evaluation of Initial Stresses Prior to Construction",
+      "chapter": null,
+      "section_id": "B-4.4",
+      "section_title": "Primary Consolidation.",
+      "pdf_page_index": 668,
+      "pages": [
+        668
+      ],
+      "printed_page": "631",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-4.4"
+    },
+    {
+      "table_number": "B-25",
+      "caption": "Evaluation of Preconsolidation Stress and Stress Changes",
+      "chapter": null,
+      "section_id": "B-4.4",
+      "section_title": "Primary Consolidation.",
+      "pdf_page_index": 669,
+      "pages": [
+        669
+      ],
+      "printed_page": "632",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-26",
+      "caption": "Strain and Compression Calculations",
+      "chapter": null,
+      "section_id": "B-4.4",
+      "section_title": "Primary Consolidation.",
+      "pdf_page_index": 669,
+      "pages": [
+        669
+      ],
+      "printed_page": "632",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-27",
+      "caption": "Summary of Estimated Settlements and Subgrade Reaction Moduli",
+      "chapter": null,
+      "section_id": "B-4.6",
+      "section_title": "Conclusions from the Analysis.",
+      "pdf_page_index": 670,
+      "pages": [
+        670
+      ],
+      "printed_page": "633",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-28",
+      "caption": "Key Values for Load and Resistance Curves",
+      "chapter": null,
+      "section_id": "B-5.5",
+      "section_title": "Neutral Plane Analysis.",
+      "pdf_page_index": 677,
+      "pages": [
+        677
+      ],
+      "printed_page": "640",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-30",
+      "caption": "Consolidation Settlement Calculations",
+      "chapter": null,
+      "section_id": "B-5.7",
+      "section_title": "Settlement Analysis.",
+      "pdf_page_index": 679,
+      "pages": [
+        679
+      ],
+      "printed_page": "642",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-31",
+      "caption": "Estimated Elastic Compression of the Piles above the Neutral Plane",
+      "chapter": null,
+      "section_id": "B-5.7",
+      "section_title": "Settlement Analysis.",
+      "pdf_page_index": 680,
+      "pages": [
+        680
+      ],
+      "printed_page": "643",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-32",
+      "caption": "Calculation of Weighted p-Multiplier",
+      "chapter": null,
+      "section_id": "B-6.3.1",
+      "section_title": "Calculation of p-Multiplier",
+      "pdf_page_index": 683,
+      "pages": [
+        683
+      ],
+      "printed_page": "646",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-6.3.1"
+    },
+    {
+      "table_number": "B-33",
+      "caption": "Pile Cap Pressure Calculations",
+      "chapter": null,
+      "section_id": "B-6.3.3",
+      "section_title": "Lateral Resistance of the Pile Cap.",
+      "pdf_page_index": 684,
+      "pages": [
+        684
+      ],
+      "printed_page": "647",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-34",
+      "caption": "Deflection, Lateral Pile Load, and Maximum Moment due to Unfactored Loading",
+      "chapter": null,
+      "section_id": "B-6.3.6",
+      "section_title": "Calculation of Maximum Moment under Service Conditions.",
+      "pdf_page_index": 687,
+      "pages": [
+        687
+      ],
+      "printed_page": "650",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-35",
+      "caption": "Probabilistic Material Properties for Wall Design",
+      "chapter": null,
+      "section_id": "B-7.1",
+      "section_title": "Description of the Problem.",
+      "pdf_page_index": 689,
+      "pages": [
+        689
+      ],
+      "printed_page": "652",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7.1"
+    },
+    {
+      "table_number": "B-36",
+      "caption": "FOSM Approximation for Retaining Wall Example",
+      "chapter": null,
+      "section_id": "B-7.2",
+      "section_title": "Overturning.",
+      "pdf_page_index": 690,
+      "pages": [
+        690
+      ],
+      "printed_page": "653",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-37",
+      "caption": "Summary of Probabilities of Unsatisfactory Overturning Resistance",
+      "chapter": null,
+      "section_id": "B-7.2",
+      "section_title": "Overturning.",
+      "pdf_page_index": 690,
+      "pages": [
+        690
+      ],
+      "printed_page": "653",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-38",
+      "caption": "Summary of Probabilities of Unsatisfactory Sliding Resistance",
+      "chapter": null,
+      "section_id": "B-7.3",
+      "section_title": "Sliding.",
+      "pdf_page_index": 692,
+      "pages": [
+        692
+      ],
+      "printed_page": "655",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7.3"
+    },
+    {
+      "table_number": "B-39",
+      "caption": "Approximate FOSM Analysis of Bearing Capacity",
+      "chapter": null,
+      "section_id": "B-7.4",
+      "section_title": "Bearing Capacity.",
+      "pdf_page_index": 693,
+      "pages": [
+        693
+      ],
+      "printed_page": "656",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7.4"
+    },
+    {
+      "table_number": "B-40",
+      "caption": "Point Estimate Analysis of Bearing Capacity",
+      "chapter": null,
+      "section_id": "B-7.4",
+      "section_title": "Bearing Capacity.",
+      "pdf_page_index": 694,
+      "pages": [
+        694
+      ],
+      "printed_page": "657",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "B-41",
+      "caption": "Monte Carlo Analysis of Bearing Capacity",
+      "chapter": null,
+      "section_id": "B-7.4",
+      "section_title": "Bearing Capacity.",
+      "pdf_page_index": 695,
+      "pages": [
+        695
+      ],
+      "printed_page": "658",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7.4"
+    },
+    {
+      "table_number": "B-42",
+      "caption": "Summary of Probabilistic Stability Checks for Wall Design",
+      "chapter": null,
+      "section_id": "B-7.5",
+      "section_title": "Conclusions from Analysis.",
+      "pdf_page_index": 696,
+      "pages": [
+        696
+      ],
+      "printed_page": "659",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B-7.5"
+    },
+    {
+      "table_number": "B-29",
+      "caption": "Delineation of Compressible Soil Profile and Initial Vertical Stress",
+      "chapter": null,
+      "section_id": "B-5.7",
+      "section_title": "Settlement Analysis.",
+      "pdf_page_index": 678,
+      "pages": [
+        678
+      ],
+      "printed_page": "641",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    }
+  ]
+}

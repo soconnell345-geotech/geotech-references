@@ -81,6 +81,19 @@ class TestTable32DeleteriousMaterialLimit:
         r = table_3_2_deleterious_material_limit("minus_200", "coarse_moderate")
         assert r["limit_pct_mass"] == 0.5
 
+    def test_footnotes_2_and_3(self):
+        # Table 3-2, UFC 3-250-04 PDF 33 (pdf_page 32), printed 15:
+        # footnote 2 raises the minus-No. 200 limit to 1.5 percent for
+        # crushed aggregates with crusher-dust fines; footnote 3 exempts
+        # blast-furnace slag coarse aggregate from the lightweight limit.
+        r = table_3_2_deleterious_material_limit("material_finer_than_no_200", "coarse_severe")
+        assert r["limit_pct_mass"] == 0.5
+        assert "1.5 percent" in r["footnote"] and "crusher dust" in r["footnote"]
+        r = table_3_2_deleterious_material_limit("lightweight_particles", "coarse_severe")
+        assert r["limit_pct_mass"] == 0.2
+        assert "blast-furnace slag" in r["footnote"]
+        assert "footnote" not in table_3_2_deleterious_material_limit("shale", "coarse_severe")
+
     def test_not_applicable_cell_returns_none(self):
         r = table_3_2_deleterious_material_limit("shale", "fine")
         assert r["limit_pct_mass"] is None
@@ -285,29 +298,44 @@ class TestDowelBarTolerances:
 # ============================================================================
 
 class TestTable91MaximumJointSpacing:
+    # Table 9-1 "Maximum Joint Spacing", UFC 3-250-04 PDF 122 (pdf_page 121),
+    # printed 104: < 9 in 12.5-15 ft (3.8-4.6 m), footnote 1: 10-15 ft
+    # (3.0-4.6 m) for roads and parking lots; 9-12 in 15-20 ft (4.6-6 m);
+    # > 12 in 20 ft (6 m). The range is a range of the MAXIMUM spacing.
     def test_thin_slab_airfield(self):
         r = table_9_1_maximum_joint_spacing(8, "airfield")
-        assert r["joint_spacing_min_ft"] == 12.5
-        assert r["joint_spacing_max_ft"] == 15
+        assert r["max_joint_spacing_low_ft"] == 12.5
+        assert r["max_joint_spacing_high_ft"] == 15
+        assert "joint_spacing_min_ft" not in r
 
     def test_thin_slab_road_narrower_min(self):
         r = table_9_1_maximum_joint_spacing(8, "road")
-        assert r["joint_spacing_min_ft"] == 10
-        assert r["joint_spacing_max_ft"] == 15
+        assert r["max_joint_spacing_low_ft"] == 10
+        assert r["max_joint_spacing_high_ft"] == 15
+        assert (r["max_joint_spacing_low_m"], r["max_joint_spacing_high_m"]) == (3.0, 4.6)
 
     def test_mid_thickness_slab(self):
         r = table_9_1_maximum_joint_spacing(10, "airfield")
-        assert r["joint_spacing_min_ft"] == 15
-        assert r["joint_spacing_max_ft"] == 20
+        assert r["max_joint_spacing_low_ft"] == 15
+        assert r["max_joint_spacing_high_ft"] == 20
+
+    def test_twelve_inch_slab_is_in_9_to_12_row(self):
+        r = table_9_1_maximum_joint_spacing(12)
+        assert r["thickness_row"] == "9-12"
+        assert (r["max_joint_spacing_low_ft"], r["max_joint_spacing_high_ft"]) == (15, 20)
+        assert table_9_1_maximum_joint_spacing(9)["thickness_row"] == "9-12"
+        assert table_9_1_maximum_joint_spacing(12.5)["thickness_row"] == "> 12"
 
     def test_thick_slab(self):
         r = table_9_1_maximum_joint_spacing(14, "airfield")
-        assert r["joint_spacing_min_ft"] == 20
-        assert r["joint_spacing_max_ft"] == 20
+        assert r["max_joint_spacing_low_ft"] == 20
+        assert r["max_joint_spacing_high_ft"] == 20
 
-    def test_metric_conversion_present(self):
+    def test_metric_as_printed(self):
         r = table_9_1_maximum_joint_spacing(10)
-        assert r["joint_spacing_min_m"] == pytest.approx(4.57, abs=0.05)
+        assert (r["max_joint_spacing_low_m"], r["max_joint_spacing_high_m"]) == (4.6, 6)
+        r = table_9_1_maximum_joint_spacing(8)
+        assert (r["max_joint_spacing_low_m"], r["max_joint_spacing_high_m"]) == (3.8, 4.6)
 
     def test_invalid_thickness(self):
         with pytest.raises(ValueError):
@@ -519,8 +547,12 @@ class TestSearchSections:
         assert len(results) > 0
 
     def test_search_no_results(self):
+        """Nonsense: no section holds every word, so the hits are the
+        ranked search's, each marked as holding only some of the words
+        (2026-11-10 review, core-07; it was an empty list)."""
         results = search_sections("ufc_concrete_practice", "xyzzy_nonexistent_term_abc")
-        assert results == []
+        assert all(r["match"] == "any word" and "xyzzy" in r["lacks"]
+                   for r in results)
 
 
 class TestListChapters:

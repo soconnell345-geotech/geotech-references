@@ -155,13 +155,14 @@ def beam_shear_stress(shear_force, area, shape="rectangular"):
 
 
 # ============================================================================
-# Eq 9-15, 9-16 -- Tapered beam stresses (printed p. 9-9, pdf_page 240)
+# Eq 9-15, 9-16 -- Tapered beam stresses (printed pp. 9-9 to 9-10,
+# pdf_page 240-241)
 # ============================================================================
 
 def tapered_beam_stresses(moment, b, h0, theta_rad):
     """Eq 9-16: combined stress state (bending fx, shear fxy, perpendicular
     tension/compression fy) at the tapered edge of a beam of constant
-    width b that tapers in depth at angle theta (printed p. 9-9, valid
+    width b that tapers in depth at angle theta (printed p. 9-10, valid
     for taper slopes < 25 degrees).
 
         fx = 3*M / (2*b*h0^2)
@@ -194,7 +195,7 @@ def tapered_beam_stresses(moment, b, h0, theta_rad):
     return {
         "moment": moment, "b": b, "h0": h0, "theta_rad": theta_rad,
         "fx": fx, "fxy": fxy, "fy": fy, "equation": "9-16",
-        "printed_page": "9-9", "pdf_page": 240,
+        "printed_page": "9-10", "pdf_page": 241,
     }
 
 
@@ -322,7 +323,9 @@ def size_effect_ratio_uniform_vs_concentrated(hu, lu, hc, lc, ac, m=18.0):
         as printed; the exponent 1/18 in the printed equation is not
         parameterized independently of m in the source, so m is exposed
         here only for consistency with Eq 9-17/9-18 -- leave at 18 unless
-        a source-documented alternative is available).
+        a source-documented alternative is available). A value other than
+        18 changes only the outer exponent 1/m; the 18 in (1 + 18*ac/Lc)
+        stays as printed.
 
     Returns
     -------
@@ -382,36 +385,46 @@ def shear_strength_size_adjusted(cf, tau_astm, area, units="metric"):
 
 # Figure 9-14: coefficients A (tension-edge At, compression-edge Ac) and B
 # for the crack-initiation criterion, as a function of slit-depth ratio
-# a/h. Units: A, B in (kPa*sqrt(mm))^-1 x 1e-4 as plotted. Values below are
-# a visual digitization of the printed curves at a/h = 0, 0.1, ..., 0.5,
-# 0.55 (nearest ~0.05 gridline on the plotted 1e-4 scale); piecewise-linear
-# interpolation between them approximates the printed curves. The
-# handbook's own text notes these curve values are already conservative
-# estimates for most softwood species -- treat this digitization as an
-# approximate figure read, not an exact table value.
+# a/h. Units: A, B in (kPa*sqrt(mm))^-1 x 1e-4 as plotted (left axis).
+# Read off the rendered figure (FPL-GTR-282 pdf 244 / printed 9-12) by
+# tracing the curves' pixels at 400 dpi: left-axis ticks 2.0 / 1.5 / 1.0 /
+# 0.5 / 0 at 324.5 px per unit, a/h = 0 to 0.6 across 931 px; each value is
+# the middle of the drawn line, about +/-0.01 (the line is ~6 px thick).
+# Below a/h = 0.02 the three curves run together at the origin and cannot
+# be read apart. Linear interpolation between stations. The handbook's
+# text notes these values are conservative for most softwood species.
+# (Before 2026-11-10 the table held a coarse visual estimate: At 0.05 at
+# a/h 0.1 where the curve is at 0.177.)
 FIGURE_9_14_AB = [
     # (a/h, A_tension, A_compression, B)  -- units 1e-4 (kPa*sqrt(mm))^-1
-    (0.0, 0.00, 0.00, 0.00),
-    (0.1, 0.05, 0.03, 0.35),
-    (0.2, 0.15, 0.07, 0.65),
-    (0.3, 0.25, 0.10, 1.00),
-    (0.4, 0.45, 0.15, 1.35),
-    (0.5, 0.60, 0.20, 1.75),
-    (0.55, 0.70, 0.25, 2.00),
+    (0.02, 0.097, 0.040, 0.040),
+    (0.05, 0.136, 0.060, 0.100),
+    (0.10, 0.177, 0.074, 0.277),
+    (0.15, 0.202, 0.079, 0.459),
+    (0.20, 0.236, 0.085, 0.644),
+    (0.25, 0.268, 0.088, 0.826),
+    (0.30, 0.304, 0.099, 1.014),
+    (0.35, 0.341, 0.106, 1.202),
+    (0.40, 0.385, 0.116, 1.388),
+    (0.45, 0.436, 0.123, 1.576),
+    (0.50, 0.504, 0.137, 1.761),
+    (0.55, 0.589, 0.160, 1.948),
 ]
 
 
 def figure_9_14_coefficients(a_over_h, edge="tension"):
     """Figure 9-14: coefficients A (tension- or compression-edge slit) and
-    B for the crack-initiation criterion (Eq 9-21), by slit-depth ratio
-    a/h (printed p. 9-12). Linearly interpolated between the printed
-    curve's plotted stations; conservative for most softwood species per
-    the handbook text.
+    B, in (kPa*sqrt(mm))^-1, for the crack-initiation criterion (Eq 9-21),
+    by slit-depth ratio a/h (printed p. 9-12). Values traced off the
+    rendered figure at a/h 0.02, 0.05, 0.10, ..., 0.55 and linearly
+    interpolated (``FIGURE_9_14_AB``); a figure read, about +/-0.01e-4.
+    Conservative for most softwood species per the handbook text.
 
     Parameters
     ----------
     a_over_h : float
-        a/h, slit depth over beam depth (0 to ~0.55, the plotted range).
+        a/h, slit depth over beam depth, 0.02 to 0.55 (the curves start
+        together at the origin and end at 0.55; outside that ValueError).
     edge : str, optional
         'tension' (default, uses At) or 'compression' (uses Ac).
 
@@ -425,7 +438,10 @@ def figure_9_14_coefficients(a_over_h, edge="tension"):
         raise ValueError(f"edge must be 'tension' or 'compression', got {edge!r}")
     pts = FIGURE_9_14_AB
     if not (pts[0][0] <= a_over_h <= pts[-1][0]):
-        raise ValueError(f"a_over_h={a_over_h} outside the digitized Figure 9-14 range [0, 0.55]")
+        raise ValueError(
+            f"a_over_h={a_over_h} outside the range read from Figure 9-14 "
+            f"[{pts[0][0]}, {pts[-1][0]}]: the printed curves end at 0.55, and "
+            f"below 0.02 they run together at the origin")
     a_idx = 1 if edge == "tension" else 2
     for i in range(len(pts) - 1):
         x0, x1 = pts[i][0], pts[i + 1][0]
@@ -485,17 +501,20 @@ def crack_initiation_check(h, b, moment, shear_force, a_coefficient, b_coefficie
 # ============================================================================
 
 def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension):
-    """Eq 9-22: net bending stress from combined bending and concentric
-    axial load, on a simply supported, pin-ended beam (printed p. 9-12).
-    Total stress is by superposition of this with Eq 9-12 (fb + P/A).
+    """Eq 9-22: net bending stress fb from combined bending and concentric
+    axial load on a simply supported, pin-ended beam, and the edge stresses
+    ft_max (convex edge, tension) and fc_max (concave edge, compression),
+    in the unit of fb0 and P/A (printed p. 9-12).
 
         fb = fb0 / (1 +/- P/Pcr)   (+ tension, - compression)
 
-    Worked example forms (printed): with fb0 tensile on the convex edge
-    and compressive on the concave edge, and an added tensile axial force P:
-        ft_max = fb0/(1+P/Pcr) + P/A   (convex edge)
-        fc_max = fb0/(1+P/Pcr) - P/A   (concave edge; negative result means
-                                         the stress is actually tensile)
+    The print obtains the total stress "by superposition of the stresses
+    given by Equations (9-12) and (9-22)" and prints the edge stresses for
+    a tensile P only: ft_max = fb0/(1+P/Pcr) + P/A, fc_max = fb0/(1+P/Pcr)
+    - P/A (FPL-GTR-282 pdf 244). For a compressive P the same superposition
+    gives ft_max = fb - P/A and fc_max = fb + P/A (fb0 = 10, P/A = 2,
+    P/Pcr = 0.2: ft_max 10.5, fc_max 14.5). A negative result means the
+    stress is of the other sign.
 
     Parameters
     ----------
@@ -518,7 +537,9 @@ def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension)
     """
     sign = 1.0 if is_tension else -1.0
     fb = fb0 / (1.0 + sign * axial_load / p_critical)
-    axial_stress_value = axial_load / area
+    # Eq 9-12 superposed: a tensile P adds P/A on the convex (tension) edge,
+    # a compressive P adds P/A on the concave (compression) edge.
+    axial_stress_value = sign * axial_load / area
     return {
         "fb0": fb0, "axial_load": axial_load, "area": area,
         "p_critical": p_critical, "is_tension": is_tension, "fb": fb,
@@ -529,14 +550,22 @@ def combined_bending_axial_stress(fb0, axial_load, area, p_critical, is_tension)
 
 def eccentric_bending_axial_stress(fb0, eccentricity, section_modulus_value,
                                     axial_load, area, p_critical, is_tension):
-    """Printed p. 9-12: maximum tensile/compressive stresses under an
-    eccentrically applied axial load added to transverse bending (fb0
-    tensile on the convex edge, compressive on the concave edge). The
-    bending stress fb0 is augmented by +/- P*e0/S before applying the
-    Eq 9-22 amplification.
+    """Printed p. 9-12: maximum tensile stress ft_max (convex edge) and
+    compressive stress fc_max (concave edge), in the unit of fb0 and P/A,
+    under an eccentrically applied axial load added to transverse bending
+    (fb0 tensile on the convex edge, compressive on the concave edge).
+
+    The print augments fb0 "by +/-P*e0/S" and prints the case of a tensile
+    P eccentric toward the concave edge (Figure 9-7, FPL-GTR-282 pdf 244):
 
         ft_max = (fb0 - P*e0/S)/(1+P/Pcr) + P/A
         fc_max = (fb0 - P*e0/S)/(1+P/Pcr) - P/A
+
+    For a compressive P at the same eccentricity the moment P*e0 adds to
+    the bending and P/A adds on the concave edge (the superposition of
+    Eq 9-12 and 9-22): ft_max = (fb0 + P*e0/S)/(1-P/Pcr) - P/A and fc_max =
+    (fb0 + P*e0/S)/(1-P/Pcr) + P/A (fb0 = 10, P*e0/S = 1, P/A = 2,
+    P/Pcr = 0.2: 11.75 and 15.75).
 
     Parameters
     ----------
@@ -562,9 +591,9 @@ def eccentric_bending_axial_stress(fb0, eccentricity, section_modulus_value,
         {'ft_max', 'fc_max', 'printed_page': '9-12', ...}
     """
     sign = 1.0 if is_tension else -1.0
-    augmented = fb0 - axial_load * eccentricity / section_modulus_value
+    augmented = fb0 - sign * axial_load * eccentricity / section_modulus_value
     amplified = augmented / (1.0 + sign * axial_load / p_critical)
-    axial_stress_value = axial_load / area
+    axial_stress_value = sign * axial_load / area
     return {
         "fb0": fb0, "eccentricity": eccentricity, "axial_load": axial_load,
         "ft_max": amplified + axial_stress_value,
@@ -603,23 +632,27 @@ def torsional_shear_stress_circular(torque, diameter):
 def _beta_rectangular_torsion(b_over_h):
     """Closed-form reproduction of Figure 9-15 (coefficient beta for
     maximum torsional shear stress in a rectangular member): the classical
-    Saint-Venant/Roark polynomial for the maximum-shear-stress coefficient
-    of a rectangular section, matching the printed curve's endpoints
-    (beta=3.0 at b/h=0, beta~4.8 at b/h=1, both read off Fig. 9-15).
+    Saint-Venant/Roark polynomial for the coefficient that MULTIPLIES
+    T/(h b^2), matching the printed curve's endpoints (beta=3.0 at b/h=0,
+    beta~4.8 at b/h=1, both read off Fig. 9-15).
     """
     x = b_over_h
     return 3.0 * (1.0 + 0.6095 * x + 0.8865 * x**2 - 1.8023 * x**3 + 0.9100 * x**4)
 
 
 def torsional_shear_stress_rectangular(torque, h, b):
-    """Eq 9-24: maximum shear stress induced by torsion on a rectangular
-    cross section (printed p. 9-12, Trayer and March 1930).
+    """Eq 9-24: maximum shear stress fs induced by torsion on a rectangular
+    cross section, in the unit of T / length^3 (printed p. 9-13, Trayer and
+    March 1930). JUDGMENT CALL: the print gives fs = T / (beta h b^2)
+    (FPL-GTR-282 pdf 245); this function uses fs = beta T / (h b^2),
+    because the print's own Figure 9-15 gives beta from 3 to 4.8, which is
+    the classical (Roark/Timoshenko) multiplier: dividing by it gives 9 to
+    23 times too little (100 x 100 mm, T = 1 kN m: 0.208 MPa as printed,
+    4.81 MPa as used). Ruled by the lead, 2026-11-10.
 
-        fs = T / (beta*h*b^2)
-
-    where h is the larger cross-section dimension, b the smaller, and beta
-    is read from Figure 9-15 as a function of b/h (reproduced here in
-    closed form -- see ``_beta_rectangular_torsion``).
+    h is the larger cross-section dimension, b the smaller, and beta is
+    read from Figure 9-15 as a function of b/h (reproduced here in closed
+    form -- see ``_beta_rectangular_torsion``).
 
     Parameters
     ----------
@@ -636,12 +669,19 @@ def torsional_shear_stress_rectangular(torque, h, b):
         {'torque', 'h', 'b', 'b_over_h', 'beta', 'shear_stress',
          'equation': '9-24', ...}
     """
+    if not (b > 0 and h > 0):
+        raise ValueError(
+            f"h and b are cross-section dimensions and must be > 0, got h={h}, "
+            f"b={b} (REF-76: a negative b, or two negatives, gave a b/h off "
+            "the 0-1 axis of the Figure 9-9 / 9-15 curve and a number)")
     if b > h:
         raise ValueError("b must be <= h (b is the smaller cross-section dimension)")
     b_over_h = b / h
     beta = _beta_rectangular_torsion(b_over_h)
-    fs = torque / (beta * h * b**2)
+    fs = beta * torque / (h * b**2)
     return {
         "torque": torque, "h": h, "b": b, "b_over_h": b_over_h, "beta": beta,
-        "shear_stress": fs, "equation": "9-24", "printed_page": "9-12", "pdf_page": 243,
+        "shear_stress": fs, "form_used": "beta*T/(h*b**2)",
+        "printed_form": "T/(beta*h*b**2) (beta of Fig 9-15 is a multiplier)",
+        "equation": "9-24", "printed_page": "9-13", "pdf_page": 244,
     }

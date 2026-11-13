@@ -1,0 +1,590 @@
+{
+  "reference_id": "FHWA-NHI-18-024",
+  "reference_title": "Drilled Shafts: Construction Procedures and Design Methods",
+  "volume": null,
+  "chapter": 21,
+  "chapter_title": "Appendix C: Analysis of Axial Load-Deformation Response",
+  "sections": [
+    {
+      "section_id": "C",
+      "title": "Analysis of Axial Load-Deformation Response",
+      "body": "[p. C-1] Simple approximations of the axial load-deformation response of single drilled shafts under compression loading can be made on the basis of normalized displacement curves, such as Figure 10-10, developed by back-analysis of field load tests. Alternative approaches are available, some of which account more directly for soil-structure interaction and taking into account the soil and rock properties as well as characteristics of the shaft. These methods range from simple models based on elastic theory to sophisticated numerical methods requiring finite element computer codes. In this appendix, the essential features of methods that have proven useful for predicting the load-deformation response of drilled shafts for design applications are presented.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Opening text of printed Appendix C (p. C-1), before Section C.1: methods for predicting the axial load-deformation response of single drilled shafts under compression."
+    },
+    {
+      "section_id": "C.1",
+      "title": "Simple Formulas",
+      "body": "[p. C-1] This method provides an estimate of settlement for preliminary analysis or as an approximate check on other solutions. Vesic (1977) proposed the following equations to estimate settlement in the working load range of deep foundations in soils based on a general description of the soil and structural properties of the foundation.\n\nwT = wc + wbb + wbs (C-1)\n\nin which wT = settlement of the head of the shaft, wc = elastic compression of the reinforced concrete shaft, wbb = settlement of the base due to load transferred to the base, and wbs = settlement of the base due to load transferred along the sides. The term wc can be approximated as:\n\nwc = (Qh - 0.5 Qms) L / (AE)shaft (C-2)\n\nin which L = length of the drilled shaft, A = cross-sectional area of the shaft, E = composite elastic modulus of the reinforced concrete shaft, Qh = load applied to the head of the shaft, and Qms = mobilized side resistance. The effective elastic stiffness of the drilled shaft (product of elastic modulus and cross-sectional area) can be taken as:\n\n(AE)shaft = Ec (Ac + nAs) (C-3)\n\nwhere Ec = modulus of the concrete, Ac = cross-sectional area of concrete, As = cross-sectional area of longitudinal steel reinforcement, n = modulus ratio = Es/Ec, and Es = elastic modulus of steel reinforcement.\n\nVesic (1977) recommended the following expressions for wbb and wbs:\n\n[p. C-2] wbb = Cp (Qmb / (B qmax)) (C-4)\n\nwbs = (0.93 + 0.16 √(L/B)) Cp (Qms / (L qmax)) (C-5)\n\nwhere Qmb = load transferred to the shaft base, B = shaft diameter, L = shaft embedded length, and qmax = nominal unit base resistance (bearing capacity). Cp is a factor that depends on soil characteristics and can be approximated from Table C-1. Consistent units must be used in Equations C-1 through C-5.\n\n[Table C-1]",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-1",
+          "description": "Settlement of the head of a drilled shaft in the working load range (Vesic 1977), for preliminary analysis or as an approximate check on other solutions",
+          "formula": "wT = wc + wbb + wbs",
+          "variables": {
+            "wT": "settlement of the head of the shaft",
+            "wc": "elastic compression of the reinforced concrete shaft",
+            "wbb": "settlement of the base due to load transferred to the base",
+            "wbs": "settlement of the base due to load transferred along the sides"
+          },
+          "source": "Typed in from p. C-1 (PDF page 630, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-2",
+          "description": "Approximation of the elastic compression of the shaft",
+          "formula": "wc = (Qh - 0.5 Qms) L / (AE)shaft",
+          "variables": {
+            "L": "length of the drilled shaft",
+            "A": "cross-sectional area of the shaft",
+            "E": "composite elastic modulus of the reinforced concrete shaft",
+            "(AE)shaft": "effective elastic stiffness of the drilled shaft (Eq. C-3)",
+            "Qh": "load applied to the head of the shaft",
+            "Qms": "mobilized side resistance"
+          },
+          "source": "Typed in from p. C-1 (PDF page 630, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-3",
+          "description": "Effective elastic stiffness of the drilled shaft (product of elastic modulus and cross-sectional area)",
+          "formula": "(AE)shaft = Ec (Ac + nAs)",
+          "variables": {
+            "Ec": "modulus of the concrete",
+            "Ac": "cross-sectional area of concrete",
+            "As": "cross-sectional area of longitudinal steel reinforcement",
+            "n": "modulus ratio = Es/Ec",
+            "Es": "elastic modulus of steel reinforcement"
+          },
+          "source": "Typed in from p. C-1 (PDF page 630, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-4",
+          "description": "Settlement of the base due to load transferred to the base (Vesic 1977); consistent units must be used in Equations C-1 through C-5",
+          "formula": "wbb = Cp (Qmb / (B qmax))",
+          "variables": {
+            "Cp": "factor that depends on soil characteristics, approximated from Table C-1",
+            "Qmb": "load transferred to the shaft base",
+            "B": "shaft diameter",
+            "qmax": "nominal unit base resistance (bearing capacity)"
+          },
+          "source": "Typed in from p. C-2 (PDF page 631, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-5",
+          "description": "Settlement of the base due to load transferred along the sides (Vesic 1977); consistent units must be used in Equations C-1 through C-5",
+          "formula": "wbs = (0.93 + 0.16 √(L/B)) Cp (Qms / (L qmax))",
+          "variables": {
+            "L": "shaft embedded length",
+            "B": "shaft diameter",
+            "Cp": "factor from Table C-1",
+            "Qms": "mobilized side resistance",
+            "qmax": "nominal unit base resistance (bearing capacity)"
+          },
+          "source": "Typed in from p. C-2 (PDF page 631, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [],
+      "tables": [
+        "Table C-1: Values of Cp Based on General Description of Soil (Vesic 1977) (p. C-2) - columns: soil description; Cp. Sand (dense to loose); 0.09 – 0.18 | Clay (stiff to soft); 0.03 – 0.06 | Silt (dense to loose); 0.09 – 0.12"
+      ],
+      "applicability": "Printed Section C.1 (pp. C-1 to C-2): settlement in the working load range by Vesic (1977), Eqs. C-1 to C-5 and Table C-1 (Cp)."
+    },
+    {
+      "section_id": "C.2",
+      "title": "Numerical Simulation of Load Transfer",
+      "body": "[p. C-2] For layered soil profiles and/or where many potential loading cases and trial designs need to be analyzed, numerical simulation of the load-displacement curve is a practical alternative. Solutions are available in several formats including finite element analysis (FEM), boundary element analysis (BEM), and finite difference solutions. While FEM and BEM analyses may be justified on critical projects, the most widely used computer programs for this purpose employ a finite difference solution and this approach, known as the t-z curve method (Reese and Seed, 1957), is described.\n\nA free body diagram of a drilled shaft is shown in Figure C-1a. The applied head load is resisted by the combined side (Rs) and base (RB) resistances. In Figure C-1b, the drilled shaft and supporting soil are idealized as a system of springs. The single spring representing the concrete shaft is linear and is used to model the elastic stiffness of the shaft under an applied axial load. Soil-structure interaction along the sides and base of the shaft are represented by a series of mechanisms (nonlinear springs). One example of the type of mechanism that can be used is shown in Figure C-1b, and consists of a cantilever spring and a friction block.\n\nAnalytical functions are used to represent each of the interaction mechanisms. In Figure C-1c, a family of curves is shown to represent the nonlinear relationship between mobilized unit side resistance (t) and axial displacement (z) of the drilled shaft, referred to as a “side load-transfer function”. A family of curves is used to illustrate that the t-z relationship can vary with depth.\n\n[p. C-3] The number of t-z curves used in a particular problem is determined by the need to capture the behavior of all the subsurface layers through which the shaft extends. The load-displacement response of the base of the shaft is modeled as a single nonlinear spring that describes the relationship between mobilized unit base resistance (q) and base displacement (wb), referred to as a q-wb curve or “base load-transfer function”. Each nonlinear spring is discrete and independent of the other springs, meaning that this method does not satisfy continuity.\n\nAt any point along the shaft, the governing differential equation is given by:\n\nEA d²z/dy² = πBt (C-6)\n\nwhere EA = composite elastic axial stiffness of the reinforced concrete shaft (Equation C-3), B = shaft diameter, and depth is denoted by y. Solutions to Equation C-6 require a mathematical function relating the two variables t and z (or q and w at the base). In general, the load transfer functions can be expressed by:\n\nt = ψ (z, y) z (C-7)\n\nwhere ψ denotes the secant slope to the t-z curve at a specified value of deflection zy, as shown in Figure C-2. Substituting Equation C-7 into Equation C-6 yields:\n\n[p. C-4] d²z/dy² - (πB/EA) ψ(z, y) z = 0 (C-8)\n\nEquation C-8 can be solved numerically using a finite difference scheme with a specified boundary condition (load applied to the top of the shaft). For each value of axial load, the numerical solution yields values of axial displacement (z) and mobilized unit side resistance (t) for each specified value of depth (y). From these data, a load versus head displacement curve can be constructed for the drilled shaft. Also, for each load increment, a curve of load versus depth (load transfer curve) can be calculated and constructed (e.g., Figure 10-1c). A detailed description of the finite difference equations used in the t-z curve method is beyond the scope of this manual. However, several commercial software programs are available to solve this problem and the program documentation can be consulted for detailed information on the numerical methods.\n\nThe degree to which the t-z curve method models the actual behavior of a drilled shaft depends upon the t-z and q-wb curves (functions) used in the analysis. Load transfer functions can be estimated in a variety of ways, including finite element studies, elasto-plastic modeling of the soil-shaft interface, load test measurements, and laboratory shear tests. Commercially available software programs that perform this type of analysis provide the user with the option of using built-in load transfer functions or specifying user-generated curves. The built-in functions are based on recommendations developed from full-scale load tests in a variety of soil types. The most widely-used and cited t-z and q-wb curves for drilled shafts are those presented in the 1999 version of this manual (O’Neill and Reese, 1999) and reproduced below in Figure C-3 (as printed; Figure C-3 holds the side load transfer curves; Figure C-4 is captioned the base load transfer curves, and its part (a), for cohesive soil, is a base curve, but its part (b) on p. C-5 is printed as a copy of Figure C-3(b), the side load transfer curves for cohesionless soil). User-generated curves can also be developed from laboratory triaxial or direct shear tests in which the stress-strain behavior of the soil or soil-concrete interface is measured (for example, see Kraft et al., 1981; Stanton et al., 2015). Some researchers have developed recommendations for drilled shaft t-z curves in specific geomaterials, for example, cemented calcareous fine-grained soils (Walsh et al., 1995), Florida limestone (Niraula, 2004), and others. However, research has not yet advanced to the point where load transfer curves can be predicted for all conditions with confidence. Construction practices and the particular response of a given soil or rock to drilling and concrete placement may also affect side and base load transfer.\n\n[p. C-5] An effective way to utilize the t-z curve method is in conjunction with field load tests. This approach is particularly useful on projects where the subsurface stratigraphy is complex and load testing is conducted with instrumentation needed to establish the load transfer in each soil or rock layer. The numerical solution can be calibrated to establish agreement with load transfer determined from the load test, then utilized to model the load-deformation response of trial designs that may involve different depths and diameters than those of the load test.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-6",
+          "description": "Governing differential equation at any point along the shaft (t-z curve method)",
+          "formula": "EA d²z/dy² = πBt",
+          "variables": {
+            "EA": "composite elastic axial stiffness of the reinforced concrete shaft (Equation C-3)",
+            "B": "shaft diameter",
+            "y": "depth",
+            "z": "axial displacement",
+            "t": "mobilized unit side resistance"
+          },
+          "source": "Typed in from p. C-3 (PDF page 632, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-7",
+          "description": "General form of the load transfer functions",
+          "formula": "t = ψ (z, y) z",
+          "variables": {
+            "ψ": "secant slope to the t-z curve at a specified value of deflection zy (Figure C-2)"
+          },
+          "source": "Typed in from p. C-3 (PDF page 632, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-8",
+          "description": "Equation C-7 substituted into Equation C-6; solved numerically by a finite difference scheme with the load applied to the top of the shaft as boundary condition",
+          "formula": "d²z/dy² - (πB/EA) ψ(z, y) z = 0",
+          "variables": {
+            "ψ": "secant slope to the t-z curve (Eq. C-7)"
+          },
+          "source": "Typed in from p. C-4 (PDF page 633, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure C-1: Model of Axially Loaded Shaft",
+        "Figure C-2: Nonlinear t-z Relationship",
+        "Figure C-3: Normalized side load transfer curves for (a) cohesive and (b) cohesionless soils",
+        "Figure C-4: Normalized base load transfer curves for (a) cohesive) and (b) cohesionless soils (as printed; part (b) is a copy of Figure C-3(b), the side load transfer curves for cohesionless soil)"
+      ],
+      "tables": [],
+      "applicability": "Printed Section C.2 (pp. C-2 to C-5): the t-z curve method, its governing equation (Eqs. C-6 to C-8) and load transfer functions (Figures C-1 to C-4), calibrated against load tests."
+    },
+    {
+      "section_id": "C.3",
+      "title": "Approximate Closed-Form Solutions",
+      "body": "[p. C-6] Closed-form solutions based on simplifying assumptions about the load transfer behavior of axially loaded drilled shafts can be valuable design aids. To be valid, closed form solutions should be verified by reasonable agreement with more sophisticated finite element analyses and by agreement with field load tests. The value of closed-form solutions lies in their ease of application, for example requiring a set of calculations that can be accomplished with a spreadsheet, thus enabling the designer to assess quickly the influence of design variables on the settlement behavior of the shaft. All such models are limited to the conditions assumed in their derivation, and care must be exercised not to apply the model to conditions outside of the validated range. Two such methods are described below, both of which are based on a procedure developed by Randolph and Wroth (1978) for elastic analysis of piles. The general form of the equations is therefore similar in both methods, but with different assumptions about the distribution of elastic modulus with depth.",
+      "key_points": [],
+      "equations": [],
+      "figures": [],
+      "tables": [],
+      "applicability": "Printed Section C.3 (p. C-6): closed-form solutions based on Randolph and Wroth (1978) and their limits; the two methods are Sections C.3.1 and C.3.2."
+    },
+    {
+      "section_id": "C.3.1",
+      "title": "Rock Sockets (Kulhawy and Carter 1992)",
+      "body": "[p. C-6] An approximate method given by Kulhawy and Carter (1992) provides simple closed-form expressions that compare reasonably well to more sophisticated nonlinear finite element analyses reported by Pells and Turner (1979) and Rowe and Armitage (1987). The basic problem is depicted in Figure C-5a and involves predicting the relationship between an axial compression load (Qc) applied to the top of a socketed shaft and the resulting axial displacement at the top of the socket (wc). The concrete shaft is modeled as an elastic cylindrical inclusion embedded within an elastic rock mass. The cylinder of depth L and diameter B has Young’s modulus Ec and Poisson’s ratio νc. The rock mass surrounding the cylinder is homogeneous with Young’s modulus Er and Poisson’s ratio νr while the rock mass beneath the base of the shaft has Young’s modulus Eb and Poisson’s ratio νb. The solution (Figure C-5b) approximates the load-deformation response of an axially loaded rock socket as consisting of two linear segments: (1) the initial linear elastic response and (2) the full slip condition. The maximum load is limited to the nominal axial resistance.\n\nFor compression loading, two cases are treated by Kulhawy and Carter (1992): (1) a “complete socket”, for which full contact is assumed between the base of the concrete shaft and the underlying rock, and (2) a shear socket, for which a void is assumed to exist beneath the base. The shear socket solution would be useful in analyzing a load test in which base resistance is eliminated by creating a void beneath the base of the drilled shaft. Only the complete socket case will be treated here.\n\n[p. C-7] 1. For the linearly elastic portion of the load-displacement curve.\n\nwc = (2Qc / (Gr B)) × [1 + (4/(1 - νb)) (1/(πλξ)) (2L/B) (tanh[μL]/(μL))] / [(4/(1 - νb)) (1/ξ) + (2π/ζ) (2L/B) (tanh[μL]/(μL))] (C-9)\n\nin which:\n\n(μL)² = (2/(ζλ)) (2L/B)² (C-10)\n\nζ = ln [5(1 - νr)L/B] (C-11)\n\nλ = Ec/Gr (C-12)\n\nGr = Er / [2(1 + νr] = elastic shear modulus of rock mass (C-13) (as printed: no parenthesis closes after νr)\n\nξ = Gr/Gb (C-14)\n\nGb = Eb / [2(1 + νb] (C-15) (as printed: no parenthesis closes after νb)\n\n[p. C-8] The magnitude of load transferred to the base of the shaft (Qb) is given by:\n\nQb/Qc = [(4/(1 - νb)) (1/ξ) (1/cosh[μD])] / [(4/(1 - νb)) (1/ξ) + (2π/ζ) (2D/B) (tanh[μD]/(μD))] (C-16)",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-9",
+          "description": "Kulhawy and Carter (1992), complete socket: head displacement for the linearly elastic portion of the load-displacement curve",
+          "formula": "wc = (2Qc / (Gr B)) × [1 + (4/(1 - νb)) (1/(πλξ)) (2L/B) (tanh[μL]/(μL))] / [(4/(1 - νb)) (1/ξ) + (2π/ζ) (2L/B) (tanh[μL]/(μL))]",
+          "variables": {
+            "Qc": "axial compression load applied to the top of the socketed shaft",
+            "wc": "axial displacement at the top of the socket",
+            "L": "depth of the cylinder (socket)",
+            "B": "diameter of the cylinder (socket)",
+            "Gr": "elastic shear modulus of rock mass (Eq. C-13)",
+            "νb": "Poisson's ratio of the rock mass beneath the base",
+            "λ": "Eq. C-12",
+            "ξ": "Eq. C-14",
+            "ζ": "Eq. C-11",
+            "μL": "from Eq. C-10"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-10",
+          "description": "Term μL of Equations C-9",
+          "formula": "(μL)² = (2/(ζλ)) (2L/B)²",
+          "variables": {
+            "ζ": "Eq. C-11",
+            "λ": "Eq. C-12"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-11",
+          "description": "Term ζ of Equations C-9 and C-10",
+          "formula": "ζ = ln [5(1 - νr)L/B]",
+          "variables": {
+            "νr": "Poisson's ratio of the rock mass surrounding the socket"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-12",
+          "description": "Term λ of Equations C-9 and C-10",
+          "formula": "λ = Ec/Gr",
+          "variables": {
+            "Ec": "Young's modulus of the concrete shaft",
+            "Gr": "Eq. C-13"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-13",
+          "description": "Elastic shear modulus of rock mass (as printed: no parenthesis closes after νr)",
+          "formula": "Gr = Er / [2(1 + νr]",
+          "variables": {
+            "Er": "Young's modulus of the rock mass surrounding the socket",
+            "νr": "Poisson's ratio of that rock mass"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-14",
+          "description": "Term ξ of Equation C-9",
+          "formula": "ξ = Gr/Gb",
+          "variables": {
+            "Gr": "Eq. C-13",
+            "Gb": "Eq. C-15"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-15",
+          "description": "Shear modulus of the rock mass beneath the base (as printed: no parenthesis closes after νb)",
+          "formula": "Gb = Eb / [2(1 + νb]",
+          "variables": {
+            "Eb": "Young's modulus of the rock mass beneath the base of the shaft",
+            "νb": "Poisson's ratio of that rock mass"
+          },
+          "source": "Typed in from p. C-7 (PDF page 636, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-16",
+          "description": "Magnitude of load transferred to the base of the shaft (Qb), linearly elastic portion",
+          "formula": "Qb/Qc = [(4/(1 - νb)) (1/ξ) (1/cosh[μD])] / [(4/(1 - νb)) (1/ξ) + (2π/ζ) (2D/B) (tanh[μD]/(μD))]",
+          "variables": {
+            "Qb": "load transferred to the base",
+            "Qc": "axial compression load at the top",
+            "D": "printed here in place of the socket depth L of Eq. C-9 (the spreadsheet of Figure C-6 names the shaft depth D)"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure C-5: Simplified Model of Axial Load-Deformation Behavior, Drilled Shaft in Rock; (a) Elastic model of Rock Socket; (b) Computed Bilinear Load-settlement Curve"
+      ],
+      "tables": [],
+      "applicability": "Printed Section C.3.1, part 1 (pp. C-6 to C-8): the elastic model of a complete rock socket (Figure C-5) and the linearly elastic portion of its load-displacement curve, Eqs. C-9 to C-16. The full slip portion, the strength correlations and the spreadsheet example are in part C.3.1.a."
+    },
+    {
+      "section_id": "C.3.1.a",
+      "title": "Rock Sockets (Kulhawy and Carter 1992) (continued, full slip portion, Eqs. C-17 to C-32, pp. C-8 to C-10)",
+      "body": "[p. C-8] 2. For the full slip portion of the load–displacement curve.\n\nwc = F3 (Qc / (πEr B)) - F4 B (C-17)\n\nin which:\n\nF3 = a1(λ1BC3 - λ2BC4) - 4a3 (C-18)\n\nF4 = [1 - a1 ((λ1 - λ2)/(D4 - D3)) B] a2 (c/Er) (C-19)\n\nC3,4 = D3,4 / (D4 - D3) (C-20)\n\nD3,4 = [π(1 - νb²)(Er/Eb) + 4a3 + a1λ2,1B] exp[λ2,1D] (C-21)\n\nλ1,2 = [-β ± (β² + 4α)^(1/2)] / (2α) (C-22)\n\nα = a1 (Ec/Er) (B²/4) (C-23)\n\nβ = a3 (Ec/Er) B (C-24)\n\na1 = (1 + νr)ζ + a2 (C-25)\n\n[p. C-9] a2 = [(1 - νc)(Er/Ec) + (1 + νr)] (1/(2 tan φ tan ψ)) (C-26)\n\na3 = (νc/(2 tan ψ)) (Er/Ec) (C-27)\n\nThe magnitude of load transferred to the base of the shaft (Qb) is given by:\n\nQb/Qc = P3 + P4 (πB²c/Qc) (C-28)\n\nin which:\n\nP3 = a1(λ1 - λ2) B exp[(λ1 + λ2)D] / (D4 - D3) (C-29)\n\nP4 = a2(exp[λ2D] - exp[λ1D]) / (D4 - D3) (C-30)\n\nNote that the point of intersection between the linear elastic portion of the curve and the full slip segment, defined by point (QC1, wC1) in Figure C-3b (as printed; the point (QC1, wC1) is drawn in Figure C-5b), can be calculated by setting Equation C-9 equal to Equation C-17, solving for the resulting value of axial load (QC1) and using this value to compute the corresponding displacement wC1.\n\nNumerical solutions to Equations C-9 through C-30 are implemented easily by spreadsheet or other desktop computational tools, thus providing designers a simple analytical tool for assessing the likely ranges of behavior for trial designs. The user of this method should be familiar with the assumptions made in its development. The modulus of the rock mass is assumed to be constant over the depth of shaft embedment and beneath the base. Rock mass modulus and its variation with depth must, therefore, be assessed carefully and determined to satisfy the assumption of uniformity. Strength of the rock mass is required in terms of its Mohr-Coulomb parameters (c, φ, and ψ) where ψ = angle of dilatancy. In the absence of laboratory testing of the rock-concrete interface, for example by constant normal stiffness direct shear tests, Kulhawy and Carter (1992) suggest the following correlations between the Mohr-Coulomb strength parameters and uniaxial compressive strength (qu) of intact rock:\n\nc/pa = 0.1 (qu/pa)^(2/3) (C-31)\n\ntan φ tan ψ = 0.001 (qu/pa)^(2/3) (C-32)\n\n[p. C-10] To illustrate the application of this method, consider Illustrative Example 19-4 Chapter 10) (as printed; the caption of Figure C-6 cites Illustrative Example 10-4) in which a 2-ft diameter, 7.5-ft deep socket in competent limestone was analyzed for nominal axial resistance. The mean uniaxial compressive strength was 870 psi and the calculated total compressive resistance (side plus base) was 1,751 kips (as printed; the spreadsheet of Figure C-6 is for a complete socket with B = 6 ft (72 in), D = 10 ft (120 in), Er = Eb = 450 k/in² and qu = 2,500 psi, and its load-displacement curve rises to 30,649 kips). Figure C-6 shows a spreadsheet solution in which the load-displacement behavior of the trial shaft is predicted and plotted using Equations C-9 through C-32.\n\nThe above method is best applied in conjunction with load testing of rock sockets, providing a framework for interpretation of the load test results by establishing values of the rock mass properties (Er, Eb, c, φ, and ψ). Where borings verify that the rock mass has similar lithology, strength, and discontinuity characteristics, the analysis can then be used to evaluate load-deformation behavior of trial designs. When combined with appropriate judgment and experience, the above approach represents a reasonable analysis of drilled shaft rock sockets.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-17",
+          "description": "Kulhawy and Carter (1992), complete socket: head displacement for the full slip portion of the load-displacement curve",
+          "formula": "wc = F3 (Qc / (πEr B)) - F4 B",
+          "variables": {
+            "Qc": "axial compression load applied to the top of the socketed shaft",
+            "wc": "axial displacement at the top of the socket",
+            "B": "diameter of the cylinder (socket)",
+            "F3": "Eq. C-18",
+            "F4": "Eq. C-19",
+            "Er": "Young's modulus of the rock mass surrounding the socket"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-18",
+          "description": "Term F3 of Equation C-17",
+          "formula": "F3 = a1(λ1BC3 - λ2BC4) - 4a3",
+          "variables": {
+            "a1": "Eq. C-25",
+            "a3": "Eq. C-27",
+            "λ1, λ2": "Eq. C-22",
+            "C3, C4": "Eq. C-20"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-19",
+          "description": "Term F4 of Equation C-17",
+          "formula": "F4 = [1 - a1 ((λ1 - λ2)/(D4 - D3)) B] a2 (c/Er)",
+          "variables": {
+            "a1": "Eq. C-25",
+            "a2": "Eq. C-26",
+            "D3, D4": "Eq. C-21",
+            "c": "Mohr-Coulomb cohesion of the rock mass"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-20",
+          "description": "Terms C3 and C4 of Equation C-18",
+          "formula": "C3,4 = D3,4 / (D4 - D3)",
+          "variables": {
+            "D3, D4": "Eq. C-21"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-21",
+          "description": "Terms D3 and D4",
+          "formula": "D3,4 = [π(1 - νb²)(Er/Eb) + 4a3 + a1λ2,1B] exp[λ2,1D]",
+          "variables": {
+            "a1": "Eq. C-25",
+            "a3": "Eq. C-27",
+            "λ1, λ2": "Eq. C-22"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-22",
+          "description": "Terms λ1 and λ2",
+          "formula": "λ1,2 = [-β ± (β² + 4α)^(1/2)] / (2α)",
+          "variables": {
+            "α": "Eq. C-23",
+            "β": "Eq. C-24"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-23",
+          "description": "Term α of Equation C-22",
+          "formula": "α = a1 (Ec/Er) (B²/4)",
+          "variables": {
+            "a1": "Eq. C-25"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-24",
+          "description": "Term β of Equation C-22",
+          "formula": "β = a3 (Ec/Er) B",
+          "variables": {
+            "a3": "Eq. C-27"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-25",
+          "description": "Term a1",
+          "formula": "a1 = (1 + νr)ζ + a2",
+          "variables": {
+            "ζ": "Eq. C-11",
+            "a2": "Eq. C-26"
+          },
+          "source": "Typed in from p. C-8 (PDF page 637, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-26",
+          "description": "Term a2",
+          "formula": "a2 = [(1 - νc)(Er/Ec) + (1 + νr)] (1/(2 tan φ tan ψ))",
+          "variables": {
+            "νc": "Poisson's ratio of the concrete shaft",
+            "φ, ψ": "Mohr-Coulomb friction angle and angle of dilatancy of the rock mass"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-27",
+          "description": "Term a3",
+          "formula": "a3 = (νc/(2 tan ψ)) (Er/Ec)",
+          "variables": {
+            "ψ": "angle of dilatancy"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-28",
+          "description": "Magnitude of load transferred to the base of the shaft (Qb), full slip portion",
+          "formula": "Qb/Qc = P3 + P4 (πB²c/Qc)",
+          "variables": {
+            "P3": "Eq. C-29",
+            "P4": "Eq. C-30"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-29",
+          "description": "Term P3 of Equation C-28",
+          "formula": "P3 = a1(λ1 - λ2) B exp[(λ1 + λ2)D] / (D4 - D3)",
+          "variables": {
+            "λ1, λ2": "Eq. C-22",
+            "D3, D4": "Eq. C-21"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-30",
+          "description": "Term P4 of Equation C-28",
+          "formula": "P4 = a2(exp[λ2D] - exp[λ1D]) / (D4 - D3)",
+          "variables": {
+            "a2": "Eq. C-26"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-31",
+          "description": "Correlation suggested by Kulhawy and Carter (1992) between rock mass cohesion and uniaxial compressive strength of intact rock, in the absence of laboratory testing of the rock-concrete interface",
+          "formula": "c/pa = 0.1 (qu/pa)^(2/3)",
+          "variables": {
+            "c": "Mohr-Coulomb cohesion",
+            "qu": "uniaxial compressive strength of intact rock",
+            "pa": "atmospheric pressure (defined with Eq. C-33)"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-32",
+          "description": "Correlation suggested by Kulhawy and Carter (1992) between friction and dilatancy angles and uniaxial compressive strength of intact rock",
+          "formula": "tan φ tan ψ = 0.001 (qu/pa)^(2/3)",
+          "variables": {
+            "φ": "Mohr-Coulomb friction angle",
+            "ψ": "angle of dilatancy",
+            "qu": "uniaxial compressive strength of intact rock"
+          },
+          "source": "Typed in from p. C-9 (PDF page 638, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure C-6: Spreadsheet Analysis to Evaluate Load-Displacement of Rock Socket as Described in Illustrative Example 10-4"
+      ],
+      "tables": [],
+      "applicability": "Part 2 of printed Section C.3.1 (full slip portion, Eqs. C-17 to C-32, pp. C-8 to C-10): the full slip portion of the load-displacement curve (Eqs. C-17 to C-30), the intersection point (QC1, wC1), the assumptions, the correlations of c, φ and ψ with qu (Eqs. C-31 and C-32) and the spreadsheet solution of Figure C-6. The letter is not printed; the section is split here to fit the reference tools."
+    },
+    {
+      "section_id": "C.3.2",
+      "title": "Dense Residual Piedmont Soils (Mayne and Harris 1993)",
+      "body": "[p. C-10] The following method suggested by Mayne and Harris (1993) also is based on the elasticity solution developed by Randolph and Wroth (1978). The authors showed reasonably good agreement between the elastic analysis and the load-displacement response of drilled shafts in residual Piedmont soils as measured in field load tests. The method also showed good agreement with results of load tests on drilled shafts in very dense granular glacial till (O’Neill et al., 1996) and was recommended for dense cohesionless soils with N-values greater than 50. The method requires calculation of nominal unit side and base resistances (fSN, qBN) using the methods presented in Chapter 10 (β-method for side resistance; Equation 10-14 for base resistance).\n\nThe following correlation equation is recommended to establish values of the soil modulus (Es) from Standard Penetration Test results:\n\nEs/pa = 22 (N60)^0.82 (C-33)\n\nin which: pa = atmospheric pressure in the same units as Es, and N60 = SPT N-value corrected for 60% energy efficiency. A best-fit straight line is used to model the distribution of soil modulus with depth, as illustrated in Figure C-7. The following modulus values are then defined: EsL = value of soil modulus at the base of the shaft for the undisturbed in situ condition; Eb = effective modulus at the base of the shaft accounting for stress relief due to excavation, taken as 0.4 EsL, and Esm = value of modulus at mid-depth of the shaft (L/2).\n\nThe load versus settlement curve is then modeled as being bilinear, as illustrated in Figure C-5b, with a limiting value corresponding to the nominal axial compressive resistance, RN. The endpoints of the linear elastic and full slip segments are determined by the origin and the two points defined by coordinates (QC1, wC1) and (RN, wRN). At the upper end of the linear elastic segment, the full side resistance and some portion of the base resistance have been developed. At the end of the full slip segment, the full side and base resistances have been developed. The computations used to establish the points on the curve are as follows:\n\n[p. C-12] QC1 = fSN πBL / (1 - {I / ([ξ cosh(μL)] (1 - ν²))}) (C-34)\n\nwhere I = elastic influence factor given by:\n\nI = 4(1 + ν) {[1 + 8 tanh(μL) L / (π λ (1 - ν) ξ (μL) L)] / [4/((1 - ν)ξ) + 4π (Esm/EsL) tanh(μL) L / (ζ (μL) B)]} (C-35)\n\nμL = (L/B) 2 √(2/(ζ λ)) (C-36)\n\nζ = ln{[0.25 + (2.5 (Esm/EsL) (1 - ν) - 0.25 ξ)] (2L/B)} (C-37)\n\n[p. C-13] λ = 2(1 + ν) Ec/EsL (C-38)\n\nξ = EsL/Eb = 2.5 (C-39)\n\nin which:\n\nν = Poisson’s ratio of the soil\nEc = elastic modulus of the reinforced concrete shaft (composite)\n\nThe displacement corresponding to load QC1 is given by:\n\nwC1 = QC1 I / (EsL B) (C-40)\n\nThe maximum load is the summation of the nominal side and base resistances, or;\n\nRN = fSN (πBL) + qBN (πB²/4) (C-41)\n\nThe additional displacement that occurs over the full slip segment is computed by considering that any additional load beyond QC1 is transferred to the base, yielding the following:\n\nΔw = (QT - QT1) (1 - ν²) / (Eb B) (C-42) (as printed: the equation names the loads QT and QT1; the sentence before it names QC1)\n\nThe above method has been shown to give reasonable results for diameters up to 5 ft and is also implemented conveniently using a spreadsheet to perform the calculations.",
+      "key_points": [],
+      "equations": [
+        {
+          "id": "Eq. C-33",
+          "description": "Correlation recommended to establish the soil modulus from Standard Penetration Test results (Mayne and Harris 1993 method)",
+          "formula": "Es/pa = 22 (N60)^0.82",
+          "variables": {
+            "Es": "soil modulus",
+            "pa": "atmospheric pressure in the same units as Es",
+            "N60": "SPT N-value corrected for 60% energy efficiency"
+          },
+          "source": "Typed in from p. C-10 (PDF page 639, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-34",
+          "description": "Load at the upper end of the linear elastic segment of the bilinear load versus settlement curve",
+          "formula": "QC1 = fSN πBL / (1 - {I / ([ξ cosh(μL)] (1 - ν²))})",
+          "variables": {
+            "fSN": "nominal unit side resistance (Chapter 10, β-method)",
+            "I": "elastic influence factor (Eq. C-35)",
+            "ξ": "Eq. C-39",
+            "μL": "Eq. C-36",
+            "ν": "Poisson's ratio of the soil"
+          },
+          "source": "Typed in from p. C-12 (PDF page 641, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-35",
+          "description": "Elastic influence factor",
+          "formula": "I = 4(1 + ν) {[1 + 8 tanh(μL) L / (π λ (1 - ν) ξ (μL) L)] / [4/((1 - ν)ξ) + 4π (Esm/EsL) tanh(μL) L / (ζ (μL) B)]}",
+          "variables": {
+            "Esm": "soil modulus at mid-depth of the shaft (L/2)",
+            "EsL": "soil modulus at the base of the shaft for the undisturbed in situ condition",
+            "λ": "Eq. C-38",
+            "ζ": "Eq. C-37"
+          },
+          "source": "Typed in from p. C-12 (PDF page 641, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-36",
+          "description": "Term μL",
+          "formula": "μL = (L/B) 2 √(2/(ζ λ))",
+          "variables": {
+            "ζ": "Eq. C-37",
+            "λ": "Eq. C-38"
+          },
+          "source": "Typed in from p. C-12 (PDF page 641, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-37",
+          "description": "Term ζ",
+          "formula": "ζ = ln{[0.25 + (2.5 (Esm/EsL) (1 - ν) - 0.25 ξ)] (2L/B)}",
+          "variables": {
+            "ξ": "Eq. C-39"
+          },
+          "source": "Typed in from p. C-12 (PDF page 641, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-38",
+          "description": "Term λ",
+          "formula": "λ = 2(1 + ν) Ec/EsL",
+          "variables": {
+            "ν": "Poisson's ratio of the soil",
+            "Ec": "elastic modulus of the reinforced concrete shaft (composite)"
+          },
+          "source": "Typed in from p. C-13 (PDF page 642, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-39",
+          "description": "Term ξ, with Eb taken as 0.4 EsL",
+          "formula": "ξ = EsL/Eb = 2.5",
+          "variables": {
+            "Eb": "effective modulus at the base of the shaft accounting for stress relief due to excavation, taken as 0.4 EsL"
+          },
+          "source": "Typed in from p. C-13 (PDF page 642, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-40",
+          "description": "Displacement corresponding to load QC1",
+          "formula": "wC1 = QC1 I / (EsL B)",
+          "variables": {
+            "I": "Eq. C-35"
+          },
+          "source": "Typed in from p. C-13 (PDF page 642, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-41",
+          "description": "Maximum load: the summation of the nominal side and base resistances",
+          "formula": "RN = fSN (πBL) + qBN (πB²/4)",
+          "variables": {
+            "fSN": "nominal unit side resistance (β-method)",
+            "qBN": "nominal unit base resistance (Equation 10-14)"
+          },
+          "source": "Typed in from p. C-13 (PDF page 642, 200 dpi render).",
+          "implemented_in": null
+        },
+        {
+          "id": "Eq. C-42",
+          "description": "Additional displacement over the full slip segment, any additional load beyond QC1 being transferred to the base (as printed: the equation names the loads QT and QT1; the sentence before it names QC1)",
+          "formula": "Δw = (QT - QT1) (1 - ν²) / (Eb B)",
+          "variables": {
+            "Eb": "effective modulus at the base of the shaft (0.4 EsL)"
+          },
+          "source": "Typed in from p. C-13 (PDF page 642, 200 dpi render).",
+          "implemented_in": null
+        }
+      ],
+      "figures": [
+        "Figure C-7: Variation of Soil Modulus with Depth"
+      ],
+      "tables": [],
+      "applicability": "Printed Section C.3.2 (pp. C-10 to C-13): the bilinear load-settlement curve for drilled shafts in residual Piedmont soils and dense cohesionless soils with N-values greater than 50, soil modulus from the SPT (Eq. C-33, Figure C-7) and Eqs. C-34 to C-42."
+    }
+  ]
+}

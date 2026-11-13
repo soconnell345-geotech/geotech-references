@@ -79,11 +79,69 @@ class TestAxialCompression:
         assert result["fcr"] == pytest.approx(0.044 * 10e9 * 0.02**2 / 0.1**2)
 
 
+class TestYlinenConstantPrintedRange:
+    """REF-76: Eq 9-28 defines c as a constant between 0 and 1 (printed
+    p. 9-14); Eqs 9-29 and 9-30 take the same c. Outside it the functions
+    used to return a number (or a math domain error)."""
+
+    def test_printed_values_answer(self):
+        for c in (0.8, 0.9, 0.957):
+            ylinen_strain(fc=30.0, stress=15.0, modulus_of_elasticity=10000.0, c=c)
+            ylinen_buckling_stress(30.0, 20.0, c=c)
+            built_up_column_capacity(30.0, 20.0, c=c, k_f=0.75)
+
+    @pytest.mark.parametrize("c", [0.0, 1.0, 1.2, -0.5])
+    def test_c_outside_refused(self, c):
+        with pytest.raises(ValueError, match=r"between 0 and 1 \(printed p. 9-14\)"):
+            ylinen_strain(fc=30.0, stress=15.0, modulus_of_elasticity=10000.0, c=c)
+        with pytest.raises(ValueError, match="between 0 and 1"):
+            ylinen_buckling_stress(30.0, 20.0, c=c)
+        with pytest.raises(ValueError, match="between 0 and 1"):
+            built_up_column_capacity(30.0, 20.0, c=c, k_f=0.6)
+
+    def test_stress_and_factor_outside_refused(self):
+        for f in (-1.0, 30.0, 31.0):
+            with pytest.raises(ValueError, match="0 <= f < Fc"):
+                ylinen_strain(fc=30.0, stress=f, modulus_of_elasticity=10000.0, c=0.8)
+        for kf in (0.0, 1.1):
+            with pytest.raises(ValueError, match="is reduced"):
+                built_up_column_capacity(30.0, 20.0, c=0.8, k_f=kf)
+        with pytest.raises(ValueError, match="fe must be > 0"):
+            ylinen_buckling_stress(30.0, 0.0)
+
+
 class TestPondingAndLateralTorsionalBuckling:
     def test_critical_ponding_spacing_fixed_gt_simple(self):
         simple = critical_ponding_spacing(10e9, 5e-5, 4.0, end_condition="simple")["s_cr"]
         fixed = critical_ponding_spacing(10e9, 5e-5, 4.0, end_condition="fixed")["s_cr"]
         assert fixed > simple
+
+    def test_critical_ponding_spacing_uses_unit_weight_of_water(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-32 (FPL-GTR-282 pdf 247 /
+        # printed 9-15) defines rho as "density of water (1,000 kg m-3,
+        # 0.0361 lb in-3)"; the formula needs the unit weight, 9,810 N/m^3
+        # in SI. Same joist in SI and inch-pound gives the same spacing.
+        e_pa, i_m4, l_m = 12.0e9, 0.038 * 0.286 ** 3 / 12.0, 6.0
+        si = critical_ponding_spacing(e_pa, i_m4, l_m)
+        assert si["unit_weight_water"] == 9810.0
+        assert si["s_cr"] == pytest.approx(math.pi ** 4 * e_pa * i_m4 / (9810.0 * l_m ** 4))
+        e_psi, i_in4, l_in = e_pa / 6894.757, i_m4 / 0.0254 ** 4, l_m / 0.0254
+        ip = critical_ponding_spacing(e_psi, i_in4, l_in, unit_weight_water=0.0361)
+        assert ip["s_cr"] * 0.0254 == pytest.approx(si["s_cr"], rel=0.01)
+
+    def test_critical_ponding_spacing_refuses_mass_density(self):
+        # The print's "1,000 kg m-3" passed as the weight would give a
+        # spacing 9.81 times too large; 900 to 1,100 is refused.
+        e_pa, i_m4, l_m = 12.0e9, 0.038 * 0.286 ** 3 / 12.0, 6.0
+        for value in (900.0, 1000.0, 1100.0):
+            with pytest.raises(ValueError, match="9,810 N/m"):
+                critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=value)
+        # Just outside the band, and kN/m^3, are taken as given.
+        assert critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=1100.5)["s_cr"] > 0
+        assert critical_ponding_spacing(e_pa, i_m4, l_m, unit_weight_water=9.81)["s_cr"] > 0
+        # The old keyword is gone, with no alias.
+        with pytest.raises(TypeError):
+            critical_ponding_spacing(e_pa, i_m4, l_m, rho_water=9810.0)
 
     def test_lateral_torsional_buckling_formula(self):
         result = lateral_torsional_buckling_stress(10e9, alpha=20.0)
@@ -118,8 +176,16 @@ class TestInteractionOfBucklingModes:
         assert result["f_double_prime"] == pytest.approx(0.822 * 10e9 / (3.0 / 0.3) ** 2)
 
     def test_elastic_buckling_stress_edgewise_bending(self):
+        # Judgment call (lead, 2026-11-10). Eq 9-41 (FPL-GTR-282 pdf 249 /
+        # printed 9-17) prints Fb1'' = (1.44 E/le)(d2/d1), which is not a
+        # stress; the form used is 1.44 E d2^2/(le d1).
         result = elastic_buckling_stress_edgewise_bending(10e9, le=3.0, d1=0.3, d2=0.05)
-        assert result["fb1_double_prime"] == pytest.approx(1.44 * 10e9 / 3.0 * 0.05 / 0.3)
+        assert result["fb1_double_prime"] == pytest.approx(1.44 * 10e9 * 0.05 ** 2 / (3.0 * 0.3))
+        assert result["form_used"] == "1.44*E*d2**2/(le*d1)"
+        # The same member in mm gives the same stress (the printed form
+        # changes by a factor of 1,000).
+        mm = elastic_buckling_stress_edgewise_bending(10e9, le=3000.0, d1=300.0, d2=50.0)
+        assert mm["fb1_double_prime"] == pytest.approx(result["fb1_double_prime"])
 
     def test_moment_magnification_edgewise_no_load_is_one(self):
         result = moment_magnification_edgewise(fc=0.0, fc1_double_prime=1e7, beam_spacing=0.0, s_cr=4.0)

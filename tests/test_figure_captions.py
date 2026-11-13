@@ -74,15 +74,18 @@ def test_gec6_figures_sit_on_their_caption_pages():
     assert {n: pages.get(n) for n in printed} == {n: p + 5 for n, p in printed.items()}
     five_11 = [f["caption"] for f in figs["figures"] if f["figure_number"] == "5-11"]
     assert five_11[0].startswith("(a) Chart for Use in Determining Vertical Stresses")
-    assert figs["figure_count"] == len(figs["figures"]) == 57
+    # 57 from the List of Figures; Appendices B and C added 29 (REF-84)
+    assert figs["figure_count"] == len(figs["figures"]) == 86
 
 
 def test_micropile_lists_every_printed_figure_once():
     """The printed List of Figures has 132 entries (3, 5, 14, 18, 27, 44, 13
-    and 8 in chapters 1-8)."""
+    and 8 in chapters 1-8); the sample problems of Appendices D and E print
+    10 more (S1-1 to S1-7, S2-1 to S2-3; REF-84)."""
     figs = _load(ROOT / "geotech_references" / "micropile" / "figures_catalog.json")
     numbers = [f["figure_number"] for f in figs["figures"]]
-    assert len(numbers) == len(set(numbers)) == figs["figure_count"] == 132
+    assert len(numbers) == len(set(numbers)) == figs["figure_count"] == 142
+    assert sum(1 for n in numbers if n.startswith("S")) == 10
     per_chapter = [sum(1 for n in numbers if n.split("-")[0] == str(c))
                    for c in range(1, 9)]
     assert per_chapter == [3, 5, 14, 18, 27, 44, 13, 8]
@@ -134,7 +137,9 @@ def test_a_caption_ends_where_its_list_page_number_begins():
         assert got == [caption], (ref, number, got)
     gec5 = _load(ROOT / "geotech_references" / "gec_5" / "figures_catalog.json")
     numbers = [f["figure_number"] for f in gec5["figures"]]
-    assert len(numbers) == len(set(numbers)) == gec5["figure_count"] == 256
+    # 256 from the List of Figures, then 11-10 to 11-26, chapters 12 and 13
+    # and Appendix 2 from their caption pages (REF-84, 2026-11-10)
+    assert len(numbers) == len(set(numbers)) == gec5["figure_count"] == 349
 
 
 # ---------------------------------------------------------------------------

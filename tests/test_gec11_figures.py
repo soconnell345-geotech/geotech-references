@@ -88,9 +88,33 @@ class TestFigure410:
         with pytest.raises(ValueError, match="must be >= 0"):
             figure_4_10_kr_ka_ratio(-1.0)
 
+    @pytest.mark.parametrize("depth", [6.0, 20.0, 35.0, 100.0])
+    def test_constant_below_6_m_as_printed(self, depth):
+        """Figure 4-10 (GEC-11 Vol I, p. 4-37) draws the depth axis open below
+        20 ft (6 m); the text (p. 4-35) says the metallic ratio is constant
+        below it and the geosynthetic ratio constant throughout (REF-76:
+        kept, rule 1)."""
+        assert figure_4_10_kr_ka_ratio(depth, "metal_strip")["kr_ka_ratio"] == 1.2
+        assert figure_4_10_kr_ka_ratio(depth, "metal_bar_mat")["kr_ka_ratio"] == 1.2
+        assert figure_4_10_kr_ka_ratio(depth, "geosynthetic")["kr_ka_ratio"] == 1.0
+
     def test_unknown_type_raises(self):
         with pytest.raises(ValueError, match="Unknown reinforcement_type"):
             figure_4_10_kr_ka_ratio(3.0, "unknown_type")
+
+    def test_polymer_strip_footnote(self):
+        """p. 4-37 prints under the chart "*Does not apply to polymer strip
+        reinforcement" (the asterisk on the Geosynthetics line): every
+        result says so, and a polymer strip is refused with the sentence."""
+        sentence = "*Does not apply to polymer strip reinforcement"
+        for rtype in ("geosynthetic", "metal_strip", "metal_bar_mat"):
+            note = figure_4_10_kr_ka_ratio(3.0, rtype)["note"]
+            assert sentence in note and "p. 4-37" in note
+            assert "Geosynthetics line" in note
+        for rtype in ("polymer_strip", "Polymer strip", "polymeric_strip"):
+            with pytest.raises(ValueError, match=r"\*Does not apply to polymer strip"):
+                figure_4_10_kr_ka_ratio(3.0, rtype)
+        assert sentence in " ".join(figure_4_10_kr_ka_ratio.__doc__.split())
 
     def test_strip_always_gte_geosynthetic(self):
         """Metal strips always have Kr/Ka >= geosynthetic Kr/Ka."""

@@ -48,7 +48,6 @@ from geotech_references.fhwa_pavements.equations import (
     seasonal_relative_damage,
     effective_subgrade_modulus_from_relative_damage,
     backcalculated_to_design_modulus,
-    modulus_subgrade_reaction_from_cbr,
 )
 
 
@@ -159,6 +158,10 @@ class TestMrFromCbrAASHTO93:
     def test_warns_above_10(self):
         assert "warning" in resilient_modulus_from_cbr_aashto93(15)
 
+    def test_no_warning_at_10(self):
+        """Eq. 5.13 is printed 'for CBR <= 10' (p. 5-49); CBR 10 warned."""
+        assert "warning" not in resilient_modulus_from_cbr_aashto93(10)
+
 
 class TestMrFromRValue:
     def test_r_60(self):
@@ -173,17 +176,52 @@ class TestMrFromRValue:
         with pytest.raises(ValueError):
             resilient_modulus_from_r_value(150)
 
+    def test_cites_table_5_34_not_eq_5_15(self):
+        """Table 5-34, p. 5-53 (PDF page 231): Mr (psi) = 1155 + 555R. Eq.
+        5.15, p. 5-49 (PDF page 227), prints 1000 + 555 (R-value); the
+        docstring called the two equivalent and the reference cited both."""
+        import geotech_references.fhwa_pavements.equations as eq
+        r = resilient_modulus_from_r_value(60)
+        assert "Eq. 5.15" not in r["reference"]
+        assert "1000 + 555" in eq.resilient_modulus_from_r_value.__doc__
+        assert "Equivalent" not in eq.resilient_modulus_from_r_value.__doc__
+
 
 class TestCbrFromDcp:
     def test_dcp_10(self):
         # CBR = 292 / 10^1.12 = 22.2
         assert cbr_from_dcp(10)["cbr"] == pytest.approx(292 / 10 ** 1.12, abs=0.1)
 
+    def test_mm_per_blow_as_in_tm_3_34_48_2(self):
+        """FHWA-NHI-05-037 Table 5-34, p. 5-53 (PDF page 231) prints 'DCP =
+        Penetration index, in./blow': 0.5 in./blow gave CBR 634.7 (review
+        finding gec-08). Lead's ruling 8: DCP in mm/blow, as TM 3-34.48-2
+        Figure G-11 plots it; its Table G-1 (p. G-12) prints CBR 22 at 10
+        mm/blow and 10 at 20 mm/blow ('All other soils'). Over CBR 100 the
+        call is refused."""
+        assert round(cbr_from_dcp(dcp_mm_per_blow=10)["cbr"]) == 22
+        assert round(cbr_from_dcp(dcp_mm_per_blow=20)["cbr"]) == 10
+        r = cbr_from_dcp(12.7)
+        assert r["cbr"] == pytest.approx(16.9, abs=0.05)
+        assert "mm per blow" in r["print_note"]
+        assert "TM 3-34.48-2" in r["print_note"] and "GL-92-3" in r["print_note"]
+        assert r["dcp_mm_per_blow"] == 12.7
+        with pytest.raises(ValueError, match="over 100 %"):
+            cbr_from_dcp(0.5)
+        with pytest.raises(ValueError, match="over 100 %"):
+            cbr_from_dcp(2.5)
+        assert cbr_from_dcp(2.7)["cbr"] < 100
+
     def test_chained_mr(self):
         r = resilient_modulus_from_dcp(10)
         cbr = 292 / 10 ** 1.12
         assert r["cbr"] == pytest.approx(round(cbr, 1), abs=0.1)
-        assert r["mr"] == pytest.approx(2555 * round(cbr, 1) ** 0.64, abs=5)
+        # from the unrounded CBR 22.15: 18,553.9 psi (it used 22.2: 18,580.5)
+        assert r["mr"] == pytest.approx(2555 * cbr ** 0.64, abs=0.06)
+        assert r["mr"] == pytest.approx(18553.9, abs=0.06)
+        assert "mm per blow" in r["print_note"]
+        with pytest.raises(ValueError, match="over 100 %"):
+            resilient_modulus_from_dcp(0.5)
 
     def test_zero_raises(self):
         with pytest.raises(ValueError):
@@ -192,14 +230,31 @@ class TestCbrFromDcp:
 
 class TestCbrFromPlasticity:
     def test_wpi_form(self):
-        # P200=80%, PI=20 -> wPI = 0.8*20 = 16 -> CBR = 75/(1+0.728*16) = 5.9
-        r = cbr_from_plasticity_gradation(80, 20)
+        # P200=0.80, PI=20 -> wPI = 0.8*20 = 16 -> CBR = 75/(1+0.728*16) = 5.9
+        r = cbr_from_plasticity_gradation(0.80, 20)
         assert r["wpi"] == pytest.approx(16.0, abs=0.01)
         assert r["cbr"] == pytest.approx(75 / (1 + 0.728 * 16), abs=0.1)
 
     def test_clean_soil_high_cbr(self):
         # wPI = 0 -> CBR = 75
         assert cbr_from_plasticity_gradation(0, 0)["cbr"] == pytest.approx(75.0, abs=0.1)
+
+    def test_p200_a_decimal(self):
+        """Table 5-34, p. 5-53: wPI = P200*PI, 'P200 = % passing No. 200'.
+        Lead's ruling 9: P200 a decimal. p200 = 0.35 was read as 0.35 %
+        (CBR 72.5 at PI 10) and 35 as 35 % (review finding gec-48); now
+        0.35 is 35 % (CBR 21.4) and 35 is refused with the decimal to give
+        (made-up soil values)."""
+        r = cbr_from_plasticity_gradation(0.35, 10)
+        assert r["wpi"] == pytest.approx(3.5)
+        assert r["cbr"] == pytest.approx(75 / (1 + 0.728 * 3.5), abs=0.05)
+        assert "decimal" in r["print_note"]
+        # one example of each reading, no claim about every plastic soil
+        # (P200 10 %, PI 5 read as the percent gives CBR 2.0) (independent check)
+        assert "CBR 21.1" in r["print_note"] and "CBR 0.29" in r["print_note"]
+        assert "any plastic soil" not in r["print_note"]
+        with pytest.raises(ValueError, match="give 0.35"):
+            cbr_from_plasticity_gradation(35, 10)
 
     def test_bad_p200_raises(self):
         with pytest.raises(ValueError):
@@ -228,6 +283,16 @@ class TestSeasonalEffectiveModulus:
         mr = effective_subgrade_modulus_from_relative_damage(uf)["mr_effective_psi"]
         assert mr == pytest.approx(7500, rel=0.01)
 
+    def test_eq_5_12_as_printed(self):
+        """FHWA-NHI-05-037 Eq. 5.12, p. 5-46 (PDF page 224): Mr = 3015
+        uf^-0.431. The function computed the exact inverse of Eq. 5.11 and
+        cited Eq. 5.11 (review finding gec-48): at uf 1.0 it gave 3015.6."""
+        r = effective_subgrade_modulus_from_relative_damage(1.0)
+        assert r["mr_effective_psi"] == 3015.0
+        assert "Eq. 5.12" in r["reference"]
+        assert effective_subgrade_modulus_from_relative_damage(0.5)[
+            "mr_effective_psi"] == pytest.approx(3015 * 0.5 ** -0.431, abs=0.1)
+
     def test_zero_mr_raises(self):
         with pytest.raises(ValueError):
             seasonal_relative_damage(0)
@@ -249,6 +314,13 @@ class TestBackcalcToDesign:
         r = backcalculated_to_design_modulus(20000, "aashto_1993_flexible")
         assert r["factor"] == 0.33
 
+    def test_cites_where_printed(self):
+        """The factors are printed in Table 5-31's commentary, pp. 5-48 to
+        5-49; Table 5-32 holds the ratios it points to."""
+        r = backcalculated_to_design_modulus(20000, "nchrp_1_37a")
+        assert "Table 5-31" in r["reference"]
+        assert r["printed_page"] == "5-48 to 5-49"
+
     def test_aashto_has_no_granular_factor(self):
         with pytest.raises(ValueError):
             backcalculated_to_design_modulus(20000, "aashto_1993_flexible", "granular_base")
@@ -258,10 +330,17 @@ class TestBackcalcToDesign:
             backcalculated_to_design_modulus(20000, "made_up")
 
 
-class TestModulusSubgradeReaction:
-    def test_k_from_cbr(self):
-        # k ~ 1500*5/19.4 = 386.6 pci
-        assert modulus_subgrade_reaction_from_cbr(5)["k_pci"] == pytest.approx(1500 * 5 / 19.4, abs=0.5)
+class TestModulusSubgradeReactionRemoved:
+    def test_not_in_the_package(self):
+        """k = 1500 CBR / 19.4 is not printed in FHWA-NHI-05-037; the function
+        was removed (review finding gec-27, lead's ruling). AASHTO 1993 prints
+        k = MR/19.4 on p. II-44; aashto_1993 holds it."""
+        import geotech_references.fhwa_pavements.equations as eq
+        from geotech_references.aashto_1993.equations import (
+            modulus_subgrade_reaction_simple)
+        assert not hasattr(eq, "modulus_subgrade_reaction_from_cbr")
+        assert modulus_subgrade_reaction_simple(7500)["k_pci"] == pytest.approx(
+            7500 / 19.4, abs=0.1)
 
 
 # ===================================================================
@@ -302,12 +381,72 @@ class TestSoilAsPavementMaterial:
         r = table_4_14_soil_as_pavement_material("SC")
         assert "Poor" in r["subgrade_strength"]
 
-    def test_full_table_eight_classes(self):
-        assert len(table_4_14_soil_as_pavement_material()["rows"]) == 8
+    def test_every_cell_as_printed(self):
+        """Table 4-14, pp. 4-65 and 4-66 (PDF pages 167, 168), every cell
+        from 300 dpi renders. Before 2026-11-12 the lookup held only the ten
+        gravel and sand rows less GM u and SM u."""
+        printed = [
+            ("GW", "Well-graded gravels or gravel-sand mixtures, little or no fines",
+             "Excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GP", "Poorly graded gravels or gravel-sand mixtures, little or no fines",
+             "Good to excellent", "None to very slight", "Almost none", "Excellent"),
+            ("GM-d", "Silty gravels, gravel-sand silt mixtures",
+             "Good to excellent", "Slight to medium", "Very slight", "Fair to poor"),
+            ("GM-u", "Silty gravels, gravel-sand silt mixtures",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("GC", "Clayey gravels, gravel-sand-clay mixture",
+             "Good", "Slight to medium", "Slight", "Poor to practically impervious"),
+            ("SW", "Well-graded sands or gravelly sands, little or no fines",
+             "Good", "None to very slight", "Almost none", "Excellent"),
+            ("SP", "Poorly graded sands or gravelly sands, little or no fines",
+             "Fair to good", "None to very slight", "Almost none", "Excellent"),
+            ("SM-d", "Silty sands, sand-silt mixtures",
+             "Fair to good", "Slight to high", "Very slight", "Fair to poor"),
+            ("SM-u", "Silty sands, sand-silt mixtures",
+             "Fair", "Slight to high", "Slight to medium", "Poor to practically impervious"),
+            ("SC", "Clayey sands, sand-clay mixtures",
+             "Poor to fair", "Slight to high", "Slight to medium",
+             "Poor to practically impervious"),
+            ("ML", "Inorganic silts & very fine sand, rock flour, silty or clayey fine sand "
+                   "or clayey silts with slight plasticity",
+             "Poor to Fair", "Medium to Very High", "Slight to medium", "Fair to Poor"),
+            ("CL", "Inorganic clays of low to medium plasticity, gravelly clays, sandy "
+                   "clays, silty clays, lean clays",
+             "Poor to Fair", "Medium to High", "Slight to medium", "Practically Impervious"),
+            ("OL", "Organic silts & organic silt-clays or low plasticity",
+             "Poor", "Medium to High", "Medium to high", "Poor"),
+            ("MH", "Inorganic silts, micaceous or diatomaceous fine sand or silty soils, "
+                   "elastic silts",
+             "Poor", "Medium to Very High", "High", "Fair to Poor"),
+            ("CH", "Inorganic clays of high plasticity, fat clays",
+             "Poor to Fair", "Medium to Very High", "High", "Practically Impervious"),
+            ("OH", "Organic clays of medium to high plasticity, organic silts",
+             "Poor to Very Poor", "Medium", "High", "Practically Impervious"),
+            ("Pt", "Peat & other highly organic soils",
+             "Not Suitable", "Slight", "Very high", "Fair to Poor"),
+        ]
+        rows = table_4_14_soil_as_pavement_material()["rows"]
+        got = [(r["soil_class"], r["name"], r["subgrade_strength"],
+                r["potential_frost_action"], r["compressibility_expansion"],
+                r["drainage"]) for r in rows]
+        assert got == printed
+        pages = [r["printed_page"] for r in rows]
+        assert pages == ["4-65"] * 10 + ["4-66"] * 7
 
-    def test_fine_grained_not_in_table_raises(self):
+    def test_gm_alone_gives_both_rows(self):
+        r = table_4_14_soil_as_pavement_material("GM")
+        assert [x["soil_class"] for x in r["sub_rows"]] == ["GM-d", "GM-u"]
+        assert table_4_14_soil_as_pavement_material("sm u")["subgrade_strength"] == "Fair"
+
+    def test_fine_grained_and_peat(self):
+        ch = table_4_14_soil_as_pavement_material("CH")
+        assert ch["drainage"] == "Practically Impervious"
+        assert ch["printed_page"] == "4-66" and ch["pdf_page"] == 167
+        assert table_4_14_soil_as_pavement_material("Pt")["subgrade_strength"] == "Not Suitable"
+
+    def test_unknown_class_raises(self):
         with pytest.raises(ValueError):
-            table_4_14_soil_as_pavement_material("CH")
+            table_4_14_soil_as_pavement_material("XX")
 
 
 # ===================================================================
@@ -324,10 +463,36 @@ class TestFrostSusceptibility:
         r = table_7_12_frost_susceptibility("F4")
         assert r["degree_of_frost_susceptibility"] == "Very high"
 
-    def test_f3_includes_silts(self):
-        r = table_7_12_frost_susceptibility("F3")
-        joined = " ".join(e["type_of_soil"] for e in r["entries"])
-        assert "silt" in joined.lower()
+    def test_every_cell_as_printed(self):
+        """Table 7-12, p. 7-60 (PDF page 412), every cell from a 300 dpi
+        render, in the page's order. Before 2026-11-12 six rows sat one group
+        lower than the page (all silts were F3 "High")."""
+        printed = [
+            ("F1", "Negligible to low", "Gravelly soils", "3-10", "GC, GP, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Gravelly soils", "10-20", "GM, GC-GM, GP-GM"),
+            ("F2", "Low to medium", "Sands", "3-15", "SW, SP, SM, SW-SM, SP-SM"),
+            ("F3", "High", "Gravelly Soils", "Greater than 20", "GM-GC"),
+            ("F3", "High", "Sands, except very fine silty sands", "Greater than 15",
+             "SM, SC"),
+            ("F3", "High", "Clays PI>12", "—", "CL, CH"),
+            ("F4", "Very high", "All Silts", "—", "ML-MH"),
+            ("F4", "Very high", "Very Fine Silty Sands", "Greater than 15", "SM"),
+            ("F4", "Very high", "Clays PI<12", "—", "CL, CL-ML"),
+            ("F4", "Very high", "Varied clays and other fine grained, banded sediments",
+             "—", "CL, ML, SM, CH"),
+        ]
+        rows = table_7_12_frost_susceptibility()["rows"]
+        got = [(r["frost_group"], r["degree_of_frost_susceptibility"], r["type_of_soil"],
+                r["percent_finer_0p075mm"], r["typical_classification"]) for r in rows]
+        assert got == printed
+
+    def test_silts_are_f4_very_high(self):
+        r = table_7_12_frost_susceptibility("F4")
+        soils = [e["type_of_soil"] for e in r["entries"]]
+        assert soils[:3] == ["All Silts", "Very Fine Silty Sands", "Clays PI<12"]
+        f3 = [e["type_of_soil"] for e in table_7_12_frost_susceptibility("F3")["entries"]]
+        assert not any("silt" in s.lower() and "except" not in s for s in f3)
+        assert "Varied clays" in r["print_note"]
 
     def test_full_table(self):
         rows = table_7_12_frost_susceptibility()["rows"]
@@ -355,6 +520,17 @@ class TestDrainage:
 
     def test_mi_full_table_five_qualities(self):
         assert len(table_5_49_drainage_modifier_mi()["rows"]) == 5
+
+    def test_mi_as_fhwa_prints_with_aashto_cells_noted(self):
+        """FHWA-NHI-05-037 Table 5-49, p. 5-87 (PDF page 265): Poor and Very
+        Poor < 1 % print 1.05-0.80 and 0.95-0.75 (a repeat of the 1-5 %
+        column); AASHTO 1993 Table 2.4, p. II-25, which it cites, prints
+        1.15-1.05 and 1.05-0.95 (review finding gec-26). Values as FHWA
+        prints; every result names both."""
+        poor = table_5_49_drainage_modifier_mi("poor")
+        assert poor["mi"]["<1%"] == "1.05-0.80"
+        assert "Poor 1.15-1.05" in poor["print_note"]
+        assert "Very Poor 1.05-0.95" in table_5_49_drainage_modifier_mi()["print_note"]
 
     def test_drainage_definitions(self):
         rows = table_7_4_drainage_quality_definitions()["rows"]
@@ -386,6 +562,28 @@ class TestPermeability:
 
     def test_soils_full_table(self):
         assert len(table_5_56_permeability_soils()["rows"]) == 8
+
+    def test_highway_materials_every_cell_and_page(self):
+        """Table 5-57 is printed on p. 5-105 (PDF page 283, 0-based 282),
+        read from a 300 dpi render; it was cited at p. 5-103 before
+        2026-11-12."""
+        printed = [
+            ("Uniformly graded coarse aggregate", "0.4 - 4e-3"),
+            ("Well-graded aggregate without fines", "4e-3 - 4e-5"),
+            ("Concrete sand, low dust content", "7e-4 - 7e-6"),
+            ("Concrete sand, high dust content", "7e-6 - 7e-8"),
+            ("Silty and clayey sands", "1e-7 - 1e-9"),
+            ("Compacted silt", "7e-8 - 7e-10"),
+            ("Compacted clay", "< 1e-9"),
+            ("Bituminous concrete", "4e-5 - 4e-8"),
+            ("Portland cement concrete", "< 1e-10"),
+        ]
+        r = table_5_57_permeability_highway_materials()
+        assert [(x["material"], x["k_m_s"]) for x in r["rows"]] == printed
+        assert (r["printed_page"], r["pdf_page"]) == ("5-105", 282)
+        assert "3.28 ft" in r["print_note"]
+        bit = table_5_57_permeability_highway_materials("bituminous concrete")
+        assert bit["printed_page"] == "5-105" and "10^-10" in bit["footnote"]
 
     def test_bad_soil_raises(self):
         with pytest.raises(ValueError):
@@ -434,6 +632,28 @@ class TestCompaction:
 
     def test_full_table_seven_classes(self):
         assert len(table_5_18_compaction_aashto()["rows"]) == 7
+
+    def test_every_cell_as_printed(self):
+        """Table 5-18, p. 5-24 (PDF page 202), from a 300 dpi render. The A-6
+        optimum moisture content is printed "10.30"; every other cell is a
+        range, so it is read as 10-30 and the result says so."""
+        printed = [
+            ("A-1", "Well-graded gravel/sand mixtures", 115, 134, 18.1, 21.1, 5, 15),
+            ("A-2", "Silty or clayey gravel and sand", 109, 134, 17.2, 21.1, 9, 18),
+            ("A-3", "Poorly-graded sands", 100, 119, 15.7, 18.6, 5, 12),
+            ("A-4", "Low plasticity silty sands and gravels", 94, 125, 14.7, 19.6, 10, 20),
+            ("A-5", "Diatomaceous or micaceous silts", 84, 100, 13.2, 15.7, 20, 35),
+            ("A-6", "Plastic clay, sandy clay", 94, 119, 14.7, 18.6, 10, 30),
+            ("A-7", "Highly plastic clay", 81, 115, 12.7, 18.1, 15, 35),
+        ]
+        rows = table_5_18_compaction_aashto()["rows"]
+        got = [(r["aashto_class"], r["description"], r["dry_unit_weight_pcf_min"],
+                r["dry_unit_weight_pcf_max"], r["dry_unit_weight_knm3_min"],
+                r["dry_unit_weight_knm3_max"], r["optimum_moisture_content_pct_min"],
+                r["optimum_moisture_content_pct_max"]) for r in rows]
+        assert got == printed
+        assert '"10.30"' in table_5_18_compaction_aashto("A-6")["print_note"]
+        assert "print_note" not in table_5_18_compaction_aashto("A-5")
 
     def test_bad_class_raises(self):
         with pytest.raises(ValueError):

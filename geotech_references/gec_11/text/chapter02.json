@@ -1,179 +1,492 @@
 {
-  "reference_id": "FHWA-NHI-10-024",
-  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
-  "volume": 1,
-  "chapter": 2,
-  "chapter_title": "Systems and Project Evaluation",
-  "sections": [
-    {
-      "section_id": "2.1",
-      "title": "Applications",
-      "body": "MSE walls are cost-effective alternatives for most applications where reinforced concrete or gravity walls have traditionally been used: bridge abutments, wing walls, restricted ROW embankments. They are particularly suited to steep terrain, slope instability sites, or poor foundation soils, offering savings exceeding 50% over conventional walls on poor foundation sites. Temporary MSE walls are widely used for highway reconstruction detours, temporary bridge abutments, and phased construction. Reinforced Soil Slopes (RSS) incorporate planar reinforcing elements in constructed slopes with face inclinations less than 70 degrees, providing increased slope stability and improved compaction at slope edges.",
-      "key_points": [
-        "MSE walls cost-effective alternative to RC/gravity walls for abutments, wing walls, restricted ROW",
-        "Cost savings >50% over conventional walls on poor foundation sites (eliminates pile foundations)",
-        "Temporary MSE walls widely used for detours, temporary abutments, phased construction",
-        "RSS: face inclination < 70 degrees; two purposes: (1) increased slope stability, (2) improved edge compaction",
-        "RSS can reuse slide debris rather than importing higher quality fill",
-        "RSS with nonwoven geotextiles provides in-plane drainage for pore pressure dissipation in cohesive fills"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-1", "Figure 2-2", "Figure 2-3", "Figure 2-4"],
-      "tables": [],
-      "applicability": "Selection of MSE wall or RSS for transportation retaining structures and slope stabilization."
-    },
-    {
-      "section_id": "2.2",
-      "title": "Advantages and Potential Disadvantages",
-      "body": "MSE wall advantages over conventional RC walls: simple/rapid construction with no special skills, less site preparation, less construction space, reduced ROW, tolerance to deformations without rigid foundation support, cost-effective, feasible to heights >100 ft (30 m), higher seismic resistance, and aesthetic flexibility. RSS advantages include right-of-way savings, potential use of lower quality fill (including slide debris), vegetated face for aesthetics, and inherently conservative design. Potential disadvantages for all reinforced soil structures: requires large space behind face for reinforcement installation; MSE walls require select granular fill (RSS fill requirements less restrictive); shared design responsibility between material suppliers and owners.",
-      "key_points": [
-        "MSE walls more economical than other wall systems for heights >10 ft (3 m) or where special foundations required",
-        "MSE walls: flexible, tolerate differential settlement, higher seismic resistance than rigid RC walls",
-        "RSS can be constructed at about half the cost of MSEW structures",
-        "RSS designed at same FS are actually safer than unreinforced slopes (inherent conservatism)",
-        "MSE walls require select granular reinforced fill — primary disadvantage vs. flatter unreinforced slope",
-        "Reinforcement installation requires space behind wall face (may require excavation in cut situations)"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Project evaluation and system selection for MSE walls and RSS."
-    },
-    {
-      "section_id": "2.3",
-      "title": "Relative Costs",
-      "body": "MSE walls with precast concrete facings are usually less expensive than reinforced concrete walls for heights >10 ft (3 m) with average foundation conditions. Savings of 25 to 50% over conventional RC structures are typical, with greater savings when deep foundations are eliminated. Typical total costs for permanent transportation MSE walls range from $30 to $65/ft2 ($320 to $650/m2) of face, varying with height, size, aesthetics, accessibility, and fill cost. For segmental precast faced walls, relative component costs: erection/profit 20-30%, reinforcing materials 15-30%, facing system 20-40%, reinforced fill 30-60%. RSS bid prices range from $10 to $24/ft2 ($110 to $260/m2) as a function of height; reinforcement represents 45-65% of RSS cost.",
-      "key_points": [
-        "MSE walls typically 25-50% less expensive than conventional RC retaining structures",
-        "Permanent MSE walls: $30-65/ft2 ($320-650/m2) face area — varies widely by region and fill cost",
-        "Reinforced fill (select granular) is typically 30-60% of total MSE wall cost",
-        "MBW faced walls < 15 ft (4.5 m) typically 10% or more less expensive than segmental panel walls",
-        "RSS costs $10-24/ft2 ($110-260/m2) depending on height; reinforcement is 45-65% of cost",
-        "Small projects < 3,000 ft2 (300 m2): unit cost 10-15% higher than larger projects"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-5"],
-      "tables": [],
-      "applicability": "Preliminary cost comparison between MSE walls, RSS, and conventional retaining structures."
-    },
-    {
-      "section_id": "2.4",
-      "title": "Description of MSE and RSS Systems",
-      "body": "A system is a complete supplied package including design, specifications, and all prefabricated materials. Components cannot be substituted without complete evaluation of impact on the system. MSE/RSS systems are characterized by reinforcement geometry (linear unidirectional strips/grids, composite unidirectional bar mats, planar bi-directional mesh), reinforcement material (metallic galvanized steel vs. nonmetallic polymeric), and reinforcement extensibility (inextensible: steel strips/bar mats; extensible: geogrid, geotextile, woven wire mesh). Major facing types: segmental precast concrete panels (min 5.5 in. thick, typically 5x5 or 5x10 ft), dry-cast MBW units (30-110 lbs, 4-12 in. tall, 8-24 in. deep), welded wire mesh (for RSS ≥45 degrees), gabion facing, geosynthetic facing, and post-construction facing. Steel reinforcements (ribbed strips 2 in. wide x 5/32 in. thick; welded wire grids W7.5-W24) used with precast panels. Geosynthetic reinforcements (HDPE geogrid, PVC-coated PET geogrid, geotextiles) predominantly used with MBW systems. MSE walls require high quality well-graded granular reinforced fill; RSS fill requirements are less restrictive.",
-      "key_points": [
-        "Three reinforcement geometry types: linear unidirectional (strips), composite unidirectional (bar mats), planar bi-directional (mesh)",
-        "Inextensible: steel strips/bar mats; extensible: geogrids, geotextiles, woven wire (failure strain ≥ soil)",
-        "Segmental precast panels: min 5.5 in. thick, 20-50 ft2 area, AASHTO T&T reinforcement required",
-        "MBW units: 30-110 lbs, 8 in. typical height, 8-24 in. depth; dry-stacked with shear pins/lips/keys",
-        "MBW freeze-thaw durability requires specific mix design — must verify with lab testing in aggressive climates",
-        "MSE reinforced fill: well-graded granular, AASHTO T-99 compaction to 95-100%, dry of optimum",
-        "RSS fill less restrictive than MSE fill — any embankment-quality soil acceptable"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-6", "Figure 2-7"],
-      "tables": ["Table 1-1"],
-      "applicability": "System selection and specification of components for MSE walls and RSS."
-    },
-    {
-      "section_id": "2.5",
-      "title": "Construction Sequence",
-      "body": "MSEW with precast panel facings: (1) subgrade preparation including removal of unsuitable material and compaction; (2) placement of unreinforced concrete leveling pad (typically 1 ft wide x 6 in. thick); (3) erection of first row of facing panels (braced); (4) compacted reinforced fill placement to first reinforcement level (loose lift max 12 in., 95-100% T-99 density); (5) placement of reinforcement layers perpendicular to face; (6) repeat for each layer; (7) construct traffic barriers and copings. Flexible-faced walls: reinforcement placed with principal strength perpendicular to face, secured with retaining pins; face wrapped with minimum 4 ft return length. RSS construction: site prep, subsurface drainage, reinforcement layer, compact backfill, face construction, additional reinforcement layers, surface drainage. Compaction within 3 ft of wall face uses hand-operated vibratory compactor to prevent panel displacement.",
-      "key_points": [
-        "Leveling pad: unreinforced concrete, ~1 ft wide x 6 in. thick; not a structural foundation, only a guide",
-        "Loose lift thickness maximum 12 in. (300 mm); compact to 95-100% AASHTO T-99, dry of optimum",
-        "Reinforcements placed perpendicular to wall face; connected when fill reaches connection level",
-        "Only first tier of precast panels requires bracing; subsequent rows wedged/clamped to adjacent panels",
-        "Hand compactor required within 3 ft (~1 m) of wall face to avoid panel displacement",
-        "Flexible face: minimum 4 ft (1.25 m) return fold for pullout resistance; adjacent sheets overlap min 6 in."
-      ],
-      "equations": [],
-      "figures": ["Figure 2-8", "Figure 2-9", "Figure 2-10", "Figure 2-11", "Figure 2-12", "Figure 2-13", "Figure 2-14"],
-      "tables": [],
-      "applicability": "Construction of MSE walls and RSS for both precast panel and flexible-faced systems."
-    },
-    {
-      "section_id": "2.6",
-      "title": "Site Evaluation",
-      "body": "Site evaluation includes field reconnaissance, subsurface exploration, and laboratory testing. Borings should be located along the front and back of the structure at 100 ft (30 m) intervals along alignment and 150 ft (45 m) along the back. Boring depth should extend at least twice the wall/slope height, with rock coring to 10 ft minimum. Soil samples at 5-ft (1.5 m) intervals and at stratum changes for SPT, thin-walled tube sampling, or CPT. Groundwater levels should be monitored over time; piezometers may be needed. Laboratory tests: USCS classification, moisture-density (T-99 or T-180), shear strength (direct shear, triaxial), consolidation (if compressible foundation soils), gradation, Atterberg limits, pH (AASHTO T 289), electrical resistivity, sulfate content (AASHTO T 290), sulfide content (ASTM D4327), and chloride content (ASTM D4327).",
-      "key_points": [
-        "Borings: 100 ft along wall alignment, 150 ft along back of structure; depth ≥ 2H below finished grade",
-        "Reinforced fill width ≈ 0.8H for boring layout planning",
-        "SPT (AASHTO T 206) for granular soils; thin-walled tubes (T 207) for cohesive soils",
-        "Electrochemical tests required for reinforcement durability: pH, resistivity, sulfates, sulfides, chlorides",
-        "pH < 5 or > 10 accelerates metallic reinforcement corrosion; PET degrades in highly alkaline or acidic regimes",
-        "Foundation bearing capacity, settlement potential, and groundwater position must all be evaluated",
-        "Settlement analyses critical — inadequate investigation is leading cause of MSE wall distress"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Subsurface investigation for MSE wall and RSS projects."
-    },
-    {
-      "section_id": "2.7",
-      "title": "Project Evaluation",
-      "body": "Structure selection factors include geologic/topographic conditions, environmental conditions, size and nature of structure, aesthetics, durability, performance criteria, material availability, experience, and cost. MSE structures are especially suited to fill-type walls and side-hill fills. For soft foundation soils, available shear strength must be ≥2.0 to 2.5 times the fill weight for vertical MSE structures. Environmental aggressiveness affects reinforcement selection: chloride/sulfate salts >200 PPM or pH <5 accelerate steel corrosion; pH >10 accelerates galvanization loss. MSE walls feasible to 135 ft (41 m) in U.S. with steel; RSS to 242 ft (74 m) with geogrids. Nominal bearing resistance of reinforced fill for service limit state typically limited to 4000 psf (200 kPa) for bridge abutments. MSE walls not suitable where utilities within reinforced zone require future cutting of reinforcements, where galvanized steel is exposed to acid mine drainage, or where floodplain erosion may undermine the reinforced fill zone.",
-      "key_points": [
-        "For soft foundations: available shear strength must be ≥ 2.0-2.5 × fill weight for vertical MSE walls",
-        "Concrete-faced MSE: tolerates longitudinal differential settlement up to 1/100 without special joints",
-        "Full-height concrete panels: limit differential settlement to 1/500; MBW: 1/200; welded wire: 1/50",
-        "Minimum horizontal bench 4 ft (1.2 m) wide required in front of walls founded on slopes",
-        "Nominal bearing resistance limit: 4000 psf (200 kPa) for bridge abutment footings at service limit state",
-        "Design seismic check required for As > 0.05; deformation analysis recommended for As > 0.29g",
-        "Minimum reinforcement length: 0.7H for static loading; 0.8H for sloping backfill or seismic"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-15", "Figure 2-16"],
-      "tables": ["Table 2-1", "Table 2-2", "Table 2-3"],
-      "applicability": "Project feasibility and system selection for MSE walls and RSS."
-    },
-    {
-      "section_id": "2.8",
-      "title": "Establishment of Project Criteria",
-      "body": "Project criteria development includes: considering all possible alternatives; choosing MSEW or RSS system; considering facing options; developing performance criteria (loads, design heights, embedment, settlement tolerances, foundation capacity, effect on adjoining structures); and considering corrosion/degradation effects. MSE wall design per AASHTO LRFD Article 11.10 (2007). Design life for permanent walls: minimum 75 years; 36 months for temporary walls; 100 years for walls supporting bridge abutments, buildings, or critical utilities. RSS design remains limit equilibrium based (AASHTO LRFD 2007 does not address RSS). Minimum embedment depth: H/20 for horizontal grade, H/10 for 3H:1V slope, H/7 for 2H:1V, H/5 for 1.5H:1V; absolute minimum 2 ft (0.6 m) except on rock. For scour: minimum 2 ft (0.6 m) below reliable scour depth.",
-      "key_points": [
-        "Minimum design life: 75 years permanent, 36 months temporary, 100 years for bridge abutments/critical utilities",
-        "Minimum reinforcement length 0.7H; Table 2-1 gives required L/H for static, sloping backfill, and seismic",
-        "Minimum embedment depth: H/20 (horizontal), H/10 (3H:1V), H/7 (2H:1V), H/5 (1.5H:1V); min 2 ft absolute",
-        "Bench 4 ft wide required in front of walls on slopes; minimum 2 ft below scour depth for stream crossings",
-        "Traffic load per AASHTO 3.11.6.4: equivalent to 2 ft (0.6 m) of soil over traffic lanes",
-        "No upper height limit for MSE walls theoretically; practical limits from economy, ROW, and reinforcement strength"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": ["Table 2-1", "Table 2-2", "Table 2-3"],
-      "applicability": "Establishing design parameters and performance criteria for MSE wall and RSS projects."
-    },
-    {
-      "section_id": "2.9",
-      "title": "Proprietary Aspects",
-      "body": "Most fundamental process patents for MSE wall systems have expired. Current unexpired patents cover: connection details between grid reinforcement and precast panels (concrete-embedded connector only); most MBW facing unit designs; specific MSE construction methods under water; specific traffic barrier designs over MSE walls; and facing attachments to temporary facings. The combination of components in generic systems must be tested and evaluated together — components cannot be substituted without evaluating impact on system performance.",
-      "key_points": [
-        "Fundamental process patents for MSE walls have largely expired",
-        "Current patents: grid-to-panel connections, most MBW facing units, certain special construction methods",
-        "Generic systems assembled from components must be evaluated as a complete system",
-        "Component substitution requires full re-evaluation of system compatibility and performance"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Procurement and approval of MSE wall systems for transportation projects."
-    },
-    {
-      "section_id": "2.10",
-      "title": "Case Histories — MSE Walls",
-      "body": "Mn/DOT Crosstown Project (Minneapolis, MN): ~300,000 ft2 of MSE walls in 24 separate walls, heights 25-45 ft, steel bar mat reinforcement with architectural precast panels, 100-year design life, cost $54.50/ft2 including fill and moment slab vs. $76/ft2 for CIP walls. Veterans Memorial Overpass (Tucson, AZ): 25- and 35-ft high true bridge abutments, 150 ft long, ribbed steel strips with 5x10 ft precast panels; dense underlying soils, <1 in. settlement during construction. SeaTac Airport Runway Extension: tallest MSE wall in U.S. at time of construction, 138 ft (42 m) exposed height, 150 ft (46 m) constructed height, 1430 ft (436 m) long, steel strips with precast panels. Guanella Pass (Colorado Rockies): 21 wire-faced walls totaling ~12,000 ft length on steep slopes (1.3H:1V to 1.5H:1V), reinforcement lengths 70-120% of wall height, successfully used on-site soils with up to 20% passing No. 200 sieve.",
-      "key_points": [
-        "Mn/DOT Crosstown: MSE $54.50/ft2 vs. CIP walls $76/ft2 — 28% cost savings with comparable performance",
-        "SeaTac: tallest U.S. MSE wall — 138 ft exposed, 150 ft constructed; steel strips with precast panels",
-        "Guanella Pass: MSE walls on 1.3-1.5H:1V slopes; reinforcement lengths up to 1.2H; 20% fines allowed",
-        "All case histories show MSE wall tolerance to difficult conditions (settlement, steep slopes, remote sites)",
-        "Geomembrane across top of reinforced zone can prevent de-icing salt infiltration (Mn/DOT example)"
-      ],
-      "equations": [],
-      "figures": ["Figure 2-17", "Figure 2-18", "Figure 2-19", "Figure 2-20", "Figure 2-21", "Figure 2-22", "Figure 2-23"],
-      "tables": [],
-      "applicability": "Reference case histories for MSE wall performance and cost on transportation projects."
-    }
-  ]
+ "reference_id": "FHWA-NHI-10-024",
+ "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume I",
+ "volume": 1,
+ "chapter": 2,
+ "chapter_title": "Systems and Project Evaluation",
+ "sections": [
+  {
+   "section_id": "2.0",
+   "title": "Systems and Project Evaluation",
+   "body": "[p. 2-1] This chapter describes available MSE wall (MSEW) and RSS systems and components, their application, advantages, disadvantages and relative costs. Subsequently, it reviews typical construction sequence for MSEW and RSS construction, and outlines required site and project evaluations leading to the establishment of site-specific project criteria and details.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-1."
+  },
+  {
+   "section_id": "2.1",
+   "title": "Applications",
+   "body": "[p. 2-1]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-1."
+  },
+  {
+   "section_id": "2.1.1",
+   "title": "MSE Walls",
+   "body": "[p. 2-1]\n\nMSEW structures are cost-effective alternatives for most applications where reinforced concrete or gravity type walls have traditionally been used to retain soil. These include bridge abutments and wing walls, as well as areas where the right-of-way is restricted, such that an embankment or excavation with stable side slopes cannot be constructed. They are particularly suited to economical construction in steep-sided terrain, in ground subject to slope instability, or in areas where foundation soils are poor.\n\nMSE walls offer significant technical and cost advantages over conventional reinforced concrete retaining structures at sites with poor foundation conditions. In such cases, the elimination of costs for foundation improvements such as piles and pile caps, that may be required for support of conventional structures, have resulted in cost savings of greater than 50 percent on completed projects.\n\nRepresentative uses of MSE walls for various applications are shown in Figure 2-1.\n\nTemporary MSE wall structures have been especially cost-effective for temporary detours necessary for highway reconstruction projects. Temporary MSE walls are used to support temporary roadway embankments and temporary bridge abutments, as illustrated in Figure 2-2. MSE walls are also used as temporary support of permanent roadway embankments for phased construction, an example is shown in Figure 2-3. [p. 2-2]\n\nFigure 2-1. Representative MSE wall applications (a) retaining wall; (b) access ramp; (c) waterfront structure; and (d) bridge abutment.\n\n[p. 2-3]\n\nFigure 2-2. MSE walls to support temporary bridge abutment and roadway embankment.\n\nFigure 2-3. MSE wall used to temporarily support a permanent roadway embankment for phased construction.\n\n[p. 2-4]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-1: Representative MSE applications (a) retaining wall; (b) access ramp; (c) waterfront structure; and (d) bridge abutment.",
+    "Figure 2-2: MSE walls to support temporary bridge abutment roadway embankment",
+    "Figure 2-3: MSE wall used to temporarily support a permanent roadway embankment for phased construction"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-1 to 2-4."
+  },
+  {
+   "section_id": "2.1.2",
+   "title": "Reinforced Soil Slopes",
+   "body": "[p. 2-4] Reinforced soil slopes (RSS) are a form of mechanically stabilized earth that incorporate planar reinforcing elements (typically geosynthetics) in constructed earth sloped structures with face inclinations of less than 70 degrees. As shown in Figure 2-4, multiple layers of reinforcement are placed in the slope during construction or reconstruction to reinforce the soil and provide increased slope stability. RSS structures are cost-effective alternatives for new construction and reconstruction where the cost of fill, right-of-way, and other considerations may make a steeper slope desirable. There are two primary purposes for using reinforcement in engineered slopes. • To increase the stability of the slope, particularly if a steeper than safe unreinforced slope is desirable or after a failure has occurred as shown in Figure 2-4. • To provide improved compaction at the edges of a slope, thus decreasing the tendency for surface sloughing as shown in Figure 1-2b. Reinforcement is used to construct an embankment at an angle steeper than could otherwise be safely constructed with the same soil. The increase in stability allows for construction of steepened slopes on firm foundations for new highways and as an alternative to flatter unreinforced slopes and to retaining walls. Roadways can also be widened over existing flatter slopes without encroaching beyond existing right-of-ways. In the case of repairing a slope failure, the new slope will be safer, and reusing the slide debris rather than importing higher quality backfill may result in substantial cost savings. These applications are illustrated in Figure 2-4. The second purpose for using reinforcement is at the edges of a compacted fill slope to provide lateral resistance during compaction. The increased lateral resistance allows for an increase in compacted soil density over that normally achieved and provides increased lateral confinement for the soil at the face. Even modest amounts of reinforcement in compacted slopes have been found to prevent sloughing and reduce slope erosion. Edge reinforcement also allows compaction equipment to more safely operate near the edge of the slope. Further compaction improvements have been found in cohesive soils through the use of geosynthetics with in-plane drainage capabilities (e.g., nonwoven geotextiles) that allow for rapid pore pressure dissipation in the compacted soil. [p. 2-5]\n\nCompaction aids placed as intermediate layers between reinforcement in steepened slopes may also be used to provide improved face stability and to reduce layers of more expensive primary reinforcement as shown in Figure 1-2. Other applications of reinforced slopes have included: • Decreased bridge spans. • Temporary road widening for detours. • Prevention of surface sloughing during periods of saturation. • Embankment construction with wet, fine-grained soils. • Permanent levees. • Temporary flood control structures.\n\nFigure 2-4. Application of reinforced soil slopes.\n\n[p. 2-6]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-4: Application of reinforced soil slopes."
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-4 to 2-6."
+  },
+  {
+   "section_id": "2.2",
+   "title": "Advantages and Potential Disadvantages",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-6."
+  },
+  {
+   "section_id": "2.2.1",
+   "title": "Advantages of Mechanically Stabilized Earth (MSE) Walls",
+   "body": "[p. 2-6] MSE walls have many advantages compared with conventional reinforced concrete and concrete gravity retaining walls. MSE walls: • Use simple and rapid construction procedures and do not require as large of construction equipment. • Do not require special skills for construction. • Require less site preparation than other alternatives. • Need less space in front of the structure for construction operations. • Reduce right-of-way acquisition. • Do not need rigid, unyielding foundation support because MSE structures are tolerant to deformations. • Are cost effective. • Are technically feasible to heights in excess of 100 ft (30 m). Pre-manufactured materials, rapid construction, and, competition among different proprietary systems has resulted in a cost reduction relative to traditional types of retaining walls. MSE walls are likely to be more economical than other wall systems for walls higher than about 10 ft (3 m) or where special foundations would be required for a conventional wall. One of the greatest advantages of MSE walls is their flexibility and capability to tolerate deformations due to poor subsoil foundation conditions. Also, based on observations in seismically active zones, these structures have demonstrated a higher resistance to seismic loading than rigid concrete wall structures. Precast concrete facing elements for MSE walls can be made with various shapes and textures (with little extra cost) for aesthetic considerations. Masonry units, timber, and gabions also can be used to blend in the environment.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-6."
+  },
+  {
+   "section_id": "2.2.2",
+   "title": "Advantages of Reinforced Soil Slopes (RSS)",
+   "body": "[p. 2-6] The economic advantages of constructing a safe, steeper RSS than would normally be possible are the result of material and right-of-way savings. It also may be possible to decrease the quality of materials required for construction. For example, in repair of landslides it is possible to reuse the slide debris rather than to import higher quality backfill. Right-of-way savings can be a substantial benefit, especially for road widening projects in urban areas where acquiring new right-of-way is always expensive and, in some cases, [p. 2-7]\n\nunobtainable. RSS also provide an economical alternative to retaining walls. In some cases, reinforced slopes can be constructed at about one-half the cost of MSEW structures.\n\nThe use of vegetated-faced reinforced soil slopes that can be landscaped to blend with natural environments may also provide an aesthetic advantage over retaining wall structures. However, there are some potential maintenance issues that must be addressed such as mowing grass-faced steep slopes; however, these can be satisfactorily handled in design.\n\nIn terms of performance, due to inherent conservatism in the design of RSS, they are actually safer than flatter, unreinforced slopes designed at the same factor of safety. As a result, there is a lower risk of long-term stability problems developing with a reinforced slope. Such problems often occur in compacted fill slopes that have been constructed to low factors of safety and/or with marginal materials (e.g. deleterious soils such as shale, fine grained low cohesive silts, plastic soils, etc.). The reinforcement may also facilitate strength gains in the soil over time from soil aging and through improved drainage, further improving long-term performance.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-6 to 2-7."
+  },
+  {
+   "section_id": "2.2.3",
+   "title": "Potential Disadvantages",
+   "body": "[p. 2-7]\n\nThe following general potential disadvantages may be associated with all reinforced soil structures, and are dependent upon local and project conditions:\n\n• Require a relatively large space (e.g., excavation if in a cut) behind the wall or slope face to install required reinforcement.\n\n• MSE walls require the use of select granular fill. (At some sites, the cost of importing suitable fill material may render the system uneconomical.) Reinforced fill requirements for RSS are typically less restrictive.\n\n• The design of soil-reinforced systems often requires a shared design responsibility between material suppliers and owners.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-7."
+  },
+  {
+   "section_id": "2.3",
+   "title": "Relative Costs",
+   "body": "[p. 2-7]\n\nSite specific costs of a soil-reinforced structure are a function of many factors, including cut-fill requirements, wall/slope size and type, in-situ soil type, available backfill materials, facing finish, temporary or permanent application, etc. It has been found that MSE walls with precast concrete facings are usually less expensive than reinforced concrete retaining [p. 2-8]\n\nwalls for heights greater than about 10 ft (3 m) and average foundation conditions. Modular block wall (MBW) unit faced walls are competitive with concrete walls at all heights and also for small projects. In general, the use of MSE walls results in savings on the order of 25 to 50 percent and possibly more with a conventional reinforced concrete retaining structure, especially when the latter is supported on a deep foundation system (poor foundation condition). A substantial savings is obtained by elimination of the deep foundations, which is usually possible because reinforced soil structures can accommodate relatively large total and differential settlements. Other cost saving features include ease of construction and speed of construction. Typical total costs for permanent transportation MSE walls range from $30 to $65 per ft2 ($320 to $650 per m2) of face, and generally vary as function of height, size of project, aesthetic treatment, site accessibility, and cost of select wall fill. However, reinforced fill costs vary considerably across the U.S. and regional costs may be much higher than the indicated range (not just for MSE walls, but for other wall types as well). Some example costs are presented with the case histories in Section 2.10. The actual cost of a specific MSEW structure will depend on the cost of each of its principal components. For segmental precast concrete faced structures, typical relative costs are: • Erection of panels and contractors profit - 20 to 30 percent of total cost. • Reinforcing materials - 15 to 30 percent of total cost. • Facing system - 20 to 40 percent of total cost. • Reinforced wall fill including placement - 30 to 60 percent of total cost, where the fill is a select granular fill from an off-site borrow source. The additional cost for panel architectural finish treatment ranges from $0.50 to $1.50 per ft2 ($5 to $15 per m2) depending on the complexity of the finish. Traffic barrier costs average $170 per linear foot ($550 per linear m). In addition, consideration must be given to the cost of excavation, which may be somewhat greater than for other systems due to the required width of the reinforcement zone. MBW faced walls at heights less than 15 ft (4.5 m) are typically less expensive than segmental panel faced walls by 10 percent or more. The economy of using RSS must be assessed on a case-by-case basis, where use is not dictated by space constraints. For such cases, an appropriate benefit to cost ratio analysis should be conducted to determine whether a steeper slope with the reinforcement is justified economically over the alternative flatter slope with its increased right-of-way and materials costs, etc. It should be kept in mind that guardrails or traffic barriers are often necessary for steeper embankment slopes and additional costs such as erosion control systems for slope face protection must be considered. [p. 2-9]\n\nWith respect to economy, the factors to consider are as follows: • Cut or fill earthwork quantities. • Size of slope area. • Average height of slope area. • Angle of slope. • Cost of nonselect versus select backfills. • Temporary and permanent erosion protection requirements. • Cost and availability of right-of-way needed. • Complicated horizontal and vertical alignment changes. • Need for temporary excavation support systems. • Maintenance of traffic during construction. • Aesthetics. • Requirements for guardrails and traffic barriers.\n\nThe actual bid cost of a specific RSS structure depends on the cost of each of its principal components. Based on limited data, typical relative costs are: • Reinforcement - 45 to 65 percent of total cost • Reinforced fill - 30 to 50 percent of total cost • Face treatment - 5 to 10 percent of total cost\n\nHigh RSS structures have relatively higher reinforcement and lower backfill costs. Recent bid prices suggest costs ranging from $10/ft2 to $24/ft2 ($110/m2 to $260/m2) as a function of height.\n\nFor applications in the 30 to 50 ft (10 to 15 m) height range, bid costs of about $16/ft2 ($170/m2) have been reported. These prices do not include safety features and drainage details.\n\nA rapid, first-order assessment of cost items for comparing a flatter unreinforced slope with a steeper reinforced slope is presented in Figure 2-5.\n\n[p. 2-10]\n\n[Figure 2-5 text, typed in from p. 2-10:] V3:1 = V (overprinted on the page); V2:1 = ⅔V; V1:1 = ⅓V. V3:1 = L; V2:1 = ⅔L; V1:1 = ⅓L (this column as printed, V with the lengths L). COST: 3H:1V = VSOIL + LLAND + Guardrail* (?) + Hydroseeding (?); 2H:1V = ⅔VSOIL + ⅔LLAND + Guardrail + Erosion Control + High Maintenance; 1H:1V = ⅓VSOIL + ⅓LLAND + Reinforcement + Guardrail + Erosion Control. * Include guardrail or traffic barrier cost if required.\n\nFigure 2-5. Cost evaluation of reinforced soil slopes.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-5: Cost evaluation of reinforced soil slopes."
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-7 to 2-10."
+  },
+  {
+   "section_id": "2.4",
+   "title": "Description of MSE/RSS Systems",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-10."
+  },
+  {
+   "section_id": "2.4.1",
+   "title": "Systems Differentiation",
+   "body": "[p. 2-10] Since the expiration of the fundamental process and concrete facing panel patents obtained by the Reinforced Earth Company for MSE wall systems and structures, the engineering community has adopted a generic term Mechanically Stabilized Earth (MSE) to describe this type of retaining wall construction. Trademarks, such as Reinforced Earth®, Retained Earth®, Genesis® etc., describe systems with some present or past proprietary features or unique components marketed by nationwide commercial suppliers. Other trademark names appear yearly to differentiate systems marketed by competing commercial entities that may include proprietary or novel components or for special applications. A system for either MSEW or RSS structures is defined as a complete supplied package that includes design, specifications and all prefabricated materials of construction necessary for [p. 2-11]\n\nthe complete construction of a reinforced soil structure. Often technical assistance during the planning and construction phase is included. Components marketed by commercial entities for integration by the owner, or others, into a coherent package are not classified as systems. Generic systems created by combining components are also possible; however, the components must be tested and evaluated together in the form of the final system. Components cannot be substituted without complete evaluation of the impact on the system.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-10 to 2-11."
+  },
+  {
+   "section_id": "2.4.2",
+   "title": "Types of Systems",
+   "body": "[p. 2-11] MSE/RSS systems can be described by the reinforcement geometry, stress transfer mechanism, reinforcement material, extensibility of the reinforcement material, and the type of facing and connections. Reinforcement Geometry Three types of reinforcement geometry can be considered: • Linear unidirectional. Strips, including smooth or ribbed steel strips, or coated geosynthetic strips over a load-carrying fiber. • Composite unidirectional. Grids or bar mats characterized by grid spacing greater than 6 in. (150 mm). • Planar bi-directional. Continuous sheets of geosynthetics, welded wire mesh, and woven wire mesh. The mesh is characterized by element spacing of less than 6 in. (150 mm). Reinforcement Material Distinction can be made between the characteristics of metallic and nonmetallic reinforcements: • Metallic reinforcements. Typically of mild steel. The steel is usually galvanized. • Nonmetallic reinforcements. Generally polymeric materials consisting of polyester or polyethylene. The performance and durability considerations for these two classes of reinforcement vary considerably and are detailed in the companion Corrosion/Degradation manual (FHWA NHI-09-087; Elias et al., 2009). Reinforcement Extensibility There are two classes of extensibility relative to the soil’s extensibility: • Inextensible. The deformation of the reinforcement at failure is much less than the deformability of the soil. Steel strip and bar mat reinforcements are inextensible. • Extensible. The deformation of the reinforcement at failure is comparable to or even greater than the deformability of the soil. Geogrid, geotextile, and woven steel wire mesh reinforcements are extensible. [p. 2-12]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-11 to 2-12."
+  },
+  {
+   "section_id": "2.4.3",
+   "title": "Facing Systems",
+   "body": "[p. 2-12] The types of facing elements used in the different MSE systems control their aesthetics because they are the only visible parts of the completed structure. A wide range of finishes and colors can be provided in the facing, as shown in the FHWA Federal Lands Highway Division’s Roadway Aesthetic Treatments Photo Album (RATPA) available at http://gallery.company39.com/FLH/gallery/. In addition, the facing provides protection against backfill sloughing and erosion, and provides, in certain cases, drainage paths. The type of facing influences settlement tolerances. Major facing types are: • Segmental precast concrete panels. The various shapes and dimensions of segmental precast panels are summarized in Table 1-1, and examples are illustrated in Figure 2-6 (and in Figure 5-33). The precast concrete panels have a minimum thickness of 5-½ inches (140 mm) and are of a square, rectangular, cruciform, diamond, or hexagonal geometry. Typical nominal panel dimensions are 5-foot (1.5 m) high and 5- or 10-foot (1.5 or 3 m) wide. Temperature and tensile reinforcement of the concrete are required and should be designed in accordance with Section 5 of AASHTO LRFD Specifications for Highway Bridges (2007). • Dry cast modular block wall (MBW) units. These are relatively small, squat concrete units that have been specifically designed and manufactured for retaining wall applications. The weight of these units commonly ranges from 30 to 110 lbs (15 to 50 kg), with units of 75 to 110 lbs (35 to 50 kg) routinely used for highway projects. Unit heights typically range from 4 to 12 in. (100 to 300 mm) for the various manufacturers, with 8-in. (200 mm) typical. Exposed face length usually varies from 8 to 18 in. (200 to 450 mm). Nominal front to back width (dimension perpendicular to the wall face) of units typically ranges between 8 and 24 in. (200 and 600 mm). Units may be manufactured solid or with cores. Full height cores are filled with aggregate during erection. Units are normally dry-stacked (i.e. without mortar or bearing pads) and in a running bond configuration. Vertically adjacent units may be connected with shear pins, lips, or keys. They are referred to by trademarked names such as Keystone®, Landmark® , Mesa®, Versa-Lok®, etc. Several example MBW units are illustrated in Figure 2-7. • Welded Wire Mesh (WWM). Wire grid can be bent up at the front of the wall to form the wall face. This type of facing is used for example in the Hilfiker, Tensar, and Reinforced Earth wire faced retaining wall systems. This type of facing is commonly used for RSS with face angles of about 45 degrees and steeper. [p. 2-13]\n\nFigure 2-6. Example MSE wall facing treatments.\n\n(See Figure 5-33 and http://gallery.company39.com/FLH/gallery/ for additional example facings.) [p. 2-14]\n\nFigure 2-7. Examples of commercially available MBW units (NCMA, 1997).\n\n[p. 2-15]\n\n• Gabion Facing. Gabions (rock-filled wire baskets) can be used as MSE wall or RSS facing with reinforcing elements consisting of welded wire mesh, welded bar-mats, geogrids, geotextiles or the double-twisted woven mesh placed between or integrally manufactured with the gabion baskets. For example, this facing system is used by Maccaferri for their Terramesh® wall system. • Geosynthetic Facing. Geosynthetic reinforcements are looped around at the facing to form the exposed face of the MSEW or RSS. These faces are susceptible to ultraviolet light degradation, vandalism, and damage due to fire. Geogrid used for soil reinforcement can be looped around to form the face of the completed retaining structure in a similar manner to welded wire mesh and fabric facing. Vegetation can grow through the grid structure and can provide both ultraviolet light protection for the geogrid and a pleasing appearance. • Post-construction Facing. For wrapped faced walls, the facing – whether geotextile, geogrid, or wire mesh – can be attached after construction of the wall by shotcreting, guniting, cast-in-place concrete or by attaching prefabricated facing panels made of concrete, wood, or other materials. This multi-staging facing approach adds cost but is advantageous where significant settlement is anticipated. Precast elements can be cast in several shapes and provided with facing textures to match environmental requirements and blend aesthetically into the environment. Retaining structures using precast concrete elements as the facings can have surface finishes similar to any reinforced concrete structure. Retaining structures with metal facings have the disadvantage of shorter life because of corrosion, unless provision is made to compensate for it. Facings using welded wire or gabions have the disadvantages of an uneven surface, exposed backfill materials, more tendency for erosion of the retained soil, possible shorter life from corrosion of the wires, and more susceptibility to vandalism. These disadvantages can, of course, be countered by providing shotcrete or by hanging facing panels on the exposed face and compensating for possible corrosion with galvanization and thicker wire. The greatest advantages of such facings are low cost, ease of installation, design flexibility, good drainage (depending on the type of wall fill) that provides increased stability, and possible treatment of the face for vegetative and other architectural effects. The facing can easily be adapted and well blended with natural country environment. These facings, as well as geosynthetic wrapped facings, are especially advantageous for construction of temporary or other structures with a short-term design life. [p. 2-16]\n\nDry cast segmental block MBW facings may raise some concerns as to durability in aggressive freeze-thaw environments where deicing salts are used. Recent research has shown that the MBW mix design must be specifically formulated to produce durable, freeze-thaw resistant units. Agencies should confirm locally manufactured units resistance with laboratory freeze-thaw testing. The current specifications in Chapter 10 have been developed to address this issue. Further, because the cement is not completely hydrated during the dry cast process, (as is often evidenced by efflorescence on the surface of units), a highly alkaline regime may establish itself at or near the face area, and may limit the use of some geosynthetic products as reinforcements.\n\nThe slope face of RSS structures is usually vegetated if approximately 1:1 or flatter. The vegetation requirements vary by geographic and climatic conditions and are therefore, project specific. Details are outlined in Section 10.5.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-6: Example MSE wall surface treatments.",
+    "Figure 2-7: Examples of commercially available MBW units (NCMA, 1997)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-12 to 2-16."
+  },
+  {
+   "section_id": "2.4.4",
+   "title": "Reinforcement Types",
+   "body": "[p. 2-16]\n\nMost, although not all, MSE wall systems with precast concrete panels use steel reinforcements that are typically galvanized. The two types of steel reinforcements currently in use with segmental panel faced MSE walls are:\n\n1. Steel strips. The currently commercially available strips are ribbed top and bottom, 2 in. (50 mm) wide and 5/32-inch (4 mm) thick. Smooth strips 2- to 4¾-in. (60 to 120 mm) wide, 1/8 to 5/32-inch (3 to 4 mm) thick have been used.\n\n2. Steel grids. Welded wire grid using two to six W7.5 to W24 longitudinal wire spaced at either 6 or 8 in. (150 or 200 mm). The transverse wire may vary from W11 to W20 and are spaced based on design requirements from 9 to 24 in. (230 to 600 mm). Welded steel wire mesh spaced at 2 by 2-inch (50 by 50 mm) of thinner wire has been used in conjunction with a welded wire facing. Some MBW systems use steel grids with two longitudinal wires.\n\nMost MBW systems use geosynthetic reinforcement, predominantly geogrids. The following soil reinforcement types are widely used and available:\n\n3. High Density Polyethylene (HDPE) geogrid. These are of uniaxial manufacture and are available in up to 6 grades of strength. This type of reinforcement is also used with segmental panel facing.\n\n[p. 2-17]\n\n4. PVC coated polyester (PET) geogrid. Available from a number of manufacturers. They are characterized by bundled high tenacity PET fibers in the longitudinal load carrying direction. For longevity the PET is supplied as a high molecular weight fiber and is further characterized by a low carboxyl end group number.\n\nOther types of soil reinforcements, and their applications, include:\n\n5. Geotextiles. High strength geotextiles can be used principally in connection with reinforced soil slope (RSS) construction. Both polyester (PET) and polypropylene (PP) geotextiles have been used.\n\n6. Double twisted steel mesh. The Terramesh® system by Maccaferri, Inc. uses a metallic, soft-temper, double twisted mesh soil reinforcement that is galvanized and then coated with poly vinyl chloride (PVC). This reinforcement is used for RSS and gabion faced MSE wall construction. Note that this reinforcement is classified as an extensible type of reinforcement due to its manufacturing geometry even though it is metallic.\n\n7. Geosynthetic strap. Although not (currently) widely used, a geosynthetic strap type reinforcement has been used with segmental panel faced MSE walls. The strap consists of PET fibers encased in a polyethylene (PE) sheath.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-16 to 2-17."
+  },
+  {
+   "section_id": "2.4.5",
+   "title": "Reinforced Fill Materials",
+   "body": "[p. 2-17]\n\nMSEW Structures MSE walls require high quality wall fill for durability, good drainage, constructability, and good soil reinforcement interaction which can be obtained from well graded, granular materials. Many MSE systems depend on friction between the reinforcing elements and the soil. In such cases, a material with high friction characteristics is specified and required. Some systems rely on passive pressure on reinforcing elements, and, in those cases, the quality of reinforced wall fill is still critical. These performance requirements generally eliminate soils with high clay contents.\n\nFrom a reinforcement capacity point of view, lower quality wall fills could be used for MSEW structures; however, a high quality granular wall fill has the advantages of better drainage, providing better durability for metallic reinforcement, and requiring less reinforcement. There are also significant handling, placement and compaction advantages in using granular soils. These include an increased rate of wall erection and improved maintenance of wall alignment tolerances. Appropriate use of lower quality reinforced fill and design considerations for its use is discussed in Chapter 3.\n\n[p. 2-18]\n\nRSS Structures Reinforced Soil Slopes are normally not constructed with rigid facing elements. Slopes constructed with a flexible face can thus readily tolerate minor distortions that could result from settlement, freezing and thawing, or wetting-drying of the backfill. As a result, any soil meeting the requirements for embankment construction could be used in a reinforced slope system. However, a higher quality material offers fewer durability concerns for the reinforcement, and is easier to handle, place and compact, which speeds up construction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-17 to 2-18."
+  },
+  {
+   "section_id": "2.4.6",
+   "title": "Appurtenant Materials of Construction",
+   "body": "[p. 2-18]\n\nWalls using precast concrete panels require bearing pads in their horizontal joints that provide some compressibility and movement between panels during elastic compression and settlement of the reinforced fill and preclude concrete-to-concrete contact. These materials are generally EPDM rubber or HDPE. The compressibility and thickness of the horizontal joint material should be a function of the wall height. Walls with heights greater than 50 ft (15 m) may require thicker or more compressible joints to accommodate the larger vertical loads due to the weight of panels in the lower third of the structure.\n\nAll joints of precast concrete panels are covered with a geotextile filer strip to prevent the migration of fines from the reinforced wall fill.\n\nBearing pads are not routinely used with MBW units. A zone of aggregate fill, usually 1-ft wide, is used behind the MBW units and within units with cores. This gravel readily compacted and conforms to the MBW unit. A filter is required between the gravel zone and wall fill, and can either be a soil filter or a geotextile filter (see Chapter 5).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-18."
+  },
+  {
+   "section_id": "2.5",
+   "title": "Construction Sequence",
+   "body": "[p. 2-18]\n\nThe following is an outline of the principal sequence of construction for MSEW and RSS. Specific systems, special appurtenances and specific project requirements may vary from the general sequence indicated.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-18."
+  },
+  {
+   "section_id": "2.5.1",
+   "title": "Construction of MSEW systems with precast facings",
+   "body": "[p. 2-18]\n\nThe construction of MSEW systems with a precast panel facing is carried out as follows:\n\n[p. 2-19]\n\n• Preparation of subgrade. This step involves removal of unsuitable materials from the area to be occupied by the retaining structure. All organic matter, vegetation, slide debris and other unstable materials should be stripped off and the subgrade compacted. In unstable foundation areas, ground improvement methods, such as excavation and replacement, or dynamic compaction, stone columns, wick drains, etc. (see FHWA NHI-06-019 and NHI-06-020, Elias et al., 2006) would be constructed prior to wall erection. • Placement of a leveling pad for the erection of the facing elements. This generally unreinforced concrete pad is often only 1 ft (300 mm) wide and 6 in. (150 mm) thick and is used for MSEW construction only, where concrete panels are subsequently erected. A wider concrete pad is recommended for MBW unit erection. The purpose of this pad is to serve as a guide for facing panel erection and is not intended as a structural foundation support. • Erection of the first row of facing panels on the prepared leveling pad. Facings may consist of either precast concrete panels or dry cast MBW units. The first row of facing panels may be full, or half-height panels, depending upon the type of facing used. Only the first tier of panels must be braced to maintain stability and alignment. Subsequent rows of panels are simply wedged and clamped to adjacent panels. For construction with MBW units, full sized blocks are used throughout with no shoring. The erection of facing panels and placement of the soil backfills should proceed simultaneously. • Placement and compaction of reinforced wall fill on the subgrade to the level of the first layer of reinforcement and its compaction. The fill should be compacted to the specified density, usually 95 to 100 percent of AASHTO T-99 maximum density and within the specified range of optimum moisture content. Compaction moisture contents dry of optimum are recommended. A key to good performance is consistent placement and compaction. Wall fill lift thickness must be controlled based on specification requirements and vertical distribution of reinforcement elements. The uniform loose lift thickness of the reinforced backfill should not exceed 12 in. (300 mm). Reinforced wall fill should be dumped into or parallel to the rear and middle of the reinforcement and bladed toward the front face. [p. 2-20]\n\nRetained backfill placement and compaction behind the reinforced volume should proceed simultaneously. • Placement of the first layer of reinforcing elements on the wall fill. The reinforcements are placed and connected to the facing panels, when the compacted fill has been brought up to the level of the connection. The reinforcements are generally placed perpendicular to back of the facing panels. More detailed construction control procedures associated with each construction step are outlined in Chapter 11. • Placement of the wall fill over the reinforcing elements to the level of the next reinforcement layer and compaction of the wall fill. The previously outlined steps are repeated for each successive layer. • Construction of traffic barriers and copings. This final construction sequence is undertaken after the final panels have been placed, and the wall fill has been completed to its final grade. A complete sequence is illustrated in Figures 2-8 through 2-10. [p. 2-21]\n\nFigure 2-8. Erection of precast panels.\n\n[p. 2-22]\n\nFigure 2-9. Fill spreading and reinforcement connection.\n\n[p. 2-23]\n\nFigure 2-10. Compaction of the reinforced wall fill.\n\n[p. 2-24]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-8: Erection of precast panels.",
+    "Figure 2-9: Fill spreading and reinforcement connection",
+    "Figure 2-10: Compaction of reinforced wall fill"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-18 to 2-24."
+  },
+  {
+   "section_id": "2.5.2",
+   "title": "Construction of MSE systems with Flexible Facings",
+   "body": "[p. 2-24] Construction of flexible-faced MSE walls, where the reinforcing material also serves as facing material, is similar to that for walls with precast facing elements. For flexible facing types such as welded wire mesh, geotextiles, geogrids or gabions, the erection of the first level of facing element requires only a level grade. A concrete footing or leveling pad is not usually required unless precast elements are to be attached to the system after construction. Construction proceeds as outlined for segmental facings with the following exceptions: • Placement of first reinforcing layer. Reinforcement with anisotropic strength properties (i.e., many geosynthetics) should be placed with the principal strength direction perpendicular to face of structure. The reinforcement should be secured with retaining pins to prevent movement during reinforced fill placement. Adjacent sheets should be overlapped a minimum of 6 in. (150 mm) along the edges perpendicular to the face. Alternatively, with geogrid or wire mesh reinforcement, the edges may be butted and clipped or tied together. • Face Construction. Place the geosynthetic layers using face forms as shown in Figure 2-11. For temporary support of forms at the face, form holders should be placed at the base of each layer at approximately 4 ft (1.20 m) horizontal intervals. Details of temporary formwork are shown in Figure 2-12. These supports are essential for achieving good compaction. When using geogrids or wire mesh, it may be necessary to use a geotextile or hardware cloth to retain the wall fill material at the face. When compacting wall fill within 3 ft (~1 m) of the wall face, a hand-operated vibratory compactor is recommended. The return-type method or successive layer tie method as shown in Figure 2-12 can be used for facing support. In the return method, the reinforcement is folded at the face over the wall fill material, with a minimum return length of 4 ft (1.25 m) to ensure adequate pullout resistance. Consistency in face construction and compaction is essential to produce a wrapped facing with satisfactory appearance. Apply facing treatment (shotcrete, precast facing panels, etc.). Some alternative facing systems for flexible faced walls and slopes are shown in Figure 2-13. [p. 2-25]\n\nFigure 2-11. Lift construction sequence for geosynthetic faced MSE walls.\n\n[p. 2-26]\n\nFigure 2-12. Typical geosynthetic face construction detail.\n\n[p. 2-27]\n\nFigure 2-13. Types of geosynthetic reinforced soil wall facing (after Wu, 1994).\n\n[p. 2-28]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-11: Lift construction sequence for geosynthetic faced MSE walls.",
+    "Figure 2-12: Typical geosynthetic face construction detail.",
+    "Figure 2-13: Types of geosynthetic reinforced soil wall facing (after Wu, 1994)"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-24 to 2-28."
+  },
+  {
+   "section_id": "2.5.3",
+   "title": "RSS Construction",
+   "body": "[p. 2-28]\n\nThe construction of RSS embankments is considerably simpler and consists of many of the elements outlined for MSEW construction. They are summarized as follows:\n\n• Site preparation. • Construct subsurface drainage features. • Place reinforcement layer. • Place and compact backfill on reinforcement. • Construct face. Details of the available methods are outlined in Chapter 8, construction. • Place additional reinforcement and reinforced fill. • Construct surface drainage features.\n\nKey stages of construction are illustrated in Figure 2-14, and the complete sequence is fully outlined in Chapter 8.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-28."
+  },
+  {
+   "section_id": "2.6",
+   "title": "Site Evaluation",
+   "body": "[p. 2-28]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-28."
+  },
+  {
+   "section_id": "2.6.1",
+   "title": "Site Exploration",
+   "body": "[p. 2-28]\n\nThe feasibility of using an MSEW, RSS or any other type of earth retention system depends on the existing topography, subsurface conditions, and soil/rock properties. It is necessary to perform a comprehensive subsurface exploration program to evaluate site stability, settlement potential, need for drainage, etc., before repairing a slope or designing a new retaining wall or bridge abutment. Where the select backfill is to be obtained from on-site sources, the extent and quality must be fully explored to minimize contractor claims for changed conditions.\n\nSubsurface investigations are required not only in the area of the construction but also behind and in front of the structure to assess overall performance behavior. The subsurface exploration program should be oriented not only towards obtaining all the information that could influence the design and stability of the final structure, but also to the conditions which prevail throughout the construction of the structure, such as the stability of temporary construction slopes that may be required.\n\nThe engineer's concerns include the bearing resistance of the foundation materials, the allowable deformations, and the stability of the structure. Necessary parameters for these analyses must be obtained. [p. 2-29]\n\nFigure 2-14. Reinforced slope construction: (a) geogrid and fill placement; (b) soil filled erosion control mat placement; and (c) finished, vegetated 1:1 slope.\n\n[p. 2-30]\n\nThe cost of a reinforced soil structure is greatly dependent on the availability of the required type of reinforced fill and retained backfill materials. Therefore, investigations must be conducted to locate and test locally available materials that may be used for reinforced fill and retained backfill with the selected system.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-14: Reinforced slope construction: (a) geogrid and fill placement; (b) soil filled erosion control mat placement; and (c) finished, vegetated 1:1 slope"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-28 to 2-30."
+  },
+  {
+   "section_id": "2.6.2",
+   "title": "Field Reconnaissance",
+   "body": "[p. 2-30] Preliminary subsurface investigation or reconnaissance should consist of collecting any existing data relating to subsurface conditions and making a field visit to obtain data on: • Limits and intervals for topographic cross sections. • Access conditions for work forces and equipment. • Surface drainage patterns, seepage, and vegetation characteristics. • Surface geologic features, including rock outcrops and landforms, and existing cuts or excavations that may provide information on subsurface conditions. • The extent, nature, and locations of existing or proposed below-grade utilities and substructures that may have an impact on the exploration or subsequent construction. • Available right-of-way. • Areas of potential instability such as deep deposits of weak cohesive and organic soils, slide debris, high groundwater table, bedrock outcrops, etc. Reconnaissance should be performed by a geotechnical engineer or by an engineering geologist. Before the start of field exploration, any data available from previous subsurface investigations and those that can be inferred from geologic maps of the area should be studied. Topographic maps and aerial photographs, if available, should be studied. Much useful information of this type is available from the U.S. Geological Survey, the Natural Resources Conservation Service, the U.S. Department of Agriculture, and local planning boards or county offices.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-30."
+  },
+  {
+   "section_id": "2.6.3",
+   "title": "Subsurface Exploration",
+   "body": "[p. 2-30] The subsurface exploration program generally consists of soil soundings, borings, and test pits. The type and extent of the exploration should be decided after review of the preliminary data obtained from the field reconnaissance, and in consultation with a geotechnical engineer or an engineering geologist. The exploration must be sufficient to evaluate the geologic and subsurface profile in the area of construction. For guidance on the extent and type of required investigation, the FHWA NHI-01-031 Subsurface Investigations – Geotechnical Site Characterization reference manual (Mayne et al., 2002), should be reviewed. [p. 2-31]\n\nThe following guidelines are recommended (Christopher et al., 1990) for the subsurface exploration for potential MSE applications: • Borings: The type (soil boring and/or cone penetration), number, location, and depth of investigation points generally are dictated by the project stage (i.e., feasibility study, preliminary, or final design), availability of existing geotechnical data, variability of subsurface conditions, length of the structure, what the structure supports, and other project details. Soil borings should be performed along the front and the back of the proposed reinforced soil structure. The width of the MSE wall or slope structure may be assumed as 0.8 times the anticipated height. Borings at the following intervals should be considered: - 100 ft (30 m) along the alignment of the reinforced soil structure; and - 150 ft (45 m) along the back of the reinforced soil structure • The boring depth should be controlled by the general subsurface conditions. Where bedrock is encountered within a reasonable depth, rock cores should be obtained for a length of about 10 ft (3 m). This coring will be useful to distinguish between solid rock and boulders. Deeper coring may be necessary to better characterize rock slopes behind new retaining structures. In areas of soil profile, the borings should extend at least to a depth equal to twice the height of the wall/slope. If subsoil conditions within this depth are found to be weak and unsuitable for the anticipated pressures from the structure height, then the borings must be extended until reasonably strong soils are encountered. • In each boring, soil samples should be obtained at 5-foot (1.5 m) depth intervals and at changes in strata for visual identification, classification, and laboratory testing. Methods of sampling may follow AASHTO T 206 or AASHTO T 207 (Standard Penetration Test and Thin-Walled Shelby Tube Sampling, respectively), depending on the type of soil. In granular soils, the Standard Penetration Test can be used to obtain disturbed samples. In cohesive soils, undisturbed samples should be obtained by thin-walled sampling procedures. In each boring, careful observation should be made for the prevailing water table, which should be observed not only at the time of sampling but also at later times to obtain a good record of prevailing water table conditions. If necessary, piezometers should be installed in a few borings to observe long-term water levels. • Both the Standard Penetration Test and the Cone Penetration Test, ASTM D3441, provide data on the strengths and density of soils. In some situations, it may be desirable to perform in-situ tests using a dilatometer, pressuremeter, or similar means to determine soil modulus values. [p. 2-32]\n\n• Adequate bulk samples of available soils should be obtained and evaluated as indicted in the following testing section to determine the suitability of the soil for use as backfill in the MSE structures. Such materials should be obtained from all areas from which preliminary reconnaissance indicates that borrow materials will be used. • Test-pit explorations should be performed in areas showing instability or to explore further availability of the borrow materials for backfill. The locations and number of test pits should be decided for each specific site, based on the preliminary reconnaissance.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-30 to 2-32."
+  },
+  {
+   "section_id": "2.6.4",
+   "title": "Laboratory Testing",
+   "body": "[p. 2-32] Soil samples should be visually examined and appropriate tests performed for classification according to the Unified Soil Classification System (ASTM D2488). These tests permit the engineer to decide what further field or laboratory tests will best describe the engineering behavior of the soil at a given project site. Index testing includes determination of moisture content, Atterberg limits, and gradation. The dry unit weight of representative undisturbed samples should also be determined. Shear strength determination by unconfined compression tests, direct shear tests, or triaxial tests will be needed for external stability analyses of MSE walls and slopes. At sites where compressible cohesive soils are encountered below the foundations of the MSE structure, it is necessary to perform consolidation tests to obtain parameters for performing service state settlement analyses. Both undrained and drained (effective stress) parameters should be obtained for cohesive soils, to permit evaluation of both long-term and short-term conditions. Of particular significance in the evaluation of any material for possible use as backfill are the grain size distribution and plasticity. The effective particle size (D10) can be used to estimate the permeability of cohesionless materials. Laboratory permeability tests may also be performed on representative samples compacted to the specified density. Additional testing should include direct shear tests on a few similarly prepared samples to determine shear strength parameters under long and short-term conditions. The compaction behavior of potential backfill materials should be investigated by performing laboratory moisture-density relationship tests according to AASHTO T 99, or T 180. Properties to indicate the potential aggressiveness of the backfill material and the in-situ soils behind the reinforced soil zone must be measured. Tests include: • pH (AASHTO T 289; ASTM D4972) • Electrical resistivity. [p. 2-33]\n\n• Salt content including water soluble sulfate (AASHTO T 290), sulfides (ASTM D4327), and chlorides (ASTM D4327). The test results will provide necessary information for planning degradation protection measures and will help in the selection of reinforcement elements with adequate durability. designers.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-32 to 2-33."
+  },
+  {
+   "section_id": "2.6.5",
+   "title": "Foundation Soils",
+   "body": "[p. 2-33] The development and implementation of an adequate subsurface investigation program for the existing foundation conditions is a key element for ensuring successful project implementation. Causes for distress experienced in projects are often traced to inadequate subsurface exploration programs that did not disclose local or significant areas of soft soils, causing significant local differential settlement and distress to the facing panels. In a few documented extreme cases, such foundation weakness caused complete foundation failures leading to catastrophic collapses. Determination of engineering properties for foundation soils should be focused on establishment of bearing resistance, global stability, settlement potential, and position of groundwater levels. For bearing capacity determinations, frictional and cohesive parameters (φ, c) as well as unit weights (γT) and groundwater position are normally required in order to calculate bearing resistance in accordance with Article 10.6.3.1 for soil and 10.6.3.2 for rock in AASHTO (2007). The effects of load inclination and footing shape may be omitted for Strength Limit State. For foundation settlement determinations, the results of conventional settlement analyses with Service Limit State load factors, and using laboratory time-settlement data, coefficients of consolidation Cc, in conjunction with approximate value for compression index Cv, obtained from correlations to soil index tests (moisture content, Atterberg limits) should be used. The results of settlement analyses, especially with respect to differential settlement should be used to determine the ability of the facing and connection system to tolerate such movements or the necessity for special details or procedures to accommodate the differential movement anticipated. Major foundation weakness and compressibility may require the consideration of ground improvement techniques to achieve adequate bearing capacity, or limiting total or differential settlement. Techniques successfully used, include surcharging with or without prefabricated vertical drains, stone columns, dynamic compaction, compaction grouting and the use of lightweight fill to reduce settlement. Additional information on ground improvement [p. 2-34]\n\ntechniques can be found in the FHWA Ground Improvement Manuals, FHWA NHI-06-019 and FHWA NHI-06-020 (Elias et al., 2006). As an alternate for MSE walls, faces constructed of geosynthetic wraps, welded wire mesh or gabion baskets, which will tolerate significant differential settlement, could be constructed and permanent facings such as concrete panels attached after the settlement has occurred, see Section 3.6.6. Of particular concern, are situations where the MSEW structure may terminate adjacent to a rigidly supported structure such as a pile supported abutment at the end of a retained approach fill.\n\nEvaluation of these foundation related issues are typically beyond the scope of services provided by wall/slope system suppliers. Evaluations of this type are the responsibility of agency engineers or consultant geotechnical and are required before selection of the appropriate MSE wall or RSS system.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-33 to 2-34."
+  },
+  {
+   "section_id": "2.7",
+   "title": "Project Evaluation",
+   "body": "[p. 2-34]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-34."
+  },
+  {
+   "section_id": "2.7.1",
+   "title": "Structure Selection Factors",
+   "body": "[p. 2-34]\n\nThe major factors that influence the selection of an MSE/RSS alternative for any project include: • Geologic and topographic conditions • Environmental conditions • Size and nature of the structure • Aesthetics • Durability considerations • Performance criteria • Availability of materials • Experience with a particular system or application • Cost\n\nMany MSEW systems have proprietary features. Some companies provide services including design assistance, preparation of plans and specifications for the structure, supply of the manufactured wall components, and construction assistance.\n\nThe various wall systems have different performance histories, and this sometimes creates difficulty in adequate technical evaluation. Some systems are more suitable for permanent walls, others are more suitable for low walls, and some are applicable for remote areas while others are more suited for urban areas. The selection of the most appropriate system will thus depend on the specific project requirements. [p. 2-35]\n\nRSS embankments have been constructed with a variety of geosynthetic reinforcements and treatments of the slope face. These factors again may create an initial difficulty in adequate technical evaluation, but with the use of this manual easily addressed by department personnel to prepare generic designs. A number of geosynthetic reinforcement suppliers provide design services as well as technical assistance during construction. Specific technical issues focused on selection factors are summarized in the following sections.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-34 to 2-35."
+  },
+  {
+   "section_id": "2.7.2",
+   "title": "Geologic and Topographic Conditions",
+   "body": "[p. 2-35] MSE structures are particularly well suited where a \"fill-type\" wall must be constructed or where side-hill fills are indicated. Under these latter conditions, the volume of excavation may be small, and the general economy of this type of construction is not jeopardized. Economic advantages diminish with large cut volumes to accommodate the reinforced soil structure, but in many instances remain viable. The adequacy of the foundation to support the fill weight must be determined as a first-order feasibility evaluation. Where soft compressible soils are encountered, preliminary stability analyses must be made to determine if sufficient shear strength is available to support the weight of the reinforced fill. As a rough first approximation for vertically faced MSE structures, the available shear strength must be equal to at least 2.0 to 2.5 times the weight of the fill structure. For RSS embankments the required foundation strength is somewhat less and dependent on the actual slope considered. Where these conditions are not satisfied, ground improvement techniques (see FHWA NHI-06-019 and NHI-06-020, Elias et al., 2006) must be considered to increase the bearing capacity at the foundation level. These techniques include but are not limited to: • Excavation and removal of soft soils and replacement with a compacted structural fill. • Use of lightweight fill materials. • In-situ densification by dynamic compaction or improvement by use of surcharging with or without prefabricated vertical drains. • Construction of aggregate columns. Where marginal to adequate foundation strength is available, preliminary settlement analyses should be made to determine the potential for differential settlement, both longitudinally along a proposed structure as well as transverse to the face. This second-order feasibility [p. 2-36]\n\nevaluation is useful in determining the appropriate type of facing systems for MSE walls and in planning appropriate construction phasing to accommodate the settlement. In general, concrete-faced MSE structures using discrete articulating panels can accommodate maximum longitudinal differential settlements of about 1/100, without the introduction of special sliding joints between panels. Full-height concrete panels are considerably less tolerant and generally should not be considered where differential settlements are anticipated. MBW unit faced walls can accommodate maximum longitudinal differential settlements of about 1/200, with the introduction of special slip joints. The performance of reinforced soil slopes generally is not affected by differential longitudinal settlements.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-35 to 2-36."
+  },
+  {
+   "section_id": "2.7.3",
+   "title": "Environmental Conditions",
+   "body": "[p. 2-36] The primary environmental condition affecting reinforcement type selection and potential performance of MSE structures is the aggressiveness of the in-situ ground regime that can cause deterioration to the reinforcement. Post construction changes must be considered where deicing salts or fertilizers are subsequently used. For steel reinforcements, in-situ regimes containing chloride and sulfate salts generally in excess of 200 PPM accelerate the corrosive process as do acidic regimes characterized by a pH of less than 5 (Elias, 1989). Alkaline regimes characterized by pH > 10 will cause accelerated loss of galvanization. Certain in-situ regimes have been identified as being potentially aggressive for geosynthetic reinforcements. Polyester (PET) degrades in highly alkaline or acidic regimes. Polyolefins appear to degrade only under certain highly acidic conditions. For additional specific discussions on the potential degradability of reinforcements, refer to the companion Corrosion/Degradation reference manual and are summarized in Section 3.5. A secondary environmental issue is site accessibility, which may dictate the nature and size of the facing for MSE wall construction. Sites with poor accessibility or remote locations may lend themselves to lightweight facings such as geotextile or geogrid wrapped facings and vegetative covers; metal skins; welded wire mesh, gabions, modular blocks (MBW) which could be erected without heavy lifting equipment. [p. 2-37]\n\nRSS construction with an organic vegetative cover must be carefully chosen to be consistent with native perennial cover that would establish itself quickly and would thrive with available site rainfall.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-36 to 2-37."
+  },
+  {
+   "section_id": "2.7.4",
+   "title": "Size and Nature of Structure",
+   "body": "[p. 2-37] Theoretically there is no upper limit to the height of MSE wall that can be constructed. Structures up to 135 ft (41 m) have been successfully constructed in the U.S. with steel reinforcements, although such heights for transportation-related structures are rare. RSS embankments have been constructed to up to a height of 242 ft (74 m) in the U.S. with geogrid reinforcements, but again such heights for transportation-related structures are rare. Practical limits are often dictated by economy, available ROW, and the tensile strength of commercially available soil reinforcing materials. For bridge abutments there is no theoretical limit to the span length that can be supported, although the longer the span, the greater is the area of footing necessary to support the beams. Since the nominal bearing resistance of the reinforced fill for the service limit state is usually limited to 4000 psf (200 kPa), a large abutment footing further increases the span length, adding cost to the superstructure. This additional cost must be balanced by the potential savings of the MSE alternate to a conventional abutment wall, which would have a shorter span length. As an option in such cases, it might be economical to consider support of the bridge beams on deep foundations, placed within (or in front of) the reinforced fill zone. The lower limit to height is usually dictated by economy. When used with traffic barriers, low walls on good foundations of less than 10 to 14 ft (3 to 4 m) are often uneconomical, as the cost of the overturning moment leg of the traffic barrier approaches one-third of the total cost of the MSE structure in place. For cantilever walls, the barrier is simply an extension of the stem with a smaller impact on overall cost. The total size of structure (square feet of face) has little impact on economy compared with other retaining wall types. However, the unit cost for small projects of less than 3,000 ft2 (300 m2) is likely to be 10 to 15 percent higher. RSS may be cost effective in rural environments, where ROW restrictions exist or on widening projects where long sliver fills are necessary. In urban environments, they should be considered where ROW is available, as they are generally more economical than vertically faced MSE wall structures. [p. 2-38]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-37 to 2-38."
+  },
+  {
+   "section_id": "2.7.5",
+   "title": "Aesthetics",
+   "body": "[p. 2-38]\n\nPrecast concrete facing panels may be cast with an unlimited variety of texture and color for an additional premium that seldom exceeds 15 percent of the facing cost, which on average would mean a 4 to 6 percent increase on total in-place cost.\n\nModular block wall facings are often comparable in cost to precast concrete panels except on small projects (less than 4,000 ft2 {400 m2}) where the small size introduces savings in erection equipment cost and the need to cast special, made-to-order concrete panels to fit what is often irregular geometry. MBW facings may be manufactured in color and with a wide variety of surface finishes.\n\nThe outward face treatment of RSS, generally is by vegetation, which is initially more economical than the concrete facing used for MSE structures. However, maintenance costs may be considerably higher, and the long-term performance of many outward face treatments has not been established.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-38."
+  },
+  {
+   "section_id": "2.7.6",
+   "title": "Questionable Applications",
+   "body": "[p. 2-38]\n\nThe current AASHTO LRFD Specifications (2007) states that MSE walls should not be used under the following conditions:\n\n• When utilities other than highway drainage must be constructed within the reinforced zone where future access for repair would require the reinforcement layers to be cut. A similar limitation should be considered for RSS structures.\n\n• With galvanized metallic reinforcements exposed to surface or ground water contaminated by acid mine drainage or other industrial pollutants as indicted by low pH and high chlorides and sulfates.\n\n• When floodplain erosion may undermine the reinforced fill zone, or where the depth to scour cannot be reliably determined.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-38."
+  },
+  {
+   "section_id": "2.8",
+   "title": "Establishment of Project Criteria",
+   "body": "[p. 2-38]\n\nThe engineer should consider each topic area presented in this section at a preliminary design stage and determine appropriate elements and performance criteria.\n\n[p. 2-39]\n\nThe process consists of the following successive steps: • Consider all possible alternatives. • Choose a system (MSEW or RSS). • Consider facing options. • Develop performance criteria (loads, design heights, embedment, settlement tolerances, foundation capacity, effect on adjoining structures, etc.). • Consider effect of site on corrosion/degradation of reinforcements.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-38 to 2-39."
+  },
+  {
+   "section_id": "2.8.1",
+   "title": "Alternates",
+   "body": "[p. 2-39] Cantilever, gravity, semi gravity, or counterforted concrete walls or soil embankments are the usual alternatives to MSE walls and abutments and RSS. In cut situations, in-situ walls such as tieback anchored walls, soil nailed walls or nongravity cantilevered walls are often more economical, although where limited ROW is available, a combination of a temporary in-situ wall at the back end of the reinforcement and a permanent MSE wall is often competitive. For waterfront or marine wall applications, sheetpile walls with or without anchorages or prefabricated concrete bin walls that can be constructed in the wet are often, if not always, both more economical and more practical to construct.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-39."
+  },
+  {
+   "section_id": "2.8.2",
+   "title": "Facing Considerations",
+   "body": "[p. 2-39] The development of project-specific aesthetic criteria is principally focused on the type, size, and texture of the facing, which is the only visible feature of any MSE structure. For permanent applications, considerations should be given to MSE walls with precast concrete panels. They are constructed with a (near) vertical face. Currently, the size of panels commercially produced varies from 20 to 50 ft2 (1.8 to 4.5 m2 ). Generally, full height panels may be considered for walls up to about 14 to 16 ft (4 to 5 m) in height on foundations that are not expected to settle. Experienced contractors have successfully constructed taller full height panels (e.g., 25 ft {7.5 m}) on competent foundations. The precast concrete panels can be manufactured with a variety of surface textures and geometries, as shown in Figure 2-6. For permanent applications, considerations should be given to MBW facings, which are available in a variety of shapes and textures as shown in Figure 2-7. They range in facial area from 0.5 to 1 ft2 (0.05 to 0.1 m2). An integral feature of this type of facing is a front [p. 2-40]\n\nbatter ranging from nominal up to 15 degrees. Project geometric constraints, i.e., the bottom of wall and top of wall horizontal limits, may limit the amount of permissible batter and, thus, the types of MBW units that may be used. Note that the toe of these walls step back as the foundation elevation steps up, due to the stacking arrangement and automatic batter. Other facing options are gabion, timber faced, or vegetated. For temporary walls, significant economy can be achieved with geosynthetic wrapped facings. They may be made permanent by applying gunite or cast-in-place concrete in a post-construction application. For RSS structures, the choice of slope facing may be controlled by climatic and regional factors. For structures of less than 33 ft (10 m) height with slopes of approximately 1 Horizontal:1 Vertical (1H:1V) or flatter, a vegetative \"green slope\" can be usually constructed using an erosion control mat or mesh and local grasses. Where vegetation cannot be successfully established and/or significant run-off may occur, armored slopes using natural or manufactured materials may be the only choice to reduce future maintenance. For additional guidance see Section 8.5.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-39 to 2-40."
+  },
+  {
+   "section_id": "2.8.3",
+   "title": "Performance Criteria",
+   "body": "[p. 2-40] Performance criteria for MSE structures with respect to design requirements are governed by design practice or codes such as contained in Article 11.10 of 2007 AASHTO LRFD Specifications for Highway Bridges. These requirements consider load and resistance factors with respect to various failure modes and materials, and for various limit states. No specific AASHTO guidance is presently available for RSS structures. With respect to lateral wall displacements, no method is presently available to definitively predict lateral displacements, most of which occur during construction. The horizontal movements depend on compaction effects, reinforcement extensibility, reinforcement length, reinforcement-to-panel connection details, and details of the facing system. A rough estimate of probable lateral displacements of simple structures that may occur during construction can be made based on the reinforcement length to wall-height ratio and reinforcement extensibility as shown in Figure 2-15, for the serviceability limit check. This figure indicates that increasing the length-to-height ratio of reinforcements from its theoretical lower limit of 0.5H to 0.7H, decreases the deformation by 50 percent. [p. 2-41]\n\nFor L = 0.7 H Metallic (inextensible) reinforcement . ¾-in. per 10 ft of wall height Geogrid (moderately extensible) reinforcement .1 in. per 10 ft of wall height Geotextile (extensible) reinforcement .1.5 in. per 10 ft of wall height Based on 20 ft high walls, relative displacement increases approximately 25% for every 400 psf surcharge. Experience indicates that for higher walls, the surcharge effect may be greater. NOTE: This figure is only a guide. Actual displacement will depend, in addition to the parameters addressed in the figure, on soil characteristics, compaction effort, and contractor\n\nFigure 2-15. Empirical curve for estimating lateral displacement during construction for MSE walls (after FHWA RD 89-043 {Christopher et al., 1990}).\n\n[p. 2-42]\n\nPerformance criteria are both site and structure-dependent. Structure-dependent criteria consist of safety factors or a consistent set of load and resistance factors as well as tolerable movement criteria of the specific MSE structure selected. Recommended MSE Wall load and resistance factors with respect to the various potential failure modes and limit states are presented in Chapter 4. A number of site-specific project criteria need to be established at the inception of design: • Design limits and wall height. The length and height required to meet project geometric requirements must be established to determine the type of structure and external loading configurations. • Alignment limits. The horizontal (perpendicular to wall face) limits of bottom and top of wall alignment must be established as alignments vary with batter of wall system. The alignment constraints may limit the type and maximum batter of the wall facing, particularly with MBW units. • Length of reinforcement. A minimum reinforcement length of 0.7H is recommended for MSE walls. Longer lengths are required for structures subject to surcharge loads, or where foundation conditions affect lateral sliding and/or global/compound slope stability, as listed in Table 2-1. Shorter lengths can be used in special situations (see Chapter 6). • External loads. The external loads may be soil surcharges required by the geometry, adjoining footing loads, loads as from traffic, and/or traffic impact loads. The magnitude of the minimum traffic loads outlined in Article 3.11.6.4 (AASHTO, 2007) is a uniform load equivalent to 2 ft (0.6 m) of soil over the traffic lanes. The traffic load is greater for some cases (see Tables 4-5 and 4-6). • Wall embedment. The minimum embedment depth for walls from adjoining finished grade to the top of the leveling pad should be based on bearing, settlement, and slope stability considerations. Current practice based on local bearing considerations, recommends the minimum embedment depths listed in Table 2-1. [p. 2-43]\n\nTable 2-1. Typical Minimum Length of Reinforcement.\n\n[Table 2-1, typed in from p. 2-43, row by row:]\nCase | Typical Minimum L/H Ratio\nStatic loading with or with traffic surcharge | 0.7\nSloping backfill surcharge | 0.8\nSeismic loading | 0.8 to 1.1\n[Note on the table: the first case is printed \"with or with traffic surcharge\" (p. 2-43), kept as printed.]\n\nTable 2-2. Minimum MSEW Embedment Depths.\n\n[Table 2-2, typed in from p. 2-43, row by row:]\nSlope in Front of Wall | Minimum Embedment Depth to Top of Leveling Pad*\nAll Geometries | 2 ft minimum\nhorizontal (walls) | H/20\nhorizontal (abutments) | H/10\n3H:1V | H/10\n2H:1V | H/7\n1.5H:1V | H/5\n* Minimum depth is the greater of applicable values listed, frost depth, or scour depth.\n\nLarger values may be required, depending on shrinkage and swelling of foundation soils, seismic activity, and/or scour. A greater embedment depth may also be required based upon bearing, settlement, and/or global stability calculations. As noted, the minimum in any case is 2 ft (0.6 m), except for structures founded on rock at the surface, where no embedment may be used. Alternately, frost-susceptible soils could be overexcavated and replaced with non-frost susceptible fill, hence reducing the embedment depth (and overall wall height). A minimum horizontal bench 4-ft (1.2 m) wide as measured from the face shall be provided in front of walls founded on slopes. The bench may be formed or the slope continued above that level (11.10.2.2, AASHTO {2007}), as illustrated in Figure 2-16. The horizontal bench is intended to provide resistance against general bearing failure and to provide access for maintenance inspections (C11.10.2.2, AASHTO {2007}). For walls constructed along rivers and streams where the depth of scour has been reliably determined, a minimum embedment of 2 ft (0.6 m) below scour depth is recommended. Embedment is not required for RSS unless dictated by stability requirements. [p. 2-44]\n\nFigure 2-16. MSE wall embedment depth requirements, (a) level toe condition and (b) benched slope toe condition (dh = minimum depth for horizontal slope and ds\n\n= minimum depth for sloping toe, from Table 2-2). • Seismic Activity. Due to their flexibility, MSE wall and slope structures are quite resistant to dynamic forces developed during a seismic event, as confirmed by the excellent performance in several recent earthquakes. Seismic loading analysis of MSE walls is an Extreme Event limit state. Psuedo-static analysis procedures for seismic stability are presented in Chapter 7. Note that for sites [p. 2-45]\n\nwhere the anticipated ground acceleration is greater than 0.29 g, significant total lateral structure movements may occur, and a deformation analysis for the structure is recommended (C11.10.7.1, AASHTO {2007}). MSE walls should be designed/checked for seismic stability on all sites where the As coefficient is greater than 0.05. For RSS structures, seismic analyses should be included regardless of acceleration magnitude. • Tolerance of precast facing panels to settlement. MSE structures have significant deformation tolerance both longitudinally along a wall and perpendicular to the front face. Therefore, poor foundation conditions seldom preclude their use. However, where significant differential settlements are anticipated (greater than 1/100) sufficient joint width and/or slip joints must be provided to preclude panel cracking. This factor may influence the type and design of the facing panel selected. Square panels generally adapt to larger longitudinal differential settlements better than long rectangular panels of the same surface area. A joint width of ¾-inch (20 mm) is generally recommended. Guidance on differential settlements that can be tolerated is presented in Table 2-3, for panels with a surface of 30 ft2 (2.8 m2) or less and for panels with surface area greater than 30 ft2 (2.8 m2) and less than or equal to 75 ft2 (7 m2). Bearing pads used between segmental precast concrete panels should be designed to accommodate downdrag forces on it due to elastic settlement of the wall fill. Bearing pad design and specification are addressed in Section 3.6.1.a and Section 10.5, respectively. MSE walls constructed with full height panels should be limited to differential settlements of 1/500. Walls with drycast facing (MBW) should be limited to settlements of 1/200. For walls with welded wire facings, the limiting differential settlement should be 1/50. Where significant differential settlement perpendicular to the wall face is anticipated, the reinforcement connection may be overstressed. Where the back of the reinforced soil zone will settle more than the face, the reinforcement could be placed on a sloping fill surface which is higher at the back end of the reinforcement to compensate for the greater vertical settlement. This may be the case where a steep surcharge slope is constructed. This latter construction technique, however, requires that surface drainage be carefully controlled after each day's construction. Alternatively, where significant differential settlements are anticipated, ground improvement techniques may be warranted to limit the settlements. [p. 2-46]\n\nTable 2-3. Relationship Between Joint Width and Limiting Differential Settlements for MSE Precast Panels (after C11.10.4.1 AASHTO {2007}).\n\n[Table 2-3, typed in from p. 2-46, row by row:]\nJoint Width | Limiting Differential Settlement, Area ≤ 30 ft² | Limiting Differential Settlement, 30 ft² < Area ≤ 75 ft²\n¾-in. (20 mm) | 1/100 | 1/200",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-15: Empirical curve for estimating probable anticipated lateral displacement during construction for MSE walls (after FHWA 89-043 {Christopher et al., 1990})",
+    "Figure 2-16: MSE wall embedment depth requirements, (a) level toe condition and (b) benched slope toe condition"
+   ],
+   "tables": [
+    "Table 2-1: Typical Minimum Length of Reinforcement",
+    "Table 2-2: Minimum MSEW Embedment Depths",
+    "Table 2-3: Relationship Between Joint Width and Limiting Differential Settlements for MSE Precast Panels"
+   ],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-40 to 2-46.",
+   "implemented_in": {
+    "Table 2-1": "geotech_references.gec_11.tables.table_2_1_min_reinforcement_length",
+    "Table 2-2": "geotech_references.gec_11.tables.table_2_2_min_embedment_depth"
+   }
+  },
+  {
+   "section_id": "2.8.4",
+   "title": "Design Life",
+   "body": "[p. 2-46]\n\nMSE walls should be designed for a service life based on consideration of the potential long-term effects of material deterioration, seepage, stray currents and other potentially deleterious environmental factors on each of the material components comprising the wall. For most applications, permanent retaining walls should be designed for a minimum service life of 75 years. Retaining walls for temporary applications are typically designed for a service life of 36 months or less.\n\nA greater level of safety and/or longer service life (i.e., 100 years) may be appropriate for walls that support true bridge abutments, buildings, critical utilities, or other facilities for which the consequences of poor performance or failure would be severe.\n\nThe quality of in-service performance is an important consideration in the design of permanent retaining walls. Permanent walls shall be designed to retain an aesthetically pleasing appearance, and not require significant maintenance throughout their design service life.\n\nFor RSS structures, similar minimum design life ranges should be adopted.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-46."
+  },
+  {
+   "section_id": "2.9",
+   "title": "Proprietary Aspects",
+   "body": "[p. 2-46]\n\nThe distinguishing characteristics of MSE trademarked systems from generic systems are patented features or materials of construction.\n\nAt present the following significant components are known to be covered by unexpired patents:\n\n[p. 2-47]\n\n• Connection details between grid reinforcement and precast panel covered by a number of patents issued to various suppliers. In general, these patents cover a specific design for the concrete-embedded portion of connecting member only.\n\n• Most MBW facing units are covered by recent design patents.\n\nA number of patents may be in force for specific MSE construction methods under water, specific types of traffic barriers constructed over MSE walls, and facing attachments to temporary facings.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-46 to 2-47."
+  },
+  {
+   "section_id": "2.10",
+   "title": "Case Histories -- MSE Walls",
+   "body": "[p. 2-47]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed p. 2-47."
+  },
+  {
+   "section_id": "2.10.1",
+   "title": "Mn/DOT Crosstown Project MSE Walls",
+   "body": "[p. 2-47]\n\nMSE walls were used extensively on the Crosstown Project, located in Minneapolis, Minnesota. The walls are used to widen existing roadways, construct new ramps, and construct new bridge approaches. The project enlarges and streamlines the I35W and Mn Hwy 62 interchange. This is a heavily traveled roadway in a congested urban area. Several bridges were widened and several new bridges were constructed as part of this project. The detailed wall designs and the wall components were supplied by a Minnesota Department of Transportation (Mn/DOT) pre-approved MSE wall vendor. Design followed the ASD method (AASHTO 17th Edition, 2002). Most of the walls were constructed during the 2008 and 2009 construction seasons.\n\nApproximately 300,000 ft2 (28,000 m2) of MSE walls were constructed in 24 separate walls. Typical wall heights are approximately 25 to 30 ft (7.5 to 9 m), and the maximum wall height is 45 ft (14 m). The MSE walls are faced with architectural segmental precast panels and reinforced with steel bar mats. Facing panels are painted after wall construction. The architectural relief included false columns, on the long and tall walls, as shown in Figure 2-17. The reinforced wall fill is an angular, well-graded sand. The walls are designed for a 100-year life. Many walls have traffic barriers on top of the reinforced zoned. The barriers were designed by the Mn/DOT project design consultant. A geomembrane was specified and installed across the top of the reinforced zones to prevent, or minimize, infiltration of de-icing salt runoff into the reinforced fill.\n\nTemporary welded wire mesh (WWM) faced walls were also used on this project for temporary bridge abutments (see Figure 2-2), bridge approach embankments, and [p. 2-48]\n\nconstruction staging. These walls were also designed and supplied by the same Mn/DOT pre-approved vendor. The use of MSE walls on this project provided a relatively rapid means of wall construction, and produced structures designed for a 100-year life. Cast-in-place, concrete cantilever walls were also extensively used on this project. Approximately 500,000 ft2 (49,000 m2) of C.I.P. walls were constructed. The cost of these MSE walls was $30.50 per ft2 ($330 per m2) of face area, plus $17.00 per yd3 ($20 per m3) for the reinforced wall fill and $375.00 per yd3 (($450 per m3) of concrete for the traffic barrier moment slab. MSE wall cost with the select granular wall fill and moment slab was approximately $54.50 per ft2 ($585 per m2) of face area. The MSE wall costs do not include the traffic barrier and noise wall. The cost of the cast-in-place walls on the project was $67.20 per ft2 ($723 per m2) of face area plus cost of backfill, for an approximate total cost of $76 per ft2 ($820 per m2) of face area.\n\nFigure 2-17. MSE wall construction on Mn/DOT Crosstown Project, 2008.\n\n[p. 2-49]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-17: MSE wall construction on Mn/DOT Crosstown Project, 2008."
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-47 to 2-49."
+  },
+  {
+   "section_id": "2.10.2",
+   "title": "Veterans Memorial Overpass True Abutment MSE Walls",
+   "body": "[p. 2-49] The Pima County Department of Transportation’s Veterans Memorial Overpass (VMO) project is located in Tucson, Arizona. The project included a 5-span, 348-ft long bridge (shown in Figure 2-18) that takes Palo Verde Road over Aviation Parkway, Union Pacific railroad assembly area tracks, and 36th Street. The North and South abutments consist of spread footings on top of 25-ft and 35-ft high MSE walls, respectively. MSE walls were proposed as part of value engineering proposal to replace cast-in-place walls. The walls were designed using the ASD method (AASHTO 17th Edition, 2002). The walls were constructed in 2004 and 2005. An abutment is shown in Figure 2-19, and abutment cross section is illustrated in Figure 2-20. Both abutments are 150 ft long. The bridge consists of simply supported AASHTO Type III girders on elastomeric bearing pads resting on an abutment footing. The bridge footing at each abutment is 10.75 ft wide and 10.2 ft high. Clearance between the back of the coping and the toe of the footing is 6 in. The length of reinforcements was equal to the height of the abutment. Reinforced fill was a select granular fill, in accordance with AASHTO/FHWA requirements. Ribbed steel reinforcing strips were used for soil reinforcements, with 5-ft tall x 10-ft wide precast concrete segmental panels. The upper 9 ft of foundation soils were over-excavated and replaced with engineered fill because they were loose and potentially collapsible. Underlying soils were dense to very dense clayey sands with refusal N-values. Groundwater depth is greater than 150 ft. This project was monitored with over 500 survey points. Settlements of less than 1 in., primarily occurring during construction, were measured. No noticeable post-construction settlement has been observed.\n\nFigure 2-18. Veterans Memorial Overpass.\n\nFigure 2-19. MSE true bridge abutment.\n\n[p. 2-50]\n\nFigure 2-20. Typical cross section, VMO project.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-18: Veterans Memorial Overpass",
+    "Figure 2-19: MSE true bridge abutment",
+    "Figure 2-20: Typical cross section, VMO project"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-49 to 2-50."
+  },
+  {
+   "section_id": "2.10.3",
+   "title": "SeaTac Airport Runway Extension MSE Wall",
+   "body": "[p. 2-50] The tallest MSE wall in the U.S. to date has an exposed height of 138 ft (42 m) at its tallest section and was constructed to limit encroachment on adjacent creeks and wetlands and increase the land use area for the Third Runway project at SeaTac Airport (Figure 2-21). The West MSE wall was one of several walls constructed for the runway extension and is approximately 1430 ft (436 m) long, has four tiers formed by 8 ft (2.4 m) setbacks, and had a constructed height of 150 ft (148 m). The wall supports 20 ft (6.1 m) high, unreinforced 2H:1V slope. The MSE wall used steel reinforcing strips with concrete facing panels. In the lower tier, up to 25, 2 in. (50 mm) wide by 0.24 in. (6 mm) thick strips with a length of 116 ft (35.4 m) were connected to the 5 by 5-ft (1.5 by 1.5-m) panels. A full discussion of project background, design aspects, and instrumentation of these MSE walls are provided by Sankey et al. (2007) and Stuedlein et al. (2007). [p. 2-51]\n\nFigure 2-21. SeaTac Airport runway extension MSE wall.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-21: SeaTac Airport runway extension MSE wall"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-50 to 2-51. The contents give its title as \"SEATAC Runway Extension Wall\"."
+  },
+  {
+   "section_id": "2.10.4",
+   "title": "Guanella Pass Roadway Reconstruction",
+   "body": "[p. 2-51] The Guanella Pass project is located in the Front Range of the Colorado Rocky Mountains within the Pike and Arapaho National Forests approximately 50 miles west of Denver. The overall goal of the Guanella Pass Road improvement project is to balance transportation requirements and roadway maintenance within a sensitive human and natural environment. The 24-mile long route connects two principal east-west corridors, US 285 and Interstate Highway 70. The original roadway supported two-way traffic with various widths and many sharp switchbacks in very steep mountainous terrain. Twenty-one wired-faced MSE walls, extending a total length of almost 12,000 feet, were constructed along the project to gain adequate roadway width (typical wall is shown in Figure 2-22). Alternately, very long and steep down-slope embankments could have been constructed, but would have significantly impacted the forest. The MSE walls were able to [p. 2-52]\n\nlimit the width of disturbance to a little more than the roadway width. Some of the walls, which were visible from the road, were faced with an architectural concrete cast-in-place facing (as shown in Figure 2-23). The facing form liner was specifically designed by the Forest Service to simulate a more natural rockery type of wall, which was used extensively on the cut side of the road. Due to the site geometry, these walls were constructed on very steep slopes ranging from 1.3H:1V to 1.5H:1V. MSE retaining walls for this project were evaluated for global stability using limit equilibrium methods using a minimum factor of safety for global stability of 1.3. In order to achieve this factor of safety under these geometric and loading conditions, the designers needed to work with each site individually. The reinforcement lengths were longer than typically used on MSE walls; they ranged from 70% to 120% of the wall height. In addition, the designers were able to vary the wall embedment below finished grade. These two parameters were used to provide a stable structure to support the new roadway. In addition, the project was able to utilize the on-site soils for the reinforced backfill. The reinforced backfill met most of the AASHTO and FHWA requirements with the exception of the No. 200 sieve. In order to be able to use most of the soils excavated during construction, the project specifications allowed the use of up to 20% passing the No. 200 sieve instead of 15%. This was a significant savings to the project since it would have been difficult to waste the excavated material within the construction limits and it would have been very costly to import material for the walls, since the project was so remote. MSE walls were selected for this project primarily due to their ease of construction and flexibility in difficult terrain and remote sites.\n\nFigure 2-22. Guanella Pass wire-faced wall.\n\nFigure 2-23. Guanella Pass architectural\n\nwall.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 2-22: Guanella Pass wire-faced wall",
+    "Figure 2-23: Guanella Pass architectural concrete faced wall"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-024 (Volume I), Chapter 2 (Systems and Project Evaluation), printed pp. 2-51 to 2-52."
+  }
+ ]
 }

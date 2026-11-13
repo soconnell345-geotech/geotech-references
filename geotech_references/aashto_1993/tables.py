@@ -272,45 +272,77 @@ def directional_distribution_default() -> dict:
 # concrete surface course vs elastic (resilient) modulus EAC at 68F.
 # CHART READ-OFF (no printed closed-form equation): digitized at dpi 150/240
 # (pdf_page 107, printed II-18). Anchor points from the printed curve
-# (solid to EAC~420,000-450,000 psi; dashed extrapolation beyond, per the
-# guide's own caution against modulus values above 450,000 psi).
+# (solid to about EAC 450,000 psi; dashed beyond to the 500,000 psi edge;
+# II-17: "Caution is recommended for modulus values above 450,000 psi").
+# Re-read 2026-11-10 (review pave-11) from a 400-dpi render, gridline-
+# calibrated: the curve begins on the a1 = 0.20 line at about 106,000 psi
+# (was taken as 100,000) and reads 0.252 at 150,000 (was 0.26); the other
+# anchors agree with the trace within 0.004.
 # ============================================================================
 
-_A1_EAC = [100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
+_A1_EAC = [106000, 150000, 200000, 250000, 300000, 350000, 400000, 450000,
           500000]
-_A1_VAL = [0.20, 0.26, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
+_A1_VAL = [0.20, 0.252, 0.30, 0.335, 0.365, 0.39, 0.42, 0.44, 0.465]
 
 
 def layer_coefficient_a1_asphalt(eac_psi) -> dict:
-    """Asphalt concrete surface course layer coefficient a1 (Figure 2.5, chart).
+    """Structural layer coefficient a1 of a dense-graded asphalt concrete
+    surface course from its elastic modulus EAC at 68 F, AASHTO 1993
+    Figure 2.5 (pdf_page 107, printed II-18); returns a1 (per inch).
 
     Chart-read-off (interpolated), NOT a printed closed-form equation.
-    Digitized anchor points (EAC psi -> a1): 100000->0.20, 150000->0.26,
+    Digitized anchor points (EAC psi -> a1): 106000->0.20, 150000->0.252,
     200000->0.30, 250000->0.335, 300000->0.365, 350000->0.39, 400000->0.42,
-    450000->0.44, 500000->0.465 (dashed/extrapolated beyond ~420,000 psi
-    in the source chart).
+    450000->0.44, 500000->0.465. The printed curve is drawn from about
+    106,000 psi (a1 0.20) to the chart's 500,000 psi edge, dashed past
+    about 450,000 psi; II-17: "Caution is recommended for modulus values
+    above 450,000 psi".
 
     Parameters
     ----------
     eac_psi : float
-        Asphalt concrete elastic (resilient) modulus at 68 F, psi.
-        Values below 100,000 psi are off the printed chart (clamped to the
-        chart's a1=0.20 floor by the interpolator); values above 450,000
-        psi are on the guide's own cautioned dashed-extrapolation segment.
+        Asphalt concrete elastic (resilient) modulus at 68 F, psi. The
+        printed curve begins at about 106,000 psi (a1 0.20): below that the
+        lookup refuses. Above 450,000 psi the curve is dashed (noted);
+        above 500,000 psi, the chart's edge, a1 is held at its 500,000 psi
+        value, with a note and an ``out_of_range`` key. Holding is on the
+        safe side (a1 rises with EAC, so a stiffer mix gets no more credit)
+        and follows II-17: "Caution is recommended for modulus values above
+        450,000 psi".
 
     Returns
     -------
     dict
-        {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?}.
+        {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?,
+        'out_of_range'?}.
+
+    Raises
+    ------
+    ValueError
+        If eac_psi is below about 106,000 psi, where Figure 2.5's curve
+        begins.
     """
+    if eac_psi is None or eac_psi < _A1_EAC[0]:
+        raise ValueError(
+            f"EAC {eac_psi} psi is below where Figure 2.5's curve begins: "
+            "the chart draws a1 for EAC from about 106,000 psi (a1 0.20) to "
+            "500,000 psi (printed II-18); it gives no a1 below that.")
     a1 = _linterp(eac_psi, _A1_EAC, _A1_VAL)
     out = {
         "eac_psi": eac_psi, "a1": round(a1, 3), "chart_read": True,
         "reference": "AASHTO 1993 Guide, Figure 2.5 (pdf_page 107, printed II-18)",
     }
     if eac_psi > 450000:
-        out["note"] = ("EAC > 450,000 psi: guide cautions this is beyond the "
-                       "reliable chart range (dashed extrapolation).")
+        out["note"] = ("EAC > 450,000 psi: the curve is dashed here, and "
+                       "II-17 says 'Caution is recommended for modulus "
+                       "values above 450,000 psi' (stiffer mixes are more "
+                       "susceptible to thermal and fatigue cracking).")
+    if eac_psi > _A1_EAC[-1]:
+        out["note"] += (" EAC is past the chart's 500,000 psi edge; a1 is "
+                        "held at its 500,000 psi value, on the safe side.")
+        out["out_of_range"] = (
+            f"eac_psi = {eac_psi:,.0f} is above 500,000 psi, the right edge "
+            "of Figure 2.5 (printed II-18).")
     return out
 
 
@@ -325,8 +357,10 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
 # each chart (Fig. 2.8: 0.10 / 0.16 / 0.22 / 0.28; Fig. 2.9: 0.10 / 0.20 /
 # 0.30) mark a2 values, not ticks of the property scale.
 #
-# Below the lowest labelled tick the scale is not read (ValueError); above
-# the top tick a2 is held at the top tick's value with a note.
+# Outside the labelled ticks the scale is not read (ValueError): below the
+# lowest, and (REF-76) above the top one, where a2 used to be held at the
+# top tick's value with a note. The guide's text (II-22) gives no rule
+# beyond the scales.
 # ============================================================================
 
 # Figure 2.8 (pdf_page 112, printed II-23): 7-day UCS (psi) -> a2.
@@ -347,9 +381,11 @@ def _a2_across(value, scale, what, unit):
             "directly."
         )
     if value > hi:
-        return scale[-1][1], (
-            f"{what} {value} {unit} is above the printed scale's top tick "
-            f"({hi} {unit}); a2 = {scale[-1][1]} at {hi} {unit} used.")
+        raise ValueError(
+            f"{what} {value} {unit} is above the top labelled tick of the "
+            f"printed scale ({hi} {unit}); the chart gives no a2 there and "
+            "the guide's text no rule. Give the layer coefficient directly."
+        )
     for (x0, a0), (x1, a1) in zip(scale, scale[1:]):
         if x0 <= value <= x1:
             return a0 + (a1 - a0) * (value - x0) / (x1 - x0), None
@@ -372,13 +408,14 @@ def layer_coefficient_a2_cement_treated(ucs_7day_psi) -> dict:
     Returns
     -------
     dict
-        {'ucs_7day_psi', 'a2', 'chart_read', 'reference', 'note'?}.
+        {'ucs_7day_psi', 'a2', 'chart_read', 'reference'}.
 
     Raises
     ------
     ValueError
-        If the UCS is below the scale's lowest labelled tick (200 psi).
-        Above 1000 psi a2 is held at 0.250 with a note.
+        If the UCS is outside the scale's labelled ticks, 200-1000 psi
+        (printed II-23). Above 1000 psi a2 used to be held at 0.250 with
+        a note (REF-76).
     """
     a2, note = _a2_across(ucs_7day_psi, _A2_CEMENT_SCALE, "7-day UCS", "psi")
     out = {
@@ -408,13 +445,14 @@ def layer_coefficient_a2_bituminous_treated(marshall_stability_lb) -> dict:
     Returns
     -------
     dict
-        {'marshall_stability_lb', 'a2', 'chart_read', 'reference', 'note'?}.
+        {'marshall_stability_lb', 'a2', 'chart_read', 'reference'}.
 
     Raises
     ------
     ValueError
-        If the stability is below 200 lb. Above 1800 lb a2 is held at
-        0.320 with a note.
+        If the stability is outside the labelled ticks used, 200-1800 lb
+        (printed II-24). Above 1800 lb a2 used to be held at 0.320 with a
+        note (REF-76).
     """
     a2, note = _a2_across(marshall_stability_lb, _A2_BITUMINOUS_SCALE,
                           "Marshall stability", "lb")
@@ -487,6 +525,7 @@ def unbound_k1_k2(layer, moisture_condition) -> dict:
 
 _SATURATION_COLS = ["<1%", "1-5%", "5-25%", ">25%"]
 
+# Each cell as printed, "high-low" (e.g. "1.40-1.35"): (high, low).
 _TABLE_2_4 = {
     "excellent": [(1.40, 1.35), (1.35, 1.30), (1.30, 1.20), (1.20, 1.20)],
     "good": [(1.35, 1.25), (1.25, 1.15), (1.15, 1.00), (1.00, 1.00)],
@@ -497,7 +536,10 @@ _TABLE_2_4 = {
 
 
 def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
-    """Drainage modifier mi for untreated base/subbase, flexible (Table 2.4).
+    """Recommended mi values for modifying the layer coefficients of
+    untreated base and subbase in flexible pavements, AASHTO 1993 Table 2.4
+    (pdf_page 114, printed II-25); returns the printed range as mi_min and
+    mi_max (dimensionless).
 
     Modifies the base/subbase layer coefficients in the SN equation
     (SN = a1*D1 + a2*D2*m2 + a3*D3*m3). AASHO Road Test conditions
@@ -533,7 +575,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_4[qk][idx]
+    hi, lo = _TABLE_2_4[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "mi_min": lo, "mi_max": hi,
@@ -546,6 +588,7 @@ def drainage_mi_flexible(quality, pct_saturation_time) -> dict:
 # (pdf_page 115, printed II-26)
 # ============================================================================
 
+# Each cell as printed, "high-low" (e.g. "1.25-1.20"): (high, low).
 _TABLE_2_5 = {
     "excellent": [(1.25, 1.20), (1.20, 1.15), (1.15, 1.10), (1.10, 1.10)],
     "good": [(1.20, 1.15), (1.15, 1.10), (1.10, 1.00), (1.00, 1.00)],
@@ -556,7 +599,9 @@ _TABLE_2_5 = {
 
 
 def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
-    """Drainage coefficient Cd for rigid pavement design (Table 2.5).
+    """Recommended values of drainage coefficient Cd for rigid pavement
+    design, AASHTO 1993 Table 2.5 (pdf_page 115, printed II-26); returns the
+    printed range as cd_min and cd_max (dimensionless).
 
     AASHO Road Test conditions correspond to Cd=1.0 (quality 'fair').
 
@@ -588,7 +633,7 @@ def drainage_cd_rigid(quality, pct_saturation_time) -> dict:
             f"'{pct_saturation_time}'"
         )
     idx = _SATURATION_COLS.index(pct_saturation_time)
-    lo, hi = _TABLE_2_5[qk][idx]
+    hi, lo = _TABLE_2_5[qk][idx]
     return {
         "quality": qk, "pct_saturation_time": pct_saturation_time,
         "cd_min": lo, "cd_max": hi,
@@ -787,8 +832,8 @@ def _esal_from_lef(pavement_type, axle_config, axle_load_kips, sn, d_in, pt,
                    column_key):
     """Read Appendix D through lef.py and return this module's keys.
 
-    lef.py's ValueError (pt not 2.0/2.5/3.0, a load or SN/D <= 0) passes
-    through unchanged.
+    lef.py's ValueError (pt not 2.0/2.5/3.0, a load or SN/D <= 0 or
+    outside the printed table) passes through unchanged.
     """
     from geotech_references.aashto_1993.lef import load_equivalency_factor
     kw = {"sn": sn} if pavement_type == "flexible" else {"d_in": d_in}
@@ -819,11 +864,11 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
-        outside them is clamped to the nearest row (see 'note').
+        outside them is refused (REF-76).
     sn : float, optional
         Pavement structural number, > 0. Printed columns are SN = 1-6,
-        interpolated linearly between them; outside 1-6 it is clamped to
-        the nearest column (see 'note'). Default 5.0.
+        interpolated linearly between them; outside 1-6 it is refused.
+        Default 5.0.
     pt : float, optional
         Terminal serviceability: exactly 2.0, 2.5 or 3.0, the values
         Appendix D prints. Default 2.5.
@@ -831,15 +876,14 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     Returns
     -------
     dict
-        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference',
-         'note'?}. 'table' is the printed table number (e.g. 'Table D.4');
-        'note' is present only when a load or SN was clamped.
+        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference'}.
+        'table' is the printed table number (e.g. 'Table D.4').
 
     Raises
     ------
     ValueError
         As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
-        or SN <= 0.
+        or SN <= 0 or outside the printed table.
     """
     return _esal_from_lef("flexible", "single", axle_load_kips, sn, None,
                           pt, "sn")
@@ -856,10 +900,10 @@ def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
-        load outside them is clamped (see 'note').
+        load outside them is refused (REF-76).
     sn : float, optional
-        Pavement structural number; printed SN = 1-6, interpolated, clamped
-        outside. Default 5.0.
+        Pavement structural number; printed SN = 1-6, interpolated,
+        refused outside. Default 5.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
@@ -889,11 +933,11 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
-        outside them is clamped (see 'note').
+        outside them is refused (REF-76).
     d_in : float, optional
         Slab thickness, inches, > 0. Printed columns are D = 6-14 in,
-        interpolated linearly between them; outside 6-14 it is clamped
-        (see 'note'). Default 9.0.
+        interpolated linearly between them; outside 6-14 it is refused.
+        Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
@@ -907,7 +951,7 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ------
     ValueError
         As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
-        or D <= 0.
+        or D <= 0 or outside the printed table.
     """
     return _esal_from_lef("rigid", "single", axle_load_kips, None, d_in,
                           pt, "d_in")
@@ -924,10 +968,10 @@ def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
-        load outside them is clamped (see 'note').
+        load outside them is refused (REF-76).
     d_in : float, optional
-        Slab thickness, inches; printed D = 6-14 in, interpolated, clamped
-        outside. Default 9.0.
+        Slab thickness, inches; printed D = 6-14 in, interpolated,
+        refused outside. Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 

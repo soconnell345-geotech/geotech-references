@@ -1,0 +1,436 @@
+"""GEC-11 Volume II (FHWA-NHI-10-025, November 2009): the appendices read off
+the print (app BACKLOG REF-85).
+
+Each appendix file is built by ``scripts/build_gec11_appendix.py`` from the
+printed pages: the print's own words with ``[p. B-3]`` markers, every
+formula line, table and figure lettering typed in from a rendered page, the
+appendix's numbered equations with their symbols as the page defines them.
+These check the structure, the printed headings, sentences with their pages,
+the typed formulas and tables, the arithmetic of the worked lines, and that
+a rebuild gives the committed files.
+"""
+
+import json
+import math
+import re
+from pathlib import Path
+
+import pytest
+
+from tests._build_reader import require_build_reader
+
+ROOT = Path(__file__).resolve().parents[1]
+PKG = ROOT / "geotech_references" / "gec_11"
+PDF = ROOT / "docs" / "GEC 11 VOL 2.pdf"
+#: Appendices built from the print so far, with the chapter number each
+#: file carries (the appendices follow chapter 11).
+BUILT = {"A": 12, "B": 13, "C": 14, "D": 15}
+
+
+def _appendix(letter):
+    path = PKG / "text" / f"appendix_{letter.lower()}.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _sections(letter):
+    return {s["section_id"]: s for s in _appendix(letter)["sections"]}
+
+
+# --- structure ------------------------------------------------------------
+
+@pytest.mark.parametrize("letter", sorted(BUILT))
+def test_appendix_carries_its_volume_and_place(letter):
+    a = _appendix(letter)
+    assert a["volume"] == 2 and a["reference_id"] == "FHWA-NHI-10-025"
+    assert a["reference_title"].endswith("Volume II")
+    assert a["chapter"] == BUILT[letter]
+    assert a["chapter_title"].startswith(f"Appendix {letter}: ")
+
+
+@pytest.mark.parametrize("letter", sorted(BUILT))
+def test_every_section_carries_its_printed_pages(letter):
+    for s in _appendix(letter)["sections"]:
+        assert s["section_id"] == letter or s["section_id"].startswith(f"{letter}.")
+        assert s["body"] == "" or s["body"].startswith(f"[p. {letter}"), s["section_id"]
+        assert f"printed p" in s["applicability"] or "Part " in s["applicability"]
+        assert "summary" not in s and s["key_points"] == []
+        assert len(json.dumps(s)) <= 14000, s["section_id"]
+        for e in s["equations"]:
+            assert f"[{e['id']}]" in s["body"], (s["section_id"], e["id"])
+        for item in s["figures"] + s["tables"]:
+            num = item.split(":")[0]
+            assert re.search(rf"(?:^|\n\n|\] ){re.escape(num)}\. ", s["body"]), item
+
+
+@pytest.mark.parametrize("letter", sorted(BUILT))
+def test_no_scatter_patterns(letter):
+    """A formula taken from the text layer that has come apart: a prime on
+    its own, a lone number line above a formula, brackets that do not pair
+    on a formula line, a line of one or two glyphs."""
+    bad = []
+    for s in _appendix(letter)["sections"]:
+        lines = s["body"].split("\n")
+        for i, ln in enumerate(lines):
+            if re.search(r"(?<=\s)['′’](?=\s)", ln):
+                bad.append((s["section_id"], ln[:60]))
+            if re.fullmatch(r"\s*\d{1,2}\s*", ln):
+                bad.append((s["section_id"], f"lone number {ln!r}"))
+            if 0 < len(ln.strip()) <= 2:
+                bad.append((s["section_id"], f"glyph line {ln!r}"))
+            if "=" in ln and re.search(r"[+\-−×/÷^√Σ]", ln):
+                t = re.sub(r"\[(?:p|Eq)\. [^\]]+\]", "", ln)
+                for a, b in ("()", "[]", "{}"):
+                    if t.count(a) != t.count(b):
+                        bad.append((s["section_id"], f"{a}{b} in {ln[:70]!r}"))
+    assert bad == []
+
+
+# --- Appendix A -------------------------------------------------------------
+
+def test_appendix_a_headings_and_notation():
+    secs = _sections("A")
+    assert {sid: s["title"] for sid, s in secs.items()} == {
+        "A.1": "Load Notation", "A.2": "Load Combinations",
+        "A.3": "Load Factors for Permanent Loads"}
+    body = secs["A.1"]["body"]
+    # p. A-2, as printed ("due shrinkage")
+    assert "\nSH = Force effects due shrinkage\nTransient Loads\nBR = " in body
+    # ten permanent and seventeen transient loads
+    assert body.count(" = ") == 27
+
+
+def test_appendix_a_tables_typed_in():
+    secs = _sections("A")
+    rows = {r.split(" | ")[0]: r.split(" | ")[1:]
+            for r in secs["A.2"]["body"].split("\n") if " | " in r}
+    assert len(rows) == 13
+    # p. A-3: 13 columns after the limit state
+    assert all(len(v) == 13 for v in rows.values())
+    assert rows["STRENGTH I (unless noted)"][:3] == ["γp", "1.75", "1.00"]
+    assert rows["EXTREME EVENT I"][1] == "γEQ"
+    assert rows["SERVICE IV"][-1] == "(blank)"
+    # p. A-4: the lambda method row (the letter is drawn, not in the text)
+    assert "DD: Downdrag: Piles, λ Method | 1.05 | 0.30" in secs["A.3"]["body"]
+
+
+def test_appendix_a_agrees_with_the_chapter_4_lookups():
+    """Tables 4-1 and 4-2 (p. 4-4) give a subset of the appendix's AASHTO
+    tables; the lookups that code them agree with pp. A-3 and A-4."""
+    from geotech_references.gec_11 import tables
+    body = _sections("A")["A.3"]["body"]
+    names = {"DC": "DC: Component and Attachments",
+             "EH Active": "EH: Horizontal Earth Pressure: Active",
+             "EV Overall Stability": "EV: Vertical Earth Pressure: Overall Stability",
+             "EV Retaining Walls": "EV: Vertical Earth Pressure: Retaining Walls and Abutments",
+             "ES": "ES: Earth Surcharge"}
+    for r in tables.table_4_2_permanent_load_factors():
+        lo = "N/A" if r["gamma_min"] is None else f"{r['gamma_min']:.2f}"
+        assert f"{names[r['load_type']]} | {r['gamma_max']:.2f} | {lo}" in body
+    # Table 4-1: its four rows against Table 3.4.1-1 (p. A-3), column by
+    # column: DC ... ES, LL ... LS, EQ and CT
+    typed = _sections("A")["A.2"]["body"].split("\n")
+    a3 = {ln.split(" | ")[0]: ln.split(" | ") for ln in typed if " | " in ln}
+    label = {"Strength I": "STRENGTH I (unless noted)", "Extreme Event I": "EXTREME EVENT I",
+             "Extreme Event II": "EXTREME EVENT II", "Service I": "SERVICE I"}
+    sym = {"gamma_p": "γp", "gamma_EQ": "γEQ", "–": "–"}
+    rows = tables.table_4_1_load_combinations()
+    assert [r["limit_state"] for r in rows] == list(label)
+    for r in rows:
+        cells = a3[label[r["limit_state"]]]
+        for key, col in (("EH_ES_EV", 1), ("LL_LS", 2), ("EQ", 10), ("CT", 12)):
+            v = r[key]
+            assert (sym[v] if isinstance(v, str) else f"{v:.2f}") == cells[col], (
+                r["limit_state"], key)
+
+
+# --- Appendix B -------------------------------------------------------------
+
+def test_appendix_b_headings_as_printed():
+    secs = _sections("B")
+    assert {sid: s["title"] for sid, s in secs.items()} == {
+        "B": ("Determination of Pullout Resistance Factors and MBW Unit – "
+              "Geosynthetic Connection Strength"),
+        "B.1": "Empirical Procedures to Determine F* and α",
+        "B.2": "Experimental Procedures to Determine F* and α",
+        "B.3": ("Connection Resistance and Strength of Partial and Full Friction "
+                "Segmental Block/Reinforcement Facing Connections"),
+        "B.4.1": "Protocol",
+        "B.4.2": "Example Calculation",
+    }
+    # the contents list a B.5 References that the pages do not print
+    assert "no B.5 is printed" in secs["B"]["applicability"]
+    # B.4's heading (p. B-12) has no text before B.4.1: no empty section
+    # for it; its subsections carry the heading
+    for sid in ("B.4.1", "B.4.2"):
+        assert ("Printed under B.4 Connection Resistance Defined with Short-Term "
+                "Testing (p. B-12)") in secs[sid]["applicability"]
+    assert "CONNECTION RESISTANCE DEFINED" not in secs["B.3"]["body"]
+
+
+def test_no_empty_appendix_section():
+    """A section with no text of its own ranks high for its title and
+    gives nothing (B.4 ranked second for "connection strength MBW
+    geosynthetic")."""
+    for letter in BUILT:
+        for s in _appendix(letter)["sections"]:
+            own = re.sub(r"\[p\. [^\]]+\]", "", s["body"]).strip()
+            assert len(own) > 150, (letter, s["section_id"])
+
+
+def test_appendix_pointer_slips_noted_and_paragraphs_as_printed():
+    """Pointers the pages print to tables or equations that are not
+    there, each kept with a note; paragraphs the text layer ran together
+    or into a list's last item, parted as on the page."""
+    B, D = _sections("B"), _sections("D")
+    assert ("in particular Table 5. [Note: as printed; in this manual Section 3.3 is "
+            "Reinforced Soil Concepts, and the pullout design parameters are in "
+            "Section 3.4.2, Table 3-6.]") in B["B"]["body"]
+    assert ("Table 5, Chapter 3 [Note: as printed; Chapter 3 gives them in Table 3-6, "
+            "Section 3.4.2.], with α") in B["B.1"]["body"]
+    assert ('(see Equation D.1): [Note: as printed, "Equation D.1"; the equation is D-1 '
+            "(p. D-2), printed again as D.4-1 (p. D-14).]") in D["D.6.1"]["body"]
+    assert ("Table 3-9 (RFD). [Note: as printed; in Chapter 3, Table 3-9 is Installation "
+            "Damage Reduction Factors, and the table of polymers' resistance to specific "
+            "environments is Table 3-10.]") in D["D.7"]["body"]
+    # what the notes say of Chapter 3
+    ch3 = {s["section_id"]: s for s in json.loads(
+        (PKG / "text" / "chapter03.json").read_text(encoding="utf-8"))["sections"]}
+    assert ch3["3.3"]["title"] == "Reinforced Soil Concepts"
+    assert any(x.startswith("Table 3-6:") for x in ch3["3.4.2"]["tables"])
+    assert any(x.startswith("Table 3-9: Installation Damage") for x in ch3["3.5.2.b"]["tables"])
+    assert any(x.startswith("Table 3-10: Anticipated Resistance of Polymers to Specific "
+                            "Environments") for x in ch3["3.5.2.d"]["tables"])
+    # paragraphs as printed
+    assert "reduction factor RFD. This reduction factor should be based" in B["B.3"]["body"]
+    assert D["D.1"]["body"].count(
+        "\n\nConsidering that typical design lives for permanent MSE structures") == 2
+    for sid, start in (("D.1", "Since the primary focus of creep evaluation"),
+                       ("D.1", "It is well known that temperature accelerates"),
+                       ("D.1", "The ability to accelerate creep with temperature"),
+                       ("D.2", "It is recommended that creep strain be measured"),
+                       ("D.2", "Any evidence of such changes, particularly"),
+                       ("D.5", "Similarly, for extension of the creep data"),
+                       ("D.7", "The four step approach provided above"),
+                       ("D.7", "Once the reduction factors are determined, then Tal")):
+        assert "\n\n" + start in D[sid]["body"], (sid, start)
+
+
+def test_appendix_b_sentences_with_their_pages():
+    secs = _sections("B")
+    # p. B-2: the default alpha values
+    assert ("[p. B-2] where Tan ρ is an apparent friction coefficient"
+            in secs["B.1"]["body"])
+    assert ("a default value of 1.0 can be used for α for inextensible reinforcements "
+            "and a default value of 0.6 to 0.8 can be used for extensible "
+            "reinforcements.") in secs["B.1"]["body"]
+    # p. B-5: the deflection criteria
+    assert ("[p. B-5] It is recommended that for inextensible reinforcements, a "
+            "maximum deflection of ¾-inch (20 mm) measured at the front of the "
+            "specimen") in secs["B.2"]["body"]
+    # a sentence going on over a page break keeps its marker inline (p. B-6)
+    assert "in general accordance with [p. B-6] Appendix D." in secs["B.3"]["body"]
+    # p. B-12, printed with its stray full stop
+    assert "long-term or short-term tests. as described below." in secs["B.4.1"]["body"]
+    # p. B-17: the limits of the example's test program
+    assert ("the limits of this test program are approximate wall heights of 2.4 "
+            "to 14.9 ft.") in secs["B.4.2"]["body"]
+    # p. B-18, as printed ("fro")
+    assert "should not be used fro transportation works." in secs["B.4.2"]["body"]
+
+
+def test_appendix_b_equations_as_printed():
+    eqs = {e["id"]: e for s in _sections("B").values() for e in s["equations"]}
+    assert sorted(eqs) == ["Eq. 4-41", "Eq. 4-43", "Eq. B-1", "Eq. B-2", "Eq. B-3", "Eq. B-4"]
+    # p. B-6
+    assert eqs["Eq. B-1"]["formula"] == "CRcr = Tcrc / Tlot"
+    assert eqs["Eq. B-2"]["formula"] == "CRult = Tultconn / Tlot"
+    # p. B-13
+    assert eqs["Eq. B-3"]["formula"] == "CRu = Tultconn / Tlot"
+    assert eqs["Eq. B-4"]["formula"] == "CRcr = CRu / RFCR"
+    # chapter 4's equations printed again (pp. B-12 and B-13)
+    assert eqs["Eq. 4-43"]["formula"] == "CRcr = Tultconn / (RFcr Tlot)"
+    assert eqs["Eq. 4-41"]["formula"] == "Talc = Tult × CRcr / RFD"
+    assert "printed again in Appendix B, p. B-12" in eqs["Eq. 4-43"]["notes"]
+    assert eqs["Eq. B-1"]["variables"]["Tcrc"] == \
+        "the extrapolated (75 - 100 year) connection test strength"
+
+
+def test_appendix_b_tables_typed_in():
+    body = _sections("B")["B.4.2"]["body"]
+    assert ("[Table B-1, typed in from p. B-14, row by row:]\nStep | Item\n"
+            "1 | Separate laboratory test data by failure mode – pullout and rupture"
+            ) in body
+    assert "8 | Define limits of applicability (i.e., limits of testing program " \
+           "normal loading)" in body
+    # the example's connection test data (p. B-16)
+    rows = re.findall(r"^(\d) \| (\d+) \| ([\d.]+) \| (\d+) \| (\d+)$", body, re.M)
+    assert len(rows) == 8
+    assert rows[0] == ("1", "816", "2.4", "557", "1073")
+    assert rows[7] == ("8", "5074", "14.9", "859", "1637")
+    # tests 4 and 5 at one normal load: "7 normal loads", "Two tests at one
+    # normal load" (p. B-15)
+    assert len({r[1] for r in rows}) == 7
+    assert "7 normal loads; Two tests at one normal load" in body
+
+
+def test_appendix_b_example_arithmetic():
+    """p. B-17: CRcr and Talc from Tultconn = 1068 + N tan 6°, RFcr = 1.9,
+    Tlot = 1.10 Tult-MARV (4,730 = 1.10 x 4,300, p. B-15) and RFD = 1.15."""
+    body = _sections("B")["B.4.2"]["body"]
+    assert ("CRcr = Tultconn / (RFcr Tlot) = (1068 + N tan 6°) / (1.9 × 1.10 "
+            "(Tult−MARV)) = (1068 + N tan 6°) / (2.09 (Tult−MARV))") in body
+    assert ("Talc = (Tult × CRcr) / RFD = [Tult−MARV × (1068 + N tan 6°) / "
+            "(2.09 (Tult−MARV))] / 1.15 = 444 + 0.044 N") in body
+    assert round(1.9 * 1.10, 2) == 2.09 and round(4300 * 1.10) == 4730
+    assert round(1068 / (2.09 * 1.15)) == 444
+    assert round(math.tan(math.radians(6)) / (2.09 * 1.15), 3) == 0.044
+
+
+def test_appendix_b_print_slips_noted():
+    secs = _sections("B")
+    # p. B-10: 75 years is about 657,000 hours, printed 670,000
+    assert ("extrapolate to 75 years (670,000 hrs), per Appendix D. [Note: as "
+            "printed; 75 years is about 657,000 hours.]") in secs["B.3"]["body"]
+    assert round(75 * 365.25 * 24, -3) == 657000
+    # p. B-18: the figure's line through the test data against the text's
+    # tan 6 degrees
+    x = [816, 1665, 2498, 2509, 2509, 3353, 4219, 5074]
+    y = [1073, 1431, 1259, 1445, 1293, 1390, 1582, 1637]
+    mx, my = sum(x) / 8, sum(y) / 8
+    b = (sum((a - mx) * (c - my) for a, c in zip(x, y))
+         / sum((a - mx) ** 2 for a in x))
+    assert (round(b, 4), round(my - b * mx, 1)) == (0.1132, 1068.2)
+    assert "gives y = 0.1132x + 1068.2, the figure's line" in secs["B.4.2"]["body"]
+
+
+def test_appendix_b_figures_listed_with_their_lettering():
+    secs = _sections("B")
+    assert secs["B.2"]["figures"] == [
+        "Figure B-1: Experimental procedure to determine F* and α for soil "
+        "reinforcement using pullout test"]
+    assert [f.split(":")[0] for f in secs["B.3"]["figures"]] == \
+        ["Figure B-2", "Figure B-3", "Figure B-4"]
+    assert secs["B.4.2"]["tables"] == [
+        "Table B-1: Summary of steps for data reduction of MBW connection "
+        "strength, with short-term (quick) test data"]
+    # the symbols Figure B-1 defines (p. B-4)
+    assert ("F* = Fq αβ if passive resistance controls pullout capacity (grids "
+            "if St ≥ Sopt.)") in secs["B.2"]["body"]
+    assert "α = F*m / F*peak" in secs["B.2"]["body"]
+
+
+# --- Appendix C -------------------------------------------------------------
+
+def test_appendix_c_steel_dimensions_typed_in():
+    body = _sections("C")["C"]["body"]
+    rows = re.findall(r"^(W[\d.]+\*?) \| ([\d.]+) \| ([\d.]+) \| ([\d.]+) \| ([\d.]+)$",
+                      body, re.M)
+    # eleven welded wire sizes and four bar mat sizes (p. C-1)
+    assert len(rows) == 15
+    assert ("W4.5*", "0.045", "0.239", "29.0", "6.0") in rows
+    assert "*Typical min. size for permanent walls" in body
+    # each diameter is the area's circle; the metric cells convert the inch
+    # cells (W4.5's 6.07 mm printed 6.0, noted)
+    for name, a_in, d_in, a_mm, d_mm in rows:
+        assert abs(math.sqrt(4 * float(a_in) / math.pi) - float(d_in)) < 0.0006, name
+        assert abs(float(a_in) * 645.16 - float(a_mm)) < 0.6, name
+        if name != "W4.5*":
+            assert abs(float(d_in) * 25.4 - float(d_mm)) < 0.051, name
+    assert "W4.5's diameter of 0.239 in. is 6.07 mm; printed 6.0." in body
+    # the yield and tensile strengths as printed: welded wire 65/80 ksi,
+    # strips and bar mats 65/75 ksi
+    assert "Fy/Fu: 65/80 ksi (450/550 MPa)" in body
+    assert body.count("65/75 ksi (450/520 MPa)") == 2
+
+
+# --- Appendix D -------------------------------------------------------------
+
+def test_appendix_d_headings_as_printed():
+    secs = _sections("D")
+    titles = {sid: s["title"] for sid, s in secs.items() if "(continued" not in s["title"]}
+    assert titles == {
+        "D.1": "Background",
+        "D.2": "Step-by-Step Procedures for Extrapolating Stress Rupture Data – "
+               "Conventional Method",
+        "D.3": "Procedures for Extrapolating Creep Rupture Data – Stepped "
+               "Isothermal Method (SIM)",
+        "D.4": "Determination of RFCR",
+        "D.5": 'Use of Creep Data from "Similar" Products and Evaluation of Product Lines',
+        "D.6": "Creep Extrapolation Examples Using Stress Rupture Data",
+        "D.6.1": "Stress Rupture Extrapolation Example",
+        "D.7": "Recommended Procedures to Determine Tal"}
+    # the title page's credit line is said where the appendix is placed
+    # (the appendix's title page holds no text of its own)
+    assert "after WSDOT Standard Practice T 925" in secs["D.1"]["applicability"]
+    assert _appendix("D")["chapter_title"].startswith(
+        "Appendix D: Determination of Creep Strength Reduction Factor, RFCR")
+    # the contents' page slips, said on the section they are about
+    assert 'on p. "E-16"' in secs["D.6"]["applicability"]
+
+
+def test_appendix_d_equations_as_printed():
+    eqs = {e["id"]: e for s in _appendix("D")["sections"] for e in s["equations"]}
+    assert {k: v["formula"] for k, v in eqs.items()} == {
+        "Eq. D-1": "RFCR = Tultlot / Tl",
+        "Eq. D.2-1": "tamb = (telev) (aT)",
+        "Eq. D.2-2": "Tl = Pcl / (1.2)^(x-1)",
+        "Eq. D.3-1": "log tL = log treg ± [tα,n-2 √(1/n + (P − P̄)² / Σ(Pi − P̄)²)] × σ",
+        "Eq. D.3-2": "σ = √({Σ[log ti − log t̄]² − {Σ[(Pi − P̄)(log ti − log t̄)]}² "
+                     "/ Σ(Pi − P̄)²} / (n − 2))",
+        "Eq. D.4-1": "RFCR = Tultlot / Tl"}
+    assert "log td – log tmax" in eqs["Eq. D.2-2"]["variables"]["x"]
+    body = "\n".join(s["body"] for s in _appendix("D")["sections"])
+    # p. D-10: the factor may go up to (1.4)^x; p. D-1: the tolerance is ±
+    assert "increased to as much as (1.4)^x if" in body
+    assert "maintained at ±3.6° F (2° C)" in body
+
+
+def test_appendix_d_example_arithmetic():
+    """D.6.1 (p. D-17): the creep limit load of 63.4 kN/m, 1.68 log cycles
+    beyond the data, and the lot strength of 110 kN/m."""
+    body = _sections("D")["D.6.1"]["body"]
+    assert "Tl = (63.4 kN/m) / (1.2)^(1.68 − 1) = 56.0 kN/m" in body
+    assert round(63.4 / 1.2 ** (1.68 - 1), 1) == 56.0
+    assert "RFCR = (110 kN/m) / (56.0 kN/m) = 2.0" in body
+    assert round(110 / 56.0, 1) == 2.0
+    # 1.68 log cycles short of 1,000,000 hours is about 21,000 hours, the
+    # last rupture point on Figure D.6-2
+    assert round(10 ** (6 - 1.68), -3) == 21000
+    assert "fifteen rupture points" in body and "labelled 63.4 there" in body
+
+
+def test_appendix_d_print_slips_noted():
+    body = "\n".join(s["body"] for s in _appendix("D")["sections"])
+    # p. D-9: 0.05 to 0.18 decades per degree over 10 degrees is not 12 to 15
+    assert "time shift factor of 12 to 15) and 0.05 to 0.12" in body
+    assert round(10 ** (0.05 * 10)) == 3 and round(10 ** (0.18 * 10)) == 63
+    assert 0.10 < math.log10(12) / 10 and math.log10(15) / 10 < 0.12
+    assert "gives time shift factors of about 3 to 63" in body
+    # the equations the text points to by other numbers
+    assert 'as printed, "Equation B.2-3"; this appendix has no such equation' in body
+    assert "Equation D.2-3 is then used to determine Tl. [Note: as printed;" in body
+    assert 'as printed, "Equation D.4"; the formula used is Equation D.2-2.' in body
+    assert "the equation is D.3-1 in this appendix" in body
+    # p. D-16: the equation that "the following" points to is not printed
+    assert "accordance with the following: [Note: as printed; no equation follows" in body
+    assert "Tal = P95 / (RFID × RFD)\n\nwhere,\nP95 = " in body
+
+
+# --- the build ------------------------------------------------------------
+
+def test_rebuild_reproduces_the_committed_files():
+    if not PDF.exists():
+        pytest.skip("PDF not checked out")
+    # The reader's version is an input of the build (tests/_build_reader.py).
+    require_build_reader("gec_11")
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import build_gec11_appendix as builder
+    finally:
+        sys.path.remove(str(ROOT / "scripts"))
+    built = builder.build_appendices(set(BUILT))
+    assert sorted(built) == sorted(BUILT)
+    for letter, data in built.items():
+        committed = (PKG / "text" / f"appendix_{letter.lower()}.json").read_text(encoding="utf-8")
+        assert builder.bpt.chapter_json(data) == committed, letter

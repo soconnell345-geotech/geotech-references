@@ -226,7 +226,10 @@ def table_3_1_quality_class(quality_class: int) -> dict:
         If quality_class is not 1-5.
     """
     if quality_class not in _TABLE_3_1:
-        raise ValueError(f"quality_class must be 1-5, got {quality_class}")
+        raise ValueError(
+            f"quality_class must be one of the whole numbers 1, 2, 3, 4, 5 "
+            f"(an integer, not text), got {quality_class!r}"
+        )
     result = {"quality_class": quality_class}
     result.update({k: list(v) if isinstance(v, list) else v
                     for k, v in _TABLE_3_1[quality_class].items()})
@@ -248,13 +251,51 @@ _TABLE_D1 = [
     ("very_dense", 20.0, None, 40, 42, 60, 90),
 ]
 
+# Notes a and b of Table D.1, as printed (p. 111).
+_TABLE_D1_NOTES = [
+    "a) Values given are valid for sands. For silty soil a reduction of "
+    "3 deg should be made. For gravels 2 deg should be added.",
+    "b) E' is an approximation to the stress and time dependent secant "
+    "modulus. Values given for the drained modulus correspond to "
+    "settlements for 10 years. They are obtained assuming that the "
+    "vertical stress distribution follows the 2:1 approximation. "
+    "Furthermore, some investigations indicate that these values can be "
+    "50 % lower in silty soil and 50 % higher in gravelly soil. In "
+    "over-consolidated coarse soils, the modulus can be considerably "
+    "higher. When calculating settlements for ground pressures greater "
+    "than 2/3 of the design bearing pressure in ultimate limit state, the "
+    "modulus should be set to half of the values given in this table.",
+]
+
+# What the E' columns of Tables D.1 and H.1 hold for each soil_type: the
+# printed note on E' in silty and gravelly soil reports what "some
+# investigations indicate" and is not applied to the tabulated values.
+_E_BASIS_BY_SOIL_TYPE = {
+    "sand": "E' as tabulated (sand)",
+    "silty": (
+        "E' as tabulated for sand, NOT reduced for silty soil: the table's "
+        "note says these values can be 50 % lower in silty soil"
+    ),
+    "gravelly": (
+        "E' as tabulated for sand, NOT increased for gravelly soil: the "
+        "table's note says these values can be 50 % higher in gravelly soil"
+    ),
+}
+
 
 def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
-    """Effective angle of shearing resistance and drained modulus from CPT (Table D.1).
+    """Range of the effective angle of shearing resistance phi' (degrees)
+    and of the drained (long term) Young's modulus E' (MPa) of quartz and
+    feldspar sands for a cone penetration resistance qc in MPa, with the
+    table's notes (EN 1997-2:2007 Annex D.1, Table D.1, printed p. 111).
 
-    Example correlation (quartz and feldspar sands) for deriving phi' and
-    the drained (long-term) Young's modulus E' from cone resistance qc, for
-    bearing resistance and settlement calculations of spread foundations.
+    Example correlation for bearing resistance and settlement calculations
+    of spread foundations, obtained by correlating the mean qc in a layer
+    to the mean phi' and E'. For silty or gravelly soil phi' is changed as
+    note a prints (minus 3 deg, plus 2 deg); E' is returned as tabulated
+    for sand, with note b (50 % lower in silty soil, 50 % higher in
+    gravelly soil; half the value above 2/3 of the design bearing
+    pressure) in the result.
 
     Parameters
     ----------
@@ -267,8 +308,9 @@ def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
     Returns
     -------
     dict
-        Keys: density_index, qc_mpa, phi_min_deg, phi_max_deg, e_min_mpa,
-        e_max_mpa, soil_type.
+        Keys: density_index, qc_mpa, phi_min_deg, phi_max_deg (degrees),
+        e_min_mpa, e_max_mpa (MPa), soil_type, e_basis (what the E' values
+        are for this soil_type), notes (notes a and b as printed).
 
     Raises
     ------
@@ -296,6 +338,8 @@ def table_d1_phi_e_from_qc(qc_mpa: float, soil_type: str = "sand") -> dict:
                 "e_min_mpa": e_min,
                 "e_max_mpa": e_max,
                 "soil_type": st,
+                "e_basis": _E_BASIS_BY_SOIL_TYPE[st],
+                "notes": list(_TABLE_D1_NOTES),
             }
     # qc_mpa exceeds all ranges (shouldn't happen since very_dense has no upper bound)
     raise ValueError(f"No density category found for qc_mpa={qc_mpa}")  # pragma: no cover
@@ -399,7 +443,7 @@ def table_d2_alpha_oedometer(soil_type: str, qc_mpa: float) -> dict:
 # Dutch method, NEN 6743-1)
 # ============================================================================
 
-_TABLE_D3_QC = [10, 15, 20, 25]  # MPa (qc >= 25 column labelled ">=25")
+_TABLE_D3_QC = [10, 15, 20, 25]  # MPa; columns printed "qc = 10" ... "qc = 25"
 _TABLE_D3 = {
     0.02: [0.70, 1.05, 1.40, 1.75],
     0.03: [0.90, 1.35, 1.80, 2.25],
@@ -409,32 +453,41 @@ _TABLE_D3 = {
 
 def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
                                    enlarged_base: bool = False) -> dict:
-    """Unit base resistance of cast in-situ piles in coarse soil (Table D.3).
+    """Unit base resistance pb, in MPa, of cast in-situ piles in coarse soil
+    with little or no fines, at a normalised pile head settlement and an
+    average cone penetration resistance qc from 10 to 25 MPa (EN 1997-2:2007
+    Annex D.6, Table D.3, printed p. 115).
 
-    Interpolates pb (MPa) at the given normalised pile-head settlement
-    ratio (s/Db) and average cone resistance qc.
+    The table prints the columns qc = 10, 15, 20 and 25 MPa and the note
+    "Intermediate values may be interpolated linearly." pb is interpolated
+    between those columns. Below qc = 10 MPa and above qc = 25 MPa the
+    table prints nothing (its last column is "qc = 25", not open-ended,
+    and the text of D.6 gives no rule beyond it), and the lookup raises.
 
     Parameters
     ----------
     settlement_ratio : float
-        Normalised settlement s/Db.  Tabulated at 0.02, 0.03, and 0.10
-        (0.10 corresponds to ultimate settlement sg).
+        Normalised settlement s/Ds; s/Db.  Tabulated at 0.02, 0.03, and
+        0.10 (0.10 = sg, the ultimate settlement of the pile head).
     qc_mpa : float
-        Average cone penetration resistance, in MPa (tabulated 10-25 MPa;
-        clamped at endpoints).
+        Average cone penetration resistance qc (CPT), in MPa, from 10 to
+        25.
     enlarged_base : bool
-        If True, multiply the result by 0.75 per the table note (piles
-        with pile-base enlargement).
+        If True, multiply the result by 0.75 per the table note ("In the
+        case of cast in-situ piles with pile base enlargement, the values
+        shall be multiplied by 0,75").
 
     Returns
     -------
     dict
-        Keys: settlement_ratio, qc_mpa, pb_mpa.
+        Keys: settlement_ratio, qc_mpa, pb_mpa (unit base resistance,
+        MPa).
 
     Raises
     ------
     ValueError
-        If settlement_ratio is not one of 0.02, 0.03, 0.10.
+        If settlement_ratio is not one of 0.02, 0.03, 0.10, or qc_mpa is
+        below 10 MPa or above 25 MPa, the first and last printed columns.
     """
     ratios = sorted(_TABLE_D3.keys())
     if settlement_ratio not in _TABLE_D3:
@@ -442,33 +495,53 @@ def table_d3_pile_base_resistance(settlement_ratio: float, qc_mpa: float,
             f"settlement_ratio must be one of {ratios} (tabulated values), "
             f"got {settlement_ratio}"
         )
+    if qc_mpa < _TABLE_D3_QC[0] or qc_mpa > _TABLE_D3_QC[-1]:
+        side = "below the first" if qc_mpa < _TABLE_D3_QC[0] else "above the last"
+        raise ValueError(
+            f"qc_mpa={qc_mpa} is {side} printed column of "
+            f"EN 1997-2:2007 Table D.3 (printed p. 115): the table gives the "
+            f"unit base resistance for qc = 10, 15, 20 and 25 MPa only."
+        )
     pb = _linterp(qc_mpa, _TABLE_D3_QC, _TABLE_D3[settlement_ratio])
     if enlarged_base:
         pb *= 0.75
-    return {
+    result = {
         "settlement_ratio": settlement_ratio,
         "qc_mpa": qc_mpa,
         "pb_mpa": round(pb, 4),
     }
+    return result
 
 
-_TABLE_D4_QC = [0, 5, 10, 15]  # MPa (>15 clamped to 15's value)
+_TABLE_D4_QC = [0, 5, 10, 15]  # MPa; the last row is printed ">= 15"
 _TABLE_D4_PS = [0.0, 0.040, 0.080, 0.120]
 
 
 def table_d4_pile_shaft_resistance(qc_mpa: float) -> dict:
     """Unit shaft resistance of cast in-situ piles in coarse soil (Table D.4).
 
+    EN 1997-2:2007 Annex D.6, Table D.4 (printed p. 116) prints qc = 0, 5,
+    10 and ">= 15" MPa, with ps = 0, 0.040, 0.080 and 0.120 MPa, and the
+    note "Intermediate values may be interpolated linearly". The last row
+    is printed open-ended, so qc above 15 MPa takes 0.120 MPa.
+
     Parameters
     ----------
     qc_mpa : float
-        Average cone penetration resistance, in MPa.
+        Average cone penetration resistance, in MPa, 0 or more.
 
     Returns
     -------
     dict
         Keys: qc_mpa, ps_mpa (unit shaft resistance).
+
+    Raises
+    ------
+    ValueError
+        If qc_mpa is negative.
     """
+    if qc_mpa < 0:
+        raise ValueError(f"qc_mpa must be 0 or more, got {qc_mpa}")
     ps = _linterp(qc_mpa, _TABLE_D4_QC, _TABLE_D4_PS)
     return {"qc_mpa": qc_mpa, "ps_mpa": round(ps, 4)}
 
@@ -491,12 +564,33 @@ _TABLE_D5 = {
 }
 
 
+# Notes a and b of Table D.5, as printed (p. 118). Note a is on the alpha_s
+# column; note b is on the flight auger alpha_s value 0,006.
+_TABLE_D5_NOTE_A = (
+    "a) Values valid for fine to coarse sands. For very coarse sands a "
+    "reduction factor of 0,75 is necessary; for gravel this reduction "
+    "factor is 0,5."
+)
+_TABLE_D5_NOTE_B = (
+    "b) This value is used in the case of applying the results of CPTs "
+    "which were carried out before pile installation. When CPTs are used "
+    "that have been carried out in the vicinity of the flight auger piles, "
+    "alpha_s may be raised to 0,01."
+)
+
+
 def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
-    """Maximum alpha_p, alpha_s for sands and gravelly sands (Table D.5).
+    """Maximum values of the pile factors alpha_p and alpha_s
+    (dimensionless) for sands and gravelly sands, by pile type, with the
+    table's notes on alpha_s (EN 1997-2:2007 Annex D.7, Table D.5, printed
+    p. 118).
 
     Used in the Dutch CPT pile method (Annex D.7) for maximum base
     resistance pmax;base = 0.5*alpha_p*beta*s*{...} and maximum shaft
-    resistance pmax;shaft;z = alpha_s * qc;z;a.
+    resistance pmax;shaft;z = alpha_s * qc;z;a. The alpha_s values are
+    for fine to coarse sands: note a prints a reduction factor of 0,75
+    for very coarse sands and 0,5 for gravel. It is returned in the
+    result and not applied.
 
     Parameters
     ----------
@@ -507,11 +601,10 @@ def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
     Returns
     -------
     dict
-        Keys: pile_type, description, alpha_p, alpha_s.  Note: values are
-        valid for fine to coarse sands; apply a reduction factor of 0.75
-        for very coarse sands, 0.5 for gravel.  alpha_s for flight_auger
-        may be raised to 0.01 if CPTs were carried out in the vicinity of
-        the flight auger piles (rather than before pile installation).
+        Keys: pile_type, description, alpha_p, alpha_s, alpha_s_notes (note
+        a as printed for every pile type; for 'flight_auger' also note b,
+        that alpha_s may be raised to 0,01 when the CPTs were carried out
+        in the vicinity of the piles).
 
     Raises
     ------
@@ -524,7 +617,10 @@ def table_d5_alpha_p_alpha_s_sand(pile_type: str) -> dict:
             f"Unknown pile_type '{pile_type}'. "
             f"Valid: {', '.join(sorted(_TABLE_D5.keys()))}"
         )
-    return {"pile_type": key, **_TABLE_D5[key]}
+    notes = [_TABLE_D5_NOTE_A]
+    if key == "flight_auger":
+        notes.append(_TABLE_D5_NOTE_B)
+    return {"pile_type": key, **_TABLE_D5[key], "alpha_s_notes": notes}
 
 
 # ============================================================================
@@ -683,10 +779,17 @@ _TABLE_E2_LAMBDA_C = {"circle": [1.0, 1.0, 1.0, 1.0, 1.0],
 def table_e2_pmt_shape_coefficients(lb_ratio: float, shape: str = "square") -> dict:
     """Shape coefficients for settlement of spread foundations from PMT (Table E.2).
 
+    EN 1997-2:2007 Annex E.2, Table E.2 (printed p. 122) prints the columns
+    Circle, Square, L/B = 2, 3, 5 and 20; between them the coefficients are
+    interpolated linearly. Above L/B = 20 the table prints nothing and the
+    lookup raises: both coefficients rise with L/B, so holding the L/B = 20
+    column would give a smaller settlement than the trend.
+
     Parameters
     ----------
     lb_ratio : float
-        Foundation length-to-width ratio L/B (1 = circle/square).
+        Foundation length-to-width ratio L/B (1 = circle/square), from 1
+        to 20.
     shape : str
         'circle' or 'square' (rectangular foundations use the square
         column per the standard's simplified table).  Ignored for
@@ -700,13 +803,19 @@ def table_e2_pmt_shape_coefficients(lb_ratio: float, shape: str = "square") -> d
     Raises
     ------
     ValueError
-        If shape is not 'circle' or 'square', or lb_ratio < 1.
+        If shape is not 'circle' or 'square', or lb_ratio < 1 or > 20.
     """
     sh = shape.strip().lower()
     if sh not in _TABLE_E2_LAMBDA_L:
         raise ValueError(f"Unknown shape '{shape}'. Use circle or square")
     if lb_ratio < 1:
         raise ValueError(f"lb_ratio must be >= 1, got {lb_ratio}")
+    if lb_ratio > _TABLE_E2_LB[-1]:
+        raise ValueError(
+            f"lb_ratio={lb_ratio} is above L/B = 20, the last column of "
+            f"EN 1997-2:2007 Table E.2 (printed p. 122), which prints Circle, "
+            f"Square, L/B = 2, 3, 5 and 20 only."
+        )
     lambda_l = _linterp(lb_ratio, _TABLE_E2_LB, _TABLE_E2_LAMBDA_L[sh])
     lambda_c = _linterp(lb_ratio, _TABLE_E2_LB, _TABLE_E2_LAMBDA_C[sh])
     return {
@@ -950,12 +1059,21 @@ _TABLE_F3 = {
 
 def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
                                      grading: str) -> dict:
-    """Effective angle of shearing resistance of silica sands from ID (Table F.3).
+    """Effective angle of shearing resistance phi', in degrees, of silica
+    sands from the density index ID in percent, for ID from 40 % to 100 %
+    (EN 1997-2:2007 Annex F.2, Table F.3, printed p. 126).
+
+    The table prints the rows ID = 40, 60, 80 and 100 % for fine, medium
+    and coarse sand, each uniform or well-graded. Between two printed rows
+    the value is interpolated linearly (the table itself prints no
+    interpolation rule), and the result says so in 'note'. Below ID = 40 %
+    the table prints nothing and the lookup raises; above 100 % is not a
+    density index and is refused. ID is in percent: 60, not 0.6.
 
     Parameters
     ----------
     density_index_pct : float
-        Density index ID, in percent (0-100; clamped at endpoints 40-100).
+        Density index ID, in percent, from 40 to 100.
     grain_size : str
         'fine', 'medium', or 'coarse'.
     grading : str
@@ -964,12 +1082,15 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
     Returns
     -------
     dict
-        Keys: density_index_pct, grain_size, grading, phi_deg (interpolated).
+        Keys: density_index_pct, grain_size, grading, phi_deg (degrees;
+        interpolated between printed rows), and note when the value was
+        interpolated.
 
     Raises
     ------
     ValueError
-        If grain_size/grading is not recognized.
+        If grain_size/grading is not recognized, or density_index_pct is
+        below 40, the first printed row, or above 100.
     """
     gs = grain_size.strip().lower()
     gr = grading.strip().lower().replace(" ", "_").replace("-", "_")
@@ -979,13 +1100,33 @@ def table_f3_phi_from_density_index(density_index_pct: float, grain_size: str,
             f"Unknown (grain_size, grading) combination '{key}'. "
             f"grain_size: fine, medium, coarse; grading: uniform, well_graded"
         )
+    if density_index_pct < _TABLE_F3_ID[0]:
+        raise ValueError(
+            f"density_index_pct={density_index_pct} is below the first "
+            f"printed row of EN 1997-2:2007 Table F.3 (printed p. 126): the "
+            f"table gives phi' for ID = 40, 60, 80 and 100 % only. ID is in "
+            f"percent (60, not 0.6)."
+        )
+    if density_index_pct > _TABLE_F3_ID[-1]:
+        raise ValueError(
+            f"density_index_pct={density_index_pct} is above 100 %: a density "
+            f"index is at most 100 %, the last printed row of EN 1997-2:2007 "
+            f"Table F.3 (printed p. 126)."
+        )
     phi = _linterp(density_index_pct, _TABLE_F3_ID, _TABLE_F3[key])
-    return {
+    result = {
         "density_index_pct": density_index_pct,
         "grain_size": gs,
         "grading": gr,
         "phi_deg": round(phi, 2),
     }
+    if density_index_pct not in _TABLE_F3_ID:
+        result["note"] = (
+            f"Interpolated linearly between the printed rows of "
+            f"EN 1997-2:2007 Table F.3 (ID = 40, 60, 80 and 100 %, printed "
+            f"p. 126). The table prints no interpolation rule."
+        )
+    return result
 
 
 # ============================================================================
@@ -999,8 +1140,8 @@ _TABLE_G1 = {
     ("poorly_graded", "medium_dense"): {"id_range": "35-65%", "phi_deg": 32.5},
     ("poorly_graded", "dense"): {"id_range": ">65%", "phi_deg": 35},
     ("well_graded", "loose"): {"id_range": "15-35%", "phi_deg": 30},
-    ("well_graded", "medium_dense"): {"id_range": "35-65%(assumed)", "phi_deg": 34},
-    ("well_graded", "dense"): {"id_range": ">65%(assumed)", "phi_deg": 38},
+    ("well_graded", "medium_dense"): {"id_range": "35-65%", "phi_deg": 34},
+    ("well_graded", "dense"): {"id_range": ">65%", "phi_deg": 38},
 }
 
 
@@ -1052,13 +1193,47 @@ _TABLE_H1 = [
     ("very_dense", 80, None, 40, 42, 60, 90),
 ]
 
+# Notes a, b, c of Table H.1 and clauses (2) and (3) of Annex H, as printed
+# (p. 132).
+_TABLE_H1_NOTES = [
+    "a) Before determination of the relative density, the weight sounding "
+    "resistance in silty soil should be divided by a factor of 1,3.",
+    "b) Values given are valid for sands. For silty soil, a reduction of "
+    "3 deg should be made. For gravels, 2 deg may be added.",
+    "c) E' is an approximation to the stress and time-dependent secant "
+    "modulus. Values given for the drained modulus correspond to "
+    "settlements after 10 years. They are obtained assuming that the "
+    "vertical stress distribution follows the 2:1 approximation. "
+    "Furthermore, some investigations indicate that these values can be "
+    "50 % lower in silty soil and 50 % higher in gravelly soil. In "
+    "over-consolidated coarse soil, the modulus can be considerably "
+    "higher. When calculating settlements for ground pressure greater than "
+    "2/3 of the design pressure in ultimate limit state, the modulus "
+    "should be set to half the values given in this table.",
+    "(2) If only results of weight sounding tests are available, the lower "
+    "value in each interval for the angle of shearing resistance and "
+    "Young's modulus in Table H.1 should be selected.",
+    "(3) When evaluating weight sounding resistance diagrams for "
+    "application in Table H.1, peak values caused for example by stones or "
+    "pebbles should not be accounted for. Such peak values are common in "
+    "weight sounding tests in gravel.",
+]
+
 
 def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> dict:
-    """Effective angle of shearing resistance and drained modulus from WST (Table H.1).
+    """Range of the effective angle of shearing resistance phi' (degrees)
+    and of the drained Young's modulus E' (MPa) of naturally deposited
+    quartz and feldspar sands for a density category, with its weight
+    sounding resistance range (half-turns per 0,2 m) and the table's notes
+    (EN 1997-2:2007 Annex H, Table H.1, printed p. 132).
 
-    Example correlation for naturally deposited quartz and feldspar sands
-    (Swedish experience), keyed by qualitative density category since the
-    WST resistance ranges overlap between categories in the source table.
+    Example based on Swedish experience, keyed by density category since
+    the printed weight sounding resistance ranges overlap. For silty or
+    gravelly soil phi' is changed as note b prints (minus 3 deg, plus
+    2 deg); E' is returned as tabulated for sand, with note c (50 % lower
+    in silty soil, 50 % higher in gravelly soil; half the value above 2/3
+    of the design pressure) in the result. Note a (divide the resistance
+    in silty soil by 1,3 before choosing the category) is for the caller.
 
     Parameters
     ----------
@@ -1071,10 +1246,12 @@ def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> d
     Returns
     -------
     dict
-        Keys: density_category, wst_halfturns_range (per 0.2 m penetration),
-        phi_min_deg, phi_max_deg, e_min_mpa, e_max_mpa, soil_type.
-        Per the standard: if only WST results are available, use the lower
-        value of each interval (conservative).
+        Keys: density_category, wst_halfturns_min, wst_halfturns_max
+        (half-turns per 0,2 m penetration), phi_min_deg, phi_max_deg
+        (degrees), e_min_mpa, e_max_mpa (MPa), soil_type, e_basis (what
+        the E' values are for this soil_type), notes (notes a, b, c and
+        clauses (2) and (3) of Annex H as printed; (2) says to take the
+        lower value of each interval when only WST results are available).
 
     Raises
     ------
@@ -1100,6 +1277,8 @@ def table_h1_phi_e_from_wst(density_category: str, soil_type: str = "sand") -> d
                 "e_min_mpa": e_min,
                 "e_max_mpa": e_max,
                 "soil_type": st,
+                "e_basis": _E_BASIS_BY_SOIL_TYPE[st],
+                "notes": list(_TABLE_H1_NOTES),
             }
     raise ValueError(
         f"Unknown density_category '{density_category}'. "
@@ -1183,9 +1362,11 @@ def table_l2_min_mass_sieving(largest_particle_mm: float) -> dict:
     ----------
     largest_particle_mm : float
         Largest particle diameter present in significant proportion
-        (10% or more by dry mass), in mm.  Must be > 0 and at most 75 mm;
-        up to 2 mm the print gives 100 g, and between printed sizes the
-        mass is interpolated linearly.
+        (10% or more by dry mass), in mm.  Must be > 0 and at most 75 mm
+        (the first printed row, EN 1997-2:2007 Table L.2, printed p. 145).
+        The last row is printed open-ended, "<= 2" mm, 100 g, so any size
+        up to 2 mm takes 100 g; between printed sizes the mass is
+        interpolated linearly.
 
     Returns
     -------
@@ -1301,14 +1482,113 @@ _VARIABILITY_TEST_COUNTS = {
     },
 }
 
+# For each family: the printed table and page, the printed measure of
+# variability, the printed row label of each tier, what one counted test
+# is, and the footnote the print attaches to single cells.
+_VARIABILITY_TEST_INFO = {
+    # Table P.1 prints its middle row as "0,95 << r <= 0,98" (a misprint of
+    # "<"); the criterion below holds "0,95 < r <= 0,98".
+    "triaxial_phi": {
+        "table": "Table P.1", "printed_page": 163,
+        "measure": ("Variability in strength envelope: coefficient of "
+                    "correlation r on regression curve"),
+        "criteria": {"low": "r >= 0,98", "medium": "0,95 < r <= 0,98",
+                     "high": "r <= 0,95"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different cell pressures (note a)."),
+        "cell_notes": {},
+    },
+    "triaxial_su": {
+        "table": "Table P.1", "printed_page": 163,
+        "measure": ("Variability in undrained shear strength (for same "
+                    "consolidation stress): ratio max/min values"),
+        "criteria": {"low": "ratio max/min value <= 1,25",
+                     "medium": "1,25 < ratio max/min value <= 2",
+                     "high": "ratio max/min values > 2"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different cell pressures (note a)."),
+        "cell_notes": {},
+    },
+    "direct_shear": {
+        "table": "Table P.2", "printed_page": 164,
+        "measure": ("Variability in strength envelope: coefficient of "
+                    "correlation on regression curve"),
+        "criteria": {"low": "coefficient of correlation >= 0,98",
+                     "medium": "0,95 <= coefficient of correlation < 0,98",
+                     "high": "coefficient of correlation < 0,95"},
+        "count_unit": ("One recommended test means a set of three individual "
+                       "specimens tested at different normal stresses (note a)."),
+        "cell_notes": {("low", "extensive"): (
+            "Note b: A single test and classification tests to verify "
+            "compatibility with comparable experience. If the test results "
+            "do not agree with the existing data, additional tests should "
+            "be run.")},
+    },
+    "oedometer": {
+        "table": "Table Q.1", "printed_page": 165,
+        "measure": ("Variability in oedometer modulus Eoed (in the relevant "
+                    "stress range): range of values of Eoed"),
+        "criteria": {"low": "range of values of Eoed < about 20 %",
+                     "medium": "about 20 % < range of values of Eoed < about 50 %",
+                     "high": "range of values of Eoed >= 50 %"},
+        "count_unit": "Incremental oedometer tests for one soil stratum.",
+        "cell_notes": {("low", "extensive"): (
+            "Note a: One oedometer test and classification tests to verify "
+            "compatibility with comparable knowledge (see Q.1 (2)).")},
+    },
+    "permeability": {
+        "table": "Table S.1", "printed_page": 168,
+        "measure": "Variability in measured coefficient of permeability (k)",
+        "criteria": {"low": "kmax/kmin <= 10",
+                     "medium": "10 < kmax/kmin <= 100",
+                     "high": "kmax/kmin > 100"},
+        "count_unit": "Soil specimens to be tested for one soil stratum.",
+        "cell_notes": {("low", "extensive"): (
+            "Note a: A single test and classification tests to verify "
+            "compatibility with existing knowledge.")},
+    },
+    "rock_uniaxial_compression": {
+        "table": "Table W.1", "printed_page": 176,
+        "measure": "Standard deviation of measured strength, s, in % of mean",
+        "criteria": {"low": "s < 20", "medium": "20 < s < 50", "high": "s > 50"},
+        "count_unit": ("Test specimens to be tested for one formation "
+                       "(uniaxial compression tests, Brazil tests and "
+                       "triaxial tests)."),
+        "cell_notes": {("low", "extensive"): (
+            "Note a: Only valid for very homogeneous rock types with "
+            "extensive experience from nearby locations.")},
+    },
+}
+
 
 def table_min_test_count(test_family: str, variability: str,
                           comparable_experience: str) -> dict:
-    """Recommended minimum number of tests for one stratum/formation.
+    """Recommended minimum number of laboratory tests (a count) for one soil
+    stratum or rock formation, by the variability of the results and the
+    comparable experience, with the printed criterion for the variability
+    tier and any footnote on the cell (EN 1997-2:2007 Tables P.1, P.2, Q.1,
+    S.1 and W.1, printed pp. 163, 164, 165, 168 and 176).
 
     Consolidates the "variability x comparable experience" minimum test
     count tables from Annexes P (triaxial, direct shear), Q (oedometer),
     S (permeability), and W (rock uniaxial compression/Brazil/triaxial).
+    The printed row for each variability tier:
+
+        triaxial_phi (Table P.1, coefficient of correlation r on the
+            regression curve): low r >= 0,98; medium 0,95 < r <= 0,98;
+            high r <= 0,95
+        triaxial_su (Table P.1, ratio max/min of undrained shear strength
+            for same consolidation stress): low <= 1,25; medium > 1,25 to
+            2; high > 2
+        direct_shear (Table P.2, coefficient of correlation): low >= 0,98;
+            medium 0,95 to < 0,98; high < 0,95
+        oedometer (Table Q.1, range of values of Eoed): low < about 20 %;
+            medium about 20 % to about 50 %; high >= 50 %
+        permeability (Table S.1, kmax/kmin): low <= 10; medium > 10 to
+            100; high > 100
+        rock_uniaxial_compression (Table W.1, standard deviation s of
+            measured strength, % of mean): low s < 20; medium 20 < s < 50;
+            high s > 50
 
     Parameters
     ----------
@@ -1321,17 +1601,20 @@ def table_min_test_count(test_family: str, variability: str,
         strength as % of mean; also governs Brazil and triaxial rock
         tests per the standard).
     variability : str
-        'low', 'medium', or 'high' (see each family's docstring criterion
-        above for the exact numeric boundary).
+        'low', 'medium', or 'high', by the printed criteria listed above
+        (the result repeats the one used).
     comparable_experience : str
         'none', 'medium', or 'extensive'.
 
     Returns
     -------
     dict
-        Keys: test_family, variability, comparable_experience, min_count.
-        Note: one recommended triaxial/direct-shear "test" = a set of
-        three individual specimens at different confining/normal stresses.
+        Keys: test_family, variability, comparable_experience, min_count,
+        table, printed_page, variability_criterion (the printed measure
+        and the row of this tier), count_unit (what one counted test is:
+        for triaxial and direct shear a set of three specimens), and
+        footnote when the print attaches one to the cell (the "0" of
+        Table W.1 and the "1" cells of Tables P.2, Q.1 and S.1).
 
     Raises
     ------
@@ -1354,12 +1637,21 @@ def table_min_test_count(test_family: str, variability: str,
             f"Unknown comparable_experience '{comparable_experience}'. "
             f"Use none, medium, or extensive"
         )
-    return {
+    info = _VARIABILITY_TEST_INFO[fam]
+    result = {
         "test_family": fam,
         "variability": var,
         "comparable_experience": exp,
         "min_count": table[var][exp],
+        "table": info["table"],
+        "printed_page": info["printed_page"],
+        "variability_criterion": f"{info['measure']}: {info['criteria'][var]}",
+        "count_unit": info["count_unit"],
     }
+    footnote = info["cell_notes"].get((var, exp))
+    if footnote:
+        result["footnote"] = footnote
+    return result
 
 
 # ============================================================================

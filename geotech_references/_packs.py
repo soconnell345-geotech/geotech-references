@@ -54,6 +54,12 @@ PACKS_ENV = "GEOTECH_REFERENCES_PACKS"
 PACK_PREFIX = "local_"
 PACK_FILE = "pack.json"
 CATALOG_NAME = "figures_catalog.json"
+TABLES_CATALOG_NAME = "tables_catalog.json"
+#: What reading and parsing a broken or hostile JSON file can raise: a
+#: missing or locked file, bad UTF-8 or JSON, nesting deeper than the
+#: parser's recursion limit ("[" * 200000), or no memory for it (2026-11-12
+#: review of the reach build, item 3).
+JSON_ERRORS = (OSError, ValueError, RecursionError, MemoryError)
 
 
 def bare_file_name(value) -> bool:
@@ -100,40 +106,55 @@ def scan() -> tuple[list[tuple[str, Path]], list[str]]:
 
     The id is ``pack.json``'s ``id`` (the folder name when it has none).
     """
+    packs, keyed = _scan()
+    return packs, [message for _, message in keyed]
+
+
+def _scan() -> tuple[list[tuple[str, Path]], list[tuple[str, str]]]:
+    """:func:`scan`, each problem with the pack it belongs to: the pack's
+    id (``pack.json``'s, else its folder's name), or the setting's folder
+    for one that is not there. A folder named as a built-in reference is
+    keyed by its whole path, so its problems are never filed under the
+    built-in's id (2026-11-10 review follow-up)."""
     packs: list[tuple[str, Path]] = []
-    problems: list[str] = []
+    problems: list[tuple[str, str]] = []
     builtins = None
     seen: dict[str, Path] = {}
+
+    def key_of(folder: Path) -> str:
+        return str(folder) if folder.name in builtins else folder.name
+
     for root in _roots():
         folders, root_problems = _candidates(root)
-        problems.extend(root_problems)
+        problems.extend((str(root), p) for p in root_problems)
         for folder in folders:
-            try:
-                data = read_pack_json(folder)
-            except (OSError, ValueError) as e:
-                problems.append(f"{folder}: pack.json unreadable ({e}); skipped")
-                continue
-            pid = str(data.get("id") or folder.name)
             if builtins is None:
                 builtins = builtin_ids()
+            try:
+                data = read_pack_json(folder)
+            except JSON_ERRORS as e:
+                problems.append((key_of(folder), f"{folder}: pack.json "
+                                 f"unreadable ({e}); skipped"))
+                continue
+            pid = str(data.get("id") or folder.name)
             if pid in builtins:
-                problems.append(f"{folder}: id '{pid}' is a built-in "
-                                "reference's name; skipped")
+                problems.append((key_of(folder), f"{folder}: id '{pid}' is a "
+                                 "built-in reference's name; skipped"))
                 continue
             if not pid.startswith(PACK_PREFIX):
-                problems.append(f"{folder}: id '{pid}' does not start with "
-                                f"'{PACK_PREFIX}'; skipped")
+                problems.append((pid, f"{folder}: id '{pid}' does not start "
+                                 f"with '{PACK_PREFIX}'; skipped"))
                 continue
             if pid in seen:
-                problems.append(f"{folder}: id '{pid}' repeats the pack at "
-                                f"{seen[pid]}; skipped")
+                problems.append((pid, f"{folder}: id '{pid}' repeats the "
+                                 f"pack at {seen[pid]}; skipped"))
                 continue
             pdfs = data.get("pdf_files") or []
             bad = ([p for p in pdfs if not bare_file_name(p)]
                    if isinstance(pdfs, list) else [pdfs])
             if bad:
-                problems.append(f"{folder}: pack.json pdf_files {bad!r}: not "
-                                "bare file names; ignored")
+                problems.append((pid, f"{folder}: pack.json pdf_files "
+                                 f"{bad!r}: not bare file names; ignored"))
             seen[pid] = folder
             packs.append((pid, folder))
     return packs, problems
@@ -161,6 +182,18 @@ def problems() -> list[str]:
     """What the current setting names that is not a usable pack, or a pack
     file the search indexes skip, and why."""
     return scan()[1] + file_problems()
+
+
+def problems_by_pack() -> dict[str, list[str]]:
+    """:func:`problems` by the pack each belongs to (its id; the folder's
+    name for a pack whose ``pack.json`` gives no usable id; the setting's
+    folder for one that is not there). The search results quote them, so a
+    skipped pack or pack file is not met with silence (2026-11-10 review,
+    core-10). Empty with no pack setting."""
+    out: dict[str, list[str]] = {}
+    for key, message in _scan()[1] + _file_problems():
+        out.setdefault(key, []).append(message)
+    return out
 
 
 #: What SQLite stores as given. Anything else (a list, an object) in a field
@@ -227,6 +260,17 @@ def catalog_problem(data) -> str | None:
     return None
 
 
+def tables_catalog_problem(data) -> str | None:
+    """Why the reach flags skip a pack's table catalog (its tables then
+    answer "not catalogued"), or None."""
+    if not isinstance(data, (dict, list)):
+        return "not a JSON object"
+    tables = data.get("tables", []) if isinstance(data, dict) else data
+    if not isinstance(tables, list):
+        return f"'tables' is {_kind(tables)}, not a list"
+    return None
+
+
 def index_pack_file(cur, path: Path, index) -> None:
     """Run ``index()``, the INSERTs of one pack file, under a SAVEPOINT on
     cursor ``cur``. A file that fails anyway is rolled back and named in
@@ -245,20 +289,30 @@ def index_pack_file(cur, path: Path, index) -> None:
 def file_problems() -> list[str]:
     """Each pack file the search indexes skip, and why: the same checks the
     indexes run, so every process names the same files."""
-    out: list[str] = []
-    files = [(jf, chapter_problem) for _, jf in text_jsons()]
-    files += [(cat, catalog_problem) for _, cat in catalogs()]
-    for path, problem in files:
+    return [message for _, message in _file_problems()]
+
+
+def _file_problems() -> list[tuple[str, str]]:
+    """:func:`file_problems`, each with its pack's id."""
+    out: list[tuple[str, str]] = []
+    files = [(pid, jf, chapter_problem) for pid, jf in text_jsons()]
+    files += [(pid, cat, catalog_problem) for pid, cat in catalogs()]
+    # the reach flags read a pack's table catalog (2026-11-12)
+    files += [(pid, folder / TABLES_CATALOG_NAME, tables_catalog_problem)
+              for pid, folder in packs()
+              if (folder / TABLES_CATALOG_NAME).is_file()]
+    for pid, path, problem in files:
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as e:
-            out.append(f"{path}: not readable JSON ({e}); skipped")
+        except JSON_ERRORS as e:
+            out.append((pid, f"{path}: not readable JSON "
+                        f"({type(e).__name__}: {str(e)[:200]}); skipped"))
             continue
         why = problem(data)
         if why is None and str(path) in _INDEX_FAILURES:
             why = f"could not be indexed ({_INDEX_FAILURES[str(path)]})"
         if why:
-            out.append(f"{path}: {why}; skipped")
+            out.append((pid, f"{path}: {why}; skipped"))
     return out
 
 
@@ -318,7 +372,7 @@ def pack_records() -> list[dict]:
     for pid, folder in packs():
         try:
             meta = read_pack_json(folder)
-        except (OSError, ValueError):
+        except JSON_ERRORS:
             meta = {}
         h = hashlib.sha256()
         files = []

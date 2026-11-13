@@ -111,7 +111,7 @@ def table_9_1_kb_ks(loading, support):
 
 
 def section_moment_of_inertia(shape, b_or_d, h=None):
-    """Eq 9-3: moment of inertia I about the centroidal axis (printed p. 9-3).
+    """Eq 9-3: moment of inertia I about the centroidal axis (printed p. 9-2).
 
         I = b*h^3/12   for a beam of rectangular cross section
         I = pi*d^4/64  for a beam of circular cross section
@@ -138,11 +138,11 @@ def section_moment_of_inertia(shape, b_or_d, h=None):
         i = math.pi * b_or_d**4 / 64.0
     else:
         raise ValueError(f"shape must be 'rectangular' or 'circular', got {shape!r}")
-    return {"shape": shape, "i": i, "equation": "9-3", "printed_page": "9-3", "pdf_page": 234}
+    return {"shape": shape, "i": i, "equation": "9-3", "printed_page": "9-2", "pdf_page": 233}
 
 
 def section_modified_shear_area(shape, b_or_d, h=None):
-    """Eq 9-4: modified area A' for shear deflection (printed p. 9-3).
+    """Eq 9-4: modified area A' for shear deflection (printed p. 9-2).
 
         A' = (5/6)*b*h    for a beam of rectangular cross section
         A' = (9/40)*pi*d^2  for a beam of circular cross section
@@ -169,7 +169,7 @@ def section_modified_shear_area(shape, b_or_d, h=None):
         a_prime = (9.0 / 40.0) * math.pi * b_or_d**2
     else:
         raise ValueError(f"shape must be 'rectangular' or 'circular', got {shape!r}")
-    return {"shape": shape, "a_prime": a_prime, "equation": "9-4", "printed_page": "9-3", "pdf_page": 234}
+    return {"shape": shape, "a_prime": a_prime, "equation": "9-4", "printed_page": "9-2", "pdf_page": 233}
 
 
 def straight_beam_deflection(kb, ks, w_total, length, moment_of_inertia,
@@ -373,7 +373,7 @@ def eccentric_axial_bending_deflection(eccentricity, axial_load, p_critical, is_
 
 
 # ============================================================================
-# Eq 9-9, 9-10, 9-11 -- Torsion (printed pp. 9-5 to 9-6, pdf_page 236-237)
+# Eq 9-9, 9-10, 9-11 -- Torsion (printed p. 9-5, pdf_page 236)
 # ============================================================================
 
 def angle_of_twist(torque, length, shear_modulus, torsional_constant):
@@ -411,7 +411,7 @@ def angle_of_twist(torque, length, shear_modulus, torsional_constant):
 
 def torsional_constant_circular(diameter):
     """Eq 9-10: torsional constant K for a circular cross section, equal
-    to the polar moment of inertia J (printed p. 9-6).
+    to the polar moment of inertia J (printed p. 9-5).
 
         K = J = pi*D^4/32
 
@@ -426,7 +426,7 @@ def torsional_constant_circular(diameter):
         {'diameter', 'k', 'equation': '9-10', ...}
     """
     k = math.pi * diameter**4 / 32.0
-    return {"diameter": diameter, "k": k, "equation": "9-10", "printed_page": "9-6", "pdf_page": 237}
+    return {"diameter": diameter, "k": k, "equation": "9-10", "printed_page": "9-5", "pdf_page": 236}
 
 
 def _phi_rectangular_torsion(b_over_h):
@@ -446,7 +446,7 @@ def _phi_rectangular_torsion(b_over_h):
 
 def torsional_constant_rectangular(h, b):
     """Eq 9-11: approximate torsional constant K (second polar moment of
-    inertia J) for a rectangular cross section (printed p. 9-6, Trayer
+    inertia J) for a rectangular cross section (printed p. 9-5, Trayer
     and March 1930).
 
         K = J ~= h*b^3 / phi
@@ -467,6 +467,11 @@ def torsional_constant_rectangular(h, b):
     dict
         {'h', 'b', 'b_over_h', 'phi', 'k', 'equation': '9-11', ...}
     """
+    if not (b > 0 and h > 0):
+        raise ValueError(
+            f"h and b are cross-section dimensions and must be > 0, got h={h}, "
+            f"b={b} (REF-76: a negative b, or two negatives, gave a b/h off "
+            "the 0-1 axis of the Figure 9-9 / 9-15 curve and a number)")
     if b > h:
         raise ValueError("b must be <= h (b is the smaller cross-section dimension)")
     b_over_h = b / h
@@ -474,5 +479,5 @@ def torsional_constant_rectangular(h, b):
     k = h * b**3 / phi
     return {
         "h": h, "b": b, "b_over_h": b_over_h, "phi": phi, "k": k,
-        "equation": "9-11", "printed_page": "9-6", "pdf_page": 237,
+        "equation": "9-11", "printed_page": "9-5", "pdf_page": 236,
     }

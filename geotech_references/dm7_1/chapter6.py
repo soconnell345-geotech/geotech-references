@@ -546,36 +546,39 @@ def kozeny_carman_hydraulic_conductivity(
     S: float,
     e: float,
 ) -> float:
-    """Hydraulic conductivity from the Kozeny-Carman equation (Equation 6-13).
+    """Hydraulic conductivity k (cm/sec) from the grain-size distribution, Equation 6-13 (Kozeny-Carman, Carrier 2003).
 
     Accounts for the effect of the entire grain-size distribution and
-    particle shape on the hydraulic conductivity of a soil.
+    particle shape on the hydraulic conductivity of a soil.  As printed,
+    with particle sizes in mm and k in cm/sec::
+
+        k = 1.99e2 [cm/(s mm^2)]
+            * [ 100% / sum_i( f_i / (D_li^0.404 * D_si^0.596) ) ]^2
+            * (1 / S^2) * (e^3 / (1 + e))
 
     .. math::
-        k = 1.99 \\times 10^{-4}
-            \\cdot \\frac{1}{S^2}
-            \\cdot \\frac{e^3}{1 + e}
-            \\cdot \\left[
-                \\sum_i \\frac{f_i}{\\left(
-                    D_{li}^{0.404} \\cdot D_{si}^{0.596}
-                \\right)^2}
-            \\right]^{-1}
-
-    The constant 1.99 x 10^-4 incorporates unit conversions when particle
-    sizes are in mm and k is returned in cm/sec.
+        k = 1.99 \\times 10^{2}
+            \\left[ \\frac{100\\%}{\\sum_i \\dfrac{f_i}
+                {D_{li}^{0.404} \\times D_{si}^{0.596}}} \\right]^2
+            \\left( \\frac{1}{S^2} \\right)
+            \\left( \\frac{e^3}{1 + e} \\right)
 
     Parameters
     ----------
     fractions : list of (f_i, D_li, D_si) tuples
-        Each tuple contains:
-        - f_i : float -- fraction of particles by mass between two
-          adjacent sieve sizes (as a decimal, e.g., 0.25 for 25%).
-          All f_i values should sum to 1.0 (100%).
-        - D_li : float -- particle size of the coarser sieve (mm).
-        - D_si : float -- particle size of the finer sieve (mm).
+        One (f_i, D_li, D_si) tuple per pair of adjacent sieves: f_i =
+        fraction of particles by mass between the two sieves, D_li =
+        particle size of the coarser sieve (mm), D_si = particle size of
+        the finer sieve (mm).  The f_i are either decimals that add up to
+        1.0 (0.25 for 25%) or percentages that add up to 100; the whole
+        grain-size distribution must be given.  A total within 2 % of
+        that (0.98 to 1.02, or 98 to 102) is accepted and used as given,
+        not normalised.  The 2 % is this library's tolerance, not
+        printed: it is there to catch fractions in percent mixed up with
+        decimals, not to judge the grading.
     S : float
-        Surface area factor (dimensionless).  Ranges from 6 for spherical
-        particles to 8.5 for angular particles.
+        Surface area factor (dimensionless).  Ranges from 6 for spheres
+        to 8.5 for angular particles.
     e : float
         Void ratio (dimensionless).
 
@@ -587,8 +590,9 @@ def kozeny_carman_hydraulic_conductivity(
     Raises
     ------
     ValueError
-        If *S* is not positive, if *e* is not positive, or if any sieve
-        size is not positive.
+        If *S* is not positive, if *e* is not positive, if any sieve
+        size is not positive, if a fraction is negative, or if the
+        fractions add up to neither 1.0 nor 100 (within 2 %).
 
     References
     ----------
@@ -602,6 +606,7 @@ def kozeny_carman_hydraulic_conductivity(
         raise ValueError("e must be positive.")
 
     summation = 0.0
+    total = 0.0
     for f_i, D_li, D_si in fractions:
         if D_li <= 0.0 or D_si <= 0.0:
             raise ValueError(
@@ -609,16 +614,34 @@ def kozeny_carman_hydraulic_conductivity(
             )
         if f_i < 0.0:
             raise ValueError("Fraction f_i must be non-negative.")
-        D_eff = (D_li ** 0.404) * (D_si ** 0.596)
-        summation += f_i / (D_eff ** 2)
+        summation += f_i / ((D_li ** 0.404) * (D_si ** 0.596))
+        total += f_i
 
     if summation <= 0.0:
         raise ValueError(
             "The summation term is zero; at least one fraction must be "
             "non-zero with valid sieve sizes."
         )
+    # The library's tolerance, not printed: 2 % catches a percent/decimal
+    # mix-up; the total is used as given, not normalised.
+    if abs(total - 1.0) <= 0.02 + 1e-9:
+        hundred_percent = 1.0
+    elif abs(total - 100.0) <= 2.0 + 1e-7:
+        hundred_percent = 100.0
+    else:
+        raise ValueError(
+            f"The fractions add up to {total:g}; they must add up to 1.0 "
+            "(decimals) or 100 (percent), within 2 % (0.98 to 1.02, or 98 "
+            "to 102). Equation 6-13 (UFS 3-220-10 p. 300) divides 100% by "
+            "the sum over the whole grain-size distribution."
+        )
 
-    k = (1.99e-4) * (1.0 / (S ** 2)) * (e ** 3 / (1.0 + e)) * (1.0 / summation)
+    k = (
+        1.99e2
+        * (hundred_percent / summation) ** 2
+        * (1.0 / (S ** 2))
+        * (e ** 3 / (1.0 + e))
+    )
     return k
 
 

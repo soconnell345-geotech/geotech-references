@@ -51,9 +51,26 @@ def test_citations_follow_the_chapter_files():
     assert cat["gec_10"]["citation"].startswith("FHWA-NHI-18-024 — ")
     assert cat["dm7_1"]["citation"].startswith("UFS 3-220-10 — ")
     # no text: the package docstring's first line
-    assert cat["ufc_backfill"]["citation"].startswith("UFC 3-220-04N")
+    assert cat["ufc_backfill"]["citation"].startswith("UFC 3-220-04FA")
 
 
 def test_empty_reference_lists_the_catalog():
     out = json.loads(agent.list_reference_methods(""))
     assert sorted(out) == _references()
+
+
+def test_the_agent_finds_and_fetches_a_printed_table():
+    # REF-86: a table a section lists is reachable through the agent
+    out = json.loads(agent.table_search("bearing capacity factors",
+                                        reference="dm7_2"))
+    assert "5-2" in [h["table_number"] for h in out["hits"]]
+    row = json.loads(agent.table_get("dm7_2", "Table 6-23"))
+    assert row["values"] == "lookup" and row["how_to_read"]
+    assert len(agent.table_get("dm7_2", "6-23")) <= agent.SEARCH_MAX_CHARS
+
+
+def test_the_agent_says_when_a_table_is_not_filed():
+    out = json.loads(agent.table_get("dm7_2", "6-99"))
+    assert "nearest table numbers" in out["error"]
+    out = json.loads(agent.table_search("soil", reference="no_such_manual"))
+    assert "error" in out

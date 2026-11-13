@@ -9,7 +9,6 @@ from geotech_references.gec_10.tables import (
     table_10_2_nc_base_clay,
     table_11_1_p_multiplier,
     table_11_2_group_efficiency_cohesionless,
-    aashto_reliability_index,
 )
 
 
@@ -48,6 +47,16 @@ class TestTable84ResistanceFactor:
     def test_side_rock_compression(self):
         result = table_8_4_resistance_factor("side_rock_compression")
         assert result["phi"] == 0.50
+
+    def test_side_rock_compression_names_the_text_0_55(self):
+        """Table 8-4, p. 8-14 (PDF page 222), prints 0.50 for rock side
+        resistance by Eq. 10-21; the text of p. 10-21 (PDF page 301) says
+        0.55 "as presented in Table 8-4". The table's value is returned with
+        a print_note (lead's ruling G1)."""
+        r = table_8_4_resistance_factor("side_rock_compression")
+        assert r["phi"] == 0.50
+        assert "phi = 0.55" in r["print_note"]
+        assert "prints 0.50; the table's value is returned" in r["print_note"]
 
     def test_side_rock_uplift(self):
         result = table_8_4_resistance_factor("side_rock_uplift")
@@ -125,8 +134,29 @@ class TestTable84ResistanceFactor:
         assert result["phi"] == 0.50
 
     def test_partial_match_group_block(self):
+        """'group_block' is a listed name of Group block failure, 0.55."""
         result = table_8_4_resistance_factor("group_block")
         assert result["phi"] == 0.55
+        assert result["method"] == "group_block_failure"
+
+    def test_word_of_several_rows_refused(self):
+        """FHWA-NHI-18-024 Table 8-4, p. 8-14 (PDF page 222): 'side'
+        returned cohesionless compression 0.55 and 'uplift' 0.45, the first
+        rows holding the word; each fits several rows and is refused."""
+        for word in ("side", "uplift", "rock", "load_test", "structural",
+                     "lateral", "side_rock", "base"):
+            with pytest.raises(ValueError, match="one printed row"):
+                table_8_4_resistance_factor(word)
+
+    def test_printed_conditions(self):
+        """Rock side resistance prints Eq. 10-21 (0.50 / 0.40); combined
+        axial and flexure prints 0.75 to 0.90."""
+        r = table_8_4_resistance_factor("side_rock_uplift")
+        assert r["phi"] == 0.40 and "Eq. 10-21," in r["condition"]
+        assert "10-22" not in r["condition"]
+        r = table_8_4_resistance_factor("structural_flexure")
+        assert (r["phi"], r["phi_max"]) == (0.75, 0.90)
+        assert table_8_4_resistance_factor("Service I")["phi"] == 1.00
 
     def test_unknown_raises(self):
         with pytest.raises(ValueError, match="No matching"):
@@ -183,6 +213,14 @@ class TestTable84ByCategory:
         results = table_8_4_by_category("extreme")
         assert len(results) == 3
 
+    def test_unknown_category_raises(self):
+        """An unknown category returned an empty list, and 'side' both side
+        categories; the category names are listed instead."""
+        for cat in ("xyz", "side", "base"):
+            with pytest.raises(ValueError, match="compression_base"):
+                table_8_4_by_category(cat)
+        assert len(table_8_4_by_category("compression_base")) == 3
+
 
 # ============================================================================
 # Table 9-1: Lateral resistance factors
@@ -218,6 +256,12 @@ class TestTable91LateralResistanceFactor:
         with pytest.raises(ValueError):
             table_9_1_lateral_resistance_factor("unknown_xyz")
 
+    def test_part_of_a_name_refused(self):
+        """Table 9-1, p. 9-22 (PDF page 248): 'group_uplift' returned the
+        group row's 0.8 because it holds 'group'; refused."""
+        with pytest.raises(ValueError):
+            table_9_1_lateral_resistance_factor("group_uplift")
+
     def test_result_has_description(self):
         result = table_9_1_lateral_resistance_factor("individual")
         assert "description" in result
@@ -242,13 +286,17 @@ class TestTable102NcBaseClay:
         result = table_10_2_nc_base_clay(2000)
         assert abs(result["nc_star"] - 9.0) < 0.01
 
-    def test_su_above_2000_clamped_to_90(self):
+    # Table 10-2 (GEC-10, p. 10-19, PDF page 299) prints su 500, 1,000 and
+    # ">= 2,000" psf: the last row is open-ended, the first is not.
+    def test_su_above_2000_takes_the_open_ended_row(self):
         result = table_10_2_nc_base_clay(5000)
         assert abs(result["nc_star"] - 9.0) < 0.01
+        assert ">= 2,000" in result["note"]
 
-    def test_su_low_clamped_to_65(self):
-        result = table_10_2_nc_base_clay(100)
-        assert abs(result["nc_star"] - 6.5) < 0.01
+    @pytest.mark.parametrize("su", [499.0, 250.0, 100.0])
+    def test_su_below_500_refused(self, su):
+        with pytest.raises(ValueError, match="no value below 500 psf"):
+            table_10_2_nc_base_clay(su)
 
     def test_interpolation_su750(self):
         """750 psf is halfway between 500 and 1000; Nc* should be ~7.25."""
@@ -406,34 +454,26 @@ class TestTable112GroupEfficiency:
         result = table_11_2_group_efficiency_cohesionless(3.0)
         assert "note" in result
 
+    def test_cites_the_printed_section(self):
+        """The values are printed in the text of Section 11.4.1.2, p. 11-6
+        (PDF page 340); GEC-10 has no Table 11-2 (review finding gec-24)."""
+        result = table_11_2_group_efficiency_cohesionless(2.75)
+        assert "Section 11.4.1.2" in result["reference"]
+        assert "p. 11-6" in result["reference"]
+        assert "no Table 11-2" in result["reference"]
+        assert "interpolation" in result["note"]
+
 
 # ============================================================================
 # Reliability index ↔ probability of failure
 # ============================================================================
 
-class TestAashtoReliabilityIndex:
+class TestAashtoReliabilityIndexRemoved:
+    """aashto_reliability_index is removed (review finding gec-23, lead's
+    ruling): GEC-10 prints no table of the reliability index against the
+    probability of failure, and the function interpolated pF linearly
+    between six points (27 to 37 % high between them)."""
 
-    def test_beta_3(self):
-        result = aashto_reliability_index(beta=3.0)
-        assert result["beta"] == 3.0
-        assert abs(result["pf"] - 1.35e-3) < 1e-4
-
-    def test_beta_2(self):
-        result = aashto_reliability_index(beta=2.0)
-        assert abs(result["pf"] - 2.28e-2) < 1e-3
-
-    def test_pf_given(self):
-        result = aashto_reliability_index(pf=1.0e-2)
-        assert abs(result["beta"] - 2.33) < 0.01
-
-    def test_both_raises(self):
-        with pytest.raises(ValueError, match="not both"):
-            aashto_reliability_index(beta=3.0, pf=1e-3)
-
-    def test_neither_raises(self):
-        with pytest.raises(ValueError, match="either"):
-            aashto_reliability_index()
-
-    def test_beta_out_of_range(self):
-        with pytest.raises(ValueError):
-            aashto_reliability_index(beta=5.0)
+    def test_removed(self):
+        import geotech_references.gec_10.tables as tables
+        assert not hasattr(tables, "aashto_reliability_index")

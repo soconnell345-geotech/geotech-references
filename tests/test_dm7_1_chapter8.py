@@ -60,9 +60,18 @@ class TestSptFrictionAngleRoads:
         # N60 = 0: phi' = sqrt(0) + 15 = 15
         assert spt_friction_angle_roads(0.0) == pytest.approx(15.0, rel=1e-4)
 
-    def test_large_value(self):
-        # N60 = 60: phi' = sqrt(900) + 15 = 30 + 15 = 45
-        assert spt_friction_angle_roads(60.0) == pytest.approx(45.0, rel=1e-4)
+    def test_end_of_plotted_curve(self):
+        # Figure 8-2, PDF p. 425 (printed p. 397), plots Shioi and Fukui's
+        # two relationships for N60 from 0 to 50, ending near 42 degrees.
+        # N60 = 50: sqrt(750) + 15 = 42.39 (roads); 0.3*50 + 27 = 42.0
+        assert spt_friction_angle_roads(50.0) == pytest.approx(42.39, abs=0.01)
+        assert spt_friction_angle_buildings(50.0) == pytest.approx(42.0, abs=0.01)
+
+    def test_above_plotted_curve_raises(self):
+        with pytest.raises(ValueError, match="above 50"):
+            spt_friction_angle_roads(60.0)
+        with pytest.raises(ValueError, match="above 50"):
+            spt_friction_angle_buildings(60.0)
 
     def test_negative_raises(self):
         with pytest.raises(ValueError, match="n60 must be non-negative"):
@@ -188,13 +197,19 @@ class TestCptFrictionAngleMayne:
     """Tests for Equation 8-7."""
 
     def test_basic(self):
-        # qt=5000, sigma_v_eff=100, pa=101.325
-        # phi' = 17.6 + 11 * log10((5000/101.325)/(100/101.325))
-        # = 17.6 + 11 * log10(5000/100) = 17.6 + 11 * log10(50)
-        # = 17.6 + 11 * 1.69897 = 17.6 + 18.6887 = 36.2887
-        expected = 17.6 + 11.0 * math.log10(5000.0 / 100.0)
-        assert cpt_friction_angle_mayne(5000.0, 100.0, 101.325) == pytest.approx(
-            expected, rel=1e-4
+        # Eq. 8-7 as printed, PDF p. 428 (printed p. 400):
+        # phi' = 17.6 + 11 log[(qt/Pa) / sqrt(sigma'v/Pa)]
+        # qt=10000, sigma'v=400, Pa=100: (100)/sqrt(4) = 50
+        # phi' = 17.6 + 11 * 1.69897 = 36.2887
+        assert cpt_friction_angle_mayne(10000.0, 400.0, 100.0) == pytest.approx(
+            36.2887, abs=1e-3
+        )
+
+    def test_vertical_stress_under_square_root(self):
+        # PDF p. 428 (printed p. 400). qt=20000, sigma'v=25, Pa=100:
+        # (200)/sqrt(0.25) = 400; phi' = 17.6 + 11 * 2.60206 = 46.2227
+        assert cpt_friction_angle_mayne(20000.0, 25.0, 100.0) == pytest.approx(
+            46.2227, abs=1e-3
         )
 
     def test_qt_not_positive_raises(self):
@@ -219,15 +234,22 @@ class TestCptFrictionAngleRobertsonCampanella:
     """Tests for Equation 8-8."""
 
     def test_basic(self):
-        # qc=5000, sigma_v_eff=100
-        # log10(5000/100) = log10(50) = 1.69897
-        # denom = 2.68 * (1.69897 + 0.29) = 2.68 * 1.98897 = 5.33044
-        # phi = degrees(atan(1/5.33044)) = degrees(atan(0.18760)) = 10.627 deg
-        log_ratio = math.log10(5000.0 / 100.0)
-        denom = 2.68 * (log_ratio + 0.29)
-        expected = math.degrees(math.atan(1.0 / denom))
+        # Eq. 8-8 as printed, PDF p. 430 (printed p. 402):
+        # tan(phi') = (1/2.68) [log(qc/sigma'v) + 0.29]
+        # qc/sigma'v = 100: tan(phi') = 2.29/2.68 = 0.85448, phi' = 40.513 deg
+        assert cpt_friction_angle_robertson_campanella(10000.0, 100.0) == pytest.approx(
+            40.513, abs=1e-3
+        )
+
+    def test_angle_rises_with_tip_resistance(self):
+        # PDF p. 430 (printed p. 402).
+        # qc/sigma'v = 50: tan(phi') = 1.98897/2.68 = 0.74215, phi' = 36.581 deg
+        # qc/sigma'v = 300: tan(phi') = 2.76712/2.68 = 1.03251, phi' = 45.916 deg
         assert cpt_friction_angle_robertson_campanella(5000.0, 100.0) == pytest.approx(
-            expected, rel=1e-4
+            36.581, abs=1e-3
+        )
+        assert cpt_friction_angle_robertson_campanella(30000.0, 100.0) == pytest.approx(
+            45.916, abs=1e-3
         )
 
     def test_qc_not_positive_raises(self):
@@ -238,12 +260,10 @@ class TestCptFrictionAngleRobertsonCampanella:
         with pytest.raises(ValueError, match="sigma_v_eff must be positive"):
             cpt_friction_angle_robertson_campanella(5000.0, 0.0)
 
-    def test_denominator_nonpositive_raises(self):
-        # Need log10(qc/sigma_v_eff) + 0.29 <= 0
-        # log10(qc/sigma_v_eff) <= -0.29 => qc/sigma_v_eff <= 10^(-0.29) = 0.5129
-        # e.g. qc=50, sigma_v_eff=100 => ratio=0.5, log10(0.5)=-0.3010
-        # denom = 2.68*(-0.3010 + 0.29) = 2.68*(-0.0110) = -0.02948 < 0
-        with pytest.raises(ValueError, match="Computed denominator is non-positive"):
+    def test_bracket_nonpositive_raises(self):
+        # log10(qc/sigma_v_eff) + 0.29 <= 0 gives no positive friction angle.
+        # qc=50, sigma_v_eff=100 => log10(0.5) = -0.3010; -0.3010 + 0.29 < 0
+        with pytest.raises(ValueError, match="is not positive"):
             cpt_friction_angle_robertson_campanella(50.0, 100.0)
 
 
@@ -359,11 +379,18 @@ class TestFullySoftenedFrictionAngle:
     """Tests for Equation 8-13."""
 
     def test_basic(self):
-        # PI=30: phi'FS = -0.0058*30^1.73 + 0.32*30 + 36.2
-        # 30^1.73 = exp(1.73*ln(30)) = exp(1.73*3.40120) = exp(5.88407) = 359.05
-        # = -0.0058*359.05 + 9.6 + 36.2 = -2.0825 + 9.6 + 36.2 = 43.7175
-        expected = -0.0058 * 30.0 ** 1.73 + 0.32 * 30.0 + 36.2
-        assert fully_softened_friction_angle(30.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-13 as printed, PDF p. 435 (printed p. 407):
+        # phi'FS = 0.0058 PI^1.73 - 0.32 PI + 36.2
+        # PI=40: 40^1.73 = 590.97; 3.4276 - 12.8 + 36.2 = 26.83
+        assert fully_softened_friction_angle(40.0) == pytest.approx(26.83, abs=0.01)
+
+    def test_angle_falls_with_plasticity(self):
+        # PDF p. 435 (printed p. 407); Figure 8-13, PDF p. 436 (printed
+        # p. 408), plots the angle falling from about 36 at PI 0 to about
+        # 21 at PI 100.
+        # PI=20: 1.0333 - 6.4 + 36.2 = 30.83; PI=100: 16.727 - 32 + 36.2 = 20.93
+        assert fully_softened_friction_angle(20.0) == pytest.approx(30.83, abs=0.01)
+        assert fully_softened_friction_angle(100.0) == pytest.approx(20.93, abs=0.01)
 
     def test_zero_pi(self):
         # PI=0: phi'FS = 0 + 0 + 36.2 = 36.2
@@ -705,11 +732,18 @@ class TestSptUndrainedStrengthStroudButler:
     """Tests for Equation 8-26."""
 
     def test_basic(self):
-        # N=20, PI=30: su = 20 / (4.36 + 8910/30^3) = 20 / (4.36 + 8910/27000)
-        # = 20 / (4.36 + 0.33) = 20 / 4.69 = 4.2644
-        expected = 20.0 / (4.36 + 8910.0 / 27000.0)
+        # Eq. 8-26 as printed, PDF p. 456 (printed p. 428):
+        # su/N = 8910/PI^3 + 4.36, su in kPa
+        # N=20, PI=30: su = 20 * (8910/27000 + 4.36) = 20 * 4.69 = 93.8 kPa
         assert spt_undrained_strength_stroud_butler(20.0, 30.0) == pytest.approx(
-            expected, rel=1e-4
+            93.8, abs=0.01
+        )
+
+    def test_low_plasticity(self):
+        # PDF p. 456 (printed p. 428).
+        # N=10, PI=15: su = 10 * (8910/3375 + 4.36) = 10 * 7.00 = 70.0 kPa
+        assert spt_undrained_strength_stroud_butler(10.0, 15.0) == pytest.approx(
+            70.0, abs=0.01
         )
 
     def test_zero_n(self):
@@ -728,6 +762,27 @@ class TestSptUndrainedStrengthStroudButler:
     def test_pi_negative_raises(self):
         with pytest.raises(ValueError, match="pi must be positive"):
             spt_undrained_strength_stroud_butler(20.0, -5.0)
+
+    def test_range_of_figure_8_31(self):
+        # Figure 8-31, PDF p. 456 (printed p. 428), draws the trendline from
+        # PI 15 (su/N 7.0) to about PI 62 (su/N 4.40); outside it the
+        # function refuses.
+        # N=20, PI=15:   20 * (8910/3375 + 4.36) = 20 * 7.00 = 140.00 kPa
+        # N=20, PI=15.1: 20 * (8910/3442.951 + 4.36) = 20 * 6.94790 = 138.96
+        # N=20, PI=61.9: 20 * (8910/237176.659 + 4.36) = 20 * 4.39757 = 87.95
+        # N=20, PI=62:   20 * (8910/238328 + 4.36) = 20 * 4.39739 = 87.95
+        assert spt_undrained_strength_stroud_butler(20.0, 15.0) == pytest.approx(
+            140.00, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 15.1) == pytest.approx(
+            138.96, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 61.9) == pytest.approx(
+            87.95, abs=0.01)
+        assert spt_undrained_strength_stroud_butler(20.0, 62.0) == pytest.approx(
+            87.95, abs=0.01)
+        for pi in (14.9, 62.1, 5.0):
+            # PI 5 used to return 1,513 kPa at N 20
+            with pytest.raises(ValueError, match="outside 15 to 62"):
+                spt_undrained_strength_stroud_butler(20.0, pi)
 
 
 # ============================================================================
@@ -1059,16 +1114,28 @@ class TestCbrFromDcpNazzal:
     """Tests for Equation 8-38."""
 
     def test_basic(self):
-        # DCP=20: CBR = 2559 / (20^1.84 + 7.35) - 1
-        # 20^1.84 = exp(1.84*ln(20)) = exp(1.84*2.99573) = exp(5.51214) = 247.66
-        # CBR = 2559 / (247.66 + 7.35) - 1 = 2559 / 255.01 - 1 = 10.035 - 1 = 9.035
-        expected = 2559.0 / (20.0 ** 1.84 + 7.35) - 1.0
-        assert cbr_from_dcp_nazzal(20.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-38 as printed, PDF p. 484 (printed p. 456):
+        # CBR = 2559 / (DCP^1.84 - 7.35) + 1
+        # DCP=20: 20^1.84 = 247.67; 2559/240.32 + 1 = 11.648
+        assert cbr_from_dcp_nazzal(20.0) == pytest.approx(11.648, abs=1e-3)
 
-    def test_small_dcp(self):
-        # DCP=6.3 (lower bound of valid range)
-        expected = 2559.0 / (6.3 ** 1.84 + 7.35) - 1.0
-        assert cbr_from_dcp_nazzal(6.3) == pytest.approx(expected, rel=1e-4)
+    def test_ends_of_stated_range(self):
+        # PDF p. 484 (printed p. 456): "DCP values between 6.3 and 67 mm/blow"
+        # DCP=6.3: 6.3^1.84 = 29.566; 2559/22.216 + 1 = 116.19
+        # DCP=67: 67^1.84 = 2290.7; 2559/2283.4 + 1 = 2.1207
+        assert cbr_from_dcp_nazzal(6.3) == pytest.approx(116.19, abs=0.01)
+        assert cbr_from_dcp_nazzal(67.0) == pytest.approx(2.1207, abs=1e-3)
+
+    def test_dcp_10(self):
+        # DCP=10: 10^1.84 = 69.183; 2559/61.833 + 1 = 42.386
+        assert cbr_from_dcp_nazzal(10.0) == pytest.approx(42.386, abs=1e-3)
+
+    def test_outside_stated_range_raises(self):
+        # The denominator passes through zero at DCP = 7.35^(1/1.84) = 2.96
+        with pytest.raises(ValueError, match="outside 6.3 to 67 mm/blow"):
+            cbr_from_dcp_nazzal(3.0)
+        with pytest.raises(ValueError, match="outside 6.3 to 67 mm/blow"):
+            cbr_from_dcp_nazzal(80.0)
 
     def test_dcp_not_positive_raises(self):
         with pytest.raises(ValueError, match="dcp must be positive"):
@@ -1088,15 +1155,18 @@ class TestCbrFromSpt:
     """Tests for Equation 8-39."""
 
     def test_basic(self):
-        # N=15: log(CBR) = -5.13 + 6.55*log10(300/15^0.26)
-        # 15^0.26 = exp(0.26*ln(15)) = exp(0.26*2.70805) = exp(0.70409) = 2.0221
-        # 300/2.0221 = 148.36
-        # log10(148.36) = 2.17130
-        # log(CBR) = -5.13 + 6.55*2.17130 = -5.13 + 14.222 = 9.092
-        # CBR = 10^9.092
-        log_cbr = -5.13 + 6.55 * math.log10(300.0 / 15.0 ** 0.26)
-        expected = 10.0 ** log_cbr
-        assert cbr_from_spt(15.0) == pytest.approx(expected, rel=1e-4)
+        # Eq. 8-39 as printed, PDF p. 485 (printed p. 457):
+        # log CBR = -5.13 + 6.55 [log(300/N)]^-0.26
+        # N=10: log(30) = 1.47712; 1.47712^-0.26 = 0.90355
+        # log CBR = -5.13 + 5.9183 = 0.7883; CBR = 6.141
+        assert cbr_from_spt(10.0) == pytest.approx(6.141, abs=1e-3)
+
+    def test_against_figure_8_57(self):
+        # Figure 8-57, PDF p. 486 (printed p. 458), plots the same curve:
+        # about 26 at N = 30 and about 160 at N = 68.
+        # N=30: log(10) = 1; log CBR = -5.13 + 6.55 = 1.42; CBR = 26.30
+        assert cbr_from_spt(30.0) == pytest.approx(26.30, abs=0.01)
+        assert cbr_from_spt(68.0) == pytest.approx(160.0, abs=5.0)
 
     def test_n_not_positive_raises(self):
         with pytest.raises(ValueError, match="n must be positive"):
@@ -1105,6 +1175,29 @@ class TestCbrFromSpt:
     def test_n_negative_raises(self):
         with pytest.raises(ValueError, match="n must be positive"):
             cbr_from_spt(-5.0)
+
+    def test_n_300_or_more_raises(self):
+        # Outside the curve of Figure 8-57, and log(300/N) is not positive.
+        with pytest.raises(ValueError, match="outside 5 to 68.*300 or more"):
+            cbr_from_spt(300.0)
+
+    def test_range_of_figure_8_57(self):
+        # Figure 8-57, PDF p. 486 (printed p. 458), draws the curve from
+        # N 5 to N 68 (read off a 400 dpi render); outside it the function
+        # refuses.
+        # N=5:    log(60) = 1.778151;   ^-0.26 = 0.861010; log CBR = 0.509615
+        #         CBR = 3.233
+        # N=5.1:  log(58.824) = 1.769551; ^-0.26 = 0.862096; CBR = 3.287
+        # N=67.9: log(4.4183) = 0.645251; ^-0.26 = 1.120651; CBR = 162.28
+        # N=68:   log(4.4118) = 0.644612; ^-0.26 = 1.120940; CBR = 162.99
+        assert cbr_from_spt(5.0) == pytest.approx(3.233, abs=1e-3)
+        assert cbr_from_spt(5.1) == pytest.approx(3.287, abs=1e-3)
+        assert cbr_from_spt(67.9) == pytest.approx(162.28, abs=0.01)
+        assert cbr_from_spt(68.0) == pytest.approx(162.99, abs=0.01)
+        for n in (4.9, 68.1, 200.0):
+            # N 200 used to return 144,025
+            with pytest.raises(ValueError, match="outside 5 to 68"):
+                cbr_from_spt(n)
 
 
 # ============================================================================
@@ -1148,36 +1241,86 @@ class TestHydraulicConductivityHazen:
 class TestHydraulicConductivityKozenyCarman:
     """Tests for Equation 8-41."""
 
+    # Eq. 8-41 as printed, PDF p. 490 (printed p. 462), D in mm, k in cm/s:
+    # k = 1.99e2 * [100% / sum(fi / (D_li^0.404 * D_si^0.596))]^2
+    #     * (1/S^2) * (e^3/(1+e))
+
     def test_basic(self):
-        # Single fraction: fi=1.0, d_li=0.5, d_si=0.25, e=0.65, s=6.0
-        # avg_d = 0.404*0.5 + 0.596*0.25 = 0.202 + 0.149 = 0.351
-        # summation = 1.0/0.351 = 2.8490
-        # k = 1.99e4 * (1/36) * (0.65^3/(1.65)) * (1/2.8490^2)
-        # = 1.99e4 * 0.027778 * (0.274625/1.65) * (1/8.11683)
-        # = 552.778 * 0.16644 * 0.12320
-        # = 552.778 * 0.020505 = 11.334
-        fractions = [(1.0, 0.5, 0.25)]
-        e = 0.65
-        s = 6.0
-        avg_d = 0.404 * 0.5 + 0.596 * 0.25
-        summation = 1.0 / avg_d
-        expected = 1.99e4 * (1.0 / s ** 2) * (e ** 3 / (1.0 + e)) * (1.0 / summation ** 2)
-        assert hydraulic_conductivity_kozeny_carman(fractions, e, s) == pytest.approx(
-            expected, rel=1e-4
+        # One fraction between the 0.425 mm and 0.25 mm sieves, e=0.6, S=6
+        # D_eff = 0.425^0.404 * 0.25^0.596 = 0.70773 * 0.43770 = 0.30977 mm
+        # 100% / sum = 0.30977; squared = 0.095958
+        # k = 199 * 0.095958 * (1/36) * (0.216/1.6) = 0.07161 cm/s
+        fractions = [(1.0, 0.425, 0.25)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.6, 6.0) == pytest.approx(
+            0.07161, abs=1e-5
         )
 
     def test_two_fractions(self):
-        # Two fractions
-        fractions = [(0.6, 1.0, 0.5), (0.4, 0.5, 0.25)]
-        e = 0.7
-        s = 6.0
-        avg_d1 = 0.404 * 1.0 + 0.596 * 0.5  # 0.702
-        avg_d2 = 0.404 * 0.5 + 0.596 * 0.25  # 0.351
-        summation = 0.6 / avg_d1 + 0.4 / avg_d2
-        expected = 1.99e4 * (1.0 / 36.0) * (0.7 ** 3 / 1.7) * (1.0 / summation ** 2)
-        assert hydraulic_conductivity_kozeny_carman(fractions, e, s) == pytest.approx(
-            expected, rel=1e-4
+        # 60% between 2.0 and 0.85 mm, 40% between 0.85 and 0.425 mm,
+        # e=0.5, S=7
+        # D_eff_1 = 2.0^0.404 * 0.85^0.596 = 1.20103
+        # D_eff_2 = 0.85^0.404 * 0.425^0.596 = 0.56235
+        # sum = 0.6/1.20103 + 0.4/0.56235 = 1.21087
+        # k = 199 * (1/1.21087)^2 * (1/49) * (0.125/1.5) = 0.23082 cm/s
+        fractions = [(0.6, 2.0, 0.85), (0.4, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            0.23082, abs=1e-5
         )
+
+    def test_fractions_in_percent(self):
+        # The print writes the numerator as 100%: the same grading given
+        # in percent returns the same k.
+        fractions = [(60.0, 2.0, 0.85), (40.0, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            0.23082, abs=1e-5
+        )
+
+    def test_same_as_equation_6_13(self):
+        # Eq. 6-13 (PDF p. 328, printed p. 300) and Eq. 8-41 are printed
+        # identically.
+        from geotech_references.dm7_1.chapter6 import (
+            kozeny_carman_hydraulic_conductivity,
+        )
+        fractions = [(0.6, 2.0, 0.85), (0.4, 0.85, 0.425)]
+        assert hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0) == pytest.approx(
+            kozeny_carman_hydraulic_conductivity(fractions, 7.0, 0.5), rel=1e-12
+        )
+
+    def test_fractions_not_whole_grading_raises(self):
+        with pytest.raises(ValueError, match="must add up to 1.0"):
+            hydraulic_conductivity_kozeny_carman(
+                [(0.5, 2.0, 0.85), (0.3, 0.85, 0.425)], 0.5, 6.0)
+
+    def test_total_within_two_percent_used_as_given(self):
+        # The library accepts a total within 2 % of 1.0 or 100 (its own
+        # tolerance, not printed) and does not normalise it. Same sieves
+        # as test_two_fractions, e=0.5, S=7, by the printed formula:
+        # 0.6 + 0.38 = 0.98: sum = 0.6/1.20102 + 0.38/0.56235 = 1.17531
+        #   k = 199 * (1/1.17531)^2 * (1/49) * (0.125/1.5) = 0.24500
+        # 60 + 39 = 99 (percent): sum = 119.30968; k = 0.23775
+        # 0.6 + 0.42 = 1.02: sum = 1.24644; k = 0.21784
+        # 60 + 42 = 102: the same k as 1.02
+        cases = [
+            ([(0.6, 2.0, 0.85), (0.38, 0.85, 0.425)], 0.24500),
+            ([(60.0, 2.0, 0.85), (39.0, 0.85, 0.425)], 0.23775),
+            ([(0.6, 2.0, 0.85), (0.42, 0.85, 0.425)], 0.21784),
+            ([(60.0, 2.0, 0.85), (42.0, 0.85, 0.425)], 0.21784),
+        ]
+        for fractions, k in cases:
+            result = hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0)
+            assert result == pytest.approx(k, abs=1e-5)
+
+    def test_total_more_than_two_percent_off_raises(self):
+        # 0.97, 1.03, 97, 103 and a percent/decimal mix-up (60 + 0.4)
+        for fractions in (
+            [(0.6, 2.0, 0.85), (0.37, 0.85, 0.425)],
+            [(0.6, 2.0, 0.85), (0.43, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (37.0, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (43.0, 0.85, 0.425)],
+            [(60.0, 2.0, 0.85), (0.4, 0.85, 0.425)],
+        ):
+            with pytest.raises(ValueError, match="within 2 %"):
+                hydraulic_conductivity_kozeny_carman(fractions, 0.5, 7.0)
 
     def test_e_negative_raises(self):
         with pytest.raises(ValueError, match="e must be non-negative"):
@@ -1197,7 +1340,7 @@ class TestHydraulicConductivityKozenyCarman:
 
     def test_empty_fractions_zero_sum_raises(self):
         # All fractions with fi=0 result in summation=0
-        with pytest.raises(ValueError, match="Sum of fi/D_avg is zero"):
+        with pytest.raises(ValueError, match="Sum of fi/.* is zero"):
             hydraulic_conductivity_kozeny_carman([(0.0, 0.5, 0.25)], 0.65, 6.0)
 
 
@@ -1209,20 +1352,31 @@ class TestHydraulicConductivityKozenyCarman:
 class TestHydraulicConductivityCarrierBeckman:
     """Tests for Equation 8-42."""
 
+    # Eq. 8-42 as printed, PDF p. 490 (printed p. 462), k in m/s:
+    # k = 0.0174 {[e - 0.027 (PL - 0.242 PI)] / PI}^4.29 * 1/(1+e)
+
     def test_basic(self):
-        # e=0.8, PL=25, PI=20
-        # numerator_base = 0.8 - 0.027*(25 - 0.242*20) = 0.8 - 0.027*(25 - 4.84) = 0.8 - 0.027*20.16
-        # = 0.8 - 0.54432 = 0.25568
-        # numerator = 0.25568^4.29
-        # denominator = (1+0.8)*20 = 1.8*20 = 36
-        # k = 0.0174 * 0.25568^4.29 / 36
-        num_base = 0.8 - 0.027 * (25.0 - 0.242 * 20.0)
-        numerator = num_base ** 4.29
-        denominator = (1.0 + 0.8) * 20.0
-        expected = 0.0174 * numerator / denominator
-        assert hydraulic_conductivity_carrier_beckman(0.8, 25.0, 20.0) == pytest.approx(
-            expected, rel=1e-4
+        # e=1.5, PL=25, PI=30
+        # e - 0.027*(25 - 7.26) = 1.5 - 0.47898 = 1.02102
+        # (1.02102/30)^4.29 = 0.034034^4.29 = 5.0339e-07
+        # k = 0.0174 * 5.0339e-07 / 2.5 = 3.5036e-09 m/s
+        assert hydraulic_conductivity_carrier_beckman(1.5, 25.0, 30.0) == pytest.approx(
+            3.5036e-09, rel=1e-4, abs=0.0
         )
+
+    def test_second_point(self):
+        # e=2.0, PL=20, PI=20
+        # e - 0.027*(20 - 4.84) = 2.0 - 0.40932 = 1.59068
+        # (1.59068/20)^4.29 = 0.079534^4.29 = 1.9203e-05
+        # k = 0.0174 * 1.9203e-05 / 3.0 = 1.1138e-07 m/s
+        assert hydraulic_conductivity_carrier_beckman(2.0, 20.0, 20.0) == pytest.approx(
+            1.1138e-07, rel=1e-4, abs=0.0
+        )
+
+    def test_void_ratio_too_low_raises(self):
+        # e=0.3, PL=30, PI=10: 0.3 - 0.027*(30 - 2.42) = -0.4447
+        with pytest.raises(ValueError, match="is not positive"):
+            hydraulic_conductivity_carrier_beckman(0.3, 30.0, 10.0)
 
     def test_e_negative_raises(self):
         with pytest.raises(ValueError, match="e must be non-negative"):
@@ -1245,28 +1399,39 @@ class TestHydraulicConductivityCarrierBeckman:
 class TestHydraulicConductivityBensonLandfill:
     """Tests for Equation 8-43."""
 
+    # Eq. 8-43 as printed, PDF p. 491 (printed p. 463), k in m/s:
+    # ln k = -18.35 + 894/W - 0.08 PI - 2.87 [w/(gamma_w/gamma_d - 1/Gs)]
+    #        + 0.32 sqrt(GC) + 0.02 CF
+
     def test_basic(self):
-        # Use inputs that keep the degree of saturation low enough to
-        # avoid overflow in math.exp().  Pick a low water content and
-        # a relatively high void ratio.
-        # cf=50, gc=0, w_compactor=100, pi=30, w=0.02,
-        # gamma_w=9.81, gamma_d=14.0, gs=2.70
-        # e = 2.70*9.81/14.0 - 1 = 26.487/14 - 1 = 1.89193 - 1 = 0.89193
-        # S = 0.02*2.70/0.89193 = 0.054/0.89193 = 0.060542
-        # ln(k) = -18.35 + 0.08*30 + 2.87*0 - 0.32*50 - 0.02*100 + 894*0.060542
-        #       = -18.35 + 2.4 + 0 - 16.0 - 2.0 + 54.124
-        #       = 20.174
-        # k = exp(20.174)
-        e = 2.70 * 9.81 / 14.0 - 1.0
-        s_degree = 0.02 * 2.70 / e
-        ln_k = (-18.35 + 0.08 * 30.0 + 2.87 * 0.0 - 0.32 * 50.0
-                - 0.02 * 100.0 + 894.0 * s_degree)
-        expected = math.exp(ln_k)
+        # CF=30, GC=4, W=200 kN, PI=25, w=0.18, gamma_w=9.81, gamma_d=17.0,
+        # Gs=2.70
+        # bracket = 0.18 / (9.81/17.0 - 1/2.70) = 0.18 / 0.206688 = 0.870876
+        # ln k = -18.35 + 4.47 - 2.0 - 2.87*0.870876 + 0.32*2 + 0.6
+        #      = -17.13941;  k = 3.6012e-08 m/s
         result = hydraulic_conductivity_benson_landfill(
-            cf=50.0, gc=0.0, w_compactor=100.0, pi=30.0, w=0.02,
-            gamma_w=9.81, gamma_d=14.0, gs=2.70
+            cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
         )
-        assert result == pytest.approx(expected, rel=1e-4)
+        assert result == pytest.approx(3.6012e-08, rel=1e-4, abs=0.0)
+
+    def test_heavier_compactor_lower_k(self):
+        # Same clay, W=400 kN: 894/W falls from 4.47 to 2.235
+        # ln k = -17.13941 - 2.235 = -19.37441;  k = 3.8530e-09 m/s
+        result = hydraulic_conductivity_benson_landfill(
+            cf=30.0, gc=4.0, w_compactor=400.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result == pytest.approx(3.8530e-09, rel=1e-4, abs=0.0)
+
+    def test_no_gravel(self):
+        # GC=0: the square-root term is zero
+        # ln k = -17.13941 - 0.64 = -17.77941;  k = 1.8989e-08 m/s
+        result = hydraulic_conductivity_benson_landfill(
+            cf=30.0, gc=0.0, w_compactor=200.0, pi=25.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result == pytest.approx(1.8989e-08, rel=1e-4, abs=0.0)
 
     def test_gamma_d_not_positive_raises(self):
         with pytest.raises(ValueError, match="gamma_d must be positive"):
@@ -1289,14 +1454,56 @@ class TestHydraulicConductivityBensonLandfill:
                 gamma_w=9.81, gamma_d=17.0, gs=0.0
             )
 
+    def test_w_compactor_not_positive_raises(self):
+        with pytest.raises(ValueError, match="w_compactor must be positive"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=0.05, w_compactor=0.0, pi=20.0, w=0.20,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
     def test_void_ratio_nonpositive_raises(self):
-        # e = gs*gamma_w/gamma_d - 1 <= 0 when gamma_d >= gs*gamma_w
-        # gs=2.7, gamma_w=9.81 => gs*gamma_w=26.487; gamma_d=27 => e = 26.487/27 -1 = -0.019
-        with pytest.raises(ValueError, match="Computed void ratio is non-positive"):
+        # gamma_w/gamma_d - 1/Gs <= 0 when gamma_d >= Gs*gamma_w
+        # Gs=2.7, gamma_w=9.81 => Gs*gamma_w=26.487; gamma_d=27
+        with pytest.raises(ValueError, match="void ratio is non-positive"):
             hydraulic_conductivity_benson_landfill(
                 cf=30.0, gc=0.05, w_compactor=300.0, pi=20.0, w=0.20,
                 gamma_w=9.81, gamma_d=27.0, gs=2.70
             )
+
+    def test_w_given_in_percent_raises(self):
+        # The page gives w no unit; the function takes a decimal. w=18.0
+        # would make the bracket (the degree of saturation) 87.09 and k
+        # below 1e-100 m/s.
+        with pytest.raises(ValueError, match="not above 1.10"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=18.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_saturation_limit_is_1_10(self):
+        # The guard refuses a saturation above 1.10 (the library's limit,
+        # not printed): a little over 1.0 comes from scatter in measured
+        # w, gamma_d and Gs. Same clay as test_basic, by the printed
+        # equation, ln k = -14.64 - 2.87 * bracket (bracket = w/0.206688):
+        # w=0.21:  bracket 1.01602; ln k = -17.55598; k = 2.3743e-08 m/s
+        # w=0.227: bracket 1.09827; ln k = -17.79204; k = 1.8751e-08 m/s
+        # w=0.228: bracket 1.10311, refused
+        for w, k in ((0.21, 2.3743e-08), (0.227, 1.8751e-08)):
+            result = hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=w,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+            assert result == pytest.approx(k, rel=1e-4, abs=0.0)
+        with pytest.raises(ValueError, match="1.103.*not above 1.10"):
+            hydraulic_conductivity_benson_landfill(
+                cf=30.0, gc=4.0, w_compactor=200.0, pi=25.0, w=0.228,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_docstring_first_line_gives_the_unit_taken(self):
+        first = hydraulic_conductivity_benson_landfill.__doc__.strip().splitlines()[0]
+        assert "molding water content taken as a decimal" in first
+        assert "the page prints no unit for it" in first
 
 
 # ============================================================================
@@ -1307,62 +1514,118 @@ class TestHydraulicConductivityBensonLandfill:
 class TestHydraulicConductivityBensonTrast:
     """Tests for Equation 8-44."""
 
-    def test_basic(self):
-        # pi=25, cf=40, e_effort=0, w=0.22, gamma_w=9.81, gamma_d=16.5, gs=2.70
-        # e = 2.70*9.81/16.5 - 1 = 26.487/16.5 - 1 = 1.60527 - 1 = 0.60527
-        # S = 0.22*2.70/0.60527 = 0.594/0.60527 = 0.98128
-        # ln(k) = -15 - 0.087*25 - 0.054*40 + 0.022*0 + 0.91*0.98128
-        # = -15 - 2.175 - 2.16 + 0 + 0.89296 = -18.44204
-        # k = exp(-18.44204)
-        e = 2.70 * 9.81 / 16.5 - 1.0
-        s_degree = 0.22 * 2.70 / e
-        ln_k = -15.0 - 0.087 * 25.0 - 0.054 * 40.0 + 0.022 * 0.0 + 0.91 * s_degree
-        expected = math.exp(ln_k)
-        result = hydraulic_conductivity_benson_trast(
-            pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-            gamma_w=9.81, gamma_d=16.5, gs=2.70
-        )
-        assert result == pytest.approx(expected, rel=1e-4)
+    # Eq. 8-44 as printed, PDF p. 491 (printed p. 463), k in m/s:
+    # ln k = -15 - 0.087 [w/(gamma_w/gamma_d - 1/Gs)] - 0.054 PI
+    #        + 0.022 CF + 0.91 E
+    # The page gives "w = molding water content" with no unit. The function
+    # takes w as a decimal, as in Eq. 8-43, and enters the bracket (the
+    # initial degree of saturation) in percent. That is the reading of the
+    # review of 2026-11-10, not a printed statement (the docstring's Notes
+    # give the reasons). These tests pin that reading and record the other.
 
-    def test_modified_proctor_effort(self):
-        # e_effort=-1 (modified Proctor)
-        e = 2.70 * 9.81 / 16.5 - 1.0
-        s_degree = 0.22 * 2.70 / e
-        ln_k = -15.0 - 0.087 * 25.0 - 0.054 * 40.0 + 0.022 * (-1.0) + 0.91 * s_degree
-        expected = math.exp(ln_k)
+    def test_basic_saturation_in_percent(self):
+        # PI=25, CF=30, E=0 (standard Proctor), w=0.18, gamma_w=9.81,
+        # gamma_d=17.0, Gs=2.70
+        # bracket = 0.18 / (9.81/17.0 - 1/2.70) = 0.870876, or 87.0876 %
+        # ln k = -15 - 0.087*87.0876 - 0.054*25 + 0.022*30 + 0.91*0
+        #      = -15 - 7.57662 - 1.35 + 0.66 = -23.26662;  k = 7.8602e-11 m/s
         result = hydraulic_conductivity_benson_trast(
-            pi=25.0, cf=40.0, e_effort=-1.0, w=0.22,
-            gamma_w=9.81, gamma_d=16.5, gs=2.70
+            pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
         )
-        assert result == pytest.approx(expected, rel=1e-4)
+        assert result == pytest.approx(7.8602e-11, rel=1e-4, abs=0.0)
 
-    def test_gamma_d_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gamma_d must be positive"):
+    def test_decimal_reading_is_not_what_is_returned(self):
+        # With the bracket as a decimal: ln k = -15 - 0.087*0.870876 - 1.35
+        # + 0.66 = -15.76577;  k = 1.4224e-07 m/s, about 1,800 times the
+        # value returned (e^(0.087*(87.0876 - 0.870876)) = e^7.50085 = 1810).
+        result = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert result != pytest.approx(1.4224e-07, rel=1e-2, abs=0.0)
+        assert 1.4224e-07 / result == pytest.approx(1810.0, rel=1e-2)
+
+    def test_compactive_effort_index(self):
+        # E = -1 modified, 0 standard, +1 reduced Proctor: each step in E
+        # multiplies k by e^0.91 = 2.4843
+        # modified: 7.8602e-11 / 2.4843 = 3.1639e-11
+        # reduced:  7.8602e-11 * 2.4843 = 1.9527e-10
+        modified = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=-1.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        reduced = hydraulic_conductivity_benson_trast(
+            pi=25.0, cf=30.0, e_effort=1.0, w=0.18,
+            gamma_w=9.81, gamma_d=17.0, gs=2.70
+        )
+        assert modified == pytest.approx(3.1639e-11, rel=1e-4, abs=0.0)
+        assert reduced == pytest.approx(1.9527e-10, rel=1e-4, abs=0.0)
+
+    def test_w_given_in_percent_raises(self):
+        # w=18.0 would be a saturation of 8,709 %
+        with pytest.raises(ValueError, match="not above 110 %"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=9.81, gamma_d=0.0, gs=2.70
+                pi=25.0, cf=30.0, e_effort=0.0, w=18.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
-    def test_gamma_w_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gamma_w must be positive"):
+    def test_saturation_above_110_percent_raises(self):
+        # w=0.30 at gamma_d=17.0: 0.30/0.206688 = 145.1 %
+        with pytest.raises(ValueError, match="145.1 %"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=0.0, gamma_d=16.5, gs=2.70
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.30,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
-    def test_gs_not_positive_raises(self):
-        with pytest.raises(ValueError, match="gs must be positive"):
+    def test_saturation_limit_is_110_percent(self):
+        # The guard refuses a saturation above 110 % (the library's limit,
+        # not printed): a little over 100 % comes from scatter in measured
+        # w, gamma_d and Gs. Same clay as test_basic, by the printed
+        # equation with the bracket in percent, ln k = -15.69 - 0.087 * S%:
+        # w=0.21:  S 101.602 %; ln k = -24.52939; k = 2.2234e-11 m/s
+        # w=0.227: S 109.827 %; ln k = -25.24496; k = 1.0871e-11 m/s
+        # w=0.228: S 110.311 %, refused
+        for w, k in ((0.21, 2.2234e-11), (0.227, 1.0871e-11)):
+            result = hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=w,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+            assert result == pytest.approx(k, rel=1e-4, abs=0.0)
+        with pytest.raises(ValueError, match="110.3 %.*not above 110 %"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
-                gamma_w=9.81, gamma_d=16.5, gs=0.0
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.228,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
+            )
+
+    def test_zero_water_content_raises(self):
+        with pytest.raises(ValueError, match="must be above 0"):
+            hydraulic_conductivity_benson_trast(
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.0,
+                gamma_w=9.81, gamma_d=17.0, gs=2.70
             )
 
     def test_void_ratio_nonpositive_raises(self):
-        with pytest.raises(ValueError, match="Computed void ratio is non-positive"):
+        # gamma_d = 27 is above Gs*gamma_w = 26.487
+        with pytest.raises(ValueError, match="void ratio is non-positive"):
             hydraulic_conductivity_benson_trast(
-                pi=25.0, cf=40.0, e_effort=0.0, w=0.22,
+                pi=25.0, cf=30.0, e_effort=0.0, w=0.18,
                 gamma_w=9.81, gamma_d=27.0, gs=2.70
             )
+
+    def test_docstring_gives_the_printed_equation(self):
+        doc = hydraulic_conductivity_benson_trast.__doc__
+        assert "ln k = -15 - 0.087 * [ w / (gamma_w / gamma_d - 1 / Gs) ]" in doc
+        assert "- 0.054 PI + 0.022 CF + 0.91 E" in doc
+
+    def test_docstring_says_the_unit_is_a_reading_not_printed(self):
+        doc = hydraulic_conductivity_benson_trast.__doc__
+        first = doc.strip().splitlines()[0]
+        assert "saturation term taken in percent" in first
+        assert "not a printed statement" in first
+        # both readings at the example above
+        assert "k = 7.86e-11 m/s" in doc
+        assert "k = 1.42e-07 m/s" in doc
 
 
 # ============================================================================
@@ -1422,34 +1685,44 @@ class TestShearWaveVelocitySpt:
 
 
 class TestTable86StarkHussain:
-    """Tests for Table 8-6: Stark & Hussain coefficients."""
+    """Tests for Table 8-6: Coefficients for Stark and Hussain (2013)
+    Residual Friction Angle Correlation."""
 
-    def test_lt_20_50kpa(self):
-        # lt_20, 50_kPa: c0=35.2
-        result = table_8_6_stark_hussain("lt_20", "50_kPa")
-        assert result["c0"] == pytest.approx(35.2, rel=1e-4)
+    # Table 8-6 as printed, PDF p. 445 (printed p. 417): all 16 rows
+    # (CF and LL range, effective normal stress, C0, C1, C2, C3).
+    PRINTED = [
+        ("lt_20", "50_kPa", 39.7, -0.29, 6.63e-04, 0.0),
+        ("lt_20", "100_kPa", 39.4, -0.298, 6.81e-04, 0.0),
+        ("lt_20", "400_kPa", 40.2, -0.375, 1.36e-03, 0.0),
+        ("lt_20", "700_kPa", 40.3, -0.412, 1.68e-03, 0.0),
+        ("25_to_45", "50_kPa", 31.4, -6.79e-03, -3.62e-03, 1.86e-05),
+        ("25_to_45", "100_kPa", 29.8, -3.63e-04, -3.58e-03, 1.85e-05),
+        ("25_to_45", "400_kPa", 28.4, -5.62e-02, -2.95e-03, 1.72e-05),
+        ("25_to_45", "700_kPa", 28.1, -0.2083, -8.18e-04, 9.37e-06),
+        ("gt_50_ll_lt_120", "50_kPa", 33.5, -0.31, 3.90e-04, 4.40e-06),
+        ("gt_50_ll_lt_120", "100_kPa", 30.7, -0.2504, -4.21e-04, 8.05e-06),
+        ("gt_50_ll_lt_120", "400_kPa", 29.4, -0.2621, -4.01e-04, 8.72e-06),
+        ("gt_50_ll_lt_120", "700_kPa", 27.7, -0.3233, 2.90e-04, 7.11e-06),
+        ("gt_50_ll_120_to_300", "50_kPa", 12.0, -0.0215, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "100_kPa", 10.9, -0.0183, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "400_kPa", 8.3, -0.0114, 0.0, 0.0),
+        ("gt_50_ll_120_to_300", "700_kPa", 5.8, -0.0049, 0.0, 0.0),
+    ]
 
-    def test_gt_50_400kpa(self):
-        # gt_50, 400_kPa: c0=44.1
-        result = table_8_6_stark_hussain("gt_50", "400_kPa")
-        assert result["c0"] == pytest.approx(44.1, rel=1e-4)
+    @pytest.mark.parametrize("cf_range, sigma, c0, c1, c2, c3", PRINTED)
+    def test_printed_row(self, cf_range, sigma, c0, c1, c2, c3):
+        result = table_8_6_stark_hussain(cf_range, sigma)
+        assert result == {"c0": c0, "c1": c1, "c2": c2, "c3": c3}
 
-    def test_20_to_50_100kpa(self):
-        # 20_to_50, 100_kPa: returns dict with 4 keys
-        result = table_8_6_stark_hussain("20_to_50", "100_kPa")
-        assert len(result) == 4
-        assert "c0" in result
-        assert "c1" in result
-        assert "c2" in result
-        assert "c3" in result
+    def test_sixteen_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_6_STARK_HUSSAIN) == 16
 
     def test_returns_copy(self):
         # Modifying returned dict doesn't affect source
         result1 = table_8_6_stark_hussain("lt_20", "50_kPa")
-        original_c0 = result1["c0"]
         result1["c0"] = 999.0
-        result2 = table_8_6_stark_hussain("lt_20", "50_kPa")
-        assert result2["c0"] == pytest.approx(original_c0, rel=1e-4)
+        assert table_8_6_stark_hussain("lt_20", "50_kPa")["c0"] == 39.7
 
     def test_unknown_cf_raises(self):
         with pytest.raises(ValueError, match="Unknown combination"):
@@ -1459,6 +1732,13 @@ class TestTable86StarkHussain:
         with pytest.raises(ValueError, match="Unknown combination"):
             table_8_6_stark_hussain("lt_20", "200_kPa")
 
+    def test_ranges_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table: the print has no 20-50% group and
+        # splits CF > 50% by liquid limit.
+        for cf_range in ["20_to_50", "gt_50"]:
+            with pytest.raises(ValueError, match="Unknown combination"):
+                table_8_6_stark_hussain(cf_range, "100_kPa")
+
 
 # ============================================================================
 # TABLE 8-9: table_8_9_shansep_m
@@ -1466,27 +1746,67 @@ class TestTable86StarkHussain:
 
 
 class TestTable89ShansepM:
-    """Tests for Table 8-9: SHANSEP exponent m."""
+    """Tests for Table 8-9: Typical Values of m."""
 
-    def test_dss(self):
-        # DSS: m=0.80
-        assert table_8_9_shansep_m("dss") == pytest.approx(0.80, rel=1e-4)
+    # Table 8-9 as printed, PDF p. 453 (printed p. 425): rows that print
+    # one number for m.
+    @pytest.mark.parametrize("soil, m, source", [
+        ("saturated_clay", 0.8, "Sabatini et al. (2002)"),
+        ("sensitive_cemented_marine_clay", 1.00, "Ladd and DeGroot (2004)"),
+        ("homogeneous_cl_ch_sedimentary_clay", 0.8, "Ladd and DeGroot (2004)"),
+        ("varved_clay_dss", 0.75, "Ladd and DeGroot (2004)"),
+        ("silt_organic_below_a_line", 0.8, "Ladd and DeGroot (2004)"),
+    ])
+    def test_printed_number(self, soil, m, source):
+        row = table_8_9_shansep_m(soil)
+        assert row["m"] == m
+        assert row["source"] == source
 
-    def test_ciuc(self):
-        # CIUC: m=0.85
-        assert table_8_9_shansep_m("ciuc") == pytest.approx(0.85, rel=1e-4)
+    def test_nominal_rows_carry_the_printed_expression(self):
+        # PDF p. 453 (printed p. 425): 0.88 (1 - Cr/Cc) +/- 0.06, Nominally 0.8
+        for soil in ["homogeneous_cl_ch_sedimentary_clay",
+                     "silt_organic_below_a_line"]:
+            row = table_8_9_shansep_m(soil)
+            assert row["m_as_printed"] == "0.88 (1 - Cr/Cc) +/- 0.06; Nominally 0.8"
 
-    def test_ck0ue(self):
-        # CK0UE: m=0.70
-        assert table_8_9_shansep_m("ck0ue") == pytest.approx(0.70, rel=1e-4)
+    def test_theoretical_row_has_no_number(self):
+        # Roscoe et al. (1958), Mitachi and Kitago (1976): m ~ 1 - Cr/Cc
+        row = table_8_9_shansep_m("theoretical")
+        assert row["m"] is None
+        assert "1 - Cr/Cc" in row["m_as_printed"]
+        assert row["soil_description"] == "Saturated clay (theoretical)"
+
+    def test_field_vane_row_is_a_range(self):
+        # Jamiolkowski et al. (1985), Chandler (1988): Range 0.8 to 1.35,
+        # High value 1.51, Mean (all) 1.03, Mean (discarding extreme
+        # values) 0.97
+        row = table_8_9_shansep_m("field_vane")
+        assert row["m"] is None
+        for text in ["0.8 to 1.35", "1.51", "1.03", "0.97"]:
+            assert text in row["m_as_printed"]
+        assert row["soil_description"] == "Field vane shear tests on clay"
+
+    def test_seven_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_9_SHANSEP_M) == 7
 
     def test_case_insensitive(self):
-        # "DSS" (uppercase) should work
-        assert table_8_9_shansep_m("DSS") == pytest.approx(0.80, rel=1e-4)
+        assert table_8_9_shansep_m(" Varved_Clay_DSS ")["m"] == 0.75
+
+    def test_returns_copy(self):
+        row = table_8_9_shansep_m("varved_clay_dss")
+        row["m"] = 9.0
+        assert table_8_9_shansep_m("varved_clay_dss")["m"] == 0.75
 
     def test_unknown_raises(self):
-        with pytest.raises(ValueError, match="Unknown test_type"):
+        with pytest.raises(ValueError, match="Unknown soil"):
             table_8_9_shansep_m("unknown_test")
+
+    def test_test_types_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table: Table 8-9 does not list m by test type.
+        for test_type in ["ciuc", "ck0uc", "dss", "ck0ue"]:
+            with pytest.raises(ValueError, match="not by test type"):
+                table_8_9_shansep_m(test_type)
 
 
 # ============================================================================
@@ -1495,31 +1815,60 @@ class TestTable89ShansepM:
 
 
 class TestTable824CbrDcp:
-    """Tests for Table 8-24: CBR-DCP correlation coefficients."""
+    """Tests for Table 8-24: CBR Correlations with DCP."""
 
-    def test_webster(self):
-        # webster_1992: a=292.0, x=-1.12
-        result = table_8_24_cbr_dcp("webster_1992")
-        assert result["a"] == pytest.approx(292.0, rel=1e-4)
-        assert result["x"] == pytest.approx(-1.12, rel=1e-4)
+    # Table 8-24 as printed, PDF p. 484 (printed p. 456): all 13 rows.
+    PRINTED = [
+        ("gabr_2000", 25.0, -0.55),
+        ("feleke_araya_2016_fine_a47", 47.0, -0.90),
+        ("george_2009", 47.0, -0.79),
+        ("white_2018_cl_cbr_lt_10", 59.0, -2.00),
+        ("feleke_araya_2016_coarse_a90", 90.0, -1.17),
+        ("feleke_araya_2016_fine_a104", 104.0, -0.91),
+        ("feleke_araya_2016_coarse_a157", 157.0, -0.85),
+        ("george_kumar_2018", 246.0, -1.35),
+        ("white_2018_all_except_cl_cbr_lt_10", 292.0, -1.12),
+        ("smith_pratt_1983", 363.0, -1.15),
+        ("harrison_1986_clay_dcp_lt_10", 501.0, -1.12),
+        ("harrison_1986_clay_dcp_gt_10", 363.0, -1.16),
+        ("kleyn_van_heerden_1983", 425.0, -1.27),
+    ]
 
-    def test_chua(self):
-        # chua_1988: a=3370.0, x=-1.51
-        result = table_8_24_cbr_dcp("chua_1988")
-        assert result["a"] == pytest.approx(3370.0, rel=1e-4)
-        assert result["x"] == pytest.approx(-1.51, rel=1e-4)
+    @pytest.mark.parametrize("source, a, x", PRINTED)
+    def test_printed_row(self, source, a, x):
+        result = table_8_24_cbr_dcp(source)
+        assert result["a"] == a
+        assert result["x"] == x
+
+    def test_thirteen_rows(self):
+        from geotech_references.dm7_1 import chapter8
+        assert len(chapter8._TABLE_8_24_CBR_DCP) == 13
+        assert set(chapter8._TABLE_8_24_CBR_DCP) == {r[0] for r in self.PRINTED}
+
+    def test_reference_as_printed(self):
+        result = table_8_24_cbr_dcp("harrison_1986_clay_dcp_lt_10")
+        assert result["reference"] == (
+            "Harrison (1986), clay-like soils with DCP < 10 mm/blow")
+
+    def test_case_insensitive(self):
+        assert table_8_24_cbr_dcp(" Gabr_2000 ")["a"] == 25.0
 
     def test_returns_copy(self):
         # Modifying returned dict doesn't affect source
-        result1 = table_8_24_cbr_dcp("webster_1992")
-        original_a = result1["a"]
+        result1 = table_8_24_cbr_dcp("gabr_2000")
         result1["a"] = 999.0
-        result2 = table_8_24_cbr_dcp("webster_1992")
-        assert result2["a"] == pytest.approx(original_a, rel=1e-4)
+        assert table_8_24_cbr_dcp("gabr_2000")["a"] == 25.0
 
     def test_unknown_raises(self):
         with pytest.raises(ValueError, match="Unknown source"):
             table_8_24_cbr_dcp("unknown_source")
+
+    def test_rows_the_manual_does_not_print_raise(self):
+        # Keys of the earlier table, none of which is a row of Table 8-24.
+        for source in ["webster_1992", "ese_2006", "livneh_2000",
+                       "harrison_1987", "chua_1988", "pen_2002"]:
+            with pytest.raises(ValueError, match="Unknown source"):
+                table_8_24_cbr_dcp(source)
 
 
 # ============================================================================
@@ -1528,32 +1877,140 @@ class TestTable824CbrDcp:
 
 
 class TestFigure846F:
-    """Tests for Figure 8-46: Stroud f-coefficient."""
+    """Tests for Figure 8-46: Variation of Empirical Coefficient f used
+    for Calculating Constrained Modulus with PI (after Stroud 1974)."""
 
-    def test_at_10(self):
-        # PI=10: f=500.0
-        assert figure_8_46_f(10.0) == pytest.approx(500.0, rel=1e-4)
+    # Read off the curve of Figure 8-46, PDF p. 472 (printed p. 444);
+    # axes PI 10 to 70 and f 3 to 8. Tolerance 0.05 = a tenth of a
+    # division of the f axis.
+    @pytest.mark.parametrize("pi, f", [
+        (14.8, 6.85),   # start of the curve
+        (15.0, 6.78),
+        (16.0, 6.36),
+        (17.0, 6.10),
+        (20.0, 5.51),
+        (25.0, 4.98),   # the curve crosses f = 5 just below PI 25
+        (30.0, 4.70),
+        (40.0, 4.48),
+        (50.0, 4.39),
+        (60.0, 4.29),
+        (64.5, 4.24),   # end of the curve
+    ])
+    def test_read_off_points(self, pi, f):
+        assert figure_8_46_f(pi) == pytest.approx(f, abs=0.05)
 
-    def test_at_80(self):
-        # PI=80: f=175.0
-        assert figure_8_46_f(80.0) == pytest.approx(175.0, rel=1e-4)
+    def test_between_points(self):
+        # PI=35 lies between the read-off points at 34 (4.56) and 36 (4.54)
+        assert figure_8_46_f(35.0) == pytest.approx(4.55, abs=0.05)
 
-    def test_interpolated_35(self):
-        # PI=35: midpoint between 30→300 and 40→250 = 275
-        # Linear interpolation: f = 300 + (35-30)/(40-30)*(250-300) = 300 - 25 = 275
-        assert figure_8_46_f(35.0) == pytest.approx(275.0, rel=1e-2)
+    def test_f_is_of_order_five_not_hundreds(self):
+        # The f axis of Figure 8-46 runs from 3 to 8.
+        for pi in [15.0, 20.0, 30.0, 45.0, 64.5]:
+            assert 3.0 < figure_8_46_f(pi) < 8.0
 
-    def test_clamped_low(self):
-        # PI=5 (below range): should clamp to f=500.0
-        assert figure_8_46_f(5.0) == pytest.approx(500.0, rel=1e-4)
+    def test_falls_with_plasticity(self):
+        values = [figure_8_46_f(p) for p in [15.0, 20.0, 30.0, 40.0, 50.0, 64.0]]
+        assert values == sorted(values, reverse=True)
 
-    def test_clamped_high(self):
-        # PI=100 (above range): should clamp to f=175.0
-        assert figure_8_46_f(100.0) == pytest.approx(175.0, rel=1e-4)
+    def test_start_of_curve_off_400_dpi_render(self):
+        # The curve's left end and first points, read off a 400 dpi render
+        # of PDF p. 472 (printed p. 444) to about +/-0.02: it starts at
+        # PI 14.8, f 6.85; f = 6.78 at PI 15, 6.36 at 16, 6.10 at 17.
+        # PI 14.9 lies halfway between the first two points: 6.815.
+        for pi, f in ((14.8, 6.85), (14.9, 6.815), (15.0, 6.78),
+                      (16.0, 6.36), (17.0, 6.10)):
+            assert figure_8_46_f(pi) == pytest.approx(f, abs=0.02)
+
+    def test_below_curve_raises(self):
+        # The curve starts at PI 14.8
+        for pi in (14.7, 10.0):
+            with pytest.raises(ValueError, match="outside 14.8 to 64.5"):
+                figure_8_46_f(pi)
+
+    def test_above_curve_raises(self):
+        # The curve ends at PI 64.5
+        with pytest.raises(ValueError, match="outside 14.8 to 64.5"):
+            figure_8_46_f(80.0)
 
     def test_negative_raises(self):
         with pytest.raises(ValueError, match="pi must be non-negative"):
             figure_8_46_f(-1.0)
+
+
+# ===========================================================================
+# Ranges the manual states or plots (dm71-25)
+# ============================================================================
+
+
+class TestPrintedRanges:
+    """A value outside the range the manual states or plots is refused."""
+
+    def test_kulhawy_mayne_axes_of_figure_8_3(self):
+        # Figure 8-3 (bottom), PDF p. 426 (printed p. 398): N60 0 to 60,
+        # sigma'v 0 to 3.0 kgf/cm2; Kulhawy and Mayne (1990) approximated
+        # its trends as Eq. 8-4. 3.0 kgf/cm2 = 294.2 kPa.
+        # N60=60, sigma'v=294 kPa, Pa=101.325: 60/(12.2 + 20.3*2.9015) =
+        # 0.84391; ^0.34 = 0.94394; atan = 43.35 deg (between the figure's
+        # 40 and 45 degree curves at that point)
+        assert spt_friction_angle_kulhawy_mayne(60.0, 294.0, 101.325) == pytest.approx(
+            43.35, abs=0.01)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_kulhawy_mayne(61.0, 100.0, 101.325)
+
+    def test_kulhawy_mayne_stress_limit_is_three_atmospheres(self):
+        # The stress axis of Figure 8-3 (bottom), PDF p. 426 (printed
+        # p. 398), ends at 3.0 kgf/cm2 (294.2 kPa, 2.90 atm); the function
+        # refuses sigma'v/Pa above 3.0, a few percent over it, so a caller
+        # who gives Pa as 100 kPa is not refused at 291 kPa.
+        # N60=20, Pa=100: 291 kPa -> 20/(12.2 + 20.3*2.91) = 0.280611;
+        # ^0.34 = 0.649166; atan = 32.99 deg
+        # 300 kPa (ratio 3.0, the limit) -> 20/73.1 = 0.273598; ^0.34 =
+        # 0.643603; atan = 32.77 deg
+        # 300 kPa with Pa=101.325 (ratio 2.961) -> 32.86 deg
+        assert spt_friction_angle_kulhawy_mayne(20.0, 291.0, 100.0) == pytest.approx(
+            32.99, abs=0.01)
+        assert spt_friction_angle_kulhawy_mayne(20.0, 300.0, 100.0) == pytest.approx(
+            32.77, abs=0.01)
+        assert spt_friction_angle_kulhawy_mayne(20.0, 300.0, 101.325) == pytest.approx(
+            32.86, abs=0.01)
+        with pytest.raises(ValueError, match="above 3.0"):
+            spt_friction_angle_kulhawy_mayne(20.0, 301.0, 100.0)
+        with pytest.raises(ValueError, match="3.0 kgf/cm2"):
+            spt_friction_angle_kulhawy_mayne(20.0, 305.0, 101.325)
+
+    def test_wolff_and_hatanaka_uchida_axis_of_figure_8_4(self):
+        # Figure 8-4, PDF p. 427 (printed p. 399), plots both for N1,60
+        # from 0 to 60, ending near 43 and 50 degrees.
+        # Wolff: 27.1 + 0.3*60 - 0.00054*3600 = 43.16
+        # Hatanaka and Uchida: sqrt(15.4*60) + 20 = 50.40
+        assert spt_friction_angle_wolff(60.0) == pytest.approx(43.16, abs=0.01)
+        assert spt_friction_angle_hatanaka_uchida(60.0) == pytest.approx(50.40, abs=0.01)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_wolff(61.0)
+        with pytest.raises(ValueError, match="above 60"):
+            spt_friction_angle_hatanaka_uchida(61.0)
+
+    def test_gibson_axis_of_figure_8_13(self):
+        # Figure 8-13, PDF p. 436 (printed p. 408), plots both Gibson
+        # equations for PI from 0 to 100; the residual curve ends just
+        # under 10 degrees.
+        # PI=100: 0.084*100^1.4 - 75 + 31.9 = 53.0 - 75 + 31.9 = 9.90
+        assert residual_friction_angle_gibson(100.0) == pytest.approx(9.90, abs=0.01)
+        with pytest.raises(ValueError, match="above 100"):
+            residual_friction_angle_gibson(101.0)
+        with pytest.raises(ValueError, match="above 100"):
+            fully_softened_friction_angle(101.0)
+
+    def test_hazen_stated_range(self):
+        # PDF p. 486 (printed p. 458): "developed for saturated clean sands
+        # with a fines content less than 5% and D10 values ranging from
+        # 0.1 mm to 3 mm". k = C D10^2: 0.01 cm/s at 0.1 mm, 9 cm/s at 3 mm
+        assert hydraulic_conductivity_hazen(0.1) == pytest.approx(0.01, abs=1e-9)
+        assert hydraulic_conductivity_hazen(3.0) == pytest.approx(9.0, abs=1e-9)
+        with pytest.raises(ValueError, match="outside 0.1 to 3 mm"):
+            hydraulic_conductivity_hazen(0.05)
+        with pytest.raises(ValueError, match="outside 0.1 to 3 mm"):
+            hydraulic_conductivity_hazen(5.0)
 
 
 # ===========================================================================
@@ -1563,90 +2020,85 @@ class TestFigure846F:
 class TestTable86Integration:
     """Chain table_8_6 → residual_friction_angle_stark_hussain."""
 
-    def test_lt20_50kpa_ll60(self):
-        # Clay fraction < 20%, sigma_n = 50 kPa, LL=60%
-        coeffs = table_8_6_stark_hussain("lt_20", "50_kPa")
-        phi_r = residual_friction_angle_stark_hussain(
-            60.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
+    # Table 8-6 and Eq. 8-17, PDF p. 445 (printed p. 417); the curves are
+    # drawn in Figure 8-22, PDF p. 444 (printed p. 416).
+
+    def _phi_r(self, cf_range, sigma, ll):
+        coeffs = table_8_6_stark_hussain(cf_range, sigma)
+        return residual_friction_angle_stark_hussain(
+            ll, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
         )
-        # phi_r should be a reasonable residual angle (5-35 degrees)
-        assert 5.0 < phi_r < 35.0
+
+    def test_lt20_50kpa_ll75(self):
+        # CF < 20%, 50 kPa, LL = 75:
+        # 39.7 - 0.29*75 + 6.63e-4*5625 = 39.7 - 21.75 + 3.729 = 21.68
+        # (Figure 8-22 shows about 21 at the end of that curve)
+        assert self._phi_r("lt_20", "50_kPa", 75.0) == pytest.approx(21.68, abs=0.01)
+
+    def test_25_to_45_100kpa_ll60(self):
+        # 25% < CF < 45%, 100 kPa, LL = 60:
+        # 29.8 - 3.63e-4*60 - 3.58e-3*3600 + 1.85e-5*216000
+        # = 29.8 - 0.022 - 12.888 + 3.996 = 20.89
+        assert self._phi_r("25_to_45", "100_kPa", 60.0) == pytest.approx(20.89, abs=0.01)
 
     def test_gt50_400kpa_ll80(self):
-        # High clay fraction, high stress, LL=80
-        coeffs = table_8_6_stark_hussain("gt_50", "400_kPa")
-        phi_r = residual_friction_angle_stark_hussain(
-            80.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        # Higher clay fraction + higher LL = lower residual angle
-        assert 3.0 < phi_r < 35.0
+        # CF > 50% and LL < 120, 400 kPa, LL = 80:
+        # 29.4 - 0.2621*80 - 4.01e-4*6400 + 8.72e-6*512000
+        # = 29.4 - 20.968 - 2.566 + 4.465 = 10.33
+        assert self._phi_r("gt_50_ll_lt_120", "400_kPa", 80.0) == pytest.approx(10.33, abs=0.01)
+
+    def test_gt50_high_ll_against_figure_8_22(self):
+        # CF > 50% and 120 < LL < 300, LL = 280: Figure 8-22 shows about
+        # 6 degrees at 50 kPa and about 4.5 degrees at 700 kPa.
+        # 12.0 - 0.0215*280 = 5.98;  5.8 - 0.0049*280 = 4.43
+        assert self._phi_r("gt_50_ll_120_to_300", "50_kPa", 280.0) == pytest.approx(5.98, abs=0.01)
+        assert self._phi_r("gt_50_ll_120_to_300", "700_kPa", 280.0) == pytest.approx(4.43, abs=0.01)
 
     def test_increasing_ll_decreases_phi_r(self):
-        # For same clay fraction/stress, increasing LL should decrease phi_r
-        coeffs = table_8_6_stark_hussain("20_to_50", "100_kPa")
-        phi_30 = residual_friction_angle_stark_hussain(
-            30.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        phi_80 = residual_friction_angle_stark_hussain(
-            80.0, coeffs["c0"], coeffs["c1"], coeffs["c2"], coeffs["c3"]
-        )
-        assert phi_80 < phi_30
+        # For same clay fraction/stress, increasing LL decreases phi_r
+        assert self._phi_r("25_to_45", "100_kPa", 80.0) < self._phi_r("25_to_45", "100_kPa", 40.0)
 
 
 class TestTable89Integration:
     """Chain table_8_9 → undrained_strength_ratio_oc."""
 
-    def test_dss_ocr4(self):
-        # DSS test, OCR=4: su/sv_oc = 0.23 * 4^0.8
-        m = table_8_9_shansep_m("DSS")
-        su_ratio = undrained_strength_ratio_oc(0.23, 4.0, m)
-        # 0.23 * 4^0.8 = 0.23 * 3.031 = 0.697
-        assert su_ratio == pytest.approx(0.23 * 4.0 ** 0.8, rel=1e-4)
+    def test_nominal_m_ocr4(self):
+        # Table 8-9, PDF p. 453 (printed p. 425): nominally 0.8.
+        # (su/sv)NC = 0.22, OCR = 4: 0.22 * 4^0.8 = 0.22 * 3.0314 = 0.6669
+        m = table_8_9_shansep_m("homogeneous_cl_ch_sedimentary_clay")["m"]
+        su_ratio = undrained_strength_ratio_oc(0.22, 4.0, m)
+        assert su_ratio == pytest.approx(0.6669, abs=1e-4)
 
-    def test_ciuc_vs_dss(self):
-        # CIUC (m=0.85) should give higher ratio than DSS (m=0.80)
-        # for same su/sv_nc and OCR>1
-        m_ciuc = table_8_9_shansep_m("CIUC")
-        m_dss = table_8_9_shansep_m("DSS")
-        su_ciuc = undrained_strength_ratio_oc(0.23, 5.0, m_ciuc)
-        su_dss = undrained_strength_ratio_oc(0.23, 5.0, m_dss)
-        assert su_ciuc > su_dss  # higher m → higher ratio for OCR > 1
-
-    def test_published_m_values(self):
-        # Ladd & DeGroot (2004) published values
-        assert table_8_9_shansep_m("DSS") == pytest.approx(0.80, rel=1e-4)
-        assert table_8_9_shansep_m("CIUC") == pytest.approx(0.85, rel=1e-4)
-        assert table_8_9_shansep_m("CK0UE") == pytest.approx(0.70, rel=1e-4)
+    def test_varved_clay_ocr4(self):
+        # Northeastern U.S. varved clays, DSS: m = 0.75
+        # 0.22 * 4^0.75 = 0.22 * 2.8284 = 0.6223
+        m = table_8_9_shansep_m("varved_clay_dss")["m"]
+        su_ratio = undrained_strength_ratio_oc(0.22, 4.0, m)
+        assert su_ratio == pytest.approx(0.6223, abs=1e-4)
 
 
 class TestTable824Integration:
     """Chain table_8_24 → cbr_from_dcp_power."""
 
-    def test_webster_dcp10(self):
-        # Webster (1992): CBR = 292 * DCP^(-1.12), DCP=10 mm/blow
-        coeffs = table_8_24_cbr_dcp("webster_1992")
-        cbr = cbr_from_dcp_power(coeffs["a"], 10.0, coeffs["x"])
-        # 292 * 10^(-1.12) = 292 / 13.18 = 22.15
-        expected = 292.0 * 10.0 ** (-1.12)
-        assert cbr == pytest.approx(expected, rel=1e-4)
+    def test_harrison_dcp8(self):
+        # Table 8-24, PDF p. 484 (printed p. 456): Harrison (1986), clay-like
+        # soils with DCP < 10 mm/blow: CBR = 501 * DCP^(-1.12)
+        # DCP=8: 8^1.12 = 10.267; 501/10.267 = 48.80
+        coeffs = table_8_24_cbr_dcp("harrison_1986_clay_dcp_lt_10")
+        cbr = cbr_from_dcp_power(coeffs["a"], 8.0, coeffs["x"])
+        assert cbr == pytest.approx(48.80, abs=0.01)
 
-    def test_webster_dcp25(self):
-        # DCP=25 mm/blow
-        coeffs = table_8_24_cbr_dcp("webster_1992")
+    def test_gabr_dcp25(self):
+        # Gabr et al. (2000): CBR = 25 * DCP^(-0.55)
+        # DCP=25: 25^0.55 = 5.8731; 25/5.8731 = 4.257
+        coeffs = table_8_24_cbr_dcp("gabr_2000")
         cbr = cbr_from_dcp_power(coeffs["a"], 25.0, coeffs["x"])
-        expected = 292.0 * 25.0 ** (-1.12)
-        assert cbr == pytest.approx(expected, rel=1e-4)
+        assert cbr == pytest.approx(4.257, abs=1e-3)
 
-    def test_published_webster_formula(self):
-        # Published: CBR = 292 * DCP^(-1.12)
-        coeffs = table_8_24_cbr_dcp("webster_1992")
-        assert coeffs["a"] == pytest.approx(292.0, rel=1e-4)
-        assert coeffs["x"] == pytest.approx(-1.12, rel=1e-4)
-
-    def test_all_sources_give_positive_cbr(self):
-        # For DCP=15 mm/blow, all sources should give positive CBR
-        for source in ["webster_1992", "ese_2006", "livneh_2000",
-                        "harrison_1987", "chua_1988", "pen_2002"]:
+    def test_all_rows_give_positive_cbr(self):
+        # For DCP=15 mm/blow, every row gives a positive CBR
+        from geotech_references.dm7_1 import chapter8
+        for source in chapter8._TABLE_8_24_CBR_DCP:
             coeffs = table_8_24_cbr_dcp(source)
             cbr = cbr_from_dcp_power(coeffs["a"], 15.0, coeffs["x"])
             assert cbr > 0.0, f"Negative CBR for {source}: {cbr}"
@@ -1656,12 +2108,12 @@ class TestFigure846Integration:
     """Chain figure_8_46_f → constrained_modulus_spt."""
 
     def test_pi20_n15(self):
-        # PI=20, N=15, Pa=101.3 kPa
+        # Figure 8-46, PDF p. 472 (printed p. 444): f = 5.51 at PI 20.
+        # Eq. 8-33, PDF p. 470 (printed p. 442): Mds = f N Pa
+        # N=15, Pa=100 kPa: Mds = 5.51 * 15 * 100 = 8265 kPa
         f = figure_8_46_f(20.0)
-        M_ds = constrained_modulus_spt(f, 15.0, 101.3)
-        # M = 400 * 15 * 101.3 = 607,800 kPa
-        assert M_ds == pytest.approx(f * 15.0 * 101.3, rel=1e-6)
-        assert M_ds > 0.0
+        M_ds = constrained_modulus_spt(f, 15.0, 100.0)
+        assert M_ds == pytest.approx(8265.0, rel=0.01)
 
     def test_higher_pi_lower_modulus(self):
         # Higher PI → lower f → lower constrained modulus

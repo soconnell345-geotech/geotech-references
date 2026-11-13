@@ -83,31 +83,31 @@ class TestDryUnitWeightFromSaturation:
 
     def test_raises_S_zero(self):
         with pytest.raises(ValueError, match="S must be in the range"):
-            dry_unit_weight_from_saturation(0.0, 15.0, 2.70)
+            dry_unit_weight_from_saturation(0.0, 15.0, 2.70, 62.4)
 
     def test_raises_S_negative(self):
         with pytest.raises(ValueError, match="S must be in the range"):
-            dry_unit_weight_from_saturation(-10.0, 15.0, 2.70)
+            dry_unit_weight_from_saturation(-10.0, 15.0, 2.70, 62.4)
 
     def test_raises_S_over_100(self):
         with pytest.raises(ValueError, match="S must be in the range"):
-            dry_unit_weight_from_saturation(100.1, 15.0, 2.70)
+            dry_unit_weight_from_saturation(100.1, 15.0, 2.70, 62.4)
 
     def test_raises_w_zero(self):
         with pytest.raises(ValueError, match="w must be positive"):
-            dry_unit_weight_from_saturation(85.0, 0.0, 2.70)
+            dry_unit_weight_from_saturation(85.0, 0.0, 2.70, 62.4)
 
     def test_raises_w_negative(self):
         with pytest.raises(ValueError, match="w must be positive"):
-            dry_unit_weight_from_saturation(85.0, -5.0, 2.70)
+            dry_unit_weight_from_saturation(85.0, -5.0, 2.70, 62.4)
 
     def test_raises_G_s_zero(self):
         with pytest.raises(ValueError, match="G_s must be positive"):
-            dry_unit_weight_from_saturation(85.0, 15.0, 0.0)
+            dry_unit_weight_from_saturation(85.0, 15.0, 0.0, 62.4)
 
     def test_raises_G_s_negative(self):
         with pytest.raises(ValueError, match="G_s must be positive"):
-            dry_unit_weight_from_saturation(85.0, 15.0, -2.70)
+            dry_unit_weight_from_saturation(85.0, 15.0, -2.70, 62.4)
 
     def test_raises_gamma_w_zero(self):
         with pytest.raises(ValueError, match="gamma_w must be positive"):
@@ -377,39 +377,39 @@ class TestOversizeCorrectedDryUnitWeight:
 
     def test_raises_gamma_dF_zero(self):
         with pytest.raises(ValueError, match="gamma_dF must be positive"):
-            oversize_corrected_dry_unit_weight(0.0, 0.30, 2.65, 0.70)
+            oversize_corrected_dry_unit_weight(0.0, 0.30, 2.65, 0.70, 62.4)
 
     def test_raises_gamma_dF_negative(self):
         with pytest.raises(ValueError, match="gamma_dF must be positive"):
-            oversize_corrected_dry_unit_weight(-10.0, 0.30, 2.65, 0.70)
+            oversize_corrected_dry_unit_weight(-10.0, 0.30, 2.65, 0.70, 62.4)
 
     def test_raises_P_C_negative(self):
         with pytest.raises(ValueError, match="P_C must be in the range"):
-            oversize_corrected_dry_unit_weight(115.0, -0.1, 2.65, 1.1)
+            oversize_corrected_dry_unit_weight(115.0, -0.1, 2.65, 1.1, 62.4)
 
     def test_raises_P_C_over_one(self):
         with pytest.raises(ValueError, match="P_C must be in the range"):
-            oversize_corrected_dry_unit_weight(115.0, 1.1, 2.65, -0.1)
+            oversize_corrected_dry_unit_weight(115.0, 1.1, 2.65, -0.1, 62.4)
 
     def test_raises_P_F_negative(self):
         with pytest.raises(ValueError, match="P_F must be in the range"):
-            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, -0.1)
+            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, -0.1, 62.4)
 
     def test_raises_P_F_over_one(self):
         with pytest.raises(ValueError, match="P_F must be in the range"):
-            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, 1.1)
+            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, 1.1, 62.4)
 
     def test_raises_sum_not_one(self):
         with pytest.raises(ValueError, match="P_C \\+ P_F must equal 1.0"):
-            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, 0.60)
+            oversize_corrected_dry_unit_weight(115.0, 0.30, 2.65, 0.60, 62.4)
 
     def test_raises_G_sC_zero(self):
         with pytest.raises(ValueError, match="G_sC must be positive"):
-            oversize_corrected_dry_unit_weight(115.0, 0.30, 0.0, 0.70)
+            oversize_corrected_dry_unit_weight(115.0, 0.30, 0.0, 0.70, 62.4)
 
     def test_raises_G_sC_negative(self):
         with pytest.raises(ValueError, match="G_sC must be positive"):
-            oversize_corrected_dry_unit_weight(115.0, 0.30, -2.65, 0.70)
+            oversize_corrected_dry_unit_weight(115.0, 0.30, -2.65, 0.70, 62.4)
 
     def test_raises_gamma_w_zero(self):
         with pytest.raises(ValueError, match="gamma_w must be positive"):
@@ -475,16 +475,23 @@ class TestBorrowVolumeFromWasteWeight:
 
 # ---------------------------------------------------------------------------
 # 10. borrow_volume_from_waste_fraction  (Equation 3-9)
-#     V_B = V_F * gamma_d_F / (gamma_d_B * (1 - X_L))
+#     V_B = V_F * (gamma_d_F / gamma_d_B) * (1 + X_L)
+#     UFC 3-220-20 Eq. 3-9, PDF p. 173 (printed p. 135).
 # ---------------------------------------------------------------------------
 
 class TestBorrowVolumeFromWasteFraction:
     """Tests for borrow_volume_from_waste_fraction(V_F, gamma_d_F, gamma_d_B, X_L)."""
 
     def test_basic_valid(self):
-        # 1000*120 / (100*(1-0.10)) = 120000 / 90 = 1333.333...
+        # 1000*(120/100)*(1+0.10) = 1320.0
         result = borrow_volume_from_waste_fraction(1000.0, 120.0, 100.0, 0.10)
-        assert result == pytest.approx(1333.33333333, rel=1e-4)
+        assert result == pytest.approx(1320.0, rel=1e-9)
+
+    def test_figure_3_13_example(self):
+        # The manual's example, Figure 3-13, PDF p. 174 (printed p. 136):
+        # 1800 ft^3 * (112.7 pcf / 102 pcf) * (1 + 0.02) = 2029 ft^3 per ft.
+        result = borrow_volume_from_waste_fraction(1800.0, 112.7, 102.0, 0.02)
+        assert result == pytest.approx(2029.0, abs=0.5)
 
     def test_no_waste(self):
         # X_L=0 => 1000*120 / (100*1) = 1200.0
@@ -497,9 +504,9 @@ class TestBorrowVolumeFromWasteFraction:
         assert result == pytest.approx(0.0, abs=1e-10)
 
     def test_high_waste_fraction(self):
-        # X_L=0.50 => 1000*120/(100*0.50) = 120000/50 = 2400.0
+        # X_L=0.50 => 1000*(120/100)*1.50 = 1800.0
         result = borrow_volume_from_waste_fraction(1000.0, 120.0, 100.0, 0.50)
-        assert result == pytest.approx(2400.0, rel=1e-4)
+        assert result == pytest.approx(1800.0, rel=1e-9)
 
     def test_raises_V_F_negative(self):
         with pytest.raises(ValueError, match="V_F must be non-negative"):
@@ -536,16 +543,23 @@ class TestBorrowVolumeFromWasteFraction:
 
 # ---------------------------------------------------------------------------
 # 11. shrinkage_factor  (Equation 3-10)
-#     dV/V_F = gamma_d_F / (gamma_d_B * (1 - X_L)) - 1
+#     dV/V_F = (gamma_d_F / gamma_d_B) * (1 + X_L) - 1
+#     UFC 3-220-20 Eq. 3-10, PDF p. 173 (printed p. 135).
 # ---------------------------------------------------------------------------
 
 class TestShrinkageFactor:
     """Tests for shrinkage_factor(gamma_d_F, gamma_d_B, X_L)."""
 
     def test_basic_shrinkage(self):
-        # 120 / (100*(1-0.10)) - 1 = 120/90 - 1 = 1.33333... - 1 = 0.33333...
+        # (120/100)*(1+0.10) - 1 = 1.32 - 1 = 0.32
         result = shrinkage_factor(120.0, 100.0, 0.10)
-        assert result == pytest.approx(0.33333333, rel=1e-4)
+        assert result == pytest.approx(0.32, rel=1e-9)
+
+    def test_agrees_with_figure_3_13_example(self):
+        # Figure 3-13, PDF p. 174 (printed p. 136): 2029 ft^3 of borrow for
+        # 1800 ft^3 of fill, so dV/V_F = 2029/1800 - 1 = 0.127.
+        result = shrinkage_factor(112.7, 102.0, 0.02)
+        assert result == pytest.approx(2029.0 / 1800.0 - 1.0, abs=5e-4)
 
     def test_no_waste_shrinkage(self):
         # X_L=0 => 120/(100*1) - 1 = 1.20 - 1 = 0.20
@@ -565,9 +579,9 @@ class TestShrinkageFactor:
         assert result == pytest.approx(0.0, abs=1e-10)
 
     def test_high_waste(self):
-        # 120/(100*(1-0.50)) - 1 = 120/50 - 1 = 2.4 - 1 = 1.4
+        # (120/100)*(1+0.50) - 1 = 1.8 - 1 = 0.8
         result = shrinkage_factor(120.0, 100.0, 0.50)
-        assert result == pytest.approx(1.4, rel=1e-4)
+        assert result == pytest.approx(0.8, rel=1e-9)
 
     def test_raises_gamma_d_F_zero(self):
         with pytest.raises(ValueError, match="gamma_d_F must be positive"):
@@ -596,3 +610,24 @@ class TestShrinkageFactor:
     def test_raises_X_L_over_one(self):
         with pytest.raises(ValueError, match="X_L must be in the range"):
             shrinkage_factor(120.0, 100.0, 1.5)
+
+
+# ---------------------------------------------------------------------------
+# The unit weight of water is required (no 62.4 pcf default): a caller
+# working in kN/m^3 who left it out got a number in pcf.
+# ---------------------------------------------------------------------------
+
+class TestWaterUnitWeightRequired:
+
+    def test_saturation_form_refuses_a_left_out_gamma_w(self):
+        with pytest.raises(TypeError, match="gamma_w"):
+            dry_unit_weight_from_saturation(85.0, 15.0, 2.70)
+
+    def test_oversize_form_refuses_a_left_out_gamma_w(self):
+        with pytest.raises(TypeError, match="gamma_w"):
+            oversize_corrected_dry_unit_weight(18.0, 0.20, 2.65, 0.80)
+
+    def test_si_numbers_with_si_gamma_w(self):
+        # Made-up SI case, Eq. 3-7: 18*2.65*9.81 / (18*0.2 + 2.65*9.81*0.8)
+        result = oversize_corrected_dry_unit_weight(18.0, 0.20, 2.65, 0.80, 9.81)
+        assert result == pytest.approx(19.18, abs=0.01)

@@ -1,296 +1,324 @@
 {
-  "reference_id": "FHWA-NHI-10-025",
-  "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume II",
-  "volume": "II",
-  "chapter": 9,
-  "chapter_title": "Design of Reinforced Soil Slopes",
-  "sections": [
+ "reference_id": "FHWA-NHI-10-025",
+ "reference_title": "Design and Construction of Mechanically Stabilized Earth Walls and Reinforced Soil Slopes – Volume II",
+ "volume": 2,
+ "chapter": 9,
+ "chapter_title": "Design of Reinforced Soil Slopes",
+ "sections": [
+  {
+   "section_id": "9.1",
+   "title": "Introduction",
+   "body": "[p. 9-1]\n\nThis chapter provides step-by-step procedures for the design of reinforced soil slopes. Design and analysis of existing design using a computer program is also presented. The design approach principally assumes that the slope is to be constructed on a stable foundation. Recommendations for deep seated failure analysis are included. The user is referred to standard soil mechanics texts and FHWA Geosynthetics Design and Construction Guidelines (Holtz et al., 2008) in cases where the stability of the foundation is at issue.\n\nAs indicated in Chapter 8, there are several approaches to the design of reinforced steepened slopes. The method presented in this chapter uses the classic rotational, limit equilibrium slope stability method as shown in Figure 8-2. As for the unreinforced case, a circular arc failure surface (not location) is assumed for the reinforced slope. This geometry provides a simple means of directly increasing the resistance to failure from the inclusion of reinforcement, is directly adaptable to most available conventional slope stability computer programs, and agrees well with experimental results.\n\nThe reinforcement is represented by a concentrated force within the soil mass that intersects the potential failure surface. By adding the failure resistance provided by this force to the resistance already provided by the soil, a factor of safety equal to the rotational stability safety factor is inherently applied to the reinforcement. The tensile capacity of a reinforcement layer is taken as the minimum of its allowable pullout resistance behind the potential failure surface or its long-term allowable design strength. The slope stability factor of safety is taken from the critical surface requiring the maximum amount of reinforcement. Final design is performed by distributing the reinforcement over the height of the slope and evaluating the external stability of the reinforced section.\n\nThe suitability of this design approach has been verified through extensive experimental evaluation by the FHWA including numerical analysis, centrifuge models, and full scale instrumented structures and found to be somewhat conservative. A chart solution developed for simplistic structures is provided as a check for the results. The method for evaluating a given reinforced soil profile is also presented. The flow chart in Figure 9-1 shows the steps required for design of reinforced soil slopes.\n\n[p. 9-2]\n\nEstablish the geometric, loading, and performance requirements for design Determine engineering properties of the in-situ soils Determine properties of available fill Evaluate design parameters for the reinforcement • allowable reinforcement strength • durability criteria • soil-reinforcement interaction Check unreinforced stability of the slope Design reinforcement to provide stable slope • strength • spacing • length Extensible Inextensible Check external stability Sliding Deep Seated Global Local Bearing Capacity Settlement Seismic Evaluate requirements for subsurface and surface water control Develop specifications and contract documents\n\nFigure 9-1. Flow chart of steps for reinforced soil slope design.\n\n[p. 9-3]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-1: Flow chart of steps for reinforced soil slope design."
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-1 to 9-3."
+  },
+  {
+   "section_id": "9.2",
+   "title": "Reinforced Slope Design Guidelines",
+   "body": "[p. 9-3] The design steps outlined in the flow chart are as follows:",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed p. 9-3."
+  },
+  {
+   "section_id": "9.2.1",
+   "title": "Step 1 - Establish the geometric, loading, and performance requirements for design",
+   "body": "[p. 9-3] a. Geometric and loading requirements (see Figure 9-2). • Slope height, H • Slope angle, θ • External (surcharge) loads: - Surcharge load, q - Temporary live load, ∆q - Design seismic acceleration, Am (See Division 1A, AASHTO Standard Specifications for Highway Bridges {AASHTO, 2002} or AASHTO LRFD Bridge Design Specifications {AASHTO, 2007}). • Traffic Barrier - See article 2.7 of AASHTO Standard Specifications for Highway Bridges (AASHTO, 2002), Section 13 of AASHTO LRFD Bridge Design Specifications (AASHTO, 2007), and AASHTO Roadside Design Guide (AASHTO, 2006). b. Performance requirements. • External stability and settlement - Sliding: F.S. ≥ 1.3 - Deep seated (overall stability): F.S. ≥ 1.3 - Local bearing failure (lateral squeeze): F.S. ≥ 1.3 - Dynamic loading: F.S. ≥ 1.1 - Settlement-post construction magnitude and time rate based on project requirements • Compound failure: F.S. ≥ 1.3 • Internal slope stability: F.S. ≥ 1.3",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed p. 9-3."
+  },
+  {
+   "section_id": "9.2.2",
+   "title": "Step 2 - Determine the engineering properties of the in-situ soils",
+   "body": "[p. 9-3] (see recommendations in Chapter 2, Section 2.6 and Chapter 3, Section 3.2.2) • The foundation and retained soil (i.e., soil beneath and behind reinforced zone) profiles. • Strength parameters cu and φu, or c´ and φ´ for each soil layer. • Unit weights γwet and γdry. • Consolidation parameters (Cc, Cr, cv and σ´ p). • Location of the groundwater table dw, and piezometric surfaces. • For failure repair, identify location of previous failure surface and cause of failure. [p. 9-4]\n\nNotations: H = slope height θ = slope angle Tal = allowable strength of reinforcement L = length of reinforcement Sv = vertical spacing of reinforcement q = surcharge load Δq = temporary live load Ao = ground acceleration coefficient Am = design seismic acceleration dw = depth to ground water table in slope dwf = depth to ground water table in foundation cu and φu or c′and φ′ = strength parameters for each soil layer γwet and γdry = unit weights for each soil layer Cc, Cr, cv and σ′p = consolidation parameters for each soil layer\n\nFigure 9-2. Requirements for design of reinforced soil slopes.\n\n[p. 9-5]",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-2: Requirements for design of reinforced soil slopes"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-3 to 9-5."
+  },
+  {
+   "section_id": "9.2.3",
+   "title": "Step 3 - Determine the properties of reinforced fill and, if different, the retained backfill",
+   "body": "[p. 9-5] (see recommendations in Chapter 3, Section 3.2)\n\n• Gradation and plasticity index • Compaction characteristics based on 95% AASHTO T-99, γd and ±2% of optimum moisture, wopt • Compacted lift thickness • Shear strength parameters, cu, φu or c´, and φ´ • Electro chemical properties of reinforced fill - For geosynthetic reinforcement: pH - For steel reinforcement: pH, resistivity, chlorides, sulfates, and organic content",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed p. 9-5. The contents give its title as \"Step 3 - Determine the properties of reinforced fill and, if different, the retained fill\"."
+  },
+  {
+   "section_id": "9.2.4",
+   "title": "Step 4 - Evaluate design parameters for the reinforcement",
+   "body": "[p. 9-5] (see recommendations in Chapter 3, Section 3.5.)\n\n• Allowable geosynthetic strength (Eq. 3-12), Tal = ultimate strength (TULT) ÷ reduction factor (RF) for creep, installation damage and durability:\n\nFor granular reinforced fill meeting the recommended gradation in Chapter 3, and electrochemical properties in Chapter 3, RF = 7 may be conservatively used for preliminary design and for routine, noncritical structures where the minimum test requirements outlined in Table 3-12 are satisfied. Remember, there is a significant cost advantage in obtaining lower RF from test data supplied by the manufacture and/or from agency evaluation!\n\n• Allowable steel strength (Eq. 3-11), Tal = Fy Ac / b, where Ac is the area of the steel adjusted for corrosion. Note: Soils with higher fines are often more corrosive and Table 3-3 property requirements must be carefully checked for the reinforced fill.\n\n• Pullout Resistance: (See recommendations in Chapter 3 and Appendix B) - Use F.S. = 1.5 for granular soils - Use F.S. = 2 for cohesive soils - Minimum anchorage length, Le, = 3 ft (1 m)",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed p. 9-5."
+  },
+  {
+   "section_id": "9.2.5",
+   "title": "Step 5 - Check unreinforced stability",
+   "body": "[p. 9-5]\n\n(see discussion in Chapter 8)\n\na. Evaluate unreinforced stability to determine: if reinforcement is required; critical nature of the design (i.e., unreinforced F.S. ≤ or ≥ 1); potential deep-seated failure problems; [p. 9-6]\n\nand the extent of the reinforced zone. Perform a stability analysis using conventional stability methods (see FHWA Soils and Foundations Workshop Reference Manual {Samtani and Nowatzki, 2006}) to determine safety factors and driving moments for potential failure surfaces. • Use both circular-arc and sliding-wedge methods, and consider failure through the toe, through the face (at several elevations), and deep-seated below the toe. (A number of stability analysis computer programs are available for rapid evaluation, e.g., FHWA sponsored programs including ReSSA and the STABL family of programs developed at Purdue University including the current version, STABL4M. In all cases, a few calculations should be made by hand to be sure the computer program is giving reasonable results.) b. Determine the size of the critical zone to be reinforced. • Examine the full range of potential failure surfaces found to have: Unreinforced safety factor, FSU ≤ Required safety factor, FSR. • Plot all of these surfaces on the cross-section of the slope. • The surfaces that just meet the required safety factor roughly envelope the limits of the critical zone to be reinforced as shown in Figure 9-3.\n\nFigure 9-3. Critical zone defined by rotational and sliding surfaces that meets the required safety factor.\n\n[p. 9-7]\n\nc. Critical failure surfaces extending below the toe of the slope are indications of deep foundation and edge bearing capacity problems that must be addressed prior to completing the design. Where foundation problems are indicated, a more extensive foundation analysis is warranted, and foundation improvement measures should be considered as discussed in Chapter 8.",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 9-3: Critical zone defined by rotational and sliding surface that meet the required safety factor"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-5 to 9-7."
+  },
+  {
+   "section_id": "9.2.6",
+   "title": "Step 6 - Design reinforcement to provide a stable slope",
+   "body": "[p. 9-7]\n\n(see Figure 9-4, and discussion in Chapter 8.)\n\na. Calculate the total reinforcement tension per unit width of slope TS required to obtain the required factor of safety FSR for each potential failure surface inside the critical zone in step 5 that extends through or below the toe of the slope using the following:\n\nTS = (FSR − FSU) MD / D [Eq. 9-1]\n\nwhere:\n\nTS = the sum of the required tensile force per unit width of reinforcement (considering rupture and pullout) in all reinforcement layers intersecting the failure surface MD = driving moment about the center of the failure circle D = the moment arm of TS about the center of failure circle\n\n= radius of circle R for continuous, sheet type extensible reinforcement (i.e., assumed to act tangentially to the circle) = radius of circle R for continuous, sheet type inextensible reinforcement (e.g., wire mesh reinforcement) to account for normal stress increase on adjacent soil = vertical distance, Y, to the centroid of TS for discrete element, strip type reinforcement. Assume H/3 above slope base for preliminary calculations (i.e. assumed to act in a horizontal plane intersecting the failure surface at H/3 above the slope base)\n\nFSU = unreinforced slope safety factor FSR = target minimum slope factor of safety which is applied to both the soil and reinforcement TS-MAX = the largest TS calculated and establishes the total design tension • Note: the minimum unreinforced safety factor usually does not control the location of TS-MAX; the most critical surface is the surface requiring the greatest amount of reinforcement strength.\n\n[p. 9-8]\n\n[Equations and definitions printed in Figure 9-4 (unnumbered), typed in from p. 9-8:] Factor of safety of unreinforced slope: F.S.u = Resisting Moment (MR) / Driving Moment (MD) = (∫ τf · R · dL, from 0 to Lsf) / (Wx + Δq · d); where: W = weight of sliding earth mass; Lsf = length of slip plane; Δq = surcharge; τf = shear strength of soil. Factor of safety of reinforced slope: FSR = FSU + (TS + D) / MD [as printed: the page sets a plus sign between TS and D; Eq. 9-1 on p. 9-7, TS = (FSR − FSU) MD / D, gives FSR = FSU + TS D / MD]; where: TS = sum of available tensile force per width of reinforcement for all reinforcement layers; D = moment arm of TS about the center of rotation = R for continuous extensible and inextensible reinforcement = Y for discrete (e.g., strips) reinforcement. (Labels: CENTER OF ROTATION; R; d; X; Y; ~1/3H; SURCHARGE; Δq; W; TS (Continuous); TS (Strip); ψ; H; Le EMBEDMENT LENGTH.)\n\nFigure 9-4. Rotational shear approach to determine required strength of reinforcement.\n\n[p. 9-9]\n\nb. Determine the total design tension per unit width of slope, TS-MAX, using the charts in Figure 9-5 and compare with TS-MAX from step 6a. If significantly different, check the validity of the charts based on the limiting assumptions listed in the figure and recheck calculations in steps 5 and equation 9-1.\n\n• Figure 9-5 is provided for a quick check of computer-generated results. The figure presents a simplified method based on a two-part wedge type failure surface and is limited by the assumptions noted on the figure.\n\nNote that Figure 9-5 is not intended to be a single design tool. Other design charts available from the literature could also be used (e.g., Ruegger, 1986; Leshchinsky and Boedeker, 1989; Jewell, 1990). As indicated in Chapter 8, several computer programs are also available for analyzing a slope with given reinforcement and can be used as a check. Judgment in selection of other appropriate design methods (i.e., most conservative or experience) is required.\n\nc. Determine the distribution of reinforcement:\n\n• For low slopes (H ≤ 20 ft {6 m}) assume a uniform reinforcement distribution and use TS-MAX to determine spacing or the required tension TMAX requirements for each reinforcement layer.\n\n• For high slopes (H > 20 ft {6 m}), either a uniform reinforcement distribution may be used (preferable) or the slope may be divided into two (top and bottom) or three (top, middle, and bottom) reinforcement zones of equal height using a factored TS-MAX in each zone for spacing or design tension requirements (see Figure 9-6). The total required tension in each zone is found from:\n\nFor 1 zone:\n\nUse TS-MAX\n\nFor 2 zones:\n\nTBottom = 3/4 TS-MAX [Eq. 9-2]\n\nTTop = 1/4 TS-MAX [Eq. 9-3]\n\nFor 3 zones:\n\nTBottom = 1/2 TS-MAX [Eq. 9-4]\n\nTMiddle = 1/3 TS-MAX [Eq. 9-5]\n\nTTop = 1/6 TS-MAX [Eq. 9-6]\n\nThe force is assumed to be uniformly distributed over the entire zone. [p. 9-10]\n\nCHART PROCEDURE: 1) Determine force coefficient K from figure above, where φr = friction angle of reinforced fill: [Figure 9-5 chart procedure equation, typed in from p. 9-10:] φf = tan⁻¹ (tan φr / FRR)\n\n2) Determine: TS-MAX = 0.5 K γr (H’)² where: H' = H + q/γr q = a uniform load 3) Determine the required reinforcement length at the top LT and bottom LB of the slope from the figure above. LIMITING ASSUMPTIONS ● Extensible reinforcement ● Slopes constructed with uniform, cohesionless soil, c = 0) ● No pore pressures within slope ● Competent, level foundation soils ● No seismic forces ● Uniform surcharge not greater than 0.2 γr H ● Relatively high soil/reinforcement interface friction angle, φsg = 0.9 φr (may not be appropriate for some geosynthetics)\n\nFigure 9-5. Chart solution for determining the reinforcement strength requirements (after Schmertmann et. al., 1987).\n\n[p. 9-11]\n\n[Figure 9-6 labels, typed in from p. 9-11:] A) SPACING VERSUS REINFORCEMENT STRENGTH: ZONE 1; ZONE 2; ZONE 3; DECREASE VERTICAL SPACING OR INCREASE REINFORCEMENT STRENGTH; NOTE: MINIMUM SV = COMPACTED LIFT THICKNESS. B) PRIMARY AND SECONDARY REINFORCMENT APPROACH: PRIMARY REINFORCEMENT; SECONDARY REINFORCEMENT; 32 in. (800 mm); 16 in. (400 mm); ≥4 ft (1,2 m); ≥4 ft (1,2 m).\n\nFigure 9-6. Reinforcement spacing considerations for high slopes.\n\n[p. 9-12]\n\nd. Determine reinforcement vertical spacing Sv or the maximum design tension TMAX requirements for each reinforcement layer. • For each zone, calculate TMAX for each reinforcing layer in that zone based on an assumed Sv or, if the allowable reinforcement strength is known, calculate the minimum vertical spacing and number of reinforcing layers N required for each zone based on:\n\nTmax = Tzone Sv / Hzone = Tzone / N ≤ Tal Rc [Eq. 9-7]\n\nwhere: Rc = coverage ratio of the reinforcement which equals the width of the reinforcement b divided by the horizontal spacing Sh Sv = vertical spacing of reinforcement in meters; multiples of compacted layer thickness for ease of construction Tzone = maximum reinforcement tension required for each zone\n\n= TS-MAX for low slopes (H< 6m) Tal = Tult /RF (see Chapter 3 and equation 3-12) Hzone = height of zone = Ttop, Tmiddle, and TBottom for high slopes (H > 20 ft {6 m}) N = number of reinforcement layers • Use short 4 to 6.5 ft (1.2 to 2 m) lengths of intermediate reinforcement layers to maintain a maximum vertical spacing of 16 in. (400 mm) or less for face stability and compaction quality (see Figure 9-6b). - For slopes flatter than 1H:1V, closer spaced reinforcements (i.e., every lift or every other lift, but no greater than 16 in. {400 mm}) preclude having to wrap the face in well graded soils (e.g., sandy gravel and silty and clayey sands). Wrapped faces are required for steeper slopes and uniformly graded soils to prevent face sloughing. Alternative vertical spacings could be used to prevent face sloughing, but in these cases a face stability analysis should be performed either using the method presented in this chapter or by evaluating the face as an infinite slope using (Collin, 1996):\n\n[p. 9-13]\n\nF.S. = [c′ H + (γg − γw) H z cos²β tan φ′ + Fg (cosβ sinβ + sin²β tan φ′)] / (γg H z cosβ sinβ) [Eq. 9-8]\n\nwhere: c′ = effective cohesion\n\nφ′ = effective friction angle\n\nγg = saturated unit weight of soil\n\nγw = unit weight of water\n\nz = vertical depth to failure plane defined by the depth of saturation\n\nH = vertical slope height\n\nβ = slope angle\n\nFg = summation of geosynthetic resisting force\n\n- Intermediate reinforcement should be placed in continuous layers and needs not be as strong as the primary reinforcement, but it must be strong enough to survive construction (e.g. minimum survivability requirements for geotextiles in road stabilization applications in AASHTO M-288, 2006) and provide localized tensile reinforcement to the surficial soils.",
+   "key_points": [],
+   "equations": [
     {
-      "section_id": "9.1",
-      "title": "Introduction",
-      "body": "This chapter provides step-by-step procedures for the design of reinforced soil slopes (RSS). The design approach principally assumes the slope is to be constructed on a stable foundation. The method uses the classic rotational, limit equilibrium slope stability method (circular arc failure surface). Reinforcement is represented as a concentrated force within the soil mass intersecting the potential failure surface. The tensile capacity of a reinforcement layer is taken as the minimum of its allowable pullout resistance behind the potential failure surface or its long-term allowable design strength. The slope stability factor of safety is taken from the critical surface requiring the maximum amount of reinforcement. The flow chart in Figure 9-1 shows the nine design steps. FHWA-sponsored programs ReSSA and the STABL family (Purdue) are available for analysis.",
-      "key_points": [
-        "Circular arc failure surface assumed for RSS (same as unreinforced case)",
-        "Reinforcement force adds to resisting moment; FS applied to both soil and reinforcement",
-        "Critical surface is the one requiring the greatest reinforcement strength, not the minimum FS surface",
-        "Method verified by numerical analysis, centrifuge models, and full-scale instrumented structures",
-        "ReSSA (FHWA-sponsored, ADAMA 2001) is the primary design tool"
-      ],
-      "equations": [],
-      "figures": ["Figure 9-1: Flow chart of steps for reinforced soil slope design"],
-      "tables": [],
-      "applicability": "Reinforced soil slopes (RSS) constructed on stable foundations; ASD framework"
+     "id": "Eq. 9-1",
+     "description": "Equation 9-1 as printed (p. 9-7).",
+     "formula": "TS = (FSR − FSU) MD / D",
+     "variables": {
+      "TS": "the sum of the required tensile force per unit width of reinforcement (considering rupture and pullout) in all reinforcement layers intersecting the failure surface",
+      "MD": "driving moment about the center of the failure circle",
+      "D": "the moment arm of TS about the center of failure circle = radius of circle R for continuous, sheet type extensible reinforcement (i.e., assumed to act tangentially to the circle) = radius of circle R for continuous, sheet type inextensible reinforcement (e.g., wire mesh reinforcement) to account for normal stress increase on adjacent soil = vertical distance, Y, to the centroid of TS for discrete element, strip type reinforcement. Assume H/3 above slope base for preliminary calculations (i.e. assumed to act in a horizontal plane intersecting the failure surface at H/3 above the slope base)",
+      "FSU": "unreinforced slope safety factor",
+      "FSR": "target minimum slope factor of safety which is applied to both the soil and reinforcement",
+      "TS-MAX": "the largest TS calculated and establishes the total design tension"
+     },
+     "notes": "Total reinforcement tension per unit width of slope for each potential failure surface inside the critical zone (Step 6a, p. 9-7).",
+     "source": "Typed in from p. 9-7.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2",
-      "title": "Reinforced Slope Design Guidelines",
-      "body": "Nine-step design procedure for RSS systems.",
-      "key_points": [],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "All RSS applications"
+     "id": "Eq. 9-2",
+     "description": "Equation 9-2 as printed (p. 9-9).",
+     "formula": "TBottom = 3/4 TS-MAX",
+     "variables": {},
+     "notes": "For 2 zones (Step 6c, p. 9-9).",
+     "source": "Typed in from p. 9-9.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.1",
-      "title": "Step 1: Establish Geometric, Loading, and Performance Requirements",
-      "body": "Define slope geometry (height H, angle theta), external surcharge loads (q, delta_q), seismic acceleration (Am per AASHTO Division 1A or LRFD), and traffic barrier loads. Performance requirements: Sliding FS >= 1.3; Deep seated (overall stability) FS >= 1.3; Local bearing failure (lateral squeeze) FS >= 1.3; Dynamic loading FS >= 1.1; Settlement - post-construction magnitude and rate per project requirements; Compound failure FS >= 1.3; Internal slope stability FS >= 1.3.",
-      "key_points": [
-        "FS >= 1.3 for sliding, deep-seated, lateral squeeze, compound, and internal stability",
-        "FS >= 1.1 for dynamic (seismic) loading",
-        "Seismic acceleration Am per AASHTO Standard (2002) Division 1A or LRFD (2007) Appendix A11"
-      ],
-      "equations": [],
-      "figures": ["Figure 9-2: Geometric and loading requirements for RSS design"],
-      "tables": [],
-      "applicability": "Step 1 of 9-step design procedure"
+     "id": "Eq. 9-3",
+     "description": "Equation 9-3 as printed (p. 9-9).",
+     "formula": "TTop = 1/4 TS-MAX",
+     "variables": {},
+     "notes": "For 2 zones (p. 9-9).",
+     "source": "Typed in from p. 9-9.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.2",
-      "title": "Step 2: Determine Engineering Properties of In-Situ Soils",
-      "body": "Determine foundation and retained soil profiles. Required parameters: strength parameters (cu and phi_u, or c' and phi') for each soil layer; unit weights gamma_wet and gamma_dry; consolidation parameters (Cc, Cr, cv, sigma'_p); groundwater table depth dw and piezometric surfaces. For failure repair, identify location of previous failure surface and cause.",
-      "key_points": [
-        "Both total stress (cu, phi_u) and effective stress (c', phi') parameters needed",
-        "Consolidation parameters required for settlement estimation",
-        "For failure repair: locate previous failure surface and identify cause"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Step 2 of 9-step design procedure"
+     "id": "Eq. 9-4",
+     "description": "Equation 9-4 as printed (p. 9-9).",
+     "formula": "TBottom = 1/2 TS-MAX",
+     "variables": {},
+     "notes": "For 3 zones (p. 9-9).",
+     "source": "Typed in from p. 9-9.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.3",
-      "title": "Step 3: Determine Properties of Reinforced Fill",
-      "body": "Determine gradation, PI, compaction characteristics (95% AASHTO T-99, gamma_d, wopt +/-2%), compacted lift thickness, shear strength parameters (cu, phi_u or c', phi'), and electrochemical properties. For geosynthetic reinforcement: pH. For steel reinforcement: pH, resistivity, chlorides, sulfates, and organic content. See Chapter 3 Section 3.2 for gradation and electrochemical limits.",
-      "key_points": [
-        "Compaction criteria: 95% AASHTO T-99 at +/-2% of optimum moisture content",
-        "Geosynthetic fill: check pH; Steel reinforcement fill: check pH, resistivity, Cl, SO4, organics",
-        "Same gradation and electrochemical limits as for MSE walls (Chapter 3)"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": [],
-      "applicability": "Step 3 of 9-step design procedure"
+     "id": "Eq. 9-5",
+     "description": "Equation 9-5 as printed (p. 9-9).",
+     "formula": "TMiddle = 1/3 TS-MAX",
+     "variables": {},
+     "notes": "For 3 zones (p. 9-9).",
+     "source": "Typed in from p. 9-9.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.4",
-      "title": "Step 4: Evaluate Design Parameters for Reinforcement",
-      "body": "Allowable geosynthetic strength: Tal = TULT / RF, where RF accounts for creep (RFCR), installation damage (RFID), and durability (RFD). RF = 7 may be used conservatively for preliminary design and routine noncritical structures where minimum test requirements (Table 3-12) are satisfied. Allowable steel strength: Tal = Fy * Ac / b, where Ac is steel area adjusted for corrosion. Pullout Resistance: Use FS = 1.5 for granular soils; Use FS = 2 for cohesive soils. Minimum anchorage length Le = 3 ft (1 m).",
-      "key_points": [
-        "RF = 7 conservative default for geosynthetics in routine, noncritical RSS with granular fill",
-        "Significant cost advantage in obtaining lower RF from manufacturer test data or agency evaluation",
-        "Pullout FS = 1.5 granular, FS = 2.0 cohesive soils",
-        "Minimum embedment length Le = 3 ft (1 m) regardless of calculation",
-        "Soils with higher fines are often more corrosive - check Table 3-3 property requirements for steel"
-      ],
-      "equations": [
-        {
-          "id": "3-12",
-          "description": "Allowable geosynthetic tensile strength",
-          "expression": "Tal = TULT / (RFCR * RFID * RFD)"
-        },
-        {
-          "id": "3-11",
-          "description": "Allowable steel tensile strength",
-          "expression": "Tal = Fy * Ac / b"
-        }
-      ],
-      "figures": [],
-      "tables": ["Table 3-12: Minimum test requirements for geosynthetic default RF"],
-      "applicability": "Step 4 of 9-step design procedure"
+     "id": "Eq. 9-6",
+     "description": "Equation 9-6 as printed (p. 9-9).",
+     "formula": "TTop = 1/6 TS-MAX",
+     "variables": {},
+     "notes": "For 3 zones (p. 9-9).",
+     "source": "Typed in from p. 9-9.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.5",
-      "title": "Step 5: Check Unreinforced Stability",
-      "body": "Evaluate unreinforced stability to determine if reinforcement is required, criticality of design (FSU <= or >= 1), deep-seated failure problems, and extent of reinforced zone. Use both circular-arc and sliding-wedge methods, considering failure through toe, face (at several elevations), and deep-seated below toe. Examine full range of potential failure surfaces with FSU <= FSR. Plot all surfaces on cross-section. Surfaces that just meet FSR define limits of critical zone to be reinforced. Critical failure surfaces extending below slope toe are indications of deep foundation and edge bearing capacity problems requiring additional analysis.",
-      "key_points": [
-        "Check failure through toe, through face at multiple elevations, and deep-seated below toe",
-        "Critical zone bounded by surfaces where FSU barely meets FSR",
-        "Critical surfaces below toe indicate foundation/bearing capacity problems - address before completing design",
-        "ReSSA, STABL4M, and other programs available for rapid evaluation"
-      ],
-      "equations": [],
-      "figures": ["Figure 9-3: Critical zone defined by rotational and sliding surfaces"],
-      "tables": [],
-      "applicability": "Step 5 of 9-step design procedure"
+     "id": "Eq. 9-7",
+     "description": "Equation 9-7 as printed (p. 9-12).",
+     "formula": "Tmax = Tzone Sv / Hzone = Tzone / N ≤ Tal Rc",
+     "variables": {
+      "Rc": "coverage ratio of the reinforcement which equals the width of the reinforcement b divided by the horizontal spacing Sh",
+      "Sv": "vertical spacing of reinforcement in meters; multiples of compacted layer thickness for ease of construction",
+      "Tzone": "maximum reinforcement tension required for each zone = TS-MAX for low slopes (H< 6m)",
+      "Tal": "Tult /RF (see Chapter 3 and equation 3-12)",
+      "Hzone": "height of zone",
+      "N": "number of reinforcement layers"
+     },
+     "notes": "The page sets '= Ttop, Tmiddle, and TBottom for high slopes (H > 20 ft {6 m})' under Hzone, after Tal; by its wording it is the second value of Tzone (p. 9-12).",
+     "source": "Typed in from p. 9-12.",
+     "implemented_in": null
     },
     {
-      "section_id": "9.2.6",
-      "title": "Step 6: Design Reinforcement to Provide a Stable Slope",
-      "body": "Calculate total reinforcement tension per unit width TS required for FSR for each potential failure surface inside critical zone using Equation 9-1. TS-MAX (largest TS calculated) establishes total design tension. Compare with chart solution Figure 9-5 (two-part wedge method) as check.\n\nReinforcement distribution: For low slopes (H <= 20 ft / 6 m): uniform distribution, use TS-MAX directly. For high slopes (H > 20 ft): divide into 2 or 3 zones of equal height with factored TS-MAX in each zone (Equations 9-2 through 9-6).\n\nFor each zone, calculate TMAX per layer based on assumed Sv, or calculate minimum Sv and number of layers N (Equation 9-7). Use short 4 to 6.5 ft (1.2 to 2 m) intermediate reinforcement layers to maintain maximum vertical spacing of 16 in. (400 mm) for face stability. Wrapped faces required for slopes steeper than 1H:1V and uniformly graded soils to prevent face sloughing.\n\nEmbedment length Le beyond critical failure surface per Equation 9-9. Minimum Le = 3 ft (1 m). For cohesive soils check Le for short-term and long-term pullout. Verify sum of reinforcement forces exceeds TS for each failure surface; only count reinforcement that extends 3 ft beyond surface. Simplify layout with 2 or 3 sections of equal reinforcement length.",
-      "key_points": [
-        "Eq 9-1: TS = (FSR - FSU) * MD / (FSR * D), where D = R for extensible sheet, 0.9R for inextensible sheet, or Y (= H/3 for preliminary) for strip type",
-        "TS-MAX is the critical design value - from surface requiring most reinforcement, not minimum FSU surface",
-        "High slopes (H > 6m): 2 zones (top 1/2, bottom 1/2) or 3 zones (top, middle, bottom) each H/3 tall",
-        "Maximum vertical spacing 16 in. (400 mm); use intermediate reinforcement to maintain spacing",
-        "Minimum Le = 3 ft (1 m); only count reinforcement extending > 3 ft beyond surface for pullout",
-        "Intermediate reinforcement extends 4 to 6.5 ft (1.2 to 2 m) from face"
-      ],
-      "equations": [
-        {
-          "id": "9-1",
-          "description": "Required total reinforcement tension for FSR",
-          "expression": "TS = (FSR * MD - FSU * MD) / (FSR * D) = MD * (FSR - FSU) / (FSR * D)"
-        },
-        {
-          "id": "9-2",
-          "description": "2-zone distribution - bottom zone tension",
-          "expression": "Tbottom = 3/4 * TS-MAX"
-        },
-        {
-          "id": "9-3",
-          "description": "2-zone distribution - top zone tension",
-          "expression": "Ttop = 1/4 * TS-MAX"
-        },
-        {
-          "id": "9-4",
-          "description": "3-zone distribution - bottom zone tension",
-          "expression": "Tbottom = 1/2 * TS-MAX"
-        },
-        {
-          "id": "9-5",
-          "description": "3-zone distribution - middle zone tension",
-          "expression": "Tmiddle = 1/3 * TS-MAX"
-        },
-        {
-          "id": "9-6",
-          "description": "3-zone distribution - top zone tension",
-          "expression": "Ttop = 1/6 * TS-MAX"
-        },
-        {
-          "id": "9-7",
-          "description": "Reinforcement layers per zone",
-          "expression": "N = Tzone * Hzone / (Rc * Sv * Tal) or Sv = Tzone * Hzone / (Rc * N * Tal)"
-        },
-        {
-          "id": "9-8",
-          "description": "Face stability (infinite slope analysis, Collin 1996)",
-          "expression": "FS = (c + (gamma_g - gamma_w) * z * cos^2(beta) * tan(phi)) / ((gamma_g * z - gamma_w * z) * sin(beta) * cos(beta)) + Fg / (gamma_g * z * H * cos(beta) * sin(beta))"
-        },
-        {
-          "id": "9-9",
-          "description": "Required embedment length beyond critical surface",
-          "expression": "Le = (FS_po * TMAX) / (C * F* * alpha * Rc * sigma_v)"
-        }
-      ],
-      "figures": [
-        "Figure 9-4: Rotational shear approach to determine required reinforcement strength",
-        "Figure 9-5: Chart solution for reinforcement strength requirements (Schmertmann et al. 1987)",
-        "Figure 9-6: Reinforcement spacing considerations for high slopes",
-        "Figure 9-7: Developing reinforcement lengths"
-      ],
-      "tables": [],
-      "applicability": "Step 6 of 9-step design procedure; core RSS design step"
-    },
-    {
-      "section_id": "9.2.7",
-      "title": "Step 7: Check External Stability",
-      "body": "Sliding resistance: Evaluate width of reinforced zone at any level using two-part wedge failure surface defined by reinforcement limits. Use frictional resistance of weakest layer (reinforced soil, foundation soil, or soil-reinforcement interface). Figure 9-5b can be used as quick check.\n\nDeep-seated global stability: Evaluate failure surfaces behind reinforced zone; FS >= 1.3 minimum, increased for critical slopes (bridge abutments, major roadways). Use simplified Bishop, M&P, Spencer or other methods.\n\nLateral squeeze (local bearing failure at toe): If weak soil exists beneath embankment to depth Ds < slope base width b', check FS per Silvestri (1983), Equation 9-15. Caution when FS < 2; analysis somewhat conservative (no reinforcement contribution). When Ds > b', general slope stability governs.\n\nFoundation settlement: Determine magnitude and rate of total and differential settlement using classical procedures (FHWA Soils and Foundations Workshop Reference Manual, Samtani and Nowatzki 2006).",
-      "key_points": [
-        "Two-part wedge analysis for sliding: angled at 45+phi/2 or parallel to back of reinforced zone (whichever flatter)",
-        "Interface friction reduction for geosynthetics: phi_sg = 0.9 * phi_r",
-        "FS >= 1.3 for deep-seated stability; increase for critical structures",
-        "Lateral squeeze applies when weak layer depth Ds < slope base width b'",
-        "Eq 9-15 is conservative - does not include reinforcement contribution; rigorous analysis (numerical) if FS < 2"
-      ],
-      "equations": [
-        {
-          "id": "9-14",
-          "description": "Factor of safety for deep-seated stability",
-          "expression": "FS_DS >= 1.3 (minimum)"
-        },
-        {
-          "id": "9-15",
-          "description": "Factor of safety against lateral squeeze (Silvestri 1983)",
-          "expression": "FS_sq = (4.14 * cu) / (gamma * H * (1 + B'/Ds)) + (2 * cu * tan(theta)) / (gamma * H)"
-        }
-      ],
-      "figures": [
-        "Figure 9-8: External stability checks - deep-seated and lateral squeeze"
-      ],
-      "tables": [],
-      "applicability": "Step 7 of 9-step design procedure; external stability verification"
-    },
-    {
-      "section_id": "9.2.8",
-      "title": "Step 8: Seismic Stability",
-      "body": "Perform pseudo-static analysis using seismic coefficient A from local building code and design seismic acceleration Am = A/2. RSS are yielding type structures; Am = A/2 allowed by AASHTO Division 1A Seismic Design Section 6.4.3 (2002) and Appendix A11.1.1.2 (2007). Add horizontal and/or vertical force at centroid of each slice = seismic coefficient * total slice weight. Required: FS dynamic >= 1.1. Evaluate liquefaction potential of foundation soil.",
-      "key_points": [
-        "Am = A/2 (RSS are yielding structures - half the peak ground acceleration)",
-        "F.S. dynamic >= 1.1",
-        "Liquefaction potential of foundation soil must also be evaluated",
-        "Seismic force added to driving moment; assumed to not affect resisting moment"
-      ],
-      "equations": [
-        {
-          "id": "9-seismic",
-          "description": "Design seismic acceleration for RSS",
-          "expression": "Am = A/2"
-        }
-      ],
-      "figures": ["Figure 9-9: Seismic stability analysis (pseudo-static)"],
-      "tables": [],
-      "applicability": "Step 8 of 9-step design procedure; seismic design regions"
-    },
-    {
-      "section_id": "9.2.9",
-      "title": "Step 9: Evaluate Water Runoff and Drainage Requirements",
-      "body": "Subsurface drainage: Design for flow rate, filtration, placement, and outlet details. Drains typically placed at rear of reinforced zone. Geocomposite or granular blanket and trench drains. Geocomposite design considerations: geotextile filtration/clogging; long-term compressive strength of core; geotextile intrusion into core; long-term inflow/outflow capacity. Geocomposite core design pressure limited to: (1) maximum pressure sustained in 10,000-hour test, or (2) crushing pressure / 5.0. Long-term transmissivity test per ASTM D4716. Geotextile reinforcements must be more permeable than reinforced fill.\n\nSurface water runoff: Collect above reinforced slope and channel/pipe below base. Wrapped faces and/or intermediate layers may be required to prevent sloughing. Intermediate reinforcement placed on each or every other lift (except at primary reinforcement lifts); extends 4 to 6.5 ft (1.2 to 2 m) from face.\n\nFlow-induced tractive shear (Equation 9-16): For lambda < 2 psf (100 Pa): vegetation with temporary or permanent erosion control mat. For lambda > 2 psf (100 Pa): vegetation with permanent mat or armor (riprap, gunite, prefab modular units, fabric-formed concrete).",
-      "key_points": [
-        "Geocomposite drainage: core design pressure <= max pressure sustained in 10,000-hr test OR crushing pressure / FS=5",
-        "Transmissivity testing per ASTM D4716 (modified for sustained load, sand substratum)",
-        "Geocomposite/soil interface friction lower than soil friction - may induce failure surface along interface",
-        "Geotextile reinforcements must be more permeable than reinforced fill (no hydraulic buildup)",
-        "Tractive shear threshold 2 psf (100 Pa): below = vegetation + ECM; above = armor or permanent mat",
-        "Intermediate reinforcement: every lift or every other lift, extends 4-6.5 ft (1.2-2 m) from face"
-      ],
-      "equations": [
-        {
-          "id": "9-16",
-          "description": "Flow-induced tractive shear stress on slope face",
-          "expression": "lambda = gamma_w * d * s (kPa), where d = depth of flow (m), s = vertical/horizontal slope angle (m/m)"
-        }
-      ],
-      "figures": ["Figure 9-10: Subsurface drainage considerations"],
-      "tables": [],
-      "applicability": "Step 9 of 9-step design procedure; drainage and erosion control design"
-    },
-    {
-      "section_id": "9.3",
-      "title": "Computer Assisted Design",
-      "body": "Alternative to hand calculation in Step 6: develop trial layout (number, length, design strength, vertical distribution) and analyze with a computer program such as FHWA ReSSA. Charts in Figure 9-5 provide preliminary layout. Most economical layout must provide minimum required FS for internal, external, and compound failure planes. A contour plot of minimum safety factors about trial failure circle centroids is recommended.\n\nNote on design method difference: Equation 9-1 assumes reinforcement force increases the resisting moment (FS applied to reinforcement). Some programs assume reinforcement reduces driving moment with FS = FS_soil only (Equation 9-17). For such programs, Tal must be divided by FSR (= 1.3 minimum) to provide equivalent material uncertainty.",
-      "key_points": [
-        "ReSSA (FHWA-sponsored, ADAMA 2001) is the recommended analysis program",
-        "If program applies FS only to soil (not reinforcement): divide Tal by FSR = 1.3",
-        "Contour plot of minimum FS values recommended to find critical failure modes",
-        "Three failure modes must be checked: internal, external, compound"
-      ],
-      "equations": [
-        {
-          "id": "9-17",
-          "description": "FS when reinforcement reduces driving moment (alternate programs)",
-          "expression": "FS = (MR + TS * D) / MD"
-        }
-      ],
-      "figures": [],
-      "tables": [],
-      "applicability": "Computer-assisted design; verification of hand calculations"
-    },
-    {
-      "section_id": "9.4",
-      "title": "Project Cost Estimates",
-      "body": "Cost estimates for RSS systems are generally per square foot of vertical face. Table 9-1 provides cost estimate framework including reinforced fill, overexcavation, reinforcement (in place), facing system (vegetation, permanent erosion control mat, alternate facings), groundwater control, and guardrail. Example: 6.5 ft (5 m) high RSS with 12 reinforcement layers at 16 ft (4.9 m) length requires 192 ft2/ft (60 m2/m) of reinforcement. Adding 10-15% for overlaps gives 13.5 ft2/ft (13.5 m2/m per m height). Typical total cost estimate: ~$6/ft2 ($64/m2) of vertical face. Alternative facings (bioengineered treatment, wire baskets) add ~$2-3/ft2 ($20-30/m2).",
-      "key_points": [
-        "RSS cost typically estimated per square foot (or meter) of vertical face",
-        "Total cost ~$6/ft2 ($64/m2) typical for basic design with erosion control",
-        "Bioengineered or wire basket facings add $2-3/ft2 but may reduce long-term maintenance costs",
-        "Reinforcement quantity includes 10-15% for overlaps and overages"
-      ],
-      "equations": [],
-      "figures": [],
-      "tables": ["Table 9-1: Estimated Project Costs framework"],
-      "applicability": "Project cost estimation for RSS systems"
+     "id": "Eq. 9-8",
+     "description": "Equation 9-8 as printed (p. 9-13).",
+     "formula": "F.S. = [c′ H + (γg − γw) H z cos²β tan φ′ + Fg (cosβ sinβ + sin²β tan φ′)] / (γg H z cosβ sinβ)",
+     "variables": {
+      "c′": "effective cohesion",
+      "φ′": "effective friction angle",
+      "γg": "saturated unit weight of soil",
+      "γw": "unit weight of water",
+      "z": "vertical depth to failure plane defined by the depth of saturation",
+      "H": "vertical slope height",
+      "β": "slope angle",
+      "Fg": "summation of geosynthetic resisting force"
+     },
+     "notes": "Face stability evaluated as an infinite slope (Collin, 1996), p. 9-13.",
+     "source": "Typed in from p. 9-13.",
+     "implemented_in": null
     }
-  ]
+   ],
+   "figures": [
+    "Figure 9-4: Rotational shear approach to determine required strength of reinforcement",
+    "Figure 9-5: Chart solution for determining the reinforcement strength requirements",
+    "Figure 9-6: Reinforcement spacing considerations for high slopes"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-7 to 9-16."
+  },
+  {
+   "section_id": "9.2.6.a",
+   "title": "Step 6 - Design reinforcement to provide a stable slope (continued, pp. 9-13 to 9-16)",
+   "body": "[p. 9-13] - If the interface friction angle of the intermediate reinforcement ρsr (from ASTM D 5321 or estimated as discussed in Chapter 3, Section 3.4.3) is less than that of the primary reinforcement ρr, then ρsr should be used in the analysis for the portion of the failure surface intersecting the reinforced soil zone.\n\ne. To ensure that the rule-of-thumb reinforcement force distribution is adequate for critical or complex structures, recalculate TS using equation 9-1 to determine potential failure above each layer of primary reinforcement.\n\nf. Determine the reinforcement lengths required:\n\n• The embedment length Le of each reinforcement layer beyond the most critical sliding surface (i.e., circle found for TS-MAX) must be sufficient to provide adequate pullout resistance based on:\n\nLe = Tmax FS / (F* α σ′v Rc C) [Eq. 9-9]\n\nwhere F*, α , Rc, C and σ́v are defined in Chapter 3, Section 3.4. [p. 9-14]\n\n• Minimum value of Le is 3 ft (1 m). For cohesive soils, check Le for both short- and long-term pullout conditions, when using the semi empirical equations in Chapter 3 to obtain F*. For long-term design, use φ′r with c′r = 0 For short-term evaluation, conservatively use φr with cr = 0 from consolidated undrained triaxial or direct shear tests or run pullout tests • Plot the reinforcement lengths as obtained from the pullout evaluation on a slope cross section containing the rough limits of the critical zone determined in step 5 (see Figure 9-7). - The length required for sliding stability at the base will generally control the length of the lower reinforcement levels. - Lower layer lengths must extend at least to the limits of the critical zone as shown in Figure 9-7. Longer reinforcements may be required to resolve deep seated failure problems (see step 7). - Upper levels of reinforcement may not be required to extend to the limits of the critical zone, provided sufficient reinforcement exists in the lower levels to provide the FSR for all circles within the critical zone as shown in Figure 9-7. • Check that the sum of the reinforcement forces passing through each failure surface is greater than Ts required for that surface. - Only count reinforcement that extends 3 ft (1 m) beyond the surface to account for pullout resistance. - If the available reinforcement force is not sufficient, increase the length of reinforcement not passing through the surface or increase the strength of lower-level reinforcement. • Simplify the layout by lengthening some reinforcement layers to create two or three sections of equal reinforcement length for ease of construction and inspection. • Reinforcement layers do not generally need to extend to the limits of the critical zone, except for the lowest levels of each reinforcement section. [p. 9-15]\n\n• Check the length obtained using chart b in Figure 9-5. Note: Le is already included in the total length, Lt and LB from chart B.\n\ng. Check design lengths of complex designs.\n\n• When checking a design that has zones of different reinforcement length, lower zones may be over reinforced to provide reduced lengths of upper reinforcement levels.\n\n• In evaluating the length requirements for such cases, the pullout stability for the reinforcement must be carefully checked in each zone for the critical surfaces exiting at the base of each length zone.\n\n[Figure 9-7 labels, typed in from p. 9-15:] Most critical surface defined by Tmax; Le from pullout ≥ 4 ft (1.2 m); 1m; FSu = FSR defines critical zone; FSu = FSR from wedge or sliding analysis; Base width determined by sliding resistance; Shaded area represents minimum reinforcement length. (A label cut off at the page edge reads \"FSu = FS ... rotationa...\".)\n\nFigure 9-7. Developing reinforcement lengths.\n\n[p. 9-16]",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-9",
+     "description": "Equation 9-9 as printed (p. 9-13).",
+     "formula": "Le = Tmax FS / (F* α σ′v Rc C)",
+     "variables": {},
+     "notes": "F*, α, Rc, C and σ′v are defined in Chapter 3, Section 3.4 (p. 9-13). The chapter numbers no Eqs. 9-10 to 9-13: the next printed is 9-14.",
+     "source": "Typed in from p. 9-13.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 9-7: Developing reinforcement lengths."
+   ],
+   "tables": [],
+   "applicability": "Part 2 of printed Section 9.2.6 (pp. 9-13 to 9-16); the letter is not printed, the section is split here to fit the reference tools."
+  },
+  {
+   "section_id": "9.2.7",
+   "title": "Step 7 - Check external stability",
+   "body": "[p. 9-16] (see discussion in Chapter 8.) • Sliding resistance (Figure 9-8) - Evaluate the width of the reinforced soil zone at any level to resist sliding along the reinforcement. Use a two-part wedge type failure surface defined by the limits of the reinforcement (the length of the reinforcement at the depth of evaluation defined in step 5). The analysis can best be performed using a computerized method which takes into account all soil strata and interface friction values. If the computer program does not account for the presents of reinforcement, the back of the failure surface should be angled at 45 + φ/2 or parallel to the back of the reinforced zone, whichever is flatter (i.e., the wedge should not pass through layers of reinforcement to avoid an overly conservative analysis). The frictional resistance provided by the weakest layer, either the reinforced soil, the foundation soil or the soil-reinforcement interface, should be used in the analysis. A simple analysis using Figure 9-5b can be performed as a quick check, but should not be used for the primary analysis due to the limiting assumptions noted on the figure. The method also assumes that the reinforcement layers are truncated along a plane parallel to the slope face, which may or may not be the case. The analysis was based on a two-part wedge model to predict LB assuming that the reinforcement interface is the weakest plane. A reduction is applied to the interface friction angle, φsg = 0.9 φr, which may not be appropriate for some geosynthetics. The frictional resistance provided by the weakest layer in contact with the geosynthetic, either the reinforced soil or the foundation soil, should be used in the analysis. • Deep seated global stability (Figure 9-8a). - Evaluate potential deep-seated failure surfaces behind the reinforced soil zone to provide:\n\nF.S. = MR / MD ≥ 1.3 minimum [Eq. 9-14]\n\nNote: F.S. ≥ 1.3 is recommended as a minimum and that value should be increased based on the criticality of the slope (e.g., slopes beneath bridge abutments and major roadways) and/or confidence in geotechnical conditions (e.g., soil properties and location of groundwater). [p. 9-17]\n\nThe analysis performed in step 5 should provide the factor of safety for failure surfaces behind the reinforced soil zone. However, as a check, classical rotational slope stability methods such as simplified Bishop, Morgenstern and Price, Spencer, or others may be used (see FHWA’s Ground Improvement Manuals, FHWA NHI-06-019 and FHWA NHI-06-020 {Elias et al., 2006}). Appropriate computer programs also may be used.\n\n[Figure 9-8 text, typed in from p. 9-17:] a) Deep seated (global) stability analysis: R; REINFORCED ZONE; ROTATIONAL SURFACE; WEDGE SURFACE. b) Local bearing failure (lateral squeeze): SOFT SOIL; FIRM SOIL; σz = 2τx / Ds; τ = Cu; x; θ; b'; H; Ds; FS = 2 cu / (γ Ds tan θ) + 4.14 cu / (H γ).\n\nFigure 9-8. Failure through the foundation.\n\n[p. 9-18]\n\n• Local bearing failure at the toe (lateral squeeze) (Figure 9-8b). - If a weak soil layer exists beneath the embankment to a limited depth DS which is less than the width of the slope b', the factor of safety against failure by squeezing may be calculated from (Silvestri, 1983):\n\nFSsqueezing = 2 cu / (γ Ds tan θ) + 4.14 cu / (H γ) ≥ 1.3 [Eq. 9-15]\n\nwhere:\n\nθ = angle of slope\n\nγ = unit weight of soil in slope Ds = depth of soft soil beneath slope base of the embankment\n\nH = height of slope cu = undrained shear strength of soft soil beneath slope\n\nCaution is advised and rigorous analysis (e.g., numerical modeling) should be performed when FS < 2. This approach is somewhat conservative as it does not provide any influence from the reinforcement. When the depth of the soft layer, DS, is greater than the slope base width, b', general slope stability will govern design.\n\n• Foundation settlement.\n\n- Determine the magnitude and rate of total and differential foundation settlements using classical geotechnical engineering procedures (see FHWA Soils and Foundations Workshop Reference Manual, {Samtani and Nowatzki, 2006}).",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-14",
+     "description": "Equation 9-14 as printed (p. 9-16).",
+     "formula": "F.S. = MR / MD ≥ 1.3 minimum",
+     "variables": {},
+     "notes": "Deep seated global stability behind the reinforced soil zone (Step 7, p. 9-16).",
+     "source": "Typed in from p. 9-16.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 9-15",
+     "description": "Equation 9-15 as printed (p. 9-18).",
+     "formula": "FSsqueezing = 2 cu / (γ Ds tan θ) + 4.14 cu / (H γ) ≥ 1.3",
+     "variables": {
+      "θ": "angle of slope",
+      "γ": "unit weight of soil in slope",
+      "Ds": "depth of soft soil beneath slope base of the embankment",
+      "H": "height of slope",
+      "cu": "undrained shear strength of soft soil beneath slope"
+     },
+     "notes": "Local bearing failure at the toe (lateral squeeze), Silvestri (1983), where the weak layer's depth DS is less than the width of the slope b' (p. 9-18).",
+     "source": "Typed in from p. 9-18.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 9-8: Failure through the foundation"
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-16 to 9-18."
+  },
+  {
+   "section_id": "9.2.8",
+   "title": "Step 8 - Seismic stability",
+   "body": "[p. 9-18]\n\n• Dynamic stability (Figure 9-9). - Perform a pseudo-static type analysis using a seismic ground coefficient A, obtained from local building code and a design seismic acceleration Am equal to Am = A/2. Reinforced soil slopes are clearly yielding type structures, more so than walls. As such, Am can be taken as A/2 as allowed by AASHTO in Division 1A-Seismic Design, 6.4.3 Abutments (AASHTO, 2002) and Appendix A11.1.1.2 (AASHTO, 2007)\n\n[Unnumbered equation, p. 9-18:] F.S. dynamic ≥ 1.1 [p. 9-19]\n\nIn the pseudo-static method, seismic stability is determined by adding a horizontal and/or vertical force at the centroid of each slice to the moment equilibrium equation (see Figure 9-9). The additional force is equal to the seismic coefficient times the total weight of the sliding mass. It is assumed that this force has no influence on the normal force and resisting moment, so that only the driving moment is affected. The liquefaction potential of the foundation soil should also be evaluated.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-18 to 9-19."
+  },
+  {
+   "section_id": "9.2.9",
+   "title": "Step 9 - Evaluate requirements for subsurface and surface water runoff control",
+   "body": "[p. 9-19]\n\n• Subsurface water control.\n\n- Design of subsurface water drainage features should address flow rate, filtration, placement, and outlet details.\n\n- Drains are typically placed at the rear of the reinforced zone as shown in Figure 9-10. Geocomposite drainage systems or conventional granular blanket and trench drains could be used (see Chapter 5).\n\nFigure 9-9. Seismic stability analysis.\n\n[p. 9-20]\n\n[Figure 9-10 labels, typed in from p. 9-20:] a) GROUND WATER AND SURFACE DRAINAGE: STORM WATER RUNOFF DIVERSION DITCH OR DRAIN; GEOTEXTILE FILTER; COARSE AGGREGATE OR GEOCOMPOSITE DRAIN; DRAIN LATERALS; SEE DETAIL b BELOW. b) TYPICAL DRAIN DETAILS: FOLD AT TOP; DRAINAGE COMPOSITE; SLOTTED PVC DRAIN PIPE; FREE DRAINING CRUSHED STONE; SLOTTED DRAINAGE PIPE OUTLET; TO TOE OF EMBANKMENT; GEOTEXTILE WRAP; 0.2 ft (0.6 m) TYP (the drain's height); 0.2 ft (0.6 m) TYP (its width). [Both as printed; 0.6 m is 2 ft.]\n\nFigure 9-10. Subsurface drainage considerations.\n\n[p. 9-21]\n\n- Lateral spacing of outlets is dictated by site geometry, estimated flow, and existing agency standards. Outlet design should address long-term performance and maintenance requirements. - Geosynthetic drainage composites can be used in subsurface water drainage design. Drainage composites should be designed with consideration of: o Geotextile filtration/clogging o Long-term compressive strength of polymeric core o Reduction of flow capacity due to intrusion of geotextile into the core o Long-term inflow/outflow capacity Procedures for checking geotextile permeability and filtration/clogging criteria were presented in FHWA Geosynthetic Design and Construction Guidelines (Holtz et al., 2008). Long-term compressive stress and eccentric loadings on the core of a geocomposite should be considered during design and selection. Though not yet addressed in standardized test methods or standards of practice, the following criteria are suggested for addressing core compression. The design pressure on a geocomposite core should be limited to either: o the maximum pressure sustained on the core in a test of 10,000 hours minimum duration o the crushing pressure of a core, as defined with a quick loading test, divided by a factor of safety of 5 Note that crushing pressure can only be defined for some core types. For cases where a crushing pressure cannot be defined, suitability should be based on the maximum load resulting in a residual thickness of the core adequate to provide the required flow after 10,000 hours, or the maximum load resulting in a residual thickness of the core adequate to provide the required flow as defined with the quick loading test divided by a factor of safety of 5. Intrusion of the geotextiles into the core and long-term outflow capacity should be measured with a sustained transmissivity test. The ASTM D4716 test procedure Constant Head Hydraulic Transmissivity of Geotextiles and Geotextile Related Products, should be followed. The test procedure should be modified for sustained testing and for use of sand sub-stratum and super-stratum [p. 9-22]\n\nin lieu of closed cell foam rubber. Load should be maintained for 100 hours or until equilibrium is reached, whichever is greater.\n\n- Slope stability analyses should account for interface shear strength along a geocomposite drain. The geocomposite/soil interface will most likely have a friction value that is lower than that of the soil. Thus, a potential failure surface may be induced along the interface.\n\n- Geotextile reinforcements (primary and intermediate layers) must be more permeable than the reinforced fill material to prevent a hydraulic build up above the geotextile layers during precipitation.\n\nSpecial emphasis on the design and construction of subsurface drainage features is recommended for structures where drainage is critical for maintaining slope stability. Redundancy in the drainage system is also recommended for these cases.\n\n• Surface water runoff.\n\n- Surface water runoff should be collected above the reinforced slope and channeled or piped below the base of the slope. Standard Agency drainage details should be utilized.\n\n- Wrapped faces and/or intermediate layers of secondary reinforcement may be required at the face of reinforced slopes to prevent local sloughing. Guidance is provided in Chapter 8 and Table 8-1. Intermediate layers of reinforcement help achieve compaction at the face, thus increasing soil shear strength and erosion resistance. These layers also act as reinforcement against shallow or sloughing types of slope failures. Intermediate reinforcement is typically placed on each or every other soil lift, except at lifts where primary structural reinforcement is placed. Intermediate reinforcement also is placed horizontally, adjacent to primary reinforcement, and at the same elevation as the primary reinforcement when primary reinforcement is placed at less than 100 percent coverage in plan view. The intermediate reinforcement should extend 4 to 6.5 ft (1.2 to 2 m) back into the fill from the face.\n\n- Select a long-term facing system to prevent or minimize erosion due to rainfall and runoff on the face. [p. 9-23]\n\n- Calculate flow-induced tractive shear stress on the face of the reinforced slope by:\n\nλ = d · γw · s [Eq. 9-16]\n\nwhere:\n\nλ = tractive shear stress, psf (kPa)\n\nd = depth of water flow, ft (m)\n\nγw = unit weight of water, lbs/ft3 (kN/m3)\n\ns = the vertical to horizontal angle of slope face, ft/ft (m/m)\n\nFor λ < 2 psf (100 Pa), consider vegetation with temporary or permanent erosion control mat\n\nFor λ > 2 psf (100 Pa), consider vegetation with permanent erosion control mat or other armor type systems (e.g., riprap, gunite, prefab modular units, fabric-formed concrete, etc.)\n\n- Select vegetation based on local horticultural and agronomic considerations and maintenance.\n\n- Select a synthetic (permanent) erosion control mat that is stabilized against ultra-violet light and is inert to naturally occurring soil-born chemicals and bacteria. Erosion control mats and blankets vary widely in type, cost, and, more importantly, applicability to project conditions. Slope protection should not be left to the construction contractor or vendor's discretion. Guideline material specifications for synthetic permanent erosion control mats are provided in Chapter 10.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-16",
+     "description": "Equation 9-16 as printed (p. 9-23).",
+     "formula": "λ = d · γw · s",
+     "variables": {
+      "λ": "tractive shear stress, psf (kPa)",
+      "d": "depth of water flow, ft (m)",
+      "γw": "unit weight of water, lbs/ft3 (kN/m3)",
+      "s": "the vertical to horizontal angle of slope face, ft/ft (m/m)"
+     },
+     "notes": "Flow-induced tractive shear stress on the face (p. 9-23).",
+     "source": "Typed in from p. 9-23.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 9-9: Seismic stability analysis.",
+    "Figure 9-10: Subsurface drainage considerations."
+   ],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-19 to 9-23."
+  },
+  {
+   "section_id": "9.3",
+   "title": "Computer Assisted Design",
+   "body": "[p. 9-23]\n\nAn alternative to reinforcement design (step 6 in the previous section) is to develop a trial layout of reinforcement and analyze the reinforced slope with a computer program such as the FHWA ReSSA program. Layout includes number, length, design strength, and vertical distribution of the geosynthetic reinforcement. The charts presented in Figure 9-5 provide a method for generating a preliminary layout. Note that these charts were developed with the specific assumptions noted on the figure.\n\n[p. 9-24]\n\nAnalyze the reinforced soil slope with the trial geosynthetic reinforcement layouts. The most economical reinforcement layout must provide the minimum required stability safety factors for internal, external, and compound failure planes. A contour plot of lowest safety factor values about the trial failure circle centroids is recommended to map and locate the minimum safety factor values for the three modes of failure.\n\nThe method of analysis in section 9.2 assumes that the reinforcing force contributed to the resisting moment and thus inherently applies the required factor of safety to the reinforcement. However, some computer programs (and design charts) are based on the assumption that the reinforcement force reduces the driving moment with the stability factor of safety FS calculated as:\n\nFS = MR / (MD − Ts D) [Eq. 9-17]\n\nWith this assumption, the stability factory of safety is not applied to the reinforcement. For such computations and any other methods not applying a factor of safety to the reinforcement, the allowable strength of the reinforcement Tal must be divided by a required minimum factor of safety FSR = 1.3 to provide an equivalent material uncertainty.\n\nExternal stability analysis as was previously shown in step 7 will include an evaluation of local bearing capacity, foundation settlement, and dynamic stability.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 9-17",
+     "description": "Equation 9-17 as printed (p. 9-24).",
+     "formula": "FS = MR / (MD − Ts D)",
+     "variables": {},
+     "notes": "Programs that take the reinforcement force as reducing the driving moment; Tal is then divided by FSR = 1.3 (p. 9-24).",
+     "source": "Typed in from p. 9-24.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-23 to 9-24."
+  },
+  {
+   "section_id": "9.4",
+   "title": "Project Cost Estimates",
+   "body": "[p. 9-24]\n\nCost estimates for reinforced slope systems are generally per square foot of vertical face. Table 9-1 can be used to develop a cost estimate. As an example, the following provides a cost estimate for the 6.5 ft (5 m) high reinforced slope design Example E.8. Considering the 12 layers of reinforcement at a length of 16 ft (4.9 m), the reinforced section would require a total reinforcement of 192 ft2 per ft (60 m2 per meter) length of embankment or 12 ft2 per vertical ft of height (12 m2 per vertical meter of height). Adding 10 to 15 percent for overlaps and overages results in an anticipated reinforcement quantity of 13.5 ft2 per ft (13.5 m2 per meter embankment height). Based on the cost information from suppliers, reinforcement with an allowable strength Ta ≥ 280 lb/ft (4.14 kN/m) would cost on the order of $0.10 to 0.15/ft2 ($1.00 to $1.50/m2). Assuming $0.05 ft2 ($0.50 m2) for handling and placement, the in-place cost of reinforcement would be approximately $2.50/ft2 ($25/m2) of vertical embankment face. Approximately 24.6 yd3 (18.8 m3) of additional fill would be required for the reinforced section per foot (per meter) of embankment length. Using a typical in-place cost for locally [p. 9-25]\n\navailable fill with some hauling of $6 yd3 ($8/m3) (about $4 per 1000 kg), $2.80/ft2 ($30/m2) will be added to the cost. In addition, overexcavation and backfill of existing embankment material will be required to allow for placement of the reinforcement. Assuming $1.50/yd3 ($2/m3) for overexcavation and replacement will add approximately $0.40/ft2 ($4/m2) of vertical face. The erosion protection for the face would also add a cost of $0.50 ft2 ($5/m2) of vertical face plus seeding and mulching. Thus, the total estimated cost for this option would be on the order of $6/ft2 ($64/m2) of vertical embankment face. Alternative facing systems such as soil bioengineered treatment and/or the use of wire baskets for face would each add approximately $2 to $3/ft2 ($20 to $30/m2) to the construction costs, but reduction in long-term maintenance will most likely offset these costs.\n\nTable 9-1. Estimated Project Costs.\n\n[Table 9-1, typed in from p. 9-25, row by row:]\nItem | Total Volume | Unit Cost | Extension | per Vertical square foot (meter)\nReinforced fill (in place) | yd3 (m3) |  |  | \nOverexcavation | yd3 (m3 |  |  | \nReinforcement (in place) | yd2 (m2) |  |  | \nFacing system: Support |  |  |  | \nFacing system: Vegetation | yd2 (m2) |  |  | \nFacing system: Permanent erosion control mat | yd2 (m2) |  |  | \nAlternate facing systems | ft2 (m2) |  |  | \nGroundwater control system | ft2 (m2) |  |  | \nGuardrail | ft (m) |  |  | \nTotal | ------- | --------- |  | \nUnit cost per vertical ft2 (m2) |  |  |  | \nNote Slope Dimensions: Height H = ; Length L = ; Face Surface Area, A ; Reinforcement Area = Lreinforcement * Number of Layers\n[Note on the table: A blank worksheet: the cells after the units are left empty on the page.]\n\n[p. 9-26]",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 9-1: Estimated Project Costs."
+   ],
+   "applicability": "FHWA-NHI-10-025 (Volume II), Chapter 9 (Design of Reinforced Soil Slopes), printed pp. 9-24 to 9-26."
+  }
+ ]
 }

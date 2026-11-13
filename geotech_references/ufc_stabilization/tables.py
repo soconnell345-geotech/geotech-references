@@ -124,7 +124,9 @@ def table_2_2_durability_requirements(soil_type: str) -> dict:
 #   (b) Soil classification corresponds to ASTM D2487-17; LL/PI restriction
 #       per ASTM D4318-17e1.
 #   (c) PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve
-#       (see equations.equation_cement_pi_limit_table_2_3).
+#       (as printed; the 2004 edition's Table 2-1 footnote b divides
+#       (50 - percent passing) by 4, the form
+#       equations.equation_cement_pi_limit_table_2_3 uses, review pave-15).
 # ============================================================================
 
 _TABLE_2_3_FOOTNOTES = {
@@ -254,6 +256,7 @@ def table_2_3_additive_selection_guide(area: str) -> dict:
         "restriction_pass_200": row["restriction_pass_200"],
         "remark": row["remark"],
         "footnotes": dict(_TABLE_2_3_FOOTNOTES),
+        "footnote_c_note": ("The held 2020 edition prints footnote (c) of Table 2-3 (printed 13) as 'PI <= 20 + 50 - percent passing No. 200 (0.075 mm) sieve', with no divisor. The form used is that of the edition it replaced, UFC 3-250-11 of 16 January 2004 (TM 5-822-14, 1994), Table 2-1 footnote b (printed 2-3): PI <= 20 + (50 - percent passing No. 200 sieve)/4. For 10 percent passing the two read 30 (used) and 60 (2020 text as printed). Use equations.equation_cement_pi_limit_table_2_3."),
         "reference": "UFC 3-250-11, Table 2-3, p.13",
         "pdf_page": 20,
     }
@@ -528,16 +531,23 @@ _TABLE_3_5_COLS = {
 
 
 def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percent_passing_no10) -> dict:
-    """Preliminary emulsified-asphalt content for subgrade stabilization (Table 3-5).
+    """Emulsified asphalt requirement, UFC 3-250-11 Table 3-5 (printed p.27,
+    pdf_page 34); returns pounds of emulsified asphalt per 100 pounds of dry
+    aggregate (the printed kg per 45 kg is the same ratio) for a percent
+    passing No. 200 of 0-25 and a percent passing No. 10 column.
 
-    lb (kg) of emulsified asphalt per 100 lb (45 kg) dry aggregate. Select
-    the final design content from the Marshall Stability Test (Sec 3-4.4).
+    Select the final design content from the Marshall Stability Test
+    (Sec 3-4.4). Percent passing No. 200 outside the printed rows, 0-25, is
+    refused (REF-76: above 25 the 25 row used to be returned, with a note).
+    Table 3-3 (printed p.25) recommends 2-30 % passing No. 200 for
+    bituminous-stabilized subgrades, but Table 3-5 stops at 25 and gives
+    no rule past it.
 
     Parameters
     ----------
     percent_passing_200 : float
-        Percent of the aggregate passing the No. 200 (0.075 mm) sieve.
-        Interpolated over the tabulated range 0-25%; clamped at endpoints.
+        Percent of the aggregate passing the No. 200 (0.075 mm) sieve,
+        0-25 (the printed rows), interpolated between them.
     percent_passing_no10 : float or str
         Percent passing the No. 10 (2 mm) sieve. The table's column axis is
         categorical, not continuously interpolated: pass a numeric value
@@ -553,9 +563,20 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
     Raises
     ------
     ValueError
-        If percent_passing_no10 is not < 50 or one of 60/70/80/90/100 (or
-        'lt_50').
+        If percent_passing_200 is outside 0-25, or percent_passing_no10 is
+        not < 50 or one of 60/70/80/90/100 (or 'lt_50').
     """
+    if percent_passing_200 < 0:
+        raise ValueError(
+            f"percent_passing_200 must be >= 0 (Table 3-5 rows run 0-25), "
+            f"got {percent_passing_200}")
+    if percent_passing_200 > _TABLE_3_5_ROWS_P200[-1]:
+        raise ValueError(
+            f"Percent passing No. 200 = {percent_passing_200} is above Table "
+            "3-5's last row (25, printed p.27); the table gives no emulsified "
+            "asphalt content there, and Sec 3-4.4 says the bitumen required "
+            "increases with the finer sizes. Select the content from the "
+            "Marshall Stability Test (Sec 3-4.4).")
     if isinstance(percent_passing_no10, str) and percent_passing_no10.strip().lower() in ("lt_50", "<50"):
         col_key = "lt_50"
     else:
@@ -570,33 +591,38 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
                 f"(tabulated columns), got {percent_passing_no10}"
             )
     value = _linterp(percent_passing_200, _TABLE_3_5_ROWS_P200, _TABLE_3_5_COLS[col_key])
-    return {
+    out = {
         "percent_passing_200": percent_passing_200,
         "percent_passing_no10_column": col_key,
         "emulsified_asphalt_lb_per_100lb": round(value, 3),
-        "reference": "UFC 3-250-11, Table 3-5, p.27",
-        "pdf_page": 34,
     }
+    out["reference"] = "UFC 3-250-11, Table 3-5, p.27"
+    out["pdf_page"] = 34
+    return out
 
 
 # ============================================================================
 # Table 3-6: Swell Potential of Soils (printed p.30, pdf_page 37)
 # ============================================================================
 
-_TABLE_3_6_LL_BANDS = [(60, "high"), (50, "marginal"), (0, "low")]  # LL lower bound -> category (high first)
-_TABLE_3_6_PI_BANDS = [(35, "high"), (25, "marginal"), (0, "low")]
+# As printed (PDF 38, printed p.30): LL > 60 / PI > 35 High; LL 50-60 /
+# PI 25-35 Marginal; LL < 50 / PI < 25 Low. So 60 and 35 are Marginal.
+_TABLE_3_6_LL_BANDS = [(60, "high"), (50, "marginal")]  # (bound, category): high if > bound, marginal if >= bound
+_TABLE_3_6_PI_BANDS = [(35, "high"), (25, "marginal")]
 _TABLE_3_6_SEVERITY = {"low": 0, "marginal": 1, "high": 2}
 
 
 def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> dict:
-    """Swell potential of a soil from its Atterberg limits (Table 3-6).
+    """Swell potential of soils, UFC 3-250-11 Table 3-6 (printed p.30,
+    pdf_page 37); returns 'high', 'marginal' or 'low' from the liquid limit
+    and plasticity index (percent).
 
-    The source table lists LL and PI bands together (LL>60 & PI>35 -> High;
-    LL 50-60 & PI 25-35 -> Marginal; LL<50 & PI<25 -> Low) without stating
-    which criterion governs when they disagree. This function conservatively
-    reports the MORE SEVERE of the two single-criterion categories (a
-    standard interpretive convention for this kind of dual-criterion swell
-    chart), plus both individual categories for transparency.
+    The table prints LL and PI bands together (LL > 60 and PI > 35 High;
+    LL 50-60 and PI 25-35 Marginal; LL < 50 and PI < 25 Low; so LL 60 and
+    PI 35 are Marginal) without stating which criterion governs when they
+    disagree. This function reports the MORE SEVERE of the two
+    single-criterion categories (the code's choice; the table does not
+    say), plus both individual categories.
 
     Parameters
     ----------
@@ -611,11 +637,27 @@ def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> d
         {'liquid_limit', 'plasticity_index', 'll_category', 'pi_category',
          'potential_swell' (the more severe of the two), 'reference',
          'pdf_page'}.
+
+    Raises
+    ------
+    ValueError
+        If liquid_limit or plasticity_index is negative.
     """
-    # Bands are listed highest-severity-first, so the first band whose lower
-    # bound is met by the input is the governing category for that criterion.
-    ll_cat = next(cat for lo, cat in _TABLE_3_6_LL_BANDS if liquid_limit >= lo)
-    pi_cat = next(cat for lo, cat in _TABLE_3_6_PI_BANDS if plasticity_index >= lo)
+    if liquid_limit < 0 or plasticity_index < 0:
+        raise ValueError(
+            f"liquid_limit and plasticity_index must be >= 0, got "
+            f"{liquid_limit}, {plasticity_index}")
+
+    def _band(value, bands):
+        (hi_bound, hi_cat), (mid_bound, mid_cat) = bands
+        if value > hi_bound:
+            return hi_cat
+        if value >= mid_bound:
+            return mid_cat
+        return "low"
+
+    ll_cat = _band(liquid_limit, _TABLE_3_6_LL_BANDS)
+    pi_cat = _band(plasticity_index, _TABLE_3_6_PI_BANDS)
     governing = ll_cat if _TABLE_3_6_SEVERITY[ll_cat] >= _TABLE_3_6_SEVERITY[pi_cat] else pi_cat
     return {
         "liquid_limit": liquid_limit, "plasticity_index": plasticity_index,
@@ -682,9 +724,22 @@ _A1_CLASS_MAP = {
 }
 _A1_CLASS_MAP["lime_cement_fly_ash"] = dict(_A1_CLASS_MAP["lime"])
 
+# Sec A-1.1 (printed p.63, pdf_page 70), as printed.
+_A1_CONDITIONS = (
+    "To qualify for application of equivalency factors, ensure the "
+    "stabilized layer meets appropriate strength and durability requirements "
+    "set forth in this UFC.",
+    "Limit the cement content to 4 percent by weight or less to prevent "
+    "excessive reflective cracking.",
+)
+
 
 def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
-    """Equivalency factors for stabilized material thickness design (Table A-1).
+    """Equivalency factors for stabilized material, UFC 3-250-11 Table A-1
+    (printed p.63, pdf_page 70); returns the base and subbase factors
+    (dimensionless) and the two conditions Sec A-1.1 sets on using them
+    (the layer meets this UFC's strength and durability requirements; the
+    cement content is limited to 4 percent by weight or less).
 
     An equivalency factor is the number of inches of a CONVENTIONAL base or
     subbase that can be replaced by 1 inch of stabilized material
@@ -712,7 +767,7 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     dict
         {'stabilizer_type', 'soil_class', 'soil_group', 'base_factor'
          (None if "(*) Not used for base course material"), 'subbase_factor',
-         'reference', 'pdf_page'}.
+         'conditions' (Sec A-1.1, as printed), 'reference', 'pdf_page'}.
 
     Raises
     ------
@@ -734,6 +789,7 @@ def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     return {
         "stabilizer_type": st, "soil_class": sc_key.upper(), "soil_group": group,
         "base_factor": row["base"], "subbase_factor": row["subbase"],
+        "conditions": list(_A1_CONDITIONS),
         "reference": "UFC 3-250-11, Table A-1, p.63",
         "pdf_page": 70,
     }

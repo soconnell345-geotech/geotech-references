@@ -15,6 +15,13 @@ this script:
    neighbours, so every figure gets a best-estimate page.
 4. Writes ``geotech_references/<package>/figures_catalog.json``.
 
+A manifest volume with ``"layout": "army"`` (EM 1110-1-1905) is read its own
+way instead (``_army_figs``): its "Figure List" as
+``scripts/printed_army_layout.py`` reads the front matter (en dash numbers,
+lettered appendix figures such as C-2a), each figure on the page that prints
+its number and caption, and appendix figures in the chapter file the manifest
+gives that appendix. No other catalog changes.
+
 The catalog is the indexable artifact consumed by
 ``geotech_references._figures_db`` (FTS5 retrieval) and by the
 ``read_reference_figure`` vision tool, which renders the resolved page for
@@ -30,6 +37,18 @@ Usage
     python scripts/build_figure_catalog.py all
     python scripts/build_figure_catalog.py --pack <pack dir> [--pdf FILE]
                                            [--sequential]
+    python scripts/build_figure_catalog.py --add-missing <package>
+        [--chapters 11,12,A2] [--numbers 11-10,11-11] [--overrides FILE.json]
+        [--report FILE.json] [--dry-run]
+
+``--add-missing`` (app BACKLOG REF-08, REF-84) adds to an existing catalog
+the figures its PDF prints under a caption that the catalog lacks, and
+changes none of its rows: each new row's page prints the caption and holds
+a picture or a drawing (:func:`find_missing`, :func:`add_rows`). The caption
+is the one printed under the figure; ``--overrides`` gives a caption typed
+from the rendered page where the text layer garbles a symbol, the page of
+a figure the scan cannot place, ``read_notes`` for a figure printed turned,
+or the ``chapter`` a catalog files an annex's figures under.
 
 ``--pack`` builds a local reference pack's catalog (BACKLOG REF-64; see
 ``docs/REFERENCE_PACKS.md``): the PDF is ``--pdf`` or the first of
@@ -47,6 +66,7 @@ from __future__ import annotations
 import json
 import re
 import statistics
+import unicodedata
 import sys
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -378,6 +398,18 @@ def _chapter_of(figure_number: str):
     if prefix.isdigit():
         return int(prefix)
     return None
+
+
+def _row_chapter(figure_number: str):
+    """The chapter of a row ``--add-missing`` adds: :func:`_chapter_of`, and
+    the chapter of a dot-numbered figure too (``"3.22"`` -> 3, as GEC-7
+    files it); a lettered appendix number stays ``None``."""
+    chapter = _chapter_of(figure_number)
+    if chapter is None:
+        m = re.fullmatch(r"(\d+)\.\d+[A-Za-z]?", figure_number)
+        if m:
+            chapter = int(m.group(1))
+    return chapter
 
 
 def _chapter_key(figure_number: str) -> str:
@@ -784,6 +816,55 @@ def _figs_from_pdf(pdf_abs, seq=False) -> list[dict]:
         doc.close()
 
 
+#: Pages either side of the page a printed page number gives that an Army-layout
+#: figure's caption is looked for on.
+ARMY_SEARCH_PAGES = 3
+
+
+def _army_figs(pdf_abs, vol: dict) -> list[dict]:
+    """The figures of a manual in the Army layout (manifest ``"layout": "army"``,
+    EM 1110-1-1905): its printed Figure List as ``scripts/printed_army_layout.py``
+    reads the front matter (``Figure 4–7. <caption> .... 85``, lettered numbers
+    such as C-2a, en dashes as hyphens), each figure on the page whose text holds
+    its number followed by its caption: the page the list gives, else the
+    nearest within :data:`ARMY_SEARCH_PAGES` (``page_estimated`` where none
+    does). An appendix figure's ``chapter`` is the number the manifest gives
+    that appendix's chapter file (Appendix B is chapter 13)."""
+    import fitz  # PyMuPDF
+    if str(_SCRIPTS_DIR) not in sys.path:
+        sys.path.insert(0, str(_SCRIPTS_DIR))
+    import printed_army_layout as pal
+
+    letters = {c["appendix"]: c["number"] for c in vol["chapters"] if c.get("appendix")}
+    # printed p. 1 is the first page of chapter 1
+    offset = min(c["page_start"] for c in vol["chapters"]) - 1
+    doc = fitz.open(str(pdf_abs))
+    try:
+        front = pal.read_front(doc, *vol["contents_pages"], pal.Book(vol, draft=True))
+        # a caption on its page sets its symbols in mathematical bold italic
+        # letters ('Typical 𝒆-log-p consolidation curve'), the list in plain ones
+        norm_pages = [_norm(unicodedata.normalize("NFKC", doc[i].get_text()))
+                      for i in range(doc.page_count)]
+    finally:
+        doc.close()
+    figs = []
+    for num, (caption, printed) in front["figures"].items():
+        caption = caption.translate(_SMART)
+        needle = _norm(f"Figure {num}") + _norm(unicodedata.normalize("NFKC", caption))[:20]
+        guess = printed + offset - 1
+        order = sorted(range(max(0, guess - ARMY_SEARCH_PAGES),
+                             min(len(norm_pages), guess + ARMY_SEARCH_PAGES + 1)),
+                       key=lambda i: abs(i - guess))
+        idx = next((i for i in order if needle in norm_pages[i]), None)
+        prefix = num.split("-")[0]
+        figs.append({"figure_number": num, "caption": caption,
+                     "printed_page": printed, "list_page": str(printed),
+                     "pdf_page_index": guess if idx is None else idx,
+                     "page_estimated": idx is None,
+                     "chapter": int(prefix) if prefix.isdigit() else letters.get(prefix)})
+    return figs
+
+
 def build_catalog(package: str) -> dict:
     """Build and write ``figures_catalog.json`` for one package.
 
@@ -803,7 +884,8 @@ def build_catalog(package: str) -> dict:
             vabs = _REPO_ROOT / vrel
             if not vabs.exists():
                 raise FileNotFoundError(f"PDF not found for '{package}': {vabs}")
-            vfigs = _figs_from_pdf(vabs)
+            vfigs = _army_figs(vabs, vol) if vol.get("layout") == "army" \
+                else _figs_from_pdf(vabs)
             for f in vfigs:
                 f["pdf_path"] = vrel            # per-figure source PDF
                 f["volume"] = vol.get("volume")
@@ -830,7 +912,7 @@ def build_catalog(package: str) -> dict:
         rec = {
             "figure_number": f["figure_number"],
             "caption": f["caption"],
-            "chapter": _chapter_of(f["figure_number"]),
+            "chapter": f["chapter"] if "chapter" in f else _chapter_of(f["figure_number"]),
             "pdf_page_index": f["pdf_page_index"],
             "printed_page": f["printed_page"],
             "page_estimated": bool(f.get("page_estimated", False)),
@@ -943,6 +1025,429 @@ def build_pack_catalog(pack_dir, pdf: "str | None" = None,
     return catalog
 
 
+# ---------------------------------------------------------------------------
+# Rows a catalog lacks (app BACKLOG REF-08 and REF-84, 2026-11-10)
+# ---------------------------------------------------------------------------
+#
+# ``--add-missing`` adds rows to a catalog that already exists and leaves its
+# rows as they are: the figures printed in the body under a caption that the
+# catalog does not hold (a List of Figures that stops early, a manual that
+# prints one list per chapter, appendix figures numbered "A.1-1", "B1-1",
+# "S2-3"). Each row's page is the page that prints the caption, and a row is
+# written only when that page also holds a picture or a drawing.
+
+#: A figure label, appendix and three-part numbers too: "Figure 11-10",
+#: "Figure 3.22", "Figure A.1-1" and "Figure A7-2" (FHWA NHI-06-089
+#: Appendix A), "Figure B1-1" (GEC-6), "Figure S2-3" (Micropile). A list
+#: entry's page after the label ("Figure 4-10. 12 kip tamper") is not part of
+#: the number.
+_FIG_LABEL = re.compile(
+    r"Figure\s+((?:[A-Z]{1,2}(?:\.?\d{1,2})?|\d{1,2})\s*[-.]\s*\d{1,3}"
+    r"(?:-\d{1,3})?)(?!\d)", re.I)
+#: A picture, or the extent of the vector drawing, covering at least this
+#: share of the page means the page holds a figure; a rule under a running
+#: head or a page border does not.
+GRAPHIC_MIN_SHARE = 0.03
+#: Least number of vector paths that make a drawing.
+GRAPHIC_MIN_PATHS = 6
+#: Characters of a caption (letters and digits) that must follow its label
+#: in the page's text for the page to print that caption.
+CAPTION_CHECK_CHARS = 20
+#: Mathematical alphanumeric symbols (GEC-5 sets its captions' symbols in
+#: them: "𝒔𝒖") are written as the plain letters they stand for.
+_MATH_BLOCK = (0x1D400, 0x1D7FF)
+
+
+def _plain_math(s: str) -> str:
+    import unicodedata
+    return "".join(unicodedata.normalize("NFKC", c)
+                   if _MATH_BLOCK[0] <= ord(c) <= _MATH_BLOCK[1] else c
+                   for c in s)
+
+
+def page_graphic(page) -> "str | None":
+    """``"image"`` or ``"drawing"`` when ``page`` holds a picture, or a
+    vector drawing, covering :data:`GRAPHIC_MIN_SHARE` of the page; None for
+    a page of text (rules and borders aside)."""
+    import fitz
+    area = abs(page.rect)
+    for info in page.get_image_info():
+        r = fitz.Rect(info["bbox"]) & page.rect
+        if r.is_valid and abs(r) >= GRAPHIC_MIN_SHARE * area:
+            return "image"
+    box, n = None, 0
+    for d in page.get_drawings():
+        r = fitz.Rect(d["rect"]) & page.rect
+        # a full-width rule (a running head's line) is not a drawing
+        if min(r.width, r.height) < 2 and max(r.width, r.height) \
+                > 0.6 * page.rect.width:
+            continue
+        n += 1
+        box = fitz.Rect(r) if box is None else box | r
+    if box is not None and n >= GRAPHIC_MIN_PATHS \
+            and abs(box) >= GRAPHIC_MIN_SHARE * area:
+        return "drawing"
+    return None
+
+
+def _caption_lines(lines: list[str], first: str, marker) -> str:
+    """A caption: ``first`` (the label line's text after the label) and the
+    lines after it, up to the one that ends with a period, a blank line or
+    the next label, at most :data:`CAPTION_BLOCK_LINES` lines."""
+    out = [first.strip()] if first.strip() else []
+    if not (out and out[-1].endswith(".")):
+        for line in lines:
+            line = line.strip()
+            if not line:
+                if out:
+                    break
+                continue
+            if marker.match(line):
+                break
+            out.append(line)
+            if line.endswith(".") or len(out) == CAPTION_BLOCK_LINES:
+                break
+    cap = re.sub(r"\s+", " ", re.sub(r"(?<=[A-Za-z])-\n", "-", "\n".join(out)))
+    return cap.translate(_SMART).strip(" .-:–—")
+
+
+def page_captions(page, marker=None) -> list[dict]:
+    """The captions ``page`` prints, in reading order: each
+    ``{figure_number, caption, sideways}``.
+
+    A caption is a label that opens a text block, or a row of one, followed
+    by a capitalized caption ("Figure 11-10  Interpretation of su ...";
+    "Figure 3.22:" over "Photo. Sculpted ..."); a label alone in its block
+    takes the next block's lines. A sentence that cites a figure ("Figure
+    5-9 shows ...") and a list entry with a dotted leader are not captions.
+    ``sideways`` is True when the caption's text runs up or down an upright
+    page (a chart printed turned a quarter turn).
+    """
+    marker = marker or _FIG_LABEL
+    blocks = [b for b in page.get_text("dict")["blocks"] if "lines" in b]
+    found: list[dict] = []
+    seen: set = set()
+    for bi, block in enumerate(blocks):
+        dirs = [tuple(round(v) for v in ln["dir"]) for ln in block["lines"]]
+        sideways = page.rotation == 0 and bool(dirs) and abs(dirs[0][1]) == 1
+
+        def label_bold(num, block=block):
+            """Whether the line that opens with ``num``'s label sets it bold."""
+            for ln in block["lines"]:
+                spans = [s for s in ln["spans"] if s["text"].strip()]
+                text = "".join(s["text"] for s in ln["spans"]).translate(_SMART)
+                m = marker.match(text.lstrip())
+                if spans and m and _fig_id(m.group(1)) == num:
+                    return bool(spans[0]["flags"] & 16) \
+                        or "bold" in spans[0]["font"].lower()
+            return False
+        if sideways:
+            # rotated text: the dict's lines are already in reading order
+            rows_sets = [["".join(s["text"] for s in ln["spans"])
+                          for ln in block["lines"]]]
+        else:
+            rows_sets = _block_columns(block, marker)
+        for rows in rows_sets:
+            rows = [r.translate(_SMART) for r in rows]
+            for k, row in enumerate(rows):
+                m = marker.match(row.lstrip())
+                if not m:
+                    continue
+                rest = re.sub(r"^[\s:.\-–—]+", "", row.lstrip()[m.end():])
+                tail = rows[k + 1:]
+                if not rest.strip() and not tail and bi + 1 < len(blocks):
+                    # a label alone in its block: the caption is the next block
+                    tail = _block_rows(blocks[bi + 1])
+                cap = _caption_lines(tail, rest, marker)
+                if re.search(r"\.{3,}|\.{2,}\s*[\w.-]*\d\s*$", cap):
+                    continue                     # a list entry
+                words = re.sub(r"^(?:\([a-z0-9]{1,3}\)[.:,]?\s*)+", "", cap)
+                # a caption opens with a capital or with a symbol set in
+                # math letters ("𝒑−𝒒 diagram for 𝑪𝑰𝑼𝑪 tests", GEC-5 A2-19)
+                symbol = bool(words) and _MATH_BLOCK[0] <= ord(words[0]) \
+                    <= _MATH_BLOCK[1]
+                # or with a number after a label that ends with a stop
+                # ("Figure 4-10. 12 kip tamper", GEC-13)
+                symbol = symbol or (words[:1].isdigit() and bool(re.match(
+                    r"\s*[.:]", row.lstrip()[m.end():])))
+                if len(cap) < 4 or not (words[:1].isupper() or symbol) \
+                        or re.match(r"(?i)cont(?:inued|'?d\b|\.)", words):
+                    continue
+                num = _fig_id(m.group(1))
+                if (num, cap) in seen:
+                    continue
+                seen.add((num, cap))
+                found.append({"figure_number": num, "caption": cap,
+                              "sideways": sideways,
+                              # (0, -1): the caption reads from the foot of
+                              # the page up; (0, 1): from the head down
+                              "turn": ("clockwise" if dirs[0][1] == -1 else
+                                       "counterclockwise") if sideways else None,
+                              "opens_block": k == 0, "bold": label_bold(num)})
+    return found
+
+
+def turned_text_share(page) -> float:
+    """The share of a page's characters set up or down an upright page (a
+    drawing printed sideways under an upright caption shows here)."""
+    if page.rotation:
+        return 0.0
+    turned = total = 0
+    for b in page.get_text("dict")["blocks"]:
+        for ln in b.get("lines", []):
+            n = sum(len(s["text"].strip()) for s in ln["spans"])
+            total += n
+            if abs(round(ln["dir"][1])) == 1:
+                turned += n
+    return turned / total if total else 0.0
+
+
+def caption_on_page(text: str, figure_number: str, caption: str) -> bool:
+    """True when ``text`` prints ``figure_number``'s label followed by the
+    first :data:`CAPTION_CHECK_CHARS` letters and digits of ``caption``."""
+    label = _norm(f"Figure {figure_number}")
+    want = _norm(_plain_math(caption))[:CAPTION_CHECK_CHARS]
+    return bool(want) and (label + want) in _norm(_plain_math(text))
+
+
+def _is_list_page(text: str) -> bool:
+    """A List of Figures or a contents page: three or more figure entries
+    ending with a dotted leader and a page."""
+    leaders = re.findall(r"(?m)\.{4,}\s*[A-Z]?\.?\d{0,2}\s*-?\s*\d{1,4}\s*$",
+                         text)
+    return len(leaders) >= 3 and len(_FIG_LABEL.findall(text)) >= 3
+
+
+def list_entries(doc, marker=None) -> dict[str, list[dict]]:
+    """Every entry of every List of Figures in ``doc`` (GEC-13 prints one
+    per chapter): figure number -> ``[{caption, list_page, list_page_index}]``,
+    ``list_page`` as the list prints it ("11-24", "61", "A.1 - 2")."""
+    marker = marker or _FIG_LABEL
+    out: dict[str, list[dict]] = {}
+    for i in range(doc.page_count):
+        text = doc[i].get_text().translate(_SMART)
+        if not _is_list_page(text):
+            continue
+        lines = [ln.strip() for ln in text.splitlines() if not _is_lof_noise(ln)]
+        blob = "\n".join(lines)
+        marks = [m for m in marker.finditer(blob)
+                 if re.search(r"(?:^|\n)\s*$", blob[:m.start()][-6:] or "\n")]
+        for k, m in enumerate(marks):
+            seg = blob[m.end():marks[k + 1].start() if k + 1 < len(marks)
+                       else len(blob)]
+            seg = re.sub(r"\s+", " ", seg).strip()
+            pm = re.search(r"\.{2,}\s*([A-Z]?\.?\d{0,2}\s*-\s*\d{1,4}|\d{1,4})"
+                           r"\s*$", seg)
+            token = re.sub(r"\s+", "", pm.group(1)) if pm else None
+            cap = seg[:pm.start()] if pm else seg
+            cap = re.sub(r"\.{2,}", "", cap).strip(" .-:")
+            out.setdefault(_fig_id(m.group(1)), []).append(
+                {"caption": cap, "list_page": token, "list_page_index": i})
+    return out
+
+
+def _printed_page_like(existing: list, token: "str | None",
+                       page_text: str) -> "int | str | None":
+    """The new row's ``printed_page`` in the form the catalog's rows give
+    it: None where they give none, the list's page as an integer (the
+    number after a chapter dash) or as the string the list prints. A
+    catalog whose rows mostly give none gives none."""
+    given = [f.get("printed_page") for f in existing
+             if f.get("printed_page") is not None]
+    kinds = {type(p) for p in given}
+    if not kinds or len(given) * 2 < len(existing):
+        return None
+    if token is None:   # not in a list: the page number its head or foot prints
+        lines = [ln.strip() for ln in page_text.splitlines() if ln.strip()]
+        token = next((re.sub(r"\s+", "", ln) for ln in lines[:8] + lines[-4:]
+                      if re.fullmatch(r"(?:[A-Z]{1,2}\.?\d{0,2}\s*-\s*)?\d{1,4}",
+                                      ln)), None)
+    if token is None:
+        return None
+    if str in kinds:
+        return token
+    last = re.findall(r"\d+", token)
+    return int(last[-1]) if last else None
+
+
+def find_missing(package: str, chapters=None, numbers=None,
+                 overrides=None) -> dict:
+    """The rows ``package``'s catalog lacks, found in its PDF(s).
+
+    ``chapters``: the chapter keys to look in ("11", "A2", "S1"; the part of
+    the number before its first separator); ``numbers``: the only numbers to
+    add; ``overrides``: number -> fields that settle a figure the scan cannot
+    (``pdf_page_index``, ``caption``, ``volume``, ``read_notes``), each
+    checked like any other row. Returns ``{"rows", "not_placed",
+    "list_differs", "repeats"}``; nothing is written.
+    """
+    import fitz
+    manifest = _load_manifest(package)
+    cat = json.loads((_PACKAGE_DIR / package / "figures_catalog.json")
+                     .read_text(encoding="utf-8"))
+    have = {_fig_id(f["figure_number"]) for f in cat["figures"]}
+    vols = manifest.get("volumes") or [
+        {"volume": None, "pdf_path": manifest.get("pdf_path", "")}]
+    want = {_fig_id(n) for n in numbers} if numbers else None
+    chapters = {str(c).upper() for c in chapters} if chapters else None
+    overrides = {_fig_id(k): v for k, v in (overrides or {}).items()}
+
+    def wanted(num):
+        if num in have:
+            return False
+        if want is not None:
+            return num in want
+        return chapters is None or _chapter_key(num) in chapters
+
+    rows, not_placed, differs, repeats = [], [], [], []
+    hits: dict[str, list[dict]] = {}
+    for vol in vols:
+        rel = _repo_relative_pdf_path({"pdf_path": vol.get("pdf_path", "")})
+        path = _REPO_ROOT / rel
+        docs = __import__("os").environ.get("GEOTECH_REFERENCES_DOCS")
+        if not path.exists() and docs:   # a PDF kept outside the checkout
+            path = Path(docs) / Path(rel).name
+        doc = fitz.open(str(path))
+        entries = list_entries(doc)
+        for i in range(doc.page_count):
+            page = doc[i]
+            text = page.get_text()
+            if _is_list_page(text.translate(_SMART)):
+                continue
+            caps = [c for c in page_captions(page) if wanted(c["figure_number"])]
+            turned = turned_text_share(page) if caps else 0.0
+            for k, c in enumerate(caps):
+                c.update(pdf_page_index=i, order=k, volume=vol.get("volume"),
+                         turned=turned,
+                         pdf_path=rel, reference_id=vol.get("reference_id"),
+                         graphic=page_graphic(page),
+                         on_page=caption_on_page(text, c["figure_number"],
+                                                 c["caption"]),
+                         entries=entries.get(c["figure_number"], []),
+                         page_text=text)
+                hits.setdefault(c["figure_number"], []).append(c)
+        for num, ov in overrides.items():
+            if ov.get("volume", vol.get("volume")) != vol.get("volume") \
+                    or not wanted(num) or "pdf_page_index" not in ov:
+                continue   # a caption read off the render alone: below
+            i = ov["pdf_page_index"]
+            text = doc[i].get_text()
+            c = {"figure_number": num, "caption": ov["caption"],
+                 "sideways": bool(ov.get("sideways")), "pdf_page_index": i,
+                 "order": -1, "volume": vol.get("volume"), "pdf_path": rel,
+                 "reference_id": vol.get("reference_id"),
+                 "graphic": page_graphic(doc[i]),
+                 "turned": turned_text_share(doc[i]),
+                 "on_page": caption_on_page(text, num, ov["caption"]),
+                 "entries": entries.get(num, []), "page_text": text,
+                 "override": ov}
+            hits[num] = [c]
+        doc.close()
+
+    def rank(c):
+        """The caption under the figure first: the one the List of Figures
+        words alike, then a label that opens its block, then a bold one
+        (a sentence that cites the figure can open a line too)."""
+        like = max((SequenceMatcher(None, _norm(_plain_math(e["caption"])),
+                                    _norm(_plain_math(c["caption"]))).ratio()
+                    for e in c["entries"]), default=0)
+        return (-round(like, 1), not c.get("opens_block"),
+                not c.get("bold"), c["pdf_page_index"])
+
+    for num, cs in hits.items():
+        cs.sort(key=rank)
+        good = [c for c in cs if c["graphic"] and c["on_page"]] or \
+            [c for c in cs if c.get("override")]
+        if len({(c["pdf_path"], c["pdf_page_index"]) for c in cs}) > 1:
+            repeats.append({"figure_number": num, "pages": [
+                (c["volume"], c["pdf_page_index"], c["caption"][:70],
+                 c["graphic"]) for c in cs]})
+        if not good:
+            not_placed.append({"figure_number": num, "why": "no page with "
+                               "both the caption and a picture or drawing",
+                               "pages": [(c["volume"], c["pdf_page_index"],
+                                          c["caption"][:70], c["graphic"])
+                                         for c in cs]})
+            continue
+        c = good[0]
+        ov = c.get("override") or overrides.get(num) or {}
+        entry = c["entries"][0] if c["entries"] else None
+        # a caption whose symbols the text layer garbles ("suσvc ′ ⁄" for
+        # su/σ′vc) is typed from the rendered page and given as an override
+        cap = ov.get("caption") or _plain_math(c["caption"])
+        if entry and _norm(_plain_math(entry["caption"])) != _norm(cap):
+            differs.append({"figure_number": num, "page": cap,
+                            "list": entry["caption"]})
+        row = {
+            "figure_number": num,
+            "caption": cap,
+            "chapter": ov.get("chapter", _row_chapter(num)),
+            "pdf_page_index": c["pdf_page_index"],
+            "printed_page": ov.get("printed_page", _printed_page_like(
+                cat["figures"], entry["list_page"] if entry else None,
+                c["page_text"])),
+            "page_estimated": False,
+            "description": "",
+        }
+        if manifest.get("volumes"):
+            row["pdf_path"] = c["pdf_path"]
+            row["volume"] = c["volume"]
+            if c.get("reference_id"):
+                row["reference_id"] = c["reference_id"]
+        notes = ov.get("read_notes")
+        if c["sideways"] and not notes:
+            notes = ("Printed sideways on an upright page: turn the page a "
+                     f"quarter turn {c.get('turn') or 'clockwise'} to read the "
+                     "figure and its caption.")
+        if notes:
+            row["read_notes"] = notes
+        row["_key"] = (c["volume"] or 0, c["pdf_page_index"], c["order"])
+        row["_sideways"] = c["sideways"]
+        row["_graphic"] = c["graphic"]
+        row["_turned_share"] = round(c.get("turned", 0.0), 2)
+        rows.append(row)
+    if want is not None:
+        placed = {r["figure_number"] for r in rows} | \
+            {n["figure_number"] for n in not_placed}
+        for num in sorted(want - placed - have):
+            not_placed.append({"figure_number": num,
+                               "why": "no caption with this label found"})
+    _enrich_from_text(package, rows)
+    rows.sort(key=lambda r: r["_key"])
+    return {"rows": rows, "not_placed": not_placed, "list_differs": differs,
+            "repeats": repeats}
+
+
+def add_rows(package: str, rows: list[dict]) -> dict:
+    """Write ``rows`` into ``package``'s catalog without changing its rows:
+    each new row goes before the first row of a later volume or page."""
+    path = _PACKAGE_DIR / package / "figures_catalog.json"
+    cat = json.loads(path.read_text(encoding="utf-8"))
+    have = {_fig_id(f["figure_number"]) for f in cat["figures"]}
+
+    def key(f):
+        return (f.get("volume") or 0, f["pdf_page_index"])
+
+    new = sorted((r for r in rows if r["figure_number"] not in have),
+                 key=lambda r: r["_key"])
+    out, k = [], 0
+    for f in cat["figures"]:
+        while k < len(new) and new[k]["_key"][:2] < key(f):
+            out.append({n: v for n, v in new[k].items()
+                        if not n.startswith("_")})
+            k += 1
+        out.append(f)
+    out.extend({n: v for n, v in r.items() if not n.startswith("_")}
+               for r in new[k:])
+    cat["figures"] = out
+    cat["figure_count"] = len(out)
+    for problem in caption_problems(cat):
+        print(f"[{package}] caption check: {problem}")
+    path.write_text(json.dumps(cat, indent=2, ensure_ascii=False),
+                    encoding="utf-8")
+    return cat
+
+
 def caption_problems(catalog: dict) -> list[str]:
     """Captions that ran on into the page text (BACKLOG REF-27): longer than
     :data:`MAX_CAPTION_CHARS`, or carrying another figure's entry, a list
@@ -973,7 +1478,51 @@ def _packages_with_pdf() -> list[str]:
     return out
 
 
+def _main_add_missing(argv: list[str]) -> int:
+    """``--add-missing <package> [--chapters 11,12,A2] [--numbers 11-10,...]
+    [--overrides FILE.json] [--report FILE.json] [--dry-run]``."""
+    import argparse
+    ap = argparse.ArgumentParser(prog="build_figure_catalog.py --add-missing")
+    ap.add_argument("--add-missing", dest="package", required=True)
+    ap.add_argument("--chapters", help="chapter keys to look in, comma-separated")
+    ap.add_argument("--numbers", help="the only figure numbers to add")
+    ap.add_argument("--overrides", help="JSON: number -> fields for a figure "
+                    "the scan cannot settle")
+    ap.add_argument("--report", help="write what was found to this JSON file")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args(argv)
+    split = (lambda s: [x.strip() for x in s.split(",") if x.strip()]
+             if s else None)
+    overrides = (json.loads(Path(args.overrides).read_text(encoding="utf-8"))
+                 if args.overrides else None)
+    found = find_missing(args.package, split(args.chapters),
+                         split(args.numbers), overrides)
+    for r in found["rows"]:
+        print(f"  + {r['figure_number']:<8} idx {r['pdf_page_index']:>4} "
+              f"vol {r.get('volume')} {r['_graphic'] or 'NO GRAPHIC':<7} "
+              f"{'SIDEWAYS ' if r['_sideways'] else ''}{r['caption'][:80]}")
+    for n in found["not_placed"]:
+        print(f"  ? {n['figure_number']}: {n['why']} {n.get('pages', '')}")
+    for d in found["list_differs"]:
+        print(f"  ~ {d['figure_number']}: page {d['page'][:70]!r} / "
+              f"list {d['list'][:70]!r}")
+    for d in found["repeats"]:
+        print(f"  = {d['figure_number']}: {d['pages']}")
+    print(f"[{args.package}] {len(found['rows'])} rows found, "
+          f"{len(found['not_placed'])} not placed")
+    if args.report:
+        Path(args.report).write_text(json.dumps(found, indent=1, default=str,
+                                                ensure_ascii=False),
+                                     encoding="utf-8")
+    if not args.dry_run and found["rows"]:
+        cat = add_rows(args.package, found["rows"])
+        print(f"[{args.package}] catalog now {cat['figure_count']} rows")
+    return 0
+
+
 def main(argv: list[str]) -> int:
+    if argv and argv[0] == "--add-missing":
+        return _main_add_missing(argv)
     if argv and argv[0] == "--pack":
         import argparse
         ap = argparse.ArgumentParser(prog="build_figure_catalog.py --pack")

@@ -1,0 +1,652 @@
+{
+  "reference_id": "EN 1997-2:2007",
+  "reference_title": "Eurocode 7: Geotechnical design - Part 2: Ground investigation and testing",
+  "package": "eurocode_7_2",
+  "volume": null,
+  "pdf_path": "docs/en.1997.2.2007-1.pdf",
+  "table_count": 38,
+  "tables": [
+    {
+      "table_number": "2.2",
+      "caption": "Soil classification tests",
+      "chapter": 2,
+      "section_id": "2.4.2.6",
+      "section_title": "Tests on samples",
+      "pdf_page_index": 31,
+      "pages": [
+        31
+      ],
+      "printed_page": "30",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2.4.2.6"
+    },
+    {
+      "table_number": "2.3",
+      "caption": "Laboratory tests for the determination of geotechnical parameters",
+      "chapter": 2,
+      "section_id": "2.4.2.6",
+      "section_title": "Tests on samples",
+      "pdf_page_index": 32,
+      "pages": [
+        32
+      ],
+      "printed_page": "31",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2.4.2.6"
+    },
+    {
+      "table_number": "4.1",
+      "caption": "A list of additional plots",
+      "chapter": 4,
+      "section_id": "4.4.3",
+      "section_title": "Evaluation of test results",
+      "pdf_page_index": 47,
+      "pages": [
+        47
+      ],
+      "printed_page": "46",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4.4.3"
+    },
+    {
+      "table_number": "D.2",
+      "caption": "Examples of values of α",
+      "chapter": null,
+      "section_id": "D.4",
+      "section_title": "Example of a correlation between the oedometer modulus and the cone penetration resistance",
+      "pdf_page_index": 115,
+      "pages": [
+        115
+      ],
+      "printed_page": "114",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.4",
+      "implemented_in": [
+        "tables.table_d2_alpha_oedometer"
+      ]
+    },
+    {
+      "table_number": "D.3",
+      "caption": "Unit base resistance pb of cast in-situ piles in coarse soil with little or no fines",
+      "chapter": null,
+      "section_id": "D.6",
+      "section_title": "Example of a correlation between compressive resistance of a single pile and cone penetration resistance",
+      "pdf_page_index": 116,
+      "pages": [
+        116
+      ],
+      "printed_page": "115",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.6",
+      "implemented_in": [
+        "tables.table_d3_pile_base_resistance"
+      ]
+    },
+    {
+      "table_number": "D.4",
+      "caption": "Unit shaft resistance ps of cast in-situ piles in coarse soil with little or no fines",
+      "chapter": null,
+      "section_id": "D.6",
+      "section_title": "Example of a correlation between compressive resistance of a single pile and cone penetration resistance",
+      "pdf_page_index": 116,
+      "pages": [
+        116,
+        117
+      ],
+      "printed_page": "115",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.6",
+      "implemented_in": [
+        "tables.table_d4_pile_shaft_resistance"
+      ]
+    },
+    {
+      "table_number": "D.6",
+      "caption": "Maximum αs values for clay, silt and peat",
+      "chapter": null,
+      "section_id": "D.7",
+      "section_title": "Example of a method to determine the compressive resistance of a single pile",
+      "pdf_page_index": 120,
+      "pages": [
+        120
+      ],
+      "printed_page": "119",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.7",
+      "implemented_in": [
+        "tables.table_d6_alpha_s_clay_silt_peat"
+      ]
+    },
+    {
+      "table_number": "E.2",
+      "caption": "The shape coefficients, λc, λd, for settlement of spread foundations",
+      "chapter": null,
+      "section_id": "E.2",
+      "section_title": "Example of a method to calculate the settlements for spread foundations",
+      "pdf_page_index": 123,
+      "pages": [
+        123
+      ],
+      "printed_page": "122",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "E.2",
+      "implemented_in": [
+        "tables.table_e2_pmt_shape_coefficients"
+      ]
+    },
+    {
+      "table_number": "E.3",
+      "caption": "Correlations for deriving the coefficient α for spread foundations",
+      "chapter": null,
+      "section_id": "E.2",
+      "section_title": "Example of a method to calculate the settlements for spread foundations",
+      "pdf_page_index": 123,
+      "pages": [
+        123
+      ],
+      "printed_page": "122",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "E.2",
+      "implemented_in": [
+        "tables.table_e3_pmt_rheological_factor"
+      ]
+    },
+    {
+      "table_number": "E.4",
+      "caption": "Values of the compression resistance factor, k, for axially loaded piles",
+      "chapter": null,
+      "section_id": "E.3",
+      "section_title": "Example of a method to calculate the compressive resistance of a single pile",
+      "pdf_page_index": 124,
+      "pages": [
+        124
+      ],
+      "printed_page": "123",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "E.3",
+      "implemented_in": [
+        "tables.table_e4_pmt_pile_compression_factor"
+      ]
+    },
+    {
+      "table_number": "F.2",
+      "caption": "Effect of ageing in normally consolidated fine sands",
+      "chapter": null,
+      "section_id": "F.1",
+      "section_title": "Examples of correlations between blow counts and density indices",
+      "pdf_page_index": 126,
+      "pages": [
+        126
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "F.1",
+      "implemented_in": [
+        "tables.table_f2_ageing_factor"
+      ]
+    },
+    {
+      "table_number": "F.3",
+      "caption": "Correlation between the density index (Id) and the effective angle of shearing resistance of silica sands, (φ'), in degrees",
+      "chapter": null,
+      "section_id": "F.2",
+      "section_title": "Examples of deriving values for the effective angle of shearing resistance",
+      "pdf_page_index": 127,
+      "pages": [
+        127
+      ],
+      "printed_page": "126",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "F.2",
+      "implemented_in": [
+        "tables.table_f3_phi_from_density_index"
+      ]
+    },
+    {
+      "table_number": "L.2",
+      "caption": "Minimum mass for sieving",
+      "chapter": null,
+      "section_id": "L.4.1",
+      "section_title": "General requirements",
+      "pdf_page_index": 146,
+      "pages": [
+        146
+      ],
+      "printed_page": "145",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "L.4.1",
+      "implemented_in": [
+        "tables.table_l2_min_mass_sieving"
+      ]
+    },
+    {
+      "table_number": "L.1",
+      "caption": "Mass of soil required for tests on disturbed samples",
+      "chapter": null,
+      "section_id": "L.2.4",
+      "section_title": "Mass of disturbed soil for testing",
+      "pdf_page_index": 145,
+      "pages": [
+        145
+      ],
+      "printed_page": "144",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "L.2.4",
+      "implemented_in": [
+        "tables.table_l1_sample_mass"
+      ]
+    },
+    {
+      "table_number": "L.3",
+      "caption": "Allowable size of particles for compaction tests",
+      "chapter": null,
+      "section_id": "L.4.1",
+      "section_title": "General requirements",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "146",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "L.4.1"
+    },
+    {
+      "table_number": "L.4",
+      "caption": "Mass of soil required for tests on undisturbed samples",
+      "chapter": null,
+      "section_id": "L.4.1",
+      "section_title": "General requirements",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "146",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "L.4.1"
+    },
+    {
+      "table_number": "M.2",
+      "caption": "Checklist for soil classification tests",
+      "chapter": null,
+      "section_id": "M.1",
+      "section_title": "Checklists for classification testing",
+      "pdf_page_index": 151,
+      "pages": [
+        151,
+        152
+      ],
+      "printed_page": "150",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "M.1",
+      "note": "Section M.1 restates each item of the checklist in fewer words; the page has its wording."
+    },
+    {
+      "table_number": "M.3",
+      "caption": "Density tests. Minimum number of soil specimens to be tested for one soil stratum",
+      "chapter": null,
+      "section_id": "M.3.1",
+      "section_title": "Test procedures",
+      "pdf_page_index": 153,
+      "pages": [
+        153
+      ],
+      "printed_page": "152",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "M.3.1"
+    },
+    {
+      "table_number": "P.2",
+      "caption": "Direct shear tests. Recommended minimum number of tests for one soil stratum",
+      "chapter": null,
+      "section_id": "P.2.2",
+      "section_title": "Number of tests",
+      "pdf_page_index": 165,
+      "pages": [
+        165
+      ],
+      "printed_page": "164",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "P.2.2"
+    },
+    {
+      "table_number": "2.1",
+      "caption": "Simplified overview of the applicability of field investigation methods covered by Sections 3 and 4",
+      "chapter": 2,
+      "section_id": "2.4.1.1",
+      "section_title": "General",
+      "pdf_page_index": 26,
+      "pages": [
+        26
+      ],
+      "printed_page": "25",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2.4.1.1",
+      "implemented_in": [
+        "tables.table_2_1_test_applicability"
+      ]
+    },
+    {
+      "table_number": "3.1",
+      "caption": "Quality classes of soil samples for laboratory testing and sampling categories to be used",
+      "chapter": 3,
+      "section_id": "3.4.1",
+      "section_title": "Categories of sampling methods and laboratory quality classes of samples",
+      "pdf_page_index": 35,
+      "pages": [
+        35
+      ],
+      "printed_page": "34",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3.4.1",
+      "implemented_in": [
+        "tables.table_3_1_quality_class"
+      ]
+    },
+    {
+      "table_number": "A.1",
+      "caption": "List of test results of geotechnical standards",
+      "chapter": null,
+      "section_id": "A",
+      "section_title": "List of test results of geotechnical test standards",
+      "pdf_page_index": 99,
+      "pages": [
+        99
+      ],
+      "printed_page": "98",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "A"
+    },
+    {
+      "table_number": "B.1",
+      "caption": "Example of the selection of ground investigation methods in different stages",
+      "chapter": null,
+      "section_id": "B.2",
+      "section_title": "Selection of ground investigation methods in different stages",
+      "pdf_page_index": 103,
+      "pages": [
+        103,
+        104
+      ],
+      "printed_page": "102",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "B.2"
+    },
+    {
+      "table_number": "D.1",
+      "caption": "An example for deriving values of the effective angle of shearing resistance (φ') and drained Young's modulus of elasticity (E') for quartz and feldspar sands from cone penetration resistance (qc)",
+      "chapter": null,
+      "section_id": "D.1",
+      "section_title": "Example for deriving values of the effective angle of shearing resistance and drained Young's modulus",
+      "pdf_page_index": 112,
+      "pages": [
+        112
+      ],
+      "printed_page": "111",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.1",
+      "implemented_in": [
+        "tables.table_d1_phi_e_from_qc"
+      ]
+    },
+    {
+      "table_number": "D.5",
+      "caption": "Maximum values of αp and αs for sands and gravely sands",
+      "chapter": null,
+      "section_id": "D.7",
+      "section_title": "Example of a method to determine the compressive resistance of a single pile",
+      "pdf_page_index": 119,
+      "pages": [
+        119
+      ],
+      "printed_page": "118",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.7",
+      "implemented_in": [
+        "tables.table_d5_alpha_p_alpha_s_sand"
+      ]
+    },
+    {
+      "table_number": "E.1",
+      "caption": "Correlations for deriving the bearing resistance factor, k, for spread foundations",
+      "chapter": null,
+      "section_id": "E.1",
+      "section_title": "Example of a method to calculate the bearing resistance of spread foundations",
+      "pdf_page_index": 122,
+      "pages": [
+        122
+      ],
+      "printed_page": "121",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "E.1",
+      "implemented_in": [
+        "tables.table_e1_pmt_bearing_factor_k"
+      ]
+    },
+    {
+      "table_number": "E.5",
+      "caption": "The selection of design curves for unit shaft resistance",
+      "chapter": null,
+      "section_id": "E.3",
+      "section_title": "Example of a method to calculate the compressive resistance of a single pile",
+      "pdf_page_index": 125,
+      "pages": [
+        125
+      ],
+      "printed_page": "124",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "E.3"
+    },
+    {
+      "table_number": "F.1",
+      "caption": "Correlation between the normalised blow count (N1)60 and the density index ID",
+      "chapter": null,
+      "section_id": "F.1",
+      "section_title": "Examples of correlations between blow counts and density indices",
+      "pdf_page_index": 126,
+      "pages": [
+        126
+      ],
+      "printed_page": "125",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "implemented_in": [
+        "tables.table_f1_density_index_from_n160"
+      ],
+      "note": "Section F.1 types the table's cells, and tables.table_f1_density_index_from_n160 returns them, but neither gives its footnote a, the ratios the N-values of fine and of coarse sands are changed by. Read the footnote off the page."
+    },
+    {
+      "table_number": "G.1",
+      "caption": "Effective angle of shearing resistance (φ') of coarse soil as function of the density index (ID) and the uniformity coefficient (CU)",
+      "chapter": null,
+      "section_id": "G.2",
+      "section_title": "Example of a correlation between the effective angle of shearing resistance and the density index",
+      "pdf_page_index": 130,
+      "pages": [
+        130
+      ],
+      "printed_page": "129",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "G.2",
+      "implemented_in": [
+        "tables.table_g1_phi_from_density_index_dp"
+      ]
+    },
+    {
+      "table_number": "H.1",
+      "caption": "Values of the effective angle of shearing resistance (φ') and drained Young's modulus of elasticity (E') for naturally deposited quartz and feldspar sands estimated from weight sounding resistance in Sweden",
+      "chapter": null,
+      "section_id": "H",
+      "section_title": "Weight sounding test (WST)",
+      "pdf_page_index": 133,
+      "pages": [
+        133
+      ],
+      "printed_page": "132",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "H",
+      "implemented_in": [
+        "tables.table_h1_phi_e_from_wst"
+      ]
+    },
+    {
+      "table_number": "L.5",
+      "caption": "Allowable particle size as a function of size of test specimen",
+      "chapter": null,
+      "section_id": "L.4.1",
+      "section_title": "General requirements",
+      "pdf_page_index": 148,
+      "pages": [
+        148
+      ],
+      "printed_page": "147",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "L.4.1"
+    },
+    {
+      "table_number": "M.1",
+      "caption": "Classification tests. Suggested minimum number of samples to be tested in one soil stratum",
+      "chapter": null,
+      "section_id": "M.1",
+      "section_title": "Checklists for classification testing",
+      "pdf_page_index": 151,
+      "pages": [
+        151
+      ],
+      "printed_page": "150",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "M.1",
+      "implemented_in": [
+        "tables.table_m1_classification_test_count"
+      ]
+    },
+    {
+      "table_number": "O.1",
+      "caption": "Checklist for strength index tests on clayey soil",
+      "chapter": null,
+      "section_id": "O",
+      "section_title": "Detailed information on strength index testing of soil",
+      "pdf_page_index": 163,
+      "pages": [
+        163
+      ],
+      "printed_page": "162",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "O",
+      "note": "Section O restates each item of the checklist in fewer words; the page has its wording."
+    },
+    {
+      "table_number": "P.1",
+      "caption": "Triaxial compression tests. Recommended minimum number of tests for one soil stratum",
+      "chapter": null,
+      "section_id": "P.1.1",
+      "section_title": "Number of tests",
+      "pdf_page_index": 164,
+      "pages": [
+        164
+      ],
+      "printed_page": "163",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "P.1.1",
+      "implemented_in": [
+        "tables.table_min_test_count"
+      ]
+    },
+    {
+      "table_number": "Q.1",
+      "caption": "Incremental oedometer test. Recommended minimum number of tests for one soil stratum",
+      "chapter": null,
+      "section_id": "Q.1",
+      "section_title": "Number of tests",
+      "pdf_page_index": 166,
+      "pages": [
+        166
+      ],
+      "printed_page": "165",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "Q.1"
+    },
+    {
+      "table_number": "S.1",
+      "caption": "Permeability tests. Recommended minimum number of soil specimens to be tested for one soil stratum",
+      "chapter": null,
+      "section_id": "S.2",
+      "section_title": "Number of tests",
+      "pdf_page_index": 169,
+      "pages": [
+        169
+      ],
+      "printed_page": "168",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "S.2"
+    },
+    {
+      "table_number": "V.1",
+      "caption": "Swelling tests on rocks. Recommended minimum number of rock specimens to be tested in one formation",
+      "chapter": null,
+      "section_id": "V.1",
+      "section_title": "General",
+      "pdf_page_index": 174,
+      "pages": [
+        174
+      ],
+      "printed_page": "173",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "V.1",
+      "implemented_in": [
+        "tables.table_v1_swelling_test_specimens"
+      ]
+    },
+    {
+      "table_number": "W.1",
+      "caption": "Uniaxial compression tests. Recommended minimum number of test specimens to be tested for one formation, Brazil tests and triaxial tests",
+      "chapter": null,
+      "section_id": "W.1.2",
+      "section_title": "Number of tests",
+      "pdf_page_index": 177,
+      "pages": [
+        177
+      ],
+      "printed_page": "176",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "W.1.2"
+    }
+  ]
+}

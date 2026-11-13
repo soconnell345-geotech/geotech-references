@@ -31,32 +31,55 @@ from geotech_references.gec_11.tables import (
 class TestTable21:
     """Tests for table_2_1_min_reinforcement_length()."""
 
-    def test_all_entries(self):
-        results = table_2_1_min_reinforcement_length()
-        assert len(results) == 4
+    def test_rows_as_printed(self):
+        """FHWA-NHI-10-024 Vol I Table 2-1, p. 2-43 (PDF page 83): three
+        cases. The code held two seismic rows (0.8 'low', 1.1 'moderate to
+        high') and an 8 ft minimum on every row (review finding gec-21)."""
+        rows = [(r["condition"], r["typical_min_L_over_H"],
+                 r["L_over_H_low"], r["L_over_H_high"])
+                for r in table_2_1_min_reinforcement_length()]
+        assert rows == [
+            ("Static loading with or without traffic surcharge", "0.7", 0.7, 0.7),
+            ("Sloping backfill surcharge", "0.8", 0.8, 0.8),
+            ("Seismic loading", "0.8 to 1.1", 0.8, 1.1),
+        ]
+        for r in table_2_1_min_reinforcement_length():
+            assert "min_length_ft" not in r and "min_length_m" not in r
+
+    def test_static_row_print_note(self):
+        """Table 2-1, p. 2-43 (PDF page 83), prints 'Static loading with or
+        with traffic surcharge' (independent check)."""
+        r = table_2_1_min_reinforcement_length("static")[0]
+        assert "with or with traffic surcharge" in r["print_note"]
+        others = table_2_1_min_reinforcement_length()[1:]
+        assert all("print_note" not in o for o in others)
+
+    def test_refusal_does_not_call_labels_printed(self):
+        with pytest.raises(ValueError) as e:
+            table_2_1_min_reinforcement_length("wind")
+        assert "Printed rows" not in str(e.value)
+        assert "not all worded as printed" in str(e.value)
 
     def test_static(self):
         results = table_2_1_min_reinforcement_length("static")
         assert len(results) == 1
-        assert results[0]["L_over_H"] == 0.7
+        assert results[0]["L_over_H_low"] == 0.7
 
     def test_sloping(self):
         results = table_2_1_min_reinforcement_length("sloping")
         assert len(results) == 1
-        assert results[0]["L_over_H"] == 0.8
+        assert results[0]["L_over_H_low"] == 0.8
 
     def test_seismic(self):
         results = table_2_1_min_reinforcement_length("seismic")
-        assert len(results) == 2
-
-    def test_min_length(self):
-        results = table_2_1_min_reinforcement_length()
-        for entry in results:
-            assert entry["min_length_m"] == 2.5
+        assert len(results) == 1
+        assert results[0]["typical_min_L_over_H"] == "0.8 to 1.1"
 
     def test_no_match(self):
-        results = table_2_1_min_reinforcement_length("nonexistent")
-        assert results == []
+        """A filter that matches no printed case is refused, naming the
+        cases (review finding gec-37: it returned [])."""
+        with pytest.raises(ValueError, match="Seismic loading"):
+            table_2_1_min_reinforcement_length("nonexistent")
 
 
 # ============================================================================
@@ -90,8 +113,16 @@ class TestTable22:
         assert results[0]["ratio_value"] == pytest.approx(0.2)
 
     def test_no_match(self):
-        results = table_2_2_min_embedment_depth("nonexistent")
-        assert results == []
+        """'2:1 slope' is not how Table 2-2 (p. 2-43) names its rows; the
+        refusal lists them (gec-37)."""
+        with pytest.raises(ValueError, match="Slopes 2H:1V"):
+            table_2_2_min_embedment_depth("2:1 slope")
+
+    def test_footnote(self):
+        """Table 2-2, p. 2-43: '* Minimum depth is the greater of applicable
+        values listed, frost depth, or scour depth.'"""
+        for r in table_2_2_min_embedment_depth():
+            assert "frost depth, or scour depth" in r["notes"]
 
 
 # ============================================================================
@@ -157,9 +188,16 @@ class TestTable33:
 class TestTable34:
     """Tests for table_3_4_electrochemical_geosynth()."""
 
-    def test_all_entries(self):
-        results = table_3_4_electrochemical_geosynth()
-        assert len(results) == 3
+    def test_rows_as_printed(self):
+        """FHWA-NHI-10-024 Vol I Table 3-4, p. 3-10 (PDF page 102): two rows.
+        The print's own row name 'polyolefin' returned [] (gec-37)."""
+        rows = [(r["polymer"], r["criteria"], r["test_method"])
+                for r in table_3_4_electrochemical_geosynth()]
+        assert rows == [
+            ("Polyester (PET)", "3 < pH < 9", "AASHTO T-289"),
+            ("Polyolefin (PP & HDPE)", "pH > 3", "AASHTO T-289"),
+        ]
+        assert table_3_4_electrochemical_geosynth("polyolefin")[0]["pH_max"] is None
 
     def test_pet(self):
         results = table_3_4_electrochemical_geosynth("PET")
@@ -170,12 +208,18 @@ class TestTable34:
     def test_pp(self):
         results = table_3_4_electrochemical_geosynth("PP")
         assert len(results) == 1
+        assert results[0]["polymer"] == "Polyolefin (PP & HDPE)"
         assert results[0]["pH_min"] == 3.0
         assert results[0]["pH_max"] is None
 
     def test_hdpe(self):
         results = table_3_4_electrochemical_geosynth("HDPE")
         assert len(results) == 1
+        assert results[0]["polymer"] == "Polyolefin (PP & HDPE)"
+
+    def test_no_match(self):
+        with pytest.raises(ValueError, match="Polyolefin"):
+            table_3_4_electrochemical_geosynth("PVC")
 
 
 # ============================================================================
@@ -253,8 +297,8 @@ class TestTable36:
             assert "tests must be run" in r["default_fill_limit"]
 
     def test_no_match(self):
-        results = table_3_6_pullout_parameters("nonexistent")
-        assert results == []
+        with pytest.raises(ValueError, match="Table 3-6"):
+            table_3_6_pullout_parameters("nonexistent")
 
 
 # ============================================================================
@@ -277,9 +321,31 @@ class TestTable37:
 
     def test_strip_thick(self):
         results = table_3_7_galvanization()
-        thick = [r for r in results if ">= 1/4" in r["component"]]
+        thick = [r for r in results if "> 1/4" in r["component"]]
         assert len(thick) == 1
         assert thick[0]["thickness_um"] == 100
+        # the label says what p. 3-26 prints ("> ¼ in."); the exact ¼ in.
+        # case is the library's, said in print_note
+        assert thick[0]["component"] == "Strip reinforcement (thickness > 1/4 in)"
+        assert not any(">=" in r["component"] for r in results)
+        assert '"> ¼ in."' in thick[0]["print_note"]
+        assert "exactly ¼ in. thick is in neither" in thick[0]["print_note"]
+
+    def test_wire_row_carries_its_footnote(self):
+        """p. 3-26: "Wire*" (all diameters) with "* For bar mats fabricated
+        from uncoated steel wire.", the footnote as typed in the chapter
+        text."""
+        import json
+        from pathlib import Path
+        wire = [r for r in table_3_7_galvanization() if "Wire" in r["component"]]
+        assert len(wire) == 1 and wire[0]["thickness_mils"] == 3.4
+        assert wire[0]["footnote"] == "* For bar mats fabricated from uncoated steel wire."
+        assert all(r["reference"].endswith("Table 3-7, p. 3-26")
+                   for r in table_3_7_galvanization())
+        ch3 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter03.json"
+        body = ch3.read_text(encoding="utf-8")
+        assert ("Wire* | All diameters | 3.4 mils (85 μm)\\n" + wire[0]["footnote"]) in body
 
 
 # ============================================================================
@@ -306,8 +372,8 @@ class TestTable38:
         assert results[0]["rate_um_per_yr"] == 12.0
 
     def test_no_match(self):
-        results = table_3_8_corrosion_rates("nonexistent")
-        assert results == []
+        with pytest.raises(ValueError, match="Carbon steel"):
+            table_3_8_corrosion_rates("nonexistent")
 
 
 # ============================================================================
@@ -335,6 +401,22 @@ class TestTable39:
     def test_pvc(self):
         results = table_3_9_installation_damage("PVC")
         assert len(results) == 1
+
+    def test_backfill_types_and_footnote_as_printed(self):
+        """Table 3-9, p. 3-32 (PDF page 124): the column heads define the
+        backfills (Type 2: max 3/4 in. (20 mm), D50 about #30); footnote a
+        on the three geotextile rows. 'polyester geogrid' names no row and
+        is refused (gec-37)."""
+        rows = table_3_9_installation_damage()
+        assert all("D50 about #30 (0.7 mm)" in r["type2_backfill"] for r in rows)
+        assert all("4 in. (100 mm)" in r["type1_backfill"] for r in rows)
+        assert [r["geosynthetic"] for r in rows if "notes" in r] == [
+            "Woven geotextile (PP and PET)",
+            "Non-woven geotextile (PP and PET)",
+            "Slit film woven PP geotextile",
+        ]
+        with pytest.raises(ValueError, match="PVC coated PET geogrid"):
+            table_3_9_installation_damage("polyester geogrid")
 
     def test_type2_lower_than_type1(self):
         """Type 2 (finer) backfill always causes less damage."""
@@ -376,6 +458,10 @@ class TestTable311:
         assert results[0]["pH_5_to_8"] == 1.15
         assert results[0]["pH_3_to_5_or_8_to_9"] == 1.3
 
+    def test_no_match(self):
+        with pytest.raises(ValueError, match="Table 3-11"):
+            table_3_11_pet_durability("strip")
+
 
 # ============================================================================
 # Table 4-1: LRFD Load Combinations
@@ -401,6 +487,49 @@ class TestTable41:
         results = table_4_1_load_combinations("service")
         assert len(results) == 1
         assert results[0]["EH_ES_EV"] == 1.00
+
+    def test_extreme_event_i_note_as_printed(self):
+        """Table 4-1, p. 4-4 (PDF page 146) defines gamma_EQ and prints no
+        typical range for it (the code said 0.0 to 0.50)."""
+        row = table_4_1_load_combinations("extreme event i")[0]
+        assert "0.50" not in row["notes"]
+        assert "simultaneously with seismic loads" in row["notes"]
+        with pytest.raises(ValueError, match="Service I"):
+            table_4_1_load_combinations("strength ii")
+
+    def test_cells_as_printed_dashes_kept(self):
+        """Every cell agrees with Table 4-1 as typed in from p. 4-4 (the
+        chapter text): the printed dashes are dashes, not 0.0."""
+        import json
+        from pathlib import Path
+        ch4 = Path(__file__).resolve().parents[1] / "geotech_references" / \
+            "gec_11" / "text" / "chapter04.json"
+        body = "\n".join(s["body"] for s in json.loads(
+            ch4.read_text(encoding="utf-8"))["sections"])
+        typed = body.split("[Table 4-1, typed in from p. 4-4, row by row:]\n")[1]
+        rows = [ln.split(" | ") for ln in typed.split("\n")[1:5]]
+        sym = {"γp": "gamma_p", "γEQ": "gamma_EQ", "–": "–"}
+        for printed, row in zip(rows, table_4_1_load_combinations()):
+            assert printed[0] == row["limit_state"].upper()
+            for cell, key in zip(printed[1:], ("EH_ES_EV", "LL_LS", "EQ", "CT")):
+                expect = sym[cell] if cell in sym else float(cell)
+                assert row[key] == expect, (row["limit_state"], key)
+            assert "use one of these at a time" in row["print_note"]
+        assert sum(r[k] == "–" for r in table_4_1_load_combinations()
+                   for k in ("EQ", "CT")) == 6
+
+    def test_unprinted_row_notes_say_they_are_the_librarys(self):
+        """Table 4-1 (p. 4-4) prints a note only on gamma_EQ (Extreme Event
+        I); the other three rows' notes are the library's words, and the
+        result says so, not only the docstring."""
+        rows = {r["limit_state"]: r for r in table_4_1_load_combinations()}
+        assert rows["Extreme Event I"]["notes_source"] == "printed"
+        assert "library" not in rows["Extreme Event I"]["notes"]
+        for ls in ("Strength I", "Extreme Event II", "Service I"):
+            assert rows[ls]["notes_source"] == "library"
+            assert rows[ls]["notes"].endswith(
+                "[the library's description of this limit state; Table 4-1 "
+                "(p. 4-4) prints no note for this row]"), ls
 
 
 # ============================================================================
@@ -435,6 +564,16 @@ class TestTable42:
         assert results[0]["gamma_max"] == 1.50
         assert results[0]["gamma_min"] == 0.75
 
+    def test_printed_type_of_load(self):
+        """Table 4-2, p. 4-4: 'EV: Vertical Earth Pressure' (two rows) was not
+        found by its printed name (gec-37); unknown loads are refused."""
+        rows = table_4_2_permanent_load_factors("vertical earth pressure")
+        assert [(r["gamma_max"], r["gamma_min"]) for r in rows] == [
+            (1.00, None), (1.35, 1.00)]
+        assert "Retaining Walls and Abutments" in rows[1]["description"]
+        with pytest.raises(ValueError, match="EV Overall Stability"):
+            table_4_2_permanent_load_factors("live load")
+
 
 # ============================================================================
 # Table 4-4: Traffic Surcharge
@@ -447,6 +586,18 @@ class TestTable44:
         result = table_4_4_traffic_surcharge()
         assert "table" in result
         assert len(result["table"]) == 3
+
+    def test_abutments_only(self):
+        """FHWA-NHI-10-024 Vol I Table 4-4, p. 4-17 (PDF page 159) is for
+        abutments perpendicular to traffic; p. 4-16 (PDF page 158) gives
+        heq = 2.0 ft for walls parallel to traffic. The function took a
+        'wall height' and said neither (review finding gec-20)."""
+        result = table_4_4_traffic_surcharge(abutment_height_ft=10.0)
+        assert result["h_eq_ft"] == 3.0
+        assert "perpendicular to traffic" in result["applies_to"]
+        assert "parallel to traffic: heq = 2.0 ft" in result["print_note"]
+        assert "note" not in result
+        assert "perpendicular" in table_4_4_traffic_surcharge()["applies_to"]
 
     def test_5ft_wall(self):
         result = table_4_4_traffic_surcharge(5.0)
@@ -465,15 +616,20 @@ class TestTable44:
         result = table_4_4_traffic_surcharge(15.0)
         assert result["h_eq_ft"] == 2.5
 
-    def test_short_wall(self):
-        """Walls shorter than 5 ft use 4.0 ft."""
-        result = table_4_4_traffic_surcharge(3.0)
-        assert result["h_eq_ft"] == 4.0
+    # Table 4-4 (GEC-11 Vol I, p. 4-17, PDF page 159) prints abutment heights
+    # 5.0, 10.0 and ">= 20.0" ft: the last row is open-ended, the first is not.
+    @pytest.mark.parametrize("height", [4.99, 3.0, 0.5])
+    def test_short_wall_refused(self, height):
+        """Below the 5.0 ft row the table has no row and the text no rule
+        (REF-76; gec-20 had held the 5.0 ft row with a note)."""
+        with pytest.raises(ValueError, match="no value below 5.0 ft"):
+            table_4_4_traffic_surcharge(height)
 
     def test_tall_wall(self):
-        """Walls taller than 20 ft use 2.0 ft."""
+        """Walls taller than 20 ft use 2.0 ft (the open-ended >= 20.0 row)."""
         result = table_4_4_traffic_surcharge(30.0)
         assert result["h_eq_ft"] == 2.0
+        assert "note" not in result
 
 
 # ============================================================================
@@ -504,6 +660,18 @@ class TestTable45:
         assert 0.75 in phi_vals
         assert 0.65 in phi_vals
 
+    def test_conditions_as_printed(self):
+        """Table 4-5, p. 4-19 (PDF page 161): 0.65 also where the slope
+        contains or supports a structural element (the code's note said
+        only 'limited subsurface data'). 'eccentricity' is not in the
+        table and is refused (gec-37)."""
+        rows = table_4_5_external_resistance("structural element")
+        assert len(rows) == 2
+        low = [r for r in rows if r["phi_factor"] == 0.65][0]
+        assert "contains or supports a structural element" in low["condition"]
+        with pytest.raises(ValueError, match="Sliding"):
+            table_4_5_external_resistance("eccentricity")
+
 
 # ============================================================================
 # Table 4-6: Bearing Capacity Factors
@@ -518,33 +686,109 @@ class TestTable46:
         assert len(result["table"]) == 46
 
     def test_phi_0(self):
+        """Row 0 as printed on p. 4-29 (Nc to two decimals there)."""
         result = table_4_6_bearing_capacity_factors(0)
-        assert result["Nc"] == pytest.approx(5.14, abs=0.01)
-        assert result["Nq"] == pytest.approx(1.0, abs=0.01)
-        assert result["Ngamma"] == pytest.approx(0.0, abs=0.01)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (5.14, 1.0, 0.0)
 
     def test_phi_30(self):
+        """Row 30 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(30)
-        assert result["Nc"] == pytest.approx(30.14, abs=0.1)
-        assert result["Nq"] == pytest.approx(18.4, abs=0.1)
-        assert result["Ngamma"] == pytest.approx(22.4, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (30.1, 18.4, 22.4)
 
     def test_phi_45(self):
+        """Row 45 as printed on p. 4-29."""
         result = table_4_6_bearing_capacity_factors(45)
-        assert result["Nc"] == pytest.approx(133.88, abs=0.5)
-        assert result["Nq"] == pytest.approx(134.88, abs=0.5)
-        assert result["Ngamma"] == pytest.approx(271.76, abs=1.0)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (133.9, 134.9, 271.8)
 
     def test_interpolation(self):
-        """phi=32.5 should interpolate between 32 and 33."""
+        """phi = 32.5 lies between the printed rows 32 (35.5, 23.2, 30.2) and
+        33 (38.6, 26.1, 35.2); the result is rounded to one decimal."""
         result = table_4_6_bearing_capacity_factors(32.5)
-        assert 35.49 < result["Nc"] < 38.64 or result["Nc"] == pytest.approx(37.065, abs=0.1)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (37.1, 24.7, 32.7)
+        result = table_4_6_bearing_capacity_factors(38.5)
+        assert (result["Nc"], result["Nq"], result["Ngamma"]) == (64.7, 52.5, 85.2)
+
+    def test_cells_are_the_typed_table(self):
+        """Every cell equals the typed Table 4-6 in the chapter text (p. 4-29)
+        except Nc at phi = 39 (printed 37.9, the library's 67.9)."""
+        import json
+        import pathlib
+        from geotech_references.gec_11 import tables
+        path = pathlib.Path(tables.__file__).parent / "text" / "chapter04.json"
+        sections = json.loads(path.read_text(encoding="utf-8"))["sections"]
+        body = next(s["body"] for s in sections if s["section_id"] == "4.4.6.c")
+        head = "[Table 4-6, typed in from p. 4-29, row by row:]\nφ | Nc | Nq | Nγ\n"
+        lines = body.split(head, 1)[1].split("\n")[:46]
+        printed = {int(r.split(" | ")[0]): [float(v) for v in r.split(" | ")[1:]]
+                   for r in lines}
+        assert sorted(printed) == list(range(46))
+        differ = []
+        for row in table_4_6_bearing_capacity_factors()["table"]:
+            got = [row["Nc"], row["Nq"], row["Ngamma"]]
+            if got != printed[row["phi_deg"]]:
+                differ.append((row["phi_deg"], got, printed[row["phi_deg"]]))
+        assert differ == [(39, [67.9, 56.0, 92.3], [37.9, 56.0, 92.3])]
 
     def test_out_of_range_raises(self):
         with pytest.raises(ValueError, match="between 0 and 45"):
             table_4_6_bearing_capacity_factors(-5)
         with pytest.raises(ValueError, match="between 0 and 45"):
             table_4_6_bearing_capacity_factors(50)
+
+    def test_phi_39_misprint_note(self):
+        """p. 4-29 prints Nc = 37.9 at phi = 39; the lookup returns 67.9 and
+        says, wherever the phi = 39 row is used, that 67.9 is not printed and
+        where it comes from.
+
+        The counts in the note were measured on 2026-11-12 by a script
+        comparing the relation Nq = e^(pi tan phi) tan^2(45 + phi/2),
+        Nc = (Nq - 1) cot(phi) with the printed cells, each rounded half up
+        to the printed decimal: Nq 46 of 46; Nc 43 of 46 (phi 39: 67.867
+        against the printed 37.9; phi 10: 8.345 against 8.4; phi 23: 18.049
+        against 18.1). Midpoint of the printed neighbours 61.4 and 75.3:
+        68.35."""
+        result = table_4_6_bearing_capacity_factors(39)
+        assert result["Nc"] == 67.9
+        note = result["note"]
+        for phrase in (
+            "Table 4-6 (p. 4-29) prints Nc = 37.9 at phi = 39, which cannot be "
+            "right between 61.4 at 38 and 75.3 at 40",
+            "This function returns 67.9",
+            "That value is NOT printed in the manual",
+            "Nc = (Nq - 1) cot(phi), with Nq = e^(pi tan phi) tan^2(45 + phi/2), "
+            "gives at 39 (67.87)",
+            "The manual does not print that relation; it names AASHTO (2007) "
+            "Table 10.6.3.1.2a-1 as the table's source",
+            "reproduces all 46 printed Nq cells and 43 of the other 45 printed "
+            "Nc cells to the printed decimal",
+            "phi 10: 8.345 against the printed 8.4; phi 23: 18.049 against 18.1",
+            "0.1 off in the last digit, as rounding in steps would give",
+            "Straight-line interpolation between the printed neighbours would "
+            "give 68.4",
+        ):
+            assert phrase in note, phrase
+        assert table_4_6_bearing_capacity_factors(38.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(39.5)["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
+        for phi in (30, 38, 40):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
+
+    def test_phi_31_ngamma_note(self):
+        """p. 4-29 prints Ngamma = 25.9 at phi = 31; the lookup returns it
+        uncorrected and says so wherever the phi = 31 row is used."""
+        note = ("Table 4-6 (p. 4-29) prints Ngamma = 25.9 at phi = 31, within "
+                "the run of its column (22.4 at 30, 30.2 at 32); this function "
+                "returns the printed 25.9, not corrected")
+        result = table_4_6_bearing_capacity_factors(31)
+        assert result["Ngamma"] == 25.9
+        assert result["note"] == note
+        assert table_4_6_bearing_capacity_factors(30.5)["note"] == note
+        assert table_4_6_bearing_capacity_factors(31.5)["note"] == note
+        assert note in table_4_6_bearing_capacity_factors()["note"]
+        for phi in (30, 32, 35):
+            assert "note" not in table_4_6_bearing_capacity_factors(phi)
+        assert note in " ".join(table_4_6_bearing_capacity_factors.__doc__.split())
 
     def test_increasing_with_phi(self):
         """All factors should increase with friction angle."""
@@ -567,17 +811,38 @@ class TestTable47:
         results = table_4_7_internal_resistance()
         assert len(results) == 4
 
+    def test_rows_as_printed(self):
+        """FHWA-NHI-10-024 Vol I Table 4-7, p. 4-48 (PDF page 190): static,
+        combined static/earthquake, combined static/traffic barrier impact.
+        The key combined_static_phi (a copy of the static factor, no printed
+        column) stood beside the print's combined static/earthquake 1.00
+        (review finding gec-34)."""
+        rows = [(r["static_phi"], r["combined_static_earthquake_phi"],
+                 r["combined_static_traffic_barrier_phi"])
+                for r in table_4_7_internal_resistance()]
+        assert rows == [(0.75, 1.00, 1.00), (0.65, 0.85, 0.85),
+                        (0.90, 1.20, 1.20), (0.90, 1.20, 1.00)]
+        for r in table_4_7_internal_resistance():
+            assert "combined_static_phi" not in r
+            assert any(n.startswith("B.") for n in r["notes"])
+        grid = table_4_7_internal_resistance("grid")[0]
+        assert any("flexible facing mat" in n for n in grid["notes"])
+        with pytest.raises(ValueError, match="Geosynthetic reinforcement"):
+            table_4_7_internal_resistance("steel")
+
     def test_metallic_strip(self):
         results = table_4_7_internal_resistance("metallic strip")
         assert len(results) == 1
         assert results[0]["static_phi"] == 0.75
-        assert results[0]["earthquake_phi"] == 1.00
+        assert results[0]["combined_static_earthquake_phi"] == 1.00
 
     def test_geosynthetic(self):
+        """'geosynthetic' names the geosynthetic tensile row and the pullout
+        row (printed 'metallic and geosynthetic')."""
         results = table_4_7_internal_resistance("geosynthetic")
-        assert len(results) == 1
-        assert results[0]["static_phi"] == 0.90
-        assert results[0]["earthquake_phi"] == 1.20
+        assert [(r["static_phi"], r["combined_static_earthquake_phi"],
+                 r["combined_static_traffic_barrier_phi"])
+                for r in results] == [(0.90, 1.20, 1.20), (0.90, 1.20, 1.00)]
 
     def test_pullout(self):
         results = table_4_7_internal_resistance("pullout")
@@ -588,3 +853,12 @@ class TestTable47:
         results = table_4_7_internal_resistance("grid")
         assert len(results) == 1
         assert results[0]["static_phi"] == 0.65
+
+
+def test_table_4_4_negative_height_refused():
+    # REF-76 checker: a negative abutment height returned the whole table
+    # (the answer for 0); now refused.
+    from geotech_references.gec_11.tables import table_4_4_traffic_surcharge as f
+    assert "table" in f(0)
+    with pytest.raises(ValueError, match="negative.*p. 4-17"):
+        f(-5)

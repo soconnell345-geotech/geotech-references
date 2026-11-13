@@ -1,0 +1,515 @@
+{
+  "reference_id": "GSA Alternate Path Guidelines",
+  "reference_title": "GSA Alternate Path Analysis and Design Guidelines for Progressive Collapse Resistance (October 24, 2013, Revision 1, January 28, 2016)",
+  "package": "gsa_collapse",
+  "volume": null,
+  "pdf_path": "docs/GSA_Alternate_Path_2016.pdf",
+  "table_count": 30,
+  "tables": [
+    {
+      "table_number": "1",
+      "caption": "Examples of Deformation-Controlled and Force-Controlled Actions from ASCE 41 [10]",
+      "chapter": null,
+      "section_id": "3.2.5",
+      "section_title": "Force- and Deformation-Controlled Actions",
+      "pdf_page_index": 22,
+      "pages": [
+        22
+      ],
+      "printed_page": "10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "2",
+      "caption": "Calculation of Component Capacities for Nonlinear Static and Nonlinear Dynamic Procedures",
+      "chapter": null,
+      "section_id": "3.2.8.1",
+      "section_title": "Component Capacities for Nonlinear Procedures",
+      "pdf_page_index": 23,
+      "pages": [
+        23
+      ],
+      "printed_page": "11",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.component_capacity_nonlinear",
+      "implemented_in": [
+        "alternate_path.component_capacity_nonlinear"
+      ]
+    },
+    {
+      "table_number": "3",
+      "caption": "Calculation of Component Capacities for the Linear Static Procedure",
+      "chapter": null,
+      "section_id": "3.2.8.2",
+      "section_title": "Component Capacities for the Linear Static Procedure",
+      "pdf_page_index": 24,
+      "pages": [
+        24
+      ],
+      "printed_page": "12",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.component_capacity_linear",
+      "implemented_in": [
+        "alternate_path.component_capacity_linear"
+      ]
+    },
+    {
+      "table_number": "4",
+      "caption": "Load Increase Factors for Linear Static Analysis",
+      "chapter": null,
+      "section_id": "3.2.11.5",
+      "section_title": "Load Increase Factor",
+      "pdf_page_index": 34,
+      "pages": [
+        34
+      ],
+      "printed_page": "22",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.table_4_load_increase_factor",
+      "implemented_in": [
+        "alternate_path.table_4_load_increase_factor"
+      ]
+    },
+    {
+      "table_number": "5",
+      "caption": "Dynamic Increase Factors (Ω N ) for Nonlinear Static Analysis",
+      "chapter": null,
+      "section_id": "3.2.12.5",
+      "section_title": "Dynamic Increase Factor for NSP (Omega_N)",
+      "pdf_page_index": 40,
+      "pages": [
+        40
+      ],
+      "printed_page": "28",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "alternate_path.table_5_dynamic_increase_factor",
+      "implemented_in": [
+        "alternate_path.table_5_dynamic_increase_factor"
+      ]
+    },
+    {
+      "table_number": "6",
+      "caption": "Nonlinear Modeling Parameters and Acceptance Criteria for Reinforced Concrete Beams (Replacement for Table 10-7 in ASCE 41)",
+      "chapter": null,
+      "section_id": "4.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 51,
+      "pages": [
+        51
+      ],
+      "printed_page": "39",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_6_beam_flexure_modeling",
+      "implemented_in": [
+        "reinforced_concrete.table_6_beam_flexure_modeling",
+        "reinforced_concrete.table_6_beam_other_modeling"
+      ]
+    },
+    {
+      "table_number": "7",
+      "caption": "Acceptance Criteria for Linear Models of Reinforced Concrete Beams (Replacement for Table 10-13 in ASCE 41 [10])",
+      "chapter": null,
+      "section_id": "4.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 52,
+      "pages": [
+        52
+      ],
+      "printed_page": "40",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_7_beam_flexure_mfactor",
+      "implemented_in": [
+        "reinforced_concrete.table_7_beam_flexure_mfactor",
+        "reinforced_concrete.table_7_beam_other_mfactor"
+      ]
+    },
+    {
+      "table_number": "8",
+      "caption": "Modeling Parameters and Acceptance Criteria for Nonlinear Models of Two-Way Slabs and Slab-Column Connections (Replacement for Table 10-15 in ASCE 41 [10])",
+      "chapter": null,
+      "section_id": "4.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 53,
+      "pages": [
+        53
+      ],
+      "printed_page": "41",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_8_slab_flexure_modeling",
+      "implemented_in": [
+        "reinforced_concrete.table_8_slab_flexure_modeling",
+        "reinforced_concrete.table_8_slab_other_modeling"
+      ]
+    },
+    {
+      "table_number": "9",
+      "caption": "Acceptance Criteria for Linear Models of Two-Way Slabs and Slab-Column Connections (Replacement for Table 10-16 in ASCE 41 [10])",
+      "chapter": null,
+      "section_id": "4.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Reinforced Concrete",
+      "pdf_page_index": 54,
+      "pages": [
+        54
+      ],
+      "printed_page": "42",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "reinforced_concrete.table_9_slab_flexure_mfactor",
+      "implemented_in": [
+        "reinforced_concrete.table_9_slab_flexure_mfactor",
+        "reinforced_concrete.table_9_slab_other_mfactor"
+      ]
+    },
+    {
+      "table_number": "10",
+      "caption": "Acceptance Criteria for Linear Static Modeling of Steel Frame Connections",
+      "chapter": null,
+      "section_id": "5.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Structural Steel",
+      "pdf_page_index": 57,
+      "pages": [
+        57
+      ],
+      "printed_page": "45",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.table_10_fr_connection_mfactor",
+      "implemented_in": [
+        "structural_steel.table_10_fr_connection_mfactor",
+        "structural_steel.table_10_pr_flexible_connection_mfactor",
+        "structural_steel.table_10_pr_stiff_connection_mfactor"
+      ]
+    },
+    {
+      "table_number": "11",
+      "caption": "Modeling Parameters and Acceptance Criteria for Nonlinear Modeling of Steel Frame Connections",
+      "chapter": null,
+      "section_id": "5.4.3",
+      "section_title": "Modeling and Acceptance Criteria for Structural Steel",
+      "pdf_page_index": 58,
+      "pages": [
+        58
+      ],
+      "printed_page": "46",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.table_11_fr_connection_modeling",
+      "implemented_in": [
+        "structural_steel.table_11_fr_connection_modeling",
+        "structural_steel.table_11_pr_flexible_connection_modeling",
+        "structural_steel.table_11_pr_stiff_connection_modeling"
+      ]
+    },
+    {
+      "table_number": "D12",
+      "caption": "Gravity Loading",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 103,
+      "pages": [
+        103
+      ],
+      "printed_page": "D2",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D13",
+      "caption": "Preliminary Member Sizes",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 103,
+      "pages": [
+        103,
+        104
+      ],
+      "printed_page": "D2",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D14",
+      "caption": "Examples of Deformation-Controlled and Force-Controlled Actions from ASCE 41",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 111,
+      "pages": [
+        111
+      ],
+      "printed_page": "D10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D15",
+      "caption": "Model Requirements for Deformation and Force-Controlled Actions",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 111,
+      "pages": [
+        111
+      ],
+      "printed_page": "D10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D16",
+      "caption": "Beam Component m-factors for Deformation Controlled Actions of Primary Components",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 115,
+      "pages": [
+        115,
+        116,
+        117
+      ],
+      "printed_page": "D14",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D17",
+      "caption": "Column Component m-factors for Deformation & Force Controlled Actions of Primary Components",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 118,
+      "pages": [
+        118,
+        119,
+        120,
+        121
+      ],
+      "printed_page": "D17",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D18",
+      "caption": "Load Increase Factors ( Ω)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 121,
+      "pages": [
+        121
+      ],
+      "printed_page": "D20",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D19",
+      "caption": "Upgraded Sections",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 131,
+      "pages": [
+        131,
+        132
+      ],
+      "printed_page": "D30",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D20",
+      "caption": "Upgraded beam m-factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 133,
+      "pages": [
+        133,
+        134,
+        135
+      ],
+      "printed_page": "D32",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "D21",
+      "caption": "Redesigned Column m-factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 135,
+      "pages": [
+        135,
+        136,
+        137,
+        138
+      ],
+      "printed_page": "D34",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E22",
+      "caption": "Gravity Loading",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 159,
+      "pages": [
+        159
+      ],
+      "printed_page": "E2",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E23",
+      "caption": "Examples of Deformation-Controlled and Force-Controlled Actions from ASCE 41",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 167,
+      "pages": [
+        167
+      ],
+      "printed_page": "E10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E24",
+      "caption": "Model Requirements for Deformation and Force-Controlled Actions",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 167,
+      "pages": [
+        167
+      ],
+      "printed_page": "E10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E25",
+      "caption": "Beam Component m-factors for Deformation Controlled Actions of Primary Components",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 171,
+      "pages": [
+        171
+      ],
+      "printed_page": "E14",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E26",
+      "caption": "Column Component m-factors for Deformation & Force Controlled Actions of Primary Components",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 171,
+      "pages": [
+        171,
+        172
+      ],
+      "printed_page": "E14",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E27",
+      "caption": "Load Increase Factors ( Ω)",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 173,
+      "pages": [
+        173
+      ],
+      "printed_page": "E16",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E28",
+      "caption": "Re-designed beam m-factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 181,
+      "pages": [
+        181
+      ],
+      "printed_page": "E24",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "E29",
+      "caption": "Redesigned Column m-factors",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 182,
+      "pages": [
+        182
+      ],
+      "printed_page": "E25",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "C1.1",
+      "caption": "Steel Frame Beam-to-Column Connection Types",
+      "chapter": null,
+      "section_id": null,
+      "section_title": null,
+      "pdf_page_index": 95,
+      "pages": [
+        95
+      ],
+      "printed_page": "C19",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "structural_steel.table_c1_1_connection_type",
+      "implemented_in": [
+        "structural_steel.table_c1_1_connection_type",
+        "structural_steel.list_table_c1_1_connection_types"
+      ]
+    }
+  ]
+}

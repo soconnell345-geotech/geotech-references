@@ -78,11 +78,56 @@ class TestTable41BeamOther:
         assert r["a"] == pytest.approx(0.015)
         assert r["b"] == pytest.approx(0.03)
 
+    @pytest.mark.parametrize("condition,le_d2,primary,secondary", [
+        ("shear", True, 0.002, 0.01),
+        ("shear", False, 0.002, 0.005),
+        ("development", True, 0.002, 0.01),
+        ("development", False, 0.002, 0.005),
+        ("inadequate_embedment", True, 0.01, 0.02),
+    ])
+    def test_acceptance_criteria_as_printed(self, condition, le_d2, primary, secondary):
+        # UFC_4-023-03.pdf pdf 79 / printed 63, Table 4-1 rows ii-iv:
+        # the Acceptance Criteria columns print values that differ from
+        # a and b (e.g. shear, stirrups <= d/2: a 0.0030, b 0.02,
+        # acceptance primary 0.002, secondary 0.01).
+        r = table_4_1_beam_other_modeling(condition, stirrup_spacing_le_d2=le_d2)
+        assert r["primary_acceptance"] == pytest.approx(primary)
+        assert r["secondary_acceptance"] == pytest.approx(secondary)
+
     def test_development_c_is_zero(self):
         # PRINTED TABLE: development/splicing conditions have c=0.0
         # (unlike shear/flexure/embedment which have c=0.2)
         r = table_4_1_beam_other_modeling("development", stirrup_spacing_le_d2=True)
         assert r["c"] == pytest.approx(0.0)
+
+
+class TestShearRatioUnits:
+    """struct-02: the V/(bw d sqrt f'c) rows (<= 3, >= 6) of Tables 4-1(i)
+    and 4-2(i) (pdf 79-80 / printed 63-64) are psi-unit values; the result
+    names the unit and the printed row read."""
+
+    def test_result_names_psi_units_and_row(self):
+        r = table_4_2_beam_flexure_mfactor(0.0, "C", 2.0)
+        assert "psi" in r["vw_ratio_units"]
+        assert r["vw_ratio_row"].startswith("<= 3")
+        # printed row rho<=0.0, C, <=3: m = 16 / 19 (printed p. 64)
+        assert r["m_primary"] == pytest.approx(16)
+        assert r["m_secondary"] == pytest.approx(19)
+
+    def test_interpolated_row_named(self):
+        # (rho-rho')/rho_bal 0.2, C, ratio 4.8 (psi): between the printed
+        # rows 16/9 (<=3) and 9/6 (>=6) -> m_primary 13.2 and 7.8 at rho 0.2,
+        # then 13.2 + (7.8 - 13.2) * 1.8/3 = 9.96.
+        r = table_4_2_beam_flexure_mfactor(0.2, "C", 4.8)
+        assert r["vw_ratio_row"].startswith("interpolated")
+        assert r["m_primary"] == pytest.approx(9.96)
+
+    def test_table_4_1_names_units(self):
+        r = table_4_1_beam_flexure_modeling(0.5, "NC", 6.5)
+        assert r["vw_ratio_row"].startswith(">= 6")
+        assert "psi" in r["vw_ratio_units"]
+        # printed row >=0.5, NC, >=6: a 0.013, b 0.02 (printed p. 63)
+        assert r["a"] == pytest.approx(0.013)
 
 
 class TestTable42BeamFlexureMfactor:
@@ -168,3 +213,30 @@ class TestTable44SlabOther:
         r = table_4_4_slab_other_mfactor("inadequate_embedment")
         assert r["m_primary"] == pytest.approx(3)
         assert r["m_secondary"] == pytest.approx(4)
+
+
+class TestOpenEndedRows:
+    """REF-76: Tables 4-1 to 4-4 print open-ended rows ("<= 0.0" / ">= 0.5",
+    "<= 3" / ">= 6", "<= 0.2" / ">= 0.4"; printed pp. 63-66), so past them
+    the end row is the printed value (rule 1). A negative shear ratio is
+    refused."""
+
+    def test_beyond_the_end_rows_reads_the_end_row(self):
+        assert table_4_1_beam_flexure_modeling(-0.3, "C", 1.0)["a"] == \
+            table_4_1_beam_flexure_modeling(0.0, "C", 3)["a"]
+        assert table_4_2_beam_flexure_mfactor(0.9, "NC", 9.0)["m_primary"] == \
+            table_4_2_beam_flexure_mfactor(0.5, "NC", 6)["m_primary"]
+        assert table_4_3_slab_flexure_modeling(0.1, True)["a"] == \
+            table_4_3_slab_flexure_modeling(0.2, True)["a"]
+        assert table_4_4_slab_flexure_mfactor(0.7, False)["m_secondary"] == \
+            table_4_4_slab_flexure_mfactor(0.4, False)["m_secondary"]
+
+    def test_negative_shear_ratio_refused(self):
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_4_1_beam_flexure_modeling(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vw_ratio"):
+            table_4_2_beam_flexure_mfactor(0.2, "C", -1.0)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_4_3_slab_flexure_modeling(-0.1, True)
+        with pytest.raises(ValueError, match="vg_over_vo"):
+            table_4_4_slab_flexure_mfactor(-0.1, True)

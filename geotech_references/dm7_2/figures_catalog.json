@@ -1723,7 +1723,7 @@
       "pdf_page_index": 480,
       "printed_page": 443,
       "page_estimated": false,
-      "description": "Empirical Method for Drilled Shaft Settlement Applies when performing preliminary settlement analysis of individual drilled shafts in either coarse-grained or fine-grained soil profiles. Method applies to drilled shafts with diameter 1–6.5 ft, depth 16–200 ft, and Z/b ratio 6–56. ACF (axial compressive force) = unfactored applied load + effective shaft weight; FT = Rs + Rʹb at δ/b = 4%. Rʹb = 0.71·Rb for cohesive soils; Rʹb = Rb for cohesionless soils at δ/b = 4%. Normalized settlement δ/b is read from Figure 6-17 or computed from Table 6-31 equations. Elastic compression of the concrete shaft is already incorporated in the load-displacement curves. Intended for preliminary analysis; large ACF/FT ratios (≥100% for cohesive, ≥159% for cohesionless) indicate large settlements."
+      "description": "Empirical Method for Drilled Shaft Settlement Applies when performing preliminary settlement analysis of individual drilled shafts in either coarse-grained or fine-grained soil profiles. Method applies to drilled shafts with diameter 1–6.5 ft, depth 16–200 ft, and Z/b ratio 6–56. ACF (axial compressive force) = unfactored applied load + effective shaft weight; FT = Rs + Rʹb at δ/b = 4%. Rʹb = Rb for fine-grained (cohesive) soils; Rʹb = 0.71·Rb for coarse-grained (cohesionless) soils at δ/b = 4% (Eq. 6-48). Normalized settlement δ/b is read from Figure 6-17 or computed from Table 6-31 equations. Elastic compression of the concrete shaft is already incorporated in the load-displacement curves. Intended for preliminary analysis; large ACF/FT ratios (≥100% for cohesive, ≥159% for cohesionless) indicate large settlements."
     },
     {
       "figure_number": "6-18",
@@ -1732,7 +1732,7 @@
       "pdf_page_index": 483,
       "printed_page": 446,
       "page_estimated": false,
-      "description": "Empirical Selection of Equivalent Footing Applies when locating the equivalent footing depth and dimensions empirically for pile group settlement analysis using Table 6-32 guidance. Equivalent footing depth = z1 + z2; load spreads at 2V:1H below the equivalent footing and at 4V:1H through the z2 interval. Equivalent footing dimensions: Bʹ = B + 2z2 and Lʹ = L + 2z2. 2V:1H stress spread: Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ)) below the equivalent footing. Battered pile group footing dimensions depend on whether side or base resistance governs, per FHWA (2016). Other stress sources (groundwater lowering, fill, adjacent foundations) must be added; neutral plane method is preferred for these cases."
+      "description": "Empirical Selection of Equivalent Footing Applies when locating the equivalent footing depth and dimensions empirically for pile group settlement analysis using Table 6-32 guidance. Equivalent footing depth = z1 + z2; load spreads at 2V:1H below the equivalent footing and at 4V:1H through the z2 interval. Equivalent footing dimensions: Bʹ = B + z2/2 and Lʹ = L + z2/2 (Eq. 6-49, 6-50). 2V:1H stress spread: Δσz = Q / ((Bʹ + zʹ)(Lʹ + zʹ)) below the equivalent footing. Battered pile group footing dimensions depend on whether side or base resistance governs, per FHWA (2016). Other stress sources (groundwater lowering, fill, adjacent foundations) must be added; neutral plane method is preferred for these cases."
     },
     {
       "figure_number": "6-19",
@@ -2063,7 +2063,7 @@
       "caption": "Rationale for Assumption of No Vertical Earth Force",
       "chapter": null,
       "pdf_page_index": 634,
-      "printed_page": 594,
+      "printed_page": 597,
       "page_estimated": false,
       "description": ""
     },
@@ -2072,7 +2072,7 @@
       "caption": "Geometry of the Proposed Cantilever Retaining Wall",
       "chapter": null,
       "pdf_page_index": 635,
-      "printed_page": 595,
+      "printed_page": 598,
       "page_estimated": false,
       "description": ""
     },
@@ -2081,7 +2081,7 @@
       "caption": "Forces for Wall Stability Analysis",
       "chapter": null,
       "pdf_page_index": 637,
-      "printed_page": 597,
+      "printed_page": 600,
       "page_estimated": false,
       "description": ""
     },
@@ -2090,7 +2090,7 @@
       "caption": "Graphical Implicit Solution for Footing with Desired FBC",
       "chapter": null,
       "pdf_page_index": 641,
-      "printed_page": 601,
+      "printed_page": 604,
       "page_estimated": false,
       "description": ""
     },
@@ -2099,7 +2099,7 @@
       "caption": "Retaining Wall Conditions with FOT = 1",
       "chapter": null,
       "pdf_page_index": 642,
-      "printed_page": 602,
+      "printed_page": 605,
       "page_estimated": false,
       "description": ""
     },
@@ -2108,7 +2108,7 @@
       "caption": "Proposed Anchored Bulkhead in Sand",
       "chapter": null,
       "pdf_page_index": 644,
-      "printed_page": 604,
+      "printed_page": 607,
       "page_estimated": false,
       "description": ""
     },
@@ -2117,7 +2117,7 @@
       "caption": "Distribution of Earth and Water Pressures on the Sheetpile",
       "chapter": null,
       "pdf_page_index": 646,
-      "printed_page": 606,
+      "printed_page": 609,
       "page_estimated": false,
       "description": ""
     },
@@ -2126,7 +2126,7 @@
       "caption": "Sum of Moments versus Trial Values of Sheet Pile Embedment",
       "chapter": null,
       "pdf_page_index": 648,
-      "printed_page": 608,
+      "printed_page": 611,
       "page_estimated": false,
       "description": ""
     },
@@ -2135,7 +2135,7 @@
       "caption": "Integration of Pressure Distribution to Locate Elevation of Zero Shear Force",
       "chapter": null,
       "pdf_page_index": 649,
-      "printed_page": 609,
+      "printed_page": 612,
       "page_estimated": false,
       "description": ""
     },
@@ -2144,7 +2144,7 @@
       "caption": "Shear Force Versus Height Above the Dredge Line",
       "chapter": null,
       "pdf_page_index": 649,
-      "printed_page": 609,
+      "printed_page": 612,
       "page_estimated": false,
       "description": ""
     },
@@ -2153,7 +2153,7 @@
       "caption": "Location of the Continuous Anchor",
       "chapter": null,
       "pdf_page_index": 652,
-      "printed_page": 612,
+      "printed_page": 615,
       "page_estimated": false,
       "description": ""
     },
@@ -2162,7 +2162,7 @@
       "caption": "Net Anchor Resistance to Counteract Tierod Force",
       "chapter": null,
       "pdf_page_index": 653,
-      "printed_page": 613,
+      "printed_page": 616,
       "page_estimated": false,
       "description": ""
     },
@@ -2171,7 +2171,7 @@
       "caption": "Three Rows of Footings - Example 3",
       "chapter": null,
       "pdf_page_index": 655,
-      "printed_page": 615,
+      "printed_page": 618,
       "page_estimated": false,
       "description": ""
     },
@@ -2180,7 +2180,7 @@
       "caption": "Plan and Profile of Site",
       "chapter": null,
       "pdf_page_index": 664,
-      "printed_page": 624,
+      "printed_page": 627,
       "page_estimated": false,
       "description": ""
     },
@@ -2189,7 +2189,7 @@
       "caption": "Intepretation of Influence Factors for Elastic Settlement",
       "chapter": null,
       "pdf_page_index": 667,
-      "printed_page": 627,
+      "printed_page": 630,
       "page_estimated": false,
       "description": ""
     },
@@ -2198,7 +2198,7 @@
       "caption": "Proposed Pile Group in Soft and Stiff Clay",
       "chapter": null,
       "pdf_page_index": 671,
-      "printed_page": 631,
+      "printed_page": 634,
       "page_estimated": false,
       "description": ""
     },
@@ -2207,7 +2207,7 @@
       "caption": "Interpretation of Alpha Factor",
       "chapter": null,
       "pdf_page_index": 674,
-      "printed_page": 634,
+      "printed_page": 637,
       "page_estimated": false,
       "description": ""
     },
@@ -2216,7 +2216,7 @@
       "caption": "Load and Resistance Curves",
       "chapter": null,
       "pdf_page_index": 676,
-      "printed_page": 636,
+      "printed_page": 639,
       "page_estimated": false,
       "description": ""
     },
@@ -2225,7 +2225,7 @@
       "caption": "Laterally Loaded Pile Group in Soft and Stiff Clay",
       "chapter": null,
       "pdf_page_index": 681,
-      "printed_page": 641,
+      "printed_page": 644,
       "page_estimated": false,
       "description": ""
     },
@@ -2234,7 +2234,7 @@
       "caption": "Development of Active and Passive Pressures on Pile Cap",
       "chapter": null,
       "pdf_page_index": 684,
-      "printed_page": 644,
+      "printed_page": 647,
       "page_estimated": false,
       "description": ""
     },
@@ -2243,7 +2243,7 @@
       "caption": "Load-Deflection Relationship with Strength Limit State Check",
       "chapter": null,
       "pdf_page_index": 686,
-      "printed_page": 646,
+      "printed_page": 649,
       "page_estimated": false,
       "description": ""
     },
@@ -2252,7 +2252,7 @@
       "caption": "Load-Deflection Relationship with Service Limit State Check",
       "chapter": null,
       "pdf_page_index": 686,
-      "printed_page": 646,
+      "printed_page": 649,
       "page_estimated": false,
       "description": ""
     },
@@ -2261,7 +2261,7 @@
       "caption": "Proposed Cantilever Retaining Wall",
       "chapter": null,
       "pdf_page_index": 688,
-      "printed_page": 648,
+      "printed_page": 651,
       "page_estimated": false,
       "description": ""
     },
@@ -2270,7 +2270,7 @@
       "caption": "Distribution of the Factor of Safety from a Subset of the Monte Carlo Analysis of Bearing Capacity",
       "chapter": null,
       "pdf_page_index": 695,
-      "printed_page": 655,
+      "printed_page": 658,
       "page_estimated": false,
       "description": ""
     }

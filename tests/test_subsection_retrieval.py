@@ -190,14 +190,15 @@ def test_a_flat_listed_section_sits_under_its_number():
 
 
 def test_a_missing_number_names_what_is_near_it():
-    # 7.2.1.6 is not printed; GEC-11 4.4 is printed but held only through
-    # its children (4.4.1 ... 4.4.11)
+    # 7.2.1.6 is not printed; EN 1997-1 2.4.7 is printed but held only
+    # through its clauses (2.4.7.1 ...). GEC-11 4.4, the case here before,
+    # has held its printed heading since the 2026-11 rebuild from the print.
     with pytest.raises(KeyError) as e:
         _retrieval_db.reference_get("gec_12", "7.2.1.6")
     assert "nearest section above it: 7.2.1 " in str(e.value)
     with pytest.raises(KeyError) as e:
-        _retrieval_db.reference_get("gec_11", "4.4")
-    assert "4.4.2 Step 2" in str(e.value)
+        _retrieval_db.reference_get("eurocode_7_1", "2.4.7")
+    assert "2.4.7.2 Verification of static equilibrium" in str(e.value)
     # GEC-12 14.2 now has its printed heading, holding 14.2.1-14.2.8
     sec = _retrieval_db.reference_get("gec_12", "14.2")
     assert "14.2.5" in [c["section_id"] for c in sec["children"]]

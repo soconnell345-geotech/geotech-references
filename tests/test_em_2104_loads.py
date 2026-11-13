@@ -52,6 +52,9 @@ class TestTable32PermanentFactors:
 class TestTable32PrincipalCompanionFactors:
     def test_hydrostatic_principal_by_category(self):
         assert table_3_2_load_factor("Hs", "usual")["factor"] == 1.5
+        # Table 3-2 is printed on pp. 24-25 (EM_1110-2-2104_2025.pdf pdf
+        # 30-31), not 23-24.
+        assert table_3_2_load_factor("Hs", "usual")["printed_page"] == "24-25"
         assert table_3_2_load_factor("Hs", "unusual")["factor"] == 1.4
         assert table_3_2_load_factor("Hs", "extreme")["factor"] == 1.3
 
@@ -123,6 +126,16 @@ class TestEarthquakeCombinations:
         )
         assert r["u"] == pytest.approx(100.0 + 40.0 + 10.0)
         assert r["equation"] == "3-5"
+
+    def test_eq_3_5_takes_the_unfactored_permanent_sum(self):
+        # Eq 3-5 (EM_1110-2-2104_2025.pdf pdf 32 / printed 26) is
+        # U = 1.0 sum(Lp) + 1.0 EQ + 1.0 Ltc: D = 100 unfactored, EQ = 50
+        # gives 150 (the factored 1.2 x 100 would give 170).
+        r = earthquake_load_combination(permanent_sum=100.0, eq_load=50.0,
+                                         method="site_specific_mde_mce")
+        assert r["u"] == pytest.approx(150.0)
+        assert r["permanent_sum_basis"].startswith("unfactored")
+        assert earthquake_load_combination(120.0, 50.0)["permanent_sum_basis"].startswith("factored")
 
     def test_bad_method_raises(self):
         with pytest.raises(ValueError):

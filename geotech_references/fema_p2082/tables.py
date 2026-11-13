@@ -104,7 +104,11 @@ def site_class_table() -> dict:
 
 
 def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
-    """Determine the FEMA P-2082 Site Class from the average shear wave velocity.
+    """Site Class (A, B, BC, C, CD, D, DE or E) for an average shear wave
+    velocity over the upper 100 ft (30 m), with the classes at vs/1.3 and
+    1.3 vs that Section 20.3 requires when the velocity is estimated from
+    correlations (FEMA P-2082, 2020 NEHRP Provisions, Table 20.2-1, printed
+    p. 86; Section 20.3, printed p. 88).
 
     Implements Table 20.2-1 of the 2020 NEHRP Provisions (P-2082), the REVISED
     site-classification scheme that adds the intermediate classes BC, CD, DE.
@@ -114,6 +118,32 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     Class E soft-clay override (Section 20.2.2) or the Site Class F triggers
     (Section 20.2.1, e.g. liquefaction), which require additional soil data;
     those are reported via :func:`site_class_f_triggers` and noted in the result.
+
+    Section 20.3, as printed: "Due to the uncertainty inherent in such
+    correlations, site class based on estimated values of vs shall be
+    derived using vs, vs/1.3, and 1.3 vs when correlation models are used
+    to derive shear wave velocities. Where correlations derived for
+    specific local regions can be demonstrated to have greater accuracy,
+    factors less than 1.3 can be used if approved by local building
+    officials. If the different average velocities result in different
+    site classes per Table 20.2-1, the most critical of the site classes
+    for ground motion analysis at each period shall be determined by a
+    geotechnical engineer, as described in Section 11.4.2." The result
+    gives the three classes under 'estimated_vs_site_classes';
+    'site_class' is the class at vs itself.
+
+    An estimated velocity cannot give Site Class B or A. Section 20.2.4
+    (printed p. 87): "Site Class B can only be assigned to a site on the
+    basis of shear wave velocity measured on site." Section 20.2.5
+    (printed p. 87): "The hard rock, Site Class A category shall be
+    supported by shear wave velocity measurement either on site or on
+    profiles of the same rock type in the same formation ...". Where
+    vs/1.3, vs or 1.3 vs falls in the B or A range of Table 20.2-1, its
+    entry in 'estimated_vs_site_classes' is None and
+    'estimated_vs_limits' says why. The Provisions do not print which
+    class a velocity estimated from correlations takes there; for a site
+    condition estimated as Site Class B or BC on the basis of site geology
+    Section 20.2.4 gives Site Class BC.
 
     Parameters
     ----------
@@ -126,7 +156,10 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     -------
     dict
         {'vs30': float, 'unit': str, 'vs30_ft_s': float, 'site_class': str,
-         'description': str, 'boundary': str, 'reference': str, 'note': str}
+         'description': str, 'boundary': str,
+         'estimated_vs_site_classes': {'vs/1.3': str or None, 'vs': str or
+         None, '1.3vs': str or None}, 'estimated_vs_limits': list of str
+         (only when an entry is None), 'reference': str, 'note': str}
 
     Raises
     ------
@@ -144,17 +177,49 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
     else:
         raise ValueError(f"Unknown unit '{unit}'. Use 'm/s' or 'ft/s'.")
 
-    matched = None
-    for sc, lo, hi, desc in _TABLE_20_2_1:
-        lo_ok = (lo is None) or (vs_ft > lo)
-        hi_ok = (hi is None) or (vs_ft <= hi)
-        if lo_ok and hi_ok:
-            matched = (sc, lo, hi, desc)
-            break
+    def row_for(v_ft):
+        for row in _TABLE_20_2_1:
+            _, lo_, hi_, _ = row
+            if ((lo_ is None) or (v_ft > lo_)) and ((hi_ is None) or (v_ft <= hi_)):
+                return row
+        return None
+
+    matched = row_for(vs_ft)
     if matched is None:  # pragma: no cover — table spans all positive vs
         raise ValueError(f"Could not classify vs30={vs30} {unit}")
 
     sc, lo, hi, desc = matched
+    # Section 20.3: classes at vs/1.3 and 1.3 vs, for a velocity estimated
+    # from correlations.
+    # Sections 20.2.4 and 20.2.5: Site Classes B and A need a measured
+    # velocity, so an estimated one is given no class there.
+    estimated = {}
+    estimated_limits = []
+    for label, v_ft in (("vs/1.3", vs_ft / 1.3), ("vs", vs_ft),
+                        ("1.3vs", vs_ft * 1.3)):
+        table_class = row_for(v_ft)[0]
+        if table_class == "B":
+            estimated[label] = None
+            estimated_limits.append(
+                f"{label} = {v_ft:,.0f} ft/s is in the Site Class B range of "
+                "Table 20.2-1, but 'Site Class B can only be assigned to a "
+                "site on the basis of shear wave velocity measured on site' "
+                "(Section 20.2.4, printed p. 87). Where the site condition is "
+                "estimated as Site Class B or BC on the basis of site geology "
+                "consisting of competent rock with moderate fracturing and "
+                "weathering, 'the site shall be classified as Site Class BC'."
+            )
+        elif table_class == "A":
+            estimated[label] = None
+            estimated_limits.append(
+                f"{label} = {v_ft:,.0f} ft/s is in the Site Class A range of "
+                "Table 20.2-1, but 'The hard rock, Site Class A category "
+                "shall be supported by shear wave velocity measurement either "
+                "on site or on profiles of the same rock type in the same "
+                "formation' (Section 20.2.5, printed p. 87)."
+            )
+        else:
+            estimated[label] = table_class
     if hi is None:
         boundary = f"vs > {lo:,.0f} ft/s"
     elif lo is None:
@@ -169,12 +234,25 @@ def site_class_from_vs30(vs30, unit: str = "m/s") -> dict:
         "site_class": sc,
         "description": desc,
         "boundary": boundary,
-        "reference": "FEMA P-2082 (2020 NEHRP) Table 20.2-1 (Section 20.2)",
+        "estimated_vs_site_classes": estimated,
+        **({"estimated_vs_limits": estimated_limits} if estimated_limits else {}),
+        "reference": ("FEMA P-2082 (2020 NEHRP) Table 20.2-1 (Section 20.2, "
+                      "printed p. 86); Sections 20.2.4 and 20.2.5 (printed "
+                      "p. 87); Section 20.3 (printed p. 88)"),
         "note": (
             "Velocity-based class only. Check Section 20.2.1 (Site Class F) and "
             "20.2.2 (Site Class E soft clay) overrides with additional soil data. "
             "Site Classes A and B require on-site measured Vs; an estimated "
-            "rock site defaults to BC (Section 20.2.4)."
+            "rock site defaults to BC (Section 20.2.4). 'site_class' is for "
+            "the velocity as given. If the velocity was estimated from "
+            "correlations and not measured, Section 20.3 requires the site "
+            "class to be derived using vs, vs/1.3 and 1.3 vs "
+            "('estimated_vs_site_classes'); where these differ, the most "
+            "critical of the site classes for ground motion analysis at each "
+            "period is determined by a geotechnical engineer (Section 11.4.2). "
+            "An estimated velocity is given no class in the B or A range "
+            "(entry null, reason in 'estimated_vs_limits'): Sections 20.2.4 "
+            "and 20.2.5 require a measured velocity for those classes."
         ),
     }
 
@@ -380,25 +458,38 @@ def sdc_from_sd1(sd1, risk_category: str = "II") -> dict:
 
 
 def seismic_design_category(sds, sd1, risk_category: str = "II",
-                            s1: float = 0.0) -> dict:
-    """Combined Seismic Design Category per Section 11.6 (P-2082).
+                            s1: float = None) -> dict:
+    """Seismic Design Category (A to F) of a structure from SDS, SD1, the
+    Risk Category and the mapped S1 (FEMA P-2082, 2020 NEHRP Provisions,
+    Section 11.6 and Tables 11.6-1 and 11.6-2, printed pp. 18-19).
 
-    Applies BOTH Table 11.6-1 (from SDS) and Table 11.6-2 (from SD1), taking the
-    more severe category, AND the S1 >= 0.75 override:
-      - Risk Category I, II, or III with S1 >= 0.75  -> SDC E
-      - Risk Category IV with S1 >= 0.75             -> SDC F
+    As printed in Section 11.6: "Risk Category I, II, or III structures
+    located where the mapped spectral response acceleration parameter at
+    1-s period, S1, is greater than or equal to 0.75 shall be assigned to
+    Seismic Design Category E. Risk Category IV structures located where
+    ... S1, is greater than or equal to 0.75 shall be assigned to Seismic
+    Design Category F. All other structures shall be assigned to a Seismic
+    Design Category based on their Risk Category and the design spectral
+    response acceleration parameters, SDS and SD1 ... Each building and
+    structure shall be assigned to the more severe Seismic Design Category
+    in accordance with Table 11.6-1 or 11.6-2".
+
+    S1 decides which of those sentences applies, so it is required: the
+    function raises without it. For the two table values alone use
+    ``sdc_from_sds`` and ``sdc_from_sd1``.
 
     Parameters
     ----------
     sds : float
-        Design spectral acceleration at short periods, SDS.
+        Design spectral acceleration at short periods, SDS (g).
     sd1 : float
-        Design spectral acceleration at a 1-s period, SD1.
+        Design spectral acceleration at a 1-s period, SD1 (g).
     risk_category : str, optional
         Risk Category 'I', 'II', 'III', or 'IV'. Default 'II'.
-    s1 : float, optional
-        Mapped MCER spectral response acceleration at 1 s (Site Class BC).
-        Default 0.0. If >= 0.75 the override applies.
+    s1 : float
+        Mapped spectral response acceleration parameter at 1-s period, S1
+        (g). Required. If >= 0.75 the category is E (Risk Category I, II,
+        III) or F (Risk Category IV).
 
     Returns
     -------
@@ -410,8 +501,19 @@ def seismic_design_category(sds, sd1, risk_category: str = "II",
     Raises
     ------
     ValueError
-        If inputs are invalid.
+        If inputs are invalid, or s1 is not given.
     """
+    if s1 is None:
+        raise ValueError(
+            "s1 (the mapped spectral response acceleration parameter at 1-s "
+            "period, S1) is required: Section 11.6 assigns Seismic Design "
+            "Category E (Risk Category I, II or III) or F (Risk Category IV) "
+            "where S1 >= 0.75, whatever Tables 11.6-1 and 11.6-2 give "
+            "(FEMA P-2082, printed p. 18). For the table values alone use "
+            "sdc_from_sds and sdc_from_sd1."
+        )
+    if s1 < 0:
+        raise ValueError(f"s1 must be >= 0, got {s1}")
     a = sdc_from_sds(sds, risk_category)["sdc"]
     b = sdc_from_sd1(sd1, risk_category)["sdc"]
     # More severe of the two tables.

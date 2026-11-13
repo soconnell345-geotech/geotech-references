@@ -1,0 +1,610 @@
+{
+  "reference_id": "FHWA-NHI-05-039",
+  "reference_title": "Micropile Design and Construction",
+  "package": "micropile",
+  "volume": null,
+  "pdf_path": "docs/FHWA Micropile Manual.pdf",
+  "table_count": 37,
+  "tables": [
+    {
+      "table_number": "2-1",
+      "caption": "Details of Micropile Classification Based on Type of Grouting",
+      "chapter": 2,
+      "section_id": "2.3",
+      "section_title": "Construction Type Classification",
+      "pdf_page_index": 32,
+      "pages": [
+        32
+      ],
+      "printed_page": "2-9",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "2.3",
+      "implemented_in": [
+        "tables.table_2_1_classification"
+      ]
+    },
+    {
+      "table_number": "3-1",
+      "caption": "Relationship Between Micropile Application, Design Behavior and Construction Type (modified after FHWA, 1997)",
+      "chapter": 3,
+      "section_id": "3.1",
+      "section_title": "Introduction",
+      "pdf_page_index": 36,
+      "pages": [
+        36
+      ],
+      "printed_page": "3-3",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "3.1"
+    },
+    {
+      "table_number": "4-1",
+      "caption": "Overburden Drilling Methods (after Bruce, 1989)",
+      "chapter": 4,
+      "section_id": "4.2.4",
+      "section_title": "Overburden Drilling Techniques",
+      "pdf_page_index": 65,
+      "pages": [
+        65
+      ],
+      "printed_page": "4-10",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 4.2.4 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "4-2",
+      "caption": "Dimensions, Yield, and Ultimate Strengths for Standard Reinforcing Bars",
+      "chapter": 4,
+      "section_id": "4.4.3",
+      "section_title": "Reinforcement Types",
+      "pdf_page_index": 82,
+      "pages": [
+        82
+      ],
+      "printed_page": "4-27",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4.4.3",
+      "implemented_in": [
+        "tables.table_4_2_rebar_properties"
+      ]
+    },
+    {
+      "table_number": "4-3",
+      "caption": "Dimensions and Yield Strength for DSI Threadbar",
+      "chapter": 4,
+      "section_id": "4.4.3",
+      "section_title": "Reinforcement Types",
+      "pdf_page_index": 84,
+      "pages": [
+        84
+      ],
+      "printed_page": "4-29",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "4.4.3"
+    },
+    {
+      "table_number": "4-4",
+      "caption": "Dimensions and Yield Strength of Common Hollow Injection Bars",
+      "chapter": 4,
+      "section_id": "4.4.3",
+      "section_title": "Reinforcement Types",
+      "pdf_page_index": 86,
+      "pages": [
+        86
+      ],
+      "printed_page": "4-31",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 4.4.3 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "4-5",
+      "caption": "Dimensions and Yield Strength of Common Micropile Pipe Types and Sizes",
+      "chapter": 4,
+      "section_id": "4.4.3",
+      "section_title": "Reinforcement Types",
+      "pdf_page_index": 88,
+      "pages": [
+        88
+      ],
+      "printed_page": "4-33",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_4_5_pipe_properties",
+      "implemented_in": [
+        "tables.table_4_5_pipe_properties"
+      ]
+    },
+    {
+      "table_number": "5-1",
+      "caption": "Design Steps for Micropiles used for Structural Foundations",
+      "chapter": 5,
+      "section_id": "5.1",
+      "section_title": "Introduction",
+      "pdf_page_index": 93,
+      "pages": [
+        93
+      ],
+      "printed_page": "5-2",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.1",
+      "note": "Section 5.1 lists each step in fewer words; the page has its wording."
+    },
+    {
+      "table_number": "5-2",
+      "caption": "Guidelines for Minimum Number of Investigation Points and Depth of Investigation (Modified after FHWA-IF-02-034, 2002)",
+      "chapter": 5,
+      "section_id": "5.3",
+      "section_title": "Step 2: Review Available Information and Geotechnical Data",
+      "pdf_page_index": 97,
+      "pages": [
+        97
+      ],
+      "printed_page": "5-6",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 5.3 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "5-3",
+      "caption": "Summary of Typical α bond (Grout-to-Ground Bond) Values for Micropile Design",
+      "chapter": 5,
+      "section_id": "5.9.2",
+      "section_title": "Select Ultimate Bond Stress and Calculate Bond Length",
+      "pdf_page_index": 112,
+      "pages": [
+        112
+      ],
+      "printed_page": "5-21",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_3_alpha_bond",
+      "implemented_in": [
+        "tables.table_5_3_alpha_bond"
+      ]
+    },
+    {
+      "table_number": "5-4",
+      "caption": "Efficiency Factors for Micropile Groups in Cohesive Soils",
+      "chapter": 5,
+      "section_id": "5.9.3",
+      "section_title": "Evaluate Micropile Group Compression Capacity",
+      "pdf_page_index": 114,
+      "pages": [
+        114
+      ],
+      "printed_page": "5-23",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_4_group_efficiency",
+      "implemented_in": [
+        "tables.table_5_4_group_efficiency"
+      ]
+    },
+    {
+      "table_number": "5-5",
+      "caption": "Criteria for Assessing Ground Corrosion Potential (Elias et al., 2001)",
+      "chapter": 5,
+      "section_id": "5.14.2",
+      "section_title": "Evaluation of Soil Corrosion Potential",
+      "pdf_page_index": 137,
+      "pages": [
+        137
+      ],
+      "printed_page": "5-46",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.14.2",
+      "implemented_in": [
+        "tables.table_5_5_corrosion_criteria"
+      ]
+    },
+    {
+      "table_number": "5-6",
+      "caption": "Corrosion Protection Recommendations for Micropiles (after DFI, 2004)",
+      "chapter": 5,
+      "section_id": "5.14.3.3",
+      "section_title": "Corrosion Protection Requirements for Micropiles",
+      "pdf_page_index": 141,
+      "pages": [
+        141
+      ],
+      "printed_page": "5-50",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 5.14.3.3 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "5-7",
+      "caption": "Values of ε 50 for intact clays (after Reese et al., 2005)",
+      "chapter": 5,
+      "section_id": "5.18.2",
+      "section_title": "Analysis Steps for Single Laterally Loaded Micropile",
+      "pdf_page_index": 146,
+      "pages": [
+        146
+      ],
+      "printed_page": "5-55",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_7_epsilon_50",
+      "implemented_in": [
+        "tables.table_5_7_epsilon_50"
+      ]
+    },
+    {
+      "table_number": "5-8",
+      "caption": "Values of ε 50 for stiff clays (after Reese et al. 2005)",
+      "chapter": 5,
+      "section_id": "5.18.2",
+      "section_title": "Analysis Steps for Single Laterally Loaded Micropile",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "5-56",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.18.2",
+      "implemented_in": [
+        "tables.table_5_8_epsilon_50_stiff"
+      ]
+    },
+    {
+      "table_number": "5-9",
+      "caption": "Soil-modulus parameter (k) for sands (after Reese et al., 2005)",
+      "chapter": 5,
+      "section_id": "5.18.2",
+      "section_title": "Analysis Steps for Single Laterally Loaded Micropile",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "5-56",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.18.2",
+      "implemented_in": [
+        "tables.table_5_9_soil_modulus_k_sand"
+      ]
+    },
+    {
+      "table_number": "5-10",
+      "caption": "Soil-modulus parameter (k) for clays (after Reese et al., 2005)",
+      "chapter": 5,
+      "section_id": "5.18.2",
+      "section_title": "Analysis Steps for Single Laterally Loaded Micropile",
+      "pdf_page_index": 147,
+      "pages": [
+        147
+      ],
+      "printed_page": "5-56",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.18.2",
+      "implemented_in": [
+        "tables.table_5_10_soil_modulus_k_clay"
+      ]
+    },
+    {
+      "table_number": "5-11",
+      "caption": "Guidance on Level of Fixity for Micropile-Footing Connections",
+      "chapter": 5,
+      "section_id": "5.18.2",
+      "section_title": "Analysis Steps for Single Laterally Loaded Micropile",
+      "pdf_page_index": 149,
+      "pages": [
+        149
+      ],
+      "printed_page": "5-58",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.18.2",
+      "implemented_in": [
+        "tables.table_5_11_fixity"
+      ]
+    },
+    {
+      "table_number": "5-12",
+      "caption": "Elastic Constants of Various Soils Based on Soil Type",
+      "chapter": 5,
+      "section_id": "5.20",
+      "section_title": "Buckling Considerations for Micropiles",
+      "pdf_page_index": 160,
+      "pages": [
+        160
+      ],
+      "printed_page": "5-69",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "5.20",
+      "implemented_in": [
+        "tables.table_5_12_elastic_modulus"
+      ]
+    },
+    {
+      "table_number": "5-13",
+      "caption": "Elastic Constants of Various Soils Based on SPT N Value",
+      "chapter": 5,
+      "section_id": "5.20",
+      "section_title": "Buckling Considerations for Micropiles",
+      "pdf_page_index": 161,
+      "pages": [
+        161
+      ],
+      "printed_page": "5-70",
+      "page_estimated": false,
+      "values": "lookup",
+      "values_in": "tables.table_5_13_elastic_modulus_spt",
+      "implemented_in": [
+        "tables.table_5_13_elastic_modulus_spt"
+      ]
+    },
+    {
+      "table_number": "6-1",
+      "caption": "Design Steps for Micropiles for Soil Slope Stabilization",
+      "chapter": 6,
+      "section_id": "6.1",
+      "section_title": "Introduction",
+      "pdf_page_index": 180,
+      "pages": [
+        180
+      ],
+      "printed_page": "6-3",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.1"
+    },
+    {
+      "table_number": "6-2",
+      "caption": "M ult Values for Design Example",
+      "chapter": 6,
+      "section_id": "6.7.5",
+      "section_title": "Step 8: Evaluate Bending Capacity Of Single Vertical Micropile",
+      "pdf_page_index": 224,
+      "pages": [
+        224
+      ],
+      "printed_page": "6-47",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.7.5"
+    },
+    {
+      "table_number": "6-3",
+      "caption": "Hult(Ψds) for Various Batter Angles",
+      "chapter": 6,
+      "section_id": "6.7.7",
+      "section_title": "Step 10: Evaluate Shear Capacity of Battered Micropile Group",
+      "pdf_page_index": 229,
+      "pages": [
+        229
+      ],
+      "printed_page": "6-52",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.7.7"
+    },
+    {
+      "table_number": "6-4",
+      "caption": "Comparison of Actual Loads to Design Loads for Blue Trail Landslide Project (after Hasenkamp, 1999)",
+      "chapter": 6,
+      "section_id": "6.9.1",
+      "section_title": "Stabilization of Blue Trail Landslide Using Micropiles, Wyoming",
+      "pdf_page_index": 239,
+      "pages": [
+        239
+      ],
+      "printed_page": "6-62",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "6.9.1"
+    },
+    {
+      "table_number": "7-1",
+      "caption": "Verification Test Load Schedule (after DFI, 2004)",
+      "chapter": 7,
+      "section_id": "7.4.1.3",
+      "section_title": "Recording of Verification Test Data",
+      "pdf_page_index": 258,
+      "pages": [
+        258
+      ],
+      "printed_page": "7-13",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7.4.1.3"
+    },
+    {
+      "table_number": "7-2",
+      "caption": "Proof Test Load Schedule (after DFI, 2004)",
+      "chapter": 7,
+      "section_id": "7.4.2.2",
+      "section_title": "Proof Test Procedures and Recording and Analysis of Proof Test Data",
+      "pdf_page_index": 261,
+      "pages": [
+        261
+      ],
+      "printed_page": "7-16",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7.4.2.2"
+    },
+    {
+      "table_number": "7-3",
+      "caption": "Recommendations on Minimum Number of Test Micropiles for Proof Testing",
+      "chapter": 7,
+      "section_id": "7.6.3",
+      "section_title": "Load Testing Program for Proof Tests",
+      "pdf_page_index": 267,
+      "pages": [
+        267
+      ],
+      "printed_page": "7-22",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "7.6.3"
+    },
+    {
+      "table_number": "8-1",
+      "caption": "Example Micropile Installation Log",
+      "chapter": 8,
+      "section_id": "8.6.2",
+      "section_title": "Production Micropiles",
+      "pdf_page_index": 287,
+      "pages": [
+        287
+      ],
+      "printed_page": "8-14",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "8.6.2"
+    },
+    {
+      "table_number": "8-2",
+      "caption": "Example Completed Micropile Installation Log",
+      "chapter": 8,
+      "section_id": "8.6.2",
+      "section_title": "Production Micropiles",
+      "pdf_page_index": 288,
+      "pages": [
+        288
+      ],
+      "printed_page": "8-15",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null,
+      "note": "Section 8.6.2 types part of this table: a check against the page did not find all of its cells in the section's entry. Read the values off the page."
+    },
+    {
+      "table_number": "10-1",
+      "caption": "Typical Breakdown of Micropile Unit Costs",
+      "chapter": 10,
+      "section_id": "10.2.1",
+      "section_title": "Overview",
+      "pdf_page_index": 303,
+      "pages": [
+        303
+      ],
+      "printed_page": "10-2",
+      "page_estimated": false,
+      "values": "page",
+      "values_in": null
+    },
+    {
+      "table_number": "10-2",
+      "caption": "Material Costs of Steel Casings Used for Micropiles",
+      "chapter": 10,
+      "section_id": "10.2.2",
+      "section_title": "Micropile Material Costs",
+      "pdf_page_index": 303,
+      "pages": [
+        303
+      ],
+      "printed_page": "10-2",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.2.2"
+    },
+    {
+      "table_number": "10-3",
+      "caption": "Material Costs of Steel Reinforcing Bars Used for Micropiles",
+      "chapter": 10,
+      "section_id": "10.2.2",
+      "section_title": "Micropile Material Costs",
+      "pdf_page_index": 304,
+      "pages": [
+        304
+      ],
+      "printed_page": "10-3",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.2.2"
+    },
+    {
+      "table_number": "10-4",
+      "caption": "Effects of Project-Specific Factors on Micropile Cost",
+      "chapter": 10,
+      "section_id": "10.3.1",
+      "section_title": "Overview",
+      "pdf_page_index": 306,
+      "pages": [
+        306
+      ],
+      "printed_page": "10-5",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.3.1"
+    },
+    {
+      "table_number": "10-5",
+      "caption": "Sample Problem No. 1 - Cost Analysis (Bridge Abutment Support)",
+      "chapter": 10,
+      "section_id": "10.3.3.1",
+      "section_title": "Sample Problem No. 1 (Bridge Abutment Support)",
+      "pdf_page_index": 308,
+      "pages": [
+        308
+      ],
+      "printed_page": "10-7",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.3.3.1"
+    },
+    {
+      "table_number": "10-6",
+      "caption": "Sample Problem No. 2 - Cost Analysis (Seismic Retrofit)",
+      "chapter": 10,
+      "section_id": "10.3.3.2",
+      "section_title": "Sample Problem No. 2 (Seismic Retrofit)",
+      "pdf_page_index": 310,
+      "pages": [
+        310
+      ],
+      "printed_page": "10-9",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.3.3.2"
+    },
+    {
+      "table_number": "10-7",
+      "caption": "Micropile Measurement and Payment Units",
+      "chapter": 10,
+      "section_id": "10.4",
+      "section_title": "Measurement and Payment for Micropiles",
+      "pdf_page_index": 311,
+      "pages": [
+        311
+      ],
+      "printed_page": "10-10",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "10.4"
+    },
+    {
+      "table_number": "S1-1",
+      "caption": "Sample Problem No. 1- Summary of Abutment Loads Per Meter Length",
+      "chapter": null,
+      "section_id": "D.1",
+      "section_title": "Step 1 – Abutment Design Loads",
+      "pdf_page_index": 408,
+      "pages": [
+        408
+      ],
+      "printed_page": "D-7",
+      "page_estimated": false,
+      "values": "text",
+      "values_in": "D.1"
+    }
+  ]
+}

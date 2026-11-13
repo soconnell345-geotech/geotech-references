@@ -3,7 +3,7 @@ strength/stiffness properties, moisture-content adjustment, and temperature
 effects).
 
 SPECIES SUBSET RULE: Table 5-3 (the handbook's most extensively sampled
-clear-wood property table, printed p. 5-6 to 5-8) covers ~180 species. This
+clear-wood property table, Table 5-3a printed pp. 5-4 to 5-8) covers ~180 species. This
 module digitizes a documented structural subset covering the species that
 make up the commercially important NDS softwood combination groups, plus a
 handful of common hardwoods, rather than the full table:
@@ -52,7 +52,7 @@ in N.
 # ============================================================================
 # Table 5-3a -- Strength properties of some commercially important woods
 # grown in the United States (metric), green and 12% MC
-# (printed pp. 5-5 to 5-8, pdf_page 120-123)
+# (printed pp. 5-4 to 5-8, pdf_page 119-123)
 # ============================================================================
 
 # Each species: {"green": {...}, "12": {...}}. None = "-" (not reported) in
@@ -290,7 +290,7 @@ TABLE_5_3_PROPERTIES = {
 
 def table_5_3_mechanical_properties(species, moisture_condition="12"):
     """Table 5-3a: clear-wood strength/stiffness properties (metric units),
-    for the module's documented species subset (printed pp. 5-5 to 5-8).
+    for the module's documented species subset (printed pp. 5-4 to 5-8).
 
     Parameters
     ----------
@@ -318,7 +318,7 @@ def table_5_3_mechanical_properties(species, moisture_condition="12"):
     row = dict(TABLE_5_3_PROPERTIES[key][moisture_condition])
     row.update({
         "species": key, "moisture_condition": moisture_condition,
-        "table": "5-3a", "printed_page": "5-5 to 5-8", "pdf_page": "119-123",
+        "table": "5-3a", "printed_page": "5-4 to 5-8", "pdf_page": "119-123",
     })
     return row
 

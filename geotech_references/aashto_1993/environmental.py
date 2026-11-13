@@ -297,20 +297,25 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     ----------
     pi : float
         Plasticity index of the swelling layer (ASTM D 424 / AASHTO T 90).
-        Below where the condition's curve starts (PI 19.4 / 25.8 / 33.3 for
-        minimum / average / optimum) the chart shows no rise and VR is 0.0
-        (flagged); past where the curve leaves the chart (PI 51.4 / 65.8 /
-        80) the chart gives no VR and ValueError is raised.
+        The condition's curve is drawn from PI 19.4 / 25.8 / 33.3 (minimum
+        / average / optimum) to where it leaves the chart (PI 51.4 / 65.8 /
+        80). Below the curve's start VR is 0.0 (flagged in 'below_chart'
+        and 'note'), as the guide's own example takes it: Table H.1
+        (printed H-3) prints VR 0.00 for PI 15 and 19 under optimum
+        conditions. Past where the curve leaves the chart the chart gives
+        no VR and ValueError is raised.
     condition : str
         One of 'minimum' (Minimum Natural Dry Conditions, no moisture
         control), 'average' (Normal Field Control Moisture & Density), or
         'optimum' (Closely Controlled Moisture & Density Throughout Life
         of Facility).
     thickness_ft : float
-        Thickness of the swelling roadbed layer, feet, > 0. The chart's
-        curves run 2-30 ft (interpolated linearly between them); above
-        30 ft the 30 ft curve is used, as G.1 says (pdf_page 394, printed
-        G-1); below 2 ft the 2 ft curve is used with a note (overstates VR).
+        Thickness of the swelling roadbed layer, feet, 2 or more. The
+        chart's curves run 2-30 ft (interpolated linearly between them);
+        above 30 ft the 30 ft curve is used, as G.1 says (pdf_page 394,
+        printed G-1: "for thicknesses greater than 30 feet, use 30 feet");
+        below 2 ft, the thinnest curve, ValueError is raised (REF-76; the
+        2 ft curve used to be read, with a note).
 
     Returns
     -------
@@ -321,8 +326,8 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     Raises
     ------
     ValueError
-        If condition is unrecognized, thickness_ft <= 0, or the PI is past
-        where the condition's curve leaves the chart.
+        If condition is unrecognized, thickness_ft is below 2 ft, or the
+        PI is past where the condition's curve leaves the chart.
     """
     key = str(condition).strip().lower()
     if key not in _VR_CONDITION_CURVES:
@@ -332,16 +337,19 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
         )
     if thickness_ft is None or thickness_ft <= 0:
         raise ValueError(f"thickness_ft must be > 0, got {thickness_ft}")
+    if pi is None or pi < 0:
+        raise ValueError(f"pi must be 0 or more, got {pi}")
+    if thickness_ft < 2.0:
+        raise ValueError(
+            f"Thickness {thickness_ft} ft is below Figure G.3's thinnest "
+            "curve, 2 ft (curves 2, 5, 10, 15, 20, 25 and 30 ft, printed "
+            "G-4); the chart gives no VR there. Give vr_in directly.")
     notes = []
     t = thickness_ft
     if t > 30.0:
         t = 30.0
         notes.append("Thickness above 30 ft: the 30 ft curve is used, as "
                      "G.1 says (pdf_page 394, printed G-1).")
-    elif t < 2.0:
-        t = 2.0
-        notes.append("Thickness below the chart's 2 ft curve: the 2 ft "
-                     "curve is used (overstates VR).")
     curve = _VR_CONDITION_CURVES[key]
     pi_lo, h_lo = curve[0]
     pi_hi, h_hi = curve[-1]
@@ -358,8 +366,9 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
         vr = 0.0
         notes.append(
             f"PI {pi} is below where the '{key}' curve starts (PI "
-            f"{pi_lo:g}); the chart shows no rise (VR there about "
-            f"{_vr_at(t, h_lo):.2f} in).")
+            f"{pi_lo:g}); VR is taken as 0.00, as the guide's Table H.1 "
+            "(printed H-3) prints it for PI 15 and 19 (VR where the curve "
+            f"starts about {_vr_at(t, h_lo):.2f} in).")
     else:
         h = _linterp(pi, [p[0] for p in curve], [float(p[1]) for p in curve])
         vr = _vr_at(t, h)
@@ -613,9 +622,11 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
     drainage_quality : str
         One of 'excellent', 'good', 'fair', 'poor', 'very_poor'.
     depth_ft : float
-        Depth of frost penetration, feet, >= 0 (chart digitized over 0-10 ft;
-        the relation is a straight line through the origin so extrapolation
-        beyond 10 ft is a modeling choice, flagged with a note).
+        Depth of frost penetration, feet, 0 to 10: Figure G.7's depth axis
+        (printed G-10). Beyond 10 ft the lines end at the frame and the
+        guide gives no rule; the function refuses there (REF-76; it used to
+        extend the line with a note, to a loss of 6.0 at 12 ft, past the
+        chart's 5 and Figure G.8's 3.0 scale for this value).
 
     Returns
     -------
@@ -626,7 +637,7 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
     Raises
     ------
     ValueError
-        If drainage_quality is unrecognized or depth_ft < 0.
+        If drainage_quality is unrecognized or depth_ft is outside 0-10 ft.
     """
     key = str(drainage_quality).strip().lower().replace(" ", "_")
     if key not in _FROST_MAX_LOSS_SLOPE:
@@ -636,6 +647,11 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         )
     if depth_ft < 0:
         raise ValueError(f"depth_ft must be >= 0, got {depth_ft}")
+    if depth_ft > 10.0:
+        raise ValueError(
+            f"Depth of frost penetration {depth_ft:g} ft is beyond Figure "
+            "G.7's depth axis, 0 to 10 ft (printed G-10); the chart gives no "
+            "serviceability loss there.")
     slope = _FROST_MAX_LOSS_SLOPE[key]
     out = {
         "drainage_quality": key, "depth_ft": depth_ft,
@@ -643,8 +659,6 @@ def max_serviceability_loss_frost(drainage_quality, depth_ft) -> dict:
         "equation": "dPSI_MAX = slope(drainage_quality) * depth_ft",
         "reference": "AASHTO 1993 Guide, Figure G.7 (pdf_page 403, printed G-10)",
     }
-    if depth_ft > 10.0:
-        out["note"] = "depth_ft > 10 ft, beyond the digitized chart range -- linear extrapolation."
     return out
 
 
@@ -976,6 +990,16 @@ def performance_period_iteration(
     important transparency note on what could and could not be
     independently reconciled from the guide.
 
+    NEEDS PYTHON CALLABLES: ``w18_fn`` and ``time_from_w18_fn`` are
+    functions, so this cannot be called with JSON arguments alone (an
+    agent's tool call). The guide's Steps 5 and 6 read two project curves,
+    the design chart at the trial structural number and the project's
+    cumulative traffic against time (Figure 2.1, a plot); taking either as
+    tabulated points would need a rule for reading between them that the
+    guide does not print, so no JSON form is offered (2026-11-12). The
+    function carries ``needs_python_callables = True`` for a caller that
+    lists tools.
+
     Parameters
     ----------
     delta_psi_design : float
@@ -1097,3 +1121,9 @@ def performance_period_iteration(
         "note": note,
         "reference": "AASHTO 1993 Guide, Table 3.1 (pdf_page 123, printed II-34)",
     }
+
+
+#: w18_fn and time_from_w18_fn are Python functions: an agent calling with
+#: JSON arguments cannot supply them, so a tool list should leave this out
+#: (see the docstring; 2026-11-12 reach audit).
+performance_period_iteration.needs_python_callables = True
