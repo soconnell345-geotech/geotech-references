@@ -321,11 +321,15 @@ class TestTable37:
 
     def test_strip_thick(self):
         results = table_3_7_galvanization()
-        thick = [r for r in results if ">= 1/4" in r["component"]]
+        thick = [r for r in results if "> 1/4" in r["component"]]
         assert len(thick) == 1
         assert thick[0]["thickness_um"] == 100
-        # p. 3-26 prints "> ¼ in."; the exact ¼ in. case is the library's
+        # the label says what p. 3-26 prints ("> ¼ in."); the exact ¼ in.
+        # case is the library's, said in print_note
+        assert thick[0]["component"] == "Strip reinforcement (thickness > 1/4 in)"
+        assert not any(">=" in r["component"] for r in results)
         assert '"> ¼ in."' in thick[0]["print_note"]
+        assert "exactly ¼ in. thick is in neither" in thick[0]["print_note"]
 
     def test_wire_row_carries_its_footnote(self):
         """p. 3-26: "Wire*" (all diameters) with "* For bar mats fabricated
@@ -513,6 +517,19 @@ class TestTable41:
             assert "use one of these at a time" in row["print_note"]
         assert sum(r[k] == "–" for r in table_4_1_load_combinations()
                    for k in ("EQ", "CT")) == 6
+
+    def test_unprinted_row_notes_say_they_are_the_librarys(self):
+        """Table 4-1 (p. 4-4) prints a note only on gamma_EQ (Extreme Event
+        I); the other three rows' notes are the library's words, and the
+        result says so, not only the docstring."""
+        rows = {r["limit_state"]: r for r in table_4_1_load_combinations()}
+        assert rows["Extreme Event I"]["notes_source"] == "printed"
+        assert "library" not in rows["Extreme Event I"]["notes"]
+        for ls in ("Strength I", "Extreme Event II", "Service I"):
+            assert rows[ls]["notes_source"] == "library"
+            assert rows[ls]["notes"].endswith(
+                "[the library's description of this limit state; Table 4-1 "
+                "(p. 4-4) prints no note for this row]"), ls
 
 
 # ============================================================================

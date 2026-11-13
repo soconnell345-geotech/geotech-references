@@ -23,11 +23,16 @@ Of the five a checker found differing from the print, Tables 2-1, 4-4 and
 - `table_4_1_load_combinations` (p. 4-4): the printed dashes are returned
   as "–", not 0.0 (Strength I EQ and CT, Extreme Event I CT, Extreme
   Event II EQ, Service I EQ and CT), each row with a `print_note`; a test
-  checks every cell against the table as typed in the chapter text.
+  checks every cell against the table as typed in the chapter text and
+  against Appendix A's Table 3.4.1-1 (p. A-3). The notes of Strength I,
+  Extreme Event II and Service I, which neither volume prints, say in the
+  result that they are the library's description (`notes_source`
+  "library"; Extreme Event I's printed gamma-EQ note is "printed").
 - `table_3_7_galvanization` (p. 3-26): the wire row ("Wire*", all
   diameters) carries the printed footnote "* For bar mats fabricated from
-  uncoated steel wire."; the thicker strip row says the page prints
-  "> ¼ in." (the library puts an exact ¼ in. there); every row a reference.
+  uncoated steel wire."; the strip rows are labelled as printed ("< 1/4
+  in", "> 1/4 in"; the thicker one read ">= 1/4 in") and the thicker one
+  says the library puts an exact ¼ in. there; every row a reference.
 - `table_4_6_bearing_capacity_factors` and the chapter 4 note on Table
   4-6: the two Nc cells 0.1 off are "as rounding in steps would give" (it
   said "rounding twice").

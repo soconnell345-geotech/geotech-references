@@ -477,7 +477,7 @@ _TABLE_3_7 = [
         "thickness_um": 85,
     },
     {
-        "component": "Strip reinforcement (thickness >= 1/4 in)",
+        "component": "Strip reinforcement (thickness > 1/4 in)",
         "thickness_mils": 3.9,
         "thickness_um": 100,
         "print_note": ("Table 3-7 (p. 3-26) prints this row \"> ¼ in.\" and "
@@ -501,8 +501,9 @@ def table_3_7_galvanization() -> list:
     (6.4 mm)" 3.9 mils (100 μm), and "Wire*", all diameters, 3.4 mils
     (85 μm), with the footnote "* For bar mats fabricated from uncoated
     steel wire." (the wire row carries it as ``footnote``). A strip exactly
-    ¼ in. thick is in neither printed strip row; the library puts it in
-    the 3.9 mil row and says so (``print_note``).
+    ¼ in. thick is in neither printed strip row; the rows are labelled as
+    printed ("< 1/4 in", "> 1/4 in"), and the library puts a strip exactly
+    ¼ in. thick in the 3.9 mil row and says so (``print_note``).
 
     Returns
     -------
@@ -707,6 +708,10 @@ _TABLE_4_1_DASH_NOTE = (
     "'–' is the cell as printed in Table 4-1 (p. 4-4): the table gives no "
     "load factor for that load in that limit state. EQ and CT are headed "
     "'use one of these at a time'.")
+#: Three rows' ``notes`` are the library's words: neither volume prints them
+#: (the independent check of 2026-11-12 searched both); the result says so.
+_LIBRARY_NOTE = (" [the library's description of this limit state; Table 4-1 "
+                 "(p. 4-4) prints no note for this row]")
 
 _TABLE_4_1 = [
     {
@@ -715,7 +720,8 @@ _TABLE_4_1 = [
         "LL_LS": 1.75,
         "EQ": _DASH,
         "CT": _DASH,
-        "notes": "Normal gravity loading",
+        "notes": "Normal gravity loading" + _LIBRARY_NOTE,
+        "notes_source": "library",
         "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
@@ -726,6 +732,7 @@ _TABLE_4_1 = [
         "CT": _DASH,
         "notes": ("gamma_EQ = load factor for live load applied "
                   "simultaneously with seismic loads (Table 4-1 note)"),
+        "notes_source": "printed",
         "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
@@ -734,7 +741,8 @@ _TABLE_4_1 = [
         "LL_LS": 0.50,
         "EQ": _DASH,
         "CT": 1.00,
-        "notes": "Vehicle collision on traffic barrier",
+        "notes": "Vehicle collision on traffic barrier" + _LIBRARY_NOTE,
+        "notes_source": "library",
         "print_note": _TABLE_4_1_DASH_NOTE,
     },
     {
@@ -743,7 +751,8 @@ _TABLE_4_1 = [
         "LL_LS": 1.00,
         "EQ": _DASH,
         "CT": _DASH,
-        "notes": "Settlement and lateral deformation check",
+        "notes": "Settlement and lateral deformation check" + _LIBRARY_NOTE,
+        "notes_source": "library",
         "print_note": _TABLE_4_1_DASH_NOTE,
     },
 ]
@@ -759,7 +768,9 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
     factor for that load in that limit state (it is not turned into 0.0).
     EQ and CT are headed "use one of these at a time". ``notes`` is the
     library's description of each limit state, except Extreme Event I's,
-    which is the printed note on gamma-EQ.
+    which is the printed note on gamma-EQ; ``notes_source`` says which
+    ("library" or "printed"), and each library description says in its
+    own words that Table 4-1 prints no note for that row.
 
     Parameters
     ----------
@@ -769,7 +780,8 @@ def table_4_1_load_combinations(limit_state: str = "") -> list:
     Returns
     -------
     list of dict
-        Load factor combinations by limit state, each with ``print_note``.
+        Load factor combinations by limit state, each with ``print_note``
+        and ``notes_source``.
     """
     if not limit_state:
         return list(_TABLE_4_1)

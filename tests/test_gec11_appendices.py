@@ -126,6 +126,22 @@ def test_appendix_a_agrees_with_the_chapter_4_lookups():
     for r in tables.table_4_2_permanent_load_factors():
         lo = "N/A" if r["gamma_min"] is None else f"{r['gamma_min']:.2f}"
         assert f"{names[r['load_type']]} | {r['gamma_max']:.2f} | {lo}" in body
+    # Table 4-1: its four rows against Table 3.4.1-1 (p. A-3), column by
+    # column: DC ... ES, LL ... LS, EQ and CT
+    typed = _sections("A")["A.2"]["body"].split("
+")
+    a3 = {ln.split(" | ")[0]: ln.split(" | ") for ln in typed if " | " in ln}
+    label = {"Strength I": "STRENGTH I (unless noted)", "Extreme Event I": "EXTREME EVENT I",
+             "Extreme Event II": "EXTREME EVENT II", "Service I": "SERVICE I"}
+    sym = {"gamma_p": "γp", "gamma_EQ": "γEQ", "–": "–"}
+    rows = tables.table_4_1_load_combinations()
+    assert [r["limit_state"] for r in rows] == list(label)
+    for r in rows:
+        cells = a3[label[r["limit_state"]]]
+        for key, col in (("EH_ES_EV", 1), ("LL_LS", 2), ("EQ", 10), ("CT", 12)):
+            v = r[key]
+            assert (sym[v] if isinstance(v, str) else f"{v:.2f}") == cells[col], (
+                r["limit_state"], key)
 
 
 # --- Appendix B -------------------------------------------------------------
