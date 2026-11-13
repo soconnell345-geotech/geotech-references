@@ -74,7 +74,7 @@ rules as wave 1a:
   Returns entry (`hansen_depth_factors`: `dc`, `dq`, `d_gamma`; the three
   reliability methods: `mu_g`, `sigma_g`, `beta`, `p_u`). The 7 `plot_*`
   functions are left as they are.
-- **New: `unit_system="SI"` on 4 US-unit dict lookups** an SI number would pass
+- **New: `unit_system="SI"` on 4 US-unit lookups** an SI number would pass
   unnoticed: `gec_12.figure_7_10_to_13_kd` and `figure_7_9_delta_phi_ratio`
   (V in m^3/m), `gec_11.table_4_4_traffic_surcharge` (abutment height in m)
   and `gec_10.table_10_2_nc_base_clay` (su in kPa). Four `dm7_2` bare floats
