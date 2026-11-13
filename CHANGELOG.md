@@ -61,6 +61,32 @@ pages):
   returned the 100 % row with a note).
 - `eurocode_7_2.tables.table_l2_min_mass_sieving`: unchanged; the docstring
   states the open-ended last row "<= 2" mm, 100 g (p. 145).
+- `aashto_1993.lef.load_equivalency_factor` (and the four `tables.esal_*`
+  lookups that read it): a load outside the printed rows (2-50 kips single,
+  2-90 kips tandem and triple), an SN outside 1-6 or a D outside 6-14 in
+  (Tables D.1-D.18, printed D-3 to D-20) is refused; the end row or column
+  was read, with a note.
+- `aashto_1993.composite_k.composite_k_subbase`: Dsb above 18 in, Esb above
+  1,000,000 psi, MR above 20,000 psi, or a construction past the 2,000 pci
+  diagonal (Figure 3.3, printed II-39) is refused; the nearest curve was
+  read, with a note.
+- `aashto_1993.composite_k.k_rigid_foundation_correction`: Dsg below 2 ft,
+  MR outside 1,169-20,000 psi, k_inf outside 50-1,400 pci, or a k past the
+  2,000 pci scale end (Figure 3.4, printed II-40) is refused; the nearest
+  curve was read, or no correction applied, with a note.
+- `aashto_1993.composite_k.k_loss_of_support` (and
+  `effective_modulus_subgrade_reaction`, which calls these three): LS
+  outside 0-3 (Figure 3.6's lines, printed II-42) is refused; LS = 3 or 0
+  was used, with a note.
+- `aashto_1993.environmental.potential_vertical_rise`: a layer thinner than
+  2 ft (Figure G.3's thinnest curve, printed G-4) is refused (the 2 ft curve
+  was read, with a note); a negative PI is refused. Below the condition
+  curve's start VR stays 0.00, as Table H.1 (printed H-3) prints it for PI
+  15 and 19; the note now cites it.
+- `aashto_1993.tables.layer_coefficient_a1_asphalt`: above 500,000 psi
+  (Figure 2.5's edge, printed II-18) a1 is still held at the 500,000 psi
+  value, now with `out_of_range`: on the safe side, and II-17 cautions
+  against moduli above 450,000 psi.
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8

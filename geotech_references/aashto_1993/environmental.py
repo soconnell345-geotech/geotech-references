@@ -297,20 +297,25 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     ----------
     pi : float
         Plasticity index of the swelling layer (ASTM D 424 / AASHTO T 90).
-        Below where the condition's curve starts (PI 19.4 / 25.8 / 33.3 for
-        minimum / average / optimum) the chart shows no rise and VR is 0.0
-        (flagged); past where the curve leaves the chart (PI 51.4 / 65.8 /
-        80) the chart gives no VR and ValueError is raised.
+        The condition's curve is drawn from PI 19.4 / 25.8 / 33.3 (minimum
+        / average / optimum) to where it leaves the chart (PI 51.4 / 65.8 /
+        80). Below the curve's start VR is 0.0 (flagged in 'below_chart'
+        and 'note'), as the guide's own example takes it: Table H.1
+        (printed H-3) prints VR 0.00 for PI 15 and 19 under optimum
+        conditions. Past where the curve leaves the chart the chart gives
+        no VR and ValueError is raised.
     condition : str
         One of 'minimum' (Minimum Natural Dry Conditions, no moisture
         control), 'average' (Normal Field Control Moisture & Density), or
         'optimum' (Closely Controlled Moisture & Density Throughout Life
         of Facility).
     thickness_ft : float
-        Thickness of the swelling roadbed layer, feet, > 0. The chart's
-        curves run 2-30 ft (interpolated linearly between them); above
-        30 ft the 30 ft curve is used, as G.1 says (pdf_page 394, printed
-        G-1); below 2 ft the 2 ft curve is used with a note (overstates VR).
+        Thickness of the swelling roadbed layer, feet, 2 or more. The
+        chart's curves run 2-30 ft (interpolated linearly between them);
+        above 30 ft the 30 ft curve is used, as G.1 says (pdf_page 394,
+        printed G-1: "for thicknesses greater than 30 feet, use 30 feet");
+        below 2 ft, the thinnest curve, ValueError is raised (REF-76; the
+        2 ft curve used to be read, with a note).
 
     Returns
     -------
@@ -321,8 +326,8 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
     Raises
     ------
     ValueError
-        If condition is unrecognized, thickness_ft <= 0, or the PI is past
-        where the condition's curve leaves the chart.
+        If condition is unrecognized, thickness_ft is below 2 ft, or the
+        PI is past where the condition's curve leaves the chart.
     """
     key = str(condition).strip().lower()
     if key not in _VR_CONDITION_CURVES:
@@ -332,16 +337,19 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
         )
     if thickness_ft is None or thickness_ft <= 0:
         raise ValueError(f"thickness_ft must be > 0, got {thickness_ft}")
+    if pi is None or pi < 0:
+        raise ValueError(f"pi must be 0 or more, got {pi}")
+    if thickness_ft < 2.0:
+        raise ValueError(
+            f"Thickness {thickness_ft} ft is below Figure G.3's thinnest "
+            "curve, 2 ft (curves 2, 5, 10, 15, 20, 25 and 30 ft, printed "
+            "G-4); the chart gives no VR there. Give vr_in directly.")
     notes = []
     t = thickness_ft
     if t > 30.0:
         t = 30.0
         notes.append("Thickness above 30 ft: the 30 ft curve is used, as "
                      "G.1 says (pdf_page 394, printed G-1).")
-    elif t < 2.0:
-        t = 2.0
-        notes.append("Thickness below the chart's 2 ft curve: the 2 ft "
-                     "curve is used (overstates VR).")
     curve = _VR_CONDITION_CURVES[key]
     pi_lo, h_lo = curve[0]
     pi_hi, h_hi = curve[-1]
@@ -358,8 +366,9 @@ def potential_vertical_rise(pi, condition, thickness_ft) -> dict:
         vr = 0.0
         notes.append(
             f"PI {pi} is below where the '{key}' curve starts (PI "
-            f"{pi_lo:g}); the chart shows no rise (VR there about "
-            f"{_vr_at(t, h_lo):.2f} in).")
+            f"{pi_lo:g}); VR is taken as 0.00, as the guide's Table H.1 "
+            "(printed H-3) prints it for PI 15 and 19 (VR where the curve "
+            f"starts about {_vr_at(t, h_lo):.2f} in).")
     else:
         h = _linterp(pi, [p[0] for p in curve], [float(p[1]) for p in curve])
         vr = _vr_at(t, h)

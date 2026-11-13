@@ -305,12 +305,16 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
         printed curve begins at about 106,000 psi (a1 0.20): below that the
         lookup refuses. Above 450,000 psi the curve is dashed (noted);
         above 500,000 psi, the chart's edge, a1 is held at its 500,000 psi
-        value, with a note.
+        value, with a note and an ``out_of_range`` key. Holding is on the
+        safe side (a1 rises with EAC, so a stiffer mix gets no more credit)
+        and follows II-17: "Caution is recommended for modulus values above
+        450,000 psi".
 
     Returns
     -------
     dict
-        {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?}.
+        {'eac_psi', 'a1', 'chart_read', 'reference', 'note'?,
+        'out_of_range'?}.
 
     Raises
     ------
@@ -335,7 +339,10 @@ def layer_coefficient_a1_asphalt(eac_psi) -> dict:
                        "susceptible to thermal and fatigue cracking).")
     if eac_psi > _A1_EAC[-1]:
         out["note"] += (" EAC is past the chart's 500,000 psi edge; a1 is "
-                        "held at its 500,000 psi value.")
+                        "held at its 500,000 psi value, on the safe side.")
+        out["out_of_range"] = (
+            f"eac_psi = {eac_psi:,.0f} is above 500,000 psi, the right edge "
+            "of Figure 2.5 (printed II-18).")
     return out
 
 
@@ -819,8 +826,8 @@ def _esal_from_lef(pavement_type, axle_config, axle_load_kips, sn, d_in, pt,
                    column_key):
     """Read Appendix D through lef.py and return this module's keys.
 
-    lef.py's ValueError (pt not 2.0/2.5/3.0, a load or SN/D <= 0) passes
-    through unchanged.
+    lef.py's ValueError (pt not 2.0/2.5/3.0, a load or SN/D <= 0 or
+    outside the printed table) passes through unchanged.
     """
     from geotech_references.aashto_1993.lef import load_equivalency_factor
     kw = {"sn": sn} if pavement_type == "flexible" else {"d_in": d_in}
@@ -851,11 +858,11 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
-        outside them is clamped to the nearest row (see 'note').
+        outside them is refused (REF-76).
     sn : float, optional
         Pavement structural number, > 0. Printed columns are SN = 1-6,
-        interpolated linearly between them; outside 1-6 it is clamped to
-        the nearest column (see 'note'). Default 5.0.
+        interpolated linearly between them; outside 1-6 it is refused.
+        Default 5.0.
     pt : float, optional
         Terminal serviceability: exactly 2.0, 2.5 or 3.0, the values
         Appendix D prints. Default 2.5.
@@ -863,15 +870,14 @@ def esal_flexible_single_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     Returns
     -------
     dict
-        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference',
-         'note'?}. 'table' is the printed table number (e.g. 'Table D.4');
-        'note' is present only when a load or SN was clamped.
+        {'axle_load_kips', 'sn', 'pt', 'lef', 'table', 'reference'}.
+        'table' is the printed table number (e.g. 'Table D.4').
 
     Raises
     ------
     ValueError
         As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
-        or SN <= 0.
+        or SN <= 0 or outside the printed table.
     """
     return _esal_from_lef("flexible", "single", axle_load_kips, sn, None,
                           pt, "sn")
@@ -888,10 +894,10 @@ def esal_flexible_tandem_axle(axle_load_kips, sn=5.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
-        load outside them is clamped (see 'note').
+        load outside them is refused (REF-76).
     sn : float, optional
-        Pavement structural number; printed SN = 1-6, interpolated, clamped
-        outside. Default 5.0.
+        Pavement structural number; printed SN = 1-6, interpolated,
+        refused outside. Default 5.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
@@ -921,11 +927,11 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Single axle load, kips, > 0. Printed rows are 2-50 kips; a load
-        outside them is clamped (see 'note').
+        outside them is refused (REF-76).
     d_in : float, optional
         Slab thickness, inches, > 0. Printed columns are D = 6-14 in,
-        interpolated linearly between them; outside 6-14 it is clamped
-        (see 'note'). Default 9.0.
+        interpolated linearly between them; outside 6-14 it is refused.
+        Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 
@@ -939,7 +945,7 @@ def esal_rigid_single_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ------
     ValueError
         As ``lef.load_equivalency_factor``: pt not 2.0/2.5/3.0, or a load
-        or D <= 0.
+        or D <= 0 or outside the printed table.
     """
     return _esal_from_lef("rigid", "single", axle_load_kips, None, d_in,
                           pt, "d_in")
@@ -956,10 +962,10 @@ def esal_rigid_tandem_axle(axle_load_kips, d_in=9.0, pt=2.5) -> dict:
     ----------
     axle_load_kips : float
         Tandem axle group load, kips, > 0. Printed rows are 2-90 kips; a
-        load outside them is clamped (see 'note').
+        load outside them is refused (REF-76).
     d_in : float, optional
-        Slab thickness, inches; printed D = 6-14 in, interpolated, clamped
-        outside. Default 9.0.
+        Slab thickness, inches; printed D = 6-14 in, interpolated,
+        refused outside. Default 9.0.
     pt : float, optional
         Exactly 2.0, 2.5 or 3.0. Default 2.5.
 

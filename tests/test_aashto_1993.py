@@ -165,9 +165,15 @@ class TestLayerCoefficientA1:
             tb.layer_coefficient_a1_asphalt(80000)
 
     def test_past_chart_edge_held_with_note(self):
+        # REF-76 rule 3 (held, safe side, with the text): Figure 2.5
+        # (printed II-18) ends at 500,000 psi; a1 rises with EAC, and II-17
+        # says "Caution is recommended for modulus values above 450,000
+        # psi", so the 500,000 psi value is held with out_of_range.
         r = tb.layer_coefficient_a1_asphalt(600000)
         assert r["a1"] == tb.layer_coefficient_a1_asphalt(500000)["a1"]
         assert "held" in r["note"]
+        assert "500,000 psi" in r["out_of_range"] and "II-18" in r["out_of_range"]
+        assert "out_of_range" not in tb.layer_coefficient_a1_asphalt(500000)
 
 
 class TestLayerCoefficientA2Cement:
