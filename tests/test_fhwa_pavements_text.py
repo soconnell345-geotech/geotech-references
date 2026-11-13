@@ -656,6 +656,46 @@ def test_degree_signs_and_exponents_as_printed():
     assert not re.search(r"(?:\d|/|-|\s)o\s?[CFK]\b|x10-?\d", text)
 
 
+#: The fonts the manual sets its text in; every other font is a symbol font.
+_TEXT_FONTS = ("TimesNewRoman", "Arial", "CourierNew", "BookAntiqua", "Verdana", "ComicSansMS")
+
+
+def test_every_symbol_font_glyph_is_read_off_the_page():
+    # WordPerfect symbol fonts give their glyphs as ordinary characters
+    # ("$" for ≥ in WP-MathA, "3" for a check mark in Wingdings2): the
+    # manifest's "symbol_fonts" maps them in the build, "symbol_fonts_checked"
+    # names every other character a symbol font sets (looked at on 300-dpi
+    # crops). A glyph in neither, or a private-use character, fails here.
+    fitz = pytest.importorskip("fitz")
+    if not PDF.exists():
+        pytest.skip("PDF not checked out")
+    vol = _manifest()
+    vol = vol["volumes"][0] if "volumes" in vol else vol
+    known ={f: set(vol["symbol_fonts"].get(f, {})) | set(vol["symbol_fonts_checked"].get(f, {}))
+             for f in set(vol["symbol_fonts"]) | set(vol["symbol_fonts_checked"])}
+    unread = set()
+    with fitz.open(str(PDF)) as doc:
+        for page in doc:
+            for b in page.get_text("dict", flags=fitz.TEXTFLAGS_TEXT)["blocks"]:
+                for ln in b["lines"]:
+                    for s in ln["spans"]:
+                        symbol = not s["font"].startswith(_TEXT_FONTS)
+                        for c in s["text"]:
+                            if c != " " and (symbol or 0xE000 <= ord(c) <= 0xF8FF) \
+                                    and c not in known.get(s["font"], ()):
+                                unread.add((s["font"], c))
+    assert not unread, sorted(unread)
+    text = "\n".join(s["body"] for n in BUILT for s in _chapter(n)["sections"])
+    assert not re.search("[-\x80-\x9f]", text)
+    assert "AOS ≤ D85" in text and "f. If soil contains ≥ 15% sand" in text
+    assert "❹ Reinforcement usually applicable" in text and "⑤ Geotextile component" in text
+    # the raised "o" the page prints for a degree sign ("raised_o_degree")
+    assert "conical tip with 60° angle apex" in text
+    assert text.count("Latitude 38.98°") == 2 and text.count("Longitude -76.94°") == 2
+    assert not re.search(r"\d\s?o(?![A-Za-z])", text.replace("0.90 o Fresh", "").replace(
+        "0.98 o Aged", ""))
+
+
 def test_captions_keep_the_printed_source_and_units():
     # the List of Figures leaves out what a caption prints after its words
     # (manifest "captions_as_printed", and text_fixes for 3-5 and 5-5): 86

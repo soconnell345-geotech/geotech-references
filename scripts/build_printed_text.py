@@ -186,18 +186,51 @@ def _clean_ws(text: str) -> str:
 # reading the volume
 # ---------------------------------------------------------------------------
 
-def read_pages(pdf: Path, header_end=None, page_label=None) -> list[dict]:
+def _page_text(page, symbol_fonts: dict | None = None, raised_o_degree: bool = False) -> str:
+    """The page's text layer; with ``symbol_fonts`` ({font name: {character
+    as the text layer gives it: the glyph the page prints}}) each character
+    set in one of those fonts is replaced by the glyph it prints. A
+    WordPerfect symbol font gives its glyphs as ordinary characters ("$" for
+    the greater-or-equal sign in WP-MathA, "3" for a check mark in
+    Wingdings2). With ``raised_o_degree`` a lone raised "o" in a text font
+    (the page's degree sign, "77oF") is "°". The text is built from the
+    page's spans, line by line, exactly as ``page.get_text()`` gives it."""
+    if not symbol_fonts and not raised_o_degree:
+        return page.get_text()
+    symbol_fonts = symbol_fonts or {}
+
+    def span_text(s):
+        if s["font"] in symbol_fonts:
+            return "".join(symbol_fonts[s["font"]].get(c, c) for c in s["text"])
+        if raised_o_degree and s["flags"] & 1 and s["text"].strip() == "o":
+            return s["text"].replace("o", "°")
+        return s["text"]
+
+    out = []
+    for block in page.get_text("dict", flags=fitz.TEXTFLAGS_TEXT)["blocks"]:
+        if block.get("type", 0) != 0:
+            continue
+        for line in block["lines"]:
+            out.append("".join(span_text(s) for s in line["spans"]) + "\n")
+    return "".join(out)
+
+
+def read_pages(pdf: Path, header_end=None, page_label=None,
+               symbol_fonts: dict | None = None, raised_o_degree: bool = False) -> list[dict]:
     """Each page: ``label`` (printed page, e.g. '6-28') and its ``lines``
     with the running header taken off. ``header_end`` and ``page_label``
     (compiled patterns) replace ``_HEADER_END`` and ``_PAGE_LABEL`` for a
     manual whose running header differs (manifest ``header_end`` and
-    ``page_label``)."""
+    ``page_label``); ``symbol_fonts`` and ``raised_o_degree`` (manifest
+    ``"symbol_fonts"``, ``"raised_o_degree"``) give the glyphs the text
+    layer loses (``_page_text``)."""
     header_end = header_end or _HEADER_END
     page_label = page_label or _PAGE_LABEL
     pages = []
     with fitz.open(str(pdf)) as doc:
         for page in doc:
-            lines = [ln.strip() for ln in page.get_text().split("\n")]
+            lines = [ln.strip() for ln in
+                     _page_text(page, symbol_fonts, raised_o_degree).split("\n")]
             label, cut = None, 0
             for k, ln in enumerate(lines[:12]):
                 m = page_label.match(ln)
@@ -950,7 +983,9 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     # (FHWA-NHI-05-037); without them the build is as it was
     opt = {k: re.compile(vol[k]) for k in ("header_end", "page_label", "front_matter_header")
            if vol.get(k)}
-    pages = read_pages(pdf, opt.get("header_end"), opt.get("page_label"))
+    pages = read_pages(pdf, opt.get("header_end"), opt.get("page_label"),
+                       {f: m for f, m in vol.get("symbol_fonts", {}).items() if m},
+                       bool(vol.get("raised_o_degree")))
     first, last = vol["contents_pages"]
     skip_line = opt.get("front_matter_header")
     if vol.get("contents_format") == "lines":
