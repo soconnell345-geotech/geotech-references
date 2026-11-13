@@ -14,12 +14,17 @@ mm is given parenthetically in the source. Per repo convention (GEC-12/
 AASHTO-1993 precedent) source units are kept, not force-converted to SI.
 """
 
+from geotech_references import _units as _u
+
 
 # ============================================================================
 # Cement content for modifying soils to reduce PI (Section 3-1.4.1, printed
 # p.16, pdf_page_index 23):  A = 100*B*C
 # ============================================================================
 
+@_u.labelled(
+    {"design_cement_content_pct": "percent",
+     "percent_cement_for_pi": "percent", "percent_passing_no40": "percent"})
 def equation_cement_content_modifying_soils(percent_passing_no40, percent_cement_for_pi) -> dict:
     """Design cement content for soil modification (PI reduction), Sec 3-1.4.1.
 
@@ -73,10 +78,13 @@ def equation_cement_content_modifying_soils(percent_passing_no40, percent_cement
 
 # ============================================================================
 # Preliminary cutback-asphalt content for subgrade stabilization (Section
-# 3-4.4, printed pp.25-26, pdf_page_index 32):
+# 3-4.4, printed pp.25-26, pdf_page_index 32-33):
 #   p = [0.02(a) + 0.07(b) + 0.15(c) + 0.20(d)] / (100 - S) * 100
 # ============================================================================
 
+@_u.labelled(
+    {"a": "percent", "b": "percent", "c": "percent",
+     "cutback_asphalt_pct": "percent", "d": "percent", "s": "percent"})
 def equation_cutback_asphalt_content_estimate(
     percent_retained_no50, percent_no50_to_no100, percent_no100_to_no200,
     percent_passing_no200, percent_solvent,
@@ -147,7 +155,7 @@ def equation_cutback_asphalt_content_estimate(
         "cutback_asphalt_pct": round(p, 3),
         "equation": "p = [0.02(a)+0.07(b)+0.15(c)+0.20(d)] / (100-S) * 100",
         "reference": "UFC 3-250-11, Sec 3-4.4, p.25-26",
-        "pdf_page_index": 32,
+        "pdf_page_index": [32, 33],
     }
 
 
@@ -156,6 +164,7 @@ def equation_cutback_asphalt_content_estimate(
 # cement), printed p.13, pdf_page_index 20
 # ============================================================================
 
+@_u.labelled({"percent_passing_no200": "percent", "pi_limit": "percent"})
 def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
     """Upper PI limit for portland cement stabilization of UFC 3-250-11
     Table 2-3 footnote (c), printed p.13 (pdf_page_index 20); returns pi_limit
@@ -222,6 +231,10 @@ def equation_cement_pi_limit_table_2_3(percent_passing_no200) -> dict:
 # A-1.2, printed p.64, pdf_page_index 71): T(stabilized) = T(conventional) / EF
 # ============================================================================
 
+@_u.labelled(
+    {"conventional_thickness_in": "in", "equivalency_factor": "dimensionless",
+     "stabilized_thickness_in": "in"},
+    si={"conventional_thickness_in": ("mm", "in")})
 def equation_stabilized_equivalent_thickness(conventional_thickness_in, equivalency_factor) -> dict:
     """Equivalent stabilized-layer thickness from a conventional design, Sec A-1.2.
 
@@ -249,12 +262,19 @@ def equation_stabilized_equivalent_thickness(conventional_thickness_in, equivale
     equivalency_factor : float
         EF from Table A-1 for the stabilizer type / soil group / layer
         (base or subbase), > 0.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        conventional_thickness_in in mm, each converted exactly to the printed
+        unit (in) before the lookup runs as printed.
 
     Returns
     -------
     dict
         {'conventional_thickness_in', 'equivalency_factor',
          'stabilized_thickness_in', 'equation', 'reference', 'pdf_page_index'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -283,6 +303,9 @@ def equation_stabilized_equivalent_thickness(conventional_thickness_in, equivale
 # (Section A-3.1.5 "Where:" block, printed p.67, pdf_page_index 74)
 # ============================================================================
 
+@_u.labelled(
+    {"air_dry_moisture_content_pct": "percent", "air_dry_weight_g": "g",
+     "oven_dry_weight_g": "g"})
 def equation_oven_dry_weight_from_air_dry(air_dry_weight_g, air_dry_moisture_content_pct) -> dict:
     """Oven-dry weight of a soil sample from its air-dry weight, Sec A-3.1.5.
 
@@ -347,6 +370,9 @@ def equation_oven_dry_weight_from_air_dry(air_dry_weight_g, air_dry_moisture_con
 # sample) * 411.6
 # ============================================================================
 
+@_u.labelled(
+    {"oven_dry_weight_g": "g", "percent_so4": "percent",
+     "weight_of_residue_g": "g"})
 def equation_gravimetric_percent_so4(weight_of_residue_g, oven_dry_weight_g) -> dict:
     """Percent sulfate (as SO4) in soil, gravimetric BaSO4 method, Sec A-3.1.5.
 
@@ -398,6 +424,9 @@ def equation_gravimetric_percent_so4(weight_of_residue_g, oven_dry_weight_g) -> 
 #   Percent SO4 = (C * V * 100) / (1,000 * 1,000 * W)
 # ============================================================================
 
+@_u.labelled(
+    {"concentration_ppm": "ppm", "dry_weight_g": "g",
+     "percent_so4": "percent", "total_volume_ml": "mL"})
 def equation_turbidimetric_percent_so4(concentration_ppm, total_volume_ml, dry_weight_g) -> dict:
     """Percent sulfate (as SO4) in soil, turbidimetric method, Sec A-3.2.4.
 

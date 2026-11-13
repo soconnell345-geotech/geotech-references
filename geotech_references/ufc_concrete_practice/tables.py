@@ -25,6 +25,7 @@ PDF pages cited below are 0-based fitz page indices into
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -40,6 +41,10 @@ _WEATHER_SEVERITY_ROWS = [
 ]
 
 
+@_u.labelled(
+    {"air_freezing_index": "degF-days", "avg_monthly_precip_in": "in"},
+    si={"avg_monthly_precip_in": ("mm", "in"),
+        "air_freezing_index": ("degC-days", "degF-days")})
 def table_3_1_weather_severity(air_freezing_index, avg_monthly_precip_in) -> dict:
     """Categorize weather severity for aggregate deleterious-material limits (Table 3-1).
 
@@ -58,12 +63,20 @@ def table_3_1_weather_severity(air_freezing_index, avg_monthly_precip_in) -> dic
     avg_monthly_precip_in : float
         Average precipitation for any single month during the freezing
         period, inches.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        avg_monthly_precip_in in mm and air_freezing_index in degC-days, each
+        converted exactly to the printed unit (in, degF-days) before the lookup
+        runs as printed.
 
     Returns
     -------
     dict
         {'air_freezing_index', 'avg_monthly_precip_in', 'severity',
          'note', 'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
     """
     if air_freezing_index <= 500:
         severity = "moderate"
@@ -102,7 +115,7 @@ _TABLE_3_2 = {
     "total_fine_incl_minus_200": {"coarse_severe": None, "coarse_moderate": None, "fine": 3.0},
 }
 
-# Footnotes 2 and 3 as printed (PDF 33, printed p.15); they change the limit
+# Footnotes 2 and 3 as printed (pdf_page_index 32, printed p.15); they change the limit
 # for these rows. Footnotes 1 and 4-7 define the materials.
 _TABLE_3_2_FOOTNOTES = {
     "material_finer_than_no_200": (
@@ -132,6 +145,7 @@ _TABLE_3_2_ALIASES = {
 }
 
 
+@_u.labelled({"limit_pct_mass": "percent (by mass)"})
 def table_3_2_deleterious_material_limit(material, aggregate_category) -> dict:
     """Deleterious material limit in airfield aggregates, percent mass,
     UFC 3-250-04 Table 3-2 (pdf_page_index 32, printed p.15); returns the printed
@@ -223,6 +237,7 @@ _TABLE_3_3_ALIASES = {
 }
 
 
+@_u.labelled({})
 def table_3_3_aggregate_test_time(test_method) -> dict:
     """Lead time required for ASR/freeze-thaw aggregate testing (Table 3-3).
 
@@ -271,6 +286,7 @@ _TABLE_3_4 = {
 }
 
 
+@_u.labelled({})
 def table_3_4_portland_cement_type(cement_type) -> dict:
     """Portland cement type application (Table 3-4, ASTM C150/CRD-C 201).
 
@@ -349,6 +365,7 @@ _TABLE_3_5_ALIASES = {
 }
 
 
+@_u.labelled({})
 def table_3_5_blended_cement_type(cement_type) -> dict:
     """Blended cement type composition (Table 3-5, ASTM C595/CRD-C 203).
 
@@ -402,6 +419,7 @@ _TABLE_3_6_ALIASES = {
 }
 
 
+@_u.labelled({})
 def table_3_6_hydraulic_cement_type(cement_type) -> dict:
     """Performance-based hydraulic cement type use (Table 3-6, ASTM C1157/CRD-C 271).
 
@@ -449,6 +467,7 @@ _TABLE_3_7 = {
 _TABLE_3_7_ALIASES = {"80": "grade_80", "100": "grade_100", "120": "grade_120"}
 
 
+@_u.labelled({})
 def table_3_7_ggbf_slag_grade(grade) -> dict:
     """GGBF slag grade properties (Table 3-7, ASTM C989/CRD-C 205).
 
@@ -499,6 +518,7 @@ _TABLE_3_8_ALIASES = {"a": "type_a", "b": "type_b", "c": "type_c", "d": "type_d"
                        "e": "type_e", "f": "type_f", "g": "type_g"}
 
 
+@_u.labelled({})
 def table_3_8_admixture_type(admixture_type) -> dict:
     """Chemical admixture type use (Table 3-8, ASTM C494/CRD-C 87).
 
@@ -544,6 +564,7 @@ _TABLE_8_1 = {
 }
 
 
+@_u.labelled({})
 def table_8_1_dowel_misalignment_impact(misalignment_type) -> dict:
     """Dowel bar misalignment type and its impact on performance (Table 8-1).
 
@@ -589,6 +610,11 @@ def table_8_1_dowel_misalignment_impact(misalignment_type) -> dict:
 # ============================================================================
 
 
+@_u.labelled(
+    {"horizontal_longitudinal_translation_in": "in",
+     "horizontal_longitudinal_translation_mm": "mm",
+     "skew_in_per_ft": "in/ft", "skew_mm_per_m": "mm/m",
+     "vertical_translation_in": "in", "vertical_translation_mm": "mm"})
 def dowel_bar_alignment_tolerance() -> dict:
     """Typical dowel bar alignment specification tolerances (Section 8-5.2.1.1).
 
@@ -611,6 +637,9 @@ def dowel_bar_alignment_tolerance() -> dict:
     }
 
 
+@_u.labelled(
+    {"minimum_in": "in", "minimum_mm": "mm", "preferred_in": "in",
+     "preferred_mm": "mm"})
 def dowel_bar_corner_clearance() -> dict:
     """Minimum/preferred dowel bar clearance at slab corners (Section 8-5.2.1.4).
 
@@ -631,6 +660,9 @@ def dowel_bar_corner_clearance() -> dict:
     }
 
 
+@_u.labelled(
+    {"oversize_max_in": "in", "oversize_max_mm": "mm",
+     "oversize_min_in": "in", "oversize_min_mm": "mm"})
 def dowel_bar_drilled_hole_oversize() -> dict:
     """Drilled hole oversize for drill-and-epoxy dowel installation (Section 8-5.2.3).
 
@@ -670,6 +702,11 @@ _TABLE_9_1 = [
 _TABLE_9_1_ROADS = ((10, 15), (3.0, 4.6))
 
 
+@_u.labelled(
+    {"max_joint_spacing_high_ft": "ft", "max_joint_spacing_high_m": "m",
+     "max_joint_spacing_low_ft": "ft", "max_joint_spacing_low_m": "m",
+     "slab_thickness_in": "in"},
+    si={"slab_thickness_in": ("mm", "in")})
 def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield") -> dict:
     """Maximum joint spacing by slab thickness, UFC 3-250-04 Table 9-1
     (pdf_page_index 121, printed p.104); returns the printed range of the MAXIMUM
@@ -687,6 +724,10 @@ def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield")
     facility_type : str, optional
         'airfield' (default) or 'road' (roads and parking lots: footnote 1,
         10-15 ft, in the < 9 in row only; the other rows are the same).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        slab_thickness_in in mm, each converted exactly to the printed unit
+        (in) before the lookup runs as printed.
 
     Returns
     -------
@@ -695,6 +736,9 @@ def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield")
          'max_joint_spacing_low_ft', 'max_joint_spacing_high_ft',
          'max_joint_spacing_low_m', 'max_joint_spacing_high_m',
          'reference'}.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -730,6 +774,11 @@ def table_9_1_maximum_joint_spacing(slab_thickness_in, facility_type="airfield")
 # ============================================================================
 
 
+@_u.labelled(
+    {"absolute_max_in": "in", "absolute_max_mm": "mm", "local_limit_in": "in",
+     "local_limit_mm": "mm",
+     "max_pct_of_joint_length_at_local_limit": "percent"},
+    printed_page="83, 124", pdf_page_index=[100, 141])
 def edge_slump_tolerance() -> dict:
     """Typical edge slump acceptance tolerance (Sections 8-11 and 10-5.1).
 
@@ -832,6 +881,7 @@ _TABLE_D_1_ALIASES = {
 }
 
 
+@_u.labelled({})
 def table_d1_cracking_causes(crack_type) -> dict:
     """Early-age cracking type and possible causes (Table D-1, Appendix D).
 
@@ -894,6 +944,9 @@ _RCC_GRADATION_MIN = [100, 85, 70, 55, 40, 30, 20, 15, 10, 5, 2]
 _RCC_GRADATION_MAX = [100, 100, 95, 85, 65, 55, 45, 35, 25, 15, 10]
 
 
+@_u.labelled(
+    {"pct_passing_max": "percent", "pct_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_e1_rcc_gradation(sieve_mm=None) -> dict:
     """Recommended combined roller-compacted concrete (RCC) gradation (Table E-1).
 

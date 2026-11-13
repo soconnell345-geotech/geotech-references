@@ -47,8 +47,12 @@ recorded here for anyone auditing against the PDF directly.
 """
 
 import math
+from geotech_references import _units as _u
 
 
+@_u.labelled(
+    {"max_particle_size_mm": "mm", "n": "no unit printed",
+     "percent_passing": "percent", "sieve_size_mm": "mm"})
 def fuller_thompson_max_density_passing(sieve_size_mm, max_particle_size_mm,
                                         n=0.45):
     """Fuller-Thompson maximum-density gradation curve, percent passing (Section 2-4.2.3.1).
@@ -105,6 +109,7 @@ def fuller_thompson_max_density_passing(sieve_size_mm, max_particle_size_mm,
     }
 
 
+@_u.labelled({"gmb": "dimensionless"})
 def bulk_specific_gravity_gmb(wt_dry_air, wt_ssd, wt_submerged):
     """Bulk specific gravity of a compacted mixture, Gmb (Section 2-4.2.8.1).
 
@@ -142,6 +147,7 @@ def bulk_specific_gravity_gmb(wt_dry_air, wt_ssd, wt_submerged):
     }
 
 
+@_u.labelled({"gmb": "dimensionless", "volume_cc": "cm^3"})
 def bulk_specific_gravity_gmb_geometric(wt_dry_air, diameter, height):
     """Bulk specific gravity from measured specimen geometry (Section 7-3.1, RMP).
 
@@ -186,6 +192,7 @@ def bulk_specific_gravity_gmb_geometric(wt_dry_air, diameter, height):
     }
 
 
+@_u.labelled({"vv_percent": "percent"})
 def air_voids_vtm(gmb, gmm):
     """Air voids in total mix, Vv / VTM, percent (Section 2-4.2.8.1).
 
@@ -220,6 +227,7 @@ def air_voids_vtm(gmb, gmm):
     }
 
 
+@_u.labelled({"vma_percent": "percent"})
 def voids_in_mineral_aggregate_vma(gmb, gsb, pb):
     """Voids in mineral aggregate, VMA, percent of total mixture volume (Section 2-4.2.8.1).
 
@@ -258,6 +266,7 @@ def voids_in_mineral_aggregate_vma(gmb, gsb, pb):
     }
 
 
+@_u.labelled({"vfa_percent": "percent"})
 def voids_filled_with_asphalt_vfa(vma_percent, vv_percent):
     """Voids filled with asphalt, VFA, percent of VMA (Section 2-4.2.8.1).
 
@@ -292,6 +301,7 @@ def voids_filled_with_asphalt_vfa(vma_percent, vv_percent):
     }
 
 
+@_u.labelled({"sigma": "no unit printed"})
 def rmp_specific_surface_area(pct_retained_no4, pct_passing_no4_retained_no30,
                               pct_passing_no30_retained_no200,
                               pct_passing_no200):
@@ -329,6 +339,9 @@ def rmp_specific_surface_area(pct_retained_no4, pct_passing_no4_retained_no30,
     }
 
 
+@_u.labelled(
+    {"alpha": "no unit printed", "optimum_asphalt_content_pct": "percent",
+     "sigma": "no unit printed"})
 def rmp_optimum_asphalt_content(sigma, apparent_sg_combined_aggregate):
     """RMP open-graded mixture estimated optimum asphalt content (Section 7-3.1, French method).
 
@@ -415,6 +428,7 @@ def _sieve_pairs(pct_passing_by_sieve_mm) -> list[tuple[float, float]]:
     return out
 
 
+@_u.labelled({"surface_area_m2_per_kg": "m^2/kg"})
 def slurry_seal_surface_area(pct_passing_by_sieve_mm):
     """Total surface area of slurry-seal job aggregate, SA (Appendix B-1.2.1).
 
@@ -463,6 +477,7 @@ def slurry_seal_surface_area(pct_passing_by_sieve_mm):
     }
 
 
+@_u.labelled({"csa_m2_per_kg": "m^2/kg"})
 def slurry_seal_corrected_surface_area(surface_area_m2_per_kg,
                                        apparent_sg_aggregate):
     """Corrected surface area of slurry-seal aggregate, CSA (Appendix B-1.2.1).
@@ -499,6 +514,7 @@ def slurry_seal_corrected_surface_area(surface_area_m2_per_kg,
     }
 
 
+@_u.labelled({"saa_pct": "percent"})
 def slurry_seal_asphalt_for_film_thickness(csa_m2_per_kg, film_thickness_um,
                                            sg_asphalt):
     """Asphalt content to coat aggregate to a target film thickness, SAA (Equation B-1).
@@ -547,6 +563,7 @@ def slurry_seal_asphalt_for_film_thickness(csa_m2_per_kg, film_thickness_um,
     }
 
 
+@_u.labelled({"ar_pct": "percent"})
 def slurry_seal_total_asphalt_required(saa_pct, ka_pct):
     """Total asphalt required for a slurry seal mixture, AR (Equations B-2/B-3).
 

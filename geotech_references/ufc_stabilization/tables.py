@@ -13,6 +13,7 @@ given parenthetically in the source is kept as noted, not force-converted.
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -27,6 +28,7 @@ _TABLE_2_1 = {
 }
 
 
+@_u.labelled({"min_ucs_mpa": "MPa", "min_ucs_psi": "psi"})
 def table_2_1_min_ucs_requirements(layer: str, pavement_type: str) -> dict:
     """Minimum unconfined compressive strength for stabilized soil (Table 2-1).
 
@@ -81,6 +83,7 @@ _TABLE_2_2 = {
 }
 
 
+@_u.labelled({"max_weight_loss_pct": "percent"})
 def table_2_2_durability_requirements(soil_type: str) -> dict:
     """Maximum allowable weight loss after 12 wet-dry/freeze-thaw cycles (Table 2-2).
 
@@ -214,6 +217,7 @@ _TABLE_2_3 = {
 }
 
 
+@_u.labelled({})
 def table_2_3_additive_selection_guide(area: str) -> dict:
     """Guide for selecting a stabilizing additive by gradation-triangle area (Table 2-3).
 
@@ -282,6 +286,7 @@ _TABLE_3_1_SIEVE_LABELS = {
 }
 
 
+@_u.labelled({})
 def table_3_1_cement_gradation(course_type: str, sieve: str = "") -> dict:
     """Gradation requirements for cement-stabilized base/subbase courses (Table 3-1).
 
@@ -342,6 +347,7 @@ _TABLE_3_2 = {
 }
 
 
+@_u.labelled({"initial_cement_content_pct": "percent"})
 def table_3_2_cement_content_by_soil(uscs_class: str) -> dict:
     """Initial estimated cement content for moisture-density tests, by USCS class (Table 3-2).
 
@@ -392,6 +398,7 @@ _TABLE_3_3_SIEVE_LABELS = {
 }
 
 
+@_u.labelled({})
 def table_3_3_bituminous_subgrade_gradation(sieve: str = "") -> dict:
     """Recommended gradations for bituminous-stabilized subgrade materials (Table 3-3).
 
@@ -453,6 +460,8 @@ _SIEVE_ORDER = ["1.5in", "1in", "0.75in", "0.5in", "3/8in", "no4", "no8",
                 "no16", "no30", "no50", "no100", "no200"]
 
 
+@_u.labelled(
+    {"percent_passing_nominal": "percent", "tolerance_pct": "percent"})
 def table_3_4_bituminous_base_subbase_gradation(max_size: str, sieve: str = "") -> dict:
     """Recommended gradations for bituminous-stabilized base/subbase materials (Table 3-4).
 
@@ -530,6 +539,9 @@ _TABLE_3_5_COLS = {
 }
 
 
+@_u.labelled(
+    {"emulsified_asphalt_lb_per_100lb": "lb (per 100 lb)",
+     "percent_passing_200": "percent"})
 def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percent_passing_no10) -> dict:
     """Emulsified asphalt requirement, UFC 3-250-11 Table 3-5 (printed p.27,
     pdf_page_index 34); returns pounds of emulsified asphalt per 100 pounds of dry
@@ -605,13 +617,14 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
 # Table 3-6: Swell Potential of Soils (printed p.30, pdf_page_index 37)
 # ============================================================================
 
-# As printed (PDF 38, printed p.30): LL > 60 / PI > 35 High; LL 50-60 /
+# As printed (pdf_page_index 37, printed p.30): LL > 60 / PI > 35 High; LL 50-60 /
 # PI 25-35 Marginal; LL < 50 / PI < 25 Low. So 60 and 35 are Marginal.
 _TABLE_3_6_LL_BANDS = [(60, "high"), (50, "marginal")]  # (bound, category): high if > bound, marginal if >= bound
 _TABLE_3_6_PI_BANDS = [(35, "high"), (25, "marginal")]
 _TABLE_3_6_SEVERITY = {"low": 0, "marginal": 1, "high": 2}
 
 
+@_u.labelled({"liquid_limit": "percent", "plasticity_index": "percent"})
 def table_3_6_swell_potential(liquid_limit: float, plasticity_index: float) -> dict:
     """Swell potential of soils, UFC 3-250-11 Table 3-6 (printed p.30,
     pdf_page_index 37); returns 'high', 'marginal' or 'low' from the liquid limit
@@ -734,6 +747,8 @@ _A1_CONDITIONS = (
 )
 
 
+@_u.labelled(
+    {"base_factor": "dimensionless", "subbase_factor": "dimensionless"})
 def table_a1_equivalency_factors(stabilizer_type: str, soil_class: str) -> dict:
     """Equivalency factors for stabilized material, UFC 3-250-11 Table A-1
     (printed p.63, pdf_page_index 70); returns the base and subbase factors

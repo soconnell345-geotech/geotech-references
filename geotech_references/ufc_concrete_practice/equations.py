@@ -11,7 +11,12 @@ PDF pages cited below are 0-based fitz page indices into
 ``docs/ufc_3_250_04_2024.pdf``; the printed UFC page is also given.
 """
 
+from geotech_references import _units as _u
 
+
+@_u.labelled(
+    {"coarseness_factor": "dimensionless", "pct_retained_2_36mm": "percent",
+     "pct_retained_9_5mm": "percent"})
 def coarseness_factor(pct_retained_9_5mm, pct_retained_2_36mm) -> dict:
     """Combined-aggregate coarseness factor (Equation 7-1, Section 7-9.1.5).
 
@@ -70,6 +75,9 @@ def coarseness_factor(pct_retained_9_5mm, pct_retained_2_36mm) -> dict:
     return out
 
 
+@_u.labelled(
+    {"cementitious_content_kg_m3": "kg/m^3", "pct_passing_2_36mm": "percent",
+     "workability_factor": "dimensionless"})
 def workability_factor(pct_passing_2_36mm, cementitious_content_kg_m3) -> dict:
     """Combined-aggregate workability factor (Equation 7-1, Section 7-9.1.5).
 

@@ -31,6 +31,8 @@ List of Tables claims. This module cites the IN-BODY (authoritative) numbering
 throughout.
 """
 
+from geotech_references import _units as _u
+
 
 # ============================================================================
 # Table 2-1: Aggregate Gradations for HMA Pavements
@@ -60,6 +62,10 @@ _TABLE_2_1 = {
 }
 
 
+@_u.labelled(
+    {"nominal_max_size_in": "in", "nominal_max_size_mm": "mm",
+     "percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_2_1_gradation_hma(gradation, sieve_mm=None) -> dict:
     """Aggregate gradation band for HMA pavements (Table 2-1).
 
@@ -142,6 +148,7 @@ _TABLE_2_3 = [
 ]
 
 
+@_u.labelled({"pti_c": "degC (cumulative)", "pti_f": "degF (cumulative)"})
 def table_2_3_asphalt_grade_by_pti(pti_c) -> dict:
     """Asphalt binder base grade selection by Pavement Temperature Index (Table 2-3).
 
@@ -185,6 +192,7 @@ def table_2_3_asphalt_grade_by_pti(pti_c) -> dict:
 # ============================================================================
 
 
+@_u.labelled({"dfi_c": "degC (cumulative)", "dfi_f": "degF (cumulative)"})
 def table_2_5_asphalt_grade_by_freezing_index(dfi_c) -> dict:
     """Asphalt cement selection for cold regions by Design Air-Freezing Index (Table 2-5).
 
@@ -237,6 +245,9 @@ _TABLE_2_7 = {
 }
 
 
+@_u.labelled(
+    {"min_vma_pct": "percent", "nominal_max_size_in": "in",
+     "nominal_max_size_mm": "mm"})
 def table_2_7_minimum_vma(gradation) -> dict:
     """Minimum percent voids in mineral aggregate (VMA) by gradation type (Table 2-7).
 
@@ -335,6 +346,10 @@ _TABLE_2_8 = {
 }
 
 
+@_u.labelled(
+    {"flow_max_0p25mm": "0.25 mm", "marshall_stability_min_kn": "kN",
+     "marshall_stability_min_lbf": "lbf", "optimum_ac_vtm_pct": "percent",
+     "vfa_pct_range": "percent", "vtm_pct_range": "percent"})
 def table_2_8_marshall_design_criteria(mix_type, compaction, property=None) -> dict:
     """Design criteria for HMA and sand asphalt by mix type and compaction,
     UFC 3-250-03 Table 2-8 (pdf_page_index 52, printed p.39); returns Section 2's
@@ -427,6 +442,10 @@ _TABLE_2_12 = {
 }
 
 
+@_u.labelled(
+    {"compacted_thickness_in": "in", "compacted_thickness_mm": "mm",
+     "nominal_max_size_mm": "mm", "percent_passing_max": "percent",
+     "percent_passing_min": "percent", "sieve_mm": "mm"})
 def table_2_12_pfc_gradation(gradation, sieve_mm=None) -> dict:
     """Aggregate gradation band for Porous Friction Course (PFC) (Table 2-12).
 
@@ -496,6 +515,9 @@ _TABLE_2_15_SIEVE_LABELS = ["3/4 in", "1/2 in", "3/8 in", "No. 4", "No. 8", "No.
 _TABLE_2_15_BANDS = [(100, 100), (85, 95), (None, 75), (20, 28), (16, 24), (12, 16), (12, 15), (8, 10)]
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_2_15_sma_gradation(sieve_mm=None) -> dict:
     """Stone Matrix Asphalt (SMA) gradation guideline (Table 2-15, per NAPA 1999).
 
@@ -560,6 +582,21 @@ _TABLE_2_17 = {
 }
 
 
+_UNITS_2_17 = {
+    "vtm_pct": "percent", "asphalt_content_pct_min": "percent",
+    "vma_pct_min": "percent", "stability_min_n": "N",
+    "stability_min_lbf": "lbf", "flow_0p25mm_range": "0.25 mm",
+    "compaction_blows_each_side": "count", "draindown_pct_max_1hr": "percent",
+}
+
+
+@_u.labelled(
+    {"asphalt_content_pct_min": "percent",
+     "compaction_blows_each_side": "count",
+     "draindown_pct_max_1hr": "percent", "flow_0p25mm_range": "0.25 mm",
+     "stability_min_lbf": "lbf", "stability_min_n": "N",
+     "value": "no unit printed", "vma_pct_min": "percent",
+     "vtm_pct": "percent"})
 def table_2_17_sma_mix_design_requirements(parameter=None) -> dict:
     """Stone Matrix Asphalt (SMA) Marshall mix design requirements (Table 2-17).
 
@@ -597,9 +634,11 @@ def table_2_17_sma_mix_design_requirements(parameter=None) -> dict:
     if pk == "stability":
         value = {"stability_min_n": _TABLE_2_17["stability_min_n"],
                  "stability_min_lbf": _TABLE_2_17["stability_min_lbf"]}
+        units = {}
     else:
         value = _TABLE_2_17[key_map[pk]]
-    return {"parameter": pk, "value": value, "reference": ref}
+        units = {"value": _UNITS_2_17[key_map[pk]]}
+    return {"parameter": pk, "value": value, "units": units, "reference": ref}
 
 
 # ============================================================================
@@ -636,6 +675,9 @@ _SPRAY_RATES = {
 }
 
 
+@_u.labelled(
+    {"rate_gal_per_yd2": "gal/yd^2", "rate_l_per_m2": "L/m^2",
+     "sand_cover_kg_per_m2": "kg/m^2", "sand_cover_lb_per_yd2": "lb/yd^2"})
 def spray_application_rate(application_type) -> dict:
     """Spray application rate range for prime coat / tack coat / fog seal / rejuvenator.
 
@@ -700,6 +742,9 @@ _TABLE_3_2 = {
 }
 
 
+@_u.labelled(
+    {"temp_c_max": "degC", "temp_c_min": "degC", "temp_f_max": "degF",
+     "temp_f_min": "degF"})
 def table_3_2_tack_coat_temperature(material_type, grade) -> dict:
     """Tack coat spray application temperature by material type and grade (Table 3-2).
 
@@ -760,6 +805,9 @@ _TABLE_4_2 = {
 }
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_4_2_gradation_sbst(designation, sieve_mm=None) -> dict:
     """Aggregate gradation band for Single Bituminous Surface Treatment (SBST) (Table 4-2).
 
@@ -842,6 +890,9 @@ _TABLE_4_3 = {
 }
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_4_3_gradation_dbst(designation, sieve_mm=None) -> dict:
     """Aggregate gradation band for Double Bituminous Surface Treatment (DBST) (Table 4-3).
 
@@ -925,6 +976,9 @@ _TABLE_4_4 = {
 }
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_4_4_slurry_seal_gradation(type_, sieve_mm=None) -> dict:
     """Slurry seal aggregate gradation band by type (Table 4-4).
 
@@ -1010,6 +1064,10 @@ _TABLE_4_5 = {
 }
 
 
+@_u.labelled(
+    {"min_rate_gal_per_yd2": "gal/yd^2", "min_rate_l_per_m2": "L/m^2",
+     "percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_4_5_frs_application_rate(gradation, sieve_mm=None) -> dict:
     """Fuel-Resistant Sealer (FRS) minimum application rate and gradation (Table 4-5).
 
@@ -1083,6 +1141,9 @@ _TABLE_4_7 = {
 }
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_4_7_micro_surfacing_gradation(type_, sieve_mm=None) -> dict:
     """Micro-surfacing aggregate gradation band by type (Table 4-7).
 
@@ -1155,6 +1216,10 @@ _TABLE_6_1_OPEN = {
 }
 
 
+@_u.labelled(
+    {"column": "no unit printed", "percent_passing_center": "percent",
+     "percent_passing_max": "percent", "percent_passing_min": "percent",
+     "percent_passing_tolerance": "percent", "sieve_mm": "mm"})
 def table_6_1_cold_mix_gradation(mix_type, column, sieve_mm=None) -> dict:
     """Typical aggregate gradation for plant-mix cold-laid asphalt mixtures (Table 6-1).
 
@@ -1273,6 +1338,10 @@ _TABLE_6_2_NOTES = {
 _TABLE_6_2_CLIMATE_BOUNDS = {"cold": (None, 16), "moderate": (16, 27), "hot": (27, None)}
 
 
+@_u.labelled(
+    {"kerosene_gal_per_ton": "gal/ton", "kerosene_l_per_metric_ton": "L/t",
+     "kerosene_stockpile_gal_per_ton": "gal/ton",
+     "kerosene_stockpile_l_per_metric_ton": "L/t", "temp_c_range": "degC"})
 def table_6_2_cold_mix_asphalt_selection(climate) -> dict:
     """Selection of asphalt type and grade for cold-mix asphalt by climate,
     UFC 3-250-03 Table 6-2 (pdf_page_index 116, printed p.103); returns the
@@ -1328,6 +1397,7 @@ _TABLE_6_3 = {
 }
 
 
+@_u.labelled({"value": "percent", "vfa_pct": "percent", "vtm_pct": "percent"})
 def table_6_3_cold_mix_optimum_ac_selection(property_=None) -> dict:
     """Criteria for selecting optimum asphalt content, cold-mix asphalt (Table 6-3).
 
@@ -1358,7 +1428,9 @@ def table_6_3_cold_mix_optimum_ac_selection(property_=None) -> dict:
     pk = str(property_).strip().lower()
     if pk not in key_map:
         raise ValueError(f"Unknown property_ '{property_}'. Use: unit_weight, vtm, vfa")
-    return {"property": pk, "value": _TABLE_6_3[key_map[pk]], "reference": ref}
+    units = {"value": "percent"} if pk in ("vtm", "vfa") else {}
+    return {"property": pk, "value": _TABLE_6_3[key_map[pk]], "units": units,
+            "reference": ref}
 
 
 # ============================================================================
@@ -1380,6 +1452,9 @@ _TABLE_6_4 = {
 }
 
 
+@_u.labelled(
+    {"temp_c_max": "degC", "temp_c_min": "degC", "temp_f_max": "degF",
+     "temp_f_min": "degF"})
 def table_6_4_mixing_temperature(material_type, grade) -> dict:
     """Mixing temperature range for asphalt materials, cold-mix asphalt pugmill (Table 6-4).
 
@@ -1429,6 +1504,9 @@ _TABLE_7_2_SIEVE_LABELS = ["3/4 in", "1/2 in", "3/8 in", "No. 4", "No. 8", "No. 
 _TABLE_7_2_BANDS = [(100, 100), (54, 76), (38, 60), (10, 26), (8, 16), (4, 10), (1, 3)]
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_7_2_ogam_gradation(sieve_mm=None) -> dict:
     """Gradation limits for the open-graded asphalt mixture (OGAM) course of RMP (Table 7-2).
 
@@ -1481,6 +1559,9 @@ _TABLE_7_3_SIEVE_LABELS = ["No. 16", "No. 30", "No. 200"]
 _TABLE_7_3_BANDS = [(100, 100), (95, 100), (0, 2)]
 
 
+@_u.labelled(
+    {"percent_passing_max": "percent", "percent_passing_min": "percent",
+     "sieve_mm": "mm"})
 def table_7_3_slurry_grout_gradation(sieve_mm=None) -> dict:
     """Silica sand gradation for the cement slurry grout course of RMP (Table 7-3).
 
@@ -1537,6 +1618,11 @@ _TABLE_7_4 = {
 }
 
 
+@_u.labelled(
+    {"cross_polymer_resin": "percent (by weight)",
+     "fly_ash": "percent (by weight)", "pct_by_weight_max": "percent",
+     "pct_by_weight_min": "percent", "silica_sand": "percent (by weight)",
+     "type_i_cement": "percent (by weight)", "water": "percent (by weight)"})
 def table_7_4_grout_mix_proportions(material=None) -> dict:
     """Resin Modified Pavement (RMP) cement slurry grout mix proportions, percent by weight (Table 7-4).
 
@@ -1583,6 +1669,7 @@ _TABLE_7_5 = {
 }
 
 
+@_u.labelled({"marsh_cone_seconds_max": "s", "marsh_cone_seconds_min": "s"})
 def table_7_5_grout_viscosity(time_elapsed) -> dict:
     """RMP cement slurry grout viscosity acceptance range, Marsh cone flow time (Table 7-5).
 
@@ -1628,6 +1715,9 @@ _TABLE_B1 = {
 }
 
 
+@_u.labelled(
+    {"factor_ft2_per_lb": "ft^2/lb", "factor_m2_per_kg": "m^2/kg",
+     "sieve_mm": "mm"})
 def table_b1_surface_area_factor(sieve_mm) -> dict:
     """Surface area factor for slurry-seal aggregate, by sieve size (Table B-1).
 
