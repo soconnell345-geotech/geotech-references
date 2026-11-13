@@ -541,7 +541,10 @@ def _parse_bare(lines: list[str]) -> list[dict]:
 #:                     the manual
 CONFIG: dict[str, dict] = {
     # every chapter opens with its own contents and List of Tables
-    "gec_13": {"list_all": True},
+    # Table 9-8 (section 9.3.3.2.2) is typed cell for cell and right on the page
+    # (read on the render 2026-11-13); the cell check cannot read its
+    # superscripts, so it is kept as text (``text_by_render``).
+    "gec_13": {"list_all": True, "text_by_render": {"9-8": "9.3.3.2.2"}},
     # DM 7.1 (read against the renders 2026-11-13): chapters 5 to 8 type
     # their printed tables into the chapter text (REF-97). Three are right
     # on the page, but the cell check cannot count them: Table 6-2 is
