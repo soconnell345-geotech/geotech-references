@@ -53,12 +53,17 @@ How a page is read (PyMuPDF text layer, one column, single font family):
   ("7-6 SUGGESTED READING") ends the section before it, and its text is not
   stored;
 * paragraphs are where the print leaves a gap between lines or starts a
-  bullet; a paragraph runs on across a page, a figure or a table when its
-  last line before them is full and does not end a sentence;
+  list item (a bullet, an indented "o", "1." or "1)"); a list set in two
+  columns reads down the left column, then the right; a paragraph runs on
+  across a page, a figure or a table when its last line before them is full
+  and does not end a sentence; a blank page's "This Page Intentionally Left
+  Blank" is left out;
 * a figure's caption ("Figure 7-3 Use of Random Variables ...") is a
   paragraph of its own where the figure is printed. A table's caption is
   followed by the table typed in, where an earlier body held it typed in
-  (manifest ``typed_tables``, kept as checked), or else by the line
+  (manifest ``typed_tables``, kept as checked; the prologue's Tables P-2 to
+  P-8, text tables the earlier bodies held as condensed accounts, typed in
+  from the page instead, row by row), or else by the line
   "[Table 7-2: values on printed p. 512; not typed in]"; then the table's
   notes the earlier bodies held (manifest ``table_notes``). A figure or table
   printed inside a paragraph is put after that paragraph, with its page
@@ -111,7 +116,8 @@ SUPER = str.maketrans("0123456789+-−=()niax", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺�
 _SUPER_OK = set("0123456789+-−=()niax")
 #: an equation's printed number at the right margin; a few are printed
 #: without the brackets ("7-11.", "7-12", p. 535)
-_EQNUM = re.compile(r"^\(?\s*([PB1-7]-\d+[a-z]?)\s*\)?\s*[.,;:]?$")
+# (A-3): the prologue prints its three-parameter power function so (p. 4)
+_EQNUM = re.compile(r"^\(?\s*([PAB1-7]-\d+[a-z]?)\s*\)?\s*[.,;:]?$")
 _CAPTION = re.compile(r"^(Figure|Table)\s+([PB1-7]-\d+[a-z]?)\b\.?\s*(.*)$")
 _HEADNUM = re.compile(r"^([PB1-7]-\d+(?:\.\d+)*)\.?\s+(.*)$")
 _OPS = re.compile(r"[+\-−×·*/÷^√Σ∑²³½]")
@@ -328,10 +334,10 @@ def classify(rows: list[Row], images: list, pno: int, feet: set | None = None) -
             _FEET = {int(k) for k in load_manifest().get("footnotes", {})}
         feet = _FEET
     for r in rows:
-        if r.y0 < 60 or r.y0 > 735:
+        txt = r.raw.strip()
+        if r.y0 < 60 or r.y0 > 735 or txt == "This Page Intentionally Left Blank":
             r.kind = "running"
             continue
-        txt = r.raw.strip()
         cap = _CAPTION.match(txt)
         if cap and r.bold and r.size >= 11:
             r.kind = "caption"
@@ -363,7 +369,7 @@ def classify(rows: list[Row], images: list, pno: int, feet: set | None = None) -
                 r.kind = "math"
     # an equation number set at the end of a line of glyphs comes as one row
     for r in rows:
-        if r.kind in ("math", "small") and re.search(r"\(\s*[PB1-7]-\d+[a-z]?\s*\)\s*[.,;:]?\s*$", r.raw):
+        if r.kind in ("math", "small") and re.search(r"\(\s*[PAB1-7]-\d+[a-z]?\s*\)\s*[.,;:]?\s*$", r.raw):
             last = [s for s in r.spans if s["text"].strip()][-1]
             if _is_arial(last["font"]) and last["bbox"][0] > 380:
                 r.kind = "math+eqnum"
@@ -421,6 +427,7 @@ def page_tokens(doc, pno: int, man: dict, foot_marks: set[int], report: list) ->
     printed = pno - man["page_offset"]
     rows, images = _rows(page)
     classify(rows, images, pno)
+    rows = _two_column_lists(rows)
     # a raised number is a footnote mark only where the page prints that
     # footnote (the 6 of "10⁶" on p. 541 is an exponent)
     printed_feet = set()
@@ -488,6 +495,44 @@ def page_tokens(doc, pno: int, man: dict, foot_marks: set[int], report: list) ->
     return toks
 
 
+def _two_column_lists(rows: list[Row]) -> list[Row]:
+    """A bullet list set in two columns (p. 37: "• Aggregate columns" beside
+    "• Jet grouting") reads down the left column, then down the right; the
+    text layer gives each printed line across both."""
+    def bullet(ln):
+        return "".join(s["text"] for s in ln["spans"]).strip().startswith(("•", ""))
+
+    out: list[Row] = []
+    k = 0
+    while k < len(rows):
+        r = rows[k]
+        two = r.kind == "prose" and bullet(r.lines[0]) and any(
+            bullet(ln) and ln["bbox"][0] > 250 for ln in r.lines[1:])
+        if not two:
+            out.append(r)
+            k += 1
+            continue
+        split = min(ln["bbox"][0] for ln in r.lines[1:] if bullet(ln) and ln["bbox"][0] > 250) - 2
+        run = [r]
+        j = k + 1
+        while j < len(rows) and rows[j].kind == "prose" and rows[j].y0 - run[-1].y1 < 6 and (
+                any(ln["bbox"][0] >= split for ln in rows[j].lines) or rows[j].x0 > 76):
+            run.append(rows[j])
+            j += 1
+        left, right = [], []
+        for x in run:
+            lft = [ln for ln in x.lines if ln["bbox"][0] < split]
+            rgt = [ln for ln in x.lines if ln["bbox"][0] >= split]
+            for part, side in ((lft, left), (rgt, right)):
+                if part:
+                    nr = Row(part)
+                    nr.kind = "prose"
+                    side.append(nr)
+        out.extend(left + right)
+        k = j
+    return out
+
+
 def _formula_tokens(group: list[Row], printed: int, man: dict, report: list):
     """Printed formula lines from a run of glyph rows: rows are clustered by
     height; a cluster beside an equation number is that equation."""
@@ -505,7 +550,7 @@ def _formula_tokens(group: list[Row], printed: int, man: dict, report: list):
             if r.kind == "eqnum":
                 nums.append(_EQNUM.match(r.raw.strip()).group(1))
             elif r.kind == "math+eqnum":
-                nums.append(re.search(r"\(\s*([PB1-7]-\d+[a-z]?)\s*\)\s*[.,;:]?\s*$", r.raw).group(1))
+                nums.append(re.search(r"\(\s*([PAB1-7]-\d+[a-z]?)\s*\)\s*[.,;:]?\s*$", r.raw).group(1))
         y0 = min(r.y0 for r in c)
         y1 = max(r.y1 for r in c)
         if nums:
@@ -592,7 +637,8 @@ def _item_start(text: str, row) -> bool:
     """A list item starts here: a bullet ("•"), or the hollow "o" of a
     second-level list set at its indent."""
     return text.startswith(("•", "", "▪", "■")) or (
-        text.startswith("o ") and row is not None and row.x0 > 85)
+        row is not None and row.x0 > 85 and (
+            text.startswith("o ") or bool(re.match(r"\d{1,2}[.)] \S", text))))
 
 
 def _continues(prev_row, prev_text: str, row, text: str) -> bool:
@@ -774,9 +820,18 @@ def _where_item(text: str, prev_text: str) -> bool:
     p. 76) does not."""
     first = text.split(" ", 1)[0]
     if first in ("of", "to", "in", "at", "by", "is", "as", "for", "and", "or", "the", "with",
-                 "from", "on", "be", "than", "that", "a", "an"):
+                 "from", "on", "be", "than", "that"):
         return False
-    return bool(re.match(r"^\S{1,14}(?: \S{1,8})?\s?[=≈]\s", text)) and not prev_text.rstrip().endswith(("=", "+", "−", "-"))
+    # the line before ends a list line or opens the list ("where:"); "This
+    # strength is associated with a" / "φ = 0 strength model" (p. 11) runs on
+    prev = prev_text.rstrip()
+    if not (prev.endswith((":", ",", ";", ".", " and", " or")) or _WHERE_LINE.match(prev)):
+        return False
+    return bool(_WHERE_LINE.match(text)) and not prev.endswith(("=", "+", "−", "-"))
+
+
+#: "su = ...", "δVi, δVj = ...", "au and bu = ..." (p. 4)
+_WHERE_LINE = re.compile(r"^\S{1,14}(?: \S{1,8}){0,2}\s?[=≈]\s")
 
 
 def apply_fixes(sid: str, body: str, man: dict, report: list, used: set) -> str:

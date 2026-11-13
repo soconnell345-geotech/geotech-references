@@ -27,6 +27,7 @@ TEXT = ROOT / "geotech_references" / REF / "text"
 PDF = ROOT / "docs" / "ufc_3_220_20_2025.pdf"
 #: Chapters whose bodies are rebuilt from the print so far, with their PDF pages.
 BUILT = {
+    "prologue": (39, 92),
     "chapter02": (93, 144),
     "chapter07": (546, 595),
 }
@@ -130,6 +131,28 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("prologue", "P-2.1", 2,
+     "The prime symbol is often omitted even though the shear strength parameters refer to "
+     "effective stress or drained parameters, and the reader should be aware of this issue."),
+    ("prologue", "P-3.3", 11,
+     "This is not ideal, but as long as the value of su is interpreted using a conservative "
+     "method, it should suffice."),
+    ("prologue", "P-3.3.3", 15,
+     "Low plasticity silts typically have effective stress friction angles in the range of 35 "
+     "to 40 degrees with little to no cohesion intercept (Duncan et al. 2014)."),
+    ("prologue", "P-3.4", 17,
+     "End-of-Construction - At least three UU triaxial compression tests should be performed "
+     "for each combination of water content and compacted dry unit weight."),
+    ("prologue", "1-2.8", 24,
+     "Loose sands can be defined as sand-sized soils having a relative density less than 40% "
+     "and an SPT blow count less than 10 blows/ft (Duncan et al. 2014)."),
+    ("prologue", "1-2.12", 27,
+     "Soils are deemed not expansive if the plasticity index is less than 15, less than 10% "
+     "passes the No. 200 mesh sieve, or less than 5% of the soil is finer than 0.005 mm."),
+    ("prologue", "1-2.18", 32,
+     "Bray et al. (2009) suggested using an effective stress cohesion intercept of 300 psf and "
+     "a drained friction angle of 36 degrees at a normal stress of 2000 psf with the friction "
+     "angle decreasing by 5 degrees for each tenfold increase in normal stress."),
     ("chapter02", "2-3.3", 59,
      "Protective measures are also required for some excavations at any point less than "
      "5 feet deep where there is evidence of a potential cave-in as determined by a "
@@ -188,6 +211,41 @@ def test_printed_sentences_with_their_pages(stem, sid, page, sentence):
     assert i >= 0, sid
     marks = re.findall(r"\[p\. (\d+)\]", body[:i])
     assert marks and int(marks[-1]) == page, (sid, marks[-1:])
+
+
+def test_prologue_as_printed():
+    secs = _sections("prologue")
+    # the where-lists of Eqs. P-1 and P-2, one symbol to a line (p. 4)
+    assert ("where:\na and b = power function strength parameters and\n"
+            "Pa = atmospheric pressure.") in secs["P-2.2.1"]["body"]
+    assert ("where:\nsu = undrained shear strength,\nau and bu = power function strength "
+            "parameters.") in secs["P-2.2.1"]["body"]
+    # the three-parameter function numbered (A-3) as printed (p. 4)
+    assert "[Eq. A-3] s = a·Pa·(σʹ/Pa + t)^b" in secs["P-2.2.2"]["body"]
+    # Tables P-2 to P-8 typed in from the page, row by row, after the caption
+    assert ("[p. 9] Table P-2 Shear Strength Methods for In situ Coarse-Grained Soil\n\n"
+            "Method | Guidance\nLaboratory tests on disturbed, reconstituted, or compacted test "
+            "specimens | Rarely Appropriate.") in secs["P-3.1"]["body"]
+    assert "• DSS: USR = sin φʹ – 0.5 sin² φʹ" in secs["P-3.3.3"]["body"]
+    assert "(see Table ). [As printed on p. 10: no table number]" in secs["P-3.2"]["body"]
+    # the worked example inside Figure P-4 kept after the caption (p. 6)
+    assert ("Parameters from Power Function Parameters\n\nWorked example (Figure P-4):"
+            in secs["P-2.2.3"]["body"])
+    # the bars of φ̄ and c̄ drawn on p. 2 put back
+    assert "(e.g., φ̄ and c̄)" in secs["P-2.1"]["body"]
+    # numbered lists one item to a line; the two-column list of p. 37 read
+    # down the left column, then the right
+    assert "1) Clays at low initial degrees" in secs["1-2.12"]["body"]
+    assert "\n\n2) The swell potential increases" in secs["1-2.12"]["body"]
+    b = secs["1-3.1"]["body"]
+    assert b.index("• Geotextile encased columns") < b.index("• Jet grouting")
+    assert "• Combined soil stabilization with vertical columns" in b
+    # the notation tables kept; no blank page or chapter title in P-4
+    assert secs["P-4"]["body"].startswith("[p. 18] Variable | Definition\na | Power function")
+    assert "[p. 19] φʹp | Peak drained" in secs["P-4"]["body"]
+    assert "Intentionally" not in secs["P-4"]["body"]
+    assert "GEOTECHNICAL DESIGN IN PROBLEM SOILS" not in secs["P-4"]["body"]
+    assert secs["1-4"]["body"].startswith("[p. 54] Variable | Definition")
 
 
 def test_chapter_2_as_printed():
@@ -278,6 +336,8 @@ _ENUM = re.compile(r"(?:^|(?<=[.:;•\]] )|(?<=\s)(?=\d{1,2}\)\s[A-Z]))"
                    r"(?:\d{1,2}|[a-zA-Z]|[ivx]{1,4})\)(?=\s)")
 #: brackets the page itself leaves unpaired (checked on the render)
 _PRINTED_UNPAIRED: set = set()
+#: a prime the page itself sets alone: "the prime symbol (ʹ)" (p. 2)
+_PRINTED_PRIMES = {("P-2.1", "the prime symbol (ʹ)")}
 
 
 def _formula_lines(body):
@@ -293,6 +353,9 @@ def test_no_scatter_patterns_in_the_bodies(stem):
     bad = []
     for sid, s in _sections(stem).items():
         body = s["body"]
+        for i, snip in _PRINTED_PRIMES:
+            if i == sid:
+                body = body.replace(snip, "")
         for r in _PRIMES:
             bad += [f"{sid}: prime parted {body[max(0, m.start() - 20):m.end() + 8]!r}"
                     for m in r.finditer(body)]
