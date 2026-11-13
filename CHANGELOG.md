@@ -10,13 +10,13 @@ section's `tables` field named tables whose values the references helper
 could not reach: not typed into the text, not coded, and not on any page the
 page-reading tool knew (it knew only the figure catalogs).
 
-- `geotech_references/<pkg>/tables_catalog.json` for 30 references,
-  1,991 rows (package data). Each row gives the table's number and caption
+- `geotech_references/<pkg>/tables_catalog.json` for 31 references,
+  2,099 rows (package data). Each row gives the table's number and caption
   as printed, its chapter, the section that lists it, the PDF page it
   starts on and every page it runs on, the printed page, and where its
-  values are: `"text"` (typed in a stored section, 372 rows), `"lookup"` (a
-  coded function, 285 rows) or `"page"` (only on the printed page, 1,334
-  rows). Built by `scripts/build_table_catalog.py` from the List of Tables,
+  values are: `"text"` (every cell its page prints typed in a stored
+  section, 432 rows), `"lookup"` (a coded function returns them, 273 rows)
+  or `"page"` (only on the printed page, 1,394 rows). Built by `scripts/build_table_catalog.py` from the List of Tables,
   the captions on body pages and every section's `tables` entries; no API.
   The AASHTO 1993 Guide (a scan with no text layer) has a row for each of
   the 29 tables a section lists or a lookup codes, each placed on the
@@ -28,7 +28,7 @@ page-reading tool knew (it knew only the figure catalogs).
   `table_search` and `table_get`.
 - Every row was checked on its page: the label and the caption's first
   words in the page's text, and not a contents page
-  (`build_table_catalog.py --verify all`). The 33 rows the text layer
+  (`build_table_catalog.py --verify all`). The 32 rows the text layer
   cannot confirm (the 29 AASHTO 1993 tables, a garbled label, captions
   whose symbols the text layer drops) were checked on the rendered page,
   and so was a seeded sample of 80 rows across the references. Captions
@@ -39,10 +39,40 @@ page-reading tool knew (it knew only the figure catalogs).
   numbers the TIP table 16-4 and lists a 16-3 the manual does not print
   (the TIP table is printed as Table 16-3); UFC 3-250-03's list gives Tables
   2-13 to 2-16 the captions of other tables; GEC-5 prints Table 5-15 under
-  another caption than its list; FHWA-NHI-05-037 prints Table 7-23 as 7-23a
-  and 7-23b. Each such row carries a `note`.
+  another caption than its list. Each such row carries a `note`.
+  FHWA-NHI-05-037's list names a Table 7-23 printed only as Tables 7-23a
+  (SI units) and 7-23b (U.S. customary units), which are the rows.
+- `values` never promises cells that are not there (independent check of
+  the first build): a row is `"text"` only where its section types every
+  cell its page prints, by the builder's count of the numbers, row labels
+  and words in the table's region of the page (375 rows) or read against
+  the render (57). A section that summarizes, paraphrases or types part of
+  a table leaves the row `"page"`, with a `note` saying what the section
+  holds (78 page rows carry one). A `"lookup"` row names the function that
+  returns the values; functions that cite a table without returning its
+  contents are set aside: UFC 4-023-03's `classify_action` (the Section
+  3-2.5 rule beside Table 3-1), EM 1110-1-1905's Eq. 7-43 and Eq. 7-7
+  functions (Tables 7-12 and 7-13 are the steps of reading cv off a test
+  curve, Table C-1 a worked example), and FHWA-NHI-05-037's
+  `backcalculated_to_design_modulus`, which codes the factors of Table
+  5-31's Commentary row (that row is `"page"` with a note).
+- Every row's `printed_page` is the label its own page prints (the first
+  build left 551 rows with none and gave 46 the List of Tables' page
+  instead of the one the table is printed on: 41 of UFC 3-220-20's
+  Appendix B tables two or three pages low, five a page off); the 49 rows
+  whose label the text layer does not give were read on the render
+  (`tests/test_table_printed_pages.py`).
+- Pages a table runs onto: besides its label printed again, "(continued)"
+  or its caption at the page's top, the column heads printed again, and a
+  ruled table carrying on the one that fills the foot of the page before
+  with no other caption on the page; 45 rows of the first build gained
+  pages (EM 1110-1-1905's catalog is new), among them UFC
+  3-301-01 Table E-1 (seven pages), UFS 3-220-10 Tables B-1 and C-1 (14 and
+  12) and FEMA P-2082 Table C13.5-1 (seven). Each run-on page was checked
+  on the render, and a sample of the column-head ones.
 - No lookup function changed. Tests: `tests/test_tables_db.py`,
-  `tests/test_table_catalog_rows.py`, two in `tests/test_references_agent.py`.
+  `tests/test_table_catalog_rows.py`, `tests/test_table_printed_pages.py`,
+  two in `tests/test_references_agent.py`.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's

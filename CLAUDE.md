@@ -263,12 +263,22 @@ page-reading tool only knew the figure catalogs).
   `table_number` and `caption` as printed, `chapter`, `section_id` and
   `section_title` (the stored section that lists or prints it, or null),
   `pdf_page_index` (0-based page where the table starts), `pages` (every
-  page it is printed on), `printed_page`, and where its values are:
-  `values` = `"text"` (its cells are typed in a stored section's `tables`
-  entry or body; `values_in` is the section id), `"lookup"` (a coded
-  function returns it; `values_in` is `module.function`, and
-  `implemented_in` lists every such function) or `"page"` (only on the
-  printed page). A multi-volume manual's rows carry `pdf_path`, `volume` and
+  page it is printed on: the pages after the first that print its label
+  again, "(continued)", its caption or two of its column-head lines at
+  their top, or a ruled table carrying on the one that fills the foot of
+  the page before), `printed_page` (the label its own page prints, read
+  from the top and bottom bands or, on a page printed turned, the side
+  strips; never a year), and where its values are: `values` = `"text"`
+  (every cell its page prints is typed in a stored section's `tables`
+  entry or body: the builder's cell check, `coverage_ok`, 90 % of the
+  numbers and row labels and 80 % of the words but a ruled table's column
+  heads, six cells or more, or read against the render; `values_in` is the
+  section id), `"lookup"` (a coded function returns its values;
+  `values_in` is `module.function`, and `implemented_in` lists every such
+  function, the one returning values before one that lists keys or returns
+  a footnote) or `"page"` (only on the printed page; a section that
+  summarizes or types part of the table, or a function that codes part of
+  it, is named in the row's `note`). A multi-volume manual's rows carry `pdf_path`, `volume` and
   their volume's `reference_id`; `printed_as_picture` marks a table with no
   text layer on its page; `note` says what a reader of the page should know.
 - **Retrieve** (`_tables_db.py`, mirrors `_figures_db.py` function for
@@ -290,45 +300,59 @@ page-reading tool only knew the figure catalogs).
 - **Agent**: `agents/references_agent.py` exposes `table_search` and
   `table_get` beside `reference_search` and `reference_get`, at the same
   14,000-character size.
-- **Coverage (build of 2026-11-12)**: 30 references, 1,991 rows: 372
-  text, 285 lookup, 1,334 page. Rows (text/lookup/page): aashto_1993 29
-  (0/14/15), california_trenching 39 (0/7/32), dm7_1 139 (0/7/132), dm7_2
-  172 (3/16/153), em_2104 27 (0/10/17), em_2107 38 (0/4/34), eurocode_7_1
-  20 (0/18/2), eurocode_7_2 38 (38/0/0), fema_p2082 52 (0/3/49),
-  fhwa_pavements 154 (0/15/139), fhwa_soils_foundations 142 (2/0/140),
-  gec_10 47 (34/2/11), gec_11 118 (5/16/97), gec_12 262 (164/8/90), gec_13
-  82 (0/8/74), gec_4 23 (0/4/19), gec_5 127 (103/0/24), gec_6 50
-  (2/10/38), gec_7 66 (12/13/41), gec_8 15 (6/0/9), gec_9 24 (0/5/19),
-  gsa_collapse 30 (0/11/19), micropile 37 (3/13/21), ufc_collapse 29
-  (0/12/17), ufc_concrete_practice 16 (0/12/4), ufc_flexible_practice 39
-  (0/23/16), ufc_pavement 28 (0/17/11), ufc_stabilization 10 (0/10/0),
-  ufc_structural 14 (0/13/1), wood_handbook 124 (0/14/110). GEC-14 prints
-  no numbered table (no catalog). The AASHTO 1993 rows are the tables a
+- **Coverage (build of 2026-11-12, after the independent check)**: 31
+  references, 2,099 rows: 432 text (375 by the cell check, 57 read
+  against the render), 273 lookup, 1,394 page. Rows (text/lookup/page):
+  aashto_1993 29 (0/14/15), california_trenching 39 (0/7/32), dm7_1 139
+  (0/7/132), dm7_2 172 (18/16/138), em_1905 109 (52/6/51), em_2104 27
+  (0/10/17), em_2107 38 (0/4/34), eurocode_7_1 20 (0/18/2), eurocode_7_2
+  38 (37/0/1), fema_p2082 52 (0/3/49), fhwa_pavements 153 (0/14/139),
+  fhwa_soils_foundations 142 (2/0/140), gec_10 47 (29/2/16), gec_11 118
+  (1/15/102), gec_12 262 (148/8/106), gec_13 82 (0/8/74), gec_4 23
+  (0/4/19), gec_5 127 (91/0/36), gec_6 50 (13/3/34), gec_7 66 (10/13/43),
+  gec_8 15 (6/0/9), gec_9 24 (0/5/19), gsa_collapse 30 (0/11/19),
+  micropile 37 (25/5/7), ufc_collapse 29 (0/11/18), ufc_concrete_practice
+  16 (0/12/4), ufc_flexible_practice 39 (0/23/16), ufc_pavement 28
+  (0/17/11), ufc_stabilization 10 (0/10/0), ufc_structural 14 (0/13/1),
+  wood_handbook 124 (0/14/110). GEC-14 prints no numbered table (no
+  catalog). The AASHTO 1993 rows are the tables a
   section lists or a lookup codes; its other printed tables are not rows.
 - **Where the builder needs a person**: a row the scan cannot place (a
   scan with no text layer, a label the text layer garbles, a List of Tables
   caption that is not the page's, a sentence or contents line that cites a
   number) was checked on the rendered page and its page, caption or row
   written into the builder's `CONFIG` (`page_from_render`,
-  `caption_from_render`, `rows_from_renders`, `drop`, `notes`,
-  `not_printed`), with a comment saying what the render showed, so a re-run
-  gives the same catalog. The AASHTO 1993 Guide (no text layer) has every
-  row so placed. EN 1997-1 and -2 are scans with an OCR text layer
-  (`"ocr": True`: the label check reads "Table A.S" as A.5 and "Table H.l"
-  as H.1). A page whose captions are a list (four or more within two lines
-  of each other) or a List of Tables page loses to a later page that
-  prints the table. A function that cites a table in its opening paragraph
-  without returning its values is set aside in `NOT_IMPLEMENTED_BY`. PDFs
-  not in `docs/` (the Wood Handbook is not committed) are read from the
-  folder `GEOTECH_REFERENCES_DOCS` names.
+  `pages_from_render`, `caption_from_render`, `printed_from_render`,
+  `rows_from_renders`, `drop`, `notes`, `not_printed`), with a comment
+  saying what the render showed, so a re-run gives the same catalog. The
+  same goes for `values`: a section whose cells the check cannot count (a
+  checklist, symbols it does not read as words, a table of four cells) was
+  read against the render and named in `text_by_render`; one that
+  summarizes, paraphrases or types part of a table is left `"page"` with a
+  `note`, and `values` pins the kind where the check's count would pass a
+  section that still leaves something out (a footnote, a column, rows). The AASHTO 1993 Guide (no
+  text layer) has every row so placed. EN 1997-1 and -2 are scans with an
+  OCR text layer (`"ocr": True`: the label and caption checks read "Table
+  A.S" as A.5 and "Table H.l" as H.1). A page whose captions are a list
+  (four or more within two lines of each other) or a List of Tables page
+  loses to a later page that prints the table. A function that cites a
+  table without returning its values (one that applies a rule beside it,
+  computes the equation a procedure table steps through, or codes another
+  row's factors) is set aside in `NOT_IMPLEMENTED_BY`. PDFs not in
+  `docs/` (the Wood Handbook is not committed) are read from the folder
+  `GEOTECH_REFERENCES_DOCS` names.
 - **Verify**: `python scripts/build_table_catalog.py --verify <pkg>|all`
   lists the rows whose page does not print the label and the caption's
   first words, or is a contents page (a table printed as a picture, a scan;
   each such row was checked on the render). Tests:
   `tests/test_tables_db.py`, `tests/test_table_catalog_rows.py` (pinned row
   counts, every row on its page by the builder's rule with the
-  render-checked rows listed, every `values_in` resolves, every listed
-  table a row).
+  render-checked rows listed, every `values_in` resolves, every "text" row
+  passes the cell check or was read on the render, a "lookup" row names the
+  function returning the values, every listed table a row),
+  `tests/test_table_printed_pages.py` (every row's `printed_page` is the
+  label its page prints, the rows whose label the text layer does not give
+  listed with the label seen on the render).
 
 ## Section levels (REF-24): every section is addressable
 
