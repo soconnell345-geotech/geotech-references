@@ -512,12 +512,25 @@ has the same answer, else the numbers whose answer differs plus
 sorted order (`_reach.collapse`; `_reach.expand` gives the full map back
 from the section's own list). A pointer is flagged
 only when it is certainly one into the same document and certainly not
-held: another document named just before it or "of / in / from" one after
-it, an author and year before it, a number whose form is none of the
-document's own or that reads as a range, a number split across a line, a
-value after a list, and an appendix followed by its title (another
-report's contents) are left alone. The module docstring lists what counts
-as held. Inlined subsections carry their own keys; the fetch's note
+held: another document named just before it in the same sentence or
+clause or "of / in / from" one after it, an author and year before it, a
+number the body already gave to another document, a number whose form is
+none of the document's own or that reads as a range of two held numbers,
+a number split across a line, a value after a list, an appendix followed
+by its title (another report's contents, unless the body lists the
+document's own chapters by title), a chapter past the last a reference
+prints (`CHAPTERS_PRINTED`: ufc_structural 7) and a subsection of the
+section being read that has no row are left alone; "of Chapter 7" and "of
+DM 7.2" are this document. An id's tail answers for a printed number only
+where declared (`ID_PREFIXED`: gec_13 in every chapter, aashto_1993's
+Parts; review item 4, 2026-11-12: read everywhere, it let em_2107's 3.8
+hold a "Chapter 8"). The module docstring and `_reach.read_pointers` list
+every rule; `read_pointers` gives each pointer set aside with its reason.
+A seeded sample of 100 pointers set aside after these rules (seed
+20261113, 1,612 in all) had one same-document part not held among them:
+california_trenching 6-2 "AREMA Manual for Railway Engineering (Section
+6-1)", the manual's own 6-1 Introduction, which reads like another
+document's citation. Inlined subsections carry their own keys; the fetch's note
 explains them once. Whether they are inlined is decided on the content
 without the flags (the 12,000 rule as before), provided the whole result
 with the flags and the note fits 14,000 (`INLINE_WITH_FLAGS_MAX_CHARS`;
@@ -562,8 +575,10 @@ key is `"<reference> Chapter N"` or `"<reference> Section <id>"` and
 resolves; every figure number held on several catalog rows is on distinct
 pages; nothing is not held that `tests/reach_baseline.json` does not
 list, item by item, so one fixed and one broken cannot cancel out
-(2026-11-12, with the table catalogs: 2 figures and 114 tables not
-catalogued, 285 pointers not held; take an item out when it is fixed);
+(2026-11-12, after review item 4: 2 figures and 114 tables not
+catalogued, 333 pointers not held: 203 appendices, 52 sections, 28
+equations, 27 chapters, 14 figures, 9 tables; take an item out when it is
+fixed);
 the flags keep fetch sizes in their limits; the wheel's package data
 covers every data file the code reads (its globs matched as setuptools
 reads them, '*' never crossing '/').

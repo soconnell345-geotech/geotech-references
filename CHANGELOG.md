@@ -30,7 +30,23 @@ stopped inlining). A table number on several catalog rows answers from
 the row numbered exactly as listed and filed under the listing section,
 and says it is one of several; a tie in the short form goes to the first
 answer in sorted order; the baseline lists each item not held, so a new
-one fails even when another was fixed. The flags are worked out when the text database is built
+one fails even when another was fixed. Pointers not flagged that should
+have been (the review's undercount): an id's tail answers for a printed
+number only in the references declared so (GEC-13, AASHTO 1993), so
+em_2107's "See Chapter 8" is flagged; the look-back for another
+document's name stops at a sentence or clause end; "Chapter 1 of DM 7.2"
+and "of Chapter 7" are this document; a document's own list of its
+appendices, lower-case "appendix", numbered appendices, chapter ranges
+("Chapters 9-16") and an unheld appendix's equations ("Eq D.9") are read;
+a "Table 4-3" in a reference that also prints a "Table 1" is no longer
+read as a range. Rules added so these do not flag other documents' parts:
+a number given to another document stays its for the rest of the body; a
+citation's year is no sentence end; a chapter past the last UFC 3-301-01
+prints is another document's; I and O inside a letter range; a
+subsection of the section being read that has no row; every number of a
+combined equation entry ("Equations 3-3 through 3-9") is held. 2 figures
+and 114 tables not catalogued, 333 pointers not held (was 285: 59 added,
+11 gone, every one checked). The flags are worked out when the text database is built
 (new module `_reach.py`, table `section_reach`, `_SCHEMA_VERSION` 5; the
 figure and table catalogs join its source signature) and cost a fetch
 nothing; search hits are unchanged. Shared functions changed:

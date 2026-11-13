@@ -41,20 +41,33 @@ answer differs plus ``"others": <the commonest answer>``. A section listing
 says what each key and each answer it carries means (:func:`reach_note`).
 
 A pointer is flagged only when it is certainly one into the same document
-and certainly not held. Not flagged: a pointer with another document named
-just before it (ASTM, AASHTO, ACI, "Falsework Manual" ...) or "of / in /
-from" one after it; one after an author and year; a number whose form is
-not one of the document's own (its section, equation, table or figure
-numbers) or that reads as a range ("Eqs. 6.9-6.14"); a number split across
-a line; a value after a list ("Eq. 10-1, 1.0 for ..."); an appendix with
-its title after it (another report's contents); a chapter number of 40 or
-more and a bare section number of 100 or more. Held: a section id, or a
-section printed as a heading inside another's body ("11.4.5.1 Multi-Period
-Design Response Spectrum: ..."); a chapter file; an appendix or annex a
-chapter title names; an equation an equation object, a "[Eq. 9-5]" marker
-or a formula typed with its tag holds ("Pa = ... (Eq. 4-3-17)"); a table
-or figure a listing or catalog holds, part letters either way (Figure 2-6
-is held by its parts 2-6a to 2-6f, Figure 7-7a by Figure 7-7).
+and certainly not held (:func:`read_pointers` says why each other one is
+set aside). Not flagged: a pointer with another document named just
+before it (ASTM, AASHTO, ACI, "Falsework Manual" ...) in the same
+sentence or clause, or "of / in / from" one after it; one after an author
+and year; a number the body has already given to another document; a
+number whose form is not one of the document's own (its section,
+equation, table or figure numbers), or that reads as a range of two held
+numbers ("Eqs. 6.9-6.14"); a number split across a line; a value after a
+list ("Eq. 10-1, 1.0 for ...", "Table 2-3, 85-100 penetration"); an
+appendix with its title after it (another report's contents) unless the
+body lists the document's own chapters by their titles; a chapter number
+of 40 or more, or past the last a reference prints
+(:data:`CHAPTERS_PRINTED`); a bare section number of 100 or more; a
+subsection of the section being read that has no row (its body covers
+it); I or O inside a letter range some of which is held. "Chapter 1 of DM
+7.2" and "of Chapter 7" are this document (its report numbers and
+:data:`SELF_NAMES`). A range none of which is held is one pointer
+("Chapters 9-16"). Held: a section id, or the printed number of one where
+the reference declares its ids built with a part before it
+(:data:`ID_PREFIXED`), or a section printed as a heading inside another's
+body ("11.4.5.1 Multi-Period Design Response Spectrum: ..."); a chapter
+file; an appendix or annex a chapter title names (a numbered one only by
+its number); an equation an equation object (every number of "Equations
+3-3 through 3-9"), a "[Eq. 9-5]" marker or a formula typed with its tag
+holds ("Pa = ... (Eq. 4-3-17)"); a table or figure a listing or catalog
+holds, part letters either way (Figure 2-6 is held by its parts 2-6a to
+2-6f, Figure 7-7a by Figure 7-7).
 
 The flags are worked out once, when the text search database is built
 (:func:`fill_reach_table`, table ``section_reach``), from the chapter
@@ -204,15 +217,19 @@ def _seps(number: str) -> tuple:
     return ("-" in s, "." in s, s[:1].isalpha())
 
 
-def _is_range(number: str, shapes: set[str]) -> bool:
-    """'6.9-6.14' read as one number: two halves of one known form joined
-    by a dash ('Eqs. 6.9-6.14' is a range of equations)."""
+def _is_range(number: str, holds) -> bool:
+    """'6.9-6.14' read as a range, not one number: two halves of one form
+    joined by a dash, each a number the document holds (``holds``). Before
+    2026-11-12 one held number of the half's form was enough, and a form
+    counts every run of digits as one, so in a reference with a "Table 1"
+    every "Table 4-3" read as a range and was never flagged (review item
+    4)."""
     s = _dashes(number)
     for i, ch in enumerate(s):
         if ch == "-":
             left, right = s[:i], s[i + 1:]
-            if left and right and _shape(left) == _shape(right) \
-                    and _shape(left) in shapes:
+            if (left and right and _shape(left) == _shape(right)
+                    and holds(left) and holds(right)):
                 return True
     return False
 
@@ -292,6 +309,26 @@ def catalog_problems() -> dict[str, list[str]]:
 
 _EQ_ENTRY_RE = re.compile(
     r"^\W*(?:(?i:equations?|eqs?)\.?\s*)?(" + _NUM + r")(?!\d)")
+_ENTRY_SPAN_RE = re.compile(
+    r"(?P<p>[A-Z]?\d+[-.])(?P<i>\d+)\s+(?:through|to)\s+(?P=p)(?P<j>\d+)\b")
+
+
+def _entry_numbers(raw: str) -> list[str]:
+    """Every number an equation entry's label names, before its colon:
+    "Equations 4-10, 4-11: ..." -> 4-10, 4-11; "Equations 3-3 through 3-9:
+    ..." -> 3-3 to 3-9 (GEC-11 stores some equations so; reading only the
+    first number flagged the rest as not held)."""
+    label = _dashes(raw).split(":", 1)[0]
+    if not re.match(r"^\W*(?i:equations|eqs)\b", label):
+        return []
+    out = re.findall(_NUM + r"(?!\d)", label)
+    for m in _ENTRY_SPAN_RE.finditer(label):
+        i, j = int(m.group("i")), int(m.group("j"))
+        if i < j <= i + 30:
+            out += [f"{m.group('p')}{k}" for k in range(i + 1, j)]
+    return out
+
+
 _EQ_TAG_RES = (
     # [Eq. 9-5], the printed-text builder's marker (REF-29)
     re.compile(r"\[(?i:eq(?:uation)?)\.?\s*(" + _NUM + r")\]"),
@@ -346,6 +383,31 @@ class _Pool:
                 or _base(key) in self.keys)
 
 
+#: References whose section ids put a part before the number the print
+#: gives the section, because the print restarts its numbering in each
+#: part, as a pattern for that prefix: GEC-13 in each chapter ('7.2.1.3.1'
+#: prints 2.1.3.1 in chapter 7; ``_retrieval.CHAPTER_PREFIXED`` names only
+#: chapter 1, whose printed numbers collide with other chapters' ids), and
+#: the AASHTO 1993 Guide in each Part ('II-2.3.5' prints 2.3.5). No other
+#: reference's ids are built so.
+ID_PREFIXED = {"gec_13": r"\d+\.", "aashto_1993": r"[IVX]+-"}
+#: The chapters a reference prints, where the library holds them all: a
+#: "Chapter N" past them is another document's. UFC 3-301-01 prints
+#: Chapters 1 to 7 and Appendices A to I (its section 1-6 lists them), so
+#: "ASD (Chapter 8)" in 6-5 is TMS 402's.
+CHAPTERS_PRINTED = {"ufc_structural": 7}
+
+
+def printed_numbers(reference: str, section_id: str) -> list[str]:
+    """The number the print gives a section whose id carries more than
+    that (:data:`ID_PREFIXED`), else nothing (2026-11-12 review, item
+    4a: an id's tail was read as a printed number in every reference, so
+    em_2107's 3.8 held a "Chapter 8" the manual's text does not have)."""
+    prefix = ID_PREFIXED.get(reference)
+    m = re.match(prefix + "(.+)", section_id) if prefix else None
+    return [m.group(1)] if m else []
+
+
 class Holdings:
     """What one reference holds, for the flags: its section numbers, its
     chapters and their titles, the equation numbers it types in, the
@@ -363,6 +425,8 @@ class Holdings:
         self.tables = _Pool()
         self.table_shapes: set[str] = set()
         self.figure_shapes: set[str] = set()
+        self.chapter_titles: dict[str, str] = {}
+        names = list(SELF_NAMES.get(reference, ()))
         seen_chapters = set()
         for row in rows:
             sid = str(row["section_id"] or "")
@@ -370,10 +434,15 @@ class Holdings:
                 parts = _unified(sid).split(".")
                 for k in range(1, len(parts) + 1):
                     self.section_keys.add(".".join(parts[:k]))
-                if len(parts) > 1:
-                    # chapter-prefixed (GEC-13 '1.8.2.7' prints 8.2.7) or
-                    # part-lettered ('II-2.3.5') ids answer for the rest
-                    self.section_keys.add(".".join(parts[1:]))
+                # ids built with a part before the printed number answer
+                # for the printed number too, in the references declared
+                # so (GEC-13 '1.8.2.7' prints 8.2.7), and only there:
+                # em_2107 '3.8' does not hold a Chapter 8
+                for printed in printed_numbers(reference, sid):
+                    tail = _unified(printed).split(".")
+                    for k in range(1, len(tail) + 1):
+                        self.section_keys.add(".".join(tail[:k]))
+                    self.section_shapes.add(_shape(printed))
                 self.section_shapes.add(_shape(sid))
                 lead = re.match(r"[A-Z]+", sid)
                 if lead:
@@ -382,6 +451,11 @@ class Holdings:
                 seen_chapters.add(row["chapter"])
                 self.chapters.add(str(row["chapter"]))
                 self.titles.append(str(row["chapter_title"] or ""))
+                self.chapter_titles[str(row["chapter"])] = str(
+                    row["chapter_title"] or "")
+            rid = row["reference_id"] if "reference_id" in row.keys() else None
+            if isinstance(rid, str) and rid.strip() and rid not in names:
+                names.append(rid.strip())
             for eq in json.loads(row["equations_json"] or "[]"):
                 raw = (next((eq[k] for k in ("id", "eq_id", "equation_id",
                                              "number") if eq.get(k)), "")
@@ -389,6 +463,8 @@ class Holdings:
                 m = _EQ_ENTRY_RE.match(_dashes(str(raw)))
                 if m:
                     self._add_equation(m.group(1))
+                    for num in _entry_numbers(str(raw)):
+                        self._add_equation(num)
             body = _dashes(row["body"] or "")
             for rx in _EQ_TAG_RES:
                 for m in rx.finditer(body):
@@ -407,6 +483,12 @@ class Holdings:
                 num = listing_number(entry, "figure")
                 if num:
                     self.figure_shapes.add(_shape(num))
+        # the names the document gives itself: its report numbers and
+        # SELF_NAMES ("DM 7.2"); "Chapter 1 of DM 7.2" is this document
+        self.self_re = re.compile("(?:" + "|".join(
+            r"\s*".join(re.escape(w) for w in _dashes(name).split())
+            for name in sorted(names, key=len, reverse=True))
+            + r")(?![\d.]*\d)") if names else None
         folder = reference_dir(reference)
         figs = (_catalog_rows(folder / FIGURES_CATALOG, "figures")
                 if folder else None) or []
@@ -515,6 +597,19 @@ class Holdings:
                        for s in shapes)
         return shape in shapes
 
+    def own_contents(self, body: str) -> bool:
+        """Whether ``body`` lists the document's own parts: it names one
+        of the document's chapters with that chapter's own title
+        ("Chapter 3 - Modifications to ASCE 7: ..."), so the appendices it
+        lists with their titles are this document's, not another
+        report's contents."""
+        for m in _LISTED_CHAPTER.finditer(body):
+            title = self.chapter_titles.get(m.group(1), "")
+            words = re.findall(r"\w+", title.lower())[:3]
+            if words and re.findall(r"\w+", m.group(2).lower())[:3] == words:
+                return True
+        return False
+
     def pointer_held(self, kind: str, number: str) -> bool | None:
         """Whether the part a same-document pointer names is held: True,
         False, or None when the number cannot be read for certain as one
@@ -524,6 +619,8 @@ class Holdings:
         if kind == "chapter":
             if not re.fullmatch(r"\d+", number) or int(number) >= 40:
                 return None  # 'Chapters 4-8' is a range, not a number
+            if int(number) > CHAPTERS_PRINTED.get(self.reference, 99):
+                return None  # past the document's last chapter
             return number in self.chapters or key in self.section_keys
         if kind == "section":
             if re.fullmatch(r"\d+", number):
@@ -537,6 +634,11 @@ class Holdings:
                 return None
             return key in self.section_keys or _base(key) in self.section_keys
         if kind in ("appendix", "annex"):
+            if re.fullmatch(r"\d{1,2}", number):
+                # a numbered appendix ("Appendix 3"): held only when a
+                # chapter file is that appendix
+                return any(re.search(r"\b(?:Appendix|Annex)\s+" + number
+                                     + r"\b", t) for t in self.titles)
             letter = re.match(r"[A-Z]+", number)
             if not letter:
                 return None
@@ -552,21 +654,24 @@ class Holdings:
                         return True
             return letter in self.section_keys or key in self.section_keys
         if kind == "equation":
-            if (not self._known_shape(shape, self.equation_shapes)
-                    or _is_range(number, self.equation_shapes)):
-                return None
-            return self.equations.holds(key)
-        if kind == "table":
-            if (not self._known_shape(shape, self.table_shapes)
-                    or _is_range(number, self.table_shapes)):
-                return None
-            return self.tables.holds(table_key(number))
-        if kind == "figure":
-            if (not self._known_shape(shape, self.figure_shapes)
-                    or _is_range(number, self.figure_shapes)):
-                return None
-            return any(self.figures.holds(k) for k in figure_keys(number))
-        return None
+            def holds(n):
+                return self.equations.holds(_unified(n))
+            shapes = self.equation_shapes
+        elif kind == "table":
+            def holds(n):
+                return self.tables.holds(table_key(n))
+            shapes = self.table_shapes
+        elif kind == "figure":
+            def holds(n):
+                return any(self.figures.holds(k) for k in figure_keys(n))
+            shapes = self.figure_shapes
+        else:
+            return None
+        if holds(number):
+            return True
+        if not self._known_shape(shape, shapes) or _is_range(number, holds):
+            return None
+        return False
 
 
 def _exact_table(number: str) -> str:
@@ -615,6 +720,8 @@ _KINDS = {
     "Secs.": "section", "\u00a7": "section", "\u00a7\u00a7": "section",
     "Chapter": "chapter", "Chapters": "chapter", "Ch.": "chapter",
     "Appendix": "appendix", "Appendices": "appendix", "App.": "appendix",
+    # lower case as some manuals print it ("in appendix B")
+    "appendix": "appendix", "appendices": "appendix",
     "Annex": "annex", "Annexes": "annex",
     "Table": "table", "Tables": "table",
     "Figure": "figure", "Figures": "figure", "Fig.": "figure",
@@ -635,6 +742,10 @@ _POINTER_RE = re.compile(
     + r"(?P<more>(?:" + _SEP + r"\(?(?:" + _PTR_NUM
     + r")\)?(?![\dA-Za-z]))*)")
 _MORE_NUM_RE = re.compile(_PTR_NUM)
+#: "Chapters 9 through 16", "Appendices A to D": the one number after the
+#: first is the end of a range.
+_RANGE_END = re.compile(r"[ \t\u00a0]*(?:to|through)[ \t\u00a0]*\(?("
+                        + _PTR_NUM + r")\)?")
 #: Another document named just before a pointer.
 _OTHER_DOCUMENT = re.compile(
     r"\b(?:ACI|ASCE|IBC|IEBC|IRC|AISC|ASTM|NDS|TMS|AWS|ANSI|AASHTO|NCHRP|"
@@ -650,60 +761,249 @@ _NAMED_WORK_BEFORE = re.compile(
 _TITLE_AFTER = re.compile(
     r"[ \t]+(?:-[ \t]+[A-Z]|[A-Z][a-z]+[ \t]+[A-Z][a-z]+)")
 #: An author and year just before a pointer ("Wilson et al. (2006) Figure").
-_YEAR_BEFORE = re.compile(r"(?:19|20)\d\d[a-z]?\)?[,;]?\s*$")
-#: A pointer followed by "of / in / from" another named document or work.
+_YEAR_BEFORE = re.compile(r"(?:19|20)\d\d[a-z]?\)?[,;.]?\s*[\"']?\s*$")
+#: Why a pointer is another document's: its number is then that
+#: document's for the rest of the body ("AASHTO (2002) Section 6.4.2(B)
+#: ...; Section 6.4.2(C) recommends").
+_OTHER_REASONS = ("another document before", "author and year",
+                  "named work", "of another")
+#: A list member after a bare comma.
+_MORE_ITEM_RE = re.compile("(" + _SEP + r")\(?(" + _PTR_NUM + r")\)?")
+#: A pointer followed by "of / in / from" another named document or work;
+#: "of Chapter 7", "in Part II" and "of this manual" are this document.
 _OF_OTHER = re.compile(
     r"^\s*,?\s*(?:of|in|from)\s+(?!this\b|these\b|the\s+(?:present\s+)?"
     r"(?:manual|guide|report|document|circular|chapter|section|appendix|"
-    r"annex|text|volume)\b)(?:the\s+)?(?:[A-Z]|\d{4})")
+    r"annex|text|volume)\b|(?:Chapters?|Sections?|Appendix|Appendices|"
+    r"Annex(?:es)?|Parts?|Volumes?|Vol\.)[ \t\u00a0]*[A-Z0-9])"
+    r"(?:the\s+)?(?:[A-Z]|\d{4})")
+_OF_WORD = re.compile(r"^\s*,?\s*(?:of|in|from)\s+(?:the\s+)?")
+#: A sentence end: the look-back for another document's name stops there
+#: ("... EM 1110-2-2610. Commentary is provided in Appendix B.").
+_SENTENCE_END = re.compile(r"[.!?;][\"')\]]*\s+(?=[\"'(\[]?[A-Z0-9])")
+#: A name of another document that is a part of this one: "the Guide
+#: Specification of Chapter 14" (GEC-10's own chapter 14).
+_PART_OF_THIS = re.compile(
+    r"\s+(?:of|in)\s+(?:this\b|(?:Chapters?|Sections?|Appendix|Appendices|"
+    r"Annex(?:es)?)\s+[A-Z0-9])")
+#: Words a full stop follows inside a sentence.
+_ABBREVIATIONS = frozenset(
+    "fig figs eq eqs no nos vol vols sec secs ch app art arts al p pp vs "
+    "ref refs tab tabs pt pts ed eds approx cf e.g i.e inc co corp dept "
+    "div st mr dr jr u.s para paras min max ft in lb kip kips".split())
+#: Other names a reference's text gives itself, beside the report numbers
+#: its chapter files carry ("Chapter 1 of DM 7.2" in UFC 3-220-20).
+SELF_NAMES = {"dm7_1": ("DM 7.1", "DM7.1"), "dm7_2": ("DM 7.2", "DM7.2")}
+#: A chapter listed with its title in a contents list ("Chapter 3 -
+#: Modifications to ASCE 7: ...").
+_LISTED_CHAPTER = re.compile(
+    r"\bChapter[ \t\u00a0]+(\d+)[ \t\u00a0]*(?:-|:|,|\u2013|\u2014)"
+    r"[ \t\u00a0]*([A-Z][^:\n]{3,80})")
 
 
-def iter_pointers(body: str, holdings: Holdings):
+def _look_back(text: str, start: int) -> str:
+    """The text a pointer at ``start`` is read with for another document's
+    name: the same line, at most 60 characters, and not past a sentence
+    end."""
+    line_start = text.rfind("\n", 0, start) + 1
+    lo = max(line_start, start - 60)
+    before = text[lo:start]
+    cut = 0
+    # read with the pointer's first characters, so a full stop just before
+    # it ("... this UFC. Appendix I") is seen as a sentence end
+    chunk = text[lo:start + 2]
+    for m in _SENTENCE_END.finditer(chunk):
+        if m.end() > len(before):
+            break
+        raw = re.search(r"(\S+)$", before[:m.start()])
+        raw = raw.group(1).lstrip("([\"'") if raw else ""
+        word = raw.lower()
+        if (word in _ABBREVIATIONS or re.fullmatch(r"[a-z]", word)
+                or re.fullmatch(r"(?:19|20)\d\d[a-z]?\)?", word)):
+            # "Fig. 4", "et al. (2006)", "J. Smith", and a citation's year
+            # ('USBR, 2012. "Chapter 10: Embankment Construction."')
+            continue
+        if chunk[m.start()] == ";" and (before[:m.start()].count("(")
+                                        > before[:m.start()].count(")")):
+            continue  # a list inside brackets ("ASCE 41 (Tables 9-3 ...;")
+        if (chunk[m.start()] == ";"
+                or chunk[m.end():].lstrip("\"'([")[:1].isdigit()) and not \
+                re.fullmatch(r"[a-z]{3,}", raw):
+            # a semicolon ends a clause, and a number after a stop starts a
+            # sentence, only after a plain word ("AASHTO and ASTM
+            # standards; Appendix 2 gives"; "... ASCE 7-22 sections. 13.2.3
+            # [Supplement]: ..."), not after a year or a code number
+            # ("(Webster et al., 1994; Table 4-9)", "(AASHTO T 89; Table 3)")
+            continue
+        cut = m.end()
+    return before[cut:]
+
+
+def _range(first: str, last: str, kind: str) -> list[str] | None:
+    """The numbers from ``first`` to ``last`` (chapters 9 to 16, appendices
+    A to D), or None when the two are not a range of that kind."""
+    if kind == "chapter" and first.isdigit() and last.isdigit():
+        a, b = int(first), int(last)
+        if a < b <= a + 30:
+            return [str(n) for n in range(a, b + 1)]
+    if kind in ("appendix", "annex") and re.fullmatch(r"[A-Z]", first) \
+            and re.fullmatch(r"[A-Z]", last) and first < last:
+        return [chr(c) for c in range(ord(first), ord(last) + 1)]
+    return None
+
+
+def read_pointers(body: str, holdings: Holdings,
+                  section_id: str | None = None):
+    """``(kind, number, start, end, held, why)`` for every pointer-shaped
+    phrase in ``body``: ``why`` is None for a pointer read as one into the
+    same document (``held`` True, False, or None when the number is not
+    certainly one of the document's own), else the rule that set it aside
+    ("another document before", "author and year", "named work", "of
+    another", "split number", "contents list", "another document's
+    number", "list value", "letter", "a value", "own subsection": a
+    subsection of ``section_id`` with no row, which this body covers). A
+    range ("Chapters 9-16")
+    is one pointer when no part of it is held, else its parts."""
+    text = _dashes(body or "")
+    own_contents = holdings.own_contents(text)
+    found = []
+    others: set[tuple[str, str]] = set()  # numbers given to other documents
+    for m in _POINTER_RE.finditer(text):
+        kind = _KINDS[m.group("kind")]
+        before = _look_back(text, m.start())
+        after = text[m.end():m.end() + 60]
+        self_named = named_after = False
+        if holdings.self_re is not None:
+            of = _OF_WORD.match(after)
+            named_after = bool(of and holdings.self_re.match(after, of.end()))
+            self_named = named_after or bool(holdings.self_re.search(before))
+            before = holdings.self_re.sub(" ", before)
+        why = None
+        if named_after:
+            pass  # "Section 2-9 of DM 7.2": this document, whatever precedes
+        elif any(not _PART_OF_THIS.match(before, o.end())
+                 for o in _OTHER_DOCUMENT.finditer(before)):
+            why = "another document before"
+        elif _YEAR_BEFORE.search(before):
+            why = "author and year"
+        elif _NAMED_WORK_BEFORE.search(before):
+            why = "named work"
+        elif _OF_OTHER.match(after):
+            why = "of another"
+        if why is not None:
+            pass
+        elif re.match(r"-[ \t]+\d|[-.][ \t]*\n",
+                      text[m.end("num"):m.end("num") + 4]):
+            # a number split across a line ("Table 4-\n12")
+            why = "split number"
+        elif (kind in ("appendix", "annex") and not own_contents
+              and _TITLE_AFTER.match(text, m.end("num"))):
+            # another document's contents ("Appendix A - Boring Location
+            # Plan"); a document's own list of its appendices is read
+            why = "contents list"
+        first = m.group("num")
+        rng = _RANGE_END.fullmatch(m.group("more"))
+        span = _range(first, rng.group(1), kind) if rng else None
+        dash = re.fullmatch(r"(\d+)-(\d+)", first)
+        if span is None and dash and kind == "chapter":
+            span = _range(dash.group(1), dash.group(2), kind)
+        if span is not None:
+            label = (f"{first}-{rng.group(1)}" if rng else first)
+            held = [holdings.pointer_held(kind, n) for n in span]
+            if any(held):
+                # lettering often skips I and O (EN 1997-1's "Annexes A to
+                # J" has no Annex I): a gap there is not a part not held
+                held = [None if h is False and n in ("I", "O") else h
+                        for n, h in zip(span, held)]
+            if why is None and not any(held):
+                found.append((kind, label, m.start(), m.end(),
+                              False if all(h is False for h in held)
+                              else None, None))
+            else:
+                found += [(kind, n, m.start(), m.end(), h, why)
+                          for n, h in zip(span, held)]
+                if why in _OTHER_REASONS:
+                    others.update((kind, n) for n in span)
+            continue
+        items = [("", first)] + _MORE_ITEM_RE.findall(m.group("more"))
+        for i, (sep, num) in enumerate(items):
+            reason = why
+            if reason is None and (kind, num) in others and not self_named:
+                reason = "another document's number"
+            elif reason is None and i and (
+                    _seps(num) != _seps(first)
+                    or (sep.strip() == "," and re.search(r"[-.]", first)
+                        and re.sub(r"\d", "9", num)
+                        != re.sub(r"\d", "9", first)
+                        and re.split(r"[-.]", num)[0]
+                        != re.split(r"[-.]", first)[0])):
+                # a value after a list ("in Eq. 10-1, 1.0 for compression";
+                # "Per Table 2-3, 85-100 penetration asphalt")
+                reason = "list value"
+            elif reason is None and (len(num) == 1 and num.isalpha()
+                                     and kind not in ("appendix", "annex")):
+                reason = "letter"
+            elif reason is None and num.startswith("0."):
+                reason = "a value"  # "or 0.56/S_u", not a number of a part
+            held = (holdings.pointer_held(kind, num) if reason is None
+                    else None)
+            if reason in _OTHER_REASONS:
+                others.add((kind, num))
+            found.append((kind, num, m.start(), m.end(), held, reason))
+    # "Appendix D's Eq D.9": a number of an appendix this body points to
+    # and the library does not hold is not held either
+    missing = {num for kind, num, _, _, held, why in found
+               if kind in ("appendix", "annex") and held is False
+               and why is None}
+    for i, (kind, num, a, b, held, why) in enumerate(found):
+        lead = re.match(r"([A-Z])[-.]?\d", num)
+        if (why is None and held is None and lead and lead.group(1) in missing
+                and kind in ("equation", "table", "figure")):
+            found[i] = (kind, num, a, b, False, None)
+    # a subsection of the section being read that has no row of its own is
+    # in this body ("Section 3.9.3 concludes that ..." in AASHTO I-3.9)
+    own = ([_unified(p) for p in [section_id]
+            + printed_numbers(holdings.reference, section_id)]
+           if section_id else [])
+    for i, (kind, num, a, b, held, why) in enumerate(found):
+        if (kind == "section" and held is False and why is None
+                and any(_unified(num).startswith(p + ".") for p in own)):
+            found[i] = (kind, num, a, b, None, "own subsection")
+    return found
+
+
+def iter_pointers(body: str, holdings: Holdings,
+                  section_id: str | None = None):
     """``(kind, number, start, end, held)`` for each pointer in ``body``
     read as one into the same document (``held`` True, False, or None
     when the number is not certainly one of the document's own)."""
-    text = _dashes(body or "")
-    for m in _POINTER_RE.finditer(text):
-        kind = _KINDS[m.group("kind")]
-        line_start = text.rfind("\n", 0, m.start()) + 1
-        before = text[max(line_start, m.start() - 60):m.start()]
-        if (_OTHER_DOCUMENT.search(before) or _YEAR_BEFORE.search(before)
-                or _NAMED_WORK_BEFORE.search(before)):
-            continue
-        after = text[m.end():m.end() + 60]
-        if _OF_OTHER.match(after):
-            continue
-        # a number split across a line ("Table 4-\n12", "Equation 2- 20")
-        if re.match(r"-[ \t]+\d|[-.][ \t]*\n",
-                    text[m.end("num"):m.end("num") + 4]):
-            continue
-        first = m.group("num")
-        # the numbers after the first are its list ("Tables 7-1, 7-2"), not
-        # a value that follows ("in Eq. 10-1, 1.0 for compression")
-        numbers = [first] + [n for n in _MORE_NUM_RE.findall(m.group("more"))
-                             if _seps(n) == _seps(first)]
-        if kind in ("appendix", "annex") and _TITLE_AFTER.match(
-                text, m.end("num")):
-            # another document's contents ("Appendix A - Boring Location
-            # Plan", "Appendices A Field Investigation Plan, B ...")
-            continue
-        for num in numbers:
-            if (len(num) == 1 and num.isalpha()
-                    and kind not in ("appendix", "annex")):
-                continue
-            if num.startswith("0."):
-                continue  # a value ("or 0.56/S_u"), not a number of a part
-            yield (kind, num, m.start(), m.end(),
-                   holdings.pointer_held(kind, num))
+    for kind, num, start, end, held, why in read_pointers(
+            body, holdings, section_id):
+        if why is None:
+            yield kind, num, start, end, held
 
 
-def pointers_not_held(body: str, holdings: Holdings) -> list[str]:
-    """The same-document pointers in ``body`` whose target ``holdings``
-    does not hold, each as "<Kind> <number>", in order, once each."""
+_PLURAL = {"chapter": "Chapters", "appendix": "Appendices",
+           "annex": "Annexes"}
+
+
+def _label(kind: str, num: str) -> str:
+    """"Chapter 8"; "Chapters 9-16" / "Appendices A-D" for a range."""
+    if kind in _PLURAL and re.fullmatch(r"\d+-\d+|[A-Z]-[A-Z]", num):
+        return f"{_PLURAL[kind]} {num}"
+    return f"{_KIND_WORD[kind]} {num}"
+
+
+def pointers_not_held(body: str, holdings: Holdings,
+                      section_id: str | None = None) -> list[str]:
+    """The same-document pointers in ``body`` (the body of ``section_id``,
+    when given) whose target ``holdings`` does not hold, each as "<Kind>
+    <number>" ("Chapters 9-16" for a range none of which is held), in
+    order, once each."""
     out: list[str] = []
-    for kind, num, _, _, held in iter_pointers(body, holdings):
+    for kind, num, _, _, held in iter_pointers(body, holdings, section_id):
         if held is False:
-            label = f"{_KIND_WORD[kind]} {num}"
+            label = _label(kind, num)
             if label not in out:
                 out.append(label)
     return out
@@ -770,7 +1070,8 @@ def section_flags(row: sqlite3.Row, holdings: Holdings,
     if tabs:
         out["tables_held"] = collapse(tabs) if short else tabs
     # the whole list is stored; a fetch shows NOT_HELD_MAX (add_flags)
-    missing = pointers_not_held(row["body"] or "", holdings)
+    missing = pointers_not_held(row["body"] or "", holdings,
+                                str(row["section_id"] or ""))
     if missing:
         out["not_held"] = missing
     return out
@@ -798,8 +1099,9 @@ def fill_reach_table(cur: sqlite3.Cursor) -> None:
     try:
         for ref in refs:
             rows = cur.connection.execute(
-                "SELECT rowid, reference, chapter, chapter_title, section_id,"
-                " body, equations_json, figures_json, tables_json "
+                "SELECT rowid, reference, reference_id, chapter, "
+                "chapter_title, section_id, body, equations_json, "
+                "figures_json, tables_json "
                 "FROM sections WHERE reference = ? ORDER BY rowid",
                 (ref,)).fetchall()
             try:

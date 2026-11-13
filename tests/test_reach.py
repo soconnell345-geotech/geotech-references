@@ -98,15 +98,15 @@ def _rows(sections, chapter=1, title="Made-Up Chapter"):
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
     conn.execute("CREATE TABLE s (rowid INTEGER PRIMARY KEY, reference TEXT,"
-                 " chapter INTEGER, chapter_title TEXT, section_id TEXT,"
-                 " body TEXT, equations_json TEXT, figures_json TEXT,"
-                 " tables_json TEXT)")
+                 " reference_id TEXT, chapter INTEGER, chapter_title TEXT,"
+                 " section_id TEXT, body TEXT, equations_json TEXT,"
+                 " figures_json TEXT, tables_json TEXT)")
     for sec in sections:
         conn.execute(
-            "INSERT INTO s (reference, chapter, chapter_title, section_id, "
-            "body, equations_json, figures_json, tables_json) "
-            "VALUES (?,?,?,?,?,?,?,?)",
-            ("local_madeup", sec.get("chapter", chapter),
+            "INSERT INTO s (reference, reference_id, chapter, chapter_title, "
+            "section_id, body, equations_json, figures_json, tables_json) "
+            "VALUES (?,?,?,?,?,?,?,?,?)",
+            ("local_madeup", "MADE-UP 1-2-3", sec.get("chapter", chapter),
              sec.get("chapter_title", title), sec["section_id"],
              sec.get("body", ""), json.dumps(sec.get("equations", [])),
              json.dumps(sec.get("figures", [])),
@@ -148,12 +148,124 @@ def holdings():
     ("See Appendix C.", ["Appendix C"]),
     ("Appendix C - Made Up Logs", []),                    # contents list
     ("See Chapter 3 and Chapter 9.", ["Chapter 9"]),
-    ("See Chapters 4-8.", []),                            # a range
+    ("See Chapters 4-8.", ["Chapters 4-8"]),              # a range
+    ("See Chapters 1-3.", []),                            # all held
+    ("See Chapters 3 through 5.", ["Chapter 4", "Chapter 5"]),
+    # review item 4b: the look-back stops at a sentence end ...
+    ("Per EM 1110-2-9999. Commentary is in Appendix C.", ["Appendix C"]),
+    ("Read ACI 318. Appendix C gives more.", ["Appendix C"]),
+    ("As in ACI 318 sections. 13.2.3 [Supplement]: Appendix C adds.",
+     ["Appendix C"]),
+    ("As in ACI 318. 13.2.3: Appendix C adds.", []),
+    # a semicolon after a plain word ends a clause
+    ("Appendix B covers ASTM standards; Appendix C gives examples.",
+     ["Appendix C"]),
+    ("Per (AASHTO T 89; Appendix C).", []),
+    ("As ACI 318 (Table 9-3 steel, 10-1 concrete; Chapter 12 wood).", []),
+    # a named work that is a part of this document
+    ("See the Guide Specification of Chapter 1 and Appendix C.",
+     ["Appendix C"]),
+    # ... nor at a citation's year
+    ('USBR, 2012. "Chapter 9: Made Up Things." Some Press.', []),
+    ('Smith, 2012. "Chapter 9: Made Up Things." Some Press.', []),
+    # a number given to another document stays that document's
+    ("AASHTO (2002) Section 2-9(B) says so; Section 2-9(C) adds more.", []),
+    ("See Section 2-9 of AASHTO and Section 2-9 of MADE-UP 1-2-3.",
+     ["Section 2-9"]),
+    # a value after a list
+    ("Per Table 2-1, 85-100 penetration asphalt is used.", []),
+    ("See Tables 2-1, 2-5.", ["Table 2-5"]),
+    # a letter range over a lettering that skips I
+    ("It has Appendices B to J.", ["Appendix C", "Appendix D", "Appendix E",
+                                   "Appendix F", "Appendix G", "Appendix H",
+                                   "Appendix J"]),
+    # ... but not at an abbreviation
+    ("Per AASHTO Art. 5 and Appendix C.", []),
+    # 4c: "of Chapter 2" and the document's own name are this document
+    ("See Section 2-9 of Chapter 2.", ["Section 2-9"]),
+    ("See Chapter 9 of MADE-UP 1-2-3 for that.", ["Chapter 9"]),
+    ("See MADE-UP 1-2-3 Chapter 9 for that.", ["Chapter 9"]),
+    ("See Chapter 9 of AASHTO for that.", []),
+    # 4d: the document's own list of its parts is read
+    ("Chapter 1 - Made-Up Chapter: words. Appendix C - Made Up Logs: "
+     "words.", ["Appendix C"]),
+    # 4e: lower case, a numbered appendix, an appendix's equation
+    ("See appendix C.", ["Appendix C"]),
+    ("See Appendix 3.", ["Appendix 3"]),
+    ("As in Appendix C's Eq C.9 and Eq. C.2.", ["Appendix C", "Eq. C.9",
+                                                "Eq. C.2"]),
     ("See Section 11-1.5 below.", []),                    # typed heading
     ("See Section X.01 of the sample.", []),              # not a form held
 ])
 def test_which_pointers_are_flagged(holdings, body, expected):
     assert _reach.pointers_not_held(body, holdings) == expected
+
+
+def test_an_id_answers_for_a_printed_number_only_where_declared(
+        monkeypatch):
+    """Review item 4a: em_2107's section 3.8 held a "Chapter 8" (the tail
+    of an id read as a printed number everywhere). Only the references
+    declared so read an id's tail."""
+    rows = _rows([{"section_id": "3.8", "chapter": 3},
+                  {"section_id": "II-8.1", "chapter": 4}])
+    h = _reach.Holdings("local_madeup", rows)
+    assert _reach.pointers_not_held("See Chapter 8; Section 8.1.", h) == [
+        "Chapter 8", "Section 8.1"]
+    monkeypatch.setitem(_reach.ID_PREFIXED, "local_madeup", r"[IVX]+-")
+    h = _reach.Holdings("local_madeup", rows)
+    assert _reach.pointers_not_held("See Chapter 8; Section 8.1.", h) == []
+    # GEC-13 restarts its numbers in each chapter: 7.2.1.3.1 prints 2.1.3.1
+    assert _reach.printed_numbers("gec_13", "1.8.2.7") == ["8.2.7"]
+    assert _reach.printed_numbers("gec_13", "7.2.1.3.1") == ["2.1.3.1"]
+    assert _reach.printed_numbers("aashto_1993", "II-2.3.5") == ["2.3.5"]
+    assert _reach.printed_numbers("em_2107", "3.8") == []
+
+
+def test_an_equation_entry_holds_every_number_it_names():
+    assert _reach._entry_numbers("Equations 4-10, 4-11: words") == [
+        "4-10", "4-11"]
+    assert _reach._entry_numbers("Equations 3-3 through 3-6: F*") == [
+        "3-3", "3-6", "3-4", "3-5"]
+    assert _reach._entry_numbers("Equation 3-2: Pr = 2 x 3-1") == []
+    rows = _rows([{"section_id": "2-1", "equations": [
+        {"id": "Equations 2-3 through 2-6: made up"}]}])
+    h = _reach.Holdings("local_madeup", rows)
+    assert _reach.pointers_not_held("Per Eqs. 2-5 and 2-7.", h) == ["Eq. 2-7"]
+
+
+def test_a_number_whose_halves_are_not_both_held_is_not_a_range():
+    rows = _rows([{"section_id": "2-1", "tables": ["Table 1 Made up",
+                                                   "Table 2-1 Made up"]}])
+    h = _reach.Holdings("local_madeup", rows)
+    assert h.pointer_held("table", "4-3") is False
+    assert h.pointer_held("table", "1-2") is False
+    rows = _rows([{"section_id": "2-1", "tables": [
+        "Table 1 Made up", "Table 2 Made up", "Table 2-1 Made up"]}])
+    h = _reach.Holdings("local_madeup", rows)
+    assert h.pointer_held("table", "1-2") is None    # Tables 1 to 2
+
+
+def test_a_subsection_of_the_section_read_is_in_its_body():
+    """AASHTO I-3.9 condenses 3.9.1 to 3.9.3, which have no rows: its own
+    pointers to them are not flagged; another section's are."""
+    rows = _rows([{"section_id": "2-1"}, {"section_id": "2-2"},
+                  {"section_id": "2-2.1"}])
+    h = _reach.Holdings("local_madeup", rows)
+    body = "Two methods (Section 2-1.1, Section 2-1.2); see Section 2-2.4."
+    assert _reach.pointers_not_held(body, h, "2-1") == ["Section 2-2.4"]
+    assert _reach.pointers_not_held(body, h, "2-2") == [
+        "Section 2-1.1", "Section 2-1.2"]
+
+
+def test_a_chapter_past_the_last_printed_is_another_documents(monkeypatch):
+    rows = _rows([{"section_id": "1-1", "chapter": 1},
+                  {"section_id": "2-1", "chapter": 2}])
+    h = _reach.Holdings("local_madeup", rows)
+    assert _reach.pointers_not_held("ASD (Chapter 8).", h) == ["Chapter 8"]
+    monkeypatch.setitem(_reach.CHAPTERS_PRINTED, "local_madeup", 7)
+    h = _reach.Holdings("local_madeup", rows)
+    assert _reach.pointers_not_held("ASD (Chapter 8); see Chapter 5.", h) \
+        == ["Chapter 5"]
 
 
 def test_figure_answers(tmp_path, monkeypatch):
