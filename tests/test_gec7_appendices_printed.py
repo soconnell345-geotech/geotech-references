@@ -260,6 +260,11 @@ def test_appendix_c_ddef_against_table_5_12():
     assert tables.table_5_12_wall_displacement("weathered_rock_stiff_soil")["C"] == 0.8
     # the example's H/500 for sandy soil agrees with the lookup
     assert sandy["delta_h_over_H"] == pytest.approx(1 / 500)
+    # p. 317 cites Figure 5.15 (p. 138, the facing's bending section); p. 141 names
+    # Figure 5.16 (p. 142, deformation of soil nail walls) for DDEF
+    assert "estimated as (Figure 5.15) (as printed; Figure 5.15, p. 138, is the section showing " \
+           "the bending mechanism in the initial facing; DDEF is drawn in Figure 5.16, p. 142, " \
+           "the figure p. 141 names for it):" in body
     assert round(25 * 12 * sandy["delta_h_over_H"], 1) == 0.6
 
 

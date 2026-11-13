@@ -1772,6 +1772,9 @@ printed).
 - **Micropile manual, Appendix D**: the pile-group sketch that p. D-9
   draws beside the centroid table without a figure number is described in
   Step 2's text (D.2), as p. D-17's cone sketch already was.
+- **GEC-7, Appendix C, one more slip noted**: p. 317 cites Figure 5.15
+  (p. 138, the bending mechanism in the initial facing) for DDEF, which
+  Figure 5.16 (p. 142) draws and p. 141 names.
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),
