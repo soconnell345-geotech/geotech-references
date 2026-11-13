@@ -183,6 +183,9 @@ def test_equivalency_example_numbers_and_notes():
         assert t in b
     assert "the millimetre values do not follow one another" in b
     assert "18 inches is given as 458 and 459 mm" in body("A-1.2.2")
+    # 0.52 x 2.3 = 1.196, printed 1.12 in both examples (recomputed, rule 2a)
+    for sid in ("A-1.2.1", "A-1.2.2"):
+        assert "0.52 inches * 2.3 is 1.196 inches, printed 1.12" in body(sid), sid
 
 
 def test_heading_only_parents():
