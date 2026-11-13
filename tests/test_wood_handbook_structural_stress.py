@@ -188,3 +188,12 @@ class TestTorsionalShearStress:
         assert r["shear_stress"] == pytest.approx(4.81e6, rel=0.01)
         assert r["form_used"] == "beta*T/(h*b**2)"
         assert r["printed_page"] == "9-13"
+
+
+@pytest.mark.parametrize("h, b", [(1.0, -0.5), (-1.0, -2.0), (1.0, 0.0), (0.0, 0.0)])
+def test_torsional_shear_stress_rectangular_non_positive_dimension_refused(h, b):
+    # REF-76 (fit sweep): b/h must lie on the curve's 0-1 axis; a negative
+    # b, or two negatives passing b <= h, gave a number.
+    from geotech_references.wood_handbook import structural_stress as m
+    with pytest.raises(ValueError, match="must be > 0"):
+        m.torsional_shear_stress_rectangular(500.0, h, b)

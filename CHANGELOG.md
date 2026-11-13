@@ -84,6 +84,11 @@ pages):
   curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
   1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
   every Dsg).
+- `wood_handbook.structural_deformation.torsional_constant_rectangular`
+  and `structural_stress.torsional_shear_stress_rectangular` (Figures 9-9
+  and 9-15 coded as polynomials in b/h): a non-positive h or b is refused;
+  a negative b, or two negatives passing the b <= h check, put b/h off the
+  curves' 0-1 axis and gave a number.
 - `wood_handbook.structural_stability.ylinen_strain`,
   `ylinen_buckling_stress` and `built_up_column_capacity`: c outside 0 < c
   < 1 is refused (Eq 9-28 defines c as "a constant between 0 and 1",
