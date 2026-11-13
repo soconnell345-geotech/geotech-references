@@ -233,7 +233,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-3"
+        "Table 1-3: Classification of Fine-grained Soils (p. 12) - columns: Soil Symbol; Dry Strength; Dilatancy; Toughness and Plasticity. ML; None to low; Slow to rapid; Low or thread cannot be formed | CL; Medium to high; None to slow; Medium | MH; Low to medium; None to slow; Low to medium | CH; High to very high; None; High"
       ],
       "applicability": "Applies when identifying fine-grained soils by the ASTM D2488 manual tests."
     },
@@ -380,7 +380,7 @@
       ],
       "figures": [],
       "tables": [
-        "Table 1-5"
+        "Table 1-5: AASHTO Soil Classification System (p. 19) - Instructions: Work from left to right checking each column. The classification is the first one that matches all the criteria in the column. General Classification: Coarse-grained (granular) Materials (35% or less passing No. 200 sieve): A-1 (A-1-a, A-1-b), A-3, A-2 (A-2-4, A-2-5, A-2-6, A-2-7); Fine-grained (Silt-Clay) Materials (more than 35% passing No. 200 sieve): A-4, A-5, A-6, A-7^b (A-7-5, A-7-6); Highly Organic: A-8. Columns: Group Classification; Sieve analysis, Percent passing #10 (2 mm); Percent passing #40 (0.4 mm); Percent passing #200 (0.075 mm); Characteristics of fraction passing #40, Liquid Limit; Plasticity Index; Usual types of significant constituent materials; General rating as subgrade (an empty cell is empty in the print). A-1-a; ≤ 50; ≤ 30; ≤ 15; ; ≤ 6; Stone fragments; gravel and sand; Excellent to good | A-1-b; ; ≤ 50; ≤ 25; ; ≤ 6; Stone fragments; gravel and sand; Excellent to good | A-3; ; ≥ 51; ≤ 10; ; NP^a; Fine sand; Excellent to good | A-2-4; ; ; ≤ 35; ≤ 40; ≤ 10; Silty or clayey gravel and sand; Excellent to good | A-2-5; ; ; ≤ 35; ≥ 41; ≤ 10; Silty or clayey gravel and sand; Excellent to good | A-2-6; ; ; ≤ 35; ≤ 40; ≥ 11; Silty or clayey gravel and sand; Excellent to good | A-2-7; ; ; ≤ 35; ≥ 41; ≥ 11; Silty or clayey gravel and sand; Excellent to good | A-4; ; ; ≥ 36; ≤ 40; ≤ 10; Silty soils; Fair to poor | A-5; ; ; ≥ 36; ≥ 41; ≤ 10; Silty soils; Fair to poor | A-6; ; ; ≥ 36; ≤ 40; ≥ 11; Clayey soils; Fair to poor | A-7-5; ; ; ≥ 36; ≥ 41; ≥ 11; Clayey soils; Fair to poor | A-7-6; ; ; ≥ 36; ≥ 41; ≥ 11; Clayey soils; Fair to poor | A-8; ; ; ; ; ; Peat or muck; Unsuitable. Notes: ^a NP indicates that the soil is \"non-plastic.\" NP soils have LL = PL, LL < PL, or PL that cannot be determined. ^b Use the following criteria to divide A-7: A-7-5 has PI ≤ (LL – 30) and A-7-6 has PI > (LL – 30). Group Index, GI: GI = (F–35)[0.2+0.005(LL–40)] + 0.01(F–15)(PI–10). Calculate the group index as: where: F = %fines = P#200, LL = liquid limit, and PI = plasticity index. If a negative value is calculated for GI, then report GI = 0. Note: Use only the second term in the GI equation for A-2-6 and A-2-7 soils."
       ],
       "applicability": "Applies when classifying soils for highway design and construction using the AASHTO system (ASTM D3282), including computation of the Group Index modifier."
     },
@@ -506,9 +506,9 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-9 Rock Color Descriptors (Geological Society of London 1977)",
-        "Table 1-10 Grain-Size Descriptors for Rock",
-        "Table 1-11 Criteria for Defining Rock Grain Size (after FHWA 2017)"
+        "Table 1-9: Rock Color Descriptors (Geological Society of London 1977) (p. 28) - columns: 1st Descriptor; 2nd Descriptor; 3rd Descriptor (one cell each, the words listed one under another). Light, Dark; Yellowish, Buff, Orangish, Brownish, Pinkish, Purplish, Orange, Olive, Greenish, Greyish; White, Yellow, Buff, Orange, Brown, Pink, Red, Blue, Green, Purple, Olive, Grey, Black",
+        "Table 1-10: Grain-Size Descriptors for Rock (p. 28) - columns: Igneous and Metamorphic, Description; Igneous and Metamorphic, Grain Diameter; Sedimentary Rocks, Description; Sedimentary Rocks, Grain Diameter (an empty cell is empty in the print). Coarse-grained; > 5 mm; Coarse-grained; > 2 mm | Medium-grained; 1 to 5 mm; Medium-grained; 0.06 to 2 mm | Fine-grained; < 1 mm; Fine-grained; 0.002 to 0.06 mm | Aphantic; Too small to be perceived by eye; Very fine-grained; < 0.002 mm | Glassy; No grain form distinguishable; ;",
+        "Table 1-11: Criteria for Defining Rock Grain Size (after FHWA 2017) (p. 29) - columns: Grain Size; Description; Criteria. < 0.003 in. (< 0.075 mm); Very Fine-Grained; Cannot be distinguished by unaided eye. Few to no mineral grains are visible with a hand lens. | 0.003 – 0.02 in. (0.075 – 0.425 mm); Fine-Grained; Few crystal boundaries are visible; grains can be distinguished with difficulty by the unaided eye but can be somewhat distinguished by hand lens. | 0.02 – 0.8 in. (0.425 – 2 mm) [as printed; 2 mm is 0.08 in., not 0.8 in.]; Medium-Grained; Most crystal boundaries are visible; grains distinguishable by eye and with hand lens. | 0.8 – 2 in. (2 – 4.75 mm) [as printed; 2 mm is 0.08 in. and 4.75 mm is 0.19 in.]; Coarse-Grained; Crystal boundaries are visible; grains distinguishable with naked eye. | 2 in. (> 4.75 mm) [as printed; no > sign before 2 in., and 4.75 mm is 0.19 in.]; Very Coarse-Grained; Crystal boundaries are clearly visible; grains are distinguishable with the naked eye."
       ],
       "applicability": "Applies when documenting rock color and grain size during field logging or laboratory core description."
     },
@@ -526,7 +526,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-12 Weathering Classification"
+        "Table 1-12: Weathering Classification (p. 29) - columns: Grade; Symbol; Weathering Grade^1; Diagnostic Features. Fresh; F; I; No visible sign of decomposition or discoloration; rings under hammer impact | Slightly Weathered; WS; II; Slight discoloration inwards from open fractures, otherwise similar to F | Moderately Weathered; WM; III; Discoloration throughout; weaker minerals such as feldspar decomposed; strength somewhat less than fresh rock but cores cannot be broken by hand or scraped by knife; texture preserved | Highly Weathered; WH; IV; Most minerals somewhat decomposed; specimens can be broken by hand with effort or shaved with knife; core stones present in rock mass; texture becoming indistinct but fabric preserved | Completely Weathered; WC; V; Minerals decomposed to soil but fabric and structure preserved (saprolite); specimens easily crumbled or penetrated | Residual Soil; RS; V [as printed; weathering grade V is printed for both Completely Weathered and Residual Soil]; Advanced state of decomposition resulting in plastic soils; rock fabric and structure completely destroyed; large volume change. Footnote 1: After FHWA (2017)."
       ],
       "applicability": "Applies when logging rock cores or exposures to assess weathering state and its potential impact on engineering properties."
     },
@@ -544,7 +544,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-13 Discontinuity Spacing"
+        "Table 1-13: Discontinuity Spacing (p. 30) - columns: Type of Feature; Description; Spacing; Description for Joints, Faults, or Other Fractures (an empty cell is empty in the print). Macrostructural: Bedding, Foliation, or Flow Banding; Very thickly (bedded, foliated, or banded); > 6 feet; Very widely (fractured or jointed) | Macrostructural: Bedding, Foliation, or Flow Banding; Thickly; 2 to 6 feet; Widely | Macrostructural: Bedding, Foliation, or Flow Banding; Medium; 8 to 24 inches; Medium | Macrostructural: Bedding, Foliation, or Flow Banding; Thinly; 2.5 to 8 inches; Closely | Macrostructural: Bedding, Foliation, or Flow Banding; Very Thinly; 0.75 to 2.5 inches; Very Closely | Microstructural: Lamination, Foliation, or Cleavage; Intensely (laminated, foliated, or cleavage); 0.25 to 0.75 inch; Extremely close | Microstructural: Lamination, Foliation, or Cleavage; Very Intensely; < 0.25 inch;"
       ],
       "applicability": "Applies when characterizing structural discontinuities in a rock mass for stability analysis, tunneling, or foundation design."
     },
@@ -562,8 +562,8 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-14 Hardness Classification of Intact Rock (Hough 1969)",
-        "Table 1-15 Criteria and Descriptions for Relative Rock Strength (after FHWA 2017)"
+        "Table 1-14: Hardness Classification of Intact Rock (Hough 1969) (p. 30) - columns: Class; Hardness; Field Test; Approximate compressive strength (kg/cm^2 or tsf). I; Extremely hard; Many blows with geologic hammer required to break intact specimen; >2000 | II; Very hard; Handheld specimen breaks with hammer end of pick under more than one blow; 1000 - 2000 | III; Hard; Cannot be scraped or peeled with knife, hand held specimen can be broken with a single moderate blow with pick; 500 - 1000 | IV; Soft; Can just be scraped or peeled with knife. Indentations of 1 mm to 3 mm show in specimen with moderate blow with pick; 250 - 500 | V; Very soft; Material crumbles under moderate blow with sharp end of pick and can be peeled with a knife, but is too hard to hand trim for triaxial test specimen; 10 – 250",
+        "Table 1-15: Criteria and Descriptions for Relative Rock Strength (after FHWA 2017) (p. 31) - columns: Grade; Description; Field Identification; Approximate Compressive Strength (kg/cm^2 or tsf). R0; Extremely Weak Rock; Specimen can be indented by thumbnail; 2.5 – 10.8 | R1; Very Weak Rock; Specimen crumbles under sharp blow with point of geological hammer and can be peeled with a pocket knife; 10.8 – 52.2 | R2; Weak Rock; Shallow cuts or scrapes can be made in a specimen with a pocket knife; a firm blow with a geological hammer creates shallow indents; 52.2 – 252 | R3; Medium Strong Rock; Specimen cannot be scraped or cut with a pocket knife; specimen can be fractured with a single firm blow with a geological hammer point; 252 – 522 | R4; Strong Rock; Specimen requires more than one firm blow of the point of a geological hammer to fracture; 522 – 1,044 | R5; Very Strong Rock; Specimen requires many firm blows from the hammer end of a geological hammer to fracture; 1,044 – 2,610 | R6; Extremely Strong Rock; Specimen can only be chipped with firm blows from the hammer end of a geological hammer; > 2,610"
       ],
       "applicability": "Applies when estimating intact rock strength in the field or laboratory as part of rock mass characterization."
     },
@@ -595,7 +595,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 1-16 Engineering Classification for In situ Rock Quality (Merritt and Coon 1970)"
+        "Table 1-16: Engineering Classification for In situ Rock Quality (Merritt and Coon 1970) (p. 31) - columns: RQD; Velocity Index; Rock Mass Quality. 90-100; 0.80-1.00; Excellent | 75-90; 0.60-0.80; Good | 50-75; 0.40-0.60; Fair | 25-50; 0.20-0.40; Poor | 0-25; 0.00-0.20; Very Poor"
       ],
       "applicability": "Applies when evaluating NX core samples from rock drilling programs to assess in situ rock mass quality."
     },
@@ -804,9 +804,9 @@
         "Figure 1-8"
       ],
       "tables": [
-        "Table 1-18",
-        "Table 1-19",
-        "Table 1-20"
+        "Table 1-18: Swelling Potential (Dakshanamurthy and Raman 1973) (p. 38) - columns: Liquid Limit; Classification. 0 to 20; Non-Swelling | 20 to 35; Low-Swelling | 35 to 50; Medium-Swelling | 50 to 70; High Swelling | 70 to 90; Very High Swelling | > 90; Extra High Swelling",
+        "Table 1-19: Expansion Potential from Classification Test Data (Holtz et al. 2011) (p. 38) - columns: Degree of Expansion; Probable Expansion as a Percent of Total Volume Change (Dry to Saturated Condition)^1; Colloidal Content (% < 1μm); Plasticity Index; Shrinkage Limit. Very high; >30; > 28; >35; <11 | High; 20-30; 20-31; 25-41; 7-12 | Medium; 10-20; 13-23; 15-28; 10-16 | Low; <10; <15; <18; >15. Footnote 1: Under a surcharge of 1 psi.",
+        "Table 1-20: Classification of Potential Expansion of Soils using EI (ASTM D4829) (p. 40) - columns: Expansion Index, EI; Potential Expansion. 0-20; Very low | 21-50; Low | 51-90; Medium | 91-130; High | >130; Very High"
       ],
       "applicability": "Applies when identifying and classifying expansive soils during site investigation, laboratory testing, or design verification against building code requirements."
     },
@@ -915,7 +915,7 @@
         "Figure 1-12 Rates of Heave in Laboratory Freezing Tests on Remolded Soils (U.S. Department of the Army 1984)"
       ],
       "tables": [
-        "Table 1-21 U.S. Army Corps of Engineers Frost Design Soil Classification"
+        "Table 1-21: U.S. Army Corps of Engineers Frost Design Soil Classification (p. 45) - columns: Frost Group; Frost Susceptibility; Soil Type; Percent Finer than 0.02 mm; Typical USCS Classification (an empty cell is empty in the print). Not frost-susceptible (NFS); Negligible to low; Gravels, crushed stone and rock; 0-1.5; GW, GP | Not frost-susceptible (NFS); Negligible to low; Sands; 0-3; SW, SP | Possibly frost-susceptible (PFS); Possibly; Gravels, crushed stone and rock; 1.5-3; GW, GP | Possibly frost-susceptible (PFS); Possibly; Sands; 3-10; SW, SP | S1; Very low to medium; Gravelly soils; 3-6; GW, GP, GW-GM, GP-GM | S2; Very low to medium; Sandy soils; 3-6; SW, SP, SW-SM, SP-SM | F1; Very low to high; Gravelly soils; 6-10; GM, GW-GM, GP-GM | F2; Medium to high; Gravelly soils; 10-20; GM, GM-GC, GW-GM, GP-GM | F2; Medium to high; Sands; 6-15; SM, SW-SM, SP-SM | F3; Medium to very high; Gravelly soils; >20; GM, GC | F3; Medium to very high; Sands except very fine silty sands; >15; SM, SC | F3; Low; Clays, PI >12; ; CL, CH | F4; Low to very high; All silts; ; ML, MH | F4; Low to very high; Very fine silty sands; >15; SM | F4; Low to high; Clays, PI <12; ; CL, CL-ML | F4; Very low to very high; Varved clays and other fine-grained banded sediments; ; CL and ML; CL, ML, and SM; CL, CH, and ML; CL, CH, ML and SM."
       ],
       "applicability": "Applies when identifying and classifying frost-susceptible soils for design of pavements, foundations, and utilities in areas with seasonal frost penetration."
     },
