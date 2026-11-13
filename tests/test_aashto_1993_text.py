@@ -53,14 +53,33 @@ def test_design_equations_as_printed():
 
 def test_present_worth_sum_limit_note():
     # p. I-50: equation (3.9.3) prints the upper limit of the sum as "t = 1"
-    b = body("I-3.9")
+    b = body("I-3.9.2")
     assert "Σ (t = 0 to t = 1) pwf(i,t)" in b
     assert 'the upper limit of the sum is printed "t = 1" on p. I-50' in b
 
 
+def test_economic_analysis_in_its_printed_subsections():
+    # pp. I-49 to I-51: 3.9 opens with one paragraph, then 3.9.1 to 3.9.3
+    assert body("I-3.9").startswith("[p. I-49] For this report only the annual cost and present worth methods")
+    assert [c["section_id"] for c in sec("I-3.9")["children"]] == ["I-3.9.1", "I-3.9.2", "I-3.9.3"]
+    assert [e["id"] for e in sec("I-3.9.1")["equations"]] == ["Eq. 3.9.1"]
+    assert [e["id"] for e in sec("I-3.9.2")["equations"]] == [f"Eq. 3.9.{n}" for n in range(2, 8)]
+    assert body("I-3.9.3").startswith("[p. I-51] Either the net present worth value or the equivalent uniform annual cost")
+
+
+def test_reliability_section_4_2_in_its_printed_subsections():
+    # p. I-56: the 4.2 heading has no text of its own; 4.2.1 (p. I-56), 4.2.2 (p. I-57), 4.2.3 (p. I-60)
+    with pytest.raises(KeyError):
+        sec("I-4.2")
+    assert body("I-4.2.1").startswith("[p. I-56] As far as reliability is concerned")
+    assert body("I-4.2.2").startswith("[p. I-57] It is assumed that the set of all possible outcomes")
+    assert body("I-4.2.3").startswith("[p. I-60] The probability distribution for the overall design-performance deviation")
+    assert [e["id"] for e in sec("I-4.2.3")["equations"]] == [f"Eq. 4.2.{n}" for n in range(1, 6)]
+
+
 def test_table_4_1_standard_normal_deviates():
     # p. I-62
-    t = table_para("I-4.2", "Table 4.1.")
+    t = table_para("I-4.2.3", "Table 4.1.")
     for cell in ("50 | -0.000", "75 | -0.674", "90 | -1.282", "95 | -1.645", "99 | -2.327",
                  "99.9 | -3.090", "99.99 | -3.750"):
         assert cell in t, cell
@@ -123,17 +142,25 @@ def test_table_3_4_rigid_performance_period():
 
 def test_table_3_7_allowable_steel_stress():
     # p. II-56
-    t = table_para("II-3.4.2.a", "Table 3.7.")
+    t = table_para("II-3.4.2.b", "Table 3.7.")
     for row in ("300 (or less) | 65 | 57 | 54", "500 | 67 | 61 | 56", "800 (or greater) | 67 | 67 | 60"):
         assert row in t, row
 
 
-def test_crcp_section_split_in_two_lettered_parts():
-    # Section 3.4.2 (pp. II-51 to II-62) is over the body limit; the letters are not printed
-    assert sec("II-3.4.2.a")["title"] == "Continuously Reinforced Concrete Pavements (part a: inputs, limiting criteria, procedure)"
-    assert sec("II-3.4.2.b")["title"] == "Continuously Reinforced Concrete Pavements (part b: design example)"
-    assert body("II-3.4.2.b").startswith("[p. II-56] Design Example.")
-    assert 'both formulas are printed with "D/φ/²" (p. II-56)' in body("II-3.4.2.a")
+def test_crcp_section_split_in_three_lettered_parts():
+    # Section 3.4.2 (pp. II-51 to II-62) is over the app's result size limit as one section;
+    # the letters are not printed
+    titles = {p: sec(f"II-3.4.2.{p}")["title"] for p in "abc"}
+    assert titles == {
+        "a": "Continuously Reinforced Concrete Pavements (part a: inputs and limiting criteria)",
+        "b": "Continuously Reinforced Concrete Pavements (part b: design procedure)",
+        "c": "Continuously Reinforced Concrete Pavements (part c: design example)",
+    }
+    assert body("II-3.4.2.a").startswith("[p. II-51] This section is for the design of longitudinal reinforcing steel")
+    assert body("II-3.4.2.b").startswith("[p. II-53] Design Procedure.")
+    assert body("II-3.4.2.c").startswith("[p. II-56] Design Example.")
+    assert 'both formulas are printed with "D/φ/²" (p. II-56)' in body("II-3.4.2.b")
+    assert len(sec("II-3.4.2.b")["equations"]) == 4
 
 
 # --- Part II, chapter 4 ---------------------------------------------------------

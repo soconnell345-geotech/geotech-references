@@ -57,7 +57,7 @@ PRINTED_REPEATS = {
     # Table 3.2's blank worksheet (p. II-38) and the worked example (p. II-43) print the same columns
     ("aashto_1993", "II-3.2.1", "Columns: (1) Month | (2) Roadbed Modulus"),
     # Figures 3.10, 3.11 and 3.12 each print "Nomograph solves:" above their equation
-    ("aashto_1993", "II-3.4.2.a", 'Printed on the chart: "Nomograph solves:"'),
+    ("aashto_1993", "II-3.4.2.b", 'Printed on the chart: "Nomograph solves:"'),
     # Figures 3.13 (p. II-63) and 3.14 (p. II-64) each print the 48-inch spacing note across the top
     ("aashto_1993", "II-3.4.3", 'printed across the top: "Spacings greater than 48'),
     # Tables 4.8(a), 4.9(a) and 4.9(b) print one title (pp. II-82, II-84, II-85)
