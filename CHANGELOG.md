@@ -84,6 +84,13 @@ pages):
   curves end at 1,073 and 1,083 psi, so Dsg 2-5 ft needs 1,169, 5-10 ft
   1,083 and exactly 5 ft 1,073 (a first version refused below 1,169 for
   every Dsg).
+- `wood_handbook.structural_stability.ylinen_strain`,
+  `ylinen_buckling_stress` and `built_up_column_capacity`: c outside 0 < c
+  < 1 is refused (Eq 9-28 defines c as "a constant between 0 and 1",
+  printed p. 9-14, and Eqs 9-29 and 9-30 take the same c; the page gives
+  0.957, 0.8 and 0.9). Also refused: a stress outside 0 <= f < Fc in Eq
+  9-28, Kf outside 0 < Kf <= 1 in Eq 9-30 (the page says Eq 9-29 "is
+  reduced" by it), and a non-positive Fc, fe or E.
 - `ufc_pavement.tables.figure_14_1_reinforced_pavement_design` (Figure
   14-1, printed 41, coded as hr = hd - reduction(S) from the two worked
   examples): hd outside the plain-concrete scale (6-30 in), an hr outside
