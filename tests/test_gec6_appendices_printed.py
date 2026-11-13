@@ -72,12 +72,15 @@ def test_titles(sid, title):
     assert _section(sid)["title"] == title
 
 
-def test_figures_and_tables_listed_where_first_named():
+def test_figures_and_tables_listed():
     secs = {s["section_id"]: s for s in _appendix()["sections"]}
     figs = {f.split(":")[0]: sid for sid, s in secs.items() for f in s["figures"]}
     assert len(figs) == 21
     assert figs["Figure B3-4"] == figs["Figure B3-5"] == "B.3.7"
-    assert figs["Figure B4-5"] == figs["Figure B4-7"] == "B.4.10.a"
+    # each figure under the section whose pages print it: B4-5 on p. B-73 (Step 10a),
+    # B4-6 on p. B-76 before the Step 10b heading, B4-7 on p. B-79 before Step 10c's page
+    assert figs["Figure B4-5"] == "B.4.10.a"
+    assert figs["Figure B4-6"] == "B.4.11.a" and figs["Figure B4-7"] == "B.4.11.b"
     assert "Figure B3-4: Summary Output of EMBANK Settlement Analysis (typed from the page: " \
            "height of fill H = 32.00 ft" in secs["B.3.7"]["figures"][0]
     tabs = {t.split(":")[0]: sid for sid, s in secs.items() for t in s["tables"]}
@@ -189,9 +192,78 @@ def test_results_recompute():
                "1.33 m (not OK)"),
     ("B.5.10", "(as printed; Table 5-14 gives granite a mean EIR of 52.67 x 10⁶ kPa)."),
     ("B.5.10", "= 0.0003 m = 0.3 mm (as printed; the footing width found above is Bf = 1.8 m)"),
+    # the slips the independent check found (2026-11-12), read from the rendered pages
+    ("B.4.7", "Cd = 1.83 (as printed; 1.83 is Table 5-12's Average value for L/B = 5, p. 97, "
+              "where its Center value is 2.10;"),
+    ("B.5.10", "Cd = 1.78 (as printed; 1.78 is Table 5-12's Center value for L/B = 3, p. 97, "
+               "where its Average value is 1.52, the column Example 4 reads on p. B-70;"),
+    ("B.2.10", "Habut = (0.5)(5.24 m) = 2.62 m (as printed; the value is the footing width, "
+               "one-half of Habut = 5.24 m, so the left side is Bf)."),
+    ("B.3.10", "Habut = (0.5)(5.24 m) = 2.62 m (as printed; the value is the footing width, "
+               "one-half of Habut = 5.24 m, so the left side is Bf)."),
+    ("B.3.11.c", "less than 35 mm (as printed; the tolerable settlement is 38 mm, p. B-35,"),
+    ("B.3.9", "which for Bf = 3.5 m reads about 219 kPa; Table B3-4, p. B-51, gives 38 mm at "
+              "about 238 kPa for Bf = 3 m and at 200 kPa for 4 m"),
+    ("B.3.7", "the following are obtained (as printed; Figure 5-7f, p. 59, is entered with the "
+              "distance of the foundation from the edge of the slope, b/Bf,"),
+    ("B.2.7", "= 0.0004 m = 0.4 mm (as printed; the formula names Bf, 2 m here, but the line "
+              "puts in 6.57 m,"),
+    ("B.4.11.c", "= 212 kN (as printed; the final loading conditions, Figure B4-7, include the "
+                 "traffic surcharge, and Step 10c, p. B-80, takes PLS = 24.0 kN into Mtoe;"),
 ])
 def test_print_slips_kept_and_noted(sid, note):
     assert note in _section(sid)["body"]
+
+
+def test_table_b1_3_kept_and_noted():
+    t = [t for t in _section("B.1.7")["tables"] if t.startswith("Table B1-3:")][0]
+    assert "380; 30; 37; 41 (as printed; Table B1-2's ratios and the layer values on p. B-12, " \
+           "summed before rounding, give 21.4, 26.7, 30.2 | 24.3, 30.3, 34.3 | 26.7, 33.2, " \
+           "37.6 | 29.0, 36.0, 40.6 mm;" in t
+
+
+def test_check_slips_recompute():
+    # Table B1-3 from Table B1-2's ratios and p. B-12's layers (H, C', sigma'vo)
+    layers = [(2.1, 65, 65.7), (4.7, 120, 132), (3.0, 102, 193), (3.0, 110, 222)]
+    ratios = {3: (.55, .16, .07, .04), 4.6: (.66, .26, .13, .08), 6.1: (.73, .33, .18, .12)}
+    printed = {240: (21, 28, 31), 290: (25, 31, 35), 335: (28, 34, 38), 380: (30, 37, 41)}
+    higher = 0
+    for q, row in printed.items():
+        for bf, mm in zip((3, 4.6, 6.1), row):
+            s = sum(h / c * log10((sv + r * q) / sv) for (h, c, sv), r in zip(layers, ratios[bf]))
+            assert mm - round(s * 1000) in (0, 1)
+            higher += mm - round(s * 1000)
+    assert higher == 9
+    # p. B-29 with Bf = 2 m in place of 6.57 m
+    assert round(0.26 * 100 * 2 / 71820 * 0.74 * 0.25, 4) == 0.0001
+    # p. B-52: Table B3-4's 38 mm at Bf = 3 m and 4 m, and 3.5 m between
+    q3, q4 = 200 + 100 * (38 - 33) / (46 - 33), 200
+    assert round(q3) == 238 and round((q3 + q4) / 2) == 219
+    # p. B-70 with Table 5-12's Center 2.10, p. B-89 with its Average 1.52
+    assert round(2.10 * 159 * 10 * (1 - 0.14 ** 2) / (0.53 * 9800000), 4) == 0.0006
+    assert round(1.52 * 10200 * 1 * (1 - 0.20 ** 2) / (0.99 * 52000000), 4) == 0.0003
+    # p. B-81 with PLS = 24.0 kN
+    assert round(170 + 24.0 + 41.9) == 236 and round(790 / 236, 1) == 3.3
+    # p. C-34: Table C-4 interpolated at 5.24 m
+    heq = 0.9 + (5.24 - 3.0) / (6 - 3.0) * (0.6 - 0.9)
+    assert round(heq, 2) == 0.68 and round(0.26 * 19.6 * 0.68 * 5.24, 2) == 18.16
+    # p. C-45 with 1.75(LS), and p. C-48's sliding with it
+    m = 0.9 * 84.79 + 0.9 * 5.41 * 3.2 ** 2 + 93.69 * (3.2 - 1.73) * (0.865 + 0.5 * 3.2) - 1.5 * 146.6
+    assert round(m, 1) == 245.8 and round(m - 1.75 * 48.97, 1) == 160.1
+    ey = 1.6 - round(160.1 / 220.4, 2)
+    assert round(ey, 2) == 0.87 and ey > 3.2 / 4
+    assert round(1.5 * 69.96 + 1.75 * 18.69, 1) == 137.6 and round(0.8 * 0.78 * 220.4, 1) == 137.5
+
+
+@pytest.mark.parametrize("sid,note", [
+    ("C-2.5", "heq = 0.7 m for a wall height of 5.24 m (as printed; Table C-4, p. C-7, gives "
+              "0.9 m at 3.0 m and 0.6 m at 6 m, which interpolate to 0.68 m at 5.24 m,"),
+    ("C-2.12.b", "= 245.8 kN·m/m (as printed; the line leaves out the live load surcharge,"),
+    ("C-2.12.b", "ey = 1.6 m - 0.73 m = 0.87 m, more than Bf/4 = 0.8 m; the sliding check on "
+                 "p. C-48 leaves LS out too"),
+])
+def test_appendix_c_check_slips_noted(sid, note):
+    assert note in retrieve_section("gec_6", sid)["body"]
 
 
 def test_print_slips_recompute():

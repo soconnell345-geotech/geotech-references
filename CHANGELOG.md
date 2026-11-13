@@ -1750,12 +1750,31 @@ printed).
   for kN/m (pp. C-40 to C-44); 518.3 ÷ 2.12 = 246.8 for 244.5 kPa (p.
   C-41); γPmin labels on the maximum factors 1.25 and 1.35 (pp. C-43,
   C-46). No lookup is coded for Appendix C's tables.
+- **GEC-6, more slips noted (values unchanged)**, found by the
+  independent check of the build: Examples 4 and 5 read Table 5-12 (p. 97)
+  in different columns, Cd = 1.83 being the Average value for L/B = 5 (p.
+  B-70) and 1.78 the Center value for L/B = 3, whose Average is 1.52 (p.
+  B-89); "Habut = (0.5)(5.24 m) = 2.62 m" for the footing width (pp. B-31,
+  B-53); 6.57 m, the B with which p. B-28 enters Figure 5-20, in a line
+  written with Bf (p. B-29); Table B1-3, nine of whose twelve settlements
+  are 1 mm above what Table B1-2's ratios give (p. B-12); Figure 5-7f, the
+  chart entered with the distance from the slope, cited for the readings
+  Example 2 takes from Figure 5-7c (p. B-43); 240 kPa for a 3.5-m footing,
+  about the 3-m value, where Figure B3-5 and Table B3-4 give about 219 (p.
+  B-52); "less than 35 mm" where the tolerable settlement is 38 mm (p.
+  B-61); Step 11c's sliding force without PLS = 24.0 kN, with which FS is
+  3.3, not 3.7 (p. B-81); in Appendix C, heq = 0.7 m for 5.24 m where
+  Table C-4 interpolates to 0.68 (p. C-34), and Step 12b's eccentricity
+  check without the live load surcharge, with which ey = 0.87 m, more than
+  Bf/4 = 0.8 m (p. C-45; its sliding check, p. C-48, leaves LS out too).
+  Figures B4-6 and B4-7 are listed under Steps 11a and 11b, whose pages
+  (B-76, B-79) print them.
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),
 `tests/test_gec7_appendix_a_printed.py` (89),
 `tests/test_micropile_appendices_printed.py` (74),
-`tests/test_gec6_appendices_printed.py` (117).
+`tests/test_gec6_appendices_printed.py` (131).
 
 **DM 7.2 chapter text: key points, footnotes and table notes as printed
 (build of 2026-11-11/12, app BACKLOG REF-79).** Every summary,
