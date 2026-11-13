@@ -694,3 +694,32 @@ def test_no_scatter_patterns_in_the_bodies():
                         if len(c) >= 60 and re.search(r"[.?!]\)?$", c)]
             prev = cells
     assert bad == []
+
+
+def test_plus_minus_signs_as_printed():
+    """The pages print ± as an underlined plus, which the text layer gives
+    as '+' (check follow-up, read from 300 dpi crops)."""
+    secs = _sections()
+    # p. 3-41 (PDF 134)
+    assert "Durometer Hardness of 60 ± 5." in secs["3.6.1.a"]["body"]
+    # p. 4-57 (PDF 200)
+    assert "final joint opening will be at least ¾ ±1/8-inch" in secs["4.4.7.k"]["body"]
+    # p. 10-25 (Vol II PDF 113): the whole phrase is underlined and shaded
+    assert ("shall be ¾+1/8 inch [Note: as printed, the phrase underlined and shaded "
+            "as a specification's entry, so a ± cannot be told from a +; p. 4-57 prints "
+            "the opening as ¾ ±1/8-inch.]") in secs["10.9.b"]["body"]
+    for sid, s in secs.items():
+        assert "60 + 5" not in s["body"] and "¾ +1/8" not in s["body"], sid
+
+
+def test_figure_catalog_holds_no_symbol_font_codes():
+    """A symbol font's private-use codes (U+F000 to U+F0FF) stand for
+    characters the page prints: Figure 4-5's caption prints θ and °."""
+    rows = json.loads((PKG / "figures_catalog.json").read_text(encoding="utf-8"))
+    rows = rows["figures"] if isinstance(rows, dict) else rows
+    bad = [(r["figure_number"], k) for r in rows for k, v in r.items()
+           if isinstance(v, str) and any(0xF000 <= ord(c) <= 0xF0FF for c in v)]
+    assert bad == []
+    cap = {r["figure_number"]: r["caption"] for r in rows}["4-5"]
+    assert cap == ("Notation for Coulomb active earth pressures used with wall batters, "
+                   "θ, greater than 100° (after AASHTO, 2007)")

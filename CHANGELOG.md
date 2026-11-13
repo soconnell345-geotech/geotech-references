@@ -159,6 +159,12 @@ the rendered pages:
   printed (D.1, D.2, D.5, D.7), and the break after "RFD." that p. B-6
   does not print is gone.
 
+GEC-11 signs the text layer lost (check of the rebuild): the pages print
+± as an underlined plus, read as "+": "60 ± 5" (p. 3-41) and "¾ ±1/8-inch"
+(p. 4-57) now as printed; p. 10-25's "¾+1/8 inch", underlined and shaded
+as a whole, keeps its "+" with a note. Figure 4-5's catalog caption held
+the symbol font's codes where the page prints θ and °; it now holds them.
+
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
 chapter text was being rebuilt from the print; each was read from a 300 dpi
