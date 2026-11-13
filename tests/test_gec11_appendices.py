@@ -1181,6 +1181,82 @@ def test_appendix_e8_print_slips_noted():
     assert round(3120 * lbft_to_knm, 1) == 45.5
 
 
+def test_appendix_e9_working_as_printed():
+    """Example E9, the high reinforced soil slope: its formula lines as
+    typed in from pp. E9-1 to E9-8, and their arithmetic."""
+    secs = _sections("E")
+    assert secs["E.9"]["title"] == "Reinforced Soil Slope Design – High Slope for New Road Construction"
+    body = _e_body("E.9")
+    for line in (
+        "• Reinforced slope angle, θ = tan⁻¹(1.0/0.84) = 50°",
+        "Tal = (6850 lb/ft) / [(1.25)(1.2)(3)] = 1520 lb/ft (22 kN/m)",
+        "TS = (FSR − FSU) MD / D = (1.5 − FSU) MD / R",
+        "TS-MAX = (1.5 − 0.935) 14827 k-ft/ft / 125.6 ft = 66.7 kips/ft (1000 kN/m)",
+        "φ′f = tan⁻¹ (tan φr / FSR) = tan⁻¹(tan 34°/1.5) = 24.2°",
+        "H′ = H + q/γr = 62 ft + (250 psf)/(120 pcf) = 64 ft",
+        "TS-MAX = 0.5 Kγr(H′)² = 0.5(0.21)(120 pcf) (64 ft)²",
+        "Tmiddle = 1/3 TS-MAX =(1/3)(67 k/ft) = 22.3 kips/ft (330 kN/m)",
+        "Minimum number of layers, N = TS-MAX / Tallowable = 67 k/ft / 1.5 k/ft = 44.7",
+        "Srequired = 62 ft / 15 layers = 1.4 in., use 18 in spacing",
+        "Top 2/3 of slope: TS-MAX = 31.3 k/ft < N · Tal = 23 layers x 1.5 k/ft = 34.5 kips/ft OK",
+        "Le = Tmax FS / (F* α σv C) = (1520 k/ft)(1.5) / [(0.8 tan 34°)(0.66)(120 pcf × Z)(2)] "
+        "= 26.4 ft / Z",
+        "Z = 6 ft, Le = 4.4 ft, available length, Le = 16 ft OK",
+        "LB/H′ = 0.80 → LB = 51 ft",
+        "FSsqueezing = 2(1040 psf) / [120 pcf (33 ft)(tan 50°)] + 4.14(1040 psf) / "
+        "[62 ft (120 pcf)] = 1.02",
+        "TBottom = 67 – 31.3 = 35.7kips/ft | TBottom = ½ Ts-max = 33.5 kips/ft",
+    ):
+        assert line in body, line
+    r = math.radians
+    assert round(math.degrees(math.atan(1.0 / 0.84))) == 50
+    assert round(math.degrees(math.atan(0.61)), 1) == 31.4
+    assert round(6850 / (1.25 * 1.2 * 3), -1) == 1520
+    assert round((1.5 - 0.935) * 14827 / 125.6, 1) == 66.7
+    # the SI working (in parentheses) is its own: 1000 kN/m from 67,800 / 38.3
+    assert round((1.5 - 0.935) * 67800 / 38.3) == 1000
+    assert round(math.degrees(math.atan(math.tan(r(34)) / 1.5)), 1) == 24.2
+    assert round(62 + 250 / 120) == 64
+    assert round(0.5 * 0.21 * 120 * 64 ** 2 / 1000) == 52
+    assert round(67 / 2, 1) == 33.5 and round(67 / 3, 1) == 22.3 and round(67 / 6, 1) == 11.2
+    assert round(67 / 1.5, 1) == 44.7
+    n_b, n_m, n_t = math.ceil(33.5 / 1.5), math.ceil(22.3 / 1.5), math.ceil(11.2 / 1.5)
+    assert (n_b, n_m, n_t) == (23, 15, 8) and n_b + n_m + n_t == 46
+    assert (n_m + n_t) * 1.5 == 34.5 and n_t * 1.5 == 12
+    for z, le in ((2, 13.2), (4, 6.6), (6, 4.4), (8, 3.3)):
+        assert round(26.4 / z, 1) == le
+    assert round(0.65 * 64) == 42 and round(0.80 * 64) == 51
+    fs = 2 * 1040 / (120 * 33 * math.tan(r(50))) + 4.14 * 1040 / (62 * 120)
+    assert round(fs, 2) == 1.02
+    assert _near(67 - 31.3, 35.7, 0.001) and _near(31.3 - 10, 21.3, 0.001)
+
+
+def test_appendix_e9_print_slips_noted():
+    body = _e_body("E.9")
+    for note in (
+        "as printed, 0.61/1.0; the existing 1.6H:1V slope of E9-1 is 1.0/1.6 = 0.625, or 32.0°.",
+        "as printed, 12.5 kN/m²; 250 psf is 12.0 kPa",
+        'as printed, "Figure 9-12a"; Chapter 9 has no Figure 9-12',
+        "The values in parentheses here and in Step 6 are those of the example's SI working",
+        "as printed, the figure marks 57 Ft along the base, where the text gives 56 ft (17 m).",
+        "as printed, 62 ft over each zone's layers; the results are those of the zone height, "
+        "21 ft: 21/23 = 0.91 ft, 21/15 = 1.4 ft",
+        "The 18 in. chosen for the middle third is wider than 1.4 ft (16.8 in.).",
+        'as printed, "1520 k/ft" for Tal = 1520 lb/ft, and 26.4 ft/Z, where the line\'s values '
+        "give 2280 / (85.5 Z) = 26.7 ft/Z",
+        "as printed, cu = 1040 psf in the working, where the paragraph above gives an undrained "
+        "shear strength of 2080 psf (100 kPa).",
+        'as printed, "Design Example 2", for this example, E9.',
+    ):
+        assert note in body, note
+    r = math.radians
+    assert round(math.degrees(math.atan(1 / 1.6)), 1) == 32.0
+    assert round(21 / 23, 2) == 0.91 and round(21 / 15, 1) == 1.4 and round(21 / 8, 1) == 2.6
+    assert round(1520 * 1.5 / (0.8 * math.tan(r(34)) * 0.66 * 120 * 2), 1) == 26.7
+    kn_per_kip = 4.448222
+    assert round(14827 * kn_per_kip, -1) == 65950 and round(66.7 * kn_per_kip / 0.3048) == 973
+
+
 # --- the build ------------------------------------------------------------
 
 def test_rebuild_reproduces_the_committed_files():

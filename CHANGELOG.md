@@ -141,8 +141,10 @@ the rendered pages:
   E1 (pp. E1-1 to E1-20), E2 (pp. E2-1 to E2-10), E3 (pp. E3-1 to
   E3-20), E4 (pp. E4-1 to E4-19), E5 (pp. E5-1 to E5-32), E6 (pp. E6-1
   to E6-9; p. E6-10 is blank), E7 (pp. E7-1 to E7-15; its general,
-  external and internal steps each number from 1, as printed) and E8 (pp.
-  E8-1 to E8-7). A long example
+  external and internal steps each number from 1, as printed), E8 (pp.
+  E8-1 to E8-7) and E9 (pp. E9-1 to E9-9; its SI values in parentheses
+  are those of its own SI working, not conversions, and a note says so).
+  A long example
   is split into parts never between a caption and its typed-in table or
   figure lettering (E1's Table E1-7.5 had its caption in one part and its
   rows in the next) and never right after a step heading (E3, E4 and E5
@@ -197,7 +199,16 @@ the rendered pages:
   surfaces are Figure E8-1c and E8-1b); a second "a." for part b of Step
   6; 3120 lb/ft "(46.5 kN/m)" for 45.5; "the previous two examples" for
   E8 and E9. The text layer of p. E8-7 leaves out "the software
-  developer's web page:", which the page prints.
+  developer's web page:", which the page prints. In E9, β = tan⁻¹(0.61/1.0)
+  for a 1.6H:1V slope (0.625, 32.0°); q "(12.5 kN/m²)" for 12.0; "Figure
+  9-12a" for E9-1a; the spacing lines dividing 62 ft where the results
+  are those of the 21 ft zone height, "1.4in." for 1.4 ft, and 18 in.
+  chosen for the middle third where 16.8 in. is required; Le with "1520
+  k/ft" and 26.4 ft/Z where the line gives 26.7; cu = 1040 psf in the
+  squeezing check after an undrained strength of 2080 psf; 57 Ft on the
+  figure where the text has 56 ft; "Design Example 2". The text layer of
+  pp. E9-1 and E9-3 cuts lines at the right margin; those paragraphs are
+  typed from the rendered page.
 
 **FHWA-NHI-05-037 (Geotechnical Aspects of Pavements): four lookups
 corrected from the page (app BACKLOG REF-93).** Found while the manual's
