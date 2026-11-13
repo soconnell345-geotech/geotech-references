@@ -345,7 +345,7 @@ def _fill_db(conn: sqlite3.Connection) -> None:
     for reference, jf in sources:
         try:
             data = json.loads(jf.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as e:
+        except _packs.JSON_ERRORS as e:
             if jf in pack_files:
                 continue  # named in _packs.problems()
             raise unreadable_source(jf, e) from e
@@ -1662,7 +1662,9 @@ def list_indexed_references() -> list[dict[str, Any]]:
     could be indexed, is listed too, with no sections and its ``problems``
     (2026-11-10 review, core-10: they were left out without a word). A
     folder the setting names that is not there is listed the same way,
-    under the folder as written.
+    under the folder as written. A built-in reference whose figure or
+    table catalog the reach flags cannot read carries ``problems`` too
+    (:func:`._reach.catalog_problems`).
     """
     conn = _ro_connect()
     try:
@@ -1691,6 +1693,11 @@ def list_indexed_references() -> list[dict[str, Any]]:
         if len(titles.get(r["reference"], [])) > 1:
             r["reference_titles"] = titles[r["reference"]]
     listed = {r["reference"]: r for r in rows}
+    # a built-in figure or table catalog the reach flags cannot read
+    # (2026-11-12; a pack's is in _packs.problems)
+    for key, problems in _reach.catalog_problems().items():
+        if key in listed and not key.startswith(_packs.PACK_PREFIX):
+            listed[key]["problems"] = problems
     for key, problems in _packs.problems_by_pack().items():
         if key in listed:
             listed[key]["problems"] = problems

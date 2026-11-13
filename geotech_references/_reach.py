@@ -241,15 +241,50 @@ def catalog_paths() -> list[Path]:
 
 def _catalog_rows(path: Path, key: str) -> list[dict] | None:
     """The rows of a catalog (``{key: [...]}`` or a bare list), or None
-    when there is no readable catalog."""
+    when there is none or it cannot be read: its figures or tables then
+    answer "not catalogued", and why is kept for :func:`catalog_problems`.
+    A broken or hostile file never stops the build (2026-11-12 review of
+    the reach build, item 3: ``"[" * 200000`` raised RecursionError and no
+    reference's text database could be built)."""
+    _PROBLEMS.pop(str(path), None)
+    if not path.is_file():
+        return None
+    why = None
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-    rows = data.get(key) if isinstance(data, dict) else data
-    if not isinstance(rows, list):
-        return None
-    return [r for r in rows if isinstance(r, dict)]
+    except _packs.JSON_ERRORS as e:
+        data, why = None, f"not readable JSON ({type(e).__name__})"
+    if why is None:
+        rows = data.get(key) if isinstance(data, dict) else data
+        if isinstance(rows, list):
+            return [r for r in rows if isinstance(r, dict)]
+        why = (f"'{key}' is not a list" if isinstance(data, dict)
+               else "not a JSON object or list")
+    _PROBLEMS[str(path)] = why
+    return None
+
+
+#: Catalogs the flags could not read, by path, and why (see
+#: :func:`catalog_problems`).
+_PROBLEMS: dict[str, str] = {}
+
+
+def catalog_problems() -> dict[str, list[str]]:
+    """``{reference: [problem, ...]}``: each figure or table catalog the
+    reach flags cannot read, and why (its figures or tables answer "not
+    catalogued"). Read afresh, so every process names the same files. A
+    local pack's are named in ``_packs.problems()`` too."""
+    pack_of = {folder: pid for pid, folder in _packs.packs()}
+    out: dict[str, list[str]] = {}
+    for path in catalog_paths():
+        key = "figures" if path.name == FIGURES_CATALOG else "tables"
+        _catalog_rows(path, key)
+        if str(path) in _PROBLEMS:
+            ref = pack_of.get(path.parent, path.parent.name)
+            out.setdefault(ref, []).append(
+                f"{path}: {_PROBLEMS[str(path)]}; its {key} answer "
+                f"'{NOT_CATALOGUED}'")
+    return out
 
 
 _EQ_ENTRY_RE = re.compile(
@@ -376,7 +411,10 @@ class Holdings:
         self.figure_rows: dict[str, int] = {}
         self.figures = _Pool()
         for f in figs:
-            num = _dashes(str(f.get("figure_number") or "")).strip().upper()
+            num = f.get("figure_number")
+            # a number of another kind (a list, an object) names nothing
+            num = (_dashes(str(num)).strip().upper()
+                   if isinstance(num, (str, int)) else "")
             if num:
                 self.figure_rows[num] = self.figure_rows.get(num, 0) + 1
                 self.figures.add(num)
@@ -387,7 +425,7 @@ class Holdings:
         self.table_rows: dict[str, dict] = {}
         for t in tabs or []:
             num = t.get("table_number")
-            if num not in (None, ""):
+            if isinstance(num, (str, int)) and str(num).strip():
                 self.table_rows.setdefault(table_key(str(num)), t)
                 self.tables.add(table_key(str(num)))
                 self.table_shapes.add(_shape(str(num)))
@@ -518,19 +556,21 @@ def table_values(row: dict) -> str:
     values = row.get("values")
     where = row.get("values_in")
     if isinstance(where, (list, tuple)):
-        where = ", ".join(str(w) for w in where if w not in (None, ""))
-    where = str(where).strip() if where not in (None, "") else ""
+        where = ", ".join(w.strip() for w in where
+                          if isinstance(w, str) and w.strip())
+    where = where.strip() if isinstance(where, str) else ""
     if values == "text" and where:
         return f"text: {where}"
     if values == "lookup" and where:
         return "lookup: " + ", ".join(
             w.strip().rpartition(".")[2] for w in where.split(","))
     printed, index = row.get("printed_page"), row.get("pdf_page_index")
-    if printed not in (None, "") and index is not None:
+    if not isinstance(index, int) or isinstance(index, bool) or index < 0:
+        return NOT_CATALOGUED  # no page a reader could be sent to
+    if (isinstance(printed, (str, int)) and not isinstance(printed, bool)
+            and str(printed).strip()):
         return f"page: printed p. {printed} (pdf_page_index {index})"
-    if index is not None:
-        return f"page: pdf_page_index {index}"
-    return NOT_CATALOGUED
+    return f"page: pdf_page_index {index}"
 
 
 # ---------------------------------------------------------------------------

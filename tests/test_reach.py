@@ -189,6 +189,111 @@ def test_table_answers_from_a_catalog():
 
 
 # ---------------------------------------------------------------------------
+# A broken or hostile catalog (2026-11-12 review, item 3)
+# ---------------------------------------------------------------------------
+
+#: Catalog files no reader can use, as text (a bytes value is written as
+#: is): nesting past the parser's recursion limit, empty, not JSON, not
+#: UTF-8, JSON of the wrong kind, a rows key of the wrong kind.
+UNREADABLE_CATALOGS = [
+    "[" * 200000,
+    '{"tables": ' * 100000,
+    "",
+    "not json at all",
+    b"\xff\xfe\x00\x81",
+    "null", "42", '"text"', "true",
+    '{"tables": 5, "figures": 5}',
+    '{"tables": {"5-1": "x"}, "figures": {"5-1": "x"}}',
+    '{"tables": null, "figures": null}',
+]
+#: Catalogs that read but hold nothing usable: rows that are not objects,
+#: and rows whose fields are of the wrong kind.
+ROWLESS_CATALOGS = [
+    '[1, "x", null]',
+    '{"tables": [{"table_number": ["5-1"], "values": {"x": 1}}],'
+    ' "figures": [{"figure_number": ["5-1"]}]}',
+    '{"tables": [{"table_number": "5-1", "values": "page",'
+    ' "pdf_page_index": true}], "figures": []}',
+    '{"tables": [{"table_number": "5-1", "values": "lookup",'
+    ' "values_in": ["", null, 3], "pdf_page_index": "7"}], "figures": []}',
+    '{"tables": [{"table_number": "5-1", "values": "text",'
+    ' "values_in": {"section": "5-1"}, "pdf_page_index": -3}],'
+    ' "figures": [{"figure_number": {"n": "5-1"}}]}',
+]
+
+
+def _write(path: Path, content) -> None:
+    if isinstance(content, bytes):
+        path.write_bytes(content)
+    else:
+        path.write_text(content, encoding="utf-8")
+
+
+@pytest.mark.parametrize("content", UNREADABLE_CATALOGS + ROWLESS_CATALOGS,
+                         ids=lambda c: repr(c)[:24])
+def test_a_broken_catalog_answers_not_catalogued(tmp_path, monkeypatch,
+                                                 content):
+    folder = tmp_path / "local_madeup"
+    folder.mkdir()
+    for name in (_reach.TABLES_CATALOG, _reach.FIGURES_CATALOG):
+        _write(folder / name, content)
+    monkeypatch.setattr(_reach, "reference_dir", lambda ref: folder)
+    h = _reach.Holdings("local_madeup", _rows([{
+        "section_id": "5-1", "tables": ["Table 5-1 Made up"],
+        "figures": ["Figure 5-1 Made up"]}]))
+    assert h.table_flag("5-1") == _reach.NOT_CATALOGUED
+    assert h.figure_flag("5-1") == _reach.NOT_CATALOGUED
+    unreadable = content in UNREADABLE_CATALOGS
+    for name in (_reach.TABLES_CATALOG, _reach.FIGURES_CATALOG):
+        assert (str(folder / name) in _reach._PROBLEMS) == unreadable
+
+
+@pytest.fixture(scope="module")
+def broken_pack(tmp_path_factory):
+    """The made-up pack with both catalogs nested 200,000 deep, and a
+    private database folder."""
+    root = tmp_path_factory.mktemp("brokenpacks")
+    folder = _pack(root)
+    for name in (_reach.TABLES_CATALOG, _reach.FIGURES_CATALOG):
+        (folder / name).write_text("[" * 200000, encoding="utf-8")
+    dbdir = tmp_path_factory.mktemp("brokendb")
+    old_env = os.environ.get(_packs.PACKS_ENV)
+    old_tmp = tempfile.tempdir
+    os.environ[_packs.PACKS_ENV] = str(root)
+    tempfile.tempdir = str(dbdir)
+    try:
+        yield folder
+    finally:
+        tempfile.tempdir = old_tmp
+        if old_env is None:
+            os.environ.pop(_packs.PACKS_ENV, None)
+        else:
+            os.environ[_packs.PACKS_ENV] = old_env
+
+
+def test_a_broken_pack_catalog_takes_down_no_search_or_fetch(broken_pack):
+    """The review's probe: a catalog "[" * 200000 deep raised RecursionError
+    and no text database could be built. Now the built-ins and the pack
+    search and fetch, the pack's tables and figures answer "not
+    catalogued", and the problems name both files."""
+    for get in (_retrieval_db.reference_get, _retrieval.retrieve_section):
+        sec = get(PID, "1.1")
+        assert set(_held(sec).values()) == {_reach.NOT_CATALOGUED}
+        assert set(_held(sec, "figures_held").values()) == {
+            _reach.NOT_CATALOGUED}
+        assert get("dm7_1", "5-5.4")["tables_held"]
+    assert _retrieval_db.reference_search("glorp walls", reference=PID)
+    assert _figures_db.figure_search("pile", limit=1)
+    problems = "\n".join(_packs.problems())
+    for name in (_reach.TABLES_CATALOG, _reach.FIGURES_CATALOG):
+        assert str(broken_pack / name) in problems
+    listed = {r["reference"]: r for r in
+              _retrieval_db.list_indexed_references()}
+    assert len(listed[PID]["problems"]) == 2
+    assert len(_reach.catalog_problems()[PID]) == 2
+
+
+# ---------------------------------------------------------------------------
 # A made-up local pack: the flags on both fetches
 # ---------------------------------------------------------------------------
 

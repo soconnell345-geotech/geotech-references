@@ -515,6 +515,15 @@ as held. Inlined subsections carry their own keys; the fetch's note
 explains them once. The text database's sources include `_reach.py`
 itself, so a change of the rules rebuilds the flags.
 
+A catalog the flags cannot read (not JSON, not UTF-8, nested past the
+parser's limit as `"[" * 200000`, the wrong kind of JSON, a rows key that
+is not a list) never stops a build: its figures or tables answer "not
+catalogued", rows with fields of the wrong kind answer nothing, and the
+file is named in `_reach.catalog_problems()`, in `list_indexed_references`
+(`problems`) and, for a local pack, in `_packs.problems()`. The pack
+readers of both databases and of `_packs` catch the same errors
+(`_packs.JSON_ERRORS`: OSError, ValueError, RecursionError, MemoryError).
+
 The flags are worked out once, when the text database is built
 (`_reach.fill_reach_table`, table `section_reach`, about 1-2 s of the
 build), and read back on each fetch; `retrieve_section` reads them from
