@@ -647,17 +647,26 @@ It found none. Each printed case it allows was checked on the page.
   drainage or filter material) / (85 percent size of material to be
   drained) <= 5, and so on). `tests/test_ufc_pavement_text_equations.py`
   pins the equations, limits and notes (38 tests).
-- **UFC 3-250-11 (`ufc_stabilization`, 8 files, 101 sections; 85 sections
+- **UFC 3-250-11 (`ufc_stabilization`, 8 files, 105 sections; 85 sections
   changed: 57 bodies, 38 summaries, 71 key-point lists, 2 equation lists,
-  4 applicability lines).** Every body now holds its printed text; printed
+  4 applicability lines; 4 added).** Every body now holds its printed text; printed
   sub-paragraphs with no section of their own stay in their parent with
   their numbers (2-1.1 now carries 2-1.1.1 to 2-1.1.6). Tables and figure
-  labels are named, not run into the text; 4-1.4, 4-2.2 and 4-4.2, whose
-  printed text is longer than a body can be, are verbatim extracts under
-  13,100 characters with the gaps marked "[...]" (reference_query keeps
-  whole rows within 13,300 characters of its 14,000; `tests/test_result_size.py`
-  found the first two over it at 13,800, and 4-4.2, full text at 13,553,
-  is now an extract too; no limit, number or "do not" was cut). Heading-only paragraphs (2-1.3, 2-2, 4-1, A-1 and
+  labels are named, not run into the text. 4-1.4, 4-2.2 and 4-4.2, whose
+  printed text (25,855, 21,488 and 13,553 characters) is longer than one
+  row `reference_query` keeps (13,300 of its 14,000), hold their full
+  printed text in lettered parts split at printed sub-paragraph headings,
+  the original number the first part: 4-1.4 (4-1.4.1 to 4-1.4.2.1),
+  4-1.4.a (4-1.4.2.2, 4-1.4.2.3), 4-1.4.b (4-1.4.3 to 4-1.4.7); 4-2.2
+  (4-2.2.1, 4-2.2.2), 4-2.2.a (4-2.2.3 to 4-2.2.5); 4-4.2 (4-4.2.1 to
+  4-4.2.4), 4-4.2.a (4-4.2.5, 4-4.2.6). The letters are not printed. The
+  first build kept 4-1.4 and 4-2.2 as extracts with gaps marked "[...]"
+  (110 of 233 and 60 of 171 printed sentences left out), and a later cut
+  for size took 7, 6 and 3 more from the three; every sentence is back, and the
+  text of each section matches the whole printed span from its heading to
+  the next, checked against the PDF's text layer. Their summaries and key
+  points are rewritten per part, the key points quoting the printed
+  sentences. Heading-only paragraphs (2-1.3, 2-2, 4-1, A-1 and
   others) say so and name their sub-paragraphs. 4-2.1 said deep mixing is
   "NOT routine for airfield projects"; that caution is printed under
   4-2.2.4 and is there now, and 4-2.1 holds the printed deep-stabilization
@@ -674,8 +683,8 @@ It found none. Each printed case it allows was checked on the page.
   dilution "to 50 ml" then "take 100 ml" (the factor 411.6 fits 500 ml);
   A-3.1 oven-dry weight expression malformed; A-3.2 prints only a numeric
   example with "x 0.0338 percent" for "= 0.0338 percent".
-  `tests/test_ufc_stabilization_text_equations.py` pins them (28 tests).
-- **AASHTO 1993 (`aashto_1993`, 11 chapter files, 44 sections before, 80
+  `tests/test_ufc_stabilization_text_equations.py` pins them (32 tests).
+- **AASHTO 1993 (`aashto_1993`, 11 chapter files, 44 sections before, 81
   now).** The stored text was a paraphrase holding statements the Guide
   does not print (Part I ch 5's "14 major considerations enumerated in the
   Preface"; II-1.2's chart solutions "somewhat less precise than the
@@ -698,15 +707,15 @@ It found none. Each printed case it allows was checked on the page.
   no sections); I-4.2 and II-4.1 removed (their headings have no text of
   their own; I-4.2 is held as its printed 4.2.1 to 4.2.3); added I-3.2,
   I-3.3, I-3.9.1 to I-3.9.3, I-4.2.1 to I-4.2.3, II-1.3, II-1.4, II-2,
-  II-2.1.4, II-2.5.1, II-2.5.2, II-3, II-3.1, II-3.2, II-3.3.1 to
+  II-2.1.4, II-2.3.5.a, II-2.5.1, II-2.5.2, II-3, II-3.1, II-3.2, II-3.3.1 to
   II-3.3.3, II-3.4.1, II-3.4.2.a to II-3.4.2.c, II-3.4.3, II-3.5.1 to
   II-3.5.6, II-4, II-4.1.1, II-4.1.2, II-4.2 and II-4.2.1 to II-4.2.3. The
   one printed Section 3.4.2 is stored in three lettered parts (inputs and
-  limiting criteria; procedure; example), the letters not printed. Every
+  limiting criteria; procedure; example), and Section 2.3.5 in two
+  (II-2.3.5 to the granular base, II-2.3.5.a from "Granular Subbase
+  Layers.", p. II-21), the letters not printed. Every
   fetch is under the app's 16,000 characters, measured with the Guide's
-  symbols escaped (`tests/test_subsection_retrieval.py`); for II-2.3.5,
-  whose id is pinned, the record drops key points and equation notes it
-  held twice. implemented_in: Eq. 4.2.3 no longer points at
+  symbols escaped (`tests/test_subsection_retrieval.py`). implemented_in: Eq. 4.2.3 no longer points at
   `tables.standard_normal_deviate_zr` (a Table 4.1 lookup), nor
   MR = k1θ^k2 at `tables.unbound_k1_k2` (it returns k1 and k2); SN on
   II-2.4.1, ΔPSITR and the mean ur now point at the functions that compute
@@ -715,7 +724,7 @@ It found none. Each printed case it allows was checked on the page.
   after "1 1/4 inch" (p. II-25), "D/φ/²" in Nmin and Nmax (p. II-56), k-value
   ranges that leave 350 to 400 pci unassigned (p. II-81), Table 4.7's
   2.7-3.3 against Table 4.6's 2.9-3.1 (p. II-80).
-  `tests/test_aashto_1993_text.py` pins them (22 tests).
+  `tests/test_aashto_1993_text.py` pins them (23 tests).
 
 **Fixes from the 2026-11-10 review of the core layer.** Every page, number
 and caption below was read off the rendered print.
