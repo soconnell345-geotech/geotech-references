@@ -84,6 +84,28 @@ Releases before 1.6.0 are described in their release commits (`git log`).
   `build_figure_catalog.py` and `check_section_numbers.py` read that
   layout too.
 
+**Build of 2026-11-12: every figure-catalog row stores the page number its
+page prints.** A helper quotes `printed_page` in its citations. The audit
+of all 33 catalogs (4,164 rows) found, and this build corrects: DM 7.2
+Figures B-1 to B-24 three pages low; the edition year stored as the page in
+GEC-5 (13 rows), GEC-10 (8) and GEC-11 (5); the micropile manual's 142 rows
+cut to the number after the dash (now "1-4", "D-3", "E-5"); UFC 3-220-07
+Figure 6-7 on 6-8, not 6-9; GEC-12 Figure D-99 on PDF index 231, its own
+page. The 1,328 rows that had no printed page now have one, read from each
+page's footer or header and checked on renders (a seeded sample of 12 and
+every chapter or appendix boundary per reference): GEC-10 372, GEC-5 336,
+GEC-13 239, GEC-11 137, GEC-4 90, GEC-6 86, EN 1997-1 23, GEC-8 20,
+UFC 3-220-04FA 14, FHWA-NHI-05-037 6, GEC-14 5. Values are integers where
+the page prints only digits, otherwise the label as printed ("4-12",
+"A2-37", "A1"). New `tests/test_catalog_printed_pages.py`: every row has a
+printed page and none is a year, and every row's page prints it (69 rows on
+scanned or turned pages pinned to the label seen on a render). The
+first-page marker of every section in 13 references' chapter text was also
+checked against the page that prints the heading (4,407 sections; EN
+1997-1 and the Caltrans manual cite pages only inside the text); two
+GEC-13 ranges started on the wrong page and now start on the heading's
+page (7.1.2.1 pp. 7-1 to 7-4, 9.7.4 pp. 9-110 to 9-111).
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,
