@@ -68,8 +68,8 @@
         "Figure 8-1"
       ],
       "tables": [
-        "Table 8-1",
-        "Table 8-2"
+        "Table 8-1: Typical Values of the Effective Stress Friction Angle for Coarse-grained Soils (Carter and Bentley 2016) (p. 394) - columns: Soil Description; φ′ (in degrees), Loose; φ′ (in degrees), Dense. Uniform sand, round grains; 27; 34 | Well-graded sand, angular grains; 33; 45 | Sandy gravel; 35; 50 | Silty sand; 27-33; 30-34 | Inorganic silt; 27-30; 30-35",
+        "Table 8-2: Typical Values of the Effective Stress Friction Angle for Compacted Coarse-grained Soils (Carter and Bentley 2016) (p. 394) - columns: Soil Description; USCS; φ′ (in degrees). Well-graded sand-gravel mixtures; GW; >38 | Poorly-graded sand-gravel mixtures; GP; >37 | Silty gravels, poorly-graded gravel-sand-silt; GM; >34 | Clayey gravels, poorly-graded gravel-sand-clay; GC; >31 | Well-graded clean sand, gravelly sand; SW; 38 | Poorly-graded clean sand, gravelly sand; SP; 37"
       ],
       "applicability": "Applies when typical values of the effective stress friction angle of coarse-grained soils are taken by soil description in loose or dense condition (Table 8-1), by USCS group compacted to the ASTM D698 maximum dry density (Table 8-2), or from relative density, dry unit weight and soil type (Figure 8-1)."
     },
@@ -144,8 +144,8 @@
         "Figure 8-4"
       ],
       "tables": [
-        "Table 8-3",
-        "Table 8-4"
+        "Table 8-3: Relationship between SPT N Value, Relative Density and Effective Stress Friction Angle (Meyerhof 1956) (p. 396) - columns: State of Packing; Relative Density (%); N60 (blows/ft); Static Cone Tip Resistance, qc (tsf); Effective Stress Friction Angle (degrees). Very Loose; < 20; < 4; < 20; < 30 | Loose; 20 - 40; 4 - 10; 20 - 40; 30 - 35 | Compact (Medium); 40 - 60; 10 - 30; 40 - 120; 35 - 40 | Dense; 60 - 80; 30 - 50; 120 - 200; 40 - 45 | Very Dense; > 80; > 50; > 200; > 45",
+        "Table 8-4: Relationship between SPT N Value, Relative Density, and Angle of Internal Resistance (after Mitchell 1981) (p. 396) - columns: State of Packing; Relative Density^1 (%); Standard Penetration Resistance, N1,60 (blows/ft)^2; Static Cone Resistance, qc (tsf); Effective Stress Friction Angle (degrees); Dry Unit Weight (kN/m^3). V. Loose; < 15; < 4; < 50; < 30; < 14 | Loose; 15 - 35; 4 - 10; 50 - 100; 30 - 32; 14 - 16 | M. Dense; 35 - 65; 10 - 30; 100 - 150; 32 - 35; 16 - 18 | Dense; 65 - 85; 30 - 50; 150 - 200; 35 - 38; 18 - 20 | V. Dense; 85 - 100; > 50; > 200; > 38; > 20. Notes: ^1 Freshly deposited, normally consolidated sand ^2 Corrected to an effective vertical overburden pressure of 1 atm."
       ],
       "applicability": "Applies when estimating the drained friction angle of coarse-grained soils from standard penetration test N values, with or without overburden correction."
     },
@@ -203,7 +203,7 @@
         "Figure 8-11"
       ],
       "tables": [
-        "Table 8-5"
+        "Table 8-5: Relationship between Relative Density, Cone Tip Resistance, and Effective Stress Friction Angle (after Bergdahl et al. 1993, and Ameratunga et al. 2016) (p. 400) - columns: Relative Density; qc (tsf); φ′ (degrees). Very loose; 0 – 26.1; 29 – 32 | Loose; 26.1 – 52.2; 32 – 35 | Medium; 52.2 – 104.4; 35 – 37 | Dense; 104.4 – 208.8; 37 – 40 | Very dense; > 208.8; 40 – 42"
       ],
       "applicability": "Applies when estimating drained friction angle of coarse-grained soils from CPT tip resistance, with or without overburden and overconsolidation corrections."
     },
@@ -453,8 +453,8 @@
         "Figure 8-30 Normalized Undrained Strength Ratio vs. OCR (after Schmertmann 1978)"
       ],
       "tables": [
-        "Table 8-7 Typical Normally Consolidated Undrained Strength Ratios",
-        "Table 8-8 Approximate Relation of Undrained Strength Ratio and OCR (after Schmertmann 1978)",
+        "Table 8-7 Typical Normally Consolidated Undrained Strength Ratios (p. 423) - columns: Source; NC Undrained Strength Ratio; Comments. Mesri (1975); 0.22 ± 0.03; Collection of vane shear test results | Jamiolkowski et al. (1985); 0.23 ± 0.04; Clays with PI less than 60 based on several embankment failures | Chandler (1988); Range: 0.16 to 0.33, High value: 0.74, Mean (all): 0.28, Mean (discard extreme values): 0.22 ± 0.05; Based on the Mesri (1975) dataset of field vane shear tests on clay | Sabatini et al. (2002); 0.23; Saturated clay | Sabatini et al. (2002); 0.16; Soils with horizontal layering or features | Ladd and DeGroot (2004); Nominally 0.20, Std. Dev. = 0.015; Sensitive cemented marine clays, Canadian Champlain clays (PI < 30%, LI > 1.5) | Ladd and DeGroot (2004); 0.22+0.05(PI/100), Nominally 0.22; Homogeneous CL and CH sedimentary clays of low to moderate sensitivity, no shells or sand lenses layers (PI = 20 to 80%) | Ladd and DeGroot (2004); 0.16; Northeastern U.S. varved clays, direct simple shear failure mode | Ladd and DeGroot (2004); Nominally 0.25, Std. Dev. = 0.05; Sedimentary deposits of silts and organic soils (Atterberg Limits plot below A-line) and clays with shells, excludes peat. Notes: PI = plasticity index, LI = liquid index. Shear strengths presented by Jamiolkowski et al. (1985) and Chandler (1988) were not corrected as required by ASTM D2573 and may be too high.",
+        "Table 8-8 Approximate Relation of Undrained Strength Ratio and OCR (after Schmertmann 1978) (p. 423) - columns: OCR; Undrained Strength Ratio. Less than 1; 0 – 0.1 | 1; 0.10 – 0.25 | 1 to 1.5; 0.26 – 0.50 | 3; 0.51 – 1.00 | 6; 1.00 – 4.00 | Greater than 6; > 4.00",
         "Table 8-9 Typical Values of m"
       ],
       "applicability": "Applies when estimating undrained shear strength of normally consolidated or overconsolidated cohesive soils using stress history parameters (OCR, preconsolidation pressure, Cc, Cr)."
@@ -515,7 +515,7 @@
         "Figure 8-32 Relationship between Undrained Shear Strength and SPT N (after Terzaghi and Peck 1967, Hara et al. 1974, and Sowers 1979)"
       ],
       "tables": [
-        "Table 8-10 Approximate Undrained Shear Strength for Cohesive Soils Based on SPT N"
+        "Table 8-10 Approximate Undrained Shear Strength for Cohesive Soils Based on SPT N (p. 428) - columns: Soil Consistency; SPT N Value; Undrained Shear Strength (psf), Parcher and Means (1968); Undrained Shear Strength (psf), Tschebotarioff (1973); Undrained Shear Strength (psf), Terzaghi et al. (1996). Very soft; < 2; 300 [as printed, a single value, where the row below gives 300 – 600]; -; < 250 | Soft; 2 – 4; 300 – 600; 250 – 500; 250 – 500 | Medium; 4 – 8; 600 – 1200; 500 – 1000; 500 – 1000 | Stiff; 8 – 15; 1200 – 2400; 1000 – 2000; 1000 – 2000 | Very stiff; 15 – 30; 2400 [as printed, a single value, where the rows above and below give 1200 – 2400 and > 4500]; 2000 – 4000; 2000 – 4000 | Hard; > 30; > 4500; > 4000; > 4000"
       ],
       "applicability": "Applies when estimating undrained shear strength of cohesive soils using SPT N values, particularly for overconsolidated clays where PI data are also available."
     },
@@ -533,7 +533,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-11 Undrained Shear Strength Correlations to Dilatometer"
+        "Table 8-11 Undrained Shear Strength Correlations to Dilatometer (p. 429) - columns: Undrained Strength Ratio or Undrained Shear Strength (kPa); Source. (su/σ′v)OC = (su/σ′v)NC (0.5KD)^1.25 ≈ 0.22(0.5KD)^1.25; Marchetti (1980) | (su/σ′v)OC = 0.35(0.47KD)^1.14; Kamei and Iwasaki (1995) | su = 0.018ED; Iwasaki and Kamei (1994). Note: su = undrained shear strength in kPa, σ′v = vertical effective stress in kPa, KD = horizontal stress index from dilatometer, and ED = dilatometer modulus in kPa."
       ],
       "applicability": "Applies when estimating undrained shear strength of overconsolidated clays from dilatometer test results (KD or ED)."
     },
@@ -581,7 +581,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-12"
+        "Table 8-12: Typical Values for Cc for Undisturbed Clays (p. 430) - columns: Soil; Cc; Reference. Boston Blue Clay, undisturbed (CL); 0.35; Lambe and Whitman (1969) | Chicago clay undisturbed (CH); 0.42; Lambe and Whitman (1969) | Cincinnati Clay (CL); 0.17; Lambe and Whitman (1969) | Louisiana Clay, undisturbed; 0.33; Lambe and Whitman (1969) | New Orleans Clay, undisturbed (CH); 0.29; Lambe and Whitman (1969) | Siburua clay (CH); 0.21; Lambe and Whitman (1969) | Kaolinite; 0.21 – 0.26; Lambe and Whitman (1969) | Na-Montmorillonite (CH); 2.6; Lambe and Whitman (1969) | Normally consolidated medium sensitive clays; 0.2 – 0.5; Holtz and Kovacs (1981) | Organic silt and clayey silts (ML-MH); 1.5 – 4.0; Holtz and Kovacs (1981) | Organic clays (OH); > 4.0; Holtz and Kovacs (1981) | Peat (Pt); 10 – 15; Holtz and Kovacs (1981) | Chicago silty clay (CL); 0.15 – 0.30; Holtz and Kovacs (1981) | Boston Blue Clay (CL); 0.3 – 0.5; Holtz and Kovacs (1981) | Vicksburg Buckshot Clay (CH); 0.5 – 0.6; Holtz and Kovacs (1981) | Swedish medium sensitive clays (CL-CH); 1 – 3; Holtz and Kovacs (1981) | Canadian Leda clays (CL-CH); 1 – 4; Holtz and Kovacs (1981) | Mexico City Clay; 7 – 10; Holtz and Kovacs (1981) | San Francisco Bay Mud (CL); 0.4 – 1.2; Holtz and Kovacs (1981) | Bangkok Clays (CH); 0.4; Holtz and Kovacs (1981) | Uniform sand, loose (SP); 0.05 – 0.06; USACE (1990) | Uniform sand, dense (SP); 0.02 – 0.03; USACE (1990) | Uniform silts (ML); 0.2; USACE (1990)"
       ],
       "applicability": "Applies when typical values of the compression index for different clays and silts are taken from Table 8-12."
     },
@@ -641,8 +641,8 @@
         "Figure 8-42"
       ],
       "tables": [
-        "Table 8-13",
-        "Table 8-14"
+        "Table 8-13: Compression Index Correlations (pp. 431-433) - columns: Correlation; Comments; References. Cc = 0.007(LL − 10); Remolded clays.; Skempton (1944) | Cc = 0.0046(LL − 9); Clays from Sao Paulo, Brazil; Cozzolino (1961) | Cc = LL^1.673/2040; Hong Kong soft marine clay; Lumb and Holt (1968) | Cc = 0.0083(LL − 9); Remolded clays; Schofield and Wroth (1968) | Cc = 0.003(LL − 10); Cohesive soils of the Rhone Alpes and Valley of the Seine River; Gielly et al. (1969) | Cc = 0.006(LL − 9); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.008(LL − 5); Dredging material; Salem and Krizek (1976) | Cc = 0.00797(LL − 8.16); Indiana soils; Lo and Lovell (1982) | Cc = 0.01(LL − 13); All clays; USACE (1990) | Cc = 0.009(LL − 10); Undisturbed clay of sensitivity less than 4. Reliability 30%; Terzaghi et al. (1996) | Cc = 1.15(e0 − 0.91); All clays (Lower limit); Nishida (1956) | Cc = 0.30(e0 − 0.27); Inorganic silty clays; Hough (1957) | Cc = 0.256 + 0.43(e0 − 0.84); Brazilian motley clays; Cozzolino (1961) | Cc = 1.21 + 1.055(e0 − 1.87); Brazilian soft silty clays; Cozzolino (1961) | Cc = 0.75(e0 − 0.50); Soils of very low plasticity; Sowers (1970) | Cc = 0.40(e0 − 0.25); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.22 + 0.29e0; Weathered and soft Bangkok clays; Adikari (1977) | Cc = 0.575e0 − 0.241; French clays; Vidalie (1977) | Cc = 0.5363(e0 − 0.411); Indiana soils; Goldberg et al. (1979) | Cc = 0.5673(e0 − 0.4422); Wabash Lowland; Goldberg et al. (1979) | Cc = 0.4941(e0 − 0.3507); Crawford Upland; Goldberg et al. (1979) | Cc = 0.5621(e0 − 0.4215); Outwash and alluvial deposits; Goldberg et al. (1979) | Cc = 0.496e0 − 0.195; Indiana soils; Lo and Lovell (1982) | Cc = 0.3745e0; Saturated clays; Rendon-Herrero (1983) | Cc = 0.434(e0 − 0.336); Soils from nine states in the USA; Rendon-Herrero (1983) | Cc = 0.85(wn/100)^(3/2); Finnish muds and clays; Helenelund (1951) | Cc = 0.01404wn − 0.189; All clays; Nishida (1956) | Cc = 0.01wn; Chicago and Canada clays; Koppula (1981) | Cc = 0.01(wn − 5); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.008wn + 0.2; Weathered and soft Bangkok clays; Adikari (1977) | Cc = 0.0147wn − 0.213; French clays; Vidalie (1977) | Cc = 0.0133wn − 0.1621; Crawford Upland; Goldberg et al. (1979) | Cc = 0.0126wn − 0.162; Indiana soils; Lo and Lovell (1982) | Cc = 0.01wn − 0.07549; Soils from nine states in the USA; Rendon-Herrero (1983) | Cc = 0.0115wn; Organic soils, peats; USACE (1990) | Cc = 0.012wn; All Clays; USACE (1990) | Cc = 0.135PI; Remolded clays; Wroth and Wood (1978) | Cc = 0.005PI·Gs; ; [as printed, this row stands alone at the top of p. 433, above the repeated heading, with its Comments and References cells empty] | Cc = 0.37(e0 + 0.003LL − 0.34); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.009e0 + 0.008LL + 0.20; Weathered and soft Bangkok clays; Adikari (1977) | Cc = 0.0101(e0LL − 0.5765LL + 12.665); Crawford Upland; Goldberg et al. (1979) | Cc = 0.40(e0 + 0.001wn − 0.25); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.009wn + 0.002LL − 0.1; Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.0129(wn + 0.1015LL − 16.1875); Indiana soils; Goldberg et al. (1979) | Cc = 0.0114(wn + 0.2491LL − 18.8134); Crawford Upland; Goldberg et al. (1979) | Cc = 0.0082wn + 0.0043CF − 0.1403; Cohesive soils in Alberta, Canada; Koppula (1981) | Cc = 0.37(e0 + 0.003LL + 0.0004wn − 0.34); Clays for Greece and USA; Azzouz et al. (1976) | Cc = 0.0153(wn + 0.1022LL − 0.3104PL − 11.623); Indiana soils; Goldberg et al. (1979) | Cc = 0.5684(e0 + 0.033LL − 0.0082PL + 0.0329σ′p − 0.4322); Indiana soils; Goldberg et al. (1979) | Cc = 0.6076(e0 + 0.003LL − 0.0095PL + 0.43σ′p − 0.4186); Outwash and alluvial deposits; Goldberg et al. (1979) | Cc = 0.0025CF + 0.1165e0 + 0.0036wn + 0.0014PI + 0.0009PL − 0.997; Cohesive soils in Alberta, Canada; Koppula (1981) | Cc = 0.5((1 + e0)/Gs)^2.4; Saturated clay; Al-Khafaji and Andersland (1992) | Cc = 0.0121·wn·Gs; Saturated sediment fine-grained soil; Rendon-Herrero (1983) | Cc = 0.185[(1 + e0)^2/Gs − 0.144]; Soils from nine states in USA; Rendon-Herrero (1983) | Cc = 0.489[ln((1 + e0)^2/Gs) + 0.296]; Soils from nine states in USA; Rendon-Herrero (1983) | Cc = 0.141Gs^1.2((1 + e0)/Gs)^2.382; Soils from nine states in USA; Rendon-Herrero (1983)",
+        "Table 8-14: Recompression Index Correlations (p. 434) - columns: Correlation; Comments; References. Cr = 0.0045LL; Marine clays of Southeast Asia; Cox (1968) | Cr = 0.002(LL + 9); Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.00463LL − 0.013; Bangkok clays; Balasubramaniam and Brenner (1981) | Cr = 0.00238LL + 0.0294; Indiana soils; Lo and Lovell (1982) | Cr = 0.208e0 + 0.0083; Chicago clays; Peck and Reed (1954) | Cr = 0.156e0 + 0.0107; Inorganic and organic clayey and silty soil; Elnaggar and Krizek (1970) | Cr = 0.14(e0 + 0.007); Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.2037(e0 − 0.2465); Indiana soils; Goldberg et al. (1979) | Cr = 0.221(e0 − 0.3074); Wabash Lowland; Goldberg et al. (1979) | Cr = 0.152e0 + 0.0125; Indiana soils; Lo and Lovell (1982) | Cr = 0.0043wnδVm; Marine clays of Southeast Asia; Cox (1968) | Cr = 0.003(wn + 7); Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.0039wn + 0.013 for wn < 100%; French clays; Vidalie (1977) | Cr = 0.403log(wn) − 0.478; French clays; Vidalie (1977) | Cr = 0.0065(wn − 11.6361); Wabash Lowland; Goldberg et al. (1979) | Cr = 0.00566wn − 0.037; Bangkok clays; Balasubramaniam and Brenner (1981) | Cr = 0.003wn + 0.0249; Indiana soils; Lo and Lovell (1982) | Cr = PI/370; Remolded clays; Wroth and Wood (1978) | Cr = 0.126(e0 + 0.003LL − 0.06); Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.142(e0 − 0.0009wn + 0.006); Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.0034(e0wn + 8.3647); Wabash Lowland; Goldberg et al. (1979) | Cr = 0.0033(e0wn + 12.5168) ) [as printed, a second closing parenthesis follows the formula]; Crawford Upland; Goldberg et al. (1979) | Cr = 0.003wn + 0.0006LL + 0.004; Clays for Greece and USA; Azzouz et al. (1976) | Cr = 0.135(e0 + 0.01LL − 0.002wn − 0.06); Clays for Greece and USA; Azzouz et al. (1976)"
       ],
       "applicability": "Applies when the compression or recompression index of fine-grained soils is estimated from index properties, and when Burland's (1990) intrinsic and sedimentation compression lines are used to approximate the virgin consolidation line from the liquid limit or to validate laboratory consolidation tests."
     },
@@ -660,8 +660,8 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-15",
-        "Table 8-16"
+        "Table 8-15: Modified Compression Indices for Saturated, Normally Consolidated Sands (after Burmister 1962, Coduto et al. 2011) (p. 441) - columns: Soil Type; Cεc = Cc / (1+e0) at Dr = 0%; Dr = 20%; Dr = 40%; Dr = 60%; Dr = 80%; Dr = 100%. Medium to coarse sand (SW & SP); 0.010; 0.008; 0.006; 0.005; 0.003; 0.002 | Fine to coarse sand (SW); 0.011; 0.009; 0.007; 0.005; 0.003; 0.002 | Fine to medium sand (SW & SP); 0.013; 0.010; 0.008; 0.006; 0.004; 0.003 | Fine sand (SP); 0.015; 0.013; 0.010; 0.008; 0.005; 0.003 | Fine sand with little fine to coarse silt (SM); 0.017; 0.014; 0.012; 0.009; 0.006; 0.003",
+        "Table 8-16: Compressibility Data for Six Sands (Been et al. 1987) (p. 441) - columns: Sand; e0; Cc at σ′v / Pa = 1 to 3; Cc at σ′v / Pa = 20 to 30; Cr. Monterrey 0; 0.854; 0.021; 0.085; 0.006 | Monterrey 0; 0.782; 0.018; 0.090; 0.007 | Ticino; 0.917; 0.025; 0.130; 0.007 | Ticino; 0.827; 0.026; 0.085; 0.006 | Hokksund; 0.870; 0.024; 0.095; 0.005 | Hokksund; 0.790; 0.018; 0.056; 0.005 | Ottawa; 0.760; 0.025; 0.030; 0.007 | Ottawa; 0.560; 0.005; 0.100; 0.003 | Reid-Bedford; 0.900; 0.013; 0.090; 0.005 | Reid-Bedford; 0.650; 0.005; 0.019; 0.003 | Hilton Mines; 0.950; 0.038; 0.210; 0.009 | Hilton Mines; 0.732; 0.022; 0.100; 0.006"
       ],
       "applicability": "Applies when estimating compressibility parameters for coarse-grained soils (sands and gravels) in settlement calculations."
     },
@@ -774,7 +774,7 @@
         "Figure 8-49"
       ],
       "tables": [
-        "Table 8-17"
+        "Table 8-17: Typical Values of Cα / Cc for Natural Soils (after Mesri and Godlewski 1977) (p. 447) - columns: Grouping; Soil Type; Cα / Cc. Inorganic clays and silts; Whangamarino clay; 0.03 – 0.04 | Inorganic clays and silts; Leda clay; 0.025 – 0.06 | Inorganic clays and silts; Soft blue clay; 0.026 | Inorganic clays and silts; Portland sensitive clay; 0.025 – 0.055 | Inorganic clays and silts; San Francisco Bay Mud; 0.04 – 0.06 | Inorganic clays and silts; New Liskeard varved clay; 0.03 – 0.06 | Inorganic clays and silts; Silty clay C; 0.032 | Inorganic clays and silts; Nearshore clays and silts; 0.055 – 0.075 | Inorganic clays and silts; Mexico City clay; 0.03 – 0.035 | Inorganic clays and silts; Hudson River silt; 0.03 – 0.06 | Organic clays and silts; Norfolk organic silt; 0.05 | Organic clays and silts; Calcareous organic silt; 0.035 – 0.06 | Organic clays and silts; Post-glacial organic clay; 0.05 – 0.07 | Organic clays and silts; Organic clays and silts; 0.04 – 0.06 | Organic clays and silts; New Haven organic clay silt; 0.04 – 0.075 | Peats; Amorphous and fibrous peat; 0.035 – 0.083 | Peats; Canadian muskeg; 0.09 – 0.10 | Peats; Peat; 0.075 – 0.085 | Peats; Peat; 0.05 – 0.08 | Peats; Fibrous peat; 0.06 – 0.085"
       ],
       "applicability": "Applies when estimating settlement after primary consolidation is completed, using natural water content (NC clays, Eq. 8-35), the typical range for most overconsolidated clays, Cα/Cc ratios for natural soils (Table 8-17), or Figure 8-49 for silts and clays."
     },
@@ -833,7 +833,7 @@
       ],
       "figures": [],
       "tables": [
-        "Table 8-18"
+        "Table 8-18: Relationships between Common Elastic Parameters (p. 449) - columns: Parameter; E =; K =; G =; ν =. E & G; ---; EG/(3(3G−E)); ---; (E−2G)/(2G) | E & ν; ---; E/(3(1−2ν)); E/(2(1+ν)); --- | E & K; ---; ---; 3KE/(9K−E); (3K−E)/(6K) | G & ν; 2G(1+ν); 2G(1+ν)/(3(1−2ν)); ---; --- | G & K; 9KG/(3K+G); ---; ---; (3K−2G)/(2(3K+G)) | K & ν; 3K(1−2ν); ---; 3K(1−2ν)/(2(1+ν)); ---"
       ],
       "applicability": "Applies when converting between elastic parameters or between undrained and drained Young's modulus for fine-grained soils."
     },
@@ -864,7 +864,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-19"
+        "Table 8-19: Typical Range of Undrained Young’s Modulus for Clays (p. 450) - columns: Clay Consistency; Eu / Pa, USACE (1990); Eu / Pa, Kulhawy and Mayne (1990) (a cell printed empty is left empty). Very soft; 5 – 50;  | Soft; 50 – 200; 15 – 40 | Medium; 200 – 500; 40 - 80 | Stiff or silty; 500 – 1000; 80 – 200 | Sandy; 250 – 2000;  | Clay shale; 1000 – 2000; "
       ],
       "applicability": "Applies when typical values of the undrained Young's modulus of clays are taken by consistency from Table 8-19."
     },
@@ -933,7 +933,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-20"
+        "Table 8-20: Typical Ranges of Drained Young’s Modulus for Coarse-Grained Soils (p. 453) - columns: Relative Density or Soil Type; Normalized Drained Young’s Modulus (Eu / Pa) [as printed, the heading gives Eu for the drained modulus, which the section and Table 8-21 call E], Poulos (1975), Typical; Poulos (1975), Driven Piles; USACE (1990). Loose; 100 – 200; 275 – 550; 100 – 250 | Medium; 200 – 500; 550 – 700; 250 – 1000 | Dense; 500 – 1000; 700 – 1100; 1000 – 2000 | Silty sand; ---; ---; 250 – 2000"
       ],
       "applicability": "Applies when estimating drained Young's modulus for coarse-grained soils (sands, gravels, silty sands) based on relative density."
     },
@@ -955,7 +955,7 @@
         "Figure 8-55"
       ],
       "tables": [
-        "Table 8-21"
+        "Table 8-21: Correlations for Drained Young’s Modulus of Coarse-Grained Soils using SPT N Values (p. 453) - columns: Equation; Applicable to; Reference. E/Pa ≈ 7.1·(1 − ν^2)·N; Sandy soils; After Ferrent (1963) | E/Pa ≈ 4.7(N+15); Sands; After Webb (1969) | E/Pa ≈ 3.1(N+5); Clayey sands; After Webb (1969) | E/Pa ≈ C(N+6); Silts with sand and gravels with sand with N < 15; Begemann (1974) | E/Pa ≈ 39.5 + C(N−6); Silts with sand and gravels with sand with N ≥ 15; Begemann (1974) | E/Pa ≈ 5N60; Sands with fines; Kulhawy and Mayne (1990) | E/Pa ≈ 10N60; NC clean sands; Kulhawy and Mayne (1990) | E/Pa ≈ 15N60; OC clean sands; Kulhawy and Mayne (1990). Notes: E = drained Young’s modulus, Pa = atmospheric pressure (in same units as E), N = SPT blow count value (use N60 for modern samplers) ν = Poisson’s ratio, and C = empirical coefficient equal to 3 for silts with sand and 12 for gravel with sand"
       ],
       "applicability": "Applies when estimating drained Young's modulus for coarse-grained soils (sands, silts with sand, gravels with sand) using SPT N values."
     },
@@ -990,8 +990,8 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-22",
-        "Table 8-23"
+        "Table 8-22: CBR Correlations with Grain Size, Atterberg Limits, and Unit Weight (p. 455) - columns: Equation; Reference / Comment. CBR = 75/(1 + 0.728(FC × PI)); NCHRP (2001), FC×PI = 0 [as printed, the same condition FC×PI = 0 is printed for this row and for the next] | CBR = 28.09·(D60)^0.358; NCHRP (2001), FC×PI = 0 | CBR = 95; NCHRP (2001), D60 ≥ 30 mm | CBR = 5; NCHRP (2001), D60 ≤ 0.01 mm | CBR = 0.24·GC + 3.1; Yildirim and Gunaydin (2011) | CBR = 18.5 − 0.18·FC; Yildirim and Gunaydin (2011) | CBRunsoaked = 4.75 − 0.044LL + 0.15PL; Patel and Desai (2010) | CBR = 5.18 − 0.028LL − 0.047PL; Patel and Desai (2010) | CBR = 23 + 1.42·γd − 0.213·PI − 0.916·w − 0.368·LL; George et al. (2009) | CBR = 0.0004·Gs^9.7915; Yashas et al. (2016) | CBR = 1.36×10^-8 (γm)^6.6141; Yashas et al. (2016) | CBR = 9.27×10^-10 (γd)^7.4106; Yashas et al. (2016) | CBRsoaked = 1.93β − 31; Al-Hashemi and Bukhary (2016). Notes: FC = fines content = percent passing #200 sieve, SC = sand content = percent retained between #4 and #200 sieve, GC = gravel content = percent retained between 75 mm and #4 sieve, LL = liquid limit, PL = plastic limit, PI = plasticity index, γd = dry unit weight (in kN/m^3), γm = moist unit weight (in kN/m^3), w = water content (in percent), Gs = specific gravity of solids, and β = angle of repose",
+        "Table 8-23: CBR Correlations to Index and Compaction Properties (after Singh et al. 2011) (p. 455) - column: Equation. CBR = 33(γd/γd,max) − 5.5(w/wopt) − 1.15PL − 2.21 | CBRunsoaked = 24(γd/γd,max) − 67(w/wopt) − 2PL + 104.7. Notes: PL = plastic limit, γd = dry unit weight, γd,max = maximum dry unit weight from Modified Proctor test, w = water content, and wopt = optimum water content from Modified Proctor test. Water contents should be either both in decimal or both in percentage form."
       ],
       "applicability": "Applies when estimating CBR from grain size, Atterberg limits, unit weight and other index properties (Table 8-22) or from compaction properties relative to the Modified Proctor test (Table 8-23)."
     },
@@ -1084,7 +1084,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-25"
+        "Table 8-25: Typical Ranges of Hydraulic Conductivity based on Soil Type (after Terzaghi et al. 1996) (p. 459) - columns: Soil; Hydraulic Conductivity (m/sec); Relative Permeability. Gravel; > 10^-3; High | Sandy gravel; 10^-3 to 10^-5; Medium | Clean sand; 10^-3 to 10^-5; Medium | Fine sand; 10^-3 to 10^-5; Medium | Sand; 10^-5 to 10^-7; Low | Dirty sand; 10^-5 to 10^-7; Low | Silty sand; 10^-5 to 10^-7; Low | Silt; 10^-7 to 10^-9; Very low | Silty clay; 10^-7 to 10^-9; Very low | Clay; < 10^-9; Practically impermeable"
       ],
       "applicability": "Applies when typical values of hydraulic conductivity are taken by soil type from Table 8-25 or Section 6-3.3."
     },
@@ -1192,8 +1192,8 @@
         "Figure 8-61 Range of Shear Wave Velocities based on SPT N Value Predicted by Correlations"
       ],
       "tables": [
-        "Table 8-26 Shear Wave Velocity Correlated to SPT N Value and Depth",
-        "Table 8-27 Shear Wave Velocity Correlated to SPT N Value"
+        "Table 8-26 Shear Wave Velocity Correlated to SPT N Value and Depth (p. 465) - columns: B; x; y; Comments; Reference (a cell printed empty is left empty). 131; 0.21; 0; Sand, use N60; Hasancebi and Ulusay (2007) | 108; 0.24; 0; Use N60; Hasancebi and Ulusay (2007) | 105; 0.26; 0; Use N60; Hasancebi and Ulusay (2007) | 98; 0.27; 0; Clay; Hasancebi and Ulusay (2007) | 90; 0.31; 0; ; Hasancebi and Ulusay (2007) | 91; 0.32; 0; Sands; Hasancebi and Ulusay (2007) | 101; 0.27; 0; Sand; Maheswari et al. (2010) | 96; 0.30; 0; ; Maheswari et al. (2010) | 89; 0.36; 0; Clay; Maheswari et al. (2010) | 101; 0.29; 0; ; Sykora and Stokoe (1983) | 68; 0.29; 0; ; Kiku et al. (2001) | 80; 0.29; 0; Clay; Imai (1977) | 81; 0.33; 0; Sand; Imai (1977) | 91; 0.34; 0; ; Imai (1977) | 84; 0.31; 0; ; Ohba and Toriumi (1970) | 114; 0.31; 0; Clay; Lee (1990) | 57; 0.49; 0; Sand; Lee (1990) | 106; 0.32; 0; Silt; Lee (1990) | 97; 0.31; 0; ; Imai and Tonouchi (1982) | 76; 0.33; 0; ; Imai and Yoshimura (1975) | 92; 0.34; 0; ; Fujiwara (1972) | 90; 0.34; 0; ; Imai et al. (1975) | 85; 0.35; 0; ; Ohta and Goto (1978) | 108; 0.36; 0; ; Athanasopoulos (1995) | 59; 0.39; 0; ; Dikmen (2009) | 81; 0.39; 0; ; Ohsaki and Twasaki (1973) | 61; 0.50; 0; ; Seed and Idriss (1981) | 52; 0.52; 0; ; Iyisan (1996) | 59; 0.11; 0.43; ; Akin et al. (2011) | 69; 0.17; 0.20; Clay; Jamiolkowski et al. (1988) | 82; 0.25; 0.14; Gravel; Yoshida et al. (1988)",
+        "Table 8-27 Shear Wave Velocity Correlated to SPT N Value (p. 465) - columns: Equation; Reference. Vs = 116(N+0.3185)^0.202; Jinan (1987) | Vs,1 = 61.89(N1,60CS)^0.36; Ulmer et al. (2020). Notes: Vs,1 = normalized shear wave velocity = Vs·(Pa / σ′v)^0.25, and N1,60cs = N1,60 corrected for fine content"
       ],
       "applicability": "Applies when estimating shear wave velocity (Vs) from SPT N values, with judgment on the use of uncorrected or corrected blow counts."
     },
@@ -1212,7 +1212,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 8-28 Correlations for Shear Wave Velocity with CPT results"
+        "Table 8-28 Correlations for Shear Wave Velocity with CPT results (p. 467) - columns: Equation; Comments; Reference (a cell printed empty is left empty). Vs = 134 + 0.0052qc; Sands; Sykora and Stokoe (1983) | Vs = 0.1qc; Clays; Jaime and Romo (1988) | Vs = 17.5qc^0.33 σ′v^0.27; Sands; Baldi et al. (1989) | Vs1 = 102qc1^0.23; ; Fear and Robertson (1995) | Vs = (10.1log qc − 11.4)^1.67 (100fs/qc)^0.3; ; Hegazy and Mayne (1995) | Vs = 14.1qc^0.359 e^−0.473; Clays; Hegazy and Mayne (1995) | Vs = 3.18qc^0.549 fs^0.025; Clays; Hegazy and Mayne (1995) | Vs = 13.2qc^0.192 σ′v^0.179; Sands; Hegazy and Mayne (1995) | Vs = 12qc^0.319 fs^−0.0466; Sands; Hegazy and Mayne (1995) | Vs = 9.44qc^0.435 e^−0.532; Clays; Mayne and Rix (1995) | Vs = 1.75·qc^0.627; Clays; Mayne and Rix (1995) | Vs = 32.3qc^0.089 fs^0.1219 z^0.215; ; Piratheepan (2002) | Vs = 11.9qc^0.269 fs^0.109 z^0.127; Clays; Piratheepan (2002) | Vs = 25.3qc^0.103 fs^0.029 z^0.155; Sands; Piratheepan (2002) | Vs,1 = 0.0831qc^0.103 (σ′v/Pa)^0.25 e^(1.788Ic); ; Hegazy and Mayne (2006) | Vs = 119 log fs + 18.5; ; Mayne (2006) | Vs = [10^(0.55Ic+1.68) (qt − σ′v/Pa)]^0.5; ; Robertson (2009) | Vs,1 = 149qc1^0.205; ; Karray et al. (2011) | Vs,1 = 16.88(qc1NCS)^0.489; ; Ulmer et al. (2020). Notes: Vs = shear wave velocity (m/s), Vs,1 = normalized shear wave velocity = Vs·(Pa /σ′v)^0.25, qc = cone tip resistance (kPa), qc1 = normalized cone tip resistance = (qc / Pa) (Pa /σ′v)^n qc1NCS = normalized cone tip resistance as detailed by Boulanger and Idriss (2014) fs = cone sleeve resistance (kPa), e = void ratio, z = depth of the soil layer, σ′v = effective vertical stress (kPa), Ic = soil index for estimating grain characteristics, and n = 0.5 for Ic < 2.6, else 0.75."
       ],
       "applicability": "Applies when estimating shear wave velocity (Vs) from cone penetration test results with the correlations of Table 8-28."
     },
