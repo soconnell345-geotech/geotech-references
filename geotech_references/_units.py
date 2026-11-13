@@ -3,7 +3,7 @@ and exact conversions for an SI caller of a US-unit lookup (REF-78, REF-77).
 
 The result convention
 ---------------------
-A lookup that returns a dict carries:
+A lookup that returns a dict (or a list of row dicts: each row) carries:
 
 - ``units``: ``{key: unit}`` for every key that holds a number anywhere in
   the result (a nested dict or a list of rows is keyed by its own key
@@ -25,7 +25,11 @@ A lookup that returns a dict carries:
 A lookup that returns a bare number, tuple or bool keeps that type; its
 docstring carries the label instead (the Returns entry names the quantity
 with its unit in square brackets in its first sentence, and the References
-section gives ``printed p. X (pdf_page_index N)``).
+section gives ``printed p. X (pdf_page_index N)``). A tuple names each
+element as its own Returns entry, each with its unit in brackets. A text or
+true/false result needs no unit, only the page. Both are written where the
+app reads them: the first sentence of the Returns text (at most 200
+characters) and the first 160 characters of the References text.
 
 :func:`labelled` adds ``units`` and the page keys to a dict result, so a
 lookup states them once, beside its ``def``, for every way it returns.
@@ -87,6 +91,7 @@ _SI_TO_US = {
     ("N", "lb"): (1.0, LBF_N),
     ("kN-m", "kip-in"): (1.0e3, 1000.0 * LBF_N * IN_M),
     ("mm^2", "in^2"): (1.0e-6, IN_M ** 2),
+    ("m^3/m", "ft^3/ft"): (1.0, FT_M ** 2),
     ("degC-days", "degF-days"): (1.8, 1.0),
 }
 
@@ -101,8 +106,8 @@ in in. inch inches ft feet yd mi mile miles mm cm m km
 psi ksi psf ksf tsf pci pcf pcy lb lbs lbf kip kips ton tons
 N kN MN Pa kPa MPa GPa kg g Mg t
 s sec min hr h day days yr year years
-deg degF degC rad F C degree degrees
-gal gpm cfs L mL ml ppm
+deg degF degC rad radian radians F C degree degrees
+gal gpm cfs L mL ml ppm ohm um mil mils blows bpf
 ESAL ESALs 18-kip
 """.split())
 
@@ -277,8 +282,9 @@ def _convert(bound, name, si_unit, us_unit):
 
 def labelled(units, *, printed_page=None, pdf_page_index=None, si=None,
              si_fixed=None):
-    """Decorate a lookup that returns a dict so its result says what each
-    number is and where it is printed.
+    """Decorate a lookup that returns a dict (or a list of row dicts, each
+    labelled the same way) so its result says what each number is and
+    where it is printed.
 
     Parameters
     ----------
@@ -331,8 +337,15 @@ def labelled(units, *, printed_page=None, pdf_page_index=None, si=None,
                 raise TypeError(f"{func.__name__} has its own unit_system")
 
         def label(out, conv):
-            if not isinstance(out, dict):
-                return out
+            if isinstance(out, dict):
+                return label_one(out, conv)
+            if (isinstance(out, (list, tuple)) and out
+                    and all(isinstance(row, dict) for row in out)):
+                # a list of rows: each row is labelled as a dict result
+                return type(out)(label_one(row, conv) for row in out)
+            return out
+
+        def label_one(out, conv):
             out = dict(out)     # never write into a table the module holds
             have = numeric_keys(out)
             mine = {k: v for k, v in units.items() if k in have}
