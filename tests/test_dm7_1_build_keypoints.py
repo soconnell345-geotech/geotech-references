@@ -132,7 +132,28 @@ WHERE_LISTS = [
     (8, "8-2.2.1", "Eq. 8-15", "Pa", "atmospheric pressure in same units as stress"),  # p. 411
     (8, "8-4.1.2", "Eq. 8-30", "eL", "void ratio at water content equal to the liquid limit"),  # p. 439
     (8, "8-4.3", "Eq. 8-32", "Pa", "atmospheric pressure (same units as Mds and σ′v)"),  # p. 442
+    (5, "5-5.2.2", "Eq. 5-14", "σ'p", "preconsolidation stress"),  # p. 241
 ]
+
+
+# pp. 98, 105, 106: the figure pointers as printed, at their places in the bodies
+FIGURE_POINTERS = [
+    (2, "2-9.1.1", "usually behind a piezocone. A schematic of the PMT equipment and test is shown in Figure 2-14."),
+    (2, "2-9.3.1.1", "from a volume-calibrated container as shown in Figure 2-19. The water balloon"),
+    (2, "2-9.3.1.2", "is the volume of the sample. A conventional drive cylinder is shown in Figure 2-20. This method"),
+]
+
+
+@pytest.mark.parametrize("ch,sid,text", FIGURE_POINTERS, ids=[c[1] for c in FIGURE_POINTERS])
+def test_figure_pointer_in_body(ch, sid, text):
+    assert text in _sec(ch, sid)["body"]
+
+
+# p. 446: the Eq. 8-35 where-list gives wn no unit
+def test_eq_8_35_states_no_printed_unit():
+    eq = [e for e in _sec(8, "8-4.4")["equations"] if e["id"] == "Eq. 8-35"][0]
+    assert "(in %)" not in eq["description"]
+    assert "prints no unit" in eq["description"]
 
 
 @pytest.mark.parametrize("ch,sid,eq_id,sym,definition", WHERE_LISTS,

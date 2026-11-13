@@ -556,7 +556,10 @@
         {
           "id": "Eq. 5-14",
           "description": "Primary consolidation settlement for overconsolidated soil with final stress > σ'p: sc = H · [Cεr · log(σ'p / σ'z0) + Cεc · log((σ'z0 + Δσz) / σ'p)]",
-          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_beyond"
+          "implemented_in": "geotech_references.dm7_1.chapter5.primary_consolidation_settlement_oc_beyond",
+          "variables": {
+            "σ'p": "preconsolidation stress"
+          }
         }
       ],
       "figures": [

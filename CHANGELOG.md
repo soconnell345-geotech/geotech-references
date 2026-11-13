@@ -102,8 +102,10 @@ are unchanged. Pages are printed page numbers.
   Eqs. 8-42 and 8-43 in the print's words ("k = hydraulic conductivity in
   m/s", pp. 462-463).
 - Also restored: the cyclic DSS failure definition and the sentence after
-  it in 3-2.5.1.1 (p. 162); three figure pointers in 2-9.1.2, 2-9.3.1.1 and
-  2-10.2 (Figures 2-17, 2-18, 2-25a); the printed lead-in to Eq. 2-2.
+  it in 3-2.5.1.1 (p. 162); six figure pointers, each at its printed
+  place: 2-9.1.1 (Figure 2-14, p. 98), 2-9.1.2 (2-17), 2-9.3.1.1 (2-18,
+  and 2-19 on p. 105), 2-9.3.1.2 (2-20, p. 106) and 2-10.2 (2-25a); the
+  printed lead-in to Eq. 2-2.
 - Table notes the bodies still lacked: Table 5-2, "Correlations provide
   values of Es in ksf units." (5-4.1.1, p. 231), the only unit printed for
   its Es correlations; Table 1-22, "A" preferred and "B" alternate method
@@ -120,6 +122,13 @@ are unchanged. Pages are printed page numbers.
   note: "Buchiagnani" (Table 5-4, p. 234; 5-10, p. 279; Buchignani
   elsewhere) and "pore pressured" (3-2.4.1.3, p. 148, stored silently
   corrected until now). 1-3.2.2.1's note gives p. 12 (was 11).
+- Where-lists: Eq. 5-14 carries its printed "σʹp = preconsolidation
+  stress" (p. 241); Eq. 8-35's description no longer gives wn "(in %)",
+  a unit the page does not print (p. 446), and says the library function
+  takes percent; the 8-7.3 list for Eq. 8-44 reads "unit weight of the
+  water" and "specific gravity of the solids" as printed (p. 463). 2-9.1.1
+  keeps "As shown in Figure 2-14" and the print's "includes of an" with a
+  note (p. 98).
 - Force words: the 287 summary, key point and applicability sentences
   holding must, required, requires, only, cannot, always or never were
   matched to the printed sentences they restate (190 found; 125 with the
