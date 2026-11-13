@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Chapter 6: Deep Foundations
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6: Deep Foundations
 
 Equations 6-1 through 6-80 covering scour critical velocity, pile impedance,
 static axial capacity (Beta and Alpha methods), base resistance (semi-empirical
@@ -8,7 +8,8 @@ uplift, settlement, lateral capacity (Broms method and Characteristic Load
 Method), structural capacity, buckling, and dynamic methods.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures, 16 January 2025
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 """
 
 import math
@@ -25,7 +26,7 @@ from geotech_references import _units as _u
 def critical_scour_velocity(D50: float) -> float:
     """Critical velocity v_c in m/s for the onset of scour in
     coarse-grained soil from the median particle size D50 in mm, Equation
-    6-1 of UFC 3-220-20: v_c = 0.35 D50^0.45.  The manual says the
+    6-1 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): v_c = 0.35 D50^0.45.  The manual says the
     equation "should not be extrapolated below sand-sized particles"
     (0.075 mm in its glossary), so a D50 below 0.075 mm is refused.
 
@@ -53,7 +54,7 @@ def critical_scour_velocity(D50: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-1,
     printed p. 371 (pdf_page_index 408); Glossary, "Sand-sized – Particle size
     between 0.075 mm and 4.75 mm", printed p. 681 (pdf_page_index 718).
     """
@@ -102,7 +103,7 @@ def pile_impedance(E: float, A: float, c: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-2,
     printed p. 388 (pdf_page_index 425).
     """
     if E <= 0.0:
@@ -138,7 +139,7 @@ def nominal_axial_resistance(R_s: float, R_b: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-3,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-3,
     printed p. 406 (pdf_page_index 443).
     """
     return R_s + R_b
@@ -166,7 +167,7 @@ def nominal_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-4,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-4,
     printed p. 406 (pdf_page_index 443).
     """
     return sum(f_s * A_s for f_s, A_s in segments)
@@ -192,7 +193,7 @@ def nominal_base_resistance(q_b: float, A_b: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-5,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-5,
     printed p. 406 (pdf_page_index 443).
     """
     return q_b * A_b
@@ -223,7 +224,7 @@ def beta_coefficient(K: float, delta_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-6,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-6,
     printed p. 411 (pdf_page_index 448).
     """
     if K < 0.0:
@@ -253,7 +254,7 @@ def beta_method_unit_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-7,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-7,
     printed p. 412 (pdf_page_index 449).
     """
     return beta * sigma_z_eff
@@ -283,7 +284,7 @@ def alpha_method_unit_shaft_resistance(alpha: float, s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-8,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-8,
     printed p. 414 (pdf_page_index 451).
     """
     return alpha * s_u
@@ -312,7 +313,7 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-9,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-9,
     printed p. 416 (pdf_page_index 453).
     """
     if s_u <= 0.0:
@@ -324,7 +325,7 @@ def alpha_tomlinson_transition(s_u: float, P_a: float) -> float:
 
 def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
     """Adhesion factor alpha (dimensionless) for drilled shafts after Chen
-    et al. (2011), Equation 6-10 of UFC 3-220-20:
+    et al. (2011), Equation 6-10 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     alpha = 0.3 + 0.17 Pa / su,ICU, limited to 1 as printed.
 
     A value of exactly 1 is the printed limit, not the equation.
@@ -346,7 +347,7 @@ def alpha_chen_drilled_shaft(s_u_ICU: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-10,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-10,
     printed p. 418 (pdf_page_index 455).
     """
     if s_u_ICU <= 0.0:
@@ -376,7 +377,7 @@ def su_ICU_from_UC(s_u_UC: float, OCR: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-11,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-11,
     printed p. 418 (pdf_page_index 455).
     """
     if OCR <= 0.0:
@@ -404,7 +405,7 @@ def su_ICU_from_UU(s_u_UU: float, OCR: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-12,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-12,
     printed p. 418 (pdf_page_index 455).
     """
     if OCR <= 0.0:
@@ -430,7 +431,7 @@ def su_ICU_from_DSS(s_u_DSS: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-13,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-13,
     printed p. 418 (pdf_page_index 455).
     """
     return 1.43 * s_u_DSS
@@ -438,7 +439,7 @@ def su_ICU_from_DSS(s_u_DSS: float) -> float:
 
 def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
     """Adhesion factor alpha (dimensionless) for drilled shafts and CFAs
-    after Salgado (2008), Equation 6-14 of UFC 3-220-20:
+    after Salgado (2008), Equation 6-14 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     alpha = 0.4 [1 - 0.12 ln(su / Pa)].  The manual gives it for soils
     with a clay fraction of at least 50 % and an OCR between 3 and 5 (for
     lower OCR it is expected to be conservative); the function cannot
@@ -461,7 +462,7 @@ def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-14,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-14,
     printed p. 418 (pdf_page_index 455).
     """
     if s_u <= 0.0:
@@ -473,7 +474,7 @@ def alpha_salgado_drilled_shaft(s_u: float, P_a: float) -> float:
 
 def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
     """Adhesion factor alpha (dimensionless) for CFAs after Coleman and
-    Arcement (2002), Equation 6-15 of UFC 3-220-20 (PDF p. 457, printed
+    Arcement (2002), Equation 6-15 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (PDF p. 457, printed
     p. 419), coded as alpha = 0.53 / (su/Pa).  The equation is printed as
     alpha = 0.53 (su/Pa), with no exponent; the coded exponent -1 is the
     one Curve E of Figure 6-14 follows.  The manual gives the relation as
@@ -508,7 +509,7 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-15,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-15,
     printed p. 419 (pdf_page_index 456).
     """
     if s_u <= 0.0:
@@ -528,7 +529,7 @@ def alpha_coleman_CFA(s_u: float, P_a: float) -> float:
 
 def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
     """Adhesion factor alpha (dimensionless) by the API P2A method
-    (Randolph and Murphy 1985), Equations 6-16 and 6-17 of UFC 3-220-20:
+    (Randolph and Murphy 1985), Equations 6-16 and 6-17 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     0.5 (su/sigma'z)^-0.5 for su/sigma'z <= 1 and 0.5 (su/sigma'z)^-0.25
     above 1, capped at 1.0 as the manual says for a strength ratio below
     0.25.
@@ -558,7 +559,7 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-16 and 6-17,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equations 6-16 and 6-17,
     printed p. 419 (pdf_page_index 456).
     """
     if sigma_z_eff <= 0.0:
@@ -573,7 +574,7 @@ def alpha_API_P2A(s_u: float, sigma_z_eff: float) -> float:
 
 def alpha_API_from_OCR(OCR: float) -> float:
     """Adhesion factor alpha (dimensionless) by the API guidance in terms
-    of OCR, Equations 6-18 and 6-19 of UFC 3-220-20: 1.07 OCR^-0.4 for
+    of OCR, Equations 6-18 and 6-19 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): 1.07 OCR^-0.4 for
     OCR <= 4.5 and 0.73 OCR^-0.2 above, capped at 1.0 as the manual says
     for an OCR below 1.2.
 
@@ -596,7 +597,7 @@ def alpha_API_from_OCR(OCR: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equations 6-18 and 6-19,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equations 6-18 and 6-19,
     printed p. 420 (pdf_page_index 457).
     """
     if OCR <= 0.0:
@@ -615,7 +616,7 @@ def alpha_API_from_OCR(OCR: float) -> float:
 def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
     """Unit base resistance q_b (in the stress unit of sigma'_zD) of a
     deep foundation element (Z/b >= 5) in drained conditions, Equation
-    6-20 of UFC 3-220-20: q_b = Nq sigma'_zD.
+    6-20 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): q_b = Nq sigma'_zD.
 
     .. math::
         q_b = N_q \\cdot \\sigma'_{zD}
@@ -634,7 +635,7 @@ def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-20,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-20,
     printed p. 421 (pdf_page_index 458).
     """
     return N_q * sigma_zD_eff
@@ -643,7 +644,7 @@ def unit_base_resistance_drained(N_q: float, sigma_zD_eff: float) -> float:
 def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
     """Base resistance factor Nq (dimensionless) for a deep foundation
     element (Z/b >= 5) in drained conditions, from the equation printed
-    under Table 6-17 of UFC 3-220-20 (after Cheng 2004):
+    under Table 6-17 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after Cheng 2004):
     Nq = 1.2 (Z/b)^-0.437 exp[6.34 (Z/b)^0.0486 tan phi'], limited to
     200 as the table prints ("unless supported by project-specific
     information").
@@ -680,7 +681,7 @@ def cheng_Nq(phi_deg: float, Z_over_b: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-17,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-17,
     printed p. 421 (pdf_page_index 458): Base Resistance Factors for Drained
     Conditions based on Soil Type and Friction Angle.
     """
@@ -707,7 +708,7 @@ def unit_base_resistance_vesic_drained(
 ) -> float:
     """Unit base resistance q_b (in the stress unit of sigma'_m) of a deep
     foundation element (Z/b >= 5) in drained conditions by Vesic's
-    method, Equation 6-21 of UFC 3-220-20: q_b = N*q sigma'_m.
+    method, Equation 6-21 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): q_b = N*q sigma'_m.
 
     .. math::
         q_b = N^*_q \\cdot \\sigma'_m
@@ -726,7 +727,7 @@ def unit_base_resistance_vesic_drained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-21,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-21,
     printed p. 421 (pdf_page_index 458).
     """
     return N_q_star * sigma_m_eff
@@ -737,7 +738,7 @@ def mean_effective_stress(
 ) -> float:
     """Mean effective stress sigma'_m (in the stress unit of the input) at
     b/2 below the pile base for K0 conditions, Equation 6-22 of
-    UFC 3-220-20: sigma'_m = (1 - (2/3) sin phi') sigma'_zD+b/2.
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025): sigma'_m = (1 - (2/3) sin phi') sigma'_zD+b/2.
 
     Used with Vesic's method (Equations 6-21, 6-23 and 6-24).
 
@@ -761,7 +762,7 @@ def mean_effective_stress(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-22,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-22,
     printed p. 422 (pdf_page_index 459).
     """
     phi_rad = math.radians(phi_deg)
@@ -771,7 +772,7 @@ def mean_effective_stress(
 def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
     """Vesic's (1977) modified bearing capacity factor N*q (dimensionless)
     for the base of a deep foundation in drained conditions, Equation 6-23
-    of UFC 3-220-20, from the peak friction angle and the reduced rigidity
+    of UFS 3-220-20 (2026; = UFC 3-220-20, 2025), from the peak friction angle and the reduced rigidity
     index I_rr.
 
     .. math::
@@ -796,7 +797,7 @@ def vesic_Nq_star(phi_deg: float, I_rr: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-23,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-23,
     printed p. 422 (pdf_page_index 459).
     """
     if I_rr <= 0.0:
@@ -836,7 +837,7 @@ def rigidity_index(E: float, nu: float, sigma_m_eff: float,
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-24,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-24,
     printed p. 422 (pdf_page_index 459).
     """
     phi_rad = math.radians(phi_deg)
@@ -866,7 +867,7 @@ def reduced_rigidity_index(I_r: float, epsilon_v: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-25,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-25,
     printed p. 422 (pdf_page_index 459).
     """
     return I_r / (1.0 + I_r * epsilon_v)
@@ -895,7 +896,7 @@ def volumetric_strain(q_b_app: float, E_s: float, F_nu: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-26,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-26,
     printed p. 423 (pdf_page_index 460).
     """
     if E_s <= 0.0:
@@ -927,7 +928,7 @@ def unit_base_resistance_undrained(N_c_star: float, s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-27,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-27,
     printed p. 423 (pdf_page_index 460).
     """
     return N_c_star * s_u
@@ -951,7 +952,7 @@ def vesic_Nc_star(I_rr: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-28,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-28,
     printed p. 423 (pdf_page_index 460).
     """
     if I_rr <= 0.0:
@@ -979,7 +980,7 @@ def undrained_rigidity_index(E_u: float, s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-29,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-29,
     printed p. 423 (pdf_page_index 460).
     """
     if s_u <= 0.0:
@@ -989,7 +990,7 @@ def undrained_rigidity_index(E_u: float, s_u: float) -> float:
 
 def Nc_star_FHWA_from_Ir(I_r: float) -> float:
     """Base resistance factor N*c (dimensionless) from the rigidity index,
-    Equation 6-30 of UFC 3-220-20 (after FHWA 1999):
+    Equation 6-30 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after FHWA 1999):
     N*c = 1.33 [ln(Ir) + 1], limited to 9 as printed.  The manual gives it
     for formed-in-place columns bearing on fine-grained soil with an
     undrained shear strength below 2 ksf; otherwise N*c = 9
@@ -1013,7 +1014,7 @@ def Nc_star_FHWA_from_Ir(I_r: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-30,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-30,
     printed p. 424 (pdf_page_index 461).
     """
     if I_r <= 0.0:
@@ -1024,7 +1025,7 @@ def Nc_star_FHWA_from_Ir(I_r: float) -> float:
 
 def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
     """Base resistance factor N*c (dimensionless) from the normalized
-    undrained shear strength, Equation 6-31 of UFC 3-220-20 (after FHWA
+    undrained shear strength, Equation 6-31 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after FHWA
     1999): N*c = 10.2 - 12.4 [0.1 / (0.1 + su/Pa)], limited to 9 as
     printed.  The manual gives it for formed-in-place columns bearing on
     fine-grained soil with su below 2 ksf; the equation reaches
@@ -1056,7 +1057,7 @@ def Nc_star_FHWA_from_su(s_u: float, P_a: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-31,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-31,
     printed p. 424 (pdf_page_index 461).
     """
     if P_a <= 0.0:
@@ -1076,7 +1077,7 @@ def lcpc_unit_shaft_resistance(
     q_c: float, P_a: float, k_s: float, fp_over_Pa: float
 ) -> float:
     """Nominal unit side resistance f_s (in the stress unit of q_c and Pa)
-    by the LCPC method from the CPT, Equation 6-32 of UFC 3-220-20:
+    by the LCPC method from the CPT, Equation 6-32 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     f_s = (Pa / ks)(qc / Pa), limited to Pa (fp/Pa) as printed, with ks
     from Table 6-21 and the ratio fp/Pa from Table 6-22.
 
@@ -1116,7 +1117,7 @@ def lcpc_unit_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-32,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-32,
     printed p. 425 (pdf_page_index 462); Table 6-22,
     printed p. 427 (pdf_page_index 464).
     """
@@ -1139,7 +1140,7 @@ def lcpc_unit_base_resistance(
     q_c_avg: float, P_a: float, k_t: float
 ) -> float:
     """Nominal unit base resistance q_b (in the stress unit of q_c,a) by
-    the LCPC method from the CPT, Equation 6-33 of UFC 3-220-20:
+    the LCPC method from the CPT, Equation 6-33 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     q_b = Pa kt (qc,a / Pa), that is kt times the average cone tip
     resistance near the base, with kt from Table 6-23 (0.2 to 0.55).
 
@@ -1168,7 +1169,7 @@ def lcpc_unit_base_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-33,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-33,
     printed p. 425 (pdf_page_index 462).
     """
     if k_t <= 0.0:
@@ -1206,7 +1207,7 @@ def micropile_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-34,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-34,
     printed p. 428 (pdf_page_index 465).
     """
     if b <= 0.0:
@@ -1246,7 +1247,7 @@ def rock_socket_unit_shaft_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-35,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-35,
     printed p. 430 (pdf_page_index 467).
     """
     if P_a <= 0.0:
@@ -1277,7 +1278,7 @@ def rock_socket_unit_base_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-36,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-36,
     printed p. 430 (pdf_page_index 467).
     """
     return N_cr_star * q_u
@@ -1313,7 +1314,7 @@ def group_axial_capacity(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-37,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-37,
     printed p. 431 (pdf_page_index 468).
     """
     return min(n * eta_g * R_r, R_r_gblock)
@@ -1350,7 +1351,7 @@ def block_failure_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-38,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-38,
     printed p. 433 (pdf_page_index 470).
     """
     return 2.0 * Z * (B + L) * f_s1 + B * L * s_u2 * N_c
@@ -1358,7 +1359,7 @@ def block_failure_resistance(
 
 def block_failure_Nc(B: float, L: float, Z: float) -> float:
     """Bearing capacity factor Nc (dimensionless) for block failure of a
-    group of columns (Brinch-Hansen 1957), Equation 6-39 of UFC 3-220-20:
+    group of columns (Brinch-Hansen 1957), Equation 6-39 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     Nc = 5 (1 + 0.2 B/L)(1 + 0.2 Z/B), limited to 9 as printed.
 
     A value of exactly 9 is the printed limit, not the equation (the
@@ -1385,7 +1386,7 @@ def block_failure_Nc(B: float, L: float, Z: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-39,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-39,
     printed p. 433 (pdf_page_index 470); Appendix B Example 5,
     printed p. 638 (pdf_page_index 675).
     """
@@ -1406,7 +1407,7 @@ def group_uplift_capacity(
     R_r_ublock: float
 ) -> float:
     """Combined factored uplift capacity R_r,gu (force) of a group of n
-    columns, Equation 6-40 of UFC 3-220-20: the smaller of
+    columns, Equation 6-40 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): the smaller of
     n (R_r,s + W_r,e) + W_r,e,cap and the block capacity R_r,ublock.
 
     The effective weight of a single column, W_r,e, is counted for each
@@ -1436,7 +1437,7 @@ def group_uplift_capacity(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-40,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-40,
     printed p. 435 (pdf_page_index 472).
     """
     individual = n * (R_r_s + W_r_e) + W_r_e_cap
@@ -1445,7 +1446,7 @@ def group_uplift_capacity(
 
 def uplift_block_volume(B: float, L: float, Z: float) -> float:
     """Volume V_block (length^3) of the soil block lifted by a group of
-    columns in coarse-grained soil, Equation 6-41 of UFC 3-220-20, for a
+    columns in coarse-grained soil, Equation 6-41 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025), for a
     uniform soil profile: V = B L Z + (Z^2 / 4)(B + L) + Z^3 / 12, the
     truncated prism of Figure 6-16(a) with sides at 4V:1H.
 
@@ -1473,7 +1474,7 @@ def uplift_block_volume(B: float, L: float, Z: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-41,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-41,
     printed p. 436 (pdf_page_index 473).
     """
     return B * L * Z + Z ** 2 / 4.0 * (B + L) + Z ** 3 / 12.0
@@ -1512,7 +1513,7 @@ def uplift_block_weight_undrained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-42,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-42,
     printed p. 436 (pdf_page_index 473).
     """
     return B * L * (Z1 * gamma_m + Z2 * gamma_b) + W_cap
@@ -1546,7 +1547,7 @@ def uplift_block_capacity_undrained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-43,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-43,
     printed p. 436 (pdf_page_index 473).
     """
     return 2.0 * Z * (B + L) * s_u_avg + W_e_g
@@ -1582,7 +1583,7 @@ def elastic_compression_pile(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-45,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-45,
     printed p. 441 (pdf_page_index 478).
     """
     if A_p <= 0.0:
@@ -1627,7 +1628,7 @@ def meyerhof_group_settlement(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-46,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-46,
     printed p. 442 (pdf_page_index 479).
     """
     if N1_60 <= 0.0:
@@ -1640,7 +1641,7 @@ def meyerhof_group_settlement(
 def meyerhof_influence_factor(Z: float, B: float) -> float:
     """Influence factor I_f (dimensionless) for the settlement of a pile
     group in coarse-grained soil by Equation 6-46, Equation 6-47 of
-    UFC 3-220-20: I_f = the larger of 1 - Z / (12 B) and 0.5, with Z the
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025): I_f = the larger of 1 - Z / (12 B) and 0.5, with Z the
     length of the group and B its width in the same unit.
 
     I_f falls from 1 for a short group to 0.5 at Z = 6 B and stays 0.5
@@ -1663,7 +1664,7 @@ def meyerhof_influence_factor(Z: float, B: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-47,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-47,
     printed p. 442 (pdf_page_index 479).
     """
     if B <= 0.0:
@@ -1678,7 +1679,7 @@ def drilled_shaft_base_resistance_at_4pct(
 ) -> float:
     """Nominal base resistance R'_b (in the force unit of R_b) of a
     drilled shaft at a displacement of 4 % of its diameter, Equation 6-48
-    of UFC 3-220-20: R'_b = R_b for fine-grained (cohesive) soils and
+    of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): R'_b = R_b for fine-grained (cohesive) soils and
     0.71 R_b for coarse-grained (cohesionless) soils.
 
     Used with Figure 6-17 and Table 6-31 (Chen and Kulhawy 2002): the
@@ -1706,7 +1707,7 @@ def drilled_shaft_base_resistance_at_4pct(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-48,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-48,
     printed p. 443 (pdf_page_index 480).
     """
     if soil_type == "fine":
@@ -1720,7 +1721,7 @@ def drilled_shaft_base_resistance_at_4pct(
 def equivalent_footing_width(B: float, z2: float) -> float:
     """Width B' (in the length unit of B) of the equivalent footing for
     the settlement of a group of deep foundation elements, Equation 6-49
-    of UFC 3-220-20: B' = B + z2 / 2, with z2 the depth interval over
+    of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): B' = B + z2 / 2, with z2 the depth interval over
     which the load spreads at 4V:1H above the equivalent footing.
 
     Below the equivalent footing the load spreads at 2V:1H
@@ -1744,7 +1745,7 @@ def equivalent_footing_width(B: float, z2: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-49,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-49,
     printed p. 445 (pdf_page_index 482).
     """
     return B + z2 / 2.0
@@ -1753,7 +1754,7 @@ def equivalent_footing_width(B: float, z2: float) -> float:
 def equivalent_footing_length(L: float, z2: float) -> float:
     """Length L' (in the length unit of L) of the equivalent footing for
     the settlement of a group of deep foundation elements, Equation 6-50
-    of UFC 3-220-20: L' = L + z2 / 2, with z2 the depth interval over
+    of UFS 3-220-20 (2026; = UFC 3-220-20, 2025): L' = L + z2 / 2, with z2 the depth interval over
     which the load spreads at 4V:1H above the equivalent footing.
 
     .. math::
@@ -1773,7 +1774,7 @@ def equivalent_footing_length(L: float, z2: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-50,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-50,
     printed p. 445 (pdf_page_index 482).
     """
     return L + z2 / 2.0
@@ -1805,7 +1806,7 @@ def stress_change_2V1H(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-51,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-51,
     printed p. 445 (pdf_page_index 482).
     """
     denom = (B_prime + z_prime) * (L_prime + z_prime)
@@ -1843,7 +1844,7 @@ def stress_change_neutral_plane(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-52,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-52,
     printed p. 448 (pdf_page_index 485).
     """
     return stress_change_2V1H(Q, B_prime, L_prime, z_prime) + delta_sigma_other
@@ -1881,7 +1882,7 @@ def settlement_clay(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-53,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-53,
     printed p. 448 (pdf_page_index 485).
     """
     if sigma_z0_eff <= 0.0:
@@ -1932,7 +1933,7 @@ def settlement_sand_elastic(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-54,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-54,
     printed p. 449 (pdf_page_index 486).
     """
     if E_s <= 0.0:
@@ -1965,7 +1966,7 @@ def broms_factored_load(P_dead: float, P_live: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-55,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-55,
     printed p. 456 (pdf_page_index 493).
     """
     return 1.5 * P_dead + 2.0 * P_live
@@ -1991,7 +1992,7 @@ def broms_factored_moment(M_dead: float, M_live: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-56,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-56,
     printed p. 456 (pdf_page_index 493).
     """
     return 1.5 * M_dead + 2.0 * M_live
@@ -2015,7 +2016,7 @@ def broms_factored_su(s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-57,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-57,
     printed p. 456 (pdf_page_index 493).
     """
     return 0.75 * s_u
@@ -2039,7 +2040,7 @@ def broms_factored_phi(phi_deg: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-58,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-58,
     printed p. 456 (pdf_page_index 493).
     """
     return math.degrees(math.atan(0.75 * math.tan(math.radians(phi_deg))))
@@ -2069,7 +2070,7 @@ def broms_undrained_f(P_t_ult: float, s_u_star: float, b: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-59,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-59,
     printed p. 456 (pdf_page_index 493).
     """
     if s_u_star <= 0.0:
@@ -2108,7 +2109,7 @@ def broms_undrained_g(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-60,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-60,
     printed p. 457 (pdf_page_index 494).
     """
     numerator = M_t_ult + P_t_ult * (1.5 * b + 0.5 * f)
@@ -2140,7 +2141,7 @@ def broms_undrained_Zmin(b: float, f: float, g: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-61,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-61,
     printed p. 457 (pdf_page_index 494).
     """
     return 1.5 * b + f + g
@@ -2172,7 +2173,7 @@ def broms_drained_passive(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-62,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-62,
     printed p. 457 (pdf_page_index 494).
     """
     return 1.5 * gamma_eff * b * K_P * Z_min ** 2
@@ -2217,7 +2218,7 @@ def broms_drained_Zmin(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-63,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-63,
     printed p. 458 (pdf_page_index 495).
     """
     denom = gamma_eff * b * K_P
@@ -2258,7 +2259,7 @@ def broms_drained_zero_shear_depth(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-64,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-64,
     printed p. 458 (pdf_page_index 495).
     """
     denom = 1.5 * gamma_eff * b * K_P
@@ -2299,7 +2300,7 @@ def broms_drained_max_moment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-65,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-65,
     printed p. 459 (pdf_page_index 496).
     """
     return M_t_ult + P_t_ult * f - gamma_eff * b * K_P * f ** 3 / 2.0
@@ -2337,7 +2338,7 @@ def clm_deflection_from_load(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-66,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-66,
     printed p. 462 (pdf_page_index 499).
     """
     if P_c <= 0.0:
@@ -2373,7 +2374,7 @@ def clm_load_from_deflection(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-67,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-67,
     printed p. 462 (pdf_page_index 499).
     """
     if a <= 0.0 or b <= 0.0:
@@ -2409,7 +2410,7 @@ def clm_deflection_from_moment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-68,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-68,
     printed p. 462 (pdf_page_index 499).
     """
     if M_c <= 0.0:
@@ -2445,7 +2446,7 @@ def clm_moment_from_deflection(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-69,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-69,
     printed p. 462 (pdf_page_index 499).
     """
     if a <= 0.0 or b <= 0.0:
@@ -2481,7 +2482,7 @@ def clm_max_moment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-70,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-70,
     printed p. 463 (pdf_page_index 500).
     """
     if P_c <= 0.0:
@@ -2494,7 +2495,7 @@ def mobilized_passive_resistance(
 ) -> float:
     """Mobilized passive resistance P_P,mob (in the force unit of P_P,ult)
     on a pile cap that has moved laterally by y, Equation 6-71 of
-    UFC 3-220-20: P_P,mob / P_P,ult = y / (0.85 y + 0.006 H_cap), limited
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025): P_P,mob / P_P,ult = y / (0.85 y + 0.006 H_cap), limited
     to 1 as printed.
 
     A result equal to P_P,ult is the printed limit: the hyperbola
@@ -2523,7 +2524,7 @@ def mobilized_passive_resistance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-71,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-71,
     printed p. 467 (pdf_page_index 504).
     """
     if P_P_ult <= 0.0:
@@ -2560,7 +2561,7 @@ def driving_stress_limit_steel(phi_da: float, f_y: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-72,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-72,
     printed p. 469 (pdf_page_index 506).
     """
     return phi_da * 0.9 * f_y
@@ -2591,7 +2592,7 @@ def driving_stress_limit_concrete_compression(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-73,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-73,
     printed p. 470 (pdf_page_index 507).
     """
     return phi_da * (0.85 * f_c_prime - f_pe)
@@ -2627,7 +2628,7 @@ def driving_stress_limit_concrete_tension(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-74,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-74,
     printed p. 470 (pdf_page_index 507).
     """
     return phi_da * (0.095 * math.sqrt(f_c_prime) + f_pe)
@@ -2653,7 +2654,7 @@ def driving_stress_limit_timber(phi_da: float, f_cto: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-75,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-75,
     printed p. 470 (pdf_page_index 507).
     """
     return phi_da * 2.6 * f_cto
@@ -2667,7 +2668,7 @@ def depth_to_fixity_undrained(
     E_p: float, I_p: float, b: float, k_h: float
 ) -> float:
     """Depth to fixity Z_f (length) of a pile element in uniform undrained
-    soil, Equation 6-76 of UFC 3-220-20 (Davisson and Robinson 1965):
+    soil, Equation 6-76 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (Davisson and Robinson 1965):
     Z_f = sqrt(2) (Ep Ip / (b kh))^0.25, in any consistent units.
 
     Z_f is the embedded length that adds to the unbraced length for
@@ -2696,7 +2697,7 @@ def depth_to_fixity_undrained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-76,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-76,
     printed p. 474 (pdf_page_index 511).
     """
     if b <= 0.0 or k_h <= 0.0:
@@ -2724,7 +2725,7 @@ def undrained_subgrade_modulus(C: float, s_u: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-77,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-77,
     printed p. 474 (pdf_page_index 511).
     """
     return C * s_u
@@ -2754,7 +2755,7 @@ def depth_to_fixity_drained(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-78,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-78,
     printed p. 475 (pdf_page_index 512).
     """
     if n_h <= 0.0:
@@ -2770,7 +2771,7 @@ def drag_force_check(
     Q_d: float, Q_np: float, P_r: float
 ) -> bool:
     """Whether a pile passes the structural strength check with drag
-    force, Equation 6-80 of UFC 3-220-20 (True or False):
+    force, Equation 6-80 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (True or False):
     1.25 Q_d + 1.10 (Q_np - Q_d) <= P_r, all three in one force unit.
 
     The drag force is Q_np - Q_d, the load at the neutral plane less the
@@ -2798,7 +2799,7 @@ def drag_force_check(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Equation 6-80 and Figure 6-26,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Equation 6-80 and Figure 6-26,
     printed p. 478 (pdf_page_index 515); Appendix B Example 5,
     printed p. 640 (pdf_page_index 677).
     """
@@ -2821,7 +2822,7 @@ _TABLE_6_18_FNU = {
 
 def table_6_18_Fnu(poisson_ratio: float, pile_shape: str) -> float:
     """Strain factor F_nu (dimensionless) for approximating the volumetric
-    strain below a pile base (Equation 6-26), Table 6-18 of UFC 3-220-20,
+    strain below a pile base (Equation 6-26), Table 6-18 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025),
     by pile shape ("square" or "circular") for Poisson's ratio from 0.2
     to 0.5, the columns the table prints.
 
@@ -2851,7 +2852,7 @@ def table_6_18_Fnu(poisson_ratio: float, pile_shape: str) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-18 (Factors for
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-18 (Factors for
     Approximating Volumetric Strain), printed p. 423 (pdf_page_index 460).
     """
     shape = pile_shape.lower().strip()
@@ -2992,7 +2993,7 @@ def _lcpc_group(group: str, table: str, merged: bool = False) -> int:
 
 def table_6_21_ks(soil_type: str, group: str) -> float:
     """Side resistance factor ks (dimensionless) of the LCPC CPT method,
-    Table 6-21 of UFC 3-220-20 (after Bustamante and Gianeselli 1982), by
+    Table 6-21 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after Bustamante and Gianeselli 1982), by
     the table's soil row and foundation group (I-A, I-B, II-A, II-B); used
     in Equation 6-32, f_s = (Pa / ks)(qc / Pa).
 
@@ -3030,7 +3031,7 @@ def table_6_21_ks(soil_type: str, group: str) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-21 (Side Resistance Factor),
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-21 (Side Resistance Factor),
     printed p. 427 (pdf_page_index 464); groups on
     printed p. 425 (pdf_page_index 462).
     """
@@ -3042,7 +3043,7 @@ def table_6_22_fp(
     soil_type: str, group: str, careful_construction: bool = False
 ) -> float:
     """Maximum unit side resistance of the LCPC CPT method as the ratio
-    fp/Pa (dimensionless, NOT a stress), Table 6-22 of UFC 3-220-20 (after
+    fp/Pa (dimensionless, NOT a stress), Table 6-22 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after
     Bustamante and Gianeselli 1982), by the table's soil row and
     foundation group; the limit in Equation 6-32 is Pa (fp/Pa).
 
@@ -3084,7 +3085,7 @@ def table_6_22_fp(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-22 (Maximum Unit Side
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-22 (Maximum Unit Side
     Resistance), printed p. 427 (pdf_page_index 464).
     """
     row = _lcpc_soil_row(soil_type, "Table 6-22")
@@ -3097,7 +3098,7 @@ def table_6_22_fp(
 
 def table_6_23_kt(soil_type: str, group: str) -> float:
     """Base bearing factor kt (dimensionless) of the LCPC CPT method,
-    Table 6-23 of UFC 3-220-20 (after Bustamante and Gianeselli 1982), by
+    Table 6-23 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after Bustamante and Gianeselli 1982), by
     the table's soil row and foundation group (I or II); used in
     Equation 6-33, q_b = Pa kt (qc,a / Pa), so q_b is kt times the average
     cone tip resistance near the base.
@@ -3135,7 +3136,7 @@ def table_6_23_kt(soil_type: str, group: str) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-23 (Base Bearing
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-23 (Base Bearing
     Factor), printed p. 427 (pdf_page_index 464).
     """
     row = _lcpc_soil_row(soil_type, "Table 6-23")
@@ -3170,7 +3171,7 @@ _TABLE_6_36_EQUATIONS = {
     printed_page="462", pdf_page_index=499)
 def table_6_36_clm(soil_type: str, ratio: str, fixity: str) -> dict:
     """Constant a and exponent n (both dimensionless) of the Characteristic
-    Load Method deflection equations, Table 6-36 of UFC 3-220-20 (after
+    Load Method deflection equations, Table 6-36 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) (after
     Brettmann and Duncan 1996), by soil type, ratio (Pt/Pc or Mt/Mc) and
     fixity: y_t/b = a (P_t/P_c)^n (Eq. 6-66) or y_t/b = a (M_t/M_c)^n
     (Eq. 6-68).
@@ -3204,7 +3205,7 @@ def table_6_36_clm(soil_type: str, ratio: str, fixity: str) -> dict:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-36 (Constants for Load and
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-36 (Constants for Load and
     Moment Deflection Equations) and Equations 6-66 to 6-69,
     printed p. 462 (pdf_page_index 499).
     """
@@ -3243,7 +3244,7 @@ _TABLE_6_37_CLM = {
     printed_page="464", pdf_page_index=501)
 def table_6_37_clm(soil_type: str, fixity: str) -> dict:
     """Coefficient a and exponent n (both dimensionless) for the maximum
-    moment by the Characteristic Load Method, Table 6-37 of UFC 3-220-20,
+    moment by the Characteristic Load Method, Table 6-37 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025),
     by soil (clay or sand) and fixity (free or fixed):
     M_max / M_c = a (P_t / P_c)^n (Eq. 6-70).
 
@@ -3273,7 +3274,7 @@ def table_6_37_clm(soil_type: str, fixity: str) -> dict:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 6, Table 6-37 (Coefficients for
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 6, Table 6-37 (Coefficients for
     Estimating the Maximum Moment), printed p. 464 (pdf_page_index 501);
     Equation 6-70, printed p. 463 (pdf_page_index 500).
     """

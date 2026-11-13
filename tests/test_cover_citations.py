@@ -47,7 +47,9 @@ MONTHS = {m: i + 1 for i, m in enumerate(
 # None, whether the package's Python cites "<designation>, <title>, <date>").
 COVERS = [
     ("dm7_1", "ufc_3_220_10_2026.pdf", "UFS 3-220-10", "16 January 2026", True),
-    ("dm7_2", "ufc_3_220_20_2025.pdf", "UFC 3-220-20", "16 January 2025", True),
+    # REF-75: the held PDF is the 2025 UFC; the package cites the 2026 UFS
+    # reissue, the same text and pages (see CITED_AS).
+    ("dm7_2", "ufc_3_220_20_2025.pdf", "UFC 3-220-20", "16 January 2025", False),
     ("ufc_collapse", None, "UFC 4-023-03", "14 July 2009", False),
     ("ufc_concrete_practice", None, "UFC 3-250-04", "29 January 2024", False),
     ("ufc_flexible_practice", None, "UFC 3-250-03", "30 May 2018", False),
@@ -91,6 +93,10 @@ COVERS = [
     # print, so it cites the cover.
     ("ufc_backfill", None, "UFC 3-220-04FA", "16 January 2004", False),
 ]
+
+
+#: Packages cited under a designation other than the held PDF's cover.
+CITED_AS = {"dm7_2": "UFS 3-220-20"}
 
 
 #: Volumes checked against another page than the cover (0-based PDF pages).
@@ -211,7 +217,7 @@ def test_cited_designation_and_date_on_cover(pkg, pdf, designation, date,
 
     cited = _cited_ids(pkg)
     assert cited, f"no citation found for {pkg}"
-    wrong = [(w, c) for w, c in cited if _norm(c or "") != _norm(designation)]
+    wrong = [(w, c) for w, c in cited if _norm(c or "") != _norm(CITED_AS.get(pkg, designation))]
     assert not wrong, f"{pkg} cited as something else: {wrong}"
 
     if py_dates:
@@ -246,10 +252,10 @@ def test_gec12_vol2_cover_and_documentation_page():
 
 
 @pytest.mark.parametrize("pkg,designation", [
-    ("dm7_1", "UFS 3-220-10"), ("dm7_2", "UFC 3-220-20")])
+    ("dm7_1", "UFS 3-220-10"), ("dm7_2", "UFS 3-220-20")])
 def test_no_citation_with_another_series_prefix(pkg, designation):
     series, number = designation.split(" ", 1)
-    other = re.compile(r"\b(?!%s\b)UF[A-Z]\s+%s(?![\d])"
+    other = re.compile(r"\b(?<!= )(?<!pages of )(?!%s\b)UF[A-Z]\s+%s(?![\d])"
                        % (series, re.escape(number)))
     hits = []
     for f in sorted((PKG / pkg).rglob("*")):
@@ -299,3 +305,33 @@ def test_dm7_1_equation_pages_are_the_2026_printed_pages():
         if p not in where:
             wrong.append((name, eq, p, sorted(x for x in where if x)))
     assert not wrong, wrong[:10]
+
+
+def test_dm7_2_is_cited_as_ufs_3_220_20_not_the_2025_ufc():
+    """REF-75: no dm7_2 lookup's ``reference`` string or docstring
+    References section cites "UFC 3-220-20" without the UFS designation (the
+    2025 UFC is named only as what the UFS reissues: "UFS 3-220-20 (2026; =
+    UFC 3-220-20, 2025)")."""
+    import importlib
+    import inspect
+
+    from agents import dm7_agent
+
+    bare = []
+    for name in sorted(p.stem for p in (PKG / "dm7_2").glob("*.py")
+                       if p.stem != "__init__"):
+        mod = importlib.import_module(f"geotech_references.dm7_2.{name}")
+        for fname, fn in inspect.getmembers(mod, inspect.isfunction):
+            if fn.__module__ != mod.__name__:
+                continue
+            doc = inspect.getdoc(fn) or ""
+            refs = doc.split("References\n----------")[-1] \
+                if "References\n----------" in doc else ""
+            for text in (refs,):
+                if "UFC 3-220-20" in text and "UFS 3-220-20" not in text:
+                    bare.append(f"{name}.{fname}")
+    src = (Path(dm7_agent.__file__)).read_text(encoding="utf-8")
+    for m in re.finditer(r'"reference":\s*"([^"]*)"', src):
+        if "UFC 3-220-20" in m.group(1) and "UFS 3-220-20" not in m.group(1):
+            bare.append(m.group(0))
+    assert not bare, bare[:10]

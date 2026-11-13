@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Chapter 7: Probability and Reliability in Geotechnical Engineering
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7: Probability and Reliability in Geotechnical Engineering
 
 Equations 7-1 through 7-16 covering basic statistics, probability distributions,
 reliability index, first-order second-moment (FOSM) method, point estimate
@@ -7,8 +7,8 @@ method, Monte Carlo simulation concepts, hazard analysis, and load and
 resistance factor design (LRFD) concepts.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures,
-    16 January 2025, Chapter 7, pp. 546-595.
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025), Chapter 7, pp. 546-595.
 """
 
 import math
@@ -42,7 +42,7 @@ def sample_mean(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Table 7-1,
     printed p. 510 (pdf_page_index 547).
     """
     n = len(x)
@@ -77,7 +77,7 @@ def sample_variance(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Table 7-1,
     printed p. 510 (pdf_page_index 547).
     """
     n = len(x)
@@ -107,7 +107,7 @@ def sample_standard_deviation(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Table 7-1,
     printed p. 510 (pdf_page_index 547).
     """
     return math.sqrt(sample_variance(x))
@@ -139,7 +139,7 @@ def coefficient_of_variation(x: Sequence[float]) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Table 7-1,
     printed p. 510 (pdf_page_index 547).
     """
     x_bar = sample_mean(x)
@@ -174,7 +174,7 @@ def coefficient_of_variation_from_params(std_dev: float, mean: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Table 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Table 7-1,
     printed p. 510 (pdf_page_index 547).
     """
     if std_dev < 0.0:
@@ -226,7 +226,7 @@ def cumulative_mass_function(pmf_values: Sequence[float],
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-1,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-1,
     printed p. 515 (pdf_page_index 552).
     """
     n = len(pmf_values)
@@ -296,7 +296,7 @@ def cumulative_density_function(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-2,
     printed p. 515 (pdf_page_index 552).
     """
     if n_steps < 1:
@@ -351,7 +351,7 @@ def pdf_from_cdf(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-3,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-3,
     printed p. 517 (pdf_page_index 554).
     """
     if dx <= 0.0:
@@ -402,7 +402,7 @@ def probability_over_interval(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-4,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-4,
     printed p. 517 (pdf_page_index 554).
     """
     if x2 < x1:
@@ -459,7 +459,7 @@ def combined_cov(cov_w: float, cov_e: float, cov_t: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-5,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-5,
     printed p. 524 (pdf_page_index 561).
     """
     if cov_w < 0.0:
@@ -513,7 +513,7 @@ def std_dev_from_range(hcv: float, lcv: float, n: float = 6.0) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-6,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-6,
     printed p. 530 (pdf_page_index 567).
     """
     if hcv <= lcv:
@@ -559,7 +559,7 @@ def reliability_index(mu_g: float, sigma_g: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-7,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-7,
     printed p. 533 (pdf_page_index 570).
     """
     if sigma_g <= 0.0:
@@ -607,7 +607,7 @@ def fosm_mean(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-8,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-8,
     printed p. 533 (pdf_page_index 570).
     """
     if len(means) == 0:
@@ -661,7 +661,7 @@ def fosm_variance_analytical(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-9,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-9,
     printed p. 534 (pdf_page_index 571).
     """
     n = len(partial_derivatives)
@@ -731,7 +731,7 @@ def fosm_central_difference(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-10,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-10,
     printed p. 535 (pdf_page_index 572).
     """
     n = len(means)
@@ -799,7 +799,7 @@ def fosm_variance_numerical(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-11,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-11,
     printed p. 535 (pdf_page_index 572).
     """
     n = len(means)
@@ -854,7 +854,7 @@ def reliability_index_lognormal(mu_g: float, sigma_g: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-12,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-12,
     printed p. 535 (pdf_page_index 572).
     """
     if mu_g <= 0.0:
@@ -918,7 +918,7 @@ def point_estimate_mean(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-13,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-13,
     printed p. 536 (pdf_page_index 573).
     """
     n = len(means)
@@ -990,7 +990,7 @@ def point_estimate_variance(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-14,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-14,
     printed p. 536 (pdf_page_index 573).
     """
     n = len(means)
@@ -1053,7 +1053,7 @@ def rate_of_exceedance(return_period: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-15,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-15,
     printed p. 548 (pdf_page_index 585).
     """
     if return_period <= 0.0:
@@ -1110,7 +1110,7 @@ def rate_of_exceedance_from_probability(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equation 7-16,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equation 7-16,
     printed p. 549 (pdf_page_index 586).
     """
     if prob_exceedance <= 0.0 or prob_exceedance >= 1.0:
@@ -1150,7 +1150,7 @@ def probability_of_failure_normal(beta: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Section 7-4.2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Section 7-4.2,
     printed p. 533 (pdf_page_index 570).
     """
     return 0.5 * math.erfc(beta / math.sqrt(2.0))
@@ -1200,7 +1200,7 @@ def first_order_second_moment(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equations 7-8, 7-10,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equations 7-8, 7-10,
     7-11, 7-7, printed pp. 533-535 (pdf_page_index 570-572).
     """
     mu_g = fosm_mean(g_func, means)
@@ -1256,7 +1256,7 @@ def point_estimate_method(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Equations 7-13, 7-14, 7-7,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Equations 7-13, 7-14, 7-7,
     printed p. 536 (pdf_page_index 573).
     """
     mu_g = point_estimate_mean(g_func, means, std_devs)
@@ -1328,7 +1328,7 @@ def monte_carlo_simulation(
 
     References
     ----------
-    UFC 3-220-20, 16 Jan 2025, Chapter 7, Section 7-4.2.4,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 7, Section 7-4.2.4,
     printed pp. 540-541 (pdf_page_index 577-578).
     """
     import random as _random

@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Chapter 2: Excavations
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 2: Excavations
 
 Equations 2-1 through 2-10 covering critical height of vertical cuts in clay,
 normalized wall stiffness for deep excavations, angular distortion and
@@ -8,8 +8,8 @@ stiff and soft clays, scaled distance and peak particle velocity for
 blasting design, and permeability of sheet piling.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures,
-    16 January 2025
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 """
 
 import math
@@ -62,7 +62,7 @@ def critical_depth_vertical_cut_clay(s_u: float, gamma_t: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-2.2.1, Equation 2-1, printed p. 56 (pdf_page_index 93).
     """
     if s_u < 0.0:
@@ -125,7 +125,7 @@ def normalized_wall_stiffness(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 2, Section 2-4.3, Equation 2-2, printed p. 73 (pdf_page_index 110).
     Mana, A.I. and Clough, G.W. (1981).
     """
@@ -189,7 +189,7 @@ def angular_distortion(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-4.4.3, Equation 2-3, printed p. 84 (pdf_page_index 121).
     """
     if d_b <= 0.0:
@@ -248,7 +248,7 @@ def horizontal_strain(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-4.4.3, Equation 2-4, printed p. 84 (pdf_page_index 121).
     """
     if d_b <= 0.0:
@@ -306,7 +306,7 @@ def movement_stiff_clay_sand(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-4.4.3, Equation 2-5, printed p. 84 (pdf_page_index 121).
     """
     if delta_m < 0.0:
@@ -372,7 +372,7 @@ def movement_soft_to_medium_clay(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-4.4.3, Equation 2-6, printed p. 85 (pdf_page_index 122).
     """
     if delta_m < 0.0:
@@ -441,7 +441,7 @@ def scaled_distance(D: float, W: float, beta: float = 0.5) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-5.3.1, Equation 2-7, printed p. 94 (pdf_page_index 131). USBM
     (1971), Oriard (1987).
     """
@@ -497,7 +497,7 @@ def peak_particle_velocity(K: float, SD: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-5.3.1, Equation 2-8, printed p. 94 (pdf_page_index 131).
     """
     if K <= 0.0:
@@ -548,7 +548,7 @@ def confinement_factor_from_blast_data(PPV: float, SD: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-5.3.1, Equation 2-9, printed p. 94 (pdf_page_index 131).
     """
     if PPV < 0.0:
@@ -615,7 +615,7 @@ def inverse_specific_resistance_sheet_piling(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025, Chapter 2,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures, Chapter 2,
     Section 2-6.2, Equation 2-10, printed p. 98 (pdf_page_index 135). European
     Standard EN 12063 (1999).
     """

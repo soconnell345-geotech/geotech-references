@@ -1,6 +1,6 @@
 {
-  "reference_id": "UFC 3-220-20",
-  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "reference_id": "UFS 3-220-20",
+  "reference_title": "UFS 3-220-20 Foundations and Earth Structures (2026; = UFC 3-220-20, 2025)",
   "volume": 2,
   "chapter": 6,
   "chapter_title": "Deep Foundations",
@@ -24,7 +24,7 @@
       "tables": [
         "Table 6-1"
       ],
-      "applicability": "Applies whenever an engineer is beginning work with Chapter 6 of UFC 3-220-20 and needs to understand the scope, terminology, organization, and application context of deep foundation design covered in the chapter."
+      "applicability": "Applies whenever an engineer is beginning work with Chapter 6 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025) and needs to understand the scope, terminology, organization, and application context of deep foundation design covered in the chapter."
     },
     {
       "section_id": "6-2",
@@ -1286,7 +1286,7 @@
       "section_id": "6-5.8.2",
       "title": "Empirical Method for Pile Group Settlement in Coarse-Grained Soil",
       "summary": "Describes the Meyerhof (1976) empirical method for estimating pile group settlement in sand using overburden-corrected SPT N values. Settlement is computed from group load, dimensions, and an influence factor accounting for group length. Applies only when no more compressible stratum underlies the group. For pile groups in silty sand, the estimate should be doubled.",
-      "body": "The settlement of a pile group in coarse-grained soil will largely occur at the rate of loading. This means that post-construction settlement will be limited to that caused by service loads, unless the site is densified or liquefied by an event, such as an earthquake. Therefore, the settlement of deep foundations in coarse-grained soils is often not a controlling factor and can be appropriately checked using simple methods to see if a more detailed numerical analysis is warranted.\n\nThe Meyerhof (1976) method is a simple empirical method that correlates overburden-corrected SPT N values to elastic compressibility. The method applies to pile groups in sand that are not underlain by a more compressible stratum. The method does not explicitly include elastic compression of the piles.\n\nThe settlement at the top of the pile group can be estimated by:\n\nδs = ((Qd / (B·L))·√B / N̄1,60)·If  (6-46)\n\nwhere:\nδs = estimated settlement (in inches) at the top of the pile group,\nQd = unfactored group design load (in kips) for the service limit state,\nB and L = pile group dimensions (in feet) as defined in Figure 6-15, and\nN̄1,60 = average overburden corrected N value within B below the base (Table 6-19).\n\nThe influence factor is computed as:\n\nIf = max(1 - Z/(12·B), 0.5)  (6-47)\n\nwhere:\nZ = length (in same dimensions as B) of the group.\n\nFor pile groups in silty sand, the settlement estimate from Equation 6-51 should be doubled.",
+      "body": "The settlement of a pile group in coarse-grained soil will largely occur at the rate of loading. This means that post-construction settlement will be limited to that caused by service loads, unless the site is densified or liquefied by an event, such as an earthquake. Therefore, the settlement of deep foundations in coarse-grained soils is often not a controlling factor and can be appropriately checked using simple methods to see if a more detailed numerical analysis is warranted.\n\nThe Meyerhof (1976) method is a simple empirical method that correlates overburden-corrected SPT N values to elastic compressibility. The method applies to pile groups in sand that are not underlain by a more compressible stratum. The method does not explicitly include elastic compression of the piles.\n\nThe settlement at the top of the pile group can be estimated by:\n\nδs = ((Qd / (B·L))·√B / N̄1,60)·If  (6-46)\n\nwhere:\nδs = estimated settlement (in inches) at the top of the pile group,\nQd = unfactored group design load (in kips) for the service limit state,\nB and L = pile group dimensions (in feet) as defined in Figure 6-15, and\nN̄1,60 = average overburden corrected N value within B below the base (Table 6-19).\n\nThe influence factor is computed as:\n\nIf = max(1 - Z/(12·B), 0.5)  (6-47)\n\nwhere:\nZ = length (in same dimensions as B) of the group.\n\nFor pile groups in silty sand, the settlement estimate from Equation 6-51 should be doubled. [UFS 3-220-20 (2026) refers here to Eq. 6-46; the 2025 UFC printed Eq. 6-51.]",
       "key_points": [
         "Meyerhof (1976) method uses overburden-corrected SPT N values to estimate pile group settlement in sand.",
         "Method is valid only for pile groups not underlain by a more compressible stratum.",

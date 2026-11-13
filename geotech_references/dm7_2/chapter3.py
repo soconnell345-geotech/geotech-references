@@ -1,5 +1,5 @@
 """
-UFC 3-220-20, Chapter 3: Earthwork, Hydraulic, and Underwater Fills
+UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Chapter 3: Earthwork, Hydraulic, and Underwater Fills
 
 Equations 3-1 through 3-10 covering compaction characterization (dry unit
 weight, degree of saturation, relative compaction, relative water content,
@@ -7,7 +7,8 @@ relative density), oversize particle corrections, and borrow-fill volume
 calculations.
 
 Reference:
-    UFC 3-220-20, Foundations and Earth Structures, 16 January 2025
+    UFS 3-220-20, Foundations and Earth Structures,
+    26 March 2026 (the text and pages of UFC 3-220-20, 16 January 2025)
 """
 
 
@@ -42,7 +43,7 @@ def dry_unit_weight(gamma_t: float, w: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-1, printed p. 109 (pdf_page_index 146).
     """
     if gamma_t <= 0.0:
@@ -105,7 +106,7 @@ def dry_unit_weight_from_saturation(S: float, w: float,
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-2, printed p. 109 (pdf_page_index 146).
     """
     if S <= 0.0 or S > 100.0:
@@ -154,7 +155,7 @@ def relative_compaction(gamma_d_field: float, gamma_d_max: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-3, printed p. 111 (pdf_page_index 148).
     """
     if gamma_d_max <= 0.0:
@@ -166,7 +167,7 @@ def relative_compaction(gamma_d_field: float, gamma_d_max: float) -> float:
 
 def relative_water_content(w_field: float, w_opt: float) -> float:
     """Relative water content Delta w (percentage points) of compacted
-    fill, Equation 3-4 of UFC 3-220-20, coded as w_field - w_opt.
+    fill, Equation 3-4 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025), coded as w_field - w_opt.
     Equation 3-4 is printed the other way round, Delta w = w_opt -
     w_field (PDF p. 150, printed p. 112); the code follows footnote A of
     Table 3-11, "Relative water content, Delta w = w_field - w_opt" (PDF
@@ -202,7 +203,7 @@ def relative_water_content(w_field: float, w_opt: float) -> float:
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-4, printed p. 112 (pdf_page_index 149); Table 3-11,
     footnote A, printed p. 144 (pdf_page_index 181).
     """
@@ -249,7 +250,7 @@ def relative_density_from_void_ratio(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-5, printed p. 113 (pdf_page_index 150).
     """
     if e_max <= e_min:
@@ -298,7 +299,7 @@ def relative_density_from_dry_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-5, printed p. 113 (pdf_page_index 150).
     """
     if gamma_d_field <= 0.0:
@@ -353,7 +354,7 @@ def oversize_corrected_water_content(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-6, printed p. 123 (pdf_page_index 160).
     """
     if P_C < 0.0 or P_C > 1.0:
@@ -415,7 +416,7 @@ def oversize_corrected_dry_unit_weight(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-7, printed p. 124 (pdf_page_index 161).
     """
     if gamma_dF <= 0.0:
@@ -479,7 +480,7 @@ def borrow_volume_from_waste_weight(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-8, printed p. 135 (pdf_page_index 172).
     """
     if V_F < 0.0:
@@ -498,7 +499,7 @@ def borrow_volume_from_waste_fraction(
 ) -> float:
     """Total borrow volume V_B (in the volume unit of V_F) for a fill
     volume when the waste is a loss percentage X_L, Equation 3-9 of
-    UFC 3-220-20: V_B = V_F (gamma_d,F / gamma_d,B) (1 + X_L).
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025): V_B = V_F (gamma_d,F / gamma_d,B) (1 + X_L).
 
     The manual's example (Figure 3-13): 1800 ft^3 of fill at 112.7 pcf
     from borrow at 102 pcf with a 2 % loss needs 2029 ft^3 of borrow.
@@ -533,7 +534,7 @@ def borrow_volume_from_waste_fraction(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-9, printed p. 135 (pdf_page_index 172); example in
     Figure 3-13, printed p. 136 (pdf_page_index 173).
     """
@@ -552,7 +553,7 @@ def shrinkage_factor(
     gamma_d_F: float, gamma_d_B: float, X_L: float
 ) -> float:
     """Overall shrinkage factor Delta V / V_F (a decimal fraction of the
-    fill volume) for borrow and fill, Equation 3-10 of UFC 3-220-20:
+    fill volume) for borrow and fill, Equation 3-10 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025):
     (gamma_d,F / gamma_d,B) (1 + X_L) - 1, with Delta V = V_B - V_F.
 
     Quantifies the fractional change in total volume from borrow to fill,
@@ -591,7 +592,7 @@ def shrinkage_factor(
 
     References
     ----------
-    UFC 3-220-20, Foundations and Earth Structures, 16 Jan 2025,
+    UFS 3-220-20 (2026; = UFC 3-220-20, 2025), Foundations and Earth Structures,
     Chapter 3, Equation 3-10, printed p. 135 (pdf_page_index 172).
     """
     if gamma_d_F <= 0.0:

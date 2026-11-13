@@ -1,6 +1,6 @@
 {
-  "reference_id": "UFC 3-220-20",
-  "reference_title": "UFC 3-220-20 Foundations and Earth Structures",
+  "reference_id": "UFS 3-220-20",
+  "reference_title": "UFS 3-220-20 Foundations and Earth Structures (2026; = UFC 3-220-20, 2025)",
   "volume": 2,
   "chapter": 0,
   "chapter_title": "Prologue: Shear Strength for Geotechnical Design",
@@ -8,7 +8,7 @@
     {
       "section_id": "P-1",
       "title": "SCOPE",
-      "summary": "Introduces the prologue's purpose: guiding designers on how to measure or estimate shear strength parameters required by the design methods in UFC 3-220-20. Covers the distinction between coarse-grained (cohesionless) and fine-grained (cohesive) soils in terms of pore pressure behavior, and outlines the prologue's organization.",
+      "summary": "Introduces the prologue's purpose: guiding designers on how to measure or estimate shear strength parameters required by the design methods in UFS 3-220-20 (2026; = UFC 3-220-20, 2025). Covers the distinction between coarse-grained (cohesionless) and fine-grained (cohesive) soils in terms of pore pressure behavior, and outlines the prologue's organization.",
       "body": "The design methods presented in this manual require shear strength parameters for the soil materials encountered. However, the correct methods to measure or estimate the shear strength parameters are not explained in detail in the forthcoming chapters. The purpose of this prologue is to provide the designer with suggestions on how to arrive at the parameters necessary for successful design and analysis.\n\nThe procedures included in this prologue are accepted in mainstream geotechnical engineering practice. There are more advanced theories of soil behavior that are reported in various geotechnical publications, but those are more appropriately applied to designs that are more advanced than those presented in this manual.\n\nThis prologue divides soils generally into coarse-grained or granular soils, often called cohesionless materials; and fine-grained or cohesive materials. These distinctions are useful in that coarse-grained soils do not develop significant pore pressures during normal construction loading, while fine-grained soils can show increases in pore pressures for compressive loads and decreases in pore pressures during reductions in loads or excavations.\n\nThis prologue is organized by first addressing factors that apply to both fine-grained and coarse-grained soils, and then specifically outlining the methods of arriving at design shear strength parameters.",
       "key_points": [
         "The prologue supplements the manual by explaining how to measure or estimate shear strength parameters needed for design.",
@@ -20,7 +20,7 @@
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Applies whenever a designer needs guidance on selecting or estimating shear strength parameters for any soil type addressed in UFC 3-220-20."
+      "applicability": "Applies whenever a designer needs guidance on selecting or estimating shear strength parameters for any soil type addressed in UFS 3-220-20 (2026; = UFC 3-220-20, 2025)."
     },
     {
       "section_id": "P-2",
@@ -56,7 +56,7 @@
       "tables": [
         "Table P-1 Effective Stress and Total Stress Shear Strength Parameters and Associated Equation for Calculating Shear Strength on the Failure Plane"
       ],
-      "applicability": "Applies to all limit equilibrium design analyses in UFC 3-220-20 that require Mohr-Coulomb shear strength parameters for any soil type or saturation condition."
+      "applicability": "Applies to all limit equilibrium design analyses in UFS 3-220-20 (2026; = UFC 3-220-20, 2025) that require Mohr-Coulomb shear strength parameters for any soil type or saturation condition."
     },
     {
       "section_id": "P-2.2",
@@ -695,7 +695,7 @@
         "The GeoTechTools website provides depth-dependent technology recommendations; users specify treatment depth to narrow options.",
         "For wet and weak fine-grained soils at 10–30 ft depth, 16 technologies are suggested including aggregate columns, micropiles, deep mixing, and vacuum preloading.",
         "Category 1 (unstable soils) covers five subconditions: wet/weak fine-grained soils, unsaturated loose granular soils, saturated loose granular soils, voids/sinkholes/mines, and problem soils/sites.",
-        "All four GeoTechTools categories are relevant to the design elements presented in UFC 3-220-20.",
+        "All four GeoTechTools categories are relevant to the design elements presented in UFS 3-220-20 (2026; = UFC 3-220-20, 2025).",
         "The interactive selection system (Figure 1-1) guides engineers from broad site condition to specific candidate technologies."
       ],
       "equations": [],
@@ -741,7 +741,7 @@
     {
       "section_id": "1-4",
       "title": "NOTATION",
-      "summary": "Defines the notation and variable symbols used in Chapter 1 of UFC 3-220-20. Covers key geotechnical parameters including Skempton's pore pressure parameter, consolidation coefficients, Atterberg limits, SPT blow count, sensitivity, lateral earth pressure coefficient, and effective stress strength parameters.",
+      "summary": "Defines the notation and variable symbols used in Chapter 1 of UFS 3-220-20 (2026; = UFC 3-220-20, 2025). Covers key geotechnical parameters including Skempton's pore pressure parameter, consolidation coefficients, Atterberg limits, SPT blow count, sensitivity, lateral earth pressure coefficient, and effective stress strength parameters.",
       "body": "Variable | Definition\nĀ | Skempton's pore pressure parameter for change in shear stress\ncʹ | Drained or effective stress cohesion intercept\nCεc | Modified compression index (in terms of strain)\nch | Coefficient of consolidation in the horizontal direction\ncv | Coefficient of consolidation in the vertical direction\nK0 | Lateral earth pressure coefficient for at-rest conditions\nLL | Liquid limit\nN | Standard penetration test blow count (uncorrected)\nPI | Plasticity index\nSt | Sensitivity\nφʹ | Drained or effective stress friction angle",
       "key_points": [
         "Ā is Skempton's pore pressure parameter, used to characterize pore pressure response to changes in shear stress.",
