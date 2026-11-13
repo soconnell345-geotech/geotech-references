@@ -5,6 +5,7 @@ of Laterally Loaded Deep Foundations that Support Transportation Facilities.
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -42,6 +43,7 @@ _TABLE_4_1 = {
 }
 
 
+@_u.labelled({"phi_r": "dimensionless"}, printed_page="44", pdf_page_index=47)
 def table_4_1_lateral_resistance_factor(condition: str) -> dict:
     """Resistance factor φr for lateral geotechnical/strength limit state (Table 4-1).
 
@@ -142,6 +144,9 @@ _TABLE_7_1 = {
 }
 
 
+@_u.labelled(
+    {"pm": "dimensionless", "spacing_over_b": "dimensionless"},
+    printed_page="104", pdf_page_index=107)
 def table_7_1_p_multiplier(row_position: str, spacing_over_b: float) -> dict:
     """P-multiplier Pm (dimensionless) for a row of a laterally loaded deep foundation group, from the row position and the centre-to-centre spacing in widths B, GEC-9 Table 7-1 (p. 104).
 
@@ -284,6 +289,9 @@ def _ca_bin_index(ca_tsf: float) -> int:
     return 2
 
 
+@_u.labelled(
+    {"ca_tsf": "tsf", "k_pci": "pci"},
+    printed_page="222", pdf_page_index=225)
 def table_a1_k_stiff_clay(ca_tsf: float, loading: str = "static") -> dict:
     """Coefficient k in pci (ks static or kc cyclic) for the initial linear portion of the p-y curve in stiff clay with free water, from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-1 (p. 222; Reese et al. 1975).
 
@@ -354,6 +362,9 @@ def table_a1_k_stiff_clay(ca_tsf: float, loading: str = "static") -> dict:
 _TABLE_A2_EPS50 = [0.007, 0.005, 0.004]
 
 
+@_u.labelled(
+    {"ca_tsf": "tsf", "epsilon_50": "no unit printed"},
+    printed_page="222", pdf_page_index=225)
 def table_a2_epsilon50_stiff_clay(ca_tsf: float) -> dict:
     """Strain at 50% of the peak deviator stress, epsilon_50 (dimensionless), for stiff clay from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-2 (p. 222; Reese et al. 1975).
 
@@ -430,6 +441,7 @@ _TABLE_A3 = {
 }
 
 
+@_u.labelled({"k_pci": "pci"}, printed_page="228", pdf_page_index=231)
 def table_a3_k_sand(relative_density: str, condition: str = "submerged") -> dict:
     """Initial p-y modulus k for sand (Table A-3).
 

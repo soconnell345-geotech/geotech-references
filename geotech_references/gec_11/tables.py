@@ -26,6 +26,7 @@ table_4_7_internal_resistance       Table 4-7  Internal stability resistance fac
 from decimal import ROUND_HALF_UP, Decimal
 
 from .._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 def _pick(rows, field, key, table, page, also=()):
@@ -92,6 +93,9 @@ _TABLE_2_1 = [
 ]
 
 
+@_u.labelled(
+    {"L_over_H_high": "dimensionless", "L_over_H_low": "dimensionless"},
+    printed_page="2-43", pdf_page_index=82)
 def table_2_1_min_reinforcement_length(condition: str = "") -> list:
     """Typical minimum reinforcement length as the ratio L/H (dimensionless, reinforcement length over wall height) for each case of GEC-11 Table 2-1 (FHWA-NHI-10-024 Vol I, p. 2-43); a list of the matching rows.
 
@@ -175,6 +179,10 @@ _TABLE_2_2_NOTE = (
     "applicable values listed, frost depth, or scour depth.")
 
 
+@_u.labelled(
+    {"min_depth_ft": "ft", "min_depth_m": "m",
+     "ratio_value": "fraction (of the wall height H)"},
+    printed_page="2-43", pdf_page_index=82)
 def table_2_2_min_embedment_depth(condition: str = "") -> list:
     """Minimum MSE wall embedment depth to the top of the leveling pad, as a fraction of wall height H with a 2 ft (0.6 m) minimum, by slope in front of the wall, from GEC-11 Table 2-2 (FHWA-NHI-10-024 Vol I, p. 2-43); a list of the matching rows.
 
@@ -212,6 +220,10 @@ _TABLE_3_1 = [
 _TABLE_3_1_PI = {"PI_max": 6, "notes": "Plasticity index of fines fraction shall not exceed 6"}
 
 
+@_u.labelled(
+    {"PI_max": "no unit printed", "percent_passing_max": "percent",
+     "percent_passing_min": "percent"},
+    printed_page="3-3", pdf_page_index=94)
 def table_3_1_select_fill_gradation() -> dict:
     """Return select backfill gradation requirements from GEC-11 Table 3-1.
 
@@ -244,6 +256,11 @@ _TABLE_3_3 = {
 }
 
 
+@_u.labelled(
+    {"chlorides_max_ppm": "ppm", "organic_content_max_pct": "percent",
+     "pH_max": "no unit printed", "pH_min": "no unit printed",
+     "resistivity_min_ohm_cm": "ohm-cm", "sulfates_max_ppm": "ppm"},
+    printed_page="3-9", pdf_page_index=100)
 def table_3_3_electrochemical_steel() -> dict:
     """Return electrochemical property limits for steel reinforcement fill.
 
@@ -285,6 +302,9 @@ _TABLE_3_4 = [
 ]
 
 
+@_u.labelled(
+    {"pH_max": "no unit printed", "pH_min": "no unit printed"},
+    printed_page="3-10", pdf_page_index=101)
 def table_3_4_electrochemical_geosynth(polymer: str = "") -> list:
     """Recommended pH limits for reinforced fill with geosynthetic reinforcement, by base polymer, from GEC-11 Table 3-4 (FHWA-NHI-10-024 Vol I, p. 3-10); a list of the matching rows.
 
@@ -439,6 +459,11 @@ _TABLE_3_6 = [
 ]
 
 
+@_u.labelled(
+    {"Cu_if_unknown": "dimensionless",
+     "F_star_top_if_Cu_unknown": "dimensionless",
+     "F_star_top_max": "dimensionless", "alpha": "dimensionless"},
+    printed_page="3-17", pdf_page_index=108)
 def table_3_6_pullout_parameters(reinforcement: str = "") -> list:
     """Look up pullout capacity design parameters from GEC-11 Table 3-6.
 
@@ -494,6 +519,9 @@ _TABLE_3_7 = [
 ]
 
 
+@_u.labelled(
+    {"thickness_mils": "mils", "thickness_um": "um"},
+    printed_page="3-26", pdf_page_index=117)
 def table_3_7_galvanization() -> list:
     """Minimum galvanization thickness by steel thickness, GEC-11 Table 3-7 (FHWA-NHI-10-024 Vol I, p. 3-26, after AASHTO M 111 and ASTM A123).
 
@@ -540,6 +568,9 @@ _TABLE_3_8 = [
 ]
 
 
+@_u.labelled(
+    {"rate_um_per_yr": "um/yr"},
+    printed_page="3-26", pdf_page_index=117)
 def table_3_8_corrosion_rates(material: str = "") -> list:
     """Look up steel corrosion rates from GEC-11 Table 3-8.
 
@@ -623,6 +654,12 @@ _TABLE_3_9_BACKFILL = {
 _TABLE_3_9_NOTE_A = "a. Minimum weight 8.0 oz/yd2 (270 g/m2)."
 
 
+@_u.labelled(
+    {"backfill_type1_high": "dimensionless",
+     "backfill_type1_low": "dimensionless",
+     "backfill_type2_high": "dimensionless",
+     "backfill_type2_low": "dimensionless"},
+    printed_page="3-32", pdf_page_index=123)
 def table_3_9_installation_damage(geosynthetic: str = "") -> list:
     """Installation damage reduction factor RF_ID ranges (dimensionless) by geosynthetic, for Type 1 and Type 2 backfill, from GEC-11 Table 3-9 (FHWA-NHI-10-024 Vol I, p. 3-32); a list of the matching rows.
 
@@ -674,6 +711,9 @@ _TABLE_3_11 = [
 ]
 
 
+@_u.labelled(
+    {"pH_3_to_5_or_8_to_9": "dimensionless", "pH_5_to_8": "dimensionless"},
+    printed_page="3-36", pdf_page_index=127)
 def table_3_11_pet_durability(product: str = "") -> list:
     """Look up PET durability reduction factors from GEC-11 Table 3-11.
 
@@ -758,6 +798,10 @@ _TABLE_4_1 = [
 ]
 
 
+@_u.labelled(
+    {"CT": "dimensionless", "EH_ES_EV": "dimensionless",
+     "EQ": "dimensionless", "LL_LS": "dimensionless"},
+    printed_page="4-4", pdf_page_index=145)
 def table_4_1_load_combinations(limit_state: str = "") -> list:
     """Look up LRFD load combinations from GEC-11 Table 4-1 (FHWA-NHI-10-024 Vol I, p. 4-4).
 
@@ -827,6 +871,9 @@ _TABLE_4_2 = [
 ]
 
 
+@_u.labelled(
+    {"gamma_max": "dimensionless", "gamma_min": "dimensionless"},
+    printed_page="4-4", pdf_page_index=145)
 def table_4_2_permanent_load_factors(load_type: str = "") -> list:
     """Look up permanent load factors from GEC-11 Table 4-2.
 
@@ -868,6 +915,10 @@ _TABLE_4_4_NOTE = (
     "by an owner (p. 4-17).")
 
 
+@_u.labelled(
+    {"abutment_height_ft": "ft", "h_eq_ft": "ft"},
+    printed_page="4-17", pdf_page_index=158,
+    si={"abutment_height_ft": ("m", "ft")})
 def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     """Equivalent height of soil heq in feet for traffic loading on abutments perpendicular to traffic, from the abutment height in feet, GEC-11 Table 4-4 (FHWA-NHI-10-024 Vol I, p. 4-17).
 
@@ -884,12 +935,19 @@ def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     ----------
     abutment_height_ft : float
         Abutment height in feet, 5.0 or more. If 0, returns the full table.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        abutment_height_ft in m, each converted exactly to the printed unit
+        (ft) before the lookup runs as printed.
 
     Returns
     -------
     dict
         abutment_height_ft, h_eq_ft, applies_to, print_note, the table and
         the reference.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -961,6 +1019,9 @@ _TABLE_4_5 = [
 ]
 
 
+@_u.labelled(
+    {"phi_factor": "dimensionless"},
+    printed_page="4-19", pdf_page_index=160)
 def table_4_5_external_resistance(failure_mode: str = "") -> list:
     """Look up external stability resistance factors from GEC-11 Table 4-5.
 
@@ -1049,6 +1110,10 @@ def _round_1(x: float) -> float:
                                                       rounding=ROUND_HALF_UP))
 
 
+@_u.labelled(
+    {"Nc": "dimensionless", "Ngamma": "dimensionless", "Nq": "dimensionless",
+     "phi_deg": "deg"},
+    printed_page="4-29", pdf_page_index=170)
 def table_4_6_bearing_capacity_factors(phi_deg: float = None) -> dict:
     """Look up bearing capacity factors from GEC-11 Table 4-6.
 
@@ -1181,6 +1246,11 @@ _TABLE_4_7 = [
 ]
 
 
+@_u.labelled(
+    {"combined_static_earthquake_phi": "dimensionless",
+     "combined_static_traffic_barrier_phi": "dimensionless",
+     "static_phi": "dimensionless"},
+    printed_page="4-48", pdf_page_index=189)
 def table_4_7_internal_resistance(reinforcement_type: str = "") -> list:
     """Resistance factors phi (dimensionless) for tensile and pullout resistance of MSE wall reinforcement, by reinforcement type and loading condition, from GEC-11 Table 4-7 (FHWA-NHI-10-024 Vol I, p. 4-48); a list of the matching rows.
 

@@ -8,6 +8,8 @@ Currently contains Figure 5-23, the limiting lateral reaction modulus for
 buckling of common micropile casings, bars and hollow bars.
 """
 
+from geotech_references import _units as _u
+
 
 # ============================================================================
 # Figure 5-23: Limiting Lateral Modulus Values for Various Micropile
@@ -99,6 +101,9 @@ def _fig_5_23_entry(key, label, psi):
     }
 
 
+@_u.labelled(
+    {"es_limit_kpa": "kPa", "es_limit_psi": "psi"},
+    printed_page="5-70", pdf_page_index=161)
 def figure_5_23_limiting_lateral_modulus(section: str) -> dict:
     """Limiting lateral reaction modulus Es LIMIT for micropile buckling, in kPa and in psi as printed (FHWA-NHI-05-039 Figure 5-23, p. 5-70); buckling needs no further check when Es LIMIT is LESS than the soil's Es.
 

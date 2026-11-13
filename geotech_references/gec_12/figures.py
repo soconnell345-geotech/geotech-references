@@ -14,6 +14,7 @@ gridlines, to about one pixel (REF-49, 2026-10-31; Fig. 7-15 on
 import math
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -68,6 +69,10 @@ _TABLE_7_7_KD = {
 }
 
 
+@_u.labelled(
+    {},
+    printed_page="240", pdf_page_index=[285, 286],
+    si={"V": ("m^3/m", "ft^3/ft")})
 def figure_7_10_to_13_kd(phi: float, V: float, omega: float = 0.0) -> float:
     """Coefficient of lateral earth pressure Kd for Nordlund method.
 
@@ -90,16 +95,26 @@ def figure_7_10_to_13_kd(phi: float, V: float, omega: float = 0.0) -> float:
     omega : float
         Pile taper angle from vertical (degrees).  Default 0.0 for uniform
         piles.  Currently only omega=0 is supported via tabular data.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        V in m^3/m, each converted exactly to the printed unit (ft^3/ft) before
+        the lookup runs as printed.
 
     Returns
     -------
     float
-        Kd coefficient (dimensionless).
+        Kd coefficient [dimensionless].
+        With unit_system='SI' the value is the same, as above.
 
     Raises
     ------
     ValueError
         If phi or V is outside the supported range, or omega > 0.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Tables 7-6 and 7-7,
+    printed pp. 240-241 (pdf_page_index 285-286).
     """
     if omega != 0.0:
         raise ValueError(
@@ -182,12 +197,17 @@ def figure_7_14_correction_factor(phi: float, delta_phi_ratio: float) -> float:
     Returns
     -------
     float
-        Correction factor CF (dimensionless).
+        Correction factor CF [dimensionless].
 
     Raises
     ------
     ValueError
         If phi or delta_phi_ratio is outside the supported range.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-14,
+    printed p. 238 (pdf_page_index 283).
     """
     if phi < _FIG_7_14_PHI[0] or phi > _FIG_7_14_PHI[-1]:
         raise ValueError(
@@ -248,7 +268,7 @@ def figure_7_15_limiting_toe_resistance(phi: float) -> float:
     Returns
     -------
     float
-        Limiting unit toe resistance qL in tsf.
+        Limiting unit toe resistance qL [tsf].
 
     Raises
     ------
@@ -256,6 +276,11 @@ def figure_7_15_limiting_toe_resistance(phi: float) -> float:
         If phi is outside 30-43.75 deg. The chart gives no value there:
         below 30 deg the limit is lower than 7.1 tsf, and the curve stops at
         43.75 deg (about 368 tsf).
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-15,
+    printed p. 238 (pdf_page_index 283).
     """
     if phi < FIG_7_15_PHI_MIN or phi > FIG_7_15_PHI_MAX:
         raise ValueError(
@@ -308,12 +333,17 @@ def figure_7_16a_alpha_t(phi: float, D_over_b: float) -> float:
     Returns
     -------
     float
-        alpha_t coefficient (dimensionless).
+        alpha_t coefficient [dimensionless].
 
     Raises
     ------
     ValueError
         If phi or D_over_b is outside the supported range.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-16a,
+    printed p. 239 (pdf_page_index 284).
     """
     if phi < _FIG_7_16A_PHI[0] or phi > _FIG_7_16A_PHI[-1]:
         raise ValueError(
@@ -367,12 +397,17 @@ def figure_7_16b_nq(phi: float) -> float:
     Returns
     -------
     float
-        N'q bearing capacity factor (dimensionless).
+        N'q bearing capacity factor [dimensionless].
 
     Raises
     ------
     ValueError
         If phi is outside the range 15-45 deg.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-16b,
+    printed p. 239 (pdf_page_index 284).
     """
     if phi < 15 or phi > 45:
         raise ValueError(
@@ -476,6 +511,10 @@ _FIG_7_9_ALIASES = {
 }
 
 
+@_u.labelled(
+    {"V_range": "ft^3/ft", "delta_phi_ratio": "dimensionless"},
+    printed_page="235", pdf_page_index=280,
+    si={"V": ("m^3/m", "ft^3/ft")})
 def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
     """delta/phi for a pile type at displaced volume V (Figure 7-9).
 
@@ -493,11 +532,18 @@ def figure_7_9_delta_phi_ratio(pile_type: str, V: float) -> dict:
     V : float
         Displaced soil volume per unit pile length (ft^3/ft): 0.3 to 1.9
         on curves a to e and g, 0.08 to 0.52 on curve f.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        V in m^3/m, each converted exactly to the printed unit (ft^3/ft) before
+        the lookup runs as printed.
 
     Returns
     -------
     dict
         Keys: delta_phi_ratio, curve, description, V_range.
+        With unit_system='SI' the result is still in the printed units (its
+        ``units`` map says which), and ``converted_inputs`` lists each
+        conversion.
 
     Raises
     ------
@@ -617,13 +663,18 @@ def figure_7_17_adhesion(su_ksf: float, D_over_b: float = 10.0,
     Returns
     -------
     float
-        Pile adhesion Ca (ksf).
+        Pile adhesion Ca [ksf].
 
     Raises
     ------
     ValueError
         If su_ksf is outside the curves, D_over_b is outside 10 to 40, or
         pile surface is unknown.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-17,
+    printed p. 248 (pdf_page_index 293).
     """
     surface = pile_surface.lower().strip()
     if surface in ("concrete", "timber", "corrugated"):
@@ -765,13 +816,18 @@ def figure_7_18_adhesion_factor(
     Returns
     -------
     float
-        Adhesion factor alpha (dimensionless, 0 to 1).
+        Adhesion factor alpha [dimensionless], 0 to 1.
 
     Raises
     ------
     ValueError
         If su_ksf is outside the curves read, D_over_b is not positive or
         is below 10 in Case 2 or 3, or stratigraphy is invalid.
+
+    References
+    ----------
+    FHWA-NHI-16-009 (GEC-12) Vol I, Figure 7-18,
+    printed p. 249 (pdf_page_index 294).
     """
     case = stratigraphy.lower().strip().replace(" ", "_").replace("-", "_")
     case = _FIG_7_18_ALIASES.get(case, case)

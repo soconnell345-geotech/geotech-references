@@ -6,6 +6,7 @@ lookup functions, case-insensitive keys.
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 def _key(text: str) -> str:
@@ -51,6 +52,7 @@ _TABLE_4_1_CLAYS = [
 ]
 
 
+@_u.labelled({}, printed_page="33", pdf_page_index=38)
 def table_4_1_spt_soil_properties(n_value: int, soil_type: str = "sand") -> dict:
     """Soil properties correlated with SPT N-values (Table 4-1).
 
@@ -124,6 +126,9 @@ _TABLE_5_1_NGAMMA = [
 ]
 
 
+@_u.labelled(
+    {"Nc": "dimensionless", "Ngamma": "dimensionless", "Nq": "dimensionless"},
+    printed_page="54", pdf_page_index=59)
 def table_5_1_bearing_capacity_factors(phi: float) -> dict:
     """Bearing capacity factors Nc, Nq, Ngamma (Table 5-1, AASHTO 1996).
 
@@ -182,12 +187,16 @@ def table_5_4_depth_correction_factor(phi: float, df_bf: float) -> float:
     Returns
     -------
     float
-        Depth correction factor dq.
+        Depth correction factor dq [dimensionless].
 
     Raises
     ------
     ValueError
         If phi or df_bf is outside the table range.
+
+    References
+    ----------
+    FHWA-SA-02-054 (GEC-6), Table 5-4, printed p. 57 (pdf_page_index 62).
     """
     if phi < 32 or phi > 42:
         raise ValueError(
@@ -335,6 +344,9 @@ _TABLE_5_7_REFERENCE = ("FHWA-SA-02-054 (GEC-6), Table 5-7 Presumptive Values "
                         "p. 68")
 
 
+@_u.labelled(
+    {"range_max_mpa": "MPa", "range_min_mpa": "MPa", "recommended_mpa": "MPa"},
+    printed_page="68", pdf_page_index=73)
 def table_5_7_presumptive_bearing_rock(rock_type: str) -> dict:
     """Presumptive allowable bearing pressure (MPa: range and recommended value for use) for a spread foundation on one type of rock, one row of GEC-6 Table 5-7 (FHWA-SA-02-054, p. 68, modified after NAVFAC 1986b): massive crystalline igneous and metamorphic rock 7.7; foliated metamorphic rock 3.4; sedimentary rock 1.9; weathered or broken bedrock 1; compaction shale or other highly argillaceous rock 1.
 
@@ -393,6 +405,11 @@ _TABLE_5_9_PRESSURE_MPA = [1, 3, 6, 12, 19, 29]
 _TABLE_5_9_QUALITY = ["soil_like", "very_poor", "poor", "fair", "good", "excellent"]
 
 
+@_u.labelled(
+    {"allowable_pressure_mpa": "MPa",
+     "printed_rows": "consistent units (each row: RQD in percent, allowable pressure in MPa)",
+     "rqd": "percent"},
+    printed_page="70", pdf_page_index=75)
 def table_5_9_rqd_bearing_capacity(rqd: float) -> dict:
     """Suggested allowable bearing pressure on rock (MPa) and rock mass quality for an RQD (percent), from GEC-6 Table 5-9 (FHWA-SA-02-054, p. 70, Peck et al. 1974), which prints six rows: RQD 100 Excellent 29 MPa; 90 Good 19; 75 Fair 12; 50 Poor 6; 25 Very Poor 3; 0 Soil-like 1. Between two printed rows the pressure is interpolated linearly, which the table does not state, and the quality is given as lying between the two rows' words.
 
@@ -486,12 +503,16 @@ def table_5_12_shape_rigidity_factor(shape: str, location: str = "center",
     Returns
     -------
     float
-        Shape and rigidity factor Cd.
+        Shape and rigidity factor Cd [dimensionless].
 
     Raises
     ------
     ValueError
         If shape, location, or length_width is invalid.
+
+    References
+    ----------
+    FHWA-SA-02-054 (GEC-6), Table 5-12, printed p. 97 (pdf_page_index 102).
     """
     shape_key = shape.lower().strip().replace(" ", "_")
     loc = location.lower().strip().replace(" ", "_")
@@ -554,6 +575,10 @@ _TABLE_5_13 = {
 }
 
 
+@_u.labelled(
+    {"max": "dimensionless", "mean": "dimensionless", "min": "dimensionless",
+     "std": "dimensionless"},
+    printed_page="97", pdf_page_index=102)
 def table_5_13_poissons_ratio_rock(rock_type: str) -> dict:
     """Poisson's ratio for intact rock (Table 5-13, Kulhawy 1978).
 
@@ -614,6 +639,9 @@ _TABLE_5_14 = {
 }
 
 
+@_u.labelled(
+    {"max_GPa": "GPa", "mean_GPa": "GPa", "min_GPa": "GPa", "std_GPa": "GPa"},
+    printed_page="98", pdf_page_index=103)
 def table_5_14_youngs_modulus_rock(rock_type: str) -> dict:
     """Young's modulus for intact rock in kPa x 10^6 (Table 5-14, Kulhawy 1978).
 
@@ -795,6 +823,10 @@ _TABLE_5_15_REFERENCE = ("FHWA-SA-02-054 (GEC-6), Table 5-15 Ultimate "
                          "1986b), p. 99")
 
 
+@_u.labelled(
+    {"delta_max_deg": "deg", "delta_min_deg": "deg",
+     "tan_delta_max": "dimensionless", "tan_delta_min": "dimensionless"},
+    printed_page="99", pdf_page_index=104)
 def table_5_15_friction_factor(interface: str) -> dict:
     """Ultimate coefficient of friction tan delta (dimensionless) and friction angle delta (degrees) of mass concrete on one foundation material, one row of GEC-6 Table 5-15 (FHWA-SA-02-054, p. 99, NAVFAC 1986b): clean sound rock 0.70; clean gravel, gravel sand mixtures, coarse sand 0.55 to 0.60; clean fine to medium sand, silty medium to coarse sand, silty or clayey gravel 0.45 to 0.55; clean fine sand, silty or clayey fine to medium sand 0.35 to 0.45; fine sandy silt, nonplastic silt 0.30 to 0.35; very stiff and hard residual or preconsolidated clay 0.40 to 0.50; medium stiff and stiff clay and silty clay 0.30 to 0.35.
 
@@ -866,6 +898,9 @@ _TABLE_5_10 = [
 ]
 
 
+@_u.labelled(
+    {"bearing_capacity_kpa": "kPa", "max_settlement_mm": "mm"},
+    printed_page="72", pdf_page_index=77)
 def table_5_10_fill_bearing_capacity(agency: str = "") -> list:
     """Presumptive bearing capacity on compacted fills (Table 5-10).
 

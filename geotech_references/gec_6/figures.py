@@ -111,7 +111,7 @@ def figure_4_1_relative_density_spt(n_value: float,
     Returns
     -------
     float
-        Relative density in percent, 15 to 100.
+        Relative density [percent], 15 to 100.
 
     Raises
     ------
@@ -121,6 +121,10 @@ def figure_4_1_relative_density_spt(n_value: float,
         left of the chart's 15 % curve or right of its 100 % curve (or,
         above 5.15 k/ft2 where the 100 % curve has left the chart, right
         of the 90 % curve).
+
+    References
+    ----------
+    FHWA-SA-02-054 (GEC-6), Figure 4-1, printed p. 34 (pdf_page_index 39).
     """
     if n_value < 0:
         raise ValueError(f"n_value must be non-negative, got {n_value}")
@@ -308,13 +312,17 @@ def figure_5_19_hough_bearing_capacity_index(n_prime: float,
     Returns
     -------
     float
-        Bearing capacity index C' (dimensionless).
+        Bearing capacity index C' [no unit printed].
 
     Raises
     ------
     ValueError
         If soil_type does not name one curve, or n_prime is outside that
         curve.
+
+    References
+    ----------
+    FHWA-SA-02-054 (GEC-6), Figure 5-19, printed p. 91 (pdf_page_index 96).
     """
     key = soil_type.lower().strip().replace("&", "and")
     key = "_".join(key.replace("-", " ").replace("_", " ").split())
@@ -436,13 +444,17 @@ def figure_4_2_friction_angle_from_density(gamma_d_kNm3: float,
     Returns
     -------
     float
-        Angle of internal friction phi' in degrees, 26.1 to 44.9.
+        Angle of internal friction phi' [degrees], 26.1 to 44.9.
 
     Raises
     ------
     ValueError
         If the relative density is outside 0 to 100 %, or the dry unit
         weight is outside the chart's mesh at that relative density.
+
+    References
+    ----------
+    FHWA-SA-02-054 (GEC-6), Figure 4-2, printed p. 35 (pdf_page_index 40).
     """
     if relative_density_pct < 0 or relative_density_pct > 100:
         raise ValueError(

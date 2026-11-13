@@ -6,6 +6,7 @@ prefix, public lookup functions with string-matched keys.
 """
 
 from geotech_references._interpolation import _linterp
+from geotech_references import _units as _u
 
 
 # ============================================================================
@@ -191,6 +192,9 @@ _TABLE_2_1 = {
 }
 
 
+@_u.labelled(
+    {"subtype": "no unit printed"},
+    printed_page="2-9", pdf_page_index=32)
 def table_2_1_classification(type_letter: str, subtype: int = 1) -> dict:
     """Micropile classification details by grouting type (Table 2-1).
 
@@ -282,6 +286,10 @@ _TABLE_4_2_REFERENCE = ("FHWA-NHI-05-039, Table 4-2 Dimensions, Yield, and "
                         "p. 4-27")
 
 
+@_u.labelled(
+    {"area_mm2": "mm^2", "diameter_mm": "mm", "fu_mpa": "MPa",
+     "grade_mpa": "MPa", "yield_kn": "kN"},
+    printed_page="4-27", pdf_page_index=82)
 def table_4_2_rebar_properties(bar_size: str,
                                grade: int = 520) -> dict:
     """Reinforcing bar size (mm), area (mm2) and yield strength (kN) as printed in FHWA-NHI-05-039 Table 4-2, p. 4-27.
@@ -394,6 +402,10 @@ _TABLE_4_5_A519_FY_NOTE = (
     "as printed.")
 
 
+@_u.labelled(
+    {"area_mm2": "mm^2", "fy_mpa": "MPa", "od_mm": "mm", "wall_mm": "mm",
+     "yield_kn": "kN"},
+    printed_page="4-33", pdf_page_index=88)
 def table_4_5_pipe_properties(od_mm: float,
                               wall_mm: float = 0.0,
                               steel_type: str = "n80") -> dict:
@@ -504,6 +516,9 @@ _TABLE_5_3_BOND = {
 }
 
 
+@_u.labelled(
+    {"alpha_bond_max_kpa": "kPa", "alpha_bond_min_kpa": "kPa"},
+    printed_page="5-21", pdf_page_index=112)
 def table_5_3_alpha_bond(soil_type: str,
                          micropile_type: str = "B") -> dict:
     """Grout-to-ground ultimate bond strength for micropiles (Table 5-3).
@@ -607,6 +622,9 @@ _TABLE_5_4 = {
 }
 
 
+@_u.labelled(
+    {"efficiency": "dimensionless"},
+    printed_page="5-23", pdf_page_index=114)
 def table_5_4_group_efficiency(condition: str = "") -> dict:
     """Group efficiency factors for micropiles in cohesive soils (Table 5-4).
 
@@ -658,6 +676,11 @@ _TABLE_5_5 = {
 }
 
 
+@_u.labelled(
+    {"threshold": "consistent units (as the entry's unit key gives)",
+     "threshold_high": "consistent units (as the entry's unit key gives)",
+     "threshold_low": "consistent units (as the entry's unit key gives)"},
+    printed_page="5-46", pdf_page_index=137)
 def table_5_5_corrosion_criteria() -> dict:
     """Criteria for assessing corrosion potential of soils (Table 5-5).
 
@@ -701,12 +724,16 @@ def table_5_7_epsilon_50(consistency: str) -> float:
     Returns
     -------
     float
-        Representative epsilon_50 value.
+        Representative epsilon_50 value [no unit printed].
 
     Raises
     ------
     ValueError
         If consistency is not recognized.
+
+    References
+    ----------
+    FHWA-NHI-05-039, Table 5-7, printed p. 5-55 (pdf_page_index 146).
     """
     key = consistency.strip().lower()
     if key not in _TABLE_5_7:
@@ -749,13 +776,17 @@ def table_5_8_epsilon_50_stiff(su_kpa: float) -> float:
     Returns
     -------
     float
-        epsilon_50 of the printed range holding su_kpa.
+        epsilon_50 of the printed range holding su_kpa [no unit printed].
 
     Raises
     ------
     ValueError
         If su_kpa is outside 50 to 400 kPa, or between 200 and 300 kPa,
         where the table prints no row.
+
+    References
+    ----------
+    FHWA-NHI-05-039, Table 5-8, printed p. 5-56 (pdf_page_index 147).
     """
     if su_kpa < 50 or su_kpa > 400:
         raise ValueError(
@@ -802,12 +833,16 @@ def table_5_9_soil_modulus_k_sand(density: str,
     Returns
     -------
     float
-        Soil modulus k in kPa/m.
+        Soil modulus k [kPa/m].
 
     Raises
     ------
     ValueError
         If density is not recognized.
+
+    References
+    ----------
+    FHWA-NHI-05-039, Table 5-9, printed p. 5-56 (pdf_page_index 147).
     """
     d = density.strip().lower()
     if d not in ("loose", "medium", "dense"):
@@ -860,13 +895,17 @@ def table_5_10_soil_modulus_k_clay(consistency: str,
     Returns
     -------
     float
-        Soil modulus k in kPa/m.
+        Soil modulus k [kPa/m].
 
     Raises
     ------
     ValueError
         If consistency or loading is not recognized, or for the cyclic k
         of soft or medium clay, which the table does not print.
+
+    References
+    ----------
+    FHWA-NHI-05-039, Table 5-10, printed p. 5-56 (pdf_page_index 147).
     """
     c = consistency.strip().lower().replace(" ", "_")
     lo = loading.strip().lower()
@@ -926,6 +965,9 @@ _TABLE_5_11 = {
 }
 
 
+@_u.labelled(
+    {"embedment_mm": "mm", "fixity_pct": "percent"},
+    printed_page="5-58", pdf_page_index=149)
 def table_5_11_fixity(fixity_pct: int) -> dict:
     """Casing embedment (mm) for 0, 50 or 100 % head fixity of a micropile-footing connection, in the words of FHWA-NHI-05-039 Table 5-11, p. 5-58.
 
@@ -1024,6 +1066,9 @@ _TABLE_5_12_DESCRIPTIONS = {
 }
 
 
+@_u.labelled(
+    {"es_max_kpa": "kPa", "es_min_kpa": "kPa"},
+    printed_page="5-69", pdf_page_index=160)
 def table_5_12_elastic_modulus(soil_type: str) -> dict:
     """Elastic modulus range for soils by type (Table 5-12).
 
@@ -1100,6 +1145,9 @@ _TABLE_5_13 = {
 }
 
 
+@_u.labelled(
+    {"es_kpa": "kPa", "factor_kpa": "kPa", "n1_60": "no unit printed"},
+    printed_page="5-70", pdf_page_index=161)
 def table_5_13_elastic_modulus_spt(soil_type: str,
                                    n1_60: float) -> dict:
     """Elastic modulus from SPT N-value by soil type (Table 5-13).
