@@ -47,9 +47,9 @@ How a page is read (PyMuPDF text layer, one column, single font family):
   the page's text and stored at its mark as ``[Footnote 41: ...]``, in the
   words the earlier bodies held (those were read against the print; the
   manifest's ``footnotes``);
-* a heading is a bold line beginning at the heading indent; it starts the
-  section of the chapter file whose title it prints (sections are matched in
-  order). A numbered heading that has no section in the chapter file
+* a heading is a bold line beginning at the heading indent (or two, where a
+  long title runs on to a second line); it starts the section of the
+  chapter file whose title it prints (sections are matched in order). A numbered heading that has no section in the chapter file
   ("7-6 SUGGESTED READING") ends the section before it, and its text is not
   stored;
 * paragraphs are where the print leaves a gap between lines or starts a
@@ -597,7 +597,17 @@ def split_sections(toks: list[tuple], sections: list[dict], stem: str, man: dict
     cur = None
     page = None
     stop = set(man["chapters"][stem].get("stop_headings", []))
-    for t in toks:
+
+    def match(nt):
+        for k in range(nxt, min(nxt + 3, len(titles))):
+            if titles[k][1] and (nt == titles[k][1] or (len(nt) > 12 and nt.startswith(titles[k][1]))):
+                return k
+        return None
+
+    skip = None
+    for i, t in enumerate(toks):
+        if i == skip:
+            continue
         if t[0] == "page":
             page = t
             if cur:
@@ -606,11 +616,14 @@ def split_sections(toks: list[tuple], sections: list[dict], stem: str, man: dict
         if t[0] == "heading":
             ht = _heading_title(t[1])
             nt = _norm_title(alias.get(t[4], ht))
-            hit = None
-            for k in range(nxt, min(nxt + 3, len(titles))):
-                if titles[k][1] and (nt == titles[k][1] or (len(nt) > 12 and nt.startswith(titles[k][1]))):
-                    hit = k
-                    break
+            hit = match(nt)
+            if hit is None and i + 1 < len(toks) and toks[i + 1][0] == "heading" \
+                    and not _HEADNUM.match(toks[i + 1][1].strip()):
+                # a heading printed on two lines ("... Equivalent Fluid" /
+                # "Pressures.", p. 194)
+                hit = match(_norm_title(ht + " " + _heading_title(toks[i + 1][1])))
+                if hit is not None:
+                    skip = i + 1
             if hit is not None:
                 for k in range(nxt, hit):
                     report.append(f"{stem}: heading of {titles[k][0]} not found")
@@ -705,8 +718,12 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
                 prow, ptext = prev
                 same_page = prow is not None and getattr(prow, "_page", None) == page
                 gap = row.y0 - prow.y1 if same_page else None
+                # a line back at the margin after a list item's last line
+                # starts a paragraph ("4) Global or overall stability." /
+                # "Passive forces are ...", p. 219)
+                back = prow.x0 >= 85 and row.x0 < 80 and ptext.rstrip().endswith(".")
                 if same_page and gap is not None and gap < 6 and not _item_start(text, row) \
-                        and not _where_item(text, ptext):
+                        and not _where_item(text, ptext) and not back:
                     new_para = False
                 elif not same_page and _continues(prow, ptext, row, text):
                     new_para = False
@@ -794,7 +811,7 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
     return body
 
 
-_WHERE_ITEM = re.compile(r"^(?:\[p\. \d+\] )?([^\s=][^=]{0,24}?) [=≈] ")
+_WHERE_ITEM = re.compile(r"^(?:\[p\. \d+\] )?([^\s=][^=]{0,24}?) ?[=≈] ")
 
 
 def _join_where_lists(paras: list[str]) -> list[str]:
@@ -912,8 +929,11 @@ def split_long(sec: dict) -> list[dict]:
     chunks, cur = [], []
     for p in paras:
         if cur and not fits("\n\n".join(cur + [p])):
+            # a table's caption goes with the rows that follow it
+            carry = [cur.pop()] if len(cur) > 1 and re.match(
+                r"(?:\[p\. \d+\] )?Table [P1-7]-\d+ ", cur[-1]) else []
             chunks.append(cur)
-            cur = []
+            cur = carry
         cur.append(p)
     if cur:
         chunks.append(cur)

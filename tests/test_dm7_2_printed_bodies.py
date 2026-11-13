@@ -30,6 +30,7 @@ BUILT = {
     "prologue": (39, 92),
     "chapter02": (93, 144),
     "chapter03": (145, 212),
+    "chapter04": (213, 310),
     "chapter07": (546, 595),
 }
 #: sha256 of every section's fields other than ``body`` (json, sorted keys),
@@ -136,6 +137,13 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("chapter04", "4-2.1", 177,
+     "For simple calculations, K0 is often assumed to be equal to 0.5."),
+    ("chapter04", "4-3.2", 191,
+     "While δ/φʹ = 0.66 is a common assumption, this type of design may require Kp for a "
+     "different value of wall friction."),
+    ("chapter04", "4-5.1.2", 223,
+     "The factor of safety, FOT, should be greater than or equal to 1.5."),
     ("chapter03", "3-2.2.1", 110,
      "The compactive effort for standard Proctor is 12,400 lbf-ft/ft³."),
     ("chapter03", "3-3.1", 119,
@@ -266,6 +274,34 @@ def test_prologue_as_printed():
     assert "Intentionally" not in secs["P-4"]["body"]
     assert "GEOTECHNICAL DESIGN IN PROBLEM SOILS" not in secs["P-4"]["body"]
     assert secs["1-4"]["body"].startswith("[p. 54] Variable | Definition")
+
+
+def test_chapter_4_as_printed():
+    secs = _sections("chapter04")
+    # the where-list of Eq. 4-2 one symbol to a line (p. 177)
+    assert ("K0 = at-rest earth pressure coefficient,\nφ'= effective stress friction angle for "
+            "normally consolidated conditions, and\nOCR = overconsolidation ratio.") in secs["4-2.1"]["body"]
+    # the print's KP for PP noted (p. 190)
+    assert 'KP = passive earth pressure force. [As printed on p. 190: "KP"' in secs["4-3.1"]["body"]
+    # Eqs. 4-13 and 4-14 in 4-3.3, whose heading is printed on two lines (p. 194)
+    assert "[Eq. 4-13] γeq = K · γ" in secs["4-3.3"]["body"]
+    # Table 4-7 kept as typed, the rows of p. 266 after the continued caption,
+    # which goes with them into the lettered part
+    assert "[p. 264] Table 4-7 Modes of Failure" in secs["4-9"]["body"]
+    assert "[p. 265] Rotation (Cofferdam on Soil):" in secs["4-9"]["body"]
+    part = secs["4-9.a"]["body"]
+    assert part.startswith("[p. 266] Table 4-7 Modes of failure and design details for sheet pile "
+                           "cofferdams (cont.)\n\nSheet Pile Interlock Tension:")
+    # 4-9.1 to 4-9.3 under their printed numbers (p. 267)
+    assert "[p. 267] 4-9.1 Cell Deformations." in part and "\n4-9.3 Cofferdam Drainage.\n" in part
+    # a list's last item and the paragraph after it apart (p. 219)
+    assert "4) Global or overall stability.\n\nPassive forces" in secs["4-5.1"]["body"]
+    assert "The shear resistance, T, should" in secs["4-5.1.3"]["body"]
+    # the notation as a table, with its two rows of p. 271
+    n = secs["4-11"]["body"]
+    assert n.startswith("[p. 268] Variable | Definition\ncʹ | Effective stress cohesion intercept")
+    assert "[p. 271] θP | Obtuse angle" in n and n.endswith("ψ | Horizontal acceleration angle for seismic loading")
+    assert secs["4-12"]["body"].startswith("[p. 271] Topic | Reference")
 
 
 def test_chapter_3_as_printed():
