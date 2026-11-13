@@ -46,6 +46,7 @@ CATALOGS = sorted(d.name for d in PKG.iterdir()
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 import build_table_catalog as builder  # noqa: E402
+from tests._build_reader import require_build_reader  # noqa: E402
 
 #: Rows per reference (scripts/build_table_catalog.py, 2026-11-12).
 ROW_COUNTS = {
@@ -221,7 +222,14 @@ def test_a_text_row_types_every_cell_its_page_prints(ref):
     section carries the numbers, row labels and words of the table as its
     page prints them (``coverage_ok``: 90 % of the numbers and row labels,
     80 % of the words but a ruled table's column heads, six cells or more),
-    or was read against the render (``text_by_render``)."""
+    or was read against the render (``text_by_render``).
+
+    The page's cells are read by the PDF reader, and two versions of it do
+    not cut a table into the same words, so the measure holds only under
+    the reader the catalogs were built with (the one every script-built
+    manifest records; ``tests/_build_reader.py``). Under another version
+    this test skips; the job that installs the recorded version runs it."""
+    require_build_reader("em_1905")
     fitz = pytest.importorskip("fitz")
     cat = _catalog(ref)
     rows = [t for t in cat["tables"] if t["values"] == "text"]
