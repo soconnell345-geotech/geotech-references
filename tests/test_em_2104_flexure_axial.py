@@ -159,6 +159,33 @@ class TestDoublyReinforcedTensionControlled_AppendixD4:
         assert r["phi_pn_max"] == pytest.approx(802.0, rel=0.02)
 
 
+class TestDoublyReinforcedCompressionControlled:
+    """Eqs B-34 to B-39 on a made-up section (f'c 4 ksi, fy 60 ksi, 12 x
+    20 in, d 16.5, d' 3.5, e'/d 0.8, below the balanced eb'/d)."""
+
+    def _call(self, **kw):
+        beta1 = aci_beta1(4.0)
+        args = dict(e_prime_over_d=0.8, dprime_over_d=3.5 / 16.5,
+                    rho=0.01, rho_prime=0.006, fy=60.0, fc_prime=4.0,
+                    beta1=beta1, b=12.0, d=16.5, h=20.0, phi=0.65,
+                    kb=balanced_strain_kb(beta1, fy=60.0)["kb"])
+        args.update(kw)
+        return compression_controlled_capacity_doubly(**args)
+
+    def test_steel_stress_within_yield(self):
+        r = self._call()
+        assert r["ku"] > balanced_strain_kb(aci_beta1(4.0), fy=60.0)["kb"]
+        assert -60.0 <= r["fs"] <= 60.0
+        assert r["phi_pn"] > 0
+
+    def test_non_physical_bound_refused(self):
+        # REF-76: fy, es and ec set the bound on fs; not positive is
+        # refused (fy <= 0 used to turn the bound inside out).
+        for kw in ({"fy": 0.0}, {"fy": -60.0}, {"es": 0.0}, {"ec": -0.003}):
+            with pytest.raises(ValueError, match="must be > 0"):
+                self._call(**kw)
+
+
 class TestPureFlexureSingly_AppendixC2:
     def test_matches_c2_moment_capacity(self):
         r = pure_flexure_singly(as_=1.58, fy=60.0, fc_prime=4.0, b=12.0, d=20.5, phi=0.90)

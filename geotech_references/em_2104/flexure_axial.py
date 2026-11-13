@@ -707,7 +707,18 @@ def compression_controlled_capacity_doubly(e_prime_over_d, dprime_over_d, rho,
     dict
         {'ku', 'fs', 'fs_prime', 'phi_pn', 'phi_mn',
          'equation': 'B-34/B-35/B-36/B-37/B-39', ...}
+        ``fs`` is held within -fy..fy: steel stress does not pass yield,
+        as the appendix bounds fs' in Eqs B-31 (<= fy, printed p. 47) and
+        B-37 (>= -fy, printed p. 48).
+
+    Raises
+    ------
+    ValueError
+        If fy, es or ec is not positive (REF-76: they set the bound on fs).
     """
+    for name, val in (("fy", fy), ("es", es), ("ec", ec)):
+        if val is None or val <= 0:
+            raise ValueError(f"{name} must be > 0, got {val}")
     e = e_prime_over_d
     dpr = dprime_over_d
     esec = es * ec

@@ -114,6 +114,10 @@ pages):
   percent passing No. 200 above 25 (Table 3-5's last row, UFC 3-250-11
   printed p. 27) is refused; the 25 row was returned, with a note, though
   Sec 3-4.4 says the bitumen required increases with the finer sizes.
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`: fy, Es
+  or the concrete strain not positive is refused (they set the -fy..fy
+  bound on the tension steel stress, the yield limit Eqs B-31 and B-37
+  print for fs', printed pp. 47-48).
 
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
