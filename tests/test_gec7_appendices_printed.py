@@ -8,7 +8,8 @@ design, pp. 295 to 300) is chapter 12 and Appendix C (design example, pp.
 every equation, calculation line and table is typed in from a rendered page
 (the text layer carries the example's equations as scattered glyphs and
 spoken words). Where the print disagrees with itself the stored text keeps
-the print and says so "(as printed; ...)". Chapter 11 is left for Appendix A.
+the print and says so "(as printed; ...)". Appendix A is chapter 11, pinned
+in tests/test_gec7_appendix_a_printed.py.
 """
 
 import json

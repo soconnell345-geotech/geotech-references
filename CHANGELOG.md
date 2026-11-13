@@ -1360,14 +1360,30 @@ printed).
   diameter, cohesion and factor of safety); Appendix C, the design example
   (chapter 13, sections C and C.1 to C.8.b as the print numbers its steps,
   "4.a/b/c/d" stored as C.4.a; Tables C.1 to C.5 and every calculation line
-  of the LRFD checks). Chapter 11 is left for Appendix A (reinforcement
-  tables); Appendices D to G (example plans, two specifications, similar
-  technologies) are not built. Kept as printed and noted: φOS = 1/1.51 ~
+  of the LRFD checks). Appendices D to G (example plans, two
+  specifications, similar technologies) are not built. Kept as printed and noted: φOS = 1/1.51 ~
   0.60 (p. 308; 0.66, Table C.2 gives 0.65); the initial-facing punching
   CDR 1.58 (p. 315; 1.60); the headed-stud CDR 1.42 (p. 317; 1.41) and its
   RFS for RFH (p. 316); and DDEF = 0.8 H = 20 ft for sandy soil (p. 317),
   where Table 5.12 (p. 141) gives C = 1.25 for sandy soil and 0.8 for
-  weathered rock and stiff soil.
+  weathered rock and stiff soil; Table C.3's head thickness tSH = 0.31 in.
+  for the ½ x 4⅛ stud, where Table A.7 gives 0.28 (hc = 4.8 in. either way).
+- **GEC-7**, new: Appendix A, Reinforcement Characteristics (chapter 11,
+  pp. 285 to 293): the manufacturer's-availability note and the property
+  tables of solid-threaded bars (Tables A.1a to A.1c, Grades 60, 75 and
+  150), CTS/Titan, MAI and GEO-Drill hollow bars (Tables A.2 to A.4),
+  welded-wire mesh (A.5), reinforcing bars (A.6) and headed studs (A.7,
+  with Figure A.1), every cell typed in from 300 dpi renders with the units,
+  sources and notes as printed. The appendix prints no section numbers:
+  sections A.1 to A.7 are named for the tables they hold. Kept as printed
+  and noted: Table A.1c's ultimate loads 57 and 400 kips where the area
+  times 150 ksi gives 55.5 and 387 (p. 287); Table A.2's yield loads, which
+  divided by the areas run from 76.6 to 91.4 ksi against its note's 87 ksi
+  (p. 288); Table A.3's R51L outer diameter 1.50 in., where the other rows
+  give the designation's number in mm (51 mm, 2.0 in.; p. 289); Table A.7's
+  three ⅞ in. rows, whose ratio columns (2.5, 0.73) agree with a shaft
+  diameter of 0.88 in., not the printed 0.86 (p. 293). No gec_7 lookup
+  holds any of these values.
 - **Micropile manual (FHWA-NHI-05-039)**, new: Appendix D, Sample Problem
   No. 1, bridge abutment support (chapter 14, sections D and D.1 to D.10
   as the print numbers its steps: abutment loads with Table S1-1, pile
@@ -1436,6 +1452,7 @@ printed).
 
 Tests: `tests/test_gec10_appendices_printed.py` (119),
 `tests/test_gec7_appendices_printed.py` (63),
+`tests/test_gec7_appendix_a_printed.py` (89),
 `tests/test_micropile_appendices_printed.py` (74),
 `tests/test_gec6_appendices_printed.py` (117).
 
