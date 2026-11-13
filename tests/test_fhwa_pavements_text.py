@@ -578,6 +578,10 @@ def test_table_4_13_typed_from_the_page():
                        "CLEAN GRAVELS Less than 5% fines | CU ≥ 4 and 1 ≤ CC ≤ 3(e) | GW | "
                        "Well-graded Gravel")
     assert rows[5].endswith("| CU ≥ 6 and 1 ≤ CC ≤ 3(e) | SW | Well-graded Sand(i)")
+    # the SANDS head as printed overlaps the GRAVELS head; kept, and said
+    assert cells[5][0].startswith("SANDS 50% or more of coarse fraction retained on No. 4 sieve "
+                                  "[as printed; with the GRAVELS head")
+    assert all(c[0] == "SANDS 50% or more of coarse fraction retained on No. 4 sieve" for c in cells[6:9])
     # the GP and SP criteria print a CC no soil has; kept, and said
     assert "CU ≤ 4 and 1 ≥ CC ≥ 3(e) [as printed; no value of CC is both ≤ 1 and ≥ 3] | GP" in rows[2]
     assert "| PI > 7 and plots on or above \"A\" line(j) | CL | Lean Clay(k,l,m)" in rows[9]
