@@ -17,6 +17,7 @@ from pathlib import Path
 import pytest
 
 from geotech_references import _retrieval
+from tests._build_reader import require_build_reader
 
 REF = "fhwa_pavements"
 ROOT = Path(__file__).resolve().parents[1]
@@ -124,9 +125,10 @@ def test_manifest_formulas_match_the_text():
 
 
 def test_rebuild_reproduces_the_committed_text():
-    pytest.importorskip("fitz")
     if not PDF.exists():
         pytest.skip("PDF not checked out")
+    # The reader's version is an input of the build (tests/_build_reader.py).
+    require_build_reader(REF)
     import sys
     sys.path.insert(0, str(ROOT / "scripts"))
     try:

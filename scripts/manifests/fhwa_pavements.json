@@ -4,6 +4,7 @@
   "volume": null,
   "pdf_path": "../../docs/FHWA-NHI-05-037 - Geotech Pavements.pdf",
   "package": "fhwa_pavements",
+  "built_with": {"pymupdf": "1.27.2.3"},
   "figure_numbering": "section",
   "text_build": "printed",
   "scope_note": "Geotechnical-aspects pavement reference (DISTINCT from UFC 3-250-01 roads/parking design). The PDF has an intact text layer. The chapter text is read off the print by scripts/build_printed_text.py (app BACKLOG REF-82): every numbered heading of chapters 1 to 8 is a section with its printed number and title, the body in the print's own wording with printed-page markers; every numbered equation is typed in from the rendered page (printed_equations), and the tables the text layer scrambles where a design depends on them are typed in from the page (typed_tables). Python lookups digitize the soil/geotech inputs (resilient modulus correlations, seasonal adjustment, typical CBR, drainage coefficients, frost susceptibility, swell, compaction); the units and readings the lookups settle (DCP in mm per blow, P200 as a decimal) are in the functions' notes, not in the text.",

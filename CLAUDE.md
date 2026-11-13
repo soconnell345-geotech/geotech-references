@@ -516,7 +516,7 @@ Each gap entry has `type` (figure/table), `id` (e.g., "Figure 2-4"), `section`, 
 
 ### The PDF reader is part of a script build
 
-A reference whose text a script reads off its PDF (`scripts/build_printed_text.py`; its manifest has `"text_build"`: today `em_1905` and `fhwa_soils_foundations`) depends on exactly what the PDF reader, PyMuPDF, returns, and two versions do not return the same thing on every page (PyMuPDF 2.x places a bar over a symbol differently from 1.27, for one). So the reader's version is an input of the build:
+A reference whose text a script reads off its PDF (`scripts/build_printed_text.py`; its manifest has `"text_build"`: today `em_1905`, `fhwa_pavements` and `fhwa_soils_foundations`) depends on exactly what the PDF reader, PyMuPDF, returns, and two versions do not return the same thing on every page (PyMuPDF 2.x places a bar over a symbol differently from 1.27, for one). So the reader's version is an input of the build:
 
 - Each such manifest records the version it was built with: `"built_with": {"pymupdf": "1.27.2.3"}`. All record the same one.
 - The test that rebuilds a reference's text and compares it with the committed files calls `require_build_reader(<manifest>)` (`tests/_build_reader.py`). Under another version it skips, and its reason names both versions and the `pip install pymupdf==...` that runs it. With `GEOTECH_REQUIRE_BUILD_READER=1` a different or missing reader fails instead. Every other test that reads a PDF runs under any reader.
