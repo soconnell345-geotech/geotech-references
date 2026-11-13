@@ -29,6 +29,7 @@ PDF = ROOT / "docs" / "ufc_3_220_20_2025.pdf"
 BUILT = {
     "prologue": (39, 92),
     "chapter02": (93, 144),
+    "chapter03": (145, 212),
     "chapter07": (546, 595),
 }
 #: sha256 of every section's fields other than ``body`` (json, sorted keys),
@@ -110,7 +111,11 @@ def test_numbered_equations_marked_with_their_checked_formula(stem):
             if not e["id"].startswith("Eq. "):
                 continue
             m = re.search(re.escape(f"[{e['id']}] ") + r"([^\n]*)", body)
-            assert m, (sid, e["id"])
+            if m is None:
+                # printed in another section and cited here (Eqs. 3-3 to 3-5 in 3-5.1)
+                assert any(f"[{e['id']}] " in x["body"] for k, x in secs.items() if k != sid), \
+                    (sid, e["id"])
+                continue
             formula = m.group(1)
             if formula not in e["description"]:
                 # the formula, then a note in brackets ("[left side printed εb]")
@@ -131,6 +136,21 @@ def test_tables_not_typed_in_say_so(stem):
 # (stem, section, printed page, a printed sentence): the sentence is in the
 # section's body and the last page marker before it names its page
 PRINTED = [
+    ("chapter03", "3-2.2.1", 110,
+     "The compactive effort for standard Proctor is 12,400 lbf-ft/ft³."),
+    ("chapter03", "3-3.1", 119,
+     "For mass earthwork, initial exploration should be on a 200-foot grid."),
+    ("chapter03", "3-3.2", 123,
+     "For normal embankment construction, the maximum particle sizes should not exceed 3 inches "
+     "(i.e., gravel-sized or smaller) or 50 percent of the compacted layer thickness."),
+    ("chapter03", "3-4.3.2", 135,
+     "If more detailed unit weight information is not available, a shrinkage factor of 10% to 15% "
+     "of VF can be used for estimating purposes."),
+    ("chapter03", "3-4.3.2", 136,
+     "In this case, the shrinkage factor may be as low as -10%."),
+    ("chapter03", "3-5.1", 145,
+     "In some cases, special equipment can be specified based on experience with local conditions "
+     "and available fill materials."),
     ("prologue", "P-2.1", 2,
      "The prime symbol is often omitted even though the shear strength parameters refer to "
      "effective stress or drained parameters, and the reader should be aware of this issue."),
@@ -246,6 +266,32 @@ def test_prologue_as_printed():
     assert "Intentionally" not in secs["P-4"]["body"]
     assert "GEOTECHNICAL DESIGN IN PROBLEM SOILS" not in secs["P-4"]["body"]
     assert secs["1-4"]["body"].startswith("[p. 54] Variable | Definition")
+
+
+def test_chapter_3_as_printed():
+    secs = _sections("chapter03")
+    # Eq. 3-4 as printed, its where-list one symbol (p. 112)
+    assert "[p. 112] [Eq. 3-4] Δw = wopt − wfield\n\nwhere:\nwfield = water content of the compacted fill." \
+        in secs["3-2.2.1"]["body"]
+    assert "[Eq. 3-5] Dr = [(emax − e)/(emax − emin)] × 100% = " in secs["3-2.2.2"]["body"]
+    # Tables 3-10 and 3-11 typed in from the page, with Table 3-11's slip noted (p. 144)
+    b = secs["3-5.1"]["body"]
+    assert ("Soil moisture (soil with appreciable fines) | Appropriate moisture: Rollers track in 3 "
+            "to 4 inches on first pass") in b
+    assert ("Structural Support | 100% (D698) 95% (D1557) | -2% to +2% | Up to 12 inches | Fill "
+            "should be uniform.") in b
+    assert "Drainage blanket or filter | 95% (D698) 90% (D1557) | Wet | Up 8 inches |" in b
+    assert '[As printed on p. 144: "See Table 2-12". Table 2-12 is Problem Soil Considerations' in b
+    assert b.index("Table 3-11 Typical Compaction") < b.index("[Table 3-11 note A:")
+    # a section number broken over two lines joined (p. 145)
+    assert "(see Section 3-5.2)" in b
+    # the notation with its last two rows (p. 173) and the slip of p. 172
+    n = secs["3-9"]["body"]
+    assert n.startswith("[p. 171] Variable | Definition")
+    assert "[p. 173] σ | Standard deviation\nσʹz | Effective vertical stress" in n
+    assert 'with confinings [As printed on p. 172: "confinings"]' in n
+    assert secs["3-10"]["body"].startswith("[p. 173] Topic: General Earthwork")
+    assert "Intentionally" not in secs["3-10"]["body"]
 
 
 def test_chapter_2_as_printed():

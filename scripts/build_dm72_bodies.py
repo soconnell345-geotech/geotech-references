@@ -61,9 +61,10 @@ How a page is read (PyMuPDF text layer, one column, single font family):
 * a figure's caption ("Figure 7-3 Use of Random Variables ...") is a
   paragraph of its own where the figure is printed. A table's caption is
   followed by the table typed in, where an earlier body held it typed in
-  (manifest ``typed_tables``, kept as checked; the prologue's Tables P-2 to
-  P-8, text tables the earlier bodies held as condensed accounts, typed in
-  from the page instead, row by row), or else by the line
+  (manifest ``typed_tables``, kept as checked; text tables the earlier
+  bodies held as condensed accounts, the prologue's Tables P-2 to P-8 and
+  Tables 3-10 and 3-11, typed in from the page instead, row by row), or
+  else by the line
   "[Table 7-2: values on printed p. 512; not typed in]"; then the table's
   notes the earlier bodies held (manifest ``table_notes``). A figure or table
   printed inside a paragraph is put after that paragraph, with its page
@@ -718,7 +719,8 @@ def assemble(sid: str, toks: list[tuple], sec: dict, man: dict, report: list,
                 cur.append(marker() + text)
             else:
                 m = marker()
-                if cur and cur[-1].endswith("-") and not cur[-1].endswith(" -") and text[:1].islower() and not m:
+                if cur and cur[-1].endswith("-") and not cur[-1].endswith(" -") and not m and (
+                        text[:1].islower() or (text[:1].isdigit() and re.search(r"\d-$", cur[-1]))):
                     cur[-1] = cur[-1] + text
                 else:
                     cur.append(m + text)
@@ -826,6 +828,9 @@ def _where_item(text: str, prev_text: str) -> bool:
     # strength is associated with a" / "φ = 0 strength model" (p. 11) runs on
     prev = prev_text.rstrip()
     if not (prev.endswith((":", ",", ";", ".", " and", " or")) or _WHERE_LINE.match(prev)):
+        return False
+    # "... by a factor of four (i.e.," / "DB/DA = 4) produced ..." (p. 126)
+    if prev.endswith(("i.e.,", "e.g.,")):
         return False
     return bool(_WHERE_LINE.match(text)) and not prev.endswith(("=", "+", "−", "-"))
 
