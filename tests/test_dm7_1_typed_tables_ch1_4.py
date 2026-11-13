@@ -20,7 +20,7 @@ CASES = [
         "MH; Low to medium; None to slow; Low to medium",
         "CH; High to very high; None; High"]),
     (1, "1-3.4", "1-5", "(p. 19)", [
-        "A-1-a; ≤ 50; ≤ 30; ≤ 15; ; ≤ 6; Stone fragments; gravel and sand; Excellent to good",
+        "A-1-a; ≤ 50; ≤ 30; ≤ 15; ; ≤ 6; Stone fragments, gravel and sand; Excellent to good",
         "A-3; ; ≥ 51; ≤ 10; ; NP^a; Fine sand",
         "A-2-6; ; ; ≤ 35; ≤ 40; ≥ 11",
         "A-5; ; ; ≥ 36; ≥ 41; ≤ 10; Silty soils; Fair to poor",
@@ -43,12 +43,12 @@ CASES = [
     (1, "1-4.2.2", "1-11", "(p. 29)", [
         "< 0.003 in. (< 0.075 mm); Very Fine-Grained",
         "0.003 – 0.02 in. (0.075 – 0.425 mm); Fine-Grained",
-        "0.02 – 0.8 in. (0.425 – 2 mm) [as printed; 2 mm is 0.08 in., not 0.8 in.]; Medium-Grained",
+        "0.02 – 0.8 in. (0.425 – 2 mm) [as printed, 2 mm is 0.08 in., not 0.8 in.]; Medium-Grained",
         "0.8 – 2 in. (2 – 4.75 mm) [as printed",
         "2 in. (> 4.75 mm) [as printed",
-        "Very Coarse-Grained; Crystal boundaries are clearly visible; grains are distinguishable with the naked eye."]),
+        "Very Coarse-Grained; Crystal boundaries are clearly visible, grains are distinguishable with the naked eye."]),
     (1, "1-4.2.3", "1-12", "(p. 29)", [
-        "Fresh; F; I; No visible sign of decomposition or discoloration; rings under hammer impact",
+        "Fresh; F; I; No visible sign of decomposition or discoloration, rings under hammer impact",
         "Slightly Weathered; WS; II", "Moderately Weathered; WM; III", "Highly Weathered; WH; IV",
         "Completely Weathered; WC; V",
         "Residual Soil; RS; V [as printed",
@@ -90,7 +90,7 @@ CASES = [
         "F2; Medium to high; Sands; 6-15; SM, SW-SM, SP-SM",
         "F3; Low; Clays, PI >12; ; CL, CH",
         "F4; Low to very high; Very fine silty sands; >15; SM",
-        "F4; Very low to very high; Varved clays and other fine-grained banded sediments; ; CL and ML; CL, ML, and SM; CL, CH, and ML; CL, CH, ML and SM."]),
+        "F4; Very low to very high; Varved clays and other fine-grained banded sediments; ; CL and ML, CL, ML, and SM, CL, CH, and ML, CL, CH, ML and SM."]),
     (2, "2-5.1.1", "2-9", "(pp. 68-69)", [
         "Bridge - shallow foundations; One location per pier if width of foundation is less than 100 ft.",
         "For L ≤ 2B, use depth of 2B • For 2B ≤ L ≤ 5B, use depth of 3B • For L ≥ 5B, use depth of 4B",
@@ -116,7 +116,7 @@ CASES = [
         "Sampler driven above bottom of casing; Sampler driven in disturbed, artificially densified soil; Increases greatly",
         "Careless measure of drop; Hammer energy varies (generally variations cluster on low side); Increases",
         "Coarse gravel or cobbles in soil; Sampler becomes clogged or impeded; Increases",
-        "Hammer weight inaccurate; Hammer energy varies (driller supplies weight; variations of 5 – 7% common); Increases or decreases",
+        "Hammer weight inaccurate; Hammer energy varies (driller supplies weight, variations of 5 – 7% common); Increases or decreases",
         "Use of non-standard sampler; Correlations with standard sampler invalid; Increases or decreases",
         "Failure to maintain adequate head of water in borehole; Bottom of borehole may become quick; Decreases"]),
     (2, "2-9.3.2", "2-23", "(p. 111)", [
@@ -137,7 +137,7 @@ CASES = [
         "D698; Laboratory Compaction Characteristics of Soil Using Standard Effort (12,400 ft-lbf/ft^3 (600 kN-m/m^3)); 23 kg (Methods A and B) 45 kg (Method C)",
         "D854; Specific Gravity of Soil Solids by Water Pycnometer; 100 g dry",
         "D2435; One-Dimensional Consolidation Properties of Soils Using Incremental Loading; 300 g",
-        "D2487; Classification of Soils for Engineering Purposes (Unified Soil Classification System); Exact mass not provided in ASTM; |",
+        "D2487; Classification of Soils for Engineering Purposes (Unified Soil Classification System); Exact mass not provided in ASTM;  |",
         "D4318; Liquid Limit, Plastic Limit, and Plasticity Index of Soils; 150 - 200 g; Sample should be passing No 40 sieve.",
         "D4829; Expansion Index of Soils; 1 kg (dry)",
         "19 mm: 1.3 kg, 25.4 mm: 3 kg, 38.1 mm: 10 kg, 50.8 mm: 25 kg, 76.2 mm: 70 kg",
@@ -179,8 +179,8 @@ CASES = [
         "9. Swelling rock; NA; 0.001 to 0.003; 0",
         "Footnote A: After Barton et al. (1974)", "Footnote B: After Bieniawski (1990)"]),
     (4, "4-5.4.1", "4-8", "(p. 204)", [
-        "Firm; Loess above water; hard clay; marl; lightly stressed cemented sand and gravel",
-        "Raveling (slow to fast); Sand with clay binder (slow above water table, fast below); stiff fissured clays",
+        "Firm; Loess above water, hard clay, marl, lightly stressed cemented sand and gravel",
+        "Raveling (slow to fast); Sand with clay binder (slow above water table, fast below), stiff fissured clays",
         "Stand-up time is zero.", "Flowing; Silt, sand, and gravel without clayey fines below water table",
         "Squeezing; Very soft to medium stiff clay at shallow depths",
         "Swelling; High OCR clays with swelling minerals and PI greater than about 30.",

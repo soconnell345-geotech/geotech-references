@@ -551,13 +551,19 @@ CONFIG: dict[str, dict] = {
     # text, which the scan takes for the caption (the caption printed over
     # the table is the list's). Table 6-4 runs on to PDF page 326 (printed
     # p. 299), where its shell column continues; Table 4-3 (REF-116) has
-    # its values on PDF pages 222 and 223.
+    # its values on PDF pages 222 and 223. Chapters 1 to 4 type theirs too
+    # (REF-97); two are right on the page but not countable: Table 1-3 has
+    # no numbers and two-letter labels, and Table 4-13's text layer reads
+    # the sigma-1 subscript as a cell. Table 4-6 also prints on PDF page
+    # 229 (printed p. 202: note 5 and the drawing).
     "dm7_1": {
         "text_by_render": {"6-2": "6-2.6.2", "6-12": "6-5.3.1",
-                           "8-16": "8-4.2"},
+                           "8-16": "8-4.2", "1-3": "1-3.2.2.1",
+                           "4-13": "4-6.3"},
         "caption_from_render": {
             "8-16": "Compressibility Data for Six Sands (Been et al. 1987)"},
-        "pages_from_render": {"6-4": [325, 326], "4-3": [222, 223]}},
+        "pages_from_render": {"6-4": [325, 326], "4-3": [222, 223],
+                              "4-6": [228, 229]}},
     # Table 6-38 is printed on PDF page 503 (printed 466) under Figure 6-25;
     # the scan took a page that cites it (read off the render)
     "dm7_2": {"page_from_render": {"6-38": 503}},
