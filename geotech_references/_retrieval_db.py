@@ -60,6 +60,7 @@ from . import _atomic_db
 from . import _packs
 from . import _query_expansion as _qe
 from . import _retrieval
+from . import _schema
 
 _PACKAGE_DIR = Path(__file__).parent
 _DB_NAME = "geotech_references_fts.sqlite"
@@ -443,6 +444,9 @@ def _row_to_summary(row: sqlite3.Row) -> dict[str, Any]:
     return {
         "reference": row["reference"],
         "reference_title": row["reference_title"],
+        # the report number of the section's volume, as on figure hits
+        # (2026-11-10 review follow-up)
+        "reference_id": row["reference_id"],
         "chapter": row["chapter"],
         "chapter_title": row["chapter_title"],
         "section_id": row["section_id"],
@@ -598,17 +602,20 @@ def reference_search(
     Returns
     -------
     list of dict, or dict with ``max_chars``
-        Each hit has ``reference``, ``reference_title``, ``chapter``,
+        Each hit has ``reference``, ``reference_title``, ``reference_id``
+        (the report number of the section's volume, so a plain list shows
+        the volume a report-number scope kept to), ``chapter``,
         ``chapter_title``, ``section_id``, ``title``, ``parent_id``,
         ``under`` (the sections above it, outermost first, e.g.
         ``"7.2 Strength Limit States > 7.2.1 Nominal Axial ..."``; ``""``
         at the top level) and ``summary``. A hit that does not hold every
         word of the query also has ``match``: ``"synonyms"`` (every word,
-        a named term as one of its synonyms) or ``"any word"`` (only some
-        of the words, ``lacks`` naming the ones it does not hold). The
-        marks are worked out after the ranking and never move a hit
-        (2026-11-10 review, core-05). With ``max_chars``, the dict
-        described above.
+        a named term as one of its synonyms), ``"all words"`` (every word,
+        not as the phrase typed, ``not_as_phrase`` naming it) or ``"any
+        word"`` (only some of the words, ``lacks`` naming the ones it does
+        not hold). The marks are worked out after the ranking and never
+        move a hit (2026-11-10 review, core-05). With ``max_chars``, the
+        dict described above; it alone carries the note on the scope.
     """
     if not query or not query.strip():
         return [] if max_chars is None else {"hits": [], "shown": 0}
@@ -664,7 +671,7 @@ def reference_search(
             sql = (
                 "SELECT s.rowid AS rid, s.reference, s.reference_title, "
                 "s.chapter, s.chapter_title, s.section_id, s.title, s.summary, "
-                "s.parents_json "
+                "s.parents_json, s.reference_id "
                 "FROM sections_fts f JOIN sections s ON s.rowid = f.rowid "
                 "WHERE sections_fts MATCH ?"
             )
@@ -811,7 +818,7 @@ def with_scope(out: dict, reference, refs: list, numbers: list, held: list,
         out["resolved_reference"] = refs[0] if len(refs) == 1 else refs
     sentence = volume_note(refs, numbers, held, what)
     if sentence:
-        out["report_number"] = numbers[0] if len(numbers) == 1 else numbers
+        out["report_number"] = designation(numbers[0])
         out["note"] = (sentence + " " + out.get("note", "")).strip()
     return out
 
@@ -894,6 +901,46 @@ def is_report_number(key: str, doc_key: str) -> bool:
         and doc_key.endswith(key))
 
 
+#: The designation a stored report number begins with: everything up to the
+#: first space after its number ("FHWA-NHI-05-037 Geotechnical Aspects of
+#: Pavements" -> "FHWA-NHI-05-037"; "UFC 3-250-01" and "EN 1997-1:2004"
+#: whole). A stored id with no number is its own designation.
+_DESIGNATION = re.compile(r"^\D*?\d\S*")
+#: The year a standard's number carries ("EN 1997-1:2004").
+_STANDARD_YEAR = re.compile(r":(?:19|20)\d\d$")
+
+
+def designation(number) -> str:
+    """The designation of a stored report number (:data:`_DESIGNATION`)."""
+    text = str(number or "").strip()
+    m = _DESIGNATION.match(text)
+    return m.group(0) if m else text
+
+
+def number_forms(number) -> list[str]:
+    """The forms a caller may give for stored report ``number``, reduced by
+    :func:`id_key`: the whole stored text, its designation, and a
+    standard's designation without its year ("EN 1997-1"). Before the
+    2026-11-10 review follow-up only the whole stored text matched, so
+    "FHWA-NHI-05-037" was refused for fhwa_pavements and "EN 1997-1" for
+    eurocode_7_1."""
+    text = str(number or "").strip()
+    d = designation(text)
+    return list(dict.fromkeys(
+        k for k in (id_key(text), id_key(d), id_key(_STANDARD_YEAR.sub("", d)))
+        if k))
+
+
+def _volumes(numbers) -> dict:
+    """``{designation key: [stored numbers]}``: a reference's stored report
+    numbers grouped by the volume each names (one spelling per volume
+    can differ between the indexes: "FHWA NHI-16-072", "FHWA-NHI-16-072")."""
+    out: dict[str, list] = {}
+    for n in numbers:
+        out.setdefault(id_key(designation(n)), []).append(n)
+    return out
+
+
 def shared_name_refusal(name: str, named: list) -> str:
     """What both searches say for a name that is two references here
     (:data:`SHARED_NAMES`); ``named`` is ``(id, title)`` of each."""
@@ -921,7 +968,15 @@ def search_scope(reference: str, held: list) -> tuple[list, list, str | None]:
       Before, the figure search read such a number as the whole manual and
       the text search refused it;
     * ``error``, what to return instead: the app's module name ``dm7``
-      names two references (:func:`shared_name_refusal`).
+      names two references (:func:`shared_name_refusal`), or a number
+      that is the designation of more than one volume or reference
+      (:func:`ambiguous_number_refusal`).
+
+    A report number matches a stored one by any of its forms
+    (:func:`number_forms`: the stored text, its designation up to the
+    first space after the number, a standard's number without its year),
+    whole or without its agency. ``numbers`` is empty when the reference
+    has one designation: the number names all of it.
 
     Nothing looser: a name that only begins an id or sits in a title means
     nothing (2026-11-10 review, core-09)."""
@@ -939,25 +994,50 @@ def search_scope(reference: str, held: list) -> tuple[list, list, str | None]:
         return [], [], shared_name_refusal(
             reference, [(h[0], h[1]) for h in shared])
     matched = [(rid, n) for rid, _, numbers in held for n in numbers
-               if is_report_number(key, id_key(n))]
-    return (list(dict.fromkeys(rid for rid, _ in matched)),
-            list(dict.fromkeys(n for _, n in matched)), None)
+               if any(is_report_number(key, k) for k in number_forms(n))]
+    volumes = list(dict.fromkeys((rid, id_key(designation(n)))
+                                 for rid, n in matched))
+    if len(volumes) > 1:
+        return [], [], ambiguous_number_refusal(reference, matched)
+    if not volumes:
+        return [], [], None
+    rid = volumes[0][0]
+    of = dict((h[0], h[2]) for h in held)
+    if len(_volumes(of.get(rid, ()))) < 2:
+        return [rid], [], None
+    return [rid], list(dict.fromkeys(n for _, n in matched)), None
+
+
+def ambiguous_number_refusal(name: str, matched: list) -> str:
+    """What every lookup says for a report number that is the designation
+    of more than one volume or reference; ``matched`` is ``(reference,
+    stored number)`` of each."""
+    listed = "; ".join(f"{designation(n)} ({rid})"
+                       for rid, n in dict.fromkeys(
+                           (rid, designation(n)) for rid, n in matched))
+    return (f"'{name}' could be more than one report number here: {listed}. "
+            "Give the whole number, or the reference id.")
 
 
 def volume_note(refs: list, numbers: list, held: list, what: str) -> str:
     """The sentence a result scoped by a report number carries when that
     number is one volume of a reference whose volumes carry their own
     (``what``: "sections" or "figures"); '' otherwise."""
-    of = {h[0]: h[2] for h in held}
-    partial = [(rid, n) for rid in refs for n in numbers
-               if n in of.get(rid, ()) and len(of[rid]) > 1]
-    if not partial:
+    if not numbers:
         return ""
-    return " ".join(
-        f"{n} is one volume of {rid} (its volumes carry "
-        f"{', '.join(of[rid])}), so only that volume's {what} were "
-        f"searched; reference='{rid}' searches all of them."
-        for rid, n in partial)
+    of = {h[0]: h[2] for h in held}
+    out = []
+    for rid in refs:
+        vols = _volumes(of.get(rid, ()))
+        if len(vols) < 2:
+            continue
+        mine = designation(numbers[0])
+        out.append(
+            f"{mine} is one volume of {rid} (its volumes carry "
+            f"{', '.join(designation(v[0]) for v in vols.values())}), so "
+            f"only that volume's {what} were searched; reference='{rid}' "
+            "searches all of them.")
+    return " ".join(out)
 
 
 def scope_clause(alias: str, refs: list, numbers: list) -> tuple[str, list]:
@@ -973,6 +1053,44 @@ def scope_clause(alias: str, refs: list, numbers: list) -> tuple[str, list]:
                 + ", ".join("?" for _ in numbers) + ")")
         params += list(numbers)
     return sql, params
+
+
+def resolve_name(reference: str, held: list, unknown) -> str:
+    """The one reference id ``reference`` names, read as the searches read
+    it (:func:`search_scope`), for a function that fetches from one
+    reference. Raises ``KeyError``: ``unknown`` (a function of the name
+    giving the layer's refusal naming its ids) for a name that means
+    nothing; the search's refusal for ``dm7`` or a number that could be
+    several; and a refusal naming the ids when a spelling means more than
+    one. A report number names its reference here: a fetch finds a section
+    or figure by its number in the whole reference."""
+    refs, _numbers, error = search_scope(reference, held)
+    if error:
+        raise KeyError(error)
+    if not refs:
+        raise KeyError(unknown(reference))
+    if len(refs) > 1:
+        raise KeyError(f"'{reference}' could mean {', '.join(refs)}: give "
+                       "one of those ids")
+    return refs[0]
+
+
+def resolve_text_reference(reference: str) -> str:
+    """The text reference id ``reference`` names (:func:`resolve_name`):
+    the id, another spelling of it (``gec12``), or a report number its
+    files carry. The fetches and listings of both text layers read a
+    reference this way, as :func:`reference_search` does; before the
+    2026-11-10 review follow-up only the searches did, so
+    ``reference_get("gec12", "7.2")`` was refused. Raises ``KeyError`` with
+    the refusal :func:`reference_search` gives."""
+    conn = _ro_connect()
+    try:
+        if _is_indexed(conn, reference):
+            return reference
+        return resolve_name(reference, _held(conn),
+                            lambda name: _unknown_reference(conn, name))
+    finally:
+        conn.close()
 
 
 def _held(conn: sqlite3.Connection) -> list:
@@ -1243,7 +1361,11 @@ def reference_get(reference: str, section_id: str,
     Parameters
     ----------
     reference : str
-        Reference id (e.g. ``"dm7_1"``).
+        Reference id (e.g. ``"dm7_1"``), another spelling of it
+        (``"gec12"``) or a report number its files carry, read as
+        :func:`reference_search` reads it (:func:`resolve_name`). A name
+        that means nothing, ``"dm7"``, or a number that could be several
+        is a ``KeyError`` with the search's refusal.
     section_id : str
         Section id as it appears in the source (e.g. ``"4-2.1"``,
         ``"5.3"``, ``"P-1"``, ``"7.2.1.3.1"``).
@@ -1277,14 +1399,17 @@ def reference_get(reference: str, section_id: str,
     _retrieval.require_text_id(section_id)
     conn = _ro_connect()
     try:
+        # another spelling or a report number reads as the searches read it
+        if not _is_indexed(conn, reference):
+            reference = resolve_name(
+                reference, _held(conn),
+                lambda name: _unknown_reference(conn, name))
         rows = conn.execute(
             "SELECT * FROM sections WHERE reference = ? "
             "AND section_id = ? ORDER BY rowid LIMIT 9",
             (reference, section_id),
         ).fetchall()
         if not rows:
-            if not _is_indexed(conn, reference):
-                raise KeyError(_unknown_reference(conn, reference))
             raise KeyError(
                 f"section_id '{section_id}' not found in reference "
                 f"'{reference}'" + _nearby(conn, reference, section_id)
@@ -1337,11 +1462,17 @@ def _nearby(conn: sqlite3.Connection, reference: str,
         if r is not None:
             above = (r["section_id"], r["title"])
             break
+    # in the Army layout (EM 1110-1-1905) '5-5a' is numbered under '5-5',
+    # '5-5a(2)' under '5-5a', '2-7a(2)(c)1' under '2-7a(2)(c)'
+    army = ("" if not _schema.ARMY_ID.match(section_id) or section_id[-2:-1] == "."
+            else f"{section_id}[a-z]*" if section_id[-1].isdigit()
+            else f"{section_id}[(]*" if section_id[-1].isalpha()
+            else f"{section_id}[(0-9]*")
     below = conn.execute(
         "SELECT section_id, title FROM sections WHERE reference = ? "
-        "AND (section_id LIKE ? OR section_id LIKE ?) ORDER BY rowid "
-        "LIMIT 8",
-        (reference, f"{section_id}.%", f"{section_id}-%"),
+        "AND (section_id LIKE ? OR section_id LIKE ?"
+        + (" OR section_id GLOB ?" if army else "") + ") ORDER BY rowid LIMIT 8",
+        (reference, f"{section_id}.%", f"{section_id}-%") + ((army,) if army else ()),
     ).fetchall()
     lettered = conn.execute(
         "SELECT section_id, title FROM sections WHERE reference = ? "

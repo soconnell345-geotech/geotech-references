@@ -35,6 +35,8 @@ import os
 import re
 from pathlib import Path
 
+from ._schema import army_prefixes, numbered_under
+
 # Base directory for reference packages
 _PACKAGE_DIR = Path(__file__).parent
 
@@ -235,6 +237,30 @@ def fit_record(record: dict, max_chars: int, text_fields=None):
     return out, shortened
 
 
+def text_reference(reference: str) -> str:
+    """The reference id ``reference`` names, read as the searches read it:
+    the id, another spelling of it (``gec12``), or a report number its
+    files carry (:func:`_retrieval_db.resolve_text_reference`). An id with
+    a text folder, or a local pack's, is taken as it is without opening
+    the index. Every function here that takes a reference reads it this
+    way (2026-11-10 review follow-up: the searches took ``gec12`` and the
+    fetches refused it).
+
+    Raises ``FileNotFoundError`` with the refusal the searches give (the
+    error these functions have always raised for an unknown reference)."""
+    if (_PACKAGE_DIR / str(reference) / "text").is_dir():
+        return reference
+    if str(reference).startswith("local_"):
+        from . import _packs
+        if _packs.pack_dir(reference) is not None:
+            return reference
+    from . import _retrieval_db
+    try:
+        return _retrieval_db.resolve_text_reference(reference)
+    except KeyError as e:
+        raise FileNotFoundError(e.args[0] if e.args else str(e)) from None
+
+
 def _reference_dir(reference: str) -> Path:
     """Return the package directory for a reference (e.g., 'gec_12'), or
     a local reference pack's text folder (REF-64)."""
@@ -281,8 +307,11 @@ def load_chapter(reference: str, chapter: int,
     ------
     FileNotFoundError
         If the reference has no chapter of that number; the message names
-        the chapters it has.
+        the chapters it has. Also for a reference name that means nothing
+        here (:func:`text_reference`; another spelling or a report number
+        of a reference reads as that reference).
     """
+    reference = text_reference(reference)
     ref_dir = _reference_dir(reference)
     try:
         chapter_file = ref_dir / f"chapter{int(chapter):02d}.json"
@@ -389,9 +418,10 @@ def _count_under(entries: list[dict], i: int) -> int:
 def id_prefixes(section_id: str) -> list[str]:
     """The numbers above a section number, nearest first:
     ``'4-2.1.3'`` -> ``['4-2.1', '4-2', '4']``, ``'3.5.2.f'`` ->
-    ``['3.5.2', '3.5', '3']``."""
-    out: list[str] = []
-    sid = str(section_id or "")
+    ``['3.5.2', '3.5', '3']``; a manual in the Army layout
+    (EM 1110-1-1905), ``'5-5a(1)(a)'`` -> ``['5-5a(1)', '5-5a', '5-5', '5']``."""
+    out: list[str] = army_prefixes(section_id)
+    sid = out[-1] if out else str(section_id or "")
     while True:
         m = _LAST_PART_RE.search(sid)
         if not m or m.start() == 0:
@@ -561,11 +591,16 @@ def retrieve_section(reference: str, section_id: str,
         :func:`_retrieval_db.reference_get` does. Also if more than one
         section of the reference holds that number: the message names
         each, and neither is returned.
+    FileNotFoundError
+        For a reference name that means nothing here
+        (:func:`text_reference`; another spelling or a report number of a
+        reference reads as that reference).
     TypeError
         If ``section_id`` is not text (a number loses its trailing zero:
         7.10 arrives as 7.1, another section).
     """
     require_text_id(section_id)
+    reference = text_reference(reference)
     ref_dir = _reference_dir(reference)
 
     # Every chapter file is read, so a number two sections hold is seen
@@ -729,8 +764,7 @@ def _nearby(ref_dir: Path, section_id: str, reference: str = "") -> str:
     above = next(((pid, titles[pid]) for pid in id_prefixes(section_id)
                   if pid in titles), None)
     below = [(sid, title) for sid, title in numbered
-             if sid.startswith(f"{section_id}.")
-             or sid.startswith(f"{section_id}-")][:8]
+             if numbered_under(section_id, sid)][:8]
     return nearby_note(above, below, lettered_matches(section_id, numbered),
                        prefixed_matches(reference, section_id, titles),
                        reference)
@@ -809,7 +843,11 @@ def search_sections(reference: str, query: str, limit: int | None = None,
         each augmented with 'chapter', 'chapter_title', 'parent_id' and
         'under' (the sections above it). Sorted by relevance score
         (descending). With ``max_chars``, the dict described above.
+
+    ``reference`` is read as :func:`text_reference` reads it; a name that
+    means nothing raises ``FileNotFoundError``.
     """
+    reference = text_reference(reference)
     ref_dir = _reference_dir(reference)
     query_lower = query.lower()
     query_words = query_lower.split()
@@ -1045,7 +1083,11 @@ def list_chapters(reference: str, chapter: int | None = None,
         unless ``sections`` is False, 'sections' (list of {section_id,
         title}, every level in file order; a section the file nests
         inside another also has 'parent_id').
+
+    ``reference`` is read as :func:`text_reference` reads it; a name that
+    means nothing raises ``FileNotFoundError``.
     """
+    reference = text_reference(reference)
     ref_dir = _reference_dir(reference)
     chapters = []
     numbers = []

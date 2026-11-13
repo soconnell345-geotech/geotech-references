@@ -61,9 +61,17 @@ def dry_unit_weight_from_saturation(S: float, w: float,
     constant-saturation curves on the compaction plane.
 
     .. math::
-        \\gamma_d = \\frac{S \\, \\gamma_w}{\\frac{w}{100} \\left(S + \\frac{100}{G_s}\\right)}
+        \\gamma_d = \\frac{\\gamma_w \\, S}{\\frac{w}{100} + \\frac{S}{G_s}}
 
-    Rearranging the standard phase relationship:
+    as printed (printed p. 109, PDF p. 147), with *w* "water content
+    (percentage)". The same page defines S as "the percentage of the void
+    space filled with water", but the printed form gives the dry unit
+    weight only with S as a decimal fraction (w/100 and S/Gs must be on
+    one scale): at S = 100 %, w = 20 % and Gs = 2.70 it gives 167.6 pcf
+    with S entered as 100 and 109.4 pcf with S entered as 1.0 (a print
+    conflict, noted in the chapter text). This function takes S in
+    percent, as the page defines it, and
+    divides it by 100 before applying the form. Dividing through by S:
 
     .. math::
         \\gamma_d = \\frac{\\gamma_w}{\\frac{w}{S} + \\frac{1}{G_s}}

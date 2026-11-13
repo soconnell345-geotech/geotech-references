@@ -48,8 +48,11 @@ def test_text_search_of_a_missing_chapter_names_the_chapters(kwargs):
 
 def test_fetch_from_an_unknown_reference_names_the_ids():
     with pytest.raises(KeyError) as e:
-        _retrieval_db.reference_get("gec12", "7.2")
-    assert "no reference 'gec12'" in str(e.value) and "gec_12" in str(e.value)
+        _retrieval_db.reference_get("gec_1", "7.2")
+    assert "no reference 'gec_1'" in str(e.value) and "gec_12" in str(e.value)
+    # another spelling of an id is that reference, as in the searches
+    # (2026-11-10 review follow-up; it was refused here)
+    assert _retrieval_db.reference_get("gec12", "7.2")["reference"] == "gec_12"
     # a known reference still reports the missing section, with its neighbours
     with pytest.raises(KeyError, match="not found in reference 'gec_12'"):
         _retrieval_db.reference_get("gec_12", "7.99")

@@ -50,10 +50,10 @@ def _catalog(ref):
     ("dm7_1", "3-1", 172, 145),
     ("dm7_1", "5-4", 253, 226),
     ("dm7_1", "6-9", 332, 305),
-    ("gec_10", "4-5", 77, None),   # printed 4-6
-    ("gec_14", "A-1", 45, None),   # printed A1
-    ("gec_14", "A-2", 46, None),
-    ("gec_14", "A-3", 47, None),
+    ("gec_10", "4-5", 77, "4-6"),
+    ("gec_14", "A-1", 45, "A1"),
+    ("gec_14", "A-2", 46, "A2"),
+    ("gec_14", "A-3", 47, "A3"),
     ("gec_9", "6-17", 100, 97),
 ])
 def test_a_row_names_the_page_its_figure_is_on(ref, number, index, printed):
@@ -98,7 +98,8 @@ def _chapters(ref):
 def test_every_numbered_figure_is_filed_under_a_chapter_of_the_text(ref):
     have = _chapters(ref)
     for fig in _catalog(ref)["figures"]:
-        if fig["figure_number"].startswith("A."):   # GEC-8 Appendix A
+        # GEC-8 Appendix A ("A.1"), GEC-4 Appendices A, B and D ("A-1")
+        if re.match(r"[A-Z][-.]", fig["figure_number"]):
             assert fig["chapter"] is None
             continue
         assert fig["chapter"] in have, (ref, fig["figure_number"])
@@ -120,6 +121,9 @@ def test_a_figure_numbered_by_chapter_is_filed_under_it(ref):
 def test_gec4_figures_by_chapter():
     by = {}
     for fig in _catalog("gec_4")["figures"]:
+        if not fig["figure_number"].isdigit():   # Appendices A, B and D
+            assert fig["chapter"] is None
+            continue
         by.setdefault(fig["chapter"], []).append(int(fig["figure_number"]))
     # in order through the manual, each chapter a run of numbers
     assert [n for c in sorted(by) for n in by[c]] == list(range(1, 74))
@@ -137,7 +141,11 @@ TEXT_LAYER_LACKS = {
     "eurocode_7_1": {
         'D.1'},
     "eurocode_7_2": {
-        'B.1', 'D.1', 'G.1', 'I.1', 'I.2', 'I.3', 'I.4', 'K.1'},
+        'B.1', 'D.1', 'G.1', 'I.1', 'I.2', 'I.3', 'I.4', 'K.1',
+        'B.5'},   # the scan's text layer reads "Figure B.S"
+    # the text cites Figure A.7-2; its caption label is printed "A7-2"
+    "fhwa_soils_foundations": {
+        'A.7-2'},
     "gec_11": {
         '2-5', '2-8', '2-10', '2-15', '2-21', '2-22', '3-2', '3-4', '3-5',
         '4-3', '4-9', '4-12', '4-13', '4-19', '5-1', '5-2', '5-3', '5-4',

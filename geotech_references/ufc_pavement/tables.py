@@ -726,59 +726,178 @@ def table_10_1_k_subgrade(uscs_group, moisture_pct) -> dict:
 
 # ============================================================================
 # Figure 10-1: Effect of Base Course Thickness on Modulus of Soil Reaction
-# for Non-frost Conditions (Chapter 10, pdf_page 51, printed 32)
+# for Non-frost Conditions (Chapter 10; PDF page 52, printed 32)
 #
-# CHART READ digitization: family of 7 curves (k on subgrade = 25, 50, 75,
-# 100, 150, 200, 300 psi/in), each giving the "effective" k on top of the
-# base course vs. base course thickness (0-60 in), all approaching ~500
-# psi/in near t=60 in. Anchor points read visually off the rendered chart
-# (no printed worked-example anchor was found for this specific figure);
-# treat as an engineering estimate, tolerance approximately +/-15%. Prefer a
-# field plate-bearing test on top of the base, or ``read_reference_figure``
-# on the source figure, for final design.
+# Traced from the chart (pave-22, 2026-11-10). The earlier table, read by
+# eye at 10 in. steps, was up to 29 % low at mid thicknesses and up to 39 %
+# high for the 25 to 75 pci curves under bases thinner than about 10 in.
+# (their S-shaped start). The chart is one embedded image (1431 x 1453 px,
+# about 220 dpi on the page), read at that native resolution (rendering the
+# page finer only resamples it). Calibration on the chart's own gridlines:
+# the scan is turned about 0.25 degrees, so each gridline was fitted as a
+# straight line (scatter 0.3 to 0.5 px); one uniform scale fits the seven
+# thickness lines (0 to 60 in.) within 0.07 in. and one log scale fits the
+# nine k lines (20 to 500 pci) within 0.7 % of k; readings are taken
+# piecewise between neighbouring gridlines. 1 px is 0.26 % of k up the
+# chart and 0.055 in. across it. Each of the seven curves was traced column
+# by column (about 1,000 readings per curve); where a curve shares a dark
+# run with a gridline, a label or another curve, its centre is read from
+# its free edge (that rule, tried where the centre is known, errs up to
+# 0.54 % of k at the 95th percentile). A local quadratic (+-1 in.) through
+# the readings gives the stored values; it lies within 1.0 % of every
+# reading (0.35 % of the clean ones). Stored every 0.5 in. to 6 in., every
+# 1 in. to 20 in. and every 2 in. to 60 in., where linear interpolation on
+# log k stays within 0.28 % of the smooth trace. Each curve starts on its
+# own gridline at t = 0 (k on base = k on subgrade). Check: the 200 curve
+# passes through the gridline crossing (10 in., 300 pci); the table gives
+# 299.7. Stated tolerance: 1 % of k on the curves. Exception: the 200 curve
+# beyond 55 in. and the 300 curve beyond 57 in. run together with the 150
+# curve and the frame (500 pci) and cannot be seen apart; there they are
+# extrapolated from their last 3 in. and held between the 150 curve and 500,
+# so within 2 %.
 # ============================================================================
 
-_FIG_10_1_THICKNESS = [0, 10, 20, 30, 40, 50, 60]
+_FIG_10_1_THICKNESS = [
+    0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 7, 8, 9, 10, 11,
+    12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 32, 34, 36,
+    38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+]
 _FIG_10_1_CURVES = {
-    25: [25, 65, 105, 150, 195, 260, 330],
-    50: [50, 100, 150, 195, 240, 300, 370],
-    75: [75, 130, 180, 225, 270, 330, 400],
-    100: [100, 160, 210, 255, 300, 360, 420],
-    150: [150, 210, 260, 305, 350, 400, 460],
-    200: [200, 255, 300, 345, 390, 440, 480],
-    300: [300, 350, 390, 425, 455, 480, 500],
+    25: [
+        25.0, 25.0, 25.2, 25.6, 26.1, 26.7, 27.5, 28.4, 29.5, 30.8,
+        32.4, 34.2, 36.3, 40.8, 45.2, 50.0, 55.3, 61.0, 66.8, 72.8,
+        79.3, 85.6, 92.0, 98.5, 105.3, 112.3, 119.5, 134.3, 148.7,
+        162.5, 175.9, 189.2, 201.4, 213.4, 225.3, 237.3, 248.0, 259.1,
+        269.9, 280.8, 290.9, 302.1, 312.2, 322.9, 333.4, 344.0, 353.1,
+    ],
+    50: [
+        50.0, 50.0, 50.3, 50.8, 51.6, 52.7, 54.2, 55.9, 58.0, 60.5,
+        63.3, 66.8, 70.8, 78.9, 87.0, 95.2, 103.7, 112.0, 120.2, 128.3,
+        137.1, 145.8, 153.9, 162.2, 170.8, 179.0, 187.2, 203.8, 220.2,
+        236.2, 249.4, 262.7, 274.8, 286.7, 297.8, 308.4, 318.5, 328.0,
+        337.2, 345.9, 353.7, 362.1, 370.1, 377.9, 385.6, 393.2, 400.9,
+    ],
+    75: [
+        75.0, 75.3, 76.6, 78.2, 80.0, 82.3, 84.7, 87.3, 90.5, 94.3,
+        98.5, 103.1, 107.9, 117.9, 127.9, 138.2, 148.5, 159.0, 169.2,
+        179.5, 189.8, 199.5, 208.0, 216.6, 225.3, 233.3, 240.9, 256.7,
+        272.2, 287.1, 300.2, 313.4, 325.1, 336.6, 346.8, 356.4, 365.5,
+        374.3, 382.1, 390.0, 397.4, 404.6, 410.9, 416.8, 423.1, 428.7,
+        432.2,
+    ],
+    100: [
+        100.0, 101.8, 104.4, 107.4, 111.0, 115.1, 119.6, 124.3, 129.4,
+        134.5, 139.6, 144.9, 150.4, 161.8, 172.8, 183.7, 194.4, 204.3,
+        213.6, 223.0, 232.5, 241.6, 250.4, 259.9, 269.2, 277.9, 286.4,
+        303.6, 318.9, 333.4, 346.3, 358.9, 369.8, 380.2, 390.1, 399.1,
+        406.9, 414.0, 421.2, 428.3, 434.3, 440.3, 446.6, 452.3, 457.3,
+        462.5, 467.0,
+    ],
+    150: [
+        150.0, 155.8, 161.3, 166.6, 171.9, 177.1, 182.2, 187.0, 191.9,
+        196.9, 201.3, 205.6, 210.3, 219.7, 228.9, 237.9, 246.9, 256.0,
+        265.0, 273.7, 283.1, 291.5, 299.9, 308.5, 317.8, 326.4, 334.8,
+        350.5, 365.2, 378.9, 391.5, 404.4, 414.2, 424.0, 432.5, 440.0,
+        446.4, 452.9, 458.5, 463.9, 468.3, 473.3, 477.1, 480.8, 484.1,
+        486.8, 489.7,
+    ],
+    200: [
+        200.0, 204.3, 210.0, 215.6, 221.4, 227.0, 232.5, 237.8, 242.8,
+        247.8, 252.7, 257.7, 262.7, 272.5, 281.8, 290.5, 299.7, 308.6,
+        317.0, 325.2, 333.1, 340.6, 347.3, 354.2, 361.3, 368.4, 375.1,
+        388.1, 400.4, 410.7, 420.0, 429.0, 437.1, 444.4, 451.4, 456.5,
+        461.3, 466.4, 470.6, 474.7, 478.7, 481.8, 484.8, 487.3, 490.0,
+        491.9, 493.4,
+    ],
+    300: [
+        300.0, 304.2, 307.3, 310.4, 313.6, 316.7, 319.7, 322.6, 325.6,
+        328.4, 331.2, 334.0, 336.8, 342.2, 347.3, 352.4, 357.7, 363.3,
+        368.8, 373.6, 379.2, 384.2, 389.4, 394.7, 400.3, 405.4, 410.2,
+        419.1, 427.5, 434.9, 441.2, 447.6, 452.9, 457.9, 462.3, 466.0,
+        469.6, 473.3, 476.9, 479.9, 482.5, 485.4, 488.7, 490.7, 493.4,
+        496.3, 499.8,
+    ],
 }
 _FIG_10_1_SUBGRADE_K = sorted(_FIG_10_1_CURVES)
+_FIG_10_1_NOTE = (
+    "NOTE: k measured on subgrade or base course with 30-in.-diam bearing "
+    "plate. Base course is constructed of high-quality material. This "
+    "relationship has been developed from results of plate bearing tests on "
+    "the surface of base courses constructed on a range of subgrade "
+    "strengths.")
+
+
+def _fig_10_1_log_k_on_curve(k_curve, t):
+    """log10 k on base along one drawn curve at thickness t (0-60 in.),
+    linear in t between the stored points."""
+    import bisect
+    import math
+    ts, ks = _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[k_curve]
+    i = min(max(bisect.bisect_right(ts, t) - 1, 0), len(ts) - 2)
+    t0, t1 = ts[i], ts[i + 1]
+    l0, l1 = math.log10(ks[i]), math.log10(ks[i + 1])
+    return l0 + (t - t0) / (t1 - t0) * (l1 - l0)
 
 
 def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
-    """Effective modulus of soil reaction on top of a base course
-    (Figure 10-1, Chapter 10; pdf_page 51, printed 32). CHART READ,
-    approximate (see module note, tolerance ~+/-15%).
+    """Effective modulus of soil reaction k on top of a base course, psi/in,
+    for non-frost conditions, from UFC 3-250-01 Figure 10-1 (printed p. 32,
+    PDF 52): read off the chart's curves for k measured on the subgrade
+    (25, 50, 75, 100, 150, 200 and 300 psi/in) at the base course
+    thickness (0 to 60 in.). Paragraph 10-4 (printed p. 30-31): "Where a
+    base course is used under the pavement, the k value on top of the
+    base (also known as the effective k value) is used to determine the
+    pavement thickness. The plate-bearing test may be run on top of the
+    base, or Figure 10-1 may be used ... It is good practice to confirm
+    adequacy of the k on top of the base from Figure 10-1 by running a
+    field plate-load test."
+
+    The chart's note: "k measured on subgrade or base course with
+    30-in.-diam bearing plate. Base course is constructed of high-quality
+    material. This relationship has been developed from results of plate
+    bearing tests on the surface of base courses constructed on a range of
+    subgrade strengths."
+
+    Values on a drawn curve are traced from the chart (within 1 % of k;
+    2 % for the 200 curve beyond 55 in. and the 300 curve beyond 57 in.,
+    where those curves run together with the 150 curve and the frame; see
+    the module note). Along a curve, log k is interpolated linearly in
+    thickness between the stored points (every 0.5 to 2 in.). Between two
+    curves, log k on base is interpolated linearly in log k on subgrade at
+    the same thickness. That rule is the library's: the chart does not say
+    how to read between its curves (predicting a drawn curve from the
+    curves either side of it this way errs by up to about 6 %, so a value
+    between curves is less certain than one on a curve).
 
     Parameters
     ----------
     k_subgrade_psi_in : float
-        Modulus of subgrade reaction measured (or estimated, Table 10-1) on
-        the subgrade, psi/in. Interpolated between the printed curves, 25 to
-        300 psi/in. Below 25 refused; above 300 the 300 curve is used, with
-        a note (it then understates k on the base).
+        Modulus of soil reaction measured (or estimated, Table 10-1) on
+        the subgrade, psi/in, 25 to 300 (the drawn curves). Below 25
+        refused; above 300 the 300 curve is used, with a note (it then
+        understates k on the base).
     base_thickness_in : float
-        Thickness of base course above the subgrade, inches, 0-60 in (the
+        Thickness of base course above the subgrade, inches, 0 to 60 (the
         chart's axis). Above 60 in the 60 in value is used, with a note.
 
     Returns
     -------
     dict
         {'k_subgrade_psi_in', 'base_thickness_in', 'k_on_base_psi_in',
-         'chart_read', 'tolerance', 'reference', 'note'?}.
+         'chart_read', 'tolerance', 'interpolation', 'chart_note',
+         'reference', 'note'?}.
 
     Raises
     ------
     ValueError
-        If k_subgrade_psi_in is below 25 psi/in (the lowest printed curve)
+        If k_subgrade_psi_in is below 25 psi/in (the lowest drawn curve)
         or base_thickness_in is negative.
+
+    Example: k on subgrade 100 psi/in under 10 in. of base gives 194.4
+    psi/in; 200 under 10 in. gives 299.7 (the chart's curve passes through
+    300 there).
     """
+    import math
     if k_subgrade_psi_in < _FIG_10_1_SUBGRADE_K[0]:
         raise ValueError(
             f"k_subgrade_psi_in {k_subgrade_psi_in} is below Figure 10-1's "
@@ -797,25 +916,33 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     t = min(max(base_thickness_in, 0), 60)
     ks = min(k_subgrade_psi_in, _FIG_10_1_SUBGRADE_K[-1])
 
-    # Interpolate along thickness for each bracketing subgrade-k curve, then
-    # interpolate between the two curves.
     lower_k = max(k for k in _FIG_10_1_SUBGRADE_K if k <= ks)
     upper_k = min(k for k in _FIG_10_1_SUBGRADE_K if k >= ks)
-    val_lower = _linterp(t, _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[lower_k])
+    log_lower = _fig_10_1_log_k_on_curve(lower_k, t)
     if upper_k == lower_k:
-        k_on_base = val_lower
+        log_k = log_lower
+        how = f"on the {lower_k} pci curve"
     else:
-        val_upper = _linterp(t, _FIG_10_1_THICKNESS, _FIG_10_1_CURVES[upper_k])
-        frac = (ks - lower_k) / (upper_k - lower_k)
-        k_on_base = val_lower + frac * (val_upper - val_lower)
+        log_upper = _fig_10_1_log_k_on_curve(upper_k, t)
+        frac = (math.log10(ks) - math.log10(lower_k)) / (
+            math.log10(upper_k) - math.log10(lower_k))
+        log_k = log_lower + frac * (log_upper - log_lower)
+        how = (f"between the {lower_k} and {upper_k} pci curves: log k on "
+               "base interpolated linearly in log k on subgrade (the "
+               "library's rule; the chart gives none)")
 
     return {
         "k_subgrade_psi_in": k_subgrade_psi_in,
         "base_thickness_in": base_thickness_in,
-        "k_on_base_psi_in": round(k_on_base, 1),
+        "k_on_base_psi_in": round(10 ** log_k, 1),
         "chart_read": True,
-        "tolerance": "approximate, visual read-off of the rendered chart, ~+/-15%",
-        "reference": "UFC 3-250-01, Figure 10-1 (pdf_page 51, printed 32)",
+        "tolerance": (
+            "traced from the chart: within 1 % of k on a drawn curve (2 % for "
+            "the 200 curve beyond 55 in. and the 300 curve beyond 57 in.); "
+            "less certain between curves"),
+        "interpolation": how,
+        "chart_note": _FIG_10_1_NOTE,
+        "reference": "UFC 3-250-01, Figure 10-1, printed p. 32 (PDF 52)",
         **({"note": " ".join(notes)} if notes else {}),
     }
 

@@ -1,0 +1,64 @@
+name: Tests
+
+# The whole suite on GitHub's runners, so a merge or a release is not gated
+# on the developer's own machine.
+#
+# - A push to main runs it.
+# - A push to a branch named ci/<anything> runs it on that branch: push a
+#   feature branch under that name to gate it here before the merge.
+# - A pull request to main runs it; workflow_dispatch runs it by hand.
+on:
+  push:
+    branches: [main, "ci/**"]
+    # A commit that touches only prose does not start the suite.
+    paths-ignore: ["**.md"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Only the newest commit of a branch needs testing: a newer push cancels
+# the run still going.
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    # Pinned: ubuntu-latest moves between releases.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      # One Python version failing must not cancel the other's run.
+      fail-fast: false
+      matrix:
+        # 3.10 is the floor the package declares; 3.12 is what the hosts
+        # the library runs on have.
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install the package, the plot extra, the PDF reader and pytest
+        # PyMuPDF is not a dependency of the package: the tests that read
+        # the printed manuals in docs/ need it and skip without it. The
+        # annotate plugin puts each failing test's message on the run, where
+        # it can be read without signing in.
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[plot]"
+          pip install pytest pymupdf pytest-github-actions-annotate-failures
+
+      - name: What is installed
+        run: |
+          python -c "import geotech_references, importlib.metadata as m; print('geotech-references', m.version('geotech-references'))"
+          pip list 2>/dev/null | grep -i -E "^(numpy|matplotlib|pymupdf|pytest) "
+          lscpu | grep -E "Model name|^CPU\(s\)"
+
+      - name: Run tests
+        # One process, as the suite is run before a merge: the shared search
+        # databases are built once at the start of the run.
+        run: python -m pytest -q --tb=short --durations=15 -p no:cacheprovider

@@ -46,11 +46,21 @@ The manifest is a multi-volume one (``volumes``, each with ``pdf_path``,
 ``"text_build": "printed"``. Chapters can be left out with
 ``skip_chapters``.
 
+A volume whose manifest entry says ``"layout": "army"`` (a USACE engineer
+manual typeset in Word: paragraphs numbered 5–5, subparagraphs a, (1),
+(a), equations as Word equation objects, ruled tables; EM 1110-1-1905,
+2025) is read by ``scripts/printed_army_layout.py``, which this script
+hands it to; what is said above about headings, equations and tables is the
+FHWA manuals' layout. Its figure catalog is built by
+``scripts/build_figure_catalog.py``.
+
 Usage::
 
     python scripts/build_printed_text.py fhwa_soils_foundations
     python scripts/build_printed_text.py fhwa_soils_foundations --report
     python scripts/build_printed_text.py fhwa_soils_foundations --text-only
+    python scripts/build_printed_text.py em_1905 --report
+    python scripts/build_printed_text.py em_1905 --draft --report
 
 Requires PyMuPDF.
 """
@@ -143,6 +153,10 @@ MAX_SECTION_JSON_CHARS = 14000
 #: Room kept in a part measured with its own equations (``split_long``,
 #: ``own_equations``) for the table-lookup entries added after the split.
 OWN_EQUATIONS_MARGIN = 1500
+#: Army-layout volumes only: build although equations are not typed in yet
+#: or mathematics is unread (``--draft``), and each volume's build report.
+DRAFT = False
+REPORTS: dict = {}
 
 # Words kept in capitals when a heading printed in capitals is title-cased.
 _ACRONYMS = {
@@ -978,6 +992,12 @@ def _typed_eq_description(words: str, eq: str, label: str) -> str:
 
 
 def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, list]:
+    if vol.get("layout") == "army":
+        import printed_army_layout
+        chapters, book = printed_army_layout.build_volume(vol, manifest_dir, skip,
+                                                          draft=DRAFT)
+        REPORTS[vol["volume_id"]] = book
+        return chapters, []
     pdf = (manifest_dir / vol["pdf_path"]).resolve()
     # options for a manual laid out otherwise than FHWA NHI-06-088/089
     # (FHWA-NHI-05-037); without them the build is as it was
@@ -1289,6 +1309,18 @@ def build(package: str, report: bool = False, catalog_too: bool = True) -> int:
     all_figs.sort(key=lambda f: (f["volume"], f["chapter"],
                                  int(re.match(r"\d+-(\d+)", f["figure_number"]).group(1)),
                                  f["figure_number"]))
+    for vid, book in REPORTS.items():
+        print(f"[{package}] {vid}: {len(book.used)} equations and "
+              f"{len(book.used_tables)} tables typed in from the page; "
+              f"{len(book.problems)} to settle, {len(book.notes)} to look at")
+        if report:
+            for line in book.problems:
+                print(f"    to settle: {line}")
+            for line in book.notes:
+                print(f"    to look at: {line}")
+    if any(v.get("layout") == "army" for v in manifest["volumes"]):
+        # an Army-layout manual's catalog: scripts/build_figure_catalog.py
+        catalog_too = False
     if not catalog_too:
         return 0
     # a volume printed under its own number carries it on each of its
@@ -1324,12 +1356,18 @@ def build(package: str, report: bool = False, catalog_too: bool = True) -> int:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("packages", nargs="+")
-    ap.add_argument("--report", action="store_true")
+    ap.add_argument("--report", action="store_true",
+                    help="list what an Army-layout build leaves to settle or look at")
+    ap.add_argument("--draft", action="store_true",
+                    help="Army-layout volumes: write the text although numbered "
+                         "equations are not typed in or mathematics is unread")
     ap.add_argument("--text-only", action="store_true",
                     help="write the chapter text only, leaving figures_catalog.json "
                          "as it is (fhwa_soils_foundations: its catalog was checked "
                          "against the print after the build, REF-51)")
     args = ap.parse_args(argv)
+    global DRAFT
+    DRAFT = args.draft
     for p in args.packages:
         build(p, args.report, catalog_too=not args.text_only)
     return 0
