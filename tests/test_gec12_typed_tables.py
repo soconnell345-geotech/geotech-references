@@ -5,7 +5,7 @@ Each table below was read off the printed page (300 dpi render of
 that prints it, in the form GEC-10 chapter 8 uses: caption (p. page) -
 columns - rows separated by ' | ' - the table's printed notes. The cells
 pinned here are the printed values; a print slip is kept as printed with
-an "[as printed; ...]" note beside it.
+an "[as printed, ...]" note beside it.
 
 TABLES: (table, chapter, section_id, printed page, body rows, cells/notes
 that must stand in the entry word for word).
@@ -328,8 +328,8 @@ TABLES = [('2-1',
    'Sand: Dense; 1,000-1,600; 0.30-0.40',
    'Gravel: Loose; 600-1,600; 0.20-0.35',
    'Gravel: Dense; 2,000-4,000; 0.30-0.40',
-   'Sand: Medium Dense; 600-1,000; |',
-   'Gravel: Medium Dense; 1,600-2,000; |']),
+   'Sand: Medium Dense; 600-1,000;  |',
+   'Gravel: Medium Dense; 1,600-2,000;  |']),
  ('5-11',
   5,
   '5.2.4.1',
@@ -805,8 +805,8 @@ TABLES = [('2-1',
    '15 < N̄ < 50 blows/ft, or 1.0 < s̄u < 2.0 ksf.',
    'PI > 20, w > 40 percent and s̄u < 0.5 ksf.',
    'Very thick soft/medium stiff clays (H >120 ft).',
-   'v̄s = average shear wave velocity; N̄ = average SPT N- value; s̄u = averageundrained shear strength [as '
-   'printed; no space between the two words]; w = moisture content; PI = Plasticity Index']),
+   'Legend: v̄s = average shear wave velocity, N̄ = average SPT N- value, s̄u = averageundrained shear strength [as '
+   'printed, no space between the two words], w = moisture content, PI = Plasticity Index']),
  ('7-27',
   7,
   '7.4.2.1',
@@ -950,11 +950,11 @@ TABLES = [('2-1',
    'Red Oak^2; 1.10; 2.45; 0.135; 1250',
    'Red Pine^3; 0.90; 1.90; 0.085; 1280',
    'Southern Pine^4; 1.20; 2.40; 0.110; 1500',
-   '^1 Use Douglas Fir-Latch reference values for connection design. [as printed; the page shows "Douglas '
+   '^1 Use Douglas Fir-Latch reference values for connection design. [as printed, the page shows "Douglas '
    'Fir-Latch", a species name the manual prints nowhere else on this page]',
    '^2 Northern and Southern Red Oak.',
    '^3 United States grown Red Pine. Use Northern Pine reference values for connection design.',
-   '^4 Reference strengths apply to Lobololly, Longleaf, Shortleaf and Slash Pine. [as printed; the page '
+   '^4 Reference strengths apply to Lobololly, Longleaf, Shortleaf and Slash Pine. [as printed, the page '
    'spells "Lobololly"]',
    'Where: Fco = reference value for compression stress parallel to grain (ksi). Fbo = reference value for '
    'strength in flexure (ksi). Fvo = reference value for strength in shear (ksi). Eo = reference value '

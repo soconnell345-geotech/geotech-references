@@ -306,14 +306,14 @@ page-reading tool only knew the figure catalogs).
   `table_get` beside `reference_search` and `reference_get`, at the same
   14,000-character size.
 - **Coverage (build of 2026-11-13, on the text as merged)**: 31
-  references, 2,099 rows: 632 text (570 by the cell check, 62 read
-  against the render), 254 lookup, 1,213 page. Rows (text/lookup/page):
+  references, 2,099 rows: 710 text (642 by the cell check, 68 read
+  against the render), 254 lookup, 1,135 page. Rows (text/lookup/page):
   aashto_1993 29 (0/13/16), california_trenching 39 (0/7/32), dm7_1 139
   (90/7/42), dm7_2 172 (18/16/138), em_1905 109 (52/6/51), em_2104 27
   (0/10/17), em_2107 38 (0/4/34), eurocode_7_1 20 (0/18/2), eurocode_7_2
   38 (37/0/1), fema_p2082 52 (0/3/49), fhwa_pavements 153 (44/4/105),
   fhwa_soils_foundations 142 (2/0/140), gec_10 47 (29/2/16), gec_11 118
-  (26/7/85), gec_12 262 (148/8/106), gec_13 82 (0/8/74), gec_4 23
+  (26/7/85), gec_12 262 (226/8/28), gec_13 82 (0/8/74), gec_4 23
   (0/4/19), gec_5 127 (91/0/36), gec_6 50 (40/3/7), gec_7 66 (23/13/30),
   gec_8 15 (6/0/9), gec_9 24 (0/5/19), gsa_collapse 30 (0/11/19),
   micropile 37 (26/5/6), ufc_collapse 29 (0/11/18), ufc_concrete_practice
