@@ -4,6 +4,86 @@ Releases before 1.6.0 are described in their release commits (`git log`).
 
 ## Unreleased
 
+**EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils
+(U.S. Army Corps of Engineers, 31 July 2025), as package `em_1905`.**
+
+- Chapter text read off the print: chapters 1-12, and Appendices B
+  (design examples, ultimate limit states), C (design examples,
+  settlement) and D (unit conversion factors) as chapters 13-15; 779
+  sections, each body in the print's own wording with page markers, and
+  all 213 numbered equations typed in from the rendered page with their
+  symbols and units. Figure catalog: all 136 figures, each on the page
+  that prints its caption.
+- Build: each of the 475 formula lines of Appendices B and C was read
+  against the rendered page. The 40 the placement rules had read wrongly
+  (a power left off, a denominator stacked on a line of its own,
+  subscripts spaced off their symbols, two lines run into one, "pf" where
+  the page prints "bpf") are typed in from the page in the manifest
+  (`printed_passages`), each checked by its letters and digits, and each
+  result recomputed from the line as stored. Among them: Example C-3,
+  Step 4 (p. 359), whose time line had lost the square on the drainage
+  path (as read it gave 12.2 days, not the printed 152.8); Example C-7,
+  Steps 6 and 7 (p. 384); Eq. 7-10 as quoted in Examples C-6 and C-7; the
+  equivalent bearing pressure of Example B-2 (p. 301). A total or
+  sub-heading beside a table stands once, not on every row. Sixteen more
+  slips of the print are kept as printed with a note: Examples B-1, B-4
+  (the clay's unit weight printed 0.133 kcf in Table B-4a, Steps 1 and 3,
+  where Figure B-4 and Table B-4c give 0.113 kcf, from which the printed
+  qo and qult follow), B-5, B-6, C-2, C-3, C-6 and C-7 (Table C-7b, Step
+  7: the 25 rows total 0.343 in, printed 0.034 in), Table 3-15, the symbol
+  list of Eqs. 8-27 and 8-28, Table 3-8 (σv with a raised semicolon, the
+  evident reading σ′v; a stress given in pcf) and Tables D-3 and D-6.
+  Table C-7c's note says that its printed ratios are what pne = 16.0 tsf
+  gives, the geometric mean of the P*L values within 1.5B. Table 4-10's E*0
+  (the text layer holds a capital O) and "not applicable" in Example B-2
+  (the text layer holds a space for the math font's b, p. 299) are typed
+  in, and a test looks for any other word broken by a space; a subscript
+  inside a word in the text font stays in it (CKoU, Figure 3-9); the
+  symbol lists of Eqs. 3-17, 7-3b, 7-4, 7-6, 7-11, 7-12 and 8-2 give every
+  symbol the formula prints; an equation printed straight after another
+  is described as printed after it, not by the other's formula (Eq. 5-3);
+  the Figure List keeps a word broken after its own hyphen whole
+  ("per-inch", "1-D"); a split leaves room for the notes placed after it
+  (C-2b and C-3b are each in two parts). A test looks through every chapter
+  for formula pieces put back in the wrong places (a prime alone, a lone
+  number above a formula, a number doubled from a stacked fraction, a
+  subscript spaced off its symbol, brackets that do not pair).
+- Lookups in the manual's US units, 66 functions: `tables` (Tables 2-1,
+  5-2 to 5-5 and 7-6), `equations` (Chapter 5, Eqs. 5-1 to 5-36),
+  `settlement` (Chapters 6 and 7, Eqs. 6-1 to 6-13 and 7-1 to 7-47) and
+  `figures` (the table printed on Figure 7-16). Each returns a dict with
+  `units`, `source` (the printed page), `valid_for` and `notes`, and
+  raises ValueError outside what the print covers. A limit printed as part
+  of a relation is applied as printed (USACE dc <= 1.5, AASHTO dq <= 1.4,
+  Pa,d >= 0, C1 >= 0.5): the limited value comes back with the formula's
+  value beside it and `limit_governs`. sigma'p < sigma'zo, outside the
+  conditions printed beside Eqs. 7-7 to 7-9 (pp. 159-160), is refused, the
+  message naming them and the page. Some refusals rest on no printed
+  condition, and their messages and docstrings say they are the library's
+  reading: beta > phi' (Table 5-3, USACE), tan(beta) > 1 (Table 5-3,
+  AASHTO), t < 3 years (Eq. 7-34; p. 178 says only that R3 covers the
+  first 3 years), a void ratio that rises (Eqs. 7-5, 7-6, 7-46) and q <
+  sigma'zD in the settlement equations. A correction factor of Tables 5-3
+  and 5-4 that computes negative is refused with its value, one of exactly
+  zero returned with a note; Eqs. 6-5 and 6-6 return a negative net
+  pressure flagged `net_negative`. Eq. 7-43 returns Cv in in^2/day and
+  ft^2/day; Eq. 7-42 takes ft^2/day (`cv_ft2_per_day`). Eqs. 5-34/5-35
+  keep the printed 2c'd without the square root of K (noted); Eqs. 7-7 to
+  7-10 return feet and inches, as the examples convert. The worked
+  examples' slips (in Examples B-1, B-4 to B-6 and C-2 to C-7) are
+  kept as printed in the text, each with a note giving what the inputs
+  give, and the tests pin what the inputs give. The tests run Appendix B
+  Examples B-1 to B-7 and Appendix C Examples C-1 to C-7. The equations
+  of Chapters 3, 4, 8 and 9 and the charts are text and catalog only.
+- Section ids in the Army layout ('5-5a(2)(b)', '2-7a(2)(c)1', 'B-1b')
+  are valid (`SECTION_ID`, `chapter_schema.json`) and sit under their
+  parents in both retrieval layers; the existing ids give the same
+  results.
+- Scripts: `scripts/printed_army_layout.py` reads manuals in the Army
+  layout for `build_printed_text.py` (manifest layout "army");
+  `build_figure_catalog.py` and `check_section_numbers.py` read that
+  layout too.
+
 **Build of 2026-11-10: the UFS 3-220-10 (dm7_1) chapter text states its
 equations as printed (app BACKLOG REF-79).** Every equation in chapters 1-8
 was read off the rendered page and compared with the stored `equations`,

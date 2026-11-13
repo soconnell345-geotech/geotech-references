@@ -1,0 +1,1175 @@
+{
+ "reference_id": "EM 1110-1-1905",
+ "reference_title": "EM 1110-1-1905, Geotechnical Design of Shallow Foundations on Soils (USACE, 31 July 2025)",
+ "volume": null,
+ "chapter": 5,
+ "chapter_title": "Ultimate Limit State for Static Analysis",
+ "sections": [
+  {
+   "section_id": "5-1",
+   "title": "Introduction",
+   "body": "[p. 93] This chapter presents calculation procedures for evaluating the ultimate limit or “strength state” for static analysis (especially when design loads are assumed to be static). Failure modes associated with the ultimate limit state include: (1) overturning moment and eccentricity, (2) bearing capacity, (3) sliding, (4) uplift, and (5) global stability (see EM 1110-2-1902).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-1, printed p. 93."
+  },
+  {
+   "section_id": "5-2",
+   "title": "Loads and pressure",
+   "body": "",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-2, printed p. 93."
+  },
+  {
+   "section_id": "5-2a",
+   "title": "Shallow foundations are influenced by a combination of vertical (V), horizontal …",
+   "body": "[p. 93] Shallow foundations are influenced by a combination of vertical (V), horizontal (H), and moment (M) loads. The weight of the footing must be included in assessment of the loads. It is common to separate external vertical loads on a footing (Q) from the weight of the foundation (Wf). Many aspects of this chapter revolve around the total vertical load, expressed in equation 5-1.\n\nV = Q + Wf [Eq. 5-1]\n\nwhere:\nV = downward vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nQ = vertical column loading, Q is positive in compression and negative in uplift (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nWf = weight of foundation, including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-1",
+     "description": "Equation 5-1, introduced by: \"Many aspects of this chapter revolve around the total vertical load, expressed in equation 5-1.\" (p. 93).",
+     "formula": "V = Q + Wf",
+     "variables": {
+      "V": "downward vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "Q": "vertical column loading, Q is positive in compression and negative in uplift (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "Wf": "weight of foundation, including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)"
+     },
+     "source": "Typed in from p. 93.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-2a, printed p. 93. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-2b",
+   "title": "The gross bearing pressure acting on the soil (q) is expressed differently for …",
+   "body": "[p. 93] The gross bearing pressure acting on the soil (q) is expressed differently for isolated and continuous footings. A continuous footing is based on loads per unit length out of plane, therefore, only the width of the footing is used to calculate pressure. For bearing capacity and settlement calculations, gross (q) and gross equivalent (qeq) bearing pressure are calculated in a similar manner. The distinction is when loads are eccentric, the equivalent area (A′) and equivalent width (B′) are used to determine the gross “equivalent” bearing pressure (qeq). Reference paragraph 5-4 for equivalent footing parameters for eccentrically loaded foundations. Equations 5-2 and 5-3 are presented as gross equivalent bearing pressure, however, A = A′, B = B′, and q = qeq, when eccentricity is zero.\n\nqeq = (Q + Wf)/A′ − ud = V/A′ − ud = V/(B′ · L′) − ud   (Isolated Spread Footing) [Eq. 5-2]\n\n[p. 94] qeq = (Q + Wf)/B′ − ud = V/B′ − ud   (Continuous Footing) [Eq. 5-3]\n\nwhere:\nQ = vertical column loading (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nV = vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nWf = weight of foundation, including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)\nqeq = gross equivalent bearing pressure (ksf); denoted as gross bearing pressure, q if loading is not eccentric\nud = pore water pressure at base of foundation to account for uplift pressures; uD = 0 if groundwater table is at or deeper than the base of foundation (ksf)\nB′ = effective base width of footing (ft); substitute B if loading is not eccentric\nL′ = effective base length of rectangular footing (ft); substitute L if loading is not eccentric\nA′ = effective area of circular type or rectangular footing (ft^2); substitute A if loading is not eccentric",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-2",
+     "description": "Equation 5-2, introduced by: \"Equations 5-2 and 5-3 are presented as gross equivalent bearing pressure, however, A = A′, B = B′, and q = qeq, when eccentricity is zero.\" (p. 93).",
+     "formula": "qeq = (Q + Wf)/A′ − ud = V/A′ − ud = V/(B′ · L′) − ud   (Isolated Spread Footing)",
+     "variables": {
+      "Q": "vertical column loading (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "V": "vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "Wf": "weight of foundation, including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+      "qeq": "gross equivalent bearing pressure (ksf); denoted as gross bearing pressure, q if loading is not eccentric",
+      "ud": "pore water pressure at base of foundation to account for uplift pressures; uD = 0 if groundwater table is at or deeper than the base of foundation (ksf)",
+      "B′": "effective base width of footing (ft); substitute B if loading is not eccentric",
+      "L′": "effective base length of rectangular footing (ft); substitute L if loading is not eccentric",
+      "A′": "effective area of circular type or rectangular footing (ft^2); substitute A if loading is not eccentric"
+     },
+     "notes": "Presented as gross equivalent bearing pressure; A = A′, B = B′ and q = qeq when eccentricity is zero (paragraph 5-2b).",
+     "source": "Typed in from p. 93.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-3",
+     "description": "Equation 5-3, printed after Eq. 5-2 (p. 94).",
+     "formula": "qeq = (Q + Wf)/B′ − ud = V/B′ − ud   (Continuous Footing)",
+     "variables": {
+      "Q": "vertical column loading (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "V": "vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "Wf": "weight of foundation, including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+      "qeq": "gross equivalent bearing pressure (ksf); denoted as gross bearing pressure, q if loading is not eccentric",
+      "ud": "pore water pressure at base of foundation to account for uplift pressures; uD = 0 if groundwater table is at or deeper than the base of foundation (ksf)",
+      "B′": "effective base width of footing (ft); substitute B if loading is not eccentric"
+     },
+     "notes": "Presented as gross equivalent bearing pressure; B = B′ and q = qeq when eccentricity is zero (paragraph 5-2b).",
+     "source": "Typed in from p. 94.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-2b, printed pp. 93 to 94. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-3",
+   "title": "Soil properties",
+   "body": "[p. 94] Soil properties should be evaluated through assessment of design shear strength and unit weight profiles within the shear zone. The shear zone is the soil next to and below the footing within which shear strains are concentrated when an ultimate limit state is reached. The shear zone for each failure mode is discussed in the relevant sections of this chapter. Soil parameters used in analyses may vary and will depend on the limit state and soil conditions. Reference Table 5-1 for information on soil strength relevant to analyses.\n\n[p. 95] Table 5-1 Shear strength for static design conditions\n | Drainage Condition | Drainage Condition\nFailure Mode | Free-draining soils (such as sand, silty sand, non-plastic silt) | Low permeability soils (such as clayey soil, plastic silt)\nBearing capacity | Use drained shear strengths related to effective stresses | Use minimum of (i) undrained strength (φ = 0) related to total stresses; and (ii) drained soil shear strengths related to effective stresses\nSliding | Use drained-soil shear strengths related to effective stresses | Use minimum of (i) undrained strength (φ = 0) related to total stresses; and (ii) drained soil shear strengths related to effective stresses\nOverturning | NA – based on eccentricity | NA – based on eccentricity\nUplift | Use drained-soil shear strengths related to effective stresses | Use drained soil shear strengths related to effective stresses\nGlobal stability | See EM 1110-2-1902 | See EM 1110-2-1902",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [
+    "Table 5-1: Shear strength for static design conditions"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-3, printed pp. 94 to 95."
+  },
+  {
+   "section_id": "5-4",
+   "title": "Overturning and eccentricity",
+   "body": "[p. 95] Shallow foundation overturning is checked by calculating eccentricity. Overturning is illustrated in Figure 5-1. Limiting eccentricity leads to the full width of the footing in compression against the supporting soil. Furthermore, the eccentricity from an overturning assessment is used in subsequent bearing capacity analyses. The overturning and eccentricity ultimate limit state are, therefore, discussed first. A shallow foundation experiences moment loading when a vertical load is not concentric to a footing. Moment loading also occurs when a horizonal load is applied at some height above the point of rotation of a foundation.\n\n[p. 96] Figure 5-1. Overturning moment ultimate limit state for structure resting on three connected, continuous footings, assuming the corner is pinned; slip surfaces indicating soil separation and failure",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-1: Overturning moment ultimate limit state for structure resting on three connected, continuous footings, assuming the corner is pinned; slip surfaces indicating soil separation and failure"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-4, printed pp. 95 to 96."
+  },
+  {
+   "section_id": "5-4a",
+   "title": "Effective footing dimensions",
+   "body": "[p. 96] Effective footing dimensions. A moment load is assessed by converting horizontal forces causing a moment about an axis of the footing and/or applied moments into an eccentricity. The effect of eccentricity must be analyzed by reducing the footing widths to an equivalent value for bearing capacity and settlement calculations. These values of effective dimensions are used in the calculations of bearing capacity and associated correction factors. Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\n\nB′ = B − 2 · eB [Eq. 5-4]\n\neB = MB/V [Eq. 5-5]\n\nL′ = L − 2 · eL [Eq. 5-6]\n\neL = ML/V [Eq. 5-7]\n\nA′ = B′ · L′ [Eq. 5-8]\n\nwhere:\nB = base width of footing (ft)\nB′ = effective base width of footing (ft)\neB = eccentricity away from the center line of the footing width (ft)\nMB = moment with respect to eB (kip-ft)\n[p. 97]\nV = vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nL = base length of rectangular footing (ft)\nL′ = effective base length of rectangular footing (ft)\neL = eccentricity away from the center line of the footing length (ft)\nML = moment with respect to eL (kip-ft)\nA′ = effective area of circular type or rectangular footing (ft^2)\n\nFigure 5-2. Eccentric load applied to a footing within (a) 3-D reference frame; (b) plan view to illustrate eL and eB",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-4",
+     "description": "Equation 5-4, introduced by: \"Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\" (p. 96).",
+     "formula": "B′ = B − 2 · eB",
+     "variables": {
+      "B": "base width of footing (ft)",
+      "B′": "effective base width of footing (ft)",
+      "eB": "eccentricity away from the center line of the footing width (ft)"
+     },
+     "source": "Typed in from p. 96.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-5",
+     "description": "Equation 5-5, introduced by: \"Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\" (p. 96).",
+     "formula": "eB = MB/V",
+     "variables": {
+      "eB": "eccentricity away from the center line of the footing width (ft)",
+      "MB": "moment with respect to eB (kip-ft)",
+      "V": "vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)"
+     },
+     "source": "Typed in from p. 96.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-6",
+     "description": "Equation 5-6, introduced by: \"Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\" (p. 96).",
+     "formula": "L′ = L − 2 · eL",
+     "variables": {
+      "L": "base length of rectangular footing (ft)",
+      "L′": "effective base length of rectangular footing (ft)",
+      "eL": "eccentricity away from the center line of the footing length (ft)"
+     },
+     "source": "Typed in from p. 96.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-7",
+     "description": "Equation 5-7, introduced by: \"Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\" (p. 96).",
+     "formula": "eL = ML/V",
+     "variables": {
+      "V": "vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "eL": "eccentricity away from the center line of the footing length (ft)",
+      "ML": "moment with respect to eL (kip-ft)"
+     },
+     "source": "Typed in from p. 96.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-8",
+     "description": "Equation 5-8, introduced by: \"Effective footing dimensions are illustrated in Figure 5-2, and are calculated as:\" (p. 96).",
+     "formula": "A′ = B′ · L′",
+     "variables": {
+      "B′": "effective base width of footing (ft)",
+      "L′": "effective base length of rectangular footing (ft)",
+      "A′": "effective area of circular type or rectangular footing (ft^2)"
+     },
+     "source": "Typed in from p. 96.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 5-2: Eccentric load applied to a footing within (a) 3-D reference frame; (b) plan view to illustrate eL and eB"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-4a, printed pp. 96 to 97."
+  },
+  {
+   "section_id": "5-4b",
+   "title": "Effective dimensions of approximately circular footings",
+   "body": "[p. 97] Effective dimensions of approximately circular footings. For circular and approximately circular footings (such as octagon), the effective area parameters are based on an ellipse, which is then converted to an equivalent rectangle. Effective footing dimensions for approximately circular footings are illustrated in Figure 5-3. The first step is to calculate the radius of an equivalent circle with the same area as the footing. From that, the effective area, length of the major axis, and length of the minor axis of the ellipse can be calculated. The ellipse is then converted to an equivalent rectangle for determination of correction factors for bearing capacity calculations.\n\n[p. 98] Figure 5-3. Effective area parameters for approximately circular footings\n\nReq = √(A/π) [Eq. 5-9]\n\nA′ = 2 [Req^2 cos^(−1)(e/Req) − e √(Req^2 − e^2)] [Eq. 5-10]\n\nBeq = 2(Req − e) [Eq. 5-11]\n\nLeq = 2 Req √(1 − (1 − Beq/(2Req))^2) [Eq. 5-12]\n\nL′ = √(A′ (Leq/Beq)) [Eq. 5-13]\n\nB′ = L′ (Beq/Leq) [Eq. 5-14]\n\nwhere:\nπ = ratio of circumference to diameter for a circle ≈ 3.14 (dimensionless)\nA = base area of a footing (ft^2)\nReq = equivalent radius of a circular footing (ft)\ne = eccentricity (ft)\n[p. 99]\nA′ = effective area of circular type or rectangular footing (ft^2)\nBeq = equivalent width of an elliptical footing with A′ (ft)\nLeq = equivalent length of an elliptical footing with A′ (ft)\nL′ = effective base length of rectangular footing (ft)\nB′ = effective base width of footing (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-9",
+     "description": "Equation 5-9, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "Req = √(A/π)",
+     "variables": {
+      "π": "ratio of circumference to diameter for a circle ≈ 3.14 (dimensionless)",
+      "A": "base area of a footing (ft^2)",
+      "Req": "equivalent radius of a circular footing (ft)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-10",
+     "description": "Equation 5-10, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "A′ = 2 [Req^2 cos^(−1)(e/Req) − e √(Req^2 − e^2)]",
+     "variables": {
+      "Req": "equivalent radius of a circular footing (ft)",
+      "e": "eccentricity (ft)",
+      "A′": "effective area of circular type or rectangular footing (ft^2)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-11",
+     "description": "Equation 5-11, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "Beq = 2(Req − e)",
+     "variables": {
+      "Req": "equivalent radius of a circular footing (ft)",
+      "e": "eccentricity (ft)",
+      "Beq": "equivalent width of an elliptical footing with A′ (ft)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-12",
+     "description": "Equation 5-12, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "Leq = 2 Req √(1 − (1 − Beq/(2Req))^2)",
+     "variables": {
+      "Req": "equivalent radius of a circular footing (ft)",
+      "Beq": "equivalent width of an elliptical footing with A′ (ft)",
+      "Leq": "equivalent length of an elliptical footing with A′ (ft)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-13",
+     "description": "Equation 5-13, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "L′ = √(A′ (Leq/Beq))",
+     "variables": {
+      "A′": "effective area of circular type or rectangular footing (ft^2)",
+      "Beq": "equivalent width of an elliptical footing with A′ (ft)",
+      "Leq": "equivalent length of an elliptical footing with A′ (ft)",
+      "L′": "effective base length of rectangular footing (ft)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-14",
+     "description": "Equation 5-14, introduced by: \"Effective area parameters for approximately circular footings\" (p. 98).",
+     "formula": "B′ = L′ (Beq/Leq)",
+     "variables": {
+      "Beq": "equivalent width of an elliptical footing with A′ (ft)",
+      "Leq": "equivalent length of an elliptical footing with A′ (ft)",
+      "L′": "effective base length of rectangular footing (ft)",
+      "B′": "effective base width of footing (ft)"
+     },
+     "source": "Typed in from p. 98.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [
+    "Figure 5-3: Effective area parameters for approximately circular footings"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-4b, printed pp. 97 to 99."
+  },
+  {
+   "section_id": "5-4c",
+   "title": "Overturning and eccentricity requirements",
+   "body": "[p. 99] Overturning and eccentricity requirements. The overturning ULS is governed by eccentricity. When the eccentricity is in the middle 1/3 of the footing, the entire base of the footing will transmit compressive loads to the soil. Per Table 2-1, the eccentricity must be within the middle third of the footing, less than B/6 away from the centerline, to meet overturning requirements.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-4c, printed p. 99."
+  },
+  {
+   "section_id": "5-5",
+   "title": "Ultimate bearing capacity",
+   "body": "[p. 99] Ultimate bearing capacity is the normal load that soils near a foundation can resist. Bearing capacity failures are indicated by excessive settlement or rotation of the foundation. The ultimate pressure to result in a bearing capacity limit state is presented in equation 5-15 for an isolated spread footing, and equation 5-16 for continuous footings. This pressure is known as the ultimate bearing capacity and is the same as the ultimate gross bearing capacity. The ultimate bearing capacity must be used when calculating safety factors.\n\nqult = qult,gross = qu = ql = qbL = Vult/A′   (Isolated Spread Footing) [Eq. 5-15]\n\nqult = qult,gross = qu = ql = qbL = Vult/B′   (Continuous Footing) [Eq. 5-16]\n\nwhere:\nVult = ultimate vertical force, including foundation weight, for circular or rectangular footings (kips) or force/unit length for continuous footings (kips/ft)\nqult = ultimate bearing capacity (ksf), sometimes denoted as qult,gross, qu, ql, qbL\nA′ = effective area of circular type or rectangular footings (ft^2)\nB′ = effective base width of footing (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-15",
+     "description": "Equation 5-15, introduced by: \"The ultimate bearing capacity must be used when calculating safety factors.\" (p. 99).",
+     "formula": "qult = qult,gross = qu = ql = qbL = Vult/A′   (Isolated Spread Footing)",
+     "variables": {
+      "Vult": "ultimate vertical force, including foundation weight, for circular or rectangular footings (kips) or force/unit length for continuous footings (kips/ft)",
+      "qult": "ultimate bearing capacity (ksf), sometimes denoted as qult,gross, qu, ql, qbL",
+      "A′": "effective area of circular type or rectangular footings (ft^2)"
+     },
+     "source": "Typed in from p. 99.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-16",
+     "description": "Equation 5-16, printed after Eq. 5-15 (p. 99).",
+     "formula": "qult = qult,gross = qu = ql = qbL = Vult/B′   (Continuous Footing)",
+     "variables": {
+      "Vult": "ultimate vertical force, including foundation weight, for circular or rectangular footings (kips) or force/unit length for continuous footings (kips/ft)",
+      "qult": "ultimate bearing capacity (ksf), sometimes denoted as qult,gross, qu, ql, qbL",
+      "B′": "effective base width of footing (ft)"
+     },
+     "source": "Typed in from p. 99.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5, printed p. 99."
+  },
+  {
+   "section_id": "5-5a",
+   "title": "Shear zone for bearing capacity",
+   "body": "[p. 99] Shear zone for bearing capacity. The shear zone for general shear bearing capacity is illustrated in Figure 5-4 and extends to a depth below the footing. The design strength should be based on materials within zones I, II, and III. The effective unit weight of the soil in Zones I, II, and III is applicable to the unit weight term in the bearing capacity equation. The unit weight of the soil in Zone IV is applicable to the surcharge term in the bearing capacity equation. The opportunity for encountering layers with different soil properties in the shear zone is more likely as foundation width or diameter increases. As eccentricity increases, the size of the shear zone decreases, as shown in Figure 5-4 and Figure 5-5. Effective width parameters are used to [p. 100] estimate the size of the shear zone. If footings are spaced closely together, interference could occur and influence the shear zone, reference paragraph 6-6d.\n\nFigure 5-4. Slip surfaces for rough footings indicating size and shape of bearing capacity ultimate limit state shear zones for (a) concentric vertical loading; (b) combined vertical and horizontal loading; (c) combined vertical, horizontal, and moment loading; e = eccentricity; B = footing base width; arrow = loading direction\n\n[p. 101] Figure 5-5. Influence of eccentricity on shear zone (a) shear zone for retaining wall failure; (b) shear zone for idealized footing modeled without eccentricity; (c) shear zone for idealized footing with excessive eccentricity (e)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-4: Slip surfaces for rough footings indicating size and shape of bearing capacity ultimate limit state shear zones for (a) concentric vertical loading; (b) combined vertical and horizontal loading; (c) combined vertical, horizontal, and moment loading; e = eccentricity; B = footing base width; arrow = loading direction",
+    "Figure 5-5: Influence of eccentricity on shear zone (a) shear zone for retaining wall failure; (b) shear zone for idealized footing modeled without eccentricity; (c) shear zone for idealized footing with excessive eccentricity (e)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a, printed pp. 99 to 101."
+  },
+  {
+   "section_id": "5-5a(1)",
+   "title": "Depth of shear zone",
+   "body": "[p. 101] Depth of shear zone.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(1), printed p. 101."
+  },
+  {
+   "section_id": "5-5a(1)(a)",
+   "title": "For square and circular footings, the thickness of the shear zone tends to vary …",
+   "body": "[p. 101] For square and circular footings, the thickness of the shear zone tends to vary from 1/3 of the effective footing base width to twice the effective footing base width. Continuous footings tend to have a shear zone that is deeper, and which could extend up to twice as deep as a square or circular footing, or up to 4B′ below the footing for continuous footings. For bearing capacity analyses, soil strength is typically assessed between the base of the footing to 1/2 of the effective footing width for circular and square footings, and one effective footing width below the base of continuous footings.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(1)(a), printed p. 101. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-5a(1)(b)",
+   "title": "Soil layering can also influence the size of the shear zone",
+   "body": "[p. 101] Soil layering can also influence the size of the shear zone. If strong layers are below weak layers, the shear zone is typically smaller and mostly in the weak layer. If weak layers are below strong layers, the shear zone is typically larger. Analyzing bearing capacity based on the weakest layer in the shear zone is often sufficient for analysis. The lowest median, or geometric mean, of strength between the base of the [p. 102] footing to a range between (1/3)B′ to 2B′ for circular and square footings, or (2/3)B′ to 4B′ for continuous footings can be assessed and applied in a more detailed analysis.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(1)(b), printed pp. 101 to 102. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-5a(2)",
+   "title": "Punching failure for strong layer over weak clay",
+   "body": "[p. 102] Punching failure for strong layer over weak clay. Punching failures can occur where foundations are placed on strong soils overlying weaker soils. If there is a weaker layer below a strong layer between 0.5 B and 2B of the bottom of square or circular footings, or within 1B to 4B below the bottom of continuous footings, a punch-through analysis should be performed. The bearing capacity can be assessed by taking the minimum of the bearing capacity in the strong layer or the bearing capacity in a weak layer increased by a load spreading factor. The load spreading factor is the area of an equivalent footing at the top of the underlying layer when assuming a 2V:1H load spreading factor. Terms are illustrated in Figure 5-6.\n\nqult = min(qult,1, (((B′ + Hs) · (L′ + Hs))/(B · L)) qult,2)   (Isolated Spread Footing) [Eq. 5-17]\n\nqult = min(qult,1, ((B′ + Hs)/B′) qult,2)   (Continuous Footing) [Eq. 5-18]\n\nwhere:\nqult = the ultimate bearing capacity (ksf), due to punching failure\nB′ = effective base width of footing (ft)\nL′ = effective base length of rectangular footing (ft)\nHs = height of a strong surface layer (Layer 1) (ft)\nqult,1 = the ultimate bearing capacity using strength of the strong surface layer (ksf)\nqult,2 = the ultimate bearing capacity using strength of the weak underlying layer (ksf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-17",
+     "description": "Equation 5-17, introduced by: \"Terms are illustrated in Figure 5-6.\" (p. 102).",
+     "formula": "qult = min(qult,1, (((B′ + Hs) · (L′ + Hs))/(B · L)) qult,2)   (Isolated Spread Footing)",
+     "variables": {
+      "qult": "the ultimate bearing capacity (ksf), due to punching failure",
+      "B′": "effective base width of footing (ft)",
+      "L′": "effective base length of rectangular footing (ft)",
+      "Hs": "height of a strong surface layer (Layer 1) (ft)",
+      "qult,1": "the ultimate bearing capacity using strength of the strong surface layer (ksf)",
+      "qult,2": "the ultimate bearing capacity using strength of the weak underlying layer (ksf)"
+     },
+     "notes": "As printed, the denominator is B · L, without primes, and the list of symbols does not define B or L. Punching through a strong layer over a weak layer: the bearing capacity of the weak underlying layer increased by a load spreading factor, the area of an equivalent footing at the top of the underlying layer assuming a 2V:1H load spreading (paragraph 5-5a(2)); terms are illustrated in Figure 5-6.",
+     "source": "Typed in from p. 102.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-18",
+     "description": "Equation 5-18, printed after Eq. 5-17 (p. 102).",
+     "formula": "qult = min(qult,1, ((B′ + Hs)/B′) qult,2)   (Continuous Footing)",
+     "variables": {
+      "qult": "the ultimate bearing capacity (ksf), due to punching failure",
+      "B′": "effective base width of footing (ft)",
+      "Hs": "height of a strong surface layer (Layer 1) (ft)",
+      "qult,1": "the ultimate bearing capacity using strength of the strong surface layer (ksf)",
+      "qult,2": "the ultimate bearing capacity using strength of the weak underlying layer (ksf)"
+     },
+     "notes": "Punching through a strong layer over a weak layer, 2V:1H load spreading (paragraph 5-5a(2)); terms are illustrated in Figure 5-6.",
+     "source": "Typed in from p. 102.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(2), printed p. 102."
+  },
+  {
+   "section_id": "5-5a(3)",
+   "title": "Local and punching failures in homogeneous sand",
+   "body": "[p. 102] Local and punching failures in homogeneous sand. Punching failures can occur for strong soils overlying weaker soils, as discussed in paragraph 5-5a(2). For homogeneous sands, local and punching shear have also been historically discussed in relation to loose and compressible sandy soils. Punching failure calculations are not needed for homogeneous sands. Settlement analyses address the potential for a punching failure. Soil strength parameters for loose and compressible soils should be used without reduction.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(3), printed p. 102."
+  },
+  {
+   "section_id": "5-5a(4)",
+   "title": "Local and punching failures in homogeneous clays",
+   "body": "[p. 102] Local and punching failures in homogeneous clays. Local and punching failures are not typically discussed for homogeneous clays. As discussed by Vesic (1973), a local failure is the transition from general shear to punching shear. Punching shear occurs when the failure mechanism is localized close to the footing, similar to that of failure for deep foundation end bearing. Local and punching shear failures in homogeneous clays are accounted for by the depth correction factor in Table 5-4. The maximum depth correction factor of 1.5 relates to a deep failure mechanism. No additional calculations are necessary to account for local and punching failures in homogeneous clays.\n\n[p. 103] Figure 5-6. Illustration of load spreading for evaluating punching failure for strong over weak layers",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-6: Illustration of load spreading for evaluating punching failure for strong over weak layers"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(4), printed pp. 102 to 103."
+  },
+  {
+   "section_id": "5-5a(5)",
+   "title": "Groundwater in the shear zone",
+   "body": "[p. 103] Groundwater in the shear zone. Soil strength is frictional, and therefore, controlled by effective stresses. The effect of soil self-weight on soil strength in the shear zone needs to account for water pressures. This can be accommodated by adjusting the total unit weight of the soil (γt) to an effective unit weight (γ′). If the water table is below the shear zone, then γ′ = γt. If the water table is at the base of the footing, γ′ = γt − γw, where γw is the unit weight of water. For intermediate water levels, the relationship in equation 5-19 can be used to assess γ′. To be consistent with method formulation, the Federal Highway Administration (FHWA) (2002) groundwater correction factor included in equation 5-20 should be used with the Association of State Highway and Transportation Officials (AASHTO) LRFD Bridge Design Specifications, 9th Ed.(reference herein as AASHTO 2020) method. For cases where seepage is involved, see EM 1110-2-2502.\n\nγ′ ≈ γt · min[0.45 + 0.55 (max(DW − Df, 0)/B), 1] [Eq. 5-19]\n\nγ′ ≈ γt · CWγ = γt · min[0.5 + 0.5 (DW/(1.5B + Df)), 1]   (FHWA 2002) [Eq. 5-20]\n\n[p. 104] where:\nDW = depth of groundwater table below ground surface (ft)\nDf = depth of base of footing below ground surface (ft)\nB = base width of footing (ft)\nγt = total unit weight of the soil beneath the footing (kcf)\nγ′ = effective unit weight of the soil beneath the footing (kcf)\nCWγ = dimensionless ground water correction factor",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-19",
+     "description": "Equation 5-19, introduced by: \"For cases where seepage is involved, see EM 1110-2-2502.\" (p. 103).",
+     "formula": "γ′ ≈ γt · min[0.45 + 0.55 (max(DW − Df, 0)/B), 1]",
+     "variables": {
+      "DW": "depth of groundwater table below ground surface (ft)",
+      "Df": "depth of base of footing below ground surface (ft)",
+      "B": "base width of footing (ft)",
+      "γt": "total unit weight of the soil beneath the footing (kcf)",
+      "γ′": "effective unit weight of the soil beneath the footing (kcf)"
+     },
+     "source": "Typed in from p. 103.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-20",
+     "description": "Equation 5-20, introduced by: \"For cases where seepage is involved, see EM 1110-2-2502.\" (p. 103).",
+     "formula": "γ′ ≈ γt · CWγ = γt · min[0.5 + 0.5 (DW/(1.5B + Df)), 1]   (FHWA 2002)",
+     "variables": {
+      "DW": "depth of groundwater table below ground surface (ft)",
+      "Df": "depth of base of footing below ground surface (ft)",
+      "B": "base width of footing (ft)",
+      "γt": "total unit weight of the soil beneath the footing (kcf)",
+      "γ′": "effective unit weight of the soil beneath the footing (kcf)",
+      "CWγ": "dimensionless ground water correction factor"
+     },
+     "source": "Typed in from p. 103.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(5), printed pp. 103 to 104."
+  },
+  {
+   "section_id": "5-5a(6)",
+   "title": "Groundwater above the shear zone",
+   "body": "[p. 104] Groundwater above the shear zone. Groundwater above the shear zone is accounted for through any uplift pressures on the base of the footing (equation 5-2 and 5-3), as well as through the surcharge term in the bearing capacity equation. Groundwater does not affect the surcharge term for undrained analyses (qo = σvo). However, the pore pressures on the plane at the base of the footing reduce the total stress for the surcharge for a drained analysis (q0 = σvo – uD = σ′vo).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5a(6), printed p. 104."
+  },
+  {
+   "section_id": "5-5b",
+   "title": "Bearing capacity equation",
+   "body": "[p. 104] Bearing capacity equation. Bearing capacity analysis assumes a general shear failure based on superposition of bearing capacity factors (Nc, Nq, and Nγ) (for example, Terzaghi 1943). Equation 5-21 is the “general equation” for shallow foundation bearing capacity. It is based on the following assumptions that the footing is (1) a rectangular rigid continuous footing (length > 10x width), (2) at ground surface, (3) resting on homogeneous soil, (4) under a centralized vertical load, and (5) level ground. Correction factors and application of the effective width for conditions outside of these assumptions are discussed in paragraph 5-5f.\n\nqult = c · Nc + q0 · Nq + (1/2) B · γ′ · Nγ   (Continuous Footing) [Eq. 5-21]\n\nwhere:\nqult = the ultimate bearing capacity (ksf)\nc = cohesion parameter for the foundation soils in the shear zone, use undrained strength (su) for undrained analysis (ksf)\nNc = dimensionless bearing capacity factor for cohesion (c), or undrained strength\nq0 = surcharge pressure on the plane at the base of the footing (ksf)\nNq = dimensionless bearing capacity factor for surcharge\nγ′ = effective unit weight of the soil beneath the footing (kcf); see paragraph 5-5a(5)\nNγ = dimensionless bearing capacity factor for soil effective weight\nB = base width of footing (ft)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-21",
+     "description": "Equation 5-21, introduced by: \"Correction factors and application of the effective width for conditions outside of these assumptions are discussed in paragraph 5-5f.\" (p. 104).",
+     "formula": "qult = c · Nc + q0 · Nq + (1/2) B · γ′ · Nγ   (Continuous Footing)",
+     "variables": {
+      "qult": "the ultimate bearing capacity (ksf)",
+      "c": "cohesion parameter for the foundation soils in the shear zone, use undrained strength (su) for undrained analysis (ksf)",
+      "Nc": "dimensionless bearing capacity factor for cohesion (c), or undrained strength",
+      "q0": "surcharge pressure on the plane at the base of the footing (ksf)",
+      "Nq": "dimensionless bearing capacity factor for surcharge",
+      "γ′": "effective unit weight of the soil beneath the footing (kcf); see paragraph 5-5a(5)",
+      "Nγ": "dimensionless bearing capacity factor for soil effective weight",
+      "B": "base width of footing (ft)"
+     },
+     "notes": "The general bearing capacity equation for a rigid continuous footing (length > 10x width) at ground surface, resting on homogeneous soil, under a centralized vertical load, and level ground (paragraph 5-5b); correction factors and the effective width for other conditions are in paragraph 5-5f.",
+     "source": "Typed in from p. 104.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5b, printed p. 104."
+  },
+  {
+   "section_id": "5-5c",
+   "title": "Water pressures and groundwater conditions",
+   "body": "[p. 104] Water pressures and groundwater conditions. Groundwater in the shear zone is accounted for by the effective unit weight term, discussed in paragraph 5-5a(5). Groundwater above the shear zone (Nq term) is accounted for by using the effective stress for q0 for effective stress analyses with φ′ > 0. For total stress analyses based on undrained strength, c = su, q0 should be the total stress at the base of the footing. [p. 105] FHWA (2002) multiplies the total stress at the base of the footing by a correction factor (CWq), which essentially accounts for differences between total and effective stress. When the water table is above the base of the footing, buoyancy forces on the footing are used to reduce the applied load (equations 5-2 and 5-3).",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5c, printed pp. 104 to 105."
+  },
+  {
+   "section_id": "5-5d",
+   "title": "Bearing capacity factors",
+   "body": "[p. 105] Bearing capacity factors. Bearing capacity factors come from rigorous theoretical analysis of a simplified continuous footing geometry on homogeneous soil. There is general agreement for Nc and Nq. Published values of Nγ differ. For example, the Meyerhof (1963) Nγ equation can differ significantly from the Vesic (1973) Nγ equation. Correction factors are applied to account for differences between the solution assumptions for bearing capacity factors and typical design problems.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5d, printed p. 105."
+  },
+  {
+   "section_id": "5-5e",
+   "title": "Application of design methods presented",
+   "body": "[p. 105] Application of design methods presented. Corrections factors are presented for the USACE method (Instructional Report K-82-7) and are based primarily on Meyerhof (1963) equations. Additionally, the AASHTO (2020)/FHWA (2002) method is presented, which is based primarily on the Vesic (1973) correction factors. It is recommended to perform analyses with both methods and take the average of results if bearing capacity controls design. When settlement controls design, calculations performed by either of the methods are sufficient. The difference in results indicate a level of uncertainty in factors used.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5e, printed p. 105."
+  },
+  {
+   "section_id": "5-5f",
+   "title": "Correction factors",
+   "body": "[p. 105] Correction factors. Many design applications do not meet the assumptions behind factors presented for equation 5-21, and correction factors need to be applied. Correction factors are applied for shape, embedment depth, load inclination, base inclination, and ground inclination. Equation 5-22 is the corrected equation for computing bearing capacity. Correction factors for drained analysis are presented in Table 5-2 and Table 5-3. Correction factors for undrained analyses are presented in Table 5-4. Details of correction factors are discussed individually in the following sections.\n\nqult = sc dc ic bc gc c Nc + sq dq iq bq gq q0 Nq + sγ dγ iγ bγ gγ (1/2) B′ γ′ Nγ [Eq. 5-22]\n\nwhere:\nqult = the ultimate bearing capacity (ksf)\nc = cohesion parameter for the foundation soils in the shear zone, use undrained strength (su) for undrained analysis (ksf)\nNc = dimensionless bearing capacity factor for cohesion, c, or undrained strength\nq0 = surcharge pressure on the plane at the base of the footing (ksf), see paragraph 5-5a(6)\nNq = dimensionless bearing capacity factor for surcharge\nγ′ = effective unit weight of the soil beneath the footing (kcf), see paragraph 5-5a(4)\nNγ = dimensionless bearing capacity factor for soil effective weight\nB′ = effective base width of footing (ft)\n[p. 106]\nsc, sq, sγ = dimensionless correction factors for footing shape = 1 for continuous footing and increases with B/L for rectangular and circular-type footings\ndc, dq, dγ = dimensionless correction factors for footing depth = 1 for footing at the ground surface and increases with normalized embedment below the footing\nic, iq, iγ = dimensionless correction factors for load inclination = 1 for vertical load and < 1 for inclined loads\nbc, bq, bγ = dimensionless correction factors for base inclination = 1 for a flat base and < 1 for an angled base\ngc, gq, gγ = dimensionless correction factors for ground inclination = 1 for flat ground and < 1 for ground sloping away from the footing Additional parameters not mentioned in reference to equation 5-22, but in Table 5-2, Table 5-3, and Table 5-4 are:\nN = dimensionless Flow Number = principal stress ratio, see Table 5-2\nφ′ = effective stress friction angle for the foundation soils in the shear zone (degrees)\ne = base of the natural log, or Euler number ≈ 2.718 (dimensionless)\nπ = ratio of circumference to diameter for a circle ≈ 3.14 (dimensionless)\nL′ = effective base length of rectangular footing (ft)\nDf = depth to base of footing below ground surface (ft), see Figure 5-8\nβ = load inclination from vertical, (degrees), see Figure 5-9\nV = vertical load induced by the foundation on the ground (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nH = horizontal component of the applied load on the foundation (kips)\nθ = projected direction of load in the plane of the footing, measured from the side of length, L (degrees), see Figure 5-9\nab = base inclination (degrees), see Figure 5-10\nag = ground inclination (degrees), see Figure 5-11\ndg = distance from edge of footing to edge of sloping ground (ft)\n\n[p. 107] Table 5-2 Drained bearing capacity and correction factors based on Flow Number N\nBearing and Correction Factors | USACE (Meyerhof Based) | AASHTO (2020)/FHWA (2002) (Vesic Based)\nContinuous Footing Bearing\nN | N = tan^2(45° + φ′/2) = (1 + sinφ′)/(1 − sinφ′) | N = tan^2(45° + φ′/2) = (1 + sinφ′)/(1 − sinφ′)\nNq | Nq = N · e^(π·tanφ′) | Nq = N · e^(π·tanφ′)\nNc | Nc = (Nq − 1) · cotφ′ | Nc = (Nq − 1) · cotφ′\nNγ | Nγ = (Nq − 1) · tan(1.4φ′) | Nγ = 2(Nq + 1) · tan(φ′)\nShape\nsq | sq = 1 + 0.1N (B′/L′) | sq = 1 + ((B′/L′)tanφ)\nsc | sc = 1 + 0.2N (B′/L′) | sq = 1 + (B′/L′) (Nq/Nc)\nsγ | sγ = 1 + 0.1N (B′/L′) | sγ = 1 − 0.4 (B′/L′)\nDepth[a]\ndq | dq = 1 + 0.1√N (Df/B′) | dq = 1 + 2tanφ′ (1 − sinφ′)^2 atan (Df/B′)\ndc | dc = 1 + 0.2√N (Df/B′) | 1\ndγ | dγ = 1 + 0.1√N (Df/B′) | 1\nNote:\n[a] Depth factor, dq for AASHTO (2020) ≤ 1.4, atan(D/B′) in radians, FHWA (2002) presents tabulated values.\n\n[p. 108] Table 5-3 Drained bearing capacity inclination correction factors\nCorrection Factors | USACE (Meyerhof Based) | AASHTO (2020)/FHWA (2002) (Vesic Based)\nLoad Inclination\nβ | β = atan(H/V) | β = atan(H/(V + B′L′ · c · cotφ′))\nn | Not Applicable | nB = (2 + L′/B′)/(1 + L′/B′)\nnL = (2 + B′/L′)/(1 + B′/L′)\nn = nL cos^2 θ + nB sin^2 θ\niq | iq = [1 − β/(90°)]^2 | iq = [1 − tanβ]^n\nic | ic = iq | ic = iq − (1 − iq)/(Nq − 1)\niγ | iγ = [1 − β/φ′]^2 | iq = [1 − tanβ]^(n+1)\nBase Inclination[a]\nbq | bq = [1 − αb/(57°) · tanφ′]^2 | bq = [1 − αb/(57°) · tanφ′]^2\nbc | bc = bq − [(1 − bq)/(Nc · tanφ′)] | bc = bq − [(1 − bq)/(Nc · tanφ′)]\nbγ | bγ = [1 − αb/(57°) · tanφ′]^2 | bγ = [1 − αb/(57°) · tanφ′]^2\nGround Inclination[b]\ngq,0 | gq,0 = [1 − tanαg]^2 | Not Applicable\ngq | gq = min[1, gq,0 + (1 − gq,0) (dg/(5B′))] | See tables in AASHTO (2020)\ngc,0 | gc,0 = gq,0 − [(1 − gq,0)/(Nc · tanφ′)] | Not Applicable\ngc | gc = min[1, gc,0 + (1 − gc,0) (dg/(5B′))] | See tables in AASHTO (2020)\ngγ,0 | gγ,0 = [1 − tanαg]^2 | Not Applicable\ngγ | gγ = min[1, gγ,0 + (1 − gγ,0) (dg/(5B′))] | See tables in AASHTO (2020)\n[p. 109]\nNote:\n[a] αb is the base inclination from horizontal in degrees, base inclination is not presented in AASHTO (2020), but values are presented in FHWA (2002).\n[b] αg is the ground inclination from horizontal in degrees, subscript “0” indicates for footing directly adjacent to slope with FS > 1.3. Increases linearly from gx = gx,o to a value of gx = 1 at ratio of distance (d) from slope to effective footing (B′) width of 5.\n\nTable 5-4 Undrained (φ′ = 0) bearing capacity and correction factors\nBearing and Correction Factors | USACE (Meyerhof Based) | AASHTO (2020)/FHWA (2002) (Vesic Based)\nContinuous Footing Bearing\nNc | Nc = (2 + π) = 5.14 | Nc = (2 + π) = 5.14\nShape[a]\nsc | sc = 1 + 0.2 B′/L′ | sc = 1 + 0.2 B′/L′\nDepth[a,b]\ndc | dc = 1 + 0.2 Df/B′ ≤ 1.5 | dc = 1[b]\nLoad Inclination[a]\nn | N/A | nB = (2 + L′/B′)/(1 + L′/B′)\nnL = (2 + B′/L′)/(1 + B′/L′)\nn = nL cos^2 θ + nB sin^2 θ\nic | ic = 1 − 1.3 H/V | ic = 1 − (n · H)/(cB′L′Nc)\nBase Inclination[a,c]\nbc | bc = 1 − αb/(147.3°) | bc = 1 − αb/(147.3°)\nGround Inclination[a,d]\ngc,0 | gc,0 = 1 − αg/(147.3°) | Not Applicable\ngc | gc = min[1, gc,0 + (1 − gc,0) (dg/(2B′))] | See tables in AASHTO (2020)\nNotes:\n[a] Undrained corrections factors for q (specifically, sq, dq, iq, bq, gq) are equal to 1 for both methods.\n[b] FHWA recommends the Brinch Hansen (1970) depth factors for sand; however, does not present depth factors for φ′ = 0 and states that “the depth correction factors can be conservatively omitted.”\n[p. 110]\n[c] αb is the base inclination from horizontal in degrees, base inclination not presented in AASHTO (2020), but values presented in FHWA (2002).\n[d] αg is the ground inclination from horizontal in degrees, subscript “0” indicates for footing directly adjacent to slope with FS > 1.3. Increases linearly from gc = gc,o to a value of gc = 1 at ratio of distance (d) from slope to effective footing (B′) width of 2.",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-22",
+     "description": "Equation 5-22, introduced by: \"Details of correction factors are discussed individually in the following sections.\" (p. 105).",
+     "formula": "qult = sc dc ic bc gc c Nc + sq dq iq bq gq q0 Nq + sγ dγ iγ bγ gγ (1/2) B′ γ′ Nγ",
+     "variables": {
+      "qult": "the ultimate bearing capacity (ksf)",
+      "c": "cohesion parameter for the foundation soils in the shear zone, use undrained strength (su) for undrained analysis (ksf)",
+      "Nc": "dimensionless bearing capacity factor for cohesion, c, or undrained strength",
+      "q0": "surcharge pressure on the plane at the base of the footing (ksf), see paragraph 5-5a(6)",
+      "Nq": "dimensionless bearing capacity factor for surcharge",
+      "γ′": "effective unit weight of the soil beneath the footing (kcf), see paragraph 5-5a(4)",
+      "Nγ": "dimensionless bearing capacity factor for soil effective weight",
+      "B′": "effective base width of footing (ft)",
+      "sc, sq, sγ": "dimensionless correction factors for footing shape = 1 for continuous footing and increases with B/L for rectangular and circular-type footings",
+      "dc, dq, dγ": "dimensionless correction factors for footing depth = 1 for footing at the ground surface and increases with normalized embedment below the footing",
+      "ic, iq, iγ": "dimensionless correction factors for load inclination = 1 for vertical load and < 1 for inclined loads",
+      "bc, bq, bγ": "dimensionless correction factors for base inclination = 1 for a flat base and < 1 for an angled base",
+      "gc, gq, gγ": "dimensionless correction factors for ground inclination = 1 for flat ground and < 1 for ground sloping away from the footing"
+     },
+     "notes": "The corrected equation for computing bearing capacity (paragraph 5-5f). Correction factors for drained analysis are in Table 5-2 and Table 5-3, for undrained analyses in Table 5-4.",
+     "source": "Typed in from p. 105.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 5-2: Drained bearing capacity and correction factors based on Flow Number N",
+    "Table 5-3: Drained bearing capacity inclination correction factors",
+    "Table 5-4: Undrained (φ′ = 0) bearing capacity and correction factors"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f, printed pp. 105 to 110."
+  },
+  {
+   "section_id": "5-5f(1)",
+   "title": "Shallow foundation shape",
+   "body": "[p. 110] Shallow foundation shape. Site and structure requirements could lead to footings with differing shapes. As the length of a footing becomes closer to its width, the additional resistance from shearing in the out-of-plane direction becomes more significant (Figure 5-7). Shallow foundation shape correction factors are presented in Table 5-2 and Table 5-4. Circular footings have a shape factor approximately 2 percent (undrained) to 6 percent (drained) higher than those for a square foundation. Square foundation shape factors should be used in design of circular foundations. The USACE method uses Meyerhof (1963) shape factors. The AASHTO (2020)/FHWA (2002) method uses Vesic (1973) shape factors.\n\nFigure 5-7. Difference in shape of shear zone that results in a shape factor (after Salgado 2008)",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-7: Difference in shape of shear zone that results in a shape factor (after Salgado 2008)"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(1), printed p. 110."
+  },
+  {
+   "section_id": "5-5f(2)",
+   "title": "Shallow foundation depth",
+   "body": "[p. 110] Shallow foundation depth. When a shallow foundation is embedded below the surface, soil resistance, in addition to the surcharge pressure, increases the shallow foundation bearing capacity. Footings typically have an embedment of at least the thickness of the footing or the frost penetration depth, whichever is greater. Embedment also generally increases horizontal resistance. Shallow foundation depth correction factors are presented in Table 5-2 and Table 5-4. The USACE method uses Meyerhof (1963) depth factors. The AASHTO (2020)/FHWA (2002) method uses Vesic (1973) depth factors for sand. However, the AASHTO (2020)/FHWA (2002) method does not present depth factors for φ′ = 0 and states that “the depth correction factors can be conservatively omitted”. An illustration of terms is shown in Figure 5-8.\n\n[p. 111] Figure 5-8. Definition parameters used to assess footing embedment",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-8: Definition parameters used to assess footing embedment"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(2), printed pp. 110 to 111."
+  },
+  {
+   "section_id": "5-5f(3)",
+   "title": "Load inclination",
+   "body": "[p. 111] Load inclination. When a load has a horizontal component, the ultimate bearing capacity reduces from the case with a purely vertical load. The influence of horizontal loads is analyzed using load inclination factors. Shallow foundation load inclination correction factors are presented in Table 5-3 and Table 5-4. An illustration of terms is shown in Figure 5-9. The USACE method uses Meyerhof (1963) shape factors. The AASHTO (2020)/FHWA (2002) method uses Vesic (1973) shape factors. FHWA (2002) recommends to not include both the inclination and shape factors for the AASHTO method. Including both factors could be overly conservative due to shape factor on Nγ for the AASHTO method, as well as because of depth correction factors. FHWA (2002) recommends to not include the inclination factor for the AASHTO method. Inclination and shape factors should be included for the USACE method.\n\nFigure 5-9. Footing with inclined load",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-9: Footing with inclined load"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(3), printed p. 111."
+  },
+  {
+   "section_id": "5-5f(4)",
+   "title": "Base inclination",
+   "body": "[p. 111] Base inclination. For constructability purposes, it is preferred to use foundations with flat bases. However, in some cases (such as T-walls) a key may be added for additional lateral stability. That increase in lateral stability can reduce vertical bearing capacity. In these cases, the base of the footing becomes inclined from a calculation perspective. Shallow foundation base inclination correction factors are presented in Table 5-3 and Table 5-4. An illustration of terms is shown in Figure 5-10. Both the USACE and AASHTO/FHWA methods use the Vesic (1973) base inclination factors.\n\n[p. 112] Figure 5-10. Footing with inclined base due to shear key",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-10: Footing with inclined base due to shear key"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(4), printed pp. 111 to 112."
+  },
+  {
+   "section_id": "5-5f(5)",
+   "title": "Ground inclination",
+   "body": "[p. 112] Ground inclination. When a footing is adjacent to a slope, the bearing capacity differs from the level ground case. Sloping ground correction factors are presented in Table 5-3 and Table 5-4. As illustrated in Figure 5-11, when ground slopes down adjacent to a footing, the surcharge stress (q0) decreases and bearing capacity decreases. The ground inclination factor increases the further the slope is from the footing. The USACE method uses Vesic (1973) ground inclination factors for footings adjacent to slopes. The AASHTO (2020)/FHWA (2002) method uses Leshchinsky (2015) and Leshchinsky and Xie (2017) ground inclination factors. Adjacent slopes must meet global stability criteria in EM 1110-2-1902.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(5), printed p. 112."
+  },
+  {
+   "section_id": "5-5f(5)(a)",
+   "title": "Drained analysis",
+   "body": "[p. 112] Drained analysis. If the top of the slope is five footing widths or more away from the nearest edge of the foundation, the ground inclination factor will equal 1.0.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(5)(a), printed p. 112."
+  },
+  {
+   "section_id": "5-5f(5)(b)",
+   "title": "Undrained analysis",
+   "body": "[p. 112] Undrained analysis. If the top of the slope is two footing widths or more away from the nearest edge of the foundation, the ground inclination factor will equal 1.0.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(5)(b), printed p. 112."
+  },
+  {
+   "section_id": "5-5f(6)",
+   "title": "Ring footings",
+   "body": "[p. 112] Ring footings. There are no special required correction factors for ring footings. Ring footings are assumed to act as a circular footing with the pressure averaged over the full circular area based on the outer width of the ring. These assumptions are appropriate when the soil cannot fail upward into the middle of the ring due to concrete failure. Correction factors of circular footings are appropriate for ring footings. Isolated failure of the soil around the ring beam footing can create a non-uniform pressure distribution across a flexible foundation or foundation pad. This is known as dishing (D’Orazio and Duncan 1987). Dishing can progress to foundation failure due to edge shear of the slab or foundation pad within the ring foundation (Duncan and D’Orazio 1984). Techniques for assessing differential settlements and structural resistance of material within the ring are similar to those discussed for mat foundations in Chapter 8.\n\n[p. 113] Figure 5-11. Footing adjacent to sloping ground",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-11: Footing adjacent to sloping ground"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5f(6), printed pp. 112 to 113."
+  },
+  {
+   "section_id": "5-5g",
+   "title": "Groundwater and hydrostatic uplift",
+   "body": "[p. 113] Groundwater and hydrostatic uplift. If the slip surface is located partially or fully below the water table, the effective stress of the soil is lower than if water is not present. Lower effective stress reduces strength and bearing capacity through surcharge stress (qo) for embedded footings for the Nq term and through effective unit weight, γ′ for the Nγ term for drained analysis. Groundwater correction factors and the effect of groundwater on surcharge stress (qo) are discussed in paragraph 5-5a(5). Hydrostatic uplift acts as a reduction in footing stress through equations 5-2 and 5-3.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5g, printed p. 113."
+  },
+  {
+   "section_id": "5-5h",
+   "title": "Safety factor for bearing capacity",
+   "body": "[p. 113] Safety factor for bearing capacity. The calculated factor of safety against a bearing capacity failure is defined in equation 5-23 and must meet the requirements in Table 2-1.\n\nFS = qult/qeq [Eq. 5-23]\n\nwhere:\nFS = calculated factor of safety (dimensionless)\nqult = ultimate bearing pressure (ksf)\nqeq = gross equivalent bearing pressure (ksf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-23",
+     "description": "Equation 5-23, introduced by: \"The calculated factor of safety against a bearing capacity failure is defined in equation 5-23 and must meet the requirements in Table 2-1.\" (p. 113).",
+     "formula": "FS = qult/qeq",
+     "variables": {
+      "FS": "calculated factor of safety (dimensionless)",
+      "qult": "ultimate bearing pressure (ksf)",
+      "qeq": "gross equivalent bearing pressure (ksf)"
+     },
+     "notes": "Must meet the requirements in Table 2-1 (paragraph 5-5h).",
+     "source": "Typed in from p. 113.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5h, printed p. 113."
+  },
+  {
+   "section_id": "5-5i",
+   "title": "Bearing capacity from in situ tests",
+   "body": "[p. 113] Bearing capacity from in situ tests. Laboratory and in situ tests should be used to establish soil strength parameters that are applied in equation 5-22. Direct application of in situ test results to assess ultimate bearing capacity often provides similar results to equation 5-22. When the bearing pressure of the foundation is based on allowable settlement calculations, direct use of in situ test results can be used to assess the factor of safety for ultimate bearing capacity.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5i, printed p. 113."
+  },
+  {
+   "section_id": "5-5i(1)",
+   "title": "In situ test parameters",
+   "body": "[p. 113] In situ test parameters. Direct bearing capacity methods are available for the SPT, the CPT, and the PMT. Methods are discussed in detail in Briaud (1992), FHWA-IP-89-008, and Mayne (2007). The SPT method uses the equivalent N60 · pref value in the shear zone. The value of pref is a reference stress equal to 2 ksf. The CPT method uses the equivalent net corrected cone tip resistance (qne = qt − σvo) in the [p. 114] shear zone. The PMT method uses the equivalent net pressuremeter limit pressure (pne = PL − Po) in the shear zone.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5i(1), printed pp. 113 to 114."
+  },
+  {
+   "section_id": "5-5i(2)",
+   "title": "Equivalent in situ test results",
+   "body": "[p. 114] Equivalent in situ test results. In situ test results are likely not constant in the shear zone and should be based on the geometric mean of the values. Discussions of the size of the shear zone for bearing capacity are presented in paragraph 5-5a. The geometric mean for net pressuremeter limit pressure, for example, is defined in equation 5-24. Similar expressions would be used for N60e · pref and qn.\n\ns = pne = ʸ√(P*L1 × P*L2 × … P*Ly) [Eq. 5-24]\n\nwhere:\ns = equivalent in situ testing parameter indicative of soil strength, in this case for the PMT\nP*L = net limit pressure = PL − Po (ksf); see also equation 4-17\npne = equivalent net limit pressure in the shear zone (ksf)\nP*L1 = 1st measured value of P*L within the bearing capacity shear zone (ksf)\nP*L2 = 2nd measured value of P*L within the bearing capacity shear zone (ksf)\nP*Ly = y^th measured value of P*L within the bearing capacity shear zone (ksf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-24",
+     "description": "Equation 5-24, introduced by: \"Similar expressions would be used for N60e · pref and qn.\" (p. 114).",
+     "formula": "s = pne = ʸ√(P*L1 × P*L2 × … P*Ly)",
+     "variables": {
+      "s": "equivalent in situ testing parameter indicative of soil strength, in this case for the PMT",
+      "pne": "equivalent net limit pressure in the shear zone (ksf)",
+      "P*L1": "1st measured value of P*L within the bearing capacity shear zone (ksf)",
+      "P*L2": "2nd measured value of P*L within the bearing capacity shear zone (ksf)",
+      "P*Ly": "y^th measured value of P*L within the bearing capacity shear zone (ksf)",
+      "y": "the number of measured values of P*L within the bearing capacity shear zone (the index of the root)"
+     },
+     "notes": "The geometric mean for net pressuremeter limit pressure; similar expressions would be used for N60e · pref and qn (paragraph 5-5i(2)). The same equation is printed again, with this number, in Table 7-5, Step 15 (p. 169).",
+     "source": "Typed in from p. 114.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5i(2), printed p. 114."
+  },
+  {
+   "section_id": "5-5i(3)",
+   "title": "In situ test bearing capacity equation",
+   "body": "[p. 114] In situ test bearing capacity equation. The in situ test bearing capacity equation is often presented in a simplified form; however, this requires corrections for the same terms that are included in equation 5-22. The drainage conditions during critical foundation loading should be the same as those occurring during the in situ test. If this is not the case, equation 5-22 should be used with soil parameters that are consistent with drainage conditions during critical foundation loading. The in situ test bearing capacity equation is presented in equation 5-25 for drained conditions, and in equation 5-26 for undrained conditions. The value of k is presented in Table 5-5.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5i(3), printed p. 114."
+  },
+  {
+   "section_id": "5-5i(4)",
+   "title": "In situ test bearing capacity equation correction factors",
+   "body": "[p. 114] In situ test bearing capacity equation correction factors. The USACE (Meyerhof-based) bearing capacity correction factors should be used for the in situ test bearing capacity equation (FHWA-IP-89-008). Correction factors for equation 5-25 and equation 5-26 are provided in Table 5-2 through Table 5-4. Briaud (1992) indicates depth correction factors for drained conditions that are greater than those in Table 5-2. Factors presented by Briaud (1992) include aspects of both shape and depth correction and should not be used. USACE (Meyerhof) depth and shape correction factors in Table 5-2 and Table 5-4 should be used in calculations.\n\nqult = k · sq · dq · iqγ · bq · gq · s + q0   (drained) [Eq. 5-25]\n\nqult = k · sc · dc · ic · bc · gc · s + q0   (undrained) [Eq. 5-26]\n\niqγ = min(Df/B′, 1) · iq + max(1 − Df/B′, 0) · iγ [Eq. 5-27]\n\n[p. 115] where:\nqult = ultimate bearing capacity (ksf)\nk = dimensionless bearing capacity factor, see Table 5-5\nsq = dimensionless surcharge correction factor for footing shape, use 1 for continuous footing and increases with B/L for rectangular and approximately circular footings; in the absence of friction angle estimates, use Flow Number, N = 3 for in situ test methods, see Table 5-2\nN = dimensionless Flow Number = principal stress ratio, use N = 3 for in situ test methods\ndq = dimensionless surcharge correction factor for footing depth, use 1 for footing at ground surface and increase w/normalized embedment below the footing, in the absence of friction angle estimates use N = 3 for in situ test methods, Table 5-2\niqγ = dimensionless surcharge and unit weight correction factors for load inclination, use 1 for vertical load and < 1 for inclined loads, see equation 5-27\nbq = dimensionless surcharge correction factor for base inclination, use 1 for a flat base and < 1 for an angled base, see Table 5-3\ngq = dimensionless surcharge correction factor for ground inclination, use 1 for flat ground and < 1 for ground sloping away from the footing, see Table 5-3\ns = equivalent in situ testing parameters indicative of soil strength = N60e · pref, qne, pne\nN60e = equivalent SPT N60 value in the shear zone (blows/ft)\npref = reference stress equal to 2 (ksf)\nqne = equivalent net cone tip resistance in the shear zone (ksf)\npne = equivalent net limit pressure in the shear zone (ksf)\nqo = surcharge pressure on the plane at the base of the footing (ksf)\nsc = dimensionless cohesion (undrained strength) correction factor for footing shape, use 1 for continuous footing and increase with B/L for rectangular and circular type footings, see Table 5-4\ndc = dimensionless (undrained strength) correction factor for footing depth, use 1 for footing at the ground surface and increase with normalized embedment below the footing, see Table 5-4\nic = dimensionless (undrained strength) and unit weight correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-4\nbc = dimensionless (undrained strength) correction factor for base inclination, use 1 for a flat base and < 1 for an inclined base, see Table 5-4\ngc = dimensionless (undrained strength) correction factor for ground inclination, use 1 for flat ground and < 1 for ground sloping away from the footing, see Table 5-4\nDf = depth of base of footing below ground surface (ft)\nB′ = effective base width of footing (ft)\n[p. 116]\niq = dimensionless surcharge correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-3\niγ = dimensionless unit weight correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-3\n\nTable 5-5 Uncorrected bearing capacity factor (k) using in situ tests (after FHWA-IP-89-008; Mayne 2007a; Briaud 2013)\nIn situ Test | s Parameter (ksf) | k, Drained (dimensionless) | k, Undrained (dimensionless)\nSPT | N60e · pref | 0.6 | 0.35\nCPT | qne | 0.1 | 0.35\nPMT | pne | 0.9 | 0.7",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-25",
+     "description": "Equation 5-25, introduced by: \"USACE (Meyerhof) depth and shape correction factors in Table 5-2 and Table 5-4 should be used in calculations.\" (p. 114).",
+     "formula": "qult = k · sq · dq · iqγ · bq · gq · s + q0   (drained)",
+     "variables": {
+      "qult": "ultimate bearing capacity (ksf)",
+      "k": "dimensionless bearing capacity factor, see Table 5-5",
+      "sq": "dimensionless surcharge correction factor for footing shape, use 1 for continuous footing and increases with B/L for rectangular and approximately circular footings; in the absence of friction angle estimates, use Flow Number, N = 3 for in situ test methods, see Table 5-2",
+      "dq": "dimensionless surcharge correction factor for footing depth, use 1 for footing at ground surface and increase w/normalized embedment below the footing, in the absence of friction angle estimates use N = 3 for in situ test methods, Table 5-2",
+      "iqγ": "dimensionless surcharge and unit weight correction factors for load inclination, use 1 for vertical load and < 1 for inclined loads, see equation 5-27",
+      "bq": "dimensionless surcharge correction factor for base inclination, use 1 for a flat base and < 1 for an angled base, see Table 5-3",
+      "gq": "dimensionless surcharge correction factor for ground inclination, use 1 for flat ground and < 1 for ground sloping away from the footing, see Table 5-3",
+      "s": "equivalent in situ testing parameters indicative of soil strength = N60e · pref, qne, pne",
+      "q0": "surcharge pressure on the plane at the base of the footing (ksf) (printed qo in the list of symbols)"
+     },
+     "notes": "The in situ test bearing capacity equation for drained conditions (paragraph 5-5i(3)); the USACE (Meyerhof-based) correction factors of Table 5-2 through Table 5-4 should be used (paragraph 5-5i(4)).",
+     "source": "Typed in from p. 114.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-26",
+     "description": "Equation 5-26, printed after Eq. 5-25 (p. 114).",
+     "formula": "qult = k · sc · dc · ic · bc · gc · s + q0   (undrained)",
+     "variables": {
+      "qult": "ultimate bearing capacity (ksf)",
+      "k": "dimensionless bearing capacity factor, see Table 5-5",
+      "s": "equivalent in situ testing parameters indicative of soil strength = N60e · pref, qne, pne",
+      "sc": "dimensionless cohesion (undrained strength) correction factor for footing shape, use 1 for continuous footing and increase with B/L for rectangular and circular type footings, see Table 5-4",
+      "dc": "dimensionless (undrained strength) correction factor for footing depth, use 1 for footing at the ground surface and increase with normalized embedment below the footing, see Table 5-4",
+      "ic": "dimensionless (undrained strength) and unit weight correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-4",
+      "bc": "dimensionless (undrained strength) correction factor for base inclination, use 1 for a flat base and < 1 for an inclined base, see Table 5-4",
+      "gc": "dimensionless (undrained strength) correction factor for ground inclination, use 1 for flat ground and < 1 for ground sloping away from the footing, see Table 5-4",
+      "q0": "surcharge pressure on the plane at the base of the footing (ksf) (printed qo in the list of symbols)"
+     },
+     "notes": "The in situ test bearing capacity equation for undrained conditions (paragraph 5-5i(3)); the USACE (Meyerhof-based) correction factors of Table 5-2 through Table 5-4 should be used (paragraph 5-5i(4)).",
+     "source": "Typed in from p. 114.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-27",
+     "description": "Equation 5-27, printed after Eq. 5-26 (p. 114).",
+     "formula": "iqγ = min(Df/B′, 1) · iq + max(1 − Df/B′, 0) · iγ",
+     "variables": {
+      "iqγ": "dimensionless surcharge and unit weight correction factors for load inclination, use 1 for vertical load and < 1 for inclined loads, see equation 5-27",
+      "Df": "depth of base of footing below ground surface (ft)",
+      "B′": "effective base width of footing (ft)",
+      "iq": "dimensionless surcharge correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-3",
+      "iγ": "dimensionless unit weight correction factor for load inclination, use 1 for vertical load and < 1 for inclined loads, see Table 5-3"
+     },
+     "source": "Typed in from p. 114.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [
+    "Table 5-5: Uncorrected bearing capacity factor (k) using in situ tests (after FHWA-IP-89-008; Mayne 2007a; Briaud 2013)"
+   ],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-5i(4), printed pp. 114 to 116."
+  },
+  {
+   "section_id": "5-6",
+   "title": "Sliding",
+   "body": "[p. 116] Sliding resistance is the horizontal load that a foundation can resist. Sliding failures are indicated by excessive horizontal movement of the foundation.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6, printed p. 116."
+  },
+  {
+   "section_id": "5-6a",
+   "title": "Sliding shear zone",
+   "body": "[p. 116] Sliding shear zone. The shear zones for the sliding ultimate limit state are illustrated in Figure 5-12. There can be one or two components of shear resistance. The first is the soil-foundation interface at the base of the footing. The second is the passive resistance in the soil above the bottom of the footing. Each component has a distinct shear zone.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6a, printed p. 116."
+  },
+  {
+   "section_id": "5-6a(1)",
+   "title": "Soil-foundation interface shear zone",
+   "body": "[p. 116] Soil-foundation interface shear zone. Soil-foundation interface strength parameters should be representative of the strength in this zone. For sliding below walls with shear keys, the sliding shear zone extends through the soil from the tip of the shear key to the end of the footing (Figure 5-10). When the sliding shear zone passes through soil, the interface strength coefficients should equal the soil strength coefficients.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6a(1), printed p. 116."
+  },
+  {
+   "section_id": "5-6a(2)",
+   "title": "Passive soil shear zone",
+   "body": "[p. 116] Passive soil shear zone. Passive resistance is developed by the shear zone extending from the base of the foundation to the ground surface. In relatively uniform soils, a representative strength within the shear zone can be used. In layered soils, a multiple wedge analysis should be considered (see EM 1110-2-2100). Each layer is characterized separately by its representative strength for a multiple-wedge analysis.\n\n[p. 117] Figure 5-12. Slip surfaces for rough footings indicating size and shape of bearing capacity ultimate limit state sliding limit state shear zones for (a) surface footing; (b) embedded footing; vertical arrow = constant static load; horizontal arrow = loading direction",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-12: Slip surfaces for rough footings indicating size and shape of bearing capacity ultimate limit state sliding limit state shear zones for (a) surface footing; (b) embedded footing; vertical arrow = constant static load; horizontal arrow = loading direction"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6a(2), printed pp. 116 to 117."
+  },
+  {
+   "section_id": "5-6b",
+   "title": "Soil-foundation interface strength coefficients",
+   "body": "[p. 117] Soil-foundation interface strength coefficients. A sliding failure at the base of a foundation is controlled by the weaker of a failure within the soil mass or at the interface between the soil and the structure. The interface generally controls, and values lower than the friction angle (φ′), cohesion (c′), or undrained strength (su) should be used to assess the sliding resistance.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6b, printed p. 117."
+  },
+  {
+   "section_id": "5-6b(1)",
+   "title": "Fully-rough drained interface strength coefficients",
+   "body": "[p. 117] Fully-rough drained interface strength coefficients. The interface friction angle (δ′) is used in calculations based on effective stresses. Even for very dense sands against a rough interface, the peak interface friction angle is typically less than or equal to the large displacement (constant volume or critical state) soil-soil friction angle (Gόmez et al. 2008). For rough concrete cast against typical sands, δ′ = 28° is generally applicable regardless of initial density or grain size. If laboratory interface shear strength test data are available, direct measurements of δ′ can be used. Alternatively, a δ′ value that is 2° less than the large displacement (constant volume or fully softened) friction angle can be used for rough interfaces in sands, silty sands, clays, and other soil mixtures. Adhesion is typically assessed using the ratio of adhesion to effective stress cohesion (ca/c′). For cast-in-place concrete footings ca/c′ is typically 0.8 for soils.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6b(1), printed p. 117."
+  },
+  {
+   "section_id": "5-6b(2)",
+   "title": "Undrained interface strength coefficients for smoother conditions",
+   "body": "[p. 117] Undrained interface strength coefficients for smoother conditions. For smoother interfaces, such as precast concrete footings, the interface friction coefficient will be lower than for rough footings (see EM 1110-2-2502). If laboratory interface shear strength test data are available, direct measurements of δ′ can be used. For precast concrete and smoother footings, adhesion is zero.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6b(2), printed p. 117."
+  },
+  {
+   "section_id": "5-6b(3)",
+   "title": "Fully-rough undrained interface strength coefficients",
+   "body": "[p. 118] Fully-rough undrained interface strength coefficients. For undrained conditions, adhesion is assessed using the ratio of adhesion to undrained strength (ca/su). For a fully rough cast in place concrete footing where the material has not been softened by construction activities, (ca/su) is often taken as one.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6b(3), printed p. 118."
+  },
+  {
+   "section_id": "5-6b(4)",
+   "title": "Undrained interface strength coefficients for smoother conditions",
+   "body": "[p. 118] Undrained interface strength coefficients for smoother conditions. For smoother interfaces, such as precast concrete footings, (ca/su) will be approximately equal to the ratio of the effective stress interface friction angle and compared to the drained soil effective stress friction angle, tan(δ′)/tan(φ′). See paragraph 5-6b(2) for recommended values of δ′.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6b(4), printed p. 118."
+  },
+  {
+   "section_id": "5-6c",
+   "title": "Applied shear force",
+   "body": "[p. 118] Applied shear force. The applied shear force (T) assessed using a single wedge is discussed in EM 1110-2-2100. For surface footings, the applied shear force is the component of force parallel to the base. For embedded footings, the applied shear force also includes the difference between the active and passive components of soil force using developed strengths. The applied shear force is shown in Figure 5-13a for the general case. Figure 5-13b shows the components of the applied shear force for the case of an embedded footing with no differential water pressure considered in this manual. See EM 1110-2-2502 for footings subject to horizontal hydraulic loads.\n\nFigure 5-13. Components of single-wedge analysis used to assess the applied shear force (a) general case; (b) equivalent case for an embedded footing with no differential water pressure",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-13: Components of single-wedge analysis used to assess the applied shear force (a) general case; (b) equivalent case for an embedded footing with no differential water pressure"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6c, printed p. 118."
+  },
+  {
+   "section_id": "5-6d",
+   "title": "Safety factor for sliding",
+   "body": "[p. 118] Safety factor for sliding. The general expression for the sliding factor of safety is expressed in equation 5-28. Equation 5-29 is the drained factor of safety accounting for external horizontal loads and earth pressures. Equation 5-30 is the undrained factor of safety accounting for external horizontal loads and earth pressures. Earth pressures using developed soil parameters (paragraph 5-6e) must be used within equations 5-29 and 5-30.\n\nFS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/T   (General Expression for Drained Sliding Factor of Safety, after EM 1110-2-2100) [Eq. 5-28]\n\n[p. 119] FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/(H + Pa,d − Pp,d)   (Drained Sliding Factor of Safety) [Eq. 5-29]\n\nFS = ((ca/su) · A · su)/(H + Pa,d − Pp,d)   (Undrained Sliding Factor of Safety φ = 0) [Eq. 5-30]\n\nwhere:\nN = component of the resultant force normal to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nT = component of the resultant force parallel to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)\nA = base area of an isolated spread footing (ft^2), use B = 1 ft for area of continuous footing (ft^2/ft), where B is the base width of the footing in contact with soil\nU = water uplift force acting on the base of the structure (kips)\nδ′ = interface friction angle (degrees)\nc′ = effective stress cohesion intercept (ksf)\nca/c′ = ratio of adhesion component of interface strength to effective stress cohesion intercept\nca = adhesion component of interface strength (ksf)\nsu = undrained strength for the foundation soils in the shear zone (ksf)\nca/su = ratio of the adhesion component of interface strength to undrained strength\nPp,d = developed passive soil force on the front of footing per unit width of wall (kips/ft)\nPa,d = developed active soil force on the back of the footing (kips/ft)\nH = externally applied horizontal force (units of kips and kips/ft for isolated spread and continuous footing loads, respectively), H + Pa,d ≥ Pp,d\nFS = calculated factor of safety (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-28",
+     "description": "Equation 5-28, introduced by: \"Earth pressures using developed soil parameters (paragraph 5-6e) must be used within equations 5-29 and 5-30.\" (p. 118).",
+     "formula": "FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/T   (General Expression for Drained Sliding Factor of Safety, after EM 1110-2-2100)",
+     "variables": {
+      "N": "component of the resultant force normal to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "T": "component of the resultant force parallel to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "A": "base area of an isolated spread footing (ft^2), use B = 1 ft for area of continuous footing (ft^2/ft), where B is the base width of the footing in contact with soil",
+      "U": "water uplift force acting on the base of the structure (kips)",
+      "δ′": "interface friction angle (degrees)",
+      "c′": "effective stress cohesion intercept (ksf)",
+      "ca/c′": "ratio of adhesion component of interface strength to effective stress cohesion intercept",
+      "ca": "adhesion component of interface strength (ksf)",
+      "FS": "calculated factor of safety (dimensionless)"
+     },
+     "source": "Typed in from p. 118.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-29",
+     "description": "Equation 5-29, printed after Eq. 5-28 (p. 119).",
+     "formula": "FS = ((N − U) tan(δ′) + (ca/c′) · c′ · A)/(H + Pa,d − Pp,d)   (Drained Sliding Factor of Safety)",
+     "variables": {
+      "N": "component of the resultant force normal to the base (units of kips and kips/ft for isolated spread and continuous footing loads, respectively)",
+      "A": "base area of an isolated spread footing (ft^2), use B = 1 ft for area of continuous footing (ft^2/ft), where B is the base width of the footing in contact with soil",
+      "U": "water uplift force acting on the base of the structure (kips)",
+      "δ′": "interface friction angle (degrees)",
+      "c′": "effective stress cohesion intercept (ksf)",
+      "ca/c′": "ratio of adhesion component of interface strength to effective stress cohesion intercept",
+      "ca": "adhesion component of interface strength (ksf)",
+      "Pp,d": "developed passive soil force on the front of footing per unit width of wall (kips/ft)",
+      "Pa,d": "developed active soil force on the back of the footing (kips/ft)",
+      "H": "externally applied horizontal force (units of kips and kips/ft for isolated spread and continuous footing loads, respectively), H + Pa,d ≥ Pp,d",
+      "FS": "calculated factor of safety (dimensionless)"
+     },
+     "source": "Typed in from p. 119.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-30",
+     "description": "Equation 5-30, printed after Eq. 5-29 (p. 119).",
+     "formula": "FS = ((ca/su) · A · su)/(H + Pa,d − Pp,d)   (Undrained Sliding Factor of Safety φ = 0)",
+     "variables": {
+      "A": "base area of an isolated spread footing (ft^2), use B = 1 ft for area of continuous footing (ft^2/ft), where B is the base width of the footing in contact with soil",
+      "ca": "adhesion component of interface strength (ksf)",
+      "su": "undrained strength for the foundation soils in the shear zone (ksf)",
+      "ca/su": "ratio of the adhesion component of interface strength to undrained strength",
+      "Pp,d": "developed passive soil force on the front of footing per unit width of wall (kips/ft)",
+      "Pa,d": "developed active soil force on the back of the footing (kips/ft)",
+      "H": "externally applied horizontal force (units of kips and kips/ft for isolated spread and continuous footing loads, respectively), H + Pa,d ≥ Pp,d",
+      "FS": "calculated factor of safety (dimensionless)"
+     },
+     "source": "Typed in from p. 119.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6d, printed pp. 118 to 119."
+  },
+  {
+   "section_id": "5-6e",
+   "title": "Developed strength",
+   "body": "[p. 119] Developed strength. To correctly compute factor of safety according to equation 5-28, soil strength is reduced by the factor of safety when calculating active and passive earth pressures for sliding calculations. The concept of developed strength (EM 1110-2-2100) is used for this purpose. The use of developed parameters results in a force larger than the active soil force on the driving side, and a force smaller than the passive soil force on the resisting side. Developed friction angle, developed cohesion, and developed undrained strength are defined in equations 5-31, 5-32, and 5-33, respectively. The minimum factor of safety of 2.0 for sliding presented in Table 2-1 or higher factors of safety can be used in analyses. The developed strengths should only be used for sliding calculations, not for bearing capacity calculations.\n\n[p. 120] φ′d = tan^(−1)(tan φ′/FSslide) [Eq. 5-31]\n\nc′d = c′/FSslide [Eq. 5-32]\n\nsu,d = su/FSslide [Eq. 5-33]\n\nwhere:\nFSslide = minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)\nφ′ = effective stress friction angle for the foundation soils in the passive zone (degrees)\nφ′d = developed effective stress friction angle per equation 5-31 (degrees)\nc′ = effective cohesion parameter for the foundation soils in the passive zone (ksf)\nc′d = developed effective cohesion parameter per equation 5-32 (ksf)\nsu = undrained strength for the foundation soils in the passive zone (ksf)\nsu,d = developed undrained strength per equation 5-33 (ksf)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-31",
+     "description": "Equation 5-31, introduced by: \"The developed strengths should only be used for sliding calculations, not for bearing capacity calculations.\" (p. 120).",
+     "formula": "φ′d = tan^(−1)(tan φ′/FSslide)",
+     "variables": {
+      "FSslide": "minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)",
+      "φ′": "effective stress friction angle for the foundation soils in the passive zone (degrees)",
+      "φ′d": "developed effective stress friction angle per equation 5-31 (degrees)"
+     },
+     "source": "Typed in from p. 120.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-32",
+     "description": "Equation 5-32, printed after Eq. 5-31 (p. 120).",
+     "formula": "c′d = c′/FSslide",
+     "variables": {
+      "FSslide": "minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)",
+      "c′": "effective cohesion parameter for the foundation soils in the passive zone (ksf)",
+      "c′d": "developed effective cohesion parameter per equation 5-32 (ksf)"
+     },
+     "source": "Typed in from p. 120.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-33",
+     "description": "Equation 5-33, printed after Eq. 5-32 (p. 120).",
+     "formula": "su,d = su/FSslide",
+     "variables": {
+      "FSslide": "minimum factor of safety for sliding analysis from Table 2-1 (dimensionless)",
+      "su": "undrained strength for the foundation soils in the passive zone (ksf)",
+      "su,d": "developed undrained strength per equation 5-33 (ksf)"
+     },
+     "source": "Typed in from p. 120.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6e, printed pp. 119 to 120."
+  },
+  {
+   "section_id": "5-6f",
+   "title": "Earth pressure resistance of embedded footings",
+   "body": "[p. 120] Earth pressure resistance of embedded footings. Earth pressures act as a load and a resistance on footings. The developed passive pressure is a resistance and cannot exceed the sum of external horizontal loads and the developed active earth pressure.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6f, printed p. 120."
+  },
+  {
+   "section_id": "5-6f(1)",
+   "title": "Earth pressure coefficients",
+   "body": "[p. 120] Earth pressure coefficients. Earth pressure coefficients may be based on the Rankine equation. To account for side friction, sloping ground, or sloping foundation sides, the log spiral method (Caquot and Kérisel 1948) upper bound or lower bound earth pressure coefficients as tabulated in EM 1110-2-2502 may be used in design. The Coulomb earth pressure coefficient equation may be used provided that the follow conditions are met.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6f(1), printed p. 120."
+  },
+  {
+   "section_id": "5-6f(1)(a)",
+   "title": "The interface friction coefficient (δ′) used in calculations is less than φ′/2 …",
+   "body": "[p. 120] The interface friction coefficient (δ′) used in calculations is less than φ′/2 for passive earth pressures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6f(1)(a), printed p. 120. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-6f(1)(b)",
+   "title": "The slope angle used in calculations must be equal to zero or be negative for …",
+   "body": "[p. 120] The slope angle used in calculations must be equal to zero or be negative for passive earth pressures.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6f(1)(b), printed p. 120. The manual prints this subparagraph without a heading; the title is its opening words."
+  },
+  {
+   "section_id": "5-6f(2)",
+   "title": "Soil force in unform soils",
+   "body": "[p. 120] Soil force in unform soils. When soil and water conditions between the ground surface and the base of the footing are generally uniform, the average soil pressure is calculated as half the earth pressure at the base of the footing. The passive force is calculated using equation 5-34. The active force is calculated using equation 5-35.\n\n[p. 121] Pp,d = ((1/2) γ′ · Df · Kp,d + 2c′d) Df · L [Eq. 5-34]\n\nPa,d = ((1/2) γ′ · Df · Ka,d − 2c′d) Df · L ≥ 0 [Eq. 5-35]\n\nwhere:\nPp,d = developed passive soil force on the front of the footing per unit width of wall (kips/ft)\nγ′ = effective unit weight of the between the base of the footing and the ground surface (kcf)\nc′d = developed effective cohesion parameter, use su,d for undrained analysis (ksf)\nDf = depth to base of footing below ground surface (ft)\nL = base length of rectangular footing, use B for circular footings or 1 for continuous footings (ft)\nKp,d = passive earth pressure coefficient using developed soil parameters (dimensionless)\nPa,d = developed active soil force on the back of the footing, must be ≥ 0 (kips/ft)\nKa,d = active earth pressure coefficient using developed soil parameters (dimensionless)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-34",
+     "description": "Equation 5-34, introduced by: \"The active force is calculated using equation 5-35.\" (p. 121).",
+     "formula": "Pp,d = ((1/2) γ′ · Df · Kp,d + 2c′d) Df · L",
+     "variables": {
+      "Pp,d": "developed passive soil force on the front of the footing per unit width of wall (kips/ft)",
+      "γ′": "effective unit weight of the between the base of the footing and the ground surface (kcf)",
+      "c′d": "developed effective cohesion parameter, use su,d for undrained analysis (ksf)",
+      "Df": "depth to base of footing below ground surface (ft)",
+      "L": "base length of rectangular footing, use B for circular footings or 1 for continuous footings (ft)",
+      "Kp,d": "passive earth pressure coefficient using developed soil parameters (dimensionless)",
+      "Pa,d": "developed active soil force on the back of the footing, must be ≥ 0 (kips/ft)",
+      "Ka,d": "active earth pressure coefficient using developed soil parameters (dimensionless)"
+     },
+     "source": "Typed in from p. 121.",
+     "implemented_in": null
+    },
+    {
+     "id": "Eq. 5-35",
+     "description": "Equation 5-35, introduced by: \"The active force is calculated using equation 5-35.\" (p. 121).",
+     "formula": "Pa,d = ((1/2) γ′ · Df · Ka,d − 2c′d) Df · L ≥ 0",
+     "variables": {
+      "Pp,d": "developed passive soil force on the front of the footing per unit width of wall (kips/ft)",
+      "γ′": "effective unit weight of the between the base of the footing and the ground surface (kcf)",
+      "c′d": "developed effective cohesion parameter, use su,d for undrained analysis (ksf)",
+      "Df": "depth to base of footing below ground surface (ft)",
+      "L": "base length of rectangular footing, use B for circular footings or 1 for continuous footings (ft)",
+      "Kp,d": "passive earth pressure coefficient using developed soil parameters (dimensionless)",
+      "Pa,d": "developed active soil force on the back of the footing, must be ≥ 0 (kips/ft)",
+      "Ka,d": "active earth pressure coefficient using developed soil parameters (dimensionless)"
+     },
+     "source": "Typed in from p. 121.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-6f(2), printed pp. 120 to 121."
+  },
+  {
+   "section_id": "5-7",
+   "title": "Uplift",
+   "body": "[p. 121] An uplift failure mode occurs when the upward vertical force exceeds the downward vertical force.",
+   "key_points": [],
+   "equations": [],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-7, printed p. 121."
+  },
+  {
+   "section_id": "5-7a",
+   "title": "Shear zone for uplift",
+   "body": "[p. 121] Shear zone for uplift. The shear zone for uplift is illustrated in Figure 5-14 and is confined to the interface strength between the foundation and structure and the surrounding soil. While the weight of soil above the foundation is included, soil strength is often not considered as part of uplift resistance. Interface soil strength resisting uplift could degrade with time due to the potential for gapping or cyclic degradation.\n\n[p. 122] Figure 5-14. Separation of footing and soil for uplift failure due to water pressures",
+   "key_points": [],
+   "equations": [],
+   "figures": [
+    "Figure 5-14: Separation of footing and soil for uplift failure due to water pressures"
+   ],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-7a, printed pp. 121 to 122."
+  },
+  {
+   "section_id": "5-7b",
+   "title": "Factor of safety for uplift",
+   "body": "[p. 122] Factor of safety for uplift. Uplift is generally a result of wind or water loads. Permanent dead loads are considered only when assessing uplift resistance due to wind loads. Uplift calculations that account for vertical soil shear resistance are discussed in EM 1110-2-2100. The calculated factor of safety for uplift is defined by equation 5-36:\n\nFS = (Wf + Ws + Wc)/U [Eq. 5-36]\n\nwhere:\nFS = calculated factor of safety (dimensionless)\nWf = weight of foundation including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)\nWs = weight of the structure, including weights of the fixed equipment and soil above the top surface of the structure (units of kips and kips/ft for isolated spread and continuous footings, respectively)\nWc = weight of water contained within a hydraulic structure at the time of the design load case (units of kips and kips/ft for isolated spread and continuous footings, respectively)\nU = uplift force acting on the base of the structure (kips)",
+   "key_points": [],
+   "equations": [
+    {
+     "id": "Eq. 5-36",
+     "description": "Equation 5-36, introduced by: \"The calculated factor of safety for uplift is defined by equation 5-36:\" (p. 122).",
+     "formula": "FS = (Wf + Ws + Wc)/U",
+     "variables": {
+      "FS": "calculated factor of safety (dimensionless)",
+      "Wf": "weight of foundation including weight of soil above foundation bearing elevation (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+      "Ws": "weight of the structure, including weights of the fixed equipment and soil above the top surface of the structure (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+      "Wc": "weight of water contained within a hydraulic structure at the time of the design load case (units of kips and kips/ft for isolated spread and continuous footings, respectively)",
+      "U": "uplift force acting on the base of the structure (kips)"
+     },
+     "source": "Typed in from p. 122.",
+     "implemented_in": null
+    }
+   ],
+   "figures": [],
+   "tables": [],
+   "applicability": "EM 1110-1-1905, Chapter 5 (Ultimate Limit State for Static Analysis), paragraph 5-7b, printed p. 122."
+  }
+ ]
+}
