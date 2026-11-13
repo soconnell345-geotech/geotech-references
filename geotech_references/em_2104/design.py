@@ -212,7 +212,9 @@ def design_doubly_reinforced(mn, pn, d, dprime, h, b, fc_prime, fy,
          (ad - beta1*d')*ec*Es/ad, which the page prints with no bound;
          held at fy by the library (``limit_governs``, ``fs_prime_unlimited``
          and a note when it governs), and refused where it is not positive
-         (the compression steel not in compression: D-4 gives no As').
+         (the compression steel not in compression: D-4 gives no As'). ad
+         is set by the target ratio, not solved for, so with fs' at fy
+         Eqs D-3 and D-4 still balance the section's forces and moments.
       3. As' = (Mn - M_DS) / [fs'*(d - d')]                      [Eq D-4]
       4. As = (0.85*fc'*Kd*b*d - Pn + As'*fs') / fy                [Eq D-3]
 

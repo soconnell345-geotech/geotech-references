@@ -195,17 +195,49 @@ pages):
   reinforced functions, also refuses ku or beta1 not positive, beta1 above
   1, d'/d outside 0 to 1, and for Eq B-31 ku not below beta1 (its
   denominator).
-- `em_2104.flexure_axial.compression_controlled_capacity_doubly` (and the
-  other Appendix B and D steel stresses), the lead's ruling 42: fs' from Eq
-  B-37 came back above yield (75.7 ksi with fy 60 for e'/d 0.8, which
-  overstated phi Pn by 24.5 kips). B-37 prints only fs' (>= -fy) (printed
-  p. 48) and B-31 fs' (<= fy) (printed p. 47); the library now holds every
-  fs and fs' within -fy..fy and, where a bound governs, returns
-  `limit_governs` True, the equation's value as `fs_unlimited` /
-  `fs_prime_unlimited` and a note saying the second bound is the library's
-  reading. `design.design_doubly_reinforced` also refuses an fs' that is
-  not positive (ad <= beta1 d': the compression steel is in tension and
-  Eq D-4 gave a negative As').
+- `em_2104.flexure_axial.compression_controlled_capacity_doubly`, the
+  lead's ruling 42: fs' from Eq B-37 came back above yield (75.7 ksi with
+  fy 60 for e'/d 0.8). B-37 prints only fs' (>= -fy) (printed p. 48), and
+  the cubic that gives ku (Eq B-39) is derived with the compression steel
+  not yielded. Where B-37 is above fy at the cubic's root the function now
+  holds fs' at fy and solves the manual's own equilibrium equations, Eqs
+  B-23 and B-24 (printed p. 45), again for ku. For rho 0.01, rho' 0.01,
+  d'/d 0.1, fy 60 ksi, f'c 4 ksi, b 12 in, d 20 in, h 24 in, phi 0.65:
+  phi Pn 396.0 kips at e'/d 0.8 (was 424.8), 524.6 at 0.65 (was 566.6),
+  695.5 at 0.5 (was 749.1). With Grade 60 steel and d'/d below 0.18 this
+  is every compression-controlled section. The result gives
+  `limit_governs` True, the cubic's root as `ku_cubic`, B-37 there as
+  `fs_prime_unlimited`, the capacity by the printed equations as
+  `phi_pn_cubic`, and a note saying this is the library's reading. Where
+  the tension steel has yielded (Eq B-36 above fy at the root) the section
+  is controlled by tension and the call is refused, naming
+  `tension_controlled_capacity_doubly`; fs was held at fy with nothing
+  said.
+- `em_2104.flexure_axial.tension_controlled_capacity_doubly`: the same gap
+  on the other side of the balanced point. Where Eq B-31's fs' is above fy
+  at the root of Eq B-33 (near the balanced eccentricity, and only for
+  d'/d below 0.18 with Grade 60 steel) fs' is still held at fy as the page
+  prints (p. 47), and ku is now solved again from Eq B-32 (p. 47) with
+  fs' = fy: the section above at 1.02 times its balanced e'/d, phi 0.9,
+  gives 355.9 kips (was 352.9). At the balanced e'/d the two doubly
+  reinforced functions now return the same ku (kb) and capacity. A
+  section that is not controlled by tension is refused there.
+- `em_2104.flexure_axial.compression_controlled_capacity_singly`: Eq B-19
+  above fy at the root of Eq B-21 (the tension steel has yielded, the
+  section is controlled by tension) is refused, naming
+  `tension_controlled_capacity_singly`; B-21's ku came back with fs above
+  yield. Below -fy, the bound the page prints (p. 44), fs = -fy and ku is
+  solved again from Eqs B-2 and B-5 (p. 42): one layer at mid-depth, fy
+  40 ksi, e'/d 0.05 gives 640.1 kips (was 639.7). Its page is cited as 44
+  (was 44-45: Eqs B-17 to B-21 are all on p. 44).
+- `em_2104` functions whose ku or stress-block depth is given, not solved
+  with the steel taken elastic, still hold fs' at fy with `limit_governs`,
+  `fs_prime_unlimited` and a note, and stay in balance:
+  `compression_steel_stress_at_ku`, `balanced_eccentricity_doubly` (ku =
+  kb) and `design.design_doubly_reinforced` (ad = Kd d).
+  `design.design_doubly_reinforced` also refuses an fs' that is not
+  positive (ad <= beta1 d': the compression steel is in tension and Eq D-4
+  gave a negative As').
 - `ufc_collapse.reinforced_concrete` Tables 4-1 to 4-4 flexure lookups:
   unchanged past the end rows, which are printed open-ended ("<= 0.0" /
   ">= 0.5", "<= 3" / ">= 6", "<= 0.2" / ">= 0.4", printed pp. 63-66), as

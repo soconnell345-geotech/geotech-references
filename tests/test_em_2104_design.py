@@ -122,6 +122,21 @@ class TestDesignDoublyReinforced:
             design_doubly_reinforced(mn=900.0, pn=0.0, d=10.0, dprime=2.5,
                                      h=12.0, b=12.0, fc_prime=4.0, fy=60.0)
 
+    def test_fs_prime_at_fy_still_balances(self):
+        # Ruling 42, second part: ad = Kd d is set by the target ratio, not
+        # solved for, so holding fs' at fy leaves Eqs D-3 and D-4 (printed
+        # pp. 70-71) in balance: the sum of forces and the moments about
+        # the tension steel both close with the areas returned.
+        mn, pn, d, dp, h, b, fc, fy = 8000.0, 50.0, 30.0, 1.0, 34.0, 12.0, 4.0, 60.0
+        r = design_doubly_reinforced(mn=mn, pn=pn, d=d, dprime=dp, h=h, b=b,
+                                     fc_prime=fc, fy=fy)
+        assert r["limit_governs"] is True and r["fs_prime"] == 60.0
+        cc = 0.85 * fc * r["ad"] * b
+        cs = r["as_prime_required"] * r["fs_prime"]
+        assert r["as_required"] * fy == pytest.approx(cc + cs - pn)
+        assert mn + pn * (d - h / 2) == pytest.approx(
+            cc * (d - r["ad"] / 2) + cs * (d - dp))
+
     def test_non_physical_bound_refused(self):
         # REF-76: fs' is held at fy; fy, Es or ec not positive is refused.
         for kw in ({"fy": -60.0}, {"es": 0.0}, {"ec": -0.003}):
