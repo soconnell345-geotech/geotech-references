@@ -89,7 +89,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5-1"
+        "Table 5-1: Settlement Calculation Methods for Different Soil Types (after Coduto et al. 2011, Salgado 2008) (p. 221) - columns: Soil Type; Time Frame; Process; Relative Magnitude; Method of Calculation. Coarse-Grained; Short-Term; Distortion; Negligible to small; Semi-empirical immediate or “elastic” settlement | Coarse-Grained; Short-Term; Consolidation; Small to moderate; Semi-empirical immediate or “elastic” settlement | Coarse-Grained; Long-Term; Secondary Compression; Negligible to small; Semi-empirical methods | Coarse-Grained; Other; Vibration, submergence; Small to moderate; Specialized methods | Fine-Grained; Short-Term; Distortion; Negligible to small; Semi-empirical immediate or “elastic” settlement | Fine-Grained; Long-Term; Consolidation; Moderate to large; Primary consolidation calculations | Fine-Grained; Long-Term; Secondary Compression; Small to large; Secondary consolidation calculations"
       ],
       "applicability": "Applies when verifying that site conditions (stress state and saturation) fall within the assumptions required for the settlement analysis methods presented in Chapter 5."
     },
@@ -337,7 +337,7 @@
         "Figure 5-6"
       ],
       "tables": [
-        "Table 5-2"
+        "Table 5-2: Approximate Modulus Values for Coarse-Grained Soil (after Bowles 1996, Duncan and Mokwa 2001) (p. 231) - columns: Soil Conditions; Normally Consolidated; Preloaded or Compacted. Loose Sand, Dr = 40%; 200 to 400 ksf; 400 to 800 ksf | Medium Dense Sand, Dr = 60%; 300 to 500 ksf; 500 to 1000 ksf | Dense Sand, Dr = 80%; 400 to 600 ksf; 600 to 1200 ksf | Dry or Moist Sand; Lower: Es = 11.5 (N′+7.5), Upper: Es = 15 (N′+30); Es = 20 (N′+42) | Clayey, Silty, or Saturated Sand; Lower: Es = 5.6 (N′+9), Upper: Es = 7.7 (N′+15); Not available. Note: Correlations provide values of Es in ksf units."
       ],
       "applicability": "Applies when estimating elastic short-term settlement of coarse-grained soils by treating the soil as a linear elastic medium with known or estimated modulus Es."
     },
@@ -375,7 +375,7 @@
         "Figure 5-7"
       ],
       "tables": [
-        "Table 5-3"
+        "Table 5-3: Estimates of Es based on SPT N60 values. (p. 232) - columns: Soil Type; Approximate Es Value (ksf), Axisymmetric (L = B); Approximate Es Value (ksf), Plane Strain (L/B > 10). Silt, sandy silt, slightly cohesive silt-sand mixtures; 10·N60; 14·N60 | Clean fine to medium sand, and slightly silty sand; 17.5·N60; 24.5·N60 | Coarse sand and sand with little gravel; 25·N60; 35·N60 | Sandy gravel; 30·N60; 42·N60"
       ],
       "applicability": "Applies when calculating short-term and time-adjusted settlement of coarse-grained soils using CPT or SPT data with the Schmertmann strain influence factor approach."
     },
@@ -394,7 +394,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5-4"
+        "Table 5-4: Empirical Equations for Settlement of Coarse-Grained Soils (p. 234) - columns: Method; Equation; Comments. Terzaghi and Peck (1967); s = (6q0/N′)(B/(B+1))^2; s in inches, B in ft, q0 in ksf, A range of constants have been used. | Meyerhof (1965), Duncan and Buchiagnani (1987); s = 2.5q0/((N′−1.5)CB), CB = 1.0 for B < 4 ft, Interpolate for 4 to 12 ft, 0.8 for B ≥ 12 ft; s in inches, q0 in ksf | Burland and Burbridge (1985), Terzaghi et al. (1996)^A; s = B^0.75 (1.31/N′^1.4) q0Cs, Cs = [1.25(L/B)/((L/B)+0.25)]^2, Cs→1.56 for strip load; s in inches, B in ft, L in ft, q0 in ksf. Notes: A Settlement for load applied at the ground surface to normally consolidated sand. See the provided references for methods to correct for the effects of embedment and overconsolidation."
       ],
       "applicability": "Applies when estimating short-term settlement of coarse-grained soils using SPT blow count and foundation geometry without requiring a separately determined elastic modulus."
     },
@@ -517,7 +517,7 @@
         "Figure 3-12"
       ],
       "tables": [
-        "Table 5-5"
+        "Table 5-5: Correlations for Compression Indices (p. 240) - columns: Basis; Correlation; Applicable soil type; Source. LL; Cc = 0.009·(LL – 10); Inorganic soils with sensitivity less than 4; Terzaghi and Peck (1967) | LL; Cc = 0.007·(LL – 7); Remolded clays; Skempton (1944) | LL; Cc = 0.006·(LL – 9); Predominantly lean to fat clay; Azzouz et al. (1976) | e0; Cc = 1.15·(e0 – 0.35); All clays; Nishida (1956) | e0; Cc = 0.3·(e0 – 0.27); Inorganic soil; silt; silty clay; some clay; Hough (1957) | e0; Cc = 0.75·(e0 – 0.5); Very low plasticity soils; Sowers (1970) | e0; Cεc = 0.15·e0 + 0.017; All clays; Elnaggar and Krizek (1971) | e0; Cc = 0.4·(e0 – 0.25); Predominantly lean to fat clay; Azzouz et al. (1976) | wn; Cc = 0.01·wn; Chicago clays; Osterberg (1972) (in Azzouz et al. 1976) | wn; Cc = 0.0115·wn; Organic soils, peat; Moran et al. (1958) | wn; Cεc =(0.1 + 0.006·(wn – 25)); Varved clays; Prior NAVFAC DM 7.1 | wn; Cc = 17.6×10^-5·wn^2 + 5.93×10^-3·wn – 0.135; Chicago clays; Peck and Reed (1954) | wn; Cc = 0.01·wn – 0.05; Predominantly lean to fat clay; Azzouz et al. (1976). Note: Liquid limit (LL) and natural water content (wn) are in percent."
       ],
       "applicability": "Applies when interpreting consolidation test results and selecting compression indices for fine-grained soil settlement calculations."
     },
@@ -887,7 +887,7 @@
         "Figure 5-26 Allowable Deflection Ratios Related to Structural Proportions (after Burland and Wroth 1974, Wahls 1981)"
       ],
       "tables": [
-        "Table 5-7 Angular Distortion Limits for Various Structures (after Skempton and MacDonald 1956, Polshin and Tokar 1957, Duncan and Buchignani 1987, and Day 1990)"
+        "Table 5-7 Angular Distortion Limits for Various Structures (after Skempton and MacDonald 1956, Polshin and Tokar 1957, Duncan and Buchignani 1987, and Day 1990) (pp. 257-258) - columns: Type of Structure / Condition; L/H; Tolerable d / l, Decimal; Tolerable d / l, Ratio. Small slab-on-grade structures – damage to structure; ---; 0.01; 1/100 | Steel frame with flexible siding; ---; 0.008; 1/125 | Circular steel tanks on flexible base with fixed top; ---; 0.008; 1/125 | Considerable cracking – brick and panel; ---; 0.0067; 1/150 | Structural damage begins; ---; 0.0067; 1/150 | Safe limit – flexible brick walls (includes safety factor); > 4; 0.0067; 1/150 | Tilting of high buildings becomes visible; ---; 0.004; 1/250 | Slab-on-grade structures – drywall cracking; ---; 0.0033; 1/300 | Overhead cranes; ---; 0.0033; 1/300 | Steel or reinforced concrete frame with insensitive finish such as dry wall, glass or moveable panels; ---; 0.002 to 0.003; 1/500 to 1/333 | Circular steel tanks on flexible base with floating top; ---; 0.002 to 0.003; 1/500 to 1/333 | Tall slender structures, such as stacks, silos, and water tanks with rigid mat foundations; ---; 0.002; 1/500 | Safe limit –cracking of buildings (includes safety factor); ---; 0.002; 1/500 | Steel or reinforced concrete frame with brick, block, plaster, or stucco finish; ≥ 5; 0.002; 1/500 | Steel or reinforced concrete frame with brick, block, plaster, or stucco finish; ≤ 3; 0.001; 1/1000 | Frames with diagonal bracing; ---; 0.00167; 1/600 | Machinery sensitive to settlement; ---; 0.0013; 1/750 | Load-bearing brick, tile, or concrete block walls; ≥ 5; 0.0008; 1/1250 | Load-bearing brick, tile, or concrete block walls; ≤ 3; 0.0004; 1/2500"
       ],
       "applicability": "Applies when selecting specific angular distortion or deflection ratio limits for a given structure type and material finish."
     },
@@ -953,7 +953,7 @@
       ],
       "figures": [],
       "tables": [
-        "Table 5-8"
+        "Table 5-8: Relative Mat Stiffness and Behavior (after Brown 1969, Frazer and Wardle 1976) (p. 260) - columns: Foundation Shape; Mat Stiffness Factor, Km; Mat Behavior, Flexible; Mat Behavior, Intermediate; Mat Behavior, Rigid. Circular; Km = 8 (Em(1−νs)^2/Es)(tm^3/B^3); Km ≤ 0.08; 0.08 ≤ Km ≤ 5; 5 ≤ Km | Rectangular; Km = (4/3)(Em(1−νs)^2/(Es(1−νm)^2))(tm^3/B^3); Km ≤ 0.05; 0.05 ≤ Km ≤ 10; 10 ≤ Km. Variables: Em = modulus of elasticity of mat, νm = Poisson’s ratio of mat, Es = modulus of elasticity of soil, νs = Poisson’s ratio of soil, tm = thickness of mat, B = diameter or width of mat (least dimension)"
       ],
       "applicability": "Applies when evaluating differential settlement for mat or raft foundation systems."
     },
@@ -970,7 +970,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5-9"
+        "Table 5-9: Methods to Reduce, Accelerate, or Prevent Excess Settlement (after FHWA 2017) (p. 261) - columns: Primary Purpose; Method / Technology; Description / Comments (one description is printed for each group of methods). Reduce amount of soft soil; Removal and replacement, Partial displacement; Full or partial removal of compressible soil reduces or eliminates settlement potential. Displacement methods may include jetting or various types of blasting. | Reinforce soft soil; Column-supported embankments, Reinforced load transfer platforms, Non-compressible columns, Stone columns, Rammed aggregate piers; Compressible soil is bypassed by much stiffer, reinforcing elements, typically columns. The columns transfer most of the load from the fill or structure through the soft soil to deeper and stiffer materials. A reinforced load transfer platform is often required at the ground surface. In some cases, the reinforcing elements also improve the surrounding soil. | Improve soft soil; Deep mixing methods, Vibro-compaction, Dynamic compaction; Compaction and/or chemical modification of soft soil can reduce its compressibility and reduce settlement potential. Compaction methods are typically more effective on coarse-grained materials. | Accelerate consolidation of soft soil; Surcharge, Pumping or vacuum, Electro-osmosis; Increased gradients cause the consolidation process to proceed more quickly. Final settlements can be equal to or greater than the settlement caused by the design load. Often used along with vertical drains. | Accelerate consolidation of soft soil; Prefabricated vertical drains (PVDs), Aggregate columns or sand drains; Vertical drainage elements are used to shorten the drainage path. This allows pore pressures to dissipate and consolidation to occur more quickly. | Reduce applied load to soft soil; Balanced / compensated foundation, Lightweight granular fill, Geofoam or foamed concrete; Reduction of the applied stress will reduce the magnitude of the consolidation settlement. This can be accomplished by permanent excavation or the use of lightweight construction materials."
       ],
       "applicability": "Applies when selecting a strategy to reduce, prevent, or accelerate settlement under fills or structures on compressible soils."
     },
@@ -1256,7 +1256,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5-10"
+        "Table 5-10: Empirical Correlations to 1D Heave and Swell Pressure and Required Input Parameters (after Rao et al. 2011, Vanapalli and Lu 2012) (p. 275) - columns: Empirical Method for Prediction of:; Source; then one column for each input parameter, marked X where the method requires it: Atterberg Limits; Grain-Size Distribution; Initial State (γ, w); Specific Gravity; Initial Suction (each row below lists the columns marked X). 1D Heave; Seed et al. (1962); X under Atterberg Limits, Grain-Size Distribution | 1D Heave; Van der Merwe (1964); X under Atterberg Limits, Grain-Size Distribution | 1D Heave; Ranganatham and Satyanarayan (1965); X under Atterberg Limits, Grain-Size Distribution | 1D Heave; Vijayvergiya and Ghazzally (1973); X under Atterberg Limits, Initial State (γ, w) | 1D Heave; McCormack and Wilding (1975); X under Grain-Size Distribution, Initial State (γ, w) | 1D Heave; O'Neil and Ghazzally (1977); X under Atterberg Limits, Initial State (γ, w) | 1D Heave; Johnson and Snethen (1978); X under Atterberg Limits, Initial State (γ, w) | 1D Heave; Weston (1980); X under Atterberg Limits, Initial State (γ, w) | 1D Heave; Bandyopadhyay (1981); X under Atterberg Limits, Grain-Size Distribution | 1D Heave; Chen (1975); X under Atterberg Limits | 1D Heave; Cokca (2002); X under Atterberg Limits, Grain-Size Distribution, Initial Suction | 1D Heave; TXDOT (2014); X under Atterberg Limits, Grain-Size Distribution, Initial State (γ, w) | Swell Pressure; Komornik and David (1969); X under Atterberg Limits, Initial State (γ, w) | Swell Pressure; Nayak and Christensen (1971); X under Atterberg Limits, Grain-Size Distribution, Initial State (γ, w) | Swell Pressure; Schneider and Poor (1974); X under Atterberg Limits, Initial State (γ, w) | Swell Pressure; McCormack and Wilding (1975); X under Grain-Size Distribution, Initial State (γ, w) | Swell Pressure; Johnson (1978); X under Atterberg Limits | Swell Pressure; Nayak (1979); X under Atterberg Limits | Swell Pressure; Erzin and Erol (2004); X under Atterberg Limits, Initial State (γ, w) | Swell Pressure; Sridharan and Gurtug (2004); X under Initial State (γ, w), Specific Gravity | Swell Pressure; Thakur and Singh (2005); X under Initial Suction | Swell Pressure; Erzin and Erol (2007); X under Atterberg Limits, Initial State (γ, w), Initial Suction"
       ],
       "applicability": "Applies when estimating heave or swell pressure from Atterberg limits, clay fraction and initial soil state with the correlations of Table 5-10, in soils similar to those the correlations are based on."
     },
@@ -1292,7 +1292,7 @@
       "equations": [],
       "figures": [],
       "tables": [
-        "Table 5-11"
+        "Table 5-11: Foundation Design Approaches in Expansive Soil (after Bowles 1996) (p. 277) - columns: Approach; Comments. Alter the soil; Possible admixtures include lime, cement, or kiln dust. The admixtures reduce the hydration demands of the clay minerals and also increase bonding that resists swelling. Limited to depths for which it is practical to mix and recompact the soil. | Wet compaction; Compaction on the “wet” side of the line of optimums results in degree of saturation greater than 80 to 85%. High initial saturation reduces the potential for swelling but will increase shrinkage potential in areas exposed to the atmosphere. Wet compaction results in lower dry unit weight that may have lower shear strength and stability. | Control direction of swelling; Construct void zones within the foundation system, such as waffle slabs. If the soil has a tendency to swell, it will first swell into the voids prior to affecting the structure. | Eliminate changes in water content; Environmentally driven changes in water content cause most problematic swelling. Swelling can be bypassed by extending the structure below the zone of active water content change. If the structure cannot be constructed at this depth, the excavation can be filled with soils that are not susceptible to swelling and have low hydraulic conductivity. | Use a capillary break; In cases where the source of water is migration from deeper soils, a capillary break of coarse-grained material or geomembrane may be useful. | Use a sealing compound; Asphaltic sealing compounds can be used on expansive shale to reduce or prevent water from reaching the rock. | Design against swelling; The foundations can be extended below the active zone depth and designed with sufficient uplift capacity to resist the forces applied to the structure by swelling soil. Drilled piers with a bond break along the side of the shaft in the active zone are one common approach using this method. | Balance swell pressure; For some structures, the structural loads can be concentrated to increase the bearing pressure to levels that meet or exceed the swell pressure. This approach is not practical for most low-rise buildings because the structural loads are too light. In addition, the bearing pressure required to resist swell may exceed the allowable bearing capacity of the soil."
       ],
       "applicability": "Applies during foundation and pavement design when expansive soils or rock are present and mitigation or accommodation strategies must be selected."
     },
