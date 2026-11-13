@@ -310,7 +310,7 @@ def test_chapter_5_tables_typed_from_the_page():
     assert "Material type 3 3 3" not in body
     # Table 5-8: the total unit weight identity the text layer dropped
     assert "2. Total Unit Weight: γt = [(1 + w)/(1 + e)] Gs γw" in body
-    assert "not legible as a mathematical sign on p. 5-14" in body
+    assert "over a rule of its width drawn beneath it, the way this manual sets the second sign" in body
     # Table 5-51: the text layer put each percentage before the next category
     assert "None | | 0\nMinor | This option is valid" in body
     assert "Extreme | Generally not used for new or reconstructed pavement levels. | 100" in body
@@ -578,6 +578,10 @@ def test_table_4_13_typed_from_the_page():
                        "CLEAN GRAVELS Less than 5% fines | CU ≥ 4 and 1 ≤ CC ≤ 3(e) | GW | "
                        "Well-graded Gravel")
     assert rows[5].endswith("| CU ≥ 6 and 1 ≤ CC ≤ 3(e) | SW | Well-graded Sand(i)")
+    # the SANDS head as printed overlaps the GRAVELS head; kept, and said
+    assert cells[5][0].startswith("SANDS 50% or more of coarse fraction retained on No. 4 sieve "
+                                  "[as printed; with the GRAVELS head")
+    assert all(c[0] == "SANDS 50% or more of coarse fraction retained on No. 4 sieve" for c in cells[6:9])
     # the GP and SP criteria print a CC no soil has; kept, and said
     assert "CU ≤ 4 and 1 ≥ CC ≥ 3(e) [as printed; no value of CC is both ≤ 1 and ≥ 3] | GP" in rows[2]
     assert "| PI > 7 and plots on or above \"A\" line(j) | CL | Lean Clay(k,l,m)" in rows[9]
@@ -648,6 +652,61 @@ def test_tables_7_23a_and_7_23b_typed_from_the_page():
     assert "Grouting Permeation Compaction Jet" not in body
 
 
+def _typed_row_list(body, number, page):
+    """Every row of a table typed in from the page, as lists of cells (a
+    table whose first column repeats, as a group label does)."""
+    label = f"[Table {number} as printed on p. {page}, typed in from the page:] "
+    lines = body.split(label)[1].split("\n\n")[0].split("\n")
+    return [[c.strip() for c in r.split("|")] for r in lines if not r.startswith("[")]
+
+
+def test_table_5_44_each_row_under_its_printed_material():
+    # p. 5-66 prints each material once, beside the first row of its group;
+    # the text layer gave each label before its group's LAST row, so the top
+    # AC rows had no material and the stabilized base rows read under AC
+    sec = _sections(5)["5.4.5.a"]
+    rows = _typed_row_list(sec["body"], "5-44", "5-66")
+    assert rows[0] == ["Material", "Surface Condition", "Coefficient"]
+    assert [(r[0], r[2]) for r in rows[1:]] == [
+        ("AC Surface", "0.35 – 0.40"), ("AC Surface", "0.25 – 0.35"), ("AC Surface", "0.20 – 0.30"),
+        ("AC Surface", "0.14 – 0.20"), ("AC Surface", "0.08 – 0.15"),
+        ("Stabilized Base", "0.20 – 0.35"), ("Stabilized Base", "0.15 – 0.25"),
+        ("Stabilized Base", "0.15 – 0.20"), ("Stabilized Base", "0.10 – 0.20"),
+        ("Stabilized Base", "0.08 – 0.15"),
+        ("Granular Base/Subbase", "0.10 – 0.14"), ("Granular Base/Subbase", "0.00 – 0.10")]
+    assert rows[1][1].startswith("Little or no alligator cracking")
+    assert rows[3][1].startswith(">10% low-severity") and "<10 percent medium-severity" in rows[3][1]
+    assert rows[11][1].startswith("No evidence of pumping")
+    assert [t.split(":")[0] for t in sec["tables"]] == ["Table 5-44"]
+    assert sec["body"].startswith("[p. 5-66] Table 5-44. Suggested layer coefficients")
+
+
+def test_tables_with_a_label_printed_once_for_its_rows():
+    # each label printed once for a group of rows, which the text layer gave
+    # among or after its rows: every row under its printed label
+    rows = _typed_row_list(_sections(5)["5.4.3.a"]["body"], "5-32", "5-51")
+    ug, es = "Unbound Granular Base and Subbase Layers", "Embankment and Subgrade Soils"
+    assert [(r[0], r[2]) for r in rows[1:7]] == [
+        (ug, "1.43"), (ug, "1.32"), (ug, "0.62"), (es, "0.75"), (es, "0.52"), (es, "0.35")]
+    assert rows[4][1].startswith("Embankment or subgrade soil below a stabilized subbase")
+    rows = _typed_row_list(_sections(5)["5.5.2.b"]["body"], "5-58", "5-106")
+    k, q = "Dry Thermal Conductivity, K", "Dry Heat Capacity, Q"
+    assert [(r[0], r[1]) for r in rows[1:7]] == [(k, "1"), (k, "2"), (k, "3"), (q, "1"), (q, "2"), (q, "3")]
+    assert rows[4][2] == "Direct measurement (ASTM D 2766)."
+    assert "A-7-6 0.09 – 0.17, 0.12" in rows[3][2]
+    body = _sections(7)["7.3.3"]["body"]
+    for number, page in (("7-9", "7-36"), ("7-10", "7-37")):
+        rows = _typed_row_list(body, number, page)
+        assert [r[0] for r in rows[1:4]] == ["Aggregate"] * 3
+        assert [r[1][:3] for r in rows[1:4]] == ["(a)", "(b)", "(c)"]
+        assert rows[-1][0] == "Permeability"
+    rows = _typed_row_list(body, "7-9", "7-36")
+    assert rows[2][2] == "AASHTO T 96" and rows[4][0] == "AC content"
+    rows = _typed_row_list(body, "7-10", "7-37")
+    assert rows[2][2] == "AASHTO T 96-94" and rows[4][0] == "Cement"
+    assert rows[-1][1] == "Minimum mix permeability: (300 m/day) 1,000 ft/day."
+
+
 def test_degree_signs_and_exponents_as_printed():
     # the page raises an "o" for the degree sign and the exponents of the
     # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
@@ -656,6 +715,11 @@ def test_degree_signs_and_exponents_as_printed():
     assert "thermal contraction 5x10^-6/°F" in text and "thermal expansion 5.5x10^-6/°F" in text
     assert "3.25x10^-5 ft/hr" in text and "1.57x10^4 psi" in text and "4.75x10^4 psi" in text
     assert not re.search(r"(?:\d|/|-|\s)o\s?[CFK]\b|x10-?\d", text)
+    # the permittivity criterion's raised -1 (pp. 7-30, 7-76); the only
+    # negative exponent the page raises after a unit
+    assert text.count("ψ ≥ 0.1 sec^-1") == 2
+    assert not re.search(r"\b(?:sec|s|day|hr|min|m|ft)-[123]\b(?![-–\d])", text), \
+        re.findall(r".{20}\b(?:sec|s|day|hr|min|m|ft)-[123]\b(?![-–\d]).{10}", text)
 
 
 #: The fonts the manual sets its text in; every other font is a symbol font.
@@ -698,7 +762,46 @@ def test_every_symbol_font_glyph_is_read_off_the_page():
         "0.98 o Aged", ""))
 
 
+def test_ruled_comparison_signs_as_printed():
+    # the manual also sets ≥ and ≤ as a ">" or "<" in type with a rule of the
+    # sign's width drawn beneath it, which the text layer gives as ">" or
+    # "<" (manifest "ruled_comparison_signs")
+    t516 = _sections(5)["5.3.2.a"]["body"]
+    assert ("A-1, A-3 ≥ 95 ≥ 95 100 A-2-4, A-2-5 ≥ 95 ≥ 95 100 A-2-6, A-2-7 ≥ 95 --b ≥ 95c "
+            "A-4, A-5, A-6, A-7 ≥ 95 --b ≥ 95c") in t516
+    assert "< 50 ft. high > 50 ft. high" in t516          # the heads print no rule
+    t75 = _sections(7)["7.2.16"]["body"]
+    assert "< 50%* ≥ 50%* < 50%* ≥ 50%*" in t75
+    assert "with < 50% typical of woven geotextiles and ≥ 50% typical of nonwoven" in t75
+    assert "Hierarchy: | γd ≤ γt ≤ γsat < γrock |" in _sections(5)["5.3.1"]["body"]
+    assert "with constraints k1>0, k2 ≥0, k3 ≤0" in _sections(5)["5.4.3"]["body"]
+    assert "MR (psi) = 1500 × CBR for CBR ≤ 10 [Eq. 5.13]" in _sections(5)["5.4.3.a"]["body"]
+    fitz = pytest.importorskip("fitz")
+    if not PDF.exists():
+        pytest.skip("PDF not checked out")
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import build_printed_text as builder
+    ruled = []
+    with fitz.open(str(PDF)) as doc:
+        for i, page in enumerate(doc):
+            strokes = None
+            for b in page.get_text("rawdict", flags=fitz.TEXTFLAGS_TEXT)["blocks"]:
+                for ln in b["lines"]:
+                    for s in ln["spans"]:
+                        for c in s["chars"]:
+                            if c["c"] in "<>":
+                                strokes = builder._horizontal_strokes(page) if strokes is None else strokes
+                                if builder._ruled_beneath(c, s["size"], strokes):
+                                    ruled.append((page.get_label() or i, c["c"], s["font"]))
+    # every ruled sign in the PDF, each looked at on a crop: p. 5-14 (2, the
+    # first in a symbol font), 5-23 (8), 5-45 (2), 5-49 (1), 7-30 (3) and
+    # the appendix's copy of Eq. 5.10 (2, not built)
+    assert len(ruled) == 18, ruled
+
+
 def test_captions_keep_the_printed_source_and_units():
+
     # the List of Figures leaves out what a caption prints after its words
     # (manifest "captions_as_printed", and text_fixes for 3-5 and 5-5): 86
     # captions restored from the page, and Figure 8-9's, dropped, put back

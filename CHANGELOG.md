@@ -1312,6 +1312,21 @@ independent check (2026-11-12).** Each was read from the rendered page.
 - Figure catalog: its captions were already the page's; 22 rows where the
   List of Figures differs quote it in `read_notes`, Figure 8-11's caption is
   complete, and the printed slips above are noted there too.
+- Rows under their printed labels: Table 5-44 (layer coefficients for
+  existing pavements) prints each material once, beside the first row of its
+  group, and the text layer had put the stabilized base coefficients under
+  AC Surface and the granular 0.10-0.14 under Stabilized Base. It and Tables
+  5-32, 5-58, 7-9 and 7-10, mis-assigned the same way, are typed in from the
+  page with the label on every row; the other 92 tables not typed in were
+  each checked on a render.
+- Ruled signs: the manual also sets ≥ and ≤ as ">" or "<" with a short rule
+  drawn beneath. The build reads them (`ruled_comparison_signs`): Table
+  5-16's eight "≥ 95" cells, Table 7-5's "≥ 50%" heads and note, and Table
+  5-8's first hierarchy sign (was [?]).
+- "ψ ≥ 0.1 sec^-1" (pp. 7-30, 7-76) keeps its raised -1, the only negative
+  exponent printed after a unit.
+- Table 4-13's SANDS head is kept as printed, with a note that it overlaps
+  the GRAVELS head.
 - The new manifest keys are off unless a manifest sets them; only
   fhwa_pavements does.
 
