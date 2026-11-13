@@ -590,6 +590,41 @@ def test_table_4_13_typed_from_the_page():
     assert "Uniformity Coefficient alsoUC" not in body
 
 
+def _typed_rows(body, number, page):
+    """Row name -> its cells, of a table typed in from the page."""
+    label = f"[Table {number} as printed on p. {page}, typed in from the page:] "
+    lines = body.split(label)[1].split("\n\n")[0].split("\n")
+    return {r.split("|")[0].strip(): [c.strip() for c in r.split("|")[1:]] for r in lines}
+
+
+def test_tables_1_1_to_1_3_typed_from_the_page():
+    sec = _sections(1)["1.4"]
+    # Table 1-2 now starts its own paragraph, so 1.4 lists it (it did not)
+    assert [t.split(":")[0] for t in sec["tables"]] == ["Table 1-1", "Table 1-2", "Table 1-3"]
+    cols = ["Insufficient Base Stiffness/Strength", "Insufficient Subgrade Stiffness/Strength",
+            "Moisture/Drainage Problems", "Freeze/Thaw", "Swelling", "Contamination", "Erosion",
+            "Spatial Variability"]
+
+    def marks(rows, name):
+        return "".join("X" if c == "X" else "." for c in rows[name])
+
+    # each X under its own column, as printed on pp. 1-18 and 1-19
+    t11 = _typed_rows(sec["body"], "1-1", "1-18")
+    assert t11[""] == cols
+    assert {k: marks(t11, k) for k in t11 if k} == {
+        "Fatigue Cracking": "XXXX.X..", "Rutting": "XXXX.X..", "Corrugations": "X.......",
+        "Bumps": "...XX..X", "Depressions": "X.XX.X.X", "Potholes": "..XX...X",
+        "Roughness": "XXXXXX.X"}
+    t12 = _typed_rows(sec["body"], "1-2", "1-18")
+    assert {k: marks(t12, k) for k in t12 if k} == {
+        "Fatigue Cracking": "XXXX.XX.", "Punchouts (CRCP)": "XXXX.XX.", "Pumping": "..X...X.",
+        "Faulting": "X.XXXXX.", "Roughness": "X.XXXXXX"}
+    t13 = _typed_rows(sec["body"], "1-3", "1-19")
+    assert {k: marks(t13, k) for k in t13 if k} == {
+        "Reflection Cracking": "X.X...X.", "Roughness": "X.XXX.XX"}
+    assert "\n\nA major effect of the moisture/drainage, freeze/thaw" in sec["body"]
+
+
 def test_degree_signs_and_exponents_as_printed():
     # the page raises an "o" for the degree sign and the exponents of the
     # NCHRP 1-37A input tables (pp. 5-113, 6-11, 6-12, 6-17 to 6-19, 6-24, 6-34)
