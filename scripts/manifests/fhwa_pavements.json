@@ -23,6 +23,15 @@
       "title_lines": true,
       "headings_on_listed_page": true,
       "captions_as_printed": true,
+      "captions_listed": [
+        {"kind": "Figure", "number": "4-4", "printed": "Figure 4.4.", "caption": "FWD showing: a) typical equipment; b) schematic of procedure; and, c) sketch of deflection bowl for interpretation of results"},
+        {"kind": "Figure", "number": "6-10", "printed": "Figure 6-10.", "caption": "Predicted rutting performance for low quality base scenario"},
+        {"kind": "Figure", "number": "6-13", "printed": "Figure 6-13.", "caption": "Example construction costs for flexible pavement sections: low quality base scenario"},
+        {"kind": "Figure", "number": "6-18", "printed": "Figure 6-18.", "caption": "Example construction costs for flexible pavement sections: poor drainage scenario"},
+        {"kind": "Table", "number": "7-23a", "printed": "Table 7-23a.", "caption": "Comparative Costs (SI units)"},
+        {"kind": "Table", "number": "7-23b", "printed": "Table 7-23b.", "caption": "Comparative Costs (U.S. customary units)"},
+        {"kind": "Table", "number": "8-3", "printed": "Table 8.3.", "caption": "Summary of design soil properties for example problem (pre-construction)"}
+      ],
       "heading_overrides": {
         "2.2": {"number_as_printed": "2.2.", "title": "Questionaire on Geotechnical Practices in Pavement Design", "contents_title": "Questionnaire on Geotechncial Practices in Pavement Design"},
         "5.3.2": {"title": "Physical Property Determination", "contents_title": "Determination of Physical Properties"},
@@ -330,7 +339,11 @@
         {"page": "5-27", "find": "Figure 5-5. Laboratory sieves for mechanical analysis of grain size distribution.\n\nFigure 5-6.", "replace": "Figure 5-5. Laboratory sieves for mechanical analysis of grain size distribution. Shown (right to left) are sieve Nos. 3/8-in. (9.5-mm), No. 10 (2.0-mm), No. 40 (250-µm) and No. 200 (750-µm) and example soil particle sizes including (right to left): medium gravel, fine gravel, medium-coarse sand, silt, and dry clay (kaolin). [As printed; the No. 40 sieve opening is 425 µm (0.425 mm) and the No. 200 opening 75 µm (0.075 mm).]\n\nFigure 5-6."},
         {"page": "8-25", "find": "Figure 8-8. Bulldozer (photo courtesy of Komatsu).\n\nFigure 8-10.", "replace": "Figure 8-8. Bulldozer (photo courtesy of Komatsu).\n\nFigure 8-9. Motor grader (photo courtesy of Caterpillar)\n\nFigure 8-10."},
         {"page": "3-26", "find": "1 pci = 284 MN/m3)", "replace": "1 pci = 284 MN/m3 [as printed; 1 pci = 0.271 MN/m³])", "all": true},
-        {"page": "8-28", "find": "(1 ton = 8.9 kPa, 1 psi = 6.9 kPa)", "replace": "(1 ton = 8.9 kPa [as printed; a 2,000-lb ton is 8.9 kN], 1 psi = 6.9 kPa)"}
+        {"page": "8-28", "find": "(1 ton = 8.9 kPa, 1 psi = 6.9 kPa)", "replace": "(1 ton = 8.9 kPa [as printed; a 2,000-lb ton is 8.9 kN], 1 psi = 6.9 kPa)"},
+        {"page": "4-53", "find": "[p. 4-53]\n\nTable 4-12. Frequently-used standards for field investigations.\n\nStandard Title AASHTO ASTM\n\nM 146 C 294", "replace": "[p. 4-53] Table 4-12. Frequently-used standards for field investigations. Standard AASHTO ASTM Title M 146 C 294"},
+        {"page": "6-39", "find": "Figure 6-13.\n\nExample construction costs for flexible pavement sections: low quality base scenario.", "replace": "Figure 6-13. Example construction costs for flexible pavement sections: low quality base scenario."},
+        {"page": "6-47", "find": "Figure 6-18.\n\nExample construction costs for flexible pavement sections: poor drainage scenario.", "replace": "Figure 6-18. Example construction costs for flexible pavement sections: poor drainage scenario."},
+        {"page": "7-77", "find": "[p. 7-77]\n\n(a) (b) Figure 7-21.", "replace": "[p. 7-77]\n\nFigure 7-21."}
       ],
       "table_functions": {
         "4-9": ["geotech_references.fhwa_pavements.equations.cbr_from_dcp"],

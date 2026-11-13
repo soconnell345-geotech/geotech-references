@@ -814,6 +814,37 @@ def fix_printed_equations(body: str, printed: list[dict], applied: set) -> str:
     return body
 
 
+def add_listed_captions(parts: list[dict], entries: list[dict], used: set) -> list[dict]:
+    """Each section part whose body holds a caption the build cannot list by
+    itself gets it in its ``figures`` or ``tables`` (manifest
+    ``"captions_listed": [{"kind", "number", "printed", "caption"}]``): a
+    caption printed with a dot ("Figure 4.4."), one the List of Figures or
+    Tables gives otherwise or leaves out ("Table 7-23a."), one whose number
+    the text layer sets on a line of its own. ``printed`` is how the body
+    starts the caption's paragraph, ``caption`` the words listed; the entry
+    goes in after the listed captions printed before it."""
+    for part in parts:
+        for k, e in enumerate(entries):
+            m = re.search(r"(?:^|\n\n|\] )" + re.escape(e["printed"]), part["body"])
+            if not m:
+                continue
+            key = "figures" if e["kind"] == "Figure" else "tables"
+            used.add(k)
+            if any(x.split(":")[0] == f"{e['kind']} {e['number']}" for x in part[key]):
+                continue
+
+            def at(item):
+                kind, num = item.split(":")[0].split(" ", 1)
+                c, _, rest = num.partition("-")
+                hit = re.search(rf"(?:^|\n\n|\] ){kind}\s+{c}[-{_DASH}]{re.escape(rest)}(?![\da-z])",
+                                part["body"])
+                return hit.start() if hit else -1
+
+            n_before = sum(at(x) < m.start() for x in part[key])
+            part[key].insert(n_before, f"{e['kind']} {e['number']}: {e['caption']}")
+    return parts
+
+
 def add_table_functions(parts: list[dict], functions: dict, linked: set) -> list[dict]:
     """Each section part that prints a table the library computes gets an
     entry in ``equations`` naming the function (manifest
@@ -938,6 +969,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
     text_fixes = vol.get("text_fixes", [])
     text_fixes_applied: set = set()
     table_functions_linked: set = set()
+    captions_listed_used: set = set()
 
     # where each caption is printed: the page whose lines start with it
     printed_at: dict[tuple[str, str], list[int]] = {}
@@ -1041,7 +1073,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                 continue
             pages_txt = (f"p. {page_from}" if page_from == page_to
                          else f"pp. {page_from} to {page_to}")
-            sections.extend(add_table_functions(split_long({
+            sections.extend(add_table_functions(add_listed_captions(split_long({
                 "section_id": h.get("printed_as", h["sid"]),
                 "title": title,
                 "body": body,
@@ -1059,6 +1091,7 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
                                      f"\"{h['contents_title']}\"."
                                      if h.get("contents_title") else "")),
             }, own_equations=bool(vol.get("split_own_equations"))),
+                vol.get("captions_listed", []), captions_listed_used),
                 vol.get("table_functions", {}), table_functions_linked))
         chapters[n] = {
             "reference_id": vol["volume_id"],
@@ -1078,6 +1111,10 @@ def build_volume(vol: dict, manifest_dir: Path, skip: set[int]) -> tuple[dict, l
         ch_of = re.split(r"[-.]", f["page"])[0]
         if ch_of.isdigit() and int(ch_of) in built and k not in text_fixes_applied:
             problems.append(f"text_fixes {k} (p. {f['page']}): found no text to mend")
+    for k, e in enumerate(vol.get("captions_listed", [])):
+        if int(e["number"].split("-")[0]) in built and k not in captions_listed_used:
+            problems.append(f"captions_listed {e['kind']} {e['number']}: no section prints "
+                            f"\"{e['printed']}\" at a paragraph's start")
     for num in vol.get("table_functions", {}):
         if int(num.split("-")[0]) in built and num not in table_functions_linked:
             problems.append(f"table_functions {num}: no section lists Table {num}")

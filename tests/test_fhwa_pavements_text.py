@@ -683,3 +683,29 @@ def test_captions_keep_the_printed_source_and_units():
     assert text.count("1 pci = 284 MN/m3 [as printed; 1 pci = 0.271 MN/m³]") == 3
     assert "8.9 kPa [as printed; a 2,000-lb ton is 8.9 kN]" in text
     assert "[As printed; the No. 40 sieve opening is 425 µm" in text
+
+
+def test_every_printed_caption_is_listed_in_its_section():
+    # a caption printed "Figure 4.4." or "Table 8.3.", one the List of
+    # Figures gives otherwise (6-10) or leaves out (7-23a, 7-23b), one whose
+    # number the text layer sets on its own line (6-13, 6-18): manifest
+    # "captions_listed"; Figure 7-21 printed after its panel letters and
+    # Table 4-12 cut from its rows: text_fixes
+    cap = re.compile(r"(?:^|\n\n|\] )(Figure|Table)\s+(\d+)[-–.](\d+)([a-z]?)\.\s")
+    listed_somewhere = set()
+    for n in BUILT:
+        for s in _chapter(n)["sections"]:
+            listed = {x.split(":")[0] for x in s["figures"] + s["tables"]}
+            listed_somewhere |= listed
+            for m in cap.finditer(s["body"]):
+                if m.group(2) == str(n):
+                    num = f"{m.group(1)} {m.group(2)}-{m.group(3)}{m.group(4)}"
+                    assert num in listed, (s["section_id"], num)
+    for num in ("Figure 4-4", "Figure 6-10", "Figure 6-13", "Figure 6-18", "Figure 7-21",
+                "Figure 8-9", "Table 7-23a", "Table 7-23b", "Table 8-3"):
+        assert num in listed_somewhere, num
+    sec = _sections(4)
+    assert sec["4.5.6.d"]["body"].startswith(
+        "[p. 4-53] Table 4-12. Frequently-used standards for field investigations. "
+        "Standard AASHTO ASTM Title M 146 C 294")
+    assert sec["4.5.6.d"]["tables"] == ["Table 4-12: Frequently-used standards for field investigations"]
