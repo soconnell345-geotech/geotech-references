@@ -45,8 +45,10 @@ and certainly not held (:func:`read_pointers` says why each other one is
 set aside). Not flagged: a pointer with another document named just
 before it (ASTM, AASHTO, ACI, "Falsework Manual" ...) in the same
 sentence or clause, or "of / in / from" one after it; one after an author
-and year; a number the body has already given to another document; a
-number whose form is not one of the document's own (its section,
+and year; a number the body has already given to another document, or
+one numbered in a chapter it gave to one that this document does not
+hold ("Chapters 9 to 11 of ASCE 41 ... Tables 9-3, 10-4"); a number whose
+form is not one of the document's own (its section,
 equation, table or figure numbers), or that reads as a range of two held
 numbers ("Eqs. 6.9-6.14"); a number split across a line; a value after a
 list ("Eq. 10-1, 1.0 for ...", "Table 2-3, 85-100 penetration"); an
@@ -948,7 +950,17 @@ def read_pointers(body: str, holdings: Holdings,
         items = [("", first)] + _MORE_ITEM_RE.findall(m.group("more"))
         for i, (sep, num) in enumerate(items):
             reason = why
-            if reason is None and (kind, num) in others and not self_named:
+            # a part numbered in a chapter the body gave to another
+            # document, where this one holds no such chapter ("Chapters 9
+            # to 11 of ASCE 41 ... given in Tables 9-3, 10-4 and 11-2")
+            lead = re.match(r"(\d+)[-.]\d", num)
+            in_others_chapter = bool(
+                lead and kind != "chapter"
+                and ("chapter", lead.group(1)) in others
+                and holdings.pointer_held("chapter", lead.group(1))
+                is not True)
+            if reason is None and ((kind, num) in others
+                                   or in_others_chapter) and not self_named:
                 reason = "another document's number"
             elif reason is None and i and (
                     _seps(num) != _seps(first)

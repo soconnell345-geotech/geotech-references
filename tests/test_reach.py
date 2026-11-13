@@ -172,6 +172,10 @@ def holdings():
     ("AASHTO (2002) Section 2-9(B) says so; Section 2-9(C) adds more.", []),
     ("See Section 2-9 of AASHTO and Section 2-9 of MADE-UP 1-2-3.",
      ["Section 2-9"]),
+    # ... and so does a part numbered in a chapter given to another
+    # document, where this one holds no such chapter
+    ("Chapter 9 of AASHTO applies. See Table 9-3 here.", []),
+    ("Chapter 2 of AASHTO applies. See Table 2-7 here.", ["Table 2-7"]),
     # a value after a list
     ("Per Table 2-1, 85-100 penetration asphalt is used.", []),
     ("See Tables 2-1, 2-5.", ["Table 2-5"]),
@@ -1082,10 +1086,15 @@ def test_what_is_not_held_does_not_grow(library_db):
 
 #: Section fetches over the library's 14,000-character budget from their
 #: own text, before the flags (2026-11-12; the app's cap is 16,000; em_1905
-#: C-2b came with the EM 1110-1-1905 build).
-OVER_BUDGET_BEFORE_FLAGS = {("dm7_2", "4-9"), ("em_1905", "C-2b"),
+#: C-2b came with the EM 1110-1-1905 build; dm7_1 1-3.6, em_2104 3-3 and
+#: ufc_structural 3-7 and 4-2.2 with the text rebuilt from the print,
+#: merged from the integration branch at ad21502).
+OVER_BUDGET_BEFORE_FLAGS = {("dm7_1", "1-3.6"), ("dm7_2", "4-9"),
+                            ("em_1905", "C-2b"), ("em_2104", "3-3"),
                             ("fhwa_soils_foundations", "6.6.3"),
-                            ("fhwa_soils_foundations", "9.5.1.1")}
+                            ("fhwa_soils_foundations", "9.5.1.1"),
+                            ("ufc_structural", "3-7"),
+                            ("ufc_structural", "4-2.2")}
 BUDGET, APP_CAP = 14000, 16000
 #: The most the flags and the note's sentences on them add to a fetch.
 REACH_MAX_ADDED = 1200

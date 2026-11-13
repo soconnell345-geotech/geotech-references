@@ -24,11 +24,12 @@
     {
       "section_id": "5-2",
       "title": "Elastic Properties",
-      "summary": "Wood has up to 12 elastic constants (3 moduli of elasticity, 3 shear moduli, 6 Poisson's ratios) as a fully orthotropic material; modulus of elasticity, Poisson's ratio, and modulus of rigidity (shear modulus) by axis are tabulated in Chapter 5's own Tables 5-1/5-2/5-6.",
-      "body": "As a rigorously orthotropic material, wood requires up to 12 constants to describe its linear elastic behavior: moduli of elasticity EL, ER, ET; shear moduli GLR, GLT, GRT; and 6 Poisson's ratios. Modulus of elasticity is reported both as EL from bending tests (dominates Table 5-3/5-4/5-5) and as the full set from compression tests (Table 5-1). Modulus of rigidity (shear modulus) values are given in Table 5-6.",
+      "summary": "Twelve elastic constants (nine independent) describe wood: three moduli of elasticity, three moduli of rigidity and six Poisson's ratios. Table 5-1 gives ER, ET and the shear moduli as ratios with EL, Table 5-2 the Poisson's ratios; EL from bending tests is in Tables 5-3 to 5-5 and its coefficients of variation in Table 5-6.",
+      "body": "[p. 5-2] Twelve constants (nine are independent) are needed to describe the elastic behavior of wood: three moduli of elasticity E, three moduli of rigidity G, and six Poisson's ratios. The three moduli of elasticity EL, ER, and ET are usually obtained from compression tests; however, data for ER and ET are not extensive. Average values of ER and ET for samples from a few species are presented in Table 5-1 as ratios with EL; the Poisson's ratios are shown in Table 5-2. The elastic ratios, and the elastic constants themselves, vary within and between species and with moisture content and specific gravity. The modulus of elasticity determined from bending, EL, rather than from an axial test, may be the only modulus of elasticity available for a species; average EL values obtained from bending tests are given in Tables 5-3 to 5-5, and representative coefficients of variation in Table 5-6. As tabulated, EL includes an effect of shear deflection; EL from bending can be increased by 10% to remove this effect approximately, and this adjusted EL can be used to determine ER and ET from the ratios in Table 5-1. Two of the Poisson's ratios, muRL and muTL, are very small and less precisely determined than the others. [p. 5-3] Average values of the shear moduli GLR, GLT, and GRT for samples of a few species, expressed as ratios with EL, are given in Table 5-1.",
       "key_points": [
-        "Full orthotropic elasticity requires 12 constants (3 E, 3 G, 6 nu)",
-        "Table 5-1 (E/G/nu ratios), Table 5-2 (elastic ratios), Table 5-6 (shear moduli) give the printed elastic-property tables"
+        "Twelve constants (nine independent) describe the elastic behavior of wood: three E, three G and six Poisson's ratios (p. 5-2)",
+        "Table 5-1 gives ER, ET and the shear moduli as ratios with EL; Table 5-2 gives Poisson's ratios (p. 5-2, 5-3)",
+        "Tabulated bending EL includes shear deflection; increasing it by 10% removes this effect approximately (p. 5-2)"
       ],
       "equations": [],
       "figures": [],
@@ -42,54 +43,57 @@
     {
       "section_id": "5-3",
       "title": "Strength Properties (Common Properties)",
-      "summary": "Defines the common clear-wood strength properties -- modulus of rupture, work to maximum load, compression parallel/perpendicular to grain, shear parallel to grain, tension parallel/perpendicular to grain, side hardness, and impact bending -- as tabulated in the chapter's principal property table, Table 5-3 (this module's Table 5-3a, metric).",
-      "body": "The most extensively sampled clear-wood property data are in Table 5-3 (species grown in the United States) and Table 5-4 (species grown in Canada and commonly imported), giving specific gravity, modulus of rupture, modulus of elasticity, work to maximum load, impact bending, compression parallel/perpendicular to grain, shear parallel to grain, tension perpendicular to grain, and side hardness at green and 12% moisture content. This module digitizes Table 5-3a (metric units) for a documented structural species subset -- see the module docstring in mechanical_properties.py for the subset rule (Douglas Fir-Larch, Southern Pine, Hem-Fir, and Spruce-Pine-Fir group constituents, plus six common hardwoods).",
+      "summary": "The common strength properties (modulus of rupture, work to maximum load, compression parallel and perpendicular to grain, shear parallel to grain, impact bending, tension perpendicular to grain and hardness) and their tabulation in Tables 5-3 (species grown in the United States), 5-4 (grown in Canada and imported) and 5-5 (other imports).",
+      "body": "[p. 5-3] Mechanical properties most commonly measured and represented as strength properties for design include modulus of rupture in bending, maximum stress in compression parallel to grain, compressive stress perpendicular to grain, and shear strength parallel to grain. Additional measurements are often made to evaluate work to maximum load in bending, impact bending strength, tensile strength perpendicular to grain, and hardness. These properties, grouped according to hardwood and softwood (not correlated with hardness or softness), are given in Tables 5-3 to 5-5 for many of the commercially important species: Table 5-3 for woods grown in the United States, Table 5-4 for woods grown in Canada and imported, Table 5-5 for woods imported into the United States other than Canadian imports. Average coefficients of variation are in Table 5-6. Modulus of rupture is an accepted criterion of strength, although it is not a true stress because the formula by which it is computed is valid only to the elastic limit. Compressive strength parallel to grain is the maximum stress sustained by a specimen having a ratio of length to least dimension of less than 11. Compressive stress perpendicular to grain is reported as stress at proportional limit; there is no clearly defined ultimate stress for this property. Shear strength parallel to grain values are the average strength in radial and tangential shear planes. Tensile strength perpendicular to grain values are the average of radial and tangential observations. Hardness is measured by a modified Janka test, the load required to embed a 11.28-mm (0.444-in.) ball to one-half its diameter.",
       "key_points": [
-        "Table 5-3 (US-grown species) is the chapter's principal, most extensively sampled clear-wood property table",
-        "Table 5-4 covers Canadian-grown/imported species (not digitized in this module)",
-        "This module's Table 5-3a subset spans the NDS softwood combination-group constituent species plus six hardwoods"
+        "Tables 5-3 (United States), 5-4 (Canada, imported) and 5-5 (other imports) give the clear-wood strength properties; Table 5-6 their coefficients of variation (p. 5-3)",
+        "Modulus of rupture is not a true stress: its formula is valid only to the elastic limit (p. 5-3)",
+        "Compression perpendicular to grain is reported at the proportional limit; it has no clearly defined ultimate stress (p. 5-3)"
       ],
       "equations": [],
       "figures": [],
       "tables": [
         "5-3",
-        "5-4"
+        "5-4",
+        "5-5",
+        "5-6",
+        "5-7"
       ],
-      "applicability": "The headline reference data for clear-wood design values before any grade/adjustment-factor reductions (which are NDS content, out of scope for this module).",
+      "applicability": "Clear-wood strength values by species before any grading or design adjustment (which the handbook leaves to design documents such as the NDS).",
       "implemented_in": "mechanical_properties.table_5_3_mechanical_properties"
     },
     {
       "section_id": "5-4",
       "title": "Strength Properties (Less Common Properties) and Imported Woods",
-      "summary": "Additional strength properties (torsion, toughness, rolling shear, etc.) and Table 5-5's mechanical properties of woods imported into the United States other than Canadian imports.",
-      "body": "Less-commonly-reported strength properties (e.g., torsion shear strength, toughness, rolling shear strength, tension perpendicular to grain for additional species) and property tables for internationally sourced wood species (Table 5-5a metric, 5-5b inch-pound) are presented, sourced from world literature rather than Forest Products Laboratory testing. Not part of this module's US-domestic species subset.",
+      "summary": "Strength properties less commonly measured in clear wood (torsion, toughness, rolling shear, fracture toughness) and properties under time under load (creep, duration of load, fatigue); Table 5-5 gives woods imported into the United States other than Canadian imports, from world literature.",
+      "body": "[p. 5-15] Strength properties less commonly measured in clear wood include torsion, toughness, rolling shear, and fracture toughness; other properties involving time under load include creep, creep rupture or duration of load, and fatigue strength. For solid wood members, torsional shear strength may be taken as shear strength parallel to grain; two-thirds of the value for torsional shear strength may be used as an estimate of the torsional shear stress at the proportional limit. Toughness is the energy required to cause rapid complete failure in a centrally loaded bending specimen; Tables 5-8 and 5-9 give average toughness values for a few hardwood and softwood species. Rolling shear strength is the shear strength of wood where the shearing force is in a longitudinal plane and acts perpendicular to the grain. Fracture toughness values are summarized in Table 5-10. Table 5-5 gives mechanical properties of some woods imported into the United States other than Canadian imports; its footnote states the property values were taken from world literature, not from experiments at the Forest Products Laboratory.",
       "key_points": [
-        "Table 5-5 covers imported (non-US, non-Canadian) species from world literature",
-        "Out of scope for this module's documented US structural species subset"
+        "Torsional shear strength of solid wood may be taken as shear strength parallel to grain; two-thirds of it estimates the torsional shear stress at the proportional limit (p. 5-15)",
+        "Table 5-5 values for imported woods were taken from world literature, not Forest Products Laboratory tests (Table 5-5 footnote)"
       ],
       "equations": [],
       "figures": [],
       "tables": [
-        "5-5"
+        "5-5",
+        "5-8",
+        "5-9",
+        "5-10"
       ],
-      "applicability": "Reference for imported/exotic species properties; out of scope here."
+      "applicability": "Torsion, toughness, rolling shear and fracture properties of clear wood, and imported species' properties."
     },
     {
       "section_id": "5-5",
       "title": "Vibration Properties",
-      "summary": "Speed of sound and internal friction (damping) in wood, both moisture- and temperature-dependent, relevant to musical instrument design and dynamic/vibration analysis.",
-      "body": "Speed of sound in wood along the grain is high (related to EL/density) and is used in acoustic grading and musical-instrument selection. Internal friction (damping capacity), expressed as a logarithmic decrement, varies with moisture content and temperature -- generally minimized at an intermediate moisture content that itself shifts with temperature. Not digitized as standalone equations in this module.",
+      "summary": "Speed of sound (a function of modulus of elasticity and density, across the grain one-fifth to one-third of the longitudinal value) and internal friction (damping), which depends on temperature and moisture content.",
+      "body": "[p. 5-17] The vibration properties of primary interest in structural materials are speed of sound and internal friction (damping capacity). The speed of sound in a structural material is a function of the modulus of elasticity and density. In wood, the speed of sound also varies with grain direction because the transverse modulus of elasticity is much less than the longitudinal value (as little as 1/20); the speed of sound across the grain is about one-fifth to one-third of the longitudinal value. For example, a longitudinal modulus of elasticity of 12.4 GPa and density of 480 kg m^-3 give a speed of sound of about 3,800 m s^-1 along the grain. The speed of sound decreases with increasing temperature or moisture content in proportion to their influence on modulus of elasticity and density. There is no recognized independent effect of species on the speed of sound. Internal friction is a complex function of temperature and moisture content. [p. 5-21] At room temperature (23 degrees C) the minimum internal friction occurs at about 6% moisture content; at -20 degrees C at about 14%, and at 70 degrees C at about 4%. For temperatures above 0 degrees C and moisture content greater than about 10%, internal friction increases strongly as temperature increases. The value of internal friction, expressed by logarithmic decrement, ranges from about 0.1 for hot, moist wood to less than 0.02 for hot, dry wood; cool wood, regardless of moisture content, would have an intermediate value.",
       "key_points": [
-        "Speed of sound along the grain relates to EL and density",
-        "Internal friction (damping) varies with moisture content and temperature"
+        "Speed of sound depends on modulus of elasticity and density; across the grain it is about one-fifth to one-third of the longitudinal value; no recognized independent effect of species (p. 5-17)",
+        "Internal friction (logarithmic decrement) ranges from about 0.1 for hot, moist wood to less than 0.02 for hot, dry wood; its minimum is at about 6% MC at room temperature (p. 5-21)"
       ],
       "equations": [],
       "figures": [],
-      "tables": [
-        "5-9",
-        "5-10"
-      ],
-      "applicability": "Acoustic and dynamic (vibration) design; not a static structural design topic covered by this module."
+      "tables": [],
+      "applicability": "Dynamic properties of wood: speed of sound and damping."
     },
     {
       "section_id": "5-6",
@@ -97,24 +101,24 @@
       "summary": "Explains that Table 5-3/5-4's tabulated properties represent estimated species averages from historical Forest Products Laboratory sampling (typically 2.4-5 m / 8-16 ft above the stump), and that data-collection methodology and forest character have changed over the sampling period.",
       "body": "The mechanical properties in Tables 5-1 through 5-9 are based on varying sampling methods; Tables 5-3 and 5-4 represent the most extensive sampling. Table 5-3 values are estimates of average clear-wood properties for species grown in the United States, from specimens typically taken 2.4-5 m (8-16 ft) above the stump; Table 5-4 similarly for species grown in Canada and imported. Because methods and forest character changed over the long sampling period and not all species were reevaluated, the appropriateness of the data should be reviewed for critical/stress-grade applications.",
       "key_points": [
-        "Table 5-3 values are estimated species averages, not guaranteed minimums",
-        "Sampling methodology and forest character changed over the historical data-collection period",
-        "Data appropriateness should be reviewed for stress-grade/critical applications"
+        "Table 5-3 values are estimates of the average clear wood property of species grown in the United States, many from specimens 2.4 to 5 m above the stump (p. 5-21)",
+        "Methods of data collection and analysis and the character of some forests changed while the data were collected (p. 5-21)",
+        "The appropriateness of the data should be reviewed when used for critical applications such as stress grades of lumber (p. 5-21)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Interpreting Table 5-3 values as representative averages (design values require additional statistical/grading adjustment, which is NDS content and out of scope here)."
+      "applicability": "Interpreting Tables 5-3 and 5-4 as estimates of species averages of clear wood, to be reviewed for critical applications such as stress grades of lumber."
     },
     {
       "section_id": "5-7",
       "title": "Natural Characteristics Affecting Mechanical Properties",
       "summary": "Surveys how specific gravity, knots, slope of grain (Hankinson-type angle interaction), annual ring orientation, reaction wood, juvenile wood, compression failures, pitch pockets, extractives, and dead-tree timber each affect clear-wood mechanical properties.",
-      "body": "Specific gravity is the single strongest natural predictor of clear-wood mechanical properties (higher SG generally means higher strength/stiffness). Knots reduce strength by interrupting grain continuity and inducing local grain deviation around the knot. Slope of grain (deviation of fiber direction from the member axis) reduces strength according to a Hankinson-type interaction formula between the parallel- and perpendicular-to-grain property values (Fig 5-4). Annual ring orientation relative to the load direction, reaction wood (compression wood in softwoods, tension wood in hardwoods), juvenile wood (lower-density wood near the pith), compression failures (pre-existing fiber buckling), pitch pockets, bird peck, extractive content, and whether timber is cut from a dead tree all further modify clear-wood properties.",
+      "body": "[p. 5-26] Because of natural growth characteristics of trees, wood products vary in specific gravity, may contain cross grain, or may have knots and localized slope of grain; natural defects such as pitch pockets may also occur. These wood characteristics must be taken into account in assessing actual properties or estimating actual performance of wood products. The substance of which wood is composed has a specific gravity of about 1.5 regardless of species; specific gravity is an excellent index of the amount of wood substance contained in a piece of wood, and a good index of mechanical properties as long as the wood is clear, straight grained, and free from defects; specific gravity values also reflect gums, resins, and extractives, which contribute little to mechanical properties (relationships in Table 5-11). [p. 5-28] For slope of grain, elastic properties in directions other than along the natural axes can be obtained from elastic theory, and strength properties in directions ranging from parallel to perpendicular to the fibers can be approximated using a Hankinson-type formula; the strength of members with various grain slopes compared with a straight-grained member is in Table 5-12. Annual ring orientation, reaction wood (compression wood in softwoods, tension wood in hardwoods), juvenile wood, compression failures, pitch pockets, bird peck, extractives, and timber from dead trees are further covered (p. 5-31 to 5-34).",
       "key_points": [
-        "Specific gravity is the strongest single predictor of clear-wood strength/stiffness",
-        "Slope of grain reduces strength via a Hankinson-type angle-interaction formula",
-        "Reaction wood (compression wood/tension wood) and juvenile wood have reduced/altered properties"
+        "Natural growth characteristics must be taken into account in assessing actual properties or performance of wood products (p. 5-26)",
+        "Specific gravity is a good index of mechanical properties as long as the wood is clear, straight grained, and free from defects (p. 5-26)",
+        "Strength at an angle to the fibers can be approximated using a Hankinson-type formula (p. 5-28)"
       ],
       "equations": [],
       "figures": [
@@ -129,17 +133,17 @@
         "5-10"
       ],
       "tables": [],
-      "applicability": "Explaining property variability within a species/grade and why visual grading rules exist (grading itself is NDS/grading-rule content, out of scope)."
+      "applicability": "Explaining how specific gravity, knots, slope of grain and other growth characteristics change clear-wood properties."
     },
     {
       "section_id": "5-8",
       "title": "Effects of Manufacturing and Service Environments: Temperature",
-      "summary": "Temperature has both reversible (immediate) and irreversible (permanent, degradative) effects on mechanical properties. Table 5-15 tabulates approximate reversible percentage changes at -50 degC and +50 degC by property and moisture condition; Table 5-16 gives the printed quadratic equation form for MOE/MOR temperature adjustment.",
-      "body": "At temperatures below about 100 degC, temperature effects on wood mechanical properties are essentially reversible (immediate effect, Fig 5-14) -- properties generally decrease when heated and increase when cooled, roughly linearly with temperature. Table 5-15 tabulates approximate middle-trend relative property changes at -50 degC and +50 degC relative to 20 degC, by moisture condition. Table 5-16 gives closed-form quadratic equations (percentage change vs. temperature in degrees F) for MOE and MOR of lumber, fit by grade and moisture condition. Above about 100 degC, an additional irreversible (permanent) degradation effect accumulates with heating time and temperature, causing weight and strength loss (Figs 5-15 to 5-20); modulus of rupture is affected more than modulus of elasticity.",
+      "summary": "Temperature: reversible (immediate) effects, approximately linear with temperature and essentially reversible below 100 degrees C (Fig. 5-14, Table 5-15 at -50 and 50 degrees C, Table 5-16 lumber equations); irreversible effects of degradation at elevated temperature, cumulative with repeated exposure, with modulus of rupture lost while modulus of elasticity barely changed (Figs. 5-15 to 5-20).",
+      "body": "[p. 5-35] In general, the mechanical properties of wood decrease when heated and increase when cooled; at a constant moisture content and below approximately 150 degrees C, mechanical properties are approximately linearly related to temperature. [p. 5-36] The change that occurs when wood is quickly heated or cooled and tested at that condition is termed an immediate effect; at temperatures below 100 degrees C, the immediate effect is essentially reversible (Fig. 5-14). Table 5-15 lists changes in clear wood properties at -50 degrees C and 50 degrees C relative to those at 20 degrees C; the large changes at -50 degrees C for green wood reflect the presence of ice in the cell cavities. The strength of dry lumber, at about 12% moisture content, may change little as temperature increases from -29 degrees C to 38 degrees C; for green lumber, strength generally decreases with increasing temperature. [p. 5-37] Table 5-16 provides equations that have been used to adjust some lumber properties for the reversible effects of temperature. Irreversible effects: at elevated temperature there is a permanent degradation of wood substance, which results in loss of weight and strength, depending on moisture content, heating medium, temperature, exposure period, and to some extent species and size (Figs. 5-15 to 5-18). Figures 5-19 and 5-20 show the permanent loss in bending strength of 38- by 89-mm lumber heated at 66 degrees C and 82 degrees C at about 12% moisture content; there is a greater reduction in MOR with time at the higher temperature, and over the same periods modulus of elasticity barely changed. [p. 5-38] Repeated exposure to elevated temperature has a cumulative effect on wood properties: the loss after six 1-month exposures is about the same as after a single 6-month exposure. Long-term effects should be based on the accumulated temperature experience of critical structural parts.",
       "key_points": [
-        "Reversible temperature effects are the immediate response at a given temperature (Table 5-15/5-16)",
-        "Irreversible effects are permanent degradation from heating, increasing with time and temperature above ~100 degC",
-        "MOR is more sensitive to permanent heat degradation than MOE"
+        "Immediate effects are essentially reversible below 100 degrees C; Table 5-15 gives changes at -50 and 50 degrees C relative to 20 degrees C; Table 5-16 gives lumber adjustment equations (p. 5-36, 5-37)",
+        "Irreversible effects: permanent loss of weight and strength at elevated temperature; lumber heated at 66 and 82 degrees C lost MOR while modulus of elasticity barely changed (p. 5-37)",
+        "Repeated exposure is cumulative: six 1-month exposures cause about the same loss as one 6-month exposure (p. 5-38)"
       ],
       "equations": [],
       "figures": [
@@ -162,12 +166,13 @@
     {
       "section_id": "5-9",
       "title": "Effects of Manufacturing and Service Environments: Time Under Load",
-      "summary": "Wood strength under sustained or repeated load is less than its short-term (static test) strength -- the duration-of-load / creep-rupture relationship, illustrated by the 'Madison curve' (Fig 5-23) relating stress ratio to time to failure. In this edition, this relationship is presented only graphically (no printed closed-form equation).",
-      "body": "Time under load has two related but distinct effects: creep (increasing deformation under sustained load, Fig 5-22) and creep rupture / duration of load (decreasing strength capacity with increasing load duration). Figure 5-23 plots stress (as a percentage of short-term strength) against time to failure for small clear specimens, anchored at 28 seconds for 100% stress, composited from several studies (mostly bending, some compression parallel to grain and bending perpendicular to grain). The handbook text also states that a wood member under continuous bending stress for about 10 years may carry only about 60% (or less) of its short-term strength. No printed closed-form equation for this curve appears in this edition (FPL-GTR-282, 2021) -- the load duration factor equations used in design (e.g., the NDS CD factor / ASTM D2555-derived 'Madison curve' fit) are separate, copyrighted-standard content and are out of scope for this module.",
+      "summary": "Time under load: rate of loading (failure in 1 s about 10% higher than the standard 5-min test), creep and relaxation, duration of load (Fig. 5-23, based on 28 s at 100% stress: about 60% or less of short-term strength after 10 years of continuous bending stress) and fatigue; Figure 5-23 is a graph, with no equation printed for it.",
+      "body": "[p. 5-38] Static strength tests are typically conducted to attain maximum load in about 5 min; the load required to produce failure in 1 s is approximately 10% higher than in a standard static strength test, and over several orders of magnitude strength is approximately an exponential function of rate of loading. [p. 5-39] Creep: if the load is maintained, additional time-dependent deformation occurs; creep occurs at even very low stresses and continues over a period of years. At typical design levels and use environments, after several years the additional deformation caused by creep may approximately equal the initial, instantaneous elastic deformation. An increase of about 28 degrees C in temperature can cause a two- to threefold increase in creep, and green wood may creep four to six times the initial deformation as it dries under load. Under a constant imposed deformation the initial stress relaxes to about 60% to 70% of its original value within a few months. [p. 5-40] Duration of load: the constant stress a wood member can sustain is approximately an exponential function of time to failure; Figure 5-23 relates stress to time to failure for small clear specimens, based on 28 s at 100% stress, a composite of trends from several studies (mostly bending, some compression parallel to grain and bending perpendicular to grain). Based on Figure 5-23, a wood member under the continuous action of bending stress for 10 years may carry only 60% (or perhaps less) of the load required to produce failure in a standard bending strength test of only a few minutes duration. Time under intermittent loading has a cumulative effect. Changes in climatic conditions increase the rate of creep and shorten the duration during which a member can support a given load. The handbook gives the relationship only as the graph of Figure 5-23; no equation for it is printed. Fatigue is the progressive damage that occurs in a material subjected to cyclic loading (Table 5-17).",
       "key_points": [
-        "Creep (deformation) and creep rupture / duration of load (strength loss) are related but distinct time-under-load effects",
-        "Figure 5-23 ('Madison curve') is anchored at 28 s / 100% stress and ~10 yr / ~60% stress (both stated in text)",
-        "No printed closed-form equation for the duration-of-load curve exists in this edition -- graphical only, so NOT implemented as a function in this module (see manifest skip list)"
+        "Failure load in 1 s is approximately 10% higher than in the standard 5-min static test (p. 5-38)",
+        "Creep after several years at typical design levels may approximately equal the initial elastic deformation; green wood drying under load may creep four to six times the initial deformation (p. 5-39)",
+        "Duration of load: under continuous bending stress for 10 years a member may carry only 60% (or perhaps less) of its short-term failure load (Fig. 5-23, based on 28 s at 100% stress) (p. 5-40)",
+        "Figure 5-23 is a graph only; the handbook prints no equation for the duration-of-load relationship (p. 5-40)"
       ],
       "equations": [],
       "figures": [
@@ -176,22 +181,23 @@
         "5-23"
       ],
       "tables": [],
-      "applicability": "The technical basis for duration-of-load / load-duration-factor design adjustments (the specific factor tables are NDS content and out of scope)."
+      "applicability": "Rate-of-loading, creep and duration-of-load effects on clear-wood strength; design load-duration factors are set in design documents such as the NDS."
     },
     {
       "section_id": "5-10",
       "title": "Effects of Manufacturing and Service Environments: Aging, Chemicals, Radiation, Biological Agents",
-      "summary": "Briefly surveys the effects of long-term aging, chemical exposure/treatment, nuclear radiation, mold/stain fungi, and insect damage on clear-wood mechanical properties.",
-      "body": "Properly seasoned and maintained wood shows little strength loss purely from aging over decades to centuries (archaeological/historic-structure evidence). Chemical exposure (acids, bases) and fire-retardant/preservative chemical treatments can reduce strength depending on chemical, concentration, and process temperature. High doses of nuclear radiation degrade strength (relevant to specialized nuclear-facility applications). Mold and stain fungi primarily affect appearance with limited strength effect, while decay fungi (Chapter 14) and insect damage can substantially reduce load-carrying cross section and strength. Not digitized as standalone equations in this module.",
+      "summary": "Aging, exposure to chemicals, chemical (fire-retardant and preservative) treatment, nuclear radiation, mold and stain fungi, decay (5% to 10% weight loss reduces mechanical properties 20% to 80%) and insect damage, with the safe procedure of discarding pieces with decay or insect holes when strength is important.",
+      "body": "[p. 5-41] Aging: in relatively dry and moderate temperature conditions where wood is protected from deteriorating influences such as decay, the mechanical properties of wood show little change with time; significant losses in clear wood strength occur only after several centuries of normal aging conditions. Exposure to chemicals: nonswelling liquids such as petroleum oils and creosote have no appreciable effect; water, alcohol, or other wood-swelling liquids lower properties, recovered when the liquid is removed; chemical solutions that decompose wood substance (by hydrolysis or oxidation) have a permanent effect on strength; alkaline solutions are more destructive than acidic solutions, and hardwoods are more susceptible than softwoods. Chemical treatment: fire-retardant treatments and treatment methods distinctly reduce the mechanical properties of wood. [p. 5-43] Very large doses of gamma rays or neutrons can cause substantial degradation of wood: doses up to about 10 kGy have little effect, and at 3 MGy tensile strength is reduced about 90%. Mold and stain fungi do not seriously affect most mechanical properties, but heavy staining may reduce toughness or shock resistance by 15% to 30%; pieces with mold and stain should be examined closely for decay if they are used for structural purposes. [p. 5-44] Decay: wood-destroying (decay) fungi seriously reduce strength. Early stages of decay are virtually impossible to detect; brown-rot fungi may reduce mechanical properties in excess of 10% before a measurable weight loss is observed and before decay is visible. When weight loss reaches 5% to 10%, mechanical properties are reduced from 20% to 80%. Decay has the greatest effect on toughness, impact bending, and work to maximum load in bending, the least effect on shear and hardness. When strength is important, adequate measures should be taken to (a) prevent decay before it occurs, (b) control incipient decay by remedial measures (Chap. 14), or (c) replace any wood member in which decay is evident or believed to exist in a critical section. Decay can be prevented from starting or progressing if wood is kept dry (below 20% moisture content). No method is known for estimating the amount of reduction in strength from the appearance of decayed wood; therefore, when strength is an important consideration, the safe procedure is to discard every piece that contains even a small amount of decay, except possibly pieces in which decay occurs in a knot but does not extend into the surrounding wood. Insect damage: powderpost larvae may destroy most of a piece's interior while only small holes appear on the surface, and the strength of the piece may be reduced virtually to zero. No method is known for estimating the reduction in strength from the appearance of insect-damaged wood; when strength is an important consideration, the safe procedure is to eliminate pieces containing insect holes.",
       "key_points": [
-        "Aging alone causes little strength loss in properly maintained wood",
-        "Chemical treatment/exposure and high-dose nuclear radiation can reduce strength",
-        "Decay and insect damage (covered in later chapters) are the dominant biological degradation mechanisms"
+        "Brown-rot fungi may reduce mechanical properties more than 10% before measurable weight loss or visible decay; at 5% to 10% weight loss, properties are reduced 20% to 80% (p. 5-44)",
+        "No method estimates strength loss from the appearance of decay; when strength is important, discard every piece with even a small amount of decay (p. 5-44)",
+        "Powderpost damage may reduce strength virtually to zero; when strength is important, eliminate pieces containing insect holes (p. 5-44)",
+        "Decay can be prevented from starting or progressing if wood is kept dry, below 20% moisture content (p. 5-44)"
       ],
       "equations": [],
       "figures": [],
       "tables": [],
-      "applicability": "Durability and service-life considerations; detailed decay/insect content is in Chapter 14 (out of this module's scope)."
+      "applicability": "Effects of aging, chemicals, treatment, radiation, fungi and insects on wood strength, including when to discard decayed or insect-damaged pieces."
     }
   ]
 }
