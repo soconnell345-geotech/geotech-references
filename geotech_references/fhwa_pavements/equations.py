@@ -381,7 +381,9 @@ def granular_resilient_modulus_bulk_stress(theta_psi, k1, k2) -> dict:
     unit_system : str, optional
         'US' (default) takes the inputs in the printed units above. 'SI' takes
         theta_psi in kPa, each converted exactly to the printed unit (psi)
-        before the lookup runs as printed.
+        before the lookup runs as printed. Under 'SI' k1 is NOT converted:
+        it stays psi-based (Mr = k1 * theta^k2 with theta in psi and Mr in
+        psi), so give k1 as fitted to psi.
 
     Returns
     -------

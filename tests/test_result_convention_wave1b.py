@@ -201,6 +201,10 @@ def test_unit_system_is_documented(name):
 def test_the_si_guards_are_these():
     assert sorted(n for n, f in LOOKUPS.items()
                   if "unit_system" in rc.signature_names(f)) == [
+        "dm7_2.chapter2.scaled_distance",
+        "dm7_2.chapter4.relative_flexibility_anchored_bulkhead",
+        "dm7_2.chapter6.driving_stress_limit_concrete_tension",
+        "dm7_2.chapter6.meyerhof_group_settlement",
         "gec_10.tables.table_10_2_nc_base_clay",
         "gec_11.tables.table_4_4_traffic_surcharge",
         "gec_12.figures.figure_7_10_to_13_kd",

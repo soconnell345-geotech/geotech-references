@@ -363,10 +363,10 @@ _TABLE_A2_EPS50 = [0.007, 0.005, 0.004]
 
 
 @_u.labelled(
-    {"ca_tsf": "tsf", "epsilon_50": "no unit printed"},
+    {"ca_tsf": "tsf", "epsilon_50": "fraction"},
     printed_page="222", pdf_page_index=225)
 def table_a2_epsilon50_stiff_clay(ca_tsf: float) -> dict:
-    """Strain at 50% of the peak deviator stress, epsilon_50 (dimensionless), for stiff clay from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-2 (p. 222; Reese et al. 1975).
+    """Strain at 50% of the peak deviator stress, epsilon_50 (fraction: 0.007, 0.005, 0.004 as printed), for stiff clay from the average undrained shear strength Ca in ton/ft2, GEC-9 Table A-2 (p. 222; Reese et al. 1975).
 
     Used in Reese et al. (1975) p-y curve construction:
 

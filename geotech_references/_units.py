@@ -89,6 +89,13 @@ _SI_TO_US = {
     ("kN", "kips"): (1.0e3, 1000.0 * LBF_N),
     ("kN", "lb"): (1.0e3, LBF_N),
     ("N", "lb"): (1.0, LBF_N),
+    ("kg", "lb"): (1.0, LB_KG),
+    # kg to lb: 1 lb = 0.45359237 kg exactly.
+    # mm^4/m to in^4/ft: 1 in = 25.4 mm and 1 ft = 0.3048 m exactly, so
+    # 1 in^4/ft = 25.4^4 mm^4 / 0.3048 m = 416231.4256 mm^4 / 0.3048 m
+    # = 1365588.67 mm^4/m; in base units (m^4/m), 1 mm^4/m = 1e-12 and
+    # 1 in^4/ft = IN_M**4 / FT_M, so us = si * 1e-12 / (IN_M**4 / FT_M).
+    ("mm^4/m", "in^4/ft"): (1.0e-12, IN_M ** 4 / FT_M),
     ("kN-m", "kip-in"): (1.0e3, 1000.0 * LBF_N * IN_M),
     ("mm^2", "in^2"): (1.0e-6, IN_M ** 2),
     ("m^3/m", "ft^3/ft"): (1.0, FT_M ** 2),

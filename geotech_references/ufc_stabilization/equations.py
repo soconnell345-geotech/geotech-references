@@ -24,7 +24,7 @@ from geotech_references import _units as _u
 
 @_u.labelled(
     {"design_cement_content_pct": "percent",
-     "percent_cement_for_pi": "percent", "percent_passing_no40": "percent"})
+     "percent_cement_for_pi": "fraction", "percent_passing_no40": "fraction"})
 def equation_cement_content_modifying_soils(percent_passing_no40, percent_cement_for_pi) -> dict:
     """Design cement content for soil modification (PI reduction), Sec 3-1.4.1.
 

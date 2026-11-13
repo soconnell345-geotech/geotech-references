@@ -191,7 +191,9 @@ def table_swell_potential_classification(
 
 @_u.labelled(
     {"active_zone_depth_ft": "ft", "active_zone_depth_m": "m"},
-    si={"natural_soil_suction_tsf": ("kPa", "tsf")})
+    si={"natural_soil_suction_tsf": ("kPa", "tsf"),
+        "depth_to_groundwater_ft": ("m", "ft"),
+        "shaft_base_diameter_ft": ("m", "ft")})
 def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
                             depth_to_groundwater_ft=None,
                             shaft_base_diameter_ft=None):
@@ -224,8 +226,9 @@ def table_active_zone_depth(profile=None, natural_soil_suction_tsf=None,
         (printed under 5-4c(2)(a)).
     unit_system : str, optional
         'US' (default) takes the inputs in the printed units above. 'SI' takes
-        natural_soil_suction_tsf in kPa, each converted exactly to the printed
-        unit (tsf) before the lookup runs as printed.
+        natural_soil_suction_tsf in kPa, depth_to_groundwater_ft in m and
+        shaft_base_diameter_ft in m, each converted exactly to the printed
+        unit (tsf, ft) before the lookup runs as printed.
 
     Returns
     -------

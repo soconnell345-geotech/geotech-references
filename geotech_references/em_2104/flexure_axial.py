@@ -64,10 +64,12 @@ def aci_beta1(fc_prime, unit="ksi"):
     ----------
     fc_prime : float
         Specified concrete compressive strength f'c, in ksi (unit='ksi',
-        the default) or psi (unit='psi'). Not MPa: 28 (MPa) read as 28 ksi
-        gives 0.65 where 28 MPa (4.06 ksi) gives 0.847.
+        the default), psi (unit='psi') or MPa (unit='MPa', converted exactly
+        to psi). 28 (MPa) read as 28 ksi would give 0.65 where 28 MPa
+        (4.06 ksi) gives 0.847, so name the unit.
     unit : str, optional
-        'ksi' (default) or 'psi'.
+        'ksi' (default), 'psi' or 'MPa'; any other unit is refused with a
+        ValueError.
     unit_system : str, optional
         'US' (default) takes the inputs in the printed units above. 'SI' takes
         fc_prime in MPa, each converted exactly to the printed unit (ksi)
@@ -84,7 +86,15 @@ def aci_beta1(fc_prime, unit="ksi"):
     EM 1110-2-2104 paragraph 4-1d(4), printed p. 30 (pdf_page_index 35),
     which takes beta_1 as ACI 318-19 specifies (Table 22.2.2.4.3).
     """
-    fc_psi = fc_prime * 1000.0 if unit == "ksi" else fc_prime
+    if unit == "ksi":
+        fc_psi = fc_prime * 1000.0
+    elif unit == "psi":
+        fc_psi = fc_prime
+    elif unit == "MPa":
+        fc_psi = _u.from_si(fc_prime, "MPa", "psi")
+    else:
+        raise ValueError(
+            f"unit must be 'psi', 'ksi' or 'MPa', got {unit!r}")
     if fc_psi <= 4000.0:
         return 0.85
     if fc_psi <= 8000.0:

@@ -891,7 +891,7 @@ def volumetric_strain(q_b_app: float, E_s: float, F_nu: float) -> float:
     Returns
     -------
     float
-        Volumetric strain [no unit printed].
+        Volumetric strain [fraction] (a decimal, a ratio of stresses; the print gives no percent).
 
     References
     ----------
@@ -1592,6 +1592,7 @@ def elastic_compression_pile(
     return delta_Q * Z / (A_p * E_p)
 
 
+@_u.labelled({}, si={"Q_d": ("kN", "kips"), "B": ("m", "ft"), "L": ("m", "ft")})
 def meyerhof_group_settlement(
     Q_d: float, B: float, L: float, N1_60: float, I_f: float
 ) -> float:
@@ -1613,11 +1614,16 @@ def meyerhof_group_settlement(
         Average overburden-corrected N value within B below base (blows/ft).
     I_f : float
         Influence factor (dimensionless, from Equation 6-47).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        Q_d in kN, B and L in m, each converted exactly to the printed unit
+        (kips, ft) before the equation runs as printed.
 
     Returns
     -------
     float
-        Estimated settlement [inches].
+        Estimated settlement [inches].  With unit_system='SI' the result is
+        still in inches.
 
     References
     ----------
@@ -2591,6 +2597,7 @@ def driving_stress_limit_concrete_compression(
     return phi_da * (0.85 * f_c_prime - f_pe)
 
 
+@_u.labelled({}, si={"f_c_prime": ("MPa", "ksi"), "f_pe": ("MPa", "ksi")})
 def driving_stress_limit_concrete_tension(
     phi_da: float, f_c_prime: float, f_pe: float
 ) -> float:
@@ -2607,11 +2614,16 @@ def driving_stress_limit_concrete_tension(
         Design compressive strength of concrete (ksi).
     f_pe : float
         Effective prestress (ksi).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        f_c_prime and f_pe in MPa, each converted exactly to the printed unit
+        (ksi) before the equation runs as printed.
 
     Returns
     -------
     float
-        Maximum allowable tensile driving stress [ksi].
+        Maximum allowable tensile driving stress [ksi].  With
+        unit_system='SI' the result is still in ksi.
 
     References
     ----------

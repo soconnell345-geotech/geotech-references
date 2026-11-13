@@ -79,7 +79,7 @@ def test_flexure_in_ksi_shear_in_psi():
     # Appendix C-4 (printed p. 57) works in ksi; Eq 5-2 (printed p. 37) in psi.
     assert "ksi" in _param_lines(flexure_axial.tension_controlled_capacity_singly)["fc_prime"]
     assert "psi" in _param_lines(shear.shear_capacity_special_straight_member)["fc_prime"]
-    assert "Not MPa" in _param_lines(flexure_axial.aci_beta1)["fc_prime"]
+    assert "unit='MPa'" in _param_lines(flexure_axial.aci_beta1)["fc_prime"]
 
 
 def test_kb_cites_its_printed_page():

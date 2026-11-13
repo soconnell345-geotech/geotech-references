@@ -15,6 +15,8 @@ Reference:
 
 import math
 
+from geotech_references import _units as _u
+
 
 # ===========================================================================
 # Equations 4-1 and 4-2: At-Rest Earth Pressure
@@ -1789,6 +1791,8 @@ def allowable_friction_angle(
 # Equation 4-31: Relative Flexibility of Anchored Bulkheads
 # ===========================================================================
 
+@_u.labelled({}, si={"H": ("mm", "in"), "D": ("mm", "in"),
+                     "E": ("MPa", "psi"), "I": ("mm^4/m", "in^4/ft")})
 def relative_flexibility_anchored_bulkhead(
     H: float,
     D: float,
@@ -1818,12 +1822,17 @@ def relative_flexibility_anchored_bulkhead(
         Young's modulus of the wall material (psi).
     I : float
         Moment of inertia of the wall section (in^4/ft).
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        H and D in mm, E in MPa and I in mm^4/m, each converted exactly to the
+        printed unit (in, psi, in^4/ft) before the equation runs as printed.
 
     Returns
     -------
     float
         Relative flexibility (flexibility number) rho [in^2/lb (per running
-        foot of wall)], the abscissa of Figure 4-36.
+        foot of wall)], the abscissa of Figure 4-36.  With unit_system='SI'
+        the result is still in these printed units.
 
     Raises
     ------

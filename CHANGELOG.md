@@ -74,14 +74,34 @@ rules as wave 1a:
   Returns entry (`hansen_depth_factors`: `dc`, `dq`, `d_gamma`; the three
   reliability methods: `mu_g`, `sigma_g`, `beta`, `p_u`). The 7 `plot_*`
   functions are left as they are.
-- **New: `unit_system="SI"` on 4 US-unit lookups** an SI number would pass
+- **New: `unit_system="SI"` on 4 US-unit dict lookups** an SI number would pass
   unnoticed: `gec_12.figure_7_10_to_13_kd` and `figure_7_9_delta_phi_ratio`
   (V in m^3/m), `gec_11.table_4_4_traffic_surcharge` (abutment height in m)
-  and `gec_10.table_10_2_nc_base_clay` (su in kPa). Bare numbers in US units
-  cannot take it (their label is fixed) and say their units instead:
-  `dm7_2` `scaled_distance`, `peak_particle_velocity`,
-  `confinement_factor_from_blast_data`, `relative_flexibility_anchored_bulkhead`,
-  `driving_stress_limit_concrete_tension` and `meyerhof_group_settlement`.
+  and `gec_10.table_10_2_nc_base_clay` (su in kPa). Four `dm7_2` bare floats
+  take it too, converting only their inputs (the result keeps its printed
+  unit, said in the Returns line): `scaled_distance` (D in m, W in kg),
+  `relative_flexibility_anchored_bulkhead` (H, D in mm, E in MPa, I in
+  mm^4/m), `driving_stress_limit_concrete_tension` (MPa) and
+  `meyerhof_group_settlement` (Q_d in kN, B and L in m); new exact pairs
+  kg to lb and mm^4/m to in^4/ft in `_units`. Not given it:
+  `peak_particle_velocity` (K is an empirical coefficient valid only in
+  ft, lb and in/sec, with no exact SI form) and
+  `confinement_factor_from_blast_data` (its K result is that same empirical
+  coefficient, and SD's unit depends on beta), and van der Merwe (whole 1-ft
+  increments).
+- **Micropile results gain three keys beside their cases.** In Tables 5-4
+  and 5-5 and Figure 5-23 (`section="all"`) the results now carry `units`,
+  `printed_page` and `pdf_page_index` next to their case keys, so code that
+  loops over the cases must skip those three keys.
+- **Silent wrong answers fixed.** `em_2104.aci_beta1` read any unit other than
+  'ksi' as psi (`unit='MPa'` with 50 gave 0.85, not 0.69, in 1.7.0 too); it
+  now accepts 'psi', 'ksi' and 'MPa' and raises ValueError for any other
+  unit. `ufc_expansive.table_active_zone_depth` under `unit_system="SI"`
+  converted only the suction, so groundwater at 5 m read as 5 ft; it now also
+  converts `depth_to_groundwater_ft` and `shaft_base_diameter_ft` from m.
+- **Labels:** `ufc_stabilization.equation_cement_content_modifying_soils` B and
+  C are "fraction" (the print says "expressed as a decimal", p. 16);
+  `dm7_2.volumetric_strain` and `gec_9` epsilon_50 are "fraction".
 - **Pages corrected, each checked on its page.** `dm7_2`
   `alpha_method_unit_shaft_resistance` (Eq. 6-8) is on printed 414,
   pdf_page_index 451 (it cited p. 453), and `rock_socket_unit_base_resistance`

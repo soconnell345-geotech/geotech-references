@@ -14,6 +14,8 @@ Reference:
 
 import math
 
+from geotech_references import _units as _u
+
 
 def critical_depth_vertical_cut_clay(s_u: float, gamma_t: float) -> float:
     """Critical depth of a vertical cut in clay (Equation 2-1).
@@ -387,6 +389,7 @@ def movement_soft_to_medium_clay(
         return 0.0
 
 
+@_u.labelled({}, si={"D": ("m", "ft"), "W": ("kg", "lb")})
 def scaled_distance(D: float, W: float, beta: float = 0.5) -> float:
     """Scaled distance for evaluating blast effects on structures (Equation 2-7).
 
@@ -409,13 +412,18 @@ def scaled_distance(D: float, W: float, beta: float = 0.5) -> float:
         Distance exponent (dimensionless).  Use 0.33 for near-field
         structures (i.e., less than 20 ft from the charge) or 0.5 for
         structures farther from the charge.  Default is 0.5.
+    unit_system : str, optional
+        'US' (default) takes the inputs in the printed units above. 'SI' takes
+        D in m and W in kg, each converted exactly to the printed unit (ft,
+        lb) before the equation runs as printed.
 
     Returns
     -------
     float
         Scaled distance *SD* [ft/lb^0.5 (ft/lb^0.33 when beta = 0.33)].  The
         scaled distance is not dimensionally correct and requires use of the
-        indicated units (ft and lb).
+        indicated units (ft and lb).  With unit_system='SI' the result is
+        still in these printed units.
 
     Raises
     ------
