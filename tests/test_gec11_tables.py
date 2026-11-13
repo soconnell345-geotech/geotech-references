@@ -721,3 +721,12 @@ class TestTable47:
         results = table_4_7_internal_resistance("grid")
         assert len(results) == 1
         assert results[0]["static_phi"] == 0.65
+
+
+def test_table_4_4_negative_height_refused():
+    # REF-76 checker: a negative abutment height returned the whole table
+    # (the answer for 0); now refused.
+    from geotech_references.gec_11.tables import table_4_4_traffic_surcharge as f
+    assert "table" in f(0)
+    with pytest.raises(ValueError, match="negative.*p. 4-17"):
+        f(-5)

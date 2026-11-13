@@ -96,6 +96,16 @@ pages):
   0.957, 0.8 and 0.9). Also refused: a stress outside 0 <= f < Fc in Eq
   9-28, Kf outside 0 < Kf <= 1 in Eq 9-30 (the page says Eq 9-29 "is
   reduced" by it), and a non-positive Fc, fe or E.
+- `gec_11.tables.table_4_4_traffic_surcharge`: a negative abutment height
+  is refused (it returned the whole table, the answer for 0). Refusal
+  messages that named a range without its page now name it
+  (`aashto_1993.composite_k.composite_k_subbase` below Figure 3.3's scales,
+  `ufc_pavement.tables.figure_10_1_k_on_base` below the 25 pci curve,
+  `figure_e_vehicle_allowable_passes`). Wording that said more than the
+  page: the UFC 3-250-11 Table 3-5 docstring no longer says the 25 row
+  would understate content past it (the table's columns do not all rise
+  with fines), and the Caltrans timber-shoring note no longer gives a
+  20 ft limit the page does not print beside PA = mH + 72.
 - `aashto_1993.environmental.max_serviceability_loss_frost` (Figure G.7,
   printed G-10, five straight lines read off the chart): a depth of frost
   penetration beyond the chart's 10 ft axis is refused; the line used to be

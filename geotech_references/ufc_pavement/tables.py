@@ -903,7 +903,8 @@ def figure_10_1_k_on_base(k_subgrade_psi_in, base_thickness_in) -> dict:
     if k_subgrade_psi_in < _FIG_10_1_SUBGRADE_K[0]:
         raise ValueError(
             f"k_subgrade_psi_in {k_subgrade_psi_in} is below Figure 10-1's "
-            "lowest curve (k on subgrade = 25 pci); the chart covers 25-300.")
+            "lowest curve (k on subgrade = 25 pci, printed p. 32); the chart "
+            "covers 25-300.")
     if base_thickness_in < 0:
         raise ValueError(f"base_thickness_in must be >= 0, got {base_thickness_in}")
     if base_thickness_in > 60:
@@ -3362,6 +3363,10 @@ def _figure_e_ref(fig):
             f"printed {191 + n})")
 
 
+def _figure_e_printed(fig):
+    return f"printed {191 + int(fig.split('-')[1])}"
+
+
 def _resolve_vehicle_figure(vehicle):
     """The figure ('E-2' to 'E-31') for a figure number or vehicle key."""
     s = str(vehicle).strip().lower().replace(" ", "_").replace("-", "_")
@@ -3565,7 +3570,7 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
     fig = _resolve_vehicle_figure(vehicle)
     if cbr is None or cbr < 1.0:
         raise ValueError(f"CBR {cbr} is below Figure {fig}'s CBR axis "
-                         "(1-100).")
+                         f"(1-100, {_figure_e_printed(fig)}).")
     if thickness_in is None or thickness_in <= 0:
         raise ValueError(f"thickness_in must be > 0, got {thickness_in}")
     data = _FIGURES_E[fig]
@@ -3582,15 +3587,16 @@ def figure_e_vehicle_allowable_passes(vehicle, cbr, thickness_in,
     if thickness_in > data["y_max_in"]:
         raise ValueError(
             f"{thickness_in:g} in is above Figure {fig}'s "
-            f"{data['y_max_in']:g} in top, where its curves at CBR {cbr:g} "
-            "are off the chart.")
+            f"{data['y_max_in']:g} in top ({_figure_e_printed(fig)}), where "
+            f"its curves at CBR {cbr:g} are off the chart.")
     if t_lo is None or thickness_in < t_lo - 0.05:
         where = ("every curve at this CBR is above the chart" if t_lo is None
                  else f"the lowest curve reads {t_lo:.1f} in at this CBR")
         raise ValueError(
             f"{thickness_in:g} in is under Figure {fig}'s lowest curve "
-            f"({levels[0]:,} passes; {where}): the allowable passes are "
-            "fewer than that, and the chart does not say how many.")
+            f"({levels[0]:,} passes, {_figure_e_printed(fig)}; {where}): the "
+            "allowable passes are fewer than that, and the chart does not "
+            "say how many.")
     if thickness_in <= t_lo:
         return dict(base, allowable_passes=levels[0],
                     clamped="below_min_passes_curve")

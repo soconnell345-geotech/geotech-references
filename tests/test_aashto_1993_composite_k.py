@@ -577,3 +577,12 @@ class TestEffectiveModulusSubgradeReaction:
             ck.effective_modulus_subgrade_reaction(
                 seasonal=[{"mr_psi": -100}], slab_d_in=9.0,
             )
+
+
+def test_lower_refusals_name_the_page():
+    # REF-76 checker: Figure 3.3's refusals below its scales lacked the page.
+    for kw in (dict(dsb_in=2, esb_psi=20000, mr_psi=7000),
+               dict(dsb_in=6, esb_psi=10000, mr_psi=7000),
+               dict(dsb_in=6, esb_psi=20000, mr_psi=500)):
+        with pytest.raises(ValueError, match="printed II-39"):
+            ck.composite_k_subbase(**kw)

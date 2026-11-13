@@ -540,10 +540,8 @@ def table_3_5_emulsified_asphalt_requirements(percent_passing_200: float, percen
     (Sec 3-4.4). Percent passing No. 200 outside the printed rows, 0-25, is
     refused (REF-76: above 25 the 25 row used to be returned, with a note).
     Table 3-3 (printed p.25) recommends 2-30 % passing No. 200 for
-    bituminous-stabilized subgrades, but Table 3-5 stops at 25, and Sec
-    3-4.4 says "The amount of bitumen required for a given soil increases
-    with an increase in percentage of the finer sizes", so the 25 row
-    would understate it.
+    bituminous-stabilized subgrades, but Table 3-5 stops at 25 and gives
+    no rule past it.
 
     Parameters
     ----------

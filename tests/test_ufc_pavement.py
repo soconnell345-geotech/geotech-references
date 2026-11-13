@@ -1585,3 +1585,14 @@ def test_printed_title_is_on_the_cover():
     with fitz.open(str(pdf)) as doc:
         cover = " ".join(doc[0].get_text().split()).lower()
     assert PRINTED_TITLE.lower() in cover
+
+
+def test_refusal_messages_name_the_page():
+    # REF-76 checker: these refusals named the range but not the page.
+    from geotech_references.ufc_pavement import tables as t
+    with pytest.raises(ValueError, match="printed p. 32"):
+        t.figure_10_1_k_on_base(20, 10)
+    with pytest.raises(ValueError, match=r"1-100, printed 193"):
+        t.figure_e_vehicle_allowable_passes("E-2", 0.5, 10)
+    with pytest.raises(ValueError, match="10,000 passes, printed 193"):
+        t.figure_e_vehicle_allowable_passes("E-2", 5, 0.5)

@@ -271,7 +271,7 @@ def osha_timber_shoring_pressure(soil_type: str, depth_ft) -> dict:
         "reference": "Caltrans T&S Manual Section 2-3.03 (Cal/OSHA timber-shoring tables)",
         "pdf_page": 31,
         "printed_page": "2-10",
-        "note": "72 psf accounts for a 2-ft surcharge; for trenches <= 20 ft deep.",
+        "note": "72 psf accounts for a 2-ft surcharge (printed 2-10).",
     }
 
 

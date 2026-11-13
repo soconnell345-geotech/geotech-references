@@ -838,8 +838,8 @@ def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     Raises
     ------
     ValueError
-        If abutment_height_ft is above 0 and below 5.0 ft (Table 4-4's
-        first row).
+        If abutment_height_ft is negative, or above 0 and below 5.0 ft
+        (Table 4-4's first row).
     """
     table = [
         {"abutment_height_ft": d, "h_eq_ft": h}
@@ -847,7 +847,12 @@ def table_4_4_traffic_surcharge(abutment_height_ft: float = 0.0) -> dict:
     ]
     out = {"applies_to": _TABLE_4_4_APPLIES, "print_note": _TABLE_4_4_NOTE}
 
-    if abutment_height_ft <= 0:
+    if abutment_height_ft < 0:
+        raise ValueError(
+            f"abutment_height_ft={abutment_height_ft:g} is negative; Table 4-4 "
+            "(GEC-11 Vol I, p. 4-17) prints heq for abutment heights of 5.0 "
+            "ft and more (0 returns the whole table).")
+    if abutment_height_ft == 0:
         return dict(out, table=table, reference=_TABLE_4_4_REF)
 
     if abutment_height_ft < _TABLE_4_4_DEPTHS_FT[0]:

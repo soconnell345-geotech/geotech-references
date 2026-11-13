@@ -250,20 +250,22 @@ def composite_k_subbase(mr_psi, esb_psi, dsb_in) -> dict:
     if dsb_in < _COMPK_DSB_RANGE[0]:
         raise ValueError(
             f"Subbase thickness {dsb_in} in is below Figure 3.3's printed "
-            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in); "
-            "read the chart and give k directly, or use the roadbed alone "
+            f"Dsb scale ({_COMPK_DSB_RANGE[0]:g}-{_COMPK_DSB_RANGE[1]:g} in, "
+            "printed II-39); read the chart and give k directly, or use the "
+            "roadbed alone "
             "(equations.modulus_subgrade_reaction_simple)."
         )
     if esb_psi < _COMPK_ESB_RANGE[0]:
         raise ValueError(
             f"Subbase modulus {esb_psi} psi is below Figure 3.3's lowest "
-            f"printed curve ({_COMPK_ESB_RANGE[0]:,.0f} psi); give k directly "
-            "or use the roadbed alone."
+            f"printed curve ({_COMPK_ESB_RANGE[0]:,.0f} psi, printed II-39); "
+            "give k directly or use the roadbed alone."
         )
     if mr_psi < _COMPK_MR_RANGE[0]:
         raise ValueError(
             f"Roadbed modulus {mr_psi} psi is below Figure 3.3's lowest "
-            f"printed curve ({_COMPK_MR_RANGE[0]:,.0f} psi); give k directly."
+            f"printed curve ({_COMPK_MR_RANGE[0]:,.0f} psi, printed II-39); "
+            "give k directly."
         )
     if dsb_in > _COMPK_DSB_RANGE[1]:
         raise ValueError(
