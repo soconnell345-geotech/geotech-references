@@ -55,6 +55,7 @@ from __future__ import annotations
 import importlib
 import inspect
 import json
+import os
 import pkgutil
 import re
 import statistics
@@ -66,10 +67,13 @@ _SCRIPTS_DIR = Path(__file__).resolve().parent
 _REPO_ROOT = _SCRIPTS_DIR.parent
 _MANIFEST_DIR = _SCRIPTS_DIR / "manifests"
 _PACKAGE_DIR = _REPO_ROOT / "geotech_references"
-#: PDFs not committed to docs/ (the Wood Handbook) are read from the main
-#: checkout's docs/ when this is a worktree; the catalog still names
-#: ``docs/<file>``.
-_FALLBACK_DOCS = [Path("C:/dev/GeotechStaffEngineer/geotech-references/docs")]
+#: PDFs not in this checkout's docs/ (the Wood Handbook is not committed)
+#: are read from the folders in GEOTECH_REFERENCES_DOCS (separated by
+#: os.pathsep), the variable resolve_table_pdf reads; the catalog still
+#: names ``docs/<file>``.
+_FALLBACK_DOCS = [Path(p) for p in
+                  os.environ.get("GEOTECH_REFERENCES_DOCS", "").split(os.pathsep)
+                  if p]
 
 if str(_SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS_DIR))
@@ -532,18 +536,286 @@ def _parse_bare(lines: list[str]) -> list[dict]:
 #:   chapter_starts    {chapter: first pdf page} for tables numbered through
 #:                     the manual
 CONFIG: dict[str, dict] = {
-    "fhwa_pavements": {"list_mode": "bare", "list_pages": (16, 20),
-                       "list_noise": r"^Geotechnical Aspects of Pavements"},
-    "fhwa_soils_foundations": {"list_mode": "bare", "volumes": [
-        {"list_pages": (26, 28)}, {"list_pages": (23, 24)}]},
     # every chapter opens with its own contents and List of Tables
     "gec_13": {"list_all": True},
+    # Table 6-38 is printed on PDF page 503 (printed 466) under Figure 6-25;
+    # the scan took a page that cites it (read off the render)
+    "dm7_2": {"page_from_render": {"6-38": 503}},
+    # The List of Tables gives 16-3 to "Proposed CSL Rating Criteria (DFI,
+    # 2018)", which is not printed (p. 16-4 refers the reader to DFI), and
+    # 16-4 to the TIP table, which is printed as TABLE 16-3 (PDF page 500,
+    # p. 16-11; read off the render). The stored text files it as 16-3.
+    "gec_10": {"drop": ["16-3", "16-4"], "rows_from_renders": [
+        {"table_number": "16-3", "chapter": 16,
+         "caption": "DRILLED SHAFT INTEGRITY FEATURES DETERMINED BY TIP",
+         "pdf_page_index": 500, "printed_page": "16-11",
+         "note": ("Printed as TABLE 16-3. The List of Tables numbers it 16-4 "
+                  "and lists as 16-3 'Proposed CSL Rating Criteria (DFI, "
+                  "2018)', which the manual does not print (p. 16-4 refers "
+                  "the reader to DFI).")}]},
+    # Vol I: "Table 11.5.6-1" and "Table 10.6.3.1.2a-1" are AASHTO tables
+    # named inside captions. Vol II: p. 21 is the contents' line for Vol I's
+    # Table 5-1; the specification's "Table4" (no space; PDF page 115,
+    # p. 10-28) is read off the render; Table E0's caption ran into its head
+    "gec_11": {"volumes": [
+        {"drop": ["11.5.6", "10.6.3.1.2a"],
+         # the text layer gives the phi as a private-use character
+         "caption_from_render": {
+             "4-7": "Resistance Factors, φ, for Tensile and Pullout "
+                    "Resistance for MSE Walls (after Table 11.5.6-1, "
+                    "AASHTO {2007})"}},
+        {"drop": ["5-1"],
+         "caption_from_render": {"E0": "Summary of Example Problems"},
+         "rows_from_renders": [
+             {"table_number": "4", "chapter": None,
+              "caption": "ELECTROCHEMICAL REQUIREMENTS FOR GEOSYNTHETIC "
+                         "REINFORCEMENTS",
+              "pdf_page_index": 115, "printed_page": "10-28"}]}]},
+    # Rows the scan took from a sentence or a front-matter table that cites
+    # the number, each checked on the render (2026-11-12): dropped where
+    # the manual does not print the table, moved where it prints it on
+    # another page.
+    # GSA: "Table 10-3 of ASCE 41 [10]" and the like are ASCE 41's tables
+    "gsa_collapse": {"drop": ["10-3", "10-1", "9-3"]},
+    # "Table 1604.5 [Replacement]" heads the paragraph that replaces the
+    # IBC table with the UFC's Table 2-2 (1607.1 with Table E-1)
+    "ufc_structural": {"drop": ["1604.5", "1607.1"]},
+    # the text layer drops the dash of "Table 21 1" (PDF page 140)
+    "ufc_pavement": {"page_from_render": {"21-1": 140},
+                     "caption_from_render": {
+                         "21-1": "Gradation for Aggregate Surface Courses"}},
+    # the List of Tables gives 2-13 to 2-16 the captions of other tables;
+    # the pages print them as below (and Table 2-15's lookup is the SMA
+    # gradation the page prints)
+    "ufc_flexible_practice": {
+        "caption_from_render": {
+            "2-13": "Properties of Cellulose Fibers (after NAPA 1999)",
+            "2-14": "Properties of Mineral Fibers (after NAPA 1999)",
+            "2-15": "SMA Gradation Guideline (after NAPA 1999*)",
+            "2-16": "Recommended SMA Coarse and Fine Aggregate Properties "
+                    "(after NAPA 1999)"},
+        "notes": {n: f"The List of Tables gives Table {n} the caption "
+                     f"'{c}'; the page prints the caption above."
+                  for n, c in (("2-13", "SMA Gradation Guideline"),
+                               ("2-14", "Recommended SMA Coarse and Fine "
+                                        "Aggregate Properties"),
+                               ("2-15", "Properties of Cellulose Fibers"),
+                               ("2-16", "Properties of Mineral Fibers"))}},
+    # 7-13 found on its render; Table 7-23 is printed as 7-23a (SI) and
+    # 7-23b (U.S. customary), each also a row
+    "fhwa_pavements": {"list_mode": "bare", "list_pages": (16, 20),
+                       "list_noise": r"^Geotechnical Aspects of Pavements",
+                       "page_from_render": {"7-13": 417, "7-23": [450, 451]},
+                       "notes": {"7-23": "Printed as Table 7-23a (SI units, "
+                                         "PDF page 450) and Table 7-23b (U.S. "
+                                         "customary units, PDF page 451)."}},
+    "em_2107": {"page_from_render": {"4.2": 39}},
+    # the page prints another caption than the List of Tables
+    "gec_5": {"caption_from_render": {
+        "5-15": "Typical Numerical Corrosivity Scoring System"},
+        "notes": {"5-15": "The List of Tables gives the caption 'Numerical "
+                          "Corrosivity Scoring (from Earth Contact "
+                          "Products)'; the page prints the caption above."}},
+    "gec_6": {"page_from_render": {"5-3": 62, "B5-1": 242},
+              "caption_from_render": {
+                  "5-3": "CORRECTION FACTOR FOR LOCATION",
+                  "B5-1": "LOADS AT COLUMN BASE",
+                  "B2-3": "STRESS INCREASE DUE TO BRIDGE LOADING"}},
+    # "Table 18–" ends a line before "3. Charring rate data ..."; "all data
+    # from Table 5–3" (printed as 5-3a and 5-3b) and "(Table 19–3)" cite
+    "wood_handbook": {
+        "drop": ["5-3", "18"],
+        "page_from_render": {"19-3": 473},
+        "caption_from_render": {
+            "19-3": "Coefficients of linear thermal expansion per degree "
+                    "Celsius of wood, hydrolyzed wood, and paper products"},
+        "rows_from_renders": [
+            {"table_number": "18-3", "chapter": 18,
+             "caption": "Charring rate data for selected wood species",
+             "pdf_page_index": 455, "printed_page": None}]},
+    # p. 32 is a table of the provisions' changes that cites ASCE 7's
+    # Tables 12.3-2 and 12.6-1 (the latter eliminated, not printed);
+    # "Table 15.4-2" on p. 410 is commentary citing ASCE 7
+    "fema_p2082": {"drop": ["12.6-1", "15.4-2"],
+                   "not_printed": {"1.5-2": "ASCE 7's Table 1.5-2, which "
+                                            "section 11.5 cites"},
+                   "page_from_render": {"12.3-2": 66},
+                   "caption_from_render": {
+                       "12.3-2": "Vertical Structural Irregularities",
+                       # the text layer drops the italic D_rd and D_m
+                       "C17.2-4": "Permanent Residual Displacement, Drd, for "
+                                  "a Maximum Earthquake Displacement, Dm, of "
+                                  "10 in. (250 mm)",
+                       "C17.2-5": "Permanent Residual Displacements, Drd, "
+                                  "for a Maximum Earthquake Displacement, "
+                                  "Dm, of 20 in. (500 mm)",
+                       # the text layer gives these symbols as private-use
+                       # characters, or not at all (renders 2026-11-12)
+                       "19.3-2": "Effective Shear Modulus Ratio (G/G0)",
+                       "19.3-3": "Soil Hysteretic Damping Ratio, βs",
+                       "C16.4-4": "Required Ratios of λ/φ to Achieve the 10% "
+                                  "Collapse Probability Objective",
+                       "C22-7": "Examples of 84th-percentile ground motions "
+                                "(abbreviated 84th GM) calculated using "
+                                "epsilons from hazard deaggregations (ε) and "
+                                "the corresponding probabilistic ground "
+                                "motions, at a site class BC location in San "
+                                "Jose, California"}},
+    # section 4.9's entry for Table 4.9 describes its column heads and
+    # names the lookup, without the values
+    "gec_7": {"values": {"4.9": ("lookup",
+                                 "tables.table_4_9_site_coefficient_fpga")}},
+    # prints no numbered table (its one "Table" line is "Table of Contents")
+    "gec_14": {"no_tables": True},
+    # A scan with no text layer: the tables a section lists or a lookup
+    # codes, each placed and its caption read off the render (2026-11-12);
+    # the coded functions give these PDF pages, 0-based, and the renders
+    # confirm them. Tables the guide prints that neither lists nor codes
+    # are not rows.
+    "aashto_1993": {"rows_from_renders": [
+        {"table_number": n, "caption": c, "pdf_page_index": p,
+         "printed_page": pp, "picture": True}
+        for n, c, p, pp in (
+            ("4.1", "Standard Normal Deviate (ZR) Values Corresponding to "
+                    "Selected Levels of Reliability", 83, "I-62"),
+            ("2.2", "Suggested Levels of Reliability for Various Functional "
+                    "Classifications", 98, "II-9"),
+            ("2.3", "Typical Values for k1 and k2 for Unbound Base and "
+                    "Subbase Materials (MR = k1 θ^k2)", 109, "II-20"),
+            ("2.4", "Recommended mi Values for Modifying Structural Layer "
+                    "Coefficients of Untreated Base and Subbase Materials in "
+                    "Flexible Pavements", 114, "II-25"),
+            ("2.5", "Recommended Values of Drainage Coefficient, Cd, for "
+                    "Rigid Pavement Design", 115, "II-26"),
+            ("2.6", "Recommended Load Transfer Coefficient for Various "
+                    "Pavement Types and Design Conditions", 115, "II-26"),
+            ("2.7", "Typical Ranges of Loss of Support (LS) Factors for "
+                    "Various Types of Materials", 116, "II-27"),
+            ("3.1", "Example of Process Used to Predict the Performance "
+                    "Period of an Initial Pavement Structure Considering "
+                    "Swelling and/or Frost Heave", 123, "II-34"),
+            ("3.2", "Table for Estimating Effective Modulus of Subgrade "
+                    "Reaction", 127, "II-38"),
+            ("3.3", "Example Application of Method for Estimating Effective "
+                    "Modulus of Subgrade Reaction", 132, "II-43"),
+            ("G.1", "Table for Estimating Swell Parameters to Use for "
+                    "Design", 398, "G-5"))
+    ] + [
+        {"table_number": f"D.{k}", "caption":
+            f"Axle Load Equivalency Factors for {kind} Pavements, {axle} "
+            f"Axles and pt of {pt}",
+         "pdf_page_index": 361 + k, "printed_page": f"D-{k + 2}",
+         "picture": True}
+        for k, (kind, axle, pt) in enumerate(
+            [(kd, ax, p) for kd in ("Flexible", "Rigid")
+             for p in ("2.0", "2.5", "3.0")
+             for ax in ("Single", "Tandem", "Triple")], start=1)],
+        "notes": {"G.1": "Printed turned on the page; a blank form."}},
+    # EN 1997-1 and -2 are scans with an OCR text layer, which prints
+    # "Table A.S" for A.5, "Table H.l" for H.1 and "Table 0.5" for D.5, and
+    # garbles symbols and letters in captions. Rows the body scan misses or
+    # misplaces are placed here from the pages that print them; captions
+    # are the stored sections' titles where most of their words are on the
+    # page (``caption_from_text``), else as printed.
+    "eurocode_7_1": {
+        # the stored sections' titles add words ("for EQU"): the captions
+        # are read off the renders, every row (2026-11-12)
+        "ocr": True,
+        "caption_from_render": {
+            "A.1": "Partial factors on actions (γF)",
+            "A.2": "Partial factors for soil parameters (γM)",
+            "A.3": "Partial factors on actions (γF) or the effects of "
+                   "actions (γE)",
+            "A.4": "Partial factors for soil parameters (γM)",
+            "A.5": "Partial resistance factors (γR) for spread foundations",
+            "A.6": "Partial resistance factors (γR) for driven piles",
+            "A.7": "Partial resistance factors (γR) for bored piles",
+            "A.8": "Partial resistance factors (γR) for continuous flight "
+                   "auger (CFA) piles",
+            "A.9": "Correlation factors ξ to derive characteristic values "
+                   "from static pile load tests (n - number of tested piles)",
+            "A.10": "Correlation factors ξ to derive characteristic values "
+                    "from ground test results (n - the number of profiles "
+                    "of tests)",
+            "A.11": "Correlation factors ξ to derive characteristic values "
+                    "from dynamic impact tests (n - number of tested piles)",
+            "A.12": "Partial resistance factors (γR) for pre-stressed "
+                    "anchorages",
+            "A.13": "Partial resistance factors (γR) for retaining structures",
+            "A.14": "Partial resistance factors (γR) for slopes and overall "
+                    "stability",
+            "A.15": "Partial factors on actions (γF)",
+            "A.16": "Partial factors for soil parameters and resistances",
+            "A.17": "Partial factors on actions (γF)",
+            "C.1": "Ratios va/h for non-cohesive soils",
+            "C.2": "Ratios vp/h and v/h for 0.5σp for non-cohesive soils",
+            "G.1": "Grouping of weak and broken rocks"},
+        # "Table A.11." on p. 134 is the sentence that cites it
+        "page_from_render": {"A.11": 135},
+        "rows_from_renders": [
+            {"table_number": "A.5", "caption": "",
+             "pdf_page_index": 132, "printed_page": "131"}]},
+    "eurocode_7_2": {
+        "ocr": True, "caption_from_text": True,
+        # "Table 0.5" is D.5, "Table 0.1" is O.1; "Table L.2." on p. 144 is
+        # a sentence citing it (printed on PDF page 146)
+        "drop": ["0.5", "0.1"],
+        "page_from_render": {"L.2": 146},
+        "rows_from_renders": [
+            {"table_number": n, "caption": "", "pdf_page_index": p,
+             "pages": [103, 104] if n == "B.1" else [p],
+             "printed_page": str(p - 1)}
+            for n, p in (("2.1", 26), ("3.1", 35), ("A.1", 99), ("B.1", 103),
+                         ("D.1", 112), ("D.5", 119), ("E.1", 122),
+                         ("E.5", 125), ("F.1", 126), ("G.1", 130),
+                         ("H.1", 133), ("L.5", 148), ("M.1", 151),
+                         ("O.1", 163), ("P.1", 164), ("Q.1", 166),
+                         ("S.1", 169), ("V.1", 174), ("W.1", 177))]},
+    # Vol II's entries restate each table; three only describe it or give
+    # one row of it (Table 12-1 one of ten resistances, 12-7 a few depths,
+    # 15-1 the column heads alone): their values are on the page
+    "gec_12": {"values": {"12-1": ("page", None), "12-7": ("page", None),
+                          "15-1": ("page", None)}},
+    # bodies carry the text layer's cells of most tables; Tables 4-8 and
+    # 10-1, printed as pictures, were typed in from the render
+    "fhwa_soils_foundations": {"list_mode": "bare", "dump_note": True,
+                               "caption_from_render": {
+                                   "3-4b": "Rock core drilling methods "
+                                           "(FHWA, 2002a)"},
+                               "volumes": [{"list_pages": (26, 28)},
+                                           {"list_pages": (23, 24)}]},
 }
 
 #: (reference, table number, function) a name or docstring search pairs but
-#: which does not code that table (it cites another manual's table of the
-#: same number, or a table of another chapter), found by opening each.
-NOT_IMPLEMENTED_BY: set[tuple[str, str, str]] = set()
+#: which does not return that table, found by opening each: it takes a
+#: value of the table as an input (a consumer, "kt from Table 6-23"), it
+#: computes a quantity the table only defines in a heading, or it cites
+#: another manual's table of the same number.
+NOT_IMPLEMENTED_BY: set[tuple[str, str, str]] = {
+    # UFC 3-220-20: Delta w is defined in Table 3-11's heading; the table's
+    # compaction specifications are not coded
+    ("dm7_2", "3-11", "relative_water_content"),
+    # the LCPC method's resistances take ks, fp and kt as inputs
+    ("dm7_2", "6-21", "lcpc_unit_shaft_resistance"),
+    ("dm7_2", "6-22", "lcpc_unit_shaft_resistance"),
+    ("dm7_2", "6-23", "lcpc_unit_base_resistance"),
+    # functions that cite a table in their opening paragraph without
+    # returning its values: an equation the table tabulates or a worked
+    # example checks, a footnote or paragraph, another table's lookup
+    # (read 2026-11-12)
+    ("em_2107", "F.3", "hydrostatic_horizontal_component"),
+    ("em_2107", "F.3", "resultant_angle_from_horizontal"),
+    ("ufc_structural", "2-1", "table_4_1a_structural_performance_objective"),
+    ("ufc_structural", "2-1", "table_4_1b_nonstructural_performance_objective"),
+    ("ufc_structural", "2-2", "risk_category_v_note"),
+    ("ufc_structural", "3-1", "table_b1_rc4_permitted_system"),
+    ("ufc_collapse", "2-1", "rc4_tie_force_minimum_exempt"),
+    ("ufc_collapse", "4-4", "shear_demand_pinned_fixed_column"),
+    ("gsa_collapse", "D17", "column_deformation_controlled_shear_check"),
+    ("ufc_pavement", "G-1", "figure_e_vehicle_allowable_passes"),
+    ("wood_handbook", "4-2", "equilibrium_moisture_content"),
+    ("wood_handbook", "8-8", "wood_screw_withdrawal"),
+}
 
 
 def _cfg(package: str, volume_index: int = 0) -> dict:
@@ -585,6 +857,18 @@ def _label_of(doc, i: int) -> "str | None":
     return lab or None
 
 
+def _list_like(cands: list[dict]) -> bool:
+    """Whether a page's captions are a list of tables: four or more, each
+    within two lines of the last (an appendix's own list on its title
+    page, GEC-7 Appendix A; a chapter's List of Tables whose dot leaders
+    fall on the next line, GEC-13)."""
+    lines = sorted(c["line"] for c in cands if not c["continued"])
+    if len(lines) < 4:
+        return False
+    gaps = [b - a for a, b in zip(lines, lines[1:])]
+    return statistics.median(gaps) <= 2
+
+
 def _scan_body(doc, start: int, end: int, cfg: dict) -> dict[int, list[dict]]:
     num_ok = re.compile(cfg["numbers"]) if cfg.get("numbers") else None
     out: dict[int, list[dict]] = {}
@@ -593,8 +877,17 @@ def _scan_body(doc, start: int, end: int, cfg: dict) -> dict[int, list[dict]]:
         if num_ok is not None:
             cands = [c for c in cands if num_ok.fullmatch(c["number"])]
         if cands:
+            if _list_like(cands):
+                for c in cands:
+                    c["list_like"] = True
             out[i] = cands
     return out
+
+
+def _prefer_printed(found: list[tuple[int, dict]]) -> list[tuple[int, dict]]:
+    """A number's candidates with those on a list-like page last, so a
+    table printed on a later page wins over the list that names it."""
+    return sorted(found, key=lambda x: bool(x[1].get("list_like")))
 
 
 def _page_token_holds(doc, i: int, token: "str | None") -> bool:
@@ -651,7 +944,7 @@ def resolve_rows(doc, entries: list[dict], body: dict, cfg: dict,
         key = number_key(e["table_number"])
         e["how"] = None
         best = None
-        for i, c in by_num.get(key, []):
+        for i, c in _prefer_printed(by_num.get(key, [])):
             if c["continued"] or (i, key) in used:
                 continue
             text, r = caption_text(c, e["caption"])
@@ -715,15 +1008,21 @@ def rows_from_body(doc, body: dict, cfg: dict) -> list[dict]:
                     c["first"] or not c["rest"] or c["bold"]):
                 continue
             key = number_key(c["number"])
-            if key in rows:
+            # the first caption of each number, unless that one is on a
+            # page that lists tables and a later page prints it
+            if key in rows and not rows[key]["_list_like"]:
+                continue
+            if key in rows and c.get("list_like"):
                 continue
             text, _ = caption_text(c)
             if len(text) < 3:
                 continue
+            if key not in rows:
+                order.append(key)
             rows[key] = {"table_number": c["number"], "caption": text,
                          "list_page": None, "pdf_page_index": i,
-                         "page_caption": text, "ratio": 1.0, "how": "body caption"}
-            order.append(key)
+                         "page_caption": text, "ratio": 1.0, "how": "body caption",
+                         "_list_like": bool(c.get("list_like"))}
     return [rows[k] for k in order]
 
 
@@ -763,8 +1062,9 @@ def _cite_rx(num: str) -> "re.Pattern":
 
 def _name_rx(num: str) -> "re.Pattern":
     parts = [p for p in re.split(r"[-.]", norm_number(num).lower()) if p]
+    # 'table_3_1_x' is Table 3-1, not Table 3 (a further number part)
     return re.compile(r"(?:^|_)table_?" + "_?".join(re.escape(p) for p in parts)
-                      + r"(?![0-9a-z])")
+                      + r"(?![0-9a-z])(?!_\d)")
 
 
 def find_lookups(package: str, rows: list[dict]) -> dict[str, list[str]]:
@@ -778,15 +1078,30 @@ def find_lookups(package: str, rows: list[dict]) -> dict[str, list[str]]:
         if not re.search(r"\d", num):
             continue
         nrx, crx = _name_rx(num), _cite_rx(num)
-        found = []
+        named, cited = [], []
         for path, name, doc in funcs:
-            if nrx.search(name) or crx.search(doc.split("\n\n")[0] + "\n" + doc):
-                if (package, num, path.rsplit(".", 1)[1]) in NOT_IMPLEMENTED_BY:
-                    continue
-                found.append(path)
+            if (package, num, name) in NOT_IMPLEMENTED_BY:
+                continue
+            if nrx.search(name):
+                named.append(path)
+            # cited in its summary (first paragraph): the function is that
+            # table; a table cited further down ("coefficients are
+            # tabulated in Table 8-26", "see Table 6-5") is one whose values
+            # the caller passes in, which the function does not return
+            elif crx.search(doc.split("\n\n")[0]):
+                cited.append(path)
+        extra = [f"geotech_references.{package}.{p}"
+                 for p in CONFIG.get(package, {}).get("lookups", {}).get(num, [])]
+        found = list(dict.fromkeys(extra + sorted(named) + sorted(cited)))
         if found:
-            out[num] = sorted(found)
+            out[num] = found
     return out
+
+
+def _short_path(package: str, dotted: str) -> str:
+    """'geotech_references.gec_10.tables.table_8_4' -> 'tables.table_8_4'."""
+    prefix = f"geotech_references.{package}."
+    return dotted[len(prefix):] if dotted.startswith(prefix) else dotted
 
 
 def _walk(sections):
@@ -805,14 +1120,78 @@ def table_ref_number(t) -> "str | None":
     else:
         raw = str(t or "")
     raw = raw.strip()
+    # "10.2-conformance" is a section's id for a table printed without a
+    # number (gec_11 10.2), not Table 10-2
     m = re.match(rf"(?i)^(?:table\s+)?({NUM})(?![\d])", raw)
-    return norm_number(m.group(1)) if m else None
+    if not m or re.match(r"-[A-Za-z]{2}", raw[m.end():]):
+        return None
+    return norm_number(m.group(1))
 
 
-def text_sections(package: str) -> dict[str, list[str]]:
-    """``{number key: [section ids]}`` of the chapter-text sections whose
-    ``tables`` list names the table."""
-    out: dict[str, list[str]] = {}
+def _entry_text(t) -> str:
+    """The text of a chapter-text ``tables`` entry: the string, or a dict's
+    title and content fields."""
+    if isinstance(t, dict):
+        return " ".join(str(t.get(k) or "") for k in
+                        ("table_id", "id", "number", "title", "description",
+                         "content", "cells", "rows", "data", "values"))
+    return str(t or "")
+
+
+def _entry_title(t) -> str:
+    """The title a ``tables`` entry gives its table: a dict's ``title``, or
+    a string's words after the number up to its first " - ", " (p." or
+    ": " ("Table E.2: The shape coefficients ... - L/B circle ...")."""
+    if isinstance(t, dict):
+        return str(t.get("title") or "").strip()
+    s = re.sub(rf"(?i)^\s*(?:table\s+)?{NUM}\s*[:.{_DASHES}-]?\s*", "", str(t or ""))
+    return re.split(rf"\s[-{_DASHES}]\s|\s\(p+\.|:\s", s, maxsplit=1)[0].strip()
+
+
+_NUMS = re.compile(r"(?<![\w.])[-+]?\d+(?:[.,]\d+)?")
+
+
+def entry_has_cells(t) -> bool:
+    """Whether a ``tables`` entry carries the table's cells, not only its
+    number and title: past its title it runs on with cells set apart
+    (';' or '|') or a run of values. Each entry this passes was then read
+    (the report's 'text' rows); a reference whose entries describe a table
+    in words is set ``entries_describe`` in :data:`CONFIG`."""
+    if isinstance(t, dict):
+        body = " ".join(str(t.get(k) or "") for k in
+                        ("description", "content", "cells", "rows", "data",
+                         "values"))
+    else:
+        s = str(t or "")
+        # "Table 6-1: Title (p. 6-3) - columns: ..." -> what follows the title
+        m = re.search(r"\(p+\.\s*[\w-]+\)\s*[-:–]?\s*|\s[-–]\s", s)
+        body = s[m.end():] if m else ""
+    body = body.strip()
+    if len(body) < 80:
+        return False
+    seps = body.count(";") + body.count("|")
+    return seps >= 3 or len(_NUMS.findall(body)) >= 8
+
+
+#: A table typed into a section body as rows of cells set apart by '|'
+#: (three such rows within 1,500 characters after the table's label).
+def body_has_cells(body: str, num: str) -> bool:
+    rx = _cite_rx(num)
+    for m in rx.finditer(body or ""):
+        seg = body[m.end():m.end() + 1500]
+        rows = [ln for ln in seg.splitlines() if ln.count("|") >= 2]
+        if len(rows) >= 3:
+            return True
+    return False
+
+
+def text_sections(package: str) -> dict[str, list[dict]]:
+    """``{number key: [section records]}``: every chapter-text section whose
+    ``tables`` list names the table, each ``{section_id, title, chapter,
+    cells}`` (``cells``: the entry carries the table's cells,
+    :func:`entry_has_cells`), and every section whose body types the table
+    as rows of cells (``{..., "body_cells": True}``)."""
+    out: dict[str, list[dict]] = {}
     tdir = _PACKAGE_DIR / package / "text"
     if not tdir.is_dir():
         return out
@@ -822,14 +1201,94 @@ def text_sections(package: str) -> dict[str, list[str]]:
         except (OSError, json.JSONDecodeError):
             continue
         for sec in _walk(data.get("sections")):
+            sid = sec.get("section_id")
+            if not sid:
+                continue
+            base = {"section_id": sid, "title": sec.get("title") or "",
+                    "chapter": data.get("chapter"), "file": jf.name,
+                    "volume": data.get("volume")}
             for t in sec.get("tables") or []:
                 num = table_ref_number(t)
-                sid = sec.get("section_id")
-                if num and sid:
-                    bucket = out.setdefault(number_key(num), [])
-                    if sid not in bucket:
-                        bucket.append(sid)
+                if not num:
+                    continue
+                bucket = out.setdefault(number_key(num), [])
+                rec = dict(base, cells=entry_has_cells(t),
+                           entry=_entry_text(t)[:400],
+                           entry_title=_entry_title(t))
+                if not any(b["section_id"] == sid and b.get("listed")
+                           for b in bucket):
+                    rec["listed"] = True
+                    bucket.append(rec)
+                elif rec["cells"]:
+                    for b in bucket:
+                        if b["section_id"] == sid:
+                            b["cells"] = True
+            body = sec.get("body") or ""
+            # a table printed as a picture whose rows a build typed in from
+            # the render ("[Table 4-8 is printed as a picture; its rows, read
+            # off the page:]", fhwa_soils_foundations)
+            for m in re.finditer(rf"\[Table\s+({NUM})[^\]]{{0,80}}read off the page",
+                                 body):
+                bucket = out.setdefault(number_key(norm_number(m.group(1))), [])
+                if not any(b["section_id"] == sid and b.get("body_cells")
+                           for b in bucket):
+                    bucket.append(dict(base, body_cells=True))
+            # the cells of a table as the text layer gives them, in reading
+            # order without its columns (fhwa_soils_foundations bodies):
+            # the label, then the caption's first words
+            for m in re.finditer(rf"(?<![\[\w])Table\s+({NUM})(?![\d])\s*\n*\s*(\S[^\n]{{0,60}})",
+                                 body):
+                bucket = out.setdefault(number_key(norm_number(m.group(1))), [])
+                for b in bucket:
+                    if b["section_id"] == sid:
+                        b.setdefault("dump_head", m.group(2))
+                if not any(b["section_id"] == sid for b in bucket):
+                    bucket.append(dict(base, dump_head=m.group(2), cited=True))
+            if body.count("|") >= 6:
+                for m in re.finditer(rf"(?i)\btables?\s+({NUM})(?![\d])", body):
+                    num = norm_number(m.group(1))
+                    if body_has_cells(body, num):
+                        bucket = out.setdefault(number_key(num), [])
+                        if not any(b["section_id"] == sid and b.get("body_cells")
+                                   for b in bucket):
+                            bucket.append(dict(base, body_cells=True))
     return out
+
+
+def choose_section(secs: list[dict], chapter, volume=None) -> "dict | None":
+    """The stored section a row names: one that lists the table, in the
+    table's own chapter (and volume) first; else one whose body types it."""
+    listed = [s for s in secs if s.get("listed")]
+    pool = listed or [s for s in secs if s.get("body_cells")]
+    if not pool:
+        return None
+    if volume is not None:
+        same_vol = [s for s in pool if s.get("volume") in (None, volume)]
+        pool = same_vol or pool
+    same = [s for s in pool if chapter is not None
+            and str(s.get("chapter")) == str(chapter)]
+    return (same or pool)[0]
+
+
+def choose_values(package: str, num: str, secs: list[dict],
+                  lookups: list[str]) -> tuple[str, "str | None"]:
+    """``(values, values_in)`` of one row: "text" and the section when a
+    stored section carries the table's cells (a ``tables`` entry or the
+    body), else "lookup" and the first confirmed function, else "page"."""
+    cfg = CONFIG.get(package, {})
+    forced = cfg.get("values", {}).get(num)
+    if forced:
+        return forced[0], forced[1]
+    typed = [s for s in secs
+             if (s.get("cells") and not cfg.get("entries_describe"))
+             or s.get("body_cells")]
+    typed = [s for s in typed
+             if s["section_id"] not in cfg.get("not_typed", {}).get(num, [])]
+    if typed:
+        return "text", typed[0]["section_id"]
+    if lookups:
+        return "lookup", lookups[0]
+    return "page", None
 
 
 # ---------------------------------------------------------------------------
@@ -846,6 +1305,8 @@ def _rows_from_pdf(doc, cfg: dict) -> tuple[list[dict], dict]:
     start = cfg.get("body_start", (runs[0][-1] + 1) if runs else 0)
     end = min(cfg.get("body_end", doc.page_count), doc.page_count)
     body = _scan_body(doc, start, end, cfg)
+    for p in list_pages:        # a chapter's List of Tables inside the body
+        body.pop(p, None)
     if entries:
         rows = resolve_rows(doc, entries, body, cfg, start, end)
         # tables the body prints under a caption that the list leaves out
@@ -883,6 +1344,9 @@ def _apply_renders(rows: list[dict], cfg: dict, doc) -> list[dict]:
             r["pdf_page_index"] = got[0] if isinstance(got, list) else got
             r["pages"] = got if isinstance(got, list) else [got]
             r["how"] = "render"
+            # the caption matched on the wrong page is not this table's;
+            # the list's caption stands unless one was read off the render
+            r["page_caption"] = None
         if num in caps:
             r["page_caption"] = caps[num]
             r["how"] = r["how"] if r["how"] == "render" else (r["how"] or "") + "+caption render"
@@ -907,12 +1371,25 @@ def choose_caption(list_cap: str, page_cap: "str | None", how: "str | None") -> 
     matched to the list's (``how`` "label only", read off the render)."""
     if not page_cap or how in ("label only", "estimated", "not found"):
         return list_cap or page_cap or ""
-    if how == "near caption" and list_cap:
+    if how in ("near caption", "caption") and list_cap:
+        # (UFC 3-220-20 Table 4-2: the page's "( - = - =0 ° )" for the
+        # list's "(β=θ=0°)")
         lost = {ch for ch in list_cap
                 if (not ch.isascii() and ch.isalpha()) or ch in "°±≤≥"}
         if lost - set(page_cap):
             return list_cap
     return page_cap
+
+
+def _plain_math(text: str) -> str:
+    """Letters and digits set in the Unicode mathematical alphanumeric
+    block (a caption's italic "𝑵 𝟔𝟎", GEC-5 Appendix A2) as the plain
+    characters they are, so a search for "N60" finds them; nothing else
+    changes."""
+    import unicodedata
+    return "".join(unicodedata.normalize("NFKC", ch)
+                   if 0x1D400 <= ord(ch) <= 0x1D7FF else ch
+                   for ch in text or "")
 
 
 def build_catalog(package: str, audit: "dict | None" = None,
@@ -946,6 +1423,8 @@ def build_catalog(package: str, audit: "dict | None" = None,
                 r["_vol"] = vol
                 r["_confirmed_text"] = r.get("how") in ("caption", "near caption",
                                                          "body caption")
+                if cfg.get("caption_from_text") and pages:
+                    r["_text"] = doc[pages[0]].get_text()
         finally:
             doc.close()
         stats["pdf"] = rel
@@ -954,39 +1433,77 @@ def build_catalog(package: str, audit: "dict | None" = None,
 
     lookups = find_lookups(package, rows_out)
     sections = text_sections(package)
-    prologue = CONFIG.get(package, {}).get("prologue", "P")
+    cfg_all = CONFIG.get(package, {})
+    prologue = cfg_all.get("prologue", "P")
     out_rows = []
     for r in rows_out:
         num = r["table_number"]
-        cap = choose_caption(r["caption"], r.get("page_caption"), r.get("how"))
+        cap = cfg_all.get("caption_from_render", {}).get(num) or choose_caption(
+            r["caption"], r.get("page_caption"), r.get("how"))
+        cap = _plain_math(cap)
         chapter = r.get("chapter", chapter_of(num, prologue))
-        starts = CONFIG.get(package, {}).get("chapter_starts")
+        starts = cfg_all.get("chapter_starts")
         if chapter is None and starts and r.get("pdf_page_index") is not None \
                 and re.fullmatch(r"\d+", num):
             before = [c for c, p in starts.items() if p <= r["pdf_page_index"]]
             chapter = max(before, key=lambda c: starts[c]) if before else None
+        vol = r["_vol"].get("volume") if r.get("_vol") else None
+        secs = sections.get(number_key(num), [])
+        if not secs and re.search(r"\d[A-Za-z]$", num):
+            # a section that lists "Table 5-4" for the parts 5-4a and 5-4b
+            secs = sections.get(number_key(num[:-1]), [])
+        if r.get("_vol"):
+            # a number printed in both volumes: the sections of this volume
+            secs = [s for s in secs if s.get("volume") in (None, vol)] or secs
+        sec = choose_section(secs, chapter, vol)
+        if r.get("_text") and num not in cfg_all.get("caption_from_render", {}):
+            # an OCR text layer garbles the caption ("settlenlent"): the
+            # stored section's title for the table, where most of its words
+            # are on the page
+            for s in [x for x in secs if x.get("listed")]:
+                title = s.get("entry_title") or ""
+                if len(title) >= 8 and words_on_page(r["_text"], title):
+                    cap = _plain_math(title)
+                    break
+        impl = [_short_path(package, p) for p in lookups.get(num, [])]
+        values, values_in = choose_values(package, num, secs, impl)
+        pages = [p["pdf_page_index"] for p in r.get("_pages") or []]
         rec = {
             "table_number": num,
             "caption": cap,
             "chapter": chapter,
+            "section_id": sec["section_id"] if sec else None,
+            "section_title": sec["title"] if sec else None,
             "pdf_page_index": r.get("pdf_page_index"),
+            "pages": pages or ([r["pdf_page_index"]]
+                               if r.get("pdf_page_index") is not None else []),
             "printed_page": r.get("list_page"),
-            "page_estimated": r.get("how") in ("estimated", "not found", "label only"),
+            "page_estimated": r.get("how") in ("estimated", "not found"),
+            "values": values,
+            "values_in": values_in,
         }
-        if len(r.get("_pages") or []) > 1:
-            rec["pages"] = r["_pages"]
+        if impl:
+            rec["implemented_in"] = impl
         if r.get("_vol"):
             rec["pdf_path"] = r["_pdf"]
-            rec["volume"] = r["_vol"].get("volume")
+            rec["volume"] = vol
             if r["_vol"].get("reference_id"):
                 rec["reference_id"] = r["_vol"]["reference_id"]
-        if lookups.get(num):
-            rec["implemented_in"] = lookups[num]
-        secs = sections.get(number_key(num))
-        if secs:
-            rec["text_sections"] = secs
-        if r.get("note"):
-            rec["note"] = r["note"]
+        if r.get("picture") or num in cfg_all.get("pictures", ()):
+            rec["printed_as_picture"] = True
+        note = r.get("note") or cfg_all.get("notes", {}).get(num)
+        if not note and values == "page" and cfg_all.get("dump_note"):
+            # the body holds the text layer's cells of this table
+            head = _norm(" ".join(re.findall(r"[A-Za-z0-9]+", cap)[:3]))
+            dumps = [s for s in secs if s.get("dump_head") and head
+                     and _norm(s["dump_head"]).startswith(head)]
+            if dumps:
+                note = (f"Section {dumps[0]['section_id']} carries this "
+                        "table's cells as the PDF text layer gives them, in "
+                        "reading order without its rows and columns; read "
+                        "the table off the page.")
+        if note:
+            rec["note"] = note
         out_rows.append(rec)
         if audit is not None:
             audit.setdefault(package, []).append({
@@ -996,7 +1513,25 @@ def build_catalog(package: str, audit: "dict | None" = None,
                 "page_caption": r.get("page_caption"),
                 "pdf_page_index": r.get("pdf_page_index"),
                 "pages": [p["pdf_page_index"] for p in r.get("_pages") or []],
-                "pdf": r["_pdf"], "list_page": r.get("list_page")})
+                "pdf": r["_pdf"], "list_page": r.get("list_page"),
+                "values": values, "values_in": values_in,
+                "section_id": rec["section_id"], "impl": impl,
+                "secs": [{k: s.get(k) for k in ("section_id", "listed", "cells",
+                                                 "body_cells", "entry")}
+                         for s in secs]})
+    # every table a stored section lists must be a row (or be reported)
+    have = {number_key(r["table_number"]) for r in out_rows}
+    # a listed "5-4" printed as parts 5-4a and 5-4b is a row
+    have |= {k[:-1] for k in have if re.search(r"\d[A-Z]$", k)}
+    # a table a section names that the manual cites and does not print
+    have |= {number_key(n) for n in cfg_all.get("not_printed", {})}
+    unlisted = sorted({s["section_id"] + " -> " + k for k, ss in sections.items()
+                       for s in ss if s.get("listed") and k not in have})
+    if audit is not None:
+        audit.setdefault("_listed_not_rows", {})[package] = unlisted
+    if unlisted:
+        print(f"[{package}] listed in the text but not a row: {len(unlisted)}: "
+              + "; ".join(unlisted[:40]))
 
     first = volumes[0]
     catalog = {
@@ -1012,12 +1547,124 @@ def build_catalog(package: str, audit: "dict | None" = None,
     n_impl = sum(1 for r in out_rows if r.get("implemented_in"))
     print(f"[{package}] {len(out_rows)} tables (list entries "
           f"{sum(s['list_entries'] for s in stats_all)}; page estimated {n_est}; "
-          f"with a lookup {n_impl}; continued {sum(1 for r in out_rows if r.get('pages'))})")
+          f"with a lookup {n_impl}; continued "
+          f"{sum(1 for r in out_rows if len(r.get('pages') or []) > 1)}; values "
+          f"{dict(sorted((v, sum(1 for r in out_rows if r['values'] == v)) for v in ('text', 'lookup', 'page')))})")
     if write:
         out_path = _PACKAGE_DIR / package / "tables_catalog.json"
         out_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False) + "\n",
                             encoding="utf-8")
     return catalog
+
+
+# ---------------------------------------------------------------------------
+# Verify a written catalog against its pages
+# ---------------------------------------------------------------------------
+
+#: characters an OCR text layer prints for a digit or annex letter
+#: (EN 1997-1/-2 scans: "Table A.S" for A.5, "Table H.l" for H.1,
+#: "Table 0.5" for D.5, "'rable 3.1")
+_OCR_ALIKE = {"1": "1iIl!", "5": "5sS", "0": "0oO", "O": "OD0", "D": "DO0"}
+
+
+def _ocr_part(p: str) -> str:
+    return "".join(f"[{re.escape(_OCR_ALIKE[c])}]" if c in _OCR_ALIKE
+                   else re.escape(c) for c in p)
+
+
+def label_on_page(text: str, num: str, ocr: bool = False) -> bool:
+    """Whether a page's text prints the label ``Table <num>`` (any dash or
+    '.', spaces inside, upper or lower case). ``ocr``: the page's text
+    layer is a scan's OCR, so a digit may read as its look-alike letter
+    and the word as "'rable"."""
+    n = norm_number(num)
+    letter = ""
+    m = re.search(r"(?<=\d)([a-zA-Z])$", n)
+    if m:
+        n, letter = n[:-1], m.group(1)
+    parts = [(_ocr_part(p) if ocr else re.escape(p))
+             for p in re.split(r"[-.]", n) if p]
+    sep = rf"\s*[-.,{_DASHES}]?\s*" if ocr else rf"\s*[-.{_DASHES}]?\s*"
+    body = sep.join(parts)
+    if letter:
+        body += rf"\s*\(?{letter}\)?"
+    word = r"(?:table|\Sable|ta\Sle|tab\Se)" if ocr else r"\btable"
+    rx = re.compile(rf"(?i){word}\s*{body}(?![\d])")
+    return bool(rx.search(text.translate(_SMART)))
+
+
+def words_on_page(text: str, phrase: str, share: float = 0.7) -> bool:
+    """Whether at least ``share`` of a phrase's words (three letters or
+    more, the first ten) are in a page's text: a caption checked against
+    an OCR text layer that misreads a letter here and there."""
+    words = [w.lower() for w in re.findall(r"[A-Za-z]{3,}", phrase or "")][:10]
+    if len(words) < 2:
+        return False
+    page = re.sub(r"\s+", " ", _plain_math(text.translate(_SMART)).lower())
+    return sum(1 for w in words if w in page) / len(words) >= share
+
+
+def contents_page(text: str) -> bool:
+    """Whether a page is a contents page or List of Tables (four or more
+    lines ending in dot leaders and a page number): it names a table
+    without printing it."""
+    return len(re.findall(rf"\.{{5,}}[ \t]*[A-Za-z]{{0,2}}[-{_DASHES}]?\d{{1,4}}"
+                          rf"(?:[-{_DASHES}]\d{{1,4}})?[ \t]*$", text, re.M)) >= 4
+
+
+def row_on_page(package: str, text: str, row: dict) -> tuple[bool, bool]:
+    """``(label, caption)``: whether a catalog row's label and caption are
+    on its page's text, by the rule its reference's text layer allows
+    (:data:`CONFIG` ``ocr``)."""
+    ocr = bool(CONFIG.get(package, {}).get("ocr"))
+    lab = label_on_page(text, row["table_number"], ocr=ocr)
+    cap = caption_on_page(text, row["caption"])
+    if not cap and ocr:
+        cap = words_on_page(text, row["caption"])
+    return lab, cap
+
+
+def caption_on_page(text: str, caption: str, words: int = 4) -> bool:
+    """Whether a page's text prints the caption's first ``words`` words
+    (letters and digits only, so line breaks and garbled symbols do not
+    count)."""
+    toks = re.findall(r"[A-Za-z0-9]+", caption or "")
+    want = _norm(" ".join(toks[:words]))
+    if len(want) < 6:
+        want = _norm(" ".join(toks[:words + 3]))
+    return bool(want) and want in _norm(_plain_math(text.translate(_SMART)))
+
+
+def verify_catalog(package: str) -> list[dict]:
+    """Check every row of a written catalog on its page: the label and the
+    caption's first words on ``pdf_page_index``. Returns the rows that fail
+    either, each with ``label`` / ``caption`` booleans (a table printed as
+    a picture has no text layer: both fail, and the row is read off the
+    render)."""
+    cat = json.loads((_PACKAGE_DIR / package / "tables_catalog.json")
+                     .read_text(encoding="utf-8"))
+    out = []
+    docs: dict = {}
+    try:
+        for r in cat["tables"]:
+            rel = r.get("pdf_path") or cat["pdf_path"]
+            if rel not in docs:
+                docs[rel] = _open_pdf(rel)
+            doc = docs[rel]
+            text = doc[r["pdf_page_index"]].get_text()
+            lab, cap = row_on_page(package, text, r)
+            contents = contents_page(text)
+            if not (lab and cap) or contents:
+                out.append({"table_number": r["table_number"],
+                            "pdf_page_index": r["pdf_page_index"],
+                            "pdf": rel, "label": lab and not contents,
+                            "caption": cap,
+                            "caption_text": r["caption"][:90],
+                            "picture": bool(r.get("printed_as_picture"))})
+    finally:
+        for d in docs.values():
+            d.close()
+    return out
 
 
 def _packages() -> list[str]:
@@ -1026,7 +1673,10 @@ def _packages() -> list[str]:
         if not (_PACKAGE_DIR / mf.stem).is_dir():
             continue
         data = json.loads(mf.read_text(encoding="utf-8"))
+        # a reference with chapter text and a PDF (the tables a section
+        # lists are what the catalog must resolve)
         if (data.get("pdf_path") or data.get("volumes")) \
+                and (_PACKAGE_DIR / mf.stem / "text").is_dir() \
                 and not CONFIG.get(mf.stem, {}).get("no_tables"):
             out.append(mf.stem)
     return out
@@ -1039,6 +1689,18 @@ def main(argv: list[str]) -> int:
     dry = False
     if argv[:1] == ["--dry-run"]:
         dry, argv = True, argv[1:]
+    if argv[:1] == ["--verify"]:
+        targets = _packages() if argv[1:] == ["all"] else argv[1:]
+        bad = 0
+        for pkg in targets:
+            flagged = verify_catalog(pkg)
+            bad += len(flagged)
+            print(f"[{pkg}] rows not confirmed on their page: {len(flagged)}")
+            for f in flagged:
+                print(f"   {f['table_number']:>8} p={f['pdf_page_index']} "
+                      f"label={f['label']} caption={f['caption']} "
+                      f"picture={f['picture']} \"{f['caption_text']}\"")
+        return 1 if bad else 0
     if not argv:
         print(__doc__)
         print("Packages:", ", ".join(_packages()))
