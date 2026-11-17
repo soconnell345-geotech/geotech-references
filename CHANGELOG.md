@@ -2,7 +2,29 @@
 
 Releases before 1.6.0 are described in their release commits (`git log`).
 
-## Unreleased
+## 1.8.0
+
+Released 2026-11-17. What a caller will notice:
+
+- **One renamed key.** A lookup result's `pdf_page` is now `pdf_page_index`,
+  the same 0-based value, and page spans are lists of ints. Micropile Tables
+  5-4 and 5-5 and Figure 5-23 (`section="all"`) carry `units`,
+  `printed_page` and `pdf_page_index` beside their cases, so code that loops
+  over the cases skips those three keys.
+- **Two silent wrong answers fixed:** `em_2104.aci_beta1` with `unit='MPa'`,
+  and `ufc_expansive.table_active_zone_depth` under `unit_system="SI"`.
+- **Every lookup of 17 references says its units and printed page**
+  (REF-78, waves 1a and 1b), and 98 US-unit lookups take `unit_system="SI"`.
+- **228 printed tables typed into the chapter text and checked cell by cell**
+  against the print (DM 7.1 90, GEC-12 Vol I 78, GEC-13 60). The table
+  catalogs answer "text" for 770 of their 2,099 tables (542 in 1.7.0), so a
+  host without the PDFs can quote these values.
+- **DM 7.2 is cited as UFS 3-220-20 (26 March 2026)**, with no value or page
+  changed.
+- **`MAINTAINERS.md` and `RELEASING.md`** say how the library is maintained
+  and released.
+
+The entries below give each change.
 
 **GEC-13, the printed tables (REF-97).** The printed tables of chapters 2 to 10 are typed into the chapter text and were checked cell by cell against the print by an independent reader; the format faults it found are fixed (a printed semicolon inside a cell is a comma, every row holds as many cells as its table has columns). Table 9-6's Apparent Opening Size row now holds both criteria (< 0.6 for < 50% passing No. 200 sieve, < 0.3 for > 50%) in each elongation column, as printed, and the cells printed across both elongation columns of Tables 9-6 and 9-7 are typed under each. The table catalog now answers "text" for them (60 of the 82 gec_13 rows); Table 9-8 is read against the render.
 
@@ -119,8 +141,8 @@ rules as wave 1a:
   `dm7_2` prologue's "p. 40" to "p. 54" and chapter 7's "p. 571" to
   "pp. 578-579" were PDF viewer pages: they are printed 2 to 16 and 533 to
   541.
-- **Docstring:** `dm7_1.point_load_strength_index` said "MPa if P is in kN
-  and d is in mm: kN/mm^2 = GPa"; kN and mm give kN/mm^2, which is GPa.
+- **Docstring:** `dm7_1.point_load_strength_index` said the index is in
+  MPa when P is in kN and d in mm; kN over mm^2 is GPa, and it now says GPa.
 - `_units.labelled` labels a list of row dicts row by row; the unit
   vocabulary adds `blows`, `bpf`, `ohm`, `um`, `mil(s)` and `radian(s)`, and
   the exact factors add m^3/m to ft^3/ft.
