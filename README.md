@@ -116,6 +116,10 @@ print(dm7_list_methods("chapter1"))
 result = dm7_agent("table_1_4_uscs_classification", '{"gravel_pct": 25, "sand_pct": 55, "fines_pct": 20, "liquid_limit": 35, "plasticity_index": 12}')
 ```
 
+## Maintaining
+
+How content is added and checked against the print, how to run the tests, and the owner's rules: `MAINTAINERS.md`. How to release: `RELEASING.md`.
+
 ## Source documents
 
 `docs/` holds the PDFs the modules were built from. Most are U.S. government publications: FHWA, USACE, UFC, FEMA, USDA, GSA and Caltrans.

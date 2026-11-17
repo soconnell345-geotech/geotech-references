@@ -54,6 +54,9 @@ will catch it. The printed page is the only authority.
    already has (see `geotech_references/gec_10/text/chapter08.json`,
    Tables 8-1 to 8-4): `Table N: caption (p. <printed page>) - columns: ...`
    then the rows and the printed notes.
+   Rows are separated by " | " and cells by "; ", so a semicolon inside a
+   cell (a printed one, or a note) is written ", " ("[as printed, ...]"), and
+   every row holds as many cells as its table has columns.
 
 ## Builders
 
